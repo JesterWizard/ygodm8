@@ -128,6 +128,7 @@ int HighestAtkMonOfTypeInRow (struct DuelCard** zonePtr, unsigned char type) {
   return (signed char)zoneIndex;
 }
 
+// unused
 unsigned char NumFaceUpHigherAtkMonsInRow (unsigned char turnRow, unsigned short atk) {
   unsigned char i, count = 0;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
@@ -143,20 +144,21 @@ unsigned char NumFaceUpHigherAtkMonsInRow (unsigned char turnRow, unsigned short
   return count;
 }
 
-unsigned char GetNumFaceUpLockedCardsInRow (unsigned char row) {
+// unused
+unsigned char GetNumFaceUpLockedCardsInRow (unsigned char turnRow) {
   unsigned char i, count = 0;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (gTurnZones[row][i]->id != CARD_NONE && gTurnZones[row][i]->isFaceUp)
-      if (gTurnZones[row][i]->isLocked)
+    if (gTurnZones[turnRow][i]->id != CARD_NONE && gTurnZones[turnRow][i]->isFaceUp)
+      if (gTurnZones[turnRow][i]->isLocked)
         count++;
   return count;
 }
 
-unsigned GetTotalAtkAndDefInRow (unsigned char turnRow) {
-  unsigned total = 0;
+unsigned long GetTotalAtkAndDefInRow (unsigned char turnRow) {
+  unsigned long total = 0;
   unsigned char i;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (GetTypeGroup(gTurnZones[turnRow][i]->id) != 1)
+    if (GetTypeGroup(gTurnZones[turnRow][i]->id) != TYPE_GROUP_MONSTER)
       continue;
     gStatMod.card = gTurnZones[turnRow][i]->id;
     gStatMod.field = gDuel.field;
@@ -167,8 +169,8 @@ unsigned GetTotalAtkAndDefInRow (unsigned char turnRow) {
   return total;
 }
 
-unsigned GetTotalFaceUpAtkAndDefInRow (unsigned char turnRow) {
-  unsigned total = 0;
+unsigned long GetTotalFaceUpAtkAndDefInRow (unsigned char turnRow) {
+  unsigned long total = 0;
   unsigned char i;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (GetTypeGroup(gTurnZones[turnRow][i]->id) != 1 || !gTurnZones[turnRow][i]->isFaceUp)
@@ -352,8 +354,7 @@ unsigned ZoneHasTrapCard (struct DuelCard* zone) {
   return zone->id != CARD_NONE && GetTypeGroup(zone->id) == TYPE_GROUP_TRAP;
 }
 
-//ZoneHasEquipSpell
-unsigned sub_804376C (struct DuelCard* zone) {
+unsigned ZoneHasEquipSpell (struct DuelCard* zone) {
   return GetTypeGroup(zone->id) == TYPE_GROUP_SPELL && GetSpellType(zone->id) == SPELL_TYPE_EQUIP;
 }
 

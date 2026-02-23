@@ -121,8 +121,8 @@ void DuelMain (void) {
       gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked = 0;
     if (gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns)
       DecrementSorlTurns(ACTIVE_DUELIST);
-    UnlockCardsInRow(2);
-    UnlockCardsInRow(4);
+    UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
   }
   DuelEnd();
 }
@@ -363,7 +363,8 @@ void LinkDuelMain (void) {
       StartPlayerLinkTurn();
     else
       StartOpponentLinkTurn();
-    if (IsDuelOver() == TRUE) break;
+    if (IsDuelOver() == TRUE)
+      break;
     ReturnMonstersToOwner();
     FlipAtkPosCardsFaceUp(2);
     EndFirstTurnAttackBan();
@@ -372,9 +373,10 @@ void LinkDuelMain (void) {
       gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked = FALSE;
     if (gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns)
       DecrementSorlTurns(ACTIVE_DUELIST);
-    UnlockCardsInRow(2);
-    UnlockCardsInRow(4);
-    if (g3000C38.unk34) break;
+    UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+    if (g3000C38.unk34)
+      break;
   }
   OnLinkDuelEnd();
 }

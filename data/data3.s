@@ -7,4 +7,4 @@ gUnk_94C37:
 
 
     .section .rodata3
-    .incbin "baserom.gba", 0xAED56, 0xA96A
+    .incbin "baserom.gba", 0xB0D20, 0x89A0

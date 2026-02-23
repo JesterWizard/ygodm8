@@ -67,7 +67,7 @@ enum MusicIds
   SFX_FORBIDDEN = 0x39,                 //
   SFX_PLACE_CARD = 0x3A,                //
   SFX_DRAW_CARD = 0x3B,                 //
-  SFX_FLIP_FACE_UP = 0x3C,              //
+  SFX_FLIP_FACE_UP = 0x3C,              // TODO: rename, this is used by AI to lock monster (after switching pos of card, or keeping it the same)
   SFX_TRIBUTE = 0x3D,                   //
   SFX_DISCARD = 0x3E,                   //
   MUSIC_63 = 0x3F,                      // no effect

@@ -115,26 +115,28 @@ enum DuelType {
 
 /*
 // TODO: use these to specify rows for "turn" and "fixed" row args
-// e.g. UnlockCardsInRow(2) becomes UnlockCardsInRow(ACTIVE_DUELIST_MONSTER)
-
-enum TurnRows
+// e.g. UnlockCardsInRow(2) becomes UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW)
+*/
+// Turn player, turn opponent
+enum TurnRow
 {
     INACTIVE_DUELIST_BACKROW,
-    INACTIVE_DUELIST_MONSTER,
-    ACTIVE_DUELIST_MONSTER,
+    INACTIVE_DUELIST_MONSTER_ROW,
+    ACTIVE_DUELIST_MONSTER_ROW,
     ACTIVE_DUELIST_BACKROW,
     ACTIVE_DUELIST_HAND
 };
 
-enum FixedRows
+// StaticRow?
+enum FixedRow
 {
     OPPONENT_BACKROW,
-    OPPONENT_MONSTER,
-    PLAYER_MONSTER,
+    OPPONENT_MONSTER_ROW,
+    PLAYER_MONSTER_ROW,
     PLAYER_BACKROW,
     PLAYER_HAND
 };
-*/
+
 
 enum SpellType
 {
@@ -521,14 +523,14 @@ void sub_8055FD0(void);
 void sub_801FB44(u8*);
 
 int GetNumCardsInRow (u8);
-u32 GetTotalAtkAndDefInRow (u8);
+unsigned long GetTotalAtkAndDefInRow (u8);
 
 
 
 u32 GetNumCardsUnlockedInRow (u8);
 u32 sub_80438A0 (u8);
 u32 GetNumCardsDefendingInRow (u8);
-u32 GetTotalFaceUpAtkAndDefInRow (u8);
+unsigned long GetTotalFaceUpAtkAndDefInRow (u8);
 u32 GetNumFaceUpCardsInRow (u8);
 u32 NumFaceUpMatchingTypeInRow (u8, u8);
 u32 NumFaceUpMatchingAttributeInRow (u8, u8);
@@ -537,7 +539,7 @@ u8 sub_803FBCC (u8, u8);
 bool32 IsCardLocked (struct DuelCard *zone);
 bool32 sub_8043714 (struct DuelCard *zone);
 bool32 ZoneHasTrapCard (struct DuelCard *zone);
-bool32 sub_804376C (struct DuelCard *zone);
+bool32 ZoneHasEquipSpell (struct DuelCard *zone);
 bool32 sub_8043790 (struct DuelCard *zone);
 bool32 ZoneHasRitualCard (struct DuelCard *zone);
 
