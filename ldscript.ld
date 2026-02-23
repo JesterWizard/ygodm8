@@ -26,7 +26,7 @@ SECTIONS
     . = 0x0201CB38;
     .bss : {
       src/card.o(.bss);
-      src/code2.o(.bss);
+      src/duel/ai.o(.bss);
       src/monster_attack_screen.o(.bss);
       src/deck_menu.o(.bss);
     }
@@ -259,7 +259,7 @@ SECTIONS
 
         src/digit.o(.text);
         src/compression.o(.text);
-        src/code2.o(.text);
+        src/duel/ai.o(.text);
         src/monster_attack_screen.o(.text);
         src/effect_text.o(.text);
 
@@ -269,13 +269,13 @@ SECTIONS
         src/code_22.o(.text);
 
         src/main.o(.text);
-        src/exodia.o(.text);
+        src/duel/exodia.o(.text);
         src/text.o(.text);
-        src/duel_main.o(.text);
+        src/duel/duel_main.o(.text);
         asm/code3.o(.text);
         src/main_menu.o(.text);
         asm/main_menu.o(.text);
-        src/duel_status.o(.text);
+        src/duel/duel_status.o(.text);
         src/ante.o(.text);
         src/password_terminal.o(.text);
         src/god_cards.o(.text);
@@ -285,7 +285,7 @@ SECTIONS
         src/code_802612C.o(.text);
 
 
-        src/return_monster.o(.text);
+        src/duel/return_monster.o(.text);
         src/print_card.o(.text);
         src/copyright_screens.o(.text);
 
@@ -294,9 +294,9 @@ SECTIONS
 
 
         /*combine these 3 files?*/
-        src/permanent_effect.o(.text);
+        src/duel/permanent_effect.o(.text);
         asm/code3.o(.text3);
-        src/turn_effect.o(.text);
+        src/duel/turn_effect.o(.text);
 
 
 
@@ -313,23 +313,23 @@ SECTIONS
         asm/code3.o(.text6);
         src/code_803ED78.o(.text); /*clear_gfx_ram_buffers.o */
 
-        src/FINAL_effect.o(.text);
-        src/code_803F02C.o(.text);
-        src/duel_textbox.o(.text);
-        src/code_8041C94.o(.text);
-        src/code_80421CC.o(.text);
-        src/duel_util.o(.text);
-        src/code_8043EF4.o(.text);
+        src/duel/FINAL_effect.o(.text);
+        src/duel/code_803F02C.o(.text);
+        src/duel/duel_textbox.o(.text);
+        src/duel/code_8041C94.o(.text);
+        src/duel/code_80421CC.o(.text);
+        src/duel/duel_util.o(.text);
+        src/duel/code_8043EF4.o(.text);
 
         src/code_8044E50.o(.text);
         asm/code_803F02C.o(.text);
 
-        src/code_80452A8.o(.text);
+        src/duel/code_80452A8.o(.text);
         src/tribute.o(.text);
         src/io_buffers.o(.text);
-        src/monster_effects.o(.text)
-        src/life_points.o(.text)
-        src/spell_effects.o(.text)
+        src/duel/monster_effects.o(.text)
+        src/duel/life_points.o(.text)
+        src/duel/spell_effects.o(.text)
 
 
         
@@ -347,8 +347,8 @@ SECTIONS
         src/card_passwords.o(.text); /*card_password*/
         src/rng.o(.text);
         src/mini_card.o(.text);
-        src/trap_effects.o(.text);
-        src/turn.o(.text);
+        src/duel/trap_effects.o(.text);
+        src/duel/turn.o(.text);
 
         /*lib code*/
 
@@ -377,14 +377,14 @@ SECTIONS
 
         src/data_8DFF4F8.o(.rodata);
         src/compression.o(.rodata);
-        src/code2.o(.rodata);
+        src/duel/ai.o(.rodata);
         data/data3.o(.rodata3);
         src/data/decks.o(.rodata);
         data/data4.o(.rodata);
         src/ante.o(.rodata);
         data/data4.o(.rodata2);
-        src/monster_effects.o(.rodata);
-        src/spell_effects.o(.rodata);
+        src/duel/monster_effects.o(.rodata);
+        src/duel/spell_effects.o(.rodata);
         data/data4.o(.rodata3);
         src/overworld/entities/entities.o(.rodata);
         data/data4.o(.ow_entities);
@@ -404,20 +404,20 @@ SECTIONS
         src/data_8DFF4F8.o(.data);
 
 
-        src/code2.o(.data);
+        src/duel/ai.o(.data);
         data/data5.o(.mon_attack_screen);
         src/effect_text.o(.data);
         src/deck_menu.o(.data);
         data/data5.o(.deck_menu);
 
-        src/code_803F02C.o(.rodata);
+        src/duel/code_803F02C.o(.rodata);
         data/data5.o(.data2);
-        src/code_803F02C.o(.data);
-        src/duel_textbox.o(.data);
-        src/code_8041C94.o(.data);
-        src/code_80421CC.o(.data);
-        src/duel_util.o(.data);
-        src/code_8043EF4.o(.data);
+        src/duel/code_803F02C.o(.data);
+        src/duel/duel_textbox.o(.data);
+        src/duel/code_8041C94.o(.data);
+        src/duel/code_80421CC.o(.data);
+        src/duel/duel_util.o(.data);
+        src/duel/code_8043EF4.o(.data);
         src/tribute.o(.data);
 
         . = ALIGN(4); src/overworld/overworld.o(.data);
@@ -427,7 +427,7 @@ SECTIONS
         data/data5.o(.data3_2);
         src/card_passwords.o(.rodata);
         data/data5.o(.data4);
-        src/turn.o(.rodata); /*TODO: .data?*/
+        src/duel/turn.o(.rodata); /*TODO: .data?*/
         data/data6.o(.data);
     }
 
