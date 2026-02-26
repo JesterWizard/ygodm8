@@ -333,7 +333,7 @@ void HandleJascToGbaPaletteCommand(char *inputPath, char *outputPath, int argc, 
 
             if (numColors < 1)
                 FATAL_ERROR("Number of colors must be positive.\n");
-            
+
             if (numColors > 255)
                 FATAL_ERROR("Number of colors must be less than 256.\n");
         }
@@ -540,7 +540,8 @@ void HandleHuffCompressCommand(char *inputPath, char *outputPath, int argc, char
 {
     int fileSize;
     int bitDepth = 4;
-
+    unsigned ygodmEncode = 0;
+    
     for (int i = 3; i < argc; i++)
     {
         char *option = argv[i];
@@ -558,6 +559,10 @@ void HandleHuffCompressCommand(char *inputPath, char *outputPath, int argc, char
             if (bitDepth != 4 && bitDepth != 8)
                 FATAL_ERROR("GBA only supports bit depth of 4 or 8.\n");
         }
+        else if (strcmp(option, "-ygodm") == 0)
+        {
+            ygodmEncode = 1;
+        }
         else
         {
             FATAL_ERROR("Unrecognized option \"%s\".\n", option);
@@ -565,12 +570,13 @@ void HandleHuffCompressCommand(char *inputPath, char *outputPath, int argc, char
     }
 
     unsigned char *buffer = ReadWholeFile(inputPath, &fileSize);
-    
+    if (ygodmEncode)
+      ygodm_encode(buffer);
     unsigned char *compressedData = malloc(4 + (2 << bitDepth) + fileSize * 3);
-    
+
     if (compressedData == NULL)
       FATAL_ERROR("Fatal error while compressing Huff file.\n");
-    
+
     HuffCompress(buffer, fileSize, compressedData, bitDepth);
 
 

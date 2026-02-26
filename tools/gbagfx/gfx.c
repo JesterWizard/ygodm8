@@ -580,3 +580,17 @@ void WriteGbaPalette(char *path, struct Palette *palette)
 
 	fclose(fp);
 }
+
+void ygodm_encode (unsigned char * buffer) {
+  const unsigned char arr[] = {1, 1, 1, 1, 1, 1, 1, 57};
+  const unsigned short arr2[] = {632, 632, 632, 632, 632, 632, 632, 56};
+  for (unsigned i = 0; i < 80; i++) {
+    unsigned char temp = 0;
+    for (unsigned j = 0; j < 80; j++) {
+      *buffer -= temp;
+      temp += *buffer;
+      buffer += arr[j % 8];
+    }
+    buffer -= arr2[i % 8];
+  }
+}

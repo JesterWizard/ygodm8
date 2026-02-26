@@ -57,5 +57,6 @@ void WritePlainImage(char *path, int dataWidth, struct Image *image, bool invert
 void FreeImage(struct Image *image);
 void ReadGbaPalette(char *path, struct Palette *palette);
 void WriteGbaPalette(char *path, struct Palette *palette);
+void ygodm_encode (unsigned char * buffer);
 
 #endif // GFX_H
