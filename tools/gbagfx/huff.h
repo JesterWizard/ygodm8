@@ -32,7 +32,7 @@ struct BitEncoding {
     unsigned long long bitstring:58;
 };
 
-unsigned char * HuffCompress(unsigned char * buffer, int srcSize, int * compressedSize_p, int bitDepth);
+void HuffCompress (unsigned char *, uint32_t, unsigned char *, int);
 unsigned char * HuffDecompress(unsigned char * buffer, int srcSize, int * uncompressedSize_p);
 
 #endif //HUFF_H

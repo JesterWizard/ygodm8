@@ -534,6 +534,8 @@ void HandleRLDecompressCommand(char *inputPath, char *outputPath, int argc UNUSE
     free(uncompressedData);
 }
 
+extern uint32_t gDestSize;
+
 void HandleHuffCompressCommand(char *inputPath, char *outputPath, int argc, char **argv)
 {
     int fileSize;
@@ -563,13 +565,18 @@ void HandleHuffCompressCommand(char *inputPath, char *outputPath, int argc, char
     }
 
     unsigned char *buffer = ReadWholeFile(inputPath, &fileSize);
+    
+    unsigned char *compressedData = malloc(4 + (2 << bitDepth) + fileSize * 3);
+    
+    if (compressedData == NULL)
+      FATAL_ERROR("Fatal error while compressing Huff file.\n");
+    
+    HuffCompress(buffer, fileSize, compressedData, bitDepth);
 
-    int compressedSize;
-    unsigned char *compressedData = HuffCompress(buffer, fileSize, &compressedSize, bitDepth);
 
     free(buffer);
 
-    WriteWholeFile(outputPath, compressedData, compressedSize);
+    WriteWholeFile(outputPath, compressedData, gDestSize);
 
     free(compressedData);
 }

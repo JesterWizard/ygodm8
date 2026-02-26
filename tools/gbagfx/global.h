@@ -28,4 +28,6 @@ do {                                        \
 
 #endif // _MSC_VER
 
+#define ARRAY_COUNT(array) (size_t)(sizeof(array) / sizeof((array)[0]))
+
 #endif // GLOBAL_H
