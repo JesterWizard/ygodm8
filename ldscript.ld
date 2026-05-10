@@ -982,9 +982,7 @@ SECTIONS
 
     .runtime_text :
     {
-        src/*_hooks.o(.text);
-        src/*/*_hooks.o(.text);
-        src/*/*/*_hooks.o(.text);
+        src/hooks/*.o(.text);
     }
 
     .runtime_config :

@@ -47,7 +47,7 @@ MAP          := $(ROM:.gba=.map)
 LDSCRIPT     := ldscript.ld
 
 C_SRCS := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
-HOOK_SRCS := $(wildcard $(C_SUBDIR)/*_hooks.c $(C_SUBDIR)/*/*_hooks.c $(C_SUBDIR)/*/*/*_hooks.c)
+HOOK_SRCS := $(wildcard $(C_SUBDIR)/hooks/*.c)
 C_SRCS := $(filter-out $(HOOK_SRCS),$(C_SRCS))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 HOOK_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(HOOK_SRCS))

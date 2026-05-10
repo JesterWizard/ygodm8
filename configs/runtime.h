@@ -4,6 +4,8 @@
 typedef struct {
     bool8 restore_life_points_after_duel;
     bool8 max_duelist_level_at_start;
+    bool8 max_deck_capacity_at_start;
+    bool8 max_money_at_start;
 } RuntimeConfig;
 
 /*
