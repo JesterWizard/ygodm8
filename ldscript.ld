@@ -982,11 +982,6 @@ SECTIONS
         configs/runtime.o(.runtime_config);
     }
 
-    .runtime_text :
-    {
-        src/duel/life_points_hooks.o(.text);
-    }
-
     /* Discard everything not specifically mentioned above. */
     /DISCARD/ :
     {
