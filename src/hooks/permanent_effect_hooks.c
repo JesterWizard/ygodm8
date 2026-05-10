@@ -103,6 +103,8 @@ static void CheckBoardForPermanentEffects__Hook(u8 animateScanner) {
 
 LYN_REPLACE_CHECK(TryActivatingPermanentEffects);
 void TryActivatingPermanentEffects__Replacement(void) {
+  u8 hideEffectText = gHideEffectText;
+
   gActiveEffect.turn = WhoseTurn();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
@@ -111,7 +113,10 @@ void TryActivatingPermanentEffects__Replacement(void) {
   ResetTempStagesForAllCards();
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();
+  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
+    gHideEffectText = TRUE;
   CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
+  gHideEffectText = hideEffectText;
   if (!gHideEffectText)
     sub_802AE44();
 }
