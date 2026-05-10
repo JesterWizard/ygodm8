@@ -17,6 +17,28 @@ int GetDeckCardQty(u16);
 u16 sub_801FFE0(void);
 u8 sub_801F0F0(u16, u16*);
 
+static u8 IsAlternatePlayerVictory(void) {
+  if (!gDuelLifePoints[DUEL_OPPONENT])
+    return FALSE;
+  return TRUE;
+}
+
+static u32 GetAlternateWinRewardMultiplier(void) {
+  if (!IsAlternatePlayerVictory())
+    return 1;
+  if (!gRuntimeConfig.alternate_win_reward_multiplier)
+    return 1;
+  return gRuntimeConfig.alternate_win_reward_multiplier;
+}
+
+static u32 ApplyCapacityRewardMultiplier(u32 reward) {
+  u32 multiplier = GetAlternateWinRewardMultiplier();
+  u32 scaledReward = reward * multiplier;
+  if (scaledReward > 65000)
+    scaledReward = 65000;
+  return scaledReward;
+}
+
 static void AddRewardCardToTrunk__Replacement(void) {
   u8 i;
   if (gAnte == CARD_NONE)
@@ -41,11 +63,17 @@ static u32 GetConfiguredCapacityReward(u32 baseReward) {
 LYN_REPLACE_CHECK(HandleWin);
 void HandleWin__Replacement(void) {
   struct DuelText duelText;
-  gDuelData.capacityYield = GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield);
+  u32 rewardMultiplier = GetAlternateWinRewardMultiplier();
+  u64 baseMoneyReward;
+  gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield));
   IncreaseDeckCapacity(gDuelData.capacityYield);
   AddRewardCardToTrunk__Replacement();
   AddCardDropsToShop();
   AddMoneyFromDuelVictory();
+  baseMoneyReward = gDuelData.moneyReward;
+  gDuelData.moneyReward = baseMoneyReward * rewardMultiplier;
+  if (rewardMultiplier > 1)
+    AddMoney(baseMoneyReward * (rewardMultiplier - 1));
   if (!gDuelLifePoints[DUEL_OPPONENT]) {
     FadeOutMusic(4);
     ResetDuelTextData(&duelText);

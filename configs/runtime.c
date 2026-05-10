@@ -13,4 +13,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .start_with_three_copies_of_every_card = TRUE,
     .repeatable_opponent_capacity_reward = 10,
     .story_opponent_capacity_reward = 30,
+    .alternate_win_reward_multiplier = 3,
 };

@@ -1,5 +1,9 @@
+#ifndef GUARD_RUNTIME_CONFIG_H
+#define GUARD_RUNTIME_CONFIG_H
+
 #include "gba/types.h"
 #include "gba/defines.h"
+#include "constants/card_ids.h"
 
 typedef struct {
     u8 restore_life_points_after_duel;
@@ -14,6 +18,7 @@ typedef struct {
     u8 start_with_three_copies_of_every_card;
     u8 repeatable_opponent_capacity_reward;
     u8 story_opponent_capacity_reward;
+    u8 alternate_win_reward_multiplier;
 } RuntimeConfig;
 
 /*
@@ -50,3 +55,5 @@ typedef struct {
 } CardData;
 
 extern const CardData gCardData_NEW[NUM_CARDS];
+
+#endif
