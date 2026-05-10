@@ -7,6 +7,8 @@ typedef struct {
     bool8 max_deck_capacity_at_start;
     bool8 max_money_at_start;
     bool8 skip_opening_sequence;
+    bool8 dynamic_card_shop_and_trunk_sorting;
+    bool8 start_with_three_copies_of_every_card;
 } RuntimeConfig;
 
 /*
@@ -20,7 +22,7 @@ extern const RuntimeConfig gRuntimeConfig;
 #define _maybe_unused __attribute__((unused))
 
 #define LYN_REPLACE_CHECK(name) \
-    extern void name(void); \
+    extern __typeof__(name) name; \
     static const void *const _maybe_unused lyn_exists_check_##name = &name
 
 #define APPEND_TEXT __attribute__((section(".append_text")))

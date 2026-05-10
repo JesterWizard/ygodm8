@@ -6,4 +6,6 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .max_deck_capacity_at_start = TRUE,
     .max_money_at_start = TRUE,
     .skip_opening_sequence = TRUE,
+    .dynamic_card_shop_and_trunk_sorting = FALSE,
+    .start_with_three_copies_of_every_card = TRUE,
 };
