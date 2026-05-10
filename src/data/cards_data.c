@@ -1,5 +1,6 @@
 #include "global.h"
 #include "constants/card_ids.h"
+#include "gba/types.h"
 
 const u16 gCardDefs[] =
 {
@@ -5389,7 +5390,7 @@ const u8 gCardColors[] =
     [MUSHROOM_MAN_2] = 0,
     [LAVA_BATTLEGUARD] = 1,
     [QUEENS_KNIGHT] = 0,
-    [INJECTION_FAIRY_LILY] = 1,
+    [INJECTION_FAIRY_LILY] = 0,
     [JACKS_KNIGHT] = 0,
     [POT_THE_TRICK] = 0,
     [OSCILLO_HERO] = 0,
@@ -6194,7 +6195,7 @@ const u8 gCardMonsterEffects[] =
     [MUSHROOM_MAN_2] = 0,
     [LAVA_BATTLEGUARD] = 0,
     [QUEENS_KNIGHT] = 0,
-    [INJECTION_FAIRY_LILY] = 102,
+    [INJECTION_FAIRY_LILY] = 0,
     [JACKS_KNIGHT] = 0,
     [POT_THE_TRICK] = 0,
     [OSCILLO_HERO] = 0,

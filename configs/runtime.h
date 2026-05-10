@@ -11,8 +11,8 @@ typedef struct {
     u8 turn_off_visual_scanner;
     u8 dynamic_card_shop_and_trunk_sorting;
     u8 start_with_three_copies_of_every_card;
-    u16 repeatable_opponent_capacity_reward;
-    u16 story_opponent_capacity_reward;
+    u8 repeatable_opponent_capacity_reward;
+    u8 story_opponent_capacity_reward;
 } RuntimeConfig;
 
 /*
@@ -33,3 +33,26 @@ extern const RuntimeConfig gRuntimeConfig;
 #define APPEND_RODATA __attribute__((section(".append_rodata")))
 #define APPEND_ASSET __attribute__((section(".append_assets")))
 #define APPEND_DATA __attribute__((section(".append_data")))
+
+typedef struct {
+    u8 cards[NUM_CARDS];
+} CardU8Table;
+
+typedef struct {
+    u16 cards[NUM_CARDS];
+} CardU16Table;
+
+typedef struct {
+    u32 cards[NUM_CARDS];
+} CardU32Table;
+
+extern const CardU16Table gCardAtks_NEW;
+extern const CardU8Table gCardAttributes_NEW;
+extern const CardU8Table gCardColors_NEW;
+extern const CardU32Table gCardCosts_NEW;
+extern const CardU16Table gCardDefs_NEW;
+extern const CardU8Table gCardLevels_NEW;
+extern const CardU8Table gCardMagicEffect_NEW;
+extern const CardU8Table gCardMonsterEffects_NEW;
+extern const CardU8Table gCardTrapEffect_NEW;
+extern const CardU8Table gCardTypes_NEW;
