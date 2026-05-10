@@ -2,6 +2,7 @@
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
+    .cap_life_points_after_duel = FALSE,
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
     .max_money_at_start = TRUE,

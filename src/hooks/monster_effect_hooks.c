@@ -1,5 +1,5 @@
 #include "global.h"
-#include "configs/runtime.h"
+#include "common-chax.h"
 #include "constants/monster_effects.h"
 
 #define MONSTER_EFFECT_INJECTION_FAIRY_LILY 102

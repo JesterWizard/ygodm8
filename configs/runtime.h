@@ -3,6 +3,7 @@
 
 typedef struct {
     u8 restore_life_points_after_duel;
+    u8 cap_life_points_after_duel;
     u8 max_duelist_level_at_start;
     u8 max_deck_capacity_at_start;
     u8 max_money_at_start;

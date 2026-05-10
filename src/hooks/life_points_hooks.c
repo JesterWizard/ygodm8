@@ -1,5 +1,5 @@
 #include "global.h"
-#include "configs/runtime.h"
+#include "common-chax.h"
 
 LYN_REPLACE_CHECK(CapLifePointsAfterDuel);
 void CapLifePointsAfterDuel__Replacement(void) {
@@ -8,6 +8,6 @@ void CapLifePointsAfterDuel__Replacement(void) {
   if (gRuntimeConfig.restore_life_points_after_duel == TRUE)
     gLifePointsOutsideDuel = 8000;
 
-  if (gLifePointsOutsideDuel > 8000)
+  if (gLifePointsOutsideDuel > 8000 && gRuntimeConfig.cap_life_points_after_duel == FALSE)
     gLifePointsOutsideDuel = 8000;
 }

@@ -1,6 +1,5 @@
 #include "global.h"
-#include "duel.h"
-#include "card.h"
+#include "common-chax.h"
 #include "configs/runtime.h"
 
 extern void (*sPermanentEffects[])(void);
