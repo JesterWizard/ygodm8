@@ -1,5 +1,4 @@
 #include "global.h"
-#include "configs/runtime.h"
 #include <limits.h>
 
 extern const u16 gUnk08103284[]; // reaction bubble tile num
@@ -1009,38 +1008,6 @@ void OverworldMain (void) {
   // gOverworld.flags LSB is never set to 1
   // so this function never returns
   // mark it as noreturn? (as well as AgbMain?)
-}
-
-LYN_REPLACE_CHECK(OverworldMain);
-APPEND_TEXT void OverworldMain__Replacement (void) {
-  if (!CheckFlag(0x2b)) {
-    if (gRuntimeConfig.skip_opening_sequence == TRUE) {
-      SetFlag(0x8);
-      SetFlag(0x2b);
-      SaveGame();
-    }
-    else {
-      NamingScreenMain();
-      StartCutscene(8); // CUTSCENE_INTRO
-      SetFlag(0x2b);
-      SaveGame();
-    }
-  }
-  sub_80523EC(9, 1, 0);
-  InitOverworld();
-  gOverworld.flags &= ~OVERWORLD_FLAG_EXIT_OVERWORLD;
-  do {
-    TryInitiatingWorldMap();
-    sub_80554C4();
-    OverworldLoadGraphics();
-    gOverworld.flags &= ~OVERWORLD_FLAG_MAP_TRANSITION;
-    InitiateScript(gOverworld.unk1F4[gOverworld.map.unk4]);
-    if (!(gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)) {
-      PlayOverworldMusic();
-      OverworldProcessInput();
-      InitiateScript(gOverworld.unk208[gOverworld.map.unk6]);
-    }
-  } while (!(gOverworld.flags & OVERWORLD_FLAG_EXIT_OVERWORLD));
 }
 
 // TODO: this also copies the object palettes (but not tiles)
