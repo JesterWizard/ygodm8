@@ -1,4 +1,5 @@
 #include "global.h"
+#include <limits.h>
 
 extern const u16 gUnk08103284[]; // reaction bubble tile num
 extern const u16 g81032D2[]; // gOverworldEntitySprite offsets?

@@ -1,4 +1,6 @@
 PREFIX := arm-none-eabi-
+CC := $(PREFIX)gcc
+CPP := $(CC) -E
 OBJCOPY := $(PREFIX)objcopy
 AS := $(PREFIX)as
 LD := $(PREFIX)ld
@@ -6,9 +8,12 @@ LD := $(PREFIX)ld
 
 ifeq ($(OS),Windows_NT)
 EXE := .exe
+else ifneq ($(wildcard tools/agbcc/bin/agbcc.exe),)
+EXE := .exe
 else
 EXE :=
 endif
+
 
 BUILD_NAME := ygodm8
 
@@ -17,7 +22,7 @@ CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
 
 PREPROC  := tools/preproc/preproc$(EXE)
 
-CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs -nostdinc
+CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs
 CFLAGS   := -mthumb-interwork -Wimplicit -Werror -O2 -fhex-asm -fshort-enums -fprologue-bugfix
 ASFLAGS  := -mcpu=arm7tdmi
 
