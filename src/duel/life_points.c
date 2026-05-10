@@ -1,4 +1,5 @@
 #include "global.h"
+#include "configs/runtime.h"
 
 static unsigned GetLifePointsOutsideDuel (void);
 
@@ -34,6 +35,10 @@ static unsigned GetLifePointsOutsideDuel (void) {
 
 void CapLifePointsAfterDuel (void) {
   gLifePointsOutsideDuel = gDuelLifePoints[DUEL_PLAYER];
+
+  if (gRuntimeConfig.restore_life_points_after_duel == TRUE)
+    FullyRestoreLifePoints();
+
   if (gLifePointsOutsideDuel > 8000)
     gLifePointsOutsideDuel = 8000;
 }

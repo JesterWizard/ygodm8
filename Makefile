@@ -22,17 +22,19 @@ CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
 
 PREPROC  := tools/preproc/preproc$(EXE)
 
-CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote include -Wno-trigraphs
+CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote . -iquote include -Wno-trigraphs
 CFLAGS   := -mthumb-interwork -Wimplicit -Werror -O2 -fhex-asm -fshort-enums -fprologue-bugfix
 ASFLAGS  := -mcpu=arm7tdmi
 
 
 C_SUBDIR = src
+CONFIGS_SUBDIR = configs
 ASM_SUBDIR = asm
 DATA_ASM_SUBDIR = data
 BUILD_DIR = build
 
 C_BUILDDIR = $(BUILD_DIR)/$(C_SUBDIR)
+CONFIGS_BUILDDIR = $(BUILD_DIR)/$(CONFIGS_SUBDIR)
 ASM_BUILDDIR = $(BUILD_DIR)/$(ASM_SUBDIR)
 DATA_ASM_BUILDDIR = $(BUILD_DIR)/$(DATA_ASM_SUBDIR)
 
@@ -47,6 +49,9 @@ LDSCRIPT     := ldscript.ld
 C_SRCS := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
+CONFIGS_SRCS := $(wildcard $(CONFIGS_SUBDIR)/*.c)
+CONFIGS_OBJS := $(patsubst $(CONFIGS_SUBDIR)/%.c,$(CONFIGS_BUILDDIR)/%.o,$(CONFIGS_SRCS))
+
 ASM_SRCS := $(wildcard $(ASM_SUBDIR)/*.s)
 ASM_OBJS := $(patsubst $(ASM_SUBDIR)/%.s,$(ASM_BUILDDIR)/%.o,$(ASM_SRCS))
 
@@ -55,7 +60,7 @@ LIB := -L ../tools/agbcc/lib -lc -lgcc
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 
-ALL_OBJS := $(C_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
+ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 
@@ -72,13 +77,19 @@ $(ROM): $(ELF)
 	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
-	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(LIB)
+	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
 	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) $(C_BUILDDIR)/$*.s -o $@
+
+$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c | tools-rules graphics-rules
+	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
+	@$(PREPROC) $(CONFIGS_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(CONFIGS_BUILDDIR)/$*.s
+	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(CONFIGS_BUILDDIR)/$*.s
+	$(AS) $(ASFLAGS) $(CONFIGS_BUILDDIR)/$*.s -o $@
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) $< -o $@

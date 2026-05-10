@@ -977,6 +977,16 @@ SECTIONS
     g84E24B8 = 0x84E24B8;
     g84E3634 = 0x84E3634;
 
+    .runtime_config :
+    {
+        configs/runtime.o(.runtime_config);
+    }
+
+    .runtime_hooks :
+    {
+        configs/runtime.o(.runtime_hooks);
+    }
+
     /* Discard everything not specifically mentioned above. */
     /DISCARD/ :
     {
