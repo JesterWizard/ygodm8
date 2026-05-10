@@ -8,4 +8,6 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .skip_opening_sequence = TRUE,
     .dynamic_card_shop_and_trunk_sorting = FALSE,
     .start_with_three_copies_of_every_card = TRUE,
+    .repeatable_opponent_capacity_reward = 10,
+    .story_opponent_capacity_reward = 30,
 };

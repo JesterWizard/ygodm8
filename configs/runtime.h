@@ -2,13 +2,15 @@
 #include "gba/defines.h"
 
 typedef struct {
-    bool8 restore_life_points_after_duel;
-    bool8 max_duelist_level_at_start;
-    bool8 max_deck_capacity_at_start;
-    bool8 max_money_at_start;
-    bool8 skip_opening_sequence;
-    bool8 dynamic_card_shop_and_trunk_sorting;
-    bool8 start_with_three_copies_of_every_card;
+    u8 restore_life_points_after_duel;
+    u8 max_duelist_level_at_start;
+    u8 max_deck_capacity_at_start;
+    u8 max_money_at_start;
+    u8 skip_opening_sequence;
+    u8 dynamic_card_shop_and_trunk_sorting;
+    u8 start_with_three_copies_of_every_card;
+    u16 repeatable_opponent_capacity_reward;
+    u16 story_opponent_capacity_reward;
 } RuntimeConfig;
 
 /*
