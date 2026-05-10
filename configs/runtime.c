@@ -11,6 +11,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .turn_off_visual_scanner = TRUE,
     .dynamic_card_shop_and_trunk_sorting = FALSE, // Needs more work
     .start_with_three_copies_of_every_card = TRUE,
+    .allow_ante_with_one_copy_of_card = TRUE,
     .repeatable_opponent_capacity_reward = 10,
     .story_opponent_capacity_reward = 30,
     .alternate_win_reward_multiplier = 3,

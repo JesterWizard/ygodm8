@@ -1,7 +1,5 @@
 #include "global.h"
-#include "duel.h"
-#include "card.h"
-#include "constants/card_ids.h"
+#include "common-chax.h"
 #include "configs/runtime.h"
 
 extern const u16 gCardAtks[];
@@ -20,6 +18,8 @@ extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
+unsigned short GetNthCardOnScreen(u8);
+int GetTrunkCardQty(unsigned short);
 
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
   if (card->description != NULL)
@@ -104,4 +104,31 @@ void SetCardInfoWithWarning__Replacement(unsigned short *id) {
 
   if (gCardInfo.cost > GetDuelistLevel())
     gCardInfo.description = gDuelistLevelTooLowText;
+}
+
+LYN_REPLACE_CHECK(TrySelectingAnte);
+unsigned char TrySelectingAnte__Replacement(void)
+{
+  unsigned selectionFailed = 1;
+  unsigned short cardId = GetNthCardOnScreen(2);
+
+  if (GetTrunkCardQty(cardId) < 2
+      && gRuntimeConfig.allow_ante_with_one_copy_of_card == FALSE)
+        sub_800C32C(); // OneOfAKindAntePrompt();
+  else if (IsGodCard(cardId) == 1)
+        sub_800C378(); // GodCardAntePrompt();
+  else if (!IsNormalAnte(cardId)) {
+    if (!LowLevelAntePrompt()) {
+      selectionFailed = 0;
+      gAnte = cardId;
+    }
+  }
+  else {
+    selectionFailed = 0;
+    gAnte = cardId;
+    PlayMusic(SFX_TRANSITION_TRUNK_TO_DUEL);
+  }
+
+  WaitForVBlank();
+  return selectionFailed;
 }

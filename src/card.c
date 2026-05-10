@@ -1486,9 +1486,9 @@ static void sub_800C0D8 (void);
 static void SelectDetailsWhenChoosingCard (void);
 static void sub_800C208 (void);
 static void sub_800C264 (void);
-static unsigned char TrySelectingAnte (void);
-static void sub_800C32C (void);
-static void sub_800C378 (void);
+unsigned char TrySelectingAnte (void);
+void sub_800C32C (void);
+void sub_800C378 (void);
 static void sub_800C3C4 (void);
 static void sub_800C430 (void);
 static void sub_800C494 (void);
@@ -1698,7 +1698,7 @@ static unsigned SelectionMenu (void)
     return r5;
 }
 
-static unsigned char LowLevelAntePrompt (void)
+unsigned char LowLevelAntePrompt (void)
 {
     unsigned keepProcessing, selectNo = 1;
     gTrunkMenu.cursorState = 0;
@@ -1888,7 +1888,7 @@ _0800C2B8: .4byte 0x0000C120\n\
 _0800C2BC: .4byte 0x40000800");
 }
 
-static unsigned char TrySelectingAnte (void) {
+unsigned char TrySelectingAnte (void) {
   unsigned selectionFailed = 1;
   unsigned short cardId = GetNthCardOnScreen(2);
   if (GetTrunkCardQty(cardId) < 2)
@@ -1910,7 +1910,7 @@ static unsigned char TrySelectingAnte (void) {
   return selectionFailed;
 }
 
-static void sub_800C32C (void)
+void sub_800C32C (void)
 {
     gTrunkMenu.cursorState = 0;
     sub_800C430();
@@ -1929,7 +1929,7 @@ static void sub_800C32C (void)
     PlayMusic(SFX_CANCEL);
 }
 
-static void sub_800C378(void)
+void sub_800C378(void)
 {
 
     gTrunkMenu.cursorState = 0;
