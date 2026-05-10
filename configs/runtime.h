@@ -35,24 +35,16 @@ extern const RuntimeConfig gRuntimeConfig;
 #define APPEND_DATA __attribute__((section(".append_data")))
 
 typedef struct {
-    u8 cards[NUM_CARDS];
-} CardU8Table;
+    u16 atk;
+    u16 def;
+    u32 cost;
+    u8 attribute;
+    u8 level;
+    u8 type;
+    u8 color;
+    u8 monsterEffect;
+    u8 spellEffect;
+    u8 trapEffect;
+} CardData;
 
-typedef struct {
-    u16 cards[NUM_CARDS];
-} CardU16Table;
-
-typedef struct {
-    u32 cards[NUM_CARDS];
-} CardU32Table;
-
-extern const CardU16Table gCardAtks_NEW;
-extern const CardU8Table gCardAttributes_NEW;
-extern const CardU8Table gCardColors_NEW;
-extern const CardU32Table gCardCosts_NEW;
-extern const CardU16Table gCardDefs_NEW;
-extern const CardU8Table gCardLevels_NEW;
-extern const CardU8Table gCardMagicEffect_NEW;
-extern const CardU8Table gCardMonsterEffects_NEW;
-extern const CardU8Table gCardTrapEffect_NEW;
-extern const CardU8Table gCardTypes_NEW;
+extern const CardData gCardData_NEW[NUM_CARDS];

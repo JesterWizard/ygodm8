@@ -56,17 +56,19 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
 
 LYN_REPLACE_CHECK(SetCardInfo);
 void SetCardInfo__Replacement(unsigned short id) {
+  const CardData *card = &gCardData_NEW[id];
+
   gCardInfo.id = id;
-  gCardInfo.atk = gCardAtks_NEW.cards[id];
-  gCardInfo.def = gCardDefs_NEW.cards[id];
-  gCardInfo.cost = gCardCosts_NEW.cards[id];
-  gCardInfo.attribute = gCardAttributes_NEW.cards[id];
-  gCardInfo.level = gCardLevels_NEW.cards[id];
-  gCardInfo.type = gCardTypes_NEW.cards[id];
-  gCardInfo.color = gCardColors_NEW.cards[id];
-  gCardInfo.spellEffect = gCardMagicEffect_NEW.cards[id];
-  gCardInfo.monsterEffect = gCardMonsterEffects_NEW.cards[id];
-  gCardInfo.trapEffect = gCardTrapEffect_NEW.cards[id];
+  gCardInfo.atk = card->atk;
+  gCardInfo.def = card->def;
+  gCardInfo.cost = card->cost;
+  gCardInfo.attribute = card->attribute;
+  gCardInfo.level = card->level;
+  gCardInfo.type = card->type;
+  gCardInfo.color = card->color;
+  gCardInfo.spellEffect = card->spellEffect;
+  gCardInfo.monsterEffect = card->monsterEffect;
+  gCardInfo.trapEffect = card->trapEffect;
   gCardInfo.ritualEffect = gUnk8094C37[gCardInfo.spellEffect];
   gCardInfo.unk1E = gUnk8094CC3[id];
   gCardInfo.name = GetCardName_Hook(id);
