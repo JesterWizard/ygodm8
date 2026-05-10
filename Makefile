@@ -47,7 +47,10 @@ MAP          := $(ROM:.gba=.map)
 LDSCRIPT     := ldscript.ld
 
 C_SRCS := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
+HOOK_SRCS := $(wildcard $(C_SUBDIR)/*_hooks.c $(C_SUBDIR)/*/*_hooks.c $(C_SUBDIR)/*/*/*_hooks.c)
+C_SRCS := $(filter-out $(HOOK_SRCS),$(C_SRCS))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
+HOOK_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(HOOK_SRCS))
 
 CONFIGS_SRCS := $(wildcard $(CONFIGS_SUBDIR)/*.c)
 CONFIGS_OBJS := $(patsubst $(CONFIGS_SUBDIR)/%.c,$(CONFIGS_BUILDDIR)/%.o,$(CONFIGS_SRCS))
@@ -59,8 +62,9 @@ LIB := -L ../tools/agbcc/lib -lc -lgcc
 
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
+LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
 
-ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
+ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(HOOK_OBJS)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 
@@ -73,8 +77,10 @@ all: $(ROM)
 include make_tools.mk
 include graphics.mk
 
-$(ROM): $(ELF)
+$(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.py
+	python3 tools/validate_lynjump.py
 	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
+	python3 tools/apply_lynjump.py $(ELF) $@
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
@@ -97,6 +103,9 @@ $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) $< -o $@
 
+validate-lynjump:
+	python3 tools/validate_lynjump.py
+
 clean: clean-tools clean-graphics
 	rm -f $(ROM) $(ELF) $(MAP)
 	rm -r $(BUILD_DIR)/
@@ -104,4 +113,4 @@ clean: clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: graphics-rules tools-rules
+.PHONY: graphics-rules tools-rules validate-lynjump

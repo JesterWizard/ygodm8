@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+
+import pathlib
+import re
+import struct
+import subprocess
+import sys
+
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+ORG_RE = re.compile(r"ORG\s+\$([0-9A-Fa-f]+)")
+WORD_RE = re.compile(r"WORD\s+(.+)")
+POIN_RE = re.compile(r"POIN\s+(\w+)")
+
+
+def load_symbols(elf_path: pathlib.Path):
+    output = subprocess.check_output(["arm-none-eabi-nm", "-g", str(elf_path)], text=True)
+    symbols = {}
+    for line in output.splitlines():
+        parts = line.strip().split()
+        if len(parts) == 3:
+            addr, sym_type, name = parts
+            value = int(addr, 16)
+            if sym_type in {"T", "t"}:
+                value |= 1
+            symbols[name] = value
+    return symbols
+
+
+def apply_event(event_path: pathlib.Path, rom: bytearray, symbols):
+    cursor = None
+
+    for raw_line in event_path.read_text().splitlines():
+        line = raw_line.split("//", 1)[0].strip()
+        if not line or line in {"PUSH", "POP"}:
+            continue
+
+        match = ORG_RE.fullmatch(line)
+        if match:
+            cursor = int(match.group(1), 16)
+            continue
+
+        if line.startswith("ALIGN"):
+            if cursor is None:
+                raise ValueError(f"ALIGN before ORG in {event_path}")
+            align = int(line.split()[1], 0)
+            cursor = (cursor + (align - 1)) & ~(align - 1)
+            continue
+
+        match = WORD_RE.fullmatch(line)
+        if match:
+            if cursor is None:
+                raise ValueError(f"WORD before ORG in {event_path}")
+            for token in match.group(1).split():
+                value = int(token[1:], 16) if token.startswith("$") else int(token, 0)
+                rom[cursor:cursor + 4] = struct.pack("<I", value)
+                cursor += 4
+            continue
+
+        match = POIN_RE.fullmatch(line)
+        if match:
+            if cursor is None:
+                raise ValueError(f"POIN before ORG in {event_path}")
+            name = match.group(1)
+            if name not in symbols:
+                raise KeyError(f"symbol {name} not found for {event_path}")
+            rom[cursor:cursor + 4] = struct.pack("<I", symbols[name])
+            cursor += 4
+            continue
+
+        raise ValueError(f"unsupported line in {event_path}: {raw_line}")
+
+
+def main() -> int:
+    if len(sys.argv) != 3:
+        print("usage: apply_lynjump.py <elf> <rom>", file=sys.stderr)
+        return 1
+
+    elf_path = ROOT / sys.argv[1]
+    rom_path = ROOT / sys.argv[2]
+    symbols = load_symbols(elf_path)
+    rom = bytearray(rom_path.read_bytes())
+
+    for event_path in ROOT.rglob("LynJump.event"):
+        apply_event(event_path, rom, symbols)
+
+    rom_path.write_bytes(rom)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
