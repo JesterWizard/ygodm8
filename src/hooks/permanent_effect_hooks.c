@@ -1,4 +1,6 @@
 #include "global.h"
+#include "duel.h"
+#include "card.h"
 #include "configs/runtime.h"
 
 extern void (*sPermanentEffects[])(void);
@@ -13,7 +15,45 @@ void sub_802AE44(void);
 void UpdateDuelGfxExceptField(void);
 void ResetTempStagesForAllCards(void);
 
+typedef unsigned char (*PermanentEffectCondition)(void);
+typedef void (*PermanentEffectHandler)(void);
+
+typedef struct {
+  u16 cardId;
+  PermanentEffectCondition shouldActivate;
+  PermanentEffectHandler activate;
+} PermanentEffectOverride;
+
+unsigned char ShouldActivateMilusRadiant(void);
+void ActivateMilusRadiant(void);
+
+static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
+  {
+    .cardId = MILUS_RADIANT,
+    .shouldActivate = ShouldActivateMilusRadiant,
+    .activate = ActivateMilusRadiant,
+  },
+};
+
+static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
+  unsigned char i;
+
+  for (i = 0; i < ARRAY_COUNT(sPermanentEffectOverrides); i++) {
+    if (sPermanentEffectOverrides[i].cardId == cardId)
+      return &sPermanentEffectOverrides[i];
+  }
+
+  return NULL;
+}
+
 static void TryActivatingPermanentEffect__Hook(void) {
+  const PermanentEffectOverride *override = GetPermanentEffectOverride(gActiveEffect.cardId);
+
+  if (override != NULL) {
+    override->activate();
+    return;
+  }
+
   ResetCardEffectTextData();
   SetCardEffectTextType(8);
   SetCardInfo(gActiveEffect.cardId);
@@ -21,6 +61,11 @@ static void TryActivatingPermanentEffect__Hook(void) {
 }
 
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
+  const PermanentEffectOverride *override = GetPermanentEffectOverride(gActiveEffect.cardId);
+
+  if (override != NULL)
+    return override->shouldActivate();
+
   SetCardInfo(gActiveEffect.cardId);
   return g8E0C800[gCardInfo.unk1E]();
 }
@@ -116,6 +161,8 @@ void TryActivatingPermanentEffects__Replacement(void) {
   if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
     gHideEffectText = TRUE;
   CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
+  if (!gHideEffectText)
+    UpdateDuelGfxExceptField();
   gHideEffectText = hideEffectText;
   if (!gHideEffectText)
     sub_802AE44();
