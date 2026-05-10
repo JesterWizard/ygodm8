@@ -3,14 +3,19 @@
 #include "duel_main.h"
 
 void HandleWin(void);
+u8 sub_801F098(u16);
 extern struct Duelist* gUnk8E00B30[];
+extern u16 g80B9620[];
+extern u16 g80B96AA[];
 
 void IncreaseDeckCapacity(u32);
 void AddCardDropsToShop(void);
 void AddMoneyFromDuelVictory(void);
 void DisplayMoneyRewardText(void);
 int GetCardsDrawn(u8 arg0);
+int GetDeckCardQty(u16);
 u16 sub_801FFE0(void);
+u8 sub_801F0F0(u16, u16*);
 
 static void AddRewardCardToTrunk__Replacement(void) {
   u8 i;
@@ -77,4 +82,27 @@ void HandleWin__Replacement(void) {
   }
   if (gDuelType == DUEL_TYPE_INGAME)
     CapLifePointsAfterDuel();
+}
+
+LYN_REPLACE_CHECK(sub_801F098);
+u8 sub_801F098__Replacement(u16 cardId) {
+  u8 qty = GetDeckCardQty(cardId);
+  if (gRuntimeConfig.disable_ban_list == TRUE) {
+    if (qty > 2)
+      return 0;
+    return 1;
+  }
+  if (sub_801F0F0(cardId, g80B9620) == 1) {
+    if (qty)
+      return 0;
+    return 1;
+  }
+  if (sub_801F0F0(cardId, g80B96AA) == 1) {
+    if (qty > 1)
+      return 0;
+    return 1;
+  }
+  if (qty > 2)
+    return 0;
+  return 1;
 }

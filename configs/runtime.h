@@ -6,6 +6,7 @@ typedef struct {
     u8 max_duelist_level_at_start;
     u8 max_deck_capacity_at_start;
     u8 max_money_at_start;
+    u8 disable_ban_list;
     u8 skip_opening_sequence;
     u8 turn_off_visual_scanner;
     u8 dynamic_card_shop_and_trunk_sorting;
