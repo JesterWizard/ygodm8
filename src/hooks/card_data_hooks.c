@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "constants/card_descriptions.h"
 
 #define NORMAL_CARD 0
 #define EFFECT_CARD 1
@@ -6345,6 +6346,7 @@ const CardData gCardData_NEW[NUM_CARDS] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .description = gMilusRadiantDescriptionData,
   },
   [TOGEX] = {
     .atk = 1600,

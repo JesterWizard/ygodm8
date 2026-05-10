@@ -21,28 +21,9 @@ extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
 
-static const u8 gMilusRadiantDescription[] __attribute__((section(".text"))) =
-    "All FOREST monsters gain 1 stage. All WIND monsters lose 1 stage.";
-
-typedef struct {
-  u16 cardId;
-  u8 *description;
-} CardDescriptionOverride;
-
-static const CardDescriptionOverride sCardDescriptionOverrides[] __attribute__((section(".text"))) = {
-  {
-    .cardId = MILUS_RADIANT,
-    .description = (u8 *)gMilusRadiantDescription,
-  },
-};
-
-static u8 *GetOverriddenCardDescription(u16 cardId) {
-  unsigned char i;
-
-  for (i = 0; i < ARRAY_COUNT(sCardDescriptionOverrides); i++) {
-    if (sCardDescriptionOverrides[i].cardId == cardId)
-      return sCardDescriptionOverrides[i].description;
-  }
+static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
+  if (card->description != NULL)
+    return (u8 *)card->description;
 
   return gUnk8F985E0[cardId];
 }
@@ -102,7 +83,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.unk1E = gUnk8094CC3[id];
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
-  gCardInfo.description = GetOverriddenCardDescription(id);
+  gCardInfo.description = GetCardDescription_Hook(card, id);
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);

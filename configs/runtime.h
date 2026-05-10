@@ -45,6 +45,7 @@ typedef struct {
     u8 monsterEffect;
     u8 spellEffect;
     u8 trapEffect;
+    const u8 *description;
 } CardData;
 
 extern const CardData gCardData_NEW[NUM_CARDS];

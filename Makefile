@@ -63,6 +63,8 @@ LIB := -L ../tools/agbcc/lib -lc -lgcc
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
+CARD_DESCRIPTION_SRC := src/hooks/card_description_data.c
+CARD_DESCRIPTION_GENERATED := src/hooks/card_description_data_generated.inc
 
 ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(HOOK_OBJS)
 
@@ -85,11 +87,16 @@ $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.p
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
+$(CARD_DESCRIPTION_GENERATED): $(CARD_DESCRIPTION_SRC) tools/generate_card_description.py
+	python3 tools/generate_card_description.py --update-file $(CARD_DESCRIPTION_SRC)
+
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
 	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) $(C_BUILDDIR)/$*.s -o $@
+
+$(C_BUILDDIR)/hooks/card_description_data.o: $(CARD_DESCRIPTION_GENERATED)
 
 $(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
