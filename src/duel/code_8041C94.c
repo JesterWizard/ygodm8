@@ -1,4 +1,5 @@
 #include "global.h"
+#include "configs/runtime.h"
 
 static CONST_DATA unsigned char gE0D428[] = _(
   "{ENG}"
@@ -219,6 +220,54 @@ void sub_8041E70 (u8 arg0, u8 arg1) {
       break;
   }
 }
+
+// LYN_REPLACEMENT(sub_8041D78)
+// void sub_8041D78__Replacement (u8 arg0) {
+//   if (gRuntimeConfig.turn_off_visual_scanner == TRUE) {
+//     gBG2VOFS = g8E0D5A6[arg0];
+//     sub_8057808();
+//     sub_804078C();
+//     WaitForVBlank();
+//     sub_8040FDC();
+//     return;
+//   }
+
+//   while (gBG2VOFS > g8E0D5A6[arg0] + 256) {
+//     gBG2VOFS -= 256;
+//     sub_8057808();
+//     WaitForVBlank();
+//     sub_8040FDC();
+//   }
+//   gBG2VOFS = g8E0D5A6[arg0];
+//   sub_8057808();
+//   sub_804078C();
+//   WaitForVBlank();
+//   sub_8040FDC();
+// }
+
+// LYN_REPLACEMENT(sub_8041DF0)
+// void sub_8041DF0__Replacement (u8 arg0) {
+//   if (gRuntimeConfig.turn_off_visual_scanner == TRUE) {
+//     gBG2VOFS = g8E0D5A6[arg0];
+//     sub_8057808();
+//     sub_804078C();
+//     WaitForVBlank();
+//     sub_8040FDC();
+//     return;
+//   }
+
+//   while (gBG2VOFS < g8E0D5A6[arg0] - 256) {
+//     gBG2VOFS += 256;
+//     sub_8057808();
+//     WaitForVBlank();
+//     sub_8040FDC();
+//   }
+//   gBG2VOFS = g8E0D5A6[arg0];
+//   sub_8057808();
+//   sub_804078C();
+//   WaitForVBlank();
+//   sub_8040FDC();
+// }
 
 void DisplayCardInfoBar (void) {
   if (CanPlayerSeeCard(gDuelCursor.currentY, gDuelCursor.currentX) == 1) {

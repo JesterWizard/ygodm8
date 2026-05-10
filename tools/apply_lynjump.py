@@ -11,6 +11,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ORG_RE = re.compile(r"ORG\s+\$([0-9A-Fa-f]+)")
 WORD_RE = re.compile(r"WORD\s+(.+)")
 POIN_RE = re.compile(r"POIN\s+(\w+)")
+ROM_PATCH_LIMIT = 0x0A000000 - 0x08000000
 
 
 def load_symbols(elf_path: pathlib.Path):
@@ -27,7 +28,26 @@ def load_symbols(elf_path: pathlib.Path):
     return symbols
 
 
-def apply_event(event_path: pathlib.Path, rom: bytearray, symbols):
+def checked_write(rom: bytearray, start: int, data: bytes, owners: dict[int, str], owner: str):
+    end = start + len(data)
+    if start < 0 or end > len(rom):
+        raise ValueError(f"{owner} writes outside ROM bounds: 0x{start:X}-0x{end:X}")
+    if end > ROM_PATCH_LIMIT:
+        raise ValueError(f"{owner} writes past ROM patch limit: 0x{start:X}-0x{end:X}")
+
+    for offset in range(start, end):
+        previous = owners.get(offset)
+        if previous is not None and previous != owner:
+            raise ValueError(
+                f"{owner} overlaps ROM patch byte 0x{offset:X} already written by {previous}"
+            )
+
+    rom[start:end] = data
+    for offset in range(start, end):
+        owners[offset] = owner
+
+
+def apply_event(event_path: pathlib.Path, rom: bytearray, symbols, owners: dict[int, str]):
     cursor = None
 
     for raw_line in event_path.read_text().splitlines():
@@ -53,7 +73,13 @@ def apply_event(event_path: pathlib.Path, rom: bytearray, symbols):
                 raise ValueError(f"WORD before ORG in {event_path}")
             for token in match.group(1).split():
                 value = int(token[1:], 16) if token.startswith("$") else int(token, 0)
-                rom[cursor:cursor + 4] = struct.pack("<I", value)
+                checked_write(
+                    rom,
+                    cursor,
+                    struct.pack("<I", value),
+                    owners,
+                    f"{event_path}:{line}",
+                )
                 cursor += 4
             continue
 
@@ -64,7 +90,13 @@ def apply_event(event_path: pathlib.Path, rom: bytearray, symbols):
             name = match.group(1)
             if name not in symbols:
                 raise KeyError(f"symbol {name} not found for {event_path}")
-            rom[cursor:cursor + 4] = struct.pack("<I", symbols[name])
+            checked_write(
+                rom,
+                cursor,
+                struct.pack("<I", symbols[name]),
+                owners,
+                f"{event_path}:POIN {name}",
+            )
             cursor += 4
             continue
 
@@ -80,9 +112,10 @@ def main() -> int:
     rom_path = ROOT / sys.argv[2]
     symbols = load_symbols(elf_path)
     rom = bytearray(rom_path.read_bytes())
+    owners = {}
 
     for event_path in ROOT.rglob("LynJump.event"):
-        apply_event(event_path, rom, symbols)
+        apply_event(event_path, rom, symbols, owners)
 
     rom_path.write_bytes(rom)
     return 0

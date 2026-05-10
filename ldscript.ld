@@ -977,10 +977,43 @@ SECTIONS
     g84E24B8 = 0x84E24B8;
     g84E3634 = 0x84E3634;
 
+    . = 0x09000000;
+    __append_start = .;
+
+    .runtime_text :
+    {
+        src/*_hooks.o(.text);
+        src/*/*_hooks.o(.text);
+        src/*/*/*_hooks.o(.text);
+    }
+
     .runtime_config :
     {
         configs/runtime.o(.runtime_config);
     }
+
+    .append_text :
+    {
+        *(.append_text);
+    }
+
+    .append_rodata :
+    {
+        *(.append_rodata);
+    }
+
+    .append_assets :
+    {
+        *(.append_assets);
+    }
+
+    .append_data :
+    {
+        *(.append_data);
+    }
+
+    . = ALIGN(4);
+    __append_end = .;
 
     /* Discard everything not specifically mentioned above. */
     /DISCARD/ :

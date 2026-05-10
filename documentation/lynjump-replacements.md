@@ -6,7 +6,7 @@ This repo supports replacing selected vanilla functions by:
 2. compiling a separate replacement symbol into appended ROM space
 3. patching the vanilla entrypoint with a jump stub from a sibling `LynJump.event`
 
-`LYN_REPLACE_CHECK` is only a build-time contract. It does not redirect anything by itself.
+`LYN_REPLACEMENT` marks a replacement for validation and places it in appended ROM space. It does not redirect anything by itself.
 
 ## Current Example
 
@@ -31,8 +31,7 @@ void CapLifePointsAfterDuel(void) {
 The replacement is emitted under a different symbol:
 
 ```c
-LYN_REPLACE_CHECK(CapLifePointsAfterDuel);
-void CapLifePointsAfterDuel__Replacement(void) {
+LYN_REPLACEMENT(CapLifePointsAfterDuel) void CapLifePointsAfterDuel__Replacement(void) {
   gLifePointsOutsideDuel = gDuelLifePoints[DUEL_PLAYER];
 
   if (gRuntimeConfig.restore_life_points_after_duel == TRUE)
@@ -59,12 +58,12 @@ POP
 When adding a new replacement:
 
 1. Leave the original vanilla function intact.
-2. Add `LYN_REPLACE_CHECK(VanillaName);` above the replacement function.
+2. Prefix the replacement function with `LYN_REPLACEMENT(VanillaName)`.
 3. Name the replacement `VanillaName__Replacement`.
 4. Put a sibling `LynJump.event` in the same directory as the source file.
 5. In `LynJump.event`, patch the vanilla ROM offset and `POIN` the replacement symbol.
 
-The current validator maps `Name__Replacement` back to `Name` when checking the marker.
+The current validator maps `Name__Replacement` back to `Name` when checking the marker embedded by `LYN_REPLACEMENT`.
 
 ## Build Flow
 
@@ -89,13 +88,13 @@ What happens:
 
 Source to event:
 
-- every `LYN_REPLACE_CHECK(Name);` requires a sibling `LynJump.event`
+- every `LYN_REPLACEMENT(Name)` requires a sibling `LynJump.event`
 - that event file must reference either `Name` or `Name__Replacement`
 
 Event to source:
 
 - every `POIN Symbol` in a `LynJump.event` must have a matching sibling `.c`
-- if the symbol ends in `__Replacement`, the validator expects `LYN_REPLACE_CHECK(BaseName);`
+- if the symbol ends in `__Replacement`, the validator expects `LYN_REPLACEMENT(BaseName)`
 
 ## Patcher Details
 
@@ -120,7 +119,7 @@ Without the Thumb bit, the game will crash when the jump runs.
 ## Important Constraints
 
 - Do not patch a function entry to jump to itself. That creates an infinite loop.
-- `LYN_REPLACE_CHECK` does not perform any runtime dispatch.
+- `LYN_REPLACEMENT` does not perform any runtime dispatch.
 - The jump target must be a separate symbol from the vanilla entrypoint.
 - Replacement code can safely read normal global symbols and config data, but cross-region calls may require extra care.
 - If possible, keep replacement logic self-contained to reduce veneer/interworking risk.

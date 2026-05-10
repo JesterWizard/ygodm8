@@ -1,4 +1,5 @@
 #include "global.h"
+#include "configs/runtime.h"
 
 static unsigned char CheckForMothEvolution (u16);
 
@@ -86,6 +87,7 @@ void sub_802712C (void) {
 
 static void TryActivatingPermanentEffect (void);
 static unsigned sub_802A478 (void);
+static void CheckBoardForPermanentEffects__Replacement (void);
 
 static void CheckBoardForPermanentEffects (void) {
   unsigned char i;
@@ -1282,6 +1284,154 @@ void TryActivatingPermanentEffects (void) {
   if (!gHideEffectText)
     sub_802AE44();
 }
+
+// static void CheckBoardForPermanentEffects__Replacement (void) {
+//   unsigned char i;
+
+//   gActiveEffect.turnRow = 4;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnHands[ACTIVE_DUELIST][gActiveEffect.col]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+
+//   gActiveEffect.turnRow = 5;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnHands[INACTIVE_DUELIST][gActiveEffect.col]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+//   if (!gHideEffectText)
+//     PlayMusic(MUSIC_375);
+
+//   gActiveEffect.turnRow = 6;
+//   gActiveEffect.col = 0;
+//   gActiveEffect.cardId = gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard;
+//   if (sub_802A478() == 1) {
+//     sub_8034FEC(0x177);
+//     TryActivatingPermanentEffect();
+//     if (!gHideEffectText)
+//       PlayMusic(MUSIC_375);
+//   }
+//   if (IsDuelOver() == 1) {
+//     sub_8034FEC(0x177);
+//     return;
+//   }
+
+//   gActiveEffect.turnRow = 7;
+//   gActiveEffect.col = 0;
+//   gActiveEffect.cardId = gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard;
+//   if (sub_802A478() == 1) {
+//     sub_8034FEC(0x177);
+//     TryActivatingPermanentEffect();
+//     PlayMusic(MUSIC_375);
+//   }
+//   if (IsDuelOver() == 1) {
+//     sub_8034FEC(0x177);
+//     return;
+//   }
+
+//   gActiveEffect.turnRow = 2;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnZones[gActiveEffect.turnRow][i]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+
+//   gActiveEffect.turnRow = 1;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnZones[gActiveEffect.turnRow][i]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+
+//   gActiveEffect.turnRow = 3;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnZones[gActiveEffect.turnRow][i]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+
+//   gActiveEffect.turnRow = 0;
+//   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+//     gActiveEffect.col = i;
+//     gActiveEffect.cardId = gTurnZones[gActiveEffect.turnRow][i]->id;
+//     if (sub_802A478() == 1) {
+//       sub_8034FEC(0x177);
+//       TryActivatingPermanentEffect();
+//       if (!gHideEffectText)
+//         PlayMusic(MUSIC_375);
+//     }
+//     if (IsDuelOver() == 1) {
+//       sub_8034FEC(0x177);
+//       return;
+//     }
+//   }
+//   sub_8034FEC(0x177);
+// }
+
+// LYN_REPLACEMENT(TryActivatingPermanentEffects)
+// void TryActivatingPermanentEffects__Replacement (void) {
+//   gActiveEffect.turn = WhoseTurn();
+//   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
+//     sub_80408BC();
+//     sub_802ADA4();
+//   }
+//   ResetTempStagesForAllCards();
+//   if (!gHideEffectText)
+//     UpdateDuelGfxExceptField();
+//   if (gRuntimeConfig.turn_off_visual_scanner)
+//     CheckBoardForPermanentEffects__Replacement();
+//   else
+//     CheckBoardForPermanentEffects();
+//   if (!gHideEffectText)
+//     sub_802AE44();
+// }
 
 static void TryActivatingPermanentEffect (void) {
   ResetCardEffectTextData();
