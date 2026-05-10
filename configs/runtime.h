@@ -7,6 +7,7 @@ typedef struct {
     u8 max_deck_capacity_at_start;
     u8 max_money_at_start;
     u8 skip_opening_sequence;
+    u8 turn_off_visual_scanner;
     u8 dynamic_card_shop_and_trunk_sorting;
     u8 start_with_three_copies_of_every_card;
     u16 repeatable_opponent_capacity_reward;
