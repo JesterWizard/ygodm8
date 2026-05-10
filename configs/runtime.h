@@ -6,6 +6,7 @@ typedef struct {
     bool8 max_duelist_level_at_start;
     bool8 max_deck_capacity_at_start;
     bool8 max_money_at_start;
+    bool8 skip_opening_sequence;
 } RuntimeConfig;
 
 /*

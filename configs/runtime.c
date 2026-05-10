@@ -5,4 +5,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
     .max_money_at_start = TRUE,
+    .skip_opening_sequence = TRUE,
 };
