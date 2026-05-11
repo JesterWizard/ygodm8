@@ -9624,17 +9624,4 @@ const CardData gCardData_NEW[NUM_CARDS] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
   },
-  [SORCERER_OF_DARK_MAGIC] = {
-    .atk = 3200,
-    .def = 2500,
-    .cost = 150,
-    .attribute = ATTRIBUTE_SHADOW,
-    .level = 9,
-    .type = TYPE_MAGICIAN,
-    .color = EFFECT_CARD,
-    .monsterEffect = 0,
-    .spellEffect = 2,
-    .trapEffect = 0,
-    .description = gSorcererOfDarkMagicDescriptionData,
-  },
 };

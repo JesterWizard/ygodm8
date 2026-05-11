@@ -49,9 +49,3 @@ Create define/enum for objIds in each map? e.g.:
   GALAPAGOS_BEACH_STATE_1_MAKO
 (created automatically by mapjson?)
 
-# Jester's todo list
-- Add new cards + art (as well as documentation)
-- Add new character decs (Tea/Serenity/Solomon)
-- Add new dialogue options for the "Thou must" scenarios
-- Map out RAM and create a structure to add new global variables and structs that persist
-- Add rewards for hitting certain duelist levels

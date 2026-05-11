@@ -1,7 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
-#include "src/hooks/card_asset_hooks.h"
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -13,6 +12,7 @@ extern const u8 gCardColors[];
 extern const u8 gCardMagicEffect[];
 extern const u8 gCardMonsterEffects[];
 extern const u8 gCardTrapEffect[];
+extern u8 *gCardNames[];
 extern unsigned char *gUnk8F985E0[];
 extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
@@ -61,7 +61,7 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
 }
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
-  return (u8 *)GetCardNameAsset(cardId);
+  return gCardNames[cardId];
 }
 
 LYN_REPLACE_CHECK(SetCardInfo);
@@ -80,10 +80,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.monsterEffect = card->monsterEffect;
   gCardInfo.trapEffect = card->trapEffect;
   gCardInfo.ritualEffect = gUnk8094C37[gCardInfo.spellEffect];
-  if (IsCustomCardId(id))
-    gCardInfo.unk1E = 0;
-  else
-    gCardInfo.unk1E = gUnk8094CC3[id];
+  gCardInfo.unk1E = gUnk8094CC3[id];
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);

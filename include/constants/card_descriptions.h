@@ -1,5 +1,4 @@
 extern const u8 gMilusRadiantDescriptionData[];
-extern const u8 gSorcererOfDarkMagicDescriptionData[];
 
 /*
  * Card detail descriptions use the vanilla parser format:
