@@ -269,7 +269,7 @@ def render_data_src(manifest: dict) -> str:
         "#define TRAP_CARD 4",
         "#define RITUAL_CARD 5",
         "",
-        "const CardData gCardData_NEW[CUSTOM_CARD_START + 1] APPEND_RODATA = {",
+        f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{",
         "  [CARD_NONE] = {",
         "    .atk = 0xFFFF,",
         "    .def = 0xFFFF,",

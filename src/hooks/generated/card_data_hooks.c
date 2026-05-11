@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const CardData gCardData_NEW[CUSTOM_CARD_START + 1] APPEND_RODATA = {
+const CardData gCardData_NEW[802] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,

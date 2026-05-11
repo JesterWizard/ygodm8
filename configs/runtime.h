@@ -55,6 +55,6 @@ typedef struct {
     const u8 *description;
 } CardData;
 
-extern const CardData gCardData_NEW[CUSTOM_CARD_START + 1];
+extern const CardData gCardData_NEW[];
 
 #endif
