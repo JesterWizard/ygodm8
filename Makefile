@@ -64,7 +64,7 @@ DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
 CARD_DESCRIPTION_GENERATED := src/hooks/card_description_data_generated.inc
-CARD_ART_MANIFEST := tools/card_art_manifest.json
+CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
 CARD_ART_GENERATED := src/hooks/generated/card_art_generated.inc src/hooks/generated/card_name_generated.inc src/hooks/generated/card_data_generated.inc
 CARD_DATA_GENERATED_SRC := src/hooks/generated/card_data_hooks.c
@@ -90,10 +90,10 @@ $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.p
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
-$(CARD_DESCRIPTION_GENERATED): $(CARD_ART_MANIFEST) $(CARD_ART_GENERATOR)
+$(CARD_DESCRIPTION_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 	python3 $(CARD_ART_GENERATOR)
 
-$(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC): $(CARD_ART_MANIFEST) $(CARD_ART_GENERATOR) $(wildcard src/hooks/assets/cards/80x80/*) $(wildcard src/hooks/assets/cards/24x24/*) include/constants/card_ids.h
+$(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) $(wildcard src/hooks/assets/cards/80x80/*) $(wildcard src/hooks/assets/cards/24x24/*) include/constants/card_ids.h
 	python3 $(CARD_ART_GENERATOR)
 
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c | tools-rules graphics-rules

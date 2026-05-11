@@ -16,7 +16,7 @@ Card description text in this repo is edited in the card art manifest and conver
 
 There are two layers involved:
 
-1. human-readable source strings in `tools/card_art_manifest.json`
+1. human-readable source strings in `tools/card_data_manifest.json`
 2. generated runtime byte data in `src/hooks/card_description_data_generated.inc`
 
 The goal is simple:
@@ -31,7 +31,7 @@ The build now regenerates the runtime include automatically when the manifest ch
 
 Use this workflow when adding or editing a custom card description:
 
-1. Open `tools/card_art_manifest.json`.
+1. Open `tools/card_data_manifest.json`.
 2. Add or edit a card entry with a `description` object:
    - `symbol`: the runtime symbol name
    - `pages`: exactly 2 strings, one per page
@@ -55,7 +55,7 @@ After that, you call the runtime symbol in your card entry in `src/hooks/generat
 
 Files you normally edit:
 
-- `tools/card_art_manifest.json`
+- `tools/card_data_manifest.json`
 - `src/hooks/card_data_hooks.c`
 
 Files you normally do not edit by hand:
@@ -64,7 +64,7 @@ Files you normally do not edit by hand:
 
 How conversion works:
 
-- The generator script reads every `description.pages` array in `tools/card_art_manifest.json`.
+- The generator script reads every `description.pages` array in `tools/card_data_manifest.json`.
 - It wraps each page into the currently observed in-game row widths.
 - It emits raw byte data for `<Symbol>Data` into `card_description_data_generated.inc`.
 
@@ -97,13 +97,13 @@ Build behavior:
 
 - `Makefile` declares `src/hooks/card_description_data_generated.inc` as a generated dependency.
 - `make` runs `python3 tools/add_card_art.py` before compiling the generated card hooks.
-- Editing `tools/card_art_manifest.json` is therefore enough to trigger regeneration on the next build.
+- Editing `tools/card_data_manifest.json` is therefore enough to trigger regeneration on the next build.
 
 ## Code Locations
 
 | Feature | Location | Description |
 |--------|----------|-------------|
-| Editable source strings | `tools/card_art_manifest.json` | Holds the human-readable source strings per custom description |
+| Editable source strings | `tools/card_data_manifest.json` | Holds the human-readable source strings per custom description |
 | Generated runtime data | `src/hooks/card_description_data_generated.inc` | Auto-generated raw byte data used by the game at runtime |
 | Generator script | `tools/add_card_art.py` | Wraps source strings to the current row model and emits `<Symbol>Data` byte arrays |
 | Build trigger | `Makefile` | Regenerates the include before compiling the generated card hooks |

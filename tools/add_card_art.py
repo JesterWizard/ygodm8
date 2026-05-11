@@ -17,7 +17,7 @@ GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
 GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
-CUSTOM_CARD_MANIFEST = ROOT / "tools/card_art_manifest.json"
+CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
 REQUIRED_STATS_KEYS = {
     "atk",
     "def",
