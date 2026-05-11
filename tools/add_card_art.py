@@ -140,6 +140,16 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
                 "",
             ]
         )
+    lines.append("const unsigned char *gCardArts_Hook[] APPEND_RODATA = {")
+    for entry in entries:
+        lines.append(f"  [{entry.card_const}] = {to_symbol(entry.stem, 'BigArt')},")
+    lines.append("};")
+    lines.append("")
+    lines.append("const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {")
+    for entry in entries:
+        lines.append(f"  [{entry.card_const}] = {to_symbol(entry.stem, 'BigPalette')},")
+    lines.append("};")
+    lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 

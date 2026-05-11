@@ -4,8 +4,6 @@
 
 extern struct CardInfo gCardInfo;
 extern unsigned char gSharedMem[];
-extern u32 *gCardArts[];
-extern u16 *gCardArtPalettes[];
 extern u32 *gUnk_8E17F18[];
 extern u32 *gUnk_8E151C8[];
 extern u32 *gUnk_8E17E28[][NUM_LANGUAGES];
@@ -132,30 +130,14 @@ static void CopyShopCardBorderTiles(unsigned char *dest, unsigned char *r7, unsi
   }
 }
 
-static void CopySorcererBigArt(void) {
-  u8 i;
-  u8 ok = 0x48;
-  sub_800E08C((void *)sSorcererOfDarkMagicBigArt, gUnk_8E01364 + 32);
-  CpuFill16(0, gUnk_8E01364, 64);
-  CpuCopy32(sSorcererOfDarkMagicBigPalette, gUnk_8E01368, 128);
-  *gUnk_8E01368 = 0;
-  for (i = 0; i < 10; i++)
-    CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + ok + i * 4), 20);
-}
-
 void CopyCardArtDataToBuffers(void);
 LYN_REPLACE_CHECK(CopyCardArtDataToBuffers);
 void CopyCardArtDataToBuffers__Replacement(void) {
   u8 i;
 
-  if (gCardInfo.id == SORCERER_OF_DARK_MAGIC) {
-    CopySorcererBigArt();
-    return;
-  }
-
-  sub_800E08C(gCardArts[gCardInfo.id], gUnk_8E01364 + 32);
+  sub_800E08C((void *)gCardArts_Hook[gCardInfo.id], gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
-  CpuCopy32(gCardArtPalettes[gCardInfo.id], gUnk_8E01368, 128);
+  CpuCopy32(gCardArtPalettes_Hook[gCardInfo.id], gUnk_8E01368, 128);
   *gUnk_8E01368 = 0;
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
