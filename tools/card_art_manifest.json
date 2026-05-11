@@ -7390,7 +7390,13 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "description": "gMilusRadiantDescriptionData",
+      "description": {
+        "symbol": "gMilusRadiantDescriptionData",
+        "pages": [
+          "A deceptive beast that appears to be the picture of cuteness.",
+          "It empowers FOREST monsters and weakens WIND monsters."
+        ]
+      },
       "card_name": "Milus Radiant"
     },
     {
@@ -11227,7 +11233,13 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "description": "gSorcererOfDarkMagicDescriptionData",
+      "description": {
+        "symbol": "gSorcererOfDarkMagicDescriptionData",
+        "pages": [
+          "A seasoned master of extremely powerful dark magic.",
+          "He can prevent the activation of trap cards."
+        ]
+      },
       "card_name": "Sorcerer of Dark Magic"
     }
   ]

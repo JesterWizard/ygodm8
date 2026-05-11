@@ -92,8 +92,16 @@ def validate_manifest(manifest: object) -> dict:
                 raise SystemExit(f"cards[{index}].{key} must be an integer.")
         if not isinstance(stats["color"], (str, int)):
             raise SystemExit(f"cards[{index}].color must be a C enum-style identifier or integer.")
-        if "description" in stats and (not isinstance(stats["description"], str) or not stats["description"]):
-            raise SystemExit(f"cards[{index}].description must be a non-empty string when present.")
+        if "description" in stats:
+            description = stats["description"]
+            if not isinstance(description, dict):
+                raise SystemExit(f"cards[{index}].description must be an object when present.")
+            symbol = description.get("symbol")
+            pages = description.get("pages")
+            if not isinstance(symbol, str) or not symbol:
+                raise SystemExit(f"cards[{index}].description.symbol must be a non-empty string.")
+            if not isinstance(pages, list) or len(pages) != 2 or not all(isinstance(page, str) and page for page in pages):
+                raise SystemExit(f"cards[{index}].description.pages must be a 2-item array of non-empty strings.")
 
         validated.append({"card_const": card_const, "card_name": card_name, **stats})
 
@@ -185,10 +193,65 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
         lines.append(f"    .spellEffect = {s['spellEffect']},")
         lines.append(f"    .trapEffect = {s['trapEffect']},")
         if s.get("description"):
-            lines.append(f"    .description = {s['description']},")
+            lines.append(f"    .description = {s['description']['symbol']},")
         lines.append("  },")
     lines.append("")
     return "\n".join(lines)
+
+
+def wrap_page(text: str) -> list[str]:
+    row_widths = (12, 14, 14, 14, 12)
+    words = text.split()
+    lines = []
+    word_index = 0
+
+    for width in row_widths:
+        if word_index >= len(words):
+            lines.append("")
+            continue
+
+        line_words = []
+        line_len = 0
+
+        while word_index < len(words):
+            word = words[word_index]
+            word_len = len(word)
+            if word_len > width:
+                raise SystemExit(f"Description word does not fit in width {width}: {word}")
+            next_len = word_len if not line_words else line_len + 1 + word_len
+            if next_len > width:
+                break
+            line_words.append(word)
+            line_len = next_len
+            word_index += 1
+
+        if not line_words:
+            raise SystemExit(f"Could not fit description text into width {width}.")
+        lines.append(" ".join(line_words).ljust(width))
+
+    if word_index < len(words):
+        raise SystemExit(f"Description text does not fit in one page: {' '.join(words[word_index:])}")
+
+    return lines
+
+
+def render_description_inc(manifest: dict) -> str:
+    lines = []
+    for item in manifest["cards"]:
+        description = item.get("description")
+        if not description:
+            continue
+        symbol = description["symbol"]
+        page1, page2 = description["pages"]
+        payload = ["  ", "^2", *wrap_page(page1), "^", *wrap_page(page2), "^"]
+        data = "".join(payload).encode("ascii") + b"\0"
+        lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
+        for i in range(0, len(data), 12):
+            chunk = data[i:i + 12]
+            lines.append("    " + ", ".join(f"0x{byte:02X}" for byte in chunk) + ",")
+        lines.append("};")
+        lines.append("")
+    return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
 def render_data_src(manifest: dict) -> str:
@@ -197,6 +260,7 @@ def render_data_src(manifest: dict) -> str:
         '#include "configs/runtime.h"',
         '#include "constants/card_ids.h"',
         '#include "constants/card_descriptions.h"',
+        '#include "../card_description_data_generated.inc"',
         "",
         "#define NORMAL_CARD 0",
         "#define EFFECT_CARD 1",
@@ -230,7 +294,7 @@ def render_data_src(manifest: dict) -> str:
         lines.append(f"    .spellEffect = {item['spellEffect']},")
         lines.append(f"    .trapEffect = {item['trapEffect']},")
         if "description" in item:
-            lines.append(f"    .description = {item['description']},")
+            lines.append(f"    .description = {item['description']['symbol']},")
         lines.append("  },")
     lines.append("};")
     lines.append("")
@@ -258,6 +322,7 @@ def main() -> int:
     name_inc = render_name_inc(entries)
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
+    description_inc = render_description_inc(manifest)
 
     if args.print:
         print(f"--- {GENERATED_ASSET_INC} ---")
@@ -268,12 +333,15 @@ def main() -> int:
         print(data_inc, end="")
         print(f"--- {GENERATED_DATA_SRC} ---")
         print(data_src, end="")
+        print(f"--- src/hooks/card_description_data_generated.inc ---")
+        print(description_inc, end="")
         return 0
 
     update_file(GENERATED_ASSET_INC, asset_inc)
     update_file(GENERATED_NAME_INC, name_inc)
     update_file(GENERATED_DATA_INC, data_inc)
     update_file(GENERATED_DATA_SRC, data_src)
+    update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
     print(f"Generated {len(entries)} card art bindings.")
     return 0
 

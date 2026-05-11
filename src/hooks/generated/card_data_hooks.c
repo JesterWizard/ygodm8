@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "constants/card_descriptions.h"
+#include "../card_description_data_generated.inc"
 
 #define NORMAL_CARD 0
 #define EFFECT_CARD 1
