@@ -1,0 +1,43 @@
+
+/* Card colors */
+#define NORMAL_CARD 0
+#define EFFECT_CARD 1
+#define FUSION_CARD 2
+#define SPELL_CARD 3
+#define TRAP_CARD 4
+#define RITUAL_CARD 5
+
+/* Card attributes */
+#define ATTRIBUTE_SHADOW 1
+#define ATTRIBUTE_LIGHT 2
+#define ATTRIBUTE_FIEND 3
+#define ATTRIBUTE_DREAM 4
+#define ATTRIBUTE_FIRE 5
+#define ATTRIBUTE_FOREST 6
+#define ATTRIBUTE_WIND 7
+#define ATTRIBUTE_EARTH 8
+#define ATTRIBUTE_THUNDER 9
+#define ATTRIBUTE_WATER 10
+#define ATTRIBUTE_DIVINE 11
+
+/* Card types */
+#define TYPE_DRAGON 1
+#define TYPE_SPELLCASTER 2
+#define TYPE_ZOMBIE 3
+#define TYPE_WARRIOR 4
+#define TYPE_BEAST_WARRIOR 5
+#define TYPE_BEAST 6
+#define TYPE_WINGED_BEAST 7
+#define TYPE_FIEND 8
+#define TYPE_FAIRY 9
+#define TYPE_INSECT 10
+#define TYPE_DINOSAUR 11
+#define TYPE_FISH 12
+#define TYPE_REPTILE 13
+#define TYPE_SEA_SERPENT 14
+#define TYPE_MACHINE 15
+#define TYPE_THUNDER 16
+#define TYPE_AQUA 17
+#define TYPE_PYRO 18
+#define TYPE_ROCK 19
+#define TYPE_PLANT 20

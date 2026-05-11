@@ -87,11 +87,17 @@ def validate_manifest(manifest: object) -> dict:
             raise SystemExit(f"cards[{index}] is missing required keys: {', '.join(missing)}")
 
         stats = {key: item[key] for key in REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS if key in item}
-        for key in ("atk", "def", "cost", "attribute", "level", "type", "monsterEffect", "spellEffect", "trapEffect"):
+        
+        # Validating strictly numeric fields
+        for key in ("atk", "def", "cost", "level", "monsterEffect", "spellEffect", "trapEffect"):
             if not isinstance(stats[key], int):
                 raise SystemExit(f"cards[{index}].{key} must be an integer.")
-        if not isinstance(stats["color"], (str, int)):
-            raise SystemExit(f"cards[{index}].color must be a C enum-style identifier or integer.")
+        
+        # Validating flexible fields (Allowing defines/strings or integers)
+        for key in ("color", "type", "attribute"):
+            if not isinstance(stats[key], (str, int)):
+                raise SystemExit(f"cards[{index}].{key} must be a C enum-style identifier (string) or integer.")
+
         if "description" in stats:
             description = stats["description"]
             if not isinstance(description, dict):
@@ -186,9 +192,8 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
             continue
         s = entry.stats
         lines.append(f"  [{entry.card_const}] = {{")
-        for key in ("atk", "def", "cost", "attribute", "level", "type"):
+        for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {s[key]},")
-        lines.append(f"    .color = {s['color']},")
         lines.append(f"    .monsterEffect = {s['monsterEffect']},")
         lines.append(f"    .spellEffect = {s['spellEffect']},")
         lines.append(f"    .trapEffect = {s['trapEffect']},")
@@ -287,9 +292,8 @@ def render_data_src(manifest: dict) -> str:
         if item["card_const"] == "CARD_NONE":
             continue
         lines.append(f"  [{item['card_const']}] = {{")
-        for key in ("atk", "def", "cost", "attribute", "level", "type"):
+        for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {item[key]},")
-        lines.append(f"    .color = {item['color']},")
         lines.append(f"    .monsterEffect = {item['monsterEffect']},")
         lines.append(f"    .spellEffect = {item['spellEffect']},")
         lines.append(f"    .trapEffect = {item['trapEffect']},")
