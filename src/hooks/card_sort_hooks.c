@@ -257,3 +257,134 @@
 //   SortCardsDescending();
 //   CopySortedCardsBack();
 // }
+
+#include "global.h"
+#include "configs/runtime.h"
+
+struct SortableEntry {
+  u16 cardId;
+  u64 sortKey;
+};
+
+extern struct SortableEntry *gSortableEntries;
+extern u16 g80D0444[][NUM_TRUE_CARDS];
+
+void sub_80329C8(void);
+void sub_8032A50(void);
+void sub_8032AD0(void);
+void sub_8032B50(void);
+void sub_8032BD8(void);
+void sub_8032C88(void);
+void sub_8032D38(void);
+void sub_8032DE8(void);
+
+static u16 GetCustomSafeNameSortRank(u16 cardId) {
+  if (cardId >= NUM_VANILLA_CARDS)
+    return cardId;
+
+  return g80D0444[gLanguage][cardId];
+}
+
+static u64 GetCustomNumberSortKey(u16 cardId) {
+  return NUM_TRUE_CARDS - cardId;
+}
+
+static u64 GetCustomNameSortKey(u16 cardId) {
+  return NUM_TRUE_CARDS - GetCustomSafeNameSortRank(cardId);
+}
+
+LYN_REPLACE_CHECK(sub_80329C8);
+APPEND_TEXT void sub_80329C8__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNumberSortKey(cardId);
+    if (gTrunkCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032A50);
+APPEND_TEXT void sub_8032A50__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNumberSortKey(cardId);
+    if (gShopTempCardQty[cardId])
+      gSortableEntries[i].sortKey |= 0x1000000000000000;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032AD0);
+APPEND_TEXT void sub_8032AD0__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNumberSortKey(cardId);
+    if (gPlayerTempCardQty[cardId])
+      gSortableEntries[i].sortKey |= 0x1000000000000000;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032B50);
+APPEND_TEXT void sub_8032B50__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNumberSortKey(cardId);
+    if (gTotalCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032BD8);
+APPEND_TEXT void sub_8032BD8__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNameSortKey(cardId);
+    if (gTrunkCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032C88);
+APPEND_TEXT void sub_8032C88__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNameSortKey(cardId);
+    if (gShopTempCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032D38);
+APPEND_TEXT void sub_8032D38__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNameSortKey(cardId);
+    if (gPlayerTempCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032DE8);
+APPEND_TEXT void sub_8032DE8__Replacement(void) {
+  unsigned i;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].cardId = cardId;
+    gSortableEntries[i].sortKey = GetCustomNameSortKey(cardId);
+    if (gTotalCardQty[cardId])
+      gSortableEntries[i].sortKey += NUM_TRUE_CARDS;
+  }
+}
