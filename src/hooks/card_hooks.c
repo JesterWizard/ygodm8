@@ -21,8 +21,6 @@ extern u8 gDuelistLevelTooLowText[];
 unsigned short GetNthCardOnScreen(u8);
 int GetTrunkCardQty(unsigned short);
 
-static const u8 sSorcererOfDarkMagicName[] __attribute__((section(".append_assets"))) = "Sorcerer Of Dark Magic";
-
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
   if (card->description != NULL)
     return (u8 *)card->description;
@@ -62,12 +60,7 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
   return stat;
 }
 
-static u8 *GetCardName_Hook(unsigned short cardId) {
-  if (cardId == SORCERER_OF_DARK_MAGIC)
-    return (u8 *)sSorcererOfDarkMagicName;
-
-  return gCardNames[cardId];
-}
+#include "generated/card_name_generated.inc"
 
 LYN_REPLACE_CHECK(SetCardInfo);
 void SetCardInfo__Replacement(unsigned short id) {

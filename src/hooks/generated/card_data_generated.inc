@@ -1,0 +1,13 @@
+  [SORCERER_OF_DARK_MAGIC] = {
+    .atk = 3200,
+    .def = 2500,
+    .cost = 150,
+    .attribute = 2,
+    .level = 9,
+    .type = 2,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .description = gSorcererOfDarkMagicDescriptionData,
+  },

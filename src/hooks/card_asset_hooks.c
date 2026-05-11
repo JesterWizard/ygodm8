@@ -26,8 +26,7 @@ extern u16 *gUnk_8E0136C;
 extern u16 gUnk_8936130[][10];
 extern unsigned char *gUnk_8E17F48[];
 
-static const unsigned char sSorcererOfDarkMagicBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.huff");
-static const unsigned short sSorcererOfDarkMagicBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.gbapal");
+#include "generated/card_art_generated.inc"
 
 static void sub_80565F0(void *dest, void *r7, unsigned char *src) {
   unsigned i, j, r8 = 0, ip;
