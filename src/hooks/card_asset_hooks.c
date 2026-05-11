@@ -4,6 +4,8 @@
 
 extern struct CardInfo gCardInfo;
 extern unsigned char gSharedMem[];
+extern const unsigned char *gCardArts[];
+extern const unsigned short *gCardArtPalettes[];
 extern u32 *gUnk_8E17F18[];
 extern u32 *gUnk_8E151C8[];
 extern u32 *gUnk_8E17E28[][NUM_LANGUAGES];
@@ -134,10 +136,17 @@ void CopyCardArtDataToBuffers(void);
 LYN_REPLACE_CHECK(CopyCardArtDataToBuffers);
 void CopyCardArtDataToBuffers__Replacement(void) {
   u8 i;
+  const unsigned char *bigArt = gCardArts_Hook[gCardInfo.id];
+  const unsigned short *bigPalette = gCardArtPalettes_Hook[gCardInfo.id];
 
-  sub_800E08C((void *)gCardArts_Hook[gCardInfo.id], gUnk_8E01364 + 32);
+  if (!bigArt)
+    bigArt = gCardArts[gCardInfo.id];
+  if (!bigPalette)
+    bigPalette = gCardArtPalettes[gCardInfo.id];
+
+  sub_800E08C((void *)bigArt, gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
-  CpuCopy32(gCardArtPalettes_Hook[gCardInfo.id], gUnk_8E01368, 128);
+  CpuCopy32(bigPalette, gUnk_8E01368, 128);
   *gUnk_8E01368 = 0;
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
