@@ -16,4 +16,10 @@ static const char *const gMilusRadiantDescription[] = {
     "It empowers FOREST monsters and weakens WIND monsters.",
 };
 
+static const char *const gSorcererOfDarkMagicDescription[] = {
+    "A seasoned master of extremely powerful black magic.",
+    "He can prevent the activation of trap cards.",
+};
+
+
 #include "card_description_data_generated.inc"

@@ -131,7 +131,7 @@ struct TrunkMenu
     u8 displayMode;    //show: nothing, atk/def, attribute(summon), cost,
     u8 cursorState;
     u8 filler5[7];
-    u16 cards[NUM_TRUE_CARDS]; //sortedCards
+    u16 cards[NUM_CARDS + 1]; //sortedCards, includes one custom append slot at index 801
 };
 
 extern struct TrunkMenu gTrunkMenu;

@@ -1,43 +1,46 @@
-// #include "global.h"
-// #include "configs/runtime.h"
+/* eslint-disable */
+#include "global.h"
+#include "configs/runtime.h"
 
-// struct SortableEntry {
-//   u16 cardId;
-//   u64 sortKey;
-// };
+struct SortableEntry {
+  u16 cardId;
+  u64 sortKey;
+};
 
-// extern struct SortableEntry *gSortableEntries;
+extern struct SortableEntry *gSortableEntries;
+extern struct CardSortContext gCardSortContext;
 
-// void SortCardsAccordingToContext(void);
-// void sub_8034DF8(void);
-// void SortCardsDescending(void);
+void SortCardsAccordingToContext(void);
+void sub_8034DF8(void);
+void SortCardsDescending(void);
+extern void (*const sVanillaSortHelpers[])(void);
 
-// void sub_8034AB8(void);
-// void sub_8034AF0(void);
-// void sub_8034B44(void);
-// void sub_8034BBC(void);
-// void sub_8034C00(void);
-// void sub_8034C44(void);
-// void sub_8034C88(void);
-// void sub_8033C28(void);
-// void sub_8033FF0(void);
-// void sub_8034078(void);
-// void sub_8034120(void);
-// void sub_80341F4(void);
-// void sub_80329C8(void);
-// void sub_8032BD8(void);
-// void sub_8032E98(void);
-// void sub_8033210(void);
-// void sub_8033588(void);
-// void sub_80338C4(void);
-// void sub_8033CB4(void);
-// void sub_803427C(void);
-// void sub_8032A50(void);
-// void sub_8032C88(void);
-// void sub_8032F50(void);
-// void sub_80332C8(void);
-// void sub_8033634(void);
-// void sub_8033978(void);
+void sub_8034AB8(void);
+void sub_8034AF0(void);
+void sub_8034B44(void);
+void sub_8034BBC(void);
+void sub_8034C00(void);
+void sub_8034C44(void);
+void sub_8034C88(void);
+void sub_8033C28(void);
+void sub_8033FF0(void);
+void sub_8034078(void);
+void sub_8034120(void);
+void sub_80341F4(void);
+void sub_80329C8(void);
+void sub_8032BD8(void);
+void sub_8032E98(void);
+void sub_8033210(void);
+void sub_8033588(void);
+void sub_80338C4(void);
+void sub_8033CB4(void);
+void sub_803427C(void);
+void sub_8032A50(void);
+void sub_8032C88(void);
+void sub_8032F50(void);
+void sub_80332C8(void);
+void sub_8033634(void);
+void sub_8033978(void);
 // void sub_8033D60(void);
 // void sub_8034324(void);
 // void sub_8032AD0(void);
@@ -240,12 +243,12 @@
 // LYN_REPLACE_CHECK(SortCardsAccordingToContext);
 // void SortCardsAccordingToContext__Replacement(void) {
 //   u8 sortMode = gCardSortContext.sortMode;
-
+//
 //   if (sortMode > 57)
 //     return;
-
+//
 //   sub_8034DF8();
-
+//
 //   if (gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE
 //       && GetDynamicSortKind(sortMode) != DYNAMIC_SORT_NONE) {
 //     BuildDynamicShopOrTrunkSort();
@@ -253,7 +256,7 @@
 //   else {
 //     sVanillaSortHelpers[sortMode]();
 //   }
-
+//
 //   SortCardsDescending();
 //   CopySortedCardsBack();
 // }

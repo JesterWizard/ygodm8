@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const CardData gCardData_NEW[NUM_CARDS] APPEND_RODATA = {
+const CardData gCardData_NEW[CUSTOM_CARD_START + 1] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -9623,5 +9623,18 @@ const CardData gCardData_NEW[NUM_CARDS] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+  },
+  [SORCERER_OF_DARK_MAGIC] = {
+    .atk = 3200,
+    .def = 2500,
+    .cost = 150,
+    .attribute = 2,
+    .level = 9,
+    .type = 2,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .description = gSorcererOfDarkMagicDescriptionData,
   },
 };
