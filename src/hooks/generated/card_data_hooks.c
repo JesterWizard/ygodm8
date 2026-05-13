@@ -9001,10 +9001,11 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .attribute = ATTRIBUTE_EARTH,
     .level = 4,
     .type = TYPE_ROCK,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .description = gDescription_StoneStatueOfTheAztecs,
   },
   [BERFOMET] = {
     .atk = 1400,
