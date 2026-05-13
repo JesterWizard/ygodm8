@@ -796,7 +796,14 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Larvae Moth"
+      "card_name": "Larvae Moth",
+      "description": {
+        "symbol": "gDescription_LarvaeMoth",
+        "pages": [
+          "A larva at its 2nd stage of evolution",
+          "Come next turn it will evolve into a Cocoon."
+        ]
+      }
     },
     {
       "card_const": "GREAT_MOTH",
@@ -810,7 +817,14 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Great Moth"
+      "card_name": "Great Moth",
+      "description": {
+        "symbol": "gDescription_GreatMoth",
+        "pages": [
+          "A giant moth at its 4th stage of evolution.",
+          "Come next turn it will evolve into its final form."
+        ]
+      }
     },
     {
       "card_const": "KURIBOH",
@@ -1020,7 +1034,14 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Cocoon of Evolution"
+      "card_name": "Cocoon of Evolution",
+      "description": {
+        "symbol": "gDescription_CocoonOfEvolution",
+        "pages": [
+          "A cocoon at its 3rd stage of evolution.",
+          "Come next turn it will evolve into Great Moth."
+        ]
+      }
     },
     {
       "card_const": "KAIRYU_SHIN",
@@ -3904,7 +3925,14 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Petit Moth"
+      "card_name": "Petit Moth",
+      "description": {
+        "symbol": "gDescription_PetitMoth",
+        "pages": [
+          "A small moth at its first stage of evolution",
+          "Come next turn it will evolve into a Larvae Moth."
+        ]
+      }
     },
     {
       "card_const": "TWIN_HEADED_FIRE_DRAGON",
@@ -7391,7 +7419,7 @@
       "spellEffect": 2,
       "trapEffect": 0,
       "description": {
-        "symbol": "gMilusRadiantDescriptionData",
+        "symbol": "gDescription_MilusRadiant",
         "pages": [
           "A deceptive beast that appears to be the picture of cuteness.",
           "It empowers FOREST monsters and weakens WIND monsters."
@@ -8489,6 +8517,13 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_LavaGolem",
+        "pages": [
+          "A lava devil that tributes 2 enemy monsters to show on the",
+          "foe's field. It burns its owner for 700LP damage each turn"
+        ]
+      },
       "card_name": "Lava Golem"
     },
     {
@@ -8923,7 +8958,14 @@
       "monsterEffect": 85,
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Dark Paladin"
+      "card_name": "Dark Paladin",
+      "description": {
+        "symbol": "gDescription_DarkPaladin",
+        "pages": [
+          "B warrior that can destroy a spell on the opponent's",
+          "field by sacrificing the far left card in your own hand"
+        ]
+      }
     },
     {
       "card_const": "TRENT",
@@ -11234,7 +11276,7 @@
       "spellEffect": 2,
       "trapEffect": 0,
       "description": {
-        "symbol": "gSorcererOfDarkMagicDescriptionData",
+        "symbol": "gDescription_SorcererOfDarkMagic",
         "pages": [
           "A seasoned master of extremely powerful dark magic.",
           "He can prevent the activation of trap cards."

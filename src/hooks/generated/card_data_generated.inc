@@ -9,5 +9,5 @@
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
-    .description = gSorcererOfDarkMagicDescriptionData,
+    .description = gDescription_SorcererOfDarkMagic,
   },
