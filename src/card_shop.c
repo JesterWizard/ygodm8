@@ -11,7 +11,7 @@
 #define SHOP_CONFIRM_MENU_OPTION_EXIT 2
 #define SHOP_SORT_MODE_MENU_OPTION_EXIT 10
 
-struct {
+struct CardShopState {
   unsigned short* unk0[SHOP_BOARD_NUM_ROWS][SHOP_BOARD_NUM_COLS];
   unsigned short unk8C[SHOP_BOARD_NUM_ROWS][SHOP_BOARD_NUM_COLS];
   unsigned short unkD2[806]; //805 is divisible by 35 (7x5 which are the slot dimensions of the card shop board)
@@ -49,15 +49,15 @@ static void TryMoveDownInConfirmSellMenu (void);
 static void SelectOptionInConfirmSellMenu (void);
 static void MoveCursorLeftInSellShop (void);
 static void MoveCursorRightInSellShop (void);
-static void sub_802CEE0 (int);
+void sub_802CEE0 (int);
 static void SetNextSortModeInSellShop (void);
 static void InitSellShop (void);
 static void MoveCursorUpInSellShop (void);
 static void MoveCursorDownInSellShop (void);
-static void sub_802D174 (void);
-static void RemoveCardQtyFromPlayerInShop (u16, u8);
+void sub_802D174 (void);
+void RemoveCardQtyFromPlayerInShop (u16, u8);
 static unsigned PlayerInShopHasSpaceForCardQty (u16, u8);
-static unsigned PlayerInShopHasAtLeastCardQty (u16, u8);
+unsigned PlayerInShopHasAtLeastCardQty (u16, u8);
 static void UpdatePlayerShopSellResults (void);
 static void OpenSortSelectMenuInSellShop (void);
 static void SelectSortModeInSellShop (void);
@@ -83,7 +83,7 @@ static void MoveCursorUpInBuyShop (void);
 static void MoveCursorDownInBuyShop (void);
 static void sub_802DE60 (void);
 static void sub_802DE74 (void);
-static int sub_802DE84 (int);
+int sub_802DE84 (int);
 static void AddAmountToFirstVisibleRow (s16);
 static s16 SafeRowWrapAround (int);
 static void sub_802DF1C (void);
@@ -98,14 +98,14 @@ static void SetCursorToNextUpOptionInShopSortModeMenu (void);
 static void SetCursorToNextDownOptionInShopSortModeMenu (void);
 static void SetCursorToNextLeftOptionInShopSortModeMenu (void);
 static void SetCursorToNextRightOptionInShopSortModeMenu (void);
-static void AddCardQtyToShop (u16, u8);
+void AddCardQtyToShop (u16, u8);
 static void RemoveCardQtyFromShop (u16, u8);
-static unsigned char ShopHasSpaceForCardQty (u16, u8);
+unsigned char ShopHasSpaceForCardQty (u16, u8);
 static unsigned ShopHasAtLeastQtyOfCard (u16, u8);
 static void sub_802E1D8 (void);
-static void sub_802E270 (void);
+void sub_802E270 (void);
 static void sub_802E868 (void);
-static void sub_802EA74 (void);
+void sub_802EA74 (void);
 static void sub_802F9E8 (void);
 static void sub_802FB08 (void);
 static void SetBgDimEffectLow (void);
@@ -113,14 +113,14 @@ static void SetBgDimEffectMed (void);
 static void sub_802FC34 (void);
 static void sub_802FC50 (void);
 static void sub_802FC6C (void);
-static void sub_802FC88 (void);
+void sub_802FC88 (void);
 static void sub_802FCF0 (u8);
 static void sub_802FD48 (u16);
-static void sub_802FD84 (u16);
+void sub_802FD84 (u16);
 static void sub_802FDC0 (void);
 static void sub_802FE00 (void);
 static void sub_802FE68 (void);
-static void sub_802FE84 (int);
+void sub_802FE84 (int);
 static void CopyAttributeIconTile (u8*, u16);
 static void CopyNumTributesTile (u8*, u16);
 static void sub_802FF78 (u8*, u16);
@@ -146,7 +146,7 @@ static void sub_8030654 (void);
 static void sub_8030660 (void);
 static void sub_8030678 (void);
 static void sub_8030684 (void);
-static void sub_8030690 (void);
+void sub_8030690 (void);
 static void sub_80306C0 (void);
 static void sub_80306E0 (void);
 static void sub_8030710 (void);
@@ -159,7 +159,7 @@ static void sub_80307E4 (int);
 static void sub_803083C (int);
 static void sub_8030898 (void);
 static void sub_8030934 (void);
-static void sub_803096C (int);
+void sub_803096C (int);
 static void sub_80309D8 (void);
 static void sub_8030A10 (void);
 static void sub_8030A48 (void);
@@ -767,7 +767,7 @@ static void OpenConfirmSellMenu (void) {
   WaitForVBlank();
 }
 
-static void TrySellCard (void) {
+void TrySellCard (void) {
   unsigned short cardId;
   unsigned long long money;
 
@@ -897,7 +897,7 @@ static void MoveCursorRightInSellShop (void) {
   sCardShop.cursorColumn = 0;
 }
 
-static void sub_802CEE0 (int row) {
+void sub_802CEE0 (int row) {
   u8 col;
   u8 row_u8 = row;
   s16 temp = SafeRowWrapAround(sCardShop.firstVisibleRow + row_u8);
@@ -991,7 +991,7 @@ static void MoveCursorDownInSellShop (void) {
   sub_8030068();
 }
 
-static void sub_802D174 (void) {
+void sub_802D174 (void) {
   u8 i;
   for (i = 0; i < 5; i++)
     sub_802CEE0(i);
@@ -1015,7 +1015,7 @@ static void AddCardQtyToPlayerInShop (u16 cardId, u8 qty) {
     gPlayerTempCardQty[cardId] += qty;
 }
 
-static void RemoveCardQtyFromPlayerInShop (u16 cardId, u8 qty) {
+void RemoveCardQtyFromPlayerInShop (u16 cardId, u8 qty) {
   if (cardId == CARD_NONE)
     return;
   if (!(u8)PlayerInShopHasAtLeastCardQty(cardId, qty))
@@ -1030,7 +1030,7 @@ static unsigned PlayerInShopHasSpaceForCardQty (u16 cardId, u8 qty) {
   return 1;
 }
 
-static unsigned PlayerInShopHasAtLeastCardQty (u16 cardId, u8 qty) {
+unsigned PlayerInShopHasAtLeastCardQty (u16 cardId, u8 qty) {
   if (qty > gPlayerTempCardQty[cardId])
     return 0;
   return 1;
@@ -1630,7 +1630,7 @@ static void sub_802DE74 (void) {
   sub_802DFE4();
 }
 
-static int sub_802DE84 (int arg0) {
+int sub_802DE84 (int arg0) {
   u8 arg0_u8 = arg0;
   return g80CA0B4[sCardShop.unk724][arg0_u8];
 }
@@ -1714,7 +1714,7 @@ static void SetCursorToNextRightOptionInShopSortModeMenu (void) {
   sCardShop.selectedMenuOption = gNextRightShopSortModeOption[sCardShop.selectedMenuOption];
 }
 
-static void AddCardQtyToShop (u16 cardId, u8 qty) {
+void AddCardQtyToShop (u16 cardId, u8 qty) {
   if (cardId == CARD_NONE)
     return;
   if (!ShopHasSpaceForCardQty(cardId, qty))
@@ -1732,7 +1732,7 @@ static void RemoveCardQtyFromShop (u16 cardId, u8 qty) {
     gShopTempCardQty[cardId] -= qty;
 }
 
-static unsigned char ShopHasSpaceForCardQty (u16 cardId, u8 qty) {
+unsigned char ShopHasSpaceForCardQty (u16 cardId, u8 qty) {
   if (qty > SHOP_MAX_CARD_QTY - gShopTempCardQty[cardId])
     return 0;
   return 1;
@@ -1758,7 +1758,7 @@ static void sub_802E1D8 (void) {
 /*
 extern struct OamData gOamBuffer[];
 
-static void sub_802E270 (void) {
+void sub_802E270 (void) {
   u16* oam = (u16*)gOamBuffer;
   u32 i = 0;
 
@@ -1787,7 +1787,7 @@ static void sub_802E270 (void) {
 }*/
 
 NAKED
-static void sub_802E270 (void) {
+void sub_802E270 (void) {
   asm_unified("push {r4, r5, lr}\n\
 	ldr r0, _0802E2EC\n\
 	movs r4, #0\n\
@@ -2082,7 +2082,7 @@ static void sub_802E868 (void) {
   sub_802FCF0(sCardShop.currentSortMode);
 }
 
-static void sub_802EA74 (void) {
+void sub_802EA74 (void) {
   u16* ptr;
   u8 i;
   ConvertU64ToDigitBuffer(gMoney, DIGIT_FLAG_NONE);
@@ -3113,7 +3113,7 @@ static void sub_802FC6C (void) {
   gOamBuffer[23] = 0;
 }
 
-static void sub_802FC88 (void) {
+void sub_802FC88 (void) {
   CopyStringTilesToVRAMBuffer(((struct Cbb*)&gBgVram)->cbb3 + 0x1000, g80CD778, 0x901);
   UpdateConfirmBuyMenuCursorSpritePos();
   UpdateConfirmBuyMenuCursorBgSpritePos();
@@ -3204,7 +3204,7 @@ static void sub_802FD48 (u16 cardId) {
   sub_802F8F8();
 }
 
-static void sub_802FD84 (u16 cardId) {
+void sub_802FD84 (u16 cardId) {
   SetCardInfo(cardId);
   sub_802F66C();
   sub_802F5B0();
@@ -3243,7 +3243,7 @@ static void sub_802FE68 (void) {
     sub_802FE84(i);
 }
 
-static void sub_802FE84 (int arg0) {
+void sub_802FE84 (int arg0) {
   u8 i;
   u8 r7 = sub_802DE84((u8)arg0);
   u8* r5 = &gBgVram.cbb0[0x40 + r7 * 0x1C00];
@@ -3553,7 +3553,7 @@ static void sub_8030684 (void) {
   LoadOam();
 }
 
-static void sub_8030690 (void) {
+void sub_8030690 (void) {
   REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(3) | BGCNT_16COLOR | BGCNT_SCREENBASE(20);
   REG_DISPCNT |= DISPCNT_BG0_ON;
   LoadOam();
@@ -3649,7 +3649,7 @@ static void sub_8030934 (void) {
   CpuCopy16(gBgVram.cbb0 + 0xA000, (u8*)BG_VRAM + 0xA000, 0x800);
 }
 
-static void sub_803096C (int arg0) {
+void sub_803096C (int arg0) {
   u8 arg0_u8 = arg0;
   u32 r1 = arg0_u8 * 0x1C00;
   CpuCopy16(gBgVram.cbb0 + 0x40 + r1, (u8*)BG_VRAM + 0x40 + r1, 0x1C00);

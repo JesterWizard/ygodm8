@@ -262,8 +262,7 @@ def render_description_inc(manifest: dict) -> str:
 def render_data_src(manifest: dict) -> str:
     lines = [
         '#include "global.h"',
-        '#include "configs/runtime.h"',
-        '#include "constants/card_ids.h"',
+        '#include "common-chax.h"',
         '#include "constants/card_descriptions.h"',
         '#include "../card_description_data_generated.inc"',
         "",

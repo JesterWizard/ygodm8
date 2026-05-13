@@ -2,6 +2,7 @@
 
 #include "duel.h"
 #include "card.h"
+#include "card_shop.h"
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
 #include "configs/runtime.h"

@@ -17,6 +17,7 @@ typedef struct {
     u8 dynamic_card_shop_and_trunk_sorting;
     u8 start_with_three_copies_of_every_card;
     u8 allow_ante_with_one_copy_of_card;
+    u8 allow_sell_one_copy_of_card;
     u8 repeatable_opponent_capacity_reward;
     u8 story_opponent_capacity_reward;
     u8 alternate_win_reward_multiplier;
