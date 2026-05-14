@@ -5923,11 +5923,18 @@
       "attribute": "ATTRIBUTE_FIEND",
       "level": 2,
       "type": "TYPE_MACHINE",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CYBER_STEIN",
       "spellEffect": 2,
       "trapEffect": 0,
-      "card_name": "Cyber Stein"
+      "card_name": "Cyber Stein",
+      "description": {
+        "symbol": "gDescription_CyberStein",
+        "pages": [
+          "An entirely evil machine created in an underground laboratory.",
+          "For 5000LP it can summon a Blue Eyes Ultimate Dragon."
+        ]
+      }
     },
     {
       "card_const": "CYBER_COMMANDER",

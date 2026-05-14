@@ -15,6 +15,8 @@ unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
       return CanActivateInjectionFairyLily();
+    case MONSTER_EFFECT_CYBER_STEIN:
+      return CanActivateCyberStein();
     default:
       return TRUE;
   }
@@ -33,6 +35,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_JAR) {
     EffectCyberJar();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_STEIN) {
+    EffectCyberStein();
     return;
   }
 

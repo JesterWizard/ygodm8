@@ -5063,10 +5063,11 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .attribute = ATTRIBUTE_FIEND,
     .level = 2,
     .type = TYPE_MACHINE,
-    .color = NORMAL_CARD,
-    .monsterEffect = 0,
+    .color = EFFECT_CARD,
+    .monsterEffect = 104,
     .spellEffect = 2,
     .trapEffect = 0,
+    .description = gDescription_CyberStein,
   },
   [CYBER_COMMANDER] = {
     .atk = 750,
