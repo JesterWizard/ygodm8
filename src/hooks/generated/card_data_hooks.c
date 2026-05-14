@@ -4156,6 +4156,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 15,
     .trapEffect = 0,
+    .description = gDescription_Hinotama,
   },
   [FINAL_FLAME] = {
     .atk = 65535,
@@ -4180,6 +4181,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 17,
     .trapEffect = 0,
+    .description = gDescription_Ookazi,
   },
   [TREMENDOUS_FIRE] = {
     .atk = 65535,

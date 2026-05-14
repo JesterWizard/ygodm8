@@ -4870,7 +4870,14 @@
       "monsterEffect": 0,
       "spellEffect": 15,
       "trapEffect": 0,
-      "card_name": "Hinotama"
+      "card_name": "Hinotama",
+      "description": {
+        "symbol": "gDescription_Hinotama",
+        "pages": [
+          "An attacking spell card that strikes the foe with fireballs",
+          "It inflicts 500LP damage directly on the opponent."
+        ]
+      }
     },
     {
       "card_const": "FINAL_FLAME",
@@ -4898,7 +4905,14 @@
       "monsterEffect": 0,
       "spellEffect": 17,
       "trapEffect": 0,
-      "card_name": "Ookazi"
+      "card_name": "Ookazi",
+      "description": {
+        "symbol": "gDescription_Ookazi",
+        "pages": [
+          "A spell card that ignites a huge blaze that burns all day.",
+          "It inflicts 800LP damage directly on the opponent."
+        ]
+      }
     },
     {
       "card_const": "TREMENDOUS_FIRE",
