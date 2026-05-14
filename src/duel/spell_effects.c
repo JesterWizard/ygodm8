@@ -139,7 +139,7 @@ static void EffectDianKetoTheCureMaster (void) {
     ActivateTrapEffect(5000);
 }
 
-static void EffectSparks (void) {
+void EffectSparks (void) {
   gTrapEffectData.originRow = gSpellEffectData.row1;
   gTrapEffectData.originCol = gSpellEffectData.col1;
   gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
@@ -166,7 +166,7 @@ static void EffectSparks (void) {
     ActivateTrapEffect(50);
 }
 
-static void EffectHinotama (void) {
+void EffectHinotama (void) {
   gTrapEffectData.originRow = gSpellEffectData.row1;
   gTrapEffectData.originCol = gSpellEffectData.col1;
   gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
@@ -220,7 +220,7 @@ static void EffectFinalFlame (void) {
     ActivateTrapEffect(200);
 }
 
-static void EffectOokazi (void) {
+void EffectOokazi (void) {
   gTrapEffectData.originRow = gSpellEffectData.row1;
   gTrapEffectData.originCol = gSpellEffectData.col1;
   gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;

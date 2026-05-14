@@ -7,6 +7,7 @@
 #include "constants/card_enums.h"
 #include "constants/music_ids.h"
 #include "constants/monster_effects.h"
+#include "constants/spell_effects.h"
 #include "configs/runtime.h"
 
 extern unsigned char LowLevelAntePrompt (void);

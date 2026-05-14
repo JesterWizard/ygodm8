@@ -209,7 +209,7 @@ void sub_8044570 (void);
 void UpdateDuelGfxExceptField (void);
 void sub_801BC00 (void);
 void UpdateAllDuelGfx (void);
-void ActivateTrapEffect (void);
+void ActivateTrapEffect ();
 s8 GetLastNonEmptyMonZoneId (struct DuelCard** zonePtr);
 s8 GetFirstNonEmptyMonZoneId (struct DuelCard** zonePtr);
 void sub_80449D8 (void);

@@ -1,6 +1,5 @@
 #include "global.h"
-#include "constants/spell_effects.h"
-#include "constants/monster_effects.h"
+#include "common-chax.h"
 
 #define AI_PRIORITY_DISABLE 0x7EDE89F9
 
@@ -5341,7 +5340,6 @@ static const struct AI_Command gAED58[] = {
 static u8 sub_801B5BC (u8, u16*);
 
 void sub_803FD14(void);
-void ActivateTrapEffect();
 static void sub_800F830(void);
 static u32 sub_8019CE4 (void);
 u32 GetExodiaFlag(u16);
@@ -5641,7 +5639,7 @@ static void sub_800E734(void)
     gTrapEffectData.originCol = col2;
     gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
     IsTrapTriggered();
-    ActivateTrapEffect();
+    ActivateTrapEffect(0);
 }
 
 static void sub_800E794(void)
@@ -5656,7 +5654,7 @@ static void sub_800E794(void)
     gTrapEffectData.originCol = col2;
     gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
     IsTrapTriggered();
-    ActivateTrapEffect();
+    ActivateTrapEffect(0);
 }
 
 static void sub_800E7F4(void)
@@ -5671,7 +5669,7 @@ static void sub_800E7F4(void)
     gTrapEffectData.originCol = col2;
     gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
     IsTrapTriggered();
-    ActivateTrapEffect();
+    ActivateTrapEffect(0);
 }
 
 static void sub_800E854(void)
@@ -5686,7 +5684,7 @@ static void sub_800E854(void)
     gTrapEffectData.originCol = col2;
     gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
     IsTrapTriggered();
-    ActivateTrapEffect();
+    ActivateTrapEffect(0);
 }
 
 static void sub_800E8B4(void)

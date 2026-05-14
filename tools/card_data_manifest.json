@@ -4849,7 +4849,14 @@
       "monsterEffect": 0,
       "spellEffect": 14,
       "trapEffect": 0,
-      "card_name": "Sparks"
+      "card_name": "Sparks",
+      "description": {
+        "symbol": "gDescription_Sparks",
+        "pages": [
+          "An attacking spell card that showers the foe with embers",
+          "It inflicts 200LP damage directly on the opponent."
+        ]
+      }
     },
     {
       "card_const": "HINOTAMA",

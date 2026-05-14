@@ -4143,6 +4143,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 14,
     .trapEffect = 0,
+    .description = gDescription_Sparks,
   },
   [HINOTAMA] = {
     .atk = 65535,
