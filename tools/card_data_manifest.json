@@ -12126,7 +12126,10 @@
         ]
       },
       "card_name": "Sorcerer of Dark Magic",
-      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ]
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz",
     }
   ]
 }

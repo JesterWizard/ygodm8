@@ -38,6 +38,8 @@ REQUIRED_STATS_KEYS = {
 }
 OPTIONAL_STATS_KEYS = {"description"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
+ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
+ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
 
 @dataclass(frozen=True)
@@ -45,15 +47,24 @@ class CardArtEntry:
     stem: str
     card_const: str
     card_name: str
-    big_huff: pathlib.Path
+    big_art: pathlib.Path
     big_pal: pathlib.Path
-    mini_lz: pathlib.Path
+    mini_art: pathlib.Path
     stats: dict
 
 
 def to_symbol(stem: str, suffix: str) -> str:
     parts = [part for part in re.split(r"[^A-Za-z0-9]+", stem) if part]
     return "s" + "".join(part[:1].upper() + part[1:] for part in parts) + suffix
+
+
+def manifest_asset_path(value: str, default: str) -> pathlib.Path:
+    path = pathlib.Path(value if value else default)
+    return path if path.is_absolute() else ROOT / path
+
+
+def include_asset_path(path: pathlib.Path) -> str:
+    return path.relative_to(ROOT).as_posix() if path.is_absolute() else path.as_posix()
 
 
 def parse_enum_value(text: str, start: int) -> tuple[int, int]:
@@ -201,7 +212,7 @@ def validate_manifest(manifest: object) -> dict:
         if missing:
             raise SystemExit(f"cards[{index}] is missing required keys: {', '.join(missing)}")
 
-        stats = {key: item[key] for key in REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS if key in item}
+        stats = {key: item[key] for key in REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS | ASSET_ENTRY_KEYS if key in item}
         
         for key in ("atk", "def", "cost", "level"):
             if not isinstance(stats[key], int):
@@ -231,6 +242,10 @@ def validate_manifest(manifest: object) -> dict:
             if not isinstance(pages, list) or len(pages) != 2 or not all(isinstance(page, str) and page for page in pages):
                 raise SystemExit(f"cards[{index}].description.pages must be a 2-item array of non-empty strings.")
 
+        for key in ASSET_ENTRY_KEYS:
+            if key in stats and not isinstance(stats[key], str):
+                raise SystemExit(f"cards[{index}].{key} must be a string when present.")
+
         validated.append({"card_const": card_const, "card_name": card_name, **stats})
 
     return {"cards": validated}
@@ -249,17 +264,18 @@ def discover_entries() -> list[CardArtEntry]:
     for big_huff in sorted(BIG_DIR.glob("*_80x80.huff")):
         stem = big_huff.name.removesuffix("_80x80.huff")
         card_const = stem.upper()
-        big_pal = BIG_DIR / f"{stem}_80x80.gbapal"
-        mini_lz = MINI_DIR / f"{stem}_24x24.lz"
         if card_const not in card_constants:
             continue
         if card_const not in manifest_by_const:
             missing_manifest.append(card_const)
             continue
-        if not big_pal.exists() or not mini_lz.exists():
-            continue
         item = manifest_by_const[card_const]
-        entries.append(CardArtEntry(stem, card_const, item["card_name"], big_huff, big_pal, mini_lz, item))
+        big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}_80x80.huff")
+        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}_80x80.gbapal")
+        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}_24x24.lz")
+        if not big_art.exists() or not big_pal.exists() or not mini_art.exists():
+            continue
+        entries.append(CardArtEntry(stem, card_const, item["card_name"], big_art, big_pal, mini_art, item))
 
     if missing_manifest:
         raise SystemExit("Missing manifest entries for: " + ", ".join(sorted(missing_manifest)))
@@ -274,9 +290,9 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
         mini_symbol = to_symbol(entry.stem, "MiniArt")
         lines.extend(
             [
-                f'static const unsigned char {big_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/80x80/{entry.big_huff.name}");',
-                f'static const unsigned short {pal_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U16("src/hooks/assets/cards/80x80/{entry.big_pal.name}");',
-                f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/24x24/{entry.mini_lz.name}");',
+                f'static const unsigned char {big_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.big_art)}");',
+                f'static const unsigned short {pal_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U16("{include_asset_path(entry.big_pal)}");',
+                f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.mini_art)}");',
                 "",
             ]
         )

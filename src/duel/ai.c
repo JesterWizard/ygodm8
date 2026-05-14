@@ -3,6 +3,8 @@
 
 #define AI_PRIORITY_DISABLE 0x7EDE89F9
 
+extern void ActivateTrapEffect ();
+
 enum AI_Action {
   AI_ACTION_NONE,
   AI_ACTION_DISCARD,
