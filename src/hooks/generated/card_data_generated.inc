@@ -9,5 +9,6 @@
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
     .description = gDescription_SorcererOfDarkMagic,
   },

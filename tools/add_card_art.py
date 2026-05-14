@@ -34,6 +34,7 @@ REQUIRED_STATS_KEYS = {
     "monsterEffect",
     "spellEffect",
     "trapEffect",
+    "password",
 }
 OPTIONAL_STATS_KEYS = {"description"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
@@ -215,6 +216,10 @@ def validate_manifest(manifest: object) -> dict:
             if not isinstance(stats[key], (str, int)):
                 raise SystemExit(f"cards[{index}].{key} must be a C enum-style identifier (string) or integer.")
 
+        password = stats.get("password")
+        if not isinstance(password, list) or len(password) != 8 or not all(isinstance(d, int) and 0 <= d <= 15 for d in password):
+            raise SystemExit(f"cards[{index}].password must be an array of 8 integers (0-15).")
+
         if "description" in stats:
             description = stats["description"]
             if not isinstance(description, dict):
@@ -318,6 +323,8 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
         lines.append(f"    .monsterEffect = {s['monsterEffect']},")
         lines.append(f"    .spellEffect = {s['spellEffect']},")
         lines.append(f"    .trapEffect = {s['trapEffect']},")
+        password_digits = ", ".join(str(d) for d in s['password'])
+        lines.append(f"    .password = {{{password_digits}}},")
         if s.get("description"):
             lines.append(f"    .description = {s['description']['symbol']},")
         lines.append("  },")
@@ -406,6 +413,7 @@ def render_data_src(manifest: dict) -> str:
         "    .monsterEffect = 0,",
         "    .spellEffect = 0,",
         "    .trapEffect = 0,",
+        "    .password = {15, 15, 15, 15, 15, 15, 15, 14},",
         "  },",
     ]
     for item in manifest["cards"]:
@@ -417,6 +425,8 @@ def render_data_src(manifest: dict) -> str:
         lines.append(f"    .monsterEffect = {item['monsterEffect']},")
         lines.append(f"    .spellEffect = {item['spellEffect']},")
         lines.append(f"    .trapEffect = {item['trapEffect']},")
+        password_digits = ", ".join(str(d) for d in item['password'])
+        lines.append(f"    .password = {{{password_digits}}},")
         if "description" in item:
             lines.append(f"    .description = {item['description']['symbol']},")
         lines.append("  },")

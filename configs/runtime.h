@@ -53,6 +53,7 @@ typedef struct {
     u8 monsterEffect;
     u8 spellEffect;
     u8 trapEffect;
+    u8 password[8];
     const u8 *description;
 } CardData;
 

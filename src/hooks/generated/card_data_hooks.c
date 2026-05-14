@@ -22,6 +22,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 0,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [BLUE_EYES_WHITE_DRAGON] = {
     .atk = 3000,
@@ -34,6 +35,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 9, 6, 3, 1, 1, 3, 9},
   },
   [MYSTICAL_ELF] = {
     .atk = 800,
@@ -46,6 +48,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 0, 2, 5, 8, 4, 4},
   },
   [HITOTSU_ME_GIANT] = {
     .atk = 1200,
@@ -58,6 +61,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 1, 8, 4, 6, 9, 2},
   },
   [BABY_DRAGON] = {
     .atk = 1200,
@@ -70,6 +74,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 8, 1, 9, 5, 8, 7},
   },
   [RYU_KISHIN] = {
     .atk = 1000,
@@ -82,6 +87,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 3, 0, 3, 2, 9, 6},
   },
   [FERAL_IMP] = {
     .atk = 1300,
@@ -94,6 +100,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 3, 9, 2, 8, 9, 1},
   },
   [WINGED_DRAGON_GUARDIAN_OF_THE_FORTRESS_1] = {
     .atk = 1400,
@@ -106,6 +113,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 7, 9, 6, 9, 0, 0},
   },
   [MUSHROOM_MAN] = {
     .atk = 800,
@@ -118,6 +126,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 1, 8, 1, 6, 0, 8},
   },
   [SHADOW_SPECTER] = {
     .atk = 500,
@@ -130,6 +139,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 5, 7, 5, 3, 1, 3},
   },
   [BLACKLAND_FIRE_DRAGON] = {
     .atk = 1500,
@@ -142,6 +152,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 5, 6, 4, 3, 5, 2},
   },
   [SWORD_ARM_OF_DRAGON] = {
     .atk = 1750,
@@ -154,6 +165,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 0, 6, 9, 0, 6, 6},
   },
   [SWAMP_BATTLEGUARD] = {
     .atk = 1800,
@@ -166,6 +178,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 4, 5, 3, 7, 6, 5},
   },
   [THE_STERN_MYSTIC] = {
     .atk = 1500,
@@ -178,6 +191,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 5, 5, 7, 1, 8, 8},
   },
   [BATTLE_STEER] = {
     .atk = 1800,
@@ -190,6 +204,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 8, 2, 4, 6, 4, 7, 9},
   },
   [FLAME_SWORDSMAN] = {
     .atk = 1800,
@@ -202,6 +217,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 12,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 5, 2, 3, 1, 1, 7, 7},
   },
   [TIME_WIZARD] = {
     .atk = 500,
@@ -214,6 +230,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 8,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 6, 2, 5, 2, 2, 2},
   },
   [RIGHT_LEG_OF_THE_FORBIDDEN_ONE] = {
     .atk = 200,
@@ -226,6 +243,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 8, 1, 2, 4, 9, 2, 1},
   },
   [LEFT_LEG_OF_THE_FORBIDDEN_ONE] = {
     .atk = 200,
@@ -238,6 +256,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 4, 5, 1, 9, 5, 3, 6},
   },
   [RIGHT_ARM_OF_THE_FORBIDDEN_ONE] = {
     .atk = 200,
@@ -250,6 +269,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 9, 0, 3, 6, 3, 4},
   },
   [LEFT_ARM_OF_THE_FORBIDDEN_ONE] = {
     .atk = 200,
@@ -262,6 +282,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 9, 0, 2, 3, 4, 9},
   },
   [EXODIA_THE_FORBIDDEN_ONE] = {
     .atk = 1000,
@@ -274,6 +295,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 3, 9, 6, 9, 4, 8},
   },
   [SUMMONED_SKULL] = {
     .atk = 2500,
@@ -286,6 +308,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 7, 8, 1, 0, 5, 2},
   },
   [THE_WICKED_WORM_BEAST] = {
     .atk = 1400,
@@ -298,6 +321,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 2, 8, 5, 7, 9, 1},
   },
   [SKULL_SERVANT] = {
     .atk = 300,
@@ -310,6 +334,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 2, 7, 4, 4, 9, 0},
   },
   [HORN_IMP] = {
     .atk = 1300,
@@ -322,6 +347,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 6, 6, 9, 4, 0, 5},
   },
   [BATTLE_OX] = {
     .atk = 1700,
@@ -334,6 +360,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 14,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 0, 5, 3, 1, 0, 3},
   },
   [BEAVER_WARRIOR] = {
     .atk = 1200,
@@ -346,6 +373,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 4, 5, 2, 8, 1, 8},
   },
   [ROCK_OGRE_GROTTO_1] = {
     .atk = 800,
@@ -358,6 +386,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 8, 4, 6, 9, 1, 7},
   },
   [MOUNTAIN_WARRIOR] = {
     .atk = 600,
@@ -370,6 +399,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 9, 3, 1, 5, 6, 2},
   },
   [ZOMBIE_WARRIOR] = {
     .atk = 1200,
@@ -382,6 +412,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 3, 3, 9, 2, 6, 0},
   },
   [KOUMORI_DRAGON] = {
     .atk = 1500,
@@ -394,6 +425,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 7, 2, 4, 3, 7, 9},
   },
   [TWO_HEADED_KING_REX] = {
     .atk = 1600,
@@ -406,6 +438,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 1, 1, 9, 9, 7, 4},
   },
   [JUDGE_MAN] = {
     .atk = 2200,
@@ -418,6 +451,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 1, 1, 3, 6, 8, 2},
   },
   [SAGGI_THE_DARK_CLOWN] = {
     .atk = 600,
@@ -430,6 +464,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 6, 0, 2, 7, 8, 7},
   },
   [DARK_MAGICIAN] = {
     .atk = 2500,
@@ -442,6 +477,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 9, 8, 6, 4, 1, 4},
   },
   [THE_SNAKE_HAIR] = {
     .atk = 1500,
@@ -454,6 +490,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 4, 9, 1, 0, 3, 1},
   },
   [GAIA_THE_DRAGON_CHAMPION] = {
     .atk = 2600,
@@ -466,6 +503,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 8, 8, 9, 1, 3, 9},
   },
   [GAIA_THE_FIERCE_KNIGHT] = {
     .atk = 2300,
@@ -478,6 +516,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 3, 6, 8, 0, 3, 8},
   },
   [CURSE_OF_DRAGON] = {
     .atk = 2000,
@@ -490,6 +529,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 11,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 2, 7, 9, 5, 4, 3},
   },
   [DRAGON_PIPER] = {
     .atk = 200,
@@ -502,6 +542,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 7, 6, 3, 5, 5, 2},
   },
   [CELTIC_GUARDIAN] = {
     .atk = 1400,
@@ -514,6 +555,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 1, 5, 2, 2, 5, 6},
   },
   [ILLUSIONIST_FACELESS_MAGE] = {
     .atk = 1200,
@@ -526,6 +568,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 24,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 5, 4, 6, 9, 0, 5},
   },
   [KARBONALA_WARRIOR] = {
     .atk = 1500,
@@ -538,6 +581,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 5, 4, 1, 9, 0, 0},
   },
   [ROGUE_DOLL] = {
     .atk = 1600,
@@ -550,6 +594,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 9, 3, 9, 6, 0, 8},
   },
   [OSCILLO_HERO_2] = {
     .atk = 1000,
@@ -562,6 +607,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 7, 3, 2, 4, 3, 1, 3},
   },
   [GRIFFORE] = {
     .atk = 1200,
@@ -574,6 +620,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 8, 2, 9, 4, 1, 2},
   },
   [TORIKE] = {
     .atk = 1200,
@@ -586,6 +633,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 8, 1, 3, 0, 2, 1},
   },
   [SANGAN] = {
     .atk = 1000,
@@ -598,6 +646,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 6, 2, 0, 2, 1, 6, 5},
   },
   [BIG_INSECT] = {
     .atk = 1200,
@@ -610,6 +659,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 6, 0, 6, 8, 7, 4},
   },
   [BASIC_INSECT] = {
     .atk = 500,
@@ -622,6 +672,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 9, 0, 9, 1, 5, 7, 9},
   },
   [ARMORED_LIZARD] = {
     .atk = 1500,
@@ -634,6 +685,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 4, 8, 0, 5, 8, 8},
   },
   [HERCULES_BEETLE] = {
     .atk = 1500,
@@ -646,6 +698,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 2, 5, 8, 4, 2, 8, 2},
   },
   [KILLER_NEEDLE] = {
     .atk = 1200,
@@ -658,6 +711,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 9, 7, 9, 9, 9, 1},
   },
   [GOKIBORE] = {
     .atk = 1200,
@@ -670,6 +724,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 3, 6, 7, 0, 3, 0},
   },
   [GIANT_FLEA] = {
     .atk = 1500,
@@ -682,6 +737,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 7, 6, 2, 6, 3, 4},
   },
   [LARVAE_MOTH] = {
     .atk = 500,
@@ -694,6 +750,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 7, 5, 6, 3, 4, 3},
     .description = gDescription_LarvaeMoth,
   },
   [GREAT_MOTH] = {
@@ -707,6 +764,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 1, 4, 1, 4, 4, 8},
     .description = gDescription_GreatMoth,
   },
   [KURIBOH] = {
@@ -720,6 +778,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 6, 4, 0, 0, 5, 7},
   },
   [MAMMOTH_GRAVEYARD] = {
     .atk = 1200,
@@ -732,6 +791,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 3, 7, 4, 9, 2, 3},
   },
   [GREAT_WHITE] = {
     .atk = 1600,
@@ -744,6 +804,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 4, 2, 9, 8, 0, 0},
   },
   [WOLF] = {
     .atk = 1200,
@@ -756,6 +817,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 4, 1, 7, 5, 0, 9},
   },
   [HARPIE_LADY] = {
     .atk = 1300,
@@ -768,6 +830,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 8, 1, 2, 1, 1, 3},
   },
   [HARPIE_LADY_SISTERS] = {
     .atk = 1950,
@@ -780,6 +843,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 2, 0, 6, 2, 1, 2},
   },
   [TIGER_AXE] = {
     .atk = 1300,
@@ -792,6 +856,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 7, 9, 1, 9, 2, 7},
   },
   [SILVER_FANG] = {
     .atk = 1200,
@@ -804,6 +869,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 3, 5, 7, 0, 9, 0},
   },
   [KOJIKOCY] = {
     .atk = 1500,
@@ -816,6 +882,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 1, 1, 8, 4, 6, 2, 0},
   },
   [PERFECTLY_ULTIMATE_GREAT_MOTH] = {
     .atk = 3500,
@@ -828,6 +895,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 5, 7, 9, 3, 7, 9},
   },
   [GAROOZIS] = {
     .atk = 1800,
@@ -840,6 +908,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 9, 7, 7, 0, 7, 4},
   },
   [THOUSAND_DRAGON] = {
     .atk = 2400,
@@ -852,6 +921,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 4, 6, 2, 0, 8, 3},
   },
   [FIEND_KRAKEN] = {
     .atk = 1200,
@@ -864,6 +934,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 4, 5, 6, 7, 8, 1},
   },
   [JELLYFISH] = {
     .atk = 1200,
@@ -876,6 +947,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 8, 5, 1, 4, 9, 6},
   },
   [COCOON_OF_EVOLUTION] = {
     .atk = 0,
@@ -888,6 +960,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 2, 4, 0, 5, 9, 5},
     .description = gDescription_CocoonOfEvolution,
   },
   [KAIRYU_SHIN] = {
@@ -901,6 +974,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 33,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 6, 3, 4, 1, 4, 9},
   },
   [GIANT_SOLDIER_OF_STONE] = {
     .atk = 1300,
@@ -913,6 +987,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 13,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 0, 3, 9, 8, 4, 8},
   },
   [MAN_EATING_PLANT] = {
     .atk = 800,
@@ -925,6 +1000,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 1, 2, 7, 9, 4, 3},
   },
   [KROKODILUS] = {
     .atk = 1100,
@@ -937,6 +1013,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 5, 1, 2, 6, 5, 2},
   },
   [GRAPPLER] = {
     .atk = 1300,
@@ -949,6 +1026,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 9, 0, 6, 2, 5, 0},
   },
   [AXE_RAIDER] = {
     .atk = 1700,
@@ -961,6 +1039,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 3, 0, 5, 3, 6, 5},
   },
   [MEGAZOWLER] = {
     .atk = 1800,
@@ -973,6 +1052,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 3, 9, 0, 0, 0, 4},
   },
   [URABY] = {
     .atk = 1500,
@@ -985,6 +1065,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 1, 7, 8, 4, 6, 1, 9},
   },
   [CRAWLING_DRAGON_2] = {
     .atk = 1600,
@@ -997,6 +1078,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 2, 8, 9, 7, 1, 7},
   },
   [RED_EYES_B_DRAGON] = {
     .atk = 2400,
@@ -1009,6 +1091,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 4, 6, 7, 7, 4, 2, 2},
   },
   [CASTLE_OF_DARK_ILLUSIONS] = {
     .atk = 1200,
@@ -1021,6 +1104,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 0, 6, 2, 1, 2, 1},
   },
   [REAPER_OF_THE_CARDS] = {
     .atk = 1800,
@@ -1033,6 +1117,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 1,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 0, 6, 6, 1, 3, 9},
   },
   [KING_OF_YAMIMAKAI] = {
     .atk = 2600,
@@ -1045,6 +1130,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 4, 5, 5, 8, 3, 4},
   },
   [BAROX] = {
     .atk = 1800,
@@ -1057,6 +1143,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 8, 4, 0, 5, 7, 3},
   },
   [DARK_CHIMERA] = {
     .atk = 2100,
@@ -1069,6 +1156,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 3, 4, 4, 6, 8, 8},
   },
   [METAL_GUARDIAN] = {
     .atk = 1500,
@@ -1081,6 +1169,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 3, 3, 9, 2, 8, 6},
   },
   [CATAPULT_TURTLE] = {
     .atk = 1000,
@@ -1093,6 +1182,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 18,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 7, 2, 7, 9, 9, 1},
   },
   [GYAKUTENNO_MEGAMI] = {
     .atk = 1800,
@@ -1105,6 +1195,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 34,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 1, 2, 2, 0, 9, 0},
   },
   [MYSTIC_HORSEMAN] = {
     .atk = 1300,
@@ -1117,6 +1208,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 5, 1, 6, 7, 0, 5},
   },
   [RABID_HORSEMAN] = {
     .atk = 2000,
@@ -1129,6 +1221,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 9, 0, 5, 3, 4, 3},
   },
   [ZANKI] = {
     .atk = 1500,
@@ -1141,6 +1234,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 0, 9, 0, 4, 5, 2},
   },
   [CRAWLING_DRAGON] = {
     .atk = 1600,
@@ -1153,6 +1247,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 4, 9, 4, 1, 5, 7},
   },
   [CRASS_CLOWN] = {
     .atk = 1350,
@@ -1165,6 +1260,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 3, 8, 8, 9, 7, 5, 5},
   },
   [ARMORED_ZOMBIE] = {
     .atk = 1500,
@@ -1177,6 +1273,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 2, 7, 7, 8, 6, 0},
   },
   [DRAGON_ZOMBIE] = {
     .atk = 1600,
@@ -1189,6 +1286,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 6, 7, 2, 5, 6, 9},
   },
   [CLOWN_ZOMBIE] = {
     .atk = 1350,
@@ -1201,6 +1299,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 6, 6, 7, 2, 1, 4},
   },
   [PUMPKING_THE_KING_OF_GHOSTS] = {
     .atk = 1800,
@@ -1213,6 +1312,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 1, 5, 5, 2, 1, 2},
   },
   [BATTLE_WARRIOR] = {
     .atk = 700,
@@ -1225,6 +1325,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 5, 5, 0, 9, 2, 1},
   },
   [WINGS_OF_WICKED_FLAME] = {
     .atk = 700,
@@ -1237,6 +1338,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 9, 4, 4, 6, 2, 6},
   },
   [MASK_OF_DARKNESS] = {
     .atk = 900,
@@ -1249,6 +1351,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 9, 3, 3, 7, 3, 4},
   },
   [BARON_OF_THE_FIEND_SWORD] = {
     .atk = 1550,
@@ -1261,6 +1364,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 3, 2, 5, 5, 9, 6},
   },
   [CURTAIN_OF_THE_DARK_ONES] = {
     .atk = 600,
@@ -1273,6 +1377,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 2, 0, 2, 6, 7, 0, 7},
   },
   [TOMOZAURUS] = {
     .atk = 500,
@@ -1285,6 +1390,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 4, 5, 7, 8, 5, 6},
   },
   [SPIRIT_OF_THE_WINDS] = {
     .atk = 1700,
@@ -1297,6 +1403,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 6, 1, 5, 7, 8, 1},
   },
   [SHINING_ABYSS] = {
     .atk = 1600,
@@ -1309,6 +1416,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 3, 0, 3, 3, 5, 7},
   },
   [HEADLESS_KNIGHT] = {
     .atk = 1450,
@@ -1321,6 +1429,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 4, 3, 4, 0, 8, 0},
   },
   [GODDESS_WITH_THE_THIRD_EYE] = {
     .atk = 1200,
@@ -1333,6 +1442,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 4, 9, 3, 2, 0, 4},
   },
   [RUKLAMBA_THE_SPIRIT_KING] = {
     .atk = 1000,
@@ -1345,6 +1455,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 9, 1, 3, 2, 7, 9},
   },
   [DOMA_THE_ANGEL_OF_SILENCE] = {
     .atk = 1600,
@@ -1357,6 +1468,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 6, 9, 7, 2, 9, 5, 7},
   },
   [KELDO] = {
     .atk = 1200,
@@ -1369,6 +1481,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 4, 4, 1, 1, 0, 6},
   },
   [SOLDIER_ARI] = {
     .atk = 500,
@@ -1381,6 +1494,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 3, 0, 3, 8, 0, 6, 0},
   },
   [WHITE_MAGICAL_HAT] = {
     .atk = 1000,
@@ -1393,6 +1507,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 1, 5, 0, 3, 6, 5},
   },
   [GEARFRIED_THE_IRON_KNIGHT] = {
     .atk = 1800,
@@ -1405,6 +1520,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 4, 2, 3, 7, 0, 5},
   },
   [NIGHTMARE_SCORPION] = {
     .atk = 900,
@@ -1417,6 +1533,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 6, 4, 3, 1, 7, 3},
   },
   [SPIRIT_OF_THE_BOOKS] = {
     .atk = 1400,
@@ -1429,6 +1546,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 41,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 0, 3, 7, 7, 1, 7},
   },
   [XYZ_DRAGON_CANNON] = {
     .atk = 2800,
@@ -1441,6 +1559,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 95,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 9, 9, 8, 1, 1, 9},
   },
   [HUMANOID_SLIME] = {
     .atk = 800,
@@ -1453,6 +1572,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 8, 2, 1, 3, 1, 4},
   },
   [DREAM_CLOWN] = {
     .atk = 1200,
@@ -1465,6 +1585,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 2, 1, 5, 2, 3, 0},
   },
   [SLEEPING_LION] = {
     .atk = 700,
@@ -1477,6 +1598,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 2, 0, 0, 8, 3, 4},
   },
   [YAMATANO_DRAGON_SCROLL] = {
     .atk = 900,
@@ -1489,6 +1611,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 7, 0, 4, 9, 4, 3},
   },
   [DARK_PLANT] = {
     .atk = 300,
@@ -1501,6 +1624,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 1, 9, 3, 6, 4, 2},
   },
   [WORM_DRAKE] = {
     .atk = 1400,
@@ -1513,6 +1637,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 3, 2, 1, 6, 4, 1, 2},
   },
   [FAITH_BIRD] = {
     .atk = 1500,
@@ -1525,6 +1650,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 5, 8, 2, 3, 9, 5},
   },
   [ORION_THE_BATTLE_KING] = {
     .atk = 1800,
@@ -1537,6 +1663,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 9, 7, 1, 0, 9, 0},
   },
   [ANSATSU] = {
     .atk = 1700,
@@ -1549,6 +1676,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 3, 6, 5, 7, 0, 9},
   },
   [LAMOON] = {
     .atk = 1200,
@@ -1561,6 +1689,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 8, 5, 0, 8, 0, 3},
   },
   [NEMURIKO] = {
     .atk = 800,
@@ -1573,6 +1702,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 44,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 9, 6, 3, 4, 8, 8},
   },
   [WEATHER_CONTROL] = {
     .atk = 600,
@@ -1585,6 +1715,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 7, 2, 4, 3, 1, 5, 1},
   },
   [OCTOBERSER] = {
     .atk = 1600,
@@ -1597,6 +1728,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 4, 6, 3, 7, 2, 6, 6},
   },
   [HUMANOID_WORM_DRAKE] = {
     .atk = 2200,
@@ -1609,6 +1741,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 6, 0, 0, 1, 2, 7},
   },
   [CHARUBIN_THE_FIRE_KNIGHT] = {
     .atk = 1100,
@@ -1621,6 +1754,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 7, 4, 2, 1, 5, 7, 9},
   },
   [REVIVAL_JAM] = {
     .atk = 1500,
@@ -1633,6 +1767,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 79,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 7, 0, 9, 8, 2, 6},
   },
   [FIENDS_HAND] = {
     .atk = 600,
@@ -1645,6 +1780,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 23,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 2, 8, 0, 0, 4, 2, 8},
   },
   [WITTY_PHANTOM] = {
     .atk = 1400,
@@ -1657,6 +1793,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 6, 3, 0, 4, 9, 2, 1},
   },
   [BUSTER_BLADER] = {
     .atk = 2600,
@@ -1669,6 +1806,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 1, 9, 3, 8, 3, 1},
   },
   [DARK_NECROFEAR] = {
     .atk = 2200,
@@ -1681,6 +1819,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 66,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 8, 2, 9, 1, 8, 5},
   },
   [BLUE_EYED_SILVER_ZOMBIE] = {
     .atk = 900,
@@ -1693,6 +1832,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 5, 2, 8, 2, 4, 3, 3},
   },
   [TOAD_MASTER] = {
     .atk = 1000,
@@ -1705,6 +1845,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 45,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 6, 7, 1, 4, 4, 8},
   },
   [SPIKED_SNAIL] = {
     .atk = 700,
@@ -1717,6 +1858,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 0, 7, 5, 1, 4, 7},
   },
   [FLAME_MANIPULATOR] = {
     .atk = 900,
@@ -1729,6 +1871,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 4, 6, 0, 8, 5, 1},
   },
   [NECROLANCER_THE_TIMELORD] = {
     .atk = 800,
@@ -1741,6 +1884,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 1, 4, 5, 4, 8, 9, 0},
   },
   [DJINN_THE_WATCHER_OF_THE_WIND] = {
     .atk = 700,
@@ -1753,6 +1897,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 7, 8, 4, 3, 5, 0, 5},
   },
   [THE_BEWITCHING_PHANTOM_THIEF] = {
     .atk = 700,
@@ -1765,6 +1910,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 4, 3, 4, 8, 2, 0, 4},
   },
   [TEMPLE_OF_SKULLS] = {
     .atk = 900,
@@ -1777,6 +1923,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 7, 3, 2, 3, 0, 2},
   },
   [MONSTER_EGG] = {
     .atk = 600,
@@ -1789,6 +1936,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 6, 1, 2, 1, 9, 1, 7},
   },
   [THE_SHADOW_WHO_CONTROLS_THE_DARK] = {
     .atk = 800,
@@ -1801,6 +1949,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 3, 1, 2, 5, 6, 1, 6},
   },
   [X_HEAD_CANNON] = {
     .atk = 1800,
@@ -1813,6 +1962,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 89,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 6, 5, 1, 9, 5, 7},
   },
   [AKIHIRON] = {
     .atk = 1700,
@@ -1825,6 +1975,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 6, 9, 0, 4, 4, 6, 9},
   },
   [ORGOTH_THE_RELENTLESS] = {
     .atk = 2500,
@@ -1837,6 +1988,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 9, 0, 8, 8, 8, 7},
   },
   [THE_MELTING_RED_SHADOW] = {
     .atk = 500,
@@ -1849,6 +2001,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 8, 9, 8, 1, 7, 3},
   },
   [DOKUROIZO_THE_GRIM_REAPER] = {
     .atk = 900,
@@ -1861,6 +2014,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 8, 8, 2, 8, 8, 1},
   },
   [FIRE_REAPER] = {
     .atk = 700,
@@ -1873,6 +2027,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 32,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 5, 8, 1, 2, 1, 4},
   },
   [LARVAS] = {
     .atk = 800,
@@ -1885,6 +2040,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 6, 7, 5, 5, 3, 5},
   },
   [HARD_ARMOR] = {
     .atk = 300,
@@ -1897,6 +2053,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 0, 6, 0, 2, 3, 0},
   },
   [FIREGRASS] = {
     .atk = 700,
@@ -1909,6 +2066,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 2, 9, 3, 5, 4, 5},
   },
   [CYBER_JAR] = {
     .atk = 900,
@@ -1921,6 +2079,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 103,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 1, 2, 4, 3, 1, 6},
     .description = gDescription_CyberJar,
   },
   [DIG_BEAK] = {
@@ -1934,6 +2093,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 9, 4, 8, 6, 4, 2},
   },
   [M_WARRIOR_1] = {
     .atk = 1000,
@@ -1946,6 +2106,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 6, 3, 4, 2, 3, 5, 1},
   },
   [M_WARRIOR_2] = {
     .atk = 500,
@@ -1958,6 +2119,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 7, 3, 1, 4, 5, 5},
   },
   [BANISHER_OF_THE_LIGHT] = {
     .atk = 100,
@@ -1970,6 +2132,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 1, 5, 2, 8, 0, 2, 5},
   },
   [LISARK] = {
     .atk = 1300,
@@ -1982,6 +2145,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 2, 1, 0, 7, 0, 9},
   },
   [DES_FERAL_IMP] = {
     .atk = 1600,
@@ -1994,6 +2158,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 9, 8, 5, 7, 8, 4},
   },
   [THE_JUDGEMENT_HAND] = {
     .atk = 1400,
@@ -2006,6 +2171,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 0, 0, 3, 5, 1, 2},
   },
   [MYSTERIOUS_PUPPETEER] = {
     .atk = 1000,
@@ -2018,6 +2184,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 0, 9, 8, 1, 2, 1},
   },
   [ANCIENT_JAR] = {
     .atk = 400,
@@ -2030,6 +2197,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 4, 9, 2, 2, 2, 6},
   },
   [DARKFIRE_DRAGON] = {
     .atk = 1500,
@@ -2042,6 +2210,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 8, 8, 1, 9, 6, 4},
   },
   [DARK_KING_OF_THE_ABYSS] = {
     .atk = 1200,
@@ -2054,6 +2223,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 3, 7, 5, 5, 7, 3},
   },
   [SPIRIT_OF_THE_HARP] = {
     .atk = 800,
@@ -2066,6 +2236,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 7, 7, 0, 6, 7, 8},
   },
   [BIG_EYE] = {
     .atk = 1200,
@@ -2078,6 +2249,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 6, 7, 6, 8, 3, 8, 7},
   },
   [ARMAILL] = {
     .atk = 700,
@@ -2090,6 +2262,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 1, 5, 3, 4, 8, 1},
   },
   [GIANT_RAT] = {
     .atk = 1400,
@@ -2102,6 +2275,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 7, 0, 1, 7, 1, 2, 0},
   },
   [SENJU_OF_THE_THOUSAND_HANDS] = {
     .atk = 1400,
@@ -2114,6 +2288,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 4, 0, 1, 8, 3, 9},
   },
   [UFO_TURTLE] = {
     .atk = 1400,
@@ -2126,6 +2301,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 8, 0, 6, 4, 3, 7},
   },
   [FIRE_EYE] = {
     .atk = 800,
@@ -2138,6 +2314,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 4, 3, 5, 5, 4, 2},
   },
   [MONSTURTLE] = {
     .atk = 800,
@@ -2150,6 +2327,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 8, 2, 0, 1, 4, 7},
   },
   [CLAW_REACHER] = {
     .atk = 1000,
@@ -2162,6 +2340,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 2, 1, 8, 2, 5, 6},
   },
   [PHANTOM_DEWAN] = {
     .atk = 700,
@@ -2174,6 +2353,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 6, 0, 3, 9, 5, 0},
   },
   [ARLOWNAY] = {
     .atk = 800,
@@ -2186,6 +2366,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 7, 0, 8, 5, 6, 9},
   },
   [FLASH_ASSAILANT] = {
     .atk = 2000,
@@ -2198,6 +2379,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 6, 8, 9, 0, 5, 8, 2},
   },
   [KARATE_MAN] = {
     .atk = 1000,
@@ -2210,6 +2392,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 2, 8, 9, 2, 8, 1},
   },
   [LUCKY_TRINKET] = {
     .atk = 600,
@@ -2222,6 +2405,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 9, 8, 5, 0, 1, 1},
   },
   [GENIN] = {
     .atk = 600,
@@ -2234,6 +2418,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 3, 7, 0, 0, 2, 6},
   },
   [DARK_ZEBRA] = {
     .atk = 1800,
@@ -2246,6 +2431,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 9, 7, 8, 4, 8, 9, 6},
   },
   [FIEND_REFLECTION_2] = {
     .atk = 1100,
@@ -2258,6 +2444,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 8, 6, 3, 4, 3, 9},
   },
   [GATE_DEEG] = {
     .atk = 700,
@@ -2270,6 +2457,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 2, 5, 8, 5, 7, 8},
   },
   [GIANT_GERM] = {
     .atk = 1000,
@@ -2282,6 +2470,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 1, 7, 8, 9, 9, 4},
   },
   [FUSIONIST] = {
     .atk = 900,
@@ -2294,6 +2483,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 1, 6, 4, 1, 8, 8, 2},
   },
   [NIMBLE_MOMONGA] = {
     .atk = 1000,
@@ -2306,6 +2496,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 2, 5, 6, 7, 6, 0, 9},
   },
   [LALA_LI_OON] = {
     .atk = 600,
@@ -2318,6 +2509,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 9, 4, 3, 0, 3, 8, 7},
   },
   [KEY_MACE] = {
     .atk = 400,
@@ -2330,6 +2522,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 1, 9, 2, 9, 2, 9, 4},
   },
   [FINAL_DESTINY] = {
     .atk = 65535,
@@ -2342,6 +2535,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 123,
     .trapEffect = 0,
+    .password = {1, 8, 5, 9, 1, 9, 0, 4},
   },
   [HEAVY_STORM] = {
     .atk = 65535,
@@ -2354,6 +2548,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 122,
     .trapEffect = 0,
+    .password = {1, 9, 6, 1, 3, 5, 5, 6},
   },
   [DORON] = {
     .atk = 900,
@@ -2366,6 +2561,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 36,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 7, 5, 6, 6, 5, 2},
   },
   [CYCLON_LASER] = {
     .atk = 65535,
@@ -2378,6 +2574,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 133,
     .trapEffect = 0,
+    .password = {0, 5, 4, 9, 4, 8, 2, 0},
   },
   [BOAR_SOLDIER] = {
     .atk = 2000,
@@ -2390,6 +2587,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 3, 4, 0, 0, 5, 1},
   },
   [HAPPY_LOVER] = {
     .atk = 800,
@@ -2402,6 +2600,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 0, 3, 0, 1, 6, 4},
   },
   [PENGUIN_KNIGHT] = {
     .atk = 900,
@@ -2414,6 +2613,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 6, 0, 3, 9, 1, 6, 3},
   },
   [PETIT_DRAGON] = {
     .atk = 600,
@@ -2426,6 +2626,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 3, 5, 6, 5, 6, 4},
   },
   [FRENZIED_PANDA] = {
     .atk = 1200,
@@ -2438,6 +2639,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 8, 1, 8, 5, 1, 6},
   },
   [AIR_MARMOT_OF_NEFARIOUSNESS] = {
     .atk = 400,
@@ -2450,6 +2652,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 8, 8, 9, 5, 2, 3},
   },
   [PHANTOM_GHOST] = {
     .atk = 600,
@@ -2462,6 +2665,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 1, 2, 0, 1, 2, 2, 0},
   },
   [MOTHER_GRIZZLY] = {
     .atk = 1400,
@@ -2474,6 +2678,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 7, 8, 3, 9, 7, 5, 0},
   },
   [FLYING_KAMAKIRI_1] = {
     .atk = 1400,
@@ -2486,6 +2691,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 8, 3, 4, 8, 6, 5},
   },
   [TWIN_LONG_RODS_1] = {
     .atk = 900,
@@ -2498,6 +2704,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 5, 8, 9, 6, 8, 2},
   },
   [DROLL_BIRD] = {
     .atk = 600,
@@ -2510,6 +2717,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 7, 9, 7, 3, 3, 8, 7},
   },
   [PETIT_ANGEL] = {
     .atk = 600,
@@ -2522,6 +2730,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 1, 4, 2, 7, 3, 9},
   },
   [WINGED_CLEAVER] = {
     .atk = 700,
@@ -2534,6 +2743,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 1, 7, 5, 9, 8, 2},
   },
   [HINOTAMA_SOUL] = {
     .atk = 600,
@@ -2546,6 +2756,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 6, 8, 5, 1, 7, 9, 9},
   },
   [KAMINARIKOZOU] = {
     .atk = 700,
@@ -2558,6 +2769,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 5, 1, 0, 9, 8, 8},
   },
   [MEOTOKO] = {
     .atk = 700,
@@ -2570,6 +2782,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 8, 3, 2, 6, 5, 0},
   },
   [AQUA_MADOOR] = {
     .atk = 1200,
@@ -2582,6 +2795,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 5, 6, 3, 9, 2, 5, 7},
   },
   [KAGEMUSHA_OF_THE_BLUE_FLAME] = {
     .atk = 800,
@@ -2594,6 +2808,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 4, 0, 1, 6, 3, 3},
   },
   [FLAME_GHOST] = {
     .atk = 1000,
@@ -2606,6 +2821,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 8, 5, 2, 8, 9, 6, 4},
   },
   [NIGHTMARE_PENGUIN] = {
     .atk = 1300,
@@ -2618,6 +2834,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 3, 0, 6, 5, 8, 6},
   },
   [B_SKULL_DRAGON] = {
     .atk = 3200,
@@ -2630,6 +2847,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 9, 0, 1, 6, 7, 8},
   },
   [TWO_MOUTH_DARKRULER] = {
     .atk = 900,
@@ -2642,6 +2860,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 7, 3, 0, 5, 3, 7, 3},
   },
   [SOLITUDE] = {
     .atk = 1050,
@@ -2654,6 +2873,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 7, 9, 4, 0, 1, 1},
   },
   [MASKED_SORCERER] = {
     .atk = 900,
@@ -2666,6 +2886,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 1, 8, 9, 1, 2, 6},
   },
   [KUMOOTOKO] = {
     .atk = 700,
@@ -2678,6 +2899,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 6, 2, 8, 3, 7, 2, 5},
   },
   [CEREMONIAL_BELL] = {
     .atk = 0,
@@ -2690,6 +2912,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 2, 2, 8, 4, 6, 3},
   },
   [ROARING_OCEAN_SNAKE] = {
     .atk = 2100,
@@ -2702,6 +2925,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 9, 0, 6, 6, 5, 3, 8},
   },
   [TRAP_MASTER] = {
     .atk = 500,
@@ -2714,6 +2938,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 22,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 4, 6, 1, 2, 4, 7},
   },
   [FIEND_SWORD] = {
     .atk = 1400,
@@ -2726,6 +2951,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 2, 8, 5, 5, 8, 8, 2},
   },
   [SONIC_BIRD] = {
     .atk = 1400,
@@ -2738,6 +2964,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 7, 6, 1, 7, 1, 7, 8},
   },
   [MYSTIC_TOMATO] = {
     .atk = 1400,
@@ -2750,6 +2977,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 3, 0, 1, 1, 2, 7, 7},
   },
   [WOOD_REMAINS] = {
     .atk = 1000,
@@ -2762,6 +2990,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 7, 3, 3, 3, 9, 4},
   },
   [HOURGLASS_OF_LIFE] = {
     .atk = 700,
@@ -2774,6 +3003,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 42,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 8, 7, 8, 3, 6, 8, 5},
   },
   [RARE_FISH] = {
     .atk = 1500,
@@ -2786,6 +3016,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 5, 1, 6, 0, 0, 7},
   },
   [WOOD_CLOWN] = {
     .atk = 800,
@@ -2798,6 +3029,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 5, 1, 1, 1, 5, 6},
   },
   [KOTODAMA] = {
     .atk = 0,
@@ -2810,6 +3042,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 9, 4, 0, 6, 8, 2, 2},
   },
   [JAM_BREEDING_MACHINE] = {
     .atk = 65535,
@@ -2822,6 +3055,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 132,
     .trapEffect = 0,
+    .password = {2, 1, 7, 7, 0, 2, 6, 0},
   },
   [OBELISK_THE_TORMENTOR] = {
     .atk = 4000,
@@ -2834,6 +3068,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 52,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [WODAN_THE_RESIDENT_OF_THE_FOREST] = {
     .atk = 900,
@@ -2846,6 +3081,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 8, 8, 3, 2, 7, 3},
   },
   [PERFECT_MACHINE_KING] = {
     .atk = 2700,
@@ -2858,6 +3094,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 8, 8, 9, 1, 6, 9, 1},
   },
   [HANIWA] = {
     .atk = 500,
@@ -2870,6 +3107,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 2, 8, 5, 6, 2, 3},
   },
   [SLIFER_THE_SKY_DRAGON] = {
     .atk = 4000,
@@ -2882,6 +3120,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [VISHWAR_RANDI] = {
     .atk = 900,
@@ -2894,6 +3133,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 5, 5, 6, 3, 2, 0},
   },
   [THE_WINGED_DRAGON_OF_RA_BATTLE_MODE] = {
     .atk = 4000,
@@ -2906,6 +3146,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 54,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [DARK_ASSAILANT] = {
     .atk = 1200,
@@ -2918,6 +3159,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 9, 4, 9, 0, 3, 3},
   },
   [CANDLE_OF_FATE] = {
     .atk = 600,
@@ -2930,6 +3172,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 6, 9, 5, 4, 1, 6},
   },
   [WATER_ELEMENT] = {
     .atk = 900,
@@ -2942,6 +3185,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 7, 3, 2, 7, 4, 7},
   },
   [DISSOLVEROCK] = {
     .atk = 900,
@@ -2954,6 +3198,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 8, 2, 6, 4, 9, 5},
   },
   [FLYING_FISH] = {
     .atk = 800,
@@ -2966,6 +3211,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 9, 8, 7, 2, 7, 4},
   },
   [ONE_WHO_HUNTS_SOULS] = {
     .atk = 1100,
@@ -2978,6 +3224,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 6, 0, 6, 2, 0, 9},
   },
   [ROOT_WATER] = {
     .atk = 900,
@@ -2990,6 +3237,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 0, 0, 4, 8, 0, 8},
   },
   [AMPHIBIAN_BEAST] = {
     .atk = 2400,
@@ -3002,6 +3250,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 3, 7, 1, 3, 8, 3},
   },
   [WATER_OMOTICS] = {
     .atk = 1400,
@@ -3014,6 +3263,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 4, 8, 3, 6, 1, 1},
   },
   [ALLIGATORS_SWORD_DRAGON] = {
     .atk = 1700,
@@ -3026,6 +3276,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 3, 6, 6, 9, 8, 2},
   },
   [ENCHANTING_MERMAID] = {
     .atk = 1200,
@@ -3038,6 +3289,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 3, 7, 6, 9, 6, 5},
   },
   [NEKOGAL_1] = {
     .atk = 1100,
@@ -3050,6 +3302,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 1, 7, 6, 1, 0, 6, 3},
   },
   [ROCKET_WARRIOR] = {
     .atk = 1500,
@@ -3062,6 +3315,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 78,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 8, 6, 0, 6, 9, 6},
   },
   [AQUA_SERPENT] = {
     .atk = 1500,
@@ -3074,6 +3328,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 2, 5, 9, 7, 9, 5},
   },
   [PREVENT_RAT] = {
     .atk = 500,
@@ -3086,6 +3341,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 5, 4, 9, 4, 8, 1},
   },
   [DIMENSIONAL_WARRIOR] = {
     .atk = 1200,
@@ -3098,6 +3354,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 7, 0, 4, 3, 1, 8, 0},
   },
   [THE_LEGENDARY_FISHERMAN] = {
     .atk = 1850,
@@ -3110,6 +3367,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 6, 4, 3, 3, 0, 0},
   },
   [BEASTKING_OF_THE_SWAMPS] = {
     .atk = 1000,
@@ -3122,6 +3380,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 43,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 4, 2, 6, 8, 3, 4},
   },
   [SATELLITE_CANNON] = {
     .atk = 0,
@@ -3134,6 +3393,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 4, 0, 0, 2, 3, 1},
   },
   [LUNAR_QUEEN_ELZAIM] = {
     .atk = 750,
@@ -3146,6 +3406,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 2, 1, 0, 2, 4, 7},
   },
   [WICKED_MIRROR] = {
     .atk = 700,
@@ -3158,6 +3419,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 1, 5, 0, 3, 7, 1},
   },
   [THE_LITTLE_SWORDSMAN_OF_AILE] = {
     .atk = 800,
@@ -3170,6 +3432,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 1, 0, 9, 9, 5, 0},
   },
   [ROCK_OGRE_GROTTO_2] = {
     .atk = 700,
@@ -3182,6 +3445,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 1, 9, 3, 6, 9, 9},
   },
   [WING_EGG_ELF] = {
     .atk = 500,
@@ -3194,6 +3458,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 5, 8, 2, 7, 0, 4},
   },
   [THE_FURIOUS_SEA_KING] = {
     .atk = 800,
@@ -3206,6 +3471,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 8, 7, 1, 0, 7, 0, 7},
   },
   [PRINCESS_OF_TSURUGI] = {
     .atk = 900,
@@ -3218,6 +3484,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 1, 3, 7, 1, 0, 1, 7},
   },
   [MORPHING_JAR_2] = {
     .atk = 800,
@@ -3230,6 +3497,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 9, 1, 0, 6, 3, 6, 0},
   },
   [VORSE_RAIDER] = {
     .atk = 1900,
@@ -3242,6 +3510,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 4, 8, 9, 8, 0, 6, 6},
   },
   [VERSAGO_THE_DESTROYER] = {
     .atk = 1100,
@@ -3254,6 +3523,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 2, 5, 9, 4, 6, 0},
   },
   [WETHA] = {
     .atk = 1000,
@@ -3266,6 +3536,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 6, 6, 4, 3, 5, 6, 8},
   },
   [MEGIRUS_LIGHT] = {
     .atk = 900,
@@ -3278,6 +3549,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 0, 3, 2, 2, 7, 3},
   },
   [MAVELUS] = {
     .atk = 1300,
@@ -3290,6 +3562,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 9, 0, 3, 6, 9, 7, 2},
   },
   [ANCIENT_TREE_OF_ENLIGHTENMENT] = {
     .atk = 600,
@@ -3302,6 +3575,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 4, 2, 1, 9, 8, 6},
   },
   [GREEN_PHANTOM_KING] = {
     .atk = 500,
@@ -3314,6 +3588,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 2, 9, 1, 0, 6, 8, 5},
   },
   [GROUND_ATTACKER_BUGROTH] = {
     .atk = 1500,
@@ -3326,6 +3601,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 8, 3, 1, 4, 3, 9, 4},
   },
   [RAY_TEMPERATURE] = {
     .atk = 1000,
@@ -3338,6 +3614,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 5, 3, 0, 9, 4, 3, 9},
   },
   [FLAME_CHAMPION] = {
     .atk = 1900,
@@ -3350,6 +3627,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 5, 9, 9, 6, 7, 7},
   },
   [PETIT_MOTH] = {
     .atk = 300,
@@ -3362,6 +3640,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 8, 1, 9, 2, 7, 4, 2},
     .description = gDescription_PetitMoth,
   },
   [TWIN_HEADED_FIRE_DRAGON] = {
@@ -3375,6 +3654,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 9, 8, 4, 7, 7, 2},
   },
   [DARKFIRE_SOLDIER_1] = {
     .atk = 1700,
@@ -3387,6 +3667,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 3, 8, 8, 4, 8, 1},
   },
   [MYSTIC_CLOWN] = {
     .atk = 1500,
@@ -3399,6 +3680,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 0, 6, 0, 1, 5, 4},
   },
   [MYSTICAL_SHEEP_2] = {
     .atk = 800,
@@ -3411,6 +3693,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 3, 4, 6, 4, 2, 0, 9},
   },
   [HOLOGRAH] = {
     .atk = 1100,
@@ -3423,6 +3706,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 8, 5, 9, 9, 0, 8},
   },
   [TAO_THE_CHANTER] = {
     .atk = 1200,
@@ -3435,6 +3719,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 2, 4, 7, 5, 1, 6},
   },
   [SERPENT_MARAUDER] = {
     .atk = 700,
@@ -3447,6 +3732,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 2, 7, 4, 2, 6, 1, 1},
   },
   [MR_VOLCANO] = {
     .atk = 2100,
@@ -3459,6 +3745,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 4, 7, 7, 0, 2, 5},
   },
   [OGRE_OF_THE_BLACK_SHADOW] = {
     .atk = 1200,
@@ -3471,6 +3758,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 5, 1, 2, 1, 0, 2, 5},
   },
   [DARKFIRE_SOLDIER_2] = {
     .atk = 1700,
@@ -3483,6 +3771,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 8, 6, 1, 1, 3, 4},
   },
   [CHANGE_SLIME] = {
     .atk = 400,
@@ -3495,6 +3784,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 8, 9, 1, 4, 7, 7, 8},
   },
   [MOON_ENVOY] = {
     .atk = 1100,
@@ -3507,6 +3797,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 5, 9, 0, 9, 4, 7, 7},
   },
   [FIREYAROU] = {
     .atk = 1300,
@@ -3519,6 +3810,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 4, 0, 7, 4, 8, 6},
   },
   [KISEITAI] = {
     .atk = 300,
@@ -3531,6 +3823,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 2, 6, 6, 8, 3, 9},
   },
   [MASAKI_THE_LEGENDARY_SWORDSMAN] = {
     .atk = 1100,
@@ -3543,6 +3836,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 4, 2, 8, 7, 2, 9, 9},
   },
   [DRAGONESS_THE_WICKED_KNIGHT] = {
     .atk = 1200,
@@ -3555,6 +3849,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 6, 8, 1, 9, 9, 4},
   },
   [CYBER_FALCON] = {
     .atk = 1400,
@@ -3567,6 +3862,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 6, 5, 5, 5, 3, 7},
   },
   [ONE_EYED_SHIELD_DRAGON] = {
     .atk = 700,
@@ -3579,6 +3875,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 0, 6, 4, 6, 4, 7},
   },
   [THE_WINGED_DRAGON_OF_RA_SPHERE_MODE] = {
     .atk = 0,
@@ -3591,6 +3888,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [WICKED_DRAGON_WITH_THE_ERSATZ_HEAD] = {
     .atk = 900,
@@ -3603,6 +3901,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 9, 5, 7, 0, 5, 5},
   },
   [SONIC_MAID] = {
     .atk = 1200,
@@ -3615,6 +3914,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 9, 4, 2, 0, 5, 9},
   },
   [KURAMA] = {
     .atk = 800,
@@ -3627,6 +3927,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 5, 7, 0, 5, 8, 0, 4},
   },
   [LEGENDARY_SWORD] = {
     .atk = 65535,
@@ -3639,6 +3940,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 21,
     .trapEffect = 0,
+    .password = {6, 1, 8, 5, 4, 1, 1, 1},
   },
   [SWORD_OF_DARK_DESTRUCTION] = {
     .atk = 65535,
@@ -3651,6 +3953,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 22,
     .trapEffect = 0,
+    .password = {3, 7, 1, 2, 0, 5, 1, 2},
   },
   [DARK_ENERGY] = {
     .atk = 65535,
@@ -3663,6 +3966,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 23,
     .trapEffect = 0,
+    .password = {0, 4, 6, 1, 4, 1, 1, 6},
   },
   [AXE_OF_DESPAIR] = {
     .atk = 65535,
@@ -3675,6 +3979,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 24,
     .trapEffect = 0,
+    .password = {4, 0, 6, 1, 9, 8, 2, 5},
   },
   [LASER_CANNON_ARMOR] = {
     .atk = 65535,
@@ -3687,6 +3992,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 25,
     .trapEffect = 0,
+    .password = {7, 7, 0, 0, 7, 9, 2, 0},
   },
   [INSECT_ARMOR_WITH_LASER_CANNON] = {
     .atk = 65535,
@@ -3699,6 +4005,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 26,
     .trapEffect = 0,
+    .password = {0, 3, 4, 9, 2, 5, 3, 8},
   },
   [ELFS_LIGHT] = {
     .atk = 65535,
@@ -3711,6 +4018,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 27,
     .trapEffect = 0,
+    .password = {3, 9, 8, 9, 7, 2, 7, 7},
   },
   [BEAST_FANGS] = {
     .atk = 65535,
@@ -3723,6 +4031,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 28,
     .trapEffect = 0,
+    .password = {4, 6, 0, 0, 9, 9, 0, 6},
   },
   [STEEL_SHELL] = {
     .atk = 65535,
@@ -3735,6 +4044,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 29,
     .trapEffect = 0,
+    .password = {0, 2, 3, 7, 0, 0, 8, 1},
   },
   [VILE_GERMS] = {
     .atk = 65535,
@@ -3747,6 +4057,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 30,
     .trapEffect = 0,
+    .password = {3, 9, 7, 7, 4, 6, 8, 5},
   },
   [BLACK_PENDANT] = {
     .atk = 65535,
@@ -3759,6 +4070,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 31,
     .trapEffect = 0,
+    .password = {6, 5, 1, 6, 9, 7, 9, 4},
   },
   [SILVER_BOW_AND_ARROW] = {
     .atk = 65535,
@@ -3771,6 +4083,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 32,
     .trapEffect = 0,
+    .password = {0, 1, 5, 5, 7, 4, 9, 9},
   },
   [HORN_OF_LIGHT] = {
     .atk = 65535,
@@ -3783,6 +4096,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 33,
     .trapEffect = 0,
+    .password = {3, 8, 5, 5, 2, 1, 0, 7},
   },
   [HORN_OF_THE_UNICORN] = {
     .atk = 65535,
@@ -3795,6 +4109,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 34,
     .trapEffect = 0,
+    .password = {6, 4, 0, 4, 7, 1, 4, 6},
   },
   [DRAGON_TREASURE] = {
     .atk = 65535,
@@ -3807,6 +4122,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 35,
     .trapEffect = 0,
+    .password = {0, 1, 4, 3, 5, 8, 5, 1},
   },
   [ELECTRO_WHIP] = {
     .atk = 65535,
@@ -3819,6 +4135,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 36,
     .trapEffect = 0,
+    .password = {3, 7, 8, 2, 0, 5, 5, 0},
   },
   [CYBER_SHIELD] = {
     .atk = 65535,
@@ -3831,6 +4148,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 37,
     .trapEffect = 0,
+    .password = {6, 3, 2, 2, 4, 5, 6, 4},
   },
   [ELEGANT_EGOTIST] = {
     .atk = 65535,
@@ -3843,6 +4161,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 53,
     .trapEffect = 0,
+    .password = {9, 0, 2, 1, 9, 2, 6, 3},
   },
   [MYSTICAL_MOON] = {
     .atk = 65535,
@@ -3855,6 +4174,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 38,
     .trapEffect = 0,
+    .password = {3, 6, 6, 0, 7, 9, 7, 8},
   },
   [STOP_DEFENSE] = {
     .atk = 65535,
@@ -3867,6 +4187,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 48,
     .trapEffect = 0,
+    .password = {6, 3, 1, 0, 2, 0, 1, 7},
   },
   [MALEVOLENT_NUZZLER] = {
     .atk = 65535,
@@ -3879,6 +4200,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 39,
     .trapEffect = 0,
+    .password = {9, 9, 5, 9, 7, 6, 1, 5},
   },
   [VIOLET_CRYSTAL] = {
     .atk = 65535,
@@ -3891,6 +4213,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 40,
     .trapEffect = 0,
+    .password = {1, 5, 0, 5, 2, 4, 6, 2},
   },
   [BOOK_OF_SECRET_ARTS] = {
     .atk = 65535,
@@ -3903,6 +4226,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 41,
     .trapEffect = 0,
+    .password = {9, 1, 5, 9, 5, 7, 1, 8},
   },
   [INVIGORATION] = {
     .atk = 65535,
@@ -3915,6 +4239,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 42,
     .trapEffect = 0,
+    .password = {9, 8, 3, 7, 4, 1, 3, 3},
   },
   [MACHINE_CONVERSION_FACTORY] = {
     .atk = 65535,
@@ -3927,6 +4252,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 43,
     .trapEffect = 0,
+    .password = {2, 5, 7, 6, 9, 7, 3, 2},
   },
   [RAISE_BODY_HEAT] = {
     .atk = 65535,
@@ -3939,6 +4265,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 44,
     .trapEffect = 0,
+    .password = {5, 1, 2, 6, 7, 8, 8, 7},
   },
   [FOLLOW_WIND] = {
     .atk = 65535,
@@ -3951,6 +4278,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 45,
     .trapEffect = 0,
+    .password = {9, 8, 2, 5, 2, 5, 8, 6},
   },
   [POWER_OF_KAISHIN] = {
     .atk = 65535,
@@ -3963,6 +4291,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 46,
     .trapEffect = 0,
+    .password = {7, 7, 0, 2, 7, 4, 4, 5},
   },
   [DRAGON_CAPTURE_JAR] = {
     .atk = 65535,
@@ -3975,6 +4304,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 49,
     .trapEffect = 20,
+    .password = {5, 0, 0, 4, 5, 2, 9, 9},
   },
   [FOREST] = {
     .atk = 65535,
@@ -3987,6 +4317,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 3,
     .trapEffect = 0,
+    .password = {8, 7, 4, 3, 0, 9, 9, 8},
   },
   [WASTELAND] = {
     .atk = 65535,
@@ -3999,6 +4330,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 4,
     .trapEffect = 0,
+    .password = {2, 3, 4, 2, 4, 6, 0, 3},
   },
   [MOUNTAIN] = {
     .atk = 65535,
@@ -4011,6 +4343,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 5,
     .trapEffect = 0,
+    .password = {5, 0, 9, 1, 3, 6, 0, 1},
   },
   [SOGEN] = {
     .atk = 65535,
@@ -4023,6 +4356,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 6,
     .trapEffect = 0,
+    .password = {8, 6, 3, 1, 8, 3, 5, 6},
   },
   [UMI] = {
     .atk = 65535,
@@ -4035,6 +4369,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 7,
     .trapEffect = 0,
+    .password = {2, 2, 7, 0, 2, 0, 5, 5},
   },
   [YAMI] = {
     .atk = 65535,
@@ -4047,6 +4382,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 8,
     .trapEffect = 0,
+    .password = {5, 9, 1, 9, 7, 1, 6, 9},
   },
   [DARK_HOLE] = {
     .atk = 65535,
@@ -4059,6 +4395,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 19,
     .trapEffect = 0,
+    .password = {5, 3, 1, 2, 9, 4, 4, 3},
   },
   [RAIGEKI] = {
     .atk = 65535,
@@ -4071,6 +4408,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 20,
     .trapEffect = 0,
+    .password = {1, 2, 5, 8, 0, 4, 7, 7},
   },
   [MOOYAN_CURRY] = {
     .atk = 65535,
@@ -4083,6 +4421,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 9,
     .trapEffect = 0,
+    .password = {5, 8, 0, 7, 4, 5, 7, 2},
   },
   [RED_MEDICINE] = {
     .atk = 65535,
@@ -4095,6 +4434,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 10,
     .trapEffect = 0,
+    .password = {3, 8, 1, 9, 9, 6, 9, 6},
   },
   [GOBLINS_SECRET_REMEDY] = {
     .atk = 65535,
@@ -4107,6 +4447,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 11,
     .trapEffect = 0,
+    .password = {1, 1, 8, 6, 8, 8, 2, 5},
   },
   [SOUL_OF_THE_PURE] = {
     .atk = 65535,
@@ -4119,6 +4460,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 12,
     .trapEffect = 0,
+    .password = {4, 7, 8, 5, 2, 9, 2, 4},
   },
   [DIAN_KETO_THE_CURE_MASTER] = {
     .atk = 65535,
@@ -4131,6 +4473,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 13,
     .trapEffect = 0,
+    .password = {8, 4, 2, 5, 7, 6, 3, 9},
   },
   [SPARKS] = {
     .atk = 65535,
@@ -4143,6 +4486,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 14,
     .trapEffect = 0,
+    .password = {7, 6, 1, 0, 3, 6, 7, 5},
     .description = gDescription_Sparks,
   },
   [HINOTAMA] = {
@@ -4156,6 +4500,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 15,
     .trapEffect = 0,
+    .password = {4, 6, 1, 3, 0, 3, 4, 6},
     .description = gDescription_Hinotama,
   },
   [FINAL_FLAME] = {
@@ -4169,6 +4514,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 16,
     .trapEffect = 0,
+    .password = {7, 3, 1, 3, 4, 0, 8, 1},
   },
   [OOKAZI] = {
     .atk = 65535,
@@ -4181,6 +4527,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 17,
     .trapEffect = 0,
+    .password = {1, 9, 5, 2, 3, 7, 9, 9},
     .description = gDescription_Ookazi,
   },
   [TREMENDOUS_FIRE] = {
@@ -4194,6 +4541,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 18,
     .trapEffect = 0,
+    .password = {4, 6, 9, 1, 8, 7, 9, 4},
   },
   [SWORDS_OF_REVEALING_LIGHT] = {
     .atk = 65535,
@@ -4206,6 +4554,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 50,
     .trapEffect = 0,
+    .password = {7, 2, 3, 0, 2, 4, 0, 3},
   },
   [SPELLBINDING_CIRCLE] = {
     .atk = 65535,
@@ -4218,6 +4567,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 52,
     .trapEffect = 0,
+    .password = {1, 8, 8, 0, 7, 1, 0, 8},
   },
   [DARK_PIERCING_LIGHT] = {
     .atk = 65535,
@@ -4230,6 +4580,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 51,
     .trapEffect = 0,
+    .password = {4, 5, 8, 9, 5, 2, 0, 6},
   },
   [YARANZO] = {
     .atk = 1300,
@@ -4242,6 +4593,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 2, 8, 0, 8, 1, 1},
   },
   [KANAN_THE_SWORDMISTRESS] = {
     .atk = 1400,
@@ -4254,6 +4606,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 8, 2, 9, 1, 5, 1},
   },
   [TAKRIMINOS] = {
     .atk = 1500,
@@ -4266,6 +4619,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 4, 0, 7, 3, 6, 6, 8},
   },
   [STUFFED_ANIMAL] = {
     .atk = 1200,
@@ -4278,6 +4632,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 0, 6, 8, 2, 6, 3},
   },
   [MEGASONIC_EYE] = {
     .atk = 1500,
@@ -4290,6 +4645,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 5, 6, 2, 3, 7, 2},
   },
   [SUPER_WAR_LION] = {
     .atk = 2300,
@@ -4302,6 +4658,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 9, 5, 1, 0, 7, 7},
   },
   [YAMADRON] = {
     .atk = 1600,
@@ -4314,6 +4671,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 3, 4, 5, 7, 8, 5},
   },
   [SEIYARYU] = {
     .atk = 2500,
@@ -4326,6 +4684,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 7, 4, 0, 7, 2, 0},
   },
   [THREE_LEGGED_ZOMBIES] = {
     .atk = 1100,
@@ -4338,6 +4697,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 7, 3, 4, 4, 3, 9},
   },
   [ZERA_THE_MANT] = {
     .atk = 2800,
@@ -4350,6 +4710,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 1, 2, 3, 1, 3, 8},
   },
   [FLYING_PENGUIN] = {
     .atk = 1200,
@@ -4362,6 +4723,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 6, 2, 8, 2, 3, 2},
   },
   [MILLENNIUM_SHIELD] = {
     .atk = 0,
@@ -4374,6 +4736,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 0, 1, 2, 8, 4, 1},
   },
   [FAIRYS_GIFT] = {
     .atk = 1400,
@@ -4386,6 +4749,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 2,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 4, 0, 1, 5, 4, 6},
   },
   [BLACK_LUSTER_SOLDIER] = {
     .atk = 3000,
@@ -4398,6 +4762,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 4, 0, 5, 6, 9, 4},
   },
   [FIENDS_MIRROR] = {
     .atk = 2100,
@@ -4410,6 +4775,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 8, 9, 0, 3, 9, 9},
   },
   [LABYRINTH_WALL] = {
     .atk = 0,
@@ -4422,6 +4788,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 2, 8, 4, 9, 0, 8},
   },
   [JIRAI_GUMO] = {
     .atk = 2200,
@@ -4434,6 +4801,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 7, 7, 3, 0, 0, 7},
   },
   [SHADOW_GHOUL] = {
     .atk = 1600,
@@ -4446,6 +4814,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 7, 7, 8, 7, 1, 1},
   },
   [WALL_SHADOW] = {
     .atk = 1600,
@@ -4458,6 +4827,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 3, 1, 6, 2, 3, 1, 0},
   },
   [LABYRINTH_TANK] = {
     .atk = 2400,
@@ -4470,6 +4840,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 5, 5, 1, 4, 2, 5},
   },
   [SANGA_OF_THE_THUNDER] = {
     .atk = 2600,
@@ -4482,6 +4853,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 9, 5, 5, 1, 6, 4},
   },
   [KAZEJIN] = {
     .atk = 2400,
@@ -4494,6 +4866,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 3, 4, 0, 8, 6, 8},
   },
   [SUIJIN] = {
     .atk = 2500,
@@ -4506,6 +4879,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 4, 3, 4, 8, 7, 7},
   },
   [GATE_GUARDIAN] = {
     .atk = 3750,
@@ -4518,6 +4892,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 8, 3, 3, 5, 7, 2},
   },
   [DUNGEON_WORM] = {
     .atk = 1800,
@@ -4530,6 +4905,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 1, 2, 2, 8, 2, 8, 0},
   },
   [MONSTER_TAMER] = {
     .atk = 1800,
@@ -4542,6 +4918,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 7, 6, 1, 2, 3, 8, 9},
   },
   [RYU_KISHIN_POWERED] = {
     .atk = 1600,
@@ -4554,6 +4931,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 4, 6, 1, 1, 9, 3, 4},
   },
   [SWORDSTALKER] = {
     .atk = 2000,
@@ -4566,6 +4944,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 0, 0, 5, 6, 3, 3},
   },
   [LA_JINN_THE_MYSTICAL_GENIE_OF_THE_LAMP] = {
     .atk = 1800,
@@ -4578,6 +4957,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 7, 5, 9, 0, 7, 4, 7},
   },
   [BLUE_EYES_ULTIMATE_DRAGON] = {
     .atk = 4500,
@@ -4590,6 +4970,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 9, 9, 5, 3, 4, 6},
   },
   [TOON_ALLIGATOR] = {
     .atk = 800,
@@ -4602,6 +4983,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 9, 3, 8, 3, 0, 4, 1},
   },
   [RUDE_KAISER] = {
     .atk = 1800,
@@ -4614,6 +4996,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 6, 3, 7, 8, 1, 5, 0},
   },
   [PARROT_DRAGON] = {
     .atk = 2000,
@@ -4626,6 +5009,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 7, 6, 2, 8, 9, 8},
   },
   [DARK_RABBIT] = {
     .atk = 1100,
@@ -4638,6 +5022,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 2, 6, 1, 4, 0, 3},
   },
   [BICKURIBOX] = {
     .atk = 2300,
@@ -4650,6 +5035,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 6, 5, 5, 5, 0, 2},
   },
   [HARPIES_PET_DRAGON] = {
     .atk = 2000,
@@ -4662,6 +5048,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 2, 0, 4, 0, 2, 1, 6},
   },
   [MYSTIC_LAMP] = {
     .atk = 400,
@@ -4674,6 +5061,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 49,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 0, 4, 9, 9, 1, 5},
   },
   [PENDULUM_MACHINE] = {
     .atk = 1750,
@@ -4686,6 +5074,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 4, 4, 3, 3, 9, 2, 0},
   },
   [GILTIA_THE_D_KNIGHT] = {
     .atk = 1850,
@@ -4698,6 +5087,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 1, 8, 2, 8, 6, 2, 9},
   },
   [LAUNCHER_SPIDER] = {
     .atk = 2200,
@@ -4710,6 +5100,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 3, 2, 2, 3, 7, 7},
   },
   [ZOA] = {
     .atk = 2600,
@@ -4722,6 +5113,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 4, 3, 1, 1, 3, 7, 2},
   },
   [METALZOA] = {
     .atk = 3000,
@@ -4734,6 +5126,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 7, 0, 5, 0, 7, 1},
   },
   [ZONE_EATER] = {
     .atk = 250,
@@ -4746,6 +5139,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 1, 0, 0, 7, 8, 5},
   },
   [STEEL_SCORPION] = {
     .atk = 250,
@@ -4758,6 +5152,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 5, 9, 9, 8, 8, 4},
   },
   [DANCING_ELF] = {
     .atk = 300,
@@ -4770,6 +5165,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 9, 9, 8, 3, 4, 9, 9},
   },
   [OCUBEAM] = {
     .atk = 1550,
@@ -4782,6 +5178,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 0, 8, 8, 1, 3, 8},
   },
   [LEGHUL] = {
     .atk = 300,
@@ -4794,6 +5191,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 50,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 4, 7, 2, 2, 4, 2},
   },
   [OOGUCHI] = {
     .atk = 300,
@@ -4806,6 +5204,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 8, 8, 6, 1, 9, 4, 1},
   },
   [GAMMA_THE_MAGNET_WARRIOR] = {
     .atk = 1500,
@@ -4818,6 +5217,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 63,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 5, 4, 9, 3, 5, 7},
   },
   [EMPEROR_OF_THE_LAND_AND_SEA] = {
     .atk = 1800,
@@ -4830,6 +5230,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 2, 5, 0, 6, 5, 5},
   },
   [USHI_ONI] = {
     .atk = 2150,
@@ -4842,6 +5243,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 6, 4, 9, 3, 5, 3},
   },
   [MONSTER_EYE] = {
     .atk = 250,
@@ -4854,6 +5256,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 35,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 1, 3, 3, 0, 0, 8},
   },
   [LEOGUN] = {
     .atk = 1750,
@@ -4866,6 +5269,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 5, 3, 8, 0, 0, 7},
   },
   [TATSUNOOTOSHIGO] = {
     .atk = 1350,
@@ -4878,6 +5282,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 9, 2, 2, 7, 1, 1},
   },
   [SABER_SLASHER] = {
     .atk = 1450,
@@ -4890,6 +5295,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 3, 9, 1, 1, 4, 1, 0},
   },
   [KAISER_SEA_HORSE] = {
     .atk = 1700,
@@ -4902,6 +5308,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 4, 4, 4, 1, 3, 3},
   },
   [MACHINE_KING] = {
     .atk = 2200,
@@ -4914,6 +5321,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 7, 0, 0, 1, 2, 4},
   },
   [GIANT_MECH_SOLDIER] = {
     .atk = 1750,
@@ -4926,6 +5334,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 2, 2, 9, 9, 8, 3, 2},
   },
   [METAL_DRAGON] = {
     .atk = 1850,
@@ -4938,6 +5347,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 9, 2, 9, 3, 9, 7, 7},
   },
   [MECHANICAL_SPIDER] = {
     .atk = 400,
@@ -4950,6 +5360,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 5, 6, 8, 8, 5, 8, 6},
   },
   [BAT] = {
     .atk = 300,
@@ -4962,6 +5373,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 2, 0, 7, 6, 2, 8, 1},
   },
   [THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE] = {
     .atk = 4000,
@@ -4974,6 +5386,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 97,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
   },
   [CYBER_SOLDIER] = {
     .atk = 1500,
@@ -4986,6 +5399,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 4, 8, 6, 5, 0, 9, 8},
   },
   [SHOVEL_CRUSHER] = {
     .atk = 900,
@@ -4998,6 +5412,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 9, 5, 0, 0, 9, 3},
   },
   [MECHANICALCHASER] = {
     .atk = 1850,
@@ -5010,6 +5425,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 3, 5, 9, 7, 4, 1},
   },
   [BLOCKER] = {
     .atk = 850,
@@ -5022,6 +5438,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 7, 4, 3, 4, 4, 6},
   },
   [BLAST_JUGGLER] = {
     .atk = 800,
@@ -5034,6 +5451,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 1, 3, 8, 4, 5, 5},
   },
   [GOLGOIL] = {
     .atk = 900,
@@ -5046,6 +5464,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 5, 2, 6, 1, 5, 0},
   },
   [FLYING_KAMAKIRI_2] = {
     .atk = 1500,
@@ -5058,6 +5477,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 1, 3, 4, 2, 4, 1},
   },
   [CYBER_STEIN] = {
     .atk = 700,
@@ -5070,6 +5490,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 104,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 0, 1, 5, 9, 6, 3},
     .description = gDescription_CyberStein,
   },
   [CYBER_COMMANDER] = {
@@ -5083,6 +5504,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 4, 0, 0, 5, 1, 2},
   },
   [JINZO_7] = {
     .atk = 500,
@@ -5095,6 +5517,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 8, 0, 9, 2, 1, 1},
   },
   [DICE_ARMADILLO] = {
     .atk = 1650,
@@ -5107,6 +5530,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 8, 9, 3, 3, 1, 5},
   },
   [SKY_DRAGON] = {
     .atk = 1900,
@@ -5119,6 +5543,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 2, 8, 8, 0, 2, 4},
   },
   [THUNDER_DRAGON] = {
     .atk = 1600,
@@ -5131,6 +5556,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 7, 8, 6, 6, 2, 9},
   },
   [STONE_D_] = {
     .atk = 2000,
@@ -5143,6 +5569,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 1, 7, 1, 7, 3, 7},
   },
   [KAISER_DRAGON] = {
     .atk = 2300,
@@ -5155,6 +5582,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 5, 6, 6, 4, 3, 2},
   },
   [MAGICIAN_OF_FAITH] = {
     .atk = 300,
@@ -5167,6 +5595,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 5, 6, 0, 0, 8, 1},
   },
   [GODDESS_OF_WHIM] = {
     .atk = 950,
@@ -5179,6 +5608,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 19,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 9, 5, 9, 1, 8, 0},
   },
   [GRADIUS] = {
     .atk = 1200,
@@ -5191,6 +5621,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 9, 9, 2, 2, 5, 1},
   },
   [ICE_WATER] = {
     .atk = 1150,
@@ -5203,6 +5634,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 8, 4, 8, 5, 9, 3},
   },
   [WATERDRAGON_FAIRY] = {
     .atk = 1100,
@@ -5215,6 +5647,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 8, 3, 6, 5, 9, 8},
   },
   [ANCIENT_ELF] = {
     .atk = 1450,
@@ -5227,6 +5660,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 3, 2, 2, 1, 2, 0, 6},
   },
   [HARPIES_BROTHER] = {
     .atk = 1800,
@@ -5239,6 +5673,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 5, 3, 2, 3, 9, 0},
   },
   [AERIS] = {
     .atk = 1800,
@@ -5251,6 +5686,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 2, 8, 5, 2, 3, 0},
   },
   [WHITE_DOLPHIN] = {
     .atk = 500,
@@ -5263,6 +5699,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 4, 0, 9, 6, 5, 9},
   },
   [DEEPSEA_SHARK] = {
     .atk = 1900,
@@ -5275,6 +5712,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 5, 9, 3, 3, 6, 3},
   },
   [METAL_FISH] = {
     .atk = 1600,
@@ -5287,6 +5725,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 9, 9, 8, 4, 6, 2},
   },
   [GRAND_TIKI_ELDER] = {
     .atk = 1500,
@@ -5299,6 +5738,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 6, 7, 6, 4, 7, 4},
   },
   [SEVEN_COLORED_FISH] = {
     .atk = 1800,
@@ -5311,6 +5751,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 7, 7, 1, 7, 1, 6},
   },
   [MECH_BASS] = {
     .atk = 1800,
@@ -5323,6 +5764,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 1, 7, 6, 8, 2, 0},
   },
   [AQUA_DRAGON] = {
     .atk = 2250,
@@ -5335,6 +5777,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 1, 6, 4, 5, 2, 9},
   },
   [SEA_KING_DRAGON] = {
     .atk = 2000,
@@ -5347,6 +5790,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 3, 6, 5, 9, 1, 2, 4},
   },
   [TURU_PURUN] = {
     .atk = 450,
@@ -5359,6 +5803,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 9, 0, 5, 3, 2, 3, 2},
   },
   [GIANT_REX] = {
     .atk = 2000,
@@ -5371,6 +5816,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 2, 8, 0, 9, 4, 4},
   },
   [AQUA_SNAKE] = {
     .atk = 1050,
@@ -5383,6 +5829,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 4, 3, 6, 6, 4, 6},
   },
   [GIANT_RED_SEASNAKE] = {
     .atk = 1800,
@@ -5395,6 +5842,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 8, 8, 3, 1, 6, 8, 5},
   },
   [SPIKE_SEADRA] = {
     .atk = 1600,
@@ -5407,6 +5855,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 5, 3, 2, 6, 3, 9, 9},
   },
   [THIRTY_THOUSAND_YEAR_WHITE_TURTLE] = {
     .atk = 1250,
@@ -5419,6 +5868,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 7, 1, 4, 0, 9, 8},
   },
   [KAPPA_AVENGER] = {
     .atk = 1200,
@@ -5431,6 +5881,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 1, 0, 9, 1, 0, 3},
   },
   [KANIKABUTO] = {
     .atk = 650,
@@ -5443,6 +5894,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 1, 0, 3, 7, 0, 2},
   },
   [ZARIGUN] = {
     .atk = 600,
@@ -5455,6 +5907,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 5, 9, 8, 4, 0, 0},
   },
   [MILLENNIUM_GOLEM] = {
     .atk = 2000,
@@ -5467,6 +5920,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 9, 8, 6, 5, 5, 5},
   },
   [DESTROYER_GOLEM] = {
     .atk = 1500,
@@ -5479,6 +5933,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 3, 4, 8, 1, 1, 5, 4},
   },
   [BARREL_ROCK] = {
     .atk = 1000,
@@ -5491,6 +5946,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 4, 7, 6, 8, 6, 8},
   },
   [MINOMUSHI_WARRIOR] = {
     .atk = 1300,
@@ -5503,6 +5959,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 8, 6, 4, 9, 6, 7},
   },
   [THE_MASKED_BEAST] = {
     .atk = 3200,
@@ -5515,6 +5972,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 0, 6, 4, 4, 1, 3},
   },
   [KAMINARI_ATTACK] = {
     .atk = 1900,
@@ -5527,6 +5985,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 9, 6, 5, 3, 2, 7, 1},
   },
   [TRIPWIRE_BEAST] = {
     .atk = 1200,
@@ -5539,6 +5998,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 5, 0, 4, 2, 3, 2, 9},
   },
   [BOLT_ESCARGOT] = {
     .atk = 1400,
@@ -5551,6 +6011,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 1, 4, 6, 0, 2, 4},
   },
   [BOLT_PENGUIN] = {
     .atk = 1100,
@@ -5563,6 +6024,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 5, 3, 1, 7, 3, 3},
   },
   [THE_IMMORTAL_OF_THUNDER] = {
     .atk = 1500,
@@ -5575,6 +6037,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 9, 2, 6, 7, 3, 8},
   },
   [ELECTRIC_SNAKE] = {
     .atk = 800,
@@ -5587,6 +6050,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 3, 2, 4, 4, 3, 6},
   },
   [WING_EAGLE] = {
     .atk = 1800,
@@ -5599,6 +6063,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 3, 1, 9, 1, 4, 1},
   },
   [PUNISHED_EAGLE] = {
     .atk = 2100,
@@ -5611,6 +6076,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 4, 7, 0, 3, 1, 4, 0},
   },
   [SKULL_RED_BIRD] = {
     .atk = 1550,
@@ -5623,6 +6089,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 2, 0, 2, 8, 9, 4},
   },
   [CRIMSON_SUNBIRD] = {
     .atk = 2300,
@@ -5635,6 +6102,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 6, 9, 6, 5, 9, 3},
   },
   [QUEEN_BIRD] = {
     .atk = 1200,
@@ -5647,6 +6115,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 3, 0, 8, 1, 6, 0, 2},
   },
   [ARMED_NINJA] = {
     .atk = 300,
@@ -5659,6 +6128,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 9, 0, 7, 6, 2, 0, 7},
   },
   [MAGICAL_GHOST] = {
     .atk = 1300,
@@ -5671,6 +6141,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 4, 7, 4, 9, 1, 5},
   },
   [SOUL_HUNTER] = {
     .atk = 2200,
@@ -5683,6 +6154,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 2, 8, 6, 9, 0, 1, 0},
   },
   [THE_EARL_OF_DEMISE] = {
     .atk = 2000,
@@ -5695,6 +6167,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 9, 8, 9, 6, 9, 4},
   },
   [VERMILLION_SPARROW] = {
     .atk = 1900,
@@ -5707,6 +6180,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 5, 7, 5, 2, 3, 6, 3},
   },
   [SEA_KAMEN] = {
     .atk = 1100,
@@ -5719,6 +6193,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 7, 4, 6, 4, 6, 2},
   },
   [SINISTER_SERPENT] = {
     .atk = 300,
@@ -5731,6 +6206,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 8, 1, 3, 1, 1, 7, 1},
   },
   [GANIGUMO] = {
     .atk = 600,
@@ -5743,6 +6219,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 5, 3, 6, 2, 7, 6},
   },
   [ALINSECTION] = {
     .atk = 950,
@@ -5755,6 +6232,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 9, 2, 4, 8, 8, 4},
   },
   [INSECT_SOLDIERS_OF_THE_SKY] = {
     .atk = 1000,
@@ -5767,6 +6245,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 0, 1, 9, 5, 2, 9},
   },
   [COCKROACH_KNIGHT] = {
     .atk = 800,
@@ -5779,6 +6258,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 4, 1, 3, 6, 3, 8},
   },
   [KUWAGATA_A] = {
     .atk = 1250,
@@ -5791,6 +6271,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 8, 0, 2, 2, 3, 3},
   },
   [BURGLAR] = {
     .atk = 850,
@@ -5803,6 +6284,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 6, 2, 9, 7, 9, 4, 1},
   },
   [PRAGTICAL] = {
     .atk = 1900,
@@ -5815,6 +6297,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 6, 9, 1, 0, 4, 0},
   },
   [GARVAS] = {
     .atk = 2000,
@@ -5827,6 +6310,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 7, 8, 0, 7, 4, 5},
   },
   [AMEBA] = {
     .atk = 300,
@@ -5839,6 +6323,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 1, 7, 4, 3, 5, 3},
   },
   [KOROGASHI] = {
     .atk = 550,
@@ -5851,6 +6336,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 5, 6, 9, 4, 9, 8},
   },
   [BOO_KOO] = {
     .atk = 650,
@@ -5863,6 +6349,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 9, 6, 3, 1, 0, 7},
   },
   [FLOWER_WOLF] = {
     .atk = 1800,
@@ -5875,6 +6362,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 9, 5, 2, 8, 0, 2},
   },
   [RAINBOW_FLOWER] = {
     .atk = 400,
@@ -5887,6 +6375,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 3, 4, 7, 8, 1, 0},
   },
   [BARREL_LILY] = {
     .atk = 1100,
@@ -5899,6 +6388,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 8, 4, 1, 5, 1, 5},
   },
   [NEEDLE_BALL] = {
     .atk = 750,
@@ -5911,6 +6401,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 2, 3, 0, 2, 2, 4},
   },
   [PEACOCK] = {
     .atk = 1700,
@@ -5923,6 +6414,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 6, 2, 4, 2, 6, 3},
   },
   [HOSHININGEN] = {
     .atk = 500,
@@ -5935,6 +6427,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 6, 2, 9, 9, 7, 7},
   },
   [MAHA_VAILO] = {
     .atk = 1550,
@@ -5947,6 +6440,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 3, 0, 1, 3, 6, 7, 6},
   },
   [RAINBOW_MARINE_MERMAID] = {
     .atk = 1550,
@@ -5959,6 +6453,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 4, 0, 2, 7, 7, 1},
   },
   [MUSICIAN_KING] = {
     .atk = 1750,
@@ -5971,6 +6466,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 6, 9, 0, 7, 3, 8, 9},
   },
   [WILMEE] = {
     .atk = 1000,
@@ -5983,6 +6479,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 3, 9, 1, 0, 8, 4},
   },
   [YADO_KARU] = {
     .atk = 900,
@@ -5995,6 +6492,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 3, 8, 0, 1, 3, 3},
   },
   [MORINPHEN] = {
     .atk = 1550,
@@ -6007,6 +6505,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 7, 8, 4, 8, 3, 2},
   },
   [BONEHEIMER] = {
     .atk = 850,
@@ -6019,6 +6518,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 4, 5, 6, 1, 1, 7},
   },
   [DRAGON_SEEKER] = {
     .atk = 2000,
@@ -6031,6 +6531,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 21,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 5, 6, 3, 5, 4, 5},
   },
   [MAN_EATER_BUG] = {
     .atk = 450,
@@ -6043,6 +6544,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 6, 5, 2, 2, 5, 0},
   },
   [PENGUIN_TORPEDO] = {
     .atk = 350,
@@ -6055,6 +6557,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 98,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 6, 7, 9, 0, 4, 3},
   },
   [TURTLE_RACCOON] = {
     .atk = 700,
@@ -6067,6 +6570,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 4, 4, 1, 9, 5, 3},
   },
   [FLAME_DANCER] = {
     .atk = 550,
@@ -6079,6 +6583,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 8, 8, 3, 0, 4, 4},
   },
   [PRISMAN] = {
     .atk = 800,
@@ -6091,6 +6596,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 2, 3, 4, 3, 0, 1},
   },
   [GALE_DOGRA] = {
     .atk = 650,
@@ -6103,6 +6609,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 6, 2, 2, 9, 3, 1, 5},
   },
   [CRAZY_FISH] = {
     .atk = 1600,
@@ -6115,6 +6622,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 7, 1, 3, 0, 1, 4},
   },
   [CYBER_SAURUS] = {
     .atk = 1800,
@@ -6127,6 +6635,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 9, 1, 1, 2, 7, 2, 9},
   },
   [BRACCHIO_RAIDUS] = {
     .atk = 2200,
@@ -6139,6 +6648,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 6, 5, 0, 7, 8, 2, 8},
   },
   [LAUGHING_FLOWER] = {
     .atk = 900,
@@ -6151,6 +6661,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 5, 9, 1, 4, 7, 2},
   },
   [BEAN_SOLDIER] = {
     .atk = 1400,
@@ -6163,6 +6674,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 4, 9, 9, 0, 1, 7, 1},
   },
   [CANNON_SOLDIER] = {
     .atk = 1400,
@@ -6175,6 +6687,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 3, 8, 4, 2, 8, 0},
   },
   [GUARDIAN_OF_THE_THRONE_ROOM] = {
     .atk = 1650,
@@ -6187,6 +6700,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 7, 8, 7, 9, 9, 8, 5},
   },
   [ASURA_PRIEST] = {
     .atk = 1700,
@@ -6199,6 +6713,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 1, 3, 4, 3, 4, 6},
   },
   [THE_STATUE_OF_EASTER_ISLAND] = {
     .atk = 1100,
@@ -6211,6 +6726,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 0, 2, 6, 2, 6, 9, 8},
   },
   [MUKA_MUKA] = {
     .atk = 600,
@@ -6223,6 +6739,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 6, 5, 7, 3, 3, 7},
   },
   [ZOMBYRA_THE_DARK] = {
     .atk = 2100,
@@ -6235,6 +6752,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 67,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 4, 7, 2, 4, 5, 6},
   },
   [BOULDER_TORTOISE] = {
     .atk = 1450,
@@ -6247,6 +6765,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 9, 5, 4, 0, 0, 4, 0},
   },
   [FIRE_KRAKEN] = {
     .atk = 1600,
@@ -6259,6 +6778,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 5, 3, 4, 7, 5, 5},
   },
   [TURTLE_BIRD] = {
     .atk = 1900,
@@ -6271,6 +6791,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 2, 9, 2, 9, 4, 5, 4},
   },
   [SKULLBIRD] = {
     .atk = 1900,
@@ -6283,6 +6804,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 8, 3, 2, 7, 4, 6, 2},
   },
   [MONSTROUS_BIRD] = {
     .atk = 2000,
@@ -6295,6 +6817,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 5, 7, 1, 2, 1, 0, 7},
   },
   [THE_BISTRO_BUTCHER] = {
     .atk = 1800,
@@ -6307,6 +6830,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 1, 1, 0, 7, 8, 1, 6},
   },
   [STAR_BOY] = {
     .atk = 550,
@@ -6319,6 +6843,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 8, 2, 0, 1, 9, 1, 0},
   },
   [SPIRIT_OF_THE_MOUNTAIN] = {
     .atk = 1300,
@@ -6331,6 +6856,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 20,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 6, 9, 0, 5, 1, 9},
   },
   [EARTHBOUND_SPIRIT] = {
     .atk = 500,
@@ -6343,6 +6869,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 7, 1, 0, 5, 2, 4, 2},
   },
   [MILUS_RADIANT] = {
     .atk = 300,
@@ -6355,6 +6882,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 4, 8, 9, 3, 2, 3},
     .description = gDescription_MilusRadiant,
   },
   [TOGEX] = {
@@ -6368,6 +6896,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 8, 7, 8, 9, 3, 1},
   },
   [FLAME_CEREBRUS] = {
     .atk = 2100,
@@ -6380,6 +6909,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 8, 6, 2, 6, 7, 6},
   },
   [EMBODIMENT_OF_APOPHIS] = {
     .atk = 1600,
@@ -6392,6 +6922,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 6, 4, 9, 8, 2, 0},
   },
   [MYSTICAL_SAND] = {
     .atk = 2100,
@@ -6404,6 +6935,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 7, 5, 1, 4, 8, 0},
   },
   [GEMINI_ELF] = {
     .atk = 1900,
@@ -6416,6 +6948,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 1, 4, 0, 0, 9, 8},
   },
   [KWAGAR_HERCULES] = {
     .atk = 1900,
@@ -6428,6 +6961,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 1, 4, 4, 1, 9, 3},
   },
   [MINAR] = {
     .atk = 850,
@@ -6440,6 +6974,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 5, 3, 9, 8, 9, 2},
   },
   [ANCIENT_LAMP] = {
     .atk = 900,
@@ -6452,6 +6987,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 82,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 9, 1, 2, 9, 7, 7},
   },
   [MECHALEON] = {
     .atk = 800,
@@ -6464,6 +7000,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 4, 1, 2, 5, 4, 5},
   },
   [MEGA_THUNDERBALL] = {
     .atk = 750,
@@ -6476,6 +7013,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 8, 1, 7, 2, 5, 4},
   },
   [NIWATORI] = {
     .atk = 900,
@@ -6488,6 +7026,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 8, 0, 5, 3, 5, 9},
   },
   [AMAZON_CHAIN_MASTER] = {
     .atk = 1500,
@@ -6500,6 +7039,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 6, 5, 4, 7, 3, 7},
   },
   [SKELENGEL] = {
     .atk = 900,
@@ -6512,6 +7052,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 5,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 6, 9, 4, 6, 6, 2},
   },
   [HANE_HANE] = {
     .atk = 450,
@@ -6524,6 +7065,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 7, 0, 8, 9, 7, 1, 1},
   },
   [MISAIRUZAME] = {
     .atk = 1400,
@@ -6536,6 +7078,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 1, 7, 8, 4, 1, 6},
   },
   [THUNDER_NYAN_NYAN] = {
     .atk = 1900,
@@ -6548,6 +7091,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 0, 7, 9, 7, 1, 1, 8},
   },
   [DHARMA_CANNON] = {
     .atk = 900,
@@ -6560,6 +7104,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 6, 9, 6, 7, 1, 2, 3},
   },
   [SKELGON] = {
     .atk = 1700,
@@ -6572,6 +7117,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 3, 5, 5, 8, 2, 8},
   },
   [WOW_WARRIOR] = {
     .atk = 1250,
@@ -6584,6 +7130,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 7, 5, 0, 5, 3, 6},
   },
   [GRIGGLE] = {
     .atk = 350,
@@ -6596,6 +7143,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 5, 7, 4, 4, 5, 3, 1},
   },
   [BONE_MOUSE] = {
     .atk = 400,
@@ -6608,6 +7156,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 2, 3, 9, 2, 8, 0},
   },
   [FROG_THE_JAM] = {
     .atk = 700,
@@ -6620,6 +7169,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 6, 3, 8, 9, 8, 5},
   },
   [LAST_TUSK_MAMMOTH] = {
     .atk = 800,
@@ -6632,6 +7182,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 3, 0, 6, 3, 7, 5, 8},
   },
   [DARK_ELF] = {
     .atk = 2000,
@@ -6644,6 +7195,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 4, 1, 7, 6, 9, 2},
   },
   [WINGED_DRAGON_GUARDIAN_OF_THE_FORTRESS_2] = {
     .atk = 1200,
@@ -6656,6 +7208,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 7, 4, 0, 5, 3, 0, 7},
   },
   [MUSHROOM_MAN_2] = {
     .atk = 1250,
@@ -6668,6 +7221,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 3, 9, 0, 0, 4, 0, 6},
   },
   [LAVA_BATTLEGUARD] = {
     .atk = 1550,
@@ -6680,6 +7234,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 3, 9, 4, 0, 4, 0},
   },
   [QUEENS_KNIGHT] = {
     .atk = 1500,
@@ -6692,6 +7247,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 6, 5, 2, 2, 5, 9},
   },
   [INJECTION_FAIRY_LILY] = {
     .atk = 400,
@@ -6704,6 +7260,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 102,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 9, 5, 7, 5, 6, 2, 0},
   },
   [JACKS_KNIGHT] = {
     .atk = 1900,
@@ -6716,6 +7273,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 8, 7, 6, 5, 6, 1},
   },
   [POT_THE_TRICK] = {
     .atk = 400,
@@ -6728,6 +7286,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 5, 6, 7, 1, 6, 1},
   },
   [OSCILLO_HERO] = {
     .atk = 1250,
@@ -6740,6 +7299,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 2, 0, 6, 5, 2, 7, 6},
   },
   [INVADER_FROM_ANOTHER_DIMENSION] = {
     .atk = 950,
@@ -6752,6 +7312,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 8, 4, 5, 0, 9, 1, 5},
   },
   [LESSER_DRAGON] = {
     .atk = 1200,
@@ -6764,6 +7325,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 4, 4, 4, 6, 2, 9},
   },
   [NEEDLE_WORM] = {
     .atk = 750,
@@ -6776,6 +7338,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 8, 4, 3, 6, 2, 8},
   },
   [KINGS_KNIGHT] = {
     .atk = 1600,
@@ -6788,6 +7351,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 88,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 7, 8, 8, 4, 6, 3},
   },
   [GREAT_MAMMOTH_OF_GOLDFINE] = {
     .atk = 2200,
@@ -6800,6 +7364,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 6, 2, 2, 0, 3, 1},
   },
   [GIL_GARTH] = {
     .atk = 1800,
@@ -6812,6 +7377,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 4, 4, 5, 5, 2, 4},
   },
   [YORMUNGARDE] = {
     .atk = 1200,
@@ -6824,6 +7390,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 1, 1, 5, 7, 4, 5},
   },
   [DARKWORLD_THORNS] = {
     .atk = 1200,
@@ -6836,6 +7403,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 3, 5, 0, 0, 4, 8, 4},
   },
   [BLADE_KNIGHT] = {
     .atk = 1600,
@@ -6848,6 +7416,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 5, 0, 7, 1, 6, 2},
   },
   [GERNIA] = {
     .atk = 1300,
@@ -6860,6 +7429,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 9, 3, 6, 9, 4, 0},
   },
   [TRAKADON] = {
     .atk = 1300,
@@ -6872,6 +7442,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 3, 4, 8, 8, 0, 2},
   },
   [B_DRAGON_JUNGLE_KING] = {
     .atk = 2100,
@@ -6884,6 +7455,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 9, 8, 3, 2, 9, 0, 1},
   },
   [EMPRESS_JUDGE] = {
     .atk = 2100,
@@ -6896,6 +7468,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 2, 3, 7, 6, 1, 5},
   },
   [LITTLE_D] = {
     .atk = 1100,
@@ -6908,6 +7481,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 6, 2, 5, 2, 5, 4},
   },
   [WITCH_OF_THE_BLACK_FOREST] = {
     .atk = 1100,
@@ -6920,6 +7494,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 0, 1, 0, 3, 6, 3},
   },
   [Y_DRAGON_HEAD] = {
     .atk = 1500,
@@ -6932,6 +7507,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 90,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 5, 6, 2, 2, 6, 9, 2},
   },
   [GIANT_SCORPION_OF_THE_TUNDRA] = {
     .atk = 1100,
@@ -6944,6 +7520,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 4, 0, 3, 7, 6, 6},
   },
   [CROW_GOBLIN] = {
     .atk = 1850,
@@ -6956,6 +7533,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 9, 9, 8, 7, 7, 1},
   },
   [DARK_MAGICIAN_KNIGHT] = {
     .atk = 2500,
@@ -6968,6 +7546,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 7, 2, 5, 9, 9, 6},
   },
   [ABYSS_FLOWER] = {
     .atk = 750,
@@ -6980,6 +7559,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 3, 8, 7, 1, 2, 4},
   },
   [PATROL_ROBO] = {
     .atk = 1100,
@@ -6992,6 +7572,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 7, 7, 5, 1, 2, 3},
   },
   [TAKUHEE] = {
     .atk = 1450,
@@ -7004,6 +7585,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 1, 7, 0, 8, 3, 2},
   },
   [DARK_WITCH] = {
     .atk = 1800,
@@ -7016,6 +7598,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 5, 5, 6, 5, 5, 3, 7},
   },
   [DESTINY_BOARD] = {
     .atk = 65535,
@@ -7028,6 +7611,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 127,
     .trapEffect = 15,
+    .password = {9, 4, 2, 1, 2, 4, 3, 8},
   },
   [SPIRIT_MESSAGE_I] = {
     .atk = 65535,
@@ -7040,6 +7624,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 128,
     .trapEffect = 16,
+    .password = {3, 1, 8, 9, 3, 5, 2, 8},
   },
   [SPIRIT_MESSAGE_N] = {
     .atk = 65535,
@@ -7052,6 +7637,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 129,
     .trapEffect = 17,
+    .password = {6, 7, 2, 8, 7, 5, 3, 3},
   },
   [SPIRIT_MESSAGE_A] = {
     .atk = 65535,
@@ -7064,6 +7650,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 130,
     .trapEffect = 18,
+    .password = {9, 4, 7, 7, 2, 2, 3, 2},
   },
   [SPIRIT_MESSAGE_L] = {
     .atk = 65535,
@@ -7076,6 +7663,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 131,
     .trapEffect = 19,
+    .password = {3, 0, 1, 7, 0, 9, 8, 1},
   },
   [LIVING_VASE] = {
     .atk = 900,
@@ -7088,6 +7676,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 4, 3, 2, 0, 3, 0, 7},
   },
   [TENTACLE_PLANT] = {
     .atk = 500,
@@ -7100,6 +7689,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 0, 7, 1, 5, 4, 0, 6},
   },
   [Z_METAL_TANK] = {
     .atk = 1500,
@@ -7112,6 +7702,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 91,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 5, 0, 0, 0, 0, 0},
   },
   [MORPHING_JAR] = {
     .atk = 700,
@@ -7124,6 +7715,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 3, 5, 0, 8, 7, 1, 9},
   },
   [MUSE_A] = {
     .atk = 850,
@@ -7136,6 +7728,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 9, 9, 9, 2, 8, 6, 8},
   },
   [XY_DRAGON_CANNON] = {
     .atk = 2200,
@@ -7148,6 +7741,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 92,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 1, 1, 1, 7, 0, 7},
   },
   [ROSE_SPECTRE_OF_DUNN] = {
     .atk = 2000,
@@ -7160,6 +7754,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 4, 8, 5, 2, 7, 1},
   },
   [FIEND_REFLECTION_1] = {
     .atk = 1300,
@@ -7172,6 +7767,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 8, 7, 0, 2, 7, 6},
   },
   [XZ_TANK_CANNON] = {
     .atk = 2400,
@@ -7184,6 +7780,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 93,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 7, 2, 4, 7, 6, 1},
   },
   [YZ_TANK_DRAGON] = {
     .atk = 2100,
@@ -7196,6 +7793,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 94,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 1, 1, 9, 4, 6, 0},
   },
   [LITTLE_CHIMERA] = {
     .atk = 600,
@@ -7208,6 +7806,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 6, 5, 8, 7, 2, 8},
   },
   [VIOLENT_RAIN] = {
     .atk = 1550,
@@ -7220,6 +7819,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 0, 4, 2, 3, 3, 7},
   },
   [EXODIA_NECROSS] = {
     .atk = 1800,
@@ -7232,6 +7832,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 6, 0, 0, 3, 8, 2},
   },
   [MONSTER_REBORN] = {
     .atk = 65535,
@@ -7244,6 +7845,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 116,
     .trapEffect = 0,
+    .password = {8, 3, 7, 6, 4, 7, 1, 8},
   },
   [PENGUIN_SOLDIER] = {
     .atk = 750,
@@ -7256,6 +7858,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 3, 9, 2, 0, 7, 4, 5},
   },
   [FAIRY_DRAGON] = {
     .atk = 1100,
@@ -7268,6 +7871,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 0, 3, 1, 5, 8, 5, 4},
   },
   [HELPOEMER] = {
     .atk = 2000,
@@ -7280,6 +7884,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 0, 5, 2, 8, 1, 1},
   },
   [LAVA_GOLEM] = {
     .atk = 3000,
@@ -7292,6 +7897,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 0, 1, 0, 2, 3, 8, 0},
     .description = gDescription_LavaGolem,
   },
   [NEWDORIA] = {
@@ -7305,6 +7911,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 3, 3, 5, 6, 4, 5},
   },
   [DARK_JEROID] = {
     .atk = 1200,
@@ -7317,6 +7924,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 9, 8, 0, 7, 9, 2},
   },
   [SHINING_FRIENDSHIP] = {
     .atk = 1300,
@@ -7329,6 +7937,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 2, 0, 8, 5, 6, 1, 9},
   },
   [GRAVEDIGGER_GHOUL] = {
     .atk = 65535,
@@ -7341,6 +7950,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 121,
     .trapEffect = 0,
+    .password = {8, 2, 5, 4, 2, 2, 6, 7},
   },
   [ELECTRIC_LIZARD] = {
     .atk = 850,
@@ -7353,6 +7963,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 25,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 8, 7, 5, 3, 2, 3},
   },
   [HIROS_SHADOW_SCOUT] = {
     .atk = 650,
@@ -7365,6 +7976,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 8, 6, 3, 0, 6, 8},
   },
   [LADY_OF_FAITH] = {
     .atk = 1100,
@@ -7377,6 +7989,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 31,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 3, 5, 8, 1, 7, 6},
   },
   [TWIN_HEADED_THUNDER_DRAGON] = {
     .atk = 2800,
@@ -7389,6 +8002,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 7, 5, 2, 8, 7, 5},
   },
   [HUNTER_SPIDER] = {
     .atk = 1600,
@@ -7401,6 +8015,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 1, 4, 1, 4, 8, 0},
   },
   [ARMORED_STARFISH] = {
     .atk = 850,
@@ -7413,6 +8028,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 5, 3, 5, 5, 8, 8},
   },
   [EXECUTOR_MAKYURA] = {
     .atk = 1600,
@@ -7425,6 +8041,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 1, 5, 9, 3, 9, 7, 7},
   },
   [MARINE_BEAST] = {
     .atk = 1700,
@@ -7437,6 +8054,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 9, 2, 9, 8, 3, 2},
   },
   [WARRIOR_OF_TRADITION] = {
     .atk = 1900,
@@ -7449,6 +8067,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 6, 4, 1, 3, 9, 3, 7},
   },
   [BYSER_SHOCK] = {
     .atk = 800,
@@ -7461,6 +8080,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 87,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 5, 9, 7, 0, 5, 9},
   },
   [SNAKEYASHI] = {
     .atk = 1000,
@@ -7473,6 +8093,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 9, 8, 0, 2, 3, 4, 4},
   },
   [SUCCUBUS_KNIGHT] = {
     .atk = 1650,
@@ -7485,6 +8106,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 2, 9, 1, 3, 5, 9},
   },
   [ILL_WITCH] = {
     .atk = 1600,
@@ -7497,6 +8119,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 6, 8, 6, 0, 5, 8},
   },
   [VISER_DES] = {
     .atk = 500,
@@ -7509,6 +8132,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 6, 0, 4, 3, 4, 4, 6},
   },
   [HIGH_TIDE_GYOJIN] = {
     .atk = 1650,
@@ -7521,6 +8145,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 4, 5, 7, 9, 8, 0, 1},
   },
   [FAIRY_OF_THE_FOUNTAIN] = {
     .atk = 1600,
@@ -7533,6 +8158,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 5, 6, 3, 4, 1, 6},
   },
   [AMAZON_OF_THE_SEAS] = {
     .atk = 1300,
@@ -7545,6 +8171,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 9, 6, 8, 1, 1, 4},
   },
   [NEKOGAL_2] = {
     .atk = 1900,
@@ -7557,6 +8184,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 3, 3, 5, 2, 2, 1, 3},
   },
   [WITCHS_APPRENTICE] = {
     .atk = 550,
@@ -7569,6 +8197,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 7, 4, 1, 8, 2, 8},
   },
   [PUPPET_MASTER] = {
     .atk = 0,
@@ -7581,6 +8210,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 96,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 1, 4, 4, 2, 3, 4, 1},
   },
   [AMAZON_FIGHTER] = {
     .atk = 1500,
@@ -7593,6 +8223,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 5, 8, 2, 1, 8, 9, 4},
   },
   [MAIDEN_OF_THE_MOONLIGHT] = {
     .atk = 1500,
@@ -7605,6 +8236,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 9, 6, 2, 9, 3, 7, 0},
   },
   [STONE_OGRE_GROTTO] = {
     .atk = 1600,
@@ -7617,6 +8249,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 5, 0, 2, 3, 9, 8, 5},
   },
   [AMAZON_SWORD_WOMAN] = {
     .atk = 1500,
@@ -7629,6 +8262,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 4, 0, 0, 4, 2, 6, 8},
   },
   [VAMPIRE_LORD] = {
     .atk = 2000,
@@ -7641,6 +8275,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 8, 3, 9, 8, 3, 7},
   },
   [QUEENS_DOUBLE] = {
     .atk = 350,
@@ -7653,6 +8288,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 9, 0, 1, 4, 9, 7},
   },
   [DARK_PALADIN] = {
     .atk = 2900,
@@ -7665,6 +8301,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 85,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 8, 5, 0, 2, 1, 1, 3},
     .description = gDescription_DarkPaladin,
   },
   [TRENT] = {
@@ -7678,6 +8315,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 39,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 7, 8, 0, 1, 4, 0},
   },
   [QUEEN_OF_AUTUMN_LEAVES] = {
     .atk = 1800,
@@ -7690,6 +8328,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 1, 7, 9, 8, 4, 9},
   },
   [AMPHIBIOUS_BUGROTH] = {
     .atk = 1850,
@@ -7702,6 +8341,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 0, 1, 7, 3, 8, 5, 4},
   },
   [DIFFERENT_DIMENSION_DRAGON] = {
     .atk = 1200,
@@ -7714,6 +8354,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 9, 3, 9, 1, 2, 7},
   },
   [AMAZON_ARCHERS] = {
     .atk = 65535,
@@ -7726,6 +8367,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 126,
     .trapEffect = 14,
+    .password = {6, 7, 9, 8, 7, 6, 1, 1},
   },
   [MYSTICAL_SHEEP_1] = {
     .atk = 1150,
@@ -7738,6 +8380,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 4, 5, 1, 3, 6, 6},
   },
   [YAMATA_DRAGON] = {
     .atk = 2600,
@@ -7750,6 +8393,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 8, 6, 2, 2, 8, 9},
   },
   [SHINATO_KING_OF_A_HIGHER_PLANE] = {
     .atk = 3300,
@@ -7762,6 +8406,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 3, 2, 7, 2, 2, 5},
   },
   [DARK_FLARE_KNIGHT] = {
     .atk = 2200,
@@ -7774,6 +8419,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 7, 2, 2, 8, 7, 0},
   },
   [MIRAGE_KNIGHT] = {
     .atk = 2800,
@@ -7786,6 +8432,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 2, 1, 7, 5, 7, 9},
   },
   [BERSERK_DRAGON] = {
     .atk = 3500,
@@ -7798,6 +8445,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 99,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 5, 6, 0, 5, 6, 8, 4},
   },
   [MACHINE_ATTACKER] = {
     .atk = 1600,
@@ -7810,6 +8458,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 1, 1, 6, 1, 3, 6},
   },
   [COMMAND_ANGEL] = {
     .atk = 1200,
@@ -7822,6 +8471,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 5, 5, 8, 3, 5, 7},
   },
   [WHIPTAIL_CROW] = {
     .atk = 1650,
@@ -7834,6 +8484,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 9, 9, 6, 5, 8, 4},
   },
   [KUNAI_WITH_CHAIN] = {
     .atk = 65535,
@@ -7846,6 +8497,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 79,
     .trapEffect = 0,
+    .password = {3, 7, 3, 9, 0, 5, 8, 9},
   },
   [MAGICAL_LABYRINTH] = {
     .atk = 65535,
@@ -7858,6 +8510,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 77,
     .trapEffect = 0,
+    .password = {6, 4, 3, 8, 9, 2, 9, 7},
   },
   [WARRIOR_ELIMINATION] = {
     .atk = 65535,
@@ -7870,6 +8523,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 95,
     .trapEffect = 0,
+    .password = {9, 0, 8, 7, 3, 9, 9, 2},
   },
   [SALAMANDRA] = {
     .atk = 65535,
@@ -7882,6 +8536,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 78,
     .trapEffect = 0,
+    .password = {3, 2, 2, 6, 8, 9, 0, 1},
   },
   [CURSEBREAKER] = {
     .atk = 65535,
@@ -7894,6 +8549,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 96,
     .trapEffect = 0,
+    .password = {6, 9, 6, 6, 6, 6, 4, 5},
   },
   [ETERNAL_REST] = {
     .atk = 65535,
@@ -7906,6 +8562,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 97,
     .trapEffect = 0,
+    .password = {9, 5, 0, 5, 1, 3, 4, 4},
   },
   [MEGAMORPH] = {
     .atk = 65535,
@@ -7918,6 +8575,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 98,
     .trapEffect = 0,
+    .password = {2, 2, 0, 4, 6, 4, 5, 9},
   },
   [METALMORPH] = {
     .atk = 65535,
@@ -7930,6 +8588,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 99,
     .trapEffect = 0,
+    .password = {6, 8, 5, 4, 0, 0, 5, 8},
   },
   [WINGED_TRUMPETER] = {
     .atk = 65535,
@@ -7942,6 +8601,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 100,
     .trapEffect = 0,
+    .password = {9, 4, 9, 3, 9, 1, 6, 6},
   },
   [STAIN_STORM] = {
     .atk = 65535,
@@ -7954,6 +8614,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 101,
     .trapEffect = 0,
+    .password = {2, 1, 3, 2, 3, 8, 6, 1},
   },
   [CRUSH_CARD] = {
     .atk = 65535,
@@ -7966,6 +8627,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 81,
     .trapEffect = 0,
+    .password = {5, 7, 7, 2, 8, 5, 7, 0},
   },
   [ERADICATING_AEROSOL] = {
     .atk = 65535,
@@ -7978,6 +8640,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 102,
     .trapEffect = 0,
+    .password = {9, 4, 7, 1, 6, 5, 1, 5},
   },
   [BREATH_OF_LIGHT] = {
     .atk = 65535,
@@ -7990,6 +8653,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 103,
     .trapEffect = 0,
+    .password = {2, 0, 1, 0, 1, 2, 2, 3},
   },
   [ETERNAL_DROUGHT] = {
     .atk = 65535,
@@ -8002,6 +8666,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 104,
     .trapEffect = 0,
+    .password = {5, 6, 6, 0, 6, 9, 2, 8},
   },
   [DES_VOLSTGALPH] = {
     .atk = 2200,
@@ -8014,6 +8679,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 83,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 0, 5, 9, 5, 2, 4},
   },
   [TOON_DARK_MAGICIAN_GIRL] = {
     .atk = 2000,
@@ -8026,6 +8692,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 9, 6, 0, 3, 5, 8},
   },
   [GILFORD_THE_LIGHTNING] = {
     .atk = 2800,
@@ -8038,6 +8705,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 69,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 6, 3, 5, 4, 0, 0, 7},
   },
   [BRIGHT_CASTLE] = {
     .atk = 65535,
@@ -8050,6 +8718,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 80,
     .trapEffect = 0,
+    .password = {8, 2, 8, 7, 8, 4, 8, 9},
   },
   [SHADOW_SPELL] = {
     .atk = 65535,
@@ -8062,6 +8731,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 82,
     .trapEffect = 0,
+    .password = {2, 9, 2, 6, 7, 0, 8, 4},
   },
   [BLACK_LUSTER_RITUAL] = {
     .atk = 65535,
@@ -8074,6 +8744,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 65,
     .trapEffect = 0,
+    .password = {5, 5, 7, 6, 1, 7, 9, 2},
   },
   [MYSTICAL_BEAST_SERKET] = {
     .atk = 2500,
@@ -8086,6 +8757,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 70,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 9, 1, 9, 4, 0, 3, 3},
   },
   [HARPIES_FEATHER_DUSTER] = {
     .atk = 65535,
@@ -8098,6 +8770,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 76,
     .trapEffect = 0,
+    .password = {1, 8, 1, 4, 4, 5, 0, 6},
   },
   [CYBER_HARPIE] = {
     .atk = 1800,
@@ -8110,6 +8783,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 0, 3, 1, 6, 5, 8, 5},
   },
   [LIGHTNING_CONGER] = {
     .atk = 350,
@@ -8122,6 +8796,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 7, 6, 7, 1, 3, 2, 1},
   },
   [EXARION_UNIVERSE] = {
     .atk = 1800,
@@ -8134,6 +8809,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 84,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 3, 7, 4, 9, 1, 0, 2},
   },
   [LEGENDARY_FIEND] = {
     .atk = 1500,
@@ -8146,6 +8822,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 81,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 7, 4, 7, 8, 0, 0},
   },
   [GADGET_SOLDIER] = {
     .atk = 1800,
@@ -8158,6 +8835,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 2, 8, 1, 7, 7, 9},
   },
   [MELCHID_THE_FOUR_FACE_BEAST] = {
     .atk = 1500,
@@ -8170,6 +8848,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 5, 6, 9, 1, 2, 1},
   },
   [NUVIA_THE_WICKED] = {
     .atk = 2000,
@@ -8182,6 +8861,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 9, 5, 3, 2, 2, 6},
   },
   [MASKED_BEAST_DES_GARDIUS] = {
     .atk = 3300,
@@ -8194,6 +8874,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 9, 4, 8, 9, 3, 5},
   },
   [HOUSE_OF_ADHESIVE_TAPE] = {
     .atk = 65535,
@@ -8206,6 +8887,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 56,
     .trapEffect = 2,
+    .password = {1, 5, 0, 8, 3, 7, 2, 8},
   },
   [EATGABOON] = {
     .atk = 65535,
@@ -8218,6 +8900,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 57,
     .trapEffect = 3,
+    .password = {4, 2, 5, 7, 8, 4, 2, 7},
   },
   [BEAR_TRAP] = {
     .atk = 65535,
@@ -8230,6 +8913,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 58,
     .trapEffect = 4,
+    .password = {7, 8, 9, 7, 7, 5, 3, 2},
   },
   [INVISIBLE_WIRE] = {
     .atk = 65535,
@@ -8242,6 +8926,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 59,
     .trapEffect = 5,
+    .password = {1, 5, 3, 6, 1, 1, 3, 0},
   },
   [ACID_TRAP_HOLE] = {
     .atk = 65535,
@@ -8254,6 +8939,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 60,
     .trapEffect = 6,
+    .password = {4, 1, 3, 5, 6, 8, 4, 5},
   },
   [WIDESPREAD_RUIN] = {
     .atk = 65535,
@@ -8266,6 +8952,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 55,
     .trapEffect = 1,
+    .password = {7, 7, 7, 5, 4, 9, 4, 4},
   },
   [GOBLIN_FAN] = {
     .atk = 65535,
@@ -8278,6 +8965,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 61,
     .trapEffect = 7,
+    .password = {0, 4, 1, 4, 9, 6, 8, 9},
   },
   [BAD_REACTION_TO_SIMOCHI] = {
     .atk = 65535,
@@ -8290,6 +8978,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 62,
     .trapEffect = 8,
+    .password = {4, 0, 6, 3, 3, 2, 9, 7},
   },
   [REVERSE_TRAP] = {
     .atk = 65535,
@@ -8302,6 +8991,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 63,
     .trapEffect = 9,
+    .password = {7, 7, 6, 2, 2, 3, 9, 6},
   },
   [FAKE_TRAP] = {
     .atk = 65535,
@@ -8314,6 +9004,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 64,
     .trapEffect = 10,
+    .password = {0, 3, 0, 2, 7, 0, 0, 1},
   },
   [VALKYRION_THE_MAGNA_WARRIOR] = {
     .atk = 3500,
@@ -8326,6 +9017,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 64,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 3, 4, 7, 5, 3, 9},
   },
   [TORRENTIAL_TRIBUTE] = {
     .atk = 65535,
@@ -8338,6 +9030,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 120,
     .trapEffect = 13,
+    .password = {5, 3, 5, 8, 2, 5, 8, 7},
   },
   [BECKON_TO_DARKNESS] = {
     .atk = 65535,
@@ -8350,6 +9043,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 119,
     .trapEffect = 0,
+    .password = {0, 8, 0, 6, 5, 5, 3, 0},
   },
   [INFINITE_DISMISSAL] = {
     .atk = 65535,
@@ -8362,6 +9056,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 117,
     .trapEffect = 12,
+    .password = {5, 4, 1, 0, 9, 2, 3, 3},
   },
   [SEVEN_COMPLETED] = {
     .atk = 65535,
@@ -8374,6 +9069,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 118,
     .trapEffect = 0,
+    .password = {8, 6, 1, 9, 8, 3, 2, 6},
   },
   [DARK_SAGE] = {
     .atk = 2800,
@@ -8386,6 +9082,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 2, 3, 7, 7, 3, 0, 3},
   },
   [F_G_D] = {
     .atk = 5000,
@@ -8398,6 +9095,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 100,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 2, 6, 7, 1, 5, 0},
   },
   [MASTER_OF_DRAGON_SOLDIER] = {
     .atk = 5000,
@@ -8410,6 +9108,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 8, 7, 3, 5, 4, 5},
   },
   [MESSENGER_OF_PEACE] = {
     .atk = 65535,
@@ -8422,6 +9121,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 124,
     .trapEffect = 0,
+    .password = {4, 4, 6, 5, 6, 4, 9, 1},
   },
   [DARKNESS_APPROACHES] = {
     .atk = 65535,
@@ -8434,6 +9134,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 125,
     .trapEffect = 0,
+    .password = {8, 0, 1, 6, 8, 7, 2, 0},
   },
   [PERFORMANCE_OF_SWORD] = {
     .atk = 1950,
@@ -8446,6 +9147,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 8, 4, 9, 0, 3, 7},
   },
   [HUNGRY_BURGER] = {
     .atk = 2000,
@@ -8458,6 +9160,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 2, 4, 3, 6, 3, 6},
   },
   [SENGENJIN] = {
     .atk = 2750,
@@ -8470,6 +9173,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 6, 2, 3, 2, 3, 4, 0},
   },
   [SKULL_GUARDIAN] = {
     .atk = 2050,
@@ -8482,6 +9186,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 6, 2, 7, 4, 4, 9},
   },
   [TRI_HORNED_DRAGON] = {
     .atk = 2850,
@@ -8494,6 +9199,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 1, 1, 1, 1, 5, 8},
   },
   [SERPENT_NIGHT_DRAGON] = {
     .atk = 2350,
@@ -8506,6 +9212,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 5, 1, 6, 7, 9, 2},
   },
   [SKULL_KNIGHT] = {
     .atk = 2650,
@@ -8518,6 +9225,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 5, 0, 4, 8, 9, 1},
   },
   [COSMO_QUEEN] = {
     .atk = 2900,
@@ -8530,6 +9238,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 9, 9, 9, 5, 0, 6},
   },
   [CHAKRA] = {
     .atk = 2450,
@@ -8542,6 +9251,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 5, 3, 9, 3, 2, 0, 5},
   },
   [CRAB_TURTLE] = {
     .atk = 2550,
@@ -8554,6 +9264,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 7, 8, 2, 2, 1, 9},
   },
   [MIKAZUKINOYAIBA] = {
     .atk = 2200,
@@ -8566,6 +9277,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 2, 7, 7, 9, 1, 8},
   },
   [METEOR_DRAGON] = {
     .atk = 1800,
@@ -8578,6 +9290,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 2, 7, 1, 6, 6, 7},
   },
   [METEOR_B_DRAGON] = {
     .atk = 3500,
@@ -8590,6 +9303,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 6, 6, 0, 7, 6, 2},
   },
   [FIREWING_PEGASUS] = {
     .atk = 2250,
@@ -8602,6 +9316,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 7, 0, 5, 4, 3, 7, 0},
   },
   [PSYCHO_PUPPET] = {
     .atk = 2000,
@@ -8614,6 +9329,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 3, 4, 5, 9, 0, 7, 5},
   },
   [GARMA_SWORD] = {
     .atk = 2550,
@@ -8626,6 +9342,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 8, 4, 4, 1, 8, 4},
   },
   [JAVELIN_BEETLE] = {
     .atk = 2450,
@@ -8638,6 +9355,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 6, 9, 3, 2, 7, 8, 8},
   },
   [FORTRESS_WHALE] = {
     .atk = 2350,
@@ -8650,6 +9368,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 3, 3, 7, 4, 8, 7},
   },
   [DOKURORIDER] = {
     .atk = 1900,
@@ -8662,6 +9381,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 7, 2, 1, 5, 3, 6},
   },
   [MASK_OF_SHINE_DARK] = {
     .atk = 2000,
@@ -8674,6 +9394,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 1, 1, 0, 2, 3, 1},
   },
   [MAGICIAN_OF_BLACK_CHAOS] = {
     .atk = 2800,
@@ -8686,6 +9407,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 2, 0, 8, 4, 7, 9},
   },
   [DARK_MAGIC_RITUAL] = {
     .atk = 65535,
@@ -8698,6 +9420,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 106,
     .trapEffect = 0,
+    .password = {7, 6, 7, 9, 2, 1, 8, 4},
   },
   [SLOT_MACHINE] = {
     .atk = 2000,
@@ -8710,6 +9433,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 7, 9, 7, 8, 8, 3},
   },
   [SPACE_MEGATRON] = {
     .atk = 1400,
@@ -8722,6 +9446,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 1, 8, 1, 8, 9, 7},
   },
   [RED_ARCHERY_GIRL] = {
     .atk = 1400,
@@ -8734,6 +9459,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 30,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 5, 5, 7, 0, 5, 9, 6},
   },
   [RYU_RAN] = {
     .atk = 2200,
@@ -8746,6 +9472,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 9, 6, 4, 2, 0, 1},
   },
   [MANGA_RYU_RAN] = {
     .atk = 2200,
@@ -8758,6 +9485,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 3, 6, 9, 3, 4, 9},
   },
   [TOON_MERMAID] = {
     .atk = 1400,
@@ -8770,6 +9498,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 5, 4, 5, 8, 9, 4, 8},
   },
   [TOON_SUMMONED_SKULL] = {
     .atk = 2500,
@@ -8782,6 +9511,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 8, 4, 2, 6, 5, 3},
   },
   [DARK_EYES_ILLUSIONIST] = {
     .atk = 0,
@@ -8794,6 +9524,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 2, 4, 7, 7, 5, 2},
   },
   [RELINQUISHED] = {
     .atk = 0,
@@ -8806,6 +9537,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 3,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 6, 3, 1, 4, 6, 6},
   },
   [JIGEN_BAKUDAN] = {
     .atk = 200,
@@ -8818,6 +9550,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 0, 2, 0, 0, 6, 5},
   },
   [THOUSAND_EYES_IDOL] = {
     .atk = 0,
@@ -8830,6 +9563,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 7, 1, 2, 5, 1, 1, 0},
   },
   [THOUSAND_EYES_RESTRICT] = {
     .atk = 0,
@@ -8842,6 +9576,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 4,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 3, 5, 1, 9, 8, 1, 9},
   },
   [STEEL_OGRE_GROTTO_2] = {
     .atk = 1900,
@@ -8854,6 +9589,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 9, 0, 8, 4, 2, 7},
   },
   [BLAST_SPHERE] = {
     .atk = 1400,
@@ -8866,6 +9602,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 6, 3, 0, 2, 5, 2, 2},
   },
   [HYOZANRYU] = {
     .atk = 2100,
@@ -8878,6 +9615,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 2, 3, 9, 7, 2, 3, 1},
   },
   [ALPHA_THE_MAGNET_WARRIOR] = {
     .atk = 1400,
@@ -8890,6 +9628,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 61,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 9, 7, 8, 5, 9, 3, 5},
   },
   [LEGION_THE_FIEND_JESTER] = {
     .atk = 1300,
@@ -8902,6 +9641,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 5, 2, 8, 0, 9, 7, 4},
   },
   [INVITATION_TO_A_DARK_SLEEP] = {
     .atk = 1500,
@@ -8914,6 +9654,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 47,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 2, 6, 7, 5, 6, 8, 9},
   },
   [LORD_OF_D] = {
     .atk = 1200,
@@ -8926,6 +9667,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 7, 9, 8, 5, 5, 7, 5},
   },
   [RED_EYES_BLACK_METAL_DRAGON] = {
     .atk = 2800,
@@ -8938,6 +9680,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 3, 3, 5, 8, 0, 4},
   },
   [BARREL_DRAGON] = {
     .atk = 2600,
@@ -8950,6 +9693,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 73,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 1, 4, 8, 0, 4, 6, 0},
   },
   [HANNIBAL_NECROMANCER] = {
     .atk = 1400,
@@ -8962,6 +9706,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 6, 4, 0, 3, 3, 0},
   },
   [PANTHER_WARRIOR] = {
     .atk = 2000,
@@ -8974,6 +9719,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 2, 0, 3, 5, 0, 4, 4},
   },
   [THREE_HEADED_GEEDO] = {
     .atk = 1200,
@@ -8986,6 +9732,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 8, 4, 2, 3, 6, 4, 3},
   },
   [GAZELLE_THE_KING_OF_MYTHICAL_BEASTS] = {
     .atk = 1500,
@@ -8998,6 +9745,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 5, 8, 1, 8, 7, 9, 8},
   },
   [STONE_STATUE_OF_THE_AZTECS] = {
     .atk = 300,
@@ -9010,6 +9758,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 1, 8, 1, 2, 4, 9, 6},
     .description = gDescription_StoneStatueOfTheAztecs,
   },
   [BERFOMET] = {
@@ -9023,6 +9772,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 2, 0, 7, 1, 9, 1},
   },
   [CHIMERA_THE_FLYING_MYTHICAL_BEAST] = {
     .atk = 2100,
@@ -9035,6 +9785,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 4, 7, 9, 6, 1, 0, 0},
   },
   [GEAR_GOLEM_THE_MOVING_FORTRESS] = {
     .atk = 800,
@@ -9047,6 +9798,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 0, 1, 9, 0, 8, 0, 9},
   },
   [JINZO] = {
     .atk = 2400,
@@ -9059,6 +9811,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 7, 5, 8, 5, 5, 1, 3},
   },
   [SWORDSMAN_OF_LANDSTAR] = {
     .atk = 500,
@@ -9071,6 +9824,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 3, 5, 7, 3, 5, 1, 2},
   },
   [CYBER_RAIDER] = {
     .atk = 1400,
@@ -9083,6 +9837,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 9, 7, 8, 2, 6, 7},
   },
   [THE_FIEND_MEGACYBER] = {
     .atk = 2200,
@@ -9095,6 +9850,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 6, 3, 6, 2, 9, 6, 5},
   },
   [REFLECT_BOUNDER] = {
     .atk = 1700,
@@ -9107,6 +9863,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 74,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {0, 2, 8, 5, 1, 0, 7, 0},
   },
   [BETA_THE_MAGNET_WARRIOR] = {
     .atk = 1700,
@@ -9119,6 +9876,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 62,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 9, 2, 5, 6, 6, 7, 9},
   },
   [BIG_SHIELD_GARDNA] = {
     .atk = 100,
@@ -9131,6 +9889,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 5, 2, 4, 0, 3, 8, 4},
   },
   [DOLL_OF_DEMISE] = {
     .atk = 1600,
@@ -9143,6 +9902,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 6, 3, 5, 4, 8, 2},
   },
   [DARK_MAGICIAN_GIRL] = {
     .atk = 2000,
@@ -9155,6 +9915,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 8, 0, 3, 3, 1, 2, 1},
   },
   [ALLIGATORS_SWORD] = {
     .atk = 1500,
@@ -9167,6 +9928,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 4, 2, 8, 7, 3, 6},
   },
   [INSECT_QUEEN] = {
     .atk = 2200,
@@ -9179,6 +9941,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 1, 5, 1, 2, 8, 3, 5},
   },
   [PARASITE_PARACIDE] = {
     .atk = 500,
@@ -9191,6 +9954,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 75,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 7, 9, 1, 1, 5, 4, 9},
   },
   [SKULL_MARK_LADY_BUG] = {
     .atk = 500,
@@ -9203,6 +9967,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 76,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 4, 3, 0, 6, 2, 4, 8},
   },
   [TINY_GUARDIAN] = {
     .atk = 1400,
@@ -9215,6 +9980,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {9, 0, 7, 9, 0, 2, 5, 3},
   },
   [PINCH_HOPPER] = {
     .atk = 1000,
@@ -9227,6 +9993,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 77,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 6, 1, 8, 5, 9, 9, 1},
   },
   [BLUE_EYES_TOON_DRAGON] = {
     .atk = 3000,
@@ -9239,6 +10006,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 3, 1, 8, 3, 6, 0, 0},
   },
   [THE_UNHAPPY_MAIDEN] = {
     .atk = 0,
@@ -9251,6 +10019,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 1, 2, 7, 5, 0, 2, 7},
   },
   [WALL_OF_ILLUSION] = {
     .atk = 1000,
@@ -9263,6 +10032,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 9, 4, 5, 2, 8, 3},
   },
   [NEO_THE_MAGIC_SWORDSMAN] = {
     .atk = 1700,
@@ -9275,6 +10045,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 9, 3, 0, 9, 9, 1},
   },
   [MAN_EATING_TREASURE_CHEST] = {
     .atk = 1600,
@@ -9287,6 +10058,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 7, 2, 3, 6, 0, 5},
   },
   [CHIRON_THE_MAGE] = {
     .atk = 1800,
@@ -9299,6 +10071,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 101,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 6, 9, 5, 6, 4, 5, 5},
   },
   [SWORD_HUNTER] = {
     .atk = 2450,
@@ -9311,6 +10084,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 1, 3, 4, 5, 4, 6, 1},
   },
   [DRILL_BUG] = {
     .atk = 1100,
@@ -9323,6 +10097,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 8, 7, 3, 3, 5, 7, 9},
   },
   [DEEPSEA_WARRIOR] = {
     .atk = 1600,
@@ -9335,6 +10110,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {2, 4, 1, 2, 8, 2, 7, 4},
   },
   [BITE_SHOES] = {
     .atk = 500,
@@ -9347,6 +10123,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 1, 2, 2, 8, 8, 3},
   },
   [SPIKEBOT] = {
     .atk = 1800,
@@ -9359,6 +10136,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 7, 5, 1, 1, 9, 8, 7},
   },
   [BEAST_OF_GILFER] = {
     .atk = 2200,
@@ -9371,6 +10149,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 65,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {5, 0, 2, 8, 7, 0, 6, 0},
   },
   [THE_PORTRAITS_SECRET] = {
     .atk = 1200,
@@ -9383,6 +10162,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {3, 2, 5, 4, 1, 7, 7, 3},
   },
   [THE_GROSS_GHOST_OF_FLED_DREAMS] = {
     .atk = 1300,
@@ -9395,6 +10175,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {6, 8, 0, 4, 9, 4, 7, 1},
   },
   [BRAIN_CONTROL] = {
     .atk = 65535,
@@ -9407,6 +10188,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 115,
     .trapEffect = 0,
+    .password = {8, 7, 9, 1, 0, 9, 7, 8},
   },
   [ANTI_RAIGEKI] = {
     .atk = 65535,
@@ -9419,6 +10201,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 114,
     .trapEffect = 11,
+    .password = {4, 2, 3, 6, 4, 2, 5, 7},
   },
   [BLACK_ILLUSION_RITUAL] = {
     .atk = 65535,
@@ -9431,6 +10214,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 113,
     .trapEffect = 0,
+    .password = {4, 1, 4, 2, 6, 8, 6, 9},
   },
   [CHANGE_OF_HEART] = {
     .atk = 65535,
@@ -9443,6 +10227,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 112,
     .trapEffect = 0,
+    .password = {0, 4, 0, 3, 1, 9, 2, 8},
   },
   [MULTIPLY] = {
     .atk = 65535,
@@ -9455,6 +10240,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 111,
     .trapEffect = 0,
+    .password = {4, 0, 7, 0, 3, 2, 2, 2},
   },
   [EXILE_OF_THE_WICKED] = {
     .atk = 65535,
@@ -9467,6 +10253,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 110,
     .trapEffect = 0,
+    .password = {2, 6, 7, 2, 5, 1, 5, 8},
   },
   [LAST_DAY_OF_WITCH] = {
     .atk = 65535,
@@ -9479,6 +10266,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 109,
     .trapEffect = 0,
+    .password = {9, 0, 3, 3, 0, 4, 5, 3},
   },
   [RESTRUCTER_REVOLUTION] = {
     .atk = 65535,
@@ -9491,6 +10279,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 108,
     .trapEffect = 0,
+    .password = {9, 9, 5, 1, 8, 9, 6, 1},
   },
   [POT_OF_GREED] = {
     .atk = 65535,
@@ -9503,6 +10292,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 107,
     .trapEffect = 0,
+    .password = {5, 5, 1, 4, 4, 5, 2, 2},
   },
   [THE_INEXPERIENCED_SPY] = {
     .atk = 65535,
@@ -9515,6 +10305,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 105,
     .trapEffect = 0,
+    .password = {8, 1, 8, 2, 0, 6, 8, 9},
   },
   [GATE_SWORD] = {
     .atk = 1800,
@@ -9527,6 +10318,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 6, 2, 1, 1, 3, 2, 6},
   },
   [STEEL_FAN_FIGHTER] = {
     .atk = 2200,
@@ -9539,6 +10331,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 3, 6, 1, 6, 0, 7, 4},
   },
   [LEOPARD_GIRL] = {
     .atk = 1950,
@@ -9551,6 +10344,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 0, 0, 0, 7, 7, 9},
   },
   [THE_LAST_WARRIOR_FROM_ANOTHER_PLANET] = {
     .atk = 2350,
@@ -9563,6 +10357,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {8, 6, 0, 9, 9, 7, 8, 8},
   },
   [DUNAMES_DARK_WITCH] = {
     .atk = 1800,
@@ -9575,6 +10370,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 2, 4, 9, 3, 4, 8, 2},
   },
   [GARNECIA_ELEFANTIS] = {
     .atk = 2400,
@@ -9587,6 +10383,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 9, 8, 8, 8, 1, 9, 1},
   },
   [TOTAL_DEFENSE_SHOGUN] = {
     .atk = 1550,
@@ -9599,6 +10396,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 5, 3, 7, 2, 2, 9, 0},
   },
   [BEAST_OF_TALWAR] = {
     .atk = 2400,
@@ -9611,6 +10409,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {1, 1, 7, 6, 1, 8, 4, 5},
   },
   [CYBER_TECH_ALLIGATOR] = {
     .atk = 2500,
@@ -9623,6 +10422,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {4, 8, 7, 6, 6, 5, 4, 3},
   },
   [TALONS_OF_SHURILANE] = {
     .atk = 2100,
@@ -9635,6 +10435,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {7, 4, 1, 5, 0, 6, 5, 8},
   },
   [SORCERER_OF_DARK_MAGIC] = {
     .atk = 3200,
@@ -9647,6 +10448,7 @@ const CardData gCardData_NEW[802] APPEND_RODATA = {
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
     .description = gDescription_SorcererOfDarkMagic,
   },
 };
