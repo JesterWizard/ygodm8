@@ -18,6 +18,11 @@ GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
+EFFECT_ENUM_HEADERS = {
+    "monsterEffect": ROOT / "include/constants/monster_effects.h",
+    "spellEffect": ROOT / "include/constants/spell_effects.h",
+}
+
 REQUIRED_STATS_KEYS = {
     "atk",
     "def",
@@ -48,6 +53,115 @@ class CardArtEntry:
 def to_symbol(stem: str, suffix: str) -> str:
     parts = [part for part in re.split(r"[^A-Za-z0-9]+", stem) if part]
     return "s" + "".join(part[:1].upper() + part[1:] for part in parts) + suffix
+
+
+def parse_enum_value(text: str, start: int) -> tuple[int, int]:
+    i = start
+    while i < len(text) and text[i] in " \t\r":
+        i += 1
+    if i < len(text) and text[i] == "=":
+        i += 1
+        while i < len(text) and text[i] in " \t\r":
+            i += 1
+        j = i
+        if j < len(text) and text[j] in "0123456789":
+            while j < len(text) and text[j] in "0123456789":
+                j += 1
+            return int(text[i:j]), j
+        if j < len(text) and text[j] in "Xx":
+            j += 1
+            while j < len(text) and text[j] in "0123456789abcdefABCDEF":
+                j += 1
+            return int(text[i:j], 16), j
+    return None, start
+
+
+def parse_enum_header(path: pathlib.Path) -> dict[str, int]:
+    text = path.read_text()
+    mapping = {}
+    idx = text.find("enum {")
+    if idx < 0:
+        idx = text.find("enum\n{")
+    if idx < 0:
+        idx = text.find("enum\r\n{")
+    if idx < 0:
+        return mapping
+    idx = text.find("{", idx) + 1
+    value = 0
+    brace_depth = 1
+    i = idx
+    while i < len(text) and brace_depth > 0:
+        c = text[i]
+        if c == "/" and i + 1 < len(text):
+            if text[i + 1] == "/":
+                end = text.find("\n", i)
+                i = end if end >= 0 else len(text)
+                continue
+            if text[i + 1] == "*":
+                end = text.find("*/", i + 2)
+                i = end + 2 if end >= 0 else len(text)
+                continue
+        if c == "{":
+            brace_depth += 1
+            i += 1
+            continue
+        if c == "}":
+            brace_depth -= 1
+            i += 1
+            continue
+        if c == ",":
+            value += 1
+            i += 1
+            continue
+        if c in " \t\r\n":
+            i += 1
+            continue
+        m = re.match(r"[A-Za-z_][A-Za-z0-9_]*", text[i:])
+        if m:
+            name = m.group()
+            end = i + len(name)
+            eq_val, end2 = parse_enum_value(text, end)
+            if eq_val is not None:
+                mapping[name] = eq_val
+                value = eq_val + 1
+                i = end2
+            else:
+                mapping[name] = value
+                value += 1
+                i = end
+            if i < len(text) and text[i] == ",":
+                i += 1
+            continue
+        i += 1
+    return mapping
+
+
+def load_effect_enums() -> dict[str, dict[str, int]]:
+    result = {}
+    for key, header_path in EFFECT_ENUM_HEADERS.items():
+        if header_path.exists():
+            result[key] = parse_enum_header(header_path)
+    return result
+
+
+def resolve_effect_value(effect_key: str, raw_value: object, enum_tables: dict[str, dict[str, int]]) -> int:
+    if isinstance(raw_value, int):
+        return raw_value
+    if isinstance(raw_value, str):
+        table = enum_tables.get(effect_key)
+        if table is None:
+            raise SystemExit(
+                f"Cannot resolve string '{raw_value}' for {effect_key}: "
+                f"no enum header loaded for this field."
+            )
+        resolved = table.get(raw_value)
+        if resolved is None:
+            raise SystemExit(
+                f"Unknown enum value '{raw_value}' for {effect_key}. "
+                f"Valid values: {', '.join(sorted(table))}"
+            )
+        return resolved
+    raise SystemExit(f"{effect_key} must be an integer or a C enum-style identifier string.")
 
 
 def discover_card_constants() -> set[str]:
@@ -88,10 +202,13 @@ def validate_manifest(manifest: object) -> dict:
 
         stats = {key: item[key] for key in REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS if key in item}
         
-        # Validating strictly numeric fields
-        for key in ("atk", "def", "cost", "level", "monsterEffect", "spellEffect", "trapEffect"):
+        for key in ("atk", "def", "cost", "level"):
             if not isinstance(stats[key], int):
                 raise SystemExit(f"cards[{index}].{key} must be an integer.")
+
+        for key in ("monsterEffect", "spellEffect", "trapEffect"):
+            if not isinstance(stats[key], (int, str)):
+                raise SystemExit(f"cards[{index}].{key} must be an integer or a C enum-style identifier string.")
         
         # Validating flexible fields (Allowing defines/strings or integers)
         for key in ("color", "type", "attribute"):
@@ -117,6 +234,10 @@ def validate_manifest(manifest: object) -> dict:
 def discover_entries() -> list[CardArtEntry]:
     card_constants = discover_card_constants()
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
+    enum_tables = load_effect_enums()
+    for item in manifest["cards"]:
+        for key in ("monsterEffect", "spellEffect", "trapEffect"):
+            item[key] = resolve_effect_value(key, item[key], enum_tables)
     manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
     entries = []
     missing_manifest = []
@@ -318,6 +439,10 @@ def main() -> int:
 
     entries = discover_entries()
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
+    enum_tables = load_effect_enums()
+    for item in manifest["cards"]:
+        for key in ("monsterEffect", "spellEffect", "trapEffect"):
+            item[key] = resolve_effect_value(key, item[key], enum_tables)
     if not entries:
         raise SystemExit("No matching card art pairs found.")
 

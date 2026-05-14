@@ -5,6 +5,8 @@
 #include "card_shop.h"
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
+#include "constants/music_ids.h"
+#include "constants/monster_effects.h"
 #include "configs/runtime.h"
 
 extern unsigned char LowLevelAntePrompt (void);

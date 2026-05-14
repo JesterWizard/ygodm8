@@ -1,4 +1,5 @@
 #include "global.h"
+#include "common-chax.h"
 
 unsigned char CanActivateInjectionFairyLily(void) {
   if (gMonEffect.id != INJECTION_FAIRY_LILY)

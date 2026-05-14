@@ -103,7 +103,13 @@ enum {
   MONSTER_EFFECT_PENGUIN_TORPEDO,
   MONSTER_EFFECT_BERSERK_DRAGON,
   MONSTER_EFFECT_F_G_D,
-  MONSTER_EFFECT_CHIRON_THE_MAGE
+  MONSTER_EFFECT_CHIRON_THE_MAGE,
+  MONSTER_EFFECT_INJECTION_FAIRY_LILY,
+  MONSTER_EFFECT_CYBER_JAR,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
+
+extern unsigned char CanActivateInjectionFairyLily(void);
+extern void ActivateInjectionFairyLilyEffect(void);
+extern void EffectCyberJar(void);

@@ -2,8 +2,6 @@
 #include "common-chax.h"
 #include "constants/monster_effects.h"
 
-#define MONSTER_EFFECT_INJECTION_FAIRY_LILY 102
-
 extern void (*const gMonEffects[])(void);
 
 void ActivateMonsterEffect(void);
@@ -13,8 +11,14 @@ void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
 
-unsigned char CanActivateInjectionFairyLily(void);
-void ActivateInjectionFairyLilyEffect(void);
+unsigned char CanActivateMonsterEffect(void) {
+  switch (gCardInfo.monsterEffect) {
+    case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
+      return CanActivateInjectionFairyLily();
+    default:
+      return TRUE;
+  }
+}
 
 LYN_REPLACE_CHECK(ActivateMonsterEffect);
 void ActivateMonsterEffect__Replacement(void) {
@@ -24,6 +28,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_INJECTION_FAIRY_LILY) {
     ActivateInjectionFairyLilyEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_JAR) {
+    EffectCyberJar();
     return;
   }
 
@@ -64,8 +73,7 @@ void MonsterActionMenu__Replacement(void) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if (gCardInfo.monsterEffect == MONSTER_EFFECT_NONE
-         || (gCardInfo.monsterEffect == MONSTER_EFFECT_INJECTION_FAIRY_LILY && !CanActivateInjectionFairyLily())) {
+        if (gCardInfo.monsterEffect == MONSTER_EFFECT_NONE || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

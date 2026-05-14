@@ -86,7 +86,7 @@ void SetCardInfo__Replacement(unsigned short id) {
 
 LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
-  SetCardInfo(ptr->card);
+  SetCardInfo__Replacement(ptr->card);
 
   if (gCardInfo.spellEffect == 2) {
     gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, gUnk8094FE4[ptr->field][gCardInfo.type]);
@@ -98,7 +98,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
 LYN_REPLACE_CHECK(SetCardInfoWithWarning);
 void SetCardInfoWithWarning__Replacement(unsigned short *id) {
-  SetCardInfo(*id);
+  SetCardInfo__Replacement(*id);
 
   if (gCardInfo.cost > GetDuelistLevel())
     gCardInfo.description = gDuelistLevelTooLowText;

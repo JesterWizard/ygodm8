@@ -1,3 +1,5 @@
+#ifndef GUARD_CONSTANTS_MUSIC_IDS_H
+#define GUARD_CONSTANTS_MUSIC_IDS_H
 
 // Music tracks and sfx each override themselves but not the other.
 // Music track titles taken from here: https://downloads.khinsider.com/game-soundtracks/album/yu-gi-oh-reshef-of-destruction-gba
@@ -394,3 +396,5 @@ enum MusicIds
                                          // ...
   MUSIC_600 = 0x258,                     // Track 69: Yami Yugi (Short Version)
 };
+
+#endif // GUARD_CONSTANTS_MUSIC_IDS_H
