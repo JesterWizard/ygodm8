@@ -12155,6 +12155,31 @@
       "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.huff",
       "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus_24x24.lz"
+    },
+    {
+      "card_const": "MAGICIANS_VALKYRIA",
+      "atk": 1600,
+      "def": 1800,
+      "cost": 183,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 4,
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MagiciansValkyria",
+        "pages": [
+          "A prodigious spellcaster with a heart of gold.",
+          "Whilst on the board, enemy monsters may only attack her."
+        ]
+      },
+      "card_name": "Magician's Valkyria",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/magicians_valkyria_80x80.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/magicians_valkyria_80x80.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria_24x24.lz"
     }
   ]
 }

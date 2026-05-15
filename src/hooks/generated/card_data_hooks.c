@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const CardData gCardData_NEW[803] APPEND_RODATA = {
+const CardData gCardData_NEW[804] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -10464,5 +10464,19 @@ const CardData gCardData_NEW[803] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {15, 15, 15, 15, 15, 15, 15, 14},
     .description = gDescription_DeckDestructionVirus,
+  },
+  [0x0323] = {
+    .atk = 1600,
+    .def = 1800,
+    .cost = 183,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 9,
+    .type = TYPE_SPELLCASTER,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
+    .description = gDescription_MagiciansValkyria,
   },
 };
