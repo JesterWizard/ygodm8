@@ -30,6 +30,10 @@ def marker_name(name: str) -> str:
     return name
 
 
+def fmt_range(start: int, end: int) -> str:
+    return f"0x{start:X}-0x{end:X} ({end - start} bytes)"
+
+
 def iter_c_files():
     for path in ROOT.rglob("*.c"):
         if "build" in path.parts:
@@ -176,18 +180,18 @@ def main() -> int:
         end = addr + size
         if end > MAX_ROM_LIMIT:
             errors.append(
-                f"allocated section {name} crosses max ROM limit: 0x{addr:X}-0x{end:X} exceeds 0x{MAX_ROM_LIMIT:X}"
+                f"allocated section {name} crosses max ROM limit: {fmt_range(addr, end)} exceeds 0x{MAX_ROM_LIMIT:X}"
             )
             continue
 
         if name == ".text" and end > BASE_ROM_LIMIT:
             errors.append(
-                f"base .text crosses append boundary: 0x{addr:X}-0x{end:X} exceeds 0x{BASE_ROM_LIMIT:X}"
+                f"base .text crosses append boundary: {fmt_range(addr, end)} exceeds 0x{BASE_ROM_LIMIT:X}"
             )
 
         if name in APPEND_SECTIONS and addr < BASE_ROM_LIMIT:
             errors.append(
-                f"append section {name} starts inside base ROM region: 0x{addr:X} < 0x{BASE_ROM_LIMIT:X}"
+                f"append section {name} starts inside base ROM region: {fmt_range(addr, end)} starts before 0x{BASE_ROM_LIMIT:X}"
             )
 
     if errors:

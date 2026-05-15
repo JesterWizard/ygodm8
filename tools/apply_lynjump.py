@@ -14,6 +14,10 @@ POIN_RE = re.compile(r"POIN\s+(\w+)")
 ROM_PATCH_LIMIT = 0x0A000000 - 0x08000000
 
 
+def fmt_range(start: int, end: int) -> str:
+    return f"0x{start:X}-0x{end:X} ({end - start} bytes)"
+
+
 def load_symbols(elf_path: pathlib.Path):
     output = subprocess.check_output(["arm-none-eabi-nm", "-g", str(elf_path)], text=True)
     symbols = {}
@@ -39,7 +43,7 @@ def checked_write(rom: bytearray, start: int, data: bytes, owners: dict[int, str
         previous = owners.get(offset)
         if previous is not None and previous != owner:
             raise ValueError(
-                f"{owner} overlaps ROM patch byte 0x{offset:X} already written by {previous}"
+                f"{owner} overlaps ROM patch byte 0x{offset:X} in {fmt_range(start, end)} already written by {previous}"
             )
 
     rom[start:end] = data
