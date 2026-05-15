@@ -802,9 +802,10 @@
 #define BEAST_OF_TALWAR                          0x031E
 #define CYBER_TECH_ALLIGATOR                     0x031F
 #define TALONS_OF_SHURILANE                      0x0320
-#define SORCERER_OF_DARK_MAGIC                   0x0321
 
 #define NUM_CARDS                               0x0321
-#define NUM_TRUE_CARDS                          0x0321
+#define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
+#define CUSTOM_CARD_START                       NUM_CARDS
+#define SORCERER_OF_DARK_MAGIC                  CUSTOM_CARD_START
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -100,7 +100,7 @@ $(CARD_IDS_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) $(wildcard src/hooks/assets/cards/80x80/*) $(wildcard src/hooks/assets/cards/24x24/*) $(CARD_IDS_GENERATED)
 	python3 $(CARD_ART_GENERATOR)
 
-$(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c | tools-rules graphics-rules
+$(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
 	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
@@ -110,7 +110,7 @@ $(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED)
 
-$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c | tools-rules graphics-rules
+$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
 	@$(PREPROC) $(CONFIGS_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(CONFIGS_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(CONFIGS_BUILDDIR)/$*.s

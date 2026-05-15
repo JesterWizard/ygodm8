@@ -16,6 +16,7 @@ GENERATED_ASSET_INC = GENERATED_DIR / "card_art_generated.inc"
 GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
 GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
+GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
 EFFECT_ENUM_HEADERS = {
@@ -37,7 +38,7 @@ REQUIRED_STATS_KEYS = {
     "password",
 }
 OPTIONAL_STATS_KEYS = {"description"}
-ALLOWED_ENTRY_KEYS = {"card_const", "card_name"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
+ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
@@ -245,8 +246,10 @@ def validate_manifest(manifest: object) -> dict:
         for key in ASSET_ENTRY_KEYS:
             if key in stats and not isinstance(stats[key], str):
                 raise SystemExit(f"cards[{index}].{key} must be a string when present.")
+        if "trunk_card" in item and not isinstance(item["trunk_card"], bool):
+            raise SystemExit(f"cards[{index}].trunk_card must be a boolean when present.")
 
-        validated.append({"card_const": card_const, "card_name": card_name, **stats})
+        validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {})})
 
     return {"cards": validated}
 
@@ -258,12 +261,14 @@ def render_card_ids_header(manifest: dict) -> str:
         "#define GUARD_CONSTANTS_CARD_IDS_H",
         "",
     ]
-    for index, item in enumerate(manifest["cards"]):
+    for index, item in enumerate(manifest["cards"][:-1]):
         lines.append(f"#define {item['card_const']:<40} 0x{index:04X}")
     lines.extend([
         "",
         f"#define NUM_CARDS                               0x{card_count:04X}",
-        f"#define NUM_TRUE_CARDS                          0x{card_count:04X}",
+        f"#define NUM_TRUE_CARDS                          (NUM_CARDS - 1)",
+        f"#define CUSTOM_CARD_START                       NUM_CARDS",
+        f"#define SORCERER_OF_DARK_MAGIC                  CUSTOM_CARD_START",
     ])
     lines.extend([
         "",
@@ -282,14 +287,12 @@ def discover_entries() -> list[CardArtEntry]:
             item[key] = resolve_effect_value(key, item[key], enum_tables)
     manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
     entries = []
-    missing_manifest = []
     for big_huff in sorted(BIG_DIR.glob("*_80x80.huff")):
         stem = big_huff.name.removesuffix("_80x80.huff")
         card_const = stem.upper()
         if card_const not in card_constants:
             continue
         if card_const not in manifest_by_const:
-            missing_manifest.append(card_const)
             continue
         item = manifest_by_const[card_const]
         big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}_80x80.huff")
@@ -299,8 +302,6 @@ def discover_entries() -> list[CardArtEntry]:
             continue
         entries.append(CardArtEntry(stem, card_const, item["card_name"], big_art, big_pal, mini_art, item))
 
-    if missing_manifest:
-        raise SystemExit("Missing manifest entries for: " + ", ".join(sorted(missing_manifest)))
     return entries
 
 
@@ -425,6 +426,25 @@ def render_description_inc(manifest: dict) -> str:
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
+def render_trunk_inc(manifest: dict) -> str:
+    cards = [item["card_const"] for item in manifest["cards"] if item.get("trunk_card")]
+    lines = [
+        "#include \"global.h\"",
+        "",
+        f"#define NUM_CUSTOM_TRUNK_CARDS {len(cards)}",
+        "",
+    ]
+    if cards:
+        lines.append("static const u16 gCustomTrunkCards[NUM_CUSTOM_TRUNK_CARDS] APPEND_RODATA = {")
+        for card_const in cards:
+            lines.append(f"  {card_const},")
+        lines.append("};")
+    else:
+        lines.append("static const u16 gCustomTrunkCards[1] APPEND_RODATA = { CARD_NONE };")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def render_data_src(manifest: dict) -> str:
     lines = [
         '#include "global.h"',
@@ -501,14 +521,13 @@ def main() -> int:
         return 0
 
     entries = discover_entries()
-    if not entries:
-        raise SystemExit("No matching card art pairs found.")
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(entries)
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
+    trunk_inc = render_trunk_inc(manifest)
 
     if args.print:
         print(f"--- {CARD_IDS_H} ---")
@@ -523,6 +542,8 @@ def main() -> int:
         print(data_src, end="")
         print(f"--- src/hooks/card_description_data_generated.inc ---")
         print(description_inc, end="")
+        print(f"--- {GENERATED_TRUNK_INC} ---")
+        print(trunk_inc, end="")
         return 0
 
     update_file(CARD_IDS_H, render_card_ids_header(manifest))
@@ -531,6 +552,7 @@ def main() -> int:
     update_file(GENERATED_DATA_INC, data_inc)
     update_file(GENERATED_DATA_SRC, data_src)
     update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
+    update_file(GENERATED_TRUNK_INC, trunk_inc)
     print(f"Generated {len(entries)} card art bindings.")
     return 0
 
