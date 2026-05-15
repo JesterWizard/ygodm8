@@ -189,6 +189,9 @@ def validate_manifest(manifest: object) -> dict:
     cards = manifest.get("cards")
     if not isinstance(cards, list):
         raise SystemExit("Manifest must contain a top-level 'cards' array.")
+    description_pages_max = manifest.get("description_pages_max", 2)
+    if not isinstance(description_pages_max, int) or description_pages_max not in (2, 3):
+        raise SystemExit("Manifest field 'description_pages_max' must be 2 or 3 when present.")
 
     seen_consts = set()
     validated = []
@@ -241,8 +244,12 @@ def validate_manifest(manifest: object) -> dict:
             pages = description.get("pages")
             if not isinstance(symbol, str) or not symbol:
                 raise SystemExit(f"cards[{index}].description.symbol must be a non-empty string.")
-            if not isinstance(pages, list) or len(pages) != 2 or not all(isinstance(page, str) and page for page in pages):
-                raise SystemExit(f"cards[{index}].description.pages must be a 2-item array of non-empty strings.")
+            if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
+                raise SystemExit(f"cards[{index}].description.pages must be an array of non-empty strings.")
+            if len(pages) < 2 or len(pages) > description_pages_max:
+                raise SystemExit(
+                    f"cards[{index}].description.pages must contain between 2 and {description_pages_max} strings."
+                )
 
         for key in ASSET_ENTRY_KEYS:
             if key in stats and not isinstance(stats[key], str):
@@ -252,7 +259,7 @@ def validate_manifest(manifest: object) -> dict:
 
         validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {})})
 
-    return {"cards": validated}
+    return {"cards": validated, "description_pages_max": description_pages_max}
 
 
 def render_card_ids_header(manifest: dict) -> str:
@@ -417,8 +424,11 @@ def render_description_inc(manifest: dict) -> str:
         if not description:
             continue
         symbol = description["symbol"]
-        page1, page2 = description["pages"]
-        payload = ["  ", "^2", *wrap_page(page1), "^", *wrap_page(page2), "^"]
+        pages = description["pages"]
+        payload = ["  ", f"^{len(pages)}"]
+        for page in pages:
+            payload.extend(wrap_page(page))
+            payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
         lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
         for i in range(0, len(data), 12):

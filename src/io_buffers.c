@@ -23,6 +23,7 @@ unsigned short gBG2Y_H;
 unsigned short gBLDCNT;
 unsigned short gBLDALPHA;
 unsigned short gBLDY;
+u16 gCardDescriptionPageBuffers[9][2240] = {0};
 
 //TODO: LoadBgOffsetRegs
 void LoadBgOffsets (void) {

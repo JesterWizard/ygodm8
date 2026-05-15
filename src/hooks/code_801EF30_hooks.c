@@ -17,6 +17,159 @@ int GetDeckCardQty(u16);
 u16 sub_801FFE0(void);
 u8 sub_801F0F0(u16, u16*);
 
+extern u8 g201CB58;
+extern u8 g201CB59;
+extern u16 gNewButtons;
+extern struct CardInfo gCardInfo;
+
+extern unsigned char g80B96B8[];
+extern unsigned char g80B96BC[];
+
+void sub_800B618(void*);
+void sub_800BCB0(void*);
+void sub_801FA84(void);
+void sub_801FADC(void);
+void sub_801FB14(void);
+void sub_801FB2C(void);
+void sub_801FB38(void);
+void ShowCardDetailView(void);
+void SetVBlankCallback(void (*)(void));
+void WaitForVBlank(void);
+void LoadCharblock1(void);
+
+static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
+  u8 buffer[144];
+  u8 i = 0;
+  u8 j = 0;
+
+  while (*text != '^') {
+    buffer[i] = *text;
+    if (*text > 127)
+      buffer[++i] = *++text;
+    i++;
+    text++;
+    j++;
+    if (j == 12) {
+      buffer[i] = ' ';
+      i++;
+      if (page) {
+        buffer[i] = g80B96B8[0];
+        i++;
+        buffer[i] = g80B96B8[1];
+      } else {
+        buffer[i] = ' ';
+      }
+      i++;
+      j += 2;
+    }
+  }
+
+  if (page >= pageCount - 1) {
+    while (j < 70) {
+      buffer[i] = ' ';
+      i++;
+      j++;
+    }
+  } else {
+    while (j < 69) {
+      buffer[i] = ' ';
+      i++;
+      j++;
+    }
+    buffer[i] = g80B96BC[0];
+    i++;
+    buffer[i] = g80B96BC[1];
+    i++;
+  }
+
+  buffer[i] = 0;
+  CopyStringTilesToVRAMBuffer(dest, buffer, 0x901);
+}
+
+LYN_REPLACE_CHECK(ShowCardDetailView);
+void ShowCardDetailView__Replacement(void) {
+  u8 i;
+  u8 page;
+  u8 buffer[144];
+  const u8 *text = gCardInfo.description + 2;
+  const u8 *pageStarts[9];
+  u16 pageBuffer[2240];
+
+  text = GetCurrentLanguageString(text);
+  if (*text == '^') {
+    u8 pageCount;
+
+    text++;
+    switch (*text) {
+      case '2': pageCount = 2; break;
+      case '3': pageCount = 3; break;
+      case '4': pageCount = 4; break;
+      case '5': pageCount = 5; break;
+      case '6': pageCount = 6; break;
+      case '7': pageCount = 7; break;
+      case '8': pageCount = 8; break;
+      case '9': pageCount = 9; break;
+      default: pageCount = 1; break;
+    }
+    text++;
+    for (page = 0; page < pageCount; page++) {
+      pageStarts[page] = text;
+      while (*text != '^') {
+        text++;
+      }
+      text++;
+    }
+    g201CB59 = pageCount;
+    BuildDescriptionPageBuffer(pageStarts[0], 0, pageCount, pageBuffer);
+  } else {
+    for (i = 0; *text && *text != '$';) {
+      buffer[i] = *text;
+      if (*text > 127)
+        buffer[++i] = *++text;
+      i++;
+      text++;
+      if (i == 12) {
+        buffer[i++] = ' ';
+        buffer[i++] = ' ';
+      }
+    }
+    buffer[i] = 0;
+    CopyStringTilesToVRAMBuffer(pageBuffer, buffer, 0x901);
+    g201CB59 = 0;
+  }
+
+  g201CB58 = 0;
+  sub_801FB2C();
+  sub_800B618(pageBuffer);
+  sub_801FA84();
+  SetVBlankCallback(sub_801FADC);
+  WaitForVBlank();
+  sub_801FB38();
+  SetVBlankCallback(sub_801FB14);
+  WaitForVBlank();
+  while (1) {
+    if (gNewButtons & DPAD_UP && g201CB59 > 1 && g201CB58) {
+      g201CB58--;
+      PlayMusic(SFX_MOVE_CURSOR);
+      BuildDescriptionPageBuffer(pageStarts[g201CB58], g201CB58, g201CB59, pageBuffer);
+      sub_800BCB0(pageBuffer);
+      LoadCharblock1();
+    }
+    if (gNewButtons & DPAD_DOWN && g201CB59 > 1 && g201CB58 < g201CB59 - 1) {
+      g201CB58++;
+      PlayMusic(SFX_MOVE_CURSOR);
+      BuildDescriptionPageBuffer(pageStarts[g201CB58], g201CB58, g201CB59, pageBuffer);
+      sub_800BCB0(pageBuffer);
+      LoadCharblock1();
+    }
+    if (gNewButtons & B_BUTTON || gNewButtons & A_BUTTON)
+      break;
+    WaitForVBlank();
+  }
+  PlayMusic(SFX_CANCEL);
+  sub_801FB2C();
+}
+
 static u8 IsAlternatePlayerVictory(void) {
   if (!gDuelLifePoints[DUEL_OPPONENT])
     return FALSE;

@@ -34,10 +34,11 @@ Use this workflow when adding or editing a custom card description:
 1. Open `tools/card_data_manifest.json`.
 2. Add or edit a card entry with a `description` object:
    - `symbol`: the runtime symbol name
-   - `pages`: exactly 2 strings, one per page
-3. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
-4. Run `make` as normal.
-5. Test the card in-game.
+   - `pages`: 2 or 3 strings, one per page
+3. If you want to allow 3-page descriptions, set the manifest field `description_pages_max` to `3`.
+4. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
+5. Run `make` as normal.
+6. Test the card in-game.
 
 What happens automatically during build:
 
@@ -67,6 +68,7 @@ How conversion works:
 - The generator script reads every `description.pages` array in `tools/card_data_manifest.json`.
 - It wraps each page into the currently observed in-game row widths.
 - It emits raw byte data for `<Symbol>Data` into `card_description_data_generated.inc`.
+- The page-count token is emitted automatically as `^2` or `^3` based on the number of pages.
 
 Current layout constraints:
 
@@ -80,7 +82,8 @@ Current layout constraints:
 
 Important constraints:
 
-- Each description currently assumes exactly 2 pages.
+- Each description must have at least 2 pages.
+- Descriptions can have up to 3 pages when `description_pages_max` is set to `3` in the manifest.
 - Wrapping is word-based. The generator will not split a word across rows.
 - If any word is longer than the row width it needs to fit in, generation fails.
 - If the page text does not fit within the 5 available rows, generation fails.
@@ -121,5 +124,5 @@ Build behavior:
 
 - The current row widths are based on observed in-game behavior, not a fully reverse-engineered format spec.
 - Description fit is currently strict. Text that barely misses the row model must be shortened manually.
-- The generator only supports 2-page descriptions right now.
+- The generator now supports 2-page and 3-page descriptions, but not longer ones.
 - If the in-game renderer turns out to use different widths for some cards or languages, the generator will need to be updated.

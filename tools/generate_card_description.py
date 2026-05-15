@@ -51,8 +51,14 @@ def wrap_page(text: str) -> list[str]:
     return [line.ljust(width) for line, width in zip(lines, ROW_WIDTHS)]
 
 
-def emit_runtime_symbol(symbol: str, page1: str, page2: str) -> str:
-    payload = ["  ", "^2", *wrap_page(page1), "^", *wrap_page(page2), "^"]
+def emit_runtime_symbol(symbol: str, pages: list[str]) -> str:
+    if len(pages) not in (2, 3):
+        raise ValueError(f"Expected 2 or 3 pages, got {len(pages)}")
+
+    payload = ["  ", f"^{len(pages)}"]
+    for page in pages:
+        payload.extend(wrap_page(page))
+        payload.append("^")
     data = "".join(payload).encode("ascii") + b"\0"
 
     out = [f"const u8 {symbol}Data[] APPEND_TEXT = {{"]
@@ -72,16 +78,20 @@ def update_description_file(path: pathlib.Path) -> None:
         r'static const char \*const ([A-Za-z0-9_]+)\[\] = \{\s*'
         r'"((?:[^"\\]|\\.)*)",\s*'
         r'"((?:[^"\\]|\\.)*)",\s*'
+        r'(?:\s*"((?:[^"\\]|\\.)*)",\s*)?'
         r'\};',
         src,
         flags=re.S,
     )
 
     runtime_blocks = []
-    for symbol, page1, page2 in entries:
+    for symbol, page1, page2, page3 in entries:
         page1_text = ast.literal_eval(f'"{page1}"')
         page2_text = ast.literal_eval(f'"{page2}"')
-        runtime_blocks.append(emit_runtime_symbol(symbol, page1_text, page2_text))
+        pages = [page1_text, page2_text]
+        if page3 is not None:
+            pages.append(ast.literal_eval(f'"{page3}"'))
+        runtime_blocks.append(emit_runtime_symbol(symbol, pages))
 
     generated_include = path.with_name(GENERATED_INCLUDE_NAME)
     generated_include.write_text("\n\n".join(runtime_blocks) + ("\n" if runtime_blocks else ""))
@@ -89,12 +99,13 @@ def update_description_file(path: pathlib.Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Wrap two human-readable card description strings into the repo's current 2-page card format."
+        description="Wrap two or three human-readable card description strings into the repo's card format."
     )
     parser.add_argument("--update-file", dest="update_file", help="Update a card_description_data.c-style file in place")
     parser.add_argument("symbol", nargs="?", help="C symbol name, e.g. gMilusRadiantDescription")
     parser.add_argument("page1", nargs="?", help="Plain text for page 1")
     parser.add_argument("page2", nargs="?", help="Plain text for page 2")
+    parser.add_argument("page3", nargs="?", help="Plain text for page 3")
     args = parser.parse_args()
 
     if args.update_file:
@@ -104,7 +115,10 @@ def main() -> int:
     if args.symbol is None or args.page1 is None or args.page2 is None:
         parser.error("page1 and page2 are required unless --update-file is used")
 
-    print(emit_runtime_symbol(args.symbol, args.page1, args.page2))
+    pages = [args.page1, args.page2]
+    if args.page3 is not None:
+        pages.append(args.page3)
+    print(emit_runtime_symbol(args.symbol, pages))
     return 0
 
 

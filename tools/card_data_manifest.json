@@ -1,4 +1,5 @@
 {
+  "description_pages_max": 3,
   "cards": [
     {
       "card_const": "CARD_NONE",
@@ -12196,11 +12197,11 @@
       "description": {
         "symbol": "gDescription_BlueEyesShiningDragon",
         "pages": [
-          "The apex of blue eyes that must be summomed with a BEUD.",
+          "The apex of the blue-eyes line that must be summoned with a BEUD.",
           "It powers up with every dragon on the own field and hand."
         ]
       },
-      "card_name": "Blue Eyes Shining Dragon",
+      "card_name": "Blue-Eyes Shining Dragon",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon_80x80.huff",
       "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon_80x80.gbapal",
