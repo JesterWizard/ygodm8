@@ -11,6 +11,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .turn_off_visual_scanner = TRUE,
     .disable_element_system = FALSE,
     .dynamic_card_shop_and_trunk_sorting = FALSE, // Needs more work
+    .faster_walking_speed = 2,
     .start_with_three_copies_of_every_card = FALSE,
     .allow_ante_with_one_copy_of_card = TRUE,
     .allow_sell_one_copy_of_card = TRUE,

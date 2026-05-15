@@ -189,9 +189,7 @@ def validate_manifest(manifest: object) -> dict:
     cards = manifest.get("cards")
     if not isinstance(cards, list):
         raise SystemExit("Manifest must contain a top-level 'cards' array.")
-    description_pages_max = manifest.get("description_pages_max", 2)
-    if not isinstance(description_pages_max, int) or description_pages_max not in (2, 3):
-        raise SystemExit("Manifest field 'description_pages_max' must be 2 or 3 when present.")
+    description_pages_max = 3
 
     seen_consts = set()
     validated = []
@@ -259,7 +257,7 @@ def validate_manifest(manifest: object) -> dict:
 
         validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {})})
 
-    return {"cards": validated, "description_pages_max": description_pages_max}
+    return {"cards": validated}
 
 
 def render_card_ids_header(manifest: dict) -> str:

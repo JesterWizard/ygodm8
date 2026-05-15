@@ -35,7 +35,6 @@ Use this workflow when adding or editing a custom card description:
 2. Add or edit a card entry with a `description` object:
    - `symbol`: the runtime symbol name
    - `pages`: 2 or 3 strings, one per page
-3. If you want to allow 3-page descriptions, set the manifest field `description_pages_max` to `3`.
 4. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
 5. Run `make` as normal.
 6. Test the card in-game.
@@ -83,7 +82,7 @@ Current layout constraints:
 Important constraints:
 
 - Each description must have at least 2 pages.
-- Descriptions can have up to 3 pages when `description_pages_max` is set to `3` in the manifest.
+- Descriptions can have up to 3 pages.
 - Wrapping is word-based. The generator will not split a word across rows.
 - If any word is longer than the row width it needs to fit in, generation fails.
 - If the page text does not fit within the 5 available rows, generation fails.
