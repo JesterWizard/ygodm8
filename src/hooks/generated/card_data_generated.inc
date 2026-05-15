@@ -1,4 +1,18 @@
-  [SORCERER_OF_DARK_MAGIC] = {
+  [0x0322] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = 22,
+    .color = TRAP_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
+    .description = gDescription_DeckDestructionVirus,
+  },
+  [0x0321] = {
     .atk = 3200,
     .def = 2500,
     .cost = 150,

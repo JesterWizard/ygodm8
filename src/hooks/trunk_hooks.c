@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "generated/card_trunk_generated.inc"
 
 extern const unsigned char gStarterTrunk[];
 extern unsigned char gTrunkCardQty[];
@@ -21,11 +22,14 @@ void GoDownFiftyPositions(void);
 void InitTrunkData(void);
 
 static u16 GetTrunkCardCount(void) {
-  return NUM_TRUE_CARDS + 1;
+  return NUM_TRUE_CARDS + NUM_CUSTOM_TRUNK_CARDS;
 }
 
 static void AppendCustomTrunkCard(void) {
-  gTrunkMenu.cards[NUM_TRUE_CARDS] = SORCERER_OF_DARK_MAGIC;
+  u16 i;
+
+  for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+    gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
 }
 
 static void WrapTrunkCursorToList(void) {
@@ -37,8 +41,8 @@ LYN_REPLACE_CHECK(InitTrunkCards);
 void InitTrunkCards__Replacement(void) {
   u32 id;
 
-  for (id = 0; id <= CUSTOM_CARD_START; id++) {
-    if (id == CUSTOM_CARD_START) {
+  for (id = 0; id <= CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS - 1; id++) {
+    if (id >= CUSTOM_CARD_START) {
       gTrunkCardQty[id] = gRuntimeConfig.start_with_three_copies_of_every_card == TRUE ? 3 : 1;
     }
     else if (gRuntimeConfig.start_with_three_copies_of_every_card == TRUE)
@@ -56,7 +60,7 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
 
-  for (cardId = 0; cardId <= CUSTOM_CARD_START; cardId++)
+  for (cardId = 0; cardId <= CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS - 1; cardId++)
     gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)

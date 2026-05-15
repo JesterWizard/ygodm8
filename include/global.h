@@ -122,6 +122,7 @@ enum {
 
 #define TRUNK_CARD_LIMIT 250
 #define DECK_SIZE 40
+#define MAX_CUSTOM_CARD_SLOTS 32
 //^TODO: change to MAX_DECK_SIZE, DECK_MAX_SIZE, or _COUNT? (or MIN? in vanilla it has to be exactly 40)
 
 struct TrunkMenu
@@ -131,7 +132,7 @@ struct TrunkMenu
     u8 displayMode;    //show: nothing, atk/def, attribute(summon), cost,
     u8 cursorState;
     u8 filler5[7];
-    u16 cards[NUM_CARDS + 1]; //sortedCards, includes one custom append slot at index 801
+    u16 cards[NUM_CARDS + MAX_CUSTOM_CARD_SLOTS]; // includes a small custom tail region
 };
 
 extern struct TrunkMenu gTrunkMenu;

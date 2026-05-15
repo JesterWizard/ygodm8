@@ -12130,6 +12130,31 @@
       "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.huff",
       "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
+    },
+    {
+      "card_const": "DECK_DESTRUCTION_VIRUS",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": 22,
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DeckDestructionVirus",
+        "pages": [
+          "A deadly, self-aware contagine of unknown origin.",
+          "Each turn it removes 5 cards from the opponent's deck."
+        ]
+      },
+      "card_name": "Deck Destruction Virus",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus_24x24.lz"
     }
   ]
 }

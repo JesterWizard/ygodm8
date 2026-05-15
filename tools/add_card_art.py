@@ -45,6 +45,7 @@ ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
 @dataclass(frozen=True)
 class CardArtEntry:
+    index: int
     stem: str
     card_const: str
     card_name: str
@@ -255,20 +256,22 @@ def validate_manifest(manifest: object) -> dict:
 
 
 def render_card_ids_header(manifest: dict) -> str:
-    card_count = len(manifest["cards"]) - 1
+    cards = manifest["cards"]
+    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
     lines = [
         "#ifndef GUARD_CONSTANTS_CARD_IDS_H",
         "#define GUARD_CONSTANTS_CARD_IDS_H",
         "",
     ]
-    for index, item in enumerate(manifest["cards"][:-1]):
+    for index, item in enumerate(cards[:custom_start]):
+        lines.append(f"#define {item['card_const']:<40} 0x{index:04X}")
+    for index, item in enumerate(cards[custom_start:], start=custom_start):
         lines.append(f"#define {item['card_const']:<40} 0x{index:04X}")
     lines.extend([
         "",
-        f"#define NUM_CARDS                               0x{card_count:04X}",
+        f"#define NUM_CARDS                               0x{custom_start:04X}",
         f"#define NUM_TRUE_CARDS                          (NUM_CARDS - 1)",
-        f"#define CUSTOM_CARD_START                       NUM_CARDS",
-        f"#define SORCERER_OF_DARK_MAGIC                  CUSTOM_CARD_START",
+        f"#define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC",
     ])
     lines.extend([
         "",
@@ -279,19 +282,17 @@ def render_card_ids_header(manifest: dict) -> str:
 
 
 def discover_entries() -> list[CardArtEntry]:
-    card_constants = discover_card_constants()
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
     enum_tables = load_effect_enums()
     for item in manifest["cards"]:
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
-    manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
     entries = []
+    manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
+    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
     for big_huff in sorted(BIG_DIR.glob("*_80x80.huff")):
         stem = big_huff.name.removesuffix("_80x80.huff")
         card_const = stem.upper()
-        if card_const not in card_constants:
-            continue
         if card_const not in manifest_by_const:
             continue
         item = manifest_by_const[card_const]
@@ -300,7 +301,8 @@ def discover_entries() -> list[CardArtEntry]:
         mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}_24x24.lz")
         if not big_art.exists() or not big_pal.exists() or not mini_art.exists():
             continue
-        entries.append(CardArtEntry(stem, card_const, item["card_name"], big_art, big_pal, mini_art, item))
+        index = manifest["cards"].index(item)
+        entries.append(CardArtEntry(index, stem, card_const, item["card_name"], big_art, big_pal, mini_art, item))
 
     return entries
 
@@ -321,27 +323,28 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
         )
     lines.append("const unsigned char *gCardArts_Hook[] APPEND_RODATA = {")
     for entry in entries:
-        lines.append(f"  [{entry.card_const}] = {to_symbol(entry.stem, 'BigArt')},")
+        lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigArt')},")
     lines.append("};")
     lines.append("")
     lines.append("const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {")
     for entry in entries:
-        lines.append(f"  [{entry.card_const}] = {to_symbol(entry.stem, 'BigPalette')},")
+        lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigPalette')},")
     lines.append("};")
     lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
-def render_name_inc(entries: list[CardArtEntry]) -> str:
+def render_name_inc(manifest: dict) -> str:
+    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
     lines = []
-    for entry in entries:
-        name_symbol = to_symbol(entry.stem, "Name")
-        lines.append(f'static const u8 {name_symbol}[] __attribute__((section(".append_assets"))) = "{entry.card_name}";')
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+        name_symbol = to_symbol(item["card_const"].lower(), "Name")
+        lines.append(f'static const u8 {name_symbol}[] __attribute__((section(".append_assets"))) = "{item["card_name"]}";')
     lines.append("")
     lines.append("static u8 *GetCardName_Hook(unsigned short cardId) {")
-    for entry in entries:
-        name_symbol = to_symbol(entry.stem, "Name")
-        lines.append(f"  if (cardId == {entry.card_const})")
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+        name_symbol = to_symbol(item["card_const"].lower(), "Name")
+        lines.append(f"  if (cardId == 0x{index:04X})")
         lines.append(f"    return (u8 *){name_symbol};")
     lines.append("")
     lines.append("  return gCardNames[cardId];")
@@ -356,7 +359,7 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
         if entry.card_const == "CARD_NONE":
             continue
         s = entry.stats
-        lines.append(f"  [{entry.card_const}] = {{")
+        lines.append(f"  [0x{entry.index:04X}] = {{")
         for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {s[key]},")
         lines.append(f"    .monsterEffect = {s['monsterEffect']},")
@@ -427,7 +430,8 @@ def render_description_inc(manifest: dict) -> str:
 
 
 def render_trunk_inc(manifest: dict) -> str:
-    cards = [item["card_const"] for item in manifest["cards"] if item.get("trunk_card")]
+    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
+    cards = [item["card_const"] for item in manifest["cards"][custom_start:]]
     lines = [
         "#include \"global.h\"",
         "",
@@ -474,10 +478,10 @@ def render_data_src(manifest: dict) -> str:
         "    .password = {15, 15, 15, 15, 15, 15, 15, 14},",
         "  },",
     ]
-    for item in manifest["cards"]:
+    for index, item in enumerate(manifest["cards"]):
         if item["card_const"] == "CARD_NONE":
             continue
-        lines.append(f"  [{item['card_const']}] = {{")
+        lines.append(f"  [0x{index:04X}] = {{")
         for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {item[key]},")
         lines.append(f"    .monsterEffect = {item['monsterEffect']},")
@@ -523,7 +527,7 @@ def main() -> int:
     entries = discover_entries()
 
     asset_inc = render_asset_inc(entries)
-    name_inc = render_name_inc(entries)
+    name_inc = render_name_inc(manifest)
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
