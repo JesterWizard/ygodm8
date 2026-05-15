@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const CardData gCardData_NEW[804] APPEND_RODATA = {
+const CardData gCardData_NEW[805] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -10470,7 +10470,7 @@ const CardData gCardData_NEW[804] APPEND_RODATA = {
     .def = 1800,
     .cost = 183,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 9,
+    .level = 4,
     .type = TYPE_SPELLCASTER,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -10478,5 +10478,19 @@ const CardData gCardData_NEW[804] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {15, 15, 15, 15, 15, 15, 15, 14},
     .description = gDescription_MagiciansValkyria,
+  },
+  [0x0324] = {
+    .atk = 3000,
+    .def = 2500,
+    .cost = 183,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 10,
+    .type = TYPE_DRAGON,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
+    .description = gDescription_BlueEyesShiningDragon,
   },
 };
