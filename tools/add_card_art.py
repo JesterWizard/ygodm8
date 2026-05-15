@@ -251,6 +251,28 @@ def validate_manifest(manifest: object) -> dict:
     return {"cards": validated}
 
 
+def render_card_ids_header(manifest: dict) -> str:
+    card_count = len(manifest["cards"]) - 1
+    lines = [
+        "#ifndef GUARD_CONSTANTS_CARD_IDS_H",
+        "#define GUARD_CONSTANTS_CARD_IDS_H",
+        "",
+    ]
+    for index, item in enumerate(manifest["cards"]):
+        lines.append(f"#define {item['card_const']:<40} 0x{index:04X}")
+    lines.extend([
+        "",
+        f"#define NUM_CARDS                               0x{card_count:04X}",
+        f"#define NUM_TRUE_CARDS                          0x{card_count:04X}",
+    ])
+    lines.extend([
+        "",
+        "#endif // GUARD_CONSTANTS_CARD_IDS_H",
+        "",
+    ])
+    return "\n".join(lines)
+
+
 def discover_entries() -> list[CardArtEntry]:
     card_constants = discover_card_constants()
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
@@ -461,14 +483,24 @@ def main() -> int:
         description="Generate card art and name hook includes from matching files in src/hooks/assets/cards."
     )
     parser.add_argument("--print", action="store_true", help="Print the generated content instead of writing files")
+    parser.add_argument("--card-ids", action="store_true", help="Generate include/constants/card_ids.h from the manifest")
     args = parser.parse_args()
 
-    entries = discover_entries()
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
     enum_tables = load_effect_enums()
     for item in manifest["cards"]:
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
+
+    if args.card_ids:
+        card_ids = render_card_ids_header(manifest)
+        if args.print:
+            print(card_ids, end="")
+        else:
+            update_file(CARD_IDS_H, card_ids)
+        return 0
+
+    entries = discover_entries()
     if not entries:
         raise SystemExit("No matching card art pairs found.")
 
@@ -479,6 +511,8 @@ def main() -> int:
     description_inc = render_description_inc(manifest)
 
     if args.print:
+        print(f"--- {CARD_IDS_H} ---")
+        print(render_card_ids_header(manifest), end="")
         print(f"--- {GENERATED_ASSET_INC} ---")
         print(asset_inc, end="")
         print(f"--- {GENERATED_NAME_INC} ---")
@@ -491,6 +525,7 @@ def main() -> int:
         print(description_inc, end="")
         return 0
 
+    update_file(CARD_IDS_H, render_card_ids_header(manifest))
     update_file(GENERATED_ASSET_INC, asset_inc)
     update_file(GENERATED_NAME_INC, name_inc)
     update_file(GENERATED_DATA_INC, data_inc)
