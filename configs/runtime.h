@@ -14,6 +14,7 @@ typedef struct {
     u8 disable_ban_list;
     u8 skip_opening_sequence;
     u8 turn_off_visual_scanner;
+    u8 disable_element_system;
     u8 dynamic_card_shop_and_trunk_sorting;
     u8 start_with_three_copies_of_every_card;
     u8 allow_ante_with_one_copy_of_card;

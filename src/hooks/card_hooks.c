@@ -70,7 +70,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.atk = card->atk;
   gCardInfo.def = card->def;
   gCardInfo.cost = card->cost;
-  gCardInfo.attribute = card->attribute;
+  gCardInfo.attribute = gRuntimeConfig.disable_element_system == TRUE ? ATTRIBUTE_NONE : card->attribute;
   gCardInfo.level = card->level;
   gCardInfo.type = card->type;
   gCardInfo.color = card->color;

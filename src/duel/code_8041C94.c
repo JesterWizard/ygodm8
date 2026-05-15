@@ -1,5 +1,4 @@
 #include "global.h"
-#include "configs/runtime.h"
 
 static CONST_DATA unsigned char gE0D428[] = _(
   "{ENG}"

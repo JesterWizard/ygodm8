@@ -1,5 +1,4 @@
 #include "global.h"
-
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
 #define FLAG_LOSER_PLAYER 4
@@ -1405,5 +1404,3 @@ void sub_8040B4C (void) {
   *((vu8*)REG_ADDR_WININ) = 0x36;
   REG_WINOUT = 0x1F;
 }
-
-

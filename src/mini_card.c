@@ -1,5 +1,4 @@
 #include "global.h"
-
 extern const unsigned char gUnk_893B290[]; //facedown card tiles
 extern const unsigned char g89A77DC[]; //card lock tile (E symbol)
 extern const unsigned char g89A781C[]; //mini-card palette

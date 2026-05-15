@@ -3,6 +3,20 @@
 
 extern unsigned short g8E0D5A6[];
 
+void DisplayCardAttrTypeInInfoBar(void);
+void CopyAttributeIconTiles (u8, u8*);
+void CopyAttributeIconPal (u8, u16*);
+void CopyTypeIconTiles (u8, u8*);
+void CopyTypeIconPal (u8, u16*);
+
+LYN_REPLACE_CHECK(DisplayCardAttrTypeInInfoBar);
+void DisplayCardAttrTypeInInfoBar__Replacement(void) {
+  CopyAttributeIconTiles(gCardInfo.attribute, gBgVram.cbb0 + 0x8580);
+  CopyAttributeIconPal(gCardInfo.attribute, gPaletteBuffer + 96);
+  CopyTypeIconTiles(gCardInfo.type, gBgVram.cbb0 + 0x8500);
+  CopyTypeIconPal(gCardInfo.type, gPaletteBuffer + 80);
+}
+
 void sub_8041D78(u8 arg0);
 void sub_8041DF0(u8 arg0);
 void sub_8057808(void);
