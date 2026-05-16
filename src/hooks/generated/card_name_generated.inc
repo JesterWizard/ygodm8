@@ -4,6 +4,7 @@ static const u8 sMagiciansValkyriaName[] __attribute__((section(".append_assets"
 static const u8 sBlueEyesShiningDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Shining Dragon";
 static const u8 sPaladinOfWhiteDragonName[] __attribute__((section(".append_assets"))) = "Paladin Of White Dragon";
 static const u8 sCardOfDemiseName[] __attribute__((section(".append_assets"))) = "Card Of Demise";
+static const u8 sCardOfSanctityName[] __attribute__((section(".append_assets"))) = "Card Of Sanctity";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -18,6 +19,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sPaladinOfWhiteDragonName;
   if (cardId == 0x0326)
     return (u8 *)sCardOfDemiseName;
+  if (cardId == 0x0327)
+    return (u8 *)sCardOfSanctityName;
 
   return gCardNames[cardId];
 }

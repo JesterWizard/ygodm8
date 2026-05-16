@@ -49,9 +49,9 @@ class CardArtEntry:
     stem: str
     card_const: str
     card_name: str
-    big_art: pathlib.Path
-    big_pal: pathlib.Path
-    mini_art: pathlib.Path
+    big_art: pathlib.Path | None
+    big_pal: pathlib.Path | None
+    mini_art: pathlib.Path | None
     stats: dict
 
 
@@ -286,28 +286,29 @@ def render_card_ids_header(manifest: dict) -> str:
     return "\n".join(lines)
 
 
-def discover_entries() -> list[CardArtEntry]:
-    manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
+def discover_entries(manifest: dict) -> list[CardArtEntry]:
     enum_tables = load_effect_enums()
-    for item in manifest["cards"]:
+    entries = []
+    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
-    entries = []
-    manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
-    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
-    for big_huff in sorted(BIG_DIR.glob("*.huff")):
-        stem = big_huff.name.removesuffix(".huff")
-        card_const = stem.upper()
-        if card_const not in manifest_by_const:
-            continue
-        item = manifest_by_const[card_const]
+        stem = item["card_const"].lower()
         big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}.huff")
         big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}.gbapal")
-        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}.lz")
-        if not big_art.exists() or not big_pal.exists() or not mini_art.exists():
-            continue
-        index = manifest["cards"].index(item)
-        entries.append(CardArtEntry(index, stem, card_const, item["card_name"], big_art, big_pal, mini_art, item))
+        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}_24x24.lz")
+        entries.append(
+            CardArtEntry(
+                index=index,
+                stem=stem,
+                card_const=item["card_const"],
+                card_name=item["card_name"],
+                big_art=big_art if big_art.exists() else None,
+                big_pal=big_pal if big_pal.exists() else None,
+                mini_art=mini_art if mini_art.exists() else None,
+                stats=item,
+            )
+        )
 
     return entries
 
@@ -318,22 +319,33 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
         big_symbol = to_symbol(entry.stem, "BigArt")
         pal_symbol = to_symbol(entry.stem, "BigPalette")
         mini_symbol = to_symbol(entry.stem, "MiniArt")
-        lines.extend(
-            [
-                f'static const unsigned char {big_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.big_art)}");',
-                f'static const unsigned short {pal_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U16("{include_asset_path(entry.big_pal)}");',
-                f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.mini_art)}");',
-                "",
-            ]
-        )
+        if entry.big_art:
+            lines.append(
+                f'static const unsigned char {big_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.big_art)}");'
+            )
+        if entry.big_pal:
+            lines.append(
+                f'static const unsigned short {pal_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U16("{include_asset_path(entry.big_pal)}");'
+            )
+        if entry.mini_art:
+            lines.append(
+                f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.mini_art)}");'
+            )
+        lines.append("")
     lines.append("const unsigned char *gCardArts_Hook[] APPEND_RODATA = {")
     for entry in entries:
-        lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigArt')},")
+        if entry.big_art and entry.big_pal:
+            lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigArt')},")
+        else:
+            lines.append(f"  [0x{entry.index:04X}] = 0,")
     lines.append("};")
     lines.append("")
     lines.append("const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {")
     for entry in entries:
-        lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigPalette')},")
+        if entry.big_art and entry.big_pal:
+            lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigPalette')},")
+        else:
+            lines.append(f"  [0x{entry.index:04X}] = 0,")
     lines.append("};")
     lines.append("")
     return "\n".join(lines).rstrip() + "\n"
@@ -397,7 +409,12 @@ def wrap_page(text: str) -> list[str]:
             word = words[word_index]
             word_len = len(word)
             if word_len > width:
-                raise SystemExit(f"Description word does not fit in width {width}: {word}")
+                if width <= 1:
+                    raise SystemExit(f"Description word does not fit in width {width}: {word}")
+                chunk = word[: width - 1] + "-"
+                words[word_index] = word[width - 1 :]
+                word = chunk
+                word_len = len(word)
             next_len = word_len if not line_words else line_len + 1 + word_len
             if next_len > width:
                 break
@@ -535,7 +552,7 @@ def main() -> int:
             update_file(CARD_IDS_H, card_ids)
         return 0
 
-    entries = discover_entries()
+    entries = discover_entries(manifest)
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)
