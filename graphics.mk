@@ -10,7 +10,7 @@ CARD_ATTRIBUTE_PNGS := $(wildcard graphics/cards/attributes/*.png)
 CARD_ATTRIBUTE_TILES := $(patsubst graphics/cards/attributes/%.png,graphics/cards/attributes/%.4bpp,$(CARD_ATTRIBUTE_PNGS))
 CARD_ATTRIBUTE_PALETTES := $(patsubst graphics/cards/attributes/%.png,graphics/cards/attributes/%.gbapal,$(CARD_ATTRIBUTE_PNGS))
 
-CUSTOM_CARD_80_PNGS := $(wildcard src/hooks/assets/cards/80x80/*_80x80.png)
+CUSTOM_CARD_80_PNGS := $(wildcard src/hooks/assets/cards/80x80/*.png)
 CUSTOM_CARD_80_8BPP := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/assets/cards/80x80/%.8bpp,$(CUSTOM_CARD_80_PNGS))
 CUSTOM_CARD_80_PALETTES := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/assets/cards/80x80/%.gbapal,$(CUSTOM_CARD_80_PNGS))
 CUSTOM_CARD_80_HUFFS := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/assets/cards/80x80/%.huff,$(CUSTOM_CARD_80_PNGS))

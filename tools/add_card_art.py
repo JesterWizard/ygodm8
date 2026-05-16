@@ -295,15 +295,15 @@ def discover_entries() -> list[CardArtEntry]:
     entries = []
     manifest_by_const = {item["card_const"]: item for item in manifest["cards"]}
     custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
-    for big_huff in sorted(BIG_DIR.glob("*_80x80.huff")):
-        stem = big_huff.name.removesuffix("_80x80.huff")
+    for big_huff in sorted(BIG_DIR.glob("*.huff")):
+        stem = big_huff.name.removesuffix(".huff")
         card_const = stem.upper()
         if card_const not in manifest_by_const:
             continue
         item = manifest_by_const[card_const]
-        big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}_80x80.huff")
-        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}_80x80.gbapal")
-        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}_24x24.lz")
+        big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}.huff")
+        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}.gbapal")
+        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}.lz")
         if not big_art.exists() or not big_pal.exists() or not mini_art.exists():
             continue
         index = manifest["cards"].index(item)

@@ -12127,8 +12127,8 @@
       },
       "card_name": "Sorcerer of Dark Magic",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic_80x80.gbapal",
+      "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
     },
     {
@@ -12152,8 +12152,8 @@
       },
       "card_name": "Deck Destruction Virus",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus_80x80.gbapal",
+      "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus_24x24.lz"
     },
     {
@@ -12177,8 +12177,8 @@
       },
       "card_name": "Magician's Valkyria",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/magicians_valkyria_80x80.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/magicians_valkyria_80x80.gbapal",
+      "big_art": "src/hooks/assets/cards/80x80/magicians_valkyria.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/magicians_valkyria.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria_24x24.lz"
     },
     {
@@ -12202,9 +12202,35 @@
       },
       "card_name": "Blue-Eyes Shining Dragon",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon_80x80.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon_80x80.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria_24x24.lz"
+      "big_art": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
+    },
+  {
+      "card_const": "PALADIN_OF_WHITE_DRAGON",
+      "atk": 1900,
+      "def": 1200,
+      "cost": 219,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 4,
+      "type": "TYPE_WARRIOR",
+      "color": "RITUAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_PaladinOfWhiteDragon",
+        "pages": [
+          "A championed protector of the blue-eyes white dragon clan.",
+          "He can defeat face down monsters in a single strike",
+          "Upon doing so, a blue-eyes will be summoned in his place."
+        ]
+      },
+      "card_name": "Paladin Of White Dragon",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
     }
   ]
 }

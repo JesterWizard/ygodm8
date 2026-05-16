@@ -806,6 +806,7 @@
 #define DECK_DESTRUCTION_VIRUS                   0x0322
 #define MAGICIANS_VALKYRIA                       0x0323
 #define BLUE_EYES_SHINING_DRAGON                 0x0324
+#define PALADIN_OF_WHITE_DRAGON                  0x0325
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
