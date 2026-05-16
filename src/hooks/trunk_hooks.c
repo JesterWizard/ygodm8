@@ -25,6 +25,10 @@ static u16 GetTrunkCardCount(void) {
   return NUM_TRUE_CARDS + NUM_CUSTOM_TRUNK_CARDS;
 }
 
+static u16 GetLastTrackedCardId(void) {
+  return CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS;
+}
+
 static void AppendCustomTrunkCard(void) {
   u16 i;
 
@@ -41,7 +45,7 @@ LYN_REPLACE_CHECK(InitTrunkCards);
 void InitTrunkCards__Replacement(void) {
   u32 id;
 
-  for (id = 0; id <= CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS - 1; id++) {
+  for (id = 0; id < GetLastTrackedCardId(); id++) {
     if (id >= CUSTOM_CARD_START) {
       gTrunkCardQty[id] = gRuntimeConfig.start_with_three_copies_of_every_card == TRUE ? 3 : 1;
     }
@@ -60,7 +64,7 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
 
-  for (cardId = 0; cardId <= CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS - 1; cardId++)
+  for (cardId = 0; cardId < GetLastTrackedCardId(); cardId++)
     gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)

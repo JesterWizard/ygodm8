@@ -75,7 +75,7 @@ SECTIONS
     gTrunkMenu = 0x02020E10;
     gTotalCardQty = 0x02021460;
     gTrunkCardQty = 0x02021790;
-    gUnk2021AB4 = 0x02021AB4;
+    gUnk2021AB4 = 0x02021AB8;
 
 
     gStatMod = 0x02021AC0;
