@@ -329,7 +329,7 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
             )
         if entry.mini_art:
             lines.append(
-                f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.mini_art)}");'
+            f'static const unsigned char {mini_symbol}[] __attribute__((section(".append_assets"))) = INCBIN_U8("{include_asset_path(entry.mini_art)}");'
             )
         lines.append("")
     lines.append("const unsigned char *gCardArts_Hook[] APPEND_RODATA = {")

@@ -8,6 +8,8 @@ Expected files per card:
   - big card artwork in the same encoded format used by `gCardArts[]`
 - `*.gbapal`
   - big card palette
+- `*_mini.4bpp`
+  - intermediate 4bpp mini-card tile data produced before compression
 - `*_mini.lz`
   - LZ77-compressed mini-card tile data
 
