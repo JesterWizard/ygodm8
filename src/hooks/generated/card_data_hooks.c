@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const CardData gCardData_NEW[806] APPEND_RODATA = {
+const CardData gCardData_NEW[807] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -10506,5 +10506,19 @@ const CardData gCardData_NEW[806] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {15, 15, 15, 15, 15, 15, 15, 14},
     .description = gDescription_PaladinOfWhiteDragon,
+  },
+  [0x0326] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = 0,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
+    .description = gDescription_CardOfDemise,
   },
 };

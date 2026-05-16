@@ -16,6 +16,9 @@ static const unsigned char sPaladinOfWhiteDragonBigArt[] __attribute__((section(
 static const unsigned short sPaladinOfWhiteDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src/hooks/assets/cards/80x80/paladin_of_white_dragon.gbapal");
 static const unsigned char sPaladinOfWhiteDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz");
 
+static const unsigned char sCardOfDemiseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/80x80/card_of_demise.huff");
+static const unsigned short sCardOfDemiseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src/hooks/assets/cards/80x80/card_of_demise.gbapal");
+
 static const unsigned char sSorcererOfDarkMagicBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.huff");
 static const unsigned short sSorcererOfDarkMagicBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.gbapal");
 static const unsigned char sSorcererOfDarkMagicMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz");
@@ -25,6 +28,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0322] = sDeckDestructionVirusBigArt,
   [0x0323] = sMagiciansValkyriaBigArt,
   [0x0325] = sPaladinOfWhiteDragonBigArt,
+  [0x0326] = sCardOfDemiseBigArt,
   [0x0321] = sSorcererOfDarkMagicBigArt,
 };
 
@@ -33,5 +37,6 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0322] = sDeckDestructionVirusBigPalette,
   [0x0323] = sMagiciansValkyriaBigPalette,
   [0x0325] = sPaladinOfWhiteDragonBigPalette,
+  [0x0326] = sCardOfDemiseBigPalette,
   [0x0321] = sSorcererOfDarkMagicBigPalette,
 };

@@ -12206,7 +12206,7 @@
       "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
     },
-  {
+    {
       "card_const": "PALADIN_OF_WHITE_DRAGON",
       "atk": 1900,
       "def": 1200,
@@ -12231,6 +12231,31 @@
       "big_art": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.huff",
       "big_palette": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
+    },
+    {
+      "card_const": "CARD_OF_DEMISE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": 0,
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_CardOfDemise",
+        "pages": [
+          "Draw until you have 5 cards in your hand.",
+          "At the end of the turn, discard your hand."
+        ]
+      },
+      "card_name": "Card Of Demise",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/card_of_demise.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/card_of_demise.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/card_of_demise_24x24.lz"
     }
   ]
 }
