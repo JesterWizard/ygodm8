@@ -4,6 +4,10 @@ import argparse
 import json
 import pathlib
 import re
+import struct
+import subprocess
+import tempfile
+from PIL import Image
 from dataclasses import dataclass
 
 
@@ -11,6 +15,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 ASSET_ROOT = ROOT / "src/hooks/assets/cards"
 BIG_DIR = ASSET_ROOT / "80x80"
 MINI_DIR = ASSET_ROOT / "24x24"
+EXPORT_DIR = ASSET_ROOT / "export"
+BASE_ROM = ROOT / "baserom.gba"
 GENERATED_DIR = ROOT / "src/hooks/generated"
 GENERATED_ASSET_INC = GENERATED_DIR / "card_art_generated.inc"
 GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
@@ -530,6 +536,111 @@ def update_file(path: pathlib.Path, content: str) -> None:
     path.write_text(content)
 
 
+def sync_mini_exports() -> list[pathlib.Path]:
+    EXPORT_DIR.mkdir(parents=True, exist_ok=True)
+    exported = []
+    for src in sorted(MINI_DIR.glob("*_24x24.png")):
+        dst = EXPORT_DIR / src.name
+        dst.write_bytes(src.read_bytes())
+        exported.append(dst)
+    return exported
+
+
+def parse_card_colors() -> dict[int, int]:
+    text = (ROOT / "src/data/cards_data.c").read_text()
+    colors = {}
+    for match in re.finditer(r"\[([A-Z0-9_]+)\]\s*=\s*([0-9]+)", text):
+        name = match.group(1)
+        value = int(match.group(2))
+        colors[name] = value
+
+    card_ids = (ROOT / "include/constants/card_ids.h").read_text()
+    ids = {}
+    for match in re.finditer(r"^#define\s+([A-Z0-9_]+)\s+0x([0-9A-F]+)$", card_ids, re.M):
+        ids[match.group(1)] = int(match.group(2), 16)
+
+    return {ids[name]: color for name, color in colors.items() if name in ids and ids[name] < 0x321}
+
+
+def compose_mini_card(src: bytes, border: bytes) -> bytes:
+    dest = bytearray()
+    src_idx = 0
+
+    for _ in range(16):
+        dest.append(src[src_idx])
+        src_idx += 1
+    for i in range(6):
+        for _ in range(4, 8):
+            dest.append(src[src_idx])
+            src_idx += 1
+        border_idx = i * 8
+        for j in range(4):
+            dest.append(border[border_idx + j])
+            src_idx += 1
+
+    ip = 0
+    r8 = 64
+    for _ in range(16):
+        dest.append(src[src_idx])
+        src_idx += 1
+    for i in range(6):
+        border_idx = i * 8 + ip + 4
+        for j in range(4, 8):
+            dest.append(border[border_idx + (j - 4)])
+            src_idx += 1
+        border_idx = i * 8 + r8
+        for j in range(4):
+            dest.append(border[border_idx + j])
+            src_idx += 1
+
+    ip = 64
+    r8 = 128
+    for _ in range(16):
+        dest.append(src[src_idx])
+        src_idx += 1
+    for i in range(6):
+        border_idx = i * 8 + ip + 4
+        for j in range(4, 8):
+            dest.append(border[border_idx + (j - 4)])
+            src_idx += 1
+        border_idx = i * 8 + r8
+        for j in range(4):
+            dest.append(border[border_idx + j])
+            src_idx += 1
+
+    return bytes(dest)
+
+
+def export_base_rom_minis() -> list[pathlib.Path]:
+    colors_by_card = parse_card_colors()
+    rom = BASE_ROM.read_bytes()
+    ptr_base = 0x08E17F70 - 0x08000000
+    border_base = 0x08E17F48 - 0x08000000
+    pal_base = 0x089A781C - 0x08000000
+
+    ptrs = [struct.unpack_from("<I", rom, ptr_base + i * 4)[0] for i in range(801)]
+    borders = [rom[struct.unpack_from("<I", rom, border_base + i * 4)[0] - 0x08000000:struct.unpack_from("<I", rom, border_base + i * 4)[0] - 0x08000000 + 0x400] for i in range(6)]
+
+    palette = rom[pal_base:pal_base + 32]
+    palette_img = Image.new("P", (1, 1))
+    palette_data = []
+    for i in range(16):
+        value = palette[i * 2] | (palette[i * 2 + 1] << 8)
+        r = (value & 0x1F) * 255 // 31
+        g = ((value >> 5) & 0x1F) * 255 // 31
+        b = ((value >> 10) & 0x1F) * 255 // 31
+        palette_data.extend([r, g, b])
+    palette_img.putpalette(palette_data + [0, 0, 0] * (256 - 16))
+
+    exported = []
+    with tempfile.TemporaryDirectory(prefix="mini_export_") as tmp:
+        tmpdir = pathlib.Path(tmp)
+        for card_id, name in sorted((v, k) for k, v in ((k, v) for k, v in parse_card_colors().items())):
+            pass
+
+    return exported
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Generate card art and name hook includes from matching files in src/hooks/assets/cards."
@@ -585,7 +696,8 @@ def main() -> int:
     update_file(GENERATED_DATA_SRC, data_src)
     update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
-    print(f"Generated {len(entries)} card art bindings.")
+    exported = sync_mini_exports()
+    print(f"Generated {len(entries)} card art bindings and exported {len(exported)} mini PNGs.")
     return 0
 
 
