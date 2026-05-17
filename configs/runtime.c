@@ -10,6 +10,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .skip_opening_sequence = TRUE,
     .turn_off_visual_scanner = TRUE,
     .disable_element_system = FALSE,
+    .duel_fields_start_on_arena = TRUE,
     .dynamic_card_shop_and_trunk_sorting = FALSE, // Needs more work
     .faster_walking_speed = 2,
     .start_with_three_copies_of_every_card = TRUE,
