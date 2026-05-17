@@ -23,6 +23,7 @@ typedef struct {
     u8 repeatable_opponent_capacity_reward;
     u8 story_opponent_capacity_reward;
     u8 alternate_win_reward_multiplier;
+    u16 card_in_hand;
 } RuntimeConfig;
 
 /*

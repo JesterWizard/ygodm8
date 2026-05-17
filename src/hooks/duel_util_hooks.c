@@ -1,6 +1,10 @@
 #include "global.h"
 #include "configs/runtime.h"
 
+extern int NumCardsInDeck(unsigned char);
+extern struct DuelDeck gDuelDecks[2];
+extern void DeclareLoser(unsigned char);
+
 LYN_REPLACE_CHECK(NumFaceUpMatchingAttributeInRow);
 unsigned NumFaceUpMatchingAttributeInRow__Replacement(unsigned char turnRow, unsigned char attribute) {
   u8 i, count = 0;
@@ -17,4 +21,43 @@ unsigned NumFaceUpMatchingAttributeInRow__Replacement(unsigned char turnRow, uns
   }
 
   return count;
+}
+
+LYN_REPLACE_CHECK(TryDrawingCard);
+void TryDrawingCard__Replacement(unsigned turn) {
+  unsigned char i;
+  unsigned short cardDrawn;
+  unsigned char turn_u8 = turn;
+
+  if (turn_u8 == DUEL_PLAYER && gDuelDecks[turn_u8].cardsDrawn == 0) {
+    u16 cardId = gRuntimeConfig.card_in_hand;
+    u16 deckSize = NumCardsInDeck(turn_u8);
+
+    if (cardId != CARD_NONE) {
+      for (i = 0; i < deckSize; i++) {
+        if (gDuelDecks[turn_u8].cards[i] != cardId)
+          continue;
+
+        gDuelDecks[turn_u8].cards[i] = gDuelDecks[turn_u8].cards[0];
+        gDuelDecks[turn_u8].cards[0] = cardId;
+        break;
+      }
+    }
+  }
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gDuel.hands[turn_u8][i].id != CARD_NONE)
+      continue;
+    if ((unsigned char)NumCardsInDeck(turn_u8) < gDuelDecks[turn_u8].cardsDrawn)
+      cardDrawn = CARD_NONE;
+    else {
+      cardDrawn = gDuelDecks[turn_u8].cards[gDuelDecks[turn_u8].cardsDrawn];
+      gDuelDecks[turn_u8].cardsDrawn++;
+    }
+    if (cardDrawn != CARD_NONE)
+      gDuel.hands[turn_u8][i].id = cardDrawn;
+    else
+      DeclareLoser(turn_u8); // deck out
+    break;
+  }
 }

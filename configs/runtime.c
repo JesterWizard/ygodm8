@@ -18,4 +18,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .repeatable_opponent_capacity_reward = 10,
     .story_opponent_capacity_reward = 30,
     .alternate_win_reward_multiplier = 3,
+    .card_in_hand = CARD_OF_SANCTITY
 };
