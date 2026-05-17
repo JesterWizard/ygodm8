@@ -12279,8 +12279,8 @@
       "activation_description": {
         "symbol": "gActivationDescription_CardOfSanctity",
         "pages": [
-          "Activate this card to",
-          "discard both hands and draw 5."
+          "Card of Sanctity\nwas activated.",
+          "Both players discard their\nhands and draw five new\ncards."
         ]
       },
       "card_name": "Card Of Sanctity",

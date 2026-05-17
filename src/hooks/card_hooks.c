@@ -29,7 +29,12 @@ static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
 }
 
 static unsigned short GetStageModifiedStat_Hook(unsigned short stat, s8 stage) {
-  long finalStat = stage * 500 + stat;
+  long finalStat;
+
+  if (stat == 0xFFFF)
+    return stat;
+
+  finalStat = stage * 500 + stat;
 
   if (finalStat <= 0)
     stat = 0;
@@ -42,6 +47,9 @@ static unsigned short GetStageModifiedStat_Hook(unsigned short stat, s8 stage) {
 }
 
 static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod) {
+  if (stat == 0xFFFF)
+    return stat;
+
   switch (fieldMod) {
     case 0:
     case 2:

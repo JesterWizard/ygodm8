@@ -304,9 +304,10 @@ def validate_manifest(manifest: object) -> dict:
                 raise SystemExit(f"cards[{index}].{desc_key}.symbol must be a non-empty string.")
             if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
                 raise SystemExit(f"cards[{index}].{desc_key}.pages must be an array of non-empty strings.")
-            if len(pages) < 2 or len(pages) > description_pages_max:
+            min_pages = 1 if desc_key == "activation_description" else 2
+            if len(pages) < min_pages or len(pages) > description_pages_max:
                 raise SystemExit(
-                    f"cards[{index}].{desc_key}.pages must contain between 2 and {description_pages_max} strings."
+                    f"cards[{index}].{desc_key}.pages must contain between {min_pages} and {description_pages_max} strings."
                 )
 
         for key in ASSET_ENTRY_KEYS:
@@ -459,17 +460,19 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
     return "\n".join(lines)
 
 
-def wrap_page(text: str) -> list[str]:
-    row_widths = (12, 14, 14, 14, 12)
+def split_paragraphs(text: str) -> list[str]:
+    normalized = text.replace("\\n", "\n")
+    return normalized.split("\n")
+
+
+def wrap_paragraph(text: str, width: int) -> list[str]:
     words = text.split()
+    if not words:
+        return [""]
+
     lines = []
     word_index = 0
-
-    for width in row_widths:
-        if word_index >= len(words):
-            lines.append("")
-            continue
-
+    while word_index < len(words):
         line_words = []
         line_len = 0
 
@@ -492,12 +495,60 @@ def wrap_page(text: str) -> list[str]:
 
         if not line_words:
             raise SystemExit(f"Could not fit description text into width {width}.")
-        lines.append(" ".join(line_words).ljust(width))
+        lines.append(" ".join(line_words))
+
+    return lines
+
+
+def wrap_page(text: str) -> list[str]:
+    row_widths = (27, 27, 27, 27, 27)
+    words = re.findall(r"#\d+|[^\s#]+", text)
+    lines = []
+
+    word_index = 0
+    for width in row_widths:
+        if word_index >= len(words):
+            lines.append("")
+            continue
+
+        line_parts = []
+        visible_len = 0
+        last_was_control = False
+
+        while word_index < len(words):
+            word = words[word_index]
+            is_control = re.fullmatch(r"#\d+", word) is not None
+            word_len = 0 if is_control else len(word)
+            gap = 0 if not line_parts or last_was_control or is_control else 1
+            next_len = visible_len + gap + word_len
+
+            if not is_control and next_len > width:
+                break
+
+            if not is_control and line_parts and not last_was_control:
+                line_parts.append(" ")
+                visible_len += 1
+
+            line_parts.append(word)
+            visible_len += word_len
+            last_was_control = is_control
+            word_index += 1
+
+        if not line_parts:
+            raise SystemExit(f"Could not fit description text into width {width}.")
+        lines.append("".join(line_parts))
 
     if word_index < len(words):
         raise SystemExit(f"Description text does not fit in one page: {' '.join(words[word_index:])}")
 
     return lines
+
+
+def normalize_activation_page(text: str) -> str:
+    normalized = text.replace("\\n", "#0").replace("\n", "#0").rstrip()
+    if normalized.endswith("#1"):
+        normalized = normalized[:-2].rstrip()
+    return normalized
 
 
 def render_description_inc(manifest: dict) -> str:
@@ -530,9 +581,10 @@ def render_activation_description_inc(manifest: dict) -> str:
             continue
         symbol = activation_description["symbol"]
         pages = activation_description["pages"]
-        payload = ["  ", f"^{len(pages)}"]
+        payload = [f"^{len(pages)}"]
         for page in pages:
-            payload.extend(wrap_page(page))
+            payload.extend(wrap_page(normalize_activation_page(page)))
+            payload.append("#1")
             payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
         lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")

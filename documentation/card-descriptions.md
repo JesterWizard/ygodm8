@@ -73,18 +73,33 @@ Current layout constraints:
 
 | Row | Observed width |
 |--------|----------|
-| 1 | 12 |
-| 2 | 14 |
-| 3 | 14 |
-| 4 | 14 |
-| 5 | 12 |
+| 1 | 27 |
+| 2 | 27 |
+| 3 | 27 |
+| 4 | 27 |
+| 5 | 27 |
+
+## Control Tokens
+
+These tokens are interpreted by the duel textbox renderer:
+
+- `#0`: line break
+- `#1`: wait for A, B, or R input before closing the textbox
+- `#2`: insert the current card name for the first card argument
+- `#3`: insert the current card name for the second card argument
+- `#4`: clear the textbox and advance
+- `#5`: insert the player name
+- `#6`: insert the description for the first card argument
+- `#7`: insert the description for the second card argument
+- `#8<n>`: wait `n` VBlanks before continuing
+- `$...`: switch to the active language block in a localized string
 
 Important constraints:
 
 - Each description must have at least 2 pages.
 - Descriptions can have up to 3 pages.
 - Wrapping is word-based. The generator will not split a word across rows.
-- If any word is longer than the row width it needs to fit in, generation fails.
+- If any word is longer than 27 characters, generation fails.
 - If the page text does not fit within the 5 available rows, generation fails.
 - The generated include is runtime data. It is not meant to be edited manually.
 

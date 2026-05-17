@@ -6,11 +6,13 @@ import pathlib
 import re
 
 
-ROW_WIDTHS = (12, 14, 14, 14, 12)
+ROW_WIDTHS = (27, 27, 27, 27, 27)
 GENERATED_INCLUDE_NAME = "card_description_data_generated.inc"
+CONTROL_CODE_RE = re.compile(r"\s*(#[0-8]|\\^|\\\$)\s*")
 
 
 def wrap_page(text: str) -> list[str]:
+    text = CONTROL_CODE_RE.sub(lambda match: match.group(1), text).lstrip()
     words = text.split()
     lines = []
     word_index = 0
@@ -48,7 +50,7 @@ def wrap_page(text: str) -> list[str]:
         remaining = " ".join(words[word_index:])
         raise ValueError(f"Text does not fit in one page: {remaining!r}")
 
-    return [line.ljust(width) for line, width in zip(lines, ROW_WIDTHS)]
+    return lines
 
 
 def emit_runtime_symbol(symbol: str, pages: list[str]) -> str:
