@@ -48,8 +48,10 @@ ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
+GBAFX = ROOT / "tools/gbagfx/gbagfx"
 
-@dataclass(frozen=True)
+
+@dataclass
 class CardArtEntry:
     index: int
     stem: str
@@ -73,6 +75,55 @@ def manifest_asset_path(value: str, default: str) -> pathlib.Path:
 
 def include_asset_path(path: pathlib.Path) -> str:
     return path.relative_to(ROOT).as_posix() if path.is_absolute() else path.as_posix()
+
+
+def run_gbagfx(input_path: pathlib.Path, output_path: pathlib.Path) -> None:
+    subprocess.run([str(GBAFX), str(input_path), str(output_path)], check=True)
+
+
+def load_gba_palette(path: pathlib.Path) -> list[tuple[int, int, int]]:
+    data = path.read_bytes()
+    if len(data) % 2 != 0:
+        raise SystemExit(f"Palette file must contain an even number of bytes: {path}")
+    colors = []
+    for i in range(0, len(data), 2):
+        value = data[i] | (data[i + 1] << 8)
+        colors.append(
+            (
+                (value & 0x1F) * 255 // 31,
+                ((value >> 5) & 0x1F) * 255 // 31,
+                ((value >> 10) & 0x1F) * 255 // 31,
+            )
+        )
+    return colors
+
+
+def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_png: pathlib.Path) -> None:
+    image = Image.open(big_png).convert("RGBA")
+    image = image.resize((24, 24), Image.Resampling.LANCZOS).convert("RGBA")
+
+    palette = load_gba_palette(big_palette)
+    pal_img = Image.new("P", (1, 1))
+    palette_data = []
+    for r, g, b in palette[:16]:
+        palette_data.extend([r, g, b])
+    palette_data.extend([0, 0, 0] * (256 - len(palette_data) // 3))
+    pal_img.putpalette(palette_data)
+
+    quantized = image.convert("RGB").quantize(palette=pal_img, dither=Image.Dither.NONE)
+    mini_png.parent.mkdir(parents=True, exist_ok=True)
+    quantized.save(mini_png)
+
+
+def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, mini_base: pathlib.Path) -> pathlib.Path:
+    mini_png = mini_base.with_suffix(".png")
+    mini_4bpp = mini_base.with_suffix(".4bpp")
+    mini_lz = mini_base.with_suffix(".lz")
+
+    make_paletted_mini(big_png, big_palette, mini_png)
+    run_gbagfx(mini_png, mini_4bpp)
+    run_gbagfx(mini_4bpp, mini_lz)
+    return mini_lz
 
 
 def parse_enum_value(text: str, start: int) -> tuple[int, int]:
@@ -546,6 +597,23 @@ def sync_mini_exports() -> list[pathlib.Path]:
     return exported
 
 
+def sync_missing_mini_assets(entries: list[CardArtEntry]) -> list[pathlib.Path]:
+    exported = []
+    for entry in entries:
+        if entry.mini_art and entry.mini_art.exists():
+            continue
+        if not entry.big_art or not entry.big_pal:
+            continue
+        big_png = entry.big_art.with_suffix(".png")
+        if not big_png.exists():
+            continue
+        base = MINI_DIR / f"{entry.stem}_24x24"
+        mini_lz = build_mini_assets(big_png, entry.big_pal, base)
+        entry.mini_art = mini_lz
+        exported.append(mini_lz)
+    return exported
+
+
 def parse_card_colors() -> dict[int, int]:
     text = (ROOT / "src/data/cards_data.c").read_text()
     colors = {}
@@ -647,15 +715,20 @@ def main() -> int:
     )
     parser.add_argument("--print", action="store_true", help="Print the generated content instead of writing files")
     parser.add_argument("--card-ids", action="store_true", help="Generate include/constants/card_ids.h from the manifest")
+    parser.add_argument(
+        "--generate-minis",
+        action="store_true",
+        help="Generate only missing 24x24 mini assets from existing 80x80 PNGs and palettes",
+    )
     args = parser.parse_args()
 
     manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
-    enum_tables = load_effect_enums()
-    for item in manifest["cards"]:
-        for key in ("monsterEffect", "spellEffect", "trapEffect"):
-            item[key] = resolve_effect_value(key, item[key], enum_tables)
 
     if args.card_ids:
+        enum_tables = load_effect_enums()
+        for item in manifest["cards"]:
+            for key in ("monsterEffect", "spellEffect", "trapEffect"):
+                item[key] = resolve_effect_value(key, item[key], enum_tables)
         card_ids = render_card_ids_header(manifest)
         if args.print:
             print(card_ids, end="")
@@ -663,7 +736,21 @@ def main() -> int:
             update_file(CARD_IDS_H, card_ids)
         return 0
 
+    if args.generate_minis:
+        entries = discover_entries(manifest)
+        generated_minis = sync_missing_mini_assets(entries)
+        exported = sync_mini_exports()
+        exported.extend(generated_minis)
+        print(f"Generated {len(exported)} mini assets.")
+        return 0
+
+    enum_tables = load_effect_enums()
+    for item in manifest["cards"]:
+        for key in ("monsterEffect", "spellEffect", "trapEffect"):
+            item[key] = resolve_effect_value(key, item[key], enum_tables)
+
     entries = discover_entries(manifest)
+    generated_minis = sync_missing_mini_assets(entries)
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)
@@ -697,6 +784,7 @@ def main() -> int:
     update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
     exported = sync_mini_exports()
+    exported.extend(generated_minis)
     print(f"Generated {len(entries)} card art bindings and exported {len(exported)} mini PNGs.")
     return 0
 
