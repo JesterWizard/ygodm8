@@ -561,6 +561,47 @@ def encode_activation_page(text: str) -> str:
     return normalized
 
 
+def wrap_description_page(text: str) -> list[str]:
+    row_widths = (12, 14, 14, 14, 12)
+    words = text.split()
+    lines = []
+    word_index = 0
+
+    for width in row_widths:
+        if word_index >= len(words):
+            lines.append("")
+            continue
+
+        line_words = []
+        line_len = 0
+
+        while word_index < len(words):
+            word = words[word_index]
+            word_len = len(word)
+            if word_len > width:
+                if width <= 1:
+                    raise SystemExit(f"Description word does not fit in width {width}: {word}")
+                chunk = word[: width - 1] + "-"
+                words[word_index] = word[width - 1 :]
+                word = chunk
+                word_len = len(word)
+            next_len = word_len if not line_words else line_len + 1 + word_len
+            if next_len > width:
+                break
+            line_words.append(word)
+            line_len = next_len
+            word_index += 1
+
+        if not line_words:
+            raise SystemExit(f"Could not fit description text into width {width}.")
+        lines.append(" ".join(line_words).ljust(width))
+
+    if word_index < len(words):
+        raise SystemExit(f"Description text does not fit in one page: {' '.join(words[word_index:])}")
+
+    return lines
+
+
 def render_description_inc(manifest: dict) -> str:
     lines = []
     for item in manifest["cards"]:
@@ -571,7 +612,7 @@ def render_description_inc(manifest: dict) -> str:
         pages = description["pages"]
         payload = ["  ", f"^{len(pages)}"]
         for page in pages:
-            payload.extend(wrap_page(page))
+            payload.extend(wrap_description_page(page))
             payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
         lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
