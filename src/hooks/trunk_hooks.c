@@ -22,15 +22,18 @@ void GoDownFiftyPositions(void);
 void InitTrunkData(void);
 
 static u16 GetTrunkCardCount(void) {
-  return NUM_TRUE_CARDS + NUM_CUSTOM_TRUNK_CARDS;
+  return NUM_TRUE_CARDS + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
 }
 
 static u16 GetLastTrackedCardId(void) {
-  return CUSTOM_CARD_START + NUM_CUSTOM_TRUNK_CARDS;
+  return CUSTOM_CARD_START + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
 }
 
 static void AppendCustomTrunkCard(void) {
   u16 i;
+
+  if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE)
+    return;
 
   for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
     gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
@@ -75,8 +78,6 @@ void InitTrunkData__Replacement(void) {
 
 LYN_REPLACE_CHECK(TrunkMenuDefaultSort);
 void TrunkMenuDefaultSort__Replacement(void) {
-  u16 cardId;
-
   gCardSortContext.cards = gTrunkMenu.cards;
   gCardSortContext.cardCount = NUM_TRUE_CARDS;
   gCardSortContext.sortMode = gUnk_8DFA6A8[gTrunkMenu.sortMode];

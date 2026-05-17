@@ -13,6 +13,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .dynamic_card_shop_and_trunk_sorting = FALSE, // Needs more work
     .faster_walking_speed = 2,
     .start_with_three_copies_of_every_card = TRUE,
+    .enable_custom_cards_past_800 = FALSE,
     .allow_ante_with_one_copy_of_card = TRUE,
     .allow_sell_one_copy_of_card = TRUE,
     .repeatable_opponent_capacity_reward = 10,

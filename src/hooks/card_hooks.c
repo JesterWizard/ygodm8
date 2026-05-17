@@ -74,7 +74,12 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
 
 LYN_REPLACE_CHECK(SetCardInfo);
 void SetCardInfo__Replacement(unsigned short id) {
-  const CardData *card = &gCardData_NEW[id];
+  const CardData *card;
+
+  if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE && id >= CUSTOM_CARD_START)
+    id = CARD_NONE;
+
+  card = &gCardData_NEW[id];
 
   gCardInfo.id = id;
   gCardInfo.atk = card->atk;
