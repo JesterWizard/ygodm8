@@ -47,3 +47,13 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0326] = sCardOfDemiseBigPalette,
   [0x0327] = sCardOfSanctityBigPalette,
 };
+
+const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
+  [0x0321] = sSorcererOfDarkMagicMiniArt,
+  [0x0322] = sDeckDestructionVirusMiniArt,
+  [0x0323] = sMagiciansValkyriaMiniArt,
+  [0x0324] = sBlueEyesShiningDragonMiniArt,
+  [0x0325] = sPaladinOfWhiteDragonMiniArt,
+  [0x0326] = sCardOfDemiseMiniArt,
+  [0x0327] = sCardOfSanctityMiniArt,
+};

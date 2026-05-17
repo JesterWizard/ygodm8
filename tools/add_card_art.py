@@ -405,6 +405,14 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
             lines.append(f"  [0x{entry.index:04X}] = 0,")
     lines.append("};")
     lines.append("")
+    lines.append("const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {")
+    for entry in entries:
+        if entry.mini_art:
+            lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'MiniArt')},")
+        else:
+            lines.append(f"  [0x{entry.index:04X}] = 0,")
+    lines.append("};")
+    lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
