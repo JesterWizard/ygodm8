@@ -545,7 +545,17 @@ def wrap_page(text: str) -> list[str]:
 
 
 def normalize_activation_page(text: str) -> str:
-    normalized = text.replace("\\n", "#0").replace("\n", "#0").rstrip()
+    normalized = text.replace("\\n", "\n").replace("\r\n", "\n").replace("\r", "\n")
+    lines = [line.strip() for line in normalized.split("\n")]
+    while lines and lines[-1] == "":
+        lines.pop()
+    while lines and lines[0] == "":
+        lines.pop(0)
+    return "#0".join(lines)
+
+
+def encode_activation_page(text: str) -> str:
+    normalized = normalize_activation_page(text)
     if normalized.endswith("#1"):
         normalized = normalized[:-2].rstrip()
     return normalized
@@ -575,15 +585,19 @@ def render_description_inc(manifest: dict) -> str:
 
 def render_activation_description_inc(manifest: dict) -> str:
     lines = []
+    intro_page = "#2\nwas activated."
     for item in manifest["cards"]:
         activation_description = item.get("activation_description")
         if not activation_description:
             continue
         symbol = activation_description["symbol"]
         pages = activation_description["pages"]
-        payload = [f"^{len(pages)}"]
+        payload = [f"^{len(pages) + 1}"]
+        payload.append(encode_activation_page(intro_page))
+        payload.append("#1")
+        payload.append("^")
         for page in pages:
-            payload.extend(wrap_page(normalize_activation_page(page)))
+            payload.append(encode_activation_page(page))
             payload.append("#1")
             payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
