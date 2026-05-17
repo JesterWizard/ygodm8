@@ -21,6 +21,8 @@ extern u8 gDuelistLevelTooLowText[];
 unsigned short GetNthCardOnScreen(u8);
 int GetTrunkCardQty(unsigned short);
 
+#define gShieldAndSwordActive (*(u8 *)0x02022EBC)
+
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
   if (card->description != NULL)
     return (u8 *)card->description;
@@ -101,6 +103,12 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, gUnk8094FE4[ptr->field][gCardInfo.type]);
     gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, ptr->stage);
     gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, ptr->stage);
+  }
+
+  if (gShieldAndSwordActive == TRUE && GetTypeGroup(gCardInfo.id) == TYPE_GROUP_MONSTER) {
+    u16 atk = gCardInfo.atk;
+    gCardInfo.atk = gCardInfo.def;
+    gCardInfo.def = atk;
   }
 }
 

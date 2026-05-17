@@ -24,6 +24,7 @@ GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
 GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.inc"
+GENERATED_ACTIVATION_TEXT_LOOKUP_INC = GENERATED_DIR / "card_activation_text_lookup_generated.inc"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
 EFFECT_ENUM_HEADERS = {
@@ -357,7 +358,7 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
         stem = item["card_const"].lower()
         big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}.huff")
         big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}.gbapal")
-        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}_24x24.lz")
+        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}.lz")
         entries.append(
             CardArtEntry(
                 index=index,
@@ -651,6 +652,37 @@ def render_activation_description_inc(manifest: dict) -> str:
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
+def render_activation_description_lookup_inc(manifest: dict) -> str:
+    lines = [
+        "typedef struct {",
+        "  u16 cardId;",
+        "  const u8 *text;",
+        "} CardActivationTextEntry;",
+        "",
+        "static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA = {",
+    ]
+    for index, item in enumerate(manifest["cards"]):
+        activation_description = item.get("activation_description")
+        if not activation_description:
+            continue
+        lines.append(f"  {{ {item['card_const']}, {activation_description['symbol']} }},")
+    lines.extend([
+        "};",
+        "",
+        "static const u8 *GetCardActivationText(u16 cardId) {",
+        "  u8 i;",
+        "",
+        "  for (i = 0; i < ARRAY_COUNT(sCardActivationTextEntries); i++)",
+        "    if (sCardActivationTextEntries[i].cardId == cardId)",
+        "      return sCardActivationTextEntries[i].text;",
+        "",
+        "  return NULL;",
+        "}",
+        "",
+    ])
+    return "\n".join(lines)
+
+
 def render_trunk_inc(manifest: dict) -> str:
     custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
     cards = [item["card_const"] for item in manifest["cards"][custom_start:]]
@@ -730,7 +762,7 @@ def update_file(path: pathlib.Path, content: str) -> None:
 def sync_mini_exports() -> list[pathlib.Path]:
     EXPORT_DIR.mkdir(parents=True, exist_ok=True)
     exported = []
-    for src in sorted(MINI_DIR.glob("*_24x24.png")):
+    for src in sorted(MINI_DIR.glob("*.png")):
         dst = EXPORT_DIR / src.name
         dst.write_bytes(src.read_bytes())
         exported.append(dst)
@@ -747,7 +779,7 @@ def sync_missing_mini_assets(entries: list[CardArtEntry]) -> list[pathlib.Path]:
         big_png = entry.big_art.with_suffix(".png")
         if not big_png.exists():
             continue
-        base = MINI_DIR / f"{entry.stem}_24x24"
+        base = MINI_DIR / f"{entry.stem}"
         mini_lz = build_mini_assets(big_png, entry.big_pal, base)
         entry.mini_art = mini_lz
         exported.append(mini_lz)
@@ -898,6 +930,7 @@ def main() -> int:
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
     activation_description_inc = render_activation_description_inc(manifest)
+    activation_description_lookup_inc = render_activation_description_lookup_inc(manifest)
     trunk_inc = render_trunk_inc(manifest)
 
     if args.print:
@@ -915,6 +948,8 @@ def main() -> int:
         print(description_inc, end="")
         print(f"--- {GENERATED_ACTIVATION_TEXT_INC} ---")
         print(activation_description_inc, end="")
+        print(f"--- {GENERATED_ACTIVATION_TEXT_LOOKUP_INC} ---")
+        print(activation_description_lookup_inc, end="")
         print(f"--- {GENERATED_TRUNK_INC} ---")
         print(trunk_inc, end="")
         return 0
@@ -926,6 +961,7 @@ def main() -> int:
     update_file(GENERATED_DATA_SRC, data_src)
     update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_INC, activation_description_inc)
+    update_file(GENERATED_ACTIVATION_TEXT_LOOKUP_INC, activation_description_lookup_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
     exported = sync_mini_exports()
     exported.extend(generated_minis)

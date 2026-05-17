@@ -15,7 +15,7 @@ CUSTOM_CARD_80_8BPP := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/a
 CUSTOM_CARD_80_PALETTES := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/assets/cards/80x80/%.gbapal,$(CUSTOM_CARD_80_PNGS))
 CUSTOM_CARD_80_HUFFS := $(patsubst src/hooks/assets/cards/80x80/%.png,src/hooks/assets/cards/80x80/%.huff,$(CUSTOM_CARD_80_PNGS))
 
-CUSTOM_CARD_24_PNGS := $(wildcard src/hooks/assets/cards/24x24/*_24x24.png)
+CUSTOM_CARD_24_PNGS := $(wildcard src/hooks/assets/cards/24x24/*.png)
 CUSTOM_CARD_24_4BPPS := $(patsubst src/hooks/assets/cards/24x24/%.png,src/hooks/assets/cards/24x24/%.4bpp,$(CUSTOM_CARD_24_PNGS))
 CUSTOM_CARD_24_LZS := $(patsubst src/hooks/assets/cards/24x24/%.png,src/hooks/assets/cards/24x24/%.lz,$(CUSTOM_CARD_24_PNGS))
 

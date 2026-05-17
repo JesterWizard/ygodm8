@@ -8,9 +8,10 @@ extern unsigned short g89DC020[];
 extern unsigned short g89DC14C[];
 extern unsigned short g89DC23C[];
 extern unsigned short g89DC2DC[];
-extern const unsigned char gActivationDescription_CardOfSanctity[];
 #include "generated/card_activation_text_generated.inc"
+#include "generated/card_activation_text_lookup_generated.inc"
 static void EmptyCardEffectText(void) {}
+static void PlayActivationDescriptionText(const u8 *text);
 static void PlaySpellEffectText(void);
 static void PlayMonsterEffectText(void);
 static void PlaySpellRebuffText(void);
@@ -21,7 +22,6 @@ static void ShowDuelText(void);
 static void ShowCardEffectNameText(void);
 static void ShowCardEffectNameTextAlt(void);
 static void ShowDestroyWithBackrowText(void);
-static void ShowCardOfSanctityText(void);
 
 static void (*const sCardEffectTextHandlers[])(void) APPEND_RODATA = {
   EmptyCardEffectText,
@@ -41,8 +41,10 @@ static void (*const sCardEffectTextHandlers[])(void) APPEND_RODATA = {
 LYN_REPLACE_CHECK(sub_801CF08);
 void sub_801CF08__Replacement(void)
 {
-  if (gCardEffectTextData.cardId == CARD_OF_SANCTITY) {
-    ShowCardOfSanctityText();
+  const u8 *activationText = GetCardActivationText(gCardEffectTextData.cardId);
+
+  if (activationText != NULL) {
+    PlayActivationDescriptionText(activationText);
     sub_8022080();
     return;
   }
@@ -51,6 +53,13 @@ void sub_801CF08__Replacement(void)
     sCardEffectTextHandlers[gCardEffectTextData.unkA]();
     sub_8022080();
   }
+}
+
+static void PlayActivationDescriptionText(const u8 *text) {
+  PlayMusic(SFX_SPELL_ACTIVATION_START);
+  sub_8041C94((unsigned char *)text, gCardEffectTextData.cardId, gCardEffectTextData.cardId2, 0, 0);
+  SetCardInfo(gCardEffectTextData.cardId);
+  PlayMusic(g89DC020[gCardInfo.spellEffect]);
 }
 
 static void PlaySpellEffectText(void) {
@@ -108,11 +117,4 @@ static void ShowDestroyWithBackrowText(void) {
   PlayMusic(SFX_SPELL_ACTIVATION_START);
   sub_8041C94(gDuelTextStrings[gCardEffectTextData.textId], gCardEffectTextData.cardId, gCardEffectTextData.cardId2, 0, 0);
   PlayMusic(SFX_DESTROY_MON_WITH_BACKROW);
-}
-
-static void ShowCardOfSanctityText(void) {
-  PlayMusic(SFX_SPELL_ACTIVATION_START);
-  sub_8041C94((unsigned char *)gActivationDescription_CardOfSanctity, gCardEffectTextData.cardId, gCardEffectTextData.cardId2, 0, 0);
-  SetCardInfo(gCardEffectTextData.cardId);
-  PlayMusic(g89DC020[gCardInfo.spellEffect]);
 }

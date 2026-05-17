@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 
+#define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 extern void (*g8E0C940[])(void);
 extern unsigned char (*g8E0CA80[])(void);
 
@@ -104,6 +105,7 @@ static void CheckBoardForTurnEffects__Hook(u8 animateScanner) {
 LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
+  gShieldAndSwordActive = FALSE;
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
     sub_802ADA4();

@@ -3,6 +3,7 @@
 
 extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfSanctity(void);
+extern void EffectShieldAndSword(void);
 
 void ActivateSpellEffect(void);
 
@@ -16,6 +17,9 @@ void ActivateSpellEffect__Replacement(void)
   switch (gSpellEffectData.id) {
     case CARD_OF_SANCTITY:
       EffectCardOfSanctity();
+      return;
+    case SHIELD_AND_SWORD:
+      EffectShieldAndSword();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

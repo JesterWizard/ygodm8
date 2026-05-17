@@ -12129,7 +12129,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.huff",
       "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic.lz"
     },
     {
       "card_const": "DECK_DESTRUCTION_VIRUS",
@@ -12154,7 +12154,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus.huff",
       "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus.lz"
     },
     {
       "card_const": "MAGICIANS_VALKYRIA",
@@ -12179,7 +12179,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/magicians_valkyria.huff",
       "big_palette": "src/hooks/assets/cards/80x80/magicians_valkyria.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria.lz"
     },
     {
       "card_const": "BLUE_EYES_SHINING_DRAGON",
@@ -12204,7 +12204,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.huff",
       "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/blue_eyes_shining_dragon_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/blue_eyes_shining_dragon.lz"
     },
     {
       "card_const": "PALADIN_OF_WHITE_DRAGON",
@@ -12230,7 +12230,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.huff",
       "big_palette": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/paladin_of_white_dragon_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/paladin_of_white_dragon.lz"
     },
     {
       "card_const": "CARD_OF_DEMISE",
@@ -12255,7 +12255,7 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/card_of_demise.huff",
       "big_palette": "src/hooks/assets/cards/80x80/card_of_demise.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/card_of_demise_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/card_of_demise.lz"
     },
     {
       "card_const": "CARD_OF_SANCTITY",
@@ -12286,7 +12286,38 @@
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/card_of_sanctity.huff",
       "big_palette": "src/hooks/assets/cards/80x80/card_of_sanctity.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/card_of_sanctity_24x24.lz"
+      "mini_art": "src/hooks/assets/cards/24x24/card_of_sanctity.lz"
+    },
+{
+      "card_const": "SHIELD_AND_SWORD",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SwordAndShield",
+        "pages": [
+          "A veteran knight seeking to test new recruits for battle.",
+          "Attack and defense of all cards is swapped for a turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ShieldAndSword",
+        "pages": [
+          "All monster cards on the\nboard will have their\nattack and defense swapped."
+        ]
+      },
+      "card_name": "Shield And Sword",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src/hooks/assets/cards/80x80/shield_and_sword.huff",
+      "big_palette": "src/hooks/assets/cards/80x80/shield_and_sword.gbapal",
+      "mini_art": "src/hooks/assets/cards/24x24/shield_and_sword.lz"
     }
   ]
 }
