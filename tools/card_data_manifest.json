@@ -12276,6 +12276,13 @@
           "Both players discard their current hands and draw 5 new cards."
         ]
       },
+      "activation_description": {
+        "symbol": "gActivationDescription_CardOfSanctity",
+        "pages": [
+          "Activate this card to",
+          "discard both hands and draw 5."
+        ]
+      },
       "card_name": "Card Of Sanctity",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
       "big_art": "src/hooks/assets/cards/80x80/card_of_sanctity.huff",

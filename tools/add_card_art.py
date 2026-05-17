@@ -23,6 +23,7 @@ GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
 GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
+GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.inc"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
 EFFECT_ENUM_HEADERS = {
@@ -43,7 +44,7 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description"}
+OPTIONAL_STATS_KEYS = {"description", "activation_description"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
@@ -291,19 +292,21 @@ def validate_manifest(manifest: object) -> dict:
         if not isinstance(password, list) or len(password) != 8 or not all(isinstance(d, int) and 0 <= d <= 15 for d in password):
             raise SystemExit(f"cards[{index}].password must be an array of 8 integers (0-15).")
 
-        if "description" in stats:
-            description = stats["description"]
+        for desc_key in ("description", "activation_description"):
+            if desc_key not in stats:
+                continue
+            description = stats[desc_key]
             if not isinstance(description, dict):
-                raise SystemExit(f"cards[{index}].description must be an object when present.")
+                raise SystemExit(f"cards[{index}].{desc_key} must be an object when present.")
             symbol = description.get("symbol")
             pages = description.get("pages")
             if not isinstance(symbol, str) or not symbol:
-                raise SystemExit(f"cards[{index}].description.symbol must be a non-empty string.")
+                raise SystemExit(f"cards[{index}].{desc_key}.symbol must be a non-empty string.")
             if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
-                raise SystemExit(f"cards[{index}].description.pages must be an array of non-empty strings.")
+                raise SystemExit(f"cards[{index}].{desc_key}.pages must be an array of non-empty strings.")
             if len(pages) < 2 or len(pages) > description_pages_max:
                 raise SystemExit(
-                    f"cards[{index}].description.pages must contain between 2 and {description_pages_max} strings."
+                    f"cards[{index}].{desc_key}.pages must contain between 2 and {description_pages_max} strings."
                 )
 
         for key in ASSET_ENTRY_KEYS:
@@ -505,6 +508,28 @@ def render_description_inc(manifest: dict) -> str:
             continue
         symbol = description["symbol"]
         pages = description["pages"]
+        payload = ["  ", f"^{len(pages)}"]
+        for page in pages:
+            payload.extend(wrap_page(page))
+            payload.append("^")
+        data = "".join(payload).encode("ascii") + b"\0"
+        lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
+        for i in range(0, len(data), 12):
+            chunk = data[i:i + 12]
+            lines.append("    " + ", ".join(f"0x{byte:02X}" for byte in chunk) + ",")
+        lines.append("};")
+        lines.append("")
+    return "\n".join(lines).rstrip() + ("\n" if lines else "")
+
+
+def render_activation_description_inc(manifest: dict) -> str:
+    lines = []
+    for item in manifest["cards"]:
+        activation_description = item.get("activation_description")
+        if not activation_description:
+            continue
+        symbol = activation_description["symbol"]
+        pages = activation_description["pages"]
         payload = ["  ", f"^{len(pages)}"]
         for page in pages:
             payload.extend(wrap_page(page))
@@ -765,6 +790,7 @@ def main() -> int:
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
+    activation_description_inc = render_activation_description_inc(manifest)
     trunk_inc = render_trunk_inc(manifest)
 
     if args.print:
@@ -780,6 +806,8 @@ def main() -> int:
         print(data_src, end="")
         print(f"--- src/hooks/card_description_data_generated.inc ---")
         print(description_inc, end="")
+        print(f"--- {GENERATED_ACTIVATION_TEXT_INC} ---")
+        print(activation_description_inc, end="")
         print(f"--- {GENERATED_TRUNK_INC} ---")
         print(trunk_inc, end="")
         return 0
@@ -790,6 +818,7 @@ def main() -> int:
     update_file(GENERATED_DATA_INC, data_inc)
     update_file(GENERATED_DATA_SRC, data_src)
     update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
+    update_file(GENERATED_ACTIVATION_TEXT_INC, activation_description_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
     exported = sync_mini_exports()
     exported.extend(generated_minis)
