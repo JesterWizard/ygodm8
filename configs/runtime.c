@@ -18,6 +18,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_custom_cards_past_800 = FALSE,
     .allow_ante_with_one_copy_of_card = TRUE,
     .allow_sell_one_copy_of_card = TRUE,
+    .add_all_cards_in_deck_to_trunk = FALSE,
     .repeatable_opponent_capacity_reward = 10,
     .story_opponent_capacity_reward = 30,
     .alternate_win_reward_multiplier = 3,

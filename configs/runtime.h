@@ -23,6 +23,7 @@ typedef struct {
     u8 enable_custom_cards_past_800;
     u8 allow_ante_with_one_copy_of_card;
     u8 allow_sell_one_copy_of_card;
+    u8 add_all_cards_in_deck_to_trunk;
     u8 repeatable_opponent_capacity_reward;
     u8 story_opponent_capacity_reward;
     u8 alternate_win_reward_multiplier;
