@@ -20,6 +20,14 @@ void GoDownOnePosition(void);
 void GoUpFiftyPositions(void);
 void GoDownFiftyPositions(void);
 void InitTrunkData(void);
+u8 sub_801F098(u16);
+unsigned GetDuelistLevel(void);
+u8 GetPlayerDeckSize(void);
+void AddCardToDeck(unsigned short);
+void SetCardInfo(unsigned short id);
+extern struct CardInfo gCardInfo;
+extern unsigned short gPressedButtons;
+void WaitForVBlank(void);
 
 static u16 GetTrunkCardCount(void) {
   return NUM_TRUE_CARDS + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
@@ -37,6 +45,14 @@ static void AppendCustomTrunkCard(void) {
 
   for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
     gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
+}
+
+static u8 GetRuntimeDeckLimit(void) {
+  u8 limit = gRuntimeConfig.max_deck_cards;
+
+  if (limit == 0 || limit > DECK_SIZE)
+    return DECK_SIZE;
+  return limit;
 }
 
 static void WrapTrunkCursorToList(void) {
@@ -132,4 +148,30 @@ void GoDownFiftyPositions__Replacement(void) {
   if (gTrunkMenu.currentPos > GetTrunkCardCount() - 1)
     gTrunkMenu.currentPos -= GetTrunkCardCount();
   PlayMusic(SFX_MOVE_CURSOR);
+}
+
+/* LYN_REPLACEMENT(TryAddSelectedCardToDeck) */
+void TryAddSelectedCardToDeck__Replacement(void) {
+  unsigned isCardRejected = 0;
+  unsigned short cardId = GetNthCardOnScreen(2);
+  u8 limit = GetRuntimeDeckLimit();
+
+  if (gTrunkCardQty[cardId] && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
+    SetCardInfo(cardId);
+    if (GetDuelistLevel() < gCardInfo.cost)
+      isCardRejected = 1;
+  }
+  else
+    isCardRejected = 1;
+
+  if (isCardRejected == 1) {
+    PlayMusic(SFX_FORBIDDEN);
+    while (gPressedButtons & DPAD_RIGHT)
+      WaitForVBlank();
+  }
+  else {
+    gTrunkCardQty[cardId]--;
+    AddCardToDeck(cardId);
+    PlayMusic(SFX_SELECT);
+  }
 }

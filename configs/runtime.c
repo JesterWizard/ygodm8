@@ -5,6 +5,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .cap_life_points_after_duel = FALSE,
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
+    .max_deck_cards = 40,
     .max_money_at_start = FALSE,
     .disable_ban_list = TRUE,
     .skip_opening_sequence = TRUE,
