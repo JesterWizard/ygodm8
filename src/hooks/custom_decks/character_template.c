@@ -25,6 +25,20 @@ Shape:
     }
   };
 
+  static const CustomDuelRewardEntry sNameCardShopRewards[] APPEND_RODATA = {
+    {
+      SPRITE_NAME,
+      LOCATION_CARD_SHOP_INSIDE,
+      // normalDrops
+      // normalDropCount
+      // lowDrops
+      // lowDropCount
+      // capacityYield
+      // minDomino
+      // maxDomino
+    }
+  };
+
   const u16 *NameCustomDeck_GetNewGameDeck(void) {
     return sNameCustomDeck;
   }
@@ -33,6 +47,12 @@ Shape:
     if (count != NULL)
       *count = ARRAY_COUNT(sNameCardShopEntries);
     return sNameCardShopEntries;
+  }
+
+  const CustomDuelRewardEntry *NameCustomDeck_GetCardShopRewards(unsigned *count) {
+    if (count != NULL)
+      *count = ARRAY_COUNT(sNameCardShopRewards);
+    return sNameCardShopRewards;
   }
 */
 

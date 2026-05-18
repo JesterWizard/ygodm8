@@ -1,8 +1,10 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "duel_main.h"
+#include "custom_decks/custom_decks.h"
 
 void HandleWin(void);
+void HandleLoss(void);
 u8 sub_801F098(u16);
 extern struct Duelist* gUnk8E00B30[];
 extern u16 g80B9620[];
@@ -14,6 +16,7 @@ void AddMoneyFromDuelVictory(void);
 void DisplayMoneyRewardText(void);
 int GetCardsDrawn(u8 arg0);
 int GetDeckCardQty(u16);
+u16 RandRangeU16(u16, u16);
 u16 sub_801FFE0(void);
 u8 sub_801F0F0(u16, u16*);
 
@@ -192,6 +195,16 @@ static u32 ApplyCapacityRewardMultiplier(u32 reward) {
   return scaledReward;
 }
 
+static const CustomDuelRewardEntry *GetCustomDuelRewardEntry(void) {
+  return CustomDecks_GetPendingCardShopDuelRewardEntry();
+}
+
+static u16 PickUniformRewardCard(const u16 *cards, unsigned count) {
+  if (cards == NULL || count == 0)
+    return CARD_NONE;
+  return cards[RandRangeU16(1, count) - 1];
+}
+
 static void AddRewardCardToTrunk__Replacement(void) {
   u8 i;
   if (gAnte == CARD_NONE)
@@ -213,12 +226,111 @@ static u32 GetConfiguredCapacityReward(u32 baseReward) {
   }
 }
 
+LYN_REPLACE_CHECK(sub_801FFE0);
+u16 sub_801FFE0__Replacement(void) {
+  const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+  struct CardDrop *cardDrops;
+  u16 random;
+
+  if (entry != NULL) {
+    if (IsNormalAnte(gAnte) == TRUE)
+      return PickUniformRewardCard(entry->normalDrops, entry->normalDropCount);
+    return PickUniformRewardCard(entry->lowDrops, entry->lowDropCount);
+  }
+
+  if (IsNormalAnte(gAnte) == TRUE)
+    cardDrops = gDuelData.duelist.goodDrops;
+  else
+    cardDrops = gDuelData.duelist.badDrops;
+
+  random = RandRangeU16(0, 2047);
+  while (cardDrops->card != CARD_NONE && random > cardDrops->chance)
+    cardDrops++;
+  return cardDrops->card;
+}
+
+LYN_REPLACE_CHECK(AddMoneyFromDuelVictory);
+void AddMoneyFromDuelVictory__Replacement(void) {
+  const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+  u64 temp;
+  u16 minDomino;
+  u16 maxDomino;
+
+  switch (gUnk8E00B30[gDuelData.opponent]->unk20) {
+    case 1:
+      temp = 10;
+      break;
+    case 2:
+      temp = 100;
+      break;
+    case 3:
+      temp = 1000;
+      break;
+    case 4:
+      temp = 10000;
+      break;
+    case 5:
+      temp = 100000;
+      break;
+    case 6:
+      temp = 1000000;
+      break;
+    case 7:
+      temp = 10000000;
+      break;
+    case 8:
+      temp = 100000000;
+      break;
+    case 9:
+      temp = 1000000000;
+      break;
+    case 10:
+      temp = 10000000000;
+      break;
+    case 11:
+      temp = 100000000000;
+      break;
+    case 12:
+      temp = 1000000000000;
+      break;
+    case 13:
+      temp = 10000000000000;
+      break;
+    case 14:
+      temp = 100000000000000;
+      break;
+    case 15:
+      temp = 1000000000000000;
+      break;
+    case 0:
+    default:
+      temp = 1;
+      break;
+  }
+
+  if (entry != NULL) {
+    minDomino = entry->minDomino;
+    maxDomino = entry->maxDomino;
+  } else {
+    minDomino = gUnk8E00B30[gDuelData.opponent]->minDomino;
+    maxDomino = gUnk8E00B30[gDuelData.opponent]->maxDomino;
+  }
+
+  gDuelData.moneyReward = RandRangeU16(minDomino, maxDomino) * temp;
+  AddMoney(gDuelData.moneyReward);
+}
+
 LYN_REPLACE_CHECK(HandleWin);
 void HandleWin__Replacement(void) {
   struct DuelText duelText;
   u32 rewardMultiplier = GetAlternateWinRewardMultiplier();
   u64 baseMoneyReward;
-  gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield));
+  const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+
+  if (entry != NULL)
+    gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(entry->capacityYield));
+  else
+    gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield));
   IncreaseDeckCapacity(gDuelData.capacityYield);
   AddRewardCardToTrunk__Replacement();
   AddCardDropsToShop();
@@ -263,6 +375,35 @@ void HandleWin__Replacement(void) {
   }
   if (gDuelType == DUEL_TYPE_INGAME)
     CapLifePointsAfterDuel();
+
+  CustomDecks_ClearPendingCardShopDuel();
+}
+
+LYN_REPLACE_CHECK(HandleLoss);
+void HandleLoss__Replacement(void) {
+  struct DuelText duelText;
+  if (gAnte != CARD_NONE)
+    RemoveCardQtyFromTrunk(gAnte, 1);
+  if (!gDuelLifePoints[DUEL_PLAYER]) {
+    FadeOutMusic(4);
+    ResetDuelTextData(&duelText);
+    duelText.textId = DUEL_TEXT_PLAYER_OUT_OF_LP;
+    DisplayDuelText(&duelText);
+  }
+  else if (NumCardsInDeck(0) < GetCardsDrawn(0)) {
+    FadeOutMusic(4);
+    ResetDuelTextData(&duelText);
+    duelText.textId = DUEL_TEXT_PLAYER_DECK_OUT;
+    DisplayDuelText(&duelText);
+  }
+  if (gDuelData.unk2d) {
+    PlayMusic(gDuelData.lossMusic);
+    ResetDuelTextData(&duelText);
+    duelText.textId = DUEL_TEXT_DUEL_LOSS;
+    DisplayDuelText(&duelText);
+  }
+
+  CustomDecks_ClearPendingCardShopDuel();
 }
 
 LYN_REPLACE_CHECK(sub_801F098);

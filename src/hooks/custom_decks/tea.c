@@ -60,6 +60,33 @@ static const CustomDeckEntry sTeaCardShopEntries[] APPEND_RODATA = {
   }
 };
 
+static const u16 sTeaNormalDrops[] APPEND_RODATA = {
+  MYSTICAL_ELF,
+  PETIT_ANGEL,
+  HAPPY_LOVER,
+  DARK_MAGICIAN_GIRL
+};
+
+static const u16 sTeaLowDrops[] APPEND_RODATA = {
+  HANE_HANE,
+  NEMURIKO,
+  FAITH_BIRD
+};
+
+static const CustomDuelRewardEntry sTeaCardShopRewards[] APPEND_RODATA = {
+  {
+    SPRITE_TEA,
+    LOCATION_CARD_SHOP_INSIDE,
+    sTeaNormalDrops,
+    ARRAY_COUNT(sTeaNormalDrops),
+    sTeaLowDrops,
+    ARRAY_COUNT(sTeaLowDrops),
+    10,
+    1000,
+    3000
+  }
+};
+
 const u16 *TeaCustomDeck_GetNewGameDeck(void) {
   return NULL;
 }
@@ -72,4 +99,10 @@ const CustomDeckEntry *TeaCustomDeck_GetCardShopEntries(unsigned *count) {
   if (count != NULL)
     *count = ARRAY_COUNT(sTeaCardShopEntries);
   return sTeaCardShopEntries;
+}
+
+const CustomDuelRewardEntry *TeaCustomDeck_GetCardShopRewards(unsigned *count) {
+  if (count != NULL)
+    *count = ARRAY_COUNT(sTeaCardShopRewards);
+  return sTeaCardShopRewards;
 }

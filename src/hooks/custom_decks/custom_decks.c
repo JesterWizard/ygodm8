@@ -5,6 +5,7 @@
 typedef struct {
   const u16 *(*getNewGameDeck)(void);
   const CustomDeckEntry *(*getCardShopEntries)(unsigned *count);
+  const CustomDuelRewardEntry *(*getCardShopRewards)(unsigned *count);
 } CustomDeckModule;
 
 static const u8 sCardShopDuelPrefix[] APPEND_RODATA = {CUSTOM_DIALOGUE_PREFIX_BYTES};
@@ -12,7 +13,8 @@ static const u8 sCardShopDuelPrefix[] APPEND_RODATA = {CUSTOM_DIALOGUE_PREFIX_BY
 static const CustomDeckModule sCustomDeckModules[] APPEND_RODATA = {
   {
     TeaCustomDeck_GetNewGameDeck,
-    TeaCustomDeck_GetCardShopEntries
+    TeaCustomDeck_GetCardShopEntries,
+    TeaCustomDeck_GetCardShopRewards
   }
 };
 
@@ -26,6 +28,27 @@ static const CustomDeckEntry *FindCustomDeckEntry(u8 spriteId, u8 locationId) {
     unsigned entryIndex;
 
     entries = module->getCardShopEntries(&entryCount);
+    for (entryIndex = 0; entryIndex < entryCount; entryIndex++) {
+      if (entries[entryIndex].spriteId == spriteId && entries[entryIndex].locationId == locationId)
+        return &entries[entryIndex];
+    }
+  }
+
+  return NULL;
+}
+
+static const CustomDuelRewardEntry *FindCustomDuelRewardEntry(u8 spriteId, u8 locationId) {
+  unsigned moduleIndex;
+
+  for (moduleIndex = 0; moduleIndex < ARRAY_COUNT(sCustomDeckModules); moduleIndex++) {
+    const CustomDeckModule *module = &sCustomDeckModules[moduleIndex];
+    const CustomDuelRewardEntry *entries;
+    unsigned entryCount;
+    unsigned entryIndex;
+
+    entries = module->getCardShopRewards(&entryCount);
+    if (entries == NULL)
+      continue;
     for (entryIndex = 0; entryIndex < entryCount; entryIndex++) {
       if (entries[entryIndex].spriteId == spriteId && entries[entryIndex].locationId == locationId)
         return &entries[entryIndex];
@@ -78,6 +101,18 @@ const u16 *CustomDecks_GetPendingCardShopDuelDeck(void) {
   if (entry == NULL)
     return NULL;
   return entry->deck;
+}
+
+const CustomDuelRewardEntry *CustomDecks_GetPendingCardShopDuelRewardEntry(void) {
+  const CustomDuelRewardEntry *entry;
+
+  if (!sPendingCardShopDuel.isActive)
+    return NULL;
+
+  entry = FindCustomDuelRewardEntry(sPendingCardShopDuel.spriteId, sPendingCardShopDuel.locationId);
+  if (entry == NULL)
+    return NULL;
+  return entry;
 }
 
 void CustomDecks_ClearPendingCardShopDuel(void) {
