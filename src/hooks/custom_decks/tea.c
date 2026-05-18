@@ -61,6 +61,10 @@ static const CustomDeckEntry sTeaCardShopEntries[] APPEND_RODATA = {
 };
 
 const u16 *TeaCustomDeck_GetNewGameDeck(void) {
+  return NULL;
+}
+
+const u16 *TeaCustomDeck_GetDuelDeck(void) {
   return sTeaCustomDeck;
 }
 

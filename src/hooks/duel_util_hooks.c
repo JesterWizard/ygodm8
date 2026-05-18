@@ -1,5 +1,5 @@
 #include "global.h"
-#include "configs/runtime.h"
+#include "common-chax.h"
 #include "custom_decks/custom_decks.h"
 
 extern int NumCardsInDeck(unsigned char);
@@ -15,25 +15,101 @@ static void CopyDuelDeckCards(unsigned char duelist, const unsigned short *deck)
     gDuelDecks[duelist].cards[i] = deck[i];
 }
 
-LYN_REPLACE_CHECK(InitDuelDeck);
-void InitDuelDeck__Replacement(unsigned char duelist, unsigned char duelistId) {
-  const u16 *deck = NULL;
-  const u16 *pendingDeck = NULL;
 
-  if (duelistId == DUEL_PLAYER) {
-    deck = gDeckMenu.cards;
-  } else if (CustomDecks_IsEnabled() == TRUE) {
-    pendingDeck = CustomDecks_GetPendingCardShopDuelDeck();
-    deck = pendingDeck;
+static inline u8 sub_8052268_inline(int y, int x) {
+  u8 temp = 0;
+  if (x <= 0)
+    if (x >= -4)
+      temp = 1;
+  if (y <= 0)
+    if (y >= -8)
+      temp |= 2;
+  if (temp == 3)
+    return 1;
+  return 0;
+}
+
+static inline u8 sub_8052298_inline(int y, int x) {
+  u8 temp = 0;
+  if (x <= 4)
+    if (x >= -4)
+      temp = 1;
+  if (y <= 0)
+    if (y >= -8)
+      temp |= 2;
+  if (temp == 3)
+    return 1;
+  return 0;
+}
+
+static inline u8 sub_80522C0_inline(int y, int x) {
+  u8 temp = 0;
+  if (x <= 0)
+    if (x >= -4)
+      temp = 1;
+  if (y <= 4)
+    if (y >= -4)
+      temp |= 2;
+  if (temp == 3)
+    return 1;
+  return 0;
+}
+
+static inline u8 sub_80522E8_inline(int y, int x) {
+  u8 temp = 0;
+  if (x <= 0)
+    if (x >= -8)
+      temp = 1;
+  if (y <= 4)
+    if (y >= -4)
+      temp |= 2;
+  if (temp == 3)
+    return 1;
+  return 0;
+}
+
+s8 GetObjectIdInFrontOfPlayer(u8 x, u8 y, u8 playerDirection) {
+  u8 i, objExists;
+
+  for (i = 1; i < 15; i++) {
+    switch (playerDirection) {
+      case 0:
+        objExists = sub_8052268_inline(y - gOverworld.objects[i].y, x - gOverworld.objects[i].x);
+        break;
+      case 1:
+        objExists = sub_8052298_inline(y - gOverworld.objects[i].y, x - gOverworld.objects[i].x);
+        break;
+      case 2:
+        objExists = sub_80522C0_inline(y - gOverworld.objects[i].y, x - gOverworld.objects[i].x);
+        break;
+      default:
+        objExists = sub_80522E8_inline(y - gOverworld.objects[i].y, x - gOverworld.objects[i].x);
+        break;
+    }
+    if (objExists)
+      return i;
+  }
+  return -1;
+}
+
+LYN_REPLACE_CHECK(InitDuelDeck);
+void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
+  const u16 *deck;
+
+  if (!duelistId)
+    deck = gDeckMenu.cards; // player deck
+  else {
+    switch (GetTalkingUnitSprite()) {
+      case SPRITE_TEA:
+        deck = TeaCustomDeck_GetDuelDeck();
+        break;
+      default:
+        deck = gDuelData.duelist.deck;
+        break;
+    }
   }
 
-  if (deck == NULL)
-    deck = gDuelData.duelist.deck;
-
   InitCardsForDuelDeck(duelist, (unsigned short *)deck);
-
-  if (pendingDeck != NULL)
-    CustomDecks_ClearPendingCardShopDuel();
 }
 
 LYN_REPLACE_CHECK(NumFaceUpMatchingAttributeInRow);

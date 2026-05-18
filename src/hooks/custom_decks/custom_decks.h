@@ -20,4 +20,5 @@ const u8 *CustomDecks_BuildCardShopDuelText(u8 *buffer, unsigned bufferSize, u8 
 struct Script CustomDecks_BuildCardShopDuelScript(u8 *buffer, unsigned bufferSize, u8 spriteId, u8 locationId, const struct Script *fallbackScript);
 
 const u16 *TeaCustomDeck_GetNewGameDeck(void);
+const u16 *TeaCustomDeck_GetDuelDeck(void);
 const CustomDeckEntry *TeaCustomDeck_GetCardShopEntries(unsigned *count);

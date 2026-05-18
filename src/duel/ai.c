@@ -12543,15 +12543,6 @@ struct AttackVoicing {
     u16 soundId;
 };
 
-enum {
-  DUELIST_NONE,
-  DUELIST_YUGI,
-  DUELIST_ATEM, //TODO: YAMI_YUGI?
-  DUELIST_KAIBA,
-  DUELIST_JOEY,
-  DUELIST_EVIL_JOEY = 0x95 //TODO: YAMI_JOEY? DARK_JOEY?
-};
-
 static const struct AttackVoicing gB0AE8[] = {
   {.duelistId = DUELIST_KAIBA, .cardId = BLUE_EYES_WHITE_DRAGON, .soundId = SFX_KAIBA_BLUE_EYES_VOICE},
   {.duelistId = DUELIST_JOEY, .cardId = RED_EYES_B_DRAGON, .soundId = SFX_JOEY_RED_EYES_VOICE},
