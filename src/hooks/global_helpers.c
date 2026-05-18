@@ -11,6 +11,8 @@ s16 GetTalkingUnitSprite(void)
   u8 y = *(volatile u8 *)y_raw;
 
   objId = GetObjectIdInFrontOfPlayer(x, y, playerDirection);
+  if (objId < 0)
+    return -1;
 
   return gOverworld.objects[objId].spriteId;
 }

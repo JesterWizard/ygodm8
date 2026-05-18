@@ -25,11 +25,11 @@ static const signed short g8E0E3CC[] APPEND_RODATA = {
 
 static inline u8 sub_8052268_inline(int y, int x) {
   u8 temp = 0;
-  if (x <= 0)
-    if (x >= -4)
-      temp = 1;
   if (y <= 0)
     if (y >= -8)
+      temp = 1;
+  if (x <= 4)
+    if (x >= -4)
       temp |= 2;
   if (temp == 3)
     return 1;
@@ -38,11 +38,11 @@ static inline u8 sub_8052268_inline(int y, int x) {
 
 static inline u8 sub_8052298_inline(int y, int x) {
   u8 temp = 0;
-  if (x <= 4)
-    if (x >= -4)
+  if (x <= 8)
+    if (x >= 0)
       temp = 1;
-  if (y <= 0)
-    if (y >= -8)
+  if (y <= 4)
+    if (y >= -4)
       temp |= 2;
   if (temp == 3)
     return 1;
@@ -51,11 +51,11 @@ static inline u8 sub_8052298_inline(int y, int x) {
 
 static inline u8 sub_80522C0_inline(int y, int x) {
   u8 temp = 0;
-  if (x <= 0)
-    if (x >= -4)
+  if (y <= 8)
+    if (y >= 0)
       temp = 1;
-  if (y <= 4)
-    if (y >= -4)
+  if (x <= 4)
+    if (x >= -4)
       temp |= 2;
   if (temp == 3)
     return 1;

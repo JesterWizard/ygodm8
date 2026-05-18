@@ -5,7 +5,7 @@
 #define CUSTOM_DIALOGUE_BODY(line1, line2) line1 "#0" line2 "#1@0\x0A"
 
 static const u8 sTeaCardShopDuelBody[] APPEND_TEXT =
-  CUSTOM_DIALOGUE_BODY("I made a deck.", "Let's duel.");
+  CUSTOM_DIALOGUE_BODY("You want to duel me, #5?.", "Alright, if it'll help you.");
 
 static const u16 sTeaCustomDeck[40] APPEND_RODATA = {
   MYSTICAL_ELF,
