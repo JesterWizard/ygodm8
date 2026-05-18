@@ -27,6 +27,7 @@ GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.
 GENERATED_ACTIVATION_TEXT_LOOKUP_INC = GENERATED_DIR / "card_activation_text_lookup_generated.inc"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
+RUNTIME_CONFIG_C = ROOT / "configs/runtime.c"
 EFFECT_ENUM_HEADERS = {
     "monsterEffect": ROOT / "include/constants/monster_effects.h",
     "spellEffect": ROOT / "include/constants/spell_effects.h",
@@ -73,6 +74,14 @@ def to_symbol(stem: str, suffix: str) -> str:
 def manifest_asset_path(value: str, default: str) -> pathlib.Path:
     path = pathlib.Path(value if value else default)
     return path if path.is_absolute() else ROOT / path
+
+
+def load_runtime_flag(name: str) -> bool:
+    text = RUNTIME_CONFIG_C.read_text()
+    match = re.search(rf"\.{re.escape(name)}\s*=\s*(TRUE|FALSE)", text)
+    if not match:
+        raise SystemExit(f"Unable to find runtime flag .{name} in {RUNTIME_CONFIG_C}.")
+    return match.group(1) == "TRUE"
 
 
 def include_asset_path(path: pathlib.Path) -> str:
@@ -683,9 +692,9 @@ def render_activation_description_lookup_inc(manifest: dict) -> str:
     return "\n".join(lines)
 
 
-def render_trunk_inc(manifest: dict) -> str:
+def render_trunk_inc(manifest: dict, enable_custom_cards_past_800: bool) -> str:
     custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
-    cards = [item["card_const"] for item in manifest["cards"][custom_start:]]
+    cards = [item["card_const"] for item in manifest["cards"][custom_start:]] if enable_custom_cards_past_800 else []
     lines = [
         "#include \"global.h\"",
         "",
@@ -931,7 +940,7 @@ def main() -> int:
     description_inc = render_description_inc(manifest)
     activation_description_inc = render_activation_description_inc(manifest)
     activation_description_lookup_inc = render_activation_description_lookup_inc(manifest)
-    trunk_inc = render_trunk_inc(manifest)
+    trunk_inc = render_trunk_inc(manifest, load_runtime_flag("enable_custom_cards_past_800"))
 
     if args.print:
         print(f"--- {CARD_IDS_H} ---")

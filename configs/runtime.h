@@ -18,7 +18,9 @@ typedef struct {
     u8 disable_element_system;
     u8 duel_fields_start_on_arena; // Force duel starts onto the arena field.
     u8 dynamic_card_shop_and_trunk_sorting;
+    u8 dynamic_card_shop_costs; // Use card cost * 40 for shop pricing.
     u8 faster_walking_speed;
+    u8 start_shop_with_one_copy_of_every_card;
     u8 start_with_three_copies_of_every_card;
     u8 randomize_card_costs_at_start;
     u8 enable_custom_cards_past_800;

@@ -4,7 +4,6 @@
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
-extern const u32 gCardCosts[];
 extern const u8 gCardAttributes[];
 extern const u8 gCardLevels[];
 extern const u8 gCardTypes[];
@@ -28,6 +27,9 @@ extern void (*g20245AC)(int, u8 *, int);
 unsigned short GetNthCardOnScreen(u8);
 int GetTrunkCardQty(unsigned short);
 int sub_80588C4(u8 *, int, int);
+void sub_800BD44(void);
+void sub_800BDA0(void);
+void ScalePriceToQty(void);
 void sub_80327C8(void);
 void sub_803519C(void);
 void sub_8030C14(void);
@@ -149,8 +151,8 @@ void InitializeRandomizedCardCosts(void) {
   if (gRuntimeConfig.randomize_card_costs_at_start == FALSE)
     return;
 
-  seed = GetPersistentCostSeed();
   sRandomizedCardCosts[CARD_NONE] = 0;
+  seed = GetPersistentCostSeed();
   for (i = 1; i < CARD_COST_TABLE_COUNT; i++) {
     seed = XorShift32(seed);
     sRandomizedCardCosts[i] = seed % 501;
@@ -160,7 +162,8 @@ void InitializeRandomizedCardCosts(void) {
 static u16 GetConfiguredCardCost(u16 id) {
   if (gRuntimeConfig.randomize_card_costs_at_start == TRUE)
     return sRandomizedCardCosts[id];
-  return (u16)gCardCosts[id];
+
+  return (u16)gCardData_NEW[id].cost;
 }
 
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
@@ -210,6 +213,37 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
   return stat;
 }
 
+static u64 GetDynamicShopBasePrice(void) {
+  u16 cardId = gShopSelectedCard.cardId;
+  u64 basePrice = (u64)gCardData_NEW[cardId].cost * 40;
+
+  if (basePrice == 0)
+    basePrice = 1;
+
+  return basePrice;
+}
+
+static void ScaleDynamicShopPriceToQty(void) {
+  u64 basePrice = GetDynamicShopBasePrice();
+  u8 val = gShopSelectedCard.shopQty - 1;
+
+  if (val < 250)
+    gShopSelectedCard.buyPrice = basePrice * (251 - gShopSelectedCard.shopQty) / 250;
+  else
+    gShopSelectedCard.buyPrice = 0;
+
+  if (gShopSelectedCard.buyPrice == 0 && val < 250)
+    gShopSelectedCard.buyPrice = 1;
+
+  if (gShopSelectedCard.shopQty < 250)
+    gShopSelectedCard.sellPrice = basePrice * (250 - gShopSelectedCard.shopQty) / 5000;
+  else
+    gShopSelectedCard.sellPrice = basePrice / 5000;
+
+  if (gShopSelectedCard.sellPrice == 0)
+    gShopSelectedCard.sellPrice = 1;
+}
+
 #include "generated/card_name_generated.inc"
 
 LYN_REPLACE_CHECK(SetCardInfo);
@@ -237,6 +271,16 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);
+}
+
+LYN_REPLACE_CHECK(ScalePriceToQty);
+void ScalePriceToQty__Replacement(void) {
+  if (gRuntimeConfig.dynamic_card_shop_costs == TRUE)
+    ScaleDynamicShopPriceToQty();
+  else {
+    sub_800BD44();
+    sub_800BDA0();
+  }
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);

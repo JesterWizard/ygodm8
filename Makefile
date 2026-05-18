@@ -68,6 +68,7 @@ CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
 CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_ART_GENERATED := src/hooks/generated/card_art_generated.inc src/hooks/generated/card_name_generated.inc src/hooks/generated/card_data_generated.inc
+CARD_TRUNK_GENERATED := src/hooks/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src/hooks/generated/card_data_hooks.c
 
 ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(HOOK_OBJS)
@@ -97,7 +98,7 @@ $(CARD_DESCRIPTION_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 $(CARD_IDS_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 	python3 $(CARD_ART_GENERATOR) --card-ids
 
-$(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) $(CUSTOM_CARD_80_HUFFS) $(CUSTOM_CARD_80_PALETTES) $(CUSTOM_CARD_24_LZS) $(CARD_IDS_GENERATED)
+$(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CUSTOM_CARD_80_HUFFS) $(CUSTOM_CARD_80_PALETTES) $(CUSTOM_CARD_24_LZS) $(CARD_IDS_GENERATED)
 	python3 $(CARD_ART_GENERATOR)
 
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
@@ -109,6 +110,7 @@ $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-
 $(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED)
+$(C_BUILDDIR)/hooks/trunk_hooks.o: $(CARD_TRUNK_GENERATED)
 
 $(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i

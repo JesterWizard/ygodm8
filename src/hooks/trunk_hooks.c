@@ -38,13 +38,17 @@ static u16 GetLastTrackedCardId(void) {
 }
 
 static void AppendCustomTrunkCard(void) {
-  u16 i;
-
   if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE)
     return;
 
-  for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
-    gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  {
+    u16 i;
+
+    for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+      gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
+  }
+#endif
 }
 
 static u8 GetRuntimeDeckLimit(void) {

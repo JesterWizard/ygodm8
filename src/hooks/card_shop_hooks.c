@@ -17,7 +17,10 @@ struct CardShopState {
 extern struct CardShopState sCardShop;
 extern u16 gNewButtons;
 extern u64 gMoney;
+extern u8 gStartingShopCards[];
+extern u8 gShopCardQty[];
 
+void InitNewGameShopCards(void);
 void TrySellCard (void);
 void sub_802CEE0 (int);
 void sub_802D174 (void);
@@ -34,6 +37,18 @@ unsigned PlayerInShopHasAtLeastCardQty (u16, u8);
 void AddCardQtyToShop (u16, u8);
 void AddMoney (u64);
 void ScalePriceToQty (void);
+
+LYN_REPLACE_CHECK(InitNewGameShopCards);
+void InitNewGameShopCards__Replacement(void) {
+  unsigned short cardId;
+
+  for (cardId = 0; cardId < NUM_CARDS; cardId++) {
+    if (gRuntimeConfig.start_shop_with_one_copy_of_every_card == TRUE)
+      gShopCardQty[cardId] = 1;
+    else
+      gShopCardQty[cardId] = gStartingShopCards[cardId];
+  }
+}
 
 LYN_REPLACE_CHECK(TrySellCard);
 void TrySellCard__Replacement(void) {
