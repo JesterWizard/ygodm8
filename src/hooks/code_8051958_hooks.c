@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "custom_decks/custom_decks.h"
 
 static const enum Direction sDirectionFacePlayer[] APPEND_RODATA = {
   [DIRECTION_DOWN] = DIRECTION_UP,
@@ -131,22 +132,6 @@ static void AdvancePlayerOneStep(u8 direction) {
   sub_8052108(pos, (u8 *)&gOverworld.objects[0].x);
 }
 
-static const u8 sTeaCardShopDuelText[] APPEND_TEXT = {
-  0x23, 0x34, 7, 0x00, PORTRAIT_POSITION_AUTO,
-  'I', ' ', 'm', 'a', 'd', 'e', ' ', 'a', ' ', 'd', 'e', 'c', 'k', '.',
-  0x23, 0x30,
-  'L', 'e', 't', '\'', 's', ' ', 'd', 'u', 'e', 'l', '.',
-  0x23, 0x31, '@', '0', 0x0A, 0x00
-};
-
-static int IsCustomTeaTalk(void) {
-  if (gRuntimeConfig.enable_custom_decks != TRUE)
-    return 0;
-  if (gOverworld.map.id != LOCATION_CARD_SHOP_INSIDE)
-    return 0;
-  return 1;
-}
-
 LYN_REPLACE_CHECK(TryWalking);
 void TryWalking__Replacement(u8 direction) {
   u8 i;
@@ -209,13 +194,14 @@ void TryDueling__Replacement(void) {
   sub_804EF10();
   LoadObjVRAM();
 
-  if (gOverworld.objects[objId].spriteId == SPRITE_TEA && IsCustomTeaTalk()) {
-    struct Script teaCardShopDuelScript = {
-      (u8 *)sTeaCardShopDuelText,
-      gOverworld.objects[objId].scriptR,
+  if (CustomDecks_IsEnabled() == TRUE &&
+      CustomDecks_ShouldUseCardShopDuel(gOverworld.objects[objId].spriteId, gOverworld.map.id) == TRUE) {
+    struct Script cardShopDuelScript = CustomDecks_BuildCardShopDuelScript(
+      gOverworld.objects[objId].spriteId,
+      gOverworld.map.id,
       gOverworld.objects[objId].scriptR
-    };
-    InitiateScript(&teaCardShopDuelScript);
+    );
+    InitiateScript(&cardShopDuelScript);
   } else {
     InitiateScript(gOverworld.objects[objId].scriptR);
   }

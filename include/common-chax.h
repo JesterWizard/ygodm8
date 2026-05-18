@@ -3,6 +3,7 @@
 #include "duel.h"
 #include "card.h"
 #include "card_shop.h"
+#include "overworld.h"
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
 #include "constants/music_ids.h"

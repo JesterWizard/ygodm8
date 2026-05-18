@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "custom_decks/custom_decks.h"
 
 extern unsigned gDeckCapacity;
 extern unsigned gDuelistLevel;
@@ -127,25 +128,6 @@ static u8 GetRuntimeDeckLimit(void) {
   return limit;
 }
 
-static const u16 sTeaCustomDeck[DECK_SIZE] APPEND_RODATA = {
-  MYSTICAL_ELF, MYSTICAL_ELF, MYSTICAL_ELF,
-  PETIT_ANGEL, PETIT_ANGEL, PETIT_ANGEL,
-  HAPPY_LOVER, HAPPY_LOVER, HAPPY_LOVER,
-  HARPIE_LADY, HARPIE_LADY, HARPIE_LADY,
-  MAGICIAN_OF_FAITH, MAGICIAN_OF_FAITH, MAGICIAN_OF_FAITH,
-  WITCH_OF_THE_BLACK_FOREST, WITCH_OF_THE_BLACK_FOREST, WITCH_OF_THE_BLACK_FOREST,
-  SANGAN, SANGAN, SANGAN,
-  HANE_HANE, HANE_HANE, HANE_HANE,
-  DANCING_ELF, DANCING_ELF, DANCING_ELF,
-  FAITH_BIRD, FAITH_BIRD, FAITH_BIRD,
-  NEMURIKO, NEMURIKO, NEMURIKO,
-  KURIBOH, KURIBOH, KURIBOH,
-  DARK_MAGICIAN_GIRL,
-  SPIRIT_OF_THE_HARP,
-  FAIRY_DRAGON,
-  AQUA_MADOOR
-};
-
 LYN_REPLACE_CHECK(InitDeckCapacity);
 void InitDeckCapacity__Replacement(void) {
   gDeckCapacity = 1600;
@@ -157,7 +139,7 @@ void InitDeckCapacity__Replacement(void) {
 LYN_REPLACE_CHECK(InitNewGameDeck);
 void InitNewGameDeck__Replacement(void) {
   unsigned i;
-  const u16 *deck = gRuntimeConfig.enable_custom_decks == TRUE ? sTeaCustomDeck : gStarterDeck;
+  const u16 *deck = CustomDecks_IsEnabled() == TRUE ? CustomDecks_GetNewGameDeck() : gStarterDeck;
 
   for (i = 0; i < DECK_SIZE; i++)
     gDeckMenu.cards[i] = deck[i];
