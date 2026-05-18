@@ -18,10 +18,150 @@ extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
+extern u8 *g8E0CD10;
+extern struct {
+  u8 *unk0;
+  u32 unk4;
+} g80D2D00[];
+extern u32 gLfsrState;
+extern void (*g20245AC)(int, u8 *, int);
 unsigned short GetNthCardOnScreen(u8);
 int GetTrunkCardQty(unsigned short);
+int sub_80588C4(u8 *, int, int);
+void sub_80327C8(void);
+void sub_803519C(void);
+void sub_8030C14(void);
+void sub_8030CA8(void);
+u8 LfsrNextBit(void);
+u8 LfsrNextByte(void);
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
+#define CARD_COST_TABLE_COUNT (SHIELD_AND_SWORD + 1)
+#define COST_SEED_MAGIC_0 'C'
+#define COST_SEED_MAGIC_1 'S'
+#define COST_SEED_MAGIC_2 'T'
+#define COST_SEED_MAGIC_3 '1'
+#define COST_SEED_RECORD_SIZE 8
+#define COST_SEED_FLASH_PRIMARY 0x0E000787
+#define COST_SEED_FLASH_BACKUP 0x0E004767
+
+static u16 *const sRandomizedCardCosts = (u16 *)0x03001678;
+static u32 *const sCostEntropyState = (u32 *)0x02021AB8;
+static u8 *const sStoredCostSeedRecord = (u8 *)0x02020E06;
+
+static u32 XorShift32(u32 seed) {
+  seed ^= seed << 13;
+  seed ^= seed >> 17;
+  seed ^= seed << 5;
+  if (seed == 0)
+    seed = 1;
+  return seed;
+}
+
+static u32 ReadStoredCostSeed(void) {
+  if (sStoredCostSeedRecord[0] != COST_SEED_MAGIC_0
+      || sStoredCostSeedRecord[1] != COST_SEED_MAGIC_1
+      || sStoredCostSeedRecord[2] != COST_SEED_MAGIC_2
+      || sStoredCostSeedRecord[3] != COST_SEED_MAGIC_3)
+    return 0;
+
+  return (u32)sStoredCostSeedRecord[4]
+      | ((u32)sStoredCostSeedRecord[5] << 8)
+      | ((u32)sStoredCostSeedRecord[6] << 16)
+      | ((u32)sStoredCostSeedRecord[7] << 24);
+}
+
+static void WriteStoredCostSeed(u32 seed) {
+  sStoredCostSeedRecord[0] = COST_SEED_MAGIC_0;
+  sStoredCostSeedRecord[1] = COST_SEED_MAGIC_1;
+  sStoredCostSeedRecord[2] = COST_SEED_MAGIC_2;
+  sStoredCostSeedRecord[3] = COST_SEED_MAGIC_3;
+  sStoredCostSeedRecord[4] = (u8)seed;
+  sStoredCostSeedRecord[5] = (u8)(seed >> 8);
+  sStoredCostSeedRecord[6] = (u8)(seed >> 16);
+  sStoredCostSeedRecord[7] = (u8)(seed >> 24);
+}
+
+static u32 ReadStoredCostSeedFromFlash(int address) {
+  u8 record[COST_SEED_RECORD_SIZE];
+
+  if (g20245AC == NULL)
+    return 0;
+
+  g20245AC(address, record, COST_SEED_RECORD_SIZE);
+  if (record[0] != COST_SEED_MAGIC_0
+      || record[1] != COST_SEED_MAGIC_1
+      || record[2] != COST_SEED_MAGIC_2
+      || record[3] != COST_SEED_MAGIC_3)
+    return 0;
+
+  return (u32)record[4]
+      | ((u32)record[5] << 8)
+      | ((u32)record[6] << 16)
+      | ((u32)record[7] << 24);
+}
+
+static void WriteStoredCostSeedToFlash(int address, u32 seed) {
+  u8 record[COST_SEED_RECORD_SIZE];
+
+  record[0] = COST_SEED_MAGIC_0;
+  record[1] = COST_SEED_MAGIC_1;
+  record[2] = COST_SEED_MAGIC_2;
+  record[3] = COST_SEED_MAGIC_3;
+  record[4] = (u8)seed;
+  record[5] = (u8)(seed >> 8);
+  record[6] = (u8)(seed >> 16);
+  record[7] = (u8)(seed >> 24);
+  sub_80588C4(record, address, COST_SEED_RECORD_SIZE);
+}
+
+static u32 GetPersistentCostSeed(void) {
+  u32 seed = ReadStoredCostSeed();
+
+  if (seed != 0)
+    return seed;
+
+  seed = ReadStoredCostSeedFromFlash(COST_SEED_FLASH_PRIMARY);
+  if (seed == 0)
+    seed = ReadStoredCostSeedFromFlash(COST_SEED_FLASH_BACKUP);
+
+  if (seed != 0) {
+    WriteStoredCostSeed(seed);
+    return seed;
+  }
+
+  seed = *sCostEntropyState;
+  seed ^= gLfsrState;
+  seed ^= ((u32)REG_VCOUNT << 16);
+  seed ^= REG_KEYINPUT;
+  seed ^= 0x6D2B79F5;
+  seed = XorShift32(seed);
+  WriteStoredCostSeed(seed);
+  WriteStoredCostSeedToFlash(COST_SEED_FLASH_PRIMARY, seed);
+  WriteStoredCostSeedToFlash(COST_SEED_FLASH_BACKUP, seed);
+  return seed;
+}
+
+void InitializeRandomizedCardCosts(void) {
+  u32 i;
+  u32 seed;
+
+  if (gRuntimeConfig.randomize_card_costs_at_start == FALSE)
+    return;
+
+  seed = GetPersistentCostSeed();
+  sRandomizedCardCosts[CARD_NONE] = 0;
+  for (i = 1; i < CARD_COST_TABLE_COUNT; i++) {
+    seed = XorShift32(seed);
+    sRandomizedCardCosts[i] = seed % 501;
+  }
+}
+
+static u16 GetConfiguredCardCost(u16 id) {
+  if (gRuntimeConfig.randomize_card_costs_at_start == TRUE)
+    return sRandomizedCardCosts[id];
+  return (u16)gCardCosts[id];
+}
 
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
   if (card->description != NULL)
@@ -84,7 +224,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.id = id;
   gCardInfo.atk = card->atk;
   gCardInfo.def = card->def;
-  gCardInfo.cost = card->cost;
+  gCardInfo.cost = GetConfiguredCardCost(id);
   gCardInfo.attribute = gRuntimeConfig.disable_element_system == TRUE ? ATTRIBUTE_NONE : card->attribute;
   gCardInfo.level = card->level;
   gCardInfo.type = card->type;
@@ -115,6 +255,51 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     gCardInfo.atk = gCardInfo.def;
     gCardInfo.def = atk;
   }
+}
+
+LYN_REPLACE_CHECK(sub_80327C8);
+void sub_80327C8__Replacement(void) {
+  CpuSet(sub_8030C14, (void *)0x03001478, 0x04000040);
+  CpuSet(sub_8030CA8, (void *)0x03001578, 0x04000040);
+}
+
+LYN_REPLACE_CHECK(sub_803519C);
+void sub_803519C__Replacement(void) {
+  unsigned r3 = 0, r5 = 0;
+
+  for (; g80D2D00[r3].unk0; r3++) {
+    unsigned long r1;
+    unsigned char *dest = g80D2D00[r3].unk0;
+    for (r1 = g80D2D00[r3].unk4; r1; r5++, dest++, r1--)
+      *dest = ((u8 *)g8E0CD10)[r5];
+  }
+
+  InitializeRandomizedCardCosts();
+}
+
+LYN_REPLACE_CHECK(LfsrNextByte);
+u8 LfsrNextByte__Replacement(void) {
+  u8 value = 0;
+  u8 i;
+
+  for (i = 0; i < 8; i++) {
+    value <<= 1;
+    value |= LfsrNextBit();
+  }
+
+  if (gRuntimeConfig.randomize_card_costs_at_start == TRUE) {
+    u32 seed = *sCostEntropyState;
+    seed ^= gLfsrState;
+    seed ^= ((u32)REG_VCOUNT << 16);
+    seed ^= REG_KEYINPUT;
+    seed ^= (u32)value << 24;
+    seed = XorShift32(seed);
+    if (seed == 0)
+      seed = 1;
+    *sCostEntropyState = seed;
+  }
+
+  return value;
 }
 
 LYN_REPLACE_CHECK(SetCardInfoWithWarning);
