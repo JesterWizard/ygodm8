@@ -16,6 +16,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .faster_walking_speed = 2,
     .start_with_three_copies_of_every_card = TRUE,
     .enable_custom_cards_past_800 = FALSE,
+    .enable_custom_decks = TRUE,
     .allow_ante_with_one_copy_of_card = TRUE,
     .allow_sell_one_copy_of_card = TRUE,
     .add_all_cards_in_deck_to_trunk = FALSE,

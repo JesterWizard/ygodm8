@@ -7,6 +7,7 @@ extern unsigned short gNewButtons;
 extern unsigned short gPressedButtons;
 extern unsigned short gRepeatedOrNewButtons;
 extern unsigned short gOamBuffer[];
+extern unsigned short gStarterDeck[];
 void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
 unsigned short GetSelectedCardWithOffset(unsigned char);
@@ -126,12 +127,40 @@ static u8 GetRuntimeDeckLimit(void) {
   return limit;
 }
 
+static const u16 sTeaCustomDeck[DECK_SIZE] APPEND_RODATA = {
+  MYSTICAL_ELF, MYSTICAL_ELF, MYSTICAL_ELF,
+  PETIT_ANGEL, PETIT_ANGEL, PETIT_ANGEL,
+  HAPPY_LOVER, HAPPY_LOVER, HAPPY_LOVER,
+  HARPIE_LADY, HARPIE_LADY, HARPIE_LADY,
+  MAGICIAN_OF_FAITH, MAGICIAN_OF_FAITH, MAGICIAN_OF_FAITH,
+  WITCH_OF_THE_BLACK_FOREST, WITCH_OF_THE_BLACK_FOREST, WITCH_OF_THE_BLACK_FOREST,
+  SANGAN, SANGAN, SANGAN,
+  HANE_HANE, HANE_HANE, HANE_HANE,
+  DANCING_ELF, DANCING_ELF, DANCING_ELF,
+  FAITH_BIRD, FAITH_BIRD, FAITH_BIRD,
+  NEMURIKO, NEMURIKO, NEMURIKO,
+  KURIBOH, KURIBOH, KURIBOH,
+  DARK_MAGICIAN_GIRL,
+  SPIRIT_OF_THE_HARP,
+  FAIRY_DRAGON,
+  AQUA_MADOOR
+};
+
 LYN_REPLACE_CHECK(InitDeckCapacity);
 void InitDeckCapacity__Replacement(void) {
   gDeckCapacity = 1600;
 
   if (gRuntimeConfig.max_deck_capacity_at_start == TRUE)
     gDeckCapacity = 65000;
+}
+
+LYN_REPLACE_CHECK(InitNewGameDeck);
+void InitNewGameDeck__Replacement(void) {
+  unsigned i;
+  const u16 *deck = gRuntimeConfig.enable_custom_decks == TRUE ? sTeaCustomDeck : gStarterDeck;
+
+  for (i = 0; i < DECK_SIZE; i++)
+    gDeckMenu.cards[i] = deck[i];
 }
 
 LYN_REPLACE_CHECK(InitDuelistLevel);
