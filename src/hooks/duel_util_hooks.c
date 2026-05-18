@@ -1,9 +1,40 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "custom_decks/custom_decks.h"
 
 extern int NumCardsInDeck(unsigned char);
 extern struct DuelDeck gDuelDecks[2];
 extern void DeclareLoser(unsigned char);
+void InitCardsForDuelDeck(unsigned char, unsigned short *);
+void InitDuelDeck(unsigned char, unsigned char);
+
+static void CopyDuelDeckCards(unsigned char duelist, const unsigned short *deck) {
+  unsigned i;
+
+  for (i = 0; i < 40; i++)
+    gDuelDecks[duelist].cards[i] = deck[i];
+}
+
+LYN_REPLACE_CHECK(InitDuelDeck);
+void InitDuelDeck__Replacement(unsigned char duelist, unsigned char duelistId) {
+  const u16 *deck = NULL;
+  const u16 *pendingDeck = NULL;
+
+  if (duelistId == DUEL_PLAYER) {
+    deck = gDeckMenu.cards;
+  } else if (CustomDecks_IsEnabled() == TRUE) {
+    pendingDeck = CustomDecks_GetPendingCardShopDuelDeck();
+    deck = pendingDeck;
+  }
+
+  if (deck == NULL)
+    deck = gDuelData.duelist.deck;
+
+  InitCardsForDuelDeck(duelist, (unsigned short *)deck);
+
+  if (pendingDeck != NULL)
+    CustomDecks_ClearPendingCardShopDuel();
+}
 
 LYN_REPLACE_CHECK(NumFaceUpMatchingAttributeInRow);
 unsigned NumFaceUpMatchingAttributeInRow__Replacement(unsigned char turnRow, unsigned char attribute) {

@@ -139,7 +139,14 @@ void InitDeckCapacity__Replacement(void) {
 LYN_REPLACE_CHECK(InitNewGameDeck);
 void InitNewGameDeck__Replacement(void) {
   unsigned i;
-  const u16 *deck = CustomDecks_IsEnabled() == TRUE ? CustomDecks_GetNewGameDeck() : gStarterDeck;
+  const u16 *deck = gStarterDeck;
+
+  if (CustomDecks_IsEnabled() == TRUE) {
+    const u16 *customDeck = CustomDecks_GetNewGameDeck();
+
+    if (customDeck != NULL)
+      deck = customDeck;
+  }
 
   for (i = 0; i < DECK_SIZE; i++)
     gDeckMenu.cards[i] = deck[i];

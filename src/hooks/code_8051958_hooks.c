@@ -181,6 +181,8 @@ void TryDueling__Replacement(void) {
   int objId;
   u8 temp = gOverworld.objects[0].x + gHorizontalDisplacements[gOverworld.objects[0].direction];
   u8 temp2 = gOverworld.objects[0].y + g8E0E3CC[gOverworld.objects[0].direction];
+  u8 cardShopDuelText[128];
+  struct Script cardShopDuelScript;
 
   objId = GetObjectIdInFrontOfPlayer(temp, temp2, gOverworld.objects[0].direction);
   if (objId == -1)
@@ -196,13 +198,17 @@ void TryDueling__Replacement(void) {
 
   if (CustomDecks_IsEnabled() == TRUE &&
       CustomDecks_ShouldUseCardShopDuel(gOverworld.objects[objId].spriteId, gOverworld.map.id) == TRUE) {
-    struct Script cardShopDuelScript = CustomDecks_BuildCardShopDuelScript(
+    CustomDecks_SetPendingCardShopDuel(gOverworld.objects[objId].spriteId, gOverworld.map.id);
+    cardShopDuelScript = CustomDecks_BuildCardShopDuelScript(
+      cardShopDuelText,
+      sizeof(cardShopDuelText),
       gOverworld.objects[objId].spriteId,
       gOverworld.map.id,
       gOverworld.objects[objId].scriptR
     );
     InitiateScript(&cardShopDuelScript);
   } else {
+    CustomDecks_ClearPendingCardShopDuel();
     InitiateScript(gOverworld.objects[objId].scriptR);
   }
 }
