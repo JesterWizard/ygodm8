@@ -23,5 +23,6 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .repeatable_opponent_capacity_reward = 10,
     .story_opponent_capacity_reward = 30,
     .alternate_win_reward_multiplier = 3,
+    .instant_win_with_l_button = TRUE,
     .card_in_hand = SHIELD_AND_SWORD
 };
