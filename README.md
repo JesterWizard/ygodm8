@@ -69,7 +69,9 @@ Build the ROM with:
 make
 ```
 
-This compiles the local helper tools first, then builds `ygodm8.gba`.
+This compiles the local helper tools first, then builds `ygodm8.gba` and `ygodm8.ups`.
+
+The UPS patch is generated from `baserom.gba` to `ygodm8.gba`.
 
 To remove build output and rebuild from scratch:
 

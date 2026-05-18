@@ -42,6 +42,7 @@ DATA_ASM_BUILDDIR = $(BUILD_DIR)/$(DATA_ASM_SUBDIR)
 #### Files/Directories ####
 
 ROM          := $(BUILD_NAME).gba
+UPS          := $(BUILD_NAME).ups
 ELF          := $(ROM:.gba=.elf)
 MAP          := $(ROM:.gba=.map)
 LDSCRIPT     := ldscript.ld
@@ -79,7 +80,7 @@ SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 #### Recipes ####
 $(shell mkdir -p $(SUBDIRS))
 
-all: $(ROM)
+all: $(ROM) $(UPS)
 
 include make_tools.mk
 include graphics.mk
@@ -88,6 +89,9 @@ $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.p
 	python3 tools/validate_lynjump.py
 	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
 	python3 tools/apply_lynjump.py $(ELF) $@
+
+$(UPS): $(ROM) baserom.gba tools/make_ups.py
+	python3 tools/make_ups.py baserom.gba $(ROM) $@
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
@@ -128,7 +132,7 @@ validate-lynjump:
 	python3 tools/validate_lynjump.py
 
 clean: clean-tools clean-graphics
-	rm -f $(ROM) $(ELF) $(MAP)
+	rm -f $(ROM) $(UPS) $(ELF) $(MAP)
 	rm -r $(BUILD_DIR)/
 
 compare: all
