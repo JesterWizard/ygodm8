@@ -54,6 +54,16 @@ enum {
 #define THOUGHT_BUBBLE_HEIGHT 64
 #define THOUGHT_BUBBLE_X_OFFSET 64
 #define THOUGHT_BUBBLE_Y_OFFSET 64
+#define THOUGHT_BUBBLE_SCREEN_WIDTH 240
+#define THOUGHT_BUBBLE_SCREEN_HEIGHT 160
+
+static int ClampInt(int value, int min, int max) {
+  if (value < min)
+    return min;
+  if (value > max)
+    return max;
+  return value;
+}
 
 static void LoadThoughtBubbleGfx(void) {
   LZ77UnCompVram__Hook(sThoughtBubbleTilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
@@ -70,6 +80,11 @@ static void SetThoughtBubbleOam(u8 visible) {
   int playerX = gOverworld.objects[0].x * 2 + gOverworld.unk24E;
   int bubbleY = playerY - THOUGHT_BUBBLE_Y_OFFSET - 10;
   int bubbleX = playerX - THOUGHT_BUBBLE_X_OFFSET - 8;
+  int bubbleMaxX = THOUGHT_BUBBLE_SCREEN_WIDTH - THOUGHT_BUBBLE_WIDTH;
+  int bubbleMaxY = THOUGHT_BUBBLE_SCREEN_HEIGHT - THOUGHT_BUBBLE_HEIGHT;
+
+  bubbleX = ClampInt(bubbleX, 0, bubbleMaxX);
+  bubbleY = ClampInt(bubbleY, 0, bubbleMaxY);
 
   if (visible) {
     oam[left] = bubbleY;
