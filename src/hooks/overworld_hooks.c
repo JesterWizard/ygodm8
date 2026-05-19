@@ -23,7 +23,7 @@ static inline void CallThumbVoidU8(u32 addr, u8 arg) {
 static const u8 sThoughtBubbleTilesDmp[] APPEND_ASSET = INCBIN_U8("src/hooks/assets/thought_bubbles/thought.dmp");
 static const u16 sThoughtBubblePalette[] APPEND_ASSET = INCBIN_U16("src/hooks/assets/thought_bubbles/thought.gbapal");
 
-static u16 *const sShowThoughtBubble = (u16 *)0x03001678;
+static u16 *const sShowThoughtBubbles = (u16 *)0x03001678;
 NAKED
 static void LZ77UnCompVram__Hook(const void *src, void *dest) {
   asm_unified("swi 0x12\n\
@@ -50,8 +50,10 @@ enum {
 #define THOUGHT_BUBBLE_TILE_NUM 0x300
 #define THOUGHT_BUBBLE_VRAM 0x06016000
 #define THOUGHT_BUBBLE_PALETTE_NUM 15
-#define THOUGHT_BUBBLE_X 56
-#define THOUGHT_BUBBLE_Y 48
+#define THOUGHT_BUBBLE_WIDTH 128
+#define THOUGHT_BUBBLE_HEIGHT 64
+#define THOUGHT_BUBBLE_X_OFFSET 64
+#define THOUGHT_BUBBLE_Y_OFFSET 64
 
 static void LoadThoughtBubbleGfx(void) {
   LZ77UnCompVram__Hook(sThoughtBubbleTilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
@@ -64,14 +66,18 @@ static void SetThoughtBubbleOam(u8 visible) {
   u16 left = THOUGHT_BUBBLE_OAM_LEFT * 4;
   u16 right = THOUGHT_BUBBLE_OAM_RIGHT * 4;
   u16 attr2 = THOUGHT_BUBBLE_TILE_NUM | (THOUGHT_BUBBLE_PALETTE_NUM << 12);
+  int playerY = gOverworld.objects[0].y * 2 - gOverworld.objects[0].unk8 + gOverworld.unk24C;
+  int playerX = gOverworld.objects[0].x * 2 + gOverworld.unk24E;
+  int bubbleY = playerY - THOUGHT_BUBBLE_Y_OFFSET - 10;
+  int bubbleX = playerX - THOUGHT_BUBBLE_X_OFFSET - 8;
 
   if (visible) {
-    oam[left] = THOUGHT_BUBBLE_Y;
-    oam[left + 1] = THOUGHT_BUBBLE_X | 0xC000;
+    oam[left] = bubbleY;
+    oam[left + 1] = bubbleX | 0xC000;
     oam[left + 2] = attr2;
     oam[left + 3] = 0;
-    oam[right] = THOUGHT_BUBBLE_Y;
-    oam[right + 1] = (THOUGHT_BUBBLE_X + 64) | 0xC000;
+    oam[right] = bubbleY;
+    oam[right + 1] = (bubbleX + THOUGHT_BUBBLE_WIDTH / 2) | 0xC000;
     oam[right + 2] = attr2 + 8;
     oam[right + 3] = 0;
   }
@@ -89,10 +95,18 @@ static void SetThoughtBubbleOam(u8 visible) {
 
 /* LYN_REPLACEMENT(ProcessInput) */
 u8 ProcessInput__Replacement(void) {
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubbles == TRUE) {
+    if (gNewButtons & L_BUTTON) {
+      *sShowThoughtBubbles = FALSE;
+      PlayMusic(SFX_SELECT);
+    }
+    return OVERWORLD_INPUT_NONE;
+  }
+
   if (gNewButtons & A_BUTTON)
     return OVERWORLD_INPUT_TALK;
   if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && (gNewButtons & L_BUTTON)) {
-    *sShowThoughtBubble ^= TRUE;
+    *sShowThoughtBubbles = TRUE;
     PlayMusic(SFX_SELECT);
     return OVERWORLD_INPUT_NONE;
   }
@@ -133,7 +147,7 @@ void sub_804EF10__Replacement(void) {
   sub_80551B8();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);
-  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubble == TRUE) {
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubbles == TRUE) {
     LoadThoughtBubbleGfx();
     SetThoughtBubbleOam(TRUE);
   }
