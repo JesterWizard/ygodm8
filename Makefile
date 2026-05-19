@@ -115,6 +115,7 @@ $(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/trunk_hooks.o: $(CARD_TRUNK_GENERATED)
+$(C_BUILDDIR)/hooks/overworld_hooks.o: $(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)
 
 $(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i

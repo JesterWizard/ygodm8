@@ -29,5 +29,6 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .alternate_win_reward_multiplier = 3,
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = TRUE,
+    .enable_world_map_thought_bubbles = TRUE,
     .card_in_hand = DIAN_KETO_THE_CURE_MASTER
 };
