@@ -8,6 +8,7 @@
 typedef struct {
     u8 restore_life_points_after_duel;
     u8 cap_life_points_after_duel;
+    u8 preserve_life_points_above_8000_after_duel; // Keep duel LP above 8000 when saving.
     u8 max_duelist_level_at_start;
     u8 max_deck_capacity_at_start;
     u8 max_deck_cards;

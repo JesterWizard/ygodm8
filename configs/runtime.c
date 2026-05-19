@@ -3,6 +3,7 @@
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
     .cap_life_points_after_duel = FALSE,
+    .preserve_life_points_above_8000_after_duel = TRUE,
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
     .max_deck_cards = 40,
@@ -27,5 +28,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .story_opponent_capacity_reward = 30,
     .alternate_win_reward_multiplier = 3,
     .instant_win_with_l_button = TRUE,
-    .card_in_hand = SHIELD_AND_SWORD
+    .card_in_hand = DIAN_KETO_THE_CURE_MASTER
 };
