@@ -23,7 +23,7 @@ static inline void CallThumbVoidU8(u32 addr, u8 arg) {
 static const u8 sThoughtBubbleTilesDmp[] APPEND_ASSET = INCBIN_U8("src/hooks/assets/thought_bubbles/thought.dmp");
 static const u16 sThoughtBubblePalette[] APPEND_ASSET = INCBIN_U16("src/hooks/assets/thought_bubbles/thought.gbapal");
 
-static u8 sShowThoughtBubble APPEND_DATA = FALSE;
+static u16 *const sShowThoughtBubble = (u16 *)0x03001678;
 NAKED
 static void LZ77UnCompVram__Hook(const void *src, void *dest) {
   asm_unified("swi 0x12\n\
@@ -91,13 +91,13 @@ static void SetThoughtBubbleOam(u8 visible) {
 u8 ProcessInput__Replacement(void) {
   if (gNewButtons & A_BUTTON)
     return OVERWORLD_INPUT_TALK;
-  if (gNewButtons & R_BUTTON)
-    return OVERWORLD_INPUT_TRY_DUELING;
-  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && (gNewButtons & R_BUTTON)) {
-    sShowThoughtBubble ^= TRUE;
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && (gNewButtons & L_BUTTON)) {
+    *sShowThoughtBubble ^= TRUE;
     PlayMusic(SFX_SELECT);
     return OVERWORLD_INPUT_NONE;
   }
+  if (gNewButtons & R_BUTTON)
+    return OVERWORLD_INPUT_TRY_DUELING;
   if (gPressedButtons & B_BUTTON) {
     if (gPressedButtons & DPAD_UP)
       return OVERWORLD_INPUT_RUN_UP;
@@ -120,8 +120,6 @@ u8 ProcessInput__Replacement(void) {
     return OVERWORLD_INPUT_START_MENU;
   if (gRepeatedOrNewButtons & START_BUTTON)
     return OVERWORLD_INPUT_START_MENU;
-  if (gRepeatedOrNewButtons & L_BUTTON)
-    return OVERWORLD_INPUT_START_MENU;
   return OVERWORLD_INPUT_NONE;
 }
 
@@ -135,7 +133,7 @@ void sub_804EF10__Replacement(void) {
   sub_80551B8();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);
-  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE) {
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubble == TRUE) {
     LoadThoughtBubbleGfx();
     SetThoughtBubbleOam(TRUE);
   }
