@@ -17,6 +17,7 @@ extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
+u32 GetDuelistLevel(void);
 extern u8 *g8E0CD10;
 extern struct {
   u8 *unk0;
@@ -244,6 +245,31 @@ static void ScaleDynamicShopPriceToQty(void) {
     gShopSelectedCard.sellPrice = 1;
 }
 
+static void ApplyDuelistLevelShopDiscount(void) {
+  u32 level;
+  u32 discount;
+  u64 discountedPrice;
+
+  if (gRuntimeConfig.discount_shop_costs_by_duelist_level == FALSE || gShopSelectedCard.buyPrice == 0)
+    return;
+
+  level = GetDuelistLevel();
+  if (gRuntimeConfig.max_duelist_level_at_start == TRUE && level < 999)
+    level = 999;
+  else if (level > 999)
+    level = 999;
+
+  discount = ((level + 99) / 100) * 5;
+  if (discount > 50)
+    discount = 50;
+
+  discountedPrice = gShopSelectedCard.buyPrice * (100 - discount) / 100;
+  if (discountedPrice == 0)
+    discountedPrice = 1;
+
+  gShopSelectedCard.buyPrice = discountedPrice;
+}
+
 #include "generated/card_name_generated.inc"
 
 LYN_REPLACE_CHECK(SetCardInfo);
@@ -281,6 +307,8 @@ void ScalePriceToQty__Replacement(void) {
     sub_800BD44();
     sub_800BDA0();
   }
+
+  ApplyDuelistLevelShopDiscount();
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);

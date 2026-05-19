@@ -32,6 +32,7 @@ typedef struct {
     u8 repeatable_opponent_capacity_reward;
     u8 story_opponent_capacity_reward;
     u8 alternate_win_reward_multiplier;
+    u8 discount_shop_costs_by_duelist_level; // 5% off buy price per 100 duelist levels.
     u8 instant_win_with_l_button; // L in duel -> immediate player win.
     u16 card_in_hand;
 } RuntimeConfig;
