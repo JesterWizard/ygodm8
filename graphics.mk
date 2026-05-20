@@ -22,9 +22,7 @@ CUSTOM_CARD_24_LZS := $(patsubst src/hooks/assets/cards/24x24/%.png,src/hooks/as
 OVERWORLD_ENTITY_PNGS := $(wildcard src/overworld/entities/*.png)
 OVERWORLD_ENTITY_TILES := $(patsubst src/overworld/entities/%.png,src/overworld/entities/%.4bpp,$(OVERWORLD_ENTITY_PNGS))
 
-THOUGHT_BUBBLE_PNGS := $(wildcard src/hooks/assets/thought_bubbles/*.png)
-THOUGHT_BUBBLE_TILES := $(patsubst src/hooks/assets/thought_bubbles/%.png,src/hooks/assets/thought_bubbles/%.4bpp,$(THOUGHT_BUBBLE_PNGS))
-THOUGHT_BUBBLE_OBJ_TILES := $(patsubst src/hooks/assets/thought_bubbles/%.png,src/hooks/assets/thought_bubbles/%.obj.4bpp,$(THOUGHT_BUBBLE_PNGS))
+THOUGHT_BUBBLE_PNGS := $(shell find src/hooks/assets/thought_bubbles -type f -name '*.png' | sort)
 THOUGHT_BUBBLE_DUMPS := $(patsubst src/hooks/assets/thought_bubbles/%.png,src/hooks/assets/thought_bubbles/%.dmp,$(THOUGHT_BUBBLE_PNGS))
 THOUGHT_BUBBLE_PALETTES := $(patsubst src/hooks/assets/thought_bubbles/%.png,src/hooks/assets/thought_bubbles/%.gbapal,$(THOUGHT_BUBBLE_PNGS))
 
@@ -38,8 +36,6 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(CUSTOM_CARD_24_4BPPS) \
                 $(CUSTOM_CARD_24_LZS) \
                 $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal \
-                $(THOUGHT_BUBBLE_TILES) \
-                $(THOUGHT_BUBBLE_OBJ_TILES) \
                 $(THOUGHT_BUBBLE_DUMPS) \
                 $(THOUGHT_BUBBLE_PALETTES)
 
@@ -54,10 +50,7 @@ clean-graphics:
 	rm -f src/hooks/assets/cards/80x80/*.huff
 	rm -f src/hooks/assets/cards/24x24/*.4bpp
 	rm -f src/hooks/assets/cards/24x24/*.lz
-	rm -f src/hooks/assets/thought_bubbles/*.4bpp
-	rm -f src/hooks/assets/thought_bubbles/*.obj.4bpp
-	rm -f src/hooks/assets/thought_bubbles/*.dmp
-	rm -f src/hooks/assets/thought_bubbles/*.gbapal
+	find src/hooks/assets/thought_bubbles -type f \( -name '*.4bpp' -o -name '*.obj.4bpp' -o -name '*.dmp' -o -name '*.gbapal' -o -name '*.lz' \) -delete
 	rm -f src/overworld/entities/*.4bpp
 	rm -f src/overworld/entities/*.gbapal
 
@@ -75,8 +68,11 @@ src/hooks/assets/cards/24x24/%.4bpp: src/hooks/assets/cards/24x24/%.png | tools-
 	tools/gbagfx/gbagfx $< $@
 src/hooks/assets/cards/24x24/%.lz: src/hooks/assets/cards/24x24/%.4bpp | tools-rules
 	tools/gbagfx/gbagfx $< $@
-src/hooks/assets/thought_bubbles/%.obj.4bpp: src/hooks/assets/thought_bubbles/%.4bpp tools/repack_128x64_obj.py
-	python3 tools/repack_128x64_obj.py $< $@
-src/hooks/assets/thought_bubbles/%.dmp: src/hooks/assets/thought_bubbles/%.obj.4bpp | tools-rules
-	tools/gbagfx/gbagfx $< $(@:.dmp=.lz)
+src/hooks/assets/thought_bubbles/%.dmp: src/hooks/assets/thought_bubbles/%.png tools/repack_128x64_obj.py | tools-rules
+	tmp_tiles=$$(mktemp /tmp/thought_bubble_tiles.XXXXXX.4bpp); \
+	tmp_obj=$$(mktemp /tmp/thought_bubble_obj.XXXXXX.4bpp); \
+	tools/gbagfx/gbagfx $< $$tmp_tiles; \
+	python3 tools/repack_128x64_obj.py $$tmp_tiles $$tmp_obj; \
+	tools/gbagfx/gbagfx $$tmp_obj $(@:.dmp=.lz); \
+	rm -f $$tmp_tiles $$tmp_obj; \
 	mv $(@:.dmp=.lz) $@

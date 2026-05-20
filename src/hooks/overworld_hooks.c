@@ -1,5 +1,8 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "thought_bubble.h"
+
+#include "src/hooks/thought_bubble_table.inc"
 
 extern struct OamData gOamBuffer[];
 extern u16 gNewButtons;
@@ -20,8 +23,23 @@ static inline void CallThumbVoidU8(u32 addr, u8 arg) {
   ((VoidU8Func)(addr | 1))(arg);
 }
 
-static const u8 sThoughtBubbleTilesDmp[] APPEND_ASSET = INCBIN_U8("src/hooks/assets/thought_bubbles/thought.dmp");
-static const u16 sThoughtBubblePalette[] APPEND_ASSET = INCBIN_U16("src/hooks/assets/thought_bubbles/thought.gbapal");
+#define DECLARE_THOUGHT_BUBBLE_ASSET(symbol, tiles_path, palette_path) \
+  static const u8 sThoughtBubble##symbol##TilesDmp[] APPEND_ASSET = \
+      INCBIN_U8(tiles_path); \
+  static const u16 sThoughtBubble##symbol##Palette[] APPEND_ASSET = \
+      INCBIN_U16(palette_path);
+
+#define DECLARE_THOUGHT_BUBBLE_ENUM(symbol, tiles_path, palette_path) THOUGHT_BUBBLE_##symbol,
+
+#define DECLARE_THOUGHT_BUBBLE_ASSET_ENTRY(symbol, tiles_path, palette_path) \
+  [THOUGHT_BUBBLE_##symbol] = { \
+    .tilesDmp = sThoughtBubble##symbol##TilesDmp, \
+    .palette = sThoughtBubble##symbol##Palette, \
+  },
+
+#define DECLARE_THOUGHT_BUBBLE_FLAG_ENTRY(flag, symbol) { flag, THOUGHT_BUBBLE_##symbol },
+
+THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ASSET)
 
 static u16 *const sShowThoughtBubbles = (u16 *)0x03001678;
 NAKED
@@ -57,6 +75,34 @@ enum {
 #define THOUGHT_BUBBLE_SCREEN_WIDTH 240
 #define THOUGHT_BUBBLE_SCREEN_HEIGHT 160
 
+enum {
+  THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ENUM)
+  THOUGHT_BUBBLE_COUNT
+};
+
+struct ThoughtBubbleAsset {
+  const u8 *tilesDmp;
+  const u16 *palette;
+};
+
+struct ThoughtBubbleFlagMapping {
+  u16 flag;
+  u8 bubbleId;
+};
+
+static const struct ThoughtBubbleAsset sThoughtBubbleAssets[THOUGHT_BUBBLE_COUNT] APPEND_RODATA = {
+  THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ASSET_ENTRY)
+};
+
+static const struct ThoughtBubbleFlagMapping sThoughtBubbleFlagMappings[] APPEND_RODATA = {
+  THOUGHT_BUBBLE_FLAG_LIST(DECLARE_THOUGHT_BUBBLE_FLAG_ENTRY)
+};
+
+#undef DECLARE_THOUGHT_BUBBLE_ASSET
+#undef DECLARE_THOUGHT_BUBBLE_ENUM
+#undef DECLARE_THOUGHT_BUBBLE_ASSET_ENTRY
+#undef DECLARE_THOUGHT_BUBBLE_FLAG_ENTRY
+
 static int ClampInt(int value, int min, int max) {
   if (value < min)
     return min;
@@ -65,21 +111,30 @@ static int ClampInt(int value, int min, int max) {
   return value;
 }
 
-static const u8 *GetThoughtBubbleTilesDmp(void) {
-  return sThoughtBubbleTilesDmp;
+static u8 GetThoughtBubbleIdForFlag(u16 flag) {
+  unsigned i;
+
+  if (flag == THOUGHT_BUBBLE_EVENT_FLAG_NONE)
+    return THOUGHT_BUBBLE_DEFAULT;
+
+  for (i = 0; i < ARRAY_COUNT(sThoughtBubbleFlagMappings); i++) {
+    if (sThoughtBubbleFlagMappings[i].flag == flag)
+      return sThoughtBubbleFlagMappings[i].bubbleId;
+  }
+
+  return THOUGHT_BUBBLE_DEFAULT;
 }
 
-static const u16 *GetThoughtBubblePalette(void) {
-  return sThoughtBubblePalette;
+static const struct ThoughtBubbleAsset *GetThoughtBubbleAsset(void) {
+  return &sThoughtBubbleAssets[GetThoughtBubbleIdForFlag(GetLatestThoughtBubbleEventFlag())];
 }
 
 static void LoadThoughtBubbleGfx(void) {
-  const u8 *tilesDmp = GetThoughtBubbleTilesDmp();
-  const u16 *palette = GetThoughtBubblePalette();
+  const struct ThoughtBubbleAsset *asset = GetThoughtBubbleAsset();
 
-  LZ77UnCompVram__Hook(tilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
-  CpuCopy16(palette, gPaletteBuffer + 0x100 + THOUGHT_BUBBLE_PALETTE_NUM * 16, 0x20);
-  CpuCopy16(palette, (void *)(OBJ_PLTT + THOUGHT_BUBBLE_PALETTE_NUM * 0x20), 0x20);
+  LZ77UnCompVram__Hook(asset->tilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
+  CpuCopy16(asset->palette, gPaletteBuffer + 0x100 + THOUGHT_BUBBLE_PALETTE_NUM * 16, 0x20);
+  CpuCopy16(asset->palette, (void *)(OBJ_PLTT + THOUGHT_BUBBLE_PALETTE_NUM * 0x20), 0x20);
 }
 
 static void SetThoughtBubbleOam(u8 visible) {
