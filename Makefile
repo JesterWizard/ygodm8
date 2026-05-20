@@ -16,6 +16,7 @@ endif
 
 
 BUILD_NAME := ygodm8
+BUILD_UPS ?= 0
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
@@ -80,7 +81,13 @@ SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 #### Recipes ####
 $(shell mkdir -p $(SUBDIRS))
 
-all: $(ROM) $(UPS)
+ifeq ($(BUILD_UPS),1)
+ALL_TARGETS := $(ROM) $(UPS)
+else
+ALL_TARGETS := $(ROM)
+endif
+
+all: $(ALL_TARGETS)
 
 include make_tools.mk
 include graphics.mk

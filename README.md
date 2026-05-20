@@ -73,6 +73,12 @@ This compiles the local helper tools first, then builds `ygodm8.gba` and `ygodm8
 
 The UPS patch is generated from `baserom.gba` to `ygodm8.gba`.
 
+To skip UPS patch generation for a build:
+
+```bash
+make BUILD_UPS=0
+```
+
 To remove build output and rebuild from scratch:
 
 ```bash
