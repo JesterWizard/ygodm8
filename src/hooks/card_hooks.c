@@ -387,8 +387,11 @@ unsigned char TrySelectingAnte__Replacement(void)
 {
   unsigned selectionFailed = 1;
   unsigned short cardId = GetNthCardOnScreen(2);
+  unsigned char trunkQty = GetTrunkCardQty(cardId);
 
-  if (GetTrunkCardQty(cardId) < 2
+  if (!trunkQty)
+      return selectionFailed;
+  else if (trunkQty < 2
       && gRuntimeConfig.allow_ante_with_one_copy_of_card == FALSE)
         sub_800C32C(); // OneOfAKindAntePrompt();
   else if (IsGodCard(cardId) == 1)

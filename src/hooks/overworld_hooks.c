@@ -65,10 +65,21 @@ static int ClampInt(int value, int min, int max) {
   return value;
 }
 
+static const u8 *GetThoughtBubbleTilesDmp(void) {
+  return sThoughtBubbleTilesDmp;
+}
+
+static const u16 *GetThoughtBubblePalette(void) {
+  return sThoughtBubblePalette;
+}
+
 static void LoadThoughtBubbleGfx(void) {
-  LZ77UnCompVram__Hook(sThoughtBubbleTilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
-  CpuCopy16(sThoughtBubblePalette, gPaletteBuffer + 0x100 + THOUGHT_BUBBLE_PALETTE_NUM * 16, 0x20);
-  CpuCopy16(sThoughtBubblePalette, (void *)(OBJ_PLTT + THOUGHT_BUBBLE_PALETTE_NUM * 0x20), 0x20);
+  const u8 *tilesDmp = GetThoughtBubbleTilesDmp();
+  const u16 *palette = GetThoughtBubblePalette();
+
+  LZ77UnCompVram__Hook(tilesDmp, (void *)THOUGHT_BUBBLE_VRAM);
+  CpuCopy16(palette, gPaletteBuffer + 0x100 + THOUGHT_BUBBLE_PALETTE_NUM * 16, 0x20);
+  CpuCopy16(palette, (void *)(OBJ_PLTT + THOUGHT_BUBBLE_PALETTE_NUM * 0x20), 0x20);
 }
 
 static void SetThoughtBubbleOam(u8 visible) {
