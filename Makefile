@@ -72,6 +72,11 @@ CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_ART_GENERATED := src/hooks/generated/card_art_generated.inc src/hooks/generated/card_name_generated.inc src/hooks/generated/card_data_generated.inc
 CARD_TRUNK_GENERATED := src/hooks/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src/hooks/generated/card_data_hooks.c
+CARD_ACTIVATION_TEXT_GENERATED := src/hooks/generated/card_activation_text_generated.inc
+CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src/hooks/generated/card_activation_text_lookup_generated.inc
+CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
+CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
+CARD_RENDER_ASSETS := $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
 
 ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(HOOK_OBJS)
 
@@ -103,28 +108,38 @@ $(UPS): $(ROM) baserom.gba tools/make_ups.py
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
-$(CARD_DESCRIPTION_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
-	python3 $(CARD_ART_GENERATOR)
-
-$(CARD_IDS_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
+$(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
+	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR) --card-ids
+	touch $@
 
-$(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CUSTOM_CARD_80_HUFFS) $(CUSTOM_CARD_80_PALETTES) $(CUSTOM_CARD_24_LZS) $(CARD_IDS_GENERATED)
+$(CARD_IDS_GENERATED): $(CARD_IDS_STAMP)
+	@test -f $@
+
+$(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CUSTOM_CARD_80_HUFFS) $(CUSTOM_CARD_80_PALETTES) $(CUSTOM_CARD_24_LZS) $(CARD_IDS_GENERATED)
+	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR)
+	touch $@
 
-$(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
+$(CARD_DESCRIPTION_GENERATED) $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED): $(CARD_GENERATED_STAMP)
+	@test -f $@
+
+$(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
 	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
 	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
 	$(AS) $(ASFLAGS) $(C_BUILDDIR)/$*.s -o $@
 
+$(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
-$(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED)
+$(C_BUILDDIR)/hooks/effect_text_hooks.o: $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)
+$(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)
 $(C_BUILDDIR)/hooks/trunk_hooks.o: $(CARD_TRUNK_GENERATED)
+$(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(C_BUILDDIR)/hooks/overworld_hooks.o: $(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)
 
-$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | tools-rules graphics-rules
+$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
 	@$(PREPROC) $(CONFIGS_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(CONFIGS_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(CONFIGS_BUILDDIR)/$*.s

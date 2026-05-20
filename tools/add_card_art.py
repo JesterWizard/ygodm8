@@ -763,7 +763,6 @@ def render_data_src(manifest: dict) -> str:
 def update_file(path: pathlib.Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.read_text() == content:
-        path.touch()
         return
     path.write_text(content)
 
