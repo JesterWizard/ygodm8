@@ -63,7 +63,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC62F0, map_35_state_01_08EC62F0, 0x08EC62FC, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(270)
-  REACTION(1, 2)
+  REACTION(REACTION_QUESTION_MARK, 2)
   DELAY(16)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You came all the way here\nlooking for one of those\n\nthings?\n\nWell... I could tell you\nwhat I know...\n\nBut only if you can beat my\nDino Deck!\n\n")

@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
   LANGUAGE_TEXT(4, "... Y eso es lo que pas\xf3.\n\n")
   END_LANGUAGE_TEXT()
   PLAY_MUSIC(272)
-  REACTION(3, 24577)
+  REACTION(REACTION_ELLIPSIS, 24577)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, 8)
   LANGUAGE_TEXT(0, "Big brother... I saw this\nlook on Tristan's face...\n\nIt was as if he was saying\nthat he didn't want anyone\n\nto follow him.\n\nI wonder if he's going to be\nokay...\n\n")
   LANGUAGE_TEXT(1, "Grand fr\xe8re... Tristan a\nfait une dr\xf4le de t\xeate...\n\nComme s'il ne voulait\npas qu'on le suive.\n\nEst-ce que \xe7a va aller ?\n\n")

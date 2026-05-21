@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64340, map_11_state_02_08E64340, 0x08F04040, 0x08F
   LANGUAGE_TEXT(4, "\xa1N...no! \xa1Lo juro, no me\nescond\xeda de ti!\n\n")
   END_LANGUAGE_TEXT()
   PLAY_MUSIC(272)
-  REACTION(3, 2)
+  REACTION(REACTION_ELLIPSIS, 2)
   LANGUAGE_TEXT(0, "Oh... You're not with the\nNeo Ghouls.\n\nDon't scare me like that,\nokay?\n\n")
   LANGUAGE_TEXT(1, "Oh... Tu n'es pas\navec les Neo Ghouls !\n\nPlus question de me faire\npeur comme \xe7a, OK ?\n\n")
   LANGUAGE_TEXT(2, "Oh... Du geh\xf6rst nicht zu\nden Neo Ghouls.\n\nErschreck mich nicht mehr\nso, h\xf6rst du?\n\n")

@@ -75,7 +75,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD814, map_37_state_01_08ECD814, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(272)
-  REACTION(3, 1)
+  REACTION(REACTION_ELLIPSIS, 1)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You do not have to reveal\nyour secrets if you are not\n\nso inclined.\n\nBut I will let you know that\nthe tides have been far\n\nfrom normal.\n\nIf anything has to do with\nthis mystery...\n\nGo deeper into the island.\nYou may find something.\n\n")

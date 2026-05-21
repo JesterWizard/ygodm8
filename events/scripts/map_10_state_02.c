@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63260, map_10_state_02_08E63260, 0x08F04040, 0x08F
   LANGUAGE_TEXT(4, "\xa1L...lo siento! \xa1No\ntengo m\xe1s cartas\n\nraras que darte!\n\n")
   END_LANGUAGE_TEXT()
   PLAY_MUSIC(272)
-  REACTION(3, 2)
+  REACTION(REACTION_ELLIPSIS, 2)
   LANGUAGE_TEXT(0, "Huh? You're not the Neo\nGhouls?\n\nDon't scare me like that!\n\nThose thugs shook me down\nand took my rare cards...\n\nI'm so angry...\n\n")
   LANGUAGE_TEXT(1, "Hein ? Vous n'\xeates\npas des Neo Ghouls ?\n\nNe me faites pas\npeur comme \xe7a !\n\nCes voyous m'ont vol\xe9\nmes cartes rares...\n\nCa me tue...\n\n")
   LANGUAGE_TEXT(2, "Was?\nIhr seid keine Neo Ghouls?\n\nMacht mir nicht solche\nAngst!\n\nDiese Halunken zogen mir\nmeine seltenen Karten aus\n\nder Tasche...\nIch bin fuchsteufelswild...\n\n")

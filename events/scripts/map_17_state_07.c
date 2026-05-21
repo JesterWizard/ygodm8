@@ -7,7 +7,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F124, map_17_state_07_08E7F124, 0x08E7F13C, 0x08E
   PLAY_MUSIC(0)
   PLAY_MUSIC(237)
   PLAY_MUSIC(271)
-  REACTION(0, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, 24577)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, 0)
   LANGUAGE_TEXT(0, "Ha ha ha! Looks like we've\nentered a tunnel!\n\nAnd darkness gives me power!\nIt's time to duel!\n\n")
   LANGUAGE_TEXT(1, "Hi hi !\n\nOn dirait qu'on vient\nd'entrer dans un tunnel !\n\nLes t\xe9n\xe8bres me donnent\nde l'\xe9nergie !\n\nBattons-nous !\n\n")

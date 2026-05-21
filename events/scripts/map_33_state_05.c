@@ -107,7 +107,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEC28, map_33_state_05_08EBEC28, 0x08EBEC4C, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(270)
-  REACTION(1, 16384)
+  REACTION(REACTION_QUESTION_MARK, 16384)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Kuriboh's level one, so it\ncame first.\n\nCurse of Dragon came last\nbecause it's level five.\n\nThat's what we had to\nfigure out, right,\n\n{PLAYER}?\n\n")
