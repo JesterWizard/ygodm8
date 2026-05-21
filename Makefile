@@ -108,6 +108,8 @@ event-catalog: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py catalog $(EVENTS_YAML) --out $(EVENTS_CATALOG)
 
 $(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
+	@echo "EVENT  $(EVENT_REPLACEMENTS_GENERATED)"
+	@echo "INPUTS $(filter %.c,$?)"
 	@if [ -n "$(EVENTS_C_SRCS)" ]; then \
 		python3 tools/vanilla_events.py compile-c $(EVENTS_C_SRCS) --out $(EVENT_REPLACEMENTS_GENERATED); \
 	else \
@@ -116,6 +118,7 @@ $(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
 	fi
 
 event-compile: $(EVENT_REPLACEMENTS_GENERATED)
+	@echo "BUILD   $(ROM)"
 	@$(MAKE) $(ROM)
 
 event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
@@ -131,14 +134,18 @@ include make_tools.mk
 include graphics.mk
 
 $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.py
+	@echo "VALIDATE tools/validate_lynjump.py"
 	python3 tools/validate_lynjump.py
+	@echo "OBJCOPY $@"
 	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
+	@echo "PATCH   tools/apply_lynjump.py"
 	python3 tools/apply_lynjump.py $(ELF) $@
 
 $(UPS): $(ROM) baserom.gba tools/make_ups.py
 	python3 tools/make_ups.py baserom.gba $(ROM) $@
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
+	@echo "LINK    $@"
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
 $(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
@@ -158,9 +165,11 @@ $(CARD_DESCRIPTION_GENERATED) $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $
 	@test -f $@
 
 $(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+	@echo "CC      $<"
 	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
 	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
+	@echo "AS      $@"
 	$(AS) $(ASFLAGS) $(C_BUILDDIR)/$*.s -o $@
 
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
@@ -174,15 +183,19 @@ $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overw
 $(C_BUILDDIR)/hooks/overworld_hooks.o: $(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)
 
 $(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+	@echo "CC      $<"
 	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
 	@$(PREPROC) $(CONFIGS_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(CONFIGS_BUILDDIR)/$*.s
 	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(CONFIGS_BUILDDIR)/$*.s
+	@echo "AS      $@"
 	$(AS) $(ASFLAGS) $(CONFIGS_BUILDDIR)/$*.s -o $@
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
+	@echo "AS      $<"
 	$(AS) $(ASFLAGS) $< -o $@
 
 $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
+	@echo "AS      $<"
 	$(AS) $(ASFLAGS) $< -o $@
 
 validate-lynjump:
