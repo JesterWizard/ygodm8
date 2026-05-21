@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
   PLAY_MUSIC(8)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "Bandit Keith is also\nsearching for the\n\nMillennium Items...\n\nI am afraid that he\ncomplicates matters\n\ngreatly.\n\nOur need for urgency has\nincreased.\n\nReshef the Dark Being is\ninsidious.\n\nHe exploits the weaknesses\nin the souls of duelists.\n\nI hope that Bandit Keith\ndoes not succumb to his\n\npower...\n\nFortunately, Bandit Keith\ndid not find the Millennium\n\nRing.\n\nThat is a ray of hope among\nall this darkness.\n\nFour Millennium Items\nremain...\n\nAnd the next one is in.")
   LANGUAGE_TEXT(1, "Ken est \xe9galement\n\xe0 la recherche des\n\nObjets du mill\xe9nium...\n\nJ'ai bien peur qu'il\ncomplique les choses.\n\nNous devons plus que\njamais nous d\xe9p\xeacher.\n\nReshef, l'Etre des t\xe9n\xe8bres\nest un tra\xeetre.\n\nIl exploite les failles dans\nles esprits des duellistes.\n\nJe prie pour que Ken\nne soit pas attir\xe9\n\npar son pouvoir...\n\nMais ce n'est pas Ken\nqui a trouv\xe9 l'Anneau du\n\nmill\xe9nium. Cela nous donne\nune lueur d'espoir.\n\nIl reste encore quatre\nObjets du mill\xe9nium...\n\nEt le prochain est en.")
   LANGUAGE_TEXT(2, "Keith sucht ebenfalls die\nMillenniumsgegenst\xe4nde...\n\nEr macht alles noch\nkomplizierter.\n\nWir m\xfcssen umso schneller\nhandeln.\n\nReschef der Dunkle ist\nhinterlistig.\n\nEr nutzt die Schw\xe4chen im\nVerstand der Duellanten\n\naus.\n\nIch hoffe, Keith wird nicht\nvon der Kraft angezogen...\n\nAber es war nicht Keith, der\nden Millenniumsring fand.\n\nDas gibt uns Hoffnung im\nAngesicht der Finsternis.\n\nEs sind noch vier weitere\nMillenniumsgegenst\xe4nde zu\n\nfinden...\n\nDer n\xe4chste ist in.")
@@ -60,7 +60,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34B38, map_00_state_05_08E34B38, 0x08F04040, 0x08F04040)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "Sol Chevalsky resurrected\nthe Dark Being...\n\nWe need the Egyptian God\nCards to stop it.\n\nWe must restore the Egyptian\nGod Cards from stone.\n\nBut in order to do so, we\nrequire the Millennium\n\nItems.\n\nThe fourth item is at the\nGreat Wall of China.\n\nPlease recover it as soon as\nyou can.\n\n")
   LANGUAGE_TEXT(1, "L'Etre des t\xe9n\xe8bres,\nressuscit\xe9 par Sol\n\nChevalsky...\nNous devons l'arr\xeater\n\n\xe0 l'aide des cartes\nde dieux.\n\nIl faut d'abord restaurer\nles cartes p\xe9trifi\xe9es.\n\nPour cela, nous aurons\nbesoin des Objets du\n\nmill\xe9nium.\n\nLe {BYTE_8253}\xe8me objet se trouve \xe0 la\nGrande Muraille de Chine.\n\nEssayez de le trouver le\nplus rapidement possible.\n\n")
   LANGUAGE_TEXT(2, "Der Dunkle wurde von\nSol Chevalsky auferweckt...\n\nWir brauchen die G\xf6tterkar-\nten, um ihn aufzuhalten.\n\nErst m\xfcssen die G\xf6tterkarten\naus ihrer Versteinerung\n\nbefreit werden. Dazu sind\ndie Millenniumsgegenst\xe4nde\n\nn\xf6tig.\n\nDer vierte Gegenstand ist an\nder Chinesischen Mauer.\n\nBesorgt ihn so schnell wie\nm\xf6glich.\n\n")
@@ -76,7 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B20, map_00_state_05_08E34B20, 0x08E34B2C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34B44, map_00_state_05_08E34B44, 0x08F04040, 0x08F04040)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "Please. Hurry to the Great\nWall of China.\n\nReshef the Dark Being will\nsoon engulf the world.\n\n")
   LANGUAGE_TEXT(1, "S'il vous pla\xeet.\nD\xe9p\xeachez-vous.\n\nAllez \xe0 la Grande Muraille\nde Chine.\n\nReshef, l'Etre des t\xe9n\xe8bres\nva bient\xf4t plonger le monde\n\ndans les t\xe9n\xe8bres.\n\n")
   LANGUAGE_TEXT(2, "Bitte. Eilt zur Chinesischen\nMauer. Reschef der Dunkle\n\nwird bald die Welt in\nFinsternis h\xfcllen.\n\n")

@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC888, map_29_state_02_08EAC888, 0x08EAC894, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC894, map_29_state_02_08EAC894, 0x08F04040, 0x08F04040)
-  PORTRAIT(15, 0, 0)
+  PORTRAIT(PORTRAIT_BONZ, 0, 0)
   LANGUAGE_TEXT(0, "I think it's in the room\nahead.\n\n")
   LANGUAGE_TEXT(1, "Je crois que\nc'est cette pi\xe8ce.\n\n")
   LANGUAGE_TEXT(2, "Ich glaube, es ist dieser\nRaum hier.\n\n")
@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8A0, map_29_state_02_08EAC8A0, 0x08EAC8AC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8AC, map_29_state_02_08EAC8AC, 0x08F04040, 0x08F04040)
-  PORTRAIT(15, 0, 0)
+  PORTRAIT(PORTRAIT_BONZ, 0, 0)
   LANGUAGE_TEXT(0, "I think you'll find it in\nthe back of the room.\n\n")
   LANGUAGE_TEXT(1, "Je crois que tu vas\ntrouver \xe7\xe0 \xe0 l'arri\xe8re\n\nde cette pi\xe8ce.\n\n")
   LANGUAGE_TEXT(2, "Ich glaube, du findest es\nim hinteren Teil des Raums.\n\n")
@@ -40,7 +40,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8AC, map_29_state_02_08EAC8AC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8B8, map_29_state_02_08EAC8B8, 0x08F04040, 0x08F04040)
-  PORTRAIT(15, 0, 0)
+  PORTRAIT(PORTRAIT_BONZ, 0, 0)
   LANGUAGE_TEXT(0, "Looks like you found what\nyou wanted.\n\nLucky you.\n\n")
   LANGUAGE_TEXT(1, "On dirait que tu as trouv\xe9\nce que tu cherchais.\n\nJe suis content\npour toi.\n\n")
   LANGUAGE_TEXT(2, "Du hast also gefunden,\nwonach du gesucht hast.\n\nDas freut mich f\xfcr dich.\n\n")
@@ -51,7 +51,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8B8, map_29_state_02_08EAC8B8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8C4, map_29_state_02_08EAC8C4, 0x08F04040, 0x08F04040)
-  PORTRAIT(15, 0, 0)
+  PORTRAIT(PORTRAIT_BONZ, 0, 0)
   LANGUAGE_TEXT(0, "I'll duel you again when I\nmake my deck stronger.\n\n")
   LANGUAGE_TEXT(1, "Quand j'aurais renforc\xe9\nmon Deck, je\n\nt'affronterai en duel.\n\n")
   LANGUAGE_TEXT(2, "Ich duelliere mich mit dir,\nsobald mein Deck noch\n\nst\xe4rker geworden ist.\n\n")

@@ -5,7 +5,7 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE980, map_48_state_05_08EDE980, 0x08EDE98C, 0x08F04040)
   PLAY_MUSIC(400)
-  PORTRAIT(1, 0, 8)
+  PORTRAIT(PORTRAIT_YUGI, 0, 8)
   LANGUAGE_TEXT(0, "That's why I can't waste any\ntime.\n\nI won't be stopped!\n\n")
   LANGUAGE_TEXT(1, "Oui... Je n'ai pas\nde temps \xe0 perdre.\n\nJe ne peux pas rester\nici trop longtemps.\n\n")
   LANGUAGE_TEXT(2, "Ja...\n\nIch darf meine Zeit nicht\nvergeuden.\n\nIch darf mich nicht\naufhalten lassen.\n\n")

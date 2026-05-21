@@ -243,7 +243,7 @@ enum PortraitPosition {
 };
 
 enum Portrait {
-  PORTRAIT_NONE,
+  PORTRAIT_NONE = 0,
   PORTRAIT_YUGI = 1,
   PORTRAIT_ATEM = 2,
   PORTRAIT_SETO = 3,

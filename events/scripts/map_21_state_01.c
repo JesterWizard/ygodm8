@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86324, map_21_state_01_08E86324, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(3, 3, 0, 0)
   DELAY(16)
-  PORTRAIT(19, 0, 8)
+  PORTRAIT(PORTRAIT_PANICK, 0, 8)
   LANGUAGE_TEXT(0, "Tsk! The runt chased after\nme!\n\n")
   LANGUAGE_TEXT(1, "Pff ! Ce porc m'a\nsuivi jusqu'ici !\n\n")
   LANGUAGE_TEXT(2, "Tss! Das Schwein hat\nmich gejagt!\n\n")

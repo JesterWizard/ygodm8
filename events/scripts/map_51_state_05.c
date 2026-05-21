@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E6C, map_51_state_05_08EE3E6C, 0x08EE3E78, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E78, map_51_state_05_08EE3E78, 0x08EE3E90, 0x08EE401C)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "You should learn about the\ndepths of a duelist's soul.\n\nI'll show you the dark\ndepths of my spirit...\n\nDarker than the deepest\ntrenches of the sea!\n\n")
   LANGUAGE_TEXT(1, "Tu devrais conna\xeetre\nles profondeurs de\n\nl'esprit des duellistes.\nJe vais te montrer\n\nle c\xf4t\xe9 sombre\nde mon esprit !\n\n")
   LANGUAGE_TEXT(2, "Du solltest die Tiefen einer\nDuellantenseele kennen.\n\nIch werde dir die Abgr\xfcnde\nmeines Geistes zeigen...\n\nFinsterer als die tiefsten\nGr\xe4ben des Meeres!\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E78, map_51_state_05_08EE3E78, 0x08EE3E90, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, 0x08F04040)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "So you think you've won?\n\nIf you think that's enough\nto beat me...\n\nThen, you'll be stuck here\nforever!\n\n")
   LANGUAGE_TEXT(1, "Alors, tu crois avoir\ngagn\xe9 ?\n\nSi tu crois que c'est\nsuffisant pour me battre...\n\nAlors tu seras coinc\xe9\nl\xe0 \xe0 tout jamais !\n\n")
   LANGUAGE_TEXT(2, "Du glaubst also, du hast\ngewonnen?\n\nWenn du meinst, das gen\xfcgt,\num mich zu schlagen...\n\nDann wirst du hier ewig\nfestsitzen!\n\n")
@@ -47,7 +47,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E84, map_51_state_05_08EE3E84, 0x08EE3E90, 0x08EE401C)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "You can come back as often\nas you like.\n\nIt won't make a difference.\n\nYou can never light the\ndarkness in my heart!\n\n")
   LANGUAGE_TEXT(1, "Reviens aussi souvent\nque tu voudras.\n\nCa ne changera rien.\nTu n'\xe9claireras jamais\n\nles t\xe9n\xe8bres de mon\nc\u0153ur !\n\n")
   LANGUAGE_TEXT(2, "Du kannst beliebig oft\nwiederkommen.\n\nDas macht keinen\nUnterschied.\n\nDie Finsternis in meinem\nHerzen erleuchtest du nie!\n\n")
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E84, map_51_state_05_08EE3E84, 0x08EE3E90, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E9C, map_51_state_05_08EE3E9C, 0x08EE3EA8, 0x08EE401C)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "Witness the darkest depths\nof my dueling spirit!\n\n")
   LANGUAGE_TEXT(1, "Les profondeurs t\xe9n\xe9breuses\nde mon esprit de\n\nduelliste...\n\nJe vais te les faire\nd\xe9couvrir...\n\n")
   LANGUAGE_TEXT(2, "Die finstersten Abgr\xfcnde\nmeines Duellantengeistes...\n\nIch werde sie dir zeigen!\n\n")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E9C, map_51_state_05_08EE3E9C, 0x08EE3EA8, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3EA8, map_51_state_05_08EE3EA8, 0x08EE3EB4, 0x08F04040)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "I... I lost...\n\nA light pierced the dark\ndepths of the sea...\n\n")
   LANGUAGE_TEXT(1, "Je...\nJ'ai perdu...\n\nUne lumi\xe8re a perc\xe9\nles t\xe9n\xe8bres de la mer...\n\n")
   LANGUAGE_TEXT(2, "Ich...\nIch habe verloren...\n\nEin Licht durchbrach die\nAbgr\xfcnde des Meeres...\n\n")

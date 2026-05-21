@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3EF0, map_51_state_06_08EE3EF0, 0x08EE3EFC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3EFC, map_51_state_06_08EE3EFC, 0x08EE3F14, 0x08EE401C)
-  PORTRAIT(14, 0, 8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, 0, 8)
   LANGUAGE_TEXT(0, "Pipipi... What took you so\nlong?\n\nThe laws of space and time\nhave decreed that you are\n\ngoing no further.\n\n")
   LANGUAGE_TEXT(1, "Pipipi... Pourquoi as-\ntu mis si longtemps ?\n\nTu vas t'arr\xeater,\nici et maintenant.\n\nC'est un d\xe9cret\ndes lois de l'espace.\n\n")
   LANGUAGE_TEXT(2, "Pipipi... Warum hat es\nso lange gedauert?\n\nHier ist jedoch dein Ende\ngekommen.\n\nDas geben die Gesetze\ndes Raumes vor.\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3EFC, map_51_state_06_08EE3EFC, 0x08EE3F14, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F14, map_51_state_06_08EE3F14, 0x08EE3FF8, 0x08F04040)
-  PORTRAIT(14, 0, 8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, 0, 8)
   LANGUAGE_TEXT(0, "You... Everyone... You all\nmake fun of me!\n\n")
   LANGUAGE_TEXT(1, "Toi... Tout le monde...\nIls me m\xe9prisent tous !\n\n")
   LANGUAGE_TEXT(2, "Du... Alle...\nAlle verachten mich!\n\n")
@@ -47,7 +47,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F14, map_51_state_06_08EE3F14, 0x08EE3FF8, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F08, map_51_state_06_08EE3F08, 0x08EE3F14, 0x08EE401C)
-  PORTRAIT(14, 0, 8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, 0, 8)
   LANGUAGE_TEXT(0, "It doesn't matter how often\nyou come back.\n\nGive up! It's hopeless!\n\n")
   LANGUAGE_TEXT(1, "Tu peux revenir autant de\nfois que tu le voudras !\n\nCa ne changera rien !\nAbandonne !\n\n")
   LANGUAGE_TEXT(2, "Wie oft du auch zur\xfcck-\nkommen magst.\n\nGib auf! Es ist hoffnungs-\nlos!\n\n")
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F08, map_51_state_06_08EE3F08, 0x08EE3F14, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F20, map_51_state_06_08EE3F20, 0x08EE3F2C, 0x08EE401C)
-  PORTRAIT(14, 0, 8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, 0, 8)
   LANGUAGE_TEXT(0, "I'll do anything to keep\nwinning!\n\nI'll never lose!\n\n")
   LANGUAGE_TEXT(1, "Je ferais tout pour\ncontinuer \xe0 gagner !\n\nJe ne peux pas me\npermettre de perdre.\n\n")
   LANGUAGE_TEXT(2, "Ich tue alles, um weiter\nzu gewinnen!\n\nIch darf nicht verlieren!\n\n")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F20, map_51_state_06_08EE3F20, 0x08EE3F2C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F2C, map_51_state_06_08EE3F2C, 0x08EE3F38, 0x08F04040)
-  PORTRAIT(14, 0, 8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, 0, 8)
   LANGUAGE_TEXT(0, "I... I hear them.\n\nMy brothers... They're\ncalling me...\n\n")
   LANGUAGE_TEXT(1, "Je... Je\nles ai entendus.\n\nMes fr\xe8res...\nIls m'appellent...\n\n")
   LANGUAGE_TEXT(2, "Ich...\nIch habe sie geh\xf6rt.\n\nMeine Br\xfcder...\nSie rufen mich...\n\n")

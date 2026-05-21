@@ -11,7 +11,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03AD4, map_60_state_03_08F03AD4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03A68, map_60_state_03_08F03A68, 0x08F04040, 0x08F04040)
-  PORTRAIT(48, 0, 8)
+  PORTRAIT(PORTRAIT_MARIK, 0, 8)
   LANGUAGE_TEXT(0, "The Winged Dragon of Ra has\nbeen fully awakened.\n\n{PLAYER}!\n\nImprison Reshef with the\npower of Ra!\n\n")
   LANGUAGE_TEXT(1, "Le Dragon Ail\xe9 de Ra\na \xe9t\xe9 r\xe9veill\xe9 !\n\n{PLAYER} !\nEmprisonne Reshef en\n\nutilisant la puissance\nde Ra !\n\n")
   LANGUAGE_TEXT(2, "Der gefl\xfcgelte Drache von Ra\nist vollst\xe4ndig erweckt.\n\n{PLAYER}!\n\nNimm Resehf mit der Macht\ndes Ra gefangen!\n\n")
@@ -22,7 +22,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A68, map_60_state_03_08F03A68, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03A74, map_60_state_03_08F03A74, 0x08F03A80, 0x08F0404C)
-  PORTRAIT(48, 0, 8)
+  PORTRAIT(PORTRAIT_MARIK, 0, 8)
   LANGUAGE_TEXT(0, "You wish to test Ra's full\npower on me?\n\nFine. I accept.\n\nI will not hold anything\nback!\n\n")
   LANGUAGE_TEXT(1, "Tu veux tester sur moi la\ntoute puissance de Ra ?\n\nTr\xe8s bien.\nJ'accepte.\n\nJe ne retiendrai rien !\n\n")
   LANGUAGE_TEXT(2, "Willst du die ganze Macht\nvon Ra an mir testen?\n\nGut.\nIch akzeptiere.\n\nIch werde mit vollem Einsatz\nspielen!\n\n")
@@ -35,7 +35,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03A80, map_60_state_03_08F03A80, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(27)
-  PORTRAIT(48, 0, 8)
+  PORTRAIT(PORTRAIT_MARIK, 0, 8)
   LANGUAGE_TEXT(0, "...You are a true duelist.\n\nYou can fully control The\nWinged Dragon of Ra.\n\nI did not realize how\npowerful you have become\n\nuntil now.\n\n")
   LANGUAGE_TEXT(1, "... Tu es un vrai duelliste.\n\nTu as le contr\xf4le\ntotal de Ra.\n\nJe n'avais pas\nr\xe9alis\xe9 \xe0 quel point\n\ntu \xe9tais devenu fort.\n\n")
   LANGUAGE_TEXT(2, "... Du bist ein wahrer\nDuellant.\n\nDu hast Ra vollst\xe4ndig\nunter Kontrolle.\n\nIch wusste nicht, dass du\nso stark geworden bist.\n\n")
@@ -46,7 +46,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A80, map_60_state_03_08F03A80, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03AB0, map_60_state_03_08F03AB0, 0x08F04040, 0x08F04040)
-  PORTRAIT(51, 0, 8)
+  PORTRAIT(PORTRAIT_ODION, 0, 8)
   LANGUAGE_TEXT(0, "Reshef toys with the spirits\nof duelists...\n\nIt dominates through\ndeception and terror.\n\nBut before the Phoenix Mode,\nit will cower.\n\n")
   LANGUAGE_TEXT(1, "Reshef joue avec les\nesprits des duellistes...\n\nIl fait r\xe9gner le\nmensonge et la peur.\n\nMais il devrait trembler\ndevant le Mode Ph\xe9nix.\n\n")
   LANGUAGE_TEXT(2, "Reschef spielt mit den\nGeistern der Duellanten...\n\nEr dominiert durch\nT\xe4uschung und Terror.\n\nAber vor dem Ph\xf6nix-Modus\nwird er sich ducken.\n\n")
@@ -57,7 +57,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03AB0, map_60_state_03_08F03AB0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03ABC, map_60_state_03_08F03ABC, 0x08F03AC8, 0x08F0404C)
-  PORTRAIT(51, 0, 8)
+  PORTRAIT(PORTRAIT_ODION, 0, 8)
   LANGUAGE_TEXT(0, "{PLAYER}, you have obtained\nthe power of the Egyptian\n\nGod Phoenix.\n\nI have little idea how I\nwill fare against you.\n\nBut I accept your challenge.\nIt's time to duel!\n\n")
   LANGUAGE_TEXT(1, "{PLAYER}, tu as obtenu\nla puissance de Ph\xe9nix.\n\nJe ne sais pas comment je\nvais m'en sortir contre\n\ntoi.\n\nMais j'accepte ton d\xe9fi.\nBattons-nous en duel !\n\n")
   LANGUAGE_TEXT(2, "{PLAYER}, du hast die Macht\ndes Ph\xf6nix erhalten.\n\nIch wei\xdf nicht, wie es mir\ngegen dich ergehen wird.\n\nAber ich nehme die\nHerausforderung an. Duell!\n\n")
@@ -70,7 +70,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03AC8, map_60_state_03_08F03AC8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(27)
-  PORTRAIT(51, 0, 8)
+  PORTRAIT(PORTRAIT_ODION, 0, 8)
   LANGUAGE_TEXT(0, "Ah, yes. You have mastered\nthe Phoenix Mode.\n\nI am no match for your\nbrilliance.\n\n")
   LANGUAGE_TEXT(1, "Ah oui. Je vois comment\ntu as su ma\xeetriser\n\nle Mode Ph\xe9nix.\n\nJe ne serai pas\naussi brillant que toi.\n\n")
   LANGUAGE_TEXT(2, "Ah, ja, ich sehe, warum dir\nder Ph\xf6nix-Modus gehorcht.\n\nIch bin kein Gegner\ngegen deine Brillianz.\n\n")

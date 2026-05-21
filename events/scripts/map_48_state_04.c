@@ -5,7 +5,7 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8E4, map_48_state_04_08EDE8E4, 0x08EDE8F0, 0x08F04040)
   PLAY_MUSIC(17)
-  PORTRAIT(1, 0, 8)
+  PORTRAIT(PORTRAIT_YUGI, 0, 8)
   LANGUAGE_TEXT(0, "I also have to get the\nspirit of the Puzzle back.\n\nThat's why I have to keep up\nwith your skills, {PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "Je dois retrouver\nmon autre moi.\n\nJe n'ai pas de temps\n\xe0 perdre, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Ich muss mein anderes\nIch zur\xfcckbekommen.\n\nIch darf nicht hinterher-\nhinken, {PLAYER}.\n\n")

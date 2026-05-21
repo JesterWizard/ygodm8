@@ -13,7 +13,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A54, map_00_state_18_08E34A54, 0x08E34A60, 0x08F
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
   PLAY_MUSIC(8)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "But we cannot worry about\nthat now. Time is of the\n\nessence.\n\nThe second Millennium Item\nmust be found...\n\nSo that we can restore the\nEgyptian God Cards.\n\nThat is the only way we can\ndefeat Sol Chevalsky...\n\nAnd imprison Reshef the Dark\nBeing again.\n\n{PLAYER}, please find the\nnext Millennium Item.\n\n")
   LANGUAGE_TEXT(1, "Mais nous ne devons\npas perdre de temps.\n\nIl faut trouver le {BYTE_8251}\xe8me\nObjet du mill\xe9nium...\n\nde fa\xe7on \xe0 restaurer\nles cartes de dieux.\n\nAinsi, nous pourrons\nbattre Sol Chevalsky...\n\nEt enfermer \xe0 nouveau\nReshef, l'Etre des\n\nt\xe9n\xe8bres.\n\n{PLAYER}, s'il te pla\xeet,\nva chercher le prochain\n\nObjet du mill\xe9nium.\n\n")
   LANGUAGE_TEXT(2, "Jetzt kommt es aufs\nTiming an.\n\nWir m\xfcssen den zweiten\nMillenniumsgegenstand\n\nfinden...\n\nund die G\xf6tterkarten\nwiederherstellen.\n\nNur so k\xf6nnen wir Sol\nChevalsky besiegen...\n\nund Reschef den Dunklen\nwieder einsperren.\n\n{PLAYER}, such bitte\nden n\xe4chsten Millen-\n\nniumsgegenstand.\n\n")
@@ -24,7 +24,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A54, map_00_state_18_08E34A54, 0x08E34A60, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A60, map_00_state_18_08E34A60, 0x08E34A78, 0x08E34A6C)
-  PORTRAIT(0, 0, 0)
+  PORTRAIT(PORTRAIT_NONE, 0, 0)
   LANGUAGE_TEXT(0, "{CARD_1}Yes\nNo{CARD_2}\n\n")
   LANGUAGE_TEXT(1, "{CARD_1}Oui\nNon{CARD_2}\n\n")
   LANGUAGE_TEXT(2, "{CARD_1}Ja\nNein{CARD_2}\n\n")
@@ -35,7 +35,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A60, map_00_state_18_08E34A60, 0x08E34A78, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A78, map_00_state_18_08E34A78, 0x08F04040, 0x08F04040)
-  PORTRAIT(16, 1, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 1, 8)
   LANGUAGE_TEXT(0, "Thank you.\n\nThe next Millennium Item.")
   LANGUAGE_TEXT(1, "Merci.\nLe prochain Objet du\n\nmill\xe9nium.")
   LANGUAGE_TEXT(2, "Danke.\nDer n\xe4chste\n\nMillenniumsgegenstand.")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A78, map_00_state_18_08E34A78, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A6C, map_00_state_18_08E34A6C, 0x08E34A60, 0x08F04040)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "{PLAYER}, I have no one to\nturn to but to you.\n\nI know I am asking for the\nimpossible, but I beg for\n\nyour help.\n\n")
   LANGUAGE_TEXT(1, "{PLAYER}, je n'ai\npersonne d'autre\n\nvers qui me tourner.\nJe sais que je demande\n\nl'impossible, mais je te\nsupplie de m'aider.\n\n")
   LANGUAGE_TEXT(2, "{PLAYER}, du bist der einzi-\nge, der mir helfen kann.\n\nIch wei\xdf, es ist schwer,\naber ich flehe dich an -\n\nhilf mir!\n\n")

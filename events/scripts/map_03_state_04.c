@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA48, map_03_state_04_08E4AA48, 0x08E4AA6C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA6C, map_03_state_04_08E4AA6C, 0x08F04040, 0x08F04040)
-  PORTRAIT(11, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
   LANGUAGE_TEXT(0, "Leave it to me!\n\n")
   LANGUAGE_TEXT(1, "Je vais m'en occuper !\n\n")
   LANGUAGE_TEXT(2, "\xdcberlasst das hier nur\nmir!\n\n")
@@ -45,7 +45,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA54, map_03_state_04_08E4AA54, 0x08E4AA60, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA60, map_03_state_04_08E4AA60, 0x08F04040, 0x08F04040)
-  PORTRAIT(11, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
   LANGUAGE_TEXT(0, "The Neo Ghouls are hiding\nout in the Town of Domino?\n\nI thought they were heading\ntowards KaibaCorp.\n\n")
   LANGUAGE_TEXT(1, "Les Neo Ghouls se\ncachent \xe0 Domino ?\n\nJe croyais qu'ils allaient\n\xe0 la Kaiba Corporation.\n\n")
   LANGUAGE_TEXT(2, "Neo Ghouls, die sich in\nDomino verbergen?\n\nIch glaube, sie waren auf\ndem Weg zur Kaiba Corp.\n\n")
@@ -56,7 +56,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA60, map_03_state_04_08E4AA60, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA78, map_03_state_04_08E4AA78, 0x08E4AA84, 0x08F0404C)
-  PORTRAIT(11, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
   LANGUAGE_TEXT(0, "You wanna duel me? You\nreally want to become\n\nextinct?\n\nAll right! Let's duel!\n\n")
   LANGUAGE_TEXT(1, "Tu veux un duel ?\nTu es un bon client.\n\nD'accord !\nBattons-nous en duel !\n\n")
   LANGUAGE_TEXT(2, "Du willst ein Duell?\nDu hast Mumm.\n\nAber gut!\nDuellieren wir uns!\n\n")
@@ -69,7 +69,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA84, map_03_state_04_08E4AA84, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(11, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
   LANGUAGE_TEXT(0, "Looks like your deck's\ncoming together well.\n\nKeep it up and let's kick\nthe Neo Ghouls outta town!\n\n")
   LANGUAGE_TEXT(1, "On dirait que ton Deck\nest pas trop mal.\n\nJe vais garder le rythme\net poursuivre ces\n\nNeo Ghouls !\n\n")
   LANGUAGE_TEXT(2, "Wie es scheint, macht\nsich dein Deck ganz gut.\n\nIch werde in diesem Tempo\nweitermachen und die\n\nNeo Ghouls jagen!\n\n")

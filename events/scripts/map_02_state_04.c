@@ -100,7 +100,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E479B0, map_02_state_04_08E479B0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E479BC, map_02_state_04_08E479BC, 0x08F04040, 0x08F04040)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "The Town of Domino is now\nsafe.\n\nBut you still have something\nto do, don't you?\n\nI'm going back to the cruise\nship.\n\nDon't give up, {PLAYER}!\n\n")
   LANGUAGE_TEXT(1, "Domino est sauv\xe9e\nmaintenant.\n\nMais il te reste encore\nune chose \xe0 faire, non ?\n\nJe retourne au paquebot\nde croisi\xe8re.\n\nN'abandonne pas,\n{PLAYER} !\n\n")
   LANGUAGE_TEXT(2, "Domino ist jetzt sicher.\n\nAber du hast doch noch\neine Aufgabe, oder?\n\nIch gehe zur\xfcck aufs\nKreuzfahrtschiff.\n\nGib nicht auf, {PLAYER}!\n\n")

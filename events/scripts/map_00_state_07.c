@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
   PLAY_MUSIC(8)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "It is always important to\nrelax and take a step away\n\nfrom your main mission.\n\nFor the road of destiny is\nnot a straight path.\n\nThere are many side roads\nand streets that you can\n\nwander along.\n\nThe more roads you take, the\nmore you will see of the\n\nworld, and the more you will\nlearn.\n\nHowever, Reshef is gaining\npower far faster than\n\nexpected.\n\nWe must return to the main\npath. Hurry and resurrect\n\nthe Egyptian God Cards.\n\nThe last Egyptian God Card\nremaining is The Winged\n\nDragon of Ra.\n\nIn order to restore the\nfinal Egyptian God Card\n\nfrom stone...\n\nPlease hurry and obtain the\nnext Millennium Item.\n\nThe next Millennium Item\nis.")
   LANGUAGE_TEXT(1, "Il faut parfois savoir\nse d\xe9tendre.\n\nTon destin ne suit pas\ntoujours une ligne droite.\n\nParfois, il faut prendre\ndes chemins d\xe9tourn\xe9s.\n\nEt ce n'est pas forc\xe9ment\nune mauvaise chose.\n\nMais Reshef devient\nde plus en plus puissant.\n\nNous devons vite restaurer\nles cartes de dieux.\n\nLa derni\xe8re carte sacr\xe9e\nest le Dragon Ail\xe9 de Ra.\n\nPour restaurer la derni\xe8re\ncarte de dieux... il faut\n\nvite obtenir le prochain\nObjet du mill\xe9nium.\n\nIl se trouve l\xe0 o\xf9 des\nformes pr\xe9historiques")
   LANGUAGE_TEXT(2, "Manchmal muss man\neinfach abschalten.\n\nDas Schicksal geht nicht\nimmer auf geraden Wegen.\n\nMitunter ist selbst ein\nkleiner Umweg vonn\xf6ten.\n\nDas muss nicht unbedingt\nschlecht sein.\n\nAber Reschef gewinnt\nschneller als erwartet an\n\nMacht.\n\nWir m\xfcssen uns sputen und\ndie G\xf6tterkarten\n\nwiederherstellen.\n\nDie eine heilige Karte,\ndie noch verbleibt, ist der\n\ngefl\xfcgelte Drache von Ra.\n\nUm die letzte G\xf6tterkarte\naus dem Stein zu\n\nbefreien, such schnell den")
@@ -60,7 +60,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34BE0, map_00_state_07_08E34BE0, 0x08F04040, 0x08F04040)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "The Dark Being was\nresurrected by Sol\n\nChevalsky...\n\nNo, not Sol Chevalsky, but\nPegasus.\n\nTo imprison Reshef, we need\none more Egyptian God Card.\n\nWe need the power of The\nWinged Dragon of Ra.\n\nWe must resurrect the card\nfrom stone.\n\nPlease find the Millennium\nItems to restore it.\n\nThe fifth Millennium Item is\nin Canada among fossils.\n\nYou will find it at a fossil\nexcavation site.\n\n")
   LANGUAGE_TEXT(1, "L'Etre des t\xe9n\xe8bres,\nressuscit\xe9 par Sol\n\nChevalsky... Non, c'est\nPegasus, n'est-ce pas ?\n\nPour emprisonner Reshef,\nil nous faut encore\n\nune carte de dieu.\nNous avons besoin\n\nde la puissance\ndu Dragon Ail\xe9 de Ra.\n\nIl faut restaurer\ncette carte p\xe9trifi\xe9e.\n\nTrouve l'Objet du mill\xe9nium\npour la restaurer.\n\nLe {BYTE_8254}\xe8me Objet du mill\xe9nium\nse trouve au Canada,\n\ndans un site d'excavation\ndes fossiles.\n\n")
   LANGUAGE_TEXT(2, "Der Dunkle wurde von\nSol Chevalsky wieder zum\n\nLeben erweckt... Nein, er\nist ja Pegasus, oder?\n\nUm Reschef zu fangen,\nben\xf6tigen wir noch eine\n\nG\xf6tterkarte.\n\nWir brauchen die Macht des\ngefl\xfcgelten Drachen von Ra.\n\nWir m\xfcssen die Karte aus dem\nStein befreien.\n\nBitte such den Millenniums-\ngegenstand, der die Karte\n\nfreisetzen kann.\n\nDer f\xfcnfte Millenniums-\ngegenstand liegt\n\nzwischen kanadischen\nFossilien.\n\nDu findest ihn an\neiner Ausgrabungsst\xe4tte.\n\n")
@@ -76,7 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BC8, map_00_state_07_08E34BC8, 0x08E34BD4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34BEC, map_00_state_07_08E34BEC, 0x08F04040, 0x08F04040)
-  PORTRAIT(16, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
   LANGUAGE_TEXT(0, "Please. Hurry to the fossil\nexcavation site.\n\nReshef the Dark Being will\nsoon engulf the world.\n\n")
   LANGUAGE_TEXT(1, "D\xe9p\xeache-toi d'aller au site\nd'excavation des fossiles.\n\nReshef, l'Etre des t\xe9n\xe8bres\nva bient\xf4t plonger le monde\n\ndans les t\xe9n\xe8bres.\n\n")
   LANGUAGE_TEXT(2, "Bitte begib dich schnell\nzur geolog.\n\nAusgrabungsst\xe4tte.\n\nReschef der Dunkle wird\nbald die Welt vernichten.\n\n")

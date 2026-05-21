@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F894, map_07_state_02_08E5F894, 0x08E5F8A0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F8A0, map_07_state_02_08E5F8A0, 0x08F04040, 0x08F04040)
-  PORTRAIT(7, 0, 8)
+  PORTRAIT(PORTRAIT_TEA, 0, 8)
   LANGUAGE_TEXT(0, "The whole city is infested\nwith Neo Ghouls.\n\nI heard that Ishizu has been\nabducted, too...\n\n{PLAYER}, hurry, send the\nNeo Ghouls on a one-way\n\nticket out of here!\n\n")
   LANGUAGE_TEXT(1, "Toute la ville regorge\nde Neo Ghouls.\n\nIl para\xeet qu'Ishizu a\nm\xeame aussi \xe9t\xe9 enlev\xe9e.\n\n{PLAYER}, d\xe9barrasse-\nnous vite des Neo Ghouls.\n\n")
   LANGUAGE_TEXT(2, "Die ganze Stadt wimmelt\nvor Neo Ghouls.\n\nWie ich h\xf6rte, wurde auch\nIshizu entf\xfchrt...\n\n{PLAYER}, beeil dich, du\nmusst die Neo Ghouls\n\nvertreiben.\n\n")
@@ -20,7 +20,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F8A0, map_07_state_02_08E5F8A0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F8AC, map_07_state_02_08E5F8AC, 0x08F04040, 0x08F04040)
-  PORTRAIT(7, 0, 8)
+  PORTRAIT(PORTRAIT_TEA, 0, 8)
   LANGUAGE_TEXT(0, "The Neo Ghouls seem to have\nleft town.\n\nBut Ishizu is still missing.\n\nWe have to find her, and\nfast!\n\nDon't give up, {PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "On dirait que les Neo Ghouls\nont quitt\xe9 la ville.\n\nMais Ishizu est toujours\nport\xe9e disparue.\n\nNous devons la\ntrouver, et vite.\n\nCe n'est pas le moment\nd'abandonner, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Wie es scheint, haben\ndie Neo Ghouls\n\ndie Stadt verlassen.\nAber wo ist Ishizu?\n\nWir m\xfcssen sie finden,\nund zwar schnell.\n\nGib nicht auf, {PLAYER}.\n\n")

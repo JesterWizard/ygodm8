@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77588, map_14_state_07_08E77588, 0x08E775A0, 0x08E
   DELAY(64)
   MOVE_OBJECT(2, 1, 0, 0)
   DELAY(16)
-  PORTRAIT(4, 0, 1)
+  PORTRAIT(PORTRAIT_JOEY, 0, 1)
   LANGUAGE_TEXT(0, "What took ya so long,\n{PLAYER}!\n\nIf you're having trouble\nagainst these guys...\n\nWell, I'd hate to think\nwhat'd happen against some\n\nreal competition.\n\nHurry and catch up to my\nlevel!\n\n")
   LANGUAGE_TEXT(1, "Tu es trop lent,\n{PLAYER} !\n\nSi tu as des ennuis\navec ce type de mecs...\n\nJe me fais du souci\npour ton avenir.\n\nD\xe9p\xeache-toi et essaie\nd'atteindre mon niveau !\n\n")
   LANGUAGE_TEXT(2, "Du bist zu langsam,\n{PLAYER}!\n\nWenn du mit diesen Typen\nschon Probleme hast...\n\n... m\xf6chte ich nicht wissen,\nwas als N\xe4chstes passiert.\n\nBeeil dich, damit du so gut\nwirst wie ich!\n\n")

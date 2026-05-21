@@ -4,7 +4,7 @@
 /* map_12_state_05: map 12 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F00C, map_12_state_05_08E6F00C, 0x08F04040, 0x08F04040)
-  PORTRAIT(10, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
   LANGUAGE_TEXT(0, "Tristan and Duke are\ntraining inside.\n\n")
   LANGUAGE_TEXT(1, "Tristan et Duke\ns'entra\xeenent \xe0 l'int\xe9rieur.\n\n")
   LANGUAGE_TEXT(2, "Tristan und Duke trainieren\ndrinnen.\n\n")

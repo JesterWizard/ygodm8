@@ -62,7 +62,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FBC, map_05_state_03_08E50FBC, 0x08E50FE0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FE0, map_05_state_03_08E50FE0, 0x08F04040, 0x08F04040)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "Gahaha! I've hauled in a\nschool of Neo Ghouls!\n\nLeave the dueling to me!\n\n")
   LANGUAGE_TEXT(1, "Aha ! J'ai trouv\xe9 tout un\ngroupe de Neo Ghouls !\n\nLaissez-moi me battre\nen duel dans les parages !\n\n")
   LANGUAGE_TEXT(2, "Gahaha! Ich habe einen\ngro\xdfen Neo Ghouls-Fang\n\ngelandet. \xdcberlasst das\nDuellieren hier nur mir!\n\n")
@@ -78,7 +78,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FC8, map_05_state_03_08E50FC8, 0x08E50FD4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FD4, map_05_state_03_08E50FD4, 0x08F04040, 0x08F04040)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "You want to know about the\nNeo Ghouls hiding out in\n\nthe Town of Domino?\n\nLook, I'm a fisherman.\n\nI'm not a detective.\n\n")
   LANGUAGE_TEXT(1, "Des Neo Ghouls qui\nse cachent \xe0 Domino ?\n\nEcoutez, je ne suis\nqu'un p\xeacheur.\n\nJe ne suis pas\nun d\xe9tective.\n\n")
   LANGUAGE_TEXT(2, "Neo Ghouls, die sich in\nDomino verbergen?\n\nIch bin Fischer, kein\nDetektiv.\n\n")
@@ -89,7 +89,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FD4, map_05_state_03_08E50FD4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FEC, map_05_state_03_08E50FEC, 0x08E50FF8, 0x08F0404C)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "Excellent! I was getting\nbored of the Neo Ghouls!\n\nPrepare to be swamped!\n\n")
   LANGUAGE_TEXT(1, "Ca suffit ! J'en ai assez\ndes Neo Ghouls !\n\nEn avant, toute !\n\n")
   LANGUAGE_TEXT(2, "Das ist der Weg! Die Neo\nGhouls langweilen mich!\n\nVolle Kraft voraus!\n\n")
@@ -102,7 +102,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FF8, map_05_state_03_08E50FF8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(12, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, 0, 8)
   LANGUAGE_TEXT(0, "You are a worthy adversary!\n\n")
   LANGUAGE_TEXT(1, "Ouais, vous avez\nplus de talent !\n\n")
   LANGUAGE_TEXT(2, "Jawohl, ihr geh\xf6rt zu\neiner ganz anderen Liga!\n\n")

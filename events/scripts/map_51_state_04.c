@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3DE8, map_51_state_04_08EE3DE8, 0x08EE3DF4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3DF4, map_51_state_04_08EE3DF4, 0x08EE3E0C, 0x08EE401C)
-  PORTRAIT(13, 0, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, 0, 8)
   LANGUAGE_TEXT(0, "Hyohyohyohyo!\n\nMy anger still burns!\n\n")
   LANGUAGE_TEXT(1, "Hyohyohyohyo !\n\nJe ne te pardonnerai jamais\nde m'avoir battu !\n\n")
   LANGUAGE_TEXT(2, "Hyohyohyohyo!\n\nIch werde dir meine\nNiederlage nie verzeihen!\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3DF4, map_51_state_04_08EE3DF4, 0x08EE3E0C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E0C, map_51_state_04_08EE3E0C, 0x08EE3FE0, 0x08F04040)
-  PORTRAIT(13, 0, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, 0, 8)
   LANGUAGE_TEXT(0, "Kiiiiiih!\n\nYou're the last person I'll\nlet pass!\n\n")
   LANGUAGE_TEXT(1, "Kiiiiiih !\n\nTu es la derni\xe8re personne\nque je laisserai passer !\n\n")
   LANGUAGE_TEXT(2, "Kiiiiiih!\n\nDu bist der letzte, den ich\ndurchlassen w\xfcrde!\n\n")
@@ -47,7 +47,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E0C, map_51_state_04_08EE3E0C, 0x08EE3FE0, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E00, map_51_state_04_08EE3E00, 0x08EE3E0C, 0x08EE401C)
-  PORTRAIT(13, 0, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, 0, 8)
   LANGUAGE_TEXT(0, "You're wasting your time!\n\n")
   LANGUAGE_TEXT(1, "Tu perds ton temps,\nc'est tout !\n\n")
   LANGUAGE_TEXT(2, "Du vergeudest nur deine\nZeit!\n\n")
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E00, map_51_state_04_08EE3E00, 0x08EE3E0C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E18, map_51_state_04_08EE3E18, 0x08EE3E24, 0x08EE401C)
-  PORTRAIT(13, 0, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, 0, 8)
   LANGUAGE_TEXT(0, "It doesn't matter what you\nbring.\n\nWhen I win, it's all over\nfor you.\n\n")
   LANGUAGE_TEXT(1, "Peu importe ce que tu\napportes.\n\nQuand je gagnerai,\ntout sera fini pour toi.\n\n")
   LANGUAGE_TEXT(2, "Egal, was du besitzt.\n\nWenn ich gewinne,\nbist du erledigt.\n\n")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E18, map_51_state_04_08EE3E18, 0x08EE3E24, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E24, map_51_state_04_08EE3E24, 0x08EE3E30, 0x08F04040)
-  PORTRAIT(13, 0, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, 0, 8)
   LANGUAGE_TEXT(0, "Qu-queen!\n\n")
   LANGUAGE_TEXT(1, "R-reine !\n\n")
   LANGUAGE_TEXT(2, "K-K\xf6nigin!\n\n")

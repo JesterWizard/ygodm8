@@ -4,7 +4,7 @@
 /* map_06_state_01: map 6 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBB8, map_06_state_01_08E5CBB8, 0x08F04040, 0x08F04040)
-  PORTRAIT(9, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
   LANGUAGE_TEXT(0, "Yo, {PLAYER}!\n\nI heard from Tea. I know you\ncan win!\n\n")
   LANGUAGE_TEXT(1, "Ho, {PLAYER} !\n\nJ'ai entendu, pour Tea.\nAllez, vas-y !\n\n")
   LANGUAGE_TEXT(2, "He, {PLAYER}!\n\nIch habe von Tea geh\xf6rt.\nNur zu!\n\n")
@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBB8, map_06_state_01_08E5CBB8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBC4, map_06_state_01_08E5CBC4, 0x08E5CBD0, 0x08F0404C)
-  PORTRAIT(9, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
   LANGUAGE_TEXT(0, "You want to duel me?\n\nSure thing! Let's duel!\n\n")
   LANGUAGE_TEXT(1, "Tu veux m'affronter\nen duel ?\n\nD'accord ! Je veux bien\nme battre en duel !\n\n")
   LANGUAGE_TEXT(2, "Du willst dich mit mir duel-\nlieren?\n\nNa klar doch!\nDa bin ich dabei!\n\n")
@@ -28,7 +28,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBD0, map_06_state_01_08E5CBD0, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(6)
-  PORTRAIT(9, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
   LANGUAGE_TEXT(0, "If you're ever in the mood\nfor competition...\n\nYou know where to find me.\n\n")
   LANGUAGE_TEXT(1, "Si tu crois que je suis\nassez bon...\n\nJe t'affronterai\nd\xe8s que tu le veux.\n\n")
   LANGUAGE_TEXT(2, "Wenn du glaubst, dass ich\ngut genug bin...\n\nMit dir duelliere ich mich\ndoch jederzeit.\n\n")
@@ -39,7 +39,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBD0, map_06_state_01_08E5CBD0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBDC, map_06_state_01_08E5CBDC, 0x08F04040, 0x08F04040)
-  PORTRAIT(31, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, 0, 8)
   LANGUAGE_TEXT(0, "Hi, {PLAYER}.\n\nTea told me what's up..\nYou'll do awesome.\n\n")
   LANGUAGE_TEXT(1, "Salut, {PLAYER}.\n\nJ'ai eu des nouvelles\nde Tea.\n\nN'abandonne pas.\n\n")
   LANGUAGE_TEXT(2, "Hallo, {PLAYER}.\n\nIch habe von Tea geh\xf6rt.\nGib nicht auf.\n\n")
@@ -50,7 +50,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBDC, map_06_state_01_08E5CBDC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBE8, map_06_state_01_08E5CBE8, 0x08E5CBF4, 0x08F0404C)
-  PORTRAIT(31, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, 0, 8)
   LANGUAGE_TEXT(0, "I don't really consider\nmyself a duelist...\n\nBut I can duel better than\nthat loser Tristan.\n\n")
   LANGUAGE_TEXT(1, "Je ne me consid\xe8re pas\ncomme un vrai duelliste.\n\nMais je serais toujours\nmeilleur que Tristan.\n\n")
   LANGUAGE_TEXT(2, "Ich sehe mich eigentlich\nnicht als Duellant...\n\nAber ich bin noch immer\nbesser als Tristan.\n\n")
@@ -63,7 +63,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBF4, map_06_state_01_08E5CBF4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(6)
-  PORTRAIT(31, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, 0, 8)
   LANGUAGE_TEXT(0, "Duel Monsters is a pretty\ndeep game, isn't it?\n\n")
   LANGUAGE_TEXT(1, "Les Duel Monsters, c'est\npas du gateau, pas vrai ?\n\n")
   LANGUAGE_TEXT(2, "Duel Monsters ist ganz\nsch\xf6n komplex, nicht wahr?\n\n")

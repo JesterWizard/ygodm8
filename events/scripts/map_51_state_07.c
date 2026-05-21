@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F74, map_51_state_07_08EE3F74, 0x08EE3F80, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F80, map_51_state_07_08EE3F80, 0x08EE3F98, 0x08EE401C)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "This is as far as you'll\nget!\n\n")
   LANGUAGE_TEXT(1, "Tu n'iras pas plus loin !\n\n")
   LANGUAGE_TEXT(2, "Weiter kommst du nicht!\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F80, map_51_state_07_08EE3F80, 0x08EE3F98, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F98, map_51_state_07_08EE3F98, 0x08EE4004, 0x08F04040)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "I have the support of my\nfriends...\n\nI'm not a spineless duelist\nlike you!\n\n")
   LANGUAGE_TEXT(1, "J'ai le soutien de\nmes amis...\n\nJe ne suis pas\nun froussard de\n\nduelliste comme toi !\n\n")
   LANGUAGE_TEXT(2, "Meine Freunde unterst\xfctzen\nmich...\n\nIch bin nicht so eine r\xfcck-\ngratlose Duellantin wie du!\n\n")
@@ -47,7 +47,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F98, map_51_state_07_08EE3F98, 0x08EE4004, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F8C, map_51_state_07_08EE3F8C, 0x08EE3F98, 0x08EE401C)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "You're back again?\n\nDon't make me repeat myself!\n\nI won't allow you to get\npast me!\n\n")
   LANGUAGE_TEXT(1, "Tu es de retour ?\n\nNe me fais pas r\xe9p\xe9ter\nce que j'ai d\xe9j\xe0 dit.\n\nJe ne vais pas\nte laisser passer !\n\n")
   LANGUAGE_TEXT(2, "Du bist schon wieder da?\n\nMuss ich mich wiederholen!\n\nIch darf dich nicht vorbei-\nlassen!\n\n")
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F8C, map_51_state_07_08EE3F8C, 0x08EE3F98, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3FA4, map_51_state_07_08EE3FA4, 0x08EE3FB0, 0x08EE401C)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "I don't care who I'm\ndueling!\n\nI always win!\n\n")
   LANGUAGE_TEXT(1, "Peu importe contre qui\nje me bats en duel !\n\nJe gagne toujours !\n\n")
   LANGUAGE_TEXT(2, "Gegen wen ich auch\nk\xe4mpfe:\n\nIch gewinne immer!\n\n")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3FA4, map_51_state_07_08EE3FA4, 0x08EE3FB0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3FB0, map_51_state_07_08EE3FB0, 0x08EE3FBC, 0x08F04040)
-  PORTRAIT(6, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, 0, 8)
   LANGUAGE_TEXT(0, "Something that can both be\nseen and not seen...\n\nIt's the courage to accept\nthe pain of defeat.\n\nI always pretended to be\nstrong even though I feared\n\nthe despair after a\ndefeat...\n\n{PLAYER}... You cut through\nthe darkness.\n\nYou are the light in the\nhearts of duelists.\n\n")
   LANGUAGE_TEXT(1, "Quelque chose de visible\nmais aussi d'invisible...\n\nC'est le courage\nd'accepter la d\xe9faite.\n\nJ'avais peur des\nt\xe9n\xe8bres de la d\xe9faite.\n\nJe me suis donn\xe9\nun r\xf4le...\n\n{PLAYER}... Tu as vu\n\xe0 travers ces t\xe9n\xe8bres.\n\nTu es devenu la lumi\xe8re dans\nle c\u0153ur des duellistes.\n\n")
   LANGUAGE_TEXT(2, "Etwas, das man sieht und\ndas doch unsichtbar ist...\n\nIst der Mut, den Schmerz\nder Niederlage zu ertragen.\n\nIch hatte Angst vor der Dun-\nkelheit, die man Niederlage\n\nnennt... Ich verstellte\nmich...\n\n{PLAYER}... Du hast die\nFinsternis durchtrennt.\n\nDu wirst das Licht in den\nHerzen der Duellanten.\n\n")

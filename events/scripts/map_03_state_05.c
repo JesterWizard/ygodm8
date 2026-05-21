@@ -72,7 +72,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AAD8, map_03_state_05_08E4AAD8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAE4, map_03_state_05_08E4AAE4, 0x08F04040, 0x08F04040)
-  PORTRAIT(11, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
   LANGUAGE_TEXT(0, "Things are now as cool as\nthe Ice Age.\n\nI'm outta here.\n\nBack to boning up my deck\namong the fossils.\n\n")
   LANGUAGE_TEXT(1, "On dirait que les choses\nse sont calm\xe9es.\n\nBon, je m'en vais.\n\nJe vais am\xe9liorer mon Deck\nau milieu des fossiles !\n\n")
   LANGUAGE_TEXT(2, "Die Lage scheint sich\nberuhigt zu haben.\n\nIch fahre jetzt aber.\n\nIch muss mein Deck bei\nden Fossilien st\xe4rken.\n\n")
