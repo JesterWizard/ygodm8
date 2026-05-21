@@ -1107,7 +1107,7 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
             elif name == "HIDE_PORTRAIT":
                 need_args(name, args, 0)
                 current.raw_bytes.extend([0x7C, ord("3")])
-            elif name == "SWAP_OBJECT_SPRITE":
+            elif name in {"SWAP_OBJECT_SPRITE", "LOAD_SPRITE"}:
                 need_args(name, args, 2)
                 current.raw_bytes.extend([0x7C, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
             elif name == "WARP":
@@ -1453,7 +1453,7 @@ def step_macro(step: dict[str, Any]) -> str:
         macro = exact("HIDE_PORTRAIT", [], [0x7C, ord("3")])
     elif kind == "swap_object_sprite":
         args = [step.get("object_id"), step.get("sprite_id")]
-        macro = exact("SWAP_OBJECT_SPRITE", args, [0x7C, ord("4")] + [int(arg) & 0xFF for arg in args])
+        macro = exact("LOAD_SPRITE", args, [0x7C, ord("4")] + [int(arg) & 0xFF for arg in args])
     elif kind == "warp":
         args = [step.get("map_id"), step.get("state"), step.get("connection")]
         if len(raw) == 6:
@@ -1564,6 +1564,7 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define CONDITION_CHECK(condition)
 #define FADE_SCREEN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
+#define LOAD_SPRITE(object_id, sprite_id)
 #define WARP(map_id, state, connection, unused)
 #define REACTION(reaction, object_mask)
 #define COMMAND_7C_ARG(command, argument)
