@@ -1,0 +1,42 @@
+#include "event_macros.h"
+
+/* map_07_state_05: map 7 state 5 */
+
+EVENT_SCRIPT_REPLACEMENT(0x08E5F8B8, map_07_state_05_08E5F8B8, 0x08E5F8C4, 0x08E5F8D0)
+  CHECK_FLAG(126)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E5F8C4, map_07_state_05_08E5F8C4, 0x08F04040, 0x08F04040)
+  PORTRAIT(7, 0, 8)
+  LANGUAGE_TEXT(0, "You're going to face\nPegasus?\n\nI see... Please be careful,\n{PLAYER}.\n\n")
+  LANGUAGE_TEXT(1, "Tu vas affronter\nPegasus ?\n\nOh... Sois prudent,\n{PLAYER}.\n\n")
+  LANGUAGE_TEXT(2, "Du willst Pegasus konfron-\ntieren?\n\nOh... Sei bitte vorsichtig,\n{PLAYER}.\n\n")
+  LANGUAGE_TEXT(3, "Affronterai Pegasus?\nTi prego, fai molta\n\nattenzione, {PLAYER}.\n\n")
+  LANGUAGE_TEXT(4, "\xbfVas a enfrentarte\na Pegasus?\n\nOh... Por favor, ten\ncuidado, {PLAYER}.\n\n")
+  END_LANGUAGE_TEXT()
+  SET_FLAG(126)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E5F8D0, map_07_state_05_08E5F8D0, 0x08F04040, 0x08F04040)
+  PORTRAIT(7, 0, 8)
+  LANGUAGE_TEXT(0, "{PLAYER}, I know you can\nwin!\n\nBeat Pegasus and rescue\nMokuba!\n\n")
+  LANGUAGE_TEXT(1, "{PLAYER}, je sais que\ntu peux le faire.\n\nVas r\xe9gler son compte\n\xe0 Pegasus et va lib\xe9rer\n\nce pauvre Mokuba.\n\n")
+  LANGUAGE_TEXT(2, "{PLAYER}, ich wei\xdf,\ndass du es schaffen kannst.\n\nLos, erledige Pegasus und\nrette den armen Mokuba.\n\n")
+  LANGUAGE_TEXT(3, "{PLAYER}, lo so\nche puoi farlo.\n\nVai a dare una bella\nbatosta a Pegasus\n\ne libera il povero Mokuba.\n\n")
+  LANGUAGE_TEXT(4, "{PLAYER}, s\xe9 que\npuedes hacerlo.\n\nVamos, deja KO a\nPegasus y rescata\n\nal pobre Mokuba.\n\n")
+  END_LANGUAGE_TEXT()
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E5F8DC, map_07_state_05_08E5F8DC, 0x08F04040, 0x08F04040)
+  PORTRAIT(7, 0, 8)
+  LANGUAGE_TEXT(0, "What's the point of dueling\nme?\n\nPegasus is the one you\nreally want, {PLAYER}.\n\n")
+  LANGUAGE_TEXT(1, "Quel est le but d'un\nduel avec moi ?\n\nPegasus est ton adversaire,\npas vrai {PLAYER} ?\n\n")
+  LANGUAGE_TEXT(2, "Warum willst du dich mit mir\nduellieren?\n\nPegasus ist dein Gegner,\n{PLAYER}, oder?\n\n")
+  LANGUAGE_TEXT(3, "A che ti serve\nduellare con me?\n\n{PLAYER}, \xe8 Pegasus il tuo\navversario, o sbaglio?\n\n")
+  LANGUAGE_TEXT(4, "\xbfPara qu\xe9 luchar\nconmigo?\n\nPegasus es tu oponente,\n{PLAYER}, \xbfno?\n\n")
+  END_LANGUAGE_TEXT()
+  FALLTHROUGH()
+END_EVENT_SCRIPT()

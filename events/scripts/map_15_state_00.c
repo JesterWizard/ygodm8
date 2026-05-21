@@ -1,0 +1,8 @@
+#include "event_macros.h"
+
+/* map_15_state_00: map 15 state 0 */
+
+EVENT_SCRIPT_REPLACEMENT(0x08F04064, map_15_state_00_08F04064, 0x08F04244, 0x08F04040)
+  SET_FLAG(245)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()

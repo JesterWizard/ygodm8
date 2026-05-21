@@ -1,0 +1,26 @@
+#include "event_macros.h"
+
+/* map_04_state_06: map 4 state 6 */
+
+EVENT_SCRIPT_REPLACEMENT(0x08E4D1C8, map_04_state_06_08E4D1C8, 0x08F04040, 0x08F04040)
+  DELAY(16)
+  PLAY_MUSIC(293)
+  OBJECT_EFFECT(2, 1)
+  LANGUAGE_TEXT(0, "Let's duel!\n\n")
+  LANGUAGE_TEXT(1, "Battons-nous en duel !\n\n")
+  LANGUAGE_TEXT(2, "Duellieren wir uns!\n\n")
+  LANGUAGE_TEXT(3, "Duelliamo!\n\n")
+  LANGUAGE_TEXT(4, "\xa1Luchemos!\n\n")
+  END_LANGUAGE_TEXT()
+  PLAY_MUSIC(293)
+  OBJECT_EFFECT(4, 1)
+  LANGUAGE_TEXT(0, "Okay.\n\n")
+  LANGUAGE_TEXT(1, "OK.\n\n")
+  LANGUAGE_TEXT(2, "Okay.\n\n")
+  LANGUAGE_TEXT(3, "Okay.\n\n")
+  LANGUAGE_TEXT(4, "Vale.\n\n")
+  END_LANGUAGE_TEXT()
+  FADE_SCREEN(8)
+  WARP(5, 6, 0, 0)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()

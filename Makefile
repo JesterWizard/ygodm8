@@ -74,6 +74,11 @@ CARD_TRUNK_GENERATED := src/hooks/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src/hooks/generated/card_data_hooks.c
 CARD_ACTIVATION_TEXT_GENERATED := src/hooks/generated/card_activation_text_generated.inc
 CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src/hooks/generated/card_activation_text_lookup_generated.inc
+EVENTS_YAML := events/vanilla/vanilla_events.yaml
+EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
+EVENTS_C_DIR := events/scripts
+EVENTS_C_SRCS := $(wildcard $(EVENTS_C_DIR)/*.c)
+EVENT_REPLACEMENTS_GENERATED := src/hooks/generated/event_script_replacements.inc
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS := $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -93,6 +98,31 @@ ALL_TARGETS := $(ROM)
 endif
 
 all: $(ALL_TARGETS)
+
+.PHONY: event-extract event-catalog event-compile event-export-c event-test event-validate
+
+event-extract: baserom.gba tools/vanilla_events.py
+	python3 tools/vanilla_events.py extract --rom baserom.gba --out $(EVENTS_YAML) --catalog $(EVENTS_CATALOG)
+
+event-catalog: $(EVENTS_YAML) tools/vanilla_events.py
+	python3 tools/vanilla_events.py catalog $(EVENTS_YAML) --out $(EVENTS_CATALOG)
+
+event-compile: $(EVENTS_C_SRCS) tools/vanilla_events.py
+	@if [ -n "$(EVENTS_C_SRCS)" ]; then \
+		python3 tools/vanilla_events.py compile-c $(EVENTS_C_SRCS) --out $(EVENT_REPLACEMENTS_GENERATED); \
+	else \
+		test -f $(EVENTS_YAML); \
+		python3 tools/vanilla_events.py compile $(EVENTS_YAML) --out $(EVENT_REPLACEMENTS_GENERATED); \
+	fi
+
+event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
+	python3 tools/vanilla_events.py export-c $(EVENTS_YAML) --out-dir $(EVENTS_C_DIR)
+
+event-test: $(EVENTS_C_SRCS) tools/vanilla_events.py
+	python3 tools/vanilla_events.py test-c $(EVENTS_C_SRCS)
+
+event-validate: $(EVENTS_YAML) baserom.gba tools/vanilla_events.py
+	python3 tools/vanilla_events.py validate $(EVENTS_YAML) --rom baserom.gba
 
 include make_tools.mk
 include graphics.mk
@@ -134,6 +164,7 @@ $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
 $(C_BUILDDIR)/hooks/effect_text_hooks.o: $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)
+$(C_BUILDDIR)/hooks/event_system_hooks.o: $(EVENT_REPLACEMENTS_GENERATED)
 $(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)
 $(C_BUILDDIR)/hooks/trunk_hooks.o: $(CARD_TRUNK_GENERATED)
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal

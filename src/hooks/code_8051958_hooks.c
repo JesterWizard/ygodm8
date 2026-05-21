@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "event_system.h"
 #include "custom_decks/custom_decks.h"
 
 static const enum Direction sDirectionFacePlayer[] APPEND_RODATA = {
@@ -171,7 +172,7 @@ void TryTalking__Replacement(void) {
   sub_804DF5C(objId);
   sub_804EF10();
   LoadObjVRAM();
-  InitiateScript(gOverworld.objects[objId].scriptA);
+  InitiateScript((struct Script *)EventSystem_ResolveScript(gOverworld.objects[objId].scriptA));
 }
 
 void TryDueling(void);
@@ -204,11 +205,11 @@ void TryDueling__Replacement(void) {
       sizeof(cardShopDuelText),
       gOverworld.objects[objId].spriteId,
       gOverworld.map.id,
-      gOverworld.objects[objId].scriptR
+      EventSystem_ResolveScript(gOverworld.objects[objId].scriptR)
     );
     InitiateScript(&cardShopDuelScript);
   } else {
     CustomDecks_ClearPendingCardShopDuel();
-    InitiateScript(gOverworld.objects[objId].scriptR);
+    InitiateScript((struct Script *)EventSystem_ResolveScript(gOverworld.objects[objId].scriptR));
   }
 }
