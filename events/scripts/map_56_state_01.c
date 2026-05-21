@@ -249,7 +249,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3074, map_56_state_01_08EF3074, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF3080, map_56_state_01_08EF3080, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROBOT_MONKEY_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_PARADOX, 0, 8)
   LANGUAGE_TEXT(0, "I am Paradox.\n\nI am the sage for all\nduelists.\n\n")
   LANGUAGE_TEXT(1, "Je m'appelle Paradox.\n\nJe suis le sage\nde tous les duellistes.\n\n")
   LANGUAGE_TEXT(2, "Ich bin Paradox.\n\nIch bin der Weise\naller Duellanten.\n\n")
@@ -260,7 +260,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3080, map_56_state_01_08EF3080, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF308C, map_56_state_01_08EF308C, 0x08EF3098, 0x08F0404C)
-  PORTRAIT(PORTRAIT_ROBOT_MONKEY_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_PARADOX, 0, 8)
   LANGUAGE_TEXT(0, "You're challenging me?\nEither you're brave...\n\nOr you underestimate me...\n\n")
   LANGUAGE_TEXT(1, "Tu me lances un d\xe9fi ?\nTu es courageux...\n\nOu alors tu me\nsous-estimes...\n\n")
   LANGUAGE_TEXT(2, "Du forderst mich heraus?\nDu bist entweder mutig...\n\nOder du untersch\xe4tzt mich...\n\n")
@@ -273,7 +273,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF3098, map_56_state_01_08EF3098, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(25)
-  PORTRAIT(PORTRAIT_ROBOT_MONKEY_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_PARADOX, 0, 8)
   LANGUAGE_TEXT(0, "Perhaps my time has\npassed...\n\n")
   LANGUAGE_TEXT(1, "Il est peut-\xeatre temps\npour ceux de mon \xe2ge\n\nde se retirer...\n\n")
   LANGUAGE_TEXT(2, "Vielleicht ist die Zeit f\xfcr\nTypen wie mich zu Ende...\n\n")
@@ -284,7 +284,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3098, map_56_state_01_08EF3098, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF30A4, map_56_state_01_08EF30A4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_PANICK_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_SHADI, 0, 8)
   LANGUAGE_TEXT(0, "My name is Shadi...\n\nYou have a room in your\nsoul...\n\nWhich I will disassemble!\n\n")
   LANGUAGE_TEXT(1, "Je m'appelle Shadi...\n\nCe que ton c\u0153ur\ncache \xe0 l'int\xe9rieur...\n\nLaisse-moi\ny mettre de l'ordre.\n\n")
   LANGUAGE_TEXT(2, "Mein Name ist Shadi...\n\nDer Raum in deinem\nHerzen...\n\nIch gestalte ihn v\xf6llig\nneu f\xfcr dich.\n\n")
@@ -295,7 +295,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF30A4, map_56_state_01_08EF30A4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF30B0, map_56_state_01_08EF30B0, 0x08EF30BC, 0x08F0404C)
-  PORTRAIT(PORTRAIT_PANICK_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_SHADI, 0, 8)
   LANGUAGE_TEXT(0, "This duel has been foretold\nmillenniums ago...\n\nCan you overcome my test?\n\n")
   LANGUAGE_TEXT(1, "Ce duel s'\xe9tend sur\nplus de {BYTE_8252}.{BYTE_824F}{BYTE_824F}{BYTE_824F} ans...\n\nVas-tu pouvoir relever\nle d\xe9fi que je te pose ?\n\n")
   LANGUAGE_TEXT(2, "Dieses Duell umspannt\n\xfcber {BYTE_8252}.{BYTE_824F}{BYTE_824F}{BYTE_824F} Jahre...\n\nOb du mit meiner Heraus-\nforderung fertig wirst?\n\n")
@@ -308,7 +308,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF30BC, map_56_state_01_08EF30BC, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(25)
-  PORTRAIT(PORTRAIT_PANICK_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_SHADI, 0, 8)
   LANGUAGE_TEXT(0, "You have prevailed...\nI am thoroughly defeated.\n\n")
   LANGUAGE_TEXT(1, "Tu as gagn\xe9...\nJ'ai perdu cette bataille.\n\n")
   LANGUAGE_TEXT(2, "Der Sieg ist dein...\nIch habe verloren.\n\n")

@@ -4,7 +4,7 @@
 /* map_12_state_02: map 12 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EFA0, map_12_state_02_08E6EFA0, 0x08E6EFAC, 0x08E6EFB8)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "My big brother isn't here.\n\nHe's investigating the\nMillennium Items.\n\n")
   LANGUAGE_TEXT(1, "Mon grand fr\xe8re\nn'est pas l\xe0.\n\nIl est \xe0 la recherche\ndes Objets du mill\xe9nium.\n\n")
   LANGUAGE_TEXT(2, "Mein gro\xdfer Bruder ist\nnicht hier.\n\nEr studiert die\nMillenniumsgegenst\xe4nde.\n\n")
@@ -41,7 +41,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFC4, map_12_state_02_08E6EFC4, 0x08E6EFD0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EFD0, map_12_state_02_08E6EFD0, 0x08E6EFDC, 0x08F0404C)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "Seto isn't here. But don't\nunderestimate my skills, or\n\nyou're gonna pay big time!\n\n")
   LANGUAGE_TEXT(1, "Mon grand fr\xe8re\nn'est pas l\xe0.\n\nMais c'est pas une\nraison pour m'insulter !\n\n")
   LANGUAGE_TEXT(2, "Mein gro\xdfer Bruder ist nicht\nhier. Aber st\xf6r mich nicht!\n\n")
@@ -54,7 +54,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EFDC, map_12_state_02_08E6EFDC, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(12)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 2, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 2, 8)
   LANGUAGE_TEXT(0, "Argh! I can't believe I\nlost!\n\nBut believe me, my big\nbrother won't lose to no\n\n{PLAYER}!\n\n")
   LANGUAGE_TEXT(1, "Wouaah !\nTu me mets en col\xe8re !\n\nMon grand fr\xe8re\nne va pas perdre\n\ncontre toi, {PLAYER} !\n\n")
   LANGUAGE_TEXT(2, "Waaah!\nDu machst mich w\xfctend!\n\nMein gro\xdfer Bruder verliert\ngegen keinen {PLAYER}!\n\n")
@@ -66,7 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFDC, map_12_state_02_08E6EFDC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EFE8, map_12_state_02_08E6EFE8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "I'm a busy guy. I don't have\nmuch free time.\n\n")
   LANGUAGE_TEXT(1, "Je n'ai pas tellement\nle temps, tu sais.\n\n")
   LANGUAGE_TEXT(2, "Ich habe nicht so viel Zeit,\nwei\xdft du?\n\n")

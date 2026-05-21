@@ -115,7 +115,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B80, map_00_state_06_08E34B80, 0x08E34B98, 0x08F
   PLAY_MUSIC(275)
   REACTION(5, 8)
   DELAY(8)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 2, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 2, 8)
   LANGUAGE_TEXT(0, "Don't bet on it? Don't talk\nto my brother that way!\n\nIf it wasn't for my\nbrother...\n\nYou wouldn't have won the\ntag duel!\n\n")
   LANGUAGE_TEXT(1, "Rien n'est moins s\xfbr ?\nEsp\xe8ce d'ingrat.\n\nSans mon grand\nfr\xe8re...\n\nTu n'aurais jamais\ngagn\xe9 le duel \xe0 deux !\n\n")
   LANGUAGE_TEXT(2, "Verlass dich nicht darauf?\nDu Undankbarer!\n\nWenn mein gro\xdfer Bruder\nnicht gewesen w\xe4re...\n\nH\xe4ttest du nie im Leben das\nDoppelduell gewonnen!\n\n")

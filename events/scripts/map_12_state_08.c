@@ -5,7 +5,7 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F180, map_12_state_08_08E6F180, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(407)
-  PORTRAIT(PORTRAIT_ARCANA_UNUSED, 0, 0)
+  PORTRAIT(PORTRAIT_SEEKER, 0, 0)
   LANGUAGE_TEXT(0, "Kukuku... Fresh new prey to\nhunt...\n\n")
   LANGUAGE_TEXT(1, "Kukuku... Une nouvelle\nproie pour moi...\n\n")
   LANGUAGE_TEXT(2, "Kukuku... Frischfleisch\nf\xfcr mich...\n\n")

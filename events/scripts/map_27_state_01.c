@@ -80,7 +80,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA4F58, map_27_state_01_08EA4F58, 0x08EA4F64, 0x08F
   LANGUAGE_TEXT(3, "Sh-Shadi?\nMa come?\n\n")
   LANGUAGE_TEXT(4, "\xbfSh-Shadi?\nPero, \xbfc\xf3mo?\n\n")
   END_LANGUAGE_TEXT()
-  PORTRAIT(PORTRAIT_PANICK_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_SHADI, 0, 8)
   LANGUAGE_TEXT(0, "The Millennium Items retain\nthe memories of their\n\nbearers.\n\nThese memories will guide\nthe chosen duelists in\n\ntheir quest.\n\nFollow them to the salvation\nof the world.\n\n")
   LANGUAGE_TEXT(1, "Les Objets du mill\xe9nium\nconservent la m\xe9moire\n\nde ceux qui les ont\nport\xe9s.\n\nCette m\xe9moire guide les\nduellistes dans leur qu\xeate.\n\nLaissez-la vous guider pour\nr\xe9ussir \xe0 sauver le monde.\n\n")
   LANGUAGE_TEXT(2, "Millenniumsgegenst\xe4nde\nbewahren die Erinnerungen\n\nihrer Tr\xe4ger. Diese\nErinnerungen leiten\n\nDuellanten.\n\nLasst euch von ihnen zur\nRettung der Welt f\xfchren.\n\n")

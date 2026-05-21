@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D1D4, map_04_state_07_08E4D1D4, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, 1, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 0)
+  PORTRAIT(PORTRAIT_REX, 0, 0)
   LANGUAGE_TEXT(0, "I'm sure they're supposed to\nbe around here somewhere.\n\nHuh? They're not here yet?\n\n")
   LANGUAGE_TEXT(1, "Je suis s\xfbr que c'\xe9tait\ndans les parages.\n\nHein ? Pas encore l\xe0 ?\n\n")
   LANGUAGE_TEXT(2, "Ich bin mir sicher, es war\nhier irgendwo.\n\nHm?\nNoch nicht hier?\n\n")

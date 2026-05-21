@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D64, map_51_state_03_08EE3D64, 0x08EE3D70, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D70, map_51_state_03_08EE3D70, 0x08EE3D88, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_REX, 0, 8)
   LANGUAGE_TEXT(0, "I remember that you beat me!\n\nYou're in for a prehistoric\npounding!\n\n")
   LANGUAGE_TEXT(1, "Je n'ai pas oubli\xe9\nque tu m'as battu !\n\nSi tu crois pouvoir passer,\ntu te trompes.\n\n")
   LANGUAGE_TEXT(2, "Ich werde nicht vergessen,\ndass du mich geschlagen\n\nhast! Wenn du glaubst,\nes ginge f\xfcr dich so\n\nweiter, hast du dich aber\nsehr get\xe4uscht!\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D70, map_51_state_03_08EE3D70, 0x08EE3D88, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D88, map_51_state_03_08EE3D88, 0x08EE3FD4, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_REX, 0, 8)
   LANGUAGE_TEXT(0, "What? You're happy that you\nwon?\n\nHa ha ha... Like that's\ngoing to help you!\n\nI'm still not letting you\nget past me!\n\n")
   LANGUAGE_TEXT(1, "Quoi ? Tu es content\nd'avoir gagn\xe9 ?\n\nKukuku... Appr\xe9cie\nles derni\xe8res lueurs !\n\nJe ne te laisserai\ntoujours pas passer !\n\n")
   LANGUAGE_TEXT(2, "Was? Du freust dich \xfcber\ndeinen Sieg?\n\nKukuku... Viel Spa\xdf\nbeim Nachleuchten!\n\nAn mir bist du noch nicht\nvorbei!\n\n")
@@ -47,7 +47,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D88, map_51_state_03_08EE3D88, 0x08EE3FD4, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D7C, map_51_state_03_08EE3D7C, 0x08EE3D88, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_REX, 0, 8)
   LANGUAGE_TEXT(0, "You're persistent, I'll give\nyou that.\n\nBut it won't change a thing.\n\n")
   LANGUAGE_TEXT(1, "Tu insistes, je vais\nte donner \xe7a.\n\nMais ne crois pas\nque \xe7a changera\n\nquoi que ce soit.\n\n")
   LANGUAGE_TEXT(2, "Du bist hartn\xe4ckig, das\nmuss man dir lassen.\n\nAber das \xe4ndert nichts.\n\n")
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D7C, map_51_state_03_08EE3D7C, 0x08EE3D88, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D94, map_51_state_03_08EE3D94, 0x08EE3DA0, 0x08EE401C)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_REX, 0, 8)
   LANGUAGE_TEXT(0, "Y-you! That card...\n\nNo! Come on, duel!\n\n")
   LANGUAGE_TEXT(1, "T-toi !\nCette carte...\n\nNon ! Viens te\nbattre en duel !\n\n")
   LANGUAGE_TEXT(2, "D-du!\nDiese Karte...\n\nNein!\nLos, Duell!\n\n")
@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D94, map_51_state_03_08EE3D94, 0x08EE3DA0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3DA0, map_51_state_03_08EE3DA0, 0x08EE3DAC, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO_UNUSED, 0, 8)
+  PORTRAIT(PORTRAIT_REX, 0, 8)
   LANGUAGE_TEXT(0, "That card... That card\nrepresents me...\n\nThat's my spirit card.\n\n")
   LANGUAGE_TEXT(1, "Cette carte... C'est\nma carte de base...\n\nC'est ma carte\nspirituelle.\n\n")
   LANGUAGE_TEXT(2, "Die Karte...\nIst meine Basiskarte...\n\nMeine Geisterkarte.\n\n")

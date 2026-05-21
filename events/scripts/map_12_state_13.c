@@ -5,7 +5,7 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(31)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "Roland, you played a good\nKaibaman.\n\n")
   LANGUAGE_TEXT(1, "Roland, c'\xe9tait un tr\xe8s\nbon Kaibaman.\n\n")
   LANGUAGE_TEXT(2, "Roland, das war ein guter\nKaibaman.\n\n")
@@ -24,7 +24,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(2, 0, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "Everyone, good work! I'm\ncounting on you again for\n\nthe next show!\n\n")
   LANGUAGE_TEXT(1, "Vous avez tous tr\xe8s\nbien travaill\xe9 !\n\nNous ferons \xe0 nouveau\nappel \xe0 vos services !\n\n")
   LANGUAGE_TEXT(2, "Ihr habt alle gute Arbeit\ngeleistet! Wir m\xf6chten euch\n\ngerne wiedersehen!\n\n")
@@ -203,7 +203,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F1BC, map_12_state_13_08E6F1BC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F198, map_12_state_13_08E6F198, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "The Kaibaman show is really\npopular.\n\n")
   LANGUAGE_TEXT(1, "Le spectacle Kaibaman\nest vraiment populaire.\n\n")
   LANGUAGE_TEXT(2, "Die Kaibaman Show ist\nverteufelt beliebt.\n\n")
@@ -214,7 +214,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F198, map_12_state_13_08E6F198, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F1A4, map_12_state_13_08E6F1A4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "I bet you think you're a\nbetter duelist because you\n\nsaw the show.\n\nBut you're really not, so\nyou should forget about\n\ndueling.\n\nYou'll only get humiliated.\n\n")
   LANGUAGE_TEXT(1, "Tu crois \xeatre plus dur\nparce que tu as vu le show.\n\nMais maintenant, oublie les\nduels. Tu ne feras que\n\nd\xe9couvrir \xe0 quel point tu\n\xe9tais mauvais.\n\n")
   LANGUAGE_TEXT(2, "Du h\xe4ltst dich f\xfcr hart,\nnur weil du die Show\n\ngesehen hast. Vergiss jetzt\nDuelle. Sonst w\xfcrdest du\n\nnur merken, wie schlecht\ndu eigentlich bist.\n\n")

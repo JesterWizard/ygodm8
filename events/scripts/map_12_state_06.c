@@ -84,7 +84,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F078, map_12_state_06_08E6F078, 0x08E6F090, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F090, map_12_state_06_08E6F090, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "Seto's Obelisk card turned\ninto stone.\n\n")
   LANGUAGE_TEXT(1, "La carte Ob\xe9lisk de\ngrand fr\xe8re a \xe9t\xe9\n\ntransform\xe9e en pierre.\n\n")
   LANGUAGE_TEXT(2, "Die Obelisk-Karte meines\ngro\xdfen Bruders wurde\n\nversteinert.\n\n")
@@ -95,7 +95,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F090, map_12_state_06_08E6F090, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F0A8, map_12_state_06_08E6F0A8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "My duty is to protect\nKaibaCorp.\n\nMy big brother left me in\ncharge, and I won't fail\n\nhim!\n\n")
   LANGUAGE_TEXT(1, "Je dois prot\xe9ger\nla Kaiba Corporation.\n\nMon grand fr\xe8re m'a\nconfi\xe9 cette t\xe2che.\n\n")
   LANGUAGE_TEXT(2, "Ich werde die Kaiba Corp.\nsch\xfctzen.\n\nMein gro\xdfer Bruder hat mir\ndas Kommando \xfcbertragen.\n\n")
@@ -106,7 +106,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0A8, map_12_state_06_08E6F0A8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F0B4, map_12_state_06_08E6F0B4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "Seto left to meet the leader\nof the Neo Ghouls.\n\n")
   LANGUAGE_TEXT(1, "Grand fr\xe8re est all\xe9 voir\nle boss des Neo Ghouls.\n\n")
   LANGUAGE_TEXT(2, "Mein gro\xdfer Bruder besucht\nden Chef der Neo Ghouls.\n\n")
@@ -117,7 +117,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0B4, map_12_state_06_08E6F0B4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F09C, map_12_state_06_08E6F09C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "I'm too busy to play with\nyou.\n\n")
   LANGUAGE_TEXT(1, "Je suis bien\ntrop occup\xe9\n\npour perdre du\ntemps avec toi.\n\n")
   LANGUAGE_TEXT(2, "Ich habe zu viel zu tun,\nals dass ich mich mit\n\ndir befassen k\xf6nnte.\n\n")
@@ -180,7 +180,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0E4, map_12_state_06_08E6F0E4, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(2, 1, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MOKUBA_GRINNING, 0, 8)
+  PORTRAIT(PORTRAIT_MOKUBA, 0, 8)
   LANGUAGE_TEXT(0, "You can count on me, bro!\n\n")
   LANGUAGE_TEXT(1, "Pas de probl\xe8me,\ngrand fr\xe8re !\n\n")
   LANGUAGE_TEXT(2, "Keine Sorge, gro\xdfer Bruder!\n\n")
