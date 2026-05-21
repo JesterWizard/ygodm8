@@ -4,8 +4,7 @@
 /* map_10_state_03: map 10 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63278, map_10_state_03_08E63278, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "The Neo Ghouls are gone,\nbut...\n\nSomething doesn't feel\nright.\n\nI hope nothing terrible\nhappens.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("The Neo Ghouls are gone,\nbut...\n\nSomething doesn't feel\nright.\n\nI hope nothing terrible\nhappens.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,22 +14,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63284, map_10_state_03_08E63284, 0x08E63290, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63290, map_10_state_03_08E63290, 0x08E6329C, 0x08F0404C)
-  LANGUAGE_TEXT(0, "I'll show you that I've\nimproved.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I'll show you that I've\nimproved.\n\n")
   DUEL(94)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6329C, map_10_state_03_08E6329C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(7)
-  LANGUAGE_TEXT(0, "Shucks. I guess I'm not good\nenough yet.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Shucks. I guess I'm not good\nenough yet.\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_LOST_DUELIST2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E632A8, map_10_state_03_08E632A8, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "After I make my deck\nstronger, okay?\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("After I make my deck\nstronger, okay?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

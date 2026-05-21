@@ -4,13 +4,11 @@
 /* map_21_state_06: map 21 state 6 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863E4, map_21_state_06_08E863E4, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "It was chaotic before, but\nthings have quieted down.\n\nThe Egypt Exhibition is open\nfor admission.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("It was chaotic before, but\nthings have quieted down.\n\nThe Egypt Exhibition is open\nfor admission.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863F0, map_21_state_06_08E863F0, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I'm sorry, but I'm not a\nduelist.\n\nMay I suggest you find\nsomeone else to duel?\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I'm sorry, but I'm not a\nduelist.\n\nMay I suggest you find\nsomeone else to duel?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

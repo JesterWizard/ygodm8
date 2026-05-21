@@ -4,21 +4,18 @@
 /* map_01_state_03: map 1 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42760, map_01_state_03_08E42760, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I'm terrified of the Neo\nGhouls.\n\nI'm never going to duel in\nthe street again.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I'm terrified of the Neo\nGhouls.\n\nI'm never going to duel in\nthe street again.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4276C, map_01_state_03_08E4276C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "If you wear a Duel Disk, the\nNeo Ghouls will know that\n\nyou're a duelist!\n\nThey'll come after you!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("If you wear a Duel Disk, the\nNeo Ghouls will know that\n\nyou're a duelist!\n\nThey'll come after you!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42778, map_01_state_03_08E42778, 0x08E42784, 0x08E427B4)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "You! You're a duelist! Fork\nover your rare cards!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("You! You're a duelist! Fork\nover your rare cards!\n\n")
   DUEL(55)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -34,9 +31,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42790, map_01_state_03_08E42790, 0x08E427A8, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427A8, map_01_state_03_08E427A8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "B-beaten...\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("B-beaten...\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 0)

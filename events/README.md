@@ -28,7 +28,7 @@ Create one file per event or scene in `events/scripts/`, for example:
 #include "overworld.h"
 
 EVENT_SCRIPT_REPLACEMENT(0x08E12345, SCENE_01_YUGI_01, 0, 0)
-  PORTRAIT(1, 0, 0)
+  PORTRAIT(1, 0, PORTRAIT_LEFT)
   DIALOGUE("It's time to duel!")
   MOVE_OBJECT(2, 1, 4, 0)
   END()

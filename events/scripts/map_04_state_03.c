@@ -4,14 +4,12 @@
 /* map_04_state_03: map 4 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D114, map_04_state_03_08E4D114, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "A few duelists are nice.\n\nHe looks pretty scary, but\nhe's actually a good guy.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("A few duelists are nice.\n\nHe looks pretty scary, but\nhe's actually a good guy.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D120, map_04_state_03_08E4D120, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "The Neo Ghouls took one look\nat his face and ran.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("The Neo Ghouls took one look\nat his face and ran.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -21,9 +19,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D12C, map_04_state_03_08E4D12C, 0x08E4D150, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D150, map_04_state_03_08E4D150, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "Hihihi, I unleashed my Neo\nGhost deck...\n\nAnd the Neo Ghouls fled in\nterror.\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("Hihihi, I unleashed my Neo\nGhost deck...\n\nAnd the Neo Ghouls fled in\nterror.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -33,24 +30,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D138, map_04_state_03_08E4D138, 0x08E4D144, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "There are Neo Ghouls hiding\nin the Town of Domino?\n\nI didn't know that.\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("There are Neo Ghouls hiding\nin the Town of Domino?\n\nI didn't know that.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D15C, map_04_state_03_08E4D15C, 0x08E4D168, 0x08F0404C)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "My Neo Ghost deck will haunt\nyou...\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("My Neo Ghost deck will haunt\nyou...\n\n")
   DUEL(60)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D168, map_04_state_03_08E4D168, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "{PLAYER} is ghoulishly more\nclever than the Neo\n\nGhouls...\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("{PLAYER} is ghoulishly more\nclever than the Neo\n\nGhouls...\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

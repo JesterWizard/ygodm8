@@ -4,8 +4,7 @@
 /* map_18_state_02: map 18 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AD8, map_18_state_02_08E80AD8, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "A journey by train has its\ncharms.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("A journey by train has its\ncharms.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,8 +14,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80AE4, map_18_state_02_08E80AE4, 0x08E80AF0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AF0, map_18_state_02_08E80AF0, 0x08E80AFC, 0x08F0404C)
-  LANGUAGE_TEXT(0, "It'll be a nice change of\npace to duel in a place\n\nlike this.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("It'll be a nice change of\npace to duel in a place\n\nlike this.\n\n")
   DUEL(28)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -32,8 +30,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B08, map_18_state_02_08E80B08, 0x08E80B20, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80B20, map_18_state_02_08E80B20, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "The shaking of the train has\nmade me carsick.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("The shaking of the train has\nmade me carsick.\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_KAIBAS_BUTTLER2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

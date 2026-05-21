@@ -4,8 +4,7 @@
 /* map_02_state_01: map 2 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E477DC, map_02_state_01_08E477DC, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "Street duels are the hippest\nthing right now.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Street duels are the hippest\nthing right now.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,29 +14,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08E477E8, map_02_state_01_08E477E8, 0x08E477F4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E477F4, map_02_state_01_08E477F4, 0x08E47800, 0x08F0404C)
-  LANGUAGE_TEXT(0, "You wanna get with the times\nand have a street battle?\n\nYou're on!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("You wanna get with the times\nand have a street battle?\n\nYou're on!\n\n")
   DUEL(3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47800, map_02_state_01_08E47800, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(4)
-  LANGUAGE_TEXT(0, "Yeah, you gotta admit,\nstreet duels are pretty\n\nfly.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Yeah, you gotta admit,\nstreet duels are pretty\n\nfly.\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_BLUE_JACKET)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4780C, map_02_state_01_08E4780C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "No, I've had enough for\ntoday.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("No, I've had enough for\ntoday.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47818, map_02_state_01_08E47818, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "KaibaCorp chartered an\nentire express train.\n\nFor a duel tournament called\nDuel Express.\n\nIt's amazing what rich\npeople can do!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("KaibaCorp chartered an\nentire express train.\n\nFor a duel tournament called\nDuel Express.\n\nIt's amazing what rich\npeople can do!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -47,22 +42,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47824, map_02_state_01_08E47824, 0x08E47830, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47830, map_02_state_01_08E47830, 0x08E4783C, 0x08F0404C)
-  LANGUAGE_TEXT(0, "Even I'm willing to take on\na duel!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Even I'm willing to take on\na duel!\n\n")
   DUEL(4)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4783C, map_02_state_01_08E4783C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(4)
-  LANGUAGE_TEXT(0, "Well, that was fun.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Well, that was fun.\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_LINT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47848, map_02_state_01_08E47848, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "We should play again some\nother time.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("We should play again some\nother time.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

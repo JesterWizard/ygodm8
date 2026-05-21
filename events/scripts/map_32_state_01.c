@@ -9,8 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB8FC4, map_32_state_01_08EB8FC4, 0x08EB8FDC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB8FDC, map_32_state_01_08EB8FDC, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "Aiyah! This is the Great\nWall of China.\n\nIt is one of China's\ntreasures. There's nothing\n\nfiner.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Aiyah! This is the Great\nWall of China.\n\nIt is one of China's\ntreasures. There's nothing\n\nfiner.\n\n")
   SET_FLAG(EVENT_FLAG_TALKED_TO_DOX)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -26,7 +25,6 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB8FE8, map_32_state_01_08EB8FE8, 0x08EB8FF4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB8FF4, map_32_state_01_08EB8FF4, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "Aiyah! I do not know how to\nduel.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Aiyah! I do not know how to\nduel.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

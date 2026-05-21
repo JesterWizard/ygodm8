@@ -4,14 +4,12 @@
 /* map_03_state_04: map 3 state 4 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA30, map_03_state_04_08E4AA30, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I was hoping that Kaiba\nwould save us...\n\nBut surprisingly, Rex Raptor\ncame to our rescue.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I was hoping that Kaiba\nwould save us...\n\nBut surprisingly, Rex Raptor\ncame to our rescue.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA3C, map_03_state_04_08E4AA3C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "The Neo Ghouls are robbing\neveryone's rare cards.\n\nSomebody has to stop them!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("The Neo Ghouls are robbing\neveryone's rare cards.\n\nSomebody has to stop them!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -21,9 +19,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA48, map_03_state_04_08E4AA48, 0x08E4AA6C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA6C, map_03_state_04_08E4AA6C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "Leave it to me!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("Leave it to me!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -33,24 +30,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA54, map_03_state_04_08E4AA54, 0x08E4AA60, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA60, map_03_state_04_08E4AA60, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "The Neo Ghouls are hiding\nout in the Town of Domino?\n\nI thought they were heading\ntowards KaibaCorp.\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("The Neo Ghouls are hiding\nout in the Town of Domino?\n\nI thought they were heading\ntowards KaibaCorp.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA78, map_03_state_04_08E4AA78, 0x08E4AA84, 0x08F0404C)
-  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "You wanna duel me? You\nreally want to become\n\nextinct?\n\nAll right! Let's duel!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("You wanna duel me? You\nreally want to become\n\nextinct?\n\nAll right! Let's duel!\n\n")
   DUEL(54)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA84, map_03_state_04_08E4AA84, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "Looks like your deck's\ncoming together well.\n\nKeep it up and let's kick\nthe Neo Ghouls outta town!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("Looks like your deck's\ncoming together well.\n\nKeep it up and let's kick\nthe Neo Ghouls outta town!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

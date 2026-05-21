@@ -657,6 +657,19 @@ enum OverworldReactions {
   REACTION_CHANT = 6,
 };
 
+enum Languages {
+  LANGUAGE_ENGLISH = 0,
+  LANGUAGE_FRENCH = 1,
+  LANGUAGE_GERMAN = 2,
+  LANGUAGE_ITALIAN = 3,
+  LANGUAGE_SPANISH = 4,
+};
+
+enum PortraitDirections {
+  PORTRAIT_LEFT = 0,
+  PORTRAIT_RIGHT = 1,
+};
+
 enum Motion {
   MOTION_STATIONARY,
   MOTION_WALKING,

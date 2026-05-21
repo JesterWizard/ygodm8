@@ -4,13 +4,11 @@
 /* map_18_state_05: map 18 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80B50, map_18_state_05_08E80B50, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "Sigh... I feel so empty...\n\nOh, if only my rare cards\nwere safe...\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Sigh... I feel so empty...\n\nOh, if only my rare cards\nwere safe...\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80B5C, map_18_state_05_08E80B5C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I can't duel without my\ncards.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I can't duel without my\ncards.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

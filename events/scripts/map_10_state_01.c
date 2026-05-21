@@ -4,8 +4,7 @@
 /* map_10_state_01: map 10 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63218, map_10_state_01_08E63218, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I want to get on the Duel\nExpress...\n\nBut I'm lost. I can't find\nDomino Station.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I want to get on the Duel\nExpress...\n\nBut I'm lost. I can't find\nDomino Station.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,22 +14,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63224, map_10_state_01_08E63224, 0x08E63230, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63230, map_10_state_01_08E63230, 0x08E6323C, 0x08F0404C)
-  LANGUAGE_TEXT(0, "I'll duel with the deck I\nmade exclusively for the\n\nDuel Express tournament.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I'll duel with the deck I\nmade exclusively for the\n\nDuel Express tournament.\n\n")
   DUEL(10)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6323C, map_10_state_01_08E6323C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(7)
-  LANGUAGE_TEXT(0, "Maybe it's a good think I'm\nnot on the Duel Express...\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Maybe it's a good think I'm\nnot on the Duel Express...\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_LOST_DUELIST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63248, map_10_state_01_08E63248, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "Let me think about how to\nreconstruct my deck first.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Let me think about how to\nreconstruct my deck first.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

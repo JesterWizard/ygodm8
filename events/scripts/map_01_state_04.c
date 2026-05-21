@@ -4,14 +4,12 @@
 /* map_01_state_04: map 1 state 4 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427CC, map_01_state_04_08E427CC, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "You know that duelist with\nthe weird laugh?\n\nHe chased away the Neo\nGhouls!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("You know that duelist with\nthe weird laugh?\n\nHe chased away the Neo\nGhouls!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427D8, map_01_state_04_08E427D8, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "That weird little kid with\nglasses saved us.\n\nBut he's kind of arrogant\nand annoying, isn't he?\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("That weird little kid with\nglasses saved us.\n\nBut he's kind of arrogant\nand annoying, isn't he?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -21,9 +19,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E427E4, map_01_state_04_08E427E4, 0x08E42808, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42808, map_01_state_04_08E42808, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, 8)
-  LANGUAGE_TEXT(0, "Hyohyohyohyo!\n\nHow could anyone lose to the\nNeo Ghouls?\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
+  TEXT("Hyohyohyohyo!\n\nHow could anyone lose to the\nNeo Ghouls?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -33,24 +30,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E427F0, map_01_state_04_08E427F0, 0x08E427FC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427FC, map_01_state_04_08E427FC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, 8)
-  LANGUAGE_TEXT(0, "You want to know where the\nNeo Ghouls are hiding the\n\nTown of Domino?\n\nWhat makes you think I would\nknow, you foolish flea!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
+  TEXT("You want to know where the\nNeo Ghouls are hiding the\n\nTown of Domino?\n\nWhat makes you think I would\nknow, you foolish flea!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42814, map_01_state_04_08E42814, 0x08E42820, 0x08F0404C)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, 8)
-  LANGUAGE_TEXT(0, "Hyohyohyo! You're wasting my\ntime, you gruesome grub!\n\nYou can't beat me in a duel!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
+  TEXT("Hyohyohyo! You're wasting my\ntime, you gruesome grub!\n\nYou can't beat me in a duel!\n\n")
   DUEL(56)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42820, map_01_state_04_08E42820, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "Gyooeeeeeh!\n\nJust buzz off!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("Gyooeeeeeh!\n\nJust buzz off!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

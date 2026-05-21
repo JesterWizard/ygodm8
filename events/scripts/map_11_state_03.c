@@ -4,8 +4,7 @@
 /* map_11_state_03: map 11 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64358, map_11_state_03_08E64358, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I managed to hide my rare\ncards from the Neo Ghouls.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I managed to hide my rare\ncards from the Neo Ghouls.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,22 +14,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64364, map_11_state_03_08E64364, 0x08E64370, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64370, map_11_state_03_08E64370, 0x08E6437C, 0x08F0404C)
-  LANGUAGE_TEXT(0, "Do you know how hard it was\nto protect my rare cards?!\n\nI won't let you have one so\neasily!\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Do you know how hard it was\nto protect my rare cards?!\n\nI won't let you have one so\neasily!\n\n")
   DUEL(95)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6437C, map_11_state_03_08E6437C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(7)
-  LANGUAGE_TEXT(0, "Tsk... After all I did to\nsave that rare card...\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("Tsk... After all I did to\nsave that rare card...\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_AMBUSHER2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64388, map_11_state_03_08E64388, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "I don't want to lose any\nmore rare cards to you.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("I don't want to lose any\nmore rare cards to you.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

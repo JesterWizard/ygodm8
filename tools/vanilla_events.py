@@ -1018,6 +1018,11 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                 current.raw_bytes.extend([0x24, ord("6")])
             elif name == "TEXT":
                 need_args(name, args, 1)
+                current.raw_bytes.extend([0x24, ord("0")])
+                current.raw_bytes.extend(encode_text(ast.literal_eval(args[0])))
+                current.raw_bytes.extend([0x24, ord("6")])
+            elif name == "TEXT_FRAGMENT":
+                need_args(name, args, 1)
                 current.raw_bytes.extend(encode_text(ast.literal_eval(args[0])))
             elif name == "PLAYER_NAME":
                 need_args(name, args, 0)
@@ -1339,19 +1344,26 @@ def step_macro(step: dict[str, Any]) -> str:
     if kind == "dialogue":
         text = str(step.get("text", ""))
         expected = [0x24, ord("0")] + encode_text(text) + [0x24, ord("6")]
-        macro = exact("DIALOGUE", [c_string(text)], expected)
+        macro = exact("TEXT", [c_string(text)], expected)
         if macro is None:
-            macro = exact("TEXT", [c_string(text)], encode_text(text))
+            macro = exact("DIALOGUE", [c_string(text)], expected)
+        if macro is None:
+            macro = exact("TEXT_FRAGMENT", [c_string(text)], encode_text(text))
         if macro is None and raw and raw[0] == 0x24:
             expected = []
             lines = []
             for languages in parse_language_blocks(raw):
-                for lang, lang_text in languages:
-                    expected.extend([0x24, ord("0") + lang])
-                    expected.extend(encode_text(lang_text))
-                    lines.append(f"LANGUAGE_TEXT({lang}, {c_string(lang_text)})")
+                if len(languages) == 1 and languages[0][0] == 0:
+                    expected.extend([0x24, ord("0")])
+                    expected.extend(encode_text(languages[0][1]))
+                    lines.append(f"TEXT({c_string(languages[0][1])})")
+                else:
+                    for lang, lang_text in languages:
+                        expected.extend([0x24, ord("0") + lang])
+                        expected.extend(encode_text(lang_text))
+                        lines.append(f"LANGUAGE_TEXT({lang}, {c_string(lang_text)})")
+                    lines.append("END_LANGUAGE_TEXT()")
                 expected.extend([0x24, ord("6")])
-                lines.append("END_LANGUAGE_TEXT()")
             if raw == expected:
                 macro = "\n  ".join(lines)
     elif kind == "newline":
@@ -1510,7 +1522,8 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define DIALOGUE(text)
 #define LANGUAGE_TEXT(language, text)
 #define END_LANGUAGE_TEXT()
-#define TEXT(text)
+#define TEXT(text) LANGUAGE_TEXT(LANGUAGE_ENGLISH, text) END_LANGUAGE_TEXT()
+#define TEXT_FRAGMENT(text)
 #define PLAYER_NAME()
 #define NEWLINE()
 #define PAGE_BREAK()

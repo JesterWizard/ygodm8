@@ -44,7 +44,6 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7E080, map_16_state_02_08E7E080, 0x08F04244, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DE7C, map_16_state_02_08E7DE7C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "A giant man, you say?\n\nHe disembarked and headed to\nthe Egypt Exhibition.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("A giant man, you say?\n\nHe disembarked and headed to\nthe Egypt Exhibition.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

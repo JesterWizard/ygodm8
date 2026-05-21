@@ -4,21 +4,18 @@
 /* map_05_state_02: map 5 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F20, map_05_state_02_08E50F20, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "No, no, no... My\nHyozanryu...\n\nThe Neo Ghouls ripped it\noff.\n\nThey couldn't care less\nabout having a fair duel.\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("No, no, no... My\nHyozanryu...\n\nThe Neo Ghouls ripped it\noff.\n\nThey couldn't care less\nabout having a fair duel.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F2C, map_05_state_02_08E50F2C, 0x08F04040, 0x08F04040)
-  LANGUAGE_TEXT(0, "How do you expect me to duel\nwithout my rare cards?\n\n")
-  END_LANGUAGE_TEXT()
+  TEXT("How do you expect me to duel\nwithout my rare cards?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F38, map_05_state_02_08E50F38, 0x08E50F44, 0x08E50F74)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "Domino duelists are\nspineless wimps!\n\nNo one's shown the least bit\nof resistance!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("Domino duelists are\nspineless wimps!\n\nNo one's shown the least bit\nof resistance!\n\n")
   DUEL(61)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -34,9 +31,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F50, map_05_state_02_08E50F50, 0x08E50F68, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F68, map_05_state_02_08E50F68, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
-  LANGUAGE_TEXT(0, "You showed resistance...too\nmuch resistance!\n\n")
-  END_LANGUAGE_TEXT()
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT("You showed resistance...too\nmuch resistance!\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 60)
