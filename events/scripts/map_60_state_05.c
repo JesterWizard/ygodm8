@@ -58,7 +58,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A8C, map_60_state_05_08F03A8C, 0x08F03AA4, 0x08F
   PLAY_MUSIC(386)
   COMMAND_7C_ARG(8, 50)
   COMMAND_7C_ARG(8, 51)
-  SET_FLAG(226)
+  SET_FLAG(EVENT_FLAG_LIGHT_THE_CANDLE_IN_MARIKS_ROOM)
   PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Phoenix! Be calm!\n\nYour enemy is the one who\nweakened the Egyptian God\n\nCards.\n\nWith {PLAYER}, you must\nsmite that enemy!\n\n")
   LANGUAGE_TEXT(1, "Ph\xe9nix !\nCalme-toi !\n\nTon ennemi est celui qui a\nrendu les cartes de dieux\n\nplus faibles.\nAvec l'aide de {PLAYER},\n\nd\xe9barrasse-nous de cet\nennemi !\n\n")
@@ -110,7 +110,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03AA4, map_60_state_05_08F03AA4, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Il Drago Alato di Ra si \xe8\nrisvegliato completamente.\n\nOra sta a te, {PLAYER},\ndecidere cosa farne\n\ndel suo potere.\n\n")
   LANGUAGE_TEXT(4, "El Drag\xf3n Alado de Ra ha\ndespertado por completo.\n\nLo que t\xfa hagas\ncon su poder, es\n\ncosa tuya, {PLAYER}.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(203)
+  SET_FLAG(EVENT_FLAG_OBTAINED_PHOENIX_MODE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -4,7 +4,7 @@
 /* map_10_state_02: map 10 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63254, map_10_state_02_08E63254, 0x08E63260, 0x08E6326C)
-  CHECK_FLAG(88)
+  CHECK_FLAG(EVENT_FLAG_SCARED_LOST_DUELIST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63260, map_10_state_02_08E63260, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Come? Non siete\ndei Neo Ghouls?\n\nNon mi spaventare!\n\nQuei mascalzoni mi\nhanno rivoltato come\n\nun calzino e mi hanno\npreso le carte rare...\n\nChe rabbia...\n\n")
   LANGUAGE_TEXT(4, "\xbfEh?\n\xbfNo sois Neo Ghouls?\n\n\xa1No me asust\xe9is as\xed!\n\nEsos matones me atacaron y\ncogieron mis cartas\n\nraras...\n\nMe consume...\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(88)
+  SET_FLAG(EVENT_FLAG_SCARED_LOST_DUELIST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

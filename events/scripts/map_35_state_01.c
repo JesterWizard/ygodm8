@@ -29,17 +29,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC62A8, map_35_state_01_08EC62A8, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "In ogni caso, \xe8 spaventoso.\n\nMeglio darci una mossa,\nragazzi.\n\n")
   LANGUAGE_TEXT(4, "Sea lo que sea,\nda miedo.\n\nMejor que nos\nlarguemos, t\xedos.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(72)
+  SET_FLAG(EVENT_FLAG_SAW_CAVE_EARTHQUAKE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC62CC, map_35_state_01_08EC62CC, 0x08EC62D8, 0x08EC632C)
-  CHECK_FLAG(20)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN5)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC62D8, map_35_state_01_08EC62D8, 0x08EC62F0, 0x08EC6320)
-  CHECK_FLAG(69)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_REX)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -103,7 +103,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC6314, map_35_state_01_08EC6314, 0x08EC6320, 0x08F
   LANGUAGE_TEXT(3, "Grrrrrrr! Avete vinto!\nPensavo di ricevere\n\nconsigli su come\nrafforzare il mio deck.\n\nPer questo sono venuto\nqui, ma non \xe8 bastato.\n\nLa prossima volta, per\xf2,\nnon perder\xf2.\n\n")
   LANGUAGE_TEXT(4, "\xa1Graaaah!\n\xa1Vosotros gan\xe1is!\n\nPens\xe9 que podr\xeda ob-\ntener algunos consejos\n\nsobre c\xf3mo fortalecer\nmi deck.\n\nPor eso vine aqu\xed, pero\nno era suficiente.\n\nDe todos modos, la\npr\xf3xima vez no perder\xe9.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(69)
+  SET_FLAG(EVENT_FLAG_DEFEATED_REX)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, 1, 9, 0)
@@ -157,7 +157,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC632C, map_35_state_01_08EC632C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC62E4, map_35_state_01_08EC62E4, 0x08EC62F0, 0x08EC6338)
-  CHECK_FLAG(69)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_REX)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

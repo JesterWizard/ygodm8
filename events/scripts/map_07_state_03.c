@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F8E8, map_07_state_03_08E5F8E8, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Quel robot non aveva un\naspetto molto pericoloso.\n\n")
   LANGUAGE_TEXT(4, "No parec\xeda muy\npeligroso ese robot.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(162)
+  SET_FLAG(EVENT_FLAG_GRANDPA_MUTO_SAID_KAIBA_CORP_PRODUCES_MONKEY_ROBOTS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -44,7 +44,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F8F4, map_07_state_03_08E5F8F4, 0x08E5F900, 0x08F
   LANGUAGE_TEXT(3, "Pensi che Seto abbia tra-\nsformato Tristan in robot?\n\nDato che Tristan \xe8 una\nscimmia, dove sar\xe0 andato?\n\n... Ma certo! Alla\nricerca di banane.\n\nCercatelo dove si possano\ntrovare delle banane.\n\n")
   LANGUAGE_TEXT(4, "\xbfCrees que Seto convertir\xeda\na Tristan en un robot?\n\nDado que Tristan es un mono,\n\xbfa d\xf3nde habr\xe1 ido?\n\n... \xa1Pero claro!\nA buscar pl\xe1tanos.\n\nB\xfascale donde puedas\nencontrar pl\xe1tanos.\n\n")
   END_LANGUAGE_TEXT()
-  CHECK_FLAG(186)
+  CHECK_FLAG(EVENT_FLAG_TEA_SAID_TO_LOOK_FOR_BANANAS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -70,7 +70,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F900, map_07_state_03_08E5F900, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Guardiamo in tutti i posti\ngraditi alle scimmie!\n\n")
   LANGUAGE_TEXT(4, "Busquemos donde\ngustar\xeda a los monos.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(186)
+  SET_FLAG(EVENT_FLAG_TEA_SAID_TO_LOOK_FOR_BANANAS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

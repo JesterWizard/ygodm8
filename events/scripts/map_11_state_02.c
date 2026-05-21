@@ -4,7 +4,7 @@
 /* map_11_state_02: map 11 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64334, map_11_state_02_08E64334, 0x08E64340, 0x08E6434C)
-  CHECK_FLAG(89)
+  CHECK_FLAG(EVENT_FLAG_SCARED_AMBUSHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64340, map_11_state_02_08E64340, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Oh... Non sei uno dei\nNeo Ghouls. Mi hai fatto\n\nprendere un colpo.\nNon farlo pi\xf9, intesi?\n\n")
   LANGUAGE_TEXT(4, "Oh... No est\xe1s con\nlos Neo Ghouls.\n\nNo me asustes m\xe1s\nas\xed, \xbfvale?\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(89)
+  SET_FLAG(EVENT_FLAG_SCARED_AMBUSHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

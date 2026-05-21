@@ -31,12 +31,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED55F0, map_40_state_01_08ED55F0, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Io non so cosa stia\ntramando Pegasus.\n\nMa non possiamo ignorare\nReshef il Tenebroso.\n\nBattaglie dure e faticose\nvi attendono.\n\nMa vi prego{BYTE_8146} non vi avvilite\ndi fronte alle avversit\xe0.\n\n")
   LANGUAGE_TEXT(4, "No s\xe9 qu\xe9 trama\nPegasus.\n\nPero no podemos ignorar a\nReshef, el Ser Oscuro.\n\nDuras y dif\xedciles\nbatallas nos esperan.\n\nPero, por favor, no\nos amilan\xe9is ante\n\nlas adversidades.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(140)
+  SET_FLAG(EVENT_FLAG_ENTERED_PEGASUS_ISLAND)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED5608, map_40_state_01_08ED5608, 0x08F04244, 0x08F04040)
-  SET_FLAG(180)
+  SET_FLAG(EVENT_FLAG_LEAVING_THE_CABLE_CAR_LEADS_TO_THE_TOP_OF_PEGASUS_ISLAND)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

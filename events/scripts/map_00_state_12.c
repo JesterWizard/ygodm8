@@ -181,7 +181,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E8C, map_00_state_12_08E34E8C, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Okay, grazie!\n\nDovrebbero ancora essere\nin Piazza Campanile.\n\n")
   LANGUAGE_TEXT(4, "Bien, \xa1gracias!\n\nDeben de estar\na\xfan en Plaza del reloj.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(159)
+  SET_FLAG(EVENT_FLAG_SEARCHING_FOR_SEEKER2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

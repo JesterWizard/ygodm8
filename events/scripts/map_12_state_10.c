@@ -4,7 +4,7 @@
 /* map_12_state_10: map 12 state 10 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F0F0, map_12_state_10_08E6F0F0, 0x08E6F0FC, 0x08E6F108)
-  CHECK_FLAG(133)
+  CHECK_FLAG(EVENT_FLAG_TOLD_ROLAND_MOKUBA_WAS_KIDNAPPED)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0FC, map_12_state_10_08E6F0FC, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Il maestro Mokuba \xe8\nstato rapito?\n\nSar\xe0 andato a dire al\nmaestro Seto che i\n\nNeo Ghouls sono stati\ncacciati da Domino...\n\nHo fallito: non ho rico-\nnosciuto il pericolo...\n\nTi prego, devi aiutare il\nmaestro Mokuba.\n\nVai ad aiutare il maestro\nSeto a salvarlo.\n\n")
   LANGUAGE_TEXT(4, "\xbfHan raptado al amo Mokuba?\n\nSe fue a decirle al amo\nSeto...\n\nQue se hab\xeda expulsado a los\nNeo Ghouls de Domino...\n\nNo supe darme cuenta\ndel peligro...\n\nPor favor, tienes que\nayudar al amo Mokuba.\n\nPor favor, ve y ayuda al amo\nSeto a rescatarle.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(133)
+  SET_FLAG(EVENT_FLAG_TOLD_ROLAND_MOKUBA_WAS_KIDNAPPED)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

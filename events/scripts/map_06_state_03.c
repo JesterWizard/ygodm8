@@ -217,7 +217,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC78, map_06_state_03_08E5CC78, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Voi due smettetela\ncon queste stupidate.\n\nTornate in fretta al negozio\ne rimettetevi al lavoro.\n\n")
   LANGUAGE_TEXT(4, "Vosotros dos ten\xe9is que\ndejar esta estupidez.\n\nVolved a la tienda y\na trabajar.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(65)
+  SET_FLAG(EVENT_FLAG_UNLOCKED_MONKEY_ROBOT_SIDEQUEST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

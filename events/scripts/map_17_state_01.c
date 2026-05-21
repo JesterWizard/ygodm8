@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F118, map_17_state_01_08E7F118, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Ihihih... Chiamami\npure PaniK.\n\nGli Oggetti Millenari\nnon saranno mai tuoi!\n\n")
   LANGUAGE_TEXT(4, "Jijiji... Me puedes llamar\nPaniK.\n\n\xa1Los Objetos del Milenio\nnunca ser\xe1n tuyos!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(240)
+  SET_FLAG(EVENT_FLAG_DARKEN_SCREEN)
   FADE_SCREEN(2)
   WARP(17, 7, 2, 0)
   FALLTHROUGH()

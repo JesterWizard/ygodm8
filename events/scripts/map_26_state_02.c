@@ -115,7 +115,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3B78, map_26_state_02_08EA3B78, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Ma dove vanno quei\ndue?\n\nComunque, ora che i miei\nschiavi se ne sono andati,\n\nfarei meglio a mettermi\nal lavoro.\n\n")
   LANGUAGE_TEXT(4, "Esos dos...\n\xbfAd\xf3nde van?\n\nBueno, ahora que se han\nido, mejor volver al curro.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(62)
+  SET_FLAG(EVENT_FLAG_SAW_TRISTAN_AND_DUKE_LEAVING_ON_A_TRAINING_QUEST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

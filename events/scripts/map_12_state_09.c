@@ -4,7 +4,7 @@
 /* map_12_state_09: map 12 state 9 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F114, map_12_state_09_08E6F114, 0x08E6F120, 0x08E6F12C)
-  CHECK_FLAG(145)
+  CHECK_FLAG(EVENT_FLAG_ASKED_MOKUBA_ABOUT_THE_MONKEY_ROBOTS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F120, map_12_state_09_08E6F120, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Mio fratello ha trasformato\nTristan in una scimmia?\n\nSei pazzo per caso?\n\nMio fratello non farebbe\nmai una cosa simile.\n\n... Ma c'\xe8 una cosa...\nAbbiamo fabbricato scimmie\n\nrobot, ma non hanno mai\navuto un gran successo.\n\nPenso che le abbiamo\ndonate a qualche isola.\n\n")
   LANGUAGE_TEXT(4, "\xbfMi gran hermano convirti\xf3\na Tristan en un mono?\n\nPero, \xbfest\xe1s loco?\n\nPues claro que mi gran\nhermano no har\xeda eso.\n\n... Pero hay algo...\n\nHicimos los robots\nmono pero nunca\n\nse vendieron bien.\n\nCreo que los donamos\na una isla.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(145)
+  SET_FLAG(EVENT_FLAG_ASKED_MOKUBA_ABOUT_THE_MONKEY_ROBOTS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

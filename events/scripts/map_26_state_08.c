@@ -14,7 +14,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3DE8, map_26_state_08_08EA3DE8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3DF4, map_26_state_08_08EA3DF4, 0x08EA3E00, 0x08EA3E18)
-  CHECK_FLAG(138)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_RICH_HUSBAND)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -37,7 +37,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E0C, map_26_state_08_08EA3E0C, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Oh, no!\n\nSono stato battuto\nda un ragazzino!\n\nMa \xe8 proprio uno dei\nmotivi che rendono\n\nquesto gioco divertente!\nAnche sistemare il\n\ndeck dopo la sconfitta\n\xe8 un gran divertimento.\n\n")
   LANGUAGE_TEXT(4, "\xa1Oh, no!\n\n\xa1Me ha vencido un\nsimple chiquillo!\n\n\xa1Pero, \xe9sa es una de\nlas razones que hacen\n\ndivertido este juego!\n\nEnredar con el deck\ndespu\xe9s de una de-\n\nrrota tambi\xe9n es\ndivertido.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(138)
+  SET_FLAG(EVENT_FLAG_DEFEATED_RICH_HUSBAND)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -62,7 +62,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E24, map_26_state_08_08EA3E24, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3E30, map_26_state_08_08EA3E30, 0x08EA3E3C, 0x08EA3E54)
-  CHECK_FLAG(139)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -85,7 +85,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E48, map_26_state_08_08EA3E48, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Devo solo comporre\nmeglio il mio deck.\n\n")
   LANGUAGE_TEXT(4, "S\xf3lo tengo que componer\nmi deck con m\xe1s pericia.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(139)
+  SET_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

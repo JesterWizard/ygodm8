@@ -234,7 +234,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AB0, map_39_state_01_08ED4AB0, 0x08F04250, 0x08F
   LANGUAGE_TEXT(3, "La Bilancia Millenaria...\n\nOra abbiamo sei\nOggetti Millenari.\n\nSbrighiamoci,\ntorniamo da Ishizu!\n\n")
   LANGUAGE_TEXT(4, "Las Pesas del Milenio...\n\nAhora tenemos seis\nObjetos del Milenio.\n\n\xa1R\xe1pido, regresemos\ndonde Ishizu!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(21)
+  SET_FLAG(EVENT_FLAG_DEFEATED_MIMIC_OF_DOOM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

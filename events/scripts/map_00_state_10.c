@@ -375,7 +375,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34D54, map_00_state_10_08E34D54, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Spargiamo la voce tra tutti\ni duellanti. Con il loro\n\naiuto, forse potremo\nsconfiggere i Neo Ghouls.\n\nSe riusciamo a liberare\nDomino dai Neo Ghouls...\n\nSar\xe0 liberata anche la\nStazione di Domino.\n\nSu, raduniamo tutti\ni duellanti!\n\n")
   LANGUAGE_TEXT(4, "Corramos la voz a\ntodos los duelistas.\n\nCon su ayuda, quiz\xe1s\nbatamos a los Neo Ghouls.\n\nSi podemos liberar\nDomino de los Neo Ghouls...\n\nLa Estaci\xf3n Domino se\nliberar\xe1 tambi\xe9n.\n\n\xa1R\xe1pido, llamemos a\ntodos los duelistas!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(95)
+  SET_FLAG(EVENT_FLAG_DEFEATED_SEEKER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -464,12 +464,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34D00, map_00_state_10_08E34D00, 0x08F0404C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D6C, map_00_state_10_08E34D6C, 0x08E34D60, 0x08E34DB4)
-  CHECK_FLAG(98)
+  CHECK_FLAG(EVENT_FLAG_ESPA_ROBA_SAID_ISHIZU_IS_AT_THE_EGYPT_EXHIBITION)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D60, map_00_state_10_08E34D60, 0x08E34D84, 0x08E34DA8)
-  CHECK_FLAG(96)
+  CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -512,7 +512,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34DA8, map_00_state_10_08E34DA8, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Probabilmente, Ishizu\n\xe8 alla Mostra Egizia.\n\nMe lo dice l'istinto.\n\nMuoviti! Vai\nad aiutare Ishizu.\n\n")
   LANGUAGE_TEXT(4, "Ishizu probablemente est\xe9 en\nla Exposici\xf3n Egipcia.\n\nMe lo dice mi instinto.\n\n\xa1Sigamos!\nA ayudar a Ishizu.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(98)
+  SET_FLAG(EVENT_FLAG_ESPA_ROBA_SAID_ISHIZU_IS_AT_THE_EGYPT_EXHIBITION)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -528,7 +528,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34DB4, map_00_state_10_08E34DB4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D78, map_00_state_10_08E34D78, 0x08E34D90, 0x08E34DC0)
-  CHECK_FLAG(96)
+  CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

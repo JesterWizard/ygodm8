@@ -644,7 +644,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB438, map_57_state_02_08EFB438, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Probabilmente, Ishizu\n\xe8 alla Mostra Egizia.\n\nMe lo dice il mio\nistinto. Sbrigati,\n\ndevi aiutare Ishizu!\n\n")
   LANGUAGE_TEXT(4, "Ishizu estar\xe1 en la\nExposici\xf3n Egipcia.\n\nEs lo que me dice\nmi instinto.\n\n\xa1R\xe1pido, tienes que\nayudar a Ishizu!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(160)
+  SET_FLAG(EVENT_FLAG_DEFEATED_SEEKER2)
   FADE_SCREEN(8)
   WARP(12, 7, 1, 0)
   FALLTHROUGH()

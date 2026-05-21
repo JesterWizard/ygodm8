@@ -4,7 +4,7 @@
 /* map_25_state_02: map 25 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E995B8, map_25_state_02_08E995B8, 0x08E995C4, 0x08E995D0)
-  CHECK_FLAG(119)
+  CHECK_FLAG(EVENT_FLAG_SCARED_SHIP_DEALER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E995C4, map_25_state_02_08E995C4, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "No, no, ti prego!\nNon sono un duellante!\n\nI duellanti li trovi\nal piano successivo.\n\n... Oh? Non siete\ndei Neo Ghouls?\n\n")
   LANGUAGE_TEXT(4, "\xa1No, no, por favor!\n\xa1No soy un duelista!\n\n\xa1Hay duelistas en el\npiso siguiente!\n\n... \xbfEh?\n\xbfNo sois los Neo Ghouls?\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(119)
+  SET_FLAG(EVENT_FLAG_SCARED_SHIP_DEALER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

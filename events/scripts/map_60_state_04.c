@@ -214,7 +214,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F039FC, map_60_state_04_08F039FC, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Certo!\n\nModalit\xe0 Fenice o no,\nfaremo il nostro lavoro!\n\nAnnienteremo Reshef\nuna volta per tutte!\n\n")
   LANGUAGE_TEXT(4, "\xa1S\xed!\n\n\xa1Modo F\xe9nix o no,\npodemos terminar\n\nel trabajo!\n\n\xa1Acabaremos con\nReshef por siempre!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(190)
+  SET_FLAG(EVENT_FLAG_DEFEATED_MARIK)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -51,7 +51,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB43C0, map_31_state_06_08EB43C0, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Non possiamo farci niente.\nInseguiamolo!\n\n")
   LANGUAGE_TEXT(4, "No podemos hacer\nnada al respecto.\n\n\xa1Vamos por \xe9l!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(151)
+  SET_FLAG(EVENT_FLAG_SAW_PARADOX_FLEE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

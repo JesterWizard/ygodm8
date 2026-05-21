@@ -11,7 +11,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFA0, map_12_state_02_08E6EFA0, 0x08E6EFAC, 0x08E
   LANGUAGE_TEXT(3, "Mio fratello non \xe8 qui.\n\nSta cercando gli\nOggetti Millenari.\n\n")
   LANGUAGE_TEXT(4, "Mi gran hermano\nno est\xe1 aqu\xed.\n\nEst\xe1 investigando los\nObjetos del Milenio.\n\n")
   END_LANGUAGE_TEXT()
-  CHECK_FLAG(19)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN4)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFB8, map_12_state_02_08E6EFB8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EFC4, map_12_state_02_08E6EFC4, 0x08E6EFD0, 0x08E6EFE8)
-  CHECK_FLAG(46)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MOKUBA)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -61,7 +61,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFDC, map_12_state_02_08E6EFDC, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Insomma! Mi hai\nfatto arrabbiare!\n\nMio fratello non\nperder\xe0 con nessun\n\n{PLAYER}!\n\n")
   LANGUAGE_TEXT(4, "\xa1Waaah!\n\xa1Me enfadas!\n\n\xa1Mi gran hermano no\nperder\xe1 con ning\xfan\n\n{PLAYER}!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(46)
+  SET_FLAG(EVENT_FLAG_DEFEATED_MOKUBA)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

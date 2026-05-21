@@ -33,6 +33,6 @@ EVENT_SCRIPT_REPLACEMENT(0x08E51094, map_05_state_07_08E51094, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "S\xec, lo spero. {PLAYER},\nJoey, dobbiamo\n\nraggiungere Ishizu.\n\n")
   LANGUAGE_TEXT(4, "S\xed, eso espero.\n\n{PLAYER}, Joey,\ndeber\xedamos\n\npillar a Ishizu.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(185)
+  SET_FLAG(EVENT_FLAG_JOEY_COMPLAINED_ABOUT_TRISTAN)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

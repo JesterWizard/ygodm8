@@ -33,12 +33,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE04B8, map_50_state_01_08EE04B8, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "S\xec... Dovete illuminare il\nvostro cammino con le\n\ncarte-spirito, le\ncarte che incarnano lo\n\nspirito degli amici\nduellanti. Sollevatele alle\n\nbiforcazioni e lasciate che\nilluminino il vostro\n\ncammino.\n\nMa non dovete mai\nparlare di loro.\n\nDovete ottenere le carte\n-spirito lealmente.\n\nDovete vincerle a duello e\nin nessun altro modo.\n\n")
   LANGUAGE_TEXT(4, "S\xed... Deb\xe9is alumbrar\nvuestro camino con\n\ncartas de esp\xedritus.\n\nLas cartas que\nposeen el esp\xedritu\n\nde colegas duelistas.\n\nPonedlas en alto en\nlos cruces y dejad\n\nque alumbren\nvuestro camino.\n\nNo obstante, no deb\xe9is\nhablar sobre ellas.\n\nDeb\xe9is de obtener las\ncartas de esp\xedritus de\n\nun modo justo.\nDeben de ganarse en\n\nduelos y de ning\xfan\notro modo.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(165)
+  SET_FLAG(EVENT_FLAG_PARADOX_SAID_TO_GET_SPIRIT_CARDS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE04C4, map_50_state_01_08EE04C4, 0x08EE050C, 0x08EE04D0)
-  CHECK_FLAG(135)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_BONZ3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -54,27 +54,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE050C, map_50_state_01_08EE050C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE04D0, map_50_state_01_08EE04D0, 0x08EE050C, 0x08EE04DC)
-  CHECK_FLAG(132)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_REX3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE04DC, map_50_state_01_08EE04DC, 0x08EE050C, 0x08EE04E8)
-  CHECK_FLAG(130)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_WEEVIL3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE04E8, map_50_state_01_08EE04E8, 0x08EE050C, 0x08EE04F4)
-  CHECK_FLAG(131)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MAKO3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE04F4, map_50_state_01_08EE04F4, 0x08EE050C, 0x08EE0500)
-  CHECK_FLAG(111)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_ESPA_ROBA2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE0500, map_50_state_01_08EE0500, 0x08EE050C, 0x08EE0518)
-  CHECK_FLAG(137)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

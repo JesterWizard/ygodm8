@@ -27,7 +27,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Non hai niente di cui\npreoccuparti, Serenity.\n\nNon abbandoneremo\nmai Tristan. Proveremo\n\na cercarlo, mentre tu\nresterai qui, Serenity.\n\nTristan potrebbe pure farsi\nvivo qui all'improvviso.\n\n")
   LANGUAGE_TEXT(4, "No te preocupes de\nnada, Serenity.\n\nDe ning\xfan modo\nabandonaremos a Tristan.\n\nIntentaremos encontrarle;\nespera aqu\xed, Serenity.\n\nAdem\xe1s, puede que\nTristan venga por aqu\xed.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(161)
+  SET_FLAG(EVENT_FLAG_SEARCHING_FOR_ROBOT_TRISTAN)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

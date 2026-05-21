@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDAA0, map_59_state_02_08EFDAA0, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Il maestro Marik decifrer\xe0\nil testo ieratico.\n\nMa per farlo, ha bisogno\ndi tempo. Sarebbe\n\nmeglio se continuaste\nla vostra missione.\n\nIo vi aspetter\xf2 qui e vi\ninformer\xf2 dei progressi.\n\nOgni tanto venite a\nfarci visita.\n\nSono certo che il maestro\nMarik ne sar\xe0 felice.\n\nPorgete i miei saluti alla\nsignora Ishizu.\n\n")
   LANGUAGE_TEXT(4, "El amo Marik descifrar\xe1 el\ntexto hier\xe1tico.\n\nPero para hacerlo,\nnecesitar\xe1 algo de tiempo.\n\nSer\xeda mejor si continuarais\ncon vuestra misi\xf3n.\n\nOs esperar\xe9 aqu\xed y os\ninformar\xe9 del progreso.\n\nPor favor, visitadnos\nde vez en cuando.\n\nEstoy seguro de que\ncomplacer\xe1 al amo Marik.\n\nPor favor, saludad\na la ama Ishizu.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(205)
+  SET_FLAG(EVENT_FLAG_EXITED_MARIKS_HOME)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

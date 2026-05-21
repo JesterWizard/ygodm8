@@ -4,7 +4,7 @@
 /* map_11_state_01: map 11 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E642EC, map_11_state_01_08E642EC, 0x08E64304, 0x08E6431C)
-  CHECK_FLAG(38)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_AMBUSHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -27,7 +27,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64310, map_11_state_01_08E64310, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Dannazione!\nMi hai fregato!\n\nAvevo sentito dire che\ntutti i duellanti forti\n\nnon erano qui. E tu\nperch\xe9 non sei sul\n\nDuel Express?\n\n")
   LANGUAGE_TEXT(4, "\xa1Maldita sea!\n\xa1Me han dado!\n\nHe o\xeddo que no\nestaban aqu\xed todos\n\nlos duelistas fuertes.\n\n\xa1Se supone que t\xfa\nhas de estar en el\n\nDuel Express!\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(38)
+  SET_FLAG(EVENT_FLAG_DEFEATED_AMBUSHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -42,7 +42,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6431C, map_11_state_01_08E6431C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E642F8, map_11_state_01_08E642F8, 0x08E64304, 0x08E64328)
-  CHECK_FLAG(38)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_AMBUSHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

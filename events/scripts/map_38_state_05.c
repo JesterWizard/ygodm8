@@ -4,7 +4,7 @@
 /* map_38_state_05: map 38 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED1688, map_38_state_05_08ED1688, 0x08ED1694, 0x08ED16A0)
-  CHECK_FLAG(129)
+  CHECK_FLAG(EVENT_FLAG_TALKED_TO_WEEVIL3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1694, map_38_state_05_08ED1694, 0x08F04040, 0x08F
   LANGUAGE_TEXT(3, "Ehi?\n\nAnche tu cerchi\ninsetti, {PLAYER}?\n\nPurtroppo, gli insetti\nnon si trovano.\n\nSono tutti scomparsi,\ncome se fossero\n\nspaventati. Ho un gran\nbrutto presentimento...\n\n")
   LANGUAGE_TEXT(4, "\xbfHyo?\n\n\xbfTambi\xe9n buscas insec-\ntos, {PLAYER}?\n\nEs una pena, pero no\nhay insectos por aqu\xed.\n\nTodos desaparecieron\ncomo si estuvieran\n\nasustados.\n\nTengo un presentimiento\nrealmente malo al respecto.\n\n")
   END_LANGUAGE_TEXT()
-  SET_FLAG(129)
+  SET_FLAG(EVENT_FLAG_TALKED_TO_WEEVIL3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16A0, map_38_state_05_08ED16A0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED16AC, map_38_state_05_08ED16AC, 0x08ED16B8, 0x08ED16D0)
-  CHECK_FLAG(130)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_WEEVIL3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -82,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16C4, map_38_state_05_08ED16C4, 0x08F04040, 0x08F
   PLAY_MUSIC(250)
   PAGE_BREAK()
   ADD_CARD(762)
-  SET_FLAG(130)
+  SET_FLAG(EVENT_FLAG_DEFEATED_WEEVIL3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
