@@ -4,6 +4,9 @@
 /* map_34_state_04: map 34 state 4 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC265C, map_34_state_04_08EC265C, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_SERIOUS_ARCHEOLOGIST)
+  LOAD_SPRITE(2, SPRITE_CHIEF_ARCHEOLOGIST)
+  LOAD_SPRITE(3, SPRITE_FRIVOULOUS_ARCHEOLOGIST)
   TEXT("A long time ago, we were on\na dig in Egypt where we\n\nunearthed a stone tablet.\n\nLegend says the Egyptian\nGods fused together to\n\ncontain a malevolent and\ndangerous force inside the\n\ntablet.\n\nIf the darkness is ever set\nfree, the world will end.\n\nIt might just be a fairy\ntale, but it's pretty scary\n\nstuff.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -4,6 +4,8 @@
 /* map_18_state_03: map 18 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80B2C, map_18_state_03_08E80B2C, 0x08E80B38, 0x08E80B44)
+  LOAD_SPRITE(1, SPRITE_NEO_GHOUL)
+  LOAD_SPRITE(2, SPRITE_DUEL_EXPRESS_CONDUCTOR)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("You must be pretty good to\nget this far!\n\nBut I'm warning you, I'm\nmuch tougher than the other\n\nguys!\n\n")
   DUEL(74)

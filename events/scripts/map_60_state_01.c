@@ -4,6 +4,8 @@
 /* map_60_state_01: map 60 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08F039CC, map_60_state_01_08F039CC, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_MARIK)
+  LOAD_SPRITE(2, SPRITE_ODION)
   PLAY_MUSIC(27)
   PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Father, Mother...\n\nAnd all those people I\nharmed...\n\nI hope that the sun shines\nupon your spirits.\n\n")

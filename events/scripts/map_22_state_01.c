@@ -4,6 +4,8 @@
 /* map_22_state_01: map 22 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CAB0, map_22_state_01_08E8CAB0, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_DAMIEN_DRACO)
+  LOAD_SPRITE(2, SPRITE_TAKESHI)
   TEXT("Here sleeps the power of\nancient pharaohs.\n\nI know that ancient power\nwill make me stronger!\n\nI will become a guardian of\ndarkness...\n\nAs long as the pharaohs give\nme power!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

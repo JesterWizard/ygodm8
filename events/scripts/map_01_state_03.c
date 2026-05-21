@@ -4,6 +4,9 @@
 /* map_01_state_03: map 1 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42760, map_01_state_03_08E42760, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_RED_HAT)
+  LOAD_SPRITE(2, SPRITE_STYLISH_HAIR)
+  LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   TEXT("I'm terrified of the Neo\nGhouls.\n\nI'm never going to duel in\nthe street again.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

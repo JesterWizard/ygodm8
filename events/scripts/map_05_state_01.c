@@ -4,6 +4,8 @@
 /* map_05_state_01: map 5 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50EA8, map_05_state_01_08E50EA8, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_STRINGER)
+  LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
   TEXT("I won't be riding the Duel\nExpress...\n\nBut that doesn't mean my\nduelist level is low!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

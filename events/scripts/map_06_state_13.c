@@ -4,6 +4,10 @@
 /* map_06_state_13: map 6 state 13 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD08, map_06_state_13_08E5CD08, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_TRISTAN)
+  LOAD_SPRITE(2, SPRITE_DUKE)
+  LOAD_SPRITE(3, SPRITE_SERENITY)
+  LOAD_SPRITE(4, SPRITE_LUCKY)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("You did it, {PLAYER}.\n\nYou got rid of the Neo\nGhouls... Awesome!\n\nBut... Your battle isn't\nover yet, is it?\n\n{PLAYER}, I know you can\nwin!\n\nDon't worry about the Town\nof Domino. We'll take care\n\nof it.\n\nGo on ahead and duel like a\nchampion!\n\n")
   FALLTHROUGH()

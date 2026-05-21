@@ -4,6 +4,9 @@
 /* map_03_state_05: map 3 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA90, map_03_state_05_08E4AA90, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_KAIBA_FAN)
+  LOAD_SPRITE(2, SPRITE_RED_HAIR)
+  LOAD_SPRITE(3, SPRITE_REX)
   TEXT("Kaiba Corporation is up\nahead.\n\nIs something going on there?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

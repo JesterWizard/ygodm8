@@ -4,6 +4,7 @@
 /* map_10_state_01: map 10 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63218, map_10_state_01_08E63218, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_LOST_DUELIST)
   TEXT("I want to get on the Duel\nExpress...\n\nBut I'm lost. I can't find\nDomino Station.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

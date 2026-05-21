@@ -4,6 +4,9 @@
 /* map_02_state_03: map 2 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E478E4, map_02_state_03_08E478E4, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
+  LOAD_SPRITE(2, SPRITE_LINT)
+  LOAD_SPRITE(3, SPRITE_MAI)
   TEXT("Those Neo Ghouls!\n\nThey'd better watch out or\nI'll pummel them next time!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

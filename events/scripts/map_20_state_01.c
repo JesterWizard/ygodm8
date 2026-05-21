@@ -4,6 +4,7 @@
 /* map_20_state_01: map 20 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E84F30, map_20_state_01_08E84F30, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_YELLOW_SHIRT)
   TEXT("A big guy took off running\nup the stairs.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

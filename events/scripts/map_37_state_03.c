@@ -4,6 +4,7 @@
 /* map_37_state_03: map 37 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08ECD8A4, map_37_state_03_08ECD8A4, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_MAKO)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("There's a cartload of\nmonkeys around..\n\nThey're in the rainforest.\n\n")
   FALLTHROUGH()

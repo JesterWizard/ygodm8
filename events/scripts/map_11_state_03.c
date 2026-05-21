@@ -4,6 +4,7 @@
 /* map_11_state_03: map 11 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64358, map_11_state_03_08E64358, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_AMBUSHER)
   TEXT("I managed to hide my rare\ncards from the Neo Ghouls.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

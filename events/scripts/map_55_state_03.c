@@ -4,6 +4,11 @@
 /* map_55_state_03: map 55 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF057C, map_55_state_03_08EF057C, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_PEGASUS)
+  LOAD_SPRITE(2, SPRITE_CHEVALIER)
+  LOAD_SPRITE(3, SPRITE_CHEVALIER)
+  LOAD_SPRITE(4, SPRITE_CHEVALIER)
+  LOAD_SPRITE(5, SPRITE_CHEVALIER)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Fufufu... You've finally\narrived.\n\nDuelists of pure hearts and\nspirits, I was hoping you\n\nwould come.\n\nWhy? Because your defeats\nwill make the best\n\nofferings for the reborn\nReshef!\n\n")
   HIDE_PORTRAIT()

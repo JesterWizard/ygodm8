@@ -4,6 +4,7 @@
 /* map_12_state_01: map 12 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF64, map_12_state_01_08E6EF64, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_ROLAND)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("This is Kaiba Corporation.\nThis is not a place for\n\ncivilians.\n\n")
   FALLTHROUGH()

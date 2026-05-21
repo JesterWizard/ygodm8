@@ -4,6 +4,7 @@
 /* map_20_state_05: map 20 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E84FC0, map_20_state_05_08E84FC0, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_KAIBA_COSPLAYER)
   TEXT("Heart of the cards, guide\nme!\n\n...No matter how hard I try,\nI can't draw the card I\n\nwant...\n\nHuh? You want to know what\nI'm doing?\n\nI'm practicing so I can draw\ncards exactly when I need\n\nthem.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

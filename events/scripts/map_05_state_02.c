@@ -4,6 +4,9 @@
 /* map_05_state_02: map 5 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F20, map_05_state_02_08E50F20, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_STRINGER)
+  LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
+  LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   TEXT("No, no, no... My\nHyozanryu...\n\nThe Neo Ghouls ripped it\noff.\n\nThey couldn't care less\nabout having a fair duel.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

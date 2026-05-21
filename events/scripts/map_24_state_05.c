@@ -4,6 +4,8 @@
 /* map_24_state_05: map 24 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E9821C, map_24_state_05_08E9821C, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_TAKESHI)
+  LOAD_SPRITE(2, SPRITE_ETSUKO)
   TEXT("It's so awesome that the Neo\nGhouls are gone.\n\n")
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   FALLTHROUGH()

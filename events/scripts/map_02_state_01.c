@@ -4,6 +4,8 @@
 /* map_02_state_01: map 2 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E477DC, map_02_state_01_08E477DC, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
+  LOAD_SPRITE(2, SPRITE_LINT)
   TEXT("Street duels are the hippest\nthing right now.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

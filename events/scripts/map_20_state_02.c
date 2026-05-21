@@ -4,6 +4,7 @@
 /* map_20_state_02: map 20 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E84F48, map_20_state_02_08E84F48, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_KAIBA_COSPLAYER)
   TEXT("Grovel before me like the\ndog that you are!\n\nI'm trying to imitate Kaiba.\nPretty good, right?\n\nHuh? He doesn't sound like\nthat? A-are you sure?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

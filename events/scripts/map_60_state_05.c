@@ -4,6 +4,8 @@
 /* map_60_state_05: map 60 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08F03A8C, map_60_state_05_08F03A8C, 0x08F03AA4, 0x08F03A98)
+  LOAD_SPRITE(1, SPRITE_MARIK)
+  LOAD_SPRITE(2, SPRITE_ODION)
   PLAY_MUSIC(27)
   PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("{PLAYER}, you've finally\nsucceeded.\n\nYou have obtained the secret\nbehind the Phoenix Mode.\n\n")

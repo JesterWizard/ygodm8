@@ -4,6 +4,8 @@
 /* map_29_state_05: map 29 state 5 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8D0, map_29_state_05_08EAC8D0, 0x08EAC8DC, 0x08F0404C)
+  LOAD_SPRITE(1, SPRITE_BONZ)
+  LOAD_SPRITE(2, SPRITE_NEO_GHOUL)
   PLAY_MUSIC(11)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
   TEXT("You're defying Master\nKeith's orders?\n\nAfter he was willing to let\nyou join him, just like old\n\ntimes!\n\n")

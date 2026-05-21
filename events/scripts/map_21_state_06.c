@@ -4,6 +4,7 @@
 /* map_21_state_06: map 21 state 6 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863E4, map_21_state_06_08E863E4, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_EGYPT_EXHIBITION_GUARD)
   TEXT("It was chaotic before, but\nthings have quieted down.\n\nThe Egypt Exhibition is open\nfor admission.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

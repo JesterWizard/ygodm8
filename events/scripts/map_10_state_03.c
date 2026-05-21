@@ -4,6 +4,7 @@
 /* map_10_state_03: map 10 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E63278, map_10_state_03_08E63278, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_LOST_DUELIST)
   TEXT("The Neo Ghouls are gone,\nbut...\n\nSomething doesn't feel\nright.\n\nI hope nothing terrible\nhappens.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

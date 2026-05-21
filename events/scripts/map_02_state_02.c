@@ -4,6 +4,9 @@
 /* map_02_state_02: map 2 state 2 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47854, map_02_state_02_08E47854, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
+  LOAD_SPRITE(2, SPRITE_LINT)
+  LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   TEXT("This is not the time for a\nstreet duel!\n\nCan't anyone do anything\nabout the Neo Ghouls?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

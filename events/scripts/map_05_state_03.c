@@ -4,6 +4,9 @@
 /* map_05_state_03: map 5 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F8C, map_05_state_03_08E50F8C, 0x08E50F98, 0x08E50FA4)
+  LOAD_SPRITE(1, SPRITE_STRINGER)
+  LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
+  LOAD_SPRITE(3, SPRITE_MAKO)
   TEXT("I'm the greatest! I sent the\nNeo Ghouls running!\n\nWitnesses may say that the\nfunky fisherman guy scared\n\nthem off, but that's not\ntrue! He came later.\n\nAll he did was watch, that's\nall. I'm not lying!\n\nI'll show you the secret\ntechniques I used to beat\n\nthe Neo Ghouls.\n\nIt'll cost you a rare card,\nthough.\n\n{CARD_1}Yes\nNo{CARD_2}\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

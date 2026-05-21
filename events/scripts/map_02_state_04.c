@@ -4,6 +4,9 @@
 /* map_02_state_04: map 2 state 4 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47944, map_02_state_04_08E47944, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
+  LOAD_SPRITE(2, SPRITE_LINT)
+  LOAD_SPRITE(3, SPRITE_MAI)
   TEXT("The Neo Ghouls weren't that\nscary, were they?\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

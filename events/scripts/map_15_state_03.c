@@ -4,6 +4,7 @@
 /* map_15_state_03: map 15 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7A5B4, map_15_state_03_08E7A5B4, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_KAIBAS_BUTLER)
   TEXT("I heard a most remarkable\nthing today.\n\nAn express train was\nchartered solely for\n\ndueling!\n\nSome people have the oddest\nideas, I daresay.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

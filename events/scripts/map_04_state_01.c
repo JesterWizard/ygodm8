@@ -4,6 +4,8 @@
 /* map_04_state_01: map 4 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D03C, map_04_state_01_08E4D03C, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_DUELIST_HATER)
+  LOAD_SPRITE(2, SPRITE_TOURIST)
   TEXT("You say you're a true\nduelist, but you're just an\n\namateur that likes playing\ngames.\n\nYou're all talk!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

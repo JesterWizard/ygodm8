@@ -4,6 +4,9 @@
 /* map_03_state_04: map 3 state 4 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA30, map_03_state_04_08E4AA30, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_KAIBA_FAN)
+  LOAD_SPRITE(2, SPRITE_RED_HAIR)
+  LOAD_SPRITE(3, SPRITE_REX)
   TEXT("I was hoping that Kaiba\nwould save us...\n\nBut surprisingly, Rex Raptor\ncame to our rescue.\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()

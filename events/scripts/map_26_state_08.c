@@ -4,6 +4,8 @@
 /* map_26_state_08: map 26 state 8 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3DE8, map_26_state_08_08EA3DE8, 0x08F04040, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_RICH_HUSBAND)
+  LOAD_SPRITE(2, SPRITE_RICHE_WIFE)
   TEXT("Roulette, poker, slot\nmachines...\n\nThere are many kinds of\ngames I enjoy.\n\nBut the best of all is Duel\nMonsters.\n\nThe game has become the love\nof my life!\n\n")
   FALLTHROUGH()
 END_EVENT_SCRIPT()
