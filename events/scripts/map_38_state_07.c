@@ -18,7 +18,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1778, map_38_state_07_08ED1778, 0x08F04040, 0x08F
   MOVE_OBJECT(4, 1, 8, 0)
   MOVE_OBJECT(4, 0, 0, 0)
   DELAY(32)
-  PORTRAIT(PORTRAIT_MAKO, 0, 0)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 0)
   LANGUAGE_TEXT(0, "Keep working! There's no\ntime to rest!\n\n")
   LANGUAGE_TEXT(1, "Continue ! Pas le\ntemps de se reposer !\n\n")
   LANGUAGE_TEXT(2, "Weiter so! Nur keine\nM\xfcdigkeit vorsch\xfctzen!\n\n")

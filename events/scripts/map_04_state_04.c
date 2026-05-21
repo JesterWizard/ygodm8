@@ -64,7 +64,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D1B0, map_04_state_04_08E4D1B0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D1BC, map_04_state_04_08E4D1BC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "It's a little too bright out\nhere.\n\nI'll make my way back to the\ngraveyard. Home sweet home.\n\n")
   LANGUAGE_TEXT(1, "C'est un petit peu\ntrop lumineux par ici.\n\nJe vais rentrer\nlentement au cimeti\xe8re.\n\n")
   LANGUAGE_TEXT(2, "Es ist etwas zu hell da\ndrau\xdfen.\n\nIch kehre lieber wieder zum\nFriedhof zur\xfcck.\n\n")

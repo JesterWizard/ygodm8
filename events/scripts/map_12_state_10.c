@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0F0, map_12_state_10_08E6F0F0, 0x08E6F0FC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F0FC, map_12_state_10_08E6F0FC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Master Mokuba was abducted?\n\nThe last thing I know was\nthat he left to tell Master\n\nSeto...\n\nThat the Neo Ghouls had been\ndriven out of the Town of\n\nDomino...\n\nI've failed as a security\nguard...\n\nYou must save Master Mokuba.\n\nPlease help Master Seto\nrescue him.\n\n")
   LANGUAGE_TEXT(1, "Ma\xeetre Mokuba a \xe9t\xe9 enlev\xe9 ?\n\nIl \xe9tait all\xe9 avertir\nma\xeetre Seto...\n\nque les Neo Ghouls avaient\n\xe9t\xe9 chass\xe9s de Domino...\n\nJe n'ai pas reconnu\nle danger...\n\nS'il te pla\xeet, il faut\naider ma\xeetre Mokuba.\n\nVa aider ma\xeetre Seto \xe0\nlui venir \xe0 la rescousse.\n\n")
   LANGUAGE_TEXT(2, "Meister Mokuba wurde\nentf\xfchrt?\n\nEr wollte Meister Seto\nberichten...\n\nDass die Neo Ghouls aus Do-\nmino vertrieben wurden...\n\nIch verkannte die Gefahr...\nBitte, hilf Meister Mokuba.\n\nBitte hilf Meister Seto, ihn\nzu retten.\n\n")
@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F0FC, map_12_state_10_08E6F0FC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F108, map_12_state_10_08E6F108, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You must save Master Mokuba.\n\nPlease help Master Seto\nrescue him.\n\n")
   LANGUAGE_TEXT(1, "S'il te pla\xeet, tu dois aider\nma\xeetre Mokuba.\n\nVa aider ma\xeetre Seto pour\nvenir \xe0 sa rescousse.\n\n")
   LANGUAGE_TEXT(2, "Bitte, du musst Meister\nMokuba helfen.\n\nBitte hilf Meister Seto bei\nder Befreiungsaktion.\n\n")

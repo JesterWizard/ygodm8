@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D12C, map_04_state_03_08E4D12C, 0x08E4D150, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D150, map_04_state_03_08E4D150, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Hihihi, I unleashed my Neo\nGhost deck...\n\nAnd the Neo Ghouls fled in\nterror.\n\n")
   LANGUAGE_TEXT(1, "Hihihi, j'ai d\xe9terr\xe9 mon\nDeck N\xe9o Fant\xf4me...\n\nCa a terrifi\xe9\nles Neo Ghouls.\n\n")
   LANGUAGE_TEXT(2, "Hihihi, ich habe mein\nNeo-Geisterdeck zum\n\nVorschein gebracht...\n\nUnd schon rannten die Neo\nGhouls geschockt davon.\n\n")
@@ -45,7 +45,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D138, map_04_state_03_08E4D138, 0x08E4D144, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "There are Neo Ghouls hiding\nin the Town of Domino?\n\nI didn't know that.\n\n")
   LANGUAGE_TEXT(1, "Des Neo Ghouls se\ncachent \xe0 Domino ?\n\nJe n'en ai jamais\nentendu parler.\n\n")
   LANGUAGE_TEXT(2, "Es verbergen sich Neo\nGhouls in Domino?\n\nDavon wei\xdf ich nichts.\n\n")
@@ -56,7 +56,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D15C, map_04_state_03_08E4D15C, 0x08E4D168, 0x08F0404C)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "My Neo Ghost deck will haunt\nyou...\n\n")
   LANGUAGE_TEXT(1, "Mon Deck N\xe9o Fant\xf4me\nva te hanter...\n\n")
   LANGUAGE_TEXT(2, "Mein Neo-Geisterdeck wird\ndich verfolgen...\n\n")
@@ -69,7 +69,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D168, map_04_state_03_08E4D168, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "{PLAYER} is ghoulishly more\nclever than the Neo\n\nGhouls...\n\n")
   LANGUAGE_TEXT(1, "{PLAYER} est bien plus\nfort que les Neo Ghouls...\n\n")
   LANGUAGE_TEXT(2, "{PLAYER} ist eine Stufe\nbesser als die Neo Ghouls.\n\n")

@@ -4,7 +4,7 @@
 /* map_00_state_01: map 0 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E349DC, map_00_state_01_08E349DC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "The Egyptian God Cards are\nrequired to seal away the\n\nDark Being.\n\nFirst, the Egyptian God\nCards must be restored from\n\ntheir stone prisons.\n\nIn order to do so, we need\nthe Millennium Items and\n\ntheir mystical energies.\n\nThe first Millennium Item is\nat the Egypt Exhibition.\n\nYou can reach the Exhibition\nfrom the railway station.\n\n")
   LANGUAGE_TEXT(1, "Les cartes de dieux\nserviront \xe0 enfermer\n\n\xe0 nouveau l'Etre des\nt\xe9n\xe8bres.\n\nD'abord, les cartes de\ndieux doivent \xeatre\n\nrestaur\xe9es de leur\n\xe9tat de pierre.\n\nLes Objets du mill\xe9nium\nsont \xe9galement utiles.\n\nLe premier Objet du\nmill\xe9nium se situe \xe0\n\nl'Exposition \xe9gyptienne.\n\nVous pouvez vous rendre \xe0\nl'Exposition depuis la\n\ngare.\n\n")
   LANGUAGE_TEXT(2, "Ohne die G\xf6tterkarten k\xf6nnen\nwir den Dunklen nicht\n\nfassen. Zun\xe4chst m\xfcssen\ndie G\xf6tterkarten aus dem\n\nStein befreit werden.\n\nDazu ben\xf6tigt ihr die\nMillenniumsgegenst\xe4nde.\n\nDer erste Millenniums-\ngegenstand befindet sich\n\nauf der \xe4gypt.\n\nAusstellung, die ihr vom\nBahnhof aus erreicht.\n\n")
@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E349DC, map_00_state_01_08E349DC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E349E8, map_00_state_01_08E349E8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ISHIZU, 0, 8)
+  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Please. Hurry to the Egypt\nExhibition.\n\nReshef the Dark Being will\nsoon engulf the world in\n\ndarkness.\n\n")
   LANGUAGE_TEXT(1, "Je vous en prie. Allez vite\n\xe0 l'Exposition \xe9gyptienne.\n\nReshef, l'Etre des t\xe9n\xe8bres\nva bient\xf4t engloutir le\n\nmonde dans les t\xe9n\xe8bres.\n\n")
   LANGUAGE_TEXT(2, "Bitte, macht euch schnell\nauf den Weg zur \xe4gypt.\n\nAusstellung.\n\nReschef der Dunkle wird\nbald die Welt in Finsternis\n\ntauchen.\n\n")

@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E478FC, map_02_state_03_08E478FC, 0x08E47920, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47920, map_02_state_03_08E47920, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAI, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Leave it to me!\n\nThe Neo Ghouls are no match\nfor me!\n\n")
   LANGUAGE_TEXT(1, "Je vais m'occuper de \xe7a !\n\nLes Neo Ghouls ne vont\npas s'en tirer comme \xe7a.\n\n")
   LANGUAGE_TEXT(2, "Ich k\xfcmmere mich um alles!\n\nDie Neo Ghouls kommen\nnicht so leicht davon.\n\n")
@@ -45,7 +45,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47908, map_02_state_03_08E47908, 0x08E47914, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47914, map_02_state_03_08E47914, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAI, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "There are Neo Ghouls still\nhiding in the Town of\n\nDomino?\n\nThat may explain some\nthings. There's something\n\nmysterious going on at\nKaibaCorp.\n\n")
   LANGUAGE_TEXT(1, "Alors, il y a des Neo Ghouls\nqui se cachent encore \xe0\n\nDomino ?\n\nCette Kaiba Corporation\ncache des trucs bizarres.\n\n")
   LANGUAGE_TEXT(2, "Es verbergen sich also\nnoch einige Neo Ghouls\n\nin Domino?\n\nMit der Kaiba Corporation\nstimmt etwas nicht.\n\n")
@@ -56,7 +56,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47914, map_02_state_03_08E47914, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4792C, map_02_state_03_08E4792C, 0x08E47938, 0x08F0404C)
-  PORTRAIT(PORTRAIT_MAI, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You want to duel me for\npractice before facing the\n\nNeo Ghouls?\n\nI hope I don't beat you so\nhard that you don't feel\n\nlike dueling ever again.\n\n")
   LANGUAGE_TEXT(1, "Tu veux un duel pour te\npr\xe9parer aux Neo Ghouls ?\n\nCe n'est pas ma faute si tu\nn'as pas confiance en toi.\n\n")
   LANGUAGE_TEXT(2, "Um dich f\xfcr den Kampf mit\nden Neo Ghouls aufzuw\xe4rmen\n\nm\xf6chtest du dich duellieren?\nDein fehlendes Selbstver-\n\ntrauen ist nicht meine\nSchuld.\n\n")
@@ -69,7 +69,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47938, map_02_state_03_08E47938, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(9)
-  PORTRAIT(PORTRAIT_MAI, 0, 8)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Good! Now show those same\ntechniques against the Neo\n\nGhouls.\n\n")
   LANGUAGE_TEXT(1, "C'est comme \xe7a qu'on\npeut se d\xe9barrasser\n\ndes Neo Ghouls.\n\n")
   LANGUAGE_TEXT(2, "So kannst du die Neo\nGhouls fertig machen.\n\n")

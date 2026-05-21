@@ -4,7 +4,7 @@
 /* map_06_state_13: map 6 state 13 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD08, map_06_state_13_08E5CD08, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You did it, {PLAYER}.\n\nYou got rid of the Neo\nGhouls... Awesome!\n\nBut... Your battle isn't\nover yet, is it?\n\n{PLAYER}, I know you can\nwin!\n\nDon't worry about the Town\nof Domino. We'll take care\n\nof it.\n\nGo on ahead and duel like a\nchampion!\n\n")
   LANGUAGE_TEXT(1, "Tu as r\xe9ussi, {PLAYER}.\n\nTu nous as d\xe9barrass\xe9\ndes Neo Ghouls. G\xe9nial !\n\nMais... Ton combat\nn'est pas termin\xe9, si ?\n\n{PLAYER}, tu ne\npeux pas perdre !\n\nNe t'inqui\xe8te pas pour\nDomino, nous sommes l\xe0.\n\nContinue et bats-toi\navec conviction !\n\n")
   LANGUAGE_TEXT(2, "Du hast es geschafft,\n{PLAYER},\n\ndie Neo Ghouls loszu-\nwerden... Beeindruckend!\n\nAber... Dein Kampf ist\nnoch nicht vorbei, oder?\n\n{PLAYER}, keine Angst:\nDu kannst nicht verlieren!\n\nMach dir keine Sorgen um\nDomino, wir sind ja da.\n\nGeh nur und schlag dich\ntapfer!\n\n")
@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD08, map_06_state_13_08E5CD08, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD14, map_06_state_13_08E5CD14, 0x08E5CD20, 0x08F0404C)
-  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Sure! If you think you can\nlearn something from me,\n\nI'll duel you!\n\n")
   LANGUAGE_TEXT(1, "Bien s\xfbr ! Si tu crois\nque je suis assez fort,\n\nje suis ton homme !\n\n")
   LANGUAGE_TEXT(2, "Sicher! Wenn du mich f\xfcr\ngut genug h\xe4ltst -\n\nich stehe dir zur Verf\xfcgung!\n\n")
@@ -28,7 +28,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD20, map_06_state_13_08E5CD20, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(6)
-  PORTRAIT(PORTRAIT_TRISTAN, 0, 8)
+  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I hope that was good\npractice.\n\n")
   LANGUAGE_TEXT(1, "J'ai au moins \xe9t\xe9 assez bon\npour un entra\xeenement, non ?\n\n")
   LANGUAGE_TEXT(2, "War ich wenigstens gut\nals Sparringpartner?\n\n")
@@ -39,7 +39,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD20, map_06_state_13_08E5CD20, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD2C, map_06_state_13_08E5CD2C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "We'll look after things\nwhile you're gone,\n\n{PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "On s'occupera de tout en\nton absence, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Wir werden uns in deiner\nAbwesenheit um alles\n\nk\xfcmmern, {PLAYER}.\n\n")
@@ -50,7 +50,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD2C, map_06_state_13_08E5CD2C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD38, map_06_state_13_08E5CD38, 0x08E5CD44, 0x08F0404C)
-  PORTRAIT(PORTRAIT_DUKE, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "No problem! I'll duel if you\nwant me to.\n\n")
   LANGUAGE_TEXT(1, "Pas de probl\xe8me !\n\nJe me battrais en\nduel si tu le veux.\n\n")
   LANGUAGE_TEXT(2, "Kein Problem! Wenn du magst,\nduelliere ich mich mit dir.\n\n")
@@ -63,7 +63,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD44, map_06_state_13_08E5CD44, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(6)
-  PORTRAIT(PORTRAIT_DUKE, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I guess I'm too weak to duel\nyou, {PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "Je crois que\nje suis trop faible\n\npour me battre\ncontre toi, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Ich bin wohl zu schwach\nf\xfcr ein Duell gegen dich,\n\n{PLAYER}.\n\n")
@@ -74,7 +74,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD44, map_06_state_13_08E5CD44, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD50, map_06_state_13_08E5CD50, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, 0, 8)
+  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "{PLAYER}, good luck.\n\nI hope Joey doesn't get in\nthe way...\n\n")
   LANGUAGE_TEXT(1, "{PLAYER}, fais de\nton mieux.\n\nJ'esp\xe8re que mon fr\xe8re\nne fera pas de b\xeatises...\n\n")
   LANGUAGE_TEXT(2, "{PLAYER}, bitte gib\ndein Bestes. Ich hoffe,\n\ndass dir mein Bruder keine\nProbleme machen wird...\n\n")
@@ -85,7 +85,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD50, map_06_state_13_08E5CD50, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD5C, map_06_state_13_08E5CD5C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, 0, 8)
+  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I wouldn't be much of a\nchallenge, {PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "Je ne suis pas assez forte\npour toi, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Ich w\xe4re f\xfcr dich nicht\ngut genug, {PLAYER}.\n\n")

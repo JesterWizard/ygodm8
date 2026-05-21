@@ -4,7 +4,7 @@
 /* map_37_state_03: map 37 state 3 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08ECD8A4, map_37_state_03_08ECD8A4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "There's a cartload of\nmonkeys around..\n\nThey're in the rainforest.\n\n")
   LANGUAGE_TEXT(1, "Il y a plein de singes\nbizarre par ici.\n\nIls sont dans\nla for\xeat tropicale.\n\n")
   LANGUAGE_TEXT(2, "Hier gibt es so viele merk-\nw\xfcrdige Affen.\n\nSie sind alle im Regenwald.\n\n")
@@ -15,7 +15,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD8A4, map_37_state_03_08ECD8A4, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ECD8B0, map_37_state_03_08ECD8B0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "These days, monkeys are so\nsmart that they can duel.\n\nIf you have time to burn, go\ninto the rainforest.\n\n")
   LANGUAGE_TEXT(1, "De nos jours, les singes\nse battent m\xeame en duel.\n\nSi tu as du temps \xe0 perdre,\nva dans la for\xeat tropicale.\n\n")
   LANGUAGE_TEXT(2, "Affen k\xf6nnen sich heutzutage\nsogar duellieren.\n\nWenn du genug Zeit hast,\ngeh in den Regenwald.\n\n")

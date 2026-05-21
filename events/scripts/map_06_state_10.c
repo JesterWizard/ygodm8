@@ -4,7 +4,7 @@
 /* map_06_state_10: map 6 state 10 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, 5, 8)
+  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, 8)
   LANGUAGE_TEXT(0, "...And that's what happened.\n\n")
   LANGUAGE_TEXT(1, "... Et voil\xe0\nce qui est arriv\xe9.\n\n")
   LANGUAGE_TEXT(2, "... Folgendes ist passiert.\n\n")
@@ -13,14 +13,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
   END_LANGUAGE_TEXT()
   PLAY_MUSIC(272)
   REACTION(3, 24577)
-  PORTRAIT(PORTRAIT_SERENITY, 3, 8)
+  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, 8)
   LANGUAGE_TEXT(0, "Big brother... I saw this\nlook on Tristan's face...\n\nIt was as if he was saying\nthat he didn't want anyone\n\nto follow him.\n\nI wonder if he's going to be\nokay...\n\n")
   LANGUAGE_TEXT(1, "Grand fr\xe8re... Tristan a\nfait une dr\xf4le de t\xeate...\n\nComme s'il ne voulait\npas qu'on le suive.\n\nEst-ce que \xe7a va aller ?\n\n")
   LANGUAGE_TEXT(2, "Gro\xdfer Bruder... Tristan hat\nso eine Grimasse gezogen...\n\nAls wollte er nicht, dass\nihm jemand folgt.\n\nIst wohl alles okay?\n\n")
   LANGUAGE_TEXT(3, "Fratello... Tristan\nha fatto una smorfia...\n\nCome se non volesse\nessere seguito.\n\nAndr\xe0 tutto bene?\n\n")
   LANGUAGE_TEXT(4, "Gran hermano...\nTristan puso una cara...\n\nComo si no quisiera\nque le siguieran.\n\n\xbfVa a estar bien?\n\n")
   END_LANGUAGE_TEXT()
-  PORTRAIT(PORTRAIT_JOEY, 2, 8)
+  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, 8)
   LANGUAGE_TEXT(0, "Don't worry about a thing,\nSerenity.\n\nTristan's our friend.\nThere's no way we'll\n\nabandon him!\n\nWe'll look for him, but I\nwant you to stay here,\n\nSerenity. Just in case he\ncomes back.\n\n")
   LANGUAGE_TEXT(1, "Ne t'inqui\xe8te pas,\nSerenity.\n\nIl n'est pas question que\nnous abandonnions Tristan.\n\nNous allons essayer\nde le trouver.\n\nAlors reste-l\xe0,\nSerenity.\n\nIl se peut aussi que\nTristan revienne ici.\n\n")
   LANGUAGE_TEXT(2, "Mach dir keine Sorgen,\nSerenity.\n\nWir lassen Tristan nat\xfcrlich\nnicht im Stich.\n\nWir versuchen, ihn zu\nfinden.\n\nBleib ruhig hier, Serenity.\n\nVielleicht taucht Tristan ja\npl\xf6tzlich auch hier auf.\n\n")
@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD98, map_06_state_10_08E5CD98, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, 0, 8)
+  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I bet Tristan ran off on\npurpose!\n\nThat's the only way Serenity\nwould pay attention to him\n\ninstead of me!\n\n...N-no, he wouldn't do\nthat. He's not that type of\n\nguy.\n\n")
   LANGUAGE_TEXT(1, "Est-ce que Tristan\nl'a fait expr\xe8s ?\n\nPour que Serenity le\nremarque et qu'elle ait\n\npiti\xe9 de lui ? Non,\nil ne ferait pas \xe7a...\n\n")
   LANGUAGE_TEXT(2, "Hat Tristan das\nabsichtlich getan?\n\nUm Serenitys Aufmerksamkeit\nund Sympathien zu gewinnen?\n\nN-nein, das w\xfcrde er nie\ntun...\n\n")
@@ -43,7 +43,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD98, map_06_state_10_08E5CD98, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD8C, map_06_state_10_08E5CD8C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_SERENITY, 3, 8)
+  PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, 8)
   LANGUAGE_TEXT(0, "Where could Tristan have\ngone?\n\n")
   LANGUAGE_TEXT(1, "O\xf9 est-ce que Tristan\na bien pu passer ?\n\n")
   LANGUAGE_TEXT(2, "Wo k\xf6nnte Tristan sein?\n\n")

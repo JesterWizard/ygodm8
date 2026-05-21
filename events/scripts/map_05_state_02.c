@@ -24,7 +24,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F2C, map_05_state_02_08E50F2C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F38, map_05_state_02_08E50F38, 0x08E50F44, 0x08E50F74)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, 0, 8)
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Domino duelists are\nspineless wimps!\n\nNo one's shown the least bit\nof resistance!\n\n")
   LANGUAGE_TEXT(1, "Les duellistes de Domino,\nce sont des l\xe2ches\n\ninvert\xe9br\xe9s !\n\nIls n'ont m\xeame\npas r\xe9sist\xe9 !\n\n")
   LANGUAGE_TEXT(2, "Domino-Duellanten sind\nfeige!\n\nKeiner zeigt den geringsten\nWiderstandswillen!\n\n")
@@ -46,7 +46,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F50, map_05_state_02_08E50F50, 0x08E50F68, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F68, map_05_state_02_08E50F68, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, 0, 8)
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You showed resistance...too\nmuch resistance!\n\n")
   LANGUAGE_TEXT(1, "Tu as trop r\xe9sist\xe9 !\n\n")
   LANGUAGE_TEXT(2, "Du hast dich zu sehr\nwidersetzt!\n\n")

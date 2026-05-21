@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3CE0, map_51_state_02_08EE3CE0, 0x08EE3CEC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3CEC, map_51_state_02_08EE3CEC, 0x08EE3D04, 0x08EE401C)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I'll never forget that I\nlost to you!\n\nI'm not letting you get past\nme!\n\n")
   LANGUAGE_TEXT(1, "Je n'ai pas oubli\xe9\nque tu m'as battu !\n\nJe ne vais pas\nte laisser passer.\n\n")
   LANGUAGE_TEXT(2, "Ich habe nicht vergessen,\ndass ich gegen dich\n\nverlor! An mir kommst du\nnicht vorbei.\n\n")
@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3CEC, map_51_state_02_08EE3CEC, 0x08EE3D04, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D04, map_51_state_02_08EE3D04, 0x08EE3FC8, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Don't think you've won yet.\n\n")
   LANGUAGE_TEXT(1, "Ne crois pas que\ntu as d\xe9j\xe0 gagn\xe9.\n\n")
   LANGUAGE_TEXT(2, "Glaub nicht, du h\xe4ttest\nschon gewonnen.\n\n")
@@ -58,7 +58,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE401C, map_51_state_02_08EE401C, 0x08F0404C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3CF8, map_51_state_02_08EE3CF8, 0x08EE3D04, 0x08EE401C)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "I knew you'd come!\n\nNo matter how many times we\nduel, you won't get rid of\n\nme!\n\n")
   LANGUAGE_TEXT(1, "Je savais que tu viendrais !\nOn peut continuer comme\n\n\xe7a, mais \xe7a ne te servira\n\xe0 rien !\n\n")
   LANGUAGE_TEXT(2, "Ich wusste, dass du kommen\nw\xfcrdest!\n\nWir k\xf6nnen so weitermachen,\naber was bringt dir das?\n\n")
@@ -70,7 +70,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3CF8, map_51_state_02_08EE3CF8, 0x08EE3D04, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D10, map_51_state_02_08EE3D10, 0x08EE3D1C, 0x08EE401C)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Th-that card... How did you\nget that!\n\n")
   LANGUAGE_TEXT(1, "Ce-cette carte...\nTu ne peux pas l'avoir !\n\n")
   LANGUAGE_TEXT(2, "D-die Karte... Du kannst\nsie nicht haben!\n\n")
@@ -82,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D10, map_51_state_02_08EE3D10, 0x08EE3D1C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D1C, map_51_state_02_08EE3D1C, 0x08EE3D28, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, 0, 8)
+  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "It's my spirit card!\n\nThe light...\n\n")
   LANGUAGE_TEXT(1, "C'est ma carte spirituelle !\n\nCette lumi\xe8re...\n\n")
   LANGUAGE_TEXT(2, "Es ist meine Geisterkarte!\n\nDas Licht...\n\n")

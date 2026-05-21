@@ -5,7 +5,7 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(33)
-  PORTRAIT(PORTRAIT_MAKO, 7, 0)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, 0)
   LANGUAGE_TEXT(0, "How many chances do you\nwant!\n\nYou're driving me bananas!\nI'm taking you down!\n\n")
   LANGUAGE_TEXT(1, "Je t'ai d\xe9j\xe0 donn\xe9\ntrois chances.\n\nMaintenant, \xe7a suffit !\n\nJe vais te donner\nune le\xe7on !\n\n")
   LANGUAGE_TEXT(2, "Ich habe dir schon\ndrei Chancen gegeben.\n\nAber was genug ist,\nist genug!\n\nJetzt mach ich dich fertig!\n\n")
@@ -72,7 +72,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F
   WALK_OBJECT_Y(5, 38)
   MOVE_OBJECT(5, 0, 0, 0)
   DELAY(64)
-  PORTRAIT(PORTRAIT_MAKO, 0, 0)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 0)
   LANGUAGE_TEXT(0, "Hey! Stop goofing off!\n\n")
   LANGUAGE_TEXT(1, "Hey !\nArr\xeate tes singeries !\n\n")
   LANGUAGE_TEXT(2, "He! Du kannst dich\nnicht einfach dr\xfccken!\n\n")

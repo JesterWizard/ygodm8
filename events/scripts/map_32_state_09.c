@@ -4,7 +4,7 @@
 /* map_32_state_09: map 32 state 9 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB9144, map_32_state_09_08EB9144, 0x08EB9150, 0x08EB9168)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, 0, 8)
+  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "You'll proceed no further\nwithout defeating me!\n\n")
   LANGUAGE_TEXT(1, "Vous n'irez pas plus loin\n\nsans m'avoir battu\nen duel !\n\n")
   LANGUAGE_TEXT(2, "Ihr geht keinen Schritt\nweiter, es sei denn,\n\nihr besiegt mich!\n\n")
@@ -17,7 +17,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB9150, map_32_state_09_08EB9150, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(242)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, 0, 8)
+  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Most impressive.\nYou deserve a card.\n\nTake this Curse of Dragon.\n\n")
   LANGUAGE_TEXT(1, "Tr\xe8s impressionnant.\nVous m\xe9ritez une carte.\n\nPrenez cette Mal\xe9diction\ndu dragon.\n\n")
   LANGUAGE_TEXT(2, "Sehr beeindruckend.\nIhr habt eine Karte\n\nverdient. Nehmt diesen\nDrachenfluch.\n\n")
@@ -30,7 +30,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB9150, map_32_state_09_08EB9150, 0x08F04040, 0x08F
   PLAY_MUSIC(270)
   REACTION(1, 24577)
   DELAY(16)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, 0, 8)
+  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Your path is clear.\nAdvance.\n\n")
   LANGUAGE_TEXT(1, "La voie est libre.\nVous pouvez avancer.\n\n")
   LANGUAGE_TEXT(2, "Euer Weg ist frei.\nIhr d\xfcrft gehen.\n\n")

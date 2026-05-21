@@ -100,7 +100,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42898, map_01_state_05_08E42898, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E428A4, map_01_state_05_08E428A4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, 1, 8)
+  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, 8)
   LANGUAGE_TEXT(0, "Hyohyohyohyo!\n\nThe Neo Ghouls are gone, all\nthanks to me!\n\nYou maggots better be\ngrateful.\n\nJust to let you know, my\nswarm of bugs are more\n\nrugged than ever!\n\n")
   LANGUAGE_TEXT(1, "Hyo hyo hyo !\n\nGr\xe2ce \xe0 moi, les Neo Ghouls\nsont partis !\n\nTu devrais \xeatre\nreconnaissant.\n\nJe vais renforcer mon\nDeck en contemplant\n\nces insectes.\n\n")
   LANGUAGE_TEXT(2, "Hyohyohyohyo!\n\nDank mir sind die Neo\nGhouls abgezogen!\n\nDu solltest mir\ndankbar sein.\n\nIch werde mein Deck st\xe4rken,\nw\xe4hrend ich mir ein paar\n\nh\xfcbsche K\xe4fer anschaue.\n\n")

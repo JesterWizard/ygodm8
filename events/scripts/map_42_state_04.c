@@ -11,7 +11,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E54, map_42_state_04_08ED9E54, 0x08ED9DC4, 0x08F
   DELAY(32)
   MOVE_OBJECT(2, 3, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, 0, 0)
+  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, 0)
   LANGUAGE_TEXT(0, "I didn't realize until now\nthat you've gotten really\n\nstrong, {PLAYER}.\n\n")
   LANGUAGE_TEXT(1, "Je n'avais pas\nremarqu\xe9, mais...\n\nTu es devenu tr\xe8s\nfort, {PLAYER}.\n\n")
   LANGUAGE_TEXT(2, "Es ist mir nie aufge-\nfallen, aber...\n\nDu bist wirklich stark\ngeworden, {PLAYER}.\n\n")

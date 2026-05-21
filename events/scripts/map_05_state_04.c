@@ -100,7 +100,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E51070, map_05_state_04_08E51070, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5107C, map_05_state_04_08E5107C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, 0, 8)
+  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Sigh... I miss the sea! I'm\ngoing back home among the\n\nwaves!\n\n")
   LANGUAGE_TEXT(1, "Ahh... La mer me manque !\nJe veux y retourner !\n\n")
   LANGUAGE_TEXT(2, "Seufz... ich vermisse das\nMeer!\n\nIch kehre dorthin zur\xfcck!\n\n")

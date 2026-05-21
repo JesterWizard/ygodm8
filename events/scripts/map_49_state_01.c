@@ -9,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDEBF0, map_49_state_01_08EDEBF0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDEBD8, map_49_state_01_08EDEBD8, 0x08EDEBE4, 0x08F0404C)
-  PORTRAIT(PORTRAIT_CHEVALIER, 0, 8)
+  PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Gawry nida! Gawry nida!\n\nYou'll go no further! Gawry!\n\n")
   LANGUAGE_TEXT(1, "Grrr ah !\nGrrr ah !\n\nVous n'irez pas\nplus loin ! Grr !\n\n")
   LANGUAGE_TEXT(2, "Grrrrr!\nGrrrrr!\n\nKeinen Schritt weiter!\nGrrrrr!\n\n")
@@ -22,7 +22,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDEBE4, map_49_state_01_08EDEBE4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(17)
-  PORTRAIT(PORTRAIT_CHEVALIER, 0, 8)
+  PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "G-gawry n-nida...\nM-master... G-gaah...\n\n")
   LANGUAGE_TEXT(1, "G-grr ah...\nM-ma\xeetre... G-grrr...\n\n")
   LANGUAGE_TEXT(2, "G-grrrr...\nM-Meister... G-gaah...\n\n")

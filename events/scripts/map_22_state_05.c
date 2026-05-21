@@ -66,7 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB70, map_22_state_05_08E8CB70, 0x08E8CB7C, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, 1, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, 0, 8)
+  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Am I here to rescue Ishizu?\n\nHeh, that's your business,\nnot mine.\n\nI'm only here because I need\nto resurrect Obelisk the\n\nTormentor.\n\nI don't know what kind of\ntrick you pulled...\n\nBut no one had no right to\nturn my card into stone!\n\nIt's clear Ishizu's somehow\ninvolved...\n\nAnd I want to find out how!\n\n")
   LANGUAGE_TEXT(1, "Est-ce que je suis\nvenu sauver Ishizu ?\n\nMmm. Je n'ai pas l'intention\nde devenir ton ami.\n\nJe suis venu ici pour\nrestaurer Ob\xe9lisk,\n\nle Bourreau.\n\nJe ne savais pas ce\nque cela impliquait...\n\nMais p\xe9trifier mes cartes,\nc'est impardonnable !\n\nCette femme y est s\xfbrement\npour quelque chose !\n\nJe suis venu me venger.\nC'est tout.\n\n")
   LANGUAGE_TEXT(2, "Bin ich hier, um\nIshizu zu befreien?\n\nHmph. Ich habe keine Lust,\neuren Freund zu spielen.\n\nIch will nur Obelisk, den\nPeiniger, wiederherstellen.\n\nKeine Ahnung, was f\xfcr Tricks\nda mitmischten...\n\nAber meine Karte in Stein zu\nverwandeln -\n\ndas ist unverzeihlich!\n\nDass die Frau beteiligt war,\nsteht doch wohl fest.\n\nIch komme, um ihnen ihre\ngerechte Strafe zu\n\nerteilen.\nDas ist alles.\n\n")
@@ -129,7 +129,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB64, map_22_state_05_08E8CB64, 0x08E8CB70, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CB94, map_22_state_05_08E8CB94, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, 0, 8)
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "If I take down Kaiba, I'll\nbe promoted! Hihihi...\n\n")
   LANGUAGE_TEXT(1, "Je vais r\xe9gler le\nsort de Seto\n\net obtenir une\npromotion ! Hi hi hi...\n\n")
   LANGUAGE_TEXT(2, "Ich erledige Seto. Daf\xfcr\nwerde ich bef\xf6rdert!\n\nHihihi...\n\n")

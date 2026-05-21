@@ -4,7 +4,7 @@
 /* map_12_state_01: map 12 state 1 */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF64, map_12_state_01_08E6EF64, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "This is Kaiba Corporation.\nThis is not a place for\n\ncivilians.\n\n")
   LANGUAGE_TEXT(1, "Ceci est la\nKaiba Corporation.\n\nL'entr\xe9e est interdite\nau public.\n\n")
   LANGUAGE_TEXT(2, "Hier ist die Kaiba\nCorporation.\n\nKein Zugang f\xfcr Zivilisten.\n\n")
@@ -20,7 +20,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EF70, map_12_state_01_08E6EF70, 0x08E6EF7C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF7C, map_12_state_01_08E6EF7C, 0x08E6EF88, 0x08F0404C)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Duel? No, that is not\npermitted on these\n\npremises.\n\n...Is what I'm ordered to\nsay.\n\n")
   LANGUAGE_TEXT(1, "Un duel ? Non, non.\nC'est interdit.\n\n... C'est ce que\nje suis suppos\xe9 dire.\n\n")
   LANGUAGE_TEXT(2, "Duell?\nNein, nicht gestattet.\n\n... Jedenfalls soll ich\ndas sagen.\n\n")
@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EF7C, map_12_state_01_08E6EF7C, 0x08E6EF88, 0x08F
   PLAY_MUSIC(272)
   REACTION(3, 2)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "But I always wanted to play\nto see what it's like.\n\nLet's duel!\n\n")
   LANGUAGE_TEXT(1, "Mais j'aimerais bien\naussi m'amuser un peu.\n\nAllez, un duel !\n\n")
   LANGUAGE_TEXT(2, "Aber ich wollte es doch\neinmal selbst erleben.\n\nDuell!\n\n")
@@ -45,7 +45,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF88, map_12_state_01_08E6EF88, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(12)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "Hmm... I think Mr. Kaiba is\nbetter at this than I am.\n\n")
   LANGUAGE_TEXT(1, "Mmm... Eh bien, je ne suis\npas aussi bon que M. Seto.\n\n")
   LANGUAGE_TEXT(2, "Hrmm... Ich bin wohl doch\nnicht so gut wie Herr Seto.\n\n")
@@ -57,7 +57,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EF88, map_12_state_01_08E6EF88, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF94, map_12_state_01_08E6EF94, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ROLAND, 0, 8)
+  PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, 8)
   LANGUAGE_TEXT(0, "No, no. Not again!\n\nIf Mr. Kaiba catches me,\nI'll be fired on the spot!\n\n")
   LANGUAGE_TEXT(1, "Non, non.\nPas cette fois !\n\nSi M. Seto me voit,\n\nil va me renvoyer\nsur-le-champ.\n\n")
   LANGUAGE_TEXT(2, "Nein, nein. Nicht jetzt!\nWenn mich Herr Seto er-\n\nwischt, entl\xe4sst er mich\nauf der Stelle.\n\n")
