@@ -1,4 +1,5 @@
 #include "event_macros.h"
+#include "overworld.h"
 
 /* map_17_state_03: map 17 state 3 */
 

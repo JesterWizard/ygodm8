@@ -74,6 +74,39 @@ def load_charmap(path: Path) -> dict[tuple[int, ...], str]:
 
 CHARMAP = load_charmap(ROOT / "charmap.txt")
 
+
+def parse_c_integer_constant(value: str, names: dict[str, int]) -> int:
+    value = value.strip()
+    if value in names:
+        return names[value]
+    if re.fullmatch(r"[-+]?(?:0[xX][0-9A-Fa-f]+|\d+)", value):
+        return int(value, 0)
+    raise ValueError(f"unsupported C integer constant {value!r}")
+
+
+def load_c_constants(paths: list[Path]) -> dict[str, int]:
+    constants: dict[str, int] = {}
+    for path in paths:
+        text = strip_c_comments(path.read_text())
+        for match in re.finditer(r"^\s*#define\s+([A-Za-z_][A-Za-z0-9_]*)\s+([-+]?(?:0[xX][0-9A-Fa-f]+|\d+))\b", text, re.MULTILINE):
+            constants[match.group(1)] = int(match.group(2), 0)
+        for enum_body in re.findall(r"\benum(?:\s+[A-Za-z_][A-Za-z0-9_]*)?\s*\{(.*?)\}", text, re.DOTALL):
+            value = 0
+            for raw_item in enum_body.split(","):
+                item = raw_item.strip()
+                if not item:
+                    continue
+                name, _, explicit = item.partition("=")
+                name = name.strip()
+                if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name):
+                    continue
+                if explicit:
+                    value = parse_c_integer_constant(explicit, constants)
+                constants[name] = value
+                value += 1
+    return constants
+
+
 SPECIAL_COMMANDS = {
     0: "effect_0",
     1: "effect_1",
@@ -842,6 +875,12 @@ def strip_c_comments(text: str) -> str:
     return "".join(out)
 
 
+C_CONSTANTS = load_c_constants([
+    ROOT / "include/overworld.h",
+    ROOT / "include/constants/music_ids.h",
+])
+
+
 def split_macro_args(arg_text: str) -> list[str]:
     args: list[str] = []
     start = 0
@@ -914,6 +953,8 @@ def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
     value = value.strip()
     if names and value in names:
         return names[value]
+    if value in C_CONSTANTS:
+        return C_CONSTANTS[value]
     if len(value) >= 3 and value[0] == "'" and value[-1] == "'":
         return ord(ast.literal_eval(value))
     return parse_hex(value)
@@ -1446,6 +1487,7 @@ def export_c_sources(data: dict[str, Any], out_dir: Path, all_scripts: bool) -> 
         assigned.update(entry["script_address"] for entry in entries)
         body = [
             '#include "event_macros.h"',
+            '#include "overworld.h"'
             "",
             f"/* {scene_id}: map {scene.get('map_id')} state {scene.get('state')} */",
             "",

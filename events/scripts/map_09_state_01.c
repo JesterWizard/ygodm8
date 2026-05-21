@@ -1,4 +1,5 @@
 #include "event_macros.h"
+#include "overworld.h"
 
 /* map_09_state_01: map 9 state 1 */
 
@@ -6,8 +7,8 @@ EVENT_SCRIPT_REPLACEMENT(0x08E62160, map_09_state_01_08E62160, 0x08E6216C, 0x08E
   PLAY_MUSIC(12)
   SET_FLAG(8)
   DELAY(32)
-  PORTRAIT(4, 0, 0)
-  LANGUAGE_TEXT(0, "Now I put dis Monsta Card in\nhere, like so...\n\nAnd voila!\nI'm good to go!\n\n")
+  PORTRAIT(PORTRAIT_TEA, 0, 0)
+  LANGUAGE_TEXT(0, "Now I put this Monsta Card in\nhere, like so...\n\nAnd voila!\nI'm good to go!\n\n")
   LANGUAGE_TEXT(1, "Mets cette Carte Monstre,\ncomme \xe7a...\n\nOK ! Alors, tout est\npr\xeat, maintenant !\n\n")
   LANGUAGE_TEXT(2, "Leg diese Monsterkarte\nhier hinein, so...\n\nOkay!\nDas w\xe4re dann fertig!\n\n")
   LANGUAGE_TEXT(3, "Metti qui questa\nCarta Mostro, cos\xec...\n\nOkay! Allora \xe8 tutto a\nposto!\n\n")

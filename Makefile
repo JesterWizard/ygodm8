@@ -107,13 +107,16 @@ event-extract: baserom.gba tools/vanilla_events.py
 event-catalog: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py catalog $(EVENTS_YAML) --out $(EVENTS_CATALOG)
 
-event-compile: $(EVENTS_C_SRCS) tools/vanilla_events.py
+$(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
 	@if [ -n "$(EVENTS_C_SRCS)" ]; then \
 		python3 tools/vanilla_events.py compile-c $(EVENTS_C_SRCS) --out $(EVENT_REPLACEMENTS_GENERATED); \
 	else \
 		test -f $(EVENTS_YAML); \
 		python3 tools/vanilla_events.py compile $(EVENTS_YAML) --out $(EVENT_REPLACEMENTS_GENERATED); \
 	fi
+
+event-compile: $(EVENT_REPLACEMENTS_GENERATED)
+	@$(MAKE) $(ROM)
 
 event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py export-c $(EVENTS_YAML) --out-dir $(EVENTS_C_DIR)

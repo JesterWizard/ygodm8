@@ -244,6 +244,7 @@ enum PortraitPosition {
 
 enum Portrait {
   PORTRAIT_NONE,
+  PORTRAIT_JOEY = 4,
   PORTRAIT_TEA = 7,
   PORTRAIT_TRISTAN = 8,
   PORTRAIT_MOKUBA_GRINNING = 10
