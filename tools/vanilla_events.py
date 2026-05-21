@@ -951,13 +951,64 @@ def parse_macro_calls(text: str) -> list[tuple[str, list[str]]]:
 
 def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
     value = value.strip()
-    if names and value in names:
-        return names[value]
-    if value in C_CONSTANTS:
-        return C_CONSTANTS[value]
     if len(value) >= 3 and value[0] == "'" and value[-1] == "'":
         return ord(ast.literal_eval(value))
-    return parse_hex(value)
+
+    tree = ast.parse(value, mode="eval")
+
+    def eval_node(node: ast.AST) -> int:
+        if isinstance(node, ast.Expression):
+            return eval_node(node.body)
+        if isinstance(node, ast.Constant) and isinstance(node.value, int):
+            return node.value
+        if isinstance(node, ast.Name):
+            if names and node.id in names:
+                return names[node.id]
+            if node.id in C_CONSTANTS:
+                return C_CONSTANTS[node.id]
+            raise ValueError(f"unsupported C identifier {node.id!r}")
+        if isinstance(node, ast.BinOp):
+            left = eval_node(node.left)
+            right = eval_node(node.right)
+            if isinstance(node.op, ast.BitOr):
+                return left | right
+            if isinstance(node.op, ast.BitAnd):
+                return left & right
+            if isinstance(node.op, ast.BitXor):
+                return left ^ right
+            if isinstance(node.op, ast.LShift):
+                return left << right
+            if isinstance(node.op, ast.RShift):
+                return left >> right
+            if isinstance(node.op, ast.Add):
+                return left + right
+            if isinstance(node.op, ast.Sub):
+                return left - right
+            raise ValueError(f"unsupported C operator {type(node.op).__name__}")
+        if isinstance(node, ast.UnaryOp):
+            operand = eval_node(node.operand)
+            if isinstance(node.op, ast.UAdd):
+                return operand
+            if isinstance(node.op, ast.USub):
+                return -operand
+            if isinstance(node.op, ast.Invert):
+                return ~operand
+            raise ValueError(f"unsupported C operator {type(node.op).__name__}")
+        raise ValueError(f"unsupported C expression {ast.dump(node, include_attributes=False)}")
+
+    try:
+        return eval_node(tree)
+    except SyntaxError:
+        if value in C_CONSTANTS:
+            return C_CONSTANTS[value]
+        return parse_hex(value)
+
+
+def object_mask_expr(mask: int) -> str:
+    if mask == 0:
+        return "0"
+    parts = [f"OBJECT_{bit + 1}" for bit in range(15) if mask & (1 << bit)]
+    return " | ".join(parts) if parts else str(mask)
 
 
 @dataclass
@@ -1425,7 +1476,7 @@ def step_macro(step: dict[str, Any]) -> str:
     elif kind == "object_effect":
         mask = int(step.get("object_mask")) & 0xFFFF
         mode = int(step.get("mode")) & 0xFF
-        macro = exact("OBJECT_EFFECT", [mask, mode], [0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, mode])
+        macro = exact("OBJECT_EFFECT", [object_mask_expr(mask), mode], [0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, mode])
     elif kind == "special":
         special = SPECIAL_COMMANDS_INV.get(step.get("command"))
         if special is not None:

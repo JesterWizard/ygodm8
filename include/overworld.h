@@ -5,6 +5,23 @@
 #define OVERWORLD_FLAG_MAP_TRANSITION 2
 #define OVERWORLD_FLAG_WORLD_MAP_TRANSITION 4
 
+#define OBJECT_0  1
+#define OBJECT_1  2
+#define OBJECT_2  4
+#define OBJECT_3  8
+#define OBJECT_4  16
+#define OBJECT_5  32
+#define OBJECT_6  64
+#define OBJECT_7  128
+#define OBJECT_8  256
+#define OBJECT_9  512
+#define OBJECT_10 1024
+#define OBJECT_11 2048
+#define OBJECT_12 4096
+#define OBJECT_13 8192
+#define OBJECT_14 16384
+#define OBJECT_15 32768
+
 //TODO: ObjectDirection?
 enum Direction {
   DIRECTION_DOWN = 0,
@@ -668,6 +685,12 @@ enum Languages {
 enum PortraitDirections {
   PORTRAIT_LEFT = 0,
   PORTRAIT_RIGHT = 1,
+};
+
+enum ObjectEffects {
+  OBJECT_EFFECT_DISAPPEAR = 0,
+  OBJECT_EFFECT_JUMPING = 1,
+  OBJECT_EFFECT_TELEPORT = 2,
 };
 
 enum Motion {
