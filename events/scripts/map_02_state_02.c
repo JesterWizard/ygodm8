@@ -19,7 +19,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47890, map_02_state_02_08E47890, 0x08E4789C, 0x08E
   TEXT("You must be the brats who\nwant to be heroes!\n\n")
   HIDE_PORTRAIT()
   DELAY(8)
-  MOVE_OBJECT(0, 2, 0, 0)
+  MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("You should have stayed in\nthe sandbox! I'm not as\n\nnice as the other guy!\n\n")

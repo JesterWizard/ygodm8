@@ -8,7 +8,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF057C, map_55_state_03_08EF057C, 0x08F04040, 0x08F
   TEXT("Fufufu... You've finally\narrived.\n\nDuelists of pure hearts and\nspirits, I was hoping you\n\nwould come.\n\nWhy? Because your defeats\nwill make the best\n\nofferings for the reborn\nReshef!\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(1, 0, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Now! Go, my disciples!\n\nGo forth and defeat them!\n\n")

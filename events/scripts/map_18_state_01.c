@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A84, map_18_state_01_08E80A84, 0x08E80A9C, 0x08E
   TEXT("Hohoho, you wish to\nchallenge me?\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(3, 1, 0, 1)
+  MOVE_OBJECT(3, DIRECTION_LEFT, 0, 1)
   PLAY_MUSIC(293)
   OBJECT_EFFECT(8, 1)
   TEXT("Papa, show him you're the\nbest!\n\n")

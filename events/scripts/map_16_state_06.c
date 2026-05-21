@@ -27,7 +27,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DFD8, map_16_state_06_08E7DFD8, 0x08F04040, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, 4)
   DELAY(8)
   WALK_OBJECT_X(2, 108)
-  MOVE_OBJECT(2, 1, 0, 0)
+  MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   TEXT("Th-the train! It's moving!\n\nThe Neo Ghouls must have\ntaken over the controls.\n\nBut as the conductor...\n\nIt's my job to perform my\nduties.\n\nOur next and only stop is\nthe Egypt Exhibition.\n\n")
   HIDE_PORTRAIT()
   DELAY(16)

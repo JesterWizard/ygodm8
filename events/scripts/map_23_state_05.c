@@ -10,7 +10,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95480, map_23_state_05_08E95480, 0x08F04040, 0x08F
   TEXT("I know exactly how hard\n{PLAYER} has worked to get\n\nthis far.\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(0, 0, 0, 0)
+  MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_POSITION_AUTO)
   TEXT("{PLAYER} is worthy of having\nthe Egyptian God Cards.\n\n")

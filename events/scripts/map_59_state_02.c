@@ -7,7 +7,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDAA0, map_59_state_02_08EFDAA0, 0x08F04040, 0x08F
   PLAY_MUSIC(26)
   SHOW_OBJECT(1, 61, 30, 0, 0, 0)
   WALK_OBJECT_Y(1, 48)
-  MOVE_OBJECT(1, 2, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Master Marik will decipher\nthe hieroglyphics.\n\nBut he will need time.\n\nIt is best if you continue\nyour quest.\n\nI will wait for you here and\ninform you of his progress.\n\nPlease visit us\noccasionally.\n\nI am sure that will please\nMaster Marik.\n\nPlease give my regards to\nMistress Ishizu.\n\n")

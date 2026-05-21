@@ -1396,7 +1396,14 @@ def step_macro(step: dict[str, Any]) -> str:
         macro = exact("SAVE", [], [0x40, ord("2")])
     elif kind == "move_object":
         args = [step.get("object_id"), step.get("direction"), step.get("distance"), step.get("wander")]
-        macro = exact("MOVE_OBJECT", args, [0x40, ord("7")] + [int(arg) & 0xFF for arg in args])
+        direction = int(step.get("direction"))
+        direction_name = {
+            0: "DIRECTION_DOWN",
+            1: "DIRECTION_LEFT",
+            2: "DIRECTION_UP",
+            3: "DIRECTION_RIGHT",
+        }.get(direction, direction)
+        macro = exact("MOVE_OBJECT", [step.get("object_id"), direction_name, step.get("distance"), step.get("wander")], [0x40, ord("7")] + [int(arg) & 0xFF for arg in args])
     elif kind == "stop_footsteps":
         macro = exact("STOP_FOOTSTEPS", [], [0x40, ord("8")])
     elif kind == "set_object_position":

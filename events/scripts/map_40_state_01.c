@@ -17,7 +17,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED55F0, map_40_state_01_08ED55F0, 0x08F04040, 0x08F
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(48)
-  MOVE_OBJECT(1, 3, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("I do not know what Pegasus\nis planning.\n\nBut we cannot ignore Reshef\nthe Dark Being.\n\nHarsh battles await.\n\nBut don't succumb in the\nface of adversity.\n\n")

@@ -30,7 +30,7 @@
 #define FADE_MUSIC(music)
 #define START_MENU()
 #define SAVE()
-#define MOVE_OBJECT(object_id, direction, distance, wander)
+#define MOVE_OBJECT(object_id, direction, distance, wander) // distance is measured in pixels
 #define STOP_FOOTSTEPS()
 #define SET_OBJECT_POSITION(object_id, x, y, frame)
 #define SHOW_OBJECT(object_id, x, y, frame, mode, unused)
