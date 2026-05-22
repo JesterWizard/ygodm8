@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_42_state_03: map 42 state 3 */
 

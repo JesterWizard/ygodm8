@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_43_state_03: map 43 state 3 */
 
@@ -8,7 +9,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDA644, map_43_state_03_08EDA644, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_CHEVALIER)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 8193)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13)
   DELAY(8)
   WALK_OBJECT_X(1, 112)
   DELAY(16)

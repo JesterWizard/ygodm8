@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_12_state_01: map 12 state 1 */
 
@@ -21,7 +22,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EF7C, map_12_state_01_08E6EF7C, 0x08E6EF88, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 2)
+  REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("But I always wanted to play\nto see what it's like.\n\nLet's duel!\n\n")

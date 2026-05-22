@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_06_state_15: map 6 state 15 */
 
@@ -77,7 +78,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDEC, map_06_state_15_08E5CDEC, 0x08F04040, 0x08F
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("That's KaibaCorp's\nhelicopter.\n\n")
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 62)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5)
   FADE_SCREEN(8)
   WARP(0, 19, 0, 0)
   FALLTHROUGH()

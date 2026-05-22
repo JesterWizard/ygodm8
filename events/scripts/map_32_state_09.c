@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_32_state_09: map 32 state 9 */
 
@@ -19,7 +20,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB9150, map_32_state_09_08EB9150, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 24577)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Your path is clear.\nAdvance.\n\n")

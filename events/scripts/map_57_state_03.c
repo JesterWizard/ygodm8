@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_57_state_03: map 57 state 3 */
 
@@ -32,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 124)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6)
   DELAY(8)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("The children are afraid!\n\nThe Neo Ghouls stole their\nrare cards.\n\nKaibaman represents hope to\nthe kids.\n\nWhen Masters Mokuba and Seto\nreturn, how would they feel\n\nif children aren't enjoying\ndueling?\n\nWe can't let Masters Mokuba\nand Seto see that.\n\nThat's why we have to give\nhope to the kids.\n\n")
@@ -52,7 +53,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB444, map_57_state_03_08EFB444, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_KAIBAMAN)
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 124)
+  REACTION(REACTION_ELLIPSIS, OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6)
   DELAY(16)
   MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
   PLAY_MUSIC(MUSIC_293)

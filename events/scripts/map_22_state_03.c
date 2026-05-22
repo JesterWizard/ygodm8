@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_22_state_03: map 22 state 3 */
 
@@ -56,7 +57,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB34, map_22_state_03_08E8CB34, 0x08F04040, 0x08F
   DELAY(24)
   MOVE_OBJECT(3, DIRECTION_LEFT, 68, 0)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 1)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0)
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)

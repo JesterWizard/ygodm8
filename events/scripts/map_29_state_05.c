@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_29_state_05: map 29 state 5 */
 
@@ -24,7 +25,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8D0, map_29_state_05_08EAC8D0, 0x08EAC8DC, 0x08F
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 4)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
   TEXT("Tsk, the cavalry arrives!\n\nI'll take care of them\nfirst!\n\n")

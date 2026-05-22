@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_36_state_01: map 36 state 1 */
 
@@ -65,7 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C30, map_36_state_01_08EC9C30, 0x08F04250, 0x08F
   COMMAND_7C_ARG(7, 8)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("We have the Millennium\nRod...\n\n")

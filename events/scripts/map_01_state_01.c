@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_01_state_01: map 1 state 1 */
 
@@ -29,7 +30,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42670, map_01_state_01_08E42670, 0x08E4267C, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24585)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_3 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
@@ -41,7 +42,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42670, map_01_state_01_08E42670, 0x08E4267C, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 24585)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_3 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
   TEXT("I see you're puzzled, but\nthat is only to be\n\nexpected.\n\nPlease bear with me and\nlisten to my words\n\ncarefully.\n\n")
@@ -53,7 +54,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4267C, map_01_state_01_08E4267C, 0x08E42688, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24585)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_3 | OBJECT_13 | OBJECT_14)
   DELAY(32)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
   TEXT("I understand this is sudden\nand confusing.\n\nHowever, the world is in\ngrave peril.\n\nOnly strong duelists, such\nas yourselves, can save us\n\nall from ruin before it's\ntoo late!\n\n")

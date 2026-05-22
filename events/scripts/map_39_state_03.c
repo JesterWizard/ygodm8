@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_39_state_03: map 39 state 3 */
 
@@ -93,7 +94,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B1C, map_39_state_03_08ED4B1C, 0x08ED4B28, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 1)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Anyways, I'm going to the\nTown of Domino.\n\n")

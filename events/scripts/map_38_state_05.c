@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_38_state_05: map 38 state 5 */
 
@@ -41,7 +42,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16C4, map_38_state_05_08ED16C4, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 2)
+  REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Arrrrgh, what a terrible\nwaste...\n\nI wasted a rare card on\nyou...\n\nGet outta here! Bye-bye, my\nbeautiful bug!\n\n")

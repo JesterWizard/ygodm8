@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_29_state_01: map 29 state 1 */
 
@@ -13,7 +14,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC864, map_29_state_01_08EAC864, 0x08EAC870, 0x08E
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
   DELAY(43)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 1)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_0)
   WALK_OBJECT_X(0, 248)
   CHECK_FLAG(EVENT_FLAG_DEFEATED_BONZ)
   FALLTHROUGH()

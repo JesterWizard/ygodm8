@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_17_state_01: map 17 state 1 */
 
@@ -18,7 +19,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F118, map_17_state_01_08E7F118, 0x08F04040, 0x08F
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Ha ha ha... You'll go no\nfurther.\n\n")
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 13)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_2 | OBJECT_3)
   WALK_OBJECT_X(1, 48)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Ha ha ha... My name is\nPaniK.\n\nThe Millennium Items will\nnever be yours!\n\n")

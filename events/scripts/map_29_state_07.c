@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_29_state_07: map 29 state 7 */
 
@@ -29,7 +30,7 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EAC93C, map_29_state_07_08EAC93C, 0x08EAC948, 0x08F0404C)
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 2)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_1)
   DELAY(8)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("I've dueled you before,\n{PLAYER}...\n\nBut I've never seen you so\ndetermined.\n\nYou must be preparing for an\nenormous duel.\n\nOkay! {PLAYER}, I'll duel\nyou anytime you want.\n\n")

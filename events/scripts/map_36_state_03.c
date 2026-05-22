@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_36_state_03: map 36 state 3 */
 
@@ -33,7 +34,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 126)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6)
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
@@ -62,7 +63,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 2)
+  REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("You guys took prehistoric\npride in your work...\n\nThat's why you found the\nfossil in such an enormous\n\nmountain.\n\nIf I think of my deck as a\nmountain, I wonder if I can\n\nfind my fossil...\n\nCan I draw the card I need?\n\n")

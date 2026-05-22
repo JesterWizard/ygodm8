@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_24_state_01: map 24 state 1 */
 
@@ -27,7 +28,7 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E98150, map_24_state_01_08E98150, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 24577)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(32)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)

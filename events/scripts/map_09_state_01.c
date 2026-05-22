@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_09_state_01: map 9 state 1 */
 
@@ -39,14 +40,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6216C, map_09_state_01_08E6216C, 0x08E62184, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 16384)
+  REACTION(REACTION_ELLIPSIS, OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
   TEXT("Uh... It's cool to be\nconfident about your\n\nskills.\n\nBut you still have lots of\nwork to do on this Deck\n\nbefore it's any good.\n\n")
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
-  REACTION(REACTION_SWEATDROP, 1)
+  REACTION(REACTION_SWEATDROP, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Hey,\ndon't feel bad. I know you\n\ncan construct an awesome\ndeck, {PLAYER}.\n\n")
@@ -81,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E621A8, map_09_state_01_08E621A8, 0x08E621B4, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_275)
-  REACTION(REACTION_ANGRY, 16384)
+  REACTION(REACTION_ANGRY, OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
   TEXT("He's late!\n\nC'mon Yugi...\nHow can ya even think\n\nabout being late on a day\nlike this!\n\nIf he doesn't get here\nsoon, we'll miss the Duel\n\nExpress!\n\nAnd he was the one who\npromised dat the three of\n\nus were gonna take the\ntrain together!\n\nMan, dat Yugi!\nArrrrgh!\n\nIf he doesn't get here, he\ncan give me all his rare\n\ncards and I still won't\nforgive him!\n\n")
@@ -92,7 +93,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E621A8, map_09_state_01_08E621A8, 0x08E621B4, 0x08E
   MOVE_OBJECT(13, DIRECTION_UP, 2, 0)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 1)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   DELAY(16)
@@ -102,7 +103,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E621A8, map_09_state_01_08E621A8, 0x08E621B4, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 1)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_0)
   DELAY(16)
   WALK_OBJECT_Y(13, 62)
   MOVE_OBJECT(13, DIRECTION_RIGHT, 8, 0)
@@ -112,7 +113,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E621A8, map_09_state_01_08E621A8, 0x08E621B4, 0x08E
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 16385)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SAD, PORTRAIT_RIGHT)
   TEXT("When I woke up this morning,\nit was gone...\n\nI... I... What am I\nsupposed to do?\n\n")

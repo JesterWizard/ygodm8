@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_26_state_02: map 26 state 2 */
 
@@ -20,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3B78, map_26_state_02_08EA3B78, 0x08F04040, 0x08F
   TEXT("What'd we do to deserve\nthis?\n\n")
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 2)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Oh, hi Joey!\n\nDo you want me to train you\ntoo?\n\n")
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_LEFT)

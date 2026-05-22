@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_00_state_02: map 0 state 2 */
 
@@ -40,7 +41,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A18, map_00_state_02_08E34A18, 0x08E34A24, 0x08F
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 2)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO)
   TEXT("W-what is this presence I'm\nfeeling?\n\n")
   HIDE_PORTRAIT()

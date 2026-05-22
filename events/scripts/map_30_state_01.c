@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_30_state_01: map 30 state 1 */
 
@@ -55,7 +56,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, 0x08F
   SHOW_OBJECT(2, 60, 44, 0, 1, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
   TEXT("W-what? It's happening\nagain! This time, it's\n\nBakura!\n\n")

@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_50_state_01: map 50 state 1 */
 
@@ -10,7 +11,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE04B8, map_50_state_01_08EE04B8, 0x08F04040, 0x08F
   WALK_OBJECT_Y(0, 72)
   DELAY(4)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 1)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
   PLAY_MUSIC(MUSIC_280)
   SHOW_OBJECT(1, 60, 52, 0, 1, 0)
@@ -20,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE04B8, map_50_state_01_08EE04B8, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 1)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Yes... You must light your\nway with spirit cards.\n\nThe cards that embody the\nspirits of your fellow\n\nduelists.\n\nHold them aloft at forks in\nthe road and let them light\n\nyour way.\n\nHowever, you must never ask\nfor spirit cards.\n\nYou must obtain them fairly.\n\nYou must win them in duels.\nThere is no other way.\n\n")

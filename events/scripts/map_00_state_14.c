@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_00_state_14: map 0 state 14 */
 
@@ -43,7 +44,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34EEC, map_00_state_14_08E34EEC, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Ah... That makes sense.\n\nThe Winged Dragon of Ra\nbelonged to Marik.\n\n")

@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_51_state_01: map 51 state 1 */
 
@@ -15,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE4034, map_51_state_01_08EE4034, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 1)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
   SET_FLAG(EVENT_FLAG_ENTERED_PEGASUS_CASTLE)
   FADE_SCREEN(8)

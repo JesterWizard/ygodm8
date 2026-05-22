@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_35_state_01: map 35 state 1 */
 
@@ -41,7 +42,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC62F0, map_35_state_01_08EC62F0, 0x08EC62FC, 0x08E
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 2)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("You came all the way here\nlooking for one of those\n\nthings?\n\nWell... I could tell you\nwhat I know...\n\nBut only if you can beat my\nDino Deck!\n\n")

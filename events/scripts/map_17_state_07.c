@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_17_state_07: map 17 state 7 */
 
@@ -9,7 +10,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F124, map_17_state_07_08E7F124, 0x08E7F13C, 0x08E
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_237)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Ha ha ha! Looks like we've\nentered a tunnel!\n\nAnd darkness gives me power!\nIt's time to duel!\n\n")
   CLEAR_FLAG(240)

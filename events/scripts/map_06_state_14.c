@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_06_state_14: map 6 state 14 */
 
@@ -38,7 +39,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CDE0, map_06_state_14_08E5CDE0, 0x08F04040, 0x08F
   PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT("Tea... They'll be fine.\n\nCan't you tell? Can't you\nfeel it?\n\n")
   PLAY_MUSIC(MUSIC_270)
-  REACTION(REACTION_QUESTION_MARK, 32)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_5)
   FADE_SCREEN(8)
   WARP(4, 6, 0, 0)
   FALLTHROUGH()

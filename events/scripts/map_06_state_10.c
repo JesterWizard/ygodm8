@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_06_state_10: map 6 state 10 */
 
@@ -21,7 +22,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD80, map_06_state_10_08E5CD80, 0x08F04040, 0x08F
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
   TEXT("...And that's what happened.\n\n")
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 24577)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
   TEXT("Big brother... I saw this\nlook on Tristan's face...\n\nIt was as if he was saying\nthat he didn't want anyone\n\nto follow him.\n\nI wonder if he's going to be\nokay...\n\n")
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)

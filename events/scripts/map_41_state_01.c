@@ -1,5 +1,6 @@
 #include "event_macros.h"
 #include "overworld.h"
+#include "constants/music_ids.h"
 
 /* map_41_state_01: map 41 state 1 */
 
@@ -22,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7BDC, map_41_state_01_08ED7BDC, 0x08ED7BE8, 0x08E
   SET_FLAG(EVENT_FLAG_SHAKE_SCREEN_AND_MOVE_BACKGROUND)
   DELAY(64)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 16384)
+  REACTION(REACTION_ELLIPSIS, OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SAD, PORTRAIT_POSITION_AUTO)
   TEXT("That Pegasus...\n\nWhat drove him to do this?\n\n")
@@ -50,7 +51,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C00, map_41_state_01_08ED7C00, 0x08ED7C0C, 0x08F
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, 8193)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
   TEXT("Pegasus was always a master\nduelist.\n\nNo one would argue with\nthat.\n\nEspecially since we faced\nhim firsthand.\n\nSo why would he resort to\neven dirtier tricks than\n\nbefore?\n\nI'm not the smartest guy on\nthe planet...\n\nBut I know that Pegasus\nisn't a real duelist\n\nanymore!\n\n")
@@ -61,7 +62,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C00, map_41_state_01_08ED7C00, 0x08ED7C0C, 0x08F
   COMMAND_7C_ARG(7, 1)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, 24577)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PLAY_MUSIC(MUSIC_259)
   SHOW_OBJECT(1, 40, 54, 0, 2, 0)
