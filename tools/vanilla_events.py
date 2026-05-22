@@ -888,6 +888,9 @@ C_CONSTANTS = load_c_constants([
     ROOT / "include/overworld.h",
     ROOT / "include/constants/music_ids.h",
 ])
+OVERWORLD_LOCATION_NAMES = {
+    value: name for name, value in C_CONSTANTS.items() if name.startswith("LOCATION_")
+}
 
 
 def split_macro_args(arg_text: str) -> list[str]:
@@ -1007,6 +1010,10 @@ def object_mask_expr(mask: int) -> str:
         return "0"
     parts = [f"OBJECT_{bit + 1}" for bit in range(15) if mask & (1 << bit)]
     return " | ".join(parts) if parts else str(mask)
+
+
+def overworld_location_expr(location: int) -> str:
+    return OVERWORLD_LOCATION_NAMES.get(location, str(location))
 
 
 @dataclass
@@ -1153,6 +1160,9 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
             elif name == "FADE_SCREEN":
                 need_args(name, args, 1)
                 current.raw_bytes.extend([0x7C, ord("1"), parse_c_value(args[0]) & 0xFF])
+            elif name == "SCREEN_SHAKE":
+                need_args(name, args, 1)
+                current.raw_bytes.extend([0x7C, ord("7"), parse_c_value(args[0]) & 0xFF])
             elif name == "HIDE_PORTRAIT":
                 need_args(name, args, 0)
                 current.raw_bytes.extend([0x7C, ord("3")])
@@ -1514,16 +1524,23 @@ def step_macro(step: dict[str, Any]) -> str:
     elif kind == "fade_screen":
         speed = int(step.get("speed")) & 0xFF
         macro = exact("FADE_SCREEN", [speed], [0x7C, ord("1"), speed])
+    elif kind == "screen_shake":
+        speed = int(step.get("speed")) & 0xFF
+        macro = exact("SCREEN_SHAKE", [speed], [0x7C, ord("7"), speed])
     elif kind == "hide_portrait":
         macro = exact("HIDE_PORTRAIT", [], [0x7C, ord("3")])
     elif kind == "swap_object_sprite":
         args = [step.get("object_id"), step.get("sprite_id")]
         macro = exact("LOAD_SPRITE", args, [0x7C, ord("4")] + [int(arg) & 0xFF for arg in args])
     elif kind == "warp":
-        args = [step.get("map_id"), step.get("state"), step.get("connection")]
+        map_id = int(step.get("map_id"))
+        args = [overworld_location_expr(map_id), step.get("state"), step.get("connection")]
         if len(raw) == 6:
             args.append(raw[5])
-        macro = exact("WARP", args, [0x7C, ord("5")] + [int(arg) & 0xFF for arg in args])
+        expected = [0x7C, ord("5"), map_id & 0xFF, int(step.get("state")) & 0xFF, int(step.get("connection")) & 0xFF]
+        if len(raw) == 6:
+            expected.append(raw[5])
+        macro = exact("WARP", args, expected)
     elif kind == "reaction":
         reaction = int(step.get("reaction")) & 0xFF
         mask = int(step.get("object_mask")) & 0xFFFF

@@ -693,18 +693,6 @@ enum ObjectEffects {
   OBJECT_EFFECT_TELEPORT = 2,
 };
 
-enum OverworldCommands {
-  COMMAND_7C_0 = 0,  // position/region check; 1-byte arg
-  COMMAND_7C_FADE_SCREEN = 1, // speed; 1-byte arg
-  COMMAND_7C_FADE_MUSIC = 2,  // fade all music channels; 1-byte arg
-  COMMAND_7C_HIDE_PORTRAIT = 3,
-  COMMAND_7C_SWAP_OBJECT_SPRITE = 4, // object_id, sprite_id
-  COMMAND_7C_WARP = 5,              // map_id, state, connection, unused
-  COMMAND_7C_REACTION = 6,           // reaction, object_mask(16-bit)
-  COMMAND_7C_7 = 7,                 // `sub_80553F8(script, arg)`; 1-byte arg
-  COMMAND_7C_8 = 8,                 // `sub_80512E0(script, arg)`; 1-byte arg
-};
-
 enum OverworldGraphics {
   GRAPHIC_SLIFER_REVIVAL = 0,
   GRAPHIC_UNUSED_1 = 1,

@@ -50,7 +50,7 @@
 #define FADE_SCREEN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id) SWAP_OBJECT_SPRITE(object_id, sprite_id)
-#define WARP(map_id, state, connection, unused)
+#define WARP(location, state, entrance, unused)
 #define REACTION(reaction, object_mask)
 #define COMMAND_7C_ARG(command, argument)
 #define FALLTHROUGH()

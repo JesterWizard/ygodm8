@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDA638, map_43_state_01_08EDA638, 0x08F04040, 0x08F
       "We have to go as quickly as\n"
       "possible.\n\n"
   )
-  WARP(55, 3, 0, 0)
+  WARP(LOCATION_PEGASUS_CASTLE_RESHEF_TABLET_ROOM, 3, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
