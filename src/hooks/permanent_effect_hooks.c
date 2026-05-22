@@ -62,6 +62,9 @@ static void TryActivatingPermanentEffect__Hook(void) {
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
   const PermanentEffectOverride *override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
+  if (gActiveEffect.cardId == JAM_BREEDING_MACHINE)
+    return FALSE;
+
   if (override != NULL)
     return override->shouldActivate();
 

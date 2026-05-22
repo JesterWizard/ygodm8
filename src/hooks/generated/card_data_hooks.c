@@ -3057,6 +3057,7 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .spellEffect = 132,
     .trapEffect = 0,
     .password = {2, 1, 7, 7, 0, 2, 6, 0},
+    .description = gDescription_JamBreedingMachine,
   },
   [0x00EA] = {
     .atk = 4000,

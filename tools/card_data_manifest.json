@@ -3550,7 +3550,20 @@
       "spellEffect": 132,
       "trapEffect": 0,
       "card_name": "Jam Breeding Machine",
-      "password": [ 2, 1, 7, 7, 0, 2, 6, 0 ]
+      "password": [ 2, 1, 7, 7, 0, 2, 6, 0 ],
+      "description": {
+        "symbol": "gDescription_JamBreedingMachine",
+        "pages": [
+          "A magical device able to create life in the form of slimes.",
+          "It summons a Change Slime to the user's side of the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_JamBreedingMachine",
+        "pages": [
+          "Summons Change Slime."
+        ]
+      }
     },
     {
       "card_const": "OBELISK_THE_TORMENTOR",

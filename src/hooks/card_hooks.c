@@ -17,6 +17,7 @@ extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
+extern s8 gE0CFF4[];
 u32 GetDuelistLevel(void);
 extern u8 *g8E0CD10;
 extern struct {
@@ -297,6 +298,15 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);
+}
+
+LYN_REPLACE_CHECK(GetSpellType);
+int GetSpellType__Replacement(u16 cardId) {
+  SetCardInfo(cardId);
+  if (cardId == JAM_BREEDING_MACHINE)
+    return SPELL_TYPE_NORMAL;
+
+  return gE0CFF4[gCardInfo.spellEffect];
 }
 
 LYN_REPLACE_CHECK(ScalePriceToQty);
