@@ -16,7 +16,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .dynamic_card_shop_and_trunk_sorting = FALSE, // Needs more work
     .dynamic_card_shop_costs = TRUE,
     .faster_walking_speed = 2,
-    .start_shop_with_one_copy_of_every_card = FALSE,
+    .start_shop_with_one_copy_of_every_card = TRUE,
     .start_with_three_copies_of_every_card = TRUE,
     .randomize_card_costs_at_start = FALSE,
     .enable_custom_cards_past_800 = FALSE,
@@ -30,5 +30,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
-    .card_in_hand = GODDESS_OF_WHIM
+    .card_in_hand = GIANT_GERM
 };

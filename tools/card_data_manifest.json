@@ -2856,12 +2856,26 @@
       "attribute": "ATTRIBUTE_SHADOW",
       "level": 2,
       "type": "TYPE_FIEND",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Giant Germ",
-      "password": [ 9, 5, 1, 7, 8, 9, 9, 4 ]
+      "password": [ 9, 5, 1, 7, 8, 9, 9, 4 ],
+      "description": {
+        "symbol": "gDescription_GiantGerm",
+        "pages": [
+          "A terrifying germ that has an extremely high level of toxicity.",
+          "When in the graveyard it deals 500LP of damage to the opponent.",
+          "It is then removed from the graveyard."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GiantGerm",
+        "pages": [
+          "500LP of damage will be caused to the opponent."
+        ]
+      }
     },
     {
       "card_const": "FUSIONIST",

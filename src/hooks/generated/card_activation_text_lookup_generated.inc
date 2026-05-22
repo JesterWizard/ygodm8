@@ -4,6 +4,7 @@ typedef struct {
 } CardActivationTextEntry;
 
 static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA = {
+  { GIANT_GERM, gActivationDescription_GiantGerm },
   { SPARKS, gActivationDescription_Sparks },
   { HINOTAMA, gActivationDescription_Hinotama },
   { FINAL_FLAME, gActivationDescription_FinalFlame },
