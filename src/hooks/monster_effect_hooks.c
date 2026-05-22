@@ -15,6 +15,7 @@ void ActivateMaskOfDarknessEffect(void);
 void ActivatePrincessOfTsurugiEffect(void);
 unsigned char CanActivateNeedleBall(void);
 void ActivateNeedleBallEffect(void);
+void ActivateNeedleWormEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -52,6 +53,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gMonEffect.id == NEEDLE_BALL) {
     ActivateNeedleBallEffect();
+    return;
+  }
+
+  if (gMonEffect.id == NEEDLE_WORM) {
+    ActivateNeedleWormEffect();
     return;
   }
 
@@ -107,7 +113,7 @@ void MonsterActionMenu__Replacement(void) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != NEEDLE_WORM) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

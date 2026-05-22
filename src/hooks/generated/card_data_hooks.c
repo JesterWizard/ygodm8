@@ -7342,11 +7342,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_FOREST,
     .level = 2,
     .type = TYPE_INSECT,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {8, 1, 8, 4, 3, 6, 2, 8},
+    .description = gDescription_NeedleWorm,
   },
   [0x0233] = {
     .atk = 1600,

@@ -8626,12 +8626,25 @@
       "attribute": "ATTRIBUTE_FOREST",
       "level": 2,
       "type": "TYPE_INSECT",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Needle Worm",
-      "password": [ 8, 1, 8, 4, 3, 6, 2, 8 ]
+      "password": [ 8, 1, 8, 4, 3, 6, 2, 8 ],
+      "description": {
+        "symbol": "gDescription_NeedleWorm",
+        "pages": [
+          "An insect larva that has three sharp steel spikes on its head.",
+          "It can remove 5 cards from the opponent's deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_NeedleWorm",
+        "pages": [
+          "5 cards will be removed from the opponent's deck."
+        ]
+      }
     },
     {
       "card_const": "KINGS_KNIGHT",
