@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64304, map_11_state_01_08E64304, 0x08E64310, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E64310, map_11_state_01_08E64310, 0x08F04040, 0x08F04040)
-  PLAY_MUSIC(7)
+  PLAY_MUSIC(MUSIC_BACK_ALLEY)
   TEXT("Dagnabbit! You tricked me!\n\nI'm only here because I\nheard that all the tough\n\nduelists were somewhere\nelse.\n\nYou're supposed to be on the\nDuel Express, not dueling\n\nme!\n\n")
   SET_FLAG(EVENT_FLAG_DEFEATED_AMBUSHER)
   FALLTHROUGH()

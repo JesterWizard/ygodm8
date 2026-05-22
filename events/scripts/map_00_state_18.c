@@ -26,7 +26,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A54, map_00_state_18_08E34A54, 0x08E34A60, 0x08F
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
-  PLAY_MUSIC(8)
+  PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("But we cannot worry about\nthat now. Time is of the\n\nessence.\n\nThe second Millennium Item\nmust be found...\n\nSo that we can restore the\nEgyptian God Cards.\n\nThat is the only way we can\ndefeat Sol Chevalsky...\n\nAnd imprison Reshef the Dark\nBeing again.\n\n{PLAYER}, please find the\nnext Millennium Item.\n\n")
   FALLTHROUGH()

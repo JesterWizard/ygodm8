@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
-  PLAY_MUSIC(8)
+  PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("It is always important to\nrelax and take a step away\n\nfrom your main mission.\n\nFor the road of destiny is\nnot a straight path.\n\nThere are many side roads\nand streets that you can\n\nwander along.\n\nThe more roads you take, the\nmore you will see of the\n\nworld, and the more you will\nlearn.\n\nHowever, Reshef is gaining\npower far faster than\n\nexpected.\n\nWe must return to the main\npath. Hurry and resurrect\n\nthe Egyptian God Cards.\n\nThe last Egyptian God Card\nremaining is The Winged\n\nDragon of Ra.\n\nIn order to restore the\nfinal Egyptian God Card\n\nfrom stone...\n\nPlease hurry and obtain the\nnext Millennium Item.\n\nThe next Millennium Item\nis.")
   DELAY(43)

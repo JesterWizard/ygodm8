@@ -23,7 +23,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34B2C, map_00_state_05_08E34B2C, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
-  PLAY_MUSIC(8)
+  PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT("Bandit Keith is also\nsearching for the\n\nMillennium Items...\n\nI am afraid that he\ncomplicates matters\n\ngreatly.\n\nOur need for urgency has\nincreased.\n\nReshef the Dark Being is\ninsidious.\n\nHe exploits the weaknesses\nin the souls of duelists.\n\nI hope that Bandit Keith\ndoes not succumb to his\n\npower...\n\nFortunately, Bandit Keith\ndid not find the Millennium\n\nRing.\n\nThat is a ray of hope among\nall this darkness.\n\nFour Millennium Items\nremain...\n\nAnd the next one is in.")
   DELAY(43)
