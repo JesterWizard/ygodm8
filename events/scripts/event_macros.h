@@ -29,8 +29,8 @@
 #define DUEL(opponent)
 #define PLAY_MUSIC(music)
 #define SET_MAP_MUSIC(music)
-#define STOP_MUSIC(music)
-#define FADE_MUSIC(music)
+#define STOP_MUSIC(speed)
+#define FADE_MUSIC(speed)
 #define START_MENU()
 #define SAVE()
 #define MOVE_OBJECT(object_id, direction, distance, wander) // distance is measured in pixels
@@ -56,7 +56,7 @@
 #define FALLTHROUGH()
 #define END()
 
-#define FADE_MUSIC(speed) COMMAND_7C_ARG(2, speed)
+#define SCREEN_SHAKE(speed) COMMAND_7C_ARG(7, speed)
 #define SHOW_OVERWORLD_GRAPHIC(graphic_id) COMMAND_7C_ARG(8, graphic_id)
 
 #endif
