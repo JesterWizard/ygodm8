@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `12` effects
+- `13` effects
 
 ## Tally
 
@@ -20,6 +20,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Cyber Stein` | `src/hooks/activated_effects/cyber_stein.c` |
 | `activated_effects` | `Goddess Of Whim` | `src/hooks/activated_effects/goddess_of_whim.c` |
 | `activated_effects` | `Giant Germ` | `src/hooks/activated_effects/giant_germ.c` |
+| `activated_effects` | `Mask Of Darkness` | `src/hooks/activated_effects/mask_of_darkness.c` |
 | `permanent_effects` | `Milus Radiant` | `src/hooks/permanent_effects/milus_radiant.c` |
 
 ## Notes

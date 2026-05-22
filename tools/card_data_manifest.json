@@ -1559,12 +1559,25 @@
       "attribute": "ATTRIBUTE_SHADOW",
       "level": 2,
       "type": "TYPE_FIEND",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Mask of Darkness",
-      "password": [ 2, 8, 9, 3, 3, 7, 3, 4 ]
+      "password": [ 2, 8, 9, 3, 3, 7, 3, 4 ],
+      "description": {
+        "symbol": "gDescription_MaskOfDarkness",
+        "pages": [
+          "An animated mask created by a magician using dark powers",
+          "It can place a bear trap card on the user's side of the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MaskOfDarkness",
+        "pages": [
+          "A Bear Trap will be placed on the user's side of the field."
+        ]
+      }
     },
     {
       "card_const": "BARON_OF_THE_FIEND_SWORD",

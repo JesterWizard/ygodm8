@@ -1347,11 +1347,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_SHADOW,
     .level = 2,
     .type = TYPE_FIEND,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {2, 8, 9, 3, 3, 7, 3, 4},
+    .description = gDescription_MaskOfDarkness,
   },
   [0x0067] = {
     .atk = 1550,

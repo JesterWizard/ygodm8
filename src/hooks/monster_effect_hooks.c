@@ -11,6 +11,7 @@ void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
 void ActivateGoddessOfWhimEffect(void);
+void ActivateMaskOfDarknessEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -46,6 +47,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_GODDESS_OF_WHIM) {
     ActivateGoddessOfWhimEffect();
+    return;
+  }
+
+  if (gMonEffect.id == MASK_OF_DARKNESS) {
+    ActivateMaskOfDarknessEffect();
     return;
   }
 
@@ -86,7 +92,7 @@ void MonsterActionMenu__Replacement(void) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if (gCardInfo.monsterEffect == MONSTER_EFFECT_NONE || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();
