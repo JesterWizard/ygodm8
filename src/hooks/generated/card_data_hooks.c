@@ -6403,11 +6403,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_FIEND,
     .level = 2,
     .type = TYPE_FIEND,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {9, 4, 2, 3, 0, 2, 2, 4},
+    .description = gDescription_NeedleBall,
   },
   [0x01EB] = {
     .atk = 1700,

@@ -13,6 +13,8 @@ void CheckWinConditionExodia(void);
 void ActivateGoddessOfWhimEffect(void);
 void ActivateMaskOfDarknessEffect(void);
 void ActivatePrincessOfTsurugiEffect(void);
+unsigned char CanActivateNeedleBall(void);
+void ActivateNeedleBallEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -21,6 +23,8 @@ unsigned char CanActivateMonsterEffect(void) {
     case MONSTER_EFFECT_CYBER_STEIN:
       return CanActivateCyberStein();
     default:
+      if (gMonEffect.id == NEEDLE_BALL)
+        return CanActivateNeedleBall();
       return TRUE;
   }
 }
@@ -43,6 +47,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_STEIN) {
     EffectCyberStein();
+    return;
+  }
+
+  if (gMonEffect.id == NEEDLE_BALL) {
+    ActivateNeedleBallEffect();
     return;
   }
 
@@ -98,7 +107,7 @@ void MonsterActionMenu__Replacement(void) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

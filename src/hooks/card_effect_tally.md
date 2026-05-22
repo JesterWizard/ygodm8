@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `15` effects
+- `16` effects
 
 ## Tally
 
@@ -18,6 +18,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Injection Fairy Lily` | `src/hooks/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Cyber Jar` | `src/hooks/activated_effects/cyber_jar.c` |
 | `activated_effects` | `Cyber Stein` | `src/hooks/activated_effects/cyber_stein.c` |
+| `activated_effects` | `Needle Ball` | `src/hooks/activated_effects/needle_ball.c` |
 | `activated_effects` | `Goddess Of Whim` | `src/hooks/activated_effects/goddess_of_whim.c` |
 | `activated_effects` | `Giant Germ` | `src/hooks/activated_effects/giant_germ.c` |
 | `activated_effects` | `Mask Of Darkness` | `src/hooks/activated_effects/mask_of_darkness.c` |

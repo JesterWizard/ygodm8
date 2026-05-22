@@ -13,6 +13,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { FINAL_FLAME, gActivationDescription_FinalFlame },
   { OOKAZI, gActivationDescription_Ookazi },
   { GODDESS_OF_WHIM, gActivationDescription_GoddessOfWhim },
+  { NEEDLE_BALL, gActivationDescription_NeedleBall },
   { CARD_OF_SANCTITY, gActivationDescription_CardOfSanctity },
   { SHIELD_AND_SWORD, gActivationDescription_ShieldAndSword },
 };

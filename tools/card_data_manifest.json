@@ -7519,12 +7519,25 @@
       "attribute": "ATTRIBUTE_FIEND",
       "level": 2,
       "type": "TYPE_FIEND",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Needle Ball",
-      "password": [ 9, 4, 2, 3, 0, 2, 2, 4 ]
+      "password": [ 9, 4, 2, 3, 0, 2, 2, 4 ],
+      "description": {
+        "symbol": "gDescription_NeedleBall",
+        "pages": [
+          "A ball-like fiend that is fully studded with sharp needles.",
+          "It can deal 1000LP of damage in exchange for 2000LP."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_NeedleBall",
+        "pages": [
+          "1000LP of damage will be dealt to the opponent at a 2000LP cost."
+        ]
+      }
     },
     {
       "card_const": "PEACOCK",
