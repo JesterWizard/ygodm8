@@ -465,6 +465,7 @@ void RenderNextTextToken (struct DuelTextbox* textbox) {
         else switch (textbox->textBuffer[textbox->textCursor]) {
           case ' ': case '!': case '"': case '%': case '\'':
             case ',': case '-': case '.': case ':': case ';': case '?':
+            case '0' ... '9':
             case 'A' ... 'Z': case 'a' ... 'z':
                 r3 = gUnk_8E00E30[textbox->textBuffer[textbox->textCursor] - ' '][1];
                 r3 <<= 8;

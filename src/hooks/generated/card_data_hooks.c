@@ -5610,6 +5610,7 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {6, 7, 9, 5, 9, 1, 8, 0},
+    .description = gDescription_GoddessOfWhim,
   },
   [0x01AE] = {
     .atk = 1200,

@@ -554,6 +554,43 @@ def wrap_page(text: str) -> list[str]:
     return lines
 
 
+def wrap_activation_lines(text: str) -> list[str]:
+    width = 27
+    words = re.findall(r"#\d+|[^\s#]+", text)
+    lines = []
+
+    word_index = 0
+    while word_index < len(words):
+        line_parts = []
+        visible_len = 0
+        last_was_control = False
+
+        while word_index < len(words):
+            word = words[word_index]
+            is_control = re.fullmatch(r"#\d+", word) is not None
+            word_len = 0 if is_control else len(word)
+            gap = 0 if not line_parts or last_was_control or is_control else 1
+            next_len = visible_len + gap + word_len
+
+            if not is_control and next_len > width:
+                break
+
+            if not is_control and line_parts and not last_was_control:
+                line_parts.append(" ")
+                visible_len += 1
+
+            line_parts.append(word)
+            visible_len += word_len
+            last_was_control = is_control
+            word_index += 1
+
+        if not line_parts:
+            raise SystemExit(f"Could not fit activation text into width {width}.")
+        lines.append("".join(line_parts))
+
+    return lines
+
+
 def normalize_activation_page(text: str) -> str:
     normalized = text.replace("\\n", "\n").replace("\r\n", "\n").replace("\r", "\n")
     lines = [line.strip() for line in normalized.split("\n")]
@@ -564,11 +601,15 @@ def normalize_activation_page(text: str) -> str:
     return "#0".join(lines)
 
 
-def encode_activation_page(text: str) -> str:
+def wrap_activation_page(text: str) -> str:
     normalized = normalize_activation_page(text)
-    if normalized.endswith("#1"):
-        normalized = normalized[:-2].rstrip()
-    return normalized
+    lines = []
+    for line in normalized.split("#0"):
+        if line:
+            lines.extend(wrap_activation_lines(line))
+        else:
+            lines.append("")
+    return "#0".join(lines)
 
 
 def wrap_description_page(text: str) -> list[str]:
@@ -643,14 +684,10 @@ def render_activation_description_inc(manifest: dict) -> str:
             continue
         symbol = activation_description["symbol"]
         pages = activation_description["pages"]
-        payload = [f"^{len(pages) + 1}"]
-        payload.append(encode_activation_page(intro_page))
-        payload.append("#1")
-        payload.append("^")
+        payload = [wrap_activation_page(intro_page), "#1"]
         for page in pages:
-            payload.append(encode_activation_page(page))
+            payload.append(wrap_activation_page(page))
             payload.append("#1")
-            payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
         lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
         for i in range(0, len(data), 12):

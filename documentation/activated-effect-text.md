@@ -40,7 +40,7 @@ src/hooks/effect_text_hooks.c
 How the data flows:
 
 1. Add or edit a card's `activation_description` block in `tools/card_data_manifest.json`.
-2. `tools/add_card_art.py` reads the `pages` array and wraps it into the in-game text format.
+2. `tools/add_card_art.py` reads the `pages` array and wraps it into duel-text bytes with `#1` waits between pages.
 3. The generator writes `src/hooks/generated/card_activation_text_generated.inc`.
 4. `src/hooks/effect_text_hooks.c` includes the generated file and passes the bytes to the effect-text renderer.
 
@@ -74,4 +74,6 @@ The current in-repo example is `Card Of Sanctity`.
 
 - Only `Card Of Sanctity` currently uses custom activation text in runtime code.
 - The generated include is a build artifact and should not be edited by hand.
+- Activation text is emitted as plain duel text; it does not use the card-description `^n` header or leading padding.
+- Activation text is word-wrapped at 27 columns and words are moved whole to the next line when they do not fit.
 - If the manifest text does not fit the renderer's expected layout, the generator will fail and the wording must be shortened.

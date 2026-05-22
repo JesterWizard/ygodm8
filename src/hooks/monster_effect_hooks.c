@@ -10,6 +10,7 @@ unsigned char HandlePlayerMonsterAction(void);
 void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
+void ActivateGoddessOfWhimEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -40,6 +41,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_STEIN) {
     EffectCyberStein();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_GODDESS_OF_WHIM) {
+    ActivateGoddessOfWhimEffect();
     return;
   }
 

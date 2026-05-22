@@ -5200,6 +5200,12 @@
           "It inflicts 200LP damage directly on the opponent."
         ]
       },
+      "activation_description": {
+        "symbol": "gActivationDescription_Sparks",
+        "pages": [
+          "The opponent will take 200LP of damage."
+        ]
+      },
       "password": [ 7, 6, 1, 0, 3, 6, 7, 5 ]
     },
     {
@@ -5220,6 +5226,12 @@
         "pages": [
           "An attacking spell card that strikes the foe with fireballs",
           "It inflicts 500LP damage directly on the opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Hinotama",
+        "pages": [
+          "The opponent will take 500LP of damage."
         ]
       },
       "password": [ 4, 6, 1, 3, 0, 3, 4, 6 ]
@@ -5244,6 +5256,12 @@
           "It inflicts 600LP damage directly on the opponent."
         ]
       },
+      "activation_description": {
+        "symbol": "gActivationDescription_FinalFlame",
+        "pages": [
+          "The opponent will take 600LP of damage."
+        ]
+      },
       "password": [ 7, 3, 1, 3, 4, 0, 8, 1 ]
     },
     {
@@ -5264,6 +5282,12 @@
         "pages": [
           "A spell card that ignites a huge blaze that burns all day.",
           "It inflicts 800LP damage directly on the opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Ookazi",
+        "pages": [
+          "The opponent will take 800LP of damage."
         ]
       },
       "password": [ 1, 9, 5, 2, 3, 7, 9, 9 ]
@@ -6518,7 +6542,20 @@
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Goddess of Whim",
-      "password": [ 6, 7, 9, 5, 9, 1, 8, 0 ]
+      "password": [ 6, 7, 9, 5, 9, 1, 8, 0 ],
+      "description": {
+        "symbol": "gDescription_GoddessOfWhim",
+        "pages": [
+          "A goddess who is known for her unpredictably fickle ways.",
+          "In return for 500LP she can draw a card from the deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GoddessOfWhim",
+        "pages": [
+          "500LP will be exchanged to draw a card from the deck."
+        ]
+      }
     },
     {
       "card_const": "GRADIUS",
@@ -12295,7 +12332,7 @@
       "big_palette": "src/hooks/assets/cards/80x80/card_of_sanctity.gbapal",
       "mini_art": "src/hooks/assets/cards/24x24/card_of_sanctity.lz"
     },
-{
+    {
       "card_const": "SHIELD_AND_SWORD",
       "atk": 65535,
       "def": 65535,

@@ -8,6 +8,7 @@ description: "Use when editing vanilla functions in this repo. Keep vanilla sour
 When a request involves changing a vanilla function in this repo, make the change in a hook-side replacement function under `src/hooks`.
 
 The vanilla function should stay intact unless the user explicitly asks to change the original symbol itself.
+If the request is for card-specific effect logic, do not implement the effect body in vanilla source; use the card-effect hook placement skill and keep the behavior in `src/hooks/spell_effects`, `src/hooks/trap_effects`, `src/hooks/activated_effects`, or `src/hooks/permanent_effects`.
 
 ## Use This Skill When
 
