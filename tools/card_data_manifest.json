@@ -7909,12 +7909,19 @@
       "attribute": "ATTRIBUTE_EARTH",
       "level": 2,
       "type": "TYPE_ROCK",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Muka Muka",
-      "password": [ 4, 6, 6, 5, 7, 3, 3, 7 ]
+      "password": [ 4, 6, 6, 5, 7, 3, 3, 7 ],
+      "description": {
+        "symbol": "gDescription_MukaMuka",
+        "pages": [
+          "An annnoying bug that sends foes into huge rages.",
+          "It powers up a stage for every two cards in the user's hand."
+        ]
+      }
     },
     {
       "card_const": "ZOMBYRA_THE_DARK",

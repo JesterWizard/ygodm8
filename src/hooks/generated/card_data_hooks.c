@@ -6741,11 +6741,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_EARTH,
     .level = 2,
     .type = TYPE_ROCK,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {4, 6, 6, 5, 7, 3, 3, 7},
+    .description = gDescription_MukaMuka,
   },
   [0x0205] = {
     .atk = 2100,

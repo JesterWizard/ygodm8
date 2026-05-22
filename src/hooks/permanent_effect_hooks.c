@@ -25,12 +25,19 @@ typedef struct {
 
 unsigned char ShouldActivateMilusRadiant(void);
 void ActivateMilusRadiant(void);
+unsigned char ShouldActivateMukaMuka(void);
+void ActivateMukaMuka(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
     .shouldActivate = ShouldActivateMilusRadiant,
     .activate = ActivateMilusRadiant,
+  },
+  {
+    .cardId = MUKA_MUKA,
+    .shouldActivate = ShouldActivateMukaMuka,
+    .activate = ActivateMukaMuka,
   },
 };
 
