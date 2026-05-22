@@ -56,4 +56,7 @@
 #define FALLTHROUGH()
 #define END()
 
+#define FADE_MUSIC(speed) COMMAND_7C_ARG(2, speed)
+#define SHOW_OVERWORLD_GRAPHIC(graphic_id) COMMAND_7C_ARG(8, graphic_id)
+
 #endif

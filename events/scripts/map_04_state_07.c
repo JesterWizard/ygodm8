@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D1D4, map_04_state_07_08E4D1D4, 0x08F04040, 0x08F
       "I hope they come back\n"
       "safely.\n\n"
   )
-  COMMAND_7C_ARG(2, 8)
+  FADE_MUSIC(8)
   FADE_SCREEN(8)
   WARP(1, 7, 0, 0)
   FALLTHROUGH()

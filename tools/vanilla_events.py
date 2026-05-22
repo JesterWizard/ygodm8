@@ -1170,6 +1170,9 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
             elif name == "COMMAND_7C_ARG":
                 need_args(name, args, 2)
                 current.raw_bytes.extend([0x7C, ord("0") + parse_c_value(args[0]), parse_c_value(args[1]) & 0xFF])
+            elif name in {"SHOW_OVERWORLD_GRAPHIC", "SHOW_LARGE_GRAPHIC"}:
+                need_args(name, args, 1)
+                current.raw_bytes.extend([0x7C, ord("8"), parse_c_value(args[0]) & 0xFF])
             elif name == "FALLTHROUGH":
                 need_args(name, args, 0)
                 current.raw_bytes.append(0)
@@ -1530,7 +1533,11 @@ def step_macro(step: dict[str, Any]) -> str:
     elif kind == "end":
         macro = exact("END", [], [0x5D])
     elif isinstance(kind, str) and kind.startswith("command_7c_") and len(raw) == 3:
-        macro = exact("COMMAND_7C_ARG", [raw[1] - ord("0"), raw[2]], raw)
+        command = raw[1] - ord("0")
+        if command == 8:
+            macro = exact("SHOW_OVERWORLD_GRAPHIC", [raw[2]], raw)
+        else:
+            macro = exact("COMMAND_7C_ARG", [command, raw[2]], raw)
     return macro or raw_macro(step.get("raw", []))
 
 
