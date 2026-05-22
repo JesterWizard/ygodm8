@@ -18,31 +18,52 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9D70, map_42_state_01_08ED9D70, 0x08ED9D7C, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_403)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Nihihi... I commend you on\ncoming this far.\n\n")
+  TEXT
+  (
+      "Nihihi... I commend you on\n"
+      "coming this far.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 98)
   DELAY(16)
   PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Gehehehehe...\n\nBut you're not going any\nfarther. We won't let you!\n\n")
+  TEXT
+  (
+      "Gehehehehe...\n\n"
+      "But you're not going any\n"
+      "farther. We won't let you!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_X(2, 68)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Hah! In your dreams! We'll\ntake you on!\n\n")
+  TEXT
+  (
+      "Hah! In your dreams! We'll\n"
+      "take you on!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{PLAYER}, pick who you want\nto duel!\n\n")
+  TEXT
+  (
+      "{PLAYER}, pick who you want\n"
+      "to duel!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9D7C, map_42_state_01_08ED9D7C, 0x08ED9D88, 0x08ED9D94)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}PaniK\nMimic of Doom{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}PaniK\n"
+      "Mimic of Doom{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -66,11 +87,22 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08ED9DB8, map_42_state_01_08ED9DB8, 0x08ED9DC4, 0x08F04040)
   PLAY_MUSIC(MUSIC_403)
   PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I... I lost again?!\n\n")
+  TEXT
+  (
+      "I... I lost again?!\n\n"
+  )
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("H-how dare you... But how\nwill you deal with this?\n\n")
+  TEXT
+  (
+      "H-how dare you... But how\n"
+      "will you deal with this?\n\n"
+  )
   PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Gehehehehe! We'll duel until\nI win!\n\n")
+  TEXT
+  (
+      "Gehehehehe! We'll duel until\n"
+      "I win!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 92)
@@ -79,7 +111,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9DB8, map_42_state_01_08ED9DB8, 0x08ED9DC4, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Forget it, you lowlifes!\n\nYou're not going to waste\n{PLAYER} and Yugi's time!\n\n")
+  TEXT
+  (
+      "Forget it, you lowlifes!\n\n"
+      "You're not going to waste\n"
+      "{PLAYER} and Yugi's time!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -90,24 +127,44 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9DC4, map_42_state_01_08ED9DC4, 0x08ED9DD0, 0x08F
   REACTION(REACTION_ELLIPSIS, OBJECT_2)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Let me handle this!\n{PLAYER}, you keep going!\n\n")
+  TEXT
+  (
+      "Let me handle this!\n"
+      "{PLAYER}, you keep going!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9DD0, map_42_state_01_08ED9DD0, 0x08ED9DDC, 0x08ED9DE8)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}By yourself?\nI'm counting on you!{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}By yourself?\n"
+      "I'm counting on you!{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9DDC, map_42_state_01_08ED9DDC, 0x08ED9DF4, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Heh, I know I'm in over my\nhead!\n\n")
+  TEXT
+  (
+      "Heh, I know I'm in over my\n"
+      "head!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9DF4, map_42_state_01_08ED9DF4, 0x08ED9E00, 0x08F04040)
-  TEXT("I don't have any Egyptian\nGod Cards...\n\nThat's why you have to keep\ngoing, {PLAYER}!\n\nMake sure you take down\nPegasus!\n\n")
+  TEXT
+  (
+      "I don't have any Egyptian\n"
+      "God Cards...\n\n"
+      "That's why you have to keep\n"
+      "going, {PLAYER}!\n\n"
+      "Make sure you take down\n"
+      "Pegasus!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 92)
@@ -115,11 +172,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9DF4, map_42_state_01_08ED9DF4, 0x08ED9E00, 0x08F
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Nihihihi...\n\nA scrub is challenging me?\nHow amusing!\n\n")
+  TEXT
+  (
+      "Nihihihi...\n\n"
+      "A scrub is challenging me?\n"
+      "How amusing!\n\n"
+  )
   PORTRAIT(PORTRAIT_MIMIC_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Gehehehehe...\n\nYou think you can beat the\ntwo of us by yourself?\n\nDon't make me laugh!\nGehehehehe!\n\n")
+  TEXT
+  (
+      "Gehehehehe...\n\n"
+      "You think you can beat the\n"
+      "two of us by yourself?\n\n"
+      "Don't make me laugh!\n"
+      "Gehehehehe!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("You two are all talk! Why\ndon't ya shut your mouths\n\nand duel!\n\n")
+  TEXT
+  (
+      "You two are all talk! Why\n"
+      "don't ya shut your mouths\n\n"
+      "and duel!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -146,7 +220,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E00, map_42_state_01_08ED9E00, 0x08ED9E0C, 0x08F
   SLIDE_OBJECT(2, 3, 4)
   DELAY(22)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Th-this guy... He's pretty\ngood.\n\nBut I can't lose! I refuse\nto lose!\n\n{PLAYER}, what are you\nwaiting for? Go on!\n\n")
+  TEXT
+  (
+      "Th-this guy... He's pretty\n"
+      "good.\n\n"
+      "But I can't lose! I refuse\n"
+      "to lose!\n\n"
+      "{PLAYER}, what are you\n"
+      "waiting for? Go on!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -182,7 +264,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E0C, map_42_state_01_08ED9E0C, 0x08F04040, 0x08F
   REACTION(REACTION_ELLIPSIS, OBJECT_13)
   DELAY(32)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...Let's go, {PLAYER}.\n\n")
+  TEXT
+  (
+      "...Let's go, {PLAYER}.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_PANIK_AND_MIMIC_OF_DOOM2)
   SET_FLAG(EVENT_FLAG_JOEY_LEFT_THE_PARTY)
   FALLTHROUGH()
@@ -190,19 +275,29 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9DE8, map_42_state_01_08ED9DE8, 0x08ED9DF4, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Yeah, leave it to me,\n{PLAYER}.\n\n")
+  TEXT
+  (
+      "Yeah, leave it to me,\n"
+      "{PLAYER}.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED9E18, map_42_state_01_08ED9E18, 0x08ED9E30, 0x08ED9E3C)
   PLAY_MUSIC(MUSIC_403)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Let's do this, Red-Eyes!\n\n")
+  TEXT
+  (
+      "Let's do this, Red-Eyes!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 7)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Inferno Fire Blast!\n\n")
+  TEXT
+  (
+      "Inferno Fire Blast!\n\n"
+  )
   PLAY_MUSIC(MUSIC_389)
   COMMAND_7C_ARG(8, 39)
   DELAY(16)
@@ -212,7 +307,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E18, map_42_state_01_08ED9E18, 0x08ED9E30, 0x08E
   MOVE_OBJECT(3, DIRECTION_LEFT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Tsk... This garbage can't\nstop me...\n\n")
+  TEXT
+  (
+      "Tsk... This garbage can't\n"
+      "stop me...\n\n"
+  )
   PLAY_MUSIC(MUSIC_332)
   COMMAND_7C_ARG(2, 4)
   FADE_SCREEN(4)
@@ -252,12 +351,18 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08ED9E24, map_42_state_01_08ED9E24, 0x08ED9E30, 0x08ED9E3C)
   PLAY_MUSIC(MUSIC_403)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Let's do this, Red-Eyes!\n\n")
+  TEXT
+  (
+      "Let's do this, Red-Eyes!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 7)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT("Inferno Fire Blast!\n\n")
+  TEXT
+  (
+      "Inferno Fire Blast!\n\n"
+  )
   PLAY_MUSIC(MUSIC_389)
   COMMAND_7C_ARG(8, 39)
   DELAY(16)
@@ -267,7 +372,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E24, map_42_state_01_08ED9E24, 0x08ED9E30, 0x08E
   MOVE_OBJECT(1, DIRECTION_LEFT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Tsk... This garbage can't\nstop me...\n\n")
+  TEXT
+  (
+      "Tsk... This garbage can't\n"
+      "stop me...\n\n"
+  )
   PLAY_MUSIC(MUSIC_332)
   COMMAND_7C_ARG(2, 4)
   FADE_SCREEN(4)

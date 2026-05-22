@@ -21,12 +21,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Uki!\n\n")
+  TEXT
+  (
+      "Uki!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Uki!\n\n")
+  TEXT
+  (
+      "Uki!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 48)
@@ -36,12 +42,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Ukiki!\n\n")
+  TEXT
+  (
+      "Ukiki!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Ukiki!\n\n")
+  TEXT
+  (
+      "Ukiki!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 36)
@@ -51,12 +63,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_327)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_LEFT)
-  TEXT("Uki uki ukikki!\n\n")
+  TEXT
+  (
+      "Uki uki ukikki!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_LEFT)
-  TEXT("Ukiiiii!\n\n")
+  TEXT
+  (
+      "Ukiiiii!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(4, 20)
@@ -73,9 +91,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   REACTION(REACTION_SWEATDROP, OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("Look at all the monkey\nrobots...\n\n")
+  TEXT
+  (
+      "Look at all the monkey\n"
+      "robots...\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("It's impossible to tell\nwhich one is Tristan!\n\n")
+  TEXT
+  (
+      "It's impossible to tell\n"
+      "which one is Tristan!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -92,7 +118,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_327)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_LEFT)
-  TEXT("Uki! Uki! Ukiiii!\n\n")
+  TEXT
+  (
+      "Uki! Uki! Ukiiii!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
@@ -115,7 +144,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16E8, map_38_state_03_08ED16E8, 0x08ED16F4, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_324)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_LEFT)
-  TEXT("Ukikikki!\n\n")
+  TEXT
+  (
+      "Ukikikki!\n\n"
+  )
   DUEL(126)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -124,39 +156,76 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16F4, map_38_state_03_08ED16F4, 0x08ED1700, 0x08E
   PLAY_MUSIC(MUSIC_247)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_LEFT)
-  TEXT("Ukiiiii...\n\n")
+  TEXT
+  (
+      "Ukiiiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("I get it! The monkeys think\nwe're stealing their\n\nbananas.\n\nThat's why they're\nchallenging us to duel.\n\n")
+  TEXT
+  (
+      "I get it! The monkeys think\n"
+      "we're stealing their\n\n"
+      "bananas.\n\n"
+      "That's why they're\n"
+      "challenging us to duel.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("These monkey robots can\nduel?\n\n")
+  TEXT
+  (
+      "These monkey robots can\n"
+      "duel?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("I've got it, {PLAYER}!\n\nI know how we can find out\nwhich one is Tristan!\n\n")
+  TEXT
+  (
+      "I've got it, {PLAYER}!\n\n"
+      "I know how we can find out\n"
+      "which one is Tristan!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Tristan is a total amateur\nwhen it comes to dueling.\n\nSo all we need to do is duel\nthese monkey robots.\n\nThe weakest one is Tristan!\n\n")
+  TEXT
+  (
+      "Tristan is a total amateur\n"
+      "when it comes to dueling.\n\n"
+      "So all we need to do is duel\n"
+      "these monkey robots.\n\n"
+      "The weakest one is Tristan!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{CARD_1}Exactly!\nThat won't work...{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Exactly!\n"
+      "That won't work...{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED1700, map_38_state_03_08ED1700, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yeah, I'm usin' my noodle!\n\n")
+  TEXT
+  (
+      "Yeah, I'm usin' my noodle!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's try dueling them,\n{PLAYER}.\n\n")
+  TEXT
+  (
+      "Let's try dueling them,\n"
+      "{PLAYER}.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_FIRST_MONKEY_ROBOT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -167,7 +236,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED170C, map_38_state_03_08ED170C, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I don't think there's any\nother way to tell them\n\napart.\n\nLet's try dueling them,\n{PLAYER}.\n\n")
+  TEXT
+  (
+      "I don't think there's any\n"
+      "other way to tell them\n\n"
+      "apart.\n\n"
+      "Let's try dueling them,\n"
+      "{PLAYER}.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_FIRST_MONKEY_ROBOT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -176,9 +252,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1718, map_38_state_03_08ED1718, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_247)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukiii...\n\n")
+  TEXT
+  (
+      "Ukiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This one's too strong to be\nTristan. It's not him.\n\n")
+  TEXT
+  (
+      "This one's too strong to be\n"
+      "Tristan. It's not him.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -194,7 +277,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1730, map_38_state_03_08ED1730, 0x08ED173C, 0x08F
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_327)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukki! Ukki! Ukiii!\n\n")
+  TEXT
+  (
+      "Ukki! Ukki! Ukiii!\n\n"
+  )
   DUEL(127)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -203,9 +289,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED173C, map_38_state_03_08ED173C, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_247)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukiii...\n\n")
+  TEXT
+  (
+      "Ukiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This one's way tougher than\nTristan.\n\nLet's challenge another one.\n\n")
+  TEXT
+  (
+      "This one's way tougher than\n"
+      "Tristan.\n\n"
+      "Let's challenge another one.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_RIGHT_MONKEY_ROBOT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -222,7 +316,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1754, map_38_state_03_08ED1754, 0x08ED1760, 0x08F
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_327)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukki! Ukki!\nUkiii!\n\n")
+  TEXT
+  (
+      "Ukki! Ukki!\n"
+      "Ukiii!\n\n"
+  )
   DUEL(128)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -231,19 +329,34 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1760, map_38_state_03_08ED1760, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_247)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukiii...\n\n")
+  TEXT
+  (
+      "Ukiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This one's still too strong\nto be Tristan.\n\nTry challenging another one.\n\n")
+  TEXT
+  (
+      "This one's still too strong\n"
+      "to be Tristan.\n\n"
+      "Try challenging another one.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_LEFT_MONKEY_ROBOT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED1784, map_38_state_03_08ED1784, 0x08F04040, 0x08F04040)
-  TEXT("This is a banana!\n\n")
+  TEXT
+  (
+      "This is a banana!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED1790, map_38_state_03_08ED1790, 0x08F04040, 0x08F04040)
-  TEXT("Sorry, you can't duel a\nbanana!\n\n")
+  TEXT
+  (
+      "Sorry, you can't duel a\n"
+      "banana!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

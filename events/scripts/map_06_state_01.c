@@ -9,13 +9,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBB8, map_06_state_01_08E5CBB8, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_LUCKY)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yo, {PLAYER}!\n\nI heard from Tea. I know you\ncan win!\n\n")
+  TEXT
+  (
+      "Yo, {PLAYER}!\n\n"
+      "I heard from Tea. I know you\n"
+      "can win!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBC4, map_06_state_01_08E5CBC4, 0x08E5CBD0, 0x08F0404C)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You want to duel me?\n\nSure thing! Let's duel!\n\n")
+  TEXT
+  (
+      "You want to duel me?\n\n"
+      "Sure thing! Let's duel!\n\n"
+  )
   DUEL(123)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -23,19 +32,35 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBD0, map_06_state_01_08E5CBD0, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("If you're ever in the mood\nfor competition...\n\nYou know where to find me.\n\n")
+  TEXT
+  (
+      "If you're ever in the mood\n"
+      "for competition...\n\n"
+      "You know where to find me.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBDC, map_06_state_01_08E5CBDC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hi, {PLAYER}.\n\nTea told me what's up..\nYou'll do awesome.\n\n")
+  TEXT
+  (
+      "Hi, {PLAYER}.\n\n"
+      "Tea told me what's up..\n"
+      "You'll do awesome.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBE8, map_06_state_01_08E5CBE8, 0x08E5CBF4, 0x08F0404C)
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I don't really consider\nmyself a duelist...\n\nBut I can duel better than\nthat loser Tristan.\n\n")
+  TEXT
+  (
+      "I don't really consider\n"
+      "myself a duelist...\n\n"
+      "But I can duel better than\n"
+      "that loser Tristan.\n\n"
+  )
   DUEL(124)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -43,12 +68,19 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBF4, map_06_state_01_08E5CBF4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Duel Monsters is a pretty\ndeep game, isn't it?\n\n")
+  TEXT
+  (
+      "Duel Monsters is a pretty\n"
+      "deep game, isn't it?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CDD4, map_06_state_01_08E5CDD4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_203)
-  TEXT("Arf arf!\n\n")
+  TEXT
+  (
+      "Arf arf!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

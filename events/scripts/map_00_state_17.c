@@ -15,20 +15,54 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E2C, map_00_state_17_08E34E2C, 0x08E34E38, 0x08F0404C)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("Pipipi...\n\n")
+  TEXT
+  (
+      "Pipipi...\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Who are you fighting?\n\nActually, don't tell me.\nDuelists don't communicate\n\nwith words. We communicate\nwith cards!\n\nDon't underestimate my\nPsychic Power deck!\n\n")
+  TEXT
+  (
+      "Who are you fighting?\n\n"
+      "Actually, don't tell me.\n"
+      "Duelists don't communicate\n\n"
+      "with words. We communicate\n"
+      "with cards!\n\n"
+      "Don't underestimate my\n"
+      "Psychic Power deck!\n\n"
+  )
   DUEL(84)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E38, map_00_state_17_08E34E38, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("Pipipi... You win.\n\n")
+  TEXT
+  (
+      "Pipipi... You win.\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I don't know who you're\nfighting, but take my Jinzo\n\nwith you.\n\nThis card represents my\nspirit.\n\nYour fight is far from over,\nbut... Pipipi...\n\nYes. I sense you'll be fine.\n\nA duelist becomes more\npowerful when he has\n\nfriends supporting him.\n\nSo think of Jinzo as me.\n\nAs long as you have my help,\nyou're not fighting alone!\n\n")
+  TEXT
+  (
+      "I don't know who you're\n"
+      "fighting, but take my Jinzo\n\n"
+      "with you.\n\n"
+      "This card represents my\n"
+      "spirit.\n\n"
+      "Your fight is far from over,\n"
+      "but... Pipipi...\n\n"
+      "Yes. I sense you'll be fine.\n\n"
+      "A duelist becomes more\n"
+      "powerful when he has\n\n"
+      "friends supporting him.\n\n"
+      "So think of Jinzo as me.\n\n"
+      "As long as you have my help,\n"
+      "you're not fighting alone!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Received Jinzo.")
+  TEXT
+  (
+      "Received Jinzo."
+  )
   PLAY_MUSIC(MUSIC_701)
   DELAY(240)
   DELAY(80)
@@ -41,7 +75,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E44, map_00_state_17_08E34E44, 0x08E34E50, 0x08F0404C)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("If you think dueling me will\nhelp you improve...\n\nThen I'll be happy to duel\nyou!\n\n")
+  TEXT
+  (
+      "If you think dueling me will\n"
+      "help you improve...\n\n"
+      "Then I'll be happy to duel\n"
+      "you!\n\n"
+  )
   DUEL(146)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -49,6 +89,18 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E34E50, map_00_state_17_08E34E50, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("A duelist's greatest\nstrength is his potential.\n\nThe hope we instill in our\ncards makes our decks\n\npowerful.\n\nPipipi...\n\nI don't have to read the\ncosmic forces to know that\n\nyou're a more skilled\nduelist than before!\n\n")
+  TEXT
+  (
+      "A duelist's greatest\n"
+      "strength is his potential.\n\n"
+      "The hope we instill in our\n"
+      "cards makes our decks\n\n"
+      "powerful.\n\n"
+      "Pipipi...\n\n"
+      "I don't have to read the\n"
+      "cosmic forces to know that\n\n"
+      "you're a more skilled\n"
+      "duelist than before!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

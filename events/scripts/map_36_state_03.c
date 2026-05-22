@@ -16,21 +16,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Whoa, this is a huge\ndiscovery, eh.\n\n")
+  TEXT
+  (
+      "Whoa, this is a huge\n"
+      "discovery, eh.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Yeah, I agree with you\nthere.\n\n")
+  TEXT
+  (
+      "Yeah, I agree with you\n"
+      "there.\n\n"
+  )
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It is awesome.\n\n")
+  TEXT
+  (
+      "It is awesome.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("M-maybe we're the first in\nthe world to find this?\n\n")
+  TEXT
+  (
+      "M-maybe we're the first in\n"
+      "the world to find this?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -48,7 +63,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("That's a distinct\npossibility, eh.\n\n")
+  TEXT
+  (
+      "That's a distinct\n"
+      "possibility, eh.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
@@ -59,14 +78,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   DELAY(6)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("This is going to make us\nfamous!\n\n")
+  TEXT
+  (
+      "This is going to make us\n"
+      "famous!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You guys took prehistoric\npride in your work...\n\nThat's why you found the\nfossil in such an enormous\n\nmountain.\n\nIf I think of my deck as a\nmountain, I wonder if I can\n\nfind my fossil...\n\nCan I draw the card I need?\n\n")
+  TEXT
+  (
+      "You guys took prehistoric\n"
+      "pride in your work...\n\n"
+      "That's why you found the\n"
+      "fossil in such an enormous\n\n"
+      "mountain.\n\n"
+      "If I think of my deck as a\n"
+      "mountain, I wonder if I can\n\n"
+      "find my fossil...\n\n"
+      "Can I draw the card I need?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
@@ -74,25 +108,44 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9CB4, map_36_state_03_08EC9CB4, 0x08F04040, 0x08F
   WALK_OBJECT_Y(5, 54)
   WALK_OBJECT_X(5, 65)
   DELAY(16)
-  TEXT("You're overthinking it.\n\n")
+  TEXT
+  (
+      "You're overthinking it.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(8)
-  TEXT("We're among friends.\n\nWe made our discovery\nbecause we helped each\n\nother.\n\n")
+  TEXT
+  (
+      "We're among friends.\n\n"
+      "We made our discovery\n"
+      "because we helped each\n\n"
+      "other.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(6, 62)
   WALK_OBJECT_X(6, 56)
   MOVE_OBJECT(6, DIRECTION_UP, 0, 0)
   DELAY(16)
-  TEXT("He's right. No one can do\nthis alone.\n\n")
+  TEXT
+  (
+      "He's right. No one can do\n"
+      "this alone.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Friends...\n\nYeah, maybe that's what life\nis all about.\n\nThanks!\n\n")
+  TEXT
+  (
+      "Friends...\n\n"
+      "Yeah, maybe that's what life\n"
+      "is all about.\n\n"
+      "Thanks!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 0)

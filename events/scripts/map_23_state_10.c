@@ -24,9 +24,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95498, map_23_state_10_08E95498, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_347)
   COMMAND_7C_ARG(8, 42)
   PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-what's this?!\n\n")
+  TEXT
+  (
+      "Wh-what's this?!\n\n"
+  )
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("It's Ra's judgment...\nActually, it's more than\n\nthat.\n\nFeel the wrath for angering\nthe Egyptian Gods!\n\n")
+  TEXT
+  (
+      "It's Ra's judgment...\n"
+      "Actually, it's more than\n\n"
+      "that.\n\n"
+      "Feel the wrath for angering\n"
+      "the Egyptian Gods!\n\n"
+  )
   PLAY_MUSIC(MUSIC_359)
   COMMAND_7C_ARG(8, 43)
   COMMAND_7C_ARG(8, 45)
@@ -34,7 +44,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95498, map_23_state_10_08E95498, 0x08F04040, 0x08F
   COMMAND_7C_ARG(8, 47)
   PLAY_MUSIC(MUSIC_302)
   PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("Gwaaah!\n\n")
+  TEXT
+  (
+      "Gwaaah!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_303)

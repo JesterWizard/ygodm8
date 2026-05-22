@@ -15,11 +15,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CCC0, map_06_state_06_08E5CCC0, 0x08F04040, 0x08F
   WALK_OBJECT_X(4, 52)
   DELAY(8)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SURPRISED, PORTRAIT_RIGHT)
-  TEXT("Eeek!\n\n")
+  TEXT
+  (
+      "Eeek!\n\n"
+  )
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_ANGRY, PORTRAIT_RIGHT)
-  TEXT("Hey! What do you think\nyou're doing to Serenity?\n\n")
+  TEXT
+  (
+      "Hey! What do you think\n"
+      "you're doing to Serenity?\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I'll protect you, Serenity!\n\n")
+  TEXT
+  (
+      "I'll protect you, Serenity!\n\n"
+  )
   WALK_OBJECT_X(1, 52)
   WALK_OBJECT_X(2, 52)
   WALK_OBJECT_X(4, 64)
@@ -30,7 +40,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CCC0, map_06_state_06_08E5CCC0, 0x08F04040, 0x08F
   WALK_OBJECT_X(2, 56)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Tsk...\n\n")
+  TEXT
+  (
+      "Tsk...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(4, 144)
@@ -39,24 +52,51 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CCC0, map_06_state_06_08E5CCC0, 0x08F04040, 0x08F
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Are you okay, Serenity?\n\n")
+  TEXT
+  (
+      "Are you okay, Serenity?\n\n"
+  )
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Yes, I'm fine, Tristan.\n\nAnd Duke, thank you too.\n\n")
+  TEXT
+  (
+      "Yes, I'm fine, Tristan.\n\n"
+      "And Duke, thank you too.\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("You can count on me,\nSerenity.\n\nI won't let the Neo Ghouls\nlay a finger on you.\n\n")
+  TEXT
+  (
+      "You can count on me,\n"
+      "Serenity.\n\n"
+      "I won't let the Neo Ghouls\n"
+      "lay a finger on you.\n\n"
+  )
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("That goes double for me!\n\n")
+  TEXT
+  (
+      "That goes double for me!\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("It's okay Tristan.\nSerenity's safe in my arms.\n\nShe doesn't need you.\n\n")
+  TEXT
+  (
+      "It's okay Tristan.\n"
+      "Serenity's safe in my arms.\n\n"
+      "She doesn't need you.\n\n"
+  )
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT("Devlin, you...\n\n")
+  TEXT
+  (
+      "Devlin, you...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_3)
   DELAY(8)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Oh, hi {PLAYER}.\n\n")
+  TEXT
+  (
+      "Oh, hi {PLAYER}.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -72,39 +112,70 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CCC0, map_06_state_06_08E5CCC0, 0x08F04040, 0x08F
   WALK_OBJECT_X(14, 82)
   DELAY(16)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_TRISTAN_HAPPY, PORTRAIT_RIGHT)
-  TEXT("{PLAYER}, you don't have to\nworry about us.\n\n")
+  TEXT
+  (
+      "{PLAYER}, you don't have to\n"
+      "worry about us.\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Yeah, I'll protect Serenity.\n\n")
+  TEXT
+  (
+      "Yeah, I'll protect Serenity.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_SAW_TRISTAN_AND_DUKE_DRIVE_AWAY_A_GHOUL)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CCCC, map_06_state_06_08E5CCCC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, Serenity's safe\nwith me. I can't say the\n\nsame about loverboy over\nthere...\n\nThe Neo Ghouls don't scare\nme one bit.\n\n")
+  TEXT
+  (
+      "{PLAYER}, Serenity's safe\n"
+      "with me. I can't say the\n\n"
+      "same about loverboy over\n"
+      "there...\n\n"
+      "The Neo Ghouls don't scare\n"
+      "me one bit.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CCD8, map_06_state_06_08E5CCD8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What? You don't have the\ntime to duel me!\n\n")
+  TEXT
+  (
+      "What? You don't have the\n"
+      "time to duel me!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CCE4, map_06_state_06_08E5CCE4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, let's drive the\nNeo Ghouls out of town!\n\n")
+  TEXT
+  (
+      "{PLAYER}, let's drive the\n"
+      "Neo Ghouls out of town!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CCF0, map_06_state_06_08E5CCF0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I don't think we have any\ntime to spare.\n\n")
+  TEXT
+  (
+      "I don't think we have any\n"
+      "time to spare.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CCFC, map_06_state_06_08E5CCFC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, I'm fine. Please\ndon't worry about me.\n\n")
+  TEXT
+  (
+      "{PLAYER}, I'm fine. Please\n"
+      "don't worry about me.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

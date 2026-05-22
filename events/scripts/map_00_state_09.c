@@ -32,7 +32,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C7C, map_00_state_09_08E34C7C, 0x08E34C94, 0x08E
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You have obtained the\nMillennium Scale.\n\nWe now have six Millennium\nItems... Thank you.\n\nWe should now be able to use\nall three Egyptian God\n\nCards!\n\n")
+  TEXT
+  (
+      "You have obtained the\n"
+      "Millennium Scale.\n\n"
+      "We now have six Millennium\n"
+      "Items... Thank you.\n\n"
+      "We should now be able to use\n"
+      "all three Egyptian God\n\n"
+      "Cards!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(SOUND_NONE)
@@ -40,8 +49,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C7C, map_00_state_09_08E34C7C, 0x08E34C94, 0x08E
   PLAY_MUSIC(MUSIC_291)
   REMOVE_CARD(238)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Slifer the Sky Dragon card\nturned into stone!\n\n")
-  TEXT("The deck adjustment menu\nwill be opened.")
+  TEXT
+  (
+      "Slifer the Sky Dragon card\n"
+      "turned into stone!\n\n"
+  )
+  TEXT
+  (
+      "The deck adjustment menu\n"
+      "will be opened."
+  )
   PAGE_BREAK()
   START_MENU()
   FALLTHROUGH()
@@ -50,21 +67,51 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E34C94, map_00_state_09_08E34C94, 0x08E34CA0, 0x08E34CAC)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-what's happening?\n\n")
+  TEXT
+  (
+      "Wh-what's happening?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
   DELAY(8)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("What's wrong?\n\nN-no! The Winged Dragon of\nRa did not resurrect...\n\nAnd even worse, Slifer the\nSky Dragon has turned back\n\ninto stone...\n\n")
+  TEXT
+  (
+      "What's wrong?\n\n"
+      "N-no! The Winged Dragon of\n"
+      "Ra did not resurrect...\n\n"
+      "And even worse, Slifer the\n"
+      "Sky Dragon has turned back\n\n"
+      "into stone...\n\n"
+  )
   CHECK_FLAG(EVENT_FLAG_UNLOCKED_MONKEY_ROBOT_SIDEQUEST)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CA0, map_00_state_09_08E34CA0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef's power must be\ngrowing exponentially!\n\nThe same fate most likely\nbefell Kaiba's card.\n\nObelisk the Tormentor has\nalso turned back into\n\nstone.\n\nPlease bring Kaiba here\nquickly.\n\nWe must fully revive the\nEgyptian God Cards...\n\nBut in order to do so, we\nneed the power of all seven\n\nMillennium Items.\n\nFurthermore, all three\nEgyptian God Cards must be\n\nreunited in one location.\n\n")
+  TEXT
+  (
+      "Reshef's power must be\n"
+      "growing exponentially!\n\n"
+      "The same fate most likely\n"
+      "befell Kaiba's card.\n\n"
+      "Obelisk the Tormentor has\n"
+      "also turned back into\n\n"
+      "stone.\n\n"
+      "Please bring Kaiba here\n"
+      "quickly.\n\n"
+      "We must fully revive the\n"
+      "Egyptian God Cards...\n\n"
+      "But in order to do so, we\n"
+      "need the power of all seven\n\n"
+      "Millennium Items.\n\n"
+      "Furthermore, all three\n"
+      "Egyptian God Cards must be\n\n"
+      "reunited in one location.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -72,7 +119,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34CA0, map_00_state_09_08E34CA0, 0x08F04040, 0x08F
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The final Millennium Item...\n\nWe have yet to find the\nMillennium Puzzle.\n\nBut I have an idea as to its\nwhereabouts.\n\nPlease leave the Millennium\nPuzzle to me.\n\nWhile I look for it, please\nbring Kaiba here.\n\n")
+  TEXT
+  (
+      "The final Millennium Item...\n\n"
+      "We have yet to find the\n"
+      "Millennium Puzzle.\n\n"
+      "But I have an idea as to its\n"
+      "whereabouts.\n\n"
+      "Please leave the Millennium\n"
+      "Puzzle to me.\n\n"
+      "While I look for it, please\n"
+      "bring Kaiba here.\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -82,18 +140,43 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CAC, map_00_state_09_08E34CAC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Is this the force of Reshef\nthe Dark Being?\n\nBut without the Egyptian God\nCards, we are helpless.\n\n")
+  TEXT
+  (
+      "Is this the force of Reshef\n"
+      "the Dark Being?\n\n"
+      "But without the Egyptian God\n"
+      "Cards, we are helpless.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("There must be something we\ncan do.\n\nI must think of all\npossibilities, no matter\n\nhow small.\n\nIn the meantime, please\ntrain diligently.\n\nYou must raise your duelist\nlevel, or you will have no\n\nchance to win.\n\n")
+  TEXT
+  (
+      "There must be something we\n"
+      "can do.\n\n"
+      "I must think of all\n"
+      "possibilities, no matter\n\n"
+      "how small.\n\n"
+      "In the meantime, please\n"
+      "train diligently.\n\n"
+      "You must raise your duelist\n"
+      "level, or you will have no\n\n"
+      "chance to win.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("If you insist, Ishizu.\n\n")
+  TEXT
+  (
+      "If you insist, Ishizu.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I guess we have no other\nchoice.\n\n")
+  TEXT
+  (
+      "I guess we have no other\n"
+      "choice.\n\n"
+  )
   WALK_OBJECT_Y(2, 56)
   WALK_OBJECT_X(2, 48)
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
@@ -107,14 +190,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34CAC, map_00_state_09_08E34CAC, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_MONKEY_ROBOTS)
   PLAY_MUSIC(MUSIC_203)
-  TEXT("Arf arf arf arf arf!\n\n")
+  TEXT
+  (
+      "Arf arf arf arf arf!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This dog... Isn't this\nLucky, Tristan's dog?\n\n")
+  TEXT
+  (
+      "This dog... Isn't this\n"
+      "Lucky, Tristan's dog?\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What would Lucky be doing\nhere?\n\n")
+  TEXT
+  (
+      "What would Lucky be doing\n"
+      "here?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   PLAY_MUSIC(MUSIC_203)
-  TEXT("Arf arf arf arf arf!\n\n")
+  TEXT
+  (
+      "Arf arf arf arf arf!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 55)
@@ -125,14 +222,34 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34CAC, map_00_state_09_08E34CAC, 0x08F04040, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Do ya think somethin'\nhappened at Tristan's\n\nhouse?\n\n")
+  TEXT
+  (
+      "Do ya think somethin'\n"
+      "happened at Tristan's\n\n"
+      "house?\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't worry about me.\n\nYou should check on your\nfriend immediately.\n\nIn the meantime, I will\nthink of a plan to stop\n\nReshef.\n\n")
+  TEXT
+  (
+      "Don't worry about me.\n\n"
+      "You should check on your\n"
+      "friend immediately.\n\n"
+      "In the meantime, I will\n"
+      "think of a plan to stop\n\n"
+      "Reshef.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay, Ishizu. Good luck!\n\n{PLAYER}, Joey, let's go!\n\n")
+  TEXT
+  (
+      "Okay, Ishizu. Good luck!\n\n"
+      "{PLAYER}, Joey, let's go!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   PLAY_MUSIC(MUSIC_203)
-  TEXT("Arf!\n\n")
+  TEXT
+  (
+      "Arf!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 112)
@@ -141,7 +258,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34CAC, map_00_state_09_08E34CAC, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34C88, map_00_state_09_08E34C88, 0x08E34C94, 0x08E34C88)
-  TEXT("The deck adjustment menu\nwill be opened.")
+  TEXT
+  (
+      "The deck adjustment menu\n"
+      "will be opened."
+  )
   PAGE_BREAK()
   START_MENU()
   FALLTHROUGH()
@@ -154,7 +275,14 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CD0, map_00_state_09_08E34CD0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("In order to restore the\nEgyptian God Cards from\n\nstone...\n\nI'm sorry, but I have yet to\nfind the solution.\n\n")
+  TEXT
+  (
+      "In order to restore the\n"
+      "Egyptian God Cards from\n\n"
+      "stone...\n\n"
+      "I'm sorry, but I have yet to\n"
+      "find the solution.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -164,30 +292,93 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34CE8, map_00_state_09_08E34CE8, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You have returned at the\nright time.\n\nTo restore the Egyptian God\nCards from stone...\n\nWe need the Millennium\nItems.\n\n")
+  TEXT
+  (
+      "You have returned at the\n"
+      "right time.\n\n"
+      "To restore the Egyptian God\n"
+      "Cards from stone...\n\n"
+      "We need the Millennium\n"
+      "Items.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But we tried that already.\nIt didn't work.\n\n")
+  TEXT
+  (
+      "But we tried that already.\n"
+      "It didn't work.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("That was because the Items\nwere too weak.\n\nWe need all the Millennium\nItems in one place.\n\nIf we have them all, the\nEgyptian God Cards will be\n\nrestored.\n\n")
+  TEXT
+  (
+      "That was because the Items\n"
+      "were too weak.\n\n"
+      "We need all the Millennium\n"
+      "Items in one place.\n\n"
+      "If we have them all, the\n"
+      "Egyptian God Cards will be\n\n"
+      "restored.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("All the Millennium Items...\n\n")
+  TEXT
+  (
+      "All the Millennium Items...\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yes, all that remains is the\nMillennium Puzzle.\n\n")
+  TEXT
+  (
+      "Yes, all that remains is the\n"
+      "Millennium Puzzle.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_13)
   DELAY(8)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Have no fear.\n\nI have an idea of its\nwhereabouts.\n\nI will retrieve the\nMillennium Puzzle.\n\n")
+  TEXT
+  (
+      "Have no fear.\n\n"
+      "I have an idea of its\n"
+      "whereabouts.\n\n"
+      "I will retrieve the\n"
+      "Millennium Puzzle.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ishizu, you don't have to\ngo.\n\nLet us handle it.\n\n")
+  TEXT
+  (
+      "Ishizu, you don't have to\n"
+      "go.\n\n"
+      "Let us handle it.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I have a different task for\nyou.\n\n")
+  TEXT
+  (
+      "I have a different task for\n"
+      "you.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("A different one?\n\n")
+  TEXT
+  (
+      "A different one?\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ra and Slifer were not the\nonly Egyptian God Cards\n\nthat turned into stone...\n\nKaiba's Obelisk the\nTormentor must have turned\n\ninto stone as well.\n\nPlease find Kaiba.\n\nWe need to bring the seven\nMillennium Items...\n\nAnd the three Egyptian God\nCards together.\n\nOnly then can we fully\nrestore the Egyptian God\n\nCards.\n\n")
+  TEXT
+  (
+      "Ra and Slifer were not the\n"
+      "only Egyptian God Cards\n\n"
+      "that turned into stone...\n\n"
+      "Kaiba's Obelisk the\n"
+      "Tormentor must have turned\n\n"
+      "into stone as well.\n\n"
+      "Please find Kaiba.\n\n"
+      "We need to bring the seven\n"
+      "Millennium Items...\n\n"
+      "And the three Egyptian God\n"
+      "Cards together.\n\n"
+      "Only then can we fully\n"
+      "restore the Egyptian God\n\n"
+      "Cards.\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -197,7 +388,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CB8, map_00_state_09_08E34CB8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I will find the Millennium\nPuzzle..\n\nIn the meantime, please\nbring Kaiba here.\n\n")
+  TEXT
+  (
+      "I will find the Millennium\n"
+      "Puzzle..\n\n"
+      "In the meantime, please\n"
+      "bring Kaiba here.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -218,12 +415,37 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CDC, map_00_state_09_08E34CDC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I thought you were going to\nlook for your friend\n\nTristan.\n\nI'm having difficulty\nfinding out how to restore\n\nthe Egyptian God Cards.\n\nIt will take me more time.\nSince there is little that\n\nyou can do to help...\n\nYou should concentrate on\nfinding your friend.\n\n")
+  TEXT
+  (
+      "I thought you were going to\n"
+      "look for your friend\n\n"
+      "Tristan.\n\n"
+      "I'm having difficulty\n"
+      "finding out how to restore\n\n"
+      "the Egyptian God Cards.\n\n"
+      "It will take me more time.\n"
+      "Since there is little that\n\n"
+      "you can do to help...\n\n"
+      "You should concentrate on\n"
+      "finding your friend.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34CC4, map_00_state_09_08E34CC4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The Egyptian God Cards have\nbeen turned back into\n\nstone.\n\nTo fully resurrect them, the\nseven Millennium Items...\n\nAnd the three Egyptian God\nCards must be brought\n\ntogether.\n\nPlease bring Kaiba here\nright away.\n\n")
+  TEXT
+  (
+      "The Egyptian God Cards have\n"
+      "been turned back into\n\n"
+      "stone.\n\n"
+      "To fully resurrect them, the\n"
+      "seven Millennium Items...\n\n"
+      "And the three Egyptian God\n"
+      "Cards must be brought\n\n"
+      "together.\n\n"
+      "Please bring Kaiba here\n"
+      "right away.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

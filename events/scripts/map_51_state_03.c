@@ -24,14 +24,27 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D70, map_51_state_03_08EE3D70, 0x08EE3D88, 0x08EE401C)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I remember that you beat me!\n\nYou're in for a prehistoric\npounding!\n\n")
+  TEXT
+  (
+      "I remember that you beat me!\n\n"
+      "You're in for a prehistoric\n"
+      "pounding!\n\n"
+  )
   DUEL(114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D88, map_51_state_03_08EE3D88, 0x08EE3FD4, 0x08F04040)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What? You're happy that you\nwon?\n\nHa ha ha... Like that's\ngoing to help you!\n\nI'm still not letting you\nget past me!\n\n")
+  TEXT
+  (
+      "What? You're happy that you\n"
+      "won?\n\n"
+      "Ha ha ha... Like that's\n"
+      "going to help you!\n\n"
+      "I'm still not letting you\n"
+      "get past me!\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_DEFEATED_DARK_REX_WITHOUT_SPIRIT_CARD)
@@ -40,21 +53,35 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D7C, map_51_state_03_08EE3D7C, 0x08EE3D88, 0x08EE401C)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're persistent, I'll give\nyou that.\n\nBut it won't change a thing.\n\n")
+  TEXT
+  (
+      "You're persistent, I'll give\n"
+      "you that.\n\n"
+      "But it won't change a thing.\n\n"
+  )
   DUEL(114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D94, map_51_state_03_08EE3D94, 0x08EE3DA0, 0x08EE401C)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Y-you! That card...\n\nNo! Come on, duel!\n\n")
+  TEXT
+  (
+      "Y-you! That card...\n\n"
+      "No! Come on, duel!\n\n"
+  )
   DUEL(114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3DA0, map_51_state_03_08EE3DA0, 0x08EE3DAC, 0x08F04040)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("That card... That card\nrepresents me...\n\nThat's my spirit card.\n\n")
+  TEXT
+  (
+      "That card... That card\n"
+      "represents me...\n\n"
+      "That's my spirit card.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)

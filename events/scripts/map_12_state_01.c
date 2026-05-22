@@ -7,7 +7,12 @@
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF64, map_12_state_01_08E6EF64, 0x08F04040, 0x08F04040)
   LOAD_SPRITE(1, SPRITE_ROLAND)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This is Kaiba Corporation.\nThis is not a place for\n\ncivilians.\n\n")
+  TEXT
+  (
+      "This is Kaiba Corporation.\n"
+      "This is not a place for\n\n"
+      "civilians.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -18,14 +23,26 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF7C, map_12_state_01_08E6EF7C, 0x08E6EF88, 0x08F0404C)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Duel? No, that is not\npermitted on these\n\npremises.\n\n...Is what I'm ordered to\nsay.\n\n")
+  TEXT
+  (
+      "Duel? No, that is not\n"
+      "permitted on these\n\n"
+      "premises.\n\n"
+      "...Is what I'm ordered to\n"
+      "say.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But I always wanted to play\nto see what it's like.\n\nLet's duel!\n\n")
+  TEXT
+  (
+      "But I always wanted to play\n"
+      "to see what it's like.\n\n"
+      "Let's duel!\n\n"
+  )
   DUEL(12)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -33,13 +50,22 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF88, map_12_state_01_08E6EF88, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_KAIBACORP)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hmm... I think Mr. Kaiba is\nbetter at this than I am.\n\n")
+  TEXT
+  (
+      "Hmm... I think Mr. Kaiba is\n"
+      "better at this than I am.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_ROLAND)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6EF94, map_12_state_01_08E6EF94, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("No, no. Not again!\n\nIf Mr. Kaiba catches me,\nI'll be fired on the spot!\n\n")
+  TEXT
+  (
+      "No, no. Not again!\n\n"
+      "If Mr. Kaiba catches me,\n"
+      "I'll be fired on the spot!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

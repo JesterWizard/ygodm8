@@ -26,18 +26,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B40, map_39_state_06_08ED4B40, 0x08ED4B4C, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 6, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukki?\n\n")
+  TEXT
+  (
+      "Ukki?\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Why are you running? Are you\nTristan?\n\n")
+  TEXT
+  (
+      "Why are you running? Are you\n"
+      "Tristan?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukiiii...\n\n")
+  TEXT
+  (
+      "Ukiiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("We'll know for sure after we\nduel!\n\n")
+  TEXT
+  (
+      "We'll know for sure after we\n"
+      "duel!\n\n"
+  )
   WALK_OBJECT_X(0, 24)
   WALK_OBJECT_X(13, 16)
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
@@ -51,11 +65,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B4C, map_39_state_06_08ED4B4C, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_MONKEY_ROBOTS)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 5, PORTRAIT_POSITION_AUTO)
-  TEXT("U-ukiiii...\n\n")
+  TEXT
+  (
+      "U-ukiiii...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("This monkey's lousy...\nThere's no doubt about it!\n\n")
+  TEXT
+  (
+      "This monkey's lousy...\n"
+      "There's no doubt about it!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're Tristan, aren't ya?\nHowl twice if it's true.\n\n")
+  TEXT
+  (
+      "You're Tristan, aren't ya?\n"
+      "Howl twice if it's true.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
@@ -66,16 +91,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B4C, map_39_state_06_08ED4B4C, 0x08F04040, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_326)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_POSITION_AUTO)
-  TEXT("Ukki! Ukikki!\n\n")
+  TEXT
+  (
+      "Ukki! Ukikki!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Man, look at ya... How could\nKaiba do this to ya?\n\n")
+  TEXT
+  (
+      "Man, look at ya... How could\n"
+      "Kaiba do this to ya?\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's take him back to the\nTown of Domino.\n\n")
+  TEXT
+  (
+      "Let's take him back to the\n"
+      "Town of Domino.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_COMPLETED_ROBOT_MONKEY_SIDEQUEST)
   WARP(6, 12, 0, 0)
   FADE_SCREEN(8)

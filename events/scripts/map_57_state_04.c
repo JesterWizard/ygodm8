@@ -19,20 +19,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB450, map_57_state_04_08EFB450, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Go for it, Kaibaman!\n\n")
+  TEXT
+  (
+      "Go for it, Kaibaman!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_8, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Don't give up, Kaibaman!\n\n")
+  TEXT
+  (
+      "Don't give up, Kaibaman!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_344)
   PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Justice just rules! I am\nvictorious in victory!\n\n")
+  TEXT
+  (
+      "Justice just rules! I am\n"
+      "victorious in victory!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
@@ -41,7 +51,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB450, map_57_state_04_08EFB450, 0x08F04040, 0x08F
   COMMAND_7C_ARG(8, 16)
   DELAY(16)
   PORTRAIT(PORTRAIT_KAIBAMAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Dragon Sabre Blast!\n\n")
+  TEXT
+  (
+      "Dragon Sabre Blast!\n\n"
+  )
   PLAY_MUSIC(MUSIC_342)
   COMMAND_7C_ARG(8, 17)
   DELAY(16)

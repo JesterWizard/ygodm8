@@ -9,18 +9,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08E84FA8, map_20_state_03_08E84FA8, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(4, SPRITE_NEO_GHOUL)
-  TEXT("The Egypt Exhibition is\noverflowing with Neo\n\nGhouls!\n\n")
+  TEXT
+  (
+      "The Egypt Exhibition is\n"
+      "overflowing with Neo\n\n"
+      "Ghouls!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E84FB4, map_20_state_03_08E84FB4, 0x08F04040, 0x08F04040)
-  TEXT("I don't want the Neo Ghouls\nto find out that I'm a\n\nduelist!\n\n")
+  TEXT
+  (
+      "I don't want the Neo Ghouls\n"
+      "to find out that I'm a\n\n"
+      "duelist!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E84F84, map_20_state_03_08E84F84, 0x08E84F90, 0x08E84F9C)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're not taking another\nstep!\n\n")
+  TEXT
+  (
+      "You're not taking another\n"
+      "step!\n\n"
+  )
   DUEL(75)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -28,7 +42,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E84F90, map_20_state_03_08E84F90, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_231)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Urk!\n\n")
+  TEXT
+  (
+      "Urk!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)

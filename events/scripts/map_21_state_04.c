@@ -12,13 +12,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E863FC, map_21_state_04_08E863FC, 0x08F04040, 0x08F
   LOAD_SPRITE(5, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(6, SPRITE_EGYPT_EXHIBITION_GUARD)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You will proceed no further!\n\n")
+  TEXT
+  (
+      "You will proceed no further!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863A8, map_21_state_04_08E863A8, 0x08E863B4, 0x08E863C0)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You will proceed no further!\n\n")
+  TEXT
+  (
+      "You will proceed no further!\n\n"
+  )
   DUEL(76)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -26,7 +32,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E863B4, map_21_state_04_08E863B4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Neo\nGhouls...are...forever...\n\n")
+  TEXT
+  (
+      "Neo\n"
+      "Ghouls...are...forever...\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -46,11 +56,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E863C0, map_21_state_04_08E863C0, 0x08F0404C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863CC, map_21_state_04_08E863CC, 0x08F04040, 0x08F04040)
-  TEXT("This is total chaos!\n\nPlease do something about\nthe Neo Ghouls!\n\n")
+  TEXT
+  (
+      "This is total chaos!\n\n"
+      "Please do something about\n"
+      "the Neo Ghouls!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E863D8, map_21_state_04_08E863D8, 0x08F04040, 0x08F04040)
-  TEXT("At a time like this? You\nhave to be joking!\n\n")
+  TEXT
+  (
+      "At a time like this? You\n"
+      "have to be joking!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

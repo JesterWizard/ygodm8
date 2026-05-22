@@ -26,13 +26,57 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34BD4, map_00_state_07_08E34BD4, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It is always important to\nrelax and take a step away\n\nfrom your main mission.\n\nFor the road of destiny is\nnot a straight path.\n\nThere are many side roads\nand streets that you can\n\nwander along.\n\nThe more roads you take, the\nmore you will see of the\n\nworld, and the more you will\nlearn.\n\nHowever, Reshef is gaining\npower far faster than\n\nexpected.\n\nWe must return to the main\npath. Hurry and resurrect\n\nthe Egyptian God Cards.\n\nThe last Egyptian God Card\nremaining is The Winged\n\nDragon of Ra.\n\nIn order to restore the\nfinal Egyptian God Card\n\nfrom stone...\n\nPlease hurry and obtain the\nnext Millennium Item.\n\nThe next Millennium Item\nis.")
+  TEXT
+  (
+      "It is always important to\n"
+      "relax and take a step away\n\n"
+      "from your main mission.\n\n"
+      "For the road of destiny is\n"
+      "not a straight path.\n\n"
+      "There are many side roads\n"
+      "and streets that you can\n\n"
+      "wander along.\n\n"
+      "The more roads you take, the\n"
+      "more you will see of the\n\n"
+      "world, and the more you will\n"
+      "learn.\n\n"
+      "However, Reshef is gaining\n"
+      "power far faster than\n\n"
+      "expected.\n\n"
+      "We must return to the main\n"
+      "path. Hurry and resurrect\n\n"
+      "the Egyptian God Cards.\n\n"
+      "The last Egyptian God Card\n"
+      "remaining is The Winged\n\n"
+      "Dragon of Ra.\n\n"
+      "In order to restore the\n"
+      "final Egyptian God Card\n\n"
+      "from stone...\n\n"
+      "Please hurry and obtain the\n"
+      "next Millennium Item.\n\n"
+      "The next Millennium Item\n"
+      "is."
+  )
   DELAY(43)
-  TEXT(".")
+  TEXT
+  (
+      "."
+  )
   DELAY(43)
-  TEXT(".")
+  TEXT
+  (
+      "."
+  )
   DELAY(43)
-  TEXT("\n\nIn a place where prehistoric\nlife forms are preserved in\n\nrock...\n\nA fossil excavation site in\nCanada.\n\n")
+  TEXT
+  (
+      "\n\n"
+      "In a place where prehistoric\n"
+      "life forms are preserved in\n\n"
+      "rock...\n\n"
+      "A fossil excavation site in\n"
+      "Canada.\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -43,7 +87,26 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34BE0, map_00_state_07_08E34BE0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The Dark Being was\nresurrected by Sol\n\nChevalsky...\n\nNo, not Sol Chevalsky, but\nPegasus.\n\nTo imprison Reshef, we need\none more Egyptian God Card.\n\nWe need the power of The\nWinged Dragon of Ra.\n\nWe must resurrect the card\nfrom stone.\n\nPlease find the Millennium\nItems to restore it.\n\nThe fifth Millennium Item is\nin Canada among fossils.\n\nYou will find it at a fossil\nexcavation site.\n\n")
+  TEXT
+  (
+      "The Dark Being was\n"
+      "resurrected by Sol\n\n"
+      "Chevalsky...\n\n"
+      "No, not Sol Chevalsky, but\n"
+      "Pegasus.\n\n"
+      "To imprison Reshef, we need\n"
+      "one more Egyptian God Card.\n\n"
+      "We need the power of The\n"
+      "Winged Dragon of Ra.\n\n"
+      "We must resurrect the card\n"
+      "from stone.\n\n"
+      "Please find the Millennium\n"
+      "Items to restore it.\n\n"
+      "The fifth Millennium Item is\n"
+      "in Canada among fossils.\n\n"
+      "You will find it at a fossil\n"
+      "excavation site.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -54,6 +117,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34BEC, map_00_state_07_08E34BEC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Please. Hurry to the fossil\nexcavation site.\n\nReshef the Dark Being will\nsoon engulf the world.\n\n")
+  TEXT
+  (
+      "Please. Hurry to the fossil\n"
+      "excavation site.\n\n"
+      "Reshef the Dark Being will\n"
+      "soon engulf the world.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

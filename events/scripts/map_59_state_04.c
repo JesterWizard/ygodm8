@@ -16,14 +16,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDAD0, map_59_state_04_08EFDAD0, 0x08EFDADC, 0x08E
   MOVE_OBJECT(13, DIRECTION_LEFT, 16, 0)
   MOVE_OBJECT(14, DIRECTION_LEFT, 16, 0)
   PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What is the matter,\n{PLAYER}?\n\n")
+  TEXT
+  (
+      "What is the matter,\n"
+      "{PLAYER}?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
   PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I-Impossible!\n\nYou obtained the secret of\nthe Phoenix Mode?\n\nWe must see Master Marik\nright away!\n\n")
+  TEXT
+  (
+      "I-Impossible!\n\n"
+      "You obtained the secret of\n"
+      "the Phoenix Mode?\n\n"
+      "We must see Master Marik\n"
+      "right away!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 61)

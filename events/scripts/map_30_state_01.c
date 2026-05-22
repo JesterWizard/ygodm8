@@ -15,7 +15,13 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EADA04, map_30_state_01_08EADA04, 0x08EADA10, 0x08F0404C)
   PLAY_MUSIC(MUSIC_402)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Those drawn by the\nMillennium Item...\n\nProve your worth here among\nthe eternal slumber.\n\n")
+  TEXT
+  (
+      "Those drawn by the\n"
+      "Millennium Item...\n\n"
+      "Prove your worth here among\n"
+      "the eternal slumber.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 58)
@@ -36,7 +42,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EADA10, map_30_state_01_08EADA10, 0x08EADA1C, 0x08F04040)
   PLAY_MUSIC(MUSIC_402)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Impressive. Take this item.\n\n")
+  TEXT
+  (
+      "Impressive. Take this item.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -59,9 +68,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08EADA1C, map_30_state_01_08EADA1C, 0x08EADA28, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("W-what? It's happening\nagain! This time, it's\n\nBakura!\n\n")
+  TEXT
+  (
+      "W-what? It's happening\n"
+      "again! This time, it's\n\n"
+      "Bakura!\n\n"
+  )
   PORTRAIT(PORTRAIT_DARK_BAKURA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Which fool woke me up?\n\nHmm? Kukuku... I can feel\nit...\n\nI feel a storm brewing over\nthe Egyptian God Cards!\n\nI see a world where darkness\nrules...\n\nA world perfect for me!\n\nKukuku...\n\n")
+  TEXT
+  (
+      "Which fool woke me up?\n\n"
+      "Hmm? Kukuku... I can feel\n"
+      "it...\n\n"
+      "I feel a storm brewing over\n"
+      "the Egyptian God Cards!\n\n"
+      "I see a world where darkness\n"
+      "rules...\n\n"
+      "A world perfect for me!\n\n"
+      "Kukuku...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_281)
@@ -72,16 +97,33 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EADA28, map_30_state_01_08EADA28, 0x08F04250, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT("Yikes! Millennium Items give\nme the willies.\n\n")
+  TEXT
+  (
+      "Yikes! Millennium Items give\n"
+      "me the willies.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("With the Millennium Ring, we\nnow have three items.\n\n{PLAYER}, let's get back to\nIshizu.\n\n")
+  TEXT
+  (
+      "With the Millennium Ring, we\n"
+      "now have three items.\n\n"
+      "{PLAYER}, let's get back to\n"
+      "Ishizu.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN3)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EADA34, map_30_state_01_08EADA34, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Millennium Items are\nbelieved to attract each\n\nother.\n\nThe Millennium Ring will\nlead you to the next one.\n\n")
+  TEXT
+  (
+      "Millennium Items are\n"
+      "believed to attract each\n\n"
+      "other.\n\n"
+      "The Millennium Ring will\n"
+      "lead you to the next one.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -92,6 +134,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EADA40, map_30_state_01_08EADA40, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You are only allowed to duel\nme once.\n\nDid you not have to leave\nimmediately?\n\n")
+  TEXT
+  (
+      "You are only allowed to duel\n"
+      "me once.\n\n"
+      "Did you not have to leave\n"
+      "immediately?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

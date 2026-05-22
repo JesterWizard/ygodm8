@@ -17,7 +17,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Oh! Fantastic!\n\nThis is where we'll film my\nnew movie!\n\n")
+  TEXT
+  (
+      "Oh! Fantastic!\n\n"
+      "This is where we'll film my\n"
+      "new movie!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -25,21 +30,55 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hey! You!\n\n")
+  TEXT
+  (
+      "Hey! You!\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Are you talking to me?\n\n")
+  TEXT
+  (
+      "Are you talking to me?\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm Hollywood superstar Jean\nClaude Magnum, but I'm sure\n\nyou already knew that.\n\nI'm shooting my next film\nhere.\n\n")
+  TEXT
+  (
+      "I'm Hollywood superstar Jean\n"
+      "Claude Magnum, but I'm sure\n\n"
+      "you already knew that.\n\n"
+      "I'm shooting my next film\n"
+      "here.\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...\n\n")
+  TEXT
+  (
+      "...\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What are you doing here?\n\n")
+  TEXT
+  (
+      "What are you doing here?\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm a tour guide, plus I\nread fortunes.\n\n")
+  TEXT
+  (
+      "I'm a tour guide, plus I\n"
+      "read fortunes.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Fortunetelling!\n\nHow absolutely spectacular!\n\nI want you to read the\nfuture regarding my\n\nmarriage proposal to Mai\nValentine.\n\n")
+  TEXT
+  (
+      "Fortunetelling!\n\n"
+      "How absolutely spectacular!\n\n"
+      "I want you to read the\n"
+      "future regarding my\n\n"
+      "marriage proposal to Mai\n"
+      "Valentine.\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("No problem.\n\n")
+  TEXT
+  (
+      "No problem.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_293)
@@ -67,7 +106,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   DELAY(16)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Spirits of the Catacombs,\nanswer me...\n\n")
+  TEXT
+  (
+      "Spirits of the Catacombs,\n"
+      "answer me...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 8, 0)
@@ -92,7 +135,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   DELAY(16)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Infuse me with the knowledge\nof the past so that I can\n\nglimpse the future...\n\n")
+  TEXT
+  (
+      "Infuse me with the knowledge\n"
+      "of the past so that I can\n\n"
+      "glimpse the future...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 10, 0)
@@ -143,15 +191,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You can marry her if you win\nthree duels in a row.\n\n")
+  TEXT
+  (
+      "You can marry her if you win\n"
+      "three duels in a row.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Really? You better not be\njoking!\n\nIf it's true, it was worth\nmaking this trip to the\n\nItalian Catacombs!\n\n")
+  TEXT
+  (
+      "Really? You better not be\n"
+      "joking!\n\n"
+      "If it's true, it was worth\n"
+      "making this trip to the\n\n"
+      "Italian Catacombs!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let the countdown to my\nwedding begin!\n\nThere's my first victim!\n\n")
+  TEXT
+  (
+      "Let the countdown to my\n"
+      "wedding begin!\n\n"
+      "There's my first victim!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -159,23 +223,47 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
   WALK_OBJECT_X(2, 30)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm counting down to my\nmarriage with Mai!\n\nDon't worry. Even when you\nlose, I'll let you be my\n\nbest man.\n\n")
+  TEXT
+  (
+      "I'm counting down to my\n"
+      "marriage with Mai!\n\n"
+      "Don't worry. Even when you\n"
+      "lose, I'll let you be my\n\n"
+      "best man.\n\n"
+  )
   DUEL(131)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC978, map_29_state_08_08EAC978, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("N-noooooo!\n\nMy marriage to Mai...\n\n")
+  TEXT
+  (
+      "N-noooooo!\n\n"
+      "My marriage to Mai...\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Oh, oh yeah!! I just need to\nwin three times in a row!\n\nIt never said I had to duel\nanybody strong!\n\nThat's why I'm outta here!\n\nFarewell!\n\n")
+  TEXT
+  (
+      "Oh, oh yeah!! I just need to\n"
+      "win three times in a row!\n\n"
+      "It never said I had to duel\n"
+      "anybody strong!\n\n"
+      "That's why I'm outta here!\n\n"
+      "Farewell!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 0)
   SHOW_OBJECT(2, 128, 96, 0, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...I forgot to mention that\nif lose even one duel, your\n\nfortune changes. Oh well.\n\n")
+  TEXT
+  (
+      "...I forgot to mention that\n"
+      "if lose even one duel, your\n\n"
+      "fortune changes. Oh well.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)

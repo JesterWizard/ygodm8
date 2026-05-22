@@ -10,7 +10,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C74, map_26_state_05_08EA3C74, 0x08F04040, 0x08F
   LOAD_SPRITE(3, SPRITE_RICH_HUSBAND)
   LOAD_SPRITE(4, SPRITE_RICHE_WIFE)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It seems you found what you\nwere looking for.\n\n")
+  TEXT
+  (
+      "It seems you found what you\n"
+      "were looking for.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -20,7 +24,15 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C80, map_26_state_05_08EA3C80, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm the Hollywood heartthrob\nJean Claude Magnum, the\n\nbiggest action hero in the\nworld.\n\nBut Mai Valentine still\nwon't marry me...\n\n")
+  TEXT
+  (
+      "I'm the Hollywood heartthrob\n"
+      "Jean Claude Magnum, the\n\n"
+      "biggest action hero in the\n"
+      "world.\n\n"
+      "But Mai Valentine still\n"
+      "won't marry me...\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -30,7 +42,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C8C, map_26_state_05_08EA3C8C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Without Mai's hand in\nmarriage on the line...\n\nThere's no point in dueling.\n\n")
+  TEXT
+  (
+      "Without Mai's hand in\n"
+      "marriage on the line...\n\n"
+      "There's no point in dueling.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)

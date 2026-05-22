@@ -20,8 +20,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E774F8, map_14_state_01_08E774F8, 0x08E77504, 0x08E
   DELAY(16)
   WALK_OBJECT_Y(3, 32)
   DELAY(16)
-  TEXT("You're duelists?\n\n")
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "You're duelists?\n\n"
+  )
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -37,61 +44,110 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77510, map_14_state_01_08E77510, 0x08E7751C, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Ah, you are? Then please!\nStep on board!\n\nJust kidding! It's never\nthat easy.\n\n")
+  TEXT
+  (
+      "Ah, you are? Then please!\n"
+      "Step on board!\n\n"
+      "Just kidding! It's never\n"
+      "that easy.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 32)
   DELAY(8)
-  TEXT("If you wish to board the\nDuel Express...\n\n")
+  TEXT
+  (
+      "If you wish to board the\n"
+      "Duel Express...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("You'll have to get by us\nfirst.\n\n")
+  TEXT
+  (
+      "You'll have to get by us\n"
+      "first.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Winning this tag duel is\nyour boarding pass!\n\n")
+  TEXT
+  (
+      "Winning this tag duel is\n"
+      "your boarding pass!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7751C, map_14_state_01_08E7751C, 0x08E77528, 0x08E77540)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I wasn't expectin' things to\nbe a cakewalk...\n\nBut who woulda imagined a\ntag duel to test our\n\nskills?\n\n")
+  TEXT
+  (
+      "I wasn't expectin' things to\n"
+      "be a cakewalk...\n\n"
+      "But who woulda imagined a\n"
+      "tag duel to test our\n\n"
+      "skills?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Well, I don't think we have\na choice.\n\nThere's no way every duelist\nin the world can fit into\n\nthe train.\n\n")
+  TEXT
+  (
+      "Well, I don't think we have\n"
+      "a choice.\n\n"
+      "There's no way every duelist\n"
+      "in the world can fit into\n\n"
+      "the train.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I guess dat's true... But in\na tag duel, you'll need a\n\npartner!\n\n")
+  TEXT
+  (
+      "I guess dat's true... But in\n"
+      "a tag duel, you'll need a\n\n"
+      "partner!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, who do you want to\nteam up with? Me or Yugi?\n\n")
+  TEXT
+  (
+      "{PLAYER}, who do you want to\n"
+      "team up with? Me or Yugi?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("{CARD_1}Yugi Muto\nJoey Wheeler{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yugi Muto\n"
+      "Joey Wheeler{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77528, map_14_state_01_08E77528, 0x08E77534, 0x08F0404C)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay! You can count on me,\n{PLAYER}!\n\n")
+  TEXT
+  (
+      "Okay! You can count on me,\n"
+      "{PLAYER}!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_UP, 4, 0)
@@ -107,9 +163,19 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E77534, map_14_state_01_08E77534, 0x08E77558, 0x08F04040)
   PLAY_MUSIC(MUSIC_230)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gotta hand it to you, Yugi.\nThat duel lasted barely a\n\nsecond!\n\nOn the other hand...\n\n")
+  TEXT
+  (
+      "Gotta hand it to you, Yugi.\n"
+      "That duel lasted barely a\n\n"
+      "second!\n\n"
+      "On the other hand...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT("{PLAYER}, you had me\nworried!\n\n")
+  TEXT
+  (
+      "{PLAYER}, you had me\n"
+      "worried!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -120,7 +186,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77534, map_14_state_01_08E77534, 0x08E77558, 0x08F
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I... I couldn't afford to\nwaste any time.\n\nI have to find the spirit\nright away!\n\nBut {PLAYER}'s duel was\npretty impressive.\n\nLet's keep this up, guys!\n\n")
+  TEXT
+  (
+      "I... I couldn't afford to\n"
+      "waste any time.\n\n"
+      "I have to find the spirit\n"
+      "right away!\n\n"
+      "But {PLAYER}'s duel was\n"
+      "pretty impressive.\n\n"
+      "Let's keep this up, guys!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_CHOSE_TO_FIGHT_THE_RIGHT_DOMINO_STATION_GUARD)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -131,7 +206,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77558, map_14_state_01_08E77558, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Bravo!\n\n")
+  TEXT
+  (
+      "Bravo!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -141,7 +219,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77558, map_14_state_01_08E77558, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("Please feel free to board\nthe train.\n\n")
+  TEXT
+  (
+      "Please feel free to board\n"
+      "the train.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 68)
@@ -154,7 +236,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77540, map_14_state_01_08E77540, 0x08E7754C, 0x08F0404C)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay! That was a wise\ndecision, {PLAYER}!\n\n")
+  TEXT
+  (
+      "Okay! That was a wise\n"
+      "decision, {PLAYER}!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(14, 43)
@@ -173,7 +259,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7754C, map_14_state_01_08E7754C, 0x08E77558, 0x08F
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What took ya so long,\n{PLAYER}!\n\nIf you're having trouble\nagainst these guys...\n\nWell, I'd hate to think\nwhat'd happen against some\n\nreal competition.\n\nHurry and catch up to my\nlevel!\n\n")
+  TEXT
+  (
+      "What took ya so long,\n"
+      "{PLAYER}!\n\n"
+      "If you're having trouble\n"
+      "against these guys...\n\n"
+      "Well, I'd hate to think\n"
+      "what'd happen against some\n\n"
+      "real competition.\n\n"
+      "Hurry and catch up to my\n"
+      "level!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
@@ -187,7 +284,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7754C, map_14_state_01_08E7754C, 0x08E77558, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7757C, map_14_state_01_08E7757C, 0x08F04040, 0x08F04040)
-  TEXT("There's a chartered express\ntrain reserved exclusively\n\nfor duelists.\n\nIf you're not a duelist, I'm\nsorry, but you are not\n\nallowed to enter.\n\n")
+  TEXT
+  (
+      "There's a chartered express\n"
+      "train reserved exclusively\n\n"
+      "for duelists.\n\n"
+      "If you're not a duelist, I'm\n"
+      "sorry, but you are not\n\n"
+      "allowed to enter.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 26)
@@ -211,7 +316,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77360, map_14_state_01_08E77360, 0x08F04040, 0x08F
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_414)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hee hee hee... I've found\nthem...\n\n")
+  TEXT
+  (
+      "Hee hee hee... I've found\n"
+      "them...\n\n"
+  )
   WALK_OBJECT_Y(6, 0)
   SET_FLAG(EVENT_FLAG_SAW_PANIK_ENTER_DOMINO_STATION)
   WARP(15, 1, 1, 0)
@@ -219,22 +328,48 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77360, map_14_state_01_08E77360, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E773E4, map_14_state_01_08E773E4, 0x08F04040, 0x08F04040)
-  TEXT("KaibaCorp is amazing.\n\nThey chartered an entire\nexpress train just for a\n\nduel tournament...\n\n")
+  TEXT
+  (
+      "KaibaCorp is amazing.\n\n"
+      "They chartered an entire\n"
+      "express train just for a\n\n"
+      "duel tournament...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77564, map_14_state_01_08E77564, 0x08F04040, 0x08F04040)
-  TEXT("All aboard! Duel Express\nwill soon depart!\n\nThe next and only stop is\nthe Egypt Exhibition!\n\n")
+  TEXT
+  (
+      "All aboard! Duel Express\n"
+      "will soon depart!\n\n"
+      "The next and only stop is\n"
+      "the Egypt Exhibition!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77570, map_14_state_01_08E77570, 0x08F04040, 0x08F04040)
-  TEXT("The Duel Express is only\nrunning for duelists today.\n\nNon-duelists are not allowed\nto ride.\n\n")
+  TEXT
+  (
+      "The Duel Express is only\n"
+      "running for duelists today.\n\n"
+      "Non-duelists are not allowed\n"
+      "to ride.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7736C, map_14_state_01_08E7736C, 0x08F04040, 0x08F04040)
-  TEXT("If you win this tournament,\nyou get a lot of ante\n\ncards!\n\nWith these high stakes, it's\nmore exciting than any\n\nstreet fight, hiyah!\n\n")
+  TEXT
+  (
+      "If you win this tournament,\n"
+      "you get a lot of ante\n\n"
+      "cards!\n\n"
+      "With these high stakes, it's\n"
+      "more exciting than any\n\n"
+      "street fight, hiyah!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -244,29 +379,57 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77378, map_14_state_01_08E77378, 0x08E77384, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77384, map_14_state_01_08E77384, 0x08E77390, 0x08F0404C)
-  TEXT("Heheh! I'll take you on!\nFeel the heat! Hiyah!\n\n")
+  TEXT
+  (
+      "Heheh! I'll take you on!\n"
+      "Feel the heat! Hiyah!\n\n"
+  )
   DUEL(16)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77390, map_14_state_01_08E77390, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_230)
-  TEXT("Quit rubbing it in!\n\nI'm never playing you again!\nHiyah!\n\n")
+  TEXT
+  (
+      "Quit rubbing it in!\n\n"
+      "I'm never playing you again!\n"
+      "Hiyah!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_FENG_LONG)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7739C, map_14_state_01_08E7739C, 0x08F04040, 0x08F04040)
-  TEXT("I said I'm never playing you\nagain! Hiyah!\n\n")
+  TEXT
+  (
+      "I said I'm never playing you\n"
+      "again! Hiyah!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E773A8, map_14_state_01_08E773A8, 0x08F04040, 0x08F04040)
-  TEXT("Dueling is stupid.\n\nHaven't you heard?\n\nThere are a bunch of bad\nguys who rip off rare cards\n\nin duels.\n\nYou would think dueling is\nstupid too if you ran into\n\nthem!\n\n")
+  TEXT
+  (
+      "Dueling is stupid.\n\n"
+      "Haven't you heard?\n\n"
+      "There are a bunch of bad\n"
+      "guys who rip off rare cards\n\n"
+      "in duels.\n\n"
+      "You would think dueling is\n"
+      "stupid too if you ran into\n\n"
+      "them!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E773B4, map_14_state_01_08E773B4, 0x08F04040, 0x08F04040)
-  TEXT("No way! Forget it!\n\nI don't even want to look at\nany cards!\n\n")
+  TEXT
+  (
+      "No way! Forget it!\n\n"
+      "I don't even want to look at\n"
+      "any cards!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

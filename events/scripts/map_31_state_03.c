@@ -16,19 +16,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42AC, map_31_state_03_08EB42AC, 0x08EB42B8, 0x08E
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("There's somethin' fishy\nabout those guys. Really\n\nfishy.\n\n{PLAYER}, you think so too,\nright?\n\n")
+  TEXT
+  (
+      "There's somethin' fishy\n"
+      "about those guys. Really\n\n"
+      "fishy.\n\n"
+      "{PLAYER}, you think so too,\n"
+      "right?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Yup\nNope{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yup\n"
+      "Nope{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB42B8, map_31_state_03_08EB42B8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Let's check 'em out again.\n\n")
+  TEXT
+  (
+      "Let's check 'em out again.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
@@ -37,7 +51,16 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB42C4, map_31_state_03_08EB42C4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("I'm tellin' ya, there's\nsomethin' weird about those\n\nguys!\n\nEvery bone in my body tells\nme dat, and my instinct is\n\nnever wrong!\n\nLet's check 'em out again.\n\n")
+  TEXT
+  (
+      "I'm tellin' ya, there's\n"
+      "somethin' weird about those\n\n"
+      "guys!\n\n"
+      "Every bone in my body tells\n"
+      "me dat, and my instinct is\n\n"
+      "never wrong!\n\n"
+      "Let's check 'em out again.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)

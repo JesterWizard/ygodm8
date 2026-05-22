@@ -13,28 +13,52 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D090, map_04_state_02_08E4D090, 0x08E4D09C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D09C, map_04_state_02_08E4D09C, 0x08F04040, 0x08F04040)
-  TEXT("I'm not a duelist!\n\nPlease, spare me!\n\n")
+  TEXT
+  (
+      "I'm not a duelist!\n\n"
+      "Please, spare me!\n\n"
+  )
   DELAY(16)
-  TEXT("...")
+  TEXT
+  (
+      "..."
+  )
   DELAY(16)
-  TEXT("Oh, you're not one of the\nNeo Ghouls.\n\n")
+  TEXT
+  (
+      "Oh, you're not one of the\n"
+      "Neo Ghouls.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_SCARED_DUELIST_HATER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D0A8, map_04_state_02_08E4D0A8, 0x08F04040, 0x08F04040)
-  TEXT("Duelists sure are scaredy\ncats.\n\n")
+  TEXT
+  (
+      "Duelists sure are scaredy\n"
+      "cats.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D0B4, map_04_state_02_08E4D0B4, 0x08F04040, 0x08F04040)
-  TEXT("I should've never come to\nthe Town of Domino.\n\n")
+  TEXT
+  (
+      "I should've never come to\n"
+      "the Town of Domino.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D0C0, map_04_state_02_08E4D0C0, 0x08E4D0CC, 0x08E4D0FC)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Like all other cities, this\ntown will also fall to the\n\nNeo Ghouls.\n\n")
+  TEXT
+  (
+      "Like all other cities, this\n"
+      "town will also fall to the\n\n"
+      "Neo Ghouls.\n\n"
+  )
   DUEL(59)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -51,7 +75,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D0F0, map_04_state_02_08E4D0F0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't think that this is\nover.\n\n")
+  TEXT
+  (
+      "Don't think that this is\n"
+      "over.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   HIDE_PORTRAIT()
   DELAY(16)

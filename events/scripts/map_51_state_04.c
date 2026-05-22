@@ -24,14 +24,23 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3DF4, map_51_state_04_08EE3DF4, 0x08EE3E0C, 0x08EE401C)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyohyo!\n\nMy anger still burns!\n\n")
+  TEXT
+  (
+      "Hyohyohyohyo!\n\n"
+      "My anger still burns!\n\n"
+  )
   DUEL(115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E0C, map_51_state_04_08EE3E0C, 0x08EE3FE0, 0x08F04040)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Kiiiiiih!\n\nYou're the last person I'll\nlet pass!\n\n")
+  TEXT
+  (
+      "Kiiiiiih!\n\n"
+      "You're the last person I'll\n"
+      "let pass!\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_DEFEATED_DARK_WEEVIL_WITHOUT_SPIRIT_CARD)
@@ -40,21 +49,33 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E00, map_51_state_04_08EE3E00, 0x08EE3E0C, 0x08EE401C)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're wasting your time!\n\n")
+  TEXT
+  (
+      "You're wasting your time!\n\n"
+  )
   DUEL(115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E18, map_51_state_04_08EE3E18, 0x08EE3E24, 0x08EE401C)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It doesn't matter what you\nbring.\n\nWhen I win, it's all over\nfor you.\n\n")
+  TEXT
+  (
+      "It doesn't matter what you\n"
+      "bring.\n\n"
+      "When I win, it's all over\n"
+      "for you.\n\n"
+  )
   DUEL(115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E24, map_51_state_04_08EE3E24, 0x08EE3E30, 0x08F04040)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Qu-queen!\n\n")
+  TEXT
+  (
+      "Qu-queen!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)

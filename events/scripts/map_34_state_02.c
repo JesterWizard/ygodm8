@@ -15,14 +15,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC2608, map_34_state_02_08EC2608, 0x08F04040, 0x08F
   WALK_OBJECT_X(4, 88)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("There's a duelist here,\nI know it!\n\n")
+  TEXT
+  (
+      "There's a duelist here,\n"
+      "I know it!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_X(5, 88)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You better not cross the Neo\nGhouls or we'll punish you\n\nhard!\n\nBe a good boy and tell us!\n\n")
+  TEXT
+  (
+      "You better not cross the Neo\n"
+      "Ghouls or we'll punish you\n\n"
+      "hard!\n\n"
+      "Be a good boy and tell us!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -37,7 +47,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC2608, map_34_state_02_08EC2608, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(32)
-  TEXT("H-he's in the cave...\n\n")
+  TEXT
+  (
+      "H-he's in the cave...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
@@ -58,31 +71,56 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC2608, map_34_state_02_08EC2608, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC2614, map_34_state_02_08EC2614, 0x08F04040, 0x08F04040)
-  TEXT("I can't believe the Neo\nGhouls are here, eh?\n\n")
+  TEXT
+  (
+      "I can't believe the Neo\n"
+      "Ghouls are here, eh?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC2620, map_34_state_02_08EC2620, 0x08F04040, 0x08F04040)
-  TEXT("I'm in no mood for dueling,\nbuddy.\n\n")
+  TEXT
+  (
+      "I'm in no mood for dueling,\n"
+      "buddy.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC262C, map_34_state_02_08EC262C, 0x08F04040, 0x08F04040)
-  TEXT("I hope the duelist in the\ncave's all right, eh?\n\n")
+  TEXT
+  (
+      "I hope the duelist in the\n"
+      "cave's all right, eh?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC2638, map_34_state_02_08EC2638, 0x08F04040, 0x08F04040)
-  TEXT("I'm no duelist, buddy.\nSo I don't duel.\n\n")
+  TEXT
+  (
+      "I'm no duelist, buddy.\n"
+      "So I don't duel.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC2644, map_34_state_02_08EC2644, 0x08F04040, 0x08F04040)
-  TEXT("What do you suppose brought\nthe Neo Ghouls out here?\n\n")
+  TEXT
+  (
+      "What do you suppose brought\n"
+      "the Neo Ghouls out here?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EC2650, map_34_state_02_08EC2650, 0x08F04040, 0x08F04040)
-  TEXT("Sorry, pal, I dedicated my\nlife to fossils.\n\nNo more dueling for me.\n\n")
+  TEXT
+  (
+      "Sorry, pal, I dedicated my\n"
+      "life to fossils.\n\n"
+      "No more dueling for me.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

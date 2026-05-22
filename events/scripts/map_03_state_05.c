@@ -8,17 +8,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA90, map_03_state_05_08E4AA90, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_KAIBA_FAN)
   LOAD_SPRITE(2, SPRITE_RED_HAIR)
   LOAD_SPRITE(3, SPRITE_REX)
-  TEXT("Kaiba Corporation is up\nahead.\n\nIs something going on there?\n\n")
+  TEXT
+  (
+      "Kaiba Corporation is up\n"
+      "ahead.\n\n"
+      "Is something going on there?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA9C, map_03_state_05_08E4AA9C, 0x08F04040, 0x08F04040)
-  TEXT("I'm too worried about Mr.\nKaiba to duel.\n\n")
+  TEXT
+  (
+      "I'm too worried about Mr.\n"
+      "Kaiba to duel.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAA8, map_03_state_05_08E4AAA8, 0x08F04040, 0x08F04040)
-  TEXT("The Town of Domino has\nbecome peaceful since the\n\nNeo Ghouls left.\n\n")
+  TEXT
+  (
+      "The Town of Domino has\n"
+      "become peaceful since the\n\n"
+      "Neo Ghouls left.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -28,26 +42,43 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AAB4, map_03_state_05_08E4AAB4, 0x08E4AAC0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAC0, map_03_state_05_08E4AAC0, 0x08E4AACC, 0x08F0404C)
-  TEXT("I'm not going to lose.\n\n")
+  TEXT
+  (
+      "I'm not going to lose.\n\n"
+  )
   DUEL(89)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AACC, map_03_state_05_08E4AACC, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT("It was fun, even though I\nlost.\n\n")
+  TEXT
+  (
+      "It was fun, even though I\n"
+      "lost.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_RED_HAIR2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAD8, map_03_state_05_08E4AAD8, 0x08F04040, 0x08F04040)
-  TEXT("Another time, all right?\n\n")
+  TEXT
+  (
+      "Another time, all right?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAE4, map_03_state_05_08E4AAE4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Things are now as cool as\nthe Ice Age.\n\nI'm outta here.\n\nBack to boning up my deck\namong the fossils.\n\n")
+  TEXT
+  (
+      "Things are now as cool as\n"
+      "the Ice Age.\n\n"
+      "I'm outta here.\n\n"
+      "Back to boning up my deck\n"
+      "among the fossils.\n\n"
+  )
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
   SET_FLAG(EVENT_FLAG_REX_LEFT_CLOCK_TOWER_SQUARE)

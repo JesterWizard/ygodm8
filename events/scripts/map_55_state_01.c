@@ -21,49 +21,120 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF04D4, map_55_state_01_08EF04D4, 0x08EF04E0, 0x08F
   WALK_OBJECT_Y(0, 66)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Congratulations for passing\nmy test!\n\nSo, {PLAYER}, it is you who\nsurvived until the end...\n\nFufufu, I, Sol Chevalsky,\nwelcome you!\n\n")
+  TEXT
+  (
+      "Congratulations for passing\n"
+      "my test!\n\n"
+      "So, {PLAYER}, it is you who\n"
+      "survived until the end...\n\n"
+      "Fufufu, I, Sol Chevalsky,\n"
+      "welcome you!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(2, 68)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Pegasus, stop this nonsense\nat once.\n\n")
+  TEXT
+  (
+      "Pegasus, stop this nonsense\n"
+      "at once.\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("My past means nothing to me.\nI am no longer Pegasus.\n\nI am Sol Chevalsky!\n\n")
+  TEXT
+  (
+      "My past means nothing to me.\n"
+      "I am no longer Pegasus.\n\n"
+      "I am Sol Chevalsky!\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Why are you acting like\nthis?\n\nIt's not too late.\n\nReturn Reshef the Dark Being\nto its prison.\n\n")
+  TEXT
+  (
+      "Why are you acting like\n"
+      "this?\n\n"
+      "It's not too late.\n\n"
+      "Return Reshef the Dark Being\n"
+      "to its prison.\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("What? Why should I do that?\n\nWhen Reshef gains full\npower, it would create a\n\nwonderful world!\n\nWhy can you not accept that?\n\n")
+  TEXT
+  (
+      "What? Why should I do that?\n\n"
+      "When Reshef gains full\n"
+      "power, it would create a\n\n"
+      "wonderful world!\n\n"
+      "Why can you not accept that?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("He is under the spell of the\nDark Being...\n\n")
+  TEXT
+  (
+      "He is under the spell of the\n"
+      "Dark Being...\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("To complete the resurrection\nof Reshef the Dark Being...\n\nThere is no greater\nsacrifice...\n\nThan the spirit of a\ndefeated duelist!\n\nAnd Yugi boy...\n\nThe only duelist to have\nbeaten me...\n\n")
+  TEXT
+  (
+      "To complete the resurrection\n"
+      "of Reshef the Dark Being...\n\n"
+      "There is no greater\n"
+      "sacrifice...\n\n"
+      "Than the spirit of a\n"
+      "defeated duelist!\n\n"
+      "And Yugi boy...\n\n"
+      "The only duelist to have\n"
+      "beaten me...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
   SET_OBJECT_POSITION(6, 64, 42, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("I have his power right here.\n\nFufufu... There are no\nduelists left who can beat\n\nme.\n\nTherefore, you will lose...\n\nAnd I will sacrifice you to\nReshef the Dark Being.\n\n")
+  TEXT
+  (
+      "I have his power right here.\n\n"
+      "Fufufu... There are no\n"
+      "duelists left who can beat\n\n"
+      "me.\n\n"
+      "Therefore, you will lose...\n\n"
+      "And I will sacrifice you to\n"
+      "Reshef the Dark Being.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("He has the pieces of the\nMillennium Puzzle...\n\n")
+  TEXT
+  (
+      "He has the pieces of the\n"
+      "Millennium Puzzle...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
   SET_OBJECT_POSITION(6, 128, 96, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Come, the preparations have\nbeen made.\n\nWe will duel, and you will\ntaste defeat!\n\n")
+  TEXT
+  (
+      "Come, the preparations have\n"
+      "been made.\n\n"
+      "We will duel, and you will\n"
+      "taste defeat!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("There is no choice. Please,\n{PLAYER}.\n\nYou must free Pegasus's\nspirit from Reshef.\n\n")
+  TEXT
+  (
+      "There is no choice. Please,\n"
+      "{PLAYER}.\n\n"
+      "You must free Pegasus's\n"
+      "spirit from Reshef.\n\n"
+  )
   DUEL(121)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -87,7 +158,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF0504, map_55_state_01_08EF0504, 0x08EF0510, 0x08EF051C)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("Noooooooooooo!\n\n")
+  TEXT
+  (
+      "Noooooooooooo!\n\n"
+  )
   SPECIAL(25)
   PLAY_MUSIC(MUSIC_317)
   SLIDE_OBJECT(1, 2, 14)
@@ -95,7 +169,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0504, map_55_state_01_08EF0504, 0x08EF0510, 0x08E
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("It can't be...\nUnbelievable...\n\nHow could I lose with the\npower of Reshef?\n\n")
+  TEXT
+  (
+      "It can't be...\n"
+      "Unbelievable...\n\n"
+      "How could I lose with the\n"
+      "power of Reshef?\n\n"
+  )
   HIDE_PORTRAIT()
   PLAY_MUSIC(MUSIC_318)
   SPECIAL(21)
@@ -109,7 +189,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0504, map_55_state_01_08EF0504, 0x08EF0510, 0x08E
   DELAY(8)
   WALK_OBJECT_Y(2, 62)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef the Dark Being!\n\nI command you to return to\nthe stone tablet!\n\n")
+  TEXT
+  (
+      "Reshef the Dark Being!\n\n"
+      "I command you to return to\n"
+      "the stone tablet!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(4)
   PLAY_MUSIC(MUSIC_351)
@@ -143,7 +228,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0504, map_55_state_01_08EF0504, 0x08EF0510, 0x08E
   DELAY(32)
   PLAY_MUSIC(MUSIC_RESHEF_DEFEATED)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Gwah! Wh-what... What is\nhappening?!\n\nNoooo! What happened to me?\n\n")
+  TEXT
+  (
+      "Gwah! Wh-what... What is\n"
+      "happening?!\n\n"
+      "Noooo! What happened to me?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 60)
@@ -153,21 +243,51 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0504, map_55_state_01_08EF0504, 0x08EF0510, 0x08E
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You seem to have finally\nawoken from your nightmare.\n\n")
+  TEXT
+  (
+      "You seem to have finally\n"
+      "awoken from your nightmare.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("What... I almost ruined us\nall...\n\nEven though I was under\ncontrol, that is no\n\nexcuse...\n\nI gathered the spirits of\ndefeated duelists...\n\n")
+  TEXT
+  (
+      "What... I almost ruined us\n"
+      "all...\n\n"
+      "Even though I was under\n"
+      "control, that is no\n\n"
+      "excuse...\n\n"
+      "I gathered the spirits of\n"
+      "defeated duelists...\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef needs their negative\nenergy to initiate its\n\nfinal ritual.\n\n")
+  TEXT
+  (
+      "Reshef needs their negative\n"
+      "energy to initiate its\n\n"
+      "final ritual.\n\n"
+  )
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The castle is sealed inside\na protective sphere...\n\nThere is no escape from\nReshef's final ritual.\n\n")
+  TEXT
+  (
+      "The castle is sealed inside\n"
+      "a protective sphere...\n\n"
+      "There is no escape from\n"
+      "Reshef's final ritual.\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("The final ritual? Of the\nancients?\n\nReshef is using negative\nenergy?\n\n")
+  TEXT
+  (
+      "The final ritual? Of the\n"
+      "ancients?\n\n"
+      "Reshef is using negative\n"
+      "energy?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_319)
@@ -192,17 +312,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0528, map_55_state_01_08EF0528, 0x08EF0534, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_1 | OBJECT_2)
   DELAY(8)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef is regaining its\nform...\n\n")
+  TEXT
+  (
+      "Reshef is regaining its\n"
+      "form...\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("It's hopeless... We're\nfinished.\n\nAll the duels that {PLAYER}\nfought to get here...\n\nAll the negative energies of\nthe defeated duelists...\n\nReshef has all their power.\n\nThe Dark Being has risen...\n\nWe have no hope for\ndefeating it.\n\n")
+  TEXT
+  (
+      "It's hopeless... We're\n"
+      "finished.\n\n"
+      "All the duels that {PLAYER}\n"
+      "fought to get here...\n\n"
+      "All the negative energies of\n"
+      "the defeated duelists...\n\n"
+      "Reshef has all their power.\n\n"
+      "The Dark Being has risen...\n\n"
+      "We have no hope for\n"
+      "defeating it.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("A complete victory in a duel\nis needed to consummate the\n\nritual.\n\nThe Dark Being has grown\ninfinitely powerful...\n\n{PLAYER} has also grown\nstrong, but...\n\n")
+  TEXT
+  (
+      "A complete victory in a duel\n"
+      "is needed to consummate the\n\n"
+      "ritual.\n\n"
+      "The Dark Being has grown\n"
+      "infinitely powerful...\n\n"
+      "{PLAYER} has also grown\n"
+      "strong, but...\n\n"
+  )
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   WALK_OBJECT_Y(3, 76)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("What are you afraid of,\n{PLAYER}?\n\n")
+  TEXT
+  (
+      "What are you afraid of,\n"
+      "{PLAYER}?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -210,20 +359,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0528, map_55_state_01_08EF0528, 0x08EF0534, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("Use my card and win!\n\n")
+  TEXT
+  (
+      "Use my card and win!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(4, 68)
   WALK_OBJECT_Y(5, 76)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}!\n\n")
+  TEXT
+  (
+      "{PLAYER}!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Kaiba's right, {PLAYER}!\n\nI don't believe this story\nabout a final ritual...\n\nBut I know you'll win!\n\n")
+  TEXT
+  (
+      "Kaiba's right, {PLAYER}!\n\n"
+      "I don't believe this story\n"
+      "about a final ritual...\n\n"
+      "But I know you'll win!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Yugi boy... I have treated\nyou terribly...\n\n")
+  TEXT
+  (
+      "Yugi boy... I have treated\n"
+      "you terribly...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -248,32 +413,62 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0528, map_55_state_01_08EF0528, 0x08EF0534, 0x08F
   LOAD_SPRITE(4, SPRITE_ATEM)
   DELAY(96)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-what? Is this a miracle?\nIt's fantastic!\n\n")
+  TEXT
+  (
+      "Wh-what? Is this a miracle?\n"
+      "It's fantastic!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You have nothing to fear\nagainst Reshef!\n\nMy spirit is united with all\nthe duelists I've faced.\n\nIncluding yours, {PLAYER}.\n\nWith all our souls united as\none...\n\nTake hold of the true\nduelist's spirit!\n\nUse it to defeat the Dark\nBeing!\n\n")
+  TEXT
+  (
+      "You have nothing to fear\n"
+      "against Reshef!\n\n"
+      "My spirit is united with all\n"
+      "the duelists I've faced.\n\n"
+      "Including yours, {PLAYER}.\n\n"
+      "With all our souls united as\n"
+      "one...\n\n"
+      "Take hold of the true\n"
+      "duelist's spirit!\n\n"
+      "Use it to defeat the Dark\n"
+      "Being!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("All of us together... We'll\ndestroy Reshef!\n\n")
+  TEXT
+  (
+      "All of us together... We'll\n"
+      "destroy Reshef!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 7)
   DELAY(16)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yeah!\n\n")
+  TEXT
+  (
+      "Yeah!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 8)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Humph... Come Blue-Eyes!\n\n")
+  TEXT
+  (
+      "Humph... Come Blue-Eyes!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 9)
   DELAY(16)
   PLAY_MUSIC(MUSIC_352)
   COMMAND_7C_ARG(8, 10)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Go!\n\n")
+  TEXT
+  (
+      "Go!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -284,11 +479,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0528, map_55_state_01_08EF0528, 0x08EF0534, 0x08F
   COMMAND_7C_ARG(8, 11)
   DELAY(16)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("The sacred souls of\nduelists!\n\n")
+  TEXT
+  (
+      "The sacred souls of\n"
+      "duelists!\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("The pure and proud spirits\nof duelists have united!\n\nPerhaps this...\n\n")
+  TEXT
+  (
+      "The pure and proud spirits\n"
+      "of duelists have united!\n\n"
+      "Perhaps this...\n\n"
+  )
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Now, {PLAYER}!\n\nSeal Reshef forever!\n\n")
+  TEXT
+  (
+      "Now, {PLAYER}!\n\n"
+      "Seal Reshef forever!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   WALK_OBJECT_Y(0, 50)
@@ -302,11 +510,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0534, map_55_state_01_08EF0534, 0x08EF0540, 0x08E
   PLAY_MUSIC(MUSIC_391)
   COMMAND_7C_ARG(8, 36)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Is... Is it over?\n\n")
+  TEXT
+  (
+      "Is... Is it over?\n\n"
+  )
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef fed on the darkness\nin duelists' souls.\n\nIt gained power from the\nfear of defeat.\n\nBut our proud duelist\nspirits won in the end.\n\n")
+  TEXT
+  (
+      "Reshef fed on the darkness\n"
+      "in duelists' souls.\n\n"
+      "It gained power from the\n"
+      "fear of defeat.\n\n"
+      "But our proud duelist\n"
+      "spirits won in the end.\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I wouldn't be so hasty..\n\n")
+  TEXT
+  (
+      "I wouldn't be so hasty..\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 4, 0)
@@ -340,11 +562,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0534, map_55_state_01_08EF0534, 0x08EF0540, 0x08E
   COMMAND_7C_ARG(8, 58)
   DELAY(8)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Noooooooooo!\n\nReshef! It's worming itself\ninto my soul!\n\nIt's found the darkness in\nmy heart!\n\nWhy? Do I fear defeat?\n\n")
+  TEXT
+  (
+      "Noooooooooo!\n\n"
+      "Reshef! It's worming itself\n"
+      "into my soul!\n\n"
+      "It's found the darkness in\n"
+      "my heart!\n\n"
+      "Why? Do I fear defeat?\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Reshef the Dark Being...\n\nI let you into my soul to\nexploit its darkness...\n\nI helped release you...\n\n")
+  TEXT
+  (
+      "Reshef the Dark Being...\n\n"
+      "I let you into my soul to\n"
+      "exploit its darkness...\n\n"
+      "I helped release you...\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT("But... I won't lose to you!\n\n")
+  TEXT
+  (
+      "But... I won't lose to you!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 38)
@@ -354,22 +593,43 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0534, map_55_state_01_08EF0534, 0x08EF0540, 0x08E
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(32)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT("Now, {PLAYER}!\n\nSeal me while Reshef remains\ntrapped inside!\n\n")
+  TEXT
+  (
+      "Now, {PLAYER}!\n\n"
+      "Seal me while Reshef remains\n"
+      "trapped inside!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_2 | OBJECT_3 | OBJECT_4 | OBJECT_5)
   DELAY(8)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Nothing can forgive me for\nwhat I've done...\n\nI have to atone for my\ncrimes...\n\n")
+  TEXT
+  (
+      "Nothing can forgive me for\n"
+      "what I've done...\n\n"
+      "I have to atone for my\n"
+      "crimes...\n\n"
+  )
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-  TEXT("Quickly, before Reshef\nconsumes my soul!\n\n")
+  TEXT
+  (
+      "Quickly, before Reshef\n"
+      "consumes my soul!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(32)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, there's no other\nchoice.\n\nYou must honor Pegasus as a\ntrue duelist.\n\n")
+  TEXT
+  (
+      "{PLAYER}, there's no other\n"
+      "choice.\n\n"
+      "You must honor Pegasus as a\n"
+      "true duelist.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -387,14 +647,22 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EF0558, map_55_state_01_08EF0558, 0x08EF0564, 0x08F04040)
   SHOW_OBJECT(1, 128, 96, 0, 0, 0)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Thank you, {PLAYER}.\n\nI'm glad my final opponent\nwas you.\n\n")
+  TEXT
+  (
+      "Thank you, {PLAYER}.\n\n"
+      "I'm glad my final opponent\n"
+      "was you.\n\n"
+  )
   SPECIAL(32)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EF0564, map_55_state_01_08EF0564, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It's over, {PLAYER}.\n\n")
+  TEXT
+  (
+      "It's over, {PLAYER}.\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -408,7 +676,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0564, map_55_state_01_08EF0564, 0x08F04040, 0x08F
   MOVE_OBJECT(3, DIRECTION_UP, 4, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("This castle's not going to\nhold much longer.\n\n")
+  TEXT
+  (
+      "This castle's not going to\n"
+      "hold much longer.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
@@ -418,7 +690,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0564, map_55_state_01_08EF0564, 0x08F04040, 0x08F
   MOVE_OBJECT(5, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("I'll say! Let's get out of\nhere!\n\n")
+  TEXT
+  (
+      "I'll say! Let's get out of\n"
+      "here!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
@@ -432,7 +708,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF0564, map_55_state_01_08EF0564, 0x08F04040, 0x08F
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, we have to get\nout!\n\n")
+  TEXT
+  (
+      "{PLAYER}, we have to get\n"
+      "out!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(5, 96)

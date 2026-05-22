@@ -13,25 +13,42 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A6C, map_18_state_01_08E80A6C, 0x08E80A84, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A84, map_18_state_01_08E80A84, 0x08E80A9C, 0x08E80A90)
-  TEXT("Hohoho, you wish to\nchallenge me?\n\n")
+  TEXT
+  (
+      "Hohoho, you wish to\n"
+      "challenge me?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 1)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT("Papa, show him you're the\nbest!\n\n")
+  TEXT
+  (
+      "Papa, show him you're the\n"
+      "best!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT("Yes, dear! Put him in his\nplace!\n\n")
+  TEXT
+  (
+      "Yes, dear! Put him in his\n"
+      "place!\n\n"
+  )
   DUEL(26)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A9C, map_18_state_01_08E80A9C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_232)
-  TEXT("W-what? I lost?\n\nI must buy more expensive\nrare cards.\n\n")
+  TEXT
+  (
+      "W-what? I lost?\n\n"
+      "I must buy more expensive\n"
+      "rare cards.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_RICH_FATHER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -50,7 +67,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A90, map_18_state_01_08E80A90, 0x08F0404C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AA8, map_18_state_01_08E80AA8, 0x08F04040, 0x08F04040)
-  TEXT("I'll buy more pricey rare\ncards.\n\n")
+  TEXT
+  (
+      "I'll buy more pricey rare\n"
+      "cards.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -60,17 +81,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A78, map_18_state_01_08E80A78, 0x08E80A84, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AB4, map_18_state_01_08E80AB4, 0x08F04040, 0x08F04040)
-  TEXT("We should duel again, but\nsometime else.\n\n")
+  TEXT
+  (
+      "We should duel again, but\n"
+      "sometime else.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AC0, map_18_state_01_08E80AC0, 0x08F04040, 0x08F04040)
-  TEXT("I only came for the Egypt\nExhibition.\n\nI had no clue that dueling\nwas my husband's hobby.\n\nI wouldn't have imagined it\nin a million years.\n\n")
+  TEXT
+  (
+      "I only came for the Egypt\n"
+      "Exhibition.\n\n"
+      "I had no clue that dueling\n"
+      "was my husband's hobby.\n\n"
+      "I wouldn't have imagined it\n"
+      "in a million years.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80ACC, map_18_state_01_08E80ACC, 0x08F04040, 0x08F04040)
-  TEXT("Duel? Most certainly not.\nHow uncouth!\n\n")
+  TEXT
+  (
+      "Duel? Most certainly not.\n"
+      "How uncouth!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -80,13 +117,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A18, map_18_state_01_08E80A18, 0x08E80A30, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A30, map_18_state_01_08E80A30, 0x08F04040, 0x08F04040)
-  TEXT("I'll have you know that my\npapa has many rare cards.\n\n")
+  TEXT
+  (
+      "I'll have you know that my\n"
+      "papa has many rare cards.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A54, map_18_state_01_08E80A54, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_232)
-  TEXT("I'll get my papa to buy me\nmore rare cards...\n\n")
+  TEXT
+  (
+      "I'll get my papa to buy me\n"
+      "more rare cards...\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_RICH_DAUGHTER)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -97,7 +142,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A24, map_18_state_01_08E80A24, 0x08E80A3C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A3C, map_18_state_01_08E80A3C, 0x08E80A54, 0x08E80A48)
-  TEXT("Fine.\n\n")
+  TEXT
+  (
+      "Fine.\n\n"
+  )
   DUEL(27)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -116,6 +164,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80A48, map_18_state_01_08E80A48, 0x08F0404C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80A60, map_18_state_01_08E80A60, 0x08F04040, 0x08F04040)
-  TEXT("Sure, but only after my papa\nbuys me more rare cards.\n\n")
+  TEXT
+  (
+      "Sure, but only after my papa\n"
+      "buys me more rare cards.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -12,35 +12,61 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4ABC, map_39_state_03_08ED4ABC, 0x08F04040, 0x08F
   MOVE_OBJECT(1, DIRECTION_UP, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("S-say something!\n\n")
+  TEXT
+  (
+      "S-say something!\n\n"
+  )
   PORTRAIT(PORTRAIT_STRINGS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...\n\n")
+  TEXT
+  (
+      "...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_DOWN, 8, 0)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("W-what a strange individual!\nI've never felt so\n\nuncomfortable...\n\n")
+  TEXT
+  (
+      "W-what a strange individual!\n"
+      "I've never felt so\n\n"
+      "uncomfortable...\n\n"
+  )
   SET_FLAG(EVENT_FLAG_SAW_STRINGS_MAKING_MAKO_UNCOMFORTABLE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AD4, map_39_state_03_08ED4AD4, 0x08ED4AE0, 0x08F04040)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hey, you've come just at the\nright time.\n\nCan you do something about\nthis person?\n\nI lack the skill to deal\nwith such weirdness.\n\n")
+  TEXT
+  (
+      "Hey, you've come just at the\n"
+      "right time.\n\n"
+      "Can you do something about\n"
+      "this person?\n\n"
+      "I lack the skill to deal\n"
+      "with such weirdness.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AE0, map_39_state_03_08ED4AE0, 0x08ED4AEC, 0x08ED4AF8)
-  TEXT("{CARD_1}Leave it to me!\nHe creeps me out, too.{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Leave it to me!\n"
+      "He creeps me out, too.{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AEC, map_39_state_03_08ED4AEC, 0x08ED4B04, 0x08F04040)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm counting on you!\n\n")
+  TEXT
+  (
+      "I'm counting on you!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -66,7 +92,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B10, map_39_state_03_08ED4B10, 0x08ED4B1C, 0x08F
   SET_MAP_MUSIC(248)
   PLAY_MUSIC(MUSIC_248)
   PORTRAIT(PORTRAIT_STRINGS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...Lost...\n\n")
+  TEXT
+  (
+      "...Lost...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 88)
@@ -81,7 +110,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B10, map_39_state_03_08ED4B10, 0x08ED4B1C, 0x08F
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Yes! Thank you!\n\nBut what brings you here?\n\n")
+  TEXT
+  (
+      "Yes! Thank you!\n\n"
+      "But what brings you here?\n\n"
+  )
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
   FALLTHROUGH()
@@ -90,14 +123,28 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08ED4B1C, map_39_state_03_08ED4B1C, 0x08ED4B28, 0x08ED4B34)
   PLAY_MUSIC(MUSIC_702)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I see. What a horrible\nsituation!\n\nThis is why I've been\nsensing trouble among the\n\nwaves.\n\nMy instincts tell me\nsomething more sinister is\n\nin the works.\n\n")
+  TEXT
+  (
+      "I see. What a horrible\n"
+      "situation!\n\n"
+      "This is why I've been\n"
+      "sensing trouble among the\n\n"
+      "waves.\n\n"
+      "My instincts tell me\n"
+      "something more sinister is\n\n"
+      "in the works.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Anyways, I'm going to the\nTown of Domino.\n\n")
+  TEXT
+  (
+      "Anyways, I'm going to the\n"
+      "Town of Domino.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 72)
@@ -115,7 +162,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B28, map_39_state_03_08ED4B28, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's go find another ally!\n\n")
+  TEXT
+  (
+      "Let's go find another ally!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -127,7 +177,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4B34, map_39_state_03_08ED4B34, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay! Let's also get back to\nthe Town of Domino!\n\n")
+  TEXT
+  (
+      "Okay! Let's also get back to\n"
+      "the Town of Domino!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -137,13 +191,20 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AF8, map_39_state_03_08ED4AF8, 0x08ED4B04, 0x08F04040)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Please reconsider! You're\nthe only one I trust.\n\n")
+  TEXT
+  (
+      "Please reconsider! You're\n"
+      "the only one I trust.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08ED4AC8, map_39_state_03_08ED4AC8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_STRINGS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...\n\n")
+  TEXT
+  (
+      "...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

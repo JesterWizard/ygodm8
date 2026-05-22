@@ -18,7 +18,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77588, map_14_state_07_08E77588, 0x08E775A0, 0x08E
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("What took ya so long,\n{PLAYER}!\n\nIf you're having trouble\nagainst these guys...\n\nWell, I'd hate to think\nwhat'd happen against some\n\nreal competition.\n\nHurry and catch up to my\nlevel!\n\n")
+  TEXT
+  (
+      "What took ya so long,\n"
+      "{PLAYER}!\n\n"
+      "If you're having trouble\n"
+      "against these guys...\n\n"
+      "Well, I'd hate to think\n"
+      "what'd happen against some\n\n"
+      "real competition.\n\n"
+      "Hurry and catch up to my\n"
+      "level!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)

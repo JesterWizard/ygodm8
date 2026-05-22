@@ -7,7 +7,11 @@
 EVENT_SCRIPT_REPLACEMENT(0x08EDA8AC, map_44_state_01_08EDA8AC, 0x08EDA8B8, 0x08F0404C)
   LOAD_SPRITE(1, SPRITE_CHEVALIER)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   DUEL(108)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -15,7 +19,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EDA8B8, map_44_state_01_08EDA8B8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DUNGEON)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()

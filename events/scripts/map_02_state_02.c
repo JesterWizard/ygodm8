@@ -8,25 +8,43 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47854, map_02_state_02_08E47854, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_BLUE_JACKET)
   LOAD_SPRITE(2, SPRITE_LINT)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
-  TEXT("This is not the time for a\nstreet duel!\n\nCan't anyone do anything\nabout the Neo Ghouls?\n\n")
+  TEXT
+  (
+      "This is not the time for a\n"
+      "street duel!\n\n"
+      "Can't anyone do anything\n"
+      "about the Neo Ghouls?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E47890, map_02_state_02_08E47890, 0x08E4789C, 0x08E478CC)
-  TEXT("Groan...\n\n")
+  TEXT
+  (
+      "Groan...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   SHOW_OBJECT(3, 52, 0, 0, 0, 0)
   WALK_OBJECT_Y(3, 18)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You must be the brats who\nwant to be heroes!\n\n")
+  TEXT
+  (
+      "You must be the brats who\n"
+      "want to be heroes!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You should have stayed in\nthe sandbox! I'm not as\n\nnice as the other guy!\n\n")
+  TEXT
+  (
+      "You should have stayed in\n"
+      "the sandbox! I'm not as\n\n"
+      "nice as the other guy!\n\n"
+  )
   DUEL(57)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -43,7 +61,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E478C0, map_02_state_02_08E478C0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I won't forget this! I'm\ngoing to get you good!\n\n")
+  TEXT
+  (
+      "I won't forget this! I'm\n"
+      "going to get you good!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(3, 0)

@@ -12,23 +12,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3B90, map_26_state_01_08EA3B90, 0x08EA3B9C, 0x08F
   PLAY_MUSIC(MUSIC_JEAN_CLAUDE_MAGNUM)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Mai, my darling!\n\nPlease marry me! Be mine,\nMai Valentine!\n\n")
+  TEXT
+  (
+      "Mai, my darling!\n\n"
+      "Please marry me! Be mine,\n"
+      "Mai Valentine!\n\n"
+  )
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Stop following me!\n\nI already told you, I'll\nonly marry if you beat me\n\nin a duel.\n\n")
+  TEXT
+  (
+      "Stop following me!\n\n"
+      "I already told you, I'll\n"
+      "only marry if you beat me\n\n"
+      "in a duel.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Okay!\n\nThen today's the day you'll\nbe marching with me to the\n\nchapel!\n\n")
+  TEXT
+  (
+      "Okay!\n\n"
+      "Then today's the day you'll\n"
+      "be marching with me to the\n\n"
+      "chapel!\n\n"
+  )
   FADE_SCREEN(4)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3B9C, map_26_state_01_08EA3B9C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Harpie Lady Sisters!\n\n")
+  TEXT
+  (
+      "Harpie Lady Sisters!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 12)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Harpies' Triangle Ecstasy!\n\n")
+  TEXT
+  (
+      "Harpies' Triangle Ecstasy!\n\n"
+  )
   PLAY_MUSIC(MUSIC_341)
   COMMAND_7C_ARG(8, 13)
   DELAY(16)
@@ -36,7 +59,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3B9C, map_26_state_01_08EA3B9C, 0x08F04040, 0x08F
   SLIDE_OBJECT(2, 1, 16)
   DELAY(32)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Urrrrggggh..\n\nM-my, my, my Mai, you are\nexcellent, as always!\n\nBut today, I'm better than\nusual!\n\nI've constructed a new\nperfect absolute ultimate\n\ndeck filled with special\nunique powerful rare cards!\n\nLet's duel again, my\nValentine!\n\n")
+  TEXT
+  (
+      "Urrrrggggh..\n\n"
+      "M-my, my, my Mai, you are\n"
+      "excellent, as always!\n\n"
+      "But today, I'm better than\n"
+      "usual!\n\n"
+      "I've constructed a new\n"
+      "perfect absolute ultimate\n\n"
+      "deck filled with special\n"
+      "unique powerful rare cards!\n\n"
+      "Let's duel again, my\n"
+      "Valentine!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 16, 0)
@@ -46,7 +82,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3B9C, map_26_state_01_08EA3B9C, 0x08F04040, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("...I can't deal with this.\n\n")
+  TEXT
+  (
+      "...I can't deal with this.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_SAW_JEAN_CLAUDE_MAGNUM_PROPOSE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -63,27 +102,51 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3BD8, map_26_state_01_08EA3BD8, 0x08EA3BE4, 0x08F
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Am I glad to see you! You\ncame just at the right\n\ntime.\n\nCan you duel that creep in\nmy place?\n\n")
+  TEXT
+  (
+      "Am I glad to see you! You\n"
+      "came just at the right\n\n"
+      "time.\n\n"
+      "Can you duel that creep in\n"
+      "my place?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BE4, map_26_state_01_08EA3BE4, 0x08EA3BFC, 0x08EA3BF0)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BFC, map_26_state_01_08EA3BFC, 0x08EA3C08, 0x08F0404C)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're a real lifesaver!\n\n")
+  TEXT
+  (
+      "You're a real lifesaver!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Jean Claude Magnum! {PLAYER}\nwill take you on!\n\n")
+  TEXT
+  (
+      "Jean Claude Magnum! {PLAYER}\n"
+      "will take you on!\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It doesn't matter who you\nforce me to duel, Mai!\n\nWhen I win, you have to\nmarry me, as you promised!\n\n")
+  TEXT
+  (
+      "It doesn't matter who you\n"
+      "force me to duel, Mai!\n\n"
+      "When I win, you have to\n"
+      "marry me, as you promised!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -92,7 +155,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3BFC, map_26_state_01_08EA3BFC, 0x08EA3C08, 0x08F
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("...You better not lose.\n\n")
+  TEXT
+  (
+      "...You better not lose.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 31)
@@ -108,9 +174,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C08, map_26_state_01_08EA3C08, 0x08F04040, 0x08F
   SET_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO)
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
-  TEXT("How could this happen? I'm a\nbig time star! I never lose\n\nis any of my movies...\n\n")
+  TEXT
+  (
+      "How could this happen? I'm a\n"
+      "big time star! I never lose\n\n"
+      "is any of my movies...\n\n"
+  )
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Thanks, {PLAYER}.\n\n")
+  TEXT
+  (
+      "Thanks, {PLAYER}.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -119,7 +193,15 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BF0, map_26_state_01_08EA3BF0, 0x08EA3BE4, 0x08F04040)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("How can you turn a request\ndown from a lady?\n\nWhat kind of gentleman are\nyou!\n\nQuit your whining and duel\nthat Hollywood halfwit!\n\n")
+  TEXT
+  (
+      "How can you turn a request\n"
+      "down from a lady?\n\n"
+      "What kind of gentleman are\n"
+      "you!\n\n"
+      "Quit your whining and duel\n"
+      "that Hollywood halfwit!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -135,7 +217,20 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C2C, map_26_state_01_08EA3C2C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You're searching for a\nMillennium Item?\n\nI don't know how I can help\nyou... Hmm...\n\nActually, there's mysterious\ncargo in the ship's hold.\n\nMaybe you'll find something\nthere.\n\nI'll leave the hold\nunlocked. Consider that as\n\na thank you for saving me.\n\n")
+  TEXT
+  (
+      "You're searching for a\n"
+      "Millennium Item?\n\n"
+      "I don't know how I can help\n"
+      "you... Hmm...\n\n"
+      "Actually, there's mysterious\n"
+      "cargo in the ship's hold.\n\n"
+      "Maybe you'll find something\n"
+      "there.\n\n"
+      "I'll leave the hold\n"
+      "unlocked. Consider that as\n\n"
+      "a thank you for saving me.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -151,7 +246,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C38, map_26_state_01_08EA3C38, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You were looking for a\nMillennium Item, right?\n\nI hope you can find it in\nthe ship's hold.\n\n")
+  TEXT
+  (
+      "You were looking for a\n"
+      "Millennium Item, right?\n\n"
+      "I hope you can find it in\n"
+      "the ship's hold.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -175,7 +276,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C50, map_26_state_01_08EA3C50, 0x08EA3C5C, 0x08F0404C)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("My job is to duel guests on\nthis cruise.\n\nAnd believe me, I take my\njob seriously!\n\n")
+  TEXT
+  (
+      "My job is to duel guests on\n"
+      "this cruise.\n\n"
+      "And believe me, I take my\n"
+      "job seriously!\n\n"
+  )
   DUEL(33)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -184,7 +291,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C5C, map_26_state_01_08EA3C5C, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
   SET_FLAG(EVENT_FLAG_DEFEATED_MAI)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I lost.\n\n")
+  TEXT
+  (
+      "I lost.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -193,7 +303,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C68, map_26_state_01_08EA3C68, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I have to duel with the\nother guests.\n\nPlease challenge someone\nelse, alright?\n\n")
+  TEXT
+  (
+      "I have to duel with the\n"
+      "other guests.\n\n"
+      "Please challenge someone\n"
+      "else, alright?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -203,7 +319,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C14, map_26_state_01_08EA3C14, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I already hear wedding\nbells!!\n\n")
+  TEXT
+  (
+      "I already hear wedding\n"
+      "bells!!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -213,7 +333,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C20, map_26_state_01_08EA3C20, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I don't think so! This is\nnot the time!\n\nCan't you see that I'm\ntrying to propose?\n\n")
+  TEXT
+  (
+      "I don't think so! This is\n"
+      "not the time!\n\n"
+      "Can't you see that I'm\n"
+      "trying to propose?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
@@ -221,17 +347,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C20, map_26_state_01_08EA3C20, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C98, map_26_state_01_08EA3C98, 0x08F04040, 0x08F04040)
-  TEXT("This ship's lady duelist is\nbeautiful, no?\n\n")
+  TEXT
+  (
+      "This ship's lady duelist is\n"
+      "beautiful, no?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CA4, map_26_state_01_08EA3CA4, 0x08F04040, 0x08F04040)
-  TEXT("Sorry, chap.\n\nI prefer to watch.\n\n")
+  TEXT
+  (
+      "Sorry, chap.\n\n"
+      "I prefer to watch.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CB0, map_26_state_01_08EA3CB0, 0x08F04040, 0x08F04040)
-  TEXT("My husband has a thing for\nfemale duelists.\n\n")
+  TEXT
+  (
+      "My husband has a thing for\n"
+      "female duelists.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -241,7 +379,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CBC, map_26_state_01_08EA3CBC, 0x08EA3CC8, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CC8, map_26_state_01_08EA3CC8, 0x08EA3CD4, 0x08F0404C)
-  TEXT("A duel against me? How\nenchanting!\n\nI hope you show me the\nropes, young lad.\n\n")
+  TEXT
+  (
+      "A duel against me? How\n"
+      "enchanting!\n\n"
+      "I hope you show me the\n"
+      "ropes, young lad.\n\n"
+  )
   DUEL(34)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -249,11 +393,18 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CD4, map_26_state_01_08EA3CD4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
   SET_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE)
-  TEXT("Losing is never enjoyable.\n\n")
+  TEXT
+  (
+      "Losing is never enjoyable.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CE0, map_26_state_01_08EA3CE0, 0x08F04040, 0x08F04040)
-  TEXT("Sorry, dear. Some other\ntime.\n\n")
+  TEXT
+  (
+      "Sorry, dear. Some other\n"
+      "time.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

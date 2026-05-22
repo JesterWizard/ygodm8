@@ -8,7 +8,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B2C, map_18_state_03_08E80B2C, 0x08E80B38, 0x08E
   LOAD_SPRITE(1, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(2, SPRITE_DUEL_EXPRESS_CONDUCTOR)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You must be pretty good to\nget this far!\n\nBut I'm warning you, I'm\nmuch tougher than the other\n\nguys!\n\n")
+  TEXT
+  (
+      "You must be pretty good to\n"
+      "get this far!\n\n"
+      "But I'm warning you, I'm\n"
+      "much tougher than the other\n\n"
+      "guys!\n\n"
+  )
   DUEL(74)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -17,7 +24,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B38, map_18_state_03_08E80B38, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_236)
   SET_FLAG(EVENT_FLAG_DEFEATED_GAUNTLET_GHOUL3)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("H-how dare you...\n\n")
+  TEXT
+  (
+      "H-how dare you...\n\n"
+  )
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_235)
   CLEAR_FLAG(247)
@@ -26,7 +36,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B38, map_18_state_03_08E80B38, 0x08F04040, 0x08F
   DELAY(16)
   WALK_OBJECT_X(2, 112)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("We have arrived!\n\nLast stop, the Egypt\nExhibition!\n\n")
+  TEXT
+  (
+      "We have arrived!\n\n"
+      "Last stop, the Egypt\n"
+      "Exhibition!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 128)

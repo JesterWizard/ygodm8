@@ -9,7 +9,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47860, map_02_state_06_08E47860, 0x08E47878, 0x08F
   LOAD_SPRITE(2, SPRITE_GREENDALE_ZOMPIRE)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   WALK_OBJECT_Y(2, 24)
-  TEXT("S-stop picking on the weak!\n\n")
+  TEXT
+  (
+      "S-stop picking on the weak!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -18,18 +21,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47860, map_02_state_06_08E47860, 0x08E47878, 0x08F
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-who are you?\n\n")
+  TEXT
+  (
+      "Wh-who are you?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I-I'm t-the Greendale Zom...\n\nY-you bad guys don't deserve\nto know my name!\n\n")
+  TEXT
+  (
+      "I-I'm t-the Greendale Zom...\n\n"
+      "Y-you bad guys don't deserve\n"
+      "to know my name!\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Little twerp! I'll make you\nregret facing me!\n\n")
+  TEXT
+  (
+      "Little twerp! I'll make you\n"
+      "regret facing me!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(3, 40)
   SLIDE_OBJECT(2, 0, 12)
   PLAY_MUSIC(MUSIC_277)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Graaaaaaaaah!\n\n")
+  TEXT
+  (
+      "Graaaaaaaaah!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_284)
@@ -38,39 +56,76 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47860, map_02_state_06_08E47860, 0x08E47878, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2)
   DELAY(8)
-  TEXT("Th-there!\nTh-that serves you right!\n\n")
+  TEXT
+  (
+      "Th-there!\n"
+      "Th-that serves you right!\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...Come on, you didn't think\nthat actually hurt me?\n\nTime to put this wannabe\nsuperhero to sleep!\n\n")
+  TEXT
+  (
+      "...Come on, you didn't think\n"
+      "that actually hurt me?\n\n"
+      "Time to put this wannabe\n"
+      "superhero to sleep!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 48)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hand over your rare cards\nright now!\n\n")
+  TEXT
+  (
+      "Hand over your rare cards\n"
+      "right now!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SLIDE_OBJECT(2, 2, 4)
   DELAY(8)
-  TEXT("I-I c-can't win...\n\nMaybe I should run away...\n\n...No!\n\nA superhero never flies from\ndanger!\n\n")
+  TEXT
+  (
+      "I-I c-can't win...\n\n"
+      "Maybe I should run away...\n\n"
+      "...No!\n\n"
+      "A superhero never flies from\n"
+      "danger!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_361)
   LOAD_SPRITE(2, SPRITE_LINT)
   DELAY(32)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I will not flee!\n\n")
+  TEXT
+  (
+      "I will not flee!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(2, 40)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You persistent pest! You're\nannoying me...\n\nI'll let someone else deal\nwith this fool...\n\nI can't waste time playing\nwith kids.\n\n")
+  TEXT
+  (
+      "You persistent pest! You're\n"
+      "annoying me...\n\n"
+      "I'll let someone else deal\n"
+      "with this fool...\n\n"
+      "I can't waste time playing\n"
+      "with kids.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 96)
   SHOW_OBJECT(3, 128, 96, 0, 0, 0)
   DELAY(16)
-  TEXT("I wasn't cool like the\nactual Zompire...\n\nBut I beat the villain...\n\n")
+  TEXT
+  (
+      "I wasn't cool like the\n"
+      "actual Zompire...\n\n"
+      "But I beat the villain...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_205)
@@ -90,7 +145,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4786C, map_02_state_06_08E4786C, 0x08E47884, 0x08F04040)
   WALK_OBJECT_Y(2, 24)
-  TEXT("S-stop picking on the weak!\n\n")
+  TEXT
+  (
+      "S-stop picking on the weak!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -99,18 +157,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4786C, map_02_state_06_08E4786C, 0x08E47884, 0x08F
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-who are you?\n\n")
+  TEXT
+  (
+      "Wh-who are you?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I-I'm t-the Greendale Zom...\n\nY-you bad guys don't deserve\nto know my name!\n\n")
+  TEXT
+  (
+      "I-I'm t-the Greendale Zom...\n\n"
+      "Y-you bad guys don't deserve\n"
+      "to know my name!\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Little twerp! I'll make you\nregret facing me!\n\n")
+  TEXT
+  (
+      "Little twerp! I'll make you\n"
+      "regret facing me!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(3, 40)
   SLIDE_OBJECT(2, 0, 12)
   PLAY_MUSIC(MUSIC_277)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Graaaaaaaaah!\n\n")
+  TEXT
+  (
+      "Graaaaaaaaah!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_284)
@@ -119,39 +192,76 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4786C, map_02_state_06_08E4786C, 0x08E47884, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2)
   DELAY(8)
-  TEXT("Th-there!\nTh-that serves you right!\n\n")
+  TEXT
+  (
+      "Th-there!\n"
+      "Th-that serves you right!\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...Come on, you didn't think\nthat actually hurt me?\n\nTime to put this wannabe\nsuperhero to sleep!\n\n")
+  TEXT
+  (
+      "...Come on, you didn't think\n"
+      "that actually hurt me?\n\n"
+      "Time to put this wannabe\n"
+      "superhero to sleep!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 48)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hand over your rare cards\nright now!\n\n")
+  TEXT
+  (
+      "Hand over your rare cards\n"
+      "right now!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SLIDE_OBJECT(2, 2, 4)
   DELAY(8)
-  TEXT("I-I c-can't win...\n\nMaybe I should run away...\n\n...No!\n\nA superhero never flies from\ndanger!\n\n")
+  TEXT
+  (
+      "I-I c-can't win...\n\n"
+      "Maybe I should run away...\n\n"
+      "...No!\n\n"
+      "A superhero never flies from\n"
+      "danger!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_361)
   LOAD_SPRITE(2, SPRITE_LINT)
   DELAY(32)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I will not flee!\n\n")
+  TEXT
+  (
+      "I will not flee!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(2, 40)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You persistent pest! You're\nannoying me...\n\nI'll let someone else deal\nwith this fool...\n\nI can't waste time playing\nwith kids.\n\n")
+  TEXT
+  (
+      "You persistent pest! You're\n"
+      "annoying me...\n\n"
+      "I'll let someone else deal\n"
+      "with this fool...\n\n"
+      "I can't waste time playing\n"
+      "with kids.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 96)
   SHOW_OBJECT(3, 128, 96, 0, 0, 0)
   DELAY(16)
-  TEXT("I wasn't cool like the\nactual Zompire...\n\nBut I beat the villain...\n\n")
+  TEXT
+  (
+      "I wasn't cool like the\n"
+      "actual Zompire...\n\n"
+      "But I beat the villain...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_205)

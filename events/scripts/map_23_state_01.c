@@ -11,7 +11,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95294, map_23_state_01_08E95294, 0x08E952A0, 0x08E
   PLAY_MUSIC(MUSIC_402)
   DELAY(8)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_PANIK_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("Giyaaaaah!\n\n")
+  TEXT
+  (
+      "Giyaaaaah!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_205)
@@ -39,15 +42,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95294, map_23_state_01_08E95294, 0x08E952A0, 0x08E
   WALK_OBJECT_Y(1, 28)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You've come for the\nMillennium Necklace?\n\n")
+  TEXT
+  (
+      "You've come for the\n"
+      "Millennium Necklace?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E952A0, map_23_state_01_08E952A0, 0x08E952B8, 0x08F0404C)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Fine... The Millennium\nNecklace is yours.\n\nIt is my duty to protect a\nMillennium Item...\n\nFor I am a Millennium\nGuardian!\n\nYou must prove yourself to\nme in a duel.\n\nTo see if you are worthy of\na Millennium Item!\n\nYou will only get the\nMillennium Necklace if you\n\ncan pass my challenge!\n\n")
+  TEXT
+  (
+      "Fine... The Millennium\n"
+      "Necklace is yours.\n\n"
+      "It is my duty to protect a\n"
+      "Millennium Item...\n\n"
+      "For I am a Millennium\n"
+      "Guardian!\n\n"
+      "You must prove yourself to\n"
+      "me in a duel.\n\n"
+      "To see if you are worthy of\n"
+      "a Millennium Item!\n\n"
+      "You will only get the\n"
+      "Millennium Necklace if you\n\n"
+      "can pass my challenge!\n\n"
+  )
   DUEL(154)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -55,7 +81,15 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(SOUND_NONE)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You are still clumsy and\nunrefined...\n\nBut deep within you, I since\na faint glimmer of hope.\n\nYou have proven yourself.\nTake this. It is yours.\n\n")
+  TEXT
+  (
+      "You are still clumsy and\n"
+      "unrefined...\n\n"
+      "But deep within you, I since\n"
+      "a faint glimmer of hope.\n\n"
+      "You have proven yourself.\n"
+      "Take this. It is yours.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
@@ -70,7 +104,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952B8, map_23_state_01_08E952B8, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_373)
   SPECIAL(0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Wh-what is this?\n\n")
+  TEXT
+  (
+      "Wh-what is this?\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN1)
   FADE_SCREEN(4)
   CUTSCENE(0)
@@ -80,7 +117,22 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E952AC, map_23_state_01_08E952AC, 0x08E952B8, 0x08F0404C)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Spare me your lies.\n\nA liar isn't worthy of the\nMillennium Necklace.\n\nIt is my duty to protect a\nMillennium Item...\n\nFor I am a Millennium\nGuardian!\n\nYou must prove yourself to\nme in a duel.\n\nTo see if you are worthy of\na Millennium Item!\n\nPass my challenge to obtain\nits mystical revelations!\n\n")
+  TEXT
+  (
+      "Spare me your lies.\n\n"
+      "A liar isn't worthy of the\n"
+      "Millennium Necklace.\n\n"
+      "It is my duty to protect a\n"
+      "Millennium Item...\n\n"
+      "For I am a Millennium\n"
+      "Guardian!\n\n"
+      "You must prove yourself to\n"
+      "me in a duel.\n\n"
+      "To see if you are worthy of\n"
+      "a Millennium Item!\n\n"
+      "Pass my challenge to obtain\n"
+      "its mystical revelations!\n\n"
+  )
   DUEL(154)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

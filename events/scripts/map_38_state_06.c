@@ -16,7 +16,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F
   LOAD_SPRITE(9, SPRITE_VERTICAL_LOG)
   PLAY_MUSIC(MUSIC_MONKEY_ROBOTS)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("How many chances do you\nwant!\n\nYou're driving me bananas!\nI'm taking you down!\n\n")
+  TEXT
+  (
+      "How many chances do you\n"
+      "want!\n\n"
+      "You're driving me bananas!\n"
+      "I'm taking you down!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SLIDE_OBJECT(2, 1, 4)
@@ -26,7 +32,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F
   DELAY(8)
   PLAY_MUSIC(MUSIC_325)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Ukiiii!\n\n")
+  TEXT
+  (
+      "Ukiiii!\n\n"
+  )
   FADE_SCREEN(4)
   SHOW_OBJECT(2, 0, 50, 0, 0, 0)
   SHOW_OBJECT(3, 80, 80, 0, 0, 0)
@@ -73,7 +82,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F
   MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
   DELAY(64)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Hey! Stop goofing off!\n\n")
+  TEXT
+  (
+      "Hey! Stop goofing off!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_293)
@@ -81,7 +93,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED176C, map_38_state_06_08ED176C, 0x08F04040, 0x08F
   DELAY(8)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Ukiii.\n\n")
+  TEXT
+  (
+      "Ukiii.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_362)

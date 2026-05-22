@@ -26,10 +26,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1778, map_38_state_07_08ED1778, 0x08F04040, 0x08F
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
   DELAY(32)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Keep working! There's no\ntime to rest!\n\n")
+  TEXT
+  (
+      "Keep working! There's no\n"
+      "time to rest!\n\n"
+  )
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("U-ukiii...\n\n")
+  TEXT
+  (
+      "U-ukiii...\n\n"
+  )
   FADE_SCREEN(8)
   WARP(37, 7, 0, 0)
   FALLTHROUGH()

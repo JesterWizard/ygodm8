@@ -33,7 +33,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A18, map_00_state_02_08E34A18, 0x08E34A24, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I am glad that you have\nreturned safely.\n\nI see that you have obtained\nthe Millennium Necklace.\n\nUnfortunately, it is not\nsufficient...\n\nA single Millennium Item\ndoes not have enough power.\n\nNot enough to restore the\nEgyptian God Cards from\n\nstone.\n\nThe next Millennium Item...\n\n")
+  TEXT
+  (
+      "I am glad that you have\n"
+      "returned safely.\n\n"
+      "I see that you have obtained\n"
+      "the Millennium Necklace.\n\n"
+      "Unfortunately, it is not\n"
+      "sufficient...\n\n"
+      "A single Millennium Item\n"
+      "does not have enough power.\n\n"
+      "Not enough to restore the\n"
+      "Egyptian God Cards from\n\n"
+      "stone.\n\n"
+      "The next Millennium Item...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_X(2, 96)
@@ -43,7 +57,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A18, map_00_state_02_08E34A18, 0x08E34A24, 0x08F
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("W-what is this presence I'm\nfeeling?\n\n")
+  TEXT
+  (
+      "W-what is this presence I'm\n"
+      "feeling?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -57,7 +75,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A18, map_00_state_02_08E34A18, 0x08E34A24, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_403)
   PORTRAIT(PORTRAIT_PUPPETEER_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I am the Puppeteer of Doom!\n\nI won't let you meddle with\nMaster Chevalsky's plans!\n\nDuel!\n\n")
+  TEXT
+  (
+      "I am the Puppeteer of Doom!\n\n"
+      "I won't let you meddle with\n"
+      "Master Chevalsky's plans!\n\n"
+      "Duel!\n\n"
+  )
   DUEL(155)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -65,7 +89,14 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E34A24, map_00_state_02_08E34A24, 0x08E34A30, 0x08F04040)
   SET_FLAG(EVENT_FLAG_DEFEATED_PUPPETEER_OF_DOOM)
   PORTRAIT(PORTRAIT_PUPPETEER_OF_DOOM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gah! Don't get all cocky\njust because you beat me!\n\nThis is an invitation for a\nchallenge from Master Sol\n\nChevalsky!\n\n")
+  TEXT
+  (
+      "Gah! Don't get all cocky\n"
+      "just because you beat me!\n\n"
+      "This is an invitation for a\n"
+      "challenge from Master Sol\n\n"
+      "Chevalsky!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
@@ -81,20 +112,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A24, map_00_state_02_08E34A24, 0x08E34A30, 0x08F
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This card... It's a video\ncard.\n\n")
+  TEXT
+  (
+      "This card... It's a video\n"
+      "card.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Try setting it in your Duel\nDisk, {PLAYER}.\n\n")
+  TEXT
+  (
+      "Try setting it in your Duel\n"
+      "Disk, {PLAYER}.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A30, map_00_state_02_08E34A30, 0x08E34A48, 0x08E34A3C)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -111,14 +154,39 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A48, map_00_state_02_08E34A48, 0x08F04040, 0x08F
   SHOW_OBJECT(3, 62, 29, 0, 1, 0)
   PLAY_MUSIC(MUSIC_413)
   PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Bravo! I say bravissimo!\nCongratulations!\n\nI guess that both my agents\nhave failed me!\n\nHahaha! I had a feeling you\nguys will be a thorn in my\n\nside!\n\nBut why fret when I can make\na game out of this!\n\nHere are the rules. Let's\nsee you turn the Egyptian\n\nGod Cards back from stone...\n\nAnd bring them to my castle\nbefore time runs out!\n\nIf you don't make it in\ntime, I can't vouch for\n\nwhat happens to the world!\n\nHow does that sound?\nAhahahahaha!\n\n")
+  TEXT
+  (
+      "Bravo! I say bravissimo!\n"
+      "Congratulations!\n\n"
+      "I guess that both my agents\n"
+      "have failed me!\n\n"
+      "Hahaha! I had a feeling you\n"
+      "guys will be a thorn in my\n\n"
+      "side!\n\n"
+      "But why fret when I can make\n"
+      "a game out of this!\n\n"
+      "Here are the rules. Let's\n"
+      "see you turn the Egyptian\n\n"
+      "God Cards back from stone...\n\n"
+      "And bring them to my castle\n"
+      "before time runs out!\n\n"
+      "If you don't make it in\n"
+      "time, I can't vouch for\n\n"
+      "what happens to the world!\n\n"
+      "How does that sound?\n"
+      "Ahahahahaha!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_289)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_TELEPORT)
   DELAY(64)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("He resurrected Reshef the\nDark Being...\n\n")
+  TEXT
+  (
+      "He resurrected Reshef the\n"
+      "Dark Being...\n\n"
+  )
   FADE_SCREEN(8)
   CUTSCENE(1)
   WARP(0, 18, 3, 0)
@@ -127,7 +195,15 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A3C, map_00_state_02_08E34A3C, 0x08E34A30, 0x08F04040)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't you want to know about\nthis mysterious Sol\n\nChevalsky?\n\nThis card doesn't look\ndangerous, so let's check\n\nit out!\n\n")
+  TEXT
+  (
+      "Don't you want to know about\n"
+      "this mysterious Sol\n\n"
+      "Chevalsky?\n\n"
+      "This card doesn't look\n"
+      "dangerous, so let's check\n\n"
+      "it out!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -139,7 +215,23 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A84, map_00_state_02_08E34A84, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("In order to imprison the\nDark Being resurrected by\n\nSol Chevalsky...\n\nWe need the Egyptian God\nCards.\n\nWe must restore the Egyptian\nGod Cards from stone.\n\nBut in order to do so, we\nrequire the Millennium\n\nItems.\n\nThe second Millennium Item\nis aboard a cruise ship.\n\nThe ship should be docked at\nDomino Pier.\n\n")
+  TEXT
+  (
+      "In order to imprison the\n"
+      "Dark Being resurrected by\n\n"
+      "Sol Chevalsky...\n\n"
+      "We need the Egyptian God\n"
+      "Cards.\n\n"
+      "We must restore the Egyptian\n"
+      "God Cards from stone.\n\n"
+      "But in order to do so, we\n"
+      "require the Millennium\n\n"
+      "Items.\n\n"
+      "The second Millennium Item\n"
+      "is aboard a cruise ship.\n\n"
+      "The ship should be docked at\n"
+      "Domino Pier.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -150,6 +242,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A90, map_00_state_02_08E34A90, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Please. Hurry to the cruise\nship.\n\nReshef the Dark Being will\nsoon engulf the world.\n\n")
+  TEXT
+  (
+      "Please. Hurry to the cruise\n"
+      "ship.\n\n"
+      "Reshef the Dark Being will\n"
+      "soon engulf the world.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

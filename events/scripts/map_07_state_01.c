@@ -13,11 +13,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F840, map_07_state_01_08E5F840, 0x08F04040, 0x08F
   LOAD_SPRITE(6, SPRITE_INVISIBLE)
   MOVE_OBJECT(3, DIRECTION_UP, 32, 1)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Grandpa, I'm home.\n\n")
+  TEXT
+  (
+      "Grandpa, I'm home.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   MOVE_OBJECT(4, DIRECTION_UP, 32, 0)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Hmm... Did any new rare\ncards come in?\n\n")
+  TEXT
+  (
+      "Hmm... Did any new rare\n"
+      "cards come in?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   WALK_OBJECT_Y(4, 38)
   SET_FLAG(EVENT_FLAG_ENTERED_THE_SHOP)
@@ -26,19 +33,33 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F828, map_07_state_01_08E5F828, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{PLAYER}, be careful.\n\n")
+  TEXT
+  (
+      "{PLAYER}, be careful.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F834, map_07_state_01_08E5F834, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Duel? Against me?\n\nIf you have that kind of\ntime, go help Ishizu.\n\n")
+  TEXT
+  (
+      "Duel? Against me?\n\n"
+      "If you have that kind of\n"
+      "time, go help Ishizu.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F918, map_07_state_01_08E5F918, 0x08E5F924, 0x08E5F930)
   PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hello! Good to see you!\n\nI have some excellent cards.\n\n{CARD_1}Buy cards\nSell cards{CARD_2}\n\n")
+  TEXT
+  (
+      "Hello! Good to see you!\n\n"
+      "I have some excellent cards.\n\n"
+      "{CARD_1}Buy cards\n"
+      "Sell cards{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -49,7 +70,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F93C, map_07_state_01_08E5F93C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_SOLOMON, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Thank you very much! Hohoho.\n\n")
+  TEXT
+  (
+      "Thank you very much! Hohoho.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -60,13 +84,21 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F84C, map_07_state_01_08E5F84C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("We should buy some cards and\nstrengthen our decks.\n\n")
+  TEXT
+  (
+      "We should buy some cards and\n"
+      "strengthen our decks.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F858, map_07_state_01_08E5F858, 0x08E5F864, 0x08E5F9A8)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Sure, let's check how our\ndecks are shaping up!\n\n")
+  TEXT
+  (
+      "Sure, let's check how our\n"
+      "decks are shaping up!\n\n"
+  )
   DUEL(14)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -74,7 +106,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E5F864, map_07_state_01_08E5F864, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Looks like you're doing\nthings right.\n\n")
+  TEXT
+  (
+      "Looks like you're doing\n"
+      "things right.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -93,13 +129,21 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F870, map_07_state_01_08E5F870, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I wish Yugi's grandpa would\ngive us a discount on\n\ncards.\n\n")
+  TEXT
+  (
+      "I wish Yugi's grandpa would\n"
+      "give us a discount on\n\n"
+      "cards.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F87C, map_07_state_01_08E5F87C, 0x08E5F888, 0x08E5F9A8)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Yeah, sure! I'll take ya on!\n\n")
+  TEXT
+  (
+      "Yeah, sure! I'll take ya on!\n\n"
+  )
   DUEL(15)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -107,12 +151,26 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E5F888, map_07_state_01_08E5F888, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Uh... Y-yeah, you're doing\nokay, I think.\n\n")
+  TEXT
+  (
+      "Uh... Y-yeah, you're doing\n"
+      "okay, I think.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F948, map_07_state_01_08E5F948, 0x08E5F954, 0x08F04040)
-  TEXT("Hello. I am the Password\nTerminal.\n\nYou can enter a password for\n{BYTE_8250}{BYTE_824F}{BYTE_824F}{BYTE_824F} Domino.\n\nWould you like to enter a\npassword?\n\n{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "Hello. I am the Password\n"
+      "Terminal.\n\n"
+      "You can enter a password for\n"
+      "{BYTE_8250}{BYTE_824F}{BYTE_824F}{BYTE_824F} Domino.\n\n"
+      "Would you like to enter a\n"
+      "password?\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -122,13 +180,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F954, map_07_state_01_08E5F954, 0x08E5F960, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F960, map_07_state_01_08E5F960, 0x08F04040, 0x08F04040)
-  TEXT("Sorry, but you don't have\nenough money.\n\n")
+  TEXT
+  (
+      "Sorry, but you don't have\n"
+      "enough money.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F96C, map_07_state_01_08E5F96C, 0x08F04040, 0x08E5F978)
   SPECIAL(35)
-  TEXT("Please enter the {BYTE_8257}-digit\npassword.\n\n")
+  TEXT
+  (
+      "Please enter the {BYTE_8257}-digit\n"
+      "password.\n\n"
+  )
   SPECIAL(19)
   CONDITION_CHECK(2)
   FALLTHROUGH()

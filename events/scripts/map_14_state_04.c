@@ -16,13 +16,21 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77444, map_14_state_04_08E77444, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This is Neo Ghouls' turf!\nGet lost!\n\n")
+  TEXT
+  (
+      "This is Neo Ghouls' turf!\n"
+      "Get lost!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77450, map_14_state_04_08E77450, 0x08E7745C, 0x08F0404C)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Do you think you can beat\nthe Neo Ghouls?\n\n")
+  TEXT
+  (
+      "Do you think you can beat\n"
+      "the Neo Ghouls?\n\n"
+  )
   DUEL(71)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -30,7 +38,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E7745C, map_14_state_04_08E7745C, 0x08E77468, 0x08F04040)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Grr...\n\n")
+  TEXT
+  (
+      "Grr...\n\n"
+  )
   CHECK_FLAG(EVENT_FLAG_DEFEATED_DOMINO_STATION_GHOUL)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -40,35 +51,71 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77468, map_14_state_04_08E77468, 0x08F04040, 0x08F
   DELAY(43)
   WALK_OBJECT_Y(1, 26)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Argh! This is gettin' us\nnowhere!\n\n")
+  TEXT
+  (
+      "Argh! This is gettin' us\n"
+      "nowhere!\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's go find other duelists\nto help us!\n\n")
+  TEXT
+  (
+      "Let's go find other duelists\n"
+      "to help us!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_DOMINO_STATION_GHOUL)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77438, map_14_state_04_08E77438, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This is Neo Ghouls' turf!\nGet lost!\n\n")
+  TEXT
+  (
+      "This is Neo Ghouls' turf!\n"
+      "Get lost!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77474, map_14_state_04_08E77474, 0x08F04040, 0x08F04040)
-  TEXT("You want to know what's\ngoing on? I'll tell you\n\nwhat's going on!\n\nThose weird guys won't let\nus up to the platform.\n\n")
+  TEXT
+  (
+      "You want to know what's\n"
+      "going on? I'll tell you\n\n"
+      "what's going on!\n\n"
+      "Those weird guys won't let\n"
+      "us up to the platform.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77480, map_14_state_04_08E77480, 0x08F04040, 0x08F04040)
-  TEXT("This is hardly the time for\nthat!\n\n")
+  TEXT
+  (
+      "This is hardly the time for\n"
+      "that!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E774A4, map_14_state_04_08E774A4, 0x08F04040, 0x08F04040)
-  TEXT("Oh my, what to do, what to\ndo.\n\nWhat on earth are those\npeople up to?\n\nThose Neo Ghouls are\nhorrible delinquents!\n\nOh, what to do? What to do?\n\n")
+  TEXT
+  (
+      "Oh my, what to do, what to\n"
+      "do.\n\n"
+      "What on earth are those\n"
+      "people up to?\n\n"
+      "Those Neo Ghouls are\n"
+      "horrible delinquents!\n\n"
+      "Oh, what to do? What to do?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E774B0, map_14_state_04_08E774B0, 0x08F04040, 0x08F04040)
-  TEXT("Do I look like a duelist to\nyou?\n\n")
+  TEXT
+  (
+      "Do I look like a duelist to\n"
+      "you?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

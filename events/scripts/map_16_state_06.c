@@ -13,7 +13,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DFCC, map_16_state_06_08E7DFCC, 0x08E7DFD8, 0x08F0404C)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I won't let you reach Master\nKeith easily!\n\n")
+  TEXT
+  (
+      "I won't let you reach Master\n"
+      "Keith easily!\n\n"
+  )
   DUEL(72)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -21,7 +25,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E7DFD8, map_16_state_06_08E7DFD8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Master Keith, please forgive\nme!\n\n")
+  TEXT
+  (
+      "Master Keith, please forgive\n"
+      "me!\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_SHAKE_SCREEN)
@@ -31,7 +39,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DFD8, map_16_state_06_08E7DFD8, 0x08F04040, 0x08F
   DELAY(8)
   WALK_OBJECT_X(2, 108)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
-  TEXT("Th-the train! It's moving!\n\nThe Neo Ghouls must have\ntaken over the controls.\n\nBut as the conductor...\n\nIt's my job to perform my\nduties.\n\nOur next and only stop is\nthe Egypt Exhibition.\n\n")
+  TEXT
+  (
+      "Th-the train! It's moving!\n\n"
+      "The Neo Ghouls must have\n"
+      "taken over the controls.\n\n"
+      "But as the conductor...\n\n"
+      "It's my job to perform my\n"
+      "duties.\n\n"
+      "Our next and only stop is\n"
+      "the Egypt Exhibition.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -43,7 +61,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DFE4, map_16_state_06_08E7DFE4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("...\n\n")
+  TEXT
+  (
+      "...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -58,11 +79,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DFF0, map_16_state_06_08E7DFF0, 0x08E7DFFC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DFFC, map_16_state_06_08E7DFFC, 0x08F04040, 0x08F04040)
-  TEXT("Wh-what is happening?\n\nThe Neo Ghouls have\ncommandeered the train!\n\n")
+  TEXT
+  (
+      "Wh-what is happening?\n\n"
+      "The Neo Ghouls have\n"
+      "commandeered the train!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7E008, map_16_state_06_08E7E008, 0x08F04040, 0x08F04040)
-  TEXT("The Neo Ghouls have\ncommandeered this train.\n\nWhat will become of us?\n\n")
+  TEXT
+  (
+      "The Neo Ghouls have\n"
+      "commandeered this train.\n\n"
+      "What will become of us?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

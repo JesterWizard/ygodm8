@@ -11,9 +11,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD68, map_06_state_08_08E5CD68, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_MONKEY_ROBOTS)
   DELAY(16)
   PLAY_MUSIC(MUSIC_203)
-  TEXT("Arf arf arf arf arf!\n\n")
+  TEXT
+  (
+      "Arf arf arf arf arf!\n\n"
+  )
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Lucky, what's wrong?\n\n")
+  TEXT
+  (
+      "Lucky, what's wrong?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
@@ -22,9 +28,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD68, map_06_state_08_08E5CD68, 0x08F04040, 0x08F
   WALK_OBJECT_X(14, 90)
   DELAY(16)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hey Joey!\n\n")
+  TEXT
+  (
+      "Hey Joey!\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}! Yugi and Joey!\n\n")
+  TEXT
+  (
+      "{PLAYER}! Yugi and Joey!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
@@ -36,20 +48,37 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD68, map_06_state_08_08E5CD68, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Is Tristan around? I don't\nsee him...\n\n")
+  TEXT
+  (
+      "Is Tristan around? I don't\n"
+      "see him...\n\n"
+  )
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("H-he...\n\n")
+  TEXT
+  (
+      "H-he...\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("T-Tristan...\n\n")
+  TEXT
+  (
+      "T-Tristan...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(8)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("Is something wrong?\n\n")
+  TEXT
+  (
+      "Is something wrong?\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("What? Did somethin' happen\nto Tristan?\n\n")
+  TEXT
+  (
+      "What? Did somethin' happen\n"
+      "to Tristan?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -59,18 +88,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD68, map_06_state_08_08E5CD68, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Serenity! Tell me! What\nhappened to Tristan?\n\n")
+  TEXT
+  (
+      "Serenity! Tell me! What\n"
+      "happened to Tristan?\n\n"
+  )
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Joey...\n\n")
+  TEXT
+  (
+      "Joey...\n\n"
+  )
   PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Joey... Tristan isn't\nhere...\n\n")
+  TEXT
+  (
+      "Joey... Tristan isn't\n"
+      "here...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 56)
   WALK_OBJECT_X(13, 63)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Duh, I can see that. So\nwhere is he?\n\n")
+  TEXT
+  (
+      "Duh, I can see that. So\n"
+      "where is he?\n\n"
+  )
   HIDE_PORTRAIT()
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)

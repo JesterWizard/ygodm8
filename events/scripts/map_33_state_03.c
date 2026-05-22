@@ -10,15 +10,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB38, map_33_state_03_08EBEB38, 0x08EBEB44, 0x08F
   LOAD_SPRITE(3, SPRITE_UMBRA)
   PLAY_MUSIC(MUSIC_407)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You listen to us...\n\n")
+  TEXT
+  (
+      "You listen to us...\n\n"
+  )
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You're going to join us as a\nNeo Ghoul.\n\n")
+  TEXT
+  (
+      "You're going to join us as a\n"
+      "Neo Ghoul.\n\n"
+  )
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You're smart as a spider to\nrecruit me.\n\n")
+  TEXT
+  (
+      "You're smart as a spider to\n"
+      "recruit me.\n\n"
+  )
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You'll join us?\n\n")
+  TEXT
+  (
+      "You'll join us?\n\n"
+  )
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_LEFT)
-  TEXT("Hyohyohyo! Okay!\n\n")
+  TEXT
+  (
+      "Hyohyohyo! Okay!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -30,7 +47,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB44, map_33_state_03_08EBEB44, 0x08EBEB50, 0x08E
   WALK_OBJECT_X(13, 56)
   WALK_OBJECT_Y(14, 40)
   WALK_OBJECT_X(14, 56)
-  TEXT("{CARD_1}Don't join them!\nTraitor!{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Don't join them!\n"
+      "Traitor!{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -40,7 +61,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB50, map_33_state_03_08EBEB50, 0x08EBEB68, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyohyo!\n\n")
+  TEXT
+  (
+      "Hyohyohyohyo!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -52,35 +76,66 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB50, map_33_state_03_08EBEB50, 0x08EBEB68, 0x08F
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyo! Just kidding!\n\nThere's no way I'd join you\nwimpy worms!\n\n")
+  TEXT
+  (
+      "Hyohyohyo! Just kidding!\n\n"
+      "There's no way I'd join you\n"
+      "wimpy worms!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB68, map_33_state_03_08EBEB68, 0x08EBEB74, 0x08F04040)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("H-how dare you...\n\n")
+  TEXT
+  (
+      "H-how dare you...\n\n"
+  )
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You tricked us!\n\n")
+  TEXT
+  (
+      "You tricked us!\n\n"
+  )
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You leave us with no\noptions!\n\n")
+  TEXT
+  (
+      "You leave us with no\n"
+      "options!\n\n"
+  )
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("We'll settle this in a duel!\n\n")
+  TEXT
+  (
+      "We'll settle this in a duel!\n\n"
+  )
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm not falling into your\nweb! I won't take on two\n\nduelists at the same time.\n\n")
+  TEXT
+  (
+      "I'm not falling into your\n"
+      "web! I won't take on two\n\n"
+      "duelists at the same time.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, you duel one of\nthem.\n\n")
+  TEXT
+  (
+      "{PLAYER}, you duel one of\n"
+      "them.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB74, map_33_state_03_08EBEB74, 0x08EBEB80, 0x08EBEB98)
-  TEXT("{CARD_1}Lumis\nUmbra{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Lumis\n"
+      "Umbra{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -91,7 +146,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB80, map_33_state_03_08EBEB80, 0x08EBEB8C, 0x08F
   WALK_OBJECT_X(0, 78)
   DELAY(16)
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You'll make an excellent\nprize for Master Keith!\n\n")
+  TEXT
+  (
+      "You'll make an excellent\n"
+      "prize for Master Keith!\n\n"
+  )
   DUEL(68)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -99,7 +158,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB8C, map_33_state_03_08EBEB8C, 0x08EBEBB0, 0x08F04040)
   PLAY_MUSIC(MUSIC_243)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("How dare you!\n\n")
+  TEXT
+  (
+      "How dare you!\n\n"
+  )
   WALK_OBJECT_Y(3, 68)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
@@ -108,12 +170,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB8C, map_33_state_03_08EBEB8C, 0x08EBEBB0, 0x08F
   WALK_OBJECT_X(3, 16)
   SHOW_OBJECT(3, 128, 96, 0, 0, 0)
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_LUMIS_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("You were just lucky!\n\n")
+  TEXT
+  (
+      "You were just lucky!\n\n"
+  )
   WALK_OBJECT_Y(2, 68)
   WALK_OBJECT_X(2, 34)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_LUMIS_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't you forget about me!\n\n")
+  TEXT
+  (
+      "Don't you forget about me!\n\n"
+  )
   WALK_OBJECT_X(2, 16)
   SHOW_OBJECT(2, 128, 96, 0, 0, 0)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -127,9 +195,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEBB0, map_33_state_03_08EBEBB0, 0x08EBEBBC, 0x08F
   WALK_OBJECT_X(13, 64)
   WALK_OBJECT_X(14, 64)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyo! Long time no see.\n\nThere are lots of rare bugs\nhere in China.\n\n")
+  TEXT
+  (
+      "Hyohyohyo! Long time no see.\n\n"
+      "There are lots of rare bugs\n"
+      "here in China.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This guy bugs me, but I\ngotta admit, he is a good\n\nduelist.\n\n{PLAYER}, let's get him to\nhelp us beat the Neo\n\nGhouls.\n\n")
+  TEXT
+  (
+      "This guy bugs me, but I\n"
+      "gotta admit, he is a good\n\n"
+      "duelist.\n\n"
+      "{PLAYER}, let's get him to\n"
+      "help us beat the Neo\n\n"
+      "Ghouls.\n\n"
+  )
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
   FALLTHROUGH()
@@ -138,7 +219,15 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EBEBBC, map_33_state_03_08EBEBBC, 0x08EBEBC8, 0x08EBEBD4)
   PLAY_MUSIC(MUSIC_702)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Humph. They ignored me and\noverran the Town of Domino\n\ninstead?\n\nThat bugs me! How can they\nignore the best duelist!\n\nCount me in to help you!\n\n")
+  TEXT
+  (
+      "Humph. They ignored me and\n"
+      "overran the Town of Domino\n\n"
+      "instead?\n\n"
+      "That bugs me! How can they\n"
+      "ignore the best duelist!\n\n"
+      "Count me in to help you!\n\n"
+  )
   MOVE_OBJECT(1, DIRECTION_LEFT, 8, 0)
   WALK_OBJECT_Y(1, 68)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -156,7 +245,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEBC8, map_33_state_03_08EBEBC8, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's go find another ally!\n\n")
+  TEXT
+  (
+      "Let's go find another ally!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -168,7 +260,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEBD4, map_33_state_03_08EBEBD4, 0x08F04040, 0x08F
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay! Let's also get back to\nthe Town of Domino!\n\n")
+  TEXT
+  (
+      "Okay! Let's also get back to\n"
+      "the Town of Domino!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -183,7 +279,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB98, map_33_state_03_08EBEB98, 0x08EBEBA4, 0x08F
   WALK_OBJECT_X(0, 78)
   DELAY(16)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'll make you regret defying\nthe Neo Ghouls!\n\n")
+  TEXT
+  (
+      "I'll make you regret defying\n"
+      "the Neo Ghouls!\n\n"
+  )
   DUEL(69)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -191,7 +291,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EBEBA4, map_33_state_03_08EBEBA4, 0x08EBEBB0, 0x08F04040)
   PLAY_MUSIC(MUSIC_243)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("How dare you!\n\n")
+  TEXT
+  (
+      "How dare you!\n\n"
+  )
   WALK_OBJECT_Y(3, 68)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
@@ -200,12 +303,18 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEBA4, map_33_state_03_08EBEBA4, 0x08EBEBB0, 0x08F
   WALK_OBJECT_X(3, 16)
   SHOW_OBJECT(3, 128, 96, 0, 0, 0)
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_LUMIS_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("You were just lucky!\n\n")
+  TEXT
+  (
+      "You were just lucky!\n\n"
+  )
   WALK_OBJECT_Y(2, 68)
   WALK_OBJECT_X(2, 34)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_LUMIS_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't you forget about me!\n\n")
+  TEXT
+  (
+      "Don't you forget about me!\n\n"
+  )
   WALK_OBJECT_X(2, 16)
   SHOW_OBJECT(2, 128, 96, 0, 0, 0)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -221,18 +330,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB5C, map_33_state_03_08EBEB5C, 0x08EBEB68, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Traitor? Hyohyohyo! Why am I\na traitor?\n\nI don't remember being on\nyour side!\n\n")
+  TEXT
+  (
+      "Traitor? Hyohyohyo! Why am I\n"
+      "a traitor?\n\n"
+      "I don't remember being on\n"
+      "your side!\n\n"
+  )
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Fufufu... He'll make an\nexcellent addition to our\n\nranks!\n\n")
+  TEXT
+  (
+      "Fufufu... He'll make an\n"
+      "excellent addition to our\n\n"
+      "ranks!\n\n"
+  )
   PORTRAIT(PORTRAIT_LUMIS, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yes! He's one of ours! He's\na member of the Neo Ghouls!\n\n")
+  TEXT
+  (
+      "Yes! He's one of ours! He's\n"
+      "a member of the Neo Ghouls!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyo! Actually, I don't\nwant to be on your team\n\neither!\n\n")
+  TEXT
+  (
+      "Hyohyohyo! Actually, I don't\n"
+      "want to be on your team\n\n"
+      "either!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -240,9 +369,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB5C, map_33_state_03_08EBEB5C, 0x08EBEB68, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2 | OBJECT_3)
   DELAY(8)
   PORTRAIT(PORTRAIT_UMBRA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But... But you just agreed\nto join us.\n\n")
+  TEXT
+  (
+      "But... But you just agreed\n"
+      "to join us.\n\n"
+  )
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyohyo!\n\nI changed my mind!\n\n")
+  TEXT
+  (
+      "Hyohyohyohyo!\n\n"
+      "I changed my mind!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

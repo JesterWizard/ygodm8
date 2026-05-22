@@ -17,7 +17,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC26C8, map_34_state_05_08EC26C8, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("This is a huge discovery,\neh!\n\n")
+  TEXT
+  (
+      "This is a huge discovery,\n"
+      "eh!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -38,7 +42,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC26C8, map_34_state_05_08EC26C8, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(8)
-  TEXT("We ought to hurry too.\n\n")
+  TEXT
+  (
+      "We ought to hurry too.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_X(2, 106)
@@ -50,7 +57,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC26C8, map_34_state_05_08EC26C8, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("Maybe our find will really\nmake us famous!\n\n")
+  TEXT
+  (
+      "Maybe our find will really\n"
+      "make us famous!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_273)

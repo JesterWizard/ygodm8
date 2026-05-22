@@ -24,14 +24,25 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3EFC, map_51_state_06_08EE3EFC, 0x08EE3F14, 0x08EE401C)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Pipipi... What took you so\nlong?\n\nThe laws of space and time\nhave decreed that you are\n\ngoing no further.\n\n")
+  TEXT
+  (
+      "Pipipi... What took you so\n"
+      "long?\n\n"
+      "The laws of space and time\n"
+      "have decreed that you are\n\n"
+      "going no further.\n\n"
+  )
   DUEL(117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F14, map_51_state_06_08EE3F14, 0x08EE3FF8, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You... Everyone... You all\nmake fun of me!\n\n")
+  TEXT
+  (
+      "You... Everyone... You all\n"
+      "make fun of me!\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_DEFEATED_DARK_ESPA_ROBA_WITHOUT_SPIRIT_CARD)
@@ -40,21 +51,36 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F08, map_51_state_06_08EE3F08, 0x08EE3F14, 0x08EE401C)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It doesn't matter how often\nyou come back.\n\nGive up! It's hopeless!\n\n")
+  TEXT
+  (
+      "It doesn't matter how often\n"
+      "you come back.\n\n"
+      "Give up! It's hopeless!\n\n"
+  )
   DUEL(117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F20, map_51_state_06_08EE3F20, 0x08EE3F2C, 0x08EE401C)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'll do anything to keep\nwinning!\n\nI'll never lose!\n\n")
+  TEXT
+  (
+      "I'll do anything to keep\n"
+      "winning!\n\n"
+      "I'll never lose!\n\n"
+  )
   DUEL(117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F2C, map_51_state_06_08EE3F2C, 0x08EE3F38, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I... I hear them.\n\nMy brothers... They're\ncalling me...\n\n")
+  TEXT
+  (
+      "I... I hear them.\n\n"
+      "My brothers... They're\n"
+      "calling me...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)

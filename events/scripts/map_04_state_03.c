@@ -8,12 +8,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D114, map_04_state_03_08E4D114, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_DUELIST_HATER)
   LOAD_SPRITE(2, SPRITE_TOURIST)
   LOAD_SPRITE(3, SPRITE_BONZ)
-  TEXT("A few duelists are nice.\n\nHe looks pretty scary, but\nhe's actually a good guy.\n\n")
+  TEXT
+  (
+      "A few duelists are nice.\n\n"
+      "He looks pretty scary, but\n"
+      "he's actually a good guy.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D120, map_04_state_03_08E4D120, 0x08F04040, 0x08F04040)
-  TEXT("The Neo Ghouls took one look\nat his face and ran.\n\n")
+  TEXT
+  (
+      "The Neo Ghouls took one look\n"
+      "at his face and ran.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -24,7 +33,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D150, map_04_state_03_08E4D150, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Hihihi, I unleashed my Neo\nGhost deck...\n\nAnd the Neo Ghouls fled in\nterror.\n\n")
+  TEXT
+  (
+      "Hihihi, I unleashed my Neo\n"
+      "Ghost deck...\n\n"
+      "And the Neo Ghouls fled in\n"
+      "terror.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -35,13 +50,22 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D144, map_04_state_03_08E4D144, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("There are Neo Ghouls hiding\nin the Town of Domino?\n\nI didn't know that.\n\n")
+  TEXT
+  (
+      "There are Neo Ghouls hiding\n"
+      "in the Town of Domino?\n\n"
+      "I didn't know that.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D15C, map_04_state_03_08E4D15C, 0x08E4D168, 0x08F0404C)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("My Neo Ghost deck will haunt\nyou...\n\n")
+  TEXT
+  (
+      "My Neo Ghost deck will haunt\n"
+      "you...\n\n"
+  )
   DUEL(60)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -49,6 +73,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E4D168, map_04_state_03_08E4D168, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER} is ghoulishly more\nclever than the Neo\n\nGhouls...\n\n")
+  TEXT
+  (
+      "{PLAYER} is ghoulishly more\n"
+      "clever than the Neo\n\n"
+      "Ghouls...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

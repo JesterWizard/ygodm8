@@ -11,7 +11,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E981D4, map_24_state_03_08E981D4, 0x08F04040, 0x08F
   LOAD_SPRITE(4, SPRITE_VIDEO_CARD)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
   DELAY(16)
-  TEXT("I'm sorry, I'm sorry.\n\nHere are my rare cards.\n\n")
+  TEXT
+  (
+      "I'm sorry, I'm sorry.\n\n"
+      "Here are my rare cards.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
@@ -21,13 +25,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E981D4, map_24_state_03_08E981D4, 0x08F04040, 0x08F
   REACTION(REACTION_ELLIPSIS, OBJECT_3)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Humph, these cards are\ngarbage.\n\n")
+  TEXT
+  (
+      "Humph, these cards are\n"
+      "garbage.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_285)
   SHOW_OBJECT(4, 44, 96, 0, 0, 0)
   DELAY(8)
-  TEXT("Oh... Uh, then how about\nthis one?\n\n")
+  TEXT
+  (
+      "Oh... Uh, then how about\n"
+      "this one?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_285)
@@ -37,30 +49,55 @@ EVENT_SCRIPT_REPLACEMENT(0x08E981D4, map_24_state_03_08E981D4, 0x08F04040, 0x08F
   SHOW_OBJECT(4, 44, 96, 0, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("That better be all of them.\n\n")
+  TEXT
+  (
+      "That better be all of them.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("That's all I have, I swear.\n\n")
+  TEXT
+  (
+      "That's all I have, I swear.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(32)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TEXT("Takeshi... Are you, like,\nsure about this?\n\n")
+  TEXT
+  (
+      "Takeshi... Are you, like,\n"
+      "sure about this?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TEXT("Y-yeah, I'm positive.\n\n")
+  TEXT
+  (
+      "Y-yeah, I'm positive.\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("What? You have a problem?\n\n")
+  TEXT
+  (
+      "What? You have a problem?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("No no no no no no no no no.\nI don't want any trouble.\n\n")
+  TEXT
+  (
+      "No no no no no no no no no.\n"
+      "I don't want any trouble.\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Humph, you spineless worm.\nYou're not even worth\n\ndueling.\n\n")
+  TEXT
+  (
+      "Humph, you spineless worm.\n"
+      "You're not even worth\n\n"
+      "dueling.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 14)
@@ -71,29 +108,59 @@ EVENT_SCRIPT_REPLACEMENT(0x08E981D4, map_24_state_03_08E981D4, 0x08F04040, 0x08F
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
-  TEXT("Pah! Who's spineless!\n\nHe's the one who has to hang\nout with a bunch of\n\ncheaters to win!\n\nAre they really, you know,\nlike, cheaters?\n\n")
+  TEXT
+  (
+      "Pah! Who's spineless!\n\n"
+      "He's the one who has to hang\n"
+      "out with a bunch of\n\n"
+      "cheaters to win!\n\n"
+      "Are they really, you know,\n"
+      "like, cheaters?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TEXT("Wasn't it obvious?\n\nI would do anything to\nprotect you from those\n\nguys.\n\nTakeshi... You protected me?\n\n")
+  TEXT
+  (
+      "Wasn't it obvious?\n\n"
+      "I would do anything to\n"
+      "protect you from those\n\n"
+      "guys.\n\n"
+      "Takeshi... You protected me?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TEXT("Well, of course.\n\n")
+  TEXT
+  (
+      "Well, of course.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_273)
   REACTION(REACTION_LOVE_HEART, OBJECT_2)
   DELAY(16)
-  TEXT("Like, thank you.\n")
+  TEXT
+  (
+      "Like, thank you.\n"
+  )
   DELAY(32)
-  TEXT("Ta")
+  TEXT
+  (
+      "Ta"
+  )
   DELAY(32)
-  TEXT("ke")
+  TEXT
+  (
+      "ke"
+  )
   DELAY(32)
-  TEXT("shi...\n\n")
+  TEXT
+  (
+      "shi...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
@@ -109,26 +176,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08E981E0, map_24_state_03_08E981E0, 0x08E981EC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E981EC, map_24_state_03_08E981EC, 0x08F04040, 0x08F04040)
-  TEXT("N-no, I don't have any more\nrare cards.\n\n...Wait, you're not the Neo\nGhouls.\n\nDon't scare me like that!\n\n")
+  TEXT
+  (
+      "N-no, I don't have any more\n"
+      "rare cards.\n\n"
+      "...Wait, you're not the Neo\n"
+      "Ghouls.\n\n"
+      "Don't scare me like that!\n\n"
+  )
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   SET_FLAG(EVENT_FLAG_SCARED_TAKESHI)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E981F8, map_24_state_03_08E981F8, 0x08F04040, 0x08F04040)
-  TEXT("Don't talk to me, kid..\n\n")
+  TEXT
+  (
+      "Don't talk to me, kid..\n\n"
+  )
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E98204, map_24_state_03_08E98204, 0x08F04040, 0x08F04040)
-  TEXT("How am I supposed to duel\nwhen they took my cards?\n\nDuh!\n\n")
+  TEXT
+  (
+      "How am I supposed to duel\n"
+      "when they took my cards?\n\n"
+      "Duh!\n\n"
+  )
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E98210, map_24_state_03_08E98210, 0x08F04040, 0x08F04040)
-  TEXT("Like, what's your problem!\n\nWhy can't you be, like,\nbrave, like my man Takeshi?\n\n")
+  TEXT
+  (
+      "Like, what's your problem!\n\n"
+      "Why can't you be, like,\n"
+      "brave, like my man Takeshi?\n\n"
+  )
   MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

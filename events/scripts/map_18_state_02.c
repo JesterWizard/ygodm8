@@ -6,7 +6,11 @@
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AD8, map_18_state_02_08E80AD8, 0x08F04040, 0x08F04040)
   LOAD_SPRITE(1, SPRITE_KAIBAS_BUTLER)
-  TEXT("A journey by train has its\ncharms.\n\n")
+  TEXT
+  (
+      "A journey by train has its\n"
+      "charms.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -16,7 +20,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80AE4, map_18_state_02_08E80AE4, 0x08E80AF0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80AF0, map_18_state_02_08E80AF0, 0x08E80AFC, 0x08F0404C)
-  TEXT("It'll be a nice change of\npace to duel in a place\n\nlike this.\n\n")
+  TEXT
+  (
+      "It'll be a nice change of\n"
+      "pace to duel in a place\n\n"
+      "like this.\n\n"
+  )
   DUEL(28)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -32,7 +41,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B08, map_18_state_02_08E80B08, 0x08E80B20, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E80B20, map_18_state_02_08E80B20, 0x08F04040, 0x08F04040)
-  TEXT("The shaking of the train has\nmade me carsick.\n\n")
+  TEXT
+  (
+      "The shaking of the train has\n"
+      "made me carsick.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_KAIBAS_BUTTLER2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

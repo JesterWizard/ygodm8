@@ -29,11 +29,13 @@ Create one file per event or scene in `events/scripts/`, for example:
 
 EVENT_SCRIPT_REPLACEMENT(0x08E12345, SCENE_01_YUGI_01, 0, 0)
   PORTRAIT(1, 0, PORTRAIT_LEFT)
-  DIALOGUE("It's time to duel!")
+  TEXT("It's time to duel!")
   MOVE_OBJECT(2, 1, 4, 0)
   END()
 END_EVENT_SCRIPT()
 ```
+
+For long dialogue, `TEXT("""...""")` is accepted and usually easier to read than escaping every line break.
 
 Then run:
 

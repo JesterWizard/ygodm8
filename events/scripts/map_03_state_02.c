@@ -10,7 +10,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A91C, map_03_state_02_08E4A91C, 0x08F04040, 0x08F
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
   LOAD_SPRITE(4, SPRITE_NEO_GHOUL)
   PLAY_MUSIC(MUSIC_NEO_GHOULS_INVADE)
-  TEXT("Help me!\n\n")
+  TEXT
+  (
+      "Help me!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -20,26 +23,49 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A91C, map_03_state_02_08E4A91C, 0x08F04040, 0x08F
   WALK_OBJECT_X(3, 28)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Silence! Hand over your rare\ncards right now!\n\n")
+  TEXT
+  (
+      "Silence! Hand over your rare\n"
+      "cards right now!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 8, 0)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TEXT("I never said I was putting\nup my rare cards as ante in\n\nthis duel!\n\n")
+  TEXT
+  (
+      "I never said I was putting\n"
+      "up my rare cards as ante in\n\n"
+      "this duel!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_LEFT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Well, you thought wrong!\nGive me your rare cards!\n\n")
+  TEXT
+  (
+      "Well, you thought wrong!\n"
+      "Give me your rare cards!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
-  TEXT("N-Neo Ghouls... You horrible\nstinking thugs...\n\n")
+  TEXT
+  (
+      "N-Neo Ghouls... You horrible\n"
+      "stinking thugs...\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ha ha ha! Flattery will get\nyou nowhere! All the\n\nworld's rare cards belong to\nthe Neo Ghouls!\n\n")
+  TEXT
+  (
+      "Ha ha ha! Flattery will get\n"
+      "you nowhere! All the\n\n"
+      "world's rare cards belong to\n"
+      "the Neo Ghouls!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_NEO_GHOULS_ATTACKED)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -50,17 +76,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A928, map_03_state_02_08E4A928, 0x08E4A934, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A934, map_03_state_02_08E4A934, 0x08F04040, 0x08F04040)
-  TEXT("H-help me, please!\n\n")
+  TEXT
+  (
+      "H-help me, please!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A94C, map_03_state_02_08E4A94C, 0x08F04040, 0x08F04040)
-  TEXT("The Neo Ghouls are awful\npeople. Just awful.\n\n")
+  TEXT
+  (
+      "The Neo Ghouls are awful\n"
+      "people. Just awful.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A940, map_03_state_02_08E4A940, 0x08F04040, 0x08F04040)
-  TEXT("Please, no!\nNo more duels!\n\n")
+  TEXT
+  (
+      "Please, no!\n"
+      "No more duels!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -70,23 +107,39 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A958, map_03_state_02_08E4A958, 0x08E4A964, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A964, map_03_state_02_08E4A964, 0x08F04040, 0x08F04040)
-  TEXT("M-my rare cards are gone...\n\n")
+  TEXT
+  (
+      "M-my rare cards are gone...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A97C, map_03_state_02_08E4A97C, 0x08F04040, 0x08F04040)
-  TEXT("The Neo Ghouls have\ncompletely overrun the Town\n\nof Domino!\n\n")
+  TEXT
+  (
+      "The Neo Ghouls have\n"
+      "completely overrun the Town\n\n"
+      "of Domino!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A970, map_03_state_02_08E4A970, 0x08F04040, 0x08F04040)
-  TEXT("Duel... Please, I'm too\nscared....\n\n")
+  TEXT
+  (
+      "Duel... Please, I'm too\n"
+      "scared....\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A988, map_03_state_02_08E4A988, 0x08E4A9A0, 0x08E4AA18)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'll take your rare cards,\ntoo!\n\n")
+  TEXT
+  (
+      "I'll take your rare cards,\n"
+      "too!\n\n"
+  )
   DUEL(52)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -103,7 +156,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A9C4, map_03_state_02_08E4A9C4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Y-you punk! Don't think\nyou'll win again!\n\n")
+  TEXT
+  (
+      "Y-you punk! Don't think\n"
+      "you'll win again!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 40, 0)
@@ -131,14 +188,22 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A994, map_03_state_02_08E4A994, 0x08E4A9A0, 0x08E4AA18)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("This is your first, and\nlast, mistake!\n\n")
+  TEXT
+  (
+      "This is your first, and\n"
+      "last, mistake!\n\n"
+  )
   DUEL(52)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A9D0, map_03_state_02_08E4A9D0, 0x08E4A9E8, 0x08E4AA18)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You have some rare cards\nthat I want.\n\n")
+  TEXT
+  (
+      "You have some rare cards\n"
+      "that I want.\n\n"
+  )
   DUEL(53)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -155,7 +220,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AA0C, map_03_state_02_08E4AA0C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I may have lost, but there\nare many other Neo Ghouls\n\nwaiting for you!\n\n")
+  TEXT
+  (
+      "I may have lost, but there\n"
+      "are many other Neo Ghouls\n\n"
+      "waiting for you!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(4, 32)
@@ -172,7 +242,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4A9DC, map_03_state_02_08E4A9DC, 0x08E4A9E8, 0x08E4AA18)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You fool! You dare challenge\nme?\n\n")
+  TEXT
+  (
+      "You fool! You dare challenge\n"
+      "me?\n\n"
+  )
   DUEL(53)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

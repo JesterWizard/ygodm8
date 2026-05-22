@@ -12,7 +12,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDEBD8, map_49_state_01_08EDEBD8, 0x08EDEBE4, 0x08F0404C)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gawry nida! Gawry nida!\n\nYou'll go no further! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "You'll go no further! Gawry!\n\n"
+  )
   DUEL(112)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -20,7 +24,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EDEBE4, map_49_state_01_08EDEBE4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DUNGEON)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("G-gawry n-nida...\nM-master... G-gaah...\n\n")
+  TEXT
+  (
+      "G-gawry n-nida...\n"
+      "M-master... G-gaah...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()

@@ -20,33 +20,93 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB34, map_22_state_03_08E8CB34, 0x08F04040, 0x08F
   MOVE_OBJECT(2, DIRECTION_RIGHT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Humph. So the merry band of\nlosers finally have a clue\n\nabout what's really going\non.\n\n")
+  TEXT
+  (
+      "Humph. So the merry band of\n"
+      "losers finally have a clue\n\n"
+      "about what's really going\n"
+      "on.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ishizu visited my big\nbrother.\n\nShe wanted him to get the\nEgyptian God Cards back.\n\n")
+  TEXT
+  (
+      "Ishizu visited my big\n"
+      "brother.\n\n"
+      "She wanted him to get the\n"
+      "Egyptian God Cards back.\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Mokuba, keep quiet.\n\nThe title as champion And\nthe strongest cards...\n\nOnly the most powerful\nduelist is worthy of these\n\ntwo things.\n\nAnd that duelist is me!\n\nI will recover the Egyptian\nGod Cards quick and easy.\n\n")
+  TEXT
+  (
+      "Mokuba, keep quiet.\n\n"
+      "The title as champion And\n"
+      "the strongest cards...\n\n"
+      "Only the most powerful\n"
+      "duelist is worthy of these\n\n"
+      "two things.\n\n"
+      "And that duelist is me!\n\n"
+      "I will recover the Egyptian\n"
+      "God Cards quick and easy.\n\n"
+  )
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I bet you guys are happy\nthat my big bro's gonna\n\nhelp you out, huh?\n\n")
+  TEXT
+  (
+      "I bet you guys are happy\n"
+      "that my big bro's gonna\n\n"
+      "help you out, huh?\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("Mokuba!\n\n")
+  TEXT
+  (
+      "Mokuba!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT("W-what is it, Seto?\n\n")
+  TEXT
+  (
+      "W-what is it, Seto?\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I have no intention of\nteaming up with these\n\nclowns!\n\n")
+  TEXT
+  (
+      "I have no intention of\n"
+      "teaming up with these\n\n"
+      "clowns!\n\n"
+  )
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("Big brother...\n\n")
+  TEXT
+  (
+      "Big brother...\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT("Listen up, you fools!\n\nA real duelist doesn't need\nhelp from a bunch of\n\ncheerleaders!\n\nAll you should count on is\nyour own strength!\n\nYou guys are so weak that\nnone of you can survive\n\nalone...\n\nAnd you expect me to team up\nwith you losers? Don't make\n\nme laugh!\n\nLet's go, Mokuba!\n\n")
+  TEXT
+  (
+      "Listen up, you fools!\n\n"
+      "A real duelist doesn't need\n"
+      "help from a bunch of\n\n"
+      "cheerleaders!\n\n"
+      "All you should count on is\n"
+      "your own strength!\n\n"
+      "You guys are so weak that\n"
+      "none of you can survive\n\n"
+      "alone...\n\n"
+      "And you expect me to team up\n"
+      "with you losers? Don't make\n\n"
+      "me laugh!\n\n"
+      "Let's go, Mokuba!\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_POSITION_AUTO)
-  TEXT("Wahahahahaha!\n\n")
+  TEXT
+  (
+      "Wahahahahaha!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_LEFT, 72, 0)
@@ -66,11 +126,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CB34, map_22_state_03_08E8CB34, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CB1C, map_22_state_03_08E8CB1C, 0x08F04040, 0x08F04040)
-  TEXT("This is the Egypt\nExhibition.\n\n")
+  TEXT
+  (
+      "This is the Egypt\n"
+      "Exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CB28, map_22_state_03_08E8CB28, 0x08F04040, 0x08F04040)
-  TEXT("No way, I'm not a duelist.\n\nI came here for the\nexhibition.\n\n")
+  TEXT
+  (
+      "No way, I'm not a duelist.\n\n"
+      "I came here for the\n"
+      "exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

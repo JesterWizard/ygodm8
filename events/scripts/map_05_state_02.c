@@ -8,18 +8,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F20, map_05_state_02_08E50F20, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_STRINGER)
   LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
-  TEXT("No, no, no... My\nHyozanryu...\n\nThe Neo Ghouls ripped it\noff.\n\nThey couldn't care less\nabout having a fair duel.\n\n")
+  TEXT
+  (
+      "No, no, no... My\n"
+      "Hyozanryu...\n\n"
+      "The Neo Ghouls ripped it\n"
+      "off.\n\n"
+      "They couldn't care less\n"
+      "about having a fair duel.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F2C, map_05_state_02_08E50F2C, 0x08F04040, 0x08F04040)
-  TEXT("How do you expect me to duel\nwithout my rare cards?\n\n")
+  TEXT
+  (
+      "How do you expect me to duel\n"
+      "without my rare cards?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F38, map_05_state_02_08E50F38, 0x08E50F44, 0x08E50F74)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Domino duelists are\nspineless wimps!\n\nNo one's shown the least bit\nof resistance!\n\n")
+  TEXT
+  (
+      "Domino duelists are\n"
+      "spineless wimps!\n\n"
+      "No one's shown the least bit\n"
+      "of resistance!\n\n"
+  )
   DUEL(61)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -36,7 +54,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F68, map_05_state_02_08E50F68, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You showed resistance...too\nmuch resistance!\n\n")
+  TEXT
+  (
+      "You showed resistance...too\n"
+      "much resistance!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 60)

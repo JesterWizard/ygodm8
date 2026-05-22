@@ -16,6 +16,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED9E48, map_42_state_03_08ED9E48, 0x08ED9DC4, 0x08F
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I didn't realize until now\nthat you've gotten really\n\nstrong, {PLAYER}.\n\n")
+  TEXT
+  (
+      "I didn't realize until now\n"
+      "that you've gotten really\n\n"
+      "strong, {PLAYER}.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -17,12 +17,22 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E7F118, map_17_state_01_08E7F118, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_414)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Ha ha ha... You'll go no\nfurther.\n\n")
+  TEXT
+  (
+      "Ha ha ha... You'll go no\n"
+      "further.\n\n"
+  )
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_2 | OBJECT_3)
   WALK_OBJECT_X(1, 48)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Ha ha ha... My name is\nPaniK.\n\nThe Millennium Items will\nnever be yours!\n\n")
+  TEXT
+  (
+      "Ha ha ha... My name is\n"
+      "PaniK.\n\n"
+      "The Millennium Items will\n"
+      "never be yours!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DARKEN_SCREEN)
   FADE_SCREEN(2)
   WARP(17, 7, 2, 0)

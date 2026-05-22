@@ -13,20 +13,44 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E60, map_26_state_10_08EA3E60, 0x08EA3E6C, 0x08F
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(8)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Mai Valentine, be mine!\nMarry me!\n\nPlease!\n\n")
+  TEXT
+  (
+      "Mai Valentine, be mine!\n"
+      "Marry me!\n\n"
+      "Please!\n\n"
+  )
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Would you quit already?\nYou're annoying me.\n\n")
+  TEXT
+  (
+      "Would you quit already?\n"
+      "You're annoying me.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("But if you marry me, I won't\nannoy you anymore.\n\n")
+  TEXT
+  (
+      "But if you marry me, I won't\n"
+      "annoy you anymore.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I'm a Hollywood star. I have\nmy pride.\n\nI'm not leaving until you\nsay yes.\n\n")
+  TEXT
+  (
+      "I'm a Hollywood star. I have\n"
+      "my pride.\n\n"
+      "I'm not leaving until you\n"
+      "say yes.\n\n"
+  )
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("Listen to me, Romeo.\n\nI already have someone\nspecial.\n\n")
+  TEXT
+  (
+      "Listen to me, Romeo.\n\n"
+      "I already have someone\n"
+      "special.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -35,9 +59,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E60, map_26_state_10_08EA3E60, 0x08EA3E6C, 0x08F
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("So you can give up now, Jean\nClaude.\n\n")
+  TEXT
+  (
+      "So you can give up now, Jean\n"
+      "Claude.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Wh-who is he?\n\n")
+  TEXT
+  (
+      "Wh-who is he?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -46,19 +77,39 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E60, map_26_state_10_08EA3E60, 0x08EA3E6C, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("That's none of your\nbusiness.\n\n")
+  TEXT
+  (
+      "That's none of your\n"
+      "business.\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You're lying, aren't you?\nYou're just trying to make\n\nme leave.\n\n")
+  TEXT
+  (
+      "You're lying, aren't you?\n"
+      "You're just trying to make\n\n"
+      "me leave.\n\n"
+  )
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_LEFT)
-  TEXT("Er, um...\n\n")
+  TEXT
+  (
+      "Er, um...\n\n"
+  )
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("See! There really isn't\nanyone special!\n\n")
+  TEXT
+  (
+      "See! There really isn't\n"
+      "anyone special!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 4, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Th-that's not true! There\nreally is someone!\n\n")
+  TEXT
+  (
+      "Th-that's not true! There\n"
+      "really is someone!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 4, 0)
@@ -72,26 +123,44 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E60, map_26_state_10_08EA3E60, 0x08EA3E6C, 0x08F
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{BYTE_8169}...Why am I getting so\nworked up over this?{BYTE_816A}\n\n{BYTE_8169}And why do I keep thinking\nabout him?{BYTE_816A}\n\n")
+  TEXT
+  (
+      "{BYTE_8169}...Why am I getting so\n"
+      "worked up over this?{BYTE_816A}\n\n"
+      "{BYTE_8169}And why do I keep thinking\n"
+      "about him?{BYTE_816A}\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("...I wonder... How he's\ndoing...\n\n")
+  TEXT
+  (
+      "...I wonder... How he's\n"
+      "doing...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2)
   DELAY(8)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("He? W-wait!\n\n")
+  TEXT
+  (
+      "He? W-wait!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
-  TEXT("Would you be quiet!\n\nI'm going out. Cover for me\nas the dealer.\n\n")
+  TEXT
+  (
+      "Would you be quiet!\n\n"
+      "I'm going out. Cover for me\n"
+      "as the dealer.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 8, 0)
@@ -99,7 +168,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E60, map_26_state_10_08EA3E60, 0x08EA3E6C, 0x08F
   MOVE_OBJECT(2, DIRECTION_DOWN, 4, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_LEFT)
-  TEXT("B-but! Wait! Mai, please!\n\n")
+  TEXT
+  (
+      "B-but! Wait! Mai, please!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 72)

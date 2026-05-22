@@ -12,42 +12,72 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E80, map_00_state_12_08E34E80, 0x08E34E8C, 0x08E
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
   MOVE_OBJECT(2, DIRECTION_LEFT, 4, 0)
   DELAY(16)
-  TEXT("Big brother, we can go too,\nright?\n\n")
+  TEXT
+  (
+      "Big brother, we can go too,\n"
+      "right?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 4, 0)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("No... I have a bad feeling\nabout this.\n\n")
+  TEXT
+  (
+      "No... I have a bad feeling\n"
+      "about this.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_LEFT, 4, 0)
-  TEXT("But the Neo Ghouls...\nThey're almost gone.\n\n")
+  TEXT
+  (
+      "But the Neo Ghouls...\n"
+      "They're almost gone.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_RIGHT, 4, 0)
   MOVE_OBJECT(3, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's wait until {PLAYER}\nand his friends come back.\n\n")
+  TEXT
+  (
+      "Let's wait until {PLAYER}\n"
+      "and his friends come back.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_LEFT, 4, 0)
   DELAY(16)
-  TEXT("You never let us do\nanything!\n\n")
+  TEXT
+  (
+      "You never let us do\n"
+      "anything!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 4, 0)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm only trying to keep you\nsafe!\n\n")
+  TEXT
+  (
+      "I'm only trying to keep you\n"
+      "safe!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_LEFT, 4, 0)
   DELAY(16)
-  TEXT("I'm old enough to take care\nof myself! I mean, I need\n\nboth my hands to count my\nage!\n\n")
+  TEXT
+  (
+      "I'm old enough to take care\n"
+      "of myself! I mean, I need\n\n"
+      "both my hands to count my\n"
+      "age!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_RIGHT, 4, 0)
@@ -55,21 +85,39 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E80, map_00_state_12_08E34E80, 0x08E34E8C, 0x08E
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  TEXT("C'mon, don't fight.\n\n")
+  TEXT
+  (
+      "C'mon, don't fight.\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("If that's what you want to\ndo, fine.\n\n")
+  TEXT
+  (
+      "If that's what you want to\n"
+      "do, fine.\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But you're going to have to\nlook after everyone.\n\n")
+  TEXT
+  (
+      "But you're going to have to\n"
+      "look after everyone.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_LEFT, 4, 0)
   DELAY(16)
-  TEXT("Okay, big brother, I will.\n\n")
+  TEXT
+  (
+      "Okay, big brother, I will.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 4, 0)
   DELAY(16)
-  TEXT("Let's go, you guys.\n\nYay!\n\n")
+  TEXT
+  (
+      "Let's go, you guys.\n\n"
+      "Yay!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(4, 97)
@@ -83,7 +131,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E80, map_00_state_12_08E34E80, 0x08E34E8C, 0x08E
   WALK_OBJECT_X(2, 144)
   DELAY(16)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("My brothers can be so\nfrustrating...\n\n")
+  TEXT
+  (
+      "My brothers can be so\n"
+      "frustrating...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 31)
@@ -97,29 +149,66 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E80, map_00_state_12_08E34E80, 0x08E34E8C, 0x08E
   WALK_OBJECT_X(1, 48)
   DELAY(16)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Oh, you're back.\n\nMost of the Neo Ghouls have\nbeen routed from the Town\n\nof Domino.\n\nBut there are some still\nlurking around.\n\nCan you find and defeat\nthem?\n\n")
+  TEXT
+  (
+      "Oh, you're back.\n\n"
+      "Most of the Neo Ghouls have\n"
+      "been routed from the Town\n\n"
+      "of Domino.\n\n"
+      "But there are some still\n"
+      "lurking around.\n\n"
+      "Can you find and defeat\n"
+      "them?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E8C, map_00_state_12_08E34E8C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay, thanks!\n\nThey should still be in\nClocktower Square.\n\n")
+  TEXT
+  (
+      "Okay, thanks!\n\n"
+      "They should still be in\n"
+      "Clocktower Square.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_SEARCHING_FOR_SEEKER2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E98, map_00_state_12_08E34E98, 0x08E34E8C, 0x08E34E98)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Oh, come on, don't be that\nway. We need your help.\n\n")
+  TEXT
+  (
+      "Oh, come on, don't be that\n"
+      "way. We need your help.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34EA4, map_00_state_12_08E34EA4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Most of the Neo Ghouls have\nbeen routed from the Town\n\nof Domino.\n\nBut there are still some\nlurking around.\n\nThey should still be in\nClocktower Square.\n\nPlease find and defeat them.\n\n")
+  TEXT
+  (
+      "Most of the Neo Ghouls have\n"
+      "been routed from the Town\n\n"
+      "of Domino.\n\n"
+      "But there are still some\n"
+      "lurking around.\n\n"
+      "They should still be in\n"
+      "Clocktower Square.\n\n"
+      "Please find and defeat them.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

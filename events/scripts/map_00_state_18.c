@@ -29,25 +29,60 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A54, map_00_state_18_08E34A54, 0x08E34A60, 0x08F
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But we cannot worry about\nthat now. Time is of the\n\nessence.\n\nThe second Millennium Item\nmust be found...\n\nSo that we can restore the\nEgyptian God Cards.\n\nThat is the only way we can\ndefeat Sol Chevalsky...\n\nAnd imprison Reshef the Dark\nBeing again.\n\n{PLAYER}, please find the\nnext Millennium Item.\n\n")
+  TEXT
+  (
+      "But we cannot worry about\n"
+      "that now. Time is of the\n\n"
+      "essence.\n\n"
+      "The second Millennium Item\n"
+      "must be found...\n\n"
+      "So that we can restore the\n"
+      "Egyptian God Cards.\n\n"
+      "That is the only way we can\n"
+      "defeat Sol Chevalsky...\n\n"
+      "And imprison Reshef the Dark\n"
+      "Being again.\n\n"
+      "{PLAYER}, please find the\n"
+      "next Millennium Item.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A60, map_00_state_18_08E34A60, 0x08E34A78, 0x08E34A6C)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Yes\nNo{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A78, map_00_state_18_08E34A78, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_ISHIZU_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Thank you.\n\nThe next Millennium Item.")
+  TEXT
+  (
+      "Thank you.\n\n"
+      "The next Millennium Item."
+  )
   DELAY(43)
-  TEXT(".")
+  TEXT
+  (
+      "."
+  )
   DELAY(43)
-  TEXT(".")
+  TEXT
+  (
+      "."
+  )
   DELAY(43)
-  TEXT("\nGo to Domino Pier.\n\nThe Millennium Item should\nbe aboard the cruise ship.\n\n")
+  TEXT
+  (
+      "\n"
+      "Go to Domino Pier.\n\n"
+      "The Millennium Item should\n"
+      "be aboard the cruise ship.\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -57,6 +92,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34A6C, map_00_state_18_08E34A6C, 0x08E34A60, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, I have no one to\nturn to but to you.\n\nI know I am asking for the\nimpossible, but I beg for\n\nyour help.\n\n")
+  TEXT
+  (
+      "{PLAYER}, I have no one to\n"
+      "turn to but to you.\n\n"
+      "I know I am asking for the\n"
+      "impossible, but I beg for\n\n"
+      "your help.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

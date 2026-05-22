@@ -12,13 +12,33 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC918, map_29_state_07_08EAC918, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ahhh... It's good to be back\nin the dark.\n\nI don't know why everyone\nwant to be in the light.\n\nIt's so relaxing...\n\nBut something doesn't feel\nright...\n\nIt feels the same as the\ntime I was taking orders\n\nfrom Bandit Keith...\n\nThe best way to forget my\ntroubles is to have a duel!\n\n")
+  TEXT
+  (
+      "Ahhh... It's good to be back\n"
+      "in the dark.\n\n"
+      "I don't know why everyone\n"
+      "want to be in the light.\n\n"
+      "It's so relaxing...\n\n"
+      "But something doesn't feel\n"
+      "right...\n\n"
+      "It feels the same as the\n"
+      "time I was taking orders\n\n"
+      "from Bandit Keith...\n\n"
+      "The best way to forget my\n"
+      "troubles is to have a duel!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC924, map_29_state_07_08EAC924, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Your journey is far from\nover.\n\nBut my card will definitely\nhelp you.\n\n")
+  TEXT
+  (
+      "Your journey is far from\n"
+      "over.\n\n"
+      "But my card will definitely\n"
+      "help you.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -33,16 +53,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC93C, map_29_state_07_08EAC93C, 0x08EAC948, 0x08F
   REACTION(REACTION_QUESTION_MARK, OBJECT_1)
   DELAY(8)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I've dueled you before,\n{PLAYER}...\n\nBut I've never seen you so\ndetermined.\n\nYou must be preparing for an\nenormous duel.\n\nOkay! {PLAYER}, I'll duel\nyou anytime you want.\n\n")
+  TEXT
+  (
+      "I've dueled you before,\n"
+      "{PLAYER}...\n\n"
+      "But I've never seen you so\n"
+      "determined.\n\n"
+      "You must be preparing for an\n"
+      "enormous duel.\n\n"
+      "Okay! {PLAYER}, I'll duel\n"
+      "you anytime you want.\n\n"
+  )
   DUEL(100)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC948, map_29_state_07_08EAC948, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I lost because you wanted to\nwin more than I did.\n\nIt's easy to tell you're\npreparing for a great\n\nbattle, {PLAYER}.\n\nYou have an enormous weight\non your shoulders. I wish I\n\ncould help you...\n\nI know! Take this card.\n\nIt represents me.\n\nIt's Pumpking the King of\nGhosts.\n\nI know it will come in\nhandy...\n\n")
+  TEXT
+  (
+      "I lost because you wanted to\n"
+      "win more than I did.\n\n"
+      "It's easy to tell you're\n"
+      "preparing for a great\n\n"
+      "battle, {PLAYER}.\n\n"
+      "You have an enormous weight\n"
+      "on your shoulders. I wish I\n\n"
+      "could help you...\n\n"
+      "I know! Take this card.\n\n"
+      "It represents me.\n\n"
+      "It's Pumpking the King of\n"
+      "Ghosts.\n\n"
+      "I know it will come in\n"
+      "handy...\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Received Pumpking the King\nof Ghosts.")
+  TEXT
+  (
+      "Received Pumpking the King\n"
+      "of Ghosts."
+  )
   PLAY_MUSIC(MUSIC_701)
   DELAY(240)
   DELAY(80)
@@ -55,7 +105,16 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC954, map_29_state_07_08EAC954, 0x08EAC960, 0x08F0404C)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm a better duelist now\nthan when I was in Bandit\n\nKeith's gang.\n\nIf dueling me will hone your\nskills...\n\nI'll duel you anytime you\nwant.\n\n")
+  TEXT
+  (
+      "I'm a better duelist now\n"
+      "than when I was in Bandit\n\n"
+      "Keith's gang.\n\n"
+      "If dueling me will hone your\n"
+      "skills...\n\n"
+      "I'll duel you anytime you\n"
+      "want.\n\n"
+  )
   DUEL(148)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -63,6 +122,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EAC960, map_29_state_07_08EAC960, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_ITALY)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("D-did I help you a little?\n\nI'm rooting for you. Win!\n\n")
+  TEXT
+  (
+      "D-did I help you a little?\n\n"
+      "I'm rooting for you. Win!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -10,6 +10,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDE980, map_48_state_05_08EDE980, 0x08EDE98C, 0x08F
   LOAD_SPRITE(3, SPRITE_DOX)
   PLAY_MUSIC(MUSIC_400)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("That's why I can't waste any\ntime.\n\nI won't be stopped!\n\n")
+  TEXT
+  (
+      "That's why I can't waste any\n"
+      "time.\n\n"
+      "I won't be stopped!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

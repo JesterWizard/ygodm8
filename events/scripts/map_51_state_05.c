@@ -24,14 +24,29 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E78, map_51_state_05_08EE3E78, 0x08EE3E90, 0x08EE401C)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You should learn about the\ndepths of a duelist's soul.\n\nI'll show you the dark\ndepths of my spirit...\n\nDarker than the deepest\ntrenches of the sea!\n\n")
+  TEXT
+  (
+      "You should learn about the\n"
+      "depths of a duelist's soul.\n\n"
+      "I'll show you the dark\n"
+      "depths of my spirit...\n\n"
+      "Darker than the deepest\n"
+      "trenches of the sea!\n\n"
+  )
   DUEL(116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E90, map_51_state_05_08EE3E90, 0x08EE3FEC, 0x08F04040)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("So you think you've won?\n\nIf you think that's enough\nto beat me...\n\nThen, you'll be stuck here\nforever!\n\n")
+  TEXT
+  (
+      "So you think you've won?\n\n"
+      "If you think that's enough\n"
+      "to beat me...\n\n"
+      "Then, you'll be stuck here\n"
+      "forever!\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_DEFEATED_DARK_MAKO_WITHOUT_SPIRIT_CARD)
@@ -40,21 +55,37 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E84, map_51_state_05_08EE3E84, 0x08EE3E90, 0x08EE401C)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You can come back as often\nas you like.\n\nIt won't make a difference.\n\nYou can never light the\ndarkness in my heart!\n\n")
+  TEXT
+  (
+      "You can come back as often\n"
+      "as you like.\n\n"
+      "It won't make a difference.\n\n"
+      "You can never light the\n"
+      "darkness in my heart!\n\n"
+  )
   DUEL(116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3E9C, map_51_state_05_08EE3E9C, 0x08EE3EA8, 0x08EE401C)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Witness the darkest depths\nof my dueling spirit!\n\n")
+  TEXT
+  (
+      "Witness the darkest depths\n"
+      "of my dueling spirit!\n\n"
+  )
   DUEL(116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3EA8, map_51_state_05_08EE3EA8, 0x08EE3EB4, 0x08F04040)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I... I lost...\n\nA light pierced the dark\ndepths of the sea...\n\n")
+  TEXT
+  (
+      "I... I lost...\n\n"
+      "A light pierced the dark\n"
+      "depths of the sea...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)

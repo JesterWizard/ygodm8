@@ -1,7 +1,10 @@
 #ifndef EVENT_MACROS_H
 #define EVENT_MACROS_H
 
-/* These files are parsed by tools/vanilla_events.py, not compiled directly. */
+/* These files are parsed by tools/vanilla_events.py, not compiled directly.
+ * TEXT/DIALOGUE/LANGUAGE_TEXT accept normal Python string literals, including
+ * triple-quoted multiline strings for easier authoring.
+ */
 
 #define EVENT_SCRIPT_REPLACEMENT(vanilla_addr, name, on_false, on_true)
 #define EVENT_SCRIPT(name, on_false, on_true)

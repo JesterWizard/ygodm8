@@ -10,13 +10,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08E51088, map_05_state_06_08E51088, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
-  TEXT("Oh no! I lost again.\n\n")
+  TEXT
+  (
+      "Oh no! I lost again.\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT("Hahah, I did it! Try harder\nnext time!\n\n")
+  TEXT
+  (
+      "Hahah, I did it! Try harder\n"
+      "next time!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
-  TEXT("Yeah, I'm not going to lose\nagain!\n\n")
+  TEXT
+  (
+      "Yeah, I'm not going to lose\n"
+      "again!\n\n"
+  )
   FADE_SCREEN(8)
   WARP(6, 15, 0, 0)
   FALLTHROUGH()

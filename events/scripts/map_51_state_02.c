@@ -24,14 +24,23 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3CEC, map_51_state_02_08EE3CEC, 0x08EE3D04, 0x08EE401C)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'll never forget that I\nlost to you!\n\nI'm not letting you get past\nme!\n\n")
+  TEXT
+  (
+      "I'll never forget that I\n"
+      "lost to you!\n\n"
+      "I'm not letting you get past\n"
+      "me!\n\n"
+  )
   DUEL(113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D04, map_51_state_02_08EE3D04, 0x08EE3FC8, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Don't think you've won yet.\n\n")
+  TEXT
+  (
+      "Don't think you've won yet.\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   SET_FLAG(EVENT_FLAG_DEFEATED_DARK_BONZ_WITHOUT_SPIRIT_CARD)
@@ -51,21 +60,35 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3CF8, map_51_state_02_08EE3CF8, 0x08EE3D04, 0x08EE401C)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I knew you'd come!\n\nNo matter how many times we\nduel, you won't get rid of\n\nme!\n\n")
+  TEXT
+  (
+      "I knew you'd come!\n\n"
+      "No matter how many times we\n"
+      "duel, you won't get rid of\n\n"
+      "me!\n\n"
+  )
   DUEL(113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D10, map_51_state_02_08EE3D10, 0x08EE3D1C, 0x08EE401C)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Th-that card... How did you\nget that!\n\n")
+  TEXT
+  (
+      "Th-that card... How did you\n"
+      "get that!\n\n"
+  )
   DUEL(113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3D1C, map_51_state_02_08EE3D1C, 0x08EE3D28, 0x08F04040)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It's my spirit card!\n\nThe light...\n\n")
+  TEXT
+  (
+      "It's my spirit card!\n\n"
+      "The light...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)

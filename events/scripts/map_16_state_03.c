@@ -9,7 +9,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DEDC, map_16_state_03_08E7DEDC, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_YELLOW_SCARF)
   LOAD_SPRITE(3, SPRITE_DAMIEN_DRACO)
   LOAD_SPRITE(4, SPRITE_DUEL_EXPRESS_CONDUCTOR)
-  TEXT("Thank you for riding with\nus.\n\n")
+  TEXT
+  (
+      "Thank you for riding with\n"
+      "us.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -24,17 +28,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DF84, map_16_state_03_08E7DF84, 0x08E7DF90, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DF90, map_16_state_03_08E7DF90, 0x08F04040, 0x08F04040)
-  TEXT("Thank you for riding with\nus.\n\n")
+  TEXT
+  (
+      "Thank you for riding with\n"
+      "us.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DF9C, map_16_state_03_08E7DF9C, 0x08F04040, 0x08F04040)
-  TEXT("If you try to duel me, the\ntrain will depart.\n\nPlease be aware of that.\n\n")
+  TEXT
+  (
+      "If you try to duel me, the\n"
+      "train will depart.\n\n"
+      "Please be aware of that.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DFA8, map_16_state_03_08E7DFA8, 0x08F04040, 0x08F04040)
-  TEXT("If you try to duel me, the\ntrain will arrive.\n\nPlease be aware of that.\n\n")
+  TEXT
+  (
+      "If you try to duel me, the\n"
+      "train will arrive.\n\n"
+      "Please be aware of that.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -49,18 +67,33 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DEF4, map_16_state_03_08E7DEF4, 0x08E7DF00, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DF00, map_16_state_03_08E7DF00, 0x08F04040, 0x08F04040)
-  TEXT("Thank you for riding with\nus.\n\n")
+  TEXT
+  (
+      "Thank you for riding with\n"
+      "us.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DF0C, map_16_state_03_08E7DF0C, 0x08F04040, 0x08F04040)
-  TEXT("Our departure time has\narrived.\n\n")
+  TEXT
+  (
+      "Our departure time has\n"
+      "arrived.\n\n"
+  )
   WALK_OBJECT_X(4, 108)
   MOVE_OBJECT(4, DIRECTION_LEFT, 0, 0)
-  TEXT("All aboard!\n\n")
+  TEXT
+  (
+      "All aboard!\n\n"
+  )
   PLAY_MUSIC(MUSIC_234)
   SET_FLAG(EVENT_FLAG_SHAKE_SCREEN)
-  TEXT("The next and only stop is\nthe Egypt Exhibition!\n\n")
+  TEXT
+  (
+      "The next and only stop is\n"
+      "the Egypt Exhibition!\n\n"
+  )
   MOVE_OBJECT(1, DIRECTION_UP, 8, 0)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 24, 0)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
@@ -70,13 +103,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DF0C, map_16_state_03_08E7DF0C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7DF18, map_16_state_03_08E7DF18, 0x08E7DF24, 0x08F04040)
-  TEXT("We will be arriving very\nshortly.\n\n")
+  TEXT
+  (
+      "We will be arriving very\n"
+      "shortly.\n\n"
+  )
   WALK_OBJECT_X(4, 88)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_235)
   CLEAR_FLAG(247)
-  TEXT("Egypt Exhibition! Egypt\nExhibition!\n\nPlease make sure to take all\nyour belongings with you.\n\n")
+  TEXT
+  (
+      "Egypt Exhibition! Egypt\n"
+      "Exhibition!\n\n"
+      "Please make sure to take all\n"
+      "your belongings with you.\n\n"
+  )
   SET_MAP_MUSIC(232)
   CLEAR_FLAG(245)
   CLEAR_FLAG(244)

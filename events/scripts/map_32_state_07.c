@@ -7,7 +7,11 @@
 EVENT_SCRIPT_REPLACEMENT(0x08EB9114, map_32_state_07_08EB9114, 0x08EB9120, 0x08EB9168)
   LOAD_SPRITE(1, SPRITE_MILLENNIUM_GUARDIAN)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You'll proceed no further\nwithout defeating me!\n\n")
+  TEXT
+  (
+      "You'll proceed no further\n"
+      "without defeating me!\n\n"
+  )
   DUEL(80)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -15,7 +19,13 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EB9120, map_32_state_07_08EB9120, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_242)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Most impressive.\nYou deserve a card.\n\nTake this Giant Soldier of\nStone.\n\n")
+  TEXT
+  (
+      "Most impressive.\n"
+      "You deserve a card.\n\n"
+      "Take this Giant Soldier of\n"
+      "Stone.\n\n"
+  )
   ADD_CARD(74)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -23,7 +33,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB9120, map_32_state_07_08EB9120, 0x08F04040, 0x08F
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Your path is clear.\nAdvance.\n\n")
+  TEXT
+  (
+      "Your path is clear.\n"
+      "Advance.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_281)

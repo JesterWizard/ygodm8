@@ -26,14 +26,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7BDC, map_41_state_01_08ED7BDC, 0x08ED7BE8, 0x08E
   REACTION(REACTION_ELLIPSIS, OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT("That Pegasus...\n\nWhat drove him to do this?\n\n")
+  TEXT
+  (
+      "That Pegasus...\n\n"
+      "What drove him to do this?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TEXT("{CARD_1}I don't know\nWe'll know if we go{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}I don't know\n"
+      "We'll know if we go{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -43,7 +51,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7BE8, map_41_state_01_08ED7BE8, 0x08ED7C00, 0x08F
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yeah, I'm with you,\n{PLAYER}.\n\nI have no clue what Pegasus\nis thinkin'.\n\nHe's one mad sicko, but...\n\n")
+  TEXT
+  (
+      "Yeah, I'm with you,\n"
+      "{PLAYER}.\n\n"
+      "I have no clue what Pegasus\n"
+      "is thinkin'.\n\n"
+      "He's one mad sicko, but...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -54,7 +69,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C00, map_41_state_01_08ED7C00, 0x08ED7C0C, 0x08F
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Pegasus was always a master\nduelist.\n\nNo one would argue with\nthat.\n\nEspecially since we faced\nhim firsthand.\n\nSo why would he resort to\neven dirtier tricks than\n\nbefore?\n\nI'm not the smartest guy on\nthe planet...\n\nBut I know that Pegasus\nisn't a real duelist\n\nanymore!\n\n")
+  TEXT
+  (
+      "Pegasus was always a master\n"
+      "duelist.\n\n"
+      "No one would argue with\n"
+      "that.\n\n"
+      "Especially since we faced\n"
+      "him firsthand.\n\n"
+      "So why would he resort to\n"
+      "even dirtier tricks than\n\n"
+      "before?\n\n"
+      "I'm not the smartest guy on\n"
+      "the planet...\n\n"
+      "But I know that Pegasus\n"
+      "isn't a real duelist\n\n"
+      "anymore!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_258)
@@ -78,17 +109,42 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C0C, map_41_state_01_08ED7C0C, 0x08ED7C18, 0x08E
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   DELAY(8)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Gawry nida! Gawry nida!\n\nYou'll go no further! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "You'll go no further! Gawry!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("Wha... Who are you?\n\n")
+  TEXT
+  (
+      "Wha... Who are you?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I am one of many! Gawry!\n\nMaster Chevalsky turned us\ninto duelists! Gawry!\n\nWe no longer have no names!\nGawry nida!\n\nBut if you must call us\nsomething, call us the\n\nChevaliers!\n\nWe have pledged allegiance\nto Master Chevalsky!\n\n")
+  TEXT
+  (
+      "I am one of many! Gawry!\n\n"
+      "Master Chevalsky turned us\n"
+      "into duelists! Gawry!\n\n"
+      "We no longer have no names!\n"
+      "Gawry nida!\n\n"
+      "But if you must call us\n"
+      "something, call us the\n\n"
+      "Chevaliers!\n\n"
+      "We have pledged allegiance\n"
+      "to Master Chevalsky!\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("That Pegasus... He's really\nannoyin' me now!\n\n{PLAYER}, it's time to lay\ndown the law!\n\n")
+  TEXT
+  (
+      "That Pegasus... He's really\n"
+      "annoyin' me now!\n\n"
+      "{PLAYER}, it's time to lay\n"
+      "down the law!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 50)
@@ -103,7 +159,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C18, map_41_state_01_08ED7C18, 0x08ED7C24, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   DELAY(32)
@@ -129,7 +189,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C24, map_41_state_01_08ED7C24, 0x08ED7C30, 0x08E
   PLAY_MUSIC(MUSIC_260)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Gawry nida! Gawry nida!\n\nYou'll go no further! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "You'll go no further! Gawry!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 50)
@@ -144,7 +208,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C30, map_41_state_01_08ED7C30, 0x08ED7C3C, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()
@@ -155,7 +223,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C3C, map_41_state_01_08ED7C3C, 0x08ED7C48, 0x08E
   PLAY_MUSIC(MUSIC_260)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Gawry nida! Gawry nida!\n\nYou'll go no further! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "You'll go no further! Gawry!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 58)
@@ -170,7 +242,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C48, map_41_state_01_08ED7C48, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_TELEPORT)
   DELAY(64)
@@ -178,13 +254,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C48, map_41_state_01_08ED7C48, 0x08F04040, 0x08F
   CLEAR_FLAG(246)
   DELAY(96)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Looks like it's stopped.\n\n")
+  TEXT
+  (
+      "Looks like it's stopped.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's keep going, {PLAYER}.\n\n")
+  TEXT
+  (
+      "Let's keep going, {PLAYER}.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   WALK_OBJECT_Y(13, 62)
@@ -214,6 +296,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7BF4, map_41_state_01_08ED7BF4, 0x08ED7C00, 0x08F
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-  TEXT("And ask him personally?\n\nI don't know much about\nsavin' the world, but I\n\nwanna know why Pegasus lost\nhis pride as a true\n\nduelist.\n\n")
+  TEXT
+  (
+      "And ask him personally?\n\n"
+      "I don't know much about\n"
+      "savin' the world, but I\n\n"
+      "wanna know why Pegasus lost\n"
+      "his pride as a true\n\n"
+      "duelist.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

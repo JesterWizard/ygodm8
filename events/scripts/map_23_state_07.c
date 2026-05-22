@@ -14,15 +14,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08E953A8, map_23_state_07_08E953A8, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_401)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT("It's been a long time,\npartner.\n\n")
+  TEXT
+  (
+      "It's been a long time,\n"
+      "partner.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_LEFT)
-  TEXT("My other self...\n\nI... I thought I'd never see\nyou again.\n\n")
+  TEXT
+  (
+      "My other self...\n\n"
+      "I... I thought I'd never see\n"
+      "you again.\n\n"
+  )
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Never forget that no matter\nwhat, we're always\n\ntogether.\n\n")
+  TEXT
+  (
+      "Never forget that no matter\n"
+      "what, we're always\n\n"
+      "together.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_LEFT)
-  TEXT("Right!\n\n")
+  TEXT
+  (
+      "Right!\n\n"
+  )
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Okay, partner! Let's get the\nEgyptian God Card back!\n\n")
+  TEXT
+  (
+      "Okay, partner! Let's get the\n"
+      "Egyptian God Card back!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_301)
@@ -35,12 +56,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E953A8, map_23_state_07_08E953A8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95474, map_23_state_07_08E95474, 0x08F04040, 0x08F04040)
-  TEXT("...\n\n")
+  TEXT
+  (
+      "...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95468, map_23_state_07_08E95468, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm sorry about this...\nLet's exit.\n\n")
+  TEXT
+  (
+      "I'm sorry about this...\n"
+      "Let's exit.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

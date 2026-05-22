@@ -25,7 +25,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA69C8, map_28_state_01_08EA69C8, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(32)
-  TEXT("Now this is rare.\n\n")
+  TEXT
+  (
+      "Now this is rare.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
@@ -36,31 +39,50 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA69C8, map_28_state_01_08EA69C8, 0x08F04040, 0x08F
   DELAY(32)
   MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TEXT("It certainly is.\n\n")
+  TEXT
+  (
+      "It certainly is.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   DELAY(32)
-  TEXT("This is a community cemetery\nfrom long ago.\n\n")
+  TEXT
+  (
+      "This is a community cemetery\n"
+      "from long ago.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   DELAY(32)
-  TEXT("I know. It's called the\nCatacombs.\n\n")
+  TEXT
+  (
+      "I know. It's called the\n"
+      "Catacombs.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(16)
-  TEXT("That's right! You've done\nyour homework.\n\n")
+  TEXT
+  (
+      "That's right! You've done\n"
+      "your homework.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_2)
   DELAY(16)
-  TEXT("I haven't done any homework\nin decades, dear.\n\n")
+  TEXT
+  (
+      "I haven't done any homework\n"
+      "in decades, dear.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   PLAY_MUSIC(MUSIC_272)
@@ -70,21 +92,41 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA69C8, map_28_state_01_08EA69C8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA69D4, map_28_state_01_08EA69D4, 0x08F04040, 0x08F04040)
-  TEXT("This is a community cemetery\nfrom long ago.\n\n")
+  TEXT
+  (
+      "This is a community cemetery\n"
+      "from long ago.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA69E0, map_28_state_01_08EA69E0, 0x08F04040, 0x08F04040)
-  TEXT("Duo? What do you mean? Do\nyou want me to be your\n\npartner?\n\nDo you want to perform a duo\nand sing with me?\n\n")
+  TEXT
+  (
+      "Duo? What do you mean? Do\n"
+      "you want me to be your\n\n"
+      "partner?\n\n"
+      "Do you want to perform a duo\n"
+      "and sing with me?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA69EC, map_28_state_01_08EA69EC, 0x08F04040, 0x08F04040)
-  TEXT("It's called the Catacombs.\n\nFor some reason, this place\nmakes me feel calm.\n\n")
+  TEXT
+  (
+      "It's called the Catacombs.\n\n"
+      "For some reason, this place\n"
+      "makes me feel calm.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA69F8, map_28_state_01_08EA69F8, 0x08F04040, 0x08F04040)
-  TEXT("Jewel?\n\nYou'll buy one for me?\n\n")
+  TEXT
+  (
+      "Jewel?\n\n"
+      "You'll buy one for me?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

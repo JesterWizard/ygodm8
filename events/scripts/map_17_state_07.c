@@ -12,7 +12,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F124, map_17_state_07_08E7F124, 0x08E7F13C, 0x08E
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Ha ha ha! Looks like we've\nentered a tunnel!\n\nAnd darkness gives me power!\nIt's time to duel!\n\n")
+  TEXT
+  (
+      "Ha ha ha! Looks like we've\n"
+      "entered a tunnel!\n\n"
+      "And darkness gives me power!\n"
+      "It's time to duel!\n\n"
+  )
   CLEAR_FLAG(240)
   DUEL(153)
   FALLTHROUGH()
@@ -21,7 +27,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08E7F13C, map_17_state_07_08E7F13C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_236)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Urgh...\n\n")
+  TEXT
+  (
+      "Urgh...\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -31,13 +40,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F13C, map_17_state_07_08E7F13C, 0x08F04040, 0x08F
   DELAY(16)
   WALK_OBJECT_X(2, 112)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("We're now arriving!\n\nThis is our last stop, the\nEgypt Exhibition!\n\n")
+  TEXT
+  (
+      "We're now arriving!\n\n"
+      "This is our last stop, the\n"
+      "Egypt Exhibition!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 128)
   DELAY(16)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I may have lost the duel...\n\nBut you will never get the\nMillennium Items!\n\n")
+  TEXT
+  (
+      "I may have lost the duel...\n\n"
+      "But you will never get the\n"
+      "Millennium Items!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   WALK_OBJECT_X(1, 144)
   SET_FLAG(EVENT_FLAG_DEFEATED_PANIK)

@@ -24,7 +24,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C54, map_41_state_02_08ED7C54, 0x08ED7C60, 0x08E
   PLAY_MUSIC(MUSIC_260)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_JUMPING)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 50)
@@ -38,7 +42,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C60, map_41_state_02_08ED7C60, 0x08ED7C6C, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()
@@ -56,7 +64,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C6C, map_41_state_02_08ED7C6C, 0x08ED7C78, 0x08E
   PLAY_MUSIC(MUSIC_260)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 50)
@@ -70,7 +82,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C78, map_41_state_02_08ED7C78, 0x08ED7C84, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()
@@ -88,7 +104,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C84, map_41_state_02_08ED7C84, 0x08ED7C90, 0x08E
   PLAY_MUSIC(MUSIC_260)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 58)
@@ -102,7 +122,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED7C90, map_41_state_02_08ED7C90, 0x08ED7C9C, 0x08F
   PLAY_MUSIC(MUSIC_253)
   PLAY_MUSIC(MUSIC_257)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_TELEPORT)
   DELAY(64)

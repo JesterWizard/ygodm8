@@ -8,7 +8,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4282C, map_01_state_05_08E4282C, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_RED_HAT)
   LOAD_SPRITE(2, SPRITE_STYLISH_HAIR)
   LOAD_SPRITE(3, SPRITE_WEEVIL)
-  TEXT("The Neo Ghouls have left,\nbut...\n\nWhy do I still feel uneasy?\n\n")
+  TEXT
+  (
+      "The Neo Ghouls have left,\n"
+      "but...\n\n"
+      "Why do I still feel uneasy?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -18,25 +23,41 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42838, map_01_state_05_08E42838, 0x08E42844, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42844, map_01_state_05_08E42844, 0x08E42850, 0x08F0404C)
-  TEXT("Sure thing!\n\n")
+  TEXT
+  (
+      "Sure thing!\n\n"
+  )
   DUEL(85)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42850, map_01_state_05_08E42850, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT("Yeah, dueling sure is fun.\n\n")
+  TEXT
+  (
+      "Yeah, dueling sure is fun.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_RED_HAT2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4285C, map_01_state_05_08E4285C, 0x08F04040, 0x08F04040)
-  TEXT("I'm tinkering with my deck\nso I can win next time.\n\nLet's duel some other time.\n\n")
+  TEXT
+  (
+      "I'm tinkering with my deck\n"
+      "so I can win next time.\n\n"
+      "Let's duel some other time.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42868, map_01_state_05_08E42868, 0x08F04040, 0x08F04040)
-  TEXT("There are evil duelists,\nlike the Neo Ghouls...\n\nBut it's still fun to duel.\n\n")
+  TEXT
+  (
+      "There are evil duelists,\n"
+      "like the Neo Ghouls...\n\n"
+      "But it's still fun to duel.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -46,26 +67,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42874, map_01_state_05_08E42874, 0x08E42880, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42880, map_01_state_05_08E42880, 0x08E4288C, 0x08F0404C)
-  TEXT("Okay! I'm not going to lose!\n\n")
+  TEXT
+  (
+      "Okay! I'm not going to lose!\n\n"
+  )
   DUEL(86)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4288C, map_01_state_05_08E4288C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  TEXT("Sigh... I lost after all.\n\n")
+  TEXT
+  (
+      "Sigh... I lost after all.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_DEFEATED_STYLISH_HAIR2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42898, map_01_state_05_08E42898, 0x08F04040, 0x08F04040)
-  TEXT("I'm not good enough to\ncompete against you.\n\n")
+  TEXT
+  (
+      "I'm not good enough to\n"
+      "compete against you.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E428A4, map_01_state_05_08E428A4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT("Hyohyohyohyo!\n\nThe Neo Ghouls are gone, all\nthanks to me!\n\nYou maggots better be\ngrateful.\n\nJust to let you know, my\nswarm of bugs are more\n\nrugged than ever!\n\n")
+  TEXT
+  (
+      "Hyohyohyohyo!\n\n"
+      "The Neo Ghouls are gone, all\n"
+      "thanks to me!\n\n"
+      "You maggots better be\n"
+      "grateful.\n\n"
+      "Just to let you know, my\n"
+      "swarm of bugs are more\n\n"
+      "rugged than ever!\n\n"
+  )
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
   SET_FLAG(EVENT_FLAG_WEEVIL_LEFT_CLOCK_TOWER_SQUARE)

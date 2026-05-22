@@ -8,18 +8,34 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42760, map_01_state_03_08E42760, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_RED_HAT)
   LOAD_SPRITE(2, SPRITE_STYLISH_HAIR)
   LOAD_SPRITE(3, SPRITE_NEO_GHOUL)
-  TEXT("I'm terrified of the Neo\nGhouls.\n\nI'm never going to duel in\nthe street again.\n\n")
+  TEXT
+  (
+      "I'm terrified of the Neo\n"
+      "Ghouls.\n\n"
+      "I'm never going to duel in\n"
+      "the street again.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4276C, map_01_state_03_08E4276C, 0x08F04040, 0x08F04040)
-  TEXT("If you wear a Duel Disk, the\nNeo Ghouls will know that\n\nyou're a duelist!\n\nThey'll come after you!\n\n")
+  TEXT
+  (
+      "If you wear a Duel Disk, the\n"
+      "Neo Ghouls will know that\n\n"
+      "you're a duelist!\n\n"
+      "They'll come after you!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42778, map_01_state_03_08E42778, 0x08E42784, 0x08E427B4)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You! You're a duelist! Fork\nover your rare cards!\n\n")
+  TEXT
+  (
+      "You! You're a duelist! Fork\n"
+      "over your rare cards!\n\n"
+  )
   DUEL(55)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -36,7 +52,10 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427A8, map_01_state_03_08E427A8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("B-beaten...\n\n")
+  TEXT
+  (
+      "B-beaten...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 0)

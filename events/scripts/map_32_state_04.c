@@ -16,7 +16,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB90D8, map_32_state_04_08EB90D8, 0x08EB90E4, 0x08EB9168)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You'll proceed no further\nwithout defeating me!\n\n")
+  TEXT
+  (
+      "You'll proceed no further\n"
+      "without defeating me!\n\n"
+  )
   DUEL(78)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -24,7 +28,12 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EB90E4, map_32_state_04_08EB90E4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_242)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Most impressive.\nYou deserve a card.\n\nTake this Kuriboh.\n\n")
+  TEXT
+  (
+      "Most impressive.\n"
+      "You deserve a card.\n\n"
+      "Take this Kuriboh.\n\n"
+  )
   ADD_CARD(58)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -32,7 +41,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB90E4, map_32_state_04_08EB90E4, 0x08F04040, 0x08F
   REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Your path is clear.\nAdvance.\n\n")
+  TEXT
+  (
+      "Your path is clear.\n"
+      "Advance.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_281)

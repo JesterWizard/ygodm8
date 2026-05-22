@@ -23,15 +23,33 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8B4, map_48_state_01_08EDE8B4, 0x08EDE8C0, 0x08EDE8D8)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("We should reach Pegasus's\ncastle soon.\n\n{PLAYER}, do you think you\ncan beat Pegasus?\n\n")
+  TEXT
+  (
+      "We should reach Pegasus's\n"
+      "castle soon.\n\n"
+      "{PLAYER}, do you think you\n"
+      "can beat Pegasus?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}I don't know.\nOf course!{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}I don't know.\n"
+      "Of course!{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8C0, map_48_state_01_08EDE8C0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("{PLAYER}, you're really\nhonest.\n\nBut you'll be fine,\n{PLAYER}. You can win.\n\nEven the spirit of the\nPuzzle vouched for you.\n\n")
+  TEXT
+  (
+      "{PLAYER}, you're really\n"
+      "honest.\n\n"
+      "But you'll be fine,\n"
+      "{PLAYER}. You can win.\n\n"
+      "Even the spirit of the\n"
+      "Puzzle vouched for you.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
@@ -45,7 +63,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDE8D8, map_48_state_01_08EDE8D8, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Yeah, that's the way to\nthink, {PLAYER}!\n\nI made a promise with the\nspirit of the Puzzle.\n\n")
+  TEXT
+  (
+      "Yeah, that's the way to\n"
+      "think, {PLAYER}!\n\n"
+      "I made a promise with the\n"
+      "spirit of the Puzzle.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)

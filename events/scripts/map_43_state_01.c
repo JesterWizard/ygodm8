@@ -9,14 +9,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDA638, map_43_state_01_08EDA638, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_CHEVALIER)
   PLAY_MUSIC(MUSIC_DUNGEON)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("We can't betray Joey's\ntrust, {PLAYER}.\n\nWe have to go as quickly as\npossible.\n\n")
+  TEXT
+  (
+      "We can't betray Joey's\n"
+      "trust, {PLAYER}.\n\n"
+      "We have to go as quickly as\n"
+      "possible.\n\n"
+  )
   WARP(55, 3, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDA650, map_43_state_01_08EDA650, 0x08EDA65C, 0x08F0404C)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   DUEL(106)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -24,7 +34,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EDA65C, map_43_state_01_08EDA65C, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DUNGEON)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()
@@ -32,7 +46,11 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EDA668, map_43_state_01_08EDA668, 0x08EDA674, 0x08F0404C)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gawry nida! Gawry nida!\n\nWe win all duels! Gawry!\n\n")
+  TEXT
+  (
+      "Gawry nida! Gawry nida!\n\n"
+      "We win all duels! Gawry!\n\n"
+  )
   DUEL(107)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -40,7 +58,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EDA674, map_43_state_01_08EDA674, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DUNGEON)
   PORTRAIT(PORTRAIT_CHEVALIER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("G-gawry nida... G-ga..\nn-niii.... urrri...\n\n")
+  TEXT
+  (
+      "G-gawry nida... G-ga..\n"
+      "n-niii.... urrri...\n\n"
+  )
   PLAY_MUSIC(MUSIC_282)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   FALLTHROUGH()

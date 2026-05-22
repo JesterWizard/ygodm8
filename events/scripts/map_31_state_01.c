@@ -11,13 +11,24 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4264, map_31_state_01_08EB4264, 0x08EB427C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB427C, map_31_state_01_08EB427C, 0x08F04040, 0x08F04040)
-  TEXT("Hiyah! This is a special\ndish for all, found only at\n\nthe Great Wall!\n\nIt's my Great Wall noodle\nsoup! Eat and slurp!\n\n")
+  TEXT
+  (
+      "Hiyah! This is a special\n"
+      "dish for all, found only at\n\n"
+      "the Great Wall!\n\n"
+      "It's my Great Wall noodle\n"
+      "soup! Eat and slurp!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_TALKED_TO_PARA)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB4288, map_31_state_01_08EB4288, 0x08F04040, 0x08F04040)
-  TEXT("I'm very busy making\nnoodles, okay?\n\n")
+  TEXT
+  (
+      "I'm very busy making\n"
+      "noodles, okay?\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -38,7 +49,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4258, map_31_state_01_08EB4258, 0x08F04040, 0x08F
   WALK_OBJECT_X(1, 72)
   WALK_OBJECT_Y(1, 48)
   DELAY(16)
-  TEXT("Hiyah! This is a special\ndish for all, found only at\n\nthe Great Wall!\n\nIt's my Great Wall noodle\nsoup! Eat and slurp!\n\n")
+  TEXT
+  (
+      "Hiyah! This is a special\n"
+      "dish for all, found only at\n\n"
+      "the Great Wall!\n\n"
+      "It's my Great Wall noodle\n"
+      "soup! Eat and slurp!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(1, 68)
@@ -59,7 +77,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4294, map_31_state_01_08EB4294, 0x08EB42A0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB42A0, map_31_state_01_08EB42A0, 0x08F04040, 0x08F04040)
-  TEXT("Hiyah! You want to duel?\n\nI'm too busy making noodles\nand gruel. I have no time\n\nto duel.\n\n")
+  TEXT
+  (
+      "Hiyah! You want to duel?\n\n"
+      "I'm too busy making noodles\n"
+      "and gruel. I have no time\n\n"
+      "to duel.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -67,7 +91,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42D0, map_31_state_01_08EB42D0, 0x08EB42DC, 0x08F
   PLAY_MUSIC(MUSIC_404)
   PLAY_MUSIC(MUSIC_330)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Grrr! How cleverly you\nsurmise to see through our\n\ndisguise!\n\n")
+  TEXT
+  (
+      "Grrr! How cleverly you\n"
+      "surmise to see through our\n\n"
+      "disguise!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 48)
@@ -82,7 +111,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42D0, map_31_state_01_08EB42D0, 0x08EB42DC, 0x08F
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Very well! You leave us with\nno choice!\n\nI challenge you in Master\nSol Chevalsky's place!\n\nWe shall duel! Prepare to\nlose, you fool!\n\n")
+  TEXT
+  (
+      "Very well! You leave us with\n"
+      "no choice!\n\n"
+      "I challenge you in Master\n"
+      "Sol Chevalsky's place!\n\n"
+      "We shall duel! Prepare to\n"
+      "lose, you fool!\n\n"
+  )
   DUEL(39)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -90,13 +127,23 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EB42DC, map_31_state_01_08EB42DC, 0x08EB42E8, 0x08F04040)
   PLAY_MUSIC(MUSIC_404)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("That was cruel! I concede\ndefeat in this duel!\n\nBut our true skill is in tag\nduels!\n\n")
+  TEXT
+  (
+      "That was cruel! I concede\n"
+      "defeat in this duel!\n\n"
+      "But our true skill is in tag\n"
+      "duels!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_LEFT)
-  TEXT("Younger brother, let us take\nthem down together!\n\n")
+  TEXT
+  (
+      "Younger brother, let us take\n"
+      "them down together!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -120,19 +167,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42DC, map_31_state_01_08EB42DC, 0x08EB42E8, 0x08F
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Elder brother! I am here to\nhelp!\n\n")
+  TEXT
+  (
+      "Elder brother! I am here to\n"
+      "help!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_LEFT)
-  TEXT("In a tag duel, defeating the\nlikes of you...\n\n")
+  TEXT
+  (
+      "In a tag duel, defeating the\n"
+      "likes of you...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_LEFT)
-  TEXT("...Would be so simple I\nalready bid you adieu!\n\n")
+  TEXT
+  (
+      "...Would be so simple I\n"
+      "already bid you adieu!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -142,7 +201,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42E8, map_31_state_01_08EB42E8, 0x08EB42F4, 0x08E
   DELAY(16)
   PLAY_MUSIC(MUSIC_405)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I can't believe you're\nstruggling against these\n\namateurs!\n\n")
+  TEXT
+  (
+      "I can't believe you're\n"
+      "struggling against these\n\n"
+      "amateurs!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -153,15 +217,42 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB42E8, map_31_state_01_08EB42E8, 0x08EB42F4, 0x08E
   MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Kaiba!\n\n")
+  TEXT
+  (
+      "Kaiba!\n\n"
+  )
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("My big brother's here to\ntake you down\n\nBecause you work for Sol\nChevalsky.\n\n")
+  TEXT
+  (
+      "My big brother's here to\n"
+      "take you down\n\n"
+      "Because you work for Sol\n"
+      "Chevalsky.\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("The only duelist worthy of\nthe Egyptian God Cards...\n\nIs me!\n\nI'll show no mercy, even\nagainst miserable duelists\n\nlike you!\n\n")
+  TEXT
+  (
+      "The only duelist worthy of\n"
+      "the Egyptian God Cards...\n\n"
+      "Is me!\n\n"
+      "I'll show no mercy, even\n"
+      "against miserable duelists\n\n"
+      "like you!\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_LEFT)
-  TEXT("{PLAYER}! Today's your lucky\nday!\n\nI'll help you! Choose which\nsissy to duel!\n\n")
+  TEXT
+  (
+      "{PLAYER}! Today's your lucky\n"
+      "day!\n\n"
+      "I'll help you! Choose which\n"
+      "sissy to duel!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Para\nDox{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Para\n"
+      "Dox{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -185,12 +276,19 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EB430C, map_31_state_01_08EB430C, 0x08EB4318, 0x08F04040)
   PLAY_MUSIC(MUSIC_405)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Come forth, Blue-Eyes White\nDragon!\n\n")
+  TEXT
+  (
+      "Come forth, Blue-Eyes White\n"
+      "Dragon!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 9)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("White Lightning!\n\n")
+  TEXT
+  (
+      "White Lightning!\n\n"
+  )
   PLAY_MUSIC(MUSIC_338)
   COMMAND_7C_ARG(8, 55)
   DELAY(16)
@@ -201,15 +299,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4318, map_31_state_01_08EB4318, 0x08EB4324, 0x08F
   SLIDE_OBJECT(1, 2, 4)
   DELAY(8)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED, PORTRAIT_LEFT)
-  TEXT("M-Master Sol Chevalsky...\n\n")
+  TEXT
+  (
+      "M-Master Sol Chevalsky...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SLIDE_OBJECT(2, 2, 4)
   DELAY(8)
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_LEFT)
-  TEXT("...W-we have failed you...\n\n")
+  TEXT
+  (
+      "...W-we have failed you...\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_LEFT)
-  TEXT("Run to Sol Chevalsky and\ntell him.\n\nThat as long as Seto Kaiba\nlives...\n\nAll his plans are doomed to\nfail! Wahahahahahaha!\n\n")
+  TEXT
+  (
+      "Run to Sol Chevalsky and\n"
+      "tell him.\n\n"
+      "That as long as Seto Kaiba\n"
+      "lives...\n\n"
+      "All his plans are doomed to\n"
+      "fail! Wahahahahahaha!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -227,20 +339,39 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4330, map_31_state_01_08EB4330, 0x08EB436C, 0x08F
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{PLAYER}, you only won\nbecause you had my help.\n\n")
+  TEXT
+  (
+      "{PLAYER}, you only won\n"
+      "because you had my help.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Listen, {PLAYER}.\n\nI walk my own road.\n\nI don't know if you'll win\nor fail on your journey...\n\nBut try not to disappoint\nme.\n\n")
+  TEXT
+  (
+      "Listen, {PLAYER}.\n\n"
+      "I walk my own road.\n\n"
+      "I don't know if you'll win\n"
+      "or fail on your journey...\n\n"
+      "But try not to disappoint\n"
+      "me.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_LEFT)
-  TEXT("Now go and look for your\nmystical trinkets.\n\nWhile you play scavenger\nhunt, I'll save the world.\n\nWahahahahaha!\n\n")
+  TEXT
+  (
+      "Now go and look for your\n"
+      "mystical trinkets.\n\n"
+      "While you play scavenger\n"
+      "hunt, I'll save the world.\n\n"
+      "Wahahahahaha!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -264,15 +395,34 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4378, map_31_state_01_08EB4378, 0x08EB4384, 0x08E
   REACTION(REACTION_QUESTION_MARK, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You better hurry up and find\nthe Millennium Items.\n\nWe heard that the Neo Ghouls\nare hunting for them, too.\n\n")
+  TEXT
+  (
+      "You better hurry up and find\n"
+      "the Millennium Items.\n\n"
+      "We heard that the Neo Ghouls\n"
+      "are hunting for them, too.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{CARD_1}Is that true?\nSo it was true...{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Is that true?\n"
+      "So it was true...{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB4384, map_31_state_01_08EB4384, 0x08EB439C, 0x08F04040)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You can thank KaibaCorp's\ninformation network.\n\nThat's why Seto's here, to\ngive you this info...\n\nOops, he told me not tell\nyou that.\n\nWell, see ya!\n\n")
+  TEXT
+  (
+      "You can thank KaibaCorp's\n"
+      "information network.\n\n"
+      "That's why Seto's here, to\n"
+      "give you this info...\n\n"
+      "Oops, he told me not tell\n"
+      "you that.\n\n"
+      "Well, see ya!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -289,7 +439,18 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EB4390, map_31_state_01_08EB4390, 0x08EB439C, 0x08F04040)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Oh, you knew already?\n\nTo think that we came all\nthe way out here...\n\nJust because Seto wanted you\nto have this info...\n\nOops, that's supposed to be\na secret! Don't let Seto\n\nknow that I told you!\n\nWell, see ya!\n\n")
+  TEXT
+  (
+      "Oh, you knew already?\n\n"
+      "To think that we came all\n"
+      "the way out here...\n\n"
+      "Just because Seto wanted you\n"
+      "to have this info...\n\n"
+      "Oops, that's supposed to be\n"
+      "a secret! Don't let Seto\n\n"
+      "know that I told you!\n\n"
+      "Well, see ya!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -312,12 +473,19 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EB433C, map_31_state_01_08EB433C, 0x08EB4348, 0x08F04040)
   PLAY_MUSIC(MUSIC_405)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Come forth, Blue-Eyes White\nDragon!\n\n")
+  TEXT
+  (
+      "Come forth, Blue-Eyes White\n"
+      "Dragon!\n\n"
+  )
   PLAY_MUSIC(MUSIC_333)
   COMMAND_7C_ARG(8, 9)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("White Lightning!\n\n")
+  TEXT
+  (
+      "White Lightning!\n\n"
+  )
   PLAY_MUSIC(MUSIC_338)
   COMMAND_7C_ARG(8, 18)
   DELAY(16)
@@ -328,15 +496,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4348, map_31_state_01_08EB4348, 0x08EB4354, 0x08F
   SLIDE_OBJECT(1, 2, 4)
   DELAY(8)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_DEFEATED, PORTRAIT_LEFT)
-  TEXT("M-Master Sol Chevalsky...\n\n")
+  TEXT
+  (
+      "M-Master Sol Chevalsky...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SLIDE_OBJECT(2, 2, 4)
   DELAY(8)
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_DEFEATED, PORTRAIT_LEFT)
-  TEXT("...W-we have failed you...\n\n")
+  TEXT
+  (
+      "...W-we have failed you...\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_LEFT)
-  TEXT("Run to Sol Chevalsky and\ntell him.\n\nThat as long as Seto Kaiba\nlives...\n\nAll his plans are doomed to\nfail! Wahahahahahaha!\n\n")
+  TEXT
+  (
+      "Run to Sol Chevalsky and\n"
+      "tell him.\n\n"
+      "That as long as Seto Kaiba\n"
+      "lives...\n\n"
+      "All his plans are doomed to\n"
+      "fail! Wahahahahahaha!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -354,19 +536,38 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB4360, map_31_state_01_08EB4360, 0x08EB436C, 0x08F
   MOVE_OBJECT(5, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{PLAYER}, you only won\nbecause you had my help.\n\n")
+  TEXT
+  (
+      "{PLAYER}, you only won\n"
+      "because you had my help.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Listen, {PLAYER}.\n\nI walk my own road.\n\nI don't know if you'll win\nor fail on your journey...\n\nBut try not to disappoint\nme.\n\n")
+  TEXT
+  (
+      "Listen, {PLAYER}.\n\n"
+      "I walk my own road.\n\n"
+      "I don't know if you'll win\n"
+      "or fail on your journey...\n\n"
+      "But try not to disappoint\n"
+      "me.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 1, PORTRAIT_LEFT)
-  TEXT("Now go and look for your\nmystical trinkets.\n\nWhile you play scavenger\nhunt, I'll save the world.\n\nWahahahahaha!\n\n")
+  TEXT
+  (
+      "Now go and look for your\n"
+      "mystical trinkets.\n\n"
+      "While you play scavenger\n"
+      "hunt, I'll save the world.\n\n"
+      "Wahahahahaha!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

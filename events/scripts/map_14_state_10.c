@@ -16,9 +16,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E775C4, map_14_state_10_08E775C4, 0x08E775D0, 0x08E
   HIDE_PORTRAIT()
   DELAY(64)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Gotta hand it to you, Yugi.\nThat duel lasted barely a\n\nsecond!\n\nOn the other hand...\n\n")
+  TEXT
+  (
+      "Gotta hand it to you, Yugi.\n"
+      "That duel lasted barely a\n\n"
+      "second!\n\n"
+      "On the other hand...\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT("{PLAYER}, you had me\nworried!\n\n")
+  TEXT
+  (
+      "{PLAYER}, you had me\n"
+      "worried!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
@@ -29,7 +39,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E775C4, map_14_state_10_08E775C4, 0x08E775D0, 0x08E
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I... I couldn't afford to\nwaste any time.\n\nI have to find the spirit\nright away!\n\nBut {PLAYER}'s duel was\npretty impressive.\n\nLet's keep this up, guys!\n\n")
+  TEXT
+  (
+      "I... I couldn't afford to\n"
+      "waste any time.\n\n"
+      "I have to find the spirit\n"
+      "right away!\n\n"
+      "But {PLAYER}'s duel was\n"
+      "pretty impressive.\n\n"
+      "Let's keep this up, guys!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(64)
   COMMAND_7C_ARG(2, 4)

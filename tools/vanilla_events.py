@@ -8,6 +8,7 @@ import ast
 import re
 import struct
 import sys
+import textwrap
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -837,28 +838,36 @@ def encode_text(text: str) -> list[int]:
     return out
 
 
-def strip_c_comments(text: str) -> str:
-    out: list[str] = []
-    index = 0
-    quote: str | None = None
+def scan_quoted_literal(text: str, start: int) -> int:
+    quote = text[start]
+    triple = text.startswith(quote * 3, start)
+    index = start + (3 if triple else 1)
     escape = False
     while index < len(text):
         ch = text[index]
+        if escape:
+            escape = False
+        elif ch == "\\":
+            escape = True
+        elif triple:
+            if ch == quote and text.startswith(quote * 3, index):
+                return index + 3
+        elif ch == quote:
+            return index + 1
+        index += 1
+    raise ValueError("unterminated string literal")
+
+
+def strip_c_comments(text: str) -> str:
+    out: list[str] = []
+    index = 0
+    while index < len(text):
+        ch = text[index]
         next_ch = text[index + 1] if index + 1 < len(text) else ""
-        if quote:
-            out.append(ch)
-            if escape:
-                escape = False
-            elif ch == "\\":
-                escape = True
-            elif ch == quote:
-                quote = None
-            index += 1
-            continue
         if ch in {"'", '"'}:
-            quote = ch
-            out.append(ch)
-            index += 1
+            end = scan_quoted_literal(text, index)
+            out.append(text[index:end])
+            index = end
             continue
         if ch == "/" and next_ch == "/":
             while index < len(text) and text[index] != "\n":
@@ -885,26 +894,20 @@ def split_macro_args(arg_text: str) -> list[str]:
     args: list[str] = []
     start = 0
     depth = 0
-    quote: str | None = None
-    escape = False
-    for index, ch in enumerate(arg_text):
-        if quote:
-            if escape:
-                escape = False
-            elif ch == "\\":
-                escape = True
-            elif ch == quote:
-                quote = None
-            continue
+    index = 0
+    while index < len(arg_text):
+        ch = arg_text[index]
         if ch in {"'", '"'}:
-            quote = ch
-        elif ch == "(":
+            index = scan_quoted_literal(arg_text, index)
+            continue
+        if ch == "(":
             depth += 1
         elif ch == ")":
             depth -= 1
         elif ch == "," and depth == 0:
             args.append(arg_text[start:index].strip())
             start = index + 1
+        index += 1
     tail = arg_text[start:].strip()
     if tail:
         args.append(tail)
@@ -923,26 +926,17 @@ def parse_macro_calls(text: str) -> list[tuple[str, list[str]]]:
         open_index = index + match.end() - 1
         p = open_index + 1
         depth = 1
-        quote: str | None = None
-        escape = False
         while p < len(clean):
             ch = clean[p]
-            if quote:
-                if escape:
-                    escape = False
-                elif ch == "\\":
-                    escape = True
-                elif ch == quote:
-                    quote = None
-            elif ch in {"'", '"'}:
-                quote = ch
+            if ch in {"'", '"'}:
+                p = scan_quoted_literal(clean, p)
+                continue
             elif ch == "(":
                 depth += 1
             elif ch == ")":
                 depth -= 1
                 if depth == 0:
                     calls.append((name, split_macro_args(clean[open_index + 1 : p])))
-                    p += 1
                     break
             p += 1
         index = p
@@ -1004,6 +998,10 @@ def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
         return parse_hex(value)
 
 
+def parse_text_literal(value: str) -> str:
+    return ast.literal_eval("(" + textwrap.dedent(value) + ")")
+
+
 def object_mask_expr(mask: int) -> str:
     if mask == 0:
         return "0"
@@ -1056,25 +1054,25 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                 current.raw_bytes.extend(parse_c_value(arg) & 0xFF for arg in args)
             elif name == "DIALOGUE":
                 need_args(name, args, 1)
-                text = ast.literal_eval(args[0])
+                text = parse_text_literal(args[0])
                 current.raw_bytes.extend([0x24, ord("0")])
                 current.raw_bytes.extend(encode_text(text))
                 current.raw_bytes.extend([0x24, ord("6")])
             elif name == "LANGUAGE_TEXT":
                 need_args(name, args, 2)
                 current.raw_bytes.extend([0x24, ord("0") + parse_c_value(args[0])])
-                current.raw_bytes.extend(encode_text(ast.literal_eval(args[1])))
+                current.raw_bytes.extend(encode_text(parse_text_literal(args[1])))
             elif name == "END_LANGUAGE_TEXT":
                 need_args(name, args, 0)
                 current.raw_bytes.extend([0x24, ord("6")])
             elif name == "TEXT":
                 need_args(name, args, 1)
                 current.raw_bytes.extend([0x24, ord("0")])
-                current.raw_bytes.extend(encode_text(ast.literal_eval(args[0])))
+                current.raw_bytes.extend(encode_text(parse_text_literal(args[0])))
                 current.raw_bytes.extend([0x24, ord("6")])
             elif name == "TEXT_FRAGMENT":
                 need_args(name, args, 1)
-                current.raw_bytes.extend(encode_text(ast.literal_eval(args[0])))
+                current.raw_bytes.extend(encode_text(parse_text_literal(args[0])))
             elif name == "PLAYER_NAME":
                 need_args(name, args, 0)
                 current.raw_bytes.extend([0x23, ord("5")])
@@ -1375,6 +1373,19 @@ def macro_safe_name(value: str) -> str:
 
 
 def c_string(value: str) -> str:
+    if "\n" in value or "\r" in value:
+        value = value.replace("\r\n", "\n").replace("\r", "\n")
+        parts: list[str] = []
+        for line in value.splitlines(keepends=True):
+            if line == "\n":
+                if parts:
+                    parts[-1] = parts[-1][:-1] + "\\n\\n\""
+                else:
+                    parts.append('"\\n\\n"')
+                continue
+            escaped = line.replace("\\", "\\\\").replace('"', '\\"')
+            parts.append('"' + escaped + '"')
+        return "\n".join(parts)
     return '"' + value.encode("unicode_escape").decode("ascii").replace('"', '\\"') + '"'
 
 
@@ -1570,7 +1581,10 @@ def export_c_sources(data: dict[str, Any], out_dir: Path, all_scripts: bool) -> 
 EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define EVENT_MACROS_H
 
-/* These files are parsed by tools/vanilla_events.py, not compiled directly. */
+/* These files are parsed by tools/vanilla_events.py, not compiled directly.
+ * TEXT/DIALOGUE/LANGUAGE_TEXT accept normal Python string literals, including
+ * triple-quoted multiline strings for easier authoring.
+ */
 
 #define EVENT_SCRIPT_REPLACEMENT(vanilla_addr, name, on_false, on_true)
 #define EVENT_SCRIPT(name, on_false, on_true)

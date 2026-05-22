@@ -14,7 +14,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86324, map_21_state_01_08E86324, 0x08F04040, 0x08F
   MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Tsk! The runt chased after\nme!\n\n")
+  TEXT
+  (
+      "Tsk! The runt chased after\n"
+      "me!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
@@ -35,13 +39,26 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86330, map_21_state_01_08E86330, 0x08E8633C, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8633C, map_21_state_01_08E8633C, 0x08F04040, 0x08F04040)
-  TEXT("A dark giant man bumped into\nme and sent me flying.\n\nOw, oww, owwwww...\n\n")
-  TEXT("He barged into the Egypt\nExhibition.\n\n")
+  TEXT
+  (
+      "A dark giant man bumped into\n"
+      "me and sent me flying.\n\n"
+      "Ow, oww, owwwww...\n\n"
+  )
+  TEXT
+  (
+      "He barged into the Egypt\n"
+      "Exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E86348, map_21_state_01_08E86348, 0x08F04040, 0x08F04040)
-  TEXT("This station is connected to\nthe Egypt Exhibition.\n\n")
+  TEXT
+  (
+      "This station is connected to\n"
+      "the Egypt Exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -51,12 +68,20 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86354, map_21_state_01_08E86354, 0x08E86360, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E86360, map_21_state_01_08E86360, 0x08F04040, 0x08F04040)
-  TEXT("How can you ask me to duel\nat a time like this!\n\n")
+  TEXT
+  (
+      "How can you ask me to duel\n"
+      "at a time like this!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8636C, map_21_state_01_08E8636C, 0x08F04040, 0x08F04040)
-  TEXT("No, I don't duel. You should\nfind someone else.\n\n")
+  TEXT
+  (
+      "No, I don't duel. You should\n"
+      "find someone else.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -66,16 +91,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E86378, map_21_state_01_08E86378, 0x08E86384, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E86384, map_21_state_01_08E86384, 0x08F04040, 0x08F04040)
-  TEXT("A dark giant man sent me\nflying, and he didn't even\n\nsay sorry!\n\nCan you imagine that? What a\njerk!\n\n")
+  TEXT
+  (
+      "A dark giant man sent me\n"
+      "flying, and he didn't even\n\n"
+      "say sorry!\n\n"
+      "Can you imagine that? What a\n"
+      "jerk!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E86390, map_21_state_01_08E86390, 0x08F04040, 0x08F04040)
-  TEXT("This station is connected to\nthe Egypt Exhibition.\n\n")
+  TEXT
+  (
+      "This station is connected to\n"
+      "the Egypt Exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8639C, map_21_state_01_08E8639C, 0x08F04040, 0x08F04040)
-  TEXT("No, I don't duel. You should\nfind someone else.\n\n")
+  TEXT
+  (
+      "No, I don't duel. You should\n"
+      "find someone else.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

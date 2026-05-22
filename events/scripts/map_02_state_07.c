@@ -23,22 +23,37 @@ EVENT_SCRIPT_REPLACEMENT(0x08E479C8, map_02_state_07_08E479C8, 0x08F04040, 0x08F
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_MAKO_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Gahaha!\n\nAll duelists swim in the\nsame ocean!\n\nHurry home!\n\n")
+  TEXT
+  (
+      "Gahaha!\n\n"
+      "All duelists swim in the\n"
+      "same ocean!\n\n"
+      "Hurry home!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT("Ukkikki!\n\n")
+  TEXT
+  (
+      "Ukkikki!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_326)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_LEFT)
-  TEXT("Ukikkiki, kikiiki!!\n\n")
+  TEXT
+  (
+      "Ukikkiki, kikiiki!!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT("Ukikiiikiki!\n\n")
+  TEXT
+  (
+      "Ukikiiikiki!\n\n"
+  )
   PLAY_MUSIC(MUSIC_293)
   OBJECT_EFFECT(OBJECT_2 | OBJECT_5, OBJECT_EFFECT_JUMPING)
   PLAY_MUSIC(MUSIC_293)
@@ -58,7 +73,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E479C8, map_02_state_07_08E479C8, 0x08F04040, 0x08F
   MOVE_OBJECT(6, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I'm here to check on my card\nI gave away.\n\nSo? Where are they?\n\n")
+  TEXT
+  (
+      "I'm here to check on my card\n"
+      "I gave away.\n\n"
+      "So? Where are they?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -69,11 +89,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08E479C8, map_02_state_07_08E479C8, 0x08F04040, 0x08F
   DELAY(16)
   PLAY_MUSIC(MUSIC_323)
   PORTRAIT(PORTRAIT_ROBOT_MOkNEY, 0, PORTRAIT_RIGHT)
-  TEXT("Uki?\n\n")
+  TEXT
+  (
+      "Uki?\n\n"
+  )
   PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Are you worried about those\nguys?\n\n")
+  TEXT
+  (
+      "Are you worried about those\n"
+      "guys?\n\n"
+  )
   PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I'm only worried about my\ncard!\n\n")
+  TEXT
+  (
+      "I'm only worried about my\n"
+      "card!\n\n"
+  )
   FADE_SCREEN(8)
   WARP(4, 7, 0, 0)
   FALLTHROUGH()

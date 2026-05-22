@@ -9,13 +9,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8D0, map_29_state_05_08EAC8D0, 0x08EAC8DC, 0x08F
   LOAD_SPRITE(2, SPRITE_NEO_GHOUL)
   PLAY_MUSIC(MUSIC_NEO_GHOULS)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("You're defying Master\nKeith's orders?\n\nAfter he was willing to let\nyou join him, just like old\n\ntimes!\n\n")
+  TEXT
+  (
+      "You're defying Master\n"
+      "Keith's orders?\n\n"
+      "After he was willing to let\n"
+      "you join him, just like old\n\n"
+      "times!\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("He never treated me with\nrespect!\n\nI don't trust him!\n\n")
+  TEXT
+  (
+      "He never treated me with\n"
+      "respect!\n\n"
+      "I don't trust him!\n\n"
+  )
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("You fool! Pledge your\nallegiance to Bandit Keith!\n\nIf you do, he's willing to\nlet you use all the rare\n\ncards you want.\n\n")
+  TEXT
+  (
+      "You fool! Pledge your\n"
+      "allegiance to Bandit Keith!\n\n"
+      "If you do, he's willing to\n"
+      "let you use all the rare\n\n"
+      "cards you want.\n\n"
+  )
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I'm not afraid of him\nanymore!\n\n")
+  TEXT
+  (
+      "I'm not afraid of him\n"
+      "anymore!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 56)
@@ -28,7 +51,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8D0, map_29_state_05_08EAC8D0, 0x08EAC8DC, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_2)
   DELAY(8)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Tsk, the cavalry arrives!\n\nI'll take care of them\nfirst!\n\n")
+  TEXT
+  (
+      "Tsk, the cavalry arrives!\n\n"
+      "I'll take care of them\n"
+      "first!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(2, 66)
@@ -40,7 +68,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8DC, map_29_state_05_08EAC8DC, 0x08EAC8E8, 0x08F04040)
   PLAY_MUSIC(MUSIC_241)
   PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Grah! You'll regret this!\n\n")
+  TEXT
+  (
+      "Grah! You'll regret this!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(2, 57)
@@ -49,7 +80,14 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8DC, map_29_state_05_08EAC8DC, 0x08EAC8E8, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 8, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Th-thanks for saving me!\n\nHonestly, I was a little\nscared.\n\nBut you guys... Why are you\nhere?\n\n")
+  TEXT
+  (
+      "Th-thanks for saving me!\n\n"
+      "Honestly, I was a little\n"
+      "scared.\n\n"
+      "But you guys... Why are you\n"
+      "here?\n\n"
+  )
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
   FALLTHROUGH()
@@ -59,7 +97,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8E8, map_29_state_05_08EAC8E8, 0x08EAC8F4, 0x08E
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_702)
   PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("I didn't know that was going\non in town!\n\nThe Neo Ghouls don't scare\nme anymore.\n\nI'm a much better duelist!\nI'll help you, too.\n\nI'll go to the Town of\nDomino! The Neo Ghouls\n\ndon't stand a ghost of a\nchance!\n\n")
+  TEXT
+  (
+      "I didn't know that was going\n"
+      "on in town!\n\n"
+      "The Neo Ghouls don't scare\n"
+      "me anymore.\n\n"
+      "I'm a much better duelist!\n"
+      "I'll help you, too.\n\n"
+      "I'll go to the Town of\n"
+      "Domino! The Neo Ghouls\n\n"
+      "don't stand a ghost of a\n"
+      "chance!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 51)
@@ -73,7 +123,10 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8F4, map_29_state_05_08EAC8F4, 0x08F04040, 0x08F04040)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's go find another ally!\n\n")
+  TEXT
+  (
+      "Let's go find another ally!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)
@@ -83,7 +136,11 @@ END_EVENT_SCRIPT()
 EVENT_SCRIPT_REPLACEMENT(0x08EAC900, map_29_state_05_08EAC900, 0x08F04040, 0x08F04040)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Okay! Let's also get back to\nthe Town of Domino!\n\n")
+  TEXT
+  (
+      "Okay! Let's also get back to\n"
+      "the Town of Domino!\n\n"
+  )
   HIDE_PORTRAIT()
   COMMAND_7C_ARG(2, 2)
   DELAY(32)

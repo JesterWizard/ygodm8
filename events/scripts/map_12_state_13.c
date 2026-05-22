@@ -15,16 +15,28 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   LOAD_SPRITE(8, SPRITE_SERENITY)
   PLAY_MUSIC(MUSIC_HAPPY_CUTSCENE)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Roland, you played a good\nKaibaman.\n\n")
+  TEXT
+  (
+      "Roland, you played a good\n"
+      "Kaibaman.\n\n"
+  )
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Thank you, Master Mokuba.\n\n")
+  TEXT
+  (
+      "Thank you, Master Mokuba.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Everyone, good work! I'm\ncounting on you again for\n\nthe next show!\n\n")
+  TEXT
+  (
+      "Everyone, good work! I'm\n"
+      "counting on you again for\n\n"
+      "the next show!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -33,24 +45,41 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("Men, he did give us a job...\n\n")
+  TEXT
+  (
+      "Men, he did give us a job...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(4, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("But we were once The Big\nFive...\n\n")
+  TEXT
+  (
+      "But we were once The Big\n"
+      "Five...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  TEXT("Is this a job fit for the\nformer KaibaCorp Board of\n\nDirectors?\n\n")
+  TEXT
+  (
+      "Is this a job fit for the\n"
+      "former KaibaCorp Board of\n\n"
+      "Directors?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_3 | OBJECT_4 | OBJECT_5 | OBJECT_6 | OBJECT_7)
   DELAY(16)
-  TEXT("No! It's not!\n\nI don't want a job\nentertaining runts!\n\n")
+  TEXT
+  (
+      "No! It's not!\n\n"
+      "I don't want a job\n"
+      "entertaining runts!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -66,14 +95,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   MOVE_OBJECT(5, DIRECTION_LEFT, 0, 0)
   MOVE_OBJECT(7, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  TEXT("Wh-where are you going, Big\n{BYTE_8253}?\n\nWait for me!\n\n")
+  TEXT
+  (
+      "Wh-where are you going, Big\n"
+      "{BYTE_8253}?\n\n"
+      "Wait for me!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 0)
   MOVE_OBJECT(3, DIRECTION_LEFT, 16, 0)
   DELAY(16)
-  TEXT("Don't leave me alone!\n\n")
+  TEXT
+  (
+      "Don't leave me alone!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -83,7 +120,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(7, DIRECTION_UP, 0, 0)
   DELAY(32)
-  TEXT("W-we should go, too.\n\nY-yes we should.\n\nWait for us!\n\n")
+  TEXT
+  (
+      "W-we should go, too.\n\n"
+      "Y-yes we should.\n\n"
+      "Wait for us!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -96,14 +138,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT("The Big Five are a buncha\nweirdoes. Man, I'd hate to\n\nbe them.\n\n")
+  TEXT
+  (
+      "The Big Five are a buncha\n"
+      "weirdoes. Man, I'd hate to\n\n"
+      "be them.\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(8, DIRECTION_UP, 2, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Joey, Yugi, {PLAYER}, wasn't\nthat fun?\n\n")
+  TEXT
+  (
+      "Joey, Yugi, {PLAYER}, wasn't\n"
+      "that fun?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -112,7 +163,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6F174, map_12_state_13_08E6F174, 0x08F04040, 0x08F
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Let's all watch the show\nagain sometime!\n\n")
+  TEXT
+  (
+      "Let's all watch the show\n"
+      "again sometime!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -124,13 +179,23 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F1B0, map_12_state_13_08E6F1B0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I was the one wearing the\nKaibaman costume.\n\nBut that's top secret!\n\n")
+  TEXT
+  (
+      "I was the one wearing the\n"
+      "Kaibaman costume.\n\n"
+      "But that's top secret!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F1BC, map_12_state_13_08E6F1BC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ROLAND, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("There's no way you can beat\nKaibaman.\n\nYou shouldn't even try.\n\n")
+  TEXT
+  (
+      "There's no way you can beat\n"
+      "Kaibaman.\n\n"
+      "You shouldn't even try.\n\n"
+  )
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_0)
   FALLTHROUGH()
@@ -138,12 +203,25 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F198, map_12_state_13_08E6F198, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The Kaibaman show is really\npopular.\n\n")
+  TEXT
+  (
+      "The Kaibaman show is really\n"
+      "popular.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E6F1A4, map_12_state_13_08E6F1A4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I bet you think you're a\nbetter duelist because you\n\nsaw the show.\n\nBut you're really not, so\nyou should forget about\n\ndueling.\n\nYou'll only get humiliated.\n\n")
+  TEXT
+  (
+      "I bet you think you're a\n"
+      "better duelist because you\n\n"
+      "saw the show.\n\n"
+      "But you're really not, so\n"
+      "you should forget about\n\n"
+      "dueling.\n\n"
+      "You'll only get humiliated.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

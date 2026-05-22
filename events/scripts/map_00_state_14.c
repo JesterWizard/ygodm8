@@ -16,7 +16,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34ED4, map_00_state_14_08E34ED4, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You must ask Paradox where\nPegasus's castle is.\n\nParadox is in China.\n\n")
+  TEXT
+  (
+      "You must ask Paradox where\n"
+      "Pegasus's castle is.\n\n"
+      "Paradox is in China.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -27,29 +32,64 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34EEC, map_00_state_14_08E34EEC, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Did you meet Paradox?\n\n")
+  TEXT
+  (
+      "Did you meet Paradox?\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Well...\n\n")
+  TEXT
+  (
+      "Well...\n\n"
+  )
   HIDE_PORTRAIT()
   PLAY_MUSIC(MUSIC_332)
   FADE_SCREEN(4)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I see...\n\nOnly two men have deciphered\nthe ancient hieroglyphics\n\nneeded to awaken Ra..\n\nThe first is Kaiba.\nBut he is...\n\n")
+  TEXT
+  (
+      "I see...\n\n"
+      "Only two men have deciphered\n"
+      "the ancient hieroglyphics\n\n"
+      "needed to awaken Ra..\n\n"
+      "The first is Kaiba.\n"
+      "But he is...\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("He went after Mokuba.\n\n")
+  TEXT
+  (
+      "He went after Mokuba.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Then we just hafta meet the\nother guy.\n\n")
+  TEXT
+  (
+      "Then we just hafta meet the\n"
+      "other guy.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("The other... Is my brother\nMarik.\n\n")
+  TEXT
+  (
+      "The other... Is my brother\n"
+      "Marik.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Ah... That makes sense.\n\nThe Winged Dragon of Ra\nbelonged to Marik.\n\n")
+  TEXT
+  (
+      "Ah... That makes sense.\n\n"
+      "The Winged Dragon of Ra\n"
+      "belonged to Marik.\n\n"
+  )
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Marik is living a new life\nin Egypt.\n\nPlease see him there.\n\n")
+  TEXT
+  (
+      "Marik is living a new life\n"
+      "in Egypt.\n\n"
+      "Please see him there.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_ISHIZU_SAID_TO_GO_SEE_MARIK)
   SET_FLAG(EVENT_FLAG_UNLOCKED_EGYPT)
   FALLTHROUGH()
@@ -62,7 +102,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34F04, map_00_state_14_08E34F04, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("Has The Winged Dragon of Ra\nawoken?\n\nPlease meet my brother Marik\nin Egypt.\n\n")
+  TEXT
+  (
+      "Has The Winged Dragon of Ra\n"
+      "awoken?\n\n"
+      "Please meet my brother Marik\n"
+      "in Egypt.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -73,13 +119,31 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34F1C, map_00_state_14_08E34F1C, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("It appears that Marik has\nawakened Ra.\n\nThere is no time to waste.\n\nYou must once again visit\nParadox in China.\n\nHe knows where Pegasus's\ncastle is.\n\nFind the location of the\ncastle and stop the Dark\n\nBeing.\n\n")
+  TEXT
+  (
+      "It appears that Marik has\n"
+      "awakened Ra.\n\n"
+      "There is no time to waste.\n\n"
+      "You must once again visit\n"
+      "Paradox in China.\n\n"
+      "He knows where Pegasus's\n"
+      "castle is.\n\n"
+      "Find the location of the\n"
+      "castle and stop the Dark\n\n"
+      "Being.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34F28, map_00_state_14_08E34F28, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You must once again visit\nParadox in China.\n\nHe knows the location of\nPegasus's castle.\n\n")
+  TEXT
+  (
+      "You must once again visit\n"
+      "Paradox in China.\n\n"
+      "He knows the location of\n"
+      "Pegasus's castle.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -90,38 +154,83 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E08, map_00_state_14_08E34E08, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("Pipipi... You managed to\nsave Ishizu.\n\n")
+  TEXT
+  (
+      "Pipipi... You managed to\n"
+      "save Ishizu.\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("But you still have a huge\nchallenge ahead of you.\n\nI don't need psychic powers\nto predict this.\n\nI can tell just by the\nlooking into your eyes.\n\nYou'll be fine.\nDon't give up!\n\n")
+  TEXT
+  (
+      "But you still have a huge\n"
+      "challenge ahead of you.\n\n"
+      "I don't need psychic powers\n"
+      "to predict this.\n\n"
+      "I can tell just by the\n"
+      "looking into your eyes.\n\n"
+      "You'll be fine.\n"
+      "Don't give up!\n\n"
+  )
   SET_FLAG(EVENT_FLAG_ESPA_ROBA_THANKED_YOU_FOR_SAVING_ISHIZU)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E14, map_00_state_14_08E34E14, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
-  TEXT("Pipipi...\n\nYou're fighting to save the\nworld.\n\n")
+  TEXT
+  (
+      "Pipipi...\n\n"
+      "You're fighting to save the\n"
+      "world.\n\n"
+  )
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("You'll be fine as long as\nyou don't give up!\n\n")
+  TEXT
+  (
+      "You'll be fine as long as\n"
+      "you don't give up!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34EB0, map_00_state_14_08E34EB0, 0x08F04040, 0x08F04040)
   PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT("I'm exhausted.\nI need to rest.\n\n")
+  TEXT
+  (
+      "I'm exhausted.\n"
+      "I need to rest.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E5C, map_00_state_14_08E34E5C, 0x08F04040, 0x08F04040)
-  TEXT("My big brother dueled great\nagainst the Neo Ghouls.\n\nHe really showed them who's\nboss!\n\nHe's the coolest guy I know!\n\n")
+  TEXT
+  (
+      "My big brother dueled great\n"
+      "against the Neo Ghouls.\n\n"
+      "He really showed them who's\n"
+      "boss!\n\n"
+      "He's the coolest guy I know!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E68, map_00_state_14_08E34E68, 0x08F04040, 0x08F04040)
-  TEXT("My big brother always\nsays...\n\nA duelist becomes more\npowerful when he has\n\nfriends supporting him.\n\n")
+  TEXT
+  (
+      "My big brother always\n"
+      "says...\n\n"
+      "A duelist becomes more\n"
+      "powerful when he has\n\n"
+      "friends supporting him.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34E74, map_00_state_14_08E34E74, 0x08F04040, 0x08F04040)
-  TEXT("I really like Espa! He's the\nbest!\n\n")
+  TEXT
+  (
+      "I really like Espa! He's the\n"
+      "best!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()

@@ -13,9 +13,17 @@ EVENT_SCRIPT_REPLACEMENT(0x08E9548C, map_23_state_06_08E9548C, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_DUNGEON)
   DELAY(64)
   PORTRAIT(PORTRAIT_ATEM, EXPRESSION_YAMI_YUGI_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Never forget that no matter\nwhat, we're always\n\ntogether.\n\n")
+  TEXT
+  (
+      "Never forget that no matter\n"
+      "what, we're always\n\n"
+      "together.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_HAPPY, PORTRAIT_LEFT)
-  TEXT("Right!\n\n")
+  TEXT
+  (
+      "Right!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(64)
   FADE_SCREEN(4)

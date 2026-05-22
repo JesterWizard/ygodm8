@@ -16,23 +16,54 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBB8, map_22_state_08_08E8CBB8, 0x08E8CBC4, 0x08F
   WALK_OBJECT_X(2, 52)
   DELAY(16)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Big brother!\n\nMost of the Neo Ghouls have\nleft the Town of Domino.\n\n")
+  TEXT
+  (
+      "Big brother!\n\n"
+      "Most of the Neo Ghouls have\n"
+      "left the Town of Domino.\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Good.\n\n")
+  TEXT
+  (
+      "Good.\n\n"
+  )
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I protected KaibaCorp, just\nlike you told me.\n\nSo you don't have to worry\nabout a thing.\n\n")
+  TEXT
+  (
+      "I protected KaibaCorp, just\n"
+      "like you told me.\n\n"
+      "So you don't have to worry\n"
+      "about a thing.\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Good work, Mokuba.\n\n")
+  TEXT
+  (
+      "Good work, Mokuba.\n\n"
+  )
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Heheh, thanks. You know I'll\ndo anything for you.\n\nSo, anything new with your\nEgyptian God Card?\n\n")
+  TEXT
+  (
+      "Heheh, thanks. You know I'll\n"
+      "do anything for you.\n\n"
+      "So, anything new with your\n"
+      "Egyptian God Card?\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Somehow, it's back to\nnormal.\n\n")
+  TEXT
+  (
+      "Somehow, it's back to\n"
+      "normal.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(32)
   PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I don't know what they did,\nbut...\n\n")
+  TEXT
+  (
+      "I don't know what they did,\n"
+      "but...\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -40,7 +71,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBC4, map_22_state_08_08E8CBC4, 0x08E8CBD0, 0x08F
   PLAY_MUSIC(MUSIC_404)
   WALK_OBJECT_X(4, 48)
   PORTRAIT(PORTRAIT_MOKUBA, EXPRESSION_MOKUBA_SURPRISED, PORTRAIT_LEFT)
-  TEXT("Urk! S-Seto...\n\n")
+  TEXT
+  (
+      "Urk! S-Seto...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   SET_OBJECT_POSITION(2, 128, 96, 0)
@@ -52,11 +86,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBC4, map_22_state_08_08E8CBC4, 0x08E8CBD0, 0x08F
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
   DELAY(8)
   PORTRAIT(PORTRAIT_SETO, 6, PORTRAIT_RIGHT)
-  TEXT("How dare you... What's the\nmeaning of this?\n\n")
+  TEXT
+  (
+      "How dare you... What's the\n"
+      "meaning of this?\n\n"
+  )
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_LEFT)
-  TEXT("Seto Kaiba! I have a message\nfrom Master Chevalsky!\n\nCome to my castle.\n\nIf you want to save your\ndear brother.\n\nYou have no choice but to\ncome to my castle!\n\n")
+  TEXT
+  (
+      "Seto Kaiba! I have a message\n"
+      "from Master Chevalsky!\n\n"
+      "Come to my castle.\n\n"
+      "If you want to save your\n"
+      "dear brother.\n\n"
+      "You have no choice but to\n"
+      "come to my castle!\n\n"
+  )
   PORTRAIT(PORTRAIT_SETO, 5, PORTRAIT_RIGHT)
-  TEXT("You worm!\n\n")
+  TEXT
+  (
+      "You worm!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 8, 0)
@@ -73,9 +123,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBD0, map_22_state_08_08E8CBD0, 0x08E8CBDC, 0x08F
   WALK_OBJECT_X(3, 80)
   DELAY(16)
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Younger brother, you have\nfulfilled your mission!\n\nMaster Chevalsky will\npromote you to a higher\n\nposition!\n\n")
+  TEXT
+  (
+      "Younger brother, you have\n"
+      "fulfilled your mission!\n\n"
+      "Master Chevalsky will\n"
+      "promote you to a higher\n\n"
+      "position!\n\n"
+  )
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_LEFT)
-  TEXT("Elder brother, you also have\ndone your job with most\n\nexcellence!\n\n")
+  TEXT
+  (
+      "Elder brother, you also have\n"
+      "done your job with most\n\n"
+      "excellence!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -83,19 +145,43 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBD0, map_22_state_08_08E8CBD0, 0x08E8CBDC, 0x08F
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_RIGHT)
-  TEXT("You punks! How dare you mock\nme!\n\n")
+  TEXT
+  (
+      "You punks! How dare you mock\n"
+      "me!\n\n"
+  )
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_RIGHT)
-  TEXT("Fufufufufufu...\n\n")
+  TEXT
+  (
+      "Fufufufufufu...\n\n"
+  )
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_LEFT)
-  TEXT("Fufufufufufu...\n\n")
+  TEXT
+  (
+      "Fufufufufufu...\n\n"
+  )
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT("Master Chevalsky demands\nyour presence, Kaiba!\n\n")
+  TEXT
+  (
+      "Master Chevalsky demands\n"
+      "your presence, Kaiba!\n\n"
+  )
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Come to Master Chevalsky's\ncastle!\n\n")
+  TEXT
+  (
+      "Come to Master Chevalsky's\n"
+      "castle!\n\n"
+  )
   PORTRAIT(PORTRAIT_PARA, EXPRESSION_PARA_HAPPY, PORTRAIT_RIGHT)
-  TEXT("The castle that you...\n\n")
+  TEXT
+  (
+      "The castle that you...\n\n"
+  )
   PORTRAIT(PORTRAIT_DOX, EXPRESSION_DOX_HAPPY, PORTRAIT_LEFT)
-  TEXT("...Know so well! Fufufu...\n\n")
+  TEXT
+  (
+      "...Know so well! Fufufu...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_315)
@@ -104,7 +190,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBD0, map_22_state_08_08E8CBD0, 0x08E8CBDC, 0x08F
   SLIDE_OBJECT(4, 1, 64)
   DELAY(16)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_RIGHT)
-  TEXT("Mokuba!\n\n")
+  TEXT
+  (
+      "Mokuba!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 4, 0)
@@ -135,19 +224,41 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBDC, map_22_state_08_08E8CBDC, 0x08E8CBE8, 0x08E
   DELAY(16)
   WALK_OBJECT_X(0, 77)
   DELAY(16)
-  TEXT("{CARD_1}Let us help!\nLend us your God Card!{CARD_2}\n\n")
+  TEXT
+  (
+      "{CARD_1}Let us help!\n"
+      "Lend us your God Card!{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CBE8, map_22_state_08_08E8CBE8, 0x08E8CC00, 0x08F04040)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("{PLAYER} is right, Kaiba.\n\nNow is the time for\nteamwork.\n\nThe Dark Being must be\nsealed again...\n\n")
+  TEXT
+  (
+      "{PLAYER} is right, Kaiba.\n\n"
+      "Now is the time for\n"
+      "teamwork.\n\n"
+      "The Dark Being must be\n"
+      "sealed again...\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Quiet, you!\n\nI'm never going to cooperate\nwith you!\n\nI'll crush Pegasus on my own\nand get Mokuba back!\n\nHow many times do I have to\nsay that I don't have time\n\nfor your so-called ancient\nmagic!\n\n")
+  TEXT
+  (
+      "Quiet, you!\n\n"
+      "I'm never going to cooperate\n"
+      "with you!\n\n"
+      "I'll crush Pegasus on my own\n"
+      "and get Mokuba back!\n\n"
+      "How many times do I have to\n"
+      "say that I don't have time\n\n"
+      "for your so-called ancient\n"
+      "magic!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -158,7 +269,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CC00, map_22_state_08_08E8CC00, 0x08F04040, 0x08F
   SET_OBJECT_POSITION(1, 128, 96, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("We're left with no choice.\n\n")
+  TEXT
+  (
+      "We're left with no choice.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -166,9 +280,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CC00, map_22_state_08_08E8CC00, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("We must also go to Sol\nChevalsky's... I mean...\n\nWe must also go to Pegasus's\ncastle.\n\n")
+  TEXT
+  (
+      "We must also go to Sol\n"
+      "Chevalsky's... I mean...\n\n"
+      "We must also go to Pegasus's\n"
+      "castle.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("But who knows where the\ncastle is?\n\n")
+  TEXT
+  (
+      "But who knows where the\n"
+      "castle is?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
@@ -185,14 +309,27 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CC00, map_22_state_08_08E8CC00, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("You have proven yourselves\nto the Millennium Items.\n\nTrace the flow of time and\naccept your destiny.\n\nOne man knows where you must\ngo.\n\nYou must seek out Paradox.\n\n")
+  TEXT
+  (
+      "You have proven yourselves\n"
+      "to the Millennium Items.\n\n"
+      "Trace the flow of time and\n"
+      "accept your destiny.\n\n"
+      "One man knows where you must\n"
+      "go.\n\n"
+      "You must seek out Paradox.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_270)
   REACTION(REACTION_QUESTION_MARK, OBJECT_0)
   DELAY(16)
   PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Paradox awaits you in China.\n\nHe will show you the way.\n\n")
+  TEXT
+  (
+      "Paradox awaits you in China.\n\n"
+      "He will show you the way.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   MOVE_OBJECT(6, DIRECTION_LEFT, 64, 0)
@@ -202,17 +339,46 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CC00, map_22_state_08_08E8CC00, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
   PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("The Millennium Guard comes\nfrom the order that\n\nprotects the Millennium\nItems...\n\nI sensed that he was telling\nthe truth.\n\n{PLAYER}, you must go to\nChina.\n\nAs soon as possible.\n\n")
+  TEXT
+  (
+      "The Millennium Guard comes\n"
+      "from the order that\n\n"
+      "protects the Millennium\n"
+      "Items...\n\n"
+      "I sensed that he was telling\n"
+      "the truth.\n\n"
+      "{PLAYER}, you must go to\n"
+      "China.\n\n"
+      "As soon as possible.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(32)
   WALK_OBJECT_X(5, 0)
   SET_OBJECT_POSITION(5, 128, 96, 0)
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("I'm worried about Mokuba and\nKaiba...\n\nWe'd better find Pegasus's\ncastle quickly.\n\n")
+  TEXT
+  (
+      "I'm worried about Mokuba and\n"
+      "Kaiba...\n\n"
+      "We'd better find Pegasus's\n"
+      "castle quickly.\n\n"
+  )
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("Yugi's right.\n\nIf this Parachute guy can\nhelp us...\n\nWe'd betta find him quick.\n\n")
+  TEXT
+  (
+      "Yugi's right.\n\n"
+      "If this Parachute guy can\n"
+      "help us...\n\n"
+      "We'd betta find him quick.\n\n"
+  )
   PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT("That's Paradox, Joey.\nNot Parachute.\n\n{PLAYER}, let's go! We're\noff to China!\n\n")
+  TEXT
+  (
+      "That's Paradox, Joey.\n"
+      "Not Parachute.\n\n"
+      "{PLAYER}, let's go! We're\n"
+      "off to China!\n\n"
+  )
   HIDE_PORTRAIT()
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
   SET_FLAG(EVENT_FLAG_SAW_MOKUBA_GET_KIDNAPPED)
@@ -225,6 +391,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CBF4, map_22_state_08_08E8CBF4, 0x08E8CC00, 0x08F
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(8)
   PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_LEFT)
-  TEXT("Don't make me laugh,\n{PLAYER}!\n\nReshef the Dark Being... The\nend of the world...\n\nYou've been reading too many\nfantasy novels!\n\nYou guys do what you want!\n\nBut I'll get Mokuba back on\nmy own!\n\nAnd nobody is going to stop\nme!\n\n")
+  TEXT
+  (
+      "Don't make me laugh,\n"
+      "{PLAYER}!\n\n"
+      "Reshef the Dark Being... The\n"
+      "end of the world...\n\n"
+      "You've been reading too many\n"
+      "fantasy novels!\n\n"
+      "You guys do what you want!\n\n"
+      "But I'll get Mokuba back on\n"
+      "my own!\n\n"
+      "And nobody is going to stop\n"
+      "me!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
