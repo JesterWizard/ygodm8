@@ -12,6 +12,7 @@ void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
 void ActivateGoddessOfWhimEffect(void);
 void ActivateMaskOfDarknessEffect(void);
+void ActivatePrincessOfTsurugiEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -52,6 +53,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gMonEffect.id == MASK_OF_DARKNESS) {
     ActivateMaskOfDarknessEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect = MONSTER_EFFECT_PRINCESS_OF_TSURUGI) {
+    ActivatePrincessOfTsurugiEffect();
     return;
   }
 
