@@ -2,6 +2,11 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 
+#define FLAG_GRAVEYARD_PLAYER 1
+#define FLAG_GRAVEYARD_OPPONENT 2
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
 struct StoneUnk2023E80 {
   unsigned short playerCardId;
   unsigned short playerCardAtkOrLifePointsMod;
@@ -26,9 +31,54 @@ struct StoneUnk2023E80 {
 
 extern struct StoneUnk2023E80 sActionData;
 
+static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
+  u16 playerDamage;
+  u16 opponentDamage;
+
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  if (sActionData.playerCardId == AMAZON_SWORD_WOMAN && playerDamage > 0) {
+    gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+    gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+
+    if (gDuelLifePoints[DUEL_OPPONENT] <= playerDamage) {
+      gDuelLifePoints[DUEL_OPPONENT] = 0;
+      sActionData.flags |= FLAG_LOSER_OPPONENT;
+    }
+    else {
+      gDuelLifePoints[DUEL_OPPONENT] -= playerDamage;
+    }
+    gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+    sActionData.flags &= ~FLAG_LOSER_PLAYER;
+  }
+  else if (sActionData.opponentCardId == AMAZON_SWORD_WOMAN && opponentDamage > 0) {
+    gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+    gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+
+    if (gDuelLifePoints[DUEL_PLAYER] <= opponentDamage) {
+      gDuelLifePoints[DUEL_PLAYER] = 0;
+      sActionData.flags |= FLAG_LOSER_PLAYER;
+    }
+    else {
+      gDuelLifePoints[DUEL_PLAYER] -= opponentDamage;
+    }
+    gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+    sActionData.flags &= ~FLAG_LOSER_OPPONENT;
+  }
+
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
+
 LYN_REPLACE_CHECK(CheckGraveyardAndLoserFlags);
 void CheckGraveyardAndLoserFlags__Replacement(void) {
   u16 damage;
+
+  ApplyAmazonessSwordsWomanBattleDamageRedirect();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
     damage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];

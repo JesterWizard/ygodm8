@@ -8288,14 +8288,14 @@
       "card_name": "Amazon Chain Master",
       "password": [ 2, 9, 6, 5, 4, 7, 3, 7 ],
       "description": {
-        "symbol": "gDescription_AmazonessChainMaster",
+        "symbol": "gDescription_AmazonChainMaster",
         "pages": [
           "A combative female warrior who is skilled at using a chain.",
           "For 1000LP she can steal a card from the opponent's hand."
         ]
       },
       "activation_description": {
-        "symbol": "gActivationDescription_AmazonessChainMaster",
+        "symbol": "gActivationDescription_AmazonChainMaster",
         "pages": [
           "She will steal a card from the opponent's hand in exchange for 1000LP."
         ]
@@ -9724,12 +9724,20 @@
       "attribute": "ATTRIBUTE_EARTH",
       "level": 4,
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Amazon Sword Woman",
-      "password": [ 9, 4, 0, 0, 4, 2, 6, 8 ]
+      "password": [ 9, 4, 0, 0, 4, 2, 6, 8 ],
+      "description": {
+        "symbol": "gDescription_AmazonSwordsWoman",
+        "pages": [
+          "A female warrior who is an expert at battling with a sword.",
+          "The opponent takes any battle damage you would have taken",
+          "from battles involving this card."
+        ]
+      }
     },
     {
       "card_const": "VAMPIRE_LORD",

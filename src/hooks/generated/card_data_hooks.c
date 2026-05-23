@@ -7048,7 +7048,7 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {2, 9, 6, 5, 4, 7, 3, 7},
-    .description = gDescription_AmazonessChainMaster,
+    .description = gDescription_AmazonChainMaster,
   },
   [0x021C] = {
     .atk = 900,
@@ -8268,11 +8268,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_EARTH,
     .level = 4,
     .type = TYPE_WARRIOR,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {9, 4, 0, 0, 4, 2, 6, 8},
+    .description = gDescription_AmazonSwordsWoman,
   },
   [0x027A] = {
     .atk = 2000,
