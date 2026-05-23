@@ -33,8 +33,10 @@ Authoring flow:
 1. Decide whether the card belongs in the permanent scan or the normal monster activation path.
 2. Create one new `.c` file named after the card in the matching folder.
 3. Put the card-specific logic in that file.
-4. Add only the minimal declarations and dispatch wiring in the central hook file.
-5. Build with `make` and verify the effect path still works in duel flow.
+4. For activated monster effects, add or reuse a `MONSTER_EFFECT_*` entry in `include/constants/monster_effects.h`.
+5. Point the card's `monsterEffect` field in `tools/card_data_manifest.json` at that enum constant.
+6. Add only the minimal declarations and dispatch wiring in the central hook file.
+7. Build with `make` and verify the effect path still works in duel flow.
 
 Recommended file naming:
 
@@ -60,6 +62,8 @@ Recommended function naming:
 | Normal-effect dispatch | `ActivateMonsterEffect__Replacement` in `src/hooks/monster_effect_hooks.c` | Runs custom activated monster effects before falling back to the vanilla monster-effect table |
 | Normal-effect action gate | `MonsterActionMenu__Replacement` in `src/hooks/monster_effect_hooks.c` | Blocks or allows activation from the duel UI before calling the custom effect |
 | Normal card example | `CanActivateInjectionFairyLily` and `ActivateInjectionFairyLilyEffect` in `src/hooks/activated_effects/injection_fairy_lily.c` | Example custom activated monster effect file with one card per file |
+| Activated-effect enum source | `MONSTER_EFFECT_*` entries in `include/constants/monster_effects.h` | Symbolic values used by the manifest and the activated-effect dispatcher |
+| Activated-effect manifest wiring | `monsterEffect` fields in `tools/card_data_manifest.json` | Names the enum constant for cards that need custom activated monster behavior |
 | Custom description overrides | `sCardDescriptionOverrides` in `src/hooks/card_hooks.c` | Optional custom card text overrides when the vanilla description no longer matches behavior |
 | Hook jump wiring | `src/hooks/LynJump.event` | Maps vanilla engine entrypoints to hook-side replacement functions |
 
@@ -68,9 +72,11 @@ Recommended function naming:
 - Add a shared helper file if many normal effects start reusing the same stat, LP, or popup routines.
 - Add a second normal-effect example that does not use a manual activation gate.
 - Add a second permanent-effect example that affects types instead of attributes.
+- Add a short manifest example for an activated monster effect that uses a symbolic `monsterEffect` entry.
 
 ## Limitations & Bugs
 
 - Hook-side static data may need to live in a kept section if the linker discards normal `.rodata` for hook objects.
 - Some cards may still need central hook edits if the vanilla flow does not expose a clean dispatch point yet.
 - The current normal-effect path is not fully table-driven. New custom normal effects still require a small amount of central wiring in `src/hooks/monster_effect_hooks.c`.
+- Activated monster effects rely on the manifest, enum header, and dispatcher staying in sync. If the enum changes, regenerate the manifest-driven card data.

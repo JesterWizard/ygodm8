@@ -34,7 +34,8 @@ Use this skill when creating or moving a card-specific effect.
 4. Create a single-purpose `.c` file for that card effect if one does not already exist.
 5. Wire the hook file into the existing dispatcher or effect table.
 6. Update `src/hooks/card_effect_tally.md` with the new effect entry and total count.
-7. Keep any vanilla edits limited to the smallest possible call site or registry entry.
+7. For activated monster effects, add or reuse a `MONSTER_EFFECT_*` entry in `include/constants/monster_effects.h`, then use that symbolic value in `tools/card_data_manifest.json` and route it through `src/hooks/monster_effect_hooks.c`.
+8. Keep any vanilla edits limited to the smallest possible call site or registry entry.
 
 ## Notes
 
@@ -42,3 +43,4 @@ Use this skill when creating or moving a card-specific effect.
 - If the effect already has a hook-side home, extend that file instead of adding new vanilla logic.
 - If the effect needs a replacement of a vanilla entrypoint, use the vanilla-function-replacements skill in addition to this one.
 - Keep `src/hooks/card_effect_tally.md` current whenever hook-side card logic is added or moved.
+- For activated monster effects, keep the manifest aligned with the enum: the card's `monsterEffect` field should name the enum constant, not hardcode a stray numeric value.
