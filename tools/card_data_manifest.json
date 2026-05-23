@@ -7520,7 +7520,7 @@
       "level": 2,
       "type": "TYPE_FIEND",
       "color": "EFFECT_CARD",
-      "monsterEffect": 0,
+      "monsterEffect": "MONSTER_EFFECT_NEEDLE_BALL",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Needle Ball",
@@ -8281,12 +8281,25 @@
       "attribute": "ATTRIBUTE_EARTH",
       "level": 4,
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_AMAZON_CHAIN_MASTER",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Amazon Chain Master",
-      "password": [ 2, 9, 6, 5, 4, 7, 3, 7 ]
+      "password": [ 2, 9, 6, 5, 4, 7, 3, 7 ],
+      "description": {
+        "symbol": "gDescription_AmazonessChainMaster",
+        "pages": [
+          "A combative female warrior who is skilled at using a chain.",
+          "For 1000LP she can steal a card from the opponent's hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AmazonessChainMaster",
+        "pages": [
+          "She will steal a card from the opponent's hand in exchange for 1000LP."
+        ]
+      }
     },
     {
       "card_const": "SKELENGEL",

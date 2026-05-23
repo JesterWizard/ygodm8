@@ -10,6 +10,8 @@ unsigned char HandlePlayerMonsterAction(void);
 void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
+unsigned char CanActivateAmazonessChainMaster(void);
+void ActivateAmazonessChainMasterEffect(void);
 void ActivateGoddessOfWhimEffect(void);
 void ActivateMaskOfDarknessEffect(void);
 void ActivatePrincessOfTsurugiEffect(void);
@@ -23,9 +25,11 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateInjectionFairyLily();
     case MONSTER_EFFECT_CYBER_STEIN:
       return CanActivateCyberStein();
+    case MONSTER_EFFECT_NEEDLE_BALL:
+      return CanActivateNeedleBall();
+    case MONSTER_EFFECT_AMAZON_CHAIN_MASTER:
+      return CanActivateAmazonessChainMaster();
     default:
-      if (gMonEffect.id == NEEDLE_BALL)
-        return CanActivateNeedleBall();
       return TRUE;
   }
 }
@@ -38,6 +42,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_INJECTION_FAIRY_LILY) {
     ActivateInjectionFairyLilyEffect();
+    return;
+  }
+
+  if (gMonEffect.id == AMAZON_CHAIN_MASTER) {
+    ActivateAmazonessChainMasterEffect();
     return;
   }
 

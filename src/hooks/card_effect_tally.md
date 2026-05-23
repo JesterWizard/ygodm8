@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `17` effects
+- `18` effects
 
 ## Tally
 
@@ -16,6 +16,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `spell_effects` | `Ookazi` | `src/hooks/spell_effects/ookazi.c` |
 | `spell_effects` | `Jam Breeding Machine` | `src/hooks/spell_effects/jam_breeding_machine.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src/hooks/activated_effects/injection_fairy_lily.c` |
+| `activated_effects` | `Amazoness Chain Master` | `src/hooks/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src/hooks/activated_effects/cyber_jar.c` |
 | `activated_effects` | `Cyber Stein` | `src/hooks/activated_effects/cyber_stein.c` |
 | `activated_effects` | `Needle Ball` | `src/hooks/activated_effects/needle_ball.c` |
