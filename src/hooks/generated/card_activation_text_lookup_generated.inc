@@ -18,6 +18,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { OOKAZI, gActivationDescription_Ookazi },
   { GODDESS_OF_WHIM, gActivationDescription_GoddessOfWhim },
   { NEEDLE_BALL, gActivationDescription_NeedleBall },
+  { MAHA_VAILO, gActivationDescription_MahaVailo },
   { AMAZON_CHAIN_MASTER, gActivationDescription_AmazonChainMaster },
   { NEEDLE_WORM, gActivationDescription_NeedleWorm },
   { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },

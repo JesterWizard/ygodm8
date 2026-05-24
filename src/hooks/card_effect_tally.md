@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `24` effects
+- `25` effects
 
 ## Tally
 
@@ -33,6 +33,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `permanent_effects` | `Muka Muka` | `src/hooks/permanent_effects/muka_muka.c` |
 | `permanent_effects` | `Ceremonial Bell` | `src/hooks/permanent_effects/ceremonial_bell.c` |
 | `permanent_effects` | `Kaiser Sea Horse` | `src/hooks/permanent_effects/kaiser_sea_horse.c` |
+| `permanent_effects` | `Maha Vailo` | `src/hooks/permanent_effects/maha_vailo.c` |
 
 ## Notes
 

@@ -7638,12 +7638,25 @@
       "attribute": "ATTRIBUTE_LIGHT",
       "level": 4,
       "type": "TYPE_SPELLCASTER",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Maha Vailo",
-      "password": [ 9, 3, 0, 1, 3, 6, 7, 6 ]
+      "password": [ 9, 3, 0, 1, 3, 6, 7, 6 ],
+      "description": {
+        "symbol": "gDescription_MahaVailo",
+        "pages": [
+          "A magician who is always dressed in an outfit of navy blue.",
+          "He powers up an additional stage for each equip spell used on him."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MahaVailo",
+        "pages": [
+          "In response to an equip spell, his stats will be boosted by a further stage."
+        ]
+      }
     },
     {
       "card_const": "RAINBOW_MARINE_MERMAID",

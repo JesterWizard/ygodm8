@@ -7260,11 +7260,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_LIGHT,
     .level = 4,
     .type = TYPE_SPELLCASTER,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {9, 3, 0, 1, 3, 6, 7, 6},
+    .description = gDescription_MahaVailo,
   },
   [0x01EE] = {
     .atk = 1550,

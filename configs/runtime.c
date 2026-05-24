@@ -30,5 +30,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
-    .card_in_hand = KAISER_SEA_HORSE
+    .card_in_hand = MAHA_VAILO
 };

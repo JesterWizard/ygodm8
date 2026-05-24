@@ -5,6 +5,7 @@ extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
 extern void EffectShieldAndSword(void);
+void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
 
@@ -27,6 +28,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
+      if (GetSpellType(gSpellEffectData.id) == SPELL_TYPE_EQUIP
+          && gTurnZones[gSpellEffectData.row2][gSpellEffectData.col2]->id == CARD_NONE)
+        ApplyMahaVailoEquipBonus(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]);
       return;
   }
 }
