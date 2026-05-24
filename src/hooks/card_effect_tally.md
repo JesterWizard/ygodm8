@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `18` effects
+- `19` effects
 
 ## Tally
 
@@ -25,6 +25,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Giant Germ` | `src/hooks/activated_effects/giant_germ.c` |
 | `activated_effects` | `Mask Of Darkness` | `src/hooks/activated_effects/mask_of_darkness.c` |
 | `activated_effects` | `Princess Of Tsurugi` | `src/hooks/activated_effects/princess_of_tsurugi.c` |
+| `activated_effects` | `Mysterious Puppeteer` | `src/hooks/activated_effects/mysterious_puppeteer.c` |
 | `permanent_effects` | `Milus Radiant` | `src/hooks/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src/hooks/permanent_effects/muka_muka.c` |
 

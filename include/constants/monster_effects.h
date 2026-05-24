@@ -110,6 +110,7 @@ enum {
   MONSTER_EFFECT_PRINCESS_OF_TSURUGI,
   MONSTER_EFFECT_NEEDLE_BALL,
   MONSTER_EFFECT_AMAZON_CHAIN_MASTER,
+  MONSTER_EFFECT_MYSTERIOUS_PUPPETEER,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -119,3 +120,5 @@ extern void ActivateInjectionFairyLilyEffect(void);
 extern void EffectCyberJar(void);
 extern unsigned char CanActivateCyberStein(void);
 extern void EffectCyberStein(void);
+extern unsigned char CanActivateMysteriousPuppeteer(void);
+extern void ActivateMysteriousPuppeteerEffect(void);

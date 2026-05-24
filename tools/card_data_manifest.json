@@ -2539,12 +2539,25 @@
       "attribute": "ATTRIBUTE_EARTH",
       "level": 4,
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_MYSTERIOUS_PUPPETEER",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Mysterious Puppeteer",
-      "password": [ 5, 4, 0, 9, 8, 1, 2, 1 ]
+      "password": [ 5, 4, 0, 9, 8, 1, 2, 1 ],
+      "description": {
+        "symbol": "gDescription_MysteriousPuppeteer",
+        "pages": [
+          "A horrifying puppeteer that has the power to mesmerize its foes.",
+          "It can restore 500LP per monster on the owner's field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MysteriousPuppeteer",
+        "pages": [
+          "500LP will be recovered per monster on the owner's field."
+        ]
+      }
     },
     {
       "card_const": "ANCIENT_JAR",

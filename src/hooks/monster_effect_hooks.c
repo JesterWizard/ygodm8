@@ -18,6 +18,7 @@ void ActivatePrincessOfTsurugiEffect(void);
 unsigned char CanActivateNeedleBall(void);
 void ActivateNeedleBallEffect(void);
 void ActivateNeedleWormEffect(void);
+void ActivateMysteriousPuppeteerEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -29,6 +30,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateNeedleBall();
     case MONSTER_EFFECT_AMAZON_CHAIN_MASTER:
       return CanActivateAmazonessChainMaster();
+    case MONSTER_EFFECT_MYSTERIOUS_PUPPETEER:
+      return CanActivateMysteriousPuppeteer();
     default:
       return TRUE;
   }
@@ -80,8 +83,13 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
-  if (gCardInfo.monsterEffect = MONSTER_EFFECT_PRINCESS_OF_TSURUGI) {
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_PRINCESS_OF_TSURUGI) {
     ActivatePrincessOfTsurugiEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MYSTERIOUS_PUPPETEER) {
+    ActivateMysteriousPuppeteerEffect();
     return;
   }
 
