@@ -75,12 +75,22 @@ SET_DATA gCostSeedFlashPrimary, 0x0E000787
 SET_DATA gCostSeedFlashBackup,  0x0E004767
 
 @ Custom card count storage mirrored in free flash space.
-SET_ARRAY gCustomTrunkCardQtyFlashPrimary, 0x0E000788, 0x8
-SET_ARRAY gCustomShopCardQtyFlashPrimary, 0x0E000790, 0x8
-SET_ARRAY gCustomPlayerTempCardQtyFlashPrimary, 0x0E000798, 0x8
-SET_ARRAY gCustomTrunkCardQtyFlashBackup, 0x0E004768, 0x8
-SET_ARRAY gCustomShopCardQtyFlashBackup, 0x0E004770, 0x8
-SET_ARRAY gCustomPlayerTempCardQtyFlashBackup, 0x0E004778, 0x8
+SET_DATA gCustomCardQtyFlashPrimaryStart, 0x0E000788
+SET_DATA gCustomCardQtyFlashBackupStart,  0x0E004768
+
+.set CustomCardQtyFlashPrimaryCursor, gCustomCardQtyFlashPrimaryStart
+.set CustomCardQtyFlashBackupCursor,  gCustomCardQtyFlashBackupStart
+
+.macro SET_CUSTOM_CARD_QTY_FLASH name, size
+    SET_ARRAY \name\()FlashPrimary, CustomCardQtyFlashPrimaryCursor, \size
+    .set CustomCardQtyFlashPrimaryCursor, CustomCardQtyFlashPrimaryCursor + \size
+    SET_ARRAY \name\()FlashBackup, CustomCardQtyFlashBackupCursor, \size
+    .set CustomCardQtyFlashBackupCursor, CustomCardQtyFlashBackupCursor + \size
+.endm
+
+SET_CUSTOM_CARD_QTY_FLASH gCustomTrunkCardQty, 0x20
+SET_CUSTOM_CARD_QTY_FLASH gCustomShopCardQty, 0x20
+SET_CUSTOM_CARD_QTY_FLASH gCustomPlayerTempCardQty, 0x20
 
 @ Save slots stored in flash.
 SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
