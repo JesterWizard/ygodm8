@@ -1,5 +1,0 @@
-PUSH
-ORG $48C5C
-ALIGN 4
-POIN EmptyFunc_8048C5C__Replacement
-POP

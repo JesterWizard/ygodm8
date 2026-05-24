@@ -111,6 +111,7 @@ enum {
   MONSTER_EFFECT_NEEDLE_BALL,
   MONSTER_EFFECT_AMAZON_CHAIN_MASTER,
   MONSTER_EFFECT_MYSTERIOUS_PUPPETEER,
+  MONSTER_EFFECT_PENGUIN_SOLDIER,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -122,3 +123,5 @@ extern unsigned char CanActivateCyberStein(void);
 extern void EffectCyberStein(void);
 extern unsigned char CanActivateMysteriousPuppeteer(void);
 extern void ActivateMysteriousPuppeteerEffect(void);
+extern unsigned char CanActivatePenguinSoldier(void);
+extern void ActivatePenguinSoldierEffect(void);

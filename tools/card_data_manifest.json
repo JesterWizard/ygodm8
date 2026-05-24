@@ -9265,12 +9265,26 @@
       "attribute": "ATTRIBUTE_WATER",
       "level": 2,
       "type": "TYPE_AQUA",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_PENGUIN_SOLDIER",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Penguin Soldier",
-      "password": [ 9, 3, 9, 2, 0, 7, 4, 5 ]
+      "password": [ 9, 3, 9, 2, 0, 7, 4, 5 ],
+      "description": {
+        "symbol": "gDescription_PenguinSoldier",
+        "pages": [
+          "A low-level soldier among penguins that is armed with a sword.",
+          "It can return up to 2 monsters to the owner's hand",
+          "if there is room to spare."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_PenguinSoldier",
+        "pages": [
+          "Up to 2 enemy monsters will be returned to the opponent's hand if there is room."
+        ]
+      }
     },
     {
       "card_const": "FAIRY_DRAGON",

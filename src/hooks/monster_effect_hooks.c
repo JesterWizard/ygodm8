@@ -32,6 +32,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateAmazonessChainMaster();
     case MONSTER_EFFECT_MYSTERIOUS_PUPPETEER:
       return CanActivateMysteriousPuppeteer();
+    case MONSTER_EFFECT_PENGUIN_SOLDIER:
+      return CanActivatePenguinSoldier();
     default:
       return TRUE;
   }
@@ -90,6 +92,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_MYSTERIOUS_PUPPETEER) {
     ActivateMysteriousPuppeteerEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_PENGUIN_SOLDIER) {
+    ActivatePenguinSoldierEffect();
     return;
   }
 

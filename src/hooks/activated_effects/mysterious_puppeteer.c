@@ -1,9 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
 
-void EmptyFunc_8048C5C(void);
-LYN_REPLACE_CHECK(EmptyFunc_8048C5C);
-
 unsigned char CanActivateMysteriousPuppeteer(void)
 {
   return gMonEffect.id == MYSTERIOUS_PUPPETEER;
@@ -37,9 +34,4 @@ void ActivateMysteriousPuppeteerEffect(void)
     gCardEffectTextData.cardId = MYSTERIOUS_PUPPETEER;
     ActivateCardEffectText();
   }
-}
-
-void EmptyFunc_8048C5C__Replacement(void)
-{
-  ActivateMysteriousPuppeteerEffect();
 }

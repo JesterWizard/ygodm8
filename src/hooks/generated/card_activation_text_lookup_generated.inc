@@ -17,6 +17,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { NEEDLE_BALL, gActivationDescription_NeedleBall },
   { AMAZON_CHAIN_MASTER, gActivationDescription_AmazonChainMaster },
   { NEEDLE_WORM, gActivationDescription_NeedleWorm },
+  { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },
   { CARD_OF_SANCTITY, gActivationDescription_CardOfSanctity },
   { SHIELD_AND_SWORD, gActivationDescription_ShieldAndSword },
 };
