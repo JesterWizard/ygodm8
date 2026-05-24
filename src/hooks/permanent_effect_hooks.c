@@ -13,6 +13,7 @@ void sub_802ADA4(void);
 void sub_802AE44(void);
 void UpdateDuelGfxExceptField(void);
 void ResetTempStagesForAllCards(void);
+unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 
 typedef unsigned char (*PermanentEffectCondition)(void);
 typedef void (*PermanentEffectHandler)(void);

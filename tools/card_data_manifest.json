@@ -3880,7 +3880,7 @@
       "attribute": "ATTRIBUTE_WIND",
       "level": 5,
       "type": "TYPE_DRAGON",
-      "color": "NORMAL_CARD",
+      "color": "FUSION_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -6293,12 +6293,19 @@
       "attribute": "ATTRIBUTE_WATER",
       "level": 4,
       "type": "TYPE_SEA_SERPENT",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Kaiser Sea Horse",
-      "password": [ 1, 7, 4, 4, 4, 1, 3, 3 ]
+      "password": [ 1, 7, 4, 4, 4, 1, 3, 3 ],
+      "description": {
+        "symbol": "gDescription_KaiserSeaHorse",
+        "pages": [
+          "A fierce sea dragon of a massive and intimidating stature.",
+          "It can be used as two tributes for a tribute summon."
+        ]
+      }
     },
     {
       "card_const": "MACHINE_KING",

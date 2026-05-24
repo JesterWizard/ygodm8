@@ -22,6 +22,7 @@ void ActivateNeedleWormEffect(void);
 void ActivateMysteriousPuppeteerEffect(void);
 unsigned char CanActivateKarateMan(void);
 void ActivateKarateManEffect(void);
+unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -135,6 +136,8 @@ void MonsterActionMenu__Replacement(void) {
     case 3:
       PlayMusic(SFX_TRIBUTE);
       IncrementNumTributes();
+      if (GetKaiserSeaHorseTributeCount(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id) == 2)
+        IncrementNumTributes();
       ClearZoneAndSendMonToGraveyard2(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], 0);
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
