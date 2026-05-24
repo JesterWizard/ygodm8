@@ -17,6 +17,9 @@ endif
 
 BUILD_NAME := ygodm8
 BUILD_UPS ?= 0
+CUSTOM_CODE ?= 1
+CUSTOM_EVENTS ?= $(CUSTOM_CODE)
+CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
@@ -54,8 +57,13 @@ C_SRCS := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
 C_SRCS := $(filter-out $(C_SUBDIR)/hooks/generated/card_data_hooks.c,$(C_SRCS))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
 
+ifeq ($(CUSTOM_CODE),1)
 CUSTOM_SRCS := $(wildcard $(C_SUBDIR_CUSTOM)/*.c $(C_SUBDIR_CUSTOM)/*/*.c $(C_SUBDIR_CUSTOM)/*/*/*.c)
 CUSTOM_OBJS := $(patsubst $(C_SUBDIR_CUSTOM)/%.c,$(C_BUILDDIR_CUSTOM)/%.o,$(CUSTOM_SRCS))
+else
+CUSTOM_SRCS :=
+CUSTOM_OBJS :=
+endif
 
 CONFIGS_SRCS := $(wildcard $(CONFIGS_SUBDIR)/*.c)
 CONFIGS_OBJS := $(patsubst $(CONFIGS_SUBDIR)/%.c,$(CONFIGS_BUILDDIR)/%.o,$(CONFIGS_SRCS))
@@ -67,7 +75,6 @@ LIB := -L ../tools/agbcc/lib -lc -lgcc
 
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
-LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
 CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
@@ -80,11 +87,18 @@ CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src_custom/generated/card_activation_te
 EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
-EVENTS_C_SRCS := $(wildcard $(EVENTS_C_DIR)/*.c)
 EVENT_REPLACEMENTS_GENERATED := src_custom/generated/event_script_replacements.inc
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
+
+ifeq ($(CUSTOM_EVENTS),1)
+LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
+EVENTS_C_SRCS := $(wildcard $(EVENTS_C_DIR)/*.c)
+else
+LYNJUMP_EVENTS :=
+EVENTS_C_SRCS :=
+endif
 
 ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS)
 
@@ -110,6 +124,7 @@ event-extract: baserom.gba tools/vanilla_events.py
 event-catalog: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py catalog $(EVENTS_YAML) --out $(EVENTS_CATALOG)
 
+ifeq ($(CUSTOM_EVENTS),1)
 $(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
 	@echo "EVENT  $(EVENT_REPLACEMENTS_GENERATED)"
 	@echo "INPUTS $(filter %.c,$?)"
@@ -123,6 +138,15 @@ $(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
 event-compile: $(EVENT_REPLACEMENTS_GENERATED)
 	@echo "BUILD   $(ROM)"
 	@$(MAKE) $(ROM)
+else
+$(EVENT_REPLACEMENTS_GENERATED):
+	@mkdir -p $(dir $@)
+	@touch $@
+
+event-compile:
+	@echo "BUILD   $(ROM)"
+	@$(MAKE) $(ROM)
+endif
 
 event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py export-c $(EVENTS_YAML) --out-dir $(EVENTS_C_DIR)
@@ -136,6 +160,7 @@ event-validate: $(EVENTS_YAML) baserom.gba tools/vanilla_events.py
 include make_tools.mk
 include graphics.mk
 
+ifeq ($(CUSTOM_CODE),1)
 $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.py
 	@echo "VALIDATE tools/validate_lynjump.py"
 	python3 tools/validate_lynjump.py
@@ -143,6 +168,11 @@ $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.p
 	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
 	@echo "PATCH   tools/apply_lynjump.py"
 	python3 tools/apply_lynjump.py $(ELF) $@
+else
+$(ROM): $(ELF)
+	@echo "OBJCOPY $@"
+	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
+endif
 
 $(UPS): $(ROM) baserom.gba tools/make_ups.py
 	python3 tools/make_ups.py baserom.gba $(ROM) $@
@@ -151,6 +181,7 @@ $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	@echo "LINK    $@"
 	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
+ifeq ($(CUSTOM_CARD_MANIFEST),1)
 $(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR) --card-ids
@@ -163,6 +194,18 @@ $(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/run
 	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR)
 	touch $@
+else
+$(CARD_IDS_STAMP):
+	@mkdir -p $(dir $@)
+	@touch $@
+
+$(CARD_IDS_GENERATED): $(CARD_IDS_STAMP)
+	@test -f $@
+
+$(CARD_GENERATED_STAMP):
+	@mkdir -p $(dir $@)
+	@touch $@
+endif
 
 $(CARD_DESCRIPTION_GENERATED) $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED): $(CARD_GENERATED_STAMP)
 	@test -f $@
