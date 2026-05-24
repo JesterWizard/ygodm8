@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `22` effects
+- `23` effects
 
 ## Tally
 
@@ -31,6 +31,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Karate Man` | `src/hooks/activated_effects/karate_man.c` |
 | `permanent_effects` | `Milus Radiant` | `src/hooks/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src/hooks/permanent_effects/muka_muka.c` |
+| `permanent_effects` | `Ceremonial Bell` | `src/hooks/permanent_effects/ceremonial_bell.c` |
 
 ## Notes
 

@@ -27,6 +27,8 @@ unsigned char ShouldActivateMilusRadiant(void);
 void ActivateMilusRadiant(void);
 unsigned char ShouldActivateMukaMuka(void);
 void ActivateMukaMuka(void);
+unsigned char ShouldActivateCeremonialBell(void);
+void ActivateCeremonialBell(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -38,6 +40,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MUKA_MUKA,
     .shouldActivate = ShouldActivateMukaMuka,
     .activate = ActivateMukaMuka,
+  },
+  {
+    .cardId = CEREMONIAL_BELL,
+    .shouldActivate = ShouldActivateCeremonialBell,
+    .activate = ActivateCeremonialBell,
   },
 };
 

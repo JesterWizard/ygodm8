@@ -3725,11 +3725,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_LIGHT,
     .level = 3,
     .type = TYPE_SPELLCASTER,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {2, 0, 2, 2, 8, 4, 6, 3},
+    .description = gDescription_CeremonialBell,
   },
   [0x00DF] = {
     .atk = 2100,

@@ -28,6 +28,12 @@ Use this layout when adding monster card effects:
 | Permanent board effect | `src/hooks/permanent_effects/` | The card changes stages or board state during the permanent-effect scan |
 | Activated monster effect | `src/hooks/activated_effects/` | The card effect is triggered from the monster action menu or normal monster-effect flow |
 
+Quick edit path:
+
+- Activated monster effects: `include/constants/monster_effects.h`, `tools/card_data_manifest.json`, `src/hooks/monster_effect_hooks.c`, `src/hooks/activated_effects/<card_name>.c`
+- Permanent effects: `src/hooks/permanent_effect_hooks.c`, `src/hooks/permanent_effects/<card_name>.c`
+- End-of-turn cleanup or delayed destruction: `src/hooks/turn_effect_hooks.c`
+
 Authoring flow:
 
 1. Decide whether the card belongs in the permanent scan or the normal monster activation path.

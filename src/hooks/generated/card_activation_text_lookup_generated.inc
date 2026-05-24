@@ -9,6 +9,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { KARATE_MAN, gActivationDescription_KarateMan },
   { GIANT_GERM, gActivationDescription_GiantGerm },
   { NIMBLE_MOMONGA, gActivationDescription_NimbleMomonga },
+  { CEREMONIAL_BELL, gActivationDescription_CeremonialBell },
   { JAM_BREEDING_MACHINE, gActivationDescription_JamBreedingMachine },
   { PRINCESS_OF_TSURUGI, gActivationDescription_PrincessOfTsurugi },
   { SPARKS, gActivationDescription_Sparks },

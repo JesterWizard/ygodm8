@@ -3434,12 +3434,25 @@
       "attribute": "ATTRIBUTE_LIGHT",
       "level": 3,
       "type": "TYPE_SPELLCASTER",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Ceremonial Bell",
-      "password": [ 2, 0, 2, 2, 8, 4, 6, 3 ]
+      "password": [ 2, 0, 2, 2, 8, 4, 6, 3 ],
+      "description": {
+        "symbol": "gDescription_CeremonialBell",
+        "pages": [
+          "A gleaming bell that is used to mark celebratory occasions.",
+          "While present, both hands must stay revealed."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CeremonialBell",
+        "pages": [
+          "Both hands must stay revealed while it is on the field."
+        ]
+      }
     },
     {
       "card_const": "ROARING_OCEAN_SNAKE",

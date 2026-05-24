@@ -19,12 +19,32 @@ Use this skill when creating or moving a card-specific effect.
 
 ## Where To Look First
 
-- `src/hooks/spell_effect_hooks.c` for spell-card effects.
-- `src/hooks/trap_effect_hooks.c` for trap-card effects.
-- `src/hooks/monster_effect_hooks.c` for monster activation effects.
-- `src/hooks/turn_effect_hooks.c` for graveyard and other turn-scan effects.
-- `src/hooks/permanent_effect_hooks.c` for continuous effects.
-- Search the matching dispatcher for the card name or `gCardInfo`/`gActiveEffect` checks before looking at vanilla code.
+- Spell effects:
+  - `src/hooks/spell_effect_hooks.c`
+  - `src/hooks/spell_effects/<card_name>.c`
+- Trap effects:
+  - `src/hooks/trap_effect_hooks.c`
+  - `src/hooks/trap_effects/<card_name>.c`
+- Activated monster effects:
+  - `include/constants/monster_effects.h`
+  - `src/hooks/monster_effect_hooks.c`
+  - `src/hooks/activated_effects/<card_name>.c`
+  - `tools/card_data_manifest.json`
+- Permanent effects:
+  - `src/hooks/permanent_effect_hooks.c`
+  - `src/hooks/permanent_effects/<card_name>.c`
+- Delayed cleanups or end-of-turn destruction:
+  - `src/hooks/turn_effect_hooks.c`
+- Search the matching dispatcher first, then the card-specific hook file, then the manifest or enum entry if the effect is activated. Avoid broad repo-wide searches unless the local files do not mention the card.
+
+## Fast Path
+
+1. Decide effect type: spell, trap, activated monster, permanent, or delayed cleanup.
+2. Open the matching hook dispatcher listed above.
+3. Open the card-specific hook file if it exists; otherwise create it.
+4. For activated monster effects, update the enum, manifest, and dispatcher together.
+5. For permanent effects, update the permanent hook and the card-specific file together.
+6. Only then search `src/duel/*.c` if the hook surface is missing a needed entry point.
 
 ## Workflow
 
@@ -35,7 +55,8 @@ Use this skill when creating or moving a card-specific effect.
 5. Wire the hook file into the existing dispatcher or effect table.
 6. Update `src/hooks/card_effect_tally.md` with the new effect entry and total count.
 7. For activated monster effects, add or reuse a `MONSTER_EFFECT_*` entry in `include/constants/monster_effects.h`, then use that symbolic value in `tools/card_data_manifest.json` and route it through `src/hooks/monster_effect_hooks.c`.
-8. Keep any vanilla edits limited to the smallest possible call site or registry entry.
+8. For permanent effects, wire the card through `src/hooks/permanent_effect_hooks.c` and the matching file in `src/hooks/permanent_effects`.
+9. Keep any vanilla edits limited to the smallest possible call site or registry entry.
 
 ## Notes
 
