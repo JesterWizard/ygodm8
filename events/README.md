@@ -12,11 +12,6 @@ Do not edit `events/vanilla/vanilla_event_catalog.md` for ROM changes. The catal
 
 ## Edit Order
 
-The vanilla catalog is already arranged in the game-defined progression order.
-When editing multiple events, work top to bottom through
-`events/vanilla/vanilla_event_catalog.md`, then mirror those entries in
-`events/scripts/`.
-
 STORY (the map order may not match the story order)
 ```
 map_09_state_01.c - Joey talks to player
