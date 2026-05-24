@@ -55,9 +55,6 @@ ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
-MINI_ALIASES = {
-    "shield_and_sword": ["sword_and_shield"],
-}
 
 
 @dataclass
@@ -222,12 +219,12 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
 
 def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, mini_base: pathlib.Path) -> pathlib.Path:
     mini_png = mini_base.with_suffix(".png")
-    mini_4bpp = mini_base.with_suffix(".4bpp")
+    mini_8bpp = mini_base.with_suffix(".8bpp")
     mini_lz = mini_base.with_suffix(".lz")
 
     make_paletted_mini(big_png, big_palette, mini_png)
-    run_gbagfx(mini_png, mini_4bpp)
-    run_gbagfx(mini_4bpp, mini_lz)
+    run_gbagfx(mini_png, mini_8bpp)
+    run_gbagfx(mini_8bpp, mini_lz)
     return mini_lz
 
 
@@ -953,20 +950,6 @@ def sync_mini_exports() -> list[pathlib.Path]:
     return exported
 
 
-def sync_mini_aliases() -> list[pathlib.Path]:
-    copied = []
-    for source_stem, alias_stems in MINI_ALIASES.items():
-        for suffix in (".png", ".4bpp", ".lz"):
-            source = MINI_DIR / f"{source_stem}{suffix}"
-            if not source.exists():
-                continue
-            for alias_stem in alias_stems:
-                alias = MINI_DIR / f"{alias_stem}{suffix}"
-                alias.write_bytes(source.read_bytes())
-                copied.append(alias)
-    return copied
-
-
 def sync_missing_mini_assets(entries: list[CardArtEntry], force: bool = False) -> list[pathlib.Path]:
     exported = []
     for entry in entries:
@@ -1111,7 +1094,6 @@ def main() -> int:
     if args.generate_minis:
         entries = discover_entries(manifest)
         generated_minis = sync_missing_mini_assets(entries, force=True)
-        generated_minis.extend(sync_mini_aliases())
         exported = sync_mini_exports()
         exported.extend(generated_minis)
         print(f"Generated {len(exported)} mini assets.")
@@ -1124,7 +1106,6 @@ def main() -> int:
 
     entries = discover_entries(manifest)
     generated_minis = sync_missing_mini_assets(entries)
-    generated_minis.extend(sync_mini_aliases())
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)

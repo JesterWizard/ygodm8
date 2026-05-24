@@ -16,7 +16,7 @@ CUSTOM_CARD_80_PALETTES := $(patsubst src_custom/assets/cards/80x80/%.png,src_cu
 CUSTOM_CARD_80_HUFFS := $(patsubst src_custom/assets/cards/80x80/%.png,src_custom/assets/cards/80x80/%.huff,$(CUSTOM_CARD_80_PNGS))
 
 CUSTOM_CARD_24_PNGS := $(wildcard src_custom/assets/cards/24x24/*.png)
-CUSTOM_CARD_24_4BPPS := $(patsubst src_custom/assets/cards/24x24/%.png,src_custom/assets/cards/24x24/%.4bpp,$(CUSTOM_CARD_24_PNGS))
+CUSTOM_CARD_24_8BPPS := $(patsubst src_custom/assets/cards/24x24/%.png,src_custom/assets/cards/24x24/%.8bpp,$(CUSTOM_CARD_24_PNGS))
 CUSTOM_CARD_24_LZS := $(patsubst src_custom/assets/cards/24x24/%.png,src_custom/assets/cards/24x24/%.lz,$(CUSTOM_CARD_24_PNGS))
 
 OVERWORLD_ENTITY_PNGS := $(wildcard src/overworld/entities/*.png)
@@ -33,7 +33,7 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(CUSTOM_CARD_80_8BPP) \
                 $(CUSTOM_CARD_80_PALETTES) \
                 $(CUSTOM_CARD_80_HUFFS) \
-                $(CUSTOM_CARD_24_4BPPS) \
+                $(CUSTOM_CARD_24_8BPPS) \
                 $(CUSTOM_CARD_24_LZS) \
                 $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal \
                 $(THOUGHT_BUBBLE_DUMPS) \
@@ -49,6 +49,7 @@ clean-graphics:
 	rm -f src_custom/assets/cards/80x80/*.8bpp
 	rm -f src_custom/assets/cards/80x80/*.huff
 	rm -f src_custom/assets/cards/24x24/*.4bpp
+	rm -f src_custom/assets/cards/24x24/*.8bpp
 	rm -f src_custom/assets/cards/24x24/*.lz
 	find src_custom/assets/thought_bubbles -type f \( -name '*.4bpp' -o -name '*.obj.4bpp' -o -name '*.dmp' -o -name '*.gbapal' -o -name '*.lz' \) -delete
 	rm -f src/overworld/entities/*.4bpp
@@ -64,9 +65,9 @@ src_custom/assets/cards/80x80/%.8bpp: src_custom/assets/cards/80x80/%.png | tool
 	tools/gbagfx/gbagfx $< $@
 src_custom/assets/cards/80x80/%.huff: src_custom/assets/cards/80x80/%.8bpp | tools-rules
 	tools/gbagfx/gbagfx $< $@ -depth 8 -ygodm
-src_custom/assets/cards/24x24/%.4bpp: src_custom/assets/cards/24x24/%.png | tools-rules
+src_custom/assets/cards/24x24/%.8bpp: src_custom/assets/cards/24x24/%.png | tools-rules
 	tools/gbagfx/gbagfx $< $@
-src_custom/assets/cards/24x24/%.lz: src_custom/assets/cards/24x24/%.4bpp | tools-rules
+src_custom/assets/cards/24x24/%.lz: src_custom/assets/cards/24x24/%.8bpp | tools-rules
 	tools/gbagfx/gbagfx $< $@
 src_custom/assets/thought_bubbles/%.dmp: src_custom/assets/thought_bubbles/%.png tools/repack_128x64_obj.py | tools-rules
 	tmp_tiles=$$(mktemp /tmp/thought_bubble_tiles.XXXXXX.4bpp); \

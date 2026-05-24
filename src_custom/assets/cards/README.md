@@ -8,8 +8,8 @@ Expected files per card:
   - big card artwork in the same encoded format used by `gCardArts[]`
 - `*.gbapal`
   - big card palette
-- `*_mini.4bpp`
-  - intermediate 4bpp mini-card tile data produced before compression
+- `*_mini.8bpp`
+  - intermediate 8bpp mini-card tile data produced before compression
 - `*_mini.lz`
   - LZ77-compressed mini-card tile data
 - `mini.pal`
@@ -23,7 +23,7 @@ files in `80x80` and `24x24`.
 If a custom card has an `80x80/*.png` but no `24x24/*.lz`, the script will
 derive the mini card automatically by resizing the 80x80 source to 24x24,
 choosing the 16 closest colors from `mini.pal` relative to the 80x80 palette,
-and exporting the `.png`, `.4bpp`, and `.lz` files.
+and exporting the `.png`, `.8bpp`, and `.lz` files.
 
 To regenerate only mini assets, run:
 

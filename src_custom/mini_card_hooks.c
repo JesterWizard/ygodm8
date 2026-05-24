@@ -4,6 +4,7 @@
 extern unsigned char* g8E1168C[]; //attribute mini-icons
 extern unsigned char gSharedMem[];
 extern unsigned char *g8E17F70[];
+extern const unsigned char *gMiniCardArts_Hook[];
 extern unsigned char *gUnk_8E17F48[];
 extern const unsigned char g89A81DE[];
 extern const unsigned char g89A7F1E[][64];
@@ -11,68 +12,19 @@ extern const unsigned char g89A875E[][64];
 extern const unsigned char g89A849E[][64];
 extern u8 gDigitBufferU16[];
 
-static void ComposeMiniCard(void *dest, void *r7, unsigned char *src) {
-  unsigned i, j, r8 = 0, ip;
-  unsigned char *r4;
-  unsigned char *dst = dest;
-  unsigned char *src2 = src;
-  unsigned char *base = r7;
+void sub_80573D0(void* arg0, unsigned short cardId);
+LYN_REPLACE_CHECK(sub_80573D0);
+void sub_80573D0__Replacement(void* arg0, unsigned short cardId) {
+  typedef void (*ComposeMiniCardFn)(void *, void *, unsigned char *);
+  static ComposeMiniCardFn const composeMiniCard = (ComposeMiniCardFn)0x080565F1;
+  const unsigned char *miniArt = gMiniCardArts_Hook[cardId];
 
-  for (j = 0; j < 16; j++)
-    *dst++ = *src2++;
-  for (i = 0; i < 6; i++) {
-    for (j = 4; j < 8; j++)
-      *dst++ = *src2++;
-    r4 = base + i * 8 + r8;
-    for (j = 0; j < 4; j++) {
-      *dst = *r4;
-      dst++;
-      src2++;
-      r4++;
-    }
-  }
+  SetCardInfo(cardId);
+  if (miniArt == NULL)
+    miniArt = g8E17F70[cardId];
 
-  ip = 0;
-  r8 = 64;
-  for (j = 0; j < 16; j++)
-    *dst++ = *src2++;
-  for (i = 0; i < 6; i++) {
-    r4 = base + i * 8 + ip + 4;
-    for (j = 4; j < 8; j++) {
-      *dst = *r4;
-      dst++;
-      src2++;
-      r4++;
-    }
-    r4 = base + i * 8 + r8;
-    for (j = 0; j < 4; j++) {
-      *dst = *r4;
-      dst++;
-      src2++;
-      r4++;
-    }
-  }
-
-  ip = 64;
-  r8 = 128;
-  for (j = 0; j < 16; j++)
-    *dst++ = *src2++;
-  for (i = 0; i < 6; i++) {
-    r4 = base + i * 8 + ip + 4;
-    for (j = 4; j < 8; j++) {
-      *dst = *r4;
-      dst++;
-      src2++;
-      r4++;
-    }
-    r4 = base + i * 8 + r8;
-    for (j = 0; j < 4; j++) {
-      *dst = *r4;
-      dst++;
-      src2++;
-      r4++;
-    }
-  }
+  LZ77UnCompWram(miniArt, gSharedMem);
+  composeMiniCard(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
 }
 
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
