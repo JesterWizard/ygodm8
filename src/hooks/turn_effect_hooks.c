@@ -5,6 +5,7 @@
 extern void (*g8E0C940[])(void);
 extern unsigned char (*g8E0CA80[])(void);
 void ActivateGiantGermEffect(void);
+void ActivateNimbleMomongaEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -20,12 +21,18 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateGiantGermEffect();
     return;
   }
+  if (gActiveEffect.cardId == NIMBLE_MOMONGA && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
+    ActivateNimbleMomongaEffect();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
 
 static unsigned char ShouldActivateTurnEffect__Hook(void) {
   if (gActiveEffect.cardId == GIANT_GERM && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+    return TRUE;
+  if (gActiveEffect.cardId == NIMBLE_MOMONGA && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return TRUE;
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `20` effects
+- `21` effects
 
 ## Tally
 
@@ -23,6 +23,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Needle Worm` | `src/hooks/activated_effects/needle_worm.c` |
 | `activated_effects` | `Goddess Of Whim` | `src/hooks/activated_effects/goddess_of_whim.c` |
 | `activated_effects` | `Giant Germ` | `src/hooks/activated_effects/giant_germ.c` |
+| `activated_effects` | `Nimble Momonga` | `src/hooks/activated_effects/nimble_momonga.c` |
 | `activated_effects` | `Mask Of Darkness` | `src/hooks/activated_effects/mask_of_darkness.c` |
 | `activated_effects` | `Princess Of Tsurugi` | `src/hooks/activated_effects/princess_of_tsurugi.c` |
 | `activated_effects` | `Mysterious Puppeteer` | `src/hooks/activated_effects/mysterious_puppeteer.c` |

@@ -2926,12 +2926,25 @@
       "attribute": "ATTRIBUTE_FOREST",
       "level": 2,
       "type": "TYPE_BEAST",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Nimble Momonga",
-      "password": [ 2, 2, 5, 6, 7, 6, 0, 9 ]
+      "password": [ 2, 2, 5, 6, 7, 6, 0, 9 ],
+      "description": {
+        "symbol": "gDescription_NimbleMomonga",
+        "pages": [
+          "A flying squirrel that flies around its foe, out of reach.",
+          "It can restore 1000LP in the graveyard."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_NimbleMomonga",
+        "pages": [
+          "1000LP will be restored to the owner and then this card will be removed from the graveyard."
+        ]
+      }
     },
     {
       "card_const": "LALA_LI_OON",

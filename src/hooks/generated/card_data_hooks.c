@@ -2495,11 +2495,12 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .attribute = ATTRIBUTE_FOREST,
     .level = 2,
     .type = TYPE_BEAST,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {2, 2, 5, 6, 7, 6, 0, 9},
+    .description = gDescription_NimbleMomonga,
   },
   [0x00BF] = {
     .atk = 600,
