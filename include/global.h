@@ -158,11 +158,18 @@ extern struct CardSortContext gCardSortContext;
 extern struct UnkStruct_2021AB4 gUnk2021AB4;
 extern unsigned char gTrunkCardQty[];
 extern unsigned char gTotalCardQty[];
+extern unsigned char gShopCardQty[];
 extern unsigned char gShopTempCardQty[]; // local shop card qty list while shopping
 extern unsigned char gPlayerTempCardQty[]; // local player card qty list while shopping
 extern unsigned char gCustomTrunkCardQty[];
 extern unsigned char gCustomShopCardQty[];
 extern unsigned char gCustomPlayerTempCardQty[];
+extern unsigned char gCustomTrunkCardQtyFlashPrimary[];
+extern unsigned char gCustomShopCardQtyFlashPrimary[];
+extern unsigned char gCustomPlayerTempCardQtyFlashPrimary[];
+extern unsigned char gCustomTrunkCardQtyFlashBackup[];
+extern unsigned char gCustomShopCardQtyFlashBackup[];
+extern unsigned char gCustomPlayerTempCardQtyFlashBackup[];
 extern unsigned short sRandomizedCardCosts[];
 extern unsigned char sStoredCostSeedRecord[];
 extern unsigned char gSaveFlashPrimaryBase[];

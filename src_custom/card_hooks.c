@@ -347,6 +347,7 @@ void sub_80327C8__Replacement(void) {
 LYN_REPLACE_CHECK(sub_803519C);
 void sub_803519C__Replacement(void) {
   unsigned r3 = 0, r5 = 0;
+  u16 i;
 
   for (; g80D2D00[r3].unk0; r3++) {
     unsigned long r1;
@@ -356,6 +357,15 @@ void sub_803519C__Replacement(void) {
   }
 
   InitializeRandomizedCardCosts();
+  g20245AC((int)gCustomTrunkCardQtyFlashPrimary, gCustomTrunkCardQty, NUM_CUSTOM_CARDS);
+  g20245AC((int)gCustomShopCardQtyFlashPrimary, gCustomShopCardQty, NUM_CUSTOM_CARDS);
+  g20245AC((int)gCustomPlayerTempCardQtyFlashPrimary, gCustomPlayerTempCardQty, NUM_CUSTOM_CARDS);
+
+  for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
+    gTrunkCardQty[CUSTOM_CARD_START + i] = gCustomTrunkCardQty[i];
+    gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
+    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
+  }
 }
 
 LYN_REPLACE_CHECK(LfsrNextByte);

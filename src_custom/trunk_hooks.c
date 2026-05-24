@@ -77,6 +77,13 @@ void InitTrunkCards__Replacement(void) {
     else
       gTrunkCardQty[id] = gStarterTrunk[id];
   }
+
+  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE) {
+    u16 i;
+
+    for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+      gCustomTrunkCardQty[i] = gTrunkCardQty[CUSTOM_CARD_START + i];
+  }
 }
 
 LYN_REPLACE_CHECK(InitTrunkData);

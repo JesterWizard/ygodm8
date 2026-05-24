@@ -41,12 +41,24 @@ void ScalePriceToQty (void);
 LYN_REPLACE_CHECK(InitNewGameShopCards);
 void InitNewGameShopCards__Replacement(void) {
   unsigned short cardId;
+  unsigned short i;
 
   for (cardId = 0; cardId < NUM_CARDS; cardId++) {
     if (gRuntimeConfig.start_shop_with_one_copy_of_every_card == TRUE)
       gShopCardQty[cardId] = 1;
     else
       gShopCardQty[cardId] = gStartingShopCards[cardId];
+  }
+
+  for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
+    if (gRuntimeConfig.start_shop_with_one_copy_of_every_card == TRUE)
+      gShopCardQty[CUSTOM_CARD_START + i] = 1;
+    else
+      gShopCardQty[CUSTOM_CARD_START + i] = 0;
+
+    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gTrunkCardQty[CUSTOM_CARD_START + i];
+    gCustomShopCardQty[i] = gShopCardQty[CUSTOM_CARD_START + i];
+    gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[CUSTOM_CARD_START + i];
   }
 }
 

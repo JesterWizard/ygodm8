@@ -74,6 +74,14 @@ SET_ARRAY gSaveFlashPrimaryBase, 0x0E000000, 0x1
 SET_DATA gCostSeedFlashPrimary, 0x0E000787
 SET_DATA gCostSeedFlashBackup,  0x0E004767
 
+@ Custom card count storage mirrored in free flash space.
+SET_ARRAY gCustomTrunkCardQtyFlashPrimary, 0x0E000788, 0x8
+SET_ARRAY gCustomShopCardQtyFlashPrimary, 0x0E000790, 0x8
+SET_ARRAY gCustomPlayerTempCardQtyFlashPrimary, 0x0E000798, 0x8
+SET_ARRAY gCustomTrunkCardQtyFlashBackup, 0x0E004768, 0x8
+SET_ARRAY gCustomShopCardQtyFlashBackup, 0x0E004770, 0x8
+SET_ARRAY gCustomPlayerTempCardQtyFlashBackup, 0x0E004778, 0x8
+
 @ Save slots stored in flash.
 SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
 SET_ARRAY gSaveSlotBackup,   0x0E004020, 0x747

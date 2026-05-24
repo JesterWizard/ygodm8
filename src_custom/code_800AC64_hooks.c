@@ -27,18 +27,52 @@ u16 sub_8035170(void);
 u16 sub_800B134(void);
 u16 sub_800B158(void);
 
+static void SyncCustomCardQtyToFlashBuffers(void) {
+  u16 i;
+
+  for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
+    gCustomTrunkCardQty[i] = gTrunkCardQty[CUSTOM_CARD_START + i];
+    gCustomShopCardQty[i] = gShopCardQty[CUSTOM_CARD_START + i];
+    gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[CUSTOM_CARD_START + i];
+  }
+}
+
+static void SyncCustomCardQtyFromFlashBuffers(void) {
+  u16 i;
+
+  for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
+    gTrunkCardQty[CUSTOM_CARD_START + i] = gCustomTrunkCardQty[i];
+    gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
+    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
+  }
+}
+
 static inline void Test(int a, u8 *b, int c) {
   g20245AC(a, b, c);
 }
 
 LYN_REPLACE_CHECK(sub_800AD84);
 int sub_800AD84__Replacement(void) {
-  return sub_80588C4(g8E0CD10, (int)gSaveSlotPrimary, 0x747);
+  int result = sub_80588C4(g8E0CD10, (int)gSaveSlotPrimary, 0x747);
+
+  SyncCustomCardQtyToFlashBuffers();
+  sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
+  sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
+  sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
+
+  return result;
 }
 
 LYN_REPLACE_CHECK(sub_800ADA4);
 int sub_800ADA4__Replacement(void) {
-  return sub_80588C4(g8E0CD10, (int)gSaveSlotBackup, 0x747);
+  int result = sub_80588C4(g8E0CD10, (int)gSaveSlotBackup, 0x747);
+
+  SyncCustomCardQtyToFlashBuffers();
+  sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashBackup, NUM_CUSTOM_CARDS);
+  sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashBackup, NUM_CUSTOM_CARDS);
+  sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashBackup, NUM_CUSTOM_CARDS);
+
+  return result;
 }
 
 LYN_REPLACE_CHECK(sub_800ADC4);
