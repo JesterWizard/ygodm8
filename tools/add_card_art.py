@@ -26,6 +26,8 @@ GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
 GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.inc"
 GENERATED_ACTIVATION_TEXT_LOOKUP_INC = GENERATED_DIR / "card_activation_text_lookup_generated.inc"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
+CARD_COUNTS_H = ROOT / "include/constants/card_counts.h"
+CARD_COUNTS_LD = ROOT / "generated/card_counts.ld"
 CUSTOM_CARD_MANIFEST = ROOT / "tools/card_data_manifest.json"
 RUNTIME_CONFIG_C = ROOT / "configs/runtime.c"
 EFFECT_ENUM_HEADERS = {
@@ -336,6 +338,8 @@ def validate_manifest(manifest: object) -> dict:
 def render_card_ids_header(manifest: dict) -> str:
     cards = manifest["cards"]
     custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    total_cards = len(cards)
+    custom_cards = max(0, total_cards - custom_start)
     lines = [
         "#ifndef GUARD_CONSTANTS_CARD_IDS_H",
         "#define GUARD_CONSTANTS_CARD_IDS_H",
@@ -350,6 +354,8 @@ def render_card_ids_header(manifest: dict) -> str:
         f"#define NUM_CARDS                               0x{custom_start:04X}",
         f"#define NUM_TRUE_CARDS                          (NUM_CARDS - 1)",
         f"#define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC",
+        f"#define NUM_TOTAL_CARDS                         0x{total_cards:04X}",
+        f"#define NUM_CUSTOM_CARDS                        0x{custom_cards:04X}",
     ])
     lines.extend([
         "",
@@ -357,6 +363,39 @@ def render_card_ids_header(manifest: dict) -> str:
         "",
     ])
     return "\n".join(lines)
+
+
+def render_card_counts_ld(manifest: dict) -> str:
+    cards = manifest["cards"]
+    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    total_cards = len(cards)
+    custom_cards = max(0, total_cards - custom_start)
+    return "\n".join(
+        [
+            f"NUM_TOTAL_CARDS = 0x{total_cards:04X};",
+            f"NUM_CUSTOM_CARDS = 0x{custom_cards:04X};",
+            "",
+        ]
+    )
+
+
+def render_card_counts_header(manifest: dict) -> str:
+    cards = manifest["cards"]
+    custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
+    total_cards = len(cards)
+    custom_cards = max(0, total_cards - custom_start)
+    return "\n".join(
+        [
+            "#ifndef GUARD_CONSTANTS_CARD_COUNTS_H",
+            "#define GUARD_CONSTANTS_CARD_COUNTS_H",
+            "",
+            f"#define NUM_TOTAL_CARDS                         0x{total_cards:04X}",
+            f"#define NUM_CUSTOM_CARDS                        0x{custom_cards:04X}",
+            "",
+            "#endif // GUARD_CONSTANTS_CARD_COUNTS_H",
+            "",
+        ]
+    )
 
 
 def discover_entries(manifest: dict) -> list[CardArtEntry]:
@@ -959,6 +998,8 @@ def main() -> int:
             print(card_ids, end="")
         else:
             update_file(CARD_IDS_H, card_ids)
+            update_file(CARD_COUNTS_H, render_card_counts_header(manifest))
+            update_file(CARD_COUNTS_LD, render_card_counts_ld(manifest))
         return 0
 
     if args.generate_minis:
@@ -1008,6 +1049,8 @@ def main() -> int:
         return 0
 
     update_file(CARD_IDS_H, render_card_ids_header(manifest))
+    update_file(CARD_COUNTS_H, render_card_counts_header(manifest))
+    update_file(CARD_COUNTS_LD, render_card_counts_ld(manifest))
     update_file(GENERATED_ASSET_INC, asset_inc)
     update_file(GENERATED_NAME_INC, name_inc)
     update_file(GENERATED_DATA_INC, data_inc)

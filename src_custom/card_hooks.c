@@ -50,7 +50,8 @@ u8 LfsrNextByte(void);
 #define COST_SEED_FLASH_BACKUP 0x0E004767
 
 static u16 *const sRandomizedCardCosts = (u16 *)0x03001678;
-static u32 *const sCostEntropyState = (u32 *)0x02021AB8;
+extern u32 gCostEntropyState;
+static u32 *const sCostEntropyState = &gCostEntropyState;
 static u8 *const sStoredCostSeedRecord = (u8 *)0x02020E06;
 
 static u32 XorShift32(u32 seed) {

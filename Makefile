@@ -79,6 +79,7 @@ CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
 CARD_IDS_GENERATED := include/constants/card_ids.h
+CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
 CARD_TRUNK_GENERATED := src_custom/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src_custom/generated/card_data_hooks.c
@@ -179,7 +180,7 @@ $(UPS): $(ROM) baserom.gba tools/make_ups.py
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
 	@echo "LINK    $@"
-	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
+	cd $(BUILD_DIR) && $(LD) -T ../$(LDSCRIPT) -T ../generated/card_counts.ld -Map ../$(MAP) -o ../$@ $(patsubst $(BUILD_DIR)/%,%,$(ALL_OBJS)) $(LIB)
 
 ifeq ($(CUSTOM_CARD_MANIFEST),1)
 $(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
@@ -187,7 +188,7 @@ $(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 	python3 $(CARD_ART_GENERATOR) --card-ids
 	touch $@
 
-$(CARD_IDS_GENERATED): $(CARD_IDS_STAMP)
+$(CARD_IDS_GENERATED) $(CARD_COUNTS_GENERATED): $(CARD_IDS_STAMP)
 	@test -f $@
 
 $(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CUSTOM_CARD_80_HUFFS) $(CUSTOM_CARD_80_PALETTES) $(CUSTOM_CARD_24_LZS) $(CARD_IDS_GENERATED)

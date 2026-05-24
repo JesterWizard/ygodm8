@@ -27,8 +27,8 @@
 
 @ gTrunkMenu            : 0x02020E10 - 0x02021459
 @ gTotalCardQty         : 0x02021460 - 0x0202178F
-@ gTrunkCardQty         : 0x02021790 - 0x02021AB3
-@ gUnk2021AB4           : 0x02021AB4 - 0x02021AB7
+@ gTrunkCardQty         : 0x02021790 - 0x02021AB8
+@ gUnk2021AB4           : moved after custom-card tails
 
 @ --------------------------------------------------------------------
 @ Shop state
@@ -60,6 +60,14 @@
 @ 0x02020E06 - 0x02020E0F : gap between input state and gTrunkMenu
 @ 0x02021AB8 - 0x02021C2F : gap between trunk quantities and gDeckMenu
 @ 0x02021C8C - 0x02021DEF : gap between gDeckMenu and gShopCardQty
-@ 0x02022EBC - 0x0203FFFF : remaining free EWRAM after card/shop/deck data
+@ 0x02022EBD - 0x0203FFFF : remaining free EWRAM after card/shop/deck data
+
+@ Custom-card tails are carved out of the free EWRAM block and grow with
+@ `NUM_CUSTOM_CARDS` from `tools/card_data_manifest.json`.
+@ 0x02022EBD - 0x02022EC4 : gCustomTrunkCardQty        (8 bytes)
+@ 0x02022EC5 - 0x02022ECC : gCustomShopCardQty         (8 bytes)
+@ 0x02022ECD - 0x02022ED4 : gCustomPlayerTempCardQty   (8 bytes)
+@ 0x02022ED8 - 0x02022EDB : gCostEntropyState          (4 bytes)
+@ 0x02022EDC - 0x02022EDF : gUnk2021AB4                (4 bytes)
 
 @ Note: these are linker-layout gaps, not runtime-audited scratch RAM.

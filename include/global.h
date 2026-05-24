@@ -49,6 +49,7 @@
 #include "player.h"
 
 #include "constants/card_ids.h"
+#include "constants/card_counts.h"
 #include "constants/music_ids.h"
 #include "constants/duel_text_ids.h"
 
@@ -122,7 +123,7 @@ enum {
 
 #define TRUNK_CARD_LIMIT 250
 #define DECK_SIZE 40
-#define MAX_CUSTOM_CARD_SLOTS 32
+#define MAX_CUSTOM_CARD_SLOTS NUM_CUSTOM_CARDS
 //^TODO: change to MAX_DECK_SIZE, DECK_MAX_SIZE, or _COUNT? (or MIN? in vanilla it has to be exactly 40)
 
 struct TrunkMenu
@@ -132,7 +133,7 @@ struct TrunkMenu
     u8 displayMode;    //show: nothing, atk/def, attribute(summon), cost,
     u8 cursorState;
     u8 filler5[7];
-    u16 cards[NUM_CARDS + MAX_CUSTOM_CARD_SLOTS]; // includes a small custom tail region
+    u16 cards[NUM_CARDS + MAX_CUSTOM_CARD_SLOTS]; // includes a custom tail region that follows the manifest
 };
 
 extern struct TrunkMenu gTrunkMenu;
@@ -159,6 +160,9 @@ extern unsigned char gTrunkCardQty[];
 extern unsigned char gTotalCardQty[];
 extern unsigned char gShopTempCardQty[]; // local shop card qty list while shopping
 extern unsigned char gPlayerTempCardQty[]; // local player card qty list while shopping
+extern unsigned char gCustomTrunkCardQty[];
+extern unsigned char gCustomShopCardQty[];
+extern unsigned char gCustomPlayerTempCardQty[];
 extern unsigned short g80D0444[][801];
 extern const unsigned short gCardAtks[];
 extern const unsigned short gCardDefs[];
