@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 
 ## Total
 
-- `21` effects
+- `22` effects
 
 ## Tally
 
@@ -28,6 +28,7 @@ Running count of card-specific effects added in `src/hooks` for existing cards.
 | `activated_effects` | `Princess Of Tsurugi` | `src/hooks/activated_effects/princess_of_tsurugi.c` |
 | `activated_effects` | `Mysterious Puppeteer` | `src/hooks/activated_effects/mysterious_puppeteer.c` |
 | `activated_effects` | `Penguin Soldier` | `src/hooks/activated_effects/penguin_soldier.c` |
+| `activated_effects` | `Karate Man` | `src/hooks/activated_effects/karate_man.c` |
 | `permanent_effects` | `Milus Radiant` | `src/hooks/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src/hooks/permanent_effects/muka_muka.c` |
 

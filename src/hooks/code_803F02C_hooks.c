@@ -21,6 +21,7 @@ void TryActivatingTurnEffects(void);
 void TryActivatingPermanentEffects(void);
 void UpdateFilteredInput_WithRepeat(void);
 void DeclareLoser(unsigned char);
+void DestroyKarateManAtEndOfTurn(void);
 
 extern unsigned char gIsPlayerTurnOver;
 extern u16 gRepeatedOrNewButtons;
@@ -154,4 +155,7 @@ void PlayerTurnMain__Replacement(void) {
         break;
     }
   }
+
+  DestroyKarateManAtEndOfTurn();
+  UpdateDuelGfxExceptField();
 }

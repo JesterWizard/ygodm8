@@ -3,6 +3,7 @@
 #include "constants/monster_effects.h"
 
 extern void (*const gMonEffects[])(void);
+extern const u8 gCardLockAfterActivation_Hook[];
 
 void ActivateMonsterEffect(void);
 void MonsterActionMenu(void);
@@ -19,6 +20,8 @@ unsigned char CanActivateNeedleBall(void);
 void ActivateNeedleBallEffect(void);
 void ActivateNeedleWormEffect(void);
 void ActivateMysteriousPuppeteerEffect(void);
+unsigned char CanActivateKarateMan(void);
+void ActivateKarateManEffect(void);
 
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
@@ -34,6 +37,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateMysteriousPuppeteer();
     case MONSTER_EFFECT_PENGUIN_SOLDIER:
       return CanActivatePenguinSoldier();
+    case MONSTER_EFFECT_KARATE_MAN:
+      return CanActivateKarateMan();
     default:
       return TRUE;
   }
@@ -100,6 +105,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_KARATE_MAN) {
+    ActivateKarateManEffect();
+    return;
+  }
+
   gMonEffects[gCardInfo.monsterEffect]();
 }
 
@@ -145,7 +155,8 @@ FAILED:
         else {
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+          if (gCardLockAfterActivation_Hook[gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id])
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
           ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);

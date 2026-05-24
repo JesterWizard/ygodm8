@@ -2792,12 +2792,27 @@
       "attribute": "ATTRIBUTE_EARTH",
       "level": 3,
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_KARATE_MAN",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Karate Man",
-      "password": [ 2, 3, 2, 8, 9, 2, 8, 1 ]
+      "password": [ 2, 3, 2, 8, 9, 2, 8, 1 ],
+      "lock_after_activation": false,
+      "description": {
+        "symbol": "gDescription_KarateMan",
+        "pages": [
+          "A lean and buff karate man with fists of steel",
+          "He can double his original stats in return for",
+          "being destroyed at the end of the turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_KarateMan",
+        "pages": [
+          "His original stats will be doubled in return for being destroyed at the end of the turn."
+        ]
+      }
     },
     {
       "card_const": "LUCKY_TRINKET",

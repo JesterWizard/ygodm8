@@ -13,6 +13,7 @@ void sub_802ADF4(void);
 void sub_80408BC(void);
 void sub_802ADA4(void);
 void ResetTempStagesForAllCards(void);
+void DestroyKarateManAtEndOfTurn(void);
 
 static void TryActivatingTurnEffect__Hook(void) {
   ResetCardEffectTextData();
@@ -124,6 +125,7 @@ void TryActivatingTurnEffects__Replacement(void) {
     sub_80408BC();
     sub_802ADA4();
   }
+  DestroyKarateManAtEndOfTurn();
   ResetTempStagesForAllCards();
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }

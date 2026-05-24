@@ -46,7 +46,7 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description", "activation_description"}
+OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
@@ -325,6 +325,8 @@ def validate_manifest(manifest: object) -> dict:
                 raise SystemExit(f"cards[{index}].{key} must be a string when present.")
         if "trunk_card" in item and not isinstance(item["trunk_card"], bool):
             raise SystemExit(f"cards[{index}].trunk_card must be a boolean when present.")
+        if "lock_after_activation" in item and not isinstance(item["lock_after_activation"], bool):
+            raise SystemExit(f"cards[{index}].lock_after_activation must be a boolean when present.")
 
         validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {})})
 
@@ -763,21 +765,27 @@ def render_data_src(manifest: dict) -> str:
         "#define TRAP_CARD 4",
         "#define RITUAL_CARD 5",
         "",
-        f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{",
-        "  [CARD_NONE] = {",
-        "    .atk = 0xFFFF,",
-        "    .def = 0xFFFF,",
-        "    .cost = 0,",
-        "    .attribute = 0,",
-        "    .level = 0,",
-        "    .type = 0,",
-        "    .color = NORMAL_CARD,",
-        "    .monsterEffect = 0,",
-        "    .spellEffect = 0,",
-        "    .trapEffect = 0,",
-        "    .password = {15, 15, 15, 15, 15, 15, 15, 14},",
-        "  },",
+        f"const u8 gCardLockAfterActivation_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{",
     ]
+    for index, item in enumerate(manifest["cards"]):
+        lock_after_activation = item.get("lock_after_activation", True)
+        lines.append(f"  [0x{index:04X}] = {1 if lock_after_activation else 0},")
+    lines.append("};")
+    lines.append("")
+    lines.append(f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{")
+    lines.append("  [CARD_NONE] = {")
+    lines.append("    .atk = 0xFFFF,")
+    lines.append("    .def = 0xFFFF,")
+    lines.append("    .cost = 0,")
+    lines.append("    .attribute = 0,")
+    lines.append("    .level = 0,")
+    lines.append("    .type = 0,")
+    lines.append("    .color = NORMAL_CARD,")
+    lines.append("    .monsterEffect = 0,")
+    lines.append("    .spellEffect = 0,")
+    lines.append("    .trapEffect = 0,")
+    lines.append("    .password = {15, 15, 15, 15, 15, 15, 15, 14},")
+    lines.append("  },")
     for index, item in enumerate(manifest["cards"]):
         if item["card_const"] == "CARD_NONE":
             continue
