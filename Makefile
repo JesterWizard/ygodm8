@@ -29,12 +29,14 @@ ASFLAGS  := -mcpu=arm7tdmi
 
 
 C_SUBDIR = src
+C_SUBDIR_CUSTOM = src_custom
 CONFIGS_SUBDIR = configs
 ASM_SUBDIR = asm
 DATA_ASM_SUBDIR = data
 BUILD_DIR = build
 
 C_BUILDDIR = $(BUILD_DIR)/$(C_SUBDIR)
+C_BUILDDIR_CUSTOM = $(BUILD_DIR)/$(C_SUBDIR_CUSTOM)
 CONFIGS_BUILDDIR = $(BUILD_DIR)/$(CONFIGS_SUBDIR)
 ASM_BUILDDIR = $(BUILD_DIR)/$(ASM_SUBDIR)
 DATA_ASM_BUILDDIR = $(BUILD_DIR)/$(DATA_ASM_SUBDIR)
@@ -49,10 +51,11 @@ MAP          := $(ROM:.gba=.map)
 LDSCRIPT     := ldscript.ld
 
 C_SRCS := $(wildcard $(C_SUBDIR)/*.c $(C_SUBDIR)/*/*.c $(C_SUBDIR)/*/*/*.c)
-HOOK_SRCS := $(wildcard $(C_SUBDIR)/hooks/*.c) $(C_SUBDIR)/hooks/generated/card_data_hooks.c
-C_SRCS := $(filter-out $(HOOK_SRCS),$(C_SRCS))
+C_SRCS := $(filter-out $(C_SUBDIR)/hooks/generated/card_data_hooks.c,$(C_SRCS))
 C_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(C_SRCS))
-HOOK_OBJS := $(patsubst $(C_SUBDIR)/%.c,$(C_BUILDDIR)/%.o,$(HOOK_SRCS))
+
+CUSTOM_SRCS := $(wildcard $(C_SUBDIR_CUSTOM)/*.c $(C_SUBDIR_CUSTOM)/*/*.c $(C_SUBDIR_CUSTOM)/*/*/*.c)
+CUSTOM_OBJS := $(patsubst $(C_SUBDIR_CUSTOM)/%.c,$(C_BUILDDIR_CUSTOM)/%.o,$(CUSTOM_SRCS))
 
 CONFIGS_SRCS := $(wildcard $(CONFIGS_SUBDIR)/*.c)
 CONFIGS_OBJS := $(patsubst $(CONFIGS_SUBDIR)/%.c,$(CONFIGS_BUILDDIR)/%.o,$(CONFIGS_SRCS))
@@ -65,25 +68,25 @@ LIB := -L ../tools/agbcc/lib -lc -lgcc
 DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 LYNJUMP_EVENTS := $(shell find . -name 'LynJump.event')
-CARD_DESCRIPTION_GENERATED := src/hooks/card_description_data_generated.inc
+CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
 CARD_IDS_GENERATED := include/constants/card_ids.h
-CARD_ART_GENERATED := src/hooks/generated/card_art_generated.inc src/hooks/generated/card_name_generated.inc src/hooks/generated/card_data_generated.inc
-CARD_TRUNK_GENERATED := src/hooks/generated/card_trunk_generated.inc
-CARD_DATA_GENERATED_SRC := src/hooks/generated/card_data_hooks.c
-CARD_ACTIVATION_TEXT_GENERATED := src/hooks/generated/card_activation_text_generated.inc
-CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src/hooks/generated/card_activation_text_lookup_generated.inc
+CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
+CARD_TRUNK_GENERATED := src_custom/generated/card_trunk_generated.inc
+CARD_DATA_GENERATED_SRC := src_custom/generated/card_data_hooks.c
+CARD_ACTIVATION_TEXT_GENERATED := src_custom/generated/card_activation_text_generated.inc
+CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src_custom/generated/card_activation_text_lookup_generated.inc
 EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
 EVENTS_C_SRCS := $(wildcard $(EVENTS_C_DIR)/*.c)
-EVENT_REPLACEMENTS_GENERATED := src/hooks/generated/event_script_replacements.inc
+EVENT_REPLACEMENTS_GENERATED := src_custom/generated/event_script_replacements.inc
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
 
-ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(HOOK_OBJS)
+ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 
@@ -164,31 +167,33 @@ $(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/run
 $(CARD_DESCRIPTION_GENERATED) $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED): $(CARD_GENERATED_STAMP)
 	@test -f $@
 
-$(C_BUILDDIR)/%.o: $(C_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
-	@echo "CC      $<"
-	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/$*.i
-	@$(PREPROC) $(C_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/$*.s
-	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/$*.s
-	@echo "AS      $@"
-	$(AS) $(ASFLAGS) $(C_BUILDDIR)/$*.s -o $@
+define compile_c_object_rule
+$1/%.o: $2/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+	@echo "CC      $$<"
+	$(CPP) $(CPPFLAGS) $$< -o $1/$$*.i
+	@$(PREPROC) $1/$$*.i charmap.txt | $(CC1) $(CFLAGS) -o $1/$$*.s
+	@echo ".text\\n\\t.align\\t2, 0\\n" >> $1/$$*.s
+	@echo "AS      $$@"
+	$(AS) $(ASFLAGS) $1/$$*.s -o $$@
+endef
+
+define custom_object_dep
+$(C_BUILDDIR_CUSTOM)/$1.o: $2
+endef
+
+$(eval $(call compile_c_object_rule,$(C_BUILDDIR),$(C_SUBDIR)))
+$(eval $(call compile_c_object_rule,$(C_BUILDDIR_CUSTOM),$(C_SUBDIR_CUSTOM)))
+$(eval $(call compile_c_object_rule,$(CONFIGS_BUILDDIR),$(CONFIGS_SUBDIR)))
 
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
-$(C_BUILDDIR)/hooks/card_asset_hooks.o: $(CARD_ART_GENERATED)
-$(C_BUILDDIR)/hooks/card_hooks.o: $(CARD_ART_GENERATED)
-$(C_BUILDDIR)/hooks/effect_text_hooks.o: $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)
-$(C_BUILDDIR)/hooks/event_system_hooks.o: $(EVENT_REPLACEMENTS_GENERATED)
-$(C_BUILDDIR)/hooks/generated/card_data_hooks.o: $(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)
-$(C_BUILDDIR)/hooks/trunk_hooks.o: $(CARD_TRUNK_GENERATED)
+$(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
+$(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED)))
+$(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
+$(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
+$(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
+$(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
-$(C_BUILDDIR)/hooks/overworld_hooks.o: $(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)
-
-$(CONFIGS_BUILDDIR)/%.o: $(CONFIGS_SUBDIR)/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
-	@echo "CC      $<"
-	$(CPP) $(CPPFLAGS) $< -o $(CONFIGS_BUILDDIR)/$*.i
-	@$(PREPROC) $(CONFIGS_BUILDDIR)/$*.i charmap.txt | $(CC1) $(CFLAGS) -o $(CONFIGS_BUILDDIR)/$*.s
-	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(CONFIGS_BUILDDIR)/$*.s
-	@echo "AS      $@"
-	$(AS) $(ASFLAGS) $(CONFIGS_BUILDDIR)/$*.s -o $@
+$(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	@echo "AS      $<"

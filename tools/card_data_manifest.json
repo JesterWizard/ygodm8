@@ -12367,9 +12367,9 @@
       },
       "card_name": "Sorcerer of Dark Magic",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/sorcerer_of_dark_magic.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/sorcerer_of_dark_magic.lz"
+      "big_art": "src_custom/assets/cards/80x80/sorcerer_of_dark_magic.huff",
+      "big_palette": "src_custom/assets/cards/80x80/sorcerer_of_dark_magic.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/sorcerer_of_dark_magic.lz"
     },
     {
       "card_const": "DECK_DESTRUCTION_VIRUS",
@@ -12392,9 +12392,9 @@
       },
       "card_name": "Deck Destruction Virus",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/deck_destruction_virus.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/deck_destruction_virus.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/deck_destruction_virus.lz"
+      "big_art": "src_custom/assets/cards/80x80/deck_destruction_virus.huff",
+      "big_palette": "src_custom/assets/cards/80x80/deck_destruction_virus.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/deck_destruction_virus.lz"
     },
     {
       "card_const": "MAGICIANS_VALKYRIA",
@@ -12417,9 +12417,9 @@
       },
       "card_name": "Magician's Valkyria",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/magicians_valkyria.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/magicians_valkyria.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/magicians_valkyria.lz"
+      "big_art": "src_custom/assets/cards/80x80/magicians_valkyria.huff",
+      "big_palette": "src_custom/assets/cards/80x80/magicians_valkyria.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/magicians_valkyria.lz"
     },
     {
       "card_const": "BLUE_EYES_SHINING_DRAGON",
@@ -12442,9 +12442,9 @@
       },
       "card_name": "Blue-Eyes Shining Dragon",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/blue_eyes_shining_dragon.lz"
+      "big_art": "src_custom/assets/cards/80x80/blue_eyes_shining_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/blue_eyes_shining_dragon.lz"
     },
     {
       "card_const": "PALADIN_OF_WHITE_DRAGON",
@@ -12468,9 +12468,9 @@
       },
       "card_name": "Paladin Of White Dragon",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/paladin_of_white_dragon.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/paladin_of_white_dragon.lz"
+      "big_art": "src_custom/assets/cards/80x80/paladin_of_white_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/paladin_of_white_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/paladin_of_white_dragon.lz"
     },
     {
       "card_const": "CARD_OF_DEMISE",
@@ -12493,9 +12493,9 @@
       },
       "card_name": "Card Of Demise",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/card_of_demise.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/card_of_demise.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/card_of_demise.lz"
+      "big_art": "src_custom/assets/cards/80x80/card_of_demise.huff",
+      "big_palette": "src_custom/assets/cards/80x80/card_of_demise.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/card_of_demise.lz"
     },
     {
       "card_const": "CARD_OF_SANCTITY",
@@ -12524,9 +12524,9 @@
       },
       "card_name": "Card Of Sanctity",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/card_of_sanctity.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/card_of_sanctity.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/card_of_sanctity.lz"
+      "big_art": "src_custom/assets/cards/80x80/card_of_sanctity.huff",
+      "big_palette": "src_custom/assets/cards/80x80/card_of_sanctity.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/card_of_sanctity.lz"
     },
     {
       "card_const": "SHIELD_AND_SWORD",
@@ -12555,9 +12555,9 @@
       },
       "card_name": "Shield And Sword",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
-      "big_art": "src/hooks/assets/cards/80x80/shield_and_sword.huff",
-      "big_palette": "src/hooks/assets/cards/80x80/shield_and_sword.gbapal",
-      "mini_art": "src/hooks/assets/cards/24x24/shield_and_sword.lz"
+      "big_art": "src_custom/assets/cards/80x80/shield_and_sword.huff",
+      "big_palette": "src_custom/assets/cards/80x80/shield_and_sword.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/shield_and_sword.lz"
     }
   ]
 }

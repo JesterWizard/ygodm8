@@ -12,12 +12,12 @@ from dataclasses import dataclass
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-ASSET_ROOT = ROOT / "src/hooks/assets/cards"
+ASSET_ROOT = ROOT / "src_custom/assets/cards"
 BIG_DIR = ASSET_ROOT / "80x80"
 MINI_DIR = ASSET_ROOT / "24x24"
 EXPORT_DIR = ASSET_ROOT / "export"
 BASE_ROM = ROOT / "baserom.gba"
-GENERATED_DIR = ROOT / "src/hooks/generated"
+GENERATED_DIR = ROOT / "src_custom/generated"
 GENERATED_ASSET_INC = GENERATED_DIR / "card_art_generated.inc"
 GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
 GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
@@ -367,9 +367,9 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
         stem = item["card_const"].lower()
-        big_art = manifest_asset_path(item.get("big_art", ""), f"src/hooks/assets/cards/80x80/{stem}.huff")
-        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src/hooks/assets/cards/80x80/{stem}.gbapal")
-        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src/hooks/assets/cards/24x24/{stem}.lz")
+        big_art = manifest_asset_path(item.get("big_art", ""), f"src_custom/assets/cards/80x80/{stem}.huff")
+        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src_custom/assets/cards/80x80/{stem}.gbapal")
+        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src_custom/assets/cards/24x24/{stem}.lz")
         entries.append(
             CardArtEntry(
                 index=index,
@@ -936,7 +936,7 @@ def export_base_rom_minis() -> list[pathlib.Path]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Generate card art and name hook includes from matching files in src/hooks/assets/cards."
+        description="Generate card art and name hook includes from matching files in src_custom/assets/cards."
     )
     parser.add_argument("--print", action="store_true", help="Print the generated content instead of writing files")
     parser.add_argument("--card-ids", action="store_true", help="Generate include/constants/card_ids.h from the manifest")
@@ -997,7 +997,7 @@ def main() -> int:
         print(data_inc, end="")
         print(f"--- {GENERATED_DATA_SRC} ---")
         print(data_src, end="")
-        print(f"--- src/hooks/card_description_data_generated.inc ---")
+        print(f"--- src_custom/card_description_data_generated.inc ---")
         print(description_inc, end="")
         print(f"--- {GENERATED_ACTIVATION_TEXT_INC} ---")
         print(activation_description_inc, end="")
@@ -1012,7 +1012,7 @@ def main() -> int:
     update_file(GENERATED_NAME_INC, name_inc)
     update_file(GENERATED_DATA_INC, data_inc)
     update_file(GENERATED_DATA_SRC, data_src)
-    update_file(ROOT / "src/hooks/card_description_data_generated.inc", description_inc)
+    update_file(ROOT / "src_custom/card_description_data_generated.inc", description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_INC, activation_description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_LOOKUP_INC, activation_description_lookup_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)

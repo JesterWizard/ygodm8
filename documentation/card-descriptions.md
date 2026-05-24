@@ -17,7 +17,7 @@ Card description text in this repo is edited in the card art manifest and conver
 There are two layers involved:
 
 1. human-readable source strings in `tools/card_data_manifest.json`
-2. generated runtime byte data in `src/hooks/card_description_data_generated.inc`
+2. generated runtime byte data in `src_custom/card_description_data_generated.inc`
 
 The goal is simple:
 
@@ -44,10 +44,10 @@ What happens automatically during build:
 - `make` runs `python3 tools/add_card_art.py`
 - the script reads the manifest description pages
 - it wraps them to the current in-game layout model
-- it writes the runtime byte data into `src/hooks/card_description_data_generated.inc`
+- it writes the runtime byte data into `src_custom/card_description_data_generated.inc`
 - the generated include provides the correct symbol at link time
 
-After that, you call the runtime symbol in your card entry in `src/hooks/generated/card_data_hooks.c`:
+After that, you call the runtime symbol in your card entry in `src_custom/generated/card_data_hooks.c`:
 
 ```c
 .description = gMilusRadiantDescriptionData,
@@ -56,11 +56,11 @@ After that, you call the runtime symbol in your card entry in `src/hooks/generat
 Files you normally edit:
 
 - `tools/card_data_manifest.json`
-- `src/hooks/card_data_hooks.c`
+- `src_custom/card_data_hooks.c`
 
 Files you normally do not edit by hand:
 
-- `src/hooks/card_description_data_generated.inc`
+- `src_custom/card_description_data_generated.inc`
 
 How conversion works:
 
@@ -112,7 +112,7 @@ Practical advice for newcomers:
 
 Build behavior:
 
-- `Makefile` declares `src/hooks/card_description_data_generated.inc` as a generated dependency.
+- `Makefile` declares `src_custom/card_description_data_generated.inc` as a generated dependency.
 - `make` runs `python3 tools/add_card_art.py` before compiling the generated card hooks.
 - Editing `tools/card_data_manifest.json` is therefore enough to trigger regeneration on the next build.
 
@@ -121,11 +121,11 @@ Build behavior:
 | Feature | Location | Description |
 |--------|----------|-------------|
 | Editable source strings | `tools/card_data_manifest.json` | Holds the human-readable source strings per custom description |
-| Generated runtime data | `src/hooks/card_description_data_generated.inc` | Auto-generated raw byte data used by the game at runtime |
+| Generated runtime data | `src_custom/card_description_data_generated.inc` | Auto-generated raw byte data used by the game at runtime |
 | Generator script | `tools/add_card_art.py` | Wraps source strings to the current row model and emits `<Symbol>Data` byte arrays |
 | Build trigger | `Makefile` | Regenerates the include before compiling the generated card hooks |
-| Runtime lookup | `GetCardDescription_Hook` in `src/hooks/card_hooks.c` | Uses custom description data when present and falls back to vanilla otherwise |
-| Card data wiring | `gCardData_NEW` in `src/hooks/card_data_hooks.c` | Connects a card entry to its custom description runtime symbol |
+| Runtime lookup | `GetCardDescription_Hook` in `src_custom/card_hooks.c` | Uses custom description data when present and falls back to vanilla otherwise |
+| Card data wiring | `gCardData_NEW` in `src_custom/card_data_hooks.c` | Connects a card entry to its custom description runtime symbol |
 | In-game card detail renderer | `sub_800BCB0` and surrounding card-detail flow in `src/card.c` | Displays the description data on the card details screen |
 
 ## TODO

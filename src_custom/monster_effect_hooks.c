@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 #include "constants/monster_effects.h"
 
 extern void (*const gMonEffects[])(void);
@@ -146,8 +147,15 @@ void MonsterActionMenu__Replacement(void) {
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       if (!gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp) {
-        SetCardInfo(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+        SetCardInfo(gMonEffect.id);
+        if (gMonEffect.id == MASK_OF_DARKNESS
+            || gMonEffect.id == NEEDLE_BALL
+            || gMonEffect.id == NEEDLE_WORM) {
+          PlayMusic(SFX_FORBIDDEN);
+          UpdateDuelGfxExceptField();
+          break;
+        }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
         if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != NEEDLE_WORM) || !CanActivateMonsterEffect()) {

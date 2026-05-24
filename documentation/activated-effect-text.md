@@ -29,10 +29,10 @@ tools/card_data_manifest.json
     pages[]
 tools/add_card_art.py
   render_activation_description_inc()
-  update_file(.../src/hooks/generated/card_activation_text_generated.inc)
-src/hooks/generated/card_activation_text_generated.inc
+  update_file(.../src_custom/generated/card_activation_text_generated.inc)
+src_custom/generated/card_activation_text_generated.inc
   const u8 gActivationDescription_<Card>[] APPEND_TEXT = {...}
-src/hooks/effect_text_hooks.c
+src_custom/effect_text_hooks.c
   #include "generated/card_activation_text_generated.inc"
   ShowCardOfSanctityText()
 ```
@@ -41,8 +41,8 @@ How the data flows:
 
 1. Add or edit a card's `activation_description` block in `tools/card_data_manifest.json`.
 2. `tools/add_card_art.py` reads the `pages` array and wraps it into duel-text bytes with `#1` waits between pages.
-3. The generator writes `src/hooks/generated/card_activation_text_generated.inc`.
-4. `src/hooks/effect_text_hooks.c` includes the generated file and passes the bytes to the effect-text renderer.
+3. The generator writes `src_custom/generated/card_activation_text_generated.inc`.
+4. `src_custom/effect_text_hooks.c` includes the generated file and passes the bytes to the effect-text renderer.
 
 Current shape of the manifest entry:
 
@@ -59,10 +59,10 @@ The current in-repo example is `Card Of Sanctity`.
 |--------|----------|-------------|
 | Activation-text source data | `activation_description` entries in `tools/card_data_manifest.json` | Human-readable source strings for activation messages |
 | Activation-text generator | `render_activation_description_inc` in `tools/add_card_art.py` | Converts manifest pages into packed runtime text bytes |
-| Generated activation include | `src/hooks/generated/card_activation_text_generated.inc` | Build output that defines `gActivationDescription_*` arrays |
-| Runtime include site | `#include "generated/card_activation_text_generated.inc"` in `src/hooks/effect_text_hooks.c` | Makes the generated activation text available to the hook code |
-| Activation-text playback | `ShowCardOfSanctityText` in `src/hooks/effect_text_hooks.c` | Plays the current custom activation textbox |
-| Effect-text dispatch | `sub_801CF08__Replacement` in `src/hooks/effect_text_hooks.c` | Routes the Card of Sanctity special-case flow to the activation text path |
+| Generated activation include | `src_custom/generated/card_activation_text_generated.inc` | Build output that defines `gActivationDescription_*` arrays |
+| Runtime include site | `#include "generated/card_activation_text_generated.inc"` in `src_custom/effect_text_hooks.c` | Makes the generated activation text available to the hook code |
+| Activation-text playback | `ShowCardOfSanctityText` in `src_custom/effect_text_hooks.c` | Plays the current custom activation textbox |
+| Effect-text dispatch | `sub_801CF08__Replacement` in `src_custom/effect_text_hooks.c` | Routes the Card of Sanctity special-case flow to the activation text path |
 
 ## TODO
 

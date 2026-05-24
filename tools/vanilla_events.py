@@ -1744,12 +1744,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
     compile_cmd = subparsers.add_parser("compile", help="compile enabled YAML replacements")
     compile_cmd.add_argument("input")
-    compile_cmd.add_argument("--out", default="src/hooks/generated/event_script_replacements.inc")
+    compile_cmd.add_argument("--out", default="src_custom/generated/event_script_replacements.inc")
     compile_cmd.set_defaults(func=cmd_compile)
 
     compile_c = subparsers.add_parser("compile-c", help="compile event C macro replacement files")
     compile_c.add_argument("inputs", nargs="*")
-    compile_c.add_argument("--out", default="src/hooks/generated/event_script_replacements.inc")
+    compile_c.add_argument("--out", default="src_custom/generated/event_script_replacements.inc")
     compile_c.set_defaults(func=cmd_compile_c)
 
     test_c = subparsers.add_parser("test-c", help="validate event C macro files")

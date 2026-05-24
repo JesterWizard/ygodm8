@@ -31,16 +31,16 @@ extern u8 g2021B50[]; //TODO: fix type?
 extern u8 g2021B10[]; //TODO: fix type?
 extern u8 g2021B90[]; //TODO: fix type?
 
-extern const unsigned char *gCardArts_Hook[];
-extern const unsigned short *gCardArtPalettes_Hook[];
+extern const unsigned char *gCardArts[];
+extern const unsigned short *gCardArtPalettes[];
 
 
 static void CopyCardArtDataToBuffers (void) {
   u8 i;
   u8 ok = 0x48;
-  sub_800E08C((void *)gCardArts_Hook[gCardInfo.id], gUnk_8E01364 + 32);
+  sub_800E08C((void *)gCardArts[gCardInfo.id], gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64); //clear first tile
-  CpuCopy32(gCardArtPalettes_Hook[gCardInfo.id], gUnk_8E01368, 128);
+  CpuCopy32(gCardArtPalettes[gCardInfo.id], gUnk_8E01368, 128);
   *gUnk_8E01368 = 0;
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + ok + i * 4), 20);

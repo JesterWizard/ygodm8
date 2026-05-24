@@ -66,7 +66,7 @@ python3 tools/vanilla_events.py export-c events/vanilla/vanilla_events.yaml --ou
 3. Edit the matching C macro file under `events/scripts/`.
 4. Run `make event-compile`.
 
-The compiler writes `src/hooks/generated/event_script_replacements.inc` from the C macro files.
+The compiler writes `src_custom/generated/event_script_replacements.inc` from the C macro files.
 
 After editing C macro files, rebuild the event replacements and ROM:
 
@@ -81,3 +81,7 @@ make event-validate
 ```
 
 `make event-validate` checks extracted vanilla `raw_bytes` against `baserom.gba`. Use it before edits, or on a fresh extraction. It is expected to fail after you intentionally change `raw_bytes`.
+
+If you only want vanilla overworld behavior at runtime, set
+`disable_custom_events = TRUE` in `configs/runtime.c`. That bypasses the
+custom event resolver without touching the event files themselves.

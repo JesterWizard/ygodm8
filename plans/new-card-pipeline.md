@@ -40,12 +40,12 @@ The manifest defines card order. That order becomes the card ID order.
 
 1. Make the manifest the only accepted source for new card additions.
 2. Regenerate `include/constants/card_ids.h` from the manifest with sequential values starting at `0x0000`.
-3. Regenerate the generated include files in `src/hooks/generated` from the same manifest:
+3. Regenerate the generated include files in `src_custom/generated` from the same manifest:
    - `card_data_generated.inc`
    - `card_name_generated.inc`
    - `card_art_generated.inc`
    - any related generated lookup data
-4. Replace fixed trunk limits in `src/hooks/trunk_hooks.c` with a dynamic card-count source derived from the generated arrays.
+4. Replace fixed trunk limits in `src_custom/trunk_hooks.c` with a dynamic card-count source derived from the generated arrays.
 5. Update trunk list rendering so every manifest card appears with mini art.
 6. Update the card details view so every manifest card resolves the big art correctly.
 7. Add validation so missing assets, duplicate card constants, or ID mismatches fail during generation instead of at runtime.
@@ -70,12 +70,12 @@ Existing data must not be disrupted. The migration should keep the current 800-c
 |---|---|---|
 | Manifest source | `tools/card_data_manifest.json` | Authoritative list of cards and metadata |
 | Card IDs | `include/constants/card_ids.h` | Regenerated sequential ID definitions |
-| Card data generation | `src/hooks/generated/card_data_generated.inc` | Regenerated card stat records |
-| Card name generation | `src/hooks/generated/card_name_generated.inc` | Regenerated card name lookup |
-| Card art generation | `src/hooks/generated/card_art_generated.inc` | Regenerated art lookup tables |
-| Trunk logic | `src/hooks/trunk_hooks.c` | Trunk count, cursor wrap, and sorting behavior |
-| Card data runtime | `src/hooks/generated/card_data_hooks.c` | Runtime hook entry for generated card data |
-| Card assets | `src/hooks/assets/cards/` | Mini and big art PNG sources |
+| Card data generation | `src_custom/generated/card_data_generated.inc` | Regenerated card stat records |
+| Card name generation | `src_custom/generated/card_name_generated.inc` | Regenerated card name lookup |
+| Card art generation | `src_custom/generated/card_art_generated.inc` | Regenerated art lookup tables |
+| Trunk logic | `src_custom/trunk_hooks.c` | Trunk count, cursor wrap, and sorting behavior |
+| Card data runtime | `src_custom/generated/card_data_hooks.c` | Runtime hook entry for generated card data |
+| Card assets | `src_custom/assets/cards/` | Mini and big art PNG sources |
 
 ## TODO
 

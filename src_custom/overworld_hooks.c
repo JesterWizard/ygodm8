@@ -2,7 +2,7 @@
 #include "configs/runtime.h"
 #include "thought_bubble.h"
 
-#include "src/hooks/thought_bubble_table.inc"
+#include "src_custom/thought_bubble_table.inc"
 
 extern struct OamData gOamBuffer[];
 extern u16 gNewButtons;

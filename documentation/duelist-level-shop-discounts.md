@@ -57,6 +57,6 @@ Implementation notes:
 | Feature | Location | Description |
 |--------|----------|-------------|
 | Runtime toggle definition | `gRuntimeConfig.discount_shop_costs_by_duelist_level` in `configs/runtime.h` and `configs/runtime.c` | Controls whether the level-based shop discount is active |
-| Shop discount logic | `ApplyDuelistLevelShopDiscount` in `src/hooks/card_hooks.c` | Computes the level bucket and reduces `gShopSelectedCard.buyPrice` |
-| Shop price hook | `ScalePriceToQty__Replacement` in `src/hooks/card_hooks.c` | Runs the existing shop price calculation, then applies the optional discount |
-| Shop hook wiring | `src/hooks/LynJump.event` | Redirects the vanilla `ScalePriceToQty` entry to the replacement |
+| Shop discount logic | `ApplyDuelistLevelShopDiscount` in `src_custom/card_hooks.c` | Computes the level bucket and reduces `gShopSelectedCard.buyPrice` |
+| Shop price hook | `ScalePriceToQty__Replacement` in `src_custom/card_hooks.c` | Runs the existing shop price calculation, then applies the optional discount |
+| Shop hook wiring | `src_custom/LynJump.event` | Redirects the vanilla `ScalePriceToQty` entry to the replacement |

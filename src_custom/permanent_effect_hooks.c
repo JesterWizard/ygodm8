@@ -61,7 +61,9 @@ static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
 }
 
 static void TryActivatingPermanentEffect__Hook(void) {
-  const PermanentEffectOverride *override = GetPermanentEffectOverride(gActiveEffect.cardId);
+  const PermanentEffectOverride *override;
+
+  override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (override != NULL) {
     override->activate();
@@ -75,7 +77,9 @@ static void TryActivatingPermanentEffect__Hook(void) {
 }
 
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
-  const PermanentEffectOverride *override = GetPermanentEffectOverride(gActiveEffect.cardId);
+  const PermanentEffectOverride *override;
+
+  override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (gActiveEffect.cardId == JAM_BREEDING_MACHINE)
     return FALSE;

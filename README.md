@@ -138,3 +138,4 @@ Install an ARM embedded GCC toolchain and make sure the `arm-none-eabi` binaries
 - Build artifacts or tools compiled outside WSL may not work correctly inside WSL.
 - If you switch environments, rebuild `agbcc` from within that environment.
 - Manual `agbcc` installation is expected for older decompilation-style repositories like this one.
+- See [CUSTOM_CONTENT.md](CUSTOM_CONTENT.md) for the custom folders and files in this repo.

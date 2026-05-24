@@ -1,0 +1,41 @@
+# Card Effect Hook Tally
+
+Running count of card-specific effects added in `src_custom` for existing cards.
+
+## Total
+
+- `25` effects
+
+## Tally
+
+| Category | Card | Hook file |
+|--------|------|-----------|
+| `spell_effects` | `Sparks` | `src_custom/spell_effects/sparks.c` |
+| `spell_effects` | `Hinotama` | `src_custom/spell_effects/hinotama.c` |
+| `spell_effects` | `Final Flame` | `src_custom/spell_effects/final_flame.c` |
+| `spell_effects` | `Ookazi` | `src_custom/spell_effects/ookazi.c` |
+| `spell_effects` | `Jam Breeding Machine` | `src_custom/spell_effects/jam_breeding_machine.c` |
+| `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
+| `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
+| `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |
+| `activated_effects` | `Cyber Stein` | `src_custom/activated_effects/cyber_stein.c` |
+| `activated_effects` | `Needle Ball` | `src_custom/activated_effects/needle_ball.c` |
+| `activated_effects` | `Needle Worm` | `src_custom/activated_effects/needle_worm.c` |
+| `activated_effects` | `Goddess Of Whim` | `src_custom/activated_effects/goddess_of_whim.c` |
+| `activated_effects` | `Giant Germ` | `src_custom/activated_effects/giant_germ.c` |
+| `activated_effects` | `Nimble Momonga` | `src_custom/activated_effects/nimble_momonga.c` |
+| `activated_effects` | `Mask Of Darkness` | `src_custom/activated_effects/mask_of_darkness.c` |
+| `activated_effects` | `Princess Of Tsurugi` | `src_custom/activated_effects/princess_of_tsurugi.c` |
+| `activated_effects` | `Mysterious Puppeteer` | `src_custom/activated_effects/mysterious_puppeteer.c` |
+| `activated_effects` | `Penguin Soldier` | `src_custom/activated_effects/penguin_soldier.c` |
+| `activated_effects` | `Karate Man` | `src_custom/activated_effects/karate_man.c` |
+| `permanent_effects` | `Milus Radiant` | `src_custom/permanent_effects/milus_radiant.c` |
+| `permanent_effects` | `Muka Muka` | `src_custom/permanent_effects/muka_muka.c` |
+| `permanent_effects` | `Ceremonial Bell` | `src_custom/permanent_effects/ceremonial_bell.c` |
+| `permanent_effects` | `Kaiser Sea Horse` | `src_custom/permanent_effects/kaiser_sea_horse.c` |
+| `permanent_effects` | `Maha Vailo` | `src_custom/permanent_effects/maha_vailo.c` |
+
+## Notes
+
+- Count only includes effects implemented as standalone hook-side card logic.
+- Dispatch-only glue and generated includes are not counted.

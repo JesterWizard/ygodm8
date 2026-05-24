@@ -13,7 +13,7 @@ Expected files per card:
 - `*_mini.lz`
   - LZ77-compressed mini-card tile data
 
-Wire them in `src/hooks/card_asset_hooks.c`.
+Wire them in `src_custom/card_asset_hooks.c`.
 
 Use `tools/add_card_art.py` to generate the `INCBIN` declarations from matching
 files in `80x80` and `24x24`.

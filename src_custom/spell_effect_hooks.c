@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 
 extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfSanctity(void);

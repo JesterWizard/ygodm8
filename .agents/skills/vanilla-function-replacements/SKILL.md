@@ -1,14 +1,14 @@
 ---
 name: vanilla-function-replacements
-description: "Use when editing vanilla functions in this repo. Keep vanilla source files clean, put all replacement functions in `src/hooks/*_hooks.c`, and wire them through `src/hooks/LynJump.event` per `documentation/lynjump-replacements.md`."
+description: "Use when editing vanilla functions in this repo. Keep vanilla source files clean, put all replacement functions in `src_custom/*_hooks.c`, and wire them through `src_custom/LynJump.event` per `documentation/lynjump-replacements.md`."
 ---
 
 # Vanilla Function Replacements
 
-When a request involves changing a vanilla function in this repo, make the change in a hook-side replacement function under `src/hooks`.
+When a request involves changing a vanilla function in this repo, make the change in a hook-side replacement function under `src_custom`.
 
 The vanilla function should stay intact unless the user explicitly asks to change the original symbol itself.
-If the request is for card-specific effect logic, do not implement the effect body in vanilla source; use the card-effect hook placement skill and keep the behavior in `src/hooks/spell_effects`, `src/hooks/trap_effects`, `src/hooks/activated_effects`, or `src/hooks/permanent_effects`.
+If the request is for card-specific effect logic, do not implement the effect body in vanilla source; use the card-effect hook placement skill and keep the behavior in `src_custom/spell_effects`, `src_custom/trap_effects`, `src_custom/activated_effects`, or `src_custom/permanent_effects`.
 
 ## Use This Skill When
 
@@ -28,25 +28,25 @@ If the request is for card-specific effect logic, do not implement the effect bo
 For a vanilla function named `VanillaName`:
 
 1. Leave `VanillaName` in place.
-2. Create a duplicate hook-side file in `src/hooks` named after the source file with `_hooks` appended, for example `src/hooks/overworld_hooks.c`.
+2. Create a duplicate hook-side file in `src_custom` named after the source file with `_hooks` appended, for example `src_custom/overworld_hooks.c`.
 3. Add `LYN_REPLACE_CHECK(VanillaName);` above the replacement in that hook-side file.
 4. Create `void VanillaName__Replacement(...)` with the intended new behavior.
-5. Add or update `src/hooks/LynJump.event`.
-6. Patch the vanilla ROM entry in `src/hooks/LynJump.event` and `POIN VanillaName__Replacement`.
+5. Add or update `src_custom/LynJump.event`.
+6. Patch the vanilla ROM entry in `src_custom/LynJump.event` and `POIN VanillaName__Replacement`.
 
 ## Authoring Workflow
 
 1. Find the target vanilla function and identify its source file.
-2. Look for the corresponding hook-side file in `src/hooks` named `<source>_hooks.c`.
+2. Look for the corresponding hook-side file in `src_custom` named `<source>_hooks.c`.
 3. Edit the replacement there if it already exists.
 4. If it does not exist, create the hook-side file and copy only the logic needed for `VanillaName__Replacement`.
 5. Add `LYN_REPLACE_CHECK(VanillaName);` if missing.
-6. Add or update the entry in `src/hooks/LynJump.event` so the vanilla entrypoint jumps to the replacement symbol.
+6. Add or update the entry in `src_custom/LynJump.event` so the vanilla entrypoint jumps to the replacement symbol.
 7. Validate the build contract when feasible.
 
 ## Event File Rules
 
-- Use `src/hooks/LynJump.event` for hook entries.
+- Use `src_custom/LynJump.event` for hook entries.
 - Use the existing narrow syntax used by this repo:
   - `PUSH`
   - `ORG $...`

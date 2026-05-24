@@ -54,13 +54,13 @@ Implementation notes:
 
 | Feature | Location | Description |
 |--------|----------|-------------|
-| Card cost lookup override | `SetCardInfo__Replacement` in `src/hooks/card_hooks.c` | Replaces the vanilla cost read with the randomized table when the config toggle is on |
-| Cost table build | `InitializeRandomizedCardCosts` in `src/hooks/card_hooks.c` | Fills the IWRAM cost table from the persistent seed |
-| Persistent seed read/write | `ReadStoredCostSeed`, `WriteStoredCostSeed`, `ReadStoredCostSeedFromFlash`, `WriteStoredCostSeedToFlash` in `src/hooks/card_hooks.c` | Handles the seed record and the persisted mirror |
-| Live entropy mixing | `LfsrNextByte__Replacement` in `src/hooks/card_hooks.c` | Keeps the runtime entropy value changing while menus are active |
-| Save restore hook | `sub_803519C__Replacement` in `src/hooks/card_hooks.c` | Restores save state, then rebuilds the randomized cost table |
-| New-game hook | `sub_800AF68__Replacement` in `src/hooks/new_game_randomizer_hooks.c` | Ensures a fresh new-game start also rebuilds the table |
-| Hook jump wiring | `src/hooks/LynJump.event` | Redirects the vanilla entry points into the replacement functions |
+| Card cost lookup override | `SetCardInfo__Replacement` in `src_custom/card_hooks.c` | Replaces the vanilla cost read with the randomized table when the config toggle is on |
+| Cost table build | `InitializeRandomizedCardCosts` in `src_custom/card_hooks.c` | Fills the IWRAM cost table from the persistent seed |
+| Persistent seed read/write | `ReadStoredCostSeed`, `WriteStoredCostSeed`, `ReadStoredCostSeedFromFlash`, `WriteStoredCostSeedToFlash` in `src_custom/card_hooks.c` | Handles the seed record and the persisted mirror |
+| Live entropy mixing | `LfsrNextByte__Replacement` in `src_custom/card_hooks.c` | Keeps the runtime entropy value changing while menus are active |
+| Save restore hook | `sub_803519C__Replacement` in `src_custom/card_hooks.c` | Restores save state, then rebuilds the randomized cost table |
+| New-game hook | `sub_800AF68__Replacement` in `src_custom/new_game_randomizer_hooks.c` | Ensures a fresh new-game start also rebuilds the table |
+| Hook jump wiring | `src_custom/LynJump.event` | Redirects the vanilla entry points into the replacement functions |
 | Runtime config toggle | `gRuntimeConfig.randomize_card_costs_at_start` in `configs/runtime.h` and `configs/runtime.c` | Enables or disables the feature |
 
 ## TODO
