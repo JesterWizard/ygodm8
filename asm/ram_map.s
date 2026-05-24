@@ -56,6 +56,9 @@ SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
     SET_DATA \name, UsedFreeEwramSpaceTop
 .endm
 
+@ Persistent randomized-cost seed record lives in the save slot buffer.
+_kernel_malloc_ewram sStoredCostSeedRecord, 0x8
+
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------
@@ -64,15 +67,26 @@ SET_DATA FreeFlashSpaceTop,    0x0E000000
 SET_DATA FreeFlashSpaceBottom, 0x0E008000
 SET_DATA UsedFreeFlashSpaceTop, FreeFlashSpaceBottom
 
-.macro _kernel_malloc_flash name, size
+.macro _kernel_malloc_flash_free name, size
     .set UsedFreeFlashSpaceTop, UsedFreeFlashSpaceTop - \size
     SET_DATA \name, UsedFreeFlashSpaceTop
+.endm
+
+.macro _kernel_malloc_flash name, size
+    SET_ARRAY \name\()FlashPrimary, CustomCardQtyFlashPrimaryCursor, \size
+    .set CustomCardQtyFlashPrimaryCursor, CustomCardQtyFlashPrimaryCursor + \size
+    SET_ARRAY \name\()FlashBackup, CustomCardQtyFlashBackupCursor, \size
+    .set CustomCardQtyFlashBackupCursor, CustomCardQtyFlashBackupCursor + \size
 .endm
 
 @ Save-sector addresses used by the persistent cost seed.
 SET_ARRAY gSaveFlashPrimaryBase, 0x0E000000, 0x1
 SET_DATA gCostSeedFlashPrimary, 0x0E000787
 SET_DATA gCostSeedFlashBackup,  0x0E004767
+
+@ Save slots stored in flash.
+SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
+SET_ARRAY gSaveSlotBackup,   0x0E004020, 0x747
 
 @ Custom card count storage mirrored in free flash space.
 SET_DATA gCustomCardQtyFlashPrimaryStart, 0x0E000788
@@ -81,20 +95,6 @@ SET_DATA gCustomCardQtyFlashBackupStart,  0x0E004768
 .set CustomCardQtyFlashPrimaryCursor, gCustomCardQtyFlashPrimaryStart
 .set CustomCardQtyFlashBackupCursor,  gCustomCardQtyFlashBackupStart
 
-.macro SET_CUSTOM_CARD_QTY_FLASH name, size
-    SET_ARRAY \name\()FlashPrimary, CustomCardQtyFlashPrimaryCursor, \size
-    .set CustomCardQtyFlashPrimaryCursor, CustomCardQtyFlashPrimaryCursor + \size
-    SET_ARRAY \name\()FlashBackup, CustomCardQtyFlashBackupCursor, \size
-    .set CustomCardQtyFlashBackupCursor, CustomCardQtyFlashBackupCursor + \size
-.endm
-
-SET_CUSTOM_CARD_QTY_FLASH gCustomTrunkCardQty, 0x20
-SET_CUSTOM_CARD_QTY_FLASH gCustomShopCardQty, 0x20
-SET_CUSTOM_CARD_QTY_FLASH gCustomPlayerTempCardQty, 0x20
-
-@ Save slots stored in flash.
-SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
-SET_ARRAY gSaveSlotBackup,   0x0E004020, 0x747
-
-@ Persistent randomized-cost seed record lives in the save slot buffer.
-SET_ARRAY sStoredCostSeedRecord, 0x02020E06, 0x8
+_kernel_malloc_flash gCustomTrunkCardQty,      0x20 // Up to 32 custom cards at the moment can be saved
+_kernel_malloc_flash gCustomShopCardQty,       0x20
+_kernel_malloc_flash gCustomPlayerTempCardQty, 0x20
