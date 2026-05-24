@@ -15,6 +15,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 ASSET_ROOT = ROOT / "src_custom/assets/cards"
 BIG_DIR = ASSET_ROOT / "80x80"
 MINI_DIR = ASSET_ROOT / "24x24"
+MINI_PAL = ASSET_ROOT / "mini.pal"
 EXPORT_DIR = ASSET_ROOT / "export"
 BASE_ROM = ROOT / "baserom.gba"
 GENERATED_DIR = ROOT / "src_custom/generated"
@@ -54,6 +55,9 @@ ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
+MINI_ALIASES = {
+    "shield_and_sword": ["sword_and_shield"],
+}
 
 
 @dataclass
@@ -111,14 +115,102 @@ def load_gba_palette(path: pathlib.Path) -> list[tuple[int, int, int]]:
     return colors
 
 
+def load_jasc_palette(path: pathlib.Path) -> list[tuple[int, int, int]]:
+    lines = path.read_text().splitlines()
+    if len(lines) < 3 or lines[0].strip() != "JASC-PAL" or lines[1].strip() != "0100":
+        raise SystemExit(f"Invalid JASC palette file: {path}")
+    try:
+        count = int(lines[2].strip())
+    except ValueError as exc:
+        raise SystemExit(f"Invalid palette color count in {path}") from exc
+    if count < 1 or len(lines) < 3 + count:
+        raise SystemExit(f"Palette file does not contain {count} colors: {path}")
+
+    colors: list[tuple[int, int, int]] = []
+    for line in lines[3 : 3 + count]:
+        parts = line.split()
+        if len(parts) != 3:
+            raise SystemExit(f"Invalid palette line in {path}: {line}")
+        try:
+            r, g, b = (int(part) for part in parts)
+        except ValueError as exc:
+            raise SystemExit(f"Invalid palette color in {path}: {line}") from exc
+        colors.append((r, g, b))
+    return colors
+
+
+def color_distance_sq(left: tuple[int, int, int], right: tuple[int, int, int]) -> int:
+    return sum((l - r) * (l - r) for l, r in zip(left, right))
+
+
+def select_mini_palette(
+    big_palette: list[tuple[int, int, int]],
+    master_palette: list[tuple[int, int, int]],
+    count: int = 16,
+) -> list[tuple[int, int, int]]:
+    if not master_palette:
+        raise SystemExit(f"{MINI_PAL} does not contain any colors.")
+
+    source_palette = big_palette[:64] if len(big_palette) > 64 else big_palette
+    if not source_palette:
+        raise SystemExit("Mini palette selection needs at least one source color.")
+
+    target_count = min(count, len(master_palette))
+    selected_indices: list[int] = []
+    selected_set: set[int] = set()
+    best_distances = [None] * len(source_palette)
+
+    def score_candidate(index: int) -> int:
+        candidate = master_palette[index]
+        return sum(color_distance_sq(candidate, source) for source in source_palette)
+
+    def update_best_distances(index: int) -> None:
+        candidate = master_palette[index]
+        for source_index, source in enumerate(source_palette):
+            distance = color_distance_sq(candidate, source)
+            current = best_distances[source_index]
+            if current is None or distance < current:
+                best_distances[source_index] = distance
+
+    first_index = min(range(len(master_palette)), key=score_candidate)
+    selected_indices.append(first_index)
+    selected_set.add(first_index)
+    update_best_distances(first_index)
+
+    while len(selected_indices) < target_count:
+        best_index = None
+        best_score = None
+        for index in range(len(master_palette)):
+            if index in selected_set:
+                continue
+            candidate = master_palette[index]
+            score = 0
+            for source_index, source in enumerate(source_palette):
+                current = best_distances[source_index]
+                candidate_distance = color_distance_sq(candidate, source)
+                score += candidate_distance if current is None or candidate_distance < current else current
+            if best_score is None or score < best_score:
+                best_score = score
+                best_index = index
+
+        if best_index is None:
+            break
+
+        selected_indices.append(best_index)
+        selected_set.add(best_index)
+        update_best_distances(best_index)
+
+    return [master_palette[index] for index in selected_indices]
+
+
 def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_png: pathlib.Path) -> None:
     image = Image.open(big_png).convert("RGBA")
     image = image.resize((24, 24), Image.Resampling.LANCZOS).convert("RGBA")
 
-    palette = load_gba_palette(big_palette)
+    palette = select_mini_palette(load_gba_palette(big_palette), load_jasc_palette(MINI_PAL))
     pal_img = Image.new("P", (1, 1))
     palette_data = []
-    for r, g, b in palette[:16]:
+    for r, g, b in palette:
         palette_data.extend([r, g, b])
     palette_data.extend([0, 0, 0] * (256 - len(palette_data) // 3))
     pal_img.putpalette(palette_data)
@@ -861,10 +953,24 @@ def sync_mini_exports() -> list[pathlib.Path]:
     return exported
 
 
-def sync_missing_mini_assets(entries: list[CardArtEntry]) -> list[pathlib.Path]:
+def sync_mini_aliases() -> list[pathlib.Path]:
+    copied = []
+    for source_stem, alias_stems in MINI_ALIASES.items():
+        for suffix in (".png", ".4bpp", ".lz"):
+            source = MINI_DIR / f"{source_stem}{suffix}"
+            if not source.exists():
+                continue
+            for alias_stem in alias_stems:
+                alias = MINI_DIR / f"{alias_stem}{suffix}"
+                alias.write_bytes(source.read_bytes())
+                copied.append(alias)
+    return copied
+
+
+def sync_missing_mini_assets(entries: list[CardArtEntry], force: bool = False) -> list[pathlib.Path]:
     exported = []
     for entry in entries:
-        if entry.mini_art and entry.mini_art.exists():
+        if not force and entry.mini_art and entry.mini_art.exists():
             continue
         if not entry.big_art or not entry.big_pal:
             continue
@@ -1004,7 +1110,8 @@ def main() -> int:
 
     if args.generate_minis:
         entries = discover_entries(manifest)
-        generated_minis = sync_missing_mini_assets(entries)
+        generated_minis = sync_missing_mini_assets(entries, force=True)
+        generated_minis.extend(sync_mini_aliases())
         exported = sync_mini_exports()
         exported.extend(generated_minis)
         print(f"Generated {len(exported)} mini assets.")
@@ -1017,6 +1124,7 @@ def main() -> int:
 
     entries = discover_entries(manifest)
     generated_minis = sync_missing_mini_assets(entries)
+    generated_minis.extend(sync_mini_aliases())
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)
