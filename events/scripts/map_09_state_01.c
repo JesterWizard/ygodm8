@@ -25,7 +25,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E62160, map_09_state_01_08E62160, 0x08E6216C, 0x08E
   PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   TEXT
   (
-      "Now I put dis Monsta Card in\n"
+      "I put dis Monsta Card in\n"
       "here, like so...\n\n"
       "And voila!\n"
       "I'm good to go!\n\n"
