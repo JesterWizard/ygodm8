@@ -46,13 +46,11 @@ u8 LfsrNextByte(void);
 #define COST_SEED_MAGIC_2 'T'
 #define COST_SEED_MAGIC_3 '1'
 #define COST_SEED_RECORD_SIZE 8
-#define COST_SEED_FLASH_PRIMARY 0x0E000787
-#define COST_SEED_FLASH_BACKUP 0x0E004767
+#define COST_SEED_FLASH_PRIMARY ((int)&gCostSeedFlashPrimary)
+#define COST_SEED_FLASH_BACKUP ((int)&gCostSeedFlashBackup)
 
-static u16 *const sRandomizedCardCosts = (u16 *)0x03001678;
 extern u32 gCostEntropyState;
 static u32 *const sCostEntropyState = &gCostEntropyState;
-static u8 *const sStoredCostSeedRecord = (u8 *)0x02020E06;
 
 static u32 XorShift32(u32 seed) {
   seed ^= seed << 13;

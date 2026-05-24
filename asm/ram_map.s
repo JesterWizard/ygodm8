@@ -1,73 +1,82 @@
 .section .rodata
 
-@ RAM map for current shop / trunk / deck state.
-@ Addresses come from ldscript.ld and are kept here as a quick reference.
-@ End points are inclusive.
+@ Absolute memory symbols used by the custom code.
+@
+@ Use:
+@ - IWRAM for hot paths, tiny scratch buffers, and time-sensitive state.
+@ - EWRAM for larger runtime arrays and state that can tolerate slower access.
+@ - Flash/SRAM for persistent save data only.
+@
+@ The allocator helpers follow the FE8 C Skill System convention:
+@ `Top` = low address, `Bottom` = high address.
 
+.macro SET_DATA name, value
+    .global \name
+    .type \name, object
+    .set \name, \value
+.endm
 
-@ General Internal Memory
+.macro SET_ARRAY name, value, size
+    SET_DATA \name, \value
+    .global \name\()End
+    .type \name\()End, object
+    .set \name\()End, (\value + \size)
+.endm
 
-@  00000000-00003FFF   BIOS - System ROM         (16 KBytes)
-@  00004000-01FFFFFF   Not used
-@  02000000-0203FFFF   WRAM - On-board Work RAM  (256 KBytes) 2 Wait
-@  02040000-02FFFFFF   Not used
-@  03000000-03007FFF   WRAM - On-chip Work RAM   (32 KBytes)
-@  03008000-03FFFFFF   Not used
-@  04000000-040003FE   I/O Registers
-@  04000400-04FFFFFF   Not used
-
-@ --------------------------------------------------------------------
-@ Trunk / global menu state
-@ --------------------------------------------------------------------
-
-@ gRepeatedOrNewButtons : 0x02020DF4 - 0x02020DF5
-@ gPressedButtons       : 0x02020DF8 - 0x02020DF9
-@ gNewButtons           : 0x02020DFC - 0x02020DFD
-@ gRepeatedButtonsCounter: 0x02020E04 - 0x02020E05
-
-@ gTrunkMenu            : 0x02020E10 - 0x02021459
-@ gTotalCardQty         : 0x02021460 - 0x0202178F
-@ gTrunkCardQty         : 0x02021790 - 0x02021AB8
-@ gUnk2021AB4           : moved after custom-card tails
+.macro dat value, name
+    SET_DATA \name, \value
+.endm
 
 @ --------------------------------------------------------------------
-@ Shop state
+@ IWRAM free space
 @ --------------------------------------------------------------------
 
-@ gShopCardQty          : 0x02021DF0 - 0x0202211F
-@ gShopTempCardQty      : 0x02022120 - 0x0202244F
-@ sCardShop             : 0x02022450 - 0x02022B7F
-@ gPlayerTempCardQty    : 0x02022B80 - 0x02022EAF
+SET_DATA FreeRamSpaceTop,    0x03001678
+SET_DATA FreeRamSpaceBottom, 0x03007E00
+SET_DATA UsedFreeRamSpaceTop, FreeRamSpaceBottom
+
+.macro _kernel_malloc name, size
+    .set UsedFreeRamSpaceTop, UsedFreeRamSpaceTop - \size
+    SET_DATA \name, UsedFreeRamSpaceTop
+.endm
+
+@ Randomized card costs live in IWRAM for maximum speed.
+_kernel_malloc sRandomizedCardCosts, 0x652
 
 @ --------------------------------------------------------------------
-@ Deck state
+@ EWRAM free space
 @ --------------------------------------------------------------------
 
-@ gCardSortContext      : 0x02022EB0 - 0x02022EBB
-@ gDeckMenu             : 0x02021C30 - 0x02021C8B
+SET_DATA FreeEwramSpaceTop,    0x02025840
+SET_DATA FreeEwramSpaceBottom, 0x02040000
+SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
+
+.macro _kernel_malloc_ewram name, size
+    .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop - \size
+    SET_DATA \name, UsedFreeEwramSpaceTop
+.endm
 
 @ --------------------------------------------------------------------
-@ Notes
+@ Flash storage (SRAM)
 @ --------------------------------------------------------------------
 
-@ The deck menu block sits earlier in RAM than the shop block.
-@ That is intentional in the current linker layout.
+SET_DATA FreeFlashSpaceTop,    0x0E000000
+SET_DATA FreeFlashSpaceBottom, 0x0E008000
+SET_DATA UsedFreeFlashSpaceTop, FreeFlashSpaceBottom
 
-@ --------------------------------------------------------------------
-@ Free gaps in the current linker layout
-@ --------------------------------------------------------------------
+.macro _kernel_malloc_flash name, size
+    .set UsedFreeFlashSpaceTop, UsedFreeFlashSpaceTop - \size
+    SET_DATA \name, UsedFreeFlashSpaceTop
+.endm
 
-@ 0x02020E06 - 0x02020E0F : gap between input state and gTrunkMenu
-@ 0x02021AB8 - 0x02021C2F : gap between trunk quantities and gDeckMenu
-@ 0x02021C8C - 0x02021DEF : gap between gDeckMenu and gShopCardQty
-@ 0x02022EBD - 0x0203FFFF : remaining free EWRAM after card/shop/deck data
+@ Save-sector addresses used by the persistent cost seed.
+SET_ARRAY gSaveFlashPrimaryBase, 0x0E000000, 0x1
+SET_DATA gCostSeedFlashPrimary, 0x0E000787
+SET_DATA gCostSeedFlashBackup,  0x0E004767
 
-@ Custom-card tails are carved out of the free EWRAM block and grow with
-@ `NUM_CUSTOM_CARDS` from `tools/card_data_manifest.json`.
-@ 0x02022EBD - 0x02022EC4 : gCustomTrunkCardQty        (8 bytes)
-@ 0x02022EC5 - 0x02022ECC : gCustomShopCardQty         (8 bytes)
-@ 0x02022ECD - 0x02022ED4 : gCustomPlayerTempCardQty   (8 bytes)
-@ 0x02022ED8 - 0x02022EDB : gCostEntropyState          (4 bytes)
-@ 0x02022EDC - 0x02022EDF : gUnk2021AB4                (4 bytes)
+@ Save slots stored in flash.
+SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
+SET_ARRAY gSaveSlotBackup,   0x0E004020, 0x747
 
-@ Note: these are linker-layout gaps, not runtime-audited scratch RAM.
+@ Persistent randomized-cost seed record lives in the save slot buffer.
+SET_ARRAY sStoredCostSeedRecord, 0x02020E06, 0x8

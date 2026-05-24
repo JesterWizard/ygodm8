@@ -163,6 +163,13 @@ extern unsigned char gPlayerTempCardQty[]; // local player card qty list while s
 extern unsigned char gCustomTrunkCardQty[];
 extern unsigned char gCustomShopCardQty[];
 extern unsigned char gCustomPlayerTempCardQty[];
+extern unsigned short sRandomizedCardCosts[];
+extern unsigned char sStoredCostSeedRecord[];
+extern unsigned char gSaveFlashPrimaryBase[];
+extern unsigned char gCostSeedFlashPrimary;
+extern unsigned char gCostSeedFlashBackup;
+extern unsigned char gSaveSlotPrimary[];
+extern unsigned char gSaveSlotBackup[];
 extern unsigned short g80D0444[][801];
 extern const unsigned short gCardAtks[];
 extern const unsigned short gCardDefs[];
