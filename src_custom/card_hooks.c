@@ -186,8 +186,11 @@ void InitializeRandomizedCardCosts(void) {
   u32 i;
   u32 seed;
 
-  if (gRuntimeConfig.randomize_card_costs_at_start == FALSE)
+  if (gRuntimeConfig.randomize_card_costs_at_start != TRUE) {
+    for (i = 0; i < CARD_COST_TABLE_COUNT; i++)
+      sRandomizedCardCosts[i] = 0;
     return;
+  }
 
   sRandomizedCardCosts[CARD_NONE] = 0;
   seed = GetPersistentCostSeed();

@@ -24,6 +24,32 @@ static const signed short g8E0E3CC[] APPEND_RODATA = {
   [DIRECTION_RIGHT] = 0
 };
 
+static const u8 sRegularDuelLossBytes[] APPEND_TEXT = {0x23, 0x39, 0x00};
+static const u8 sRegularDuelLossEndBytes[] APPEND_TEXT = {0x5D};
+static const struct Script sRegularDuelLossEndScript APPEND_RODATA = {
+  (u8 *)sRegularDuelLossEndBytes,
+  (struct Script *)&sRegularDuelLossEndScript,
+  (struct Script *)&sRegularDuelLossEndScript
+};
+static const struct Script sRegularDuelLossScript APPEND_RODATA = {
+  (u8 *)sRegularDuelLossBytes,
+  (struct Script *)&sRegularDuelLossEndScript,
+  (struct Script *)&sRegularDuelLossEndScript
+};
+
+static void InitiateRegularDuelScript(struct Script *script) {
+  struct Script regularDuelScript = *script;
+  u8 stayOnMapAfterDefeat = gRuntimeConfig.return_home_after_defeat == FALSE;
+
+  if (stayOnMapAfterDefeat)
+    regularDuelScript.unk8 = (struct Script *)&sRegularDuelLossScript;
+
+  InitiateScript(&regularDuelScript);
+
+  if (stayOnMapAfterDefeat && gDuelData.winner == DUEL_WINNER_OPPONENT)
+    OverworldLoadGraphics();
+}
+
 static inline u8 sub_8052268_inline(int y, int x) {
   u8 temp = 0;
   if (y <= 0)
@@ -207,9 +233,9 @@ void TryDueling__Replacement(void) {
       gOverworld.map.id,
       EventSystem_ResolveScript(gOverworld.objects[objId].scriptR)
     );
-    InitiateScript(&cardShopDuelScript);
+    InitiateRegularDuelScript(&cardShopDuelScript);
   } else {
     CustomDecks_ClearPendingCardShopDuel();
-    InitiateScript((struct Script *)EventSystem_ResolveScript(gOverworld.objects[objId].scriptR));
+    InitiateRegularDuelScript((struct Script *)EventSystem_ResolveScript(gOverworld.objects[objId].scriptR));
   }
 }
