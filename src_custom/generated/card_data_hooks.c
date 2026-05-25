@@ -8088,6 +8088,7 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {7, 9, 5, 7, 5, 6, 2, 0},
+    .description = gDescription_InjectionFairyLily,
   },
   [0x022D] = {
     .atk = 1900,
@@ -10798,6 +10799,7 @@ const CardData gCardData_NEW[809] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {6, 4, 3, 0, 6, 2, 4, 8},
+    .description = gDescription_SkullMarkLadyBug,
   },
   [0x02FD] = {
     .atk = 1400,

@@ -41,6 +41,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivatePenguinSoldier();
     case MONSTER_EFFECT_KARATE_MAN:
       return CanActivateKarateMan();
+    case MONSTER_EFFECT_SKULL_MARK_LADY_BUG:
+      return CanActivateSkullMarkLadyBug();
     default:
       return TRUE;
   }
@@ -109,6 +111,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_KARATE_MAN) {
     ActivateKarateManEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_SKULL_MARK_LADY_BUG) {
+    ActivateSkullMarkLadyBugEffect();
     return;
   }
 

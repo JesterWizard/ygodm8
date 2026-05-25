@@ -13,6 +13,7 @@ void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
 unsigned short GetSelectedCardWithOffset(unsigned char);
 void AddCardToTrunk(unsigned short);
+void SyncCustomTrunkCardQtyMirror(u16);
 void sub_801EF30(unsigned char);
 void sub_801F4A0(unsigned char);
 void sub_801F5F0(void);
@@ -24,6 +25,11 @@ void sub_800800C(unsigned char, unsigned char, unsigned short, unsigned short);
 void CalculateCurrentDeckCost(void);
 void AddCardToDeck(unsigned short);
 unsigned char IsPlayerDeckFull(void);
+unsigned char GetPlayerDeckSize(void);
+void RemoveCardFromDeckAtIndex(unsigned char);
+void SubtractCostFromDeckCapacity(unsigned);
+void SetCardInfo(unsigned short);
+extern struct CardInfo gCardInfo;
 
 extern unsigned short gUnk_808D9B0[][30];
 extern unsigned char g8DF811C[];
@@ -110,13 +116,49 @@ static void MoveAllCardsToTrunk(void) {
   for (i = 0; i < 40; i++) {
     unsigned short cardId = gDeckMenu.cards[i];
 
-    if (cardId != CARD_NONE)
+    if (cardId != CARD_NONE) {
       AddCardToTrunk(cardId);
+      SyncCustomTrunkCardQtyMirror(cardId);
+    }
     gDeckMenu.cards[i] = CARD_NONE;
   }
   gDeckMenu.cardCount = 0;
   gDeckMenu.currentPos = 0;
   CalculateCurrentDeckCost();
+  PlayMusic(SFX_SELECT);
+}
+
+static void MoveSelectedCardToTrunk(void) {
+  unsigned short cardId = GetSelectedCardWithOffset(2);
+
+  if (!cardId) {
+    PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  SetCardInfo(cardId);
+  AddCardToTrunk(cardId);
+  SyncCustomTrunkCardQtyMirror(cardId);
+  RemoveCardFromDeckAtIndex(gDeckMenu.currentPos);
+
+  if (gDeckMenu.currentPos >= gDeckMenu.cardCount) {
+    unsigned char temp = gDeckMenu.currentPos - gDeckMenu.cardCount + 1;
+
+    if (gDeckMenu.currentPos) {
+      if (temp <= gDeckMenu.currentPos)
+        gDeckMenu.currentPos -= temp;
+      else
+        gDeckMenu.currentPos = 0;
+      PlayMusic(SFX_MOVE_CURSOR);
+    }
+    else if (GetPlayerDeckSize()) {
+      PlayMusic(SFX_FORBIDDEN);
+      while (gPressedButtons & DPAD_UP)
+        WaitForVBlank();
+    }
+  }
+
+  SubtractCostFromDeckCapacity(gCardInfo.cost);
   PlayMusic(SFX_SELECT);
 }
 
@@ -248,7 +290,7 @@ void A_Submenu_Main__Replacement(void) {
             LoadCharblock1();
             break;
           case 1:
-            RunPlayerDeckTask(7);
+            MoveSelectedCardToTrunk();
             sub_801EF30(3);
             sub_801F614();
             sub_801F4A0(6);

@@ -129,3 +129,5 @@ extern void ActivatePenguinSoldierEffect(void);
 extern unsigned char CanActivateKarateMan(void);
 extern void ActivateKarateManEffect(void);
 extern void DestroyKarateManAtEndOfTurn(void);
+extern unsigned char CanActivateSkullMarkLadyBug(void);
+extern void ActivateSkullMarkLadyBugEffect(void);

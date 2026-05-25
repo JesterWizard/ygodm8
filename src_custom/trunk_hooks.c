@@ -60,6 +60,11 @@ static u8 GetRuntimeDeckLimit(void) {
   return limit;
 }
 
+void SyncCustomTrunkCardQtyMirror(u16 cardId) {
+  if (cardId >= CUSTOM_CARD_START && cardId < CUSTOM_CARD_START + NUM_CUSTOM_CARDS)
+    gCustomTrunkCardQty[cardId - CUSTOM_CARD_START] = gTrunkCardQty[cardId];
+}
+
 static void WrapTrunkCursorToList(void) {
   if (gTrunkMenu.currentPos >= GetTrunkCardCount())
     gTrunkMenu.currentPos -= GetTrunkCardCount();
@@ -195,6 +200,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
   }
   else {
     gTrunkCardQty[cardId]--;
+    SyncCustomTrunkCardQtyMirror(cardId);
     AddCardToDeck(cardId);
     PlayMusic(SFX_SELECT);
   }

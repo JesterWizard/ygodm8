@@ -8628,7 +8628,20 @@
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Injection Fairy Lily",
-      "password": [ 7, 9, 5, 7, 5, 6, 2, 0 ]
+      "password": [ 7, 9, 5, 7, 5, 6, 2, 0 ],
+      "description": {
+        "symbol": "gDescription_InjectionFairyLily",
+        "pages": [
+          "A delicate fairy that bears a large syringe as her weapon.",
+          "For 3000LP she can be boosted 4 stages."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_InjectionFairyLily",
+        "pages": [
+          "For 3000LP she will be boosted 4 stages."
+        ]
+      }
     },
     {
       "card_const": "JACKS_KNIGHT",
@@ -11804,7 +11817,20 @@
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Skull Mark Lady Bug",
-      "password": [ 6, 4, 3, 0, 6, 2, 4, 8 ]
+      "password": [ 6, 4, 3, 0, 6, 2, 4, 8 ],
+      "description": {
+        "symbol": "gDescription_SkullMarkLadyBug",
+        "pages": [
+          "A ladybug that has a skull and crossbones on its back.",
+          "In return for its own demise it can restore 3000LP."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SkullMarkLadyBug",
+        "pages": [
+          "In return for its own demise it will restore 3000LP to its owner."
+        ]
+      }
     },
     {
       "card_const": "TINY_GUARDIAN",
@@ -12417,7 +12443,7 @@
       "description": {
         "symbol": "gDescription_MagiciansValkyria",
         "pages": [
-          "A prodigious spellcaster with a heart of gold.",
+          "A prodigious spellcaster of vast talent with a heart of gold.",
           "Whilst on the board, enemy monsters may only attack her."
         ]
       },
