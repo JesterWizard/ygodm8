@@ -43,8 +43,6 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
   const unsigned char *miniArt = GetMiniArtForCard(cardId);
 
   SetCardInfo(cardId);
-  if (cardId >= CUSTOM_CARD_START)
-    miniArt = g8E17F70[CARD_NONE];
 
   LZ77UnCompWram(miniArt, gSharedMem);
   copyShopCardBorderTiles(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);

@@ -59,6 +59,9 @@ SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
 @ Persistent randomized-cost seed record lives in the save slot buffer.
 _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 
+@ Expanded card-shop sorted list, padded to full 7-card rows for up to 32 custom cards.
+_kernel_malloc_ewram gCustomShopCardList, 0x684
+
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------
