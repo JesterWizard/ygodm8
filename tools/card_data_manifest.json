@@ -12392,6 +12392,12 @@
       },
       "card_name": "Deck Destruction Virus",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_DeckDestructionVirus",
+        "pages": [
+          "It will remove 5 cards from the opponent's deck."
+        ]
+      },
       "big_art": "src_custom/assets/cards/80x80/deck_destruction_virus.huff",
       "big_palette": "src_custom/assets/cards/80x80/deck_destruction_virus.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/deck_destruction_virus.lz"
