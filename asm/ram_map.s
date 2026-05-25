@@ -1,5 +1,7 @@
 .section .rodata
 
+.include "generated/card_memory_sizes.inc"
+
 @ Absolute memory symbols used by the custom code.
 @
 @ Use:
@@ -56,11 +58,16 @@ SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
     SET_DATA \name, UsedFreeEwramSpaceTop
 .endm
 
+.macro _kernel_malloc_ewram_array name, size
+    .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop - \size
+    SET_ARRAY \name, UsedFreeEwramSpaceTop, \size
+.endm
+
 @ Persistent randomized-cost seed record lives in the save slot buffer.
 _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 
-@ Expanded card-shop sorted list, padded to full 7-card rows for up to 32 custom cards.
-_kernel_malloc_ewram gCustomShopCardList, 0x684
+@ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
+_kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
@@ -98,6 +105,6 @@ SET_DATA gCustomCardQtyFlashBackupStart,  0x0E004768
 .set CustomCardQtyFlashPrimaryCursor, gCustomCardQtyFlashPrimaryStart
 .set CustomCardQtyFlashBackupCursor,  gCustomCardQtyFlashBackupStart
 
-_kernel_malloc_flash gCustomTrunkCardQty,      0x20 // Up to 32 custom cards at the moment can be saved
-_kernel_malloc_flash gCustomShopCardQty,       0x20
-_kernel_malloc_flash gCustomPlayerTempCardQty, 0x20
+_kernel_malloc_flash gCustomTrunkCardQty,      CUSTOM_CARD_QTY_BYTES
+_kernel_malloc_flash gCustomShopCardQty,       CUSTOM_CARD_QTY_BYTES
+_kernel_malloc_flash gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES

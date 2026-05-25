@@ -4,6 +4,7 @@ CPP := $(CC) -E
 OBJCOPY := $(PREFIX)objcopy
 AS := $(PREFIX)as
 LD := $(PREFIX)ld
+NM := $(PREFIX)nm
 
 
 ifeq ($(OS),Windows_NT)
@@ -79,7 +80,7 @@ CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
 CARD_IDS_GENERATED := include/constants/card_ids.h
-CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld
+CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld generated/card_memory_sizes.inc
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
 CARD_TRUNK_GENERATED := src_custom/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src_custom/generated/card_data_hooks.c
@@ -239,6 +240,8 @@ $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
 
+$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
+
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	@echo "AS      $<"
 	$(AS) $(ASFLAGS) $< -o $@
@@ -250,6 +253,9 @@ $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
 validate-lynjump:
 	python3 tools/validate_lynjump.py
 
+memory-report: $(ELF)
+	python3 tools/memory_report.py $(ELF) --nm $(NM)
+
 clean: clean-tools clean-graphics
 	rm -f $(ROM) $(UPS) $(ELF) $(MAP)
 	rm -r $(BUILD_DIR)/
@@ -257,4 +263,4 @@ clean: clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: graphics-rules tools-rules validate-lynjump
+.PHONY: graphics-rules tools-rules validate-lynjump memory-report
