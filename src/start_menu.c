@@ -80,7 +80,9 @@ static void StartMenuMain (void) {
         if (gNewButtons & A_BUTTON) {
           PlayMusic(SFX_SELECT);
           TrunkMenuMain();
-          LoadStartMenuGraphics();
+          // The trunk detail view mutates shared menu state beyond the base tilemap.
+          // Reinitialize the start-menu context so status re-entry is always clean.
+          InitStartMenuData();
         }
         break;
       case 2:
