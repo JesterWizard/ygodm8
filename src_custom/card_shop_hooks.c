@@ -56,11 +56,6 @@ void SortCardsAccordingToContext(void);
 void sub_802FF78(u8 *, u16);
 void sub_802FFF0(u8 *, u16);
 
-static void ClearShopStatTiles(u8 *dest) {
-  CpuFill16(0, dest, 0x40);
-  CpuFill16(0, dest + 0x40, 0x40);
-}
-
 static u16 GetShopCustomCardCount(void) {
   return gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0;
 }
@@ -276,10 +271,8 @@ LYN_REPLACE_CHECK(sub_802FF78);
 void sub_802FF78__Replacement(u8 *dest, u16 cardId) {
   SetCardInfo(cardId);
   dest += 0x200;
-  if (gCardInfo.atk == 0xFFFF) {
-    ClearShopStatTiles(dest);
+  if (gCardInfo.atk == 0xFFFF)
     return;
-  }
 
   if (gCardInfo.atk / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
@@ -294,10 +287,8 @@ LYN_REPLACE_CHECK(sub_802FFF0);
 void sub_802FFF0__Replacement(u8 *dest, u16 cardId) {
   SetCardInfo(cardId);
   dest += 0x280;
-  if (gCardInfo.def == 0xFFFF) {
-    ClearShopStatTiles(dest);
+  if (gCardInfo.def == 0xFFFF)
     return;
-  }
 
   if (gCardInfo.def / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
