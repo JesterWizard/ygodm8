@@ -13,6 +13,7 @@ extern struct UnkStruct_2021AB4 gUnk2021AB4;
 unsigned char GetDeckCardQty(unsigned short);
 void SetCardInfo(unsigned short id);
 void TrunkMenuDefaultSort(void);
+void ApplyNewSortMode(unsigned char);
 unsigned short GetNthCardOnScreen(unsigned char);
 void sub_800907C(void);
 void GoUpOnePosition(void);
@@ -106,10 +107,22 @@ void InitTrunkData__Replacement(void) {
 LYN_REPLACE_CHECK(TrunkMenuDefaultSort);
 void TrunkMenuDefaultSort__Replacement(void) {
   gCardSortContext.cards = gTrunkMenu.cards;
-  gCardSortContext.cardCount = NUM_TRUE_CARDS;
+  gCardSortContext.cardCount = gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE ? GetTrunkCardCount() : NUM_TRUE_CARDS;
   gCardSortContext.sortMode = gUnk_8DFA6A8[gTrunkMenu.sortMode];
   SortCardsAccordingToContext();
-  AppendCustomTrunkCard();
+  if (gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == FALSE)
+    AppendCustomTrunkCard();
+}
+
+LYN_REPLACE_CHECK(ApplyNewSortMode);
+void ApplyNewSortMode__Replacement(unsigned char val) {
+  gCardSortContext.cards = gTrunkMenu.cards;
+  gCardSortContext.cardCount = gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE ? GetTrunkCardCount() : NUM_TRUE_CARDS;
+  gCardSortContext.sortMode = gUnk_8DFA6A8[val];
+  SortCardsAccordingToContext();
+  if (gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == FALSE)
+    AppendCustomTrunkCard();
+  gTrunkMenu.currentPos = 0;
 }
 
 LYN_REPLACE_CHECK(GetNthCardOnScreen);

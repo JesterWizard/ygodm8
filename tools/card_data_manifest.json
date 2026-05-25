@@ -12494,8 +12494,8 @@
       "description": {
         "symbol": "gDescription_CardOfDemise",
         "pages": [
-          "Draw until you have 5 cards in your hand.",
-          "At the end of the turn, discard your hand."
+          "A gullotine that punishes greed. It forces a full card hand.",
+          "At the end of the turn, the player's hand must be discarded."
         ]
       },
       "card_name": "Card Of Demise",

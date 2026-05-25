@@ -137,7 +137,7 @@ static void BuildShopCardList(void) {
 
 static void SortShopCardList(u8 sortOption, const u8 *sortModes) {
   gCardSortContext.cards = gCustomShopCardList + 1;
-  gCardSortContext.cardCount = NUM_TRUE_CARDS;
+  gCardSortContext.cardCount = gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE ? GetShopCardCount() : NUM_TRUE_CARDS;
   gCardSortContext.sortMode = sortModes[sortOption];
   SortCardsAccordingToContext();
   sCardShop.unk724 = 4;
