@@ -22,6 +22,40 @@ void TryActivatingPermanentEffects(void);
 void UpdateFilteredInput_WithRepeat(void);
 void DeclareLoser(unsigned char);
 void DestroyKarateManAtEndOfTurn(void);
+void DecrementSorlTurns(unsigned char);
+
+static struct DuelCard *GetSorlZoneForBlockedDuelist(u8 blockedDuelist)
+{
+  u8 row;
+  u8 i;
+
+  row = (blockedDuelist == DUEL_PLAYER) ? OPPONENT_BACKROW : PLAYER_BACKROW;
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gFixedZones[row][i]->id == SWORDS_OF_REVEALING_LIGHT)
+      return gFixedZones[row][i];
+  }
+
+  return NULL;
+}
+
+static u8 GetSorlBlockedDuelistByZone(struct DuelCard *zone)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gFixedZones[PLAYER_BACKROW][i] == zone)
+      return DUEL_OPPONENT;
+    if (gFixedZones[OPPONENT_BACKROW][i] == zone)
+      return DUEL_PLAYER;
+  }
+
+  return 2;
+}
+
+static u8 GetBlockedDuelistForSorlCounter(void)
+{
+  return (WhoseTurn() == DUEL_PLAYER) ? DUEL_OPPONENT : DUEL_PLAYER;
+}
 
 extern unsigned char gIsPlayerTurnOver;
 extern u16 gRepeatedOrNewButtons;
@@ -158,4 +192,45 @@ void PlayerTurnMain__Replacement(void) {
 
   DestroyKarateManAtEndOfTurn();
   UpdateDuelGfxExceptField();
+}
+
+LYN_REPLACE_CHECK(DecrementSorlTurns);
+void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
+  struct DuelCard *sorlZone;
+  u8 blockedDuelist;
+
+  blockedDuelist = GetBlockedDuelistForSorlCounter();
+  sorlZone = GetSorlZoneForBlockedDuelist(blockedDuelist);
+
+  if (sorlZone == NULL) {
+    gTurnDuelistBattleState[currPlayer]->sorlTurns = 0;
+    return;
+  }
+
+  if (gTurnDuelistBattleState[currPlayer]->sorlTurns)
+    gTurnDuelistBattleState[currPlayer]->sorlTurns--;
+
+  if (gTurnDuelistBattleState[currPlayer]->sorlTurns == 0)
+    ClearZoneAndSendMonToGraveyard(sorlZone, blockedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER);
+}
+
+LYN_REPLACE_CHECK(ClearZone);
+void ClearZone__Replacement(struct DuelCard *zone) {
+  if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
+    u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);
+
+    if (blockedDuelist < 2)
+      gDuel.duelistbattleState[blockedDuelist].sorlTurns = 0;
+  }
+
+  zone->id = CARD_NONE;
+  zone->isFaceUp = 0;
+  zone->isLocked = 0;
+  zone->isDefending = 0;
+  zone->unkTwo = 0;
+  zone->unkThree = 0;
+  ResetPermStage(zone);
+  ResetTempStage(zone);
+  zone->unk4 = 0;
+  zone->willChangeSides = 0;
 }

@@ -6,6 +6,7 @@ extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
 extern void EffectShieldAndSword(void);
+extern void EffectSwordsOfRevealingLight(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -26,6 +27,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case SHIELD_AND_SWORD:
       EffectShieldAndSword();
+      return;
+    case SWORDS_OF_REVEALING_LIGHT:
+      EffectSwordsOfRevealingLight();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

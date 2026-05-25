@@ -30,5 +30,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
-    .card_in_hand = SKULL_MARK_LADY_BUG
+    .card_in_hand = SWORDS_OF_REVEALING_LIGHT
 };
