@@ -6,6 +6,7 @@ extern unsigned char gSharedMem[];
 extern unsigned char *g8E17F70[];
 extern const unsigned char *gMiniCardArts_Hook[];
 extern unsigned char *gUnk_8E17F48[];
+extern const unsigned char g89A781C[];
 extern const unsigned char g89A81DE[];
 extern const unsigned char g89A7F1E[][64];
 extern const unsigned char g89A875E[][64];
@@ -13,18 +14,78 @@ extern const unsigned char g89A849E[][64];
 extern u8 gDigitBufferU16[];
 
 void sub_80573D0(void* arg0, unsigned short cardId);
+void sub_805742C(unsigned char* arg0, unsigned short cardId);
+void CopyMiniCardPalette(unsigned short* dest);
+
+static void CopyShopCardBorderTiles(unsigned char *dest, unsigned char *r7, unsigned char *src) {
+  unsigned i, j, r8 = 0, ip;
+  unsigned char *r4;
+
+  for (j = 0; j < 16; j++)
+    *dest++ = *src++;
+  for (i = 0; i < 6; i++) {
+    for (j = 4; j < 8; j++)
+      *dest++ = *src++;
+    r4 = r7 + i * 8 + r8;
+    for (j = 0; j < 4; j++) {
+      *dest = *r4;
+      dest++;
+      src++;
+      r4++;
+    }
+  }
+
+  ip = 0;
+  r8 = 64;
+  for (j = 0; j < 16; j++)
+    *dest++ = *src++;
+  for (i = 0; i < 6; i++) {
+    r4 = r7 + i * 8 + ip + 4;
+    for (j = 4; j < 8; j++) {
+      *dest = *r4;
+      dest++;
+      src++;
+      r4++;
+    }
+    r4 = r7 + i * 8 + r8;
+    for (j = 0; j < 4; j++) {
+      *dest = *r4;
+      dest++;
+      src++;
+      r4++;
+    }
+  }
+}
+
+static const unsigned char *GetMiniArtForCard(u16 cardId) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return g8E17F70[CARD_NONE];
+  if (gMiniCardArts_Hook[cardId] != NULL)
+    return gMiniCardArts_Hook[cardId];
+  return g8E17F70[cardId];
+}
+
 LYN_REPLACE_CHECK(sub_80573D0);
 void sub_80573D0__Replacement(void* arg0, unsigned short cardId) {
   typedef void (*ComposeMiniCardFn)(void *, void *, unsigned char *);
   static ComposeMiniCardFn const composeMiniCard = (ComposeMiniCardFn)0x080565F1;
-  const unsigned char *miniArt = gMiniCardArts_Hook[cardId];
+  const unsigned char *miniArt = GetMiniArtForCard(cardId);
 
   SetCardInfo(cardId);
-  if (miniArt == NULL)
-    miniArt = g8E17F70[cardId];
-
   LZ77UnCompWram(miniArt, gSharedMem);
   composeMiniCard(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
+}
+
+LYN_REPLACE_CHECK(sub_805742C);
+void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
+  const unsigned char *miniArt = GetMiniArtForCard(cardId);
+
+  SetCardInfo(cardId);
+  if (cardId >= CUSTOM_CARD_START)
+    miniArt = g8E17F70[CARD_NONE];
+
+  LZ77UnCompWram(miniArt, gSharedMem);
+  CopyShopCardBorderTiles(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
 }
 
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
@@ -80,4 +141,9 @@ void sub_80576B4__Replacement(unsigned char* arg0, unsigned short cardId) {
     return;
   arg0 += 0xC0;
   CpuCopy16(g8E1168C[gCardInfo.attribute], arg0, 64);
+}
+
+LYN_REPLACE_CHECK(CopyMiniCardPalette);
+void CopyMiniCardPalette__Replacement(unsigned short* dest) {
+  CpuCopy16(g89A781C, dest, 320);
 }

@@ -204,7 +204,7 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
     image = Image.open(big_png).convert("RGBA")
     image = image.resize((24, 24), Image.Resampling.LANCZOS).convert("RGBA")
 
-    palette = select_mini_palette(load_gba_palette(big_palette), load_jasc_palette(MINI_PAL))
+    palette = load_jasc_palette(MINI_PAL)
     pal_img = Image.new("P", (1, 1))
     palette_data = []
     for r, g, b in palette:

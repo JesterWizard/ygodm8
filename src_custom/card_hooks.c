@@ -61,6 +61,9 @@ static u8 GetCardEffectDispatchOverride(u16 id) {
   u8 i;
   u8 j;
 
+  if (id >= NUM_TOTAL_CARDS)
+    return 0;
+
   for (i = 0; i < ARRAY_COUNT(sCardEffectDispatchOverrides); i++) {
     const CardEffectDispatchOverride *override = &sCardEffectDispatchOverrides[i];
 
@@ -202,6 +205,8 @@ static u16 GetConfiguredCardCost(u16 id) {
 }
 
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return gUnk8F985E0[CARD_NONE];
   if (card->description != NULL)
     return (u8 *)card->description;
 
@@ -309,9 +314,14 @@ static void ApplyDuelistLevelShopDiscount(void) {
 LYN_REPLACE_CHECK(SetCardInfo);
 void SetCardInfo__Replacement(unsigned short id) {
   const CardData *card;
+  u8 customCard = 0;
 
-  if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE && id >= CUSTOM_CARD_START)
+  if (id >= NUM_TOTAL_CARDS)
     id = CARD_NONE;
+  else if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE && id >= CUSTOM_CARD_START)
+    id = CARD_NONE;
+  else if (id >= CUSTOM_CARD_START)
+    customCard = 1;
 
   card = &gCardData_NEW[id];
 
@@ -327,7 +337,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.monsterEffect = card->monsterEffect;
   gCardInfo.trapEffect = card->trapEffect;
   gCardInfo.ritualEffect = gUnk8094C37[gCardInfo.spellEffect];
-  gCardInfo.unk1E = GetCardEffectDispatchOverride(id);
+  gCardInfo.unk1E = customCard ? 0 : GetCardEffectDispatchOverride(id);
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);
