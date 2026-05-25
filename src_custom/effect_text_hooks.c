@@ -12,6 +12,7 @@ extern unsigned short g89DC2DC[];
 #include "generated/card_activation_text_lookup_generated.inc"
 static void EmptyCardEffectText(void) {}
 static void PlayActivationDescriptionText(const u8 *text);
+static void PlayActivationEndSfx(u16 soundId);
 static void PlaySpellEffectText(void);
 static void PlayMonsterEffectText(void);
 static void PlaySpellRebuffText(void);
@@ -59,28 +60,34 @@ static void PlayActivationDescriptionText(const u8 *text) {
   PlayMusic(SFX_SPELL_ACTIVATION_START);
   sub_8041C94((unsigned char *)text, gCardEffectTextData.cardId, gCardEffectTextData.cardId2, 0, 0);
   SetCardInfo(gCardEffectTextData.cardId);
-  PlayMusic(g89DC020[gCardInfo.spellEffect]);
+  PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
+}
+
+static void PlayActivationEndSfx(u16 soundId) {
+  if (soundId == SOUND_NONE)
+    soundId = SFX_SPELL_ACTIVATION_END;
+  PlayMusic(soundId);
 }
 
 static void PlaySpellEffectText(void) {
   PlayMusic(SFX_SPELL_ACTIVATION_START);
   sub_8041CCC(gCardEffectTextData.cardId, gCardEffectTextData.cardId2);
   SetCardInfo(gCardEffectTextData.cardId);
-  PlayMusic(g89DC020[gCardInfo.spellEffect]);
+  PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
 }
 
 static void PlayMonsterEffectText(void) {
   PlayMusic(SFX_MONSTER_EFFECT_ACTIVATION);
   sub_8041CCC(gCardEffectTextData.cardId, gCardEffectTextData.cardId2);
   SetCardInfo(gCardEffectTextData.cardId);
-  PlayMusic(g89DC14C[gCardInfo.monsterEffect]);
+  PlayActivationEndSfx(g89DC14C[gCardInfo.monsterEffect]);
 }
 
 static void PlaySpellRebuffText(void) {
   PlayMusic(SFX_ATTACK_REBUFFED);
   sub_8041CCC(gCardEffectTextData.cardId, gCardEffectTextData.cardId2);
   SetCardInfo(gCardEffectTextData.cardId);
-  PlayMusic(g89DC020[gCardInfo.spellEffect]);
+  PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
 }
 
 static void ShowDuelTextWithFade(void) {
