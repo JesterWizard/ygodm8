@@ -30,5 +30,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
-    .card_in_hand = DECK_DESTRUCTION_VIRUS
+    .card_in_hand = SORCERER_OF_DARK_MAGIC
 };

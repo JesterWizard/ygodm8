@@ -39,6 +39,40 @@ void sub_8030CA8(void);
 u8 LfsrNextBit(void);
 u8 LfsrNextByte(void);
 
+typedef struct {
+  const u16 *cardIds;
+  u8 cardCount;
+  u8 unk1E;
+} CardEffectDispatchOverride;
+
+static const u16 sZeroUnk1ECardIds[] __attribute__((section(".text"))) = {
+  SORCERER_OF_DARK_MAGIC,
+};
+
+static const CardEffectDispatchOverride sCardEffectDispatchOverrides[] __attribute__((section(".text"))) = {
+  {
+    .cardIds = sZeroUnk1ECardIds,
+    .cardCount = ARRAY_COUNT(sZeroUnk1ECardIds),
+    .unk1E = 0,
+  },
+};
+
+static u8 GetCardEffectDispatchOverride(u16 id) {
+  u8 i;
+  u8 j;
+
+  for (i = 0; i < ARRAY_COUNT(sCardEffectDispatchOverrides); i++) {
+    const CardEffectDispatchOverride *override = &sCardEffectDispatchOverrides[i];
+
+    for (j = 0; j < override->cardCount; j++) {
+      if (override->cardIds[j] == id)
+        return override->unk1E;
+    }
+  }
+
+  return gUnk8094CC3[id];
+}
+
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 #define CARD_COST_TABLE_COUNT (SHIELD_AND_SWORD + 1)
 #define COST_SEED_MAGIC_0 'C'
@@ -293,7 +327,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.monsterEffect = card->monsterEffect;
   gCardInfo.trapEffect = card->trapEffect;
   gCardInfo.ritualEffect = gUnk8094C37[gCardInfo.spellEffect];
-  gCardInfo.unk1E = gUnk8094CC3[id];
+  gCardInfo.unk1E = GetCardEffectDispatchOverride(id);
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);

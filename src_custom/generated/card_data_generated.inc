@@ -3,7 +3,7 @@
     .def = 2500,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 9,
+    .level = 4,
     .type = TYPE_SPELLCASTER,
     .color = EFFECT_CARD,
     .monsterEffect = 0,

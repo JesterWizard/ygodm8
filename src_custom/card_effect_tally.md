@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `26` effects
+- `27` effects
 
 ## Tally
 
@@ -35,6 +35,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Ceremonial Bell` | `src_custom/permanent_effects/ceremonial_bell.c` |
 | `permanent_effects` | `Kaiser Sea Horse` | `src_custom/permanent_effects/kaiser_sea_horse.c` |
 | `permanent_effects` | `Maha Vailo` | `src_custom/permanent_effects/maha_vailo.c` |
+| `permanent_effects` | `Sorcerer of Dark Magic` | `src_custom/permanent_effects/sorcerer_of_dark_magic.c` |
 
 ## Notes
 
