@@ -17,46 +17,6 @@ void sub_80573D0(void* arg0, unsigned short cardId);
 void sub_805742C(unsigned char* arg0, unsigned short cardId);
 void CopyMiniCardPalette(unsigned short* dest);
 
-static void CopyShopCardBorderTiles(unsigned char *dest, unsigned char *r7, unsigned char *src) {
-  unsigned i, j, r8 = 0, ip;
-  unsigned char *r4;
-
-  for (j = 0; j < 16; j++)
-    *dest++ = *src++;
-  for (i = 0; i < 6; i++) {
-    for (j = 4; j < 8; j++)
-      *dest++ = *src++;
-    r4 = r7 + i * 8 + r8;
-    for (j = 0; j < 4; j++) {
-      *dest = *r4;
-      dest++;
-      src++;
-      r4++;
-    }
-  }
-
-  ip = 0;
-  r8 = 64;
-  for (j = 0; j < 16; j++)
-    *dest++ = *src++;
-  for (i = 0; i < 6; i++) {
-    r4 = r7 + i * 8 + ip + 4;
-    for (j = 4; j < 8; j++) {
-      *dest = *r4;
-      dest++;
-      src++;
-      r4++;
-    }
-    r4 = r7 + i * 8 + r8;
-    for (j = 0; j < 4; j++) {
-      *dest = *r4;
-      dest++;
-      src++;
-      r4++;
-    }
-  }
-}
-
 static const unsigned char *GetMiniArtForCard(u16 cardId) {
   if (cardId >= NUM_TOTAL_CARDS)
     return g8E17F70[CARD_NONE];
@@ -78,6 +38,8 @@ void sub_80573D0__Replacement(void* arg0, unsigned short cardId) {
 
 LYN_REPLACE_CHECK(sub_805742C);
 void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
+  typedef void (*CopyShopCardBorderTilesFn)(unsigned char *, unsigned char *, unsigned char *);
+  static CopyShopCardBorderTilesFn const copyShopCardBorderTiles = (CopyShopCardBorderTilesFn)0x08056C55;
   const unsigned char *miniArt = GetMiniArtForCard(cardId);
 
   SetCardInfo(cardId);
@@ -85,7 +47,7 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
     miniArt = g8E17F70[CARD_NONE];
 
   LZ77UnCompWram(miniArt, gSharedMem);
-  CopyShopCardBorderTiles(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
+  copyShopCardBorderTiles(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
 }
 
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
