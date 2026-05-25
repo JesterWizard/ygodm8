@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "delayed_effects.h"
 
 void InitBoard(void);
 void PlayerTurnMain(void);
@@ -104,6 +105,8 @@ unsigned char sub_803FBCC__Replacement(unsigned char a, unsigned char b) {
 LYN_REPLACE_CHECK(InitBoard);
 void InitBoard__Replacement(void) {
   unsigned char i, j;
+
+  ResetDelayedDuelEffects();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -191,6 +194,7 @@ void PlayerTurnMain__Replacement(void) {
   }
 
   DestroyKarateManAtEndOfTurn();
+  ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
   UpdateDuelGfxExceptField();
 }
 

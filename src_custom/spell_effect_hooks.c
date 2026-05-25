@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 
 extern void (*const gSpellEffects[])(void);
+extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
 extern void EffectShieldAndSword(void);
@@ -19,6 +20,9 @@ void ActivateSpellEffect__Replacement(void)
   SetCardInfo(gSpellEffectData.id);
 
   switch (gSpellEffectData.id) {
+    case CARD_OF_DEMISE:
+      EffectCardOfDemise();
+      return;
     case CARD_OF_SANCTITY:
       EffectCardOfSanctity();
       return;

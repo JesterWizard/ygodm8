@@ -25,6 +25,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },
   { SKULL_MARK_LADY_BUG, gActivationDescription_SkullMarkLadyBug },
   { DECK_DESTRUCTION_VIRUS, gActivationDescription_DeckDestructionVirus },
+  { CARD_OF_DEMISE, gActivationDescription_CardOfDemise },
   { CARD_OF_SANCTITY, gActivationDescription_CardOfSanctity },
   { SHIELD_AND_SWORD, gActivationDescription_ShieldAndSword },
 };

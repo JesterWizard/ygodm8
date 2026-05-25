@@ -12526,6 +12526,12 @@
       },
       "card_name": "Card Of Demise",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_CardOfDemise",
+        "pages": [
+          "The owner will draw until they have 5 cards in their hand."
+        ]
+      },
       "big_art": "src_custom/assets/cards/80x80/card_of_demise.huff",
       "big_palette": "src_custom/assets/cards/80x80/card_of_demise.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/card_of_demise.lz"

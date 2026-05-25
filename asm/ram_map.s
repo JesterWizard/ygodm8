@@ -66,6 +66,9 @@ SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
 @ Persistent randomized-cost seed record lives in the save slot buffer.
 _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 
+@ Bitfield for one-shot delayed duel effects keyed by duelist.
+_kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
+
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 

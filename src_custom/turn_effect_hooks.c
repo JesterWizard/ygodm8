@@ -1,7 +1,9 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "delayed_effects.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
+
 extern void (*g8E0C940[])(void);
 extern unsigned char (*g8E0CA80[])(void);
 void ActivateGiantGermEffect(void);
@@ -133,6 +135,8 @@ void TryActivatingTurnEffects__Replacement(void) {
     sub_802ADA4();
   }
   DestroyKarateManAtEndOfTurn();
+  if (IsDuelOver() == 1)
+    return;
   ResetTempStagesForAllCards();
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }
