@@ -137,16 +137,46 @@ void TryDrawingCard__Replacement(unsigned turn) {
   unsigned char turn_u8 = turn;
 
   if (turn_u8 == DUEL_PLAYER && gDuelDecks[turn_u8].cardsDrawn == 0) {
-    u16 cardId = gRuntimeConfig.card_in_hand;
+    u8 slot;
+    u8 previousSlot;
+    u16 cardId;
+    u8 appliedSlots[MAX_ZONES_IN_ROW];
+    u16 configuredCards[MAX_ZONES_IN_ROW] = {
+      gRuntimeConfig.card_in_hand_1,
+      gRuntimeConfig.card_in_hand_2,
+      gRuntimeConfig.card_in_hand_3,
+      gRuntimeConfig.card_in_hand_4,
+      gRuntimeConfig.card_in_hand_5
+    };
     u16 deckSize = NumCardsInDeck(turn_u8);
 
-    if (cardId != CARD_NONE) {
+    for (slot = 0; slot < MAX_ZONES_IN_ROW; slot++)
+      appliedSlots[slot] = FALSE;
+
+    for (slot = 0; slot < MAX_ZONES_IN_ROW; slot++) {
+      cardId = configuredCards[slot];
+      if (cardId == CARD_NONE)
+        continue;
+
+      for (previousSlot = 0; previousSlot < slot; previousSlot++) {
+        if (configuredCards[previousSlot] != cardId)
+          continue;
+
+        cardId = CARD_NONE;
+        break;
+      }
+      if (cardId == CARD_NONE)
+        continue;
+
       for (i = 0; i < deckSize; i++) {
+        if (i < slot && appliedSlots[i])
+          continue;
         if (gDuelDecks[turn_u8].cards[i] != cardId)
           continue;
 
-        gDuelDecks[turn_u8].cards[i] = gDuelDecks[turn_u8].cards[0];
-        gDuelDecks[turn_u8].cards[0] = cardId;
+        gDuelDecks[turn_u8].cards[i] = gDuelDecks[turn_u8].cards[slot];
+        gDuelDecks[turn_u8].cards[slot] = cardId;
+        appliedSlots[slot] = TRUE;
         break;
       }
     }

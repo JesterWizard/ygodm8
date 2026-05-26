@@ -32,5 +32,9 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
     .enable_password_terminal_feedback = TRUE,
-    .card_in_hand = MASK_OF_DARKNESS
+    .card_in_hand_1 = MASK_OF_DARKNESS,
+    .card_in_hand_2 = CARD_NONE,
+    .card_in_hand_3 = CARD_NONE,
+    .card_in_hand_4 = CARD_NONE,
+    .card_in_hand_5 = CARD_NONE
 };
