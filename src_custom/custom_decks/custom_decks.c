@@ -148,7 +148,7 @@ struct Script CustomDecks_BuildCardShopDuelScript(u8 *buffer, unsigned bufferSiz
   struct Script script;
 
   script.start = (u8 *)CustomDecks_BuildCardShopDuelText(buffer, bufferSize, spriteId, locationId);
-  script.unk4 = (struct Script *)fallbackScript;
-  script.unk8 = (struct Script *)fallbackScript;
+  script.unk4 = fallbackScript->unk4;
+  script.unk8 = fallbackScript->unk8;
   return script;
 }

@@ -26,8 +26,18 @@ static const signed short g8E0E3CC[] APPEND_RODATA = {
 
 static const u8 sRegularDuelLossBytes[] APPEND_TEXT = {0x23, 0x39, 0x00};
 static const u8 sRegularDuelLossEndBytes[] APPEND_TEXT = {0x5D};
+static const u8 sRegularDuelReturnHomeLossBytes[] APPEND_TEXT = {
+  0x23, 0x39,
+  0x7C, 0x35, LOCATION_PLAYER_HOUSE_INSIDE, 0, 0, 0,
+  0x00
+};
 static const struct Script sRegularDuelLossEndScript APPEND_RODATA = {
   (u8 *)sRegularDuelLossEndBytes,
+  (struct Script *)&sRegularDuelLossEndScript,
+  (struct Script *)&sRegularDuelLossEndScript
+};
+static const struct Script sRegularDuelReturnHomeLossScript APPEND_RODATA = {
+  (u8 *)sRegularDuelReturnHomeLossBytes,
   (struct Script *)&sRegularDuelLossEndScript,
   (struct Script *)&sRegularDuelLossEndScript
 };
@@ -43,6 +53,8 @@ static void InitiateRegularDuelScript(struct Script *script) {
 
   if (stayOnMapAfterDefeat)
     regularDuelScript.unk8 = (struct Script *)&sRegularDuelLossScript;
+  else
+    regularDuelScript.unk8 = (struct Script *)&sRegularDuelReturnHomeLossScript;
 
   InitiateScript(&regularDuelScript);
 
