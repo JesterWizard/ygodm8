@@ -214,6 +214,13 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
     pal_img.putpalette(palette_data)
 
     quantized = image.convert("RGB").quantize(palette=pal_img, dither=Image.Dither.NONE)
+
+    # Remap any pixel with index >= 160 (padded black entries) to index 159
+    # (the darkest real color in mini.pal). CopyMiniCardPalette only loads
+    # indices 0-159, so entries 160+ would read garbage at runtime.
+    lut = list(range(160)) + [159] * (256 - 160)
+    quantized = quantized.point(lut)
+
     mini_png.parent.mkdir(parents=True, exist_ok=True)
     quantized.save(mini_png)
 
