@@ -85,22 +85,29 @@ static void DrawPasswordFeedbackBgs(const u8 *text)
     u8 y;
     u8 len;
     u8 textX;
+    u16 tile;
     const u16 baseTile = 0x180;
-    const u16 pal = 0x1000;
+    const u16 textPal = 0xF000;
+    const u16 popupPal = 0xE000;
     const u8 popupY = 7;
     const u8 textY = popupY + 2;
+    const u16 popupBlankTile = (gDEDF50[1 * 30 + 2] & 0x0FFF) | popupPal;
 
     CpuFill16(0, gBgVram.cbb2, 0x4000);
     ClearPasswordFeedbackBgs();
     LZ77UnCompWram(gDE7888, gBgVram.cbb2);
-    CpuCopy16(gDF0908, gPaletteBuffer + 80, 32);
-    gPaletteBuffer[0x10] = 0;
-    gPaletteBuffer[0x11] = 0x7FFF;
-    gPaletteBuffer[0x12] = 0;
+    CpuCopy16(gDF0908, gPaletteBuffer + 224, 32);
+    gPaletteBuffer[0xF0] = 0;
+    gPaletteBuffer[0xF1] = 0x7FFF;
+    gPaletteBuffer[0xF2] = 0;
     CopyStringTilesToVRAMBuffer(gBgVram.cbb2 + baseTile * 32, text, 0x101);
 
     for (y = 0; y < 6; y++)
-        CpuCopy16(gDEDF50 + y * 30, gBgVram.sbb1D[popupY + y], 60);
+        for (x = 0; x < 30; x++)
+            gBgVram.sbb1D[popupY + y][x] = (gDEDF50[y * 30 + x] & 0x0FFF) | popupPal;
+    for (y = 1; y < 5; y++)
+        for (x = 2; x < 28; x++)
+            gBgVram.sbb1D[popupY + y][x] = popupBlankTile;
 
     for (len = 0; text[len] != 0 && len < 20; len++)
         ;
@@ -108,9 +115,9 @@ static void DrawPasswordFeedbackBgs(const u8 *text)
 
     for (x = 0; x < len; x++)
     {
-        u16 tile = baseTile + (x / 2) * 4 + (x & 1);
-        gBgVram.sbb1E[textY][textX + x] = pal | tile;
-        gBgVram.sbb1E[textY + 1][textX + x] = pal | (tile + 2);
+        tile = baseTile + (x / 2) * 4 + (x & 1);
+        gBgVram.sbb1E[textY][textX + x] = textPal | tile;
+        gBgVram.sbb1E[textY + 1][textX + x] = textPal | (tile + 2);
     }
 
     REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(30);
