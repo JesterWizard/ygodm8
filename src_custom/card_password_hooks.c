@@ -13,6 +13,9 @@ extern u8 g8E11664[][PASSWORD_LEN];
 extern u8 g2024588[];
 extern u8 g202458C[];
 extern u8 gCardPasswordDigits[];
+extern u32 gDE7888[];
+extern u16 gDEDF50[];
+extern u16 gDF0908[];
 
 u16 sub_803F04C(u8);
 void FadeInBlendEffect(void);
@@ -20,6 +23,8 @@ u32 sub_8056014(u16);
 void LoadBgOffsets(void);
 void LoadCharblock2(void);
 void LoadCharblock3(void);
+void LoadPalettes(void);
+void LZ77UnCompWram(const void *src, void *dest);
 
 struct PasswordData {
     u16 cardId;
@@ -63,45 +68,60 @@ APPEND_TEXT void SearchForMatchingCard__Replacement(void)
     sPasswordData.result = RESULT_MISMATCH;
 }
 
-static void ClearPasswordPopupBg0(void)
+static void ClearPasswordFeedbackBgs(void)
 {
     u8 y;
 
     for (y = 0; y < 32; y++)
+    {
+        CpuFill16(0, gBgVram.sbb1D[y], 64);
         CpuFill16(0, gBgVram.sbb1E[y], 64);
+    }
 }
 
-static void DrawPasswordPopupBg0(const u8 *text)
+static void DrawPasswordFeedbackBgs(const u8 *text)
 {
     u8 x;
     u8 y;
-    u16 *row;
-    const u16 baseTile = 1;
+    u8 len;
+    u8 textX;
+    const u16 baseTile = 0x180;
     const u16 pal = 0x1000;
+    const u8 popupY = 7;
+    const u8 textY = popupY + 2;
 
     CpuFill16(0, gBgVram.cbb2, 0x4000);
-    ClearPasswordPopupBg0();
+    ClearPasswordFeedbackBgs();
+    LZ77UnCompWram(gDE7888, gBgVram.cbb2);
+    CpuCopy16(gDF0908, gPaletteBuffer + 80, 32);
+    gPaletteBuffer[0x10] = 0;
+    gPaletteBuffer[0x11] = 0x7FFF;
+    gPaletteBuffer[0x12] = 0;
     CopyStringTilesToVRAMBuffer(gBgVram.cbb2 + baseTile * 32, text, 0x101);
 
-    for (y = 8; y < 12; y++)
-    {
-        row = gBgVram.sbb1E[y];
-        for (x = 4; x < 26; x++)
-            row[x] = pal;
-    }
+    for (y = 0; y < 6; y++)
+        CpuCopy16(gDEDF50 + y * 30, gBgVram.sbb1D[popupY + y], 60);
 
-    for (x = 0; text[x] != 0 && x < 20; x++)
+    for (len = 0; text[len] != 0 && len < 20; len++)
+        ;
+    textX = (30 - len) / 2;
+
+    for (x = 0; x < len; x++)
     {
         u16 tile = baseTile + (x / 2) * 4 + (x & 1);
-        gBgVram.sbb1E[9][6 + x] = pal | tile;
-        gBgVram.sbb1E[10][6 + x] = pal | (tile + 2);
+        gBgVram.sbb1E[textY][textX + x] = pal | tile;
+        gBgVram.sbb1E[textY + 1][textX + x] = pal | (tile + 2);
     }
 
     REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(30);
+    REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_CHARBASE(2) | BGCNT_SCREENBASE(29);
     gBG0HOFS = 0;
     gBG0VOFS = 0;
-    REG_DISPCNT |= DISPCNT_BG0_ON;
+    gBG1HOFS = 0;
+    gBG1VOFS = 0;
+    REG_DISPCNT |= DISPCNT_BG0_ON | DISPCNT_BG1_ON;
     LoadBgOffsets();
+    LoadPalettes();
     LoadCharblock2();
     LoadCharblock3();
 }
@@ -110,12 +130,12 @@ static void ShowPasswordFeedbackPopup(const u8 *text)
 {
     u8 i;
 
-    DrawPasswordPopupBg0(text);
+    DrawPasswordFeedbackBgs(text);
     for (i = 0; i < 60; i++)
         WaitForVBlank();
-    ClearPasswordPopupBg0();
+    ClearPasswordFeedbackBgs();
     LoadCharblock3();
-    REG_DISPCNT &= ~DISPCNT_BG0_ON;
+    REG_DISPCNT &= ~(DISPCNT_BG0_ON | DISPCNT_BG1_ON);
 }
 
 static void CheckForSpecialPassword1_Hook(void)
