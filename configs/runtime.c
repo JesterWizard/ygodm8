@@ -7,7 +7,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .return_home_after_defeat = FALSE,
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
-    .max_deck_cards = 38,
+    .max_deck_cards = 40,
     .max_money_at_start = FALSE,
     .disable_ban_list = TRUE,
     .skip_opening_sequence = TRUE,
@@ -31,5 +31,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
-    .card_in_hand = CARD_OF_DEMISE
+    .card_in_hand = MASK_OF_DARKNESS
 };

@@ -156,8 +156,7 @@ void MonsterActionMenu__Replacement(void) {
       if (!gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         SetCardInfo(gMonEffect.id);
-        if (gMonEffect.id == MASK_OF_DARKNESS
-            || gMonEffect.id == NEEDLE_BALL
+        if (gMonEffect.id == NEEDLE_BALL
             || gMonEffect.id == NEEDLE_WORM) {
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();
