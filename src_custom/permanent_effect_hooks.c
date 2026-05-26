@@ -182,9 +182,9 @@ void TryActivatingPermanentEffects__Replacement(void) {
   if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
     gHideEffectText = TRUE;
   CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
+  gHideEffectText = hideEffectText;
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();
-  gHideEffectText = hideEffectText;
   if (!gHideEffectText)
     sub_802AE44();
 }
