@@ -36,6 +36,7 @@ typedef struct {
     u8 discount_shop_costs_by_duelist_level; // 5% off buy price per 100 duelist levels.
     u8 instant_win_with_l_button; // L in duel -> immediate player win.
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.
+    u8 enable_password_terminal_feedback; // Show password result popup and charge only on valid passwords.
     u16 card_in_hand;
 } RuntimeConfig;
 

@@ -8,7 +8,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
     .max_deck_cards = 40,
-    .max_money_at_start = FALSE,
+    .max_money_at_start = TRUE,
     .disable_ban_list = TRUE,
     .skip_opening_sequence = TRUE,
     .turn_off_visual_scanner = TRUE,
@@ -31,5 +31,6 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = FALSE,
     .enable_world_map_thought_bubbles = TRUE,
+    .enable_password_terminal_feedback = TRUE,
     .card_in_hand = MASK_OF_DARKNESS
 };
