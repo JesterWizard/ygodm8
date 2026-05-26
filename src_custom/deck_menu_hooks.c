@@ -213,7 +213,6 @@ void AddCardToDeck__Replacement(unsigned short cardId) {
   gDeckMenu.cards[gDeckMenu.cardCount] = cardId;
   gDeckMenu.cardCount++;
   CalculateCurrentDeckCost();
-  SyncTrunkQtyFromOwnedTotal(cardId);
   SyncCardOwnershipQty(cardId);
 }
 

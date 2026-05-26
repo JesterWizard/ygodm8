@@ -142,7 +142,7 @@ static u8 *GetOwnedQtyForDynamicSort(u8 sortMode) {
   if ((sortMode >= 28 && sortMode <= 35) || sortMode == 10 || sortMode == 56)
     return gPlayerTempCardQty;
   if (sortMode >= 45 && sortMode <= 54)
-    return gTotalCardQty;
+    return gTrunkCardQty;
   return 0;
 }
 

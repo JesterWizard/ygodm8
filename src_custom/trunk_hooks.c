@@ -75,30 +75,15 @@ void SyncCustomTrunkCardQtyMirror(u16 cardId) {
 }
 
 void SyncCardOwnershipQty(u16 cardId) {
-  gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
   SyncCustomTrunkCardQtyMirror(cardId);
 }
 
 void SyncTrunkQtyFromOwnedTotal(u16 cardId) {
-  u8 deckQty = GetDeckCardQty(cardId);
-
-  if (gTotalCardQty[cardId] >= deckQty)
-    gTrunkCardQty[cardId] = gTotalCardQty[cardId] - deckQty;
-  else
-    gTrunkCardQty[cardId] = 0;
-
   SyncCustomTrunkCardQtyMirror(cardId);
 }
 
 static u8 GetAvailableTrunkQty(u16 cardId) {
-  u8 deckQty = GetDeckCardQty(cardId);
-  u8 totalQty = gTotalCardQty[cardId];
-
-  if (totalQty == 0 && gTrunkCardQty[cardId] != 0)
-    return gTrunkCardQty[cardId];
-  if (totalQty < deckQty)
-    return 0;
-  return totalQty - deckQty;
+  return gTrunkCardQty[cardId];
 }
 
 LYN_REPLACE_CHECK(GetTrunkCardQty);
@@ -137,8 +122,8 @@ static void AddSelectedCardToDeck(void) {
     return;
   }
 
+  gTrunkCardQty[cardId]--;
   AddCardToDeck(cardId);
-  SyncTrunkQtyFromOwnedTotal(cardId);
   SyncCardOwnershipQty(cardId);
   PlayMusic(SFX_SELECT);
 }
@@ -153,7 +138,7 @@ static void RemoveSelectedCardFromDeck(void) {
     return;
   }
 
-  SyncTrunkQtyFromOwnedTotal(cardId);
+  gTrunkCardQty[cardId]++;
   SyncCardOwnershipQty(cardId);
   PlayMusic(SFX_SELECT);
 }
@@ -226,9 +211,6 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.currentPos = 0;
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
-
-  for (cardId = 0; cardId < GetLastTrackedCardId(); cardId++)
-    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)
     gTrunkMenu.cards[cardId] = cardId + 1;
@@ -328,7 +310,6 @@ void TryAddSelectedCardToDeck__Replacement(void) {
   else {
     gTrunkCardQty[cardId]--;
     AddCardToDeck(cardId);
-    SyncTrunkQtyFromOwnedTotal(cardId);
     SyncCardOwnershipQty(cardId);
     PlayMusic(SFX_SELECT);
   }
