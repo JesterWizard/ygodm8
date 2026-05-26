@@ -13,7 +13,8 @@ void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
 unsigned short GetSelectedCardWithOffset(unsigned char);
 void AddCardToTrunk(unsigned short);
-void SyncCustomTrunkCardQtyMirror(u16);
+void SyncCardOwnershipQty(u16);
+void SyncTrunkQtyFromOwnedTotal(u16);
 void sub_801EF30(unsigned char);
 void sub_801F4A0(unsigned char);
 void sub_801F5F0(void);
@@ -118,7 +119,7 @@ static void MoveAllCardsToTrunk(void) {
 
     if (cardId != CARD_NONE) {
       AddCardToTrunk(cardId);
-      SyncCustomTrunkCardQtyMirror(cardId);
+      SyncCardOwnershipQty(cardId);
     }
     gDeckMenu.cards[i] = CARD_NONE;
   }
@@ -138,8 +139,8 @@ static void MoveSelectedCardToTrunk(void) {
 
   SetCardInfo(cardId);
   AddCardToTrunk(cardId);
-  SyncCustomTrunkCardQtyMirror(cardId);
   RemoveCardFromDeckAtIndex(gDeckMenu.currentPos);
+  SyncCardOwnershipQty(cardId);
 
   if (gDeckMenu.currentPos >= gDeckMenu.cardCount) {
     unsigned char temp = gDeckMenu.currentPos - gDeckMenu.cardCount + 1;
@@ -212,6 +213,8 @@ void AddCardToDeck__Replacement(unsigned short cardId) {
   gDeckMenu.cards[gDeckMenu.cardCount] = cardId;
   gDeckMenu.cardCount++;
   CalculateCurrentDeckCost();
+  SyncTrunkQtyFromOwnedTotal(cardId);
+  SyncCardOwnershipQty(cardId);
 }
 
 LYN_REPLACE_CHECK(IsPlayerDeckFull);

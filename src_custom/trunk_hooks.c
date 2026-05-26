@@ -21,10 +21,19 @@ void GoDownOnePosition(void);
 void GoUpFiftyPositions(void);
 void GoDownFiftyPositions(void);
 void InitTrunkData(void);
+void TryRemoveSelectedCardFromDeck(void);
+unsigned char GetTrunkCardQty(unsigned short);
+unsigned char GetTrunkCardQuantity(unsigned short);
+void InitTrunkCards(void);
+void ToggleTrunkDisplayMode(void);
+void ToggleSortMode(void);
+void QuitTrunkMenu(void);
+void RunTrunkTask(unsigned char);
 u8 sub_801F098(u16);
 unsigned GetDuelistLevel(void);
 u8 GetPlayerDeckSize(void);
 void AddCardToDeck(unsigned short);
+u8 TryRemoveCardFromDeck(u16);
 void SetCardInfo(unsigned short id);
 extern struct CardInfo gCardInfo;
 extern unsigned short gPressedButtons;
@@ -65,9 +74,127 @@ void SyncCustomTrunkCardQtyMirror(u16 cardId) {
     gCustomTrunkCardQty[cardId - CUSTOM_CARD_START] = gTrunkCardQty[cardId];
 }
 
+void SyncCardOwnershipQty(u16 cardId) {
+  gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+  SyncCustomTrunkCardQtyMirror(cardId);
+}
+
+void SyncTrunkQtyFromOwnedTotal(u16 cardId) {
+  u8 deckQty = GetDeckCardQty(cardId);
+
+  if (gTotalCardQty[cardId] >= deckQty)
+    gTrunkCardQty[cardId] = gTotalCardQty[cardId] - deckQty;
+  else
+    gTrunkCardQty[cardId] = 0;
+
+  SyncCustomTrunkCardQtyMirror(cardId);
+}
+
+static u8 GetAvailableTrunkQty(u16 cardId) {
+  u8 deckQty = GetDeckCardQty(cardId);
+  u8 totalQty = gTotalCardQty[cardId];
+
+  if (totalQty == 0 && gTrunkCardQty[cardId] != 0)
+    return gTrunkCardQty[cardId];
+  if (totalQty < deckQty)
+    return 0;
+  return totalQty - deckQty;
+}
+
+LYN_REPLACE_CHECK(GetTrunkCardQty);
+unsigned char GetTrunkCardQty__Replacement(unsigned short cardId) {
+  return GetAvailableTrunkQty(cardId);
+}
+
+LYN_REPLACE_CHECK(GetTrunkCardQuantity);
+unsigned char GetTrunkCardQuantity__Replacement(unsigned short cardId) {
+  return GetAvailableTrunkQty(cardId);
+}
+
 static void WrapTrunkCursorToList(void) {
   if (gTrunkMenu.currentPos >= GetTrunkCardCount())
     gTrunkMenu.currentPos -= GetTrunkCardCount();
+}
+
+static void AddSelectedCardToDeck(void) {
+  u16 cardId = GetNthCardOnScreen(2);
+  u8 limit = GetRuntimeDeckLimit();
+
+  if (!GetAvailableTrunkQty(cardId)
+      || GetPlayerDeckSize() >= limit
+      || sub_801F098(cardId) != TRUE) {
+    PlayMusic(SFX_FORBIDDEN);
+    while (gPressedButtons & DPAD_RIGHT)
+      WaitForVBlank();
+    return;
+  }
+
+  SetCardInfo(cardId);
+  if (GetDuelistLevel() < gCardInfo.cost) {
+    PlayMusic(SFX_FORBIDDEN);
+    while (gPressedButtons & DPAD_RIGHT)
+      WaitForVBlank();
+    return;
+  }
+
+  AddCardToDeck(cardId);
+  SyncTrunkQtyFromOwnedTotal(cardId);
+  SyncCardOwnershipQty(cardId);
+  PlayMusic(SFX_SELECT);
+}
+
+static void RemoveSelectedCardFromDeck(void) {
+  u16 cardId = GetNthCardOnScreen(2);
+
+  if (GetDeckCardQty(cardId) == 0 || TryRemoveCardFromDeck(cardId) != TRUE) {
+    PlayMusic(SFX_FORBIDDEN);
+    while (gPressedButtons & DPAD_LEFT)
+      WaitForVBlank();
+    return;
+  }
+
+  SyncTrunkQtyFromOwnedTotal(cardId);
+  SyncCardOwnershipQty(cardId);
+  PlayMusic(SFX_SELECT);
+}
+
+LYN_REPLACE_CHECK(RunTrunkTask);
+void RunTrunkTask__Replacement(unsigned char task) {
+  switch (task) {
+    case 0:
+      InitTrunkCards();
+      break;
+    case 1:
+      InitTrunkData();
+      break;
+    case 2:
+      GoDownOnePosition();
+      break;
+    case 3:
+      GoUpOnePosition();
+      break;
+    case 4:
+      GoDownFiftyPositions();
+      break;
+    case 5:
+      GoUpFiftyPositions();
+      break;
+    case 6:
+      ToggleTrunkDisplayMode();
+      break;
+    case 7:
+      AddSelectedCardToDeck();
+      break;
+    case 8:
+      RemoveSelectedCardFromDeck();
+      break;
+    case 9:
+      QuitTrunkMenu();
+      break;
+    case 10:
+      ToggleSortMode();
+      break;
+  }
 }
 
 LYN_REPLACE_CHECK(InitTrunkCards);
@@ -185,7 +312,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
   unsigned short cardId = GetNthCardOnScreen(2);
   u8 limit = GetRuntimeDeckLimit();
 
-  if (gTrunkCardQty[cardId] && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
+  if (GetAvailableTrunkQty(cardId) && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
     SetCardInfo(cardId);
     if (GetDuelistLevel() < gCardInfo.cost)
       isCardRejected = 1;
@@ -200,8 +327,29 @@ void TryAddSelectedCardToDeck__Replacement(void) {
   }
   else {
     gTrunkCardQty[cardId]--;
-    SyncCustomTrunkCardQtyMirror(cardId);
     AddCardToDeck(cardId);
+    SyncTrunkQtyFromOwnedTotal(cardId);
+    SyncCardOwnershipQty(cardId);
     PlayMusic(SFX_SELECT);
   }
+}
+
+LYN_REPLACE_CHECK(TryRemoveSelectedCardFromDeck);
+void TryRemoveSelectedCardFromDeck__Replacement(void) {
+  u16 cardId = GetNthCardOnScreen(2);
+
+  if (GetDeckCardQty(cardId) == 0 || TryRemoveCardFromDeck(cardId) != TRUE) {
+    PlayMusic(SFX_FORBIDDEN);
+    while (gPressedButtons & DPAD_LEFT)
+      WaitForVBlank();
+    return;
+  }
+
+  if (gTrunkCardQty[cardId] < TRUNK_CARD_LIMIT)
+    gTrunkCardQty[cardId]++;
+  else
+    gTrunkCardQty[cardId] = TRUNK_CARD_LIMIT;
+
+  SyncCardOwnershipQty(cardId);
+  PlayMusic(SFX_SELECT);
 }
