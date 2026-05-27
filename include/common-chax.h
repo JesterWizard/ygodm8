@@ -24,3 +24,4 @@ extern void NoCashGBAPrintf(const char *pBuf, ...);
 
 extern s16 GetTalkingUnitSprite(void);
 extern s8 GetObjectIdInFrontOfPlayer(u8 x, u8 y, u8 playerDirection);
+extern void DisplayPortrait (struct ScriptCtx* scriptCtx);

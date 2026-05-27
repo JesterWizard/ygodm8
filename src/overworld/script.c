@@ -1,4 +1,5 @@
 #include "global.h"
+#include "common-chax.h"
 
 static void sub_80526D0 (struct ScriptCtx*);
 static void sub_80527E8 (struct ScriptCtx *);
@@ -60,7 +61,7 @@ static inline void sub_805342C_inline (u8* dest, u8* src) {
       *dest++ = *src++;
 }
 
-static void DisplayPortrait (struct ScriptCtx* scriptCtx) {
+void DisplayPortrait (struct ScriptCtx* scriptCtx) {
   struct OamData* oam = gOamBuffer;
   if (scriptCtx->unk86 == 1) {
     REG_WIN1H = 0x03ED;

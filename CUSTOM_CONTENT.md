@@ -8,6 +8,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | --- | --- |
 | `src_custom/` | Main custom code, generated includes, and custom assets. |
 | `src_custom/assets/` | Custom card art and thought bubble assets. |
+| `src_custom/assets/portraits/` | Custom dialogue portrait PNGs and generated portrait data. |
 | `src_custom/custom_decks/` | Custom deck definitions and helpers. |
 | `src_custom/generated/` | Generated data and lookup files used by the build. |
 | `src_custom/permanent_effects/` | Custom permanent effect hooks. |
@@ -22,6 +23,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | --- | --- |
 | `README.md` | Project overview and build instructions. |
 | `CUSTOM_CONTENT.md` | This index of custom folders and files. |
+| `documentation/custom-portraits.md` | How to add custom dialogue portraits and use them in event scripts. |
 
 ## Notes
 

@@ -312,6 +312,7 @@ enum Portrait {
   PORTRAIT_NEO_GHOUL = 49,
   PORTRAIT_CHEVALIER = 50,
   PORTRAIT_ODION = 51,
+  PORTRAIT_PLAYER = 52,
 };
 
 enum Expressions {

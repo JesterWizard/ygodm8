@@ -239,6 +239,23 @@ $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) 
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
+src_custom/assets/portraits/player.8bpp: src_custom/assets/portraits/player.png
+	@echo "PORTRAIT $<"
+	tools/gbagfx/gbagfx $< $@ -num_tiles 64 -Werror=num_tiles
+
+src_custom/assets/portraits/player.shifted.8bpp: src_custom/assets/portraits/player.8bpp tools/offset_portrait_8bpp.py
+	@echo "PALOFF  $<"
+	python3 tools/offset_portrait_8bpp.py $< $@
+
+src_custom/assets/portraits/player.lz: src_custom/assets/portraits/player.shifted.8bpp
+	@echo "LZ      $<"
+	tools/gbagfx/gbagfx $< $@
+
+src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.png
+	@echo "PAL     $<"
+	tools/gbagfx/gbagfx $< $@
+
+$(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 
