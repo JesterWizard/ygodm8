@@ -119,9 +119,9 @@ static void MoveAllCardsToTrunk(void) {
 
     if (cardId != CARD_NONE) {
       AddCardToTrunk(cardId);
+      gDeckMenu.cards[i] = CARD_NONE;
       SyncCardOwnershipQty(cardId);
     }
-    gDeckMenu.cards[i] = CARD_NONE;
   }
   gDeckMenu.cardCount = 0;
   gDeckMenu.currentPos = 0;
@@ -207,9 +207,10 @@ LYN_REPLACE_CHECK(AddCardToDeck);
 void AddCardToDeck__Replacement(unsigned short cardId) {
   unsigned limit = GetRuntimeDeckLimit();
 
-  if (gDeckMenu.cardCount >= limit)
+  if (gDeckMenu.cardCount >= limit || !gTrunkCardQty[cardId])
     return;
 
+  gTrunkCardQty[cardId]--;
   gDeckMenu.cards[gDeckMenu.cardCount] = cardId;
   gDeckMenu.cardCount++;
   CalculateCurrentDeckCost();

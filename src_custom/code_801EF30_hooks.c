@@ -440,11 +440,8 @@ void HandleLoss__Replacement(void) {
 LYN_REPLACE_CHECK(sub_801F098);
 u8 sub_801F098__Replacement(u16 cardId) {
   u8 qty = GetDeckCardQty(cardId);
-  if (gRuntimeConfig.disable_ban_list == TRUE) {
-    if (qty > 2)
-      return 0;
+  if (gRuntimeConfig.disable_ban_list == TRUE)
     return 1;
-  }
   if (sub_801F0F0(cardId, g80B9620) == 1) {
     if (qty)
       return 0;
