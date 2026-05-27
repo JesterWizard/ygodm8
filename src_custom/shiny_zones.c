@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "shiny_zones.h"
+#include "overworld.h"
 
 #include "generated/shiny_zones_generated.inc"
 
@@ -100,12 +101,23 @@ u8 ShinyZones_TryInteract(u8 x, u8 y, s8 objectId) {
 
   PlayMusic(SFX_DIALOGUE);
   InitiateScript((struct Script *)entry->script);
+
+  // Shiny-zone scripts can terminate without going through the "press button to close"
+  // textbox handler, leaving the overworld textbox/window state visible behind the card view.
+  LZ77UnCompWram(g82AD2D0, gVramBuffer + 0xD800);
+  sub_805339C();
+  REG_WINOUT = 0x3D3E;
+  OverworldSetRegDispcnt();
+  REG_BLDCNT = 0;
+
   sub_8053404();
   SetCardInfo(entry->cardId);
   ShowCardDetailView();
   AddCardQtyToTrunk(entry->cardId, 1);
   ShinyZones_SetFlag(entry->flag);
   OverworldLoadGraphics();
-  sub_80533BC();
+  // Returning from the card view, keep the overworld textbox/window disabled.
+  LZ77UnCompWram(g82AD2D0, gVramBuffer + 0xD800);
+  sub_8053404();
   return TRUE;
 }

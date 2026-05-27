@@ -1,0 +1,4 @@
+-Iinclude
+-I.
+-Itools/agbcc/include
+-Itools/agbcc
