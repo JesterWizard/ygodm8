@@ -8,6 +8,7 @@ extern void (*g8E0C940[])(void);
 extern unsigned char (*g8E0CA80[])(void);
 void ActivateGiantGermEffect(void);
 void ActivateNimbleMomongaEffect(void);
+void ActivateSkullMarkLadyBugEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
 
 void TryActivatingTurnEffects(void);
@@ -29,6 +30,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateNimbleMomongaEffect();
     return;
   }
+  if (gActiveEffect.cardId == SKULL_MARK_LADY_BUG && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
+    ActivateSkullMarkLadyBugEffect();
+    return;
+  }
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
     ActivateDeckDestructionVirusEffect();
     return;
@@ -41,6 +46,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
   if (gActiveEffect.cardId == GIANT_GERM && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return TRUE;
   if (gActiveEffect.cardId == NIMBLE_MOMONGA && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+    return TRUE;
+  if (gActiveEffect.cardId == SKULL_MARK_LADY_BUG && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return TRUE;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)
     return TRUE;

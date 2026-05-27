@@ -1,24 +1,23 @@
 #include "global.h"
 #include "common-chax.h"
 
-unsigned char CanActivateSkullMarkLadyBug(void) {
-  return gMonEffect.id == SKULL_MARK_LADY_BUG;
-}
-
-void ActivateSkullMarkLadyBugEffect(void) {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
-  u8 controller = gMonEffect.row == 1 ? INACTIVE_DUELIST : ACTIVE_DUELIST;
-
-  ClearZoneAndSendMonToGraveyard(zone, controller);
-
-  if (controller == ACTIVE_DUELIST)
-    SetPlayerLifePointsToAdd(3000);
+void ActivateSkullMarkLadyBugEffect(void)
+{
+  if ((gActiveEffect.turnRow == 6 && WhoseTurn() == DUEL_PLAYER) ||
+      (gActiveEffect.turnRow == 7 && WhoseTurn() != DUEL_PLAYER))
+    SetPlayerLifePointsToAdd(1000);
   else
-    SetOpponentLifePointsToAdd(3000);
+    SetOpponentLifePointsToAdd(1000);
 
   HandleAtkAndLifePointsAction();
 
-  if (!gHideEffectText) {
+  if (gActiveEffect.turnRow == 6)
+    GetGraveCardAndClearGrave(ACTIVE_DUELIST);
+  else
+    GetGraveCardAndClearGrave(INACTIVE_DUELIST);
+
+  if (!gHideEffectText)
+  {
     gCardEffectTextData.cardId = SKULL_MARK_LADY_BUG;
     ActivateCardEffectText();
   }

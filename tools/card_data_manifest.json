@@ -11826,7 +11826,7 @@
       "level": 3,
       "type": "TYPE_INSECT",
       "color": "EFFECT_CARD",
-      "monsterEffect": 76,
+      "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Skull Mark Lady Bug",
@@ -11835,13 +11835,13 @@
         "symbol": "gDescription_SkullMarkLadyBug",
         "pages": [
           "A ladybug that has a skull and crossbones on its back.",
-          "In return for its own demise it can restore 3000LP."
+          "When this card is destroyed it restores 1000LP."
         ]
       },
       "activation_description": {
         "symbol": "gActivationDescription_SkullMarkLadyBug",
         "pages": [
-          "In return for its own demise it will restore 3000LP to its owner."
+          "1000LP will be restored to the owner and then this card will be removed from the graveyard."
         ]
       }
     },
