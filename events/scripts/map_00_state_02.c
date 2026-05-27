@@ -82,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34A18, map_00_state_02_08E34A18, 0x08E34A24, 0x08F
       "Master Chevalsky's plans!\n\n"
       "Duel!\n\n"
   )
-  DUEL(155)
+  DUEL(DUELIST_PUPPETEER_OF_DOOM_155)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

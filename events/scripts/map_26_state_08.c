@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E00, map_26_state_08_08EA3E00, 0x08EA3E0C, 0x08F
       "Don't expect any mercy,\n"
       "laddie!\n\n"
   )
-  DUEL(98)
+  DUEL(DUELIST_ID_098)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -86,7 +86,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3E3C, map_26_state_08_08EA3E3C, 0x08EA3E48, 0x08F
   (
       "Why certainly.\n\n"
   )
-  DUEL(99)
+  DUEL(DUELIST_ID_099)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

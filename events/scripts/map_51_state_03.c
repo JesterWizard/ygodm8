@@ -30,7 +30,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D70, map_51_state_03_08EE3D70, 0x08EE3D88, 0x08E
       "You're in for a prehistoric\n"
       "pounding!\n\n"
   )
-  DUEL(114)
+  DUEL(DUELIST_REX_114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D7C, map_51_state_03_08EE3D7C, 0x08EE3D88, 0x08E
       "you that.\n\n"
       "But it won't change a thing.\n\n"
   )
-  DUEL(114)
+  DUEL(DUELIST_REX_114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -70,7 +70,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D94, map_51_state_03_08EE3D94, 0x08EE3DA0, 0x08E
       "Y-you! That card...\n\n"
       "No! Come on, duel!\n\n"
   )
-  DUEL(114)
+  DUEL(DUELIST_REX_114)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

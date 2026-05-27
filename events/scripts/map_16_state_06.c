@@ -18,7 +18,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DFCC, map_16_state_06_08E7DFCC, 0x08E7DFD8, 0x08F
       "I won't let you reach Master\n"
       "Keith easily!\n\n"
   )
-  DUEL(72)
+  DUEL(DUELIST_NEO_GHOUL_072)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

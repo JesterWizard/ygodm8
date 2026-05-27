@@ -38,7 +38,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F039D8, map_60_state_04_08F039D8, 0x08F039E4, 0x08F
       "All right! It's time to\n"
       "duel!\n\n"
   )
-  DUEL(158)
+  DUEL(DUELIST_MARIK_158)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

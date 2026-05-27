@@ -55,7 +55,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D06C, map_04_state_01_08E4D06C, 0x08E4D078, 0x08F
       "I've been waiting for!\n\n"
       "Let's duel!\n\n"
   )
-  DUEL(7)
+  DUEL(DUELIST_ID_007)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

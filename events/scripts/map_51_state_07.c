@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F80, map_51_state_07_08EE3F80, 0x08EE3F98, 0x08E
       "This is as far as you'll\n"
       "get!\n\n"
   )
-  DUEL(118)
+  DUEL(DUELIST_MAI_118)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -57,7 +57,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F8C, map_51_state_07_08EE3F8C, 0x08EE3F98, 0x08E
       "I won't allow you to get\n"
       "past me!\n\n"
   )
-  DUEL(118)
+  DUEL(DUELIST_MAI_118)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -69,7 +69,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3FA4, map_51_state_07_08EE3FA4, 0x08EE3FB0, 0x08E
       "dueling!\n\n"
       "I always win!\n\n"
   )
-  DUEL(118)
+  DUEL(DUELIST_MAI_118)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

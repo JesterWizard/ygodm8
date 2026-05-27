@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3DF4, map_51_state_04_08EE3DF4, 0x08EE3E0C, 0x08E
       "Hyohyohyohyo!\n\n"
       "My anger still burns!\n\n"
   )
-  DUEL(115)
+  DUEL(DUELIST_WEEVIL_115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -53,7 +53,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E00, map_51_state_04_08EE3E00, 0x08EE3E0C, 0x08E
   (
       "You're wasting your time!\n\n"
   )
-  DUEL(115)
+  DUEL(DUELIST_WEEVIL_115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -66,7 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E18, map_51_state_04_08EE3E18, 0x08EE3E24, 0x08E
       "When I win, it's all over\n"
       "for you.\n\n"
   )
-  DUEL(115)
+  DUEL(DUELIST_WEEVIL_115)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

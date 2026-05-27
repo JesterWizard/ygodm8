@@ -34,7 +34,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E84FD8, map_20_state_05_08E84FD8, 0x08E84FE4, 0x08F
       "at drawing the right cards\n\n"
       "at the right time!\n\n"
   )
-  DUEL(96)
+  DUEL(DUELIST_ID_096)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

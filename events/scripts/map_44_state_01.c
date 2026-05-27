@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EDA8AC, map_44_state_01_08EDA8AC, 0x08EDA8B8, 0x08F
       "Gawry nida! Gawry nida!\n\n"
       "We win all duels! Gawry!\n\n"
   )
-  DUEL(108)
+  DUEL(DUELIST_CHEVALIER_108)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

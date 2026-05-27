@@ -151,7 +151,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DE58, map_16_state_01_08E7DE58, 0x08E7DE64, 0x08E
       "Can you beat me at your\n"
       "duelist level?\n\n"
   )
-  DUEL(25)
+  DUEL(DUELIST_ID_025)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -260,7 +260,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DD44, map_16_state_01_08E7DD44, 0x08E7DD5C, 0x08E
       "I'll get my first win off\n"
       "you.\n\n"
   )
-  DUEL(23)
+  DUEL(DUELIST_ID_023)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -353,7 +353,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7DDD4, map_16_state_01_08E7DDD4, 0x08E7DDEC, 0x08E
   (
       "Think you can beat me?\n\n"
   )
-  DUEL(24)
+  DUEL(DUELIST_ID_024)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

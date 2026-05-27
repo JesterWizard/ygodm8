@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E78, map_51_state_05_08EE3E78, 0x08EE3E90, 0x08E
       "Darker than the deepest\n"
       "trenches of the sea!\n\n"
   )
-  DUEL(116)
+  DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -63,7 +63,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E84, map_51_state_05_08EE3E84, 0x08EE3E90, 0x08E
       "You can never light the\n"
       "darkness in my heart!\n\n"
   )
-  DUEL(116)
+  DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -74,7 +74,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3E9C, map_51_state_05_08EE3E9C, 0x08EE3EA8, 0x08E
       "Witness the darkest depths\n"
       "of my dueling spirit!\n\n"
   )
-  DUEL(116)
+  DUEL(DUELIST_MAKO_116)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

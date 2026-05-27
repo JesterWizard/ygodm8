@@ -231,7 +231,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC96C, map_29_state_08_08EAC96C, 0x08EAC978, 0x08F
       "lose, I'll let you be my\n\n"
       "best man.\n\n"
   )
-  DUEL(131)
+  DUEL(DUELIST_JEAN_CLAUDE_MAGNUM_131)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

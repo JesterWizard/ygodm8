@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A5CC, map_15_state_03_08E7A5CC, 0x08E7A5D8, 0x08F
       "I do hope you don't under-\n"
       "estimate me as an amateur.\n\n"
   )
-  DUEL(22)
+  DUEL(DUELIST_ID_022)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

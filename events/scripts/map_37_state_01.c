@@ -129,7 +129,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD82C, map_37_state_01_08ECD82C, 0x08ECD838, 0x08F
       "Fine! Mako Tsunami does not\n"
       "flee from any challenge!\n\n"
   )
-  DUEL(48)
+  DUEL(DUELIST_MAKO_048)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

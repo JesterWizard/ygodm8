@@ -72,7 +72,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3DB8, map_26_state_09_08EA3DB8, 0x08EA3DC4, 0x08F
       "{PLAYER}, I accept your\n"
       "duel!\n\n"
   )
-  DUEL(97)
+  DUEL(DUELIST_MAI_097)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -122,7 +122,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3DD0, map_26_state_09_08EA3DD0, 0x08EA3DDC, 0x08F
       "If you think it'll help,\n"
       "I'll duel you anytime!\n\n"
   )
-  DUEL(147)
+  DUEL(DUELIST_MAI_147)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

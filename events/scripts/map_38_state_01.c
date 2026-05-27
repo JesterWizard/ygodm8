@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED1664, map_38_state_01_08ED1664, 0x08ED1670, 0x08F
       "Prepare for a bug bashing\n"
       "with my Super Insect Deck!\n\n"
   )
-  DUEL(49)
+  DUEL(DUELIST_WEEVIL_049)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

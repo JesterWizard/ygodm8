@@ -49,7 +49,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC2554, map_34_state_01_08EC2554, 0x08EC2560, 0x08F
   (
       "Let's duel!\n\n"
   )
-  DUEL(44)
+  DUEL(DUELIST_ID_044)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -173,7 +173,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC25E4, map_34_state_01_08EC25E4, 0x08EC25F0, 0x08F
       "It sure beats digging old\n"
       "bones up. Sure, let's duel!\n\n"
   )
-  DUEL(45)
+  DUEL(DUELIST_JOEY_045)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

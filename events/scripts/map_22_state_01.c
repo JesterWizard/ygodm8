@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E8CAC8, map_22_state_01_08E8CAC8, 0x08E8CAD4, 0x08F
       "my abilities!\n\n"
       "There is no way I can lose!\n\n"
   )
-  DUEL(30)
+  DUEL(DUELIST_ID_030)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

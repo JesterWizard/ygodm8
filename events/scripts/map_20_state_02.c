@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E84F60, map_20_state_02_08E84F60, 0x08E84F6C, 0x08F
       "With this duel, I will\n"
       "finish you!\n\n"
   )
-  DUEL(29)
+  DUEL(DUELIST_ID_029)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

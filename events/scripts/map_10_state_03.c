@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63290, map_10_state_03_08E63290, 0x08E6329C, 0x08F
       "I'll show you that I've\n"
       "improved.\n\n"
   )
-  DUEL(94)
+  DUEL(DUELIST_ID_094)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

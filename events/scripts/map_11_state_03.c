@@ -27,7 +27,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64370, map_11_state_03_08E64370, 0x08E6437C, 0x08F
       "I won't let you have one so\n"
       "easily!\n\n"
   )
-  DUEL(95)
+  DUEL(DUELIST_ID_095)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

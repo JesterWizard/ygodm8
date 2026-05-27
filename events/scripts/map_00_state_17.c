@@ -30,7 +30,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E2C, map_00_state_17_08E34E2C, 0x08E34E38, 0x08F
       "Don't underestimate my\n"
       "Psychic Power deck!\n\n"
   )
-  DUEL(84)
+  DUEL(DUELIST_ESPA_ROBA_084)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -82,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34E44, map_00_state_17_08E34E44, 0x08E34E50, 0x08F
       "Then I'll be happy to duel\n"
       "you!\n\n"
   )
-  DUEL(146)
+  DUEL(DUELIST_ESPA_ROBA_146)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -246,7 +246,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95384, map_23_state_03_08E95384, 0x08E95390, 0x08F
       "And my first victim...will\n"
       "be you!\n\n"
   )
-  DUEL(77)
+  DUEL(DUELIST_BANDIT_KEITH_077)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

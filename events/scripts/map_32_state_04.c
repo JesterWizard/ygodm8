@@ -21,7 +21,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EB90D8, map_32_state_04_08EB90D8, 0x08EB90E4, 0x08E
       "You'll proceed no further\n"
       "without defeating me!\n\n"
   )
-  DUEL(78)
+  DUEL(DUELIST_MILLENNIUM_GUARDIAN_078)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

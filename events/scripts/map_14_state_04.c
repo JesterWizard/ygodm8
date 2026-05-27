@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E77450, map_14_state_04_08E77450, 0x08E7745C, 0x08F
       "Do you think you can beat\n"
       "the Neo Ghouls?\n\n"
   )
-  DUEL(71)
+  DUEL(DUELIST_NEO_GHOUL_071)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

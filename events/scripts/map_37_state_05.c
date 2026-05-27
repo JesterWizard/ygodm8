@@ -55,7 +55,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD874, map_37_state_05_08ECD874, 0x08ECD880, 0x08F
       "In that case, take my spirit\n"
       "to battle with you!\n\n"
   )
-  DUEL(103)
+  DUEL(DUELIST_MAKO_103)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -104,7 +104,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ECD88C, map_37_state_05_08ECD88C, 0x08ECD898, 0x08F
       "I'm going to give my all in\n"
       "this duel!\n\n"
   )
-  DUEL(150)
+  DUEL(DUELIST_MAKO_150)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

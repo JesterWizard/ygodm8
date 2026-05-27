@@ -17,7 +17,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7F178, map_17_state_04_08E7F178, 0x08E7F184, 0x08E
       "Fool! There's nowhere to\n"
       "escape on this train!\n\n"
   )
-  DUEL(73)
+  DUEL(DUELIST_NEO_GHOUL_073)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

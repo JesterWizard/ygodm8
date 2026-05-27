@@ -35,7 +35,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E84F84, map_20_state_03_08E84F84, 0x08E84F90, 0x08E
       "You're not taking another\n"
       "step!\n\n"
   )
-  DUEL(75)
+  DUEL(DUELIST_NEO_GHOUL_075)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

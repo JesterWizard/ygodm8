@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3CEC, map_51_state_02_08EE3CEC, 0x08EE3D04, 0x08E
       "I'm not letting you get past\n"
       "me!\n\n"
   )
-  DUEL(113)
+  DUEL(DUELIST_BONZ_113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -67,7 +67,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3CF8, map_51_state_02_08EE3CF8, 0x08EE3D04, 0x08E
       "duel, you won't get rid of\n\n"
       "me!\n\n"
   )
-  DUEL(113)
+  DUEL(DUELIST_BONZ_113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -78,7 +78,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3D10, map_51_state_02_08EE3D10, 0x08EE3D1C, 0x08E
       "Th-that card... How did you\n"
       "get that!\n\n"
   )
-  DUEL(113)
+  DUEL(DUELIST_BONZ_113)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

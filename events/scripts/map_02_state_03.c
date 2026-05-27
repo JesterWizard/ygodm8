@@ -76,7 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4792C, map_02_state_03_08E4792C, 0x08E47938, 0x08F
       "hard that you don't feel\n\n"
       "like dueling ever again.\n\n"
   )
-  DUEL(58)
+  DUEL(DUELIST_MAI_058)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

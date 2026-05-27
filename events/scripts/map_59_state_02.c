@@ -53,7 +53,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDAB8, map_59_state_02_08EFDAB8, 0x08EFDAC4, 0x08F
       "traps?\n\n"
       "Fine! We shall duel!\n\n"
   )
-  DUEL(157)
+  DUEL(DUELIST_ODION_157)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -39,7 +39,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC2674, map_34_state_04_08EC2674, 0x08EC2680, 0x08F
       "Well, all right. It'll be a\n"
       "nice change of pace.\n\n"
   )
-  DUEL(101)
+  DUEL(DUELIST_ID_101)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

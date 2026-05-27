@@ -66,7 +66,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D15C, map_04_state_03_08E4D15C, 0x08E4D168, 0x08F
       "My Neo Ghost deck will haunt\n"
       "you...\n\n"
   )
-  DUEL(60)
+  DUEL(DUELIST_BONZ_060)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

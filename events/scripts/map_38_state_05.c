@@ -53,7 +53,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16B8, map_38_state_05_08ED16B8, 0x08ED16C4, 0x08F
       "You want to be infested by\n"
       "my Super Insect deck?\n\n"
   )
-  DUEL(104)
+  DUEL(DUELIST_WEEVIL_104)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -113,7 +113,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED16D0, map_38_state_05_08ED16D0, 0x08ED16DC, 0x08F
       "If you insist on bugging me,\n"
       "I'll duel you!\n\n"
   )
-  DUEL(151)
+  DUEL(DUELIST_WEEVIL_151)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -46,7 +46,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AAC0, map_03_state_05_08E4AAC0, 0x08E4AACC, 0x08F
   (
       "I'm not going to lose.\n\n"
   )
-  DUEL(89)
+  DUEL(DUELIST_ID_089)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

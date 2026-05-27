@@ -175,7 +175,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08ED4AA4, map_39_state_01_08ED4AA4, 0x08ED4AB0, 0x08F
       "We'll duel for the\n"
       "Millennium Items!\n\n"
   )
-  DUEL(50)
+  DUEL(DUELIST_MIMIC_OF_DOOM_050)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

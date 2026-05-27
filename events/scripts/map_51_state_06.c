@@ -32,7 +32,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3EFC, map_51_state_06_08EE3EFC, 0x08EE3F14, 0x08E
       "have decreed that you are\n\n"
       "going no further.\n\n"
   )
-  DUEL(117)
+  DUEL(DUELIST_ESPA_ROBA_117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -57,7 +57,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F08, map_51_state_06_08EE3F08, 0x08EE3F14, 0x08E
       "you come back.\n\n"
       "Give up! It's hopeless!\n\n"
   )
-  DUEL(117)
+  DUEL(DUELIST_ESPA_ROBA_117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -69,7 +69,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EE3F20, map_51_state_06_08EE3F20, 0x08EE3F2C, 0x08E
       "winning!\n\n"
       "I'll never lose!\n\n"
   )
-  DUEL(117)
+  DUEL(DUELIST_ESPA_ROBA_117)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

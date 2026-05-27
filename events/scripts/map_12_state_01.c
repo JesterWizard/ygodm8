@@ -43,7 +43,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EF7C, map_12_state_01_08E6EF7C, 0x08E6EF88, 0x08F
       "to see what it's like.\n\n"
       "Let's duel!\n\n"
   )
-  DUEL(12)
+  DUEL(DUELIST_ROLAND_012)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

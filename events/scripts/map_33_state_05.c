@@ -130,7 +130,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEC28, map_33_state_05_08EBEC28, 0x08EBEC4C, 0x08E
       "You claim to be a duelist.\n"
       "Therefore, we shall duel.\n\n"
   )
-  DUEL(83)
+  DUEL(DUELIST_PARADOX_083)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

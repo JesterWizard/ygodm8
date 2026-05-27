@@ -27,7 +27,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E477F4, map_02_state_01_08E477F4, 0x08E47800, 0x08F
       "and have a street battle?\n\n"
       "You're on!\n\n"
   )
-  DUEL(3)
+  DUEL(DUELIST_ID_003)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -76,7 +76,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47830, map_02_state_01_08E47830, 0x08E4783C, 0x08F
       "Even I'm willing to take on\n"
       "a duel!\n\n"
   )
-  DUEL(4)
+  DUEL(DUELIST_ID_004)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

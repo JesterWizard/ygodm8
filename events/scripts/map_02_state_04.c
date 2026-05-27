@@ -29,7 +29,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4795C, map_02_state_04_08E4795C, 0x08E47968, 0x08F
       "Okay, sure.\n"
       "I'll take you on.\n\n"
   )
-  DUEL(87)
+  DUEL(DUELIST_ID_087)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -75,7 +75,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47998, map_02_state_04_08E47998, 0x08E479A4, 0x08F
       "and duel because that's\n\n"
       "what Zompire would do!\n\n"
   )
-  DUEL(88)
+  DUEL(DUELIST_ID_088)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

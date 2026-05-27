@@ -141,7 +141,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E83AE4, map_19_state_01_08E83AE4, 0x08E83AF0, 0x08F
       "against my powerful Neo\n\n"
       "Ghost Deck!\n\n"
   )
-  DUEL(36)
+  DUEL(DUELIST_BONZ_036)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

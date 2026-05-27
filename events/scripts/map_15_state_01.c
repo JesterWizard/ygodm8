@@ -156,7 +156,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A4A0, map_15_state_01_08E7A4A0, 0x08E7A4AC, 0x08F
       "it's t-t-time to\n"
       "d-d-d-duel!\n\n"
   )
-  DUEL(17)
+  DUEL(DUELIST_JOEY_017)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -201,7 +201,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A4DC, map_15_state_01_08E7A4DC, 0x08E7A4E8, 0x08F
       "But I like your spunk!\n"
       "I accept your challenge!\n\n"
   )
-  DUEL(18)
+  DUEL(DUELIST_JOEY_018)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -252,7 +252,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A518, map_15_state_01_08E7A518, 0x08E7A524, 0x08F
   (
       "I think I can beat you.\n\n"
   )
-  DUEL(19)
+  DUEL(DUELIST_JOEY_019)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -297,7 +297,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A554, map_15_state_01_08E7A554, 0x08E7A560, 0x08F
   (
       "Huh, sure.\n\n"
   )
-  DUEL(20)
+  DUEL(DUELIST_JOEY_020)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -347,7 +347,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E7A590, map_15_state_01_08E7A590, 0x08E7A59C, 0x08F
       "this game a try.\n\n"
       "Let's duel!\n\n"
   )
-  DUEL(21)
+  DUEL(DUELIST_JOEY_021)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

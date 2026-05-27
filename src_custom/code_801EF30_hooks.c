@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "duel_main.h"
 #include "custom_decks/custom_decks.h"
+#include "generated/duelist_rewards_generated.inc"
 
 void HandleWin(void);
 void HandleLoss(void);
@@ -199,10 +200,41 @@ static const CustomDuelRewardEntry *GetCustomDuelRewardEntry(void) {
   return CustomDecks_GetPendingCardShopDuelRewardEntry();
 }
 
+static u8 ShouldUseCustomDuelistRewards(void) {
+  return gRuntimeConfig.repeatable_opponent_capacity_reward == 0
+    && gRuntimeConfig.story_opponent_capacity_reward == 0;
+}
+
+static const CustomDuelistRewardEntry *GetCustomDuelistRewardEntry(void) {
+  const CustomDuelistRewardEntry *entry;
+
+  if (!ShouldUseCustomDuelistRewards())
+    return NULL;
+  if (gDuelData.opponent >= ARRAY_COUNT(gCustomDuelistRewards))
+    return NULL;
+
+  entry = &gCustomDuelistRewards[gDuelData.opponent];
+  if (!entry->enabled)
+    return NULL;
+  return entry;
+}
+
 static u16 PickUniformRewardCard(const u16 *cards, unsigned count) {
   if (cards == NULL || count == 0)
     return CARD_NONE;
   return cards[RandRangeU16(1, count) - 1];
+}
+
+static u16 PickWeightedRewardCard(const struct CardDrop *cardDrops) {
+  u16 random;
+
+  if (cardDrops == NULL)
+    return CARD_NONE;
+
+  random = RandRangeU16(0, 2047);
+  while (cardDrops->card != CARD_NONE && random > cardDrops->chance)
+    cardDrops++;
+  return cardDrops->card;
 }
 
 static void AddRewardCardToTrunk__Replacement(void) {
@@ -229,6 +261,7 @@ static u32 GetConfiguredCapacityReward(u32 baseReward) {
 LYN_REPLACE_CHECK(sub_801FFE0);
 u16 sub_801FFE0__Replacement(void) {
   const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+  const CustomDuelistRewardEntry *duelistEntry = GetCustomDuelistRewardEntry();
   struct CardDrop *cardDrops;
   u16 random;
 
@@ -236,6 +269,12 @@ u16 sub_801FFE0__Replacement(void) {
     if (IsNormalAnte(gAnte) == TRUE)
       return PickUniformRewardCard(entry->normalDrops, entry->normalDropCount);
     return PickUniformRewardCard(entry->lowDrops, entry->lowDropCount);
+  }
+
+  if (duelistEntry != NULL) {
+    if (IsNormalAnte(gAnte) == TRUE)
+      return PickWeightedRewardCard(duelistEntry->normalDrops);
+    return PickWeightedRewardCard(duelistEntry->lowDrops);
   }
 
   if (IsNormalAnte(gAnte) == TRUE)
@@ -249,69 +288,32 @@ u16 sub_801FFE0__Replacement(void) {
   return cardDrops->card;
 }
 
+static u64 GetDominoScaleMultiplier(u8 scalePower) {
+  u64 temp;
+
+  for (temp = 1; scalePower != 0; scalePower--)
+    temp *= 10;
+  return temp;
+}
+
 LYN_REPLACE_CHECK(AddMoneyFromDuelVictory);
 void AddMoneyFromDuelVictory__Replacement(void) {
   const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+  const CustomDuelistRewardEntry *duelistEntry = GetCustomDuelistRewardEntry();
   u64 temp;
   u16 minDomino;
   u16 maxDomino;
 
-  switch (gUnk8E00B30[gDuelData.opponent]->unk20) {
-    case 1:
-      temp = 10;
-      break;
-    case 2:
-      temp = 100;
-      break;
-    case 3:
-      temp = 1000;
-      break;
-    case 4:
-      temp = 10000;
-      break;
-    case 5:
-      temp = 100000;
-      break;
-    case 6:
-      temp = 1000000;
-      break;
-    case 7:
-      temp = 10000000;
-      break;
-    case 8:
-      temp = 100000000;
-      break;
-    case 9:
-      temp = 1000000000;
-      break;
-    case 10:
-      temp = 10000000000;
-      break;
-    case 11:
-      temp = 100000000000;
-      break;
-    case 12:
-      temp = 1000000000000;
-      break;
-    case 13:
-      temp = 10000000000000;
-      break;
-    case 14:
-      temp = 100000000000000;
-      break;
-    case 15:
-      temp = 1000000000000000;
-      break;
-    case 0:
-    default:
-      temp = 1;
-      break;
-  }
-
   if (entry != NULL) {
+    temp = GetDominoScaleMultiplier(gUnk8E00B30[gDuelData.opponent]->unk20);
     minDomino = entry->minDomino;
     maxDomino = entry->maxDomino;
+  } else if (duelistEntry != NULL) {
+    temp = GetDominoScaleMultiplier(duelistEntry->dominoScalePower);
+    minDomino = duelistEntry->minDomino;
+    maxDomino = duelistEntry->maxDomino;
   } else {
+    temp = GetDominoScaleMultiplier(gUnk8E00B30[gDuelData.opponent]->unk20);
     minDomino = gUnk8E00B30[gDuelData.opponent]->minDomino;
     maxDomino = gUnk8E00B30[gDuelData.opponent]->maxDomino;
   }
@@ -326,9 +328,12 @@ void HandleWin__Replacement(void) {
   u32 rewardMultiplier = GetAlternateWinRewardMultiplier();
   u64 baseMoneyReward;
   const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
+  const CustomDuelistRewardEntry *duelistEntry = GetCustomDuelistRewardEntry();
 
   if (entry != NULL)
     gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(entry->capacityYield));
+  else if (duelistEntry != NULL)
+    gDuelData.capacityYield = ApplyCapacityRewardMultiplier(duelistEntry->capacityYield);
   else
     gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield));
   IncreaseDeckCapacity(gDuelData.capacityYield);

@@ -64,7 +64,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC93C, map_29_state_07_08EAC93C, 0x08EAC948, 0x08F
       "Okay! {PLAYER}, I'll duel\n"
       "you anytime you want.\n\n"
   )
-  DUEL(100)
+  DUEL(DUELIST_BONZ_100)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -115,7 +115,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC954, map_29_state_07_08EAC954, 0x08EAC960, 0x08F
       "I'll duel you anytime you\n"
       "want.\n\n"
   )
-  DUEL(148)
+  DUEL(DUELIST_BONZ_148)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

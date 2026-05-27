@@ -82,7 +82,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C84, map_36_state_02_08EC9C84, 0x08EC9C90, 0x08F
       "than words.\n\n"
       "Let's duel!\n\n"
   )
-  DUEL(102)
+  DUEL(DUELIST_REX_102)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -148,7 +148,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC9C9C, map_36_state_02_08EC9C9C, 0x08EC9CA8, 0x08F
       "If it means helping you,\n"
       "{PLAYER}, I'll do it!\n\n"
   )
-  DUEL(149)
+  DUEL(DUELIST_REX_149)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

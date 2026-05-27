@@ -116,7 +116,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FEC, map_05_state_03_08E50FEC, 0x08E50FF8, 0x08F
       "bored of the Neo Ghouls!\n\n"
       "Prepare to be swamped!\n\n"
   )
-  DUEL(62)
+  DUEL(DUELIST_MAKO_062)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

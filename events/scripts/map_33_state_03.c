@@ -151,7 +151,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB80, map_33_state_03_08EBEB80, 0x08EBEB8C, 0x08F
       "You'll make an excellent\n"
       "prize for Master Keith!\n\n"
   )
-  DUEL(68)
+  DUEL(DUELIST_LUMIS_068)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -284,7 +284,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB98, map_33_state_03_08EBEB98, 0x08EBEBA4, 0x08F
       "I'll make you regret defying\n"
       "the Neo Ghouls!\n\n"
   )
-  DUEL(69)
+  DUEL(DUELIST_UMBRA_069)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

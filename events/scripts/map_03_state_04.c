@@ -68,7 +68,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AA78, map_03_state_04_08E4AA78, 0x08E4AA84, 0x08F
       "extinct?\n\n"
       "All right! Let's duel!\n\n"
   )
-  DUEL(54)
+  DUEL(DUELIST_REX_054)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

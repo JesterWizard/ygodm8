@@ -25,7 +25,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBC4, map_06_state_01_08E5CBC4, 0x08E5CBD0, 0x08F
       "You want to duel me?\n\n"
       "Sure thing! Let's duel!\n\n"
   )
-  DUEL(123)
+  DUEL(DUELIST_TRISTAN_123)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -61,7 +61,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBE8, map_06_state_01_08E5CBE8, 0x08E5CBF4, 0x08F
       "But I can duel better than\n"
       "that loser Tristan.\n\n"
   )
-  DUEL(124)
+  DUEL(DUELIST_DUKE_124)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

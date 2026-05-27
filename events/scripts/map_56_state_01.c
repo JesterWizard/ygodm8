@@ -37,7 +37,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF2F90, map_56_state_01_08EF2F90, 0x08EF2F9C, 0x08F
       "Savor the bitter taste of\n"
       "defeat!\n\n"
   )
-  DUEL(134)
+  DUEL(DUELIST_NOAH_134)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -73,7 +73,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF2FB4, map_56_state_01_08EF2FB4, 0x08EF2FC0, 0x08F
       "one turn!\n\n"
       "Fuhahahahaha!\n\n"
   )
-  DUEL(135)
+  DUEL(DUELIST_DARK_MARIK_135)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -108,7 +108,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF2FD8, map_56_state_01_08EF2FD8, 0x08EF2FE4, 0x08F
       "My occult deck will banish\n"
       "you into the shadows!\n\n"
   )
-  DUEL(136)
+  DUEL(DUELIST_DARK_BAKURA_136)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -141,7 +141,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF2FFC, map_56_state_01_08EF2FFC, 0x08EF3008, 0x08F
   (
       "I accept your challenge!\n\n"
   )
-  DUEL(137)
+  DUEL(DUELIST_ATEM_137)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -176,7 +176,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3020, map_56_state_01_08EF3020, 0x08EF302C, 0x08F
       "recognize you after I\n\n"
       "finish pummeling ya!\n\n"
   )
-  DUEL(138)
+  DUEL(DUELIST_DARK_JOEY_138)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -214,7 +214,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3044, map_56_state_01_08EF3044, 0x08EF3050, 0x08F
       "meet.\n\n"
       "I accept your duel!\n\n"
   )
-  DUEL(139)
+  DUEL(DUELIST_SETO_139)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -255,7 +255,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF3068, map_56_state_01_08EF3068, 0x08EF3074, 0x08F
       "I hate to say this, but you\n"
       "have no chance to win!\n\n"
   )
-  DUEL(140)
+  DUEL(DUELIST_SOL_CHEVALSKY_140)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -292,7 +292,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF308C, map_56_state_01_08EF308C, 0x08EF3098, 0x08F
       "Either you're brave...\n\n"
       "Or you underestimate me...\n\n"
   )
-  DUEL(141)
+  DUEL(DUELIST_PARADOX_141)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -327,7 +327,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EF30B0, map_56_state_01_08EF30B0, 0x08EF30BC, 0x08F
       "millenniums ago...\n\n"
       "Can you overcome my test?\n\n"
   )
-  DUEL(142)
+  DUEL(DUELIST_SHADI_142)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

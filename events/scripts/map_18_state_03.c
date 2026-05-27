@@ -16,7 +16,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80B2C, map_18_state_03_08E80B2C, 0x08E80B38, 0x08E
       "much tougher than the other\n\n"
       "guys!\n\n"
   )
-  DUEL(74)
+  DUEL(DUELIST_NEO_GHOUL_074)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

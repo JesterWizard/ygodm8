@@ -28,7 +28,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A8BC, map_03_state_01_08E4A8BC, 0x08E4A8C8, 0x08F
       "I'll duel in a way that\n"
       "would make Mr. Kaiba proud!\n\n"
   )
-  DUEL(5)
+  DUEL(DUELIST_ID_005)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -75,7 +75,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A8F8, map_03_state_01_08E4A8F8, 0x08E4A904, 0x08F
   (
       "We'll duel fair and square!\n\n"
   )
-  DUEL(6)
+  DUEL(DUELIST_ID_006)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -31,7 +31,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50EC0, map_05_state_01_08E50EC0, 0x08E50ECC, 0x08F
       "but I'll still take you on\n\n"
       "fair and square.\n\n"
   )
-  DUEL(8)
+  DUEL(DUELIST_ID_008)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -87,7 +87,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50EFC, map_05_state_01_08E50EFC, 0x08E50F08, 0x08F
       "A duel's a duel, no matter\n"
       "where it's played!\n\n"
   )
-  DUEL(9)
+  DUEL(DUELIST_ID_009)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

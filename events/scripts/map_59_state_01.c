@@ -176,7 +176,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDA7C, map_59_state_01_08EFDA7C, 0x08EFDA88, 0x08F
       "to disturb Master Marik.\n\n"
       "Let's duel!\n\n"
   )
-  DUEL(157)
+  DUEL(DUELIST_ODION_157)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

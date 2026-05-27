@@ -136,7 +136,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A44, map_60_state_01_08F03A44, 0x08F03A50, 0x08F
       "myself and will use all my\n\n"
       "arcane strategies!\n\n"
   )
-  DUEL(158)
+  DUEL(DUELIST_MARIK_158)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -178,7 +178,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A14, map_60_state_01_08F03A14, 0x08F03A20, 0x08F
       "traps?\n\n"
       "Fine! We shall duel!\n\n"
   )
-  DUEL(157)
+  DUEL(DUELIST_ODION_157)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

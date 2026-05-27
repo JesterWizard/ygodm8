@@ -79,6 +79,9 @@ DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DA
 CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
 CARD_ART_GENERATOR := tools/add_card_art.py
+DUELIST_REWARD_MANIFEST := tools/duelist_reward_manifest.json
+DUELIST_REWARD_GENERATOR := tools/generate_duelist_rewards.py
+DUELIST_REWARDS_GENERATED := src_custom/generated/duelist_rewards_generated.inc
 CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld generated/card_memory_sizes.inc
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
@@ -212,6 +215,10 @@ endif
 $(CARD_DESCRIPTION_GENERATED) $(CARD_ART_GENERATED) $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED): $(CARD_GENERATED_STAMP)
 	@test -f $@
 
+$(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERATOR)
+	@echo "REWARDS $@"
+	python3 $(DUELIST_REWARD_GENERATOR) $(DUELIST_REWARD_MANIFEST) --out $@
+
 define compile_c_object_rule
 $1/%.o: $2/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
 	@echo "CC      $$<"
@@ -233,6 +240,7 @@ $(eval $(call compile_c_object_rule,$(CONFIGS_BUILDDIR),$(CONFIGS_SUBDIR)))
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
 $(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED)))
+$(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED)))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))

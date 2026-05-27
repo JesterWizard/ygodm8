@@ -28,7 +28,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E63230, map_10_state_01_08E63230, 0x08E6323C, 0x08F
       "made exclusively for the\n\n"
       "Duel Express tournament.\n\n"
   )
-  DUEL(10)
+  DUEL(DUELIST_ID_010)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

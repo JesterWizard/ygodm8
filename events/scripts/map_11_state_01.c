@@ -18,7 +18,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E64304, map_11_state_01_08E64304, 0x08E64310, 0x08F
       "challenge me?\n\n"
       "We'll duel for a rare card!\n\n"
   )
-  DUEL(11)
+  DUEL(DUELIST_ID_011)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

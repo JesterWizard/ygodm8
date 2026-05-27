@@ -92,7 +92,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EC62FC, map_35_state_01_08EC62FC, 0x08EC6314, 0x08F
       "That's the spirit! Let's\n"
       "duel!\n\n"
   )
-  DUEL(46)
+  DUEL(DUELIST_REX_046)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

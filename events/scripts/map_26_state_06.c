@@ -122,7 +122,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3CF8, map_26_state_06_08EA3CF8, 0x08EA3D10, 0x08F
       "I, Arkana, accept your\n"
       "challenge!\n\n"
   )
-  DUEL(156)
+  DUEL(DUELIST_ARCANA_156)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -270,7 +270,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3D04, map_26_state_06_08EA3D04, 0x08EA3D10, 0x08F
       "exhilarating performance\n\n"
       "yet!\n\n"
   )
-  DUEL(156)
+  DUEL(DUELIST_ARCANA_156)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

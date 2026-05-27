@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03A74, map_60_state_03_08F03A74, 0x08F03A80, 0x08F
       "I will not hold anything\n"
       "back!\n\n"
   )
-  DUEL(158)
+  DUEL(DUELIST_MARIK_158)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -81,7 +81,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08F03ABC, map_60_state_03_08F03ABC, 0x08F03AC8, 0x08F
       "But I accept your challenge.\n"
       "It's time to duel!\n\n"
   )
-  DUEL(157)
+  DUEL(DUELIST_ODION_157)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

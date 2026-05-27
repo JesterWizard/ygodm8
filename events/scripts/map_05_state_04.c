@@ -33,7 +33,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5101C, map_05_state_04_08E5101C, 0x08E51028, 0x08F
       "Those are my rules, and if\n"
       "you don't like it, tough!\n\n"
   )
-  DUEL(90)
+  DUEL(DUELIST_ID_090)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -79,7 +79,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E51058, map_05_state_04_08E51058, 0x08E51064, 0x08F
       "Yes! I accept your\n"
       "challenge!\n\n"
   )
-  DUEL(91)
+  DUEL(DUELIST_ID_091)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

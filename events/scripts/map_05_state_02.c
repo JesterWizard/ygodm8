@@ -38,7 +38,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F38, map_05_state_02_08E50F38, 0x08E50F44, 0x08E
       "No one's shown the least bit\n"
       "of resistance!\n\n"
   )
-  DUEL(61)
+  DUEL(DUELIST_NEO_GHOUL_061)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

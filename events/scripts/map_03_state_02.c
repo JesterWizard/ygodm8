@@ -140,7 +140,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A988, map_03_state_02_08E4A988, 0x08E4A9A0, 0x08E
       "I'll take your rare cards,\n"
       "too!\n\n"
   )
-  DUEL(52)
+  DUEL(DUELIST_NEO_GHOUL_052)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -193,7 +193,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A994, map_03_state_02_08E4A994, 0x08E4A9A0, 0x08E
       "This is your first, and\n"
       "last, mistake!\n\n"
   )
-  DUEL(52)
+  DUEL(DUELIST_NEO_GHOUL_052)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -204,7 +204,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A9D0, map_03_state_02_08E4A9D0, 0x08E4A9E8, 0x08E
       "You have some rare cards\n"
       "that I want.\n\n"
   )
-  DUEL(53)
+  DUEL(DUELIST_NEO_GHOUL_053)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -247,6 +247,6 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4A9DC, map_03_state_02_08E4A9DC, 0x08E4A9E8, 0x08E
       "You fool! You dare challenge\n"
       "me?\n\n"
   )
-  DUEL(53)
+  DUEL(DUELIST_NEO_GHOUL_053)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

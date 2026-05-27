@@ -418,7 +418,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFB42C, map_57_state_02_08EFB42C, 0x08EFB438, 0x08F
       "Unlike last time, I'm taking\n"
       "off the kiddie gloves!\n\n"
   )
-  DUEL(51)
+  DUEL(DUELIST_SEEKER_051)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

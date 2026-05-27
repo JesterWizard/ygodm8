@@ -218,7 +218,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CC9C, map_06_state_03_08E5CC9C, 0x08E5CCA8, 0x08F
       "but I'll do anything for\n\n"
       "you, buddy!\n\n"
   )
-  DUEL(125)
+  DUEL(DUELIST_TRISTAN_125)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

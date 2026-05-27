@@ -25,7 +25,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E863A8, map_21_state_04_08E863A8, 0x08E863B4, 0x08E
   (
       "You will proceed no further!\n\n"
   )
-  DUEL(76)
+  DUEL(DUELIST_NEO_GHOUL_076)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

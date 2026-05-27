@@ -54,7 +54,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E6EFD0, map_12_state_02_08E6EFD0, 0x08E6EFDC, 0x08F
       "underestimate my skills, or\n\n"
       "you're gonna pay big time!\n\n"
   )
-  DUEL(13)
+  DUEL(DUELIST_MOKUBA_013)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

@@ -99,7 +99,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F858, map_07_state_01_08E5F858, 0x08E5F864, 0x08E
       "Sure, let's check how our\n"
       "decks are shaping up!\n\n"
   )
-  DUEL(14)
+  DUEL(DUELIST_YUGI_014)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -144,7 +144,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F87C, map_07_state_01_08E5F87C, 0x08E5F888, 0x08E
   (
       "Yeah, sure! I'll take ya on!\n\n"
   )
-  DUEL(15)
+  DUEL(DUELIST_JOEY_015)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

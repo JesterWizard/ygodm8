@@ -45,7 +45,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47890, map_02_state_02_08E47890, 0x08E4789C, 0x08E
       "the sandbox! I'm not as\n\n"
       "nice as the other guy!\n\n"
   )
-  DUEL(57)
+  DUEL(DUELIST_NEO_GHOUL_057)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

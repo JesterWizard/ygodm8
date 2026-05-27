@@ -71,7 +71,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42814, map_01_state_04_08E42814, 0x08E42820, 0x08F
       "time, you gruesome grub!\n\n"
       "You can't beat me in a duel!\n\n"
   )
-  DUEL(56)
+  DUEL(DUELIST_WEEVIL_056)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

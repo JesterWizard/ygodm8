@@ -74,7 +74,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952A0, map_23_state_01_08E952A0, 0x08E952B8, 0x08F
       "Millennium Necklace if you\n\n"
       "can pass my challenge!\n\n"
   )
-  DUEL(154)
+  DUEL(DUELIST_MILLENNIUM_GUARDIAN_154)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -133,6 +133,6 @@ EVENT_SCRIPT_REPLACEMENT(0x08E952AC, map_23_state_01_08E952AC, 0x08E952B8, 0x08F
       "Pass my challenge to obtain\n"
       "its mystical revelations!\n\n"
   )
-  DUEL(154)
+  DUEL(DUELIST_MILLENNIUM_GUARDIAN_154)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

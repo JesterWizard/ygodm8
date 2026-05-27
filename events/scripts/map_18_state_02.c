@@ -26,7 +26,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E80AF0, map_18_state_02_08E80AF0, 0x08E80AFC, 0x08F
       "pace to duel in a place\n\n"
       "like this.\n\n"
   )
-  DUEL(28)
+  DUEL(DUELIST_ID_028)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

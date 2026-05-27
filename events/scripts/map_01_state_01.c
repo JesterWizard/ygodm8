@@ -350,7 +350,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42700, map_01_state_01_08E42700, 0x08E4270C, 0x08F
       "A street duel? Sure! Let's\n"
       "duel!\n\n"
   )
-  DUEL(1)
+  DUEL(DUELIST_YUGI_001)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -398,7 +398,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4273C, map_01_state_01_08E4273C, 0x08E42748, 0x08F
       "You must be a bad duelist if\n"
       "you're out here.\n\n"
   )
-  DUEL(2)
+  DUEL(DUELIST_YUGI_002)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

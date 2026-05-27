@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42778, map_01_state_03_08E42778, 0x08E42784, 0x08E
       "You! You're a duelist! Fork\n"
       "over your rare cards!\n\n"
   )
-  DUEL(55)
+  DUEL(DUELIST_NEO_GHOUL_055)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

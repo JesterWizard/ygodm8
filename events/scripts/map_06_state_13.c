@@ -36,7 +36,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD14, map_06_state_13_08E5CD14, 0x08E5CD20, 0x08F
       "learn something from me,\n\n"
       "I'll duel you!\n\n"
   )
-  DUEL(92)
+  DUEL(DUELIST_TRISTAN_092)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -69,7 +69,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CD38, map_06_state_13_08E5CD38, 0x08E5CD44, 0x08F
       "No problem! I'll duel if you\n"
       "want me to.\n\n"
   )
-  DUEL(93)
+  DUEL(DUELIST_DUKE_093)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

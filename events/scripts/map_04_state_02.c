@@ -59,7 +59,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D0C0, map_04_state_02_08E4D0C0, 0x08E4D0CC, 0x08E
       "town will also fall to the\n\n"
       "Neo Ghouls.\n\n"
   )
-  DUEL(59)
+  DUEL(DUELIST_NEO_GHOUL_059)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
