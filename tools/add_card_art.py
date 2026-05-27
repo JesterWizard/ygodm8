@@ -57,6 +57,11 @@ ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
 
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
 
+# Big card art palettes are traditionally 64 colors (4 banks). This repo can optionally
+# extend big card art palettes to 112 colors (7 banks) for the card detail view.
+BIG_PALETTE_COLORS_DEFAULT = 64
+BIG_PALETTE_COLORS_EXTENDED = 112
+
 
 @dataclass
 class CardArtEntry:
@@ -68,6 +73,7 @@ class CardArtEntry:
     big_pal: pathlib.Path | None
     mini_art: pathlib.Path | None
     stats: dict
+    big_art_colors_used: int = 0
 
 
 def to_symbol(stem: str, suffix: str) -> str:
@@ -109,6 +115,37 @@ def load_gba_palette(path: pathlib.Path) -> list[tuple[int, int, int]]:
                 ((value >> 5) & 0x1F) * 255 // 31,
                 ((value >> 10) & 0x1F) * 255 // 31,
             )
+        )
+    return colors
+
+
+def count_colors_used_in_big_art(png_path: pathlib.Path) -> int:
+    """Count distinct palette indices used in 80x80 big art (index 0 excluded as transparent)."""
+    if not png_path.exists():
+        return 0
+
+    image = Image.open(png_path).convert("P")
+    used = set(image.get_flattened_data())
+    used.discard(0)
+    return len(used)
+
+
+def validate_big_palette(path: pathlib.Path) -> int:
+    """
+    Validate that a big card palette is in a supported format.
+
+    We allow both the vanilla-sized 64-color palette (128 bytes) and the extended
+    112-color palette (224 bytes).
+    """
+    data = path.read_bytes()
+    if len(data) % 2 != 0:
+        raise SystemExit(f"Palette file must contain an even number of bytes: {path}")
+
+    colors = len(data) // 2
+    if colors not in (BIG_PALETTE_COLORS_DEFAULT, BIG_PALETTE_COLORS_EXTENDED):
+        raise SystemExit(
+            f"Unsupported big palette size in {path}: {colors} colors "
+            f"(expected {BIG_PALETTE_COLORS_DEFAULT} or {BIG_PALETTE_COLORS_EXTENDED})."
         )
     return colors
 
@@ -527,6 +564,20 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
         big_art = manifest_asset_path(item.get("big_art", ""), f"src_custom/assets/cards/80x80/{stem}.huff")
         big_pal = manifest_asset_path(item.get("big_palette", ""), f"src_custom/assets/cards/80x80/{stem}.gbapal")
         mini_art = manifest_asset_path(item.get("mini_art", ""), f"src_custom/assets/cards/24x24/{stem}.lz")
+
+        big_art_colors_used = 0
+        if big_art and big_art.exists():
+            big_png = big_art.with_suffix(".png")
+            big_art_colors_used = count_colors_used_in_big_art(big_png)
+
+        if big_pal.exists():
+            palette_colors = validate_big_palette(big_pal)
+            if big_art_colors_used > BIG_PALETTE_COLORS_DEFAULT and palette_colors < BIG_PALETTE_COLORS_EXTENDED:
+                raise SystemExit(
+                    f"{big_pal}: art uses {big_art_colors_used} colors but palette only has "
+                    f"{palette_colors} entries; export a {BIG_PALETTE_COLORS_EXTENDED}-color .gbapal."
+                )
+
         entries.append(
             CardArtEntry(
                 index=index,
@@ -537,6 +588,7 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
                 big_pal=big_pal if big_pal.exists() else None,
                 mini_art=mini_art if mini_art.exists() else None,
                 stats=item,
+                big_art_colors_used=big_art_colors_used,
             )
         )
 
@@ -574,6 +626,15 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
     for entry in entries:
         if entry.big_art and entry.big_pal:
             lines.append(f"  [0x{entry.index:04X}] = {to_symbol(entry.stem, 'BigPalette')},")
+        else:
+            lines.append(f"  [0x{entry.index:04X}] = 0,")
+    lines.append("};")
+    lines.append("")
+    lines.append("const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {")
+    for entry in entries:
+        if entry.big_art and entry.big_pal:
+            uses_extended = 1 if entry.big_art_colors_used > BIG_PALETTE_COLORS_DEFAULT else 0
+            lines.append(f"  [0x{entry.index:04X}] = {uses_extended},")
         else:
             lines.append(f"  [0x{entry.index:04X}] = 0,")
     lines.append("};")

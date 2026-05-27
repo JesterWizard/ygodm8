@@ -12544,15 +12544,15 @@ struct AttackVoicing {
 };
 
 static const struct AttackVoicing gB0AE8[] = {
-  {.duelistId = DUELIST_KAIBA, .cardId = BLUE_EYES_WHITE_DRAGON, .soundId = SFX_KAIBA_BLUE_EYES_VOICE},
-  {.duelistId = DUELIST_JOEY, .cardId = RED_EYES_B_DRAGON, .soundId = SFX_JOEY_RED_EYES_VOICE},
-  {.duelistId = DUELIST_EVIL_JOEY, .cardId = RED_EYES_B_DRAGON, .soundId = SFX_JOEY_RED_EYES_VOICE},
-  {.duelistId = DUELIST_ATEM, .cardId = BLACK_LUSTER_SOLDIER, .soundId = SFX_ATEM_BLACK_LUSTER_SOLDIER_VOICE},
-  {.duelistId = DUELIST_YUGI, .cardId = DARK_MAGICIAN, .soundId = SFX_YUGI_DARK_MAGICIAN_VOICE},
-  {.duelistId = DUELIST_NONE, .cardId = CARD_NONE, .soundId = SOUND_NONE}
+  {.duelistId = AI_DUELIST_KAIBA, .cardId = BLUE_EYES_WHITE_DRAGON, .soundId = SFX_KAIBA_BLUE_EYES_VOICE},
+  {.duelistId = AI_DUELIST_JOEY, .cardId = RED_EYES_B_DRAGON, .soundId = SFX_JOEY_RED_EYES_VOICE},
+  {.duelistId = AI_DUELIST_EVIL_JOEY, .cardId = RED_EYES_B_DRAGON, .soundId = SFX_JOEY_RED_EYES_VOICE},
+  {.duelistId = AI_DUELIST_ATEM, .cardId = BLACK_LUSTER_SOLDIER, .soundId = SFX_ATEM_BLACK_LUSTER_SOLDIER_VOICE},
+  {.duelistId = AI_DUELIST_YUGI, .cardId = DARK_MAGICIAN, .soundId = SFX_YUGI_DARK_MAGICIAN_VOICE},
+  {.duelistId = AI_DUELIST_NONE, .cardId = CARD_NONE, .soundId = SOUND_NONE}
 };
 static const struct AttackVoicing gB0B18[] = {
-  {.duelistId = DUELIST_NONE, .cardId = CARD_NONE, .soundId = SOUND_NONE}
+  {.duelistId = AI_DUELIST_NONE, .cardId = CARD_NONE, .soundId = SOUND_NONE}
 };
 
 static void sub_801A008 (struct AttackVoicing*);

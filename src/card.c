@@ -709,7 +709,7 @@ void sub_800B618(void *r6) //card details screen gfx
         break;
     }
 
-    CpuCopy32(g08097C94, &gPaletteBuffer[8 * 16], 256); //copy palette
+    CpuCopy32(g08097C94, &gPaletteBuffer[8 * 16], 256); // copy UI/text palette banks
 
     for (i = 0; i < 20; i++)
         CpuCopy32(g809508C[i], gBgVram.sbb1E[i], 60);

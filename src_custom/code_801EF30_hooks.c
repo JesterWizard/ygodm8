@@ -40,6 +40,7 @@ void ShowCardDetailView(void);
 void SetVBlankCallback(void (*)(void));
 void WaitForVBlank(void);
 void LoadCharblock1(void);
+u8 CardUsesExtendedBigCardPalette(u16 cardId);
 
 static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
   u8 buffer[144];
@@ -95,6 +96,7 @@ void ShowCardDetailView__Replacement(void) {
   u8 i;
   u8 page;
   u8 buffer[144];
+  u16 cardColorPal[16];
   const u8 *text = gCardInfo.description + 2;
   const u8 *pageStarts[9];
   u16 pageBuffer[2240];
@@ -145,6 +147,30 @@ void ShowCardDetailView__Replacement(void) {
   g201CB58 = 0;
   sub_801FB2C();
   sub_800B618(pageBuffer);
+
+  if (CardUsesExtendedBigCardPalette(gCardInfo.id) == TRUE) {
+    // Palette layout adjustment for card detail view only:
+    // - keep banks 0..6 for big art
+    // - move card color (old bank 4) to bank 7
+    // - remap tilemap palette bank 4 -> 7
+    CpuCopy16(gPaletteBuffer + 4 * 16, cardColorPal, 32);
+    CpuCopy16(cardColorPal, gPaletteBuffer + 7 * 16, 32);
+
+    for (i = 0; i < 20; i++) {
+      u16 j;
+      u16 *rows[] = {(u16 *)gBgVram.sbb1F[i], (u16 *)gBgVram.sbb1E[i], (u16 *)gBgVram.sbb1D[i]};
+      for (j = 0; j < ARRAY_COUNT(rows); j++) {
+        u16 *row = rows[j];
+        u16 k;
+        for (k = 0; k < 32; k++) {
+          u16 entry = row[k];
+          if ((entry >> 12) == 4)
+            row[k] = (entry & 0x0FFF) | (7 << 12);
+        }
+      }
+    }
+  }
+
   sub_801FA84();
   SetVBlankCallback(sub_801FADC);
   WaitForVBlank();

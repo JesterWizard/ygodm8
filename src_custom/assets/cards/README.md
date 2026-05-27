@@ -7,7 +7,7 @@ Expected files per card:
 - `*_big_art.bin`
   - big card artwork in the same encoded format used by `gCardArts[]`
 - `*.gbapal`
-  - big card palette
+  - big card palette (64 colors / 128 bytes, or 112 colors / 224 bytes for extended card-detail art; see `documentation/big-card-art-palette-extension.md`)
 - `*_mini.8bpp`
   - intermediate 8bpp mini-card tile data produced before compression
 - `*_mini.lz`

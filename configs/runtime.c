@@ -1,4 +1,5 @@
 #include "runtime.h"
+#include "constants/card_ids.h"
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
@@ -33,6 +34,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_world_map_thought_bubbles = TRUE,
     .enable_password_terminal_feedback = TRUE,
     .enable_shiny_zones = TRUE,
+    .enable_big_card_art_palette_extension = FALSE,
     .card_in_hand_1 = CARD_OF_DEMISE,
     .card_in_hand_2 = MAGICIANS_VALKYRIA,
     .card_in_hand_3 = BLUE_EYES_SHINING_DRAGON,

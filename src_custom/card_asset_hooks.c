@@ -1,5 +1,5 @@
 #include "global.h"
-#include "common-chax.h"
+#include "configs/runtime.h"
 
 extern struct CardInfo gCardInfo;
 extern unsigned char gSharedMem[];
@@ -26,6 +26,17 @@ extern u16 gUnk_8936130[][10];
 extern unsigned char *gUnk_8E17F48[];
 
 #include "generated/card_art_generated.inc"
+
+#define BIG_CARD_ART_PALETTE_COLORS_DEFAULT 64
+#define BIG_CARD_ART_PALETTE_COLORS_EXTENDED 112
+
+u8 CardUsesExtendedBigCardPalette(u16 cardId) {
+  if (gRuntimeConfig.enable_big_card_art_palette_extension != TRUE)
+    return FALSE;
+  if (!gCardArtPalettes_Hook[cardId])
+    return FALSE;
+  return gCardArtUsesExtendedPalette_Hook[cardId] != 0;
+}
 
 static void CopyShopCardBorderTiles(unsigned char *dest, unsigned char *r7, unsigned char *src) {
   unsigned i, j, r8 = 0, ip;
@@ -73,6 +84,9 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   u8 i;
   const unsigned char *bigArt = gCardArts_Hook[gCardInfo.id];
   const unsigned short *bigPalette = gCardArtPalettes_Hook[gCardInfo.id];
+  const u32 paletteBytes = CardUsesExtendedBigCardPalette(gCardInfo.id)
+                               ? BIG_CARD_ART_PALETTE_COLORS_EXTENDED * 2
+                               : BIG_CARD_ART_PALETTE_COLORS_DEFAULT * 2;
 
   if (!bigArt)
     bigArt = gCardArts[gCardInfo.id];
@@ -81,7 +95,7 @@ void CopyCardArtDataToBuffers__Replacement(void) {
 
   sub_800E08C((void *)bigArt, gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
-  CpuCopy32(bigPalette, gUnk_8E01368, 128);
+  CpuCopy32(bigPalette, gUnk_8E01368, paletteBytes);
   *gUnk_8E01368 = 0;
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
