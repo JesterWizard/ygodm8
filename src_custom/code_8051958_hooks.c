@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "event_system.h"
 #include "custom_decks/custom_decks.h"
+#include "shiny_zones.h"
 
 static const enum Direction sDirectionFacePlayer[] APPEND_RODATA = {
   [DIRECTION_DOWN] = DIRECTION_UP,
@@ -200,6 +201,8 @@ void TryTalking__Replacement(void) {
   u8 temp2 = gOverworld.objects[0].y + g8E0E3CC[gOverworld.objects[0].direction];
 
   objId = GetObjectIdInFrontOfPlayer(temp, temp2, gOverworld.objects[0].direction);
+  if (ShinyZones_TryInteract(temp, temp2, objId) == TRUE)
+    return;
   if (objId == -1)
     return;
 

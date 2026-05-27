@@ -82,6 +82,9 @@ CARD_ART_GENERATOR := tools/add_card_art.py
 DUELIST_REWARD_MANIFEST := tools/duelist_reward_manifest.json
 DUELIST_REWARD_GENERATOR := tools/generate_duelist_rewards.py
 DUELIST_REWARDS_GENERATED := src_custom/generated/duelist_rewards_generated.inc
+SHINY_ZONE_MANIFEST := tools/shiny_zone_manifest.json
+SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
+SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
 CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld generated/card_memory_sizes.inc
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
@@ -219,6 +222,10 @@ $(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERA
 	@echo "REWARDS $@"
 	python3 $(DUELIST_REWARD_GENERATOR) $(DUELIST_REWARD_MANIFEST) --out $@
 
+$(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_DATA_MANIFEST) $(CARD_IDS_GENERATED) include/overworld.h include/shiny_zones.h
+	@echo "SHINY   $@"
+	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
+
 define compile_c_object_rule
 $1/%.o: $2/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
 	@echo "CC      $$<"
@@ -244,6 +251,7 @@ $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
+$(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))

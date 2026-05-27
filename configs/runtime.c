@@ -32,6 +32,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .instant_win_with_l_button = TRUE,
     .enable_world_map_thought_bubbles = TRUE,
     .enable_password_terminal_feedback = TRUE,
+    .enable_shiny_zones = TRUE,
     .card_in_hand_1 = CARD_OF_DEMISE,
     .card_in_hand_2 = MAGICIANS_VALKYRIA,
     .card_in_hand_3 = BLUE_EYES_SHINING_DRAGON,

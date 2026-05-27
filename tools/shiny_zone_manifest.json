@@ -1,0 +1,32 @@
+{
+  "notes": [
+    "Used only when gRuntimeConfig.enable_shiny_zones is TRUE.",
+    "Each zone consumes one flag from gShinyZoneFlags: 16 bytes, 1 bit per flag, valid flag range 0-127.",
+    "map accepts enum OverworldLocation names from include/overworld.h; state is optional and defaults to SHINY_ZONE_ANY_STATE.",
+    "For No$GBA BG tilemap coordinates, use tile_x/tile_y. The runtime accepts the center tile plus the surrounding 3x3 tile area.",
+    "Use object_id for an interactable map object. card accepts constants from include/constants/card_ids.h."
+  ],
+  "zones": [
+    {
+      "flag": 0,
+      "map": "LOCATION_PLAYER_HOUSE_INSIDE",
+      "tile_x": 22,
+      "tile_y": 13,
+      "card": "BLUE_EYES_WHITE_DRAGON"
+    },
+    {
+      "flag": 1,
+      "map": "LOCATION_PLAYER_HOUSE_INSIDE",
+      "tile_x": 12,
+      "tile_y": 12,
+      "card": "DARK_MAGICIAN"
+    },
+    {
+      "flag": 2,
+      "map": "LOCATION_PLAYER_HOUSE_INSIDE",
+      "tile_x": 20,
+      "tile_y": 15,
+      "card": "RED_EYES_B_DRAGON"
+    }
+  ]
+}

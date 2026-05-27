@@ -1,6 +1,7 @@
 #include "global.h"
-#include "common-chax.h"
+#include "configs/runtime.h"
 #include "thought_bubble.h"
+#include "shiny_zones.h"
 
 extern unsigned char gFlags[];
 extern u8 g8E0FD44[];
@@ -19,6 +20,7 @@ void InitFlags__Replacement(void) {
     gFlags[i] = 0;
 
   sLatestThoughtBubbleEventFlag = THOUGHT_BUBBLE_EVENT_FLAG_NONE;
+  ShinyZones_ResetFlags();
 }
 
 LYN_REPLACE_CHECK(SetFlag);

@@ -1,5 +1,6 @@
 #include "global.h"
-#include "common-chax.h"
+#include "configs/runtime.h"
+#include "shiny_zones.h"
 
 extern u8 *g8E0CD10;
 int sub_80588C4(u8 *, int, int);
@@ -59,6 +60,7 @@ int sub_800AD84__Replacement(void) {
   sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
+  ShinyZones_SaveFlagsToFlashPrimary();
 
   return result;
 }
@@ -71,6 +73,7 @@ int sub_800ADA4__Replacement(void) {
   sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashBackup, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashBackup, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashBackup, NUM_CUSTOM_CARDS);
+  ShinyZones_SaveFlagsToFlashBackup();
 
   return result;
 }
@@ -80,6 +83,7 @@ void sub_800ADC4__Replacement(void) {
   u8 *temp2 = g8E0CD10;
   int temp = (int)gSaveSlotPrimary;
   g20245AC(temp, temp2, 0x747);
+  ShinyZones_LoadFlagsFromFlashPrimary();
   sub_803519C();
 }
 
@@ -88,6 +92,7 @@ void sub_800ADF0__Replacement(void) {
   u8 *temp2 = g8E0CD10;
   int temp = (int)gSaveSlotBackup;
   g20245AC(temp, temp2, 0x747);
+  ShinyZones_LoadFlagsFromFlashBackup();
   sub_803519C();
 }
 
@@ -95,6 +100,7 @@ LYN_REPLACE_CHECK(sub_800AE1C);
 void sub_800AE1C__Replacement(void) {
   u16 temp;
   Test((int)gSaveSlotPrimary, g8E0CD10, 0x747);
+  ShinyZones_LoadFlagsFromFlashPrimary();
   sub_803519C();
   temp = sub_800B134();
   sub_800B06C();
@@ -107,6 +113,7 @@ LYN_REPLACE_CHECK(sub_800AE70);
 void sub_800AE70__Replacement(void) {
   u16 temp;
   Test((int)gSaveSlotBackup, g8E0CD10, 0x747);
+  ShinyZones_LoadFlagsFromFlashBackup();
   sub_803519C();
   temp = sub_800B158();
   sub_800B050();

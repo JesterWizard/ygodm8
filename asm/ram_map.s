@@ -69,6 +69,9 @@ _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 @ Bitfield for one-shot delayed duel effects keyed by duelist.
 _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 
+@ Bitfield for one-shot shiny-zone pickups: 16 bytes, 1 bit per flag.
+_kernel_malloc_ewram_array gShinyZoneFlags, 0x10
+
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 
@@ -111,3 +114,4 @@ SET_DATA gCustomCardQtyFlashBackupStart,  0x0E004768
 _kernel_malloc_flash gCustomTrunkCardQty,      CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gCustomShopCardQty,       CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES
+_kernel_malloc_flash gShinyZoneFlags,          0x10
