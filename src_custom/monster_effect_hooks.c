@@ -17,6 +17,7 @@ void ActivateAmazonessChainMasterEffect(void);
 void ActivateGoddessOfWhimEffect(void);
 void ActivateMaskOfDarknessEffect(void);
 void ActivatePrincessOfTsurugiEffect(void);
+void ActivateFireReaperEffect(void);
 unsigned char CanActivateNeedleBall(void);
 void ActivateNeedleBallEffect(void);
 void ActivateNeedleWormEffect(void);
@@ -116,6 +117,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_SKULL_MARK_LADY_BUG) {
     ActivateSkullMarkLadyBugEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_FIRE_REAPER) {
+    ActivateFireReaperEffect();
     return;
   }
 

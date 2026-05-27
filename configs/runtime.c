@@ -35,9 +35,9 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_password_terminal_feedback = TRUE,
     .enable_shiny_zones = TRUE,
     .enable_big_card_art_palette_extension = FALSE,
-    .card_in_hand_1 = CARD_OF_DEMISE,
-    .card_in_hand_2 = MAGICIANS_VALKYRIA,
-    .card_in_hand_3 = BLUE_EYES_SHINING_DRAGON,
-    .card_in_hand_4 = SORCERER_OF_DARK_MAGIC,
-    .card_in_hand_5 = DECK_DESTRUCTION_VIRUS
+    .card_in_hand_1 = FIRE_REAPER,
+    .card_in_hand_2 = CARD_NONE,
+    .card_in_hand_3 = CARD_NONE,
+    .card_in_hand_4 = CARD_NONE,
+    .card_in_hand_5 = CARD_NONE
 };

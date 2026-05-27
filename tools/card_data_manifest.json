@@ -2353,11 +2353,24 @@
       "level": 2,
       "type": "TYPE_ZOMBIE",
       "color": "EFFECT_CARD",
-      "monsterEffect": 32,
+      "monsterEffect": "MONSTER_EFFECT_FIRE_REAPER",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Fire Reaper",
-      "password": [ 5, 3, 5, 8, 1, 2, 1, 4 ]
+      "password": [ 5, 3, 5, 8, 1, 2, 1, 4 ],
+      "description": {
+        "symbol": "gDescription_FireReaper",
+        "pages": [
+          "A skeletal grim reaper that is armed with fiery arrows.",
+          "It can loose one to inflict 500LP of damage to the opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_FireReaper",
+        "pages": [
+          "500LP of damage will be dealt to the opponent."
+        ]
+      }
     },
     {
       "card_const": "LARVAS",
