@@ -25,6 +25,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | `CUSTOM_CONTENT.md` | This index of custom folders and files. |
 | `documentation/custom-portraits.md` | How to add custom dialogue portraits and use them in event scripts. |
 | `documentation/adding-custom-cards.md` | How to add custom cards, including 80×80 big card art from source PNGs. |
+| `documentation/duel-board-life-points.md` | Runtime toggle to show player and opponent LP on the duel field. |
 
 ## Notes
 
