@@ -34,11 +34,16 @@ static u8 IsMonsterFieldRow(u8 turnRow) {
   return turnRow == 1 || turnRow == 2;
 }
 
+static u8 CardHasHarmfulTargetImmunityOnField(u16 cardId) {
+  return cardId == BLUE_EYES_CHAOS_MAX_DRAGON
+      || cardId == BLUE_EYES_SHINING_DRAGON;
+}
+
 u8 IsImmuneToHarmfulTargetedEffectsOnField(u16 cardId, u8 turnRow) {
   if (!IsMonsterFieldRow(turnRow))
     return FALSE;
 
-  return cardId == BLUE_EYES_CHAOS_MAX_DRAGON;
+  return CardHasHarmfulTargetImmunityOnField(cardId);
 }
 
 u8 HasDoublePiercingBattleDamage(u16 cardId) {

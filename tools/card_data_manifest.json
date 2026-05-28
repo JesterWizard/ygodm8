@@ -6535,6 +6535,12 @@
           "For 5000LP it can summon a Blue Eyes Ultimate Dragon."
         ]
       },
+      "activation_description": {
+        "symbol": "gActivationDescription_CyberStein",
+        "pages": [
+          "In exchange for 5000LP, a Blue Eyes Ultimate Dragon will be summoned."
+        ]
+      },
       "password": [ 6, 9, 0, 1, 5, 9, 6, 3 ]
     },
     {
@@ -12491,6 +12497,12 @@
           "The apex of the blue-eyes line that must be summoned with a BEUD.",
           "It powers up with every dragon on the own field and in hand.",
           "It also has immunity to harmful targeted effects."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlueEyesShiningDragon",
+        "pages": [
+          "It will sacrifice the user's Blue Eyes Ultimate Dragon to summon itself."
         ]
       },
       "card_name": "Blue-Eyes Shining Dragon",

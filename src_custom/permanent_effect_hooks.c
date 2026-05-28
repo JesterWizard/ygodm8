@@ -30,6 +30,9 @@ unsigned char ShouldActivateMukaMuka(void);
 void ActivateMukaMuka(void);
 unsigned char ShouldActivateCeremonialBell(void);
 void ActivateCeremonialBell(void);
+unsigned char ShouldActivateBlueEyesShiningDragon(void);
+void ActivateBlueEyesShiningDragon(void);
+u8 TryAutoSummonBlueEyesShiningDragon(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -46,6 +49,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = CEREMONIAL_BELL,
     .shouldActivate = ShouldActivateCeremonialBell,
     .activate = ActivateCeremonialBell,
+  },
+  {
+    .cardId = BLUE_EYES_SHINING_DRAGON,
+    .shouldActivate = ShouldActivateBlueEyesShiningDragon,
+    .activate = ActivateBlueEyesShiningDragon,
   },
 };
 
@@ -182,6 +190,14 @@ void TryActivatingPermanentEffects__Replacement(void) {
   if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
     gHideEffectText = TRUE;
   CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
+
+  if (TryAutoSummonBlueEyesShiningDragon() == TRUE) {
+    if (!gHideEffectText)
+      UpdateDuelGfxExceptField();
+    ResetTempStagesForAllCards();
+    CheckBoardForPermanentEffects__Hook(FALSE);
+  }
+
   gHideEffectText = hideEffectText;
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();

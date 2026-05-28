@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `33` effects
+- `35` effects
 
 ## Tally
 
@@ -42,6 +42,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Sorcerer of Dark Magic` | `src_custom/permanent_effects/sorcerer_of_dark_magic.c` |
 | `battle_effects` | `Shinato King of A Higher Plane` | `src_custom/battle_effects/shinato_king_of_a_higher_plane.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
+| `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
+| `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |
 
 ## Notes
 
