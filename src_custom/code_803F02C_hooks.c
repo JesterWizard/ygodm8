@@ -2,6 +2,10 @@
 #include "configs/runtime.h"
 #include "delayed_effects.h"
 
+u8 TryPayChainEnergyCost(void);
+u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
+void CopyCard(struct DuelCard *dst, struct DuelCard *src);
+
 void InitBoard(void);
 void PlayerTurnMain(void);
 void UpdateDuelGfxExceptField(void);
@@ -237,4 +241,24 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ResetTempStage(zone);
   zone->unk4 = 0;
   zone->willChangeSides = 0;
+}
+
+LYN_REPLACE_CHECK(CopyCard);
+void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
+{
+  if (ShouldPayChainEnergyForHandToFieldCopy(dst, src)) {
+    if (!TryPayChainEnergyCost())
+      return;
+  }
+
+  dst->id = src->id;
+  SetPermStage(dst, PermStage(src));
+  ResetTempStage(dst);
+  dst->unk4 = src->unk4;
+  dst->isFaceUp = src->isFaceUp;
+  dst->isLocked = src->isLocked;
+  dst->isDefending = src->isDefending;
+  dst->unkTwo = src->unkTwo;
+  dst->unkThree = src->unkThree;
+  dst->willChangeSides = src->willChangeSides;
 }

@@ -7,6 +7,7 @@ static const u8 sCardOfDemiseName[] __attribute__((section(".append_assets"))) =
 static const u8 sCardOfSanctityName[] __attribute__((section(".append_assets"))) = "Card Of Sanctity";
 static const u8 sShieldAndSwordName[] __attribute__((section(".append_assets"))) = "Shield And Sword";
 static const u8 sBlueEyesChaosMaxDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Chaos Max Dragon";
+static const u8 sChainEnergyName[] __attribute__((section(".append_assets"))) = "Chain Energy";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -27,6 +28,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sShieldAndSwordName;
   if (cardId == 0x0329)
     return (u8 *)sBlueEyesChaosMaxDragonName;
+  if (cardId == 0x032A)
+    return (u8 *)sChainEnergyName;
 
   return gCardNames[cardId];
 }

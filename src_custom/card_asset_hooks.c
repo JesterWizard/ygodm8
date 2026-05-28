@@ -96,7 +96,7 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   sub_800E08C((void *)bigArt, gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
   CpuCopy32(bigPalette, gUnk_8E01368, paletteBytes);
-  *gUnk_8E01368 = 0;
+  // *gUnk_8E01368 = 0; // Forcibly sets palette to black, seems to corrupt big card art palettes, so turning off for now
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
 }

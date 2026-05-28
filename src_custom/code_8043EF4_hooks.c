@@ -1,6 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 
+u8 TryPayChainEnergyCost(void);
+u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
+
 void DisplayCardInfoBar(void);
 void HandlePlayerBackrowAction(void);
 void sub_8041E70(u8, u8);
@@ -12,6 +15,9 @@ void TryActivatingPermanentEffects(void);
 void SelectZone(struct DuelCard *zone);
 void ResetCursorDestToCurrentPos(void);
 unsigned char GetFirstNonEmptyMonZoneId(struct DuelCard *zone[]);
+void ClearZone(struct DuelCard *zone);
+void CopySelectedCardToZone(struct DuelCard *zone);
+void sub_80449D8(void);
 
 LYN_REPLACE_CHECK(HandlePlayerBackrowAction);
 void HandlePlayerBackrowAction__Replacement(void) {
@@ -21,7 +27,8 @@ void HandlePlayerBackrowAction__Replacement(void) {
   SelectZone(zone);
   ResetCursorDestToCurrentPos();
 
-  if (id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
+  if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
+      || IsActivatedChainEnergyZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
@@ -57,4 +64,20 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   DisplayCardInfoBar();
   sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+}
+
+LYN_REPLACE_CHECK(sub_80449D8);
+void sub_80449D8__Replacement(void)
+{
+  if (!TryPayChainEnergyCost()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+  CopySelectedCardToZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  gDuelCursor.state = 0;
+  ResetCursorDestToCurrentPos();
+  UpdateDuelGfxExceptField();
 }

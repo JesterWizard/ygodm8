@@ -349,7 +349,7 @@ void SetCardInfo__Replacement(unsigned short id) {
 LYN_REPLACE_CHECK(GetSpellType);
 int GetSpellType__Replacement(u16 cardId) {
   SetCardInfo(cardId);
-  if (cardId == JAM_BREEDING_MACHINE)
+  if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY)
     return SPELL_TYPE_NORMAL;
 
   return gE0CFF4[gCardInfo.spellEffect];

@@ -12655,6 +12655,37 @@
       "big_art": "src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.huff",
       "big_palette": "src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/blue_eyes_chaos_max_dragon.lz"
+    },
+    {
+      "card_const": "CHAIN_ENERGY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_ChainEnergy",
+        "pages": [
+          "A forbidden spell that saps the life force of its targets.",
+          "Each player must pay 500LP per card to set or play them."
+        ]
+      },
+      "card_name": "Chain Energy",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_ChainEnergy",
+        "pages": [
+          "Each player must pay 500LP per card to set or play them."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/chain_energy.huff",
+      "big_palette": "src_custom/assets/cards/80x80/chain_energy.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/chain_energy.lz"
     }
   ]
 }

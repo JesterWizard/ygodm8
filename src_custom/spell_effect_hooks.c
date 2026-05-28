@@ -8,13 +8,20 @@ extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
 extern void EffectShieldAndSword(void);
 extern void EffectSwordsOfRevealingLight(void);
+extern void EffectChainEnergy(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
+u8 TryPayChainEnergyCost(void);
 
 LYN_REPLACE_CHECK(ActivateSpellEffect);
 void ActivateSpellEffect__Replacement(void)
 {
+  if (gSpellEffectData.row1 == ACTIVE_DUELIST_HAND) {
+    if (!TryPayChainEnergyCost())
+      return;
+  }
+
   ResetCardEffectTextData();
   SetCardEffectTextType(1);
   SetCardInfo(gSpellEffectData.id);
@@ -34,6 +41,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case SWORDS_OF_REVEALING_LIGHT:
       EffectSwordsOfRevealingLight();
+      return;
+    case CHAIN_ENERGY:
+      EffectChainEnergy();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
