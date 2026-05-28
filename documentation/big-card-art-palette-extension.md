@@ -57,7 +57,7 @@ Behavior matches vanilla: `PrintCard` fills `gUnk_8E01368` with the standard 64-
 
 ### Big palette file size
 
-Per-card big palettes live at `src_custom/assets/cards/80x80/<card>.gbapal` (or paths listed in `tools/card_data_manifest.json` as `big_palette`).
+Per-card big palettes live at `src_custom/assets/cards/80x80/<card>.gbapal` (or paths listed in `tools/card_data_manifest.json` as `big_palette`). Author the source PNG first; see [adding-custom-cards.md](adding-custom-cards.md#big-card-art) for the 512→80 workflow and Photoshop export settings.
 
 `tools/add_card_art.py` accepts:
 
@@ -106,7 +106,8 @@ Rebuild so `gRuntimeConfig` in ROM matches.
 | Bank remap + tilemap fixup | `ShowCardDetailView__Replacement` in `src_custom/code_801EF30_hooks.c` | After `sub_800B618`, moves card color to PLTT bank 7 and patches palette bank nibble 4 → 7 |
 | Generated art symbols | `src_custom/generated/card_art_generated.inc` | `INCBIN` big art/palette pointers consumed by `gCardArtPalettes_Hook[]` |
 | Palette validation | `validate_big_palette` in `tools/add_card_art.py` | Enforces 64- or 112-color `.gbapal` files during manifest discovery |
-| Asset notes | `src_custom/assets/cards/README.md` | Directory layout for per-card big/mini assets |
+| Asset authoring | `documentation/adding-custom-cards.md` | 512→80 big art workflow and 64-color PNG export |
+| Asset folder | `src_custom/assets/cards/README.md` | Paths and quick reference for `80x80/` and `24x24/` |
 
 ## TODO
 

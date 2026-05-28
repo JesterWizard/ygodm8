@@ -2,29 +2,40 @@
 
 Put assets for cards with IDs `>= CUSTOM_CARD_START` here.
 
-Expected files per card:
+**Full workflow (big art, manifest, build):** [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-- `*_big_art.bin`
-  - big card artwork in the same encoded format used by `gCardArts[]`
-- `*.gbapal`
-  - big card palette (64 colors / 128 bytes, or 112 colors / 224 bytes for extended card-detail art; see `documentation/big-card-art-palette-extension.md`)
-- `*_mini.8bpp`
-  - intermediate 8bpp mini-card tile data produced before compression
-- `*_mini.lz`
-  - LZ77-compressed mini-card tile data
-- `mini.pal`
-  - shared mini-card palette source used when quantizing 24x24 mini-card PNGs
+## Big art (`80x80/`)
 
-Wire them in `src_custom/card_asset_hooks.c`.
+Commit one indexed PNG per card:
 
-Use `tools/add_card_art.py` to generate the `INCBIN` declarations from matching
-files in `80x80` and `24x24`.
+```text
+src_custom/assets/cards/80x80/<stem>.png
+```
 
-If a custom card has an `80x80/*.png` but no `24x24/*.lz`, the script will
-derive the mini card automatically by resizing the 80x80 source to 24x24,
-choosing the 16 closest colors from `mini.pal` relative to the 80x80 palette,
-and exporting the `.png`, `.8bpp`, and `.lz` files.
+`<stem>` is the manifest `card_const` in lowercase with underscores (for example `ancient_rules.png` for `ANCIENT_RULES`).
 
-To regenerate only mini assets, run:
+Authoring summary:
 
-`python3 tools/add_card_art.py --generate-minis`
+1. Start from a **512×512** PNG (prefer [Yugipedia](https://yugipedia.com) **Master Duel** art).
+2. Resize to **80×80** at **72 DPI** with a **bilinear** filter.
+3. In Photoshop **Save for Web**: **64** colors max, color adaptation **Selective**.
+4. Save into this folder.
+
+`make` generates `<stem>.gbapal`, `<stem>.8bpp`, and `<stem>.huff` from the PNG via `graphics.mk`.
+
+## Mini art (`24x24/`)
+
+- `*_mini.lz` — LZ77-compressed mini-card tiles for trunk/shop lists
+- `mini.pal` — shared palette used when quantizing 24×24 mini PNGs
+
+If a custom card has an `80x80/*.png` but no `24x24/*.lz`, run:
+
+```bash
+python3 tools/add_card_art.py --generate-minis
+```
+
+That derives the mini from the 80×80 source (resize to 24×24, map to `mini.pal`).
+
+## Legacy / generated binaries
+
+Older notes referred to hand-placed `*_big_art.bin` files. The current pipeline uses PNG sources plus `gbagfx` output; wire paths through `tools/card_data_manifest.json` (`big_art`, `big_palette`, `mini_art`) and regenerate with `tools/add_card_art.py` on `make`.

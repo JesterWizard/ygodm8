@@ -31,7 +31,7 @@ The manifest defines card order. That order becomes the card ID order.
 
 | Stage | Input | Output |
 |---|---|---|
-| Authoring | PNGs in the card asset folders | Raw art assets for the new card |
+| Authoring | PNGs in the card asset folders | Raw art assets for the new card; see `documentation/adding-custom-cards.md` for 80×80 big art (512→80, 64-color indexed PNG) |
 | Data entry | One manifest entry in `tools/card_data_manifest.json` | Canonical card metadata |
 | Generation | Manifest + assets | `card_ids.h`, generated includes, and hook tables |
 | Runtime | Generated card arrays | Trunk list, cursor logic, and details rendering |

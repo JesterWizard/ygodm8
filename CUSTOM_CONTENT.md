@@ -24,6 +24,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | `README.md` | Project overview and build instructions. |
 | `CUSTOM_CONTENT.md` | This index of custom folders and files. |
 | `documentation/custom-portraits.md` | How to add custom dialogue portraits and use them in event scripts. |
+| `documentation/adding-custom-cards.md` | How to add custom cards, including 80×80 big card art from source PNGs. |
 
 ## Notes
 
