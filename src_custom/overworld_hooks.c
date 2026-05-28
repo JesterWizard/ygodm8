@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "overworld_debug_overlay.h"
 #include "thought_bubble.h"
 
 #include "src_custom/thought_bubble_table.inc"
@@ -226,6 +227,7 @@ void sub_804EF10__Replacement(void) {
   if (gOverworld.objects[14].unk1Dl)
     CallThumbVoidU8(0x0804E518, 14);
   sub_80551B8();
+  OverworldOverlay_PrepareFrame();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);
   if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubbles == TRUE) {
@@ -237,4 +239,5 @@ void sub_804EF10__Replacement(void) {
   SetVBlankCallback(sub_804F1E4);
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);
+  OverworldOverlay_CommitFrame();
 }

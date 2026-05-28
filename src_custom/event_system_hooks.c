@@ -1,6 +1,8 @@
 #include "global.h"
 #include "event_system.h"
 #include "configs/runtime.h"
+#include "overworld.h"
+#include "overworld_debug_overlay.h"
 
 #include "generated/event_script_replacements.inc"
 
@@ -50,6 +52,13 @@ void InitiateScript__Replacement(struct Script *script) {
   ThumbSetCurrentScript(0x08053274)(&scriptCtx, script);
   ThumbScriptCtxFunc(0x080532A8)(&scriptCtx);
   ThumbScriptCtxFunc(0x080526D0)(&scriptCtx);
+
+  OverworldOverlay_RestoreDisplayRegs();
+  OverworldSetRegDispcnt();
+
+  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
+    OverworldOverlay_Refresh();
+
   scriptCtx.portraitId = PORTRAIT_NONE;
   scriptCtx.pointer = 0;
   scriptCtx.unk8 = 0;
