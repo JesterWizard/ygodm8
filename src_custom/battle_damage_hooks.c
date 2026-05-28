@@ -31,6 +31,8 @@ struct StoneUnk2023E80 {
 
 extern struct StoneUnk2023E80 sActionData;
 
+void ApplyShinatoKingOfAHigherPlaneBattleEffect(void);
+
 static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
   u16 playerDamage;
   u16 opponentDamage;
@@ -105,6 +107,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
     }
   }
+
+  ApplyShinatoKingOfAHigherPlaneBattleEffect();
 
   if (sActionData.flags & 1)
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.playerMonsterRow][sActionData.unkA], 0);

@@ -20,10 +20,8 @@ static u8 GetRuntimeDeckLimit(void) {
 
 LYN_REPLACE_CHECK(sub_800A4B0);
 unsigned short sub_800A4B0__Replacement(unsigned short id) {
-  if (!gTrunkCardQty[id] || sub_801F098(id) != TRUE || GetPlayerDeckSize() >= GetRuntimeDeckLimit())
-    return 0x4000;
-  SetCardInfo(id);
-  if (GetDuelistLevel() < gCardInfo.cost)
+  /* sub_8009A94 uses this for trunk/deck quantity digit palette, not add-to-deck eligibility. */
+  if (!gTrunkCardQty[id])
     return 0x4000;
   return 0x5000;
 }

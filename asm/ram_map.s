@@ -75,6 +75,13 @@ _kernel_malloc_ewram_array gShinyZoneFlags, 0x10
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 
+@ Trunk + deck ownership totals for custom card IDs (grows with CUSTOM_CARD_QTY_BYTES).
+_kernel_malloc_ewram_array gCustomTotalCardQty, CUSTOM_CARD_QTY_BYTES
+
+@ Custom trunk menu list tail (u16 card IDs) and sort scratch (vanilla + custom entries).
+_kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
+_kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
+
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

@@ -5,10 +5,13 @@
 extern const unsigned char gStarterTrunk[];
 extern unsigned char gTrunkCardQty[];
 extern unsigned char gTotalCardQty[];
+extern unsigned char gCustomTotalCardQty[];
 extern void SortCardsAccordingToContext(void);
 extern u8 gUnk_8DFA6A8[];
 extern struct CardSortContext gCardSortContext;
 extern struct TrunkMenu gTrunkMenu;
+extern u16 gTrunkMenuCustomCards[];
+extern u16 gTrunkMenuSortCards[];
 extern struct UnkStruct_2021AB4 gUnk2021AB4;
 unsigned char GetDeckCardQty(unsigned short);
 void SetCardInfo(unsigned short id);
@@ -38,6 +41,8 @@ void SetCardInfo(unsigned short id);
 extern struct CardInfo gCardInfo;
 extern unsigned short gPressedButtons;
 void WaitForVBlank(void);
+void sub_800A3D8(unsigned char);
+void sub_800ABB4(void);
 
 static u16 GetTrunkCardCount(void) {
   return NUM_TRUE_CARDS + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
@@ -45,6 +50,21 @@ static u16 GetTrunkCardCount(void) {
 
 static u16 GetLastTrackedCardId(void) {
   return CUSTOM_CARD_START + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
+}
+
+static void RefreshTrunkOwnershipTotals(void) {
+  u16 cardId;
+
+  for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
+    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+
+  for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
+    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
+}
+
+static void RefreshTrunkCardRowGfx(void) {
+  sub_800A3D8(7);
+  sub_800ABB4();
 }
 
 static void AppendCustomTrunkCard(void) {
@@ -56,8 +76,46 @@ static void AppendCustomTrunkCard(void) {
     u16 i;
 
     for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
-      gTrunkMenu.cards[NUM_TRUE_CARDS + i] = gCustomTrunkCards[i];
+      gTrunkMenuCustomCards[i] = gCustomTrunkCards[i];
   }
+#endif
+}
+
+static void BuildTrunkSortCardList(void) {
+  u16 i;
+
+  for (i = 0; i < NUM_TRUE_CARDS; i++)
+    gTrunkMenuSortCards[i] = gTrunkMenu.cards[i];
+
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE) {
+    for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+      gTrunkMenuSortCards[NUM_TRUE_CARDS + i] = gTrunkMenuCustomCards[i];
+  }
+#endif
+}
+
+static void ApplyTrunkSortCardList(void) {
+  u16 i;
+
+  for (i = 0; i < NUM_TRUE_CARDS; i++)
+    gTrunkMenu.cards[i] = gTrunkMenuSortCards[i];
+
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE) {
+    for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+      gTrunkMenuCustomCards[i] = gTrunkMenuSortCards[NUM_TRUE_CARDS + i];
+  }
+#endif
+}
+
+static u16 GetTrunkMenuCardAtIndex(u16 index) {
+  if (index < NUM_TRUE_CARDS)
+    return gTrunkMenu.cards[index];
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  return gTrunkMenuCustomCards[index - NUM_TRUE_CARDS];
+#else
+  return CARD_NONE;
 #endif
 }
 
@@ -74,8 +132,21 @@ void SyncCustomTrunkCardQtyMirror(u16 cardId) {
     gCustomTrunkCardQty[cardId - CUSTOM_CARD_START] = gTrunkCardQty[cardId];
 }
 
+unsigned char GetTotalCardQtyForCard(u16 cardId) {
+  if (cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS)
+    return gCustomTotalCardQty[cardId - CUSTOM_CARD_START];
+  return gTotalCardQty[cardId];
+}
+
+void SetTotalCardQtyForCard(u16 cardId, u8 qty) {
+  if (cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS)
+    gCustomTotalCardQty[cardId - CUSTOM_CARD_START] = qty;
+  else
+    gTotalCardQty[cardId] = qty;
+}
+
 void SyncCardOwnershipQty(u16 cardId) {
-  gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+  SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
   SyncCustomTrunkCardQtyMirror(cardId);
 }
 
@@ -124,6 +195,7 @@ static void AddSelectedCardToDeck(void) {
   }
 
   AddCardToDeck(cardId);
+  RefreshTrunkCardRowGfx();
   PlayMusic(SFX_SELECT);
 }
 
@@ -142,6 +214,8 @@ static void RemoveSelectedCardFromDeck(void) {
   else
     gTrunkCardQty[cardId] = TRUNK_CARD_LIMIT;
   SyncCardOwnershipQty(cardId);
+  RefreshTrunkOwnershipTotals();
+  RefreshTrunkCardRowGfx();
   PlayMusic(SFX_SELECT);
 }
 
@@ -214,8 +288,11 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
 
-  for (cardId = 0; cardId < GetLastTrackedCardId(); cardId++)
+  for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
     gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+
+  for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
+    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)
     gTrunkMenu.cards[cardId] = cardId + 1;
@@ -225,20 +302,28 @@ void InitTrunkData__Replacement(void) {
 
 LYN_REPLACE_CHECK(TrunkMenuDefaultSort);
 void TrunkMenuDefaultSort__Replacement(void) {
-  gCardSortContext.cards = gTrunkMenu.cards;
+  RefreshTrunkOwnershipTotals();
+  BuildTrunkSortCardList();
+  gCardSortContext.cards = gTrunkMenuSortCards;
   gCardSortContext.cardCount = gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE ? GetTrunkCardCount() : NUM_TRUE_CARDS;
   gCardSortContext.sortMode = gUnk_8DFA6A8[gTrunkMenu.sortMode];
   SortCardsAccordingToContext();
+  ApplyTrunkSortCardList();
+  gCardSortContext.cardCount = 0;
   if (gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == FALSE)
     AppendCustomTrunkCard();
 }
 
 LYN_REPLACE_CHECK(ApplyNewSortMode);
 void ApplyNewSortMode__Replacement(unsigned char val) {
-  gCardSortContext.cards = gTrunkMenu.cards;
+  RefreshTrunkOwnershipTotals();
+  BuildTrunkSortCardList();
+  gCardSortContext.cards = gTrunkMenuSortCards;
   gCardSortContext.cardCount = gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == TRUE ? GetTrunkCardCount() : NUM_TRUE_CARDS;
   gCardSortContext.sortMode = gUnk_8DFA6A8[val];
   SortCardsAccordingToContext();
+  ApplyTrunkSortCardList();
+  gCardSortContext.cardCount = 0;
   if (gRuntimeConfig.dynamic_card_shop_and_trunk_sorting == FALSE)
     AppendCustomTrunkCard();
   gTrunkMenu.currentPos = 0;
@@ -254,7 +339,7 @@ unsigned short GetNthCardOnScreen__Replacement(u8 n) {
   else if (wrappedIndex < 0)
     wrappedIndex += count;
 
-  return gTrunkMenu.cards[wrappedIndex];
+  return GetTrunkMenuCardAtIndex(wrappedIndex);
 }
 
 LYN_REPLACE_CHECK(sub_800907C);

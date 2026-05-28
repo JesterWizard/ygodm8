@@ -93,6 +93,15 @@ enum DynamicSortKind {
 #define SORT_OWNED_BONUS 0x1000000000000000
 
 extern u8 *gCardNames[];
+extern unsigned char gTotalCardQty[];
+extern unsigned char gLanguage;
+extern unsigned short g80D0444[][801];
+
+static u8 GetSortOwnedQty(u16 cardId, u8 *ownedQtyTable) {
+  if (ownedQtyTable == gTotalCardQty)
+    return GetTotalCardQtyForCard(cardId);
+  return ownedQtyTable[cardId];
+}
 
 static const CardSortHelper sVanillaSortHelpers[] APPEND_RODATA = {
   sub_8034AB8, sub_8034AF0, sub_8034B44, sub_8034BBC, sub_8034C00, sub_8034C44, sub_8034C88, sub_8033C28,
@@ -311,20 +320,20 @@ static u64 GetDynamicSortKey(u8 sortKind, u16 cardId, u8 *ownedQty) {
   u64 sortKey;
 
   if (sortKind == DYNAMIC_SORT_QTY)
-    return (u64)ownedQty[cardId] * SORT_TIE_SCALE + GetCardIdTieValue(cardId);
+    return (u64)GetSortOwnedQty(cardId, ownedQty) * SORT_TIE_SCALE + GetCardIdTieValue(cardId);
 
   if (sortKind == DYNAMIC_SORT_EFFECT) {
     sortKey = GetCardIdTieValue(cardId);
     SetCardInfo(cardId);
     if (CardHasSortableEffect())
       sortKey += SORT_TIE_SCALE;
-    if (ownedQty[cardId])
+    if (GetSortOwnedQty(cardId, ownedQty))
       sortKey += SORT_TIE_SCALE * 2;
     return sortKey;
   }
 
   sortKey = GetDynamicPrimarySortKey(sortKind, cardId);
-  if (ownedQty[cardId])
+  if (GetSortOwnedQty(cardId, ownedQty))
     sortKey |= SORT_OWNED_BONUS;
 
   return sortKey;
@@ -361,4 +370,28 @@ void SortCardsAccordingToContext__Replacement(void) {
     SortCardsDescending();
   }
   CopySortedCardsBack();
+}
+
+LYN_REPLACE_CHECK(sub_8032B50);
+void sub_8032B50__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    gSortableEntries[i].cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].sortKey = 800 - gCardSortContext.cards[i];
+    if (GetTotalCardQtyForCard(gCardSortContext.cards[i]))
+      gSortableEntries[i].sortKey += 800;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032DE8);
+void sub_8032DE8__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    gSortableEntries[i].cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].sortKey = 800 - g80D0444[gLanguage][gCardSortContext.cards[i]];
+    if (GetTotalCardQtyForCard(gCardSortContext.cards[i]))
+      gSortableEntries[i].sortKey += 800;
+  }
 }

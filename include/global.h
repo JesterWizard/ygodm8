@@ -123,7 +123,6 @@ enum {
 
 #define TRUNK_CARD_LIMIT 250
 #define DECK_SIZE 40
-#define MAX_CUSTOM_CARD_SLOTS NUM_CUSTOM_CARDS
 //^TODO: change to MAX_DECK_SIZE, DECK_MAX_SIZE, or _COUNT? (or MIN? in vanilla it has to be exactly 40)
 
 struct TrunkMenu
@@ -133,7 +132,7 @@ struct TrunkMenu
     u8 displayMode;    //show: nothing, atk/def, attribute(summon), cost,
     u8 cursorState;
     u8 filler5[7];
-    u16 cards[NUM_CARDS + MAX_CUSTOM_CARD_SLOTS]; // includes a custom tail region that follows the manifest
+    u16 cards[NUM_CARDS]; // must not grow past ldscript gTotalCardQty (0x02021460)
 };
 
 extern struct TrunkMenu gTrunkMenu;
@@ -164,6 +163,11 @@ extern unsigned char gPlayerTempCardQty[]; // local player card qty list while s
 extern unsigned char gCustomTrunkCardQty[];
 extern unsigned char gCustomShopCardQty[];
 extern unsigned char gCustomPlayerTempCardQty[];
+extern unsigned char gCustomTotalCardQty[];
+extern u16 gTrunkMenuCustomCards[];
+extern u16 gTrunkMenuSortCards[];
+unsigned char GetTotalCardQtyForCard(unsigned short cardId);
+void SetTotalCardQtyForCard(unsigned short cardId, unsigned char qty);
 extern unsigned char gCustomTrunkCardQtyFlashPrimary[];
 extern unsigned char gCustomShopCardQtyFlashPrimary[];
 extern unsigned char gCustomPlayerTempCardQtyFlashPrimary[];

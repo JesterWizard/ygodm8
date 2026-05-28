@@ -24,6 +24,8 @@ u8 sub_801F0F0(u16, u16*);
 extern u8 g201CB58;
 extern u8 g201CB59;
 extern u16 gNewButtons;
+extern u16 gPressedButtons;
+extern u8 gInputRepeatTimer;
 extern struct CardInfo gCardInfo;
 
 extern unsigned char g80B96B8[];
@@ -198,6 +200,9 @@ void ShowCardDetailView__Replacement(void) {
   }
   PlayMusic(SFX_CANCEL);
   sub_801FB2C();
+  while (gPressedButtons & (A_BUTTON | B_BUTTON))
+    WaitForVBlank();
+  gInputRepeatTimer = 0;
 }
 
 static u8 IsAlternatePlayerVictory(void) {

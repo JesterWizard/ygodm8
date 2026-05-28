@@ -10016,14 +10016,21 @@
       "def": 3000,
       "cost": 168,
       "attribute": "ATTRIBUTE_LIGHT",
-      "level": 8,
+      "level": 4,
       "type": "TYPE_FAIRY",
-      "color": "NORMAL_CARD",
+      "color": "RITUAL_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Shinato King of A Higher Plane",
-      "password": [ 8, 6, 3, 2, 7, 2, 2, 5 ]
+      "password": [ 8, 6, 3, 2, 7, 2, 2, 5 ],
+      "description": {
+        "symbol": "gDescription_ShinatoKingOfAHigherPlane",
+        "pages": [
+          "The merciful king of the heavens where the fairies live.",
+          "The ATK of monsters it destroys gets dealt to the opponent."
+        ]
+      }
     },
     {
       "card_const": "DARK_FLARE_KNIGHT",
