@@ -12617,6 +12617,32 @@
       "big_art": "src_custom/assets/cards/80x80/shield_and_sword.huff",
       "big_palette": "src_custom/assets/cards/80x80/shield_and_sword.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/shield_and_sword.lz"
+    },
+    {
+      "card_const": "BLUE_EYES_CHAOS_MAX_DRAGON",
+      "atk": 4000,
+      "def": 0,
+      "cost": 500,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 10,
+      "type": "TYPE_DRAGON",
+      "color": "RITUAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BlueEyesChaosMaxDragon",
+        "pages": [
+          "A Blue Eyes White Dragon overflowing with raw chaos energy.",
+          "It is immune to all harmful targeted effects on the field.",
+          "In addition it always inflicts x2 piercing damage."
+        ]
+      },
+      "card_name": "Blue-Eyes Chaos Max Dragon",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "big_art": "src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/blue_eyes_chaos_max_dragon.lz"
     }
   ]
 }

@@ -32,6 +32,10 @@ static const unsigned char sShieldAndSwordBigArt[] __attribute__((section(".appe
 static const unsigned short sShieldAndSwordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/shield_and_sword.gbapal");
 static const unsigned char sShieldAndSwordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/shield_and_sword.lz");
 
+static const unsigned char sBlueEyesChaosMaxDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.huff");
+static const unsigned short sBlueEyesChaosMaxDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/blue_eyes_chaos_max_dragon.gbapal");
+static const unsigned char sBlueEyesChaosMaxDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/blue_eyes_chaos_max_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -41,6 +45,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0326] = sCardOfDemiseBigArt,
   [0x0327] = sCardOfSanctityBigArt,
   [0x0328] = sShieldAndSwordBigArt,
+  [0x0329] = sBlueEyesChaosMaxDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -52,6 +57,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0326] = sCardOfDemiseBigPalette,
   [0x0327] = sCardOfSanctityBigPalette,
   [0x0328] = sShieldAndSwordBigPalette,
+  [0x0329] = sBlueEyesChaosMaxDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -63,6 +69,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0326] = 0,
   [0x0327] = 0,
   [0x0328] = 0,
+  [0x0329] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -74,4 +81,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0326] = sCardOfDemiseMiniArt,
   [0x0327] = sCardOfSanctityMiniArt,
   [0x0328] = sShieldAndSwordMiniArt,
+  [0x0329] = sBlueEyesChaosMaxDragonMiniArt,
 };

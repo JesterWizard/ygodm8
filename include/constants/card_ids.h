@@ -810,11 +810,12 @@
 #define CARD_OF_DEMISE                           0x0326
 #define CARD_OF_SANCTITY                         0x0327
 #define SHIELD_AND_SWORD                         0x0328
+#define BLUE_EYES_CHAOS_MAX_DRAGON               0x0329
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0329
-#define NUM_CUSTOM_CARDS                        0x0008
+#define NUM_TOTAL_CARDS                         0x032A
+#define NUM_CUSTOM_CARDS                        0x0009
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "card_passives.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -109,6 +110,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   }
 
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
+  ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
 
   if (sActionData.flags & 1)
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.playerMonsterRow][sActionData.unkA], 0);

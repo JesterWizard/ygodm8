@@ -1,7 +1,18 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
+
+static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
+  if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+  if (IsGodCard(gTrapEffectData.originCardId) == TRUE)
+    return FALSE;
+  if (IsImmuneToHarmfulTargetedEffectsOnField(gTrapEffectData.originCardId, gTrapEffectData.originRow))
+    return FALSE;
+  return TRUE;
+}
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -39,14 +50,12 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = FALSE;
       break;
     case TRAP_WIDESPREAD_RUIN:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_WIDESPREAD_RUIN;
       break;
     case TRAP_HOUSE_OF_ADHESIVE_TAPE:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
         gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
         gStatMod.field = gDuel.field;
@@ -58,8 +67,7 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_HOUSE_OF_ADHESIVE_TAPE;
       break;
     case TRAP_EATGABOON:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
         gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
         gStatMod.field = gDuel.field;
@@ -71,8 +79,7 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_EATGABOON;
       break;
     case TRAP_BEAR_TRAP:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
         gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
         gStatMod.field = gDuel.field;
@@ -84,8 +91,7 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_BEAR_TRAP;
       break;
     case TRAP_INVISIBLE_WIRE:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
         gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
         gStatMod.field = gDuel.field;
@@ -97,8 +103,7 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_INVISIBLE_WIRE;
       break;
     case TRAP_ACID_TRAP_HOLE:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
         gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
         gStatMod.field = gDuel.field;
@@ -173,18 +178,17 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       }
       break;
     case TRAP_INFINITE_DISMISSAL:
-      ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_INFINITE_DISMISSAL;
       break;
     case TRAP_TORRENTIAL_TRIBUTE:
-      ret = IsGodCard(gTrapEffectData.originCardId) != TRUE &&
-          GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_TORRENTIAL_TRIBUTE;
       break;
     case TRAP_AMAZON_ARCHERS:
-      ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_AMAZON_ARCHERS;
       break;
