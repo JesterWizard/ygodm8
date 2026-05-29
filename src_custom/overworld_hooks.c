@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "debug_menu.h"
 #include "overworld_debug_overlay.h"
 #include "thought_bubble.h"
 
@@ -12,6 +13,9 @@ extern u16 gRepeatedOrNewButtons;
 
 void sub_804F1E4(void);
 void sub_80551B8(void);
+void sub_804EC4C(void);
+void OverworldSetRegDispcnt(void);
+void sub_8045284(u16 *, u16, u16);
 
 typedef void (*VoidFunc)(void);
 typedef void (*VoidU8Func)(u8);
@@ -22,6 +26,35 @@ static inline void CallThumbVoid(u32 addr) {
 
 static inline void CallThumbVoidU8(u32 addr, u8 arg) {
   ((VoidU8Func)(addr | 1))(arg);
+}
+
+/* Same path as START_MENU -> OverworldLoadGraphics_inline(), not the overlay replacement. */
+static void OverworldRestoreGraphicsAfterSubmenu(void) {
+  REG_DISPCNT = 0;
+  REG_BLDCNT = 0;
+  CallThumbVoid(0x0804DCE8);
+  CallThumbVoid(0x0804EDA0);
+  CallThumbVoid(0x0804EDC8);
+  CallThumbVoid(0x0804EDF0);
+  CallThumbVoid(0x0804EE18);
+  CallThumbVoid(0x0804EE6C);
+  if (CheckFlag(0xF3))
+    sub_8044E50(gPaletteBuffer, 0x10, 0x1FF);
+  if (CheckFlag(0xF0))
+    sub_8044EC8(gPaletteBuffer, 0x10, 0x1FF, 6);
+  if (CheckFlag(0xEF))
+    sub_8045284(gPaletteBuffer, 0x10, 0xFF);
+  REG_BLDY = 7;
+  WaitForVBlank();
+  sub_804EC4C();
+  REG_WINOUT = 0x3D3F;
+  OverworldSetRegDispcnt();
+}
+
+static void OverworldRestoreAfterDebugMenu(void) {
+  OverworldRestoreGraphicsAfterSubmenu();
+  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
+    OverworldOverlay_Refresh();
 }
 
 #define DECLARE_THOUGHT_BUBBLE_ASSET(symbol, tiles_path, palette_path) \
@@ -43,6 +76,7 @@ static inline void CallThumbVoidU8(u32 addr, u8 arg) {
 THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ASSET)
 
 static u16 *const sShowThoughtBubbles = (u16 *)0x03001678;
+static u8 *const sSkipOverworldEndFrameAfterSubmenu = (u8 *)0x0300167A;
 NAKED
 static void LZ77UnCompVram__Hook(const void *src, void *dest) {
   asm_unified("swi 0x12\n\
@@ -194,6 +228,16 @@ u8 ProcessInput__Replacement(void) {
   }
   if (gNewButtons & R_BUTTON)
     return OVERWORLD_INPUT_TRY_DUELING;
+  if (gRuntimeConfig.enable_debug_menu == TRUE && (gNewButtons & B_BUTTON) &&
+      !(gPressedButtons & 0xF0)) {
+    PlayMusic(SFX_SELECT);
+    DebugMenuMain();
+    OverworldRestoreAfterDebugMenu();
+    PlayOverworldMusic();
+    /* Match START_MENU: restore without running sub_804EF10 on this frame. */
+    *sSkipOverworldEndFrameAfterSubmenu = 1;
+    return OVERWORLD_INPUT_NONE;
+  }
   if (gPressedButtons & B_BUTTON) {
     if (gPressedButtons & DPAD_UP)
       return OVERWORLD_INPUT_RUN_UP;
@@ -221,6 +265,12 @@ u8 ProcessInput__Replacement(void) {
 
 LYN_REPLACE_CHECK(sub_804EF10);
 void sub_804EF10__Replacement(void) {
+  if (*sSkipOverworldEndFrameAfterSubmenu) {
+    *sSkipOverworldEndFrameAfterSubmenu = 0;
+    SetVBlankCallback(sub_804F1E4);
+    return;
+  }
+
   CallThumbVoidU8(0x0804E518, 0);
   if (gOverworld.objects[13].unk1Dl)
     CallThumbVoidU8(0x0804E518, 13);
