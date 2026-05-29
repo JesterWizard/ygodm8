@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "player_decks.h"
 #include "generated/card_trunk_generated.inc"
 
 extern const unsigned char gStarterTrunk[];
@@ -52,14 +53,20 @@ static u16 GetLastTrackedCardId(void) {
   return CUSTOM_CARD_START + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
 }
 
+static u8 GetDeckQtyForOwnershipTotals(u16 cardId) {
+  if (PlayerDecks_IsEnabled() == TRUE)
+    return PlayerDecks_GetTotalDeckCardQty(cardId);
+  return GetDeckCardQty(cardId);
+}
+
 static void RefreshTrunkOwnershipTotals(void) {
   u16 cardId;
 
   for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
-    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId);
 
   for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
-    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
+    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId));
 }
 
 static void RefreshTrunkCardRowGfx(void) {
@@ -146,7 +153,7 @@ void SetTotalCardQtyForCard(u16 cardId, u8 qty) {
 }
 
 void SyncCardOwnershipQty(u16 cardId) {
-  SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
+  SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId));
   SyncCustomTrunkCardQtyMirror(cardId);
 }
 
@@ -289,10 +296,10 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
 
   for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
-    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckCardQty(cardId);
+    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId);
 
   for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
-    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckCardQty(cardId));
+    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId));
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)
     gTrunkMenu.cards[cardId] = cardId + 1;

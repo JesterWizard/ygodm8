@@ -20,6 +20,7 @@ extern unsigned short gOamBuffer[];
 extern unsigned short gStarterDeck[];
 void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
+void InitDeckData(void);
 unsigned short GetSelectedCardWithOffset(unsigned char);
 void AddCardToTrunk(unsigned short);
 void SyncCardOwnershipQty(u16);
@@ -188,15 +189,7 @@ static u32 GetDefaultDeckCapacityValue(void) {
 
 LYN_REPLACE_CHECK(InitDeckCapacity);
 void InitDeckCapacity__Replacement(void) {
-  u32 capacity = GetDefaultDeckCapacityValue();
-
-  gDeckCapacity = capacity;
-
-  if (PlayerDecks_IsEnabled() == TRUE) {
-    gPlayerDeck1Capacity = capacity;
-    gPlayerDeck2Capacity = capacity;
-    gPlayerDeck3Capacity = capacity;
-  }
+  gDeckCapacity = GetDefaultDeckCapacityValue();
 }
 
 LYN_REPLACE_CHECK(InitNewGameDeck);
@@ -214,73 +207,36 @@ void InitNewGameDeck__Replacement(void) {
   for (i = 0; i < DECK_SIZE; i++)
     gDeckMenu.cards[i] = deck[i];
 
+  InitDeckData();
+
   if (PlayerDecks_IsEnabled() == TRUE)
     PlayerDecks_InitNewGame();
 }
 
 LYN_REPLACE_CHECK(IncreaseDeckCapacity);
 void IncreaseDeckCapacity__Replacement(unsigned increase) {
-  u8 index;
-  u32 capacity;
-
-  if (PlayerDecks_IsEnabled() != TRUE) {
-    if (increase > 65000 - gDeckCapacity)
-      gDeckCapacity = 65000;
-    else
-      gDeckCapacity += increase;
-    IncreaseDuelistLevel();
-    return;
-  }
-
-  index = PlayerDecks_GetActiveIndex();
-  capacity = PlayerDecks_GetCapacityForIndex(index);
-
-  if (increase > 65000 - capacity)
-    capacity = 65000;
+  if (increase > 65000 - gDeckCapacity)
+    gDeckCapacity = 65000;
   else
-    capacity += increase;
+    gDeckCapacity += increase;
 
-  PlayerDecks_SetCapacityForIndex(index, capacity);
   IncreaseDuelistLevel();
 }
 
 LYN_REPLACE_CHECK(SubtractCostFromDeckCapacity);
 void SubtractCostFromDeckCapacity__Replacement(unsigned subtractCost) {
-  u8 index;
-  u32 capacity;
-
-  if (PlayerDecks_IsEnabled() != TRUE) {
-    if (subtractCost > gDeckCapacity)
-      gDeckCapacity = 0;
-    else
-      gDeckCapacity -= subtractCost;
-    return;
-  }
-
-  index = PlayerDecks_GetActiveIndex();
-  capacity = PlayerDecks_GetCapacityForIndex(index);
-
-  if (subtractCost > capacity)
-    capacity = 0;
+  if (subtractCost > gDeckCapacity)
+    gDeckCapacity = 0;
   else
-    capacity -= subtractCost;
-
-  PlayerDecks_SetCapacityForIndex(index, capacity);
+    gDeckCapacity -= subtractCost;
 }
 
 LYN_REPLACE_CHECK(ShouldDuelistLevelIncrease);
 unsigned char ShouldDuelistLevelIncrease__Replacement(void) {
-  u32 capacity;
-
   if (gDuelistLevel >= 999)
     return 0;
 
-  if (PlayerDecks_IsEnabled() == TRUE)
-    capacity = PlayerDecks_GetCapacityForIndex(PlayerDecks_GetActiveIndex());
-  else
-    capacity = gDeckCapacity;
-
-  if (capacity >= gDeckCapacityUpperLimitForDuelistLevel[gDuelistLevel + 1]) {
+  if (gDeckCapacity >= gDeckCapacityUpperLimitForDuelistLevel[gDuelistLevel + 1]) {
     gDuelData.unk2c = 1;
     return 1;
   }

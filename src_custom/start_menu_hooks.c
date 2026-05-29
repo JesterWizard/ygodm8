@@ -52,9 +52,6 @@ static const u8 sText_Deck3[] APPEND_TEXT = "Deck 3";
 #define START_MENU_WIN0V_EXTENDED \
   START_MENU_WIN0V_FROM_TILES(START_MENU_WIN0_TOP_TILES, START_MENU_WIN0_BOTTOM_TILES_EXTENDED)
 
-/* Millennium Eye cursor Y (vanilla 7 tiles = 56 px). */
-#define START_MENU_CURSOR_Y_TILES 7
-
 /*
  * BG2 scroll (signed tiles). Increasing this nudge moves text up on screen.
  * Vanilla -7; +4 tiles nudge lifts the five-line menu by whole BG2 tiles.
@@ -70,6 +67,9 @@ static const u8 sText_Deck3[] APPEND_TEXT = "Deck 3";
   START_MENU_BG2VOFS_FROM_TILES(START_MENU_BG2_SCROLL_TILES_VANILLA)
 #define START_MENU_BG2VOFS_EXTENDED \
   START_MENU_BG2VOFS_FROM_TILES(START_MENU_BG2_SCROLL_TILES_EXTENDED)
+
+/* Millennium Eye cursor Y tracks the BG2 text scroll, so tile nudges stay aligned. */
+#define START_MENU_CURSOR_Y_TILES (0 - START_MENU_BG2_SCROLL_TILES_EXTENDED)
 
 /* BG2 text tilemap rows (2 tile rows per menu line). */
 #define START_MENU_TEXT_ROW_DECK1 4
@@ -393,7 +393,6 @@ static void OpenDeckEditor(u8 deckIndex) {
   PlayerDecks_SetActiveAndLoad(deckIndex);
   DeckMenuMain();
   PlayerDecks_FlushActive();
-  PlayerDecks_SavePersistentState();
   if (PlayerDecks_IsEnabled() == TRUE)
     InitStartMenuDataMultiDeck();
   else
@@ -409,7 +408,6 @@ static void RestoreStartMenuAfterSubmenu(void) {
 
 static void SelectActiveDeckFromStartMenu(u8 deckIndex) {
   PlayerDecks_SetActiveAndLoad(deckIndex);
-  PlayerDecks_SavePersistentState();
   UpdateActiveDeckTextColor();
   LoadBgVRAM();
 }
@@ -467,6 +465,7 @@ static void StartMenuMainMultiDeck(void) {
       if (gNewButtons & A_BUTTON) {
         PlayMusic(SFX_SELECT);
         TrunkMenuMain();
+        PlayerDecks_FlushActive();
         InitStartMenuDataMultiDeck();
       }
       break;

@@ -9,7 +9,7 @@
 
 ## Introduction
 
-When `enable_multiple_decks` is `TRUE`, the field start menu lists **Deck 1**, **Deck 2**, and **Deck 3** instead of a single **Deck** row. Each deck stores 40 card IDs (80 bytes) and its own remaining deck-capacity value. Opening a deck editor sets that deck as the **active** deck used for duels and for B-to-exit validation on the start menu.
+When `enable_multiple_decks` is `TRUE`, the field start menu lists **Deck 1**, **Deck 2**, and **Deck 3** instead of a single **Deck** row. Each deck stores 40 card IDs (80 bytes). Opening a deck editor sets that deck as the **active** deck used for duels and for B-to-exit validation on the start menu.
 
 ## Runtime config
 
@@ -30,8 +30,8 @@ When `enable_multiple_decks` is `TRUE`, the field start menu lists **Deck 1**, *
 
 ## Save layout
 
-- **Deck 1** cards and capacity remain in the vanilla `0x747` save blob via `g80D2D00` (through `gDeckMenu` / `gDeckCapacity` while building that blob).
-- **Deck 2 / 3** cards, their capacities, and **active deck index** use mirrored flash pairs allocated after custom card qty in `asm/ram_map.s`.
+- **Deck 1** cards remain in the vanilla `0x747` save blob through `gDeckMenu`.
+- **Deck 2 / 3** cards and the **active deck index** use mirrored flash pairs allocated after custom card qty in `asm/ram_map.s`.
 - Before `sub_80351F8` writes the save buffer, deck 1 is copied into `gDeckMenu` so the vanilla layout still sees deck 1 even if another deck was active.
 
-On first load after enabling the feature, flash `gActiveDeckIndex == 0xFF` initializes empty deck 2/3 and default capacities.
+On first load after enabling the feature, a missing multi-deck magic value initializes empty deck 2/3 and sets deck 1 active. Deck 1 is always loaded from the vanilla save blob.

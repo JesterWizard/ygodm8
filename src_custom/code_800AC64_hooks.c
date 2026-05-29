@@ -18,6 +18,8 @@ int sub_800B034(void);
 int sub_800B050(void);
 int sub_800B06C(void);
 u8 sub_800B088(void);
+int sub_800B0E4(void);
+int sub_800B10C(void);
 void InitNewGame(void);
 void sub_800B0AC(u16);
 void sub_800B0C8(u16);
@@ -88,6 +90,7 @@ void sub_800ADC4__Replacement(void) {
   g20245AC(temp, temp2, 0x747);
   ShinyZones_LoadFlagsFromFlashPrimary();
   sub_803519C();
+  PlayerDecks_OnSaveSlotRead();
 }
 
 LYN_REPLACE_CHECK(sub_800ADF0);
@@ -97,6 +100,7 @@ void sub_800ADF0__Replacement(void) {
   g20245AC(temp, temp2, 0x747);
   ShinyZones_LoadFlagsFromFlashBackup();
   sub_803519C();
+  PlayerDecks_OnSaveSlotReadBackup();
 }
 
 LYN_REPLACE_CHECK(sub_800AE1C);
@@ -105,6 +109,8 @@ void sub_800AE1C__Replacement(void) {
   Test((int)gSaveSlotPrimary, g8E0CD10, 0x747);
   ShinyZones_LoadFlagsFromFlashPrimary();
   sub_803519C();
+  PlayerDecks_OnSaveSlotRead();
+  PlayerDecks_OnSaveSlotWriteBackup();
   temp = sub_800B134();
   sub_800B06C();
   sub_80588C4(g8E0CD10, (int)gSaveSlotBackup, 0x747);
@@ -118,11 +124,31 @@ void sub_800AE70__Replacement(void) {
   Test((int)gSaveSlotBackup, g8E0CD10, 0x747);
   ShinyZones_LoadFlagsFromFlashBackup();
   sub_803519C();
+  PlayerDecks_OnSaveSlotReadBackup();
+  PlayerDecks_OnSaveSlotWrite();
   temp = sub_800B158();
   sub_800B050();
   sub_80588C4(g8E0CD10, (int)gSaveSlotPrimary, 0x747);
   sub_800B0AC(temp);
   sub_800B034();
+}
+
+LYN_REPLACE_CHECK(sub_800B0E4);
+int sub_800B0E4__Replacement(void) {
+  u16 checksum;
+
+  g20245AC((int)gSaveSlotPrimary, g8E0CD10, 0x747);
+  checksum = sub_8035170();
+  return checksum == sub_800B134();
+}
+
+LYN_REPLACE_CHECK(sub_800B10C);
+int sub_800B10C__Replacement(void) {
+  u16 checksum;
+
+  g20245AC((int)gSaveSlotBackup, g8E0CD10, 0x747);
+  checksum = sub_8035170();
+  return checksum == sub_800B158();
 }
 
 LYN_REPLACE_CHECK(sub_800AED0);

@@ -417,7 +417,6 @@ void sub_803519C__Replacement(void) {
     gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
   }
 
-  PlayerDecks_OnSaveSlotRead();
 }
 
 LYN_REPLACE_CHECK(sub_80351F8);
