@@ -225,10 +225,10 @@ void IncreaseDeckCapacity__Replacement(unsigned increase) {
 
 LYN_REPLACE_CHECK(SubtractCostFromDeckCapacity);
 void SubtractCostFromDeckCapacity__Replacement(unsigned subtractCost) {
-  if (subtractCost > gDeckCapacity)
-    gDeckCapacity = 0;
+  if (subtractCost > gDeckMenu.cost)
+    gDeckMenu.cost = 0;
   else
-    gDeckCapacity -= subtractCost;
+    gDeckMenu.cost -= subtractCost;
 }
 
 LYN_REPLACE_CHECK(ShouldDuelistLevelIncrease);
