@@ -1,4 +1,5 @@
 #include "global.h"
+#include "ante_card_viewer.h"
 #include "configs/runtime.h"
 #include "debug_menu.h"
 #include "overworld_debug_overlay.h"
@@ -261,8 +262,15 @@ u8 ProcessInput__Replacement(void) {
     return OVERWORLD_INPUT_WALK_LEFT;
   if (gPressedButtons & DPAD_RIGHT)
     return OVERWORLD_INPUT_WALK_RIGHT;
-  if (gRepeatedOrNewButtons & SELECT_BUTTON)
+  if (gRepeatedOrNewButtons & SELECT_BUTTON) {
+    if (gRuntimeConfig.enable_ante_card_viewer == TRUE && AnteCardViewer_TryOpen() == TRUE) {
+      OverworldRestoreAfterDebugMenu();
+      PlayOverworldMusic();
+      *sSkipOverworldEndFrameAfterSubmenu = 1;
+      return OVERWORLD_INPUT_NONE;
+    }
     return OVERWORLD_INPUT_START_MENU;
+  }
   if (gRepeatedOrNewButtons & START_BUTTON)
     return OVERWORLD_INPUT_START_MENU;
   return OVERWORLD_INPUT_NONE;

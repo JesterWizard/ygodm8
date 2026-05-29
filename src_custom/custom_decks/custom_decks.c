@@ -85,6 +85,12 @@ u8 CustomDecks_ShouldUseCardShopDuel(u8 spriteId, u8 locationId) {
   return FindCustomDeckEntry(spriteId, locationId) != NULL;
 }
 
+const CustomDuelRewardEntry *CustomDecks_FindCardShopDuelRewardEntry(u8 spriteId, u8 locationId) {
+  if (CustomDecks_IsEnabled() != TRUE)
+    return NULL;
+  return FindCustomDuelRewardEntry(spriteId, locationId);
+}
+
 void CustomDecks_SetPendingCardShopDuel(u8 spriteId, u8 locationId) {
   sPendingCardShopDuel.spriteId = spriteId;
   sPendingCardShopDuel.locationId = locationId;

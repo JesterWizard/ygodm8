@@ -7,6 +7,9 @@ extern u16** g8FA3360[];
 extern u8 gSharedMem[];
 extern struct OamData gOamBuffer[];
 
+#define PORTRAIT_TILE_BYTES 0x1000
+#define PORTRAIT_PAL_BYTES 0x80
+
 const u8 sPlayerPortraitTiles[] APPEND_ASSET =
     INCBIN_U8("src_custom/assets/portraits/player.lz");
 const u16 sPlayerPortraitPalette[] APPEND_ASSET =
@@ -20,11 +23,14 @@ static void CopyTilesToVram(u8* dest, u8* src) {
 }
 
 void LoadPortraitGfx(u8 portraitId, u8 expression) {
-  if (portraitId == PORTRAIT_PLAYER) {
+  if (portraitId == PORTRAIT_NONE) {
+    CpuFill16(0, gBgVram.cbb4 + 0x2000, PORTRAIT_TILE_BYTES);
+    CpuFill16(0, (void *)(gPaletteBuffer + 256 + 0xC0), PORTRAIT_PAL_BYTES);
+  } else if (portraitId == PORTRAIT_PLAYER) {
     LZ77UnCompWram(sPlayerPortraitTiles, gSharedMem);
     CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
     CpuCopy16(sPlayerPortraitPalette, gPaletteBuffer + 256 + 0xC0, 128);
-  } else if (portraitId != PORTRAIT_NONE) {
+  } else {
     LZ77UnCompWram(g8FA31C0[portraitId][expression], gSharedMem);
     CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
     CpuCopy16(*g8FA3360[portraitId], gPaletteBuffer + 256 + 0xC0, 128);
@@ -35,6 +41,15 @@ void LoadPortraitGfx(u8 portraitId, u8 expression) {
 LYN_REPLACE_CHECK(DisplayPortrait);
 void DisplayPortrait__Replacement(struct ScriptCtx* scriptCtx) {
   struct OamData* oam = gOamBuffer;
+  if (scriptCtx->portraitId == PORTRAIT_NONE) {
+    sub_804EB04(oam, PORTRAIT_POSITION_OFF_SCREEN);
+    LoadPortraitGfx(PORTRAIT_NONE, 0);
+    SetVBlankCallback(LoadOam);
+    WaitForVBlank();
+    sub_804EC64();
+    return;
+  }
+
   if (scriptCtx->unk86 == 1) {
     REG_WIN1H = 0x03ED;
     REG_WIN1V = 0x739D;
