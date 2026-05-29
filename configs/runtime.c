@@ -40,9 +40,9 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
     .show_player_screen_pixel_coords = TRUE,
     .show_duel_life_points_on_board = TRUE,
-    .card_in_hand_1 = COPYCAT,
-    .card_in_hand_2 = CARD_NONE,
-    .card_in_hand_3 = CARD_NONE,
-    .card_in_hand_4 = CARD_NONE,
-    .card_in_hand_5 = CARD_NONE
+    .card_in_hand_1 = MAGE_POWER,
+    .card_in_hand_2 = BECKON_TO_DARKNESS,
+    .card_in_hand_3 = SPARKS,
+    .card_in_hand_4 = FINAL_DESTINY,
+    .card_in_hand_5 = MORPHING_JAR_2
 };

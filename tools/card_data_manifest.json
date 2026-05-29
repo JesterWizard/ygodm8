@@ -12779,6 +12779,38 @@
       "big_art": "src_custom/assets/cards/80x80/copycat.huff",
       "big_palette": "src_custom/assets/cards/80x80/copycat.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/copycat.lz"
+    },
+    {
+      "card_const": "MAGE_POWER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": "SPELL_EFFECT_MAGE_POWER",
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MagePower",
+        "pages": [
+          "A group of scholars praying to a higher power.",
+          "They can boost the stats of a monster by 1 stage per-",
+          "card in the player's spell and trap card zones."
+        ]
+      },
+      "card_name": "Mage Power",
+      "password": [ 8, 3, 7, 4, 6, 7, 0, 8 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MagePower",
+        "pages": [
+          "It will boost a monster's stats by 1 stage per card in your spell and trap card zones."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/mage_power.huff",
+      "big_palette": "src_custom/assets/cards/80x80/mage_power.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/mage_power.lz"
     }
   ]
 }

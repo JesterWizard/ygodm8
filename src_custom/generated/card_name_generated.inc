@@ -11,6 +11,7 @@ static const u8 sChainEnergyName[] __attribute__((section(".append_assets"))) = 
 static const u8 sSpellCancellerName[] __attribute__((section(".append_assets"))) = "Spell Canceller";
 static const u8 sExchangeName[] __attribute__((section(".append_assets"))) = "Exchange";
 static const u8 sCopycatName[] __attribute__((section(".append_assets"))) = "Copycat";
+static const u8 sMagePowerName[] __attribute__((section(".append_assets"))) = "Mage Power";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -39,6 +40,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sExchangeName;
   if (cardId == 0x032D)
     return (u8 *)sCopycatName;
+  if (cardId == 0x032E)
+    return (u8 *)sMagePowerName;
 
   return gCardNames[cardId];
 }

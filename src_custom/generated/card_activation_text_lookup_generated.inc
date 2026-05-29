@@ -35,6 +35,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SPELL_CANCELLER, gActivationDescription_SpellCanceller },
   { EXCHANGE, gActivationDescription_Exchange },
   { COPYCAT, gActivationDescription_Copycat },
+  { MAGE_POWER, gActivationDescription_MagePower },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

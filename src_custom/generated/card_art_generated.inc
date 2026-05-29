@@ -52,6 +52,10 @@ static const unsigned char sCopycatBigArt[] __attribute__((section(".append_asse
 static const unsigned short sCopycatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/copycat.gbapal");
 static const unsigned char sCopycatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/copycat.lz");
 
+static const unsigned char sMagePowerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/mage_power.huff");
+static const unsigned short sMagePowerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/mage_power.gbapal");
+static const unsigned char sMagePowerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/mage_power.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -66,6 +70,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x032B] = sSpellCancellerBigArt,
   [0x032C] = sExchangeBigArt,
   [0x032D] = sCopycatBigArt,
+  [0x032E] = sMagePowerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -82,6 +87,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x032B] = sSpellCancellerBigPalette,
   [0x032C] = sExchangeBigPalette,
   [0x032D] = sCopycatBigPalette,
+  [0x032E] = sMagePowerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -98,6 +104,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x032B] = 0,
   [0x032C] = 0,
   [0x032D] = 0,
+  [0x032E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -114,4 +121,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x032B] = sSpellCancellerMiniArt,
   [0x032C] = sExchangeMiniArt,
   [0x032D] = sCopycatMiniArt,
+  [0x032E] = sMagePowerMiniArt,
 };
