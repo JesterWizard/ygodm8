@@ -45,6 +45,9 @@ SET_DATA UsedFreeRamSpaceTop, FreeRamSpaceBottom
 @ Randomized card costs live in IWRAM for maximum speed.
 _kernel_malloc sRandomizedCardCosts, 0x652
 
+@ Reentrancy guard while Copycat resolves copied stats.
+_kernel_malloc gComputingCopycatStats, 1
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------
@@ -68,6 +71,9 @@ _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 
 @ Bitfield for one-shot delayed duel effects keyed by duelist.
 _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
+
+@ Per-board-cell Copycat stats copied on activation (20 cells x 5 bytes).
+_kernel_malloc_ewram_array gCopycatBoardStats, 0x64
 
 @ Bitfield for one-shot shiny-zone pickups: 16 bytes, 1 bit per flag.
 _kernel_malloc_ewram_array gShinyZoneFlags, 0x10

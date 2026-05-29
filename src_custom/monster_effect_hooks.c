@@ -118,6 +118,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_COPYCAT) {
+    ActivateCopycatEffect();
+    return;
+  }
+
   gMonEffects[gCardInfo.monsterEffect]();
 }
 

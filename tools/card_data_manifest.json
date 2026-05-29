@@ -12748,6 +12748,37 @@
       "big_art": "src_custom/assets/cards/80x80/exchange.huff",
       "big_palette": "src_custom/assets/cards/80x80/exchange.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/exchange.lz"
+    },
+    {
+      "card_const": "COPYCAT",
+      "atk": 0,
+      "def": 0,
+      "cost": 183,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 1,
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_COPYCAT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Copycat",
+        "pages": [
+          "A faceless mage that can copy its targets likeness.",
+          "It can copy the stats of the strongest enemy monster in play."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Copycat",
+        "pages": [
+          "It will copy the stats of the strongest enemy monster."
+        ]
+      },
+      "card_name": "Copycat",
+      "password": [ 2, 6, 3, 7, 6, 3, 9, 0 ],
+      "big_art": "src_custom/assets/cards/80x80/copycat.huff",
+      "big_palette": "src_custom/assets/cards/80x80/copycat.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/copycat.lz"
     }
   ]
 }

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "player_decks.h"
+#include "copycat.h"
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -372,7 +373,9 @@ LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
   SetCardInfo__Replacement(ptr->card);
 
-  if (gCardInfo.spellEffect == 2) {
+  if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
+    ApplyCopycatStatsToCardInfo(ptr);
+  else if (gCardInfo.spellEffect == 2) {
     gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, gUnk8094FE4[ptr->field][gCardInfo.type]);
     gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, gUnk8094FE4[ptr->field][gCardInfo.type]);
     gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, ptr->stage);

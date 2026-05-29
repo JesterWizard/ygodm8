@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "delayed_effects.h"
+#include "copycat.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -241,6 +242,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ResetTempStage(zone);
   zone->unk4 = 0;
   zone->willChangeSides = 0;
+  ClearCopycatBoardStatsForZone(zone);
 }
 
 LYN_REPLACE_CHECK(CopyCard);
