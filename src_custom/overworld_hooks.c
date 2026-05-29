@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ante_card_viewer.h"
+#include "common-chax.h"
 #include "configs/runtime.h"
 #include "debug_menu.h"
 #include "overworld_debug_overlay.h"
@@ -232,16 +233,35 @@ u8 ProcessInput__Replacement(void) {
     PlayMusic(SFX_SELECT);
     return OVERWORLD_INPUT_NONE;
   }
-  if (gNewButtons & R_BUTTON)
-    return OVERWORLD_INPUT_TRY_DUELING;
-  if (gRuntimeConfig.enable_debug_menu == TRUE && (gNewButtons & B_BUTTON) &&
-      !(gPressedButtons & 0xF0)) {
-    PlayMusic(SFX_SELECT);
-    DebugMenuMain();
-    OverworldRestoreAfterDebugMenu();
-    PlayOverworldMusic();
-    /* Match START_MENU: restore without running sub_804EF10 on this frame. */
-    *sSkipOverworldEndFrameAfterSubmenu = 1;
+  if (gNewButtons & R_BUTTON) {
+    u8 x = gOverworld.objects[0].x;
+    u8 y = gOverworld.objects[0].y;
+    u8 dir = gOverworld.objects[0].direction;
+
+    switch (dir) {
+      case DIRECTION_DOWN:
+        y++;
+        break;
+      case DIRECTION_UP:
+        y--;
+        break;
+      case DIRECTION_LEFT:
+        x--;
+        break;
+      case DIRECTION_RIGHT:
+        x++;
+        break;
+    }
+    if (GetObjectIdInFrontOfPlayer(x, y, dir) != -1)
+      return OVERWORLD_INPUT_TALK;
+    if (gRuntimeConfig.enable_debug_menu == TRUE && !(gPressedButtons & 0xF0)) {
+      PlayMusic(SFX_SELECT);
+      DebugMenuMain();
+      OverworldRestoreAfterDebugMenu();
+      PlayOverworldMusic();
+      /* Match START_MENU: restore without running sub_804EF10 on this frame. */
+      *sSkipOverworldEndFrameAfterSubmenu = 1;
+    }
     return OVERWORLD_INPUT_NONE;
   }
   if (gPressedButtons & B_BUTTON) {
