@@ -5,6 +5,7 @@
 ## Index
 
 - [Introduction](#introduction)
+- [Related: Ante Card Viewer](#related-ante-card-viewer)
 - [Source Layout](#source-layout)
 - [Access](#access)
 - [Root Menu](#root-menu)
@@ -29,6 +30,12 @@ Three viewers are implemented today:
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
 - **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
 
+## Related: Ante Card Viewer
+
+The **ante card viewer** (`src_custom/debug/ante_card_viewer.c`) shares this folder’s text and graphics helpers but is **not** part of the debug menu root. On the overworld, **SELECT** while facing a duelist opens a scrollable ante reward list with a mini card preview. It uses `DebugMenuCopyLine`, `DebugMenuSetLinePalette`, and `DebugMenuLoadGraphics`, but is gated by `enable_ante_card_viewer` instead of `enable_debug_menu`.
+
+Full behavior, controls, data sources, and colored row text are documented in [ante-card-viewer.md](ante-card-viewer.md).
+
 ## Source Layout
 
 All debug-menu sources and data tables live in `src_custom/debug/`:
@@ -42,6 +49,7 @@ All debug-menu sources and data tables live in `src_custom/debug/`:
 | `debug_menu_sprite.c` | Sprite viewer, preview load/OAM, `debug_menu_sprite_table.inc` |
 | `debug_menu_*_table.inc` | Data-only entry lists (no C logic) |
 | `overworld_debug_overlay_hooks.c` | Field coordinate overlay (separate from the menu UI) |
+| `ante_card_viewer.c` | Overworld ante reward list (opened with **SELECT**, not from root menu) |
 
 Public API remains in `include/debug_menu.h` (`DebugMenuMain`, `DebugMenuClearPortraitObjStash`).
 
@@ -290,6 +298,7 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Portrait IDs | `enum Portrait` in `include/overworld.h` | Source of truth for `PORTRAIT_*` constants |
 | Portrait loader | `LoadPortraitGfx` in `src_custom/portrait_hooks.c` | Shared with dialogue `PORTRAIT()` |
 | Text draw | `DebugMenuCopyLine` in `debug_menu.c` | Per-glyph layout into charblock 3 |
+| Row palette | `DebugMenuSetLinePalette` in `debug_menu.c` | Per-row BG palette bank on `sbb1F` (used by ante card viewer) |
 | Tilemap setup | `DebugMenuSetupTextRows` in `debug_menu.c` | Maps 2×2 blocks on `sbb1F` for each row |
 | Graphics load | `DebugMenuLoadGraphics`, `DebugMenuLoadTilemaps` in `debug_menu.c` | Start-menu tiles + custom text rows |
 | Field overlay | `overworld_debug_overlay_hooks.c` in `src_custom/debug/` | Player tile/pixel coordinate HUD |

@@ -51,6 +51,7 @@ void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow);
 void DebugMenuFormatListRow(u8 *out, const u8 *title, bool8 selected);
 void DebugMenuFormatTitleRow(u8 *out, const u8 *title);
 void DebugMenuCopyLine(u8 row, const u8 *text);
+void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
 
 extern const u8 gDebugMenuBlankLine[];
 

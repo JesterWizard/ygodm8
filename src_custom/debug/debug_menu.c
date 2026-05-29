@@ -125,6 +125,23 @@ void DebugMenuCopyLine(u8 row, const u8 *text) {
     sub_8020968(dest + (i / 2 * 4 + (i & 1)) * 32, DebugMenuReadGlyphArg(&text), 0x901);
 }
 
+void DebugMenuSetLinePalette(u8 row, u8 paletteNum) {
+  u8 block;
+  u16 base = DEBUG_LINE0_TILE + row * DEBUG_LINE_STRIDE;
+  u8 mapRow = row * 2;
+  u16 palMask = (paletteNum & 0xF) << 12;
+
+  for (block = 0; block < DEBUG_TEXT_BLOCKS; block++) {
+    u8 col = block * 2;
+    u16 tile = base + block * 4;
+
+    gBgVram.sbb1F[mapRow][col] = palMask | ((tile + 0) & 0x3FF);
+    gBgVram.sbb1F[mapRow][col + 1] = palMask | ((tile + 1) & 0x3FF);
+    gBgVram.sbb1F[mapRow + 1][col] = palMask | ((tile + 2) & 0x3FF);
+    gBgVram.sbb1F[mapRow + 1][col + 1] = palMask | ((tile + 3) & 0x3FF);
+  }
+}
+
 void DebugMenuFormatListRow(u8 *out, const u8 *title, bool8 selected) {
   u8 i, t = 0;
 

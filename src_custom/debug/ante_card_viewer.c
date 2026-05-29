@@ -16,6 +16,9 @@
 #define ANTE_MINI_CARD_Y 64
 #define ANTE_MINI_CARD_OAM_SLOT 1
 #define ANTE_CURSOR_PAL_SLOT 15
+#define ANTE_TEXT_PAL_WHITE 15
+#define ANTE_TEXT_PAL_GOLD 14
+#define ANTE_GOLD_TEXT_COLOR 0x031F
 
 static const signed short sHorizontalDisplacements[] APPEND_RODATA = {
   [DIRECTION_DOWN] = 0,
@@ -35,6 +38,7 @@ extern u8 gInputRepeatTimer;
 extern u16 gPressedButtons;
 extern u16 gOamBuffer[];
 extern u16 gStartMenuCursorPalette[];
+extern u16 gUnk_8079424[];
 extern struct CardInfo gCardInfo;
 
 void CopyMiniCardPalette(u16 *dest);
@@ -119,48 +123,56 @@ static u8 CardAlreadyListed(const u16 *cards, u16 count, u16 cardId) {
   return FALSE;
 }
 
-static void AddCardToList(u16 *cards, u16 *count, u16 cardId) {
+static void AddCardToList(u16 *cards, u8 *isNormalAnte, u16 *count, u16 cardId, u8 normalAnte) {
   if (cardId == CARD_NONE)
     return;
   if (*count >= ANTE_CARD_MAX_CARDS)
     return;
   if (CardAlreadyListed(cards, *count, cardId) == TRUE)
     return;
-  cards[(*count)++] = cardId;
+  cards[(*count)] = cardId;
+  isNormalAnte[(*count)] = normalAnte;
+  (*count)++;
 }
 
-static void AddCardDropList(u16 *cards, u16 *count, const struct CardDrop *drops) {
+static void AddCardDropList(u16 *cards, u8 *isNormalAnte, u16 *count, const struct CardDrop *drops, u8 normalAnte) {
   if (drops == NULL)
     return;
   while (drops->card != CARD_NONE) {
-    AddCardToList(cards, count, drops->card);
+    AddCardToList(cards, isNormalAnte, count, drops->card, normalAnte);
     drops++;
   }
 }
 
-static void AddUniformCardList(u16 *cards, u16 *count, const u16 *drops, unsigned dropCount) {
+static void AddUniformCardList(u16 *cards, u8 *isNormalAnte, u16 *count, const u16 *drops, unsigned dropCount, u8 normalAnte) {
   unsigned i;
 
   if (drops == NULL)
     return;
   for (i = 0; i < dropCount; i++)
-    AddCardToList(cards, count, drops[i]);
+    AddCardToList(cards, isNormalAnte, count, drops[i], normalAnte);
 }
 
-static u16 BuildCustomAnteCardList(u16 *cards, const CustomDuelRewardEntry *entry) {
+static u16 BuildCustomAnteCardList(u16 *cards, u8 *isNormalAnte, const CustomDuelRewardEntry *entry) {
   u16 count = 0;
 
-  AddUniformCardList(cards, &count, entry->normalDrops, entry->normalDropCount);
-  AddUniformCardList(cards, &count, entry->lowDrops, entry->lowDropCount);
+  AddUniformCardList(cards, isNormalAnte, &count, entry->normalDrops, entry->normalDropCount, TRUE);
+  AddUniformCardList(cards, isNormalAnte, &count, entry->lowDrops, entry->lowDropCount, FALSE);
   return count;
 }
 
-static u16 BuildDuelistAnteCardList(u16 *cards, u16 duelistId) {
+static u16 BuildDuelistAnteCardList(u16 *cards, u8 *isNormalAnte, u16 duelistId) {
   u16 count = 0;
 
-  AddCardDropList(cards, &count, GetDuelistAnteDrops(duelistId, TRUE));
-  AddCardDropList(cards, &count, GetDuelistAnteDrops(duelistId, FALSE));
+  AddCardDropList(cards, isNormalAnte, &count, GetDuelistAnteDrops(duelistId, TRUE), TRUE);
+  AddCardDropList(cards, isNormalAnte, &count, GetDuelistAnteDrops(duelistId, FALSE), FALSE);
   return count;
+}
+
+static void ApplyAnteTextPalettes(void) {
+  CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xE0], 32);
+  gPaletteBuffer[0xE1] = ANTE_GOLD_TEXT_COLOR;
+  LoadPalettes();
 }
 
 static void FormatAnteCardRow(u8 *out, u16 cardId, u8 selected) {
@@ -182,7 +194,7 @@ static void FormatAnteCardRow(u8 *out, u16 cardId, u8 selected) {
   out[2 + DEBUG_CHARS] = '\0';
 }
 
-static void DrawAnteRows(const u16 *cards, u16 count, u16 scrollTop, u16 cursor) {
+static void DrawAnteRows(const u16 *cards, const u8 *isNormalAnte, u16 count, u16 scrollTop, u16 cursor) {
   u8 row;
   u8 buf[2 + DEBUG_CHARS + 1];
 
@@ -192,8 +204,10 @@ static void DrawAnteRows(const u16 *cards, u16 count, u16 scrollTop, u16 cursor)
     if (index < count) {
       FormatAnteCardRow(buf, cards[index], index == cursor);
       DebugMenuCopyLine(row, buf);
+      DebugMenuSetLinePalette(row, isNormalAnte[index] ? ANTE_TEXT_PAL_GOLD : ANTE_TEXT_PAL_WHITE);
     } else {
       DebugMenuCopyLine(row, gDebugMenuBlankLine);
+      DebugMenuSetLinePalette(row, ANTE_TEXT_PAL_WHITE);
     }
   }
   LoadCharblock3();
@@ -242,8 +256,8 @@ static void HideAnteMiniCard(void) {
   LoadOam();
 }
 
-static void RenderAnteViewer(const u16 *cards, u16 count, u16 scrollTop, u16 cursor, u16 *shownCardId) {
-  DrawAnteRows(cards, count, scrollTop, cursor);
+static void RenderAnteViewer(const u16 *cards, const u8 *isNormalAnte, u16 count, u16 scrollTop, u16 cursor, u16 *shownCardId) {
+  DrawAnteRows(cards, isNormalAnte, count, scrollTop, cursor);
 
   if (*shownCardId != cards[cursor]) {
     *shownCardId = cards[cursor];
@@ -251,15 +265,16 @@ static void RenderAnteViewer(const u16 *cards, u16 count, u16 scrollTop, u16 cur
   }
 }
 
-static void AnteCardViewerMain(const u16 *cards, u16 count) {
+static void AnteCardViewerMain(const u16 *cards, const u8 *isNormalAnte, u16 count) {
   u16 cursor = 0;
   u16 scrollTop = 0;
   u16 shownCardId = CARD_NONE;
 
   InitButtonMaps();
   DebugMenuLoadGraphics();
+  ApplyAnteTextPalettes();
   DebugMenuLatchButtons();
-  RenderAnteViewer(cards, count, scrollTop, cursor, &shownCardId);
+  RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
 
   while (1) {
     u16 buttons = DebugMenuButtons();
@@ -270,22 +285,23 @@ static void AnteCardViewerMain(const u16 *cards, u16 count) {
       PlayMusic(SFX_MOVE_CURSOR);
       if (--cursor < scrollTop)
         scrollTop = cursor;
-      RenderAnteViewer(cards, count, scrollTop, cursor, &shownCardId);
+      RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
     }
     if (buttons & DPAD_DOWN && cursor < count - 1) {
       PlayMusic(SFX_MOVE_CURSOR);
       if (++cursor >= scrollTop + DEBUG_ROWS)
         scrollTop = cursor - (DEBUG_ROWS - 1);
-      RenderAnteViewer(cards, count, scrollTop, cursor, &shownCardId);
+      RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
     }
     if (buttons & A_BUTTON) {
       PlayMusic(SFX_SELECT);
       SetCardInfo(cards[cursor]);
       ShowCardDetailView();
       DebugMenuLoadGraphics();
+      ApplyAnteTextPalettes();
       shownCardId = CARD_NONE;
       DebugMenuLatchButtons();
-      RenderAnteViewer(cards, count, scrollTop, cursor, &shownCardId);
+      RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
     }
 
     DebugMenuUpdateCursor(cursor - scrollTop);
@@ -309,6 +325,7 @@ u8 AnteCardViewer_TryOpen(void) {
   u8 y;
   s8 objId;
   u16 cards[ANTE_CARD_MAX_CARDS];
+  u8 isNormalAnte[ANTE_CARD_MAX_CARDS];
   u16 count = 0;
   u16 duelistId;
   const CustomDuelRewardEntry *customEntry;
@@ -321,14 +338,14 @@ u8 AnteCardViewer_TryOpen(void) {
 
   customEntry = CustomDecks_FindCardShopDuelRewardEntry(gOverworld.objects[objId].spriteId, gOverworld.map.id);
   if (customEntry != NULL)
-    count = BuildCustomAnteCardList(cards, customEntry);
+    count = BuildCustomAnteCardList(cards, isNormalAnte, customEntry);
   else if (FindDuelistIdInScript(EventSystem_ResolveScript(gOverworld.objects[objId].scriptR), &duelistId) == TRUE)
-    count = BuildDuelistAnteCardList(cards, duelistId);
+    count = BuildDuelistAnteCardList(cards, isNormalAnte, duelistId);
 
   if (count == 0)
     return FALSE;
 
   PlayMusic(SFX_SELECT);
-  AnteCardViewerMain(cards, count);
+  AnteCardViewerMain(cards, isNormalAnte, count);
   return TRUE;
 }
