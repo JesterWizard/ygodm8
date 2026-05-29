@@ -42,7 +42,7 @@ void InitButtonMaps(void);
 
 static void DebugMenuApplyBg2(void) {
   gBG2HOFS = 0xFFB0 + 28;
-  gBG2VOFS = 0xFFC8;
+  gBG2VOFS = DEBUG_BG2VOFS;
   LoadBgOffsets();
 }
 
@@ -100,6 +100,7 @@ static void DebugMenuUploadBg(void) {
   LoadCharblock3();
   LoadPalettes();
   CpuCopy32(gBgVram.sbb1D, DEBUG_BG1_VRAM, DEBUG_BG1_ROWS * DEBUG_BG1_ROW_BYTES);
+  CpuCopy32(gBgVram.sbb1F, DEBUG_BG2_VRAM, DEBUG_BG1_ROWS * DEBUG_BG1_ROW_BYTES);
 }
 
 static void DebugMenuUpload(void) {
@@ -233,7 +234,8 @@ void DebugMenuLoadReactionObjPalettes(void) {
 void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow, u8 paletteNum) {
   u32 *oam = (u32 *)&gOamBuffer[oamSlot * 4];
 
-  oam[0] = (screenRow << 4) + 56 | ((u32)(0x4040 - 28) << 16);
+  oam[0] = (screenRow << 4) + (DEBUG_CURSOR_Y_TILES * 8) |
+           ((u32)(0x4040 - 28) << 16);
   oam[1] = 0x800 | ((paletteNum & 0xF) << 12);
 }
 
