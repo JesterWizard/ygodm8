@@ -5,6 +5,7 @@
 ## Index
 
 - [Introduction](#introduction)
+- [Source Layout](#source-layout)
 - [Access](#access)
 - [Root Menu](#root-menu)
 - [Music Viewer](#music-viewer)
@@ -20,13 +21,35 @@
 
 ## Introduction
 
-The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug_menu.c`.
+The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug/`.
 
 Three viewers are implemented today:
 
 - **Music Viewer** — scrollable OST list; preview a track with **A**.
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
 - **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
+
+## Source Layout
+
+All debug-menu sources and data tables live in `src_custom/debug/`:
+
+| File | Role |
+|------|------|
+| `debug_menu.c` | Entry point (`DebugMenuMain`), root menu, shared graphics/text/input |
+| `debug_menu_internal.h` | Shared constants, structs, and cross-file declarations |
+| `debug_menu_music.c` | Music viewer loop and `debug_menu_music_table.inc` |
+| `debug_menu_portrait.c` | Portrait viewer, preview load/OAM, `debug_menu_portrait_table.inc` |
+| `debug_menu_sprite.c` | Sprite viewer, preview load/OAM, `debug_menu_sprite_table.inc` |
+| `debug_menu_*_table.inc` | Data-only entry lists (no C logic) |
+| `overworld_debug_overlay_hooks.c` | Field coordinate overlay (separate from the menu UI) |
+
+Public API remains in `include/debug_menu.h` (`DebugMenuMain`, `DebugMenuClearPortraitObjStash`).
+
+To add a new root-menu feature:
+
+1. Add a `DEBUG_VIEW_*` id and root row label in `debug_menu.c`.
+2. Implement `DebugYourFeatureViewer()` in a new `debug_menu_yourfeature.c` (or extend an existing feature file).
+3. Declare draw/viewer helpers in `debug_menu_internal.h` and wire `DebugMenuRedraw()` / `DebugMenuRoot()`.
 
 ## Access
 
@@ -58,7 +81,7 @@ Background music while the root menu is open is `MUSIC_DECK_ADJUSTMENT_MENU`.
 
 ## Music Viewer
 
-The music viewer lists every entry in `src_custom/debug_menu_music_table.inc`. Three rows are visible at a time; longer lists scroll.
+The music viewer lists every entry in `src_custom/debug/debug_menu_music_table.inc`. Three rows are visible at a time; longer lists scroll.
 
 | Input | Action |
 |-------|--------|
@@ -68,7 +91,7 @@ The music viewer lists every entry in `src_custom/debug_menu_music_table.inc`. T
 
 ### On-screen formatting
 
-Each visible row is built by `DebugMenuFormatTrack()`:
+Each visible row is built by `DebugMenuFormatTrack()` in `debug_menu_music.c`:
 
 - Prefix: `$0` (English language tag for the text engine)
 - Column 0: `>` when that row’s track is currently playing, otherwise space
@@ -95,7 +118,7 @@ DEBUG_MENU_MUSIC_ENTRY(MUSIC_WORLD_MAP, "World Map")
 ## Adding Tracks
 
 1. Confirm the song ID exists in `include/constants/music_ids.h`.
-2. Add one line to `src_custom/debug_menu_music_table.inc`:
+2. Add one line to `src_custom/debug/debug_menu_music_table.inc`:
 
    ```c
    DEBUG_MENU_MUSIC_ENTRY(MUSIC_YOUR_TRACK, "Your Label")
@@ -107,7 +130,7 @@ No C changes are required unless you change row width, visible row count, or men
 
 ## Portrait Viewer
 
-The portrait viewer lists every entry in `src_custom/debug_menu_portrait_table.inc`. Three rows are visible at a time; longer lists scroll. The highlighted portrait is shown on the right as soon as the cursor moves to that row (no **A** press).
+The portrait viewer lists every entry in `src_custom/debug/debug_menu_portrait_table.inc`. Three rows are visible at a time; longer lists scroll. The highlighted portrait is shown on the right as soon as the cursor moves to that row (no **A** press).
 
 | Input | Action |
 |-------|--------|
@@ -116,16 +139,15 @@ The portrait viewer lists every entry in `src_custom/debug_menu_portrait_table.i
 
 ### On-screen formatting
 
-Each visible row uses the same `DebugMenuFormatListRow()` layout as the music viewer, but the `>` prefix marks the **cursor row**, not “currently playing”:
+Each visible row is built by `DebugMenuFormatTitleRow()` in `debug_menu_portrait.c` (no `>` cursor prefix; the OAM cursor shows selection):
 
 - Prefix: `$0`
-- Column 0: `>` on the selected row, otherwise space
-- Columns 1–15: portrait label, space-padded to `DEBUG_CHARS` (16)
+- Columns 0–15: portrait label, space-padded to `DEBUG_CHARS` (16)
 
-Example with **Player** selected:
+Example:
 
 ```text
->Player
+Player
 ```
 
 Titles longer than 15 characters are truncated to fit the row buffer.
@@ -160,7 +182,7 @@ Custom portraits must be wired in `src_custom/portrait_hooks.c` before they will
 ## Adding Portraits
 
 1. Confirm the portrait id exists in `enum Portrait` in `include/overworld.h` and is loadable via `LoadPortraitGfx` / `portrait_hooks.c`.
-2. Add one line to `src_custom/debug_menu_portrait_table.inc`:
+2. Add one line to `src_custom/debug/debug_menu_portrait_table.inc`:
 
    ```c
    DEBUG_MENU_PORTRAIT_ENTRY(PORTRAIT_YOUR_FACE, "Your Label")
@@ -172,7 +194,7 @@ No C changes are required unless you change preview position, expression, row la
 
 ## Sprite Viewer
 
-The sprite viewer lists overworld sprites that do **not** have a dialogue portrait (no overlap with the portrait viewer). Entries live in `src_custom/debug_menu_sprite_table.inc`. Three rows are visible at a time; longer lists scroll. The highlighted sprite is shown on the right as soon as the cursor moves to that row (no **A** press).
+The sprite viewer lists overworld sprites that do **not** have a dialogue portrait (no overlap with the portrait viewer). Entries live in `src_custom/debug/debug_menu_sprite_table.inc`. Three rows are visible at a time; longer lists scroll. The highlighted sprite is shown on the right as soon as the cursor moves to that row (no **A** press).
 
 | Input | Action |
 |-------|--------|
@@ -181,7 +203,7 @@ The sprite viewer lists overworld sprites that do **not** have a dialogue portra
 
 ### On-screen formatting
 
-Each visible row uses the same `DebugMenuFormatListRow()` layout as the other list viewers: `>` marks the cursor row, not playback state.
+Each visible row uses `DebugMenuFormatTitleRow()` in `debug_menu_sprite.c` (no `>` prefix; the OAM cursor shows selection). Labels start one character column left of the music viewer’s title text.
 
 ### Sprite preview
 
@@ -189,8 +211,8 @@ When the cursor changes, `DebugMenuLoadSpriteIfChanged()` loads tiles through `s
 
 | Constant | Value | Role |
 |----------|-------|------|
-| `DEBUG_SPRITE_X_TILE` | 16 | OAM X in pixels (`× 8`) |
-| `DEBUG_SPRITE_Y_TILE` | 5 | OAM Y in pixels (`× 8`) |
+| `DEBUG_SPRITE_X_TILE` | 22 | OAM X in pixels (`× 8`) |
+| `DEBUG_SPRITE_Y_TILE` | 8 | OAM Y in pixels (`× 8`) |
 | `DEBUG_SPRITE_TILE_OFFSET` | `0x3400` | OBJ tile stash in `gBgVram.cbb4` |
 | `DEBUG_SPRITE_TILE_BYTES` | `0xE00` | Bytes reserved for one frame |
 | `DEBUG_SPRITE_PAL_SLOT` | 13 | OBJ palette slot for preview |
@@ -216,7 +238,7 @@ DEBUG_MENU_SPRITE_ENTRY(SPRITE_YUGI, "Yugi")
 ## Adding Sprites
 
 1. Confirm the sprite id exists in `enum OverworldEntitySprite` in `include/overworld.h` and has graphics in `gOverworldEntitySprites`.
-2. Add one line to `src_custom/debug_menu_sprite_table.inc`:
+2. Add one line to `src_custom/debug/debug_menu_sprite_table.inc`:
 
    ```c
    DEBUG_MENU_SPRITE_ENTRY(SPRITE_YOUR_NPC, "Your Label")
@@ -246,30 +268,32 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 
 | Feature | Location | Description |
 |--------|----------|-------------|
-| Entry point | `DebugMenuMain` in `src_custom/debug_menu.c` | Loads graphics, runs root loop, tears down on exit |
+| Entry point | `DebugMenuMain` in `src_custom/debug/debug_menu.c` | Loads graphics, runs root loop, tears down on exit |
+| Shared internals | `src_custom/debug/debug_menu_internal.h` | Constants, structs, cross-file API |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
-| Root menu | `DebugMenuRoot` in `src_custom/debug_menu.c` | Three-item list; opens music, portrait, or sprite viewer |
-| Music viewer | `DebugMusicViewer` in `src_custom/debug_menu.c` | Scrollable list, preview on **A** |
-| Portrait viewer | `DebugPortraitViewer` in `src_custom/debug_menu.c` | Scrollable list, live preview on cursor |
-| Sprite viewer | `DebugSpriteViewer` in `src_custom/debug_menu.c` | Scrollable list, live preview on cursor |
-| Track table | `src_custom/debug_menu_music_table.inc` | `DEBUG_MENU_MUSIC_ENTRY` rows included into `sTracks[]` |
-| Portrait table | `src_custom/debug_menu_portrait_table.inc` | `DEBUG_MENU_PORTRAIT_ENTRY` rows included into `sPortraits[]` |
-| Sprite table | `src_custom/debug_menu_sprite_table.inc` | `DEBUG_MENU_SPRITE_ENTRY` rows included into `sSprites[]` |
-| Track struct | `struct DebugMenuMusicEntry` in `src_custom/debug_menu.c` | `musicId` + `title[24]` |
-| Portrait struct | `struct DebugMenuPortraitEntry` in `src_custom/debug_menu.c` | `portraitId` + `title[24]` |
-| Sprite struct | `struct DebugMenuSpriteEntry` in `src_custom/debug_menu.c` | `spriteId` + `title[24]` |
-| Sprite load | `DebugMenuLoadSpriteIfChanged`, `DebugMenuApplySpriteOam` in `src_custom/debug_menu.c` | `sub_804F054` + OAM each frame |
-| Sprite cleanup | `DebugMenuClearSpriteObjStash`, `DebugMenuHideSprite` in `src_custom/debug_menu.c` | Clears OBJ tile/palette stash on exit |
+| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Three-item list; opens music, portrait, or sprite viewer |
+| Music viewer | `DebugMusicViewer` in `src_custom/debug/debug_menu_music.c` | Scrollable list, preview on **A** |
+| Portrait viewer | `DebugPortraitViewer` in `src_custom/debug/debug_menu_portrait.c` | Scrollable list, live preview on cursor |
+| Sprite viewer | `DebugSpriteViewer` in `src_custom/debug/debug_menu_sprite.c` | Scrollable list, live preview on cursor |
+| Track table | `src_custom/debug/debug_menu_music_table.inc` | `DEBUG_MENU_MUSIC_ENTRY` rows included into `sTracks[]` |
+| Portrait table | `src_custom/debug/debug_menu_portrait_table.inc` | `DEBUG_MENU_PORTRAIT_ENTRY` rows included into `sPortraits[]` |
+| Sprite table | `src_custom/debug/debug_menu_sprite_table.inc` | `DEBUG_MENU_SPRITE_ENTRY` rows included into `sSprites[]` |
+| Track struct | `struct DebugMenuMusicEntry` in `debug_menu_internal.h` | `musicId` + `title[24]` |
+| Portrait struct | `struct DebugMenuPortraitEntry` in `debug_menu_internal.h` | `portraitId` + `title[24]` |
+| Sprite struct | `struct DebugMenuSpriteEntry` in `debug_menu_internal.h` | `spriteId` + `title[24]` |
+| Sprite load | `DebugMenuLoadSpriteIfChanged`, `DebugMenuApplySpriteOam` in `debug_menu_sprite.c` | `sub_804F054` + OAM each frame |
+| Sprite cleanup | `DebugMenuClearSpriteObjStash` in `debug_menu_sprite.c` | Clears OBJ tile/palette stash on exit |
 | Sprite IDs | `enum OverworldEntitySprite` in `include/overworld.h` | Source of truth for `SPRITE_*` constants |
-| Portrait load | `DebugMenuLoadPortraitIfChanged`, `DebugMenuApplyPortraitOam` in `src_custom/debug_menu.c` | `LoadPortraitGfx` + OAM each frame |
-| Portrait cleanup | `DebugMenuClearPortraitObjStash`, `DebugMenuHidePortrait` in `src_custom/debug_menu.c` | Clears OBJ tile/palette stash on exit |
+| Portrait load | `DebugMenuLoadPortraitIfChanged`, `DebugMenuApplyPortraitOam` in `debug_menu_portrait.c` | `LoadPortraitGfx` + OAM each frame |
+| Portrait cleanup | `DebugMenuClearPortraitObjStash` in `debug_menu_portrait.c` | Clears OBJ tile/palette stash on exit |
 | Portrait IDs | `enum Portrait` in `include/overworld.h` | Source of truth for `PORTRAIT_*` constants |
 | Portrait loader | `LoadPortraitGfx` in `src_custom/portrait_hooks.c` | Shared with dialogue `PORTRAIT()` |
-| Text draw | `DebugMenuCopyLine`, `DebugMenuReadGlyphArg` in `src_custom/debug_menu.c` | Per-glyph layout into charblock 3 |
-| Tilemap setup | `DebugMenuSetupTextRows` in `src_custom/debug_menu.c` | Maps 2×2 blocks on `sbb1F` for each row |
-| Graphics load | `DebugMenuLoadGraphics`, `DebugMenuLoadTilemaps` in `src_custom/debug_menu.c` | Start-menu tiles + custom text rows |
-| Public API | `include/debug_menu.h` | Declares `DebugMenuMain` |
+| Text draw | `DebugMenuCopyLine` in `debug_menu.c` | Per-glyph layout into charblock 3 |
+| Tilemap setup | `DebugMenuSetupTextRows` in `debug_menu.c` | Maps 2×2 blocks on `sbb1F` for each row |
+| Graphics load | `DebugMenuLoadGraphics`, `DebugMenuLoadTilemaps` in `debug_menu.c` | Start-menu tiles + custom text rows |
+| Field overlay | `overworld_debug_overlay_hooks.c` in `src_custom/debug/` | Player tile/pixel coordinate HUD |
+| Public API | `include/debug_menu.h` | Declares `DebugMenuMain`, `DebugMenuClearPortraitObjStash` |
 | Music IDs | `include/constants/music_ids.h` | Source of truth for `MUSIC_*` constants |
 
 ## TODO
