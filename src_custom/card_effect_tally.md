@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `37` effects
+- `38` effects
 
 ## Tally
 
@@ -18,6 +18,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Swords Of Revealing Light` | `src_custom/spell_effects/swords_of_revealing_light.c` |
 | `spell_effects` | `Card Of Demise` | `src_custom/spell_effects/card_of_demise.c` |
 | `spell_effects` | `Chain Energy` | `src_custom/spell_effects/chain_energy.c` |
+| `spell_effects` | `Exchange` | `src_custom/spell_effects/exchange.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |

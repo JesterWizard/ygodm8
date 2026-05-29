@@ -813,11 +813,12 @@
 #define BLUE_EYES_CHAOS_MAX_DRAGON               0x0329
 #define CHAIN_ENERGY                             0x032A
 #define SPELL_CANCELLER                          0x032B
+#define EXCHANGE                                 0x032C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x032C
-#define NUM_CUSTOM_CARDS                        0x000B
+#define NUM_TOTAL_CARDS                         0x032D
+#define NUM_CUSTOM_CARDS                        0x000C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

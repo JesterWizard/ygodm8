@@ -9,6 +9,7 @@ static const u8 sShieldAndSwordName[] __attribute__((section(".append_assets")))
 static const u8 sBlueEyesChaosMaxDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Chaos Max Dragon";
 static const u8 sChainEnergyName[] __attribute__((section(".append_assets"))) = "Chain Energy";
 static const u8 sSpellCancellerName[] __attribute__((section(".append_assets"))) = "Spell Canceller";
+static const u8 sExchangeName[] __attribute__((section(".append_assets"))) = "Exchange";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -33,6 +34,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sChainEnergyName;
   if (cardId == 0x032B)
     return (u8 *)sSpellCancellerName;
+  if (cardId == 0x032C)
+    return (u8 *)sExchangeName;
 
   return gCardNames[cardId];
 }

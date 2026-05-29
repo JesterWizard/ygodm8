@@ -9,6 +9,7 @@ extern void EffectJamBreedingMachine(void);
 extern void EffectShieldAndSword(void);
 extern void EffectSwordsOfRevealingLight(void);
 extern void EffectChainEnergy(void);
+extern void EffectExchange(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -51,6 +52,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case CHAIN_ENERGY:
       EffectChainEnergy();
+      return;
+    case EXCHANGE:
+      EffectExchange();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
