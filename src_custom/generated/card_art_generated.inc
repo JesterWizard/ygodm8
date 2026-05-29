@@ -40,6 +40,10 @@ static const unsigned char sChainEnergyBigArt[] __attribute__((section(".append_
 static const unsigned short sChainEnergyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/chain_energy.gbapal");
 static const unsigned char sChainEnergyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/chain_energy.lz");
 
+static const unsigned char sSpellCancellerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/spell_canceller.huff");
+static const unsigned short sSpellCancellerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/spell_canceller.gbapal");
+static const unsigned char sSpellCancellerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/spell_canceller.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -51,6 +55,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0328] = sShieldAndSwordBigArt,
   [0x0329] = sBlueEyesChaosMaxDragonBigArt,
   [0x032A] = sChainEnergyBigArt,
+  [0x032B] = sSpellCancellerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -64,6 +69,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0328] = sShieldAndSwordBigPalette,
   [0x0329] = sBlueEyesChaosMaxDragonBigPalette,
   [0x032A] = sChainEnergyBigPalette,
+  [0x032B] = sSpellCancellerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -77,6 +83,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0328] = 0,
   [0x0329] = 0,
   [0x032A] = 0,
+  [0x032B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -90,4 +97,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0328] = sShieldAndSwordMiniArt,
   [0x0329] = sBlueEyesChaosMaxDragonMiniArt,
   [0x032A] = sChainEnergyMiniArt,
+  [0x032B] = sSpellCancellerMiniArt,
 };

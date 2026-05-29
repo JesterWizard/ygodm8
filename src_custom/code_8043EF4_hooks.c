@@ -3,6 +3,7 @@
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
+unsigned char IsSpellCancellerSpellLockActive(void);
 
 void DisplayCardInfoBar(void);
 void HandlePlayerBackrowAction(void);
@@ -29,6 +30,15 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
       || IsActivatedChainEnergyZone(zone)) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsSpellCancellerSpellLockActive()
+      && GetTypeGroup(id) == TYPE_GROUP_SPELL) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

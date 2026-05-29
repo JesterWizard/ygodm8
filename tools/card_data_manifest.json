@@ -12686,6 +12686,37 @@
       "big_art": "src_custom/assets/cards/80x80/chain_energy.huff",
       "big_palette": "src_custom/assets/cards/80x80/chain_energy.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/chain_energy.lz"
+    },
+    {
+      "card_const": "SPELL_CANCELLER",
+      "atk": 1800,
+      "def": 1600,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 5,
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SpellCanceller",
+        "pages": [
+          "A robotic creature with 6 legs and razor sharp claws.",
+          "Neither player's spells can activate while it's played."
+        ]
+      },
+      "card_name": "Spell Canceller",
+      "password": [ 8, 4, 6, 3, 6, 8, 2, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SpellCanceller",
+        "pages": [
+          "No spells can activate whilst it is on the field."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/spell_canceller.huff",
+      "big_palette": "src_custom/assets/cards/80x80/spell_canceller.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/spell_canceller.lz"
     }
   ]
 }

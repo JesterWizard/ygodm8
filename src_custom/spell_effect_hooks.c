@@ -13,6 +13,7 @@ void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
 u8 TryPayChainEnergyCost(void);
+unsigned char IsSpellCancellerSpellLockActive(void);
 
 LYN_REPLACE_CHECK(ActivateSpellEffect);
 void ActivateSpellEffect__Replacement(void)
@@ -20,6 +21,12 @@ void ActivateSpellEffect__Replacement(void)
   if (gSpellEffectData.row1 == ACTIVE_DUELIST_HAND) {
     if (!TryPayChainEnergyCost())
       return;
+  }
+
+  if (IsSpellCancellerSpellLockActive()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
   }
 
   ResetCardEffectTextData();

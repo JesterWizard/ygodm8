@@ -32,6 +32,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { CARD_OF_SANCTITY, gActivationDescription_CardOfSanctity },
   { SHIELD_AND_SWORD, gActivationDescription_ShieldAndSword },
   { CHAIN_ENERGY, gActivationDescription_ChainEnergy },
+  { SPELL_CANCELLER, gActivationDescription_SpellCanceller },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

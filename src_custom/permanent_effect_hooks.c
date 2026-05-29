@@ -32,6 +32,8 @@ unsigned char ShouldActivateCeremonialBell(void);
 void ActivateCeremonialBell(void);
 unsigned char ShouldActivateBlueEyesShiningDragon(void);
 void ActivateBlueEyesShiningDragon(void);
+unsigned char ShouldActivateSpellCanceller(void);
+void ActivateSpellCanceller(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
@@ -54,6 +56,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = BLUE_EYES_SHINING_DRAGON,
     .shouldActivate = ShouldActivateBlueEyesShiningDragon,
     .activate = ActivateBlueEyesShiningDragon,
+  },
+  {
+    .cardId = SPELL_CANCELLER,
+    .shouldActivate = ShouldActivateSpellCanceller,
+    .activate = ActivateSpellCanceller,
   },
 };
 
