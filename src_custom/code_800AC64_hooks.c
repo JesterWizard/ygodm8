@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "player_decks.h"
 #include "shiny_zones.h"
 
 extern u8 *g8E0CD10;
@@ -61,6 +62,7 @@ int sub_800AD84__Replacement(void) {
   sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
   ShinyZones_SaveFlagsToFlashPrimary();
+  PlayerDecks_OnSaveSlotWrite();
 
   return result;
 }
@@ -74,6 +76,7 @@ int sub_800ADA4__Replacement(void) {
   sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashBackup, NUM_CUSTOM_CARDS);
   sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashBackup, NUM_CUSTOM_CARDS);
   ShinyZones_SaveFlagsToFlashBackup();
+  PlayerDecks_OnSaveSlotWriteBackup();
 
   return result;
 }

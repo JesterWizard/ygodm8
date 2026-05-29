@@ -23,6 +23,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .randomize_card_costs_at_start = FALSE,
     .enable_custom_cards_past_800 = TRUE,
     .enable_custom_decks = TRUE,
+    .enable_multiple_decks = TRUE,
     .allow_ante_with_one_copy_of_card = TRUE,
     .allow_sell_one_copy_of_card = TRUE,
     .add_all_cards_in_deck_to_trunk = FALSE,

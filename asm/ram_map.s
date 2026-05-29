@@ -82,6 +82,19 @@ _kernel_malloc_ewram_array gCustomTotalCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
 _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 
+@ Multiple player decks (inactive deck 1 + decks 2/3 card lists; 40 x u16 each).
+.set PLAYER_DECK_CARD_BYTES, 0x50
+_kernel_malloc_ewram_array gPlayerDeck1Cards, PLAYER_DECK_CARD_BYTES
+_kernel_malloc_ewram_array gPlayerDeck2Cards, PLAYER_DECK_CARD_BYTES
+_kernel_malloc_ewram_array gPlayerDeck3Cards, PLAYER_DECK_CARD_BYTES
+_kernel_malloc_ewram gPlayerDeck1Capacity, 0x4
+_kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
+_kernel_malloc_ewram gPlayerDeck3Capacity, 0x4
+_kernel_malloc_ewram gActiveDeckIndex, 0x1
+
+@ Scratch for multi-deck save (deck 1 cards + capacity while building 0x747 blob).
+_kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
+
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------
@@ -122,3 +135,8 @@ _kernel_malloc_flash gCustomTrunkCardQty,      CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gCustomShopCardQty,       CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gShinyZoneFlags,          0x10
+_kernel_malloc_flash gPlayerDeck2Cards,        PLAYER_DECK_CARD_BYTES
+_kernel_malloc_flash gPlayerDeck3Cards,        PLAYER_DECK_CARD_BYTES
+_kernel_malloc_flash gPlayerDeck2Capacity,     0x4
+_kernel_malloc_flash gPlayerDeck3Capacity,     0x4
+_kernel_malloc_flash gActiveDeckIndex,         0x1

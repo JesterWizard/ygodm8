@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "player_decks.h"
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -391,6 +392,8 @@ void sub_80327C8__Replacement(void) {
   CpuSet(sub_8030CA8, (void *)0x03001578, 0x04000040);
 }
 
+void sub_80351F8(void);
+
 LYN_REPLACE_CHECK(sub_803519C);
 void sub_803519C__Replacement(void) {
   unsigned r3 = 0, r5 = 0;
@@ -413,6 +416,24 @@ void sub_803519C__Replacement(void) {
     gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
     gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
   }
+
+  PlayerDecks_OnSaveSlotRead();
+}
+
+LYN_REPLACE_CHECK(sub_80351F8);
+void sub_80351F8__Replacement(void) {
+  unsigned r4 = 0, r6 = 0;
+
+  PlayerDecks_PrepareVanillaSaveBuffer();
+
+  for (; g80D2D00[r4].unk0; r4++) {
+    unsigned long r1;
+    unsigned char *src = g80D2D00[r4].unk0;
+    for (r1 = g80D2D00[r4].unk4; r1; src++, r6++, r1--)
+      g8E0CD10[r6] = *src;
+  }
+
+  PlayerDecks_RestoreAfterVanillaSaveBuffer();
 }
 
 LYN_REPLACE_CHECK(LfsrNextByte);
