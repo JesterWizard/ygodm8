@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "debug_menu.h"
+#include "overworld.h"
 
 #define DEBUG_ROWS 3
 #define DEBUG_CHARS 16
@@ -19,11 +20,24 @@
 #define DEBUG_BG1_VRAM ((void *)0x0600E800)
 #define THUMB_VBLANK_WIN 0x08005C38
 #define THUMB_VBLANK_NOWIN 0x08005C54
+#define DEBUG_PORTRAIT_TILE_BYTES 0x1000
+#define DEBUG_PORTRAIT_PAL_BYTES 0x80
+#define DEBUG_PORTRAIT_X_TILE 19
+#define DEBUG_PORTRAIT_Y_TILE 6
 
 struct DebugMenuMusicEntry {
   u16 musicId;
   u8 title[24];
 };
+
+struct DebugMenuPortraitEntry {
+  u8 portraitId;
+  u8 title[24];
+};
+
+#define DEBUG_VIEW_ROOT 0
+#define DEBUG_VIEW_MUSIC 1
+#define DEBUG_VIEW_PORTRAIT 2
 
 #define DEBUG_MENU_MUSIC_ENTRY(id, title) {id, title},
 
@@ -33,8 +47,17 @@ static const struct DebugMenuMusicEntry sTracks[] APPEND_RODATA = {
 
 #undef DEBUG_MENU_MUSIC_ENTRY
 
-static const u8 sText_Root[] APPEND_RODATA = "$0Music Viewer  ";
-static const u8 sText_Blank[] APPEND_RODATA = "$0Coming Soon   ";
+#define DEBUG_MENU_PORTRAIT_ENTRY(id, title) {id, title},
+
+static const struct DebugMenuPortraitEntry sPortraits[] APPEND_RODATA = {
+#include "debug_menu_portrait_table.inc"
+};
+
+#undef DEBUG_MENU_PORTRAIT_ENTRY
+
+static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
+static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
+static const u8 sText_Blank[] APPEND_RODATA = "$0              ";
 static const u8 sText_Clear[] APPEND_RODATA = "$0              ";
 
 extern u8 gStartMenuBgTiles[];
@@ -111,12 +134,21 @@ static void DebugMenuLoadTilemaps(void) {
   CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
 }
 
-static void DebugMenuUpload(void) {
+static void DebugMenuUploadBg(void) {
   LoadCharblock2();
   LoadCharblock3();
-  LoadCharblock4();
   LoadPalettes();
   CpuCopy32(gBgVram.sbb1D, DEBUG_BG1_VRAM, DEBUG_BG1_ROWS * DEBUG_BG1_ROW_BYTES);
+}
+
+static void DebugMenuUpload(void) {
+  DebugMenuUploadBg();
+  LoadCharblock4();
+}
+
+void DebugMenuClearPortraitObjStash(void) {
+  CpuFill16(0, gBgVram.cbb4 + 0x2000, DEBUG_PORTRAIT_TILE_BYTES);
+  CpuFill16(0, (void *)(gPaletteBuffer + 256 + 0xC0), DEBUG_PORTRAIT_PAL_BYTES);
 }
 
 static u16 DebugMenuReadGlyphArg(const u8 **textPtr) {
@@ -146,15 +178,19 @@ static void DebugMenuCopyLine(u8 row, const u8 *text) {
     sub_8020968(dest + (i / 2 * 4 + (i & 1)) * 32, DebugMenuReadGlyphArg(&text), 0x901);
 }
 
-static void DebugMenuFormatTrack(u8 *out, const struct DebugMenuMusicEntry *e, bool8 playing) {
+static void DebugMenuFormatListRow(u8 *out, const u8 *title, bool8 selected) {
   u8 i, t = 0;
 
   out[0] = '$';
   out[1] = '0';
-  out[2] = playing ? '>' : ' ';
+  out[2] = selected ? '>' : ' ';
   for (i = 1; i < DEBUG_CHARS; i++)
-    out[2 + i] = e->title[t] ? e->title[t++] : ' ';
+    out[2 + i] = title[t] ? title[t++] : ' ';
   out[2 + DEBUG_CHARS] = '\0';
+}
+
+static void DebugMenuFormatTrack(u8 *out, const struct DebugMenuMusicEntry *e, bool8 playing) {
+  DebugMenuFormatListRow(out, e->title, playing);
 }
 
 static void DebugMenuDrawMusic(u8 scrollTop, u16 playingId) {
@@ -172,16 +208,40 @@ static void DebugMenuDrawMusic(u8 scrollTop, u16 playingId) {
   }
 }
 
-static void DebugMenuRedraw(u8 scrollTop, u16 playingId, bool8 music) {
-  DebugMenuLoadTilemaps();
-  if (music)
-    DebugMenuDrawMusic(scrollTop, playingId);
-  else {
-    DebugMenuCopyLine(0, sText_Root);
-    DebugMenuCopyLine(1, sText_Blank);
-    DebugMenuCopyLine(2, sText_Clear);
+static void DebugMenuDrawPortraits(u8 scrollTop, u8 cursor) {
+  u8 row, buf[2 + DEBUG_CHARS + 1];
+
+  for (row = 0; row < DEBUG_ROWS; row++) {
+    u8 index = scrollTop + row;
+
+    if (index < ARRAY_COUNT(sPortraits)) {
+      DebugMenuFormatListRow(buf, sPortraits[index].title, index == cursor);
+      DebugMenuCopyLine(row, buf);
+    } else {
+      DebugMenuCopyLine(row, sText_Blank);
+    }
   }
-  DebugMenuUpload();
+}
+
+static void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
+  DebugMenuLoadTilemaps();
+  switch (view) {
+  case DEBUG_VIEW_MUSIC:
+    DebugMenuDrawMusic(scrollTop, marker);
+    break;
+  case DEBUG_VIEW_PORTRAIT:
+    DebugMenuDrawPortraits(scrollTop, (u8)marker);
+    break;
+  default:
+    DebugMenuCopyLine(0, sText_RootMusic);
+    DebugMenuCopyLine(1, sText_RootPortrait);
+    DebugMenuCopyLine(2, sText_Clear);
+    break;
+  }
+  if (view == DEBUG_VIEW_PORTRAIT)
+    DebugMenuUploadBg();
+  else
+    DebugMenuUpload();
 }
 
 static void DebugMenuLoadGraphics(void) {
@@ -196,7 +256,7 @@ static void DebugMenuLoadGraphics(void) {
   for (i = 0; i < DEBUG_BG1_ROWS; i++)
     DmaCopy16(3, gUnk_8079444[i], gBgVram.sbb1E[i], DEBUG_BG1_ROW_BYTES);
   CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xF0], 32);
-  DebugMenuRedraw(0, 0, FALSE);
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
   SetVBlankCallback(DebugMenuVBlank);
   LoadBgVRAM();
   DebugMenuUpload();
@@ -205,11 +265,40 @@ static void DebugMenuLoadGraphics(void) {
   DebugMenuWaitVBlank();
 }
 
-static void DebugMenuUpdateCursor(u8 screenRow) {
-  u32 *oam = (u32 *)&gOamBuffer;
+static void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow) {
+  u32 *oam = (u32 *)&gOamBuffer[oamSlot * 4];
 
   oam[0] = (screenRow << 4) + 56 | ((u32)(0x4040 - 28) << 16);
   oam[1] = 0x800;
+}
+
+static void DebugMenuUpdateCursor(u8 screenRow) {
+  DebugMenuUpdateCursorSlot(0, screenRow);
+}
+
+static void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId) {
+  if (portraitId == *shownId)
+    return;
+  *shownId = portraitId;
+  CpuFill16(0, gBgVram.cbb4 + 0x2000, DEBUG_PORTRAIT_TILE_BYTES);
+  LoadPortraitGfx(portraitId, EXPRESSION_NEUTRAL);
+  LoadObjVRAM();
+  LoadPalettes();
+}
+
+static void DebugMenuApplyPortraitOam(void) {
+  struct OamData *oam = (struct OamData *)gOamBuffer;
+
+  // sub_80059D4 (start-menu VBlank) clears gOamBuffer every frame; re-apply OAM.
+  sub_804EB04(oam, PORTRAIT_POSITION_RIGHT);
+  oam->x = DEBUG_PORTRAIT_X_TILE * 8;
+  oam->y = DEBUG_PORTRAIT_Y_TILE * 8;
+  oam->paletteNum = 12;
+}
+
+static void DebugMenuHidePortrait(void) {
+  sub_804EB04((struct OamData *)gOamBuffer, PORTRAIT_POSITION_OFF_SCREEN);
+  LoadOam();
 }
 
 static void DebugMenuLatchButtons(void) {
@@ -236,7 +325,7 @@ static void DebugMusicViewer(void) {
   u16 playingId = 0;
   const u16 n = ARRAY_COUNT(sTracks);
 
-  DebugMenuRedraw(0, 0, TRUE);
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_MUSIC);
   DebugMenuUpdateCursor(0);
   LoadOam();
   DebugMenuWaitVBlank();
@@ -250,19 +339,19 @@ static void DebugMusicViewer(void) {
       PlayMusic(SFX_MOVE_CURSOR);
       if (--cursor < scrollTop)
         scrollTop = cursor;
-      DebugMenuRedraw(scrollTop, playingId, TRUE);
+      DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_MUSIC);
     }
     if (buttons & DPAD_DOWN && cursor < n - 1) {
       PlayMusic(SFX_MOVE_CURSOR);
       if (++cursor >= scrollTop + DEBUG_ROWS)
         scrollTop = cursor - (DEBUG_ROWS - 1);
-      DebugMenuRedraw(scrollTop, playingId, TRUE);
+      DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_MUSIC);
     }
     if (buttons & A_BUTTON) {
       PlayMusic(SFX_SELECT);
       playingId = sTracks[cursor].musicId;
       PlayMusic(playingId);
-      DebugMenuRedraw(scrollTop, playingId, TRUE);
+      DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_MUSIC);
       DebugMenuWaitRelease(A_BUTTON);
     }
 
@@ -274,10 +363,56 @@ static void DebugMusicViewer(void) {
   PlayMusic(SFX_CANCEL);
   DebugMenuWaitRelease(B_BUTTON);
   SetVBlankCallback(DebugMenuVBlankNoWin);
-  DebugMenuRedraw(0, 0, FALSE);
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
   DebugMenuVBlankNoWin();
   REG_WIN0H = DEBUG_WIN0H;
   SetVBlankCallback(DebugMenuVBlank);
+  DebugMenuWaitVBlank();
+}
+
+static void DebugPortraitViewer(void) {
+  u8 cursor = 0, scrollTop = 0;
+  u8 shownPortraitId = 0xFF;
+  const u16 n = ARRAY_COUNT(sPortraits);
+
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_PORTRAIT);
+  DebugMenuWaitVBlank();
+
+  while (1) {
+    u16 buttons = DebugMenuButtons();
+
+    if (buttons & B_BUTTON)
+      break;
+    if (buttons & DPAD_UP && cursor != 0) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (--cursor < scrollTop)
+        scrollTop = cursor;
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_PORTRAIT);
+    }
+    if (buttons & DPAD_DOWN && cursor < n - 1) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (++cursor >= scrollTop + DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_PORTRAIT);
+    }
+
+    DebugMenuLoadPortraitIfChanged(&shownPortraitId, sPortraits[cursor].portraitId);
+    DebugMenuApplyPortraitOam();
+    DebugMenuUpdateCursorSlot(1, cursor - scrollTop);
+    LoadOam();
+    DebugMenuWaitVBlank();
+  }
+
+  PlayMusic(SFX_CANCEL);
+  DebugMenuWaitRelease(B_BUTTON);
+  DebugMenuHidePortrait();
+  DebugMenuClearPortraitObjStash();
+  SetVBlankCallback(DebugMenuVBlankNoWin);
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
+  DebugMenuVBlankNoWin();
+  REG_WIN0H = DEBUG_WIN0H;
+  SetVBlankCallback(DebugMenuVBlank);
+  DebugMenuUpdateCursor(0);
   DebugMenuWaitVBlank();
 }
 
@@ -299,16 +434,14 @@ static void DebugMenuRoot(void) {
       cursor++;
     }
     if (buttons & A_BUTTON) {
-      if (cursor == 0) {
-        PlayMusic(SFX_SELECT);
-        DebugMenuWaitRelease(A_BUTTON);
-        DebugMenuLatchButtons();
+      PlayMusic(SFX_SELECT);
+      DebugMenuWaitRelease(A_BUTTON);
+      DebugMenuLatchButtons();
+      if (cursor == 0)
         DebugMusicViewer();
-        DebugMenuLatchButtons();
-      } else {
-        PlayMusic(SFX_FORBIDDEN);
-        DebugMenuWaitRelease(A_BUTTON);
-      }
+      else
+        DebugPortraitViewer();
+      DebugMenuLatchButtons();
     }
 
     DebugMenuUpdateCursor(cursor);
@@ -326,6 +459,7 @@ void DebugMenuMain(void) {
   DebugMenuRoot();
   PlayMusic(SFX_CANCEL);
   DebugMenuWaitRelease(B_BUTTON);
+  DebugMenuClearPortraitObjStash();
   FadeOutMusic(1);
   DisableDisplay();
 }

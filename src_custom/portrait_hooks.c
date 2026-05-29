@@ -19,6 +19,18 @@ static void CopyTilesToVram(u8* dest, u8* src) {
       *dest++ = *src++;
 }
 
+void LoadPortraitGfx(u8 portraitId, u8 expression) {
+  if (portraitId == PORTRAIT_PLAYER) {
+    LZ77UnCompWram(sPlayerPortraitTiles, gSharedMem);
+    CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
+    CpuCopy16(sPlayerPortraitPalette, gPaletteBuffer + 256 + 0xC0, 128);
+  } else if (portraitId != PORTRAIT_NONE) {
+    LZ77UnCompWram(g8FA31C0[portraitId][expression], gSharedMem);
+    CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
+    CpuCopy16(*g8FA3360[portraitId], gPaletteBuffer + 256 + 0xC0, 128);
+  }
+}
+
 /* LYN_REPLACEMENT(DisplayPortrait) */
 LYN_REPLACE_CHECK(DisplayPortrait);
 void DisplayPortrait__Replacement(struct ScriptCtx* scriptCtx) {
@@ -37,15 +49,7 @@ void DisplayPortrait__Replacement(struct ScriptCtx* scriptCtx) {
   WaitForVBlank();
   sub_804EB04(oam, scriptCtx->unk85);
   oam->paletteNum = 12;
-  if (scriptCtx->portraitId == PORTRAIT_PLAYER) {
-    LZ77UnCompWram(sPlayerPortraitTiles, gSharedMem);
-    CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
-    CpuCopy16(sPlayerPortraitPalette, gPaletteBuffer + 256 + 0xC0, 128);
-  } else {
-    LZ77UnCompWram(g8FA31C0[scriptCtx->portraitId][scriptCtx->unk84], gSharedMem);
-    CopyTilesToVram(gBgVram.cbb4 + 0x2000, gSharedMem);
-    CpuCopy16(*g8FA3360[scriptCtx->portraitId], gPaletteBuffer + 256 + 0xC0, 128);
-  }
+  LoadPortraitGfx(scriptCtx->portraitId, scriptCtx->unk84);
   if (CheckFlag(0xF3))
     sub_8044E50(gPaletteBuffer, 0x1C0, 0x1FF);
   WaitForVBlank();

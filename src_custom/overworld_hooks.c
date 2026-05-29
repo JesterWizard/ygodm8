@@ -52,7 +52,12 @@ static void OverworldRestoreGraphicsAfterSubmenu(void) {
 }
 
 static void OverworldRestoreAfterDebugMenu(void) {
+  DebugMenuClearPortraitObjStash();
   OverworldRestoreGraphicsAfterSubmenu();
+  CallThumbVoid(0x0804F580);
+  CallThumbVoid(0x0804F598);
+  LoadObjVRAM();
+  LoadPalettes();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();
 }

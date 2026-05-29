@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "debug_menu.h"
 #include "gba/io_reg.h"
 #include "gfx_reg_buffers.h"
 #include "overworld.h"
@@ -185,6 +186,7 @@ void OverworldLoadGraphics__Replacement(void) {
   CallThumbVoid(0x0804EDF0);
   CallThumbVoid(0x0804EE18);
   CallThumbVoid(0x0804EE6C);
+  DebugMenuClearPortraitObjStash();
   if (CheckFlag(0xF3))
     sub_8044E50(gPaletteBuffer, 0x10, 0x1FF);
   if (CheckFlag(0xF0))

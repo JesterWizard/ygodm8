@@ -939,6 +939,7 @@ enum OverworldBackground {
 void OverworldMain (void);
 void sub_804DF5C (int objectId);
 void sub_804EB04 (struct OamData* arg0, u8 arg1);
+void LoadPortraitGfx (u8 portraitId, u8 expression);
 void sub_804EC4C (void);
 void sub_804EC64 (void);
 void sub_804ECA8 (void);

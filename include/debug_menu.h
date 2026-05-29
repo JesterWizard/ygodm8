@@ -2,5 +2,6 @@
 #define GUARD_DEBUG_MENU_H
 
 void DebugMenuMain(void);
+void DebugMenuClearPortraitObjStash(void);
 
 #endif // GUARD_DEBUG_MENU_H
