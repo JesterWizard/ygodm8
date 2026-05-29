@@ -4,12 +4,21 @@
 #include "debug_menu.h"
 #include "debug_menu_internal.h"
 
+extern const u16 gOverworldEntityPalettes[];
+
 void DebugMenuClearPortraitObjStash(void);
 void DebugMenuClearSpriteObjStash(void);
 
 static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
 static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
 static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
+static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
+static const u8 *const sRootLabels[] APPEND_RODATA = {
+    sText_RootMusic,
+    sText_RootPortrait,
+    sText_RootSprite,
+    sText_RootReaction,
+};
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
 extern u8 gStartMenuBgTiles[];
@@ -125,6 +134,10 @@ void DebugMenuCopyLine(u8 row, const u8 *text) {
     sub_8020968(dest + (i / 2 * 4 + (i & 1)) * 32, DebugMenuReadGlyphArg(&text), 0x901);
 }
 
+void DebugMenuRestoreTextPalettes(void) {
+  CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xF0], 32);
+}
+
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum) {
   u8 block;
   u16 base = DEBUG_LINE0_TILE + row * DEBUG_LINE_STRIDE;
@@ -175,13 +188,15 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_SPRITE:
     DebugMenuDrawSprites(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_REACTION:
+    DebugMenuDrawReactions(scrollTop, (u8)marker);
+    break;
   default:
-    DebugMenuCopyLine(0, sText_RootMusic);
-    DebugMenuCopyLine(1, sText_RootPortrait);
-    DebugMenuCopyLine(2, sText_RootSprite);
+    DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
   }
-  if (view == DEBUG_VIEW_PORTRAIT || view == DEBUG_VIEW_SPRITE)
+  if (view == DEBUG_VIEW_PORTRAIT || view == DEBUG_VIEW_SPRITE ||
+      view == DEBUG_VIEW_REACTION)
     DebugMenuUploadBg();
   else
     DebugMenuUpload();
@@ -208,15 +223,22 @@ void DebugMenuLoadGraphics(void) {
   DebugMenuWaitVBlank();
 }
 
-void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow) {
+void DebugMenuLoadReactionObjPalettes(void) {
+  CpuCopy16(gOverworldEntityPalettes, gPaletteBuffer + 256, 0x180);
+  CpuCopy16(gStartMenuCursorPalette,
+            gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  LoadPalettes();
+}
+
+void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow, u8 paletteNum) {
   u32 *oam = (u32 *)&gOamBuffer[oamSlot * 4];
 
   oam[0] = (screenRow << 4) + 56 | ((u32)(0x4040 - 28) << 16);
-  oam[1] = 0x800;
+  oam[1] = 0x800 | ((paletteNum & 0xF) << 12);
 }
 
 void DebugMenuUpdateCursor(u8 screenRow) {
-  DebugMenuUpdateCursorSlot(0, screenRow);
+  DebugMenuUpdateCursorSlot(0, screenRow, 0);
 }
 
 void DebugMenuLatchButtons(void) {
@@ -238,8 +260,23 @@ u16 DebugMenuButtons(void) {
   return gNewButtons | (gRepeatedOrNewButtons & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT));
 }
 
+void DebugMenuDrawRoot(u8 scrollTop, u8 cursor) {
+  u8 row;
+
+  (void)cursor;
+
+  for (row = 0; row < DEBUG_ROWS; row++) {
+    u8 index = scrollTop + row;
+
+    if (index < DEBUG_ROOT_ITEMS)
+      DebugMenuCopyLine(row, sRootLabels[index]);
+    else
+      DebugMenuCopyLine(row, gDebugMenuBlankLine);
+  }
+}
+
 static void DebugMenuRoot(void) {
-  u8 cursor = 0;
+  u8 cursor = 0, scrollTop = 0;
 
   DebugMenuLatchButtons();
   while (1) {
@@ -249,11 +286,15 @@ static void DebugMenuRoot(void) {
       break;
     if (buttons & DPAD_UP && cursor != 0) {
       PlayMusic(SFX_MOVE_CURSOR);
-      cursor--;
+      if (--cursor < scrollTop)
+        scrollTop = cursor;
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_ROOT);
     }
     if (buttons & DPAD_DOWN && cursor < DEBUG_ROOT_ITEMS - 1) {
       PlayMusic(SFX_MOVE_CURSOR);
-      cursor++;
+      if (++cursor >= scrollTop + DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_ROOT);
     }
     if (buttons & A_BUTTON) {
       PlayMusic(SFX_SELECT);
@@ -263,12 +304,18 @@ static void DebugMenuRoot(void) {
         DebugMusicViewer();
       else if (cursor == 1)
         DebugPortraitViewer();
-      else
+      else if (cursor == 2)
         DebugSpriteViewer();
+      else
+        DebugReactionViewer();
       DebugMenuLatchButtons();
+      scrollTop = 0;
+      if (cursor >= DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_ROOT);
     }
 
-    DebugMenuUpdateCursor(cursor);
+    DebugMenuUpdateCursor(cursor - scrollTop);
     LoadOam();
     DebugMenuWaitVBlank();
   }

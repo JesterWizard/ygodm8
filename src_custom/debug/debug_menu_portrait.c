@@ -94,7 +94,7 @@ void DebugPortraitViewer(void) {
 
     DebugMenuLoadPortraitIfChanged(&shownPortraitId, sPortraits[cursor].portraitId);
     DebugMenuApplyPortraitOam();
-    DebugMenuUpdateCursorSlot(1, cursor - scrollTop);
+    DebugMenuUpdateCursorSlot(1, cursor - scrollTop, 0);
     LoadOam();
     DebugMenuWaitVBlank();
   }

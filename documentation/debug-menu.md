@@ -15,6 +15,7 @@
 - [Adding Portraits](#adding-portraits)
 - [Sprite Viewer](#sprite-viewer)
 - [Adding Sprites](#adding-sprites)
+- [Reaction Viewer](#reaction-viewer)
 - [Text Layout](#text-layout)
 - [Code Locations](#code-locations)
 - [TODO](#todo)
@@ -24,11 +25,12 @@
 
 The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug/`.
 
-Three viewers are implemented today:
+Four viewers are implemented today:
 
 - **Music Viewer** — scrollable OST list; preview a track with **A**.
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
 - **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
+- **Reaction Viewer** — scrollable overworld reactions; the highlighted entry animates on **SPRITE_PLAYER** with vanilla bubble sequences. See [reaction-viewer.md](reaction-viewer.md).
 
 ## Related: Ante Card Viewer
 
@@ -47,6 +49,7 @@ All debug-menu sources and data tables live in `src_custom/debug/`:
 | `debug_menu_music.c` | Music viewer loop and `debug_menu_music_table.inc` |
 | `debug_menu_portrait.c` | Portrait viewer, preview load/OAM, `debug_menu_portrait_table.inc` |
 | `debug_menu_sprite.c` | Sprite viewer, preview load/OAM, `debug_menu_sprite_table.inc` |
+| `debug_menu_reaction.c` | Reaction viewer, bubble animation/OAM, `debug_menu_reaction_table.inc` |
 | `debug_menu_*_table.inc` | Data-only entry lists (no C logic) |
 | `overworld_debug_overlay_hooks.c` | Field coordinate overlay (separate from the menu UI) |
 | `ante_card_viewer.c` | Overworld ante reward list (opened with **SELECT**, not from root menu) |
@@ -71,13 +74,14 @@ After the menu closes, overworld state is restored via `OverworldRestoreAfterDeb
 
 ## Root Menu
 
-The root screen shows three menu rows and uses the same OAM cursor as the vanilla start menu.
+The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Four items scroll when the cursor moves past the bottom row.
 
 | Row | Label | **A** behavior |
 |-----|-------|----------------|
 | 0 | Music Viewer | Opens the music list |
 | 1 | Portrait Viewer | Opens the portrait list |
 | 2 | Sprite Viewer | Opens the overworld sprite list |
+| 3 | Reaction Viewer | Opens the reaction bubble list (see [reaction-viewer.md](reaction-viewer.md)) |
 
 | Input | Action |
 |-------|--------|
@@ -256,6 +260,17 @@ DEBUG_MENU_SPRITE_ENTRY(SPRITE_YUGI, "Yugi")
 
 No C changes are required unless you change preview position, frame index, row layout, or menu behavior.
 
+## Reaction Viewer
+
+The reaction viewer lists every `REACTION_*` entry in `debug_menu_reaction_table.inc`. Three rows are visible at a time; seven reactions scroll. The highlighted reaction plays automatically on **SPRITE_PLAYER** (down idle) with vanilla `g8105114` timing — no **A** press.
+
+| Input | Action |
+|-------|--------|
+| **Up** / **Down** | Move cursor; list scrolls; animation restarts for the new reaction |
+| **B** | Return to root menu |
+
+Palette handling, animation tables, OBJ slot layout, and how to add rows are documented in [reaction-viewer.md](reaction-viewer.md).
+
 ## Text Layout
 
 Menu text is **not** drawn with `CopyStringTilesToVRAMBuffer` for the full string. That API lays out `0x901` glyphs in the vanilla start-menu pattern (about 10 characters before wrapping in VRAM). The debug menu instead calls `sub_8020968()` once per character into fixed tile slots.
@@ -280,10 +295,15 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Shared internals | `src_custom/debug/debug_menu_internal.h` | Constants, structs, cross-file API |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
-| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Three-item list; opens music, portrait, or sprite viewer |
+| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Four-item scrollable list; opens music, portrait, sprite, or reaction viewer |
 | Music viewer | `DebugMusicViewer` in `src_custom/debug/debug_menu_music.c` | Scrollable list, preview on **A** |
 | Portrait viewer | `DebugPortraitViewer` in `src_custom/debug/debug_menu_portrait.c` | Scrollable list, live preview on cursor |
 | Sprite viewer | `DebugSpriteViewer` in `src_custom/debug/debug_menu_sprite.c` | Scrollable list, live preview on cursor |
+| Reaction viewer | `DebugReactionViewer` in `src_custom/debug/debug_menu_reaction.c` | Scrollable list, animated bubble on player |
+| Reaction table | `src_custom/debug/debug_menu_reaction_table.inc` | `DEBUG_MENU_REACTION_ENTRY` rows |
+| Reaction OBJ palettes | `DebugMenuLoadReactionObjPalettes` in `debug_menu.c` | Entity OBJ 0–11 + cursor palette slot 15 |
+| Reaction struct | `struct DebugMenuReactionEntry` in `debug_menu_internal.h` | `reactionId` + `title[24]` |
+| Reaction IDs | `enum OverworldReactions` in `include/overworld.h` | Source of truth for `REACTION_*` |
 | Track table | `src_custom/debug/debug_menu_music_table.inc` | `DEBUG_MENU_MUSIC_ENTRY` rows included into `sTracks[]` |
 | Portrait table | `src_custom/debug/debug_menu_portrait_table.inc` | `DEBUG_MENU_PORTRAIT_ENTRY` rows included into `sPortraits[]` |
 | Sprite table | `src_custom/debug/debug_menu_sprite_table.inc` | `DEBUG_MENU_SPRITE_ENTRY` rows included into `sSprites[]` |
@@ -312,6 +332,7 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 - Document or automate sync between `music_ids.h` comments and `debug_menu_music_table.inc`.
 - Portrait viewer: expression toggle or cycle (today locked to `EXPRESSION_NEUTRAL`).
 - Sprite viewer: direction or walk-frame toggle (today locked to down-facing idle frame 0).
+- Reaction viewer: preview sprite picker and animation freeze/step (see [reaction-viewer.md](reaction-viewer.md) TODO).
 
 ## Limitations & Bugs
 
@@ -322,5 +343,6 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 - Custom portraits only appear if `portrait_hooks.c` can load them; table entries alone are not enough.
 - Portrait preview shares OBJ tile/palette scratch with dialogue portraits (`cbb4 + 0x2000`, palette `0xC0..0xFF`); leaving the menu clears this stash.
 - Sprite preview uses a separate OBJ stash (`cbb4 + 0x3400`, palette slot 13); leaving the menu clears this stash.
+- Reaction preview uses OBJ stash `cbb4 + 0x4200` and shares entity OBJ palettes 0–11; the eye cursor must use OBJ palette slot 15 in the reaction viewer (see [reaction-viewer.md](reaction-viewer.md)).
 - Menu text shares BG2 charblock 3 with start-menu-derived assets; large future changes to tile indices need VRAM/layout checks in No$gba or similar.
 - Debug menu is only reachable from the overworld field input hook today, not from main menu or duel.

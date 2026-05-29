@@ -12,10 +12,6 @@
 #define DEBUG_SPRITE_PAL_OFFSET (DEBUG_SPRITE_PAL_SLOT * 16)
 #define DEBUG_SPRITE_X_TILE 22
 #define DEBUG_SPRITE_Y_TILE 8
-#define DEBUG_SPRITE_FRAME_DOWN_IDLE 0
-#define DEBUG_SPRITE_OAM_SLOT 1
-#define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
-
 #define DEBUG_MENU_SPRITE_ENTRY(id, title) {id, title},
 
 static const struct DebugMenuSpriteEntry sSprites[] APPEND_RODATA = {
@@ -36,17 +32,18 @@ void DebugMenuClearSpriteObjStash(void) {
             DEBUG_SPRITE_PAL_BYTES);
 }
 
-static void DebugMenuLoadSpriteIfChanged(s16 *shownId, s16 spriteId, bool8 force) {
+void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,
+                                       u8 frameIndex, bool8 force) {
   u8 palIndex;
 
-  if (!force && spriteId == *shownId)
+  if (!force && spriteId == *shownSpriteId && frameIndex == *shownFrame)
     return;
-  *shownId = spriteId;
+  *shownSpriteId = spriteId;
+  *shownFrame = frameIndex;
   CpuFill16(0, gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET, DEBUG_SPRITE_TILE_BYTES);
   if (spriteId < 0)
     return;
-  sub_804F054(spriteId, DEBUG_SPRITE_FRAME_DOWN_IDLE,
-              gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET);
+  sub_804F054(spriteId, frameIndex, gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET);
   palIndex = g82AD20C[spriteId];
   CpuCopy16(gOverworldEntityPalettes + palIndex * 16,
             (void *)(gPaletteBuffer + 256 + DEBUG_SPRITE_PAL_OFFSET),
@@ -55,7 +52,13 @@ static void DebugMenuLoadSpriteIfChanged(s16 *shownId, s16 spriteId, bool8 force
   LoadPalettes();
 }
 
-static void DebugMenuApplySpriteOam(void) {
+static void DebugMenuLoadSpriteIfChanged(s16 *shownId, s16 spriteId, bool8 force) {
+  u8 frame = DEBUG_SPRITE_FRAME_DOWN_IDLE;
+
+  DebugMenuLoadSpriteFrameIfChanged(shownId, &frame, spriteId, frame, force);
+}
+
+void DebugMenuApplySpriteOam(void) {
   struct OamData *oam = (struct OamData *)&gOamBuffer[DEBUG_SPRITE_OAM_SLOT * 4];
 
   oam->y = DEBUG_SPRITE_Y_TILE * 8;
@@ -73,7 +76,7 @@ static void DebugMenuApplySpriteOam(void) {
   oam->vflip = 0;
 }
 
-static void DebugMenuHideSprite(void) {
+void DebugMenuHideSprite(void) {
   sub_80411EC((struct OamData *)&gOamBuffer[DEBUG_SPRITE_OAM_SLOT * 4]);
   LoadOam();
 }
@@ -125,7 +128,7 @@ void DebugSpriteViewer(void) {
 
     DebugMenuLoadSpriteIfChanged(&shownSpriteId, sSprites[cursor].spriteId, FALSE);
     DebugMenuApplySpriteOam();
-    DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop);
+    DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop, 0);
     LoadOam();
     DebugMenuWaitVBlank();
   }

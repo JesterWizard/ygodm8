@@ -11,7 +11,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 3
+#define DEBUG_ROOT_ITEMS 4
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -23,6 +23,13 @@
 #define DEBUG_VIEW_MUSIC 1
 #define DEBUG_VIEW_PORTRAIT 2
 #define DEBUG_VIEW_SPRITE 3
+#define DEBUG_VIEW_REACTION 4
+
+#define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
+#define DEBUG_SPRITE_OAM_SLOT 1
+#define DEBUG_SPRITE_FRAME_DOWN_IDLE 0
+/* OBJ slot 0 is overwritten by entity palettes; keep the eye cursor on slot 15. */
+#define DEBUG_MENU_CURSOR_PAL_SLOT 15
 
 struct DebugMenuMusicEntry {
   u16 musicId;
@@ -39,6 +46,11 @@ struct DebugMenuSpriteEntry {
   u8 title[24];
 };
 
+struct DebugMenuReactionEntry {
+  u8 reactionId;
+  u8 title[24];
+};
+
 void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view);
 void DebugMenuLoadGraphics(void);
 void DebugMenuWaitVBlank(void);
@@ -47,20 +59,33 @@ void DebugMenuLatchButtons(void);
 void DebugMenuWaitRelease(u16 mask);
 u16 DebugMenuButtons(void);
 void DebugMenuUpdateCursor(u8 screenRow);
-void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow);
+void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow, u8 paletteNum);
+void DebugMenuLoadReactionObjPalettes(void);
 void DebugMenuFormatListRow(u8 *out, const u8 *title, bool8 selected);
 void DebugMenuFormatTitleRow(u8 *out, const u8 *title);
 void DebugMenuCopyLine(u8 row, const u8 *text);
+void DebugMenuRestoreTextPalettes(void);
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
+
+#define DEBUG_MENU_TEXT_PAL 15
 
 extern const u8 gDebugMenuBlankLine[];
 
 void DebugMenuDrawMusic(u8 scrollTop, u16 playingId);
 void DebugMenuDrawPortraits(u8 scrollTop, u8 cursor);
 void DebugMenuDrawSprites(u8 scrollTop, u8 cursor);
+void DebugMenuDrawRoot(u8 scrollTop, u8 cursor);
+void DebugMenuDrawReactions(u8 scrollTop, u8 cursor);
+
+void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,
+                                       u8 frameIndex, bool8 force);
+void DebugMenuApplySpriteOam(void);
+void DebugMenuHideSprite(void);
+void DebugMenuClearSpriteObjStash(void);
 
 void DebugMusicViewer(void);
 void DebugPortraitViewer(void);
 void DebugSpriteViewer(void);
+void DebugReactionViewer(void);
 
 #endif // GUARD_DEBUG_MENU_INTERNAL_H
