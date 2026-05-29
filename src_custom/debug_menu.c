@@ -13,7 +13,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 2
+#define DEBUG_ROOT_ITEMS 3
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -24,6 +24,17 @@
 #define DEBUG_PORTRAIT_PAL_BYTES 0x80
 #define DEBUG_PORTRAIT_X_TILE 19
 #define DEBUG_PORTRAIT_Y_TILE 6
+#define DEBUG_SPRITE_TILE_BYTES 0xE00
+#define DEBUG_SPRITE_TILE_OFFSET 0x3400
+#define DEBUG_SPRITE_TILE_NUM (DEBUG_SPRITE_TILE_OFFSET / 32)
+#define DEBUG_SPRITE_PAL_BYTES 0x20
+#define DEBUG_SPRITE_PAL_SLOT 13
+#define DEBUG_SPRITE_PAL_OFFSET (DEBUG_SPRITE_PAL_SLOT * 16)
+#define DEBUG_SPRITE_X_TILE 22
+#define DEBUG_SPRITE_Y_TILE 8
+#define DEBUG_SPRITE_FRAME_DOWN_IDLE 0
+#define DEBUG_SPRITE_OAM_SLOT 1
+#define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 
 struct DebugMenuMusicEntry {
   u16 musicId;
@@ -35,9 +46,15 @@ struct DebugMenuPortraitEntry {
   u8 title[24];
 };
 
+struct DebugMenuSpriteEntry {
+  s16 spriteId;
+  u8 title[24];
+};
+
 #define DEBUG_VIEW_ROOT 0
 #define DEBUG_VIEW_MUSIC 1
 #define DEBUG_VIEW_PORTRAIT 2
+#define DEBUG_VIEW_SPRITE 3
 
 #define DEBUG_MENU_MUSIC_ENTRY(id, title) {id, title},
 
@@ -55,8 +72,17 @@ static const struct DebugMenuPortraitEntry sPortraits[] APPEND_RODATA = {
 
 #undef DEBUG_MENU_PORTRAIT_ENTRY
 
+#define DEBUG_MENU_SPRITE_ENTRY(id, title) {id, title},
+
+static const struct DebugMenuSpriteEntry sSprites[] APPEND_RODATA = {
+#include "debug_menu_sprite_table.inc"
+};
+
+#undef DEBUG_MENU_SPRITE_ENTRY
+
 static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
 static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
+static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
 static const u8 sText_Blank[] APPEND_RODATA = "$0              ";
 static const u8 sText_Clear[] APPEND_RODATA = "$0              ";
 
@@ -70,6 +96,8 @@ extern u16 gUnk_80798F4[][30];
 extern u16 gUnk_8079CB4[][30];
 extern u16 gUnk_807A164[][30];
 extern u16 gOamBuffer[];
+extern const u8 g82AD20C[];
+extern const u16 gOverworldEntityPalettes[];
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
 extern u16 gRepeatedOrNewButtons;
@@ -78,6 +106,7 @@ extern u8 gInputRepeatTimer;
 
 void ClearGraphicsBuffers(void);
 void InitButtonMaps(void);
+void sub_80411EC(struct OamData *oam);
 
 static void DebugMenuApplyBg2(void) {
   gBG2HOFS = 0xFFB0 + 28;
@@ -149,6 +178,12 @@ static void DebugMenuUpload(void) {
 void DebugMenuClearPortraitObjStash(void) {
   CpuFill16(0, gBgVram.cbb4 + 0x2000, DEBUG_PORTRAIT_TILE_BYTES);
   CpuFill16(0, (void *)(gPaletteBuffer + 256 + 0xC0), DEBUG_PORTRAIT_PAL_BYTES);
+}
+
+void DebugMenuClearSpriteObjStash(void) {
+  CpuFill16(0, gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET, DEBUG_SPRITE_TILE_BYTES);
+  CpuFill16(0, (void *)(gPaletteBuffer + 256 + DEBUG_SPRITE_PAL_OFFSET),
+            DEBUG_SPRITE_PAL_BYTES);
 }
 
 static u16 DebugMenuReadGlyphArg(const u8 **textPtr) {
@@ -223,6 +258,21 @@ static void DebugMenuDrawPortraits(u8 scrollTop, u8 cursor) {
   }
 }
 
+static void DebugMenuDrawSprites(u8 scrollTop, u8 cursor) {
+  u8 row, buf[2 + DEBUG_CHARS + 1];
+
+  for (row = 0; row < DEBUG_ROWS; row++) {
+    u8 index = scrollTop + row;
+
+    if (index < ARRAY_COUNT(sSprites)) {
+      DebugMenuFormatListRow(buf, sSprites[index].title, index == cursor);
+      DebugMenuCopyLine(row, buf);
+    } else {
+      DebugMenuCopyLine(row, sText_Blank);
+    }
+  }
+}
+
 static void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   DebugMenuLoadTilemaps();
   switch (view) {
@@ -232,13 +282,16 @@ static void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_PORTRAIT:
     DebugMenuDrawPortraits(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_SPRITE:
+    DebugMenuDrawSprites(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuCopyLine(0, sText_RootMusic);
     DebugMenuCopyLine(1, sText_RootPortrait);
-    DebugMenuCopyLine(2, sText_Clear);
+    DebugMenuCopyLine(2, sText_RootSprite);
     break;
   }
-  if (view == DEBUG_VIEW_PORTRAIT)
+  if (view == DEBUG_VIEW_PORTRAIT || view == DEBUG_VIEW_SPRITE)
     DebugMenuUploadBg();
   else
     DebugMenuUpload();
@@ -298,6 +351,48 @@ static void DebugMenuApplyPortraitOam(void) {
 
 static void DebugMenuHidePortrait(void) {
   sub_804EB04((struct OamData *)gOamBuffer, PORTRAIT_POSITION_OFF_SCREEN);
+  LoadOam();
+}
+
+static void DebugMenuLoadSpriteIfChanged(s16 *shownId, s16 spriteId, bool8 force) {
+  u8 palIndex;
+
+  if (!force && spriteId == *shownId)
+    return;
+  *shownId = spriteId;
+  CpuFill16(0, gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET, DEBUG_SPRITE_TILE_BYTES);
+  if (spriteId < 0)
+    return;
+  sub_804F054(spriteId, DEBUG_SPRITE_FRAME_DOWN_IDLE,
+              gBgVram.cbb4 + DEBUG_SPRITE_TILE_OFFSET);
+  palIndex = g82AD20C[spriteId];
+  CpuCopy16(gOverworldEntityPalettes + palIndex * 16,
+            (void *)(gPaletteBuffer + 256 + DEBUG_SPRITE_PAL_OFFSET),
+            DEBUG_SPRITE_PAL_BYTES);
+  LoadObjVRAM();
+  LoadPalettes();
+}
+
+static void DebugMenuApplySpriteOam(void) {
+  struct OamData *oam = (struct OamData *)&gOamBuffer[DEBUG_SPRITE_OAM_SLOT * 4];
+
+  oam->y = DEBUG_SPRITE_Y_TILE * 8;
+  oam->x = DEBUG_SPRITE_X_TILE * 8;
+  oam->affineMode = 0;
+  oam->objMode = 0;
+  oam->mosaic = 0;
+  oam->bpp = 0;
+  oam->shape = 0;
+  oam->size = 2;
+  oam->tileNum = DEBUG_SPRITE_TILE_NUM;
+  oam->priority = 2;
+  oam->paletteNum = DEBUG_SPRITE_PAL_SLOT;
+  oam->hflip = 0;
+  oam->vflip = 0;
+}
+
+static void DebugMenuHideSprite(void) {
+  sub_80411EC((struct OamData *)&gOamBuffer[DEBUG_SPRITE_OAM_SLOT * 4]);
   LoadOam();
 }
 
@@ -416,6 +511,54 @@ static void DebugPortraitViewer(void) {
   DebugMenuWaitVBlank();
 }
 
+static void DebugSpriteViewer(void) {
+  u8 cursor = 0, scrollTop = 0;
+  s16 shownSpriteId = -2;
+  const u16 n = ARRAY_COUNT(sSprites);
+
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_SPRITE);
+  DebugMenuWaitVBlank();
+
+  while (1) {
+    u16 buttons = DebugMenuButtons();
+
+    if (buttons & B_BUTTON)
+      break;
+    if (buttons & DPAD_UP && cursor != 0) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (--cursor < scrollTop)
+        scrollTop = cursor;
+      shownSpriteId = -2;
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_SPRITE);
+    }
+    if (buttons & DPAD_DOWN && cursor < n - 1) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (++cursor >= scrollTop + DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      shownSpriteId = -2;
+      DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_SPRITE);
+    }
+
+    DebugMenuLoadSpriteIfChanged(&shownSpriteId, sSprites[cursor].spriteId, FALSE);
+    DebugMenuApplySpriteOam();
+    DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop);
+    LoadOam();
+    DebugMenuWaitVBlank();
+  }
+
+  PlayMusic(SFX_CANCEL);
+  DebugMenuWaitRelease(B_BUTTON);
+  DebugMenuHideSprite();
+  DebugMenuClearSpriteObjStash();
+  SetVBlankCallback(DebugMenuVBlankNoWin);
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
+  DebugMenuVBlankNoWin();
+  REG_WIN0H = DEBUG_WIN0H;
+  SetVBlankCallback(DebugMenuVBlank);
+  DebugMenuUpdateCursor(0);
+  DebugMenuWaitVBlank();
+}
+
 static void DebugMenuRoot(void) {
   u8 cursor = 0;
 
@@ -439,8 +582,10 @@ static void DebugMenuRoot(void) {
       DebugMenuLatchButtons();
       if (cursor == 0)
         DebugMusicViewer();
-      else
+      else if (cursor == 1)
         DebugPortraitViewer();
+      else
+        DebugSpriteViewer();
       DebugMenuLatchButtons();
     }
 
@@ -460,6 +605,7 @@ void DebugMenuMain(void) {
   PlayMusic(SFX_CANCEL);
   DebugMenuWaitRelease(B_BUTTON);
   DebugMenuClearPortraitObjStash();
+  DebugMenuClearSpriteObjStash();
   FadeOutMusic(1);
   DisableDisplay();
 }

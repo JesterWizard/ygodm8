@@ -11,6 +11,8 @@
 - [Adding Tracks](#adding-tracks)
 - [Portrait Viewer](#portrait-viewer)
 - [Adding Portraits](#adding-portraits)
+- [Sprite Viewer](#sprite-viewer)
+- [Adding Sprites](#adding-sprites)
 - [Text Layout](#text-layout)
 - [Code Locations](#code-locations)
 - [TODO](#todo)
@@ -20,10 +22,11 @@
 
 The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug_menu.c`.
 
-Two viewers are implemented today:
+Three viewers are implemented today:
 
 - **Music Viewer** — scrollable OST list; preview a track with **A**.
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
+- **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
 
 ## Access
 
@@ -37,12 +40,13 @@ After the menu closes, overworld state is restored via `OverworldRestoreAfterDeb
 
 ## Root Menu
 
-The root screen shows two menu rows and uses the same OAM cursor as the vanilla start menu.
+The root screen shows three menu rows and uses the same OAM cursor as the vanilla start menu.
 
 | Row | Label | **A** behavior |
 |-----|-------|----------------|
 | 0 | Music Viewer | Opens the music list |
 | 1 | Portrait Viewer | Opens the portrait list |
+| 2 | Sprite Viewer | Opens the overworld sprite list |
 
 | Input | Action |
 |-------|--------|
@@ -166,6 +170,62 @@ Custom portraits must be wired in `src_custom/portrait_hooks.c` before they will
 
 No C changes are required unless you change preview position, expression, row layout, or menu behavior.
 
+## Sprite Viewer
+
+The sprite viewer lists overworld sprites that do **not** have a dialogue portrait (no overlap with the portrait viewer). Entries live in `src_custom/debug_menu_sprite_table.inc`. Three rows are visible at a time; longer lists scroll. The highlighted sprite is shown on the right as soon as the cursor moves to that row (no **A** press).
+
+| Input | Action |
+|-------|--------|
+| **Up** / **Down** | Move cursor; list scrolls when cursor passes top or bottom visible row |
+| **B** | Return to root menu |
+
+### On-screen formatting
+
+Each visible row uses the same `DebugMenuFormatListRow()` layout as the other list viewers: `>` marks the cursor row, not playback state.
+
+### Sprite preview
+
+When the cursor changes, `DebugMenuLoadSpriteIfChanged()` loads tiles through `sub_804F054()` (same path as overworld object graphics) and copies the entity palette from `gOverworldEntityPalettes` via `g82AD20C`. OAM is reapplied every frame via `DebugMenuApplySpriteOam()` because the start-menu VBlank path clears `gOamBuffer` each frame.
+
+| Constant | Value | Role |
+|----------|-------|------|
+| `DEBUG_SPRITE_X_TILE` | 16 | OAM X in pixels (`× 8`) |
+| `DEBUG_SPRITE_Y_TILE` | 5 | OAM Y in pixels (`× 8`) |
+| `DEBUG_SPRITE_TILE_OFFSET` | `0x3400` | OBJ tile stash in `gBgVram.cbb4` |
+| `DEBUG_SPRITE_TILE_BYTES` | `0xE00` | Bytes reserved for one frame |
+| `DEBUG_SPRITE_PAL_SLOT` | 13 | OBJ palette slot for preview |
+| `DEBUG_SPRITE_PAL_OFFSET` | `DEBUG_SPRITE_PAL_SLOT * 16` | OBJ palette buffer offset in `u16` colors |
+| `DEBUG_SPRITE_FRAME_DOWN_IDLE` | 0 | Down-facing idle frame index |
+| `DEBUG_SPRITE_OAM_SLOT_CURSOR` | 0 | List cursor OAM slot |
+| `DEBUG_SPRITE_OAM_SLOT` | 1 | 32×32 sprite preview OAM slot |
+
+The preview uses one 32×32 OBJ. `sub_804F054()` lays out the frame in OBJ VRAM's 2D tile pattern, so a single square OBJ points at the preview stash. List redraws invalidate the cached sprite id so tiles reload after `DebugMenuLoadTilemaps()` refreshes charblock 4.
+
+On exit, `DebugMenuHideSprite()` and `DebugMenuClearSpriteObjStash()` remove the preview and zero the sprite VRAM/palette scratch area.
+
+### Sprite table
+
+Sprites are defined with the `DEBUG_MENU_SPRITE_ENTRY` macro in `debug_menu_sprite_table.inc`:
+
+```c
+DEBUG_MENU_SPRITE_ENTRY(SPRITE_YUGI, "Yugi")
+```
+
+`spriteId` must be a valid `SPRITE_*` constant from `enum OverworldEntitySprite` in `include/overworld.h`. Only add sprites that have **no** dialogue portrait (characters already in `debug_menu_portrait_table.inc` belong in the portrait viewer instead). Display names are free-form ASCII (up to 23 characters plus terminator in `title[24]`).
+
+## Adding Sprites
+
+1. Confirm the sprite id exists in `enum OverworldEntitySprite` in `include/overworld.h` and has graphics in `gOverworldEntitySprites`.
+2. Add one line to `src_custom/debug_menu_sprite_table.inc`:
+
+   ```c
+   DEBUG_MENU_SPRITE_ENTRY(SPRITE_YOUR_NPC, "Your Label")
+   ```
+
+3. Rebuild the ROM (`make`).
+
+No C changes are required unless you change preview position, frame index, row layout, or menu behavior.
+
 ## Text Layout
 
 Menu text is **not** drawn with `CopyStringTilesToVRAMBuffer` for the full string. That API lays out `0x901` glyphs in the vanilla start-menu pattern (about 10 characters before wrapping in VRAM). The debug menu instead calls `sub_8020968()` once per character into fixed tile slots.
@@ -189,13 +249,19 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Entry point | `DebugMenuMain` in `src_custom/debug_menu.c` | Loads graphics, runs root loop, tears down on exit |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
-| Root menu | `DebugMenuRoot` in `src_custom/debug_menu.c` | Two-item list; opens music or portrait viewer |
+| Root menu | `DebugMenuRoot` in `src_custom/debug_menu.c` | Three-item list; opens music, portrait, or sprite viewer |
 | Music viewer | `DebugMusicViewer` in `src_custom/debug_menu.c` | Scrollable list, preview on **A** |
 | Portrait viewer | `DebugPortraitViewer` in `src_custom/debug_menu.c` | Scrollable list, live preview on cursor |
+| Sprite viewer | `DebugSpriteViewer` in `src_custom/debug_menu.c` | Scrollable list, live preview on cursor |
 | Track table | `src_custom/debug_menu_music_table.inc` | `DEBUG_MENU_MUSIC_ENTRY` rows included into `sTracks[]` |
 | Portrait table | `src_custom/debug_menu_portrait_table.inc` | `DEBUG_MENU_PORTRAIT_ENTRY` rows included into `sPortraits[]` |
+| Sprite table | `src_custom/debug_menu_sprite_table.inc` | `DEBUG_MENU_SPRITE_ENTRY` rows included into `sSprites[]` |
 | Track struct | `struct DebugMenuMusicEntry` in `src_custom/debug_menu.c` | `musicId` + `title[24]` |
 | Portrait struct | `struct DebugMenuPortraitEntry` in `src_custom/debug_menu.c` | `portraitId` + `title[24]` |
+| Sprite struct | `struct DebugMenuSpriteEntry` in `src_custom/debug_menu.c` | `spriteId` + `title[24]` |
+| Sprite load | `DebugMenuLoadSpriteIfChanged`, `DebugMenuApplySpriteOam` in `src_custom/debug_menu.c` | `sub_804F054` + OAM each frame |
+| Sprite cleanup | `DebugMenuClearSpriteObjStash`, `DebugMenuHideSprite` in `src_custom/debug_menu.c` | Clears OBJ tile/palette stash on exit |
+| Sprite IDs | `enum OverworldEntitySprite` in `include/overworld.h` | Source of truth for `SPRITE_*` constants |
 | Portrait load | `DebugMenuLoadPortraitIfChanged`, `DebugMenuApplyPortraitOam` in `src_custom/debug_menu.c` | `LoadPortraitGfx` + OAM each frame |
 | Portrait cleanup | `DebugMenuClearPortraitObjStash`, `DebugMenuHidePortrait` in `src_custom/debug_menu.c` | Clears OBJ tile/palette stash on exit |
 | Portrait IDs | `enum Portrait` in `include/overworld.h` | Source of truth for `PORTRAIT_*` constants |
@@ -212,6 +278,7 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 - Optional search or category grouping when the track or portrait lists grow further.
 - Document or automate sync between `music_ids.h` comments and `debug_menu_music_table.inc`.
 - Portrait viewer: expression toggle or cycle (today locked to `EXPRESSION_NEUTRAL`).
+- Sprite viewer: direction or walk-frame toggle (today locked to down-facing idle frame 0).
 
 ## Limitations & Bugs
 
@@ -221,5 +288,6 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 - The portrait viewer always uses `EXPRESSION_NEUTRAL`; other expressions are not selectable.
 - Custom portraits only appear if `portrait_hooks.c` can load them; table entries alone are not enough.
 - Portrait preview shares OBJ tile/palette scratch with dialogue portraits (`cbb4 + 0x2000`, palette `0xC0..0xFF`); leaving the menu clears this stash.
+- Sprite preview uses a separate OBJ stash (`cbb4 + 0x3400`, palette slot 13); leaving the menu clears this stash.
 - Menu text shares BG2 charblock 3 with start-menu-derived assets; large future changes to tile indices need VRAM/layout checks in No$gba or similar.
 - Debug menu is only reachable from the overworld field input hook today, not from main menu or duel.
