@@ -56,9 +56,6 @@ LYN_REPLACE_CHECK(NamingScreenMain);
 APPEND_TEXT void NamingScreenMain__Replacement (void) {
   u16 i;
 
-  if (gRuntimeConfig.skip_opening_sequence == TRUE)
-    return;
-
   ClearGraphicsBuffers();
   CallThumbVoid(0x0800604C);
   PlayMusic(MUSIC_NAMING_SCREEN);
