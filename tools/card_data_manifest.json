@@ -3651,7 +3651,7 @@
       "def": 4000,
       "cost": 0,
       "attribute": "ATTRIBUTE_DIVINE",
-      "level": 4,
+      "level": 12,
       "type": "TYPE_WARRIOR",
       "color": 6,
       "monsterEffect": 52,
@@ -13170,6 +13170,38 @@
       "big_art": "src_custom/assets/cards/80x80/mask_of_restrict.huff",
       "big_palette": "src_custom/assets/cards/80x80/mask_of_restrict.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/mask_of_restrict.lz"
+    },
+    {
+      "card_const": "FAIRY_BOX",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_FairyBox",
+        "pages": [
+          "A mechanical fairy that springs out to disrupt enemy attacks.",
+          "Each monster has a 50 percent chance to be set to 0 ATK.",
+          "You must pay 500LP each Standby Phase to maintain this card."
+        ]
+      },
+      "card_name": "Fairy Box",
+      "password": [ 6, 8, 3, 3, 5, 8, 6, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_FairyBox",
+        "pages": [
+          "Due to winning the coinflip, the opponent's attacking monster's ATK will be set to 0."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/fairy_box.huff",
+      "big_palette": "src_custom/assets/cards/80x80/fairy_box.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/fairy_box.lz"
     }
   ]
 }

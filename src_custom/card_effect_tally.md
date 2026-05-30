@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `51` effects
+- `53` effects
 
 ## Tally
 
@@ -47,6 +47,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Mask of Restrict` | `src_custom/trap_effects/mask_of_restrict.c` |
 | `trap_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |
 | `turn_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |
+| `trap_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
+| `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `permanent_effects` | `Milus Radiant` | `src_custom/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src_custom/permanent_effects/muka_muka.c` |

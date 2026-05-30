@@ -24,6 +24,7 @@ static const u8 sRareMetalDragonName[] __attribute__((section(".append_assets"))
 static const u8 sDoubleSummonName[] __attribute__((section(".append_assets"))) = "Double Summon";
 static const u8 sObnoxiousCelticGuardianName[] __attribute__((section(".append_assets"))) = "Obnoxious Celtic Guardian";
 static const u8 sMaskOfRestrictName[] __attribute__((section(".append_assets"))) = "Mask of Restrict";
+static const u8 sFairyBoxName[] __attribute__((section(".append_assets"))) = "Fairy Box";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -78,6 +79,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sObnoxiousCelticGuardianName;
   if (cardId == 0x033A)
     return (u8 *)sMaskOfRestrictName;
+  if (cardId == 0x033B)
+    return (u8 *)sFairyBoxName;
 
   return gCardNames[cardId];
 }

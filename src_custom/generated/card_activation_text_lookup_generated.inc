@@ -45,6 +45,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { MYSTICAL_SPACE_TYPHOON, gActivationDescription_MysticalSpaceTyphoon },
   { DOUBLE_SUMMON, gActivationDescription_DoubleSummon },
   { MASK_OF_RESTRICT, gActivationDescription_MaskOfRestrict },
+  { FAIRY_BOX, gActivationDescription_FairyBox },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

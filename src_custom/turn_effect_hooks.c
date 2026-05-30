@@ -14,6 +14,11 @@ void ResetUltimateOfferingTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
 unsigned char ShouldActivateUltimateOfferingTurnEffect(void);
 void ActivateUltimateOfferingTurnEffect(void);
+void AgeFairyBoxSetFlags(void);
+unsigned char ShouldActivateFairyBoxTurnEffect(void);
+void ActivateFairyBoxTurnEffect(void);
+unsigned char ShouldActivateFairyBoxUpkeep(void);
+void ActivateFairyBoxUpkeep(void);
 void AgeWaveMotionCannonTurns(void);
 
 void TryActivatingTurnEffects(void);
@@ -47,6 +52,11 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateUltimateOfferingTurnEffect();
     return;
   }
+  if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
+    if (ShouldActivateFairyBoxUpkeep())
+      ActivateFairyBoxUpkeep();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
@@ -62,6 +72,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return TRUE;
   if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
     return ShouldActivateUltimateOfferingTurnEffect();
+  if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
+    return ShouldActivateFairyBoxUpkeep();
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }
@@ -150,6 +162,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   gShieldAndSwordActive = FALSE;
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();
+  AgeFairyBoxSetFlags();
   AgeWaveMotionCannonTurns();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();

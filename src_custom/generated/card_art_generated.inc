@@ -104,6 +104,10 @@ static const unsigned char sMaskOfRestrictBigArt[] __attribute__((section(".appe
 static const unsigned short sMaskOfRestrictBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/mask_of_restrict.gbapal");
 static const unsigned char sMaskOfRestrictMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/mask_of_restrict.lz");
 
+static const unsigned char sFairyBoxBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/fairy_box.huff");
+static const unsigned short sFairyBoxBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/fairy_box.gbapal");
+static const unsigned char sFairyBoxMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/fairy_box.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -131,6 +135,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0338] = sDoubleSummonBigArt,
   [0x0339] = sObnoxiousCelticGuardianBigArt,
   [0x033A] = sMaskOfRestrictBigArt,
+  [0x033B] = sFairyBoxBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -160,6 +165,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0338] = sDoubleSummonBigPalette,
   [0x0339] = sObnoxiousCelticGuardianBigPalette,
   [0x033A] = sMaskOfRestrictBigPalette,
+  [0x033B] = sFairyBoxBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -189,6 +195,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0338] = 0,
   [0x0339] = 0,
   [0x033A] = 0,
+  [0x033B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -218,4 +225,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0338] = sDoubleSummonMiniArt,
   [0x0339] = sObnoxiousCelticGuardianMiniArt,
   [0x033A] = sMaskOfRestrictMiniArt,
+  [0x033B] = sFairyBoxMiniArt,
 };

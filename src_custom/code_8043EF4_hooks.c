@@ -5,6 +5,7 @@
 #include "pyramid_of_light.h"
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
+#include "fairy_box.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -12,7 +13,10 @@ u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
 void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
+void MarkFairyBoxJustSet(struct DuelCard *zone);
 unsigned char IsSpellCancellerSpellLockActive(void);
+unsigned IsTrapTriggered(void);
+void ActivateTrapEffect(u16 lp);
 
 extern struct DuelCard gSelectedCard;
 
@@ -36,6 +40,7 @@ void MonsterActionMenu(void);
 void HandlePlayerBackrowAction(void);
 void DisplayNumRequiredTributesTextbox(unsigned char);
 void sub_80442AC(void);
+void sub_8044570(void);
 void TryAttackWithMonster(void);
 void SetCursorToCardDest(void);
 void sub_8044A5C(void);
@@ -44,8 +49,18 @@ void sub_8044A30(void);
 void OpenBMenu(void);
 void HandleAButtonAction(void);
 void HandleBButtonAction(void);
+void sub_8022080(void);
+void SetAttackAction(s32, s32);
+void SetAttackActionDirectAttack(int);
+void CheckGraveyardAndLoserFlags(void);
 void CheckWinConditionFINAL(void);
 void BlockTurnSummoning(u8);
+void HandleAtkAndLifePointsAction(void);
+void UpdateAllDuelGfx(void);
+void sub_801BC00(void);
+unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
+s32 NumEmptyZonesInRow(struct DuelCard **row);
+unsigned char GetDuelistStatus(unsigned char);
 
 static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 {
@@ -191,6 +206,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
+      || IsActivatedFairyBoxZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
@@ -307,10 +323,94 @@ void sub_80449D8__Replacement(void)
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
   MarkUltimateOfferingJustSet(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  MarkFairyBoxJustSet(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();
+}
+
+LYN_REPLACE_CHECK(sub_8044570);
+void sub_8044570__Replacement(void)
+{
+  unsigned char turn = WhoseTurn();
+
+  if (GetDuelistStatus(turn) == DUELIST_STATUS_CANNOT_ATTACK || gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns) {
+    PlayMusic(SFX_FORBIDDEN);
+    gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+    UpdateDuelGfxExceptField();
+  } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW) {
+    gTrapEffectData.originRow = gDuelCursor.currentY;
+    gTrapEffectData.originCol = gDuelCursor.currentX;
+    gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+    if (IsTrapTriggered() != 1) {
+      PlayMusic(SFX_SELECT);
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+      SetAttackActionDirectAttack(gDuelCursor.currentX);
+      TryApplyFairyBoxToPendingAction();
+      HandleAtkAndLifePointsAction();
+      CheckGraveyardAndLoserFlags();
+      gDuelCursor.state = 0;
+      sub_801BC00();
+      UpdateAllDuelGfx();
+      sub_8022080();
+    } else {
+      PlayMusic(SFX_ATTACK_REBUFFED);
+      ActivateTrapEffect(0);
+      gDuelCursor.state = 0;
+    }
+    TryActivatingPermanentEffects();
+  } else {
+    PlayMusic(SFX_SELECT);
+    SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+    gDuelCursor.state = 4;
+    ResetCursorDestToCurrentPos();
+    gDuelCursor.currentX = GetLastNonEmptyMonZoneId(&gFixedZones[1][4]);
+    gDuelCursor.currentY = 1;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    UpdateDuelGfxExceptField();
+  }
+}
+
+LYN_REPLACE_CHECK(TryAttackWithMonster);
+void TryAttackWithMonster__Replacement(void)
+{
+  if (gDuelCursor.currentY != 1) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+  } else if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id == CARD_NONE) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+  } else {
+    gTrapEffectData.originRow = gDuelCursor.destY;
+    gTrapEffectData.originCol = gDuelCursor.destX;
+    gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
+    if (IsTrapTriggered() != 1) {
+      PlayMusic(SFX_SELECT);
+      gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isDefending = 0;
+      gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;
+      gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
+      SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
+      TryApplyFairyBoxToPendingAction();
+      HandleAtkAndLifePointsAction();
+      CheckGraveyardAndLoserFlags();
+      gDuelCursor.state = 0;
+      SetCursorToCardDest();
+      sub_801BC00();
+      UpdateAllDuelGfx();
+      sub_8022080();
+    } else {
+      ActivateTrapEffect(0);
+      gDuelCursor.state = 0;
+      SetCursorToCardDest();
+      UpdateDuelGfxExceptField();
+    }
+    TryActivatingPermanentEffects();
+  }
 }
 
 LYN_REPLACE_CHECK(HandleAButtonAction);
