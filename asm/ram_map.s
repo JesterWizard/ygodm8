@@ -79,6 +79,9 @@ _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 @ Per-board-cell Copycat stats copied on activation (20 cells x 5 bytes).
 _kernel_malloc_ewram_array gCopycatBoardStats, 0x64
 
+@ Active Mage Power / United We Stand equip links (5 slots x 16 bytes).
+_kernel_malloc_ewram_array gDynamicEquipLinks, 0x50
+
 @ Bitfield for one-shot shiny-zone pickups: 16 bytes, 1 bit per flag.
 _kernel_malloc_ewram_array gShinyZoneFlags, 0x10
 

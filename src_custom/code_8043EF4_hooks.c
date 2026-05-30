@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "dynamic_equip.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -90,18 +91,19 @@ void HandlePlayerBackrowAction__Replacement(void) {
   u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
   struct DuelCard *zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
 
-  SelectZone(zone);
-  ResetCursorDestToCurrentPos();
-
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
       || IsActivatedChainEnergyZone(zone)
-      || IsActivatedUltimateOfferingZone(zone)) {
+      || IsActivatedUltimateOfferingZone(zone)
+      || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
   }
+
+  SelectZone(zone);
+  ResetCursorDestToCurrentPos();
 
   if (IsSpellCancellerSpellLockActive()
       && GetTypeGroup(id) == TYPE_GROUP_SPELL) {

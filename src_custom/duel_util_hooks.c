@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "custom_decks/custom_decks.h"
+#include "dynamic_equip.h"
 
 extern int NumCardsInDeck(unsigned char);
 extern struct DuelDeck gDuelDecks[2];
@@ -128,6 +129,15 @@ unsigned NumFaceUpMatchingAttributeInRow__Replacement(unsigned char turnRow, uns
   }
 
   return count;
+}
+
+LYN_REPLACE_CHECK(ZoneHasEquipSpell);
+unsigned ZoneHasEquipSpell__Replacement(struct DuelCard *zone)
+{
+  if (IsActiveDynamicEquipSpellZone(zone))
+    return FALSE;
+
+  return GetTypeGroup(zone->id) == TYPE_GROUP_SPELL && GetSpellType(zone->id) == SPELL_TYPE_EQUIP;
 }
 
 LYN_REPLACE_CHECK(TryDrawingCard);

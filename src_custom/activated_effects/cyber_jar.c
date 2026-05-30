@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "dynamic_equip.h"
 
 void __attribute__((section(".append_text"))) EffectCyberJar(void)
 {
@@ -71,6 +72,8 @@ void __attribute__((section(".append_text"))) EffectCyberJar(void)
                 break;
         }
     }
+
+    RecalculateAllDynamicEquips();
 
     if (!gHideEffectText)
     {

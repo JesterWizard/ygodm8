@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "dynamic_equip.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -186,6 +187,7 @@ LYN_REPLACE_CHECK(TryActivatingPermanentEffects);
 void TryActivatingPermanentEffects__Replacement(void) {
   u8 hideEffectText = gHideEffectText;
 
+  RecalculateAllDynamicEquips();
   gActiveEffect.turn = WhoseTurn();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();

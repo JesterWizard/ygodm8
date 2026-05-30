@@ -11,6 +11,7 @@ extern void EffectSwordsOfRevealingLight(void);
 extern void EffectChainEnergy(void);
 extern void EffectExchange(void);
 extern void EffectMagePower(void);
+extern void EffectUnitedWeStand(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -59,6 +60,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case MAGE_POWER:
       EffectMagePower();
+      return;
+    case UNITED_WE_STAND:
+      EffectUnitedWeStand();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -64,6 +64,10 @@ static const unsigned char sUltimateOfferingBigArt[] __attribute__((section(".ap
 static const unsigned short sUltimateOfferingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/ultimate_offering.gbapal");
 static const unsigned char sUltimateOfferingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/ultimate_offering.lz");
 
+static const unsigned char sUnitedWeStandBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/united_we_stand.huff");
+static const unsigned short sUnitedWeStandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/united_we_stand.gbapal");
+static const unsigned char sUnitedWeStandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/united_we_stand.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -81,6 +85,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x032E] = sMagePowerBigArt,
   [0x032F] = sKaibamanBigArt,
   [0x0330] = sUltimateOfferingBigArt,
+  [0x0331] = sUnitedWeStandBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -100,6 +105,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x032E] = sMagePowerBigPalette,
   [0x032F] = sKaibamanBigPalette,
   [0x0330] = sUltimateOfferingBigPalette,
+  [0x0331] = sUnitedWeStandBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -119,6 +125,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x032E] = 0,
   [0x032F] = 0,
   [0x0330] = 0,
+  [0x0331] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -138,4 +145,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x032E] = sMagePowerMiniArt,
   [0x032F] = sKaibamanMiniArt,
   [0x0330] = sUltimateOfferingMiniArt,
+  [0x0331] = sUnitedWeStandMiniArt,
 };

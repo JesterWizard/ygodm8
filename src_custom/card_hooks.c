@@ -371,7 +371,7 @@ int GetSpellType__Replacement(u16 cardId) {
   if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY)
     return SPELL_TYPE_NORMAL;
 
-  if (cardId == MAGE_POWER)
+  if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND)
     return SPELL_TYPE_EQUIP;
 
   return gE0CFF4[gCardInfo.spellEffect];

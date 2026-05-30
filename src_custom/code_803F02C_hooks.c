@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "delayed_effects.h"
 #include "copycat.h"
+#include "dynamic_equip.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -115,6 +116,7 @@ void InitBoard__Replacement(void) {
 
   ResetDelayedDuelEffects();
   ResetUltimateOfferingTurnState();
+  ResetDynamicEquips();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -242,6 +244,8 @@ void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
 
 LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
+  OnDynamicEquipZoneAboutToClear(zone);
+
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);
 
@@ -260,6 +264,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->unk4 = 0;
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
+  RecalculateAllDynamicEquips();
+  NotifyDynamicEquipFieldChanged();
 }
 
 LYN_REPLACE_CHECK(CopyCard);
@@ -280,4 +286,19 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->unkTwo = src->unkTwo;
   dst->unkThree = src->unkThree;
   dst->willChangeSides = src->willChangeSides;
+  RecalculateAllDynamicEquips();
+  NotifyDynamicEquipFieldChanged();
+}
+
+LYN_REPLACE_CHECK(GetFinalStage);
+int GetFinalStage__Replacement(struct DuelCard *zone)
+{
+  int stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
+
+  if (stage > 127)
+    stage = 127;
+  if (stage < -128)
+    stage = -128;
+
+  return (s8)stage;
 }
