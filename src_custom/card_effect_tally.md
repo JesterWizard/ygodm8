@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `40` effects
+- `41` effects
 
 ## Tally
 
@@ -37,6 +37,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Skull Mark Lady Bug` | `src_custom/activated_effects/skull_mark_lady_bug.c` |
 | `activated_effects` | `Fire Reaper` | `src_custom/activated_effects/fire_reaper.c` |
 | `activated_effects` | `Copycat` | `src_custom/activated_effects/copycat.c` |
+| `activated_effects` | `Kaibaman` | `src_custom/activated_effects/kaibaman.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `permanent_effects` | `Milus Radiant` | `src_custom/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src_custom/permanent_effects/muka_muka.c` |

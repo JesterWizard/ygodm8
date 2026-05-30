@@ -12811,6 +12811,37 @@
       "big_art": "src_custom/assets/cards/80x80/mage_power.huff",
       "big_palette": "src_custom/assets/cards/80x80/mage_power.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/mage_power.lz"
+    },
+    {
+      "card_const": "KAIBAMAN",
+      "atk": 200,
+      "def": 700,
+      "cost": 183,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 2,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_KAIBAMAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Kaibaman",
+        "pages": [
+          "Seto Kaiba immortalized as a card. His vanity knows no bounds.",
+          "Sacrifice him to summon a dragon from your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Kaibaman",
+        "pages": [
+          "It will sacrifice itself to summon a dragon from your hand."
+        ]
+      },
+      "card_name": "Kaibaman",
+      "password": [ 2, 6, 3, 7, 6, 3, 9, 0 ],
+      "big_art": "src_custom/assets/cards/80x80/kaibaman.huff",
+      "big_palette": "src_custom/assets/cards/80x80/kaibaman.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/kaibaman.lz"
     }
   ]
 }

@@ -16,6 +16,13 @@ void InitButtonMaps(void);
 void UpdateFilteredInput_WithRepeat(void);
 void sub_8040880(unsigned char *dest, unsigned char *src);
 void sub_8040868(void);
+void sub_804078C(void);
+void DisplayCardInfoBar(void);
+void sub_8041E70(u8, u8);
+void MoveCursorLeft(void);
+void MoveCursorRight(void);
+
+extern u16 gPressedButtons;
 
 extern unsigned char gDFBA4[];
 
@@ -41,6 +48,8 @@ static const u32 sCursorCornerFlipFlags[] APPEND_RODATA = {
 #define HAND_CARD_HALF_SIZE 32
 #define EXCHANGE_CURSOR_ANCHOR_X_OFFSET -32
 #define EXCHANGE_CURSOR_ANCHOR_Y_OFFSET -32
+#define OPPONENT_HAND_OAM_SLOT_BASE 0
+#define PLAYER_HAND_ROW 4
 
 static struct ExchangeOamEntry *ExchangeOamAtSlot(u8 slot)
 {
@@ -77,12 +86,17 @@ static void InitExchangeCursorGfx(void)
   LoadPalettes();
 }
 
-static void GetHandCardCenter(u8 displayIndex, s16 *centerX, s16 *centerY)
+static void GetHandCardCenterFromOamSlot(u8 oamSlot, s16 *centerX, s16 *centerY)
 {
-  u32 cardA = ExchangeOamAtSlot(displayIndex)->a;
+  u32 cardA = ExchangeOamAtSlot(oamSlot)->a;
 
   *centerX = (s16)((cardA >> 16) & 0x1FF) + HAND_CARD_HALF_SIZE;
   *centerY = (s16)(cardA & 0xFF) + HAND_CARD_HALF_SIZE;
+}
+
+static void GetHandCardCenter(u8 displayIndex, s16 *centerX, s16 *centerY)
+{
+  GetHandCardCenterFromOamSlot(OPPONENT_HAND_OAM_SLOT_BASE + displayIndex, centerX, centerY);
 }
 
 static void SetCursorCornerOam(u8 slot, s16 x, s16 y, u32 flipFlags)
@@ -132,6 +146,35 @@ static void RefreshExchangeHandOam(u8 displayIndex)
   LoadOam();
 }
 
+static u8 HandZoneHasMatchingType(struct DuelCard **handRow, u8 zone, u8 type)
+{
+  u16 cardId = handRow[zone]->id;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.type == type;
+}
+
+static u8 FindFirstOccupiedHandZone(struct DuelCard **handRow)
+{
+  u8 zone;
+
+  for (zone = 0; zone < MAX_ZONES_IN_ROW; zone++) {
+    if (handRow[zone]->id != CARD_NONE)
+      return zone;
+  }
+
+  return 0;
+}
+
+static void WaitForNoButtonsHeld(void)
+{
+  while (gPressedButtons & ANY_BUTTON)
+    WaitForVBlank();
+}
+
 static u8 MoveDisplayIndex(struct DuelCard **handRow, u8 displayIndex, s8 delta)
 {
   u8 attempts = 0;
@@ -146,6 +189,53 @@ static u8 MoveDisplayIndex(struct DuelCard **handRow, u8 displayIndex, s8 delta)
   }
 
   return displayIndex;
+}
+
+APPEND_TEXT s8 SelectHandCardMatchingType(struct DuelCard **handRow, u8 type)
+{
+  struct DuelCursor savedCursor = gDuelCursor;
+  u8 scrollY;
+  u8 running;
+
+  InitButtonMaps();
+  gDuelCursor.currentY = PLAYER_HAND_ROW;
+  gDuelCursor.destY = PLAYER_HAND_ROW;
+  gDuelCursor.currentX = FindFirstOccupiedHandZone(handRow);
+  gDuelCursor.destX = gDuelCursor.currentX;
+  DisplayCardInfoBar();
+  sub_8041E70(savedCursor.currentY, PLAYER_HAND_ROW);
+
+  WaitForNoButtonsHeld();
+  InitButtonMaps();
+
+  running = TRUE;
+  while (running) {
+    scrollY = gDuelCursor.currentY;
+    UpdateFilteredInput_WithRepeat();
+
+    if (gRepeatedOrNewButtons & DPAD_LEFT) {
+      MoveCursorLeft();
+      DisplayCardInfoBar();
+      sub_8041E70(scrollY, gDuelCursor.currentY);
+    }
+    else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
+      MoveCursorRight();
+      DisplayCardInfoBar();
+      sub_8041E70(scrollY, gDuelCursor.currentY);
+    }
+    else if (gNewButtons & A_BUTTON) {
+      if (HandZoneHasMatchingType(handRow, gDuelCursor.currentX, type)) {
+        PlayMusic(SFX_SELECT);
+        running = FALSE;
+      } else {
+        PlayMusic(SFX_FORBIDDEN);
+      }
+    }
+
+    WaitForVBlank();
+  }
+
+  return gDuelCursor.currentX;
 }
 
 APPEND_TEXT s8 SelectExchangeHandCard(struct DuelCard **handRow)

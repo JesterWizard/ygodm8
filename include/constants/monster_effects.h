@@ -114,6 +114,7 @@ enum {
   MONSTER_EFFECT_PENGUIN_SOLDIER,
   MONSTER_EFFECT_KARATE_MAN,
   MONSTER_EFFECT_COPYCAT,
+  MONSTER_EFFECT_KAIBAMAN,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -132,3 +133,5 @@ extern void ActivateKarateManEffect(void);
 extern void DestroyKarateManAtEndOfTurn(void);
 extern void ActivateSkullMarkLadyBugEffect(void);
 extern void ActivateCopycatEffect(void);
+extern unsigned char CanActivateKaibaman(void);
+extern void ActivateKaibamanEffect(void);

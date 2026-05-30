@@ -1,6 +1,7 @@
 #include "global.h"
 #include "ante_card_viewer.h"
 #include "common-chax.h"
+#include "event_system.h"
 #include "configs/runtime.h"
 #include "debug_menu.h"
 #include "overworld_debug_overlay.h"
@@ -179,6 +180,22 @@ static void LoadThoughtBubbleGfx(void) {
   CpuCopy16(asset->palette, (void *)(OBJ_PLTT + THOUGHT_BUBBLE_PALETTE_NUM * 0x20), 0x20);
 }
 
+static u8 ObjectHasDuelDialogue(s8 objId) {
+  struct Script *scriptR;
+
+  if (objId == -1)
+    return FALSE;
+
+  scriptR = gOverworld.objects[objId].scriptR;
+  if (scriptR == NULL || scriptR == gOverworld.objects[objId].scriptA)
+    return FALSE;
+
+  if (EventSystem_ResolveScript(scriptR)->start == NULL)
+    return FALSE;
+
+  return TRUE;
+}
+
 static void SetThoughtBubbleOam(u8 visible) {
   u16 *oam = (u16 *)gOamBuffer;
   u16 left = THOUGHT_BUBBLE_OAM_LEFT * 4;
@@ -252,8 +269,8 @@ u8 ProcessInput__Replacement(void) {
         x++;
         break;
     }
-    if (GetObjectIdInFrontOfPlayer(x, y, dir) != -1)
-      return OVERWORLD_INPUT_TALK;
+    if (ObjectHasDuelDialogue(GetObjectIdInFrontOfPlayer(x, y, dir)) == TRUE)
+      return OVERWORLD_INPUT_TRY_DUELING;
     if (gRuntimeConfig.enable_debug_menu == TRUE && !(gPressedButtons & 0xF0)) {
       PlayMusic(SFX_SELECT);
       DebugMenuMain();

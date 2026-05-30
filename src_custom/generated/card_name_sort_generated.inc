@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 14
+#define NUM_CUSTOM_NAME_SORT_CARDS 15
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -16,6 +16,7 @@ static const u8 sSpellCancellerSortName[] APPEND_RODATA = "Spell Canceller";
 static const u8 sExchangeSortName[] APPEND_RODATA = "Exchange";
 static const u8 sCopycatSortName[] APPEND_RODATA = "Copycat";
 static const u8 sMagePowerSortName[] APPEND_RODATA = "Mage Power";
+static const u8 sKaibamanSortName[] APPEND_RODATA = "Kaibaman";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -26,6 +27,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032D, // Copycat
   0x0322, // Deck Destruction Virus
   0x032C, // Exchange
+  0x032F, // Kaibaman
   0x032E, // Mage Power
   0x0323, // Magician's Valkyria
   0x0325, // Paladin Of White Dragon
@@ -43,12 +45,13 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   6, // Copycat
   7, // Deck Destruction Virus
   8, // Exchange
-  9, // Mage Power
-  10, // Magician's Valkyria
-  11, // Paladin Of White Dragon
-  12, // Shield And Sword
-  13, // Sorcerer of Dark Magic
-  14, // Spell Canceller
+  9, // Kaibaman
+  10, // Mage Power
+  11, // Magician's Valkyria
+  12, // Paladin Of White Dragon
+  13, // Shield And Sword
+  14, // Sorcerer of Dark Magic
+  15, // Spell Canceller
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -80,6 +83,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sCopycatSortName;
   if (cardId == 0x032E)
     return (u8 *)sMagePowerSortName;
+  if (cardId == 0x032F)
+    return (u8 *)sKaibamanSortName;
 
   return gCardNames[cardId];
 }
