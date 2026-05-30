@@ -13027,6 +13027,37 @@
       "big_art": "src_custom/assets/cards/80x80/soul_exchange.huff",
       "big_palette": "src_custom/assets/cards/80x80/soul_exchange.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/soul_exchange.lz"
+    },
+    {
+      "card_const": "MYSTICAL_SPACE_TYPHOON",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 100,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MysticalSpaceTyphoon",
+        "pages": [
+          "A mysterious gale that blows through space at high speeds.",
+          "It can destroy one spell or trap card on the field."
+        ]
+      },
+      "card_name": "Mystical Space Typhoon",
+      "password": [ 0, 5, 3, 5, 8, 6, 6, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MysticalSpaceTyphoon",
+        "pages": [
+          "Select one spell or trap card on the field and destroy it."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/mystical_space_typhoon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/mystical_space_typhoon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/mystical_space_typhoon.lz"
     }
   ]
 }

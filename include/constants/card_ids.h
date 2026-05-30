@@ -823,11 +823,12 @@
 #define ST_JOAN                                  0x0333
 #define PYRAMID_OF_LIGHT                         0x0334
 #define SOUL_EXCHANGE                            0x0335
+#define MYSTICAL_SPACE_TYPHOON                   0x0336
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0336
-#define NUM_CUSTOM_CARDS                        0x0015
+#define NUM_TOTAL_CARDS                         0x0337
+#define NUM_CUSTOM_CARDS                        0x0016
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

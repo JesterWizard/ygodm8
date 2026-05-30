@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[822] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[823] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -833,9 +833,10 @@ const u8 gCardLockAfterActivation_Hook[822] APPEND_RODATA = {
   [0x0333] = 1,
   [0x0334] = 1,
   [0x0335] = 1,
+  [0x0336] = 1,
 };
 
-const CardData gCardData_NEW[822] APPEND_RODATA = {
+const CardData gCardData_NEW[823] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11577,5 +11578,19 @@ const CardData gCardData_NEW[822] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {8, 8, 1, 7, 7, 3, 9, 3},
     .description = gDescription_SoulExchange,
+  },
+  [0x0336] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 100,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {0, 5, 3, 5, 8, 6, 6, 1},
+    .description = gDescription_MysticalSpaceTyphoon,
   },
 };

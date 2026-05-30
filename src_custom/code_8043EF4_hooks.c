@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "mystical_space_typhoon.h"
 #include "pyramid_of_light.h"
 #include "soul_exchange.h"
 
@@ -34,6 +35,48 @@ void MonsterActionMenu(void);
 void HandlePlayerBackrowAction(void);
 void DisplayNumRequiredTributesTextbox(unsigned char);
 void sub_80442AC(void);
+void TryAttackWithMonster(void);
+void SetCursorToCardDest(void);
+void sub_8044A5C(void);
+void sub_8044A88(void);
+void sub_8044A30(void);
+void OpenBMenu(void);
+void HandleAButtonAction(void);
+void HandleBButtonAction(void);
+void CheckWinConditionFINAL(void);
+void BlockTurnSummoning(u8);
+
+static void TryPlaceSelectedCardOnField_Local(void)
+{
+  SetCardInfo(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id);
+  switch (GetTypeGroup(gCardInfo.id)) {
+    case TYPE_GROUP_SPELL:
+    case TYPE_GROUP_TRAP:
+    case TYPE_GROUP_RITUAL:
+      if (gDuelCursor.currentY == 3) {
+        PlayMusic(SFX_PLACE_CARD);
+        sub_80449D8();
+        CheckWinConditionFINAL();
+        TryActivatingPermanentEffects();
+      } else {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      }
+      break;
+    default:
+      if (gDuelCursor.currentY != 2) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else {
+        PlayMusic(SFX_PLACE_CARD);
+        BlockTurnSummoning(ACTIVE_DUELIST);
+        LockMonsterCardsInRow(4);
+        ResetNumTributes();
+        sub_80449D8();
+        TryActivatingPermanentEffects();
+      }
+  }
+}
 
 static void FinishEquipSpellTargeting(void)
 {
@@ -147,6 +190,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (IsMysticalSpaceTyphoonCard(id)) {
+    if (!FieldHasMysticalSpaceTyphoonTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginMysticalSpaceTyphoonTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   switch (GetSpellType(id)) {
     case SPELL_TYPE_NORMAL:
       gDuelCursor.state = 0;
@@ -232,4 +290,48 @@ void sub_80449D8__Replacement(void)
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();
+}
+
+LYN_REPLACE_CHECK(HandleAButtonAction);
+void HandleAButtonAction__Replacement(void)
+{
+  switch (gDuelCursor.state) {
+    case 0:
+      sub_80441D0__Replacement();
+      break;
+    case 1:
+      TryPlaceSelectedCardOnField_Local();
+      break;
+    case 2:
+      TrySelectSpellTarget();
+      break;
+    case DUEL_CURSOR_MST_TARGET:
+      TrySelectMysticalSpaceTyphoonTarget();
+      break;
+    case 4:
+      TryAttackWithMonster();
+      break;
+  }
+}
+
+LYN_REPLACE_CHECK(HandleBButtonAction);
+void HandleBButtonAction__Replacement(void)
+{
+  switch (gDuelCursor.state) {
+    case 0:
+      OpenBMenu();
+      break;
+    case 1:
+      sub_8044A30();
+      break;
+    case 2:
+      sub_8044A5C();
+      break;
+    case DUEL_CURSOR_MST_TARGET:
+      CancelMysticalSpaceTyphoonTargeting();
+      break;
+    case 4:
+      sub_8044A88();
+      break;
+  }
 }

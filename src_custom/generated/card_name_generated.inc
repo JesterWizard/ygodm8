@@ -19,6 +19,7 @@ static const u8 sWaveMotionCannonName[] __attribute__((section(".append_assets")
 static const u8 sStJoanName[] __attribute__((section(".append_assets"))) = "St Joan";
 static const u8 sPyramidOfLightName[] __attribute__((section(".append_assets"))) = "Pyramid of Light";
 static const u8 sSoulExchangeName[] __attribute__((section(".append_assets"))) = "Soul Exchange";
+static const u8 sMysticalSpaceTyphoonName[] __attribute__((section(".append_assets"))) = "Mystical Space Typhoon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -63,6 +64,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sPyramidOfLightName;
   if (cardId == 0x0335)
     return (u8 *)sSoulExchangeName;
+  if (cardId == 0x0336)
+    return (u8 *)sMysticalSpaceTyphoonName;
 
   return gCardNames[cardId];
 }

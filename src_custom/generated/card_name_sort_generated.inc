@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 21
+#define NUM_CUSTOM_NAME_SORT_CARDS 22
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -23,6 +23,7 @@ static const u8 sWaveMotionCannonSortName[] APPEND_RODATA = "Wave Motion Cannon"
 static const u8 sStJoanSortName[] APPEND_RODATA = "St Joan";
 static const u8 sPyramidOfLightSortName[] APPEND_RODATA = "Pyramid of Light";
 static const u8 sSoulExchangeSortName[] APPEND_RODATA = "Soul Exchange";
+static const u8 sMysticalSpaceTyphoonSortName[] APPEND_RODATA = "Mystical Space Typhoon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -36,6 +37,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032F, // Kaibaman
   0x032E, // Mage Power
   0x0323, // Magician's Valkyria
+  0x0336, // Mystical Space Typhoon
   0x0325, // Paladin Of White Dragon
   0x0334, // Pyramid of Light
   0x0328, // Shield And Sword
@@ -60,16 +62,17 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   9, // Kaibaman
   10, // Mage Power
   11, // Magician's Valkyria
-  12, // Paladin Of White Dragon
-  13, // Pyramid of Light
-  14, // Shield And Sword
-  15, // Sorcerer of Dark Magic
-  16, // Soul Exchange
-  17, // Spell Canceller
-  18, // St Joan
-  19, // Ultimate Offering
-  20, // United We Stand
-  21, // Wave Motion Cannon
+  12, // Mystical Space Typhoon
+  13, // Paladin Of White Dragon
+  14, // Pyramid of Light
+  15, // Shield And Sword
+  16, // Sorcerer of Dark Magic
+  17, // Soul Exchange
+  18, // Spell Canceller
+  19, // St Joan
+  20, // Ultimate Offering
+  21, // United We Stand
+  22, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -115,6 +118,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sPyramidOfLightSortName;
   if (cardId == 0x0335)
     return (u8 *)sSoulExchangeSortName;
+  if (cardId == 0x0336)
+    return (u8 *)sMysticalSpaceTyphoonSortName;
 
   return gCardNames[cardId];
 }
