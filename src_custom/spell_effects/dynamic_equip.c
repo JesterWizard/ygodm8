@@ -392,7 +392,7 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
   }
 }
 
-static u8 FieldHasActiveDynamicEquipSpell(void)
+u8 FieldHasActiveDynamicEquipSpellOnBoard(void)
 {
   u8 row;
   u8 col;
@@ -409,7 +409,7 @@ static u8 FieldHasActiveDynamicEquipSpell(void)
 
 void NotifyDynamicEquipFieldChanged(void)
 {
-  if (!gHideEffectText && FieldHasActiveDynamicEquipSpell())
+  if (!gHideEffectText && FieldHasActiveDynamicEquipSpellOnBoard())
     UpdateDuelGfxExceptField();
 }
 

@@ -265,7 +265,6 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
   RecalculateAllDynamicEquips();
-  NotifyDynamicEquipFieldChanged();
 }
 
 LYN_REPLACE_CHECK(CopyCard);
@@ -287,7 +286,6 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->unkThree = src->unkThree;
   dst->willChangeSides = src->willChangeSides;
   RecalculateAllDynamicEquips();
-  NotifyDynamicEquipFieldChanged();
 }
 
 LYN_REPLACE_CHECK(GetFinalStage);

@@ -17,7 +17,6 @@ void sub_8041E70(u8, u8);
 void ActivateSpellEffect(void);
 void LockMonsterCardsInRow(unsigned char);
 void UpdateDuelGfxExceptField(void);
-void SetDuelFieldGfx(u8 field);
 void CheckWinConditionExodia(unsigned char);
 void TryActivatingPermanentEffects(void);
 void SelectZone(struct DuelCard *zone);
@@ -26,52 +25,6 @@ unsigned char GetFirstNonEmptyMonZoneId(struct DuelCard *zone[]);
 void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
-void LoadPalettes(void);
-void LoadBgOffsets(void);
-
-extern const u16 gFieldArenaPalette[];
-extern const u16 gFieldForestPalette[];
-extern const u16 gFieldWastelandPalette[];
-extern const u16 gFieldMountainPalette[];
-extern const u16 gFieldSogenPalette[];
-extern const u16 gFieldUmiPalette[];
-extern const u16 gFieldYamiPalette[];
-
-static void PushDuelFieldLayerToHardware(void)
-{
-  const u16 *fieldPalette;
-  u8 field = gDuel.field;
-
-  switch (field) {
-    case FIELD_FOREST:
-      fieldPalette = gFieldForestPalette;
-      break;
-    case FIELD_WASTELAND:
-      fieldPalette = gFieldWastelandPalette;
-      break;
-    case FIELD_MOUNTAIN:
-      fieldPalette = gFieldMountainPalette;
-      break;
-    case FIELD_SOGEN:
-      fieldPalette = gFieldSogenPalette;
-      break;
-    case FIELD_UMI:
-      fieldPalette = gFieldUmiPalette;
-      break;
-    case FIELD_YAMI:
-      fieldPalette = gFieldYamiPalette;
-      break;
-    default:
-      fieldPalette = gFieldArenaPalette;
-      break;
-  }
-
-  CpuCopy16(fieldPalette, gPaletteBuffer, 96);
-  WaitForVBlank();
-  LoadPalettes();
-  LoadBgOffsets();
-  CpuCopy16(gBgVram.cbb0 + 0xD800, (void *)(BG_VRAM + 0xD800), 0xA00);
-}
 
 static void FinishEquipSpellTargeting(void)
 {
@@ -81,9 +34,7 @@ static void FinishEquipSpellTargeting(void)
     sub_8041E70(PLAYER_MONSTER_ROW, PLAYER_BACKROW);
 
   ResetCursorDestToCurrentPos();
-  SetDuelFieldGfx(gDuel.field);
   UpdateDuelGfxExceptField();
-  PushDuelFieldLayerToHardware();
 }
 
 LYN_REPLACE_CHECK(HandlePlayerBackrowAction);

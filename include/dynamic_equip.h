@@ -28,6 +28,7 @@ s8 GetDynamicEquipStageDelta(const struct DuelCard *zone);
 u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone);
 void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone);
 u8 HasActiveDynamicEquips(void);
+u8 FieldHasActiveDynamicEquipSpellOnBoard(void);
 void RecalculateAllDynamicEquips(void);
 void NotifyDynamicEquipFieldChanged(void);
 

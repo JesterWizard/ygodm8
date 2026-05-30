@@ -22,6 +22,31 @@ void sub_8041DF0(u8 arg0);
 void sub_8057808(void);
 void sub_804078C(void);
 void sub_8040FDC(void);
+void sub_80411D4(void);
+void LoadOam(void);
+void LoadBgOffsets(void);
+
+static void FlushPartialDuelGfx(void) {
+  LoadOam();
+  LoadBgOffsets();
+  CpuCopy32(gBgVram.cbb0 + 0x8040, (unsigned char *)BG_VRAM + 0x8040, 0x740);
+  CpuCopy16(gPaletteBuffer + 0x50, (u16 *)PLTT + 0x50, 0x40);
+}
+
+static void FlushDuelGfxAfterCursorMove(void) {
+  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
+    sub_80411D4();
+  else
+    FlushPartialDuelGfx();
+}
+
+LYN_REPLACE_CHECK(sub_8040FDC);
+void sub_8040FDC__Replacement(void) {
+  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
+    sub_80411D4();
+  else
+    FlushPartialDuelGfx();
+}
 
 LYN_REPLACE_CHECK(sub_8041D78);
 void sub_8041D78__Replacement(u8 arg0) {
@@ -30,7 +55,7 @@ void sub_8041D78__Replacement(u8 arg0) {
     sub_8057808();
     sub_804078C();
     WaitForVBlank();
-    sub_8040FDC();
+    FlushDuelGfxAfterCursorMove();
     return;
   }
 
@@ -44,7 +69,7 @@ void sub_8041D78__Replacement(u8 arg0) {
   sub_8057808();
   sub_804078C();
   WaitForVBlank();
-  sub_8040FDC();
+  FlushDuelGfxAfterCursorMove();
 }
 
 LYN_REPLACE_CHECK(sub_8041DF0);
@@ -54,7 +79,7 @@ void sub_8041DF0__Replacement(u8 arg0) {
     sub_8057808();
     sub_804078C();
     WaitForVBlank();
-    sub_8040FDC();
+    FlushDuelGfxAfterCursorMove();
     return;
   }
 
@@ -68,5 +93,5 @@ void sub_8041DF0__Replacement(u8 arg0) {
   sub_8057808();
   sub_804078C();
   WaitForVBlank();
-  sub_8040FDC();
+  FlushDuelGfxAfterCursorMove();
 }
