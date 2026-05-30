@@ -6,6 +6,8 @@
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
 void CopyCard(struct DuelCard *dst, struct DuelCard *src);
+void ResetUltimateOfferingTurnState(void);
+void TryUnlockHandForUltimateOfferingExtraSummon(void);
 
 void InitBoard(void);
 void PlayerTurnMain(void);
@@ -112,6 +114,7 @@ void InitBoard__Replacement(void) {
   unsigned char i, j;
 
   ResetDelayedDuelEffects();
+  ResetUltimateOfferingTurnState();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -201,6 +204,20 @@ void PlayerTurnMain__Replacement(void) {
   DestroyKarateManAtEndOfTurn();
   ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
   UpdateDuelGfxExceptField();
+}
+
+LYN_REPLACE_CHECK(LockMonsterCardsInRow);
+void LockMonsterCardsInRow__Replacement(unsigned char turnRow) {
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gTurnZones[turnRow][i]->id != CARD_NONE
+        && GetTypeGroup(gTurnZones[turnRow][i]->id) == TYPE_GROUP_MONSTER)
+      gTurnZones[turnRow][i]->isLocked = TRUE;
+  }
+
+  if (turnRow == ACTIVE_DUELIST_HAND)
+    TryUnlockHandForUltimateOfferingExtraSummon();
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);

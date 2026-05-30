@@ -48,6 +48,10 @@ _kernel_malloc sRandomizedCardCosts, 0x652
 @ Reentrancy guard while Copycat resolves copied stats.
 _kernel_malloc gComputingCopycatStats, 1
 
+@ Ultimate Offering extra-summon state for the active duelist's turn.
+_kernel_malloc gUltimateOfferingExtraSummonPending, 1
+_kernel_malloc gUltimateOfferingExtraSummonUsed, 1
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 15
+#define NUM_CUSTOM_NAME_SORT_CARDS 16
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -17,6 +17,7 @@ static const u8 sExchangeSortName[] APPEND_RODATA = "Exchange";
 static const u8 sCopycatSortName[] APPEND_RODATA = "Copycat";
 static const u8 sMagePowerSortName[] APPEND_RODATA = "Mage Power";
 static const u8 sKaibamanSortName[] APPEND_RODATA = "Kaibaman";
+static const u8 sUltimateOfferingSortName[] APPEND_RODATA = "Ultimate Offering";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -34,6 +35,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0328, // Shield And Sword
   0x0321, // Sorcerer of Dark Magic
   0x032B, // Spell Canceller
+  0x0330, // Ultimate Offering
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
@@ -52,6 +54,7 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   13, // Shield And Sword
   14, // Sorcerer of Dark Magic
   15, // Spell Canceller
+  16, // Ultimate Offering
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -85,6 +88,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMagePowerSortName;
   if (cardId == 0x032F)
     return (u8 *)sKaibamanSortName;
+  if (cardId == 0x0330)
+    return (u8 *)sUltimateOfferingSortName;
 
   return gCardNames[cardId];
 }

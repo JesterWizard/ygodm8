@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[816] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[817] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -827,9 +827,10 @@ const u8 gCardLockAfterActivation_Hook[816] APPEND_RODATA = {
   [0x032D] = 1,
   [0x032E] = 1,
   [0x032F] = 1,
+  [0x0330] = 1,
 };
 
-const CardData gCardData_NEW[816] APPEND_RODATA = {
+const CardData gCardData_NEW[817] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11487,5 +11488,19 @@ const CardData gCardData_NEW[816] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {2, 6, 3, 7, 6, 3, 9, 0},
     .description = gDescription_Kaibaman,
+  },
+  [0x0330] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_TRAP,
+    .color = TRAP_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 0, 6, 0, 4, 0, 9, 1},
+    .description = gDescription_UltimateOffering,
   },
 };

@@ -60,6 +60,10 @@ static const unsigned char sKaibamanBigArt[] __attribute__((section(".append_ass
 static const unsigned short sKaibamanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/kaibaman.gbapal");
 static const unsigned char sKaibamanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/kaibaman.lz");
 
+static const unsigned char sUltimateOfferingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/ultimate_offering.huff");
+static const unsigned short sUltimateOfferingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/ultimate_offering.gbapal");
+static const unsigned char sUltimateOfferingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/ultimate_offering.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -76,6 +80,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x032D] = sCopycatBigArt,
   [0x032E] = sMagePowerBigArt,
   [0x032F] = sKaibamanBigArt,
+  [0x0330] = sUltimateOfferingBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -94,6 +99,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x032D] = sCopycatBigPalette,
   [0x032E] = sMagePowerBigPalette,
   [0x032F] = sKaibamanBigPalette,
+  [0x0330] = sUltimateOfferingBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -112,6 +118,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x032D] = 0,
   [0x032E] = 0,
   [0x032F] = 0,
+  [0x0330] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -130,4 +137,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x032D] = sCopycatMiniArt,
   [0x032E] = sMagePowerMiniArt,
   [0x032F] = sKaibamanMiniArt,
+  [0x0330] = sUltimateOfferingMiniArt,
 };

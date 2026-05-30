@@ -13,6 +13,7 @@ static const u8 sExchangeName[] __attribute__((section(".append_assets"))) = "Ex
 static const u8 sCopycatName[] __attribute__((section(".append_assets"))) = "Copycat";
 static const u8 sMagePowerName[] __attribute__((section(".append_assets"))) = "Mage Power";
 static const u8 sKaibamanName[] __attribute__((section(".append_assets"))) = "Kaibaman";
+static const u8 sUltimateOfferingName[] __attribute__((section(".append_assets"))) = "Ultimate Offering";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -45,6 +46,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMagePowerName;
   if (cardId == 0x032F)
     return (u8 *)sKaibamanName;
+  if (cardId == 0x0330)
+    return (u8 *)sUltimateOfferingName;
 
   return gCardNames[cardId];
 }

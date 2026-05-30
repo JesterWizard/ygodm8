@@ -3,6 +3,10 @@
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
+u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
+void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
+u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
+void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 unsigned char IsSpellCancellerSpellLockActive(void);
 
 void DisplayCardInfoBar(void);
@@ -90,7 +94,8 @@ void HandlePlayerBackrowAction__Replacement(void) {
   ResetCursorDestToCurrentPos();
 
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
-      || IsActivatedChainEnergyZone(zone)) {
+      || IsActivatedChainEnergyZone(zone)
+      || IsActivatedUltimateOfferingZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
@@ -173,8 +178,16 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
+  if (!TryConsumeUltimateOfferingExtraSummonPayment()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  MarkUltimateOfferingJustSet(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  TryEnableUltimateOfferingExtraSummonAfterPlacement();
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();

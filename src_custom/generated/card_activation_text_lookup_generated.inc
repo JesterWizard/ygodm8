@@ -37,6 +37,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { COPYCAT, gActivationDescription_Copycat },
   { MAGE_POWER, gActivationDescription_MagePower },
   { KAIBAMAN, gActivationDescription_Kaibaman },
+  { ULTIMATE_OFFERING, gActivationDescription_UltimateOffering },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

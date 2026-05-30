@@ -10,6 +10,10 @@ void ActivateGiantGermEffect(void);
 void ActivateNimbleMomongaEffect(void);
 void ActivateSkullMarkLadyBugEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
+void ResetUltimateOfferingTurnState(void);
+void AgeUltimateOfferingSetFlags(void);
+unsigned char ShouldActivateUltimateOfferingTurnEffect(void);
+void ActivateUltimateOfferingTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -38,6 +42,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateDeckDestructionVirusEffect();
     return;
   }
+  if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
+    ActivateUltimateOfferingTurnEffect();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
@@ -51,6 +59,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return TRUE;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)
     return TRUE;
+  if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
+    return ShouldActivateUltimateOfferingTurnEffect();
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }
@@ -137,6 +147,8 @@ LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
+  ResetUltimateOfferingTurnState();
+  AgeUltimateOfferingSetFlags();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
     sub_802ADA4();

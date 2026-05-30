@@ -817,11 +817,12 @@
 #define COPYCAT                                  0x032D
 #define MAGE_POWER                               0x032E
 #define KAIBAMAN                                 0x032F
+#define ULTIMATE_OFFERING                        0x0330
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0330
-#define NUM_CUSTOM_CARDS                        0x000F
+#define NUM_TOTAL_CARDS                         0x0331
+#define NUM_CUSTOM_CARDS                        0x0010
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

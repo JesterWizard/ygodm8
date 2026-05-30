@@ -12842,6 +12842,37 @@
       "big_art": "src_custom/assets/cards/80x80/kaibaman.huff",
       "big_palette": "src_custom/assets/cards/80x80/kaibaman.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/kaibaman.lz"
+    },
+    {
+      "card_const": "ULTIMATE_OFFERING",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_UltimateOffering",
+        "pages": [
+          "A devil's bargain made to an otherworldly entity.",
+          "Pay 500LP once per turn for an extra monster summon."
+        ]
+      },
+      "card_name": "Ultimate Offering",
+      "password": [ 8, 0, 6, 0, 4, 0, 9, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_UltimateOffering",
+        "pages": [
+          "Pay 500LP once per turn for an extra monster summon."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/ultimate_offering.huff",
+      "big_palette": "src_custom/assets/cards/80x80/ultimate_offering.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/ultimate_offering.lz"
     }
   ]
 }
