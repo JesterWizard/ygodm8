@@ -68,6 +68,10 @@ static const unsigned char sUnitedWeStandBigArt[] __attribute__((section(".appen
 static const unsigned short sUnitedWeStandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/united_we_stand.gbapal");
 static const unsigned char sUnitedWeStandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/united_we_stand.lz");
 
+static const unsigned char sWaveMotionCannonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/wave_motion_cannon.huff");
+static const unsigned short sWaveMotionCannonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/wave_motion_cannon.gbapal");
+static const unsigned char sWaveMotionCannonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/wave_motion_cannon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -86,6 +90,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x032F] = sKaibamanBigArt,
   [0x0330] = sUltimateOfferingBigArt,
   [0x0331] = sUnitedWeStandBigArt,
+  [0x0332] = sWaveMotionCannonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -106,6 +111,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x032F] = sKaibamanBigPalette,
   [0x0330] = sUltimateOfferingBigPalette,
   [0x0331] = sUnitedWeStandBigPalette,
+  [0x0332] = sWaveMotionCannonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -126,6 +132,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x032F] = 0,
   [0x0330] = 0,
   [0x0331] = 0,
+  [0x0332] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -146,4 +153,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x032F] = sKaibamanMiniArt,
   [0x0330] = sUltimateOfferingMiniArt,
   [0x0331] = sUnitedWeStandMiniArt,
+  [0x0332] = sWaveMotionCannonMiniArt,
 };

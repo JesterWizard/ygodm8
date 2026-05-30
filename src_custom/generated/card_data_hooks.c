@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[818] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[819] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -829,9 +829,10 @@ const u8 gCardLockAfterActivation_Hook[818] APPEND_RODATA = {
   [0x032F] = 1,
   [0x0330] = 1,
   [0x0331] = 1,
+  [0x0332] = 1,
 };
 
-const CardData gCardData_NEW[818] APPEND_RODATA = {
+const CardData gCardData_NEW[819] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11517,5 +11518,19 @@ const CardData gCardData_NEW[818] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 6, 7, 7, 0, 9, 9, 8},
     .description = gDescription_UnitedWeStand,
+  },
+  [0x0332] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {15, 15, 15, 15, 15, 15, 15, 14},
+    .description = gDescription_WaveMotionCannon,
   },
 };

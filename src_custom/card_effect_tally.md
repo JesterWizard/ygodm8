@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `44` effects
+- `45` effects
 
 ## Tally
 
@@ -18,6 +18,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Swords Of Revealing Light` | `src_custom/spell_effects/swords_of_revealing_light.c` |
 | `spell_effects` | `Card Of Demise` | `src_custom/spell_effects/card_of_demise.c` |
 | `spell_effects` | `Chain Energy` | `src_custom/spell_effects/chain_energy.c` |
+| `spell_effects` | `Wave Motion Cannon` | `src_custom/spell_effects/wave_motion_cannon.c` |
 | `spell_effects` | `Exchange` | `src_custom/spell_effects/exchange.c` |
 | `spell_effects` | `Mage Power` | `src_custom/spell_effects/mage_power.c` |
 | `spell_effects` | `United We Stand` | `src_custom/spell_effects/united_we_stand.c` |

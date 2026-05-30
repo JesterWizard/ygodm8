@@ -14,6 +14,7 @@ void ResetUltimateOfferingTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
 unsigned char ShouldActivateUltimateOfferingTurnEffect(void);
 void ActivateUltimateOfferingTurnEffect(void);
+void AgeWaveMotionCannonTurns(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -149,6 +150,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   gShieldAndSwordActive = FALSE;
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();
+  AgeWaveMotionCannonTurns();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
     sub_802ADA4();

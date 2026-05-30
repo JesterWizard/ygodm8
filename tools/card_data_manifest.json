@@ -12905,6 +12905,39 @@
       "big_art": "src_custom/assets/cards/80x80/united_we_stand.huff",
       "big_palette": "src_custom/assets/cards/80x80/united_we_stand.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/united_we_stand.lz"
+    },
+    {
+      "card_const": "WAVE_MOTION_CANNON",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_WaveMotionCannon",
+        "pages": [
+          "A massive energy beam that grows stronger over time.",
+          "Each turn on the field adds 1000LP of damage.",
+          "Select it to send it to the GY and deal stored damage."
+        ]
+      },
+      "card_name": "Wave Motion Cannon",
+      "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_WaveMotionCannon",
+        "pages": [
+          "Each turn on the field adds 1000LP of damage.",
+          "Select it again to send it to the graveyard and deal that damage to your opponent."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/wave_motion_cannon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/wave_motion_cannon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/wave_motion_cannon.lz"
     }
   ]
 }

@@ -819,11 +819,12 @@
 #define KAIBAMAN                                 0x032F
 #define ULTIMATE_OFFERING                        0x0330
 #define UNITED_WE_STAND                          0x0331
+#define WAVE_MOTION_CANNON                       0x0332
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0332
-#define NUM_CUSTOM_CARDS                        0x0011
+#define NUM_TOTAL_CARDS                         0x0333
+#define NUM_CUSTOM_CARDS                        0x0012
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

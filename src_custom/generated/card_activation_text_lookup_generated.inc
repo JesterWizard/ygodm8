@@ -39,6 +39,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { KAIBAMAN, gActivationDescription_Kaibaman },
   { ULTIMATE_OFFERING, gActivationDescription_UltimateOffering },
   { UNITED_WE_STAND, gActivationDescription_UnitedWeStand },
+  { WAVE_MOTION_CANNON, gActivationDescription_WaveMotionCannon },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

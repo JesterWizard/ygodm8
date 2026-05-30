@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "wave_motion_cannon.h"
 
 extern unsigned char* g8E1168C[]; //attribute mini-icons
 extern unsigned char gSharedMem[];
@@ -106,4 +107,26 @@ void sub_80576B4__Replacement(unsigned char* arg0, unsigned short cardId) {
 LYN_REPLACE_CHECK(CopyMiniCardPalette);
 void CopyMiniCardPalette__Replacement(unsigned short* dest) {
   CpuCopy16(g89A781C, dest, 320);
+}
+
+void sub_80574A8(unsigned char arg0, unsigned char arg1);
+
+LYN_REPLACE_CHECK(sub_80577A4);
+void sub_80577A4__Replacement(void) {
+  u8 i;
+  u8 j;
+  typedef void (*RefreshFieldCardTilesFn)(void);
+
+  static RefreshFieldCardTilesFn const refreshFieldCardTiles = (RefreshFieldCardTilesFn)0x080562F5;
+
+  refreshFieldCardTiles();
+  RefreshAllWaveMotionCannonFieldCounters();
+  CpuCopy16(g89A781C, gPaletteBuffer + 256, 320);
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    for (j = 0; j < 5; j++) {
+      if (gFixedZones[i][j]->id != CARD_NONE)
+        sub_80574A8(j, i);
+    }
+  }
 }

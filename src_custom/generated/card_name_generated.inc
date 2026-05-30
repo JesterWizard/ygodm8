@@ -15,6 +15,7 @@ static const u8 sMagePowerName[] __attribute__((section(".append_assets"))) = "M
 static const u8 sKaibamanName[] __attribute__((section(".append_assets"))) = "Kaibaman";
 static const u8 sUltimateOfferingName[] __attribute__((section(".append_assets"))) = "Ultimate Offering";
 static const u8 sUnitedWeStandName[] __attribute__((section(".append_assets"))) = "United We Stand";
+static const u8 sWaveMotionCannonName[] __attribute__((section(".append_assets"))) = "Wave Motion Cannon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -51,6 +52,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sUltimateOfferingName;
   if (cardId == 0x0331)
     return (u8 *)sUnitedWeStandName;
+  if (cardId == 0x0332)
+    return (u8 *)sWaveMotionCannonName;
 
   return gCardNames[cardId];
 }

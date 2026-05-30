@@ -12,6 +12,7 @@ extern void EffectChainEnergy(void);
 extern void EffectExchange(void);
 extern void EffectMagePower(void);
 extern void EffectUnitedWeStand(void);
+extern void EffectWaveMotionCannon(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -54,6 +55,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case CHAIN_ENERGY:
       EffectChainEnergy();
+      return;
+    case WAVE_MOTION_CANNON:
+      EffectWaveMotionCannon();
       return;
     case EXCHANGE:
       EffectExchange();
