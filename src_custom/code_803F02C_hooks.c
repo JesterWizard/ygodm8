@@ -9,6 +9,8 @@ u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const stru
 void CopyCard(struct DuelCard *dst, struct DuelCard *src);
 void ResetUltimateOfferingTurnState(void);
 void TryUnlockHandForUltimateOfferingExtraSummon(void);
+void UnlockCardsInRow(unsigned char turnRow);
+void UnblockTurnSummoning(unsigned char currPlayer);
 
 void InitBoard(void);
 void PlayerTurnMain(void);
@@ -32,6 +34,12 @@ void UpdateFilteredInput_WithRepeat(void);
 void DeclareLoser(unsigned char);
 void DestroyKarateManAtEndOfTurn(void);
 void DecrementSorlTurns(unsigned char);
+
+extern u8 gDoubleSummonExtraSummonPending;
+extern u8 gDoubleSummonExtraSummonUsed;
+
+void EnableDoubleSummonForTurn(void);
+static void TryUnlockHandForDoubleSummon(void);
 
 static struct DuelCard *GetSorlZoneForBlockedDuelist(u8 blockedDuelist)
 {
@@ -220,6 +228,31 @@ void LockMonsterCardsInRow__Replacement(unsigned char turnRow) {
 
   if (turnRow == ACTIVE_DUELIST_HAND)
     TryUnlockHandForUltimateOfferingExtraSummon();
+  if (turnRow == ACTIVE_DUELIST_HAND)
+    TryUnlockHandForDoubleSummon();
+}
+
+void EnableDoubleSummonForTurn(void) {
+  gDoubleSummonExtraSummonPending = TRUE;
+  gDoubleSummonExtraSummonUsed = gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked;
+
+  if (gDoubleSummonExtraSummonUsed)
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+}
+
+static void TryUnlockHandForDoubleSummon(void) {
+  if (!gDoubleSummonExtraSummonPending || gDoubleSummonExtraSummonUsed)
+    return;
+
+  gDoubleSummonExtraSummonUsed = TRUE;
+  UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+}
+
+LYN_REPLACE_CHECK(UnblockTurnSummoning);
+void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
+  gTurnDuelistBattleState[currPlayer]->summoningBlocked = 0;
+  gDoubleSummonExtraSummonPending = FALSE;
+  gDoubleSummonExtraSummonUsed = FALSE;
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);

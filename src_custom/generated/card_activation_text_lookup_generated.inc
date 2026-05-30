@@ -43,6 +43,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { PYRAMID_OF_LIGHT, gActivationDescription_PyramidOfLight },
   { SOUL_EXCHANGE, gActivationDescription_SoulExchange },
   { MYSTICAL_SPACE_TYPHOON, gActivationDescription_MysticalSpaceTyphoon },
+  { DOUBLE_SUMMON, gActivationDescription_DoubleSummon },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

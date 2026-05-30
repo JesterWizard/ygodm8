@@ -40,9 +40,9 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
     .show_player_screen_pixel_coords = FALSE,
     .show_duel_life_points_on_board = FALSE,
-    .card_in_hand_1 = RARE_METAL_DRAGON,
-    .card_in_hand_2 = LEOGUN,
-    .card_in_hand_3 = EXCHANGE,
+    .card_in_hand_1 = DOUBLE_SUMMON,
+    .card_in_hand_2 = MORPHING_JAR_2,
+    .card_in_hand_3 = CYBER_COMMANDER,
     .card_in_hand_4 = COPYCAT,
     .card_in_hand_5 = BLUE_EYES_WHITE_DRAGON
 };

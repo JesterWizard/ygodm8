@@ -13079,7 +13079,41 @@
         ]
       },
       "card_name": "Rare Metal Dragon",
-      "password": [ 2, 5, 2, 3, 6, 0, 5, 6 ]
+      "password": [ 2, 5, 2, 3, 6, 0, 5, 6 ],
+      "big_art": "src_custom/assets/cards/80x80/rare_metal_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/rare_metal_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/rare_metal_dragon.lz"
+    },
+    {
+      "card_const": "DOUBLE_SUMMON",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 100,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DoubleSummon",
+        "pages": [
+          "A spell that grants one extra normal summon to the user.",
+          "They can conduct two normal summons this turn."
+        ]
+      },
+      "card_name": "Double Summon",
+      "password": [ 4, 3, 4, 2, 2, 5, 3, 7 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_DoubleSummon",
+        "pages": [
+          "You can conduct two normal summons this turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/double_summon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/double_summon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/double_summon.lz"
     }
   ]
 }

@@ -52,6 +52,10 @@ _kernel_malloc gComputingCopycatStats, 1
 _kernel_malloc gUltimateOfferingExtraSummonPending, 1
 _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 
+@ Double Summon extra-summon state for the active duelist's turn.
+_kernel_malloc gDoubleSummonExtraSummonPending, 1
+_kernel_malloc gDoubleSummonExtraSummonUsed, 1
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 

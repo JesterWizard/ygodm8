@@ -92,6 +92,10 @@ static const unsigned char sRareMetalDragonBigArt[] __attribute__((section(".app
 static const unsigned short sRareMetalDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/rare_metal_dragon.gbapal");
 static const unsigned char sRareMetalDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/rare_metal_dragon.lz");
 
+static const unsigned char sDoubleSummonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/double_summon.huff");
+static const unsigned short sDoubleSummonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/double_summon.gbapal");
+static const unsigned char sDoubleSummonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/double_summon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -116,6 +120,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0335] = sSoulExchangeBigArt,
   [0x0336] = sMysticalSpaceTyphoonBigArt,
   [0x0337] = sRareMetalDragonBigArt,
+  [0x0338] = sDoubleSummonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -142,6 +147,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0335] = sSoulExchangeBigPalette,
   [0x0336] = sMysticalSpaceTyphoonBigPalette,
   [0x0337] = sRareMetalDragonBigPalette,
+  [0x0338] = sDoubleSummonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -168,6 +174,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0335] = 0,
   [0x0336] = 0,
   [0x0337] = 0,
+  [0x0338] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -194,4 +201,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0335] = sSoulExchangeMiniArt,
   [0x0336] = sMysticalSpaceTyphoonMiniArt,
   [0x0337] = sRareMetalDragonMiniArt,
+  [0x0338] = sDoubleSummonMiniArt,
 };

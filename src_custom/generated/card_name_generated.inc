@@ -21,6 +21,7 @@ static const u8 sPyramidOfLightName[] __attribute__((section(".append_assets")))
 static const u8 sSoulExchangeName[] __attribute__((section(".append_assets"))) = "Soul Exchange";
 static const u8 sMysticalSpaceTyphoonName[] __attribute__((section(".append_assets"))) = "Mystical Space Typhoon";
 static const u8 sRareMetalDragonName[] __attribute__((section(".append_assets"))) = "Rare Metal Dragon";
+static const u8 sDoubleSummonName[] __attribute__((section(".append_assets"))) = "Double Summon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -69,6 +70,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMysticalSpaceTyphoonName;
   if (cardId == 0x0337)
     return (u8 *)sRareMetalDragonName;
+  if (cardId == 0x0338)
+    return (u8 *)sDoubleSummonName;
 
   return gCardNames[cardId];
 }
