@@ -1,4 +1,5 @@
 #include "global.h"
+#include "card.h"
 #include "configs/runtime.h"
 #include "custom_decks/custom_decks.h"
 #include "player_decks.h"
@@ -9,6 +10,7 @@ extern unsigned gDuelistLevel;
 extern unsigned short gDeckCapacityUpperLimitForDuelistLevel[];
 extern struct DuelData gDuelData;
 void IncreaseDuelistLevel(void);
+unsigned GetDuelistLevel(void);
 unsigned GetDeckCapacity(void);
 void IncreaseDeckCapacity(unsigned);
 void SubtractCostFromDeckCapacity(unsigned);
@@ -259,6 +261,11 @@ void AddCardToDeck__Replacement(unsigned short cardId) {
   if (gDeckMenu.cardCount >= limit || !gTrunkCardQty[cardId])
     return;
 
+  if (CardExceedsCurrentDuelistLevel(cardId))
+    return;
+
+  SetCardInfo(cardId);
+
   gTrunkCardQty[cardId]--;
   gDeckMenu.cards[gDeckMenu.cardCount] = cardId;
   gDeckMenu.cardCount++;
@@ -327,8 +334,10 @@ void A_Submenu_Main__Replacement(void) {
         break;
       case NEW_A_BUTTON:
         switch (cursorState) {
-          case 0:
-            SetCardInfo(GetSelectedCardWithOffset(2));
+          case 0: {
+            u16 cardId = GetSelectedCardWithOffset(2);
+
+            SetCardInfoWithWarning(&cardId);
             PlayMusic(SFX_SELECT);
             ShowCardDetailView();
             sub_801EF30(0);
@@ -341,6 +350,7 @@ void A_Submenu_Main__Replacement(void) {
             WaitForVBlank();
             LoadCharblock1();
             break;
+          }
           case 1:
             MoveSelectedCardToTrunk();
             sub_801EF30(3);

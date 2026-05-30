@@ -19,6 +19,7 @@ extern u8 gUnk8094C37[];
 extern u8 gUnk8094CC3[];
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 extern u8 gDuelistLevelTooLowText[];
+extern unsigned gDuelistLevel;
 extern s8 gE0CFF4[];
 u32 GetDuelistLevel(void);
 extern u8 *g8E0CD10;
@@ -202,11 +203,27 @@ void InitializeRandomizedCardCosts(void) {
   }
 }
 
-static u16 GetConfiguredCardCost(u16 id) {
+static u32 GetConfiguredCardCost(u16 id) {
+  if (id >= NUM_TOTAL_CARDS)
+    return 0;
+
   if (gRuntimeConfig.randomize_card_costs_at_start == TRUE)
     return sRandomizedCardCosts[id];
 
-  return (u16)gCardData_NEW[id].cost;
+  return gCardData_NEW[id].cost;
+}
+
+u32 GetCardCostForDuelistCheck(u16 cardId) {
+  return GetConfiguredCardCost(cardId);
+}
+
+u8 CardExceedsCurrentDuelistLevel(u16 cardId) {
+  return gDuelistLevel < GetConfiguredCardCost(cardId);
+}
+
+void ApplyDuelistLevelTooLowCardDescription(void) {
+  if (gCardInfo.cost > gDuelistLevel)
+    gCardInfo.description = gDuelistLevelTooLowText;
 }
 
 static u8 *GetCardDescription_Hook(const CardData *card, u16 cardId) {
@@ -469,9 +486,7 @@ u8 LfsrNextByte__Replacement(void) {
 LYN_REPLACE_CHECK(SetCardInfoWithWarning);
 void SetCardInfoWithWarning__Replacement(unsigned short *id) {
   SetCardInfo__Replacement(*id);
-
-  if (gCardInfo.cost > GetDuelistLevel())
-    gCardInfo.description = gDuelistLevelTooLowText;
+  ApplyDuelistLevelTooLowCardDescription();
 }
 
 LYN_REPLACE_CHECK(TrySelectingAnte);

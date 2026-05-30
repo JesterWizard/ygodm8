@@ -50,6 +50,8 @@ static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u1
   u8 i = 0;
   u8 j = 0;
 
+  CpuFastFill16(0, dest, 2240 * sizeof(u16));
+
   while (*text != '^') {
     buffer[i] = *text;
     if (*text > 127)
@@ -102,6 +104,9 @@ void ShowCardDetailView__Replacement(void) {
   const u8 *text = gCardInfo.description + 2;
   const u8 *pageStarts[9];
   u16 pageBuffer[2240];
+
+  /* Vanilla clears g201CB60[] before writing; zero tilemap so stale page-nav glyphs do not show. */
+  CpuFastFill16(0, pageBuffer, sizeof(pageBuffer));
 
   text = GetCurrentLanguageString(text);
   if (*text == '^') {

@@ -103,6 +103,9 @@ void sub_800B288 (unsigned char);
 void SetFinalStat (struct StatMod*);
 void SetCardInfo (unsigned short);
 void SetCardInfoWithWarning (unsigned short*);
+u32 GetCardCostForDuelistCheck(u16 cardId);
+u8 CardExceedsCurrentDuelistLevel(u16 cardId);
+void ApplyDuelistLevelTooLowCardDescription(void);
 void sub_800B618 (void *r6); //TODO: change type
 void sub_800BCB0 (void *src); //TODO: change type
 

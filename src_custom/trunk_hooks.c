@@ -1,4 +1,5 @@
 #include "global.h"
+#include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
 #include "player_decks.h"
@@ -35,7 +36,6 @@ void ToggleSortMode(void);
 void QuitTrunkMenu(void);
 void RunTrunkTask(unsigned char);
 u8 sub_801F098(u16);
-unsigned GetDuelistLevel(void);
 u8 GetPlayerDeckSize(void);
 void AddCardToDeck(unsigned short);
 u8 TryRemoveCardFromDeck(u16);
@@ -206,31 +206,6 @@ static void WrapTrunkCursorToList(void) {
     gTrunkMenu.currentPos -= GetTrunkCardCount();
 }
 
-static void AddSelectedCardToDeck(void) {
-  u16 cardId = GetNthCardOnScreen(2);
-  u8 limit = GetRuntimeDeckLimit();
-
-  if (!GetAvailableTrunkQty(cardId)
-      || GetPlayerDeckSize() >= limit
-      || sub_801F098(cardId) != TRUE) {
-    PlayMusic(SFX_FORBIDDEN);
-    while (gPressedButtons & DPAD_RIGHT)
-      WaitForVBlank();
-    return;
-  }
-
-  SetCardInfo(cardId);
-  if (GetDuelistLevel() < gCardInfo.cost) {
-    PlayMusic(SFX_FORBIDDEN);
-    while (gPressedButtons & DPAD_RIGHT)
-      WaitForVBlank();
-    return;
-  }
-
-  AddCardToDeck(cardId);
-  PlayMusic(SFX_SELECT);
-}
-
 static void RemoveSelectedCardFromDeck(void) {
   u16 cardId = GetNthCardOnScreen(2);
 
@@ -248,6 +223,8 @@ static void RemoveSelectedCardFromDeck(void) {
   SyncCardOwnershipQty(cardId);
   PlayMusic(SFX_SELECT);
 }
+
+void TryAddSelectedCardToDeck__Replacement(void);
 
 LYN_REPLACE_CHECK(RunTrunkTask);
 void RunTrunkTask__Replacement(unsigned char task) {
@@ -274,7 +251,7 @@ void RunTrunkTask__Replacement(unsigned char task) {
       ToggleTrunkDisplayMode();
       break;
     case 7:
-      AddSelectedCardToDeck();
+      TryAddSelectedCardToDeck__Replacement();
       break;
     case 8:
       RemoveSelectedCardFromDeck();
@@ -411,8 +388,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
   u8 limit = GetRuntimeDeckLimit();
 
   if (GetAvailableTrunkQty(cardId) && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
-    SetCardInfo(cardId);
-    if (GetDuelistLevel() < gCardInfo.cost)
+    if (CardExceedsCurrentDuelistLevel(cardId))
       isCardRejected = 1;
   }
   else

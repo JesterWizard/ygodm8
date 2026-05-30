@@ -1,12 +1,10 @@
 #include "global.h"
+#include "card.h"
 #include "configs/runtime.h"
 
 extern unsigned char gTrunkCardQty[];
 extern u8 sub_801F098(u16);
 extern u8 GetPlayerDeckSize(void);
-extern unsigned GetDuelistLevel(void);
-extern void SetCardInfo(u16);
-extern struct CardInfo gCardInfo;
 unsigned short sub_800A4B0(unsigned short);
 unsigned short sub_800A528(void);
 
@@ -20,8 +18,10 @@ static u8 GetRuntimeDeckLimit(void) {
 
 LYN_REPLACE_CHECK(sub_800A4B0);
 unsigned short sub_800A4B0__Replacement(unsigned short id) {
-  /* sub_8009A94 uses this for trunk/deck quantity digit palette, not add-to-deck eligibility. */
+  /* sub_8009A94: palette for trunk row digits/ATK/DEF. Do not gate on deck full here. */
   if (!gTrunkCardQty[id])
+    return 0x4000;
+  if (CardExceedsCurrentDuelistLevel(id))
     return 0x4000;
   return 0x5000;
 }
