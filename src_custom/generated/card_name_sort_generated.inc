@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 20
+#define NUM_CUSTOM_NAME_SORT_CARDS 21
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -22,6 +22,7 @@ static const u8 sUnitedWeStandSortName[] APPEND_RODATA = "United We Stand";
 static const u8 sWaveMotionCannonSortName[] APPEND_RODATA = "Wave Motion Cannon";
 static const u8 sStJoanSortName[] APPEND_RODATA = "St Joan";
 static const u8 sPyramidOfLightSortName[] APPEND_RODATA = "Pyramid of Light";
+static const u8 sSoulExchangeSortName[] APPEND_RODATA = "Soul Exchange";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -39,6 +40,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0334, // Pyramid of Light
   0x0328, // Shield And Sword
   0x0321, // Sorcerer of Dark Magic
+  0x0335, // Soul Exchange
   0x032B, // Spell Canceller
   0x0333, // St Joan
   0x0330, // Ultimate Offering
@@ -62,11 +64,12 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   13, // Pyramid of Light
   14, // Shield And Sword
   15, // Sorcerer of Dark Magic
-  16, // Spell Canceller
-  17, // St Joan
-  18, // Ultimate Offering
-  19, // United We Stand
-  20, // Wave Motion Cannon
+  16, // Soul Exchange
+  17, // Spell Canceller
+  18, // St Joan
+  19, // Ultimate Offering
+  20, // United We Stand
+  21, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -110,6 +113,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sStJoanSortName;
   if (cardId == 0x0334)
     return (u8 *)sPyramidOfLightSortName;
+  if (cardId == 0x0335)
+    return (u8 *)sSoulExchangeSortName;
 
   return gCardNames[cardId];
 }

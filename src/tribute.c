@@ -1,6 +1,6 @@
 #include "global.h"
 
-unsigned char gNumTributes;
+extern unsigned char gNumTributes;
 
 static CONST_DATA signed char sNumRequiredTributes[] = {
   [0] = 0,

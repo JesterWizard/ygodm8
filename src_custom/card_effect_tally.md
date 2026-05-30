@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `46` effects
+- `47` effects
 
 ## Tally
 
@@ -21,6 +21,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Wave Motion Cannon` | `src_custom/spell_effects/wave_motion_cannon.c` |
 | `spell_effects` | `Pyramid of Light` | `src_custom/spell_effects/pyramid_of_light.c` |
 | `spell_effects` | `Exchange` | `src_custom/spell_effects/exchange.c` |
+| `spell_effects` | `Soul Exchange` | `src_custom/spell_effects/soul_exchange.c` |
 | `spell_effects` | `Mage Power` | `src_custom/spell_effects/mage_power.c` |
 | `spell_effects` | `United We Stand` | `src_custom/spell_effects/united_we_stand.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |

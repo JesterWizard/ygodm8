@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "dynamic_equip.h"
 #include "pyramid_of_light.h"
+#include "soul_exchange.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -28,6 +29,11 @@ unsigned char GetFirstNonEmptyMonZoneId(struct DuelCard *zone[]);
 void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
+void sub_80441D0(void);
+void MonsterActionMenu(void);
+void HandlePlayerBackrowAction(void);
+void DisplayNumRequiredTributesTextbox(unsigned char);
+void sub_80442AC(void);
 
 static void FinishEquipSpellTargeting(void)
 {
@@ -38,6 +44,78 @@ static void FinishEquipSpellTargeting(void)
 
   ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();
+}
+
+static void OpenPlayerMonsterActionMenu(void)
+{
+  if (gFixedZones[PLAYER_MONSTER_ROW][gDuelCursor.currentX]->id != CARD_NONE
+      && !gFixedZones[PLAYER_MONSTER_ROW][gDuelCursor.currentX]->isLocked) {
+    PlayMusic(SFX_SELECT);
+    MonsterActionMenu();
+  } else {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+  }
+}
+
+
+LYN_REPLACE_CHECK(sub_80441D0);
+void sub_80441D0__Replacement(void)
+{
+  switch (gDuelCursor.currentY) {
+    case PLAYER_MONSTER_ROW:
+      if (IsSoulExchangeActive()) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else {
+        OpenPlayerMonsterActionMenu();
+      }
+      break;
+    case OPPONENT_MONSTER_ROW:
+      if (IsSoulExchangeActive()) {
+        PerformSoulExchangeOpponentTribute();
+        break;
+      } else {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      }
+      break;
+    case PLAYER_BACKROW:
+      if (gFixedZones[PLAYER_BACKROW][gDuelCursor.currentX]->id == CARD_NONE) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else {
+        unsigned char numTributes = GetRitualNumRequiredTributes(
+            gFixedZones[PLAYER_BACKROW][gDuelCursor.currentX]->id);
+        if (!numTributes)
+          HandlePlayerBackrowAction();
+        else {
+          PlayMusic(SFX_FORBIDDEN);
+          DisplayNumRequiredTributesTextbox(numTributes);
+        }
+      }
+      break;
+    case PLAYER_HAND:
+      if (gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id == CARD_NONE
+          || gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else {
+        unsigned char numTributes = GetMonsterNumRequiredTributes(
+            gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id);
+        if (numTributes) {
+          PlayMusic(SFX_FORBIDDEN);
+          DisplayNumRequiredTributesTextbox(numTributes);
+        } else {
+          PlayMusic(SFX_SELECT);
+          sub_80442AC();
+        }
+      }
+      break;
+    default:
+      PlayMusic(SFX_FORBIDDEN);
+      WaitForVBlank();
+  }
 }
 
 LYN_REPLACE_CHECK(HandlePlayerBackrowAction);

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/monster_effects.h"
+#include "soul_exchange.h"
 
 extern void (*const gMonEffects[])(void);
 extern const u8 gCardLockAfterActivation_Hook[];
@@ -24,8 +25,6 @@ void ActivateNeedleWormEffect(void);
 void ActivateMysteriousPuppeteerEffect(void);
 unsigned char CanActivateKarateMan(void);
 void ActivateKarateManEffect(void);
-unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
-
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
@@ -153,11 +152,14 @@ void MonsterActionMenu__Replacement(void) {
       TryActivatingPermanentEffects();
       break;
     case 3:
+      if (IsSoulExchangeActive() && gDuelCursor.currentY == PLAYER_MONSTER_ROW) {
+        PlayMusic(SFX_FORBIDDEN);
+        UpdateDuelGfxExceptField();
+        break;
+      }
       PlayMusic(SFX_TRIBUTE);
-      IncrementNumTributes();
-      if (GetKaiserSeaHorseTributeCount(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id) == 2)
-        IncrementNumTributes();
-      ClearZoneAndSendMonToGraveyard2(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], 0);
+      ApplyMonsterTributeFromFixedRow(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], gDuelCursor.currentY);
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
       break;

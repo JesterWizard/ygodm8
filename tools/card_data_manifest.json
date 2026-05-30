@@ -12995,6 +12995,38 @@
       "big_art": "src_custom/assets/cards/80x80/pyramid_of_light.huff",
       "big_palette": "src_custom/assets/cards/80x80/pyramid_of_light.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/pyramid_of_light.lz"
+    },
+    {
+      "card_const": "SOUL_EXCHANGE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 100,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SoulExchange",
+        "pages": [
+          "A forbidden pact that trades life force between duelists.",
+          "This turn, you may tribute one opponent's monster",
+          "instead of one of your own for a tribute summon."
+        ]
+      },
+      "card_name": "Soul Exchange",
+      "password": [ 8, 8, 1, 7, 7, 3, 9, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SoulExchange",
+        "pages": [
+          "Tribute one of your opponent's monsters instead of your own this turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/soul_exchange.huff",
+      "big_palette": "src_custom/assets/cards/80x80/soul_exchange.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/soul_exchange.lz"
     }
   ]
 }

@@ -14,6 +14,7 @@ extern void EffectMagePower(void);
 extern void EffectUnitedWeStand(void);
 extern void EffectWaveMotionCannon(void);
 extern void EffectPyramidOfLight(void);
+extern void EffectSoulExchange(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -62,6 +63,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case PYRAMID_OF_LIGHT:
       EffectPyramidOfLight();
+      return;
+    case SOUL_EXCHANGE:
+      EffectSoulExchange();
       return;
     case EXCHANGE:
       EffectExchange();
