@@ -176,13 +176,13 @@ $(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.p
 	@echo "VALIDATE tools/validate_lynjump.py"
 	python3 tools/validate_lynjump.py
 	@echo "OBJCOPY $@"
-	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
+	$(OBJCOPY) -O binary --pad-to 0x9000020 $< $@
 	@echo "PATCH   tools/apply_lynjump.py"
 	python3 tools/apply_lynjump.py $(ELF) $@
 else
 $(ROM): $(ELF)
 	@echo "OBJCOPY $@"
-	$(OBJCOPY) -O binary --pad-to 0x9000000 $< $@
+	$(OBJCOPY) -O binary --pad-to 0x9000020 $< $@
 endif
 
 $(UPS): $(ROM) baserom.gba tools/make_ups.py
@@ -250,6 +250,15 @@ endef
 $(eval $(call compile_c_object_rule,$(C_BUILDDIR),$(C_SUBDIR)))
 $(eval $(call compile_c_object_rule,$(C_BUILDDIR_CUSTOM),$(C_SUBDIR_CUSTOM)))
 $(eval $(call compile_c_object_rule,$(CONFIGS_BUILDDIR),$(CONFIGS_SUBDIR)))
+
+$(C_BUILDDIR)/duel/trap_effects.o: src/duel/trap_effects.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+	@echo "CC      $<"
+	$(CPP) $(CPPFLAGS) $< -o $(C_BUILDDIR)/duel/trap_effects.i
+	@$(PREPROC) $(C_BUILDDIR)/duel/trap_effects.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR)/duel/trap_effects.s
+	@echo ".text\\n\\t.align\\t2, 0\\n" >> $(C_BUILDDIR)/duel/trap_effects.s
+	@echo "AS      $@"
+	$(AS) $(ASFLAGS) $(C_BUILDDIR)/duel/trap_effects.s -o $(C_BUILDDIR)/duel/trap_effects.o
+	$(OBJCOPY) --globalize-symbols=tools/trap_effects_exports.sym $@
 
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))

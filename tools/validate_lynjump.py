@@ -14,7 +14,7 @@ SECTION_RE = re.compile(
     r"\[\s*\d+\]\s+(\S+)\s+\S+\s+([0-9A-Fa-f]+)\s+[0-9A-Fa-f]+\s+([0-9A-Fa-f]+)\s+\S+\s+([A-Z]+)"
 )
 ROM_BASE = 0x08000000
-BASE_ROM_LIMIT = 0x09000000
+BASE_ROM_LIMIT = 0x09000020
 MAX_ROM_LIMIT = 0x0A000000
 APPEND_SECTIONS = {
     ".append_text",

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "constants/spell_effects.h"
 #include "cost_down.h"
 
 extern void (*const gSpellEffects[])(void);
@@ -24,8 +25,71 @@ extern void EffectAncientRules(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
+void ActivateTrapEffect(u16 lp);
+unsigned IsTrapTriggered(void);
 u8 TryPayChainEnergyCost(void);
 unsigned char IsSpellCancellerSpellLockActive(void);
+
+static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
+{
+  if (GetSpellType(spellId) == SPELL_TYPE_EQUIP)
+    return TRUE;
+
+  switch (spellId) {
+    case MAGE_POWER:
+    case UNITED_WE_STAND:
+    case MYSTICAL_SPACE_TYPHOON:
+    case WAVE_MOTION_CANNON:
+      return TRUE;
+    default:
+      break;
+  }
+
+  switch (spellEffect) {
+    case SPELL_EFFECT_MOOYAN_CURRY:
+    case SPELL_EFFECT_RED_MEDICINE:
+    case SPELL_EFFECT_GOBLINS_SECRET_REMEDY:
+    case SPELL_EFFECT_SOUL_OF_THE_PURE:
+    case SPELL_EFFECT_DIAN_KETO_THE_CURE_MASTER:
+    case SPELL_EFFECT_SPARKS:
+    case SPELL_EFFECT_HINOTAMA:
+    case SPELL_EFFECT_FINAL_FLAME:
+    case SPELL_EFFECT_OOKAZI:
+    case SPELL_EFFECT_TREMENDOUS_FIRE:
+    case SPELL_EFFECT_DARK_HOLE:
+    case SPELL_EFFECT_RAIGEKI:
+      return TRUE;
+    default:
+      return FALSE;
+  }
+}
+
+static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
+{
+  u8 spellRow;
+  u8 spellCol;
+
+  if (GetTypeGroup(spellId) != TYPE_GROUP_SPELL)
+    return TRUE;
+
+  if (GetSpellType(spellId) == SPELL_TYPE_EQUIP) {
+    spellRow = gSpellEffectData.row2;
+    spellCol = gSpellEffectData.col2;
+  } else {
+    spellRow = gSpellEffectData.row1;
+    spellCol = gSpellEffectData.col1;
+  }
+
+  gTrapEffectData.originRow = spellRow;
+  gTrapEffectData.originCol = spellCol;
+  gTrapEffectData.originCardId = gTurnZones[spellRow][spellCol]->id;
+
+  if (IsTrapTriggered() != TRUE || gHideEffectText)
+    return TRUE;
+
+  ActivateTrapEffect(0);
+  return FALSE;
+}
 
 LYN_REPLACE_CHECK(ActivateSpellEffect);
 void ActivateSpellEffect__Replacement(void)
@@ -44,6 +108,11 @@ void ActivateSpellEffect__Replacement(void)
   ResetCardEffectTextData();
   SetCardEffectTextType(1);
   SetCardInfo(gSpellEffectData.id);
+
+  if (!SpellHandlesOwnTrapResponse(gSpellEffectData.id, gCardInfo.spellEffect)) {
+    if (!TryResolveSpellActivationThroughTraps(gSpellEffectData.id))
+      return;
+  }
 
   switch (gSpellEffectData.id) {
     case CARD_OF_DEMISE:

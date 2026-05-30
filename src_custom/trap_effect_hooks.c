@@ -35,6 +35,7 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
 #define TRAP_SPIRIT_MESSAGE_A 18
 #define TRAP_SPIRIT_MESSAGE_L 19
 #define TRAP_DRAGON_CAPTURE_JAR 20
+#define TRAP_MAGIC_JAMMER 21
 
 extern s16 gUnk_8E1172C[];
 extern s16 gUnk_8E11738[];
@@ -199,6 +200,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_SPIRIT_MESSAGE_L:
     case TRAP_DRAGON_CAPTURE_JAR:
       ret = FALSE;
+      break;
+    case TRAP_MAGIC_JAMMER:
+      ret = FALSE;
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_SPELL) {
+        gTrapEffectData.trapCardId = TRAP_MAGIC_JAMMER;
+        ret = TRUE;
+      }
       break;
     default:
       ret = FALSE;

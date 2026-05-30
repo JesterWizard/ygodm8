@@ -120,6 +120,10 @@ static const unsigned char sAncientRulesBigArt[] __attribute__((section(".append
 static const unsigned short sAncientRulesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/ancient_rules.gbapal");
 static const unsigned char sAncientRulesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/ancient_rules.lz");
 
+static const unsigned char sMagicJammerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/magic_jammer.huff");
+static const unsigned short sMagicJammerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/magic_jammer.gbapal");
+static const unsigned char sMagicJammerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/magic_jammer.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -151,6 +155,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x033C] = sCostDownBigArt,
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigArt,
   [0x033E] = sAncientRulesBigArt,
+  [0x033F] = sMagicJammerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -184,6 +189,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x033C] = sCostDownBigPalette,
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigPalette,
   [0x033E] = sAncientRulesBigPalette,
+  [0x033F] = sMagicJammerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -217,6 +223,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x033C] = 0,
   [0x033D] = 0,
   [0x033E] = 0,
+  [0x033F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -250,4 +257,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x033C] = sCostDownMiniArt,
   [0x033D] = sBlueEyesAlternativeWhiteDragonMiniArt,
   [0x033E] = sAncientRulesMiniArt,
+  [0x033F] = sMagicJammerMiniArt,
 };

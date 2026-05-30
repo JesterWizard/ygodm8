@@ -13295,6 +13295,37 @@
       "big_art": "src_custom/assets/cards/80x80/ancient_rules.huff",
       "big_palette": "src_custom/assets/cards/80x80/ancient_rules.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/ancient_rules.lz"
+    },
+    {
+      "card_const": "MAGIC_JAMMER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 21,
+      "description": {
+        "symbol": "gDescription_MagicJammer",
+        "pages": [
+          "A counter trap that jams an enemy spell.",
+          "Negate and destroy an opponent's spell activation."
+        ]
+      },
+      "card_name": "Magic Jammer",
+      "password": [ 4, 2, 9, 1, 7, 5, 7, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MagicJammer",
+        "pages": [
+          "Negate and destroy an opponent's spell."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/magic_jammer.huff",
+      "big_palette": "src_custom/assets/cards/80x80/magic_jammer.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/magic_jammer.lz"
     }
   ]
 }

@@ -1,0 +1,131 @@
+#include "global.h"
+#include "common-chax.h"
+
+#define TRAP_NONE 0
+#define TRAP_WIDESPREAD_RUIN 1
+#define TRAP_HOUSE_OF_ADHESIVE_TAPE 2
+#define TRAP_EATGABOON 3
+#define TRAP_BEAR_TRAP 4
+#define TRAP_INVISIBLE_WIRE 5
+#define TRAP_ACID_TRAP_HOLE 6
+#define TRAP_GOBLIN_FAN 7
+#define TRAP_BAD_REACTION_TO_SIMOCHI 8
+#define TRAP_REVERSE_TRAP 9
+#define TRAP_FAKE_TRAP 10
+#define TRAP_ANTI_RAIGEKI 11
+#define TRAP_INFINITE_DISMISSAL 12
+#define TRAP_TORRENTIAL_TRIBUTE 13
+#define TRAP_AMAZON_ARCHERS 14
+#define TRAP_DESTINY_BOARD 15
+#define TRAP_SPIRIT_MESSAGE_I 16
+#define TRAP_SPIRIT_MESSAGE_N 17
+#define TRAP_SPIRIT_MESSAGE_A 18
+#define TRAP_SPIRIT_MESSAGE_L 19
+#define TRAP_MAGIC_JAMMER 21
+
+extern void EffectMagicJammer(void);
+
+extern void EffectTrapNone(void);
+extern void EffectWideSpreadRuin(void);
+extern void EffectHouseOfAdhesiveTape(void);
+extern void EffectEatgaboon(void);
+extern void EffectBearTrap(void);
+extern void EffectInvisibleWire(void);
+extern void EffectAcidTrapHole(void);
+extern void EffectGoblinFan(u16 lp);
+extern void EffectBadReactionToSimochi(u16 lp);
+extern void EffectReverseTrap(void);
+extern void EffectFakeTrap(void);
+extern void EffectAntiRaigeki(void);
+extern void EffectInfiniteDismissal(void);
+extern void EffectTorrentialTribute(void);
+extern void EffectAmazonArchers(void);
+extern void EffectDestinyBoard(void);
+extern void EffectSpiritMessageI(void);
+extern void EffectSpiritMessageN(void);
+extern void EffectSpiritMessageA(void);
+extern void EffectSpiritMessageL(void);
+
+void ActivateTrapEffect(u16 lp);
+
+static void ActivateTrapEffectVanillaBody(u16 lp)
+{
+  ResetCardEffectTextData();
+  SetCardEffectTextType(3);
+
+  switch (gTrapEffectData.trapCardId) {
+    case TRAP_NONE:
+      EffectTrapNone();
+      break;
+    case TRAP_WIDESPREAD_RUIN:
+      EffectWideSpreadRuin();
+      break;
+    case TRAP_HOUSE_OF_ADHESIVE_TAPE:
+      EffectHouseOfAdhesiveTape();
+      break;
+    case TRAP_EATGABOON:
+      EffectEatgaboon();
+      break;
+    case TRAP_BEAR_TRAP:
+      EffectBearTrap();
+      break;
+    case TRAP_INVISIBLE_WIRE:
+      EffectInvisibleWire();
+      break;
+    case TRAP_ACID_TRAP_HOLE:
+      EffectAcidTrapHole();
+      break;
+    case TRAP_GOBLIN_FAN:
+      EffectGoblinFan(lp);
+      break;
+    case TRAP_BAD_REACTION_TO_SIMOCHI:
+      EffectBadReactionToSimochi(lp);
+      break;
+    case TRAP_REVERSE_TRAP:
+      EffectReverseTrap();
+      break;
+    case TRAP_FAKE_TRAP:
+      EffectFakeTrap();
+      break;
+    case TRAP_ANTI_RAIGEKI:
+      EffectAntiRaigeki();
+      break;
+    case TRAP_INFINITE_DISMISSAL:
+      EffectInfiniteDismissal();
+      break;
+    case TRAP_TORRENTIAL_TRIBUTE:
+      EffectTorrentialTribute();
+      break;
+    case TRAP_AMAZON_ARCHERS:
+      EffectAmazonArchers();
+      break;
+    case TRAP_DESTINY_BOARD:
+      EffectDestinyBoard();
+      break;
+    case TRAP_SPIRIT_MESSAGE_I:
+      EffectSpiritMessageI();
+      break;
+    case TRAP_SPIRIT_MESSAGE_N:
+      EffectSpiritMessageN();
+      break;
+    case TRAP_SPIRIT_MESSAGE_A:
+      EffectSpiritMessageA();
+      break;
+    case TRAP_SPIRIT_MESSAGE_L:
+      EffectSpiritMessageL();
+      break;
+  }
+}
+
+LYN_REPLACE_CHECK(ActivateTrapEffect);
+void ActivateTrapEffect__Replacement(u16 lp)
+{
+  if (gTrapEffectData.trapCardId == TRAP_MAGIC_JAMMER) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectMagicJammer();
+    return;
+  }
+
+  ActivateTrapEffectVanillaBody(lp);
+}

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 30
+#define NUM_CUSTOM_NAME_SORT_CARDS 31
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -32,6 +32,7 @@ static const u8 sFairyBoxSortName[] APPEND_RODATA = "Fairy Box";
 static const u8 sCostDownSortName[] APPEND_RODATA = "Cost Down";
 static const u8 sBlueEyesAlternativeWhiteDragonSortName[] APPEND_RODATA = "Blue-Eyes Alternative White Dragon";
 static const u8 sAncientRulesSortName[] APPEND_RODATA = "Ancient Rules";
+static const u8 sMagicJammerSortName[] APPEND_RODATA = "Magic Jammer";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -49,6 +50,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x033B, // Fairy Box
   0x032F, // Kaibaman
   0x032E, // Mage Power
+  0x033F, // Magic Jammer
   0x0323, // Magician's Valkyria
   0x033A, // Mask of Restrict
   0x0336, // Mystical Space Typhoon
@@ -82,21 +84,22 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   13, // Fairy Box
   14, // Kaibaman
   15, // Mage Power
-  16, // Magician's Valkyria
-  17, // Mask of Restrict
-  18, // Mystical Space Typhoon
-  19, // Obnoxious Celtic Guardian
-  20, // Paladin Of White Dragon
-  21, // Pyramid of Light
-  22, // Rare Metal Dragon
-  23, // Shield And Sword
-  24, // Sorcerer of Dark Magic
-  25, // Soul Exchange
-  26, // Spell Canceller
-  27, // St Joan
-  28, // Ultimate Offering
-  29, // United We Stand
-  30, // Wave Motion Cannon
+  16, // Magic Jammer
+  17, // Magician's Valkyria
+  18, // Mask of Restrict
+  19, // Mystical Space Typhoon
+  20, // Obnoxious Celtic Guardian
+  21, // Paladin Of White Dragon
+  22, // Pyramid of Light
+  23, // Rare Metal Dragon
+  24, // Shield And Sword
+  25, // Sorcerer of Dark Magic
+  26, // Soul Exchange
+  27, // Spell Canceller
+  28, // St Joan
+  29, // Ultimate Offering
+  30, // United We Stand
+  31, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -160,6 +163,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sBlueEyesAlternativeWhiteDragonSortName;
   if (cardId == 0x033E)
     return (u8 *)sAncientRulesSortName;
+  if (cardId == 0x033F)
+    return (u8 *)sMagicJammerSortName;
 
   return gCardNames[cardId];
 }
