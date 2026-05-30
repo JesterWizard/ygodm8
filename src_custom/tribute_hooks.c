@@ -2,12 +2,50 @@
 #include "common-chax.h"
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
+#include "cost_down.h"
 #include "tribute.h"
 
 extern unsigned char gNumTributes;
 
 void ResetNumTributes(void);
 int GetNumRequiredTributes(unsigned short cardId);
+
+static int LookupRequiredTributes(u8 level)
+{
+  if (level <= 4)
+    return 0;
+  if (level <= 6)
+    return 1;
+  if (level <= 8)
+    return 2;
+  return 3;
+}
+
+int GetNumRequiredTributesWithCostDown(u16 cardId)
+{
+  SetCardInfo(cardId);
+
+  if (ShouldApplyCostDownLevelForTribute(cardId))
+    gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
+
+  return LookupRequiredTributes(gCardInfo.level);
+}
+
+int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
+{
+  SetCardInfo(cardId);
+
+  if (ShouldApplyCostDownForHandSlot(handSlot, cardId))
+    gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
+
+  return LookupRequiredTributes(gCardInfo.level);
+}
+
+LYN_REPLACE_CHECK(GetNumRequiredTributes);
+int GetNumRequiredTributes__Replacement(unsigned short cardId)
+{
+  return GetNumRequiredTributesWithCostDown(cardId);
+}
 
 LYN_REPLACE_CHECK(ResetNumTributes);
 void ResetNumTributes__Replacement(void)
@@ -26,7 +64,7 @@ int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
   if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return 0;
 
-  requiredTributes = GetNumRequiredTributes(cardId);
+  requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
   paidTributes = (int)gNumTributes;
 
   if (gSoulExchangeTributeCredit)

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "wave_motion_cannon.h"
+#include "cost_down.h"
 
 extern unsigned char* g8E1168C[]; //attribute mini-icons
 extern unsigned char gSharedMem[];
@@ -12,6 +13,7 @@ extern const unsigned char g89A81DE[];
 extern const unsigned char g89A7F1E[][64];
 extern const unsigned char g89A875E[][64];
 extern const unsigned char g89A849E[][64];
+extern const unsigned char g89A7ADE[][64];
 extern u8 gDigitBufferU16[];
 
 void sub_80573D0(void* arg0, unsigned short cardId);
@@ -94,6 +96,29 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
 }
 
 void sub_80576B4(unsigned char* arg0, unsigned short cardId);
+
+static int GetMiniCardTributeCount(u16 cardId)
+{
+  u8 i;
+
+  if (!gCostDownActive)
+    return GetNumRequiredTributesWithCostDown(cardId);
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (ShouldApplyCostDownForHandSlot(i, cardId))
+      return GetNumRequiredTributesForHandSlot(i, cardId);
+  }
+
+  return GetNumRequiredTributesWithCostDown(cardId);
+}
+
+LYN_REPLACE_CHECK(sub_80576EC);
+void sub_80576EC__Replacement(unsigned char* arg0, unsigned short cardId) {
+  signed char numTributes = GetMiniCardTributeCount(cardId);
+
+  if (numTributes > 0)
+    CpuCopy16(g89A7ADE[numTributes], arg0, 64);
+}
 
 LYN_REPLACE_CHECK(sub_80576B4);
 void sub_80576B4__Replacement(unsigned char* arg0, unsigned short cardId) {

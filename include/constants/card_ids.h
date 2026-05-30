@@ -829,11 +829,12 @@
 #define OBNOXIOUS_CELTIC_GUARDIAN                0x0339
 #define MASK_OF_RESTRICT                         0x033A
 #define FAIRY_BOX                                0x033B
+#define COST_DOWN                                0x033C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x033C
-#define NUM_CUSTOM_CARDS                        0x001B
+#define NUM_TOTAL_CARDS                         0x033D
+#define NUM_CUSTOM_CARDS                        0x001C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

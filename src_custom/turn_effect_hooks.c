@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "delayed_effects.h"
+#include "cost_down.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -160,6 +161,7 @@ LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
+  ClearCostDown();
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();

@@ -13202,6 +13202,37 @@
       "big_art": "src_custom/assets/cards/80x80/fairy_box.huff",
       "big_palette": "src_custom/assets/cards/80x80/fairy_box.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/fairy_box.lz"
+    },
+    {
+      "card_const": "COST_DOWN",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_CostDown",
+        "pages": [
+          "A spell that reduces monster levels in hand.",
+          "Each monster in your hand loses 2 levels until end of turn."
+        ]
+      },
+      "card_name": "Cost Down",
+      "password": [ 7, 2, 3, 2, 7, 4, 4, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_CostDown",
+        "pages": [
+          "All monsters in your hand are reduced by 2 levels until end of turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/cost_down.huff",
+      "big_palette": "src_custom/assets/cards/80x80/cost_down.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/cost_down.lz"
     }
   ]
 }

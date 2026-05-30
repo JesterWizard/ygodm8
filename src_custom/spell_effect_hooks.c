@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "cost_down.h"
 
 extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfDemise(void);
@@ -18,6 +19,7 @@ extern void EffectPyramidOfLight(void);
 extern void EffectSoulExchange(void);
 extern void EffectMysticalSpaceTyphoon(void);
 extern void EffectDoubleSummon(void);
+extern void EffectCostDown(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -75,6 +77,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case DOUBLE_SUMMON:
       EffectDoubleSummon();
+      return;
+    case COST_DOWN:
+      EffectCostDown();
       return;
     case EXCHANGE:
       EffectExchange();

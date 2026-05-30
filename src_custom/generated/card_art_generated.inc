@@ -108,6 +108,10 @@ static const unsigned char sFairyBoxBigArt[] __attribute__((section(".append_ass
 static const unsigned short sFairyBoxBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/fairy_box.gbapal");
 static const unsigned char sFairyBoxMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/fairy_box.lz");
 
+static const unsigned char sCostDownBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/cost_down.huff");
+static const unsigned short sCostDownBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/cost_down.gbapal");
+static const unsigned char sCostDownMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/cost_down.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -136,6 +140,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0339] = sObnoxiousCelticGuardianBigArt,
   [0x033A] = sMaskOfRestrictBigArt,
   [0x033B] = sFairyBoxBigArt,
+  [0x033C] = sCostDownBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -166,6 +171,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0339] = sObnoxiousCelticGuardianBigPalette,
   [0x033A] = sMaskOfRestrictBigPalette,
   [0x033B] = sFairyBoxBigPalette,
+  [0x033C] = sCostDownBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -196,6 +202,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0339] = 0,
   [0x033A] = 0,
   [0x033B] = 0,
+  [0x033C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -226,4 +233,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0339] = sObnoxiousCelticGuardianMiniArt,
   [0x033A] = sMaskOfRestrictMiniArt,
   [0x033B] = sFairyBoxMiniArt,
+  [0x033C] = sCostDownMiniArt,
 };

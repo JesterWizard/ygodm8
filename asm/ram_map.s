@@ -86,6 +86,11 @@ _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 @ Bitfield for one-shot delayed duel effects keyed by duelist.
 _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 
+@ Active while Cost Down reduces monster levels in the active duelist's hand.
+_kernel_malloc_ewram gCostDownActive, 1
+@ DUEL_PLAYER or DUEL_OPPONENT; set when Cost Down resolves.
+_kernel_malloc_ewram gCostDownTargetDuelist, 1
+
 @ Per-board-cell Copycat stats copied on activation (20 cells x 5 bytes).
 _kernel_malloc_ewram_array gCopycatBoardStats, 0x64
 

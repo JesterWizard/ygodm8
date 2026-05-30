@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "player_decks.h"
 #include "copycat.h"
+#include "cost_down.h"
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -402,6 +403,10 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, ptr->stage);
     gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, ptr->stage);
   }
+
+  if (gDuelCursor.currentY == PLAYER_HAND
+      && ShouldApplyCostDownForHandSlot(gDuelCursor.currentX, gCardInfo.id))
+    gCardInfo.level = GetCostDownAdjustedLevel(gCardInfo.id, gCardInfo.level);
 
   if (gShieldAndSwordActive == TRUE && GetTypeGroup(gCardInfo.id) == TYPE_GROUP_MONSTER) {
     u16 atk = gCardInfo.atk;

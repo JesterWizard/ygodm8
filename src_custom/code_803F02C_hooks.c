@@ -3,6 +3,7 @@
 #include "delayed_effects.h"
 #include "copycat.h"
 #include "dynamic_equip.h"
+#include "cost_down.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -125,6 +126,7 @@ void InitBoard__Replacement(void) {
   ResetDelayedDuelEffects();
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
+  ClearCostDown();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)

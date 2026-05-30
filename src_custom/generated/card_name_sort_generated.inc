@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 27
+#define NUM_CUSTOM_NAME_SORT_CARDS 28
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -29,6 +29,7 @@ static const u8 sDoubleSummonSortName[] APPEND_RODATA = "Double Summon";
 static const u8 sObnoxiousCelticGuardianSortName[] APPEND_RODATA = "Obnoxious Celtic Guardian";
 static const u8 sMaskOfRestrictSortName[] APPEND_RODATA = "Mask of Restrict";
 static const u8 sFairyBoxSortName[] APPEND_RODATA = "Fairy Box";
+static const u8 sCostDownSortName[] APPEND_RODATA = "Cost Down";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -37,6 +38,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0327, // Card Of Sanctity
   0x032A, // Chain Energy
   0x032D, // Copycat
+  0x033C, // Cost Down
   0x0322, // Deck Destruction Virus
   0x0338, // Double Summon
   0x032C, // Exchange
@@ -67,27 +69,28 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   4, // Card Of Sanctity
   5, // Chain Energy
   6, // Copycat
-  7, // Deck Destruction Virus
-  8, // Double Summon
-  9, // Exchange
-  10, // Fairy Box
-  11, // Kaibaman
-  12, // Mage Power
-  13, // Magician's Valkyria
-  14, // Mask of Restrict
-  15, // Mystical Space Typhoon
-  16, // Obnoxious Celtic Guardian
-  17, // Paladin Of White Dragon
-  18, // Pyramid of Light
-  19, // Rare Metal Dragon
-  20, // Shield And Sword
-  21, // Sorcerer of Dark Magic
-  22, // Soul Exchange
-  23, // Spell Canceller
-  24, // St Joan
-  25, // Ultimate Offering
-  26, // United We Stand
-  27, // Wave Motion Cannon
+  7, // Cost Down
+  8, // Deck Destruction Virus
+  9, // Double Summon
+  10, // Exchange
+  11, // Fairy Box
+  12, // Kaibaman
+  13, // Mage Power
+  14, // Magician's Valkyria
+  15, // Mask of Restrict
+  16, // Mystical Space Typhoon
+  17, // Obnoxious Celtic Guardian
+  18, // Paladin Of White Dragon
+  19, // Pyramid of Light
+  20, // Rare Metal Dragon
+  21, // Shield And Sword
+  22, // Sorcerer of Dark Magic
+  23, // Soul Exchange
+  24, // Spell Canceller
+  25, // St Joan
+  26, // Ultimate Offering
+  27, // United We Stand
+  28, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -145,6 +148,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMaskOfRestrictSortName;
   if (cardId == 0x033B)
     return (u8 *)sFairyBoxSortName;
+  if (cardId == 0x033C)
+    return (u8 *)sCostDownSortName;
 
   return gCardNames[cardId];
 }
