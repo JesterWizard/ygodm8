@@ -116,6 +116,10 @@ static const unsigned char sBlueEyesAlternativeWhiteDragonBigArt[] __attribute__
 static const unsigned short sBlueEyesAlternativeWhiteDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.gbapal");
 static const unsigned char sBlueEyesAlternativeWhiteDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/blue_eyes_alternative_white_dragon.lz");
 
+static const unsigned char sAncientRulesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/ancient_rules.huff");
+static const unsigned short sAncientRulesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/ancient_rules.gbapal");
+static const unsigned char sAncientRulesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/ancient_rules.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -146,6 +150,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x033B] = sFairyBoxBigArt,
   [0x033C] = sCostDownBigArt,
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigArt,
+  [0x033E] = sAncientRulesBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -178,6 +183,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x033B] = sFairyBoxBigPalette,
   [0x033C] = sCostDownBigPalette,
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigPalette,
+  [0x033E] = sAncientRulesBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -210,6 +216,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x033B] = 0,
   [0x033C] = 0,
   [0x033D] = 0,
+  [0x033E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -242,4 +249,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x033B] = sFairyBoxMiniArt,
   [0x033C] = sCostDownMiniArt,
   [0x033D] = sBlueEyesAlternativeWhiteDragonMiniArt,
+  [0x033E] = sAncientRulesMiniArt,
 };

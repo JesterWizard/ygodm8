@@ -157,6 +157,16 @@ static u8 HandZoneHasMatchingType(struct DuelCard **handRow, u8 zone, u8 type)
   return gCardInfo.type == type;
 }
 
+static u8 HandZoneMatchesPredicate(struct DuelCard **handRow, u8 zone, HandCardPredicate predicate)
+{
+  u16 cardId = handRow[zone]->id;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  return predicate(cardId);
+}
+
 static u8 FindFirstOccupiedHandZone(struct DuelCard **handRow)
 {
   u8 zone;
@@ -225,6 +235,53 @@ APPEND_TEXT s8 SelectHandCardMatchingType(struct DuelCard **handRow, u8 type)
     }
     else if (gNewButtons & A_BUTTON) {
       if (HandZoneHasMatchingType(handRow, gDuelCursor.currentX, type)) {
+        PlayMusic(SFX_SELECT);
+        running = FALSE;
+      } else {
+        PlayMusic(SFX_FORBIDDEN);
+      }
+    }
+
+    WaitForVBlank();
+  }
+
+  return gDuelCursor.currentX;
+}
+
+APPEND_TEXT s8 SelectHandCardMatchingPredicate(struct DuelCard **handRow, HandCardPredicate predicate)
+{
+  struct DuelCursor savedCursor = gDuelCursor;
+  u8 scrollY;
+  u8 running;
+
+  InitButtonMaps();
+  gDuelCursor.currentY = PLAYER_HAND_ROW;
+  gDuelCursor.destY = PLAYER_HAND_ROW;
+  gDuelCursor.currentX = FindFirstOccupiedHandZone(handRow);
+  gDuelCursor.destX = gDuelCursor.currentX;
+  DisplayCardInfoBar();
+  sub_8041E70(savedCursor.currentY, PLAYER_HAND_ROW);
+
+  WaitForNoButtonsHeld();
+  InitButtonMaps();
+
+  running = TRUE;
+  while (running) {
+    scrollY = gDuelCursor.currentY;
+    UpdateFilteredInput_WithRepeat();
+
+    if (gRepeatedOrNewButtons & DPAD_LEFT) {
+      MoveCursorLeft();
+      DisplayCardInfoBar();
+      sub_8041E70(scrollY, gDuelCursor.currentY);
+    }
+    else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
+      MoveCursorRight();
+      DisplayCardInfoBar();
+      sub_8041E70(scrollY, gDuelCursor.currentY);
+    }
+    else if (gNewButtons & A_BUTTON) {
+      if (HandZoneMatchesPredicate(handRow, gDuelCursor.currentX, predicate)) {
         PlayMusic(SFX_SELECT);
         running = FALSE;
       } else {

@@ -20,6 +20,7 @@ extern void EffectSoulExchange(void);
 extern void EffectMysticalSpaceTyphoon(void);
 extern void EffectDoubleSummon(void);
 extern void EffectCostDown(void);
+extern void EffectAncientRules(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -80,6 +81,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case COST_DOWN:
       EffectCostDown();
+      return;
+    case ANCIENT_RULES:
+      EffectAncientRules();
       return;
     case EXCHANGE:
       EffectExchange();

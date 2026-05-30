@@ -13264,6 +13264,37 @@
       "big_art": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.huff",
       "big_palette": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/blue_eyes_alternative_white_dragon.lz"
+    },
+    {
+      "card_const": "ANCIENT_RULES",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_AncientRules",
+        "pages": [
+          "A spell that calls forth high-level normal monsters.",
+          "You can summon a level 5+ normal monster from your hand."
+        ]
+      },
+      "card_name": "Ancient Rules",
+      "password": [ 5, 8, 6, 3, 3, 4, 6, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_AncientRules",
+        "pages": [
+          "Summon a level 5+ normal monster from hand."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/ancient_rules.huff",
+      "big_palette": "src_custom/assets/cards/80x80/ancient_rules.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/ancient_rules.lz"
     }
   ]
 }

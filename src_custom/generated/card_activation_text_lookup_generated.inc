@@ -48,6 +48,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { FAIRY_BOX, gActivationDescription_FairyBox },
   { COST_DOWN, gActivationDescription_CostDown },
   { BLUE_EYES_ALTERNATIVE_WHITE_DRAGON, gActivationDescription_BlueEyesAlternativeWhiteDragon },
+  { ANCIENT_RULES, gActivationDescription_AncientRules },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

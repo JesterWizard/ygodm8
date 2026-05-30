@@ -831,11 +831,12 @@
 #define FAIRY_BOX                                0x033B
 #define COST_DOWN                                0x033C
 #define BLUE_EYES_ALTERNATIVE_WHITE_DRAGON       0x033D
+#define ANCIENT_RULES                            0x033E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x033E
-#define NUM_CUSTOM_CARDS                        0x001D
+#define NUM_TOTAL_CARDS                         0x033F
+#define NUM_CUSTOM_CARDS                        0x001E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

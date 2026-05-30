@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 29
+#define NUM_CUSTOM_NAME_SORT_CARDS 30
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -31,8 +31,10 @@ static const u8 sMaskOfRestrictSortName[] APPEND_RODATA = "Mask of Restrict";
 static const u8 sFairyBoxSortName[] APPEND_RODATA = "Fairy Box";
 static const u8 sCostDownSortName[] APPEND_RODATA = "Cost Down";
 static const u8 sBlueEyesAlternativeWhiteDragonSortName[] APPEND_RODATA = "Blue-Eyes Alternative White Dragon";
+static const u8 sAncientRulesSortName[] APPEND_RODATA = "Ancient Rules";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
+  0x033E, // Ancient Rules
   0x033D, // Blue-Eyes Alternative White Dragon
   0x0329, // Blue-Eyes Chaos Max Dragon
   0x0324, // Blue-Eyes Shining Dragon
@@ -65,35 +67,36 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
-  1, // Blue-Eyes Alternative White Dragon
-  2, // Blue-Eyes Chaos Max Dragon
-  3, // Blue-Eyes Shining Dragon
-  4, // Card Of Demise
-  5, // Card Of Sanctity
-  6, // Chain Energy
-  7, // Copycat
-  8, // Cost Down
-  9, // Deck Destruction Virus
-  10, // Double Summon
-  11, // Exchange
-  12, // Fairy Box
-  13, // Kaibaman
-  14, // Mage Power
-  15, // Magician's Valkyria
-  16, // Mask of Restrict
-  17, // Mystical Space Typhoon
-  18, // Obnoxious Celtic Guardian
-  19, // Paladin Of White Dragon
-  20, // Pyramid of Light
-  21, // Rare Metal Dragon
-  22, // Shield And Sword
-  23, // Sorcerer of Dark Magic
-  24, // Soul Exchange
-  25, // Spell Canceller
-  26, // St Joan
-  27, // Ultimate Offering
-  28, // United We Stand
-  29, // Wave Motion Cannon
+  1, // Ancient Rules
+  2, // Blue-Eyes Alternative White Dragon
+  3, // Blue-Eyes Chaos Max Dragon
+  4, // Blue-Eyes Shining Dragon
+  5, // Card Of Demise
+  6, // Card Of Sanctity
+  7, // Chain Energy
+  8, // Copycat
+  9, // Cost Down
+  10, // Deck Destruction Virus
+  11, // Double Summon
+  12, // Exchange
+  13, // Fairy Box
+  14, // Kaibaman
+  15, // Mage Power
+  16, // Magician's Valkyria
+  17, // Mask of Restrict
+  18, // Mystical Space Typhoon
+  19, // Obnoxious Celtic Guardian
+  20, // Paladin Of White Dragon
+  21, // Pyramid of Light
+  22, // Rare Metal Dragon
+  23, // Shield And Sword
+  24, // Sorcerer of Dark Magic
+  25, // Soul Exchange
+  26, // Spell Canceller
+  27, // St Joan
+  28, // Ultimate Offering
+  29, // United We Stand
+  30, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -155,6 +158,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sCostDownSortName;
   if (cardId == 0x033D)
     return (u8 *)sBlueEyesAlternativeWhiteDragonSortName;
+  if (cardId == 0x033E)
+    return (u8 *)sAncientRulesSortName;
 
   return gCardNames[cardId];
 }
