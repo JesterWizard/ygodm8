@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_TRUNK_CARDS 18
+#define NUM_CUSTOM_TRUNK_CARDS 19
 
 static const u16 gCustomTrunkCards[NUM_CUSTOM_TRUNK_CARDS] APPEND_RODATA = {
   SORCERER_OF_DARK_MAGIC,
@@ -21,4 +21,5 @@ static const u16 gCustomTrunkCards[NUM_CUSTOM_TRUNK_CARDS] APPEND_RODATA = {
   ULTIMATE_OFFERING,
   UNITED_WE_STAND,
   WAVE_MOTION_CANNON,
+  ST_JOAN,
 };

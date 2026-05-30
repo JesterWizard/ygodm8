@@ -72,6 +72,10 @@ static const unsigned char sWaveMotionCannonBigArt[] __attribute__((section(".ap
 static const unsigned short sWaveMotionCannonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/wave_motion_cannon.gbapal");
 static const unsigned char sWaveMotionCannonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/wave_motion_cannon.lz");
 
+static const unsigned char sStJoanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/st_joan.huff");
+static const unsigned short sStJoanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/st_joan.gbapal");
+static const unsigned char sStJoanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/st_joan.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -91,6 +95,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0330] = sUltimateOfferingBigArt,
   [0x0331] = sUnitedWeStandBigArt,
   [0x0332] = sWaveMotionCannonBigArt,
+  [0x0333] = sStJoanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -112,6 +117,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0330] = sUltimateOfferingBigPalette,
   [0x0331] = sUnitedWeStandBigPalette,
   [0x0332] = sWaveMotionCannonBigPalette,
+  [0x0333] = sStJoanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -133,6 +139,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0330] = 0,
   [0x0331] = 0,
   [0x0332] = 0,
+  [0x0333] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -154,4 +161,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0330] = sUltimateOfferingMiniArt,
   [0x0331] = sUnitedWeStandMiniArt,
   [0x0332] = sWaveMotionCannonMiniArt,
+  [0x0333] = sStJoanMiniArt,
 };

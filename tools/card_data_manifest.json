@@ -12938,6 +12938,31 @@
       "big_art": "src_custom/assets/cards/80x80/wave_motion_cannon.huff",
       "big_palette": "src_custom/assets/cards/80x80/wave_motion_cannon.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/wave_motion_cannon.lz"
+    },
+    {
+      "card_const": "ST_JOAN",
+      "atk": 2800,
+      "def": 2000,
+      "cost": 58,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 8,
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_StJoan",
+        "pages": [
+          "A holy maiden called Jean D'Arc who led armies by divine will.",
+          "Raised to sainthood, she now fights on as St. Joan in holy light."
+        ]
+      },
+      "card_name": "St Joan",
+      "password": [ 2, 1, 1, 7, 5, 6, 3, 2 ],
+      "big_art": "src_custom/assets/cards/80x80/st_joan.huff",
+      "big_palette": "src_custom/assets/cards/80x80/st_joan.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/st_joan.lz"
     }
   ]
 }
