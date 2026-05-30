@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 19
+#define NUM_CUSTOM_NAME_SORT_CARDS 20
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -21,6 +21,7 @@ static const u8 sUltimateOfferingSortName[] APPEND_RODATA = "Ultimate Offering";
 static const u8 sUnitedWeStandSortName[] APPEND_RODATA = "United We Stand";
 static const u8 sWaveMotionCannonSortName[] APPEND_RODATA = "Wave Motion Cannon";
 static const u8 sStJoanSortName[] APPEND_RODATA = "St Joan";
+static const u8 sPyramidOfLightSortName[] APPEND_RODATA = "Pyramid of Light";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -35,6 +36,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032E, // Mage Power
   0x0323, // Magician's Valkyria
   0x0325, // Paladin Of White Dragon
+  0x0334, // Pyramid of Light
   0x0328, // Shield And Sword
   0x0321, // Sorcerer of Dark Magic
   0x032B, // Spell Canceller
@@ -57,13 +59,14 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   10, // Mage Power
   11, // Magician's Valkyria
   12, // Paladin Of White Dragon
-  13, // Shield And Sword
-  14, // Sorcerer of Dark Magic
-  15, // Spell Canceller
-  16, // St Joan
-  17, // Ultimate Offering
-  18, // United We Stand
-  19, // Wave Motion Cannon
+  13, // Pyramid of Light
+  14, // Shield And Sword
+  15, // Sorcerer of Dark Magic
+  16, // Spell Canceller
+  17, // St Joan
+  18, // Ultimate Offering
+  19, // United We Stand
+  20, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -105,6 +108,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sWaveMotionCannonSortName;
   if (cardId == 0x0333)
     return (u8 *)sStJoanSortName;
+  if (cardId == 0x0334)
+    return (u8 *)sPyramidOfLightSortName;
 
   return gCardNames[cardId];
 }

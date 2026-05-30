@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
+#include "pyramid_of_light.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -199,6 +200,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
   if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
     gHideEffectText = TRUE;
   CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
+  EnforcePyramidOfLightGodBan();
 
   if (TryAutoSummonBlueEyesShiningDragon() == TRUE) {
     if (!gHideEffectText)

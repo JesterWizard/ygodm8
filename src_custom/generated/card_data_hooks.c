@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[820] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[821] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -831,9 +831,10 @@ const u8 gCardLockAfterActivation_Hook[820] APPEND_RODATA = {
   [0x0331] = 1,
   [0x0332] = 1,
   [0x0333] = 1,
+  [0x0334] = 1,
 };
 
-const CardData gCardData_NEW[820] APPEND_RODATA = {
+const CardData gCardData_NEW[821] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -3893,7 +3894,7 @@ const CardData gCardData_NEW[820] APPEND_RODATA = {
     .def = 4000,
     .cost = 0,
     .attribute = ATTRIBUTE_DIVINE,
-    .level = 12,
+    .level = 4,
     .type = TYPE_WARRIOR,
     .color = 6,
     .monsterEffect = 52,
@@ -11547,5 +11548,19 @@ const CardData gCardData_NEW[820] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {2, 1, 1, 7, 5, 6, 3, 2},
     .description = gDescription_StJoan,
+  },
+  [0x0334] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 8, 6, 8, 9, 8, 0, 9},
+    .description = gDescription_PyramidOfLight,
   },
 };

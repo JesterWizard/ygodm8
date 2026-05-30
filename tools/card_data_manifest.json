@@ -3651,7 +3651,7 @@
       "def": 4000,
       "cost": 0,
       "attribute": "ATTRIBUTE_DIVINE",
-      "level": 12,
+      "level": 4,
       "type": "TYPE_WARRIOR",
       "color": 6,
       "monsterEffect": 52,
@@ -12963,6 +12963,38 @@
       "big_art": "src_custom/assets/cards/80x80/st_joan.huff",
       "big_palette": "src_custom/assets/cards/80x80/st_joan.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/st_joan.lz"
+    },
+    {
+      "card_const": "PYRAMID_OF_LIGHT",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_PyramidOfLight",
+        "pages": [
+          "A mystical pyramid that seals god monsters within.",
+          "While active, god monsters cannot be summoned.",
+          "On activation, destroy all god monsters in play."
+        ]
+      },
+      "card_name": "Pyramid of Light",
+      "password": [ 2, 8, 6, 8, 9, 8, 0, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_PyramidOfLight",
+        "pages": [
+          "Destroy all god\nmonsters on both\nfields. God\nsummons are\nblocked."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/pyramid_of_light.huff",
+      "big_palette": "src_custom/assets/cards/80x80/pyramid_of_light.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/pyramid_of_light.lz"
     }
   ]
 }

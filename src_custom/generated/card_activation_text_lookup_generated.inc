@@ -40,6 +40,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ULTIMATE_OFFERING, gActivationDescription_UltimateOffering },
   { UNITED_WE_STAND, gActivationDescription_UnitedWeStand },
   { WAVE_MOTION_CANNON, gActivationDescription_WaveMotionCannon },
+  { PYRAMID_OF_LIGHT, gActivationDescription_PyramidOfLight },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

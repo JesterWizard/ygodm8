@@ -76,6 +76,10 @@ static const unsigned char sStJoanBigArt[] __attribute__((section(".append_asset
 static const unsigned short sStJoanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/st_joan.gbapal");
 static const unsigned char sStJoanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/st_joan.lz");
 
+static const unsigned char sPyramidOfLightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/pyramid_of_light.huff");
+static const unsigned short sPyramidOfLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/pyramid_of_light.gbapal");
+static const unsigned char sPyramidOfLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/pyramid_of_light.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -96,6 +100,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0331] = sUnitedWeStandBigArt,
   [0x0332] = sWaveMotionCannonBigArt,
   [0x0333] = sStJoanBigArt,
+  [0x0334] = sPyramidOfLightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -118,6 +123,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0331] = sUnitedWeStandBigPalette,
   [0x0332] = sWaveMotionCannonBigPalette,
   [0x0333] = sStJoanBigPalette,
+  [0x0334] = sPyramidOfLightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -140,6 +146,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0331] = 0,
   [0x0332] = 0,
   [0x0333] = 0,
+  [0x0334] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -162,4 +169,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0331] = sUnitedWeStandMiniArt,
   [0x0332] = sWaveMotionCannonMiniArt,
   [0x0333] = sStJoanMiniArt,
+  [0x0334] = sPyramidOfLightMiniArt,
 };

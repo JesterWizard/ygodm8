@@ -368,7 +368,8 @@ void SetCardInfo__Replacement(unsigned short id) {
 LYN_REPLACE_CHECK(GetSpellType);
 int GetSpellType__Replacement(u16 cardId) {
   SetCardInfo(cardId);
-  if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY || cardId == WAVE_MOTION_CANNON)
+  if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY || cardId == WAVE_MOTION_CANNON
+      || cardId == PYRAMID_OF_LIGHT)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND)

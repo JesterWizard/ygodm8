@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "pyramid_of_light.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -9,6 +10,8 @@ void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 unsigned char IsSpellCancellerSpellLockActive(void);
+
+extern struct DuelCard gSelectedCard;
 
 void DisplayCardInfoBar(void);
 void HandlePlayerBackrowAction(void);
@@ -44,6 +47,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
       || IsActivatedChainEnergyZone(zone)
+      || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
@@ -132,6 +136,12 @@ void sub_80449D8__Replacement(void)
   }
 
   if (!TryConsumeUltimateOfferingExtraSummonPayment()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  if (ShouldBlockGodCardSummon(gSelectedCard.id)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;

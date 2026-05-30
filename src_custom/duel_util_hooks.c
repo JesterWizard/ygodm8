@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
+#include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
 extern struct DuelDeck gDuelDecks[2];
@@ -104,9 +105,12 @@ void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
       case SPRITE_TEA:
         deck = TeaCustomDeck_GetDuelDeck();
         break;
-      default:
-        deck = gDuelData.duelist.deck;
+      default: {
+        const u16 *manifestDeck = GetManifestDuelDeck(gDuelData.opponent);
+
+        deck = manifestDeck != NULL ? manifestDeck : gDuelData.duelist.deck;
         break;
+      }
     }
   }
 

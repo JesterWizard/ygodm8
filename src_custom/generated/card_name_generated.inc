@@ -17,6 +17,7 @@ static const u8 sUltimateOfferingName[] __attribute__((section(".append_assets")
 static const u8 sUnitedWeStandName[] __attribute__((section(".append_assets"))) = "United We Stand";
 static const u8 sWaveMotionCannonName[] __attribute__((section(".append_assets"))) = "Wave Motion Cannon";
 static const u8 sStJoanName[] __attribute__((section(".append_assets"))) = "St Joan";
+static const u8 sPyramidOfLightName[] __attribute__((section(".append_assets"))) = "Pyramid of Light";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -57,6 +58,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sWaveMotionCannonName;
   if (cardId == 0x0333)
     return (u8 *)sStJoanName;
+  if (cardId == 0x0334)
+    return (u8 *)sPyramidOfLightName;
 
   return gCardNames[cardId];
 }

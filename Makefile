@@ -82,6 +82,9 @@ CARD_ART_GENERATOR := tools/add_card_art.py
 DUELIST_REWARD_MANIFEST := tools/duelist_reward_manifest.json
 DUELIST_REWARD_GENERATOR := tools/generate_duelist_rewards.py
 DUELIST_REWARDS_GENERATED := src_custom/generated/duelist_rewards_generated.inc
+DUELIST_DECK_MANIFEST := tools/duelist_deck_manifest.json
+DUELIST_DECK_GENERATOR := tools/generate_duelist_decks.py
+DUELIST_DECKS_GENERATED := src_custom/generated/duelist_decks_generated.inc
 SHINY_ZONE_MANIFEST := tools/shiny_zone_manifest.json
 SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
 SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
@@ -222,6 +225,10 @@ $(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERA
 	@echo "REWARDS $@"
 	python3 $(DUELIST_REWARD_GENERATOR) $(DUELIST_REWARD_MANIFEST) --out $@
 
+$(DUELIST_DECKS_GENERATED): $(DUELIST_DECK_MANIFEST) $(DUELIST_DECK_GENERATOR)
+	@echo "DECKS   $@"
+	python3 $(DUELIST_DECK_GENERATOR) $(DUELIST_DECK_MANIFEST) --out $@
+
 $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_DATA_MANIFEST) $(CARD_IDS_GENERATED) include/overworld.h include/shiny_zones.h
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
@@ -248,6 +255,7 @@ $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
 $(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED)))
 $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED)))
+$(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
