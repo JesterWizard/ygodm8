@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `54` effects
+- `55` effects
 
 ## Tally
 
@@ -62,6 +62,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |
+| `permanent_effects` | `Blue-Eyes Alternative White Dragon` | `src_custom/permanent_effects/blue_eyes_alternative_white_dragon.c` |
 | `permanent_effects` | `Spell Canceller` | `src_custom/permanent_effects/spell_canceller.c` |
 
 ## Notes

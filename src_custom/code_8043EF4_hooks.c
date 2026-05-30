@@ -57,6 +57,7 @@ void CheckWinConditionFINAL(void);
 void BlockTurnSummoning(u8);
 void HandleAtkAndLifePointsAction(void);
 void UpdateAllDuelGfx(void);
+u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -164,13 +165,19 @@ void sub_80441D0__Replacement(void)
         }
       }
       break;
-    case PLAYER_HAND:
-      if (gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id == CARD_NONE
+    case PLAYER_HAND: {
+      u16 handCardId = gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id;
+
+      if (handCardId == CARD_NONE
           || gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
-      } else if (CardRequiresSpecialSummonOnly(
-                     gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id)) {
+      } else if (handCardId == BLUE_EYES_ALTERNATIVE_WHITE_DRAGON
+          && TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (CardRequiresSpecialSummonOnly(handCardId)) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
       } else {
@@ -190,6 +197,7 @@ void sub_80441D0__Replacement(void)
         }
       }
       break;
+    }
     default:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();

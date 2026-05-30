@@ -13233,6 +13233,37 @@
       "big_art": "src_custom/assets/cards/80x80/cost_down.huff",
       "big_palette": "src_custom/assets/cards/80x80/cost_down.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/cost_down.lz"
+    },
+    {
+      "card_const": "BLUE_EYES_ALTERNATIVE_WHITE_DRAGON",
+      "atk": 3000,
+      "def": 2500,
+      "cost": 120,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 8,
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BlueEyesAlternativeWhiteDragon",
+        "pages": [
+          "An alternate White Dragon form of the legendary Blue-Eyes.",
+          "Reveal Blue-Eyes in your hand to special summon."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlueEyesAlternativeWhiteDragon",
+        "pages": [
+          "This card will be special summoned by revealing Blue-Eyes White Dragon in the player's hand."
+        ]
+      },
+      "card_name": "Blue-Eyes Alternative White Dragon",
+      "password": [ 3, 8, 5, 1, 7, 7, 5, 4 ],
+      "big_art": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/blue_eyes_alternative_white_dragon.lz"
     }
   ]
 }

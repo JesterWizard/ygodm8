@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[829] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[830] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -840,9 +840,10 @@ const u8 gCardLockAfterActivation_Hook[829] APPEND_RODATA = {
   [0x033A] = 1,
   [0x033B] = 1,
   [0x033C] = 1,
+  [0x033D] = 1,
 };
 
-const CardData gCardData_NEW[829] APPEND_RODATA = {
+const CardData gCardData_NEW[830] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11682,5 +11683,19 @@ const CardData gCardData_NEW[829] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 2, 3, 2, 7, 4, 4, 4},
     .description = gDescription_CostDown,
+  },
+  [0x033D] = {
+    .atk = 3000,
+    .def = 2500,
+    .cost = 120,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 8,
+    .type = TYPE_DRAGON,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 8, 5, 1, 7, 7, 5, 4},
+    .description = gDescription_BlueEyesAlternativeWhiteDragon,
   },
 };

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 28
+#define NUM_CUSTOM_NAME_SORT_CARDS 29
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -30,8 +30,10 @@ static const u8 sObnoxiousCelticGuardianSortName[] APPEND_RODATA = "Obnoxious Ce
 static const u8 sMaskOfRestrictSortName[] APPEND_RODATA = "Mask of Restrict";
 static const u8 sFairyBoxSortName[] APPEND_RODATA = "Fairy Box";
 static const u8 sCostDownSortName[] APPEND_RODATA = "Cost Down";
+static const u8 sBlueEyesAlternativeWhiteDragonSortName[] APPEND_RODATA = "Blue-Eyes Alternative White Dragon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
+  0x033D, // Blue-Eyes Alternative White Dragon
   0x0329, // Blue-Eyes Chaos Max Dragon
   0x0324, // Blue-Eyes Shining Dragon
   0x0326, // Card Of Demise
@@ -63,34 +65,35 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
-  1, // Blue-Eyes Chaos Max Dragon
-  2, // Blue-Eyes Shining Dragon
-  3, // Card Of Demise
-  4, // Card Of Sanctity
-  5, // Chain Energy
-  6, // Copycat
-  7, // Cost Down
-  8, // Deck Destruction Virus
-  9, // Double Summon
-  10, // Exchange
-  11, // Fairy Box
-  12, // Kaibaman
-  13, // Mage Power
-  14, // Magician's Valkyria
-  15, // Mask of Restrict
-  16, // Mystical Space Typhoon
-  17, // Obnoxious Celtic Guardian
-  18, // Paladin Of White Dragon
-  19, // Pyramid of Light
-  20, // Rare Metal Dragon
-  21, // Shield And Sword
-  22, // Sorcerer of Dark Magic
-  23, // Soul Exchange
-  24, // Spell Canceller
-  25, // St Joan
-  26, // Ultimate Offering
-  27, // United We Stand
-  28, // Wave Motion Cannon
+  1, // Blue-Eyes Alternative White Dragon
+  2, // Blue-Eyes Chaos Max Dragon
+  3, // Blue-Eyes Shining Dragon
+  4, // Card Of Demise
+  5, // Card Of Sanctity
+  6, // Chain Energy
+  7, // Copycat
+  8, // Cost Down
+  9, // Deck Destruction Virus
+  10, // Double Summon
+  11, // Exchange
+  12, // Fairy Box
+  13, // Kaibaman
+  14, // Mage Power
+  15, // Magician's Valkyria
+  16, // Mask of Restrict
+  17, // Mystical Space Typhoon
+  18, // Obnoxious Celtic Guardian
+  19, // Paladin Of White Dragon
+  20, // Pyramid of Light
+  21, // Rare Metal Dragon
+  22, // Shield And Sword
+  23, // Sorcerer of Dark Magic
+  24, // Soul Exchange
+  25, // Spell Canceller
+  26, // St Joan
+  27, // Ultimate Offering
+  28, // United We Stand
+  29, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -150,6 +153,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sFairyBoxSortName;
   if (cardId == 0x033C)
     return (u8 *)sCostDownSortName;
+  if (cardId == 0x033D)
+    return (u8 *)sBlueEyesAlternativeWhiteDragonSortName;
 
   return gCardNames[cardId];
 }
