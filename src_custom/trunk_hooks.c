@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "duel.h"
 #include "player_decks.h"
 #include "generated/card_trunk_generated.inc"
 
@@ -59,19 +60,44 @@ static u8 GetDeckQtyForOwnershipTotals(u16 cardId) {
   return GetDeckCardQty(cardId);
 }
 
+static void IncrementTotalCardQty(u16 cardId) {
+  SetTotalCardQtyForCard(cardId, GetTotalCardQtyForCard(cardId) + 1);
+}
+
+static void AccumulateDeckCardsIntoTotals(const u16 *cards) {
+  u8 i;
+
+  for (i = 0; i < DECK_SIZE; i++) {
+    u16 cardId = cards[i];
+
+    if (cardId != CARD_NONE)
+      IncrementTotalCardQty(cardId);
+  }
+}
+
+static void AccumulateAllDeckCardsIntoTotals(void) {
+  if (PlayerDecks_IsEnabled() == TRUE) {
+    u8 active = PlayerDecks_GetActiveIndex();
+
+    AccumulateDeckCardsIntoTotals(active == 1 ? gDeckMenu.cards : (const u16 *)gPlayerDeckSaveStaging);
+    AccumulateDeckCardsIntoTotals(active == 2 ? gDeckMenu.cards : gPlayerDeck2Cards);
+    AccumulateDeckCardsIntoTotals(active == 3 ? gDeckMenu.cards : gPlayerDeck3Cards);
+  }
+  else {
+    AccumulateDeckCardsIntoTotals(gDeckMenu.cards);
+  }
+}
+
 static void RefreshTrunkOwnershipTotals(void) {
   u16 cardId;
 
   for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
-    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId);
+    gTotalCardQty[cardId] = gTrunkCardQty[cardId];
 
   for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
-    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId));
-}
+    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId]);
 
-static void RefreshTrunkCardRowGfx(void) {
-  sub_800A3D8(7);
-  sub_800ABB4();
+  AccumulateAllDeckCardsIntoTotals();
 }
 
 static void AppendCustomTrunkCard(void) {
@@ -202,7 +228,6 @@ static void AddSelectedCardToDeck(void) {
   }
 
   AddCardToDeck(cardId);
-  RefreshTrunkCardRowGfx();
   PlayMusic(SFX_SELECT);
 }
 
@@ -221,8 +246,6 @@ static void RemoveSelectedCardFromDeck(void) {
   else
     gTrunkCardQty[cardId] = TRUNK_CARD_LIMIT;
   SyncCardOwnershipQty(cardId);
-  RefreshTrunkOwnershipTotals();
-  RefreshTrunkCardRowGfx();
   PlayMusic(SFX_SELECT);
 }
 
@@ -295,11 +318,7 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
 
-  for (cardId = 0; cardId < CUSTOM_CARD_START; cardId++)
-    gTotalCardQty[cardId] = gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId);
-
-  for (cardId = CUSTOM_CARD_START; cardId < GetLastTrackedCardId(); cardId++)
-    SetTotalCardQtyForCard(cardId, gTrunkCardQty[cardId] + GetDeckQtyForOwnershipTotals(cardId));
+  RefreshTrunkOwnershipTotals();
 
   for (cardId = 0; cardId < NUM_TRUE_CARDS; cardId++)
     gTrunkMenu.cards[cardId] = cardId + 1;

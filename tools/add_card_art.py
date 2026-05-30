@@ -21,6 +21,7 @@ BASE_ROM = ROOT / "baserom.gba"
 GENERATED_DIR = ROOT / "src_custom/generated"
 GENERATED_ASSET_INC = GENERATED_DIR / "card_art_generated.inc"
 GENERATED_NAME_INC = GENERATED_DIR / "card_name_generated.inc"
+GENERATED_NAME_SORT_INC = GENERATED_DIR / "card_name_sort_generated.inc"
 GENERATED_DATA_INC = GENERATED_DIR / "card_data_generated.inc"
 GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
@@ -673,6 +674,67 @@ def render_name_inc(manifest: dict) -> str:
     return "\n".join(lines)
 
 
+def render_name_sort_inc(manifest: dict) -> str:
+    custom_start = next(
+        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
+        len(manifest["cards"]),
+    )
+    custom_cards = [
+        (index, item["card_name"], item["card_const"])
+        for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start)
+    ]
+    custom_cards.sort(key=lambda entry: (entry[1].upper(), entry[0]))
+
+    lines = [
+        "#include \"global.h\"",
+        "",
+        f"#define NUM_CUSTOM_NAME_SORT_CARDS {len(custom_cards)}",
+        "",
+    ]
+
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+        name_symbol = to_symbol(item["card_const"].lower(), "SortName")
+        lines.append(f'static const u8 {name_symbol}[] APPEND_RODATA = "{item["card_name"]}";')
+    lines.append("")
+
+    if custom_cards:
+        lines.append("static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {")
+        for card_id, card_name, _card_const in custom_cards:
+            lines.append(f"  0x{card_id:04X}, // {card_name}")
+        lines.append("};")
+        lines.append("")
+        lines.append("static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {")
+        for sort_index, (card_id, card_name, _card_const) in enumerate(custom_cards, start=1):
+            lines.append(f"  {sort_index}, // {card_name}")
+        lines.append("};")
+        lines.append("")
+
+    lines.extend([
+        "static u8 *GetSortCardName(u16 cardId) {",
+    ])
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+        name_symbol = to_symbol(item["card_const"].lower(), "SortName")
+        lines.append(f"  if (cardId == 0x{index:04X})")
+        lines.append(f"    return (u8 *){name_symbol};")
+    lines.extend([
+        "",
+        "  return gCardNames[cardId];",
+        "}",
+        "",
+        "static u16 GetCustomCardNameSortOrder(u16 cardId) {",
+        "  u16 i;",
+        "",
+        "  for (i = 0; i < NUM_CUSTOM_NAME_SORT_CARDS; i++)",
+        "    if (sCustomCardsByName[i] == cardId)",
+        "      return sCustomCardNameSortOrder[i];",
+        "",
+        "  return 0;",
+        "}",
+        "",
+    ])
+    return "\n".join(lines)
+
+
 def render_data_inc(entries: list[CardArtEntry]) -> str:
     lines = []
     for entry in entries:
@@ -1204,6 +1266,7 @@ def main() -> int:
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)
+    name_sort_inc = render_name_sort_inc(manifest)
     data_inc = render_data_inc(entries)
     data_src = render_data_src(manifest)
     description_inc = render_description_inc(manifest)
@@ -1218,6 +1281,8 @@ def main() -> int:
         print(asset_inc, end="")
         print(f"--- {GENERATED_NAME_INC} ---")
         print(name_inc, end="")
+        print(f"--- {GENERATED_NAME_SORT_INC} ---")
+        print(name_sort_inc, end="")
         print(f"--- {GENERATED_DATA_INC} ---")
         print(data_inc, end="")
         print(f"--- {GENERATED_DATA_SRC} ---")
@@ -1238,6 +1303,7 @@ def main() -> int:
     update_file(CARD_MEMORY_SIZES_ASM, render_card_memory_sizes_asm(manifest))
     update_file(GENERATED_ASSET_INC, asset_inc)
     update_file(GENERATED_NAME_INC, name_inc)
+    update_file(GENERATED_NAME_SORT_INC, name_sort_inc)
     update_file(GENERATED_DATA_INC, data_inc)
     update_file(GENERATED_DATA_SRC, data_src)
     update_file(ROOT / "src_custom/card_description_data_generated.inc", description_inc)
