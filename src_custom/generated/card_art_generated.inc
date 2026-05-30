@@ -96,6 +96,10 @@ static const unsigned char sDoubleSummonBigArt[] __attribute__((section(".append
 static const unsigned short sDoubleSummonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/double_summon.gbapal");
 static const unsigned char sDoubleSummonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/double_summon.lz");
 
+static const unsigned char sObnoxiousCelticGuardianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/obnoxious_celtic_guardian.huff");
+static const unsigned short sObnoxiousCelticGuardianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/obnoxious_celtic_guardian.gbapal");
+static const unsigned char sObnoxiousCelticGuardianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/obnoxious_celtic_guardian.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -121,6 +125,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0336] = sMysticalSpaceTyphoonBigArt,
   [0x0337] = sRareMetalDragonBigArt,
   [0x0338] = sDoubleSummonBigArt,
+  [0x0339] = sObnoxiousCelticGuardianBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -148,6 +153,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0336] = sMysticalSpaceTyphoonBigPalette,
   [0x0337] = sRareMetalDragonBigPalette,
   [0x0338] = sDoubleSummonBigPalette,
+  [0x0339] = sObnoxiousCelticGuardianBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -175,6 +181,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0336] = 0,
   [0x0337] = 0,
   [0x0338] = 0,
+  [0x0339] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -202,4 +209,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0336] = sMysticalSpaceTyphoonMiniArt,
   [0x0337] = sRareMetalDragonMiniArt,
   [0x0338] = sDoubleSummonMiniArt,
+  [0x0339] = sObnoxiousCelticGuardianMiniArt,
 };

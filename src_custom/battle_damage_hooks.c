@@ -33,6 +33,7 @@ struct StoneUnk2023E80 {
 extern struct StoneUnk2023E80 sActionData;
 
 void ApplyShinatoKingOfAHigherPlaneBattleEffect(void);
+void ApplyObnoxiousCelticGuardianBattleProtection(void);
 
 static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
   u16 playerDamage;
@@ -110,6 +111,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   }
 
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
+  ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
 
   if (sActionData.flags & 1)
