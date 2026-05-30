@@ -3,6 +3,7 @@
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "pyramid_of_light.h"
+#include "mask_of_restrict.h"
 #include "soul_exchange.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -161,8 +162,13 @@ void sub_80441D0__Replacement(void)
         unsigned char numTributes = GetMonsterNumRequiredTributes(
             gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id);
         if (numTributes) {
-          PlayMusic(SFX_FORBIDDEN);
-          DisplayNumRequiredTributesTextbox(numTributes);
+          if (IsMaskOfRestrictActiveOnField()) {
+            PlayMusic(SFX_FORBIDDEN);
+            WaitForVBlank();
+          } else {
+            PlayMusic(SFX_FORBIDDEN);
+            DisplayNumRequiredTributesTextbox(numTributes);
+          }
         } else {
           PlayMusic(SFX_SELECT);
           sub_80442AC();
@@ -184,6 +190,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedChainEnergyZone(zone)
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
+      || IsActivatedMaskOfRestrictZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

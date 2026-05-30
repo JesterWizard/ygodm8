@@ -100,6 +100,10 @@ static const unsigned char sObnoxiousCelticGuardianBigArt[] __attribute__((secti
 static const unsigned short sObnoxiousCelticGuardianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/obnoxious_celtic_guardian.gbapal");
 static const unsigned char sObnoxiousCelticGuardianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/obnoxious_celtic_guardian.lz");
 
+static const unsigned char sMaskOfRestrictBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/mask_of_restrict.huff");
+static const unsigned short sMaskOfRestrictBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/mask_of_restrict.gbapal");
+static const unsigned char sMaskOfRestrictMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/mask_of_restrict.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -126,6 +130,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0337] = sRareMetalDragonBigArt,
   [0x0338] = sDoubleSummonBigArt,
   [0x0339] = sObnoxiousCelticGuardianBigArt,
+  [0x033A] = sMaskOfRestrictBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -154,6 +159,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0337] = sRareMetalDragonBigPalette,
   [0x0338] = sDoubleSummonBigPalette,
   [0x0339] = sObnoxiousCelticGuardianBigPalette,
+  [0x033A] = sMaskOfRestrictBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -182,6 +188,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0337] = 0,
   [0x0338] = 0,
   [0x0339] = 0,
+  [0x033A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -210,4 +217,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0337] = sRareMetalDragonMiniArt,
   [0x0338] = sDoubleSummonMiniArt,
   [0x0339] = sObnoxiousCelticGuardianMiniArt,
+  [0x033A] = sMaskOfRestrictMiniArt,
 };

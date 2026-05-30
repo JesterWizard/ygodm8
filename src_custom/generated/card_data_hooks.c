@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[826] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[827] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -837,9 +837,10 @@ const u8 gCardLockAfterActivation_Hook[826] APPEND_RODATA = {
   [0x0337] = 1,
   [0x0338] = 1,
   [0x0339] = 1,
+  [0x033A] = 1,
 };
 
-const CardData gCardData_NEW[826] APPEND_RODATA = {
+const CardData gCardData_NEW[827] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11637,5 +11638,19 @@ const CardData gCardData_NEW[826] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {9, 1, 1, 3, 1, 3, 5, 6},
     .description = gDescription_ObnoxiousCelticGuardian,
+  },
+  [0x033A] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_TRAP,
+    .color = TRAP_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 0, 3, 9, 0, 5, 9, 4},
+    .description = gDescription_MaskOfRestrict,
   },
 };

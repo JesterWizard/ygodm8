@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/monster_effects.h"
+#include "mask_of_restrict.h"
 #include "soul_exchange.h"
 
 extern void (*const gMonEffects[])(void);
@@ -153,6 +154,11 @@ void MonsterActionMenu__Replacement(void) {
       break;
     case 3:
       if (IsSoulExchangeActive() && gDuelCursor.currentY == PLAYER_MONSTER_ROW) {
+        PlayMusic(SFX_FORBIDDEN);
+        UpdateDuelGfxExceptField();
+        break;
+      }
+      if (TryBlockTributeWithMaskOfRestrict()) {
         PlayMusic(SFX_FORBIDDEN);
         UpdateDuelGfxExceptField();
         break;

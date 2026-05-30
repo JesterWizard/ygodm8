@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 25
+#define NUM_CUSTOM_NAME_SORT_CARDS 26
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -27,6 +27,7 @@ static const u8 sMysticalSpaceTyphoonSortName[] APPEND_RODATA = "Mystical Space 
 static const u8 sRareMetalDragonSortName[] APPEND_RODATA = "Rare Metal Dragon";
 static const u8 sDoubleSummonSortName[] APPEND_RODATA = "Double Summon";
 static const u8 sObnoxiousCelticGuardianSortName[] APPEND_RODATA = "Obnoxious Celtic Guardian";
+static const u8 sMaskOfRestrictSortName[] APPEND_RODATA = "Mask of Restrict";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0329, // Blue-Eyes Chaos Max Dragon
@@ -41,6 +42,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032F, // Kaibaman
   0x032E, // Mage Power
   0x0323, // Magician's Valkyria
+  0x033A, // Mask of Restrict
   0x0336, // Mystical Space Typhoon
   0x0339, // Obnoxious Celtic Guardian
   0x0325, // Paladin Of White Dragon
@@ -69,19 +71,20 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   10, // Kaibaman
   11, // Mage Power
   12, // Magician's Valkyria
-  13, // Mystical Space Typhoon
-  14, // Obnoxious Celtic Guardian
-  15, // Paladin Of White Dragon
-  16, // Pyramid of Light
-  17, // Rare Metal Dragon
-  18, // Shield And Sword
-  19, // Sorcerer of Dark Magic
-  20, // Soul Exchange
-  21, // Spell Canceller
-  22, // St Joan
-  23, // Ultimate Offering
-  24, // United We Stand
-  25, // Wave Motion Cannon
+  13, // Mask of Restrict
+  14, // Mystical Space Typhoon
+  15, // Obnoxious Celtic Guardian
+  16, // Paladin Of White Dragon
+  17, // Pyramid of Light
+  18, // Rare Metal Dragon
+  19, // Shield And Sword
+  20, // Sorcerer of Dark Magic
+  21, // Soul Exchange
+  22, // Spell Canceller
+  23, // St Joan
+  24, // Ultimate Offering
+  25, // United We Stand
+  26, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -135,6 +138,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sDoubleSummonSortName;
   if (cardId == 0x0339)
     return (u8 *)sObnoxiousCelticGuardianSortName;
+  if (cardId == 0x033A)
+    return (u8 *)sMaskOfRestrictSortName;
 
   return gCardNames[cardId];
 }

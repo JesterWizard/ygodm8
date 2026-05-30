@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "tribute.h"
 
@@ -35,6 +36,9 @@ int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
 
   if (requiredTributes < 0)
     requiredTributes = 0;
+
+  if (requiredTributes > 0 && IsMaskOfRestrictActiveOnField())
+    return MASK_OF_RESTRICT_TRIBUTE_BLOCK;
 
   return (unsigned char)requiredTributes;
 }

@@ -23,6 +23,7 @@ static const u8 sMysticalSpaceTyphoonName[] __attribute__((section(".append_asse
 static const u8 sRareMetalDragonName[] __attribute__((section(".append_assets"))) = "Rare Metal Dragon";
 static const u8 sDoubleSummonName[] __attribute__((section(".append_assets"))) = "Double Summon";
 static const u8 sObnoxiousCelticGuardianName[] __attribute__((section(".append_assets"))) = "Obnoxious Celtic Guardian";
+static const u8 sMaskOfRestrictName[] __attribute__((section(".append_assets"))) = "Mask of Restrict";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -75,6 +76,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDoubleSummonName;
   if (cardId == 0x0339)
     return (u8 *)sObnoxiousCelticGuardianName;
+  if (cardId == 0x033A)
+    return (u8 *)sMaskOfRestrictName;
 
   return gCardNames[cardId];
 }
