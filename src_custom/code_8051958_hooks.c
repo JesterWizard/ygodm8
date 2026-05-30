@@ -48,14 +48,38 @@ static const struct Script sRegularDuelLossScript APPEND_RODATA = {
   (struct Script *)&sRegularDuelLossEndScript
 };
 
+static u8 ScriptContainsDuel(const struct Script *script) {
+  const u8 *p;
+
+  if (script == NULL || script->start == NULL)
+    return FALSE;
+
+  for (p = script->start; *p != 0; ) {
+    if (*p == 0x40 && p[1] == '0')
+      return TRUE;
+    if (*p == 0x24) {
+      p++;
+      while (*p != 0)
+        p++;
+      p++;
+      continue;
+    }
+    p++;
+  }
+
+  return FALSE;
+}
+
 static void InitiateRegularDuelScript(struct Script *script) {
   struct Script regularDuelScript = *script;
   u8 stayOnMapAfterDefeat = gRuntimeConfig.return_home_after_defeat == FALSE;
 
-  if (stayOnMapAfterDefeat)
-    regularDuelScript.unk8 = (struct Script *)&sRegularDuelLossScript;
-  else
-    regularDuelScript.unk8 = (struct Script *)&sRegularDuelReturnHomeLossScript;
+  if (ScriptContainsDuel(script)) {
+    if (stayOnMapAfterDefeat)
+      regularDuelScript.unk8 = (struct Script *)&sRegularDuelLossScript;
+    else
+      regularDuelScript.unk8 = (struct Script *)&sRegularDuelReturnHomeLossScript;
+  }
 
   InitiateScript(&regularDuelScript);
 
