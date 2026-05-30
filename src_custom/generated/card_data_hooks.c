@@ -10,7 +10,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[823] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[824] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -834,9 +834,10 @@ const u8 gCardLockAfterActivation_Hook[823] APPEND_RODATA = {
   [0x0334] = 1,
   [0x0335] = 1,
   [0x0336] = 1,
+  [0x0337] = 1,
 };
 
-const CardData gCardData_NEW[823] APPEND_RODATA = {
+const CardData gCardData_NEW[824] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11592,5 +11593,19 @@ const CardData gCardData_NEW[823] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {0, 5, 3, 5, 8, 6, 6, 1},
     .description = gDescription_MysticalSpaceTyphoon,
+  },
+  [0x0337] = {
+    .atk = 2400,
+    .def = 1200,
+    .cost = 350,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_DRAGON,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 5, 2, 3, 6, 0, 5, 6},
+    .description = gDescription_RareMetalDragon,
   },
 };

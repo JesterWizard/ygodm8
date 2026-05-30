@@ -46,9 +46,19 @@ void HandleBButtonAction(void);
 void CheckWinConditionFINAL(void);
 void BlockTurnSummoning(u8);
 
+static u8 CardRequiresSpecialSummonOnly(u16 cardId)
+{
+  return cardId == RARE_METAL_DRAGON;
+}
+
 static void TryPlaceSelectedCardOnField_Local(void)
 {
   SetCardInfo(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id);
+  if (CardRequiresSpecialSummonOnly(gCardInfo.id)) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
   switch (GetTypeGroup(gCardInfo.id)) {
     case TYPE_GROUP_SPELL:
     case TYPE_GROUP_TRAP:
@@ -141,6 +151,10 @@ void sub_80441D0__Replacement(void)
     case PLAYER_HAND:
       if (gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id == CARD_NONE
           || gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else if (CardRequiresSpecialSummonOnly(
+                     gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id)) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
       } else {

@@ -88,6 +88,10 @@ static const unsigned char sMysticalSpaceTyphoonBigArt[] __attribute__((section(
 static const unsigned short sMysticalSpaceTyphoonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/mystical_space_typhoon.gbapal");
 static const unsigned char sMysticalSpaceTyphoonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/mystical_space_typhoon.lz");
 
+static const unsigned char sRareMetalDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/rare_metal_dragon.huff");
+static const unsigned short sRareMetalDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/rare_metal_dragon.gbapal");
+static const unsigned char sRareMetalDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/rare_metal_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -111,6 +115,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0334] = sPyramidOfLightBigArt,
   [0x0335] = sSoulExchangeBigArt,
   [0x0336] = sMysticalSpaceTyphoonBigArt,
+  [0x0337] = sRareMetalDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -136,6 +141,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0334] = sPyramidOfLightBigPalette,
   [0x0335] = sSoulExchangeBigPalette,
   [0x0336] = sMysticalSpaceTyphoonBigPalette,
+  [0x0337] = sRareMetalDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -161,6 +167,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0334] = 0,
   [0x0335] = 0,
   [0x0336] = 0,
+  [0x0337] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -186,4 +193,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0334] = sPyramidOfLightMiniArt,
   [0x0335] = sSoulExchangeMiniArt,
   [0x0336] = sMysticalSpaceTyphoonMiniArt,
+  [0x0337] = sRareMetalDragonMiniArt,
 };

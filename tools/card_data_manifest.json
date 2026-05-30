@@ -13058,6 +13058,28 @@
       "big_art": "src_custom/assets/cards/80x80/mystical_space_typhoon.huff",
       "big_palette": "src_custom/assets/cards/80x80/mystical_space_typhoon.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/mystical_space_typhoon.lz"
+    },
+    {
+      "card_const": "RARE_METAL_DRAGON",
+      "atk": 2400,
+      "def": 1200,
+      "cost": 350,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 4,
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_RareMetalDragon",
+        "pages": [
+          "A powerful dragon clad in various rare metal alloys.",
+          "It can only be special summoned to the field of play."
+        ]
+      },
+      "card_name": "Rare Metal Dragon",
+      "password": [ 2, 5, 2, 3, 6, 0, 5, 6 ]
     }
   ]
 }
