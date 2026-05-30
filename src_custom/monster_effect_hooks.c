@@ -80,7 +80,7 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
-  if (gMonEffect.id == NEEDLE_WORM) {
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_NEEDLE_WORM) {
     ActivateNeedleWormEffect();
     return;
   }
@@ -167,15 +167,14 @@ void MonsterActionMenu__Replacement(void) {
       if (!gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp) {
         gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
         SetCardInfo(gMonEffect.id);
-        if (gMonEffect.id == NEEDLE_BALL
-            || gMonEffect.id == NEEDLE_WORM) {
+        if (gMonEffect.id == NEEDLE_BALL) {
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();
           break;
         }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != NEEDLE_WORM) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

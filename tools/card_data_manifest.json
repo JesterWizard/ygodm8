@@ -8746,7 +8746,7 @@
       "level": 2,
       "type": "TYPE_INSECT",
       "color": "EFFECT_CARD",
-      "monsterEffect": 0,
+      "monsterEffect": "MONSTER_EFFECT_NEEDLE_WORM",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Needle Worm",
