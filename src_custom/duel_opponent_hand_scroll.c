@@ -108,7 +108,12 @@ bool8 TryShowDuelCursorCardDetails(void) {
 }
 
 void ApplyOpponentHandFieldWindow(void) {
-  REG_WIN0V = WIN_RANGE(160, 0);
+  /*
+   * Keep the vanilla bottom info-bar window (sub_8040B4C). A full-screen WIN0V
+   * moves the blend strip off-screen and hides the card stats bar while
+   * scrolling the opponent hand.
+   */
+  REG_WIN0V = DUEL_FIELD_WIN0V_DEFAULT;
 }
 
 void RestoreOpponentHandFieldWindow(void) {
