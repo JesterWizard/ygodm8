@@ -42,19 +42,40 @@ MAX_ROM_LIMIT = 0x0A000000
 # Reserve headroom for appended code/assets (~768 KiB; current append ~660 KiB).
 APPEND_ROM_RESERVE = 0x000C0000
 
-# (vanilla_pcm_samples, note bytes before 0xB1). From baserom duel voice part tracks.
-# Each note encodes a fixed playback length equal to its sample count. Pick the largest
-# reference still <= the clip, then pad up to the next bracket whenever the clip is
-# longer than that note (never pick a longer reference without padding — that makes m4a
-# read past the WaveData buffer and play silence).
-PART_TRACK_NOTE_BY_SAMPLES = (
-    (14123, bytes([0xDA, 0x3C, 0x7F, 0x8B])),
-    (19368, bytes([0xE0, 0x3C, 0x7F, 0x91])),
-    (22762, bytes([0xE1, 0x3C, 0x7F, 0x92])),
-    (40580, bytes([0xE9, 0x3C, 0x7F, 0x9A, 0x81])),
-    (44608, bytes([0xEB, 0x3C, 0x7F, 0x9C])),
-    (50870, bytes([0xEC, 0x3C, 0x7F, 0x9D])),
-    (53937, bytes([0xED, 0x3C, 0x7F, 0x9E])),
+# m4a D0–FF note length table (gClockTable / gScaleTable slice used by ply_note).
+M4A_NOTE_LENGTH_TABLE = (
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+    17, 18, 19, 20, 21, 22, 23, 24, 28, 30, 32, 36, 40, 42, 44, 48,
+    52, 54, 56, 60, 64, 66, 68, 72, 76, 78, 80, 84, 88, 90, 92, 96,
+)
+
+# Vanilla duel VO @ tempo 0x14 (BB). Verified against baserom tone/part pairs @ 21024 Hz.
+# Playback stops at min(WaveData.size, note gate capacity); WaveData.size is exact PCM length.
+M4A_VOICE_NOTE_KEY = 0x3C
+M4A_VOICE_NOTE_VEL = 0x7F
+M4A_VOICE_PART_TEMPO = 0x14
+M4A_VOICE_PART_VOLUME = 0x74
+
+# Longest vanilla duel voice note (tone 47 @ 53938 samples). Covers all clips <= this size.
+M4A_VOICE_MAX_VANILLA_NOTE = bytes([0xED, 0x3C, 0x7F, 0x9E])
+M4A_VOICE_MAX_VANILLA_SAMPLES = 53938
+
+# Empirical gate-capacity model fit from baserom calibration (samples ≈ a*ticks + b*idx + c).
+M4A_NOTE_CAPACITY_A = 1379.9035041566324
+M4A_NOTE_CAPACITY_B = -1518.908555193228
+M4A_NOTE_CAPACITY_C = -178249.88882458786
+M4A_NOTE_CAPACITY_MARGIN = 512
+
+# Baserom (sample_count, note bytes) for encoder regression tests.
+M4A_VOICE_NOTE_CALIBRATION = (
+    (14124, bytes([0xDA, 0x3C, 0x7F, 0x8B])),
+    (19369, bytes([0xE0, 0x3C, 0x7F, 0x91])),
+    (20993, bytes([0xE0, 0x3C, 0x7F, 0x91])),
+    (22763, bytes([0xE1, 0x3C, 0x7F, 0x92])),
+    (40581, bytes([0xE9, 0x3C, 0x7F, 0x9A, 0x81])),
+    (44609, bytes([0xEB, 0x3C, 0x7F, 0x9C])),
+    (50871, bytes([0xEC, 0x3C, 0x7F, 0x9D])),
+    (53938, bytes([0xED, 0x3C, 0x7F, 0x9E])),
 )
 # Normalize all clips to this 16-bit peak before 8-bit conversion (32767 ≈ full s8 range).
 PCM8_TARGET_PEAK = 32767
@@ -294,32 +315,76 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
         raise SystemExit(f"{clip_id}: turn_text is only valid for turn_start or opponent_lp_below")
 
 
-def note_bytes_for_sample_count(sample_count):
-    best = PART_TRACK_NOTE_BY_SAMPLES[0][1]
-    for threshold, note in PART_TRACK_NOTE_BY_SAMPLES:
-        if sample_count >= threshold:
-            best = note
-        else:
-            break
-    return best
+def m4a_note_ticks(cmd, gate, extra=None):
+    idx = cmd - 0xD0
+    if idx < 0 or idx >= len(M4A_NOTE_LENGTH_TABLE):
+        raise ValueError(f"invalid m4a note cmd 0x{cmd:02X}")
+    ticks = M4A_NOTE_LENGTH_TABLE[idx] + gate
+    if extra is not None:
+        if extra < 0x81 or extra > 0xB0:
+            raise ValueError(f"invalid m4a wait/extra byte 0x{extra:02X}")
+        ticks += M4A_NOTE_LENGTH_TABLE[extra - 0x81]
+    return ticks, idx
+
+
+def estimate_note_sample_capacity(cmd, gate, extra=None):
+    ticks, idx = m4a_note_ticks(cmd, gate, extra)
+    return (
+        M4A_NOTE_CAPACITY_A * ticks
+        + M4A_NOTE_CAPACITY_B * idx
+        + M4A_NOTE_CAPACITY_C
+    )
+
+
+def build_voice_part_note(cmd, gate, extra=None):
+    note = bytes([cmd, M4A_VOICE_NOTE_KEY, M4A_VOICE_NOTE_VEL, gate])
+    if extra is not None:
+        note += bytes([extra])
+    if len(note) not in (4, 5):
+        raise ValueError(f"part note must be 4 or 5 bytes, got {len(note)}")
+    return note
+
+
+def encode_part_track_note(sample_count):
+    """Pick m4a note bytes whose gate capacity covers sample_count (no PCM padding)."""
+    if sample_count <= 0:
+        raise SystemExit(f"voice clip has no PCM samples ({sample_count})")
+
+    if sample_count <= M4A_VOICE_MAX_VANILLA_SAMPLES:
+        return M4A_VOICE_MAX_VANILLA_NOTE
+
+    target = sample_count + M4A_NOTE_CAPACITY_MARGIN
+    best = None
+
+    for cmd in range(0xD0, 0x100):
+        for gate in range(256):
+            cap = estimate_note_sample_capacity(cmd, gate)
+            if cap >= target:
+                waste = cap - sample_count
+                cand = (waste, cmd, gate, None)
+                if best is None or cand < best:
+                    best = cand
+            for extra in range(0x81, 0xB1):
+                cap = estimate_note_sample_capacity(cmd, gate, extra)
+                if cap >= target:
+                    waste = cap - sample_count
+                    cand = (waste, cmd, gate, extra)
+                    if best is None or cand < best:
+                        best = cand
+
+    if best is None:
+        raise SystemExit(
+            f"no m4a part-track note covers {sample_count} samples "
+            f"(max vanilla gate is {M4A_VOICE_MAX_VANILLA_SAMPLES})"
+        )
+
+    _waste, cmd, gate, extra = best
+    return build_voice_part_note(cmd, gate, extra)
 
 
 def prepare_pcm_and_note(pcm8):
     sample_count = len(pcm8)
-    ref_index = 0
-    for i, (threshold, _note) in enumerate(PART_TRACK_NOTE_BY_SAMPLES):
-        if sample_count >= threshold:
-            ref_index = i
-        else:
-            break
-
-    ref_threshold, note = PART_TRACK_NOTE_BY_SAMPLES[ref_index]
-    if sample_count > ref_threshold and ref_index + 1 < len(PART_TRACK_NOTE_BY_SAMPLES):
-        next_threshold, next_note = PART_TRACK_NOTE_BY_SAMPLES[ref_index + 1]
-        pcm8 = pcm8 + bytes(next_threshold - sample_count)
-        note = next_note
-        sample_count = next_threshold
-
+    note = encode_part_track_note(sample_count)
     return pcm8, note, sample_count
 
 
@@ -331,7 +396,16 @@ def part_track_tail(note):
 
 def build_part_track(tone_index, note):
     part = bytearray(
-        [0xBC, 0x00, 0xBB, 0x14, 0xBD, tone_index, 0xBE, 0x74]
+        [
+            0xBC,
+            0x00,
+            0xBB,
+            M4A_VOICE_PART_TEMPO,
+            0xBD,
+            tone_index,
+            0xBE,
+            M4A_VOICE_PART_VOLUME,
+        ]
     )
     part.extend(note)
     part.extend(part_track_tail(note))
@@ -715,6 +789,18 @@ def write_outputs(outputs: dict[Path, str]) -> bool:
     return changed
 
 
+def validate_note_encoder():
+    for sample_count, _note in M4A_VOICE_NOTE_CALIBRATION:
+        encoded = encode_part_track_note(sample_count)
+        extra = encoded[4] if len(encoded) > 4 else None
+        cap = estimate_note_sample_capacity(encoded[0], encoded[3], extra)
+        if cap + M4A_NOTE_CAPACITY_MARGIN < sample_count:
+            raise SystemExit(
+                f"note encoder under-estimates baserom calibration "
+                f"({sample_count} samples, cap≈{cap:.0f})"
+            )
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("manifest", type=Path)
@@ -731,6 +817,8 @@ def main():
     digest = compute_voice_inputs_digest(args.manifest, generator_path)
     if args.stamp and stamp_is_current(args.stamp, digest):
         return
+
+    validate_note_encoder()
 
     manifest = json.loads(args.manifest.read_text())
     ai_ids = load_ai_duelist_ids()
