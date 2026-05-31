@@ -122,6 +122,34 @@
       "card_id": "FAIRYS_GIFT",
       "title": "Tea: I attack with Fairy's Gift!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "weevil_1",
+      "duelist": ["DUELIST_WEEVIL_049", "DUELIST_WEEVIL_056", "DUELIST_WEEVIL_104", "DUELIST_WEEVIL_115", "DUELIST_WEEVIL_151"],
+      "wav": "weevil/my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Weevil: My Turn",
+      "turn_text": "My turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "weevil_2",
+      "duelist": ["DUELIST_WEEVIL_049", "DUELIST_WEEVIL_056", "DUELIST_WEEVIL_104", "DUELIST_WEEVIL_115", "DUELIST_WEEVIL_151"],
+      "wav": "weevil/that_was_nothing.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Weevil: That Was Nothing",
+      "turn_text": "That was nothing!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "weevil_3",
+      "duelist": ["DUELIST_WEEVIL_049", "DUELIST_WEEVIL_056", "DUELIST_WEEVIL_104", "DUELIST_WEEVIL_115", "DUELIST_WEEVIL_151"],
+      "wav": "weevil/blow_em_away_great_moth.wav",
+      "trigger": "attack_card",
+      "card_id": "GREAT_MOTH",
+      "title": "Weevil: Blow Em Away Great Moth!",
+      "gain_db": 4.0
     }
   ]
 }

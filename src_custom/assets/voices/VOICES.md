@@ -35,11 +35,14 @@ Sizes:
     <tr><td align="center">Tea: My Turn</td><td align="center"><code>tea/my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">87,800 B (85.7 KB)</td><td align="center">22,778 B (22.2 KB)</td><td align="center"><span style="color: #3fb950">-74.1%</span></td></tr>
     <tr><td align="center">Tea: Dont Expect Me To </td><td align="center"><code>tea/dont_expect_me_to_give_up.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">132,268 B (129.2 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-69.3%</span></td></tr>
     <tr><td align="center">Tea: I attack with Fair</td><td align="center"><code>tea/i_attack_with_fairys_gift.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">157,400 B (153.7 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-74.2%</span></td></tr>
-    <tr><td align="center" colspan="3"><strong>Total</strong></td><td align="center"><strong>1,443,080 B (1409.3 KB)</strong></td><td align="center"><strong>404,686 B (395.2 KB)</strong></td><td align="center"><strong><span style="color: #3fb950">-72.0%</span></strong></td></tr>
+    <tr><td align="center">Weevil: My Turn</td><td align="center"><code>weevil/my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">100,200 B (97.9 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-59.5%</span></td></tr>
+    <tr><td align="center">Weevil: That Was Nothin</td><td align="center"><code>weevil/that_was_nothing.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">139,724 B (136.4 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-70.9%</span></td></tr>
+    <tr><td align="center">Weevil: Blow Em Away Gr</td><td align="center"><code>weevil/blow_em_away_great_moth.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">218,272 B (213.2 KB)</td><td align="center">53,954 B (52.7 KB)</td><td align="center"><span style="color: #3fb950">-75.3%</span></td></tr>
+    <tr><td align="center" colspan="3"><strong>Total</strong></td><td align="center"><strong>1,901,276 B (1856.7 KB)</strong></td><td align="center"><strong>539,832 B (527.2 KB)</strong></td><td align="center"><strong><span style="color: #3fb950">-71.6%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 12 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 15 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 
