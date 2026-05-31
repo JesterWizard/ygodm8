@@ -1,0 +1,22 @@
+{
+  "tone_patches": [
+    {
+      "org": 11515148,
+      "wave_symbol": "CustomVoice_duke_turn_start_Wave"
+    }
+  ],
+  "song_patches": [
+    {
+      "org": 11522220,
+      "header_symbol": "gCustomVoiceBlob",
+      "header_offset": 16,
+      "player": 196611
+    }
+  ],
+  "mode_patches": [
+    {
+      "org": 863273,
+      "mode": 3
+    }
+  ]
+}

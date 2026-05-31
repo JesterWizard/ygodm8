@@ -56,6 +56,9 @@ _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 _kernel_malloc gDoubleSummonExtraSummonPending, 1
 _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 
+@ Once-per-turn flags for custom LP-threshold voice clips (max 64 clips).
+_kernel_malloc gCustomVoiceLpFiredThisTurn, 64
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 
@@ -128,6 +131,10 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 @ Scratch for temporarily restoring the active deck while building the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
+
+@ m4a part track + SongHeader at playback; WaveData lives in main ROM.
+.set CUSTOM_VOICE_EWRAM_BYTES, 0x100
+_kernel_malloc_ewram_array gCustomVoiceBlob, CUSTOM_VOICE_EWRAM_BYTES
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)

@@ -1,0 +1,23 @@
+{
+  "sample_rate": 21024,
+  "max_clip_bytes": 56320,
+  "max_turn_start_seconds": 2.0,
+  "max_attack_seconds": 4.0,
+  "song_id_base": 601,
+  "notes": [
+    "duelist: AI_DUELIST_* (include/ai.h) or DUELIST_* (include/overworld.h); use a JSON array for multiple story duelist IDs that share one clip.",
+    "card_id uses CARD_* defines from include/constants/card_ids.h.",
+    "trigger: turn_start | attack_card | opponent_lp_below.",
+    "replace_vanilla: when true, skip the vanilla clip for the same trigger type.",
+    "WAV files live under src_custom/assets/voices/ (mono or stereo; resampled at build)."
+  ],
+  "clips": [
+    {
+      "clip_id": "duke_turn_start",
+      "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
+      "wav": "duke/im_up.wav",
+      "trigger": "turn_start",
+      "title": "Duke: Im Up"
+    }
+  ]
+}

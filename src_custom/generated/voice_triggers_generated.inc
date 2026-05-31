@@ -1,0 +1,4 @@
+static const struct CustomVoiceClipMeta sCustomVoiceClips[] APPEND_RODATA = {
+  {SFX_VOICE_DUKE_TURN_START, 78, 93, 0, 0, CUSTOM_VOICE_TRIGGER_TURN_START, 0, 0, 0},
+  {SFX_VOICE_DUKE_TURN_START, 78, 124, 0, 0, CUSTOM_VOICE_TRIGGER_TURN_START, 0, 0, 0},
+};

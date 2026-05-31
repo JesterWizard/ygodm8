@@ -987,6 +987,12 @@ SECTIONS
     g84E24B8 = 0x84E24B8;
     g84E3634 = 0x84E3634;
 
+    . = 0x08FE3400;
+    .voice_pcm_rom :
+    {
+        *(.voice_pcm_rom)
+    }
+
     . = 0x09000020;
     __append_start = .;
 

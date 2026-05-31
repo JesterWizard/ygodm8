@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import pathlib
 import re
 import struct
@@ -19,7 +20,7 @@ def fmt_range(start: int, end: int) -> str:
 
 
 def load_symbols(elf_path: pathlib.Path):
-    output = subprocess.check_output(["arm-none-eabi-nm", "-g", str(elf_path)], text=True)
+    output = subprocess.check_output(["arm-none-eabi-nm", str(elf_path)], text=True)
     symbols = {}
     for line in output.splitlines():
         parts = line.strip().split()
@@ -107,6 +108,69 @@ def apply_event(event_path: pathlib.Path, rom: bytearray, symbols, owners: dict[
         raise ValueError(f"unsupported line in {event_path}: {raw_line}")
 
 
+def load_elf_section(elf_path: pathlib.Path, section_name: str) -> tuple[int, bytes]:
+    output = subprocess.check_output(["arm-none-eabi-readelf", "-W", "-S", str(elf_path)], text=True)
+    for line in output.splitlines():
+        if section_name not in line or "PROGBITS" not in line:
+            continue
+        parts = line.split()
+        # [ N] .name TYPE ADDR OFF SIZE ...
+        addr = int(parts[4], 16)
+        off = int(parts[5], 16)
+        size = int(parts[6], 16)
+        data = elf_path.read_bytes()[off : off + size]
+        return addr, data
+    raise KeyError(f"ELF section {section_name!r} not found in {elf_path}")
+
+
+def relocate_voice_pcm_rom(rom: bytearray, elf_path: pathlib.Path, owners: dict[int, str]):
+    try:
+        vma, data = load_elf_section(elf_path, ".voice_pcm_rom")
+    except KeyError:
+        return
+    if not data:
+        return
+    start = vma - 0x08000000
+    checked_write(rom, start, data, owners, "voice_pcm_rom relocation")
+
+
+def apply_voice_patches(rom: bytearray, symbols: dict, owners: dict[int, str]):
+    patch_path = ROOT / "src_custom/generated/voice_rom_patches.json"
+    if not patch_path.exists():
+        return
+
+    data = json.loads(patch_path.read_text())
+    owner = str(patch_path)
+
+    def resolve_symbol(entry, symbol_key, offset_key):
+        name = entry[symbol_key]
+        if name not in symbols:
+            raise KeyError(f"voice patch missing symbol {name!r}")
+        address = symbols[name]
+        if offset_key in entry:
+            address += entry[offset_key]
+        return address
+
+    for entry in data.get("tone_patches", []):
+        wave = resolve_symbol(entry, "wave_symbol", "wave_offset")
+        payload = struct.pack("<III", 0x00003C08, wave, 0x00FF00FF)
+        checked_write(rom, entry["org"], payload, owners, owner)
+
+    for entry in data.get("song_patches", []):
+        header = resolve_symbol(entry, "header_symbol", "header_offset")
+        payload = struct.pack("<II", header, entry["player"])
+        checked_write(rom, entry["org"], payload, owners, owner)
+
+    for entry in data.get("mode_patches", []):
+        checked_write(
+            rom,
+            entry["org"],
+            bytes([entry["mode"]]),
+            owners,
+            owner,
+        )
+
+
 def main() -> int:
     if len(sys.argv) != 3:
         print("usage: apply_lynjump.py <elf> <rom>", file=sys.stderr)
@@ -120,6 +184,9 @@ def main() -> int:
 
     for event_path in ROOT.rglob("LynJump.event"):
         apply_event(event_path, rom, symbols, owners)
+
+    relocate_voice_pcm_rom(rom, elf_path, owners)
+    apply_voice_patches(rom, symbols, owners)
 
     rom_path.write_bytes(rom)
     return 0

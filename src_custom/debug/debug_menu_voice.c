@@ -1,12 +1,15 @@
 #include "global.h"
 #include "configs/runtime.h"
-#include "constants/music_ids.h"
+#include "constants/custom_voices_generated.h"
 #include "debug_menu_internal.h"
 
 #define DEBUG_MENU_VOICE_ENTRY(id, title) {id, title},
 
 static const struct DebugMenuVoiceEntry sVoices[] APPEND_RODATA = {
 #include "debug_menu_voice_table.inc"
+#if CUSTOM_VOICE_SONG_COUNT > 0
+#include "../generated/debug_menu_voice_custom.inc"
+#endif
 };
 
 #undef DEBUG_MENU_VOICE_ENTRY
@@ -58,9 +61,15 @@ void DebugVoiceViewer(void) {
       DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_VOICE);
     }
     if (buttons & A_BUTTON) {
+      u16 soundId;
+
       PlayMusic(SFX_SELECT);
-      playingId = sVoices[cursor].soundId;
-      PlayMusic(playingId);
+      soundId = sVoices[cursor].soundId;
+      playingId = soundId;
+      if (soundId >= CUSTOM_VOICE_SONG_ID_MIN && soundId <= CUSTOM_VOICE_SONG_ID_MAX)
+        PlayCustomVoiceClip((u8)(soundId - CUSTOM_VOICE_SONG_ID_MIN));
+      else
+        PlayMusic(soundId);
       DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_VOICE);
       DebugMenuWaitRelease(A_BUTTON);
     }
