@@ -102,7 +102,7 @@ void MoveCursorDown__Replacement(void) {
 LYN_REPLACE_CHECK(sub_80575E0);
 int sub_80575E0__Replacement(unsigned char arg0, unsigned char arg1) {
   if (IsOpponentHandFieldScrollEnabled() && arg1 == OPPONENT_HAND_ROW)
-    return g8E116EE[OPPONENT_BACKROW][arg0];
+    return g8E116EE[PLAYER_HAND][arg0];
 
   return g8E116EE[arg1][arg0];
 }

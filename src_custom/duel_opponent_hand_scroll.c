@@ -131,23 +131,19 @@ static struct FieldOamEntry *OpponentHandOamAt(u8 col)
 }
 
 /*
- * Dedicated OBJ tile slots for the five hand sprites (cbb4 / charblock 4).
- * R-hand peek uses 8-tile spacing, but each 24x24 mini card needs ~16 OBJ tiles
- * (32x32 sprite + stat overlays up to ~0xD00 bytes), so wider spacing is required.
+ * Reuse the player-hand row OBJ tile map (g8E116BC row 4). Player-hand field OAM is
+ * hidden while the opponent hand is shown; compositing must use the same sparse VRAM
+ * layout as every other field mini-card (not a packed 16-tile blit).
  */
-/* Above duel cursor tiles at 0x180 (gE0D0F0[3]); 0x140 overlapped the cursor. */
-#define OPPONENT_HAND_TILE_BASE   0x1F0
-#define OPPONENT_HAND_TILE_STRIDE 0x70
-
 static u8 *OpponentHandTilePtr(u8 col)
 {
   return gBgVram.cbb0 + 0x10000
-      + (OPPONENT_HAND_TILE_BASE + col * OPPONENT_HAND_TILE_STRIDE) * 32;
+      + g8E116BC[PLAYER_HAND * MAX_ZONES_IN_ROW + col] * 32;
 }
 
 static u16 OpponentHandOamTileIndex(u8 col)
 {
-  return OPPONENT_HAND_TILE_BASE + col * OPPONENT_HAND_TILE_STRIDE;
+  return g8E116BC[PLAYER_HAND * MAX_ZONES_IN_ROW + col];
 }
 
 static s16 GetOpponentHandCardScreenY(void)
@@ -242,7 +238,8 @@ static void HidePlayerHandFieldOam(void)
 static void PlaceOpponentHandOam(u8 col)
 {
   struct FieldOamEntry *oam = OpponentHandOamAt(col);
-  s16 x = g8E116EE[0][col];
+  /* Row 4 fan coords match the vanilla R-hand peek layout at the top edge. */
+  s16 x = g8E116EE[PLAYER_HAND][col];
   s16 y = GetOpponentHandCardScreenY();
 
   oam->a = (u32)((y & 0xFF) | ((x << 16) & 0x01FF0000) | 0x80002100);
@@ -306,6 +303,7 @@ void DrawOpponentHandOnField(void) {
   }
 
   HidePlayerHandFieldOam();
+  HideOpponentHandFieldOam();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     card = gTurnHands[INACTIVE_DUELIST][OpponentHandZoneFromCol(col)];
