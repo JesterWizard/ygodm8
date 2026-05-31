@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import audioop
+import hashlib
 import html
 import json
 import re
@@ -14,6 +15,11 @@ VOICE_INVENTORY_MD = ASSETS / "VOICES.md"
 GENERATED = ROOT / "src_custom/generated"
 HEADER = ROOT / "include/constants/custom_voices_generated.h"
 BASEROM = ROOT / "baserom.gba"
+VOICE_INPUT_HEADERS = (
+    ROOT / "include/ai.h",
+    ROOT / "include/overworld.h",
+    ROOT / "include/constants/card_ids.h",
+)
 DUELIST_TABLE_OFF = 0xE00B30
 
 # m4a WaveData.freq pitch constant (NOT literal Hz). Vanilla duel VO uses 21024 Hz (= 0x01488000).
@@ -37,8 +43,10 @@ MAX_ROM_LIMIT = 0x0A000000
 APPEND_ROM_RESERVE = 0x000C0000
 
 # (vanilla_pcm_samples, note bytes before 0xB1). From baserom duel voice part tracks.
-# Pick the largest reference whose sample count is still <= the clip (never a longer
-# reference — that makes m4a read past the WaveData buffer and play silence).
+# Each note encodes a fixed playback length equal to its sample count. Pick the largest
+# reference still <= the clip, then pad up to the next bracket whenever the clip is
+# longer than that note (never pick a longer reference without padding — that makes m4a
+# read past the WaveData buffer and play silence).
 PART_TRACK_NOTE_BY_SAMPLES = (
     (14123, bytes([0xDA, 0x3C, 0x7F, 0x8B])),
     (19368, bytes([0xE0, 0x3C, 0x7F, 0x91])),
@@ -285,12 +293,11 @@ def prepare_pcm_and_note(pcm8):
             break
 
     ref_threshold, note = PART_TRACK_NOTE_BY_SAMPLES[ref_index]
-    if ref_index + 1 < len(PART_TRACK_NOTE_BY_SAMPLES):
+    if sample_count > ref_threshold and ref_index + 1 < len(PART_TRACK_NOTE_BY_SAMPLES):
         next_threshold, next_note = PART_TRACK_NOTE_BY_SAMPLES[ref_index + 1]
-        if (next_threshold - sample_count) < (sample_count - ref_threshold):
-            pcm8 = pcm8 + bytes(next_threshold - sample_count)
-            note = next_note
-            sample_count = next_threshold
+        pcm8 = pcm8 + bytes(next_threshold - sample_count)
+        note = next_note
+        sample_count = next_threshold
 
     return pcm8, note, sample_count
 
@@ -550,6 +557,7 @@ def render_voice_inventory_md(manifest, songs_meta):
         "- **Source WAV** — on-disk `.wav` file size (includes RIFF headers; typically 16-bit PCM).",
         "- **In-ROM** — m4a `WaveData` blob in main ROM: 16-byte header + 8-bit mono PCM (+ 1-byte pad if odd).",
         "- **Overall Change** — `(in-ROM − source) / source`; negative means the ROM blob is smaller.",
+        "- **Total** row — sum of all registered clips (source vs in-ROM).",
         "",
         "## Registered clips",
         "",
@@ -568,10 +576,14 @@ def render_voice_inventory_md(manifest, songs_meta):
     ]
 
     if songs_meta:
+        total_source_bytes = 0
+        total_rom_bytes = 0
         for meta in songs_meta:
             wav_path = ASSETS / meta["wav_rel"]
             source_bytes = wav_path.stat().st_size if wav_path.is_file() else 0
             rom_bytes = meta["wave_bytes"]
+            total_source_bytes += source_bytes
+            total_rom_bytes += rom_bytes
             title = html.escape(meta["title"])
             wav_rel = html.escape(meta["wav_rel"])
             trigger = html.escape(meta["trigger"])
@@ -585,6 +597,14 @@ def render_voice_inventory_md(manifest, songs_meta):
                 f'<td align="center">{format_colored_size_delta(source_bytes, rom_bytes)}</td>'
                 "</tr>"
             )
+        lines.append(
+            "    <tr>"
+            '<td align="center" colspan="3"><strong>Total</strong></td>'
+            f'<td align="center"><strong>{format_byte_size(total_source_bytes)}</strong></td>'
+            f'<td align="center"><strong>{format_byte_size(total_rom_bytes)}</strong></td>'
+            f'<td align="center"><strong>{format_colored_size_delta(total_source_bytes, total_rom_bytes)}</strong></td>'
+            "</tr>"
+        )
     else:
         lines.append('    <tr><td align="center" colspan="6"><em>none</em></td></tr>')
 
@@ -629,11 +649,67 @@ def render_debug_inc(songs_meta):
     return "\n".join(lines) + ("\n" if lines else "")
 
 
+def iter_voice_wav_paths():
+    if not ASSETS.is_dir():
+        return []
+    return sorted(ASSETS.rglob("*.wav"))
+
+
+def file_stat_digest(path: Path, hasher) -> None:
+    hasher.update(path.as_posix().encode())
+    stat = path.stat()
+    hasher.update(str(stat.st_mtime_ns).encode())
+    hasher.update(str(stat.st_size).encode())
+
+
+def compute_voice_inputs_digest(manifest_path: Path, generator_path: Path) -> str:
+    hasher = hashlib.sha256()
+    file_stat_digest(manifest_path.resolve(), hasher)
+    file_stat_digest(generator_path.resolve(), hasher)
+    for header in VOICE_INPUT_HEADERS:
+        if header.is_file():
+            file_stat_digest(header, hasher)
+    for wav_path in iter_voice_wav_paths():
+        file_stat_digest(wav_path.relative_to(ROOT), hasher)
+        hasher.update(wav_path.read_bytes())
+    return hasher.hexdigest()
+
+
+def stamp_is_current(stamp_path: Path, digest: str) -> bool:
+    if not stamp_path.is_file():
+        return False
+    return stamp_path.read_text().strip() == digest
+
+
+def write_outputs(outputs: dict[Path, str]) -> bool:
+    changed = False
+    for path, content in outputs.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not path.exists() or path.read_text() != content:
+            path.write_text(content)
+            print(f"WROTE {path.relative_to(ROOT)}")
+            changed = True
+        else:
+            print(f"OK    {path.relative_to(ROOT)}")
+    return changed
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--out-dir", type=Path, default=GENERATED)
+    parser.add_argument(
+        "--stamp",
+        type=Path,
+        default=None,
+        help="Write input digest when outputs are rebuilt; skip work if digest matches.",
+    )
     args = parser.parse_args()
+
+    generator_path = Path(__file__).resolve()
+    digest = compute_voice_inputs_digest(args.manifest, generator_path)
+    if args.stamp and stamp_is_current(args.stamp, digest):
+        return
 
     manifest = json.loads(args.manifest.read_text())
     ai_ids = load_ai_duelist_ids()
@@ -750,13 +826,11 @@ def main():
         VOICE_INVENTORY_MD: inventory_md,
     }
 
-    for path, content in outputs.items():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        if not path.exists() or path.read_text() != content:
-            path.write_text(content)
-            print(f"WROTE {path.relative_to(ROOT)}")
-        else:
-            print(f"OK    {path.relative_to(ROOT)}")
+    write_outputs(outputs)
+
+    if args.stamp:
+        args.stamp.parent.mkdir(parents=True, exist_ok=True)
+        args.stamp.write_text(digest + "\n")
 
 
 if __name__ == "__main__":

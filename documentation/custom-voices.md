@@ -93,7 +93,7 @@ make
 
 Open the overworld debug menu → **Voice Viewer** to preview vanilla and custom clips.
 
-Registered clip sizes are tracked in [`src_custom/assets/voices/VOICES.md`](../src_custom/assets/voices/VOICES.md) (auto-generated on `make`).
+Registered clip sizes are tracked in [`src_custom/assets/voices/VOICES.md`](../src_custom/assets/voices/VOICES.md) (regenerated with the voice pipeline when inputs change).
 
 ## Manifest Schema
 
@@ -124,7 +124,7 @@ Song IDs are allocated sequentially from `song_id_base` (default **601**).
 
 ## Build Pipeline
 
-[`tools/generate_voices.py`](tools/generate_voices.py) runs during `make` and emits:
+[`tools/generate_voices.py`](tools/generate_voices.py) runs during `make` when the manifest, generator, headers, or any voice WAV changes (tracked via `build/.voice_generated.stamp`). It emits:
 
 | Output | Purpose |
 |--------|---------|

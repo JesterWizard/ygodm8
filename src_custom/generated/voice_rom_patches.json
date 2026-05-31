@@ -2,15 +2,15 @@
   "tone_patches": [
     {
       "org": 11515148,
-      "wave_symbol": "CustomVoice_duke_turn_start_Wave"
+      "wave_symbol": "CustomVoice_duke_1_Wave"
     },
     {
       "org": 11515160,
-      "wave_symbol": "CustomVoice_duke_not_over_yet_Wave"
+      "wave_symbol": "CustomVoice_duke_2_Wave"
     },
     {
       "org": 11515172,
-      "wave_symbol": "CustomVoice_duke_go_gradius_Wave"
+      "wave_symbol": "CustomVoice_duke_3_Wave"
     },
     {
       "org": 11515184,
@@ -23,22 +23,34 @@
     {
       "org": 11515208,
       "wave_symbol": "CustomVoice_tristan_3_Wave"
+    },
+    {
+      "org": 11515220,
+      "wave_symbol": "CustomVoice_mai_1_Wave"
+    },
+    {
+      "org": 11515232,
+      "wave_symbol": "CustomVoice_mai_2_Wave"
+    },
+    {
+      "org": 11515244,
+      "wave_symbol": "CustomVoice_mai_3_Wave"
     }
   ],
   "song_patches": [
     {
       "org": 11522220,
-      "header_symbol": "CustomVoice_duke_turn_start_SongHeader",
+      "header_symbol": "CustomVoice_duke_1_SongHeader",
       "player": 196611
     },
     {
       "org": 11522228,
-      "header_symbol": "CustomVoice_duke_not_over_yet_SongHeader",
+      "header_symbol": "CustomVoice_duke_2_SongHeader",
       "player": 196611
     },
     {
       "org": 11522236,
-      "header_symbol": "CustomVoice_duke_go_gradius_SongHeader",
+      "header_symbol": "CustomVoice_duke_3_SongHeader",
       "player": 196611
     },
     {
@@ -54,6 +66,21 @@
     {
       "org": 11522260,
       "header_symbol": "CustomVoice_tristan_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522268,
+      "header_symbol": "CustomVoice_mai_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522276,
+      "header_symbol": "CustomVoice_mai_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522284,
+      "header_symbol": "CustomVoice_mai_3_SongHeader",
       "player": 196611
     }
   ],
@@ -80,6 +107,18 @@
     },
     {
       "org": 863278,
+      "mode": 3
+    },
+    {
+      "org": 863279,
+      "mode": 3
+    },
+    {
+      "org": 863280,
+      "mode": 3
+    },
+    {
+      "org": 863281,
       "mode": 3
     }
   ]

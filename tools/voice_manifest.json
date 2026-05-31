@@ -66,6 +66,34 @@
       "card_id": "CYBER_COMMANDER",
       "title": "Tristan: Here Comes Cyber Commander",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "mai_1",
+      "duelist": ["DUELIST_MAI_032", "DUELIST_MAI_033", "DUELIST_MAI_058", "DUELIST_MAI_097", "DUELIST_MAI_118", "DUELIST_MAI_147"],
+      "wav": "mai/draw.wav",
+      "trigger": "turn_start",
+      "title": "Mai: Draw",
+      "turn_text": "Draw!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "mai_2",
+      "duelist": ["DUELIST_MAI_032", "DUELIST_MAI_033", "DUELIST_MAI_058", "DUELIST_MAI_097", "DUELIST_MAI_118", "DUELIST_MAI_147"],
+      "wav": "mai/like_thats_gonna_keep_me_down.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Mai: Like Thats Gonna Keep Me Down",
+      "turn_text": "Like that's gonna keep me down!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "mai_3",
+      "duelist": ["DUELIST_MAI_032", "DUELIST_MAI_033", "DUELIST_MAI_058", "DUELIST_MAI_097", "DUELIST_MAI_118", "DUELIST_MAI_147"],
+      "wav": "mai/swoop_in_harpie_lady.wav",
+      "trigger": "attack_card",
+      "card_id": "HARPIE_LADY",
+      "title": "Mai: Swoop in Harpie Lady",
+      "gain_db": 4.0
     }
   ]
 }

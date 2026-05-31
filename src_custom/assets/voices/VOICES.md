@@ -7,6 +7,7 @@ Sizes:
 - **Source WAV** — on-disk `.wav` file size (includes RIFF headers; typically 16-bit PCM).
 - **In-ROM** — m4a `WaveData` blob in main ROM: 16-byte header + 8-bit mono PCM (+ 1-byte pad if odd).
 - **Overall Change** — `(in-ROM − source) / source`; negative means the ROM blob is smaller.
+- **Total** row — sum of all registered clips (source vs in-ROM).
 
 ## Registered clips
 
@@ -24,14 +25,18 @@ Sizes:
   <tbody>
     <tr><td align="center">Duke: Im Up</td><td align="center"><code>duke/im_up.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">56,760 B (55.4 KB)</td><td align="center">13,536 B (13.2 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
     <tr><td align="center">Duke: Not Over</td><td align="center"><code>duke/this_duel_isnt_over_yet.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">144,940 B (141.5 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-72.0%</span></td></tr>
-    <tr><td align="center">Duke: Go Gradius</td><td align="center"><code>duke/go_gradius.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">114,156 B (111.5 KB)</td><td align="center">27,218 B (26.6 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Duke: Go Gradius</td><td align="center"><code>duke/go_gradius.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">114,156 B (111.5 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-64.4%</span></td></tr>
     <tr><td align="center">Tristan: Its my turn</td><td align="center"><code>tristan/its_my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">91,628 B (89.5 KB)</td><td align="center">22,778 B (22.2 KB)</td><td align="center"><span style="color: #3fb950">-75.1%</span></td></tr>
-    <tr><td align="center">Tristan: Im Done For</td><td align="center"><code>tristan/im_done_for.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">116,828 B (114.1 KB)</td><td align="center">27,854 B (27.2 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
-    <tr><td align="center">Tristan: Here Comes Cyb</td><td align="center"><code>tristan/here_comes_cyber_commander.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">172,076 B (168.0 KB)</td><td align="center">41,024 B (40.1 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Tristan: Im Done For</td><td align="center"><code>tristan/im_done_for.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">116,828 B (114.1 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-65.3%</span></td></tr>
+    <tr><td align="center">Tristan: Here Comes Cyb</td><td align="center"><code>tristan/here_comes_cyber_commander.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">172,076 B (168.0 KB)</td><td align="center">44,624 B (43.6 KB)</td><td align="center"><span style="color: #3fb950">-74.1%</span></td></tr>
+    <tr><td align="center">Mai: Draw</td><td align="center"><code>mai/draw.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">53,550 B (52.3 KB)</td><td align="center">12,770 B (12.5 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Mai: Like Thats Gonna K</td><td align="center"><code>mai/like_thats_gonna_keep_me_down.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">183,718 B (179.4 KB)</td><td align="center">44,624 B (43.6 KB)</td><td align="center"><span style="color: #3fb950">-75.7%</span></td></tr>
+    <tr><td align="center">Mai: Swoop in Harpie La</td><td align="center"><code>mai/swoop_in_harpie_lady.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">131,956 B (128.9 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-69.2%</span></td></tr>
+    <tr><td align="center" colspan="3"><strong>Total</strong></td><td align="center"><strong>1,065,612 B (1040.6 KB)</strong></td><td align="center"><strong>300,716 B (293.7 KB)</strong></td><td align="center"><strong><span style="color: #3fb950">-71.8%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 6 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 9 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

@@ -90,6 +90,8 @@ SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
 SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
 VOICE_GENERATOR := tools/generate_voices.py
 VOICE_MANIFEST := tools/voice_manifest.json
+VOICE_WAV_DEPS := $(wildcard src_custom/assets/voices/**/*.wav)
+VOICE_STAMP := $(BUILD_DIR)/.voice_generated.stamp
 VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md
 VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
@@ -244,9 +246,14 @@ $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
 
-$(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(wildcard src_custom/assets/voices/**/*.wav)
+$(VOICE_STAMP): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(VOICE_WAV_DEPS)
+	@mkdir -p $(dir $@)
 	@echo "VOICE   custom duelist voice clips"
-	python3 $(VOICE_GENERATOR) $(VOICE_MANIFEST)
+	python3 $(VOICE_GENERATOR) $(VOICE_MANIFEST) --stamp $@
+
+$(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_STAMP)
+	@test -f $(VOICE_STAMP)
+	@test -f $@
 
 $(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST)
 	@echo "FIELD   custom field spell gfx"
@@ -291,8 +298,8 @@ $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
-$(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_GENERATED)))
-$(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_GENERATED)))
+$(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))
+$(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
@@ -329,7 +336,7 @@ $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
 	@echo "AS      $<"
 	$(AS) $(ASFLAGS) $< -o $@
 
-$(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o: $(VOICE_ASSETS_S)
+$(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o: $(VOICE_ASSETS_S) $(VOICE_STAMP)
 	@echo "AS      $<"
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) $< -o $@
