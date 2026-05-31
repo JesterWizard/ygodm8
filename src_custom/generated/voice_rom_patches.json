@@ -11,6 +11,18 @@
     {
       "org": 11515172,
       "wave_symbol": "CustomVoice_duke_go_gradius_Wave"
+    },
+    {
+      "org": 11515184,
+      "wave_symbol": "CustomVoice_tristan_1_Wave"
+    },
+    {
+      "org": 11515196,
+      "wave_symbol": "CustomVoice_tristan_2_Wave"
+    },
+    {
+      "org": 11515208,
+      "wave_symbol": "CustomVoice_tristan_3_Wave"
     }
   ],
   "song_patches": [
@@ -28,6 +40,21 @@
       "org": 11522236,
       "header_symbol": "CustomVoice_duke_go_gradius_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522244,
+      "header_symbol": "CustomVoice_tristan_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522252,
+      "header_symbol": "CustomVoice_tristan_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522260,
+      "header_symbol": "CustomVoice_tristan_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -41,6 +68,18 @@
     },
     {
       "org": 863275,
+      "mode": 3
+    },
+    {
+      "org": 863276,
+      "mode": 3
+    },
+    {
+      "org": 863277,
+      "mode": 3
+    },
+    {
+      "org": 863278,
       "mode": 3
     }
   ]

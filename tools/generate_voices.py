@@ -30,6 +30,12 @@ CUSTOM_VOICE_TONE_INDEX_BASE = 48
 CUSTOM_VOICE_PART_SIZE = 18
 CUSTOM_VOICE_WAVE_HEADER_SIZE = 16
 
+# Tail ROM: voice PCM @ VOICE_PCM_ROM_ORG, then append (code/assets). See ldscript.ld + validate_lynjump.
+VOICE_PCM_ROM_ORG = 0x08FE3400
+MAX_ROM_LIMIT = 0x0A000000
+# Reserve headroom for appended code/assets (~768 KiB; current append ~660 KiB).
+APPEND_ROM_RESERVE = 0x000C0000
+
 # (vanilla_pcm_samples, note bytes before 0xB1). From baserom duel voice part tracks.
 # Pick the largest reference whose sample count is still <= the clip (never a longer
 # reference — that makes m4a read past the WaveData buffer and play silence).
@@ -201,6 +207,33 @@ def symbol_for_clip(clip_id):
     return safe
 
 
+def c_escape_string(text: str) -> str:
+    out = []
+    for ch in text:
+        if ch == "\\":
+            out.append("\\\\")
+        elif ch == '"':
+            out.append('\\"')
+        elif ch == "\n":
+            out.append("\\n")
+        elif ord(ch) >= 32 and ord(ch) < 127:
+            out.append(ch)
+        else:
+            out.append(f"\\x{ord(ch):02x}")
+    return "".join(out)
+
+
+def encode_duel_turn_text(text: str) -> str:
+    """Duel textbox format: $0..$5 language chunks, $6 end marker, #1 wait for A/B/R."""
+    body = text.replace("\\n", "\n").replace("\n", "#0")
+    segments = "".join(f"${lang}{body}" for lang in range(6))
+    return segments + "$6#1"
+
+
+def turn_text_symbol_for(sym: str) -> str:
+    return f"CustomVoice_{sym}_TurnText"
+
+
 def song_const_for_clip(clip_id):
     return f"SFX_VOICE_{symbol_for_clip(clip_id).upper()}"
 
@@ -228,6 +261,8 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
         raise SystemExit(f"{clip_id}: opponent_lp_below requires lp_threshold")
     if trigger == "attack_card" and entry["card_id"] not in card_ids:
         raise SystemExit(f"{clip_id}: unknown card_id {entry['card_id']!r}")
+    if "turn_text" in entry and trigger not in ("turn_start", "opponent_lp_below"):
+        raise SystemExit(f"{clip_id}: turn_text is only valid for turn_start or opponent_lp_below")
 
 
 def note_bytes_for_sample_count(sample_count):
@@ -369,10 +404,10 @@ def render_header(manifest, songs_meta, clips_meta):
     lines.append("  u8 priority;")
     lines.append("  u8 replaceVanilla;")
     lines.append("  u8 songIndex;")
+    lines.append("  const u8 *turnText;")
     lines.append("};")
     lines.append("")
     lines.append("void PlayCustomVoiceClip(u8 songIndex);")
-    lines.append("void TryCustomVoiceOnOpponentLpChange(u16 oldLp, u16 newLp);")
     lines.append("")
     lines.append("#endif // GUARD_CUSTOM_VOICES_GENERATED_H")
     lines.append("")
@@ -394,11 +429,28 @@ def render_triggers_inc(clips_meta):
             f"{meta['trigger_type']}, "
             f"{meta['priority']}, "
             f"{meta['replace_vanilla']}, "
-            f"{meta['song_index']}"
+            f"{meta['song_index']}, "
+            f"{meta['turn_text_ref']}"
             "},"
         )
     lines.append("};")
     lines.append("")
+    return "\n".join(lines)
+
+
+def render_turn_text_inc(songs_meta):
+    lines = []
+    for meta in songs_meta:
+        if "turn_text" not in meta:
+            continue
+        encoded = encode_duel_turn_text(meta["turn_text"])
+        sym = meta["symbol"]
+        lines.append(
+            f"static const u8 {turn_text_symbol_for(sym)}[] APPEND_RODATA = "
+            f'"{c_escape_string(encoded)}";'
+        )
+    if lines:
+        lines.append("")
     return "\n".join(lines)
 
 
@@ -621,23 +673,28 @@ def main():
         tone_index = CUSTOM_VOICE_TONE_INDEX_BASE + song_index
         part_track = build_part_track(tone_index, note)
 
-        songs_meta.append(
-            {
-                "clip_id": entry["clip_id"],
-                "symbol": sym,
-                "song_const": song_const,
-                "song_id": song_id,
-                "song_index": song_index,
-                "tone_index": tone_index,
-                "part_track": part_track,
-                "title": entry.get("title", entry["clip_id"])[:23],
-                "sample_count": sample_count,
-                "wave_bytes": wave_bytes_for(sample_count),
-                "wav_rel": entry["wav"],
-                "trigger": trigger,
-            }
-        )
+        song_entry = {
+            "clip_id": entry["clip_id"],
+            "symbol": sym,
+            "song_const": song_const,
+            "song_id": song_id,
+            "song_index": song_index,
+            "tone_index": tone_index,
+            "part_track": part_track,
+            "title": entry.get("title", entry["clip_id"])[:23],
+            "sample_count": sample_count,
+            "wave_bytes": wave_bytes_for(sample_count),
+            "wav_rel": entry["wav"],
+            "trigger": trigger,
+        }
+        if "turn_text" in entry:
+            song_entry["turn_text"] = entry["turn_text"]
+        songs_meta.append(song_entry)
         pcm_blobs.append(pcm8)
+
+        turn_text_ref = (
+            turn_text_symbol_for(sym) if "turn_text" in entry else "NULL"
+        )
 
         for target in resolve_duelist_targets(entry["duelist"], ai_ids, opponent_ids):
             clips_meta.append(
@@ -653,6 +710,7 @@ def main():
                     "priority": entry.get("priority", 0),
                     "replace_vanilla": 1 if entry.get("replace_vanilla", False) else 0,
                     "song_index": song_index,
+                    "turn_text_ref": turn_text_ref,
                 }
             )
 
@@ -661,15 +719,18 @@ def main():
 
     voice_rom_bytes = sum(wave_bytes_for(len(pcm)) + 3 for pcm in pcm_blobs)
     voice_rom_bytes += len(songs_meta) * (18 + 12)
-    voice_rom_limit = 0x09000020 - 0x08FE3400
+    tail_rom_budget = MAX_ROM_LIMIT - VOICE_PCM_ROM_ORG
+    voice_rom_limit = tail_rom_budget - APPEND_ROM_RESERVE
     if voice_rom_bytes > voice_rom_limit:
         raise SystemExit(
             f"voice_pcm_rom overflow: {voice_rom_bytes} bytes used, "
-            f"{voice_rom_limit} bytes available before append ROM"
+            f"{voice_rom_limit} bytes available in tail ROM "
+            f"(budget {tail_rom_budget} minus {APPEND_ROM_RESERVE} reserved for append)"
         )
 
     assets_s = render_assets_s(songs_meta, pcm_blobs)
     triggers_inc = render_triggers_inc(clips_meta)
+    turn_text_inc = render_turn_text_inc(songs_meta)
     debug_inc = render_debug_inc(songs_meta)
     header = render_header(manifest, songs_meta, clips_meta)
     rom_patches_json = render_rom_patches_json(songs_meta)
@@ -680,6 +741,7 @@ def main():
     outputs = {
         out_dir / "voice_assets_generated.s": assets_s,
         out_dir / "voice_triggers_generated.inc": triggers_inc,
+        out_dir / "voice_turn_text_generated.inc": turn_text_inc,
         out_dir / "voice_wave_loader_generated.inc": wave_loader_inc,
         out_dir / "debug_menu_voice_custom.inc": debug_inc,
         out_dir / "voice_song_headers_generated.inc": song_headers_inc,

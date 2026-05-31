@@ -4,35 +4,68 @@
   "notes": [
     "duelist: AI_DUELIST_* (include/ai.h) or DUELIST_* (include/overworld.h); use a JSON array for multiple story duelist IDs that share one clip.",
     "card_id uses CARD_* defines from include/constants/card_ids.h.",
-    "trigger: turn_start | attack_card | opponent_lp_below.",
+    "trigger: turn_start | attack_card | opponent_lp_below (alternate turn_start when opponent LP < lp_threshold).",
     "replace_vanilla: when true, skip the vanilla clip for the same trigger type.",
     "gain_db: optional per-clip loudness boost/cut in dB before peak normalization.",
+    "turn_text: optional duel textbox line on opponent turn (turn_start / opponent_lp_below only).",
     "WAV files live under src_custom/assets/voices/ (mono or stereo; resampled at build)."
   ],
   "clips": [
     {
-      "clip_id": "duke_turn_start",
+      "clip_id": "duke_1",
       "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
       "wav": "duke/im_up.wav",
       "trigger": "turn_start",
       "title": "Duke: Im Up",
+      "turn_text": "I'm up",
       "gain_db": 4.0
     },
     {
-      "clip_id": "duke_not_over_yet",
+      "clip_id": "duke_2",
       "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
       "wav": "duke/this_duel_isnt_over_yet.wav",
       "trigger": "opponent_lp_below",
       "lp_threshold": 3000,
-      "title": "Duke: Not Over"
+      "title": "Duke: Not Over",
+      "turn_text": "This duel isn't over yet.",
+      "gain_db": 4.0
     },
     {
-      "clip_id": "duke_go_gradius",
+      "clip_id": "duke_3",
       "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
       "wav": "duke/go_gradius.wav",
       "trigger": "attack_card",
       "card_id": "GRADIUS",
-      "title": "Duke: Go Gradius"
+      "title": "Duke: Go Gradius",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "tristan_1",
+      "duelist": ["DUELIST_TRISTAN_092", "DUELIST_TRISTAN_123","DUELIST_TRISTAN_125"],
+      "wav": "tristan/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Tristan: Its my turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "tristan_2",
+      "duelist": ["DUELIST_TRISTAN_092", "DUELIST_TRISTAN_123","DUELIST_TRISTAN_125"],
+      "wav": "tristan/im_done_for.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Tristan: Im Done For",
+      "turn_text": "I'm done for!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "tristan_3",
+      "duelist": ["DUELIST_TRISTAN_092", "DUELIST_TRISTAN_123","DUELIST_TRISTAN_125"],
+      "wav": "tristan/here_comes_cyber_commander.wav",
+      "trigger": "attack_card",
+      "card_id": "CYBER_COMMANDER",
+      "title": "Tristan: Here Comes Cyber Commander",
+      "gain_db": 4.0
     }
   ]
 }

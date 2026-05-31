@@ -48,11 +48,13 @@ struct AI_Command {
 
 void PlayMusic(int);
 void m4aSongNumStart(u16 songNum);
-void TryPlayingMyTurnVoice(void);
+void sub_8041C94(u8 *textPtr, u16, u16, u16, u16);
+void OpponentTurnTextAndVoice(void);
 void TryAttackVoicing(void);
-void UpdateLifePointsAfterAction(void);
-void SwitchTurn(void);
 
+extern u8 *gMyTurnStrings[];
+
+#include "generated/voice_turn_text_generated.inc"
 #include "generated/voice_triggers_generated.inc"
 
 enum CustomVoiceAiAttackAction {
@@ -70,10 +72,6 @@ extern struct AI_Command sAI_Command;
 extern struct Unk2023E80 sActionData;
 extern struct DuelCard *gTurnZones[][MAX_ZONES_IN_ROW];
 
-extern u8 gCustomVoiceLpFiredThisTurn[];
-
-static const u8 sOtherTurn[] APPEND_RODATA = {DUEL_OPPONENT, DUEL_PLAYER};
-
 static const struct AttackVoicing sVanillaAttackVoices[] APPEND_RODATA = {
     {AI_DUELIST_KAIBA, BLUE_EYES_WHITE_DRAGON, SFX_KAIBA_BLUE_EYES_VOICE},
     {AI_DUELIST_JOEY, RED_EYES_B_DRAGON, SFX_JOEY_RED_EYES_VOICE},
@@ -82,13 +80,6 @@ static const struct AttackVoicing sVanillaAttackVoices[] APPEND_RODATA = {
     {AI_DUELIST_YUGI, DARK_MAGICIAN, SFX_YUGI_DARK_MAGICIAN_VOICE},
     {AI_DUELIST_NONE, CARD_NONE, SOUND_NONE},
 };
-
-static void ResetCustomVoiceLpFlags(void) {
-  u8 i;
-
-  for (i = 0; i < CUSTOM_VOICE_MATCH_COUNT; i++)
-    gCustomVoiceLpFiredThisTurn[i] = 0;
-}
 
 void PlayCustomVoiceClip(u8 songIndex) {
   if (songIndex >= CUSTOM_VOICE_SONG_COUNT)
@@ -153,16 +144,62 @@ static bool8 TryCustomVoiceMatch(u8 triggerType, u16 cardId, u16 *clipIndexOut) 
   return TRUE;
 }
 
+static bool8 OpponentLpBelowCustomThreshold(void) {
+  u8 i;
+
+  for (i = 0; i < CUSTOM_VOICE_MATCH_COUNT; i++) {
+    const struct CustomVoiceClipMeta *clip = &sCustomVoiceClips[i];
+
+    if (clip->triggerType != CUSTOM_VOICE_TRIGGER_OPPONENT_LP_BELOW)
+      continue;
+    if (!CustomVoiceClipMatchesDuelist(clip))
+      continue;
+    if (gDuelLifePoints[DUEL_OPPONENT] < clip->lpThreshold)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static bool8 ResolveTurnStartClipIndex(u16 *clipIndexOut) {
+  u8 triggerType = CUSTOM_VOICE_TRIGGER_TURN_START;
+
+  if (OpponentLpBelowCustomThreshold())
+    triggerType = CUSTOM_VOICE_TRIGGER_OPPONENT_LP_BELOW;
+
+  if (!TryCustomVoiceMatch(triggerType, CARD_NONE, clipIndexOut)) {
+    if (triggerType != CUSTOM_VOICE_TRIGGER_OPPONENT_LP_BELOW)
+      return FALSE;
+    return TryCustomVoiceMatch(CUSTOM_VOICE_TRIGGER_TURN_START, CARD_NONE, clipIndexOut);
+  }
+
+  return TRUE;
+}
+
 static bool8 TryCustomVoiceTurnStart(void) {
   u16 clipIndex;
   const struct CustomVoiceClipMeta *clip;
 
-  if (!TryCustomVoiceMatch(CUSTOM_VOICE_TRIGGER_TURN_START, CARD_NONE, &clipIndex))
+  if (!ResolveTurnStartClipIndex(&clipIndex))
     return FALSE;
 
   clip = &sCustomVoiceClips[clipIndex];
   PlayCustomVoiceClip(clip->songIndex);
   return TRUE;
+}
+
+static u8 *GetCustomOpponentTurnText(void) {
+  u16 clipIndex;
+  const struct CustomVoiceClipMeta *clip;
+
+  if (!ResolveTurnStartClipIndex(&clipIndex))
+    return NULL;
+
+  clip = &sCustomVoiceClips[clipIndex];
+  if (clip->turnText == NULL)
+    return NULL;
+
+  return (u8 *)clip->turnText;
 }
 
 static bool8 LookupVanillaAttackVoicing(u16 duelistId, u16 cardId, u16 *soundId) {
@@ -214,35 +251,18 @@ static bool8 TryCustomVoiceAttack(u16 cardId) {
   return TRUE;
 }
 
-void TryCustomVoiceOnOpponentLpChange(u16 oldLp, u16 newLp) {
-  u8 i;
+LYN_REPLACE_CHECK(OpponentTurnTextAndVoice);
+void OpponentTurnTextAndVoice__Replacement(void) {
+  u8 *text;
 
-  if (newLp >= oldLp)
-    return;
+  if (!TryCustomVoiceTurnStart())
+    PlayVanillaTurnVoice();
 
-  for (i = 0; i < CUSTOM_VOICE_MATCH_COUNT; i++) {
-    const struct CustomVoiceClipMeta *clip = &sCustomVoiceClips[i];
-
-    if (clip->triggerType != CUSTOM_VOICE_TRIGGER_OPPONENT_LP_BELOW)
-      continue;
-    if (!CustomVoiceClipMatchesDuelist(clip))
-      continue;
-    if (gCustomVoiceLpFiredThisTurn[i])
-      continue;
-    if (oldLp < clip->lpThreshold || newLp >= clip->lpThreshold)
-      continue;
-
-    gCustomVoiceLpFiredThisTurn[i] = 1;
-    PlayCustomVoiceClip(clip->songIndex);
-  }
-}
-
-LYN_REPLACE_CHECK(TryPlayingMyTurnVoice);
-void TryPlayingMyTurnVoice__Replacement(void) {
-  if (TryCustomVoiceTurnStart())
-    return;
-
-  PlayVanillaTurnVoice();
+  text = GetCustomOpponentTurnText();
+  if (text != NULL)
+    sub_8041C94(text, 0, 0, 0, 0);
+  else
+    sub_8041C94(gMyTurnStrings[gDuelData.opponent], 0, 0, 0, 0);
 }
 
 LYN_REPLACE_CHECK(TryAttackVoicing);
@@ -264,20 +284,3 @@ void TryAttackVoicing__Replacement(void) {
   PlayVanillaAttackVoicing(cardId);
 }
 
-LYN_REPLACE_CHECK(UpdateLifePointsAfterAction);
-void UpdateLifePointsAfterAction__Replacement(void) {
-  u16 oldOpponentLp;
-
-  oldOpponentLp = gDuelLifePoints[DUEL_OPPONENT];
-  gDuelLifePoints[sActionData.unk1A] = sActionData.playerLifePoints;
-  gUnk2023EA0.unk0[0].lifePointsAfterDamage = sActionData.playerLifePoints;
-  gDuelLifePoints[sActionData.unk1B] = sActionData.opponentLifePoints;
-  gUnk2023EA0.unk0[1].lifePointsAfterDamage = sActionData.opponentLifePoints;
-  TryCustomVoiceOnOpponentLpChange(oldOpponentLp, gDuelLifePoints[DUEL_OPPONENT]);
-}
-
-LYN_REPLACE_CHECK(SwitchTurn);
-void SwitchTurn__Replacement(void) {
-  ResetCustomVoiceLpFlags();
-  gWhoseTurn = sOtherTurn[gWhoseTurn];
-}

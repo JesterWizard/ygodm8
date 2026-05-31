@@ -993,7 +993,7 @@ SECTIONS
         *(.voice_pcm_rom)
     }
 
-    . = 0x09000020;
+    /* Append follows voice PCM; grows with manifest without a fixed PCM cap. */
     __append_start = .;
 
     .runtime_text :

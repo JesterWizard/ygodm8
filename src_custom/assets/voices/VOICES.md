@@ -25,7 +25,16 @@ Sizes:
     <tr><td align="center">Duke: Im Up</td><td align="center"><code>duke/im_up.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">56,760 B (55.4 KB)</td><td align="center">13,536 B (13.2 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
     <tr><td align="center">Duke: Not Over</td><td align="center"><code>duke/this_duel_isnt_over_yet.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">144,940 B (141.5 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-72.0%</span></td></tr>
     <tr><td align="center">Duke: Go Gradius</td><td align="center"><code>duke/go_gradius.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">114,156 B (111.5 KB)</td><td align="center">27,218 B (26.6 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Tristan: Its my turn</td><td align="center"><code>tristan/its_my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">91,628 B (89.5 KB)</td><td align="center">22,778 B (22.2 KB)</td><td align="center"><span style="color: #3fb950">-75.1%</span></td></tr>
+    <tr><td align="center">Tristan: Im Done For</td><td align="center"><code>tristan/im_done_for.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">116,828 B (114.1 KB)</td><td align="center">27,854 B (27.2 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Tristan: Here Comes Cyb</td><td align="center"><code>tristan/here_comes_cyber_commander.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">172,076 B (168.0 KB)</td><td align="center">41,024 B (40.1 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 3 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 6 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+
+## Unregistered WAVs
+
+These files exist under `src_custom/assets/voices/` but are not listed in the manifest:
+
+- `robot_monkey/ooo_ooo_aaa_aaa.wav` (149,516 B (146.0 KB))

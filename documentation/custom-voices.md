@@ -33,7 +33,7 @@ Vanilla duelist VO uses m4a Direct Sound, not MP3/OGG in ROM.
 | Effective bitrate | ~**168 kbps** uncompressed (21024 × 8-bit) |
 | Authoring input | **WAV** (mono or stereo; stereo is downmixed) |
 | Pre-build conversion | **None** — no `.dmp`, `.lz`, or other compression step; `generate_voices.py` resamples WAV → 8-bit PCM in m4a `WaveData` |
-| ROM placement | **Main ROM** (`.voice_pcm_rom` @ `0x08FE3400`) holds WaveData; append ROM holds part tracks; **EWRAM** (`gCustomVoiceBlob`) holds the runtime song header and part track at playback |
+| ROM placement | **Main ROM** (`.voice_pcm_rom` @ `0x08FE3400`, grows until append) holds WaveData + part tracks + song headers; appended code follows at `__append_start`; **EWRAM** (`gCustomVoiceBlob`) holds the runtime song header and part track at playback |
 | Turn-start target | ≤ **2 s**, ≤ **42 KB** PCM |
 | Attack/card target | ≤ **4 s**, ≤ **84 KB** PCM |
 
@@ -106,8 +106,9 @@ File: [`tools/voice_manifest.json`](tools/voice_manifest.json)
 | `wav` | yes | Path relative to `src_custom/assets/voices/` |
 | `trigger` | yes | `turn_start`, `attack_card`, or `opponent_lp_below` |
 | `card_id` | attack only | `CARD_*` from [`include/constants/card_ids.h`](include/constants/card_ids.h) |
-| `lp_threshold` | LP only | Fire when **opponent** LP drops below this value |
+| `lp_threshold` | LP only | Use this clip for **turn_start** while **opponent** LP is strictly below this value |
 | `title` | no | Debug menu label (≤ 15 visible chars) |
+| `turn_text` | no | Replaces the opponent-turn duel textbox line (e.g. vanilla “It's my turn.”). Only on `turn_start` / `opponent_lp_below`; uses the same LP rule as the voice clip. Plain ASCII; `\n` becomes a line break. All in-game languages show the same text; the textbox waits for A/B/R before the turn continues. |
 | `priority` | no | Higher wins when multiple clips match (default 0) |
 | `replace_vanilla` | no | Reserved for future dual-play behavior (default false) |
 
@@ -117,11 +118,9 @@ Song IDs are allocated sequentially from `song_id_base` (default **601**).
 
 | Trigger | When it fires | Notes |
 |---------|---------------|-------|
-| `turn_start` | Opponent turn begins | Hooks `TryPlayingMyTurnVoice`; custom match skips vanilla turn voice |
+| `turn_start` | Opponent turn begins | Hooks `OpponentTurnTextAndVoice` (voice + optional `turn_text`) |
 | `attack_card` | AI attacks with a specific card | Hooks `TryAttackVoicing` |
-| `opponent_lp_below` | Opponent LP crosses below threshold | Hooks `UpdateLifePointsAfterAction`; **once per turn per clip** |
-
-LP-threshold flags reset on `SwitchTurn`.
+| `opponent_lp_below` | Alternate **turn_start** while opponent LP is below `lp_threshold` | Same hook; swaps voice and `turn_text` when low on LP |
 
 ## Build Pipeline
 
@@ -131,6 +130,7 @@ LP-threshold flags reset on `SwitchTurn`.
 |--------|---------|
 | `src_custom/generated/voice_assets_generated.s` | m4a PCM + song blobs (`.append_assets`) |
 | `src_custom/generated/voice_triggers_generated.inc` | Runtime trigger + song pointer tables |
+| `src_custom/generated/voice_turn_text_generated.inc` | Optional `turn_text` string blobs |
 | `src_custom/generated/voice_song_headers_generated.inc` | `SongHeader` externs + pointer table for playback |
 | `src_custom/generated/voice_rom_patches.json` | Tone/song-table/mode ROM patch specs |
 | `src_custom/generated/debug_menu_voice_custom.inc` | Debug menu rows |
@@ -162,7 +162,6 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 | Trigger engine | `src_custom/duel_voice_hooks.c` | Turn, attack, LP hooks + playback |
 | Generated tables | `src_custom/generated/voice_triggers_generated.inc` | Clip metadata and song pointers |
 | Song IDs | `include/constants/custom_voices_generated.h` | Generated constants |
-| LP turn state | `gCustomVoiceLpFiredThisTurn` in `asm/ram_map.s` | Once-per-turn LP flags (64 bytes max) |
 | LynJump wiring | `src_custom/LynJump.event` | Patches vanilla duel functions |
 | Debug preview | `src_custom/debug/debug_menu_voice.c` | Voice Viewer integration |
 | Makefile rule | `Makefile` | `VOICE_*` generator + asset object |
@@ -177,6 +176,6 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 
 - **No DPCM / wav2agb** — unlike FE8 buildfile voice intros, this project uses vanilla **m4a** raw PCM (`WaveData` + tone/song tables). FE's `wav2agb -c` output is not compatible without replacing the sound engine.
 - **Placeholder WAVs** ship for the Kaiba vertical slice; replace with real extracted lines before release.
-- **`TryPlayingMyTurnVoice` and `UpdateLifePointsAfterAction` are static** in vanilla source; LynJump patches use computed ROM offsets rather than ELF symbols.
-- **LP trigger** only fires on opponent LP **decrease** after battle damage resolution, not on LP gain or heal effects.
+- **`OpponentTurnTextAndVoice` is static** in vanilla source; LynJump patches use computed ROM offsets rather than ELF symbols.
+- **`opponent_lp_below`** replaces the normal `turn_start` line for that duelist once opponent LP is below the threshold; it does not play mid-battle. If LP rises back above the threshold (heal), the normal `turn_start` clip is used again.
 - **Custom song IDs** (601+) cannot use `PlayMusic()` directly; always use `PlayCustomVoiceClip()` or the debug menu path.

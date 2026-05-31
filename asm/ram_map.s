@@ -56,9 +56,6 @@ _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 _kernel_malloc gDoubleSummonExtraSummonPending, 1
 _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 
-@ Once-per-turn flags for custom LP-threshold voice clips (max 64 clips).
-_kernel_malloc gCustomVoiceLpFiredThisTurn, 64
-
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 

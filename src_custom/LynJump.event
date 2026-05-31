@@ -1175,23 +1175,9 @@ POIN TryAttackVoicing__Replacement
 POP
 
 PUSH
-ORG $21A54
+ORG $21A24
 ALIGN 4
 WORD $46C04778 $E59FC000 $E12FFF1C
-POIN TryPlayingMyTurnVoice__Replacement
-POP
-
-PUSH
-ORG $3F46C
-ALIGN 4
-WORD $46C04778 $E59FC000 $E12FFF1C
-POIN UpdateLifePointsAfterAction__Replacement
-POP
-
-PUSH
-ORG $5872C
-ALIGN 4
-WORD $46C04778 $E59FC000 $E12FFF1C
-POIN SwitchTurn__Replacement
+POIN OpponentTurnTextAndVoice__Replacement
 POP
 
