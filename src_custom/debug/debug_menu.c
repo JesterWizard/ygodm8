@@ -13,11 +13,13 @@ static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
 static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
 static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
 static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
+static const u8 sText_RootVoice[] APPEND_RODATA = "$0Voice Viewer   ";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
     sText_RootSprite,
     sText_RootReaction,
+    sText_RootVoice,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
@@ -192,6 +194,9 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_REACTION:
     DebugMenuDrawReactions(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_VOICE:
+    DebugMenuDrawVoices(scrollTop, marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
@@ -308,8 +313,10 @@ static void DebugMenuRoot(void) {
         DebugPortraitViewer();
       else if (cursor == 2)
         DebugSpriteViewer();
-      else
+      else if (cursor == 3)
         DebugReactionViewer();
+      else
+        DebugVoiceViewer();
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS)
