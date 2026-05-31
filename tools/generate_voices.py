@@ -585,12 +585,12 @@ def render_voice_inventory_md(manifest, songs_meta):
         "<table>",
         "  <thead>",
         "    <tr>",
-        "      <th align=\"center\">Title</th>",
-        "      <th align=\"center\">WAV</th>",
-        "      <th align=\"center\">Trigger</th>",
-        "      <th align=\"center\">Source WAV</th>",
-        "      <th align=\"center\">In-ROM</th>",
-        "      <th align=\"center\">Overall Change</th>",
+        "      <th>Title</th>",
+        "      <th>WAV</th>",
+        "      <th>Trigger</th>",
+        "      <th>Source WAV</th>",
+        "      <th>In-ROM</th>",
+        "      <th>Overall Change</th>",
         "    </tr>",
         "  </thead>",
         "  <tbody>",
@@ -610,24 +610,24 @@ def render_voice_inventory_md(manifest, songs_meta):
             trigger = html.escape(meta["trigger"])
             lines.append(
                 "    <tr>"
-                f'<td align="center">{title}</td>'
-                f'<td align="center"><code>{wav_rel}</code></td>'
-                f'<td align="center"><code>{trigger}</code></td>'
-                f'<td align="center">{format_byte_size(source_bytes)}</td>'
-                f'<td align="center">{format_byte_size(rom_bytes)}</td>'
-                f'<td align="center">{format_colored_size_delta(source_bytes, rom_bytes)}</td>'
+                f"<td>{title}</td>"
+                f"<td><code>{wav_rel}</code></td>"
+                f"<td><code>{trigger}</code></td>"
+                f"<td>{format_byte_size(source_bytes)}</td>"
+                f"<td>{format_byte_size(rom_bytes)}</td>"
+                f"<td>{format_colored_size_delta(source_bytes, rom_bytes)}</td>"
                 "</tr>"
             )
         lines.append(
             "    <tr>"
-            '<td align="center" colspan="3"><strong>Total</strong></td>'
-            f'<td align="center"><strong>{format_byte_size(total_source_bytes)}</strong></td>'
-            f'<td align="center"><strong>{format_byte_size(total_rom_bytes)}</strong></td>'
-            f'<td align="center"><strong>{format_colored_size_delta(total_source_bytes, total_rom_bytes)}</strong></td>'
+            '<td colspan="3"><strong>Total</strong></td>'
+            f"<td><strong>{format_byte_size(total_source_bytes)}</strong></td>"
+            f"<td><strong>{format_byte_size(total_rom_bytes)}</strong></td>"
+            f"<td><strong>{format_colored_size_delta(total_source_bytes, total_rom_bytes)}</strong></td>"
             "</tr>"
         )
     else:
-        lines.append('    <tr><td align="center" colspan="6"><em>none</em></td></tr>')
+        lines.append('    <tr><td colspan="6"><em>none</em></td></tr>')
 
     lines.extend(
         [
