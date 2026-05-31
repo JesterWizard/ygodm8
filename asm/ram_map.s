@@ -132,9 +132,7 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
 
-@ m4a part track + SongHeader at playback; WaveData lives in main ROM.
-.set CUSTOM_VOICE_EWRAM_BYTES, 0x100
-_kernel_malloc_ewram_array gCustomVoiceBlob, CUSTOM_VOICE_EWRAM_BYTES
+@ m4a custom voice clips use ROM-resident SongHeaders; WaveData lives in main ROM.
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)

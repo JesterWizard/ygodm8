@@ -1,16 +1,16 @@
 #ifndef GUARD_CUSTOM_VOICES_GENERATED_H
 #define GUARD_CUSTOM_VOICES_GENERATED_H
 
-#define CUSTOM_VOICE_SONG_COUNT 1
-#define CUSTOM_VOICE_MATCH_COUNT 2
+#define CUSTOM_VOICE_SONG_COUNT 3
+#define CUSTOM_VOICE_MATCH_COUNT 6
 #define CUSTOM_VOICE_OPPONENT_ANY 0xFFFF
 #define CUSTOM_VOICE_MPLAY_PLAYER 3
-#define CUSTOM_VOICE_PART_SIZE 16
-#define CUSTOM_VOICE_EWRAM_BYTES 256
 #define CUSTOM_VOICE_SONG_ID_MIN 601
-#define CUSTOM_VOICE_SONG_ID_MAX 601
+#define CUSTOM_VOICE_SONG_ID_MAX 603
 
 #define SFX_VOICE_DUKE_TURN_START 601
+#define SFX_VOICE_DUKE_NOT_OVER_YET 602
+#define SFX_VOICE_DUKE_GO_GRADIUS 603
 
 enum CustomVoiceTriggerType {
   CUSTOM_VOICE_TRIGGER_TURN_START = 0,
@@ -30,7 +30,6 @@ struct CustomVoiceClipMeta {
   u8 songIndex;
 };
 
-extern u8 gCustomVoiceBlob[];
 void PlayCustomVoiceClip(u8 songIndex);
 void TryCustomVoiceOnOpponentLpChange(u16 oldLp, u16 newLp);
 

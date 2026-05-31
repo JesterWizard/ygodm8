@@ -27,17 +27,23 @@ M4A_VOICE_PLAYER = 3
 M4A_VOICE_SONG_PLAYER = 0x00030003
 M4A_VOICE_SONG_MODE = 3
 CUSTOM_VOICE_TONE_INDEX_BASE = 48
-CUSTOM_VOICE_WAVE_EWRAM_SYMBOL = "gCustomVoiceBlob"
-CUSTOM_VOICE_PART_SIZE = 16
+CUSTOM_VOICE_PART_SIZE = 18
 CUSTOM_VOICE_WAVE_HEADER_SIZE = 16
-CUSTOM_VOICE_SONG_HEADER_SIZE = 28
-CUSTOM_VOICE_EWRAM_BYTES = 0x100
 
-# Yugi turn-start part track; only the VOICE (0xBD) arg varies per tone slot.
-PART_TRACK_TEMPLATE = bytes(
-    [0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xDA, 0x3C, 0x7F, 0x8B, 0xB1, 0x00, 0x00, 0x00]
+# (vanilla_pcm_samples, note bytes before 0xB1). From baserom duel voice part tracks.
+# Pick the largest reference whose sample count is still <= the clip (never a longer
+# reference — that makes m4a read past the WaveData buffer and play silence).
+PART_TRACK_NOTE_BY_SAMPLES = (
+    (14123, bytes([0xDA, 0x3C, 0x7F, 0x8B])),
+    (19368, bytes([0xE0, 0x3C, 0x7F, 0x91])),
+    (22762, bytes([0xE1, 0x3C, 0x7F, 0x92])),
+    (40580, bytes([0xE9, 0x3C, 0x7F, 0x9A, 0x81])),
+    (44608, bytes([0xEB, 0x3C, 0x7F, 0x9C])),
+    (50870, bytes([0xEC, 0x3C, 0x7F, 0x9D])),
+    (53937, bytes([0xED, 0x3C, 0x7F, 0x9E])),
 )
-PCM8_TARGET_PEAK = 28000
+# Normalize all clips to this 16-bit peak before 8-bit conversion (32767 ≈ full s8 range).
+PCM8_TARGET_PEAK = 32767
 
 TRIGGER_TURN_START = 0
 TRIGGER_ATTACK_CARD = 1
@@ -158,7 +164,7 @@ def resolve_duelist_targets(raw_duelist, ai_ids, opponent_ids):
     return [resolve_duelist_target(raw_duelist, ai_ids, opponent_ids)]
 
 
-def read_wav_mono_pcm8(path, target_rate):
+def read_wav_mono_pcm8(path, target_rate, gain_db=0.0):
     with wave.open(str(path), "rb") as wf:
         channels = wf.getnchannels()
         sample_width = wf.getsampwidth()
@@ -177,8 +183,11 @@ def read_wav_mono_pcm8(path, target_rate):
     if frame_rate != target_rate:
         frames, _ = audioop.ratecv(frames, sample_width, channels, frame_rate, target_rate, None)
 
+    if gain_db:
+        frames = audioop.mul(frames, sample_width, 10 ** (gain_db / 20))
+
     peak = audioop.max(frames, sample_width)
-    if peak > PCM8_TARGET_PEAK:
+    if peak > 0:
         frames = audioop.mul(frames, sample_width, PCM8_TARGET_PEAK / peak)
 
     pcm8 = audioop.lin2lin(frames, sample_width, 1)
@@ -196,7 +205,7 @@ def song_const_for_clip(clip_id):
     return f"SFX_VOICE_{symbol_for_clip(clip_id).upper()}"
 
 
-def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, max_bytes, max_seconds):
+def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
     clip_id = entry["clip_id"]
     trigger = entry["trigger"]
     wav_rel = entry["wav"]
@@ -208,16 +217,10 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, max_bytes,
     if not wav_path.is_file():
         raise SystemExit(f"{clip_id}: missing WAV {wav_path}")
 
-    pcm8, rate = read_wav_mono_pcm8(wav_path, sample_rate)
+    gain_db = entry.get("gain_db", 0.0)
+    pcm8, rate = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
     if rate != sample_rate:
         raise SystemExit(f"{clip_id}: resample failed")
-
-    if len(pcm8) > max_bytes:
-        raise SystemExit(f"{clip_id}: PCM {len(pcm8)} bytes exceeds max {max_bytes}")
-
-    duration = len(pcm8) / sample_rate
-    if duration > max_seconds:
-        raise SystemExit(f"{clip_id}: duration {duration:.2f}s exceeds max {max_seconds}s")
 
     if trigger == "attack_card" and "card_id" not in entry:
         raise SystemExit(f"{clip_id}: attack_card requires card_id")
@@ -227,19 +230,53 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, max_bytes,
         raise SystemExit(f"{clip_id}: unknown card_id {entry['card_id']!r}")
 
 
-def build_part_track(tone_index):
-    part = bytearray(PART_TRACK_TEMPLATE)
-    part[5] = tone_index
+def note_bytes_for_sample_count(sample_count):
+    best = PART_TRACK_NOTE_BY_SAMPLES[0][1]
+    for threshold, note in PART_TRACK_NOTE_BY_SAMPLES:
+        if sample_count >= threshold:
+            best = note
+        else:
+            break
+    return best
+
+
+def prepare_pcm_and_note(pcm8):
+    sample_count = len(pcm8)
+    ref_index = 0
+    for i, (threshold, _note) in enumerate(PART_TRACK_NOTE_BY_SAMPLES):
+        if sample_count >= threshold:
+            ref_index = i
+        else:
+            break
+
+    ref_threshold, note = PART_TRACK_NOTE_BY_SAMPLES[ref_index]
+    if ref_index + 1 < len(PART_TRACK_NOTE_BY_SAMPLES):
+        next_threshold, next_note = PART_TRACK_NOTE_BY_SAMPLES[ref_index + 1]
+        if (next_threshold - sample_count) < (sample_count - ref_threshold):
+            pcm8 = pcm8 + bytes(next_threshold - sample_count)
+            note = next_note
+            sample_count = next_threshold
+
+    return pcm8, note, sample_count
+
+
+def part_track_tail(note):
+    if len(note) == 5:
+        return bytes([0xB1, 0x00, 0x00, 0x01, 0x00])
+    return bytes([0xB1, 0x00, 0x00, 0x00, 0x01, 0x00])
+
+
+def build_part_track(tone_index, note):
+    part = bytearray(
+        [0xBC, 0x00, 0xBB, 0x14, 0xBD, tone_index, 0xBE, 0x74]
+    )
+    part.extend(note)
+    part.extend(part_track_tail(note))
+    if len(part) != CUSTOM_VOICE_PART_SIZE:
+        raise SystemExit(
+            f"tone {tone_index}: part track is {len(part)} bytes, expected {CUSTOM_VOICE_PART_SIZE}"
+        )
     return bytes(part)
-
-
-def assign_ewram_layouts(songs_meta):
-    offset = 0
-    for meta in songs_meta:
-        meta["part_offset"] = offset
-        offset += CUSTOM_VOICE_PART_SIZE
-        meta["header_offset"] = (offset + 3) & ~3
-        offset = meta["header_offset"] + CUSTOM_VOICE_SONG_HEADER_SIZE
 
 
 def wave_bytes_for(sample_count):
@@ -249,31 +286,10 @@ def wave_bytes_for(sample_count):
     return wave_bytes
 
 
-def render_part_assets_s(songs_meta):
+def render_voice_rom_s(songs_meta, pcm_blobs):
     lines = [
-        "@ Part track in append ROM; WaveData in main ROM (.voice_pcm_rom at 0x08FE3400).",
+        "@ Custom voice WaveData + m4a part tracks + SongHeaders in main ROM (0x08xxxxxx).",
         f"@ PCM is signed 8-bit mono @ {M4A_WAVE_SAMPLE_RATE} Hz; WaveData.freq uses 0x{M4A_WAVE_FREQ:08X}.",
-        ".section .append_assets",
-        ".align 4",
-        "",
-    ]
-
-    for meta in songs_meta:
-        sym = meta["symbol"]
-        part = meta["part_track"]
-        part_bytes = ", ".join(f"0x{b:02X}" for b in part)
-
-        lines.append(f".global CustomVoice_{sym}_Part")
-        lines.append(f"CustomVoice_{sym}_Part:")
-        lines.append(f"    .byte {part_bytes}")
-        lines.append("")
-
-    return "\n".join(lines) + "\n"
-
-
-def render_wave_pcm_rom_s(songs_meta, pcm_blobs):
-    lines = [
-        "@ WaveData in main ROM — Direct Sound DMA cannot sample EWRAM/append reliably.",
         ".section .voice_pcm_rom",
         ".align 4",
         "",
@@ -281,6 +297,9 @@ def render_wave_pcm_rom_s(songs_meta, pcm_blobs):
 
     for meta, pcm in zip(songs_meta, pcm_blobs):
         sym = meta["symbol"]
+        part = meta["part_track"]
+        part_bytes = ", ".join(f"0x{b:02X}" for b in part)
+
         lines.append(f".global CustomVoice_{sym}_Wave")
         lines.append(f"CustomVoice_{sym}_Wave:")
         lines.append("    .hword 0, 0")
@@ -291,13 +310,26 @@ def render_wave_pcm_rom_s(songs_meta, pcm_blobs):
         for i in range(0, len(byte_lines), 16):
             chunk = byte_lines[i : i + 16]
             lines.append(f"    .byte {', '.join(chunk)}")
+        lines.append(".align 4")
+        lines.append("")
+        lines.append(f".global CustomVoice_{sym}_Part")
+        lines.append(f"CustomVoice_{sym}_Part:")
+        lines.append(f"    .byte {part_bytes}")
+        lines.append(".align 4")
+        lines.append("")
+        lines.append(f".global CustomVoice_{sym}_SongHeader")
+        lines.append(f"CustomVoice_{sym}_SongHeader:")
+        lines.append("    .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb")
+        lines.append(f"    .word 0x{M4A_TONE_GROUP_PTR:08X}  @ tone group")
+        lines.append(f"    .word CustomVoice_{sym}_Part")
+        lines.append(".align 4")
         lines.append("")
 
     return "\n".join(lines) + "\n"
 
 
 def render_assets_s(songs_meta, pcm_blobs):
-    return render_part_assets_s(songs_meta) + render_wave_pcm_rom_s(songs_meta, pcm_blobs)
+    return render_voice_rom_s(songs_meta, pcm_blobs)
 
 
 def render_header(manifest, songs_meta, clips_meta):
@@ -309,8 +341,6 @@ def render_header(manifest, songs_meta, clips_meta):
         f"#define CUSTOM_VOICE_MATCH_COUNT {len(clips_meta)}",
         f"#define CUSTOM_VOICE_OPPONENT_ANY 0xFFFF",
         f"#define CUSTOM_VOICE_MPLAY_PLAYER {M4A_VOICE_PLAYER}",
-        f"#define CUSTOM_VOICE_PART_SIZE {CUSTOM_VOICE_PART_SIZE}",
-        f"#define CUSTOM_VOICE_EWRAM_BYTES {CUSTOM_VOICE_EWRAM_BYTES}",
         f"#define CUSTOM_VOICE_SONG_ID_MIN {manifest['song_id_base']}",
     ]
     if songs_meta:
@@ -341,7 +371,6 @@ def render_header(manifest, songs_meta, clips_meta):
     lines.append("  u8 songIndex;")
     lines.append("};")
     lines.append("")
-    lines.append(f"extern u8 {CUSTOM_VOICE_WAVE_EWRAM_SYMBOL}[];")
     lines.append("void PlayCustomVoiceClip(u8 songIndex);")
     lines.append("void TryCustomVoiceOnOpponentLpChange(u16 oldLp, u16 newLp);")
     lines.append("")
@@ -388,8 +417,7 @@ def render_rom_patches_json(songs_meta):
         song_patches.append(
             {
                 "org": M4A_SONG_TABLE_ORG + meta["song_id"] * 8,
-                "header_symbol": CUSTOM_VOICE_WAVE_EWRAM_SYMBOL,
-                "header_offset": meta["header_offset"],
+                "header_symbol": f"CustomVoice_{sym}_SongHeader",
                 "player": M4A_VOICE_SONG_PLAYER,
             }
         )
@@ -413,33 +441,7 @@ def render_rom_patches_json(songs_meta):
 
 
 def render_wave_loader_inc(songs_meta):
-    lines = [
-        "struct CustomVoiceAssetLoad {",
-        "  const u8 *romPart;",
-        "  u16 partOffset;",
-        "  u16 headerOffset;",
-        "  u8 songIndex;",
-        "};",
-        "",
-    ]
-    for meta in songs_meta:
-        sym = meta["symbol"]
-        lines.append(f"extern const u8 CustomVoice_{sym}_Part[];")
-    lines.append("")
-    lines.append("static const struct CustomVoiceAssetLoad sCustomVoiceAssetLoads[] APPEND_RODATA = {")
-    for meta in songs_meta:
-        sym = meta["symbol"]
-        lines.append(
-            "  {"
-            f"CustomVoice_{sym}_Part, "
-            f"{meta['part_offset']}, "
-            f"{meta['header_offset']}, "
-            f"{meta['song_index']}"
-            "},"
-        )
-    lines.append("};")
-    lines.append("")
-    return "\n".join(lines)
+    return ""
 
 
 def render_song_headers_inc(songs_meta):
@@ -587,7 +589,6 @@ def main():
     card_ids = load_card_ids()
 
     sample_rate = manifest.get("sample_rate", M4A_WAVE_SAMPLE_RATE)
-    max_bytes = manifest.get("max_clip_bytes", 56320)
     song_id_base = manifest["song_id_base"]
     clips = manifest.get("clips", [])
 
@@ -606,20 +607,19 @@ def main():
 
     for entry in clips:
         trigger = entry["trigger"]
-        max_seconds = manifest.get(
-            "max_attack_seconds" if trigger == "attack_card" else "max_turn_start_seconds", 4.0
-        )
-        validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, max_bytes, max_seconds)
+        validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate)
 
         wav_path = ASSETS / entry["wav"]
-        pcm8, _ = read_wav_mono_pcm8(wav_path, sample_rate)
+        gain_db = entry.get("gain_db", 0.0)
+        pcm8, _ = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
+        pcm8, note, sample_count = prepare_pcm_and_note(pcm8)
         sym = symbol_for_clip(entry["clip_id"])
         song_index = len(songs_meta)
         song_id = song_id_base + song_index
         song_const = song_const_for_clip(entry["clip_id"])
 
         tone_index = CUSTOM_VOICE_TONE_INDEX_BASE + song_index
-        part_track = build_part_track(tone_index)
+        part_track = build_part_track(tone_index, note)
 
         songs_meta.append(
             {
@@ -631,8 +631,8 @@ def main():
                 "tone_index": tone_index,
                 "part_track": part_track,
                 "title": entry.get("title", entry["clip_id"])[:23],
-                "sample_count": len(pcm8),
-                "wave_bytes": wave_bytes_for(len(pcm8)),
+                "sample_count": sample_count,
+                "wave_bytes": wave_bytes_for(sample_count),
                 "wav_rel": entry["wav"],
                 "trigger": trigger,
             }
@@ -656,19 +656,17 @@ def main():
                 }
             )
 
-    assign_ewram_layouts(songs_meta)
-    ewram_used = 0
-    if songs_meta:
-        last = songs_meta[-1]
-        ewram_used = last["header_offset"] + CUSTOM_VOICE_SONG_HEADER_SIZE
-    if ewram_used > CUSTOM_VOICE_EWRAM_BYTES:
-        raise SystemExit(
-            f"custom voice EWRAM staging needs {ewram_used} bytes "
-            f"(max {CUSTOM_VOICE_EWRAM_BYTES}); add clips or raise CUSTOM_VOICE_EWRAM_BYTES"
-        )
-
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    voice_rom_bytes = sum(wave_bytes_for(len(pcm)) + 3 for pcm in pcm_blobs)
+    voice_rom_bytes += len(songs_meta) * (18 + 12)
+    voice_rom_limit = 0x09000020 - 0x08FE3400
+    if voice_rom_bytes > voice_rom_limit:
+        raise SystemExit(
+            f"voice_pcm_rom overflow: {voice_rom_bytes} bytes used, "
+            f"{voice_rom_limit} bytes available before append ROM"
+        )
 
     assets_s = render_assets_s(songs_meta, pcm_blobs)
     triggers_inc = render_triggers_inc(clips_meta)

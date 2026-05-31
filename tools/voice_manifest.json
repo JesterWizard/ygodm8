@@ -1,14 +1,12 @@
 {
   "sample_rate": 21024,
-  "max_clip_bytes": 56320,
-  "max_turn_start_seconds": 2.0,
-  "max_attack_seconds": 4.0,
   "song_id_base": 601,
   "notes": [
     "duelist: AI_DUELIST_* (include/ai.h) or DUELIST_* (include/overworld.h); use a JSON array for multiple story duelist IDs that share one clip.",
     "card_id uses CARD_* defines from include/constants/card_ids.h.",
     "trigger: turn_start | attack_card | opponent_lp_below.",
     "replace_vanilla: when true, skip the vanilla clip for the same trigger type.",
+    "gain_db: optional per-clip loudness boost/cut in dB before peak normalization.",
     "WAV files live under src_custom/assets/voices/ (mono or stereo; resampled at build)."
   ],
   "clips": [
@@ -17,7 +15,24 @@
       "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
       "wav": "duke/im_up.wav",
       "trigger": "turn_start",
-      "title": "Duke: Im Up"
+      "title": "Duke: Im Up",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "duke_not_over_yet",
+      "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
+      "wav": "duke/this_duel_isnt_over_yet.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Duke: Not Over"
+    },
+    {
+      "clip_id": "duke_go_gradius",
+      "duelist": ["DUELIST_DUKE_093", "DUELIST_DUKE_124"],
+      "wav": "duke/go_gradius.wav",
+      "trigger": "attack_card",
+      "card_id": "GRADIUS",
+      "title": "Duke: Go Gradius"
     }
   ]
 }

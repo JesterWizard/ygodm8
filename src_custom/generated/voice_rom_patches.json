@@ -3,19 +3,44 @@
     {
       "org": 11515148,
       "wave_symbol": "CustomVoice_duke_turn_start_Wave"
+    },
+    {
+      "org": 11515160,
+      "wave_symbol": "CustomVoice_duke_not_over_yet_Wave"
+    },
+    {
+      "org": 11515172,
+      "wave_symbol": "CustomVoice_duke_go_gradius_Wave"
     }
   ],
   "song_patches": [
     {
       "org": 11522220,
-      "header_symbol": "gCustomVoiceBlob",
-      "header_offset": 16,
+      "header_symbol": "CustomVoice_duke_turn_start_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522228,
+      "header_symbol": "CustomVoice_duke_not_over_yet_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522236,
+      "header_symbol": "CustomVoice_duke_go_gradius_SongHeader",
       "player": 196611
     }
   ],
   "mode_patches": [
     {
       "org": 863273,
+      "mode": 3
+    },
+    {
+      "org": 863274,
+      "mode": 3
+    },
+    {
+      "org": 863275,
       "mode": 3
     }
   ]

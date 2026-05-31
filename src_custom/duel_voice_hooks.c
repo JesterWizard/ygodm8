@@ -54,7 +54,6 @@ void UpdateLifePointsAfterAction(void);
 void SwitchTurn(void);
 
 #include "generated/voice_triggers_generated.inc"
-#include "generated/voice_wave_loader_generated.inc"
 
 enum CustomVoiceAiAttackAction {
   CUSTOM_VOICE_AI_ACTION_DIRECT_ATTACK_NO_TRAP = 7,
@@ -91,33 +90,10 @@ static void ResetCustomVoiceLpFlags(void) {
     gCustomVoiceLpFiredThisTurn[i] = 0;
 }
 
-static void LoadCustomVoiceAssets(u8 songIndex) {
-  const struct CustomVoiceAssetLoad *load;
-  struct SongHeader *hdr;
-  u8 *base;
-
-  if (songIndex >= CUSTOM_VOICE_SONG_COUNT)
-    return;
-
-  load = &sCustomVoiceAssetLoads[songIndex];
-  base = gCustomVoiceBlob;
-
-  CpuCopy16(load->romPart, base + load->partOffset, CUSTOM_VOICE_PART_SIZE);
-
-  hdr = (struct SongHeader *)(base + load->headerOffset);
-  hdr->trackCount = 1;
-  hdr->blockCount = 0;
-  hdr->priority = 110;
-  hdr->reverb = 0;
-  hdr->tone = (struct ToneData *)0x08AFB2CC;
-  hdr->part[0] = base + load->partOffset;
-}
-
 void PlayCustomVoiceClip(u8 songIndex) {
   if (songIndex >= CUSTOM_VOICE_SONG_COUNT)
     return;
 
-  LoadCustomVoiceAssets(songIndex);
   m4aSongNumStart((u16)(CUSTOM_VOICE_SONG_ID_MIN + songIndex));
 }
 

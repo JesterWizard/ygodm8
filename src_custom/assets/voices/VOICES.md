@@ -23,7 +23,9 @@ Sizes:
   </thead>
   <tbody>
     <tr><td align="center">Duke: Im Up</td><td align="center"><code>duke/im_up.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">56,760 B (55.4 KB)</td><td align="center">13,536 B (13.2 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center">Duke: Not Over</td><td align="center"><code>duke/this_duel_isnt_over_yet.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">144,940 B (141.5 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-72.0%</span></td></tr>
+    <tr><td align="center">Duke: Go Gradius</td><td align="center"><code>duke/go_gradius.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">114,156 B (111.5 KB)</td><td align="center">27,218 B (26.6 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 1 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 3 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
