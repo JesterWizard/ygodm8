@@ -1,7 +1,9 @@
 #include "global.h"
 #include "ai.h"
+#include "ai_actions.h"
 #include "configs/runtime.h"
 #include "constants/custom_voices_generated.h"
+#include "duel.h"
 
 struct TurnVoice {
   u16 duelistId;
@@ -51,25 +53,16 @@ void m4aSongNumStart(u16 songNum);
 void sub_8041C94(u8 *textPtr, u16, u16, u16, u16);
 void OpponentTurnTextAndVoice(void);
 void TryAttackVoicing(void);
+void sub_801C6BC(u8);
 
 extern u8 *gMyTurnStrings[];
+extern struct Unk2023E80 sActionData;
 
 #include "generated/voice_turn_text_generated.inc"
 #include "generated/voice_triggers_generated.inc"
 
-enum CustomVoiceAiAttackAction {
-  CUSTOM_VOICE_AI_ACTION_DIRECT_ATTACK_NO_TRAP = 7,
-  CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_UP_NO_TRAP = 8,
-  CUSTOM_VOICE_AI_ACTION_DIRECT_ATTACK_WITH_TRAP = 9,
-  CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_UP_WITH_TRAP = 10,
-  CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_DOWN_NO_TRAP = 12,
-  CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_DOWN_WITH_TRAP = 13,
-  CUSTOM_VOICE_AI_ACTION_MONSTER_EFFECT = 23,
-};
-
 extern struct TurnVoice gTurnVoices[];
 extern struct AI_Command sAI_Command;
-extern struct Unk2023E80 sActionData;
 extern struct DuelCard *gTurnZones[][MAX_ZONES_IN_ROW];
 
 static const struct AttackVoicing sVanillaAttackVoices[] APPEND_RODATA = {
@@ -224,19 +217,28 @@ static void PlayVanillaAttackVoicing(u16 cardId) {
     PlayMusic(soundId);
 }
 
-static bool8 IsAttackVoicingAction(u16 action) {
+u8 IsAiDirectAttackVoicingAction(u16 action) {
   switch (action) {
-  case CUSTOM_VOICE_AI_ACTION_DIRECT_ATTACK_NO_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_UP_NO_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_DIRECT_ATTACK_WITH_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_UP_WITH_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_DOWN_NO_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_ATTACK_FACE_DOWN_WITH_TRAP:
-  case CUSTOM_VOICE_AI_ACTION_MONSTER_EFFECT:
+  case AI_ACTION_DIRECT_ATTACK_NO_TRAP:
+  case AI_ACTION_DIRECT_ATTACK_WITH_TRAP:
+  case AI_ACTION_PERM_CARD_DIRECT_ATTACK_NO_TRAP:
+  case AI_ACTION_PERM_CARD_DIRECT_ATTACK_WITH_TRAP:
     return TRUE;
   default:
     return FALSE;
   }
+}
+
+void TryPlayCustomOpponentAttackVoice(void) {
+  u16 clipIndex;
+
+  if (WhoseTurn() != DUEL_OPPONENT)
+    return;
+
+  if (!TryCustomVoiceMatch(CUSTOM_VOICE_TRIGGER_ATTACK_CARD, sActionData.opponentCardId, &clipIndex))
+    return;
+
+  PlayCustomVoiceClip(sCustomVoiceClips[clipIndex].songIndex);
 }
 
 static bool8 TryCustomVoiceAttack(u16 cardId) {
@@ -271,7 +273,7 @@ void TryAttackVoicing__Replacement(void) {
   u8 col2;
   u16 cardId;
 
-  if (!IsAttackVoicingAction(sAI_Command.action))
+  if (!IsAiDirectAttackVoicingAction(sAI_Command.action))
     return;
 
   row2 = sAI_Command.zone1Position >> 4;
@@ -282,5 +284,15 @@ void TryAttackVoicing__Replacement(void) {
     return;
 
   PlayVanillaAttackVoicing(cardId);
+}
+
+typedef void (*TargetedAttackSlashFn)(u8);
+
+#define SUB_801C6BC_BODY ((TargetedAttackSlashFn)(0x0801C6CC + 1))
+
+LYN_REPLACE_CHECK(sub_801C6BC);
+void sub_801C6BC__Replacement(u8 arg0) {
+  TryPlayCustomOpponentAttackVoice();
+  SUB_801C6BC_BODY(arg0);
 }
 

@@ -4,6 +4,7 @@
 #include "event_system.h"
 #include "configs/runtime.h"
 #include "debug_menu.h"
+#include "match_setter.h"
 #include "overworld_debug_overlay.h"
 #include "thought_bubble.h"
 
@@ -59,6 +60,7 @@ static void OverworldRestoreAfterDebugMenu(void) {
   OverworldRestoreGraphicsAfterSubmenu();
   CallThumbVoid(0x0804F580);
   CallThumbVoid(0x0804F598);
+  MatchSetter_RefreshField();
   LoadObjVRAM();
   LoadPalettes();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)

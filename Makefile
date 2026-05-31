@@ -88,6 +88,8 @@ DUELIST_DECKS_GENERATED := src_custom/generated/duelist_decks_generated.inc
 SHINY_ZONE_MANIFEST := tools/shiny_zone_manifest.json
 SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
 SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
+MATCH_SETTER_GENERATOR := tools/generate_match_setter.py
+MATCH_SETTER_GENERATED := src_custom/generated/match_setter_table_generated.inc
 VOICE_GENERATOR := tools/generate_voices.py
 VOICE_MANIFEST := tools/voice_manifest.json
 VOICE_WAV_DEPS := $(wildcard src_custom/assets/voices/**/*.wav)
@@ -139,6 +141,8 @@ ALL_TARGETS := $(ROM)
 endif
 
 all: $(ALL_TARGETS)
+
+$(ALL_TARGETS): | tools-rules
 
 .PHONY: event-extract event-catalog event-compile event-export-c event-test event-validate
 
@@ -246,6 +250,10 @@ $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
 
+$(MATCH_SETTER_GENERATED): events/vanilla/vanilla_event_catalog.md $(MATCH_SETTER_GENERATOR) src_custom/debug/debug_menu_portrait_table.inc include/overworld.h
+	@echo "MATCH   $@"
+	python3 $(MATCH_SETTER_GENERATOR) --out $@
+
 $(VOICE_STAMP): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(VOICE_WAV_DEPS)
 	@mkdir -p $(dir $@)
 	@echo "VOICE   custom duelist voice clips"
@@ -255,7 +263,7 @@ $(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_STAMP)
 	@test -f $(VOICE_STAMP)
 	@test -f $@
 
-$(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST)
+$(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST) | tools-rules
 	@echo "FIELD   custom field spell gfx"
 	python3 $(FIELD_SPELL_GFX_GENERATOR)
 	touch $@
@@ -301,6 +309,8 @@ $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) 
 $(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
+$(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
+$(eval $(call custom_object_dep,debug/debug_menu_match_setter,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
@@ -308,7 +318,7 @@ $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD
 $(eval $(call custom_object_dep,field_spell_gfx_hooks,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_effect_hooks,$(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_803F02C_hooks,$(FIELD_SPELL_GFX_STAMP)))
-src_custom/assets/portraits/player.8bpp: src_custom/assets/portraits/player.png
+src_custom/assets/portraits/player.8bpp: src_custom/assets/portraits/player.png | tools-rules
 	@echo "PORTRAIT $<"
 	tools/gbagfx/gbagfx $< $@ -num_tiles 64 -Werror=num_tiles
 
@@ -316,11 +326,11 @@ src_custom/assets/portraits/player.shifted.8bpp: src_custom/assets/portraits/pla
 	@echo "PALOFF  $<"
 	python3 tools/offset_portrait_8bpp.py $< $@
 
-src_custom/assets/portraits/player.lz: src_custom/assets/portraits/player.shifted.8bpp
+src_custom/assets/portraits/player.lz: src_custom/assets/portraits/player.shifted.8bpp | tools-rules
 	@echo "LZ      $<"
 	tools/gbagfx/gbagfx $< $@
 
-src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.png
+src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.png | tools-rules
 	@echo "PAL     $<"
 	tools/gbagfx/gbagfx $< $@
 

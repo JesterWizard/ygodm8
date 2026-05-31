@@ -246,6 +246,25 @@ def song_const_for_clip(clip_id):
     return f"SFX_VOICE_{symbol_for_clip(clip_id).upper()}"
 
 
+def resolve_card_targets(raw_card_id, card_ids):
+    if isinstance(raw_card_id, list):
+        if not raw_card_id:
+            raise SystemExit("card_id list cannot be empty")
+        return [
+            {
+                "card_id": card_ids[name],
+                "ref": name,
+            }
+            for name in raw_card_id
+        ]
+    return [
+        {
+            "card_id": card_ids.get(raw_card_id, 0xFFFF),
+            "ref": raw_card_id,
+        }
+    ]
+
+
 def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
     clip_id = entry["clip_id"]
     trigger = entry["trigger"]
@@ -267,8 +286,10 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
         raise SystemExit(f"{clip_id}: attack_card requires card_id")
     if trigger == "opponent_lp_below" and "lp_threshold" not in entry:
         raise SystemExit(f"{clip_id}: opponent_lp_below requires lp_threshold")
-    if trigger == "attack_card" and entry["card_id"] not in card_ids:
-        raise SystemExit(f"{clip_id}: unknown card_id {entry['card_id']!r}")
+    if trigger == "attack_card":
+        for target in resolve_card_targets(entry["card_id"], card_ids):
+            if target["ref"] not in card_ids:
+                raise SystemExit(f"{clip_id}: unknown card_id {target['ref']!r}")
     if "turn_text" in entry and trigger not in ("turn_start", "opponent_lp_below"):
         raise SystemExit(f"{clip_id}: turn_text is only valid for turn_start or opponent_lp_below")
 
@@ -772,23 +793,24 @@ def main():
             turn_text_symbol_for(sym) if "turn_text" in entry else "NULL"
         )
 
-        for target in resolve_duelist_targets(entry["duelist"], ai_ids, opponent_ids):
-            clips_meta.append(
-                {
-                    "song_const": song_const,
-                    "song_id": song_id,
-                    "duelist_id": target["voice_id"],
-                    "opponent_id": target["opponent_id"],
-                    "duelist_ref": target["ref"],
-                    "card_id": card_ids.get(entry.get("card_id", "CARD_NONE"), 0xFFFF),
-                    "lp_threshold": entry.get("lp_threshold", 0),
-                    "trigger_type": f"CUSTOM_VOICE_TRIGGER_{trigger.upper()}",
-                    "priority": entry.get("priority", 0),
-                    "replace_vanilla": 1 if entry.get("replace_vanilla", False) else 0,
-                    "song_index": song_index,
-                    "turn_text_ref": turn_text_ref,
-                }
-            )
+        for card_target in resolve_card_targets(entry.get("card_id", "CARD_NONE"), card_ids):
+            for target in resolve_duelist_targets(entry["duelist"], ai_ids, opponent_ids):
+                clips_meta.append(
+                    {
+                        "song_const": song_const,
+                        "song_id": song_id,
+                        "duelist_id": target["voice_id"],
+                        "opponent_id": target["opponent_id"],
+                        "duelist_ref": target["ref"],
+                        "card_id": card_target["card_id"],
+                        "lp_threshold": entry.get("lp_threshold", 0),
+                        "trigger_type": f"CUSTOM_VOICE_TRIGGER_{trigger.upper()}",
+                        "priority": entry.get("priority", 0),
+                        "replace_vanilla": 1 if entry.get("replace_vanilla", False) else 0,
+                        "song_index": song_index,
+                        "turn_text_ref": turn_text_ref,
+                    }
+                )
 
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)

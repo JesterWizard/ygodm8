@@ -3,6 +3,7 @@
 #include "constants/music_ids.h"
 #include "debug_menu.h"
 #include "debug_menu_internal.h"
+#include "match_setter.h"
 
 extern const u16 gOverworldEntityPalettes[];
 
@@ -14,12 +15,14 @@ static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
 static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
 static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
 static const u8 sText_RootVoice[] APPEND_RODATA = "$0Voice Viewer   ";
+static const u8 sText_RootMatchSetter[] APPEND_RODATA = "$0Match Setter   ";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
     sText_RootSprite,
     sText_RootReaction,
     sText_RootVoice,
+    sText_RootMatchSetter,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
@@ -197,12 +200,15 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_VOICE:
     DebugMenuDrawVoices(scrollTop, marker);
     break;
+  case DEBUG_VIEW_MATCH_SETTER:
+    DebugMenuDrawMatchSetters(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
   }
   if (view == DEBUG_VIEW_PORTRAIT || view == DEBUG_VIEW_SPRITE ||
-      view == DEBUG_VIEW_REACTION)
+      view == DEBUG_VIEW_REACTION || view == DEBUG_VIEW_MATCH_SETTER)
     DebugMenuUploadBg();
   else
     DebugMenuUpload();
@@ -315,8 +321,10 @@ static void DebugMenuRoot(void) {
         DebugSpriteViewer();
       else if (cursor == 3)
         DebugReactionViewer();
-      else
+      else if (cursor == 4)
         DebugVoiceViewer();
+      else
+        DebugMatchSetterViewer();
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS)
@@ -332,6 +340,7 @@ static void DebugMenuRoot(void) {
 
 void DebugMenuMain(void) {
   InitButtonMaps();
+  MatchSetter_Init();
   FadeOutMusic(1);
   DebugMenuLoadGraphics();
   DebugMenuLatchButtons();

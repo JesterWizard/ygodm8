@@ -25,7 +25,7 @@ void DebugMenuClearPortraitObjStash(void) {
   CpuFill16(0, (void *)(gPaletteBuffer + 256 + 0xC0), DEBUG_PORTRAIT_PAL_BYTES);
 }
 
-static void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId) {
+void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId) {
   if (portraitId == *shownId)
     return;
   *shownId = portraitId;
@@ -35,7 +35,7 @@ static void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId) {
   LoadPalettes();
 }
 
-static void DebugMenuApplyPortraitOam(void) {
+void DebugMenuApplyPortraitOam(void) {
   struct OamData *oam = (struct OamData *)gOamBuffer;
 
   sub_804EB04(oam, PORTRAIT_POSITION_RIGHT);
@@ -44,7 +44,7 @@ static void DebugMenuApplyPortraitOam(void) {
   oam->paletteNum = 12;
 }
 
-static void DebugMenuHidePortrait(void) {
+void DebugMenuHidePortrait(void) {
   sub_804EB04((struct OamData *)gOamBuffer, PORTRAIT_POSITION_OFF_SCREEN);
   LoadOam();
 }

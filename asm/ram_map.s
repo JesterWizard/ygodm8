@@ -56,6 +56,9 @@ _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 _kernel_malloc gDoubleSummonExtraSummonPending, 1
 _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 
+@ Debug Match Setter: selected duelist table index + 1, or 0 for none.
+_kernel_malloc gDebugMatchSetterSelection, 1
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 

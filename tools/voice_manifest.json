@@ -91,7 +91,7 @@
       "duelist": ["DUELIST_MAI_032", "DUELIST_MAI_033", "DUELIST_MAI_058", "DUELIST_MAI_097", "DUELIST_MAI_118", "DUELIST_MAI_147"],
       "wav": "mai/swoop_in_harpie_lady.wav",
       "trigger": "attack_card",
-      "card_id": "HARPIE_LADY",
+      "card_id": ["HARPIE_LADY", "CYBER_HARPIE","HARPIE_LADY_SISTERS"],
       "title": "Mai: Swoop in Harpie Lady",
       "gain_db": 4.0
     },

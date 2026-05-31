@@ -18,7 +18,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 5
+#define DEBUG_ROOT_ITEMS 6
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -33,6 +33,7 @@
 #define DEBUG_VIEW_SPRITE 3
 #define DEBUG_VIEW_REACTION 4
 #define DEBUG_VIEW_VOICE 5
+#define DEBUG_VIEW_MATCH_SETTER 6
 
 #define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 #define DEBUG_SPRITE_OAM_SLOT 1
@@ -85,12 +86,17 @@ void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
 
 extern const u8 gDebugMenuBlankLine[];
 
+void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId);
+void DebugMenuApplyPortraitOam(void);
+void DebugMenuHidePortrait(void);
+
 void DebugMenuDrawMusic(u8 scrollTop, u16 playingId);
 void DebugMenuDrawVoices(u8 scrollTop, u16 playingId);
 void DebugMenuDrawPortraits(u8 scrollTop, u8 cursor);
 void DebugMenuDrawSprites(u8 scrollTop, u8 cursor);
 void DebugMenuDrawRoot(u8 scrollTop, u8 cursor);
 void DebugMenuDrawReactions(u8 scrollTop, u8 cursor);
+void DebugMenuDrawMatchSetters(u8 scrollTop, u8 cursor);
 
 void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,
                                        u8 frameIndex, bool8 force);
@@ -103,5 +109,6 @@ void DebugVoiceViewer(void);
 void DebugPortraitViewer(void);
 void DebugSpriteViewer(void);
 void DebugReactionViewer(void);
+void DebugMatchSetterViewer(void);
 
 #endif // GUARD_DEBUG_MENU_INTERNAL_H
