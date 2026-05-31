@@ -71,6 +71,18 @@
     {
       "org": 11515352,
       "wave_symbol": "CustomVoice_rex_3_Wave"
+    },
+    {
+      "org": 11515364,
+      "wave_symbol": "CustomVoice_mako_1_Wave"
+    },
+    {
+      "org": 11515376,
+      "wave_symbol": "CustomVoice_mako_2_Wave"
+    },
+    {
+      "org": 11515388,
+      "wave_symbol": "CustomVoice_mako_3_Wave"
     }
   ],
   "song_patches": [
@@ -163,6 +175,21 @@
       "org": 11522356,
       "header_symbol": "CustomVoice_rex_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522364,
+      "header_symbol": "CustomVoice_mako_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522372,
+      "header_symbol": "CustomVoice_mako_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522380,
+      "header_symbol": "CustomVoice_mako_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -236,6 +263,18 @@
     },
     {
       "org": 863290,
+      "mode": 3
+    },
+    {
+      "org": 863291,
+      "mode": 3
+    },
+    {
+      "org": 863292,
+      "mode": 3
+    },
+    {
+      "org": 863293,
       "mode": 3
     }
   ]

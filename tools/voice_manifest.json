@@ -178,6 +178,34 @@
       "card_id": "TWO_HEADED_KING_REX",
       "title": "Rex: Two Headed King Rex Attack!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "mako_1",
+      "duelist": ["DUELIST_MAKO_048", "DUELIST_MAKO_062", "DUELIST_MAKO_070", "DUELIST_MAKO_103", "DUELIST_MAKO_116", "DUELIST_MAKO_150"],
+      "wav": "mako/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Mako: It's My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "mako_2",
+      "duelist": ["DUELIST_MAKO_048", "DUELIST_MAKO_062", "DUELIST_MAKO_070", "DUELIST_MAKO_103", "DUELIST_MAKO_116", "DUELIST_MAKO_150"],
+      "wav": "mako/this_duel_is_not_over_yet.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Mako: This Duel Is Not Over Yet",
+      "turn_text": "This duel is not over yet!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "mako_3",
+      "duelist": ["DUELIST_MAKO_048", "DUELIST_MAKO_062", "DUELIST_MAKO_070", "DUELIST_MAKO_103", "DUELIST_MAKO_116", "DUELIST_MAKO_150"],
+      "wav": "mako/i_attack_you_with_amphibian_beast.wav",
+      "trigger": "attack_card",
+      "card_id": "AMPHIBIAN_BEAST",
+      "title": "Mako: I Attack You With Amphibian Beast!",
+      "gain_db": 4.0
     }
   ]
 }

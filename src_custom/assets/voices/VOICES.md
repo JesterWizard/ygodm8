@@ -41,11 +41,14 @@ Sizes:
     <tr><td align="center">Rex: My Turn</td><td align="center"><code>rex/my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">83,194 B (81.2 KB)</td><td align="center">22,778 B (22.2 KB)</td><td align="center"><span style="color: #3fb950">-72.6%</span></td></tr>
     <tr><td align="center">Rex: This Is Far From O</td><td align="center"><code>rex/this_is_far_from_over.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">141,928 B (138.6 KB)</td><td align="center">40,596 B (39.6 KB)</td><td align="center"><span style="color: #3fb950">-71.4%</span></td></tr>
     <tr><td align="center">Rex: Two Headed King Re</td><td align="center"><code>rex/two_headed_king_rex_attack.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">178,514 B (174.3 KB)</td><td align="center">44,624 B (43.6 KB)</td><td align="center"><span style="color: #3fb950">-75.0%</span></td></tr>
-    <tr><td align="center" colspan="3"><strong>Total</strong></td><td align="center"><strong>2,304,912 B (2250.9 KB)</strong></td><td align="center"><strong>647,830 B (632.6 KB)</strong></td><td align="center"><strong><span style="color: #3fb950">-71.9%</span></strong></td></tr>
+    <tr><td align="center">Mako: It&#x27;s My Turn</td><td align="center"><code>mako/its_my_turn.wav</code></td><td align="center"><code>turn_start</code></td><td align="center">83,284 B (81.3 KB)</td><td align="center">22,778 B (22.2 KB)</td><td align="center"><span style="color: #3fb950">-72.7%</span></td></tr>
+    <tr><td align="center">Mako: This Duel Is Not </td><td align="center"><code>mako/this_duel_is_not_over_yet.wav</code></td><td align="center"><code>opponent_lp_below</code></td><td align="center">171,448 B (167.4 KB)</td><td align="center">44,624 B (43.6 KB)</td><td align="center"><span style="color: #3fb950">-74.0%</span></td></tr>
+    <tr><td align="center">Mako: I Attack You With</td><td align="center"><code>mako/i_attack_you_with_amphibian_beast.wav</code></td><td align="center"><code>attack_card</code></td><td align="center">239,634 B (234.0 KB)</td><td align="center">57,126 B (55.8 KB)</td><td align="center"><span style="color: #3fb950">-76.2%</span></td></tr>
+    <tr><td align="center" colspan="3"><strong>Total</strong></td><td align="center"><strong>2,799,278 B (2733.7 KB)</strong></td><td align="center"><strong>772,358 B (754.3 KB)</strong></td><td align="center"><strong><span style="color: #3fb950">-72.4%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 18 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 21 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

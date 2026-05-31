@@ -16,6 +16,9 @@ extern struct SongHeader CustomVoice_weevil_3_SongHeader;
 extern struct SongHeader CustomVoice_rex_1_SongHeader;
 extern struct SongHeader CustomVoice_rex_2_SongHeader;
 extern struct SongHeader CustomVoice_rex_3_SongHeader;
+extern struct SongHeader CustomVoice_mako_1_SongHeader;
+extern struct SongHeader CustomVoice_mako_2_SongHeader;
+extern struct SongHeader CustomVoice_mako_3_SongHeader;
 
 static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA = {
     &CustomVoice_duke_1_SongHeader,
@@ -36,4 +39,7 @@ static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA =
     &CustomVoice_rex_1_SongHeader,
     &CustomVoice_rex_2_SongHeader,
     &CustomVoice_rex_3_SongHeader,
+    &CustomVoice_mako_1_SongHeader,
+    &CustomVoice_mako_2_SongHeader,
+    &CustomVoice_mako_3_SongHeader,
 };
