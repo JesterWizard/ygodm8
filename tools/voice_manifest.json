@@ -150,6 +150,34 @@
       "card_id": "GREAT_MOTH",
       "title": "Weevil: Blow Em Away Great Moth!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "rex_1",
+      "duelist": ["DUELIST_REX_046", "DUELIST_REX_054", "DUELIST_REX_066", "DUELIST_REX_102", "DUELIST_REX_114", "DUELIST_REX_149"],
+      "wav": "rex/my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Rex: My Turn",
+      "turn_text": "My turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "rex_2",
+      "duelist": ["DUELIST_REX_046", "DUELIST_REX_054", "DUELIST_REX_066", "DUELIST_REX_102", "DUELIST_REX_114", "DUELIST_REX_149"],
+      "wav": "rex/this_is_far_from_over.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Rex: This Is Far From Over",
+      "turn_text": "This is far from over!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "rex_3",
+      "duelist": ["DUELIST_REX_046", "DUELIST_REX_054", "DUELIST_REX_066", "DUELIST_REX_102", "DUELIST_REX_114", "DUELIST_REX_149"],
+      "wav": "rex/two_headed_king_rex_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "TWO_HEADED_KING_REX",
+      "title": "Rex: Two Headed King Rex Attack!",
+      "gain_db": 4.0
     }
   ]
 }

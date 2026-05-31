@@ -8,3 +8,5 @@ static const u8 CustomVoice_tea_1_TurnText[] APPEND_RODATA = "$0My turn.$1My tur
 static const u8 CustomVoice_tea_2_TurnText[] APPEND_RODATA = "$0Don't expect me to give up!$1Don't expect me to give up!$2Don't expect me to give up!$3Don't expect me to give up!$4Don't expect me to give up!$5Don't expect me to give up!$6#1";
 static const u8 CustomVoice_weevil_1_TurnText[] APPEND_RODATA = "$0My turn.$1My turn.$2My turn.$3My turn.$4My turn.$5My turn.$6#1";
 static const u8 CustomVoice_weevil_2_TurnText[] APPEND_RODATA = "$0That was nothing!$1That was nothing!$2That was nothing!$3That was nothing!$4That was nothing!$5That was nothing!$6#1";
+static const u8 CustomVoice_rex_1_TurnText[] APPEND_RODATA = "$0My turn.$1My turn.$2My turn.$3My turn.$4My turn.$5My turn.$6#1";
+static const u8 CustomVoice_rex_2_TurnText[] APPEND_RODATA = "$0This is far from over!$1This is far from over!$2This is far from over!$3This is far from over!$4This is far from over!$5This is far from over!$6#1";
