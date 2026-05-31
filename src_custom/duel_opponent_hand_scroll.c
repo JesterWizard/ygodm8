@@ -131,9 +131,8 @@ static struct FieldOamEntry *OpponentHandOamAt(u8 col)
 }
 
 /*
- * Reuse the player-hand row OBJ tile map (g8E116BC row 4). Player-hand field OAM is
- * hidden while the opponent hand is shown; compositing must use the same sparse VRAM
- * layout as every other field mini-card (not a packed 16-tile blit).
+ * Reuse the player-hand row sparse tile map (g8E116BC row 4). Matrix 3
+ * (0x6000000), same as opponent backrow, pairs with this layout.
  */
 static u8 *OpponentHandTilePtr(u8 col)
 {
@@ -242,8 +241,9 @@ static void PlaceOpponentHandOam(u8 col)
   s16 x = g8E116EE[PLAYER_HAND][col];
   s16 y = GetOpponentHandCardScreenY();
 
+  /* Same affine matrix 3 as opponent backrow (sub_805754C row 0). */
   oam->a = (u32)((y & 0xFF) | ((x << 16) & 0x01FF0000) | 0x80002100);
-  oam->a |= 0x2000000;
+  oam->a |= 0x6000000;
   oam->b = (OpponentHandOamTileIndex(col) & 0x3FF) | 0x800;
 }
 
@@ -291,6 +291,9 @@ void DrawOpponentHandOnField(void) {
   u8 col;
   struct DuelCard *card;
 
+  /* Hide row-4 field OAM first so it cannot linger at the scrolled top edge. */
+  HidePlayerHandFieldOam();
+
   /* Hand tiles share cbb4 with the field; refresh field art before compositing hand. */
   refreshFieldCardTiles();
   RefreshOpponentBackrowFaceUpTiles();
@@ -302,7 +305,6 @@ void DrawOpponentHandOnField(void) {
     }
   }
 
-  HidePlayerHandFieldOam();
   HideOpponentHandFieldOam();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
