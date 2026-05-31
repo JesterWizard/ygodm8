@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "copycat.h"
 #include "dynamic_equip.h"
@@ -196,8 +197,12 @@ void PlayerTurnMain__Replacement(void) {
         }
         break;
       case 7:
-        sub_8044B2C();
-        UpdateAllDuelGfx();
+        if (!IsOpponentHandFieldScrollEnabled()) {
+          sub_8044B2C();
+          UpdateAllDuelGfx();
+        } else {
+          WaitForVBlank();
+        }
         break;
       case 8:
         HandleBButtonAction();
