@@ -33,7 +33,34 @@ u32 CanPlayerSeeCard(u8, u8);
 void DisplayCardInfoBar(void);
 void sub_80408FC(void);
 void PlaceFieldCardOam(u8 col, u8 row);
+void ShowCardDetailView(void);
+void UpdateAllDuelGfx(void);
+void UpdateDuelGfxExceptField(void);
+void ClearZoneAndSendMonToGraveyard2(struct DuelCard *, u8);
+void TryActivatingPermanentEffects(void);
+void sub_8041014(void);
+void BMenuMain(void);
+extern struct DuelCard *gFixedZones[][MAX_ZONES_IN_ROW];
 extern u8 gDFBA4[];
+extern u16 gRepeatedOrNewButtons;
+extern u16 gNewButtons;
+extern u8 gIsPlayerTurnOver;
+extern u8 gNextUpB_MenuOption[];
+extern u8 gNextDownB_MenuOption[];
+extern u8 gNextRightB_MenuOption[];
+extern u8 gNextLeftB_MenuOption[];
+
+enum B_MenuOption {
+  B_MENU_DETAILS,
+  B_MENU_TURN_END,
+  B_MENU_DISCARD,
+};
+
+typedef void (*InitBMenuFn)(u8);
+typedef void (*Sub80428ECFn)(u8);
+
+static InitBMenuFn const sInitBMenu = (InitBMenuFn)(0x08042399);
+static Sub80428ECFn const sSub80428EC = (Sub80428ECFn)(0x080428ED);
 
 #define DUEL_CURSOR_TILE_INDEX 0x180
 
@@ -209,4 +236,77 @@ void sub_80574A8__Replacement(unsigned char col, unsigned char row) {
   }
 
   PlaceFieldCardOam(col, row);
+}
+
+LYN_REPLACE_CHECK(BMenuMain);
+void BMenuMain__Replacement(void) {
+  enum B_MenuOption cursorState = B_MENU_DETAILS;
+
+  sInitBMenu(0);
+
+  while (1) {
+    if (gRepeatedOrNewButtons & DPAD_UP) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = gNextUpB_MenuOption[cursorState];
+      sSub80428EC(cursorState);
+      WaitForVBlank();
+      sub_8041014();
+    } else if (gRepeatedOrNewButtons & DPAD_DOWN) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = gNextDownB_MenuOption[cursorState];
+      sSub80428EC(cursorState);
+      WaitForVBlank();
+      sub_8041014();
+    } else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = gNextRightB_MenuOption[cursorState];
+      sSub80428EC(cursorState);
+      WaitForVBlank();
+      sub_8041014();
+    } else if (gRepeatedOrNewButtons & DPAD_LEFT) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = gNextLeftB_MenuOption[cursorState];
+      sSub80428EC(cursorState);
+      WaitForVBlank();
+      sub_8041014();
+    } else if (gNewButtons & A_BUTTON) {
+      switch (cursorState) {
+        case B_MENU_DETAILS:
+          if (TryShowDuelCursorCardDetails())
+            PlayMusic(SFX_SELECT);
+          else {
+            PlayMusic(SFX_FORBIDDEN);
+            UpdateDuelGfxExceptField();
+          }
+          return;
+        case B_MENU_TURN_END:
+          PlayMusic(SFX_SELECT);
+          gIsPlayerTurnOver = 1;
+          UpdateDuelGfxExceptField();
+          return;
+        case B_MENU_DISCARD:
+          if (gDuelCursor.currentY > 1
+              && gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE
+              && !gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->willChangeSides) {
+            PlayMusic(SFX_DISCARD);
+            ClearZoneAndSendMonToGraveyard2(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], 0);
+            UpdateDuelGfxExceptField();
+            TryActivatingPermanentEffects();
+          } else {
+            PlayMusic(SFX_FORBIDDEN);
+            UpdateDuelGfxExceptField();
+          }
+          return;
+      }
+      break;
+    } else if (gNewButtons & B_BUTTON) {
+      PlayMusic(SFX_CANCEL);
+      break;
+    } else {
+      WaitForVBlank();
+    }
+  }
+
+  UpdateDuelGfxExceptField();
 }

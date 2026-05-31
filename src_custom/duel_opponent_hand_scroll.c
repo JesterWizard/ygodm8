@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "card.h"
 #include "duel.h"
 #include "duel_opponent_hand_scroll.h"
 #include "gfx_reg_buffers.h"
@@ -9,6 +10,11 @@ extern u16 gOamBuffer[];
 extern u16 g8E116BC[];
 extern s16 g8E116EE[][5];
 extern struct DuelCard *gFixedZones[][MAX_ZONES_IN_ROW];
+extern struct DuelCard *gTurnHands[2][MAX_ZONES_IN_ROW];
+
+u32 CanPlayerSeeCard(u8 y, u8 x);
+void ShowCardDetailView(void);
+void UpdateAllDuelGfx(void);
 
 int sub_80575E0(unsigned char, unsigned char);
 int sub_8057600(unsigned char, unsigned char);
@@ -67,6 +73,38 @@ bool8 IsLeavingOpponentHandScroll(u8 destRow) {
     return FALSE;
 
   return gBG2VOFS == GetBoardScrollVofs(OPPONENT_HAND_ROW);
+}
+
+static struct DuelCard *GetVisibleCardAtBoardPos(u8 y, u8 x) {
+  struct DuelCard *card;
+
+  if (IsOpponentHandFieldScrollEnabled() && y == OPPONENT_HAND_ROW) {
+    card = gTurnHands[INACTIVE_DUELIST][4 - x];
+    if (card == NULL || card->id == CARD_NONE || !card->isFaceUp)
+      return NULL;
+    return card;
+  }
+
+  if (CanPlayerSeeCard(y, x) != 1)
+    return NULL;
+
+  return gFixedZones[y][x];
+}
+
+bool8 TryShowDuelCursorCardDetails(void) {
+  struct DuelCard *card =
+      GetVisibleCardAtBoardPos(gDuelCursor.currentY, gDuelCursor.currentX);
+
+  if (card == NULL || !GetTypeGroup(card->id))
+    return FALSE;
+
+  gStatMod.card = card->id;
+  gStatMod.field = gDuel.field;
+  gStatMod.stage = GetFinalStage(card);
+  SetFinalStat(&gStatMod);
+  ShowCardDetailView();
+  UpdateAllDuelGfx();
+  return TRUE;
 }
 
 void ApplyOpponentHandFieldWindow(void) {

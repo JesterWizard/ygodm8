@@ -23,5 +23,6 @@ void ApplyOpponentHandFieldWindow(void);
 void RestoreOpponentHandFieldWindow(void);
 void RebuildFieldCardGfxAfterOpponentHand(void);
 bool8 IsLeavingOpponentHandScroll(u8 destRow);
+bool8 TryShowDuelCursorCardDetails(void);
 
 #endif

@@ -4,6 +4,7 @@
 #include "duel_opponent_hand_scroll.h"
 
 extern unsigned short g8E0D5A6[];
+extern u8 g8E0D5A1[];
 
 static u16 GetScrollTargetVofs(u8 row) {
   if (IsOpponentHandFieldScrollEnabled() && row < NUM_DUEL_BOARD_ROWS)
@@ -20,6 +21,16 @@ static bool8 ScrollSnapRequired(u8 destRow) {
     return TRUE;
 
   return IsLeavingOpponentHandScroll(destRow);
+}
+
+u32 AdjustBackgroundBeforeTurnStart(u8 row);
+
+LYN_REPLACE_CHECK(AdjustBackgroundBeforeTurnStart);
+u32 AdjustBackgroundBeforeTurnStart__Replacement(u8 row) {
+  if (IsOpponentHandFieldScrollEnabled() && row < NUM_DUEL_BOARD_ROWS)
+    return gBG2VOFS = GetBoardScrollVofs(row);
+
+  return gBG2VOFS = g8E0D5A1[row];
 }
 
 void DisplayCardAttrTypeInInfoBar(void);
