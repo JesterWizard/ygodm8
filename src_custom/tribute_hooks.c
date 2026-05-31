@@ -55,17 +55,15 @@ void ResetNumTributes__Replacement(void)
   ClearSoulExchange();
 }
 
-LYN_REPLACE_CHECK(GetMonsterNumRequiredTributes);
-int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
+LYN_REPLACE_CHECK(IncrementNumTributes);
+void IncrementNumTributes__Replacement(void)
 {
-  int requiredTributes;
-  int paidTributes;
+  gNumTributes++;
+}
 
-  if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
-    return 0;
-
-  requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
-  paidTributes = (int)gNumTributes;
+static int SubtractPaidTributes(int requiredTributes)
+{
+  int paidTributes = (int)gNumTributes;
 
   if (gSoulExchangeTributeCredit)
     paidTributes++;
@@ -79,4 +77,32 @@ int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
     return MASK_OF_RESTRICT_TRIBUTE_BLOCK;
 
   return (unsigned char)requiredTributes;
+}
+
+int GetMonsterNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
+{
+  int requiredTributes;
+
+  if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return 0;
+
+  if (gCostDownActive && ShouldApplyCostDownForHandSlot(handSlot, cardId))
+    requiredTributes = GetNumRequiredTributesForHandSlot(handSlot, cardId);
+  else
+    requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
+
+  return SubtractPaidTributes(requiredTributes);
+}
+
+LYN_REPLACE_CHECK(GetMonsterNumRequiredTributes);
+int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
+{
+  int requiredTributes;
+
+  if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return 0;
+
+  requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
+
+  return SubtractPaidTributes(requiredTributes);
 }

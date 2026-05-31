@@ -181,7 +181,8 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
       } else {
-        unsigned char numTributes = GetMonsterNumRequiredTributes(
+        unsigned char numTributes = GetMonsterNumRequiredTributesForHandSlot(
+            gDuelCursor.currentX,
             gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id);
         if (numTributes) {
           if (IsMaskOfRestrictActiveOnField()) {

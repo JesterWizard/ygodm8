@@ -1,5 +1,4 @@
 #include "global.h"
-#include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "tribute.h"
 
@@ -50,9 +49,6 @@ void ApplyMonsterTributeFromFixedRow(struct DuelCard *zone, u8 fixedMonsterRow)
   u8 wasSoulExchangeOpponent;
   u8 graveyardDuelist = DUEL_PLAYER;
 
-  if (TryBlockTributeWithMaskOfRestrict())
-    return;
-
   wasSoulExchangeOpponent =
       IsSoulExchangeActive() && fixedMonsterRow == OPPONENT_MONSTER_ROW;
 
@@ -78,12 +74,6 @@ void PerformSoulExchangeOpponentTribute(void)
   struct DuelCard *zone = gFixedZones[OPPONENT_MONSTER_ROW][gDuelCursor.currentX];
 
   if (!IsSoulExchangeActive() || zone->id == CARD_NONE || zone->isLocked) {
-    PlayMusic(SFX_FORBIDDEN);
-    WaitForVBlank();
-    return;
-  }
-
-  if (TryBlockTributeWithMaskOfRestrict()) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;

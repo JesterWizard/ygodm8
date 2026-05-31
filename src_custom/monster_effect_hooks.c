@@ -2,8 +2,10 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/monster_effects.h"
-#include "mask_of_restrict.h"
 #include "soul_exchange.h"
+#include "tribute.h"
+
+unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 
 extern void (*const gMonEffects[])(void);
 extern const u8 gCardLockAfterActivation_Hook[];
@@ -158,14 +160,18 @@ void MonsterActionMenu__Replacement(void) {
         UpdateDuelGfxExceptField();
         break;
       }
-      if (TryBlockTributeWithMaskOfRestrict()) {
-        PlayMusic(SFX_FORBIDDEN);
-        UpdateDuelGfxExceptField();
-        break;
-      }
       PlayMusic(SFX_TRIBUTE);
-      ApplyMonsterTributeFromFixedRow(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], gDuelCursor.currentY);
+      if (IsSoulExchangeActive() && gDuelCursor.currentY == OPPONENT_MONSTER_ROW) {
+        ApplyMonsterTributeFromFixedRow(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], OPPONENT_MONSTER_ROW);
+      } else {
+        IncrementNumTributes();
+        if (GetKaiserSeaHorseTributeCount(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id) == 2)
+          IncrementNumTributes();
+        ClearZoneAndSendMonToGraveyard2(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], DUEL_PLAYER);
+      }
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
       break;

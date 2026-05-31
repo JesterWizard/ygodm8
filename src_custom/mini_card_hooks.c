@@ -3,6 +3,7 @@
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
 #include "cost_down.h"
+#include "tribute.h"
 
 extern unsigned char* g8E1168C[]; //attribute mini-icons
 extern unsigned char gSharedMem[];
@@ -101,6 +102,13 @@ void sub_80576B4(unsigned char* arg0, unsigned short cardId);
 static int GetMiniCardTributeCount(u16 cardId)
 {
   u8 i;
+
+  if (WhoseTurn() == DUEL_PLAYER) {
+    for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+      if (gFixedZones[PLAYER_HAND][i]->id == cardId)
+        return GetMonsterNumRequiredTributesForHandSlot(i, cardId);
+    }
+  }
 
   if (!gCostDownActive)
     return GetNumRequiredTributesWithCostDown(cardId);
