@@ -88,6 +88,12 @@ DUELIST_DECKS_GENERATED := src_custom/generated/duelist_decks_generated.inc
 SHINY_ZONE_MANIFEST := tools/shiny_zone_manifest.json
 SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
 SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
+FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py
+FIELD_SPELL_GFX_GENERATED := src_custom/generated/field_spell_gfx_generated.inc src_custom/generated/field_spell_tilemaps_generated.inc src_custom/generated/field_spell_card_lookup_generated.inc src_custom/generated/field_spell_gfx_tables_generated.inc src_custom/generated/field_spell_effect_table_generated.inc src_custom/generated/field_spell_stat_mods_generated.inc src_custom/generated/field_spell_mapping_generated.inc include/constants/custom_field_spells_generated.h include/constants/custom_fields_generated.h
+FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
+FIELD_SPELL_DIR_PNGS := $(shell find src_custom/assets/field_spells -mindepth 2 -maxdepth 2 -type f -name 'field.png' 2>/dev/null | sort)
+FIELD_SPELL_PNGS := $(sort $(FIELD_SPELL_STEM_PNGS) $(FIELD_SPELL_DIR_PNGS))
+FIELD_SPELL_GFX_STAMP := $(BUILD_DIR)/.field_spell_gfx.stamp
 CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld generated/card_memory_sizes.inc
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
@@ -233,6 +239,14 @@ $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
 
+$(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST)
+	@echo "FIELD   custom field spell gfx"
+	python3 $(FIELD_SPELL_GFX_GENERATOR)
+	touch $@
+
+$(FIELD_SPELL_GFX_GENERATED): $(FIELD_SPELL_GFX_STAMP)
+	@test -f $@
+
 define compile_c_object_rule
 $1/%.o: $2/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
 	@echo "CC      $$<"
@@ -262,7 +276,7 @@ $(C_BUILDDIR)/duel/trap_effects.o: src/duel/trap_effects.c $(CARD_IDS_GENERATED)
 
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
-$(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED)))
+$(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED) $(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED)))
 $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
@@ -272,6 +286,10 @@ $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
+$(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
+$(eval $(call custom_object_dep,field_spell_gfx_hooks,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
+$(eval $(call custom_object_dep,field_spell_effect_hooks,$(FIELD_SPELL_GFX_STAMP)))
+$(eval $(call custom_object_dep,code_803F02C_hooks,$(FIELD_SPELL_GFX_STAMP)))
 src_custom/assets/portraits/player.8bpp: src_custom/assets/portraits/player.png
 	@echo "PORTRAIT $<"
 	tools/gbagfx/gbagfx $< $@ -num_tiles 64 -Werror=num_tiles

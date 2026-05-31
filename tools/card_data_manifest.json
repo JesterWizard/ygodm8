@@ -13326,6 +13326,38 @@
       "big_art": "src_custom/assets/cards/80x80/magic_jammer.huff",
       "big_palette": "src_custom/assets/cards/80x80/magic_jammer.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/magic_jammer.lz"
+    },
+    {
+      "card_const": "SEAL_OF_ORICHALCOS",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "customFieldSpell": "CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS",
+      "description": {
+        "symbol": "gDescription_SealOfOrichalcos",
+        "pages": [
+          "A sinister field spell tied to the Orichalcos.",
+          "All of your monsters gain 1 stage while this field is active."
+        ]
+      },
+      "card_name": "Seal of Orichalcos",
+      "password": [ 7, 4, 6, 7, 3, 4, 3, 8 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SealOfOrichalcos",
+        "pages": [
+          "Change the field to Seal of Orichalcos."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/seal_of_orichalcos.huff",
+      "big_palette": "src_custom/assets/cards/80x80/seal_of_orichalcos.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/seal_of_orichalcos.lz"
     }
   ]
 }

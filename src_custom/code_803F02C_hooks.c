@@ -4,6 +4,7 @@
 #include "copycat.h"
 #include "dynamic_equip.h"
 #include "cost_down.h"
+#include "custom_field_spell.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -127,6 +128,7 @@ void InitBoard__Replacement(void) {
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
   ClearCostDown();
+  ResetCustomFieldSpellState();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -279,6 +281,7 @@ void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
 
 LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
+  OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
@@ -327,6 +330,13 @@ LYN_REPLACE_CHECK(GetFinalStage);
 int GetFinalStage__Replacement(struct DuelCard *zone)
 {
   int stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
+
+  if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS
+      && zone->id != CARD_NONE
+      && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
+      && gActiveFieldSpellController != FIELD_SPELL_CONTROLLER_NONE
+      && GetDuelistForZone(zone) == gActiveFieldSpellController)
+    stage++;
 
   if (stage > 127)
     stage = 127;

@@ -833,11 +833,12 @@
 #define BLUE_EYES_ALTERNATIVE_WHITE_DRAGON       0x033D
 #define ANCIENT_RULES                            0x033E
 #define MAGIC_JAMMER                             0x033F
+#define SEAL_OF_ORICHALCOS                       0x0340
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0340
-#define NUM_CUSTOM_CARDS                        0x001F
+#define NUM_TOTAL_CARDS                         0x0341
+#define NUM_CUSTOM_CARDS                        0x0020
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

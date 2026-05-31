@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "cost_down.h"
+#include "custom_field_spell.h"
 
 extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfDemise(void);
@@ -68,6 +69,7 @@ static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
 {
   u8 spellRow;
   u8 spellCol;
+  struct DuelCard *spellZone;
 
   if (GetTypeGroup(spellId) != TYPE_GROUP_SPELL)
     return TRUE;
@@ -80,9 +82,15 @@ static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
     spellCol = gSpellEffectData.col1;
   }
 
+  spellZone = NULL;
+  if (spellRow <= PLAYER_HAND && spellCol < MAX_ZONES_IN_ROW)
+    spellZone = gFixedZones[spellRow][spellCol];
+  else if (spellRow < 5 && spellCol < MAX_ZONES_IN_ROW)
+    spellZone = gTurnZones[spellRow][spellCol];
+
   gTrapEffectData.originRow = spellRow;
   gTrapEffectData.originCol = spellCol;
-  gTrapEffectData.originCardId = gTurnZones[spellRow][spellCol]->id;
+  gTrapEffectData.originCardId = spellZone != NULL ? spellZone->id : CARD_NONE;
 
   if (IsTrapTriggered() != TRUE || gHideEffectText)
     return TRUE;
@@ -112,6 +120,18 @@ void ActivateSpellEffect__Replacement(void)
   if (!SpellHandlesOwnTrapResponse(gSpellEffectData.id, gCardInfo.spellEffect)) {
     if (!TryResolveSpellActivationThroughTraps(gSpellEffectData.id))
       return;
+  }
+
+  if (TryActivateCustomFieldSpell(gSpellEffectData.id))
+    return;
+
+  if (TryActivateVanillaFieldSpell(gSpellEffectData.id, gCardInfo.spellEffect))
+    return;
+
+  if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
+      && gCardInfo.spellEffect <= SPELL_EFFECT_YAMI) {
+    gSpellEffects[gCardInfo.spellEffect]();
+    return;
   }
 
   switch (gSpellEffectData.id) {

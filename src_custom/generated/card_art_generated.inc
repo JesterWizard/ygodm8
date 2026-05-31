@@ -124,6 +124,10 @@ static const unsigned char sMagicJammerBigArt[] __attribute__((section(".append_
 static const unsigned short sMagicJammerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/magic_jammer.gbapal");
 static const unsigned char sMagicJammerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/magic_jammer.lz");
 
+static const unsigned char sSealOfOrichalcosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/seal_of_orichalcos.huff");
+static const unsigned short sSealOfOrichalcosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/seal_of_orichalcos.gbapal");
+static const unsigned char sSealOfOrichalcosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/seal_of_orichalcos.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -156,6 +160,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigArt,
   [0x033E] = sAncientRulesBigArt,
   [0x033F] = sMagicJammerBigArt,
+  [0x0340] = sSealOfOrichalcosBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -190,6 +195,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x033D] = sBlueEyesAlternativeWhiteDragonBigPalette,
   [0x033E] = sAncientRulesBigPalette,
   [0x033F] = sMagicJammerBigPalette,
+  [0x0340] = sSealOfOrichalcosBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -224,6 +230,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x033D] = 0,
   [0x033E] = 0,
   [0x033F] = 0,
+  [0x0340] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -258,4 +265,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x033D] = sBlueEyesAlternativeWhiteDragonMiniArt,
   [0x033E] = sAncientRulesMiniArt,
   [0x033F] = sMagicJammerMiniArt,
+  [0x0340] = sSealOfOrichalcosMiniArt,
 };

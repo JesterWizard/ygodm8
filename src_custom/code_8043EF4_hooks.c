@@ -274,6 +274,10 @@ void HandlePlayerBackrowAction__Replacement(void) {
       PlayMusic(SFX_FORBIDDEN);
       gDuelCursor.state = 0;
       break;
+    default:
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      break;
   }
 
   DisplayCardInfoBar();
@@ -310,6 +314,9 @@ void TrySelectSpellTarget__Replacement(void) {
 LYN_REPLACE_CHECK(sub_80449D8);
 void sub_80449D8__Replacement(void)
 {
+  u8 placedRow;
+  u8 placedCol;
+
   if (!TryPayChainEnergyCost()) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
@@ -328,10 +335,13 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
+  placedRow = gDuelCursor.currentY;
+  placedCol = gDuelCursor.currentX;
+
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
-  CopySelectedCardToZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
-  MarkUltimateOfferingJustSet(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
-  MarkFairyBoxJustSet(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
+  MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
+  MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();

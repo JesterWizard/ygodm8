@@ -100,6 +100,12 @@ _kernel_malloc_ewram_array gDynamicEquipLinks, 0x50
 @ Bitfield for one-shot shiny-zone pickups: 16 bytes, 1 bit per flag.
 _kernel_malloc_ewram_array gShinyZoneFlags, 0x10
 
+@ Active custom field spell runtime state.
+_kernel_malloc_ewram gActiveCustomFieldSpellId, 1
+_kernel_malloc_ewram gActiveFieldSpellZoneRow, 1
+_kernel_malloc_ewram gActiveFieldSpellZoneCol, 1
+_kernel_malloc_ewram gActiveFieldSpellController, 1
+
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 

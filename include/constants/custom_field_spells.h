@@ -1,0 +1,10 @@
+#ifndef GUARD_CONSTANTS_CUSTOM_FIELD_SPELLS_H
+#define GUARD_CONSTANTS_CUSTOM_FIELD_SPELLS_H
+
+enum {
+  CUSTOM_FIELD_SPELL_NONE = 0,
+#include "constants/custom_field_spells_generated.h"
+  NUM_CUSTOM_FIELD_SPELLS
+};
+
+#endif // GUARD_CONSTANTS_CUSTOM_FIELD_SPELLS_H

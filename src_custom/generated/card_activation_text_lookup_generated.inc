@@ -50,6 +50,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BLUE_EYES_ALTERNATIVE_WHITE_DRAGON, gActivationDescription_BlueEyesAlternativeWhiteDragon },
   { ANCIENT_RULES, gActivationDescription_AncientRules },
   { MAGIC_JAMMER, gActivationDescription_MagicJammer },
+  { SEAL_OF_ORICHALCOS, gActivationDescription_SealOfOrichalcos },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

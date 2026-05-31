@@ -4,6 +4,10 @@
 #include "player_decks.h"
 #include "copycat.h"
 #include "cost_down.h"
+#include "constants/spell_effects.h"
+#include "custom_field_spell.h"
+
+#include "generated/field_spell_stat_mods_generated.inc"
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -276,6 +280,14 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
   return stat;
 }
 
+static u8 GetFieldStatModifier(u8 field, u8 type) {
+#if NUM_CUSTOM_FIELDS > 0
+  if (IsCustomField(field))
+    return gCustomFieldStatMods[field - FIRST_CUSTOM_FIELD][type];
+#endif
+  return gUnk8094FE4[field][type];
+}
+
 static u64 GetDynamicShopBasePrice(void) {
   u16 cardId = gShopSelectedCard.cardId;
   u64 basePrice = (u64)gCardData_NEW[cardId].cost * 40;
@@ -376,6 +388,10 @@ int GetSpellType__Replacement(u16 cardId) {
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND)
     return SPELL_TYPE_EQUIP;
 
+  if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
+      && gCardInfo.spellEffect <= SPELL_EFFECT_YAMI)
+    return SPELL_TYPE_NORMAL;
+
   return gE0CFF4[gCardInfo.spellEffect];
 }
 
@@ -398,8 +414,8 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
   else if (gCardInfo.spellEffect == 2) {
-    gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, gUnk8094FE4[ptr->field][gCardInfo.type]);
-    gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, gUnk8094FE4[ptr->field][gCardInfo.type]);
+    gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, GetFieldStatModifier(ptr->field, gCardInfo.type));
+    gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, GetFieldStatModifier(ptr->field, gCardInfo.type));
     gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, ptr->stage);
     gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, ptr->stage);
   }

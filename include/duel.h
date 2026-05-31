@@ -28,8 +28,12 @@ enum {
   FIELD_SOGEN,
   FIELD_UMI,
   FIELD_YAMI,
-  NUM_FIELDS
+  NUM_VANILLA_FIELDS
 };
+
+#include "constants/custom_fields_generated.h"
+
+#define IsCustomField(field) ((field) >= FIRST_CUSTOM_FIELD && (field) < NUM_FIELDS)
 
 //TODO: MAX_NUM_ZONES_IN_ROW?
 #define MAX_ZONES_IN_ROW 5

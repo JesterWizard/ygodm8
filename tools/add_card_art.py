@@ -36,6 +36,7 @@ RUNTIME_CONFIG_C = ROOT / "configs/runtime.c"
 EFFECT_ENUM_HEADERS = {
     "monsterEffect": ROOT / "include/constants/monster_effects.h",
     "spellEffect": ROOT / "include/constants/spell_effects.h",
+    "customFieldSpell": ROOT / "include/constants/custom_field_spells.h",
 }
 
 REQUIRED_STATS_KEYS = {
@@ -51,7 +52,7 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation"}
+OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
@@ -296,7 +297,10 @@ def parse_enum_value(text: str, start: int) -> tuple[int, int]:
 
 
 def parse_enum_header(path: pathlib.Path) -> dict[str, int]:
-    text = path.read_text()
+    return parse_enum_header_text(path.read_text())
+
+
+def parse_enum_header_text(text: str) -> dict[str, int]:
     mapping = {}
     idx = text.find("enum {")
     if idx < 0:
@@ -320,6 +324,10 @@ def parse_enum_header(path: pathlib.Path) -> dict[str, int]:
                 end = text.find("*/", i + 2)
                 i = end + 2 if end >= 0 else len(text)
                 continue
+        if c == "#":
+            end = text.find("\n", i)
+            i = end if end >= 0 else len(text)
+            continue
         if c == "{":
             brace_depth += 1
             i += 1
@@ -358,8 +366,17 @@ def parse_enum_header(path: pathlib.Path) -> dict[str, int]:
 def load_effect_enums() -> dict[str, dict[str, int]]:
     result = {}
     for key, header_path in EFFECT_ENUM_HEADERS.items():
-        if header_path.exists():
-            result[key] = parse_enum_header(header_path)
+        if not header_path.exists():
+            continue
+        if key == "customFieldSpell":
+            text = header_path.read_text()
+            generated_path = ROOT / "include/constants/custom_field_spells_generated.h"
+            if generated_path.is_file():
+                generated = generated_path.read_text()
+                text = text.replace('#include "constants/custom_field_spells_generated.h"', generated)
+            result[key] = parse_enum_header_text(text)
+            continue
+        result[key] = parse_enum_header(header_path)
     return result
 
 
@@ -464,8 +481,12 @@ def validate_manifest(manifest: object) -> dict:
             raise SystemExit(f"cards[{index}].trunk_card must be a boolean when present.")
         if "lock_after_activation" in item and not isinstance(item["lock_after_activation"], bool):
             raise SystemExit(f"cards[{index}].lock_after_activation must be a boolean when present.")
+        custom_field_spell = item.get("customFieldSpell")
+        if custom_field_spell is not None:
+            if not isinstance(custom_field_spell, str):
+                raise SystemExit(f"cards[{index}].customFieldSpell must be a string when present.")
 
-        validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {})})
+        validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {}), **({"customFieldSpell": custom_field_spell} if custom_field_spell is not None else {})})
 
     return {"cards": validated}
 
@@ -1257,9 +1278,20 @@ def main() -> int:
         return 0
 
     enum_tables = load_effect_enums()
+    custom_field_spell_names = set(enum_tables.get("customFieldSpell", {}).keys())
     for item in manifest["cards"]:
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
+        custom_field_spell = item.get("customFieldSpell")
+        if custom_field_spell is not None:
+            if custom_field_spell not in custom_field_spell_names:
+                raise SystemExit(
+                    f"cards[{item['card_const']}].customFieldSpell references unknown enum {custom_field_spell!r}."
+                )
+            if custom_field_spell == "CUSTOM_FIELD_SPELL_NONE":
+                raise SystemExit(
+                    f"cards[{item['card_const']}].customFieldSpell must not be CUSTOM_FIELD_SPELL_NONE."
+                )
 
     entries = discover_entries(manifest)
     generated_minis = sync_missing_mini_assets(entries)

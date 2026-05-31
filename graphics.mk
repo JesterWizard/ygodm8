@@ -26,6 +26,12 @@ THOUGHT_BUBBLE_PNGS := $(shell find src_custom/assets/thought_bubbles -type f -n
 THOUGHT_BUBBLE_DUMPS := $(patsubst src_custom/assets/thought_bubbles/%.png,src_custom/assets/thought_bubbles/%.dmp,$(THOUGHT_BUBBLE_PNGS))
 THOUGHT_BUBBLE_PALETTES := $(patsubst src_custom/assets/thought_bubbles/%.png,src_custom/assets/thought_bubbles/%.gbapal,$(THOUGHT_BUBBLE_PNGS))
 
+FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
+FIELD_SPELL_DIR_PNGS := $(shell find src_custom/assets/field_spells -mindepth 2 -maxdepth 2 -type f -name 'field.png' 2>/dev/null | sort)
+FIELD_SPELL_PNGS := $(sort $(FIELD_SPELL_STEM_PNGS) $(FIELD_SPELL_DIR_PNGS))
+FIELD_SPELL_HUFFS := $(shell find src_custom/assets/field_spells -mindepth 2 -type f -name 'field.huff' 2>/dev/null | sort)
+FIELD_SPELL_PALETTES := $(shell find src_custom/assets/field_spells -mindepth 2 -type f -name 'field.gbapal' 2>/dev/null | sort)
+
 graphics-rules: $(CARD_TYPE_TILES) \
                 $(CARD_TYPE_PALETTES) \
                 $(CARD_ATTRIBUTE_TILES) \
@@ -52,6 +58,7 @@ clean-graphics:
 	rm -f src_custom/assets/cards/24x24/*.8bpp
 	rm -f src_custom/assets/cards/24x24/*.lz
 	find src_custom/assets/thought_bubbles -type f \( -name '*.4bpp' -o -name '*.obj.4bpp' -o -name '*.dmp' -o -name '*.gbapal' -o -name '*.lz' \) -delete
+	find src_custom/assets/field_spells -type f \( -name '*.4bpp' -o -name '*.8bpp' -o -name '*.gbapal' -o -name '*.huff' -o -name '*.tilemap.bin' -o -name 'field.tilemap.c' \) -delete 2>/dev/null || true
 	rm -f src/overworld/entities/*.4bpp
 	rm -f src/overworld/entities/*.gbapal
 
