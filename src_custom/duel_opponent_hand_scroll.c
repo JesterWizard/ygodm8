@@ -102,6 +102,7 @@ bool8 TryShowDuelCursorCardDetails(void) {
   gStatMod.field = gDuel.field;
   gStatMod.stage = GetFinalStage(card);
   SetFinalStat(&gStatMod);
+  PlayMusic(SFX_SELECT);
   ShowCardDetailView();
   UpdateAllDuelGfx();
   return TRUE;

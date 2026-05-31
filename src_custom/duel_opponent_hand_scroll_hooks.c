@@ -272,9 +272,7 @@ void BMenuMain__Replacement(void) {
     } else if (gNewButtons & A_BUTTON) {
       switch (cursorState) {
         case B_MENU_DETAILS:
-          if (TryShowDuelCursorCardDetails())
-            PlayMusic(SFX_SELECT);
-          else {
+          if (!TryShowDuelCursorCardDetails()) {
             PlayMusic(SFX_FORBIDDEN);
             UpdateDuelGfxExceptField();
           }
