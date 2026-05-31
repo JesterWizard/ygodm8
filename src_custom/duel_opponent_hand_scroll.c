@@ -12,6 +12,13 @@ extern struct DuelCard *gFixedZones[][MAX_ZONES_IN_ROW];
 
 int sub_80575E0(unsigned char, unsigned char);
 int sub_8057600(unsigned char, unsigned char);
+void sub_80574A8(unsigned char, unsigned char);
+
+typedef void (*StampLockedFn)(u8 *);
+typedef void (*StampStageFn)(u8 *, s8);
+
+static StampLockedFn const sStampLocked = (StampLockedFn)(0x08057621);
+static StampStageFn const sStampStage = (StampStageFn)(0x0805763D);
 
 #define FIELD_OAM_BASE_INDEX      102
 #define FIELD_OAM_U16_INDEX(row, col) \
@@ -80,15 +87,24 @@ static struct FieldOamEntry *OpponentHandOamAt(u8 col)
   return (struct FieldOamEntry *)&gOamBuffer[(OPPONENT_HAND_OAM_SLOT_FIRST + col) * 4];
 }
 
-/* OBJ tile staging in cbb4; same layout as sub_8044B90 (R-hand peek). */
+/*
+ * Dedicated OBJ tile slots for the five hand sprites (cbb4 / charblock 4).
+ * R-hand peek uses 8-tile spacing, but each 24x24 mini card needs ~16 OBJ tiles
+ * (32x32 sprite + stat overlays up to ~0xD00 bytes), so wider spacing is required.
+ */
+/* Above duel cursor tiles at 0x180 (gE0D0F0[3]); 0x140 overlapped the cursor. */
+#define OPPONENT_HAND_TILE_BASE   0x1F0
+#define OPPONENT_HAND_TILE_STRIDE 0x70
+
 static u8 *OpponentHandTilePtr(u8 col)
 {
-  return gBgVram.cbb0 + 0x10000 + (col % 4) * 256 + (col / 4) * 0x1000;
+  return gBgVram.cbb0 + 0x10000
+      + (OPPONENT_HAND_TILE_BASE + col * OPPONENT_HAND_TILE_STRIDE) * 32;
 }
 
 static u16 OpponentHandOamTileIndex(u8 col)
 {
-  return (col % 4) * 8 + (col / 4) * 128;
+  return OPPONENT_HAND_TILE_BASE + col * OPPONENT_HAND_TILE_STRIDE;
 }
 
 static s16 GetOpponentHandCardScreenY(void)
@@ -99,6 +115,33 @@ static s16 GetOpponentHandCardScreenY(void)
 static u8 OpponentHandZoneFromCol(u8 col)
 {
   return 4 - col;
+}
+
+/* sub_80562F4 only blits art for face-up opponent backrow; add in-play overlays. */
+static void ComposeFaceUpFieldMiniCard(u8 *tilePtr, struct DuelCard *card)
+{
+  sub_80573D0(tilePtr, card->id);
+  sub_80576B4(tilePtr, card->id);
+  sub_80576EC(tilePtr, card->id);
+  sStampStage(tilePtr, GetFinalStage(card));
+  sub_80572A8(tilePtr, card);
+  sub_805733C(tilePtr, card);
+  if (card->isLocked)
+    sStampLocked(tilePtr);
+}
+
+static void RefreshOpponentBackrowFaceUpTiles(void)
+{
+  u8 col;
+  struct DuelCard *card;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    card = gFixedZones[0][col];
+    if (card->id == CARD_NONE || !card->isFaceUp)
+      continue;
+    ComposeFaceUpFieldMiniCard(
+        gBgVram.cbb0 + 0x10000 + g8E116BC[col] * 32, card);
+  }
 }
 
 static void ApplyFieldCardOamPriority(struct FieldOamEntry *oam, u8 col, u8 row)
@@ -142,6 +185,17 @@ static void HideOpponentHandZone(u8 col)
   OpponentHandOamAt(col)->b = 0;
 }
 
+/* Row 4 OAM wraps to the top of the screen at opponent-hand scroll VOFS. */
+static void HidePlayerHandFieldOam(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    FieldOamAt(PLAYER_HAND, col)->a = 0x200;
+    FieldOamAt(PLAYER_HAND, col)->b = 0;
+  }
+}
+
 static void PlaceOpponentHandOam(u8 col)
 {
   struct FieldOamEntry *oam = OpponentHandOamAt(col);
@@ -172,25 +226,11 @@ void DrawOpponentHandZone(u8 col)
   tilePtr = OpponentHandTilePtr(col);
 
   if (card->isFaceUp) {
-    sub_80573D0(tilePtr, card->id);
-    sub_80576B4(tilePtr, card->id);
-    sub_80576EC(tilePtr, card->id);
-    sub_80572A8(tilePtr, card);
-    sub_805733C(tilePtr, card);
-    if (card->isLocked) {
-      typedef void (*StampLockedFn)(u8 *);
-      static StampLockedFn const stampLocked = (StampLockedFn)(0x08057621);
-
-      stampLocked(tilePtr);
-    }
+    ComposeFaceUpFieldMiniCard(tilePtr, card);
   } else {
     CopyFaceDownCardTiles(tilePtr);
-    if (card->isLocked) {
-      typedef void (*StampLockedFn)(u8 *);
-      static StampLockedFn const stampLocked = (StampLockedFn)(0x08057621);
-
-      stampLocked(tilePtr);
-    }
+    if (card->isLocked)
+      sStampLocked(tilePtr);
   }
 
   PlaceOpponentHandOam(col);
@@ -213,13 +253,16 @@ void DrawOpponentHandOnField(void) {
 
   /* Hand tiles share cbb4 with the field; refresh field art before compositing hand. */
   refreshFieldCardTiles();
+  RefreshOpponentBackrowFaceUpTiles();
 
-  for (row = 0; row < PLAYER_HAND + 1; row++) {
+  for (row = 0; row < PLAYER_HAND; row++) {
     for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
       if (gFixedZones[row][col]->id != CARD_NONE)
-        PlaceFieldCardOam(col, row);
+        sub_80574A8(col, row);
     }
   }
+
+  HidePlayerHandFieldOam();
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     card = gTurnHands[INACTIVE_DUELIST][OpponentHandZoneFromCol(col)];

@@ -152,6 +152,8 @@ void sub_80577A4__Replacement(void) {
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     for (j = 0; j < 5; j++) {
+      if (ShouldDrawOpponentHandOnField() && i == PLAYER_HAND)
+        continue;
       if (gFixedZones[i][j]->id != CARD_NONE)
         sub_80574A8(j, i);
     }
@@ -173,6 +175,8 @@ void sub_8057808__Replacement(void) {
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     for (j = 0; j < 5; j++) {
+      if (ShouldDrawOpponentHandOnField() && i == PLAYER_HAND)
+        continue;
       if (gFixedZones[i][j]->id != CARD_NONE)
         sub_80574A8(j, i);
     }

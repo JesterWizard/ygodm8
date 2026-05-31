@@ -43,7 +43,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_opponent_hand_field_scroll = TRUE,
     .card_in_hand_1 = SEAL_OF_ORICHALCOS,
     .card_in_hand_2 = BLUE_EYES_ALTERNATIVE_WHITE_DRAGON,
-    .card_in_hand_3 = UMI,
+    .card_in_hand_3 = THE_INEXPERIENCED_SPY,
     .card_in_hand_4 = MOUNTAIN,
     .card_in_hand_5 = BLUE_EYES_WHITE_DRAGON
 };
