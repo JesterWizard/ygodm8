@@ -6,10 +6,13 @@ import html
 import json
 import re
 import struct
+import sys
 import wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dpcm_fast_lookup_table import DPCM_FAST_LOOKUP
 ASSETS = ROOT / "src_custom/assets/voices"
 VOICE_INVENTORY_MD = ASSETS / "VOICES.md"
 GENERATED = ROOT / "src_custom/generated"
@@ -402,63 +405,48 @@ def clamp_s8(value):
     return value
 
 
-def dpcm_lookahead(sample_buf, lookahead, prev_level):
-    if lookahead <= 0:
-        return 0, 0
-
-    target = sample_buf[0]
-    best_error = None
-    best_index = 0
-
-    for nibble in range(16):
-        new_level = clamp_s8(prev_level + DPCM_LOOKUP[nibble])
-        error_estimation = (target - new_level) ** 2
-        if best_error is not None and error_estimation >= best_error:
-            continue
-
-        rec_error, _rec_index = dpcm_lookahead(sample_buf[1:], lookahead - 1, new_level)
-        error = (target - new_level) ** 2 + rec_error
-        if best_error is None or error < best_error:
-            best_error = error
-            best_index = nibble
-
-    if best_error is None:
-        return (target - prev_level) ** 2, 0
-    return best_error, best_index
-
-
-def pick_dpcm_nibble(sample_buf, lookahead, prev_level):
-    _error, best_index = dpcm_lookahead(sample_buf, lookahead, prev_level)
-    return best_index
+def dpcm_fast_nibbles(target, prev_level):
+    idx = target - prev_level + 255
+    if idx < 0 or idx >= len(DPCM_FAST_LOOKUP):
+        return range(16)
+    return DPCM_FAST_LOOKUP[idx]
 
 
 def encode_dpcm_block(block):
     if len(block) != DPCM_BLOCK_SAMPLES:
         raise ValueError(f"DPCM block must be {DPCM_BLOCK_SAMPLES} samples")
 
-    out = []
-    level = block[0]
-    out.append(level & 0xFF)
-    idx = 1
-    lookahead = 3
+    lookup = DPCM_LOOKUP
+    clamp = clamp_s8
+    fast_nibbles = dpcm_fast_nibbles
 
-    sample_buf = block[idx : idx + min(lookahead, DPCM_BLOCK_SAMPLES - idx)]
-    nibble = pick_dpcm_nibble(sample_buf, len(sample_buf), level)
-    level = clamp_s8(level + DPCM_LOOKUP[nibble])
-    out.append(nibble & 0xF)
-    idx += 1
+    dp = {block[0]: 0.0}
+    parent = []
 
-    for _byte_num in range(2, DPCM_BLOCK_BYTES):
-        packed = 0
-        for shift in (4, 0):
-            if idx >= DPCM_BLOCK_SAMPLES:
-                break
-            remaining = DPCM_BLOCK_SAMPLES - idx
-            sample_buf = block[idx : idx + min(lookahead, remaining)]
-            nibble = pick_dpcm_nibble(sample_buf, len(sample_buf), level)
-            level = clamp_s8(level + DPCM_LOOKUP[nibble])
-            packed |= (nibble & 0xF) << shift
-            idx += 1
+    for idx in range(1, DPCM_BLOCK_SAMPLES):
+        target = block[idx]
+        next_dp = {}
+        par = {}
+        for level, cost in dp.items():
+            for nibble in fast_nibbles(target, level):
+                new_level = clamp(level + lookup[nibble])
+                error = cost + (target - new_level) ** 2
+                if new_level not in next_dp or error < next_dp[new_level]:
+                    next_dp[new_level] = error
+                    par[new_level] = (level, nibble)
+        dp = next_dp
+        parent.append(par)
+
+    level = min(dp, key=dp.get)
+    nibbles = [0] * (DPCM_BLOCK_SAMPLES - 1)
+    for step in range(len(parent) - 1, -1, -1):
+        level, nibble = parent[step][level]
+        nibbles[step] = nibble
+
+    out = [block[0] & 0xFF, nibbles[0] & 0xF]
+    for byte_num in range(2, DPCM_BLOCK_BYTES):
+        nibble_idx = (byte_num - 2) * 2 + 1
+        packed = ((nibbles[nibble_idx] & 0xF) << 4) | (nibbles[nibble_idx + 1] & 0xF)
         out.append(packed)
 
     if len(out) != DPCM_BLOCK_BYTES:
@@ -970,6 +958,9 @@ def compute_voice_inputs_digest(manifest_path: Path, generator_path: Path) -> st
     hasher = hashlib.sha256()
     file_stat_digest(manifest_path.resolve(), hasher)
     file_stat_digest(generator_path.resolve(), hasher)
+    lookup_table = generator_path.parent / "dpcm_fast_lookup_table.py"
+    if lookup_table.is_file():
+        file_stat_digest(lookup_table.resolve(), hasher)
     for header in VOICE_INPUT_HEADERS:
         if header.is_file():
             file_stat_digest(header, hasher)
