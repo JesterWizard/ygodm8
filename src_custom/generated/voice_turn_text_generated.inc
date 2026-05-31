@@ -4,3 +4,5 @@ static const u8 CustomVoice_tristan_1_TurnText[] APPEND_RODATA = "$0It's my turn
 static const u8 CustomVoice_tristan_2_TurnText[] APPEND_RODATA = "$0I'm done for!$1I'm done for!$2I'm done for!$3I'm done for!$4I'm done for!$5I'm done for!$6#1";
 static const u8 CustomVoice_mai_1_TurnText[] APPEND_RODATA = "$0Draw!$1Draw!$2Draw!$3Draw!$4Draw!$5Draw!$6#1";
 static const u8 CustomVoice_mai_2_TurnText[] APPEND_RODATA = "$0Like that's gonna keep me down!$1Like that's gonna keep me down!$2Like that's gonna keep me down!$3Like that's gonna keep me down!$4Like that's gonna keep me down!$5Like that's gonna keep me down!$6#1";
+static const u8 CustomVoice_tea_1_TurnText[] APPEND_RODATA = "$0My turn.$1My turn.$2My turn.$3My turn.$4My turn.$5My turn.$6#1";
+static const u8 CustomVoice_tea_2_TurnText[] APPEND_RODATA = "$0Don't expect me to give up!$1Don't expect me to give up!$2Don't expect me to give up!$3Don't expect me to give up!$4Don't expect me to give up!$5Don't expect me to give up!$6#1";

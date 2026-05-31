@@ -35,6 +35,18 @@
     {
       "org": 11515244,
       "wave_symbol": "CustomVoice_mai_3_Wave"
+    },
+    {
+      "org": 11515256,
+      "wave_symbol": "CustomVoice_tea_1_Wave"
+    },
+    {
+      "org": 11515268,
+      "wave_symbol": "CustomVoice_tea_2_Wave"
+    },
+    {
+      "org": 11515280,
+      "wave_symbol": "CustomVoice_tea_3_Wave"
     }
   ],
   "song_patches": [
@@ -82,6 +94,21 @@
       "org": 11522284,
       "header_symbol": "CustomVoice_mai_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522292,
+      "header_symbol": "CustomVoice_tea_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522300,
+      "header_symbol": "CustomVoice_tea_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522308,
+      "header_symbol": "CustomVoice_tea_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -119,6 +146,18 @@
     },
     {
       "org": 863281,
+      "mode": 3
+    },
+    {
+      "org": 863282,
+      "mode": 3
+    },
+    {
+      "org": 863283,
+      "mode": 3
+    },
+    {
+      "org": 863284,
       "mode": 3
     }
   ]
