@@ -40,6 +40,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
     .show_player_screen_pixel_coords = FALSE,
     .show_duel_life_points_on_board = TRUE,
+    .enable_opponent_hand_field_scroll = TRUE,
     .card_in_hand_1 = SEAL_OF_ORICHALCOS,
     .card_in_hand_2 = BLUE_EYES_ALTERNATIVE_WHITE_DRAGON,
     .card_in_hand_3 = UMI,

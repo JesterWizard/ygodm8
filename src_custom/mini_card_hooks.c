@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
 #include "cost_down.h"
 
@@ -135,6 +136,7 @@ void CopyMiniCardPalette__Replacement(unsigned short* dest) {
 }
 
 void sub_80574A8(unsigned char arg0, unsigned char arg1);
+void sub_8057808(void);
 
 LYN_REPLACE_CHECK(sub_80577A4);
 void sub_80577A4__Replacement(void) {
@@ -153,5 +155,34 @@ void sub_80577A4__Replacement(void) {
       if (gFixedZones[i][j]->id != CARD_NONE)
         sub_80574A8(j, i);
     }
+  }
+
+  if (ShouldDrawOpponentHandOnField())
+    DrawOpponentHandOnField();
+  else if (!IsOpponentHandFieldScrollEnabled()
+           || gBG2VOFS != GetBoardScrollVofs(OPPONENT_HAND_ROW)) {
+    HideOpponentHandFieldOam();
+    RestoreOpponentHandFieldWindow();
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8057808);
+void sub_8057808__Replacement(void) {
+  u8 i;
+  u8 j;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    for (j = 0; j < 5; j++) {
+      if (gFixedZones[i][j]->id != CARD_NONE)
+        sub_80574A8(j, i);
+    }
+  }
+
+  if (ShouldDrawOpponentHandOnField())
+    DrawOpponentHandOnField();
+  else if (!IsOpponentHandFieldScrollEnabled()
+           || gBG2VOFS != GetBoardScrollVofs(OPPONENT_HAND_ROW)) {
+    HideOpponentHandFieldOam();
+    RestoreOpponentHandFieldWindow();
   }
 }

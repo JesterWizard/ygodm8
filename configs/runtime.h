@@ -47,6 +47,7 @@ typedef struct {
     u8 enable_big_card_art_palette_extension; // Card detail view: extend big art palettes to 7 BG banks (112 colors).
     u8 show_player_screen_pixel_coords; // Show player screen pixel X/Y on overworld BG0.
     u8 show_duel_life_points_on_board; // Show player/opponent LP on the duel field (left/right).
+    u8 enable_opponent_hand_field_scroll; // Scroll up past opponent backrow to view opponent hand on the field.
     u16 card_in_hand_1;
     u16 card_in_hand_2;
     u16 card_in_hand_3;
