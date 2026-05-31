@@ -33,8 +33,14 @@ M4A_VOICE_PLAYER = 3
 M4A_VOICE_SONG_PLAYER = 0x00030003
 M4A_VOICE_SONG_MODE = 3
 CUSTOM_VOICE_TONE_INDEX_BASE = 48
+CUSTOM_VOICE_PART_TONE_INDEX = 0
 CUSTOM_VOICE_PART_SIZE = 18
 CUSTOM_VOICE_WAVE_HEADER_SIZE = 16
+M4A_WAVE_TYPE_PCM = 0
+M4A_WAVE_TYPE_DPCM = 1
+DPCM_BLOCK_SAMPLES = 64
+DPCM_BLOCK_BYTES = 33  # initial + 32 packed bytes (first packed: low nibble only)
+DPCM_LOOKUP = (0, 1, 4, 9, 16, 25, 36, 49, -64, -49, -36, -25, -16, -9, -4, -1)
 
 # Tail ROM: voice PCM @ VOICE_PCM_ROM_ORG, then append (code/assets). See ldscript.ld + validate_lynjump.
 VOICE_PCM_ROM_ORG = 0x08FE3400
@@ -388,6 +394,167 @@ def prepare_pcm_and_note(pcm8):
     return pcm8, note, sample_count
 
 
+def clamp_s8(value):
+    if value < -128:
+        return -128
+    if value > 127:
+        return 127
+    return value
+
+
+def dpcm_lookahead(sample_buf, lookahead, prev_level):
+    if lookahead <= 0:
+        return 0, 0
+
+    target = sample_buf[0]
+    best_error = None
+    best_index = 0
+
+    for nibble in range(16):
+        new_level = clamp_s8(prev_level + DPCM_LOOKUP[nibble])
+        error_estimation = (target - new_level) ** 2
+        if best_error is not None and error_estimation >= best_error:
+            continue
+
+        rec_error, _rec_index = dpcm_lookahead(sample_buf[1:], lookahead - 1, new_level)
+        error = (target - new_level) ** 2 + rec_error
+        if best_error is None or error < best_error:
+            best_error = error
+            best_index = nibble
+
+    if best_error is None:
+        return (target - prev_level) ** 2, 0
+    return best_error, best_index
+
+
+def pick_dpcm_nibble(sample_buf, lookahead, prev_level):
+    _error, best_index = dpcm_lookahead(sample_buf, lookahead, prev_level)
+    return best_index
+
+
+def encode_dpcm_block(block):
+    if len(block) != DPCM_BLOCK_SAMPLES:
+        raise ValueError(f"DPCM block must be {DPCM_BLOCK_SAMPLES} samples")
+
+    out = []
+    level = block[0]
+    out.append(level & 0xFF)
+    idx = 1
+    lookahead = 3
+
+    sample_buf = block[idx : idx + min(lookahead, DPCM_BLOCK_SAMPLES - idx)]
+    nibble = pick_dpcm_nibble(sample_buf, len(sample_buf), level)
+    level = clamp_s8(level + DPCM_LOOKUP[nibble])
+    out.append(nibble & 0xF)
+    idx += 1
+
+    for _byte_num in range(2, DPCM_BLOCK_BYTES):
+        packed = 0
+        for shift in (4, 0):
+            if idx >= DPCM_BLOCK_SAMPLES:
+                break
+            remaining = DPCM_BLOCK_SAMPLES - idx
+            sample_buf = block[idx : idx + min(lookahead, remaining)]
+            nibble = pick_dpcm_nibble(sample_buf, len(sample_buf), level)
+            level = clamp_s8(level + DPCM_LOOKUP[nibble])
+            packed |= (nibble & 0xF) << shift
+            idx += 1
+        out.append(packed)
+
+    if len(out) != DPCM_BLOCK_BYTES:
+        raise ValueError(
+            f"DPCM block payload is {len(out)} bytes, expected {DPCM_BLOCK_BYTES}"
+        )
+    return bytes(out)
+
+
+def encode_dpcm_pcm8(pcm8):
+    samples = list(struct.unpack(f"{len(pcm8)}b", pcm8))
+    out = bytearray()
+    pos = 0
+    while pos < len(samples):
+        block = samples[pos : pos + DPCM_BLOCK_SAMPLES]
+        if len(block) < DPCM_BLOCK_SAMPLES:
+            pad = block[-1] if block else 0
+            block = block + [pad] * (DPCM_BLOCK_SAMPLES - len(block))
+        out.extend(encode_dpcm_block(block))
+        pos += DPCM_BLOCK_SAMPLES
+    return bytes(out)
+
+
+def decode_dpcm_block(block_data):
+    if len(block_data) != DPCM_BLOCK_BYTES:
+        raise ValueError(
+            f"DPCM block payload is {len(block_data)} bytes, expected {DPCM_BLOCK_BYTES}"
+        )
+
+    out = []
+    level = struct.unpack("b", bytes([block_data[0]]))[0]
+    out.append(level)
+
+    packed = block_data[1]
+    nibble = packed & 0xF
+    level = clamp_s8(level + DPCM_LOOKUP[nibble])
+    out.append(level)
+
+    for byte_idx in range(2, DPCM_BLOCK_BYTES):
+        packed = block_data[byte_idx]
+        for shift in (4, 0):
+            nibble = (packed >> shift) & 0xF
+            level = clamp_s8(level + DPCM_LOOKUP[nibble])
+            out.append(level)
+
+    if len(out) != DPCM_BLOCK_SAMPLES:
+        raise ValueError(
+            f"DPCM block decoded {len(out)} samples, expected {DPCM_BLOCK_SAMPLES}"
+        )
+    return out
+
+
+def decode_dpcm_pcm8(dpcm_payload, sample_count):
+    out = bytearray()
+    pos = 0
+    while len(out) < sample_count:
+        block = dpcm_payload[pos : pos + DPCM_BLOCK_BYTES]
+        if len(block) != DPCM_BLOCK_BYTES:
+            raise ValueError(
+                f"DPCM payload truncated at byte {pos} "
+                f"(need {DPCM_BLOCK_BYTES}, got {len(block)})"
+            )
+        pos += DPCM_BLOCK_BYTES
+        for sample in decode_dpcm_block(block):
+            if len(out) >= sample_count:
+                break
+            out.append(sample & 0xFF)
+    return bytes(out[:sample_count])
+
+
+def dpcm_payload_size(sample_count):
+    blocks = (sample_count + DPCM_BLOCK_SAMPLES - 1) // DPCM_BLOCK_SAMPLES
+    return blocks * DPCM_BLOCK_BYTES
+
+
+def dpcm_wave_bytes_for(sample_count):
+    wave_bytes = CUSTOM_VOICE_WAVE_HEADER_SIZE + dpcm_payload_size(sample_count)
+    if wave_bytes & 1:
+        wave_bytes += 1
+    return wave_bytes
+
+
+def validate_dpcm_codec(pcm8):
+    payload = encode_dpcm_pcm8(pcm8)
+    decoded = decode_dpcm_pcm8(payload, len(pcm8))
+    if len(decoded) != len(pcm8):
+        raise SystemExit(
+            f"DPCM round-trip length mismatch ({len(pcm8)} vs {len(decoded)} samples)"
+        )
+    block_bytes = DPCM_BLOCK_BYTES
+    if len(payload) % block_bytes != 0:
+        raise SystemExit(
+            f"DPCM payload size {len(payload)} is not a multiple of {block_bytes}"
+        )
+
+
 def part_track_tail(note):
     if len(note) == 5:
         return bytes([0xB1, 0x00, 0x00, 0x01, 0x00])
@@ -423,27 +590,27 @@ def wave_bytes_for(sample_count):
     return wave_bytes
 
 
-def render_voice_rom_s(songs_meta, pcm_blobs):
+def render_voice_rom_s(songs_meta, dpcm_blobs):
     lines = [
-        "@ Custom voice WaveData + m4a part tracks + SongHeaders in main ROM (0x08xxxxxx).",
-        f"@ PCM is signed 8-bit mono @ {M4A_WAVE_SAMPLE_RATE} Hz; WaveData.freq uses 0x{M4A_WAVE_FREQ:08X}.",
+        "@ Custom voice DPCM WaveData + m4a part tracks + SongHeaders in main ROM (0x08xxxxxx).",
+        f"@ DPCM is wav2agb mono @ {M4A_WAVE_SAMPLE_RATE} Hz; WaveData.freq uses 0x{M4A_WAVE_FREQ:08X}.",
         ".section .voice_pcm_rom",
         ".align 4",
         "",
     ]
 
-    for meta, pcm in zip(songs_meta, pcm_blobs):
+    for meta, dpcm in zip(songs_meta, dpcm_blobs):
         sym = meta["symbol"]
         part = meta["part_track"]
         part_bytes = ", ".join(f"0x{b:02X}" for b in part)
 
         lines.append(f".global CustomVoice_{sym}_Wave")
         lines.append(f"CustomVoice_{sym}_Wave:")
-        lines.append("    .hword 0, 0")
+        lines.append(f"    .hword {M4A_WAVE_TYPE_DPCM}, 0")
         lines.append(f"    .word 0x{M4A_WAVE_FREQ:08X}")
         lines.append("    .word 0")
         lines.append(f"    .word {meta['sample_count']}")
-        byte_lines = [f"0x{b:02X}" for b in pcm]
+        byte_lines = [f"0x{b:02X}" for b in dpcm]
         for i in range(0, len(byte_lines), 16):
             chunk = byte_lines[i : i + 16]
             lines.append(f"    .byte {', '.join(chunk)}")
@@ -465,11 +632,18 @@ def render_voice_rom_s(songs_meta, pcm_blobs):
     return "\n".join(lines) + "\n"
 
 
-def render_assets_s(songs_meta, pcm_blobs):
-    return render_voice_rom_s(songs_meta, pcm_blobs)
+def render_assets_s(songs_meta, dpcm_blobs):
+    return render_voice_rom_s(songs_meta, dpcm_blobs)
 
 
 def render_header(manifest, songs_meta, clips_meta):
+    max_pcm_samples = max((meta["sample_count"] for meta in songs_meta), default=0)
+    pcm_buffer_bytes = CUSTOM_VOICE_WAVE_HEADER_SIZE + max_pcm_samples
+    if pcm_buffer_bytes & 1:
+        pcm_buffer_bytes += 1
+    if pcm_buffer_bytes & 3:
+        pcm_buffer_bytes += 4 - (pcm_buffer_bytes & 3)
+
     lines = [
         "#ifndef GUARD_CUSTOM_VOICES_GENERATED_H",
         "#define GUARD_CUSTOM_VOICES_GENERATED_H",
@@ -479,6 +653,9 @@ def render_header(manifest, songs_meta, clips_meta):
         f"#define CUSTOM_VOICE_OPPONENT_ANY 0xFFFF",
         f"#define CUSTOM_VOICE_MPLAY_PLAYER {M4A_VOICE_PLAYER}",
         f"#define CUSTOM_VOICE_SONG_ID_MIN {manifest['song_id_base']}",
+        f"#define CUSTOM_VOICE_MAX_PCM_SAMPLES {max_pcm_samples}",
+        f"#define CUSTOM_VOICE_PCM_BUFFER_BYTES {pcm_buffer_bytes}",
+        f"#define CUSTOM_VOICE_PART_SIZE {CUSTOM_VOICE_PART_SIZE}",
     ]
     if songs_meta:
         lines.append(
@@ -557,17 +734,10 @@ def render_turn_text_inc(songs_meta):
 
 
 def render_rom_patches_json(songs_meta):
-    tone_patches = []
     song_patches = []
     mode_patches = []
     for meta in songs_meta:
         sym = meta["symbol"]
-        tone_patches.append(
-            {
-                "org": M4A_TONE_TABLE_ORG + meta["tone_index"] * 12,
-                "wave_symbol": f"CustomVoice_{sym}_Wave",
-            }
-        )
         song_patches.append(
             {
                 "org": M4A_SONG_TABLE_ORG + meta["song_id"] * 8,
@@ -584,7 +754,7 @@ def render_rom_patches_json(songs_meta):
     return (
         json.dumps(
             {
-                "tone_patches": tone_patches,
+                "tone_patches": [],
                 "song_patches": song_patches,
                 "mode_patches": mode_patches,
             },
@@ -594,8 +764,46 @@ def render_rom_patches_json(songs_meta):
     )
 
 
+def render_voice_memory_sizes_asm(songs_meta):
+    max_pcm_samples = max((meta["sample_count"] for meta in songs_meta), default=0)
+    pcm_buffer_bytes = CUSTOM_VOICE_WAVE_HEADER_SIZE + max_pcm_samples
+    if pcm_buffer_bytes & 1:
+        pcm_buffer_bytes += 1
+    if pcm_buffer_bytes & 3:
+        pcm_buffer_bytes += 4 - (pcm_buffer_bytes & 3)
+    return (
+        "@ Auto-generated by tools/generate_voices.py\n"
+        f".set CUSTOM_VOICE_PCM_BUFFER_BYTES, 0x{pcm_buffer_bytes:X}\n"
+        f".set CUSTOM_VOICE_PART_TRACK_BYTES, 0x{CUSTOM_VOICE_PART_SIZE:X}\n"
+    )
+
+
 def render_wave_loader_inc(songs_meta):
-    return ""
+    lines = []
+    for meta in songs_meta:
+        sym = meta["symbol"]
+        lines.append(f"extern u8 CustomVoice_{sym}_Wave[];")
+        lines.append(f"extern u8 CustomVoice_{sym}_Part[];")
+    if songs_meta:
+        lines.append("")
+    lines.extend(
+        [
+            "struct CustomVoiceRomClip {",
+            "  const struct WaveData *dpcmWave;",
+            "  const u8 *partTrack;",
+            "};",
+            "",
+            "static const struct CustomVoiceRomClip sCustomVoiceRomClips[] APPEND_RODATA = {",
+        ]
+    )
+    for meta in songs_meta:
+        sym = meta["symbol"]
+        lines.append(
+            f"  {{ (const struct WaveData *)&CustomVoice_{sym}_Wave, CustomVoice_{sym}_Part }},"
+        )
+    lines.append("};")
+    lines.append("")
+    return "\n".join(lines)
 
 
 def render_song_headers_inc(songs_meta):
@@ -650,9 +858,10 @@ def render_voice_inventory_md(manifest, songs_meta):
         "Sizes:",
         "",
         "- **Source WAV** — on-disk `.wav` file size (includes RIFF headers; typically 16-bit PCM).",
-        "- **In-ROM** — m4a `WaveData` blob in main ROM: 16-byte header + 8-bit mono PCM (+ 1-byte pad if odd).",
+        "- **In-ROM** — m4a `WaveData` DPCM blob in main ROM: 16-byte header + wav2agb DPCM payload (+ 1-byte pad if odd).",
         "- **Overall Change** — `(in-ROM − source) / source`; negative means the ROM blob is smaller.",
         "- **Total** row — sum of all registered clips (source vs in-ROM).",
+        "- Playback decompresses DPCM to EWRAM PCM at runtime (~50% ROM savings vs raw 8-bit PCM).",
         "",
         "## Registered clips",
         "",
@@ -840,7 +1049,7 @@ def main():
 
     songs_meta = []
     clips_meta = []
-    pcm_blobs = []
+    dpcm_blobs = []
 
     for entry in clips:
         trigger = entry["trigger"]
@@ -850,13 +1059,15 @@ def main():
         gain_db = entry.get("gain_db", 0.0)
         pcm8, _ = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
         pcm8, note, sample_count = prepare_pcm_and_note(pcm8)
+        validate_dpcm_codec(pcm8)
+        dpcm_payload = encode_dpcm_pcm8(pcm8)
         sym = symbol_for_clip(entry["clip_id"])
         song_index = len(songs_meta)
         song_id = song_id_base + song_index
         song_const = song_const_for_clip(entry["clip_id"])
 
         tone_index = CUSTOM_VOICE_TONE_INDEX_BASE + song_index
-        part_track = build_part_track(tone_index, note)
+        part_track = build_part_track(CUSTOM_VOICE_PART_TONE_INDEX, note)
 
         song_entry = {
             "clip_id": entry["clip_id"],
@@ -868,14 +1079,14 @@ def main():
             "part_track": part_track,
             "title": entry.get("title", entry["clip_id"])[:23],
             "sample_count": sample_count,
-            "wave_bytes": wave_bytes_for(sample_count),
+            "wave_bytes": dpcm_wave_bytes_for(sample_count),
             "wav_rel": entry["wav"],
             "trigger": trigger,
         }
         if "turn_text" in entry:
             song_entry["turn_text"] = entry["turn_text"]
         songs_meta.append(song_entry)
-        pcm_blobs.append(pcm8)
+        dpcm_blobs.append(dpcm_payload)
 
         turn_text_ref = (
             turn_text_symbol_for(sym) if "turn_text" in entry else "NULL"
@@ -903,7 +1114,7 @@ def main():
     out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    voice_rom_bytes = sum(wave_bytes_for(len(pcm)) + 3 for pcm in pcm_blobs)
+    voice_rom_bytes = sum(meta["wave_bytes"] + 3 for meta in songs_meta)
     voice_rom_bytes += len(songs_meta) * (18 + 12)
     tail_rom_budget = MAX_ROM_LIMIT - VOICE_PCM_ROM_ORG
     voice_rom_limit = tail_rom_budget - APPEND_ROM_RESERVE
@@ -914,7 +1125,7 @@ def main():
             f"(budget {tail_rom_budget} minus {APPEND_ROM_RESERVE} reserved for append)"
         )
 
-    assets_s = render_assets_s(songs_meta, pcm_blobs)
+    assets_s = render_assets_s(songs_meta, dpcm_blobs)
     triggers_inc = render_triggers_inc(clips_meta)
     turn_text_inc = render_turn_text_inc(songs_meta)
     debug_inc = render_debug_inc(songs_meta)
@@ -923,6 +1134,7 @@ def main():
     song_headers_inc = render_song_headers_inc(songs_meta)
     wave_loader_inc = render_wave_loader_inc(songs_meta)
     inventory_md = render_voice_inventory_md(manifest, songs_meta)
+    voice_memory_sizes_asm = render_voice_memory_sizes_asm(songs_meta)
 
     outputs = {
         out_dir / "voice_assets_generated.s": assets_s,
@@ -934,6 +1146,7 @@ def main():
         out_dir / "voice_rom_patches.json": rom_patches_json,
         HEADER: header,
         VOICE_INVENTORY_MD: inventory_md,
+        ROOT / "generated/voice_memory_sizes.inc": voice_memory_sizes_asm,
     }
 
     write_outputs(outputs)

@@ -1,6 +1,7 @@
 .section .rodata
 
 .include "generated/card_memory_sizes.inc"
+.include "generated/voice_memory_sizes.inc"
 
 @ Absolute memory symbols used by the custom code.
 @
@@ -132,7 +133,11 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
 
-@ m4a custom voice clips use ROM-resident SongHeaders; WaveData lives in main ROM.
+@ m4a custom voice clips: DPCM in ROM, decode to PCM in EWRAM at playback.
+_kernel_malloc_ewram_array gCustomVoiceWaveBuffer, CUSTOM_VOICE_PCM_BUFFER_BYTES
+_kernel_malloc_ewram gCustomVoiceTone, 0xC
+_kernel_malloc_ewram gCustomVoiceSongHeader, 0x10
+_kernel_malloc_ewram_array gCustomVoicePartTrack, CUSTOM_VOICE_PART_TRACK_BYTES
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)

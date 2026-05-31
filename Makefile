@@ -94,7 +94,7 @@ VOICE_GENERATOR := tools/generate_voices.py
 VOICE_MANIFEST := tools/voice_manifest.json
 VOICE_WAV_DEPS := $(wildcard src_custom/assets/voices/**/*.wav)
 VOICE_STAMP := $(BUILD_DIR)/.voice_generated.stamp
-VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md
+VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md generated/voice_memory_sizes.inc
 VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
 FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py
@@ -307,6 +307,7 @@ $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERAT
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
 $(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))
+$(eval $(call custom_object_dep,voice_dpcm,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
@@ -336,7 +337,7 @@ src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.pn
 
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
-$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
+$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc generated/voice_memory_sizes.inc
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	@echo "AS      $<"

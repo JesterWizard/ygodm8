@@ -49,7 +49,6 @@ struct AI_Command {
 };
 
 void PlayMusic(int);
-void m4aSongNumStart(u16 songNum);
 void sub_8041C94(u8 *textPtr, u16, u16, u16, u16);
 void OpponentTurnTextAndVoice(void);
 void TryAttackVoicing(void);
@@ -73,13 +72,6 @@ static const struct AttackVoicing sVanillaAttackVoices[] APPEND_RODATA = {
     {AI_DUELIST_YUGI, DARK_MAGICIAN, SFX_YUGI_DARK_MAGICIAN_VOICE},
     {AI_DUELIST_NONE, CARD_NONE, SOUND_NONE},
 };
-
-void PlayCustomVoiceClip(u8 songIndex) {
-  if (songIndex >= CUSTOM_VOICE_SONG_COUNT)
-    return;
-
-  m4aSongNumStart((u16)(CUSTOM_VOICE_SONG_ID_MIN + songIndex));
-}
 
 static bool8 CustomVoiceClipMatchesDuelist(const struct CustomVoiceClipMeta *clip) {
   if (clip->opponentId != CUSTOM_VOICE_OPPONENT_ANY)
