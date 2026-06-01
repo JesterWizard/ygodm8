@@ -150,6 +150,21 @@
       "org": 11522452,
       "header_symbol": "CustomVoice_bandit_keith_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522460,
+      "header_symbol": "CustomVoice_ishizu_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522468,
+      "header_symbol": "CustomVoice_ishizu_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522476,
+      "header_symbol": "CustomVoice_ishizu_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -271,6 +286,18 @@
     },
     {
       "org": 863302,
+      "mode": 3
+    },
+    {
+      "org": 863303,
+      "mode": 3
+    },
+    {
+      "org": 863304,
+      "mode": 3
+    },
+    {
+      "org": 863305,
       "mode": 3
     }
   ]

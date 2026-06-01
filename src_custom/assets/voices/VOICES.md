@@ -54,11 +54,14 @@ Sizes:
     <tr><td>Bandit Keith: It&#x27;s My T</td><td><code>bandit_keith/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>96,966 B (94.7 KB)</td><td>11,930 B (11.7 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Bandit Keith: You Ain&#x27;t</td><td><code>bandit_keith/you_aint_won_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>112,588 B (109.9 KB)</td><td>13,876 B (13.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Bandit Keith: Barrel Dr</td><td><code>bandit_keith/barrel_dragon_attack.wav</code></td><td><code>attack_card</code></td><td>151,566 B (148.0 KB)</td><td>18,662 B (18.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,141,908 B (4044.8 KB)</strong></td><td><strong>509,986 B (498.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
+    <tr><td>Ishizu: My Turn</td><td><code>ishizu/my_turn.wav</code></td><td><code>turn_start</code></td><td>117,164 B (114.4 KB)</td><td>14,438 B (14.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Ishizu: You Will Regret</td><td><code>ishizu/you_will_regret_that.wav</code></td><td><code>opponent_lp_below</code></td><td>119,724 B (116.9 KB)</td><td>14,734 B (14.4 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Ishizu: I Attack You Wi</td><td><code>ishizu/i_attack_you_with_keldo.wav</code></td><td><code>attack_card</code></td><td>170,540 B (166.5 KB)</td><td>21,004 B (20.5 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,549,336 B (4442.7 KB)</strong></td><td><strong>560,162 B (547.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 30 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 33 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

@@ -290,6 +290,34 @@
       "card_id": "BARREL_DRAGON",
       "title": "Bandit Keith: Barrel Dragon Attack!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "ishizu_1",
+      "duelist": ["DUELIST_ISHIZU_121"],
+      "wav": "ishizu/my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Ishizu: My Turn",
+      "turn_text": "My turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "ishizu_2",
+      "duelist": ["DUELIST_ISHIZU_121"],
+      "wav": "ishizu/you_will_regret_that.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Ishizu: You Will Regret That",
+      "turn_text": "You will regret that!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "ishizu_3",
+      "duelist": ["DUELIST_ISHIZU_121"],
+      "wav": "ishizu/i_attack_you_with_keldo.wav",
+      "trigger": "attack_card",
+      "card_id": "KELDO",
+      "title": "Ishizu: I Attack You With Keldo!",
+      "gain_db": 4.0
     }
   ]
 }
