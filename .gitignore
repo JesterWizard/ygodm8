@@ -18,4 +18,5 @@
 *.bak
 tools/agbcc
 build/
+.cache/
 .vscode/

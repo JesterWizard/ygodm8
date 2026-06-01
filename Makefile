@@ -1,3 +1,10 @@
+ifeq ($(OS),Windows_NT)
+NPROC ?= 4
+else
+NPROC := $(shell nproc 2>/dev/null || echo 4)
+endif
+MAKEFLAGS ?= -j$(NPROC)
+
 PREFIX := arm-none-eabi-
 CC := $(PREFIX)gcc
 CPP := $(CC) -E
@@ -38,6 +45,8 @@ CONFIGS_SUBDIR = configs
 ASM_SUBDIR = asm
 DATA_ASM_SUBDIR = data
 BUILD_DIR = build
+CACHE_DIR = .cache
+VOICE_DPCM_CACHE_DIR = $(CACHE_DIR)/voice_dpcm
 
 C_BUILDDIR = $(BUILD_DIR)/$(C_SUBDIR)
 C_BUILDDIR_CUSTOM = $(BUILD_DIR)/$(C_SUBDIR_CUSTOM)
@@ -103,6 +112,7 @@ FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
 FIELD_SPELL_DIR_PNGS := $(shell find src_custom/assets/field_spells -mindepth 2 -maxdepth 2 -type f -name 'field.png' 2>/dev/null | sort)
 FIELD_SPELL_PNGS := $(sort $(FIELD_SPELL_STEM_PNGS) $(FIELD_SPELL_DIR_PNGS))
 FIELD_SPELL_GFX_STAMP := $(BUILD_DIR)/.field_spell_gfx.stamp
+FIELD_SPELL_CACHE_DIR = $(CACHE_DIR)/field_spells
 CARD_IDS_GENERATED := include/constants/card_ids.h
 CARD_COUNTS_GENERATED := include/constants/card_counts.h generated/card_counts.ld generated/card_memory_sizes.inc
 CARD_ART_GENERATED := src_custom/generated/card_art_generated.inc src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc
@@ -124,6 +134,11 @@ EVENTS_C_SRCS := $(wildcard $(EVENTS_C_DIR)/*.c)
 else
 LYNJUMP_EVENTS :=
 EVENTS_C_SRCS :=
+endif
+
+ifeq ($(CUSTOM_CODE),1)
+LYNJUMP_VALIDATE_STAMP := $(BUILD_DIR)/.lynjump_validated.stamp
+LYNJUMP_VALIDATE_DEPS := $(LYNJUMP_EVENTS) tools/validate_lynjump.py
 endif
 
 ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS) $(VOICE_ASSETS_OBJ)
@@ -189,9 +204,13 @@ include make_tools.mk
 include graphics.mk
 
 ifeq ($(CUSTOM_CODE),1)
-$(ROM): $(ELF) $(LYNJUMP_EVENTS) tools/apply_lynjump.py tools/validate_lynjump.py
+$(LYNJUMP_VALIDATE_STAMP): $(LYNJUMP_VALIDATE_DEPS)
+	@mkdir -p $(dir $@)
 	@echo "VALIDATE tools/validate_lynjump.py"
 	python3 tools/validate_lynjump.py
+	@touch $@
+
+$(ROM): $(ELF) $(LYNJUMP_VALIDATE_STAMP) tools/apply_lynjump.py
 	@echo "OBJCOPY $@"
 	$(OBJCOPY) -O binary --pad-to 0x9000020 $< $@
 	@echo "PATCH   tools/apply_lynjump.py"
@@ -257,7 +276,8 @@ $(MATCH_SETTER_GENERATED): events/vanilla/vanilla_event_catalog.md $(MATCH_SETTE
 $(VOICE_STAMP): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(VOICE_WAV_DEPS)
 	@mkdir -p $(dir $@)
 	@echo "VOICE   custom duelist voice clips"
-	python3 $(VOICE_GENERATOR) $(VOICE_MANIFEST) --stamp $@
+	@mkdir -p $(VOICE_DPCM_CACHE_DIR)
+	python3 $(VOICE_GENERATOR) $(VOICE_MANIFEST) --stamp $@ --dpcm-cache-dir $(VOICE_DPCM_CACHE_DIR)
 
 $(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_STAMP)
 	@test -f $(VOICE_STAMP)
@@ -265,8 +285,8 @@ $(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_STAMP)
 
 $(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST) | tools-rules
 	@echo "FIELD   custom field spell gfx"
-	python3 $(FIELD_SPELL_GFX_GENERATOR)
-	touch $@
+	@mkdir -p $(FIELD_SPELL_CACHE_DIR)
+	python3 $(FIELD_SPELL_GFX_GENERATOR) --stamp $@ --cache-dir $(FIELD_SPELL_CACHE_DIR)
 
 $(FIELD_SPELL_GFX_GENERATED): $(FIELD_SPELL_GFX_STAMP)
 	@test -f $@
@@ -352,17 +372,26 @@ $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o: $(VOICE_ASSETS_S) $(VOI
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) $< -o $@
 
+ifeq ($(CUSTOM_CODE),1)
+validate-lynjump: $(LYNJUMP_VALIDATE_STAMP)
+else
 validate-lynjump:
 	python3 tools/validate_lynjump.py
+endif
 
 memory-report: $(ELF)
 	python3 tools/memory_report.py $(ELF) --nm $(NM)
 
-clean: clean-tools clean-graphics
+clean-build:
 	rm -f $(ROM) $(UPS) $(ELF) $(MAP)
-	rm -r $(BUILD_DIR)/
+	rm -rf $(BUILD_DIR)/
+
+clean-cache:
+	rm -rf $(CACHE_DIR)/
+
+clean: clean-build clean-tools clean-graphics
 
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: graphics-rules tools-rules validate-lynjump memory-report
+.PHONY: all clean clean-build clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate

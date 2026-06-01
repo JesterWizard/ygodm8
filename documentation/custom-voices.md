@@ -124,7 +124,7 @@ Song IDs are allocated sequentially from `song_id_base` (default **601**).
 
 ## Build Pipeline
 
-[`tools/generate_voices.py`](tools/generate_voices.py) runs during `make` when the manifest, generator, headers, or any voice WAV changes (tracked via `build/.voice_generated.stamp`). It emits:
+[`tools/generate_voices.py`](tools/generate_voices.py) runs during `make` when the manifest, generator, headers, or any voice WAV changes (tracked via `build/.voice_generated.stamp`). Per-clip DPCM payloads are cached under `.cache/voice_dpcm/` (kept by `make clean-build`; removed by `make clean-cache` or full `make clean`). It emits:
 
 | Output | Purpose |
 |--------|---------|

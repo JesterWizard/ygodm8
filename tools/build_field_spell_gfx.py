@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
+import shutil
 import struct
 import subprocess
 import sys
@@ -18,6 +20,7 @@ ASSET_ROOT = ROOT / "src_custom/assets/field_spells"
 TABLE_INC = ROOT / "src_custom/field_spell_table.inc"
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
 GENERATED_DIR = ROOT / "src_custom/generated"
+DEFAULT_FIELD_SPELL_CACHE_DIR = ROOT / ".cache" / "field_spells"
 GFX_GENERATED_INC = GENERATED_DIR / "field_spell_gfx_generated.inc"
 TILEMAPS_GENERATED_INC = GENERATED_DIR / "field_spell_tilemaps_generated.inc"
 CUSTOM_FIELD_SPELLS_GENERATED_H = ROOT / "include/constants/custom_field_spells_generated.h"
@@ -41,6 +44,13 @@ FIELD_BPP_TILE_BYTES = 32
 FIELD_PALETTE_BANK_SIZE = 16
 FIELD_PALETTE_BANK_COUNT = FIELD_MAX_COLORS // FIELD_PALETTE_BANK_SIZE
 FIELD_BPP_PATH_SUFFIX = ".4bpp"
+ENTRY_ASSET_NAMES = (
+    f"field{FIELD_BPP_PATH_SUFFIX}",
+    "field.gbapal",
+    "field.huff",
+    "field.tilemap.bin",
+    "field.tilemap.c",
+)
 
 TABLE_ENTRY_RE = re.compile(
     r"^\s*_\(\s*"
@@ -165,14 +175,15 @@ def encode_tile_pixels(
     best_error = None
 
     for bank in range(FIELD_PALETTE_BANK_COUNT):
-        local = [closest_local_index(pixel, bank, palette_rgb) for pixel in pixel_indices]
-        error = sum(
-            rgb_distance(
-                palette_rgb[pixel],
-                palette_rgb[bank * FIELD_PALETTE_BANK_SIZE + local_value],
-            )
-            for pixel, local_value in zip(pixel_indices, local)
-        )
+        bank_base = bank * FIELD_PALETTE_BANK_SIZE
+        local = [
+            closest_local_index(pixel, bank, palette_rgb) for pixel in pixel_indices
+        ]
+        error = 0
+        for pixel, local_value in zip(pixel_indices, local):
+            mapped = palette_rgb[bank_base + local_value]
+            target = palette_rgb[pixel]
+            error += rgb_distance(target, mapped)
         if best_error is None or error < best_error:
             best_error = error
             best_bank = bank
@@ -225,6 +236,28 @@ def tile_signature(key: tuple[int, bytes], palette_rgb: list[tuple[int, int, int
     )
 
 
+def build_tile_color_cache(
+    keys: set[tuple[int, bytes]],
+    palette_rgb: list[tuple[int, int, int]],
+) -> dict[tuple[int, bytes], list[tuple[int, int, int]]]:
+    return {key: decode_tile_key(key, palette_rgb) for key in keys}
+
+
+def tile_signature_from_colors(colors: list[tuple[int, int, int]]) -> tuple[int, int, int]:
+    return (
+        sum(color[0] for color in colors) // 64,
+        sum(color[1] for color in colors) // 64,
+        sum(color[2] for color in colors) // 64,
+    )
+
+
+def tile_distance_from_colors(
+    left_colors: list[tuple[int, int, int]],
+    right_colors: list[tuple[int, int, int]],
+) -> int:
+    return sum(rgb_distance(a, b) for a, b in zip(left_colors, right_colors))
+
+
 def merge_tile_keys_to_budget(
     cell_keys: list[tuple[int, bytes] | None],
     palette_rgb: list[tuple[int, int, int]],
@@ -233,24 +266,43 @@ def merge_tile_keys_to_budget(
     if len(unique_keys) <= FIELD_MAX_UNIQUE_TILES:
         return cell_keys
 
+    color_cache = build_tile_color_cache(unique_keys, palette_rgb)
     merged_cells = list(cell_keys)
-    active_keys = list(unique_keys)
+    active_keys = sorted(
+        unique_keys,
+        key=lambda key: tile_signature_from_colors(color_cache[key]),
+    )
+    adjacent_distances = [
+        tile_distance_from_colors(
+            color_cache[active_keys[index]],
+            color_cache[active_keys[index + 1]],
+        )
+        for index in range(len(active_keys) - 1)
+    ]
     merges = 0
 
     while len(active_keys) > FIELD_MAX_UNIQUE_TILES:
-        active_keys.sort(key=lambda key: tile_signature(key, palette_rgb))
-
-        best_index = 0
-        best_distance: int | None = None
-        for index in range(len(active_keys) - 1):
-            distance = tile_key_distance(active_keys[index], active_keys[index + 1], palette_rgb)
-            if best_distance is None or distance < best_distance:
-                best_distance = distance
-                best_index = index
+        best_index = min(
+            range(len(adjacent_distances)),
+            key=adjacent_distances.__getitem__,
+        )
 
         keep_key = active_keys[best_index]
         drop_key = active_keys[best_index + 1]
         active_keys.pop(best_index + 1)
+        color_cache.pop(drop_key, None)
+        adjacent_distances.pop(best_index)
+
+        if best_index > 0:
+            adjacent_distances[best_index - 1] = tile_distance_from_colors(
+                color_cache[active_keys[best_index - 1]],
+                color_cache[active_keys[best_index]],
+            )
+        if best_index < len(adjacent_distances):
+            adjacent_distances[best_index] = tile_distance_from_colors(
+                color_cache[active_keys[best_index]],
+                color_cache[active_keys[best_index + 1]],
+            )
 
         for index, key in enumerate(merged_cells):
             if key == drop_key:
@@ -574,9 +626,106 @@ def update_file(path: Path, content: str) -> None:
     path.write_text(content)
 
 
+def encoder_version() -> str:
+    hasher = hashlib.sha256()
+    hasher.update(Path(__file__).read_bytes())
+    hasher.update(str(FIELD_PNG_WIDTH).encode())
+    hasher.update(str(FIELD_PNG_HEIGHT).encode())
+    hasher.update(str(FIELD_MAX_UNIQUE_TILES).encode())
+    hasher.update(str(FIELD_MAX_COLORS).encode())
+    return hasher.hexdigest()
+
+
+def entry_cache_key(entry: FieldSpellEntry, png_path: Path, version: str) -> str:
+    hasher = hashlib.sha256()
+    hasher.update(version.encode())
+    hasher.update(entry.spell_id.encode())
+    hasher.update(entry.field_id.encode())
+    hasher.update(entry.card_const.encode())
+    hasher.update(png_path.read_bytes())
+    return hasher.hexdigest()
+
+
+def entry_cache_dir(cache_root: Path, entry: FieldSpellEntry) -> Path:
+    safe_stem = re.sub(r"[^A-Za-z0-9_.-]", "_", entry.stem)
+    return cache_root / safe_stem
+
+
+def entry_cache_valid(cache_dir: Path, cache_key: str) -> bool:
+    key_path = cache_dir / ".key"
+    if not key_path.is_file() or key_path.read_text().strip() != cache_key:
+        return False
+    return all((cache_dir / name).is_file() for name in ENTRY_ASSET_NAMES)
+
+
+def restore_entry_cache(cache_dir: Path, asset_dir: Path) -> None:
+    asset_dir.mkdir(parents=True, exist_ok=True)
+    for name in ENTRY_ASSET_NAMES:
+        shutil.copy2(cache_dir / name, asset_dir / name)
+
+
+def store_entry_cache(cache_dir: Path, asset_dir: Path, cache_key: str) -> None:
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    for name in ENTRY_ASSET_NAMES:
+        shutil.copy2(asset_dir / name, cache_dir / name)
+    (cache_dir / ".key").write_text(cache_key + "\n")
+
+
+def compute_inputs_digest(
+    entries: list[FieldSpellEntry],
+    version: str,
+    manifest_path: Path,
+) -> str:
+    hasher = hashlib.sha256()
+    hasher.update(version.encode())
+    hasher.update(TABLE_INC.read_bytes())
+    if manifest_path.is_file():
+        hasher.update(manifest_path.read_bytes())
+    for entry in entries:
+        png_path = resolve_field_spell_png(entry)
+        hasher.update(entry_cache_key(entry, png_path, version).encode())
+    return hasher.hexdigest()
+
+
+def stamp_is_current(stamp_path: Path, digest: str) -> bool:
+    if not stamp_path.is_file():
+        return False
+    return stamp_path.read_text().strip() == digest
+
+
+def build_entry_assets_cached(
+    entry: FieldSpellEntry,
+    cache_root: Path,
+    version: str,
+) -> None:
+    png_path = resolve_field_spell_png(entry)
+    cache_key = entry_cache_key(entry, png_path, version)
+    cache_dir = entry_cache_dir(cache_root, entry)
+    if entry_cache_valid(cache_dir, cache_key):
+        restore_entry_cache(cache_dir, entry.asset_dir)
+        print(f"CACHED {entry.stem}")
+        return
+
+    build_entry_assets(entry)
+    store_entry_cache(cache_dir, entry.asset_dir, cache_key)
+    print(f"BUILT  {entry.stem}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build custom field spell graphics and generated headers.")
     parser.add_argument("--print", action="store_true", help="Print generated files instead of writing them")
+    parser.add_argument(
+        "--stamp",
+        type=Path,
+        default=None,
+        help="Write input digest when outputs are rebuilt; skip work if digest matches.",
+    )
+    parser.add_argument(
+        "--cache-dir",
+        type=Path,
+        default=DEFAULT_FIELD_SPELL_CACHE_DIR,
+        help="Per-field-spell asset cache (survives make clean-build).",
+    )
     args = parser.parse_args()
 
     if not TABLE_INC.is_file():
@@ -585,8 +734,16 @@ def main() -> int:
         raise SystemExit(f"Missing gbagfx tool: {GBAFX}")
 
     entries = parse_field_spell_table(TABLE_INC)
+    version = encoder_version()
+    manifest_path = ROOT / "tools/card_data_manifest.json"
+    digest = compute_inputs_digest(entries, version, manifest_path)
+    if args.stamp and not args.print and stamp_is_current(args.stamp, digest):
+        return 0
+
+    cache_root = args.cache_dir.resolve()
+    cache_root.mkdir(parents=True, exist_ok=True)
     for entry in entries:
-        build_entry_assets(entry)
+        build_entry_assets_cached(entry, cache_root, version)
 
     outputs = {
         GFX_GENERATED_INC: render_gfx_generated_inc(entries),
@@ -608,6 +765,10 @@ def main() -> int:
 
     for path, content in outputs.items():
         update_file(path, content)
+
+    if args.stamp:
+        args.stamp.parent.mkdir(parents=True, exist_ok=True)
+        args.stamp.write_text(digest + "\n")
 
     print(f"Built {len(entries)} custom field spell asset(s).")
     return 0

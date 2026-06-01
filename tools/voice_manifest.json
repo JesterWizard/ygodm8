@@ -229,10 +229,10 @@
     {
       "clip_id": "dark_marik_3",
       "duelist": ["DUELIST_DARK_MARIK_135"],
-      "wav": "dark_marik/ra_cast_your_rage_upon_my_foe.wav",
+      "wav": "dark_marik/behold_my_great_beast.wav",
       "trigger": "attack_card",
       "card_id": "THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE",
-      "title": "Dark Marik: Ra Cast Your Rage Upon My Foe!",
+      "title": "Dark Marik: Behold My Great Beast!",
       "gain_db": 4.0
     }
   ]

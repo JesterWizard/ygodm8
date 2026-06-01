@@ -77,7 +77,7 @@ Future per-field callbacks (`OnFieldSpellEndTurn`, etc.) are stubbed in `field_s
 5. Append a manifest card with `"customFieldSpell": "CUSTOM_FIELD_SPELL_ANCIENT_FOREST"`.
 6. Run `make`.
 
-The build runs `tools/build_field_spell_gfx.py`, which validates PNGs, emits compressed assets, and regenerates the tables in `src_custom/generated/`.
+The build runs `tools/build_field_spell_gfx.py`, which validates PNGs, emits compressed assets, and regenerates the tables in `src_custom/generated/`. Converted assets are cached under `.cache/field_spells/` (kept by `make clean-build`; cleared by `make clean-cache` or full `make clean`).
 
 ## Code Locations
 

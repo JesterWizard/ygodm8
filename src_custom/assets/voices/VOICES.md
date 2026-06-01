@@ -47,8 +47,8 @@ Sizes:
     <tr><td>Mako: I Attack You With</td><td><code>mako/i_attack_you_with_amphibian_beast.wav</code></td><td><code>attack_card</code></td><td>239,634 B (234.0 KB)</td><td>29,486 B (28.8 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Dark Marik: My Turn</td><td><code>dark_marik/my_turn.wav</code></td><td><code>turn_start</code></td><td>101,110 B (98.7 KB)</td><td>12,458 B (12.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Dark Marik: Nothing I C</td><td><code>dark_marik/nothing_i_cant_handle.wav</code></td><td><code>opponent_lp_below</code></td><td>148,964 B (145.5 KB)</td><td>18,332 B (17.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Marik: Ra Cast You</td><td><code>dark_marik/ra_cast_your_rage_upon_my_foe.wav</code></td><td><code>attack_card</code></td><td>335,684 B (327.8 KB)</td><td>41,300 B (40.3 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>3,385,036 B (3305.7 KB)</strong></td><td><strong>416,794 B (407.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
+    <tr><td>Dark Marik: Behold My G</td><td><code>dark_marik/behold_my_great_beast.wav</code></td><td><code>attack_card</code></td><td>190,794 B (186.3 KB)</td><td>23,480 B (22.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>3,240,146 B (3164.2 KB)</strong></td><td><strong>398,974 B (389.6 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
   </tbody>
 </table>
 

@@ -529,18 +529,30 @@ def dpcm_wave_bytes_for(sample_count):
     return wave_bytes
 
 
-def validate_dpcm_codec(pcm8):
-    payload = encode_dpcm_pcm8(pcm8)
+def validate_dpcm_payload(pcm8, payload):
     decoded = decode_dpcm_pcm8(payload, len(pcm8))
     if len(decoded) != len(pcm8):
         raise SystemExit(
             f"DPCM round-trip length mismatch ({len(pcm8)} vs {len(decoded)} samples)"
         )
-    block_bytes = DPCM_BLOCK_BYTES
-    if len(payload) % block_bytes != 0:
+    if len(payload) % DPCM_BLOCK_BYTES != 0:
         raise SystemExit(
-            f"DPCM payload size {len(payload)} is not a multiple of {block_bytes}"
+            f"DPCM payload size {len(payload)} is not a multiple of {DPCM_BLOCK_BYTES}"
         )
+
+
+def encode_dpcm_pcm8_validated(pcm8):
+    payload = encode_dpcm_pcm8(pcm8)
+    validate_dpcm_payload(pcm8, payload)
+    return payload
+
+
+def validate_dpcm_codec(pcm8, payload=None):
+    """Round-trip check. When payload is omitted, encode once and return it."""
+    if payload is None:
+        return encode_dpcm_pcm8_validated(pcm8)
+    validate_dpcm_payload(pcm8, payload)
+    return payload
 
 
 def part_track_tail(note):
@@ -976,6 +988,76 @@ def stamp_is_current(stamp_path: Path, digest: str) -> bool:
     return stamp_path.read_text().strip() == digest
 
 
+DEFAULT_DPCM_CACHE_DIR = ROOT / ".cache" / "voice_dpcm"
+DPCM_CACHE_DIR = DEFAULT_DPCM_CACHE_DIR
+
+
+def dpcm_encoder_version(generator_path: Path) -> str:
+    hasher = hashlib.sha256()
+    hasher.update(generator_path.read_bytes())
+    lookup_table = generator_path.parent / "dpcm_fast_lookup_table.py"
+    if lookup_table.is_file():
+        hasher.update(lookup_table.read_bytes())
+    hasher.update(str(DPCM_BLOCK_SAMPLES).encode())
+    hasher.update(str(PCM8_TARGET_PEAK).encode())
+    hasher.update(str(M4A_WAVE_SAMPLE_RATE).encode())
+    return hasher.hexdigest()
+
+
+def clip_dpcm_cache_key(
+    wav_path: Path, gain_db: float, sample_rate: int, encoder_version: str
+) -> str:
+    hasher = hashlib.sha256()
+    hasher.update(encoder_version.encode())
+    hasher.update(str(sample_rate).encode())
+    hasher.update(repr(gain_db).encode())
+    hasher.update(wav_path.read_bytes())
+    return hasher.hexdigest()
+
+
+def clip_dpcm_cache_paths(clip_id: str) -> tuple[Path, Path]:
+    safe_id = re.sub(r"[^A-Za-z0-9_.-]", "_", clip_id)
+    base = DPCM_CACHE_DIR / safe_id
+    return base.with_suffix(".dpcm"), base.with_suffix(".dpcm.key")
+
+
+def load_cached_dpcm(clip_id: str, cache_key: str) -> bytes | None:
+    dpcm_path, key_path = clip_dpcm_cache_paths(clip_id)
+    if not dpcm_path.is_file() or not key_path.is_file():
+        return None
+    if key_path.read_text().strip() != cache_key:
+        return None
+    return dpcm_path.read_bytes()
+
+
+def save_cached_dpcm(clip_id: str, cache_key: str, payload: bytes) -> None:
+    dpcm_path, key_path = clip_dpcm_cache_paths(clip_id)
+    dpcm_path.parent.mkdir(parents=True, exist_ok=True)
+    dpcm_path.write_bytes(payload)
+    key_path.write_text(cache_key + "\n")
+
+
+def get_or_encode_dpcm_payload(
+    clip_id: str,
+    pcm8: bytes,
+    wav_path: Path,
+    gain_db: float,
+    sample_rate: int,
+    encoder_version: str,
+) -> bytes:
+    cache_key = clip_dpcm_cache_key(wav_path, gain_db, sample_rate, encoder_version)
+    cached = load_cached_dpcm(clip_id, cache_key)
+    if cached is not None:
+        validate_dpcm_payload(pcm8, cached)
+        print(f"CACHED {clip_id} ({len(cached)} bytes)")
+        return cached
+
+    payload = encode_dpcm_pcm8_validated(pcm8)
+    save_cached_dpcm(clip_id, cache_key, payload)
+    print(f"ENCODE {clip_id} ({len(payload)} bytes)")
+    return payload
+
+
 def write_outputs(outputs: dict[Path, str]) -> bool:
     changed = False
     for path, content in outputs.items():
@@ -1011,7 +1093,22 @@ def main():
         default=None,
         help="Write input digest when outputs are rebuilt; skip work if digest matches.",
     )
+    parser.add_argument(
+        "--dpcm-cache-dir",
+        type=Path,
+        default=DEFAULT_DPCM_CACHE_DIR,
+        help="Per-clip DPCM encode cache (survives make clean-build).",
+    )
     args = parser.parse_args()
+
+    cache_dir = args.dpcm_cache_dir.resolve()
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    globals()["DPCM_CACHE_DIR"] = cache_dir
+    legacy_cache = ROOT / "build" / "voice_dpcm_cache"
+    if legacy_cache.is_dir() and not any(cache_dir.iterdir()):
+        import shutil
+
+        shutil.copytree(legacy_cache, cache_dir, dirs_exist_ok=True)
 
     generator_path = Path(__file__).resolve()
     digest = compute_voice_inputs_digest(args.manifest, generator_path)
@@ -1041,6 +1138,7 @@ def main():
     songs_meta = []
     clips_meta = []
     dpcm_blobs = []
+    encoder_version = dpcm_encoder_version(generator_path)
 
     for entry in clips:
         trigger = entry["trigger"]
@@ -1050,8 +1148,14 @@ def main():
         gain_db = entry.get("gain_db", 0.0)
         pcm8, _ = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
         pcm8, note, sample_count = prepare_pcm_and_note(pcm8)
-        validate_dpcm_codec(pcm8)
-        dpcm_payload = encode_dpcm_pcm8(pcm8)
+        dpcm_payload = get_or_encode_dpcm_payload(
+            entry["clip_id"],
+            pcm8,
+            wav_path,
+            gain_db,
+            sample_rate,
+            encoder_version,
+        )
         sym = symbol_for_clip(entry["clip_id"])
         song_index = len(songs_meta)
         song_id = song_id_base + song_index
