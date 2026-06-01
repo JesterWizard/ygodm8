@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "debug_ai_mode.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "copycat.h"
@@ -17,6 +18,7 @@ void UnblockTurnSummoning(unsigned char currPlayer);
 
 void InitBoard(void);
 void PlayerTurnMain(void);
+void AI_Main(void);
 void UpdateDuelGfxExceptField(void);
 void InitButtonMaps(void);
 void DisplayCardInfoBar(void);
@@ -152,6 +154,14 @@ void InitBoard__Replacement(void) {
 
 LYN_REPLACE_CHECK(PlayerTurnMain);
 void PlayerTurnMain__Replacement(void) {
+  if (DebugAiMode_IsBothSides() == TRUE) {
+    AI_Main();
+    DestroyKarateManAtEndOfTurn();
+    ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
+    UpdateDuelGfxExceptField();
+    return;
+  }
+
   gIsPlayerTurnOver = 0;
   UpdateDuelGfxExceptField();
   TryActivatingTurnEffects();

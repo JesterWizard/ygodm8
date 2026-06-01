@@ -132,6 +132,9 @@ _kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
 _kernel_malloc_ewram gPlayerDeck3Capacity, 0x4
 _kernel_malloc_ewram gActiveDeckIndex, 0x1
 
+@ Debug menu: AI controls both duelists when enabled.
+_kernel_malloc_ewram gDebugAiBothSidesMode, 1
+
 @ Scratch for temporarily restoring the active deck while building the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
@@ -189,3 +192,4 @@ _kernel_malloc_flash gPlayerDeck2Capacity,     0x4
 _kernel_malloc_flash gPlayerDeck3Capacity,     0x4
 _kernel_malloc_flash gActiveDeckIndex,         0x1
 _kernel_malloc_flash gPlayerDeckSaveMagic,     0x1
+_kernel_malloc_flash gDebugAiBothSidesMode,    0x1

@@ -18,7 +18,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 6
+#define DEBUG_ROOT_ITEMS 7
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -34,6 +34,7 @@
 #define DEBUG_VIEW_REACTION 4
 #define DEBUG_VIEW_VOICE 5
 #define DEBUG_VIEW_MATCH_SETTER 6
+#define DEBUG_VIEW_AI_MODE 7
 
 #define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 #define DEBUG_SPRITE_OAM_SLOT 1
@@ -110,5 +111,7 @@ void DebugPortraitViewer(void);
 void DebugSpriteViewer(void);
 void DebugReactionViewer(void);
 void DebugMatchSetterViewer(void);
+void DebugMenuDrawAiMode(u8 scrollTop, u8 cursor);
+void DebugAiModeViewer(void);
 
 #endif // GUARD_DEBUG_MENU_INTERNAL_H

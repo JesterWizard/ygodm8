@@ -16,6 +16,7 @@
 - [Sprite Viewer](#sprite-viewer)
 - [Adding Sprites](#adding-sprites)
 - [Reaction Viewer](#reaction-viewer)
+- [AI Mode](#ai-mode)
 - [Text Layout](#text-layout)
 - [Code Locations](#code-locations)
 - [TODO](#todo)
@@ -31,6 +32,9 @@ Four viewers are implemented today:
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
 - **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
 - **Reaction Viewer** — scrollable overworld reactions; the highlighted entry animates on **SPRITE_PLAYER** with vanilla bubble sequences. See [reaction-viewer.md](reaction-viewer.md).
+- **Voice Viewer** — preview duel voice clips (vanilla and custom).
+- **Match Setter** — spawn test duelists on the overworld field.
+- **AI Mode** — toggle **AI Both Sides** for fully automated duels. See [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md).
 
 ## Related: Ante Card Viewer
 
@@ -53,6 +57,7 @@ All debug-menu sources and data tables live in `src_custom/debug/`:
 | `debug_menu_*_table.inc` | Data-only entry lists (no C logic) |
 | `overworld_debug_overlay_hooks.c` | Field coordinate overlay (separate from the menu UI) |
 | `ante_card_viewer.c` | Overworld ante reward list (opened with **SELECT**, not from root menu) |
+| `debug_menu_ai_mode.c` | AI Mode submenu (Off / AI Both Sides) |
 
 Public API remains in `include/debug_menu.h` (`DebugMenuMain`, `DebugMenuClearPortraitObjStash`).
 
@@ -74,7 +79,7 @@ After the menu closes, overworld state is restored via `OverworldRestoreAfterDeb
 
 ## Root Menu
 
-The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Four items scroll when the cursor moves past the bottom row.
+The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Seven items scroll when the cursor moves past the bottom row (`DEBUG_ROOT_ITEMS`).
 
 | Row | Label | **A** behavior |
 |-----|-------|----------------|
@@ -82,6 +87,9 @@ The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the s
 | 1 | Portrait Viewer | Opens the portrait list |
 | 2 | Sprite Viewer | Opens the overworld sprite list |
 | 3 | Reaction Viewer | Opens the reaction bubble list (see [reaction-viewer.md](reaction-viewer.md)) |
+| 4 | Voice Viewer | Opens the voice clip list |
+| 5 | Match Setter | Opens overworld duelist spawn presets |
+| 6 | AI Mode | Opens Off / AI Both Sides toggle (see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md)) |
 
 | Input | Action |
 |-------|--------|
@@ -90,6 +98,12 @@ The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the s
 | **B** | Exit debug menu |
 
 Background music while the root menu is open is `MUSIC_DECK_ADJUSTMENT_MENU`.
+
+## AI Mode
+
+Opens a two-row submenu: **Off** and **AI Both Sides**. Choosing **A** on a row applies that mode and writes it to save flash (primary and backup) immediately.
+
+Full duel behavior, persistence, auto-advance text, and bug-fix history are documented in [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md).
 
 ## Music Viewer
 
@@ -295,7 +309,8 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Shared internals | `src_custom/debug/debug_menu_internal.h` | Constants, structs, cross-file API |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
-| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Four-item scrollable list; opens music, portrait, sprite, or reaction viewer |
+| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Seven-item scrollable list; opens viewers, match setter, or AI mode |
+| AI mode | `DebugAiModeViewer` in `src_custom/debug/debug_menu_ai_mode.c` | Off / AI Both Sides; see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md) |
 | Music viewer | `DebugMusicViewer` in `src_custom/debug/debug_menu_music.c` | Scrollable list, preview on **A** |
 | Portrait viewer | `DebugPortraitViewer` in `src_custom/debug/debug_menu_portrait.c` | Scrollable list, live preview on cursor |
 | Sprite viewer | `DebugSpriteViewer` in `src_custom/debug/debug_menu_sprite.c` | Scrollable list, live preview on cursor |

@@ -1,10 +1,22 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "constants/music_ids.h"
+#include "debug_ai_mode.h"
+
+static const u8 sTextboxClearSpaces[] APPEND_RODATA = {
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0
+};
 #include "duel_opponent_hand_scroll.h"
+#include "duel.h"
+#include "duel_textbox.h"
+#include "text.h"
 
 extern unsigned short g8E0D5A6[];
 extern u8 g8E0D5A1[];
+extern u16 gNewButtons;
+
+void WaitForTextboxAdvanceInput(struct DuelTextbox *);
 
 static u16 GetScrollTargetVofs(u8 row) {
   if (IsOpponentHandFieldScrollEnabled() && row < NUM_DUEL_BOARD_ROWS)
@@ -141,4 +153,42 @@ void sub_8041DF0__Replacement(u8 arg0) {
   if (leavingHand)
     RebuildFieldCardGfxAfterOpponentHand();
   FlushDuelGfxAfterCursorMove();
+}
+
+LYN_REPLACE_CHECK(WaitForTextboxAdvanceInput);
+void WaitForTextboxAdvanceInput__Replacement(struct DuelTextbox *textbox) {
+  if (DebugAiMode_IsBothSides() == TRUE) {
+    textbox->textCursor++;
+    textbox->tileCursor = 0;
+    textbox->blinkFrameCounter = 0;
+    textbox->mode = 0;
+    return;
+  }
+
+  if (gNewButtons & (A_BUTTON | B_BUTTON | R_BUTTON)) {
+    PlayMusic(SFX_DIALOGUE);
+    textbox->textCursor++;
+    textbox->tileCursor = 0;
+    textbox->blinkFrameCounter = 0;
+    textbox->mode = 0;
+    CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + 0x88A0, (u8 *)sTextboxClearSpaces, 0x101);
+  } else {
+    switch (textbox->blinkFrameCounter++) {
+    case 0:
+      if (textbox->tileCursor % 2)
+        sub_8020968(gBgVram.cbb0 + 0x88C0 + textbox->tileCursor / 2 * 128, 0xA081, 0x101);
+      else
+        sub_8020968(gBgVram.cbb0 + 0x88A0 + textbox->tileCursor / 2 * 128, 0xA081, 0x101);
+      break;
+    case 15:
+      if (textbox->tileCursor % 2)
+        sub_8020968(gBgVram.cbb0 + 0x88C0 + textbox->tileCursor / 2 * 128, 0x4081, 0x101);
+      else
+        sub_8020968(gBgVram.cbb0 + 0x88A0 + textbox->tileCursor / 2 * 128, 0x4081, 0x101);
+      break;
+    case 29:
+      textbox->blinkFrameCounter = 0;
+      break;
+    }
+  }
 }

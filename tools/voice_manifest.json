@@ -8,6 +8,8 @@
     "replace_vanilla: when true, skip the vanilla clip for the same trigger type.",
     "gain_db: optional per-clip loudness boost/cut in dB before peak normalization.",
     "turn_text: optional duel textbox line on opponent turn (turn_start / opponent_lp_below only).",
+    "trim_silence: optional per-clip or manifest default; strips leading/trailing near-silence before DPCM (default true).",
+    "trim_silence_threshold: |s8| sample magnitude treated as silence at edges (default 8).",
     "WAV files live under src_custom/assets/voices/ (mono or stereo; resampled at build)."
   ],
   "clips": [

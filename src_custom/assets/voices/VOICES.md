@@ -9,6 +9,7 @@ Sizes:
 - **Overall Change** — `(in-ROM − source) / source`; negative means the ROM blob is smaller.
 - **Total** row — sum of all registered clips (source vs in-ROM).
 - Playback decompresses DPCM to EWRAM PCM at runtime (~50% ROM savings vs raw 8-bit PCM).
+- Build trims leading/trailing near-silence (|sample| ≤ 8) before DPCM encode unless disabled in the manifest.
 
 ## Registered clips
 
@@ -24,40 +25,40 @@ Sizes:
     </tr>
   </thead>
   <tbody>
-    <tr><td>Duke: Im Up</td><td><code>duke/im_up.wav</code></td><td><code>turn_start</code></td><td>56,760 B (55.4 KB)</td><td>7,012 B (6.8 KB)</td><td><span style="color: #3fb950">-87.6%</span></td></tr>
-    <tr><td>Duke: Not Over</td><td><code>duke/this_duel_isnt_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>144,940 B (141.5 KB)</td><td>17,836 B (17.4 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Duke: Go Gradius</td><td><code>duke/go_gradius.wav</code></td><td><code>attack_card</code></td><td>114,156 B (111.5 KB)</td><td>14,074 B (13.7 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tristan: Its my turn</td><td><code>tristan/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>91,628 B (89.5 KB)</td><td>11,302 B (11.0 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tristan: Im Done For</td><td><code>tristan/im_done_for.wav</code></td><td><code>opponent_lp_below</code></td><td>116,828 B (114.1 KB)</td><td>14,372 B (14.0 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tristan: Here Comes Cyb</td><td><code>tristan/here_comes_cyber_commander.wav</code></td><td><code>attack_card</code></td><td>172,076 B (168.0 KB)</td><td>21,170 B (20.7 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Mai: Draw</td><td><code>mai/draw.wav</code></td><td><code>turn_start</code></td><td>53,550 B (52.3 KB)</td><td>6,616 B (6.5 KB)</td><td><span style="color: #3fb950">-87.6%</span></td></tr>
-    <tr><td>Mai: Like Thats Gonna K</td><td><code>mai/like_thats_gonna_keep_me_down.wav</code></td><td><code>opponent_lp_below</code></td><td>183,718 B (179.4 KB)</td><td>22,622 B (22.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Mai: Swoop in Harpie La</td><td><code>mai/swoop_in_harpie_lady.wav</code></td><td><code>attack_card</code></td><td>131,956 B (128.9 KB)</td><td>16,252 B (15.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tea: My Turn</td><td><code>tea/my_turn.wav</code></td><td><code>turn_start</code></td><td>87,800 B (85.7 KB)</td><td>10,808 B (10.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tea: Dont Expect Me To </td><td><code>tea/dont_expect_me_to_give_up.wav</code></td><td><code>opponent_lp_below</code></td><td>132,268 B (129.2 KB)</td><td>16,286 B (15.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Tea: I attack with Fair</td><td><code>tea/i_attack_with_fairys_gift.wav</code></td><td><code>attack_card</code></td><td>157,400 B (153.7 KB)</td><td>19,388 B (18.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Weevil: My Turn</td><td><code>weevil/my_turn.wav</code></td><td><code>turn_start</code></td><td>100,200 B (97.9 KB)</td><td>12,358 B (12.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Weevil: That Was Nothin</td><td><code>weevil/that_was_nothing.wav</code></td><td><code>opponent_lp_below</code></td><td>139,724 B (136.4 KB)</td><td>17,210 B (16.8 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Weevil: Blow Em Away Gr</td><td><code>weevil/blow_em_away_great_moth.wav</code></td><td><code>attack_card</code></td><td>218,272 B (213.2 KB)</td><td>26,846 B (26.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Rex: My Turn</td><td><code>rex/my_turn.wav</code></td><td><code>turn_start</code></td><td>83,194 B (81.2 KB)</td><td>10,246 B (10.0 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Rex: This Is Far From O</td><td><code>rex/this_is_far_from_over.wav</code></td><td><code>opponent_lp_below</code></td><td>141,928 B (138.6 KB)</td><td>17,474 B (17.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Rex: Two Headed King Re</td><td><code>rex/two_headed_king_rex_attack.wav</code></td><td><code>attack_card</code></td><td>178,514 B (174.3 KB)</td><td>21,962 B (21.4 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Mako: It&#x27;s My Turn</td><td><code>mako/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>83,284 B (81.3 KB)</td><td>10,280 B (10.0 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Mako: This Duel Is Not </td><td><code>mako/this_duel_is_not_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>171,448 B (167.4 KB)</td><td>21,104 B (20.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Mako: I Attack You With</td><td><code>mako/i_attack_you_with_amphibian_beast.wav</code></td><td><code>attack_card</code></td><td>239,634 B (234.0 KB)</td><td>29,486 B (28.8 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Marik: My Turn</td><td><code>dark_marik/my_turn.wav</code></td><td><code>turn_start</code></td><td>101,110 B (98.7 KB)</td><td>12,458 B (12.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Marik: Nothing I C</td><td><code>dark_marik/nothing_i_cant_handle.wav</code></td><td><code>opponent_lp_below</code></td><td>148,964 B (145.5 KB)</td><td>18,332 B (17.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Marik: Behold My G</td><td><code>dark_marik/behold_my_great_beast.wav</code></td><td><code>attack_card</code></td><td>190,794 B (186.3 KB)</td><td>23,480 B (22.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Bakura: It&#x27;s My Tu</td><td><code>dark_bakura/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>143,824 B (140.5 KB)</td><td>17,704 B (17.3 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Bakura: How Dare Y</td><td><code>dark_bakura/how_dare_you.wav</code></td><td><code>opponent_lp_below</code></td><td>183,472 B (179.2 KB)</td><td>22,588 B (22.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Dark Bakura: Puppet Mas</td><td><code>dark_bakura/puppet_master_attack.wav</code></td><td><code>attack_card</code></td><td>213,346 B (208.3 KB)</td><td>26,252 B (25.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Bandit Keith: It&#x27;s My T</td><td><code>bandit_keith/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>96,966 B (94.7 KB)</td><td>11,930 B (11.7 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Bandit Keith: You Ain&#x27;t</td><td><code>bandit_keith/you_aint_won_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>112,588 B (109.9 KB)</td><td>13,876 B (13.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Bandit Keith: Barrel Dr</td><td><code>bandit_keith/barrel_dragon_attack.wav</code></td><td><code>attack_card</code></td><td>151,566 B (148.0 KB)</td><td>18,662 B (18.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Ishizu: My Turn</td><td><code>ishizu/my_turn.wav</code></td><td><code>turn_start</code></td><td>117,164 B (114.4 KB)</td><td>14,438 B (14.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Ishizu: You Will Regret</td><td><code>ishizu/you_will_regret_that.wav</code></td><td><code>opponent_lp_below</code></td><td>119,724 B (116.9 KB)</td><td>14,734 B (14.4 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td>Ishizu: I Attack You Wi</td><td><code>ishizu/i_attack_you_with_keldo.wav</code></td><td><code>attack_card</code></td><td>170,540 B (166.5 KB)</td><td>21,004 B (20.5 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,549,336 B (4442.7 KB)</strong></td><td><strong>560,162 B (547.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
+    <tr><td>Duke: Im Up</td><td><code>duke/im_up.wav</code></td><td><code>turn_start</code></td><td>56,760 B (55.4 KB)</td><td>5,726 B (5.6 KB)</td><td><span style="color: #3fb950">-89.9%</span></td></tr>
+    <tr><td>Duke: Not Over</td><td><code>duke/this_duel_isnt_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>144,940 B (141.5 KB)</td><td>17,044 B (16.6 KB)</td><td><span style="color: #3fb950">-88.2%</span></td></tr>
+    <tr><td>Duke: Go Gradius</td><td><code>duke/go_gradius.wav</code></td><td><code>attack_card</code></td><td>114,156 B (111.5 KB)</td><td>13,448 B (13.1 KB)</td><td><span style="color: #3fb950">-88.2%</span></td></tr>
+    <tr><td>Tristan: Its my turn</td><td><code>tristan/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>91,628 B (89.5 KB)</td><td>10,642 B (10.4 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Tristan: Im Done For</td><td><code>tristan/im_done_for.wav</code></td><td><code>opponent_lp_below</code></td><td>116,828 B (114.1 KB)</td><td>12,622 B (12.3 KB)</td><td><span style="color: #3fb950">-89.2%</span></td></tr>
+    <tr><td>Tristan: Here Comes Cyb</td><td><code>tristan/here_comes_cyber_commander.wav</code></td><td><code>attack_card</code></td><td>172,076 B (168.0 KB)</td><td>19,684 B (19.2 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
+    <tr><td>Mai: Draw</td><td><code>mai/draw.wav</code></td><td><code>turn_start</code></td><td>53,550 B (52.3 KB)</td><td>5,824 B (5.7 KB)</td><td><span style="color: #3fb950">-89.1%</span></td></tr>
+    <tr><td>Mai: Like Thats Gonna K</td><td><code>mai/like_thats_gonna_keep_me_down.wav</code></td><td><code>opponent_lp_below</code></td><td>183,718 B (179.4 KB)</td><td>21,928 B (21.4 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Mai: Swoop in Harpie La</td><td><code>mai/swoop_in_harpie_lady.wav</code></td><td><code>attack_card</code></td><td>131,956 B (128.9 KB)</td><td>15,460 B (15.1 KB)</td><td><span style="color: #3fb950">-88.3%</span></td></tr>
+    <tr><td>Tea: My Turn</td><td><code>tea/my_turn.wav</code></td><td><code>turn_start</code></td><td>87,800 B (85.7 KB)</td><td>10,016 B (9.8 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
+    <tr><td>Tea: Dont Expect Me To </td><td><code>tea/dont_expect_me_to_give_up.wav</code></td><td><code>opponent_lp_below</code></td><td>132,268 B (129.2 KB)</td><td>14,800 B (14.5 KB)</td><td><span style="color: #3fb950">-88.8%</span></td></tr>
+    <tr><td>Tea: I attack with Fair</td><td><code>tea/i_attack_with_fairys_gift.wav</code></td><td><code>attack_card</code></td><td>157,400 B (153.7 KB)</td><td>18,464 B (18.0 KB)</td><td><span style="color: #3fb950">-88.3%</span></td></tr>
+    <tr><td>Weevil: My Turn</td><td><code>weevil/my_turn.wav</code></td><td><code>turn_start</code></td><td>100,200 B (97.9 KB)</td><td>11,666 B (11.4 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Weevil: That Was Nothin</td><td><code>weevil/that_was_nothing.wav</code></td><td><code>opponent_lp_below</code></td><td>139,724 B (136.4 KB)</td><td>13,810 B (13.5 KB)</td><td><span style="color: #3fb950">-90.1%</span></td></tr>
+    <tr><td>Weevil: Blow Em Away Gr</td><td><code>weevil/blow_em_away_great_moth.wav</code></td><td><code>attack_card</code></td><td>218,272 B (213.2 KB)</td><td>23,644 B (23.1 KB)</td><td><span style="color: #3fb950">-89.2%</span></td></tr>
+    <tr><td>Rex: My Turn</td><td><code>rex/my_turn.wav</code></td><td><code>turn_start</code></td><td>83,194 B (81.2 KB)</td><td>8,366 B (8.2 KB)</td><td><span style="color: #3fb950">-89.9%</span></td></tr>
+    <tr><td>Rex: This Is Far From O</td><td><code>rex/this_is_far_from_over.wav</code></td><td><code>opponent_lp_below</code></td><td>141,928 B (138.6 KB)</td><td>16,946 B (16.5 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Rex: Two Headed King Re</td><td><code>rex/two_headed_king_rex_attack.wav</code></td><td><code>attack_card</code></td><td>178,514 B (174.3 KB)</td><td>21,532 B (21.0 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
+    <tr><td>Mako: It&#x27;s My Turn</td><td><code>mako/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>83,284 B (81.3 KB)</td><td>8,332 B (8.1 KB)</td><td><span style="color: #3fb950">-90.0%</span></td></tr>
+    <tr><td>Mako: This Duel Is Not </td><td><code>mako/this_duel_is_not_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>171,448 B (167.4 KB)</td><td>19,652 B (19.2 KB)</td><td><span style="color: #3fb950">-88.5%</span></td></tr>
+    <tr><td>Mako: I Attack You With</td><td><code>mako/i_attack_you_with_amphibian_beast.wav</code></td><td><code>attack_card</code></td><td>239,634 B (234.0 KB)</td><td>28,694 B (28.0 KB)</td><td><span style="color: #3fb950">-88.0%</span></td></tr>
+    <tr><td>Dark Marik: My Turn</td><td><code>dark_marik/my_turn.wav</code></td><td><code>turn_start</code></td><td>101,110 B (98.7 KB)</td><td>9,520 B (9.3 KB)</td><td><span style="color: #3fb950">-90.6%</span></td></tr>
+    <tr><td>Dark Marik: Nothing I C</td><td><code>dark_marik/nothing_i_cant_handle.wav</code></td><td><code>opponent_lp_below</code></td><td>148,964 B (145.5 KB)</td><td>17,176 B (16.8 KB)</td><td><span style="color: #3fb950">-88.5%</span></td></tr>
+    <tr><td>Dark Marik: Behold My G</td><td><code>dark_marik/behold_my_great_beast.wav</code></td><td><code>attack_card</code></td><td>190,794 B (186.3 KB)</td><td>22,984 B (22.4 KB)</td><td><span style="color: #3fb950">-88.0%</span></td></tr>
+    <tr><td>Dark Bakura: It&#x27;s My Tu</td><td><code>dark_bakura/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>143,824 B (140.5 KB)</td><td>15,098 B (14.7 KB)</td><td><span style="color: #3fb950">-89.5%</span></td></tr>
+    <tr><td>Dark Bakura: How Dare Y</td><td><code>dark_bakura/how_dare_you.wav</code></td><td><code>opponent_lp_below</code></td><td>183,472 B (179.2 KB)</td><td>16,814 B (16.4 KB)</td><td><span style="color: #3fb950">-90.8%</span></td></tr>
+    <tr><td>Dark Bakura: Puppet Mas</td><td><code>dark_bakura/puppet_master_attack.wav</code></td><td><code>attack_card</code></td><td>213,346 B (208.3 KB)</td><td>22,292 B (21.8 KB)</td><td><span style="color: #3fb950">-89.6%</span></td></tr>
+    <tr><td>Bandit Keith: It&#x27;s My T</td><td><code>bandit_keith/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>96,966 B (94.7 KB)</td><td>11,006 B (10.7 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
+    <tr><td>Bandit Keith: You Ain&#x27;t</td><td><code>bandit_keith/you_aint_won_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>112,588 B (109.9 KB)</td><td>12,722 B (12.4 KB)</td><td><span style="color: #3fb950">-88.7%</span></td></tr>
+    <tr><td>Bandit Keith: Barrel Dr</td><td><code>bandit_keith/barrel_dragon_attack.wav</code></td><td><code>attack_card</code></td><td>151,566 B (148.0 KB)</td><td>18,034 B (17.6 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Ishizu: My Turn</td><td><code>ishizu/my_turn.wav</code></td><td><code>turn_start</code></td><td>117,164 B (114.4 KB)</td><td>11,632 B (11.4 KB)</td><td><span style="color: #3fb950">-90.1%</span></td></tr>
+    <tr><td>Ishizu: You Will Regret</td><td><code>ishizu/you_will_regret_that.wav</code></td><td><code>opponent_lp_below</code></td><td>119,724 B (116.9 KB)</td><td>13,876 B (13.6 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Ishizu: I Attack You Wi</td><td><code>ishizu/i_attack_you_with_keldo.wav</code></td><td><code>attack_card</code></td><td>170,540 B (166.5 KB)</td><td>18,628 B (18.2 KB)</td><td><span style="color: #3fb950">-89.1%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,549,336 B (4442.7 KB)</strong></td><td><strong>508,082 B (496.2 KB)</strong></td><td><strong><span style="color: #3fb950">-88.8%</span></strong></td></tr>
   </tbody>
 </table>
 

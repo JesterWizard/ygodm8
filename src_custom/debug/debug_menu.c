@@ -16,6 +16,7 @@ static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
 static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
 static const u8 sText_RootVoice[] APPEND_RODATA = "$0Voice Viewer   ";
 static const u8 sText_RootMatchSetter[] APPEND_RODATA = "$0Match Setter   ";
+static const u8 sText_RootAiMode[] APPEND_RODATA = "$0AI Mode         ";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
@@ -23,6 +24,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootReaction,
     sText_RootVoice,
     sText_RootMatchSetter,
+    sText_RootAiMode,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
@@ -203,6 +205,9 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_MATCH_SETTER:
     DebugMenuDrawMatchSetters(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_AI_MODE:
+    DebugMenuDrawAiMode(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
@@ -323,8 +328,10 @@ static void DebugMenuRoot(void) {
         DebugReactionViewer();
       else if (cursor == 4)
         DebugVoiceViewer();
-      else
+      else if (cursor == 5)
         DebugMatchSetterViewer();
+      else
+        DebugAiModeViewer();
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS)

@@ -1,11 +1,15 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "duel.h"
 #include "duel_main.h"
+#include "duel_status.h"
 #include "custom_decks/custom_decks.h"
 #include "generated/duelist_rewards_generated.inc"
 
 void HandleWin(void);
 void HandleLoss(void);
+void HandleOutcome(void);
+void DeclareLoser(u8);
 u8 sub_801F098(u16);
 extern struct Duelist* gUnk8E00B30[];
 extern u16 g80B9620[];
@@ -378,6 +382,34 @@ void AddMoneyFromDuelVictory__Replacement(void) {
 
   gDuelData.moneyReward = RandRangeU16(minDomino, maxDomino) * temp;
   AddMoney(gDuelData.moneyReward);
+}
+
+static void ReconcileDuelDefeatStatus(void) {
+  if (gDuelistStatus[DUEL_OPPONENT] != DUELIST_STATUS_DEFEAT) {
+    if (gDuelLifePoints[DUEL_OPPONENT] == 0
+        || NumCardsInDeck(DUEL_OPPONENT) < GetCardsDrawn(DUEL_OPPONENT))
+      DeclareLoser(DUEL_OPPONENT);
+  }
+  if (gDuelistStatus[DUEL_PLAYER] != DUELIST_STATUS_DEFEAT) {
+    if (gDuelLifePoints[DUEL_PLAYER] == 0
+        || NumCardsInDeck(DUEL_PLAYER) < GetCardsDrawn(DUEL_PLAYER))
+      DeclareLoser(DUEL_PLAYER);
+  }
+}
+
+LYN_REPLACE_CHECK(HandleOutcome);
+void HandleOutcome__Replacement(void) {
+  ReconcileDuelDefeatStatus();
+
+  if (gDuelistStatus[DUEL_OPPONENT] == DUELIST_STATUS_DEFEAT)
+    gDuelData.winner = DUEL_WINNER_PLAYER;
+  else
+    gDuelData.winner = DUEL_WINNER_OPPONENT;
+
+  if (gDuelData.winner == DUEL_WINNER_PLAYER)
+    HandleWin();
+  else
+    HandleLoss();
 }
 
 LYN_REPLACE_CHECK(HandleWin);

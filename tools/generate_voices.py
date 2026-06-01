@@ -88,6 +88,9 @@ M4A_VOICE_NOTE_CALIBRATION = (
 )
 # Normalize all clips to this 16-bit peak before 8-bit conversion (32767 ≈ full s8 range).
 PCM8_TARGET_PEAK = 32767
+# Edge-trim samples with |value| <= threshold after 8-bit conversion (near silence).
+PCM8_SILENCE_TRIM_THRESHOLD = 8
+PCM8_SILENCE_TRIM_DEFAULT = True
 
 TRIGGER_TURN_START = 0
 TRIGGER_ATTACK_CARD = 1
@@ -238,6 +241,51 @@ def read_wav_mono_pcm8(path, target_rate, gain_db=0.0):
     return pcm8, target_rate
 
 
+def pcm8_sample_value(byte):
+    return byte if byte < 128 else byte - 256
+
+
+def trim_silence_edges_pcm8(pcm8, threshold=PCM8_SILENCE_TRIM_THRESHOLD):
+    """Remove leading/trailing near-silence from signed 8-bit mono PCM."""
+    if threshold < 0 or not pcm8:
+        return pcm8
+
+    n = len(pcm8)
+    lead = 0
+    for byte in pcm8:
+        if abs(pcm8_sample_value(byte)) > threshold:
+            break
+        lead += 1
+    if lead >= n:
+        return pcm8
+
+    trail = 0
+    for byte in reversed(pcm8):
+        if abs(pcm8_sample_value(byte)) > threshold:
+            break
+        trail += 1
+    end = n - trail
+    if end <= lead:
+        return pcm8
+    return pcm8[lead:end]
+
+
+def resolve_trim_settings(manifest, entry):
+    enabled = entry.get("trim_silence", manifest.get("trim_silence", PCM8_SILENCE_TRIM_DEFAULT))
+    threshold = entry.get(
+        "trim_silence_threshold",
+        manifest.get("trim_silence_threshold", PCM8_SILENCE_TRIM_THRESHOLD),
+    )
+    return bool(enabled), int(threshold)
+
+
+def apply_silence_trim(pcm8, manifest, entry):
+    enabled, threshold = resolve_trim_settings(manifest, entry)
+    if not enabled:
+        return pcm8
+    return trim_silence_edges_pcm8(pcm8, threshold)
+
+
 def symbol_for_clip(clip_id):
     safe = re.sub(r"[^A-Za-z0-9_]", "_", clip_id)
     if safe[0].isdigit():
@@ -295,7 +343,7 @@ def resolve_card_targets(raw_card_id, card_ids):
     ]
 
 
-def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
+def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, manifest=None):
     clip_id = entry["clip_id"]
     trigger = entry["trigger"]
     wav_rel = entry["wav"]
@@ -309,6 +357,7 @@ def validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate):
 
     gain_db = entry.get("gain_db", 0.0)
     pcm8, rate = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
+    pcm8 = apply_silence_trim(pcm8, manifest or {}, entry)
     if rate != sample_rate:
         raise SystemExit(f"{clip_id}: resample failed")
 
@@ -862,6 +911,7 @@ def render_voice_inventory_md(manifest, songs_meta):
         "- **Overall Change** — `(in-ROM − source) / source`; negative means the ROM blob is smaller.",
         "- **Total** row — sum of all registered clips (source vs in-ROM).",
         "- Playback decompresses DPCM to EWRAM PCM at runtime (~50% ROM savings vs raw 8-bit PCM).",
+        "- Build trims leading/trailing near-silence (|sample| ≤ 8) before DPCM encode unless disabled in the manifest.",
         "",
         "## Registered clips",
         "",
@@ -1001,16 +1051,25 @@ def dpcm_encoder_version(generator_path: Path) -> str:
     hasher.update(str(DPCM_BLOCK_SAMPLES).encode())
     hasher.update(str(PCM8_TARGET_PEAK).encode())
     hasher.update(str(M4A_WAVE_SAMPLE_RATE).encode())
+    hasher.update(str(PCM8_SILENCE_TRIM_DEFAULT).encode())
+    hasher.update(str(PCM8_SILENCE_TRIM_THRESHOLD).encode())
     return hasher.hexdigest()
 
 
 def clip_dpcm_cache_key(
-    wav_path: Path, gain_db: float, sample_rate: int, encoder_version: str
+    wav_path: Path,
+    gain_db: float,
+    sample_rate: int,
+    encoder_version: str,
+    trim_silence: bool,
+    trim_threshold: int,
 ) -> str:
     hasher = hashlib.sha256()
     hasher.update(encoder_version.encode())
     hasher.update(str(sample_rate).encode())
     hasher.update(repr(gain_db).encode())
+    hasher.update(str(trim_silence).encode())
+    hasher.update(str(trim_threshold).encode())
     hasher.update(wav_path.read_bytes())
     return hasher.hexdigest()
 
@@ -1044,8 +1103,17 @@ def get_or_encode_dpcm_payload(
     gain_db: float,
     sample_rate: int,
     encoder_version: str,
+    trim_silence: bool,
+    trim_threshold: int,
 ) -> bytes:
-    cache_key = clip_dpcm_cache_key(wav_path, gain_db, sample_rate, encoder_version)
+    cache_key = clip_dpcm_cache_key(
+        wav_path,
+        gain_db,
+        sample_rate,
+        encoder_version,
+        trim_silence,
+        trim_threshold,
+    )
     cached = load_cached_dpcm(clip_id, cache_key)
     if cached is not None:
         validate_dpcm_payload(pcm8, cached)
@@ -1142,11 +1210,13 @@ def main():
 
     for entry in clips:
         trigger = entry["trigger"]
-        validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate)
+        validate_clip(entry, ai_ids, opponent_ids, card_ids, sample_rate, manifest)
 
         wav_path = ASSETS / entry["wav"]
         gain_db = entry.get("gain_db", 0.0)
+        trim_silence, trim_threshold = resolve_trim_settings(manifest, entry)
         pcm8, _ = read_wav_mono_pcm8(wav_path, sample_rate, gain_db)
+        pcm8 = apply_silence_trim(pcm8, manifest, entry)
         pcm8, note, sample_count = prepare_pcm_and_note(pcm8)
         dpcm_payload = get_or_encode_dpcm_payload(
             entry["clip_id"],
@@ -1155,6 +1225,8 @@ def main():
             gain_db,
             sample_rate,
             encoder_version,
+            trim_silence,
+            trim_threshold,
         )
         sym = symbol_for_clip(entry["clip_id"])
         song_index = len(songs_meta)
