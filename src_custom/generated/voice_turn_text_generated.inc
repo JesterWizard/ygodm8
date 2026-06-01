@@ -12,3 +12,5 @@ static const u8 CustomVoice_rex_1_TurnText[] APPEND_RODATA = "$0My turn.$1My tur
 static const u8 CustomVoice_rex_2_TurnText[] APPEND_RODATA = "$0This is far from over!$1This is far from over!$2This is far from over!$3This is far from over!$4This is far from over!$5This is far from over!$6#1";
 static const u8 CustomVoice_mako_1_TurnText[] APPEND_RODATA = "$0It's my turn.$1It's my turn.$2It's my turn.$3It's my turn.$4It's my turn.$5It's my turn.$6#1";
 static const u8 CustomVoice_mako_2_TurnText[] APPEND_RODATA = "$0This duel is not over yet!$1This duel is not over yet!$2This duel is not over yet!$3This duel is not over yet!$4This duel is not over yet!$5This duel is not over yet!$6#1";
+static const u8 CustomVoice_dark_marik_1_TurnText[] APPEND_RODATA = "$0My turn.$1My turn.$2My turn.$3My turn.$4My turn.$5My turn.$6#1";
+static const u8 CustomVoice_dark_marik_2_TurnText[] APPEND_RODATA = "$0Nothing I can handle!$1Nothing I can handle!$2Nothing I can handle!$3Nothing I can handle!$4Nothing I can handle!$5Nothing I can handle!$6#1";

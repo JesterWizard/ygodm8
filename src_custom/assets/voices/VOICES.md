@@ -45,11 +45,14 @@ Sizes:
     <tr><td>Mako: It&#x27;s My Turn</td><td><code>mako/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>83,284 B (81.3 KB)</td><td>10,280 B (10.0 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Mako: This Duel Is Not </td><td><code>mako/this_duel_is_not_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>171,448 B (167.4 KB)</td><td>21,104 B (20.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Mako: I Attack You With</td><td><code>mako/i_attack_you_with_amphibian_beast.wav</code></td><td><code>attack_card</code></td><td>239,634 B (234.0 KB)</td><td>29,486 B (28.8 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>2,799,278 B (2733.7 KB)</strong></td><td><strong>344,704 B (336.6 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
+    <tr><td>Dark Marik: My Turn</td><td><code>dark_marik/my_turn.wav</code></td><td><code>turn_start</code></td><td>101,110 B (98.7 KB)</td><td>12,458 B (12.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Dark Marik: Nothing I C</td><td><code>dark_marik/nothing_i_cant_handle.wav</code></td><td><code>opponent_lp_below</code></td><td>148,964 B (145.5 KB)</td><td>18,332 B (17.9 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Dark Marik: Ra Cast You</td><td><code>dark_marik/ra_cast_your_rage_upon_my_foe.wav</code></td><td><code>attack_card</code></td><td>335,684 B (327.8 KB)</td><td>41,300 B (40.3 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>3,385,036 B (3305.7 KB)</strong></td><td><strong>416,794 B (407.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 21 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 24 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

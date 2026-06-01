@@ -206,6 +206,34 @@
       "card_id": "AMPHIBIAN_BEAST",
       "title": "Mako: I Attack You With Amphibian Beast!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_marik_1",
+      "duelist": ["DUELIST_DARK_MARIK_135"],
+      "wav": "dark_marik/my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Dark Marik: My Turn",
+      "turn_text": "My turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_marik_2",
+      "duelist": ["DUELIST_DARK_MARIK_135"],
+      "wav": "dark_marik/nothing_i_cant_handle.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Dark Marik: Nothing I Can Handle",
+      "turn_text": "Nothing I can handle!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_marik_3",
+      "duelist": ["DUELIST_DARK_MARIK_135"],
+      "wav": "dark_marik/ra_cast_your_rage_upon_my_foe.wav",
+      "trigger": "attack_card",
+      "card_id": "THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE",
+      "title": "Dark Marik: Ra Cast Your Rage Upon My Foe!",
+      "gain_db": 4.0
     }
   ]
 }

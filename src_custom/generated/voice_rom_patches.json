@@ -105,6 +105,21 @@
       "org": 11522380,
       "header_symbol": "CustomVoice_mako_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522388,
+      "header_symbol": "CustomVoice_dark_marik_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522396,
+      "header_symbol": "CustomVoice_dark_marik_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522404,
+      "header_symbol": "CustomVoice_dark_marik_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -190,6 +205,18 @@
     },
     {
       "org": 863293,
+      "mode": 3
+    },
+    {
+      "org": 863294,
+      "mode": 3
+    },
+    {
+      "org": 863295,
+      "mode": 3
+    },
+    {
+      "org": 863296,
       "mode": 3
     }
   ]
