@@ -16,3 +16,5 @@ static const u8 CustomVoice_dark_marik_1_TurnText[] APPEND_RODATA = "$0My turn.$
 static const u8 CustomVoice_dark_marik_2_TurnText[] APPEND_RODATA = "$0Nothing I can handle!$1Nothing I can handle!$2Nothing I can handle!$3Nothing I can handle!$4Nothing I can handle!$5Nothing I can handle!$6#1";
 static const u8 CustomVoice_dark_bakura_1_TurnText[] APPEND_RODATA = "$0It's my turn.$1It's my turn.$2It's my turn.$3It's my turn.$4It's my turn.$5It's my turn.$6#1";
 static const u8 CustomVoice_dark_bakura_2_TurnText[] APPEND_RODATA = "$0How dare you!$1How dare you!$2How dare you!$3How dare you!$4How dare you!$5How dare you!$6#1";
+static const u8 CustomVoice_bandit_keith_1_TurnText[] APPEND_RODATA = "$0It's my turn.$1It's my turn.$2It's my turn.$3It's my turn.$4It's my turn.$5It's my turn.$6#1";
+static const u8 CustomVoice_bandit_keith_2_TurnText[] APPEND_RODATA = "$0You ain't won yet!$1You ain't won yet!$2You ain't won yet!$3You ain't won yet!$4You ain't won yet!$5You ain't won yet!$6#1";

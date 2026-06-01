@@ -262,6 +262,34 @@
       "card_id": "PUPPET_MASTER",
       "title": "Dark Bakura: Puppet Master Attack!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "bandit_keith_1",
+      "duelist": ["DUELIST_BANDIT_KEITH_077"],
+      "wav": "bandit_keith/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Bandit Keith: It's My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "bandit_keith_2",
+      "duelist": ["DUELIST_BANDIT_KEITH_077"],
+      "wav": "bandit_keith/you_aint_won_yet.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Bandit Keith: You Ain't Won Yet",
+      "turn_text": "You ain't won yet!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "bandit_keith_3",
+      "duelist": ["DUELIST_BANDIT_KEITH_077"],
+      "wav": "bandit_keith/barrel_dragon_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "BARREL_DRAGON",
+      "title": "Bandit Keith: Barrel Dragon Attack!",
+      "gain_db": 4.0
     }
   ]
 }

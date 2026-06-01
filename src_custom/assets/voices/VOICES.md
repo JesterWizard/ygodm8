@@ -51,11 +51,14 @@ Sizes:
     <tr><td>Dark Bakura: It&#x27;s My Tu</td><td><code>dark_bakura/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>143,824 B (140.5 KB)</td><td>17,704 B (17.3 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Dark Bakura: How Dare Y</td><td><code>dark_bakura/how_dare_you.wav</code></td><td><code>opponent_lp_below</code></td><td>183,472 B (179.2 KB)</td><td>22,588 B (22.1 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
     <tr><td>Dark Bakura: Puppet Mas</td><td><code>dark_bakura/puppet_master_attack.wav</code></td><td><code>attack_card</code></td><td>213,346 B (208.3 KB)</td><td>26,252 B (25.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>3,780,788 B (3692.2 KB)</strong></td><td><strong>465,518 B (454.6 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
+    <tr><td>Bandit Keith: It&#x27;s My T</td><td><code>bandit_keith/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>96,966 B (94.7 KB)</td><td>11,930 B (11.7 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Bandit Keith: You Ain&#x27;t</td><td><code>bandit_keith/you_aint_won_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>112,588 B (109.9 KB)</td><td>13,876 B (13.6 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td>Bandit Keith: Barrel Dr</td><td><code>bandit_keith/barrel_dragon_attack.wav</code></td><td><code>attack_card</code></td><td>151,566 B (148.0 KB)</td><td>18,662 B (18.2 KB)</td><td><span style="color: #3fb950">-87.7%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,141,908 B (4044.8 KB)</strong></td><td><strong>509,986 B (498.0 KB)</strong></td><td><strong><span style="color: #3fb950">-87.7%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 27 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 30 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

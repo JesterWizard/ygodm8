@@ -135,6 +135,21 @@
       "org": 11522428,
       "header_symbol": "CustomVoice_dark_bakura_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522436,
+      "header_symbol": "CustomVoice_bandit_keith_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522444,
+      "header_symbol": "CustomVoice_bandit_keith_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522452,
+      "header_symbol": "CustomVoice_bandit_keith_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -244,6 +259,18 @@
     },
     {
       "org": 863299,
+      "mode": 3
+    },
+    {
+      "org": 863300,
+      "mode": 3
+    },
+    {
+      "org": 863301,
+      "mode": 3
+    },
+    {
+      "org": 863302,
       "mode": 3
     }
   ]
