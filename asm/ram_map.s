@@ -119,6 +119,9 @@ _kernel_malloc_ewram_array gCustomTotalCardQty, CUSTOM_CARD_QTY_BYTES
 @ Custom trunk menu list tail (u16 card IDs) and sort scratch (vanilla + custom entries).
 _kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
 _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
+@ Cached trunk list size when hide_unowned_trunk_cards is enabled (avoids full scans per scroll).
+_kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
+_kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 
 @ Multiple player decks (decks 2/3 card lists; deck 1 uses vanilla gDeckMenu/save data).
 .set PLAYER_DECK_CARD_BYTES, 0x50

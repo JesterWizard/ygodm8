@@ -55,6 +55,7 @@ void ScalePriceToQty (void);
 void SortCardsAccordingToContext(void);
 void sub_802FF78(u8 *, u16);
 void sub_802FFF0(u8 *, u16);
+void SyncCustomTrunkCardQtyMirror(u16 cardId);
 
 static u16 GetShopCustomCardCount(void) {
   return gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0;
@@ -94,7 +95,7 @@ static void CopyShopQtyToTemps(void) {
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
     cardId = CUSTOM_CARD_START + i;
     gShopTempCardQty[cardId] = gShopCardQty[cardId];
-    gPlayerTempCardQty[cardId] = gTrunkCardQty[cardId];
+    gCustomPlayerTempCardQty[i] = gCustomTrunkCardQty[i];
   }
 }
 
@@ -110,10 +111,9 @@ static void CommitShopResults(void) {
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
     cardId = CUSTOM_CARD_START + i;
     gShopCardQty[cardId] = gShopTempCardQty[cardId];
-    gTrunkCardQty[cardId] = gPlayerTempCardQty[cardId];
     gCustomShopCardQty[i] = gShopCardQty[cardId];
-    gCustomTrunkCardQty[i] = gTrunkCardQty[cardId];
-    gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[cardId];
+    gCustomTrunkCardQty[i] = gCustomPlayerTempCardQty[i];
+    SyncCustomTrunkCardQtyMirror(cardId);
   }
 }
 
@@ -317,9 +317,8 @@ void InitNewGameShopCards__Replacement(void) {
     else
       gShopCardQty[CUSTOM_CARD_START + i] = 0;
 
-    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gTrunkCardQty[CUSTOM_CARD_START + i];
+    gCustomPlayerTempCardQty[i] = gCustomTrunkCardQty[i];
     gCustomShopCardQty[i] = gShopCardQty[CUSTOM_CARD_START + i];
-    gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[CUSTOM_CARD_START + i];
   }
 }
 

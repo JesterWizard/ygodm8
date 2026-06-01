@@ -31,11 +31,14 @@ u16 sub_8035170(void);
 u16 sub_800B134(void);
 u16 sub_800B158(void);
 
+extern void SyncAllCustomTrunkCardQtyMirrorsToVanilla(void);
+extern void SyncAllCustomTrunkCardQtyMirrorsFromVanilla(void);
+
 static void SyncCustomCardQtyToFlashBuffers(void) {
   u16 i;
 
+  SyncAllCustomTrunkCardQtyMirrorsFromVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gCustomTrunkCardQty[i] = gTrunkCardQty[CUSTOM_CARD_START + i];
     gCustomShopCardQty[i] = gShopCardQty[CUSTOM_CARD_START + i];
     gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[CUSTOM_CARD_START + i];
   }
@@ -44,8 +47,8 @@ static void SyncCustomCardQtyToFlashBuffers(void) {
 static void SyncCustomCardQtyFromFlashBuffers(void) {
   u16 i;
 
+  SyncAllCustomTrunkCardQtyMirrorsToVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gTrunkCardQty[CUSTOM_CARD_START + i] = gCustomTrunkCardQty[i];
     gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
     gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
   }

@@ -35,6 +35,7 @@ extern struct {
 extern u32 gLfsrState;
 extern void (*g20245AC)(int, u8 *, int);
 unsigned short GetNthCardOnScreen(u8);
+void SyncAllCustomTrunkCardQtyMirrorsToVanilla(void);
 int GetTrunkCardQty(unsigned short);
 int sub_80588C4(u8 *, int, int);
 void sub_800BD44(void);
@@ -456,8 +457,8 @@ void sub_803519C__Replacement(void) {
   g20245AC((int)gCustomShopCardQtyFlashPrimary, gCustomShopCardQty, NUM_CUSTOM_CARDS);
   g20245AC((int)gCustomPlayerTempCardQtyFlashPrimary, gCustomPlayerTempCardQty, NUM_CUSTOM_CARDS);
 
+  SyncAllCustomTrunkCardQtyMirrorsToVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gTrunkCardQty[CUSTOM_CARD_START + i] = gCustomTrunkCardQty[i];
     gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
     gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
   }

@@ -2,8 +2,8 @@
 #include "card.h"
 #include "configs/runtime.h"
 
-extern unsigned char gTrunkCardQty[];
 extern u8 GetPlayerDeckSize(void);
+extern u8 TrunkMenu_GetTrunkQty(u16 cardId);
 unsigned short sub_800DA48(unsigned short);
 unsigned short sub_800DA88(void);
 
@@ -17,7 +17,7 @@ static u8 GetRuntimeDeckLimit(void) {
 
 LYN_REPLACE_CHECK(sub_800DA48);
 unsigned short sub_800DA48__Replacement(unsigned short cardId) {
-  if (!gTrunkCardQty[cardId])
+  if (!TrunkMenu_GetTrunkQty(cardId))
     return 0x4000;
   if (CardExceedsCurrentDuelistLevel(cardId))
     return 0x4000;
