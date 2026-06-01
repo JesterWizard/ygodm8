@@ -144,6 +144,12 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 @ Debug menu: AI controls both duelists when enabled.
 _kernel_malloc_ewram gDebugAiBothSidesMode, 1
 
+@ Debug deck preset swap: original deck 1 backup in EWRAM (40 x u16) while a preset is active.
+_kernel_malloc_ewram_array gDebugDeckSwapBackup, PLAYER_DECK_CARD_BYTES
+_kernel_malloc_ewram gDebugDeckSwapActivePreset, 1
+@ TRUE when gDebugDeckSwapBackup holds the saved original deck (also mirrored to flash on save).
+_kernel_malloc_ewram gDebugDeckSwapBackupValid, 1
+
 @ Scratch for temporarily restoring the active deck while building the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
@@ -202,3 +208,5 @@ _kernel_malloc_flash gPlayerDeck3Capacity,     0x4
 _kernel_malloc_flash gActiveDeckIndex,         0x1
 _kernel_malloc_flash gPlayerDeckSaveMagic,     0x1
 _kernel_malloc_flash gDebugAiBothSidesMode,    0x1
+_kernel_malloc_flash gDebugDeckSwapBackup,     PLAYER_DECK_CARD_BYTES
+_kernel_malloc_flash gDebugDeckSwapBackupValid, 0x1

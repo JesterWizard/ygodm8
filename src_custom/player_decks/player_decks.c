@@ -1,24 +1,26 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "debug_deck_swap.h"
 #include "player_decks.h"
 #include "duel.h"
 
 extern unsigned gDeckCapacity;
 extern void InitDeckData(void);
 extern u8 GetDeckCardQty(u16 cardId);
-extern u8 *g8E0CD10;
-
 extern void (*g20245AC)(int, u8 *, int);
+extern u8 *g8E0CD10;
 int sub_80588C4(u8 *, int, int);
 
 #define PLAYER_DECK_SAVE_MAGIC 0xD5
-#define VANILLA_DECK_SAVE_OFFSET 0x332
+/* Byte offset of deck 1 (40 x u16) inside the vanilla 0x747 save blob. */
+#define PLAYER_DECK1_SAVE_BUFFER_OFFSET 0x332
 
 #define sDeck1Cards ((u16 *)gPlayerDeckSaveStaging)
 #define sSaveRestoreActiveDeck (gPlayerDeckSaveStaging[0x53])
 
 static void NormalizeActiveDeckIndex(void);
 static u8 IsCompleteDeck(const u16 *cards);
+static u8 DeckHasAnyValidCard(const u16 *cards);
 
 static u16 *GetDeckCardsBacking(u8 deckIndex) {
   switch (deckIndex) {
@@ -36,24 +38,47 @@ static void CopyDeckCards(u16 *dest, const u16 *src) {
     dest[i] = src[i];
 }
 
-static u16 *GetVanillaSaveDeckCards(void) {
-  return (u16 *)(g8E0CD10 + VANILLA_DECK_SAVE_OFFSET);
-}
-
-static void SaveDeck1ToVanillaSaveBuffer(void) {
+static void SaveDeck1ToStaging(void) {
   CopyDeckCards(sDeck1Cards, gDeckMenu.cards);
-  CopyDeckCards(GetVanillaSaveDeckCards(), gDeckMenu.cards);
 }
 
-static void SyncDeck1FromVanillaSaveBuffer(void) {
-  CopyDeckCards(sDeck1Cards, GetVanillaSaveDeckCards());
+static void SyncDeck1ToSaveBuffer(void) {
+  CopyDeckCards((u16 *)(g8E0CD10 + PLAYER_DECK1_SAVE_BUFFER_OFFSET), sDeck1Cards);
+}
+
+static void SyncDeck1StagingFromSaveSlotMenu(void) {
+  CopyDeckCards(sDeck1Cards, gDeckMenu.cards);
+}
+
+static u8 DeckHasAnyValidCard(const u16 *cards) {
+  u8 i;
+
+  for (i = 0; i < DECK_SIZE; i++) {
+    if (cards[i] != CARD_NONE && cards[i] < NUM_TOTAL_CARDS)
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 static void LoadDeck1FromVanillaStorage(void) {
-  if (IsCompleteDeck(sDeck1Cards) != TRUE)
-    SyncDeck1FromVanillaSaveBuffer();
+  if (DebugDeckSwap_GetActivePreset() != DEBUG_DECK_SWAP_INACTIVE) {
+    DebugDeckSwap_RefreshDeck1IfActive();
+    InitDeckData();
+    return;
+  }
 
-  if (IsCompleteDeck(sDeck1Cards) == TRUE)
+  if (IsCompleteDeck(sDeck1Cards) == TRUE) {
+    CopyDeckCards(gDeckMenu.cards, sDeck1Cards);
+    return;
+  }
+
+  if (DeckHasAnyValidCard(gDeckMenu.cards) == TRUE) {
+    SaveDeck1ToStaging();
+    return;
+  }
+
+  if (DeckHasAnyValidCard(sDeck1Cards) == TRUE)
     CopyDeckCards(gDeckMenu.cards, sDeck1Cards);
 }
 
@@ -61,10 +86,6 @@ static void LoadDeckCardsFromBacking(u8 deckIndex) {
   u16 *backing;
 
   if (deckIndex == PLAYER_DECK_INDEX_MIN) {
-    if (gActiveDeckIndex == PLAYER_DECK_INDEX_MIN &&
-        IsCompleteDeck(sDeck1Cards) != TRUE &&
-        IsCompleteDeck(gDeckMenu.cards) == TRUE)
-      SaveDeck1ToVanillaSaveBuffer();
     LoadDeck1FromVanillaStorage();
     return;
   }
@@ -78,7 +99,7 @@ static void SaveDeckCardsToBacking(u8 deckIndex) {
   u16 *backing;
 
   if (deckIndex == PLAYER_DECK_INDEX_MIN) {
-    SaveDeck1ToVanillaSaveBuffer();
+    SaveDeck1ToStaging();
     return;
   }
 
@@ -247,7 +268,8 @@ void PlayerDecks_InitNewGame(void) {
     return;
 
   gActiveDeckIndex = PLAYER_DECK_INDEX_MIN;
-  SaveDeck1ToVanillaSaveBuffer();
+  ClearDeckCards(sDeck1Cards);
+  SaveDeck1ToStaging();
   ClearDeckCards(gPlayerDeck2Cards);
   ClearDeckCards(gPlayerDeck3Cards);
 }
@@ -274,7 +296,7 @@ void PlayerDecks_OnSaveSlotRead(void) {
   if (PlayerDecks_IsEnabled() != TRUE)
     return;
 
-  SyncDeck1FromVanillaSaveBuffer();
+  SyncDeck1StagingFromSaveSlotMenu();
 
   if (LoadDecksFromFlashPrimary() != TRUE)
     InitUnsavedExtraDecks();
@@ -292,7 +314,7 @@ void PlayerDecks_OnSaveSlotReadBackup(void) {
   if (PlayerDecks_IsEnabled() != TRUE)
     return;
 
-  SyncDeck1FromVanillaSaveBuffer();
+  SyncDeck1StagingFromSaveSlotMenu();
 
   if (LoadDecksFromFlashBackup() != TRUE)
     InitUnsavedExtraDecks();
@@ -315,7 +337,8 @@ void PlayerDecks_PrepareVanillaSaveBuffer(void) {
   sSaveRestoreActiveDeck = active;
 
   if (active != PLAYER_DECK_INDEX_MIN) {
-    LoadDeck1FromVanillaStorage();
+    if (IsCompleteDeck(sDeck1Cards) == TRUE)
+      CopyDeckCards(gDeckMenu.cards, sDeck1Cards);
     InitDeckData();
   }
 }
@@ -333,4 +356,54 @@ void PlayerDecks_RestoreAfterVanillaSaveBuffer(void) {
     LoadDeckCardsFromBacking(active);
     InitDeckData();
   }
+}
+
+void PlayerDecks_ReadDeck1(u16 *dest) {
+  if (PlayerDecks_IsEnabled() != TRUE) {
+    CopyDeckCards(dest, gDeckMenu.cards);
+    return;
+  }
+
+  NormalizeActiveDeckIndex();
+
+  if (gActiveDeckIndex == PLAYER_DECK_INDEX_MIN) {
+    CopyDeckCards(dest, gDeckMenu.cards);
+    return;
+  }
+
+  PlayerDecks_FlushActive();
+  CopyDeckCards(dest, sDeck1Cards);
+}
+
+void PlayerDecks_WriteDeck1(const u16 *src) {
+  if (PlayerDecks_IsEnabled() != TRUE) {
+    CopyDeckCards(gDeckMenu.cards, src);
+    InitDeckData();
+    SyncDeck1ToSaveBuffer();
+    return;
+  }
+
+  NormalizeActiveDeckIndex();
+
+  CopyDeckCards(sDeck1Cards, src);
+
+  if (gActiveDeckIndex == PLAYER_DECK_INDEX_MIN) {
+    CopyDeckCards(gDeckMenu.cards, src);
+    InitDeckData();
+  }
+
+  SyncDeck1ToSaveBuffer();
+}
+
+void PlayerDecks_ReplaceDeck1(const u16 *src) {
+  if (PlayerDecks_IsEnabled() == TRUE)
+    gActiveDeckIndex = PLAYER_DECK_INDEX_MIN;
+
+  CopyDeckCards(gDeckMenu.cards, src);
+
+  if (PlayerDecks_IsEnabled() == TRUE)
+    CopyDeckCards(sDeck1Cards, src);
+
+  InitDeckData();
+  SyncDeck1ToSaveBuffer();
 }

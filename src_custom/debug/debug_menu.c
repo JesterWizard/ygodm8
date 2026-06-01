@@ -20,6 +20,7 @@ static const u8 sText_RootMatchSetter[] APPEND_RODATA = "$0Match Setter   ";
 static const u8 sText_RootMap[] APPEND_RODATA = "$0Map Teleport    ";
 static const u8 sText_RootScene[] APPEND_RODATA = "$0Scene Viewer    ";
 static const u8 sText_RootAiMode[] APPEND_RODATA = "$0AI Mode         ";
+static const u8 sText_RootDeckPreset[] APPEND_RODATA = "$0Deck Presets    ";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
@@ -31,6 +32,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMap,
     sText_RootScene,
     sText_RootAiMode,
+    sText_RootDeckPreset,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
@@ -226,6 +228,9 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_SCENE:
     DebugMenuDrawScenes(scrollTop, marker);
     break;
+  case DEBUG_VIEW_DECK_PRESET:
+    DebugMenuDrawDecks(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
@@ -354,8 +359,10 @@ static void DebugMenuRoot(void) {
         DebugMapViewer();
       else if (cursor == 8)
         DebugSceneViewer();
-      else
+      else if (cursor == 9)
         DebugAiModeViewer();
+      else
+        DebugDeckPresetViewer();
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS)

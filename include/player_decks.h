@@ -34,5 +34,8 @@ void PlayerDecks_OnSaveSlotRead(void);
 void PlayerDecks_OnSaveSlotReadBackup(void);
 void PlayerDecks_PrepareVanillaSaveBuffer(void);
 void PlayerDecks_RestoreAfterVanillaSaveBuffer(void);
+void PlayerDecks_ReadDeck1(u16 *dest);
+void PlayerDecks_WriteDeck1(const u16 *src);
+void PlayerDecks_ReplaceDeck1(const u16 *src);
 
 #endif
