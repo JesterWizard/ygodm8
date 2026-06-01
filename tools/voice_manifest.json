@@ -234,6 +234,34 @@
       "card_id": "THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE",
       "title": "Dark Marik: Behold My Great Beast!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_bakura_1",
+      "duelist": ["DUELIST_DARK_BAKURA_136"],
+      "wav": "dark_bakura/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Dark Bakura: It's My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_bakura_2",
+      "duelist": ["DUELIST_DARK_BAKURA_136"],
+      "wav": "dark_bakura/how_dare_you.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Dark Bakura: How Dare You",
+      "turn_text": "How dare you!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "dark_bakura_3",
+      "duelist": ["DUELIST_DARK_BAKURA_136"],
+      "wav": "dark_bakura/puppet_master_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "PUPPET_MASTER",
+      "title": "Dark Bakura: Puppet Master Attack!",
+      "gain_db": 4.0
     }
   ]
 }

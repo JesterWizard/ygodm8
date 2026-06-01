@@ -120,6 +120,21 @@
       "org": 11522404,
       "header_symbol": "CustomVoice_dark_marik_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522412,
+      "header_symbol": "CustomVoice_dark_bakura_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522420,
+      "header_symbol": "CustomVoice_dark_bakura_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522428,
+      "header_symbol": "CustomVoice_dark_bakura_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -217,6 +232,18 @@
     },
     {
       "org": 863296,
+      "mode": 3
+    },
+    {
+      "org": 863297,
+      "mode": 3
+    },
+    {
+      "org": 863298,
+      "mode": 3
+    },
+    {
+      "org": 863299,
       "mode": 3
     }
   ]

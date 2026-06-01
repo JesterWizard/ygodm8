@@ -46,6 +46,12 @@ extern u8 CustomVoice_dark_marik_2_Wave[];
 extern u8 CustomVoice_dark_marik_2_Part[];
 extern u8 CustomVoice_dark_marik_3_Wave[];
 extern u8 CustomVoice_dark_marik_3_Part[];
+extern u8 CustomVoice_dark_bakura_1_Wave[];
+extern u8 CustomVoice_dark_bakura_1_Part[];
+extern u8 CustomVoice_dark_bakura_2_Wave[];
+extern u8 CustomVoice_dark_bakura_2_Part[];
+extern u8 CustomVoice_dark_bakura_3_Wave[];
+extern u8 CustomVoice_dark_bakura_3_Part[];
 
 struct CustomVoiceRomClip {
   const struct WaveData *dpcmWave;
@@ -77,4 +83,7 @@ static const struct CustomVoiceRomClip sCustomVoiceRomClips[] APPEND_RODATA = {
   { (const struct WaveData *)&CustomVoice_dark_marik_1_Wave, CustomVoice_dark_marik_1_Part },
   { (const struct WaveData *)&CustomVoice_dark_marik_2_Wave, CustomVoice_dark_marik_2_Part },
   { (const struct WaveData *)&CustomVoice_dark_marik_3_Wave, CustomVoice_dark_marik_3_Part },
+  { (const struct WaveData *)&CustomVoice_dark_bakura_1_Wave, CustomVoice_dark_bakura_1_Part },
+  { (const struct WaveData *)&CustomVoice_dark_bakura_2_Wave, CustomVoice_dark_bakura_2_Part },
+  { (const struct WaveData *)&CustomVoice_dark_bakura_3_Wave, CustomVoice_dark_bakura_3_Part },
 };
