@@ -276,6 +276,7 @@ u8 ProcessInput__Replacement(void) {
     if (gRuntimeConfig.enable_debug_menu == TRUE && !(gPressedButtons & 0xF0)) {
       PlayMusic(SFX_SELECT);
       DebugMenuMain();
+      DebugMenu_ApplyPendingMapTeleport();
       OverworldRestoreAfterDebugMenu();
       PlayOverworldMusic();
       /* Match START_MENU: restore without running sub_804EF10 on this frame. */

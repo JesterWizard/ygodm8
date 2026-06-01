@@ -60,6 +60,9 @@ _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 @ Debug Match Setter: selected duelist table index + 1, or 0 for none.
 _kernel_malloc gDebugMatchSetterSelection, 1
 
+@ Map Teleport viewer: overworld map id when the viewer opened (0xFF = no pending change).
+_kernel_malloc gDebugMenuMapViewerInitialLocation, 1
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 

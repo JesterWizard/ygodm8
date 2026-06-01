@@ -3,5 +3,6 @@
 
 void DebugMenuMain(void);
 void DebugMenuClearPortraitObjStash(void);
+void DebugMenu_ApplyPendingMapTeleport(void);
 
 #endif // GUARD_DEBUG_MENU_H
