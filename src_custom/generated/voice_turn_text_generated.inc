@@ -20,3 +20,5 @@ static const u8 CustomVoice_bandit_keith_1_TurnText[] APPEND_RODATA = "$0It's my
 static const u8 CustomVoice_bandit_keith_2_TurnText[] APPEND_RODATA = "$0You ain't won yet!$1You ain't won yet!$2You ain't won yet!$3You ain't won yet!$4You ain't won yet!$5You ain't won yet!$6#1";
 static const u8 CustomVoice_ishizu_1_TurnText[] APPEND_RODATA = "$0My turn.$1My turn.$2My turn.$3My turn.$4My turn.$5My turn.$6#1";
 static const u8 CustomVoice_ishizu_2_TurnText[] APPEND_RODATA = "$0You will regret that!$1You will regret that!$2You will regret that!$3You will regret that!$4You will regret that!$5You will regret that!$6#1";
+static const u8 CustomVoice_odion_1_TurnText[] APPEND_RODATA = "$0Prepare yours.$1Prepare yours.$2Prepare yours.$3Prepare yours.$4Prepare yours.$5Prepare yours.$6#1";
+static const u8 CustomVoice_odion_2_TurnText[] APPEND_RODATA = "$0This is nothing!$1This is nothing!$2This is nothing!$3This is nothing!$4This is nothing!$5This is nothing!$6#1";

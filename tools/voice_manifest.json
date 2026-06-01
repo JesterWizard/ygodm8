@@ -320,6 +320,34 @@
       "card_id": "KELDO",
       "title": "Ishizu: I Attack You With Keldo!",
       "gain_db": 4.0
+    },
+    {
+      "clip_id": "odion_1",
+      "duelist": ["DUELIST_ODION_157"],
+      "wav": "odion/prepare_yourself.wav",
+      "trigger": "turn_start",
+      "title": "Odion: Prepare Yours",
+      "turn_text": "Prepare yours.",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "odion_2",
+      "duelist": ["DUELIST_ODION_157"],
+      "wav": "odion/this_is_nothing.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Odion: This Is Nothing",
+      "turn_text": "This is nothing!",
+      "gain_db": 4.0
+    },
+    {
+      "clip_id": "odion_3",
+      "duelist": ["DUELIST_ODION_157"],
+      "wav": "odion/mystical_beast_of_serket.wav",
+      "trigger": "attack_card",
+      "card_id": "MYSTICAL_BEAST_SERKET",
+      "title": "Odion: Mystical Beast of Serket",
+      "gain_db": 4.0
     }
   ]
 }

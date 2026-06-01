@@ -36,7 +36,7 @@ PREPROC  := tools/preproc/preproc$(EXE)
 
 CPPFLAGS := -I tools/agbcc/include -I tools/agbcc -iquote . -iquote include -Wno-trigraphs
 CFLAGS   := -mthumb-interwork -Wimplicit -Werror -O2 -fhex-asm -fshort-enums -fprologue-bugfix
-ASFLAGS  := -mcpu=arm7tdmi
+ASFLAGS  := -mcpu=arm7tdmi -I asm
 
 
 C_SUBDIR = src
@@ -105,7 +105,7 @@ VOICE_GENERATOR := tools/generate_voices.py
 VOICE_MANIFEST := tools/voice_manifest.json
 VOICE_WAV_DEPS := $(wildcard src_custom/assets/voices/**/*.wav)
 VOICE_STAMP := $(BUILD_DIR)/.voice_generated.stamp
-VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md generated/voice_memory_sizes.inc
+VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md
 VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
 FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py
@@ -364,7 +364,7 @@ src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.pn
 
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
-$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc generated/voice_memory_sizes.inc
+$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	@echo "AS      $<"

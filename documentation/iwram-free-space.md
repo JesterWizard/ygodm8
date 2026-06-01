@@ -24,7 +24,9 @@ The current IWRAM layout is best understood in three layers:
 
 | Layer | Range | Meaning |
 |--------|--------|---------|
-| Fixed runtime globals | `0x03000000-0x03001477` | Directly referenced IWRAM state and work areas used by the game |
+| HQ mixer (IWRAM image) | `0x03000000-0x03000AB7` | Copied from ROM at `sub_80595C4` (~0xAB8 bytes; vanilla was ~0x400) |
+| Fixed runtime globals | `0x03000AB8-0x03001477` | Directly referenced IWRAM state and work areas (layout shifted vs. vanilla) |
+| IntrMain IWRAM stub (`g3000400`) | `0x03001A00-0x030021FF` | Relocated from `0x03000400` so the HQ mixer does not clobber it |
 | Temporary buffers | `0x03001478-0x03001677` | Two `0x100`-byte blocks copied by `sub_80327C8` |
 | Free space | `0x03001678-0x03007DFF` | Currently unused by the linker layout and safe for new IWRAM allocations |
 | Reserved startup area | `0x03007E00-0x03007FFF` | Stack and IRQ vector area reserved by startup code |

@@ -228,7 +228,8 @@ SECTIONS
     gDigitBufferU16 = 0x2021BD0;
     g2025840 = 0x2025840;
 
-    g3000400 = 0x3000400;
+    /* IntrMain IWRAM copy (0x800 bytes). Must stay above the HQ mixer blob (~0xAB8 @ 0x03000000). */
+    g3000400 = 0x03001A00;
     g3000C00 = 0x3000C00;
     g3000C38 = 0x03000C38;
     g3000C6C = 0x03000C6C;
@@ -1008,6 +1009,7 @@ SECTIONS
 
     .append_text :
     {
+        asm/m4a_hq_mixer.o(.text);
         *(.append_text);
     }
 

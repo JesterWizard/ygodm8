@@ -1,5 +1,150 @@
 {
-  "tone_patches": [],
+  "tone_patches": [
+    {
+      "org": 11515148,
+      "wave_symbol": "CustomVoice_duke_1_Wave"
+    },
+    {
+      "org": 11515160,
+      "wave_symbol": "CustomVoice_duke_2_Wave"
+    },
+    {
+      "org": 11515172,
+      "wave_symbol": "CustomVoice_duke_3_Wave"
+    },
+    {
+      "org": 11515184,
+      "wave_symbol": "CustomVoice_tristan_1_Wave"
+    },
+    {
+      "org": 11515196,
+      "wave_symbol": "CustomVoice_tristan_2_Wave"
+    },
+    {
+      "org": 11515208,
+      "wave_symbol": "CustomVoice_tristan_3_Wave"
+    },
+    {
+      "org": 11515220,
+      "wave_symbol": "CustomVoice_mai_1_Wave"
+    },
+    {
+      "org": 11515232,
+      "wave_symbol": "CustomVoice_mai_2_Wave"
+    },
+    {
+      "org": 11515244,
+      "wave_symbol": "CustomVoice_mai_3_Wave"
+    },
+    {
+      "org": 11515256,
+      "wave_symbol": "CustomVoice_tea_1_Wave"
+    },
+    {
+      "org": 11515268,
+      "wave_symbol": "CustomVoice_tea_2_Wave"
+    },
+    {
+      "org": 11515280,
+      "wave_symbol": "CustomVoice_tea_3_Wave"
+    },
+    {
+      "org": 11515292,
+      "wave_symbol": "CustomVoice_weevil_1_Wave"
+    },
+    {
+      "org": 11515304,
+      "wave_symbol": "CustomVoice_weevil_2_Wave"
+    },
+    {
+      "org": 11515316,
+      "wave_symbol": "CustomVoice_weevil_3_Wave"
+    },
+    {
+      "org": 11515328,
+      "wave_symbol": "CustomVoice_rex_1_Wave"
+    },
+    {
+      "org": 11515340,
+      "wave_symbol": "CustomVoice_rex_2_Wave"
+    },
+    {
+      "org": 11515352,
+      "wave_symbol": "CustomVoice_rex_3_Wave"
+    },
+    {
+      "org": 11515364,
+      "wave_symbol": "CustomVoice_mako_1_Wave"
+    },
+    {
+      "org": 11515376,
+      "wave_symbol": "CustomVoice_mako_2_Wave"
+    },
+    {
+      "org": 11515388,
+      "wave_symbol": "CustomVoice_mako_3_Wave"
+    },
+    {
+      "org": 11515400,
+      "wave_symbol": "CustomVoice_dark_marik_1_Wave"
+    },
+    {
+      "org": 11515412,
+      "wave_symbol": "CustomVoice_dark_marik_2_Wave"
+    },
+    {
+      "org": 11515424,
+      "wave_symbol": "CustomVoice_dark_marik_3_Wave"
+    },
+    {
+      "org": 11515436,
+      "wave_symbol": "CustomVoice_dark_bakura_1_Wave"
+    },
+    {
+      "org": 11515448,
+      "wave_symbol": "CustomVoice_dark_bakura_2_Wave"
+    },
+    {
+      "org": 11515460,
+      "wave_symbol": "CustomVoice_dark_bakura_3_Wave"
+    },
+    {
+      "org": 11515472,
+      "wave_symbol": "CustomVoice_bandit_keith_1_Wave"
+    },
+    {
+      "org": 11515484,
+      "wave_symbol": "CustomVoice_bandit_keith_2_Wave"
+    },
+    {
+      "org": 11515496,
+      "wave_symbol": "CustomVoice_bandit_keith_3_Wave"
+    },
+    {
+      "org": 11515508,
+      "wave_symbol": "CustomVoice_ishizu_1_Wave"
+    },
+    {
+      "org": 11515520,
+      "wave_symbol": "CustomVoice_ishizu_2_Wave"
+    },
+    {
+      "org": 11515532,
+      "wave_symbol": "CustomVoice_ishizu_3_Wave"
+    },
+    {
+      "org": 11515544,
+      "wave_symbol": "CustomVoice_odion_1_Wave"
+    },
+    {
+      "org": 11515556,
+      "wave_symbol": "CustomVoice_odion_2_Wave"
+    },
+    {
+      "org": 11515568,
+      "wave_symbol": "CustomVoice_odion_3_Wave"
+    }
+  ],
   "song_patches": [
     {
       "org": 11522220,
@@ -165,6 +310,21 @@
       "org": 11522476,
       "header_symbol": "CustomVoice_ishizu_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522484,
+      "header_symbol": "CustomVoice_odion_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522492,
+      "header_symbol": "CustomVoice_odion_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522500,
+      "header_symbol": "CustomVoice_odion_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -298,6 +458,18 @@
     },
     {
       "org": 863305,
+      "mode": 3
+    },
+    {
+      "org": 863306,
+      "mode": 3
+    },
+    {
+      "org": 863307,
+      "mode": 3
+    },
+    {
+      "org": 863308,
       "mode": 3
     }
   ]

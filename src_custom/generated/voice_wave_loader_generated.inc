@@ -64,6 +64,12 @@ extern u8 CustomVoice_ishizu_2_Wave[];
 extern u8 CustomVoice_ishizu_2_Part[];
 extern u8 CustomVoice_ishizu_3_Wave[];
 extern u8 CustomVoice_ishizu_3_Part[];
+extern u8 CustomVoice_odion_1_Wave[];
+extern u8 CustomVoice_odion_1_Part[];
+extern u8 CustomVoice_odion_2_Wave[];
+extern u8 CustomVoice_odion_2_Part[];
+extern u8 CustomVoice_odion_3_Wave[];
+extern u8 CustomVoice_odion_3_Part[];
 
 struct CustomVoiceRomClip {
   const struct WaveData *dpcmWave;
@@ -104,4 +110,7 @@ static const struct CustomVoiceRomClip sCustomVoiceRomClips[] APPEND_RODATA = {
   { (const struct WaveData *)&CustomVoice_ishizu_1_Wave, CustomVoice_ishizu_1_Part },
   { (const struct WaveData *)&CustomVoice_ishizu_2_Wave, CustomVoice_ishizu_2_Part },
   { (const struct WaveData *)&CustomVoice_ishizu_3_Wave, CustomVoice_ishizu_3_Part },
+  { (const struct WaveData *)&CustomVoice_odion_1_Wave, CustomVoice_odion_1_Part },
+  { (const struct WaveData *)&CustomVoice_odion_2_Wave, CustomVoice_odion_2_Part },
+  { (const struct WaveData *)&CustomVoice_odion_3_Wave, CustomVoice_odion_3_Part },
 };

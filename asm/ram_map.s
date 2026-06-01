@@ -1,7 +1,6 @@
 .section .rodata
 
 .include "generated/card_memory_sizes.inc"
-.include "generated/voice_memory_sizes.inc"
 
 @ Absolute memory symbols used by the custom code.
 @
@@ -42,6 +41,9 @@ SET_DATA UsedFreeRamSpaceTop, FreeRamSpaceBottom
     .set UsedFreeRamSpaceTop, UsedFreeRamSpaceTop - \size
     SET_DATA \name, UsedFreeRamSpaceTop
 .endm
+
+@ m4a HQ mixer 16-bit mix buffer (0x580 bytes). Placed after g3000400 @ 0x03001A00.
+SET_DATA gM4aHqMixBuffer, 0x03002200
 
 @ Randomized card costs live in IWRAM for maximum speed.
 _kernel_malloc sRandomizedCardCosts, 0x652
@@ -153,12 +155,6 @@ _kernel_malloc_ewram gDebugDeckSwapBackupValid, 1
 @ Scratch for temporarily restoring the active deck while building the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
 _kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
-
-@ m4a custom voice clips: DPCM in ROM, decode to PCM in EWRAM at playback.
-_kernel_malloc_ewram_array gCustomVoiceWaveBuffer, CUSTOM_VOICE_PCM_BUFFER_BYTES
-_kernel_malloc_ewram gCustomVoiceTone, 0xC
-_kernel_malloc_ewram gCustomVoiceSongHeader, 0x10
-_kernel_malloc_ewram_array gCustomVoicePartTrack, CUSTOM_VOICE_PART_TRACK_BYTES
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
