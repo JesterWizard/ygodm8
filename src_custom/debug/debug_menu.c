@@ -14,6 +14,7 @@ static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
 static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
 static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
 static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
+static const u8 sText_RootGraphic[] APPEND_RODATA = "$0Graphic Viewer  ";
 static const u8 sText_RootVoice[] APPEND_RODATA = "$0Voice Viewer   ";
 static const u8 sText_RootMatchSetter[] APPEND_RODATA = "$0Match Setter   ";
 static const u8 sText_RootAiMode[] APPEND_RODATA = "$0AI Mode         ";
@@ -22,6 +23,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootPortrait,
     sText_RootSprite,
     sText_RootReaction,
+    sText_RootGraphic,
     sText_RootVoice,
     sText_RootMatchSetter,
     sText_RootAiMode,
@@ -46,6 +48,9 @@ extern u8 gInputRepeatTimer;
 
 void ClearGraphicsBuffers(void);
 void InitButtonMaps(void);
+
+static void DebugMenuUploadBg(void);
+static void DebugMenuUpload(void);
 
 static void DebugMenuApplyBg2(void) {
   gBG2HOFS = 0xFFB0 + 28;
@@ -199,6 +204,9 @@ void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_REACTION:
     DebugMenuDrawReactions(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_GRAPHIC:
+    DebugMenuDrawGraphics(scrollTop, marker);
+    break;
   case DEBUG_VIEW_VOICE:
     DebugMenuDrawVoices(scrollTop, marker);
     break;
@@ -327,8 +335,10 @@ static void DebugMenuRoot(void) {
       else if (cursor == 3)
         DebugReactionViewer();
       else if (cursor == 4)
-        DebugVoiceViewer();
+        DebugGraphicViewer();
       else if (cursor == 5)
+        DebugVoiceViewer();
+      else if (cursor == 6)
         DebugMatchSetterViewer();
       else
         DebugAiModeViewer();

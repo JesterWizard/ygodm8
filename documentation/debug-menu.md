@@ -26,12 +26,13 @@
 
 The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug/`.
 
-Four viewers are implemented today:
+Viewers and tools implemented today:
 
 - **Music Viewer** — scrollable OST list; preview a track with **A**.
 - **Portrait Viewer** — scrollable dialogue-portrait list; the highlighted entry is drawn live on the right with neutral expression.
 - **Sprite Viewer** — scrollable overworld sprites that have no dialogue portrait; the highlighted entry is drawn live on the right (down-facing idle frame).
 - **Reaction Viewer** — scrollable overworld reactions; the highlighted entry animates on **SPRITE_PLAYER** with vanilla bubble sequences. See [reaction-viewer.md](reaction-viewer.md).
+- **Graphic Viewer** — scrollable overworld animation graphics (Blue-Eyes, Slifer, etc.); play the full effect with **A**.
 - **Voice Viewer** — preview duel voice clips (vanilla and custom).
 - **Match Setter** — spawn test duelists on the overworld field.
 - **AI Mode** — toggle **AI Both Sides** for fully automated duels. See [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md).
@@ -54,6 +55,7 @@ All debug-menu sources and data tables live in `src_custom/debug/`:
 | `debug_menu_portrait.c` | Portrait viewer, preview load/OAM, `debug_menu_portrait_table.inc` |
 | `debug_menu_sprite.c` | Sprite viewer, preview load/OAM, `debug_menu_sprite_table.inc` |
 | `debug_menu_reaction.c` | Reaction viewer, bubble animation/OAM, `debug_menu_reaction_table.inc` |
+| `debug_menu_graphic.c` | Graphic viewer, plays `sub_80512E0` effects, `debug_menu_graphic_table.inc` |
 | `debug_menu_*_table.inc` | Data-only entry lists (no C logic) |
 | `overworld_debug_overlay_hooks.c` | Field coordinate overlay (separate from the menu UI) |
 | `ante_card_viewer.c` | Overworld ante reward list (opened with **SELECT**, not from root menu) |
@@ -79,7 +81,7 @@ After the menu closes, overworld state is restored via `OverworldRestoreAfterDeb
 
 ## Root Menu
 
-The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Seven items scroll when the cursor moves past the bottom row (`DEBUG_ROOT_ITEMS`).
+The root screen shows five visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Eight items scroll when the cursor moves past the bottom row (`DEBUG_ROOT_ITEMS`).
 
 | Row | Label | **A** behavior |
 |-----|-------|----------------|
@@ -87,9 +89,10 @@ The root screen shows three visible rows at a time (`DEBUG_ROWS`) and uses the s
 | 1 | Portrait Viewer | Opens the portrait list |
 | 2 | Sprite Viewer | Opens the overworld sprite list |
 | 3 | Reaction Viewer | Opens the reaction bubble list (see [reaction-viewer.md](reaction-viewer.md)) |
-| 4 | Voice Viewer | Opens the voice clip list |
-| 5 | Match Setter | Opens overworld duelist spawn presets |
-| 6 | AI Mode | Opens Off / AI Both Sides toggle (see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md)) |
+| 4 | Graphic Viewer | Opens the overworld animation graphic list |
+| 5 | Voice Viewer | Opens the voice clip list |
+| 6 | Match Setter | Opens overworld duelist spawn presets |
+| 7 | AI Mode | Opens Off / AI Both Sides toggle (see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md)) |
 
 | Input | Action |
 |-------|--------|
@@ -309,12 +312,14 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Shared internals | `src_custom/debug/debug_menu_internal.h` | Constants, structs, cross-file API |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
-| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Seven-item scrollable list; opens viewers, match setter, or AI mode |
+| Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Eight-item scrollable list; opens viewers, match setter, or AI mode |
 | AI mode | `DebugAiModeViewer` in `src_custom/debug/debug_menu_ai_mode.c` | Off / AI Both Sides; see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md) |
 | Music viewer | `DebugMusicViewer` in `src_custom/debug/debug_menu_music.c` | Scrollable list, preview on **A** |
 | Portrait viewer | `DebugPortraitViewer` in `src_custom/debug/debug_menu_portrait.c` | Scrollable list, live preview on cursor |
 | Sprite viewer | `DebugSpriteViewer` in `src_custom/debug/debug_menu_sprite.c` | Scrollable list, live preview on cursor |
 | Reaction viewer | `DebugReactionViewer` in `src_custom/debug/debug_menu_reaction.c` | Scrollable list, animated bubble on player |
+| Graphic viewer | `DebugGraphicViewer` in `src_custom/debug/debug_menu_graphic.c` | Scrollable list, full effect on **A** via `sub_80512E0` |
+| Graphic table | `src_custom/debug/debug_menu_graphic_table.inc` | `DEBUG_MENU_GRAPHIC_ENTRY` rows (`enum OverworldGraphics`) |
 | Reaction table | `src_custom/debug/debug_menu_reaction_table.inc` | `DEBUG_MENU_REACTION_ENTRY` rows |
 | Reaction OBJ palettes | `DebugMenuLoadReactionObjPalettes` in `debug_menu.c` | Entity OBJ 0–11 + cursor palette slot 15 |
 | Reaction struct | `struct DebugMenuReactionEntry` in `debug_menu_internal.h` | `reactionId` + `title[24]` |
