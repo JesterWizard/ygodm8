@@ -277,6 +277,7 @@ u8 ProcessInput__Replacement(void) {
       PlayMusic(SFX_SELECT);
       DebugMenuMain();
       DebugMenu_ApplyPendingMapTeleport();
+      DebugMenu_ApplyPendingScene();
       OverworldRestoreAfterDebugMenu();
       PlayOverworldMusic();
       /* Match START_MENU: restore without running sub_804EF10 on this frame. */

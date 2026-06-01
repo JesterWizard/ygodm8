@@ -18,7 +18,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 9
+#define DEBUG_ROOT_ITEMS 10
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -37,6 +37,7 @@
 #define DEBUG_VIEW_AI_MODE 7
 #define DEBUG_VIEW_GRAPHIC 8
 #define DEBUG_VIEW_MAP 9
+#define DEBUG_VIEW_SCENE 10
 
 #define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 #define DEBUG_SPRITE_OAM_SLOT 1
@@ -79,6 +80,13 @@ struct DebugMenuMapEntry {
   u8 title[48];
 };
 
+struct DebugMenuSceneEntry {
+  u8 mapId;
+  u8 state;
+  u8 connection;
+  u8 title[20];
+};
+
 void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view);
 void DebugMenuLoadGraphics(void);
 void DebugMenuWaitVBlank(void);
@@ -112,6 +120,7 @@ void DebugMenuDrawReactions(u8 scrollTop, u8 cursor);
 void DebugMenuDrawMatchSetters(u8 scrollTop, u8 cursor);
 void DebugMenuDrawGraphics(u8 scrollTop, u16 playingId);
 void DebugMenuDrawMaps(u8 scrollTop, u8 confirmedLocationId);
+void DebugMenuDrawScenes(u8 scrollTop, u16 confirmedIndex);
 
 void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,
                                        u8 frameIndex, bool8 force);
@@ -129,5 +138,6 @@ void DebugMatchSetterViewer(void);
 void DebugMenuDrawAiMode(u8 scrollTop, u8 cursor);
 void DebugAiModeViewer(void);
 void DebugMapViewer(void);
+void DebugSceneViewer(void);
 
 #endif // GUARD_DEBUG_MENU_INTERNAL_H

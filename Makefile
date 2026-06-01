@@ -99,6 +99,8 @@ SHINY_ZONE_GENERATOR := tools/generate_shiny_zones.py
 SHINY_ZONES_GENERATED := src_custom/generated/shiny_zones_generated.inc
 MATCH_SETTER_GENERATOR := tools/generate_match_setter.py
 MATCH_SETTER_GENERATED := src_custom/generated/match_setter_table_generated.inc
+DEBUG_MENU_SCENE_GENERATOR := tools/generate_debug_menu_scene_table.py
+DEBUG_MENU_SCENE_TABLE := src_custom/debug/debug_menu_scene_table.inc
 VOICE_GENERATOR := tools/generate_voices.py
 VOICE_MANIFEST := tools/voice_manifest.json
 VOICE_WAV_DEPS := $(wildcard src_custom/assets/voices/**/*.wav)
@@ -273,6 +275,10 @@ $(MATCH_SETTER_GENERATED): events/vanilla/vanilla_event_catalog.md $(MATCH_SETTE
 	@echo "MATCH   $@"
 	python3 $(MATCH_SETTER_GENERATOR) --out $@
 
+$(DEBUG_MENU_SCENE_TABLE): $(DEBUG_MENU_SCENE_GENERATOR) $(wildcard events/scripts/map_*_state_*.c)
+	@echo "SCENES  $@"
+	python3 $(DEBUG_MENU_SCENE_GENERATOR) --out $@
+
 $(VOICE_STAMP): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(VOICE_WAV_DEPS)
 	@mkdir -p $(dir $@)
 	@echo "VOICE   custom duelist voice clips"
@@ -332,6 +338,7 @@ $(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,debug/debug_menu_match_setter,$(MATCH_SETTER_GENERATED)))
+$(eval $(call custom_object_dep,debug/debug_menu_scene,$(DEBUG_MENU_SCENE_TABLE)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))

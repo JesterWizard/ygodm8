@@ -63,6 +63,12 @@ _kernel_malloc gDebugMatchSetterSelection, 1
 @ Map Teleport viewer: overworld map id when the viewer opened (0xFF = no pending change).
 _kernel_malloc gDebugMenuMapViewerInitialLocation, 1
 
+@ Scene viewer: reload overworld and run on-enter script after the menu closes (0xFF = none).
+_kernel_malloc gDebugMenuPendingSceneActive, 1
+_kernel_malloc gDebugMenuPendingSceneMapId, 1
+_kernel_malloc gDebugMenuPendingSceneState, 1
+_kernel_malloc gDebugMenuPendingSceneConnection, 1
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 
