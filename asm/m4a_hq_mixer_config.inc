@@ -10,10 +10,11 @@
 .set M4A_HQ_MIX_FRAME_SAMPLES, 0x160
 .set M4A_HQ_MIX_BUFFER_BYTES, 0x580
 
-@ Copied to 0x03000000 at init (vanilla ~0x400 bytes; HQ blob is ~0xAB8).
+@ HQ mixer execution buffer is allocated in IWRAM via asm/ram_map.s (MixerBuffer).
+@ Kept as headroom for stack/DPCM decode; actual copy size comes from MixerSize.
 .set M4A_HQ_MIXER_IW_RAM_BYTES, 0xC00
 
-@ DPCM decode stack must stay above this; mix buffer lives at 0x03002200.
+@ DPCM decode stack must stay above this.
 .set M4A_HQ_STACK_BOUNDARY, 0x03007000
 
 .equ hq_buffer_ptr, gM4aHqMixBuffer

@@ -365,6 +365,7 @@ src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.pn
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
+$(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
 	@echo "AS      $<"

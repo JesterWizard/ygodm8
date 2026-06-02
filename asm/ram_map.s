@@ -42,8 +42,11 @@ SET_DATA UsedFreeRamSpaceTop, FreeRamSpaceBottom
     SET_DATA \name, UsedFreeRamSpaceTop
 .endm
 
-@ m4a HQ mixer 16-bit mix buffer (0x580 bytes). Placed after g3000400 @ 0x03001A00.
-SET_DATA gM4aHqMixBuffer, 0x03002200
+@ m4a HQ mixer 16-bit mix buffer (0x580 bytes). First byte of IWRAM free space.
+SET_DATA gM4aHqMixBuffer, 0x03001678
+
+@ HQ mixer IWRAM execution buffer (MixerSize bytes, copied from ROM at init).
+SET_DATA MixerBuffer, 0x03001BF8
 
 @ Randomized card costs live in IWRAM for maximum speed.
 _kernel_malloc sRandomizedCardCosts, 0x652

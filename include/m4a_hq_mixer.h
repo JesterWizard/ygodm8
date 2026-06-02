@@ -9,6 +9,8 @@
 extern u8 M4aHqMixerIwramStart[];
 extern u8 M4aHqMixerIwramEnd[];
 extern u8 gM4aHqMixBuffer[];
+extern u8 MixerBuffer[];
+extern const u32 MixerSize;
 
 #define M4A_HQ_MIXER_ROM_SIZE ((u32)(M4aHqMixerIwramEnd - M4aHqMixerIwramStart))
 

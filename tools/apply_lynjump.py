@@ -172,29 +172,38 @@ def apply_voice_patches(rom: bytearray, symbols: dict, owners: dict[int, str]):
 
 
 def apply_m4a_hq_mixer_patches(rom: bytearray, symbols: dict, owners: dict[int, str]):
-    """Retarget sub_80595C4's CpuSet literal pool to the HQ mixer blob in append ROM."""
+    """Retarget m4a init to copy the HQ mixer blob into linker-placed IWRAM."""
     start_name = "M4aHqMixerIwramStart"
     end_name = "M4aHqMixerIwramEnd"
-    if start_name not in symbols or end_name not in symbols:
+    buffer_name = "MixerBuffer"
+    if start_name not in symbols or end_name not in symbols or buffer_name not in symbols:
         return
 
     src = symbols[start_name]
     if src & 1:
         src &= ~1
 
+    dst = symbols[buffer_name]
+    if dst & 1:
+        dst &= ~1
+
     rom_size = symbols[end_name] - src
     if rom_size & 1:
         rom_size &= ~1
 
     word_count = (rom_size + 3) // 4
-    # Never copy through g3000C00 @ 0x03000C00 (IRQ vector table).
-    max_words = (0x03000C00 - 0x03000000) // 4
-    if word_count > max_words:
-        word_count = max_words
 
     owner = "m4a_hq_mixer:sub_80595C4 CpuSet"
     checked_write(rom, 0x59618, struct.pack("<I", src), owners, owner)
+    checked_write(rom, 0x5961C, struct.pack("<I", dst), owners, owner)
     checked_write(rom, 0x59620, struct.pack("<I", 0x04000000 | word_count), owners, owner)
+    checked_write(
+        rom,
+        0x58988,
+        struct.pack("<I", dst | 1),
+        owners,
+        "m4a_hq_mixer:SoundMain IWRAM entry",
+    )
 
 
 def main() -> int:
