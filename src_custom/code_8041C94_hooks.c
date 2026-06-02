@@ -4,9 +4,12 @@
 #include "constants/music_ids.h"
 #include "debug_ai_mode.h"
 
-static const u8 sTextboxClearSpaces[] APPEND_RODATA = {
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0
-};
+static const u8 sTextboxClearSpaces[] APPEND_RODATA =
+    "                            "
+    "                            "
+    "                            "
+    "                             ";
+
 #include "duel_opponent_hand_scroll.h"
 #include "duel.h"
 #include "duel_textbox.h"
@@ -17,6 +20,10 @@ extern u8 g8E0D5A1[];
 extern u16 gNewButtons;
 
 void WaitForTextboxAdvanceInput(struct DuelTextbox *);
+
+static void ClearDuelPopupTextboxTiles(void) {
+  CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + 0x88A0, (u8 *)sTextboxClearSpaces, 0x101);
+}
 
 static u16 GetScrollTargetVofs(u8 row) {
   if (IsOpponentHandFieldScrollEnabled() && row < NUM_DUEL_BOARD_ROWS)
@@ -162,6 +169,7 @@ void WaitForTextboxAdvanceInput__Replacement(struct DuelTextbox *textbox) {
     textbox->tileCursor = 0;
     textbox->blinkFrameCounter = 0;
     textbox->mode = 0;
+    ClearDuelPopupTextboxTiles();
     return;
   }
 
@@ -171,7 +179,7 @@ void WaitForTextboxAdvanceInput__Replacement(struct DuelTextbox *textbox) {
     textbox->tileCursor = 0;
     textbox->blinkFrameCounter = 0;
     textbox->mode = 0;
-    CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + 0x88A0, (u8 *)sTextboxClearSpaces, 0x101);
+    ClearDuelPopupTextboxTiles();
   } else {
     switch (textbox->blinkFrameCounter++) {
     case 0:

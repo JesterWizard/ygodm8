@@ -417,6 +417,7 @@ test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 	python3 tools/validate_portrait.py
 	python3 tools/validate_ram_map.py
+	python3 tools/validate_duel_popup_textbox.py
 	python3 tools/validate_lynjump.py
 ifneq ($(strip $(EVENTS_C_SRCS)),)
 	@echo "EVENT-TEST tools/vanilla_events.py"
@@ -425,6 +426,7 @@ endif
 
 test: test-host
 	$(MAKE) all
+	python3 tools/validate_duel_popup_textbox.py --elf $(ELF) --nm $(NM)
 	python3 tools/memory_report.py $(ELF) --nm $(NM)
 
 update-goldens:
