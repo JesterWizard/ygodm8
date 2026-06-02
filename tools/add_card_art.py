@@ -6,12 +6,23 @@ import pathlib
 import re
 import struct
 import subprocess
+import sys
 import tempfile
 from PIL import Image
 from dataclasses import dataclass
 
-
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+if str(ROOT / "tools") not in sys.path:
+    sys.path.insert(0, str(ROOT / "tools"))
+
+from card_manifest import (  # noqa: E402
+    ALLOWED_ENTRY_KEYS,
+    ASSET_ENTRY_KEYS,
+    ManifestValidationError,
+    OPTIONAL_STATS_KEYS,
+    REQUIRED_STATS_KEYS,
+    validate_manifest as _validate_manifest,
+)
 ASSET_ROOT = ROOT / "src_custom/assets/cards"
 BIG_DIR = ASSET_ROOT / "80x80"
 MINI_DIR = ASSET_ROOT / "24x24"
@@ -39,25 +50,14 @@ EFFECT_ENUM_HEADERS = {
     "customFieldSpell": ROOT / "include/constants/custom_field_spells.h",
 }
 
-REQUIRED_STATS_KEYS = {
-    "atk",
-    "def",
-    "cost",
-    "attribute",
-    "level",
-    "type",
-    "color",
-    "monsterEffect",
-    "spellEffect",
-    "trapEffect",
-    "password",
-}
-OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell"}
-ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS
-ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
-ALLOWED_ENTRY_KEYS |= ASSET_ENTRY_KEYS
-
 GBAFX = ROOT / "tools/gbagfx/gbagfx"
+
+
+def validate_manifest(manifest: object) -> dict:
+    try:
+        return _validate_manifest(manifest)
+    except ManifestValidationError as exc:
+        raise SystemExit(str(exc)) from exc
 
 # Big card art palettes are traditionally 64 colors (4 banks). This repo can optionally
 # extend big card art palettes to 112 colors (7 banks) for the card detail view.
@@ -403,92 +403,6 @@ def resolve_effect_value(effect_key: str, raw_value: object, enum_tables: dict[s
 def discover_card_constants() -> set[str]:
     src = CARD_IDS_H.read_text()
     return set(re.findall(r"^#define\s+([A-Z0-9_]+)\s+", src, flags=re.M))
-
-
-def validate_manifest(manifest: object) -> dict:
-    if not isinstance(manifest, dict):
-        raise SystemExit("Manifest must be a JSON object with a top-level 'cards' array.")
-    cards = manifest.get("cards")
-    if not isinstance(cards, list):
-        raise SystemExit("Manifest must contain a top-level 'cards' array.")
-    description_pages_max = 3
-
-    seen_consts = set()
-    validated = []
-    for index, item in enumerate(cards):
-        if not isinstance(item, dict):
-            raise SystemExit(f"cards[{index}] must be an object.")
-
-        card_const = item.get("card_const")
-        card_name = item.get("card_name")
-        if not isinstance(card_const, str) or not re.fullmatch(r"[A-Z0-9_]+", card_const):
-            raise SystemExit(f"cards[{index}].card_const must be an uppercase constant name.")
-        if not isinstance(card_name, str) or not card_name:
-            raise SystemExit(f"cards[{index}].card_name must be a non-empty string.")
-        if card_const in seen_consts:
-            raise SystemExit(f"Duplicate card_const in manifest: {card_const}")
-        seen_consts.add(card_const)
-
-        extra = sorted(set(item.keys()) - ALLOWED_ENTRY_KEYS)
-        if extra:
-            raise SystemExit(f"cards[{index}] has unknown keys: {', '.join(extra)}")
-
-        missing = sorted(REQUIRED_STATS_KEYS - item.keys())
-        if missing:
-            raise SystemExit(f"cards[{index}] is missing required keys: {', '.join(missing)}")
-
-        stats = {key: item[key] for key in REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS | ASSET_ENTRY_KEYS if key in item}
-        
-        for key in ("atk", "def", "cost", "level"):
-            if not isinstance(stats[key], int):
-                raise SystemExit(f"cards[{index}].{key} must be an integer.")
-
-        for key in ("monsterEffect", "spellEffect", "trapEffect"):
-            if not isinstance(stats[key], (int, str)):
-                raise SystemExit(f"cards[{index}].{key} must be an integer or a C enum-style identifier string.")
-        
-        # Validating flexible fields (Allowing defines/strings or integers)
-        for key in ("color", "type", "attribute"):
-            if not isinstance(stats[key], (str, int)):
-                raise SystemExit(f"cards[{index}].{key} must be a C enum-style identifier (string) or integer.")
-
-        password = stats.get("password")
-        if not isinstance(password, list) or len(password) != 8 or not all(isinstance(d, int) and 0 <= d <= 15 for d in password):
-            raise SystemExit(f"cards[{index}].password must be an array of 8 integers (0-15).")
-
-        for desc_key in ("description", "activation_description"):
-            if desc_key not in stats:
-                continue
-            description = stats[desc_key]
-            if not isinstance(description, dict):
-                raise SystemExit(f"cards[{index}].{desc_key} must be an object when present.")
-            symbol = description.get("symbol")
-            pages = description.get("pages")
-            if not isinstance(symbol, str) or not symbol:
-                raise SystemExit(f"cards[{index}].{desc_key}.symbol must be a non-empty string.")
-            if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
-                raise SystemExit(f"cards[{index}].{desc_key}.pages must be an array of non-empty strings.")
-            min_pages = 1 if desc_key == "activation_description" else 2
-            if len(pages) < min_pages or len(pages) > description_pages_max:
-                raise SystemExit(
-                    f"cards[{index}].{desc_key}.pages must contain between {min_pages} and {description_pages_max} strings."
-                )
-
-        for key in ASSET_ENTRY_KEYS:
-            if key in stats and not isinstance(stats[key], str):
-                raise SystemExit(f"cards[{index}].{key} must be a string when present.")
-        if "trunk_card" in item and not isinstance(item["trunk_card"], bool):
-            raise SystemExit(f"cards[{index}].trunk_card must be a boolean when present.")
-        if "lock_after_activation" in item and not isinstance(item["lock_after_activation"], bool):
-            raise SystemExit(f"cards[{index}].lock_after_activation must be a boolean when present.")
-        custom_field_spell = item.get("customFieldSpell")
-        if custom_field_spell is not None:
-            if not isinstance(custom_field_spell, str):
-                raise SystemExit(f"cards[{index}].customFieldSpell must be a string when present.")
-
-        validated.append({"card_const": card_const, "card_name": card_name, **stats, **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {}), **({"customFieldSpell": custom_field_spell} if custom_field_spell is not None else {})})
-
-    return {"cards": validated}
 
 
 def render_card_ids_header(manifest: dict) -> str:

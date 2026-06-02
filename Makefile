@@ -402,4 +402,22 @@ clean: clean-build clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: all clean clean-build clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate
+.PHONY: test update-goldens test-host
+
+test-host: tools-rules
+	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
+	python3 tools/validate_ram_map.py
+	python3 tools/validate_lynjump.py
+ifneq ($(strip $(EVENTS_C_SRCS)),)
+	@echo "EVENT-TEST tools/vanilla_events.py"
+	python3 tools/vanilla_events.py test-c $(EVENTS_C_SRCS)
+endif
+
+test: test-host
+	$(MAKE) all
+	python3 tools/memory_report.py $(ELF) --nm $(NM)
+
+update-goldens:
+	UPDATE_GOLDENS=1 PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
+
+.PHONY: all clean clean-build clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host update-goldens

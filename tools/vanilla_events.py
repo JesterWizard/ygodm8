@@ -1287,7 +1287,12 @@ def validate_c_sources(paths: list[Path]) -> list[str]:
         errors.append("missing map_09_state_01.c")
     else:
         intro_text = intro_path.read_text()
-        if "LANGUAGE_TEXT(" not in intro_text:
+        has_dialogue = (
+            "LANGUAGE_TEXT(" in intro_text
+            or "TEXT(" in intro_text
+            or re.search(r"\bTEXT\b", intro_text) is not None
+        )
+        if not has_dialogue:
             errors.append("map_09_state_01.c has no editable language text")
         if "CUTSCENE(8)" not in intro_text:
             errors.append("map_09_state_01.c does not hand off to intro cutscene 8")

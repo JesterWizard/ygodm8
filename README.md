@@ -86,6 +86,20 @@ make clean
 make
 ```
 
+To run the project test suite (host tests, validators, full ROM build, memory report):
+
+```bash
+make test
+```
+
+For a faster loop without linking the ROM:
+
+```bash
+make test-host
+```
+
+See [documentation/tdd-framework.md](documentation/tdd-framework.md) for what the framework is, why it exists, and the manual smoke checklist.
+
 To verify the built ROM against the expected hash:
 
 ```bash

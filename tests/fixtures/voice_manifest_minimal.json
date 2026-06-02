@@ -1,0 +1,13 @@
+{
+  "sample_rate": 21024,
+  "trim_silence": true,
+  "trim_silence_threshold": 8,
+  "clips": [
+    {
+      "clip_id": "test_golden_turn",
+      "trigger": "turn_start",
+      "duelist": ["DUELIST_YUGI_001"],
+      "wav": "test_fixtures/test_turn.wav"
+    }
+  ]
+}

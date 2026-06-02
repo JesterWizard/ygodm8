@@ -15,6 +15,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | `src_custom/spell_effects/` | Custom spell effect hooks. |
 | `events/` | Custom event scripts and event documentation. |
 | `documentation/` | Project-specific design and implementation notes. |
+| `tests/` | Host unit tests, golden generator output, and fixtures (`make test` / `make test-host`). |
 | `plans/` | Planning notes and pipeline writeups. |
 
 ## Notable Root Files
@@ -28,6 +29,7 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | `documentation/duel-board-life-points.md` | Runtime toggle to show player and opponent LP on the duel field. |
 | `documentation/ante-card-viewer.md` | Overworld **SELECT** UI to preview a duelist’s normal and low ante card pools. |
 | `documentation/debug-menu.md` | Developer debug menu (music, portrait, sprite viewers) on overworld **B**. |
+| `documentation/tdd-framework.md` | Test-driven development harness: host tests, goldens, `make test`, and manual ROM smoke checks. |
 
 ## Notes
 

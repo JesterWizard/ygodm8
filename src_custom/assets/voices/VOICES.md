@@ -72,3 +72,4 @@ _Sample rate: 21024 Hz · 36 clip(s) in [`tools/voice_manifest.json`](../../tool
 These files exist under `src_custom/assets/voices/` but are not listed in the manifest:
 
 - `robot_monkey/ooo_ooo_aaa_aaa.wav` (149,516 B (146.0 KB))
+- `test_fixtures/test_turn.wav` (556 B)

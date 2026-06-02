@@ -2,7 +2,9 @@
 #include "configs/runtime.h"
 #include "debug_deck_swap.h"
 #include "player_decks.h"
+#include "player_deck_persist.h"
 #include "duel.h"
+#include "constants/card_ids.h"
 
 extern unsigned gDeckCapacity;
 extern void InitDeckData(void);
@@ -11,7 +13,7 @@ extern void (*g20245AC)(int, u8 *, int);
 extern u8 *g8E0CD10;
 int sub_80588C4(u8 *, int, int);
 
-#define PLAYER_DECK_SAVE_MAGIC 0xD5
+#define PLAYER_DECK_SAVE_MAGIC PLAYER_DECK_PERSIST_MAGIC
 /* Byte offset of deck 1 (40 x u16) inside the vanilla 0x747 save blob. */
 #define PLAYER_DECK1_SAVE_BUFFER_OFFSET 0x332
 
@@ -116,14 +118,7 @@ static void ClearDeckCards(u16 *cards) {
 }
 
 static u8 IsCompleteDeck(const u16 *cards) {
-  u8 i;
-
-  for (i = 0; i < DECK_SIZE; i++) {
-    if (cards[i] == CARD_NONE || cards[i] >= NUM_TOTAL_CARDS)
-      return FALSE;
-  }
-
-  return TRUE;
+  return PlayerDeckPersist_IsCompleteDeck(cards, NUM_TOTAL_CARDS);
 }
 
 static void RequireCompleteActiveDeck(void) {
@@ -165,7 +160,7 @@ static u8 LoadDecksFromFlashPrimary(void) {
     return FALSE;
 
   g20245AC((int)&gPlayerDeckSaveMagicFlashPrimary, &magic, 1);
-  if (magic != PLAYER_DECK_SAVE_MAGIC)
+  if (PlayerDeckPersist_MagicIsValid(magic) != TRUE)
     return FALSE;
 
   g20245AC((int)gPlayerDeck2CardsFlashPrimary, (u8 *)gPlayerDeck2Cards,
@@ -183,7 +178,7 @@ static u8 LoadDecksFromFlashBackup(void) {
     return FALSE;
 
   g20245AC((int)&gPlayerDeckSaveMagicFlashBackup, &magic, 1);
-  if (magic != PLAYER_DECK_SAVE_MAGIC)
+  if (PlayerDeckPersist_MagicIsValid(magic) != TRUE)
     return FALSE;
 
   g20245AC((int)gPlayerDeck2CardsFlashBackup, (u8 *)gPlayerDeck2Cards,
