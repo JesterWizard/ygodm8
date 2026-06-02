@@ -30,7 +30,7 @@ It is **local-first** today: run `make test` on your machine. The layout is read
 | Card manifest typo | Broken build or wrong stats in-game | `validate_manifest` fails in seconds |
 | Generator output drift | Silent `.inc` changes, hard-to-spot diffs | Golden files under `tests/goldens/` |
 | Flash/RAM overlap | Corrupted saves or crashes after new feature | `validate_ram_map.py` on every `make test-host` |
-| Deck save layout change | Deck 2/3 wiped or wrong active index | Round-trip tests + fixture blob |
+| Deck save layout change | Deck 2/3 wiped or wrong active index | Round-trip tests + fixture blob + `validate_player_decks.py` |
 | Voice pipeline tweak | Crackle, trim bugs, invalid DPCM | Host tests on trim/encode/clip rules |
 | Portrait PNG format | Black borders, stray pixels, wrong OBJ indices | `validate_portrait.py` + `tests/host/test_portraits.py` |
 | LynJump / event macro error | Link failure or wrong script patch | Existing validators run inside `make test` |
@@ -125,7 +125,10 @@ Run these in an emulator after `make test` passes when you touched the related f
 | Deck manifest codegen | `tools/duelist_deck_validate.py` | Deck validation and `.inc` generation |
 | Flash layout validator | `tools/validate_ram_map.py` | Parses `asm/ram_map.s` for overlaps |
 | Deck persist (host) | `tools/player_deck_persist.py` | Serialize/deserialize layout used in tests |
+| Multiple player decks validator | `tools/validate_player_decks.py` | RAM map, switch invariants, save-buffer rules |
 | Deck persist (ROM) | `src_custom/persist/player_deck_persist.c` | `IsCompleteDeck` / magic checks used by `player_decks.c` |
+| Player deck switch tests | `tests/host/test_player_decks.py` | Host mirror of deck 1/2/3 flush/load behavior |
+| Player deck validator tests | `tests/host/test_validate_player_decks.py` | Source + ELF checks for multi-deck layout |
 | Voice pipeline tests | `tests/host/test_voices.py` | Trim, DPCM, note encoder, clip validation |
 | Portrait validator | `tools/validate_portrait.py` | 64×64 indexed PNG rules, palette index 0, shifted tile bytes |
 | Portrait tests | `tests/host/test_portraits.py` | Validates `src_custom/assets/portraits/*.png` |

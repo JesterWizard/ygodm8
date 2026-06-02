@@ -137,8 +137,9 @@ _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 _kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
 _kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 
-@ Multiple player decks (decks 2/3 card lists; deck 1 uses vanilla gDeckMenu/save data).
+@ Multiple player decks (decks 1/2/3 card lists in EWRAM; deck 1 also mirrored in vanilla save).
 .set PLAYER_DECK_CARD_BYTES, 0x50
+_kernel_malloc_ewram_array gPlayerDeck1Cards, PLAYER_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck2Cards, PLAYER_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck3Cards, PLAYER_DECK_CARD_BYTES
 @ Legacy-reserved capacity slots. Runtime deck capacity is the single vanilla gDeckCapacity.
@@ -155,9 +156,8 @@ _kernel_malloc_ewram gDebugDeckSwapActivePreset, 1
 @ TRUE when gDebugDeckSwapBackup holds the saved original deck (also mirrored to flash on save).
 _kernel_malloc_ewram gDebugDeckSwapBackupValid, 1
 
-@ Scratch for temporarily restoring the active deck while building the vanilla 0x747 blob.
-_kernel_malloc_ewram gPlayerDeckSaveStagingAlignPad, 0x1
-_kernel_malloc_ewram_array gPlayerDeckSaveStaging, 0x54
+@ Active deck index while sub_80351F8 builds the vanilla 0x747 blob.
+_kernel_malloc_ewram gPlayerDeckSaveRestoreActiveDeck, 0x1
 
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)

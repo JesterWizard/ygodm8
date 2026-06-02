@@ -188,7 +188,7 @@ static void AccumulateAllDeckCardsIntoTotals(void) {
   if (PlayerDecks_IsEnabled() == TRUE) {
     u8 active = PlayerDecks_GetActiveIndex();
 
-    AccumulateDeckCardsIntoTotals(active == 1 ? gDeckMenu.cards : (const u16 *)gPlayerDeckSaveStaging);
+    AccumulateDeckCardsIntoTotals(active == 1 ? gDeckMenu.cards : gPlayerDeck1Cards);
     AccumulateDeckCardsIntoTotals(active == 2 ? gDeckMenu.cards : gPlayerDeck2Cards);
     AccumulateDeckCardsIntoTotals(active == 3 ? gDeckMenu.cards : gPlayerDeck3Cards);
   }
