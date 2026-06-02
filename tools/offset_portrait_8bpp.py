@@ -3,10 +3,26 @@
 import pathlib
 import sys
 
-
 PORTRAIT_SIZE = 64 * 64
 PALETTE_OFFSET = 0xC0
 MAX_PORTRAIT_COLORS = 64
+
+
+def offset_portrait_bytes(data: bytes) -> bytes:
+    if len(data) != PORTRAIT_SIZE:
+        raise ValueError(
+            f"expected a 64x64 8bpp portrait ({PORTRAIT_SIZE} bytes), got {len(data)} bytes"
+        )
+
+    max_index = max(data) if data else 0
+    if max_index >= MAX_PORTRAIT_COLORS:
+        raise ValueError(
+            f"portrait uses palette index {max_index}; max supported index is 63"
+        )
+
+    # OBJ index 0 is transparent. Palette data is loaded at 0xC0..0xFF, so source
+    # indices 1..63 map to tile bytes 0xC1..0xFF (vanilla never uses 0xC0 in tiles).
+    return bytes((pixel + PALETTE_OFFSET if pixel else 0) for pixel in data)
 
 
 def main() -> int:
@@ -16,18 +32,7 @@ def main() -> int:
 
     src_path = pathlib.Path(sys.argv[1])
     dst_path = pathlib.Path(sys.argv[2])
-    data = src_path.read_bytes()
-
-    if len(data) != PORTRAIT_SIZE:
-        print(f"expected a 64x64 8bpp portrait ({PORTRAIT_SIZE} bytes), got {len(data)} bytes", file=sys.stderr)
-        return 1
-
-    max_index = max(data) if data else 0
-    if max_index >= MAX_PORTRAIT_COLORS:
-        print(f"portrait uses palette index {max_index}; max supported index is 63", file=sys.stderr)
-        return 1
-
-    dst_path.write_bytes(bytes(pixel + PALETTE_OFFSET for pixel in data))
+    dst_path.write_bytes(offset_portrait_bytes(src_path.read_bytes()))
     return 0
 
 

@@ -46,17 +46,23 @@ The source PNG must be:
 | Size | `64x64` |
 | Mode | indexed PNG |
 | Colors | `1..64` used palette entries |
+| Transparency | palette index `0` must be black `(0,0,0)`; `make` runs `tools/normalize_portrait_png.py` to swap black from another index if needed |
 | Tile format | generated `8bpp` |
 | Runtime palette range | OBJ palette indices `0xC0..0xFF` |
 
 During `make`, the player portrait currently builds as:
 
-1. `player.png` -> `player.8bpp`
-2. `player.8bpp` -> `player.shifted.8bpp`
-3. `player.shifted.8bpp` -> `player.lz`
-4. `player.png` -> `player.gbapal`
+1. `player.png` -> `build/portraits/player.normalized.png` (palette fix, not kept in assets)
+2. normalized PNG -> `player.8bpp`
+3. `player.8bpp` -> `player.shifted.8bpp`
+4. `player.shifted.8bpp` -> `player.lz`
+5. normalized PNG -> `player.gbapal`
 
-`tools/offset_portrait_8bpp.py` shifts every tile byte by `0xC0`. This is required because vanilla portrait loading copies the portrait palette to OBJ palette entries `0xC0..0xFF`.
+Only `player.png` is a source asset under `src_custom/assets/portraits/`.
+
+`tools/offset_portrait_8bpp.py` maps source indices `1..63` to tile bytes `0xC1..0xFF`. Index `0` stays `0` (hardware-transparent). Portrait palettes are copied to OBJ entries `0xC0..0xFF`, matching vanilla portrait encoding.
+
+Run `make test-host` (or `python3 tools/validate_portrait.py`) after adding or editing a portrait PNG. New portraits must pass before merge: 64×64 indexed PNG, black at palette index `0`, indices `0..63` only, and shifted tile bytes in `0x00` or `0xC1..0xFF` (never `0xC0`).
 
 ### Adding A New Portrait
 

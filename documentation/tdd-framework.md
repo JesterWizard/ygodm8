@@ -32,6 +32,7 @@ It is **local-first** today: run `make test` on your machine. The layout is read
 | Flash/RAM overlap | Corrupted saves or crashes after new feature | `validate_ram_map.py` on every `make test-host` |
 | Deck save layout change | Deck 2/3 wiped or wrong active index | Round-trip tests + fixture blob |
 | Voice pipeline tweak | Crackle, trim bugs, invalid DPCM | Host tests on trim/encode/clip rules |
+| Portrait PNG format | Black borders, stray pixels, wrong OBJ indices | `validate_portrait.py` + `tests/host/test_portraits.py` |
 | LynJump / event macro error | Link failure or wrong script patch | Existing validators run inside `make test` |
 
 **Why strict TDD (red → green → refactor)?**  
@@ -126,6 +127,8 @@ Run these in an emulator after `make test` passes when you touched the related f
 | Deck persist (host) | `tools/player_deck_persist.py` | Serialize/deserialize layout used in tests |
 | Deck persist (ROM) | `src_custom/persist/player_deck_persist.c` | `IsCompleteDeck` / magic checks used by `player_decks.c` |
 | Voice pipeline tests | `tests/host/test_voices.py` | Trim, DPCM, note encoder, clip validation |
+| Portrait validator | `tools/validate_portrait.py` | 64×64 indexed PNG rules, palette index 0, shifted tile bytes |
+| Portrait tests | `tests/host/test_portraits.py` | Validates `src_custom/assets/portraits/*.png` |
 | Test entrypoints | `Makefile` targets `test`, `test-host`, `update-goldens` | Local automation |
 
 ## TODO

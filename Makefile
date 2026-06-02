@@ -346,7 +346,16 @@ $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD
 $(eval $(call custom_object_dep,field_spell_gfx_hooks,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_effect_hooks,$(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_803F02C_hooks,$(FIELD_SPELL_GFX_STAMP)))
-src_custom/assets/portraits/player.8bpp: src_custom/assets/portraits/player.png | tools-rules
+PORTRAIT_NORM = $(BUILD_DIR)/portraits/player.normalized.png
+
+$(BUILD_DIR)/portraits:
+	@mkdir -p $@
+
+$(PORTRAIT_NORM): src_custom/assets/portraits/player.png tools/normalize_portrait_png.py | $(BUILD_DIR)/portraits
+	@echo "PNGNORM $<"
+	python3 tools/normalize_portrait_png.py $< $@
+
+src_custom/assets/portraits/player.8bpp: $(PORTRAIT_NORM) | tools-rules
 	@echo "PORTRAIT $<"
 	tools/gbagfx/gbagfx $< $@ -num_tiles 64 -Werror=num_tiles
 
@@ -358,7 +367,7 @@ src_custom/assets/portraits/player.lz: src_custom/assets/portraits/player.shifte
 	@echo "LZ      $<"
 	tools/gbagfx/gbagfx $< $@
 
-src_custom/assets/portraits/player.gbapal: src_custom/assets/portraits/player.png | tools-rules
+src_custom/assets/portraits/player.gbapal: $(PORTRAIT_NORM) | tools-rules
 	@echo "PAL     $<"
 	tools/gbagfx/gbagfx $< $@
 
@@ -406,6 +415,7 @@ compare: all
 
 test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
+	python3 tools/validate_portrait.py
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_lynjump.py
 ifneq ($(strip $(EVENTS_C_SRCS)),)

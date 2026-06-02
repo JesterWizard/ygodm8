@@ -21,7 +21,7 @@ Follow the doc’s workflow end to end. Do not guess palette or tile format requ
 |------|----------|
 | Source PNG | `src_custom/assets/portraits/` |
 | Build rules | `Makefile` (follow existing `player` portrait rules) |
-| Palette shift | `tools/offset_portrait_8bpp.py` |
+| Palette shift | `tools/offset_portrait_8bpp.py` (maps indices 1..63 → 0xC1..0xFF; keeps 0 transparent) |
 | Portrait ids | `enum Portrait` in `include/overworld.h` |
 | Runtime loader | `DisplayPortrait__Replacement` in `src_custom/portrait_hooks.c` |
 | Event macro | `PORTRAIT` in `events/scripts/event_macros.h` |
@@ -35,7 +35,8 @@ Follow the doc’s workflow end to end. Do not guess palette or tile format requ
 4. Add a portrait id in `include/overworld.h`.
 5. Add `INCBIN` and a branch in `src_custom/portrait_hooks.c`.
 6. Use `PORTRAIT(...)` in event scripts; call `HIDE_PORTRAIT()` when leaving the scene.
-7. Run `make` (regenerates event replacements and patches the ROM).
+7. Run `make test-host` (or `python3 tools/validate_portrait.py`) so the PNG passes portrait format checks.
+8. Run `make` (regenerates event replacements and patches the ROM).
 
 ## Notes
 
