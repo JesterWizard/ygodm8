@@ -5,6 +5,12 @@ import re
 import subprocess
 import sys
 
+from lynjump_layout import (
+    load_function_entries,
+    marker_name,
+    validate_poin_entry_collisions,
+)
+
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CHECK_RE = re.compile(r"LYN_REPLACE_CHECK\((\w+)\)|LYN_REPLACEMENT\((\w+)\)")
@@ -22,12 +28,6 @@ APPEND_SECTIONS = {
     ".append_assets",
     ".append_data",
 }
-
-
-def marker_name(name: str) -> str:
-    if name.endswith("__Replacement"):
-        return name[:-13]
-    return name
 
 
 def fmt_range(start: int, end: int) -> str:
@@ -197,6 +197,11 @@ def main() -> int:
             errors.append(
                 f"append section {name} starts inside base ROM region: {fmt_range(addr, end)} starts before 0x{BASE_ROM_LIMIT:X}"
             )
+
+    function_entries = load_function_entries()
+    if function_entries:
+        event_files = list(ROOT.rglob("LynJump.event"))
+        errors.extend(validate_poin_entry_collisions(event_files, function_entries))
 
     if errors:
         for error in errors:
