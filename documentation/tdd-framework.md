@@ -110,6 +110,7 @@ Run these in an emulator after `make test` passes when you touched the related f
 | Area | Steps | Expected |
 |------|-------|----------|
 | Custom cards | New game → trunk/shop | Known custom card shows correct art, name, and stats |
+| Trunk sort (compressed) | Trunk with hide-unowned enabled → cycle sort modes | Owned-only list reorders (name, ATK, qty, etc.) and stays owned-only |
 | Custom decks | Duel a manifest duelist | Opponent deck matches manifest |
 | Save / decks | New game → edit deck 2/3 → save → reload | Extra decks and active index persist |
 | Voices | Debug menu or duel trigger | Custom clip plays; no mixer crash |
@@ -132,6 +133,8 @@ Run these in an emulator after `make test` passes when you touched the related f
 | Voice pipeline tests | `tests/host/test_voices.py` | Trim, DPCM, note encoder, clip validation |
 | Portrait validator | `tools/validate_portrait.py` | 64×64 indexed PNG rules, palette index 0, shifted tile bytes |
 | Portrait tests | `tests/host/test_portraits.py` | Validates `src_custom/assets/portraits/*.png` |
+| Compressed trunk sort validator | `tools/validate_trunk_sort.py` | Ensures hide-unowned trunk lists keep dynamic/vanilla sort order |
+| Trunk sort tests | `tests/host/test_trunk_sort.py` | Source invariants for compressed trunk + dynamic sorting |
 | Test entrypoints | `Makefile` targets `test`, `test-host`, `update-goldens` | Local automation |
 
 ## TODO

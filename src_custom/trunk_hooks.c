@@ -250,11 +250,30 @@ static void BuildTrunkSortCardList(void) {
 #endif
 }
 
+static void FinalizeVisibleTrunkSortCardList(u16 count) {
+  u16 i;
+
+  for (i = count; i < NUM_TRUE_CARDS + NUM_CUSTOM_TRUNK_CARDS; i++)
+    gTrunkMenuSortCards[i] = CARD_NONE;
+
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  for (i = 0; i < NUM_CUSTOM_TRUNK_CARDS; i++)
+    gTrunkMenuCustomCards[i] = CARD_NONE;
+#endif
+
+  SetTrunkVisibleCounts(count, count);
+  ClampTrunkCursorToVisibleList();
+}
+
 static void ApplyTrunkSortCardList(void) {
   u16 i;
 
   if (TrunkHidesUnownedCards()) {
-    RebuildVisibleTrunkCardList();
+    u16 count = gCardSortContext.cardCount;
+
+    if (count == 0)
+      count = gTrunkVisibleCardCount;
+    FinalizeVisibleTrunkSortCardList(count);
     return;
   }
 

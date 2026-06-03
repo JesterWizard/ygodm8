@@ -419,6 +419,7 @@ test-host: tools-rules
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_duel_popup_textbox.py
 	python3 tools/validate_player_decks.py
+	python3 tools/validate_trunk_sort.py
 	python3 tools/validate_lynjump.py
 ifneq ($(strip $(EVENTS_C_SRCS)),)
 	@echo "EVENT-TEST tools/vanilla_events.py"
