@@ -29,7 +29,9 @@ POP
 PUSH
 ORG $1D724
 ALIGN 4
-WORD $46C04778 $E59FC000 $E12FFF1C
+// InitDuelistLevel is only 12 bytes; default POIN at +12 would overwrite GetDuelistLevel.
+WORD $46C04778 $E59FC040 $E12FFF1C
+ORG $1D770
 POIN InitDuelistLevel__Replacement
 POP
 

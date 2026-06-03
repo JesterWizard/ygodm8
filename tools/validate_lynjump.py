@@ -82,22 +82,26 @@ def load_symbols():
 
 
 def iter_event_hooks(path: pathlib.Path):
-    current_org = None
+    hook_org = None
 
     for raw_line in path.read_text().splitlines():
         line = raw_line.split("//", 1)[0].strip()
         if not line or line in {"PUSH", "POP"}:
+            if line == "POP":
+                hook_org = None
             continue
 
         match = ORG_RE.fullmatch(line)
         if match:
-            current_org = int(match.group(1), 16)
+            org = int(match.group(1), 16)
+            if hook_org is None:
+                hook_org = org
             continue
 
         match = POIN_RE.fullmatch(line)
-        if match and current_org is not None:
-            yield current_org, match.group(1)
-            current_org = None
+        if match and hook_org is not None:
+            yield hook_org, match.group(1)
+            hook_org = None
 
 
 def load_sections():
