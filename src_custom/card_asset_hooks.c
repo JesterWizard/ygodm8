@@ -29,6 +29,8 @@ extern unsigned char *gUnk_8E17F48[];
 
 #define BIG_CARD_ART_PALETTE_COLORS_DEFAULT 64
 #define BIG_CARD_ART_PALETTE_COLORS_EXTENDED 112
+// sub_800B288 copies 256 bytes from gUnk_8E01368 into gPaletteBuffer for duel attacks.
+#define BIG_CARD_PALETTE_STAGING_BYTES 256
 
 u8 CardUsesExtendedBigCardPalette(u16 cardId) {
   if (gRuntimeConfig.enable_big_card_art_palette_extension != TRUE)
@@ -96,7 +98,9 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   sub_800E08C((void *)bigArt, gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
   CpuCopy32(bigPalette, gUnk_8E01368, paletteBytes);
-  // *gUnk_8E01368 = 0; // Forcibly sets palette to black, seems to corrupt big card art palettes, so turning off for now
+  // Match vanilla PrintCard: index 0 must be black for attack-screen BG tiles. Custom
+  // 80x80 PNGs should reserve index 0 via tools/normalize_big_card_png.py.
+  *gUnk_8E01368 = 0;
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
 }
