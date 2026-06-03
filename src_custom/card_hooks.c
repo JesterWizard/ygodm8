@@ -459,8 +459,8 @@ void sub_803519C__Replacement(void) {
 
   SyncAllCustomTrunkCardQtyMirrorsToVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
-    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
+    SetShopCardQty(CUSTOM_CARD_START + i, gCustomShopCardQty[i]);
+    SetPlayerTempCardQty(CUSTOM_CARD_START + i, gCustomPlayerTempCardQty[i]);
   }
 
 }

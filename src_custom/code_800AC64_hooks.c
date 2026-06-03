@@ -41,8 +41,8 @@ static void SyncCustomCardQtyToFlashBuffers(void) {
 
   SyncAllCustomTrunkCardQtyMirrorsFromVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gCustomShopCardQty[i] = gShopCardQty[CUSTOM_CARD_START + i];
-    gCustomPlayerTempCardQty[i] = gPlayerTempCardQty[CUSTOM_CARD_START + i];
+    gCustomShopCardQty[i] = GetShopCardQty(CUSTOM_CARD_START + i);
+    gCustomPlayerTempCardQty[i] = GetPlayerTempCardQty(CUSTOM_CARD_START + i);
   }
 }
 
@@ -51,8 +51,8 @@ static void SyncCustomCardQtyFromFlashBuffers(void) {
 
   SyncAllCustomTrunkCardQtyMirrorsToVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
-    gShopCardQty[CUSTOM_CARD_START + i] = gCustomShopCardQty[i];
-    gPlayerTempCardQty[CUSTOM_CARD_START + i] = gCustomPlayerTempCardQty[i];
+    SetShopCardQty(CUSTOM_CARD_START + i, gCustomShopCardQty[i]);
+    SetPlayerTempCardQty(CUSTOM_CARD_START + i, gCustomPlayerTempCardQty[i]);
   }
 }
 

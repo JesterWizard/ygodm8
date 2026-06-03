@@ -106,6 +106,10 @@ extern u8 gUnk8094CC3[];
 static u8 GetSortOwnedQty(u16 cardId, u8 *ownedQtyTable) {
   if (ownedQtyTable == gTotalCardQty)
     return GetTotalCardQtyForCard(cardId);
+  if (ownedQtyTable == gShopTempCardQty)
+    return GetShopTempCardQty(cardId);
+  if (ownedQtyTable == gPlayerTempCardQty)
+    return GetPlayerTempCardQty(cardId);
   return ownedQtyTable[cardId];
 }
 
@@ -473,6 +477,64 @@ void sub_8032DE8__Replacement(void) {
     gSortableEntries[i].cardId = gCardSortContext.cards[i];
     gSortableEntries[i].sortKey = 800 - g80D0444[gLanguage][gCardSortContext.cards[i]];
     if (GetTotalCardQtyForCard(gCardSortContext.cards[i]))
+      gSortableEntries[i].sortKey += 800;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032A50);
+void sub_8032A50__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    gSortableEntries[i].cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].sortKey = 800 - gCardSortContext.cards[i];
+    if (GetShopTempCardQty(gCardSortContext.cards[i]))
+      gSortableEntries[i].sortKey |= 0x1000000000000000;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032AD0);
+void sub_8032AD0__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    gSortableEntries[i].cardId = gCardSortContext.cards[i];
+    gSortableEntries[i].sortKey = 800 - gCardSortContext.cards[i];
+    if (GetPlayerTempCardQty(gCardSortContext.cards[i]))
+      gSortableEntries[i].sortKey |= 0x1000000000000000;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032C88);
+void sub_8032C88__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+
+    gSortableEntries[i].cardId = cardId;
+    if (cardId < NUM_CARDS)
+      gSortableEntries[i].sortKey = 800 - g80D0444[gLanguage][cardId];
+    else
+      gSortableEntries[i].sortKey = 800 - cardId;
+    if (GetShopTempCardQty(cardId))
+      gSortableEntries[i].sortKey += 800;
+  }
+}
+
+LYN_REPLACE_CHECK(sub_8032D38);
+void sub_8032D38__Replacement(void) {
+  unsigned i;
+
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    u16 cardId = gCardSortContext.cards[i];
+
+    gSortableEntries[i].cardId = cardId;
+    if (cardId < NUM_CARDS)
+      gSortableEntries[i].sortKey = 800 - g80D0444[gLanguage][cardId];
+    else
+      gSortableEntries[i].sortKey = 800 - cardId;
+    if (GetPlayerTempCardQty(cardId))
       gSortableEntries[i].sortKey += 800;
   }
 }
