@@ -52,7 +52,6 @@ void PlayMusic(int);
 void sub_8041C94(u8 *textPtr, u16, u16, u16, u16);
 void OpponentTurnTextAndVoice(void);
 void TryAttackVoicing(void);
-void sub_801C6BC(u8);
 
 extern u8 *gMyTurnStrings[];
 extern struct Unk2023E80 sActionData;
@@ -276,15 +275,5 @@ void TryAttackVoicing__Replacement(void) {
     return;
 
   PlayVanillaAttackVoicing(cardId);
-}
-
-typedef void (*TargetedAttackSlashFn)(u8);
-
-#define SUB_801C6BC_BODY ((TargetedAttackSlashFn)(0x0801C6CC + 1))
-
-LYN_REPLACE_CHECK(sub_801C6BC);
-void sub_801C6BC__Replacement(u8 arg0) {
-  TryPlayCustomOpponentAttackVoice();
-  SUB_801C6BC_BODY(arg0);
 }
 
