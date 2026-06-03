@@ -35,7 +35,11 @@ M4A_SONG_MODE_TABLE_ORG = 0x80D29D0 - 0x08000000
 M4A_VOICE_PLAYER = 3
 M4A_VOICE_SONG_PLAYER = 0x00030003
 M4A_VOICE_SONG_MODE = 3
-CUSTOM_VOICE_TONE_INDEX_BASE = 48
+M4A_TONE_INDEX_MAX = 255
+M4A_VANILLA_DUEL_VOICE_TONE = 47
+M4A_SONG_SCAN_MAX = 800
+# Prefer high unused tone indices; never patch 48-83 (shared by many BGM/SFX part tracks).
+M4A_VOICE_TONE_PREFER_MIN = 128
 CUSTOM_VOICE_PART_TONE_INDEX = 0
 CUSTOM_VOICE_PART_SIZE = 18
 CUSTOM_VOICE_WAVE_HEADER_SIZE = 16
@@ -353,6 +357,82 @@ def turn_text_symbol_for(sym: str) -> str:
 
 def song_const_for_clip(clip_id):
     return f"SFX_VOICE_{symbol_for_clip(clip_id).upper()}"
+
+
+def parse_part_track_tone_indices(part_ptr, rom):
+    """Return m4a tone indices referenced by a song part track."""
+    if not part_ptr:
+        return set()
+
+    off = part_ptr - 0x08000000
+    if off < 0 or off >= len(rom):
+        return set()
+
+    data = rom[off : off + 2048]
+    tones = set()
+    i = 0
+    while i < len(data):
+        byte = data[i]
+        if byte == 0xBD and i + 1 < len(data):
+            tones.add(data[i + 1])
+            i += 2
+            continue
+        if byte == 0xF2 and i + 2 < len(data):
+            tones.add(data[i + 2])
+            i += 3
+            continue
+        if byte == 0x81 and i + 1 < len(data):
+            tones.add(data[i + 1])
+            i += 2
+            continue
+        if byte == 0xB1:
+            break
+        i += 1
+    return tones
+
+
+def scan_baserom_used_tone_indices(rom_path=BASEROM, max_songs=M4A_SONG_SCAN_MAX):
+    """Tone indices referenced by baserom song part tracks (0..max_songs-1)."""
+    if not rom_path.is_file():
+        raise SystemExit(f"missing {rom_path} (needed to allocate unused m4a tone slots)")
+
+    rom = rom_path.read_bytes()
+    used = set()
+    for song in range(max_songs):
+        off = M4A_SONG_TABLE_ORG + song * 8
+        if off + 8 > len(rom):
+            break
+        header_ptr, _player = struct.unpack_from("<II", rom, off)
+        if header_ptr < 0x08000000 or header_ptr >= 0x09000000:
+            continue
+        hoff = header_ptr - 0x08000000
+        if hoff + 12 > len(rom):
+            continue
+        part_ptr = struct.unpack_from("<I", rom, hoff + 8)[0]
+        used.update(parse_part_track_tone_indices(part_ptr, rom))
+    return used
+
+
+def allocate_voice_tone_indices(num_clips, used_tones):
+    """Pick unused m4a tone slots so voice DPCM patches do not hijack BGM instruments."""
+    forbidden = set(used_tones)
+    forbidden.add(M4A_VANILLA_DUEL_VOICE_TONE)
+
+    unused_high = sorted(
+        i
+        for i in range(M4A_TONE_INDEX_MAX + 1)
+        if i not in forbidden and i >= M4A_VOICE_TONE_PREFER_MIN
+    )
+    unused_low = sorted(
+        i for i in range(M4A_TONE_INDEX_MAX + 1) if i not in forbidden and i < M4A_VOICE_TONE_PREFER_MIN
+    )
+    chosen = (unused_high + unused_low)[:num_clips]
+    if len(chosen) < num_clips:
+        raise SystemExit(
+            f"need {num_clips} free m4a tone slots for custom voices, "
+            f"only {len(chosen)} unused in baserom (scan 0-{M4A_TONE_INDEX_MAX})"
+        )
+    return chosen
 
 
 def resolve_card_targets(raw_card_id, card_ids):
@@ -1214,11 +1294,8 @@ def main():
     if not clips:
         raise SystemExit("voice_manifest.json: clips array is empty")
 
-    if CUSTOM_VOICE_TONE_INDEX_BASE + len(clips) > 200:
-        raise SystemExit(
-            f"too many custom voice clips for tone table slots "
-            f"(max {200 - CUSTOM_VOICE_TONE_INDEX_BASE} starting at {CUSTOM_VOICE_TONE_INDEX_BASE})"
-        )
+    used_tones = scan_baserom_used_tone_indices()
+    voice_tone_indices = allocate_voice_tone_indices(len(clips), used_tones)
 
     songs_meta = []
     clips_meta = []
@@ -1251,7 +1328,7 @@ def main():
         song_id = song_id_base + song_index
         song_const = song_const_for_clip(entry["clip_id"])
 
-        tone_index = CUSTOM_VOICE_TONE_INDEX_BASE + song_index
+        tone_index = voice_tone_indices[song_index]
         part_track = build_part_track(tone_index, note)
 
         song_entry = {

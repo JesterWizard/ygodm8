@@ -1,147 +1,147 @@
 {
   "tone_patches": [
     {
-      "org": 11515148,
+      "org": 11516108,
       "wave_symbol": "CustomVoice_duke_1_Wave"
     },
     {
-      "org": 11515160,
+      "org": 11516204,
       "wave_symbol": "CustomVoice_duke_2_Wave"
     },
     {
-      "org": 11515172,
+      "org": 11516216,
       "wave_symbol": "CustomVoice_duke_3_Wave"
     },
     {
-      "org": 11515184,
+      "org": 11516240,
       "wave_symbol": "CustomVoice_tristan_1_Wave"
     },
     {
-      "org": 11515196,
+      "org": 11516264,
       "wave_symbol": "CustomVoice_tristan_2_Wave"
     },
     {
-      "org": 11515208,
+      "org": 11516276,
       "wave_symbol": "CustomVoice_tristan_3_Wave"
     },
     {
-      "org": 11515220,
+      "org": 11516288,
       "wave_symbol": "CustomVoice_mai_1_Wave"
     },
     {
-      "org": 11515232,
+      "org": 11516300,
       "wave_symbol": "CustomVoice_mai_2_Wave"
     },
     {
-      "org": 11515244,
+      "org": 11516312,
       "wave_symbol": "CustomVoice_mai_3_Wave"
     },
     {
-      "org": 11515256,
+      "org": 11516324,
       "wave_symbol": "CustomVoice_tea_1_Wave"
     },
     {
-      "org": 11515268,
+      "org": 11516336,
       "wave_symbol": "CustomVoice_tea_2_Wave"
     },
     {
-      "org": 11515280,
+      "org": 11516348,
       "wave_symbol": "CustomVoice_tea_3_Wave"
     },
     {
-      "org": 11515292,
+      "org": 11516360,
       "wave_symbol": "CustomVoice_weevil_1_Wave"
     },
     {
-      "org": 11515304,
+      "org": 11516372,
       "wave_symbol": "CustomVoice_weevil_2_Wave"
     },
     {
-      "org": 11515316,
+      "org": 11516384,
       "wave_symbol": "CustomVoice_weevil_3_Wave"
     },
     {
-      "org": 11515328,
+      "org": 11516396,
       "wave_symbol": "CustomVoice_rex_1_Wave"
     },
     {
-      "org": 11515340,
+      "org": 11516432,
       "wave_symbol": "CustomVoice_rex_2_Wave"
     },
     {
-      "org": 11515352,
+      "org": 11516444,
       "wave_symbol": "CustomVoice_rex_3_Wave"
     },
     {
-      "org": 11515364,
+      "org": 11516456,
       "wave_symbol": "CustomVoice_mako_1_Wave"
     },
     {
-      "org": 11515376,
+      "org": 11516480,
       "wave_symbol": "CustomVoice_mako_2_Wave"
     },
     {
-      "org": 11515388,
+      "org": 11516492,
       "wave_symbol": "CustomVoice_mako_3_Wave"
     },
     {
-      "org": 11515400,
+      "org": 11516504,
       "wave_symbol": "CustomVoice_dark_marik_1_Wave"
     },
     {
-      "org": 11515412,
+      "org": 11516516,
       "wave_symbol": "CustomVoice_dark_marik_2_Wave"
     },
     {
-      "org": 11515424,
+      "org": 11516528,
       "wave_symbol": "CustomVoice_dark_marik_3_Wave"
     },
     {
-      "org": 11515436,
+      "org": 11516552,
       "wave_symbol": "CustomVoice_dark_bakura_1_Wave"
     },
     {
-      "org": 11515448,
+      "org": 11516564,
       "wave_symbol": "CustomVoice_dark_bakura_2_Wave"
     },
     {
-      "org": 11515460,
+      "org": 11516576,
       "wave_symbol": "CustomVoice_dark_bakura_3_Wave"
     },
     {
-      "org": 11515472,
+      "org": 11516600,
       "wave_symbol": "CustomVoice_bandit_keith_1_Wave"
     },
     {
-      "org": 11515484,
+      "org": 11516624,
       "wave_symbol": "CustomVoice_bandit_keith_2_Wave"
     },
     {
-      "org": 11515496,
+      "org": 11516636,
       "wave_symbol": "CustomVoice_bandit_keith_3_Wave"
     },
     {
-      "org": 11515508,
+      "org": 11516720,
       "wave_symbol": "CustomVoice_ishizu_1_Wave"
     },
     {
-      "org": 11515520,
+      "org": 11516744,
       "wave_symbol": "CustomVoice_ishizu_2_Wave"
     },
     {
-      "org": 11515532,
+      "org": 11516756,
       "wave_symbol": "CustomVoice_ishizu_3_Wave"
     },
     {
-      "org": 11515544,
+      "org": 11516768,
       "wave_symbol": "CustomVoice_odion_1_Wave"
     },
     {
-      "org": 11515556,
+      "org": 11516780,
       "wave_symbol": "CustomVoice_odion_2_Wave"
     },
     {
-      "org": 11515568,
+      "org": 11516792,
       "wave_symbol": "CustomVoice_odion_3_Wave"
     }
   ],

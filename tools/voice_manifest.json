@@ -20,7 +20,7 @@
       "trigger": "turn_start",
       "title": "Duke: Im Up",
       "turn_text": "I'm up",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "duke_2",
@@ -30,7 +30,7 @@
       "lp_threshold": 3000,
       "title": "Duke: Not Over",
       "turn_text": "This duel isn't over yet.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "duke_3",
@@ -39,7 +39,7 @@
       "trigger": "attack_card",
       "card_id": "GRADIUS",
       "title": "Duke: Go Gradius",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tristan_1",
@@ -48,7 +48,7 @@
       "trigger": "turn_start",
       "title": "Tristan: Its my turn",
       "turn_text": "It's my turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tristan_2",
@@ -58,7 +58,7 @@
       "lp_threshold": 3000,
       "title": "Tristan: Im Done For",
       "turn_text": "I'm done for!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tristan_3",
@@ -67,7 +67,7 @@
       "trigger": "attack_card",
       "card_id": "CYBER_COMMANDER",
       "title": "Tristan: Here Comes Cyber Commander",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mai_1",
@@ -76,7 +76,7 @@
       "trigger": "turn_start",
       "title": "Mai: Draw",
       "turn_text": "Draw!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mai_2",
@@ -86,7 +86,7 @@
       "lp_threshold": 3000,
       "title": "Mai: Like Thats Gonna Keep Me Down",
       "turn_text": "Like that's gonna keep me down!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mai_3",
@@ -95,7 +95,7 @@
       "trigger": "attack_card",
       "card_id": ["HARPIE_LADY", "CYBER_HARPIE","HARPIE_LADY_SISTERS"],
       "title": "Mai: Swoop in Harpie Lady",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tea_1",
@@ -104,7 +104,7 @@
       "trigger": "turn_start",
       "title": "Tea: My Turn",
       "turn_text": "My turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tea_2",
@@ -114,7 +114,7 @@
       "lp_threshold": 3000,
       "title": "Tea: Dont Expect Me To Give Up",
       "turn_text": "Don't expect me to give up!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "tea_3",
@@ -123,7 +123,7 @@
       "trigger": "attack_card",
       "card_id": "FAIRYS_GIFT",
       "title": "Tea: I attack with Fairy's Gift!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "weevil_1",
@@ -132,7 +132,7 @@
       "trigger": "turn_start",
       "title": "Weevil: My Turn",
       "turn_text": "My turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "weevil_2",
@@ -142,7 +142,7 @@
       "lp_threshold": 3000,
       "title": "Weevil: That Was Nothing",
       "turn_text": "That was nothing!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "weevil_3",
@@ -151,7 +151,7 @@
       "trigger": "attack_card",
       "card_id": "GREAT_MOTH",
       "title": "Weevil: Blow Em Away Great Moth!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "rex_1",
@@ -160,7 +160,7 @@
       "trigger": "turn_start",
       "title": "Rex: My Turn",
       "turn_text": "My turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "rex_2",
@@ -170,7 +170,7 @@
       "lp_threshold": 3000,
       "title": "Rex: This Is Far From Over",
       "turn_text": "This is far from over!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "rex_3",
@@ -179,7 +179,7 @@
       "trigger": "attack_card",
       "card_id": "TWO_HEADED_KING_REX",
       "title": "Rex: Two Headed King Rex Attack!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mako_1",
@@ -188,7 +188,7 @@
       "trigger": "turn_start",
       "title": "Mako: It's My Turn",
       "turn_text": "It's my turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mako_2",
@@ -198,7 +198,7 @@
       "lp_threshold": 3000,
       "title": "Mako: This Duel Is Not Over Yet",
       "turn_text": "This duel is not over yet!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "mako_3",
@@ -207,7 +207,7 @@
       "trigger": "attack_card",
       "card_id": "AMPHIBIAN_BEAST",
       "title": "Mako: I Attack You With Amphibian Beast!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_marik_1",
@@ -216,7 +216,7 @@
       "trigger": "turn_start",
       "title": "Dark Marik: My Turn",
       "turn_text": "My turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_marik_2",
@@ -226,7 +226,7 @@
       "lp_threshold": 3000,
       "title": "Dark Marik: Nothing I Can Handle",
       "turn_text": "Nothing I can handle!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_marik_3",
@@ -235,7 +235,7 @@
       "trigger": "attack_card",
       "card_id": "THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE",
       "title": "Dark Marik: Behold My Great Beast!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_bakura_1",
@@ -244,7 +244,7 @@
       "trigger": "turn_start",
       "title": "Dark Bakura: It's My Turn",
       "turn_text": "It's my turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_bakura_2",
@@ -254,7 +254,7 @@
       "lp_threshold": 3000,
       "title": "Dark Bakura: How Dare You",
       "turn_text": "How dare you!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "dark_bakura_3",
@@ -263,7 +263,7 @@
       "trigger": "attack_card",
       "card_id": "PUPPET_MASTER",
       "title": "Dark Bakura: Puppet Master Attack!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "bandit_keith_1",
@@ -272,7 +272,7 @@
       "trigger": "turn_start",
       "title": "Bandit Keith: It's My Turn",
       "turn_text": "It's my turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "bandit_keith_2",
@@ -282,7 +282,7 @@
       "lp_threshold": 3000,
       "title": "Bandit Keith: You Ain't Won Yet",
       "turn_text": "You ain't won yet!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "bandit_keith_3",
@@ -291,7 +291,7 @@
       "trigger": "attack_card",
       "card_id": "BARREL_DRAGON",
       "title": "Bandit Keith: Barrel Dragon Attack!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "ishizu_1",
@@ -300,7 +300,7 @@
       "trigger": "turn_start",
       "title": "Ishizu: My Turn",
       "turn_text": "My turn.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "ishizu_2",
@@ -310,7 +310,7 @@
       "lp_threshold": 3000,
       "title": "Ishizu: You Will Regret That",
       "turn_text": "You will regret that!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "ishizu_3",
@@ -319,7 +319,7 @@
       "trigger": "attack_card",
       "card_id": "KELDO",
       "title": "Ishizu: I Attack You With Keldo!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "odion_1",
@@ -328,7 +328,7 @@
       "trigger": "turn_start",
       "title": "Odion: Prepare Yours",
       "turn_text": "Prepare yours.",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "odion_2",
@@ -338,7 +338,7 @@
       "lp_threshold": 3000,
       "title": "Odion: This Is Nothing",
       "turn_text": "This is nothing!",
-      "gain_db": 4.0
+      "gain_db": 10.0
     },
     {
       "clip_id": "odion_3",
@@ -347,7 +347,7 @@
       "trigger": "attack_card",
       "card_id": "MYSTICAL_BEAST_SERKET",
       "title": "Odion: Mystical Beast of Serket",
-      "gain_db": 4.0
+      "gain_db": 10.0
     }
   ]
 }

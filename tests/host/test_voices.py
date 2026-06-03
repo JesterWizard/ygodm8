@@ -79,6 +79,21 @@ class VoiceTests(unittest.TestCase):
             manifest=manifest,
         )
 
+    def test_allocate_voice_tone_indices_avoids_baserom_programs(self):
+        if not gv.BASEROM.is_file():
+            self.skipTest("baserom required")
+        used = gv.scan_baserom_used_tone_indices()
+        tones = gv.allocate_voice_tone_indices(36, used)
+        self.assertEqual(len(tones), 36)
+        self.assertEqual(set(tones) & used, set())
+        self.assertNotIn(gv.M4A_VANILLA_DUEL_VOICE_TONE, tones)
+        overlap = set(tones) & set(range(48, 84))
+        self.assertEqual(
+            overlap,
+            set(),
+            f"custom voices must not patch BGM instrument tones 48-83: {sorted(overlap)}",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
