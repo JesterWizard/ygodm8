@@ -381,20 +381,6 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);
-  ApplyEmbodimentOfApophisCardInfoOverrides(id);
-}
-
-LYN_REPLACE_CHECK(GetTypeGroup);
-int GetTypeGroup__Replacement(u16 cardId)
-{
-  if (cardId == EMBODIMENT_OF_APOPHIS && EmbodimentOfApophisOnMonsterRow())
-    return TYPE_GROUP_MONSTER;
-
-  if (cardId == CARD_NONE)
-    return 0;
-
-  SetCardInfo__Replacement(cardId);
-  return gE0CFDC[gCardInfo.type];
 }
 
 LYN_REPLACE_CHECK(GetSpellType);
@@ -429,6 +415,7 @@ void ScalePriceToQty__Replacement(void) {
 LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
   SetCardInfo__Replacement(ptr->card);
+  ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(ptr);
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);

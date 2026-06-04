@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card_passives.h"
+#include "embodiment_of_apophis.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -212,7 +213,10 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_EMBODIMENT_OF_APOPHIS:
       ret = FALSE;
       if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER
-          && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
+          && EmbodimentOfApophisHasEmptyMonsterZoneForTrap(
+              gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol])
+          && !EmbodimentOfApophisTrapZoneIsAwakened(
+              gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol])) {
         gTrapEffectData.trapCardId = TRAP_EMBODIMENT_OF_APOPHIS;
         ret = TRUE;
       }

@@ -211,10 +211,24 @@ POIN SetCardInfo__Replacement
 POP
 
 PUSH
-ORG $3FCBC
+ORG $436EC
 ALIGN 4
 WORD $46C04778 $E59FC000 $E12FFF1C
-POIN GetTypeGroup__Replacement
+POIN ZoneHasUnlockedMonsterCard__Replacement
+POP
+
+PUSH
+ORG $4374C
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ZoneHasTrapCard__Replacement
+POP
+
+PUSH
+ORG $45314
+ALIGN 4
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN ClearZoneAndSendMonToGraveyard2__Replacement
 POP
 
 PUSH

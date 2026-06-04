@@ -115,6 +115,11 @@ _kernel_malloc_ewram_array gCopycatBoardStats, 0x64
 @ Active Mage Power / United We Stand equip links (5 slots x 16 bytes).
 _kernel_malloc_ewram_array gDynamicEquipLinks, 0x50
 
+@ Embodiment of Apophis trap/monster zone pairs (5 slots x 5 bytes).
+_kernel_malloc_ewram_array gApophisLinks, 0x19
+@ Re-entrancy guard while clearing linked Apophis zones.
+_kernel_malloc_ewram gApophisClearingPartner, 1
+
 @ Bitfield for one-shot shiny-zone pickups: 16 bytes, 1 bit per flag.
 _kernel_malloc_ewram_array gShinyZoneFlags, 0x10
 

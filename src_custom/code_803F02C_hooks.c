@@ -5,6 +5,7 @@
 #include "delayed_effects.h"
 #include "copycat.h"
 #include "dynamic_equip.h"
+#include "embodiment_of_apophis.h"
 #include "cost_down.h"
 #include "custom_field_spell.h"
 
@@ -130,6 +131,7 @@ void InitBoard__Replacement(void) {
   ResetDelayedDuelEffects();
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
+  ResetApophisLinks();
   ClearCostDown();
   ResetCustomFieldSpellState();
   InitDuelZonePtrs(2);
@@ -241,7 +243,8 @@ void LockMonsterCardsInRow__Replacement(unsigned char turnRow) {
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (gTurnZones[turnRow][i]->id != CARD_NONE
-        && GetTypeGroup(gTurnZones[turnRow][i]->id) == TYPE_GROUP_MONSTER)
+        && (GetTypeGroup(gTurnZones[turnRow][i]->id) == TYPE_GROUP_MONSTER
+            || EmbodimentOfApophisZoneIsMonsterForm(gTurnZones[turnRow][i])))
       gTurnZones[turnRow][i]->isLocked = TRUE;
   }
 
@@ -298,6 +301,7 @@ LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
+  OnEmbodimentOfApophisZoneAboutToClear(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);

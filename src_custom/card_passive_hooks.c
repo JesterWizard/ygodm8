@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card_passives.h"
+#include "embodiment_of_apophis.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -31,7 +32,9 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
   if (ShouldBlockHarmfulEffectOnZone(zone))
     return;
 
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
+      || EmbodimentOfApophisZoneIsMonsterForm(zone)
+      || EmbodimentOfApophisZoneOnMonsterRow(zone))
     gTurnDuelistBattleState[turn]->graveyard = zone->id;
   ClearZone(zone);
 }

@@ -3,6 +3,7 @@
 #include "ai_decision.h"
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
+#include "embodiment_of_apophis.h"
 #include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
@@ -146,6 +147,24 @@ unsigned ZoneHasEquipSpell__Replacement(struct DuelCard *zone)
     return FALSE;
 
   return GetTypeGroup(zone->id) == TYPE_GROUP_SPELL && GetSpellType(zone->id) == SPELL_TYPE_EQUIP;
+}
+
+LYN_REPLACE_CHECK(ZoneHasTrapCard);
+unsigned ZoneHasTrapCard__Replacement(struct DuelCard *zone)
+{
+  if (EmbodimentOfApophisZoneIsTrapForm(zone))
+    return TRUE;
+
+  return zone->id != CARD_NONE && GetTypeGroup(zone->id) == TYPE_GROUP_TRAP;
+}
+
+LYN_REPLACE_CHECK(ZoneHasUnlockedMonsterCard);
+unsigned ZoneHasUnlockedMonsterCard__Replacement(struct DuelCard *zone)
+{
+  if (EmbodimentOfApophisZoneIsMonsterForm(zone))
+    return !zone->isLocked;
+
+  return zone->id != CARD_NONE && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER && !zone->isLocked;
 }
 
 LYN_REPLACE_CHECK(TryDrawingCard);
