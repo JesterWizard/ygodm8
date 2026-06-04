@@ -13478,6 +13478,35 @@
       "big_art": "src_custom/assets/cards/80x80/seal_of_orichalcos.huff",
       "big_palette": "src_custom/assets/cards/80x80/seal_of_orichalcos.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/seal_of_orichalcos.lz"
+    },
+    {
+      "card_const": "FAMILIAR_KNIGHT",
+      "atk": 1200,
+      "def": 1400,
+      "cost": 130,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 3,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_FamiliarKnight",
+        "pages": [
+          "A local knight of some reknown but also well respected.",
+          "If destroyed in battle, both players may special summon",
+          "a level 4 or lower monster from their hands."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_FamiliarKnight",
+        "pages": [
+          "Summon a level 4 or lower monster from hand."
+        ]
+      },
+      "card_name": "Familiar Knight",
+      "password": [ 4, 2, 2, 0, 7, 2, 0, 7 ]
     }
   ]
 }

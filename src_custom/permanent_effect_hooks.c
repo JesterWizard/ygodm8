@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
 #include "graveyard_effects.h"
+#include "familiar_knight.h"
 #include "pyramid_of_light.h"
 
 extern void (*sPermanentEffects[])(void);
@@ -81,6 +82,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = WITCH_OF_THE_BLACK_FOREST,
     .shouldActivate = ShouldActivateGraveyardDrawOnDestroy,
     .activate = ActivateGraveyardDrawOnDestroy,
+  },
+  {
+    .cardId = FAMILIAR_KNIGHT,
+    .shouldActivate = ShouldActivateFamiliarKnight,
+    .activate = ActivateFamiliarKnight,
   },
 };
 

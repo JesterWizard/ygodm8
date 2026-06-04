@@ -104,7 +104,7 @@ class GraveyardDrawOnDestroyTests(unittest.TestCase):
         self.assertIn("gDeferGraveyardDrawBattleResolve", effect)
         self.assertIn("FinishGraveyardDrawBattleResolve", attack)
         self.assertIn("FinishGraveyardDrawBattleResolve", gfx)
-        self.assertIn("CardTriggersDrawOnFieldDestroy", battle)
+        self.assertIn("CardDefersGraveyardEffectUntilBattleFinish", battle)
         self.assertIn("ShouldActivateGraveyardDrawOnDestroy", perm)
         self.assertIn("ActivateCardEffectText", effect)
 

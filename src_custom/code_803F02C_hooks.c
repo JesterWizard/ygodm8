@@ -9,6 +9,7 @@
 #include "cost_down.h"
 #include "custom_field_spell.h"
 #include "graveyard_effects.h"
+#include "familiar_knight.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -153,6 +154,7 @@ void InitBoard__Replacement(void) {
       ? FIELD_ARENA
       : gDuelData.duelist.field;
   gDeferGraveyardDrawBattleResolve = FALSE;
+  ClearFamiliarKnightBattleDestroyPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;

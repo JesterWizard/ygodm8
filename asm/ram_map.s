@@ -188,6 +188,7 @@ _kernel_malloc_ewram gForceActiveTurnEnd, 1
 _kernel_malloc_ewram gPendingUnhappyMaiden, 1
 @ Set when Sangan/Witch is sent to graveyard during battle; cleared after battle UI.
 _kernel_malloc_ewram gDeferGraveyardDrawBattleResolve, 1
+_kernel_malloc_ewram gFamiliarKnightBattleDestroyPending, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

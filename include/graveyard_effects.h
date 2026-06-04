@@ -6,6 +6,7 @@
 extern u8 gDeferGraveyardDrawBattleResolve;
 
 u8 CardTriggersDrawOnFieldDestroy(u16 cardId);
+u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId);
 unsigned char ShouldActivateGraveyardDrawOnDestroy(void);
 void ActivateGraveyardDrawOnDestroy(void);
 void FinishGraveyardDrawBattleResolve(void);

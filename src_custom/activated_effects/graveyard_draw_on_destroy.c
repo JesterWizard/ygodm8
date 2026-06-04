@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
 #include "graveyard_effects.h"
 
 u8 gDeferGraveyardDrawBattleResolve;
@@ -7,6 +8,11 @@ u8 gDeferGraveyardDrawBattleResolve;
 u8 CardTriggersDrawOnFieldDestroy(u16 cardId)
 {
   return cardId == SANGAN || cardId == WITCH_OF_THE_BLACK_FOREST;
+}
+
+u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
+{
+  return CardTriggersDrawOnFieldDestroy(cardId) || cardId == FAMILIAR_KNIGHT;
 }
 
 static u8 GraveyardScanDuelistToFixed(u8 duelist)

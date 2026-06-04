@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `66` effects
+- `67` effects
 
 ## Tally
 
@@ -75,6 +75,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Sangan` | `src_custom/activated_effects/graveyard_draw_on_destroy.c` |
 | `activated_effects` | `Witch of The Black Forest` | `src_custom/activated_effects/graveyard_draw_on_destroy.c` |
 | `permanent_effects` | `Slifer The Sky Dragon` | `src_custom/permanent_effects/slifer_the_sky_dragon.c` |
+| `permanent_effects` | `Familiar Knight` | `src_custom/permanent_effects/familiar_knight.c` |
 
 ## Notes
 

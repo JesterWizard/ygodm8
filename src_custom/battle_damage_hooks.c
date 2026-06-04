@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "card_passives.h"
+#include "familiar_knight.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 
@@ -117,10 +118,16 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
 
-  if (sActionData.flags & 1)
+  if (sActionData.flags & 1) {
+    MarkFamiliarKnightBattleDestruction(
+        gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]->id);
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.playerMonsterRow][sActionData.unkA], 0);
-  if (sActionData.flags & 2)
+  }
+  if (sActionData.flags & 2) {
+    MarkFamiliarKnightBattleDestruction(
+        gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16], 1);
+  }
   if (sActionData.flags & 4)
     DeclareLoser(0);
   if (sActionData.flags & 16)
@@ -129,8 +136,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyTheUnhappyMaidenBattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
-    if (CardTriggersDrawOnFieldDestroy(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)
-        || CardTriggersDrawOnFieldDestroy(gDuel.duelistbattleState[DUEL_OPPONENT].graveyard))
+    if (CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)
+        || CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_OPPONENT].graveyard))
       gDeferGraveyardDrawBattleResolve = TRUE;
   }
 }

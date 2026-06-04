@@ -30,6 +30,7 @@ static const u8 sBlueEyesAlternativeWhiteDragonName[] __attribute__((section(".a
 static const u8 sAncientRulesName[] __attribute__((section(".append_assets"))) = "Ancient Rules";
 static const u8 sMagicJammerName[] __attribute__((section(".append_assets"))) = "Magic Jammer";
 static const u8 sSealOfOrichalcosName[] __attribute__((section(".append_assets"))) = "Seal of Orichalcos";
+static const u8 sFamiliarKnightName[] __attribute__((section(".append_assets"))) = "Familiar Knight";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -96,6 +97,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMagicJammerName;
   if (cardId == 0x0340)
     return (u8 *)sSealOfOrichalcosName;
+  if (cardId == 0x0341)
+    return (u8 *)sFamiliarKnightName;
 
   return gCardNames[cardId];
 }
