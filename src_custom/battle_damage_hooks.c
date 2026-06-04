@@ -2,10 +2,12 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "card_passives.h"
+#include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
+
 #define FLAG_LOSER_PLAYER 4
 #define FLAG_LOSER_OPPONENT 16
 
@@ -125,4 +127,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     DeclareLoser(1);
 
   ApplyTheUnhappyMaidenBattleEffect();
+
+  if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
+    if (CardTriggersDrawOnFieldDestroy(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)
+        || CardTriggersDrawOnFieldDestroy(gDuel.duelistbattleState[DUEL_OPPONENT].graveyard))
+      gDeferGraveyardDrawBattleResolve = TRUE;
+  }
 }

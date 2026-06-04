@@ -8,6 +8,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "fairy_box.h"
+#include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -432,6 +433,7 @@ void sub_8044570__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
       sub_8022080();
+      FinishGraveyardDrawBattleResolve();
     } else {
       PlayMusic(SFX_ATTACK_REBUFFED);
       ActivateTrapEffect(0);
@@ -480,6 +482,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
       sub_8022080();
+      FinishGraveyardDrawBattleResolve();
     } else {
       ActivateTrapEffect(0);
       gDuelCursor.state = 0;

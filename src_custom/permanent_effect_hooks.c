@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
+#include "graveyard_effects.h"
 #include "pyramid_of_light.h"
 
 extern void (*sPermanentEffects[])(void);
@@ -71,6 +72,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .shouldActivate = ShouldActivateYamataDragon,
     .activate = ActivateYamataDragon,
   },
+  {
+    .cardId = SANGAN,
+    .shouldActivate = ShouldActivateGraveyardDrawOnDestroy,
+    .activate = ActivateGraveyardDrawOnDestroy,
+  },
+  {
+    .cardId = WITCH_OF_THE_BLACK_FOREST,
+    .shouldActivate = ShouldActivateGraveyardDrawOnDestroy,
+    .activate = ActivateGraveyardDrawOnDestroy,
+  },
 };
 
 static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
@@ -90,6 +101,8 @@ static void TryActivatingPermanentEffect__Hook(void) {
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (override != NULL) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(8);
     override->activate();
     return;
   }

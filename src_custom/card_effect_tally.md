@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `62` effects
+- `64` effects
 
 ## Tally
 
@@ -71,6 +71,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Spell Canceller` | `src_custom/permanent_effects/spell_canceller.c` |
 | `permanent_effects` | `Yamata Dragon` | `src_custom/permanent_effects/yamata_dragon.c` |
 | `activated_effects` | `Monster Tamer` | `src_custom/activated_effects/monster_tamer.c` |
+| `activated_effects` | `Sangan` | `src_custom/activated_effects/graveyard_draw_on_destroy.c` |
+| `activated_effects` | `Witch of The Black Forest` | `src_custom/activated_effects/graveyard_draw_on_destroy.c` |
 
 ## Notes
 

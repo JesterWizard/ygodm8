@@ -181,7 +181,8 @@ _kernel_malloc_ewram gPlayerDeckSaveRestoreActiveDeck, 0x1
 _kernel_malloc_ewram gForceActiveTurnEnd, 1
 @ Nonzero after battle destruction until effect text/turn-end resolve (see the_unhappy_maiden.c).
 _kernel_malloc_ewram gPendingUnhappyMaiden, 1
-
+@ Set when Sangan/Witch is sent to graveyard during battle; cleared after battle UI.
+_kernel_malloc_ewram gDeferGraveyardDrawBattleResolve, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

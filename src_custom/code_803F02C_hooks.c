@@ -8,6 +8,7 @@
 #include "embodiment_of_apophis.h"
 #include "cost_down.h"
 #include "custom_field_spell.h"
+#include "graveyard_effects.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -146,6 +147,7 @@ void InitBoard__Replacement(void) {
   gDuel.field = gRuntimeConfig.duel_fields_start_on_arena == TRUE
       ? FIELD_ARENA
       : gDuelData.duelist.field;
+  gDeferGraveyardDrawBattleResolve = FALSE;
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;

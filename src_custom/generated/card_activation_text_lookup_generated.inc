@@ -4,6 +4,7 @@ typedef struct {
 } CardActivationTextEntry;
 
 static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA = {
+  { SANGAN, gActivationDescription_Sangan },
   { MASK_OF_DARKNESS, gActivationDescription_MaskOfDarkness },
   { FIRE_REAPER, gActivationDescription_FireReaper },
   { MYSTERIOUS_PUPPETEER, gActivationDescription_MysteriousPuppeteer },
@@ -27,6 +28,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { AMAZON_CHAIN_MASTER, gActivationDescription_AmazonChainMaster },
   { INJECTION_FAIRY_LILY, gActivationDescription_InjectionFairyLily },
   { NEEDLE_WORM, gActivationDescription_NeedleWorm },
+  { WITCH_OF_THE_BLACK_FOREST, gActivationDescription_WitchOfTheBlackForest },
   { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },
   { YAMATA_DRAGON, gActivationDescription_YamataDragon },
   { SKULL_MARK_LADY_BUG, gActivationDescription_SkullMarkLadyBug },

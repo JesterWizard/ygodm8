@@ -24,6 +24,8 @@ static void ShowCardEffectNameText(void);
 static void ShowCardEffectNameTextAlt(void);
 static void ShowDestroyWithBackrowText(void);
 
+void ActivatePermanentEffectCardText(u16 cardId);
+
 static void (*const sCardEffectTextHandlers[])(void) APPEND_RODATA = {
   EmptyCardEffectText,
   PlaySpellEffectText,
@@ -61,6 +63,24 @@ static void PlayActivationDescriptionText(const u8 *text) {
   sub_8041C94((unsigned char *)text, gCardEffectTextData.cardId, gCardEffectTextData.cardId2, 0, 0);
   SetCardInfo(gCardEffectTextData.cardId);
   PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
+}
+
+void ActivatePermanentEffectCardText(u16 cardId) {
+  const u8 *text;
+
+  if (gHideEffectText)
+    return;
+
+  text = GetCardActivationText(cardId);
+  gCardEffectTextData.cardId = cardId;
+  PlayMusic(SFX_SPELL_ACTIVATION_START);
+  if (text != NULL)
+    sub_8041C94((unsigned char *)text, cardId, gCardEffectTextData.cardId2, 0, 0);
+  else
+    sub_8041C94(g8F9E35C[cardId], cardId, gCardEffectTextData.cardId2, 0, 0);
+  SetCardInfo(cardId);
+  PlayMusic(g89DC23C[gCardInfo.unk1E]);
+  sub_8022080();
 }
 
 static void PlayActivationEndSfx(u16 soundId) {
