@@ -8009,12 +8009,26 @@
       "attribute": "ATTRIBUTE_FIEND",
       "level": 4,
       "type": "TYPE_MACHINE",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CANNON_SOLDIER",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Cannon Soldier",
-      "password": [ 1, 1, 3, 8, 4, 2, 8, 0 ]
+      "password": [ 1, 1, 3, 8, 4, 2, 8, 0 ],
+      "description": {
+        "symbol": "gDescription_CannonSoldier",
+        "pages": [
+          "An army pet project, it is a mechanical soldier with a cannon.",
+          "It can tribute one monster on your side to inflict",
+          "500LP of damage to the opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CannonSoldier",
+        "pages": [
+          "Select a monster on your side to tribute, then inflict 500LP of damage to the opponent."
+        ]
+      }
     },
     {
       "card_const": "GUARDIAN_OF_THE_THRONE_ROOM",

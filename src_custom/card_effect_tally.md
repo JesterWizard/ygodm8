@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `65` effects
+- `66` effects
 
 ## Tally
 
@@ -46,6 +46,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Fire Reaper` | `src_custom/activated_effects/fire_reaper.c` |
 | `activated_effects` | `Copycat` | `src_custom/activated_effects/copycat.c` |
 | `activated_effects` | `Kaibaman` | `src_custom/activated_effects/kaibaman.c` |
+| `activated_effects` | `Cannon Soldier` | `src_custom/activated_effects/cannon_soldier.c` |
 | `trap_effects` | `Mask of Restrict` | `src_custom/trap_effects/mask_of_restrict.c` |
 | `trap_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |
 | `turn_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |

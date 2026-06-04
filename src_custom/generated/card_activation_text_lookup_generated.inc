@@ -25,6 +25,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SINISTER_SERPENT, gActivationDescription_SinisterSerpent },
   { NEEDLE_BALL, gActivationDescription_NeedleBall },
   { MAHA_VAILO, gActivationDescription_MahaVailo },
+  { CANNON_SOLDIER, gActivationDescription_CannonSoldier },
   { EMBODIMENT_OF_APOPHIS, gActivationDescription_EmbodimentOfApophis },
   { AMAZON_CHAIN_MASTER, gActivationDescription_AmazonChainMaster },
   { INJECTION_FAIRY_LILY, gActivationDescription_InjectionFairyLily },

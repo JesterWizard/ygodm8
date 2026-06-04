@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/monster_effects.h"
+#include "cannon_soldier.h"
 #include "soul_exchange.h"
 #include "tribute.h"
 
@@ -50,6 +51,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateKaibaman();
     case MONSTER_EFFECT_MONSTER_TAMER:
       return CanActivateMonsterTamer();
+    case MONSTER_EFFECT_CANNON_SOLDIER:
+      return CanActivateCannonSoldier();
     default:
       return TRUE;
   }
@@ -141,6 +144,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_CANNON_SOLDIER) {
+    ActivateCannonSoldierEffect();
+    return;
+  }
+
   gMonEffects[gCardInfo.monsterEffect]();
 }
 
@@ -184,11 +192,14 @@ void MonsterActionMenu__Replacement(void) {
       UpdateDuelGfxExceptField();
       TryActivatingPermanentEffects();
       break;
-    case 4:
+    case 4: {
+      struct DuelCard *zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
+      u8 isFaceUp = zone->isFaceUp;
+
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
-        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
-      if (!gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp) {
-        gMonEffect.id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+        zone->isDefending = 0;
+      if (!isFaceUp || zone->id == CANNON_SOLDIER) {
+        gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
         if (gMonEffect.id == NEEDLE_BALL) {
           PlayMusic(SFX_FORBIDDEN);
@@ -203,14 +214,18 @@ FAILED:
           UpdateDuelGfxExceptField();
         }
         else {
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
-          if (gCardLockAfterActivation_Hook[gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id])
-            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+          if (!isFaceUp) {
+            zone->isDefending = 0;
+            zone->isFaceUp = 1;
+          }
+          if (gCardLockAfterActivation_Hook[zone->id] && zone->id != CANNON_SOLDIER)
+            zone->isLocked = 1;
           ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);
           UpdateDuelGfxExceptField();
+          if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET)
+            break;
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)
             TryActivatingPermanentEffects();
@@ -219,6 +234,7 @@ FAILED:
       else
         goto FAILED;
       break;
+    }
     case 5:
       if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending)
         if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)

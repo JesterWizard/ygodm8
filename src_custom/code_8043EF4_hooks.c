@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
+#include "cannon_soldier.h"
 #include "pyramid_of_light.h"
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
@@ -512,6 +513,9 @@ void HandleAButtonAction__Replacement(void)
     case 4:
       TryAttackWithMonster();
       break;
+    case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
+      TrySelectCannonSoldierTarget();
+      break;
   }
 }
 
@@ -530,6 +534,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_MST_TARGET:
       CancelMysticalSpaceTyphoonTargeting();
+      break;
+    case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
+      CancelCannonSoldierTargeting();
       break;
     case 4:
       sub_8044A88();
