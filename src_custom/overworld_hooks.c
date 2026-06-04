@@ -1,5 +1,6 @@
 #include "global.h"
 #include "ante_card_viewer.h"
+#include "duelist_deck_viewer.h"
 #include "common-chax.h"
 #include "event_system.h"
 #include "configs/runtime.h"
@@ -85,8 +86,7 @@ static void OverworldRestoreAfterDebugMenu(void) {
 
 THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ASSET)
 
-static u16 *const sShowThoughtBubbles = (u16 *)0x03001678;
-static u8 *const sSkipOverworldEndFrameAfterSubmenu = (u8 *)0x0300167A;
+extern u8 gSkipOverworldEndFrameAfterSubmenu;
 NAKED
 static void LZ77UnCompVram__Hook(const void *src, void *dest) {
   asm_unified("swi 0x12\n\
@@ -237,9 +237,9 @@ static void SetThoughtBubbleOam(u8 visible) {
 
 /* LYN_REPLACEMENT(ProcessInput) */
 u8 ProcessInput__Replacement(void) {
-  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubbles == TRUE) {
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && gShowThoughtBubbles != 0) {
     if (gNewButtons & L_BUTTON) {
-      *sShowThoughtBubbles = FALSE;
+      gShowThoughtBubbles = 0;
       PlayMusic(SFX_SELECT);
     }
     return OVERWORLD_INPUT_NONE;
@@ -248,7 +248,7 @@ u8 ProcessInput__Replacement(void) {
   if (gNewButtons & A_BUTTON)
     return OVERWORLD_INPUT_TALK;
   if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && (gNewButtons & L_BUTTON)) {
-    *sShowThoughtBubbles = TRUE;
+    gShowThoughtBubbles = 1;
     PlayMusic(SFX_SELECT);
     return OVERWORLD_INPUT_NONE;
   }
@@ -281,7 +281,7 @@ u8 ProcessInput__Replacement(void) {
       OverworldRestoreAfterDebugMenu();
       PlayOverworldMusic();
       /* Match START_MENU: restore without running sub_804EF10 on this frame. */
-      *sSkipOverworldEndFrameAfterSubmenu = 1;
+      gSkipOverworldEndFrameAfterSubmenu = 1;
     }
     return OVERWORLD_INPUT_NONE;
   }
@@ -307,20 +307,47 @@ u8 ProcessInput__Replacement(void) {
     if (gRuntimeConfig.enable_ante_card_viewer == TRUE && AnteCardViewer_TryOpen() == TRUE) {
       OverworldRestoreAfterDebugMenu();
       PlayOverworldMusic();
-      *sSkipOverworldEndFrameAfterSubmenu = 1;
+      gSkipOverworldEndFrameAfterSubmenu = 1;
       return OVERWORLD_INPUT_NONE;
     }
     return OVERWORLD_INPUT_START_MENU;
   }
-  if (gRepeatedOrNewButtons & START_BUTTON)
+  if (gRepeatedOrNewButtons & START_BUTTON) {
+    u8 duelX = gOverworld.objects[0].x;
+    u8 duelY = gOverworld.objects[0].y;
+    u8 duelDir = gOverworld.objects[0].direction;
+
+    switch (duelDir) {
+      case DIRECTION_DOWN:
+        duelY++;
+        break;
+      case DIRECTION_UP:
+        duelY--;
+        break;
+      case DIRECTION_LEFT:
+        duelX--;
+        break;
+      case DIRECTION_RIGHT:
+        duelX++;
+        break;
+    }
+    if (gRuntimeConfig.enable_duelist_deck_viewer == TRUE &&
+        ObjectHasDuelDialogue(GetObjectIdInFrontOfPlayer(duelX, duelY, duelDir)) == TRUE &&
+        DuelistDeckViewer_TryOpen() == TRUE) {
+      OverworldRestoreAfterDebugMenu();
+      PlayOverworldMusic();
+      gSkipOverworldEndFrameAfterSubmenu = 1;
+      return OVERWORLD_INPUT_NONE;
+    }
     return OVERWORLD_INPUT_START_MENU;
+  }
   return OVERWORLD_INPUT_NONE;
 }
 
 LYN_REPLACE_CHECK(sub_804EF10);
 void sub_804EF10__Replacement(void) {
-  if (*sSkipOverworldEndFrameAfterSubmenu) {
-    *sSkipOverworldEndFrameAfterSubmenu = 0;
+  if (gSkipOverworldEndFrameAfterSubmenu) {
+    gSkipOverworldEndFrameAfterSubmenu = 0;
     SetVBlankCallback(sub_804F1E4);
     return;
   }
@@ -334,7 +361,7 @@ void sub_804EF10__Replacement(void) {
   OverworldOverlay_PrepareFrame();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);
-  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && *sShowThoughtBubbles == TRUE) {
+  if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && gShowThoughtBubbles != 0) {
     LoadThoughtBubbleGfx();
     SetThoughtBubbleOam(TRUE);
   }

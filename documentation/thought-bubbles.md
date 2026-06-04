@@ -14,6 +14,8 @@
 
 World-map thought bubbles now swap art based on the most recently triggered event flag.
 
+On the overworld, **L** toggles the bubble sprite: press **L** to show it, press **L** again to hide it. This is independent of the duelist deck viewer, which uses **START** while facing a duelist (see [duelist-deck-viewer.md](duelist-deck-viewer.md)).
+
 The system is built to keep the common workflow short:
 
 1. add a new event folder with a `thought.png`
@@ -22,6 +24,14 @@ The system is built to keep the common workflow short:
 4. run `make`
 
 The goal is to avoid hand-editing multiple declarations in `overworld_hooks.c` every time a new bubble is added.
+
+## Access
+
+| Requirement | Detail |
+|-------------|--------|
+| Runtime toggle | `gRuntimeConfig.enable_world_map_thought_bubbles` in `configs/runtime.c` (default **on**) |
+| Show | Press **L** on the overworld while the bubble is hidden |
+| Hide | Press **L** again while the bubble is visible |
 
 ## Plan
 
@@ -109,6 +119,8 @@ Current behavior matrix:
 | Bubble registration table | `src_custom/thought_bubble_table.inc` | Single source of truth for bubble ids, folders, and event-flag assignments |
 | Runtime bubble loader | `LoadThoughtBubbleGfx` in `src_custom/overworld_hooks.c` | Loads the selected bubble tiles and palette into OBJ VRAM |
 | Runtime bubble selection | `GetThoughtBubbleIdForFlag` in `src_custom/overworld_hooks.c` | Converts the most recent event flag into a bubble id |
+| **L** toggle input | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Shows or hides the bubble sprite on the world map |
+| Bubble visibility flag | `gShowThoughtBubbles` (`u8`) in `asm/ram_map.s` | Allocated via `_kernel_malloc`; cleared in `InitFlags__Replacement`; must not overlap `gM4aHqMixBuffer` |
 | Latest-flag tracking | `SetFlag__Replacement` in `src_custom/flag_hooks.c` | Records the newest event flag that has been triggered |
 | Reset behavior | `InitFlags__Replacement` in `src_custom/flag_hooks.c` | Clears the tracked latest flag when flags are reinitialized |
 | Public accessor | `include/thought_bubble.h` | Exposes the latest thought-bubble event flag to the overworld hook |

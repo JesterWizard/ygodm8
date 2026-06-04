@@ -5,6 +5,8 @@
 
 #define THOUGHT_BUBBLE_EVENT_FLAG_NONE 0xFFFF
 
+extern u8 gShowThoughtBubbles;
+
 u16 GetLatestThoughtBubbleEventFlag(void);
 
 #endif

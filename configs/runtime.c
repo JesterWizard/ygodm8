@@ -36,6 +36,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_world_map_thought_bubbles = TRUE,
     .enable_debug_menu = TRUE,
     .enable_ante_card_viewer = TRUE,
+    .enable_duelist_deck_viewer = TRUE,
     .enable_password_terminal_feedback = TRUE,
     .enable_shiny_zones = TRUE,
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border

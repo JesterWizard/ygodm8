@@ -43,6 +43,7 @@ typedef struct {
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.
     u8 enable_debug_menu; // R alone on field overworld opens debug menu.
     u8 enable_ante_card_viewer; // SELECT facing a duelist opens their ante reward card list.
+    u8 enable_duelist_deck_viewer; // START facing a duelist opens a read-only deck list viewer.
     u8 enable_password_terminal_feedback; // Show password result popup and charge only on valid passwords.
     u8 enable_shiny_zones; // Interactable overworld card pickups from the shiny-zone manifest.
     u8 enable_big_card_art_palette_extension; // Card detail view: extend big art palettes to 7 BG banks (112 colors).

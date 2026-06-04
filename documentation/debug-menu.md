@@ -6,6 +6,7 @@
 
 - [Introduction](#introduction)
 - [Related: Ante Card Viewer](#related-ante-card-viewer)
+- [Related: Duelist Deck Viewer](#related-duelist-deck-viewer)
 - [Source Layout](#source-layout)
 - [Access](#access)
 - [Root Menu](#root-menu)
@@ -42,6 +43,12 @@ Viewers and tools implemented today:
 The **ante card viewer** (`src_custom/debug/ante_card_viewer.c`) shares this folder’s text and graphics helpers but is **not** part of the debug menu root. On the overworld, **SELECT** while facing a duelist opens a scrollable ante reward list with a mini card preview. It uses `DebugMenuCopyLine`, `DebugMenuSetLinePalette`, and `DebugMenuLoadGraphics`, but is gated by `enable_ante_card_viewer` instead of `enable_debug_menu`.
 
 Full behavior, controls, data sources, and colored row text are documented in [ante-card-viewer.md](ante-card-viewer.md).
+
+## Related: Duelist Deck Viewer
+
+The **duelist deck viewer** (`src_custom/duelist_deck_viewer.c`) is a separate player-facing feature gated by `enable_duelist_deck_viewer`. On the overworld, **START** while facing a duelist opens a read-only copy of the status-menu deck list (sort and card details only; no trunk edits). It reuses deck menu code in `src_custom/deck_menu_hooks.c`, not the debug menu root.
+
+Full behavior, controls, and deck resolution are documented in [duelist-deck-viewer.md](duelist-deck-viewer.md).
 
 ## Source Layout
 

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "card.h"
 #include "configs/runtime.h"
+#include "constants/music_ids.h"
 #include "custom_decks/custom_decks.h"
 #include "player_decks.h"
 #include "duel.h"
@@ -30,7 +31,19 @@ void SyncTrunkQtyFromOwnedTotal(u16);
 void sub_801EF30(unsigned char);
 void sub_801F4A0(unsigned char);
 void sub_801F5F0(void);
+void sub_801F5FC(void);
 void sub_801F614(void);
+void sub_801F630(void);
+void sub_801F644(void);
+void sub_801F120(void);
+void sub_0801F62C(void);
+void sub_0801F5EC(void);
+void RunTrunkTask(unsigned char);
+void DeckMenuSort(void);
+void ToggleDeckSortMode(void);
+unsigned IsPlayerDeckNonempty(void);
+void DisableDisplay(void);
+extern unsigned short gFilteredInput;
 int ProcessInputDeckSubmenus(void);
 void A_Submenu_Main(void);
 unsigned short sub_08007FEC(unsigned char, unsigned char, unsigned short);
@@ -377,4 +390,141 @@ void A_Submenu_Main__Replacement(void) {
     }
   }
   sub_801D678();
+}
+
+static unsigned short DeckMenuProcessInput(void) {
+  unsigned char i;
+  unsigned short mask;
+  unsigned short ret = 0;
+
+  UpdateFilteredInput_NoRepeat();
+  mask = 0x1;
+  for (i = 0; i < NUM_BUTTONS; i++) {
+    if (mask & gNewButtons)
+      ret = mask & gNewButtons;
+    mask <<= 1;
+  }
+  mask = 0x10;
+  for (i = 0; i < 4; i++) {
+    if (mask & gFilteredInput)
+      ret = mask & gFilteredInput;
+    mask <<= 1;
+  }
+  if (gFilteredInput & DPAD_UP && gPressedButtons & R_BUTTON)
+    ret = NEW_DPAD_UP | R_BUTTON;
+  if (gFilteredInput & DPAD_DOWN && gPressedButtons & R_BUTTON)
+    ret = NEW_DPAD_DOWN | R_BUTTON;
+  return ret;
+}
+
+static void DeckMenuInitGraphics(void) {
+  sub_801EF30(0);
+  sub_801EF30(2);
+  sub_801F4A0(1);
+  sub_801F5F0();
+  sub_801F4A0(3);
+}
+
+static void DeckMenuRestoreAfterCardDetails(void) {
+  sub_801EF30(0);
+  sub_801EF30(2);
+  sub_801F4A0(1);
+  sub_801F5F0();
+  sub_801F4A0(3);
+  sub_801F5FC();
+  sub_801EF30(3);
+  sub_801F4A0(4);
+  WaitForVBlank();
+  LoadCharblock1();
+}
+
+static void DeckMenuShutdownGraphics(void) {
+  RunPlayerDeckTask(8);
+  sub_801EF30(1);
+  RunTrunkTask(9);
+  sub_0801F5EC();
+  sub_801F4A0(2);
+}
+
+static void DeckMenuShowSelectedCardDetails(void) {
+  u16 cardId = GetSelectedCardWithOffset(2);
+
+  SetCardInfoWithWarning(&cardId);
+  PlayMusic(SFX_SELECT);
+  ShowCardDetailView();
+  DeckMenuRestoreAfterCardDetails();
+}
+
+void DeckMenuMainReadOnly(void) {
+  unsigned keepProcessing = 1;
+
+  if (IsPlayerDeckNonempty() != 1)
+    return;
+
+  DeckMenuSort();
+  DeckMenuInitGraphics();
+  while (keepProcessing) {
+    switch (DeckMenuProcessInput()) {
+      case DPAD_UP:
+        RunPlayerDeckTask(3);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_UP | R_BUTTON:
+        RunPlayerDeckTask(5);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_DOWN:
+        RunPlayerDeckTask(2);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_DOWN | R_BUTTON:
+        RunPlayerDeckTask(4);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case L_BUTTON:
+        RunPlayerDeckTask(6);
+        sub_801EF30(4);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case NEW_A_BUTTON:
+        DeckMenuShowSelectedCardDetails();
+        sub_801F4A0(7);
+        break;
+      case NEW_B_BUTTON:
+        keepProcessing = 0;
+        PlayMusic(SFX_CANCEL);
+        break;
+      case NEW_START_BUTTON:
+        sub_801F120();
+        sub_801EF30(7);
+        sub_801F4A0(9);
+        sub_801F644();
+        break;
+      case NEW_SELECT_BUTTON:
+        ToggleDeckSortMode();
+        sub_801EF30(6);
+        PlayMusic(SFX_SELECT);
+        sub_801F4A0(8);
+        sub_801F630();
+        break;
+      case 0:
+      default:
+        sub_801EF30(5);
+        sub_0801F62C();
+        sub_801F4A0(5);
+        break;
+    }
+    if (IsPlayerDeckNonempty() != 1)
+      keepProcessing = 0;
+  }
+  DeckMenuShutdownGraphics();
 }

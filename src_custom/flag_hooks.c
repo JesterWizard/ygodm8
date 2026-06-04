@@ -20,6 +20,7 @@ void InitFlags__Replacement(void) {
     gFlags[i] = 0;
 
   sLatestThoughtBubbleEventFlag = THOUGHT_BUBBLE_EVENT_FLAG_NONE;
+  gShowThoughtBubbles = 0;
   ShinyZones_ResetFlags();
 }
 
