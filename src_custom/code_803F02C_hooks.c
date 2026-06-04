@@ -13,6 +13,10 @@
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
 void CopyCard(struct DuelCard *dst, struct DuelCard *src);
+u8 ShouldApplySliferSummonPenalty(struct DuelCard *dst, struct DuelCard *src);
+void MaybeApplySliferSummonPenaltyAfterCopy(struct DuelCard *dst);
+void ClearPendingSliferSummonPenalty(void);
+void ResolvePendingSliferSummonPenalty(void);
 void ResetUltimateOfferingTurnState(void);
 void TryUnlockHandForUltimateOfferingExtraSummon(void);
 void UnlockCardsInRow(unsigned char turnRow);
@@ -135,6 +139,7 @@ void InitBoard__Replacement(void) {
   ResetApophisLinks();
   ClearCostDown();
   ResetCustomFieldSpellState();
+  ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -329,6 +334,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
 LYN_REPLACE_CHECK(CopyCard);
 void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
 {
+  u8 checkSliferSummonPenalty = ShouldApplySliferSummonPenalty(dst, src);
+
   if (ShouldPayChainEnergyForHandToFieldCopy(dst, src)) {
     if (!TryPayChainEnergyCost())
       return;
@@ -345,6 +352,9 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->unkThree = src->unkThree;
   dst->willChangeSides = src->willChangeSides;
   RecalculateAllDynamicEquips();
+
+  if (checkSliferSummonPenalty)
+    MaybeApplySliferSummonPenaltyAfterCopy(dst);
 }
 
 LYN_REPLACE_CHECK(GetFinalStage);

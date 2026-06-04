@@ -3720,8 +3720,8 @@
     },
     {
       "card_const": "SLIFER_THE_SKY_DRAGON",
-      "atk": 4000,
-      "def": 4000,
+      "atk": 0,
+      "def": 0,
       "cost": 0,
       "attribute": "ATTRIBUTE_DIVINE",
       "level": 12,
@@ -3730,6 +3730,21 @@
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SliferTheSkyDragon",
+        "pages": [
+          "A dragon that powers up 3 levels for every card in your hand.",
+          "Any summoned enemy monster loses 4 stages of attack when summoned and",
+          "is destroyed if its ATK becomes 0."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SliferTheSkyDragon",
+        "pages": [
+          "The summoned monster loses 4 stages of ATK!",
+          "If its ATK becomes 0, it is destroyed."
+        ]
+      },
       "card_name": "Slifer The Sky Dragon",
       "password": [ 15, 15, 15, 15, 15, 15, 15, 14 ]
     },

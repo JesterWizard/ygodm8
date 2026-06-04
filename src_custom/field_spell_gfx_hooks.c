@@ -167,6 +167,8 @@ void WaitForVBlank(void);
 void LoadPalettes(void);
 void SetDuelFieldGfx(u8 field);
 void UpdateDuelGfxExceptField(void);
+extern u8 gSliferPendingPenaltyActive;
+void ResolvePendingSliferSummonPenalty(void);
 
 typedef void (*VoidFunc)(void);
 
@@ -220,4 +222,7 @@ void UpdateDuelGfxExceptField__Replacement(void)
 {
   RestoreDuelFieldLayerIfNeeded();
   RunVanillaUpdateDuelGfxExceptField();
+
+  if (gSliferPendingPenaltyActive == TRUE)
+    ResolvePendingSliferSummonPenalty();
 }

@@ -13,6 +13,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { NIMBLE_MOMONGA, gActivationDescription_NimbleMomonga },
   { CEREMONIAL_BELL, gActivationDescription_CeremonialBell },
   { JAM_BREEDING_MACHINE, gActivationDescription_JamBreedingMachine },
+  { SLIFER_THE_SKY_DRAGON, gActivationDescription_SliferTheSkyDragon },
   { PRINCESS_OF_TSURUGI, gActivationDescription_PrincessOfTsurugi },
   { SPARKS, gActivationDescription_Sparks },
   { HINOTAMA, gActivationDescription_Hinotama },
