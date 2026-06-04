@@ -66,15 +66,19 @@ void RefreshFieldMonsterStatOverlays(void)
       if (zone->id == CARD_NONE)
         continue;
 
-      if (row == 1 && !zone->isFaceUp)
+      if (row == OPPONENT_MONSTER_ROW && !zone->isFaceUp)
+        continue;
+
+      /* Row 4 tile VRAM is reused for the opponent hand while field-scrolling. */
+      if (row == PLAYER_HAND && ShouldDrawOpponentHandOnField())
         continue;
 
       tilePtr = FieldCardTilePtr(row, col);
 
-      if (row == 1 || row == 2)
+      if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW)
         StampFieldCardStage(tilePtr, GetFinalStage(zone));
 
-      if (row == 1 || row == 2 || row == 4) {
+      if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW || row == PLAYER_HAND) {
         sub_80572A8(tilePtr, zone);
         sub_805733C(tilePtr, zone);
       }
