@@ -30,6 +30,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },
   { YAMATA_DRAGON, gActivationDescription_YamataDragon },
   { SKULL_MARK_LADY_BUG, gActivationDescription_SkullMarkLadyBug },
+  { THE_UNHAPPY_MAIDEN, gActivationDescription_TheUnhappyMaiden },
   { DECK_DESTRUCTION_VIRUS, gActivationDescription_DeckDestructionVirus },
   { BLUE_EYES_SHINING_DRAGON, gActivationDescription_BlueEyesShiningDragon },
   { CARD_OF_DEMISE, gActivationDescription_CardOfDemise },

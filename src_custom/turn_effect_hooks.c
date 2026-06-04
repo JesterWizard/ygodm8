@@ -51,6 +51,8 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateSinisterSerpentEffect();
     return;
   }
+  if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+    return;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
     ActivateDeckDestructionVirusEffect();
     return;
@@ -77,6 +79,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return TRUE;
   if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return ShouldActivateSinisterSerpentEffect();
+  if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+    return FALSE;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)
     return TRUE;
   if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)

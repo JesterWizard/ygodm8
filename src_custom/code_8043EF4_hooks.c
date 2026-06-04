@@ -8,6 +8,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "fairy_box.h"
+#include "the_unhappy_maiden.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -428,6 +429,7 @@ void sub_8044570__Replacement(void)
       CheckGraveyardAndLoserFlags();
       gDuelCursor.state = 0;
       sub_801BC00();
+      ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
       sub_8022080();
     } else {
@@ -475,6 +477,7 @@ void TryAttackWithMonster__Replacement(void)
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();
+      ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
       sub_8022080();
     } else {

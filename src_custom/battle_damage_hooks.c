@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "card_passives.h"
+#include "the_unhappy_maiden.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -122,4 +123,6 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     DeclareLoser(0);
   if (sActionData.flags & 16)
     DeclareLoser(1);
+
+  ApplyTheUnhappyMaidenBattleEffect();
 }

@@ -176,6 +176,12 @@ _kernel_malloc_ewram gDebugDeckSwapBackupValid, 1
 @ Active deck index while sub_80351F8 builds the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveRestoreActiveDeck, 0x1
 
+@ Set when The Unhappy Maiden ends the active duelist's turn during battle.
+@ Allocated last so earlier EWRAM symbols (trunk/sort buffers) keep stable addresses.
+_kernel_malloc_ewram gForceActiveTurnEnd, 1
+@ Nonzero after battle destruction until effect text/turn-end resolve (see the_unhappy_maiden.c).
+_kernel_malloc_ewram gPendingUnhappyMaiden, 1
+
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

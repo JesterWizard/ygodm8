@@ -14,6 +14,70 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "duel.h"
 #include "duel_textbox.h"
 #include "text.h"
+#include "the_unhappy_maiden.h"
+
+void sub_8040B4C(void);
+void sub_80408FC(void);
+void DisplayCardInfoBar(void);
+void sub_8040EF0(void);
+void sub_80411EC(struct OamData *oam);
+s16 fix_mul(s16 a, s16 b);
+s16 fix_inverse(s16 a);
+
+extern struct OamData gOamBuffer[];
+extern const s16 sin_cos_table[];
+
+extern const u8 gFieldArenaTiles[];
+extern const u8 gFieldForestTiles[];
+extern const u8 gFieldWastelandTiles[];
+extern const u8 gFieldMountainTiles[];
+extern const u8 gFieldSogenTiles[];
+extern const u8 gFieldUmiTiles[];
+extern const u8 gFieldYamiTiles[];
+extern const u16 gFieldArenaTilemap[][31];
+extern const u16 gFieldForestTilemap[][31];
+extern const u16 gFieldWastelandTilemap[][31];
+extern const u16 gFieldMountainTilemap[][31];
+extern const u16 gFieldSogenTilemap[][31];
+extern const u16 gFieldUmiTilemap[][31];
+extern const u16 gFieldYamiTilemap[][31];
+extern const u16 gFieldArenaPalette[];
+extern const u16 gFieldForestPalette[];
+extern const u16 gFieldWastelandPalette[];
+extern const u16 gFieldMountainPalette[];
+extern const u16 gFieldSogenPalette[];
+extern const u16 gFieldUmiPalette[];
+extern const u16 gFieldYamiPalette[];
+
+static const u8 *const sFieldTilePtrs[] APPEND_RODATA = {
+  gFieldArenaTiles,
+  gFieldForestTiles,
+  gFieldWastelandTiles,
+  gFieldMountainTiles,
+  gFieldSogenTiles,
+  gFieldUmiTiles,
+  gFieldYamiTiles,
+};
+
+static const u16 (*const sFieldTileMapPtrs[])[31] APPEND_RODATA = {
+  gFieldArenaTilemap,
+  gFieldForestTilemap,
+  gFieldWastelandTilemap,
+  gFieldMountainTilemap,
+  gFieldSogenTilemap,
+  gFieldUmiTilemap,
+  gFieldYamiTilemap,
+};
+
+static const u16 *const sFieldPalettePtrs[] APPEND_RODATA = {
+  gFieldArenaPalette,
+  gFieldForestPalette,
+  gFieldWastelandPalette,
+  gFieldMountainPalette,
+  gFieldSogenPalette,
+  gFieldUmiPalette,
+  gFieldYamiPalette,
+};
 
 extern unsigned short g8E0D5A6[];
 extern u8 g8E0D5A1[];
@@ -199,4 +263,77 @@ void WaitForTextboxAdvanceInput__Replacement(struct DuelTextbox *textbox) {
       break;
     }
   }
+}
+
+static void RestoreBattleOamAfterAnimation(void) {
+  u8 i;
+
+  for (i = 0; i < 128; i++)
+    sub_80411EC(gOamBuffer + i);
+
+  gOamBuffer[0].affineParam = fix_mul(sin_cos_table[64], fix_inverse(256));
+  gOamBuffer[1].affineParam = fix_mul(sin_cos_table[0], fix_inverse(256));
+  gOamBuffer[2].affineParam = fix_mul(-sin_cos_table[0], fix_inverse(256));
+  gOamBuffer[3].affineParam = fix_mul(sin_cos_table[64], fix_inverse(256));
+
+  gOamBuffer[4].affineParam = fix_mul(sin_cos_table[64], fix_inverse(256));
+  gOamBuffer[5].affineParam = fix_mul(sin_cos_table[0], fix_inverse(256));
+  gOamBuffer[6].affineParam = fix_mul(-sin_cos_table[0], fix_inverse(256));
+  gOamBuffer[7].affineParam = fix_mul(sin_cos_table[64], fix_inverse(256));
+
+  gOamBuffer[8].affineParam = fix_mul(sin_cos_table[128], fix_inverse(256));
+  gOamBuffer[9].affineParam = fix_mul(sin_cos_table[64], fix_inverse(256));
+  gOamBuffer[10].affineParam = fix_mul(-sin_cos_table[64], fix_inverse(256));
+  gOamBuffer[11].affineParam = fix_mul(sin_cos_table[128], fix_inverse(256));
+  gOamBuffer[8].affineParam = 0;
+  gOamBuffer[9].affineParam = 256;
+  gOamBuffer[10].affineParam = -257;
+  gOamBuffer[11].affineParam = 0;
+
+  gOamBuffer[12].affineParam = fix_mul(sin_cos_table[0xC0], fix_inverse(256));
+  gOamBuffer[13].affineParam = fix_mul(sin_cos_table[128], fix_inverse(256));
+  gOamBuffer[14].affineParam = fix_mul(-sin_cos_table[128], fix_inverse(256));
+  gOamBuffer[15].affineParam = fix_mul(sin_cos_table[0xC0], fix_inverse(256));
+  gOamBuffer[12].affineParam = 0xFF00;
+  gOamBuffer[13].affineParam = 0;
+  gOamBuffer[14].affineParam = 0;
+  gOamBuffer[15].affineParam = -257;
+
+  gOamBuffer[16].affineParam = fix_mul(sin_cos_table[256], fix_inverse(256));
+  gOamBuffer[17].affineParam = fix_mul(sin_cos_table[0xC0], fix_inverse(256));
+  gOamBuffer[18].affineParam = fix_mul(-sin_cos_table[0xC0], fix_inverse(256));
+  gOamBuffer[19].affineParam = fix_mul(sin_cos_table[256], fix_inverse(256));
+}
+
+LYN_REPLACE_CHECK(sub_8040EF0);
+void sub_8040EF0__Replacement(void) {
+  u8 i;
+  u8 field;
+
+  WaitForVBlank();
+  DisableDisplay();
+  field = gDuel.field;
+  REG_BG2CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(27) | BGCNT_TXT256x512;
+  HuffUnComp(sFieldTilePtrs[field], gBgVram.cbb0);
+  CpuCopy16(sFieldPalettePtrs[field], gPaletteBuffer, 96);
+
+  for (i = 0; i < 40; i++)
+    CpuCopy16(sFieldTileMapPtrs[field][i], gBgVram.cbb0 + 0xD800 + i * 64, 64);
+  gBG2HOFS = 4;
+  gBG2VOFS = AdjustBackgroundBeforeTurnStart(gDuelCursor.currentY);
+  gBG2VOFS = AdjustBackgroundBeforeTurnStart(1);
+  sub_8040B4C();
+  DisplayCardInfoBar();
+  RestoreBattleOamAfterAnimation();
+  sub_80577A4();
+  sub_80408FC();
+  WaitForVBlank();
+  LoadVRAM();
+  LoadBgOffsets();
+  LoadOam();
+  LoadPalettes();
+  REG_DISPCNT = DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON;
+  REG_BLDCNT = 0xD4;
+  REG_BLDY = 10;
+  ResolveTheUnhappyMaidenBattleEffect();
 }
