@@ -2,6 +2,8 @@
 #include "common-chax.h"
 #include "spell_effects.h"
 
+extern void ActivateTrapEffect(u16 lp);
+
 LYN_REPLACE_CHECK(EffectSparks);
 APPEND_TEXT void EffectSparks__Replacement(void)
 {
@@ -20,7 +22,15 @@ APPEND_TEXT void EffectSparks__Replacement(void)
     CheckLoserFlags();
 
     ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+
+    if (!gHideEffectText)
+    {
+      gCardEffectTextData.cardId = SPARKS;
+      ActivateCardEffectText();
+    }
   }
+  else
+    ActivateTrapEffect(200);
 
   gTrapEffectData.originRow = 0;
   gTrapEffectData.originCol = 0;
