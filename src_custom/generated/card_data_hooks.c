@@ -5761,10 +5761,11 @@ const CardData gCardData_NEW[833] APPEND_RODATA = {
     .level = 5,
     .type = TYPE_WARRIOR,
     .color = EFFECT_CARD,
-    .monsterEffect = 0,
+    .monsterEffect = 15,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {9, 7, 6, 1, 2, 3, 8, 9},
+    .description = gDescription_MonsterTamer,
   },
   [0x0179] = {
     .atk = 1600,

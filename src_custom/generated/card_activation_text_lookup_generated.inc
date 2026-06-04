@@ -17,6 +17,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { HINOTAMA, gActivationDescription_Hinotama },
   { FINAL_FLAME, gActivationDescription_FinalFlame },
   { OOKAZI, gActivationDescription_Ookazi },
+  { MONSTER_TAMER, gActivationDescription_MonsterTamer },
   { CYBER_STEIN, gActivationDescription_CyberStein },
   { GODDESS_OF_WHIM, gActivationDescription_GoddessOfWhim },
   { SINISTER_SERPENT, gActivationDescription_SinisterSerpent },

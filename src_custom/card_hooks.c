@@ -56,6 +56,7 @@ typedef struct {
 
 static const u16 sZeroUnk1ECardIds[] __attribute__((section(".text"))) = {
   SORCERER_OF_DARK_MAGIC,
+  MONSTER_TAMER,
 };
 
 static const CardEffectDispatchOverride sCardEffectDispatchOverrides[] __attribute__((section(".text"))) = {

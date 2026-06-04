@@ -28,6 +28,8 @@ void ActivateNeedleWormEffect(void);
 void ActivateMysteriousPuppeteerEffect(void);
 unsigned char CanActivateKarateMan(void);
 void ActivateKarateManEffect(void);
+unsigned char CanActivateMonsterTamer(void);
+void ActivateMonsterTamerEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
@@ -46,6 +48,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateKarateMan();
     case MONSTER_EFFECT_KAIBAMAN:
       return CanActivateKaibaman();
+    case MONSTER_EFFECT_MONSTER_TAMER:
+      return CanActivateMonsterTamer();
     default:
       return TRUE;
   }
@@ -129,6 +133,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_KAIBAMAN) {
     ActivateKaibamanEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MONSTER_TAMER) {
+    ActivateMonsterTamerEffect();
     return;
   }
 

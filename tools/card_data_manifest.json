@@ -5857,9 +5857,22 @@
       "level": 5,
       "type": "TYPE_WARRIOR",
       "color": "EFFECT_CARD",
-      "monsterEffect": 0,
+      "monsterEffect": "MONSTER_EFFECT_MONSTER_TAMER",
       "spellEffect": 2,
       "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MonsterTamer",
+        "pages": [
+          "A warrior skilled in commanding dungeon beasts.",
+          "Activate to summon a Dungeon Worm to the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MonsterTamer",
+        "pages": [
+          "A Dungeon Worm will be summoned to the field."
+        ]
+      },
       "card_name": "Monster Tamer",
       "password": [ 9, 7, 6, 1, 2, 3, 8, 9 ]
     },
