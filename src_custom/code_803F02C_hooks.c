@@ -10,6 +10,7 @@
 #include "custom_field_spell.h"
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
+#include "riryoku.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -311,6 +312,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);
+  ClearRiryokuAtkDeltaForZone(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);
@@ -362,7 +364,10 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
 LYN_REPLACE_CHECK(GetFinalStage);
 int GetFinalStage__Replacement(struct DuelCard *zone)
 {
-  int stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
+  int stage;
+
+  gSetFinalStatZone = zone;
+  stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
 
   if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS
       && zone->id != CARD_NONE

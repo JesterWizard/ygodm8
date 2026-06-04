@@ -23,6 +23,7 @@ extern void EffectMysticalSpaceTyphoon(void);
 extern void EffectDoubleSummon(void);
 extern void EffectCostDown(void);
 extern void EffectAncientRules(void);
+extern void EffectRiryoku(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -40,6 +41,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case MAGE_POWER:
     case UNITED_WE_STAND:
     case MYSTICAL_SPACE_TYPHOON:
+    case RIRYOKU:
     case WAVE_MOTION_CANNON:
       return TRUE;
     default:
@@ -173,6 +175,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case ANCIENT_RULES:
       EffectAncientRules();
+      return;
+    case RIRYOKU:
+      EffectRiryoku();
       return;
     case EXCHANGE:
       EffectExchange();

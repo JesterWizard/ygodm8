@@ -835,11 +835,12 @@
 #define MAGIC_JAMMER                             0x033F
 #define SEAL_OF_ORICHALCOS                       0x0340
 #define FAMILIAR_KNIGHT                          0x0341
+#define RIRYOKU                                  0x0342
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0342
-#define NUM_CUSTOM_CARDS                        0x0021
+#define NUM_TOTAL_CARDS                         0x0343
+#define NUM_CUSTOM_CARDS                        0x0022
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

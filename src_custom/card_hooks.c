@@ -6,6 +6,7 @@
 #include "cost_down.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
+#include "riryoku.h"
 
 #include "generated/field_spell_stat_mods_generated.inc"
 
@@ -435,6 +436,13 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     gCardInfo.atk = gCardInfo.def;
     gCardInfo.def = atk;
   }
+
+  if (gSetFinalStatZone != NULL
+      && gSetFinalStatZone->id == ptr->card
+      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER)
+    ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+
+  gSetFinalStatZone = NULL;
 }
 
 LYN_REPLACE_CHECK(sub_80327C8);

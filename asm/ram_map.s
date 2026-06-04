@@ -120,6 +120,18 @@ _kernel_malloc_ewram_array gCopycatBoardStats, 0x64
 @ Active Mage Power / United We Stand equip links (5 slots x 16 bytes).
 _kernel_malloc_ewram_array gDynamicEquipLinks, 0x50
 
+@ Riryoku pending target zones during two-step activation.
+_kernel_malloc_ewram gRiryokuSourceRow, 1
+_kernel_malloc_ewram gRiryokuSourceCol, 1
+_kernel_malloc_ewram gRiryokuRecipientRow, 1
+_kernel_malloc_ewram gRiryokuRecipientCol, 1
+
+@ Riryoku ATK deltas keyed by gDuel.board cell index (20 cells x 2 bytes).
+_kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
+
+@ Zone used by the most recent GetFinalStage call before SetFinalStat.
+_kernel_malloc_ewram gSetFinalStatZone, 4
+
 @ Embodiment of Apophis trap/monster zone pairs (5 slots x 5 bytes).
 _kernel_malloc_ewram_array gApophisLinks, 0x19
 @ Re-entrancy guard while clearing linked Apophis zones.

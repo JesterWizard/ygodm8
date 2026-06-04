@@ -13507,6 +13507,38 @@
       },
       "card_name": "Familiar Knight",
       "password": [ 4, 2, 2, 0, 7, 2, 0, 7 ]
+    },
+    {
+      "card_const": "RIRYOKU",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 100,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Riryoku",
+        "pages": [
+          "A spell that drains life and shares it between monsters.",
+          "Select one monster to halve its' attack this turn.",
+          "Then add that amount to another monster's attack."
+        ]
+      },
+      "card_name": "Riryoku",
+      "password": [ 1, 6, 1, 7, 8, 6, 4, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_Riryoku",
+        "pages": [
+          "Halve one monster's attack and add it to another."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/riryoku.huff",
+      "big_palette": "src_custom/assets/cards/80x80/riryoku.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/riryoku.lz"
     }
   ]
 }

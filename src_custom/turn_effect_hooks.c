@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "delayed_effects.h"
 #include "cost_down.h"
+#include "riryoku.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -186,5 +187,6 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();
+  ClearAllRiryokuAtkDeltas();
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }

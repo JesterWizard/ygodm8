@@ -5,6 +5,7 @@
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "cannon_soldier.h"
+#include "riryoku.h"
 #include "pyramid_of_light.h"
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
@@ -252,6 +253,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginMysticalSpaceTyphoonTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsRiryokuCard(id)) {
+    if (!FieldHasRiryokuTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginRiryokuTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -510,6 +526,12 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_MST_TARGET:
       TrySelectMysticalSpaceTyphoonTarget();
       break;
+    case DUEL_CURSOR_RIRYOKU_SOURCE:
+      TrySelectRiryokuSourceTarget();
+      break;
+    case DUEL_CURSOR_RIRYOKU_RECIPIENT:
+      TrySelectRiryokuRecipientTarget();
+      break;
     case 4:
       TryAttackWithMonster();
       break;
@@ -534,6 +556,10 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_MST_TARGET:
       CancelMysticalSpaceTyphoonTargeting();
+      break;
+    case DUEL_CURSOR_RIRYOKU_SOURCE:
+    case DUEL_CURSOR_RIRYOKU_RECIPIENT:
+      CancelRiryokuTargeting();
       break;
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
       CancelCannonSoldierTargeting();

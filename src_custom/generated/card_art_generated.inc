@@ -132,6 +132,10 @@ static const unsigned char sFamiliarKnightBigArt[] __attribute__((section(".appe
 static const unsigned short sFamiliarKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/familiar_knight.gbapal");
 static const unsigned char sFamiliarKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/familiar_knight.lz");
 
+static const unsigned char sRiryokuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/riryoku.huff");
+static const unsigned short sRiryokuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/riryoku.gbapal");
+static const unsigned char sRiryokuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/riryoku.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -166,6 +170,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x033F] = sMagicJammerBigArt,
   [0x0340] = sSealOfOrichalcosBigArt,
   [0x0341] = sFamiliarKnightBigArt,
+  [0x0342] = sRiryokuBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -202,6 +207,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x033F] = sMagicJammerBigPalette,
   [0x0340] = sSealOfOrichalcosBigPalette,
   [0x0341] = sFamiliarKnightBigPalette,
+  [0x0342] = sRiryokuBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -238,6 +244,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x033F] = 0,
   [0x0340] = 0,
   [0x0341] = 0,
+  [0x0342] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -274,4 +281,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x033F] = sMagicJammerMiniArt,
   [0x0340] = sSealOfOrichalcosMiniArt,
   [0x0341] = sFamiliarKnightMiniArt,
+  [0x0342] = sRiryokuMiniArt,
 };

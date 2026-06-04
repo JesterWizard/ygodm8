@@ -61,6 +61,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { MAGIC_JAMMER, gActivationDescription_MagicJammer },
   { SEAL_OF_ORICHALCOS, gActivationDescription_SealOfOrichalcos },
   { FAMILIAR_KNIGHT, gActivationDescription_FamiliarKnight },
+  { RIRYOKU, gActivationDescription_Riryoku },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

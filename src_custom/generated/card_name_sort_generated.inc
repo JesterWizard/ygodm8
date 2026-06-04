@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 33
+#define NUM_CUSTOM_NAME_SORT_CARDS 34
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -35,6 +35,7 @@ static const u8 sAncientRulesSortName[] APPEND_RODATA = "Ancient Rules";
 static const u8 sMagicJammerSortName[] APPEND_RODATA = "Magic Jammer";
 static const u8 sSealOfOrichalcosSortName[] APPEND_RODATA = "Seal of Orichalcos";
 static const u8 sFamiliarKnightSortName[] APPEND_RODATA = "Familiar Knight";
+static const u8 sRiryokuSortName[] APPEND_RODATA = "Riryoku";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -61,6 +62,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0325, // Paladin Of White Dragon
   0x0334, // Pyramid of Light
   0x0337, // Rare Metal Dragon
+  0x0342, // Riryoku
   0x0340, // Seal of Orichalcos
   0x0328, // Shield And Sword
   0x0321, // Sorcerer of Dark Magic
@@ -97,15 +99,16 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   22, // Paladin Of White Dragon
   23, // Pyramid of Light
   24, // Rare Metal Dragon
-  25, // Seal of Orichalcos
-  26, // Shield And Sword
-  27, // Sorcerer of Dark Magic
-  28, // Soul Exchange
-  29, // Spell Canceller
-  30, // St Joan
-  31, // Ultimate Offering
-  32, // United We Stand
-  33, // Wave Motion Cannon
+  25, // Riryoku
+  26, // Seal of Orichalcos
+  27, // Shield And Sword
+  28, // Sorcerer of Dark Magic
+  29, // Soul Exchange
+  30, // Spell Canceller
+  31, // St Joan
+  32, // Ultimate Offering
+  33, // United We Stand
+  34, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -175,6 +178,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSealOfOrichalcosSortName;
   if (cardId == 0x0341)
     return (u8 *)sFamiliarKnightSortName;
+  if (cardId == 0x0342)
+    return (u8 *)sRiryokuSortName;
 
   return gCardNames[cardId];
 }
