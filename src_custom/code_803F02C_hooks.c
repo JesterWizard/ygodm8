@@ -381,5 +381,6 @@ int GetFinalStage__Replacement(struct DuelCard *zone)
   if (stage < -128)
     stage = -128;
 
+  gSetFinalStatZone = NULL;
   return (s8)stage;
 }

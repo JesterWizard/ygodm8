@@ -15,5 +15,6 @@ void sub_80576EC (unsigned char*, unsigned short);
 int sub_8057790 (unsigned char, unsigned char);
 void sub_80577A4 (void);
 void sub_8057808 (void);
+void RefreshFieldMonsterStatOverlays (void);
 
 #endif // GUARD_MINI_CARD_H

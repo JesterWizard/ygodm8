@@ -69,6 +69,8 @@ enum CardColor {
   NUM_COLORS
 };
 
+struct DuelCard;
+
 struct StatMod {
   unsigned short card; //TODO: rename to cardId?
   u8 field;
@@ -101,6 +103,7 @@ extern struct CardInfo gCardInfo;
 
 void sub_800B288 (unsigned char);
 void SetFinalStat (struct StatMod*);
+void ApplyFieldZoneStatsToCardInfo (struct DuelCard *zone);
 void SetCardInfo (unsigned short);
 void SetCardInfoWithWarning (unsigned short*);
 u32 GetCardCostForDuelistCheck(u16 cardId);

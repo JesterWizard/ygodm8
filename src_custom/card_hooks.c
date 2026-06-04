@@ -413,6 +413,46 @@ void ScalePriceToQty__Replacement(void) {
   ApplyDuelistLevelShopDiscount();
 }
 
+void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
+{
+  struct StatMod statMod;
+  s8 stage;
+  u8 fieldMod;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  statMod.card = zone->id;
+  statMod.field = gDuel.field;
+  statMod.stage = 0;
+
+  SetCardInfo__Replacement(zone->id);
+  ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
+
+  if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
+    ApplyCopycatStatsToCardInfo(&statMod);
+    return;
+  }
+
+  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+    return;
+
+  stage = GetFinalStage(zone);
+  fieldMod = GetFieldStatModifier(gDuel.field, gCardInfo.type);
+  gCardInfo.atk = GetStageModifiedStat_Hook(
+      GetFieldModifiedStat_Hook(gCardInfo.atk, fieldMod), stage);
+  gCardInfo.def = GetStageModifiedStat_Hook(
+      GetFieldModifiedStat_Hook(gCardInfo.def, fieldMod), stage);
+
+  if (gShieldAndSwordActive == TRUE && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER) {
+    u16 atk = gCardInfo.atk;
+    gCardInfo.atk = gCardInfo.def;
+    gCardInfo.def = atk;
+  }
+
+  ApplyRiryokuAtkDeltaToCardInfo(zone);
+}
+
 LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
   SetCardInfo__Replacement(ptr->card);
@@ -420,11 +460,16 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
-  else if (gCardInfo.spellEffect == 2) {
+  else if (gCardInfo.spellEffect == SPELL_EFFECT_MONSTER) {
+    s8 stage = ptr->stage;
+
+    if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == ptr->card)
+      stage = (s8)GetFinalStage(gSetFinalStatZone);
+
     gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, GetFieldStatModifier(ptr->field, gCardInfo.type));
     gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, GetFieldStatModifier(ptr->field, gCardInfo.type));
-    gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, ptr->stage);
-    gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, ptr->stage);
+    gCardInfo.atk = GetStageModifiedStat_Hook(gCardInfo.atk, stage);
+    gCardInfo.def = GetStageModifiedStat_Hook(gCardInfo.def, stage);
   }
 
   if (gDuelCursor.currentY == PLAYER_HAND

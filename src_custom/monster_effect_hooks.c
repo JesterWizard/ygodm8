@@ -31,6 +31,7 @@ unsigned char CanActivateKarateMan(void);
 void ActivateKarateManEffect(void);
 unsigned char CanActivateMonsterTamer(void);
 void ActivateMonsterTamerEffect(void);
+void ActivateHourglassOfLifeEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
@@ -146,6 +147,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CANNON_SOLDIER) {
     ActivateCannonSoldierEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
+    ActivateHourglassOfLifeEffect();
     return;
   }
 

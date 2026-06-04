@@ -1,5 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card.h"
+#include "constants/spell_effects.h"
+#include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
 #include "cost_down.h"
@@ -16,7 +19,68 @@ extern const unsigned char g89A7F1E[][64];
 extern const unsigned char g89A875E[][64];
 extern const unsigned char g89A849E[][64];
 extern const unsigned char g89A7ADE[][64];
+extern const unsigned char g89A77DC[];
+extern const unsigned char g89A7BDE[];
 extern u8 gDigitBufferU16[];
+extern u16 g8E116BC[];
+
+typedef void (*StampStageFn)(u8 *, s8);
+
+static StampStageFn const StampFieldCardStage = (StampStageFn)0x0805763D;
+static void StampFieldCardLocked(u8 *tilePtr);
+
+static void StampFieldCardLocked(u8 *tilePtr)
+{
+  tilePtr += 0xCC0;
+  CpuCopy16(g89A77DC, tilePtr, 64);
+}
+
+static u8 *FieldCardTilePtr(u8 row, u8 col)
+{
+  u16 tileIndex;
+
+  if (row == 0)
+    tileIndex = col;
+  else if (row == 1)
+    tileIndex = col + 5;
+  else if (row == 2)
+    tileIndex = col + 10;
+  else if (row == 3)
+    tileIndex = col + 15;
+  else
+    tileIndex = col + 20;
+
+  return gBgVram.cbb0 + 0x10000 + g8E116BC[tileIndex] * 32;
+}
+
+void RefreshFieldMonsterStatOverlays(void)
+{
+  u8 col;
+  u8 row;
+  struct DuelCard *zone;
+  u8 *tilePtr;
+
+  for (row = 0; row < 5; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      zone = gFixedZones[row][col];
+      if (zone->id == CARD_NONE)
+        continue;
+
+      if (row == 1 && !zone->isFaceUp)
+        continue;
+
+      tilePtr = FieldCardTilePtr(row, col);
+
+      if (row == 1 || row == 2)
+        StampFieldCardStage(tilePtr, GetFinalStage(zone));
+
+      if (row == 1 || row == 2 || row == 4) {
+        sub_80572A8(tilePtr, zone);
+        sub_805733C(tilePtr, zone);
+      }
+    }
+  }
+}
 
 void sub_80573D0(void* arg0, unsigned short cardId);
 void sub_805742C(unsigned char* arg0, unsigned short cardId);
@@ -56,13 +120,10 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
 LYN_REPLACE_CHECK(sub_80572A8);
 void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
-  if (gCardInfo.atk == 0xFFFF)
-    return;
+  ApplyFieldZoneStatsToCardInfo(arg1);
 
-  gStatMod.card = arg1->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(arg1);
-  SetFinalStat(&gStatMod);
+  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+    return;
 
   if (gCardInfo.atk / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
@@ -78,13 +139,10 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
 void sub_805733C(unsigned char* arg0, struct DuelCard* arg1);
 LYN_REPLACE_CHECK(sub_805733C);
 void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
-  if (gCardInfo.atk == 0xFFFF)
-    return;
+  ApplyFieldZoneStatsToCardInfo(arg1);
 
-  gStatMod.card = arg1->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(arg1);
-  SetFinalStat(&gStatMod);
+  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+    return;
 
   if (gCardInfo.def / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
@@ -145,16 +203,104 @@ void CopyMiniCardPalette__Replacement(unsigned short* dest) {
 
 void sub_80574A8(unsigned char arg0, unsigned char arg1);
 void sub_8057808(void);
+void CopyFaceDownCardTiles(unsigned char *arg0);
+
+static void StampFieldCardRitualTributes(u8 *tilePtr, u16 cardId)
+{
+  u8 numTributes = GetRitualNumRequiredTributes(cardId);
+
+  if (numTributes > 0)
+    CpuCopy16(g89A7ADE[numTributes], tilePtr, 64);
+}
+
+static void RefreshAllFieldCardTiles(void)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gFixedZones[0][i]->isFaceUp)
+      sub_80573D0(gBgVram.cbb0 + 0x10000 + g8E116BC[i] * 32, gFixedZones[0][i]->id);
+    else
+      CopyFaceDownCardTiles(gBgVram.cbb0 + 0x10000 + g8E116BC[i] * 32);
+  }
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 5] * 32;
+    struct DuelCard *zone = gFixedZones[1][i];
+
+    if (zone->isFaceUp) {
+      sub_80573D0(tilePtr, zone->id);
+      sub_80576EC(tilePtr, zone->id);
+      sub_80576B4(tilePtr, zone->id);
+      StampFieldCardStage(tilePtr, GetFinalStage(zone));
+      sub_80572A8(tilePtr, zone);
+      sub_805733C(tilePtr, zone);
+    } else {
+      CopyFaceDownCardTiles(tilePtr);
+    }
+
+    if (zone->isLocked)
+      StampFieldCardLocked(tilePtr);
+  }
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 10] * 32;
+    struct DuelCard *zone = gFixedZones[2][i];
+
+    sub_80573D0(tilePtr, zone->id);
+    if (zone->isLocked)
+      StampFieldCardLocked(tilePtr);
+    sub_80576B4(tilePtr, zone->id);
+    sub_80576EC(tilePtr, zone->id);
+    StampFieldCardStage(tilePtr, GetFinalStage(zone));
+    sub_80572A8(tilePtr, zone);
+    sub_805733C(tilePtr, zone);
+
+    if (!zone->isFaceUp) {
+      tilePtr += 0xC80;
+      CpuCopy16(g89A7BDE, tilePtr, 64);
+    }
+  }
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 15] * 32;
+    struct DuelCard *zone = gFixedZones[3][i];
+
+    sub_80573D0(tilePtr, zone->id);
+    StampFieldCardRitualTributes(tilePtr, zone->id);
+
+    if (!zone->isFaceUp) {
+      tilePtr += 0xC80;
+      CpuCopy16(g89A7BDE, tilePtr, 64);
+    }
+  }
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 20] * 32;
+    struct DuelCard *zone = gFixedZones[4][i];
+
+    sub_80573D0(tilePtr, zone->id);
+    sub_80576B4(tilePtr, zone->id);
+    sub_80576EC(tilePtr, zone->id);
+    sub_80572A8(tilePtr, zone);
+    sub_805733C(tilePtr, zone);
+
+    if (zone->isLocked)
+      StampFieldCardLocked(tilePtr);
+
+    if (!zone->isFaceUp) {
+      tilePtr += 0xC80;
+      CpuCopy16(g89A7BDE, tilePtr, 64);
+    }
+  }
+}
 
 LYN_REPLACE_CHECK(sub_80577A4);
 void sub_80577A4__Replacement(void) {
   u8 i;
   u8 j;
-  typedef void (*RefreshFieldCardTilesFn)(void);
 
-  static RefreshFieldCardTilesFn const refreshFieldCardTiles = (RefreshFieldCardTilesFn)0x080562F5;
-
-  refreshFieldCardTiles();
+  RefreshAllFieldCardTiles();
   RefreshAllWaveMotionCannonFieldCounters();
   CpuCopy16(g89A781C, gPaletteBuffer + 256, 320);
 
@@ -174,6 +320,8 @@ void sub_80577A4__Replacement(void) {
     HideOpponentHandFieldOam();
     RestoreOpponentHandFieldWindow();
   }
+
+  RefreshFieldMonsterStatOverlays();
 }
 
 LYN_REPLACE_CHECK(sub_8057808);
@@ -197,4 +345,6 @@ void sub_8057808__Replacement(void) {
     HideOpponentHandFieldOam();
     RestoreOpponentHandFieldWindow();
   }
+
+  RefreshFieldMonsterStatOverlays();
 }

@@ -189,15 +189,10 @@ void DisplayCardInfoBar__Replacement(void) {
       && CanPlayerSeeCard__Replacement(OPPONENT_HAND_ROW, gDuelCursor.currentX) == 1) {
     struct DuelCard *card = gTurnHands[INACTIVE_DUELIST][4 - gDuelCursor.currentX];
 
-    gStatMod.card = card->id;
-    gStatMod.field = gDuel.field;
-    gStatMod.stage = GetFinalStage(card);
-    SetFinalStat(&gStatMod);
+    ApplyFieldZoneStatsToCardInfo(card);
   } else if (CanPlayerSeeCard__Replacement(gDuelCursor.currentY, gDuelCursor.currentX) == 1) {
-    gStatMod.card = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
-    gStatMod.field = gDuel.field;
-    gStatMod.stage = GetFinalStage(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
-    SetFinalStat(&gStatMod);
+    ApplyFieldZoneStatsToCardInfo(
+        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
   } else {
     SetCardInfo(CARD_NONE);
   }
