@@ -8264,13 +8264,26 @@
       "cost": 260,
       "attribute": "ATTRIBUTE_EARTH",
       "level": 4,
-      "type": "TYPE_FISH",
-      "color": "NORMAL_CARD",
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
       "monsterEffect": 0,
-      "spellEffect": 2,
-      "trapEffect": 0,
+      "spellEffect": 127,
+      "trapEffect": 22,
+      "description": {
+        "symbol": "gDescription_EmbodimentOfApophis",
+        "pages": [
+          "A trap that awakens as a serpent when the enemy strikes.",
+          "Special summon when an opponent's monster attacks."
+        ]
+      },
       "card_name": "Embodiment of Apophis",
-      "password": [ 2, 8, 6, 4, 9, 8, 2, 0 ]
+      "password": [ 2, 8, 6, 4, 9, 8, 2, 0 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_EmbodimentOfApophis",
+        "pages": [
+          "Special summon this trap to the field."
+        ]
+      }
     },
     {
       "card_const": "MYSTICAL_SAND",

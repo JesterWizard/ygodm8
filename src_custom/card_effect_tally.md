@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `59` effects
+- `60` effects
 
 ## Tally
 
@@ -51,6 +51,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |
 | `trap_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `trap_effects` | `Magic Jammer` | `src_custom/trap_effects/magic_jammer.c` |
+| `trap_effects` | `Embodiment of Apophis` | `src_custom/trap_effects/embodiment_of_apophis.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |
