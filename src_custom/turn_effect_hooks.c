@@ -10,6 +10,8 @@ extern unsigned char (*g8E0CA80[])(void);
 void ActivateGiantGermEffect(void);
 void ActivateNimbleMomongaEffect(void);
 void ActivateSkullMarkLadyBugEffect(void);
+u8 ShouldActivateSinisterSerpentEffect(void);
+void ActivateSinisterSerpentEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
 void ResetUltimateOfferingTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
@@ -45,6 +47,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateSkullMarkLadyBugEffect();
     return;
   }
+  if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
+    ActivateSinisterSerpentEffect();
+    return;
+  }
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
     ActivateDeckDestructionVirusEffect();
     return;
@@ -69,6 +75,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return TRUE;
   if (gActiveEffect.cardId == SKULL_MARK_LADY_BUG && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return TRUE;
+  if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+    return ShouldActivateSinisterSerpentEffect();
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)
     return TRUE;
   if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)

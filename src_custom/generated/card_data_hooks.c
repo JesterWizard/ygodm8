@@ -7050,11 +7050,12 @@ const CardData gCardData_NEW[833] APPEND_RODATA = {
     .attribute = ATTRIBUTE_WATER,
     .level = 1,
     .type = TYPE_FISH,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {0, 8, 1, 3, 1, 1, 7, 1},
+    .description = gDescription_SinisterSerpent,
   },
   [0x01DC] = {
     .atk = 600,

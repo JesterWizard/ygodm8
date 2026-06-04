@@ -7374,12 +7374,25 @@
       "attribute": "ATTRIBUTE_WATER",
       "level": 1,
       "type": "TYPE_FISH",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Sinister Serpent",
-      "password": [ 0, 8, 1, 3, 1, 1, 7, 1 ]
+      "password": [ 0, 8, 1, 3, 1, 1, 7, 1 ],
+      "description": {
+        "symbol": "gDescription_SinisterSerpent",
+        "pages": [
+          "A sea serpent that has been refused an afterlife.",
+          "It returns to the field in attack position next turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SinisterSerpent",
+        "pages": [
+          "This card will be returned to the field in attack position."
+        ]
+      }
     },
     {
       "card_const": "GANIGUMO",

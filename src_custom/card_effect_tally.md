@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `57` effects
+- `58` effects
 
 ## Tally
 
@@ -53,6 +53,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Magic Jammer` | `src_custom/trap_effects/magic_jammer.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
+| `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |
 | `permanent_effects` | `Milus Radiant` | `src_custom/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src_custom/permanent_effects/muka_muka.c` |
 | `permanent_effects` | `Ceremonial Bell` | `src_custom/permanent_effects/ceremonial_bell.c` |
