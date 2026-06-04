@@ -36,6 +36,8 @@ unsigned char ShouldActivateBlueEyesShiningDragon(void);
 void ActivateBlueEyesShiningDragon(void);
 unsigned char ShouldActivateSpellCanceller(void);
 void ActivateSpellCanceller(void);
+unsigned char ShouldActivateYamataDragon(void);
+void ActivateYamataDragon(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
@@ -63,6 +65,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = SPELL_CANCELLER,
     .shouldActivate = ShouldActivateSpellCanceller,
     .activate = ActivateSpellCanceller,
+  },
+  {
+    .cardId = YAMATA_DRAGON,
+    .shouldActivate = ShouldActivateYamataDragon,
+    .activate = ActivateYamataDragon,
   },
 };
 

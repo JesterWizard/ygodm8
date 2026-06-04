@@ -10048,12 +10048,25 @@
       "attribute": "ATTRIBUTE_FIRE",
       "level": 7,
       "type": "TYPE_DRAGON",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Yamata Dragon",
-      "password": [ 7, 6, 8, 6, 2, 2, 8, 9 ]
+      "password": [ 7, 6, 8, 6, 2, 2, 8, 9 ],
+      "description": {
+        "symbol": "gDescription_YamataDragon",
+        "pages": [
+          "A legendary dragon from Japanese mythology.",
+          "It sets a Pot Of Greed on the own field when summoned."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_YamataDragon",
+        "pages": [
+          "Pot of Greed will be placed on the user's side of the field."
+        ]
+      }
     },
     {
       "card_const": "SHINATO_KING_OF_A_HIGHER_PLANE",

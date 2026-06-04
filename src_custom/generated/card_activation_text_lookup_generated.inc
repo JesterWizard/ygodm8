@@ -28,6 +28,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { INJECTION_FAIRY_LILY, gActivationDescription_InjectionFairyLily },
   { NEEDLE_WORM, gActivationDescription_NeedleWorm },
   { PENGUIN_SOLDIER, gActivationDescription_PenguinSoldier },
+  { YAMATA_DRAGON, gActivationDescription_YamataDragon },
   { SKULL_MARK_LADY_BUG, gActivationDescription_SkullMarkLadyBug },
   { DECK_DESTRUCTION_VIRUS, gActivationDescription_DeckDestructionVirus },
   { BLUE_EYES_SHINING_DRAGON, gActivationDescription_BlueEyesShiningDragon },
