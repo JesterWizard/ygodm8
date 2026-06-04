@@ -836,11 +836,12 @@
 #define SEAL_OF_ORICHALCOS                       0x0340
 #define FAMILIAR_KNIGHT                          0x0341
 #define RIRYOKU                                  0x0342
+#define SPEAR_DRAGON                             0x0343
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0343
-#define NUM_CUSTOM_CARDS                        0x0022
+#define NUM_TOTAL_CARDS                         0x0344
+#define NUM_CUSTOM_CARDS                        0x0023
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -5,6 +5,7 @@
 #include "familiar_knight.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
+#include "spear_dragon.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -117,6 +118,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
+  ApplySpearDragonBattleEffect();
 
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(

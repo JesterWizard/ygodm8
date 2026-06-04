@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `69` effects
+- `70` effects
 
 ## Tally
 
@@ -67,6 +67,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Shinato King of A Higher Plane` | `src_custom/battle_effects/shinato_king_of_a_higher_plane.c` |
 | `battle_effects` | `Obnoxious Celtic Guardian` | `src_custom/battle_effects/obnoxious_celtic_guardian.c` |
 | `battle_effects` | `The Unhappy Maiden` | `src_custom/battle_effects/the_unhappy_maiden.c` |
+| `battle_effects` | `Spear Dragon` | `src_custom/battle_effects/spear_dragon.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |

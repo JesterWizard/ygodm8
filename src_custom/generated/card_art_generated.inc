@@ -136,6 +136,10 @@ static const unsigned char sRiryokuBigArt[] __attribute__((section(".append_asse
 static const unsigned short sRiryokuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/riryoku.gbapal");
 static const unsigned char sRiryokuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/riryoku.lz");
 
+static const unsigned char sSpearDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/80x80/spear_dragon.huff");
+static const unsigned short sSpearDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("src_custom/assets/cards/80x80/spear_dragon.gbapal");
+static const unsigned char sSpearDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("src_custom/assets/cards/24x24/spear_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -171,6 +175,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0340] = sSealOfOrichalcosBigArt,
   [0x0341] = sFamiliarKnightBigArt,
   [0x0342] = sRiryokuBigArt,
+  [0x0343] = sSpearDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -208,6 +213,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0340] = sSealOfOrichalcosBigPalette,
   [0x0341] = sFamiliarKnightBigPalette,
   [0x0342] = sRiryokuBigPalette,
+  [0x0343] = sSpearDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -245,6 +251,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0340] = 0,
   [0x0341] = 0,
   [0x0342] = 0,
+  [0x0343] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -282,4 +289,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0340] = sSealOfOrichalcosMiniArt,
   [0x0341] = sFamiliarKnightMiniArt,
   [0x0342] = sRiryokuMiniArt,
+  [0x0343] = sSpearDragonMiniArt,
 };
