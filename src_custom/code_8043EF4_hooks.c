@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "board_placement.h"
+#include "configs/runtime.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "pyramid_of_light.h"
@@ -35,6 +37,7 @@ unsigned char GetFirstNonEmptyMonZoneId(struct DuelCard *zone[]);
 void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
+signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
 void sub_80441D0(void);
 void MonsterActionMenu(void);
 void HandlePlayerBackrowAction(void);
@@ -312,6 +315,44 @@ void TrySelectSpellTarget__Replacement(void) {
   }
 }
 
+static u8 PlayerPreferredPlacementCol(u8 fixedRow) {
+  u8 col;
+
+  if (gRuntimeConfig.enable_smarter_ai != TRUE)
+    return (u8)FirstEmptyZoneInRow(gFixedZones[fixedRow]);
+
+  col = Board_PreferredEmptyFixedCol(fixedRow);
+  if (col != 0xFF)
+    return col;
+
+  return (u8)FirstEmptyZoneInRow(gFixedZones[fixedRow]);
+}
+
+LYN_REPLACE_CHECK(sub_80442AC);
+void sub_80442AC__Replacement(void) {
+  u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+
+  SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  gDuelCursor.state = 1;
+  ResetCursorDestToCurrentPos();
+  switch (GetTypeGroup(id)) {
+  case TYPE_GROUP_MONSTER:
+    gDuelCursor.currentX = PlayerPreferredPlacementCol(PLAYER_MONSTER_ROW);
+    gDuelCursor.currentY = 2;
+    break;
+  case TYPE_GROUP_SPELL:
+  case TYPE_GROUP_TRAP:
+  case TYPE_GROUP_RITUAL:
+    gDuelCursor.currentX = PlayerPreferredPlacementCol(PLAYER_BACKROW);
+    gDuelCursor.currentY = 3;
+    break;
+  default:
+    break;
+  }
+  DisplayCardInfoBar();
+  sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+}
+
 LYN_REPLACE_CHECK(sub_80449D8);
 void sub_80449D8__Replacement(void)
 {
@@ -338,6 +379,20 @@ void sub_80449D8__Replacement(void)
 
   placedRow = gDuelCursor.currentY;
   placedCol = gDuelCursor.currentX;
+
+  if (gRuntimeConfig.enable_smarter_ai == TRUE) {
+    u8 preferredCol;
+
+    if (placedRow == PLAYER_MONSTER_ROW)
+      preferredCol = Board_PreferredEmptyFixedCol(PLAYER_MONSTER_ROW);
+    else if (placedRow == PLAYER_BACKROW)
+      preferredCol = Board_PreferredEmptyFixedCol(PLAYER_BACKROW);
+    else
+      preferredCol = 0xFF;
+
+    if (preferredCol != 0xFF)
+      placedCol = preferredCol;
+  }
 
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);

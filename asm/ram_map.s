@@ -153,6 +153,9 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 @ Debug menu: AI controls both duelists when enabled.
 _kernel_malloc_ewram gDebugAiBothSidesMode, 1
 
+@ Smarter AI duel-local memory (last action, board knowledge, attack order).
+_kernel_malloc gAiDuelMemory, 40
+
 @ Debug deck preset swap: original deck 1 backup in EWRAM (40 x u16) while a preset is active.
 _kernel_malloc_ewram_array gDebugDeckSwapBackup, PLAYER_DECK_CARD_BYTES
 _kernel_malloc_ewram gDebugDeckSwapActivePreset, 1

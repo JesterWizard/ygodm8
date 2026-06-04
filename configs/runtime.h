@@ -49,6 +49,7 @@ typedef struct {
     u8 show_player_screen_pixel_coords; // Show player screen pixel X/Y on overworld BG0.
     u8 show_duel_life_points_on_board; // Show player/opponent LP on the duel field (left/right).
     u8 enable_opponent_hand_field_scroll; // Scroll up past opponent backrow to view opponent hand on the field.
+    u8 enable_smarter_ai; // Vary among top-rated AI lines instead of one fixed optimal play.
     u16 card_in_hand_1;
     u16 card_in_hand_2;
     u16 card_in_hand_3;

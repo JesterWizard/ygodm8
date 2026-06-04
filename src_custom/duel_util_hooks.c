@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ai_decision.h"
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
 #include "generated/duelist_decks_generated.inc"
@@ -97,6 +98,9 @@ s8 GetObjectIdInFrontOfPlayer(u8 x, u8 y, u8 playerDirection) {
 LYN_REPLACE_CHECK(InitDuelDeck);
 void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
   const u16 *deck;
+
+  if (duelist == DUEL_PLAYER)
+    AiMemory_Reset();
 
   if (!duelistId)
     deck = gDeckMenu.cards; // player deck

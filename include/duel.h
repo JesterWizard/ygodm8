@@ -540,6 +540,7 @@ u32 NumFaceUpMatchingTypeInRow (u8, u8);
 u32 NumFaceUpMatchingAttributeInRow (u8, u8);
 int HighestAtkFaceUpMonInRow (struct DuelCard**);
 u8 sub_803FBCC (u8, u8);
+u32 CanOpponentSeeCard (u8 y, u8 x);
 bool32 IsCardLocked (struct DuelCard *zone);
 bool32 sub_8043714 (struct DuelCard *zone);
 bool32 ZoneHasTrapCard (struct DuelCard *zone);

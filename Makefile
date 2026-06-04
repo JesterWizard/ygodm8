@@ -108,6 +108,8 @@ VOICE_STAMP := $(BUILD_DIR)/.voice_generated.stamp
 VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md
 VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
+AI_ACTION_TABLE_GENERATOR := tools/generate_ai_action_table.py
+AI_ACTION_TABLE_GENERATED := src_custom/generated/ai_action_table_generated.inc
 FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py
 FIELD_SPELL_GFX_GENERATED := src_custom/generated/field_spell_gfx_generated.inc src_custom/generated/field_spell_tilemaps_generated.inc src_custom/generated/field_spell_card_lookup_generated.inc src_custom/generated/field_spell_gfx_tables_generated.inc src_custom/generated/field_spell_effect_table_generated.inc src_custom/generated/field_spell_stat_mods_generated.inc src_custom/generated/field_spell_mapping_generated.inc include/constants/custom_field_spells_generated.h include/constants/custom_fields_generated.h
 FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
@@ -267,6 +269,10 @@ $(DUELIST_DECKS_GENERATED): $(DUELIST_DECK_MANIFEST) $(DUELIST_DECK_GENERATOR)
 	@echo "DECKS   $@"
 	python3 $(DUELIST_DECK_GENERATOR) $(DUELIST_DECK_MANIFEST) --out $@
 
+$(AI_ACTION_TABLE_GENERATED): src/duel/ai.c $(AI_ACTION_TABLE_GENERATOR)
+	@echo "AIACT   $@"
+	python3 $(AI_ACTION_TABLE_GENERATOR)
+
 $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_DATA_MANIFEST) $(CARD_IDS_GENERATED) include/overworld.h include/shiny_zones.h
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@
@@ -329,6 +335,8 @@ $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
 $(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED) $(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED)))
 $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
+$(eval $(call custom_object_dep,ai_hooks,$(AI_ACTION_TABLE_GENERATED)))
+$(eval $(call custom_object_dep,ai_decision/ai_action_decode,$(AI_ACTION_TABLE_GENERATED)))
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
