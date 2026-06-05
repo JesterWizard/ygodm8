@@ -34,6 +34,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .alternate_win_reward_multiplier = 3,
     .discount_shop_costs_by_duelist_level = TRUE,
     .instant_win_with_l_button = TRUE,
+    .enable_surrender_in_duel_b_menu = TRUE,
     .enable_world_map_thought_bubbles = FALSE,
     .enable_debug_menu = TRUE,
     .enable_ante_card_viewer = TRUE,

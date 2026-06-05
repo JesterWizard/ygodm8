@@ -41,6 +41,7 @@ typedef struct {
     u8 alternate_win_reward_multiplier;
     u8 discount_shop_costs_by_duelist_level; // 5% off buy price per 100 duelist levels.
     u8 instant_win_with_l_button; // L in duel -> immediate player win.
+    u8 enable_surrender_in_duel_b_menu; // B menu 4th option -> forfeit the duel.
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.
     u8 enable_debug_menu; // R alone on field overworld opens debug menu.
     u8 enable_ante_card_viewer; // SELECT facing a duelist opens their ante reward card list.

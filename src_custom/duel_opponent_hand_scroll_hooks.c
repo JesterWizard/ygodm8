@@ -3,8 +3,8 @@
 #include "configs/runtime.h"
 #include "card.h"
 #include "duel.h"
+#include "duel_b_menu.h"
 #include "duel_opponent_hand_scroll.h"
-#include "gfx_reg_buffers.h"
 
 #define OPPONENT_BACKROW 0
 
@@ -49,12 +49,6 @@ extern u8 gNextUpB_MenuOption[];
 extern u8 gNextDownB_MenuOption[];
 extern u8 gNextRightB_MenuOption[];
 extern u8 gNextLeftB_MenuOption[];
-
-enum B_MenuOption {
-  B_MENU_DETAILS,
-  B_MENU_TURN_END,
-  B_MENU_DISCARD,
-};
 
 typedef void (*InitBMenuFn)(u8);
 typedef void (*Sub80428ECFn)(u8);
@@ -233,8 +227,7 @@ void sub_80574A8__Replacement(unsigned char col, unsigned char row) {
   PlaceFieldCardOam(col, row);
 }
 
-LYN_REPLACE_CHECK(BMenuMain);
-void BMenuMain__Replacement(void) {
+static void BMenuMainVanilla(void) {
   enum B_MenuOption cursorState = B_MENU_DETAILS;
 
   sInitBMenu(0);
@@ -302,4 +295,85 @@ void BMenuMain__Replacement(void) {
   }
 
   UpdateDuelGfxExceptField();
+}
+
+static void BMenuMainWithSurrender(void) {
+  u8 cursorState = B_MENU_DETAILS;
+
+  DuelBMenu_Init(B_MENU_DETAILS);
+
+  while (1) {
+    if (gRepeatedOrNewButtons & DPAD_UP) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = DuelBMenu_GetNextUp(cursorState);
+      DuelBMenu_HighlightOption(cursorState);
+      WaitForVBlank();
+      DuelBMenu_RefreshOverlay(cursorState);
+    } else if (gRepeatedOrNewButtons & DPAD_DOWN) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = DuelBMenu_GetNextDown(cursorState);
+      DuelBMenu_HighlightOption(cursorState);
+      WaitForVBlank();
+      DuelBMenu_RefreshOverlay(cursorState);
+    } else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = DuelBMenu_GetNextRight(cursorState);
+      DuelBMenu_HighlightOption(cursorState);
+      WaitForVBlank();
+      DuelBMenu_RefreshOverlay(cursorState);
+    } else if (gRepeatedOrNewButtons & DPAD_LEFT) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      cursorState = DuelBMenu_GetNextLeft(cursorState);
+      DuelBMenu_HighlightOption(cursorState);
+      WaitForVBlank();
+      DuelBMenu_RefreshOverlay(cursorState);
+    } else if (gNewButtons & A_BUTTON) {
+      switch (cursorState) {
+        case B_MENU_DETAILS:
+          if (!TryShowDuelCursorCardDetails()) {
+            PlayMusic(SFX_FORBIDDEN);
+            UpdateDuelGfxExceptField();
+          }
+          return;
+        case B_MENU_TURN_END:
+          PlayMusic(SFX_SELECT);
+          gIsPlayerTurnOver = 1;
+          UpdateDuelGfxExceptField();
+          return;
+        case B_MENU_DISCARD:
+          if (gDuelCursor.currentY > 1
+              && gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE
+              && !gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->willChangeSides) {
+            PlayMusic(SFX_DISCARD);
+            ClearZoneAndSendMonToGraveyard2(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], 0);
+            UpdateDuelGfxExceptField();
+            TryActivatingPermanentEffects();
+          } else {
+            PlayMusic(SFX_FORBIDDEN);
+            UpdateDuelGfxExceptField();
+          }
+          return;
+        case B_MENU_SURRENDER:
+          DuelBMenu_Surrender();
+          return;
+      }
+      break;
+    } else if (gNewButtons & B_BUTTON) {
+      PlayMusic(SFX_CANCEL);
+      break;
+    } else {
+      WaitForVBlank();
+    }
+  }
+
+  UpdateDuelGfxExceptField();
+}
+
+LYN_REPLACE_CHECK(BMenuMain);
+void BMenuMain__Replacement(void) {
+  if (DuelBMenu_IsSurrenderEnabled() == TRUE)
+    BMenuMainWithSurrender();
+  else
+    BMenuMainVanilla();
 }

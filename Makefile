@@ -426,6 +426,7 @@ test-host: tools-rules
 	python3 tools/validate_portrait.py
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_duel_popup_textbox.py
+	python3 tools/validate_duel_b_menu.py
 	python3 tools/validate_player_decks.py
 	python3 tools/validate_trunk_sort.py
 	python3 tools/validate_lynjump.py
