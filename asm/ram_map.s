@@ -85,6 +85,9 @@ _kernel_malloc gSliferPendingPenaltyActive, 1
 _kernel_malloc gSliferPendingPenaltyBoardRow, 1
 _kernel_malloc gSliferPendingPenaltyCol, 1
 
+@ Duel win shop drop popup: count plus up to three (cardId, qty) pairs.
+_kernel_malloc gDuelShopDropRecord, 0x10
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

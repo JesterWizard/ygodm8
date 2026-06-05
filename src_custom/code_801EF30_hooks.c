@@ -5,6 +5,8 @@
 #include "duel_status.h"
 #include "custom_decks/custom_decks.h"
 #include "generated/duelist_rewards_generated.inc"
+#include "card_shop.h"
+#include "text.h"
 
 void HandleWin(void);
 void HandleLoss(void);
@@ -19,11 +21,14 @@ void IncreaseDeckCapacity(u32);
 void AddCardDropsToShop(void);
 void AddMoneyFromDuelVictory(void);
 void DisplayMoneyRewardText(void);
+void DisplayDuelShopDropText(void);
 int GetCardsDrawn(u8 arg0);
 int GetDeckCardQty(u16);
 u16 RandRangeU16(u16, u16);
 u16 sub_801FFE0(void);
+u16 sub_8020050(void);
 u8 sub_801F0F0(u16, u16*);
+void sub_8041C94(u8 *, u16, u16, u16, u16);
 
 extern u8 g201CB58;
 extern u8 g201CB59;
@@ -358,6 +363,196 @@ static u64 GetDominoScaleMultiplier(u8 scalePower) {
   return temp;
 }
 
+struct DuelShopDropEntry {
+  u16 cardId;
+  u8 qty;
+};
+
+struct DuelShopDropRecord {
+  u8 count;
+  struct DuelShopDropEntry entries[3];
+};
+
+extern struct DuelShopDropRecord gDuelShopDropRecord;
+
+static const u8 sText_InStock[] APPEND_RODATA = "Added to shop:#0";
+static const u8 sText_NoNewCards[] APPEND_RODATA = "No new cards added";
+static const u8 sText_WaitInput[] APPEND_RODATA = "#1";
+
+#define SHOP_DROP_LINE_WIDTH 28
+
+static u8 *AppendAsciiToText(u8 *dest, const u8 *src) {
+  while (*src)
+    *dest++ = *src++;
+  return dest;
+}
+
+static u8 *AppendU8ToText(u8 *dest, u8 value) {
+  if (value >= 10) {
+    *dest++ = (u8)('0' + value / 10);
+    value = (u8)(value % 10);
+  }
+  *dest++ = (u8)('0' + value);
+  return dest;
+}
+
+static u8 CountNameGlyphs(const u8 *name) {
+  u8 count = 0;
+
+  while (*name && *name != '$') {
+    if (*name > 127)
+      name += 2;
+    else
+      name++;
+    count++;
+  }
+  return count;
+}
+
+static u8 GetQtySuffixWidth(u8 qty) {
+  if (qty >= 10)
+    return 6;
+  return 5;
+}
+
+static u8 *AppendQtySuffix(u8 *dest, u8 qty) {
+  *dest++ = ' ';
+  *dest++ = '(';
+  *dest++ = 'x';
+  dest = AppendU8ToText(dest, qty);
+  *dest++ = ')';
+  return dest;
+}
+
+static u8 *AppendTruncatedName(u8 *dest, const u8 *name, u8 maxGlyphs) {
+  u8 totalGlyphs = CountNameGlyphs(name);
+  u8 glyphsWritten = 0;
+
+  if (totalGlyphs <= maxGlyphs) {
+    while (*name && *name != '$') {
+      if (*name > 127) {
+        *dest++ = *name++;
+        *dest++ = *name++;
+      }
+      else {
+        *dest++ = *name++;
+      }
+    }
+    return dest;
+  }
+
+  if (maxGlyphs <= 3) {
+    *dest++ = '.';
+    *dest++ = '.';
+    *dest++ = '.';
+    return dest;
+  }
+
+  while (*name && *name != '$' && glyphsWritten < maxGlyphs - 3) {
+    if (*name > 127) {
+      *dest++ = *name++;
+      *dest++ = *name++;
+    }
+    else {
+      *dest++ = *name++;
+    }
+    glyphsWritten++;
+  }
+
+  *dest++ = '.';
+  *dest++ = '.';
+  *dest++ = '.';
+  return dest;
+}
+
+static u8 *AppendCardShopDropLine(u8 *dest, u16 cardId, u8 qty, u8 addLineBreak) {
+  const u8 *name;
+  u16 offset;
+  u8 maxNameGlyphs;
+
+  SetCardInfo(cardId);
+  name = gCardInfo.name;
+  offset = GetCurrentLanguageStringOffset(name);
+  name += offset;
+
+  maxNameGlyphs = SHOP_DROP_LINE_WIDTH - GetQtySuffixWidth(qty);
+  dest = AppendTruncatedName(dest, name, maxNameGlyphs);
+  dest = AppendQtySuffix(dest, qty);
+  if (addLineBreak) {
+    *dest++ = '#';
+    *dest++ = '0';
+  }
+  return dest;
+}
+
+static void ClearDuelShopDropRecord(void) {
+  gDuelShopDropRecord.count = 0;
+}
+
+static void RecordDuelShopDrop(u16 cardId, u8 qty) {
+  u8 i;
+
+  for (i = 0; i < gDuelShopDropRecord.count; i++) {
+    if (gDuelShopDropRecord.entries[i].cardId == cardId) {
+      gDuelShopDropRecord.entries[i].qty += qty;
+      return;
+    }
+  }
+
+  if (gDuelShopDropRecord.count < ARRAY_COUNT(gDuelShopDropRecord.entries)) {
+    gDuelShopDropRecord.entries[gDuelShopDropRecord.count].cardId = cardId;
+    gDuelShopDropRecord.entries[gDuelShopDropRecord.count].qty = qty;
+    gDuelShopDropRecord.count++;
+  }
+}
+
+LYN_REPLACE_CHECK(AddCardDropsToShop);
+void AddCardDropsToShop__Replacement(void) {
+  unsigned i;
+  u8 recordDrops = gRuntimeConfig.show_duel_shop_card_drops == TRUE;
+
+  ClearDuelShopDropRecord();
+  for (i = 0; i < 3; i++) {
+    u16 cardId = sub_8020050();
+    u8 qtyBefore;
+    u8 qtyAdded;
+
+    if (cardId == CARD_NONE)
+      continue;
+
+    qtyBefore = GetShopCardQty(cardId);
+    AddCardQtyToShop2(cardId, 1);
+    qtyAdded = (u8)(GetShopCardQty(cardId) - qtyBefore);
+    if (qtyAdded > 0 && recordDrops)
+      RecordDuelShopDrop(cardId, qtyAdded);
+  }
+}
+
+void DisplayDuelShopDropText(void) {
+  u8 textBuffer[384];
+  u8 *write = textBuffer;
+  u8 i;
+
+  if (gRuntimeConfig.show_duel_shop_card_drops != TRUE)
+    return;
+
+  write = AppendAsciiToText(write, sText_InStock);
+
+  if (gDuelShopDropRecord.count == 0) {
+    write = AppendAsciiToText(write, sText_NoNewCards);
+  }
+  else {
+    for (i = 0; i < gDuelShopDropRecord.count; i++)
+      write = AppendCardShopDropLine(write, gDuelShopDropRecord.entries[i].cardId,
+                                     gDuelShopDropRecord.entries[i].qty,
+                                     i + 1 < gDuelShopDropRecord.count);
+  }
+
+  write = AppendAsciiToText(write, sText_WaitInput);
+  *write = 0;
+  sub_8041C94(textBuffer, 0, 0, 0, 0);
+}
+
 LYN_REPLACE_CHECK(AddMoneyFromDuelVictory);
 void AddMoneyFromDuelVictory__Replacement(void) {
   const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
@@ -457,6 +652,7 @@ void HandleWin__Replacement(void) {
     duelText.rewardAmount = gDuelData.capacityYield;
     DisplayDuelText(&duelText);
     DisplayMoneyRewardText();
+    DisplayDuelShopDropText();
     for (i = 0; i < 10; i++) {
       if (!gDuelData.unk14[i])
         break;
