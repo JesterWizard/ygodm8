@@ -11883,7 +11883,7 @@
       "def": 1700,
       "cost": 86,
       "attribute": "ATTRIBUTE_SHADOW",
-      "level": 6,
+      "level": 4,
       "type": "TYPE_SPELLCASTER",
       "color": "EFFECT_CARD",
       "monsterEffect": 0,
@@ -13562,6 +13562,38 @@
       },
       "card_name": "Spear Dragon",
       "password": [ 3, 1, 8, 7, 7, 9, 9, 0 ]
+    },
+    {
+      "card_const": "SAGES_STONE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SagesStone",
+        "pages": [
+          "A special stone that was a master's gift to his disciple.",
+          "If you control Dark Magician Girl on your side of the field,",
+          "special summon Dark Magician to your field as well."
+        ]
+      },
+      "card_name": "Sage's Stone",
+      "password": [ 6, 4, 2, 4, 0, 3, 8, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SagesStone",
+        "pages": [
+          "If there is a Dark Magician Girl present on your side of the field, special summon a Dark Magician."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/sages_stone.huff",
+      "big_palette": "src_custom/assets/cards/80x80/sages_stone.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/sages_stone.lz"
     }
   ]
 }

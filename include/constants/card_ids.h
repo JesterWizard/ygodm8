@@ -837,11 +837,12 @@
 #define FAMILIAR_KNIGHT                          0x0341
 #define RIRYOKU                                  0x0342
 #define SPEAR_DRAGON                             0x0343
+#define SAGES_STONE                              0x0344
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0344
-#define NUM_CUSTOM_CARDS                        0x0023
+#define NUM_TOTAL_CARDS                         0x0345
+#define NUM_CUSTOM_CARDS                        0x0024
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

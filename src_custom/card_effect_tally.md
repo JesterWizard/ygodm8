@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `70` effects
+- `71` effects
 
 ## Tally
 
@@ -28,6 +28,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Double Summon` | `src_custom/spell_effects/double_summon.c` |
 | `spell_effects` | `Cost Down` | `src_custom/spell_effects/cost_down.c` |
 | `spell_effects` | `Ancient Rules` | `src_custom/spell_effects/ancient_rules.c` |
+| `spell_effects` | `Sage's Stone` | `src_custom/spell_effects/sages_stone.c` |
 | `spell_effects` | `Riryoku` | `src_custom/spell_effects/riryoku.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |

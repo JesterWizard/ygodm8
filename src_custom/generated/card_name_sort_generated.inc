@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 35
+#define NUM_CUSTOM_NAME_SORT_CARDS 36
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -37,6 +37,7 @@ static const u8 sSealOfOrichalcosSortName[] APPEND_RODATA = "Seal of Orichalcos"
 static const u8 sFamiliarKnightSortName[] APPEND_RODATA = "Familiar Knight";
 static const u8 sRiryokuSortName[] APPEND_RODATA = "Riryoku";
 static const u8 sSpearDragonSortName[] APPEND_RODATA = "Spear Dragon";
+static const u8 sSagesStoneSortName[] APPEND_RODATA = "Sage's Stone";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -64,6 +65,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0334, // Pyramid of Light
   0x0337, // Rare Metal Dragon
   0x0342, // Riryoku
+  0x0344, // Sage's Stone
   0x0340, // Seal of Orichalcos
   0x0328, // Shield And Sword
   0x0321, // Sorcerer of Dark Magic
@@ -102,16 +104,17 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   23, // Pyramid of Light
   24, // Rare Metal Dragon
   25, // Riryoku
-  26, // Seal of Orichalcos
-  27, // Shield And Sword
-  28, // Sorcerer of Dark Magic
-  29, // Soul Exchange
-  30, // Spear Dragon
-  31, // Spell Canceller
-  32, // St Joan
-  33, // Ultimate Offering
-  34, // United We Stand
-  35, // Wave Motion Cannon
+  26, // Sage's Stone
+  27, // Seal of Orichalcos
+  28, // Shield And Sword
+  29, // Sorcerer of Dark Magic
+  30, // Soul Exchange
+  31, // Spear Dragon
+  32, // Spell Canceller
+  33, // St Joan
+  34, // Ultimate Offering
+  35, // United We Stand
+  36, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -185,6 +188,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRiryokuSortName;
   if (cardId == 0x0343)
     return (u8 *)sSpearDragonSortName;
+  if (cardId == 0x0344)
+    return (u8 *)sSagesStoneSortName;
 
   return gCardNames[cardId];
 }

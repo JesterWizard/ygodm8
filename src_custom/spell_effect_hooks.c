@@ -23,6 +23,7 @@ extern void EffectMysticalSpaceTyphoon(void);
 extern void EffectDoubleSummon(void);
 extern void EffectCostDown(void);
 extern void EffectAncientRules(void);
+extern void EffectSagesStone(void);
 extern void EffectRiryoku(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
@@ -175,6 +176,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case ANCIENT_RULES:
       EffectAncientRules();
+      return;
+    case SAGES_STONE:
+      EffectSagesStone();
       return;
     case RIRYOKU:
       EffectRiryoku();
