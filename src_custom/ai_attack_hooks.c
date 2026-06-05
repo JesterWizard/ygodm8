@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "debug_ruleset.h"
 #include "duel.h"
 #include "fairy_box.h"
 
@@ -44,6 +45,9 @@ static void AiPrepareAttacker(struct DuelCard *zone) {
 
 static void AiAttackDirect(struct DuelCard *attacker) {
   u8 fixedRow = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+
+  if (!DebugRuleset_AllowDirectAttacks())
+    return;
 
   if (attacker->id == CARD_NONE)
     return;

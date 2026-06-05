@@ -1,6 +1,31 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "debug_ruleset.h"
+#include "duel.h"
+
+extern u32 gLifePointsOutsideDuel;
+
+static unsigned GetLifePointsOutsideDuel(void) {
+  return gLifePointsOutsideDuel;
+}
+
+LYN_REPLACE_CHECK(InitDuelLifePoints);
+void InitDuelLifePoints__Replacement(void) {
+  if (DebugRuleset_IsDuelistKingdom()) {
+    gDuelLifePoints[DUEL_PLAYER] = DEBUG_RULESET_DUELIST_KINGDOM_LP;
+    gDuelLifePoints[DUEL_OPPONENT] = DEBUG_RULESET_DUELIST_KINGDOM_LP;
+    return;
+  }
+
+  if (gDuelType == DUEL_TYPE_INGAME) {
+    gDuelLifePoints[DUEL_PLAYER] = GetLifePointsOutsideDuel();
+    gDuelLifePoints[DUEL_OPPONENT] = gDuelData.duelist.lifePoints;
+  } else {
+    gDuelLifePoints[DUEL_PLAYER] = gDuelData.duelist.playerLp;
+    gDuelLifePoints[DUEL_OPPONENT] = gDuelData.duelist.lifePoints;
+  }
+}
 
 LYN_REPLACE_CHECK(InitLifePoints);
 void InitLifePoints__Replacement(void) {

@@ -124,6 +124,9 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);
 LYN_REPLACE_CHECK(sub_80572A8);
 void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
+  if (arg1 == NULL || arg1->id == CARD_NONE)
+    return;
+
   ApplyFieldZoneStatsToCardInfo(arg1);
 
   if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
@@ -143,6 +146,9 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
 void sub_805733C(unsigned char* arg0, struct DuelCard* arg1);
 LYN_REPLACE_CHECK(sub_805733C);
 void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
+  if (arg1 == NULL || arg1->id == CARD_NONE)
+    return;
+
   ApplyFieldZoneStatsToCardInfo(arg1);
 
   if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
@@ -185,7 +191,12 @@ static int GetMiniCardTributeCount(u16 cardId)
 
 LYN_REPLACE_CHECK(sub_80576EC);
 void sub_80576EC__Replacement(unsigned char* arg0, unsigned short cardId) {
-  signed char numTributes = GetMiniCardTributeCount(cardId);
+  signed char numTributes;
+
+  if (cardId == CARD_NONE)
+    return;
+
+  numTributes = GetMiniCardTributeCount(cardId);
 
   if (numTributes > 0)
     CpuCopy16(g89A7ADE[numTributes], arg0, 64);
@@ -193,6 +204,9 @@ void sub_80576EC__Replacement(unsigned char* arg0, unsigned short cardId) {
 
 LYN_REPLACE_CHECK(sub_80576B4);
 void sub_80576B4__Replacement(unsigned char* arg0, unsigned short cardId) {
+  if (cardId == CARD_NONE)
+    return;
+
   SetCardInfo(cardId);
   if (gRuntimeConfig.disable_element_system == TRUE || gCardInfo.attribute == ATTRIBUTE_NONE)
     return;
@@ -251,6 +265,9 @@ static void RefreshAllFieldCardTiles(void)
     u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 10] * 32;
     struct DuelCard *zone = gFixedZones[2][i];
 
+    if (zone->id == CARD_NONE)
+      continue;
+
     sub_80573D0(tilePtr, zone->id);
     if (zone->isLocked)
       StampFieldCardLocked(tilePtr);
@@ -270,6 +287,9 @@ static void RefreshAllFieldCardTiles(void)
     u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 15] * 32;
     struct DuelCard *zone = gFixedZones[3][i];
 
+    if (zone->id == CARD_NONE)
+      continue;
+
     sub_80573D0(tilePtr, zone->id);
     StampFieldCardRitualTributes(tilePtr, zone->id);
 
@@ -282,6 +302,9 @@ static void RefreshAllFieldCardTiles(void)
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     u8 *tilePtr = gBgVram.cbb0 + 0x10000 + g8E116BC[i + 20] * 32;
     struct DuelCard *zone = gFixedZones[4][i];
+
+    if (zone->id == CARD_NONE)
+      continue;
 
     sub_80573D0(tilePtr, zone->id);
     sub_80576B4(tilePtr, zone->id);

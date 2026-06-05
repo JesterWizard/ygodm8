@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
 #include "debug_deck_swap.h"
+#include "debug_ruleset.h"
 #include "player_decks.h"
 #include "shiny_zones.h"
 
@@ -71,6 +72,7 @@ int sub_800AD84__Replacement(void) {
   ShinyZones_SaveFlagsToFlashPrimary();
   PlayerDecks_OnSaveSlotWrite();
   DebugAiMode_SaveToFlashPrimary();
+  DebugRuleset_SaveToFlashPrimary();
   DebugDeckSwap_SaveToFlashPrimary();
 
   return result;
@@ -87,6 +89,7 @@ int sub_800ADA4__Replacement(void) {
   ShinyZones_SaveFlagsToFlashBackup();
   PlayerDecks_OnSaveSlotWriteBackup();
   DebugAiMode_SaveToFlashBackup();
+  DebugRuleset_SaveToFlashBackup();
   DebugDeckSwap_SaveToFlashBackup();
 
   return result;
@@ -102,6 +105,7 @@ void sub_800ADC4__Replacement(void) {
   PlayerDecks_OnSaveSlotRead();
   DebugDeckSwap_LoadFromFlashPrimary();
   DebugAiMode_LoadFromFlashPrimary();
+  DebugRuleset_LoadFromFlashPrimary();
 }
 
 LYN_REPLACE_CHECK(sub_800ADF0);
@@ -114,6 +118,7 @@ void sub_800ADF0__Replacement(void) {
   PlayerDecks_OnSaveSlotReadBackup();
   DebugDeckSwap_LoadFromFlashBackup();
   DebugAiMode_LoadFromFlashBackup();
+  DebugRuleset_LoadFromFlashBackup();
 }
 
 LYN_REPLACE_CHECK(sub_800AE1C);
@@ -179,6 +184,7 @@ void sub_800AED0__Replacement(void) {
   sub_80588C4(ptr, temp2 += 0x2000, 0x2000);
   InitNewGame();
   DebugAiMode_Reset();
+  DebugRuleset_Reset();
   DebugDeckSwap_Reset();
   sub_80351F8();
   temp = sub_8035170();

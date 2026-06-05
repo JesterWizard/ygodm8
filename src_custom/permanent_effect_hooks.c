@@ -236,6 +236,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
   }
 
   gHideEffectText = hideEffectText;
+  ResolvePendingGraveyardDrawOnDestroy();
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();
   if (!gHideEffectText)

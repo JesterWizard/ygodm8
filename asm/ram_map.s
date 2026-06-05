@@ -175,6 +175,9 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 @ Debug menu: AI controls both duelists when enabled.
 _kernel_malloc_ewram gDebugAiBothSidesMode, 1
 
+@ Debug menu: active duel ruleset (default / Duelist Kingdom).
+_kernel_malloc_ewram gDebugRuleset, 1
+
 @ Smarter AI duel-local memory (last action, board knowledge, attack order).
 _kernel_malloc gAiDuelMemory, 40
 
@@ -200,6 +203,10 @@ _kernel_malloc_ewram gForceActiveTurnEnd, 1
 _kernel_malloc_ewram gPendingUnhappyMaiden, 1
 @ Set when Sangan/Witch is sent to graveyard during battle; cleared after battle UI.
 _kernel_malloc_ewram gDeferGraveyardDrawBattleResolve, 1
+@ DUEL_PLAYER/DUEL_OPPONENT draw pending after graveyard popup, else PENDING_GRAVEYARD_DRAW_NONE.
+_kernel_malloc_ewram gPendingGraveyardDrawFixedDuelist, 1
+@ TRUE when the most recent graveyard sentinel write came from a field zone, not hand.
+_kernel_malloc_ewram gGraveyardSendWasFromField, 1
 _kernel_malloc_ewram gFamiliarKnightBattleDestroyPending, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
@@ -249,5 +256,6 @@ _kernel_malloc_flash gPlayerDeck3Capacity,     0x4
 _kernel_malloc_flash gActiveDeckIndex,         0x1
 _kernel_malloc_flash gPlayerDeckSaveMagic,     0x1
 _kernel_malloc_flash gDebugAiBothSidesMode,    0x1
+_kernel_malloc_flash gDebugRuleset,             0x1
 _kernel_malloc_flash gDebugDeckSwapBackup,     PLAYER_DECK_CARD_BYTES
 _kernel_malloc_flash gDebugDeckSwapBackupValid, 0x1

@@ -18,7 +18,7 @@
 #define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
 #define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
 #define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
-#define DEBUG_ROOT_ITEMS 11
+#define DEBUG_ROOT_ITEMS 12
 #define DEBUG_WIN0H 0x20D8
 #define DEBUG_BG1_ROWS 20
 #define DEBUG_BG1_ROW_BYTES 60
@@ -39,6 +39,7 @@
 #define DEBUG_VIEW_MAP 9
 #define DEBUG_VIEW_SCENE 10
 #define DEBUG_VIEW_DECK_PRESET 11
+#define DEBUG_VIEW_RULESET 12
 
 struct DebugMenuDeckEntry {
   const u16 *cards;
@@ -144,6 +145,8 @@ void DebugGraphicViewer(void);
 void DebugMatchSetterViewer(void);
 void DebugMenuDrawAiMode(u8 scrollTop, u8 cursor);
 void DebugAiModeViewer(void);
+void DebugMenuDrawRuleset(u8 scrollTop, u8 cursor);
+void DebugRulesetViewer(void);
 void DebugMapViewer(void);
 void DebugSceneViewer(void);
 void DebugDeckPresetViewer(void);

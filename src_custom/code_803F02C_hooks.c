@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
+#include "debug_ruleset.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "copycat.h"
@@ -155,6 +156,8 @@ void InitBoard__Replacement(void) {
       ? FIELD_ARENA
       : gDuelData.duelist.field;
   gDeferGraveyardDrawBattleResolve = FALSE;
+  gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
+  gGraveyardSendWasFromField = FALSE;
   ClearFamiliarKnightBattleDestroyPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
@@ -168,6 +171,9 @@ LYN_REPLACE_CHECK(PlayerTurnMain);
 void PlayerTurnMain__Replacement(void) {
   if (DebugAiMode_IsBothSides() == TRUE) {
     AI_Main();
+    DebugRuleset_TryEnforceMustPlayMonsterRule();
+    if (IsDuelOver() == TRUE)
+      return;
     DestroyKarateManAtEndOfTurn();
     ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
     UpdateDuelGfxExceptField();
@@ -241,6 +247,10 @@ void PlayerTurnMain__Replacement(void) {
         break;
     }
   }
+
+  DebugRuleset_TryEnforceMustPlayMonsterRule();
+  if (IsDuelOver() == TRUE)
+    return;
 
   DestroyKarateManAtEndOfTurn();
   ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "card_passives.h"
 #include "embodiment_of_apophis.h"
+#include "graveyard_effects.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -34,8 +35,10 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
 
   if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
       || EmbodimentOfApophisZoneIsMonsterForm(zone)
-      || EmbodimentOfApophisZoneOnMonsterRow(zone))
+      || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
+    NoteGraveyardMonsterSend(zone);
     gTurnDuelistBattleState[turn]->graveyard = zone->id;
+  }
   ClearZone(zone);
 }
 

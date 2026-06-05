@@ -209,6 +209,7 @@ extern u8 gDuelistStatus[]; //0 - player status, 1 - opponent status: 2 == loss,
 
 
 void ActivateCardEffectText(void);
+void ActivatePermanentEffectCardText(u16 cardId);
 
 void ResetCardEffectTextData(void);
 void SetCardEffectTextType(u8);

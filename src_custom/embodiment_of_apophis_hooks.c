@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
 
@@ -327,8 +328,10 @@ static void SendApophisZoneToGraveyardIfNeeded(struct DuelCard *zone, u8 turn)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER || EmbodimentOfApophisZoneOnMonsterRow(zone))
+  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
+    MarkGraveyardSendFromField();
     gDuel.duelistbattleState[turn].graveyard = zone->id;
+  }
 }
 
 void OnEmbodimentOfApophisZoneAboutToClear(struct DuelCard *zone)
@@ -352,6 +355,8 @@ void OnEmbodimentOfApophisZoneAboutToClear(struct DuelCard *zone)
     return;
 
   gApophisClearingPartner = TRUE;
+  if (partnerToGrave)
+    MarkGraveyardSendFromField();
   if (partnerToGrave)
     gDuel.duelistbattleState[DUEL_PLAYER].graveyard = partner->id;
   ClearZone(partner);

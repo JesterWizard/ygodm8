@@ -1,9 +1,45 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "constants/music_ids.h"
 #include "graveyard_effects.h"
 
 u8 gDeferGraveyardDrawBattleResolve;
+u8 gPendingGraveyardDrawFixedDuelist;
+u8 gGraveyardSendWasFromField;
+
+static u8 ZoneIsHandSlot(struct DuelCard *zone)
+{
+  u8 i;
+  u8 j;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gFixedZones[PLAYER_HAND][i] == zone)
+      return TRUE;
+  }
+
+  for (i = 0; i < 2; i++) {
+    for (j = 0; j < MAX_ZONES_IN_ROW; j++) {
+      if (gTurnHands[i][j] == zone)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+void NoteGraveyardMonsterSend(struct DuelCard *zone)
+{
+  gGraveyardSendWasFromField = ZoneIsHandSlot(zone) ? FALSE : TRUE;
+}
+
+void MarkGraveyardSendFromField(void)
+{
+  gGraveyardSendWasFromField = TRUE;
+}
 
 u8 CardTriggersDrawOnFieldDestroy(u16 cardId)
 {
@@ -28,6 +64,9 @@ unsigned char ShouldActivateGraveyardDrawOnDestroy(void)
   if (gDeferGraveyardDrawBattleResolve)
     return FALSE;
 
+  if (!gGraveyardSendWasFromField)
+    return FALSE;
+
   if (gActiveEffect.turnRow != 6 && gActiveEffect.turnRow != 7)
     return FALSE;
 
@@ -43,24 +82,40 @@ unsigned char ShouldActivateGraveyardDrawOnDestroy(void)
 void ActivateGraveyardDrawOnDestroy(void)
 {
   u8 fixedDuelist;
+  u8 turnDuelist;
   u8 hideEffectText;
   u16 cardId;
 
   cardId = gActiveEffect.cardId;
 
-  if (gActiveEffect.turnRow == 6)
+  if (gActiveEffect.turnRow == 6) {
+    turnDuelist = ACTIVE_DUELIST;
     fixedDuelist = GraveyardScanDuelistToFixed(ACTIVE_DUELIST);
-  else
+  } else {
+    turnDuelist = INACTIVE_DUELIST;
     fixedDuelist = GraveyardScanDuelistToFixed(INACTIVE_DUELIST);
-
-  TryDrawingCard(fixedDuelist);
-  GetGraveCardAndClearGrave2(fixedDuelist);
+  }
 
   hideEffectText = gHideEffectText;
   gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = cardId;
-  ActivateCardEffectText();
+  ActivatePermanentEffectCardText(cardId);
   gHideEffectText = hideEffectText;
+
+  GetGraveCardAndClearGrave(turnDuelist);
+  gPendingGraveyardDrawFixedDuelist = fixedDuelist;
+}
+
+void ResolvePendingGraveyardDrawOnDestroy(void)
+{
+  u8 fixedDuelist = gPendingGraveyardDrawFixedDuelist;
+
+  if (fixedDuelist == PENDING_GRAVEYARD_DRAW_NONE)
+    return;
+
+  gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
+  TryDrawingCard(fixedDuelist);
+  PlayMusic(SFX_DRAW_CARD);
+  SetCardInfo(CARD_NONE);
 }
 
 void FinishGraveyardDrawBattleResolve(void)

@@ -12,6 +12,7 @@
 #include "fairy_box.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
+#include "debug_ruleset.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -433,6 +434,11 @@ void sub_8044570__Replacement(void)
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
   } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW) {
+    if (!DebugRuleset_AllowDirectAttacks()) {
+      PlayMusic(SFX_FORBIDDEN);
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+      UpdateDuelGfxExceptField();
+    } else {
     gTrapEffectData.originRow = gDuelCursor.currentY;
     gTrapEffectData.originCol = gDuelCursor.currentX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
@@ -457,6 +463,7 @@ void sub_8044570__Replacement(void)
       gDuelCursor.state = 0;
     }
     TryActivatingPermanentEffects();
+    }
   } else {
     PlayMusic(SFX_SELECT);
     SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);

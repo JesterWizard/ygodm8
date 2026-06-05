@@ -3,6 +3,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "cost_down.h"
+#include "debug_ruleset.h"
 #include "tribute.h"
 
 extern unsigned char gNumTributes;
@@ -83,6 +84,9 @@ int GetMonsterNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 {
   int requiredTributes;
 
+  if (DebugRuleset_IsDuelistKingdom())
+    return SubtractPaidTributes(0);
+
   if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return 0;
 
@@ -98,6 +102,9 @@ LYN_REPLACE_CHECK(GetMonsterNumRequiredTributes);
 int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
 {
   int requiredTributes;
+
+  if (DebugRuleset_IsDuelistKingdom())
+    return SubtractPaidTributes(0);
 
   if (GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return 0;
