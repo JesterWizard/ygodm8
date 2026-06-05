@@ -295,6 +295,7 @@ void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   gTurnDuelistBattleState[currPlayer]->summoningBlocked = 0;
   gDoubleSummonExtraSummonPending = FALSE;
   gDoubleSummonExtraSummonUsed = FALSE;
+  DebugRuleset_ResetTurnAttack();
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);

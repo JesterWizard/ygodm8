@@ -49,6 +49,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (!DebugRuleset_AllowDirectAttacks())
     return;
 
+  if (!DebugRuleset_CanAttackThisTurn())
+    return;
+
   if (attacker->id == CARD_NONE)
     return;
 
@@ -56,12 +59,16 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   SetAttackActionDirectAttack(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   HandleAtkAndLifePointsAction();
+  DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
   u8 playerCol;
   u8 opponentCol;
+
+  if (!DebugRuleset_CanAttackThisTurn())
+    return;
 
   if (attacker->id == CARD_NONE)
     return;
@@ -80,6 +87,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   SetAttackAction(playerCol, opponentCol);
   TryApplyFairyBoxToPendingAction();
   HandleAtkAndLifePointsAction();
+  DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
 }
 

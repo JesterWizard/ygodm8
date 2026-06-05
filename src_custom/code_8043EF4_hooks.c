@@ -433,6 +433,10 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
+  } else if (!DebugRuleset_CanAttackThisTurn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+    UpdateDuelGfxExceptField();
   } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
@@ -450,6 +454,7 @@ void sub_8044570__Replacement(void)
       SetAttackActionDirectAttack(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       HandleAtkAndLifePointsAction();
+      DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
       gDuelCursor.state = 0;
       sub_801BC00();
@@ -486,6 +491,9 @@ void TryAttackWithMonster__Replacement(void)
   } else if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id == CARD_NONE) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
+  } else if (!DebugRuleset_CanAttackThisTurn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
   } else {
     gTrapEffectData.originRow = gDuelCursor.destY;
     gTrapEffectData.originCol = gDuelCursor.destX;
@@ -499,6 +507,7 @@ void TryAttackWithMonster__Replacement(void)
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       HandleAtkAndLifePointsAction();
+      DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
       gDuelCursor.state = 0;
       SetCursorToCardDest();

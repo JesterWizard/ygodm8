@@ -6,6 +6,7 @@
 #include "embodiment_of_apophis.h"
 
 extern void (*g20245AC)(int, u8 *, int);
+extern u8 gDebugRulesetTurnAttackUsed;
 
 int sub_80588C4(u8 *, int, int);
 
@@ -24,6 +25,22 @@ u8 DebugRuleset_IsDuelistKingdom(void) {
 
 u8 DebugRuleset_AllowDirectAttacks(void) {
   return !DebugRuleset_IsDuelistKingdom();
+}
+
+u8 DebugRuleset_CanAttackThisTurn(void) {
+  if (!DebugRuleset_IsDuelistKingdom())
+    return TRUE;
+
+  return !gDebugRulesetTurnAttackUsed;
+}
+
+void DebugRuleset_MarkAttackUsed(void) {
+  if (DebugRuleset_IsDuelistKingdom())
+    gDebugRulesetTurnAttackUsed = TRUE;
+}
+
+void DebugRuleset_ResetTurnAttack(void) {
+  gDebugRulesetTurnAttackUsed = FALSE;
 }
 
 static u8 DebugRuleset_ZoneCountsAsBoardMonster(const struct DuelCard *zone) {

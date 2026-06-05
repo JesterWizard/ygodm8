@@ -178,6 +178,9 @@ _kernel_malloc_ewram gDebugAiBothSidesMode, 1
 @ Debug menu: active duel ruleset (default / Duelist Kingdom).
 _kernel_malloc_ewram gDebugRuleset, 1
 
+@ Duelist Kingdom: active duelist already attacked this turn.
+_kernel_malloc_ewram gDebugRulesetTurnAttackUsed, 1
+
 @ Smarter AI duel-local memory (last action, board knowledge, attack order).
 _kernel_malloc gAiDuelMemory, 40
 
