@@ -497,6 +497,8 @@ void HandleLoss__Replacement(void) {
     duelText.textId = DUEL_TEXT_DUEL_LOSS;
     DisplayDuelText(&duelText);
   }
+  if (gDuelType == DUEL_TYPE_INGAME)
+    CapLifePointsAfterDuel();
 
   CustomDecks_ClearPendingCardShopDuel();
 }

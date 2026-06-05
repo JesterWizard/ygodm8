@@ -12,6 +12,7 @@ typedef struct {
     u8 restore_life_points_after_duel;
     u8 cap_life_points_after_duel;
     u8 preserve_life_points_above_8000_after_duel; // Keep duel LP above 8000 when saving.
+    u16 set_life_points_after_duel; // Overworld LP on new game and after duels; 0 keeps vanilla behavior.
     u8 return_home_after_defeat; // Return home after losing regular overworld duels.
     u8 max_duelist_level_at_start;
     u8 max_deck_capacity_at_start;
