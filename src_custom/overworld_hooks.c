@@ -4,9 +4,11 @@
 #include "common-chax.h"
 #include "event_system.h"
 #include "configs/runtime.h"
+#include "cutscene.h"
 #include "debug_menu.h"
 #include "debug_save_anywhere.h"
 #include "match_setter.h"
+#include "naming_screen.h"
 #include "overworld_debug_overlay.h"
 #include "thought_bubble.h"
 
@@ -392,4 +394,24 @@ void sub_804EF10__Replacement(void) {
     gDebugSaveAnywhereOpenDialogPending = FALSE;
     gDebugSaveAnywhereOpenDialogReady = TRUE;
   }
+}
+
+#define OVERWORLD_MAIN_AFTER_INITIAL_WARP 0x0804DC72
+
+LYN_REPLACE_CHECK(OverworldMain);
+void OverworldMain__Replacement(void) {
+  u16 mapId;
+  u16 mapState;
+  u16 connection;
+
+  if (!CheckFlag(0x2b)) {
+    NamingScreenMain();
+    StartCutscene(8);
+    SetFlag(0x2b);
+    SaveGame();
+  }
+
+  EventSystem_GetInitialWarp(&mapId, &mapState, &connection);
+  sub_80523EC(mapId, mapState, connection);
+  ((VoidFunc)(OVERWORLD_MAIN_AFTER_INITIAL_WARP | 1))();
 }

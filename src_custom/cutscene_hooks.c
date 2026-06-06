@@ -1,5 +1,8 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "event_system.h"
+#include "gfx_reg_buffers.h"
+#include "overworld.h"
 
 typedef void (*VoidFunc)(void);
 
@@ -35,11 +38,16 @@ APPEND_TEXT void StartCutscene__Replacement (unsigned char cutscene) {
       CallThumbVoid(0x08001D58);
       break;
     case 8:
+      /* Story queue marks map_09 complete once enter begins; block Joey replay FMV. */
+      if (gStorySequenceCount != 0 && gStorySequenceProgress >= 1)
+        break;
       if (gRuntimeConfig.skip_opening_sequence == TRUE)
-        SetFlag(0x8);
+        SetFlag(EVENT_FLAG_SAW_INTRO_CUTSCENE);
       else
         CallThumbVoid(0x08001AD8);
       break;
   }
+  if (gRuntimeConfig.enable_custom_events == TRUE && gStorySequenceCount != 0)
+    EventSystem_ApplyEnterFadeBlack();
   REG_DISPCNT = 0;
 }

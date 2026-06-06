@@ -604,6 +604,24 @@ def decode_steps_with_size(data: list[int]) -> tuple[list[dict[str, Any]], int]:
                 steps.append({"type": "fade_screen", "speed": raw[2], "raw": byte_list(raw)})
                 p += 3
                 continue
+            if cmd == ord("B") and p + 2 < len(data):
+                raw = data[p : p + 3]
+                steps.append({"type": "fade_in", "speed": raw[2], "raw": byte_list(raw)})
+                p += 3
+                continue
+            if cmd == ord("C") and p + 6 < len(data):
+                raw = data[p : p + 7]
+                steps.append({
+                    "type": "set_object_position",
+                    "object_id": raw[2],
+                    "x": raw[3],
+                    "y": raw[4],
+                    "frame": raw[5],
+                    "direction": raw[6],
+                    "raw": byte_list(raw),
+                })
+                p += 7
+                continue
             if cmd == ord("3"):
                 raw = data[p : p + 2]
                 steps.append({"type": "hide_portrait", "raw": byte_list(raw)})
@@ -1041,188 +1059,407 @@ class CScriptEntry:
     on_false: str
     on_true: str
     raw_bytes: list[int]
+    map_id: int | None = None
+    map_state: int | None = None
+
+
+VANILLA_NOP_BRANCH = "0x08F04040"
+
+
+def has_card_choice(text: str) -> bool:
+    return "{CARD_1}" in text and "{CARD_2}" in text
+
+
+def macro_has_card_choice(name: str, args: list[str]) -> bool:
+    if name == "TEXT":
+        return has_card_choice(parse_text_literal(args[0]))
+    if name == "LANGUAGE_TEXT":
+        return has_card_choice(parse_text_literal(args[1]))
+    if name == "DIALOGUE":
+        return has_card_choice(parse_text_literal(args[0]))
+    return False
+
+
+def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: Path) -> None:
+    def need_args(count: int) -> None:
+        if len(args) != count:
+            raise ValueError(f"{path}: {name} expected {count} args, got {len(args)}")
+
+    if name == "RAW":
+        raw_bytes.extend(parse_c_value(arg) & 0xFF for arg in args)
+    elif name == "DIALOGUE":
+        need_args(1)
+        text = parse_text_literal(args[0])
+        raw_bytes.extend([0x24, ord("0")])
+        raw_bytes.extend(encode_text(text))
+        raw_bytes.extend([0x24, ord("6")])
+    elif name == "LANGUAGE_TEXT":
+        need_args(2)
+        raw_bytes.extend([0x24, ord("0") + parse_c_value(args[0])])
+        raw_bytes.extend(encode_text(parse_text_literal(args[1])))
+    elif name == "END_LANGUAGE_TEXT":
+        need_args(0)
+        raw_bytes.extend([0x24, ord("6")])
+    elif name == "TEXT":
+        need_args(1)
+        raw_bytes.extend([0x24, ord("0")])
+        raw_bytes.extend(encode_text(parse_text_literal(args[0])))
+        raw_bytes.extend([0x24, ord("6")])
+    elif name == "TEXT_FRAGMENT":
+        need_args(1)
+        raw_bytes.extend(encode_text(parse_text_literal(args[0])))
+    elif name == "PLAYER_NAME":
+        need_args(0)
+        raw_bytes.extend([0x23, ord("5")])
+    elif name == "NEWLINE":
+        need_args(0)
+        raw_bytes.extend([0x23, ord("0")])
+    elif name == "PAGE_BREAK":
+        need_args(0)
+        raw_bytes.extend([0x23, ord("1")])
+    elif name == "CHOICE":
+        need_args(0)
+        raw_bytes.extend([0x23, ord("3")])
+    elif name == "PORTRAIT":
+        need_args(3)
+        raw_bytes.extend([0x23, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name in {"SET_FLAG", "CHECK_FLAG", "CLEAR_FLAG"}:
+        need_args(1)
+        cmd = {"SET_FLAG": "6", "CHECK_FLAG": "7", "CLEAR_FLAG": "8"}[name]
+        raw_bytes.extend([0x23, ord(cmd), parse_c_value(args[0]) & 0xFF])
+    elif name == "RESTORE_LIFE_POINTS":
+        need_args(0)
+        raw_bytes.extend([0x23, ord("9")])
+    elif name == "DUEL":
+        need_args(1)
+        raw_bytes.extend([0x40, ord("0"), parse_c_value(args[0]) & 0xFF])
+    elif name in {"PLAY_MUSIC", "SET_MAP_MUSIC", "STOP_MUSIC", "FADE_MUSIC"}:
+        need_args(1)
+        cmd = {"PLAY_MUSIC": "3", "SET_MAP_MUSIC": "4", "STOP_MUSIC": "5", "FADE_MUSIC": "6"}[name]
+        music = parse_c_value(args[0])
+        raw_bytes.extend([0x40, ord(cmd), music & 0xFF, (music >> 8) & 0xFF])
+    elif name == "START_MENU":
+        need_args(0)
+        raw_bytes.extend([0x40, ord("1")])
+    elif name == "SAVE":
+        need_args(0)
+        raw_bytes.extend([0x40, ord("2")])
+    elif name == "MOVE_OBJECT":
+        need_args(4)
+        raw_bytes.extend([0x40, ord("7"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name == "STOP_FOOTSTEPS":
+        need_args(0)
+        raw_bytes.extend([0x40, ord("8")])
+    elif name == "SET_OBJECT_POSITION":
+        if len(args) == 4:
+            raw_bytes.extend([0x40, ord("9"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        elif len(args) == 5:
+            raw_bytes.extend([0x7C, ord("C"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        else:
+            raise ValueError(f"{path}: {name} expected 4 or 5 args, got {len(args)}")
+    elif name == "SHOW_OBJECT":
+        if len(args) not in {5, 6}:
+            raise ValueError(f"{path}: {name} expected 5 or 6 args, got {len(args)}")
+        raw_bytes.extend([0x5E, ord("0"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name in {"WALK_OBJECT_X", "WALK_OBJECT_Y"}:
+        need_args(2)
+        cmd = "1" if name == "WALK_OBJECT_X" else "2"
+        raw_bytes.extend([0x5E, ord(cmd), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name == "SLIDE_OBJECT":
+        need_args(3)
+        raw_bytes.extend([0x5E, ord("3"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name == "OBJECT_EFFECT":
+        need_args(2)
+        mask = parse_c_value(args[0])
+        raw_bytes.extend([0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, parse_c_value(args[1]) & 0xFF])
+    elif name == "SPECIAL":
+        need_args(1)
+        raw_bytes.extend([0x5E, ord("5"), parse_c_value(args[0]) & 0xFF])
+    elif name == "CUTSCENE":
+        need_args(1)
+        special = {0: 15, 1: 16, 8: 33, 7: 34}[parse_c_value(args[0])]
+        raw_bytes.extend([0x5E, ord("5"), special])
+    elif name == "DELAY":
+        need_args(1)
+        raw_bytes.extend([0x5E, ord("6"), parse_c_value(args[0]) & 0xFF])
+    elif name in {"ADD_CARD", "REMOVE_CARD"}:
+        need_args(1)
+        card = parse_c_value(args[0])
+        raw_bytes.extend([0x5E, ord("7" if name == "ADD_CARD" else "8"), card & 0xFF, (card >> 8) & 0xFF])
+    elif name == "CONDITION_CHECK":
+        need_args(1)
+        raw_bytes.extend([0x5E, ord("9"), parse_c_value(args[0]) & 0xFF])
+    elif name == "FADE_SCREEN":
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("1"), parse_c_value(args[0]) & 0xFF])
+    elif name == "FADE_IN":
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("B"), parse_c_value(args[0]) & 0xFF])
+    elif name == "SCREEN_SHAKE":
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("7"), parse_c_value(args[0]) & 0xFF])
+    elif name == "HIDE_PORTRAIT":
+        need_args(0)
+        raw_bytes.extend([0x7C, ord("3")])
+    elif name in {"SWAP_OBJECT_SPRITE", "LOAD_SPRITE"}:
+        need_args(2)
+        raw_bytes.extend([0x7C, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name == "WARP":
+        if len(args) not in {3, 4}:
+            raise ValueError(f"{path}: {name} expected 3 or 4 args, got {len(args)}")
+        raw_bytes.extend([0x7C, ord("5"), *(parse_c_value(arg) & 0xFF for arg in args)])
+    elif name == "REACTION":
+        need_args(2)
+        mask = parse_c_value(args[1])
+        raw_bytes.extend([0x7C, ord("6"), parse_c_value(args[0]) & 0xFF, (mask >> 8) & 0xFF, mask & 0xFF])
+    elif name == "COMMAND_7C_ARG":
+        need_args(2)
+        raw_bytes.extend([0x7C, ord("0") + parse_c_value(args[0]), parse_c_value(args[1]) & 0xFF])
+    elif name in {"SHOW_OVERWORLD_GRAPHIC", "SHOW_LARGE_GRAPHIC"}:
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("8"), parse_c_value(args[0]) & 0xFF])
+    elif name == "DISPLAY_CG":
+        need_args(2)
+        raw_bytes.extend([0x7C, ord("9"), parse_c_value(args[0]) & 0xFF, parse_c_value(args[1]) & 0xFF])
+    elif name == "HIDE_CG":
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("A"), parse_c_value(args[0]) & 0xFF])
+    elif name == "FALLTHROUGH":
+        need_args(0)
+        raw_bytes.append(0)
+    elif name == "END":
+        need_args(0)
+        raw_bytes.append(0x5D)
+    else:
+        raise ValueError(f"{path}: unknown event macro {name}")
+
+
+def finalize_segment_bytes(raw_bytes: list[int]) -> list[int]:
+    if not raw_bytes or raw_bytes[-1] != 0:
+        return raw_bytes + [0]
+    return raw_bytes
+
+
+MAP_SCENE_FILE_PATTERN = re.compile(r"map_(\d+)_state_(\d+)")
+SCRIPT_BLOCK_MACROS = frozenset({
+    "EVENT_SCRIPT_REPLACEMENT",
+    "REPLACE_EVENT_SCRIPT",
+    "EVENT_SCRIPT",
+})
+
+
+def parse_map_scene_id(map_name: str) -> tuple[int, int]:
+    match = MAP_SCENE_FILE_PATTERN.fullmatch(map_name)
+    if not match:
+        raise ValueError(f"scene name must be map_NN_state_MM, got {map_name!r}")
+    return int(match.group(1)), int(match.group(2))
+
+
+def is_map_scene_file(path: Path) -> bool:
+    return MAP_SCENE_FILE_PATTERN.fullmatch(path.stem) is not None
+
+
+def compile_linear_map_event(map_name: str, calls: list[tuple[str, list[str]]], path: Path) -> CScriptEntry:
+    raw_bytes: list[int] = []
+    for name, args in calls:
+        if name in {
+            "MAP_EVENT",
+            "END_MAP_EVENT",
+            "HOOK",
+            "END_HOOK",
+            "BRANCH",
+            "END_BRANCH",
+            "JOIN",
+            "MERGE",
+            "END_MERGE",
+        }:
+            raise ValueError(f"{path}: map enter script {map_name} uses legacy wrapper/branch macros")
+        append_event_macro(name, args, raw_bytes, path)
+    map_id, map_state = parse_map_scene_id(map_name)
+    return CScriptEntry(
+        map_name,
+        None,
+        VANILLA_NOP_BRANCH,
+        VANILLA_NOP_BRANCH,
+        finalize_segment_bytes(raw_bytes),
+        map_id,
+        map_state,
+    )
+
+
+def parse_map_scene_enter_calls(
+    calls: list[tuple[str, list[str]]],
+    path: Path,
+) -> tuple[list[tuple[str, list[str]]], int]:
+    index = 0
+    enter_calls: list[tuple[str, list[str]]] = []
+
+    if index < len(calls) and calls[index][0] == "MAP_EVENT":
+        map_name, args = calls[index]
+        if len(args) != 1:
+            raise ValueError(f"{path}: MAP_EVENT expected 1 arg, got {len(args)}")
+        if map_name != path.stem:
+            raise ValueError(f"{path}: MAP_EVENT({map_name}) must match filename {path.stem}")
+        index += 1
+        depth = 1
+        while index < len(calls) and depth > 0:
+            inner_name, inner_args = calls[index]
+            if inner_name == "MAP_EVENT":
+                depth += 1
+            elif inner_name == "END_MAP_EVENT":
+                depth -= 1
+                if depth == 0:
+                    index += 1
+                    break
+            if depth > 0:
+                enter_calls.append((inner_name, inner_args))
+            index += 1
+        else:
+            raise ValueError(f"{path}: unclosed MAP_EVENT {map_name}")
+        return enter_calls, index
+
+    while index < len(calls) and calls[index][0] not in SCRIPT_BLOCK_MACROS:
+        enter_calls.append(calls[index])
+        index += 1
+    return enter_calls, index
 
 
 def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
     entries: list[CScriptEntry] = []
     current: CScriptEntry | None = None
 
-    def need_args(name: str, args: list[str], count: int) -> None:
+    def need_args(name: str, args: list[str], count: int, path: Path) -> None:
         if len(args) != count:
-            raise ValueError(f"{name} expected {count} args, got {len(args)}")
+            raise ValueError(f"{path}: {name} expected {count} args, got {len(args)}")
 
     for path in paths:
-        for name, args in parse_macro_calls(path.read_text()):
+        calls = parse_macro_calls(path.read_text())
+        call_index = 0
+
+        if is_map_scene_file(path):
+            enter_calls, call_index = parse_map_scene_enter_calls(calls, path)
+            if enter_calls:
+                entries.append(compile_linear_map_event(path.stem, enter_calls, path))
+
+        while call_index < len(calls):
+            name, args = calls[call_index]
+            if name in {"MAP_EVENT", "END_MAP_EVENT"}:
+                raise ValueError(f"{path}: stray {name} after map enter script")
+
             if name in {"EVENT_SCRIPT_REPLACEMENT", "REPLACE_EVENT_SCRIPT"}:
-                need_args(name, args, 4)
+                need_args(name, args, 4, path)
                 if current is not None:
                     raise ValueError(f"{path}: nested {name}")
                 current = CScriptEntry(args[1], parse_hex(args[0]), args[2], args[3], [])
+                call_index += 1
                 continue
             if name == "EVENT_SCRIPT":
-                need_args(name, args, 3)
+                need_args(name, args, 3, path)
                 if current is not None:
                     raise ValueError(f"{path}: nested {name}")
                 current = CScriptEntry(args[0], None, args[1], args[2], [])
+                call_index += 1
                 continue
             if name == "END_EVENT_SCRIPT":
-                need_args(name, args, 0)
+                need_args(name, args, 0, path)
                 if current is None:
                     raise ValueError(f"{path}: END_EVENT_SCRIPT without script")
                 entries.append(current)
                 current = None
+                call_index += 1
                 continue
             if current is None:
+                call_index += 1
                 continue
 
-            if name == "RAW":
-                current.raw_bytes.extend(parse_c_value(arg) & 0xFF for arg in args)
-            elif name == "DIALOGUE":
-                need_args(name, args, 1)
-                text = parse_text_literal(args[0])
-                current.raw_bytes.extend([0x24, ord("0")])
-                current.raw_bytes.extend(encode_text(text))
-                current.raw_bytes.extend([0x24, ord("6")])
-            elif name == "LANGUAGE_TEXT":
-                need_args(name, args, 2)
-                current.raw_bytes.extend([0x24, ord("0") + parse_c_value(args[0])])
-                current.raw_bytes.extend(encode_text(parse_text_literal(args[1])))
-            elif name == "END_LANGUAGE_TEXT":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x24, ord("6")])
-            elif name == "TEXT":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x24, ord("0")])
-                current.raw_bytes.extend(encode_text(parse_text_literal(args[0])))
-                current.raw_bytes.extend([0x24, ord("6")])
-            elif name == "TEXT_FRAGMENT":
-                need_args(name, args, 1)
-                current.raw_bytes.extend(encode_text(parse_text_literal(args[0])))
-            elif name == "PLAYER_NAME":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x23, ord("5")])
-            elif name == "NEWLINE":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x23, ord("0")])
-            elif name == "PAGE_BREAK":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x23, ord("1")])
-            elif name == "CHOICE":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x23, ord("3")])
-            elif name == "PORTRAIT":
-                need_args(name, args, 3)
-                current.raw_bytes.extend([0x23, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name in {"SET_FLAG", "CHECK_FLAG", "CLEAR_FLAG"}:
-                need_args(name, args, 1)
-                cmd = {"SET_FLAG": "6", "CHECK_FLAG": "7", "CLEAR_FLAG": "8"}[name]
-                current.raw_bytes.extend([0x23, ord(cmd), parse_c_value(args[0]) & 0xFF])
-            elif name == "RESTORE_LIFE_POINTS":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x23, ord("9")])
-            elif name == "DUEL":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x40, ord("0"), parse_c_value(args[0]) & 0xFF])
-            elif name in {"PLAY_MUSIC", "SET_MAP_MUSIC", "STOP_MUSIC", "FADE_MUSIC"}:
-                need_args(name, args, 1)
-                cmd = {"PLAY_MUSIC": "3", "SET_MAP_MUSIC": "4", "STOP_MUSIC": "5", "FADE_MUSIC": "6"}[name]
-                music = parse_c_value(args[0])
-                current.raw_bytes.extend([0x40, ord(cmd), music & 0xFF, (music >> 8) & 0xFF])
-            elif name == "START_MENU":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x40, ord("1")])
-            elif name == "SAVE":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x40, ord("2")])
-            elif name == "MOVE_OBJECT":
-                need_args(name, args, 4)
-                current.raw_bytes.extend([0x40, ord("7"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "STOP_FOOTSTEPS":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x40, ord("8")])
-            elif name == "SET_OBJECT_POSITION":
-                need_args(name, args, 4)
-                current.raw_bytes.extend([0x40, ord("9"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "SHOW_OBJECT":
-                if len(args) not in {5, 6}:
-                    raise ValueError(f"{name} expected 5 or 6 args, got {len(args)}")
-                current.raw_bytes.extend([0x5E, ord("0"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name in {"WALK_OBJECT_X", "WALK_OBJECT_Y"}:
-                need_args(name, args, 2)
-                cmd = "1" if name == "WALK_OBJECT_X" else "2"
-                current.raw_bytes.extend([0x5E, ord(cmd), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "SLIDE_OBJECT":
-                need_args(name, args, 3)
-                current.raw_bytes.extend([0x5E, ord("3"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "OBJECT_EFFECT":
-                need_args(name, args, 2)
-                mask = parse_c_value(args[0])
-                current.raw_bytes.extend([0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, parse_c_value(args[1]) & 0xFF])
-            elif name == "SPECIAL":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x5E, ord("5"), parse_c_value(args[0]) & 0xFF])
-            elif name == "CUTSCENE":
-                need_args(name, args, 1)
-                special = {0: 15, 1: 16, 8: 33, 7: 34}[parse_c_value(args[0])]
-                current.raw_bytes.extend([0x5E, ord("5"), special])
-            elif name == "DELAY":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x5E, ord("6"), parse_c_value(args[0]) & 0xFF])
-            elif name in {"ADD_CARD", "REMOVE_CARD"}:
-                need_args(name, args, 1)
-                card = parse_c_value(args[0])
-                current.raw_bytes.extend([0x5E, ord("7" if name == "ADD_CARD" else "8"), card & 0xFF, (card >> 8) & 0xFF])
-            elif name == "CONDITION_CHECK":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x5E, ord("9"), parse_c_value(args[0]) & 0xFF])
-            elif name == "FADE_SCREEN":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x7C, ord("1"), parse_c_value(args[0]) & 0xFF])
-            elif name == "SCREEN_SHAKE":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x7C, ord("7"), parse_c_value(args[0]) & 0xFF])
-            elif name == "HIDE_PORTRAIT":
-                need_args(name, args, 0)
-                current.raw_bytes.extend([0x7C, ord("3")])
-            elif name in {"SWAP_OBJECT_SPRITE", "LOAD_SPRITE"}:
-                need_args(name, args, 2)
-                current.raw_bytes.extend([0x7C, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "WARP":
-                if len(args) not in {3, 4}:
-                    raise ValueError(f"{name} expected 3 or 4 args, got {len(args)}")
-                current.raw_bytes.extend([0x7C, ord("5"), *(parse_c_value(arg) & 0xFF for arg in args)])
-            elif name == "REACTION":
-                need_args(name, args, 2)
-                mask = parse_c_value(args[1])
-                current.raw_bytes.extend([0x7C, ord("6"), parse_c_value(args[0]) & 0xFF, (mask >> 8) & 0xFF, mask & 0xFF])
-            elif name == "COMMAND_7C_ARG":
-                need_args(name, args, 2)
-                current.raw_bytes.extend([0x7C, ord("0") + parse_c_value(args[0]), parse_c_value(args[1]) & 0xFF])
-            elif name in {"SHOW_OVERWORLD_GRAPHIC", "SHOW_LARGE_GRAPHIC"}:
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x7C, ord("8"), parse_c_value(args[0]) & 0xFF])
-            elif name == "DISPLAY_CG":
-                need_args(name, args, 2)
-                current.raw_bytes.extend(
-                    [0x7C, ord("9"), parse_c_value(args[0]) & 0xFF, parse_c_value(args[1]) & 0xFF]
-                )
-            elif name == "HIDE_CG":
-                need_args(name, args, 1)
-                current.raw_bytes.extend([0x7C, ord("A"), parse_c_value(args[0]) & 0xFF])
-            elif name == "FALLTHROUGH":
-                need_args(name, args, 0)
-                current.raw_bytes.append(0)
-            elif name == "END":
-                need_args(name, args, 0)
-                current.raw_bytes.append(0x5D)
-            else:
-                raise ValueError(f"{path}: unknown event macro {name}")
+            append_event_macro(name, args, current.raw_bytes, path)
+            call_index += 1
         if current is not None:
             raise ValueError(f"{path}: unclosed event script {current.name}")
     return entries
 
 
-def compile_c_replacements(paths: list[Path]) -> str:
+DEFAULT_STORY_SEQUENCE_PATH = Path("events/story_sequence.txt")
+VANILLA_NOP_ENTER_ADDRS = {0x08F04034, 0x08F04040}
+
+
+def parse_story_sequence_names(sequence_path: Path) -> list[str]:
+    if not sequence_path.is_file():
+        return []
+    names: list[str] = []
+    for line in sequence_path.read_text().splitlines():
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        parse_map_scene_id(line)
+        names.append(line)
+    return names
+
+
+def parse_story_sequence_catalog_names(sequence_path: Path) -> list[str]:
+    if not sequence_path.is_file():
+        return []
+    names: list[str] = []
+    for line in sequence_path.read_text().splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("# Generated") or stripped.startswith("# Game event"):
+            continue
+        if stripped.startswith("#"):
+            match = MAP_SCENE_FILE_PATTERN.search(stripped)
+            if match:
+                names.append(match.group(0))
+            continue
+        name = stripped.split("#", 1)[0].strip()
+        if not name:
+            continue
+        parse_map_scene_id(name)
+        names.append(name)
+    return names
+
+
+def story_sequence_uses_catalog_mode(sequence_path: Path) -> bool:
+    return bool(parse_story_sequence_catalog_names(sequence_path))
+
+
+def compile_story_sequence_section(
+    sequence_path: Path,
+    map_event_entries: list[CScriptEntry],
+    script_ident,
+) -> list[str]:
+    sequence_names = parse_story_sequence_names(sequence_path)
+    map_event_by_name = {entry.name: entry for entry in map_event_entries}
+    lines: list[str] = [
+        "const StorySequenceEntry gStorySequence[] APPEND_RODATA = {",
+    ]
+    if not sequence_names:
+        lines.extend([
+            "  {0, 0, 0},",
+            "};",
+            "const unsigned gStorySequenceCount APPEND_RODATA = 0;",
+            "",
+        ])
+        return lines
+
+    for name in sequence_names:
+        entry = map_event_by_name.get(name)
+        if entry is None:
+            raise ValueError(
+                f"{sequence_path}: story scene {name!r} has no map enter script "
+                f"(add event macros at the top of events/scripts/{name}.c)"
+            )
+        lines.append(
+            f"  {{{entry.map_id}, {entry.map_state}, "
+            f"&sEventScript_{script_ident(entry)}Node}},"
+        )
+    lines.extend([
+        "};",
+        f"const unsigned gStorySequenceCount APPEND_RODATA = {len(sequence_names)};",
+        "",
+    ])
+    return lines
+
+
+def compile_c_replacements(paths: list[Path], sequence_path: Path = DEFAULT_STORY_SEQUENCE_PATH) -> str:
     entries = parse_event_c_sources(paths)
     replacement_entries = [entry for entry in entries if entry.script_address is not None]
     names = [entry.name for entry in entries]
@@ -1246,13 +1483,31 @@ def compile_c_replacements(paths: list[Path]) -> str:
             return f"&sEventScript_{script_ident(vanilla_to_entry[addr])}Node"
         return f"(struct Script *)0x{addr:08X}"
 
+    all_map_event_entries = [entry for entry in entries if entry.map_id is not None]
+    story_mode = story_sequence_uses_catalog_mode(sequence_path)
+    map_event_entries = [] if story_mode else all_map_event_entries
+
     lines = ["/* Auto-generated by tools/vanilla_events.py. */", ""]
-    if not replacement_entries:
+    if not entries:
         lines.extend([
             "const EventScriptReplacement gEventScriptReplacements[] APPEND_RODATA = {",
             "  {0, 0},",
             "};",
             "const unsigned gEventScriptReplacementCount APPEND_RODATA = 0;",
+            "",
+            "const MapEventBinding gMapEventBindings[] APPEND_RODATA = {",
+            "  {0, 0, 0},",
+            "};",
+            "const unsigned gMapEventBindingCount APPEND_RODATA = 0;",
+            "",
+        ])
+        lines.extend(compile_story_sequence_section(sequence_path, [], lambda entry: ""))
+        lines.extend([
+            "static const u8 sEventScript_nopEnterBytes[] APPEND_TEXT = {0x5D};",
+            "struct Script gEventScriptNopEnterNode APPEND_RODATA = "
+            "{(u8 *)sEventScript_nopEnterBytes, (struct Script *)0, (struct Script *)0};",
+            f"const u8 gStorySequenceMode APPEND_RODATA = "
+            f"{1 if story_sequence_uses_catalog_mode(sequence_path) else 0};",
             "",
         ])
         return "\n".join(lines)
@@ -1270,14 +1525,440 @@ def compile_c_replacements(paths: list[Path]) -> str:
             f"{{(u8 *)sEventScript_{script_ident(entry)}Bytes, {branch_expr(entry.on_false)}, {branch_expr(entry.on_true)}}};"
         )
     lines.extend(["", "const EventScriptReplacement gEventScriptReplacements[] APPEND_RODATA = {"])
-    for entry in replacement_entries:
-        lines.append(f"  {{(const struct Script *)0x{entry.script_address:08X}, &sEventScript_{script_ident(entry)}Node}},")
+    if replacement_entries:
+        for entry in replacement_entries:
+            lines.append(f"  {{(const struct Script *)0x{entry.script_address:08X}, &sEventScript_{script_ident(entry)}Node}},")
+    else:
+        lines.append("  {0, 0},")
     lines.extend([
         "};",
         f"const unsigned gEventScriptReplacementCount APPEND_RODATA = {len(replacement_entries)};",
         "",
     ])
+    if map_event_entries:
+        lines.append("const MapEventBinding gMapEventBindings[] APPEND_RODATA = {")
+        for entry in map_event_entries:
+            lines.append(
+                f"  {{{entry.map_id}, {entry.map_state}, &sEventScript_{script_ident(entry)}Node}},"
+            )
+        lines.extend([
+            "};",
+            f"const unsigned gMapEventBindingCount APPEND_RODATA = {len(map_event_entries)};",
+            "",
+        ])
+    else:
+        lines.extend([
+            "const MapEventBinding gMapEventBindings[] APPEND_RODATA = {",
+            "  {0, 0, 0},",
+            "};",
+            "const unsigned gMapEventBindingCount APPEND_RODATA = 0;",
+            "",
+        ])
+    lines.extend(compile_story_sequence_section(sequence_path, all_map_event_entries, script_ident))
+    lines.extend([
+        "static const u8 sEventScript_nopEnterBytes[] APPEND_TEXT = {0x5D};",
+        "struct Script gEventScriptNopEnterNode APPEND_RODATA = "
+        "{(u8 *)sEventScript_nopEnterBytes, (struct Script *)0, (struct Script *)0};",
+        f"const u8 gStorySequenceMode APPEND_RODATA = {1 if story_mode else 0};",
+        "",
+    ])
     return "\n".join(lines)
+
+
+def parse_catalog_enter_scripts(catalog_path: Path) -> dict[str, int]:
+    return {scene.scene_id: scene.enter_addr for scene in parse_catalog_scenes(catalog_path)}
+
+
+@dataclass
+class CatalogScene:
+    scene_id: str
+    map_id: int
+    map_state: int
+    enter_addr: int
+
+
+def parse_catalog_scenes(catalog_path: Path) -> list[CatalogScene]:
+    scenes: list[CatalogScene] = []
+    scene_id: str | None = None
+    map_id: int | None = None
+    map_state: int | None = None
+    enter_addr: int | None = None
+
+    def flush() -> None:
+        nonlocal scene_id, map_id, map_state, enter_addr
+        if scene_id is None or map_id is None or map_state is None or enter_addr is None:
+            return
+        scenes.append(CatalogScene(scene_id, map_id, map_state, enter_addr))
+        scene_id = map_id = map_state = enter_addr = None
+
+    for line in catalog_path.read_text().splitlines():
+        if line.startswith("## map_"):
+            flush()
+            scene_id = line[3:].strip()
+            continue
+        if scene_id is None:
+            continue
+        if line.startswith("- map/state:"):
+            match = re.search(r"`(\d+)/(\d+)`", line)
+            if match:
+                map_id = int(match.group(1))
+                map_state = int(match.group(2))
+        elif line.startswith("- enter 0:"):
+            match = re.search(r"`(0x[0-9A-Fa-f]+)`", line)
+            if match:
+                enter_addr = parse_hex(match.group(1))
+    flush()
+    return scenes
+
+
+SCENE_SKELETON_TEMPLATE = """#include "event_macros.h"
+#include "overworld.h"
+
+/* {scene_id}: map {map_id} state {map_state} — skeleton (vanilla enter 0x{enter_addr:08X}) */
+
+END()
+"""
+
+
+def render_story_sequence_text(scenes: list[CatalogScene], active_names: set[str]) -> str:
+    lines = [
+        "# Game event play order — uncomment a scene to enable its custom map enter script.",
+        "# Commented scenes run no map enter event; vanilla cutscenes are never loaded.",
+        "# Generated from events/vanilla/vanilla_event_catalog.md — refresh with:",
+        "#   python3 tools/vanilla_events.py generate-story-skeleton",
+        "",
+    ]
+    for scene in scenes:
+        tag = "noop" if scene.enter_addr in VANILLA_NOP_ENTER_ADDRS else "vanilla-event"
+        suffix = (
+            f"  # map {scene.map_id}/{scene.map_state} "
+            f"enter=0x{scene.enter_addr:08X} ({tag})"
+        )
+        if scene.scene_id in active_names:
+            lines.append(f"{scene.scene_id}{suffix}")
+        else:
+            lines.append(f"# {scene.scene_id}{suffix}")
+    return "\n".join(lines) + "\n"
+
+
+def generate_story_skeleton_files(
+    scenes: list[CatalogScene],
+    scripts_dir: Path,
+) -> list[str]:
+    created: list[str] = []
+    for scene in scenes:
+        path = scripts_dir / f"{scene.scene_id}.c"
+        if path.is_file():
+            continue
+        path.write_text(
+            SCENE_SKELETON_TEMPLATE.format(
+                scene_id=scene.scene_id,
+                map_id=scene.map_id,
+                map_state=scene.map_state,
+                enter_addr=scene.enter_addr,
+            )
+        )
+        created.append(str(path))
+    return created
+
+
+def generate_story_skeleton(
+    catalog_path: Path,
+    scripts_dir: Path,
+    sequence_path: Path,
+    preserve_active: bool = True,
+) -> tuple[list[str], str]:
+    scenes = parse_catalog_scenes(catalog_path)
+    if not scenes:
+        raise ValueError(f"no scenes found in {catalog_path}")
+    active_names = set(parse_story_sequence_names(sequence_path)) if preserve_active else set()
+    created = generate_story_skeleton_files(scenes, scripts_dir)
+    sequence_text = render_story_sequence_text(scenes, active_names)
+    sequence_path.write_text(sequence_text)
+    return created, sequence_text
+
+
+def cmd_generate_story_skeleton(args: argparse.Namespace) -> None:
+    catalog_path = Path(args.catalog)
+    scripts_dir = Path(args.scripts_dir)
+    sequence_path = Path(args.sequence)
+    created, _ = generate_story_skeleton(
+        catalog_path,
+        scripts_dir,
+        sequence_path,
+        preserve_active=not args.reset_active,
+    )
+    for path in created:
+        print(f"created {path}")
+    print(f"created {len(created)} skeleton file(s)")
+    print(f"wrote {sequence_path} ({len(parse_catalog_scenes(catalog_path))} scenes)")
+
+
+@dataclass
+class EventScriptBlockSource:
+    script_address: int
+    name: str
+    on_false: str
+    on_true: str
+    body: str
+    macros: list[tuple[str, list[str]]]
+
+
+def extract_event_replacement_blocks(text: str) -> list[EventScriptBlockSource]:
+    blocks: list[EventScriptBlockSource] = []
+    index = 0
+    while index < len(text):
+        match = re.search(r"\bEVENT_SCRIPT_REPLACEMENT\s*\(", text[index:])
+        if not match:
+            break
+        header_start = index + match.start()
+        open_paren = index + match.end() - 1
+        depth = 1
+        cursor = open_paren + 1
+        while cursor < len(text) and depth:
+            ch = text[cursor]
+            if ch in {"'", '"'}:
+                cursor = scan_quoted_literal(text, cursor)
+                continue
+            if ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+            cursor += 1
+        header_end = cursor
+        args = split_macro_args(text[open_paren + 1 : header_end - 1])
+        if len(args) != 4:
+            raise ValueError(f"EVENT_SCRIPT_REPLACEMENT expected 4 args near offset {header_start}")
+        end_match = re.search(r"\bEND_EVENT_SCRIPT\s*\(\s*\)", text[header_end:])
+        if not end_match:
+            raise ValueError(f"unclosed EVENT_SCRIPT_REPLACEMENT near offset {header_start}")
+        body = text[header_end : header_end + end_match.start()].strip()
+        blocks.append(
+            EventScriptBlockSource(
+                parse_hex(args[0]),
+                args[1],
+                args[2],
+                args[3],
+                body,
+                parse_macro_calls(body),
+            )
+        )
+        index = header_end + end_match.end()
+    return blocks
+
+
+def resolve_event_block(
+    ref: str,
+    by_addr: dict[int, EventScriptBlockSource],
+    by_name: dict[str, EventScriptBlockSource],
+) -> EventScriptBlockSource | None:
+    ref = ref.strip()
+    if ref in {"0", "NULL", "nullptr"}:
+        return None
+    if ref in by_name:
+        return by_name[ref]
+    try:
+        addr = parse_hex(ref)
+    except ValueError:
+        return None
+    if addr == parse_hex(VANILLA_NOP_BRANCH):
+        return None
+    return by_addr.get(addr)
+
+
+def strip_trailing_fallthrough(body: str) -> str:
+    return re.sub(r"\s*FALLTHROUGH\s*\(\s*\)\s*$", "", body).strip()
+
+
+def body_without_choice_macros(body: str) -> tuple[str, bool]:
+    macros = parse_macro_calls(body)
+    if not macros:
+        return body.strip(), False
+    had_choice = False
+    parts: list[str] = []
+    cursor = 0
+    clean = strip_c_comments(body)
+    macro_index = 0
+    while macro_index < len(macros):
+        name, args = macros[macro_index]
+        match = re.search(rf"\b{re.escape(name)}\s*\(", clean[cursor:])
+        if not match:
+            macro_index += 1
+            continue
+        macro_start = cursor + match.start()
+        open_paren = cursor + match.end() - 1
+        depth = 1
+        pos = open_paren + 1
+        while pos < len(clean) and depth:
+            ch = clean[pos]
+            if ch in {"'", '"'}:
+                pos = scan_quoted_literal(clean, pos)
+                continue
+            if ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+            pos += 1
+        macro_end = pos
+        if macro_has_card_choice(name, args):
+            had_choice = True
+        else:
+            parts.append(body[macro_start:macro_end].strip())
+        cursor = macro_end
+        macro_index += 1
+    return "\n  ".join(part for part in parts if part), had_choice
+
+
+def linearize_enter_script(
+    enter: EventScriptBlockSource,
+    by_addr: dict[int, EventScriptBlockSource],
+    by_name: dict[str, EventScriptBlockSource],
+) -> tuple[set[int], str]:
+    absorbed: set[int] = set()
+    body_parts: list[str] = []
+    current: EventScriptBlockSource | None = enter
+    while current is not None and current.script_address not in absorbed:
+        absorbed.add(current.script_address)
+        segment, had_choice = body_without_choice_macros(current.body)
+        segment = strip_trailing_fallthrough(segment)
+        if segment:
+            body_parts.append(segment)
+        if had_choice:
+            current = resolve_event_block(current.on_false, by_addr, by_name)
+            continue
+        current = resolve_event_block(current.on_false, by_addr, by_name)
+    return absorbed, "\n  ".join(body_parts)
+
+
+def file_header(text: str) -> str:
+    match = re.search(r"\b(?:EVENT_SCRIPT_REPLACEMENT|REPLACE_EVENT_SCRIPT|EVENT_SCRIPT)\s*\(", text)
+    if match:
+        return text[: match.start()].rstrip()
+    return text.rstrip()
+
+
+def strip_map_event_wrapper(text: str, scene_id: str) -> str:
+    pattern = re.compile(
+        rf"MAP_EVENT\s*\(\s*{re.escape(scene_id)}\s*\)\s*\n(.*?)\nEND_MAP_EVENT\s*\(\s*\)",
+        re.DOTALL,
+    )
+    match = pattern.search(text)
+    if not match:
+        return text
+    body = match.group(1)
+    body_lines = body.splitlines()
+    if body_lines and all(not line.strip() or line.startswith("  ") for line in body_lines):
+        body = "\n".join(line[2:] if line.startswith("  ") else line for line in body_lines)
+    return text[: match.start()] + body + text[match.end() :]
+
+
+def normalize_map_scene_file(text: str) -> str:
+    text = re.sub(
+        r"(/\* map_\d+_state_\d+:[^\n]*\*/\s*\n\s*){2,}",
+        lambda match: match.group(0).split("\n\n")[0] + "\n\n",
+        text,
+        count=1,
+    )
+    lines = text.splitlines()
+    split_at = len(lines)
+    for index, line in enumerate(lines):
+        if re.match(r"\s*(?:EVENT_SCRIPT_REPLACEMENT|REPLACE_EVENT_SCRIPT|EVENT_SCRIPT)\s*\(", line):
+            split_at = index
+            break
+    enter = lines[:split_at]
+    rest = lines[split_at:]
+    enter = [line[2:] if line.startswith("  ") else line for line in enter]
+    return "\n".join(enter + rest).rstrip() + "\n"
+
+
+def convert_map_event_source(path: Path, enter_scripts: dict[str, int]) -> str | None:
+    text = path.read_text()
+    scene_id = path.stem
+    if not is_map_scene_file(path):
+        return None
+    if "MAP_EVENT(" in text:
+        return None
+    blocks = extract_event_replacement_blocks(text)
+    if not blocks:
+        return None
+    enter_addr = enter_scripts.get(scene_id)
+    if enter_addr is None or enter_addr not in {block.script_address for block in blocks}:
+        return None
+
+    by_addr = {block.script_address: block for block in blocks}
+    by_name = {block.name: block for block in blocks}
+    absorbed, linear_body = linearize_enter_script(by_addr[enter_addr], by_addr, by_name)
+    remaining = [block for block in blocks if block.script_address not in absorbed]
+
+    comment_match = re.search(r"/\* map_\d+_state_\d+:[^*]*\*/", text)
+    comment = comment_match.group(0) if comment_match else f"/* {scene_id} */"
+
+    out_lines = [
+        file_header(text),
+        "",
+        comment,
+        "",
+        linear_body,
+        "",
+    ]
+    for block in remaining:
+        out_lines.extend(
+            [
+                f"EVENT_SCRIPT_REPLACEMENT(0x{block.script_address:08X}, {block.name}, {block.on_false}, {block.on_true})",
+                block.body,
+                "END_EVENT_SCRIPT()",
+                "",
+            ]
+        )
+    return normalize_map_scene_file("\n".join(out_lines).rstrip() + "\n")
+
+
+def migrate_map_event_files(scripts_dir: Path, catalog_path: Path) -> list[str]:
+    enter_scripts = parse_catalog_enter_scripts(catalog_path)
+    changed: list[str] = []
+    for path in sorted(scripts_dir.glob("map_*_state_*.c")):
+        converted = convert_map_event_source(path, enter_scripts)
+        if converted is not None:
+            if converted != path.read_text():
+                path.write_text(converted)
+                changed.append(str(path))
+            continue
+        if "MAP_EVENT(" in path.read_text():
+            normalized = strip_map_event_wrapper(path.read_text(), path.stem)
+            normalized = normalize_map_scene_file(normalized)
+            if normalized != path.read_text():
+                path.write_text(normalized)
+                changed.append(str(path))
+    return changed
+
+
+def strip_all_map_event_wrappers(scripts_dir: Path) -> list[str]:
+    changed: list[str] = []
+    for path in sorted(scripts_dir.glob("map_*_state_*.c")):
+        text = path.read_text()
+        stripped = strip_map_event_wrapper(text, path.stem)
+        normalized = normalize_map_scene_file(stripped)
+        if normalized != text:
+            path.write_text(normalized)
+            changed.append(str(path))
+    return changed
+
+
+def cmd_strip_map_event_wrappers(args: argparse.Namespace) -> None:
+    scripts_dir = Path(args.scripts_dir)
+    changed = strip_all_map_event_wrappers(scripts_dir)
+    for path in changed:
+        print(f"stripped {path}")
+    print(f"stripped MAP_EVENT wrapper from {len(changed)} file(s)")
+
+
+def cmd_migrate_map_events(args: argparse.Namespace) -> None:
+    scripts_dir = Path(args.scripts_dir)
+    catalog_path = Path(args.catalog)
+    changed = migrate_map_event_files(scripts_dir, catalog_path)
+    for path in changed:
+        print(f"migrated {path}")
+    print(f"migrated {len(changed)} map event file(s)")
 
 
 def validate_c_sources(paths: list[Path]) -> list[str]:
@@ -1298,30 +1979,70 @@ def validate_c_sources(paths: list[Path]) -> list[str]:
                 errors.append(f"{path}: RAW macro remains")
                 break
 
-    by_addr = {
-        entry.script_address: entry
+    map_events = {
+        (entry.map_id, entry.map_state): entry
         for entry in entries
-        if entry.script_address is not None
+        if entry.map_id is not None
     }
-    if 0x08E62160 not in by_addr:
-        errors.append("missing map_09_state_01 intro dialogue script 0x08E62160")
-    if 0x08E62154 not in by_addr:
-        errors.append("missing map_09_state_01 intro cutscene handoff script 0x08E62154")
+    if (9, 1) not in map_events:
+        errors.append("missing map_09_state_01 map enter script for map 9 state 1")
 
-    intro_path = next((path for path in paths if path.name == "map_09_state_01.c"), None)
-    if intro_path is None:
-        errors.append("missing map_09_state_01.c")
-    else:
-        intro_text = intro_path.read_text()
-        has_dialogue = (
-            "LANGUAGE_TEXT(" in intro_text
-            or "TEXT(" in intro_text
-            or re.search(r"\bTEXT\b", intro_text) is not None
-        )
-        if not has_dialogue:
-            errors.append("map_09_state_01.c has no editable language text")
-        if "CUTSCENE(8)" not in intro_text:
-            errors.append("map_09_state_01.c does not hand off to intro cutscene 8")
+    map_event_by_name = {entry.name: entry for entry in entries if entry.map_id is not None}
+    sequence_names = parse_story_sequence_names(DEFAULT_STORY_SEQUENCE_PATH)
+    catalog_names = parse_story_sequence_catalog_names(DEFAULT_STORY_SEQUENCE_PATH)
+    scripts_dir = DEFAULT_STORY_SEQUENCE_PATH.parent / "scripts"
+    for name in catalog_names:
+        script_path = scripts_dir / f"{name}.c"
+        if not script_path.is_file():
+            errors.append(f"{DEFAULT_STORY_SEQUENCE_PATH}: missing skeleton events/scripts/{name}.c")
+    for name in sequence_names:
+        if name not in map_event_by_name:
+            errors.append(
+                f"{DEFAULT_STORY_SEQUENCE_PATH}: active scene {name} has no map enter script "
+                f"at the top of events/scripts/{name}.c"
+            )
+
+    for path in paths:
+        if path.name == "map_09_state_01.c":
+            intro_text = path.read_text()
+            has_dialogue = (
+                "LANGUAGE_TEXT(" in intro_text
+                or "TEXT(" in intro_text
+                or re.search(r"\bTEXT\b", intro_text) is not None
+            )
+            if not has_dialogue:
+                errors.append("map_09_state_01.c has no editable language text")
+            if "map_09_state_01" not in map_event_by_name:
+                errors.append("map_09_state_01.c must define the Joey intro map enter script")
+            has_intro_warp = "LOCATION_CLOCK_TOWER_SQUARE_NORTH" in intro_text
+            next_scene_has_leading_warp = False
+            if "map_09_state_01" in sequence_names:
+                intro_index = sequence_names.index("map_09_state_01")
+                if intro_index + 1 < len(sequence_names):
+                    next_name = sequence_names[intro_index + 1]
+                    next_path = scripts_dir / f"{next_name}.c"
+                    if next_path.is_file():
+                        next_text = next_path.read_text()
+                        if re.search(
+                            r"WARP\s*\(\s*LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+                            next_text,
+                        ):
+                            next_scene_has_leading_warp = True
+            is_last_active_scene = (
+                "map_09_state_01" in sequence_names
+                and sequence_names.index("map_09_state_01") == len(sequence_names) - 1
+            )
+            if (
+                not has_intro_warp
+                and not next_scene_has_leading_warp
+                and not is_last_active_scene
+            ):
+                errors.append(
+                    "map_09_state_01.c must warp to clock tower after Joey intro, "
+                    "or the next active story scene must open with "
+                    "WARP(LOCATION_CLOCK_TOWER_SQUARE_NORTH, ...)"
+                )
+            break
 
     return errors
 
@@ -1514,7 +2235,16 @@ def step_macro(step: dict[str, Any]) -> str:
         macro = exact("STOP_FOOTSTEPS", [], [0x40, ord("8")])
     elif kind == "set_object_position":
         args = [step.get("object_id"), step.get("x"), step.get("y"), step.get("frame")]
-        macro = exact("SET_OBJECT_POSITION", args, [0x40, ord("9")] + [int(arg) & 0xFF for arg in args])
+        if step.get("direction") is not None:
+            direction = int(step.get("direction"))
+            direction_name = {
+                0: "DIRECTION_DOWN",
+                1: "DIRECTION_LEFT",
+                2: "DIRECTION_UP",
+                3: "DIRECTION_RIGHT",
+            }.get(direction, direction)
+            args.append(direction_name)
+        macro = exact("SET_OBJECT_POSITION", args, raw)
     elif kind == "show_object":
         args = [step.get("object_id"), step.get("x"), step.get("y"), step.get("frame"), step.get("mode")]
         if len(raw) == 8:
@@ -1555,6 +2285,9 @@ def step_macro(step: dict[str, Any]) -> str:
     elif kind == "fade_screen":
         speed = int(step.get("speed")) & 0xFF
         macro = exact("FADE_SCREEN", [speed], [0x7C, ord("1"), speed])
+    elif kind == "fade_in":
+        speed = int(step.get("speed")) & 0xFF
+        macro = exact("FADE_IN", [speed], [0x7C, ord("B"), speed])
     elif kind == "screen_shake":
         speed = int(step.get("speed")) & 0xFF
         macro = exact("SCREEN_SHAKE", [speed], [0x7C, ord("7"), speed])
@@ -1677,7 +2410,7 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define SAVE()
 #define MOVE_OBJECT(object_id, direction, distance, wander)
 #define STOP_FOOTSTEPS()
-#define SET_OBJECT_POSITION(object_id, x, y, frame)
+#define SET_OBJECT_POSITION(object_id, x, y, frame, direction)
 #define SHOW_OBJECT(object_id, x, y, frame, mode, unused)
 #define WALK_OBJECT_X(object_id, target)
 #define WALK_OBJECT_Y(object_id, target)
@@ -1690,6 +2423,7 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define REMOVE_CARD(card)
 #define CONDITION_CHECK(condition)
 #define FADE_SCREEN(speed)
+#define FADE_IN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id)
 #define WARP(map_id, state, connection, unused)
@@ -1740,7 +2474,8 @@ def cmd_compile(args: argparse.Namespace) -> None:
 def cmd_compile_c(args: argparse.Namespace) -> None:
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(compile_c_replacements([Path(path) for path in args.inputs]))
+    sequence_path = Path(args.story_sequence) if args.story_sequence else DEFAULT_STORY_SEQUENCE_PATH
+    out.write_text(compile_c_replacements([Path(path) for path in args.inputs], sequence_path))
 
 
 def cmd_test_c(args: argparse.Namespace) -> None:
@@ -1788,11 +2523,54 @@ def build_arg_parser() -> argparse.ArgumentParser:
     compile_c = subparsers.add_parser("compile-c", help="compile event C macro replacement files")
     compile_c.add_argument("inputs", nargs="*")
     compile_c.add_argument("--out", default="src_custom/generated/event_script_replacements.inc")
+    compile_c.add_argument(
+        "--story-sequence",
+        default=str(DEFAULT_STORY_SEQUENCE_PATH),
+        help="ordered main-story scene list (default: events/story_sequence.txt)",
+    )
     compile_c.set_defaults(func=cmd_compile_c)
 
     test_c = subparsers.add_parser("test-c", help="validate event C macro files")
     test_c.add_argument("inputs", nargs="*")
     test_c.set_defaults(func=cmd_test_c)
+
+    migrate_map_events = subparsers.add_parser(
+        "migrate-map-events",
+        help="convert map enter EVENT_SCRIPT_REPLACEMENT chains into linear map enter scripts",
+    )
+    migrate_map_events.add_argument("--scripts-dir", default="events/scripts")
+    migrate_map_events.add_argument(
+        "--catalog",
+        default="events/vanilla/vanilla_event_catalog.md",
+    )
+    migrate_map_events.set_defaults(func=cmd_migrate_map_events)
+
+    strip_map_events = subparsers.add_parser(
+        "strip-map-event-wrappers",
+        help="remove legacy MAP_EVENT/END_MAP_EVENT wrappers (filename is the scene id)",
+    )
+    strip_map_events.add_argument("--scripts-dir", default="events/scripts")
+    strip_map_events.set_defaults(func=cmd_strip_map_event_wrappers)
+
+    generate_skeleton = subparsers.add_parser(
+        "generate-story-skeleton",
+        help="create skeleton scene files and refresh events/story_sequence.txt from the catalog",
+    )
+    generate_skeleton.add_argument(
+        "--catalog",
+        default="events/vanilla/vanilla_event_catalog.md",
+    )
+    generate_skeleton.add_argument("--scripts-dir", default="events/scripts")
+    generate_skeleton.add_argument(
+        "--sequence",
+        default=str(DEFAULT_STORY_SEQUENCE_PATH),
+    )
+    generate_skeleton.add_argument(
+        "--reset-active",
+        action="store_true",
+        help="comment out every scene instead of preserving currently active entries",
+    )
+    generate_skeleton.set_defaults(func=cmd_generate_story_skeleton)
 
     export_c = subparsers.add_parser("export-c", help="split event YAML into C macro files")
     export_c.add_argument("input")

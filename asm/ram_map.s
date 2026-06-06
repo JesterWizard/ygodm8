@@ -74,6 +74,15 @@ _kernel_malloc gDebugMenuPendingSceneMapId, 1
 _kernel_malloc gDebugMenuPendingSceneState, 1
 _kernel_malloc gDebugMenuPendingSceneConnection, 1
 
+@ Index of the next main-story scene in gStorySequence[] (see events/story_sequence.txt).
+_kernel_malloc gStorySequenceProgress, 1
+@ Story enter script currently running; progress advances when it finishes.
+_kernel_malloc gStorySequenceEnterActive, 1
+@ After a leading WARP reloads the map, skip that opcode on the next enter run.
+_kernel_malloc gStorySequenceSkipLeadingWarp, 1
+@ Keep the screen black through map reload until initial SET_OBJECT_POSITION opcodes run.
+_kernel_malloc gStorySequenceHoldFade, 1
+
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 

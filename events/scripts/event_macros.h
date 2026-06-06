@@ -35,7 +35,7 @@
 #define SAVE()
 #define MOVE_OBJECT(object_id, direction, distance, wander) // distance is measured in pixels
 #define STOP_FOOTSTEPS()
-#define SET_OBJECT_POSITION(object_id, x, y, frame)
+#define SET_OBJECT_POSITION(object_id, x, y, frame, direction) // direction optional; use DIRECTION_DOWN/LEFT/UP/RIGHT
 #define SHOW_OBJECT(object_id, x, y, frame, mode, unused)
 #define WALK_OBJECT_X(object_id, target)
 #define WALK_OBJECT_Y(object_id, target)
@@ -48,6 +48,7 @@
 #define REMOVE_CARD(card)
 #define CONDITION_CHECK(condition)
 #define FADE_SCREEN(speed)
+#define FADE_IN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id) SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define WARP(location, state, entrance, unused)

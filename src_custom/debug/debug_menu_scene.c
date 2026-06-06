@@ -110,6 +110,22 @@ void DebugSceneViewer(void) {
   DebugMenuWaitVBlank();
 }
 
+static void DebugMenu_SyncStoryProgressForScene(u8 mapId, u8 mapState) {
+  unsigned i;
+
+  if (!gStorySequenceMode)
+    return;
+
+  EventSystem_ResetStoryEnterState();
+
+  for (i = 0; i < gStorySequenceCount; i++) {
+    if (gStorySequence[i].mapId == mapId && gStorySequence[i].mapState == mapState) {
+      gStorySequenceProgress = i;
+      return;
+    }
+  }
+}
+
 void DebugMenu_ApplyPendingScene(void) {
   struct Script *script;
 
@@ -121,6 +137,8 @@ void DebugMenu_ApplyPendingScene(void) {
   CallThumbVoid(0x0804D640);
   CallThumbVoid(0x0804EFA8);
   sub_804EEE0();
+
+  DebugMenu_SyncStoryProgressForScene(gDebugMenuPendingSceneMapId, gDebugMenuPendingSceneState);
 
   script = gOverworld.unk1F4[gOverworld.map.unk4];
   if (script != NULL)

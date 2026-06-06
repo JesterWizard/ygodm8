@@ -4,320 +4,275 @@
 
 /* map_23_state_03: map 23 state 3 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E95318, map_23_state_03_08E95318, 0x08E95324, 0x08F04040)
-  LOAD_SPRITE(1, SPRITE_BANDIT_KEITH)
-  LOAD_SPRITE(2, SPRITE_ISHIZU)
-  LOAD_SPRITE(3, SPRITE_ATEM)
-  LOAD_SPRITE(4, SPRITE_MILLENNIUM_NECKLACE)
-  LOAD_SPRITE(5, SPRITE_MILLENNIUM_ROD)
-  LOAD_SPRITE(6, SPRITE_MILLENNIUM_PUZZLE)
-  LOAD_SPRITE(7, SPRITE_MILLENNIUM_KEY)
-  LOAD_SPRITE(8, SPRITE_MILLENNIUM_EYE)
-  LOAD_SPRITE(9, SPRITE_MILLENNIUM_RING)
-  LOAD_SPRITE(10, SPRITE_MILLENNIUM_SCALE)
-  PLAY_MUSIC(MUSIC_407)
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-  WALK_OBJECT_X(0, 76)
-  WALK_OBJECT_Y(0, 64)
-  WALK_OBJECT_Y(13, 74)
-  WALK_OBJECT_X(13, 82)
-  MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
-  WALK_OBJECT_Y(14, 74)
-  WALK_OBJECT_X(14, 70)
-  MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-  DELAY(16)
-  WALK_OBJECT_Y(1, 26)
-  DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kukuku... What took you so\n"
-      "long? You've kept us\n\n"
-      "waiting.\n\n"
-      "But that gave me time to\n"
-      "talk to this woman.\n\n"
-  )
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Then you should understand\n"
-      "what I'm asking.\n\n"
-      "We need your help to defeat\n"
-      "the Dark Being...\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(16)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
-  DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Idiot! All I care about is\n"
-      "defeating Pegasus!\n\n"
-  )
-  TEXT
-  (
-      "I don't give half a brain\n"
-      "about the Dark Being or\n\n"
-      "anyone else!\n\n"
-      "Saving the world is not my\n"
-      "problem!\n\n"
-      "Hurry up and resurrect my\n"
-      "Winged Dragon of Ra.\n\n"
-      "Kukukukukuku!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(16)
-  WALK_OBJECT_Y(1, 40)
-  MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
-  DELAY(32)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "C'mon, I'm done talking!\n\n"
-      "Hand over the Millennium\n"
-      "Items.\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E95324, map_23_state_03_08E95324, 0x08E9533C, 0x08E95330)
-  TEXT
-  (
-      "{CARD_1}Yes\n"
-      "No{CARD_2}\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E9533C, map_23_state_03_08E9533C, 0x08E95348, 0x08F04040)
-  WALK_OBJECT_Y(0, 58)
-  WALK_OBJECT_X(0, 62)
-  WALK_OBJECT_Y(0, 48)
-  DELAY(32)
-  PLAY_MUSIC(MUSIC_316)
-  DELAY(32)
-  WALK_OBJECT_Y(0, 58)
-  WALK_OBJECT_X(0, 76)
-  WALK_OBJECT_Y(0, 64)
-  MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
-  DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "All the Millennium Items are\n"
-      "gathered here.\n\n"
-      "You found six Millennium\n"
-      "Items.\n\n"
-      "The Millennium Necklace..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(4, 62, 28, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "The Millennium Key..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(7, 52, 46, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "The Millennium Ring..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(9, 72, 46, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "The Millennium Eye..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(8, 52, 34, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "The Millennium Rod..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(5, 72, 34, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "The Millennium Scale..."
-  )
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(10, 62, 52, 0, 0, 0)
-  PAGE_BREAK()
-  TEXT
-  (
-      "Kukuku...\n\n"
-      "I can't thank you enough.\n\n"
-      "You've collected the\n"
-      "Millennium Items, just for\n\n"
-      "me!\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E95348, map_23_state_03_08E95348, 0x08E95354, 0x08E95360)
-  TEXT
-  (
-      "{CARD_1}What do you mean?\n"
-      "No way!{CARD_2}\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E95354, map_23_state_03_08E95354, 0x08E9536C, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Heh, don't underestimate the\n"
-      "Neo Ghouls' spies.\n\n"
-      "I knew you were gathering\n"
-      "the Millennium Items from\n\n"
-      "the very start.\n\n"
-      "I let you find them.\n\n"
-      "So that you would resurrect\n"
-      "the Egyptian God Cards for\n\n"
-      "me.\n\n"
-  )
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E9536C, map_23_state_03_08E9536C, 0x08E95384, 0x08F04040)
-  TEXT
-  (
-      "While you were looking for\n"
-      "them, I found the last\n\n"
-      "Millennium Item.\n\n"
-      "Yup, the Millennium Puzzle\n"
-      "belongs to me.\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(16)
-  PLAY_MUSIC(MUSIC_316)
-  SHOW_OBJECT(6, 62, 41, 0, 0, 0)
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-  DELAY(8)
-  MOVE_OBJECT(13, DIRECTION_UP, 4, 0)
-  DELAY(8)
-  SHOW_OBJECT(4, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(7, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(9, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(8, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(5, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(10, 128, 96, 0, 0, 0)
-  SHOW_OBJECT(6, 128, 96, 0, 0, 0)
-  PLAY_MUSIC(MUSIC_297)
-  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_MILLENNIUM_ITEMS_COLLECTED)
-  PLAY_MUSIC(MUSIC_298)
-  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPHERE_RA_REVIVED)
-  WALK_OBJECT_Y(0, 58)
-  WALK_OBJECT_X(0, 62)
-  WALK_OBJECT_Y(0, 54)
-  WALK_OBJECT_Y(14, 58)
-  WALK_OBJECT_X(14, 56)
-  MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-  WALK_OBJECT_Y(13, 58)
-  WALK_OBJECT_X(13, 68)
-  MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
-  DELAY(16)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E95384, map_23_state_03_08E95384, 0x08E95390, 0x08F0404C)
-  PLAY_MUSIC(MUSIC_407)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Kukukuku...\n"
-      "I finally have it.\n\n"
-      "The Egyptian God Card... The\n"
-      "Winged Dragon of Ra is\n\n"
-      "mine!\n\n"
-      "And my first victim...will\n"
-      "be you!\n\n"
-  )
-  DUEL(DUELIST_BANDIT_KEITH_077)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E95390, map_23_state_03_08E95390, 0x08E9539C, 0x08F04040)
-  PLAY_MUSIC(MUSIC_299)
-  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SLIFER_ATTACKS_SPHERE_RA)
-  ADD_CARD(238)
-  TEXT
-  (
-      "You can use Slifer the Sky\n"
-      "Dragon again!\n\n"
-  )
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what? How could this\n"
-      "happen!\n\n"
-      "The Egyptian God Card\n"
-      "refused to let me use its\n\n"
-      "power?!\n\n"
-      "That's it! I'm done playing\n"
-      "fair!\n\n"
-      "I'm the one with the\n"
-      "hostage! Hand over your\n\n"
-      "Egyptian God Card!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2)
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_297)
-  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_MILLENNIUM_ITEMS_COLLECTED)
-  DELAY(8)
-  MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
-  DELAY(10)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
-  DELAY(10)
-  MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
-  DELAY(10)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
-  DELAY(10)
-  MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
-  DELAY(10)
-  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
-  DELAY(16)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what? What's happening?\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(16)
-  PLAY_MUSIC(MUSIC_300)
-  SHOW_OBJECT(6, 62, 42, 0, 0, 0)
-  DELAY(32)
-  SLIDE_OBJECT(6, 3, 6)
-  SLIDE_OBJECT(6, 0, 8)
-  DELAY(32)
-  FADE_SCREEN(2)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
-
-EVENT_SCRIPT_REPLACEMENT(0x08E9539C, map_23_state_03_08E9539C, 0x08F04040, 0x08F04040)
-  SET_FLAG(EVENT_FLAG_MAKE_BACKGROUND_BLACK)
-  WARP(LOCATION_EGYPT_EXHIBITION_MILLENNIUM_GUARDIAN, 7, 0, 0)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
+LOAD_SPRITE(1, SPRITE_BANDIT_KEITH)
+LOAD_SPRITE(2, SPRITE_ISHIZU)
+LOAD_SPRITE(3, SPRITE_ATEM)
+LOAD_SPRITE(4, SPRITE_MILLENNIUM_NECKLACE)
+LOAD_SPRITE(5, SPRITE_MILLENNIUM_ROD)
+LOAD_SPRITE(6, SPRITE_MILLENNIUM_PUZZLE)
+LOAD_SPRITE(7, SPRITE_MILLENNIUM_KEY)
+LOAD_SPRITE(8, SPRITE_MILLENNIUM_EYE)
+LOAD_SPRITE(9, SPRITE_MILLENNIUM_RING)
+LOAD_SPRITE(10, SPRITE_MILLENNIUM_SCALE)
+PLAY_MUSIC(MUSIC_407)
+DELAY(8)
+PLAY_MUSIC(MUSIC_271)
+REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+WALK_OBJECT_X(0, 76)
+WALK_OBJECT_Y(0, 64)
+WALK_OBJECT_Y(13, 74)
+WALK_OBJECT_X(13, 82)
+MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
+WALK_OBJECT_Y(14, 74)
+WALK_OBJECT_X(14, 70)
+MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
+DELAY(16)
+WALK_OBJECT_Y(1, 26)
+DELAY(16)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Kukuku... What took you so\n"
+    "long? You've kept us\n\n"
+    "waiting.\n\n"
+    "But that gave me time to\n"
+    "talk to this woman.\n\n"
+)
+PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Then you should understand\n"
+    "what I'm asking.\n\n"
+    "We need your help to defeat\n"
+    "the Dark Being...\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(16)
+MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+DELAY(16)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Idiot! All I care about is\n"
+    "defeating Pegasus!\n\n"
+)
+TEXT
+(
+    "I don't give half a brain\n"
+    "about the Dark Being or\n\n"
+    "anyone else!\n\n"
+    "Saving the world is not my\n"
+    "problem!\n\n"
+    "Hurry up and resurrect my\n"
+    "Winged Dragon of Ra.\n\n"
+    "Kukukukukuku!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(16)
+WALK_OBJECT_Y(1, 40)
+MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
+DELAY(32)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "C'mon, I'm done talking!\n\n"
+    "Hand over the Millennium\n"
+    "Items.\n\n"
+)
+PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+WALK_OBJECT_Y(0, 58)
+WALK_OBJECT_X(0, 62)
+WALK_OBJECT_Y(0, 48)
+DELAY(32)
+PLAY_MUSIC(MUSIC_316)
+DELAY(32)
+WALK_OBJECT_Y(0, 58)
+WALK_OBJECT_X(0, 76)
+WALK_OBJECT_Y(0, 64)
+MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
+DELAY(16)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "All the Millennium Items are\n"
+    "gathered here.\n\n"
+    "You found six Millennium\n"
+    "Items.\n\n"
+    "The Millennium Necklace..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(4, 62, 28, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "The Millennium Key..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(7, 52, 46, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "The Millennium Ring..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(9, 72, 46, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "The Millennium Eye..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(8, 52, 34, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "The Millennium Rod..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(5, 72, 34, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "The Millennium Scale..."
+)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(10, 62, 52, 0, 0, 0)
+PAGE_BREAK()
+TEXT
+(
+    "Kukuku...\n\n"
+    "I can't thank you enough.\n\n"
+    "You've collected the\n"
+    "Millennium Items, just for\n\n"
+    "me!\n\n"
+)
+PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Heh, don't underestimate the\n"
+    "Neo Ghouls' spies.\n\n"
+    "I knew you were gathering\n"
+    "the Millennium Items from\n\n"
+    "the very start.\n\n"
+    "I let you find them.\n\n"
+    "So that you would resurrect\n"
+    "the Egyptian God Cards for\n\n"
+    "me.\n\n"
+)
+TEXT
+(
+    "While you were looking for\n"
+    "them, I found the last\n\n"
+    "Millennium Item.\n\n"
+    "Yup, the Millennium Puzzle\n"
+    "belongs to me.\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(16)
+PLAY_MUSIC(MUSIC_316)
+SHOW_OBJECT(6, 62, 41, 0, 0, 0)
+DELAY(8)
+PLAY_MUSIC(MUSIC_271)
+REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+DELAY(8)
+MOVE_OBJECT(13, DIRECTION_UP, 4, 0)
+DELAY(8)
+SHOW_OBJECT(4, 128, 96, 0, 0, 0)
+SHOW_OBJECT(7, 128, 96, 0, 0, 0)
+SHOW_OBJECT(9, 128, 96, 0, 0, 0)
+SHOW_OBJECT(8, 128, 96, 0, 0, 0)
+SHOW_OBJECT(5, 128, 96, 0, 0, 0)
+SHOW_OBJECT(10, 128, 96, 0, 0, 0)
+SHOW_OBJECT(6, 128, 96, 0, 0, 0)
+PLAY_MUSIC(MUSIC_297)
+SHOW_OVERWORLD_GRAPHIC(GRAPHIC_MILLENNIUM_ITEMS_COLLECTED)
+PLAY_MUSIC(MUSIC_298)
+SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SPHERE_RA_REVIVED)
+WALK_OBJECT_Y(0, 58)
+WALK_OBJECT_X(0, 62)
+WALK_OBJECT_Y(0, 54)
+WALK_OBJECT_Y(14, 58)
+WALK_OBJECT_X(14, 56)
+MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
+WALK_OBJECT_Y(13, 58)
+WALK_OBJECT_X(13, 68)
+MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
+DELAY(16)
+PLAY_MUSIC(MUSIC_407)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Kukukuku...\n"
+    "I finally have it.\n\n"
+    "The Egyptian God Card... The\n"
+    "Winged Dragon of Ra is\n\n"
+    "mine!\n\n"
+    "And my first victim...will\n"
+    "be you!\n\n"
+)
+DUEL(DUELIST_BANDIT_KEITH_077)
+PLAY_MUSIC(MUSIC_299)
+SHOW_OVERWORLD_GRAPHIC(GRAPHIC_SLIFER_ATTACKS_SPHERE_RA)
+ADD_CARD(238)
+TEXT
+(
+    "You can use Slifer the Sky\n"
+    "Dragon again!\n\n"
+)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_DEFEATED, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Wh-what? How could this\n"
+    "happen!\n\n"
+    "The Egyptian God Card\n"
+    "refused to let me use its\n\n"
+    "power?!\n\n"
+    "That's it! I'm done playing\n"
+    "fair!\n\n"
+    "I'm the one with the\n"
+    "hostage! Hand over your\n\n"
+    "Egyptian God Card!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_271)
+REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1 | OBJECT_2)
+DELAY(8)
+PLAY_MUSIC(MUSIC_297)
+SHOW_OVERWORLD_GRAPHIC(GRAPHIC_MILLENNIUM_ITEMS_COLLECTED)
+DELAY(8)
+MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
+DELAY(10)
+MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+DELAY(10)
+MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
+DELAY(10)
+MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+DELAY(10)
+MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
+DELAY(10)
+MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
+DELAY(16)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_BANDIT_KEITH_SURPRISED, PORTRAIT_POSITION_AUTO)
+TEXT
+(
+    "Wh-what? What's happening?\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(16)
+PLAY_MUSIC(MUSIC_300)
+SHOW_OBJECT(6, 62, 42, 0, 0, 0)
+DELAY(32)
+SLIDE_OBJECT(6, 3, 6)
+SLIDE_OBJECT(6, 0, 8)
+DELAY(32)
+FADE_SCREEN(2)
+SET_FLAG(EVENT_FLAG_MAKE_BACKGROUND_BLACK)
+WARP(LOCATION_EGYPT_EXHIBITION_MILLENNIUM_GUARDIAN, 7, 0, 0)
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95360, map_23_state_03_08E95360, 0x08E9536C, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT
   (
       "You're so clueless.\n\n"
@@ -328,7 +283,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E95360, map_23_state_03_08E95360, 0x08E9536C, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E95330, map_23_state_03_08E95330, 0x08E95324, 0x08F04040)
-  PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+PORTRAIT(PORTRAIT_BANDIT_KEITH, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
   TEXT
   (
       "If you don't... Well, you\n"

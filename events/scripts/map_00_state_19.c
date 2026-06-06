@@ -4,134 +4,131 @@
 
 /* map_00_state_19: map 0 state 19 */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E34EBC, map_00_state_19_08E34EBC, 0x08F04040, 0x08F04040)
-  LOAD_SPRITE(1, SPRITE_ESPA)
-  LOAD_SPRITE(2, SPRITE_ROBA_BROTHER_1)
-  LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_2)
-  LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_3)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Pipipi...\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Big brother...\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Are you worried?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "No... I'm not worried.\n\n"
-      "I'm sure they'll get the job\n"
-      "done.\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Yeah!\n\n"
-      "They're stronger than the\n"
-      "Big Bad Five!\n\n"
-      "They won't lose to anyone!\n\n"
-  )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Hahahahaha!\n\n"
-      "That's right! There's no way\n"
-      "they'll lose!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "But they can't beat\n"
-      "Kaibaman!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Well, duh. Kaibaman's\n"
-      "invincible!\n\n"
-      "But {PLAYER}'s number one!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "So which one's stronger? A\n"
-      "duelist who's invincible or\n\n"
-      "a duelist who's number one?\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_390)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Wh-what's that sound?\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
-  DELAY(8)
-  MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
-  DELAY(16)
-  TEXT
-  (
-      "Big brother! Over there!\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(16)
-  MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
-  MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
-  MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
-  DELAY(16)
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "That's KaibaCorp's\n"
-      "helicopter...\n\n"
-  )
-  HIDE_PORTRAIT()
-  DELAY(8)
-  PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
-  TEXT
-  (
-      "Let's go, big brother!\n\n"
-  )
-  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Sure! Let's go!\n\n"
-  )
-  FADE_SCREEN(8)
-  WARP(LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST, 7, 0, 0)
-  FALLTHROUGH()
-END_EVENT_SCRIPT()
+LOAD_SPRITE(1, SPRITE_ESPA)
+LOAD_SPRITE(2, SPRITE_ROBA_BROTHER_1)
+LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_2)
+LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_3)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_RIGHT)
+TEXT
+(
+    "Pipipi...\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "Big brother...\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "Are you worried?\n\n"
+)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
+TEXT
+(
+    "No... I'm not worried.\n\n"
+    "I'm sure they'll get the job\n"
+    "done.\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "Yeah!\n\n"
+    "They're stronger than the\n"
+    "Big Bad Five!\n\n"
+    "They won't lose to anyone!\n\n"
+)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
+TEXT
+(
+    "Hahahahaha!\n\n"
+    "That's right! There's no way\n"
+    "they'll lose!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "But they can't beat\n"
+    "Kaibaman!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "Well, duh. Kaibaman's\n"
+    "invincible!\n\n"
+    "But {PLAYER}'s number one!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "So which one's stronger? A\n"
+    "duelist who's invincible or\n\n"
+    "a duelist who's number one?\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_271)
+REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
+DELAY(8)
+PLAY_MUSIC(MUSIC_390)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
+TEXT
+(
+    "Wh-what's that sound?\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
+DELAY(8)
+MOVE_OBJECT(3, DIRECTION_RIGHT, 0, 0)
+DELAY(16)
+TEXT
+(
+    "Big brother! Over there!\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(16)
+MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
+MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
+MOVE_OBJECT(4, DIRECTION_RIGHT, 0, 0)
+DELAY(16)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
+TEXT
+(
+    "That's KaibaCorp's\n"
+    "helicopter...\n\n"
+)
+HIDE_PORTRAIT()
+DELAY(8)
+PLAY_MUSIC(MUSIC_293)
+OBJECT_EFFECT(OBJECT_4, OBJECT_EFFECT_JUMPING)
+TEXT
+(
+    "Let's go, big brother!\n\n"
+)
+PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
+TEXT
+(
+    "Sure! Let's go!\n\n"
+)
+FADE_SCREEN(8)
+WARP(LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST, 7, 0, 0)

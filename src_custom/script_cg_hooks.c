@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "cg.h"
+#include "event_system.h"
 #include "overworld.h"
 
 typedef void (*ScriptCtxFunc)(struct ScriptCtx *);
@@ -44,6 +45,10 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
         break;
       if (EventCg_TryConsumeHideOpcode(scriptCtx))
         break;
+      if (EventSystem_TryConsumeSetObjectPositionOpcode(scriptCtx))
+        break;
+      if (EventSystem_TryConsumeFadeInOpcode(scriptCtx))
+        break;
       ThumbScriptCtxFunc(0x080527E8)(scriptCtx);
       EventCg_AfterExecuteOpcode(scriptCtx);
       break;
@@ -75,18 +80,34 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
         (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
         REG_WINOUT = 0x1D1E;
         OverworldSetRegDispcnt2();
-        REG_BLDCNT = 0xDE;
-        REG_BLDY = 7;
+        if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE) {
+          EventSystem_ApplyEnterFadeBlack();
+        } else {
+          REG_BLDCNT = 0xDE;
+          REG_BLDY = 7;
+        }
       }
     }
     if (!EventCg_IsActive())
       sub_804F218();
     EventCg_OnScriptFrameEnd();
+
+    if (gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)
+      break;
   }
 
   EventCg_ForceClose();
 
-  if (gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)
+  if (gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION) {
+    if (EventSystem_IsStoryEnterActive())
+      EventSystem_OnStoryEnterWarped();
+    return;
+  }
+
+  if (EventSystem_ShouldDeferStoryEnterFadeOut())
+    return;
+
+  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE)
     return;
 
   PlayOverworldMusic();

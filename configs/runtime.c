@@ -37,6 +37,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .instant_win_with_l_button = TRUE,
     .enable_surrender_in_duel_b_menu = TRUE,
     .enable_world_map_thought_bubbles = FALSE,
+    .enable_custom_events = TRUE,
     .enable_debug_menu = TRUE,
     .enable_ante_card_viewer = TRUE,
     .enable_duelist_deck_viewer = TRUE,
