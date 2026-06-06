@@ -5,7 +5,6 @@
 enum EventCg {
   CG_NONE = 0,
   CG_TEST_1,
-  CG_TEST_PLACEHOLDER,
   EVENT_CG_COUNT
 };
 

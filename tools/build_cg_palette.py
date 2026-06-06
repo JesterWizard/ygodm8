@@ -10,8 +10,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from cg_optimize import optimize_cg_pixels
-from cg_remap import build_cg_index_remap, rgb888_to_bgr555
+from cg_remap import PALETTE_OFFSET, build_cg_index_remap, rgb888_to_bgr555
 
 
 def build_cg_palette_png(path: Path) -> bytes:
@@ -23,7 +22,7 @@ def build_cg_palette_png(path: Path) -> bytes:
     if palette is None:
         raise ValueError(f"{path.name}: missing palette")
 
-    pixels = optimize_cg_pixels(list(image.get_flattened_data()), palette)
+    pixels = list(image.get_flattened_data())
     remap = build_cg_index_remap(pixels)
 
     out = bytearray(512)
@@ -34,6 +33,11 @@ def build_cg_palette_png(path: Path) -> bytes:
         else:
             color = tuple(palette[base : base + 3])
         struct.pack_into("<H", out, slot * 2, rgb888_to_bgr555(*color))
+
+    max_used_slot = max(remap.values()) if remap else PALETTE_OFFSET - 1
+    for slot in range(max_used_slot + 1, 256):
+        if struct.unpack_from("<H", out, slot * 2)[0] != 0:
+            raise ValueError(f"{path.name}: unused palette slot {slot} is non-zero")
 
     return bytes(out)
 

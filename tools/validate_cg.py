@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import struct
 import sys
 from pathlib import Path
 
@@ -17,6 +18,7 @@ CG_SIZE = CG_WIDTH * CG_HEIGHT
 
 sys.path.insert(0, str(ROOT / "tools"))
 
+from build_cg_palette import build_cg_palette_png  # noqa: E402
 from cg_remap import MAX_CG_AUTHOR_INDEX, MAX_CG_COLORS, PALETTE_OFFSET, build_cg_index_remap  # noqa: E402
 from offset_cg_8bpp import offset_cg_png_bytes  # noqa: E402
 
@@ -77,6 +79,29 @@ def validate_png_layout(image: Image.Image, label: str) -> list[str]:
     return errors
 
 
+def validate_gbapal(data: bytes, remap: dict[int, int], label: str) -> list[str]:
+    errors: list[str] = []
+
+    if len(data) != 512:
+        errors.append(f"{label}: expected 512-byte .gbapal, got {len(data)} bytes")
+        return errors
+
+    if not remap:
+        return errors
+
+    max_used_slot = max(remap.values())
+    expected_slots = set(range(PALETTE_OFFSET, max_used_slot + 1))
+    if expected_slots != set(remap.values()):
+        errors.append(f"{label}: CG palette slots must pack consecutively from {PALETTE_OFFSET}")
+
+    for slot in range(max_used_slot + 1, 256):
+        if struct.unpack_from("<H", data, slot * 2)[0] != 0:
+            errors.append(f"{label}: unused palette slot {slot} must be zero")
+            break
+
+    return errors
+
+
 def validate_shifted_tiles(shifted: bytes, remap: dict[int, int], label: str) -> list[str]:
     errors: list[str] = []
 
@@ -128,6 +153,9 @@ def validate_cg_png(path: Path) -> list[str]:
 
     remap = build_cg_index_remap(pixels)
     errors.extend(validate_shifted_tiles(shifted, remap, f"{label} (shifted)"))
+    errors.extend(
+        validate_gbapal(build_cg_palette_png(path), remap, f"{label} (.gbapal)")
+    )
     return errors
 
 

@@ -28,7 +28,7 @@ def build_cg_index_remap(used_indices: list[int] | set[int]) -> dict[int, int]:
             f"CG uses {len(used)} palette indices; max supported is {MAX_CG_COLORS}"
         )
 
-    return {author: PALETTE_OFFSET + author for author in used}
+    return {author: PALETTE_OFFSET + slot for slot, author in enumerate(used)}
 
 
 def remap_cg_bytes(data: bytes, remap: dict[int, int]) -> bytes:

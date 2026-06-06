@@ -1,6 +1,7 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "cg.h"
+#include "duel.h"
 #include "overworld.h"
 
 extern u16 g82ADC8C[];
@@ -8,8 +9,6 @@ extern u16 *g8E11CD0[];
 extern const u32 g82AD2D0[];
 extern u16 g82AD48C[];
 extern struct OamData gOamBuffer[];
-
-void sub_804F5B0(void);
 
 extern u8 gCgSessionOpen;
 extern u8 gCgActive;
@@ -19,11 +18,11 @@ extern u16 gCgSavedDispcnt;
 
 #define CG_TILE_BYTES 0x9600
 #define CG_PAL_BG_OFFSET 32
-#define CG_PAL_BG_U16_COUNT 224
+#define CG_PAL_BG_COUNT 224
+#define CG_PAL_BG_BYTE_SIZE (CG_PAL_BG_COUNT * sizeof(u16))
 #define CG_MAP_WIDTH 30
 #define CG_MAP_HEIGHT 20
 #define CG_DEFAULT_FADE_SPEED 8
-#define CG_ENTITY_OAM_INDEX 67
 #define CG_TEXTBOX_CHAR_BYTES 0xE20
 #define CG_TEXT_WINDOW_BLDCNT 0xDE
 #define CG_TEXT_WINDOW_BLDY 7
@@ -45,8 +44,18 @@ static u8 EventCg_NormalizeFadeSpeed(u8 speed) {
 }
 
 static void EventCg_LoadTextPalettes(void) {
-  CpuCopy16(g82ADC8C, gPaletteBuffer, 16);
-  CpuCopy16(&g8E11CD0[gOverworld.map.id][8], gPaletteBuffer + 16, 16);
+  CpuCopy16(g82ADC8C, gPaletteBuffer, 0x20);
+  CpuCopy16(&g8E11CD0[gOverworld.map.id][8], gPaletteBuffer + 0x20, 0x20);
+}
+
+static void EventCg_ApplyCgPalette(const u16 *palette) {
+  if (palette == NULL)
+    return;
+
+  EventCg_LoadTextPalettes();
+  CpuFill16(0, gPaletteBuffer + CG_PAL_BG_OFFSET, CG_PAL_BG_BYTE_SIZE);
+  CpuCopy16(palette + CG_PAL_BG_OFFSET, gPaletteBuffer + CG_PAL_BG_OFFSET,
+            CG_PAL_BG_BYTE_SIZE);
 }
 
 static void EventCg_RefreshPalettes(void) {
@@ -57,12 +66,14 @@ static void EventCg_RefreshPalettes(void) {
     return;
 
   EventCg_GetAsset(gCgId, &tiles, &palette);
-  if (palette == NULL)
-    return;
+  EventCg_ApplyCgPalette(palette);
+}
 
-  CpuCopy16(palette + CG_PAL_BG_OFFSET, gPaletteBuffer + CG_PAL_BG_OFFSET,
-            CG_PAL_BG_U16_COUNT);
-  CpuCopy16(g82ADC8C, gPaletteBuffer, 16);
+static void EventCg_FlushBackgroundPalette(void) {
+  EventCg_LoadTextPalettes();
+  CpuFill16(0, gPaletteBuffer + CG_PAL_BG_OFFSET, CG_PAL_BG_BYTE_SIZE);
+  LoadPalettes();
+  WaitForVBlank();
 }
 
 static void EventCg_InitTextboxCharTiles(void) {
@@ -83,9 +94,11 @@ static void EventCg_PushTextboxVram(void) {
   CpuCopy16(gVramBuffer + 0xE800, (void *)0x0600E800, 0x500);
 }
 
-static void EventCg_SuppressEntitySprites(void) {
-  CpuFill16(0, &gOamBuffer[CG_ENTITY_OAM_INDEX],
-            (OAM_SIZE - CG_ENTITY_OAM_INDEX * sizeof(struct OamData)) & ~1u);
+static void EventCg_SuppressAllSprites(void) {
+  u8 i;
+
+  for (i = 0; i < 128; i++)
+    sub_80411EC(&gOamBuffer[i]);
 }
 
 static void EventCg_WaitFrames(u8 count) {
@@ -93,7 +106,7 @@ static void EventCg_WaitFrames(u8 count) {
 
   for (i = 0; i < count; i++) {
     if (gCgSessionOpen && gCgActive)
-      EventCg_SuppressEntitySprites();
+      EventCg_SuppressAllSprites();
     LoadBgOffsets();
     SetVBlankCallback(LoadBgOffsets);
     WaitForVBlank();
@@ -168,7 +181,7 @@ void EventCg_ApplyTextWindowRegs(void) {
   REG_WIN1V = 0x739D;
   (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
   REG_WINOUT = 0x1D1E;
-  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON | DISPCNT_WIN1_ON;
+  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_WIN1_ON;
   REG_BLDCNT = CG_TEXT_WINDOW_BLDCNT;
   REG_BLDY = CG_TEXT_WINDOW_BLDY;
 }
@@ -190,26 +203,28 @@ static void EventCg_LoadGraphics(u8 cgId) {
 
   EventCg_LoadTextboxBg();
   LZ77UnCompWram(tiles, gBgVram.cbb0);
-  EventCg_LoadTextPalettes();
-  EventCg_RefreshPalettes();
+  EventCg_ApplyCgPalette(palette);
   CpuFill16(0, gBgVram.sbb1F, BG_SCREEN_SIZE);
   EventCg_BuildTilemap();
   EventCg_ApplyCgBgRegs();
   LoadPalettes();
   WaitForVBlank();
   sub_804EC4C();
+  EventCg_RefreshPalettes();
+  LoadPalettes();
   EventCg_PushTextboxVram();
 }
 
-static void EventCg_HideEntitySprites(void) {
-  EventCg_SuppressEntitySprites();
+static void EventCg_HideAllSprites(void) {
+  EventCg_SuppressAllSprites();
   LoadOam();
   WaitForVBlank();
 }
 
 static void EventCg_ApplyCgDisplay(void) {
   gCgSavedDispcnt = REG_DISPCNT;
-  EventCg_HideEntitySprites();
+  EventCg_HideAllSprites();
+  EventCg_FlushBackgroundPalette();
   REG_DISPCNT = DISPCNT_BG2_ON;
   REG_BLDCNT = BLDCNT_TGT1_BG2 | BLDCNT_EFFECT_DARKEN;
   REG_BLDY = 16;
@@ -328,6 +343,9 @@ void EventCg_HandleDisplayOpcode(struct ScriptCtx *scriptCtx, u8 cgId, u8 fadeSp
 
   EventCg_LoadGraphics(cgId);
   EventCg_ApplyCgDisplay();
+  EventCg_RefreshPalettes();
+  LoadPalettes();
+  WaitForVBlank();
   EventCg_FadeCg(TRUE, speed);
 }
 
@@ -394,7 +412,9 @@ void EventCg_OnScriptFrameEnd(void) {
   if (!gCgSessionOpen || !gCgActive)
     return;
 
-  EventCg_SuppressEntitySprites();
+  EventCg_SuppressAllSprites();
+  SetVBlankCallback(LoadBgOffsets);
+  WaitForVBlank();
   EventCg_PushTextboxVram();
   EventCg_RefreshPalettes();
   LoadPalettes();

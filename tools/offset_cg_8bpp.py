@@ -5,7 +5,6 @@ import sys
 
 from PIL import Image
 
-from cg_optimize import optimize_cg_pixels
 from cg_remap import build_cg_index_remap, remap_cg_bytes
 
 CG_WIDTH = 240
@@ -48,7 +47,7 @@ def offset_cg_png_bytes(png_path: pathlib.Path, data: bytes) -> bytes:
     if palette is None:
         raise ValueError(f"{png_path.name}: missing palette")
 
-    pixels = optimize_cg_pixels(list(image.get_flattened_data()), palette)
+    pixels = list(image.get_flattened_data())
     tiled = linear_to_tiled_8bpp(pixels)
     remap = build_cg_index_remap(pixels)
     return remap_cg_bytes(tiled, remap)
