@@ -48,8 +48,8 @@ SET_DATA gM4aHqMixBuffer, 0x03001678
 @ HQ mixer IWRAM execution buffer (MixerSize bytes, copied from ROM at init).
 SET_DATA MixerBuffer, 0x03001BF8
 
-@ Randomized card costs live in IWRAM for maximum speed.
-_kernel_malloc sRandomizedCardCosts, 0x652
+@ Randomized card costs live in IWRAM for maximum speed (one u16 per card ID).
+_kernel_malloc sRandomizedCardCosts, CARD_COST_TABLE_BYTES
 
 @ Reentrancy guard while Copycat resolves copied stats.
 _kernel_malloc gComputingCopycatStats, 1

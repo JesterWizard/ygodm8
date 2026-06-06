@@ -147,8 +147,7 @@ void SetDuelFieldGfx__Replacement(u8 field)
 
 void FlushDuelFieldLayerToHardware(void)
 {
-  CpuCopy16(GetActiveFieldPalette(), gPaletteBuffer, 96);
-  LoadPalettes();
+  CpuCopy16(GetActiveFieldPalette(), (u16 *)PLTT, 96);
   CpuCopy16(
       gBgVram.cbb0 + DUEL_FIELD_TILEMAP_VRAM_OFFSET,
       (void *)(BG_VRAM + DUEL_FIELD_TILEMAP_VRAM_OFFSET),

@@ -12,6 +12,7 @@ void sub_80411D4(void);
 void LoadVRAM(void);
 void LoadBgOffsets(void);
 void LoadOam(void);
+void LoadPalettes(void);
 void FlushDuelFieldLayerToHardware(void);
 
 // Small font (CopyStringTilesToVRAMBuffer flag 0x001). Tile map index must equal
@@ -104,4 +105,6 @@ void sub_80411D4__Replacement(void) {
 
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
+
+  LoadPalettes();
 }

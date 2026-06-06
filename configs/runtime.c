@@ -7,6 +7,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .preserve_life_points_above_8000_after_duel = TRUE,
     .set_life_points_after_duel = 0,
     .return_home_after_defeat = TRUE,
+    .offer_duel_retry_after_defeat = TRUE,
     .max_duelist_level_at_start = TRUE,
     .max_deck_capacity_at_start = TRUE,
     .max_deck_cards = 40,

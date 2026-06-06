@@ -88,7 +88,7 @@ static u8 GetCardEffectDispatchOverride(u16 id) {
 }
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
-#define CARD_COST_TABLE_COUNT (SHIELD_AND_SWORD + 1)
+#define CARD_COST_TABLE_COUNT NUM_TOTAL_CARDS
 #define COST_SEED_MAGIC_0 'C'
 #define COST_SEED_MAGIC_1 'S'
 #define COST_SEED_MAGIC_2 'T'
