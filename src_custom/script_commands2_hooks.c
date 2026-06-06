@@ -1,6 +1,19 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "debug_save_anywhere.h"
+#include "overworld.h"
+
+void OverworldSetRegDispcnt(void);
+void sub_805339C(void);
+void sub_8053404(void);
+
+static void sub_8054EC8_NoFade(void) {
+  sub_8053404();
+  OverworldSetRegDispcnt();
+  REG_BLDCNT = 0x9F;
+  REG_BLDY = 0;
+}
 
 void sub_8054AB0(u8, struct ScriptCtx *);
 void sub_8054EC8(void);
@@ -34,7 +47,10 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
     switch (arg0)
     {
     case 0:
-        sub_8054EC8();
+        if (gDebugSaveAnywherePendingCapture == TRUE)
+            sub_8054EC8_NoFade();
+        else
+            sub_8054EC8();
         break;
     case 1:
         sub_8054F28();

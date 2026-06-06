@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "debug_save_anywhere.h"
 #include "debug_menu.h"
 #include "gba/io_reg.h"
 #include "gfx_reg_buffers.h"
@@ -149,16 +150,22 @@ static void OverworldOverlay_Update(void) {
 }
 
 void OverworldOverlay_PrepareFrame(void) {
+  if (gDebugSaveAnywherePendingCapture == TRUE)
+    return;
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Update();
 }
 
 void OverworldOverlay_CommitFrame(void) {
+  if (gDebugSaveAnywherePendingCapture == TRUE)
+    return;
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_PatchVram();
 }
 
 void OverworldOverlay_OnWalkFrame(void) {
+  if (gDebugSaveAnywherePendingCapture == TRUE)
+    return;
   OverworldOverlay_PrepareFrame();
   OverworldOverlay_CommitFrame();
 }
@@ -170,6 +177,8 @@ void OverworldOverlay_RestoreDisplayRegs(void) {
 }
 
 void OverworldOverlay_Refresh(void) {
+  if (gDebugSaveAnywherePendingCapture == TRUE)
+    return;
   OverworldOverlay_Update();
   UploadOverworldBg0Base();
   OverworldOverlay_PatchVram();
@@ -255,9 +264,10 @@ LYN_REPLACE_CHECK(sub_804ECA8);
 void sub_804ECA8__Replacement(void) {
   CpuCopy32(gBgVram.sbb1B, (void *)0x0600D800, 0xE20);
   LoadOam();
-  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
+  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE
+      && gDebugSaveAnywherePendingCapture != TRUE)
     OverworldOverlay_PatchVram();
-  else
+  else if (gDebugSaveAnywherePendingCapture != TRUE)
     CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x100);
 }
 

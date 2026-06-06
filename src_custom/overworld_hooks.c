@@ -5,6 +5,7 @@
 #include "event_system.h"
 #include "configs/runtime.h"
 #include "debug_menu.h"
+#include "debug_save_anywhere.h"
 #include "match_setter.h"
 #include "overworld_debug_overlay.h"
 #include "thought_bubble.h"
@@ -279,6 +280,7 @@ u8 ProcessInput__Replacement(void) {
       DebugMenu_ApplyPendingMapTeleport();
       DebugMenu_ApplyPendingScene();
       OverworldRestoreAfterDebugMenu();
+      DebugMenu_ApplyPendingSaveAnywhere();
       PlayOverworldMusic();
       /* Match START_MENU: restore without running sub_804EF10 on this frame. */
       gSkipOverworldEndFrameAfterSubmenu = 1;
@@ -344,21 +346,17 @@ u8 ProcessInput__Replacement(void) {
   return OVERWORLD_INPUT_NONE;
 }
 
-LYN_REPLACE_CHECK(sub_804EF10);
-void sub_804EF10__Replacement(void) {
-  if (gSkipOverworldEndFrameAfterSubmenu) {
-    gSkipOverworldEndFrameAfterSubmenu = 0;
-    SetVBlankCallback(sub_804F1E4);
-    return;
-  }
+extern u8 gSkipOverworldEndFrameAfterSubmenu;
 
+void OverworldRunEndFrame(void) {
   CallThumbVoidU8(0x0804E518, 0);
   if (gOverworld.objects[13].unk1Dl)
     CallThumbVoidU8(0x0804E518, 13);
   if (gOverworld.objects[14].unk1Dl)
     CallThumbVoidU8(0x0804E518, 14);
   sub_80551B8();
-  OverworldOverlay_PrepareFrame();
+  if (gDebugSaveAnywherePendingCapture != TRUE)
+    OverworldOverlay_PrepareFrame();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);
   if (gRuntimeConfig.enable_world_map_thought_bubbles == TRUE && gShowThoughtBubbles != 0) {
@@ -370,5 +368,28 @@ void sub_804EF10__Replacement(void) {
   SetVBlankCallback(sub_804F1E4);
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);
-  OverworldOverlay_CommitFrame();
+  if (gDebugSaveAnywherePendingCapture != TRUE)
+    OverworldOverlay_CommitFrame();
+}
+
+LYN_REPLACE_CHECK(sub_804EF10);
+void sub_804EF10__Replacement(void) {
+  if (gSkipOverworldEndFrameAfterSubmenu) {
+    gSkipOverworldEndFrameAfterSubmenu = 0;
+    SetVBlankCallback(sub_804F1E4);
+    return;
+  }
+
+  if (gDebugSaveAnywhereOpenDialogReady == TRUE) {
+    gDebugSaveAnywhereOpenDialogReady = FALSE;
+    DebugSaveAnywhere_OpenDialogNow();
+    return;
+  }
+
+  OverworldRunEndFrame();
+
+  if (gDebugSaveAnywhereOpenDialogPending == TRUE) {
+    gDebugSaveAnywhereOpenDialogPending = FALSE;
+    gDebugSaveAnywhereOpenDialogReady = TRUE;
+  }
 }

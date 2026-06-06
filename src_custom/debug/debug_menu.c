@@ -4,6 +4,7 @@
 #include "debug_menu.h"
 #include "debug_menu_internal.h"
 #include "match_setter.h"
+#include "debug_save_anywhere.h"
 
 extern const u16 gOverworldEntityPalettes[];
 
@@ -22,6 +23,7 @@ static const u8 sText_RootScene[] APPEND_RODATA = "$0Scene Viewer    ";
 static const u8 sText_RootAiMode[] APPEND_RODATA = "$0AI Mode         ";
 static const u8 sText_RootRuleset[] APPEND_RODATA = "$0Ruleset         ";
 static const u8 sText_RootDeckPreset[] APPEND_RODATA = "$0Deck Presets    ";
+static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "$0Save Anywhere   ";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
@@ -35,6 +37,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootAiMode,
     sText_RootRuleset,
     sText_RootDeckPreset,
+    sText_RootSaveAnywhere,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
 
@@ -368,8 +371,12 @@ static void DebugMenuRoot(void) {
         DebugAiModeViewer();
       else if (cursor == 10)
         DebugRulesetViewer();
-      else
+      else if (cursor == 11)
         DebugDeckPresetViewer();
+      else {
+        gDebugMenuPendingSaveAnywhere = TRUE;
+        break;
+      }
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS)
@@ -391,6 +398,7 @@ void DebugMenuMain(void) {
   MatchSetter_Init();
   gDebugMenuMapViewerInitialLocation = 0xFF;
   gDebugMenuPendingSceneActive = 0xFF;
+  gDebugMenuPendingSaveAnywhere = FALSE;
   FadeOutMusic(1);
   DebugMenuLoadGraphics();
   DebugMenuLatchButtons();

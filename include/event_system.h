@@ -12,5 +12,6 @@ extern const EventScriptReplacement gEventScriptReplacements[];
 extern const unsigned gEventScriptReplacementCount;
 
 const struct Script *EventSystem_ResolveScript(const struct Script *script);
+struct Script *EventSystem_GetHouseSavePromptScript(void);
 
 #endif

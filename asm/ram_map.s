@@ -177,6 +177,13 @@ _kernel_malloc_ewram gActiveDeckIndex, 0x1
 
 @ Debug menu: AI controls both duelists when enabled.
 _kernel_malloc_ewram gDebugAiBothSidesMode, 1
+_kernel_malloc_ewram gDebugSaveAnywhereData, 0xC
+_kernel_malloc_ewram gDebugMenuPendingSaveAnywhere, 0x1
+_kernel_malloc_ewram gDebugSaveAnywherePendingCapture, 0x1
+_kernel_malloc_ewram gDebugSaveAnywhereRestorePending, 0x1
+_kernel_malloc_ewram gDebugSaveAnywhereApplyCoordsPending, 0x1
+_kernel_malloc_ewram gDebugSaveAnywhereOpenDialogPending, 0x1
+_kernel_malloc_ewram gDebugSaveAnywhereOpenDialogReady, 0x1
 
 @ Debug menu: active duel ruleset (default / Duelist Kingdom).
 _kernel_malloc_ewram gDebugRuleset, 1
@@ -265,3 +272,4 @@ _kernel_malloc_flash gDebugAiBothSidesMode,    0x1
 _kernel_malloc_flash gDebugRuleset,             0x1
 _kernel_malloc_flash gDebugDeckSwapBackup,     PLAYER_DECK_CARD_BYTES
 _kernel_malloc_flash gDebugDeckSwapBackupValid, 0x1
+_kernel_malloc_flash gDebugSaveAnywhereData,    0xC

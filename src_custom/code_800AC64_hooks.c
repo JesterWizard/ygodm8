@@ -3,6 +3,7 @@
 #include "debug_ai_mode.h"
 #include "debug_deck_swap.h"
 #include "debug_ruleset.h"
+#include "debug_save_anywhere.h"
 #include "player_decks.h"
 #include "shiny_zones.h"
 
@@ -61,6 +62,28 @@ static inline void Test(int a, u8 *b, int c) {
   g20245AC(a, b, c);
 }
 
+LYN_REPLACE_CHECK(SaveGame);
+void SaveGame__Replacement(void) {
+  u16 temp;
+
+  if (gDebugSaveAnywherePendingCapture == TRUE) {
+    DebugSaveAnywhere_CaptureCurrentPosition();
+    gDebugSaveAnywherePendingCapture = FALSE;
+  } else {
+    DebugSaveAnywhere_ClearSavedPosition();
+  }
+
+  sub_80351F8();
+  temp = sub_8035170();
+  sub_800B050();
+  sub_800AD84();
+  sub_800B0AC(temp);
+  sub_800B06C();
+  sub_800ADA4();
+  sub_800B0C8(temp);
+  sub_800B034();
+}
+
 LYN_REPLACE_CHECK(sub_800AD84);
 int sub_800AD84__Replacement(void) {
   int result = sub_80588C4(g8E0CD10, (int)gSaveSlotPrimary, 0x747);
@@ -74,6 +97,7 @@ int sub_800AD84__Replacement(void) {
   DebugAiMode_SaveToFlashPrimary();
   DebugRuleset_SaveToFlashPrimary();
   DebugDeckSwap_SaveToFlashPrimary();
+  DebugSaveAnywhere_SaveToFlashPrimary();
 
   return result;
 }
@@ -91,6 +115,7 @@ int sub_800ADA4__Replacement(void) {
   DebugAiMode_SaveToFlashBackup();
   DebugRuleset_SaveToFlashBackup();
   DebugDeckSwap_SaveToFlashBackup();
+  DebugSaveAnywhere_SaveToFlashBackup();
 
   return result;
 }
@@ -106,6 +131,7 @@ void sub_800ADC4__Replacement(void) {
   DebugDeckSwap_LoadFromFlashPrimary();
   DebugAiMode_LoadFromFlashPrimary();
   DebugRuleset_LoadFromFlashPrimary();
+  DebugSaveAnywhere_LoadFromFlashPrimary();
 }
 
 LYN_REPLACE_CHECK(sub_800ADF0);
@@ -119,6 +145,7 @@ void sub_800ADF0__Replacement(void) {
   DebugDeckSwap_LoadFromFlashBackup();
   DebugAiMode_LoadFromFlashBackup();
   DebugRuleset_LoadFromFlashBackup();
+  DebugSaveAnywhere_LoadFromFlashBackup();
 }
 
 LYN_REPLACE_CHECK(sub_800AE1C);
@@ -129,6 +156,7 @@ void sub_800AE1C__Replacement(void) {
   sub_803519C();
   PlayerDecks_OnSaveSlotRead();
   DebugDeckSwap_LoadFromFlashPrimary();
+  DebugSaveAnywhere_LoadFromFlashPrimary();
   PlayerDecks_OnSaveSlotWriteBackup();
   temp = sub_800B134();
   sub_800B06C();
@@ -145,6 +173,7 @@ void sub_800AE70__Replacement(void) {
   sub_803519C();
   PlayerDecks_OnSaveSlotReadBackup();
   DebugDeckSwap_LoadFromFlashBackup();
+  DebugSaveAnywhere_LoadFromFlashBackup();
   PlayerDecks_OnSaveSlotWrite();
   temp = sub_800B158();
   sub_800B050();
@@ -186,6 +215,7 @@ void sub_800AED0__Replacement(void) {
   DebugAiMode_Reset();
   DebugRuleset_Reset();
   DebugDeckSwap_Reset();
+  DebugSaveAnywhere_Reset();
   sub_80351F8();
   temp = sub_8035170();
   sub_800B050();

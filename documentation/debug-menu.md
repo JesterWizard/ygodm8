@@ -7,6 +7,7 @@
 - [Introduction](#introduction)
 - [Related: Ante Card Viewer](#related-ante-card-viewer)
 - [Related: Duelist Deck Viewer](#related-duelist-deck-viewer)
+- [Related: Save Anywhere](#related-save-anywhere)
 - [Source Layout](#source-layout)
 - [Access](#access)
 - [Root Menu](#root-menu)
@@ -36,7 +37,12 @@ Viewers and tools implemented today:
 - **Graphic Viewer** — scrollable overworld animation graphics (Blue-Eyes, Slifer, etc.); play the full effect with **A**.
 - **Voice Viewer** — preview duel voice clips (vanilla and custom).
 - **Match Setter** — spawn test duelists on the overworld field.
+- **Map Teleport** — warp to preset maps.
+- **Scene Viewer** — run preset map entry scripts.
 - **AI Mode** — toggle **AI Both Sides** for fully automated duels. See [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md).
+- **Ruleset** — duel ruleset presets.
+- **Deck Presets** — swap test deck loadouts.
+- **Save Anywhere** — open the house save prompt from any overworld tile; **Continue** restores map and coordinates. See [save-anywhere.md](save-anywhere.md).
 
 ## Related: Ante Card Viewer
 
@@ -49,6 +55,10 @@ Full behavior, controls, data sources, and colored row text are documented in [a
 The **duelist deck viewer** (`src_custom/duelist_deck_viewer.c`) is a separate player-facing feature gated by `enable_duelist_deck_viewer`. On the overworld, **START** while facing a duelist opens a read-only copy of the status-menu deck list (sort and card details only; no trunk edits). It reuses deck menu code in `src_custom/deck_menu_hooks.c`, not the debug menu root.
 
 Full behavior, controls, and deck resolution are documented in [duelist-deck-viewer.md](duelist-deck-viewer.md).
+
+## Related: Save Anywhere
+
+**Save Anywhere** is the last root-menu row. It is documented in [save-anywhere.md](save-anywhere.md) (save prompt flow, flash-backed position data, Continue restore, and transition hooks).
 
 ## Source Layout
 
@@ -81,14 +91,14 @@ To add a new root-menu feature:
 | Requirement | Detail |
 |-------------|--------|
 | Runtime toggle | `gRuntimeConfig.enable_debug_menu` in `configs/runtime.c` (default **on**) |
-| Input | On the overworld field, press **B** alone (no D-Pad held) |
+| Input | On the overworld field, press **R** alone (no D-Pad held) |
 | Hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` |
 
 After the menu closes, overworld state is restored via `OverworldRestoreAfterDebugMenu()` and field music resumes with `PlayOverworldMusic()`.
 
 ## Root Menu
 
-The root screen shows five visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Eight items scroll when the cursor moves past the bottom row (`DEBUG_ROOT_ITEMS`).
+The root screen shows five visible rows at a time (`DEBUG_ROWS`) and uses the same OAM cursor as the vanilla start menu. Thirteen items scroll when the cursor moves past the bottom row (`DEBUG_ROOT_ITEMS`).
 
 | Row | Label | **A** behavior |
 |-----|-------|----------------|
@@ -99,7 +109,12 @@ The root screen shows five visible rows at a time (`DEBUG_ROWS`) and uses the sa
 | 4 | Graphic Viewer | Opens the overworld animation graphic list |
 | 5 | Voice Viewer | Opens the voice clip list |
 | 6 | Match Setter | Opens overworld duelist spawn presets |
-| 7 | AI Mode | Opens Off / AI Both Sides toggle (see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md)) |
+| 7 | Map Teleport | Opens map warp presets |
+| 8 | Scene Viewer | Runs a selected map entry script |
+| 9 | AI Mode | Opens Off / AI Both Sides toggle (see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md)) |
+| 10 | Ruleset | Opens duel ruleset presets |
+| 11 | Deck Presets | Opens deck swap presets |
+| 12 | Save Anywhere | Exits menu and opens the house save prompt (see [save-anywhere.md](save-anywhere.md)) |
 
 | Input | Action |
 |-------|--------|
@@ -317,7 +332,7 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 |--------|----------|-------------|
 | Entry point | `DebugMenuMain` in `src_custom/debug/debug_menu.c` | Loads graphics, runs root loop, tears down on exit |
 | Shared internals | `src_custom/debug/debug_menu_internal.h` | Constants, structs, cross-file API |
-| Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **B** when `enable_debug_menu` is set |
+| Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | Opens menu on **R** when `enable_debug_menu` is set |
 | Runtime toggle | `enable_debug_menu` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld access |
 | Root menu | `DebugMenuRoot` in `src_custom/debug/debug_menu.c` | Eight-item scrollable list; opens viewers, match setter, or AI mode |
 | AI mode | `DebugAiModeViewer` in `src_custom/debug/debug_menu_ai_mode.c` | Off / AI Both Sides; see [ai-both-sides-duel-mode.md](ai-both-sides-duel-mode.md) |

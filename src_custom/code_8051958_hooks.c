@@ -3,6 +3,7 @@
 #include "event_system.h"
 #include "custom_decks/custom_decks.h"
 #include "shiny_zones.h"
+#include "overworld.h"
 
 static const enum Direction sDirectionFacePlayer[] APPEND_RODATA = {
   [DIRECTION_DOWN] = DIRECTION_UP,
@@ -276,5 +277,18 @@ void TryDueling__Replacement(void) {
   } else {
     CustomDecks_ClearPendingCardShopDuel();
     InitiateRegularDuelScript((struct Script *)EventSystem_ResolveScript(gOverworld.objects[objId].scriptR));
+  }
+}
+
+u32 sub_805222C(u8, u8, u8);
+
+LYN_REPLACE_CHECK(sub_8052088);
+void sub_8052088__Replacement(u8 obj) {
+  if (sub_805222C(0, gOverworld.objects[obj].x, gOverworld.objects[obj].y)) {
+    u8 y = gOverworld.objects[obj].y;
+    u8 x = gOverworld.objects[obj].x;
+    u16 temp = gOverworld.unk23C[y * 120 + x];
+
+    gOverworld.objects[obj].unk8 = (temp & 254) >> 1;
   }
 }

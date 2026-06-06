@@ -1,6 +1,7 @@
 #include "global.h"
 #include "event_system.h"
 #include "configs/runtime.h"
+#include "debug_save_anywhere.h"
 #include "overworld.h"
 #include "overworld_debug_overlay.h"
 
@@ -17,6 +18,8 @@ static inline ScriptCtxFunc ThumbScriptCtxFunc(u32 addr) {
   return (ScriptCtxFunc)(addr | 1);
 }
 
+void sub_804EEE0(void);
+
 const struct Script *EventSystem_ResolveScript(const struct Script *script) {
   unsigned i;
 
@@ -27,9 +30,14 @@ const struct Script *EventSystem_ResolveScript(const struct Script *script) {
   return script;
 }
 
+struct Script *EventSystem_GetHouseSavePromptScript(void) {
+  return &sEventScript_map_09_state_00_08E621E4Node;
+}
+
 LYN_REPLACE_CHECK(InitiateScript);
 void InitiateScript__Replacement(struct Script *script) {
   struct ScriptCtx scriptCtx;
+  bool8 saveAnywhereDialog = (gDebugSaveAnywherePendingCapture == TRUE);
 
   script = (struct Script *)EventSystem_ResolveScript(script);
 
@@ -53,10 +61,19 @@ void InitiateScript__Replacement(struct Script *script) {
   ThumbScriptCtxFunc(0x080532A8)(&scriptCtx);
   ThumbScriptCtxFunc(0x080526D0)(&scriptCtx);
 
-  OverworldOverlay_RestoreDisplayRegs();
-  OverworldSetRegDispcnt();
+  if (saveAnywhereDialog != TRUE)
+    DebugSaveAnywhere_ApplySavedCoords();
 
-  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
+  if (saveAnywhereDialog == TRUE) {
+    gDebugSaveAnywherePendingCapture = FALSE;
+    OverworldLoadGraphics();
+    sub_804EEE0();
+  } else {
+    OverworldOverlay_RestoreDisplayRegs();
+    OverworldSetRegDispcnt();
+  }
+
+  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE && saveAnywhereDialog != TRUE)
     OverworldOverlay_Refresh();
 
   scriptCtx.portraitId = PORTRAIT_NONE;
