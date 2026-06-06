@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "digit.h"
+#include "duel_bgm_tempo.h"
 #include "gba/defines.h"
 #include "text.h"
 
@@ -105,6 +106,8 @@ void sub_80411D4__Replacement(void) {
 
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
+
+  UpdateDuelBgmTempoForLifePoints();
 
   LoadPalettes();
 }
