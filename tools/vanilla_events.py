@@ -624,6 +624,23 @@ def decode_steps_with_size(data: list[int]) -> tuple[list[dict[str, Any]], int]:
                 steps.append({"type": "reaction", "reaction": raw[2], "object_mask": (raw[3] << 8) | raw[4], "raw": byte_list(raw)})
                 p += 5
                 continue
+            if cmd == ord("9") and p + 3 < len(data):
+                raw = data[p : p + 4]
+                steps.append(
+                    {
+                        "type": "display_cg",
+                        "cg_id": raw[2],
+                        "fade_speed": raw[3],
+                        "raw": byte_list(raw),
+                    }
+                )
+                p += 4
+                continue
+            if cmd == ord("A") and p + 2 < len(data):
+                raw = data[p : p + 3]
+                steps.append({"type": "hide_cg", "fade_speed": raw[2], "raw": byte_list(raw)})
+                p += 3
+                continue
             raw_len = 3 if cmd in (ord("0"), ord("2"), ord("7"), ord("8")) else 2
             raw = data[p : min(len(data), p + raw_len)]
             steps.append({"type": f"command_7c_{chr(cmd)}", "raw": byte_list(raw)})
@@ -887,6 +904,7 @@ def strip_c_comments(text: str) -> str:
 C_CONSTANTS = load_c_constants([
     ROOT / "include/overworld.h",
     ROOT / "include/constants/music_ids.h",
+    ROOT / "include/constants/event_cg_generated.h",
 ])
 OVERWORLD_LOCATION_NAMES = {
     value: name for name, value in C_CONSTANTS.items() if name.startswith("LOCATION_")
@@ -1183,6 +1201,14 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
             elif name in {"SHOW_OVERWORLD_GRAPHIC", "SHOW_LARGE_GRAPHIC"}:
                 need_args(name, args, 1)
                 current.raw_bytes.extend([0x7C, ord("8"), parse_c_value(args[0]) & 0xFF])
+            elif name == "DISPLAY_CG":
+                need_args(name, args, 2)
+                current.raw_bytes.extend(
+                    [0x7C, ord("9"), parse_c_value(args[0]) & 0xFF, parse_c_value(args[1]) & 0xFF]
+                )
+            elif name == "HIDE_CG":
+                need_args(name, args, 1)
+                current.raw_bytes.extend([0x7C, ord("A"), parse_c_value(args[0]) & 0xFF])
             elif name == "FALLTHROUGH":
                 need_args(name, args, 0)
                 current.raw_bytes.append(0)
@@ -1550,6 +1576,13 @@ def step_macro(step: dict[str, Any]) -> str:
         reaction = int(step.get("reaction")) & 0xFF
         mask = int(step.get("object_mask")) & 0xFFFF
         macro = exact("REACTION", [reaction, mask], [0x7C, ord("6"), reaction, (mask >> 8) & 0xFF, mask & 0xFF])
+    elif kind == "display_cg":
+        cg_id = int(step.get("cg_id")) & 0xFF
+        fade_speed = int(step.get("fade_speed", 8)) & 0xFF
+        macro = exact("DISPLAY_CG", [cg_id, fade_speed], [0x7C, ord("9"), cg_id, fade_speed])
+    elif kind == "hide_cg":
+        fade_speed = int(step.get("fade_speed", 8)) & 0xFF
+        macro = exact("HIDE_CG", [fade_speed], [0x7C, ord("A"), fade_speed])
     elif kind == "fallthrough":
         macro = exact("FALLTHROUGH", [], [0])
     elif kind == "end":

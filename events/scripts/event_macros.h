@@ -58,5 +58,7 @@
 
 #define SCREEN_SHAKE(speed) COMMAND_7C_ARG(7, speed)
 #define SHOW_OVERWORLD_GRAPHIC(graphic_id) COMMAND_7C_ARG(8, graphic_id)
+#define DISPLAY_CG(cg_id, fade_speed) RAW(0x7C, '9', cg_id, fade_speed)
+#define HIDE_CG(fade_speed) RAW(0x7C, 'A', fade_speed)
 
 #endif

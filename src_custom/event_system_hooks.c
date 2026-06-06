@@ -4,6 +4,7 @@
 #include "debug_save_anywhere.h"
 #include "overworld.h"
 #include "overworld_debug_overlay.h"
+#include "cg.h"
 
 #include "generated/event_script_replacements.inc"
 
@@ -19,6 +20,7 @@ static inline ScriptCtxFunc ThumbScriptCtxFunc(u32 addr) {
 }
 
 void sub_804EEE0(void);
+void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx);
 
 const struct Script *EventSystem_ResolveScript(const struct Script *script) {
   unsigned i;
@@ -59,7 +61,7 @@ void InitiateScript__Replacement(struct Script *script) {
   scriptCtx.unk86 = 0;
   ThumbSetCurrentScript(0x08053274)(&scriptCtx, script);
   ThumbScriptCtxFunc(0x080532A8)(&scriptCtx);
-  ThumbScriptCtxFunc(0x080526D0)(&scriptCtx);
+  sub_80526D0__Replacement(&scriptCtx);
 
   if (saveAnywhereDialog != TRUE)
     DebugSaveAnywhere_ApplySavedCoords();
@@ -69,6 +71,7 @@ void InitiateScript__Replacement(struct Script *script) {
     OverworldLoadGraphics();
     sub_804EEE0();
   } else {
+    EventCg_ForceClose();
     OverworldOverlay_RestoreDisplayRegs();
     OverworldSetRegDispcnt();
   }

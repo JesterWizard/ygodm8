@@ -128,6 +128,8 @@ EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
 EVENT_REPLACEMENTS_GENERATED := src_custom/generated/event_script_replacements.inc
+CG_GENERATOR := tools/generate_cg_assets.py
+CG_GENERATED := include/constants/event_cg_generated.h src_custom/generated/event_cg_assets_generated.inc
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -198,7 +200,7 @@ endif
 event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py export-c $(EVENTS_YAML) --out-dir $(EVENTS_C_DIR)
 
-event-test: $(EVENTS_C_SRCS) tools/vanilla_events.py
+event-test: $(EVENTS_C_SRCS) tools/vanilla_events.py $(CG_GENERATED)
 	python3 tools/vanilla_events.py test-c $(EVENTS_C_SRCS)
 
 event-validate: $(EVENTS_YAML) baserom.gba tools/vanilla_events.py
@@ -381,6 +383,13 @@ src_custom/assets/portraits/player.gbapal: $(PORTRAIT_NORM) | tools-rules
 
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
+$(CG_GENERATED): $(CG_GENERATOR) $(CG_PNGS)
+	@echo "CGGEN   $<"
+	python3 $(CG_GENERATOR)
+
+$(eval $(call custom_object_dep,cg_hooks,$(CG_GENERATED) $(CG_LZS) $(CG_PALETTES)))
+$(eval $(call custom_object_dep,script_cg_hooks,))
+
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
 
@@ -424,6 +433,7 @@ compare: all
 test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 	python3 tools/validate_portrait.py
+	python3 tools/validate_cg.py
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_duel_popup_textbox.py
 	python3 tools/validate_duel_b_menu.py

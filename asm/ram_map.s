@@ -88,6 +88,13 @@ _kernel_malloc gSliferPendingPenaltyCol, 1
 @ Duel win shop drop popup: count plus up to three (cardId, qty) pairs.
 _kernel_malloc gDuelShopDropRecord, 0x10
 
+@ Event CG session state (overworld dialogue cutscene graphics).
+_kernel_malloc gCgSessionOpen, 1
+_kernel_malloc gCgActive, 1
+_kernel_malloc gCgFadeSpeed, 1
+_kernel_malloc gCgId, 1
+_kernel_malloc gCgSavedDispcnt, 2
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

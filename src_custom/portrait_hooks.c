@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "cg.h"
 
 extern u32** g8FA31C0[];
 extern u16** g8FA3360[];
@@ -51,13 +52,17 @@ void DisplayPortrait__Replacement(struct ScriptCtx* scriptCtx) {
   }
 
   if (scriptCtx->unk86 == 1) {
-    REG_WIN1H = 0x03ED;
-    REG_WIN1V = 0x739D;
-    (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
-    REG_WINOUT = 0x1D1E;
-    OverworldSetRegDispcnt2();
-    REG_BLDCNT = 0xDE;
-    REG_BLDY = 7;
+    if (EventCg_IsActive()) {
+      EventCg_ApplyTextWindowRegs();
+    } else {
+      REG_WIN1H = 0x03ED;
+      REG_WIN1V = 0x739D;
+      (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
+      REG_WINOUT = 0x1D1E;
+      OverworldSetRegDispcnt2();
+      REG_BLDCNT = 0xDE;
+      REG_BLDY = 7;
+    }
   }
   sub_804EB04(oam, 2);
   SetVBlankCallback(LoadOam);
