@@ -13,7 +13,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428B0, map_01_state_08_08E428B0, 0x08E428BC, 0x08F
   WALK_OBJECT_X(0, 26)
   WALK_OBJECT_Y(0, 48)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_TEA, DIRECTION_LEFT, 0, 0)
   WALK_OBJECT_X(13, 16)
   WALK_OBJECT_Y(13, 54)
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
@@ -21,50 +21,40 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428B0, map_01_state_08_08E428B0, 0x08E428BC, 0x08F
   WALK_OBJECT_Y(14, 42)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Sigh...\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "What's wrong, Tea? Why the\n"
-      "big sigh?\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Well...\n\n"
-      "I had a famous fortuneteller\n"
-      "do my reading.\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You had your fortune told?\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Sigh...\n\n"
-      "Yes, and... well...\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT,
+    "Sigh...\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "What's wrong, Tea? Why the\n"
+    "big sigh?\n\n"
+)
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_POSITION_AUTO,
+    "Well...\n\n"
+    "I had a famous fortuneteller\n"
+    "do my reading.\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "You had your fortune told?\n\n"
+)
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT,
+    "Sigh...\n\n"
+    "Yes, and... well...\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
-  SET_OBJECT_POSITION(2, 36, 96, 0)
-  WALK_OBJECT_Y(2, 60)
+  SET_OBJECT_POSITION(SPRITE_JOHNNY_STEPS, 36, 96, 0)
+  WALK_OBJECT_Y(SPRITE_JOHNNY_STEPS, 60)
   DELAY(8)
-  MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
+  MOVE_OBJECT(SPRITE_JOHNNY_STEPS, DIRECTION_RIGHT, 0, 0)
   DELAY(6)
-  MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
+  MOVE_OBJECT(SPRITE_JOHNNY_STEPS, DIRECTION_DOWN, 0, 0)
   DELAY(6)
-  MOVE_OBJECT(2, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_JOHNNY_STEPS, DIRECTION_LEFT, 0, 0)
   DELAY(6)
-  MOVE_OBJECT(2, DIRECTION_UP, 0, 0)
+  MOVE_OBJECT(SPRITE_JOHNNY_STEPS, DIRECTION_UP, 0, 0)
   DELAY(6)
   PLAY_MUSIC(MUSIC_293)
-  OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_JUMPING)
+  OBJECT_EFFECT(SPRITE_JOHNNY_STEPS, OBJECT_EFFECT_JUMPING)
   DELAY(16)
   PLAY_MUSIC(MUSIC_JEAN_CLAUDE_MAGNUM)
   TEXT
@@ -75,31 +65,25 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428B0, map_01_state_08_08E428B0, 0x08E428BC, 0x08F
   )
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
+  MOVE_OBJECT(SPRITE_TEA, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(13, DIRECTION_DOWN, 0, 0)
   MOVE_OBJECT(14, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_TEA, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "...\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Ooh, she looks feisty, but\n"
-      "she's a shy one. Just the\n\n"
-      "way I like it!\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}... You'll get rid\n"
-      "of this jerk for me, right?\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT,
+    "...\n\n"
+)
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "Ooh, she looks feisty, but\n"
+    "she's a shy one. Just the\n\n"
+    "way I like it!\n\n"
+)
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT,
+    "{PLAYER}... You'll get rid\n"
+    "of this jerk for me, right?\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -167,11 +151,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428E0, map_01_state_08_08E428E0, 0x08E428EC, 0x08F
   DELAY(8)
   WALK_OBJECT_Y(2, 96)
   DELAY(32)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What was up with dat guy?\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "What was up with dat guy?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -185,12 +167,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428EC, map_01_state_08_08E428EC, 0x08E428F8, 0x08F
   OBJECT_EFFECT(OBJECT_3, OBJECT_EFFECT_JUMPING)
   DELAY(8)
   PLAY_MUSIC(MUSIC_BIG_FIVE)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "A-ha! I've found you at\n"
-      "last, Tea Gardner!!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "A-ha! I've found you at\n"
+    "last, Tea Gardner!!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
@@ -198,65 +178,53 @@ EVENT_SCRIPT_REPLACEMENT(0x08E428EC, map_01_state_08_08E428EC, 0x08E428F8, 0x08F
   MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
   MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "The fortuneteller said\n"
-      "you'll bring me luck, so I\n\n"
-      "want you working for me!!\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I don't think so! Take you\n"
-      "and your tux somewhere\n\n"
-      "else!\n\n"
-  )
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "On the contrary!\n\n"
-      "You're my last chance to\n"
-      "rekindle my dream...\n\n"
-      "My dream of making Penguin\n"
-      "Land!\n\n"
-      "And you're going to help me!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "The fortuneteller said\n"
+    "you'll bring me luck, so I\n\n"
+    "want you working for me!!\n\n"
+)
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "I don't think so! Take you\n"
+    "and your tux somewhere\n\n"
+    "else!\n\n"
+)
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "On the contrary!\n\n"
+    "You're my last chance to\n"
+    "rekindle my dream...\n\n"
+    "My dream of making Penguin\n"
+    "Land!\n\n"
+    "And you're going to help me!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_275)
   REACTION(REACTION_ANGRY, OBJECT_1)
   DELAY(8)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Forget it, creep!\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "Forget it, creep!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, can you get rid of\n"
-      "this guy, too?\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "{PLAYER}, can you get rid of\n"
+    "this guy, too?\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_3)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "A duel? Fine! A duel it is!\n\n"
-      "My calculations state that\n"
-      "the odds of you winning are\n\n"
-      "a billion to one!\n\n"
-      "And then Tea will be working\n"
-      "for me!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "A duel? Fine! A duel it is!\n\n"
+    "My calculations state that\n"
+    "the odds of you winning are\n\n"
+    "a billion to one!\n\n"
+    "And then Tea will be working\n"
+    "for me!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 26)
@@ -270,25 +238,21 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E428F8, map_01_state_08_08E428F8, 0x08E42904, 0x08F04040)
   PLAY_MUSIC(MUSIC_BIG_FIVE)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "You should learn to respect\n"
-      "your elders, even if\n\n"
-      "they're penguins!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "You should learn to respect\n"
+    "your elders, even if\n\n"
+    "they're penguins!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 36)
   MOVE_OBJECT(3, DIRECTION_DOWN, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "And believe me, Tea! My\n"
-      "feathered friends are cuter\n\n"
-      "than you!\n\n"
-  )
+  TALK(PORTRAIT_NIGHTMARE_PENGUIN, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "And believe me, Tea! My\n"
+    "feathered friends are cuter\n\n"
+    "than you!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 0)
@@ -304,23 +268,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42904, map_01_state_08_08E42904, 0x08F04040, 0x08F
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
   PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wh-what's going on? This\n"
-      "world is full of\n\n"
-      "weirdoes...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "Wh-what's going on? This\n"
+    "world is full of\n\n"
+    "weirdoes...\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "It's just what the\n"
-      "fortuneteller predicted.\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT,
+    "It's just what the\n"
+    "fortuneteller predicted.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
@@ -330,49 +290,41 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42904, map_01_state_08_08E42904, 0x08F04040, 0x08F
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Oh, yeah, you were saying\n"
-      "something about your\n\n"
-      "fortune before those guys\n"
-      "showed up.\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "Oh, yeah, you were saying\n"
+    "something about your\n\n"
+    "fortune before those guys\n"
+    "showed up.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_1)
   DELAY(16)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "The fortuneteller predicted\n"
-      "that I would have the worst\n\n"
-      "luck with men today.\n\n"
-      "And he was right on the\n"
-      "money.\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT,
+    "The fortuneteller predicted\n"
+    "that I would have the worst\n\n"
+    "luck with men today.\n\n"
+    "And he was right on the\n"
+    "money.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
   REACTION(REACTION_SWEATDROP, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "Yeah, men don't get any\n"
-      "worse than them.\n\n"
-  )
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "I'm going to lay low for the\n"
-      "rest of the day. I don't\n\n"
-      "want to run into any more\n"
-      "psychos.\n\n"
-      "I'll be back at Yugi's\n"
-      "grandpa's shop...\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_TEETH_GRITTED, PORTRAIT_RIGHT,
+    "Yeah, men don't get any\n"
+    "worse than them.\n\n"
+)
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SWEATDROP, PORTRAIT_RIGHT,
+    "I'm going to lay low for the\n"
+    "rest of the day. I don't\n\n"
+    "want to run into any more\n"
+    "psychos.\n\n"
+    "I'll be back at Yugi's\n"
+    "grandpa's shop...\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(1, 64)
@@ -383,40 +335,34 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42904, map_01_state_08_08E42904, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E428C8, map_01_state_08_08E428C8, 0x08E428BC, 0x08F04040)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "...Just my luck...\n\n"
-      "I get hit on by a weirdo,\n"
-      "and {PLAYER} won't help\n\n"
-      "me...\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_TEA_SAD, PORTRAIT_RIGHT,
+    "...Just my luck...\n\n"
+    "I get hit on by a weirdo,\n"
+    "and {PLAYER} won't help\n\n"
+    "me...\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}, we should help\n"
-      "her.\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_RIGHT,
+    "{PLAYER}, we should help\n"
+    "her.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-  TEXT
-  (
-      "{PLAYER}, I'm tellin' ya,\n"
-      "think of the consequences.\n\n"
-      "Tea is the toughest girl I\n"
-      "know, and she's not gonna\n\n"
-      "let the fact that you didn't\n"
-      "help her slide by.\n\n"
-      "Between me and you, I'd say\n"
-      "you should help Tea.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT,
+    "{PLAYER}, I'm tellin' ya,\n"
+    "think of the consequences.\n\n"
+    "Tea is the toughest girl I\n"
+    "know, and she's not gonna\n\n"
+    "let the fact that you didn't\n"
+    "help her slide by.\n\n"
+    "Between me and you, I'd say\n"
+    "you should help Tea.\n\n"
+)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

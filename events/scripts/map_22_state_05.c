@@ -17,18 +17,14 @@ LOAD_SPRITE(10, SPRITE_NEO_GHOUL)
 LOAD_SPRITE(11, SPRITE_EGYPT_EXHIBITION_VISITOR)
 CHECK_FLAG(EVENT_FLAG_SAW_KAIBA_DEFEAT_A_GHOUL)
 PLAY_MUSIC(MUSIC_NEO_GHOULS)
-PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
     "I summon Blue-Eyes White\n"
     "Dragon!\n\n"
 )
 PLAY_MUSIC(MUSIC_333)
 SHOW_OVERWORLD_GRAPHIC(GRAPHIC_BLUE_EYES_WHITE_DRAGON_FULL_ART)
 DELAY(16)
-PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
     "White Lightning!\n\n"
 )
 PLAY_MUSIC(MUSIC_338)
@@ -41,9 +37,7 @@ OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
 DELAY(16)
 WALK_OBJECT_X(3, 64)
 MOVE_OBJECT(3, DIRECTION_UP, 0, 0)
-PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
     "What's with these Neo Ghoul\n"
     "scrubs!\n\n"
     "There's no end to them!\n\n"
@@ -68,23 +62,21 @@ WALK_OBJECT_X(0, 56)
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Am I here to rescue Ishizu?\n\n"
-      "Heh, that's your business,\n"
-      "not mine.\n\n"
-      "I'm only here because I need\n"
-      "to resurrect Obelisk the\n\n"
-      "Tormentor.\n\n"
-      "I don't know what kind of\n"
-      "trick you pulled...\n\n"
-      "But no one had no right to\n"
-      "turn my card into stone!\n\n"
-      "It's clear Ishizu's somehow\n"
-      "involved...\n\n"
-      "And I want to find out how!\n\n"
-  )
+  TALK(PORTRAIT_SETO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Am I here to rescue Ishizu?\n\n"
+    "Heh, that's your business,\n"
+    "not mine.\n\n"
+    "I'm only here because I need\n"
+    "to resurrect Obelisk the\n\n"
+    "Tormentor.\n\n"
+    "I don't know what kind of\n"
+    "trick you pulled...\n\n"
+    "But no one had no right to\n"
+    "turn my card into stone!\n\n"
+    "It's clear Ishizu's somehow\n"
+    "involved...\n\n"
+    "And I want to find out how!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -98,27 +90,23 @@ HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You Neo Ghouls haven't had\n"
-      "enough yet?\n\n"
-      "Fine! I'll crush you until\n"
-      "you beg me for mercy!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+    "You Neo Ghouls haven't had\n"
+    "enough yet?\n\n"
+    "Fine! I'll crush you until\n"
+    "you beg me for mercy!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
   REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What are you losers still\n"
-      "doing here?\n\n"
-      "Go and find your precious\n"
-      "Ishizu!\n\n"
-  )
+  TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+    "What are you losers still\n"
+    "doing here?\n\n"
+    "Go and find your precious\n"
+    "Ishizu!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_DOWN, 4, 0)
@@ -127,14 +115,12 @@ HIDE_PORTRAIT()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CB88, map_22_state_05_08E8CB88, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What are you losers still\n"
-      "doing here?\n\n"
-      "Go and find your precious\n"
-      "Ishizu!\n\n"
-  )
+TALK(PORTRAIT_SETO, 2, PORTRAIT_POSITION_AUTO,
+    "What are you losers still\n"
+    "doing here?\n\n"
+    "Go and find your precious\n"
+    "Ishizu!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -144,12 +130,10 @@ CHECK_FLAG(EVENT_FLAG_KAIBA_MOVED_OUT_OF_THE_WAY)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E8CB94, map_22_state_05_08E8CB94, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "If I take down Kaiba, I'll\n"
-      "be promoted! Hihihi...\n\n"
-  )
+TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "If I take down Kaiba, I'll\n"
+    "be promoted! Hihihi...\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

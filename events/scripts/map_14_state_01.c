@@ -62,9 +62,7 @@ TEXT
     "Winning this tag duel is\n"
     "your boarding pass!\n\n"
 )
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "I wasn't expectin' things to\n"
     "be a cakewalk...\n\n"
     "But who woulda imagined a\n"
@@ -75,9 +73,7 @@ HIDE_PORTRAIT()
 DELAY(16)
 MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
 DELAY(16)
-PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Well, I don't think we have\n"
     "a choice.\n\n"
     "There's no way every duelist\n"
@@ -88,9 +84,7 @@ HIDE_PORTRAIT()
 DELAY(16)
 MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
 DELAY(16)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "I guess dat's true... But in\n"
     "a tag duel, you'll need a\n\n"
     "partner!\n\n"
@@ -99,9 +93,7 @@ HIDE_PORTRAIT()
 DELAY(16)
 MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
 DELAY(16)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "{PLAYER}, who do you want to\n"
     "team up with? Me or Yugi?\n\n"
 )
@@ -111,9 +103,7 @@ MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
 DELAY(16)
 MOVE_OBJECT(0, DIRECTION_DOWN, 0, 0)
 DELAY(16)
-PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Okay! You can count on me,\n"
     "{PLAYER}!\n\n"
 )
@@ -127,17 +117,13 @@ MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
 DELAY(16)
 DUEL(DUELIST_YUGI_159)
 PLAY_MUSIC(MUSIC_230)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Gotta hand it to you, Yugi.\n"
     "That duel lasted barely a\n\n"
     "second!\n\n"
     "On the other hand...\n\n"
 )
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_RIGHT,
     "{PLAYER}, you had me\n"
     "worried!\n\n"
 )
@@ -150,9 +136,7 @@ REACTION(REACTION_SWEATDROP, OBJECT_0)
 DELAY(16)
 MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
 DELAY(16)
-PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "I... I couldn't afford to\n"
     "waste any time.\n\n"
     "I have to find the spirit\n"
@@ -194,12 +178,10 @@ MOVE_OBJECT(2, DIRECTION_DOWN, 0, 0)
 SET_FLAG(EVENT_FLAG_DEFEATED_DOMINO_STATION_GUARD)
 
 EVENT_SCRIPT_REPLACEMENT(0x08E77540, map_14_state_01_08E77540, 0x08E7754C, 0x08F0404C)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Okay! That was a wise\n"
-      "decision, {PLAYER}!\n\n"
-  )
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Okay! That was a wise\n"
+    "decision, {PLAYER}!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(14, 43)
@@ -217,19 +199,17 @@ PLAY_MUSIC(MUSIC_230)
   DELAY(16)
   MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What took ya so long,\n"
-      "{PLAYER}!\n\n"
-      "If you're having trouble\n"
-      "against these guys...\n\n"
-      "Well, I'd hate to think\n"
-      "what'd happen against some\n\n"
-      "real competition.\n\n"
-      "Hurry and catch up to my\n"
-      "level!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "What took ya so long,\n"
+    "{PLAYER}!\n\n"
+    "If you're having trouble\n"
+    "against these guys...\n\n"
+    "Well, I'd hate to think\n"
+    "what'd happen against some\n\n"
+    "real competition.\n\n"
+    "Hurry and catch up to my\n"
+    "level!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
@@ -274,12 +254,10 @@ WALK_OBJECT_X(13, 56)
   DELAY(16)
   PLAY_MUSIC(SOUND_NONE)
   PLAY_MUSIC(MUSIC_414)
-  PORTRAIT(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hee hee hee... I've found\n"
-      "them...\n\n"
-  )
+  TALK(PORTRAIT_PANICK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Hee hee hee... I've found\n"
+    "them...\n\n"
+)
   WALK_OBJECT_Y(6, 0)
   SET_FLAG(EVENT_FLAG_SAW_PANIK_ENTER_DOMINO_STATION)
   WARP(LOCATION_DOMINO_STATION_TRAIN_STATION, 1, 1, 0)

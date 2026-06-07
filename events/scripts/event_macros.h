@@ -33,14 +33,14 @@
 #define FADE_MUSIC(speed)
 #define START_MENU()
 #define SAVE()
-#define MOVE_OBJECT(object_id, direction, distance, wander) // distance is measured in pixels
+#define MOVE_OBJECT(object_id, direction, distance, wander) // object_id: slot id or SPRITE_* after LOAD_SPRITE
 #define STOP_FOOTSTEPS()
-#define SET_OBJECT_POSITION(object_id, x, y, frame, direction) // direction optional; use DIRECTION_DOWN/LEFT/UP/RIGHT
-#define SHOW_OBJECT(object_id, x, y, frame, mode, unused)
-#define WALK_OBJECT_X(object_id, target)
-#define WALK_OBJECT_Y(object_id, target)
-#define SLIDE_OBJECT(object_id, direction, distance)
-#define OBJECT_EFFECT(object_mask, mode)
+#define SET_OBJECT_POSITION(object_id, x, y, frame, direction) // object_id: slot id or SPRITE_*
+#define SHOW_OBJECT(object_id, x, y, frame, mode, unused) // object_id: slot id or SPRITE_*
+#define WALK_OBJECT_X(object_id, target) // object_id: slot id or SPRITE_*
+#define WALK_OBJECT_Y(object_id, target) // object_id: slot id or SPRITE_*
+#define SLIDE_OBJECT(object_id, direction, distance) // object_id: slot id or SPRITE_*
+#define OBJECT_EFFECT(object_mask, mode) // object_mask: OBJECT_N, SPRITE_*, or combined with |
 #define SPECIAL(command)
 #define CUTSCENE(cutscene_id)
 #define DELAY(frames)
@@ -53,7 +53,7 @@
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id) SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define WARP(location, state, entrance, unused)
-#define REACTION(reaction, object_mask)
+#define REACTION(reaction, object_mask) // object_mask: OBJECT_N, SPRITE_*, or combined with |
 #define COMMAND_7C_ARG(command, argument)
 #define FALLTHROUGH()
 #define END()

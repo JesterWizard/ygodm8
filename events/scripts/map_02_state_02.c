@@ -28,23 +28,19 @@ EVENT_SCRIPT_REPLACEMENT(0x08E47890, map_02_state_02_08E47890, 0x08E4789C, 0x08E
   SHOW_OBJECT(3, 52, 0, 0, 0, 0)
   WALK_OBJECT_Y(3, 18)
   DELAY(16)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You must be the brats who\n"
-      "want to be heroes!\n\n"
-  )
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You must be the brats who\n"
+    "want to be heroes!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You should have stayed in\n"
-      "the sandbox! I'm not as\n\n"
-      "nice as the other guy!\n\n"
-  )
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You should have stayed in\n"
+    "the sandbox! I'm not as\n\n"
+    "nice as the other guy!\n\n"
+)
   DUEL(DUELIST_NEO_GHOUL_057)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -60,12 +56,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E478A8, map_02_state_02_08E478A8, 0x08E478C0, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E478C0, map_02_state_02_08E478C0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I won't forget this! I'm\n"
-      "going to get you good!\n\n"
-  )
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I won't forget this! I'm\n"
+    "going to get you good!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   WALK_OBJECT_Y(3, 0)

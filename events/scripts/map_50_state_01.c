@@ -13,11 +13,9 @@ PLAY_MUSIC(MUSIC_271)
 REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0)
 DELAY(8)
 PLAY_MUSIC(MUSIC_280)
-SHOW_OBJECT(1, 60, 52, 0, 1, 0)
+SHOW_OBJECT(SPRITE_PARADOX, 60, 52, 0, 1, 0)
 DELAY(64)
-PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Excellent. You've done well\n"
     "to get this far.\n\n"
     "However, in order to\n"
@@ -38,9 +36,7 @@ DELAY(16)
 PLAY_MUSIC(MUSIC_272)
 REACTION(REACTION_ELLIPSIS, OBJECT_0)
 DELAY(16)
-PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Yes... You must light your\n"
     "way with spirit cards.\n\n"
     "The cards that embody the\n"
@@ -63,14 +59,12 @@ CHECK_FLAG(EVENT_FLAG_DEFEATED_BONZ3)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE050C, map_50_state_01_08EE050C, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Go seek out your dueling\n"
-      "compatriots, and obtain a\n\n"
-      "spirit card from each of\n"
-      "them.\n\n"
-  )
+TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Go seek out your dueling\n"
+    "compatriots, and obtain a\n\n"
+    "spirit card from each of\n"
+    "them.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -100,24 +94,20 @@ CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI3)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE0518, map_50_state_01_08EE0518, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You have gathered the\n"
-      "required spirit cards.\n\n"
-  )
+TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You have gathered the\n"
+    "required spirit cards.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE0524, map_50_state_01_08EE0524, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Duelists do not communicate\n"
-      "with words.\n\n"
-      "Duels unite your spirits.\n\n"
-      "With your hearts as one,\n"
-      "your wishes will come true.\n\n"
-  )
+TALK(PORTRAIT_PARADOX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Duelists do not communicate\n"
+    "with words.\n\n"
+    "Duels unite your spirits.\n\n"
+    "With your hearts as one,\n"
+    "your wishes will come true.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

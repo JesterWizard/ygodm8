@@ -11,12 +11,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC888, map_29_state_02_08EAC888, 0x08EAC894, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC894, map_29_state_02_08EAC894, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I think it's in the room\n"
-      "ahead.\n\n"
-  )
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "I think it's in the room\n"
+    "ahead.\n\n"
+)
   WALK_OBJECT_Y(1, 56)
   WALK_OBJECT_X(1, 80)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
@@ -30,32 +28,26 @@ EVENT_SCRIPT_REPLACEMENT(0x08EAC8A0, map_29_state_02_08EAC8A0, 0x08EAC8AC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8AC, map_29_state_02_08EAC8AC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I think you'll find it in\n"
-      "the back of the room.\n\n"
-  )
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "I think you'll find it in\n"
+    "the back of the room.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8B8, map_29_state_02_08EAC8B8, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Looks like you found what\n"
-      "you wanted.\n\n"
-      "Lucky you.\n\n"
-  )
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "Looks like you found what\n"
+    "you wanted.\n\n"
+    "Lucky you.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EAC8C4, map_29_state_02_08EAC8C4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "I'll duel you again when I\n"
-      "make my deck stronger.\n\n"
-  )
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "I'll duel you again when I\n"
+    "make my deck stronger.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

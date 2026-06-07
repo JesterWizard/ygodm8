@@ -10,17 +10,13 @@ LOAD_SPRITE(3, SPRITE_INSECURE_DUELIST)
 LOAD_SPRITE(4, SPRITE_KAIBACORP_ADMIRER)
 LOAD_SPRITE(5, SPRITE_DOMINO_STATION_GUARD_2)
 PLAY_MUSIC(MUSIC_231)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
     "The Duel Express is reserved\n"
     "for duelists only...\n\n"
     "I'm raring to go!\n\n"
 )
 PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
     "Yeah, I know.\n\n"
     "But if we raise our duelist\n"
     "level while we look for the\n\n"
@@ -30,15 +26,13 @@ TEXT
 )
 
 EVENT_SCRIPT_REPLACEMENT(0x08E7A470, map_15_state_01_08E7A470, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Me neither!\n\n"
-      "It'll be a while until we\n"
-      "reach the Egypt Exhibition.\n\n"
-      "Let's raise our duelist\n"
-      "levels while we can!\n\n"
-  )
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "Me neither!\n\n"
+    "It'll be a while until we\n"
+    "reach the Egypt Exhibition.\n\n"
+    "Let's raise our duelist\n"
+    "levels while we can!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

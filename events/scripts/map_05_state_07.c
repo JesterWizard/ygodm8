@@ -7,35 +7,27 @@
 LOAD_SPRITE(1, SPRITE_STRINGER)
 LOAD_SPRITE(2, SPRITE_RED_MOHAWK)
 PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "I can't believe Tristan made\n"
     "us go all the way around\n\n"
     "the world just because his\n"
     "stomach was growlin'!\n\n"
 )
-PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "It wasn't Tristan's fault.\n"
     "It was just a\n\n"
     "misunderstanding.\n\n"
     "Anyway, we have more\n"
     "important things to do.\n\n"
 )
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Oh yeah! Maybe Ishizu has\n"
     "good news.\n\n"
     "She may have found a way to\n"
     "restore the Egyptian God\n\n"
     "Cards.\n\n"
 )
-PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "Yes, I hope so.\n\n"
     "{PLAYER}, Joey, let's meet\n"
     "up with Ishizu.\n\n"

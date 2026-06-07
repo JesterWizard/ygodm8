@@ -107,17 +107,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E479B0, map_02_state_04_08E479B0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E479BC, map_02_state_04_08E479BC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "The Town of Domino is now\n"
-      "safe.\n\n"
-      "But you still have something\n"
-      "to do, don't you?\n\n"
-      "I'm going back to the cruise\n"
-      "ship.\n\n"
-      "Don't give up, {PLAYER}!\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "The Town of Domino is now\n"
+    "safe.\n\n"
+    "But you still have something\n"
+    "to do, don't you?\n\n"
+    "I'm going back to the cruise\n"
+    "ship.\n\n"
+    "Don't give up, {PLAYER}!\n\n"
+)
   WALK_OBJECT_Y(3, 39)
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)

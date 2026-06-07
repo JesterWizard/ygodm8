@@ -70,15 +70,13 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4AAD8, map_03_state_05_08E4AAD8, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4AAE4, map_03_state_05_08E4AAE4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Things are now as cool as\n"
-      "the Ice Age.\n\n"
-      "I'm outta here.\n\n"
-      "Back to boning up my deck\n"
-      "among the fossils.\n\n"
-  )
+  TALK(PORTRAIT_REX, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Things are now as cool as\n"
+    "the Ice Age.\n\n"
+    "I'm outta here.\n\n"
+    "Back to boning up my deck\n"
+    "among the fossils.\n\n"
+)
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
   SET_FLAG(EVENT_FLAG_REX_LEFT_CLOCK_TOWER_SQUARE)

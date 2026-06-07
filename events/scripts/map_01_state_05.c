@@ -95,18 +95,16 @@ EVENT_SCRIPT_REPLACEMENT(0x08E42898, map_01_state_05_08E42898, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E428A4, map_01_state_05_08E428A4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hyohyohyohyo!\n\n"
-      "The Neo Ghouls are gone, all\n"
-      "thanks to me!\n\n"
-      "You maggots better be\n"
-      "grateful.\n\n"
-      "Just to let you know, my\n"
-      "swarm of bugs are more\n\n"
-      "rugged than ever!\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO,
+    "Hyohyohyohyo!\n\n"
+    "The Neo Ghouls are gone, all\n"
+    "thanks to me!\n\n"
+    "You maggots better be\n"
+    "grateful.\n\n"
+    "Just to let you know, my\n"
+    "swarm of bugs are more\n\n"
+    "rugged than ever!\n\n"
+)
   WALK_OBJECT_X(3, 0)
   SET_OBJECT_POSITION(3, 128, 96, 0)
   SET_FLAG(EVENT_FLAG_WEEVIL_LEFT_CLOCK_TOWER_SQUARE)

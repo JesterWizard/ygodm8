@@ -105,13 +105,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E51070, map_05_state_04_08E51070, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5107C, map_05_state_04_08E5107C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Sigh... I miss the sea! I'm\n"
-      "going back home among the\n\n"
-      "waves!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Sigh... I miss the sea! I'm\n"
+    "going back home among the\n\n"
+    "waves!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 61)

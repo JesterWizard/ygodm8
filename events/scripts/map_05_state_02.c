@@ -30,14 +30,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F2C, map_05_state_02_08E50F2C, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F38, map_05_state_02_08E50F38, 0x08E50F44, 0x08E50F74)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Domino duelists are\n"
-      "spineless wimps!\n\n"
-      "No one's shown the least bit\n"
-      "of resistance!\n\n"
-  )
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Domino duelists are\n"
+    "spineless wimps!\n\n"
+    "No one's shown the least bit\n"
+    "of resistance!\n\n"
+)
   DUEL(DUELIST_NEO_GHOUL_061)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -53,12 +51,10 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50F50, map_05_state_02_08E50F50, 0x08E50F68, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50F68, map_05_state_02_08E50F68, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You showed resistance...too\n"
-      "much resistance!\n\n"
-  )
+  TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You showed resistance...too\n"
+    "much resistance!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(3, 60)

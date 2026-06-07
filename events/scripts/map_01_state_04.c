@@ -35,13 +35,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E427E4, map_01_state_04_08E427E4, 0x08E42808, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42808, map_01_state_04_08E42808, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hyohyohyohyo!\n\n"
-      "How could anyone lose to the\n"
-      "Neo Ghouls?\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO,
+    "Hyohyohyohyo!\n\n"
+    "How could anyone lose to the\n"
+    "Neo Ghouls?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -51,37 +49,31 @@ EVENT_SCRIPT_REPLACEMENT(0x08E427F0, map_01_state_04_08E427F0, 0x08E427FC, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E427FC, map_01_state_04_08E427FC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You want to know where the\n"
-      "Neo Ghouls are hiding the\n\n"
-      "Town of Domino?\n\n"
-      "What makes you think I would\n"
-      "know, you foolish flea!\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO,
+    "You want to know where the\n"
+    "Neo Ghouls are hiding the\n\n"
+    "Town of Domino?\n\n"
+    "What makes you think I would\n"
+    "know, you foolish flea!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42814, map_01_state_04_08E42814, 0x08E42820, 0x08F0404C)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hyohyohyo! You're wasting my\n"
-      "time, you gruesome grub!\n\n"
-      "You can't beat me in a duel!\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_WEEVIL_HAPPY, PORTRAIT_POSITION_AUTO,
+    "Hyohyohyo! You're wasting my\n"
+    "time, you gruesome grub!\n\n"
+    "You can't beat me in a duel!\n\n"
+)
   DUEL(DUELIST_WEEVIL_056)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E42820, map_01_state_04_08E42820, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
-  PORTRAIT(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gyooeeeeeh!\n\n"
-      "Just buzz off!\n\n"
-  )
+  TALK(PORTRAIT_WEEVIL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Gyooeeeeeh!\n\n"
+    "Just buzz off!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

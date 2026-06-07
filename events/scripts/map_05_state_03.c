@@ -80,13 +80,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FBC, map_05_state_03_08E50FBC, 0x08E50FE0, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FE0, map_05_state_03_08E50FE0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gahaha! I've hauled in a\n"
-      "school of Neo Ghouls!\n\n"
-      "Leave the dueling to me!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Gahaha! I've hauled in a\n"
+    "school of Neo Ghouls!\n\n"
+    "Leave the dueling to me!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -96,36 +94,30 @@ EVENT_SCRIPT_REPLACEMENT(0x08E50FC8, map_05_state_03_08E50FC8, 0x08E50FD4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FD4, map_05_state_03_08E50FD4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You want to know about the\n"
-      "Neo Ghouls hiding out in\n\n"
-      "the Town of Domino?\n\n"
-      "Look, I'm a fisherman.\n\n"
-      "I'm not a detective.\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You want to know about the\n"
+    "Neo Ghouls hiding out in\n\n"
+    "the Town of Domino?\n\n"
+    "Look, I'm a fisherman.\n\n"
+    "I'm not a detective.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FEC, map_05_state_03_08E50FEC, 0x08E50FF8, 0x08F0404C)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Excellent! I was getting\n"
-      "bored of the Neo Ghouls!\n\n"
-      "Prepare to be swamped!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Excellent! I was getting\n"
+    "bored of the Neo Ghouls!\n\n"
+    "Prepare to be swamped!\n\n"
+)
   DUEL(DUELIST_MAKO_062)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E50FF8, map_05_state_03_08E50FF8, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
-  PORTRAIT(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You are a worthy adversary!\n\n"
-  )
+  TALK(PORTRAIT_MAKO, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You are a worthy adversary!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

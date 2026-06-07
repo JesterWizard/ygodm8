@@ -18,16 +18,12 @@ LOAD_SPRITE(11, SPRITE_YUGI_UNUSED)
 LOAD_SPRITE(12, SPRITE_YUGI_UNUSED)
 LOAD_SPRITE(13, SPRITE_YUGI)
 LOAD_SPRITE(14, SPRITE_JOEY)
-PORTRAIT(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_DUKE, EXPRESSION_DUKE_TEETH_GRITTED, PORTRAIT_POSITION_AUTO,
     "...And that's what happened.\n\n"
 )
 PLAY_MUSIC(MUSIC_272)
-REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
-PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+REACTION(REACTION_ELLIPSIS, OBJECT_0 | SPRITE_YUGI | SPRITE_JOEY)
+TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO,
     "Big brother... I saw this\n"
     "look on Tristan's face...\n\n"
     "It was as if he was saying\n"
@@ -36,9 +32,7 @@ TEXT
     "I wonder if he's going to be\n"
     "okay...\n\n"
 )
-PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO)
-TEXT
-(
+TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_POSITION_AUTO,
     "Don't worry about a thing,\n"
     "Serenity.\n\n"
     "Tristan's our friend.\n"
@@ -52,27 +46,23 @@ TEXT
 SET_FLAG(EVENT_FLAG_SEARCHING_FOR_ROBOT_TRISTAN)
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD98, map_06_state_10_08E5CD98, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I bet Tristan ran off on\n"
-      "purpose!\n\n"
-      "That's the only way Serenity\n"
-      "would pay attention to him\n\n"
-      "instead of me!\n\n"
-      "...N-no, he wouldn't do\n"
-      "that. He's not that type of\n\n"
-      "guy.\n\n"
-  )
+TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I bet Tristan ran off on\n"
+    "purpose!\n\n"
+    "That's the only way Serenity\n"
+    "would pay attention to him\n\n"
+    "instead of me!\n\n"
+    "...N-no, he wouldn't do\n"
+    "that. He's not that type of\n\n"
+    "guy.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CD8C, map_06_state_10_08E5CD8C, 0x08F04040, 0x08F04040)
-PORTRAIT(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Where could Tristan have\n"
-      "gone?\n\n"
-  )
+TALK(PORTRAIT_SERENITY, EXPRESSION_SERENITY_SAD, PORTRAIT_POSITION_AUTO,
+    "Where could Tristan have\n"
+    "gone?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

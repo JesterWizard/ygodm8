@@ -8,71 +8,59 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5CBB8, map_06_state_01_08E5CBB8, 0x08F04040, 0x08F
   LOAD_SPRITE(1, SPRITE_TRISTAN)
   LOAD_SPRITE(2, SPRITE_DUKE)
   LOAD_SPRITE(3, SPRITE_LUCKY)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yo, {PLAYER}!\n\n"
-      "I heard from Tea. I know you\n"
-      "can win!\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Yo, {PLAYER}!\n\n"
+    "I heard from Tea. I know you\n"
+    "can win!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBC4, map_06_state_01_08E5CBC4, 0x08E5CBD0, 0x08F0404C)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You want to duel me?\n\n"
-      "Sure thing! Let's duel!\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You want to duel me?\n\n"
+    "Sure thing! Let's duel!\n\n"
+)
   DUEL(DUELIST_TRISTAN_123)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBD0, map_06_state_01_08E5CBD0, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
-  PORTRAIT(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "If you're ever in the mood\n"
-      "for competition...\n\n"
-      "You know where to find me.\n\n"
-  )
+  TALK(PORTRAIT_TRISTAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "If you're ever in the mood\n"
+    "for competition...\n\n"
+    "You know where to find me.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBDC, map_06_state_01_08E5CBDC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hi, {PLAYER}.\n\n"
-      "Tea told me what's up..\n"
-      "You'll do awesome.\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Hi, {PLAYER}.\n\n"
+    "Tea told me what's up..\n"
+    "You'll do awesome.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBE8, map_06_state_01_08E5CBE8, 0x08E5CBF4, 0x08F0404C)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I don't really consider\n"
-      "myself a duelist...\n\n"
-      "But I can duel better than\n"
-      "that loser Tristan.\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I don't really consider\n"
+    "myself a duelist...\n\n"
+    "But I can duel better than\n"
+    "that loser Tristan.\n\n"
+)
   DUEL(DUELIST_DUKE_124)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5CBF4, map_06_state_01_08E5CBF4, 0x08F04040, 0x08F04040)
   PLAY_MUSIC(MUSIC_GAME_SHOP)
-  PORTRAIT(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Duel Monsters is a pretty\n"
-      "deep game, isn't it?\n\n"
-  )
+  TALK(PORTRAIT_DUKE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Duel Monsters is a pretty\n"
+    "deep game, isn't it?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

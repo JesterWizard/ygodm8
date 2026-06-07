@@ -9,30 +9,26 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C74, map_26_state_05_08EA3C74, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_JEAN_CLAUDE_MAGNUM)
   LOAD_SPRITE(3, SPRITE_RICH_HUSBAND)
   LOAD_SPRITE(4, SPRITE_RICHE_WIFE)
-  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It seems you found what you\n"
-      "were looking for.\n\n"
-  )
+  TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "It seems you found what you\n"
+    "were looking for.\n\n"
+)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
-  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(SPRITE_MAI, DIRECTION_LEFT, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C80, map_26_state_05_08EA3C80, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I'm the Hollywood heartthrob\n"
-      "Jean Claude Magnum, the\n\n"
-      "biggest action hero in the\n"
-      "world.\n\n"
-      "But Mai Valentine still\n"
-      "won't marry me...\n\n"
-  )
+  TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO,
+    "I'm the Hollywood heartthrob\n"
+    "Jean Claude Magnum, the\n\n"
+    "biggest action hero in the\n"
+    "world.\n\n"
+    "But Mai Valentine still\n"
+    "won't marry me...\n\n"
+)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -41,13 +37,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA3C80, map_26_state_05_08EA3C80, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C8C, map_26_state_05_08EA3C8C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Without Mai's hand in\n"
-      "marriage on the line...\n\n"
-      "There's no point in dueling.\n\n"
-  )
+  TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Without Mai's hand in\n"
+    "marriage on the line...\n\n"
+    "There's no point in dueling.\n\n"
+)
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)

@@ -10,13 +10,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34DF0, map_00_state_15_08E34DF0, 0x08F04040, 0x08F
   LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_1)
   LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_2)
   LOAD_SPRITE(5, SPRITE_ROBA_BROTHER_3)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We must make our way to\n"
-      "Pegasus's island.\n\n"
-      "We must thwart Reshef the\n"
-      "Dark Being.\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "We must make our way to\n"
+    "Pegasus's island.\n\n"
+    "We must thwart Reshef the\n"
+    "Dark Being.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

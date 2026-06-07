@@ -9,110 +9,86 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDA58, map_59_state_01_08EFDA58, 0x08EFDA64, 0x08F
   PLAY_MUSIC(MUSIC_EGYPT)
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
-  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_1)
-  MOVE_OBJECT(1, DIRECTION_RIGHT, 16, 0)
+  REACTION(REACTION_EXCLAMATION_MARK, SPRITE_ODION)
+  MOVE_OBJECT(SPRITE_ODION, DIRECTION_RIGHT, 16, 0)
   MOVE_OBJECT(0, DIRECTION_LEFT, 16, 0)
   MOVE_OBJECT(13, DIRECTION_LEFT, 16, 0)
   MOVE_OBJECT(14, DIRECTION_LEFT, 16, 0)
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Ah! It has been too long!\n\n"
-      "Greetings, Pharaoh!\n"
-      "Welcome, powerful duelists!\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Heheh, powerful duelists,\n"
-      "huh?\n\n"
-      "I love hearin' that every\n"
-      "time!\n\n"
-      "Odion, how are ya?\n\n"
-  )
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I am well, as you can see.\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Hahaha! Yeah, you're lookin'\n"
-      "good.\n\n"
-  )
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "My friends, what brings you\n"
-      "here?\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "We're here to see Marik.\n\n"
-      "We have to talk to him.\n\n"
-  )
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Ah! It has been too long!\n\n"
+    "Greetings, Pharaoh!\n"
+    "Welcome, powerful duelists!\n\n"
+)
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Heheh, powerful duelists,\n"
+    "huh?\n\n"
+    "I love hearin' that every\n"
+    "time!\n\n"
+    "Odion, how are ya?\n\n"
+)
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I am well, as you can see.\n\n"
+)
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Hahaha! Yeah, you're lookin'\n"
+    "good.\n\n"
+)
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "My friends, what brings you\n"
+    "here?\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "We're here to see Marik.\n\n"
+    "We have to talk to him.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_272)
-  REACTION(REACTION_ELLIPSIS, OBJECT_1)
+  REACTION(REACTION_ELLIPSIS, SPRITE_ODION)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It is most unfortunate,\n"
-      "but...\n\n"
-      "I cannot permit you to see\n"
-      "him.\n\n"
-  )
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "It is most unfortunate,\n"
+    "but...\n\n"
+    "I cannot permit you to see\n"
+    "him.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
   REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
   DELAY(16)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "That isn't the answer we're\n"
-      "lookin' for.\n\n"
-      "{PLAYER}, that's not cool,\n"
-      "right?\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "That isn't the answer we're\n"
+    "lookin' for.\n\n"
+    "{PLAYER}, that's not cool,\n"
+    "right?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFDA64, map_59_state_01_08EFDA64, 0x08EFDA70, 0x08EFDA7C)
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{CARD_1}Let's come back later.\n"
-      "Let's decide in a duel.{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "{CARD_1}Let's come back later.\n"
+    "Let's decide in a duel.{CARD_2}\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFDA70, map_59_state_01_08EFDA70, 0x08EFDA94, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Wha... Come back later?!\n\n"
-      "We don't have time!\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Joey, {PLAYER} knows that.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "Wha... Come back later?!\n\n"
+    "We don't have time!\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Joey, {PLAYER} knows that.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFDA94, map_59_state_01_08EFDA94, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Let them enter, Odion.\n\n"
-  )
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Let them enter, Odion.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -120,27 +96,21 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDA94, map_59_state_01_08EFDA94, 0x08F04040, 0x08F
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "M-master Marik... Are you\n"
-      "certain?\n\n"
-  )
-  PORTRAIT(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Of course. I don't mind.\n\n"
-  )
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "M-master Marik... Are you\n"
+    "certain?\n\n"
+)
+  TALK(PORTRAIT_MARIK, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Of course. I don't mind.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   DELAY(8)
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Please forgive my rudeness.\n"
-      "Please enter.\n\n"
-  )
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Please forgive my rudeness.\n"
+    "Please enter.\n\n"
+)
   WALK_OBJECT_X(1, 61)
   WALK_OBJECT_Y(1, 24)
   SHOW_OBJECT(1, 128, 96, 0, 0, 0)
@@ -160,35 +130,29 @@ EVENT_SCRIPT_REPLACEMENT(0x08EFDA94, map_59_state_01_08EFDA94, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFDA7C, map_59_state_01_08EFDA7C, 0x08EFDA88, 0x08F0404C)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah, that simplifies\n"
-      "things.\n\n"
-  )
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I see that you are unwilling\n"
-      "to leave.\n\n"
-      "I guess it cannot be helped.\n\n"
-      "I, Odion, will not allow you\n"
-      "to disturb Master Marik.\n\n"
-      "Let's duel!\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Yeah, that simplifies\n"
+    "things.\n\n"
+)
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I see that you are unwilling\n"
+    "to leave.\n\n"
+    "I guess it cannot be helped.\n\n"
+    "I, Odion, will not allow you\n"
+    "to disturb Master Marik.\n\n"
+    "Let's duel!\n\n"
+)
   DUEL(DUELIST_ODION_157)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EFDA88, map_59_state_01_08EFDA88, 0x08EFDA94, 0x08F04040)
   PLAY_MUSIC(MUSIC_EGYPT)
-  PORTRAIT(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Gah! What strength and\n"
-      "determination... Why do you\n\n"
-      "need to speak with Master\n"
-      "Marik so urgently?\n\n"
-  )
+  TALK(PORTRAIT_ODION, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Gah! What strength and\n"
+    "determination... Why do you\n\n"
+    "need to speak with Master\n"
+    "Marik so urgently?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

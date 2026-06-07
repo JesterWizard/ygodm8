@@ -67,14 +67,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E4D1B0, map_04_state_04_08E4D1B0, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E4D1BC, map_04_state_04_08E4D1BC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "It's a little too bright out\n"
-      "here.\n\n"
-      "I'll make my way back to the\n"
-      "graveyard. Home sweet home.\n\n"
-  )
+  TALK(PORTRAIT_BONZ, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "It's a little too bright out\n"
+    "here.\n\n"
+    "I'll make my way back to the\n"
+    "graveyard. Home sweet home.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(3, 0)

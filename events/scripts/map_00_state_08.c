@@ -26,14 +26,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C10, map_00_state_08_08E34C10, 0x08F04040, 0x08F
   FADE_MUSIC(2)
   DELAY(32)
   PLAY_MUSIC(MUSIC_ISHIZU_ISHTAR)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "I see you have obtained the\n"
-      "Millennium Rod.\n\n"
-      "Only two Millennium Items\n"
-      "remain...\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "I see you have obtained the\n"
+    "Millennium Rod.\n\n"
+    "Only two Millennium Items\n"
+    "remain...\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(8)
   PLAY_MUSIC(MUSIC_271)
@@ -41,17 +39,15 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C10, map_00_state_08_08E34C10, 0x08F04040, 0x08F
   PLAY_MUSIC(MUSIC_264)
   SCREEN_SHAKE(8)
   DELAY(8)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Reshef the Dark Being's\n"
-      "power grows catastrophic!\n\n"
-      "Time is running out!\n\n"
-      "Please search for the next\n"
-      "Millennium Item.\n\n"
-      "The next Millennium Item\n"
-      "is."
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Reshef the Dark Being's\n"
+    "power grows catastrophic!\n\n"
+    "Time is running out!\n\n"
+    "Please search for the next\n"
+    "Millennium Item.\n\n"
+    "The next Millennium Item\n"
+    "is."
+)
   DELAY(43)
   TEXT
   (
@@ -78,25 +74,23 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C10, map_00_state_08_08E34C10, 0x08F04040, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34C1C, map_00_state_08_08E34C1C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "The Dark Being was\n"
-      "resurrected by Sol\n\n"
-      "Chevalsky...\n\n"
-      "I'm sorry, I meant Pegasus.\n\n"
-      "To imprison Reshef, we need\n"
-      "one more Egyptian God Card.\n\n"
-      "We need the power of The\n"
-      "Winged Dragon of Ra.\n\n"
-      "We must resurrect the card\n"
-      "from stone.\n\n"
-      "Please find the Millennium\n"
-      "Item to restore it.\n\n"
-      "The sixth Millennium Item is\n"
-      "in the Galapagos Islands.\n\n"
-      "Please, you must hurry.\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "The Dark Being was\n"
+    "resurrected by Sol\n\n"
+    "Chevalsky...\n\n"
+    "I'm sorry, I meant Pegasus.\n\n"
+    "To imprison Reshef, we need\n"
+    "one more Egyptian God Card.\n\n"
+    "We need the power of The\n"
+    "Winged Dragon of Ra.\n\n"
+    "We must resurrect the card\n"
+    "from stone.\n\n"
+    "Please find the Millennium\n"
+    "Item to restore it.\n\n"
+    "The sixth Millennium Item is\n"
+    "in the Galapagos Islands.\n\n"
+    "Please, you must hurry.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -106,14 +100,12 @@ EVENT_SCRIPT_REPLACEMENT(0x08E34C04, map_00_state_08_08E34C04, 0x08E34C10, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34C28, map_00_state_08_08E34C28, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Please. Hurry to the\n"
-      "Galapagos Islands.\n\n"
-      "Reshef the Dark Being will\n"
-      "soon engulf the world in\n\n"
-      "shadows.\n\n"
-  )
+  TALK(PORTRAIT_ISHIZU, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Please. Hurry to the\n"
+    "Galapagos Islands.\n\n"
+    "Reshef the Dark Being will\n"
+    "soon engulf the world in\n\n"
+    "shadows.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

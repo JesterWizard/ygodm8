@@ -12,7 +12,7 @@ EVENT_SCRIPT_REPLACEMENT(0x08E9821C, map_24_state_05_08E9821C, 0x08F04040, 0x08F
       "It's so awesome that the Neo\n"
       "Ghouls are gone.\n\n"
   )
-  MOVE_OBJECT(1, DIRECTION_UP, 0, 0)
+  MOVE_OBJECT(SPRITE_TAKESHI, DIRECTION_UP, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

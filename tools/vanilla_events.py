@@ -928,7 +928,129 @@ C_CONSTANTS = load_c_constants([
     ROOT / "include/overworld.h",
     ROOT / "include/constants/music_ids.h",
     ROOT / "include/constants/event_cg_generated.h",
+    ROOT / "events/scripts/event_object_slots.h",
 ])
+
+
+def load_script_constants(script_path: Path) -> dict[str, int]:
+    constants = dict(C_CONSTANTS)
+    constants.update(load_c_constants([script_path]))
+    return constants
+
+
+SPRITE_CONSTANT_NAMES = frozenset(
+    name for name in C_CONSTANTS if name.startswith("SPRITE_")
+)
+OBJECT_SLOT_COUNT = 16
+OBJECT_ID_MACROS = frozenset({
+    "MOVE_OBJECT",
+    "SET_OBJECT_POSITION",
+    "SHOW_OBJECT",
+    "WALK_OBJECT_X",
+    "WALK_OBJECT_Y",
+    "SLIDE_OBJECT",
+})
+SPRITE_IDENTIFIER_PATTERN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+
+
+class ObjectSlotState:
+    def __init__(self) -> None:
+        self.slot_to_sprite: dict[int, int] = {}
+
+    def assign(self, slot: int, sprite_id: int) -> None:
+        if not 0 <= slot < OBJECT_SLOT_COUNT:
+            raise ValueError(f"object slot must be 0..{OBJECT_SLOT_COUNT - 1}, got {slot}")
+        self.slot_to_sprite[slot] = sprite_id
+
+    def resolve_object_slot(
+        self,
+        arg: str,
+        constants: dict[str, int] | None,
+        path: Path,
+        macro_name: str,
+    ) -> int:
+        name = arg.strip()
+        if (
+            SPRITE_IDENTIFIER_PATTERN.fullmatch(name)
+            and name in SPRITE_CONSTANT_NAMES
+            and (constants is None or name in constants or name in C_CONSTANTS)
+        ):
+            sprite_id = parse_c_value(name, constants)
+            slots = sorted(
+                slot for slot, bound_sprite in self.slot_to_sprite.items()
+                if bound_sprite == sprite_id
+            )
+            if not slots:
+                raise ValueError(
+                    f"{path}: {macro_name} references {name} but no prior LOAD_SPRITE assigned it"
+                )
+            if len(slots) > 1:
+                raise ValueError(
+                    f"{path}: {macro_name} references {name} on multiple slots {slots}; "
+                    "use an explicit slot id"
+                )
+            return slots[0]
+        return parse_c_value(arg, constants)
+
+    def resolve_object_mask(
+        self,
+        arg: str,
+        constants: dict[str, int] | None,
+        path: Path,
+        macro_name: str,
+    ) -> int:
+        value = arg.strip()
+        tree = ast.parse(value, mode="eval")
+
+        def eval_node(node: ast.AST) -> int:
+            if isinstance(node, ast.Expression):
+                return eval_node(node.body)
+            if isinstance(node, ast.Constant) and isinstance(node.value, int):
+                return node.value
+            if isinstance(node, ast.Name):
+                if node.id in SPRITE_CONSTANT_NAMES:
+                    slot = self.resolve_object_slot(node.id, constants, path, macro_name)
+                    return 1 << slot
+                if constants and node.id in constants:
+                    return constants[node.id]
+                if node.id in C_CONSTANTS:
+                    return C_CONSTANTS[node.id]
+                raise ValueError(f"unsupported C identifier {node.id!r}")
+            if isinstance(node, ast.BinOp):
+                left = eval_node(node.left)
+                right = eval_node(node.right)
+                if isinstance(node.op, ast.BitOr):
+                    return left | right
+                if isinstance(node.op, ast.BitAnd):
+                    return left & right
+                if isinstance(node.op, ast.BitXor):
+                    return left ^ right
+                if isinstance(node.op, ast.LShift):
+                    return left << right
+                if isinstance(node.op, ast.RShift):
+                    return left >> right
+                if isinstance(node.op, ast.Add):
+                    return left + right
+                if isinstance(node.op, ast.Sub):
+                    return left - right
+                raise ValueError(f"unsupported C operator {type(node.op).__name__}")
+            if isinstance(node, ast.UnaryOp):
+                operand = eval_node(node.operand)
+                if isinstance(node.op, ast.UAdd):
+                    return operand
+                if isinstance(node.op, ast.USub):
+                    return -operand
+                if isinstance(node.op, ast.Invert):
+                    return ~operand
+                raise ValueError(f"unsupported C operator {type(node.op).__name__}")
+            raise ValueError(f"unsupported C expression {ast.dump(node, include_attributes=False)}")
+
+        try:
+            return eval_node(tree)
+        except SyntaxError:
+            return parse_c_value(value, constants)
+
+
 OVERWORLD_LOCATION_NAMES = {
     value: name for name, value in C_CONSTANTS.items() if name.startswith("LOCATION_")
 }
@@ -959,32 +1081,138 @@ def split_macro_args(arg_text: str) -> list[str]:
 
 
 def parse_macro_calls(text: str) -> list[tuple[str, list[str]]]:
-    calls: list[tuple[str, list[str]]] = []
-    clean = strip_c_comments(text)
+    return [(name, args) for name, args, _start, _end in find_macro_spans(text)]
+
+
+def find_macro_spans(text: str) -> list[tuple[str, list[str], int, int]]:
+    spans: list[tuple[str, list[str], int, int]] = []
     index = 0
-    while index < len(clean):
-        match = re.search(r"\b([A-Z][A-Z0-9_]*)\s*\(", clean[index:])
+    while index < len(text):
+        if index + 1 < len(text) and text[index] == "/" and text[index + 1] == "/":
+            while index < len(text) and text[index] != "\n":
+                index += 1
+            continue
+        if index + 1 < len(text) and text[index] == "/" and text[index + 1] == "*":
+            index += 2
+            while index + 1 < len(text) and not (text[index] == "*" and text[index + 1] == "/"):
+                index += 1
+            index = min(index + 2, len(text))
+            continue
+        if text[index] in {"'", '"'}:
+            index = scan_quoted_literal(text, index)
+            continue
+        match = re.match(r"\b([A-Z][A-Z0-9_]*)\s*\(", text[index:])
         if not match:
-            break
+            index += 1
+            continue
         name = match.group(1)
-        open_index = index + match.end() - 1
-        p = open_index + 1
+        span_start = index + match.start()
+        open_paren = index + match.end() - 1
+        p = open_paren + 1
         depth = 1
-        while p < len(clean):
-            ch = clean[p]
+        while p < len(text):
+            ch = text[p]
             if ch in {"'", '"'}:
-                p = scan_quoted_literal(clean, p)
+                p = scan_quoted_literal(text, p)
                 continue
-            elif ch == "(":
+            if ch == "(":
                 depth += 1
             elif ch == ")":
                 depth -= 1
                 if depth == 0:
-                    calls.append((name, split_macro_args(clean[open_index + 1 : p])))
+                    args = split_macro_args(text[open_paren + 1 : p])
+                    spans.append((name, args, span_start, p + 1))
                     break
             p += 1
-        index = p
-    return calls
+        index = p + 1 if depth == 0 else index + 1
+    return spans
+
+
+def talk_text_indent(base_indent: str) -> str:
+    return base_indent + "    "
+
+
+def align_talk_text_arg(text_arg: str, text_indent: str) -> str:
+    return "\n".join(
+        text_indent + line.strip() for line in text_arg.splitlines() if line.strip()
+    )
+
+
+def align_talk_macros_in_text(text: str) -> tuple[str, int]:
+    spans = find_macro_spans(text)
+    replacements: list[tuple[int, int, str]] = []
+    count = 0
+    for name, _args, start, end in spans:
+        if name != "TALK":
+            continue
+        macro_text = text[start:end]
+        if "\n" not in macro_text:
+            continue
+        lines = macro_text.split("\n")
+        talk_indent = re.match(r"^(\s*)", lines[0]).group(1)
+        text_indent = talk_text_indent(talk_indent)
+        new_lines = [lines[0]]
+        for line in lines[1:-1]:
+            stripped = line.strip()
+            if stripped:
+                new_lines.append(text_indent + stripped)
+        new_lines.append(talk_indent + lines[-1].strip())
+        replacement = "\n".join(new_lines)
+        if replacement != macro_text:
+            replacements.append((start, end, replacement))
+            count += 1
+
+    if not replacements:
+        return text, 0
+
+    out: list[str] = []
+    pos = 0
+    for start, end, repl in replacements:
+        out.append(text[pos:start])
+        out.append(repl)
+        pos = end
+    out.append(text[pos:])
+    return "".join(out), count
+
+
+def migrate_portrait_text_to_talk(text: str) -> tuple[str, int]:
+    spans = find_macro_spans(text)
+    replacements: list[tuple[int, int, str]] = []
+    count = 0
+    for i in range(len(spans) - 1):
+        name1, args1, start1, end1 = spans[i]
+        name2, _args2, start2, end2 = spans[i + 1]
+        if name1 != "PORTRAIT" or name2 != "TEXT" or len(args1) != 3:
+            continue
+        if text[end1:start2].strip():
+            continue
+        indent_match = re.match(r"(\s*)", text[start1:])
+        indent = indent_match.group(1) if indent_match else ""
+        portrait_part = f"{args1[0]}, {args1[1]}, {args1[2]}"
+        text_args = spans[i + 1][1]
+        if len(text_args) != 1:
+            continue
+        text_arg = text_args[0].strip()
+        if "\n" in text[start2:end2]:
+            text_indent = talk_text_indent(indent)
+            aligned_text = align_talk_text_arg(text_arg, text_indent)
+            replacement = f"{indent}TALK({portrait_part},\n{aligned_text}\n{indent})"
+        else:
+            replacement = f"{indent}TALK({portrait_part}, {text_arg})"
+        replacements.append((start1, end2, replacement))
+        count += 1
+
+    if not replacements:
+        return text, 0
+
+    out: list[str] = []
+    pos = 0
+    for start, end, repl in replacements:
+        out.append(text[pos:start])
+        out.append(repl)
+        pos = end
+    out.append(text[pos:])
+    return "".join(out), count
 
 
 def parse_c_value(value: str, names: dict[str, int] | None = None) -> int:
@@ -1082,16 +1310,44 @@ def macro_has_card_choice(name: str, args: list[str]) -> bool:
         return has_card_choice(parse_text_literal(args[1]))
     if name == "DIALOGUE":
         return has_card_choice(parse_text_literal(args[0]))
+    if name == "TALK":
+        return has_card_choice(parse_text_literal(args[3]))
     return False
 
 
-def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: Path) -> None:
+def append_event_macro(
+    name: str,
+    args: list[str],
+    raw_bytes: list[int],
+    path: Path,
+    constants: dict[str, int] | None = None,
+    slot_state: ObjectSlotState | None = None,
+) -> None:
     def need_args(count: int) -> None:
         if len(args) != count:
             raise ValueError(f"{path}: {name} expected {count} args, got {len(args)}")
 
+    def c_value(arg: str) -> int:
+        return parse_c_value(arg, constants)
+
+    def object_slot(arg: str) -> int:
+        if slot_state is None:
+            return c_value(arg)
+        return slot_state.resolve_object_slot(arg, constants, path, name)
+
+    def object_slot_args(macro_args: list[str]) -> list[int]:
+        if not macro_args:
+            return []
+        resolved = [object_slot(macro_args[0])] + [c_value(arg) for arg in macro_args[1:]]
+        return [value & 0xFF for value in resolved]
+
+    def object_mask(arg: str) -> int:
+        if slot_state is None:
+            return c_value(arg)
+        return slot_state.resolve_object_mask(arg, constants, path, name)
+
     if name == "RAW":
-        raw_bytes.extend(parse_c_value(arg) & 0xFF for arg in args)
+        raw_bytes.extend(c_value(arg) & 0xFF for arg in args)
     elif name == "DIALOGUE":
         need_args(1)
         text = parse_text_literal(args[0])
@@ -1100,7 +1356,7 @@ def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: P
         raw_bytes.extend([0x24, ord("6")])
     elif name == "LANGUAGE_TEXT":
         need_args(2)
-        raw_bytes.extend([0x24, ord("0") + parse_c_value(args[0])])
+        raw_bytes.extend([0x24, ord("0") + c_value(args[0])])
         raw_bytes.extend(encode_text(parse_text_literal(args[1])))
     elif name == "END_LANGUAGE_TEXT":
         need_args(0)
@@ -1127,21 +1383,27 @@ def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: P
         raw_bytes.extend([0x23, ord("3")])
     elif name == "PORTRAIT":
         need_args(3)
-        raw_bytes.extend([0x23, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x23, ord("4"), *(c_value(arg) & 0xFF for arg in args)])
+    elif name == "TALK":
+        need_args(4)
+        raw_bytes.extend([0x23, ord("4"), *(c_value(arg) & 0xFF for arg in args[:3])])
+        raw_bytes.extend([0x24, ord("0")])
+        raw_bytes.extend(encode_text(parse_text_literal(args[3])))
+        raw_bytes.extend([0x24, ord("6")])
     elif name in {"SET_FLAG", "CHECK_FLAG", "CLEAR_FLAG"}:
         need_args(1)
         cmd = {"SET_FLAG": "6", "CHECK_FLAG": "7", "CLEAR_FLAG": "8"}[name]
-        raw_bytes.extend([0x23, ord(cmd), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x23, ord(cmd), c_value(args[0]) & 0xFF])
     elif name == "RESTORE_LIFE_POINTS":
         need_args(0)
         raw_bytes.extend([0x23, ord("9")])
     elif name == "DUEL":
         need_args(1)
-        raw_bytes.extend([0x40, ord("0"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x40, ord("0"), c_value(args[0]) & 0xFF])
     elif name in {"PLAY_MUSIC", "SET_MAP_MUSIC", "STOP_MUSIC", "FADE_MUSIC"}:
         need_args(1)
         cmd = {"PLAY_MUSIC": "3", "SET_MAP_MUSIC": "4", "STOP_MUSIC": "5", "FADE_MUSIC": "6"}[name]
-        music = parse_c_value(args[0])
+        music = c_value(args[0])
         raw_bytes.extend([0x40, ord(cmd), music & 0xFF, (music >> 8) & 0xFF])
     elif name == "START_MENU":
         need_args(0)
@@ -1151,87 +1413,91 @@ def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: P
         raw_bytes.extend([0x40, ord("2")])
     elif name == "MOVE_OBJECT":
         need_args(4)
-        raw_bytes.extend([0x40, ord("7"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x40, ord("7"), *object_slot_args(args)])
     elif name == "STOP_FOOTSTEPS":
         need_args(0)
         raw_bytes.extend([0x40, ord("8")])
     elif name == "SET_OBJECT_POSITION":
         if len(args) == 4:
-            raw_bytes.extend([0x40, ord("9"), *(parse_c_value(arg) & 0xFF for arg in args)])
+            raw_bytes.extend([0x40, ord("9"), *object_slot_args(args)])
         elif len(args) == 5:
-            raw_bytes.extend([0x7C, ord("C"), *(parse_c_value(arg) & 0xFF for arg in args)])
+            raw_bytes.extend([0x7C, ord("C"), *object_slot_args(args)])
         else:
             raise ValueError(f"{path}: {name} expected 4 or 5 args, got {len(args)}")
     elif name == "SHOW_OBJECT":
         if len(args) not in {5, 6}:
             raise ValueError(f"{path}: {name} expected 5 or 6 args, got {len(args)}")
-        raw_bytes.extend([0x5E, ord("0"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x5E, ord("0"), *object_slot_args(args)])
     elif name in {"WALK_OBJECT_X", "WALK_OBJECT_Y"}:
         need_args(2)
         cmd = "1" if name == "WALK_OBJECT_X" else "2"
-        raw_bytes.extend([0x5E, ord(cmd), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x5E, ord(cmd), *object_slot_args(args)])
     elif name == "SLIDE_OBJECT":
         need_args(3)
-        raw_bytes.extend([0x5E, ord("3"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x5E, ord("3"), *object_slot_args(args)])
     elif name == "OBJECT_EFFECT":
         need_args(2)
-        mask = parse_c_value(args[0])
-        raw_bytes.extend([0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, parse_c_value(args[1]) & 0xFF])
+        mask = object_mask(args[0])
+        raw_bytes.extend([0x5E, ord("4"), (mask >> 8) & 0xFF, mask & 0xFF, c_value(args[1]) & 0xFF])
     elif name == "SPECIAL":
         need_args(1)
-        raw_bytes.extend([0x5E, ord("5"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x5E, ord("5"), c_value(args[0]) & 0xFF])
     elif name == "CUTSCENE":
         need_args(1)
-        special = {0: 15, 1: 16, 8: 33, 7: 34}[parse_c_value(args[0])]
+        special = {0: 15, 1: 16, 8: 33, 7: 34}[c_value(args[0])]
         raw_bytes.extend([0x5E, ord("5"), special])
     elif name == "DELAY":
         need_args(1)
-        raw_bytes.extend([0x5E, ord("6"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x5E, ord("6"), c_value(args[0]) & 0xFF])
     elif name in {"ADD_CARD", "REMOVE_CARD"}:
         need_args(1)
-        card = parse_c_value(args[0])
+        card = c_value(args[0])
         raw_bytes.extend([0x5E, ord("7" if name == "ADD_CARD" else "8"), card & 0xFF, (card >> 8) & 0xFF])
     elif name == "CONDITION_CHECK":
         need_args(1)
-        raw_bytes.extend([0x5E, ord("9"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x5E, ord("9"), c_value(args[0]) & 0xFF])
     elif name == "FADE_SCREEN":
         need_args(1)
-        raw_bytes.extend([0x7C, ord("1"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("1"), c_value(args[0]) & 0xFF])
     elif name == "FADE_IN":
         need_args(1)
-        raw_bytes.extend([0x7C, ord("B"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("B"), c_value(args[0]) & 0xFF])
     elif name == "FADE_OUT":
         need_args(1)
-        raw_bytes.extend([0x7C, ord("D"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("D"), c_value(args[0]) & 0xFF])
     elif name == "SCREEN_SHAKE":
         need_args(1)
-        raw_bytes.extend([0x7C, ord("7"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("7"), c_value(args[0]) & 0xFF])
     elif name == "HIDE_PORTRAIT":
         need_args(0)
         raw_bytes.extend([0x7C, ord("3")])
     elif name in {"SWAP_OBJECT_SPRITE", "LOAD_SPRITE"}:
         need_args(2)
-        raw_bytes.extend([0x7C, ord("4"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        slot = c_value(args[0])
+        sprite_id = c_value(args[1])
+        if slot_state is not None:
+            slot_state.assign(slot, sprite_id)
+        raw_bytes.extend([0x7C, ord("4"), slot & 0xFF, sprite_id & 0xFF])
     elif name == "WARP":
         if len(args) not in {3, 4}:
             raise ValueError(f"{path}: {name} expected 3 or 4 args, got {len(args)}")
-        raw_bytes.extend([0x7C, ord("5"), *(parse_c_value(arg) & 0xFF for arg in args)])
+        raw_bytes.extend([0x7C, ord("5"), *(c_value(arg) & 0xFF for arg in args)])
     elif name == "REACTION":
         need_args(2)
-        mask = parse_c_value(args[1])
-        raw_bytes.extend([0x7C, ord("6"), parse_c_value(args[0]) & 0xFF, (mask >> 8) & 0xFF, mask & 0xFF])
+        mask = object_mask(args[1])
+        raw_bytes.extend([0x7C, ord("6"), c_value(args[0]) & 0xFF, (mask >> 8) & 0xFF, mask & 0xFF])
     elif name == "COMMAND_7C_ARG":
         need_args(2)
-        raw_bytes.extend([0x7C, ord("0") + parse_c_value(args[0]), parse_c_value(args[1]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("0") + c_value(args[0]), c_value(args[1]) & 0xFF])
     elif name in {"SHOW_OVERWORLD_GRAPHIC", "SHOW_LARGE_GRAPHIC"}:
         need_args(1)
-        raw_bytes.extend([0x7C, ord("8"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("8"), c_value(args[0]) & 0xFF])
     elif name == "DISPLAY_CG":
         need_args(2)
-        raw_bytes.extend([0x7C, ord("9"), parse_c_value(args[0]) & 0xFF, parse_c_value(args[1]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("9"), c_value(args[0]) & 0xFF, c_value(args[1]) & 0xFF])
     elif name == "HIDE_CG":
         need_args(1)
-        raw_bytes.extend([0x7C, ord("A"), parse_c_value(args[0]) & 0xFF])
+        raw_bytes.extend([0x7C, ord("A"), c_value(args[0]) & 0xFF])
     elif name == "FALLTHROUGH":
         need_args(0)
         raw_bytes.append(0)
@@ -1267,8 +1533,14 @@ def is_map_scene_file(path: Path) -> bool:
     return MAP_SCENE_FILE_PATTERN.fullmatch(path.stem) is not None
 
 
-def compile_linear_map_event(map_name: str, calls: list[tuple[str, list[str]]], path: Path) -> CScriptEntry:
+def compile_linear_map_event(
+    map_name: str,
+    calls: list[tuple[str, list[str]]],
+    path: Path,
+    constants: dict[str, int] | None = None,
+) -> CScriptEntry:
     raw_bytes: list[int] = []
+    slot_state = ObjectSlotState()
     for name, args in calls:
         if name in {
             "MAP_EVENT",
@@ -1282,7 +1554,7 @@ def compile_linear_map_event(map_name: str, calls: list[tuple[str, list[str]]], 
             "END_MERGE",
         }:
             raise ValueError(f"{path}: map enter script {map_name} uses legacy wrapper/branch macros")
-        append_event_macro(name, args, raw_bytes, path)
+        append_event_macro(name, args, raw_bytes, path, constants, slot_state)
     map_id, map_state = parse_map_scene_id(map_name)
     return CScriptEntry(
         map_name,
@@ -1341,13 +1613,15 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
             raise ValueError(f"{path}: {name} expected {count} args, got {len(args)}")
 
     for path in paths:
+        script_constants = load_script_constants(path)
         calls = parse_macro_calls(path.read_text())
         call_index = 0
+        slot_state: ObjectSlotState | None = None
 
         if is_map_scene_file(path):
             enter_calls, call_index = parse_map_scene_enter_calls(calls, path)
             if enter_calls:
-                entries.append(compile_linear_map_event(path.stem, enter_calls, path))
+                entries.append(compile_linear_map_event(path.stem, enter_calls, path, script_constants))
 
         while call_index < len(calls):
             name, args = calls[call_index]
@@ -1359,6 +1633,7 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                 if current is not None:
                     raise ValueError(f"{path}: nested {name}")
                 current = CScriptEntry(args[1], parse_hex(args[0]), args[2], args[3], [])
+                slot_state = ObjectSlotState()
                 call_index += 1
                 continue
             if name == "EVENT_SCRIPT":
@@ -1366,6 +1641,7 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                 if current is not None:
                     raise ValueError(f"{path}: nested {name}")
                 current = CScriptEntry(args[0], None, args[1], args[2], [])
+                slot_state = ObjectSlotState()
                 call_index += 1
                 continue
             if name == "END_EVENT_SCRIPT":
@@ -1374,13 +1650,14 @@ def parse_event_c_sources(paths: list[Path]) -> list[CScriptEntry]:
                     raise ValueError(f"{path}: END_EVENT_SCRIPT without script")
                 entries.append(current)
                 current = None
+                slot_state = None
                 call_index += 1
                 continue
             if current is None:
                 call_index += 1
                 continue
 
-            append_event_macro(name, args, current.raw_bytes, path)
+            append_event_macro(name, args, current.raw_bytes, path, script_constants, slot_state)
             call_index += 1
         if current is not None:
             raise ValueError(f"{path}: unclosed event script {current.name}")
@@ -1997,6 +2274,231 @@ def convert_map_event_source(path: Path, enter_scripts: dict[str, int]) -> str |
     return normalize_map_scene_file("\n".join(out_lines).rstrip() + "\n")
 
 
+OBJECT_MASK_OBJECT_PATTERN = re.compile(r"^OBJECT_(\d+)$")
+OBJECT_MASK_LSHIFT_PATTERN = re.compile(r"^\(\s*1\s*<<\s*(.+?)\s*\)$")
+
+
+def _sprite_name_for_slot(
+    slot: int,
+    slot_to_sprite_name: dict[int, str],
+) -> str | None:
+    sprite_name = slot_to_sprite_name.get(slot)
+    if sprite_name is None:
+        return None
+    if sum(1 for name in slot_to_sprite_name.values() if name == sprite_name) != 1:
+        return None
+    return sprite_name
+
+
+def _slot_from_object_id_arg(arg: str, constants: dict[str, int]) -> int | None:
+    value = arg.strip()
+    if value.startswith("SPRITE_"):
+        return None
+    try:
+        slot = parse_c_value(value, constants)
+    except ValueError:
+        return None
+    if 0 <= slot < OBJECT_SLOT_COUNT:
+        return slot
+    return None
+
+
+def _rewrite_object_id_arg(
+    arg: str,
+    slot_to_sprite_name: dict[int, str],
+    constants: dict[str, int],
+) -> str:
+    slot = _slot_from_object_id_arg(arg, constants)
+    if slot is None:
+        return arg
+    sprite_name = _sprite_name_for_slot(slot, slot_to_sprite_name)
+    return sprite_name if sprite_name is not None else arg
+
+
+def _split_mask_terms(mask: str) -> list[str]:
+    terms: list[str] = []
+    start = 0
+    depth = 0
+    index = 0
+    while index < len(mask):
+        ch = mask[index]
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif ch == "|" and depth == 0:
+            terms.append(mask[start:index].strip())
+            start = index + 1
+        index += 1
+    tail = mask[start:].strip()
+    if tail:
+        terms.append(tail)
+    return terms
+
+
+def _rewrite_mask_term(
+    term: str,
+    slot_to_sprite_name: dict[int, str],
+    constants: dict[str, int],
+) -> str:
+    value = term.strip()
+    if value.startswith("SPRITE_"):
+        return value
+
+    object_match = OBJECT_MASK_OBJECT_PATTERN.fullmatch(value)
+    if object_match is not None:
+        slot = int(object_match.group(1))
+        sprite_name = _sprite_name_for_slot(slot, slot_to_sprite_name)
+        return sprite_name if sprite_name is not None else value
+
+    lshift_match = OBJECT_MASK_LSHIFT_PATTERN.fullmatch(value)
+    if lshift_match is not None:
+        slot = parse_c_value(lshift_match.group(1).strip(), constants)
+        if 0 <= slot < OBJECT_SLOT_COUNT:
+            sprite_name = _sprite_name_for_slot(slot, slot_to_sprite_name)
+            return sprite_name if sprite_name is not None else value
+
+    slot = _slot_from_object_id_arg(value, constants)
+    if slot is not None:
+        sprite_name = _sprite_name_for_slot(slot, slot_to_sprite_name)
+        return sprite_name if sprite_name is not None else value
+
+    return value
+
+
+def _rewrite_mask_arg(
+    arg: str,
+    slot_to_sprite_name: dict[int, str],
+    constants: dict[str, int],
+) -> str:
+    terms = _split_mask_terms(arg)
+    if not terms:
+        return arg
+    rewritten = [
+        _rewrite_mask_term(term, slot_to_sprite_name, constants)
+        for term in terms
+    ]
+    if rewritten == terms:
+        return arg
+    return " | ".join(rewritten)
+
+
+def _format_macro_call(name: str, args: list[str]) -> str:
+    if not args:
+        return f"{name}()"
+    return f"{name}({', '.join(args)})"
+
+
+def _reset_sprite_slot_tracking() -> tuple[ObjectSlotState, dict[int, str]]:
+    return ObjectSlotState(), {}
+
+
+def migrate_sprite_refs_in_text(text: str, constants: dict[str, int]) -> tuple[str, int]:
+    spans = find_macro_spans(text)
+    replacements: list[tuple[int, int, str]] = []
+    slot_state, slot_to_sprite_name = _reset_sprite_slot_tracking()
+    changes = 0
+
+    for name, args, start, end in spans:
+        if name in {"EVENT_SCRIPT_REPLACEMENT", "REPLACE_EVENT_SCRIPT", "EVENT_SCRIPT"}:
+            slot_state, slot_to_sprite_name = _reset_sprite_slot_tracking()
+            continue
+        if name == "END_EVENT_SCRIPT":
+            slot_state, slot_to_sprite_name = _reset_sprite_slot_tracking()
+            continue
+
+        new_args = list(args)
+        changed = False
+
+        if name in {"LOAD_SPRITE", "SWAP_OBJECT_SPRITE"} and len(new_args) == 2:
+            slot_arg = new_args[0].strip()
+            sprite_arg = new_args[1].strip()
+            if slot_arg == "0":
+                new_args[0] = "SLOT_PLAYER"
+                changed = True
+            slot = parse_c_value(new_args[0], constants)
+            sprite_id = parse_c_value(sprite_arg, constants)
+            slot_state.assign(slot, sprite_id)
+            slot_to_sprite_name[slot] = sprite_arg
+
+        elif name in OBJECT_ID_MACROS and new_args:
+            rewritten = _rewrite_object_id_arg(new_args[0], slot_to_sprite_name, constants)
+            if rewritten != new_args[0]:
+                new_args[0] = rewritten
+                changed = True
+
+        elif name == "REACTION" and len(new_args) >= 2:
+            rewritten = _rewrite_mask_arg(new_args[1], slot_to_sprite_name, constants)
+            if rewritten != new_args[1]:
+                new_args[1] = rewritten
+                changed = True
+
+        elif name == "OBJECT_EFFECT" and new_args:
+            rewritten = _rewrite_mask_arg(new_args[0], slot_to_sprite_name, constants)
+            if rewritten != new_args[0]:
+                new_args[0] = rewritten
+                changed = True
+
+        if changed:
+            replacements.append((start, end, _format_macro_call(name, new_args)))
+            changes += 1
+
+    if not replacements:
+        return text, 0
+
+    out: list[str] = []
+    pos = 0
+    for start, end, repl in replacements:
+        out.append(text[pos:start])
+        out.append(repl)
+        pos = end
+    out.append(text[pos:])
+    return "".join(out), changes
+
+
+def ensure_object_slots_include(text: str) -> str:
+    if "event_object_slots.h" in text:
+        return text
+    if "SLOT_PLAYER" not in text:
+        return text
+    marker = '#include "event_macros.h"\n'
+    if marker not in text:
+        return text
+    return text.replace(
+        marker,
+        marker + '#include "event_object_slots.h"\n',
+        1,
+    )
+
+
+def migrate_sprite_refs_in_file(path: Path) -> int:
+    constants = load_script_constants(path)
+    original = path.read_text()
+    migrated, changes = migrate_sprite_refs_in_text(original, constants)
+    migrated = ensure_object_slots_include(migrated)
+    if migrated != original:
+        path.write_text(migrated)
+    return changes
+
+
+def migrate_sprite_refs_in_dir(scripts_dir: Path) -> list[tuple[str, int]]:
+    results: list[tuple[str, int]] = []
+    for path in sorted(scripts_dir.glob("map_*_state_*.c")):
+        changes = migrate_sprite_refs_in_file(path)
+        if changes:
+            results.append((str(path), changes))
+    return results
+
+
+def cmd_migrate_sprite_refs(args: argparse.Namespace) -> None:
+    scripts_dir = Path(args.scripts_dir)
+    results = migrate_sprite_refs_in_dir(scripts_dir)
+    total = sum(changes for _, changes in results)
+    for path, changes in results:
+        print(f"migrated {changes} macro(s) in {path}")
+    print(f"migrated {total} macro(s) across {len(results)} file(s)")
+
+
 def migrate_map_event_files(scripts_dir: Path, catalog_path: Path) -> list[str]:
     enter_scripts = parse_catalog_enter_scripts(catalog_path)
     changed: list[str] = []
@@ -2432,7 +2934,51 @@ def render_c_script(entry: dict[str, Any], scene_id: str) -> str:
     for step in entry.get("steps", []):
         raw_from_steps.extend(bytes_from_yaml(step.get("raw", [])))
     if raw_from_steps == bytes_from_yaml(entry.get("raw_bytes", [])):
-        lines.extend(f"  {step_macro(step)}" for step in entry.get("steps", []))
+        steps = entry.get("steps", [])
+        index = 0
+        while index < len(steps):
+            step = steps[index]
+            if (
+                step.get("type") == "portrait"
+                and index + 1 < len(steps)
+                and steps[index + 1].get("type") == "dialogue"
+            ):
+                next_step = steps[index + 1]
+                portrait_args = [
+                    step.get("portrait_id"),
+                    step.get("expression"),
+                    step.get("position"),
+                ]
+                text = str(next_step.get("text", ""))
+                combined_raw = [0x23, ord("4")] + [int(arg) & 0xFF for arg in portrait_args]
+                combined_raw.extend([0x24, ord("0")])
+                combined_raw.extend(encode_text(text))
+                combined_raw.extend([0x24, ord("6")])
+                actual_raw = bytes_from_yaml(step.get("raw", [])) + bytes_from_yaml(next_step.get("raw", []))
+                if actual_raw == combined_raw:
+                    text_arg = c_string(text)
+                    if "\n" in text_arg:
+                        text_indent = talk_text_indent("  ")
+                        aligned_text = align_talk_text_arg(text_arg, text_indent)
+                        lines.append(
+                            "  TALK("
+                            + ", ".join(str(arg) for arg in portrait_args)
+                            + ",\n"
+                            + aligned_text
+                            + "\n  )"
+                        )
+                    else:
+                        lines.append(
+                            "  TALK("
+                            + ", ".join(str(arg) for arg in portrait_args)
+                            + ", "
+                            + text_arg
+                            + ")"
+                        )
+                    index += 2
+                    continue
+            lines.append(f"  {step_macro(step)}")
+            index += 1
     else:
         lines.append("  " + raw_macro(entry.get("raw_bytes", [])))
     lines.extend(["END_EVENT_SCRIPT()", ""])
@@ -2489,6 +3035,7 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define PAGE_BREAK()
 #define CHOICE()
 #define PORTRAIT(portrait_id, expression, position)
+#define TALK(portrait_id, expression, position, text)
 #define HIDE_PORTRAIT()
 #define SET_FLAG(flag)
 #define CHECK_FLAG(flag)
@@ -2627,6 +3174,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     test_c = subparsers.add_parser("test-c", help="validate event C macro files")
     test_c.add_argument("inputs", nargs="*")
     test_c.set_defaults(func=cmd_test_c)
+
+    migrate_sprite_refs = subparsers.add_parser(
+        "migrate-sprite-refs",
+        help="rewrite object slot ids to SPRITE_* names where unambiguous",
+    )
+    migrate_sprite_refs.add_argument("--scripts-dir", default="events/scripts")
+    migrate_sprite_refs.set_defaults(func=cmd_migrate_sprite_refs)
 
     migrate_map_events = subparsers.add_parser(
         "migrate-map-events",

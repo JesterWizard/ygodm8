@@ -14,14 +14,12 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEAE4, map_33_state_01_08EBEAE4, 0x08EBEAF0, 0x08F0404C)
   PLAY_MUSIC(MUSIC_402)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Those drawn by the\n"
-      "Millennium Item...\n\n"
-      "Prove your worth at this\n"
-      "fortress of the ancients!\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Those drawn by the\n"
+    "Millennium Item...\n\n"
+    "Prove your worth at this\n"
+    "fortress of the ancients!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_Y(0, 64)
@@ -41,11 +39,9 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEAF0, map_33_state_01_08EBEAF0, 0x08EBEAFC, 0x08EBEB08)
   PLAY_MUSIC(MUSIC_402)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Impressive. Take this item.\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Impressive. Take this item.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_316)
@@ -60,46 +56,36 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEAF0, map_33_state_01_08EBEAF0, 0x08EBEAFC, 0x08E
   PLAY_MUSIC(MUSIC_280)
   SHOW_OBJECT(2, 60, 54, 0, 1, 0)
   DELAY(16)
-  PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Oh! This is unbelievable!\n\n"
-      "Who is it? Who's tapping\n"
-      "into my memory?\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT)
-  TEXT
-  (
-      "W-what? It's Sol Chevalsky!\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "There's something wrong!\n\n"
-      "Pegasus is the one with the\n"
-      "Millennium Eye...\n\n"
-      "{PLAYER}, could this be...\n\n"
-  )
-  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "{CARD_1}It's Pegasus!\n"
-      "It's Sol Chevalsky!{CARD_2}\n\n"
-  )
+  TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_SOL_CHEVALSKY_HAPPY, PORTRAIT_LEFT,
+    "Oh! This is unbelievable!\n\n"
+    "Who is it? Who's tapping\n"
+    "into my memory?\n\n"
+)
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_ANGRY, PORTRAIT_LEFT,
+    "W-what? It's Sol Chevalsky!\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_LEFT,
+    "There's something wrong!\n\n"
+    "Pegasus is the one with the\n"
+    "Millennium Eye...\n\n"
+    "{PLAYER}, could this be...\n\n"
+)
+  TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "{CARD_1}It's Pegasus!\n"
+    "It's Sol Chevalsky!{CARD_2}\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEAFC, map_33_state_01_08EBEAFC, 0x08EBEB14, 0x08F04040)
-  PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Pegasus... That name brings\n"
-      "back memories.\n\n"
-      "But my name is now Sol\n"
-      "Chevalsky.\n\n"
-      "I have been, shall we say,\n"
-      "reborn.\n\n"
-  )
+  TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "Pegasus... That name brings\n"
+    "back memories.\n\n"
+    "But my name is now Sol\n"
+    "Chevalsky.\n\n"
+    "I have been, shall we say,\n"
+    "reborn.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -122,41 +108,35 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEB14, map_33_state_01_08EBEB14, 0x08F04250, 0x08F
   PLAY_MUSIC(MUSIC_281)
   OBJECT_EFFECT(OBJECT_2, OBJECT_EFFECT_TELEPORT)
   DELAY(64)
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Sol Chevalsky is Pegasus...\n\n"
-      "Let's get back to Ishizu.\n\n"
-  )
+  TALK(PORTRAIT_YUGI, EXPRESSION_YUGI_SURPRISED, PORTRAIT_LEFT,
+    "Sol Chevalsky is Pegasus...\n\n"
+    "Let's get back to Ishizu.\n\n"
+)
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN4)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB08, map_33_state_01_08EBEB08, 0x08EBEB14, 0x08F04040)
-  PORTRAIT(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
-  TEXT
-  (
-      "Ah, you are very insightful,\n"
-      "my boy.\n\n"
-      "You are exactly right. I am\n"
-      "Sol Chevalsky.\n\n"
-      "The name Pegasus is in the\n"
-      "past. It no longer has\n\n"
-      "anything to do with me.\n\n"
-  )
+  TALK(PORTRAIT_SOL_CHEVELSKY, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
+    "Ah, you are very insightful,\n"
+    "my boy.\n\n"
+    "You are exactly right. I am\n"
+    "Sol Chevalsky.\n\n"
+    "The name Pegasus is in the\n"
+    "past. It no longer has\n\n"
+    "anything to do with me.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB20, map_33_state_01_08EBEB20, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Millennium Items are\n"
-      "believed to attract each\n\n"
-      "other.\n\n"
-      "The Millennium Eye will lead\n"
-      "you to the next one.\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Millennium Items are\n"
+    "believed to attract each\n\n"
+    "other.\n\n"
+    "The Millennium Eye will lead\n"
+    "you to the next one.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -166,13 +146,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EBEAD8, map_33_state_01_08EBEAD8, 0x08EBEAE4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EBEB2C, map_33_state_01_08EBEB2C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You are only allowed to duel\n"
-      "me once.\n\n"
-      "Did you not have to leave\n"
-      "immediately?\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You are only allowed to duel\n"
+    "me once.\n\n"
+    "Did you not have to leave\n"
+    "immediately?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

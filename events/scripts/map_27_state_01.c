@@ -14,15 +14,13 @@ END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F34, map_27_state_01_08EA4F34, 0x08EA4F40, 0x08F0404C)
   PLAY_MUSIC(MUSIC_402)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "To the souls guided here by\n"
-      "the Millennium Item...\n\n"
-      "Prove your worth by\n"
-      "conquering my duel\n\n"
-      "challenge!\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "To the souls guided here by\n"
+    "the Millennium Item...\n\n"
+    "Prove your worth by\n"
+    "conquering my duel\n\n"
+    "challenge!\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   WALK_OBJECT_X(0, 72)
@@ -41,11 +39,9 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA4F34, map_27_state_01_08EA4F34, 0x08EA4F40, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F40, map_27_state_01_08EA4F40, 0x08EA4F4C, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Impressive. Take this item.\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Impressive. Take this item.\n\n"
+)
   SET_FLAG(EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN2)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
@@ -70,28 +66,22 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA4F4C, map_27_state_01_08EA4F4C, 0x08EA4F58, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F58, map_27_state_01_08EA4F58, 0x08EA4F64, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Waaah! W-what's goin' on?\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Sh-Shadi? But, how?\n\n"
-  )
-  PORTRAIT(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "The Millennium Items retain\n"
-      "the memories of their\n\n"
-      "bearers.\n\n"
-      "These memories will guide\n"
-      "the chosen duelists in\n\n"
-      "their quest.\n\n"
-      "Follow them to the salvation\n"
-      "of the world.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "Waaah! W-what's goin' on?\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Sh-Shadi? But, how?\n\n"
+)
+  TALK(PORTRAIT_SHADI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "The Millennium Items retain\n"
+    "the memories of their\n\n"
+    "bearers.\n\n"
+    "These memories will guide\n"
+    "the chosen duelists in\n\n"
+    "their quest.\n\n"
+    "Follow them to the salvation\n"
+    "of the world.\n\n"
+)
   HIDE_PORTRAIT()
   DELAY(16)
   HIDE_PORTRAIT()
@@ -105,42 +95,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA4F58, map_27_state_01_08EA4F58, 0x08EA4F64, 0x08F
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F64, map_27_state_01_08EA4F64, 0x08F04250, 0x08F04040)
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "H-he disappeared...\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Was that Shadi's memory in\n"
-      "the Millennium Key?\n\n"
-  )
-  PORTRAIT(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "W-well, we scored the\n"
-      "Millennium Key!\n\n"
-  )
-  PORTRAIT(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Yeah! Joey, {PLAYER}, we\n"
-      "should go see Ishizu.\n\n"
-  )
+  TALK(PORTRAIT_JOEY, EXPRESSION_JOEY_SWEATDROP, PORTRAIT_POSITION_AUTO,
+    "H-he disappeared...\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Was that Shadi's memory in\n"
+    "the Millennium Key?\n\n"
+)
+  TALK(PORTRAIT_JOEY, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "W-well, we scored the\n"
+    "Millennium Key!\n\n"
+)
+  TALK(PORTRAIT_YUGI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Yeah! Joey, {PLAYER}, we\n"
+    "should go see Ishizu.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F70, map_27_state_01_08EA4F70, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "Millennium Items are\n"
-      "believed to attract each\n\n"
-      "other.\n\n"
-      "The Millennium Key will lead\n"
-      "you to the next item.\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "Millennium Items are\n"
+    "believed to attract each\n\n"
+    "other.\n\n"
+    "The Millennium Key will lead\n"
+    "you to the next item.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -150,13 +130,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08EA4F28, map_27_state_01_08EA4F28, 0x08EA4F34, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA4F7C, map_27_state_01_08EA4F7C, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You are only allowed to duel\n"
-      "me once.\n\n"
-      "Did you not have to leave\n"
-      "immediately?\n\n"
-  )
+  TALK(PORTRAIT_MILLENIUM_GUADIAN, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You are only allowed to duel\n"
+    "me once.\n\n"
+    "Did you not have to leave\n"
+    "immediately?\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

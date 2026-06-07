@@ -16,38 +16,32 @@ EVENT_SCRIPT_REPLACEMENT(0x08E5F8B8, map_07_state_05_08E5F8B8, 0x08E5F8C4, 0x08E
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F8C4, map_07_state_05_08E5F8C4, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "You're going to face\n"
-      "Pegasus?\n\n"
-      "I see... Please be careful,\n"
-      "{PLAYER}.\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "You're going to face\n"
+    "Pegasus?\n\n"
+    "I see... Please be careful,\n"
+    "{PLAYER}.\n\n"
+)
   SET_FLAG(EVENT_FLAG_TOLD_TEA_YOU_WILL_GO_FACE_PEGASUS)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F8D0, map_07_state_05_08E5F8D0, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "{PLAYER}, I know you can\n"
-      "win!\n\n"
-      "Beat Pegasus and rescue\n"
-      "Mokuba!\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "{PLAYER}, I know you can\n"
+    "win!\n\n"
+    "Beat Pegasus and rescue\n"
+    "Mokuba!\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E5F8DC, map_07_state_05_08E5F8DC, 0x08F04040, 0x08F04040)
-  PORTRAIT(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-  TEXT
-  (
-      "What's the point of dueling\n"
-      "me?\n\n"
-      "Pegasus is the one you\n"
-      "really want, {PLAYER}.\n\n"
-  )
+  TALK(PORTRAIT_TEA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
+    "What's the point of dueling\n"
+    "me?\n\n"
+    "Pegasus is the one you\n"
+    "really want, {PLAYER}.\n\n"
+)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
