@@ -67,6 +67,7 @@ typedef struct {
     u16 card_in_hand_3;
     u16 card_in_hand_4;
     u16 card_in_hand_5;
+    u16 opponent_deck_card_id; // When not CARD_NONE, every opponent deck is 40 copies of this card.
 } RuntimeConfig;
 
 /*

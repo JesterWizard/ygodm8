@@ -119,6 +119,16 @@ void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
     }
   }
 
+  if (duelistId != 0 && gRuntimeConfig.opponent_deck_card_id != CARD_NONE) {
+    u16 opponentOverrideDeck[40];
+    u8 i;
+
+    for (i = 0; i < 40; i++)
+      opponentOverrideDeck[i] = gRuntimeConfig.opponent_deck_card_id;
+    InitCardsForDuelDeck(duelist, opponentOverrideDeck);
+    return;
+  }
+
   InitCardsForDuelDeck(duelist, (unsigned short *)deck);
 }
 

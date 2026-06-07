@@ -388,7 +388,7 @@ LYN_REPLACE_CHECK(GetSpellType);
 int GetSpellType__Replacement(u16 cardId) {
   SetCardInfo(cardId);
   if (cardId == JAM_BREEDING_MACHINE || cardId == CHAIN_ENERGY || cardId == WAVE_MOTION_CANNON
-      || cardId == PYRAMID_OF_LIGHT)
+      || cardId == PYRAMID_OF_LIGHT || cardId == SWORDS_OF_REVEALING_LIGHT)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND)
