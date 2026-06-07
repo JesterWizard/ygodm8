@@ -4,293 +4,384 @@
 
 /* map_00_state_10: map 0 state 10 */
 
-LOAD_SPRITE(1, SPRITE_ESPA)
-LOAD_SPRITE(2, SPRITE_ROBA_BROTHER_1)
-LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_2)
-LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_3)
-LOAD_SPRITE(5, SPRITE_SEEKER)
-LOAD_SPRITE(6, SPRITE_NEO_GHOUL)
-LOAD_SPRITE(7, SPRITE_NEO_GHOUL)
-PLAY_MUSIC(MUSIC_407)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Exodia, obliterate!\n\n"
-)
-PLAY_MUSIC(MUSIC_340)
-SHOW_OVERWORLD_GRAPHIC(GRAPHIC_EXODIA_ATTACK_UPPER_RIGHT)
-DELAY(16)
-TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Waaaaah!\n\n"
-)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(SPRITE_ROBA_BROTHER_1, 3, 21)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(SPRITE_ROBA_BROTHER_2, 3, 21)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(SPRITE_ROBA_BROTHER_3, 3, 11)
-MOVE_OBJECT(SPRITE_ESPA, DIRECTION_RIGHT, 69, 0)
-WALK_OBJECT_Y(SPRITE_ESPA, 36)
-WALK_OBJECT_X(SPRITE_ESPA, 76)
-WALK_OBJECT_Y(SPRITE_ESPA, 21)
-WALK_OBJECT_X(SPRITE_ESPA, 84)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Are you all right?\n\n"
-)
-TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Big brother!\n\n"
-)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Kukuku... Another victim\n"
-    "arrives.\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-WALK_OBJECT_X(SPRITE_ESPA, 76)
-DELAY(8)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Nobody gets away with\n"
-    "picking on my brothers!\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-WALK_OBJECT_Y(0, 62)
-WALK_OBJECT_X(0, 49)
-WALK_OBJECT_Y(0, 44)
-WALK_OBJECT_Y(13, 62)
-WALK_OBJECT_X(13, 55)
-WALK_OBJECT_Y(13, 54)
-WALK_OBJECT_Y(14, 62)
-WALK_OBJECT_X(14, 43)
-WALK_OBJECT_Y(14, 54)
-DELAY(16)
-MOVE_OBJECT(SPRITE_ESPA, DIRECTION_DOWN, 0, 0)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Hey! You guys are...\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-MOVE_OBJECT(SPRITE_SEEKER, DIRECTION_DOWN, 0, 0)
-DELAY(16)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Kukuku... You've spared me\n"
-    "the trouble of looking for\n\n"
-    "you.\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-PLAY_MUSIC(MUSIC_270)
-REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-DELAY(16)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Kukuku... I won't let you\n"
-    "disrupt Master Keith's\n\n"
-    "plans!\n\n"
-    "I'll topple you like a house\n"
-    "of cards!\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-WALK_OBJECT_Y(SPRITE_SEEKER, 32)
-WALK_OBJECT_X(SPRITE_SEEKER, 49)
-MOVE_OBJECT(SPRITE_SEEKER, DIRECTION_DOWN, 0, 0)
-WALK_OBJECT_X(6, 64)
-WALK_OBJECT_X(7, 64)
-MOVE_OBJECT(SPRITE_ESPA, DIRECTION_LEFT, 0, 0)
-DELAY(16)
-DUEL(DUELIST_SEEKER_063)
-PLAY_MUSIC(MUSIC_407)
-TALK(PORTRAIT_SEEKER, EXPRESSION_SEEKER_DEFEATED, PORTRAIT_POSITION_AUTO,
-    "My... My ultimate deck lost?\n\n"
-)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Come on, Jinzo!\n\n"
-)
-PLAY_MUSIC(MUSIC_333)
-SHOW_OVERWORLD_GRAPHIC(GRAPHIC_JINZO_FULL_ART)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO,
-    "Cyber Energy Shock!\n\n"
-)
-PLAY_MUSIC(MUSIC_339)
-SHOW_OVERWORLD_GRAPHIC(GRAPHIC_JINZO_ATTACK_LEFT)
-DELAY(16)
-TALK(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Gwaaaaaaaaah!\n\n"
-)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(6, 1, 16)
-PLAY_MUSIC(MUSIC_282)
-OBJECT_EFFECT(OBJECT_6, OBJECT_EFFECT_TELEPORT)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(7, 1, 16)
-PLAY_MUSIC(MUSIC_282)
-OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_TELEPORT)
-WALK_OBJECT_Y(SPRITE_ESPA, 32)
-WALK_OBJECT_X(SPRITE_ESPA, 60)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO,
-    "All right, tell us what you\n"
-    "crooks are up to.\n\n"
-)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Kukuku...\n\n"
-    "So you've beaten me. Big\n"
-    "deal.\n\n"
-)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "What?\n\n"
-)
-TALK(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Our plan can no longer be\n"
-    "stopped.\n\n"
-    "The world will fall before\n"
-    "the Neo Ghouls!\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-MOVE_OBJECT(SPRITE_SEEKER, DIRECTION_LEFT, 65, 0)
-MOVE_OBJECT(SPRITE_ESPA, DIRECTION_DOWN, 0, 0)
-HIDE_PORTRAIT()
-FADE_MUSIC(2)
-DELAY(32)
-PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Thanks for the help.\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
-MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
-MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
-DELAY(32)
-MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
-MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
-MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
-DELAY(32)
-MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
-MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
-MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
-DELAY(32)
-MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
-MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
-MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi...\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(8)
-PLAY_MUSIC(MUSIC_271)
-REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-DELAY(8)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Are you looking for the lady\n"
-    "who was here?\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(8)
-PLAY_MUSIC(MUSIC_271)
-REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-DELAY(8)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi... That lady is...\n\n"
-)
-PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi... Oh, sorry. It's a\n"
-    "habit I can't break.\n\n"
-)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't cheat anymore.\n\n"
-)
-TEXT
-(
-    "Anyways, about that lady.\n"
-    "Kaiba chased after her.\n\n"
-    "I think he said her name was\n"
-    "Ishizu.\n\n"
-    "The Neo Ghouls kidnapped\n"
-    "her.\n\n"
-    "I followed after them with\n"
-    "Kaiba, but...\n\n"
-    "I heard my brothers\n"
-    "screaming for help.\n\n"
-    "So I came back here. I hope\n"
-    "Ishizu is okay.\n\n"
-)
-PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Thank you.\n\n"
-    "I know the general area\n"
-    "where they took Ishizu.\n\n"
-)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi... Towards Domino\n"
-    "Station.\n\n"
-)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I think she was taken\n"
-    "somewhere by train.\n\n"
-)
-TEXT
-(
-    "But the Neo Ghouls have shut\n"
-    "down Domino Station.\n\n"
-    "You'll have to get rid of\n"
-    "the Neo Ghouls first.\n\n"
-    "Then you'll be able to move\n"
-    "on.\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-PLAY_MUSIC(MUSIC_272)
-REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "There are many Neo Ghouls\n"
-    "around.\n\n"
-    "There's not enough of us to\n"
-    "make a difference.\n\n"
-    "But I haven't forgotten what\n"
-    "Joey taught me.\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-PLAY_MUSIC(MUSIC_270)
-REACTION(REACTION_QUESTION_MARK, OBJECT_14)
-DELAY(16)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "He told me that the\n"
-    "strongest duelists are the\n\n"
-    "ones that have friends.\n\n"
-    "It's impossible to win\n"
-    "alone, but if we go as a\n\n"
-    "group...\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(8)
-PLAY_MUSIC(MUSIC_271)
-REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
-DELAY(8)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Let's get the word out to\n"
-    "all the other duelists.\n\n"
-    "With their help, we might be\n"
-    "able to beat the Neo\n\n"
-    "Ghouls.\n\n"
-    "If we can free the Town of\n"
-    "Domino from the Neo\n\n"
-    "Ghouls...\n\n"
-    "Domino Station will be\n"
-    "liberated, too.\n\n"
-    "Quick, let's call all the\n"
-    "duelists together!\n\n"
-)
-SET_FLAG(EVENT_FLAG_DEFEATED_SEEKER)
+EVENT_SCRIPT_REPLACEMENT(0x08E34CF4, map_00_state_10_08E34CF4, 0x08E34D0C, 0x08E34D00)
+  LOAD_SPRITE(1, SPRITE_ESPA)
+  LOAD_SPRITE(2, SPRITE_ROBA_BROTHER_1)
+  LOAD_SPRITE(3, SPRITE_ROBA_BROTHER_2)
+  LOAD_SPRITE(4, SPRITE_ROBA_BROTHER_3)
+  LOAD_SPRITE(5, SPRITE_SEEKER)
+  LOAD_SPRITE(6, SPRITE_NEO_GHOUL)
+  LOAD_SPRITE(7, SPRITE_NEO_GHOUL)
+  PLAY_MUSIC(MUSIC_407)
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Exodia, obliterate!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_340)
+  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_EXODIA_ATTACK_UPPER_RIGHT)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Waaaaah!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(2, 3, 21)
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(3, 3, 21)
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(4, 3, 11)
+  MOVE_OBJECT(1, DIRECTION_RIGHT, 69, 0)
+  WALK_OBJECT_Y(1, 36)
+  WALK_OBJECT_X(1, 76)
+  WALK_OBJECT_Y(1, 21)
+  WALK_OBJECT_X(1, 84)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Are you all right?\n\n"
+  )
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Big brother!\n\n"
+  )
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Kukuku... Another victim\n"
+      "arrives.\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  WALK_OBJECT_X(1, 76)
+  DELAY(8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Nobody gets away with\n"
+      "picking on my brothers!\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  WALK_OBJECT_Y(0, 62)
+  WALK_OBJECT_X(0, 49)
+  WALK_OBJECT_Y(0, 44)
+  WALK_OBJECT_Y(13, 62)
+  WALK_OBJECT_X(13, 55)
+  WALK_OBJECT_Y(13, 54)
+  WALK_OBJECT_Y(14, 62)
+  WALK_OBJECT_X(14, 43)
+  WALK_OBJECT_Y(14, 54)
+  DELAY(16)
+  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Hey! You guys are...\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Kukuku... You've spared me\n"
+      "the trouble of looking for\n\n"
+      "you.\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  PLAY_MUSIC(MUSIC_270)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Kukuku... I won't let you\n"
+      "disrupt Master Keith's\n\n"
+      "plans!\n\n"
+      "I'll topple you like a house\n"
+      "of cards!\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  WALK_OBJECT_Y(5, 32)
+  WALK_OBJECT_X(5, 49)
+  MOVE_OBJECT(5, DIRECTION_DOWN, 0, 0)
+  WALK_OBJECT_X(6, 64)
+  WALK_OBJECT_X(7, 64)
+  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+  DELAY(16)
+  DUEL(DUELIST_SEEKER_063)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E34D0C, map_00_state_10_08E34D0C, 0x08E34D18, 0x08E34D24)
+  PLAY_MUSIC(MUSIC_407)
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_SEEKER_DEFEATED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "My... My ultimate deck lost?\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Come on, Jinzo!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_333)
+  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_JINZO_FULL_ART)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Cyber Energy Shock!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_339)
+  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_JINZO_ATTACK_LEFT)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_NEO_GHOUL, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Gwaaaaaaaaah!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(6, 1, 16)
+  PLAY_MUSIC(MUSIC_282)
+  OBJECT_EFFECT(OBJECT_6, OBJECT_EFFECT_TELEPORT)
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(7, 1, 16)
+  PLAY_MUSIC(MUSIC_282)
+  OBJECT_EFFECT(OBJECT_7, OBJECT_EFFECT_TELEPORT)
+  WALK_OBJECT_Y(1, 32)
+  WALK_OBJECT_X(1, 60)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_ANGRY, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "All right, tell us what you\n"
+      "crooks are up to.\n\n"
+  )
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Kukuku...\n\n"
+      "So you've beaten me. Big\n"
+      "deal.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "What?\n\n"
+  )
+  PORTRAIT(PORTRAIT_SEEKER, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Our plan can no longer be\n"
+      "stopped.\n\n"
+      "The world will fall before\n"
+      "the Neo Ghouls!\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  MOVE_OBJECT(5, DIRECTION_LEFT, 65, 0)
+  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
+  HIDE_PORTRAIT()
+  FADE_MUSIC(2)
+  DELAY(32)
+  PLAY_MUSIC(MUSIC_CLOCK_TOWER_SQUARE)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Thanks for the help.\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
+  MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
+  DELAY(32)
+  MOVE_OBJECT(0, DIRECTION_RIGHT, 0, 0)
+  MOVE_OBJECT(13, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(14, DIRECTION_LEFT, 0, 0)
+  DELAY(32)
+  MOVE_OBJECT(0, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(13, DIRECTION_RIGHT, 0, 0)
+  MOVE_OBJECT(14, DIRECTION_RIGHT, 0, 0)
+  DELAY(32)
+  MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
+  MOVE_OBJECT(13, DIRECTION_UP, 0, 0)
+  MOVE_OBJECT(14, DIRECTION_UP, 0, 0)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi...\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(8)
+  PLAY_MUSIC(MUSIC_271)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+  DELAY(8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Are you looking for the lady\n"
+      "who was here?\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(8)
+  PLAY_MUSIC(MUSIC_271)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+  DELAY(8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi... That lady is...\n\n"
+  )
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "{CARD_1}Is that real ESP?\n"
+      "Quit faking!{CARD_2}\n\n"
+  )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E34D18, map_00_state_10_08E34D18, 0x08E34D30, 0x08F04040)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi... Oh, sorry. It's a\n"
+      "habit I can't break.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I don't cheat anymore.\n\n"
+  )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E34D30, map_00_state_10_08E34D30, 0x08E34D3C, 0x08E34D48)
+  TEXT
+  (
+      "Anyways, about that lady.\n"
+      "Kaiba chased after her.\n\n"
+      "I think he said her name was\n"
+      "Ishizu.\n\n"
+      "The Neo Ghouls kidnapped\n"
+      "her.\n\n"
+      "I followed after them with\n"
+      "Kaiba, but...\n\n"
+      "I heard my brothers\n"
+      "screaming for help.\n\n"
+      "So I came back here. I hope\n"
+      "Ishizu is okay.\n\n"
+  )
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "{CARD_1}It's not your fault.\n"
+      "Thanks for the info.{CARD_2}\n\n"
+  )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E34D3C, map_00_state_10_08E34D3C, 0x08E34D54, 0x08F04040)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Thank you.\n\n"
+      "I know the general area\n"
+      "where they took Ishizu.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi... Towards Domino\n"
+      "Station.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I think she was taken\n"
+      "somewhere by train.\n\n"
+  )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08E34D54, map_00_state_10_08E34D54, 0x08F04040, 0x08F04040)
+  TEXT
+  (
+      "But the Neo Ghouls have shut\n"
+      "down Domino Station.\n\n"
+      "You'll have to get rid of\n"
+      "the Neo Ghouls first.\n\n"
+      "Then you'll be able to move\n"
+      "on.\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  PLAY_MUSIC(MUSIC_272)
+  REACTION(REACTION_ELLIPSIS, OBJECT_0 | OBJECT_13 | OBJECT_14)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "There are many Neo Ghouls\n"
+      "around.\n\n"
+      "There's not enough of us to\n"
+      "make a difference.\n\n"
+      "But I haven't forgotten what\n"
+      "Joey taught me.\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  PLAY_MUSIC(MUSIC_270)
+  REACTION(REACTION_QUESTION_MARK, OBJECT_14)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "He told me that the\n"
+      "strongest duelists are the\n\n"
+      "ones that have friends.\n\n"
+      "It's impossible to win\n"
+      "alone, but if we go as a\n\n"
+      "group...\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(8)
+  PLAY_MUSIC(MUSIC_271)
+  REACTION(REACTION_EXCLAMATION_MARK, OBJECT_0 | OBJECT_13 | OBJECT_14)
+  DELAY(8)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Let's get the word out to\n"
+      "all the other duelists.\n\n"
+      "With their help, we might be\n"
+      "able to beat the Neo\n\n"
+      "Ghouls.\n\n"
+      "If we can free the Town of\n"
+      "Domino from the Neo\n\n"
+      "Ghouls...\n\n"
+      "Domino Station will be\n"
+      "liberated, too.\n\n"
+      "Quick, let's call all the\n"
+      "duelists together!\n\n"
+  )
+  SET_FLAG(EVENT_FLAG_DEFEATED_SEEKER)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D48, map_00_state_10_08E34D48, 0x08E34D54, 0x08F04040)
-HIDE_PORTRAIT()
+  HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(0, DIRECTION_LEFT, 4, 0)
   MOVE_OBJECT(13, DIRECTION_LEFT, 4, 0)
@@ -332,23 +423,29 @@ HIDE_PORTRAIT()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D24, map_00_state_10_08E34D24, 0x08E34D30, 0x08F04040)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Fake?\n\n"
-)
-  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Oh, the pipipi thing.\n\n"
-)
-  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Sorry about that. It's a\n"
-    "habit of mine.\n\n"
-    "I haven't cheated since I\n"
-    "dueled Joey.\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Fake?\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Oh, the pipipi thing.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Sorry about that. It's a\n"
+      "habit of mine.\n\n"
+      "I haven't cheated since I\n"
+      "dueled Joey.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D00, map_00_state_10_08E34D00, 0x08F0404C, 0x08F04040)
-CLEAR_FLAG(79)
+  CLEAR_FLAG(79)
   CLEAR_FLAG(78)
   CLEAR_FLAG(182)
   CLEAR_FLAG(102)
@@ -356,37 +453,43 @@ CLEAR_FLAG(79)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D6C, map_00_state_10_08E34D6C, 0x08E34D60, 0x08E34DB4)
-CHECK_FLAG(EVENT_FLAG_ESPA_ROBA_SAID_ISHIZU_IS_AT_THE_EGYPT_EXHIBITION)
+  CHECK_FLAG(EVENT_FLAG_ESPA_ROBA_SAID_ISHIZU_IS_AT_THE_EGYPT_EXHIBITION)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D60, map_00_state_10_08E34D60, 0x08E34D84, 0x08E34DA8)
-CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
+  CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D84, map_00_state_10_08E34D84, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "In order to kick the Neo\n"
-    "Ghouls out of the town...\n\n"
-    "We'll need more duelists on\n"
-    "our side.\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "In order to kick the Neo\n"
+      "Ghouls out of the town...\n\n"
+      "We'll need more duelists on\n"
+      "our side.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DA8, map_00_state_10_08E34DA8, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "{PLAYER}, thanks to all the\n"
-    "duelists you rounded up...\n\n"
-    "We've managed to kick the\n"
-    "Neo Ghouls out of town.\n\n"
-    "And it looks like Domino\n"
-    "Station has been liberated.\n\n"
-)
-  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi...\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "{PLAYER}, thanks to all the\n"
+      "duelists you rounded up...\n\n"
+      "We've managed to kick the\n"
+      "Neo Ghouls out of town.\n\n"
+      "And it looks like Domino\n"
+      "Station has been liberated.\n\n"
+  )
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi...\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -405,53 +508,61 @@ TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DB4, map_00_state_10_08E34DB4, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO,
-    "Pipipi... I think Ishizu is\n"
-    "at the Egypt Exhibition.\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_ESPA_ROBA_EYES_CLOSED, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Pipipi... I think Ishizu is\n"
+      "at the Egypt Exhibition.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D78, map_00_state_10_08E34D78, 0x08E34D90, 0x08E34DC0)
-CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
+  CHECK_FLAG(EVENT_FLAG_FOUND_ALL_ALLIES)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D90, map_00_state_10_08E34D90, 0x08E34D9C, 0x08F0404C)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "A duel? Oh, so you can make\n"
-    "sure your deck's ready?\n\n"
-    "There's nothing wrong with\n"
-    "being careful against the\n\n"
-    "Neo Ghouls.\n\n"
-    "No problem! It'll also test\n"
-    "to see if my deck's ready!\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "A duel? Oh, so you can make\n"
+      "sure your deck's ready?\n\n"
+      "There's nothing wrong with\n"
+      "being careful against the\n\n"
+      "Neo Ghouls.\n\n"
+      "No problem! It'll also test\n"
+      "to see if my deck's ready!\n\n"
+  )
   DUEL(DUELIST_ESPA_ROBA_064)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34D9C, map_00_state_10_08E34D9C, 0x08F04040, 0x08F04040)
-PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
-  TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You've assembled a pretty\n"
-    "decent deck.\n\n"
-    "Let's go and drive out the\n"
-    "Neo Ghouls!\n\n"
-)
+  PLAY_MUSIC(MUSIC_DOMINO_CITY_LIBERATED)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "You've assembled a pretty\n"
+      "decent deck.\n\n"
+      "Let's go and drive out the\n"
+      "Neo Ghouls!\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DC0, map_00_state_10_08E34DC0, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Before we duel, you should\n"
-    "rescue Ishizu first.\n\n"
-)
+  PORTRAIT(PORTRAIT_ESPA_ROBA, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Before we duel, you should\n"
+      "rescue Ishizu first.\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DCC, map_00_state_10_08E34DCC, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "My big brother protects us\n"
       "from bullies!\n\n"
@@ -460,7 +571,7 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DD8, map_00_state_10_08E34DD8, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "Don't worry about the Neo\n"
       "Ghouls.\n\n"
@@ -471,7 +582,7 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E34DE4, map_00_state_10_08E34DE4, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "Espa is really good at\n"
       "dueling and can win without\n\n"

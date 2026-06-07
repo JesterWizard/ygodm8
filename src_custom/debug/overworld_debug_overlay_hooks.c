@@ -2,7 +2,6 @@
 #include "configs/runtime.h"
 #include "debug_save_anywhere.h"
 #include "debug_menu.h"
-#include "event_system.h"
 #include "gba/io_reg.h"
 #include "gfx_reg_buffers.h"
 #include "overworld.h"
@@ -173,10 +172,8 @@ void OverworldOverlay_OnWalkFrame(void) {
 
 void OverworldOverlay_RestoreDisplayRegs(void) {
   REG_WINOUT = 0x3D3F;
-  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE)
-    EventSystem_ApplyEnterFadeBlack();
-  else if (gRuntimeConfig.enable_custom_events != TRUE)
-    EventSystem_ClearEnterFade();
+  REG_BLDCNT = 0;
+  REG_BLDY = 0;
 }
 
 void OverworldOverlay_Refresh(void) {
@@ -205,18 +202,11 @@ void OverworldLoadGraphics__Replacement(void) {
     sub_8044EC8(gPaletteBuffer, 0x10, 0x1FF, 6);
   if (CheckFlag(0xEF))
     sub_8045284(gPaletteBuffer, 0x10, 0xFF);
-  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE)
-    EventSystem_ApplyEnterFadeBlack();
-  else if (gRuntimeConfig.enable_custom_events != TRUE)
-    REG_BLDY = 7;
-  else
-    EventSystem_ClearEnterFade();
+  REG_BLDY = 0;
   WaitForVBlank();
   sub_804EC4C();
   OverworldOverlay_RestoreDisplayRegs();
   OverworldSetRegDispcnt();
-  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE)
-    EventSystem_ApplyEnterFadeBlack();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();
 }
@@ -229,21 +219,13 @@ void sub_8053E34__Replacement(u8 arg0) {
   OverworldSetRegDispcnt();
   REG_BLDCNT = 0xFF;
   REG_WINOUT = 0x3D3E;
-  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE ||
-      gBLDY >= 16 || REG_BLDY >= 16) {
-    EventSystem_ApplyEnterFadeBlack();
-    OverworldSetRegDispcnt();
-    if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
-      OverworldOverlay_OnWalkFrame();
-    return;
-  }
   for (i = 0; i < 16; i++) {
     REG_BLDY = i;
-    gBLDY = i;
     temp = arg0;
     while (--temp != -1)
       sub_804F218();
   }
+  OverworldOverlay_RestoreDisplayRegs();
   OverworldSetRegDispcnt();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_OnWalkFrame();
@@ -270,7 +252,6 @@ void sub_804EEE0__Replacement(void) {
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);
   OverworldOverlay_CommitFrame();
-  EventSystem_ReapplyEnterFadeBlackIfHeld();
 }
 
 LYN_REPLACE_CHECK(sub_804F1E4);
@@ -292,12 +273,6 @@ void sub_804ECA8__Replacement(void) {
 
 LYN_REPLACE_CHECK(sub_804F218);
 void sub_804F218__Replacement(void) {
-  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE) {
-    EventSystem_ApplyEnterFadeBlack();
-    WaitForVBlank();
-    return;
-  }
-
   OverworldOverlay_PrepareFrame();
   CallThumbVoid(0x0804E618);
   CallThumbVoid(0x0804EBE4);

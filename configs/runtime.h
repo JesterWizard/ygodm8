@@ -44,11 +44,6 @@ typedef struct {
     u8 instant_win_with_l_button; // L in duel -> immediate player win.
     u8 enable_surrender_in_duel_b_menu; // B menu 4th option -> forfeit the duel.
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.
-    u8 enable_custom_events; // Custom story/event resolution and author-controlled FADE_IN timing.
-    u8 use_custom_start_map; // When TRUE (and story mode is off), new game uses the custom start map below.
-    u8 custom_start_map_id;
-    u8 custom_start_map_state;
-    u8 custom_start_map_connection;
     u8 enable_debug_menu; // R alone on field overworld opens debug menu.
     u8 enable_ante_card_viewer; // SELECT facing a duelist opens their ante reward card list.
     u8 enable_duelist_deck_viewer; // START facing a duelist opens a read-only deck list viewer.

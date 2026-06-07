@@ -4,78 +4,99 @@
 
 /* map_26_state_01: map 26 state 1 */
 
-LOAD_SPRITE(1, SPRITE_MAI)
-LOAD_SPRITE(2, SPRITE_JEAN_CLAUDE_MAGNUM)
-LOAD_SPRITE(3, SPRITE_RICH_HUSBAND)
-LOAD_SPRITE(4, SPRITE_RICHE_WIFE)
-PLAY_MUSIC(MUSIC_JEAN_CLAUDE_MAGNUM)
-DELAY(16)
-TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Mai, my darling!\n\n"
-    "Please marry me! Be mine,\n"
-    "Mai Valentine!\n\n"
-)
-TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT,
-    "Stop following me!\n\n"
-    "I already told you, I'll\n"
-    "only marry if you beat me\n\n"
-    "in a duel.\n\n"
-)
-TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Okay!\n\n"
-    "Then today's the day you'll\n"
-    "be marching with me to the\n\n"
-    "chapel!\n\n"
-)
-FADE_SCREEN(4)
-TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT,
-    "Harpie Lady Sisters!\n\n"
-)
-PLAY_MUSIC(MUSIC_333)
-SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_FULL_ART)
-DELAY(16)
-TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT,
-    "Harpies' Triangle Ecstasy!\n\n"
-)
-PLAY_MUSIC(MUSIC_341)
-SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_ATTACK)
-DELAY(16)
-PLAY_MUSIC(MUSIC_284)
-SLIDE_OBJECT(SPRITE_JEAN_CLAUDE_MAGNUM, 1, 16)
-DELAY(32)
-TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "Urrrrggggh..\n\n"
-    "M-my, my, my Mai, you are\n"
-    "excellent, as always!\n\n"
-    "But today, I'm better than\n"
-    "usual!\n\n"
-    "I've constructed a new\n"
-    "perfect absolute ultimate\n\n"
-    "deck filled with special\n"
-    "unique powerful rare cards!\n\n"
-    "Let's duel again, my\n"
-    "Valentine!\n\n"
-)
-HIDE_PORTRAIT()
-DELAY(16)
-MOVE_OBJECT(SPRITE_JEAN_CLAUDE_MAGNUM, DIRECTION_RIGHT, 16, 0)
-DELAY(16)
-HIDE_PORTRAIT()
-FADE_MUSIC(2)
-DELAY(32)
-PLAY_MUSIC(MUSIC_DOMINO_PIER)
-TALK(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_LEFT,
-    "...I can't deal with this.\n\n"
-)
-SET_FLAG(EVENT_FLAG_SAW_JEAN_CLAUDE_MAGNUM_PROPOSE)
+EVENT_SCRIPT_REPLACEMENT(0x08EA3B90, map_26_state_01_08EA3B90, 0x08EA3B9C, 0x08F04040)
+  LOAD_SPRITE(1, SPRITE_MAI)
+  LOAD_SPRITE(2, SPRITE_JEAN_CLAUDE_MAGNUM)
+  LOAD_SPRITE(3, SPRITE_RICH_HUSBAND)
+  LOAD_SPRITE(4, SPRITE_RICHE_WIFE)
+  PLAY_MUSIC(MUSIC_JEAN_CLAUDE_MAGNUM)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Mai, my darling!\n\n"
+      "Please marry me! Be mine,\n"
+      "Mai Valentine!\n\n"
+  )
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Stop following me!\n\n"
+      "I already told you, I'll\n"
+      "only marry if you beat me\n\n"
+      "in a duel.\n\n"
+  )
+  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Okay!\n\n"
+      "Then today's the day you'll\n"
+      "be marching with me to the\n\n"
+      "chapel!\n\n"
+  )
+  FADE_SCREEN(4)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EA3B9C, map_26_state_01_08EA3B9C, 0x08F04040, 0x08F04040)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Harpie Lady Sisters!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_333)
+  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_FULL_ART)
+  DELAY(16)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Harpies' Triangle Ecstasy!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_341)
+  SHOW_OVERWORLD_GRAPHIC(GRAPHIC_HARPIE_LADY_SISTERS_ATTACK)
+  DELAY(16)
+  PLAY_MUSIC(MUSIC_284)
+  SLIDE_OBJECT(2, 1, 16)
+  DELAY(32)
+  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+  TEXT
+  (
+      "Urrrrggggh..\n\n"
+      "M-my, my, my Mai, you are\n"
+      "excellent, as always!\n\n"
+      "But today, I'm better than\n"
+      "usual!\n\n"
+      "I've constructed a new\n"
+      "perfect absolute ultimate\n\n"
+      "deck filled with special\n"
+      "unique powerful rare cards!\n\n"
+      "Let's duel again, my\n"
+      "Valentine!\n\n"
+  )
+  HIDE_PORTRAIT()
+  DELAY(16)
+  MOVE_OBJECT(2, DIRECTION_RIGHT, 16, 0)
+  DELAY(16)
+  HIDE_PORTRAIT()
+  FADE_MUSIC(2)
+  DELAY(32)
+  PLAY_MUSIC(MUSIC_DOMINO_PIER)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_SWEATDROP, PORTRAIT_LEFT)
+  TEXT
+  (
+      "...I can't deal with this.\n\n"
+  )
+  SET_FLAG(EVENT_FLAG_SAW_JEAN_CLAUDE_MAGNUM_PROPOSE)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BA8, map_26_state_01_08EA3BA8, 0x08EA3BD8, 0x08EA3BC0)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BD8, map_26_state_01_08EA3BD8, 0x08EA3BE4, 0x08F04040)
-MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
   WALK_OBJECT_Y(0, 31)
   WALK_OBJECT_X(0, 96)
   MOVE_OBJECT(0, DIRECTION_UP, 0, 0)
@@ -91,17 +112,21 @@ MOVE_OBJECT(1, DIRECTION_DOWN, 0, 0)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BE4, map_26_state_01_08EA3BE4, 0x08EA3BFC, 0x08EA3BF0)
-TALK(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT,
-    "{CARD_1}Yes\n"
-    "No{CARD_2}\n\n"
-)
+  PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
+  TEXT
+  (
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
+  )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BFC, map_26_state_01_08EA3BFC, 0x08EA3C08, 0x08F0404C)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're a real lifesaver!\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "You're a real lifesaver!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -137,7 +162,7 @@ TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C08, map_26_state_01_08EA3C08, 0x08F04040, 0x08F04040)
-PLAY_MUSIC(MUSIC_DOMINO_PIER)
+  PLAY_MUSIC(MUSIC_DOMINO_PIER)
   SET_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
   PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_JEAN_CLAUDE_MAGNUM_SAD, PORTRAIT_POSITION_AUTO)
   PLAY_MUSIC(MUSIC_DOMINO_PIER)
@@ -157,14 +182,16 @@ PLAY_MUSIC(MUSIC_DOMINO_PIER)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BF0, map_26_state_01_08EA3BF0, 0x08EA3BE4, 0x08F04040)
-TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT,
-    "How can you turn a request\n"
-    "down from a lady?\n\n"
-    "What kind of gentleman are\n"
-    "you!\n\n"
-    "Quit your whining and duel\n"
-    "that Hollywood halfwit!\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT)
+  TEXT
+  (
+      "How can you turn a request\n"
+      "down from a lady?\n\n"
+      "What kind of gentleman are\n"
+      "you!\n\n"
+      "Quit your whining and duel\n"
+      "that Hollywood halfwit!\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_274)
@@ -174,24 +201,26 @@ TALK(PORTRAIT_MAI, EXPRESSION_MAI_ANGRY, PORTRAIT_LEFT,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BC0, map_26_state_01_08EA3BC0, 0x08EA3C2C, 0x08EA3C38)
-CHECK_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
+  CHECK_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C2C, map_26_state_01_08EA3C2C, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're searching for a\n"
-    "Millennium Item?\n\n"
-    "I don't know how I can help\n"
-    "you... Hmm...\n\n"
-    "Actually, there's mysterious\n"
-    "cargo in the ship's hold.\n\n"
-    "Maybe you'll find something\n"
-    "there.\n\n"
-    "I'll leave the hold\n"
-    "unlocked. Consider that as\n\n"
-    "a thank you for saving me.\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "You're searching for a\n"
+      "Millennium Item?\n\n"
+      "I don't know how I can help\n"
+      "you... Hmm...\n\n"
+      "Actually, there's mysterious\n"
+      "cargo in the ship's hold.\n\n"
+      "Maybe you'll find something\n"
+      "there.\n\n"
+      "I'll leave the hold\n"
+      "unlocked. Consider that as\n\n"
+      "a thank you for saving me.\n\n"
+  )
   SET_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -206,12 +235,14 @@ TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C38, map_26_state_01_08EA3C38, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You were looking for a\n"
-    "Millennium Item, right?\n\n"
-    "I hope you can find it in\n"
-    "the ship's hold.\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "You were looking for a\n"
+      "Millennium Item, right?\n\n"
+      "I hope you can find it in\n"
+      "the ship's hold.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
@@ -219,33 +250,35 @@ TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BB4, map_26_state_01_08EA3BB4, 0x08EA3BD8, 0x08EA3BCC)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_JEAN_CLAUDE_MAGNUM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3BCC, map_26_state_01_08EA3BCC, 0x08EA3C2C, 0x08EA3C44)
-CHECK_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
+  CHECK_FLAG(EVENT_FLAG_RICH_SPOUSES_MOVED_OUT_OF_THE_WAY)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C44, map_26_state_01_08EA3C44, 0x08EA3C50, 0x08EA3C68)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C50, map_26_state_01_08EA3C50, 0x08EA3C5C, 0x08F0404C)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "My job is to duel guests on\n"
-    "this cruise.\n\n"
-    "And believe me, I take my\n"
-    "job seriously!\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "My job is to duel guests on\n"
+      "this cruise.\n\n"
+      "And believe me, I take my\n"
+      "job seriously!\n\n"
+  )
   DUEL(DUELIST_MAI_033)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C5C, map_26_state_01_08EA3C5C, 0x08F04040, 0x08F04040)
-PLAY_MUSIC(MUSIC_DOMINO_PIER)
+  PLAY_MUSIC(MUSIC_DOMINO_PIER)
   SET_FLAG(EVENT_FLAG_DEFEATED_MAI)
   TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
     "I lost.\n\n"
@@ -257,12 +290,14 @@ PLAY_MUSIC(MUSIC_DOMINO_PIER)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C68, map_26_state_01_08EA3C68, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I have to duel with the\n"
-    "other guests.\n\n"
-    "Please challenge someone\n"
-    "else, alright?\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I have to duel with the\n"
+      "other guests.\n\n"
+      "Please challenge someone\n"
+      "else, alright?\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(16)
@@ -271,10 +306,12 @@ TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C14, map_26_state_01_08EA3C14, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I already hear wedding\n"
-    "bells!!\n\n"
-)
+  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I already hear wedding\n"
+      "bells!!\n\n"
+  )
   PORTRAIT(PORTRAIT_NONE, EXPRESSION_NEUTRAL, PORTRAIT_LEFT)
   HIDE_PORTRAIT()
   DELAY(8)
@@ -283,12 +320,14 @@ TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C20, map_26_state_01_08EA3C20, 0x08F04040, 0x08F04040)
-TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't think so! This is\n"
-    "not the time!\n\n"
-    "Can't you see that I'm\n"
-    "trying to propose?\n\n"
-)
+  PORTRAIT(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I don't think so! This is\n"
+      "not the time!\n\n"
+      "Can't you see that I'm\n"
+      "trying to propose?\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(8)
   MOVE_OBJECT(2, DIRECTION_RIGHT, 0, 0)
@@ -296,7 +335,7 @@ TALK(PORTRAIT_JEAN_CLAUDE_MAGNUM, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3C98, map_26_state_01_08EA3C98, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "This ship's lady duelist is\n"
       "beautiful, no?\n\n"
@@ -305,7 +344,7 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CA4, map_26_state_01_08EA3CA4, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "Sorry, chap.\n\n"
       "I prefer to watch.\n\n"
@@ -314,7 +353,7 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CB0, map_26_state_01_08EA3CB0, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "My husband has a thing for\n"
       "female duelists.\n\n"
@@ -323,12 +362,12 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CBC, map_26_state_01_08EA3CBC, 0x08EA3CC8, 0x08EA3CE0)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CC8, map_26_state_01_08EA3CC8, 0x08EA3CD4, 0x08F0404C)
-TEXT
+  TEXT
   (
       "A duel against me? How\n"
       "enchanting!\n\n"
@@ -340,7 +379,7 @@ TEXT
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CD4, map_26_state_01_08EA3CD4, 0x08F04040, 0x08F04040)
-PLAY_MUSIC(MUSIC_DOMINO_PIER)
+  PLAY_MUSIC(MUSIC_DOMINO_PIER)
   SET_FLAG(EVENT_FLAG_DEFEATED_RICH_WIFE)
   TEXT
   (
@@ -350,7 +389,7 @@ PLAY_MUSIC(MUSIC_DOMINO_PIER)
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EA3CE0, map_26_state_01_08EA3CE0, 0x08F04040, 0x08F04040)
-TEXT
+  TEXT
   (
       "Sorry, dear. Some other\n"
       "time.\n\n"

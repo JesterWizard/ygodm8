@@ -174,7 +174,7 @@ event-catalog: $(EVENTS_YAML) tools/vanilla_events.py
 	python3 tools/vanilla_events.py catalog $(EVENTS_YAML) --out $(EVENTS_CATALOG)
 
 ifeq ($(CUSTOM_EVENTS),1)
-$(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) events/story_sequence.txt tools/vanilla_events.py
+$(EVENT_REPLACEMENTS_GENERATED): $(EVENTS_C_SRCS) tools/vanilla_events.py
 	@echo "EVENT  $(EVENT_REPLACEMENTS_GENERATED)"
 	@echo "INPUTS $(filter %.c,$?)"
 	@if [ -n "$(EVENTS_C_SRCS)" ]; then \
@@ -202,9 +202,6 @@ event-export-c: $(EVENTS_YAML) tools/vanilla_events.py
 
 event-test: $(EVENTS_C_SRCS) tools/vanilla_events.py $(CG_GENERATED)
 	python3 tools/vanilla_events.py test-c $(EVENTS_C_SRCS)
-
-event-generate-skeleton: tools/vanilla_events.py $(EVENTS_CATALOG)
-	python3 tools/vanilla_events.py generate-story-skeleton
 
 event-validate: $(EVENTS_YAML) baserom.gba tools/vanilla_events.py
 	python3 tools/vanilla_events.py validate $(EVENTS_YAML) --rom baserom.gba

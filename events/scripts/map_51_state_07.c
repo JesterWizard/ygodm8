@@ -4,63 +4,92 @@
 
 /* map_51_state_07: map 51 state 7 */
 
-LOAD_SPRITE(1, SPRITE_MAI)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITH_SPIRIT_CARD)
-PLAY_MUSIC(MUSIC_280)
-SHOW_OBJECT(SPRITE_MAI, 60, 48, 0, 1, 0)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI3)
-CHECK_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITHOUT_SPIRIT_CARD)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "This is as far as you'll\n"
-    "get!\n\n"
-)
-DUEL(DUELIST_MAI_118)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I have the support of my\n"
-    "friends...\n\n"
-    "I'm not a spineless duelist\n"
-    "like you!\n\n"
-)
-PLAY_MUSIC(MUSIC_282)
-OBJECT_EFFECT(SPRITE_MAI, OBJECT_EFFECT_TELEPORT)
-SET_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITHOUT_SPIRIT_CARD)
+EVENT_SCRIPT_REPLACEMENT(0x08EE3F44, map_51_state_07_08EE3F44, 0x08EE3F68, 0x08EE3FBC)
+  LOAD_SPRITE(1, SPRITE_MAI)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITH_SPIRIT_CARD)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE3F68, map_51_state_07_08EE3F68, 0x08EE3F74, 0x08EE3FA4)
+  PLAY_MUSIC(MUSIC_280)
+  SHOW_OBJECT(1, 60, 48, 0, 1, 0)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_MAI3)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE3F74, map_51_state_07_08EE3F74, 0x08EE3F80, 0x08EE3F8C)
+  CHECK_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITHOUT_SPIRIT_CARD)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE3F80, map_51_state_07_08EE3F80, 0x08EE3F98, 0x08EE401C)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "This is as far as you'll\n"
+      "get!\n\n"
+  )
+  DUEL(DUELIST_MAI_118)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT_REPLACEMENT(0x08EE3F98, map_51_state_07_08EE3F98, 0x08EE4004, 0x08F04040)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I have the support of my\n"
+      "friends...\n\n"
+      "I'm not a spineless duelist\n"
+      "like you!\n\n"
+  )
+  PLAY_MUSIC(MUSIC_282)
+  OBJECT_EFFECT(OBJECT_1, OBJECT_EFFECT_TELEPORT)
+  SET_FLAG(EVENT_FLAG_DEFEATED_DARK_MAI_WITHOUT_SPIRIT_CARD)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F8C, map_51_state_07_08EE3F8C, 0x08EE3F98, 0x08EE401C)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "You're back again?\n\n"
-    "Don't make me repeat myself!\n\n"
-    "I won't allow you to get\n"
-    "past me!\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "You're back again?\n\n"
+      "Don't make me repeat myself!\n\n"
+      "I won't allow you to get\n"
+      "past me!\n\n"
+  )
   DUEL(DUELIST_MAI_118)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3FA4, map_51_state_07_08EE3FA4, 0x08EE3FB0, 0x08EE401C)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "I don't care who I'm\n"
-    "dueling!\n\n"
-    "I always win!\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "I don't care who I'm\n"
+      "dueling!\n\n"
+      "I always win!\n\n"
+  )
   DUEL(DUELIST_MAI_118)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3FB0, map_51_state_07_08EE3FB0, 0x08EE3FBC, 0x08F04040)
-TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
-    "Something that can both be\n"
-    "seen and not seen...\n\n"
-    "It's the courage to accept\n"
-    "the pain of defeat.\n\n"
-    "I always pretended to be\n"
-    "strong even though I feared\n\n"
-    "the despair after a\n"
-    "defeat...\n\n"
-    "{PLAYER}... You cut through\n"
-    "the darkness.\n\n"
-    "You are the light in the\n"
-    "hearts of duelists.\n\n"
-)
+  PORTRAIT(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO)
+  TEXT
+  (
+      "Something that can both be\n"
+      "seen and not seen...\n\n"
+      "It's the courage to accept\n"
+      "the pain of defeat.\n\n"
+      "I always pretended to be\n"
+      "strong even though I feared\n\n"
+      "the despair after a\n"
+      "defeat...\n\n"
+      "{PLAYER}... You cut through\n"
+      "the darkness.\n\n"
+      "You are the light in the\n"
+      "hearts of duelists.\n\n"
+  )
   HIDE_PORTRAIT()
   DELAY(16)
   PLAY_MUSIC(MUSIC_393)
@@ -73,22 +102,22 @@ TALK(PORTRAIT_MAI, EXPRESSION_NEUTRAL, PORTRAIT_POSITION_AUTO,
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3FBC, map_51_state_07_08EE3FBC, 0x08F04040, 0x08F04040)
-SET_FLAG(EVENT_FLAG_GOT_PAST_DARK_MAI_ROOM)
+  SET_FLAG(EVENT_FLAG_GOT_PAST_DARK_MAI_ROOM)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F50, map_51_state_07_08EE3F50, 0x08EE3F44, 0x08F04040)
-MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_RIGHT, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE3F5C, map_51_state_07_08EE3F5C, 0x08EE3F44, 0x08F04040)
-MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
+  MOVE_OBJECT(1, DIRECTION_LEFT, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08EE4010, map_51_state_07_08EE4010, 0x08F04040, 0x08F04040)
-CLEAR_FLAG(234)
+  CLEAR_FLAG(234)
   WARP(LOCATION_PEGASUS_CASTLE_HALLWAY, 6, 0, 0)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

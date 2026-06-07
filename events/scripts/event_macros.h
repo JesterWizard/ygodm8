@@ -48,8 +48,6 @@
 #define REMOVE_CARD(card)
 #define CONDITION_CHECK(condition)
 #define FADE_SCREEN(speed)
-#define FADE_OUT(speed)
-#define FADE_IN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id) SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define WARP(location, state, entrance, unused)
