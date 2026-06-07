@@ -47,7 +47,11 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
         break;
       if (EventSystem_TryConsumeSetObjectPositionOpcode(scriptCtx))
         break;
+      if (EventSystem_TryConsumeWarpOpcode(scriptCtx))
+        break;
       if (EventSystem_TryConsumeFadeInOpcode(scriptCtx))
+        break;
+      if (EventSystem_TryConsumeFadeOutOpcode(scriptCtx))
         break;
       ThumbScriptCtxFunc(0x080527E8)(scriptCtx);
       EventCg_AfterExecuteOpcode(scriptCtx);
@@ -89,7 +93,7 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
       }
     }
     if (!EventCg_IsActive())
-      sub_804F218();
+      EventSystem_AdvanceScriptFrame();
     EventCg_OnScriptFrameEnd();
 
     if (gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)

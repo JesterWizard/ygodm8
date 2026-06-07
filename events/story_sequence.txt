@@ -1,7 +1,10 @@
 # Game event play order — uncomment a scene to enable its custom map enter script.
 # Commented scenes run no map enter event; vanilla cutscenes are never loaded.
+# New-game warp: @start <scene_name> <connection> (must match the first active scene).
 # Generated from events/vanilla/vanilla_event_catalog.md — refresh with:
 #   python3 tools/vanilla_events.py generate-story-skeleton
+
+@start map_09_state_01 0
 
 map_09_state_01
 map_01_state_01

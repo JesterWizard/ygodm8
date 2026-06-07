@@ -609,6 +609,11 @@ def decode_steps_with_size(data: list[int]) -> tuple[list[dict[str, Any]], int]:
                 steps.append({"type": "fade_in", "speed": raw[2], "raw": byte_list(raw)})
                 p += 3
                 continue
+            if cmd == ord("D") and p + 2 < len(data):
+                raw = data[p : p + 3]
+                steps.append({"type": "fade_out", "speed": raw[2], "raw": byte_list(raw)})
+                p += 3
+                continue
             if cmd == ord("C") and p + 6 < len(data):
                 raw = data[p : p + 7]
                 steps.append({
@@ -1195,6 +1200,9 @@ def append_event_macro(name: str, args: list[str], raw_bytes: list[int], path: P
     elif name == "FADE_IN":
         need_args(1)
         raw_bytes.extend([0x7C, ord("B"), parse_c_value(args[0]) & 0xFF])
+    elif name == "FADE_OUT":
+        need_args(1)
+        raw_bytes.extend([0x7C, ord("D"), parse_c_value(args[0]) & 0xFF])
     elif name == "SCREEN_SHAKE":
         need_args(1)
         raw_bytes.extend([0x7C, ord("7"), parse_c_value(args[0]) & 0xFF])
@@ -1383,13 +1391,39 @@ DEFAULT_STORY_SEQUENCE_PATH = Path("events/story_sequence.txt")
 VANILLA_NOP_ENTER_ADDRS = {0x08F04034, 0x08F04040}
 
 
+STORY_START_LINE_PATTERN = re.compile(
+    r"^@start\s+(map_\d+_state_\d+)(?:\s+(\d+))?\s*$",
+    re.IGNORECASE,
+)
+
+
+@dataclass(frozen=True)
+class StoryStartWarp:
+    scene_name: str
+    connection: int
+
+
+def parse_story_start_warp(sequence_path: Path) -> StoryStartWarp | None:
+    if not sequence_path.is_file():
+        return None
+    for line in sequence_path.read_text().splitlines():
+        stripped = line.split("#", 1)[0].strip()
+        if not stripped:
+            continue
+        match = STORY_START_LINE_PATTERN.match(stripped)
+        if match:
+            connection = int(match.group(2)) if match.group(2) is not None else 0
+            return StoryStartWarp(match.group(1), connection)
+    return None
+
+
 def parse_story_sequence_names(sequence_path: Path) -> list[str]:
     if not sequence_path.is_file():
         return []
     names: list[str] = []
     for line in sequence_path.read_text().splitlines():
         line = line.split("#", 1)[0].strip()
-        if not line:
+        if not line or line.startswith("@start"):
             continue
         parse_map_scene_id(line)
         names.append(line)
@@ -1402,7 +1436,7 @@ def parse_story_sequence_catalog_names(sequence_path: Path) -> list[str]:
     names: list[str] = []
     for line in sequence_path.read_text().splitlines():
         stripped = line.strip()
-        if not stripped or stripped.startswith("# Generated") or stripped.startswith("# Game event"):
+        if not stripped or stripped.startswith("# Generated") or stripped.startswith("# Game event") or stripped.startswith("# New-game"):
             continue
         if stripped.startswith("#"):
             match = MAP_SCENE_FILE_PATTERN.search(stripped)
@@ -1410,7 +1444,7 @@ def parse_story_sequence_catalog_names(sequence_path: Path) -> list[str]:
                 names.append(match.group(0))
             continue
         name = stripped.split("#", 1)[0].strip()
-        if not name:
+        if not name or name.startswith("@start"):
             continue
         parse_map_scene_id(name)
         names.append(name)
@@ -1419,6 +1453,37 @@ def parse_story_sequence_catalog_names(sequence_path: Path) -> list[str]:
 
 def story_sequence_uses_catalog_mode(sequence_path: Path) -> bool:
     return bool(parse_story_sequence_catalog_names(sequence_path))
+
+
+def compile_story_start_section(
+    sequence_path: Path,
+    map_event_entries: list[CScriptEntry],
+) -> list[str]:
+    start = parse_story_start_warp(sequence_path)
+    if start is None:
+        return [
+            "const u8 gStoryStartConfigured APPEND_RODATA = 0;",
+            "const u8 gStoryStartMapId APPEND_RODATA = 0;",
+            "const u8 gStoryStartMapState APPEND_RODATA = 0;",
+            "const u8 gStoryStartMapConnection APPEND_RODATA = 0;",
+            "",
+        ]
+
+    map_event_by_name = {
+        entry.name: entry for entry in map_event_entries if entry.map_id is not None
+    }
+    entry = map_event_by_name.get(start.scene_name)
+    if entry is None:
+        raise ValueError(
+            f"{sequence_path}: @start scene {start.scene_name!r} has no map enter script"
+        )
+    return [
+        "const u8 gStoryStartConfigured APPEND_RODATA = 1;",
+        f"const u8 gStoryStartMapId APPEND_RODATA = {entry.map_id};",
+        f"const u8 gStoryStartMapState APPEND_RODATA = {entry.map_state};",
+        f"const u8 gStoryStartMapConnection APPEND_RODATA = {start.connection};",
+        "",
+    ]
 
 
 def compile_story_sequence_section(
@@ -1501,6 +1566,7 @@ def compile_c_replacements(paths: list[Path], sequence_path: Path = DEFAULT_STOR
             "const unsigned gMapEventBindingCount APPEND_RODATA = 0;",
             "",
         ])
+        lines.extend(compile_story_start_section(sequence_path, []))
         lines.extend(compile_story_sequence_section(sequence_path, [], lambda entry: ""))
         lines.extend([
             "static const u8 sEventScript_nopEnterBytes[] APPEND_TEXT = {0x5D};",
@@ -1554,6 +1620,7 @@ def compile_c_replacements(paths: list[Path], sequence_path: Path = DEFAULT_STOR
             "const unsigned gMapEventBindingCount APPEND_RODATA = 0;",
             "",
         ])
+    lines.extend(compile_story_start_section(sequence_path, all_map_event_entries))
     lines.extend(compile_story_sequence_section(sequence_path, all_map_event_entries, script_ident))
     lines.extend([
         "static const u8 sEventScript_nopEnterBytes[] APPEND_TEXT = {0x5D};",
@@ -1620,14 +1687,30 @@ END()
 """
 
 
-def render_story_sequence_text(scenes: list[CatalogScene], active_names: set[str]) -> str:
+def render_story_sequence_text(
+    scenes: list[CatalogScene],
+    active_names: set[str],
+    existing_start: StoryStartWarp | None = None,
+) -> str:
     lines = [
         "# Game event play order — uncomment a scene to enable its custom map enter script.",
         "# Commented scenes run no map enter event; vanilla cutscenes are never loaded.",
+        "# New-game warp: @start <scene_name> <connection> (must match the first active scene).",
         "# Generated from events/vanilla/vanilla_event_catalog.md — refresh with:",
         "#   python3 tools/vanilla_events.py generate-story-skeleton",
         "",
     ]
+    if existing_start is not None:
+        lines.append(f"@start {existing_start.scene_name} {existing_start.connection}")
+        lines.append("")
+    elif active_names:
+        first_active = next(
+            (scene.scene_id for scene in scenes if scene.scene_id in active_names),
+            None,
+        )
+        if first_active is not None:
+            lines.append(f"@start {first_active} 0")
+            lines.append("")
     for scene in scenes:
         tag = "noop" if scene.enter_addr in VANILLA_NOP_ENTER_ADDRS else "vanilla-event"
         suffix = (
@@ -1672,8 +1755,9 @@ def generate_story_skeleton(
     if not scenes:
         raise ValueError(f"no scenes found in {catalog_path}")
     active_names = set(parse_story_sequence_names(sequence_path)) if preserve_active else set()
+    existing_start = parse_story_start_warp(sequence_path) if preserve_active else None
     created = generate_story_skeleton_files(scenes, scripts_dir)
-    sequence_text = render_story_sequence_text(scenes, active_names)
+    sequence_text = render_story_sequence_text(scenes, active_names, existing_start)
     sequence_path.write_text(sequence_text)
     return created, sequence_text
 
@@ -1990,6 +2074,12 @@ def validate_c_sources(paths: list[Path]) -> list[str]:
     map_event_by_name = {entry.name: entry for entry in entries if entry.map_id is not None}
     sequence_names = parse_story_sequence_names(DEFAULT_STORY_SEQUENCE_PATH)
     catalog_names = parse_story_sequence_catalog_names(DEFAULT_STORY_SEQUENCE_PATH)
+    story_start = parse_story_start_warp(DEFAULT_STORY_SEQUENCE_PATH)
+    if story_start is not None and sequence_names and story_start.scene_name != sequence_names[0]:
+        errors.append(
+            f"{DEFAULT_STORY_SEQUENCE_PATH}: @start scene {story_start.scene_name!r} "
+            f"must match the first active scene {sequence_names[0]!r}"
+        )
     scripts_dir = DEFAULT_STORY_SEQUENCE_PATH.parent / "scripts"
     for name in catalog_names:
         script_path = scripts_dir / f"{name}.c"
@@ -2288,6 +2378,9 @@ def step_macro(step: dict[str, Any]) -> str:
     elif kind == "fade_in":
         speed = int(step.get("speed")) & 0xFF
         macro = exact("FADE_IN", [speed], [0x7C, ord("B"), speed])
+    elif kind == "fade_out":
+        speed = int(step.get("speed")) & 0xFF
+        macro = exact("FADE_OUT", [speed], [0x7C, ord("D"), speed])
     elif kind == "screen_shake":
         speed = int(step.get("speed")) & 0xFF
         macro = exact("SCREEN_SHAKE", [speed], [0x7C, ord("7"), speed])
@@ -2423,6 +2516,7 @@ EVENT_MACROS_HEADER = """#ifndef EVENT_MACROS_H
 #define REMOVE_CARD(card)
 #define CONDITION_CHECK(condition)
 #define FADE_SCREEN(speed)
+#define FADE_OUT(speed)
 #define FADE_IN(speed)
 #define SWAP_OBJECT_SPRITE(object_id, sprite_id)
 #define LOAD_SPRITE(object_id, sprite_id)

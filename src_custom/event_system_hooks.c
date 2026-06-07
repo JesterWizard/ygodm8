@@ -122,6 +122,8 @@ void EventSystem_ApplyEnterFadeBlack(void) {
   REG_BLDY = ENTER_FADE_BLACK_BLDY;
   gBLDCNT = ENTER_FADE_BLACK_BLDCNT;
   gBLDY = ENTER_FADE_BLACK_BLDY;
+  if (gRuntimeConfig.enable_custom_events == TRUE)
+    gStorySequenceHoldFade = TRUE;
 }
 
 void EventSystem_ClearEnterFade(void) {
@@ -131,11 +133,12 @@ void EventSystem_ClearEnterFade(void) {
   gBLDY = 0;
 }
 
-static void EventSystem_FadeInEnterScene(u8 speed) {
+static void EventSystem_FadeFromBlack(u8 speed) {
   int i, temp;
 
-  EventSystem_SyncHiddenOverworldGfx();
+  OverworldSetRegDispcnt();
   REG_BLDCNT = ENTER_FADE_BLACK_BLDCNT;
+  REG_WINOUT = 0x3D3E;
   gBLDCNT = ENTER_FADE_BLACK_BLDCNT;
   REG_BLDY = ENTER_FADE_BLACK_BLDY;
   gBLDY = ENTER_FADE_BLACK_BLDY;
@@ -147,6 +150,55 @@ static void EventSystem_FadeInEnterScene(u8 speed) {
       sub_804F218();
   }
   EventSystem_ClearEnterFade();
+}
+
+static void EventSystem_FadeInEnterScene(u8 speed) {
+  EventSystem_SyncHiddenOverworldGfx();
+  EventSystem_FadeFromBlack(speed);
+}
+
+void EventSystem_FadeOutScreen(u8 speed) {
+  EventSystem_FadeFromBlack(speed);
+}
+
+void EventSystem_ReapplyEnterFadeBlackIfHeld(void) {
+  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE)
+    EventSystem_ApplyEnterFadeBlack();
+}
+
+void EventSystem_AdvanceScriptFrame(void) {
+  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE) {
+    EventSystem_SyncHiddenOverworldGfx();
+    EventSystem_ApplyEnterFadeBlack();
+    return;
+  }
+
+  sub_804F218();
+}
+
+void sub_80523EC(u16 id, u16 state, u16 connection);
+
+bool8 EventSystem_TryConsumeWarpOpcode(struct ScriptCtx *scriptCtx) {
+  const u8 *script = scriptCtx->currentScript.start;
+  u32 pointer = scriptCtx->pointer;
+
+  if (gRuntimeConfig.enable_custom_events != TRUE)
+    return FALSE;
+
+  if (script[pointer] != 0x7C || script[pointer + 1] != '5')
+    return FALSE;
+
+  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE ||
+      gBLDY >= ENTER_FADE_BLACK_BLDY || REG_BLDY >= ENTER_FADE_BLACK_BLDY) {
+    gStorySequenceHoldFade = TRUE;
+    EventSystem_ApplyEnterFadeBlack();
+  }
+
+  gOverworld.flags |= OVERWORLD_FLAG_MAP_TRANSITION;
+  sub_80523EC(script[pointer + 2], script[pointer + 3], script[pointer + 4]);
+  EventSystem_ReapplyEnterFadeBlackIfHeld();
+  scriptCtx->pointer += STORY_WARP_OPCODE_SIZE;
+  return TRUE;
 }
 
 bool8 EventSystem_TryConsumeFadeInOpcode(struct ScriptCtx *scriptCtx) {
@@ -161,6 +213,21 @@ bool8 EventSystem_TryConsumeFadeInOpcode(struct ScriptCtx *scriptCtx) {
 
   gStorySequenceHoldFade = FALSE;
   EventSystem_FadeInEnterScene(script[pointer + 2]);
+  scriptCtx->pointer += 3;
+  return TRUE;
+}
+
+bool8 EventSystem_TryConsumeFadeOutOpcode(struct ScriptCtx *scriptCtx) {
+  const u8 *script = scriptCtx->currentScript.start;
+  u32 pointer = scriptCtx->pointer;
+
+  if (gRuntimeConfig.enable_custom_events != TRUE)
+    return FALSE;
+
+  if (script[pointer] != 0x7C || script[pointer + 1] != 'D')
+    return FALSE;
+
+  EventSystem_FadeOutScreen(script[pointer + 2]);
   scriptCtx->pointer += 3;
   return TRUE;
 }
@@ -252,11 +319,24 @@ struct Script *EventSystem_GetHouseSavePromptScript(void) {
 
 void EventSystem_GetInitialWarp(u16 *mapId, u16 *mapState, u16 *connection) {
   if (gStorySequenceMode && gStorySequenceCount != 0) {
-    *mapId = gStorySequence[0].mapId;
-    *mapState = gStorySequence[0].mapState;
-    *connection = 0;
+    if (gStoryStartConfigured) {
+      *mapId = gStoryStartMapId;
+      *mapState = gStoryStartMapState;
+      *connection = gStoryStartMapConnection;
+    } else {
+      *mapId = gStorySequence[0].mapId;
+      *mapState = gStorySequence[0].mapState;
+      *connection = 0;
+    }
     if (gRuntimeConfig.enable_custom_events == TRUE)
       gStorySequenceHoldFade = TRUE;
+    return;
+  }
+
+  if (gRuntimeConfig.use_custom_start_map == TRUE) {
+    *mapId = gRuntimeConfig.custom_start_map_id;
+    *mapState = gRuntimeConfig.custom_start_map_state;
+    *connection = gRuntimeConfig.custom_start_map_connection;
     return;
   }
 

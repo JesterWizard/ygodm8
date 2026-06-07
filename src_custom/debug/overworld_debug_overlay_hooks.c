@@ -229,8 +229,17 @@ void sub_8053E34__Replacement(u8 arg0) {
   OverworldSetRegDispcnt();
   REG_BLDCNT = 0xFF;
   REG_WINOUT = 0x3D3E;
+  if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE ||
+      gBLDY >= 16 || REG_BLDY >= 16) {
+    EventSystem_ApplyEnterFadeBlack();
+    OverworldSetRegDispcnt();
+    if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
+      OverworldOverlay_OnWalkFrame();
+    return;
+  }
   for (i = 0; i < 16; i++) {
     REG_BLDY = i;
+    gBLDY = i;
     temp = arg0;
     while (--temp != -1)
       sub_804F218();
@@ -261,6 +270,7 @@ void sub_804EEE0__Replacement(void) {
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);
   OverworldOverlay_CommitFrame();
+  EventSystem_ReapplyEnterFadeBlackIfHeld();
 }
 
 LYN_REPLACE_CHECK(sub_804F1E4);
