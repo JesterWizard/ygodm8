@@ -3,6 +3,8 @@
 
 #include "constants/event_cg_generated.h"
 
+struct ScriptCtx;
+
 extern const u8 gEventCgTableCount;
 
 void EventCg_HandleDisplayOpcode(struct ScriptCtx *scriptCtx, u8 cgId, u8 fadeSpeed);
@@ -12,10 +14,11 @@ bool8 EventCg_TryConsumeHideOpcode(struct ScriptCtx *scriptCtx);
 void EventCg_BeforeExecuteOpcode(struct ScriptCtx *scriptCtx);
 void EventCg_AfterExecuteOpcode(struct ScriptCtx *scriptCtx);
 void EventCg_OnTextWaitComplete(struct ScriptCtx *scriptCtx);
-void EventCg_OnScriptFrameEnd(void);
+void EventCg_OnScriptFrameEnd(struct ScriptCtx *scriptCtx);
 void EventCg_ForceClose(void);
 bool8 EventCg_IsSessionOpen(void);
 bool8 EventCg_IsActive(void);
-void EventCg_ApplyTextWindowRegs(void);
+void EventCg_ApplyTextWindowRegs(struct ScriptCtx *scriptCtx);
+void EventCg_ApplyPortraitSceneRegs(struct ScriptCtx *scriptCtx);
 
 #endif

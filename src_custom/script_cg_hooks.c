@@ -75,26 +75,24 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
     }
     }
 
-    if (scriptCtx->unk86 == 1) {
-      if (EventCg_IsActive()) {
-        EventCg_ApplyTextWindowRegs();
+    if (EventCg_IsActive()) {
+      EventCg_ApplyPortraitSceneRegs(scriptCtx);
+    } else if (scriptCtx->unk86 == 1) {
+      REG_WIN1H = 0x03ED;
+      REG_WIN1V = 0x739D;
+      (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
+      REG_WINOUT = 0x1D1E;
+      OverworldSetRegDispcnt2();
+      if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE) {
+        EventSystem_ApplyEnterFadeBlack();
       } else {
-        REG_WIN1H = 0x03ED;
-        REG_WIN1V = 0x739D;
-        (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
-        REG_WINOUT = 0x1D1E;
-        OverworldSetRegDispcnt2();
-        if (EventSystem_ShouldHoldEnterFadeBlack() == TRUE) {
-          EventSystem_ApplyEnterFadeBlack();
-        } else {
-          REG_BLDCNT = 0xDE;
-          REG_BLDY = 7;
-        }
+        REG_BLDCNT = 0xDE;
+        REG_BLDY = 7;
       }
     }
     if (!EventCg_IsActive())
       EventSystem_AdvanceScriptFrame();
-    EventCg_OnScriptFrameEnd();
+    EventCg_OnScriptFrameEnd(scriptCtx);
 
     if (gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)
       break;

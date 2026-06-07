@@ -101,6 +101,19 @@ static void EventCg_SuppressAllSprites(void) {
     sub_80411EC(&gOamBuffer[i]);
 }
 
+static void EventCg_RefreshPortraitOam(struct ScriptCtx *scriptCtx) {
+  struct OamData *oam;
+
+  if (scriptCtx->portraitId == PORTRAIT_NONE)
+    return;
+
+  oam = gOamBuffer;
+  sub_804EB04(oam, scriptCtx->unk85);
+  oam->paletteNum = 12;
+  if (CheckFlag(0xF3))
+    sub_8044E50(gPaletteBuffer, 0x1C0, 0x1FF);
+}
+
 static void EventCg_WaitFrames(u8 count) {
   u8 i;
 
@@ -172,7 +185,9 @@ static void EventCg_ApplyCgBgRegs(void) {
   gBG2HOFS = 0;
 }
 
-void EventCg_ApplyTextWindowRegs(void) {
+static void EventCg_ApplyTextWindowRegsInternal(struct ScriptCtx *scriptCtx) {
+  u16 dispcnt = DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_WIN1_ON;
+
   REG_BG0CNT = 0x1D0C;
   gBG0VOFS = 0;
   gBG0HOFS = 8;
@@ -181,9 +196,26 @@ void EventCg_ApplyTextWindowRegs(void) {
   REG_WIN1V = 0x739D;
   (*(vu8 *)(REG_BASE + 0x49)) = 0x3F;
   REG_WINOUT = 0x1D1E;
-  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_WIN1_ON;
+  if (scriptCtx != NULL && scriptCtx->portraitId != PORTRAIT_NONE)
+    dispcnt |= DISPCNT_OBJ_ON;
+  REG_DISPCNT = dispcnt;
   REG_BLDCNT = CG_TEXT_WINDOW_BLDCNT;
   REG_BLDY = CG_TEXT_WINDOW_BLDY;
+}
+
+void EventCg_ApplyTextWindowRegs(struct ScriptCtx *scriptCtx) {
+  EventCg_ApplyTextWindowRegsInternal(scriptCtx);
+}
+
+void EventCg_ApplyPortraitSceneRegs(struct ScriptCtx *scriptCtx) {
+  if (scriptCtx->unk86 == 1) {
+    EventCg_ApplyTextWindowRegsInternal(scriptCtx);
+  } else if (scriptCtx->portraitId != PORTRAIT_NONE) {
+    REG_DISPCNT = DISPCNT_BG2_ON | DISPCNT_OBJ_ON;
+    REG_BLDCNT = 0;
+    REG_BLDY = 0;
+    REG_WINOUT = 0x3D3E;
+  }
 }
 
 static void EventCg_GetAsset(u8 cgId, const u8 **tiles, const u16 **palette) {
@@ -408,11 +440,13 @@ void EventCg_OnTextWaitComplete(struct ScriptCtx *scriptCtx) {
   EventCg_InitTextboxCharTiles();
 }
 
-void EventCg_OnScriptFrameEnd(void) {
+void EventCg_OnScriptFrameEnd(struct ScriptCtx *scriptCtx) {
   if (!gCgSessionOpen || !gCgActive)
     return;
 
   EventCg_SuppressAllSprites();
+  EventCg_RefreshPortraitOam(scriptCtx);
+  EventCg_ApplyPortraitSceneRegs(scriptCtx);
   SetVBlankCallback(LoadBgOffsets);
   WaitForVBlank();
   EventCg_PushTextboxVram();
