@@ -1681,11 +1681,34 @@ STORY_START_LINE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+CATALOG_REFERENCE_LINE_PATTERN = re.compile(
+    r"^#\s*map_\d+_state_\d+\s+#\s*map \d+/\d+ enter=",
+)
+
+TECHNICAL_SCENE_COMMENT_PATTERN = re.compile(
+    r"map \d+/\d+ enter=0x[0-9A-Fa-f]{8} \((?:noop|vanilla-event)\)",
+)
+
+STORY_SEQUENCE_HEADER_LINES = [
+    "# Game event play order — uncomment a scene to enable its custom map enter script.",
+    "# Commented scenes run no map enter event; vanilla cutscenes are never loaded.",
+    "# New-game warp: @start <scene_name> <connection> (must match the first active scene).",
+    "# Generated from events/vanilla/vanilla_event_catalog.md — refresh with:",
+    "#   python3 tools/vanilla_events.py generate-story-skeleton",
+]
+
 
 @dataclass(frozen=True)
 class StoryStartWarp:
     scene_name: str
     connection: int
+
+
+@dataclass(frozen=True)
+class StorySequenceFile:
+    preamble: list[str]
+    story_section: list[str] | None
+    catalog_section: list[str] | None
 
 
 def parse_story_start_warp(sequence_path: Path) -> StoryStartWarp | None:
@@ -1972,19 +1995,108 @@ END()
 """
 
 
+def scene_line_comment_suffix(comment: str | None, scene: CatalogScene) -> str:
+    if comment and not TECHNICAL_SCENE_COMMENT_PATTERN.search(comment):
+        return f"  # {comment}"
+    tag = "noop" if scene.enter_addr in VANILLA_NOP_ENTER_ADDRS else "vanilla-event"
+    return (
+        f"  # map {scene.map_id}/{scene.map_state} "
+        f"enter=0x{scene.enter_addr:08X} ({tag})"
+    )
+
+
+def parse_story_sequence_scene_comments(sequence_path: Path) -> dict[str, str]:
+    if not sequence_path.is_file():
+        return {}
+    comments: dict[str, str] = {}
+    for line in sequence_path.read_text().splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("@start"):
+            continue
+        active = not stripped.startswith("#")
+        body = stripped[1:].strip() if not active else stripped
+        match = MAP_SCENE_FILE_PATTERN.match(body.split("#", 1)[0].split("-", 1)[0].strip())
+        if not match:
+            continue
+        scene_id = match.group(0)
+        comment_part = ""
+        if "#" in body:
+            comment_part = body.split("#", 1)[1].strip()
+        elif " - " in body:
+            comment_part = body.split(" - ", 1)[1].strip()
+        if comment_part and not TECHNICAL_SCENE_COMMENT_PATTERN.search(comment_part):
+            comments[scene_id] = comment_part
+    return comments
+
+
+def parse_story_sequence_file(sequence_path: Path) -> StorySequenceFile | None:
+    if not sequence_path.is_file():
+        return None
+    lines = sequence_path.read_text().splitlines()
+    catalog_start = next(
+        (index for index, line in enumerate(lines) if CATALOG_REFERENCE_LINE_PATTERN.match(line.strip())),
+        None,
+    )
+    if catalog_start is None:
+        return None
+
+    pre_catalog = lines[:catalog_start]
+    while pre_catalog and not pre_catalog[-1].strip():
+        pre_catalog.pop()
+
+    preamble: list[str] = []
+    story_section: list[str] = []
+    in_header = True
+    for line in pre_catalog:
+        stripped = line.strip()
+        if in_header:
+            if (
+                stripped.startswith("# Game event")
+                or stripped.startswith("# Commented scenes")
+                or stripped.startswith("# New-game warp")
+                or stripped.startswith("# Generated from")
+                or stripped.startswith("#   python3 tools/vanilla_events.py generate-story-skeleton")
+            ):
+                preamble.append(line)
+                continue
+            if stripped.startswith("@start"):
+                preamble.append(line)
+                continue
+            if not stripped:
+                preamble.append(line)
+                continue
+            in_header = False
+        story_section.append(line)
+
+    if not story_section:
+        return None
+    return StorySequenceFile(
+        preamble=preamble or list(STORY_SEQUENCE_HEADER_LINES) + [""],
+        story_section=story_section,
+        catalog_section=lines[catalog_start:],
+    )
+
+
+def render_catalog_reference_lines(scenes: list[CatalogScene]) -> list[str]:
+    lines: list[str] = []
+    for scene in scenes:
+        tag = "noop" if scene.enter_addr in VANILLA_NOP_ENTER_ADDRS else "vanilla-event"
+        lines.append(
+            f"# {scene.scene_id}  # map {scene.map_id}/{scene.map_state} "
+            f"enter=0x{scene.enter_addr:08X} ({tag})"
+        )
+    return lines
+
+
 def render_story_sequence_text(
     scenes: list[CatalogScene],
     active_names: set[str],
     existing_start: StoryStartWarp | None = None,
+    scene_comments: dict[str, str] | None = None,
 ) -> str:
-    lines = [
-        "# Game event play order — uncomment a scene to enable its custom map enter script.",
-        "# Commented scenes run no map enter event; vanilla cutscenes are never loaded.",
-        "# New-game warp: @start <scene_name> <connection> (must match the first active scene).",
-        "# Generated from events/vanilla/vanilla_event_catalog.md — refresh with:",
-        "#   python3 tools/vanilla_events.py generate-story-skeleton",
-        "",
-    ]
+    comments = scene_comments or {}
+    lines = list(STORY_SEQUENCE_HEADER_LINES)
+    lines.append("")
     if existing_start is not None:
         lines.append(f"@start {existing_start.scene_name} {existing_start.connection}")
         lines.append("")
@@ -1997,15 +2109,25 @@ def render_story_sequence_text(
             lines.append(f"@start {first_active} 0")
             lines.append("")
     for scene in scenes:
-        tag = "noop" if scene.enter_addr in VANILLA_NOP_ENTER_ADDRS else "vanilla-event"
-        suffix = (
-            f"  # map {scene.map_id}/{scene.map_state} "
-            f"enter=0x{scene.enter_addr:08X} ({tag})"
-        )
+        suffix = scene_line_comment_suffix(comments.get(scene.scene_id), scene)
         if scene.scene_id in active_names:
             lines.append(f"{scene.scene_id}{suffix}")
         else:
             lines.append(f"# {scene.scene_id}{suffix}")
+    return "\n".join(lines) + "\n"
+
+
+def render_story_sequence_dual(
+    scenes: list[CatalogScene],
+    existing: StorySequenceFile,
+) -> str:
+    lines = list(existing.preamble)
+    if lines and lines[-1].strip():
+        lines.append("")
+    lines.extend(existing.story_section or [])
+    lines.append("")
+    lines.append("")
+    lines.extend(render_catalog_reference_lines(scenes))
     return "\n".join(lines) + "\n"
 
 
@@ -2039,10 +2161,22 @@ def generate_story_skeleton(
     scenes = parse_catalog_scenes(catalog_path)
     if not scenes:
         raise ValueError(f"no scenes found in {catalog_path}")
+    existing_file = parse_story_sequence_file(sequence_path)
     active_names = set(parse_story_sequence_names(sequence_path)) if preserve_active else set()
     existing_start = parse_story_start_warp(sequence_path) if preserve_active else None
+    scene_comments = (
+        parse_story_sequence_scene_comments(sequence_path) if preserve_active else {}
+    )
     created = generate_story_skeleton_files(scenes, scripts_dir)
-    sequence_text = render_story_sequence_text(scenes, active_names, existing_start)
+    if existing_file is not None and preserve_active:
+        sequence_text = render_story_sequence_dual(scenes, existing_file)
+    else:
+        sequence_text = render_story_sequence_text(
+            scenes,
+            active_names,
+            existing_start,
+            scene_comments,
+        )
     sequence_path.write_text(sequence_text)
     return created, sequence_text
 

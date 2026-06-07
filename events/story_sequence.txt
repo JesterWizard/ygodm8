@@ -128,7 +128,7 @@ map_54_state_01 # Duel with controlled Mokuba and Seto Kaiba
 map_55_state_01 # Duel with Sol Chevalsjy and Reshef
 
 # EPILOGUE - Hall of Eternity
-map_56_state_01 - Duels with Hall of Eternity duelists
+map_56_state_01 # Duels with Hall of Eternity duelists
 
 
 # map_00_state_00  # map 0/0 enter=0x08F04034 (noop)
