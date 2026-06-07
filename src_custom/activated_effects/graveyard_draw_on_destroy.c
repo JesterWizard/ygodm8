@@ -4,10 +4,6 @@
 #include "constants/music_ids.h"
 #include "graveyard_effects.h"
 
-u8 gDeferGraveyardDrawBattleResolve;
-u8 gPendingGraveyardDrawFixedDuelist;
-u8 gGraveyardSendWasFromField;
-
 static u8 ZoneIsHandSlot(struct DuelCard *zone)
 {
   u8 i;

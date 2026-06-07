@@ -7,8 +7,6 @@
 
 #define FAMILIAR_KNIGHT_MAX_SUMMON_LEVEL 4
 
-u8 gFamiliarKnightBattleDestroyPending;
-
 static u8 IsFamiliarKnightSummonTarget(u16 cardId)
 {
   if (cardId == CARD_NONE)
