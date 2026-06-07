@@ -1,27 +1,28 @@
 #ifndef EVENT_OBJECT_SLOTS_H
 #define EVENT_OBJECT_SLOTS_H
 
-/* Object slot aliases for event scripts.
+/* Per-map object slot aliases (local IDs).
  *
- * The player always occupies slot 0. Other characters use different slots
- * in each scene — define SLOT_<character> at the top of the map script
- * right after the includes, then use those names in object commands:
+ * The player always occupies slot 0. For maps with repeated sprites
+ * (Neo Ghouls, Chevaliers, guards, etc.), define LOCALID_* at the top
+ * of the map script after the includes:
  *
- *   #define SLOT_YUGI 13
- *   #define SLOT_JOEY 14
+ *   #define LOCALID_CHEVALIER_BACK_L  2
+ *   #define LOCALID_CHEVALIER_BACK_R  3
  *
- *   LOAD_SPRITE(14, SPRITE_JOEY)
- *   MOVE_OBJECT(SPRITE_JOEY, DIRECTION_LEFT, 32, 0)
- *   SHOW_OBJECT(SPRITE_YUGI, 50, 74, 0, 0, 0)
+ *   LOAD_SPRITE(LOCALID_CHEVALIER_BACK_L, SPRITE_CHEVALIER)
+ *   WALK_OBJECT_Y(LOCALID_CHEVALIER_FRONT_R, 96)
+ *   OBJECT_EFFECT(OBJECT_LOCALID(LOCALID_CHEVALIER_BACK_L), OBJECT_EFFECT_JUMPING)
  *
- * Object commands accept SPRITE_* names when that sprite is bound to exactly
- * one slot by a prior LOAD_SPRITE in the same script. Use explicit slot ids
- * when the same sprite appears on multiple slots.
+ * Unique characters can still use SPRITE_* when bound to one slot via
+ * LOAD_SPRITE. SPRITE_* names in object commands fail when the same
+ * sprite appears on multiple slots.
  *
- * REACTION and OBJECT_EFFECT accept SPRITE_* names (resolved to slot
- * bitmasks), OBJECT_N constants, or combinations with |.
+ * REACTION and OBJECT_EFFECT take bitmasks. Wrap a local ID with
+ * OBJECT_LOCALID(), or combine with |.
  */
 
 #define SLOT_PLAYER 0
+#define OBJECT_LOCALID(local_id) (1 << (local_id))
 
 #endif

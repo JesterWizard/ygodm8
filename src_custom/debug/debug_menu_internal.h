@@ -94,7 +94,7 @@ struct DebugMenuSceneEntry {
   u8 title[20];
 };
 
-void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view);
+void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view);
 void DebugMenuLoadGraphics(void);
 void DebugMenuWaitVBlank(void);
 void DebugMenuVBlankNoWin(void);
@@ -127,7 +127,7 @@ void DebugMenuDrawReactions(u8 scrollTop, u8 cursor);
 void DebugMenuDrawMatchSetters(u8 scrollTop, u8 cursor);
 void DebugMenuDrawGraphics(u8 scrollTop, u16 playingId);
 void DebugMenuDrawMaps(u8 scrollTop, u8 confirmedLocationId);
-void DebugMenuDrawScenes(u8 scrollTop, u16 confirmedIndex);
+void DebugMenuDrawScenes(u16 scrollTop, u16 confirmedIndex);
 void DebugMenuDrawDecks(u8 scrollTop, u8 activePreset);
 
 void DebugMenuLoadSpriteFrameIfChanged(s16 *shownSpriteId, u8 *shownFrame, s16 spriteId,

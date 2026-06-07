@@ -1043,6 +1043,14 @@ class ObjectSlotState:
                 if isinstance(node.op, ast.Invert):
                     return ~operand
                 raise ValueError(f"unsupported C operator {type(node.op).__name__}")
+            if isinstance(node, ast.Call):
+                if (
+                    isinstance(node.func, ast.Name)
+                    and node.func.id == "OBJECT_LOCALID"
+                    and len(node.args) == 1
+                ):
+                    return 1 << eval_node(node.args[0])
+                raise ValueError(f"unsupported C expression {ast.dump(node, include_attributes=False)}")
             raise ValueError(f"unsupported C expression {ast.dump(node, include_attributes=False)}")
 
         try:

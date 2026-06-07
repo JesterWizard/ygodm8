@@ -87,6 +87,29 @@ void DebugMapViewer(void) {
         scrollTop = cursor - (DEBUG_ROWS - 1);
       DebugMenuRedraw(scrollTop, confirmedLocationId, DEBUG_VIEW_MAP);
     }
+    if (buttons & DPAD_LEFT && cursor != 0) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (cursor >= 5)
+        cursor -= 5;
+      else
+        cursor = 0;
+      if (cursor < scrollTop)
+        scrollTop = cursor;
+      DebugMenuRedraw(scrollTop, confirmedLocationId, DEBUG_VIEW_MAP);
+    }
+    if (buttons & DPAD_RIGHT && cursor < n - 1) {
+      u16 newCursor;
+
+      PlayMusic(SFX_MOVE_CURSOR);
+      newCursor = (u16)cursor + 5;
+      if (newCursor >= n)
+        cursor = (u8)(n - 1);
+      else
+        cursor = (u8)newCursor;
+      if (cursor >= scrollTop + DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      DebugMenuRedraw(scrollTop, confirmedLocationId, DEBUG_VIEW_MAP);
+    }
     if (buttons & A_BUTTON) {
       confirmedLocationId = sMaps[cursor].locationId;
       if (DebugMenu_SetSavedMapLocation(confirmedLocationId))

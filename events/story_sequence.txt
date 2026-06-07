@@ -4,10 +4,132 @@
 # Generated from events/vanilla/vanilla_event_catalog.md — refresh with:
 #   python3 tools/vanilla_events.py generate-story-skeleton
 
-@start map_09_state_01 0
+# Chapter 01 - Millenium Necklace
+map_09_state_01 # Player's house
+map_01_state_01 # Ishizu speech in Clocktower Square
+map_14_state_01 # Domino Station Entrance with tag duel
+map_15_state_01 # Domino Station inside (prior to duel express)
+map_16_state_01 # Domino Express Car 1 - Duel Express
+map_17_state_02 # Domino Express Car 2 - Duel Express (PaniK)
+map_21_state_01 # Egyptian Exhibit Ticket Booth (PaniK pushes man out of the way)
+map_22_state_01 # Egyptian Exhibit Main Hall - Ask man blocking door where PaniK went
+map_23_state_01 # Tomb Guardian fight 1
+map_22_state_03 # Egyptian Exhibit Main Hall - Seto Kaiba appears
+map_02_state_02 # Talk to Ishizu after obtaining the Millenium Necklace
 
-map_09_state_01
-map_01_state_01
+# Chapter 02 - Millenium Key
+map_24_state_01 # Lovebirds at Domino Pier
+map_26_state_01 # Jean Claude-Magnum trying to win over Mai
+map_27_state_01 # Tomb Guardian fight 2
+map_00_state_04 # Talk to Ishizu after obtaining the Millenium Key
+
+# Chapter 03 - Millenium Ring
+map_28_state_01 # Old couple talking in Catacombs
+map_29_state_01 # Player goes to next room without talking to Bonz
+map_19_state_01 # Duel Bonz (Bandit Keith shows up)
+map_27_state_01 # Tomb Guardian fight 3
+map_00_state_04 # Talk to Ishizu after obtaining the Millenium Ring
+
+# Chapter 04 - Millenium Eye
+map_31_state_01 # Para in disguise
+map_32_state_01 # Dox in disguise
+map_31_state_03 # Joey gets suspiscious of both of them
+map_31_state_01 # Tag duel Para and Dox with Seto Kaiba
+map_33_state_01 # Tomb Guardian fight 4
+map_00_state_06 # Talk to Ishizu after obtaining the Millenium Eye
+
+# Chapter 05 - Kaibaland
+map_35_state_01 # Big Five groveling to Mokuba
+map_36_state_01 # Duel with Big Five
+map_00_state_07 # Talk to Ishizu to resume the main quest
+
+# Chapter 06 - Millenium Rod
+map_35_state_01 # Earthquake in tunnel and duel with Rex
+map_36_state_01 # Tomb Guardian fight 5
+map_00_state_08 # Talk to Ishizu after obtaining the Millenium Rod
+
+# Chapter 07 - Millenium Scales
+map_37_state_01 # Mako Tsunami monologue
+map_38_state_01 # Weevil Underwood monologue
+map_23_state_07 # Duel with Mimic of Doom
+map_00_state_09 # Talk to Ishizu after obtaining the Millenium Scales
+map_12_state_06 # Go to Kaibacorp to talk to Seto Kaiba after the god cards turn to stone
+
+# Chapter 08 - Neo Ghouls and Millenium Puzzle
+map_03_state_02 # Neo Ghouls arrive in Domino City
+map_00_state_10 # Duel with Seeker
+map_24_state_03 # Neo Ghoul attacks lovebirds in Domino Pier
+map_26_state_06 # Duel with Arcana at Domino Pier
+map_29_state_06 # Duel with Neo Ghoul in Italian Catacombs
+map_33_state_03 # Tag duel with Weevil in China against Lumis and Umbra
+map_34_state_02 # Neo Ghouls attack hikers
+map_35_state_04 # Tag duel with Rex in Canada against Neo Ghouls
+map_39_state_03 # Duel with Strings in the Galapogas Islands
+map_00_state_12 # Espa Roba's brothers go off to Kaibaland
+map_12_state_08 # Seeker at Kaibaland entrance
+map_57_state_02 # Duel with Seeker (2)
+map_14_state_04 # Duel with Neo Ghoul at Domino Station entrance
+map_16_state_06 # Duel with Neo Ghoul in Duel Express Car 1
+map_17_state_04 # Duel with Neo Ghoul in Duel Express Car 2
+map_18_state_03 # Duel with Neo Ghoul in Duel Express Car 3
+map_20_state_03 # Duel with Neo Ghoul at Egyptian Exhibit train station
+map_21_state_04 # Duel with Neo Ghoul at Egyptian Exhibit ticket barrier
+map_22_state_05 # Seto Kaiba dueling Neo Ghouls
+map_23_state_03 # Duel with Bandit Keith
+map_22_state_08 # Mokuba kidnapped
+
+# Chapter 09 - Awakening Ra
+map_31_state_09 # First visit to meet Paradox in China
+map_00_state_14 # Talk to Ishizu after visiting Paradox which opens up Egypt
+map_59_state_01 # Outside house in Egypt meeting Odion for the first time
+map_60_state_01 # Inside house in Egypt meeting Marik for the first time
+
+# Chapter 10 - Paradox Battle Gauntlet
+map_31_state_06 # Going back to Paradox in China after awaking Ra to start his tedious battle gauntlet
+map_32_state_04 # Gauntlet fight 1
+map_32_state_05 # Gauntlet fight 2
+map_32_state_06 # Gauntlet fight 3
+map_32_state_07 # Gauntlet fight 4
+map_32_state_08 # Gauntlet fight 5
+map_33_state_05 # Duel Paradox in China
+
+# Chapter 11 - Pegasus Island
+map_40_state_01 # Opening map with cable car
+map_41_state_01 # Duels with Chevaliers in cable car
+map_42_state_01 # Tag duel against PaniK and Mimic of Doom
+map_43_state_01 # Chevaliers block split entrances in Room 2
+map_55_state_03 # Cutaway to Sol Chevalsky in his inner chamber
+map_43_state_03 # Pep talk from Yugi saying we can't give up
+map_44_state_01 # Left room 1
+map_45_state_01 # Left room 2
+map_46_state_01 # Right room 1
+map_47_state_01 # Right room 2
+map_48_state_01 # Talk scene with Yugi
+map_48_state_03 # Tag duel with Para and Dox
+map_50_state_01 # Paradox tells me to go on another useless fetch quest for "spirit" cards
+
+# Chapter 12 - Spirit Card Duels
+map_00_state_17 # Spriti card duel with Espa Roba
+map_26_state_09 # Spirit card duel with Mai
+map_29_state_07 # Spirit card duel with Bonz
+map_36_state_02 # Spirit card duel with Rex
+map_37_state_05 # Spirit card duel with Mako
+map_38_state_05 # Spirit card duel with Weevil
+
+# Chapter 13 - Final Chapter
+map_51_state_01 # Cutaway to Sol Chevalsky in his inner chamber again
+map_51_state_02 # Duel with fake Bonz
+map_51_state_03 # Duel with fake Rex
+map_51_state_04 # Duel with fake Weevil
+map_51_state_05 # Duel with fake Mako
+map_51_state_06 # Duel with fake Espa Roba
+map_51_state_07 # Duel with fake Mai
+map_54_state_01 # Duel with controlled Mokuba and Seto Kaiba
+map_55_state_01 # Duel with Sol Chevalsjy and Reshef
+
+# EPILOGUE - Hall of Eternity
+map_56_state_01 - Duels with Hall of Eternity duelists
+
 
 # map_00_state_00  # map 0/0 enter=0x08F04034 (noop)
 # map_00_state_01  # map 0/1 enter=0x08F04034 (noop)

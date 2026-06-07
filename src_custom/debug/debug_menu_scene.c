@@ -25,7 +25,7 @@ static inline void CallThumbVoid(u32 addr) {
   ((VoidFunc)(addr | 1))();
 }
 
-#define DEBUG_MENU_SCENE_NONE 0xFF
+#define DEBUG_MENU_SCENE_NONE 0xFFFF
 #define DEBUG_MENU_SCENE_INACTIVE 0xFF
 
 extern u8 gDebugMenuPendingSceneActive;
@@ -45,15 +45,15 @@ static void DebugMenuFormatSceneRow(u8 *out, const struct DebugMenuSceneEntry *e
   DebugMenuFormatListRow(out, e->title, selected);
 }
 
-void DebugMenuDrawScenes(u8 scrollTop, u16 confirmedIndex) {
+void DebugMenuDrawScenes(u16 scrollTop, u16 confirmedIndex) {
   u8 row, buf[2 + DEBUG_CHARS + 1];
 
   for (row = 0; row < DEBUG_ROWS; row++) {
-    u8 index = scrollTop + row;
+    u16 index = scrollTop + row;
 
     if (index < ARRAY_COUNT(sScenes)) {
       DebugMenuFormatSceneRow(buf, &sScenes[index],
-                              (u8)confirmedIndex != DEBUG_MENU_SCENE_NONE && index == (u8)confirmedIndex);
+                              confirmedIndex != DEBUG_MENU_SCENE_NONE && index == confirmedIndex);
       DebugMenuCopyLine(row, buf);
     } else {
       DebugMenuCopyLine(row, gDebugMenuBlankLine);
@@ -62,8 +62,8 @@ void DebugMenuDrawScenes(u8 scrollTop, u16 confirmedIndex) {
 }
 
 void DebugSceneViewer(void) {
-  u8 cursor = 0, scrollTop = 0;
-  u8 confirmedSceneIndex = DEBUG_MENU_SCENE_NONE;
+  u16 cursor = 0, scrollTop = 0;
+  u16 confirmedSceneIndex = DEBUG_MENU_SCENE_NONE;
   const u16 n = ARRAY_COUNT(sScenes);
 
   DebugMenuRedraw(0, confirmedSceneIndex, DEBUG_VIEW_SCENE);
@@ -88,6 +88,29 @@ void DebugSceneViewer(void) {
         scrollTop = cursor - (DEBUG_ROWS - 1);
       DebugMenuRedraw(scrollTop, confirmedSceneIndex, DEBUG_VIEW_SCENE);
     }
+    if (buttons & DPAD_LEFT && cursor != 0) {
+      PlayMusic(SFX_MOVE_CURSOR);
+      if (cursor >= 5)
+        cursor -= 5;
+      else
+        cursor = 0;
+      if (cursor < scrollTop)
+        scrollTop = cursor;
+      DebugMenuRedraw(scrollTop, confirmedSceneIndex, DEBUG_VIEW_SCENE);
+    }
+    if (buttons & DPAD_RIGHT && cursor < n - 1) {
+      u16 newCursor;
+
+      PlayMusic(SFX_MOVE_CURSOR);
+      newCursor = cursor + 5;
+      if (newCursor >= n)
+        cursor = n - 1;
+      else
+        cursor = newCursor;
+      if (cursor >= scrollTop + DEBUG_ROWS)
+        scrollTop = cursor - (DEBUG_ROWS - 1);
+      DebugMenuRedraw(scrollTop, confirmedSceneIndex, DEBUG_VIEW_SCENE);
+    }
     if (buttons & A_BUTTON) {
       confirmedSceneIndex = cursor;
       DebugMenu_SetPendingScene(&sScenes[cursor]);
@@ -96,7 +119,7 @@ void DebugSceneViewer(void) {
       DebugMenuWaitRelease(A_BUTTON);
     }
 
-    DebugMenuUpdateCursor(cursor - scrollTop);
+    DebugMenuUpdateCursor((u8)(cursor - scrollTop));
     LoadOam();
     DebugMenuWaitVBlank();
   }

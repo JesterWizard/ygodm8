@@ -200,7 +200,7 @@ void DebugMenuFormatTitleRow(u8 *out, const u8 *title) {
   out[2 + DEBUG_CHARS] = '\0';
 }
 
-void DebugMenuRedraw(u8 scrollTop, u16 marker, u8 view) {
+void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
   DebugMenuLoadTilemaps();
   switch (view) {
   case DEBUG_VIEW_MUSIC:
