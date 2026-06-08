@@ -19,21 +19,7 @@ enum {
   DUEL_WINNER_OPPONENT
 };
 
-//TODO: FIELD -> DUEL_FIELD
-enum {
-  FIELD_ARENA,
-  FIELD_FOREST,
-  FIELD_WASTELAND,
-  FIELD_MOUNTAIN,
-  FIELD_SOGEN,
-  FIELD_UMI,
-  FIELD_YAMI,
-  NUM_VANILLA_FIELDS
-};
-
-#include "constants/custom_fields_generated.h"
-
-#define IsCustomField(field) ((field) >= FIRST_CUSTOM_FIELD && (field) < NUM_FIELDS)
+#include "constants/duel_fields.h"
 
 //TODO: MAX_NUM_ZONES_IN_ROW?
 #define MAX_ZONES_IN_ROW 5

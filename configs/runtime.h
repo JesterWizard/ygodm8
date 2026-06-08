@@ -23,7 +23,8 @@ typedef struct {
     u8 skip_opening_sequence;
     u8 turn_off_visual_scanner;
     u8 disable_element_system;
-    u8 duel_fields_start_on_arena; // Force duel starts onto the arena field.
+    u8 duel_start_field; // FIELD_* from constants/duel_fields.h; NUM_FIELDS uses each duelist's field.
+    u8 field_stat_change_percent; // ATK/DEF boost or penalty from terrain; 30 = vanilla +/-30%.
     u8 dynamic_card_shop_and_trunk_sorting;
     u8 hide_unowned_trunk_cards; // Trunk list only shows cards you own at least one copy of.
     u8 dynamic_card_shop_costs; // Use card cost * 40 for shop pricing.

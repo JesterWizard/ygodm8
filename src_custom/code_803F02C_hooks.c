@@ -152,8 +152,8 @@ void InitBoard__Replacement(void) {
       ClearZone(&gDuel.hands[i][j]);
       TryDrawingCard(i);
     }
-  gDuel.field = gRuntimeConfig.duel_fields_start_on_arena == TRUE
-      ? FIELD_ARENA
+  gDuel.field = gRuntimeConfig.duel_start_field < NUM_FIELDS
+      ? gRuntimeConfig.duel_start_field
       : gDuelData.duelist.field;
   gDeferGraveyardDrawBattleResolve = FALSE;
   gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;

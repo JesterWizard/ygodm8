@@ -262,8 +262,13 @@ static unsigned short GetStageModifiedStat_Hook(unsigned short stat, s8 stage) {
 }
 
 static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod) {
+  u32 scaled;
+  u8 percent;
+
   if (stat == 0xFFFF)
     return stat;
+
+  percent = gRuntimeConfig.field_stat_change_percent;
 
   switch (fieldMod) {
     case 0:
@@ -271,12 +276,12 @@ static unsigned short GetFieldModifiedStat_Hook(unsigned short stat, u8 fieldMod
     case 4:
       break;
     case 1:
-      stat *= 0.7;
+      scaled = (u32)stat * (100 - percent) / 100;
+      stat = scaled > 0xFFFE ? 0xFFFE : (u16)scaled;
       break;
     case 3:
-      stat *= 1.3;
-      if (stat >= 0xFFFE)
-        stat = 0xFFFE;
+      scaled = (u32)stat * (100 + percent) / 100;
+      stat = scaled > 0xFFFE ? 0xFFFE : (u16)scaled;
       break;
   }
 

@@ -1,5 +1,6 @@
 #include "runtime.h"
 #include "constants/card_ids.h"
+#include "constants/duel_fields.h"
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
@@ -16,7 +17,8 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .skip_opening_sequence = TRUE,
     .turn_off_visual_scanner = TRUE,
     .disable_element_system = FALSE,
-    .duel_fields_start_on_arena = FALSE,
+    .duel_start_field = VANILLA_FIELDS,
+    .field_stat_change_percent = 60,
     .dynamic_card_shop_and_trunk_sorting = TRUE,
     .hide_unowned_trunk_cards = FALSE,
     .dynamic_card_shop_costs = TRUE,
@@ -55,5 +57,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = THE_UNHAPPY_MAIDEN
+    .opponent_deck_card_id = CARD_NONE
 };
