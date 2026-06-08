@@ -35,6 +35,7 @@ typedef struct {
     u8 enable_custom_cards_past_800;
     u8 enable_custom_decks;
     u8 enable_multiple_decks;
+    u8 enable_custom_events; // Use custom event script replacements instead of vanilla overworld scripts.
     u8 allow_ante_with_one_copy_of_card;
     u8 allow_sell_one_copy_of_card;
     u8 add_all_cards_in_deck_to_trunk;

@@ -62,5 +62,5 @@ The compiler writes `src_custom/generated/event_script_replacements.inc` from th
 After editing C macro files, rebuild the event replacements and ROM:
 
 If you only want vanilla overworld behavior at runtime, set
-`disable_custom_events = TRUE` in `configs/runtime.c`. That bypasses the
+`enable_custom_events = FALSE` in `configs/runtime.c`. That bypasses the
 custom event resolver without touching the event files themselves.

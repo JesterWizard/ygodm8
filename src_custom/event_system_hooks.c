@@ -25,6 +25,9 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx);
 const struct Script *EventSystem_ResolveScript(const struct Script *script) {
   unsigned i;
 
+  if (gRuntimeConfig.enable_custom_events != TRUE)
+    return script;
+
   for (i = 0; i < gEventScriptReplacementCount; i++)
     if (gEventScriptReplacements[i].vanilla == script)
       return gEventScriptReplacements[i].replacement;
