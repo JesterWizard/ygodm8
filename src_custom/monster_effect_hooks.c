@@ -26,7 +26,6 @@ void ActivateFireReaperEffect(void);
 unsigned char CanActivateNeedleBall(void);
 void ActivateNeedleBallEffect(void);
 void ActivateNeedleWormEffect(void);
-void ActivateMysteriousPuppeteerEffect(void);
 unsigned char CanActivateKarateMan(void);
 void ActivateKarateManEffect(void);
 unsigned char CanActivateMonsterTamer(void);
@@ -42,8 +41,6 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateNeedleBall();
     case MONSTER_EFFECT_AMAZON_CHAIN_MASTER:
       return CanActivateAmazonessChainMaster();
-    case MONSTER_EFFECT_MYSTERIOUS_PUPPETEER:
-      return CanActivateMysteriousPuppeteer();
     case MONSTER_EFFECT_PENGUIN_SOLDIER:
       return CanActivatePenguinSoldier();
     case MONSTER_EFFECT_KARATE_MAN:
@@ -107,11 +104,6 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_PRINCESS_OF_TSURUGI) {
     ActivatePrincessOfTsurugiEffect();
-    return;
-  }
-
-  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MYSTERIOUS_PUPPETEER) {
-    ActivateMysteriousPuppeteerEffect();
     return;
   }
 

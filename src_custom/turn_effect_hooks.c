@@ -13,6 +13,8 @@ void ActivateNimbleMomongaEffect(void);
 void ActivateSkullMarkLadyBugEffect(void);
 u8 ShouldActivateSinisterSerpentEffect(void);
 void ActivateSinisterSerpentEffect(void);
+unsigned char ShouldActivateMysteriousPuppeteerTurnEffect(void);
+void ActivateMysteriousPuppeteerTurnEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
 void ResetUltimateOfferingTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
@@ -52,6 +54,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateSinisterSerpentEffect();
     return;
   }
+  if (gActiveEffect.cardId == MYSTERIOUS_PUPPETEER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
+    ActivateMysteriousPuppeteerTurnEffect();
+    return;
+  }
   if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
@@ -80,6 +86,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return TRUE;
   if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return ShouldActivateSinisterSerpentEffect();
+  if (gActiveEffect.cardId == MYSTERIOUS_PUPPETEER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ShouldActivateMysteriousPuppeteerTurnEffect();
   if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return FALSE;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)

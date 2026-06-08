@@ -2566,7 +2566,7 @@
       "level": 4,
       "type": "TYPE_WARRIOR",
       "color": "EFFECT_CARD",
-      "monsterEffect": "MONSTER_EFFECT_MYSTERIOUS_PUPPETEER",
+      "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Mysterious Puppeteer",
@@ -2575,13 +2575,13 @@
         "symbol": "gDescription_MysteriousPuppeteer",
         "pages": [
           "A horrifying puppeteer that has the power to mesmerize its foes.",
-          "It can restore 500LP per monster on the owner's field."
+          "Gain 500LP per monster on your field at the start of your turn."
         ]
       },
       "activation_description": {
         "symbol": "gActivationDescription_MysteriousPuppeteer",
         "pages": [
-          "500LP will be recovered per monster on the owner's field."
+          "500 LP will be recovered for each monster on the owner's side of the field."
         ]
       }
     },
