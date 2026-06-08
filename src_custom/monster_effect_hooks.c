@@ -155,6 +155,20 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MONSTER_EYE) {
+    u8 i;
+
+    for (i = 0; i < MAX_ZONES_IN_ROW; i++)
+      if (gTurnHands[INACTIVE_DUELIST][i]->id != CARD_NONE)
+        gTurnHands[INACTIVE_DUELIST][i]->isFaceUp = TRUE;
+
+    if (!gHideEffectText) {
+      gCardEffectTextData.cardId = gMonEffect.id;
+      ActivateCardEffectText();
+    }
+    return;
+  }
+
   gMonEffects[gCardInfo.monsterEffect]();
 }
 

@@ -2653,12 +2653,25 @@
       "attribute": "ATTRIBUTE_DREAM",
       "level": 4,
       "type": "TYPE_FIEND",
-      "color": "NORMAL_CARD",
-      "monsterEffect": 0,
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_MONSTER_EYE",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Big Eye",
-      "password": [ 1, 6, 7, 6, 8, 3, 8, 7 ]
+      "password": [ 1, 6, 7, 6, 8, 3, 8, 7 ],
+      "description": {
+        "symbol": "gDescription_BigEye",
+        "pages": [
+          "A bizarre being that has eyes peering from all over its body.",
+          "It has the ability to reveal the cards in the foe's hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BigEye",
+        "pages": [
+          "It will reveal the cards in the opponent's hand."
+        ]
+      }
     },
     {
       "card_const": "ARMAILL",
