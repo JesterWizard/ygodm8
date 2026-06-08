@@ -118,6 +118,19 @@ def run_gbagfx(input_path: pathlib.Path, output_path: pathlib.Path, *extra: str)
     subprocess.run([str(GBAFX), str(input_path), str(output_path), *extra], check=True, cwd=ROOT)
 
 
+def pad_gba_palette(path: pathlib.Path, target_colors: int) -> None:
+    """Pad a GBA palette file (RGB555 little-endian) to exactly target_colors entries.
+    Extra entries are filled with black (0x0000).
+    """
+    data = path.read_bytes()
+    expected_bytes = target_colors * 2
+    if len(data) >= expected_bytes:
+        return
+    # Pad with zeros (GBA color 0x0000 = black)
+    padding = bytes(expected_bytes - len(data))
+    path.write_bytes(data + padding)
+
+
 def build_big_art_from_png(png_path: pathlib.Path) -> tuple[pathlib.Path, pathlib.Path]:
     BIG_BUILD_DIR.mkdir(parents=True, exist_ok=True)
     stem = png_path.stem
@@ -125,6 +138,14 @@ def build_big_art_from_png(png_path: pathlib.Path) -> tuple[pathlib.Path, pathli
     palette_path = BIG_BUILD_DIR / f"{stem}.gbapal"
 
     run_gbagfx(png_path, palette_path)
+
+    # Determine the target palette size based on how many colors the art actually uses.
+    # The PNG may have fewer PLTE entries than the GBA expects (e.g. Photoshop strips
+    # unused entries). Pad to avoid the game reading garbage past the end of the file.
+    colors_used = count_colors_used_in_big_art(png_path)
+    target = BIG_PALETTE_COLORS_EXTENDED if colors_used > BIG_PALETTE_COLORS_DEFAULT else BIG_PALETTE_COLORS_DEFAULT
+    pad_gba_palette(palette_path, target)
+
     with tempfile.NamedTemporaryFile(suffix=".8bpp", delete=False) as tmp:
         tmp_8bpp = pathlib.Path(tmp.name)
     try:

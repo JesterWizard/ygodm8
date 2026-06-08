@@ -39,9 +39,10 @@ def palette_rgb(palette: list[int], index: int) -> tuple[int, int, int]:
 def closest_palette_index(
     palette: list[int], target: tuple[int, int, int], exclude: frozenset[int]
 ) -> int:
+    num_colors = len(palette) // 3
     best_index = 1
     best_distance = math.inf
-    for index in range(64):
+    for index in range(num_colors):
         if index in exclude:
             continue
         distance = color_distance_sq(target, palette_rgb(palette, index))
@@ -116,6 +117,22 @@ def soften_glow_halos(
     return changed
 
 
+def pad_palette_to_64(image: Image.Image) -> int:
+    """Ensure the PNG has exactly 64 palette entries. Pillow's 'P' mode preserves
+    the PLTE chunk size from the source file. Some export tools (e.g. Photoshop
+    'Save for Web') omit unused trailing slots, producing fewer than 64 entries.
+    The GBA pipeline expects a full 64-color palette; pad missing entries with
+    black. Returns the number of entries added."""
+    palette = image.getpalette()
+    num_colors = len(palette) // 3 if palette else 0
+    if num_colors >= 64:
+        return 0
+    added = 64 - num_colors
+    # Extend palette list with black entries (R=0, G=0, B=0)
+    image.putpalette(palette + [0, 0, 0] * added)
+    return added
+
+
 def normalize_png(
     path: pathlib.Path,
     *,
@@ -126,15 +143,18 @@ def normalize_png(
 ) -> None:
     image = Image.open(path).convert("P")
     remapped = remap_opaque_index_zero(image)
+    padded = pad_palette_to_64(image)
     softened = 0
     if soften_halos:
         softened = soften_glow_halos(image, glow_indices, body_indices, halo_radius)
 
     image.save(path)
-    print(
-        f"{path}: remapped {remapped} index-0 pixels"
-        + (f", softened {softened} halo pixels" if soften_halos else "")
-    )
+    parts = [f"remapped {remapped} index-0 pixels"]
+    if padded:
+        parts.append(f"padded {padded} palette entries")
+    if soften_halos:
+        parts.append(f"softened {softened} halo pixels")
+    print(f"{path}: {', '.join(parts)}")
 
 
 def main() -> int:
