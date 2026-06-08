@@ -458,8 +458,8 @@ void sub_8044570__Replacement(void)
       CheckGraveyardAndLoserFlags();
       gDuelCursor.state = 0;
       sub_801BC00();
-      ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
+      ResolveTheUnhappyMaidenBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
@@ -512,8 +512,8 @@ void TryAttackWithMonster__Replacement(void)
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();
-      ResolveTheUnhappyMaidenBattleEffect();
       UpdateAllDuelGfx();
+      ResolveTheUnhappyMaidenBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
