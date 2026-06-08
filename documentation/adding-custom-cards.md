@@ -21,7 +21,7 @@ A new card needs at least:
 
 1. An **80×80** indexed PNG for trunk/card-detail **big** art (this doc).
 2. A manifest entry with stats, name, password, and effects.
-3. A successful `make` run to regenerate `.huff`, `.gbapal`, generated includes, and automatic 24x24 mini card art.
+3. A successful `make` run to build ROM assets under `build/cards/`, regenerate includes, and automatic 24x24 mini card art.
 
 See also [custom-card-memory.md](custom-card-memory.md) for save/RAM growth, [card-descriptions.md](card-descriptions.md) for description text, and [big-card-art-palette-extension.md](big-card-art-palette-extension.md) if the PNG uses more than 64 palette colors.
 
@@ -29,8 +29,8 @@ See also [custom-card-memory.md](custom-card-memory.md) for save/RAM growth, [ca
 
 | Step | What you do | What the build does |
 |------|-------------|---------------------|
-| Author big art | Save an indexed `80x80/<stem>.png` (see below) | `graphics.mk` runs `gbagfx` → `.8bpp`, `.gbapal`, `.huff` |
-| Author mini art (optional) | Add `24x24/<stem>.png`, or omit and let the script derive it | LZ mini tiles from PNG or from big art |
+| Author big art | Save an indexed `80x80/<stem>.png` (see below) | `add_card_art.py` runs `gbagfx` → `build/cards/80x80/*.gbapal` and `*.huff` |
+| Author mini art (optional) | Add `24x24/<stem>.png`, or omit and let the script derive it | `add_card_art.py` → `build/cards/24x24/<stem>.lz` |
 | Manifest | Append a card object to `tools/card_data_manifest.json` | `tools/add_card_art.py` regenerates IDs, data, names, art includes |
 | Verify | `make` | Links custom art into the ROM |
 
@@ -86,15 +86,14 @@ Other editors can produce equivalent indexed PNGs if they honor the same **80×8
 
 ### 4. Build conversion
 
-You only commit the **PNG**. On `make`, `graphics.mk` generates sibling files from it:
+You only commit the **PNG**. On `make`, `tools/add_card_art.py` converts each `80x80/<stem>.png` straight into ROM-ready assets under `build/cards/80x80/` (intermediate `.8bpp` tiles are kept in temp files only):
 
 | Generated file | Role |
 |----------------|------|
-| `<stem>.gbapal` | Big card palette embedded in the ROM |
-| `<stem>.8bpp` | Uncompressed 8bpp tiles |
-| `<stem>.huff` | Huff-compressed big art (`big_art` in the manifest) |
+| `build/cards/80x80/<stem>.gbapal` | Big card palette embedded in the ROM |
+| `build/cards/80x80/<stem>.huff` | Huff-compressed big art (`big_art` in the manifest) |
 
-Do not hand-edit `.huff` / `.gbapal` unless you know you are bypassing the normal pipeline.
+Do not hand-edit generated binaries unless you know you are bypassing the normal pipeline.
 
 ### 5. More than 64 colors
 
@@ -102,12 +101,12 @@ If the indexed PNG uses **more than 64** non-transparent palette indices, the bu
 
 ## Mini card art
 
-Trunk and shop lists use **24×24** mini art.
+Trunk and shop lists use **24×24** mini art. On `make`, `tools/add_card_art.py` writes ROM-ready `build/cards/24x24/<stem>.lz` files (intermediate `.8bpp` tiles stay in temp files only).
 
-| Approach | Path |
-|----------|------|
-| Manual | Add `src_custom/assets/cards/24x24/<stem>.png` (16-color indexed; see `mini.pal` in the cards asset folder) |
-| Automatic | Omit the mini PNG; `python3 tools/add_card_art.py` can derive mini tiles from the 80×80 PNG and palette |
+| Approach | Source | Build output |
+|----------|--------|--------------|
+| Manual | Add `src_custom/assets/cards/24x24/<stem>.png` (16-color indexed; see `mini.pal` in the cards asset folder) | `build/cards/24x24/<stem>.lz` |
+| Automatic | Omit the mini PNG; the script derives tiles from the `80x80/<stem>.png` and palette | `build/cards/24x24/<stem>.lz` |
 
 Regenerate only minis:
 
@@ -118,7 +117,7 @@ python3 tools/add_card_art.py --generate-minis
 ## Manifest and build
 
 1. Append a card entry to `tools/card_data_manifest.json` after the last custom card (or in the custom section). Required fields include `card_const`, `card_name`, combat stats, `password`, and effect IDs.
-2. Optional overrides: `big_art`, `big_palette`, `mini_art` (defaults are `src_custom/assets/cards/80x80/<stem>.huff`, `.gbapal`, and `24x24/<stem>.lz`).
+2. Optional overrides: `big_art`, `big_palette`, `mini_art` (defaults are `build/cards/80x80/<stem>.huff`, `.gbapal`, and `build/cards/24x24/<stem>.lz`).
 3. Run `make`. This runs `tools/add_card_art.py` and rebuilds generated includes under `src_custom/generated/`.
 
 After adding many custom cards, run `make memory-report` if you need updated save/RAM sizes (see [custom-card-memory.md](custom-card-memory.md)).
@@ -128,7 +127,7 @@ After adding many custom cards, run `make memory-report` if you need updated sav
 | Feature | Location | Description |
 |---------|----------|-------------|
 | Authoring PNG drop folder | `src_custom/assets/cards/80x80/` | Commit `<stem>.png` here |
-| PNG → ROM gfx rules | `graphics.mk` | `gbagfx` rules for `.8bpp`, `.gbapal`, `.huff` |
+| PNG → ROM gfx | `tools/add_card_art.py` | Builds `build/cards/80x80/*.gbapal` and `*.huff`, plus `build/cards/24x24/*.lz` (`.8bpp` in temp only) |
 | Manifest source | `tools/card_data_manifest.json` | Card order, stats, optional asset paths |
 | Art / data generator | `tools/add_card_art.py` | Regenerates IDs, `card_art_generated.inc`, mini derivation |
 | Generated art tables | `src_custom/generated/card_art_generated.inc` | `INCBIN` big art and palette pointers |

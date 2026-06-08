@@ -57,7 +57,7 @@ Behavior matches vanilla: `PrintCard` fills `gUnk_8E01368` with the standard 64-
 
 ### Big palette file size
 
-Per-card big palettes live at `src_custom/assets/cards/80x80/<card>.gbapal` (or paths listed in `tools/card_data_manifest.json` as `big_palette`). Author the source PNG first; see [adding-custom-cards.md](adding-custom-cards.md#big-card-art) for the 512→80 workflow and Photoshop export settings.
+Per-card big palettes are built at `build/cards/80x80/<card>.gbapal` from the source PNG (or paths listed in `tools/card_data_manifest.json` as `big_palette`). Author the source PNG first; see [adding-custom-cards.md](adding-custom-cards.md#big-card-art) for the 512→80 workflow and Photoshop export settings.
 
 `tools/add_card_art.py` accepts:
 

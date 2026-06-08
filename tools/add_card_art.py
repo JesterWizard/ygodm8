@@ -26,8 +26,11 @@ from card_manifest import (  # noqa: E402
 ASSET_ROOT = ROOT / "src_custom/assets/cards"
 BIG_DIR = ASSET_ROOT / "80x80"
 MINI_DIR = ASSET_ROOT / "24x24"
+BIG_BUILD_DIR = ROOT / "build" / "cards" / "80x80"
+MINI_BUILD_DIR = ROOT / "build" / "cards" / "24x24"
+LEGACY_BIG_ASSET_DIR = "src_custom/assets/cards/80x80"
+LEGACY_MINI_ASSET_DIR = "src_custom/assets/cards/24x24"
 MINI_PAL = ASSET_ROOT / "mini.pal"
-EXPORT_DIR = ASSET_ROOT / "export"
 BASE_ROM = ROOT / "baserom.gba"
 GENERATED_DIR = ROOT / "src_custom/generated"
 GENERATED_ASSET_INC = GENERATED_DIR / "card_art_generated.inc"
@@ -100,8 +103,50 @@ def include_asset_path(path: pathlib.Path) -> str:
     return path.relative_to(ROOT).as_posix() if path.is_absolute() else path.as_posix()
 
 
-def run_gbagfx(input_path: pathlib.Path, output_path: pathlib.Path) -> None:
-    subprocess.run([str(GBAFX), str(input_path), str(output_path)], check=True)
+def remap_legacy_asset_path(path: pathlib.Path) -> pathlib.Path:
+    resolved = path if path.is_absolute() else ROOT / path
+    rel = resolved.relative_to(ROOT).as_posix()
+    name = resolved.name
+    if rel.startswith(f"{LEGACY_BIG_ASSET_DIR}/") and name.endswith((".huff", ".gbapal")):
+        return BIG_BUILD_DIR / name
+    if rel.startswith(f"{LEGACY_MINI_ASSET_DIR}/") and name.endswith(".lz"):
+        return MINI_BUILD_DIR / name
+    return resolved
+
+
+def run_gbagfx(input_path: pathlib.Path, output_path: pathlib.Path, *extra: str) -> None:
+    subprocess.run([str(GBAFX), str(input_path), str(output_path), *extra], check=True, cwd=ROOT)
+
+
+def build_big_art_from_png(png_path: pathlib.Path) -> tuple[pathlib.Path, pathlib.Path]:
+    BIG_BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    stem = png_path.stem
+    huff_path = BIG_BUILD_DIR / f"{stem}.huff"
+    palette_path = BIG_BUILD_DIR / f"{stem}.gbapal"
+
+    run_gbagfx(png_path, palette_path)
+    with tempfile.NamedTemporaryFile(suffix=".8bpp", delete=False) as tmp:
+        tmp_8bpp = pathlib.Path(tmp.name)
+    try:
+        run_gbagfx(png_path, tmp_8bpp)
+        run_gbagfx(tmp_8bpp, huff_path, "-depth", "8", "-ygodm")
+    finally:
+        tmp_8bpp.unlink(missing_ok=True)
+
+    return huff_path, palette_path
+
+
+def build_mini_lz_from_png(mini_png: pathlib.Path) -> pathlib.Path:
+    MINI_BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    mini_lz = MINI_BUILD_DIR / f"{mini_png.stem}.lz"
+    with tempfile.NamedTemporaryFile(suffix=".8bpp", delete=False) as tmp:
+        tmp_8bpp = pathlib.Path(tmp.name)
+    try:
+        run_gbagfx(mini_png, tmp_8bpp)
+        run_gbagfx(tmp_8bpp, mini_lz)
+    finally:
+        tmp_8bpp.unlink(missing_ok=True)
+    return mini_lz
 
 
 def load_gba_palette(path: pathlib.Path) -> list[tuple[int, int, int]]:
@@ -264,15 +309,51 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
     quantized.save(mini_png)
 
 
-def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, mini_base: pathlib.Path) -> pathlib.Path:
-    mini_png = mini_base.with_suffix(".png")
-    mini_8bpp = mini_base.with_suffix(".8bpp")
-    mini_lz = mini_base.with_suffix(".lz")
+def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, stem: str) -> pathlib.Path:
+    MINI_BUILD_DIR.mkdir(parents=True, exist_ok=True)
+    mini_lz = MINI_BUILD_DIR / f"{stem}.lz"
 
-    make_paletted_mini(big_png, big_palette, mini_png)
-    run_gbagfx(mini_png, mini_8bpp)
-    run_gbagfx(mini_8bpp, mini_lz)
+    with tempfile.TemporaryDirectory(prefix="mini_build_") as tmp:
+        tmpdir = pathlib.Path(tmp)
+        mini_png = tmpdir / f"{stem}.png"
+        mini_8bpp = tmpdir / f"{stem}.8bpp"
+        make_paletted_mini(big_png, big_palette, mini_png)
+        run_gbagfx(mini_png, mini_8bpp)
+        run_gbagfx(mini_8bpp, mini_lz)
+
     return mini_lz
+
+
+def ensure_custom_card_assets(manifest: dict, force_minis: bool = False) -> list[pathlib.Path]:
+    custom_start = next(
+        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
+        len(manifest["cards"]),
+    )
+    built_minis: list[pathlib.Path] = []
+    for item in manifest["cards"][custom_start:]:
+        stem = item["card_const"].lower()
+        big_png = BIG_DIR / f"{stem}.png"
+        mini_png = MINI_DIR / f"{stem}.png"
+        mini_lz = MINI_BUILD_DIR / f"{stem}.lz"
+
+        if big_png.exists():
+            build_big_art_from_png(big_png)
+
+        if mini_png.exists():
+            built_minis.append(build_mini_lz_from_png(mini_png))
+            continue
+
+        if not big_png.exists():
+            continue
+
+        palette_path = BIG_BUILD_DIR / f"{stem}.gbapal"
+        if not palette_path.exists():
+            continue
+        if not force_minis and mini_lz.exists():
+            continue
+        built_minis.append(build_mini_assets(big_png, palette_path, stem))
+
+    return built_minis
 
 
 def parse_enum_value(text: str, start: int) -> tuple[int, int]:
@@ -503,13 +584,19 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
         stem = item["card_const"].lower()
-        big_art = manifest_asset_path(item.get("big_art", ""), f"src_custom/assets/cards/80x80/{stem}.huff")
-        big_pal = manifest_asset_path(item.get("big_palette", ""), f"src_custom/assets/cards/80x80/{stem}.gbapal")
-        mini_art = manifest_asset_path(item.get("mini_art", ""), f"src_custom/assets/cards/24x24/{stem}.lz")
+        big_png = BIG_DIR / f"{stem}.png"
+        big_art = remap_legacy_asset_path(
+            manifest_asset_path(item.get("big_art", ""), f"build/cards/80x80/{stem}.huff")
+        )
+        big_pal = remap_legacy_asset_path(
+            manifest_asset_path(item.get("big_palette", ""), f"build/cards/80x80/{stem}.gbapal")
+        )
+        mini_art = remap_legacy_asset_path(
+            manifest_asset_path(item.get("mini_art", ""), f"build/cards/24x24/{stem}.lz")
+        )
 
         big_art_colors_used = 0
-        if big_art and big_art.exists():
-            big_png = big_art.with_suffix(".png")
+        if big_png.exists():
             big_art_colors_used = count_colors_used_in_big_art(big_png)
 
         if big_pal.exists():
@@ -1033,33 +1120,6 @@ def update_file(path: pathlib.Path, content: str) -> None:
     path.write_text(content)
 
 
-def sync_mini_exports() -> list[pathlib.Path]:
-    EXPORT_DIR.mkdir(parents=True, exist_ok=True)
-    exported = []
-    for src in sorted(MINI_DIR.glob("*.png")):
-        dst = EXPORT_DIR / src.name
-        dst.write_bytes(src.read_bytes())
-        exported.append(dst)
-    return exported
-
-
-def sync_missing_mini_assets(entries: list[CardArtEntry], force: bool = False) -> list[pathlib.Path]:
-    exported = []
-    for entry in entries:
-        if not force and entry.mini_art and entry.mini_art.exists():
-            continue
-        if not entry.big_art or not entry.big_pal:
-            continue
-        big_png = entry.big_art.with_suffix(".png")
-        if not big_png.exists():
-            continue
-        base = MINI_DIR / f"{entry.stem}"
-        mini_lz = build_mini_assets(big_png, entry.big_pal, base)
-        entry.mini_art = mini_lz
-        exported.append(mini_lz)
-    return exported
-
-
 def parse_card_colors() -> dict[int, int]:
     text = (ROOT / "src/data/cards_data.c").read_text()
     colors = {}
@@ -1186,11 +1246,8 @@ def main() -> int:
         return 0
 
     if args.generate_minis:
-        entries = discover_entries(manifest)
-        generated_minis = sync_missing_mini_assets(entries, force=True)
-        exported = sync_mini_exports()
-        exported.extend(generated_minis)
-        print(f"Generated {len(exported)} mini assets.")
+        built_minis = ensure_custom_card_assets(manifest, force_minis=True)
+        print(f"Generated {len(built_minis)} mini assets.")
         return 0
 
     enum_tables = load_effect_enums()
@@ -1209,8 +1266,8 @@ def main() -> int:
                     f"cards[{item['card_const']}].customFieldSpell must not be CUSTOM_FIELD_SPELL_NONE."
                 )
 
+    built_minis = ensure_custom_card_assets(manifest)
     entries = discover_entries(manifest)
-    generated_minis = sync_missing_mini_assets(entries)
 
     asset_inc = render_asset_inc(entries)
     name_inc = render_name_inc(manifest)
@@ -1258,9 +1315,7 @@ def main() -> int:
     update_file(GENERATED_ACTIVATION_TEXT_INC, activation_description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_LOOKUP_INC, activation_description_lookup_inc)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
-    exported = sync_mini_exports()
-    exported.extend(generated_minis)
-    print(f"Generated {len(entries)} card art bindings and exported {len(exported)} mini PNGs.")
+    print(f"Generated {len(entries)} card art bindings and built {len(built_minis)} mini assets.")
     return 0
 
 

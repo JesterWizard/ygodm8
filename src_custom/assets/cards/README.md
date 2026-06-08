@@ -21,20 +21,25 @@ Authoring summary:
 3. In Photoshop **Save for Web**: **64** colors max, color adaptation **Selective**.
 4. Save into this folder.
 
-`make` generates `<stem>.gbapal`, `<stem>.8bpp`, and `<stem>.huff` from the PNG via `graphics.mk`.
+`make` runs `tools/add_card_art.py`, which converts each PNG into `build/cards/80x80/<stem>.gbapal` and `<stem>.huff` (`.8bpp` stays in temp files only).
 
 ## Mini art (`24x24/`)
 
-- `*_mini.lz` — LZ77-compressed mini-card tiles for trunk/shop lists
-- `mini.pal` — shared palette used when quantizing 24×24 mini PNGs
+Optional source PNGs for hand-authored minis:
 
-If a custom card has an `80x80/*.png` but no `24x24/*.lz`, run:
+```text
+src_custom/assets/cards/24x24/<stem>.png
+```
+
+`mini.pal` in this folder is the shared palette used when quantizing auto-derived 24×24 tiles.
+
+On `make`, `tools/add_card_art.py` writes `build/cards/24x24/<stem>.lz` for every custom card. If no `24x24/<stem>.png` exists, the mini is derived from the `80x80/<stem>.png` (resize to 24×24, map to `mini.pal`). Intermediate `.8bpp` files are never written into this repo tree.
+
+Regenerate only minis:
 
 ```bash
 python3 tools/add_card_art.py --generate-minis
 ```
-
-That derives the mini from the 80×80 source (resize to 24×24, map to `mini.pal`).
 
 ## Legacy / generated binaries
 
