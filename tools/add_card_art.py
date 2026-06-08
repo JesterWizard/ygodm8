@@ -1080,11 +1080,29 @@ def render_trunk_inc(manifest: dict, enable_custom_cards_past_800: bool) -> str:
     return "\n".join(lines)
 
 
+def effect_usage_for_item(item: dict) -> str:
+    manifest_to_c = {
+        "once": "EFFECT_USAGE_ONCE",
+        "once_per_turn": "EFFECT_USAGE_ONCE_PER_TURN",
+        "multiple_per_turn": "EFFECT_USAGE_MULTIPLE_PER_TURN",
+        "continuous": "EFFECT_USAGE_CONTINUOUS",
+    }
+    raw = item.get("effect_usage")
+    if raw is not None:
+        return manifest_to_c[raw]
+
+    monster_effect = item.get("monsterEffect", 0)
+    if monster_effect in (0, "MONSTER_EFFECT_NONE", "0"):
+        return "EFFECT_USAGE_NONE"
+    return "EFFECT_USAGE_ONCE_PER_TURN"
+
+
 def render_data_src(manifest: dict) -> str:
     lines = [
         '#include "global.h"',
         '#include "common-chax.h"',
         '#include "constants/card_descriptions.h"',
+        '#include "constants/effect_usage.h"',
         '#include "../card_description_data_generated.inc"',
         "",
         "#define NORMAL_CARD 0",
@@ -1099,6 +1117,11 @@ def render_data_src(manifest: dict) -> str:
     for index, item in enumerate(manifest["cards"]):
         lock_after_activation = item.get("lock_after_activation", True)
         lines.append(f"  [0x{index:04X}] = {1 if lock_after_activation else 0},")
+    lines.append("};")
+    lines.append("")
+    lines.append(f"const u8 gCardEffectUsage_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{")
+    for index, item in enumerate(manifest["cards"]):
+        lines.append(f"  [0x{index:04X}] = {effect_usage_for_item(item)},")
     lines.append("};")
     lines.append("")
     lines.append(f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{")

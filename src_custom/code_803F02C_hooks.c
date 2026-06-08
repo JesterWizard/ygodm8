@@ -12,6 +12,7 @@
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
 #include "riryoku.h"
+#include "monster_effect_usage.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -338,6 +339,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->isDefending = 0;
   zone->unkTwo = 0;
   zone->unkThree = 0;
+  zone->effectExhausted = 0;
+  zone->effectUsedThisTurn = 0;
   ResetPermStage(zone);
   ResetTempStage(zone);
   zone->unk4 = 0;
@@ -366,6 +369,8 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->unkTwo = src->unkTwo;
   dst->unkThree = src->unkThree;
   dst->willChangeSides = src->willChangeSides;
+  dst->effectExhausted = src->effectExhausted;
+  dst->effectUsedThisTurn = src->effectUsedThisTurn;
   RecalculateAllDynamicEquips();
 
   if (checkSliferSummonPenalty)
@@ -394,4 +399,20 @@ int GetFinalStage__Replacement(struct DuelCard *zone)
 
   gSetFinalStatZone = NULL;
   return (s8)stage;
+}
+
+LYN_REPLACE_CHECK(UnlockCardsInRow);
+void UnlockCardsInRow__Replacement(unsigned char turnRow)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[turnRow][i];
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    zone->effectUsedThisTurn = FALSE;
+    zone->isLocked = FALSE;
+  }
 }

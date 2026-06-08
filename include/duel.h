@@ -42,7 +42,8 @@ struct DuelCard
     u8 unkThree : 1;
     u8 isFaceUp : 1;
     u8 willChangeSides : 1;  //give back to opponent at the end of the turn (used by brain control)
-    //u8 filler6[2];
+    u8 effectExhausted : 1;
+    u8 effectUsedThisTurn : 1;
 };
 
 struct DuelistBattleState

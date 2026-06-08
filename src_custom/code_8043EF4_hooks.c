@@ -578,7 +578,8 @@ void HandleBButtonAction__Replacement(void)
       CancelRiryokuTargeting();
       break;
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
-      CancelCannonSoldierTargeting();
+      PlayMusic(SFX_FORBIDDEN);
+      WaitForVBlank();
       break;
     case 4:
       sub_8044A88();

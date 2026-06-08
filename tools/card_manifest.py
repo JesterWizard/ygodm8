@@ -18,7 +18,13 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell"}
+OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell", "effect_usage"}
+ALLOWED_EFFECT_USAGE = {
+    "once",
+    "once_per_turn",
+    "multiple_per_turn",
+    "continuous",
+}
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS | ASSET_ENTRY_KEYS
 
@@ -113,6 +119,12 @@ def validate_manifest(manifest: object) -> dict:
             _fail(f"cards[{index}].trunk_card must be a boolean when present.")
         if "lock_after_activation" in item and not isinstance(item["lock_after_activation"], bool):
             _fail(f"cards[{index}].lock_after_activation must be a boolean when present.")
+        effect_usage = item.get("effect_usage")
+        if effect_usage is not None and effect_usage not in ALLOWED_EFFECT_USAGE:
+            _fail(
+                f"cards[{index}].effect_usage must be one of: "
+                f"{', '.join(sorted(ALLOWED_EFFECT_USAGE))}."
+            )
         custom_field_spell = item.get("customFieldSpell")
         if custom_field_spell is not None and not isinstance(custom_field_spell, str):
             _fail(f"cards[{index}].customFieldSpell must be a string when present.")

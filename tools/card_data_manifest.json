@@ -8011,6 +8011,7 @@
       "type": "TYPE_MACHINE",
       "color": "EFFECT_CARD",
       "monsterEffect": "MONSTER_EFFECT_CANNON_SOLDIER",
+      "effect_usage": "once",
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Cannon Soldier",
@@ -8019,14 +8020,14 @@
         "symbol": "gDescription_CannonSoldier",
         "pages": [
           "An army pet project, it is a mechanical soldier with a cannon.",
-          "It can tribute one monster on your side to inflict",
-          "500LP of damage to the opponent."
+          "Sacrifice one monster to deal that monster's",
+          "attack points as damage to your opponent."
         ]
       },
       "activation_description": {
         "symbol": "gActivationDescription_CannonSoldier",
         "pages": [
-          "Select a monster on your side to tribute, then inflict 500LP of damage to the opponent."
+          "Sacrifice one monster.#0Deal its ATK to opponent."
         ]
       }
     },

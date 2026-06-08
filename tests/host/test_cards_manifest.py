@@ -34,6 +34,12 @@ class CardManifestTests(unittest.TestCase):
         with self.assertRaises(ManifestValidationError):
             validate_manifest(manifest)
 
+    def test_rejects_invalid_effect_usage(self):
+        manifest = json.loads(FIXTURE.read_text())
+        manifest["cards"][1]["effect_usage"] = "every_turn"
+        with self.assertRaises(ManifestValidationError):
+            validate_manifest(manifest)
+
     def test_golden_card_ids_header(self):
         manifest = validate_manifest(json.loads(FIXTURE.read_text()))
         output = card_art.render_card_ids_header(manifest)

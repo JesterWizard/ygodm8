@@ -9,6 +9,5 @@ unsigned char CanActivateCannonSoldier(void);
 void ActivateCannonSoldierEffect(void);
 void BeginCannonSoldierTargeting(u8 originFixedRow, u8 originFixedCol);
 void TrySelectCannonSoldierTarget(void);
-void CancelCannonSoldierTargeting(void);
 
 #endif // GUARD_CANNON_SOLDIER_H

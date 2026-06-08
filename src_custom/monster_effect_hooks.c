@@ -3,13 +3,13 @@
 #include "configs/runtime.h"
 #include "constants/monster_effects.h"
 #include "cannon_soldier.h"
+#include "monster_effect_usage.h"
 #include "soul_exchange.h"
 #include "tribute.h"
 
 unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 
 extern void (*const gMonEffects[])(void);
-extern const u8 gCardLockAfterActivation_Hook[];
 
 void ActivateMonsterEffect(void);
 void MonsterActionMenu(void);
@@ -32,6 +32,11 @@ unsigned char CanActivateMonsterTamer(void);
 void ActivateMonsterTamerEffect(void);
 void ActivateHourglassOfLifeEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (!CanUseMonsterEffect(zone))
+    return FALSE;
+
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
       return CanActivateInjectionFairyLily();
@@ -58,9 +63,12 @@ unsigned char CanActivateMonsterEffect(void) {
 
 LYN_REPLACE_CHECK(ActivateMonsterEffect);
 void ActivateMonsterEffect__Replacement(void) {
+  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
   ResetCardEffectTextData();
   SetCardEffectTextType(2);
   SetCardInfo(gMonEffect.id);
+  MarkMonsterEffectUsed(zone);
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_INJECTION_FAIRY_LILY) {
     ActivateInjectionFairyLilyEffect();
@@ -216,8 +224,6 @@ FAILED:
             zone->isDefending = 0;
             zone->isFaceUp = 1;
           }
-          if (gCardLockAfterActivation_Hook[zone->id] && zone->id != CANNON_SOLDIER)
-            zone->isLocked = 1;
           ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);

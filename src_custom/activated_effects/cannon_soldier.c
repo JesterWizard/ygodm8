@@ -1,13 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
 #include "cannon_soldier.h"
+#include "monster_effect_usage.h"
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
 void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
-void SetCursorToCardDest(void);
 void CheckWinConditionExodia(void);
 
 static u8 IsValidCannonSoldierTributeZone(u8 fixedRow, u8 fixedCol)
@@ -36,12 +36,21 @@ static u8 FindFirstCannonSoldierTributeTarget(u8 *outCol)
   return FALSE;
 }
 
-static void ApplyCannonSoldierDamage(void)
+static u16 GetZoneAttackPoints(struct DuelCard *zone)
 {
+  ApplyFieldZoneStatsToCardInfo(zone);
+  return gCardInfo.atk;
+}
+
+static void ApplyCannonSoldierDamage(u16 damage)
+{
+  if (damage == 0)
+    return;
+
   if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(500);
+    SetOpponentLifePointsToSubtract(damage);
   else
-    SetPlayerLifePointsToSubtract(500);
+    SetPlayerLifePointsToSubtract(damage);
 
   HandleAtkAndLifePointsAction();
   CheckLoserFlags();
@@ -76,13 +85,16 @@ static u8 SacrificeTurnMonsterForAi(u8 avoidCol)
 static void ResolveCannonSoldierEffectForAi(void)
 {
   u8 tributeCol = SacrificeTurnMonsterForAi(gMonEffect.zone);
+  struct DuelCard *zone;
+  u16 damage;
 
   if (tributeCol >= MAX_ZONES_IN_ROW)
     return;
 
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][tributeCol], ACTIVE_DUELIST);
-  ApplyCannonSoldierDamage();
+  zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][tributeCol];
+  damage = GetZoneAttackPoints(zone);
+  ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  ApplyCannonSoldierDamage(damage);
 }
 
 u8 IsCannonSoldierCard(u16 cardId)
@@ -101,10 +113,16 @@ u8 FieldHasCannonSoldierTributeTarget(u8 originFixedRow, u8 originFixedCol)
 
 unsigned char CanActivateCannonSoldier(void)
 {
+  struct DuelCard *zone;
+
   if (gMonEffect.id != CANNON_SOLDIER)
     return FALSE;
 
   if (gMonEffect.row != PLAYER_MONSTER_ROW && gMonEffect.row != OPPONENT_MONSTER_ROW)
+    return FALSE;
+
+  zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  if (!CanUseMonsterEffect(zone))
     return FALSE;
 
   if (WhoseTurn() == DUEL_PLAYER)
@@ -149,8 +167,13 @@ void TrySelectCannonSoldierTarget(void)
     return;
   }
 
-  SacrificeFixedMonster(targetRow, targetCol);
-  ApplyCannonSoldierDamage();
+  {
+    struct DuelCard *zone = gFixedZones[targetRow][targetCol];
+    u16 damage = GetZoneAttackPoints(zone);
+
+    SacrificeFixedMonster(targetRow, targetCol);
+    ApplyCannonSoldierDamage(damage);
+  }
 
   gDuelCursor.state = 0;
   gDuelCursor.currentY = gDuelCursor.destY;
@@ -162,22 +185,9 @@ void TrySelectCannonSoldierTarget(void)
     TryActivatingPermanentEffects();
 }
 
-void CancelCannonSoldierTargeting(void)
-{
-  u8 currY = gDuelCursor.currentY;
-
-  PlayMusic(SFX_CANCEL);
-  gDuelCursor.state = 0;
-  gDuelCursor.currentY = gDuelCursor.destY;
-  gDuelCursor.currentX = gDuelCursor.destX;
-  SetCursorToCardDest();
-  DisplayCardInfoBar();
-  sub_8041E70(currY, gDuelCursor.currentY);
-}
-
 void ActivateCannonSoldierEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText) {
+  if (WhoseTurn() == DUEL_PLAYER) {
     BeginCannonSoldierTargeting(gMonEffect.row, gMonEffect.zone);
     return;
   }
