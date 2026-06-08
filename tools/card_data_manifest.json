@@ -9091,14 +9091,27 @@
       "def": 2100,
       "cost": 20,
       "attribute": "ATTRIBUTE_SHADOW",
-      "level": 7,
+      "level": 4,
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "card_name": "Dark Magician Knight",
-      "password": [ 5, 0, 7, 2, 5, 9, 9, 6 ]
+      "password": [ 5, 0, 7, 2, 5, 9, 9, 6 ],
+      "description": {
+        "symbol": "gDescription_DarkMagicianKnight",
+        "pages": [
+          "A Dark Magician who joined the knight's order.",
+          "He can destroy one field card when summoned."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DarkMagicianKnight",
+        "pages": [
+          "Target one card on the field and destroy it."
+        ]
+      }
     },
     {
       "card_const": "ABYSS_FLOWER",

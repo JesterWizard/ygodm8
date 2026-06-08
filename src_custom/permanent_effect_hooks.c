@@ -5,6 +5,7 @@
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
 #include "pyramid_of_light.h"
+#include "dark_magician_knight.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -87,6 +88,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = FAMILIAR_KNIGHT,
     .shouldActivate = ShouldActivateFamiliarKnight,
     .activate = ActivateFamiliarKnight,
+  },
+  {
+    .cardId = DARK_MAGICIAN_KNIGHT,
+    .shouldActivate = ShouldActivateDarkMagicianKnight,
+    .activate = ActivateDarkMagicianKnight,
   },
 };
 

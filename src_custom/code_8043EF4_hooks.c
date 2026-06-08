@@ -13,6 +13,7 @@
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "debug_ruleset.h"
+#include "dark_magician_knight.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -554,6 +555,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
       TrySelectCannonSoldierTarget();
       break;
+    case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
+      TrySelectDarkMagicianKnightTarget();
+      break;
   }
 }
 
@@ -580,6 +584,9 @@ void HandleBButtonAction__Replacement(void)
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();
+      break;
+    case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
+      CancelDarkMagicianKnightTargeting();
       break;
     case 4:
       sub_8044A88();
