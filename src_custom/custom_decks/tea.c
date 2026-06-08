@@ -2,7 +2,7 @@
 #include "common-chax.h"
 #include "custom_decks.h"
 
-#define CUSTOM_DIALOGUE_BODY(line1, line2) line1 "#0" line2 "#1@0\x0A"
+#define CUSTOM_DIALOGUE_BODY(line1, line2) line1 "#0" line2 "#1"
 
 static const u8 sTeaCardShopDuelBody[] APPEND_TEXT =
   CUSTOM_DIALOGUE_BODY("You want to duel me, #5?.", "Alright, if it'll help you.");
@@ -55,6 +55,7 @@ static const CustomDeckEntry sTeaCardShopEntries[] APPEND_RODATA = {
     SPRITE_TEA,
     LOCATION_CARD_SHOP_INSIDE,
     PORTRAIT_TEA,
+    DUELIST_TEA_132,
     sTeaCustomDeck,
     sTeaCardShopDuelBody
   }

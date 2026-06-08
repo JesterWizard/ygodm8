@@ -2,7 +2,9 @@
 #include "configs/runtime.h"
 #include "event_system.h"
 #include "custom_decks/custom_decks.h"
+#include "life_points.h"
 #include "shiny_zones.h"
+#include "text.h"
 #include "overworld.h"
 
 static const enum Direction sDirectionFacePlayer[] APPEND_RODATA = {
@@ -49,33 +51,112 @@ static const struct Script sRegularDuelLossScript APPEND_RODATA = {
   (struct Script *)&sRegularDuelLossEndScript
 };
 
+static u8 ScriptAdvanceOpcode(const u8 **cursor) {
+  const u8 *p = *cursor;
+  u8 op = *p;
+
+  if (op == 0 || op == 0x5D)
+    return FALSE;
+
+  if (op == 0x23) {
+    switch (p[1]) {
+    case '4':
+      *cursor = p + 6;
+      return TRUE;
+    case '0':
+      *cursor = p + 3;
+      return TRUE;
+    case '1':
+    case '3':
+    case '5':
+      *cursor = p + 2;
+      return TRUE;
+    case '2':
+      *cursor = p + 3;
+      return TRUE;
+    case '6':
+    case '8':
+      *cursor = p + 3;
+      return TRUE;
+    case '7':
+      *cursor = p + 3;
+      return TRUE;
+    case '9':
+      *cursor = p + 2;
+      return TRUE;
+    default:
+      *cursor = p + 2;
+      return TRUE;
+    }
+  }
+
+  if (op == 0x24) {
+    *cursor = p + GetCurrentLanguageStringOffset(p);
+    return TRUE;
+  }
+
+  if (op == 0x40) {
+    switch (p[1]) {
+    case '0':
+    case '1':
+      *cursor = p + 4;
+      return TRUE;
+    case '2':
+      *cursor = p + 2;
+      return TRUE;
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+      *cursor = p + 4;
+      return TRUE;
+    case '7':
+    case '9':
+      *cursor = p + 6;
+      return TRUE;
+    case '8':
+      *cursor = p + 2;
+      return TRUE;
+    default:
+      *cursor = p + 2;
+      return TRUE;
+    }
+  }
+
+  *cursor = p + 1;
+  return TRUE;
+}
+
 static u8 ScriptContainsDuel(const struct Script *script) {
   const u8 *p;
+  unsigned guard = 0;
 
   if (script == NULL || script->start == NULL)
     return FALSE;
 
-  for (p = script->start; *p != 0; ) {
+  p = script->start;
+  while (*p != 0 && *p != 0x5D && guard++ < 512) {
     if (*p == 0x40 && p[1] == '0')
       return TRUE;
-    if (*p == 0x24) {
-      p++;
-      while (*p != 0)
-        p++;
-      p++;
-      continue;
-    }
-    p++;
+    if (!ScriptAdvanceOpcode(&p))
+      break;
   }
 
   return FALSE;
 }
 
+static void ReturnHomeAfterDuelDefeat(void) {
+  FullyRestoreLifePoints();
+  gOverworld.flags |= OVERWORLD_FLAG_MAP_TRANSITION;
+  sub_80523EC(LOCATION_PLAYER_HOUSE_INSIDE, 0, 0);
+}
+
 static void InitiateRegularDuelScript(struct Script *script) {
   struct Script regularDuelScript = *script;
   u8 stayOnMapAfterDefeat = gRuntimeConfig.return_home_after_defeat == FALSE;
+  u8 cardShopCustomDuel = CustomDecks_IsPendingCardShopDuel();
 
-  if (ScriptContainsDuel(script)) {
+  if (ScriptContainsDuel(script) || cardShopCustomDuel == TRUE) {
     if (stayOnMapAfterDefeat)
       regularDuelScript.unk8 = (struct Script *)&sRegularDuelLossScript;
     else
@@ -84,8 +165,16 @@ static void InitiateRegularDuelScript(struct Script *script) {
 
   InitiateScript(&regularDuelScript);
 
-  if (stayOnMapAfterDefeat && gDuelData.winner == DUEL_WINNER_OPPONENT)
-    OverworldLoadGraphics();
+  if (gDuelData.winner == DUEL_WINNER_OPPONENT) {
+    if (stayOnMapAfterDefeat) {
+      OverworldLoadGraphics();
+    } else if (!(gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)) {
+      if (cardShopCustomDuel == TRUE)
+        ReturnHomeAfterDuelDefeat();
+      else
+        OverworldLoadGraphics();
+    }
+  }
 }
 
 static inline u8 sub_8052268_inline(int y, int x) {

@@ -9,7 +9,7 @@ Shape:
 
   static const u8 sNameCardShopDuelBody[] APPEND_TEXT =
     "Line one.#0"
-    "Line two.#1@0\x0A";
+    "Line two.#1";
 
   static const u16 sNameCustomDeck[40] APPEND_RODATA = {
     // 40 cards
@@ -20,6 +20,7 @@ Shape:
       SPRITE_NAME,
       LOCATION_CARD_SHOP_INSIDE,
       PORTRAIT_NAME,
+      DUELIST_NAME,
       sNameCustomDeck,
       sNameCardShopDuelBody
     }

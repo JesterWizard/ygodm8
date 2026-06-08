@@ -125,6 +125,10 @@ void CustomDecks_ClearPendingCardShopDuel(void) {
   sPendingCardShopDuel.isActive = 0;
 }
 
+u8 CustomDecks_IsPendingCardShopDuel(void) {
+  return sPendingCardShopDuel.isActive;
+}
+
 const u8 *CustomDecks_BuildCardShopDuelText(u8 *buffer, unsigned bufferSize, u8 spriteId, u8 locationId) {
   const CustomDeckEntry *entry = FindCustomDeckEntry(spriteId, locationId);
   const u8 *body;
@@ -134,7 +138,7 @@ const u8 *CustomDecks_BuildCardShopDuelText(u8 *buffer, unsigned bufferSize, u8 
   if (entry == NULL || bufferSize == 0)
     return NULL;
 
-  if (bufferSize <= prefixLen)
+  if (bufferSize <= prefixLen + 8)
     return NULL;
 
   for (i = 0; i < prefixLen; i++)
@@ -143,9 +147,16 @@ const u8 *CustomDecks_BuildCardShopDuelText(u8 *buffer, unsigned bufferSize, u8 
   i = prefixLen;
   body = entry->dialogueBody;
 
-  while (*body != 0 && i < bufferSize - 1)
+  buffer[i++] = 0x24;
+  buffer[i++] = 0x30;
+  while (*body != 0 && i < bufferSize - 6)
     buffer[i++] = *body++;
+  buffer[i++] = 0x24;
+  buffer[i++] = 0x36;
 
+  buffer[i++] = 0x40;
+  buffer[i++] = '0';
+  buffer[i++] = entry->duelistId;
   buffer[i] = 0;
   return buffer;
 }

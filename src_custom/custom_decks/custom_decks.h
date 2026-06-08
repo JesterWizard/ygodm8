@@ -4,6 +4,7 @@ typedef struct CustomDeckEntry {
   u8 spriteId;
   u8 locationId;
   u8 portraitId;
+  u8 duelistId;
   const u16 *deck;
   const u8 *dialogueBody;
 } CustomDeckEntry;
@@ -27,6 +28,7 @@ const u16 *CustomDecks_GetNewGameDeck(void);
 u8 CustomDecks_ShouldUseCardShopDuel(u8 spriteId, u8 locationId);
 const CustomDuelRewardEntry *CustomDecks_FindCardShopDuelRewardEntry(u8 spriteId, u8 locationId);
 void CustomDecks_SetPendingCardShopDuel(u8 spriteId, u8 locationId);
+u8 CustomDecks_IsPendingCardShopDuel(void);
 const u16 *CustomDecks_GetPendingCardShopDuelDeck(void);
 const CustomDuelRewardEntry *CustomDecks_GetPendingCardShopDuelRewardEntry(void);
 void CustomDecks_ClearPendingCardShopDuel(void);
