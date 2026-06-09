@@ -22,6 +22,7 @@ typedef struct {
     u8 disable_ban_list;
     u8 skip_opening_sequence;
     u8 enable_custom_opening_screens; // Replace boot copyright splashes with custom PNGs.
+    u8 enable_custom_title_screen; // Replace title screen background art with custom PNG.
     u8 turn_off_visual_scanner;
     u8 disable_element_system;
     u8 duel_start_field; // FIELD_* from constants/duel_fields.h; NUM_FIELDS uses each duelist's field.

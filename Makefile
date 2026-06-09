@@ -139,6 +139,13 @@ OPENING_SCREEN_PNGS := src_custom/assets/opening_screens/opening_screen_1.png \
 CG_BUILD_GENERATOR := tools/build_cg.py
 OPENING_SCREEN_BUILD_GENERATOR := tools/build_opening_screen.py
 OPENING_SCREEN_STAMP := $(BUILD_DIR)/.opening_screens.stamp
+TITLE_SCREEN_GENERATOR := tools/generate_title_screen_assets.py
+TITLE_SCREEN_GENERATED := src_custom/generated/title_screen_assets_generated.inc
+TITLE_SCREEN_RESERVED_GENERATED := src_custom/generated/title_screen_palette_reservations_generated.inc
+TITLE_SCREEN_PLACEHOLDER_GENERATOR := tools/generate_title_screen_placeholders.py
+TITLE_SCREEN_PNGS := src_custom/assets/title_screens/title_screen.png
+TITLE_SCREEN_BUILD_GENERATOR := tools/build_title_screen.py
+TITLE_SCREEN_STAMP := $(BUILD_DIR)/.title_screens.stamp
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -426,6 +433,26 @@ $(OPENING_SCREEN_GENERATED): $(OPENING_SCREEN_STAMP)
 	@test -f $@
 
 $(eval $(call custom_object_dep,copyright_screens_hooks,$(OPENING_SCREEN_GENERATED)))
+
+$(TITLE_SCREEN_PNGS): $(TITLE_SCREEN_PLACEHOLDER_GENERATOR)
+	@if [ ! -f $(TITLE_SCREEN_PNGS) ]; then \
+		echo "PLACE  title screen placeholder"; \
+		python3 $(TITLE_SCREEN_PLACEHOLDER_GENERATOR); \
+	fi
+
+$(TITLE_SCREEN_STAMP): $(TITLE_SCREEN_PNGS) $(TITLE_SCREEN_GENERATOR) $(TITLE_SCREEN_BUILD_GENERATOR) tools/build_opening_palette.py tools/validate_title_screen.py tools/extract_title_screen_palette_reservations.py | tools-rules
+	@echo "TITLEGEN title screen"
+	@mkdir -p $(dir $@)
+	python3 $(TITLE_SCREEN_GENERATOR)
+	touch $@
+
+$(TITLE_SCREEN_GENERATED): $(TITLE_SCREEN_STAMP)
+	@test -f $@
+
+$(TITLE_SCREEN_RESERVED_GENERATED): $(TITLE_SCREEN_STAMP)
+	@test -f $@
+
+$(eval $(call custom_object_dep,title_screen_hooks,$(TITLE_SCREEN_GENERATED) $(TITLE_SCREEN_RESERVED_GENERATED)))
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
