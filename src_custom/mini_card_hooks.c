@@ -1,8 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card.h"
-#include "duel.h"
-#include "embodiment_of_apophis.h"
 #include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
@@ -34,20 +32,6 @@ static void StampFieldCardLocked(u8 *tilePtr)
 {
   tilePtr += 0xCC0;
   CpuCopy16(g89A77DC, tilePtr, 64);
-}
-
-static u8 ShouldShowMiniCardCombatStats(const struct DuelCard *zone)
-{
-  if (zone == NULL || zone->id == CARD_NONE)
-    return FALSE;
-
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
-    return TRUE;
-
-  if (EmbodimentOfApophisZoneIsMonsterForm(zone))
-    return TRUE;
-
-  return FALSE;
 }
 
 static u8 *FieldCardTilePtr(u8 row, u8 col)
@@ -142,10 +126,13 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (arg1 == NULL || arg1->id == CARD_NONE)
     return;
 
-  ApplyFieldZoneStatsToCardInfo(arg1);
-
-  if (!ShouldShowMiniCardCombatStats(arg1))
+  if (!ZoneShowsCombatStats(arg1))
     return;
+
+  gStatMod.card = arg1->id;
+  gStatMod.field = gDuel.field;
+  gStatMod.stage = GetFinalStage(arg1);
+  SetFinalStat(&gStatMod);
 
   if (gCardInfo.atk / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
@@ -164,10 +151,13 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (arg1 == NULL || arg1->id == CARD_NONE)
     return;
 
-  ApplyFieldZoneStatsToCardInfo(arg1);
-
-  if (!ShouldShowMiniCardCombatStats(arg1))
+  if (!ZoneShowsCombatStats(arg1))
     return;
+
+  gStatMod.card = arg1->id;
+  gStatMod.field = gDuel.field;
+  gStatMod.stage = GetFinalStage(arg1);
+  SetFinalStat(&gStatMod);
 
   if (gCardInfo.def / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);

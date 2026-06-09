@@ -103,6 +103,7 @@ extern struct CardInfo gCardInfo;
 
 void sub_800B288 (unsigned char);
 void SetFinalStat (struct StatMod*);
+u8 ZoneShowsCombatStats (const struct DuelCard *zone);
 void ApplyFieldZoneStatsToCardInfo (struct DuelCard *zone);
 void SetCardInfo (unsigned short);
 void SetCardInfoWithWarning (unsigned short*);

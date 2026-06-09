@@ -6,6 +6,7 @@
 #include "cost_down.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
+#include "embodiment_of_apophis.h"
 #include "riryoku.h"
 
 #include "generated/field_spell_stat_mods_generated.inc"
@@ -418,6 +419,20 @@ void ScalePriceToQty__Replacement(void) {
   ApplyDuelistLevelShopDiscount();
 }
 
+u8 ZoneShowsCombatStats(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+    return TRUE;
+
+  if (EmbodimentOfApophisZoneIsMonsterForm(zone))
+    return TRUE;
+
+  return FALSE;
+}
+
 void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 {
   struct StatMod statMod;
@@ -439,7 +454,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
     return;
   }
 
-  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+  if (!ZoneShowsCombatStats(zone))
     return;
 
   stage = GetFinalStage(zone);
@@ -465,7 +480,10 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
-  else if (gCardInfo.spellEffect == SPELL_EFFECT_MONSTER) {
+  else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
+           || (gSetFinalStatZone != NULL
+               && gSetFinalStatZone->id == ptr->card
+               && EmbodimentOfApophisZoneIsMonsterForm(gSetFinalStatZone))) {
     s8 stage = ptr->stage;
 
     if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == ptr->card)

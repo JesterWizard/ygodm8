@@ -7,13 +7,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 MINI_CARD_HOOKS = ROOT / "src_custom" / "mini_card_hooks.c"
+CARD_HOOKS = ROOT / "src_custom" / "card_hooks.c"
+HOURGLASS_EFFECT = ROOT / "src_custom" / "activated_effects" / "hourglass_of_life.c"
 MANIFEST = ROOT / "tools" / "card_data_manifest.json"
 
 NON_MONSTER_TYPES = {"TYPE_SPELL", "TYPE_TRAP", "TYPE_RITUAL"}
 
 
 def extract_function_body(source: str, function_name: str) -> str:
-    match = re.search(rf"void {re.escape(function_name)}\([^)]*\)\s*\{{", source)
+    pattern = rf"(?:void|u8) {re.escape(function_name)}\([^)]*\)\s*\{{"
+    match = re.search(pattern, source)
     if match is None:
         raise AssertionError(f"Could not find function {function_name}")
 
@@ -32,20 +35,51 @@ def extract_function_body(source: str, function_name: str) -> str:
 
 
 class MiniCardStatOverlayTests(unittest.TestCase):
-    def test_duel_stat_overlay_guard_uses_card_type_group(self):
+    def test_field_stat_overlay_uses_set_final_stat_with_stage(self):
         source = MINI_CARD_HOOKS.read_text()
-
-        self.assertIn("ShouldShowMiniCardCombatStats", source)
-        self.assertIn("GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER", source)
-        self.assertIn("EmbodimentOfApophisZoneIsMonsterForm(zone)", source)
 
         for function_name in (
             "sub_80572A8__Replacement",
             "sub_805733C__Replacement",
         ):
             body = extract_function_body(source, function_name)
-            self.assertIn("ShouldShowMiniCardCombatStats(arg1)", body)
-            self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", body)
+            with self.subTest(function_name=function_name):
+                self.assertIn("ZoneShowsCombatStats(arg1)", body)
+                self.assertIn("GetFinalStage(arg1)", body)
+                self.assertIn("SetFinalStat(&gStatMod)", body)
+                self.assertNotIn("ApplyFieldZoneStatsToCardInfo(arg1)", body)
+                self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", body)
+
+    def test_shared_combat_stat_gate_uses_card_type_group(self):
+        card_hooks = CARD_HOOKS.read_text()
+        mini_card_hooks = MINI_CARD_HOOKS.read_text()
+
+        self.assertIn("ZoneShowsCombatStats", card_hooks)
+        self.assertIn("GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER", card_hooks)
+        self.assertIn("EmbodimentOfApophisZoneIsMonsterForm(zone)", card_hooks)
+
+        apply_body = extract_function_body(card_hooks, "ApplyFieldZoneStatsToCardInfo")
+        self.assertIn("ZoneShowsCombatStats(zone)", apply_body)
+        self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", apply_body)
+
+        set_final_body = extract_function_body(card_hooks, "SetFinalStat__Replacement")
+        self.assertIn("GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER", set_final_body)
+        self.assertNotIn("gCardInfo.spellEffect == SPELL_EFFECT_MONSTER", set_final_body)
+
+        self.assertNotIn("ShouldShowMiniCardCombatStats", mini_card_hooks)
+
+    def test_hourglass_refreshes_field_stat_overlays(self):
+        source = HOURGLASS_EFFECT.read_text()
+        self.assertIn("IncrementPermStage", source)
+        self.assertIn("RefreshFieldMonsterStatOverlays", source)
+
+    def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
+        source = MINI_CARD_HOOKS.read_text()
+        body = extract_function_body(source, "RefreshFieldMonsterStatOverlays")
+
+        self.assertIn("sub_80572A8(tilePtr, zone)", body)
+        self.assertIn("sub_805733C(tilePtr, zone)", body)
+        self.assertIn("StampFieldCardStage(tilePtr, GetFinalStage(zone))", body)
 
     def test_custom_spell_and_trap_cards_are_not_monster_type(self):
         manifest = json.loads(MANIFEST.read_text())
