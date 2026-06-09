@@ -24,7 +24,7 @@ endif
 
 
 BUILD_NAME := ygodm8
-BUILD_UPS ?= 0
+BUILD_UPS ?= 1
 CUSTOM_CODE ?= 1
 CUSTOM_EVENTS ?= $(CUSTOM_CODE)
 CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
@@ -163,6 +163,9 @@ endif
 
 all: $(ALL_TARGETS)
 
+baserom.gba:
+	@test -f $@ || (echo "error: baserom.gba is required — place a clean retail ROM dump in the project root" >&2; exit 1)
+
 $(ALL_TARGETS): | tools-rules
 
 .PHONY: event-extract event-catalog event-compile event-export-c event-test event-validate
@@ -228,6 +231,7 @@ $(ROM): $(ELF)
 endif
 
 $(UPS): $(ROM) baserom.gba tools/make_ups.py
+	@echo "UPS     $@"
 	python3 tools/make_ups.py baserom.gba $(ROM) $@
 
 $(ELF): $(ALL_OBJS) $(LDSCRIPT)
@@ -440,6 +444,7 @@ test-host: tools-rules
 	python3 tools/validate_player_decks.py
 	python3 tools/validate_trunk_sort.py
 	python3 tools/validate_lynjump.py
+	python3 tools/validate_ups.py
 ifneq ($(strip $(EVENTS_C_SRCS)),)
 	@echo "EVENT-TEST tools/vanilla_events.py"
 	python3 tools/vanilla_events.py test-c $(EVENTS_C_SRCS)
@@ -447,6 +452,9 @@ endif
 
 test: test-host
 	$(MAKE) all
+ifeq ($(BUILD_UPS),1)
+	python3 tools/validate_ups.py
+endif
 	python3 tools/validate_duel_popup_textbox.py --elf $(ELF) --nm $(NM)
 	python3 tools/validate_player_decks.py --elf $(ELF) --nm $(NM)
 	python3 tools/memory_report.py $(ELF) --nm $(NM)
