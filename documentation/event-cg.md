@@ -41,12 +41,12 @@ Fade-in completes **before** the next opcode runs. `HIDE_CG()` is blocking.
 | Textbox UI | hardware slots `16..31` left untouched (vanilla dialogue frame palette) |
 | Runtime palette | slots `0..15` font, `16..31` textbox, `32..32+n-1` CG art; slots `32+n..255` cleared each apply |
 
-Build pipeline per asset (only `.lz` and `.gbapal` are kept on disk):
+Build pipeline per asset (ROM-ready binaries live under `build/cgs/`; only PNGs are committed):
 
 1. `name.png` → raw 8bpp tiles in a temp file (600 tiles, `gbagfx` validates tile count)
 2. temp 8bpp → palette-offset temp file (`tools/offset_cg_8bpp.py`, used author indices pack into hardware slots `32..32+n-1`)
-3. temp shifted 8bpp → `name.lz`
-4. `name.png` → `name.gbapal` (`tools/build_cg_palette.py`, only packed slots written; `32+n..255` stay zero)
+3. temp shifted 8bpp → `build/cgs/name.lz`
+4. `name.png` → `build/cgs/name.gbapal` (`tools/build_cg_palette.py`, only packed slots written; `32+n..255` stay zero)
 
 ## Authoring Assets
 
@@ -60,7 +60,7 @@ Drop a **240×160 indexed PNG** into `src_custom/assets/cgs/`. Filename becomes 
 On `make`, the build automatically:
 
 1. Validates PNGs (`tools/validate_cg.py`)
-2. Builds `.lz` and `.gbapal` for each PNG
+2. Builds `build/cgs/*.lz` and `build/cgs/*.gbapal` for each PNG (`tools/build_cg.py`)
 3. Regenerates `include/constants/event_cg_generated.h` and `src_custom/generated/event_cg_assets_generated.inc`
 
 No manual edits to `cg_hooks.c`, Makefile rules, or enum registration are required.

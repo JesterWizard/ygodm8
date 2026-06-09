@@ -24,7 +24,7 @@ endif
 
 
 BUILD_NAME := ygodm8
-BUILD_UPS ?= 1
+BUILD_UPS ?= 0
 CUSTOM_CODE ?= 1
 CUSTOM_EVENTS ?= $(CUSTOM_CODE)
 CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
@@ -130,6 +130,15 @@ EVENTS_C_DIR := events/scripts
 EVENT_REPLACEMENTS_GENERATED := src_custom/generated/event_script_replacements.inc
 CG_GENERATOR := tools/generate_cg_assets.py
 CG_GENERATED := include/constants/event_cg_generated.h src_custom/generated/event_cg_assets_generated.inc
+OPENING_SCREEN_GENERATOR := tools/generate_opening_screen_assets.py
+OPENING_SCREEN_GENERATED := src_custom/generated/opening_screen_assets_generated.inc
+OPENING_SCREEN_PLACEHOLDER_GENERATOR := tools/generate_opening_screen_placeholders.py
+OPENING_SCREEN_PNGS := src_custom/assets/opening_screens/opening_screen_1.png \
+                       src_custom/assets/opening_screens/opening_screen_2.png \
+                       src_custom/assets/opening_screens/opening_screen_3.png
+CG_BUILD_GENERATOR := tools/build_cg.py
+OPENING_SCREEN_BUILD_GENERATOR := tools/build_opening_screen.py
+OPENING_SCREEN_STAMP := $(BUILD_DIR)/.opening_screens.stamp
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -387,12 +396,36 @@ src_custom/assets/portraits/player.gbapal: $(PORTRAIT_NORM) | tools-rules
 
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
-$(CG_GENERATED): $(CG_GENERATOR) $(CG_PNGS)
+build/cgs/%.lz build/cgs/%.gbapal: src_custom/assets/cgs/%.png $(CG_BUILD_GENERATOR) tools/build_cg_palette.py tools/offset_cg_8bpp.py tools/validate_cg.py | tools-rules
+	@echo "CGBUILD $<"
+	python3 $(CG_BUILD_GENERATOR) $<
+
+$(CG_GENERATED): $(CG_GENERATOR) $(CG_BUILD_ARTIFACTS) | tools-rules
 	@echo "CGGEN   $<"
 	python3 $(CG_GENERATOR)
 
-$(eval $(call custom_object_dep,cg_hooks,$(CG_GENERATED) $(CG_LZS) $(CG_PALETTES)))
+$(eval $(call custom_object_dep,cg_hooks,$(CG_GENERATED) $(CG_BUILD_ARTIFACTS)))
 $(eval $(call custom_object_dep,script_cg_hooks,))
+
+$(OPENING_SCREEN_PNGS): $(OPENING_SCREEN_PLACEHOLDER_GENERATOR)
+	@for path in $(OPENING_SCREEN_PNGS); do \
+		if [ ! -f $$path ]; then \
+			echo "PLACE  opening screen placeholders"; \
+			python3 $(OPENING_SCREEN_PLACEHOLDER_GENERATOR); \
+			break; \
+		fi; \
+	done
+
+$(OPENING_SCREEN_STAMP): $(OPENING_SCREEN_PNGS) $(OPENING_SCREEN_GENERATOR) $(OPENING_SCREEN_BUILD_GENERATOR) tools/build_opening_palette.py tools/validate_opening_screen.py | tools-rules
+	@echo "OPENGEN opening screens"
+	@mkdir -p $(dir $@)
+	python3 $(OPENING_SCREEN_GENERATOR)
+	touch $@
+
+$(OPENING_SCREEN_GENERATED): $(OPENING_SCREEN_STAMP)
+	@test -f $@
+
+$(eval $(call custom_object_dep,copyright_screens_hooks,$(OPENING_SCREEN_GENERATED)))
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
@@ -438,6 +471,7 @@ test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 	python3 tools/validate_portrait.py
 	python3 tools/validate_cg.py
+	python3 tools/validate_opening_screen.py
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_duel_popup_textbox.py
 	python3 tools/validate_duel_b_menu.py

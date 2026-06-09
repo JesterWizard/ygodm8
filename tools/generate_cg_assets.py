@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Scan src_custom/assets/cgs/*.png and generate enum + INCBIN registration."""
+"""Scan src_custom/assets/cgs/*.png, build ROM assets, and generate enum + INCBIN."""
 
 from __future__ import annotations
 
 import argparse
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CG_DIR = ROOT / "src_custom" / "assets" / "cgs"
+CG_BUILD_DIR = ROOT / "build" / "cgs"
 GENERATED_ENUM = ROOT / "include" / "constants" / "event_cg_generated.h"
 GENERATED_INC = ROOT / "src_custom" / "generated" / "event_cg_assets_generated.inc"
 
@@ -61,7 +63,7 @@ def render_assets_inc(stems: list[str]) -> str:
 
     for stem in stems:
         symbol = stem_to_symbol(stem)
-        base = f"src_custom/assets/cgs/{stem}"
+        base = f"build/cgs/{stem}"
         lines.append(f"const u8 {symbol}Tiles[] APPEND_ASSET =")
         lines.append(f'    INCBIN_U8("{base}.lz");')
         lines.append(f"const u16 {symbol}Palette[] APPEND_ASSET =")
@@ -89,10 +91,20 @@ def render_assets_inc(stems: list[str]) -> str:
     return "\n".join(lines)
 
 
+def build_assets(png_paths: list[Path]) -> None:
+    sys.path.insert(0, str(ROOT / "tools"))
+    from build_cg import build_cg  # noqa: E402
+
+    for png_path in png_paths:
+        build_cg(png_path)
+
+
 def generate() -> tuple[list[str], str, str]:
-    stems = [path.stem for path in discover_cg_pngs()]
-    if not stems:
+    png_paths = discover_cg_pngs()
+    if not png_paths:
         raise SystemExit(f"no CG PNGs found under {CG_DIR}")
+    build_assets(png_paths)
+    stems = [path.stem for path in png_paths]
     return stems, render_enum_header(stems), render_assets_inc(stems)
 
 

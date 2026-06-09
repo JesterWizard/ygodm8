@@ -20,11 +20,14 @@ THOUGHT_BUBBLE_PNGS := $(shell find src_custom/assets/thought_bubbles -type f -n
 THOUGHT_BUBBLE_DUMPS := $(patsubst src_custom/assets/thought_bubbles/%.png,src_custom/assets/thought_bubbles/%.dmp,$(THOUGHT_BUBBLE_PNGS))
 THOUGHT_BUBBLE_PALETTES := $(patsubst src_custom/assets/thought_bubbles/%.png,src_custom/assets/thought_bubbles/%.gbapal,$(THOUGHT_BUBBLE_PNGS))
 
-CG_TILE_COUNT = 600
 CG_PNGS := $(shell find src_custom/assets/cgs -type f -name '*.png' 2>/dev/null | sort)
-CG_LZS := $(patsubst %.png,%.lz,$(CG_PNGS))
-CG_PALETTES := $(patsubst %.png,%.gbapal,$(CG_PNGS))
+CG_BUILDS := $(patsubst src_custom/assets/cgs/%.png,build/cgs/%.lz,$(CG_PNGS))
+CG_PALETTES := $(patsubst src_custom/assets/cgs/%.png,build/cgs/%.gbapal,$(CG_PNGS))
+CG_BUILD_ARTIFACTS := $(CG_BUILDS) $(CG_PALETTES)
 
+OPENING_SCREEN_PNGS := src_custom/assets/opening_screens/opening_screen_1.png \
+                       src_custom/assets/opening_screens/opening_screen_2.png \
+                       src_custom/assets/opening_screens/opening_screen_3.png
 FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
 FIELD_SPELL_DIR_PNGS := $(shell find src_custom/assets/field_spells -mindepth 2 -maxdepth 2 -type f -name 'field.png' 2>/dev/null | sort)
 FIELD_SPELL_PNGS := $(sort $(FIELD_SPELL_STEM_PNGS) $(FIELD_SPELL_DIR_PNGS))
@@ -37,9 +40,7 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(CARD_ATTRIBUTE_PALETTES) \
                 $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal \
                 $(THOUGHT_BUBBLE_DUMPS) \
-                $(THOUGHT_BUBBLE_PALETTES) \
-                $(CG_LZS) \
-                $(CG_PALETTES)
+                $(THOUGHT_BUBBLE_PALETTES)
 
 clean-graphics:
 	rm -f graphics/cards/artwork/*.8bpp
@@ -55,7 +56,9 @@ clean-graphics:
 	rm -f src_custom/assets/cards/24x24/*.lz
 	find src_custom/assets/thought_bubbles -type f \( -name '*.4bpp' -o -name '*.obj.4bpp' -o -name '*.dmp' -o -name '*.gbapal' -o -name '*.lz' \) -delete
 	find src_custom/assets/field_spells -type f \( -name '*.4bpp' -o -name '*.8bpp' -o -name '*.gbapal' -o -name '*.huff' -o -name '*.tilemap.bin' -o -name 'field.tilemap.c' \) -delete 2>/dev/null || true
-	find src_custom/assets/cgs -type f \( -name '*.lz' -o -name '*.gbapal' \) -delete 2>/dev/null || true
+	rm -rf build/cgs/ build/opening_screens/
+	find src_custom/assets/cgs -type f \( -name '*.lz' -o -name '*.gbapal' -o -name '*.8bpp' \) -delete 2>/dev/null || true
+	find src_custom/assets/opening_screens -type f \( -name '*.8bpp' -o -name '*.lz' -o -name '*.gbapal' -o -name '*.tilemap.bin' \) -delete 2>/dev/null || true
 	rm -f src/overworld/entities/*.4bpp
 	rm -f src/overworld/entities/*.gbapal
 
@@ -73,14 +76,3 @@ src_custom/assets/thought_bubbles/%.dmp: src_custom/assets/thought_bubbles/%.png
 	tools/gbagfx/gbagfx $$tmp_obj $(@:.dmp=.lz); \
 	rm -f $$tmp_tiles $$tmp_obj; \
 	mv $(@:.dmp=.lz) $@
-src_custom/assets/cgs/%.lz: src_custom/assets/cgs/%.png tools/offset_cg_8bpp.py | tools-rules
-	@echo "CGLZ    $<"
-	tmp_raw=$$(mktemp /tmp/cg_raw.XXXXXX.8bpp); \
-	tmp_shifted=$$(mktemp /tmp/cg_shifted.XXXXXX.8bpp); \
-	tools/gbagfx/gbagfx $< $$tmp_raw -num_tiles $(CG_TILE_COUNT) -Werror=num_tiles && \
-	python3 tools/offset_cg_8bpp.py $< $$tmp_raw $$tmp_shifted && \
-	tools/gbagfx/gbagfx $$tmp_shifted $@ && \
-	rm -f $$tmp_raw $$tmp_shifted
-src_custom/assets/cgs/%.gbapal: src_custom/assets/cgs/%.png tools/build_cg_palette.py
-	@echo "CGPAL   $<"
-	python3 tools/build_cg_palette.py $< $@
