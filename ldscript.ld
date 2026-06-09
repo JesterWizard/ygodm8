@@ -142,17 +142,6 @@ SECTIONS
     /*card_sort*/
     gCardSortContext = 0x02022EB0;
 
-    /*
-     * Custom card tails live in free EWRAM after the fixed vanilla blocks.
-     * These byte regions grow and shrink with the manifest's custom-card count.
-     */
-    gCustomTrunkCardQty = 0x02022EBD;
-    gCustomShopCardQty = gCustomTrunkCardQty + NUM_CUSTOM_CARDS;
-    gCustomPlayerTempCardQty = gCustomShopCardQty + NUM_CUSTOM_CARDS;
-    gCostEntropyState = (gCustomPlayerTempCardQty + NUM_CUSTOM_CARDS + 3) & ~3;
-    gUnk2021AB4 = gCostEntropyState + 4;
-
-
     /*trade_menu*/
     g2022EC0 = 0x02022EC0;
     g20231E1 = 0x20231E1;

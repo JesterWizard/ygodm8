@@ -619,3 +619,10 @@ void TryRemoveSelectedCardFromDeck__Replacement(void) {
 u8 TrunkMenu_GetTrunkQty(u16 cardId) {
   return GetTrunkQtyForCard(cardId);
 }
+
+void TrunkMenu_DecrementTrunkQty(u16 cardId) {
+  u8 qty = GetTrunkQtyForCard(cardId);
+
+  if (qty > 0)
+    SetTrunkQtyForCard(cardId, qty - 1);
+}

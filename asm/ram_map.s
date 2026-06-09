@@ -159,6 +159,13 @@ _kernel_malloc_ewram gActiveFieldSpellController, 1
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 
+@ Custom trunk/shop/player-temp card quantities (EWRAM; flash mirrors below in SRAM).
+_kernel_malloc_ewram_array gCustomTrunkCardQty, CUSTOM_CARD_QTY_BYTES
+_kernel_malloc_ewram_array gCustomShopCardQty, CUSTOM_CARD_QTY_BYTES
+_kernel_malloc_ewram_array gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES
+@ Entropy seed mixed into cost randomization LFSR when randomize_card_costs_at_start.
+_kernel_malloc_ewram gCostEntropyState, 0x4
+
 @ Trunk + deck ownership totals for custom card IDs (grows with CUSTOM_CARD_QTY_BYTES).
 _kernel_malloc_ewram_array gCustomTotalCardQty, CUSTOM_CARD_QTY_BYTES
 

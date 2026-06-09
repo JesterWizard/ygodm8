@@ -28,6 +28,8 @@ unsigned short GetSelectedCardWithOffset(unsigned char);
 void AddCardToTrunk(unsigned short);
 void SyncCardOwnershipQty(u16);
 void SyncTrunkQtyFromOwnedTotal(u16);
+u8 TrunkMenu_GetTrunkQty(u16 cardId);
+void TrunkMenu_DecrementTrunkQty(u16 cardId);
 void sub_801EF30(unsigned char);
 void sub_801F4A0(unsigned char);
 void sub_801F5F0(void);
@@ -271,7 +273,7 @@ LYN_REPLACE_CHECK(AddCardToDeck);
 void AddCardToDeck__Replacement(unsigned short cardId) {
   unsigned limit = GetRuntimeDeckLimit();
 
-  if (gDeckMenu.cardCount >= limit || !gTrunkCardQty[cardId])
+  if (gDeckMenu.cardCount >= limit || !TrunkMenu_GetTrunkQty(cardId))
     return;
 
   if (CardExceedsCurrentDuelistLevel(cardId))
@@ -279,7 +281,7 @@ void AddCardToDeck__Replacement(unsigned short cardId) {
 
   SetCardInfo(cardId);
 
-  gTrunkCardQty[cardId]--;
+  TrunkMenu_DecrementTrunkQty(cardId);
   gDeckMenu.cards[gDeckMenu.cardCount] = cardId;
   gDeckMenu.cardCount++;
   CalculateCurrentDeckCost();
