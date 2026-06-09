@@ -1,7 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card.h"
-#include "constants/spell_effects.h"
+#include "duel.h"
+#include "embodiment_of_apophis.h"
 #include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
@@ -33,6 +34,20 @@ static void StampFieldCardLocked(u8 *tilePtr)
 {
   tilePtr += 0xCC0;
   CpuCopy16(g89A77DC, tilePtr, 64);
+}
+
+static u8 ShouldShowMiniCardCombatStats(const struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+    return TRUE;
+
+  if (EmbodimentOfApophisZoneIsMonsterForm(zone))
+    return TRUE;
+
+  return FALSE;
 }
 
 static u8 *FieldCardTilePtr(u8 row, u8 col)
@@ -129,7 +144,7 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
 
   ApplyFieldZoneStatsToCardInfo(arg1);
 
-  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+  if (!ShouldShowMiniCardCombatStats(arg1))
     return;
 
   if (gCardInfo.atk / 100 > 99)
@@ -151,7 +166,7 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
 
   ApplyFieldZoneStatsToCardInfo(arg1);
 
-  if (gCardInfo.spellEffect != SPELL_EFFECT_MONSTER)
+  if (!ShouldShowMiniCardCombatStats(arg1))
     return;
 
   if (gCardInfo.def / 100 > 99)
