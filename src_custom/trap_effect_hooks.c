@@ -37,8 +37,6 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
 #define TRAP_SPIRIT_MESSAGE_L 19
 #define TRAP_DRAGON_CAPTURE_JAR 20
 #define TRAP_MAGIC_JAMMER 21
-#define TRAP_EMBODIMENT_OF_APOPHIS 22
-
 extern s16 gUnk_8E1172C[];
 extern s16 gUnk_8E11738[];
 extern s16 gUnk_8E11744[];
@@ -238,8 +236,10 @@ unsigned IsTrapTriggered__Replacement(void) {
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     gTrapEffectData.trapZoneCol = i;
-    if (CheckTrapActivationConditions__Hook(gTurnZones[0][i]->id) == TRUE)
-      return TRUE;
+    if (CheckTrapActivationConditions__Hook(gTurnZones[0][i]->id) == TRUE) {
+      if (gTrapEffectData.trapCardId != TRAP_EMBODIMENT_OF_APOPHIS)
+        return TRUE;
+    }
   }
 
   return FALSE;

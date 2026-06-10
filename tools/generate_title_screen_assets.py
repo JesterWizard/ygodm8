@@ -89,15 +89,27 @@ def build_assets() -> tuple[bytes, bytes]:
 
 
 def generate_reserved_indices() -> None:
-    rom_path = ROOT / "ygodm8.gba"
+    rom_candidates = (ROOT / "ygodm8.gba", ROOT / "baserom.gba")
+    rom_path = next((path for path in rom_candidates if path.is_file()), None)
+    if rom_path is None:
+        if RESERVED_INC.is_file():
+            print(
+                "generate_title_screen_assets: skipping palette reservation scan "
+                f"(no ROM found; keeping {RESERVED_INC.relative_to(ROOT)})"
+            )
+            return
+        raise SystemExit(
+            "missing ROM for palette reservation scan: need ygodm8.gba or baserom.gba"
+        )
+
     cmd = [
         sys.executable,
         str(ROOT / "tools/extract_title_screen_palette_reservations.py"),
+        "--rom",
+        str(rom_path),
         "--out",
         str(RESERVED_INC),
     ]
-    if rom_path.is_file():
-        cmd.extend(["--rom", str(rom_path)])
     subprocess.run(cmd, check=True, cwd=ROOT)
 
 

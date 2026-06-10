@@ -11,6 +11,7 @@ HOOKS = ROOT / "src_custom" / "duel_b_menu_hooks.c"
 
 
 class DuelBMenuValidatorTests(unittest.TestCase):
+    @unittest.skipUnless(GBA.is_file(), "requires built ygodm8.gba")
     def test_template_has_baked_surrender_away_from_draw_coords(self):
         sys_path = str(ROOT / "tools")
         if sys_path not in __import__("sys").path:
@@ -22,7 +23,6 @@ class DuelBMenuValidatorTests(unittest.TestCase):
             read_template_cells,
         )
 
-        self.assertTrue(GBA.is_file(), "requires built ygodm8.gba")
         cells = read_template_cells(GBA)
         surrender = EXPECTED_OPTION_LABELS[3]
         draw_cells = {
@@ -44,6 +44,7 @@ class DuelBMenuValidatorTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, msg=result.stderr or result.stdout)
 
+    @unittest.skipUnless(GBA.is_file(), "requires built ygodm8.gba")
     def test_simulated_tilemap_moves_surrender_off_template(self):
         sys_path = str(ROOT / "tools")
         if sys_path not in __import__("sys").path:
@@ -56,7 +57,6 @@ class DuelBMenuValidatorTests(unittest.TestCase):
             simulate_post_draw_tilemap,
         )
 
-        self.assertTrue(GBA.is_file(), "requires built ygodm8.gba")
         template = read_template_cells(GBA)
         simulated = simulate_post_draw_tilemap(template)
         surrender = EXPECTED_OPTION_LABELS[3]

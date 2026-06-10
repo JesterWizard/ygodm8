@@ -50,7 +50,7 @@ void sub_800A3D8(unsigned char);
 void sub_800ABB4(void);
 
 static bool8 TrunkHidesUnownedCards(void) {
-  return gRuntimeConfig.hide_unowned_trunk_cards == TRUE;
+  return gRuntimeConfig.hide_unowned_trunk_cards;
 }
 
 static u8 GetDeckQtyForOwnershipTotals(u16 cardId);

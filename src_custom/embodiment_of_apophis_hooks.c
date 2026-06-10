@@ -3,6 +3,7 @@
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
+#include "duel.h"
 
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
 extern u8 gApophisClearingPartner;
@@ -96,6 +97,101 @@ struct DuelCard *EmbodimentOfApophisMonsterZoneForTrap(struct DuelCard *trapZone
 u8 EmbodimentOfApophisHasEmptyMonsterZoneForTrap(struct DuelCard *trapZone)
 {
   return EmbodimentOfApophisMonsterZoneForTrap(trapZone) != NULL;
+}
+
+void TryActivateEmbodimentOfApophisOnAttack(void)
+{
+  u8 i;
+  struct DuelCard *trapZone;
+
+  if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
+    return;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    trapZone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
+    if (trapZone->id != EMBODIMENT_OF_APOPHIS)
+      continue;
+    if (!EmbodimentOfApophisHasEmptyMonsterZoneForTrap(trapZone))
+      continue;
+    if (EmbodimentOfApophisTrapZoneIsAwakened(trapZone))
+      continue;
+
+    gTrapEffectData.trapZoneCol = i;
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectEmbodimentOfApophis();
+    return;
+  }
+}
+
+static u8 InactiveDuelistFieldIsOnlyEmbodimentOfApophis(void)
+{
+  u8 row;
+  u8 col;
+  struct DuelCard *zone;
+  u8 sawApophis = FALSE;
+
+  for (row = INACTIVE_DUELIST_BACKROW; row <= INACTIVE_DUELIST_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      zone = gTurnZones[row][col];
+      if (zone->id == CARD_NONE)
+        continue;
+      if (zone->id != EMBODIMENT_OF_APOPHIS)
+        return FALSE;
+      sawApophis = TRUE;
+    }
+  }
+
+  return sawApophis;
+}
+
+u8 EmbodimentOfApophisRedirectsDirectAttack(u8 *defenderFixedCol)
+{
+  u8 col;
+  u8 monsterCount = 0;
+  u8 apophisMonsterCol = 0xFF;
+  struct DuelCard *zone;
+
+  if (defenderFixedCol == NULL)
+    return FALSE;
+
+  if (!InactiveDuelistFieldIsOnlyEmbodimentOfApophis())
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    zone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col];
+    if (zone->id == CARD_NONE)
+      continue;
+    if (!EmbodimentOfApophisZoneIsMonsterForm(zone))
+      return FALSE;
+    monsterCount++;
+    apophisMonsterCol = col;
+  }
+
+  if (monsterCount != 1)
+    return FALSE;
+
+  *defenderFixedCol = apophisMonsterCol;
+  return TRUE;
+}
+
+void PerformDirectAttackOrRedirectToEmbodimentOfApophis(u8 attackerFixedCol)
+{
+  u8 defenderFixedCol;
+
+  if (EmbodimentOfApophisRedirectsDirectAttack(&defenderFixedCol)) {
+    if (WhoseTurn() == DUEL_PLAYER)
+      gFixedZones[OPPONENT_MONSTER_ROW][defenderFixedCol]->isFaceUp = TRUE;
+    else
+      gFixedZones[PLAYER_MONSTER_ROW][defenderFixedCol]->isFaceUp = TRUE;
+
+    if (WhoseTurn() == DUEL_PLAYER)
+      SetAttackAction(attackerFixedCol, defenderFixedCol);
+    else
+      SetAttackAction(defenderFixedCol, attackerFixedCol);
+  } else {
+    SetAttackActionDirectAttack(attackerFixedCol);
+  }
 }
 
 static void ClearApophisLink(struct ApophisLink *link)

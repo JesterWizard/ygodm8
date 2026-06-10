@@ -4,6 +4,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "fairy_box.h"
+#include "embodiment_of_apophis.h"
 
 struct AI_Command {
   u16 action;
@@ -43,6 +44,22 @@ static void AiPrepareAttacker(struct DuelCard *zone) {
   zone->isLocked = TRUE;
 }
 
+static void AiSetAttackOriginFromZone(struct DuelCard *attacker) {
+  u8 i;
+  u8 j;
+
+  for (i = 0; i < 4; i++) {
+    for (j = 0; j < MAX_ZONES_IN_ROW; j++) {
+      if (gTurnZones[i][j] == attacker) {
+        gTrapEffectData.originRow = i;
+        gTrapEffectData.originCol = j;
+        gTrapEffectData.originCardId = attacker->id;
+        return;
+      }
+    }
+  }
+}
+
 static void AiAttackDirect(struct DuelCard *attacker) {
   u8 fixedRow = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
 
@@ -56,7 +73,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   AiPrepareAttacker(attacker);
-  SetAttackActionDirectAttack(AiFixedColForZone(attacker, fixedRow));
+  AiSetAttackOriginFromZone(attacker);
+  TryActivateEmbodimentOfApophisOnAttack();
+  PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
@@ -75,6 +94,8 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
 
   AiPrepareAttacker(attacker);
   defender->isFaceUp = TRUE;
+  AiSetAttackOriginFromZone(attacker);
+  TryActivateEmbodimentOfApophisOnAttack();
 
   if (WhoseTurn() == DUEL_PLAYER) {
     playerCol = AiFixedColForZone(attacker, PLAYER_MONSTER_ROW);

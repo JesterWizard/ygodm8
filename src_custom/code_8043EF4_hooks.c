@@ -14,6 +14,7 @@
 #include "the_unhappy_maiden.h"
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
+#include "embodiment_of_apophis.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -447,12 +448,13 @@ void sub_8044570__Replacement(void)
     gTrapEffectData.originRow = gDuelCursor.currentY;
     gTrapEffectData.originCol = gDuelCursor.currentX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+    TryActivateEmbodimentOfApophisOnAttack();
     if (IsTrapTriggered() != 1) {
       PlayMusic(SFX_SELECT);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
-      SetAttackActionDirectAttack(gDuelCursor.currentX);
+      PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
@@ -499,6 +501,7 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originRow = gDuelCursor.destY;
     gTrapEffectData.originCol = gDuelCursor.destX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
+    TryActivateEmbodimentOfApophisOnAttack();
     if (IsTrapTriggered() != 1) {
       PlayMusic(SFX_SELECT);
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isDefending = 0;

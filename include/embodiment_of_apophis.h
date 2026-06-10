@@ -17,8 +17,13 @@ struct ApophisLink {
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
 extern u8 gApophisClearingPartner;
 
+#define TRAP_EMBODIMENT_OF_APOPHIS 22
+
 void ResetApophisLinks(void);
 void EffectEmbodimentOfApophis(void);
+void TryActivateEmbodimentOfApophisOnAttack(void);
+u8 EmbodimentOfApophisRedirectsDirectAttack(u8 *defenderFixedCol);
+void PerformDirectAttackOrRedirectToEmbodimentOfApophis(u8 attackerFixedCol);
 struct DuelCard *EmbodimentOfApophisMonsterZoneForTrap(struct DuelCard *trapZone);
 u8 EmbodimentOfApophisHasEmptyMonsterZoneForTrap(struct DuelCard *trapZone);
 u8 RegisterEmbodimentOfApophisLinkFromZones(struct DuelCard *trapZone, struct DuelCard *monsterZone);
