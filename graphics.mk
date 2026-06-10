@@ -21,7 +21,7 @@ THOUGHT_BUBBLE_DUMPS := $(patsubst src_custom/assets/thought_bubbles/%.png,src_c
 THOUGHT_BUBBLE_PALETTES := $(patsubst src_custom/assets/thought_bubbles/%.png,src_custom/assets/thought_bubbles/%.gbapal,$(THOUGHT_BUBBLE_PNGS))
 
 CG_PNGS := $(shell find src_custom/assets/cgs -type f -name '*.png' 2>/dev/null | sort)
-CG_BUILDS := $(patsubst src_custom/assets/cgs/%.png,build/cgs/%.8bpp,$(CG_PNGS))
+CG_BUILDS := $(patsubst src_custom/assets/cgs/%.png,build/cgs/%.lz,$(CG_PNGS))
 CG_PALETTES := $(patsubst src_custom/assets/cgs/%.png,build/cgs/%.gbapal,$(CG_PNGS))
 CG_BUILD_ARTIFACTS := $(CG_BUILDS) $(CG_PALETTES)
 

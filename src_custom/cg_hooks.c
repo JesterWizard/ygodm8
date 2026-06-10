@@ -183,6 +183,10 @@ static void EventCg_BuildTilemap(void) {
   }
 }
 
+static void EventCg_DecompressCgTiles(const u8 *compressed) {
+  LZ77UnCompWram((const u32 *)compressed, gBgVram.cbb0);
+}
+
 static void EventCg_SyncBg2Vram(void) {
   const u8 *tiles;
   const u16 *palette;
@@ -194,7 +198,8 @@ static void EventCg_SyncBg2Vram(void) {
   if (tiles == NULL)
     return;
 
-  CpuCopy16(tiles, (void *)BG_CHAR_ADDR(0), CG_TILE_BYTES);
+  EventCg_DecompressCgTiles(tiles);
+  CpuCopy16(gBgVram.cbb0, (void *)BG_CHAR_ADDR(0), CG_TILE_BYTES);
   CpuCopy16(gBgVram.sbb1F, (void *)BG_SCREEN_ADDR(31), BG_SCREEN_SIZE);
 }
 
@@ -254,7 +259,6 @@ static void EventCg_LoadGraphics(u8 cgId) {
   if (tiles == NULL || palette == NULL)
     return;
 
-  CpuCopy32(tiles, gBgVram.cbb0, CG_TILE_BYTES);
   EventCg_ApplyCgPalette(palette);
   CpuFill16(0, gBgVram.sbb1F, BG_SCREEN_SIZE);
   EventCg_BuildTilemap();
