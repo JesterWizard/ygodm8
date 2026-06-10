@@ -403,7 +403,7 @@ src_custom/assets/portraits/player.gbapal: $(PORTRAIT_NORM) | tools-rules
 
 $(eval $(call custom_object_dep,portrait_hooks,src_custom/assets/portraits/player.lz src_custom/assets/portraits/player.gbapal))
 
-build/cgs/%.lz build/cgs/%.gbapal: src_custom/assets/cgs/%.png $(CG_BUILD_GENERATOR) tools/build_cg_palette.py tools/offset_cg_8bpp.py tools/validate_cg.py | tools-rules
+build/cgs/%.8bpp build/cgs/%.gbapal: src_custom/assets/cgs/%.png $(CG_BUILD_GENERATOR) tools/build_cg_palette.py tools/offset_cg_8bpp.py tools/validate_cg.py | tools-rules
 	@echo "CGBUILD $<"
 	python3 $(CG_BUILD_GENERATOR) $<
 

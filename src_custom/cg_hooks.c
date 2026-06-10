@@ -26,6 +26,8 @@ extern u16 gCgSavedDispcnt;
 #define CG_TEXTBOX_CHAR_BYTES 0xE20
 #define CG_TEXT_WINDOW_BLDCNT 0xDE
 #define CG_TEXT_WINDOW_BLDY 7
+#define CG_BG2CNT \
+  (BGCNT_PRIORITY(2) | BGCNT_CHARBASE(0) | BGCNT_256COLOR | BGCNT_SCREENBASE(31))
 
 enum {
   CG_OP_COMPATIBLE,
@@ -172,22 +174,41 @@ static void EventCg_BuildTilemap(void) {
   u16 x, y, tile;
 
   for (y = 0; y < CG_MAP_HEIGHT; y++) {
+    tile = y * CG_MAP_WIDTH + (CG_MAP_WIDTH - 1);
     for (x = 0; x < CG_MAP_WIDTH; x++) {
-      tile = y * CG_MAP_WIDTH + x;
-      gBgVram.sbb1F[y][x] = tile;
+      gBgVram.sbb1F[y][x] = y * CG_MAP_WIDTH + x;
     }
+    gBgVram.sbb1F[y][CG_MAP_WIDTH] = tile;
+    gBgVram.sbb1F[y][CG_MAP_WIDTH + 1] = tile;
   }
 }
 
+static void EventCg_SyncBg2Vram(void) {
+  const u8 *tiles;
+  const u16 *palette;
+
+  if (!gCgActive || gCgId == CG_NONE || gCgId >= gEventCgTableCount)
+    return;
+
+  EventCg_GetAsset(gCgId, &tiles, &palette);
+  if (tiles == NULL)
+    return;
+
+  CpuCopy16(tiles, (void *)BG_CHAR_ADDR(0), CG_TILE_BYTES);
+  CpuCopy16(gBgVram.sbb1F, (void *)BG_SCREEN_ADDR(31), BG_SCREEN_SIZE);
+}
+
 static void EventCg_ApplyCgBgRegs(void) {
-  REG_BG2CNT = 0x1F82;
+  REG_BG2CNT = CG_BG2CNT;
   gBG2VOFS = 0;
   gBG2HOFS = 0;
+  LoadBgOffsets();
 }
 
 static void EventCg_ApplyTextWindowRegsInternal(struct ScriptCtx *scriptCtx) {
   u16 dispcnt = DISPCNT_BG0_ON | DISPCNT_BG2_ON | DISPCNT_WIN1_ON;
 
+  EventCg_ApplyCgBgRegs();
   REG_BG0CNT = 0x1D0C;
   gBG0VOFS = 0;
   gBG0HOFS = 8;
@@ -233,15 +254,15 @@ static void EventCg_LoadGraphics(u8 cgId) {
   if (tiles == NULL || palette == NULL)
     return;
 
-  EventCg_LoadTextboxBg();
-  LZ77UnCompWram(tiles, gBgVram.cbb0);
+  CpuCopy32(tiles, gBgVram.cbb0, CG_TILE_BYTES);
   EventCg_ApplyCgPalette(palette);
   CpuFill16(0, gBgVram.sbb1F, BG_SCREEN_SIZE);
   EventCg_BuildTilemap();
   EventCg_ApplyCgBgRegs();
+  EventCg_SyncBg2Vram();
+  EventCg_LoadTextboxBg();
   LoadPalettes();
   WaitForVBlank();
-  sub_804EC4C();
   EventCg_RefreshPalettes();
   LoadPalettes();
   EventCg_PushTextboxVram();
@@ -438,6 +459,8 @@ void EventCg_OnTextWaitComplete(struct ScriptCtx *scriptCtx) {
     return;
 
   EventCg_InitTextboxCharTiles();
+  EventCg_SyncBg2Vram();
+  EventCg_ApplyCgBgRegs();
 }
 
 void EventCg_OnScriptFrameEnd(struct ScriptCtx *scriptCtx) {
@@ -449,6 +472,8 @@ void EventCg_OnScriptFrameEnd(struct ScriptCtx *scriptCtx) {
   EventCg_ApplyPortraitSceneRegs(scriptCtx);
   SetVBlankCallback(LoadBgOffsets);
   WaitForVBlank();
+  EventCg_SyncBg2Vram();
+  EventCg_ApplyCgBgRegs();
   EventCg_PushTextboxVram();
   EventCg_RefreshPalettes();
   LoadPalettes();

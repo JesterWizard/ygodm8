@@ -65,7 +65,7 @@ def render_assets_inc(stems: list[str]) -> str:
         symbol = stem_to_symbol(stem)
         base = f"build/cgs/{stem}"
         lines.append(f"const u8 {symbol}Tiles[] APPEND_ASSET =")
-        lines.append(f'    INCBIN_U8("{base}.lz");')
+        lines.append(f'    INCBIN_U8("{base}.8bpp");')
         lines.append(f"const u16 {symbol}Palette[] APPEND_ASSET =")
         lines.append(f'    INCBIN_U16("{base}.gbapal");')
         lines.append("")

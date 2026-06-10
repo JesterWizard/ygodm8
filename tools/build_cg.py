@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build one event CG into LZ tileset and palette under build/cgs/."""
+"""Build one event CG into raw 8bpp tileset and palette under build/cgs/."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ def build_cg(png_path: Path) -> tuple[Path, Path]:
 
     CG_BUILD_DIR.mkdir(parents=True, exist_ok=True)
     stem = png_path.stem
-    lz_path = CG_BUILD_DIR / f"{stem}.lz"
+    tiles_path = CG_BUILD_DIR / f"{stem}.8bpp"
     pal_path = CG_BUILD_DIR / f"{stem}.gbapal"
 
     with tempfile.NamedTemporaryFile(suffix=".8bpp", delete=False) as raw_tmp:
@@ -58,7 +58,7 @@ def build_cg(png_path: Path) -> tuple[Path, Path]:
             check=True,
             cwd=ROOT,
         )
-        run_gbagfx(shifted_path, lz_path)
+        tiles_path.write_bytes(shifted_path.read_bytes())
     finally:
         raw_path.unlink(missing_ok=True)
         shifted_path.unlink(missing_ok=True)
@@ -68,7 +68,7 @@ def build_cg(png_path: Path) -> tuple[Path, Path]:
         check=True,
         cwd=ROOT,
     )
-    return lz_path, pal_path
+    return tiles_path, pal_path
 
 
 def discover_cg_pngs(directory: Path = CG_DIR) -> list[Path]:
