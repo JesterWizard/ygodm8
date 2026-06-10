@@ -87,6 +87,28 @@ struct BMenuOptionLabel {
 #define B_MENU_LABEL_TILE_SURRENDER_TOP 148
 #define B_MENU_LABEL_TILE_SURRENDER_BOTTOM 150
 
+#define B_MENU_GY_NAME_COL 5
+#define B_MENU_GY_NAME_WIDTH 20
+#define B_MENU_GY_NAME_ROW_PLAYER_TOP 9
+#define B_MENU_GY_NAME_ROW_PLAYER_BOTTOM 10
+#define B_MENU_GY_NAME_ROW_OPPONENT_TOP 15
+#define B_MENU_GY_NAME_ROW_OPPONENT_BOTTOM 16
+#define B_MENU_GY_NAME_TILE_PLAYER_TOP 148
+#define B_MENU_GY_NAME_TILE_PLAYER_BOTTOM 150
+#define B_MENU_GY_NAME_TILE_OPPONENT_TOP 188
+#define B_MENU_GY_NAME_TILE_OPPONENT_BOTTOM 190
+#define B_MENU_GY_NAME_CHR_PLAYER 0x9780
+#define B_MENU_GY_NAME_CHR_OPPONENT 0x9280
+
+static const struct {
+  u8 row;
+  u8 col;
+} sStaleTemplateLabelCells[] APPEND_RODATA = {
+  {9, 0},  {9, 1},  {9, 2},  {9, 3},  {9, 4},  {9, 5},  {9, 6},
+  {9, 27}, {9, 28}, {9, 29}, {9, 30}, {9, 31},
+  {10, 0}, {10, 1}, {10, 2}, {10, 3}, {10, 4},
+};
+
 static const struct BMenuOptionLabel sBMenuOptionLabels[] APPEND_RODATA = {
   [B_MENU_DETAILS] = {B_MENU_LABEL_COL_LEFT, 1, 2, B_MENU_LABEL_WIDTH, B_MENU_LABEL_TILE_DETAILS_TOP,
                       B_MENU_LABEL_TILE_DETAILS_BOTTOM},
@@ -143,20 +165,73 @@ static void ClearBMenuLabelRows(u8 rowFirst, u8 rowLast, u16 blankTile) {
 }
 
 static void ClearBMenuOptionLabelCells(u16 blankTile) {
+  u8 i;
   u8 row;
   u8 col;
 
   ClearBMenuLabelRows(1, 4, blankTile);
-  ClearBMenuLabelRows(8, 10, blankTile);
-  ClearBMenuLabelRows(14, 16, blankTile);
+  ClearBMenuLabelRows(14, 14, blankTile);
 
-  for (row = 0; row < B_MENU_TEMPLATE_ROWS; row++) {
+  for (i = 0; i < ARRAY_COUNT(sStaleTemplateLabelCells); i++)
+    BMenuWriteTile(sStaleTemplateLabelCells[i].col, sStaleTemplateLabelCells[i].row, blankTile);
+
+  for (row = 1; row <= 4; row++) {
     for (col = 0; col < B_MENU_TEMPLATE_COLS; col++) {
       u16 entry = *BMenuTilemapCell(col, row);
 
       if ((entry & 0x3FF) >= B_MENU_LABEL_TILE_MIN)
         BMenuWriteTile(col, row, blankTile);
     }
+  }
+}
+
+static void CopyGraveyardNameTiles(u16 cardId, u32 chrOffset) {
+  u8 buffer[44];
+  u8 i;
+  u8 nameLength;
+  const u8 *name;
+
+  SetCardInfo(cardId);
+  i = 0;
+  nameLength = 0;
+  name = (u8 *)GetCurrentLanguageString(gCardInfo.name);
+  while (nameLength < B_MENU_GY_NAME_WIDTH && *name && *name != '$') {
+    if (*name > 127) {
+      buffer[i] = *name;
+      i++;
+      name++;
+    }
+    buffer[i] = *name;
+    i++;
+    name++;
+    nameLength++;
+  }
+  for (; nameLength < B_MENU_GY_NAME_WIDTH; nameLength++) {
+    buffer[i] = 129;
+    buffer[i + 1] = 64;
+    i += 2;
+  }
+  buffer[i] = 0;
+  CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + chrOffset, buffer, 0x901);
+}
+
+static void RefreshGraveyardNameTiles(void) {
+  CopyGraveyardNameTiles(gDuel.duelistbattleState[DUEL_PLAYER].graveyard, B_MENU_GY_NAME_CHR_PLAYER);
+  CopyGraveyardNameTiles(gDuel.duelistbattleState[DUEL_OPPONENT].graveyard, B_MENU_GY_NAME_CHR_OPPONENT);
+}
+
+static void DrawGraveyardNameTilemap(u16 paletteBits) {
+  u8 i;
+
+  for (i = 0; i < B_MENU_GY_NAME_WIDTH; i++) {
+    sub_800800C(B_MENU_GY_NAME_COL + i, B_MENU_GY_NAME_ROW_PLAYER_TOP, 0xE800,
+        g8DF811C[i] + B_MENU_GY_NAME_TILE_PLAYER_TOP | paletteBits);
+    sub_800800C(B_MENU_GY_NAME_COL + i, B_MENU_GY_NAME_ROW_PLAYER_BOTTOM, 0xE800,
+        g8DF811C[i] + B_MENU_GY_NAME_TILE_PLAYER_BOTTOM | paletteBits);
+    sub_800800C(B_MENU_GY_NAME_COL + i, B_MENU_GY_NAME_ROW_OPPONENT_TOP, 0xE800,
+        g8DF811C[i] + B_MENU_GY_NAME_TILE_OPPONENT_TOP | paletteBits);
+    sub_800800C(B_MENU_GY_NAME_COL + i, B_MENU_GY_NAME_ROW_OPPONENT_BOTTOM, 0xE800,
+        g8DF811C[i] + B_MENU_GY_NAME_TILE_OPPONENT_BOTTOM | paletteBits);
   }
 }
 
@@ -176,6 +251,8 @@ static void DrawBMenuAllOptionLabels(u16 paletteBits, u16 blankTile) {
   ClearBMenuOptionLabelCells(blankTile);
   for (option = 0; option < ARRAY_COUNT(sBMenuOptionLabels); option++)
     DrawBMenuOptionLabel(&sBMenuOptionLabels[option], paletteBits);
+  DrawGraveyardNameTilemap(paletteBits);
+  RefreshGraveyardNameTiles();
 }
 
 static void HighlightBMenuOption(u8 option);
@@ -183,11 +260,8 @@ static void HighlightBMenuOption(u8 option);
 static void InitBMenuWithSurrender(u8 arg0) {
   u16 deckCardsRemaining;
   u8 i;
-  u8 nameLength;
   u16 blankTile;
   u16 paletteBits;
-  u8 *name;
-  u8 buffer[44];
 
   (void)arg0;
 
@@ -209,52 +283,6 @@ static void InitBMenuWithSurrender(u8 arg0) {
     sub_800800C(i + 11, 6, 0xE800, i + 82 | paletteBits);
     sub_800800C(i + 11, 12, 0xE800, i + 82 | paletteBits);
   }
-
-  SetCardInfo(gDuel.duelistbattleState[ACTIVE_DUELIST].graveyard);
-  i = 0;
-  nameLength = 0;
-  name = (u8 *)GetCurrentLanguageString(gCardInfo.name);
-  while (nameLength < 20 && *name && *name != '$') {
-    if (*name > 127) {
-      buffer[i] = *name;
-      i++;
-      name++;
-    }
-    buffer[i] = *name;
-    i++;
-    name++;
-    nameLength++;
-  }
-  for (; nameLength < 20; nameLength++) {
-    buffer[i] = 129;
-    buffer[i + 1] = 64;
-    i += 2;
-  }
-  buffer[i] = 0;
-  CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + 0x9780, buffer, 0x901);
-
-  SetCardInfo(gDuel.duelistbattleState[INACTIVE_DUELIST].graveyard);
-  i = 0;
-  nameLength = 0;
-  name = (u8 *)GetCurrentLanguageString(gCardInfo.name);
-  while (nameLength < 20 && *name && *name != '$') {
-    if (*name > 127) {
-      buffer[i] = *name;
-      i++;
-      name++;
-    }
-    buffer[i] = *name;
-    i++;
-    name++;
-    nameLength++;
-  }
-  for (; nameLength < 20; nameLength++) {
-    buffer[i] = 129;
-    buffer[i + 1] = 64;
-    i += 2;
-  }
-  buffer[i] = 0;
-  CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + 0x9280, buffer, 0x901);
 
   ConvertU16ToDigitBuffer(gDuelLifePoints[DUEL_PLAYER], DIGIT_FLAG_NONE);
   for (i = 0; i < 5; i++)

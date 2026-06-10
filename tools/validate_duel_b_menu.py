@@ -136,18 +136,28 @@ def simulate_post_draw_tilemap(template_cells: dict[tuple[int, int], int]) -> di
     cells = dict(template_cells)
     g8 = read_g8df811c()
 
-    for row in list(range(1, 5)) + list(range(8, 11)) + list(range(14, 17)):
+    for row in list(range(1, 5)) + [14]:
         for col in range(32):
             cells[(row, col)] = 0
 
-    for (row, col), tile in list(cells.items()):
-        if tile >= LABEL_TILE_MIN:
-            cells[(row, col)] = 0
+    for row, col in GOLDEN_TEMPLATE_SURRENDER_CELLS:
+        cells[(row, col)] = 0
+
+    for row in range(1, 5):
+        for col in range(32):
+            if cells[(row, col)] >= LABEL_TILE_MIN:
+                cells[(row, col)] = 0
 
     for spec in EXPECTED_OPTION_LABELS:
         for i in range(spec.width):
             cells[(spec.row_top, spec.col + i)] = (spec.tile_top + g8[i]) | PALETTE_BITS
             cells[(spec.row_bottom, spec.col + i)] = (spec.tile_bottom + g8[i]) | PALETTE_BITS
+
+    for i in range(20):
+        cells[(9, 5 + i)] = (148 + g8[i]) | PALETTE_BITS
+        cells[(10, 5 + i)] = (150 + g8[i]) | PALETTE_BITS
+        cells[(15, 5 + i)] = (188 + g8[i]) | PALETTE_BITS
+        cells[(16, 5 + i)] = (190 + g8[i]) | PALETTE_BITS
 
     return cells
 
@@ -247,6 +257,11 @@ def validate(*, gba_path: Path = GBA, hooks_path: Path = HOOKS) -> None:
     new_top = simulated[(surrender.row_top, surrender.col)]
     if stale_left == new_top:
         raise SystemExit("validate_duel_b_menu: draw coordinates match stale template left cell")
+
+    if simulated[(9, 5)] < 148:
+        raise SystemExit("validate_duel_b_menu: simulated tilemap missing player graveyard name at (9,5)")
+    if simulated[(15, 5)] < 188:
+        raise SystemExit("validate_duel_b_menu: simulated tilemap missing opponent graveyard name at (15,5)")
 
 
 def main() -> None:

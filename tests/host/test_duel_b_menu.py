@@ -63,6 +63,8 @@ class DuelBMenuValidatorTests(unittest.TestCase):
 
         self.assertGreaterEqual(template[(9, 0)], 168)
         self.assertLess(simulated[(9, 0)], 168)
+        self.assertGreaterEqual(simulated[(9, 5)], 148)
+        self.assertGreaterEqual(simulated[(15, 5)], 188)
         self.assertGreaterEqual(simulated[(surrender.row_top, surrender.col)], 148)
         self.assertFalse(
             {
@@ -80,6 +82,8 @@ class DuelBMenuValidatorTests(unittest.TestCase):
         self.assertIn("B_MENU_LABEL_TILE_DISCARD_TOP 128", source)
         self.assertIn("B_MENU_LABEL_TILE_SURRENDER_TOP 148", source)
         self.assertIn("HighlightBMenuOption(highlightedOption)", source)
+        self.assertIn("DrawGraveyardNameTilemap", source)
+        self.assertIn("RefreshGraveyardNameTiles", source)
         self.assertIn("g8DF811C[i]", source)
         self.assertIn("0xE8DC", source)
         self.assertNotIn("DrawBMenuFixedLabels", source)
