@@ -44,6 +44,10 @@ GOLDEN_TEMPLATE_SURRENDER_CELLS = frozenset(
     }
 )
 
+# Cells in GOLDEN_TEMPLATE_SURRENDER_CELLS that overlap with graveyard name
+# drawn tiles and will be legitimately overwritten (not stale).
+GY_OVERWRITE_CELLS = frozenset({(9, 5), (9, 6)})
+
 
 @dataclass(frozen=True)
 class OptionLabelSpec:
@@ -136,7 +140,7 @@ def simulate_post_draw_tilemap(template_cells: dict[tuple[int, int], int]) -> di
     cells = dict(template_cells)
     g8 = read_g8df811c()
 
-    for row in list(range(1, 5)) + [14]:
+    for row in list(range(1, 5)) + list(range(14, 17)):
         for col in range(32):
             cells[(row, col)] = 0
 
@@ -154,8 +158,8 @@ def simulate_post_draw_tilemap(template_cells: dict[tuple[int, int], int]) -> di
             cells[(spec.row_bottom, spec.col + i)] = (spec.tile_bottom + g8[i]) | PALETTE_BITS
 
     for i in range(20):
-        cells[(9, 5 + i)] = (148 + g8[i]) | PALETTE_BITS
-        cells[(10, 5 + i)] = (150 + g8[i]) | PALETTE_BITS
+        cells[(9, 5 + i)] = (228 + g8[i]) | PALETTE_BITS
+        cells[(10, 5 + i)] = (230 + g8[i]) | PALETTE_BITS
         cells[(15, 5 + i)] = (188 + g8[i]) | PALETTE_BITS
         cells[(16, 5 + i)] = (190 + g8[i]) | PALETTE_BITS
 
@@ -236,7 +240,7 @@ def validate(*, gba_path: Path = GBA, hooks_path: Path = HOOKS) -> None:
         )
 
     simulated = simulate_post_draw_tilemap(template_cells)
-    for stale_row, stale_col in GOLDEN_TEMPLATE_SURRENDER_CELLS:
+    for stale_row, stale_col in GOLDEN_TEMPLATE_SURRENDER_CELLS - GY_OVERWRITE_CELLS:
         if simulated[(stale_row, stale_col)] >= 168:
             raise SystemExit(
                 "validate_duel_b_menu: simulated tilemap still has surrender tile at stale "
@@ -258,10 +262,10 @@ def validate(*, gba_path: Path = GBA, hooks_path: Path = HOOKS) -> None:
     if stale_left == new_top:
         raise SystemExit("validate_duel_b_menu: draw coordinates match stale template left cell")
 
-    if simulated[(9, 5)] < 148:
-        raise SystemExit("validate_duel_b_menu: simulated tilemap missing player graveyard name at (9,5)")
+    if simulated[(9, 5)] < 228:
+        raise SystemExit("validate_duel_b_menu: simulated tilemap missing opponent graveyard name at (9,5)")
     if simulated[(15, 5)] < 188:
-        raise SystemExit("validate_duel_b_menu: simulated tilemap missing opponent graveyard name at (15,5)")
+        raise SystemExit("validate_duel_b_menu: simulated tilemap missing player graveyard name at (15,5)")
 
 
 def main() -> None:

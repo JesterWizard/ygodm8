@@ -89,16 +89,16 @@ struct BMenuOptionLabel {
 
 #define B_MENU_GY_NAME_COL 5
 #define B_MENU_GY_NAME_WIDTH 20
-#define B_MENU_GY_NAME_ROW_PLAYER_TOP 9
-#define B_MENU_GY_NAME_ROW_PLAYER_BOTTOM 10
-#define B_MENU_GY_NAME_ROW_OPPONENT_TOP 15
-#define B_MENU_GY_NAME_ROW_OPPONENT_BOTTOM 16
-#define B_MENU_GY_NAME_TILE_PLAYER_TOP 148
-#define B_MENU_GY_NAME_TILE_PLAYER_BOTTOM 150
-#define B_MENU_GY_NAME_TILE_OPPONENT_TOP 188
-#define B_MENU_GY_NAME_TILE_OPPONENT_BOTTOM 190
+#define B_MENU_GY_NAME_ROW_PLAYER_TOP 15
+#define B_MENU_GY_NAME_ROW_PLAYER_BOTTOM 16
+#define B_MENU_GY_NAME_ROW_OPPONENT_TOP 9
+#define B_MENU_GY_NAME_ROW_OPPONENT_BOTTOM 10
+#define B_MENU_GY_NAME_TILE_PLAYER_TOP 188
+#define B_MENU_GY_NAME_TILE_PLAYER_BOTTOM 190
+#define B_MENU_GY_NAME_TILE_OPPONENT_TOP 228
+#define B_MENU_GY_NAME_TILE_OPPONENT_BOTTOM 230
 #define B_MENU_GY_NAME_CHR_PLAYER 0x9780
-#define B_MENU_GY_NAME_CHR_OPPONENT 0x9280
+#define B_MENU_GY_NAME_CHR_OPPONENT 0x9C80
 
 static const struct {
   u8 row;
@@ -170,7 +170,7 @@ static void ClearBMenuOptionLabelCells(u16 blankTile) {
   u8 col;
 
   ClearBMenuLabelRows(1, 4, blankTile);
-  ClearBMenuLabelRows(14, 14, blankTile);
+  ClearBMenuLabelRows(14, 16, blankTile);
 
   for (i = 0; i < ARRAY_COUNT(sStaleTemplateLabelCells); i++)
     BMenuWriteTile(sStaleTemplateLabelCells[i].col, sStaleTemplateLabelCells[i].row, blankTile);

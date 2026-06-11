@@ -53,6 +53,7 @@ class DuelBMenuValidatorTests(unittest.TestCase):
         from validate_duel_b_menu import (  # noqa: E402
             EXPECTED_OPTION_LABELS,
             GOLDEN_TEMPLATE_SURRENDER_CELLS,
+            GY_OVERWRITE_CELLS,
             read_template_cells,
             simulate_post_draw_tilemap,
         )
@@ -63,13 +64,13 @@ class DuelBMenuValidatorTests(unittest.TestCase):
 
         self.assertGreaterEqual(template[(9, 0)], 168)
         self.assertLess(simulated[(9, 0)], 168)
-        self.assertGreaterEqual(simulated[(9, 5)], 148)
+        self.assertGreaterEqual(simulated[(9, 5)], 228)
         self.assertGreaterEqual(simulated[(15, 5)], 188)
         self.assertGreaterEqual(simulated[(surrender.row_top, surrender.col)], 148)
         self.assertFalse(
             {
                 (row, col)
-                for row, col in GOLDEN_TEMPLATE_SURRENDER_CELLS
+                for row, col in GOLDEN_TEMPLATE_SURRENDER_CELLS - GY_OVERWRITE_CELLS
                 if simulated[(row, col)] >= 168
             }
         )
