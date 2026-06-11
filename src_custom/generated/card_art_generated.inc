@@ -156,6 +156,10 @@ static const unsigned char sCatsEarTribeBigArt[] __attribute__((section(".append
 static const unsigned short sCatsEarTribeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cats_ear_tribe.gbapal");
 static const unsigned char sCatsEarTribeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cats_ear_tribe.lz");
 
+static const unsigned char sCureMermaidBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cure_mermaid.huff");
+static const unsigned short sCureMermaidBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cure_mermaid.gbapal");
+static const unsigned char sCureMermaidMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cure_mermaid.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -196,6 +200,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0345] = sBowganianBigArt,
   [0x0346] = sDarkMagicCurtainBigArt,
   [0x0347] = sCatsEarTribeBigArt,
+  [0x0348] = sCureMermaidBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -238,6 +243,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0345] = sBowganianBigPalette,
   [0x0346] = sDarkMagicCurtainBigPalette,
   [0x0347] = sCatsEarTribeBigPalette,
+  [0x0348] = sCureMermaidBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -280,6 +286,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0345] = 0,
   [0x0346] = 0,
   [0x0347] = 0,
+  [0x0348] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -322,4 +329,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0345] = sBowganianMiniArt,
   [0x0346] = sDarkMagicCurtainMiniArt,
   [0x0347] = sCatsEarTribeMiniArt,
+  [0x0348] = sCureMermaidMiniArt,
 };

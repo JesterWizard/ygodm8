@@ -13708,6 +13708,34 @@
       },
       "card_name": "Cat's Ear Tribe",
       "password": [ 2, 0, 0, 1, 1, 0, 0, 1 ]
+    },
+    {
+      "card_const": "CURE_MERMAID",
+      "atk": 1500,
+      "def": 800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WATER",
+      "level": 4,
+      "type": "TYPE_FISH",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_CureMermaid",
+        "pages": [
+          "A gentle mermaid who sings healing songs to recover",
+          "800LP at the start of the owner's turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CureMermaid",
+        "pages": [
+          "Recovers 800LP at the start of its owner's turn."
+        ]
+      },
+      "card_name": "Cure Mermaid",
+      "password": [ 8, 0, 0, 2, 1, 0, 4, 0 ]
     }
   ]
 }

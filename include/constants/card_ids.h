@@ -841,11 +841,12 @@
 #define BOWGANIAN                                0x0345
 #define DARK_MAGIC_CURTAIN                       0x0346
 #define CATS_EAR_TRIBE                           0x0347
+#define CURE_MERMAID                             0x0348
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0348
-#define NUM_CUSTOM_CARDS                        0x0027
+#define NUM_TOTAL_CARDS                         0x0349
+#define NUM_CUSTOM_CARDS                        0x0028
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

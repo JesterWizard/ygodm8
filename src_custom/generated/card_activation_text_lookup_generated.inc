@@ -68,6 +68,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BOWGANIAN, gActivationDescription_Bowganian },
   { DARK_MAGIC_CURTAIN, gActivationDescription_DarkMagicCurtain },
   { CATS_EAR_TRIBE, gActivationDescription_CatsEarTribe },
+  { CURE_MERMAID, gActivationDescription_CureMermaid },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
