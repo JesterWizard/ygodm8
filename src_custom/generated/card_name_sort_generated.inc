@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 45
+#define NUM_CUSTOM_NAME_SORT_CARDS 46
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -47,6 +47,7 @@ static const u8 sSkillDrainSortName[] APPEND_RODATA = "Skill Drain";
 static const u8 sGuardianTreasureSortName[] APPEND_RODATA = "Guardian Treasure";
 static const u8 sJarOfGreedSortName[] APPEND_RODATA = "Jar of Greed";
 static const u8 sMadSwordBeastSortName[] APPEND_RODATA = "Mad Sword Beast";
+static const u8 sOjamaTrioSortName[] APPEND_RODATA = "Ojama Trio";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -78,6 +79,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x033A, // Mask of Restrict
   0x0336, // Mystical Space Typhoon
   0x0339, // Obnoxious Celtic Guardian
+  0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
   0x0334, // Pyramid of Light
   0x0337, // Rare Metal Dragon
@@ -126,22 +128,23 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   27, // Mask of Restrict
   28, // Mystical Space Typhoon
   29, // Obnoxious Celtic Guardian
-  30, // Paladin Of White Dragon
-  31, // Pyramid of Light
-  32, // Rare Metal Dragon
-  33, // Riryoku
-  34, // Sage's Stone
-  35, // Seal of Orichalcos
-  36, // Shield And Sword
-  37, // Skill Drain
-  38, // Sorcerer of Dark Magic
-  39, // Soul Exchange
-  40, // Spear Dragon
-  41, // Spell Canceller
-  42, // St Joan
-  43, // Ultimate Offering
-  44, // United We Stand
-  45, // Wave Motion Cannon
+  30, // Ojama Trio
+  31, // Paladin Of White Dragon
+  32, // Pyramid of Light
+  33, // Rare Metal Dragon
+  34, // Riryoku
+  35, // Sage's Stone
+  36, // Seal of Orichalcos
+  37, // Shield And Sword
+  38, // Skill Drain
+  39, // Sorcerer of Dark Magic
+  40, // Soul Exchange
+  41, // Spear Dragon
+  42, // Spell Canceller
+  43, // St Joan
+  44, // Ultimate Offering
+  45, // United We Stand
+  46, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -235,6 +238,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sJarOfGreedSortName;
   if (cardId == 0x034D)
     return (u8 *)sMadSwordBeastSortName;
+  if (cardId == 0x034E)
+    return (u8 *)sOjamaTrioSortName;
 
   return gCardNames[cardId];
 }

@@ -13882,6 +13882,38 @@
       },
       "card_name": "Mad Sword Beast",
       "password": [ 7, 9, 8, 7, 0, 1, 4, 1 ]
+    },
+    {
+      "card_const": "OJAMA_TRIO",
+      "atk": 0,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 2,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_OjamaTrio",
+        "pages": [
+          "A trap that floods the enemy field with stubborn ojamas.",
+          "Activates at opponent turn start. Summons up to 3 in Defense.",
+          "Cannot be tributed. Destroying one deals 300 LP damage."
+        ]
+      },
+      "card_name": "Ojama Trio",
+      "password": [ 2, 3, 1, 7, 1, 7, 0, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_OjamaTrio",
+        "pages": [
+          "Up to 3 Ojama tokens will be summoned to the opponent's field in defense position."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/ojama_trio.huff",
+      "big_palette": "src_custom/assets/cards/80x80/ojama_trio.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/ojama_trio.lz"
     }
   ]
 }

@@ -17,6 +17,7 @@
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
+#include "ojama_trio.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -423,6 +424,12 @@ void sub_80449D8__Replacement(void)
 
     if (preferredCol != 0xFF)
       placedCol = preferredCol;
+  }
+
+  if (gFixedZones[placedRow][placedCol]->id != CARD_NONE) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
   }
 
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);

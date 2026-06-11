@@ -7,6 +7,7 @@
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "embodiment_of_apophis.h"
+#include "ojama_trio.h"
 #include "riryoku.h"
 
 #include "generated/field_spell_stat_mods_generated.inc"
@@ -431,6 +432,9 @@ u8 ZoneShowsCombatStats(const struct DuelCard *zone)
   if (EmbodimentOfApophisZoneIsMonsterForm(zone))
     return TRUE;
 
+  if (OjamaTrioZoneIsMonsterForm(zone))
+    return TRUE;
+
   return FALSE;
 }
 
@@ -449,6 +453,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 
   SetCardInfo__Replacement(zone->id);
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
+  ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
   if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
     ApplyCopycatStatsToCardInfo(&statMod);
@@ -478,13 +483,15 @@ LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
   SetCardInfo__Replacement(ptr->card);
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(ptr);
+  ApplyOjamaTrioCardInfoOverridesForStatMod(ptr);
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
   else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
            || (gSetFinalStatZone != NULL
                && gSetFinalStatZone->id == ptr->card
-               && EmbodimentOfApophisZoneIsMonsterForm(gSetFinalStatZone))) {
+               && (EmbodimentOfApophisZoneIsMonsterForm(gSetFinalStatZone)
+                   || OjamaTrioZoneIsMonsterForm(gSetFinalStatZone)))) {
     s8 stage = ptr->stage;
 
     if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == ptr->card)

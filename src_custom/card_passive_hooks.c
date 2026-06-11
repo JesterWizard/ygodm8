@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "embodiment_of_apophis.h"
 #include "graveyard_effects.h"
+#include "ojama_trio.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -33,9 +34,12 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
   if (ShouldBlockHarmfulEffectOnZone(zone))
     return;
 
+  ApplyOjamaTrioDestructionDamage(zone);
+
   if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
       || EmbodimentOfApophisZoneIsMonsterForm(zone)
-      || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
+      || EmbodimentOfApophisZoneOnMonsterRow(zone)
+      || OjamaTrioZoneIsMonsterForm(zone)) {
     NoteGraveyardMonsterSend(zone);
     gTurnDuelistBattleState[turn]->graveyard = zone->id;
   }

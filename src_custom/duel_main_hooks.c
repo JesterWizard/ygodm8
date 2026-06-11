@@ -8,6 +8,7 @@
 #include "duel_status.h"
 #include "guardian_treasure.h"
 #include "jar_of_greed.h"
+#include "ojama_trio.h"
 #include "life_points.h"
 #include "text.h"
 
@@ -262,6 +263,7 @@ static bool8 RunDuelTurnLoop(void) {
     ResetNumTributes();
     UpdateDuelZonePtrs(turn);
     TryActivateJarOfGreedOnOpponentTurnStart();
+    TryActivateOjamaTrioOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {

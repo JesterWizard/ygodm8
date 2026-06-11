@@ -7,6 +7,7 @@
 #include "copycat.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
+#include "ojama_trio.h"
 #include "cost_down.h"
 #include "custom_field_spell.h"
 #include "graveyard_effects.h"
@@ -265,7 +266,8 @@ void LockMonsterCardsInRow__Replacement(unsigned char turnRow) {
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (gTurnZones[turnRow][i]->id != CARD_NONE
         && (GetTypeGroup(gTurnZones[turnRow][i]->id) == TYPE_GROUP_MONSTER
-            || EmbodimentOfApophisZoneIsMonsterForm(gTurnZones[turnRow][i])))
+            || EmbodimentOfApophisZoneIsMonsterForm(gTurnZones[turnRow][i])
+            || OjamaTrioZoneIsMonsterForm(gTurnZones[turnRow][i])))
       gTurnZones[turnRow][i]->isLocked = TRUE;
   }
 
@@ -413,6 +415,13 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
       continue;
 
     zone->effectUsedThisTurn = FALSE;
+
+    if (OjamaTrioZoneIsMonsterForm(zone)) {
+      zone->isLocked = TRUE;
+      zone->isDefending = TRUE;
+      continue;
+    }
+
     zone->isLocked = FALSE;
   }
 }

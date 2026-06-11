@@ -132,6 +132,7 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   gStatMod.card = arg1->id;
   gStatMod.field = gDuel.field;
   gStatMod.stage = GetFinalStage(arg1);
+  gSetFinalStatZone = arg1;
   SetFinalStat(&gStatMod);
   ApplyRiryokuAtkDeltaToCardInfo(arg1);
 
@@ -158,6 +159,7 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   gStatMod.card = arg1->id;
   gStatMod.field = gDuel.field;
   gStatMod.stage = GetFinalStage(arg1);
+  gSetFinalStatZone = arg1;
   SetFinalStat(&gStatMod);
 
   if (gCardInfo.def / 100 > 99)

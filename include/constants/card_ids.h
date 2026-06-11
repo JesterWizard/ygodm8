@@ -847,11 +847,12 @@
 #define GUARDIAN_TREASURE                        0x034B
 #define JAR_OF_GREED                             0x034C
 #define MAD_SWORD_BEAST                          0x034D
+#define OJAMA_TRIO                               0x034E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x034E
-#define NUM_CUSTOM_CARDS                        0x002D
+#define NUM_TOTAL_CARDS                         0x034F
+#define NUM_CUSTOM_CARDS                        0x002E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

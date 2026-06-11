@@ -3,6 +3,7 @@
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
+#include "ojama_trio.h"
 #include "duel.h"
 
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
@@ -474,6 +475,8 @@ void InitEmbodimentOfApophisMonsterZone(struct DuelCard *zone)
 LYN_REPLACE_CHECK(ClearZoneAndSendMonToGraveyard2);
 void ClearZoneAndSendMonToGraveyard2__Replacement(struct DuelCard *zone, u8 turn)
 {
+  ApplyOjamaTrioDestructionDamage(zone);
+  SendOjamaTrioZoneToGraveyardIfNeeded(zone, turn);
   SendApophisZoneToGraveyardIfNeeded(zone, turn);
   ClearZone(zone);
 }

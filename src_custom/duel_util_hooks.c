@@ -4,6 +4,7 @@
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
+#include "ojama_trio.h"
 #include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
@@ -172,6 +173,9 @@ LYN_REPLACE_CHECK(ZoneHasUnlockedMonsterCard);
 unsigned ZoneHasUnlockedMonsterCard__Replacement(struct DuelCard *zone)
 {
   if (EmbodimentOfApophisZoneIsMonsterForm(zone))
+    return !zone->isLocked;
+
+  if (OjamaTrioZoneIsMonsterForm(zone))
     return !zone->isLocked;
 
   return zone->id != CARD_NONE && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER && !zone->isLocked;
