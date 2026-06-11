@@ -13828,6 +13828,38 @@
       "big_art": "src_custom/assets/cards/80x80/guardian_treasure.huff",
       "big_palette": "src_custom/assets/cards/80x80/guardian_treasure.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/guardian_treasure.lz"
+    },
+    {
+      "card_const": "JAR_OF_GREED",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_JarOfGreed",
+        "pages": [
+          "A jar that treasures from all over the globe.",
+          "Activates when your opponent's turn begins.",
+          "The owner draws 1 card when it resolves."
+        ]
+      },
+      "card_name": "Jar of Greed",
+      "password": [ 9, 4, 1, 9, 2, 4, 0, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_JarOfGreed",
+        "pages": [
+          "Draw 1 card."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/jar_of_greed.huff",
+      "big_palette": "src_custom/assets/cards/80x80/jar_of_greed.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/jar_of_greed.lz"
     }
   ]
 }

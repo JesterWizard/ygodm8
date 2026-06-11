@@ -41,6 +41,7 @@ static const u8 sCureMermaidName[] __attribute__((section(".append_assets"))) = 
 static const u8 sDesKoalaName[] __attribute__((section(".append_assets"))) = "Des Koala";
 static const u8 sSkillDrainName[] __attribute__((section(".append_assets"))) = "Skill Drain";
 static const u8 sGuardianTreasureName[] __attribute__((section(".append_assets"))) = "Guardian Treasure";
+static const u8 sJarOfGreedName[] __attribute__((section(".append_assets"))) = "Jar of Greed";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -129,6 +130,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSkillDrainName;
   if (cardId == 0x034B)
     return (u8 *)sGuardianTreasureName;
+  if (cardId == 0x034C)
+    return (u8 *)sJarOfGreedName;
 
   return gCardNames[cardId];
 }

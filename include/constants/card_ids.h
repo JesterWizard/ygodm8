@@ -845,11 +845,12 @@
 #define DES_KOALA                                0x0349
 #define SKILL_DRAIN                              0x034A
 #define GUARDIAN_TREASURE                        0x034B
+#define JAR_OF_GREED                             0x034C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x034C
-#define NUM_CUSTOM_CARDS                        0x002B
+#define NUM_TOTAL_CARDS                         0x034D
+#define NUM_CUSTOM_CARDS                        0x002C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
