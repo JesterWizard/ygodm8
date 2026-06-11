@@ -133,6 +133,7 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   gStatMod.field = gDuel.field;
   gStatMod.stage = GetFinalStage(arg1);
   SetFinalStat(&gStatMod);
+  ApplyRiryokuAtkDeltaToCardInfo(arg1);
 
   if (gCardInfo.atk / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);

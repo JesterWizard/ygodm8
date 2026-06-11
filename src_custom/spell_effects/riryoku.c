@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "riryoku.h"
+#include "mini_card.h"
 #include "spell_effects.h"
 
 extern void ActivateTrapEffect(u16 lp);
@@ -91,6 +92,15 @@ void ApplyRiryokuAtkDeltaToCardInfo(const struct DuelCard *zone)
     gCardInfo.atk = (u16)atk;
 }
 
+static u8 IsRiryokuVisibleMonsterTarget(struct DuelCard *zone)
+{
+  if (IsCardFaceUp(zone))
+    return TRUE;
+
+  /* Attack-position monsters stay isFaceUp=0 until end-of-turn FlipAtkPosCardsFaceUp. */
+  return zone->isDefending == FALSE;
+}
+
 static u8 IsValidRiryokuMonsterTarget(u8 fixedRow, u8 fixedCol, u8 excludeRow, u8 excludeCol)
 {
   struct DuelCard *zone;
@@ -105,7 +115,7 @@ static u8 IsValidRiryokuMonsterTarget(u8 fixedRow, u8 fixedCol, u8 excludeRow, u
   if (zone->id == CARD_NONE)
     return FALSE;
 
-  if (!IsCardFaceUp(zone))
+  if (!IsRiryokuVisibleMonsterTarget(zone))
     return FALSE;
 
   return GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER;
@@ -295,6 +305,7 @@ APPEND_TEXT void EffectRiryoku(void)
     if (lostAtk > 0) {
       AddRiryokuAtkDelta(source, -lostAtk);
       AddRiryokuAtkDelta(recipient, lostAtk);
+      RefreshFieldMonsterStatOverlays();
     }
 
     ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
