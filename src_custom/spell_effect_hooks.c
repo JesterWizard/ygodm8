@@ -24,6 +24,7 @@ extern void EffectDoubleSummon(void);
 extern void EffectCostDown(void);
 extern void EffectAncientRules(void);
 extern void EffectSagesStone(void);
+extern void EffectDarkMagicCurtain(void);
 extern void EffectRiryoku(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
@@ -179,6 +180,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case SAGES_STONE:
       EffectSagesStone();
+      return;
+    case DARK_MAGIC_CURTAIN:
+      EffectDarkMagicCurtain();
       return;
     case RIRYOKU:
       EffectRiryoku();

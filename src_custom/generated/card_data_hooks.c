@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[838] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[839] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -850,9 +850,10 @@ const u8 gCardLockAfterActivation_Hook[838] APPEND_RODATA = {
   [0x0343] = 1,
   [0x0344] = 1,
   [0x0345] = 1,
+  [0x0346] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[838] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[839] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1691,9 +1692,10 @@ const u8 gCardEffectUsage_Hook[838] APPEND_RODATA = {
   [0x0343] = EFFECT_USAGE_NONE,
   [0x0344] = EFFECT_USAGE_NONE,
   [0x0345] = EFFECT_USAGE_NONE,
+  [0x0346] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[838] APPEND_RODATA = {
+const CardData gCardData_NEW[839] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -12670,5 +12672,19 @@ const CardData gCardData_NEW[838] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 6, 8, 7, 1, 3, 2, 4},
     .description = gDescription_Bowganian,
+  },
+  [0x0346] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 0,
+    .trapEffect = 0,
+    .password = {7, 5, 1, 4, 9, 6, 2, 8},
+    .description = gDescription_DarkMagicCurtain,
   },
 };

@@ -148,6 +148,10 @@ static const unsigned char sBowganianBigArt[] __attribute__((section(".append_as
 static const unsigned short sBowganianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/bowganian.gbapal");
 static const unsigned char sBowganianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/bowganian.lz");
 
+static const unsigned char sDarkMagicCurtainBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_magic_curtain.huff");
+static const unsigned short sDarkMagicCurtainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_magic_curtain.gbapal");
+static const unsigned char sDarkMagicCurtainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_magic_curtain.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -186,6 +190,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0343] = sSpearDragonBigArt,
   [0x0344] = sSagesStoneBigArt,
   [0x0345] = sBowganianBigArt,
+  [0x0346] = sDarkMagicCurtainBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -226,6 +231,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0343] = sSpearDragonBigPalette,
   [0x0344] = sSagesStoneBigPalette,
   [0x0345] = sBowganianBigPalette,
+  [0x0346] = sDarkMagicCurtainBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -266,6 +272,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0343] = 0,
   [0x0344] = 0,
   [0x0345] = 0,
+  [0x0346] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -306,4 +313,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0343] = sSpearDragonMiniArt,
   [0x0344] = sSagesStoneMiniArt,
   [0x0345] = sBowganianMiniArt,
+  [0x0346] = sDarkMagicCurtainMiniArt,
 };

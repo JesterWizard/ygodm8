@@ -66,6 +66,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { RIRYOKU, gActivationDescription_Riryoku },
   { SAGES_STONE, gActivationDescription_SagesStone },
   { BOWGANIAN, gActivationDescription_Bowganian },
+  { DARK_MAGIC_CURTAIN, gActivationDescription_DarkMagicCurtain },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
