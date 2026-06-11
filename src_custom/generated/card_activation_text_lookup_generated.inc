@@ -71,6 +71,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { CURE_MERMAID, gActivationDescription_CureMermaid },
   { DES_KOALA, gActivationDescription_DesKoala },
   { SKILL_DRAIN, gActivationDescription_SkillDrain },
+  { GUARDIAN_TREASURE, gActivationDescription_GuardianTreasure },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

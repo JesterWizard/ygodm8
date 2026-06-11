@@ -26,6 +26,7 @@ extern void EffectAncientRules(void);
 extern void EffectSagesStone(void);
 extern void EffectDarkMagicCurtain(void);
 extern void EffectRiryoku(void);
+extern void EffectGuardianTreasure(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -186,6 +187,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case RIRYOKU:
       EffectRiryoku();
+      return;
+    case GUARDIAN_TREASURE:
+      EffectGuardianTreasure();
       return;
     case EXCHANGE:
       EffectExchange();

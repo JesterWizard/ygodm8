@@ -13796,6 +13796,38 @@
       "big_art": "src_custom/assets/cards/80x80/skill_drain.huff",
       "big_palette": "src_custom/assets/cards/80x80/skill_drain.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/skill_drain.lz"
+    },
+    {
+      "card_const": "GUARDIAN_TREASURE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GuardianTreasure",
+        "pages": [
+          "A firm but fair goddess who gives in proportion to her tribute.",
+          "Discard four cards from hand to draw two cards immediately.",
+          "While this card is on the field, draw two cards each turn."
+        ]
+      },
+      "card_name": "Guardian Treasure",
+      "password": [ 1, 2, 3, 4, 5, 6, 7, 8 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_GuardianTreasure",
+        "pages": [
+          "Discard 4 cards from the hand to draw 2. While on the field, draw 2 per turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/guardian_treasure.huff",
+      "big_palette": "src_custom/assets/cards/80x80/guardian_treasure.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/guardian_treasure.lz"
     }
   ]
 }

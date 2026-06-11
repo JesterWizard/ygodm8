@@ -16,6 +16,7 @@
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
+#include "guardian_treasure.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -272,6 +273,13 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginRiryokuTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == GUARDIAN_TREASURE && !CanActivateGuardianTreasure()) {
+    gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;

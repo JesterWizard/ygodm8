@@ -844,11 +844,12 @@
 #define CURE_MERMAID                             0x0348
 #define DES_KOALA                                0x0349
 #define SKILL_DRAIN                              0x034A
+#define GUARDIAN_TREASURE                        0x034B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x034B
-#define NUM_CUSTOM_CARDS                        0x002A
+#define NUM_TOTAL_CARDS                         0x034C
+#define NUM_CUSTOM_CARDS                        0x002B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

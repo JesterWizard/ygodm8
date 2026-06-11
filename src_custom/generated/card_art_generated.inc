@@ -168,6 +168,10 @@ static const unsigned char sSkillDrainBigArt[] __attribute__((section(".append_a
 static const unsigned short sSkillDrainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skill_drain.gbapal");
 static const unsigned char sSkillDrainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skill_drain.lz");
 
+static const unsigned char sGuardianTreasureBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/guardian_treasure.huff");
+static const unsigned short sGuardianTreasureBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/guardian_treasure.gbapal");
+static const unsigned char sGuardianTreasureMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/guardian_treasure.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -211,6 +215,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0348] = sCureMermaidBigArt,
   [0x0349] = sDesKoalaBigArt,
   [0x034A] = sSkillDrainBigArt,
+  [0x034B] = sGuardianTreasureBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -256,6 +261,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0348] = sCureMermaidBigPalette,
   [0x0349] = sDesKoalaBigPalette,
   [0x034A] = sSkillDrainBigPalette,
+  [0x034B] = sGuardianTreasureBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -301,6 +307,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0348] = 0,
   [0x0349] = 0,
   [0x034A] = 0,
+  [0x034B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -346,4 +353,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0348] = sCureMermaidMiniArt,
   [0x0349] = sDesKoalaMiniArt,
   [0x034A] = sSkillDrainMiniArt,
+  [0x034B] = sGuardianTreasureMiniArt,
 };

@@ -6,6 +6,7 @@
 #include "duel.h"
 #include "duel_main.h"
 #include "duel_status.h"
+#include "guardian_treasure.h"
 #include "life_points.h"
 #include "text.h"
 
@@ -259,8 +260,8 @@ static bool8 RunDuelTurnLoop(void) {
     UnblockTurnSummoning(ACTIVE_DUELIST);
     ResetNumTributes();
     UpdateDuelZonePtrs(turn);
-    if (NumEmptyZonesInRow(gTurnZones[4]) > 0) {
-      TryDrawingCard(turn);
+    if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
+      PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)
         return TRUE;
       PlayMusic(SFX_DRAW_CARD);
