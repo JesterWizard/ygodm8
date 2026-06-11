@@ -13680,6 +13680,34 @@
       "big_art": "src_custom/assets/cards/80x80/dark_magic_curtain.huff",
       "big_palette": "src_custom/assets/cards/80x80/dark_magic_curtain.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/dark_magic_curtain.lz"
+    },
+    {
+      "card_const": "CATS_EAR_TRIBE",
+      "atk": 200,
+      "def": 100,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 3,
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_CatsEarTribe",
+        "pages": [
+          "A small creature with feline ears that reduces the original",
+          "attack of any monster it battles to 200."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CatsEarTribe",
+        "pages": [
+          "Any monster that battles this card has its original ATK set to 200."
+        ]
+      },
+      "card_name": "Cat's Ear Tribe",
+      "password": [ 2, 0, 0, 1, 1, 0, 0, 1 ]
     }
   ]
 }

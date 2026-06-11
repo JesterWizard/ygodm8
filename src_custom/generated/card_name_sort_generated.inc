@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 38
+#define NUM_CUSTOM_NAME_SORT_CARDS 39
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -40,6 +40,7 @@ static const u8 sSpearDragonSortName[] APPEND_RODATA = "Spear Dragon";
 static const u8 sSagesStoneSortName[] APPEND_RODATA = "Sage's Stone";
 static const u8 sBowganianSortName[] APPEND_RODATA = "Bowganian";
 static const u8 sDarkMagicCurtainSortName[] APPEND_RODATA = "Dark Magic Curtain";
+static const u8 sCatsEarTribeSortName[] APPEND_RODATA = "Cat's Ear Tribe";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -49,6 +50,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0345, // Bowganian
   0x0326, // Card Of Demise
   0x0327, // Card Of Sanctity
+  0x0347, // Cat's Ear Tribe
   0x032A, // Chain Energy
   0x032D, // Copycat
   0x033C, // Cost Down
@@ -90,37 +92,38 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   5, // Bowganian
   6, // Card Of Demise
   7, // Card Of Sanctity
-  8, // Chain Energy
-  9, // Copycat
-  10, // Cost Down
-  11, // Dark Magic Curtain
-  12, // Deck Destruction Virus
-  13, // Double Summon
-  14, // Exchange
-  15, // Fairy Box
-  16, // Familiar Knight
-  17, // Kaibaman
-  18, // Mage Power
-  19, // Magic Jammer
-  20, // Magician's Valkyria
-  21, // Mask of Restrict
-  22, // Mystical Space Typhoon
-  23, // Obnoxious Celtic Guardian
-  24, // Paladin Of White Dragon
-  25, // Pyramid of Light
-  26, // Rare Metal Dragon
-  27, // Riryoku
-  28, // Sage's Stone
-  29, // Seal of Orichalcos
-  30, // Shield And Sword
-  31, // Sorcerer of Dark Magic
-  32, // Soul Exchange
-  33, // Spear Dragon
-  34, // Spell Canceller
-  35, // St Joan
-  36, // Ultimate Offering
-  37, // United We Stand
-  38, // Wave Motion Cannon
+  8, // Cat's Ear Tribe
+  9, // Chain Energy
+  10, // Copycat
+  11, // Cost Down
+  12, // Dark Magic Curtain
+  13, // Deck Destruction Virus
+  14, // Double Summon
+  15, // Exchange
+  16, // Fairy Box
+  17, // Familiar Knight
+  18, // Kaibaman
+  19, // Mage Power
+  20, // Magic Jammer
+  21, // Magician's Valkyria
+  22, // Mask of Restrict
+  23, // Mystical Space Typhoon
+  24, // Obnoxious Celtic Guardian
+  25, // Paladin Of White Dragon
+  26, // Pyramid of Light
+  27, // Rare Metal Dragon
+  28, // Riryoku
+  29, // Sage's Stone
+  30, // Seal of Orichalcos
+  31, // Shield And Sword
+  32, // Sorcerer of Dark Magic
+  33, // Soul Exchange
+  34, // Spear Dragon
+  35, // Spell Canceller
+  36, // St Joan
+  37, // Ultimate Offering
+  38, // United We Stand
+  39, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -200,6 +203,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sBowganianSortName;
   if (cardId == 0x0346)
     return (u8 *)sDarkMagicCurtainSortName;
+  if (cardId == 0x0347)
+    return (u8 *)sCatsEarTribeSortName;
 
   return gCardNames[cardId];
 }

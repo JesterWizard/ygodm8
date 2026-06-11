@@ -4,6 +4,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "fairy_box.h"
+#include "cats_ear_tribe.h"
 #include "embodiment_of_apophis.h"
 
 struct AI_Command {
@@ -77,6 +78,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryActivateEmbodimentOfApophisOnAttack();
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
+  TryApplyCatsEarTribeToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
@@ -107,6 +109,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
 
   SetAttackAction(playerCol, opponentCol);
   TryApplyFairyBoxToPendingAction();
+  TryApplyCatsEarTribeToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();

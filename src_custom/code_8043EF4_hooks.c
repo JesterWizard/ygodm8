@@ -10,6 +10,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "fairy_box.h"
+#include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "debug_ruleset.h"
@@ -456,6 +457,7 @@ void sub_8044570__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
+      TryApplyCatsEarTribeToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
@@ -510,6 +512,7 @@ void TryAttackWithMonster__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
+      TryApplyCatsEarTribeToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();

@@ -152,6 +152,10 @@ static const unsigned char sDarkMagicCurtainBigArt[] __attribute__((section(".ap
 static const unsigned short sDarkMagicCurtainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_magic_curtain.gbapal");
 static const unsigned char sDarkMagicCurtainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_magic_curtain.lz");
 
+static const unsigned char sCatsEarTribeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cats_ear_tribe.huff");
+static const unsigned short sCatsEarTribeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cats_ear_tribe.gbapal");
+static const unsigned char sCatsEarTribeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cats_ear_tribe.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -191,6 +195,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0344] = sSagesStoneBigArt,
   [0x0345] = sBowganianBigArt,
   [0x0346] = sDarkMagicCurtainBigArt,
+  [0x0347] = sCatsEarTribeBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -232,6 +237,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0344] = sSagesStoneBigPalette,
   [0x0345] = sBowganianBigPalette,
   [0x0346] = sDarkMagicCurtainBigPalette,
+  [0x0347] = sCatsEarTribeBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -273,6 +279,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0344] = 0,
   [0x0345] = 0,
   [0x0346] = 0,
+  [0x0347] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -314,4 +321,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0344] = sSagesStoneMiniArt,
   [0x0345] = sBowganianMiniArt,
   [0x0346] = sDarkMagicCurtainMiniArt,
+  [0x0347] = sCatsEarTribeMiniArt,
 };
