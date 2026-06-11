@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 44
+#define NUM_CUSTOM_NAME_SORT_CARDS 45
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -46,6 +46,7 @@ static const u8 sDesKoalaSortName[] APPEND_RODATA = "Des Koala";
 static const u8 sSkillDrainSortName[] APPEND_RODATA = "Skill Drain";
 static const u8 sGuardianTreasureSortName[] APPEND_RODATA = "Guardian Treasure";
 static const u8 sJarOfGreedSortName[] APPEND_RODATA = "Jar of Greed";
+static const u8 sMadSwordBeastSortName[] APPEND_RODATA = "Mad Sword Beast";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -70,6 +71,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x034B, // Guardian Treasure
   0x034C, // Jar of Greed
   0x032F, // Kaibaman
+  0x034D, // Mad Sword Beast
   0x032E, // Mage Power
   0x033F, // Magic Jammer
   0x0323, // Magician's Valkyria
@@ -117,28 +119,29 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   20, // Guardian Treasure
   21, // Jar of Greed
   22, // Kaibaman
-  23, // Mage Power
-  24, // Magic Jammer
-  25, // Magician's Valkyria
-  26, // Mask of Restrict
-  27, // Mystical Space Typhoon
-  28, // Obnoxious Celtic Guardian
-  29, // Paladin Of White Dragon
-  30, // Pyramid of Light
-  31, // Rare Metal Dragon
-  32, // Riryoku
-  33, // Sage's Stone
-  34, // Seal of Orichalcos
-  35, // Shield And Sword
-  36, // Skill Drain
-  37, // Sorcerer of Dark Magic
-  38, // Soul Exchange
-  39, // Spear Dragon
-  40, // Spell Canceller
-  41, // St Joan
-  42, // Ultimate Offering
-  43, // United We Stand
-  44, // Wave Motion Cannon
+  23, // Mad Sword Beast
+  24, // Mage Power
+  25, // Magic Jammer
+  26, // Magician's Valkyria
+  27, // Mask of Restrict
+  28, // Mystical Space Typhoon
+  29, // Obnoxious Celtic Guardian
+  30, // Paladin Of White Dragon
+  31, // Pyramid of Light
+  32, // Rare Metal Dragon
+  33, // Riryoku
+  34, // Sage's Stone
+  35, // Seal of Orichalcos
+  36, // Shield And Sword
+  37, // Skill Drain
+  38, // Sorcerer of Dark Magic
+  39, // Soul Exchange
+  40, // Spear Dragon
+  41, // Spell Canceller
+  42, // St Joan
+  43, // Ultimate Offering
+  44, // United We Stand
+  45, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -230,6 +233,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sGuardianTreasureSortName;
   if (cardId == 0x034C)
     return (u8 *)sJarOfGreedSortName;
+  if (cardId == 0x034D)
+    return (u8 *)sMadSwordBeastSortName;
 
   return gCardNames[cardId];
 }

@@ -176,6 +176,10 @@ static const unsigned char sJarOfGreedBigArt[] __attribute__((section(".append_a
 static const unsigned short sJarOfGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/jar_of_greed.gbapal");
 static const unsigned char sJarOfGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/jar_of_greed.lz");
 
+static const unsigned char sMadSwordBeastBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mad_sword_beast.huff");
+static const unsigned short sMadSwordBeastBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mad_sword_beast.gbapal");
+static const unsigned char sMadSwordBeastMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mad_sword_beast.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -221,6 +225,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x034A] = sSkillDrainBigArt,
   [0x034B] = sGuardianTreasureBigArt,
   [0x034C] = sJarOfGreedBigArt,
+  [0x034D] = sMadSwordBeastBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -268,6 +273,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x034A] = sSkillDrainBigPalette,
   [0x034B] = sGuardianTreasureBigPalette,
   [0x034C] = sJarOfGreedBigPalette,
+  [0x034D] = sMadSwordBeastBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -315,6 +321,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x034A] = 0,
   [0x034B] = 0,
   [0x034C] = 0,
+  [0x034D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -362,4 +369,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x034A] = sSkillDrainMiniArt,
   [0x034B] = sGuardianTreasureMiniArt,
   [0x034C] = sJarOfGreedMiniArt,
+  [0x034D] = sMadSwordBeastMiniArt,
 };

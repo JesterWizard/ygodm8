@@ -13860,6 +13860,28 @@
       "big_art": "src_custom/assets/cards/80x80/jar_of_greed.huff",
       "big_palette": "src_custom/assets/cards/80x80/jar_of_greed.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/jar_of_greed.lz"
+    },
+    {
+      "card_const": "MAD_SWORD_BEAST",
+      "atk": 1400,
+      "def": 1200,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 4,
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MadSwordBeast",
+        "pages": [
+          "A ferocious beast that charges with a sharp blade. It inflicts",
+          "piercing damage on defense positon monsters."
+        ]
+      },
+      "card_name": "Mad Sword Beast",
+      "password": [ 7, 9, 8, 7, 0, 1, 4, 1 ]
     }
   ]
 }
