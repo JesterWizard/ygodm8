@@ -13687,7 +13687,7 @@
       "def": 100,
       "cost": 150,
       "attribute": "ATTRIBUTE_EARTH",
-      "level": 3,
+      "level": 1,
       "type": "TYPE_BEAST_WARRIOR",
       "color": "EFFECT_CARD",
       "monsterEffect": 0,
@@ -13736,6 +13736,35 @@
       },
       "card_name": "Cure Mermaid",
       "password": [ 8, 0, 0, 2, 1, 0, 4, 0 ]
+    },
+    {
+      "card_const": "DES_KOALA",
+      "atk": 1100,
+      "def": 1800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 3,
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DES_KOALA",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "effect_usage": "once",
+      "description": {
+        "symbol": "gDescription_DesKoala",
+        "pages": [
+          "A ferocious koala that delivers a nasty surprise to the",
+          "opponent. It deals 500LP damage per card in their hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DesKoala",
+        "pages": [
+          "Deals 500LP damage per card in opponent's hand."
+        ]
+      },
+      "card_name": "Des Koala",
+      "password": [ 4, 1, 1, 8, 6, 7, 3, 2 ]
     }
   ]
 }

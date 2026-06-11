@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[841] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[842] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -853,9 +853,10 @@ const u8 gCardLockAfterActivation_Hook[841] APPEND_RODATA = {
   [0x0346] = 1,
   [0x0347] = 1,
   [0x0348] = 1,
+  [0x0349] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[841] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[842] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1697,9 +1698,10 @@ const u8 gCardEffectUsage_Hook[841] APPEND_RODATA = {
   [0x0346] = EFFECT_USAGE_NONE,
   [0x0347] = EFFECT_USAGE_NONE,
   [0x0348] = EFFECT_USAGE_NONE,
+  [0x0349] = EFFECT_USAGE_ONCE,
 };
 
-const CardData gCardData_NEW[841] APPEND_RODATA = {
+const CardData gCardData_NEW[842] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -12696,7 +12698,7 @@ const CardData gCardData_NEW[841] APPEND_RODATA = {
     .def = 100,
     .cost = 150,
     .attribute = ATTRIBUTE_EARTH,
-    .level = 3,
+    .level = 1,
     .type = TYPE_BEAST_WARRIOR,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -12718,5 +12720,19 @@ const CardData gCardData_NEW[841] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {8, 0, 0, 2, 1, 0, 4, 0},
     .description = gDescription_CureMermaid,
+  },
+  [0x0349] = {
+    .atk = 1100,
+    .def = 1800,
+    .cost = 150,
+    .attribute = ATTRIBUTE_EARTH,
+    .level = 3,
+    .type = TYPE_BEAST_WARRIOR,
+    .color = EFFECT_CARD,
+    .monsterEffect = 114,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 1, 1, 8, 6, 7, 3, 2},
+    .description = gDescription_DesKoala,
   },
 };

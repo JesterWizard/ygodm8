@@ -116,6 +116,7 @@ enum {
   MONSTER_EFFECT_KAIBAMAN,
   MONSTER_EFFECT_NEEDLE_WORM,
   MONSTER_EFFECT_CANNON_SOLDIER,
+  MONSTER_EFFECT_DES_KOALA,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -136,3 +137,5 @@ extern unsigned char CanActivateKaibaman(void);
 extern void ActivateKaibamanEffect(void);
 extern unsigned char CanActivateCannonSoldier(void);
 extern void ActivateCannonSoldierEffect(void);
+extern unsigned char CanActivateDesKoala(void);
+extern void ActivateDesKoalaEffect(void);

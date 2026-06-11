@@ -31,6 +31,8 @@ void ActivateKarateManEffect(void);
 unsigned char CanActivateMonsterTamer(void);
 void ActivateMonsterTamerEffect(void);
 void ActivateHourglassOfLifeEffect(void);
+unsigned char CanActivateDesKoala(void);
+void ActivateDesKoalaEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
 
@@ -56,6 +58,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateMonsterTamer();
     case MONSTER_EFFECT_CANNON_SOLDIER:
       return CanActivateCannonSoldier();
+    case MONSTER_EFFECT_DES_KOALA:
+      return CanActivateDesKoala();
     default:
       return TRUE;
   }
@@ -147,6 +151,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CANNON_SOLDIER) {
     ActivateCannonSoldierEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_DES_KOALA) {
+    ActivateDesKoalaEffect();
     return;
   }
 
