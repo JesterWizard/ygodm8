@@ -14,9 +14,11 @@
 
 Custom cards begin after `TALONS_OF_SHURILANE`; in code this is the `SORCERER_OF_DARK_MAGIC` / `CUSTOM_CARD_START` boundary. Any card added after that point in `tools/card_data_manifest.json` increases `NUM_CUSTOM_CARDS`.
 
-The generated card count now drives the save-memory mirrors and the card shop list buffer. Contributors no longer need to manually resize the fixed `0x20` custom-card save blocks or the shop list allocation when adding cards past the vanilla 800.
+The generated card count now drives the save-memory mirrors and the card shop list buffer. Contributors no longer need to manually resize the fixed `0xC8` (200) custom-card save blocks or the shop list allocation when adding cards past the vanilla 800.
 
-The SRAM quantity mirrors keep a minimum `0x20` byte stride for save compatibility with existing builds. They grow past `0x20` only when the manifest has more than 32 custom cards.
+The SRAM quantity mirrors keep a minimum `0xC8` (200) byte stride so adding new cards does not shift the flash save layout. If custom cards ever exceed 200, bump the padding floor in `tools/add_card_art.py` (`render_card_memory_sizes_asm`) and regenerate.
+
+> **Why not just use the exact count?** Because `CUSTOM_CARD_QTY_BYTES` determines the flash/SRAM addresses of every custom save mirror. Changing it shifts the layout, which breaks saves from prior builds. A fixed generous padding avoids this.
 
 ## Plan
 
@@ -34,7 +36,7 @@ Memory is split by lifetime:
 |--------|-----|-------------|
 | IWRAM | Hot custom runtime state | Fixed unless a new fast buffer is added |
 | EWRAM | Runtime custom arrays and card shop list | Shop list grows to fit every generated card in 7-card rows |
-| SRAM | Persistent save mirrors | Custom card quantity mirrors keep a 32-card minimum, then grow by `NUM_CUSTOM_CARDS` |
+| SRAM | Persistent save mirrors | Custom card quantity mirrors keep a 200-card minimum, then grow by `NUM_CUSTOM_CARDS` |
 
 The live custom quantity arrays (`gCustomTrunkCardQty`, `gCustomShopCardQty`, `gCustomPlayerTempCardQty`) are linker-sized from `NUM_CUSTOM_CARDS`. Their persistent SRAM mirrors are allocated in `asm/ram_map.s` from `CUSTOM_CARD_QTY_BYTES`.
 
@@ -65,3 +67,5 @@ The report prints IWRAM, EWRAM, and SRAM usage against the available custom allo
 ## Limitations & Bugs
 
 The report measures the custom allocation windows exported by `asm/ram_map.s`, not every byte used by the original game engine. SRAM usage is calculated from exported save ranges and custom persistent mirrors, so new SRAM allocations should use `SET_ARRAY` if they need to appear in the report automatically.
+
+The SRAM custom card quantity mirrors are padded to 200 entries (`CUSTOM_CARD_QTY_BYTES = 0xC8`) to keep the flash save layout stable. If custom cards exceed 200, bump the minimum in `tools/add_card_art.py` (`render_card_memory_sizes_asm`) and regenerate.

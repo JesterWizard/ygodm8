@@ -575,7 +575,7 @@ def render_card_memory_sizes_asm(manifest: dict) -> str:
     custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
-    custom_card_qty_bytes = max(custom_cards, 0x20)
+    custom_card_qty_bytes = max(custom_cards, 0xC8)  # Pad to 200 so adding cards doesn't shift flash save layout.
     trunk_custom_card_bytes = custom_cards * 2
     trunk_sort_list_bytes = (custom_start + custom_cards) * 2
     shop_rows = (total_cards + 6) // 7

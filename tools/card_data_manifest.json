@@ -13621,6 +13621,34 @@
       "big_art": "src_custom/assets/cards/80x80/sages_stone.huff",
       "big_palette": "src_custom/assets/cards/80x80/sages_stone.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/sages_stone.lz"
+    },
+    {
+      "card_const": "BOWGANIAN",
+      "atk": 1300,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_FIEND",
+      "level": 3,
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Bowganian",
+        "pages": [
+          "A fiend encased in a spiked shell that fires 600LP",
+          "of damage at the opponent on the owner's turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Bowganian",
+        "pages": [
+          "Deals 600LP of damage to the opponent each turn."
+        ]
+      },
+      "card_name": "Bowganian",
+      "password": [ 5, 6, 8, 7, 1, 3, 2, 4 ]
     }
   ]
 }

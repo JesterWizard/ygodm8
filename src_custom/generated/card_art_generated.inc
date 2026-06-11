@@ -144,6 +144,10 @@ static const unsigned char sSagesStoneBigArt[] __attribute__((section(".append_a
 static const unsigned short sSagesStoneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sages_stone.gbapal");
 static const unsigned char sSagesStoneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sages_stone.lz");
 
+static const unsigned char sBowganianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/bowganian.huff");
+static const unsigned short sBowganianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/bowganian.gbapal");
+static const unsigned char sBowganianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/bowganian.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -181,6 +185,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0342] = sRiryokuBigArt,
   [0x0343] = sSpearDragonBigArt,
   [0x0344] = sSagesStoneBigArt,
+  [0x0345] = sBowganianBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -220,6 +225,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0342] = sRiryokuBigPalette,
   [0x0343] = sSpearDragonBigPalette,
   [0x0344] = sSagesStoneBigPalette,
+  [0x0345] = sBowganianBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -259,6 +265,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0342] = 0,
   [0x0343] = 0,
   [0x0344] = 0,
+  [0x0345] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -298,4 +305,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0342] = sRiryokuMiniArt,
   [0x0343] = sSpearDragonMiniArt,
   [0x0344] = sSagesStoneMiniArt,
+  [0x0345] = sBowganianMiniArt,
 };

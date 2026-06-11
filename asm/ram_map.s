@@ -160,6 +160,7 @@ _kernel_malloc_ewram gActiveFieldSpellController, 1
 _kernel_malloc_ewram_array gCustomShopCardList, CUSTOM_SHOP_CARD_LIST_BYTES
 
 @ Custom trunk/shop/player-temp card quantities (EWRAM; flash mirrors below in SRAM).
+@ CUSTOM_CARD_QTY_BYTES is padded to 200 — bump if cards exceed 200.
 _kernel_malloc_ewram_array gCustomTrunkCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_ewram_array gCustomShopCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_ewram_array gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES
@@ -265,6 +266,9 @@ SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
 SET_ARRAY gSaveSlotBackup,   0x0E004020, 0x747
 
 @ Custom card count storage mirrored in free flash space.
+@ CUSTOM_CARD_QTY_BYTES is padded to 200 (0xC8) in tools/add_card_art.py
+@ (render_card_memory_sizes_asm) so that adding new cards does not shift
+@ the flash save layout.  Bump the minimum if custom cards exceed 200.
 SET_DATA gCustomCardQtyFlashPrimaryStart, 0x0E000788
 SET_DATA gCustomCardQtyFlashBackupStart,  0x0E004768
 

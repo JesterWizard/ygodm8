@@ -26,6 +26,8 @@ void ActivateFairyBoxTurnEffect(void);
 unsigned char ShouldActivateFairyBoxUpkeep(void);
 void ActivateFairyBoxUpkeep(void);
 void AgeWaveMotionCannonTurns(void);
+unsigned char ShouldActivateBowganianTurnEffect(void);
+void ActivateBowganianTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -73,6 +75,10 @@ static void TryActivatingTurnEffect__Hook(void) {
       ActivateFairyBoxUpkeep();
     return;
   }
+  if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
+    ActivateBowganianTurnEffect();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
@@ -96,6 +102,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return ShouldActivateUltimateOfferingTurnEffect();
   if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
     return ShouldActivateFairyBoxUpkeep();
+  if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ShouldActivateBowganianTurnEffect();
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }
