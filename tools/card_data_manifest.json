@@ -13765,6 +13765,37 @@
       },
       "card_name": "Des Koala",
       "password": [ 4, 1, 1, 8, 6, 7, 3, 2 ]
+    },
+    {
+      "card_const": "SKILL_DRAIN",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SkillDrain",
+        "pages": [
+          "A continuous trap that negates all monster effects",
+          "while on the field in exchange for 1000 LP."
+        ]
+      },
+      "card_name": "Skill Drain",
+      "password": [ 8, 2, 7, 3, 6, 1, 9, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SkillDrain",
+        "pages": [
+          "Pay 1000 LP to activate and negate all monster effects while face-up on the field."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/skill_drain.huff",
+      "big_palette": "src_custom/assets/cards/80x80/skill_drain.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/skill_drain.lz"
     }
   ]
 }

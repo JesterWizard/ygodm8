@@ -39,6 +39,7 @@ static const u8 sDarkMagicCurtainName[] __attribute__((section(".append_assets")
 static const u8 sCatsEarTribeName[] __attribute__((section(".append_assets"))) = "Cat's Ear Tribe";
 static const u8 sCureMermaidName[] __attribute__((section(".append_assets"))) = "Cure Mermaid";
 static const u8 sDesKoalaName[] __attribute__((section(".append_assets"))) = "Des Koala";
+static const u8 sSkillDrainName[] __attribute__((section(".append_assets"))) = "Skill Drain";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -123,6 +124,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCureMermaidName;
   if (cardId == 0x0349)
     return (u8 *)sDesKoalaName;
+  if (cardId == 0x034A)
+    return (u8 *)sSkillDrainName;
 
   return gCardNames[cardId];
 }

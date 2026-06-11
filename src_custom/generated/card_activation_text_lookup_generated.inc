@@ -70,6 +70,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { CATS_EAR_TRIBE, gActivationDescription_CatsEarTribe },
   { CURE_MERMAID, gActivationDescription_CureMermaid },
   { DES_KOALA, gActivationDescription_DesKoala },
+  { SKILL_DRAIN, gActivationDescription_SkillDrain },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

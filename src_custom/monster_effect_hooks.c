@@ -65,9 +65,14 @@ unsigned char CanActivateMonsterEffect(void) {
   }
 }
 
+unsigned char TryActivateSkillDrainAndNegate(void);
+
 LYN_REPLACE_CHECK(ActivateMonsterEffect);
 void ActivateMonsterEffect__Replacement(void) {
   struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+
+  if (TryActivateSkillDrainAndNegate())
+    return;
 
   ResetCardEffectTextData();
   SetCardEffectTextType(2);

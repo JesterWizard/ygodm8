@@ -42,6 +42,8 @@ void ActivateSpellCanceller(void);
 unsigned char ShouldActivateYamataDragon(void);
 void ActivateYamataDragon(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
+unsigned char IsSkillDrainActiveOnField(void);
+unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -110,6 +112,12 @@ static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
 static void TryActivatingPermanentEffect__Hook(void) {
   const PermanentEffectOverride *override;
 
+  /* Skill Drain negates all monster effects on the field */
+  if (gActiveEffect.turnRow == 1 || gActiveEffect.turnRow == 2) {
+    if (TryActivateSkillDrainAndNegateCardId(gActiveEffect.cardId))
+      return;
+  }
+
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
   if (override != NULL) {
@@ -127,6 +135,10 @@ static void TryActivatingPermanentEffect__Hook(void) {
 
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
   const PermanentEffectOverride *override;
+
+  /* Skill Drain negates all monster effects on the field */
+  if ((gActiveEffect.turnRow == 1 || gActiveEffect.turnRow == 2) && IsSkillDrainActiveOnField())
+    return FALSE;
 
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 

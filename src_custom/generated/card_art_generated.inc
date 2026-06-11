@@ -164,6 +164,10 @@ static const unsigned char sDesKoalaBigArt[] __attribute__((section(".append_ass
 static const unsigned short sDesKoalaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/des_koala.gbapal");
 static const unsigned char sDesKoalaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/des_koala.lz");
 
+static const unsigned char sSkillDrainBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skill_drain.huff");
+static const unsigned short sSkillDrainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skill_drain.gbapal");
+static const unsigned char sSkillDrainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skill_drain.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -206,6 +210,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0347] = sCatsEarTribeBigArt,
   [0x0348] = sCureMermaidBigArt,
   [0x0349] = sDesKoalaBigArt,
+  [0x034A] = sSkillDrainBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -250,6 +255,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0347] = sCatsEarTribeBigPalette,
   [0x0348] = sCureMermaidBigPalette,
   [0x0349] = sDesKoalaBigPalette,
+  [0x034A] = sSkillDrainBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -294,6 +300,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0347] = 0,
   [0x0348] = 0,
   [0x0349] = 0,
+  [0x034A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -338,4 +345,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0347] = sCatsEarTribeMiniArt,
   [0x0348] = sCureMermaidMiniArt,
   [0x0349] = sDesKoalaMiniArt,
+  [0x034A] = sSkillDrainMiniArt,
 };

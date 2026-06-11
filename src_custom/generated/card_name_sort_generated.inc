@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 41
+#define NUM_CUSTOM_NAME_SORT_CARDS 42
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -43,6 +43,7 @@ static const u8 sDarkMagicCurtainSortName[] APPEND_RODATA = "Dark Magic Curtain"
 static const u8 sCatsEarTribeSortName[] APPEND_RODATA = "Cat's Ear Tribe";
 static const u8 sCureMermaidSortName[] APPEND_RODATA = "Cure Mermaid";
 static const u8 sDesKoalaSortName[] APPEND_RODATA = "Des Koala";
+static const u8 sSkillDrainSortName[] APPEND_RODATA = "Skill Drain";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -78,6 +79,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0344, // Sage's Stone
   0x0340, // Seal of Orichalcos
   0x0328, // Shield And Sword
+  0x034A, // Skill Drain
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
   0x0343, // Spear Dragon
@@ -122,14 +124,15 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   31, // Sage's Stone
   32, // Seal of Orichalcos
   33, // Shield And Sword
-  34, // Sorcerer of Dark Magic
-  35, // Soul Exchange
-  36, // Spear Dragon
-  37, // Spell Canceller
-  38, // St Joan
-  39, // Ultimate Offering
-  40, // United We Stand
-  41, // Wave Motion Cannon
+  34, // Skill Drain
+  35, // Sorcerer of Dark Magic
+  36, // Soul Exchange
+  37, // Spear Dragon
+  38, // Spell Canceller
+  39, // St Joan
+  40, // Ultimate Offering
+  41, // United We Stand
+  42, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -215,6 +218,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sCureMermaidSortName;
   if (cardId == 0x0349)
     return (u8 *)sDesKoalaSortName;
+  if (cardId == 0x034A)
+    return (u8 *)sSkillDrainSortName;
 
   return gCardNames[cardId];
 }
