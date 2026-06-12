@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 83
+#define NUM_CUSTOM_NAME_SORT_CARDS 84
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -85,6 +85,7 @@ static const u8 sSkullInvitationSortName[] APPEND_RODATA = "Skull Invitation";
 static const u8 sNightmareHorseSortName[] APPEND_RODATA = "Nightmare Horse";
 static const u8 sVampireBabySortName[] APPEND_RODATA = "Vampire Baby";
 static const u8 sTheForcefulSentrySortName[] APPEND_RODATA = "The Forceful Sentry";
+static const u8 sTerrorkingSalmonSortName[] APPEND_RODATA = "Terrorking Salmon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -156,6 +157,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032B, // Spell Canceller
   0x0333, // St Joan
   0x036E, // Swift Gaia The Fierce Knight
+  0x0374, // Terrorking Salmon
   0x036D, // The Dark Door
   0x0373, // The Forceful Sentry
   0x036C, // Thousand Energy
@@ -242,20 +244,21 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   67, // Spell Canceller
   68, // St Joan
   69, // Swift Gaia The Fierce Knight
-  70, // The Dark Door
-  71, // The Forceful Sentry
-  72, // Thousand Energy
-  73, // Time Seal
-  74, // Toll
-  75, // Ultimate Offering
-  76, // United We Stand
-  77, // Upstart Goblin
-  78, // Vampire Baby
-  79, // Warrior of Zera
-  80, // Wave Motion Cannon
-  81, // Weather Report
-  82, // White Magician Pikeru
-  83, // Yata-Garasu
+  70, // Terrorking Salmon
+  71, // The Dark Door
+  72, // The Forceful Sentry
+  73, // Thousand Energy
+  74, // Time Seal
+  75, // Toll
+  76, // Ultimate Offering
+  77, // United We Stand
+  78, // Upstart Goblin
+  79, // Vampire Baby
+  80, // Warrior of Zera
+  81, // Wave Motion Cannon
+  82, // Weather Report
+  83, // White Magician Pikeru
+  84, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -425,6 +428,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sVampireBabySortName;
   if (cardId == 0x0373)
     return (u8 *)sTheForcefulSentrySortName;
+  if (cardId == 0x0374)
+    return (u8 *)sTerrorkingSalmonSortName;
 
   return gCardNames[cardId];
 }

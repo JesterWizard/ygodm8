@@ -14954,6 +14954,28 @@
       "big_art": "src_custom/assets/cards/80x80/the_forceful_sentry.huff",
       "big_palette": "src_custom/assets/cards/80x80/the_forceful_sentry.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/the_forceful_sentry.lz"
+    },
+    {
+      "card_const": "TERRORKING_SALMON",
+      "atk": 2400,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WATER",
+      "level": 5,
+      "type": "TYPE_FISH",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TerrorkingSalmon",
+        "pages": [
+          "A feared salmon, master of the Sea of Darkness.",
+          "Its roe is the best delicacy in the World of Darkness."
+        ]
+      },
+      "card_name": "Terrorking Salmon",
+      "password": [ 7, 8, 0, 6, 0, 0, 9, 6 ]
     }
   ]
 }

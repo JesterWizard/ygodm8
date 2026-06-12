@@ -332,6 +332,10 @@ static const unsigned char sTheForcefulSentryBigArt[] __attribute__((section(".a
 static const unsigned short sTheForcefulSentryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_forceful_sentry.gbapal");
 static const unsigned char sTheForcefulSentryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_forceful_sentry.lz");
 
+static const unsigned char sTerrorkingSalmonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/terrorking_salmon.huff");
+static const unsigned short sTerrorkingSalmonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/terrorking_salmon.gbapal");
+static const unsigned char sTerrorkingSalmonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/terrorking_salmon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -416,6 +420,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0371] = sNightmareHorseBigArt,
   [0x0372] = sVampireBabyBigArt,
   [0x0373] = sTheForcefulSentryBigArt,
+  [0x0374] = sTerrorkingSalmonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -502,6 +507,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0371] = sNightmareHorseBigPalette,
   [0x0372] = sVampireBabyBigPalette,
   [0x0373] = sTheForcefulSentryBigPalette,
+  [0x0374] = sTerrorkingSalmonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -588,6 +594,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0371] = 0,
   [0x0372] = 0,
   [0x0373] = 0,
+  [0x0374] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -674,4 +681,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0371] = sNightmareHorseMiniArt,
   [0x0372] = sVampireBabyMiniArt,
   [0x0373] = sTheForcefulSentryMiniArt,
+  [0x0374] = sTerrorkingSalmonMiniArt,
 };
