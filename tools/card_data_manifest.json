@@ -14078,6 +14078,36 @@
           "Select one attack position monster on the opponent's field and change it to defense position."
         ]
       }
+    },
+    {
+      "card_const": "DELINQUENT_DUO",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DelinquentDuo",
+        "pages": [
+          "A spell that forces the opponent to discard from their hand.",
+          "Pay 1000 LP to make them discard one card you pick, then one",
+          "more random card if they still have any left."
+        ]
+      },
+      "card_name": "Delinquent Duo",
+      "password": [ 4, 4, 7, 6, 3, 0, 2, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_DelinquentDuo",
+        "pages": [
+          "Pay 1000 LP. The opponent discards one card you pick,",
+          "then one random card if they still have any left."
+        ]
+      }
     }
   ]
 }

@@ -20,6 +20,7 @@
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
 #include "block_attack.h"
+#include "delinquent_duo.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -297,6 +298,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == GUARDIAN_TREASURE && !CanActivateGuardianTreasure()) {
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == DELINQUENT_DUO && !CanActivateDelinquentDuo()) {
+    PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);

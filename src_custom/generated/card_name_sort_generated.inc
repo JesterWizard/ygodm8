@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 52
+#define NUM_CUSTOM_NAME_SORT_CARDS 53
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -54,6 +54,7 @@ static const u8 sGoblinThiefSortName[] APPEND_RODATA = "Goblin Thief";
 static const u8 sHayabusaKnightSortName[] APPEND_RODATA = "Hayabusa Knight";
 static const u8 sMagicCylinderSortName[] APPEND_RODATA = "Magic Cylinder";
 static const u8 sBlockAttackSortName[] APPEND_RODATA = "Block Attack";
+static const u8 sDelinquentDuoSortName[] APPEND_RODATA = "Delinquent Duo";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -71,6 +72,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0348, // Cure Mermaid
   0x0346, // Dark Magic Curtain
   0x0322, // Deck Destruction Virus
+  0x0355, // Delinquent Duo
   0x0349, // Des Koala
   0x0338, // Double Summon
   0x032C, // Exchange
@@ -126,43 +128,44 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   13, // Cure Mermaid
   14, // Dark Magic Curtain
   15, // Deck Destruction Virus
-  16, // Des Koala
-  17, // Double Summon
-  18, // Exchange
-  19, // Fairy Box
-  20, // Familiar Knight
-  21, // Goblin Thief
-  22, // Guardian Treasure
-  23, // Hayabusa Knight
-  24, // Jar of Greed
-  25, // Kaibaman
-  26, // Luster Dragon
-  27, // Mad Sword Beast
-  28, // Mage Power
-  29, // Magic Cylinder
-  30, // Magic Jammer
-  31, // Magician's Valkyria
-  32, // Mask of Restrict
-  33, // Mystical Shine Ball
-  34, // Mystical Space Typhoon
-  35, // Obnoxious Celtic Guardian
-  36, // Ojama Trio
-  37, // Paladin Of White Dragon
-  38, // Pyramid of Light
-  39, // Rare Metal Dragon
-  40, // Riryoku
-  41, // Sage's Stone
-  42, // Seal of Orichalcos
-  43, // Shield And Sword
-  44, // Skill Drain
-  45, // Sorcerer of Dark Magic
-  46, // Soul Exchange
-  47, // Spear Dragon
-  48, // Spell Canceller
-  49, // St Joan
-  50, // Ultimate Offering
-  51, // United We Stand
-  52, // Wave Motion Cannon
+  16, // Delinquent Duo
+  17, // Des Koala
+  18, // Double Summon
+  19, // Exchange
+  20, // Fairy Box
+  21, // Familiar Knight
+  22, // Goblin Thief
+  23, // Guardian Treasure
+  24, // Hayabusa Knight
+  25, // Jar of Greed
+  26, // Kaibaman
+  27, // Luster Dragon
+  28, // Mad Sword Beast
+  29, // Mage Power
+  30, // Magic Cylinder
+  31, // Magic Jammer
+  32, // Magician's Valkyria
+  33, // Mask of Restrict
+  34, // Mystical Shine Ball
+  35, // Mystical Space Typhoon
+  36, // Obnoxious Celtic Guardian
+  37, // Ojama Trio
+  38, // Paladin Of White Dragon
+  39, // Pyramid of Light
+  40, // Rare Metal Dragon
+  41, // Riryoku
+  42, // Sage's Stone
+  43, // Seal of Orichalcos
+  44, // Shield And Sword
+  45, // Skill Drain
+  46, // Sorcerer of Dark Magic
+  47, // Soul Exchange
+  48, // Spear Dragon
+  49, // Spell Canceller
+  50, // St Joan
+  51, // Ultimate Offering
+  52, // United We Stand
+  53, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -270,6 +273,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMagicCylinderSortName;
   if (cardId == 0x0354)
     return (u8 *)sBlockAttackSortName;
+  if (cardId == 0x0355)
+    return (u8 *)sDelinquentDuoSortName;
 
   return gCardNames[cardId];
 }

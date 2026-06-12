@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 50 |
-| Art ready, needs manifest | 185 |
+| In game (manifest + art) | 53 |
+| Art ready, needs manifest | 182 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -73,6 +73,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GOBLIN_THIEF` | Goblin Thief | `goblin_thief.png` |
 | `HAYABUSA_KNIGHT` | Hayabusa Knight | `hayabusa_knight.png` |
 | `MAGIC_CYLINDER` | Magic Cylinder | `magic_cylinder.png` |
+| `BLOCK_ATTACK` | Block Attack | `block_attack.png` |
+| `DELINQUENT_DUO` | Delinquent Duo | `delinquent_duo.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -90,7 +92,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_TYRANNO` — `black_tyranno.png`
 - [ ] `BLASTING_THE_RUINS` — `blasting_the_ruins.png`
-- [ ] `BLOCK_ATTACK` — `block_attack.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
@@ -110,7 +111,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_ROOM_OF_NIGHTMARE` — `dark_room_of_nightmare.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
-- [ ] `DELINQUENT_DUO` — `delinquent_duo.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DES_FERAL_IMP` — `des_feral_imp.png`
 - [ ] `DIFFUSION_WAVE_MOTION` — `diffusion_wave_motion.png`

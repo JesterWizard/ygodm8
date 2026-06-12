@@ -28,6 +28,7 @@ extern void EffectDarkMagicCurtain(void);
 extern void EffectRiryoku(void);
 extern void EffectGuardianTreasure(void);
 extern void EffectGoblinThief(void);
+extern void EffectDelinquentDuo(void);
 extern void EffectBlockAttack(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
@@ -49,6 +50,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case RIRYOKU:
     case WAVE_MOTION_CANNON:
     case GOBLIN_THIEF:
+    case DELINQUENT_DUO:
     case BLOCK_ATTACK:
       return TRUE;
     default:
@@ -197,6 +199,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case GOBLIN_THIEF:
       EffectGoblinThief();
+      return;
+    case DELINQUENT_DUO:
+      EffectDelinquentDuo();
       return;
     case BLOCK_ATTACK:
       EffectBlockAttack();
