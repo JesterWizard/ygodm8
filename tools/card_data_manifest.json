@@ -14789,6 +14789,29 @@
       "big_art": "src_custom/assets/cards/80x80/the_dark_door.huff",
       "big_palette": "src_custom/assets/cards/80x80/the_dark_door.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/the_dark_door.lz"
+    },
+    {
+      "card_const": "SWIFT_GAIA_THE_FIERCE_KNIGHT",
+      "atk": 2300,
+      "def": 2100,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 7,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SwiftGaiaTheFierceKnight",
+        "pages": [
+          "A swift warrior knight who rides into battle without hesitation.",
+          "If this is the only card in your hand, you can Normal Summon it",
+          "without Tributing."
+        ]
+      },
+      "card_name": "Swift Gaia The Fierce Knight",
+      "password": [ 8, 9, 3, 1, 2, 3, 7, 6 ]
     }
   ]
 }

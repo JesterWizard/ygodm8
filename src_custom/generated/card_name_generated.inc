@@ -75,6 +75,7 @@ static const u8 sWarriorOfZeraName[] __attribute__((section(".append_assets"))) 
 static const u8 sTimeSealName[] __attribute__((section(".append_assets"))) = "Time Seal";
 static const u8 sThousandEnergyName[] __attribute__((section(".append_assets"))) = "Thousand Energy";
 static const u8 sTheDarkDoorName[] __attribute__((section(".append_assets"))) = "The Dark Door";
+static const u8 sSwiftGaiaTheFierceKnightName[] __attribute__((section(".append_assets"))) = "Swift Gaia The Fierce Knight";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -231,6 +232,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sThousandEnergyName;
   if (cardId == 0x036D)
     return (u8 *)sTheDarkDoorName;
+  if (cardId == 0x036E)
+    return (u8 *)sSwiftGaiaTheFierceKnightName;
 
   return gCardNames[cardId];
 }

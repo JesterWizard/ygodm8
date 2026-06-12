@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[878] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[879] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -890,9 +890,10 @@ const u8 gCardLockAfterActivation_Hook[878] APPEND_RODATA = {
   [0x036B] = 1,
   [0x036C] = 1,
   [0x036D] = 1,
+  [0x036E] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[878] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[879] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1771,9 +1772,10 @@ const u8 gCardEffectUsage_Hook[878] APPEND_RODATA = {
   [0x036B] = EFFECT_USAGE_NONE,
   [0x036C] = EFFECT_USAGE_NONE,
   [0x036D] = EFFECT_USAGE_NONE,
+  [0x036E] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[878] APPEND_RODATA = {
+const CardData gCardData_NEW[879] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13310,5 +13312,19 @@ const CardData gCardData_NEW[878] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {1, 2, 3, 7, 0, 9, 5, 5},
     .description = gDescription_TheDarkDoor,
+  },
+  [0x036E] = {
+    .atk = 2300,
+    .def = 2100,
+    .cost = 150,
+    .attribute = ATTRIBUTE_EARTH,
+    .level = 7,
+    .type = TYPE_WARRIOR,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 9, 3, 1, 2, 3, 7, 6},
+    .description = gDescription_SwiftGaiaTheFierceKnight,
   },
 };

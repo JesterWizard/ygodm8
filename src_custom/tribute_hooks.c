@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "cost_down.h"
@@ -22,9 +23,29 @@ static int LookupRequiredTributes(u8 level)
   return 3;
 }
 
-int GetNumRequiredTributesWithCostDown(u16 cardId)
+static u8 CountActiveDuelistHandCards(void)
 {
-  SetCardInfo(cardId);
+  u8 i;
+  u8 count = 0;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gTurnHands[ACTIVE_DUELIST][i]->id != CARD_NONE)
+      count++;
+  }
+
+  return count;
+}
+
+static u8 SwiftGaiaCanSummonWithoutTribute(u16 cardId)
+{
+  return cardId == SWIFT_GAIA_THE_FIERCE_KNIGHT
+      && CountActiveDuelistHandCards() == 1;
+}
+
+static int GetBaseRequiredTributes(u16 cardId)
+{
+  if (SwiftGaiaCanSummonWithoutTribute(cardId))
+    return 0;
 
   if (ShouldApplyCostDownLevelForTribute(cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
@@ -32,9 +53,18 @@ int GetNumRequiredTributesWithCostDown(u16 cardId)
   return LookupRequiredTributes(gCardInfo.level);
 }
 
+int GetNumRequiredTributesWithCostDown(u16 cardId)
+{
+  SetCardInfo(cardId);
+  return GetBaseRequiredTributes(cardId);
+}
+
 int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 {
   SetCardInfo(cardId);
+
+  if (SwiftGaiaCanSummonWithoutTribute(cardId))
+    return 0;
 
   if (ShouldApplyCostDownForHandSlot(handSlot, cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
