@@ -68,6 +68,7 @@ static const u8 sCallOfTheHauntedName[] __attribute__((section(".append_assets")
 static const u8 sKaiserGliderName[] __attribute__((section(".append_assets"))) = "Kaiser Glider";
 static const u8 sPiranhaArmyName[] __attribute__((section(".append_assets"))) = "Piranha Army";
 static const u8 sMoisterCreatureName[] __attribute__((section(".append_assets"))) = "Moister Creature";
+static const u8 sWhiteMagicianPikeruName[] __attribute__((section(".append_assets"))) = "White Magician Pikeru";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -210,6 +211,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sPiranhaArmyName;
   if (cardId == 0x0366)
     return (u8 *)sMoisterCreatureName;
+  if (cardId == 0x0367)
+    return (u8 *)sWhiteMagicianPikeruName;
 
   return gCardNames[cardId];
 }

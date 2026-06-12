@@ -95,6 +95,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { CALL_OF_THE_HAUNTED, gActivationDescription_CallOfTheHaunted },
   { KAISER_GLIDER, gActivationDescription_KaiserGlider },
   { MOISTER_CREATURE, gActivationDescription_MoistureCreature },
+  { WHITE_MAGICIAN_PIKERU, gActivationDescription_WhiteMagicianPikeru },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

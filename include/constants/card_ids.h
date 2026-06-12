@@ -872,11 +872,12 @@
 #define KAISER_GLIDER                            0x0364
 #define PIRANHA_ARMY                             0x0365
 #define MOISTER_CREATURE                         0x0366
+#define WHITE_MAGICIAN_PIKERU                    0x0367
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0367
-#define NUM_CUSTOM_CARDS                        0x0046
+#define NUM_TOTAL_CARDS                         0x0368
+#define NUM_CUSTOM_CARDS                        0x0047
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 70
+#define NUM_CUSTOM_NAME_SORT_CARDS 71
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -72,6 +72,7 @@ static const u8 sCallOfTheHauntedSortName[] APPEND_RODATA = "Call of the Haunted
 static const u8 sKaiserGliderSortName[] APPEND_RODATA = "Kaiser Glider";
 static const u8 sPiranhaArmySortName[] APPEND_RODATA = "Piranha Army";
 static const u8 sMoisterCreatureSortName[] APPEND_RODATA = "Moister Creature";
+static const u8 sWhiteMagicianPikeruSortName[] APPEND_RODATA = "White Magician Pikeru";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -143,6 +144,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
   0x0332, // Wave Motion Cannon
+  0x0367, // White Magician Pikeru
   0x035B, // Yata-Garasu
 };
 
@@ -216,7 +218,8 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   67, // United We Stand
   68, // Upstart Goblin
   69, // Wave Motion Cannon
-  70, // Yata-Garasu
+  70, // White Magician Pikeru
+  71, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -360,6 +363,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sPiranhaArmySortName;
   if (cardId == 0x0366)
     return (u8 *)sMoisterCreatureSortName;
+  if (cardId == 0x0367)
+    return (u8 *)sWhiteMagicianPikeruSortName;
 
   return gCardNames[cardId];
 }

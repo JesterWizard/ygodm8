@@ -15,6 +15,8 @@ u8 ShouldActivateSinisterSerpentEffect(void);
 void ActivateSinisterSerpentEffect(void);
 unsigned char ShouldActivateMysteriousPuppeteerTurnEffect(void);
 void ActivateMysteriousPuppeteerTurnEffect(void);
+unsigned char ShouldActivateWhiteMagicianPikeruTurnEffect(void);
+void ActivateWhiteMagicianPikeruTurnEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
 void ResetUltimateOfferingTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
@@ -64,6 +66,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateMysteriousPuppeteerTurnEffect();
     return;
   }
+  if (gActiveEffect.cardId == WHITE_MAGICIAN_PIKERU && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
+    ActivateWhiteMagicianPikeruTurnEffect();
+    return;
+  }
   if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
@@ -106,6 +112,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return ShouldActivateSinisterSerpentEffect();
   if (gActiveEffect.cardId == MYSTERIOUS_PUPPETEER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     return ShouldActivateMysteriousPuppeteerTurnEffect();
+  if (gActiveEffect.cardId == WHITE_MAGICIAN_PIKERU && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ShouldActivateWhiteMagicianPikeruTurnEffect();
   if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
     return FALSE;
   if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)

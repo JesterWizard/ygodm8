@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `99` effects
+- `100` effects
 
 ## Tally
 
@@ -78,6 +78,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |
 | `turn_effects` | `Mysterious Puppeteer` | `src_custom/turn_effects/mysterious_puppeteer.c` |
+| `turn_effects` | `White Magician Pikeru` | `src_custom/turn_effects/white_magician_pikeru.c` |
 | `permanent_effects` | `Milus Radiant` | `src_custom/permanent_effects/milus_radiant.c` |
 | `permanent_effects` | `Muka Muka` | `src_custom/permanent_effects/muka_muka.c` |
 | `permanent_effects` | `Ceremonial Bell` | `src_custom/permanent_effects/ceremonial_bell.c` |
