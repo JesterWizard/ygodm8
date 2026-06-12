@@ -14336,6 +14336,34 @@
           "Negate the attack and end the opponent's battle phase."
         ]
       }
+    },
+    {
+      "card_const": "RELOAD",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Reload",
+        "pages": [
+          "A spell that refreshes your hand from the deck. Return your hand to",
+          "the deck, shuffle and redraw the same number of cards."
+        ]
+      },
+      "card_name": "Reload",
+      "password": [ 7, 3, 9, 4, 1, 8, 2, 6 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_Reload",
+        "pages": [
+          "Return all cards in your hand to the deck, shuffle and then redraw the same number of cards."
+        ]
+      }
     }
   ]
 }

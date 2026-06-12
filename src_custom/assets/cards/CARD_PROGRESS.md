@@ -190,7 +190,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
 - [ ] `RECKLESS_GREED` — `reckless_greed.png`
-- [ ] `RELOAD` — `reload.png`
+- [x] `RELOAD` — `reload.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`

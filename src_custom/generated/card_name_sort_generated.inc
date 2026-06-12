@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 61
+#define NUM_CUSTOM_NAME_SORT_CARDS 62
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -63,6 +63,7 @@ static const u8 sSolarFlareDragonSortName[] APPEND_RODATA = "Solar Flare Dragon"
 static const u8 sYataGarasuSortName[] APPEND_RODATA = "Yata-Garasu";
 static const u8 sUpstartGoblinSortName[] APPEND_RODATA = "Upstart Goblin";
 static const u8 sNegateAttackSortName[] APPEND_RODATA = "Negate Attack";
+static const u8 sReloadSortName[] APPEND_RODATA = "Reload";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -109,6 +110,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
+  0x035E, // Reload
   0x0342, // Riryoku
   0x0344, // Sage's Stone
   0x0340, // Seal of Orichalcos
@@ -173,23 +175,24 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   42, // Pyramid of Light
   43, // Rain of Mercy
   44, // Rare Metal Dragon
-  45, // Riryoku
-  46, // Sage's Stone
-  47, // Seal of Orichalcos
-  48, // Shield And Sword
-  49, // Skill Drain
-  50, // Solar Flare Dragon
-  51, // Sorcerer of Dark Magic
-  52, // Soul Exchange
-  53, // Spear Dragon
-  54, // Spell Canceller
-  55, // St Joan
-  56, // Toll
-  57, // Ultimate Offering
-  58, // United We Stand
-  59, // Upstart Goblin
-  60, // Wave Motion Cannon
-  61, // Yata-Garasu
+  45, // Reload
+  46, // Riryoku
+  47, // Sage's Stone
+  48, // Seal of Orichalcos
+  49, // Shield And Sword
+  50, // Skill Drain
+  51, // Solar Flare Dragon
+  52, // Sorcerer of Dark Magic
+  53, // Soul Exchange
+  54, // Spear Dragon
+  55, // Spell Canceller
+  56, // St Joan
+  57, // Toll
+  58, // Ultimate Offering
+  59, // United We Stand
+  60, // Upstart Goblin
+  61, // Wave Motion Cannon
+  62, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -315,6 +318,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sUpstartGoblinSortName;
   if (cardId == 0x035D)
     return (u8 *)sNegateAttackSortName;
+  if (cardId == 0x035E)
+    return (u8 *)sReloadSortName;
 
   return gCardNames[cardId];
 }

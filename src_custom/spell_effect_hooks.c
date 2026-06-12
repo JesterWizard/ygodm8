@@ -34,6 +34,7 @@ extern void EffectBlockAttack(void);
 extern void EffectToll(void);
 extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
+extern void EffectReload(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -179,6 +180,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case UPSTART_GOBLIN:
       EffectUpstartGoblin();
+      return;
+    case RELOAD:
+      EffectReload();
       return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();
