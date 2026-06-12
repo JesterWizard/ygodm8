@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 47
+#define NUM_CUSTOM_NAME_SORT_CARDS 48
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -49,6 +49,7 @@ static const u8 sJarOfGreedSortName[] APPEND_RODATA = "Jar of Greed";
 static const u8 sMadSwordBeastSortName[] APPEND_RODATA = "Mad Sword Beast";
 static const u8 sOjamaTrioSortName[] APPEND_RODATA = "Ojama Trio";
 static const u8 sLusterDragonSortName[] APPEND_RODATA = "Luster Dragon";
+static const u8 sMysticalShineBallSortName[] APPEND_RODATA = "Mystical Shine Ball";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -79,6 +80,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x033F, // Magic Jammer
   0x0323, // Magician's Valkyria
   0x033A, // Mask of Restrict
+  0x0350, // Mystical Shine Ball
   0x0336, // Mystical Space Typhoon
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
@@ -129,25 +131,26 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   26, // Magic Jammer
   27, // Magician's Valkyria
   28, // Mask of Restrict
-  29, // Mystical Space Typhoon
-  30, // Obnoxious Celtic Guardian
-  31, // Ojama Trio
-  32, // Paladin Of White Dragon
-  33, // Pyramid of Light
-  34, // Rare Metal Dragon
-  35, // Riryoku
-  36, // Sage's Stone
-  37, // Seal of Orichalcos
-  38, // Shield And Sword
-  39, // Skill Drain
-  40, // Sorcerer of Dark Magic
-  41, // Soul Exchange
-  42, // Spear Dragon
-  43, // Spell Canceller
-  44, // St Joan
-  45, // Ultimate Offering
-  46, // United We Stand
-  47, // Wave Motion Cannon
+  29, // Mystical Shine Ball
+  30, // Mystical Space Typhoon
+  31, // Obnoxious Celtic Guardian
+  32, // Ojama Trio
+  33, // Paladin Of White Dragon
+  34, // Pyramid of Light
+  35, // Rare Metal Dragon
+  36, // Riryoku
+  37, // Sage's Stone
+  38, // Seal of Orichalcos
+  39, // Shield And Sword
+  40, // Skill Drain
+  41, // Sorcerer of Dark Magic
+  42, // Soul Exchange
+  43, // Spear Dragon
+  44, // Spell Canceller
+  45, // St Joan
+  46, // Ultimate Offering
+  47, // United We Stand
+  48, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -245,6 +248,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sOjamaTrioSortName;
   if (cardId == 0x034F)
     return (u8 *)sLusterDragonSortName;
+  if (cardId == 0x0350)
+    return (u8 *)sMysticalShineBallSortName;
 
   return gCardNames[cardId];
 }

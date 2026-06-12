@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 46 |
-| Art ready, needs manifest | 189 |
+| In game (manifest + art) | 48 |
+| Art ready, needs manifest | 187 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -68,6 +68,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `JAR_OF_GREED` | Jar of Greed | `jar_of_greed.png` |
 | `MAD_SWORD_BEAST` | Mad Sword Beast | `mad_sword_beast.png` |
 | `OJAMA_TRIO` | Ojama Trio | `ojama_trio.png` |
+| `LUSTER_DRAGON` | Luster Dragon | `luster_dragon.png` |
+| `MYSTICAL_SHINE_BALL` | Mystical Shine Ball | `mystical_shine_ball.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -136,7 +138,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `JUST_DESERTS` — `just_deserts.png`
 - [ ] `KAISER_GLIDER` — `kaiser_glider.png`
 - [ ] `LIMITER_REMOVAL` — `limiter_removal.png`
-- [ ] `LUSTER_DRAGON` — `luster_dragon.png`
 - [ ] `MAGIC_CYLINDER` — `magic_cylinder.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
@@ -164,7 +165,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
 - [ ] `MORALE_BOOST` — `morale_boost.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
-- [ ] `MYSTICAL_SHINE_BALL` — `mystical_shine_ball.png`
 - [ ] `NECROVALLEY` — `necrovalley.png`
 - [ ] `NEEDLE_BURROWER` — `needle_burrower.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
