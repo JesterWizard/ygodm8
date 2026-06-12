@@ -91,6 +91,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { MARAUDING_CAPTAIN, gActivationDescription_MaraudingCaptain },
   { SECRET_BARREL, gActivationDescription_SecretBarrel },
   { ROBBIN_GOBLIN, gActivationDescription_RobbinGoblin },
+  { ROBBIN_ZOMBIE, gActivationDescription_RobbinZombie },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

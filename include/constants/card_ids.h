@@ -867,11 +867,12 @@
 #define MARAUDING_CAPTAIN                        0x035F
 #define SECRET_BARREL                            0x0360
 #define ROBBIN_GOBLIN                            0x0361
+#define ROBBIN_ZOMBIE                            0x0362
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0362
-#define NUM_CUSTOM_CARDS                        0x0041
+#define NUM_TOTAL_CARDS                         0x0363
+#define NUM_CUSTOM_CARDS                        0x0042
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -14451,6 +14451,35 @@
           "When you deal direct battle damage, your opponent discards 1 random card."
         ]
       }
+    },
+    {
+      "card_const": "ROBBIN_ZOMBIE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_RobbinZombie",
+        "pages": [
+          "A trap that robs cards from your opponent's deck.",
+          "When you deal direct battle damage, your opponent sends",
+          "the top card to the graveyard. Activates on their turn."
+        ]
+      },
+      "card_name": "Robbin' Zombie",
+      "password": [ 5, 1, 4, 0, 2, 1, 7, 7 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_RobbinZombie",
+        "pages": [
+          "When you deal direct battle damage, your opponent sends 1 deck card to the graveyard."
+        ]
+      }
     }
   ]
 }

@@ -10,6 +10,7 @@
 #include "jar_of_greed.h"
 #include "ojama_trio.h"
 #include "robbin_goblin.h"
+#include "robbin_zombie.h"
 #include "secret_barrel.h"
 #include "yata_garasu.h"
 #include "life_points.h"
@@ -268,6 +269,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateJarOfGreedOnOpponentTurnStart();
     TryActivateOjamaTrioOnOpponentTurnStart();
     TryActivateRobbinGoblinOnOpponentTurnStart();
+    TryActivateRobbinZombieOnOpponentTurnStart();
     TryActivateSecretBarrelOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;

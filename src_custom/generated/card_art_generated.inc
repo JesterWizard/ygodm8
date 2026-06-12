@@ -260,6 +260,10 @@ static const unsigned char sRobbinGoblinBigArt[] __attribute__((section(".append
 static const unsigned short sRobbinGoblinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/robbin_goblin.gbapal");
 static const unsigned char sRobbinGoblinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/robbin_goblin.lz");
 
+static const unsigned char sRobbinZombieBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/robbin_zombie.huff");
+static const unsigned short sRobbinZombieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/robbin_zombie.gbapal");
+static const unsigned char sRobbinZombieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/robbin_zombie.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -326,6 +330,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x035F] = sMaraudingCaptainBigArt,
   [0x0360] = sSecretBarrelBigArt,
   [0x0361] = sRobbinGoblinBigArt,
+  [0x0362] = sRobbinZombieBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -394,6 +399,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x035F] = sMaraudingCaptainBigPalette,
   [0x0360] = sSecretBarrelBigPalette,
   [0x0361] = sRobbinGoblinBigPalette,
+  [0x0362] = sRobbinZombieBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -462,6 +468,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x035F] = 0,
   [0x0360] = 0,
   [0x0361] = 0,
+  [0x0362] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -530,4 +537,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x035F] = sMaraudingCaptainMiniArt,
   [0x0360] = sSecretBarrelMiniArt,
   [0x0361] = sRobbinGoblinMiniArt,
+  [0x0362] = sRobbinZombieMiniArt,
 };

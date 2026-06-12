@@ -8,6 +8,7 @@
 #include "spear_dragon.h"
 #include "mad_sword_beast.h"
 #include "robbin_goblin.h"
+#include "robbin_zombie.h"
 #include "yata_garasu.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -141,6 +142,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   ApplyTheUnhappyMaidenBattleEffect();
   ApplyRobbinGoblinBattleEffect();
+  ApplyRobbinZombieBattleEffect();
   ApplyYataGarasuBattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
