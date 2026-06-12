@@ -51,6 +51,7 @@ static const u8 sHayabusaKnightName[] __attribute__((section(".append_assets")))
 static const u8 sMagicCylinderName[] __attribute__((section(".append_assets"))) = "Magic Cylinder";
 static const u8 sBlockAttackName[] __attribute__((section(".append_assets"))) = "Block Attack";
 static const u8 sDelinquentDuoName[] __attribute__((section(".append_assets"))) = "Delinquent Duo";
+static const u8 sDrainingShieldName[] __attribute__((section(".append_assets"))) = "Draining Shield";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -159,6 +160,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBlockAttackName;
   if (cardId == 0x0355)
     return (u8 *)sDelinquentDuoName;
+  if (cardId == 0x0356)
+    return (u8 *)sDrainingShieldName;
 
   return gCardNames[cardId];
 }

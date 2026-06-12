@@ -38,6 +38,7 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
 #define TRAP_DRAGON_CAPTURE_JAR 20
 #define TRAP_MAGIC_JAMMER 21
 #define TRAP_MAGIC_CYLINDER 23
+#define TRAP_DRAINING_SHIELD 24
 extern s16 gUnk_8E1172C[];
 extern s16 gUnk_8E11738[];
 extern s16 gUnk_8E11744[];
@@ -224,6 +225,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_MAGIC_CYLINDER;
+      break;
+    case TRAP_DRAINING_SHIELD:
+      ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_DRAINING_SHIELD;
       break;
     default:
       ret = FALSE;

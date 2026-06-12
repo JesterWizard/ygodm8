@@ -855,11 +855,12 @@
 #define MAGIC_CYLINDER                           0x0353
 #define BLOCK_ATTACK                             0x0354
 #define DELINQUENT_DUO                           0x0355
+#define DRAINING_SHIELD                          0x0356
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0356
-#define NUM_CUSTOM_CARDS                        0x0035
+#define NUM_TOTAL_CARDS                         0x0357
+#define NUM_CUSTOM_CARDS                        0x0036
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

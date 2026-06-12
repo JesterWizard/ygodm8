@@ -212,6 +212,10 @@ static const unsigned char sDelinquentDuoBigArt[] __attribute__((section(".appen
 static const unsigned short sDelinquentDuoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/delinquent_duo.gbapal");
 static const unsigned char sDelinquentDuoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/delinquent_duo.lz");
 
+static const unsigned char sDrainingShieldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/draining_shield.huff");
+static const unsigned short sDrainingShieldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/draining_shield.gbapal");
+static const unsigned char sDrainingShieldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/draining_shield.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -266,6 +270,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0353] = sMagicCylinderBigArt,
   [0x0354] = sBlockAttackBigArt,
   [0x0355] = sDelinquentDuoBigArt,
+  [0x0356] = sDrainingShieldBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -322,6 +327,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0353] = sMagicCylinderBigPalette,
   [0x0354] = sBlockAttackBigPalette,
   [0x0355] = sDelinquentDuoBigPalette,
+  [0x0356] = sDrainingShieldBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -378,6 +384,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0353] = 0,
   [0x0354] = 0,
   [0x0355] = 0,
+  [0x0356] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -434,4 +441,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0353] = sMagicCylinderMiniArt,
   [0x0354] = sBlockAttackMiniArt,
   [0x0355] = sDelinquentDuoMiniArt,
+  [0x0356] = sDrainingShieldMiniArt,
 };

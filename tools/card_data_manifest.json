@@ -14108,6 +14108,35 @@
           "then one random card if they still have any left."
         ]
       }
+    },
+    {
+      "card_const": "DRAINING_SHIELD",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 24,
+      "description": {
+        "symbol": "gDescription_DrainingShield",
+        "pages": [
+          "A trap that absorbs an enemy attack's strength.",
+          "When an opponent's monster attacks, gain Life Points",
+          "equal to its ATK, and negate the attack."
+        ]
+      },
+      "card_name": "Draining Shield",
+      "password": [ 7, 2, 5, 6, 2, 4, 9, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_DrainingShield",
+        "pages": [
+          "Gain Life Points equal to the attacking monster's ATK."
+        ]
+      }
     }
   ]
 }

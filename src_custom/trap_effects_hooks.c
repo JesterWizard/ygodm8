@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "draining_shield.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -24,6 +25,7 @@
 #define TRAP_MAGIC_JAMMER 21
 #define TRAP_EMBODIMENT_OF_APOPHIS 22
 #define TRAP_MAGIC_CYLINDER 23
+#define TRAP_DRAINING_SHIELD 24
 
 extern void EffectMagicJammer(void);
 extern void EffectEmbodimentOfApophis(void);
@@ -142,6 +144,14 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectMagicCylinder();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_DRAINING_SHIELD) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectDrainingShield();
+    TryResumeInterruptedAttackAfterDrainingShield();
     return;
   }
 
