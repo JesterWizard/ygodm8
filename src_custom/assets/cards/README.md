@@ -4,6 +4,8 @@ Put assets for cards with IDs `>= CUSTOM_CARD_START` here.
 
 **Full workflow (big art, manifest, build):** [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
+**Progress tracker:** [CARD_PROGRESS.md](CARD_PROGRESS.md) — which cards are in the manifest vs art-only. Refresh with `python3 tools/card_art_progress.py`.
+
 ## Big art (`80x80/`)
 
 Commit one indexed PNG per card:
