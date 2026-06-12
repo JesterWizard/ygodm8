@@ -228,6 +228,10 @@ static const unsigned char sRainOfMercyBigArt[] __attribute__((section(".append_
 static const unsigned short sRainOfMercyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rain_of_mercy.gbapal");
 static const unsigned char sRainOfMercyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rain_of_mercy.lz");
 
+static const unsigned char sSolarFlareDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/solar_flare_dragon.huff");
+static const unsigned short sSolarFlareDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/solar_flare_dragon.gbapal");
+static const unsigned char sSolarFlareDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/solar_flare_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -286,6 +290,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0357] = sMeteorOfDestructionBigArt,
   [0x0358] = sTollBigArt,
   [0x0359] = sRainOfMercyBigArt,
+  [0x035A] = sSolarFlareDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -346,6 +351,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0357] = sMeteorOfDestructionBigPalette,
   [0x0358] = sTollBigPalette,
   [0x0359] = sRainOfMercyBigPalette,
+  [0x035A] = sSolarFlareDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -406,6 +412,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0357] = 0,
   [0x0358] = 0,
   [0x0359] = 0,
+  [0x035A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -466,4 +473,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0357] = sMeteorOfDestructionMiniArt,
   [0x0358] = sTollMiniArt,
   [0x0359] = sRainOfMercyMiniArt,
+  [0x035A] = sSolarFlareDragonMiniArt,
 };

@@ -859,11 +859,12 @@
 #define METEOR_OF_DESTRUCTION                    0x0357
 #define TOLL                                     0x0358
 #define RAIN_OF_MERCY                            0x0359
+#define SOLAR_FLARE_DRAGON                       0x035A
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x035A
-#define NUM_CUSTOM_CARDS                        0x0039
+#define NUM_TOTAL_CARDS                         0x035B
+#define NUM_CUSTOM_CARDS                        0x003A
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 56 |
-| Art ready, needs manifest | 179 |
+| In game (manifest + art) | 58 |
+| Art ready, needs manifest | 177 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -78,6 +78,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DRAINING_SHIELD` | Draining Shield | `draining_shield.png` |
 | `METEOR_OF_DESTRUCTION` | Meteor of Destruction | `meteor_of_destruction.png` |
 | `TOLL` | Toll | `toll.png` |
+| `RAIN_OF_MERCY` | Rain of Mercy | `rain_of_mercy.png` |
+| `SOLAR_FLARE_DRAGON` | Solar Flare Dragon | `solar_flare_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -125,7 +127,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DROP_OFF` — `drop_off.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
 - [ ] `EBON_MAGICIAN_CURRAN` — `ebon_magician_curran.png`
-- [ ] `ECTOPLASMER` — `Ectoplasmer.png`
+- [ ] `ECTOPLASMER` — `ectoplasmer.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
@@ -185,7 +187,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [ ] `RAIN_OF_MERCY` — `rain_of_mercy.png`
 - [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
 - [ ] `RECKLESS_GREED` — `reckless_greed.png`
 - [ ] `RELOAD` — `reload.png`
@@ -211,7 +212,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SKULL_FLARE_DRAGON` — `skull_flare_dragon.png`
 - [ ] `SKULL_INVITATION` — `skull_invitation.png`
 - [ ] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`

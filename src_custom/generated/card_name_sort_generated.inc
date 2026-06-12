@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 57
+#define NUM_CUSTOM_NAME_SORT_CARDS 58
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -59,6 +59,7 @@ static const u8 sDrainingShieldSortName[] APPEND_RODATA = "Draining Shield";
 static const u8 sMeteorOfDestructionSortName[] APPEND_RODATA = "Meteor of Destruction";
 static const u8 sTollSortName[] APPEND_RODATA = "Toll";
 static const u8 sRainOfMercySortName[] APPEND_RODATA = "Rain of Mercy";
+static const u8 sSolarFlareDragonSortName[] APPEND_RODATA = "Solar Flare Dragon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -109,6 +110,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0340, // Seal of Orichalcos
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
+  0x035A, // Solar Flare Dragon
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
   0x0343, // Spear Dragon
@@ -169,15 +171,16 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   46, // Seal of Orichalcos
   47, // Shield And Sword
   48, // Skill Drain
-  49, // Sorcerer of Dark Magic
-  50, // Soul Exchange
-  51, // Spear Dragon
-  52, // Spell Canceller
-  53, // St Joan
-  54, // Toll
-  55, // Ultimate Offering
-  56, // United We Stand
-  57, // Wave Motion Cannon
+  49, // Solar Flare Dragon
+  50, // Sorcerer of Dark Magic
+  51, // Soul Exchange
+  52, // Spear Dragon
+  53, // Spell Canceller
+  54, // St Joan
+  55, // Toll
+  56, // Ultimate Offering
+  57, // United We Stand
+  58, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -295,6 +298,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTollSortName;
   if (cardId == 0x0359)
     return (u8 *)sRainOfMercySortName;
+  if (cardId == 0x035A)
+    return (u8 *)sSolarFlareDragonSortName;
 
   return gCardNames[cardId];
 }

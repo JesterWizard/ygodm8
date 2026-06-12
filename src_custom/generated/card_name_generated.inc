@@ -55,6 +55,7 @@ static const u8 sDrainingShieldName[] __attribute__((section(".append_assets")))
 static const u8 sMeteorOfDestructionName[] __attribute__((section(".append_assets"))) = "Meteor of Destruction";
 static const u8 sTollName[] __attribute__((section(".append_assets"))) = "Toll";
 static const u8 sRainOfMercyName[] __attribute__((section(".append_assets"))) = "Rain of Mercy";
+static const u8 sSolarFlareDragonName[] __attribute__((section(".append_assets"))) = "Solar Flare Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -171,6 +172,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTollName;
   if (cardId == 0x0359)
     return (u8 *)sRainOfMercyName;
+  if (cardId == 0x035A)
+    return (u8 *)sSolarFlareDragonName;
 
   return gCardNames[cardId];
 }

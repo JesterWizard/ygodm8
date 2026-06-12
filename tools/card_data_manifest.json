@@ -14223,6 +14223,34 @@
           "Increase the Life Points of both players by 1000 points."
         ]
       }
+    },
+    {
+      "card_const": "SOLAR_FLARE_DRAGON",
+      "atk": 1500,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_FIRE",
+      "level": 4,
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SolarFlareDragon",
+        "pages": [
+          "A dragon who burns with unholy fire, dealing 500LP of damage",
+          "to the opponent on the owner's turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SolarFlareDragon",
+        "pages": [
+          "Deals 500LP of damage to the opponent."
+        ]
+      },
+      "card_name": "Solar Flare Dragon",
+      "password": [ 3, 7, 4, 8, 2, 1, 5, 9 ]
     }
   ]
 }

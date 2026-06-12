@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[858] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[859] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -870,9 +870,10 @@ const u8 gCardLockAfterActivation_Hook[858] APPEND_RODATA = {
   [0x0357] = 1,
   [0x0358] = 1,
   [0x0359] = 1,
+  [0x035A] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[858] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[859] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1731,9 +1732,10 @@ const u8 gCardEffectUsage_Hook[858] APPEND_RODATA = {
   [0x0357] = EFFECT_USAGE_NONE,
   [0x0358] = EFFECT_USAGE_NONE,
   [0x0359] = EFFECT_USAGE_NONE,
+  [0x035A] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[858] APPEND_RODATA = {
+const CardData gCardData_NEW[859] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -12990,5 +12992,19 @@ const CardData gCardData_NEW[858] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {6, 6, 7, 1, 9, 3, 2, 4},
     .description = gDescription_RainOfMercy,
+  },
+  [0x035A] = {
+    .atk = 1500,
+    .def = 1000,
+    .cost = 150,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 4,
+    .type = TYPE_DRAGON,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 7, 4, 8, 2, 1, 5, 9},
+    .description = gDescription_SolarFlareDragon,
   },
 };
