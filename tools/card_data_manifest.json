@@ -13955,12 +13955,40 @@
       "description": {
         "symbol": "gDescription_MysticalShineBall",
         "pages": [
-          "A soul of light covered in mystical shine that brings peace.",
+          "A soul of light covered in mystical shine that heals..",
           "When you see its beautiful shape, your heart feels cleansed."
         ]
       },
       "card_name": "Mystical Shine Ball",
       "password": [ 1, 3, 9, 4, 0, 9, 7, 4 ]
+    },
+    {
+      "card_const": "GOBLIN_THIEF",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GoblinThief",
+        "pages": [
+          "A sneaky goblin that steals life from the opponent.",
+          "It inflicts 500 LP damage and restores 500 LP to the owner."
+        ]
+      },
+      "card_name": "Goblin Thief",
+      "password": [ 4, 5, 3, 1, 1, 8, 6, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_GoblinThief",
+        "pages": [
+          "The opponent takes 500 LP damage and you gain 500 LP."
+        ]
+      }
     }
   ]
 }

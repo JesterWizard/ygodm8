@@ -74,6 +74,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GUARDIAN_TREASURE, gActivationDescription_GuardianTreasure },
   { JAR_OF_GREED, gActivationDescription_JarOfGreed },
   { OJAMA_TRIO, gActivationDescription_OjamaTrio },
+  { GOBLIN_THIEF, gActivationDescription_GoblinThief },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
