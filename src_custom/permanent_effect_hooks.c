@@ -142,7 +142,7 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
 
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 
-  if (gActiveEffect.cardId == JAM_BREEDING_MACHINE)
+  if (gActiveEffect.cardId == JAM_BREEDING_MACHINE || gActiveEffect.cardId == TOLL)
     return FALSE;
 
   if (override != NULL)

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 55 |
-| Art ready, needs manifest | 180 |
+| In game (manifest + art) | 56 |
+| Art ready, needs manifest | 179 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -77,6 +77,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DELINQUENT_DUO` | Delinquent Duo | `delinquent_duo.png` |
 | `DRAINING_SHIELD` | Draining Shield | `draining_shield.png` |
 | `METEOR_OF_DESTRUCTION` | Meteor of Destruction | `meteor_of_destruction.png` |
+| `TOLL` | Toll | `toll.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -243,7 +244,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THOUSAND_KNIVES` — `thousand_knives.png`
 - [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TIME_SEAL` — `time_seal.png`
-- [ ] `TOLL` — `toll.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
 - [ ] `TRIANGLE_POWER` — `triangle_power.png`

@@ -22,9 +22,11 @@
 #include "block_attack.h"
 #include "delinquent_duo.h"
 #include "meteor_of_destruction.h"
+#include "toll.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
+u8 IsActivatedTollZone(const struct DuelCard *zone);
 u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
 void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -229,6 +231,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
       || IsActivatedChainEnergyZone(zone)
+      || IsActivatedTollZone(zone)
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
@@ -501,6 +504,11 @@ void sub_8044570__Replacement(void)
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
     if (IsTrapTriggered() != 1) {
+      if (!TryPayTollAttackCost()) {
+        PlayMusic(SFX_FORBIDDEN);
+        gDuelCursor.state = 0;
+        return;
+      }
       PlayMusic(SFX_SELECT);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
@@ -557,6 +565,11 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
     if (IsTrapTriggered() != 1) {
+      if (!TryPayTollAttackCost()) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+        return;
+      }
       PlayMusic(SFX_SELECT);
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isDefending = 0;
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;

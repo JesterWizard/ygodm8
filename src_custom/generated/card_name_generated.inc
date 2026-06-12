@@ -53,6 +53,7 @@ static const u8 sBlockAttackName[] __attribute__((section(".append_assets"))) = 
 static const u8 sDelinquentDuoName[] __attribute__((section(".append_assets"))) = "Delinquent Duo";
 static const u8 sDrainingShieldName[] __attribute__((section(".append_assets"))) = "Draining Shield";
 static const u8 sMeteorOfDestructionName[] __attribute__((section(".append_assets"))) = "Meteor of Destruction";
+static const u8 sTollName[] __attribute__((section(".append_assets"))) = "Toll";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -165,6 +166,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDrainingShieldName;
   if (cardId == 0x0357)
     return (u8 *)sMeteorOfDestructionName;
+  if (cardId == 0x0358)
+    return (u8 *)sTollName;
 
   return gCardNames[cardId];
 }

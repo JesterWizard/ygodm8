@@ -9,6 +9,7 @@
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
 #include "the_unhappy_maiden.h"
+#include "toll.h"
 
 struct AI_Command {
   u16 action;
@@ -114,6 +115,9 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   attacker->isDefending = FALSE;
   attacker->isFaceUp = TRUE;
   attacker->isLocked = TRUE;
+
+  if (!TryPayTollAttackCost())
+    return;
 
   if (sAttackResume.isDirect) {
     PerformDirectAttackOrRedirectToEmbodimentOfApophis(attackerFixedCol);

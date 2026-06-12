@@ -31,6 +31,7 @@ extern void EffectGoblinThief(void);
 extern void EffectDelinquentDuo(void);
 extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
+extern void EffectToll(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -165,6 +166,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case CHAIN_ENERGY:
       EffectChainEnergy();
+      return;
+    case TOLL:
+      EffectToll();
       return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();

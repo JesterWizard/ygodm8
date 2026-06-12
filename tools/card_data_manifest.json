@@ -14166,6 +14166,35 @@
           "If your opponent has more than 3000 LP, inflict 1000 damage to them."
         ]
       }
+    },
+    {
+      "card_const": "TOLL",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Toll",
+        "pages": [
+          "A continuous spell that taxes every battle.",
+          "Each player must pay 500LP per monster when attacking",
+          "while this card is on the field."
+        ]
+      },
+      "card_name": "Toll",
+      "password": [ 5, 5, 2, 4, 4, 2, 5, 8 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_Toll",
+        "pages": [
+          "Each player must pay 500LP per monster when attacking."
+        ]
+      }
     }
   ]
 }

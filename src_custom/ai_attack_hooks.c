@@ -7,6 +7,7 @@
 #include "cats_ear_tribe.h"
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
+#include "toll.h"
 
 struct AI_Command {
   u16 action;
@@ -74,6 +75,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (attacker->id == CARD_NONE)
     return;
 
+  if (!TryPayTollAttackCost())
+    return;
+
   AiPrepareAttacker(attacker);
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
@@ -94,6 +98,9 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
     return;
 
   if (attacker->id == CARD_NONE)
+    return;
+
+  if (!TryPayTollAttackCost())
     return;
 
   AiPrepareAttacker(attacker);

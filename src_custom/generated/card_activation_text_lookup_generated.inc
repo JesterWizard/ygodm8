@@ -81,6 +81,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { DELINQUENT_DUO, gActivationDescription_DelinquentDuo },
   { DRAINING_SHIELD, gActivationDescription_DrainingShield },
   { METEOR_OF_DESTRUCTION, gActivationDescription_MeteorOfDestruction },
+  { TOLL, gActivationDescription_Toll },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
