@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[847] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[848] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -859,9 +859,10 @@ const u8 gCardLockAfterActivation_Hook[847] APPEND_RODATA = {
   [0x034C] = 1,
   [0x034D] = 1,
   [0x034E] = 1,
+  [0x034F] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[847] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[848] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1709,9 +1710,10 @@ const u8 gCardEffectUsage_Hook[847] APPEND_RODATA = {
   [0x034C] = EFFECT_USAGE_NONE,
   [0x034D] = EFFECT_USAGE_NONE,
   [0x034E] = EFFECT_USAGE_NONE,
+  [0x034F] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[847] APPEND_RODATA = {
+const CardData gCardData_NEW[848] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -12802,8 +12804,8 @@ const CardData gCardData_NEW[847] APPEND_RODATA = {
     .description = gDescription_MadSwordBeast,
   },
   [0x034E] = {
-    .atk = 65535,
-    .def = 65535,
+    .atk = 0,
+    .def = 1000,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 2,
@@ -12814,5 +12816,19 @@ const CardData gCardData_NEW[847] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {2, 3, 1, 7, 1, 7, 0, 4},
     .description = gDescription_OjamaTrio,
+  },
+  [0x034F] = {
+    .atk = 1900,
+    .def = 1600,
+    .cost = 150,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 4,
+    .type = TYPE_DRAGON,
+    .color = NORMAL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {1, 1, 0, 9, 1, 3, 7, 5},
+    .description = gDescription_LusterDragon,
   },
 };

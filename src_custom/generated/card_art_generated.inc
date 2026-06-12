@@ -184,6 +184,10 @@ static const unsigned char sOjamaTrioBigArt[] __attribute__((section(".append_as
 static const unsigned short sOjamaTrioBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ojama_trio.gbapal");
 static const unsigned char sOjamaTrioMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ojama_trio.lz");
 
+static const unsigned char sLusterDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/luster_dragon.huff");
+static const unsigned short sLusterDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/luster_dragon.gbapal");
+static const unsigned char sLusterDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/luster_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -231,6 +235,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x034C] = sJarOfGreedBigArt,
   [0x034D] = sMadSwordBeastBigArt,
   [0x034E] = sOjamaTrioBigArt,
+  [0x034F] = sLusterDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -280,6 +285,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x034C] = sJarOfGreedBigPalette,
   [0x034D] = sMadSwordBeastBigPalette,
   [0x034E] = sOjamaTrioBigPalette,
+  [0x034F] = sLusterDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -329,6 +335,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x034C] = 0,
   [0x034D] = 0,
   [0x034E] = 0,
+  [0x034F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -378,4 +385,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x034C] = sJarOfGreedMiniArt,
   [0x034D] = sMadSwordBeastMiniArt,
   [0x034E] = sOjamaTrioMiniArt,
+  [0x034F] = sLusterDragonMiniArt,
 };

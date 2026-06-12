@@ -13914,6 +13914,31 @@
       "big_art": "src_custom/assets/cards/80x80/ojama_trio.huff",
       "big_palette": "src_custom/assets/cards/80x80/ojama_trio.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/ojama_trio.lz"
+    },
+    {
+      "card_const": "LUSTER_DRAGON",
+      "atk": 1900,
+      "def": 1600,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 4,
+      "type": "TYPE_DRAGON",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_LusterDragon",
+        "pages": [
+          "A very beautiful dragon covered with sapphire. It does not",
+          "like fights, but has incredibly high attack power."
+        ]
+      },
+      "card_name": "Luster Dragon",
+      "password": [ 1, 1, 0, 9, 1, 3, 7, 5 ],
+      "big_art": "src_custom/assets/cards/80x80/luster_dragon.huff",
+      "big_palette": "src_custom/assets/cards/80x80/luster_dragon.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/luster_dragon.lz"
     }
   ]
 }
