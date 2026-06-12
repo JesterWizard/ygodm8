@@ -4,6 +4,7 @@
 #include "ai_decision.h"
 #include "configs/runtime.h"
 #include "mask_of_restrict.h"
+#include "summon_tribute.h"
 
 struct AI_Command {
   u16 action;
@@ -37,6 +38,30 @@ static u8 TryBlockAiTributeSummonAction(void)
   return TRUE;
 }
 
+static void RecordAiSummonTributeCount(void)
+{
+  switch (sAI_Command.action) {
+  case AI_ACTION_0_TRIBUTE_SUMMON:
+  case AI_ACTION_PERM_CARD_0_TRIBUTE_SUMMON:
+    SetPendingSummonTributeCount(0);
+    return;
+  case AI_ACTION_1_TRIBUTE_SUMMON:
+  case AI_ACTION_PERM_CARD_1_TRIBUTE_SUMMON:
+    SetPendingSummonTributeCount(1);
+    return;
+  case AI_ACTION_2_TRIBUTE_SUMMON:
+  case AI_ACTION_PERM_CARD_2_TRIBUTE_SUMMON:
+    SetPendingSummonTributeCount(2);
+    return;
+  case AI_ACTION_3_TRIBUTE_SUMMON:
+  case AI_ACTION_PERM_CARD_3_TRIBUTE_SUMMON:
+    SetPendingSummonTributeCount(3);
+    return;
+  default:
+    return;
+  }
+}
+
 static void AiTempoMaybeDelayBeforeAction(void)
 {
   u8 i;
@@ -60,6 +85,7 @@ void sub_800E0D4__Replacement(void)
     return;
 
   AiTempoMaybeDelayBeforeAction();
+  RecordAiSummonTributeCount();
   sub_803FD14();
   g8DFF600[sAI_Command.action]();
   AiMemory_RecordExecutedAction();

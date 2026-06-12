@@ -169,6 +169,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
+- [x] `MOISTER_CREATURE` — `moister_creature.png`
 - [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`

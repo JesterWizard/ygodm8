@@ -7,6 +7,7 @@
 #include "pyramid_of_light.h"
 #include "dark_magician_knight.h"
 #include "kaiser_glider.h"
+#include "moister_creature.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -108,6 +109,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = KAISER_GLIDER,
     .shouldActivate = ShouldActivateKaiserGlider,
     .activate = ActivateKaiserGlider,
+  },
+  {
+    .cardId = MOISTER_CREATURE,
+    .shouldActivate = ShouldActivateMoisterCreature,
+    .activate = ActivateMoisterCreature,
   },
 };
 

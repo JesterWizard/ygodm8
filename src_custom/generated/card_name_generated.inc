@@ -67,6 +67,7 @@ static const u8 sRobbinZombieName[] __attribute__((section(".append_assets"))) =
 static const u8 sCallOfTheHauntedName[] __attribute__((section(".append_assets"))) = "Call of the Haunted";
 static const u8 sKaiserGliderName[] __attribute__((section(".append_assets"))) = "Kaiser Glider";
 static const u8 sPiranhaArmyName[] __attribute__((section(".append_assets"))) = "Piranha Army";
+static const u8 sMoisterCreatureName[] __attribute__((section(".append_assets"))) = "Moister Creature";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -207,6 +208,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sKaiserGliderName;
   if (cardId == 0x0365)
     return (u8 *)sPiranhaArmyName;
+  if (cardId == 0x0366)
+    return (u8 *)sMoisterCreatureName;
 
   return gCardNames[cardId];
 }

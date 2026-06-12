@@ -80,6 +80,9 @@ _kernel_malloc gSoulExchangeActive, 1
 @ Counts as one paid tribute when an opponent monster was used for Soul Exchange.
 _kernel_malloc gSoulExchangeTributeCredit, 1
 
+@ Tribute count paid for the most recent monster Normal Summon placement.
+_kernel_malloc gPendingSummonTributeCount, 1
+
 @ Slifer summon penalty waiting for summon placement to finish.
 _kernel_malloc gSliferPendingPenaltyActive, 1
 _kernel_malloc gSliferPendingPenaltyBoardRow, 1

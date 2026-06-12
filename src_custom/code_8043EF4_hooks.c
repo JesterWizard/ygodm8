@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "board_placement.h"
 #include "configs/runtime.h"
+#include "summon_tribute.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "cannon_soldier.h"
@@ -118,6 +119,7 @@ static void TryPlaceSelectedCardOnField_Local(void)
         PlayMusic(SFX_PLACE_CARD);
         BlockTurnSummoning(ACTIVE_DUELIST);
         LockMonsterCardsInRow(4);
+        RecordPendingSummonTributeCount();
         ResetNumTributes();
         sub_80449D8();
         TryActivatingPermanentEffects();

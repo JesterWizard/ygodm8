@@ -276,6 +276,10 @@ static const unsigned char sPiranhaArmyBigArt[] __attribute__((section(".append_
 static const unsigned short sPiranhaArmyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/piranha_army.gbapal");
 static const unsigned char sPiranhaArmyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/piranha_army.lz");
 
+static const unsigned char sMoisterCreatureBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/moister_creature.huff");
+static const unsigned short sMoisterCreatureBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/moister_creature.gbapal");
+static const unsigned char sMoisterCreatureMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/moister_creature.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -346,6 +350,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0363] = sCallOfTheHauntedBigArt,
   [0x0364] = sKaiserGliderBigArt,
   [0x0365] = sPiranhaArmyBigArt,
+  [0x0366] = sMoisterCreatureBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -418,6 +423,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0363] = sCallOfTheHauntedBigPalette,
   [0x0364] = sKaiserGliderBigPalette,
   [0x0365] = sPiranhaArmyBigPalette,
+  [0x0366] = sMoisterCreatureBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -490,6 +496,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0363] = 0,
   [0x0364] = 0,
   [0x0365] = 0,
+  [0x0366] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -562,4 +569,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0363] = sCallOfTheHauntedMiniArt,
   [0x0364] = sKaiserGliderMiniArt,
   [0x0365] = sPiranhaArmyMiniArt,
+  [0x0366] = sMoisterCreatureMiniArt,
 };

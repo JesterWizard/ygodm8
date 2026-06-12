@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `98` effects
+- `99` effects
 
 ## Tally
 
@@ -107,6 +107,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Dark Magician Knight` | `src_custom/permanent_effects/dark_magician_knight.c` |
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 | `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |
+| `permanent_effects` | `Moister Creature` | `src_custom/permanent_effects/moister_creature.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 
