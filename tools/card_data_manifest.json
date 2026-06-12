@@ -14673,6 +14673,28 @@
       },
       "card_name": "Weather Report",
       "password": [ 9, 4, 7, 1, 0, 3, 6, 2 ]
+    },
+    {
+      "card_const": "WARRIOR_OF_ZERA",
+      "atk": 1600,
+      "def": 1600,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 4,
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_WarriorOfZera",
+        "pages": [
+          "The warrior who can manipulate gods. One must contact all",
+          "the guardians of the world to summon him."
+        ]
+      },
+      "card_name": "Warrior of Zera",
+      "password": [ 4, 6, 8, 7, 4, 9, 0, 6 ]
     }
   ]
 }

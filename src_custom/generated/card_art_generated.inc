@@ -292,6 +292,10 @@ static const unsigned char sWeatherReportBigArt[] __attribute__((section(".appen
 static const unsigned short sWeatherReportBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/weather_report.gbapal");
 static const unsigned char sWeatherReportMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/weather_report.lz");
 
+static const unsigned char sWarriorOfZeraBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/warrior_of_zera.huff");
+static const unsigned short sWarriorOfZeraBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/warrior_of_zera.gbapal");
+static const unsigned char sWarriorOfZeraMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/warrior_of_zera.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -366,6 +370,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0367] = sWhiteMagicianPikeruBigArt,
   [0x0368] = sEbonMagicianCurranBigArt,
   [0x0369] = sWeatherReportBigArt,
+  [0x036A] = sWarriorOfZeraBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -442,6 +447,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0367] = sWhiteMagicianPikeruBigPalette,
   [0x0368] = sEbonMagicianCurranBigPalette,
   [0x0369] = sWeatherReportBigPalette,
+  [0x036A] = sWarriorOfZeraBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -518,6 +524,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0367] = 0,
   [0x0368] = 0,
   [0x0369] = 0,
+  [0x036A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -594,4 +601,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0367] = sWhiteMagicianPikeruMiniArt,
   [0x0368] = sEbonMagicianCurranMiniArt,
   [0x0369] = sWeatherReportMiniArt,
+  [0x036A] = sWarriorOfZeraMiniArt,
 };
