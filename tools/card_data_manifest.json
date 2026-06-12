@@ -14812,6 +14812,36 @@
       },
       "card_name": "Swift Gaia The Fierce Knight",
       "password": [ 8, 9, 3, 1, 2, 3, 7, 6 ]
+    },
+    {
+      "card_const": "SKULL_INVITATION",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SkullInvitation",
+        "pages": [
+          "A continuous trap that punishes field departures.",
+          "Each time a card leaves the field without returning",
+          "to the hand, that card's owner takes 300LP damage."
+        ]
+      },
+      "card_name": "Skull Invitation",
+      "password": [ 9, 8, 1, 2, 6, 7, 5, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SkullInvitation",
+        "pages": [
+          "When a card leaves the field and is not returned",
+          "to the hand, its owner takes 300LP damage."
+        ]
+      }
     }
   ]
 }

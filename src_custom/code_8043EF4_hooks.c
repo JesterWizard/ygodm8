@@ -24,6 +24,7 @@
 #include "delinquent_duo.h"
 #include "meteor_of_destruction.h"
 #include "toll.h"
+#include "skull_invitation.h"
 #include "the_dark_door.h"
 #include "kaiser_glider.h"
 
@@ -242,6 +243,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
       || IsActivatedFairyBoxZone(zone)
+      || IsActivatedSkullInvitationZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

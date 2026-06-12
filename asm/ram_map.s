@@ -252,6 +252,8 @@ _kernel_malloc_ewram gDeferGraveyardDrawBattleResolve, 1
 _kernel_malloc_ewram gPendingGraveyardDrawFixedDuelist, 1
 @ TRUE when the most recent graveyard sentinel write came from a field zone, not hand.
 _kernel_malloc_ewram gGraveyardSendWasFromField, 1
+@ TRUE when the next field ClearZone came from a return-to-hand copy, not destruction.
+_kernel_malloc_ewram gSuppressSkullInvitationDamage, 1
 _kernel_malloc_ewram gFamiliarKnightBattleDestroyPending, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `104` effects
+- `105` effects
 
 ## Tally
 
@@ -77,6 +77,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Robbin' Zombie` | `src_custom/trap_effects/robbin_zombie.c` |
 | `trap_effects` | `Secret Barrel` | `src_custom/trap_effects/secret_barrel.c` |
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |
+| `trap_effects` | `Skull Invitation` | `src_custom/trap_effects/skull_invitation.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |

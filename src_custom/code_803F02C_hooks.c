@@ -18,6 +18,9 @@
 #include "familiar_knight.h"
 #include "riryoku.h"
 #include "monster_effect_usage.h"
+#include "skull_invitation.h"
+
+extern u8 gSuppressSkullInvitationDamage;
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -333,6 +336,7 @@ void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
 
 LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
+  TryApplySkullInvitationOnFieldLeave(zone);
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);
@@ -370,6 +374,9 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     if (!TryPayChainEnergyCost())
       return;
   }
+
+  if (ShouldSuppressSkullInvitationDamageOnCopy(dst, src))
+    gSuppressSkullInvitationDamage = TRUE;
 
   dst->id = src->id;
   SetPermStage(dst, PermStage(src));

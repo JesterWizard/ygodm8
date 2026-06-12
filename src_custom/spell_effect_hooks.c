@@ -32,6 +32,7 @@ extern void EffectDelinquentDuo(void);
 extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
 extern void EffectToll(void);
+extern void EffectSkullInvitation(void);
 extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
@@ -176,6 +177,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case TOLL:
       EffectToll();
+      return;
+    case SKULL_INVITATION:
+      EffectSkullInvitation();
       return;
     case RAIN_OF_MERCY:
       EffectRainOfMercy();
