@@ -10,6 +10,7 @@
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
 #include "the_unhappy_maiden.h"
+#include "vampire_baby.h"
 #include "toll.h"
 #include "the_dark_door.h"
 
@@ -32,6 +33,7 @@ void HandleAtkAndLifePointsAction(void);
 void SetAttackAction(s32, s32);
 void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
+void ResolveVampireBabyBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
 static struct {
@@ -262,6 +264,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();
+  ResolveVampireBabyBattleEffect();
   sub_8022080();
   FinishGraveyardDrawBattleResolve();
 }

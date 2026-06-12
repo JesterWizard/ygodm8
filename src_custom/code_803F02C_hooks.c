@@ -16,6 +16,7 @@
 #include "custom_field_spell.h"
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
+#include "vampire_baby.h"
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -171,6 +172,7 @@ void InitBoard__Replacement(void) {
   gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
   gGraveyardSendWasFromField = FALSE;
   ClearFamiliarKnightBattleDestroyPending();
+  ClearVampireBabyPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;

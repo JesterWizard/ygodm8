@@ -12,6 +12,7 @@
 #include "yata_garasu.h"
 #include "kaiser_glider.h"
 #include "piranha_army.h"
+#include "vampire_baby.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -140,6 +141,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16], 1);
   }
+
+  MarkVampireBabyBattleDestruction(
+      sActionData.playerCardId, sActionData.opponentCardId, sActionData.flags);
   if (sActionData.flags & 4)
     DeclareLoser(0);
   if (sActionData.flags & 16)

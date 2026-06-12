@@ -79,6 +79,7 @@ static const u8 sSwiftGaiaTheFierceKnightName[] __attribute__((section(".append_
 static const u8 sSelfDestructButtonName[] __attribute__((section(".append_assets"))) = "Self-Destruct Button";
 static const u8 sSkullInvitationName[] __attribute__((section(".append_assets"))) = "Skull Invitation";
 static const u8 sNightmareHorseName[] __attribute__((section(".append_assets"))) = "Nightmare Horse";
+static const u8 sVampireBabyName[] __attribute__((section(".append_assets"))) = "Vampire Baby";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -243,6 +244,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSkullInvitationName;
   if (cardId == 0x0371)
     return (u8 *)sNightmareHorseName;
+  if (cardId == 0x0372)
+    return (u8 *)sVampireBabyName;
 
   return gCardNames[cardId];
 }

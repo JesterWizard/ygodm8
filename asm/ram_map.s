@@ -255,6 +255,12 @@ _kernel_malloc_ewram gGraveyardSendWasFromField, 1
 @ TRUE when the next field ClearZone came from a return-to-hand copy, not destruction.
 _kernel_malloc_ewram gSuppressSkullInvitationDamage, 1
 _kernel_malloc_ewram gFamiliarKnightBattleDestroyPending, 1
+@ DUEL_PLAYER/DUEL_OPPONENT controller for a pending Vampire Baby battle summon, else 0xFF.
+_kernel_malloc_ewram gVampireBabyPendingController, 1
+@ Fixed duelist whose graveyard holds the destroyed monster for Vampire Baby.
+_kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
+@ Card ID of the monster Vampire Baby destroyed in battle.
+_kernel_malloc_ewram gVampireBabyPendingCardId, 2
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

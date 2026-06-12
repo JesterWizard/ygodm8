@@ -14,6 +14,7 @@
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
+#include "vampire_baby.h"
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
@@ -539,6 +540,7 @@ void sub_8044570__Replacement(void)
       sub_801BC00();
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
+      ResolveVampireBabyBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
@@ -603,6 +605,7 @@ void TryAttackWithMonster__Replacement(void)
       sub_801BC00();
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
+      ResolveVampireBabyBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {

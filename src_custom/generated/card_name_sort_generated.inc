@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 81
+#define NUM_CUSTOM_NAME_SORT_CARDS 82
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -83,6 +83,7 @@ static const u8 sSwiftGaiaTheFierceKnightSortName[] APPEND_RODATA = "Swift Gaia 
 static const u8 sSelfDestructButtonSortName[] APPEND_RODATA = "Self-Destruct Button";
 static const u8 sSkullInvitationSortName[] APPEND_RODATA = "Skull Invitation";
 static const u8 sNightmareHorseSortName[] APPEND_RODATA = "Nightmare Horse";
+static const u8 sVampireBabySortName[] APPEND_RODATA = "Vampire Baby";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -161,6 +162,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
+  0x0372, // Vampire Baby
   0x036A, // Warrior of Zera
   0x0332, // Wave Motion Cannon
   0x0369, // Weather Report
@@ -245,11 +247,12 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   74, // Ultimate Offering
   75, // United We Stand
   76, // Upstart Goblin
-  77, // Warrior of Zera
-  78, // Wave Motion Cannon
-  79, // Weather Report
-  80, // White Magician Pikeru
-  81, // Yata-Garasu
+  77, // Vampire Baby
+  78, // Warrior of Zera
+  79, // Wave Motion Cannon
+  80, // Weather Report
+  81, // White Magician Pikeru
+  82, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -415,6 +418,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSkullInvitationSortName;
   if (cardId == 0x0371)
     return (u8 *)sNightmareHorseSortName;
+  if (cardId == 0x0372)
+    return (u8 *)sVampireBabySortName;
 
   return gCardNames[cardId];
 }

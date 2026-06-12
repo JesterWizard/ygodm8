@@ -14894,6 +14894,35 @@
       },
       "card_name": "Nightmare Horse",
       "password": [ 9, 4, 7, 2, 0, 3, 6, 3 ]
+    },
+    {
+      "card_const": "VAMPIRE_BABY",
+      "atk": 700,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 3,
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_VampireBaby",
+        "pages": [
+          "A newborn vampire that feeds on fallen prey.",
+          "When this card destroys a monster in battle,",
+          "special summon that monster to your side of the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_VampireBaby",
+        "pages": [
+          "Special summon the monster destroyed in battle."
+        ]
+      },
+      "card_name": "Vampire Baby",
+      "password": [ 1, 0, 6, 6, 7, 3, 4, 8 ]
     }
   ]
 }

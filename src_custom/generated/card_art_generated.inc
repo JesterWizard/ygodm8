@@ -324,6 +324,10 @@ static const unsigned char sNightmareHorseBigArt[] __attribute__((section(".appe
 static const unsigned short sNightmareHorseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nightmare_horse.gbapal");
 static const unsigned char sNightmareHorseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nightmare_horse.lz");
 
+static const unsigned char sVampireBabyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vampire_baby.huff");
+static const unsigned short sVampireBabyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vampire_baby.gbapal");
+static const unsigned char sVampireBabyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vampire_baby.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -406,6 +410,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x036F] = sSelfDestructButtonBigArt,
   [0x0370] = sSkullInvitationBigArt,
   [0x0371] = sNightmareHorseBigArt,
+  [0x0372] = sVampireBabyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -490,6 +495,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x036F] = sSelfDestructButtonBigPalette,
   [0x0370] = sSkullInvitationBigPalette,
   [0x0371] = sNightmareHorseBigPalette,
+  [0x0372] = sVampireBabyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -574,6 +580,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x036F] = 0,
   [0x0370] = 0,
   [0x0371] = 0,
+  [0x0372] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -658,4 +665,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x036F] = sSelfDestructButtonMiniArt,
   [0x0370] = sSkullInvitationMiniArt,
   [0x0371] = sNightmareHorseMiniArt,
+  [0x0372] = sVampireBabyMiniArt,
 };

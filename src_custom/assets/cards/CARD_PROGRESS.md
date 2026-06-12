@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 72 |
-| Art ready, needs manifest | 164 |
+| In game (manifest + art) | 81 |
+| Art ready, needs manifest | 155 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -94,6 +94,15 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MOISTER_CREATURE` | Moister Creature | `moister_creature.png` |
 | `WHITE_MAGICIAN_PIKERU` | White Magician Pikeru | `white_magician_pikeru.png` |
 | `EBON_MAGICIAN_CURRAN` | Ebon Magician Curran | `ebon_magician_curran.png` |
+| `WEATHER_REPORT` | Weather Report | `weather_report.png` |
+| `WARRIOR_OF_ZERA` | Warrior of Zera | `warrior_of_zera.png` |
+| `TIME_SEAL` | Time Seal | `time_seal.png` |
+| `THOUSAND_ENERGY` | Thousand Energy | `thousand_energy.png` |
+| `THE_DARK_DOOR` | The Dark Door | `the_dark_door.png` |
+| `SWIFT_GAIA_THE_FIERCE_KNIGHT` | Swift Gaia The Fierce Knight | `swift_gaia_the_fierce_knight.png` |
+| `SELF_DESTRUCT_BUTTON` | Self-Destruct Button | `self_destruct_button.png` |
+| `SKULL_INVITATION` | Skull Invitation | `skull_invitation.png` |
+| `NIGHTMARE_HORSE` | Nightmare Horse | `nightmare_horse.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -183,7 +192,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
-- [ ] `NIGHTMARE_HORSE` — `nightmare_horse.png`
 - [ ] `NIGHTMARE_WHEEL` — `nightmare_wheel.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
@@ -210,13 +218,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
-- [ ] `SELF_DESTRUCT_BUTTON` — `self_destruct_button.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
 - [ ] `SERVANT_OF_CATABOLISM` — `servant_of_catabolism.png`
 - [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SKULL_INVITATION` — `skull_invitation.png`
 - [ ] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SOLEMN_WISHES` — `solemn_wishes.png`
@@ -229,7 +235,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `STEALTH_BIRD` — `stealth_bird.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
-- [ ] `SWIFT_GAIA_THE_FIERCE_KNIGHT` — `swift_gaia_the_fierce_knight.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
 - [ ] `TERRORKING_SALMON` — `terrorking_salmon.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
@@ -237,17 +242,14 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_DARK_DOOR` — `the_dark_door.png`
 - [ ] `THE_FLUTE_OF_SUMMONING_DRAGON` — `the_flute_of_summoning_dragon.png`
 - [ ] `THE_FORCEFUL_SENTRY` — `the_forceful_sentry.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [ ] `THOUSAND_ENERGY` — `thousand_energy.png`
 - [ ] `THOUSAND_KNIVES` — `thousand_knives.png`
 - [ ] `THUNDER_CRASH` — `thunder_crash.png`
-- [ ] `TIME_SEAL` — `time_seal.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
 - [ ] `TRIANGLE_POWER` — `triangle_power.png`
@@ -257,9 +259,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `VAMPIRE_BABY` — `vampire_baby.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
-- [ ] `WARRIOR_OF_ZERA` — `warrior_of_zera.png`
 - [ ] `WATAPON` — `watapon.png`
-- [ ] `WEATHER_REPORT` — `weather_report.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
 - [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
