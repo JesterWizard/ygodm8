@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "call_of_the_haunted.h"
 #include "constants/card_ids.h"
 #include "debug_ruleset.h"
 #include "duel.h"
@@ -25,10 +26,16 @@ void sub_800E58C(void);
 void sub_800E5E4(void);
 void sub_800E63C(void);
 void sub_800E6B8(void);
+void sub_800E734(void);
+void sub_800E794(void);
+void sub_800E7F4(void);
+void sub_800E854(void);
 void SetAttackAction(s32, s32);
 void SetAttackActionDirectAttack(int);
 void HandleAtkAndLifePointsAction(void);
 void CheckGraveyardAndLoserFlags(void);
+unsigned IsTrapTriggered(void);
+void ActivateTrapEffect(u16 lp);
 
 static u8 AiFixedColForZone(struct DuelCard *zone, u8 fixedRow) {
   u8 i;
@@ -63,6 +70,36 @@ static void AiSetAttackOriginFromZone(struct DuelCard *attacker) {
   }
 }
 
+static u8 AiPayAttackTollIfNeeded(void)
+{
+  if (!TryPayTollAttackCost())
+    return FALSE;
+
+  if (IsTollActiveOnField())
+    MarkCallOfTheHauntedAttackTollPaid();
+
+  return TRUE;
+}
+
+static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *defender)
+{
+  if (attacker->id == CARD_NONE)
+    return FALSE;
+
+  AiPrepareAttacker(attacker);
+  if (defender != NULL)
+    defender->isFaceUp = TRUE;
+
+  AiSetAttackOriginFromZone(attacker);
+  TryActivateEmbodimentOfApophisOnAttack();
+
+  if (IsTrapTriggered() != TRUE)
+    return FALSE;
+
+  ActivateTrapEffect(0);
+  return TRUE;
+}
+
 static void AiAttackDirect(struct DuelCard *attacker) {
   u8 fixedRow = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
 
@@ -75,7 +112,10 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (attacker->id == CARD_NONE)
     return;
 
-  if (!TryPayTollAttackCost())
+  if (!AiPayAttackTollIfNeeded())
+    return;
+
+  if (AiTryActivateTrapOnAttack(attacker, NULL))
     return;
 
   AiPrepareAttacker(attacker);
@@ -100,7 +140,10 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   if (attacker->id == CARD_NONE)
     return;
 
-  if (!TryPayTollAttackCost())
+  if (!AiPayAttackTollIfNeeded())
+    return;
+
+  if (AiTryActivateTrapOnAttack(attacker, defender))
     return;
 
   AiPrepareAttacker(attacker);
@@ -159,4 +202,48 @@ void sub_800E6B8__Replacement(void) {
   u8 col3 = sAI_Command.zone2Position & 0xF;
 
   AiAttackMonster(gTurnZones[row2][col2], gTurnZones[row3][col3]);
+}
+
+static void AiActivateTrapOnAttackOrigin(u8 row2, u8 col2)
+{
+  gTurnZones[row2][col2]->isDefending = FALSE;
+  gTurnZones[row2][col2]->isFaceUp = TRUE;
+  gTurnZones[row2][col2]->isLocked = TRUE;
+  gTrapEffectData.originRow = row2;
+  gTrapEffectData.originCol = col2;
+  gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
+  IsTrapTriggered();
+  ActivateTrapEffect(0);
+}
+
+LYN_REPLACE_CHECK(sub_800E734);
+void sub_800E734__Replacement(void) {
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiActivateTrapOnAttackOrigin(row2, col2);
+}
+
+LYN_REPLACE_CHECK(sub_800E794);
+void sub_800E794__Replacement(void) {
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiActivateTrapOnAttackOrigin(row2, col2);
+}
+
+LYN_REPLACE_CHECK(sub_800E7F4);
+void sub_800E7F4__Replacement(void) {
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiActivateTrapOnAttackOrigin(row2, col2);
+}
+
+LYN_REPLACE_CHECK(sub_800E854);
+void sub_800E854__Replacement(void) {
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiActivateTrapOnAttackOrigin(row2, col2);
 }

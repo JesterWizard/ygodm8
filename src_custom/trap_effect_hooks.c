@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "card_passives.h"
 #include "embodiment_of_apophis.h"
+#include "call_of_the_haunted.h"
 #include "negate_attack.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -236,6 +237,20 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
       if (ret)
         gTrapEffectData.trapCardId = TRAP_NEGATE_ATTACK;
+      break;
+    case TRAP_CALL_OF_THE_HAUNTED:
+      ret = FALSE;
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+        u16 graveCard;
+
+        graveCard = gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard;
+        if (graveCard != CARD_NONE
+            && GetTypeGroup(graveCard) == TYPE_GROUP_MONSTER
+            && FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) >= 0) {
+          gTrapEffectData.trapCardId = TRAP_CALL_OF_THE_HAUNTED;
+          ret = TRUE;
+        }
+      }
       break;
     default:
       ret = FALSE;

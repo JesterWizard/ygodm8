@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 64 |
-| Art ready, needs manifest | 171 |
+| In game (manifest + art) | 67 |
+| Art ready, needs manifest | 168 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -86,6 +86,9 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `RELOAD` | Reload | `reload.png` |
 | `MARAUDING_CAPTAIN` | Marauding Captain | `marauding_captain.png` |
 | `SECRET_BARREL` | Secret Barrel | `secret_barrel.png` |
+| `ROBBIN_GOBLIN` | Robbin' Goblin | `robbin_goblin.png` |
+| `ROBBIN_ZOMBIE` | Robbin' Zombie | `robbin_zombie.png` |
+| `CALL_OF_THE_HAUNTED` | Call of the Haunted | `call_of_the_haunted.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -106,7 +109,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
-- [ ] `CALL_OF_THE_HAUNTED` — `call_of_the_haunted.png`
 - [ ] `CARD_DESTRUCTION` — `card_destruction.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
@@ -196,8 +198,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
-- [ ] `ROBBIN_GOBLIN` — `robbin_goblin.png`
-- [ ] `ROBBIN_ZOMBIE` — `robbin_zombie.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_DECREE` — `royal_decree.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`

@@ -14480,6 +14480,35 @@
           "When you deal direct battle damage, your opponent sends 1 deck card to the graveyard."
         ]
       }
+    },
+    {
+      "card_const": "CALL_OF_THE_HAUNTED",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 26,
+      "description": {
+        "symbol": "gDescription_CallOfTheHaunted",
+        "pages": [
+          "A trap that revives monsters from the graveyard.",
+          "When an opponent's monster attacks, revive",
+          "1 monster from your graveyard."
+        ]
+      },
+      "card_name": "Call of the Haunted",
+      "password": [ 9, 7, 0, 7, 7, 5, 6, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_CallOfTheHaunted",
+        "pages": [
+          "Revive 1 monster from your graveyard."
+        ]
+      }
     }
   ]
 }

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "call_of_the_haunted.h"
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
@@ -180,7 +181,14 @@ void PerformDirectAttackOrRedirectToEmbodimentOfApophis(u8 attackerFixedCol)
 {
   u8 defenderFixedCol;
 
-  if (EmbodimentOfApophisRedirectsDirectAttack(&defenderFixedCol)) {
+  if (CallOfTheHauntedRedirectsDirectAttack(&defenderFixedCol)) {
+    gFixedZones[PLAYER_MONSTER_ROW][defenderFixedCol]->isFaceUp = TRUE;
+
+    if (WhoseTurn() == DUEL_PLAYER)
+      SetAttackAction(attackerFixedCol, defenderFixedCol);
+    else
+      SetAttackAction(defenderFixedCol, attackerFixedCol);
+  } else if (EmbodimentOfApophisRedirectsDirectAttack(&defenderFixedCol)) {
     if (WhoseTurn() == DUEL_PLAYER)
       gFixedZones[OPPONENT_MONSTER_ROW][defenderFixedCol]->isFaceUp = TRUE;
     else

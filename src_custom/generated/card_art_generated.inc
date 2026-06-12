@@ -264,6 +264,10 @@ static const unsigned char sRobbinZombieBigArt[] __attribute__((section(".append
 static const unsigned short sRobbinZombieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/robbin_zombie.gbapal");
 static const unsigned char sRobbinZombieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/robbin_zombie.lz");
 
+static const unsigned char sCallOfTheHauntedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/call_of_the_haunted.huff");
+static const unsigned short sCallOfTheHauntedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/call_of_the_haunted.gbapal");
+static const unsigned char sCallOfTheHauntedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/call_of_the_haunted.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -331,6 +335,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0360] = sSecretBarrelBigArt,
   [0x0361] = sRobbinGoblinBigArt,
   [0x0362] = sRobbinZombieBigArt,
+  [0x0363] = sCallOfTheHauntedBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -400,6 +405,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0360] = sSecretBarrelBigPalette,
   [0x0361] = sRobbinGoblinBigPalette,
   [0x0362] = sRobbinZombieBigPalette,
+  [0x0363] = sCallOfTheHauntedBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -469,6 +475,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0360] = 0,
   [0x0361] = 0,
   [0x0362] = 0,
+  [0x0363] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -538,4 +545,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0360] = sSecretBarrelMiniArt,
   [0x0361] = sRobbinGoblinMiniArt,
   [0x0362] = sRobbinZombieMiniArt,
+  [0x0363] = sCallOfTheHauntedMiniArt,
 };

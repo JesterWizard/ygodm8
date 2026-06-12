@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "draining_shield.h"
+#include "call_of_the_haunted.h"
 #include "negate_attack.h"
 
 #define TRAP_NONE 0
@@ -160,6 +161,15 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectNegateAttack();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectCallOfTheHaunted();
+    TryResumeInterruptedAttackAfterCallOfTheHaunted();
+    CallOfTheHauntedShowActivationText();
     return;
   }
 

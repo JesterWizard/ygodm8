@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 66
+#define NUM_CUSTOM_NAME_SORT_CARDS 67
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -68,6 +68,7 @@ static const u8 sMaraudingCaptainSortName[] APPEND_RODATA = "Marauding Captain";
 static const u8 sSecretBarrelSortName[] APPEND_RODATA = "Secret Barrel";
 static const u8 sRobbinGoblinSortName[] APPEND_RODATA = "Robbin' Goblin";
 static const u8 sRobbinZombieSortName[] APPEND_RODATA = "Robbin' Zombie";
+static const u8 sCallOfTheHauntedSortName[] APPEND_RODATA = "Call of the Haunted";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -76,6 +77,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0329, // Blue-Eyes Chaos Max Dragon
   0x0324, // Blue-Eyes Shining Dragon
   0x0345, // Bowganian
+  0x0363, // Call of the Haunted
   0x0326, // Card Of Demise
   0x0327, // Card Of Sanctity
   0x0347, // Cat's Ear Tribe
@@ -145,66 +147,67 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   4, // Blue-Eyes Chaos Max Dragon
   5, // Blue-Eyes Shining Dragon
   6, // Bowganian
-  7, // Card Of Demise
-  8, // Card Of Sanctity
-  9, // Cat's Ear Tribe
-  10, // Chain Energy
-  11, // Copycat
-  12, // Cost Down
-  13, // Cure Mermaid
-  14, // Dark Magic Curtain
-  15, // Deck Destruction Virus
-  16, // Delinquent Duo
-  17, // Des Koala
-  18, // Double Summon
-  19, // Draining Shield
-  20, // Exchange
-  21, // Fairy Box
-  22, // Familiar Knight
-  23, // Goblin Thief
-  24, // Guardian Treasure
-  25, // Hayabusa Knight
-  26, // Jar of Greed
-  27, // Kaibaman
-  28, // Luster Dragon
-  29, // Mad Sword Beast
-  30, // Mage Power
-  31, // Magic Cylinder
-  32, // Magic Jammer
-  33, // Magician's Valkyria
-  34, // Marauding Captain
-  35, // Mask of Restrict
-  36, // Meteor of Destruction
-  37, // Mystical Shine Ball
-  38, // Mystical Space Typhoon
-  39, // Negate Attack
-  40, // Obnoxious Celtic Guardian
-  41, // Ojama Trio
-  42, // Paladin Of White Dragon
-  43, // Pyramid of Light
-  44, // Rain of Mercy
-  45, // Rare Metal Dragon
-  46, // Reload
-  47, // Riryoku
-  48, // Robbin' Goblin
-  49, // Robbin' Zombie
-  50, // Sage's Stone
-  51, // Seal of Orichalcos
-  52, // Secret Barrel
-  53, // Shield And Sword
-  54, // Skill Drain
-  55, // Solar Flare Dragon
-  56, // Sorcerer of Dark Magic
-  57, // Soul Exchange
-  58, // Spear Dragon
-  59, // Spell Canceller
-  60, // St Joan
-  61, // Toll
-  62, // Ultimate Offering
-  63, // United We Stand
-  64, // Upstart Goblin
-  65, // Wave Motion Cannon
-  66, // Yata-Garasu
+  7, // Call of the Haunted
+  8, // Card Of Demise
+  9, // Card Of Sanctity
+  10, // Cat's Ear Tribe
+  11, // Chain Energy
+  12, // Copycat
+  13, // Cost Down
+  14, // Cure Mermaid
+  15, // Dark Magic Curtain
+  16, // Deck Destruction Virus
+  17, // Delinquent Duo
+  18, // Des Koala
+  19, // Double Summon
+  20, // Draining Shield
+  21, // Exchange
+  22, // Fairy Box
+  23, // Familiar Knight
+  24, // Goblin Thief
+  25, // Guardian Treasure
+  26, // Hayabusa Knight
+  27, // Jar of Greed
+  28, // Kaibaman
+  29, // Luster Dragon
+  30, // Mad Sword Beast
+  31, // Mage Power
+  32, // Magic Cylinder
+  33, // Magic Jammer
+  34, // Magician's Valkyria
+  35, // Marauding Captain
+  36, // Mask of Restrict
+  37, // Meteor of Destruction
+  38, // Mystical Shine Ball
+  39, // Mystical Space Typhoon
+  40, // Negate Attack
+  41, // Obnoxious Celtic Guardian
+  42, // Ojama Trio
+  43, // Paladin Of White Dragon
+  44, // Pyramid of Light
+  45, // Rain of Mercy
+  46, // Rare Metal Dragon
+  47, // Reload
+  48, // Riryoku
+  49, // Robbin' Goblin
+  50, // Robbin' Zombie
+  51, // Sage's Stone
+  52, // Seal of Orichalcos
+  53, // Secret Barrel
+  54, // Shield And Sword
+  55, // Skill Drain
+  56, // Solar Flare Dragon
+  57, // Sorcerer of Dark Magic
+  58, // Soul Exchange
+  59, // Spear Dragon
+  60, // Spell Canceller
+  61, // St Joan
+  62, // Toll
+  63, // Ultimate Offering
+  64, // United We Stand
+  65, // Upstart Goblin
+  66, // Wave Motion Cannon
+  67, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -340,6 +343,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRobbinGoblinSortName;
   if (cardId == 0x0362)
     return (u8 *)sRobbinZombieSortName;
+  if (cardId == 0x0363)
+    return (u8 *)sCallOfTheHauntedSortName;
 
   return gCardNames[cardId];
 }

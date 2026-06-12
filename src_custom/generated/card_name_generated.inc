@@ -64,6 +64,7 @@ static const u8 sMaraudingCaptainName[] __attribute__((section(".append_assets")
 static const u8 sSecretBarrelName[] __attribute__((section(".append_assets"))) = "Secret Barrel";
 static const u8 sRobbinGoblinName[] __attribute__((section(".append_assets"))) = "Robbin' Goblin";
 static const u8 sRobbinZombieName[] __attribute__((section(".append_assets"))) = "Robbin' Zombie";
+static const u8 sCallOfTheHauntedName[] __attribute__((section(".append_assets"))) = "Call of the Haunted";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -198,6 +199,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sRobbinGoblinName;
   if (cardId == 0x0362)
     return (u8 *)sRobbinZombieName;
+  if (cardId == 0x0363)
+    return (u8 *)sCallOfTheHauntedName;
 
   return gCardNames[cardId];
 }
