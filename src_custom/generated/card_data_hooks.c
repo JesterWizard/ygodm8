@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[855] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[856] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -867,9 +867,10 @@ const u8 gCardLockAfterActivation_Hook[855] APPEND_RODATA = {
   [0x0354] = 1,
   [0x0355] = 1,
   [0x0356] = 1,
+  [0x0357] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[855] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[856] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1725,9 +1726,10 @@ const u8 gCardEffectUsage_Hook[855] APPEND_RODATA = {
   [0x0354] = EFFECT_USAGE_NONE,
   [0x0355] = EFFECT_USAGE_NONE,
   [0x0356] = EFFECT_USAGE_NONE,
+  [0x0357] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[855] APPEND_RODATA = {
+const CardData gCardData_NEW[856] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -12942,5 +12944,19 @@ const CardData gCardData_NEW[855] APPEND_RODATA = {
     .trapEffect = 24,
     .password = {7, 2, 5, 6, 2, 4, 9, 1},
     .description = gDescription_DrainingShield,
+  },
+  [0x0357] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 3, 7, 6, 7, 3, 2, 5},
+    .description = gDescription_MeteorOfDestruction,
   },
 };

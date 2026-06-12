@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 53 |
-| Art ready, needs manifest | 182 |
+| In game (manifest + art) | 55 |
+| Art ready, needs manifest | 180 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -75,6 +75,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MAGIC_CYLINDER` | Magic Cylinder | `magic_cylinder.png` |
 | `BLOCK_ATTACK` | Block Attack | `block_attack.png` |
 | `DELINQUENT_DUO` | Delinquent Duo | `delinquent_duo.png` |
+| `DRAINING_SHIELD` | Draining Shield | `draining_shield.png` |
+| `METEOR_OF_DESTRUCTION` | Meteor of Destruction | `meteor_of_destruction.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -118,7 +120,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOUBLE_COSTON` — `double_coston.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
-- [ ] `DRAINING_SHIELD` — `draining_shield.png`
 - [ ] `DRILLAGO` — `drillago.png`
 - [ ] `DROP_OFF` — `drop_off.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
@@ -154,7 +155,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MEFIST_THE_INFERNAL_GENERAL` — `mefist_the_infernal_general.png`
 - [ ] `MERMAID_KNIGHT` — `mermaid_knight.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
-- [ ] `METEOR_OF_DESTRUCTION` — `meteor_of_destruction.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`

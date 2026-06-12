@@ -14137,6 +14137,35 @@
           "Gain Life Points equal to the attacking monster's ATK."
         ]
       }
+    },
+    {
+      "card_const": "METEOR_OF_DESTRUCTION",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MeteorOfDestruction",
+        "pages": [
+          "A meteor spell that strikes only when the foe still has",
+          "ample life. If your opponent has more than 3000 LP,",
+          "inflict 1000 LP damage to them."
+        ]
+      },
+      "card_name": "Meteor of Destruction",
+      "password": [ 3, 3, 7, 6, 7, 3, 2, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MeteorOfDestruction",
+        "pages": [
+          "If your opponent has more than 3000 LP, inflict 1000 damage to them."
+        ]
+      }
     }
   ]
 }

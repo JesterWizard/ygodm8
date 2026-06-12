@@ -216,6 +216,10 @@ static const unsigned char sDrainingShieldBigArt[] __attribute__((section(".appe
 static const unsigned short sDrainingShieldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/draining_shield.gbapal");
 static const unsigned char sDrainingShieldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/draining_shield.lz");
 
+static const unsigned char sMeteorOfDestructionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/meteor_of_destruction.huff");
+static const unsigned short sMeteorOfDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/meteor_of_destruction.gbapal");
+static const unsigned char sMeteorOfDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/meteor_of_destruction.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -271,6 +275,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0354] = sBlockAttackBigArt,
   [0x0355] = sDelinquentDuoBigArt,
   [0x0356] = sDrainingShieldBigArt,
+  [0x0357] = sMeteorOfDestructionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -328,6 +333,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0354] = sBlockAttackBigPalette,
   [0x0355] = sDelinquentDuoBigPalette,
   [0x0356] = sDrainingShieldBigPalette,
+  [0x0357] = sMeteorOfDestructionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -385,6 +391,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0354] = 0,
   [0x0355] = 0,
   [0x0356] = 0,
+  [0x0357] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -442,4 +449,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0354] = sBlockAttackMiniArt,
   [0x0355] = sDelinquentDuoMiniArt,
   [0x0356] = sDrainingShieldMiniArt,
+  [0x0357] = sMeteorOfDestructionMiniArt,
 };
