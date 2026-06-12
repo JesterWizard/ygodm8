@@ -88,6 +88,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { UPSTART_GOBLIN, gActivationDescription_UpstartGoblin },
   { NEGATE_ATTACK, gActivationDescription_NegateAttack },
   { RELOAD, gActivationDescription_Reload },
+  { MARAUDING_CAPTAIN, gActivationDescription_MaraudingCaptain },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

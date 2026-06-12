@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `88` effects
+- `89` effects
 
 ## Tally
 
@@ -97,6 +97,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Slifer The Sky Dragon` | `src_custom/permanent_effects/slifer_the_sky_dragon.c` |
 | `permanent_effects` | `Familiar Knight` | `src_custom/permanent_effects/familiar_knight.c` |
 | `permanent_effects` | `Dark Magician Knight` | `src_custom/permanent_effects/dark_magician_knight.c` |
+| `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 

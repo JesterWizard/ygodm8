@@ -14364,6 +14364,35 @@
           "Return all cards in your hand to the deck, shuffle and then redraw the same number of cards."
         ]
       }
+    },
+    {
+      "card_const": "MARAUDING_CAPTAIN",
+      "atk": 1200,
+      "def": 400,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 4,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MaraudingCaptain",
+        "pages": [
+          "A warrior who leads his comrades into battle.",
+          "When this card is summoned, special summon",
+          "a level 4 or lower monster from your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MaraudingCaptain",
+        "pages": [
+          "Summon a level 4 or lower monster from hand."
+        ]
+      },
+      "card_name": "Marauding Captain",
+      "password": [ 7, 4, 6, 7, 7, 0, 5, 5 ]
     }
   ]
 }

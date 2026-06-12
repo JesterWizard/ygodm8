@@ -41,6 +41,8 @@ unsigned char ShouldActivateSpellCanceller(void);
 void ActivateSpellCanceller(void);
 unsigned char ShouldActivateYamataDragon(void);
 void ActivateYamataDragon(void);
+unsigned char ShouldActivateMaraudingCaptain(void);
+void ActivateMaraudingCaptain(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -95,6 +97,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DARK_MAGICIAN_KNIGHT,
     .shouldActivate = ShouldActivateDarkMagicianKnight,
     .activate = ActivateDarkMagicianKnight,
+  },
+  {
+    .cardId = MARAUDING_CAPTAIN,
+    .shouldActivate = ShouldActivateMaraudingCaptain,
+    .activate = ActivateMaraudingCaptain,
   },
 };
 
