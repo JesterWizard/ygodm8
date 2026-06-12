@@ -853,11 +853,12 @@
 #define GOBLIN_THIEF                             0x0351
 #define HAYABUSA_KNIGHT                          0x0352
 #define MAGIC_CYLINDER                           0x0353
+#define BLOCK_ATTACK                             0x0354
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0354
-#define NUM_CUSTOM_CARDS                        0x0033
+#define NUM_TOTAL_CARDS                         0x0355
+#define NUM_CUSTOM_CARDS                        0x0034
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

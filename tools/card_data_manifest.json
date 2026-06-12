@@ -14049,6 +14049,35 @@
           "Negate the attack and inflict damage equal to the attacking monster's ATK."
         ]
       }
+    },
+    {
+      "card_const": "BLOCK_ATTACK",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BlockAttack",
+        "pages": [
+          "A spell that forces an enemy monster to stop attacking.",
+          "Select one attack position monster on the field.",
+          "It will be changed to defense position."
+        ]
+      },
+      "card_name": "Block Attack",
+      "password": [ 0, 7, 8, 8, 2, 1, 4, 0 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_BlockAttack",
+        "pages": [
+          "Select one attack position monster on the opponent's field and change it to defense position."
+        ]
+      }
     }
   ]
 }

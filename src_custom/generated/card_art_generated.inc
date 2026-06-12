@@ -204,6 +204,10 @@ static const unsigned char sMagicCylinderBigArt[] __attribute__((section(".appen
 static const unsigned short sMagicCylinderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magic_cylinder.gbapal");
 static const unsigned char sMagicCylinderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magic_cylinder.lz");
 
+static const unsigned char sBlockAttackBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/block_attack.huff");
+static const unsigned short sBlockAttackBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/block_attack.gbapal");
+static const unsigned char sBlockAttackMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/block_attack.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -256,6 +260,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0351] = sGoblinThiefBigArt,
   [0x0352] = sHayabusaKnightBigArt,
   [0x0353] = sMagicCylinderBigArt,
+  [0x0354] = sBlockAttackBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -310,6 +315,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0351] = sGoblinThiefBigPalette,
   [0x0352] = sHayabusaKnightBigPalette,
   [0x0353] = sMagicCylinderBigPalette,
+  [0x0354] = sBlockAttackBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -364,6 +370,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0351] = 0,
   [0x0352] = 0,
   [0x0353] = 0,
+  [0x0354] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -418,4 +425,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0351] = sGoblinThiefMiniArt,
   [0x0352] = sHayabusaKnightMiniArt,
   [0x0353] = sMagicCylinderMiniArt,
+  [0x0354] = sBlockAttackMiniArt,
 };

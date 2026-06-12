@@ -77,6 +77,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GOBLIN_THIEF, gActivationDescription_GoblinThief },
   { HAYABUSA_KNIGHT, gActivationDescription_HayabusaKnight },
   { MAGIC_CYLINDER, gActivationDescription_MagicCylinder },
+  { BLOCK_ATTACK, gActivationDescription_BlockAttack },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

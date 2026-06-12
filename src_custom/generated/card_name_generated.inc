@@ -49,6 +49,7 @@ static const u8 sMysticalShineBallName[] __attribute__((section(".append_assets"
 static const u8 sGoblinThiefName[] __attribute__((section(".append_assets"))) = "Goblin Thief";
 static const u8 sHayabusaKnightName[] __attribute__((section(".append_assets"))) = "Hayabusa Knight";
 static const u8 sMagicCylinderName[] __attribute__((section(".append_assets"))) = "Magic Cylinder";
+static const u8 sBlockAttackName[] __attribute__((section(".append_assets"))) = "Block Attack";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -153,6 +154,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHayabusaKnightName;
   if (cardId == 0x0353)
     return (u8 *)sMagicCylinderName;
+  if (cardId == 0x0354)
+    return (u8 *)sBlockAttackName;
 
   return gCardNames[cardId];
 }

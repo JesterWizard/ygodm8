@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 51
+#define NUM_CUSTOM_NAME_SORT_CARDS 52
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -53,9 +53,11 @@ static const u8 sMysticalShineBallSortName[] APPEND_RODATA = "Mystical Shine Bal
 static const u8 sGoblinThiefSortName[] APPEND_RODATA = "Goblin Thief";
 static const u8 sHayabusaKnightSortName[] APPEND_RODATA = "Hayabusa Knight";
 static const u8 sMagicCylinderSortName[] APPEND_RODATA = "Magic Cylinder";
+static const u8 sBlockAttackSortName[] APPEND_RODATA = "Block Attack";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
+  0x0354, // Block Attack
   0x033D, // Blue-Eyes Alternative White Dragon
   0x0329, // Blue-Eyes Chaos Max Dragon
   0x0324, // Blue-Eyes Shining Dragon
@@ -110,56 +112,57 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   1, // Ancient Rules
-  2, // Blue-Eyes Alternative White Dragon
-  3, // Blue-Eyes Chaos Max Dragon
-  4, // Blue-Eyes Shining Dragon
-  5, // Bowganian
-  6, // Card Of Demise
-  7, // Card Of Sanctity
-  8, // Cat's Ear Tribe
-  9, // Chain Energy
-  10, // Copycat
-  11, // Cost Down
-  12, // Cure Mermaid
-  13, // Dark Magic Curtain
-  14, // Deck Destruction Virus
-  15, // Des Koala
-  16, // Double Summon
-  17, // Exchange
-  18, // Fairy Box
-  19, // Familiar Knight
-  20, // Goblin Thief
-  21, // Guardian Treasure
-  22, // Hayabusa Knight
-  23, // Jar of Greed
-  24, // Kaibaman
-  25, // Luster Dragon
-  26, // Mad Sword Beast
-  27, // Mage Power
-  28, // Magic Cylinder
-  29, // Magic Jammer
-  30, // Magician's Valkyria
-  31, // Mask of Restrict
-  32, // Mystical Shine Ball
-  33, // Mystical Space Typhoon
-  34, // Obnoxious Celtic Guardian
-  35, // Ojama Trio
-  36, // Paladin Of White Dragon
-  37, // Pyramid of Light
-  38, // Rare Metal Dragon
-  39, // Riryoku
-  40, // Sage's Stone
-  41, // Seal of Orichalcos
-  42, // Shield And Sword
-  43, // Skill Drain
-  44, // Sorcerer of Dark Magic
-  45, // Soul Exchange
-  46, // Spear Dragon
-  47, // Spell Canceller
-  48, // St Joan
-  49, // Ultimate Offering
-  50, // United We Stand
-  51, // Wave Motion Cannon
+  2, // Block Attack
+  3, // Blue-Eyes Alternative White Dragon
+  4, // Blue-Eyes Chaos Max Dragon
+  5, // Blue-Eyes Shining Dragon
+  6, // Bowganian
+  7, // Card Of Demise
+  8, // Card Of Sanctity
+  9, // Cat's Ear Tribe
+  10, // Chain Energy
+  11, // Copycat
+  12, // Cost Down
+  13, // Cure Mermaid
+  14, // Dark Magic Curtain
+  15, // Deck Destruction Virus
+  16, // Des Koala
+  17, // Double Summon
+  18, // Exchange
+  19, // Fairy Box
+  20, // Familiar Knight
+  21, // Goblin Thief
+  22, // Guardian Treasure
+  23, // Hayabusa Knight
+  24, // Jar of Greed
+  25, // Kaibaman
+  26, // Luster Dragon
+  27, // Mad Sword Beast
+  28, // Mage Power
+  29, // Magic Cylinder
+  30, // Magic Jammer
+  31, // Magician's Valkyria
+  32, // Mask of Restrict
+  33, // Mystical Shine Ball
+  34, // Mystical Space Typhoon
+  35, // Obnoxious Celtic Guardian
+  36, // Ojama Trio
+  37, // Paladin Of White Dragon
+  38, // Pyramid of Light
+  39, // Rare Metal Dragon
+  40, // Riryoku
+  41, // Sage's Stone
+  42, // Seal of Orichalcos
+  43, // Shield And Sword
+  44, // Skill Drain
+  45, // Sorcerer of Dark Magic
+  46, // Soul Exchange
+  47, // Spear Dragon
+  48, // Spell Canceller
+  49, // St Joan
+  50, // Ultimate Offering
+  51, // United We Stand
+  52, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -265,6 +268,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sHayabusaKnightSortName;
   if (cardId == 0x0353)
     return (u8 *)sMagicCylinderSortName;
+  if (cardId == 0x0354)
+    return (u8 *)sBlockAttackSortName;
 
   return gCardNames[cardId];
 }
