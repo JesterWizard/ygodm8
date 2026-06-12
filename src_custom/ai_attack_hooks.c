@@ -6,6 +6,7 @@
 #include "fairy_box.h"
 #include "cats_ear_tribe.h"
 #include "embodiment_of_apophis.h"
+#include "hayabusa_knight.h"
 
 struct AI_Command {
   u16 action;
@@ -82,6 +83,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
+  TryUnlockHayabusaKnightForSecondAttack(attacker);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -113,6 +115,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
+  TryUnlockHayabusaKnightForSecondAttack(attacker);
 }
 
 LYN_REPLACE_CHECK(sub_800E58C);

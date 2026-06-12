@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 48 |
-| Art ready, needs manifest | 187 |
+| In game (manifest + art) | 50 |
+| Art ready, needs manifest | 185 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -70,6 +70,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `OJAMA_TRIO` | Ojama Trio | `ojama_trio.png` |
 | `LUSTER_DRAGON` | Luster Dragon | `luster_dragon.png` |
 | `MYSTICAL_SHINE_BALL` | Mystical Shine Ball | `mystical_shine_ball.png` |
+| `GOBLIN_THIEF` | Goblin Thief | `goblin_thief.png` |
+| `HAYABUSA_KNIGHT` | Hayabusa Knight | `hayabusa_knight.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -126,14 +128,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GIFT_OF_THE_MYSTICAL_ELF` — `gift_of_the_mystical_elf.png`
 - [ ] `GILASAURAUS` — `gilasauraus.png`
-- [ ] `GOBLIN_THIEF` — `goblin_thief.png`
 - [ ] `GRACEFUL_CHARITY` — `graceful_charity.png`
 - [ ] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `GUARDIAN_ANGEL_JOAN` — `guardian_angel_joan.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `HAYABUSA_KNIGHT` — `hayabusa_knight.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
 - [ ] `JUST_DESERTS` — `just_deserts.png`
 - [ ] `KAISER_GLIDER` — `kaiser_glider.png`

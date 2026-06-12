@@ -73,6 +73,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `The Unhappy Maiden` | `src_custom/battle_effects/the_unhappy_maiden.c` |
 | `battle_effects` | `Spear Dragon` | `src_custom/battle_effects/spear_dragon.c` |
 | `battle_effects` | `Mad Sword Beast` | `src_custom/battle_effects/mad_sword_beast.c` |
+| `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |

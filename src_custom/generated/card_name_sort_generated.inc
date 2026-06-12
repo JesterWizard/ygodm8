@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 49
+#define NUM_CUSTOM_NAME_SORT_CARDS 50
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -51,6 +51,7 @@ static const u8 sOjamaTrioSortName[] APPEND_RODATA = "Ojama Trio";
 static const u8 sLusterDragonSortName[] APPEND_RODATA = "Luster Dragon";
 static const u8 sMysticalShineBallSortName[] APPEND_RODATA = "Mystical Shine Ball";
 static const u8 sGoblinThiefSortName[] APPEND_RODATA = "Goblin Thief";
+static const u8 sHayabusaKnightSortName[] APPEND_RODATA = "Hayabusa Knight";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -74,6 +75,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0341, // Familiar Knight
   0x0351, // Goblin Thief
   0x034B, // Guardian Treasure
+  0x0352, // Hayabusa Knight
   0x034C, // Jar of Greed
   0x032F, // Kaibaman
   0x034F, // Luster Dragon
@@ -126,34 +128,35 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   19, // Familiar Knight
   20, // Goblin Thief
   21, // Guardian Treasure
-  22, // Jar of Greed
-  23, // Kaibaman
-  24, // Luster Dragon
-  25, // Mad Sword Beast
-  26, // Mage Power
-  27, // Magic Jammer
-  28, // Magician's Valkyria
-  29, // Mask of Restrict
-  30, // Mystical Shine Ball
-  31, // Mystical Space Typhoon
-  32, // Obnoxious Celtic Guardian
-  33, // Ojama Trio
-  34, // Paladin Of White Dragon
-  35, // Pyramid of Light
-  36, // Rare Metal Dragon
-  37, // Riryoku
-  38, // Sage's Stone
-  39, // Seal of Orichalcos
-  40, // Shield And Sword
-  41, // Skill Drain
-  42, // Sorcerer of Dark Magic
-  43, // Soul Exchange
-  44, // Spear Dragon
-  45, // Spell Canceller
-  46, // St Joan
-  47, // Ultimate Offering
-  48, // United We Stand
-  49, // Wave Motion Cannon
+  22, // Hayabusa Knight
+  23, // Jar of Greed
+  24, // Kaibaman
+  25, // Luster Dragon
+  26, // Mad Sword Beast
+  27, // Mage Power
+  28, // Magic Jammer
+  29, // Magician's Valkyria
+  30, // Mask of Restrict
+  31, // Mystical Shine Ball
+  32, // Mystical Space Typhoon
+  33, // Obnoxious Celtic Guardian
+  34, // Ojama Trio
+  35, // Paladin Of White Dragon
+  36, // Pyramid of Light
+  37, // Rare Metal Dragon
+  38, // Riryoku
+  39, // Sage's Stone
+  40, // Seal of Orichalcos
+  41, // Shield And Sword
+  42, // Skill Drain
+  43, // Sorcerer of Dark Magic
+  44, // Soul Exchange
+  45, // Spear Dragon
+  46, // Spell Canceller
+  47, // St Joan
+  48, // Ultimate Offering
+  49, // United We Stand
+  50, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -255,6 +258,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMysticalShineBallSortName;
   if (cardId == 0x0351)
     return (u8 *)sGoblinThiefSortName;
+  if (cardId == 0x0352)
+    return (u8 *)sHayabusaKnightSortName;
 
   return gCardNames[cardId];
 }

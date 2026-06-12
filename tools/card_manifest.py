@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
 
 REQUIRED_STATS_KEYS = {
     "atk",
@@ -31,6 +33,48 @@ ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_
 
 class ManifestValidationError(Exception):
     """Raised when a card manifest fails validation."""
+
+
+def format_json_decode_error(path: Path | str, text: str, exc: json.JSONDecodeError) -> str:
+    path = Path(path)
+    lines = text.splitlines()
+    lineno = exc.lineno
+    colno = exc.colno
+
+    parts = [
+        f"Invalid JSON in {path}:",
+        f"  {exc.msg} (line {lineno}, column {colno}, char {exc.pos})",
+        "",
+        "Context:",
+    ]
+
+    start = max(0, lineno - 3)
+    end = min(len(lines), lineno + 2)
+    for line_index in range(start, end):
+        line_number = line_index + 1
+        marker = ">>>" if line_number == lineno else "   "
+        parts.append(f"  {marker} {line_number:5d}| {lines[line_index]}")
+        if line_number == lineno:
+            caret_prefix = f"  {marker} {line_number:5d}| "
+            caret = " " * max(0, colno - 1) + "^"
+            parts.append(f"{' ' * len(caret_prefix)}{caret}")
+
+    for line_index in range(lineno - 1, -1, -1):
+        match = re.search(r'"card_const"\s*:\s*"([^"]+)"', lines[line_index])
+        if match:
+            parts.extend(["", f"Nearest card entry above error: {match.group(1)}"])
+            break
+
+    return "\n".join(parts)
+
+
+def load_manifest_json(path: Path | str) -> object:
+    path = Path(path)
+    text = path.read_text()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise ManifestValidationError(format_json_decode_error(path, text, exc)) from exc
 
 
 def _fail(message: str) -> None:

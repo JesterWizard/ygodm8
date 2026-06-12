@@ -21,6 +21,7 @@ from card_manifest import (  # noqa: E402
     ManifestValidationError,
     OPTIONAL_STATS_KEYS,
     REQUIRED_STATS_KEYS,
+    load_manifest_json,
     validate_manifest as _validate_manifest,
 )
 ASSET_ROOT = ROOT / "src_custom/assets/cards"
@@ -1272,7 +1273,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    manifest = validate_manifest(json.loads(CUSTOM_CARD_MANIFEST.read_text()))
+    manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
 
     if args.card_ids:
         enum_tables = load_effect_enums()

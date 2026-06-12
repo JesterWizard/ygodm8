@@ -2,13 +2,14 @@
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from card_manifest import ManifestValidationError, validate_manifest  # noqa: E402
+from card_manifest import ManifestValidationError, format_json_decode_error, load_manifest_json, validate_manifest  # noqa: E402
 import add_card_art as card_art  # noqa: E402
 
 from tests.support.golden import assert_matches_golden  # noqa: E402
@@ -39,6 +40,28 @@ class CardManifestTests(unittest.TestCase):
         manifest["cards"][1]["effect_usage"] = "every_turn"
         with self.assertRaises(ManifestValidationError):
             validate_manifest(manifest)
+
+    def test_load_manifest_json_reports_syntax_error_context(self):
+        bad_json = '{\n  "cards": [\n    {\n      "card_const": "BAD_CARD",\n    }\n  ]\n}\n'
+        with self.assertRaises(json.JSONDecodeError) as ctx:
+            json.loads(bad_json)
+        message = format_json_decode_error("tools/card_data_manifest.json", bad_json, ctx.exception)
+        self.assertIn("Invalid JSON in tools/card_data_manifest.json", message)
+        self.assertIn("line 5", message)
+        self.assertIn("BAD_CARD", message)
+        self.assertIn("Nearest card entry above error: BAD_CARD", message)
+        self.assertIn("^", message)
+
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as handle:
+            handle.write(bad_json)
+            bad_path = Path(handle.name)
+        try:
+            with self.assertRaises(ManifestValidationError) as ctx:
+                load_manifest_json(bad_path)
+            self.assertIn("Invalid JSON in", str(ctx.exception))
+            self.assertIn("^", str(ctx.exception))
+        finally:
+            bad_path.unlink()
 
     def test_golden_card_ids_header(self):
         manifest = validate_manifest(json.loads(FIXTURE.read_text()))

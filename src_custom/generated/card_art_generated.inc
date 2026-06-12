@@ -196,6 +196,10 @@ static const unsigned char sGoblinThiefBigArt[] __attribute__((section(".append_
 static const unsigned short sGoblinThiefBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/goblin_thief.gbapal");
 static const unsigned char sGoblinThiefMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/goblin_thief.lz");
 
+static const unsigned char sHayabusaKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hayabusa_knight.huff");
+static const unsigned short sHayabusaKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hayabusa_knight.gbapal");
+static const unsigned char sHayabusaKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hayabusa_knight.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -246,6 +250,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x034F] = sLusterDragonBigArt,
   [0x0350] = sMysticalShineBallBigArt,
   [0x0351] = sGoblinThiefBigArt,
+  [0x0352] = sHayabusaKnightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -298,6 +303,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x034F] = sLusterDragonBigPalette,
   [0x0350] = sMysticalShineBallBigPalette,
   [0x0351] = sGoblinThiefBigPalette,
+  [0x0352] = sHayabusaKnightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -350,6 +356,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x034F] = 0,
   [0x0350] = 0,
   [0x0351] = 0,
+  [0x0352] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -402,4 +409,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x034F] = sLusterDragonMiniArt,
   [0x0350] = sMysticalShineBallMiniArt,
   [0x0351] = sGoblinThiefMiniArt,
+  [0x0352] = sHayabusaKnightMiniArt,
 };

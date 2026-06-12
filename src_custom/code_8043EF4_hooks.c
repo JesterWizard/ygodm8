@@ -18,6 +18,7 @@
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
 #include "ojama_trio.h"
+#include "hayabusa_knight.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -476,6 +477,8 @@ void sub_8044570__Replacement(void)
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
+      TryUnlockHayabusaKnightForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -531,6 +534,8 @@ void TryAttackWithMonster__Replacement(void)
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
+      TryUnlockHayabusaKnightForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();

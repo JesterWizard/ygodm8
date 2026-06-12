@@ -13989,6 +13989,37 @@
           "The opponent takes 500 LP damage and you gain 500 LP."
         ]
       }
+    },
+    {
+      "card_const": "HAYABUSA_KNIGHT",
+      "atk": 1000,
+      "def": 700,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 3,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_HayabusaKnight",
+        "pages": [
+          "A swift warrior knight that strikes with blinding speed.",
+          "This card can attack twice during each battle phase."
+        ]
+      },
+      "card_name": "Hayabusa Knight",
+      "password": [ 5, 8, 4, 2, 1, 9, 6, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_HayabusaKnight",
+        "pages": [
+          "This card can attack twice during each battle phase."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/hayabusa_knight.huff",
+      "big_palette": "src_custom/assets/cards/80x80/hayabusa_knight.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/hayabusa_knight.lz"
     }
   ]
 }
