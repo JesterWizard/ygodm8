@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `90` effects
+- `92` effects
 
 ## Tally
 
@@ -67,6 +67,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Negate Attack` | `src_custom/trap_effects/negate_attack.c` |
 | `trap_effects` | `Embodiment of Apophis` | `src_custom/trap_effects/embodiment_of_apophis.c` |
 | `trap_effects` | `Jar of Greed` | `src_custom/trap_effects/jar_of_greed.c` |
+| `trap_effects` | `Robbin' Goblin` | `src_custom/trap_effects/robbin_goblin.c` |
+| `battle_effects` | `Robbin' Goblin` | `src_custom/trap_effects/robbin_goblin.c` |
 | `trap_effects` | `Secret Barrel` | `src_custom/trap_effects/secret_barrel.c` |
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |

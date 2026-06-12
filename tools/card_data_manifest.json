@@ -14422,6 +14422,35 @@
           "The opponent is dealt 200 LP damage per card on their field and in their hand."
         ]
       }
+    },
+    {
+      "card_const": "ROBBIN_GOBLIN",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_RobbinGoblin",
+        "pages": [
+          "A trap that steals from the hand of your opponent.",
+          "When you deal direct battle damage, your opponent discard",
+          "1 random card from their hand. Activates on their turn."
+        ]
+      },
+      "card_name": "Robbin' Goblin",
+      "password": [ 9, 4, 1, 8, 9, 2, 8, 2 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_RobbinGoblin",
+        "pages": [
+          "When you deal direct battle damage, your opponent discards 1 random card."
+        ]
+      }
     }
   ]
 }
