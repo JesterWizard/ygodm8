@@ -877,11 +877,12 @@
 #define WEATHER_REPORT                           0x0369
 #define WARRIOR_OF_ZERA                          0x036A
 #define TIME_SEAL                                0x036B
+#define THOUSAND_ENERGY                          0x036C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x036C
-#define NUM_CUSTOM_CARDS                        0x004B
+#define NUM_TOTAL_CARDS                         0x036D
+#define NUM_CUSTOM_CARDS                        0x004C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

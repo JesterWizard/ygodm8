@@ -14726,6 +14726,38 @@
       "big_art": "src_custom/assets/cards/80x80/time_seal.huff",
       "big_palette": "src_custom/assets/cards/80x80/time_seal.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/time_seal.lz"
+    },
+    {
+      "card_const": "THOUSAND_ENERGY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_ThousandEnergy",
+        "pages": [
+          "A spell that floods your weaker monsters with power.",
+          "All your Level 2 or lower monsters gain 2 stages.",
+          "Destroy them at the end of the turn."
+        ]
+      },
+      "card_name": "Thousand Energy",
+      "password": [ 3, 7, 1, 1, 3, 7, 6, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_ThousandEnergy",
+        "pages": [
+          "All your Level 2 or lower monsters gain 2 stages. They will be destroyed at the end of the turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/thousand_energy.huff",
+      "big_palette": "src_custom/assets/cards/80x80/thousand_energy.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/thousand_energy.lz"
     }
   ]
 }

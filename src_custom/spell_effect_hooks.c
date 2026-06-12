@@ -35,6 +35,7 @@ extern void EffectToll(void);
 extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
+extern void EffectThousandEnergy(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -237,6 +238,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case UNITED_WE_STAND:
       EffectUnitedWeStand();
+      return;
+    case THOUSAND_ENERGY:
+      EffectThousandEnergy();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

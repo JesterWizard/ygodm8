@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `102` effects
+- `103` effects
 
 ## Tally
 
@@ -38,6 +38,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Rain of Mercy` | `src_custom/spell_effects/rain_of_mercy.c` |
 | `spell_effects` | `Upstart Goblin` | `src_custom/spell_effects/upstart_goblin.c` |
 | `spell_effects` | `Reload` | `src_custom/spell_effects/reload.c` |
+| `spell_effects` | `Thousand Energy` | `src_custom/spell_effects/thousand_energy.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |

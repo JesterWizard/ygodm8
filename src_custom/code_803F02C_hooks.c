@@ -4,6 +4,7 @@
 #include "debug_ruleset.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
+#include "thousand_energy.h"
 #include "yata_garasu.h"
 #include "time_seal.h"
 #include "copycat.h"
@@ -143,6 +144,7 @@ void InitBoard__Replacement(void) {
   ResetDelayedDuelEffects();
   ResetYataGarasuSkipDraw();
   ResetTimeSealSkipDraw();
+  ResetThousandEnergyState();
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
   ResetApophisLinks();
@@ -181,6 +183,7 @@ void PlayerTurnMain__Replacement(void) {
     if (IsDuelOver() == TRUE)
       return;
     DestroyKarateManAtEndOfTurn();
+    DestroyThousandEnergyMonstersAtEndOfTurn();
     ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
     UpdateDuelGfxExceptField();
     return;
@@ -259,6 +262,7 @@ void PlayerTurnMain__Replacement(void) {
     return;
 
   DestroyKarateManAtEndOfTurn();
+  DestroyThousandEnergyMonstersAtEndOfTurn();
   ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
   UpdateDuelGfxExceptField();
 }

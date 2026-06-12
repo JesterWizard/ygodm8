@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 75
+#define NUM_CUSTOM_NAME_SORT_CARDS 76
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -77,6 +77,7 @@ static const u8 sEbonMagicianCurranSortName[] APPEND_RODATA = "Ebon Magician Cur
 static const u8 sWeatherReportSortName[] APPEND_RODATA = "Weather Report";
 static const u8 sWarriorOfZeraSortName[] APPEND_RODATA = "Warrior of Zera";
 static const u8 sTimeSealSortName[] APPEND_RODATA = "Time Seal";
+static const u8 sThousandEnergySortName[] APPEND_RODATA = "Thousand Energy";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -144,6 +145,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
   0x0333, // St Joan
+  0x036C, // Thousand Energy
   0x036B, // Time Seal
   0x0358, // Toll
   0x0330, // Ultimate Offering
@@ -222,16 +224,17 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   63, // Spear Dragon
   64, // Spell Canceller
   65, // St Joan
-  66, // Time Seal
-  67, // Toll
-  68, // Ultimate Offering
-  69, // United We Stand
-  70, // Upstart Goblin
-  71, // Warrior of Zera
-  72, // Wave Motion Cannon
-  73, // Weather Report
-  74, // White Magician Pikeru
-  75, // Yata-Garasu
+  66, // Thousand Energy
+  67, // Time Seal
+  68, // Toll
+  69, // Ultimate Offering
+  70, // United We Stand
+  71, // Upstart Goblin
+  72, // Warrior of Zera
+  73, // Wave Motion Cannon
+  74, // Weather Report
+  75, // White Magician Pikeru
+  76, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -385,6 +388,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sWarriorOfZeraSortName;
   if (cardId == 0x036B)
     return (u8 *)sTimeSealSortName;
+  if (cardId == 0x036C)
+    return (u8 *)sThousandEnergySortName;
 
   return gCardNames[cardId];
 }

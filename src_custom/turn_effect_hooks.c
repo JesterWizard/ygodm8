@@ -3,6 +3,7 @@
 #include "delayed_effects.h"
 #include "cost_down.h"
 #include "riryoku.h"
+#include "thousand_energy.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -44,6 +45,7 @@ void sub_80408BC(void);
 void sub_802ADA4(void);
 void ResetTempStagesForAllCards(void);
 void DestroyKarateManAtEndOfTurn(void);
+void DestroyThousandEnergyMonstersAtEndOfTurn(void);
 
 static void TryActivatingTurnEffect__Hook(void) {
   ResetCardEffectTextData();
@@ -232,6 +234,7 @@ void TryActivatingTurnEffects__Replacement(void) {
     sub_802ADA4();
   }
   DestroyKarateManAtEndOfTurn();
+  DestroyThousandEnergyMonstersAtEndOfTurn();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();
