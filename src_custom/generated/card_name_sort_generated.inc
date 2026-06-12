@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 68
+#define NUM_CUSTOM_NAME_SORT_CARDS 69
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -70,6 +70,7 @@ static const u8 sRobbinGoblinSortName[] APPEND_RODATA = "Robbin' Goblin";
 static const u8 sRobbinZombieSortName[] APPEND_RODATA = "Robbin' Zombie";
 static const u8 sCallOfTheHauntedSortName[] APPEND_RODATA = "Call of the Haunted";
 static const u8 sKaiserGliderSortName[] APPEND_RODATA = "Kaiser Glider";
+static const u8 sPiranhaArmySortName[] APPEND_RODATA = "Piranha Army";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -116,6 +117,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
+  0x0365, // Piranha Army
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
@@ -187,30 +189,31 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   42, // Obnoxious Celtic Guardian
   43, // Ojama Trio
   44, // Paladin Of White Dragon
-  45, // Pyramid of Light
-  46, // Rain of Mercy
-  47, // Rare Metal Dragon
-  48, // Reload
-  49, // Riryoku
-  50, // Robbin' Goblin
-  51, // Robbin' Zombie
-  52, // Sage's Stone
-  53, // Seal of Orichalcos
-  54, // Secret Barrel
-  55, // Shield And Sword
-  56, // Skill Drain
-  57, // Solar Flare Dragon
-  58, // Sorcerer of Dark Magic
-  59, // Soul Exchange
-  60, // Spear Dragon
-  61, // Spell Canceller
-  62, // St Joan
-  63, // Toll
-  64, // Ultimate Offering
-  65, // United We Stand
-  66, // Upstart Goblin
-  67, // Wave Motion Cannon
-  68, // Yata-Garasu
+  45, // Piranha Army
+  46, // Pyramid of Light
+  47, // Rain of Mercy
+  48, // Rare Metal Dragon
+  49, // Reload
+  50, // Riryoku
+  51, // Robbin' Goblin
+  52, // Robbin' Zombie
+  53, // Sage's Stone
+  54, // Seal of Orichalcos
+  55, // Secret Barrel
+  56, // Shield And Sword
+  57, // Skill Drain
+  58, // Solar Flare Dragon
+  59, // Sorcerer of Dark Magic
+  60, // Soul Exchange
+  61, // Spear Dragon
+  62, // Spell Canceller
+  63, // St Joan
+  64, // Toll
+  65, // Ultimate Offering
+  66, // United We Stand
+  67, // Upstart Goblin
+  68, // Wave Motion Cannon
+  69, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -350,6 +353,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sCallOfTheHauntedSortName;
   if (cardId == 0x0364)
     return (u8 *)sKaiserGliderSortName;
+  if (cardId == 0x0365)
+    return (u8 *)sPiranhaArmySortName;
 
   return gCardNames[cardId];
 }

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `97` effects
+- `98` effects
 
 ## Tally
 
@@ -91,6 +91,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Mad Sword Beast` | `src_custom/battle_effects/mad_sword_beast.c` |
 | `battle_effects` | `Yata Garasu` | `src_custom/battle_effects/yata_garasu.c` |
 | `battle_effects` | `Kaiser Glider` | `src_custom/battle_effects/kaiser_glider.c` |
+| `battle_effects` | `Piranha Army` | `src_custom/battle_effects/piranha_army.c` |
 | `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |

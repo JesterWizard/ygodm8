@@ -11,6 +11,7 @@
 #include "robbin_zombie.h"
 #include "yata_garasu.h"
 #include "kaiser_glider.h"
+#include "piranha_army.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -124,6 +125,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
+  ApplyPiranhaArmyDoubleDirectDamage();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
   ApplyMadSwordBeastBattleEffect();

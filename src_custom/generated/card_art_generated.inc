@@ -272,6 +272,10 @@ static const unsigned char sKaiserGliderBigArt[] __attribute__((section(".append
 static const unsigned short sKaiserGliderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kaiser_glider.gbapal");
 static const unsigned char sKaiserGliderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kaiser_glider.lz");
 
+static const unsigned char sPiranhaArmyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/piranha_army.huff");
+static const unsigned short sPiranhaArmyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/piranha_army.gbapal");
+static const unsigned char sPiranhaArmyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/piranha_army.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -341,6 +345,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0362] = sRobbinZombieBigArt,
   [0x0363] = sCallOfTheHauntedBigArt,
   [0x0364] = sKaiserGliderBigArt,
+  [0x0365] = sPiranhaArmyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -412,6 +417,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0362] = sRobbinZombieBigPalette,
   [0x0363] = sCallOfTheHauntedBigPalette,
   [0x0364] = sKaiserGliderBigPalette,
+  [0x0365] = sPiranhaArmyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -483,6 +489,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0362] = 0,
   [0x0363] = 0,
   [0x0364] = 0,
+  [0x0365] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -554,4 +561,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0362] = sRobbinZombieMiniArt,
   [0x0363] = sCallOfTheHauntedMiniArt,
   [0x0364] = sKaiserGliderMiniArt,
+  [0x0365] = sPiranhaArmyMiniArt,
 };

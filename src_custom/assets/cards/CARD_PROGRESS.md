@@ -186,7 +186,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `PETIT_THE_DARK_CLOWN` — `petit_the_dark_clown.png`
-- [ ] `PIRANHA_ARMY` — `piranha_army.png`
+- [x] `PIRANHA_ARMY` — `piranha_army.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
 - [ ] `PRECIOUS_CARDS_FROM_BEYOND` — `precious_cards_from_beyond.png`
