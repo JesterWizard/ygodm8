@@ -10,6 +10,7 @@
 #include "robbin_goblin.h"
 #include "robbin_zombie.h"
 #include "yata_garasu.h"
+#include "kaiser_glider.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -43,6 +44,7 @@ extern struct StoneUnk2023E80 sActionData;
 
 void ApplyShinatoKingOfAHigherPlaneBattleEffect(void);
 void ApplyObnoxiousCelticGuardianBattleProtection(void);
+void ApplyKaiserGliderBattleProtection(void);
 
 static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
   u16 playerDamage;
@@ -121,6 +123,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
+  ApplyKaiserGliderBattleProtection();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
   ApplyMadSwordBeastBattleEffect();

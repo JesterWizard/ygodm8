@@ -23,6 +23,7 @@
 #include "delinquent_duo.h"
 #include "meteor_of_destruction.h"
 #include "toll.h"
+#include "kaiser_glider.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -634,6 +635,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       TrySelectBlockAttackTarget();
       break;
+    case DUEL_CURSOR_KAISER_GLIDER_TARGET:
+      TrySelectKaiserGliderTarget();
+      break;
   }
 }
 
@@ -666,6 +670,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       CancelBlockAttackTargeting();
+      break;
+    case DUEL_CURSOR_KAISER_GLIDER_TARGET:
+      CancelKaiserGliderTargeting();
       break;
     case 4:
       sub_8044A88();

@@ -14509,6 +14509,34 @@
           "Revive 1 monster from your graveyard."
         ]
       }
+    },
+    {
+      "card_const": "KAISER_GLIDER",
+      "atk": 2400,
+      "def": 2200,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 4,
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_KaiserGlider",
+        "pages": [
+          "Cannot be destroyed by battle with monsters of equal ATK.",
+          "If destroyed, return one monster to the owner's hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_KaiserGlider",
+        "pages": [
+          "Return one monster on the field to the owner's hand."
+        ]
+      },
+      "card_name": "Kaiser Glider",
+      "password": [ 9, 4, 5, 0, 9, 1, 4, 2 ]
     }
   ]
 }

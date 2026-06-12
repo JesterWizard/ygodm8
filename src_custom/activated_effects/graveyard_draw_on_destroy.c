@@ -44,7 +44,8 @@ u8 CardTriggersDrawOnFieldDestroy(u16 cardId)
 
 u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
 {
-  return CardTriggersDrawOnFieldDestroy(cardId) || cardId == FAMILIAR_KNIGHT;
+  return CardTriggersDrawOnFieldDestroy(cardId) || cardId == FAMILIAR_KNIGHT
+      || cardId == KAISER_GLIDER;
 }
 
 static u8 GraveyardScanDuelistToFixed(u8 duelist)

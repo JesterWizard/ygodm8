@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `95` effects
+- `97` effects
 
 ## Tally
 
@@ -90,6 +90,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Spear Dragon` | `src_custom/battle_effects/spear_dragon.c` |
 | `battle_effects` | `Mad Sword Beast` | `src_custom/battle_effects/mad_sword_beast.c` |
 | `battle_effects` | `Yata Garasu` | `src_custom/battle_effects/yata_garasu.c` |
+| `battle_effects` | `Kaiser Glider` | `src_custom/battle_effects/kaiser_glider.c` |
 | `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
@@ -104,6 +105,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Familiar Knight` | `src_custom/permanent_effects/familiar_knight.c` |
 | `permanent_effects` | `Dark Magician Knight` | `src_custom/permanent_effects/dark_magician_knight.c` |
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
+| `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 

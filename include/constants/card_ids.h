@@ -869,11 +869,12 @@
 #define ROBBIN_GOBLIN                            0x0361
 #define ROBBIN_ZOMBIE                            0x0362
 #define CALL_OF_THE_HAUNTED                      0x0363
+#define KAISER_GLIDER                            0x0364
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0364
-#define NUM_CUSTOM_CARDS                        0x0043
+#define NUM_TOTAL_CARDS                         0x0365
+#define NUM_CUSTOM_CARDS                        0x0044
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

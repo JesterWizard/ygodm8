@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 67
+#define NUM_CUSTOM_NAME_SORT_CARDS 68
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -69,6 +69,7 @@ static const u8 sSecretBarrelSortName[] APPEND_RODATA = "Secret Barrel";
 static const u8 sRobbinGoblinSortName[] APPEND_RODATA = "Robbin' Goblin";
 static const u8 sRobbinZombieSortName[] APPEND_RODATA = "Robbin' Zombie";
 static const u8 sCallOfTheHauntedSortName[] APPEND_RODATA = "Call of the Haunted";
+static const u8 sKaiserGliderSortName[] APPEND_RODATA = "Kaiser Glider";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -99,6 +100,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0352, // Hayabusa Knight
   0x034C, // Jar of Greed
   0x032F, // Kaibaman
+  0x0364, // Kaiser Glider
   0x034F, // Luster Dragon
   0x034D, // Mad Sword Beast
   0x032E, // Mage Power
@@ -169,45 +171,46 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   26, // Hayabusa Knight
   27, // Jar of Greed
   28, // Kaibaman
-  29, // Luster Dragon
-  30, // Mad Sword Beast
-  31, // Mage Power
-  32, // Magic Cylinder
-  33, // Magic Jammer
-  34, // Magician's Valkyria
-  35, // Marauding Captain
-  36, // Mask of Restrict
-  37, // Meteor of Destruction
-  38, // Mystical Shine Ball
-  39, // Mystical Space Typhoon
-  40, // Negate Attack
-  41, // Obnoxious Celtic Guardian
-  42, // Ojama Trio
-  43, // Paladin Of White Dragon
-  44, // Pyramid of Light
-  45, // Rain of Mercy
-  46, // Rare Metal Dragon
-  47, // Reload
-  48, // Riryoku
-  49, // Robbin' Goblin
-  50, // Robbin' Zombie
-  51, // Sage's Stone
-  52, // Seal of Orichalcos
-  53, // Secret Barrel
-  54, // Shield And Sword
-  55, // Skill Drain
-  56, // Solar Flare Dragon
-  57, // Sorcerer of Dark Magic
-  58, // Soul Exchange
-  59, // Spear Dragon
-  60, // Spell Canceller
-  61, // St Joan
-  62, // Toll
-  63, // Ultimate Offering
-  64, // United We Stand
-  65, // Upstart Goblin
-  66, // Wave Motion Cannon
-  67, // Yata-Garasu
+  29, // Kaiser Glider
+  30, // Luster Dragon
+  31, // Mad Sword Beast
+  32, // Mage Power
+  33, // Magic Cylinder
+  34, // Magic Jammer
+  35, // Magician's Valkyria
+  36, // Marauding Captain
+  37, // Mask of Restrict
+  38, // Meteor of Destruction
+  39, // Mystical Shine Ball
+  40, // Mystical Space Typhoon
+  41, // Negate Attack
+  42, // Obnoxious Celtic Guardian
+  43, // Ojama Trio
+  44, // Paladin Of White Dragon
+  45, // Pyramid of Light
+  46, // Rain of Mercy
+  47, // Rare Metal Dragon
+  48, // Reload
+  49, // Riryoku
+  50, // Robbin' Goblin
+  51, // Robbin' Zombie
+  52, // Sage's Stone
+  53, // Seal of Orichalcos
+  54, // Secret Barrel
+  55, // Shield And Sword
+  56, // Skill Drain
+  57, // Solar Flare Dragon
+  58, // Sorcerer of Dark Magic
+  59, // Soul Exchange
+  60, // Spear Dragon
+  61, // Spell Canceller
+  62, // St Joan
+  63, // Toll
+  64, // Ultimate Offering
+  65, // United We Stand
+  66, // Upstart Goblin
+  67, // Wave Motion Cannon
+  68, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -345,6 +348,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRobbinZombieSortName;
   if (cardId == 0x0363)
     return (u8 *)sCallOfTheHauntedSortName;
+  if (cardId == 0x0364)
+    return (u8 *)sKaiserGliderSortName;
 
   return gCardNames[cardId];
 }
