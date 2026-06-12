@@ -72,6 +72,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MYSTICAL_SHINE_BALL` | Mystical Shine Ball | `mystical_shine_ball.png` |
 | `GOBLIN_THIEF` | Goblin Thief | `goblin_thief.png` |
 | `HAYABUSA_KNIGHT` | Hayabusa Knight | `hayabusa_knight.png` |
+| `MAGIC_CYLINDER` | Magic Cylinder | `magic_cylinder.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -138,7 +139,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `JUST_DESERTS` — `just_deserts.png`
 - [ ] `KAISER_GLIDER` — `kaiser_glider.png`
 - [ ] `LIMITER_REMOVAL` — `limiter_removal.png`
-- [ ] `MAGIC_CYLINDER` — `magic_cylinder.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`

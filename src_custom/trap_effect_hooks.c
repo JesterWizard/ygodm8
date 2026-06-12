@@ -37,6 +37,7 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
 #define TRAP_SPIRIT_MESSAGE_L 19
 #define TRAP_DRAGON_CAPTURE_JAR 20
 #define TRAP_MAGIC_JAMMER 21
+#define TRAP_MAGIC_CYLINDER 23
 extern s16 gUnk_8E1172C[];
 extern s16 gUnk_8E11738[];
 extern s16 gUnk_8E11744[];
@@ -218,6 +219,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_EMBODIMENT_OF_APOPHIS;
         ret = TRUE;
       }
+      break;
+    case TRAP_MAGIC_CYLINDER:
+      ret = OriginMonsterCanBeHarmfullyTargeted();
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_MAGIC_CYLINDER;
       break;
     default:
       ret = FALSE;

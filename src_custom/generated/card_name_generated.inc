@@ -48,6 +48,7 @@ static const u8 sLusterDragonName[] __attribute__((section(".append_assets"))) =
 static const u8 sMysticalShineBallName[] __attribute__((section(".append_assets"))) = "Mystical Shine Ball";
 static const u8 sGoblinThiefName[] __attribute__((section(".append_assets"))) = "Goblin Thief";
 static const u8 sHayabusaKnightName[] __attribute__((section(".append_assets"))) = "Hayabusa Knight";
+static const u8 sMagicCylinderName[] __attribute__((section(".append_assets"))) = "Magic Cylinder";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -150,6 +151,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGoblinThiefName;
   if (cardId == 0x0352)
     return (u8 *)sHayabusaKnightName;
+  if (cardId == 0x0353)
+    return (u8 *)sMagicCylinderName;
 
   return gCardNames[cardId];
 }

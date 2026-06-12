@@ -200,6 +200,10 @@ static const unsigned char sHayabusaKnightBigArt[] __attribute__((section(".appe
 static const unsigned short sHayabusaKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hayabusa_knight.gbapal");
 static const unsigned char sHayabusaKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hayabusa_knight.lz");
 
+static const unsigned char sMagicCylinderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magic_cylinder.huff");
+static const unsigned short sMagicCylinderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magic_cylinder.gbapal");
+static const unsigned char sMagicCylinderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magic_cylinder.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -251,6 +255,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0350] = sMysticalShineBallBigArt,
   [0x0351] = sGoblinThiefBigArt,
   [0x0352] = sHayabusaKnightBigArt,
+  [0x0353] = sMagicCylinderBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -304,6 +309,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0350] = sMysticalShineBallBigPalette,
   [0x0351] = sGoblinThiefBigPalette,
   [0x0352] = sHayabusaKnightBigPalette,
+  [0x0353] = sMagicCylinderBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -357,6 +363,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0350] = 0,
   [0x0351] = 0,
   [0x0352] = 0,
+  [0x0353] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -410,4 +417,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0350] = sMysticalShineBallMiniArt,
   [0x0351] = sGoblinThiefMiniArt,
   [0x0352] = sHayabusaKnightMiniArt,
+  [0x0353] = sMagicCylinderMiniArt,
 };

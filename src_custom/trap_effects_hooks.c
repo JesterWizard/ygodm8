@@ -23,9 +23,11 @@
 #define TRAP_SPIRIT_MESSAGE_L 19
 #define TRAP_MAGIC_JAMMER 21
 #define TRAP_EMBODIMENT_OF_APOPHIS 22
+#define TRAP_MAGIC_CYLINDER 23
 
 extern void EffectMagicJammer(void);
 extern void EffectEmbodimentOfApophis(void);
+extern void EffectMagicCylinder(void);
 
 extern void EffectTrapNone(void);
 extern void EffectWideSpreadRuin(void);
@@ -133,6 +135,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectEmbodimentOfApophis();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_MAGIC_CYLINDER) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectMagicCylinder();
     return;
   }
 

@@ -14020,6 +14020,35 @@
       "big_art": "src_custom/assets/cards/80x80/hayabusa_knight.huff",
       "big_palette": "src_custom/assets/cards/80x80/hayabusa_knight.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/hayabusa_knight.lz"
+    },
+    {
+      "card_const": "MAGIC_CYLINDER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 23,
+      "description": {
+        "symbol": "gDescription_MagicCylinder",
+        "pages": [
+          "A counter trap that redirects an enemy attack.",
+          "When an opponent's monster attacks, negate the",
+          "attack and inflict damage equal to its ATK."
+        ]
+      },
+      "card_name": "Magic Cylinder",
+      "password": [ 6, 2, 2, 3, 1, 1, 4, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MagicCylinder",
+        "pages": [
+          "Negate the attack and inflict damage equal to the attacking monster's ATK."
+        ]
+      }
     }
   ]
 }

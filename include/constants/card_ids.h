@@ -852,11 +852,12 @@
 #define MYSTICAL_SHINE_BALL                      0x0350
 #define GOBLIN_THIEF                             0x0351
 #define HAYABUSA_KNIGHT                          0x0352
+#define MAGIC_CYLINDER                           0x0353
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0353
-#define NUM_CUSTOM_CARDS                        0x0032
+#define NUM_TOTAL_CARDS                         0x0354
+#define NUM_CUSTOM_CARDS                        0x0033
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
