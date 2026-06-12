@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 46 |
-| Art ready, needs manifest | 97 |
+| Art ready, needs manifest | 189 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **143** |
+| **Total PNGs in `80x80/`** | **235** |
 
 ## In game
 
@@ -117,6 +117,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DRILLAGO` — `drillago.png`
 - [ ] `DROP_OFF` — `drop_off.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
+- [ ] `EBON_MAGICIAN_CURRAN` — `ebon_magician_curran.png`
 - [ ] `ECTOPLASMER` — `Ectoplasmer.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
@@ -134,42 +135,133 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
 - [ ] `JUST_DESERTS` — `just_deserts.png`
 - [ ] `KAISER_GLIDER` — `kaiser_glider.png`
+- [ ] `LIMITER_REMOVAL` — `limiter_removal.png`
+- [ ] `LUSTER_DRAGON` — `luster_dragon.png`
+- [ ] `MAGIC_CYLINDER` — `magic_cylinder.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
+- [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`
+- [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
+- [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
+- [ ] `MARAUDING_CAPTAIN` — `marauding_captain.png`
+- [ ] `MARYOKUTAI` — `maryokutai.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
+- [ ] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
+- [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
+- [ ] `MEFIST_THE_INFERNAL_GENERAL` — `mefist_the_infernal_general.png`
+- [ ] `MERMAID_KNIGHT` — `mermaid_knight.png`
+- [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEOR_OF_DESTRUCTION` — `meteor_of_destruction.png`
+- [ ] `METEORAIN` — `meteorain.png`
+- [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
+- [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
+- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
+- [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
+- [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
+- [ ] `MORALE_BOOST` — `morale_boost.png`
+- [ ] `MYSTIC_WOK` — `mystic_wok.png`
+- [ ] `MYSTICAL_SHINE_BALL` — `mystical_shine_ball.png`
+- [ ] `NECROVALLEY` — `necrovalley.png`
+- [ ] `NEEDLE_BURROWER` — `needle_burrower.png`
+- [ ] `NEEDLE_WALL` — `needle_wall.png`
+- [ ] `NEGATE_ATTACK` — `negate_attack.png`
 - [ ] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
+- [ ] `NIGHTMARE_HORSE` — `nightmare_horse.png`
 - [ ] `NIGHTMARE_WHEEL` — `nightmare_wheel.png`
+- [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
+- [ ] `PAINFUL_CHOICE` — `painful_choice.png`
+- [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `PETIT_THE_DARK_CLOWN` — `petit_the_dark_clown.png`
+- [ ] `PIRANHA_ARMY` — `piranha_army.png`
+- [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
+- [ ] `PRECIOUS_CARDS_FROM_BEYOND` — `precious_cards_from_beyond.png`
 - [ ] `PROPHECY` — `prophecy.png`
+- [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
+- [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
+- [ ] `RAIN_OF_MERCY` — `rain_of_mercy.png`
+- [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
+- [ ] `RECKLESS_GREED` — `reckless_greed.png`
 - [ ] `RELOAD` — `reload.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
+- [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
+- [ ] `ROBBIN_GOBLIN` — `robbin_goblin.png`
+- [ ] `ROBBIN_ZOMBIE` — `robbin_zombie.png`
+- [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
+- [ ] `ROYAL_DECREE` — `royal_decree.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
+- [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
+- [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
+- [ ] `SASUKE_SAMURAI` — `sasuke_samurai.png`
+- [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
+- [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
+- [ ] `SECRET_BARREL` — `secret_barrel.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
+- [ ] `SELF_DESTRUCT_BUTTON` — `self_destruct_button.png`
+- [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
+- [ ] `SERVANT_OF_CATABOLISM` — `servant_of_catabolism.png`
+- [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
+- [ ] `SKULL_FLARE_DRAGON` — `skull_flare_dragon.png`
 - [ ] `SKULL_INVITATION` — `skull_invitation.png`
+- [ ] `SOLAR_RAY` — `solar_ray.png`
+- [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SOLEMN_WISHES` — `solemn_wishes.png`
 - [ ] `SOUL_TAKER` — `soul_taker.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
+- [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
+- [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
+- [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
+- [ ] `STEALTH_BIRD` — `stealth_bird.png`
+- [ ] `STRAY_LAMBS` — `stray_lambs.png`
+- [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `SWIFT_GAIA_THE_FIERCE_KNIGHT` — `swift_gaia_the_fierce_knight.png`
+- [ ] `TERRAFORMING` — `terraforming.png`
+- [ ] `TERRORKING_SALMON` — `terrorking_salmon.png`
+- [ ] `THE_A_FORCES` — `the_a_forces.png`
+- [ ] `THE_AGENT_OF_CREATION_VENUS` — `the_agent_of_creation_venus.png`
+- [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
+- [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
+- [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
+- [ ] `THE_DARK_DOOR` — `the_dark_door.png`
 - [ ] `THE_FLUTE_OF_SUMMONING_DRAGON` — `the_flute_of_summoning_dragon.png`
+- [ ] `THE_FORCEFUL_SENTRY` — `the_forceful_sentry.png`
+- [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
+- [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
+- [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
+- [ ] `THOUSAND_ENERGY` — `thousand_energy.png`
 - [ ] `THOUSAND_KNIVES` — `thousand_knives.png`
+- [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TIME_SEAL` — `time_seal.png`
+- [ ] `TOLL` — `toll.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
+- [ ] `TORPEDO_FISH` — `torpedo_fish.png`
+- [ ] `TRIANGLE_POWER` — `triangle_power.png`
+- [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
+- [ ] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
+- [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
+- [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `UPSTART_GOBLIN` — `upstart_goblin.png`
+- [ ] `VAMPIRE_BABY` — `vampire_baby.png`
+- [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
+- [ ] `WARRIOR_OF_ZERA` — `warrior_of_zera.png`
 - [ ] `WATAPON` — `watapon.png`
+- [ ] `WEATHER_REPORT` — `weather_report.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
+- [ ] `WHITE_MAGICIAN_PIKERU` — `white_magician_pikeru.png`
+- [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
+- [ ] `YATA-GARASU` — `yata-garasu.png`
+- [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
 
 ## Todo — in manifest, missing art
 
