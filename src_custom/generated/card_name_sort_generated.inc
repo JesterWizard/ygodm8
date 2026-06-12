@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 80
+#define NUM_CUSTOM_NAME_SORT_CARDS 81
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -82,6 +82,7 @@ static const u8 sTheDarkDoorSortName[] APPEND_RODATA = "The Dark Door";
 static const u8 sSwiftGaiaTheFierceKnightSortName[] APPEND_RODATA = "Swift Gaia The Fierce Knight";
 static const u8 sSelfDestructButtonSortName[] APPEND_RODATA = "Self-Destruct Button";
 static const u8 sSkullInvitationSortName[] APPEND_RODATA = "Skull Invitation";
+static const u8 sNightmareHorseSortName[] APPEND_RODATA = "Nightmare Horse";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -127,6 +128,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0350, // Mystical Shine Ball
   0x0336, // Mystical Space Typhoon
   0x035D, // Negate Attack
+  0x0371, // Nightmare Horse
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
@@ -210,43 +212,44 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   41, // Mystical Shine Ball
   42, // Mystical Space Typhoon
   43, // Negate Attack
-  44, // Obnoxious Celtic Guardian
-  45, // Ojama Trio
-  46, // Paladin Of White Dragon
-  47, // Piranha Army
-  48, // Pyramid of Light
-  49, // Rain of Mercy
-  50, // Rare Metal Dragon
-  51, // Reload
-  52, // Riryoku
-  53, // Robbin' Goblin
-  54, // Robbin' Zombie
-  55, // Sage's Stone
-  56, // Seal of Orichalcos
-  57, // Secret Barrel
-  58, // Self-Destruct Button
-  59, // Shield And Sword
-  60, // Skill Drain
-  61, // Skull Invitation
-  62, // Solar Flare Dragon
-  63, // Sorcerer of Dark Magic
-  64, // Soul Exchange
-  65, // Spear Dragon
-  66, // Spell Canceller
-  67, // St Joan
-  68, // Swift Gaia The Fierce Knight
-  69, // The Dark Door
-  70, // Thousand Energy
-  71, // Time Seal
-  72, // Toll
-  73, // Ultimate Offering
-  74, // United We Stand
-  75, // Upstart Goblin
-  76, // Warrior of Zera
-  77, // Wave Motion Cannon
-  78, // Weather Report
-  79, // White Magician Pikeru
-  80, // Yata-Garasu
+  44, // Nightmare Horse
+  45, // Obnoxious Celtic Guardian
+  46, // Ojama Trio
+  47, // Paladin Of White Dragon
+  48, // Piranha Army
+  49, // Pyramid of Light
+  50, // Rain of Mercy
+  51, // Rare Metal Dragon
+  52, // Reload
+  53, // Riryoku
+  54, // Robbin' Goblin
+  55, // Robbin' Zombie
+  56, // Sage's Stone
+  57, // Seal of Orichalcos
+  58, // Secret Barrel
+  59, // Self-Destruct Button
+  60, // Shield And Sword
+  61, // Skill Drain
+  62, // Skull Invitation
+  63, // Solar Flare Dragon
+  64, // Sorcerer of Dark Magic
+  65, // Soul Exchange
+  66, // Spear Dragon
+  67, // Spell Canceller
+  68, // St Joan
+  69, // Swift Gaia The Fierce Knight
+  70, // The Dark Door
+  71, // Thousand Energy
+  72, // Time Seal
+  73, // Toll
+  74, // Ultimate Offering
+  75, // United We Stand
+  76, // Upstart Goblin
+  77, // Warrior of Zera
+  78, // Wave Motion Cannon
+  79, // Weather Report
+  80, // White Magician Pikeru
+  81, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -410,6 +413,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSelfDestructButtonSortName;
   if (cardId == 0x0370)
     return (u8 *)sSkullInvitationSortName;
+  if (cardId == 0x0371)
+    return (u8 *)sNightmareHorseSortName;
 
   return gCardNames[cardId];
 }

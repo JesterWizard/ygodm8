@@ -28,6 +28,7 @@
 #include "self_destruct_button.h"
 #include "the_dark_door.h"
 #include "kaiser_glider.h"
+#include "nightmare_horse.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -503,7 +504,9 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW) {
+  } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW
+      || CanNightmareHorseAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;

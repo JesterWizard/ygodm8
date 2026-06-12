@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[881] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[882] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -893,9 +893,10 @@ const u8 gCardLockAfterActivation_Hook[881] APPEND_RODATA = {
   [0x036E] = 1,
   [0x036F] = 1,
   [0x0370] = 1,
+  [0x0371] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[881] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[882] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1777,9 +1778,10 @@ const u8 gCardEffectUsage_Hook[881] APPEND_RODATA = {
   [0x036E] = EFFECT_USAGE_NONE,
   [0x036F] = EFFECT_USAGE_NONE,
   [0x0370] = EFFECT_USAGE_NONE,
+  [0x0371] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[881] APPEND_RODATA = {
+const CardData gCardData_NEW[882] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13358,5 +13360,19 @@ const CardData gCardData_NEW[881] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {9, 8, 1, 2, 6, 7, 5, 9},
     .description = gDescription_SkullInvitation,
+  },
+  [0x0371] = {
+    .atk = 500,
+    .def = 500,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 2,
+    .type = TYPE_ZOMBIE,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 4, 7, 2, 0, 3, 6, 3},
+    .description = gDescription_NightmareHorse,
   },
 };

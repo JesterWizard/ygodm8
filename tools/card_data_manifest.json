@@ -14871,6 +14871,29 @@
           "to the hand, its owner takes 300LP damage."
         ]
       }
+    },
+    {
+      "card_const": "NIGHTMARE_HORSE",
+      "atk": 500,
+      "def": 500,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 2,
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_NightmareHorse",
+        "pages": [
+          "A wicked horse that gallops through nightmares.",
+          "It can always attack your opponent directly, even if",
+          "they have monsters on the field."
+        ]
+      },
+      "card_name": "Nightmare Horse",
+      "password": [ 9, 4, 7, 2, 0, 3, 6, 3 ]
     }
   ]
 }
