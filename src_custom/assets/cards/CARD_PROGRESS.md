@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 58 |
-| Art ready, needs manifest | 177 |
+| In game (manifest + art) | 64 |
+| Art ready, needs manifest | 171 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **235** |
 
@@ -80,7 +80,12 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TOLL` | Toll | `toll.png` |
 | `RAIN_OF_MERCY` | Rain of Mercy | `rain_of_mercy.png` |
 | `SOLAR_FLARE_DRAGON` | Solar Flare Dragon | `solar_flare_dragon.png` |
-| `YATA_GARASU` | Yata Garasu | `yata_garasu.png` |
+| `YATA_GARASU` | Yata-Garasu | `yata_garasu.png` |
+| `UPSTART_GOBLIN` | Upstart Goblin | `upstart_goblin.png` |
+| `NEGATE_ATTACK` | Negate Attack | `negate_attack.png` |
+| `RELOAD` | Reload | `reload.png` |
+| `MARAUDING_CAPTAIN` | Marauding Captain | `marauding_captain.png` |
+| `SECRET_BARREL` | Secret Barrel | `secret_barrel.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -150,7 +155,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
-- [ ] `MARAUDING_CAPTAIN` — `marauding_captain.png`
 - [ ] `MARYOKUTAI` — `maryokutai.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
@@ -172,7 +176,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NECROVALLEY` — `necrovalley.png`
 - [ ] `NEEDLE_BURROWER` — `needle_burrower.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
-- [ ] `NEGATE_ATTACK` — `negate_attack.png`
 - [ ] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NIGHTMARE_HORSE` — `nightmare_horse.png`
@@ -190,7 +193,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
 - [ ] `RECKLESS_GREED` — `reckless_greed.png`
-- [x] `RELOAD` — `reload.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
@@ -205,7 +207,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
-- [ ] `SECRET_BARREL` — `secret_barrel.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SELF_DESTRUCT_BUTTON` — `self_destruct_button.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
@@ -252,7 +253,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
 - [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `UPSTART_GOBLIN` — `upstart_goblin.png`
 - [ ] `VAMPIRE_BABY` — `vampire_baby.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
 - [ ] `WARRIOR_OF_ZERA` — `warrior_of_zera.png`

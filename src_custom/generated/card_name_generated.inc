@@ -61,6 +61,7 @@ static const u8 sUpstartGoblinName[] __attribute__((section(".append_assets"))) 
 static const u8 sNegateAttackName[] __attribute__((section(".append_assets"))) = "Negate Attack";
 static const u8 sReloadName[] __attribute__((section(".append_assets"))) = "Reload";
 static const u8 sMaraudingCaptainName[] __attribute__((section(".append_assets"))) = "Marauding Captain";
+static const u8 sSecretBarrelName[] __attribute__((section(".append_assets"))) = "Secret Barrel";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -189,6 +190,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sReloadName;
   if (cardId == 0x035F)
     return (u8 *)sMaraudingCaptainName;
+  if (cardId == 0x0360)
+    return (u8 *)sSecretBarrelName;
 
   return gCardNames[cardId];
 }

@@ -14393,6 +14393,35 @@
       },
       "card_name": "Marauding Captain",
       "password": [ 7, 4, 6, 7, 7, 0, 5, 5 ]
+    },
+    {
+      "card_const": "SECRET_BARREL",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SecretBarrel",
+        "pages": [
+          "A trap that punishes crowded fields and hands.",
+          "Activates when your opponent's turn begins.",
+          "Deals 200 LP damage per card on their field and hand."
+        ]
+      },
+      "card_name": "Secret Barrel",
+      "password": [ 9, 4, 1, 9, 2, 4, 0, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SecretBarrel",
+        "pages": [
+          "The opponent is dealt 200 LP damage per card on their field and in their hand."
+        ]
+      }
     }
   ]
 }

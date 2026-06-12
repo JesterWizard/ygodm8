@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 63
+#define NUM_CUSTOM_NAME_SORT_CARDS 64
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -65,6 +65,7 @@ static const u8 sUpstartGoblinSortName[] APPEND_RODATA = "Upstart Goblin";
 static const u8 sNegateAttackSortName[] APPEND_RODATA = "Negate Attack";
 static const u8 sReloadSortName[] APPEND_RODATA = "Reload";
 static const u8 sMaraudingCaptainSortName[] APPEND_RODATA = "Marauding Captain";
+static const u8 sSecretBarrelSortName[] APPEND_RODATA = "Secret Barrel";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -116,6 +117,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0342, // Riryoku
   0x0344, // Sage's Stone
   0x0340, // Seal of Orichalcos
+  0x0360, // Secret Barrel
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
   0x035A, // Solar Flare Dragon
@@ -182,20 +184,21 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   47, // Riryoku
   48, // Sage's Stone
   49, // Seal of Orichalcos
-  50, // Shield And Sword
-  51, // Skill Drain
-  52, // Solar Flare Dragon
-  53, // Sorcerer of Dark Magic
-  54, // Soul Exchange
-  55, // Spear Dragon
-  56, // Spell Canceller
-  57, // St Joan
-  58, // Toll
-  59, // Ultimate Offering
-  60, // United We Stand
-  61, // Upstart Goblin
-  62, // Wave Motion Cannon
-  63, // Yata-Garasu
+  50, // Secret Barrel
+  51, // Shield And Sword
+  52, // Skill Drain
+  53, // Solar Flare Dragon
+  54, // Sorcerer of Dark Magic
+  55, // Soul Exchange
+  56, // Spear Dragon
+  57, // Spell Canceller
+  58, // St Joan
+  59, // Toll
+  60, // Ultimate Offering
+  61, // United We Stand
+  62, // Upstart Goblin
+  63, // Wave Motion Cannon
+  64, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -325,6 +328,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sReloadSortName;
   if (cardId == 0x035F)
     return (u8 *)sMaraudingCaptainSortName;
+  if (cardId == 0x0360)
+    return (u8 *)sSecretBarrelSortName;
 
   return gCardNames[cardId];
 }

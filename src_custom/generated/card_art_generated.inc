@@ -252,6 +252,10 @@ static const unsigned char sMaraudingCaptainBigArt[] __attribute__((section(".ap
 static const unsigned short sMaraudingCaptainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/marauding_captain.gbapal");
 static const unsigned char sMaraudingCaptainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/marauding_captain.lz");
 
+static const unsigned char sSecretBarrelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/secret_barrel.huff");
+static const unsigned short sSecretBarrelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/secret_barrel.gbapal");
+static const unsigned char sSecretBarrelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/secret_barrel.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -316,6 +320,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x035D] = sNegateAttackBigArt,
   [0x035E] = sReloadBigArt,
   [0x035F] = sMaraudingCaptainBigArt,
+  [0x0360] = sSecretBarrelBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -382,6 +387,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x035D] = sNegateAttackBigPalette,
   [0x035E] = sReloadBigPalette,
   [0x035F] = sMaraudingCaptainBigPalette,
+  [0x0360] = sSecretBarrelBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -448,6 +454,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x035D] = 0,
   [0x035E] = 0,
   [0x035F] = 0,
+  [0x0360] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -514,4 +521,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x035D] = sNegateAttackMiniArt,
   [0x035E] = sReloadMiniArt,
   [0x035F] = sMaraudingCaptainMiniArt,
+  [0x0360] = sSecretBarrelMiniArt,
 };

@@ -865,11 +865,12 @@
 #define NEGATE_ATTACK                            0x035D
 #define RELOAD                                   0x035E
 #define MARAUDING_CAPTAIN                        0x035F
+#define SECRET_BARREL                            0x0360
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0360
-#define NUM_CUSTOM_CARDS                        0x003F
+#define NUM_TOTAL_CARDS                         0x0361
+#define NUM_CUSTOM_CARDS                        0x0040
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
