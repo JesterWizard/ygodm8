@@ -25,6 +25,7 @@
 #include "meteor_of_destruction.h"
 #include "toll.h"
 #include "skull_invitation.h"
+#include "self_destruct_button.h"
 #include "the_dark_door.h"
 #include "kaiser_glider.h"
 
@@ -244,6 +245,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedMaskOfRestrictZone(zone)
       || IsActivatedFairyBoxZone(zone)
       || IsActivatedSkullInvitationZone(zone)
+      || IsActivatedSelfDestructButtonZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

@@ -15,6 +15,7 @@
 #include "secret_barrel.h"
 #include "time_seal.h"
 #include "skull_invitation.h"
+#include "self_destruct_button.h"
 #include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
@@ -277,6 +278,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateSecretBarrelOnOpponentTurnStart();
     TryActivateTimeSealOnOpponentTurnStart();
     TryActivateSkullInvitationOnOpponentTurnStart();
+    TryActivateSelfDestructButtonOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (ShouldSkipDrawPhaseForYataGarasu(turn)) {

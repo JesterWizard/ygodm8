@@ -880,12 +880,13 @@
 #define THOUSAND_ENERGY                          0x036C
 #define THE_DARK_DOOR                            0x036D
 #define SWIFT_GAIA_THE_FIERCE_KNIGHT             0x036E
-#define SKULL_INVITATION                         0x036F
+#define SELF_DESTRUCT_BUTTON                     0x036F
+#define SKULL_INVITATION                         0x0370
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0370
-#define NUM_CUSTOM_CARDS                        0x004F
+#define NUM_TOTAL_CARDS                         0x0371
+#define NUM_CUSTOM_CARDS                        0x0050
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

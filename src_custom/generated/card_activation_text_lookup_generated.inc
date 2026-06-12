@@ -101,6 +101,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { TIME_SEAL, gActivationDescription_TimeSeal },
   { THOUSAND_ENERGY, gActivationDescription_ThousandEnergy },
   { THE_DARK_DOOR, gActivationDescription_TheDarkDoor },
+  { SELF_DESTRUCT_BUTTON, gActivationDescription_SelfDestructButton },
   { SKULL_INVITATION, gActivationDescription_SkullInvitation },
 };
 

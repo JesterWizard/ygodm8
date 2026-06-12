@@ -312,6 +312,10 @@ static const unsigned char sSwiftGaiaTheFierceKnightBigArt[] __attribute__((sect
 static const unsigned short sSwiftGaiaTheFierceKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/swift_gaia_the_fierce_knight.gbapal");
 static const unsigned char sSwiftGaiaTheFierceKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/swift_gaia_the_fierce_knight.lz");
 
+static const unsigned char sSelfDestructButtonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/self_destruct_button.huff");
+static const unsigned short sSelfDestructButtonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/self_destruct_button.gbapal");
+static const unsigned char sSelfDestructButtonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/self_destruct_button.lz");
+
 static const unsigned char sSkullInvitationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skull_invitation.huff");
 static const unsigned short sSkullInvitationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skull_invitation.gbapal");
 static const unsigned char sSkullInvitationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skull_invitation.lz");
@@ -395,7 +399,8 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x036C] = sThousandEnergyBigArt,
   [0x036D] = sTheDarkDoorBigArt,
   [0x036E] = sSwiftGaiaTheFierceKnightBigArt,
-  [0x036F] = sSkullInvitationBigArt,
+  [0x036F] = sSelfDestructButtonBigArt,
+  [0x0370] = sSkullInvitationBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -477,7 +482,8 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x036C] = sThousandEnergyBigPalette,
   [0x036D] = sTheDarkDoorBigPalette,
   [0x036E] = sSwiftGaiaTheFierceKnightBigPalette,
-  [0x036F] = sSkullInvitationBigPalette,
+  [0x036F] = sSelfDestructButtonBigPalette,
+  [0x0370] = sSkullInvitationBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -560,6 +566,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x036D] = 0,
   [0x036E] = 0,
   [0x036F] = 0,
+  [0x0370] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -641,5 +648,6 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x036C] = sThousandEnergyMiniArt,
   [0x036D] = sTheDarkDoorMiniArt,
   [0x036E] = sSwiftGaiaTheFierceKnightMiniArt,
-  [0x036F] = sSkullInvitationMiniArt,
+  [0x036F] = sSelfDestructButtonMiniArt,
+  [0x0370] = sSkullInvitationMiniArt,
 };

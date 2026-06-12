@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 79
+#define NUM_CUSTOM_NAME_SORT_CARDS 80
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -80,6 +80,7 @@ static const u8 sTimeSealSortName[] APPEND_RODATA = "Time Seal";
 static const u8 sThousandEnergySortName[] APPEND_RODATA = "Thousand Energy";
 static const u8 sTheDarkDoorSortName[] APPEND_RODATA = "The Dark Door";
 static const u8 sSwiftGaiaTheFierceKnightSortName[] APPEND_RODATA = "Swift Gaia The Fierce Knight";
+static const u8 sSelfDestructButtonSortName[] APPEND_RODATA = "Self-Destruct Button";
 static const u8 sSkullInvitationSortName[] APPEND_RODATA = "Skull Invitation";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
@@ -140,9 +141,10 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0344, // Sage's Stone
   0x0340, // Seal of Orichalcos
   0x0360, // Secret Barrel
+  0x036F, // Self-Destruct Button
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
-  0x036F, // Skull Invitation
+  0x0370, // Skull Invitation
   0x035A, // Solar Flare Dragon
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
@@ -222,28 +224,29 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   55, // Sage's Stone
   56, // Seal of Orichalcos
   57, // Secret Barrel
-  58, // Shield And Sword
-  59, // Skill Drain
-  60, // Skull Invitation
-  61, // Solar Flare Dragon
-  62, // Sorcerer of Dark Magic
-  63, // Soul Exchange
-  64, // Spear Dragon
-  65, // Spell Canceller
-  66, // St Joan
-  67, // Swift Gaia The Fierce Knight
-  68, // The Dark Door
-  69, // Thousand Energy
-  70, // Time Seal
-  71, // Toll
-  72, // Ultimate Offering
-  73, // United We Stand
-  74, // Upstart Goblin
-  75, // Warrior of Zera
-  76, // Wave Motion Cannon
-  77, // Weather Report
-  78, // White Magician Pikeru
-  79, // Yata-Garasu
+  58, // Self-Destruct Button
+  59, // Shield And Sword
+  60, // Skill Drain
+  61, // Skull Invitation
+  62, // Solar Flare Dragon
+  63, // Sorcerer of Dark Magic
+  64, // Soul Exchange
+  65, // Spear Dragon
+  66, // Spell Canceller
+  67, // St Joan
+  68, // Swift Gaia The Fierce Knight
+  69, // The Dark Door
+  70, // Thousand Energy
+  71, // Time Seal
+  72, // Toll
+  73, // Ultimate Offering
+  74, // United We Stand
+  75, // Upstart Goblin
+  76, // Warrior of Zera
+  77, // Wave Motion Cannon
+  78, // Weather Report
+  79, // White Magician Pikeru
+  80, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -404,6 +407,8 @@ static u8 *GetSortCardName(u16 cardId) {
   if (cardId == 0x036E)
     return (u8 *)sSwiftGaiaTheFierceKnightSortName;
   if (cardId == 0x036F)
+    return (u8 *)sSelfDestructButtonSortName;
+  if (cardId == 0x0370)
     return (u8 *)sSkullInvitationSortName;
 
   return gCardNames[cardId];
