@@ -224,6 +224,10 @@ static const unsigned char sTollBigArt[] __attribute__((section(".append_assets"
 static const unsigned short sTollBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/toll.gbapal");
 static const unsigned char sTollMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/toll.lz");
 
+static const unsigned char sRainOfMercyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rain_of_mercy.huff");
+static const unsigned short sRainOfMercyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rain_of_mercy.gbapal");
+static const unsigned char sRainOfMercyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rain_of_mercy.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -281,6 +285,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0356] = sDrainingShieldBigArt,
   [0x0357] = sMeteorOfDestructionBigArt,
   [0x0358] = sTollBigArt,
+  [0x0359] = sRainOfMercyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -340,6 +345,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0356] = sDrainingShieldBigPalette,
   [0x0357] = sMeteorOfDestructionBigPalette,
   [0x0358] = sTollBigPalette,
+  [0x0359] = sRainOfMercyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -399,6 +405,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0356] = 0,
   [0x0357] = 0,
   [0x0358] = 0,
+  [0x0359] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -458,4 +465,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0356] = sDrainingShieldMiniArt,
   [0x0357] = sMeteorOfDestructionMiniArt,
   [0x0358] = sTollMiniArt,
+  [0x0359] = sRainOfMercyMiniArt,
 };

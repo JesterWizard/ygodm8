@@ -32,6 +32,7 @@ extern void EffectDelinquentDuo(void);
 extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
 extern void EffectToll(void);
+extern void EffectRainOfMercy(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -55,6 +56,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case DELINQUENT_DUO:
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
+    case RAIN_OF_MERCY:
       return TRUE;
     default:
       break;
@@ -169,6 +171,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case TOLL:
       EffectToll();
+      return;
+    case RAIN_OF_MERCY:
+      EffectRainOfMercy();
       return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();

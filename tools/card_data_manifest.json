@@ -14195,6 +14195,34 @@
           "Each player must pay 500LP per monster when attacking."
         ]
       }
+    },
+    {
+      "card_const": "RAIN_OF_MERCY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_RainOfMercy",
+        "pages": [
+          "A mercy spell that heals both duelists equally.",
+          "Both players gain 1000 Life Points."
+        ]
+      },
+      "card_name": "Rain of Mercy",
+      "password": [ 6, 6, 7, 1, 9, 3, 2, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_RainOfMercy",
+        "pages": [
+          "Increase the Life Points of both players by 1000 points."
+        ]
+      }
     }
   ]
 }

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 56
+#define NUM_CUSTOM_NAME_SORT_CARDS 57
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -58,6 +58,7 @@ static const u8 sDelinquentDuoSortName[] APPEND_RODATA = "Delinquent Duo";
 static const u8 sDrainingShieldSortName[] APPEND_RODATA = "Draining Shield";
 static const u8 sMeteorOfDestructionSortName[] APPEND_RODATA = "Meteor of Destruction";
 static const u8 sTollSortName[] APPEND_RODATA = "Toll";
+static const u8 sRainOfMercySortName[] APPEND_RODATA = "Rain of Mercy";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -101,6 +102,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
   0x0334, // Pyramid of Light
+  0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
   0x0342, // Riryoku
   0x0344, // Sage's Stone
@@ -160,21 +162,22 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   39, // Ojama Trio
   40, // Paladin Of White Dragon
   41, // Pyramid of Light
-  42, // Rare Metal Dragon
-  43, // Riryoku
-  44, // Sage's Stone
-  45, // Seal of Orichalcos
-  46, // Shield And Sword
-  47, // Skill Drain
-  48, // Sorcerer of Dark Magic
-  49, // Soul Exchange
-  50, // Spear Dragon
-  51, // Spell Canceller
-  52, // St Joan
-  53, // Toll
-  54, // Ultimate Offering
-  55, // United We Stand
-  56, // Wave Motion Cannon
+  42, // Rain of Mercy
+  43, // Rare Metal Dragon
+  44, // Riryoku
+  45, // Sage's Stone
+  46, // Seal of Orichalcos
+  47, // Shield And Sword
+  48, // Skill Drain
+  49, // Sorcerer of Dark Magic
+  50, // Soul Exchange
+  51, // Spear Dragon
+  52, // Spell Canceller
+  53, // St Joan
+  54, // Toll
+  55, // Ultimate Offering
+  56, // United We Stand
+  57, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -290,6 +293,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMeteorOfDestructionSortName;
   if (cardId == 0x0358)
     return (u8 *)sTollSortName;
+  if (cardId == 0x0359)
+    return (u8 *)sRainOfMercySortName;
 
   return gCardNames[cardId];
 }
