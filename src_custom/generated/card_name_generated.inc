@@ -58,6 +58,7 @@ static const u8 sRainOfMercyName[] __attribute__((section(".append_assets"))) = 
 static const u8 sSolarFlareDragonName[] __attribute__((section(".append_assets"))) = "Solar Flare Dragon";
 static const u8 sYataGarasuName[] __attribute__((section(".append_assets"))) = "Yata-Garasu";
 static const u8 sUpstartGoblinName[] __attribute__((section(".append_assets"))) = "Upstart Goblin";
+static const u8 sNegateAttackName[] __attribute__((section(".append_assets"))) = "Negate Attack";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -180,6 +181,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sYataGarasuName;
   if (cardId == 0x035C)
     return (u8 *)sUpstartGoblinName;
+  if (cardId == 0x035D)
+    return (u8 *)sNegateAttackName;
 
   return gCardNames[cardId];
 }

@@ -14307,6 +14307,35 @@
           "Draw 1 card. Then your opponent gains 1000 Life Points."
         ]
       }
+    },
+    {
+      "card_const": "NEGATE_ATTACK",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 25,
+      "description": {
+        "symbol": "gDescription_NegateAttack",
+        "pages": [
+          "A counter trap that halts an enemy assault.",
+          "When an opponent's monster attacks, negate the",
+          "attack and end their battle phase."
+        ]
+      },
+      "card_name": "Negate Attack",
+      "password": [ 1, 4, 3, 1, 5, 5, 7, 3 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_NegateAttack",
+        "pages": [
+          "Negate the attack and end the opponent's battle phase."
+        ]
+      }
     }
   ]
 }

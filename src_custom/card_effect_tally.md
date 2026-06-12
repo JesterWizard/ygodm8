@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `86` effects
+- `87` effects
 
 ## Tally
 
@@ -63,6 +63,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Magic Jammer` | `src_custom/trap_effects/magic_jammer.c` |
 | `trap_effects` | `Magic Cylinder` | `src_custom/trap_effects/magic_cylinder.c` |
 | `trap_effects` | `Draining Shield` | `src_custom/trap_effects/draining_shield.c` |
+| `trap_effects` | `Negate Attack` | `src_custom/trap_effects/negate_attack.c` |
 | `trap_effects` | `Embodiment of Apophis` | `src_custom/trap_effects/embodiment_of_apophis.c` |
 | `trap_effects` | `Jar of Greed` | `src_custom/trap_effects/jar_of_greed.c` |
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |

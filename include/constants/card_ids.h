@@ -862,11 +862,12 @@
 #define SOLAR_FLARE_DRAGON                       0x035A
 #define YATA_GARASU                              0x035B
 #define UPSTART_GOBLIN                           0x035C
+#define NEGATE_ATTACK                            0x035D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x035D
-#define NUM_CUSTOM_CARDS                        0x003C
+#define NUM_TOTAL_CARDS                         0x035E
+#define NUM_CUSTOM_CARDS                        0x003D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

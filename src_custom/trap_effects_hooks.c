@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "draining_shield.h"
+#include "negate_attack.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -152,6 +153,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     SetCardEffectTextType(3);
     EffectDrainingShield();
     TryResumeInterruptedAttackAfterDrainingShield();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_NEGATE_ATTACK) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectNegateAttack();
     return;
   }
 

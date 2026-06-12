@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "card_passives.h"
 #include "embodiment_of_apophis.h"
+#include "negate_attack.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -230,6 +231,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
       if (ret)
         gTrapEffectData.trapCardId = TRAP_DRAINING_SHIELD;
+      break;
+    case TRAP_NEGATE_ATTACK:
+      ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_NEGATE_ATTACK;
       break;
     default:
       ret = FALSE;

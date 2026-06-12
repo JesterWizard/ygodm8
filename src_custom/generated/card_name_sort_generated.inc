@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 60
+#define NUM_CUSTOM_NAME_SORT_CARDS 61
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -62,6 +62,7 @@ static const u8 sRainOfMercySortName[] APPEND_RODATA = "Rain of Mercy";
 static const u8 sSolarFlareDragonSortName[] APPEND_RODATA = "Solar Flare Dragon";
 static const u8 sYataGarasuSortName[] APPEND_RODATA = "Yata-Garasu";
 static const u8 sUpstartGoblinSortName[] APPEND_RODATA = "Upstart Goblin";
+static const u8 sNegateAttackSortName[] APPEND_RODATA = "Negate Attack";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -101,6 +102,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0357, // Meteor of Destruction
   0x0350, // Mystical Shine Ball
   0x0336, // Mystical Space Typhoon
+  0x035D, // Negate Attack
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
@@ -164,29 +166,30 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   35, // Meteor of Destruction
   36, // Mystical Shine Ball
   37, // Mystical Space Typhoon
-  38, // Obnoxious Celtic Guardian
-  39, // Ojama Trio
-  40, // Paladin Of White Dragon
-  41, // Pyramid of Light
-  42, // Rain of Mercy
-  43, // Rare Metal Dragon
-  44, // Riryoku
-  45, // Sage's Stone
-  46, // Seal of Orichalcos
-  47, // Shield And Sword
-  48, // Skill Drain
-  49, // Solar Flare Dragon
-  50, // Sorcerer of Dark Magic
-  51, // Soul Exchange
-  52, // Spear Dragon
-  53, // Spell Canceller
-  54, // St Joan
-  55, // Toll
-  56, // Ultimate Offering
-  57, // United We Stand
-  58, // Upstart Goblin
-  59, // Wave Motion Cannon
-  60, // Yata-Garasu
+  38, // Negate Attack
+  39, // Obnoxious Celtic Guardian
+  40, // Ojama Trio
+  41, // Paladin Of White Dragon
+  42, // Pyramid of Light
+  43, // Rain of Mercy
+  44, // Rare Metal Dragon
+  45, // Riryoku
+  46, // Sage's Stone
+  47, // Seal of Orichalcos
+  48, // Shield And Sword
+  49, // Skill Drain
+  50, // Solar Flare Dragon
+  51, // Sorcerer of Dark Magic
+  52, // Soul Exchange
+  53, // Spear Dragon
+  54, // Spell Canceller
+  55, // St Joan
+  56, // Toll
+  57, // Ultimate Offering
+  58, // United We Stand
+  59, // Upstart Goblin
+  60, // Wave Motion Cannon
+  61, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -310,6 +313,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sYataGarasuSortName;
   if (cardId == 0x035C)
     return (u8 *)sUpstartGoblinSortName;
+  if (cardId == 0x035D)
+    return (u8 *)sNegateAttackSortName;
 
   return gCardNames[cardId];
 }
