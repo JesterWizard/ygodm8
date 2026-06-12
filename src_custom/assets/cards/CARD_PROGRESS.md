@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 67 |
-| Art ready, needs manifest | 168 |
+| In game (manifest + art) | 72 |
+| Art ready, needs manifest | 164 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **235** |
+| **Total PNGs in `80x80/`** | **236** |
 
 ## In game
 
@@ -89,6 +89,11 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ROBBIN_GOBLIN` | Robbin' Goblin | `robbin_goblin.png` |
 | `ROBBIN_ZOMBIE` | Robbin' Zombie | `robbin_zombie.png` |
 | `CALL_OF_THE_HAUNTED` | Call of the Haunted | `call_of_the_haunted.png` |
+| `KAISER_GLIDER` | Kaiser Glider | `kaiser_glider.png` |
+| `PIRANHA_ARMY` | Piranha Army | `piranha_army.png` |
+| `MOISTER_CREATURE` | Moister Creature | `moister_creature.png` |
+| `WHITE_MAGICIAN_PIKERU` | White Magician Pikeru | `white_magician_pikeru.png` |
+| `EBON_MAGICIAN_CURRAN` | Ebon Magician Curran | `ebon_magician_curran.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -134,7 +139,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DRILLAGO` — `drillago.png`
 - [ ] `DROP_OFF` — `drop_off.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
-- [ ] `EBON_MAGICIAN_CURRAN` — `ebon_magician_curran.png`
 - [ ] `ECTOPLASMER` — `ectoplasmer.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
@@ -149,7 +153,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
 - [ ] `JUST_DESERTS` — `just_deserts.png`
-- [ ] `KAISER_GLIDER` — `kaiser_glider.png`
 - [ ] `LIMITER_REMOVAL` — `limiter_removal.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
@@ -169,7 +172,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
-- [x] `MOISTER_CREATURE` — `moister_creature.png`
 - [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
@@ -187,7 +189,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `PETIT_THE_DARK_CLOWN` — `petit_the_dark_clown.png`
-- [x] `PIRANHA_ARMY` — `piranha_army.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
 - [ ] `PRECIOUS_CARDS_FROM_BEYOND` — `precious_cards_from_beyond.png`
@@ -260,7 +261,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WEATHER_REPORT` — `weather_report.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
-- [ ] `WHITE_MAGICIAN_PIKERU` — `white_magician_pikeru.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
 - [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
 

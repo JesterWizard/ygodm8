@@ -34,6 +34,8 @@ unsigned char ShouldActivateCureMermaidTurnEffect(void);
 void ActivateCureMermaidTurnEffect(void);
 unsigned char ShouldActivateSolarFlareDragonTurnEffect(void);
 void ActivateSolarFlareDragonTurnEffect(void);
+unsigned char ShouldActivateEbonMagicianCurranTurnEffect(void);
+void ActivateEbonMagicianCurranTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -97,6 +99,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateSolarFlareDragonTurnEffect();
     return;
   }
+  if (gActiveEffect.cardId == EBON_MAGICIAN_CURRAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
+    ActivateEbonMagicianCurranTurnEffect();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
@@ -128,6 +134,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return ShouldActivateCureMermaidTurnEffect();
   if (gActiveEffect.cardId == SOLAR_FLARE_DRAGON && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     return ShouldActivateSolarFlareDragonTurnEffect();
+  if (gActiveEffect.cardId == EBON_MAGICIAN_CURRAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ShouldActivateEbonMagicianCurranTurnEffect();
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }

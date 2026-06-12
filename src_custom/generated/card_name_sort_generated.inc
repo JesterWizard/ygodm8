@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 71
+#define NUM_CUSTOM_NAME_SORT_CARDS 72
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -73,6 +73,7 @@ static const u8 sKaiserGliderSortName[] APPEND_RODATA = "Kaiser Glider";
 static const u8 sPiranhaArmySortName[] APPEND_RODATA = "Piranha Army";
 static const u8 sMoisterCreatureSortName[] APPEND_RODATA = "Moister Creature";
 static const u8 sWhiteMagicianPikeruSortName[] APPEND_RODATA = "White Magician Pikeru";
+static const u8 sEbonMagicianCurranSortName[] APPEND_RODATA = "Ebon Magician Curran";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -95,6 +96,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0349, // Des Koala
   0x0338, // Double Summon
   0x0356, // Draining Shield
+  0x0368, // Ebon Magician Curran
   0x032C, // Exchange
   0x033B, // Fairy Box
   0x0341, // Familiar Knight
@@ -169,57 +171,58 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   18, // Des Koala
   19, // Double Summon
   20, // Draining Shield
-  21, // Exchange
-  22, // Fairy Box
-  23, // Familiar Knight
-  24, // Goblin Thief
-  25, // Guardian Treasure
-  26, // Hayabusa Knight
-  27, // Jar of Greed
-  28, // Kaibaman
-  29, // Kaiser Glider
-  30, // Luster Dragon
-  31, // Mad Sword Beast
-  32, // Mage Power
-  33, // Magic Cylinder
-  34, // Magic Jammer
-  35, // Magician's Valkyria
-  36, // Marauding Captain
-  37, // Mask of Restrict
-  38, // Meteor of Destruction
-  39, // Moister Creature
-  40, // Mystical Shine Ball
-  41, // Mystical Space Typhoon
-  42, // Negate Attack
-  43, // Obnoxious Celtic Guardian
-  44, // Ojama Trio
-  45, // Paladin Of White Dragon
-  46, // Piranha Army
-  47, // Pyramid of Light
-  48, // Rain of Mercy
-  49, // Rare Metal Dragon
-  50, // Reload
-  51, // Riryoku
-  52, // Robbin' Goblin
-  53, // Robbin' Zombie
-  54, // Sage's Stone
-  55, // Seal of Orichalcos
-  56, // Secret Barrel
-  57, // Shield And Sword
-  58, // Skill Drain
-  59, // Solar Flare Dragon
-  60, // Sorcerer of Dark Magic
-  61, // Soul Exchange
-  62, // Spear Dragon
-  63, // Spell Canceller
-  64, // St Joan
-  65, // Toll
-  66, // Ultimate Offering
-  67, // United We Stand
-  68, // Upstart Goblin
-  69, // Wave Motion Cannon
-  70, // White Magician Pikeru
-  71, // Yata-Garasu
+  21, // Ebon Magician Curran
+  22, // Exchange
+  23, // Fairy Box
+  24, // Familiar Knight
+  25, // Goblin Thief
+  26, // Guardian Treasure
+  27, // Hayabusa Knight
+  28, // Jar of Greed
+  29, // Kaibaman
+  30, // Kaiser Glider
+  31, // Luster Dragon
+  32, // Mad Sword Beast
+  33, // Mage Power
+  34, // Magic Cylinder
+  35, // Magic Jammer
+  36, // Magician's Valkyria
+  37, // Marauding Captain
+  38, // Mask of Restrict
+  39, // Meteor of Destruction
+  40, // Moister Creature
+  41, // Mystical Shine Ball
+  42, // Mystical Space Typhoon
+  43, // Negate Attack
+  44, // Obnoxious Celtic Guardian
+  45, // Ojama Trio
+  46, // Paladin Of White Dragon
+  47, // Piranha Army
+  48, // Pyramid of Light
+  49, // Rain of Mercy
+  50, // Rare Metal Dragon
+  51, // Reload
+  52, // Riryoku
+  53, // Robbin' Goblin
+  54, // Robbin' Zombie
+  55, // Sage's Stone
+  56, // Seal of Orichalcos
+  57, // Secret Barrel
+  58, // Shield And Sword
+  59, // Skill Drain
+  60, // Solar Flare Dragon
+  61, // Sorcerer of Dark Magic
+  62, // Soul Exchange
+  63, // Spear Dragon
+  64, // Spell Canceller
+  65, // St Joan
+  66, // Toll
+  67, // Ultimate Offering
+  68, // United We Stand
+  69, // Upstart Goblin
+  70, // Wave Motion Cannon
+  71, // White Magician Pikeru
+  72, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -365,6 +368,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMoisterCreatureSortName;
   if (cardId == 0x0367)
     return (u8 *)sWhiteMagicianPikeruSortName;
+  if (cardId == 0x0368)
+    return (u8 *)sEbonMagicianCurranSortName;
 
   return gCardNames[cardId];
 }

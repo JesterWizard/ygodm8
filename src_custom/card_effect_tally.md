@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `100` effects
+- `101` effects
 
 ## Tally
 
@@ -111,6 +111,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Moister Creature` | `src_custom/permanent_effects/moister_creature.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
+|	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
 
 ## Notes
 

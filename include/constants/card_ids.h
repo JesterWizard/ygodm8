@@ -873,11 +873,12 @@
 #define PIRANHA_ARMY                             0x0365
 #define MOISTER_CREATURE                         0x0366
 #define WHITE_MAGICIAN_PIKERU                    0x0367
+#define EBON_MAGICIAN_CURRAN                     0x0368
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0368
-#define NUM_CUSTOM_CARDS                        0x0047
+#define NUM_TOTAL_CARDS                         0x0369
+#define NUM_CUSTOM_CARDS                        0x0048
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

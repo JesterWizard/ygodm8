@@ -284,6 +284,10 @@ static const unsigned char sWhiteMagicianPikeruBigArt[] __attribute__((section("
 static const unsigned short sWhiteMagicianPikeruBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/white_magician_pikeru.gbapal");
 static const unsigned char sWhiteMagicianPikeruMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/white_magician_pikeru.lz");
 
+static const unsigned char sEbonMagicianCurranBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ebon_magician_curran.huff");
+static const unsigned short sEbonMagicianCurranBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ebon_magician_curran.gbapal");
+static const unsigned char sEbonMagicianCurranMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ebon_magician_curran.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -356,6 +360,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0365] = sPiranhaArmyBigArt,
   [0x0366] = sMoisterCreatureBigArt,
   [0x0367] = sWhiteMagicianPikeruBigArt,
+  [0x0368] = sEbonMagicianCurranBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -430,6 +435,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0365] = sPiranhaArmyBigPalette,
   [0x0366] = sMoisterCreatureBigPalette,
   [0x0367] = sWhiteMagicianPikeruBigPalette,
+  [0x0368] = sEbonMagicianCurranBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -504,6 +510,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0365] = 0,
   [0x0366] = 0,
   [0x0367] = 0,
+  [0x0368] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -578,4 +585,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0365] = sPiranhaArmyMiniArt,
   [0x0366] = sMoisterCreatureMiniArt,
   [0x0367] = sWhiteMagicianPikeruMiniArt,
+  [0x0368] = sEbonMagicianCurranMiniArt,
 };
