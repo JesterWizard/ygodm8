@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 58
+#define NUM_CUSTOM_NAME_SORT_CARDS 59
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -60,6 +60,7 @@ static const u8 sMeteorOfDestructionSortName[] APPEND_RODATA = "Meteor of Destru
 static const u8 sTollSortName[] APPEND_RODATA = "Toll";
 static const u8 sRainOfMercySortName[] APPEND_RODATA = "Rain of Mercy";
 static const u8 sSolarFlareDragonSortName[] APPEND_RODATA = "Solar Flare Dragon";
+static const u8 sUpstartGoblinSortName[] APPEND_RODATA = "Upstart Goblin";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -119,6 +120,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0358, // Toll
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
+  0x035B, // Upstart Goblin
   0x0332, // Wave Motion Cannon
 };
 
@@ -180,7 +182,8 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   55, // Toll
   56, // Ultimate Offering
   57, // United We Stand
-  58, // Wave Motion Cannon
+  58, // Upstart Goblin
+  59, // Wave Motion Cannon
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -300,6 +303,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRainOfMercySortName;
   if (cardId == 0x035A)
     return (u8 *)sSolarFlareDragonSortName;
+  if (cardId == 0x035B)
+    return (u8 *)sUpstartGoblinSortName;
 
   return gCardNames[cardId];
 }

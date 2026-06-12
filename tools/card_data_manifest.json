@@ -14251,6 +14251,34 @@
       },
       "card_name": "Solar Flare Dragon",
       "password": [ 3, 7, 4, 8, 2, 1, 5, 9 ]
+    },
+    {
+      "card_const": "UPSTART_GOBLIN",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_UpstartGoblin",
+        "pages": [
+          "A goblin that offers quick coinage in exchange for service.",
+          "Draw 1 card, then your opponent gains 1000 Life Points."
+        ]
+      },
+      "card_name": "Upstart Goblin",
+      "password": [ 8, 2, 6, 3, 0, 9, 4, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_UpstartGoblin",
+        "pages": [
+          "Draw 1 card. Then your opponent gains 1000 Life Points."
+        ]
+      }
     }
   ]
 }

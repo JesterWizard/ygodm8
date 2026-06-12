@@ -84,6 +84,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { TOLL, gActivationDescription_Toll },
   { RAIN_OF_MERCY, gActivationDescription_RainOfMercy },
   { SOLAR_FLARE_DRAGON, gActivationDescription_SolarFlareDragon },
+  { UPSTART_GOBLIN, gActivationDescription_UpstartGoblin },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

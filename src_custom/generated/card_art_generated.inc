@@ -232,6 +232,10 @@ static const unsigned char sSolarFlareDragonBigArt[] __attribute__((section(".ap
 static const unsigned short sSolarFlareDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/solar_flare_dragon.gbapal");
 static const unsigned char sSolarFlareDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/solar_flare_dragon.lz");
 
+static const unsigned char sUpstartGoblinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/upstart_goblin.huff");
+static const unsigned short sUpstartGoblinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/upstart_goblin.gbapal");
+static const unsigned char sUpstartGoblinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/upstart_goblin.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -291,6 +295,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0358] = sTollBigArt,
   [0x0359] = sRainOfMercyBigArt,
   [0x035A] = sSolarFlareDragonBigArt,
+  [0x035B] = sUpstartGoblinBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -352,6 +357,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0358] = sTollBigPalette,
   [0x0359] = sRainOfMercyBigPalette,
   [0x035A] = sSolarFlareDragonBigPalette,
+  [0x035B] = sUpstartGoblinBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -413,6 +419,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0358] = 0,
   [0x0359] = 0,
   [0x035A] = 0,
+  [0x035B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -474,4 +481,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0358] = sTollMiniArt,
   [0x0359] = sRainOfMercyMiniArt,
   [0x035A] = sSolarFlareDragonMiniArt,
+  [0x035B] = sUpstartGoblinMiniArt,
 };

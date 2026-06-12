@@ -860,11 +860,12 @@
 #define TOLL                                     0x0358
 #define RAIN_OF_MERCY                            0x0359
 #define SOLAR_FLARE_DRAGON                       0x035A
+#define UPSTART_GOBLIN                           0x035B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x035B
-#define NUM_CUSTOM_CARDS                        0x003A
+#define NUM_TOTAL_CARDS                         0x035C
+#define NUM_CUSTOM_CARDS                        0x003B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

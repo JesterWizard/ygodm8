@@ -33,6 +33,7 @@ extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
 extern void EffectToll(void);
 extern void EffectRainOfMercy(void);
+extern void EffectUpstartGoblin(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -57,6 +58,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
     case RAIN_OF_MERCY:
+    case UPSTART_GOBLIN:
       return TRUE;
     default:
       break;
@@ -174,6 +176,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case RAIN_OF_MERCY:
       EffectRainOfMercy();
+      return;
+    case UPSTART_GOBLIN:
+      EffectUpstartGoblin();
       return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();
