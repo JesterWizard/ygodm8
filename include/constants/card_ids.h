@@ -884,11 +884,12 @@
 #define SKULL_INVITATION                         0x0370
 #define NIGHTMARE_HORSE                          0x0371
 #define VAMPIRE_BABY                             0x0372
+#define THE_FORCEFUL_SENTRY                      0x0373
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0373
-#define NUM_CUSTOM_CARDS                        0x0052
+#define NUM_TOTAL_CARDS                         0x0374
+#define NUM_CUSTOM_CARDS                        0x0053
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

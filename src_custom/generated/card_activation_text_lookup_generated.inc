@@ -104,6 +104,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SELF_DESTRUCT_BUTTON, gActivationDescription_SelfDestructButton },
   { SKULL_INVITATION, gActivationDescription_SkullInvitation },
   { VAMPIRE_BABY, gActivationDescription_VampireBaby },
+  { THE_FORCEFUL_SENTRY, gActivationDescription_TheForcefulSentry },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

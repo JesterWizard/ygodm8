@@ -328,6 +328,10 @@ static const unsigned char sVampireBabyBigArt[] __attribute__((section(".append_
 static const unsigned short sVampireBabyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vampire_baby.gbapal");
 static const unsigned char sVampireBabyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vampire_baby.lz");
 
+static const unsigned char sTheForcefulSentryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_forceful_sentry.huff");
+static const unsigned short sTheForcefulSentryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_forceful_sentry.gbapal");
+static const unsigned char sTheForcefulSentryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_forceful_sentry.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -411,6 +415,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0370] = sSkullInvitationBigArt,
   [0x0371] = sNightmareHorseBigArt,
   [0x0372] = sVampireBabyBigArt,
+  [0x0373] = sTheForcefulSentryBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -496,6 +501,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0370] = sSkullInvitationBigPalette,
   [0x0371] = sNightmareHorseBigPalette,
   [0x0372] = sVampireBabyBigPalette,
+  [0x0373] = sTheForcefulSentryBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -581,6 +587,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0370] = 0,
   [0x0371] = 0,
   [0x0372] = 0,
+  [0x0373] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -666,4 +673,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0370] = sSkullInvitationMiniArt,
   [0x0371] = sNightmareHorseMiniArt,
   [0x0372] = sVampireBabyMiniArt,
+  [0x0373] = sTheForcefulSentryMiniArt,
 };

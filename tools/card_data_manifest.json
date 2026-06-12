@@ -14923,6 +14923,37 @@
       },
       "card_name": "Vampire Baby",
       "password": [ 1, 0, 6, 6, 7, 3, 4, 8 ]
+    },
+    {
+      "card_const": "THE_FORCEFUL_SENTRY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TheForcefulSentry",
+        "pages": [
+          "A spell that sends one card from the opponent's hand back to",
+          "their deck, then shuffles their deck."
+        ]
+      },
+      "card_name": "The Forceful Sentry",
+      "password": [ 4, 2, 8, 2, 9, 8, 8, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_TheForcefulSentry",
+        "pages": [
+          "Select one card in the opponent's hand and return it to their deck, then shuffle."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/the_forceful_sentry.huff",
+      "big_palette": "src_custom/assets/cards/80x80/the_forceful_sentry.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/the_forceful_sentry.lz"
     }
   ]
 }

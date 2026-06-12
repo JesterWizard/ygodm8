@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 82
+#define NUM_CUSTOM_NAME_SORT_CARDS 83
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -84,6 +84,7 @@ static const u8 sSelfDestructButtonSortName[] APPEND_RODATA = "Self-Destruct But
 static const u8 sSkullInvitationSortName[] APPEND_RODATA = "Skull Invitation";
 static const u8 sNightmareHorseSortName[] APPEND_RODATA = "Nightmare Horse";
 static const u8 sVampireBabySortName[] APPEND_RODATA = "Vampire Baby";
+static const u8 sTheForcefulSentrySortName[] APPEND_RODATA = "The Forceful Sentry";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -156,6 +157,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0333, // St Joan
   0x036E, // Swift Gaia The Fierce Knight
   0x036D, // The Dark Door
+  0x0373, // The Forceful Sentry
   0x036C, // Thousand Energy
   0x036B, // Time Seal
   0x0358, // Toll
@@ -241,18 +243,19 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   68, // St Joan
   69, // Swift Gaia The Fierce Knight
   70, // The Dark Door
-  71, // Thousand Energy
-  72, // Time Seal
-  73, // Toll
-  74, // Ultimate Offering
-  75, // United We Stand
-  76, // Upstart Goblin
-  77, // Vampire Baby
-  78, // Warrior of Zera
-  79, // Wave Motion Cannon
-  80, // Weather Report
-  81, // White Magician Pikeru
-  82, // Yata-Garasu
+  71, // The Forceful Sentry
+  72, // Thousand Energy
+  73, // Time Seal
+  74, // Toll
+  75, // Ultimate Offering
+  76, // United We Stand
+  77, // Upstart Goblin
+  78, // Vampire Baby
+  79, // Warrior of Zera
+  80, // Wave Motion Cannon
+  81, // Weather Report
+  82, // White Magician Pikeru
+  83, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -420,6 +423,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sNightmareHorseSortName;
   if (cardId == 0x0372)
     return (u8 *)sVampireBabySortName;
+  if (cardId == 0x0373)
+    return (u8 *)sTheForcefulSentrySortName;
 
   return gCardNames[cardId];
 }

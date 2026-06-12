@@ -23,6 +23,7 @@
 #include "hayabusa_knight.h"
 #include "block_attack.h"
 #include "delinquent_duo.h"
+#include "the_forceful_sentry.h"
 #include "meteor_of_destruction.h"
 #include "toll.h"
 #include "skull_invitation.h"
@@ -321,6 +322,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == DELINQUENT_DUO && !CanActivateDelinquentDuo()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == THE_FORCEFUL_SENTRY && !CanActivateTheForcefulSentry()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
