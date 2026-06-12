@@ -13,6 +13,7 @@
 #include "call_of_the_haunted.h"
 #include "robbin_zombie.h"
 #include "secret_barrel.h"
+#include "time_seal.h"
 #include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
@@ -273,6 +274,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateRobbinZombieOnOpponentTurnStart();
     TryActivateCallOfTheHauntedOnOpponentTurnStart();
     TryActivateSecretBarrelOnOpponentTurnStart();
+    TryActivateTimeSealOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (ShouldSkipDrawPhaseForYataGarasu(turn)) {
@@ -281,6 +283,8 @@ static bool8 RunDuelTurnLoop(void) {
         gCardEffectTextData.cardId = YATA_GARASU;
         ActivateCardEffectText();
       }
+    } else if (ShouldSkipDrawPhaseForTimeSeal(turn)) {
+      ConsumeTimeSealSkipDraw(turn);
     } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)

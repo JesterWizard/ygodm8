@@ -72,6 +72,7 @@ static const u8 sWhiteMagicianPikeruName[] __attribute__((section(".append_asset
 static const u8 sEbonMagicianCurranName[] __attribute__((section(".append_assets"))) = "Ebon Magician Curran";
 static const u8 sWeatherReportName[] __attribute__((section(".append_assets"))) = "Weather Report";
 static const u8 sWarriorOfZeraName[] __attribute__((section(".append_assets"))) = "Warrior of Zera";
+static const u8 sTimeSealName[] __attribute__((section(".append_assets"))) = "Time Seal";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -222,6 +223,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sWeatherReportName;
   if (cardId == 0x036A)
     return (u8 *)sWarriorOfZeraName;
+  if (cardId == 0x036B)
+    return (u8 *)sTimeSealName;
 
   return gCardNames[cardId];
 }

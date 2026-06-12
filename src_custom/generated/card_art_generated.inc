@@ -296,6 +296,10 @@ static const unsigned char sWarriorOfZeraBigArt[] __attribute__((section(".appen
 static const unsigned short sWarriorOfZeraBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/warrior_of_zera.gbapal");
 static const unsigned char sWarriorOfZeraMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/warrior_of_zera.lz");
 
+static const unsigned char sTimeSealBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/time_seal.huff");
+static const unsigned short sTimeSealBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/time_seal.gbapal");
+static const unsigned char sTimeSealMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/time_seal.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -371,6 +375,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0368] = sEbonMagicianCurranBigArt,
   [0x0369] = sWeatherReportBigArt,
   [0x036A] = sWarriorOfZeraBigArt,
+  [0x036B] = sTimeSealBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -448,6 +453,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0368] = sEbonMagicianCurranBigPalette,
   [0x0369] = sWeatherReportBigPalette,
   [0x036A] = sWarriorOfZeraBigPalette,
+  [0x036B] = sTimeSealBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -525,6 +531,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0368] = 0,
   [0x0369] = 0,
   [0x036A] = 0,
+  [0x036B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -602,4 +609,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0368] = sEbonMagicianCurranMiniArt,
   [0x0369] = sWeatherReportMiniArt,
   [0x036A] = sWarriorOfZeraMiniArt,
+  [0x036B] = sTimeSealMiniArt,
 };

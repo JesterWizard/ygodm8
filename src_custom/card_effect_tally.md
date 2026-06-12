@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `101` effects
+- `102` effects
 
 ## Tally
 
@@ -68,6 +68,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Call of the Haunted` | `src_custom/trap_effects/call_of_the_haunted.c` |
 | `trap_effects` | `Embodiment of Apophis` | `src_custom/trap_effects/embodiment_of_apophis.c` |
 | `trap_effects` | `Jar of Greed` | `src_custom/trap_effects/jar_of_greed.c` |
+| `trap_effects` | `Time Seal` | `src_custom/trap_effects/time_seal.c` |
 | `trap_effects` | `Robbin' Goblin` | `src_custom/trap_effects/robbin_goblin.c` |
 | `battle_effects` | `Robbin' Goblin` | `src_custom/trap_effects/robbin_goblin.c` |
 | `trap_effects` | `Robbin' Zombie` | `src_custom/trap_effects/robbin_zombie.c` |

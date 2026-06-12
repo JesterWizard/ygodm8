@@ -5,6 +5,7 @@
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "yata_garasu.h"
+#include "time_seal.h"
 #include "copycat.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -141,6 +142,7 @@ void InitBoard__Replacement(void) {
 
   ResetDelayedDuelEffects();
   ResetYataGarasuSkipDraw();
+  ResetTimeSealSkipDraw();
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
   ResetApophisLinks();

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 74
+#define NUM_CUSTOM_NAME_SORT_CARDS 75
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -76,6 +76,7 @@ static const u8 sWhiteMagicianPikeruSortName[] APPEND_RODATA = "White Magician P
 static const u8 sEbonMagicianCurranSortName[] APPEND_RODATA = "Ebon Magician Curran";
 static const u8 sWeatherReportSortName[] APPEND_RODATA = "Weather Report";
 static const u8 sWarriorOfZeraSortName[] APPEND_RODATA = "Warrior of Zera";
+static const u8 sTimeSealSortName[] APPEND_RODATA = "Time Seal";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -143,6 +144,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
   0x0333, // St Joan
+  0x036B, // Time Seal
   0x0358, // Toll
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
@@ -220,15 +222,16 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   63, // Spear Dragon
   64, // Spell Canceller
   65, // St Joan
-  66, // Toll
-  67, // Ultimate Offering
-  68, // United We Stand
-  69, // Upstart Goblin
-  70, // Warrior of Zera
-  71, // Wave Motion Cannon
-  72, // Weather Report
-  73, // White Magician Pikeru
-  74, // Yata-Garasu
+  66, // Time Seal
+  67, // Toll
+  68, // Ultimate Offering
+  69, // United We Stand
+  70, // Upstart Goblin
+  71, // Warrior of Zera
+  72, // Wave Motion Cannon
+  73, // Weather Report
+  74, // White Magician Pikeru
+  75, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -380,6 +383,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sWeatherReportSortName;
   if (cardId == 0x036A)
     return (u8 *)sWarriorOfZeraSortName;
+  if (cardId == 0x036B)
+    return (u8 *)sTimeSealSortName;
 
   return gCardNames[cardId];
 }
