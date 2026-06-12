@@ -3,7 +3,9 @@
 #include "ai_actions.h"
 #include "ai_decision.h"
 #include "configs/runtime.h"
+#include "debug_ruleset.h"
 #include "duel.h"
+#include "the_dark_door.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
 
@@ -307,6 +309,23 @@ static u8 AiDecision_ChooseActionFilter(
   return AI_ACTION_FILTER_NONE;
 }
 
+static void AiDecision_DisableBlockedAttackActions(struct AiDecisionContext *ctx)
+{
+  u16 i;
+
+  if (DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn())
+    return;
+
+  for (i = 0; i < ctx->actionCount; i++) {
+    struct AiDecodedAction decoded;
+
+    AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
+    if (decoded.category == AI_CATEGORY_ATTACK ||
+        decoded.category == AI_CATEGORY_DIRECT)
+      ctx->entries[i].priority = 0;
+  }
+}
+
 u16 AiDecision_PickAction(void) {
   struct AiDecisionContext ctx;
   u32 bestPriority;
@@ -314,6 +333,7 @@ u16 AiDecision_PickAction(void) {
   u8 filterArg;
 
   AiDecision_BuildContext(&ctx);
+  AiDecision_DisableBlockedAttackActions(&ctx);
 
   if (gRuntimeConfig.enable_smarter_ai != TRUE)
     return GetVanillaHighestPriorityAction(ctx.entries, ctx.actionCount);

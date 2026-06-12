@@ -14758,6 +14758,37 @@
       "big_art": "src_custom/assets/cards/80x80/thousand_energy.huff",
       "big_palette": "src_custom/assets/cards/80x80/thousand_energy.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/thousand_energy.lz"
+    },
+    {
+      "card_const": "THE_DARK_DOOR",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TheDarkDoor",
+        "pages": [
+          "A continuous spell that seals the battlefield.",
+          "Only one monster may attack each turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheDarkDoor",
+        "pages": [
+          "Only one monster may attack each turn."
+        ]
+      },
+      "card_name": "The Dark Door",
+      "password": [ 1, 2, 3, 7, 0, 9, 5, 5 ],
+      "big_art": "src_custom/assets/cards/80x80/the_dark_door.huff",
+      "big_palette": "src_custom/assets/cards/80x80/the_dark_door.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/the_dark_door.lz"
     }
   ]
 }

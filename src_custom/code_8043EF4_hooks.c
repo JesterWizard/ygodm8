@@ -24,11 +24,13 @@
 #include "delinquent_duo.h"
 #include "meteor_of_destruction.h"
 #include "toll.h"
+#include "the_dark_door.h"
 #include "kaiser_glider.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedTollZone(const struct DuelCard *zone);
+u8 IsActivatedTheDarkDoorZone(const struct DuelCard *zone);
 u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
 void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -235,6 +237,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
   if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
       || IsActivatedChainEnergyZone(zone)
       || IsActivatedTollZone(zone)
+      || IsActivatedTheDarkDoorZone(zone)
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
@@ -492,7 +495,7 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (!DebugRuleset_CanAttackThisTurn()) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
@@ -521,6 +524,7 @@ void sub_8044570__Replacement(void)
       TryApplyCatsEarTribeToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
+      TheDarkDoor_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
       TryUnlockHayabusaKnightForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
@@ -559,7 +563,7 @@ void TryAttackWithMonster__Replacement(void)
   } else if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id == CARD_NONE) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
-  } else if (!DebugRuleset_CanAttackThisTurn()) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
   } else {
@@ -583,6 +587,7 @@ void TryAttackWithMonster__Replacement(void)
       TryApplyCatsEarTribeToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
+      TheDarkDoor_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
       TryUnlockHayabusaKnightForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);

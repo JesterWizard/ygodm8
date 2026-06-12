@@ -36,6 +36,7 @@ extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
 extern void EffectThousandEnergy(void);
+extern void EffectTheDarkDoor(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -241,6 +242,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case THOUSAND_ENERGY:
       EffectThousandEnergy();
+      return;
+    case THE_DARK_DOOR:
+      EffectTheDarkDoor();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -304,6 +304,10 @@ static const unsigned char sThousandEnergyBigArt[] __attribute__((section(".appe
 static const unsigned short sThousandEnergyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thousand_energy.gbapal");
 static const unsigned char sThousandEnergyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thousand_energy.lz");
 
+static const unsigned char sTheDarkDoorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_dark_door.huff");
+static const unsigned short sTheDarkDoorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_dark_door.gbapal");
+static const unsigned char sTheDarkDoorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_dark_door.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -381,6 +385,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x036A] = sWarriorOfZeraBigArt,
   [0x036B] = sTimeSealBigArt,
   [0x036C] = sThousandEnergyBigArt,
+  [0x036D] = sTheDarkDoorBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -460,6 +465,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x036A] = sWarriorOfZeraBigPalette,
   [0x036B] = sTimeSealBigPalette,
   [0x036C] = sThousandEnergyBigPalette,
+  [0x036D] = sTheDarkDoorBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -539,6 +545,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x036A] = 0,
   [0x036B] = 0,
   [0x036C] = 0,
+  [0x036D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -618,4 +625,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x036A] = sWarriorOfZeraMiniArt,
   [0x036B] = sTimeSealMiniArt,
   [0x036C] = sThousandEnergyMiniArt,
+  [0x036D] = sTheDarkDoorMiniArt,
 };

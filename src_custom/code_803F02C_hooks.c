@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
 #include "debug_ruleset.h"
+#include "the_dark_door.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "thousand_energy.h"
@@ -307,6 +308,7 @@ void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   gDoubleSummonExtraSummonPending = FALSE;
   gDoubleSummonExtraSummonUsed = FALSE;
   DebugRuleset_ResetTurnAttack();
+  TheDarkDoor_ResetTurnAttack();
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);

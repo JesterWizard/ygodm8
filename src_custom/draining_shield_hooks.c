@@ -10,6 +10,7 @@
 #include "hayabusa_knight.h"
 #include "the_unhappy_maiden.h"
 #include "toll.h"
+#include "the_dark_door.h"
 
 struct AI_Command {
   u16 action;
@@ -141,6 +142,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   TryApplyCatsEarTribeToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
+  TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   sub_801BC00();

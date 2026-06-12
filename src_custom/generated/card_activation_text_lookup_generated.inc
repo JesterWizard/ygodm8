@@ -100,6 +100,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { WEATHER_REPORT, gActivationDescription_WeatherReport },
   { TIME_SEAL, gActivationDescription_TimeSeal },
   { THOUSAND_ENERGY, gActivationDescription_ThousandEnergy },
+  { THE_DARK_DOOR, gActivationDescription_TheDarkDoor },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

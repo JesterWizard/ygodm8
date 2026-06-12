@@ -9,6 +9,7 @@
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
 #include "toll.h"
+#include "the_dark_door.h"
 
 struct AI_Command {
   u16 action;
@@ -106,7 +107,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (!DebugRuleset_AllowDirectAttacks())
     return;
 
-  if (!DebugRuleset_CanAttackThisTurn())
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
     return;
 
   if (attacker->id == CARD_NONE)
@@ -126,6 +127,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryApplyCatsEarTribeToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
+  TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
 }
@@ -134,7 +136,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   u8 playerCol;
   u8 opponentCol;
 
-  if (!DebugRuleset_CanAttackThisTurn())
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
     return;
 
   if (attacker->id == CARD_NONE)
@@ -164,6 +166,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryApplyCatsEarTribeToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
+  TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
 }

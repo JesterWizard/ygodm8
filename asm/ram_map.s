@@ -209,6 +209,13 @@ _kernel_malloc_ewram gDebugRuleset, 1
 @ Duelist Kingdom: active duelist already attacked this turn.
 _kernel_malloc_ewram gDebugRulesetTurnAttackUsed, 1
 
+@ The Dark Door: active duelist already attacked this turn while it is on the field.
+_kernel_malloc_ewram gTheDarkDoorTurnAttackUsed, 1
+
+@ AI simulation: saved per-turn attack flags while vanilla AI save/restore runs.
+_kernel_malloc_ewram gAiSimSavedDebugRulesetTurnAttackUsed, 1
+_kernel_malloc_ewram gAiSimSavedTheDarkDoorTurnAttackUsed, 1
+
 @ Smarter AI duel-local memory (last action, board knowledge, attack order).
 _kernel_malloc gAiDuelMemory, 40
 
