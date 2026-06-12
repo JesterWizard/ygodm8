@@ -101,7 +101,7 @@ failing host test → implement → make test-host → manual smoke (when UX mat
 | `make update-goldens` | Regenerate committed golden files under `tests/goldens/` |
 | `make compare` | Optional ROM SHA-1 check for release snapshots (not in `make test`) |
 
-**Requirements:** Linux/WSL, `baserom.gba`, `agbcc`, and the normal build dependencies from [README.md](../README.md).
+**Requirements:** Linux, WSL, or Windows (devkitPro MSYS2), plus `baserom.gba`, `agbcc`, and the normal build dependencies from [README.md](../README.md).
 
 ## Manual Smoke Checklist
 
