@@ -14253,6 +14253,34 @@
       "password": [ 3, 7, 4, 8, 2, 1, 5, 9 ]
     },
     {
+      "card_const": "YATA_GARASU",
+      "atk": 200,
+      "def": 100,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 4,
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_YataGarasu",
+        "pages": [
+          "A demonic bird that curses foes it wounds into paralysis.",
+          "The opponent skips their next draw after battle damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_YataGarasu",
+        "pages": [
+          "The opponent cannot draw next turn after battle damage."
+        ]
+      },
+      "card_name": "Yata-Garasu",
+      "password": [ 5, 2, 4, 9, 0, 3, 1, 8 ]
+    },
+    {
       "card_const": "UPSTART_GOBLIN",
       "atk": 65535,
       "def": 65535,

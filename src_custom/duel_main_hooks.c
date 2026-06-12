@@ -9,6 +9,7 @@
 #include "guardian_treasure.h"
 #include "jar_of_greed.h"
 #include "ojama_trio.h"
+#include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
 
@@ -266,7 +267,13 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateOjamaTrioOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
-    if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
+    if (ShouldSkipDrawPhaseForYataGarasu(turn)) {
+      ConsumeYataGarasuSkipDraw(turn);
+      if (!gHideEffectText) {
+        gCardEffectTextData.cardId = YATA_GARASU;
+        ActivateCardEffectText();
+      }
+    } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)
         return TRUE;

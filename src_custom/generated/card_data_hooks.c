@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[860] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[861] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -872,9 +872,10 @@ const u8 gCardLockAfterActivation_Hook[860] APPEND_RODATA = {
   [0x0359] = 1,
   [0x035A] = 1,
   [0x035B] = 1,
+  [0x035C] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[860] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[861] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1735,9 +1736,10 @@ const u8 gCardEffectUsage_Hook[860] APPEND_RODATA = {
   [0x0359] = EFFECT_USAGE_NONE,
   [0x035A] = EFFECT_USAGE_NONE,
   [0x035B] = EFFECT_USAGE_NONE,
+  [0x035C] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[860] APPEND_RODATA = {
+const CardData gCardData_NEW[861] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13010,6 +13012,20 @@ const CardData gCardData_NEW[860] APPEND_RODATA = {
     .description = gDescription_SolarFlareDragon,
   },
   [0x035B] = {
+    .atk = 200,
+    .def = 100,
+    .cost = 150,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 4,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {5, 2, 4, 9, 0, 3, 1, 8},
+    .description = gDescription_YataGarasu,
+  },
+  [0x035C] = {
     .atk = 65535,
     .def = 65535,
     .cost = 150,

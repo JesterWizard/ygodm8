@@ -7,6 +7,7 @@
 #include "the_unhappy_maiden.h"
 #include "spear_dragon.h"
 #include "mad_sword_beast.h"
+#include "yata_garasu.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -138,6 +139,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     DeclareLoser(1);
 
   ApplyTheUnhappyMaidenBattleEffect();
+  ApplyYataGarasuBattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
     if (CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)

@@ -80,6 +80,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TOLL` | Toll | `toll.png` |
 | `RAIN_OF_MERCY` | Rain of Mercy | `rain_of_mercy.png` |
 | `SOLAR_FLARE_DRAGON` | Solar Flare Dragon | `solar_flare_dragon.png` |
+| `YATA_GARASU` | Yata Garasu | `yata_garasu.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -260,7 +261,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WHITE_MAGICIAN_PIKERU` — `white_magician_pikeru.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
-- [ ] `YATA-GARASU` — `yata-garasu.png`
 - [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
 
 ## Todo — in manifest, missing art

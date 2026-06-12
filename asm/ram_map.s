@@ -224,6 +224,8 @@ _kernel_malloc_ewram gDebugDeckSwapBackupValid, 1
 @ Active deck index while sub_80351F8 builds the vanilla 0x747 blob.
 _kernel_malloc_ewram gPlayerDeckSaveRestoreActiveDeck, 0x1
 
+@ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Yata Garasu, else 0xFF.
+_kernel_malloc_ewram gYataGarasuSkipDrawDuelist, 1
 @ Set when The Unhappy Maiden ends the active duelist's turn during battle.
 @ Allocated last so earlier EWRAM symbols (trunk/sort buffers) keep stable addresses.
 _kernel_malloc_ewram gForceActiveTurnEnd, 1
