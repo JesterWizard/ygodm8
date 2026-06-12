@@ -288,6 +288,10 @@ static const unsigned char sEbonMagicianCurranBigArt[] __attribute__((section(".
 static const unsigned short sEbonMagicianCurranBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ebon_magician_curran.gbapal");
 static const unsigned char sEbonMagicianCurranMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ebon_magician_curran.lz");
 
+static const unsigned char sWeatherReportBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/weather_report.huff");
+static const unsigned short sWeatherReportBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/weather_report.gbapal");
+static const unsigned char sWeatherReportMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/weather_report.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -361,6 +365,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0366] = sMoisterCreatureBigArt,
   [0x0367] = sWhiteMagicianPikeruBigArt,
   [0x0368] = sEbonMagicianCurranBigArt,
+  [0x0369] = sWeatherReportBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -436,6 +441,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0366] = sMoisterCreatureBigPalette,
   [0x0367] = sWhiteMagicianPikeruBigPalette,
   [0x0368] = sEbonMagicianCurranBigPalette,
+  [0x0369] = sWeatherReportBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -511,6 +517,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0366] = 0,
   [0x0367] = 0,
   [0x0368] = 0,
+  [0x0369] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -586,4 +593,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0366] = sMoisterCreatureMiniArt,
   [0x0367] = sWhiteMagicianPikeruMiniArt,
   [0x0368] = sEbonMagicianCurranMiniArt,
+  [0x0369] = sWeatherReportMiniArt,
 };

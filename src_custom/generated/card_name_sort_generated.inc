@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 72
+#define NUM_CUSTOM_NAME_SORT_CARDS 73
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -74,6 +74,7 @@ static const u8 sPiranhaArmySortName[] APPEND_RODATA = "Piranha Army";
 static const u8 sMoisterCreatureSortName[] APPEND_RODATA = "Moister Creature";
 static const u8 sWhiteMagicianPikeruSortName[] APPEND_RODATA = "White Magician Pikeru";
 static const u8 sEbonMagicianCurranSortName[] APPEND_RODATA = "Ebon Magician Curran";
+static const u8 sWeatherReportSortName[] APPEND_RODATA = "Weather Report";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -146,6 +147,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
   0x0332, // Wave Motion Cannon
+  0x0369, // Weather Report
   0x0367, // White Magician Pikeru
   0x035B, // Yata-Garasu
 };
@@ -221,8 +223,9 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   68, // United We Stand
   69, // Upstart Goblin
   70, // Wave Motion Cannon
-  71, // White Magician Pikeru
-  72, // Yata-Garasu
+  71, // Weather Report
+  72, // White Magician Pikeru
+  73, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -370,6 +373,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sWhiteMagicianPikeruSortName;
   if (cardId == 0x0368)
     return (u8 *)sEbonMagicianCurranSortName;
+  if (cardId == 0x0369)
+    return (u8 *)sWeatherReportSortName;
 
   return gCardNames[cardId];
 }

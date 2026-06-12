@@ -70,6 +70,7 @@ static const u8 sPiranhaArmyName[] __attribute__((section(".append_assets"))) = 
 static const u8 sMoisterCreatureName[] __attribute__((section(".append_assets"))) = "Moister Creature";
 static const u8 sWhiteMagicianPikeruName[] __attribute__((section(".append_assets"))) = "White Magician Pikeru";
 static const u8 sEbonMagicianCurranName[] __attribute__((section(".append_assets"))) = "Ebon Magician Curran";
+static const u8 sWeatherReportName[] __attribute__((section(".append_assets"))) = "Weather Report";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -216,6 +217,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sWhiteMagicianPikeruName;
   if (cardId == 0x0368)
     return (u8 *)sEbonMagicianCurranName;
+  if (cardId == 0x0369)
+    return (u8 *)sWeatherReportName;
 
   return gCardNames[cardId];
 }

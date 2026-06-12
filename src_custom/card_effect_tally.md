@@ -109,6 +109,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 | `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |
 | `permanent_effects` | `Moister Creature` | `src_custom/permanent_effects/moister_creature.c` |
+| `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

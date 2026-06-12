@@ -97,6 +97,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { MOISTER_CREATURE, gActivationDescription_MoistureCreature },
   { WHITE_MAGICIAN_PIKERU, gActivationDescription_WhiteMagicianPikeru },
   { EBON_MAGICIAN_CURRAN, gActivationDescription_EbonMagicianCurran },
+  { WEATHER_REPORT, gActivationDescription_WeatherReport },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -6,6 +6,7 @@
 #include "monster_effect_usage.h"
 #include "soul_exchange.h"
 #include "tribute.h"
+#include "weather_report.h"
 
 unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 
@@ -60,6 +61,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateCannonSoldier();
     case MONSTER_EFFECT_DES_KOALA:
       return CanActivateDesKoala();
+    case MONSTER_EFFECT_WEATHER_REPORT:
+      return CanActivateWeatherReport();
     default:
       return TRUE;
   }
@@ -161,6 +164,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_DES_KOALA) {
     ActivateDesKoalaEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_WEATHER_REPORT) {
+    ActivateWeatherReportEffect();
     return;
   }
 

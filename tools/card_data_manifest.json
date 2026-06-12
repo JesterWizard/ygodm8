@@ -14644,6 +14644,35 @@
       },
       "card_name": "Ebon Magician Curran",
       "password": [ 2, 2, 3, 1, 8, 8, 3, 7 ]
+    },
+    {
+      "card_const": "WEATHER_REPORT",
+      "atk": 950,
+      "def": 1400,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WATER",
+      "level": 4,
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_WEATHER_REPORT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_WeatherReport",
+        "pages": [
+          "A spirit of the storm that wipes out revealing light.",
+          "Activate this effect to destroy all Swords of",
+          "Revealing Light on your opponent's field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_WeatherReport",
+        "pages": [
+          "Destroy all Swords of\nRevealing Light on\nyour opponent's side\nof the field."
+        ]
+      },
+      "card_name": "Weather Report",
+      "password": [ 9, 4, 7, 1, 0, 3, 6, 2 ]
     }
   ]
 }
