@@ -44,6 +44,7 @@ extern void EffectTheForcefulSentry(void);
 extern void EffectLimiterRemoval(void);
 extern void EffectCardDestruction(void);
 extern void EffectDarkRoomOfNightmare(void);
+extern void EffectGracefulCharity(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -277,6 +278,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case DARK_ROOM_OF_NIGHTMARE:
       EffectDarkRoomOfNightmare();
+      return;
+    case GRACEFUL_CHARITY:
+      EffectGracefulCharity();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

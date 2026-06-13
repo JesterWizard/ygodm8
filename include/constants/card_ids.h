@@ -908,11 +908,12 @@
 #define CARD_DESTRUCTION                         0x0388
 #define DARK_ROOM_OF_NIGHTMARE                   0x0389
 #define DARK_DRICERATOPS                         0x038A
+#define GRACEFUL_CHARITY                         0x038B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x038B
-#define NUM_CUSTOM_CARDS                        0x006A
+#define NUM_TOTAL_CARDS                         0x038C
+#define NUM_CUSTOM_CARDS                        0x006B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `124` effects
+- `125` effects
 
 ## Tally
 
@@ -44,6 +44,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Limiter Removal` | `src_custom/spell_effects/limiter_removal.c` |
 | `spell_effects` | `Card Destruction` | `src_custom/spell_effects/card_destruction.c` |
 | `spell_effects` | `Dark Room Of Nightmare` | `src_custom/spell_effects/dark_room_of_nightmare.c` |
+| `spell_effects` | `Graceful Charity` | `src_custom/spell_effects/graceful_charity.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |

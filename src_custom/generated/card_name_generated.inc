@@ -104,6 +104,7 @@ static const u8 sCoffinSellerName[] __attribute__((section(".append_assets"))) =
 static const u8 sCardDestructionName[] __attribute__((section(".append_assets"))) = "Card Destruction";
 static const u8 sDarkRoomOfNightmareName[] __attribute__((section(".append_assets"))) = "Dark Room Of Nightmare";
 static const u8 sDarkDriceratopsName[] __attribute__((section(".append_assets"))) = "Dark Driceratops";
+static const u8 sGracefulCharityName[] __attribute__((section(".append_assets"))) = "Graceful Charity";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -318,6 +319,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkRoomOfNightmareName;
   if (cardId == 0x038A)
     return (u8 *)sDarkDriceratopsName;
+  if (cardId == 0x038B)
+    return (u8 *)sGracefulCharityName;
 
   return gCardNames[cardId];
 }

@@ -15609,6 +15609,34 @@
       },
       "card_name": "Dark Driceratops",
       "password": [ 6, 5, 2, 8, 7, 6, 2, 1 ]
+    },
+    {
+      "card_const": "GRACEFUL_CHARITY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GracefulCharity",
+        "pages": [
+          "A spell that trades hand cards for fresh draws.",
+          "Draw 3 cards, then discard 2 cards."
+        ]
+      },
+      "card_name": "Graceful Charity",
+      "password": [ 7, 9, 5, 7, 1, 4, 4, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_GracefulCharity",
+        "pages": [
+          "Draw 3 cards, then discard 2 cards."
+        ]
+      }
     }
   ]
 }
