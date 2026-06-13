@@ -15872,6 +15872,35 @@
       },
       "card_name": "Stealth Bird",
       "password": [ 0, 3, 5, 1, 0, 5, 6, 5 ]
+    },
+    {
+      "card_const": "NEEDLE_BURROWER",
+      "atk": 1700,
+      "def": 1700,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 5,
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_NeedleBurrower",
+        "pages": [
+          "A machine that burrows beneath the field.",
+          "When it destroys a monster by battle,",
+          "inflict 500LP per Level of the destroyed monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_NeedleBurrower",
+        "pages": [
+          "500LP damage for each Level of the destroyed monster."
+        ]
+      },
+      "card_name": "Needle Burrower",
+      "password": [ 9, 8, 1, 6, 2, 2, 4, 2 ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 115
+#define NUM_CUSTOM_NAME_SORT_CARDS 116
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -117,6 +117,7 @@ static const u8 sSoulTakerSortName[] APPEND_RODATA = "Soul Taker";
 static const u8 sSolarRaySortName[] APPEND_RODATA = "Solar Ray";
 static const u8 sSolemnWishesSortName[] APPEND_RODATA = "Solemn Wishes";
 static const u8 sStealthBirdSortName[] APPEND_RODATA = "Stealth Bird";
+static const u8 sNeedleBurrowerSortName[] APPEND_RODATA = "Needle Burrower";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -181,6 +182,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0366, // Moister Creature
   0x0350, // Mystical Shine Ball
   0x0336, // Mystical Space Typhoon
+  0x0394, // Needle Burrower
   0x035D, // Negate Attack
   0x0371, // Nightmare Horse
   0x0339, // Obnoxious Celtic Guardian
@@ -299,59 +301,60 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   60, // Moister Creature
   61, // Mystical Shine Ball
   62, // Mystical Space Typhoon
-  63, // Negate Attack
-  64, // Nightmare Horse
-  65, // Obnoxious Celtic Guardian
-  66, // Ojama Trio
-  67, // Paladin Of White Dragon
-  68, // Peten The Dark Clown
-  69, // Piranha Army
-  70, // Pyramid of Light
-  71, // Rain of Mercy
-  72, // Rare Metal Dragon
-  73, // Reckless Greed
-  74, // Reload
-  75, // Riryoku
-  76, // Robbin' Goblin
-  77, // Robbin' Zombie
-  78, // Sage's Stone
-  79, // Sasuke Samurai
-  80, // Seal of Orichalcos
-  81, // Secret Barrel
-  82, // Self-Destruct Button
-  83, // Shield And Sword
-  84, // Skill Drain
-  85, // Skull Invitation
-  86, // Solar Flare Dragon
-  87, // Solar Ray
-  88, // Solemn Wishes
-  89, // Sorcerer of Dark Magic
-  90, // Soul Exchange
-  91, // Soul Taker
-  92, // Spear Dragon
-  93, // Spell Canceller
-  94, // St Joan
-  95, // Stealth Bird
-  96, // Swift Gaia The Fierce Knight
-  97, // Terrorking Salmon
-  98, // The Agent Of Creation - Venus
-  99, // The Dark Door
-  100, // The Forceful Sentry
-  101, // Thousand Energy
-  102, // Thousand Knives
-  103, // Time Seal
-  104, // Toll
-  105, // Triangle Power
-  106, // Twin Swords of Flashing Light - Tryce
-  107, // Ultimate Offering
-  108, // United We Stand
-  109, // Upstart Goblin
-  110, // Vampire Baby
-  111, // Warrior of Zera
-  112, // Wave Motion Cannon
-  113, // Weather Report
-  114, // White Magician Pikeru
-  115, // Yata-Garasu
+  63, // Needle Burrower
+  64, // Negate Attack
+  65, // Nightmare Horse
+  66, // Obnoxious Celtic Guardian
+  67, // Ojama Trio
+  68, // Paladin Of White Dragon
+  69, // Peten The Dark Clown
+  70, // Piranha Army
+  71, // Pyramid of Light
+  72, // Rain of Mercy
+  73, // Rare Metal Dragon
+  74, // Reckless Greed
+  75, // Reload
+  76, // Riryoku
+  77, // Robbin' Goblin
+  78, // Robbin' Zombie
+  79, // Sage's Stone
+  80, // Sasuke Samurai
+  81, // Seal of Orichalcos
+  82, // Secret Barrel
+  83, // Self-Destruct Button
+  84, // Shield And Sword
+  85, // Skill Drain
+  86, // Skull Invitation
+  87, // Solar Flare Dragon
+  88, // Solar Ray
+  89, // Solemn Wishes
+  90, // Sorcerer of Dark Magic
+  91, // Soul Exchange
+  92, // Soul Taker
+  93, // Spear Dragon
+  94, // Spell Canceller
+  95, // St Joan
+  96, // Stealth Bird
+  97, // Swift Gaia The Fierce Knight
+  98, // Terrorking Salmon
+  99, // The Agent Of Creation - Venus
+  100, // The Dark Door
+  101, // The Forceful Sentry
+  102, // Thousand Energy
+  103, // Thousand Knives
+  104, // Time Seal
+  105, // Toll
+  106, // Triangle Power
+  107, // Twin Swords of Flashing Light - Tryce
+  108, // Ultimate Offering
+  109, // United We Stand
+  110, // Upstart Goblin
+  111, // Vampire Baby
+  112, // Warrior of Zera
+  113, // Wave Motion Cannon
+  114, // Weather Report
+  115, // White Magician Pikeru
+  116, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -585,6 +588,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSolemnWishesSortName;
   if (cardId == 0x0393)
     return (u8 *)sStealthBirdSortName;
+  if (cardId == 0x0394)
+    return (u8 *)sNeedleBurrowerSortName;
 
   return gCardNames[cardId];
 }

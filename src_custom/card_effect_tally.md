@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `132` effects
+- `133` effects
 
 ## Tally
 
@@ -144,6 +144,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `battle_effects` | `Guardian Angel Joan` | `src_custom/battle_effects/guardian_angel_joan.c` |
 | `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |
+| `battle_effects` | `Needle Burrower` | `src_custom/battle_effects/needle_burrower.c` |
 | `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |
 | `activated_effects` | `The Agent Of Creation - Venus` | `src_custom/activated_effects/the_agent_of_creation_venus.c` |
 | `activated_effects` | `Stealth Bird` | `src_custom/activated_effects/stealth_bird.c` |

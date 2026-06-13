@@ -39,6 +39,7 @@ void ResolveVampireBabyBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
+void ResolveNeedleBurrowerBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
@@ -276,6 +277,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
+  ResolveNeedleBurrowerBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();
   FinishGraveyardDrawBattleResolve();
