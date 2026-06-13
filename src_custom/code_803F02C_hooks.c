@@ -26,9 +26,37 @@
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
+#include "dark_room_of_nightmare.h"
 #include "sasuke_samurai.h"
 
 extern u8 gSuppressSkullInvitationDamage;
+
+#define FLAG_LOSER_PLAYER 4
+#define FLAG_LOSER_OPPONENT 16
+
+struct CheckLoserActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct CheckLoserActionData sActionData;
 
 u8 TryPayChainEnergyCost(void);
 u8 ShouldPayChainEnergyForHandToFieldCopy(const struct DuelCard *dst, const struct DuelCard *src);
@@ -65,6 +93,7 @@ void UpdateFilteredInput_WithRepeat(void);
 void DeclareLoser(unsigned char);
 void DestroyKarateManAtEndOfTurn(void);
 void DecrementSorlTurns(unsigned char);
+void CheckLoserFlags(void);
 
 extern u8 gDoubleSummonExtraSummonPending;
 extern u8 gDoubleSummonExtraSummonUsed;
@@ -186,6 +215,7 @@ void InitBoard__Replacement(void) {
   ClearGuardianAngelJoanPending();
   ClearAirknightParshathDrawPending();
   ClearCoffinSellerPending();
+  ClearDarkRoomPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
@@ -446,6 +476,22 @@ int GetFinalStage__Replacement(struct DuelCard *zone)
 
   gSetFinalStatZone = NULL;
   return (s8)stage;
+}
+
+LYN_REPLACE_CHECK(CheckLoserFlags);
+void CheckLoserFlags__Replacement(void)
+{
+  u8 actionId = sActionData.id;
+
+  if (sActionData.flags & FLAG_LOSER_PLAYER)
+    DeclareLoser(DUEL_PLAYER);
+  if (sActionData.flags & FLAG_LOSER_OPPONENT)
+    DeclareLoser(DUEL_OPPONENT);
+
+  if (actionId == 9 && sActionData.opponentCardAtkOrLifePointsMod > 0)
+    TryApplyDarkRoomAfterEffectDamage(DUEL_OPPONENT);
+  else if (actionId == 8 && sActionData.playerCardAtkOrLifePointsMod > 0)
+    TryApplyDarkRoomAfterEffectDamage(DUEL_PLAYER);
 }
 
 LYN_REPLACE_CHECK(UnlockCardsInRow);

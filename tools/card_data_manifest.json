@@ -15558,6 +15558,35 @@
           "Both players discard their\nhands and draw that many cards."
         ]
       }
+    },
+    {
+      "card_const": "DARK_ROOM_OF_NIGHTMARE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DarkRoomOfNightmare",
+        "pages": [
+          "A continuous spell that punishes effect damage.",
+          "Each time your opponent takes direct damage",
+          "from a card effect, they take 300 more LP damage."
+        ]
+      },
+      "card_name": "Dark Room Of Nightmare",
+      "password": [ 8, 5, 5, 6, 2, 7, 4, 5 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_DarkRoomOfNightmare",
+        "pages": [
+          "Deal 300 LP of additional damage."
+        ]
+      }
     }
   ]
 }

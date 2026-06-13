@@ -416,6 +416,10 @@ static const unsigned char sCardDestructionBigArt[] __attribute__((section(".app
 static const unsigned short sCardDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/card_destruction.gbapal");
 static const unsigned char sCardDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/card_destruction.lz");
 
+static const unsigned char sDarkRoomOfNightmareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_room_of_nightmare.huff");
+static const unsigned short sDarkRoomOfNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_room_of_nightmare.gbapal");
+static const unsigned char sDarkRoomOfNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_room_of_nightmare.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -521,6 +525,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0386] = sCurseOfDarknessBigArt,
   [0x0387] = sCoffinSellerBigArt,
   [0x0388] = sCardDestructionBigArt,
+  [0x0389] = sDarkRoomOfNightmareBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -628,6 +633,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0386] = sCurseOfDarknessBigPalette,
   [0x0387] = sCoffinSellerBigPalette,
   [0x0388] = sCardDestructionBigPalette,
+  [0x0389] = sDarkRoomOfNightmareBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -735,6 +741,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0386] = 0,
   [0x0387] = 0,
   [0x0388] = 0,
+  [0x0389] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -842,4 +849,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0386] = sCurseOfDarknessMiniArt,
   [0x0387] = sCoffinSellerMiniArt,
   [0x0388] = sCardDestructionMiniArt,
+  [0x0389] = sDarkRoomOfNightmareMiniArt,
 };

@@ -124,6 +124,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { CURSE_OF_DARKNESS, gActivationDescription_CurseOfDarkness },
   { COFFIN_SELLER, gActivationDescription_CoffinSeller },
   { CARD_DESTRUCTION, gActivationDescription_CardDestruction },
+  { DARK_ROOM_OF_NIGHTMARE, gActivationDescription_DarkRoomOfNightmare },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

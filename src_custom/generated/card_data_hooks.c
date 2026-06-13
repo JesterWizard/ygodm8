@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[905] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[906] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -917,9 +917,10 @@ const u8 gCardLockAfterActivation_Hook[905] APPEND_RODATA = {
   [0x0386] = 1,
   [0x0387] = 1,
   [0x0388] = 1,
+  [0x0389] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[905] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[906] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1825,9 +1826,10 @@ const u8 gCardEffectUsage_Hook[905] APPEND_RODATA = {
   [0x0386] = EFFECT_USAGE_NONE,
   [0x0387] = EFFECT_USAGE_NONE,
   [0x0388] = EFFECT_USAGE_NONE,
+  [0x0389] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[905] APPEND_RODATA = {
+const CardData gCardData_NEW[906] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13742,5 +13744,19 @@ const CardData gCardData_NEW[905] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 2, 8, 9, 2, 4, 7, 3},
     .description = gDescription_CardDestruction,
+  },
+  [0x0389] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 5, 5, 6, 2, 7, 4, 5},
+    .description = gDescription_DarkRoomOfNightmare,
   },
 };

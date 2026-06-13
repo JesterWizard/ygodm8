@@ -1,7 +1,15 @@
 #include "global.h"
 #include "common-chax.h"
+#include "dark_room_of_nightmare.h"
+#include "duel_main.h"
 
 extern unsigned char* gDuelTextStrings[];
+extern unsigned char g2021D98;
+extern u8 g3000C6C;
+extern void sub_8024548(void);
+extern void sub_8024354(void);
+extern void sub_8022080(void);
+extern void sub_801CF08(void);
 extern unsigned char* g8F9E35C[];
 extern unsigned char* g8FA0964[];
 extern unsigned short g89DC020[];
@@ -40,6 +48,26 @@ static void (*const sCardEffectTextHandlers[])(void) APPEND_RODATA = {
   ShowDestroyWithBackrowText,
   EmptyCardEffectText,
 };
+
+LYN_REPLACE_CHECK(ActivateCardEffectText);
+void ActivateCardEffectText__Replacement(void)
+{
+  struct DuelText duelText;
+
+  if (gDuelType == DUEL_TYPE_LINK) {
+    sub_80240BC(&duelText);
+    duelText.textId = DUEL_TEXT_LINKING;
+    sub_802408C(&duelText);
+    g2021D98 = 5;
+    sub_8024548();
+    do {
+      sub_8024354();
+    } while (g3000C6C);
+  }
+
+  sub_801CF08();
+  ResolveDarkRoomEffect();
+}
 
 LYN_REPLACE_CHECK(sub_801CF08);
 void sub_801CF08__Replacement(void)

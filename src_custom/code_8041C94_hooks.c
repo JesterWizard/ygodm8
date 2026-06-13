@@ -21,6 +21,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "guardian_angel_joan.h"
 #include "airknight_parshath.h"
 #include "coffin_seller.h"
+#include "dark_room_of_nightmare.h"
 
 void sub_8040B4C(void);
 void sub_80408FC(void);

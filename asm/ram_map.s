@@ -281,6 +281,9 @@ _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 @ Pending Coffin Seller 300LP hits deferred until battle UI closes.
 _kernel_malloc_ewram gPendingCoffinSellerDamageToPlayer, 1
 _kernel_malloc_ewram gPendingCoffinSellerDamageToOpponent, 1
+@ Dark Room of Nightmare deferred effect-damage trigger.
+_kernel_malloc_ewram gSuppressDarkRoomDamage, 1
+_kernel_malloc_ewram gPendingDarkRoomTarget, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

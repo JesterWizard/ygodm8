@@ -152,7 +152,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DARK_DRICERATOPS` — `dark_driceratops.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
-- [ ] `DARK_ROOM_OF_NIGHTMARE` — `dark_room_of_nightmare.png`
+- [x] `DARK_ROOM_OF_NIGHTMARE` — `dark_room_of_nightmare.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`

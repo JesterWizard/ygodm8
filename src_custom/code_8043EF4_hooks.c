@@ -37,6 +37,7 @@
 #include "gravity_bind.h"
 #include "curse_of_darkness.h"
 #include "coffin_seller.h"
+#include "dark_room_of_nightmare.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
@@ -46,6 +47,7 @@ u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedTollZone(const struct DuelCard *zone);
 u8 IsActivatedTheDarkDoorZone(const struct DuelCard *zone);
+u8 IsActivatedDarkRoomZone(const struct DuelCard *zone);
 u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
 void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -259,6 +261,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedChainEnergyZone(zone)
       || IsActivatedTollZone(zone)
       || IsActivatedTheDarkDoorZone(zone)
+      || IsActivatedDarkRoomZone(zone)
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
