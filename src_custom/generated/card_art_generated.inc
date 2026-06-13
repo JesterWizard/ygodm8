@@ -388,6 +388,10 @@ static const unsigned char sAirknightParshathBigArt[] __attribute__((section(".a
 static const unsigned short sAirknightParshathBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/airknight_parshath.gbapal");
 static const unsigned char sAirknightParshathMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/airknight_parshath.lz");
 
+static const unsigned char sAmphibiousBugrothMk3BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amphibious_bugroth_mk_3.huff");
+static const unsigned short sAmphibiousBugrothMk3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amphibious_bugroth_mk_3.gbapal");
+static const unsigned char sAmphibiousBugrothMk3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amphibious_bugroth_mk_3.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -486,6 +490,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x037F] = sGiftOfTheMysticalElfBigArt,
   [0x0380] = sRecklessGreedBigArt,
   [0x0381] = sAirknightParshathBigArt,
+  [0x0382] = sAmphibiousBugrothMk3BigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -586,6 +591,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x037F] = sGiftOfTheMysticalElfBigPalette,
   [0x0380] = sRecklessGreedBigPalette,
   [0x0381] = sAirknightParshathBigPalette,
+  [0x0382] = sAmphibiousBugrothMk3BigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -686,6 +692,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x037F] = 0,
   [0x0380] = 0,
   [0x0381] = 0,
+  [0x0382] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -786,4 +793,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x037F] = sGiftOfTheMysticalElfMiniArt,
   [0x0380] = sRecklessGreedMiniArt,
   [0x0381] = sAirknightParshathMiniArt,
+  [0x0382] = sAmphibiousBugrothMk3MiniArt,
 };

@@ -15352,6 +15352,35 @@
       },
       "card_name": "Airknight Parshath",
       "password": [ 1, 8, 0, 4, 5, 2, 3, 1 ]
+    },
+    {
+      "card_const": "AMPHIBIOUS_BUGROTH_MK_3",
+      "atk": 1500,
+      "def": 1300,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WATER",
+      "level": 4,
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_AmphibiousBugrothMk3",
+        "pages": [
+          "An amphibious machine of the deep seas.",
+          "While Umi is active, this card can attack your",
+          "opponent directly, even if they have monsters on the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AmphibiousBugrothMk3",
+        "pages": [
+          "While Umi is active, this card can attack your opponent directly."
+        ]
+      },
+      "card_name": "Amphibious Bugroth MK-3",
+      "password": [ 8, 0, 0, 2, 1, 0, 5, 5 ]
     }
   ]
 }

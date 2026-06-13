@@ -37,6 +37,7 @@
 #include "gravity_bind.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
+#include "amphibious_bugroth_mk_3.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -531,6 +532,8 @@ void sub_8044570__Replacement(void)
     UpdateDuelGfxExceptField();
   } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW
       || CanNightmareHorseAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanAmphibiousBugrothMk3AttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
