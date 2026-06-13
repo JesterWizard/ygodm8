@@ -15442,6 +15442,36 @@
       },
       "card_name": "The Agent Of Creation - Venus",
       "password": [ 9, 1, 1, 8, 8, 3, 4, 3 ]
+    },
+    {
+      "card_const": "BLASTING_THE_RUINS",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BlastingTheRuins",
+        "pages": [
+          "A trap that detonates when your deck runs low.",
+          "Activates when your opponent's turn begins.",
+          "If you have 10 or fewer cards left, deals 3000 LP damage."
+        ]
+      },
+      "card_name": "Blasting The Ruins",
+      "password": [ 2, 1, 4, 6, 6, 3, 2, 6 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_BlastingTheRuins",
+        "pages": [
+          "You have 10 or fewer cards in your deck.",
+          "Your opponent takes 3000 LP damage."
+        ]
+      }
     }
   ]
 }

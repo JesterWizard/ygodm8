@@ -120,6 +120,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { AMPHIBIOUS_BUGROTH_MK_3, gActivationDescription_AmphibiousBugrothMk3 },
   { BLACK_TYRANNO, gActivationDescription_BlackTyranno },
   { THE_AGENT_OF_CREATION_VENUS, gActivationDescription_TheAgentOfCreationVenus },
+  { BLASTING_THE_RUINS, gActivationDescription_BlastingTheRuins },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

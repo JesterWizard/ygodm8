@@ -19,6 +19,7 @@
 #include "reckless_greed.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
+#include "blasting_the_ruins.h"
 #include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
@@ -285,6 +286,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateRecklessGreedOnOpponentTurnStart();
     TryActivateSkullInvitationOnOpponentTurnStart();
     TryActivateSelfDestructButtonOnOpponentTurnStart();
+    TryActivateBlastingTheRuinsOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (ShouldSkipDrawPhaseForYataGarasu(turn)) {

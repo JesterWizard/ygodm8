@@ -902,11 +902,12 @@
 #define AMPHIBIOUS_BUGROTH_MK_3                  0x0382
 #define BLACK_TYRANNO                            0x0383
 #define THE_AGENT_OF_CREATION_VENUS              0x0384
+#define BLASTING_THE_RUINS                       0x0385
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0385
-#define NUM_CUSTOM_CARDS                        0x0064
+#define NUM_TOTAL_CARDS                         0x0386
+#define NUM_CUSTOM_CARDS                        0x0065
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

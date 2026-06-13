@@ -85,6 +85,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |
 | `trap_effects` | `Skull Invitation` | `src_custom/trap_effects/skull_invitation.c` |
 | `trap_effects` | `Self-Destruct Button` | `src_custom/trap_effects/self_destruct_button.c` |
+| `trap_effects` | `Blasting The Ruins` | `src_custom/trap_effects/blasting_the_ruins.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |

@@ -122,6 +122,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AMPHIBIOUS_BUGROTH_MK_3` | Amphibious Bugroth MK-3 | `amphibious_bugroth_mk_3.png` |
 | `BLACK_TYRANNO` | Black Tyranno | `black_tyranno.png` |
 | `THE_AGENT_OF_CREATION_VENUS` | The Agent Of Creation - Venus | `the_agent_of_creation_venus.png` |
+| `BLASTING_THE_RUINS` | Blasting The Ruins | `blasting_the_ruins.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -135,7 +136,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BIG_BANG_SHOT` — `big_bang_shot.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
-- [ ] `BLASTING_THE_RUINS` — `blasting_the_ruins.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
