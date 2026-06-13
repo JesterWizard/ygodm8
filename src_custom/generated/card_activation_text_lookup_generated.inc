@@ -117,6 +117,8 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GIFT_OF_THE_MYSTICAL_ELF, gActivationDescription_GiftOfTheMysticalElf },
   { RECKLESS_GREED, gActivationDescription_RecklessGreed },
   { AIRKNIGHT_PARSHATH, gActivationDescription_AirknightParshath },
+  { AMPHIBIOUS_BUGROTH_MK_3, gActivationDescription_AmphibiousBugrothMk3 },
+  { BLACK_TYRANNO, gActivationDescription_BlackTyranno },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

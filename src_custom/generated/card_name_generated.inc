@@ -96,6 +96,7 @@ static const u8 sGiftOfTheMysticalElfName[] __attribute__((section(".append_asse
 static const u8 sRecklessGreedName[] __attribute__((section(".append_assets"))) = "Reckless Greed";
 static const u8 sAirknightParshathName[] __attribute__((section(".append_assets"))) = "Airknight Parshath";
 static const u8 sAmphibiousBugrothMk3Name[] __attribute__((section(".append_assets"))) = "Amphibious Bugroth MK-3";
+static const u8 sBlackTyrannoName[] __attribute__((section(".append_assets"))) = "Black Tyranno";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -294,6 +295,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAirknightParshathName;
   if (cardId == 0x0382)
     return (u8 *)sAmphibiousBugrothMk3Name;
+  if (cardId == 0x0383)
+    return (u8 *)sBlackTyrannoName;
 
   return gCardNames[cardId];
 }

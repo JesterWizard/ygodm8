@@ -13,6 +13,7 @@
 #include "toll.h"
 #include "the_dark_door.h"
 #include "gravity_bind.h"
+#include "black_tyranno.h"
 
 struct AI_Command {
   u16 action;
@@ -126,6 +127,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   AiPrepareAttacker(attacker);
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+  TryShowBlackTyrannoDirectAttackText(attacker->id);
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();

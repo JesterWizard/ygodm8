@@ -38,6 +38,7 @@
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
+#include "black_tyranno.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -534,6 +535,8 @@ void sub_8044570__Replacement(void)
       || CanNightmareHorseAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanAmphibiousBugrothMk3AttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanBlackTyrannoAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
@@ -554,6 +557,8 @@ void sub_8044570__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+      TryShowBlackTyrannoDirectAttackText(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyCatsEarTribeToPendingAction();

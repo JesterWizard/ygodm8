@@ -15381,6 +15381,36 @@
       },
       "card_name": "Amphibious Bugroth MK-3",
       "password": [ 8, 0, 0, 2, 1, 0, 5, 5 ]
+    },
+    {
+      "card_const": "BLACK_TYRANNO",
+      "atk": 2600,
+      "def": 1800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 7,
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BlackTyranno",
+        "pages": [
+          "A ferocious dinosaur with black scales.",
+          "If only your opponent controls monsters and all",
+          "are in Defense Position, it can attack directly."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlackTyranno",
+        "pages": [
+          "All opponent monsters are in Defense Position.",
+          "This card can attack your opponent directly."
+        ]
+      },
+      "card_name": "Black Tyranno",
+      "password": [ 5, 8, 7, 1, 1, 6, 0, 0 ]
     }
   ]
 }

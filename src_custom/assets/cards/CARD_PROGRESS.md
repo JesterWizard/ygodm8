@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 90 |
-| Art ready, needs manifest | 146 |
+| In game (manifest + art) | 99 |
+| Art ready, needs manifest | 137 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -111,15 +111,22 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MERMAID_KNIGHT` | Mermaid Knight | `mermaid_knight.png` |
 | `MEFIST_THE_INFERNAL_GENERAL` | Mefist The Infernal General | `mefist_the_infernal_general.png` |
 | `GUARDIAN_ANGEL_JOAN` | Guardian Angel Joan | `guardian_angel_joan.png` |
-| `AIRKNIGHT_PARSHATH` | Airknight Parshath | `airknight_parshath.png` |
 | `PETEN_THE_DARK_CLOWN` | Peten The Dark Clown | `peten_the_dark_clown.png` |
+| `LIMITER_REMOVAL` | Limiter Removal | `limiter_removal.png` |
+| `JUST_DESERTS` | Just Deserts | `just_deserts.png` |
+| `GILASAURUS` | Gilasaurus | `gilasaurus.png` |
+| `GRAVITY_BIND` | Gravity Bind | `gravity_bind.png` |
+| `GIFT_OF_THE_MYSTICAL_ELF` | Gift Of The Mystical Elf | `gift_of_the_mystical_elf.png` |
+| `RECKLESS_GREED` | Reckless Greed | `reckless_greed.png` |
+| `AIRKNIGHT_PARSHATH` | Airknight Parshath | `airknight_parshath.png` |
+| `AMPHIBIOUS_BUGROTH_MK_3` | Amphibious Bugroth MK-3 | `amphibious_bugroth_mk_3.png` |
+| `BLACK_TYRANNO` | Black Tyranno | `black_tyranno.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
 - [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
-- [ ] `AMPHIBIOUS_BUGROTH_MK_3` — `amphibious_bugroth_mk_3.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
@@ -127,7 +134,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BIG_BANG_SHOT` — `big_bang_shot.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
-- [ ] `BLACK_TYRANNO` — `black_tyranno.png`
 - [ ] `BLASTING_THE_RUINS` — `blasting_the_ruins.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
@@ -161,16 +167,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [x] `GIFT_OF_THE_MYSTICAL_ELF` — `gift_of_the_mystical_elf.png`
-- [x] `GILASAURUS` — `gilasaurus.png`
 - [ ] `GRACEFUL_CHARITY` — `graceful_charity.png`
-- [x] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
-- [x] `JUST_DESERTS` — `just_deserts.png`
-- [x] `LIMITER_REMOVAL` — `limiter_removal.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
@@ -208,7 +209,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
-- [ ] `RECKLESS_GREED` — `reckless_greed.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
