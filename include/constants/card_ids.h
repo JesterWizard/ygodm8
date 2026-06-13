@@ -904,11 +904,12 @@
 #define THE_AGENT_OF_CREATION_VENUS              0x0384
 #define BLASTING_THE_RUINS                       0x0385
 #define CURSE_OF_DARKNESS                        0x0386
+#define CARD_DESTRUCTION                         0x0387
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0387
-#define NUM_CUSTOM_CARDS                        0x0066
+#define NUM_TOTAL_CARDS                         0x0388
+#define NUM_CUSTOM_CARDS                        0x0067
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

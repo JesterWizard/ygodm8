@@ -408,6 +408,10 @@ static const unsigned char sCurseOfDarknessBigArt[] __attribute__((section(".app
 static const unsigned short sCurseOfDarknessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/curse_of_darkness.gbapal");
 static const unsigned char sCurseOfDarknessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/curse_of_darkness.lz");
 
+static const unsigned char sCardDestructionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/card_destruction.huff");
+static const unsigned short sCardDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/card_destruction.gbapal");
+static const unsigned char sCardDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/card_destruction.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -511,6 +515,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0384] = sTheAgentOfCreationVenusBigArt,
   [0x0385] = sBlastingTheRuinsBigArt,
   [0x0386] = sCurseOfDarknessBigArt,
+  [0x0387] = sCardDestructionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -616,6 +621,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0384] = sTheAgentOfCreationVenusBigPalette,
   [0x0385] = sBlastingTheRuinsBigPalette,
   [0x0386] = sCurseOfDarknessBigPalette,
+  [0x0387] = sCardDestructionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -721,6 +727,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0384] = 0,
   [0x0385] = 0,
   [0x0386] = 0,
+  [0x0387] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -826,4 +833,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0384] = sTheAgentOfCreationVenusMiniArt,
   [0x0385] = sBlastingTheRuinsMiniArt,
   [0x0386] = sCurseOfDarknessMiniArt,
+  [0x0387] = sCardDestructionMiniArt,
 };

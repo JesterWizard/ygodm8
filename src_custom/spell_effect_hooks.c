@@ -41,6 +41,7 @@ extern void EffectThousandEnergy(void);
 extern void EffectTheDarkDoor(void);
 extern void EffectTheForcefulSentry(void);
 extern void EffectLimiterRemoval(void);
+extern void EffectCardDestruction(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -265,6 +266,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case LIMITER_REMOVAL:
       EffectLimiterRemoval();
+      return;
+    case CARD_DESTRUCTION:
+      EffectCardDestruction();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

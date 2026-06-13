@@ -122,6 +122,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THE_AGENT_OF_CREATION_VENUS, gActivationDescription_TheAgentOfCreationVenus },
   { BLASTING_THE_RUINS, gActivationDescription_BlastingTheRuins },
   { CURSE_OF_DARKNESS, gActivationDescription_CurseOfDarkness },
+  { CARD_DESTRUCTION, gActivationDescription_CardDestruction },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -140,7 +140,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
-- [ ] `CARD_DESTRUCTION` — `card_destruction.png`
+- [x] `CARD_DESTRUCTION` — `card_destruction.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `COFFIN_SELLER` — `coffin_seller.png`
