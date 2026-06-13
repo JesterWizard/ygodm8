@@ -110,6 +110,7 @@ static const u8 sTrianglePowerName[] __attribute__((section(".append_assets"))) 
 static const u8 sTwinSwordsOfFlashingLightTryceName[] __attribute__((section(".append_assets"))) = "Twin Swords of Flashing Light - Tryce";
 static const u8 sThousandKnivesName[] __attribute__((section(".append_assets"))) = "Thousand Knives";
 static const u8 sSoulTakerName[] __attribute__((section(".append_assets"))) = "Soul Taker";
+static const u8 sSolarRayName[] __attribute__((section(".append_assets"))) = "Solar Ray";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -336,6 +337,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sThousandKnivesName;
   if (cardId == 0x0390)
     return (u8 *)sSoulTakerName;
+  if (cardId == 0x0391)
+    return (u8 *)sSolarRayName;
 
   return gCardNames[cardId];
 }

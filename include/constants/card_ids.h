@@ -914,11 +914,12 @@
 #define TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE      0x038E
 #define THOUSAND_KNIVES                          0x038F
 #define SOUL_TAKER                               0x0390
+#define SOLAR_RAY                                0x0391
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0391
-#define NUM_CUSTOM_CARDS                        0x0070
+#define NUM_TOTAL_CARDS                         0x0392
+#define NUM_CUSTOM_CARDS                        0x0071
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -448,6 +448,10 @@ static const unsigned char sSoulTakerBigArt[] __attribute__((section(".append_as
 static const unsigned short sSoulTakerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/soul_taker.gbapal");
 static const unsigned char sSoulTakerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/soul_taker.lz");
 
+static const unsigned char sSolarRayBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/solar_ray.huff");
+static const unsigned short sSolarRayBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/solar_ray.gbapal");
+static const unsigned char sSolarRayMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/solar_ray.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -561,6 +565,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigArt,
   [0x038F] = sThousandKnivesBigArt,
   [0x0390] = sSoulTakerBigArt,
+  [0x0391] = sSolarRayBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -676,6 +681,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigPalette,
   [0x038F] = sThousandKnivesBigPalette,
   [0x0390] = sSoulTakerBigPalette,
+  [0x0391] = sSolarRayBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -791,6 +797,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x038E] = 0,
   [0x038F] = 0,
   [0x0390] = 0,
+  [0x0391] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -906,4 +913,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x038E] = sTwinSwordsOfFlashingLightTryceMiniArt,
   [0x038F] = sThousandKnivesMiniArt,
   [0x0390] = sSoulTakerMiniArt,
+  [0x0391] = sSolarRayMiniArt,
 };

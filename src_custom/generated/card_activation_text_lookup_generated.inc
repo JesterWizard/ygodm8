@@ -131,6 +131,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE, gActivationDescription_TwinSwordsOfFlashingLightTryce },
   { THOUSAND_KNIVES, gActivationDescription_ThousandKnives },
   { SOUL_TAKER, gActivationDescription_SoulTaker },
+  { SOLAR_RAY, gActivationDescription_SolarRay },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

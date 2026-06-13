@@ -124,6 +124,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_AGENT_OF_CREATION_VENUS` | The Agent Of Creation - Venus | `the_agent_of_creation_venus.png` |
 | `BLASTING_THE_RUINS` | Blasting The Ruins | `blasting_the_ruins.png` |
 | `CURSE_OF_DARKNESS` | Curse Of Darkness | `curse_of_darkness.png` |
+| `SOLAR_RAY` | Solar Ray | `solar_ray.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -228,7 +229,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SOLAR_RAY` — `solar_ray.png`
+- [x] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SOLEMN_WISHES` — `solemn_wishes.png`
 - [x] `SOUL_TAKER` — `soul_taker.png`

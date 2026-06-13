@@ -21,6 +21,7 @@
 #include "self_destruct_button.h"
 #include "blasting_the_ruins.h"
 #include "curse_of_darkness.h"
+#include "solar_ray.h"
 #include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
@@ -289,6 +290,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateSelfDestructButtonOnOpponentTurnStart();
     TryActivateBlastingTheRuinsOnOpponentTurnStart();
     TryActivateCurseOfDarknessOnOpponentTurnStart();
+    TryActivateSolarRayOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (ShouldSkipDrawPhaseForYataGarasu(turn)) {

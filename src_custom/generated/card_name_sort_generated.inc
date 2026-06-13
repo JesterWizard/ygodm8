@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 112
+#define NUM_CUSTOM_NAME_SORT_CARDS 113
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -114,6 +114,7 @@ static const u8 sTrianglePowerSortName[] APPEND_RODATA = "Triangle Power";
 static const u8 sTwinSwordsOfFlashingLightTryceSortName[] APPEND_RODATA = "Twin Swords of Flashing Light - Tryce";
 static const u8 sThousandKnivesSortName[] APPEND_RODATA = "Thousand Knives";
 static const u8 sSoulTakerSortName[] APPEND_RODATA = "Soul Taker";
+static const u8 sSolarRaySortName[] APPEND_RODATA = "Solar Ray";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -202,6 +203,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x034A, // Skill Drain
   0x0370, // Skull Invitation
   0x035A, // Solar Flare Dragon
+  0x0391, // Solar Ray
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
   0x0390, // Soul Taker
@@ -317,32 +319,33 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   84, // Skill Drain
   85, // Skull Invitation
   86, // Solar Flare Dragon
-  87, // Sorcerer of Dark Magic
-  88, // Soul Exchange
-  89, // Soul Taker
-  90, // Spear Dragon
-  91, // Spell Canceller
-  92, // St Joan
-  93, // Swift Gaia The Fierce Knight
-  94, // Terrorking Salmon
-  95, // The Agent Of Creation - Venus
-  96, // The Dark Door
-  97, // The Forceful Sentry
-  98, // Thousand Energy
-  99, // Thousand Knives
-  100, // Time Seal
-  101, // Toll
-  102, // Triangle Power
-  103, // Twin Swords of Flashing Light - Tryce
-  104, // Ultimate Offering
-  105, // United We Stand
-  106, // Upstart Goblin
-  107, // Vampire Baby
-  108, // Warrior of Zera
-  109, // Wave Motion Cannon
-  110, // Weather Report
-  111, // White Magician Pikeru
-  112, // Yata-Garasu
+  87, // Solar Ray
+  88, // Sorcerer of Dark Magic
+  89, // Soul Exchange
+  90, // Soul Taker
+  91, // Spear Dragon
+  92, // Spell Canceller
+  93, // St Joan
+  94, // Swift Gaia The Fierce Knight
+  95, // Terrorking Salmon
+  96, // The Agent Of Creation - Venus
+  97, // The Dark Door
+  98, // The Forceful Sentry
+  99, // Thousand Energy
+  100, // Thousand Knives
+  101, // Time Seal
+  102, // Toll
+  103, // Triangle Power
+  104, // Twin Swords of Flashing Light - Tryce
+  105, // Ultimate Offering
+  106, // United We Stand
+  107, // Upstart Goblin
+  108, // Vampire Baby
+  109, // Warrior of Zera
+  110, // Wave Motion Cannon
+  111, // Weather Report
+  112, // White Magician Pikeru
+  113, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -570,6 +573,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sThousandKnivesSortName;
   if (cardId == 0x0390)
     return (u8 *)sSoulTakerSortName;
+  if (cardId == 0x0391)
+    return (u8 *)sSolarRaySortName;
 
   return gCardNames[cardId];
 }
