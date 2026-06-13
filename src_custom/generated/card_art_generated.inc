@@ -404,6 +404,10 @@ static const unsigned char sBlastingTheRuinsBigArt[] __attribute__((section(".ap
 static const unsigned short sBlastingTheRuinsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blasting_the_ruins.gbapal");
 static const unsigned char sBlastingTheRuinsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blasting_the_ruins.lz");
 
+static const unsigned char sCurseOfDarknessBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/curse_of_darkness.huff");
+static const unsigned short sCurseOfDarknessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/curse_of_darkness.gbapal");
+static const unsigned char sCurseOfDarknessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/curse_of_darkness.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -506,6 +510,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0383] = sBlackTyrannoBigArt,
   [0x0384] = sTheAgentOfCreationVenusBigArt,
   [0x0385] = sBlastingTheRuinsBigArt,
+  [0x0386] = sCurseOfDarknessBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -610,6 +615,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0383] = sBlackTyrannoBigPalette,
   [0x0384] = sTheAgentOfCreationVenusBigPalette,
   [0x0385] = sBlastingTheRuinsBigPalette,
+  [0x0386] = sCurseOfDarknessBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -714,6 +720,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0383] = 0,
   [0x0384] = 0,
   [0x0385] = 0,
+  [0x0386] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -818,4 +825,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0383] = sBlackTyrannoMiniArt,
   [0x0384] = sTheAgentOfCreationVenusMiniArt,
   [0x0385] = sBlastingTheRuinsMiniArt,
+  [0x0386] = sCurseOfDarknessMiniArt,
 };

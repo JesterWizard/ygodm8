@@ -123,6 +123,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BLACK_TYRANNO` | Black Tyranno | `black_tyranno.png` |
 | `THE_AGENT_OF_CREATION_VENUS` | The Agent Of Creation - Venus | `the_agent_of_creation_venus.png` |
 | `BLASTING_THE_RUINS` | Blasting The Ruins | `blasting_the_ruins.png` |
+| `CURSE_OF_DARKNESS` | Curse Of Darkness | `curse_of_darkness.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -147,7 +148,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CREATURE_SWAP` — `creature_swap.png`
-- [ ] `CURSE_OF_DARKNESS` — `curse_of_darkness.png`
+- [x] `CURSE_OF_DARKNESS` — `curse_of_darkness.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DARK_DRICERATOPS` — `dark_driceratops.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`

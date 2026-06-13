@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "cost_down.h"
+#include "curse_of_darkness.h"
 #include "custom_field_spell.h"
 
 extern void (*const gSpellEffects[])(void);
@@ -148,6 +149,10 @@ void ActivateSpellEffect__Replacement(void)
     if (!TryResolveSpellActivationThroughTraps(gSpellEffectData.id))
       return;
   }
+
+  TryApplyCurseOfDarknessSpellDamage();
+  if (IsDuelOver() == TRUE)
+    return;
 
   if (TryActivateCustomFieldSpell(gSpellEffectData.id))
     return;

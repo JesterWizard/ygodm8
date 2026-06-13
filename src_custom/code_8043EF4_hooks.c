@@ -35,6 +35,7 @@
 #include "self_destruct_button.h"
 #include "the_dark_door.h"
 #include "gravity_bind.h"
+#include "curse_of_darkness.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
@@ -264,6 +265,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedFairyBoxZone(zone)
       || IsActivatedSkullInvitationZone(zone)
       || IsActivatedSelfDestructButtonZone(zone)
+      || IsActivatedCurseOfDarknessZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
