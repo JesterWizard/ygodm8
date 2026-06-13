@@ -109,6 +109,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { MERMAID_KNIGHT, gActivationDescription_MermaidKnight },
   { MEFIST_THE_INFERNAL_GENERAL, gActivationDescription_MefistTheInfernalGeneral },
   { GUARDIAN_ANGEL_JOAN, gActivationDescription_GuardianAngelJoan },
+  { PETEN_THE_DARK_CLOWN, gActivationDescription_PetenTheDarkClown },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

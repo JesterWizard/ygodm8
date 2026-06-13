@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 89
+#define NUM_CUSTOM_NAME_SORT_CARDS 90
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -91,6 +91,7 @@ static const u8 sMaryokutaiSortName[] APPEND_RODATA = "Maryokutai";
 static const u8 sMermaidKnightSortName[] APPEND_RODATA = "Mermaid Knight";
 static const u8 sMefistTheInfernalGeneralSortName[] APPEND_RODATA = "Mefist The Infernal General";
 static const u8 sGuardianAngelJoanSortName[] APPEND_RODATA = "Guardian Angel Joan";
+static const u8 sPetenTheDarkClownSortName[] APPEND_RODATA = "Peten The Dark Clown";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -144,6 +145,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
   0x0325, // Paladin Of White Dragon
+  0x037A, // Peten The Dark Clown
   0x0365, // Piranha Army
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
@@ -236,44 +238,45 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   49, // Obnoxious Celtic Guardian
   50, // Ojama Trio
   51, // Paladin Of White Dragon
-  52, // Piranha Army
-  53, // Pyramid of Light
-  54, // Rain of Mercy
-  55, // Rare Metal Dragon
-  56, // Reload
-  57, // Riryoku
-  58, // Robbin' Goblin
-  59, // Robbin' Zombie
-  60, // Sage's Stone
-  61, // Sasuke Samurai
-  62, // Seal of Orichalcos
-  63, // Secret Barrel
-  64, // Self-Destruct Button
-  65, // Shield And Sword
-  66, // Skill Drain
-  67, // Skull Invitation
-  68, // Solar Flare Dragon
-  69, // Sorcerer of Dark Magic
-  70, // Soul Exchange
-  71, // Spear Dragon
-  72, // Spell Canceller
-  73, // St Joan
-  74, // Swift Gaia The Fierce Knight
-  75, // Terrorking Salmon
-  76, // The Dark Door
-  77, // The Forceful Sentry
-  78, // Thousand Energy
-  79, // Time Seal
-  80, // Toll
-  81, // Ultimate Offering
-  82, // United We Stand
-  83, // Upstart Goblin
-  84, // Vampire Baby
-  85, // Warrior of Zera
-  86, // Wave Motion Cannon
-  87, // Weather Report
-  88, // White Magician Pikeru
-  89, // Yata-Garasu
+  52, // Peten The Dark Clown
+  53, // Piranha Army
+  54, // Pyramid of Light
+  55, // Rain of Mercy
+  56, // Rare Metal Dragon
+  57, // Reload
+  58, // Riryoku
+  59, // Robbin' Goblin
+  60, // Robbin' Zombie
+  61, // Sage's Stone
+  62, // Sasuke Samurai
+  63, // Seal of Orichalcos
+  64, // Secret Barrel
+  65, // Self-Destruct Button
+  66, // Shield And Sword
+  67, // Skill Drain
+  68, // Skull Invitation
+  69, // Solar Flare Dragon
+  70, // Sorcerer of Dark Magic
+  71, // Soul Exchange
+  72, // Spear Dragon
+  73, // Spell Canceller
+  74, // St Joan
+  75, // Swift Gaia The Fierce Knight
+  76, // Terrorking Salmon
+  77, // The Dark Door
+  78, // The Forceful Sentry
+  79, // Thousand Energy
+  80, // Time Seal
+  81, // Toll
+  82, // Ultimate Offering
+  83, // United We Stand
+  84, // Upstart Goblin
+  85, // Vampire Baby
+  86, // Warrior of Zera
+  87, // Wave Motion Cannon
+  88, // Weather Report
+  89, // White Magician Pikeru
+  90, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -455,6 +458,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMefistTheInfernalGeneralSortName;
   if (cardId == 0x0379)
     return (u8 *)sGuardianAngelJoanSortName;
+  if (cardId == 0x037A)
+    return (u8 *)sPetenTheDarkClownSortName;
 
   return gCardNames[cardId];
 }

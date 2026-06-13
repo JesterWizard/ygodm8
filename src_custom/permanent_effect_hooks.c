@@ -45,6 +45,8 @@ unsigned char ShouldActivateYamataDragon(void);
 void ActivateYamataDragon(void);
 unsigned char ShouldActivateMaraudingCaptain(void);
 void ActivateMaraudingCaptain(void);
+unsigned char ShouldActivatePetenTheDarkClown(void);
+void ActivatePetenTheDarkClown(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -114,6 +116,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MOISTER_CREATURE,
     .shouldActivate = ShouldActivateMoisterCreature,
     .activate = ActivateMoisterCreature,
+  },
+  {
+    .cardId = PETEN_THE_DARK_CLOWN,
+    .shouldActivate = ShouldActivatePetenTheDarkClown,
+    .activate = ActivatePetenTheDarkClown,
   },
 };
 

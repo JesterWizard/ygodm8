@@ -15114,6 +15114,35 @@
       },
       "card_name": "Guardian Angel Joan",
       "password": [ 1, 6, 0, 2, 3, 9, 2, 0 ]
+    },
+    {
+      "card_const": "PETEN_THE_DARK_CLOWN",
+      "atk": 500,
+      "def": 1200,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 4,
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_PetenTheDarkClown",
+        "pages": [
+          "A clown of darkness that multiplies without end.",
+          "When this card leaves the field, you can special",
+          "summon 1 'Peten the Dark Clown' from your hand or deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_PetenTheDarkClown",
+        "pages": [
+          "Special summon 1 'Peten the Dark Clown' from your hand or deck."
+        ]
+      },
+      "card_name": "Peten The Dark Clown",
+      "password": [ 5, 1, 5, 1, 3, 5, 8, 2 ]
     }
   ]
 }

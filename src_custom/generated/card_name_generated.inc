@@ -87,6 +87,7 @@ static const u8 sMaryokutaiName[] __attribute__((section(".append_assets"))) = "
 static const u8 sMermaidKnightName[] __attribute__((section(".append_assets"))) = "Mermaid Knight";
 static const u8 sMefistTheInfernalGeneralName[] __attribute__((section(".append_assets"))) = "Mefist The Infernal General";
 static const u8 sGuardianAngelJoanName[] __attribute__((section(".append_assets"))) = "Guardian Angel Joan";
+static const u8 sPetenTheDarkClownName[] __attribute__((section(".append_assets"))) = "Peten The Dark Clown";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -267,6 +268,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMefistTheInfernalGeneralName;
   if (cardId == 0x0379)
     return (u8 *)sGuardianAngelJoanName;
+  if (cardId == 0x037A)
+    return (u8 *)sPetenTheDarkClownName;
 
   return gCardNames[cardId];
 }

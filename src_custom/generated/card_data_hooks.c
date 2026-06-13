@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[890] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[891] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -902,9 +902,10 @@ const u8 gCardLockAfterActivation_Hook[890] APPEND_RODATA = {
   [0x0377] = 1,
   [0x0378] = 1,
   [0x0379] = 1,
+  [0x037A] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[890] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[891] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1795,9 +1796,10 @@ const u8 gCardEffectUsage_Hook[890] APPEND_RODATA = {
   [0x0377] = EFFECT_USAGE_NONE,
   [0x0378] = EFFECT_USAGE_NONE,
   [0x0379] = EFFECT_USAGE_NONE,
+  [0x037A] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[890] APPEND_RODATA = {
+const CardData gCardData_NEW[891] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13494,7 +13496,7 @@ const CardData gCardData_NEW[890] APPEND_RODATA = {
     .def = 2000,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 4,
+    .level = 8,
     .type = TYPE_FAIRY,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -13502,5 +13504,19 @@ const CardData gCardData_NEW[890] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {1, 6, 0, 2, 3, 9, 2, 0},
     .description = gDescription_GuardianAngelJoan,
+  },
+  [0x037A] = {
+    .atk = 500,
+    .def = 1200,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_SPELLCASTER,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {5, 1, 5, 1, 3, 5, 8, 2},
+    .description = gDescription_PetenTheDarkClown,
   },
 };

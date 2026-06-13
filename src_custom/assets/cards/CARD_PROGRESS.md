@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-12).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-13).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 81 |
-| Art ready, needs manifest | 155 |
+| In game (manifest + art) | 90 |
+| Art ready, needs manifest | 146 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -103,6 +103,15 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SELF_DESTRUCT_BUTTON` | Self-Destruct Button | `self_destruct_button.png` |
 | `SKULL_INVITATION` | Skull Invitation | `skull_invitation.png` |
 | `NIGHTMARE_HORSE` | Nightmare Horse | `nightmare_horse.png` |
+| `VAMPIRE_BABY` | Vampire Baby | `vampire_baby.png` |
+| `THE_FORCEFUL_SENTRY` | The Forceful Sentry | `the_forceful_sentry.png` |
+| `TERRORKING_SALMON` | Terrorking Salmon | `terrorking_salmon.png` |
+| `SASUKE_SAMURAI` | Sasuke Samurai | `sasuke_samurai.png` |
+| `MARYOKUTAI` | Maryokutai | `maryokutai.png` |
+| `MERMAID_KNIGHT` | Mermaid Knight | `mermaid_knight.png` |
+| `MEFIST_THE_INFERNAL_GENERAL` | Mefist The Infernal General | `mefist_the_infernal_general.png` |
+| `GUARDIAN_ANGEL_JOAN` | Guardian Angel Joan | `guardian_angel_joan.png` |
+| `PETEN_THE_DARK_CLOWN` | Peten The Dark Clown | `peten_the_dark_clown.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -158,7 +167,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
-- [x] `GUARDIAN_ANGEL_JOAN` — `guardian_angel_joan.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
 - [ ] `JUST_DESERTS` — `just_deserts.png`
@@ -169,13 +177,10 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
-- [ ] `MARYOKUTAI` — `maryokutai.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
 - [ ] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
-- [x] `MEFIST_THE_INFERNAL_GENERAL` — `mefist_the_infernal_general.png`
-- [x] `MERMAID_KNIGHT` — `mermaid_knight.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
@@ -196,7 +201,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
-- [ ] `PETIT_THE_DARK_CLOWN` — `petit_the_dark_clown.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
 - [ ] `PRECIOUS_CARDS_FROM_BEYOND` — `precious_cards_from_beyond.png`
@@ -213,7 +217,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
-- [x] `SASUKE_SAMURAI` — `sasuke_samurai.png`
 - [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
@@ -236,14 +239,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
-- [ ] `TERRORKING_SALMON` — `terrorking_salmon.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_CREATION_VENUS` — `the_agent_of_creation_venus.png`
 - [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
 - [ ] `THE_FLUTE_OF_SUMMONING_DRAGON` — `the_flute_of_summoning_dragon.png`
-- [ ] `THE_FORCEFUL_SENTRY` — `the_forceful_sentry.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
@@ -257,7 +258,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
 - [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `VAMPIRE_BABY` — `vampire_baby.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
