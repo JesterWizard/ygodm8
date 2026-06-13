@@ -25,11 +25,11 @@ void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
 void InitDeckData(void);
 unsigned short GetSelectedCardWithOffset(unsigned char);
-void AddCardToTrunk(unsigned short);
 void SyncCardOwnershipQty(u16);
 void SyncTrunkQtyFromOwnedTotal(u16);
 u8 TrunkMenu_GetTrunkQty(u16 cardId);
 void TrunkMenu_DecrementTrunkQty(u16 cardId);
+void TrunkMenu_IncrementTrunkQty(u16 cardId);
 void sub_801EF30(unsigned char);
 void sub_801F4A0(unsigned char);
 void sub_801F5F0(void);
@@ -145,7 +145,7 @@ static void MoveAllCardsToTrunk(void) {
     unsigned short cardId = gDeckMenu.cards[i];
 
     if (cardId != CARD_NONE) {
-      AddCardToTrunk(cardId);
+      TrunkMenu_IncrementTrunkQty(cardId);
       gDeckMenu.cards[i] = CARD_NONE;
       SyncCardOwnershipQty(cardId);
     }
@@ -165,7 +165,7 @@ static void MoveSelectedCardToTrunk(void) {
   }
 
   SetCardInfo(cardId);
-  AddCardToTrunk(cardId);
+  TrunkMenu_IncrementTrunkQty(cardId);
   RemoveCardFromDeckAtIndex(gDeckMenu.currentPos);
   SyncCardOwnershipQty(cardId);
 

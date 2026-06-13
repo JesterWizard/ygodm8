@@ -626,3 +626,10 @@ void TrunkMenu_DecrementTrunkQty(u16 cardId) {
   if (qty > 0)
     SetTrunkQtyForCard(cardId, qty - 1);
 }
+
+void TrunkMenu_IncrementTrunkQty(u16 cardId) {
+  if (GetTrunkQtyForCard(cardId) < TRUNK_CARD_LIMIT)
+    SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
+  else
+    SetTrunkQtyForCard(cardId, TRUNK_CARD_LIMIT);
+}

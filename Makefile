@@ -504,6 +504,7 @@ test-host: tools-rules
 	python3 tools/validate_duel_b_menu.py
 	python3 tools/validate_player_decks.py
 	python3 tools/validate_trunk_sort.py
+	python3 tools/validate_trunk_qty.py
 	python3 tools/validate_lynjump.py
 	python3 tools/validate_ups.py
 ifneq ($(strip $(EVENTS_C_SRCS)),)
