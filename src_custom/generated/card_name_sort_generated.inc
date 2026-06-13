@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 87
+#define NUM_CUSTOM_NAME_SORT_CARDS 88
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -89,6 +89,7 @@ static const u8 sTerrorkingSalmonSortName[] APPEND_RODATA = "Terrorking Salmon";
 static const u8 sSasukeSamuraiSortName[] APPEND_RODATA = "Sasuke Samurai";
 static const u8 sMaryokutaiSortName[] APPEND_RODATA = "Maryokutai";
 static const u8 sMermaidKnightSortName[] APPEND_RODATA = "Mermaid Knight";
+static const u8 sMefistTheInfernalGeneralSortName[] APPEND_RODATA = "Mefist The Infernal General";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -130,6 +131,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x035F, // Marauding Captain
   0x0376, // Maryokutai
   0x033A, // Mask of Restrict
+  0x0378, // Mefist The Infernal General
   0x0377, // Mermaid Knight
   0x0357, // Meteor of Destruction
   0x0366, // Moister Creature
@@ -220,54 +222,55 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   37, // Marauding Captain
   38, // Maryokutai
   39, // Mask of Restrict
-  40, // Mermaid Knight
-  41, // Meteor of Destruction
-  42, // Moister Creature
-  43, // Mystical Shine Ball
-  44, // Mystical Space Typhoon
-  45, // Negate Attack
-  46, // Nightmare Horse
-  47, // Obnoxious Celtic Guardian
-  48, // Ojama Trio
-  49, // Paladin Of White Dragon
-  50, // Piranha Army
-  51, // Pyramid of Light
-  52, // Rain of Mercy
-  53, // Rare Metal Dragon
-  54, // Reload
-  55, // Riryoku
-  56, // Robbin' Goblin
-  57, // Robbin' Zombie
-  58, // Sage's Stone
-  59, // Sasuke Samurai
-  60, // Seal of Orichalcos
-  61, // Secret Barrel
-  62, // Self-Destruct Button
-  63, // Shield And Sword
-  64, // Skill Drain
-  65, // Skull Invitation
-  66, // Solar Flare Dragon
-  67, // Sorcerer of Dark Magic
-  68, // Soul Exchange
-  69, // Spear Dragon
-  70, // Spell Canceller
-  71, // St Joan
-  72, // Swift Gaia The Fierce Knight
-  73, // Terrorking Salmon
-  74, // The Dark Door
-  75, // The Forceful Sentry
-  76, // Thousand Energy
-  77, // Time Seal
-  78, // Toll
-  79, // Ultimate Offering
-  80, // United We Stand
-  81, // Upstart Goblin
-  82, // Vampire Baby
-  83, // Warrior of Zera
-  84, // Wave Motion Cannon
-  85, // Weather Report
-  86, // White Magician Pikeru
-  87, // Yata-Garasu
+  40, // Mefist The Infernal General
+  41, // Mermaid Knight
+  42, // Meteor of Destruction
+  43, // Moister Creature
+  44, // Mystical Shine Ball
+  45, // Mystical Space Typhoon
+  46, // Negate Attack
+  47, // Nightmare Horse
+  48, // Obnoxious Celtic Guardian
+  49, // Ojama Trio
+  50, // Paladin Of White Dragon
+  51, // Piranha Army
+  52, // Pyramid of Light
+  53, // Rain of Mercy
+  54, // Rare Metal Dragon
+  55, // Reload
+  56, // Riryoku
+  57, // Robbin' Goblin
+  58, // Robbin' Zombie
+  59, // Sage's Stone
+  60, // Sasuke Samurai
+  61, // Seal of Orichalcos
+  62, // Secret Barrel
+  63, // Self-Destruct Button
+  64, // Shield And Sword
+  65, // Skill Drain
+  66, // Skull Invitation
+  67, // Solar Flare Dragon
+  68, // Sorcerer of Dark Magic
+  69, // Soul Exchange
+  70, // Spear Dragon
+  71, // Spell Canceller
+  72, // St Joan
+  73, // Swift Gaia The Fierce Knight
+  74, // Terrorking Salmon
+  75, // The Dark Door
+  76, // The Forceful Sentry
+  77, // Thousand Energy
+  78, // Time Seal
+  79, // Toll
+  80, // Ultimate Offering
+  81, // United We Stand
+  82, // Upstart Goblin
+  83, // Vampire Baby
+  84, // Warrior of Zera
+  85, // Wave Motion Cannon
+  86, // Weather Report
+  87, // White Magician Pikeru
+  88, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -445,6 +448,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMaryokutaiSortName;
   if (cardId == 0x0377)
     return (u8 *)sMermaidKnightSortName;
+  if (cardId == 0x0378)
+    return (u8 *)sMefistTheInfernalGeneralSortName;
 
   return gCardNames[cardId];
 }

@@ -261,6 +261,8 @@ _kernel_malloc_ewram gVampireBabyPendingController, 1
 _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 @ Card ID of the monster Vampire Baby destroyed in battle.
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
+@ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Mefist, else 0xFF.
+_kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

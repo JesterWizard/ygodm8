@@ -35,6 +35,7 @@ void SetAttackAction(s32, s32);
 void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
+void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
 static struct {
@@ -267,6 +268,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
+  ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   sub_8022080();
   FinishGraveyardDrawBattleResolve();
 }

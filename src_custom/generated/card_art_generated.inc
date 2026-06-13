@@ -348,6 +348,10 @@ static const unsigned char sMermaidKnightBigArt[] __attribute__((section(".appen
 static const unsigned short sMermaidKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mermaid_knight.gbapal");
 static const unsigned char sMermaidKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mermaid_knight.lz");
 
+static const unsigned char sMefistTheInfernalGeneralBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mefist_the_infernal_general.huff");
+static const unsigned short sMefistTheInfernalGeneralBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mefist_the_infernal_general.gbapal");
+static const unsigned char sMefistTheInfernalGeneralMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mefist_the_infernal_general.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -436,6 +440,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0375] = sSasukeSamuraiBigArt,
   [0x0376] = sMaryokutaiBigArt,
   [0x0377] = sMermaidKnightBigArt,
+  [0x0378] = sMefistTheInfernalGeneralBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -526,6 +531,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0375] = sSasukeSamuraiBigPalette,
   [0x0376] = sMaryokutaiBigPalette,
   [0x0377] = sMermaidKnightBigPalette,
+  [0x0378] = sMefistTheInfernalGeneralBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -616,6 +622,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0375] = 0,
   [0x0376] = 0,
   [0x0377] = 0,
+  [0x0378] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -706,4 +713,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0375] = sSasukeSamuraiMiniArt,
   [0x0376] = sMaryokutaiMiniArt,
   [0x0377] = sMermaidKnightMiniArt,
+  [0x0378] = sMefistTheInfernalGeneralMiniArt,
 };

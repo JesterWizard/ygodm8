@@ -15,6 +15,7 @@
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
+#include "mefist_the_infernal_general.h"
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
@@ -554,6 +555,7 @@ void sub_8044570__Replacement(void)
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
+      ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
@@ -624,6 +626,7 @@ void TryAttackWithMonster__Replacement(void)
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
+      ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {

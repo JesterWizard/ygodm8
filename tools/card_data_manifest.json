@@ -15056,6 +15056,35 @@
       },
       "card_name": "Mermaid Knight",
       "password": [ 8, 0, 0, 2, 1, 0, 5, 3 ]
+    },
+    {
+      "card_const": "MEFIST_THE_INFERNAL_GENERAL",
+      "atk": 1800,
+      "def": 1700,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 5,
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MefistTheInfernalGeneral",
+        "pages": [
+          "A demonic general who leads infernal legions into battle.",
+          "It inflicts piercing battle damage. When it inflicts",
+          "damage, your opponent discards 1 random card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MefistTheInfernalGeneral",
+        "pages": [
+          "Discard 1 random card from your opponent's hand."
+        ]
+      },
+      "card_name": "Mefist The Infernal General",
+      "password": [ 8, 0, 0, 2, 1, 0, 5, 4 ]
     }
   ]
 }

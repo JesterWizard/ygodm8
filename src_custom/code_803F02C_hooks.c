@@ -17,6 +17,7 @@
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
 #include "vampire_baby.h"
+#include "mefist_the_infernal_general.h"
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -174,6 +175,7 @@ void InitBoard__Replacement(void) {
   gGraveyardSendWasFromField = FALSE;
   ClearFamiliarKnightBattleDestroyPending();
   ClearVampireBabyPending();
+  ClearMefistDiscardPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
