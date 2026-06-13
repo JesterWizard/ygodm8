@@ -364,6 +364,10 @@ static const unsigned char sLimiterRemovalBigArt[] __attribute__((section(".appe
 static const unsigned short sLimiterRemovalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/limiter_removal.gbapal");
 static const unsigned char sLimiterRemovalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/limiter_removal.lz");
 
+static const unsigned char sJustDesertsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/just_deserts.huff");
+static const unsigned short sJustDesertsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/just_deserts.gbapal");
+static const unsigned char sJustDesertsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/just_deserts.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -456,6 +460,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0379] = sGuardianAngelJoanBigArt,
   [0x037A] = sPetenTheDarkClownBigArt,
   [0x037B] = sLimiterRemovalBigArt,
+  [0x037C] = sJustDesertsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -550,6 +555,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0379] = sGuardianAngelJoanBigPalette,
   [0x037A] = sPetenTheDarkClownBigPalette,
   [0x037B] = sLimiterRemovalBigPalette,
+  [0x037C] = sJustDesertsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -644,6 +650,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0379] = 0,
   [0x037A] = 0,
   [0x037B] = 0,
+  [0x037C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -738,4 +745,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0379] = sGuardianAngelJoanMiniArt,
   [0x037A] = sPetenTheDarkClownMiniArt,
   [0x037B] = sLimiterRemovalMiniArt,
+  [0x037C] = sJustDesertsMiniArt,
 };

@@ -13,6 +13,7 @@
 #include "call_of_the_haunted.h"
 #include "robbin_zombie.h"
 #include "secret_barrel.h"
+#include "just_deserts.h"
 #include "time_seal.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
@@ -276,6 +277,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateRobbinZombieOnOpponentTurnStart();
     TryActivateCallOfTheHauntedOnOpponentTurnStart();
     TryActivateSecretBarrelOnOpponentTurnStart();
+    TryActivateJustDesertsOnOpponentTurnStart();
     TryActivateTimeSealOnOpponentTurnStart();
     TryActivateSkullInvitationOnOpponentTurnStart();
     TryActivateSelfDestructButtonOnOpponentTurnStart();

@@ -111,6 +111,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GUARDIAN_ANGEL_JOAN, gActivationDescription_GuardianAngelJoan },
   { PETEN_THE_DARK_CLOWN, gActivationDescription_PetenTheDarkClown },
   { LIMITER_REMOVAL, gActivationDescription_LimiterRemoval },
+  { JUST_DESERTS, gActivationDescription_JustDeserts },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

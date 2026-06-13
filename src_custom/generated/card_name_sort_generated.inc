@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 91
+#define NUM_CUSTOM_NAME_SORT_CARDS 92
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -93,6 +93,7 @@ static const u8 sMefistTheInfernalGeneralSortName[] APPEND_RODATA = "Mefist The 
 static const u8 sGuardianAngelJoanSortName[] APPEND_RODATA = "Guardian Angel Joan";
 static const u8 sPetenTheDarkClownSortName[] APPEND_RODATA = "Peten The Dark Clown";
 static const u8 sLimiterRemovalSortName[] APPEND_RODATA = "Limiter Removal";
+static const u8 sJustDesertsSortName[] APPEND_RODATA = "Just Deserts";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -124,6 +125,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x034B, // Guardian Treasure
   0x0352, // Hayabusa Knight
   0x034C, // Jar of Greed
+  0x037C, // Just Deserts
   0x032F, // Kaibaman
   0x0364, // Kaiser Glider
   0x037B, // Limiter Removal
@@ -218,68 +220,69 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   27, // Guardian Treasure
   28, // Hayabusa Knight
   29, // Jar of Greed
-  30, // Kaibaman
-  31, // Kaiser Glider
-  32, // Limiter Removal
-  33, // Luster Dragon
-  34, // Mad Sword Beast
-  35, // Mage Power
-  36, // Magic Cylinder
-  37, // Magic Jammer
-  38, // Magician's Valkyria
-  39, // Marauding Captain
-  40, // Maryokutai
-  41, // Mask of Restrict
-  42, // Mefist The Infernal General
-  43, // Mermaid Knight
-  44, // Meteor of Destruction
-  45, // Moister Creature
-  46, // Mystical Shine Ball
-  47, // Mystical Space Typhoon
-  48, // Negate Attack
-  49, // Nightmare Horse
-  50, // Obnoxious Celtic Guardian
-  51, // Ojama Trio
-  52, // Paladin Of White Dragon
-  53, // Peten The Dark Clown
-  54, // Piranha Army
-  55, // Pyramid of Light
-  56, // Rain of Mercy
-  57, // Rare Metal Dragon
-  58, // Reload
-  59, // Riryoku
-  60, // Robbin' Goblin
-  61, // Robbin' Zombie
-  62, // Sage's Stone
-  63, // Sasuke Samurai
-  64, // Seal of Orichalcos
-  65, // Secret Barrel
-  66, // Self-Destruct Button
-  67, // Shield And Sword
-  68, // Skill Drain
-  69, // Skull Invitation
-  70, // Solar Flare Dragon
-  71, // Sorcerer of Dark Magic
-  72, // Soul Exchange
-  73, // Spear Dragon
-  74, // Spell Canceller
-  75, // St Joan
-  76, // Swift Gaia The Fierce Knight
-  77, // Terrorking Salmon
-  78, // The Dark Door
-  79, // The Forceful Sentry
-  80, // Thousand Energy
-  81, // Time Seal
-  82, // Toll
-  83, // Ultimate Offering
-  84, // United We Stand
-  85, // Upstart Goblin
-  86, // Vampire Baby
-  87, // Warrior of Zera
-  88, // Wave Motion Cannon
-  89, // Weather Report
-  90, // White Magician Pikeru
-  91, // Yata-Garasu
+  30, // Just Deserts
+  31, // Kaibaman
+  32, // Kaiser Glider
+  33, // Limiter Removal
+  34, // Luster Dragon
+  35, // Mad Sword Beast
+  36, // Mage Power
+  37, // Magic Cylinder
+  38, // Magic Jammer
+  39, // Magician's Valkyria
+  40, // Marauding Captain
+  41, // Maryokutai
+  42, // Mask of Restrict
+  43, // Mefist The Infernal General
+  44, // Mermaid Knight
+  45, // Meteor of Destruction
+  46, // Moister Creature
+  47, // Mystical Shine Ball
+  48, // Mystical Space Typhoon
+  49, // Negate Attack
+  50, // Nightmare Horse
+  51, // Obnoxious Celtic Guardian
+  52, // Ojama Trio
+  53, // Paladin Of White Dragon
+  54, // Peten The Dark Clown
+  55, // Piranha Army
+  56, // Pyramid of Light
+  57, // Rain of Mercy
+  58, // Rare Metal Dragon
+  59, // Reload
+  60, // Riryoku
+  61, // Robbin' Goblin
+  62, // Robbin' Zombie
+  63, // Sage's Stone
+  64, // Sasuke Samurai
+  65, // Seal of Orichalcos
+  66, // Secret Barrel
+  67, // Self-Destruct Button
+  68, // Shield And Sword
+  69, // Skill Drain
+  70, // Skull Invitation
+  71, // Solar Flare Dragon
+  72, // Sorcerer of Dark Magic
+  73, // Soul Exchange
+  74, // Spear Dragon
+  75, // Spell Canceller
+  76, // St Joan
+  77, // Swift Gaia The Fierce Knight
+  78, // Terrorking Salmon
+  79, // The Dark Door
+  80, // The Forceful Sentry
+  81, // Thousand Energy
+  82, // Time Seal
+  83, // Toll
+  84, // Ultimate Offering
+  85, // United We Stand
+  86, // Upstart Goblin
+  87, // Vampire Baby
+  88, // Warrior of Zera
+  89, // Wave Motion Cannon
+  90, // Weather Report
+  91, // White Magician Pikeru
+  92, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -465,6 +468,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sPetenTheDarkClownSortName;
   if (cardId == 0x037B)
     return (u8 *)sLimiterRemovalSortName;
+  if (cardId == 0x037C)
+    return (u8 *)sJustDesertsSortName;
 
   return gCardNames[cardId];
 }

@@ -15176,6 +15176,35 @@
       "big_art": "src_custom/assets/cards/80x80/limiter_removal.huff",
       "big_palette": "src_custom/assets/cards/80x80/limiter_removal.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/limiter_removal.lz"
+    },
+    {
+      "card_const": "JUST_DESERTS",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_JustDeserts",
+        "pages": [
+          "A trap that punishes your opponent's monsters.",
+          "Activates when your opponent's turn begins.",
+          "Deals 500 LP damage per monster on their field."
+        ]
+      },
+      "card_name": "Just Deserts",
+      "password": [ 5, 5, 4, 8, 5, 6, 3, 4 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_JustDeserts",
+        "pages": [
+          "The opponent is dealt 500 LP damage per monster on their side of the field."
+        ]
+      }
     }
   ]
 }
