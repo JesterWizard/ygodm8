@@ -31,5 +31,6 @@ u8 HasActiveDynamicEquips(void);
 u8 FieldHasActiveDynamicEquipSpellOnBoard(void);
 void RecalculateAllDynamicEquips(void);
 void NotifyDynamicEquipFieldChanged(void);
+u8 DynamicEquipTargetsMonsterWithSpell(const struct DuelCard *target, u16 spellId);
 
 #endif // GUARD_DYNAMIC_EQUIP_H

@@ -9,6 +9,7 @@
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
+#include "twin_swords_of_flashing_light_tryce.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "toll.h"
@@ -153,6 +154,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
+  TryUnlockTryceEquipForSecondAttack(attacker);
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();

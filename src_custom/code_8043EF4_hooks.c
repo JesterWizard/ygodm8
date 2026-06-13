@@ -26,6 +26,7 @@
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
+#include "twin_swords_of_flashing_light_tryce.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "delinquent_duo.h"
@@ -585,6 +586,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockMermaidKnightForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockTryceEquipForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -659,6 +662,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockHayabusaKnightForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockMermaidKnightForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockTryceEquipForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();

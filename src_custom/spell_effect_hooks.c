@@ -46,6 +46,7 @@ extern void EffectLimiterRemoval(void);
 extern void EffectCardDestruction(void);
 extern void EffectDarkRoomOfNightmare(void);
 extern void EffectGracefulCharity(void);
+extern void EffectTwinSwordsOfFlashingLightTryce(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -285,6 +286,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case GRACEFUL_CHARITY:
       EffectGracefulCharity();
+      return;
+    case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
+      EffectTwinSwordsOfFlashingLightTryce();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

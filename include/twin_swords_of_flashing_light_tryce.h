@@ -1,0 +1,6 @@
+#ifndef GUARD_TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE_H
+#define GUARD_TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE_H
+
+void TryUnlockTryceEquipForSecondAttack(struct DuelCard *attacker);
+
+#endif // GUARD_TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE_H

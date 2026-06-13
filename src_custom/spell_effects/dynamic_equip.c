@@ -106,6 +106,8 @@ static u8 CountStagesForSpell(u16 spellId, u8 duelist)
     count = CountDuelistSpellTrapBackrowCards(duelist);
   else if (spellId == UNITED_WE_STAND)
     count = CountDuelistMonsterRowCards(duelist);
+  else if (spellId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
+    count = 1;
   else
     return 0;
 
@@ -150,8 +152,12 @@ void RemoveDynamicEquipStages(struct DynamicEquipLink *link)
   if (targetZone == NULL || link->appliedStages == 0)
     return;
 
-  while (stages--)
-    DecrementPermStage(targetZone);
+  while (stages--) {
+    if (link->spellId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
+      IncrementPermStage(targetZone);
+    else
+      DecrementPermStage(targetZone);
+  }
 
   link->appliedStages = 0;
 }
@@ -303,7 +309,15 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
   if (delta == 0)
     return FALSE;
 
-  if (delta > 0) {
+  if (link->spellId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE) {
+    if (delta > 0) {
+      for (i = 0; i < delta; i++)
+        DecrementPermStage(targetZone);
+    } else {
+      for (i = 0; i < -delta; i++)
+        IncrementPermStage(targetZone);
+    }
+  } else if (delta > 0) {
     for (i = 0; i < delta; i++)
       IncrementPermStage(targetZone);
   } else {
@@ -386,10 +400,38 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
   switch (zone->id) {
     case MAGE_POWER:
     case UNITED_WE_STAND:
+    case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE;
     default:
       return FALSE;
   }
+}
+
+u8 DynamicEquipTargetsMonsterWithSpell(const struct DuelCard *target, u16 spellId)
+{
+  u8 row;
+  u8 col;
+  u8 i;
+
+  if (target == NULL || !GetFixedCoordsForZone(target, &row, &col))
+    return FALSE;
+
+  for (i = 0; i < MAX_DYNAMIC_EQUIP_SLOTS; i++) {
+    struct DynamicEquipLink *link = &gDynamicEquipLinks[i];
+    struct DuelCard *spellZone;
+
+    if (!link->active || link->spellId != spellId)
+      continue;
+
+    if (link->targetFixedRow != row || link->targetFixedCol != col)
+      continue;
+
+    spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
+    if (IsActiveDynamicEquipSpellZone(spellZone))
+      return TRUE;
+  }
+
+  return FALSE;
 }
 
 u8 FieldHasActiveDynamicEquipSpellOnBoard(void)

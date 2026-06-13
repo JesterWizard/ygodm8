@@ -9,6 +9,7 @@
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
+#include "twin_swords_of_flashing_light_tryce.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -137,6 +138,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
+  TryUnlockTryceEquipForSecondAttack(attacker);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -180,6 +182,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
+  TryUnlockTryceEquipForSecondAttack(attacker);
 }
 
 LYN_REPLACE_CHECK(sub_800E58C);

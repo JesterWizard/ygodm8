@@ -436,6 +436,10 @@ static const unsigned char sTrianglePowerBigArt[] __attribute__((section(".appen
 static const unsigned short sTrianglePowerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/triangle_power.gbapal");
 static const unsigned char sTrianglePowerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/triangle_power.lz");
 
+static const unsigned char sTwinSwordsOfFlashingLightTryceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/twin_swords_of_flashing_light_tryce.huff");
+static const unsigned short sTwinSwordsOfFlashingLightTryceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/twin_swords_of_flashing_light_tryce.gbapal");
+static const unsigned char sTwinSwordsOfFlashingLightTryceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/twin_swords_of_flashing_light_tryce.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -546,6 +550,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x038B] = sGracefulCharityBigArt,
   [0x038C] = sGreatMajuGarzettBigArt,
   [0x038D] = sTrianglePowerBigArt,
+  [0x038E] = sTwinSwordsOfFlashingLightTryceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -658,6 +663,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x038B] = sGracefulCharityBigPalette,
   [0x038C] = sGreatMajuGarzettBigPalette,
   [0x038D] = sTrianglePowerBigPalette,
+  [0x038E] = sTwinSwordsOfFlashingLightTryceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -770,6 +776,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x038B] = 0,
   [0x038C] = 0,
   [0x038D] = 0,
+  [0x038E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -882,4 +889,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x038B] = sGracefulCharityMiniArt,
   [0x038C] = sGreatMajuGarzettMiniArt,
   [0x038D] = sTrianglePowerMiniArt,
+  [0x038E] = sTwinSwordsOfFlashingLightTryceMiniArt,
 };

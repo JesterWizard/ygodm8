@@ -402,7 +402,8 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE)
     return SPELL_TYPE_NORMAL;
 
-  if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND)
+  if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
+      || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST

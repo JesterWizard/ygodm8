@@ -24,6 +24,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Soul Exchange` | `src_custom/spell_effects/soul_exchange.c` |
 | `spell_effects` | `Mage Power` | `src_custom/spell_effects/mage_power.c` |
 | `spell_effects` | `United We Stand` | `src_custom/spell_effects/united_we_stand.c` |
+| `spell_effects` | `Twin Swords of Flashing Light - Tryce` | `src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c` |
 | `spell_effects` | `Mystical Space Typhoon` | `src_custom/spell_effects/mystical_space_typhoon.c` |
 | `spell_effects` | `Double Summon` | `src_custom/spell_effects/double_summon.c` |
 | `spell_effects` | `Cost Down` | `src_custom/spell_effects/cost_down.c` |
@@ -115,6 +116,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Piranha Army` | `src_custom/battle_effects/piranha_army.c` |
 | `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
 | `card_passives` | `Mermaid Knight` | `src_custom/card_passives/mermaid_knight.c` |
+| `card_passives` | `Twin Swords of Flashing Light - Tryce` | `src_custom/card_passives/twin_swords_of_flashing_light_tryce.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |

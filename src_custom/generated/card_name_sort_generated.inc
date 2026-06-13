@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 109
+#define NUM_CUSTOM_NAME_SORT_CARDS 110
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -111,6 +111,7 @@ static const u8 sDarkDriceratopsSortName[] APPEND_RODATA = "Dark Driceratops";
 static const u8 sGracefulCharitySortName[] APPEND_RODATA = "Graceful Charity";
 static const u8 sGreatMajuGarzettSortName[] APPEND_RODATA = "Great Maju Garzett";
 static const u8 sTrianglePowerSortName[] APPEND_RODATA = "Triangle Power";
+static const u8 sTwinSwordsOfFlashingLightTryceSortName[] APPEND_RODATA = "Twin Swords of Flashing Light - Tryce";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -213,6 +214,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x036B, // Time Seal
   0x0358, // Toll
   0x038D, // Triangle Power
+  0x038E, // Twin Swords of Flashing Light - Tryce
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
@@ -325,15 +327,16 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   98, // Time Seal
   99, // Toll
   100, // Triangle Power
-  101, // Ultimate Offering
-  102, // United We Stand
-  103, // Upstart Goblin
-  104, // Vampire Baby
-  105, // Warrior of Zera
-  106, // Wave Motion Cannon
-  107, // Weather Report
-  108, // White Magician Pikeru
-  109, // Yata-Garasu
+  101, // Twin Swords of Flashing Light - Tryce
+  102, // Ultimate Offering
+  103, // United We Stand
+  104, // Upstart Goblin
+  105, // Vampire Baby
+  106, // Warrior of Zera
+  107, // Wave Motion Cannon
+  108, // Weather Report
+  109, // White Magician Pikeru
+  110, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -555,6 +558,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sGreatMajuGarzettSortName;
   if (cardId == 0x038D)
     return (u8 *)sTrianglePowerSortName;
+  if (cardId == 0x038E)
+    return (u8 *)sTwinSwordsOfFlashingLightTryceSortName;
 
   return gCardNames[cardId];
 }

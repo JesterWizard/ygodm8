@@ -15695,6 +15695,35 @@
           "All Level 1 monsters gain 4 stages. They will be destroyed during the End Phase."
         ]
       }
+    },
+    {
+      "card_const": "TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TwinSwordsOfFlashingLightTryce",
+        "pages": [
+          "Twin blades that trade power for blinding speed.",
+          "The equipped monster can attack twice each battle phase,",
+          "but its stats are reduced by 1 stage."
+        ]
+      },
+      "card_name": "Twin Swords of Flashing Light - Tryce",
+      "password": [ 5, 3, 8, 2, 8, 2, 1, 9 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_TwinSwordsOfFlashingLightTryce",
+        "pages": [
+          "The equipped monster can attack twice during each battle phase, but its stats are reduced by 1 stage."
+        ]
+      }
     }
   ]
 }
