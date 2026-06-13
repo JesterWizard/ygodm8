@@ -912,11 +912,12 @@
 #define GREAT_MAJU_GARZETT                       0x038C
 #define TRIANGLE_POWER                           0x038D
 #define TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE      0x038E
+#define THOUSAND_KNIVES                          0x038F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x038F
-#define NUM_CUSTOM_CARDS                        0x006E
+#define NUM_TOTAL_CARDS                         0x0390
+#define NUM_CUSTOM_CARDS                        0x006F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

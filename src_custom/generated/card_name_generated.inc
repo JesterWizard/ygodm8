@@ -108,6 +108,7 @@ static const u8 sGracefulCharityName[] __attribute__((section(".append_assets"))
 static const u8 sGreatMajuGarzettName[] __attribute__((section(".append_assets"))) = "Great Maju Garzett";
 static const u8 sTrianglePowerName[] __attribute__((section(".append_assets"))) = "Triangle Power";
 static const u8 sTwinSwordsOfFlashingLightTryceName[] __attribute__((section(".append_assets"))) = "Twin Swords of Flashing Light - Tryce";
+static const u8 sThousandKnivesName[] __attribute__((section(".append_assets"))) = "Thousand Knives";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -330,6 +331,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTrianglePowerName;
   if (cardId == 0x038E)
     return (u8 *)sTwinSwordsOfFlashingLightTryceName;
+  if (cardId == 0x038F)
+    return (u8 *)sThousandKnivesName;
 
   return gCardNames[cardId];
 }

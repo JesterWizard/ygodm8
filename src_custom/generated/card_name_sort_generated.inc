@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 110
+#define NUM_CUSTOM_NAME_SORT_CARDS 111
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -112,6 +112,7 @@ static const u8 sGracefulCharitySortName[] APPEND_RODATA = "Graceful Charity";
 static const u8 sGreatMajuGarzettSortName[] APPEND_RODATA = "Great Maju Garzett";
 static const u8 sTrianglePowerSortName[] APPEND_RODATA = "Triangle Power";
 static const u8 sTwinSwordsOfFlashingLightTryceSortName[] APPEND_RODATA = "Twin Swords of Flashing Light - Tryce";
+static const u8 sThousandKnivesSortName[] APPEND_RODATA = "Thousand Knives";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -211,6 +212,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x036D, // The Dark Door
   0x0373, // The Forceful Sentry
   0x036C, // Thousand Energy
+  0x038F, // Thousand Knives
   0x036B, // Time Seal
   0x0358, // Toll
   0x038D, // Triangle Power
@@ -324,19 +326,20 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   95, // The Dark Door
   96, // The Forceful Sentry
   97, // Thousand Energy
-  98, // Time Seal
-  99, // Toll
-  100, // Triangle Power
-  101, // Twin Swords of Flashing Light - Tryce
-  102, // Ultimate Offering
-  103, // United We Stand
-  104, // Upstart Goblin
-  105, // Vampire Baby
-  106, // Warrior of Zera
-  107, // Wave Motion Cannon
-  108, // Weather Report
-  109, // White Magician Pikeru
-  110, // Yata-Garasu
+  98, // Thousand Knives
+  99, // Time Seal
+  100, // Toll
+  101, // Triangle Power
+  102, // Twin Swords of Flashing Light - Tryce
+  103, // Ultimate Offering
+  104, // United We Stand
+  105, // Upstart Goblin
+  106, // Vampire Baby
+  107, // Warrior of Zera
+  108, // Wave Motion Cannon
+  109, // Weather Report
+  110, // White Magician Pikeru
+  111, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -560,6 +563,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTrianglePowerSortName;
   if (cardId == 0x038E)
     return (u8 *)sTwinSwordsOfFlashingLightTryceSortName;
+  if (cardId == 0x038F)
+    return (u8 *)sThousandKnivesSortName;
 
   return gCardNames[cardId];
 }

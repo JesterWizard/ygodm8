@@ -15724,6 +15724,38 @@
           "The equipped monster can attack twice during each battle phase, but its stats are reduced by 1 stage."
         ]
       }
+    },
+    {
+      "card_const": "THOUSAND_KNIVES",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_ThousandKnives",
+        "pages": [
+          "Unleashes the Dark Magician's blade arsenal.",
+          "If you control Dark Magician, destroy all",
+          "opponent Spells, Traps, and monsters."
+        ]
+      },
+      "card_name": "Thousand Knives",
+      "password": [ 4, 1, 4, 8, 2, 5, 3, 6 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_ThousandKnives",
+        "pages": [
+          "If you control Dark Magician, destroy all your opponent's Spells, Traps, and monsters."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/thousand_knives.huff",
+      "big_palette": "src_custom/assets/cards/80x80/thousand_knives.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/thousand_knives.lz"
     }
   ]
 }

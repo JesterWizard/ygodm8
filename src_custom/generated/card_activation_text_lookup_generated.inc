@@ -129,6 +129,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GREAT_MAJU_GARZETT, gActivationDescription_GreatMajuGarzett },
   { TRIANGLE_POWER, gActivationDescription_TrianglePower },
   { TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE, gActivationDescription_TwinSwordsOfFlashingLightTryce },
+  { THOUSAND_KNIVES, gActivationDescription_ThousandKnives },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

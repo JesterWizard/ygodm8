@@ -440,6 +440,10 @@ static const unsigned char sTwinSwordsOfFlashingLightTryceBigArt[] __attribute__
 static const unsigned short sTwinSwordsOfFlashingLightTryceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/twin_swords_of_flashing_light_tryce.gbapal");
 static const unsigned char sTwinSwordsOfFlashingLightTryceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/twin_swords_of_flashing_light_tryce.lz");
 
+static const unsigned char sThousandKnivesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/thousand_knives.huff");
+static const unsigned short sThousandKnivesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thousand_knives.gbapal");
+static const unsigned char sThousandKnivesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thousand_knives.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -551,6 +555,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x038C] = sGreatMajuGarzettBigArt,
   [0x038D] = sTrianglePowerBigArt,
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigArt,
+  [0x038F] = sThousandKnivesBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -664,6 +669,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x038C] = sGreatMajuGarzettBigPalette,
   [0x038D] = sTrianglePowerBigPalette,
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigPalette,
+  [0x038F] = sThousandKnivesBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -777,6 +783,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x038C] = 0,
   [0x038D] = 0,
   [0x038E] = 0,
+  [0x038F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -890,4 +897,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x038C] = sGreatMajuGarzettMiniArt,
   [0x038D] = sTrianglePowerMiniArt,
   [0x038E] = sTwinSwordsOfFlashingLightTryceMiniArt,
+  [0x038F] = sThousandKnivesMiniArt,
 };
