@@ -5,6 +5,7 @@
 #include "duel_status.h"
 #include "custom_decks/custom_decks.h"
 #include "generated/duelist_rewards_generated.inc"
+#include "generated/card_trunk_generated.inc"
 #include "card_shop.h"
 #include "text.h"
 
@@ -490,17 +491,74 @@ static void MergeShopDrop(u16 cardId, u8 qty, u16 *ids, u8 *qtys, u8 *count) {
   }
 }
 
+static u8 WasShopDropRolledThisWin(u16 cardId, const u16 *picked, u8 pickedCount) {
+  u8 i;
+
+  for (i = 0; i < pickedCount; i++) {
+    if (picked[i] == cardId)
+      return TRUE;
+  }
+  return FALSE;
+}
+
+LYN_REPLACE_CHECK(sub_8020050);
+u16 sub_8020050__Replacement(void) {
+  struct CardDrop *cardDrops = gDuelData.duelist.shopCards;
+  struct CardDrop *cursor;
+  u16 random;
+  u16 vanillaMaxChance;
+
+  if (cardDrops == NULL)
+    return CARD_NONE;
+
+  vanillaMaxChance = 0;
+  for (cursor = cardDrops; cursor->card != CARD_NONE; cursor++)
+    vanillaMaxChance = cursor->chance;
+
+  random = RandRangeU16(0, 29999);
+
+#if NUM_CUSTOM_TRUNK_CARDS > 0
+  // ponytail: carve custom picks from the vanilla success band so hit rate stays ~vanillaMaxChance/30000
+  if (gRuntimeConfig.enable_custom_cards_past_800 == TRUE && vanillaMaxChance != 0) {
+    u16 customThreshold = vanillaMaxChance / 4;
+
+    if (random < customThreshold)
+      return PickUniformRewardCard(gCustomTrunkCards, NUM_CUSTOM_TRUNK_CARDS);
+  }
+#endif
+
+  cursor = cardDrops;
+  while (cursor->card != CARD_NONE && random >= cursor->chance)
+    cursor++;
+
+  return cursor->card;
+}
+
 static void RunDuelShopDropLoop(u16 *ids, u8 *qtys, u8 *count) {
   unsigned i;
+  u16 picked[3];
+  u8 pickedCount = 0;
 
   *count = 0;
   for (i = 0; i < 3; i++) {
-    u16 cardId = sub_8020050();
+    u16 cardId = CARD_NONE;
+    u8 attempt;
     u8 qtyBefore;
     u8 qtyAdded;
 
+    for (attempt = 0; attempt < 8; attempt++) {
+      cardId = sub_8020050();
+      if (cardId == CARD_NONE)
+        break;
+      if (!WasShopDropRolledThisWin(cardId, picked, pickedCount))
+        break;
+    }
+
     if (cardId == CARD_NONE)
       continue;
+
+    if (pickedCount < ARRAY_COUNT(picked))
+      picked[pickedCount++] = cardId;
 
     qtyBefore = GetShopCardQty(cardId);
     AddCardQtyToShop2(cardId, 1);

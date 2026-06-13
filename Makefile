@@ -501,6 +501,7 @@ test-host: tools-rules
 	python3 tools/validate_opening_screen.py
 	python3 tools/validate_ram_map.py
 	python3 tools/validate_duel_popup_textbox.py
+	python3 tools/validate_duel_shop_drops.py
 	python3 tools/validate_duel_b_menu.py
 	python3 tools/validate_player_decks.py
 	python3 tools/validate_trunk_sort.py
