@@ -39,6 +39,7 @@ extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
 extern void EffectThousandEnergy(void);
+extern void EffectTrianglePower(void);
 extern void EffectTheDarkDoor(void);
 extern void EffectTheForcefulSentry(void);
 extern void EffectLimiterRemoval(void);
@@ -263,6 +264,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case THOUSAND_ENERGY:
       EffectThousandEnergy();
+      return;
+    case TRIANGLE_POWER:
+      EffectTrianglePower();
       return;
     case THE_DARK_DOOR:
       EffectTheDarkDoor();

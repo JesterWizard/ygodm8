@@ -6,6 +6,7 @@
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "thousand_energy.h"
+#include "triangle_power.h"
 #include "limiter_removal.h"
 #include "yata_garasu.h"
 #include "time_seal.h"
@@ -188,6 +189,7 @@ void InitBoard__Replacement(void) {
   ResetTimeSealSkipDraw();
   ResetRecklessGreedSkipDraw();
   ResetThousandEnergyState();
+  ResetTrianglePowerState();
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();
   ResetDynamicEquips();
@@ -234,6 +236,7 @@ void PlayerTurnMain__Replacement(void) {
       return;
     DestroyKarateManAtEndOfTurn();
     DestroyThousandEnergyMonstersAtEndOfTurn();
+    DestroyTrianglePowerMonstersAtEndOfTurn();
     DestroyLimiterRemovalMonstersAtEndOfTurn();
     ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
     UpdateDuelGfxExceptField();
@@ -322,6 +325,7 @@ void PlayerTurnMain__Replacement(void) {
 
   DestroyKarateManAtEndOfTurn();
   DestroyThousandEnergyMonstersAtEndOfTurn();
+  DestroyTrianglePowerMonstersAtEndOfTurn();
   DestroyLimiterRemovalMonstersAtEndOfTurn();
   ResolveDelayedDuelEffectsAtTurnEnd(DUEL_PLAYER);
   UpdateDuelGfxExceptField();

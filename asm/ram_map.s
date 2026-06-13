@@ -248,6 +248,9 @@ _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1
 @ Limiter Removal: same shape as Thousand Energy.
 _kernel_malloc_ewram gLimiterRemovalDestroyMask, 1
 _kernel_malloc_ewram gLimiterRemovalFixedMonsterRow, 1
+@ Triangle Power: column bitmasks for both monster rows, destroyed at end phase.
+_kernel_malloc_ewram gTrianglePowerDestroyMaskPlayer, 1
+_kernel_malloc_ewram gTrianglePowerDestroyMaskOpponent, 1
 @ Set when The Unhappy Maiden ends the active duelist's turn during battle.
 @ Allocated last so earlier EWRAM symbols (trunk/sort buffers) keep stable addresses.
 _kernel_malloc_ewram gForceActiveTurnEnd, 1

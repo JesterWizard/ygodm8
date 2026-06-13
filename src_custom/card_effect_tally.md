@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `126` effects
+- `127` effects
 
 ## Tally
 
@@ -39,6 +39,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Upstart Goblin` | `src_custom/spell_effects/upstart_goblin.c` |
 | `spell_effects` | `Reload` | `src_custom/spell_effects/reload.c` |
 | `spell_effects` | `Thousand Energy` | `src_custom/spell_effects/thousand_energy.c` |
+| `spell_effects` | `Triangle Power` | `src_custom/spell_effects/triangle_power.c` |
 | `spell_effects` | `The Dark Door` | `src_custom/spell_effects/the_dark_door.c` |
 | `spell_effects` | `The Forceful Sentry` | `src_custom/spell_effects/the_forceful_sentry.c` |
 | `spell_effects` | `Limiter Removal` | `src_custom/spell_effects/limiter_removal.c` |

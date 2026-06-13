@@ -432,6 +432,10 @@ static const unsigned char sGreatMajuGarzettBigArt[] __attribute__((section(".ap
 static const unsigned short sGreatMajuGarzettBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/great_maju_garzett.gbapal");
 static const unsigned char sGreatMajuGarzettMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/great_maju_garzett.lz");
 
+static const unsigned char sTrianglePowerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/triangle_power.huff");
+static const unsigned short sTrianglePowerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/triangle_power.gbapal");
+static const unsigned char sTrianglePowerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/triangle_power.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -541,6 +545,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x038A] = sDarkDriceratopsBigArt,
   [0x038B] = sGracefulCharityBigArt,
   [0x038C] = sGreatMajuGarzettBigArt,
+  [0x038D] = sTrianglePowerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -652,6 +657,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x038A] = sDarkDriceratopsBigPalette,
   [0x038B] = sGracefulCharityBigPalette,
   [0x038C] = sGreatMajuGarzettBigPalette,
+  [0x038D] = sTrianglePowerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -763,6 +769,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x038A] = 0,
   [0x038B] = 0,
   [0x038C] = 0,
+  [0x038D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -874,4 +881,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x038A] = sDarkDriceratopsMiniArt,
   [0x038B] = sGracefulCharityMiniArt,
   [0x038C] = sGreatMajuGarzettMiniArt,
+  [0x038D] = sTrianglePowerMiniArt,
 };

@@ -177,7 +177,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [ ] `MAJU_GARZETT` — `maju_garzett.png`
+- [x] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
@@ -189,7 +189,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
-- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
+- [x] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`

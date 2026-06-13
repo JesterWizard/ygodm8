@@ -910,11 +910,12 @@
 #define DARK_DRICERATOPS                         0x038A
 #define GRACEFUL_CHARITY                         0x038B
 #define GREAT_MAJU_GARZETT                       0x038C
+#define TRIANGLE_POWER                           0x038D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x038D
-#define NUM_CUSTOM_CARDS                        0x006C
+#define NUM_TOTAL_CARDS                         0x038E
+#define NUM_CUSTOM_CARDS                        0x006D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -15666,6 +15666,35 @@
       },
       "card_name": "Great Maju Garzett",
       "password": [ 0, 5, 3, 5, 7, 2, 6, 8 ]
+    },
+    {
+      "card_const": "TRIANGLE_POWER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TrianglePower",
+        "pages": [
+          "A spell that overloads weaker monsters with power.",
+          "All Level 1 monsters gain 4 stages.",
+          "Destroy them during the End Phase."
+        ]
+      },
+      "card_name": "Triangle Power",
+      "password": [ 3, 2, 2, 9, 8, 7, 8, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_TrianglePower",
+        "pages": [
+          "All Level 1 monsters gain 4 stages. They will be destroyed during the End Phase."
+        ]
+      }
     }
   ]
 }

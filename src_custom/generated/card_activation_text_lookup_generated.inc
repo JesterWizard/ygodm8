@@ -127,6 +127,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { DARK_ROOM_OF_NIGHTMARE, gActivationDescription_DarkRoomOfNightmare },
   { GRACEFUL_CHARITY, gActivationDescription_GracefulCharity },
   { GREAT_MAJU_GARZETT, gActivationDescription_GreatMajuGarzett },
+  { TRIANGLE_POWER, gActivationDescription_TrianglePower },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
