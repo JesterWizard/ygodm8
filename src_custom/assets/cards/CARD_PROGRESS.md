@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 99 |
-| Art ready, needs manifest | 137 |
+| In game (manifest + art) | 100 |
+| Art ready, needs manifest | 136 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -121,6 +121,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AIRKNIGHT_PARSHATH` | Airknight Parshath | `airknight_parshath.png` |
 | `AMPHIBIOUS_BUGROTH_MK_3` | Amphibious Bugroth MK-3 | `amphibious_bugroth_mk_3.png` |
 | `BLACK_TYRANNO` | Black Tyranno | `black_tyranno.png` |
+| `THE_AGENT_OF_CREATION_VENUS` | The Agent Of Creation - Venus | `the_agent_of_creation_venus.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -240,7 +241,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
-- [ ] `THE_AGENT_OF_CREATION_VENUS` — `the_agent_of_creation_venus.png`
 - [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`

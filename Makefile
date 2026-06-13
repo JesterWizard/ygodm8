@@ -480,7 +480,7 @@ endif
 memory-report: $(ELF)
 	python3 tools/memory_report.py $(ELF) --nm $(NM)
 
-clean-build:
+clean-build clean-quick:
 	rm -f $(ROM) $(UPS) $(ELF) $(MAP)
 	rm -rf $(BUILD_DIR)/
 
@@ -525,4 +525,4 @@ endif
 update-goldens:
 	UPDATE_GOLDENS=1 PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 
-.PHONY: all clean clean-build clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host update-goldens
+.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host update-goldens
