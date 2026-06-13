@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[897] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[898] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -909,9 +909,10 @@ const u8 gCardLockAfterActivation_Hook[897] APPEND_RODATA = {
   [0x037E] = 0,
   [0x037F] = 1,
   [0x0380] = 1,
+  [0x0381] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[897] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[898] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1809,9 +1810,10 @@ const u8 gCardEffectUsage_Hook[897] APPEND_RODATA = {
   [0x037E] = EFFECT_USAGE_NONE,
   [0x037F] = EFFECT_USAGE_NONE,
   [0x0380] = EFFECT_USAGE_NONE,
+  [0x0381] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[897] APPEND_RODATA = {
+const CardData gCardData_NEW[898] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13614,5 +13616,19 @@ const CardData gCardData_NEW[897] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {9, 8, 3, 0, 0, 1, 2, 0},
     .description = gDescription_RecklessGreed,
+  },
+  [0x0381] = {
+    .atk = 1900,
+    .def = 1400,
+    .cost = 150,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 4,
+    .type = TYPE_FAIRY,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {1, 8, 0, 4, 5, 2, 3, 1},
+    .description = gDescription_AirknightParshath,
   },
 };

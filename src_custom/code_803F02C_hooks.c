@@ -21,6 +21,7 @@
 #include "vampire_baby.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
+#include "airknight_parshath.h"
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -182,6 +183,7 @@ void InitBoard__Replacement(void) {
   ClearVampireBabyPending();
   ClearMefistDiscardPending();
   ClearGuardianAngelJoanPending();
+  ClearAirknightParshathDrawPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;

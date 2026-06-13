@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 96
+#define NUM_CUSTOM_NAME_SORT_CARDS 97
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -98,8 +98,10 @@ static const u8 sGilasaurusSortName[] APPEND_RODATA = "Gilasaurus";
 static const u8 sGravityBindSortName[] APPEND_RODATA = "Gravity Bind";
 static const u8 sGiftOfTheMysticalElfSortName[] APPEND_RODATA = "Gift Of The Mystical Elf";
 static const u8 sRecklessGreedSortName[] APPEND_RODATA = "Reckless Greed";
+static const u8 sAirknightParshathSortName[] APPEND_RODATA = "Airknight Parshath";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
+  0x0381, // Airknight Parshath
   0x033E, // Ancient Rules
   0x0354, // Block Attack
   0x033D, // Blue-Eyes Alternative White Dragon
@@ -199,102 +201,103 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
-  1, // Ancient Rules
-  2, // Block Attack
-  3, // Blue-Eyes Alternative White Dragon
-  4, // Blue-Eyes Chaos Max Dragon
-  5, // Blue-Eyes Shining Dragon
-  6, // Bowganian
-  7, // Call of the Haunted
-  8, // Card Of Demise
-  9, // Card Of Sanctity
-  10, // Cat's Ear Tribe
-  11, // Chain Energy
-  12, // Copycat
-  13, // Cost Down
-  14, // Cure Mermaid
-  15, // Dark Magic Curtain
-  16, // Deck Destruction Virus
-  17, // Delinquent Duo
-  18, // Des Koala
-  19, // Double Summon
-  20, // Draining Shield
-  21, // Ebon Magician Curran
-  22, // Exchange
-  23, // Fairy Box
-  24, // Familiar Knight
-  25, // Gift Of The Mystical Elf
-  26, // Gilasaurus
-  27, // Goblin Thief
-  28, // Gravity Bind
-  29, // Guardian Angel Joan
-  30, // Guardian Treasure
-  31, // Hayabusa Knight
-  32, // Jar of Greed
-  33, // Just Deserts
-  34, // Kaibaman
-  35, // Kaiser Glider
-  36, // Limiter Removal
-  37, // Luster Dragon
-  38, // Mad Sword Beast
-  39, // Mage Power
-  40, // Magic Cylinder
-  41, // Magic Jammer
-  42, // Magician's Valkyria
-  43, // Marauding Captain
-  44, // Maryokutai
-  45, // Mask of Restrict
-  46, // Mefist The Infernal General
-  47, // Mermaid Knight
-  48, // Meteor of Destruction
-  49, // Moister Creature
-  50, // Mystical Shine Ball
-  51, // Mystical Space Typhoon
-  52, // Negate Attack
-  53, // Nightmare Horse
-  54, // Obnoxious Celtic Guardian
-  55, // Ojama Trio
-  56, // Paladin Of White Dragon
-  57, // Peten The Dark Clown
-  58, // Piranha Army
-  59, // Pyramid of Light
-  60, // Rain of Mercy
-  61, // Rare Metal Dragon
-  62, // Reckless Greed
-  63, // Reload
-  64, // Riryoku
-  65, // Robbin' Goblin
-  66, // Robbin' Zombie
-  67, // Sage's Stone
-  68, // Sasuke Samurai
-  69, // Seal of Orichalcos
-  70, // Secret Barrel
-  71, // Self-Destruct Button
-  72, // Shield And Sword
-  73, // Skill Drain
-  74, // Skull Invitation
-  75, // Solar Flare Dragon
-  76, // Sorcerer of Dark Magic
-  77, // Soul Exchange
-  78, // Spear Dragon
-  79, // Spell Canceller
-  80, // St Joan
-  81, // Swift Gaia The Fierce Knight
-  82, // Terrorking Salmon
-  83, // The Dark Door
-  84, // The Forceful Sentry
-  85, // Thousand Energy
-  86, // Time Seal
-  87, // Toll
-  88, // Ultimate Offering
-  89, // United We Stand
-  90, // Upstart Goblin
-  91, // Vampire Baby
-  92, // Warrior of Zera
-  93, // Wave Motion Cannon
-  94, // Weather Report
-  95, // White Magician Pikeru
-  96, // Yata-Garasu
+  1, // Airknight Parshath
+  2, // Ancient Rules
+  3, // Block Attack
+  4, // Blue-Eyes Alternative White Dragon
+  5, // Blue-Eyes Chaos Max Dragon
+  6, // Blue-Eyes Shining Dragon
+  7, // Bowganian
+  8, // Call of the Haunted
+  9, // Card Of Demise
+  10, // Card Of Sanctity
+  11, // Cat's Ear Tribe
+  12, // Chain Energy
+  13, // Copycat
+  14, // Cost Down
+  15, // Cure Mermaid
+  16, // Dark Magic Curtain
+  17, // Deck Destruction Virus
+  18, // Delinquent Duo
+  19, // Des Koala
+  20, // Double Summon
+  21, // Draining Shield
+  22, // Ebon Magician Curran
+  23, // Exchange
+  24, // Fairy Box
+  25, // Familiar Knight
+  26, // Gift Of The Mystical Elf
+  27, // Gilasaurus
+  28, // Goblin Thief
+  29, // Gravity Bind
+  30, // Guardian Angel Joan
+  31, // Guardian Treasure
+  32, // Hayabusa Knight
+  33, // Jar of Greed
+  34, // Just Deserts
+  35, // Kaibaman
+  36, // Kaiser Glider
+  37, // Limiter Removal
+  38, // Luster Dragon
+  39, // Mad Sword Beast
+  40, // Mage Power
+  41, // Magic Cylinder
+  42, // Magic Jammer
+  43, // Magician's Valkyria
+  44, // Marauding Captain
+  45, // Maryokutai
+  46, // Mask of Restrict
+  47, // Mefist The Infernal General
+  48, // Mermaid Knight
+  49, // Meteor of Destruction
+  50, // Moister Creature
+  51, // Mystical Shine Ball
+  52, // Mystical Space Typhoon
+  53, // Negate Attack
+  54, // Nightmare Horse
+  55, // Obnoxious Celtic Guardian
+  56, // Ojama Trio
+  57, // Paladin Of White Dragon
+  58, // Peten The Dark Clown
+  59, // Piranha Army
+  60, // Pyramid of Light
+  61, // Rain of Mercy
+  62, // Rare Metal Dragon
+  63, // Reckless Greed
+  64, // Reload
+  65, // Riryoku
+  66, // Robbin' Goblin
+  67, // Robbin' Zombie
+  68, // Sage's Stone
+  69, // Sasuke Samurai
+  70, // Seal of Orichalcos
+  71, // Secret Barrel
+  72, // Self-Destruct Button
+  73, // Shield And Sword
+  74, // Skill Drain
+  75, // Skull Invitation
+  76, // Solar Flare Dragon
+  77, // Sorcerer of Dark Magic
+  78, // Soul Exchange
+  79, // Spear Dragon
+  80, // Spell Canceller
+  81, // St Joan
+  82, // Swift Gaia The Fierce Knight
+  83, // Terrorking Salmon
+  84, // The Dark Door
+  85, // The Forceful Sentry
+  86, // Thousand Energy
+  87, // Time Seal
+  88, // Toll
+  89, // Ultimate Offering
+  90, // United We Stand
+  91, // Upstart Goblin
+  92, // Vampire Baby
+  93, // Warrior of Zera
+  94, // Wave Motion Cannon
+  95, // Weather Report
+  96, // White Magician Pikeru
+  97, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -490,6 +493,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sGiftOfTheMysticalElfSortName;
   if (cardId == 0x0380)
     return (u8 *)sRecklessGreedSortName;
+  if (cardId == 0x0381)
+    return (u8 *)sAirknightParshathSortName;
 
   return gCardNames[cardId];
 }

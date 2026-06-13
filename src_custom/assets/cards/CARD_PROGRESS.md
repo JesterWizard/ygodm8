@@ -111,6 +111,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MERMAID_KNIGHT` | Mermaid Knight | `mermaid_knight.png` |
 | `MEFIST_THE_INFERNAL_GENERAL` | Mefist The Infernal General | `mefist_the_infernal_general.png` |
 | `GUARDIAN_ANGEL_JOAN` | Guardian Angel Joan | `guardian_angel_joan.png` |
+| `AIRKNIGHT_PARSHATH` | Airknight Parshath | `airknight_parshath.png` |
 | `PETEN_THE_DARK_CLOWN` | Peten The Dark Clown | `peten_the_dark_clown.png` |
 
 ## Todo — art ready, needs manifest
@@ -118,7 +119,6 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
 - [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
-- [ ] `AIRKNIGHT_PARSHAETH` — `airknight_parshaeth.png`
 - [ ] `AMPHIBIOUS_BUGROTH_MK_3` — `amphibious_bugroth_mk_3.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`

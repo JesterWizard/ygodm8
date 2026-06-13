@@ -15323,6 +15323,35 @@
           "Draw 2 cards, then skip your next 2 draw phases."
         ]
       }
+    },
+    {
+      "card_const": "AIRKNIGHT_PARSHATH",
+      "atk": 1900,
+      "def": 1400,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 4,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_AirknightParshath",
+        "pages": [
+          "A winged knight who descends from the heavens.",
+          "It inflicts piercing battle damage. When it inflicts",
+          "battle damage, its controller draws 1 card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AirknightParshath",
+        "pages": [
+          "Batte damage was inflicted, so draw 1 card."
+        ]
+      },
+      "card_name": "Airknight Parshath",
+      "password": [ 1, 8, 0, 4, 5, 2, 3, 1 ]
     }
   ]
 }

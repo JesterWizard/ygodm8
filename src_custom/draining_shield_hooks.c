@@ -36,6 +36,7 @@ void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
+void ResolveAirknightParshathDrawBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
 static struct {
@@ -157,6 +158,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveVampireBabyBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
+  ResolveAirknightParshathDrawBattleEffect();
   sub_8022080();
   FinishGraveyardDrawBattleResolve();
 }

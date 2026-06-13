@@ -384,6 +384,10 @@ static const unsigned char sRecklessGreedBigArt[] __attribute__((section(".appen
 static const unsigned short sRecklessGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reckless_greed.gbapal");
 static const unsigned char sRecklessGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reckless_greed.lz");
 
+static const unsigned char sAirknightParshathBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/airknight_parshath.huff");
+static const unsigned short sAirknightParshathBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/airknight_parshath.gbapal");
+static const unsigned char sAirknightParshathMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/airknight_parshath.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -481,6 +485,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x037E] = sGravityBindBigArt,
   [0x037F] = sGiftOfTheMysticalElfBigArt,
   [0x0380] = sRecklessGreedBigArt,
+  [0x0381] = sAirknightParshathBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -580,6 +585,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x037E] = sGravityBindBigPalette,
   [0x037F] = sGiftOfTheMysticalElfBigPalette,
   [0x0380] = sRecklessGreedBigPalette,
+  [0x0381] = sAirknightParshathBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -679,6 +685,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x037E] = 0,
   [0x037F] = 0,
   [0x0380] = 0,
+  [0x0381] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -778,4 +785,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x037E] = sGravityBindMiniArt,
   [0x037F] = sGiftOfTheMysticalElfMiniArt,
   [0x0380] = sRecklessGreedMiniArt,
+  [0x0381] = sAirknightParshathMiniArt,
 };

@@ -15,6 +15,7 @@
 #include "vampire_baby.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
+#include "airknight_parshath.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -133,6 +134,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplySpearDragonBattleEffect();
   ApplyMadSwordBeastBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
+  ApplyAirknightParshathPiercingBattleEffect();
 
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(
@@ -156,6 +158,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyRobbinGoblinBattleEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
+  ApplyAirknightParshathDrawBattleEffect();
   ApplyRobbinZombieBattleEffect();
   ApplyYataGarasuBattleEffect();
 

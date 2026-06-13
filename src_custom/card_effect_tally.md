@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `116` effects
+- `117` effects
 
 ## Tally
 
@@ -127,6 +127,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `battle_effects` | `Guardian Angel Joan` | `src_custom/battle_effects/guardian_angel_joan.c` |
+| `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |
 | `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|

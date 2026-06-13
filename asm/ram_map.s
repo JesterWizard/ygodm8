@@ -276,6 +276,8 @@ _kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
 _kernel_malloc_ewram gPendingGuardianAngelJoanPad, 1
 @ Original ATK of the monster Joan destroyed in battle.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
+@ DUEL_PLAYER/DUEL_OPPONENT draw pending for Airknight Parshath, else 0xFF.
+_kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------
