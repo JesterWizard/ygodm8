@@ -113,6 +113,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { LIMITER_REMOVAL, gActivationDescription_LimiterRemoval },
   { JUST_DESERTS, gActivationDescription_JustDeserts },
   { GILASAURUS, gActivationDescription_Gilasaurus },
+  { GRAVITY_BIND, gActivationDescription_GravityBind },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

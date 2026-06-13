@@ -4,6 +4,7 @@
 #include "embodiment_of_apophis.h"
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
+#include "gravity_bind.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -251,6 +252,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
           ret = TRUE;
         }
       }
+      break;
+    case TRAP_GRAVITY_BIND:
+      ret = GravityBind_ShouldActivateTrapOnAttack(
+          gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
+          gTrapEffectData.originCardId);
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_GRAVITY_BIND;
       break;
     default:
       ret = FALSE;

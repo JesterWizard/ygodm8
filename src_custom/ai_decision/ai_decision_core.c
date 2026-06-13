@@ -6,6 +6,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
+#include "gravity_bind.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
 
@@ -309,19 +310,34 @@ static u8 AiDecision_ChooseActionFilter(
   return AI_ACTION_FILTER_NONE;
 }
 
+static u8 AiDecision_ShouldDisableAttackAction(const struct AiDecodedAction *decoded)
+{
+  if (decoded->category == AI_CATEGORY_ATTACK ||
+      decoded->category == AI_CATEGORY_DIRECT)
+    return TRUE;
+
+  if (decoded->action == AI_ACTION_ATTACK_POSITION ||
+      decoded->action == AI_ACTION_PERM_CARD_ATTACK_POSITION)
+    return TRUE;
+
+  return FALSE;
+}
+
 static void AiDecision_DisableBlockedAttackActions(struct AiDecisionContext *ctx)
 {
   u16 i;
-
-  if (DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn())
-    return;
+  u8 globalAttackAllowed =
+      DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn();
 
   for (i = 0; i < ctx->actionCount; i++) {
     struct AiDecodedAction decoded;
 
     AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
-    if (decoded.category == AI_CATEGORY_ATTACK ||
-        decoded.category == AI_CATEGORY_DIRECT)
+    if (!AiDecision_ShouldDisableAttackAction(&decoded))
+      continue;
+
+    if (!globalAttackAllowed ||
+        !GravityBind_CanMonsterAttack(decoded.primaryCardId))
       ctx->entries[i].priority = 0;
   }
 }

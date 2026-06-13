@@ -3,6 +3,7 @@
 #include "draining_shield.h"
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
+#include "gravity_bind.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -170,6 +171,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     EffectCallOfTheHaunted();
     TryResumeInterruptedAttackAfterCallOfTheHaunted();
     CallOfTheHauntedShowActivationText();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_GRAVITY_BIND) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectGravityBind();
     return;
   }
 

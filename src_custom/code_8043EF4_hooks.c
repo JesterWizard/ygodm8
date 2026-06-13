@@ -33,6 +33,7 @@
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
 #include "the_dark_door.h"
+#include "gravity_bind.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
 
@@ -256,6 +257,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
+      || IsActivatedGravityBindZone(zone)
       || IsActivatedFairyBoxZone(zone)
       || IsActivatedSkullInvitationZone(zone)
       || IsActivatedSelfDestructButtonZone(zone)
@@ -520,7 +522,9 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || !GravityBind_CanMonsterAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
@@ -596,7 +600,9 @@ void TryAttackWithMonster__Replacement(void)
   } else if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id == CARD_NONE) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
-  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || !GravityBind_CanMonsterAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
   } else {

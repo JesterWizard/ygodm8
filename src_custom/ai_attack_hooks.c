@@ -12,6 +12,7 @@
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
+#include "gravity_bind.h"
 
 struct AI_Command {
   u16 action;
@@ -109,7 +110,8 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (!DebugRuleset_AllowDirectAttacks())
     return;
 
-  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || !GravityBind_CanMonsterAttack(attacker->id))
     return;
 
   if (attacker->id == CARD_NONE)
@@ -139,7 +141,8 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   u8 playerCol;
   u8 opponentCol;
 
-  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
+      || !GravityBind_CanMonsterAttack(attacker->id))
     return;
 
   if (attacker->id == CARD_NONE)

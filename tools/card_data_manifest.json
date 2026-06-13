@@ -15235,6 +15235,36 @@
       },
       "card_name": "Gilasaurus",
       "password": [ 4, 8, 9, 5, 7, 8, 6, 4 ]
+    },
+    {
+      "card_const": "GRAVITY_BIND",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 27,
+      "lock_after_activation": false,
+      "description": {
+        "symbol": "gDescription_GravityBind",
+        "pages": [
+          "A continuous trap that weighs down high-level monsters.",
+          "Activates when a level 4 or higher monster",
+          "declares an attack. They cannot attack while active."
+        ]
+      },
+      "card_name": "Gravity Bind",
+      "password": [ 8, 5, 7, 7, 1, 0, 0, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_GravityBind",
+        "pages": [
+          "Level 4 or higher monsters cannot attack while this trap is face up."
+        ]
+      }
     }
   ]
 }

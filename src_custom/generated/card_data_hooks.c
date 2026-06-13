@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[894] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[895] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -906,9 +906,10 @@ const u8 gCardLockAfterActivation_Hook[894] APPEND_RODATA = {
   [0x037B] = 1,
   [0x037C] = 1,
   [0x037D] = 1,
+  [0x037E] = 0,
 };
 
-const u8 gCardEffectUsage_Hook[894] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[895] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1803,9 +1804,10 @@ const u8 gCardEffectUsage_Hook[894] APPEND_RODATA = {
   [0x037B] = EFFECT_USAGE_NONE,
   [0x037C] = EFFECT_USAGE_NONE,
   [0x037D] = EFFECT_USAGE_NONE,
+  [0x037E] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[894] APPEND_RODATA = {
+const CardData gCardData_NEW[895] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13566,5 +13568,19 @@ const CardData gCardData_NEW[894] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {4, 8, 9, 5, 7, 8, 6, 4},
     .description = gDescription_Gilasaurus,
+  },
+  [0x037E] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_TRAP,
+    .color = TRAP_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 0,
+    .trapEffect = 27,
+    .password = {8, 5, 7, 7, 1, 0, 0, 1},
+    .description = gDescription_GravityBind,
   },
 };

@@ -164,7 +164,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GIFT_OF_THE_MYSTICAL_ELF` — `gift_of_the_mystical_elf.png`
 - [ ] `GILASAURUS` — `gilasaurus.png`
 - [ ] `GRACEFUL_CHARITY` — `graceful_charity.png`
-- [ ] `GRAVITY_BIND` — `gravity_bind.png`
+- [x] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`

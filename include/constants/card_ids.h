@@ -895,11 +895,12 @@
 #define LIMITER_REMOVAL                          0x037B
 #define JUST_DESERTS                             0x037C
 #define GILASAURUS                               0x037D
+#define GRAVITY_BIND                             0x037E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x037E
-#define NUM_CUSTOM_CARDS                        0x005D
+#define NUM_TOTAL_CARDS                         0x037F
+#define NUM_CUSTOM_CARDS                        0x005E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
