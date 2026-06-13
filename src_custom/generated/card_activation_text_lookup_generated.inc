@@ -122,6 +122,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THE_AGENT_OF_CREATION_VENUS, gActivationDescription_TheAgentOfCreationVenus },
   { BLASTING_THE_RUINS, gActivationDescription_BlastingTheRuins },
   { CURSE_OF_DARKNESS, gActivationDescription_CurseOfDarkness },
+  { COFFIN_SELLER, gActivationDescription_CoffinSeller },
   { CARD_DESTRUCTION, gActivationDescription_CardDestruction },
 };
 

@@ -278,6 +278,9 @@ _kernel_malloc_ewram gPendingGuardianAngelJoanPad, 1
 _kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
 @ DUEL_PLAYER/DUEL_OPPONENT draw pending for Airknight Parshath, else 0xFF.
 _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
+@ Pending Coffin Seller 300LP hits deferred until battle UI closes.
+_kernel_malloc_ewram gPendingCoffinSellerDamageToPlayer, 1
+_kernel_malloc_ewram gPendingCoffinSellerDamageToOpponent, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

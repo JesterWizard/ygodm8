@@ -15503,6 +15503,35 @@
       }
     },
     {
+      "card_const": "COFFIN_SELLER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_CoffinSeller",
+        "pages": [
+          "A continuous trap that punishes monster losses.",
+          "Flips up when an opponent monster is destroyed.",
+          "While face-up, monster losses deal 300LP damage."
+        ]
+      },
+      "card_name": "Coffin Seller",
+      "password": [ 9, 4, 8, 8, 6, 2, 6, 6 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_CoffinSeller",
+        "pages": [
+          "Each opponent monster leaving deals 300LP damage."
+        ]
+      }
+    },
+    {
       "card_const": "CARD_DESTRUCTION",
       "atk": 65535,
       "def": 65535,

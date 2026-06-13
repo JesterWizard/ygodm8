@@ -143,7 +143,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `CARD_DESTRUCTION` — `card_destruction.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
-- [ ] `COFFIN_SELLER` — `coffin_seller.png`
+- [x] `COFFIN_SELLER` — `coffin_seller.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`

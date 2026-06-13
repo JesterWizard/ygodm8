@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "coffin_seller.h"
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
@@ -50,4 +51,5 @@ void sub_800EE94__Replacement(void)
 
   gDebugRulesetTurnAttackUsed = gAiSimSavedDebugRulesetTurnAttackUsed;
   gTheDarkDoorTurnAttackUsed = gAiSimSavedTheDarkDoorTurnAttackUsed;
+  ClearCoffinSellerPending();
 }

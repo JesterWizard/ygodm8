@@ -36,6 +36,7 @@
 #include "the_dark_door.h"
 #include "gravity_bind.h"
 #include "curse_of_darkness.h"
+#include "coffin_seller.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
@@ -266,6 +267,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedSkullInvitationZone(zone)
       || IsActivatedSelfDestructButtonZone(zone)
       || IsActivatedCurseOfDarknessZone(zone)
+      || IsNonSelectableCoffinSellerZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
@@ -580,6 +582,7 @@ void sub_8044570__Replacement(void)
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
+      ResolveCoffinSellerBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
@@ -655,6 +658,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
+      ResolveCoffinSellerBattleEffect();
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {

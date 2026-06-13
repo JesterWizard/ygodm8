@@ -34,6 +34,7 @@ extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
 extern void EffectToll(void);
 extern void EffectSkullInvitation(void);
+extern void EffectCoffinSeller(void);
 extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
@@ -191,6 +192,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case SKULL_INVITATION:
       EffectSkullInvitation();
+      return;
+    case COFFIN_SELLER:
+      EffectCoffinSeller();
       return;
     case RAIN_OF_MERCY:
       EffectRainOfMercy();

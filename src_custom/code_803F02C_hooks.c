@@ -25,6 +25,7 @@
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
+#include "coffin_seller.h"
 #include "sasuke_samurai.h"
 
 extern u8 gSuppressSkullInvitationDamage;
@@ -184,6 +185,7 @@ void InitBoard__Replacement(void) {
   ClearMefistDiscardPending();
   ClearGuardianAngelJoanPending();
   ClearAirknightParshathDrawPending();
+  ClearCoffinSellerPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
@@ -360,6 +362,7 @@ void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
 LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
   TryApplySkullInvitationOnFieldLeave(zone);
+  TryApplyCoffinSellerOnFieldLeave(zone);
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);
@@ -386,6 +389,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
   RecalculateAllDynamicEquips();
+  if (gUnk2023EA0.unk18 == 0 && !gHideEffectText)
+    ResolveCoffinSellerBattleEffect();
 }
 
 LYN_REPLACE_CHECK(CopyCard);
