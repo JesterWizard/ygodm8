@@ -396,6 +396,10 @@ static const unsigned char sBlackTyrannoBigArt[] __attribute__((section(".append
 static const unsigned short sBlackTyrannoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/black_tyranno.gbapal");
 static const unsigned char sBlackTyrannoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/black_tyranno.lz");
 
+static const unsigned char sTheAgentOfCreationVenusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_agent_of_creation_venus.huff");
+static const unsigned short sTheAgentOfCreationVenusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_agent_of_creation_venus.gbapal");
+static const unsigned char sTheAgentOfCreationVenusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_agent_of_creation_venus.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -496,6 +500,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0381] = sAirknightParshathBigArt,
   [0x0382] = sAmphibiousBugrothMk3BigArt,
   [0x0383] = sBlackTyrannoBigArt,
+  [0x0384] = sTheAgentOfCreationVenusBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -598,6 +603,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0381] = sAirknightParshathBigPalette,
   [0x0382] = sAmphibiousBugrothMk3BigPalette,
   [0x0383] = sBlackTyrannoBigPalette,
+  [0x0384] = sTheAgentOfCreationVenusBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -700,6 +706,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0381] = 0,
   [0x0382] = 0,
   [0x0383] = 0,
+  [0x0384] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -802,4 +809,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0381] = sAirknightParshathMiniArt,
   [0x0382] = sAmphibiousBugrothMk3MiniArt,
   [0x0383] = sBlackTyrannoMiniArt,
+  [0x0384] = sTheAgentOfCreationVenusMiniArt,
 };

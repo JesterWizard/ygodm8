@@ -15411,6 +15411,37 @@
       },
       "card_name": "Black Tyranno",
       "password": [ 5, 8, 7, 1, 1, 6, 0, 0 ]
+    },
+    {
+      "card_const": "THE_AGENT_OF_CREATION_VENUS",
+      "atk": 1600,
+      "def": 0,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 3,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "effect_usage": "multiple_per_turn",
+      "lock_after_activation": false,
+      "description": {
+        "symbol": "gDescription_TheAgentOfCreationVenus",
+        "pages": [
+          "A fairy agent who creates light from within the deck.",
+          "Pay 500 Life Points to special summon 1",
+          "'Mystical Shine Ball' from your deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheAgentOfCreationVenus",
+        "pages": [
+          "Pay 500 Life Points to special summon 1 'Mystical Shine Ball' from your deck."
+        ]
+      },
+      "card_name": "The Agent Of Creation - Venus",
+      "password": [ 9, 1, 1, 8, 8, 3, 4, 3 ]
     }
   ]
 }

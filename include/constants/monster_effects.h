@@ -118,6 +118,7 @@ enum {
   MONSTER_EFFECT_CANNON_SOLDIER,
   MONSTER_EFFECT_DES_KOALA,
   MONSTER_EFFECT_WEATHER_REPORT,
+  MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -142,3 +143,5 @@ extern unsigned char CanActivateDesKoala(void);
 extern void ActivateDesKoalaEffect(void);
 extern unsigned char CanActivateWeatherReport(void);
 extern void ActivateWeatherReportEffect(void);
+extern unsigned char CanActivateTheAgentOfCreationVenus(void);
+extern void ActivateTheAgentOfCreationVenusEffect(void);

@@ -97,6 +97,7 @@ static const u8 sRecklessGreedName[] __attribute__((section(".append_assets"))) 
 static const u8 sAirknightParshathName[] __attribute__((section(".append_assets"))) = "Airknight Parshath";
 static const u8 sAmphibiousBugrothMk3Name[] __attribute__((section(".append_assets"))) = "Amphibious Bugroth MK-3";
 static const u8 sBlackTyrannoName[] __attribute__((section(".append_assets"))) = "Black Tyranno";
+static const u8 sTheAgentOfCreationVenusName[] __attribute__((section(".append_assets"))) = "The Agent Of Creation - Venus";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -297,6 +298,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAmphibiousBugrothMk3Name;
   if (cardId == 0x0383)
     return (u8 *)sBlackTyrannoName;
+  if (cardId == 0x0384)
+    return (u8 *)sTheAgentOfCreationVenusName;
 
   return gCardNames[cardId];
 }

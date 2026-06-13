@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 99
+#define NUM_CUSTOM_NAME_SORT_CARDS 100
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -101,6 +101,7 @@ static const u8 sRecklessGreedSortName[] APPEND_RODATA = "Reckless Greed";
 static const u8 sAirknightParshathSortName[] APPEND_RODATA = "Airknight Parshath";
 static const u8 sAmphibiousBugrothMk3SortName[] APPEND_RODATA = "Amphibious Bugroth MK-3";
 static const u8 sBlackTyrannoSortName[] APPEND_RODATA = "Black Tyranno";
+static const u8 sTheAgentOfCreationVenusSortName[] APPEND_RODATA = "The Agent Of Creation - Venus";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -188,6 +189,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0333, // St Joan
   0x036E, // Swift Gaia The Fierce Knight
   0x0374, // Terrorking Salmon
+  0x0384, // The Agent Of Creation - Venus
   0x036D, // The Dark Door
   0x0373, // The Forceful Sentry
   0x036C, // Thousand Energy
@@ -290,20 +292,21 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   83, // St Joan
   84, // Swift Gaia The Fierce Knight
   85, // Terrorking Salmon
-  86, // The Dark Door
-  87, // The Forceful Sentry
-  88, // Thousand Energy
-  89, // Time Seal
-  90, // Toll
-  91, // Ultimate Offering
-  92, // United We Stand
-  93, // Upstart Goblin
-  94, // Vampire Baby
-  95, // Warrior of Zera
-  96, // Wave Motion Cannon
-  97, // Weather Report
-  98, // White Magician Pikeru
-  99, // Yata-Garasu
+  86, // The Agent Of Creation - Venus
+  87, // The Dark Door
+  88, // The Forceful Sentry
+  89, // Thousand Energy
+  90, // Time Seal
+  91, // Toll
+  92, // Ultimate Offering
+  93, // United We Stand
+  94, // Upstart Goblin
+  95, // Vampire Baby
+  96, // Warrior of Zera
+  97, // Wave Motion Cannon
+  98, // Weather Report
+  99, // White Magician Pikeru
+  100, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -505,6 +508,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sAmphibiousBugrothMk3SortName;
   if (cardId == 0x0383)
     return (u8 *)sBlackTyrannoSortName;
+  if (cardId == 0x0384)
+    return (u8 *)sTheAgentOfCreationVenusSortName;
 
   return gCardNames[cardId];
 }

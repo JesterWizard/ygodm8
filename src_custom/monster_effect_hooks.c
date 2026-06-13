@@ -63,6 +63,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateDesKoala();
     case MONSTER_EFFECT_WEATHER_REPORT:
       return CanActivateWeatherReport();
+    case MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS:
+      return CanActivateTheAgentOfCreationVenus();
     default:
       return TRUE;
   }
@@ -172,6 +174,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS) {
+    ActivateTheAgentOfCreationVenusEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -240,7 +247,7 @@ void MonsterActionMenu__Replacement(void) {
 
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
-      if (!isFaceUp || zone->id == CANNON_SOLDIER) {
+      if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == THE_AGENT_OF_CREATION_VENUS) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
         if (gMonEffect.id == NEEDLE_BALL) {
