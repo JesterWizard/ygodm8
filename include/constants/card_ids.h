@@ -896,11 +896,12 @@
 #define JUST_DESERTS                             0x037C
 #define GILASAURUS                               0x037D
 #define GRAVITY_BIND                             0x037E
+#define GIFT_OF_THE_MYSTICAL_ELF                 0x037F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x037F
-#define NUM_CUSTOM_CARDS                        0x005E
+#define NUM_TOTAL_CARDS                         0x0380
+#define NUM_CUSTOM_CARDS                        0x005F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

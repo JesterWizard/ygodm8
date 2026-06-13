@@ -15265,6 +15265,35 @@
           "Level 4 or higher monsters cannot attack while this trap is face up."
         ]
       }
+    },
+    {
+      "card_const": "GIFT_OF_THE_MYSTICAL_ELF",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GiftOfTheMysticalElf",
+        "pages": [
+          "A trap that draws strength from every monster on the field.",
+          "Activates when your opponent's turn begins.",
+          "Gain 300 LP for each monster on both sides of the field."
+        ]
+      },
+      "card_name": "Gift Of The Mystical Elf",
+      "password": [ 9, 8, 2, 9, 9, 0, 1, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_GiftOfTheMysticalElf",
+        "pages": [
+          "Gain 300 LP for each monster on both sides of the field."
+        ]
+      }
     }
   ]
 }

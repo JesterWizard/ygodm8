@@ -92,6 +92,7 @@ static const u8 sLimiterRemovalName[] __attribute__((section(".append_assets")))
 static const u8 sJustDesertsName[] __attribute__((section(".append_assets"))) = "Just Deserts";
 static const u8 sGilasaurusName[] __attribute__((section(".append_assets"))) = "Gilasaurus";
 static const u8 sGravityBindName[] __attribute__((section(".append_assets"))) = "Gravity Bind";
+static const u8 sGiftOfTheMysticalElfName[] __attribute__((section(".append_assets"))) = "Gift Of The Mystical Elf";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -282,6 +283,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGilasaurusName;
   if (cardId == 0x037E)
     return (u8 *)sGravityBindName;
+  if (cardId == 0x037F)
+    return (u8 *)sGiftOfTheMysticalElfName;
 
   return gCardNames[cardId];
 }

@@ -376,6 +376,10 @@ static const unsigned char sGravityBindBigArt[] __attribute__((section(".append_
 static const unsigned short sGravityBindBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravity_bind.gbapal");
 static const unsigned char sGravityBindMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravity_bind.lz");
 
+static const unsigned char sGiftOfTheMysticalElfBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gift_of_the_mystical_elf.huff");
+static const unsigned short sGiftOfTheMysticalElfBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gift_of_the_mystical_elf.gbapal");
+static const unsigned char sGiftOfTheMysticalElfMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gift_of_the_mystical_elf.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -471,6 +475,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x037C] = sJustDesertsBigArt,
   [0x037D] = sGilasaurusBigArt,
   [0x037E] = sGravityBindBigArt,
+  [0x037F] = sGiftOfTheMysticalElfBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -568,6 +573,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x037C] = sJustDesertsBigPalette,
   [0x037D] = sGilasaurusBigPalette,
   [0x037E] = sGravityBindBigPalette,
+  [0x037F] = sGiftOfTheMysticalElfBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -665,6 +671,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x037C] = 0,
   [0x037D] = 0,
   [0x037E] = 0,
+  [0x037F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -762,4 +769,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x037C] = sJustDesertsMiniArt,
   [0x037D] = sGilasaurusMiniArt,
   [0x037E] = sGravityBindMiniArt,
+  [0x037F] = sGiftOfTheMysticalElfMiniArt,
 };
