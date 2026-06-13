@@ -15814,6 +15814,35 @@
           "Your opponent takes 600 LP damage per face-up Light monster on your field."
         ]
       }
+    },
+    {
+      "card_const": "SOLEMN_WISHES",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SolemnWishes",
+        "pages": [
+          "A trap that rewards each card drawn from the deck.",
+          "While face-up on the field, each time you draw",
+          "a card you gain 500 Life Points."
+        ]
+      },
+      "card_name": "Solemn Wishes",
+      "password": [ 3, 5, 3, 4, 6, 9, 6, 8 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SolemnWishes",
+        "pages": [
+          "Each time you draw a card, gain 500 Life Points."
+        ]
+      }
     }
   ]
 }

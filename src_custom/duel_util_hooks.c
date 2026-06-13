@@ -5,6 +5,7 @@
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
+#include "solemn_wishes.h"
 #include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
@@ -242,9 +243,10 @@ void TryDrawingCard__Replacement(unsigned turn) {
       cardDrawn = gDuelDecks[turn_u8].cards[gDuelDecks[turn_u8].cardsDrawn];
       gDuelDecks[turn_u8].cardsDrawn++;
     }
-    if (cardDrawn != CARD_NONE)
+    if (cardDrawn != CARD_NONE) {
       gDuel.hands[turn_u8][i].id = cardDrawn;
-    else
+      TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, i);
+    } else
       DeclareLoser(turn_u8); // deck out
     break;
   }

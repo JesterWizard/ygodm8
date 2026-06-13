@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `130` effects
+- `131` effects
 
 ## Tally
 
@@ -95,6 +95,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Blasting The Ruins` | `src_custom/trap_effects/blasting_the_ruins.c` |
 | `trap_effects` | `Curse Of Darkness` | `src_custom/trap_effects/curse_of_darkness.c` |
 | `trap_effects` | `Solar Ray` | `src_custom/trap_effects/solar_ray.c` |
+| `trap_effects` | `Solemn Wishes` | `src_custom/trap_effects/solemn_wishes.c` |
 | `trap_effects` | `Coffin Seller` | `src_custom/trap_effects/coffin_seller.c` |
 | `spell_effects` | `Curse Of Darkness` | `src_custom/trap_effects/curse_of_darkness.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |

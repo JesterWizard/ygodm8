@@ -231,7 +231,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
 - [x] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
-- [ ] `SOLEMN_WISHES` — `solemn_wishes.png`
+- [x] `SOLEMN_WISHES` — `solemn_wishes.png`
 - [x] `SOUL_TAKER` — `soul_taker.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
