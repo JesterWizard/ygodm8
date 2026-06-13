@@ -918,11 +918,12 @@
 #define SOLEMN_WISHES                            0x0392
 #define STEALTH_BIRD                             0x0393
 #define NEEDLE_BURROWER                          0x0394
+#define DES_SCISSORS                             0x0395
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0395
-#define NUM_CUSTOM_CARDS                        0x0074
+#define NUM_TOTAL_CARDS                         0x0396
+#define NUM_CUSTOM_CARDS                        0x0075
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

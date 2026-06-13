@@ -15901,6 +15901,35 @@
       },
       "card_name": "Needle Burrower",
       "password": [ 9, 8, 1, 6, 2, 2, 4, 2 ]
+    },
+    {
+      "card_const": "DES_SCISSORS",
+      "atk": 1000,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 4,
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DesScissors",
+        "pages": [
+          "A machine that cuts with giant scissors.",
+          "When it destroys a monster by battle,",
+          "inflict 500LP per Level of the destroyed monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DesScissors",
+        "pages": [
+          "500LP damage for each Level of the destroyed monster."
+        ]
+      },
+      "card_name": "Des Scissors",
+      "password": [ 5, 2, 7, 6, 8, 1, 0, 3 ]
     }
   ]
 }

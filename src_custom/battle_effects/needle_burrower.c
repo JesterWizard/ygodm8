@@ -36,8 +36,16 @@ void ClearNeedleBurrowerPending(void) {
   gPendingNeedleBurrowerLevel = 0;
 }
 
-static u8 IsMonsterBattleAction(u8 id) {
-  return id == 1 || id == 2 || id == 4 || id == 5 || id == 6;
+static u8 IsBattleDestroyBurner(u16 cardId) {
+  return cardId == NEEDLE_BURROWER || cardId == DES_SCISSORS;
+}
+
+static u16 BattleDestroyBurnerEffectCard(u8 controller) {
+  u16 cardId = controller == DUEL_PLAYER
+      ? sActionData.playerCardId
+      : sActionData.opponentCardId;
+
+  return IsBattleDestroyBurner(cardId) ? cardId : NEEDLE_BURROWER;
 }
 
 static u8 GetDestroyedMonsterLevel(u16 destroyedCardId) {
@@ -82,8 +90,12 @@ void ResolveNeedleBurrowerBattleEffect(void) {
   HandleAtkAndLifePointsAction();
   CheckLoserFlags();
 
-  gCardEffectTextData.cardId = NEEDLE_BURROWER;
+  gCardEffectTextData.cardId = BattleDestroyBurnerEffectCard(controller);
   ActivateCardEffectText();
+}
+
+static u8 IsMonsterBattleAction(u8 id) {
+  return id == 1 || id == 2 || id == 4 || id == 5 || id == 6;
 }
 
 void ApplyNeedleBurrowerBattleEffect(void) {
@@ -93,11 +105,11 @@ void ApplyNeedleBurrowerBattleEffect(void) {
   if (!IsMonsterBattleAction(sActionData.id))
     return;
 
-  if (sActionData.playerCardId == NEEDLE_BURROWER
+  if (IsBattleDestroyBurner(sActionData.playerCardId)
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
       && !(sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
     MarkPendingDamage(DUEL_PLAYER, sActionData.opponentCardId);
-  } else if (sActionData.opponentCardId == NEEDLE_BURROWER
+  } else if (IsBattleDestroyBurner(sActionData.opponentCardId)
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)
       && !(sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
     MarkPendingDamage(DUEL_OPPONENT, sActionData.playerCardId);

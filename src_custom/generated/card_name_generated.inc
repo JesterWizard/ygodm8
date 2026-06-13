@@ -114,6 +114,7 @@ static const u8 sSolarRayName[] __attribute__((section(".append_assets"))) = "So
 static const u8 sSolemnWishesName[] __attribute__((section(".append_assets"))) = "Solemn Wishes";
 static const u8 sStealthBirdName[] __attribute__((section(".append_assets"))) = "Stealth Bird";
 static const u8 sNeedleBurrowerName[] __attribute__((section(".append_assets"))) = "Needle Burrower";
+static const u8 sDesScissorsName[] __attribute__((section(".append_assets"))) = "Des Scissors";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -348,6 +349,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sStealthBirdName;
   if (cardId == 0x0394)
     return (u8 *)sNeedleBurrowerName;
+  if (cardId == 0x0395)
+    return (u8 *)sDesScissorsName;
 
   return gCardNames[cardId];
 }
