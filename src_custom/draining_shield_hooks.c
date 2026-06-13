@@ -8,6 +8,7 @@
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
+#include "mermaid_knight.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "toll.h"
@@ -147,6 +148,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
+  TryUnlockMermaidKnightForSecondAttack(attacker);
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();

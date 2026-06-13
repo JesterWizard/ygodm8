@@ -106,6 +106,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { VAMPIRE_BABY, gActivationDescription_VampireBaby },
   { THE_FORCEFUL_SENTRY, gActivationDescription_TheForcefulSentry },
   { MARYOKUTAI, gActivationDescription_Maryokutai },
+  { MERMAID_KNIGHT, gActivationDescription_MermaidKnight },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

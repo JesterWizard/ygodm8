@@ -175,7 +175,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `MEFIST_THE_INFERNAL_GENERAL` — `mefist_the_infernal_general.png`
-- [ ] `MERMAID_KNIGHT` — `mermaid_knight.png`
+- [x] `MERMAID_KNIGHT` — `mermaid_knight.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`

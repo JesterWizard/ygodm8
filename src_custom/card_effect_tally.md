@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `110` effects
+- `111` effects
 
 ## Tally
 
@@ -100,6 +100,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Kaiser Glider` | `src_custom/battle_effects/kaiser_glider.c` |
 | `battle_effects` | `Piranha Army` | `src_custom/battle_effects/piranha_army.c` |
 | `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
+| `card_passives` | `Mermaid Knight` | `src_custom/card_passives/mermaid_knight.c` |
 | `card_passives` | `Blue-Eyes Chaos Max Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `card_passives` | `Blue-Eyes Shining Dragon` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 | `permanent_effects` | `Blue-Eyes Shining Dragon` | `src_custom/permanent_effects/blue_eyes_shining_dragon.c` |

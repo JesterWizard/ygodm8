@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 86
+#define NUM_CUSTOM_NAME_SORT_CARDS 87
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -88,6 +88,7 @@ static const u8 sTheForcefulSentrySortName[] APPEND_RODATA = "The Forceful Sentr
 static const u8 sTerrorkingSalmonSortName[] APPEND_RODATA = "Terrorking Salmon";
 static const u8 sSasukeSamuraiSortName[] APPEND_RODATA = "Sasuke Samurai";
 static const u8 sMaryokutaiSortName[] APPEND_RODATA = "Maryokutai";
+static const u8 sMermaidKnightSortName[] APPEND_RODATA = "Mermaid Knight";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -129,6 +130,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x035F, // Marauding Captain
   0x0376, // Maryokutai
   0x033A, // Mask of Restrict
+  0x0377, // Mermaid Knight
   0x0357, // Meteor of Destruction
   0x0366, // Moister Creature
   0x0350, // Mystical Shine Ball
@@ -218,53 +220,54 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   37, // Marauding Captain
   38, // Maryokutai
   39, // Mask of Restrict
-  40, // Meteor of Destruction
-  41, // Moister Creature
-  42, // Mystical Shine Ball
-  43, // Mystical Space Typhoon
-  44, // Negate Attack
-  45, // Nightmare Horse
-  46, // Obnoxious Celtic Guardian
-  47, // Ojama Trio
-  48, // Paladin Of White Dragon
-  49, // Piranha Army
-  50, // Pyramid of Light
-  51, // Rain of Mercy
-  52, // Rare Metal Dragon
-  53, // Reload
-  54, // Riryoku
-  55, // Robbin' Goblin
-  56, // Robbin' Zombie
-  57, // Sage's Stone
-  58, // Sasuke Samurai
-  59, // Seal of Orichalcos
-  60, // Secret Barrel
-  61, // Self-Destruct Button
-  62, // Shield And Sword
-  63, // Skill Drain
-  64, // Skull Invitation
-  65, // Solar Flare Dragon
-  66, // Sorcerer of Dark Magic
-  67, // Soul Exchange
-  68, // Spear Dragon
-  69, // Spell Canceller
-  70, // St Joan
-  71, // Swift Gaia The Fierce Knight
-  72, // Terrorking Salmon
-  73, // The Dark Door
-  74, // The Forceful Sentry
-  75, // Thousand Energy
-  76, // Time Seal
-  77, // Toll
-  78, // Ultimate Offering
-  79, // United We Stand
-  80, // Upstart Goblin
-  81, // Vampire Baby
-  82, // Warrior of Zera
-  83, // Wave Motion Cannon
-  84, // Weather Report
-  85, // White Magician Pikeru
-  86, // Yata-Garasu
+  40, // Mermaid Knight
+  41, // Meteor of Destruction
+  42, // Moister Creature
+  43, // Mystical Shine Ball
+  44, // Mystical Space Typhoon
+  45, // Negate Attack
+  46, // Nightmare Horse
+  47, // Obnoxious Celtic Guardian
+  48, // Ojama Trio
+  49, // Paladin Of White Dragon
+  50, // Piranha Army
+  51, // Pyramid of Light
+  52, // Rain of Mercy
+  53, // Rare Metal Dragon
+  54, // Reload
+  55, // Riryoku
+  56, // Robbin' Goblin
+  57, // Robbin' Zombie
+  58, // Sage's Stone
+  59, // Sasuke Samurai
+  60, // Seal of Orichalcos
+  61, // Secret Barrel
+  62, // Self-Destruct Button
+  63, // Shield And Sword
+  64, // Skill Drain
+  65, // Skull Invitation
+  66, // Solar Flare Dragon
+  67, // Sorcerer of Dark Magic
+  68, // Soul Exchange
+  69, // Spear Dragon
+  70, // Spell Canceller
+  71, // St Joan
+  72, // Swift Gaia The Fierce Knight
+  73, // Terrorking Salmon
+  74, // The Dark Door
+  75, // The Forceful Sentry
+  76, // Thousand Energy
+  77, // Time Seal
+  78, // Toll
+  79, // Ultimate Offering
+  80, // United We Stand
+  81, // Upstart Goblin
+  82, // Vampire Baby
+  83, // Warrior of Zera
+  84, // Wave Motion Cannon
+  85, // Weather Report
+  86, // White Magician Pikeru
+  87, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -440,6 +443,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSasukeSamuraiSortName;
   if (cardId == 0x0376)
     return (u8 *)sMaryokutaiSortName;
+  if (cardId == 0x0377)
+    return (u8 *)sMermaidKnightSortName;
 
   return gCardNames[cardId];
 }

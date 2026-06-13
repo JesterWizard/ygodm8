@@ -1,5 +1,6 @@
 #include "runtime.h"
 #include "constants/card_ids.h"
+#include "constants/custom_fields_generated.h"
 #include "constants/duel_fields.h"
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
@@ -55,7 +56,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE,
-    .card_in_hand_1 = MARYOKUTAI,
+    .card_in_hand_1 = MERMAID_KNIGHT,
     .card_in_hand_2 = CYBER_COMMANDER,
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,

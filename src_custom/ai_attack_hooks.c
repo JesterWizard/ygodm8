@@ -8,6 +8,7 @@
 #include "cats_ear_tribe.h"
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
+#include "mermaid_knight.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -131,6 +132,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
+  TryUnlockMermaidKnightForSecondAttack(attacker);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -172,6 +174,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
+  TryUnlockMermaidKnightForSecondAttack(attacker);
 }
 
 LYN_REPLACE_CHECK(sub_800E58C);

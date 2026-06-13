@@ -888,11 +888,12 @@
 #define TERRORKING_SALMON                        0x0374
 #define SASUKE_SAMURAI                           0x0375
 #define MARYOKUTAI                               0x0376
+#define MERMAID_KNIGHT                           0x0377
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0377
-#define NUM_CUSTOM_CARDS                        0x0056
+#define NUM_TOTAL_CARDS                         0x0378
+#define NUM_CUSTOM_CARDS                        0x0057
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

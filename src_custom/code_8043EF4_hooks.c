@@ -21,6 +21,7 @@
 #include "guardian_treasure.h"
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
+#include "mermaid_knight.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "delinquent_duo.h"
@@ -546,6 +547,8 @@ void sub_8044570__Replacement(void)
       CheckGraveyardAndLoserFlags();
       TryUnlockHayabusaKnightForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockMermaidKnightForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -612,6 +615,8 @@ void TryAttackWithMonster__Replacement(void)
       TheDarkDoor_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();
       TryUnlockHayabusaKnightForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockMermaidKnightForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();
