@@ -238,6 +238,10 @@ _kernel_malloc_ewram gPlayerDeckSaveRestoreActiveDeck, 0x1
 _kernel_malloc_ewram gYataGarasuSkipDrawDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Time Seal, else 0xFF.
 _kernel_malloc_ewram gTimeSealSkipDrawDuelist, 1
+@ DUEL_PLAYER/DUEL_OPPONENT whose draw phases are skipped by Reckless Greed, else 0xFF.
+_kernel_malloc_ewram gRecklessGreedSkipDrawDuelist, 1
+@ Remaining draw phases to skip for Reckless Greed (0 when inactive).
+_kernel_malloc_ewram gRecklessGreedSkipDrawRemaining, 1
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1

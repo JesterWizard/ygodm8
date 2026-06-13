@@ -162,15 +162,15 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [x] `GIFT_OF_THE_MYSTICAL_ELF` — `gift_of_the_mystical_elf.png`
-- [ ] `GILASAURUS` — `gilasaurus.png`
+- [x] `GILASAURUS` — `gilasaurus.png`
 - [ ] `GRACEFUL_CHARITY` — `graceful_charity.png`
 - [x] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
-- [ ] `JUST_DESERTS` — `just_deserts.png`
-- [ ] `LIMITER_REMOVAL` — `limiter_removal.png`
+- [x] `JUST_DESERTS` — `just_deserts.png`
+- [x] `LIMITER_REMOVAL` — `limiter_removal.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`

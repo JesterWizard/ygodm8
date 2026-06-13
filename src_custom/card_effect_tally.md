@@ -81,6 +81,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Just Deserts` | `src_custom/trap_effects/just_deserts.c` |
 | `trap_effects` | `Gravity Bind` | `src_custom/trap_effects/gravity_bind.c` |
 | `trap_effects` | `Gift Of The Mystical Elf` | `src_custom/trap_effects/gift_of_the_mystical_elf.c` |
+| `trap_effects` | `Reckless Greed` | `src_custom/trap_effects/reckless_greed.c` |
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |
 | `trap_effects` | `Skull Invitation` | `src_custom/trap_effects/skull_invitation.c` |
 | `trap_effects` | `Self-Destruct Button` | `src_custom/trap_effects/self_destruct_button.c` |

@@ -16,6 +16,7 @@
 #include "just_deserts.h"
 #include "gift_of_the_mystical_elf.h"
 #include "time_seal.h"
+#include "reckless_greed.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
 #include "yata_garasu.h"
@@ -281,6 +282,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateJustDesertsOnOpponentTurnStart();
     TryActivateGiftOfTheMysticalElfOnOpponentTurnStart();
     TryActivateTimeSealOnOpponentTurnStart();
+    TryActivateRecklessGreedOnOpponentTurnStart();
     TryActivateSkullInvitationOnOpponentTurnStart();
     TryActivateSelfDestructButtonOnOpponentTurnStart();
     if (IsDuelOver() == TRUE)
@@ -293,6 +295,8 @@ static bool8 RunDuelTurnLoop(void) {
       }
     } else if (ShouldSkipDrawPhaseForTimeSeal(turn)) {
       ConsumeTimeSealSkipDraw(turn);
+    } else if (ShouldSkipDrawPhaseForRecklessGreed(turn)) {
+      ConsumeRecklessGreedSkipDraw(turn);
     } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)

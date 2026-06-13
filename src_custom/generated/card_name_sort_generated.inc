@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 95
+#define NUM_CUSTOM_NAME_SORT_CARDS 96
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -97,6 +97,7 @@ static const u8 sJustDesertsSortName[] APPEND_RODATA = "Just Deserts";
 static const u8 sGilasaurusSortName[] APPEND_RODATA = "Gilasaurus";
 static const u8 sGravityBindSortName[] APPEND_RODATA = "Gravity Bind";
 static const u8 sGiftOfTheMysticalElfSortName[] APPEND_RODATA = "Gift Of The Mystical Elf";
+static const u8 sRecklessGreedSortName[] APPEND_RODATA = "Reckless Greed";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -160,6 +161,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
+  0x0380, // Reckless Greed
   0x035E, // Reload
   0x0342, // Riryoku
   0x0361, // Robbin' Goblin
@@ -258,40 +260,41 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   59, // Pyramid of Light
   60, // Rain of Mercy
   61, // Rare Metal Dragon
-  62, // Reload
-  63, // Riryoku
-  64, // Robbin' Goblin
-  65, // Robbin' Zombie
-  66, // Sage's Stone
-  67, // Sasuke Samurai
-  68, // Seal of Orichalcos
-  69, // Secret Barrel
-  70, // Self-Destruct Button
-  71, // Shield And Sword
-  72, // Skill Drain
-  73, // Skull Invitation
-  74, // Solar Flare Dragon
-  75, // Sorcerer of Dark Magic
-  76, // Soul Exchange
-  77, // Spear Dragon
-  78, // Spell Canceller
-  79, // St Joan
-  80, // Swift Gaia The Fierce Knight
-  81, // Terrorking Salmon
-  82, // The Dark Door
-  83, // The Forceful Sentry
-  84, // Thousand Energy
-  85, // Time Seal
-  86, // Toll
-  87, // Ultimate Offering
-  88, // United We Stand
-  89, // Upstart Goblin
-  90, // Vampire Baby
-  91, // Warrior of Zera
-  92, // Wave Motion Cannon
-  93, // Weather Report
-  94, // White Magician Pikeru
-  95, // Yata-Garasu
+  62, // Reckless Greed
+  63, // Reload
+  64, // Riryoku
+  65, // Robbin' Goblin
+  66, // Robbin' Zombie
+  67, // Sage's Stone
+  68, // Sasuke Samurai
+  69, // Seal of Orichalcos
+  70, // Secret Barrel
+  71, // Self-Destruct Button
+  72, // Shield And Sword
+  73, // Skill Drain
+  74, // Skull Invitation
+  75, // Solar Flare Dragon
+  76, // Sorcerer of Dark Magic
+  77, // Soul Exchange
+  78, // Spear Dragon
+  79, // Spell Canceller
+  80, // St Joan
+  81, // Swift Gaia The Fierce Knight
+  82, // Terrorking Salmon
+  83, // The Dark Door
+  84, // The Forceful Sentry
+  85, // Thousand Energy
+  86, // Time Seal
+  87, // Toll
+  88, // Ultimate Offering
+  89, // United We Stand
+  90, // Upstart Goblin
+  91, // Vampire Baby
+  92, // Warrior of Zera
+  93, // Wave Motion Cannon
+  94, // Weather Report
+  95, // White Magician Pikeru
+  96, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -485,6 +488,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sGravityBindSortName;
   if (cardId == 0x037F)
     return (u8 *)sGiftOfTheMysticalElfSortName;
+  if (cardId == 0x0380)
+    return (u8 *)sRecklessGreedSortName;
 
   return gCardNames[cardId];
 }

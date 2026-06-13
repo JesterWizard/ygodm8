@@ -9,6 +9,7 @@
 #include "limiter_removal.h"
 #include "yata_garasu.h"
 #include "time_seal.h"
+#include "reckless_greed.h"
 #include "copycat.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -153,6 +154,7 @@ void InitBoard__Replacement(void) {
   ResetDelayedDuelEffects();
   ResetYataGarasuSkipDraw();
   ResetTimeSealSkipDraw();
+  ResetRecklessGreedSkipDraw();
   ResetThousandEnergyState();
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();

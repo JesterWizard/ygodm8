@@ -15294,6 +15294,35 @@
           "Gain 300 LP for each monster on both sides of the field."
         ]
       }
+    },
+    {
+      "card_const": "RECKLESS_GREED",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_RecklessGreed",
+        "pages": [
+          "A trap that trades future draws for immediate gain.",
+          "Activates when your opponent's turn begins.",
+          "Draw 2 cards, then skip your next 2 draw phases."
+        ]
+      },
+      "card_name": "Reckless Greed",
+      "password": [ 9, 8, 3, 0, 0, 1, 2, 0 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_RecklessGreed",
+        "pages": [
+          "Draw 2 cards, then skip your next 2 draw phases."
+        ]
+      }
     }
   ]
 }

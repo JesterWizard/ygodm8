@@ -380,6 +380,10 @@ static const unsigned char sGiftOfTheMysticalElfBigArt[] __attribute__((section(
 static const unsigned short sGiftOfTheMysticalElfBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gift_of_the_mystical_elf.gbapal");
 static const unsigned char sGiftOfTheMysticalElfMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gift_of_the_mystical_elf.lz");
 
+static const unsigned char sRecklessGreedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reckless_greed.huff");
+static const unsigned short sRecklessGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reckless_greed.gbapal");
+static const unsigned char sRecklessGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reckless_greed.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -476,6 +480,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x037D] = sGilasaurusBigArt,
   [0x037E] = sGravityBindBigArt,
   [0x037F] = sGiftOfTheMysticalElfBigArt,
+  [0x0380] = sRecklessGreedBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -574,6 +579,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x037D] = sGilasaurusBigPalette,
   [0x037E] = sGravityBindBigPalette,
   [0x037F] = sGiftOfTheMysticalElfBigPalette,
+  [0x0380] = sRecklessGreedBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -672,6 +678,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x037D] = 0,
   [0x037E] = 0,
   [0x037F] = 0,
+  [0x0380] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -770,4 +777,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x037D] = sGilasaurusMiniArt,
   [0x037E] = sGravityBindMiniArt,
   [0x037F] = sGiftOfTheMysticalElfMiniArt,
+  [0x0380] = sRecklessGreedMiniArt,
 };
