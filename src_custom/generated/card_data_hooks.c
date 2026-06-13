@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[886] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[887] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -898,9 +898,10 @@ const u8 gCardLockAfterActivation_Hook[886] APPEND_RODATA = {
   [0x0373] = 1,
   [0x0374] = 1,
   [0x0375] = 1,
+  [0x0376] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[886] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[887] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1787,9 +1788,10 @@ const u8 gCardEffectUsage_Hook[886] APPEND_RODATA = {
   [0x0373] = EFFECT_USAGE_NONE,
   [0x0374] = EFFECT_USAGE_NONE,
   [0x0375] = EFFECT_USAGE_NONE,
+  [0x0376] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[886] APPEND_RODATA = {
+const CardData gCardData_NEW[887] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13438,5 +13440,19 @@ const CardData gCardData_NEW[886] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 8, 0, 3, 3, 4, 3, 4},
     .description = gDescription_SasukeSamurai,
+  },
+  [0x0376] = {
+    .atk = 900,
+    .def = 900,
+    .cost = 150,
+    .attribute = ATTRIBUTE_WATER,
+    .level = 3,
+    .type = TYPE_AQUA,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 1, 4, 7, 2, 0, 3, 6},
+    .description = gDescription_Maryokutai,
   },
 };

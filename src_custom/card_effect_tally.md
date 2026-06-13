@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `109` effects
+- `110` effects
 
 ## Tally
 
@@ -115,6 +115,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 | `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |
 | `permanent_effects` | `Moister Creature` | `src_custom/permanent_effects/moister_creature.c` |
+| `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |

@@ -55,10 +55,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE,
-    .card_in_hand_1 = SASUKE_SAMURAI,
+    .card_in_hand_1 = MARYOKUTAI,
     .card_in_hand_2 = CYBER_COMMANDER,
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = CARD_NONE
+    .opponent_deck_card_id = THE_INEXPERIENCED_SPY
 };

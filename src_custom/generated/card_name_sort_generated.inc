@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 85
+#define NUM_CUSTOM_NAME_SORT_CARDS 86
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -87,6 +87,7 @@ static const u8 sVampireBabySortName[] APPEND_RODATA = "Vampire Baby";
 static const u8 sTheForcefulSentrySortName[] APPEND_RODATA = "The Forceful Sentry";
 static const u8 sTerrorkingSalmonSortName[] APPEND_RODATA = "Terrorking Salmon";
 static const u8 sSasukeSamuraiSortName[] APPEND_RODATA = "Sasuke Samurai";
+static const u8 sMaryokutaiSortName[] APPEND_RODATA = "Maryokutai";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -126,6 +127,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x033F, // Magic Jammer
   0x0323, // Magician's Valkyria
   0x035F, // Marauding Captain
+  0x0376, // Maryokutai
   0x033A, // Mask of Restrict
   0x0357, // Meteor of Destruction
   0x0366, // Moister Creature
@@ -214,54 +216,55 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   35, // Magic Jammer
   36, // Magician's Valkyria
   37, // Marauding Captain
-  38, // Mask of Restrict
-  39, // Meteor of Destruction
-  40, // Moister Creature
-  41, // Mystical Shine Ball
-  42, // Mystical Space Typhoon
-  43, // Negate Attack
-  44, // Nightmare Horse
-  45, // Obnoxious Celtic Guardian
-  46, // Ojama Trio
-  47, // Paladin Of White Dragon
-  48, // Piranha Army
-  49, // Pyramid of Light
-  50, // Rain of Mercy
-  51, // Rare Metal Dragon
-  52, // Reload
-  53, // Riryoku
-  54, // Robbin' Goblin
-  55, // Robbin' Zombie
-  56, // Sage's Stone
-  57, // Sasuke Samurai
-  58, // Seal of Orichalcos
-  59, // Secret Barrel
-  60, // Self-Destruct Button
-  61, // Shield And Sword
-  62, // Skill Drain
-  63, // Skull Invitation
-  64, // Solar Flare Dragon
-  65, // Sorcerer of Dark Magic
-  66, // Soul Exchange
-  67, // Spear Dragon
-  68, // Spell Canceller
-  69, // St Joan
-  70, // Swift Gaia The Fierce Knight
-  71, // Terrorking Salmon
-  72, // The Dark Door
-  73, // The Forceful Sentry
-  74, // Thousand Energy
-  75, // Time Seal
-  76, // Toll
-  77, // Ultimate Offering
-  78, // United We Stand
-  79, // Upstart Goblin
-  80, // Vampire Baby
-  81, // Warrior of Zera
-  82, // Wave Motion Cannon
-  83, // Weather Report
-  84, // White Magician Pikeru
-  85, // Yata-Garasu
+  38, // Maryokutai
+  39, // Mask of Restrict
+  40, // Meteor of Destruction
+  41, // Moister Creature
+  42, // Mystical Shine Ball
+  43, // Mystical Space Typhoon
+  44, // Negate Attack
+  45, // Nightmare Horse
+  46, // Obnoxious Celtic Guardian
+  47, // Ojama Trio
+  48, // Paladin Of White Dragon
+  49, // Piranha Army
+  50, // Pyramid of Light
+  51, // Rain of Mercy
+  52, // Rare Metal Dragon
+  53, // Reload
+  54, // Riryoku
+  55, // Robbin' Goblin
+  56, // Robbin' Zombie
+  57, // Sage's Stone
+  58, // Sasuke Samurai
+  59, // Seal of Orichalcos
+  60, // Secret Barrel
+  61, // Self-Destruct Button
+  62, // Shield And Sword
+  63, // Skill Drain
+  64, // Skull Invitation
+  65, // Solar Flare Dragon
+  66, // Sorcerer of Dark Magic
+  67, // Soul Exchange
+  68, // Spear Dragon
+  69, // Spell Canceller
+  70, // St Joan
+  71, // Swift Gaia The Fierce Knight
+  72, // Terrorking Salmon
+  73, // The Dark Door
+  74, // The Forceful Sentry
+  75, // Thousand Energy
+  76, // Time Seal
+  77, // Toll
+  78, // Ultimate Offering
+  79, // United We Stand
+  80, // Upstart Goblin
+  81, // Vampire Baby
+  82, // Warrior of Zera
+  83, // Wave Motion Cannon
+  84, // Weather Report
+  85, // White Magician Pikeru
+  86, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -435,6 +438,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTerrorkingSalmonSortName;
   if (cardId == 0x0375)
     return (u8 *)sSasukeSamuraiSortName;
+  if (cardId == 0x0376)
+    return (u8 *)sMaryokutaiSortName;
 
   return gCardNames[cardId];
 }

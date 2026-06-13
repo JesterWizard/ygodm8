@@ -46,6 +46,25 @@ void ActivateTrapEffect(u16 lp);
 unsigned IsTrapTriggered(void);
 u8 TryPayChainEnergyCost(void);
 unsigned char IsSpellCancellerSpellLockActive(void);
+u8 TryMaryokutaiSpellCounter(void);
+
+static void SetupSpellTrapOrigin(void)
+{
+  u8 spellRow;
+  u8 spellCol;
+
+  if (GetSpellType(gSpellEffectData.id) == SPELL_TYPE_EQUIP) {
+    spellRow = gSpellEffectData.row2;
+    spellCol = gSpellEffectData.col2;
+  } else {
+    spellRow = gSpellEffectData.row1;
+    spellCol = gSpellEffectData.col1;
+  }
+
+  gTrapEffectData.originRow = spellRow;
+  gTrapEffectData.originCol = spellCol;
+  gTrapEffectData.originCardId = gSpellEffectData.id;
+}
 
 static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
 {
@@ -90,30 +109,10 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
 
 static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
 {
-  u8 spellRow;
-  u8 spellCol;
-  struct DuelCard *spellZone;
-
   if (GetTypeGroup(spellId) != TYPE_GROUP_SPELL)
     return TRUE;
 
-  if (GetSpellType(spellId) == SPELL_TYPE_EQUIP) {
-    spellRow = gSpellEffectData.row2;
-    spellCol = gSpellEffectData.col2;
-  } else {
-    spellRow = gSpellEffectData.row1;
-    spellCol = gSpellEffectData.col1;
-  }
-
-  spellZone = NULL;
-  if (spellRow <= PLAYER_HAND && spellCol < MAX_ZONES_IN_ROW)
-    spellZone = gFixedZones[spellRow][spellCol];
-  else if (spellRow < 5 && spellCol < MAX_ZONES_IN_ROW)
-    spellZone = gTurnZones[spellRow][spellCol];
-
-  gTrapEffectData.originRow = spellRow;
-  gTrapEffectData.originCol = spellCol;
-  gTrapEffectData.originCardId = spellZone != NULL ? spellZone->id : CARD_NONE;
+  SetupSpellTrapOrigin();
 
   if (IsTrapTriggered() != TRUE || gHideEffectText)
     return TRUE;
@@ -139,6 +138,10 @@ void ActivateSpellEffect__Replacement(void)
   ResetCardEffectTextData();
   SetCardEffectTextType(1);
   SetCardInfo(gSpellEffectData.id);
+
+  SetupSpellTrapOrigin();
+  if (TryMaryokutaiSpellCounter())
+    return;
 
   if (!SpellHandlesOwnTrapResponse(gSpellEffectData.id, gCardInfo.spellEffect)) {
     if (!TryResolveSpellActivationThroughTraps(gSpellEffectData.id))
