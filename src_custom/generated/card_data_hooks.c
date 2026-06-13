@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[885] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[886] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -897,9 +897,10 @@ const u8 gCardLockAfterActivation_Hook[885] APPEND_RODATA = {
   [0x0372] = 1,
   [0x0373] = 1,
   [0x0374] = 1,
+  [0x0375] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[885] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[886] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1785,9 +1786,10 @@ const u8 gCardEffectUsage_Hook[885] APPEND_RODATA = {
   [0x0372] = EFFECT_USAGE_NONE,
   [0x0373] = EFFECT_USAGE_NONE,
   [0x0374] = EFFECT_USAGE_NONE,
+  [0x0375] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[885] APPEND_RODATA = {
+const CardData gCardData_NEW[886] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13422,5 +13424,19 @@ const CardData gCardData_NEW[885] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 8, 0, 6, 0, 0, 9, 6},
     .description = gDescription_TerrorkingSalmon,
+  },
+  [0x0375] = {
+    .atk = 500,
+    .def = 800,
+    .cost = 150,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 2,
+    .type = TYPE_WARRIOR,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {5, 8, 0, 3, 3, 4, 3, 4},
+    .description = gDescription_SasukeSamurai,
   },
 };

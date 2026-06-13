@@ -21,6 +21,7 @@
 #include "guardian_treasure.h"
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
+#include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "delinquent_duo.h"
 #include "the_forceful_sentry.h"
@@ -566,6 +567,7 @@ void sub_8044570__Replacement(void)
     ResetCursorDestToCurrentPos();
     gDuelCursor.currentX = GetLastNonEmptyMonZoneId(&gFixedZones[1][4]);
     gDuelCursor.currentY = 1;
+    RefreshPendingSasukeBattleTarget();
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     UpdateDuelGfxExceptField();
@@ -596,14 +598,16 @@ void TryAttackWithMonster__Replacement(void)
         return;
       }
       PlayMusic(SFX_SELECT);
+      RefreshPendingSasukeBattleTarget();
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isDefending = 0;
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
-      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
-      HandleAtkAndLifePointsAction();
+      RunMonsterBattleAction();
+      if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE)
+        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       DebugRuleset_MarkAttackUsed();
       TheDarkDoor_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();

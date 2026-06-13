@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 84
+#define NUM_CUSTOM_NAME_SORT_CARDS 85
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -86,6 +86,7 @@ static const u8 sNightmareHorseSortName[] APPEND_RODATA = "Nightmare Horse";
 static const u8 sVampireBabySortName[] APPEND_RODATA = "Vampire Baby";
 static const u8 sTheForcefulSentrySortName[] APPEND_RODATA = "The Forceful Sentry";
 static const u8 sTerrorkingSalmonSortName[] APPEND_RODATA = "Terrorking Salmon";
+static const u8 sSasukeSamuraiSortName[] APPEND_RODATA = "Sasuke Samurai";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x033E, // Ancient Rules
@@ -144,6 +145,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0361, // Robbin' Goblin
   0x0362, // Robbin' Zombie
   0x0344, // Sage's Stone
+  0x0375, // Sasuke Samurai
   0x0340, // Seal of Orichalcos
   0x0360, // Secret Barrel
   0x036F, // Self-Destruct Button
@@ -231,34 +233,35 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   54, // Robbin' Goblin
   55, // Robbin' Zombie
   56, // Sage's Stone
-  57, // Seal of Orichalcos
-  58, // Secret Barrel
-  59, // Self-Destruct Button
-  60, // Shield And Sword
-  61, // Skill Drain
-  62, // Skull Invitation
-  63, // Solar Flare Dragon
-  64, // Sorcerer of Dark Magic
-  65, // Soul Exchange
-  66, // Spear Dragon
-  67, // Spell Canceller
-  68, // St Joan
-  69, // Swift Gaia The Fierce Knight
-  70, // Terrorking Salmon
-  71, // The Dark Door
-  72, // The Forceful Sentry
-  73, // Thousand Energy
-  74, // Time Seal
-  75, // Toll
-  76, // Ultimate Offering
-  77, // United We Stand
-  78, // Upstart Goblin
-  79, // Vampire Baby
-  80, // Warrior of Zera
-  81, // Wave Motion Cannon
-  82, // Weather Report
-  83, // White Magician Pikeru
-  84, // Yata-Garasu
+  57, // Sasuke Samurai
+  58, // Seal of Orichalcos
+  59, // Secret Barrel
+  60, // Self-Destruct Button
+  61, // Shield And Sword
+  62, // Skill Drain
+  63, // Skull Invitation
+  64, // Solar Flare Dragon
+  65, // Sorcerer of Dark Magic
+  66, // Soul Exchange
+  67, // Spear Dragon
+  68, // Spell Canceller
+  69, // St Joan
+  70, // Swift Gaia The Fierce Knight
+  71, // Terrorking Salmon
+  72, // The Dark Door
+  73, // The Forceful Sentry
+  74, // Thousand Energy
+  75, // Time Seal
+  76, // Toll
+  77, // Ultimate Offering
+  78, // United We Stand
+  79, // Upstart Goblin
+  80, // Vampire Baby
+  81, // Warrior of Zera
+  82, // Wave Motion Cannon
+  83, // Weather Report
+  84, // White Magician Pikeru
+  85, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -430,6 +433,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheForcefulSentrySortName;
   if (cardId == 0x0374)
     return (u8 *)sTerrorkingSalmonSortName;
+  if (cardId == 0x0375)
+    return (u8 *)sSasukeSamuraiSortName;
 
   return gCardNames[cardId];
 }

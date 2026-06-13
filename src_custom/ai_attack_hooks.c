@@ -8,6 +8,7 @@
 #include "cats_ear_tribe.h"
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
+#include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
 
@@ -149,7 +150,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
     return;
 
   AiPrepareAttacker(attacker);
-  defender->isFaceUp = TRUE;
+  RefreshPendingSasukeBattleTarget();
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
 
@@ -164,7 +165,9 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   SetAttackAction(playerCol, opponentCol);
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
-  HandleAtkAndLifePointsAction();
+  RunMonsterBattleAction();
+  if (defender->id != CARD_NONE)
+    defender->isFaceUp = TRUE;
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();

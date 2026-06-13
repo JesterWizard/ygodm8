@@ -213,7 +213,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
-- [ ] `SASUKE_SAMURAI` — `sasuke_samurai.png`
+- [x] `SASUKE_SAMURAI` — `sasuke_samurai.png`
 - [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`

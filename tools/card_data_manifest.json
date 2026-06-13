@@ -14976,6 +14976,28 @@
       },
       "card_name": "Terrorking Salmon",
       "password": [ 7, 8, 0, 6, 0, 0, 9, 6 ]
+    },
+    {
+      "card_const": "SASUKE_SAMURAI",
+      "atk": 500,
+      "def": 800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 2,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SasukeSamurai",
+        "pages": [
+          "When this card attacks a face-down Defense Position",
+          "monster, destroy it before Damage Calculation."
+        ]
+      },
+      "card_name": "Sasuke Samurai",
+      "password": [ 5, 8, 0, 3, 3, 4, 3, 4 ]
     }
   ]
 }

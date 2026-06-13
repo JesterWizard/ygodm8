@@ -82,6 +82,7 @@ static const u8 sNightmareHorseName[] __attribute__((section(".append_assets")))
 static const u8 sVampireBabyName[] __attribute__((section(".append_assets"))) = "Vampire Baby";
 static const u8 sTheForcefulSentryName[] __attribute__((section(".append_assets"))) = "The Forceful Sentry";
 static const u8 sTerrorkingSalmonName[] __attribute__((section(".append_assets"))) = "Terrorking Salmon";
+static const u8 sSasukeSamuraiName[] __attribute__((section(".append_assets"))) = "Sasuke Samurai";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -252,6 +253,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheForcefulSentryName;
   if (cardId == 0x0374)
     return (u8 *)sTerrorkingSalmonName;
+  if (cardId == 0x0375)
+    return (u8 *)sSasukeSamuraiName;
 
   return gCardNames[cardId];
 }

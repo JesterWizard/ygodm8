@@ -336,6 +336,10 @@ static const unsigned char sTerrorkingSalmonBigArt[] __attribute__((section(".ap
 static const unsigned short sTerrorkingSalmonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/terrorking_salmon.gbapal");
 static const unsigned char sTerrorkingSalmonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/terrorking_salmon.lz");
 
+static const unsigned char sSasukeSamuraiBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sasuke_samurai.huff");
+static const unsigned short sSasukeSamuraiBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sasuke_samurai.gbapal");
+static const unsigned char sSasukeSamuraiMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sasuke_samurai.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -421,6 +425,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0372] = sVampireBabyBigArt,
   [0x0373] = sTheForcefulSentryBigArt,
   [0x0374] = sTerrorkingSalmonBigArt,
+  [0x0375] = sSasukeSamuraiBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -508,6 +513,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0372] = sVampireBabyBigPalette,
   [0x0373] = sTheForcefulSentryBigPalette,
   [0x0374] = sTerrorkingSalmonBigPalette,
+  [0x0375] = sSasukeSamuraiBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -595,6 +601,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0372] = 0,
   [0x0373] = 0,
   [0x0374] = 0,
+  [0x0375] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -682,4 +689,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0372] = sVampireBabyMiniArt,
   [0x0373] = sTheForcefulSentryMiniArt,
   [0x0374] = sTerrorkingSalmonMiniArt,
+  [0x0375] = sSasukeSamuraiMiniArt,
 };

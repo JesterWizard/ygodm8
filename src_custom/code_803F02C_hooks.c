@@ -20,6 +20,7 @@
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
+#include "sasuke_samurai.h"
 
 extern u8 gSuppressSkullInvitationDamage;
 
@@ -209,21 +210,29 @@ void PlayerTurnMain__Replacement(void) {
     switch (ProcessInput__Replacement()) {
       case 1:
         MoveCursorUp();
+        if (gDuelCursor.state == 4)
+          RefreshPendingSasukeBattleTarget();
         DisplayCardInfoBar();
         sub_8041E70(y, gDuelCursor.currentY);
         break;
       case 2:
         MoveCursorDown();
+        if (gDuelCursor.state == 4)
+          RefreshPendingSasukeBattleTarget();
         DisplayCardInfoBar();
         sub_8041E70(y, gDuelCursor.currentY);
         break;
       case 3:
         MoveCursorLeft();
+        if (gDuelCursor.state == 4)
+          RefreshPendingSasukeBattleTarget();
         DisplayCardInfoBar();
         sub_8041E70(y, gDuelCursor.currentY);
         break;
       case 4:
         MoveCursorRight();
+        if (gDuelCursor.state == 4)
+          RefreshPendingSasukeBattleTarget();
         DisplayCardInfoBar();
         sub_8041E70(y, gDuelCursor.currentY);
         break;
