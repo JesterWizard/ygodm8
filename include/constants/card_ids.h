@@ -890,11 +890,12 @@
 #define MARYOKUTAI                               0x0376
 #define MERMAID_KNIGHT                           0x0377
 #define MEFIST_THE_INFERNAL_GENERAL              0x0378
+#define GUARDIAN_ANGEL_JOAN                      0x0379
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0379
-#define NUM_CUSTOM_CARDS                        0x0058
+#define NUM_TOTAL_CARDS                         0x037A
+#define NUM_CUSTOM_CARDS                        0x0059
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

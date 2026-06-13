@@ -263,6 +263,12 @@ _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Mefist, else 0xFF.
 _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
+@ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Guardian Angel Joan, else 0xFF.
+_kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
+@ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).
+_kernel_malloc_ewram gPendingGuardianAngelJoanPad, 1
+@ Original ATK of the monster Joan destroyed in battle.
+_kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

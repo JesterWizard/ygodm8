@@ -352,6 +352,10 @@ static const unsigned char sMefistTheInfernalGeneralBigArt[] __attribute__((sect
 static const unsigned short sMefistTheInfernalGeneralBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mefist_the_infernal_general.gbapal");
 static const unsigned char sMefistTheInfernalGeneralMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mefist_the_infernal_general.lz");
 
+static const unsigned char sGuardianAngelJoanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/guardian_angel_joan.huff");
+static const unsigned short sGuardianAngelJoanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/guardian_angel_joan.gbapal");
+static const unsigned char sGuardianAngelJoanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/guardian_angel_joan.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -441,6 +445,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0376] = sMaryokutaiBigArt,
   [0x0377] = sMermaidKnightBigArt,
   [0x0378] = sMefistTheInfernalGeneralBigArt,
+  [0x0379] = sGuardianAngelJoanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -532,6 +537,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0376] = sMaryokutaiBigPalette,
   [0x0377] = sMermaidKnightBigPalette,
   [0x0378] = sMefistTheInfernalGeneralBigPalette,
+  [0x0379] = sGuardianAngelJoanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -623,6 +629,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0376] = 0,
   [0x0377] = 0,
   [0x0378] = 0,
+  [0x0379] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -714,4 +721,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0376] = sMaryokutaiMiniArt,
   [0x0377] = sMermaidKnightMiniArt,
   [0x0378] = sMefistTheInfernalGeneralMiniArt,
+  [0x0379] = sGuardianAngelJoanMiniArt,
 };

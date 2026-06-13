@@ -18,6 +18,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "mefist_the_infernal_general.h"
+#include "guardian_angel_joan.h"
 
 void sub_8040B4C(void);
 void sub_80408FC(void);
@@ -341,5 +342,6 @@ void sub_8040EF0__Replacement(void) {
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
+  ResolveGuardianAngelJoanBattleEffect();
   FinishGraveyardDrawBattleResolve();
 }

@@ -14,6 +14,7 @@
 #include "piranha_army.h"
 #include "vampire_baby.h"
 #include "mefist_the_infernal_general.h"
+#include "guardian_angel_joan.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -154,6 +155,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyTheUnhappyMaidenBattleEffect();
   ApplyRobbinGoblinBattleEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
+  ApplyGuardianAngelJoanBattleEffect();
   ApplyRobbinZombieBattleEffect();
   ApplyYataGarasuBattleEffect();
 

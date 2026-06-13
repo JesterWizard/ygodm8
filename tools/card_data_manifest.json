@@ -15085,6 +15085,35 @@
       },
       "card_name": "Mefist The Infernal General",
       "password": [ 8, 0, 0, 2, 1, 0, 5, 4 ]
+    },
+    {
+      "card_const": "GUARDIAN_ANGEL_JOAN",
+      "atk": 2800,
+      "def": 2000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 8,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GuardianAngelJoan",
+        "pages": [
+          "A fairy maiden who protects the innocent with holy light.",
+          "When this card destroys a monster by battle, increase",
+          "your Life Points by the ATK of the destroyed monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GuardianAngelJoan",
+        "pages": [
+          "Increase your Life Points by the original ATK of the destroyed monster."
+        ]
+      },
+      "card_name": "Guardian Angel Joan",
+      "password": [ 1, 6, 0, 2, 3, 9, 2, 0 ]
     }
   ]
 }
