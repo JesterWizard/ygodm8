@@ -4,6 +4,7 @@
 #include "cost_down.h"
 #include "riryoku.h"
 #include "thousand_energy.h"
+#include "limiter_removal.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -46,6 +47,7 @@ void sub_802ADA4(void);
 void ResetTempStagesForAllCards(void);
 void DestroyKarateManAtEndOfTurn(void);
 void DestroyThousandEnergyMonstersAtEndOfTurn(void);
+void DestroyLimiterRemovalMonstersAtEndOfTurn(void);
 
 static void TryActivatingTurnEffect__Hook(void) {
   ResetCardEffectTextData();
@@ -235,6 +237,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   }
   DestroyKarateManAtEndOfTurn();
   DestroyThousandEnergyMonstersAtEndOfTurn();
+  DestroyLimiterRemovalMonstersAtEndOfTurn();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

@@ -360,6 +360,10 @@ static const unsigned char sPetenTheDarkClownBigArt[] __attribute__((section(".a
 static const unsigned short sPetenTheDarkClownBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/peten_the_dark_clown.gbapal");
 static const unsigned char sPetenTheDarkClownMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/peten_the_dark_clown.lz");
 
+static const unsigned char sLimiterRemovalBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/limiter_removal.huff");
+static const unsigned short sLimiterRemovalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/limiter_removal.gbapal");
+static const unsigned char sLimiterRemovalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/limiter_removal.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -451,6 +455,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0378] = sMefistTheInfernalGeneralBigArt,
   [0x0379] = sGuardianAngelJoanBigArt,
   [0x037A] = sPetenTheDarkClownBigArt,
+  [0x037B] = sLimiterRemovalBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -544,6 +549,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0378] = sMefistTheInfernalGeneralBigPalette,
   [0x0379] = sGuardianAngelJoanBigPalette,
   [0x037A] = sPetenTheDarkClownBigPalette,
+  [0x037B] = sLimiterRemovalBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -637,6 +643,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0378] = 0,
   [0x0379] = 0,
   [0x037A] = 0,
+  [0x037B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -730,4 +737,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0378] = sMefistTheInfernalGeneralMiniArt,
   [0x0379] = sGuardianAngelJoanMiniArt,
   [0x037A] = sPetenTheDarkClownMiniArt,
+  [0x037B] = sLimiterRemovalMiniArt,
 };

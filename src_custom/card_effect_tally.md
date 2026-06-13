@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `112` effects
+- `113` effects
 
 ## Tally
 
@@ -41,6 +41,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Thousand Energy` | `src_custom/spell_effects/thousand_energy.c` |
 | `spell_effects` | `The Dark Door` | `src_custom/spell_effects/the_dark_door.c` |
 | `spell_effects` | `The Forceful Sentry` | `src_custom/spell_effects/the_forceful_sentry.c` |
+| `spell_effects` | `Limiter Removal` | `src_custom/spell_effects/limiter_removal.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |

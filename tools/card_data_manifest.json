@@ -15143,6 +15143,39 @@
       },
       "card_name": "Peten The Dark Clown",
       "password": [ 5, 1, 5, 1, 3, 5, 8, 2 ]
+    },
+    {
+      "card_const": "LIMITER_REMOVAL",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_LimiterRemoval",
+        "pages": [
+          "A spell that removes the safety limits on machine monsters.",
+          "Double the ATK of all Machine-Type monsters on your side",
+          "of the field. Destroy them at the end of the turn."
+        ]
+      },
+      "card_name": "Limiter Removal",
+      "password": [ 7, 7, 5, 7, 5, 2, 5, 1 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_LimiterRemoval",
+        "pages": [
+          "Double the ATK of all Machine-Type monsters on your side of the field.",
+          "They will then be destroyed at the end of the turn."
+        ]
+      },
+      "big_art": "src_custom/assets/cards/80x80/limiter_removal.huff",
+      "big_palette": "src_custom/assets/cards/80x80/limiter_removal.gbapal",
+      "mini_art": "src_custom/assets/cards/24x24/limiter_removal.lz"
     }
   ]
 }

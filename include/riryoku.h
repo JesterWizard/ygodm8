@@ -22,6 +22,7 @@ void CancelRiryokuTargeting(void);
 void EffectRiryoku(void);
 void ClearRiryokuAtkDeltaForZone(const struct DuelCard *zone);
 void ClearAllRiryokuAtkDeltas(void);
+void AddRiryokuAtkDelta(struct DuelCard *zone, s16 amount);
 void ApplyRiryokuAtkDeltaToCardInfo(const struct DuelCard *zone);
 
 #endif // GUARD_RIRYOKU_H

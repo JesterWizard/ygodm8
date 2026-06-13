@@ -58,7 +58,7 @@ void ClearAllRiryokuAtkDeltas(void)
     gRiryokuAtkDelta[i] = 0;
 }
 
-static void AddRiryokuAtkDelta(struct DuelCard *zone, s16 amount)
+void AddRiryokuAtkDelta(struct DuelCard *zone, s16 amount)
 {
   s16 *delta = GetRiryokuAtkDeltaPtr(zone);
   s32 updated;

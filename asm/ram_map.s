@@ -241,6 +241,9 @@ _kernel_malloc_ewram gTimeSealSkipDrawDuelist, 1
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1
+@ Limiter Removal: same shape as Thousand Energy.
+_kernel_malloc_ewram gLimiterRemovalDestroyMask, 1
+_kernel_malloc_ewram gLimiterRemovalFixedMonsterRow, 1
 @ Set when The Unhappy Maiden ends the active duelist's turn during battle.
 @ Allocated last so earlier EWRAM symbols (trunk/sort buffers) keep stable addresses.
 _kernel_malloc_ewram gForceActiveTurnEnd, 1

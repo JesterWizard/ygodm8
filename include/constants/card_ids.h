@@ -892,11 +892,12 @@
 #define MEFIST_THE_INFERNAL_GENERAL              0x0378
 #define GUARDIAN_ANGEL_JOAN                      0x0379
 #define PETEN_THE_DARK_CLOWN                     0x037A
+#define LIMITER_REMOVAL                          0x037B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x037B
-#define NUM_CUSTOM_CARDS                        0x005A
+#define NUM_TOTAL_CARDS                         0x037C
+#define NUM_CUSTOM_CARDS                        0x005B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
