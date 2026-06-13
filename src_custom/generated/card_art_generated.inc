@@ -456,6 +456,10 @@ static const unsigned char sSolemnWishesBigArt[] __attribute__((section(".append
 static const unsigned short sSolemnWishesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/solemn_wishes.gbapal");
 static const unsigned char sSolemnWishesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/solemn_wishes.lz");
 
+static const unsigned char sStealthBirdBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/stealth_bird.huff");
+static const unsigned short sStealthBirdBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/stealth_bird.gbapal");
+static const unsigned char sStealthBirdMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/stealth_bird.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -571,6 +575,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0390] = sSoulTakerBigArt,
   [0x0391] = sSolarRayBigArt,
   [0x0392] = sSolemnWishesBigArt,
+  [0x0393] = sStealthBirdBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -688,6 +693,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0390] = sSoulTakerBigPalette,
   [0x0391] = sSolarRayBigPalette,
   [0x0392] = sSolemnWishesBigPalette,
+  [0x0393] = sStealthBirdBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -805,6 +811,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0390] = 0,
   [0x0391] = 0,
   [0x0392] = 0,
+  [0x0393] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -922,4 +929,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0390] = sSoulTakerMiniArt,
   [0x0391] = sSolarRayMiniArt,
   [0x0392] = sSolemnWishesMiniArt,
+  [0x0393] = sStealthBirdMiniArt,
 };

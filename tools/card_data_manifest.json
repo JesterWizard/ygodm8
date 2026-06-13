@@ -15843,6 +15843,35 @@
           "Each time you draw a card, gain 500 Life Points."
         ]
       }
+    },
+    {
+      "card_const": "STEALTH_BIRD",
+      "atk": 700,
+      "def": 1700,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 4,
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_STEALTH_BIRD",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_StealthBird",
+        "pages": [
+          "A winged beast that strikes from the shadows.",
+          "Activate this effect to inflict 1000LP damage",
+          "to your opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_StealthBird",
+        "pages": [
+          "1000LP of damage will be dealt to the opponent."
+        ]
+      },
+      "card_name": "Stealth Bird",
+      "password": [ 0, 3, 5, 1, 0, 5, 6, 5 ]
     }
   ]
 }

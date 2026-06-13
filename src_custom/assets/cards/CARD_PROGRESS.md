@@ -238,7 +238,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
 - [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
-- [ ] `STEALTH_BIRD` — `stealth_bird.png`
+- [x] `STEALTH_BIRD` — `stealth_bird.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`

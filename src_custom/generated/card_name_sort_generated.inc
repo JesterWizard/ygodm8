@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 114
+#define NUM_CUSTOM_NAME_SORT_CARDS 115
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -116,6 +116,7 @@ static const u8 sThousandKnivesSortName[] APPEND_RODATA = "Thousand Knives";
 static const u8 sSoulTakerSortName[] APPEND_RODATA = "Soul Taker";
 static const u8 sSolarRaySortName[] APPEND_RODATA = "Solar Ray";
 static const u8 sSolemnWishesSortName[] APPEND_RODATA = "Solemn Wishes";
+static const u8 sStealthBirdSortName[] APPEND_RODATA = "Stealth Bird";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -212,6 +213,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
   0x0333, // St Joan
+  0x0393, // Stealth Bird
   0x036E, // Swift Gaia The Fierce Knight
   0x0374, // Terrorking Salmon
   0x0384, // The Agent Of Creation - Venus
@@ -329,26 +331,27 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   92, // Spear Dragon
   93, // Spell Canceller
   94, // St Joan
-  95, // Swift Gaia The Fierce Knight
-  96, // Terrorking Salmon
-  97, // The Agent Of Creation - Venus
-  98, // The Dark Door
-  99, // The Forceful Sentry
-  100, // Thousand Energy
-  101, // Thousand Knives
-  102, // Time Seal
-  103, // Toll
-  104, // Triangle Power
-  105, // Twin Swords of Flashing Light - Tryce
-  106, // Ultimate Offering
-  107, // United We Stand
-  108, // Upstart Goblin
-  109, // Vampire Baby
-  110, // Warrior of Zera
-  111, // Wave Motion Cannon
-  112, // Weather Report
-  113, // White Magician Pikeru
-  114, // Yata-Garasu
+  95, // Stealth Bird
+  96, // Swift Gaia The Fierce Knight
+  97, // Terrorking Salmon
+  98, // The Agent Of Creation - Venus
+  99, // The Dark Door
+  100, // The Forceful Sentry
+  101, // Thousand Energy
+  102, // Thousand Knives
+  103, // Time Seal
+  104, // Toll
+  105, // Triangle Power
+  106, // Twin Swords of Flashing Light - Tryce
+  107, // Ultimate Offering
+  108, // United We Stand
+  109, // Upstart Goblin
+  110, // Vampire Baby
+  111, // Warrior of Zera
+  112, // Wave Motion Cannon
+  113, // Weather Report
+  114, // White Magician Pikeru
+  115, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -580,6 +583,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSolarRaySortName;
   if (cardId == 0x0392)
     return (u8 *)sSolemnWishesSortName;
+  if (cardId == 0x0393)
+    return (u8 *)sStealthBirdSortName;
 
   return gCardNames[cardId];
 }
