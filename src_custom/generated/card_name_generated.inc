@@ -90,6 +90,7 @@ static const u8 sGuardianAngelJoanName[] __attribute__((section(".append_assets"
 static const u8 sPetenTheDarkClownName[] __attribute__((section(".append_assets"))) = "Peten The Dark Clown";
 static const u8 sLimiterRemovalName[] __attribute__((section(".append_assets"))) = "Limiter Removal";
 static const u8 sJustDesertsName[] __attribute__((section(".append_assets"))) = "Just Deserts";
+static const u8 sGilasaurusName[] __attribute__((section(".append_assets"))) = "Gilasaurus";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -276,6 +277,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sLimiterRemovalName;
   if (cardId == 0x037C)
     return (u8 *)sJustDesertsName;
+  if (cardId == 0x037D)
+    return (u8 *)sGilasaurusName;
 
   return gCardNames[cardId];
 }

@@ -162,7 +162,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GIFT_OF_THE_MYSTICAL_ELF` — `gift_of_the_mystical_elf.png`
-- [ ] `GILASAURAUS` — `gilasauraus.png`
+- [ ] `GILASAURUS` — `gilasaurus.png`
 - [ ] `GRACEFUL_CHARITY` — `graceful_charity.png`
 - [ ] `GRAVITY_BIND` — `gravity_bind.png`
 - [ ] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`

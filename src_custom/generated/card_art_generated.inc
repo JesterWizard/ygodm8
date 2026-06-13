@@ -368,6 +368,10 @@ static const unsigned char sJustDesertsBigArt[] __attribute__((section(".append_
 static const unsigned short sJustDesertsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/just_deserts.gbapal");
 static const unsigned char sJustDesertsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/just_deserts.lz");
 
+static const unsigned char sGilasaurusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gilasaurus.huff");
+static const unsigned short sGilasaurusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gilasaurus.gbapal");
+static const unsigned char sGilasaurusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gilasaurus.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -461,6 +465,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x037A] = sPetenTheDarkClownBigArt,
   [0x037B] = sLimiterRemovalBigArt,
   [0x037C] = sJustDesertsBigArt,
+  [0x037D] = sGilasaurusBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -556,6 +561,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x037A] = sPetenTheDarkClownBigPalette,
   [0x037B] = sLimiterRemovalBigPalette,
   [0x037C] = sJustDesertsBigPalette,
+  [0x037D] = sGilasaurusBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -651,6 +657,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x037A] = 0,
   [0x037B] = 0,
   [0x037C] = 0,
+  [0x037D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -746,4 +753,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x037A] = sPetenTheDarkClownMiniArt,
   [0x037B] = sLimiterRemovalMiniArt,
   [0x037C] = sJustDesertsMiniArt,
+  [0x037D] = sGilasaurusMiniArt,
 };

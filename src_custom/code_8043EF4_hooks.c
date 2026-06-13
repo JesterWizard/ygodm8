@@ -90,6 +90,7 @@ void BlockTurnSummoning(u8);
 void HandleAtkAndLifePointsAction(void);
 void UpdateAllDuelGfx(void);
 u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
+u8 TrySpecialSummonGilasaurusFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -207,6 +208,11 @@ void sub_80441D0__Replacement(void)
         WaitForVBlank();
       } else if (handCardId == BLUE_EYES_ALTERNATIVE_WHITE_DRAGON
           && TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == GILASAURUS
+          && TrySpecialSummonGilasaurusFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

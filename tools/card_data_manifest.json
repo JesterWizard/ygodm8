@@ -15205,6 +15205,36 @@
           "The opponent is dealt 500 LP damage per monster on their side of the field."
         ]
       }
+    },
+    {
+      "card_const": "GILASAURUS",
+      "atk": 1400,
+      "def": 400,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 3,
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_Gilasaurus",
+        "pages": [
+          "A fast dinosaur that charges onto the field.",
+          "You can special summon this card from your hand",
+          "without using your normal summon."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Gilasaurus",
+        "pages": [
+          "Special summon this card from your hand.",
+          "Your opponent special summons 1 monster from their graveyard."
+        ]
+      },
+      "card_name": "Gilasaurus",
+      "password": [ 4, 8, 9, 5, 7, 8, 6, 4 ]
     }
   ]
 }
