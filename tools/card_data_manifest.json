@@ -15756,6 +15756,35 @@
       "big_art": "src_custom/assets/cards/80x80/thousand_knives.huff",
       "big_palette": "src_custom/assets/cards/80x80/thousand_knives.gbapal",
       "mini_art": "src_custom/assets/cards/24x24/thousand_knives.lz"
+    },
+    {
+      "card_const": "SOUL_TAKER",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SoulTaker",
+        "pages": [
+          "A spell that devours an enemy monster's soul.",
+          "Destroy one of your opponent's monsters;",
+          "they gain 1000 Life Points."
+        ]
+      },
+      "card_name": "Soul Taker",
+      "password": [ 8, 1, 5, 1, 0, 1, 5, 7 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_SoulTaker",
+        "pages": [
+          "Destroy 1 monster your opponent controls. Your opponent gains 1000 Life Points."
+        ]
+      }
     }
   ]
 }

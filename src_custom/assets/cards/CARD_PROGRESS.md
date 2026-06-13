@@ -231,7 +231,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SOLEMN_WISHES` — `solemn_wishes.png`
-- [ ] `SOUL_TAKER` — `soul_taker.png`
+- [x] `SOUL_TAKER` — `soul_taker.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
@@ -250,11 +250,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [ ] `THOUSAND_KNIVES` — `thousand_knives.png`
+- [x] `THOUSAND_KNIVES` — `thousand_knives.png`
 - [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
-- [ ] `TRIANGLE_POWER` — `triangle_power.png`
+- [x] `TRIANGLE_POWER` — `triangle_power.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
 - [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`

@@ -29,6 +29,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
+#include "soul_taker.h"
 #include "delinquent_duo.h"
 #include "the_forceful_sentry.h"
 #include "meteor_of_destruction.h"
@@ -337,6 +338,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginBlockAttackTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsSoulTakerCard(id)) {
+    if (!FieldHasSoulTakerTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginSoulTakerTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -721,6 +737,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       TrySelectBlockAttackTarget();
       break;
+    case DUEL_CURSOR_SOUL_TAKER_TARGET:
+      TrySelectSoulTakerTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -756,6 +775,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       CancelBlockAttackTargeting();
+      break;
+    case DUEL_CURSOR_SOUL_TAKER_TARGET:
+      CancelSoulTakerTargeting();
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();

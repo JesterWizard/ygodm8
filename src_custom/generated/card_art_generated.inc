@@ -444,6 +444,10 @@ static const unsigned char sThousandKnivesBigArt[] __attribute__((section(".appe
 static const unsigned short sThousandKnivesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thousand_knives.gbapal");
 static const unsigned char sThousandKnivesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thousand_knives.lz");
 
+static const unsigned char sSoulTakerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/soul_taker.huff");
+static const unsigned short sSoulTakerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/soul_taker.gbapal");
+static const unsigned char sSoulTakerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/soul_taker.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -556,6 +560,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x038D] = sTrianglePowerBigArt,
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigArt,
   [0x038F] = sThousandKnivesBigArt,
+  [0x0390] = sSoulTakerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -670,6 +675,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x038D] = sTrianglePowerBigPalette,
   [0x038E] = sTwinSwordsOfFlashingLightTryceBigPalette,
   [0x038F] = sThousandKnivesBigPalette,
+  [0x0390] = sSoulTakerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -784,6 +790,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x038D] = 0,
   [0x038E] = 0,
   [0x038F] = 0,
+  [0x0390] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -898,4 +905,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x038D] = sTrianglePowerMiniArt,
   [0x038E] = sTwinSwordsOfFlashingLightTryceMiniArt,
   [0x038F] = sThousandKnivesMiniArt,
+  [0x0390] = sSoulTakerMiniArt,
 };

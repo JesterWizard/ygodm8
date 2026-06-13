@@ -6,6 +6,7 @@
 #include "cost_down.h"
 #include "curse_of_darkness.h"
 #include "custom_field_spell.h"
+#include "soul_taker.h"
 
 extern void (*const gSpellEffects[])(void);
 extern void EffectCardOfDemise(void);
@@ -48,6 +49,7 @@ extern void EffectDarkRoomOfNightmare(void);
 extern void EffectGracefulCharity(void);
 extern void EffectTwinSwordsOfFlashingLightTryce(void);
 extern void EffectThousandKnives(void);
+extern void EffectSoulTaker(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -90,6 +92,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case DELINQUENT_DUO:
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
+    case SOUL_TAKER:
     case RAIN_OF_MERCY:
     case UPSTART_GOBLIN:
       return TRUE;
@@ -293,6 +296,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case THOUSAND_KNIVES:
       EffectThousandKnives();
+      return;
+    case SOUL_TAKER:
+      EffectSoulTaker();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

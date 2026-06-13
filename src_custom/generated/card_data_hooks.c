@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[912] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[913] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -924,9 +924,10 @@ const u8 gCardLockAfterActivation_Hook[912] APPEND_RODATA = {
   [0x038D] = 1,
   [0x038E] = 1,
   [0x038F] = 1,
+  [0x0390] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[912] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[913] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1839,9 +1840,10 @@ const u8 gCardEffectUsage_Hook[912] APPEND_RODATA = {
   [0x038D] = EFFECT_USAGE_NONE,
   [0x038E] = EFFECT_USAGE_NONE,
   [0x038F] = EFFECT_USAGE_NONE,
+  [0x0390] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[912] APPEND_RODATA = {
+const CardData gCardData_NEW[913] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13854,5 +13856,19 @@ const CardData gCardData_NEW[912] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {4, 1, 4, 8, 2, 5, 3, 6},
     .description = gDescription_ThousandKnives,
+  },
+  [0x0390] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 0,
+    .trapEffect = 0,
+    .password = {8, 1, 5, 1, 0, 1, 5, 7},
+    .description = gDescription_SoulTaker,
   },
 };
