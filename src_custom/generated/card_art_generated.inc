@@ -428,6 +428,10 @@ static const unsigned char sGracefulCharityBigArt[] __attribute__((section(".app
 static const unsigned short sGracefulCharityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/graceful_charity.gbapal");
 static const unsigned char sGracefulCharityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/graceful_charity.lz");
 
+static const unsigned char sGreatMajuGarzettBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/great_maju_garzett.huff");
+static const unsigned short sGreatMajuGarzettBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/great_maju_garzett.gbapal");
+static const unsigned char sGreatMajuGarzettMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/great_maju_garzett.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -536,6 +540,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0389] = sDarkRoomOfNightmareBigArt,
   [0x038A] = sDarkDriceratopsBigArt,
   [0x038B] = sGracefulCharityBigArt,
+  [0x038C] = sGreatMajuGarzettBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -646,6 +651,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0389] = sDarkRoomOfNightmareBigPalette,
   [0x038A] = sDarkDriceratopsBigPalette,
   [0x038B] = sGracefulCharityBigPalette,
+  [0x038C] = sGreatMajuGarzettBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -756,6 +762,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0389] = 0,
   [0x038A] = 0,
   [0x038B] = 0,
+  [0x038C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -866,4 +873,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0389] = sDarkRoomOfNightmareMiniArt,
   [0x038A] = sDarkDriceratopsMiniArt,
   [0x038B] = sGracefulCharityMiniArt,
+  [0x038C] = sGreatMajuGarzettMiniArt,
 };

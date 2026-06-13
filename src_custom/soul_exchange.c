@@ -1,6 +1,7 @@
 #include "global.h"
 #include "soul_exchange.h"
 #include "tribute.h"
+#include "great_maju_garzett.h"
 
 unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 void UpdateDuelGfxExceptField(void);
@@ -58,6 +59,7 @@ void ApplyMonsterTributeFromFixedRow(struct DuelCard *zone, u8 fixedMonsterRow)
   if (wasSoulExchangeOpponent) {
     GrantSoulExchangeTributeCredit();
   } else {
+    TryCaptureGreatMajuGarzettTributeFromZone(zone);
     IncrementNumTributes();
     if (GetKaiserSeaHorseTributeCount(zone->id) == 2)
       IncrementNumTributes();

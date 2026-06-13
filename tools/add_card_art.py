@@ -557,6 +557,7 @@ def render_card_counts_header(manifest: dict) -> str:
     custom_start = next((i for i, item in enumerate(cards) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(cards))
     total_cards = len(cards)
     custom_cards = max(0, total_cards - custom_start)
+    custom_card_qty_bytes = max(custom_cards, 0xC8)  # Keep in sync with render_card_memory_sizes_asm.
     return "\n".join(
         [
             "#ifndef GUARD_CONSTANTS_CARD_COUNTS_H",
@@ -564,6 +565,7 @@ def render_card_counts_header(manifest: dict) -> str:
             "",
             f"#define NUM_TOTAL_CARDS                         0x{total_cards:04X}",
             f"#define NUM_CUSTOM_CARDS                        0x{custom_cards:04X}",
+            f"#define CUSTOM_CARD_QTY_BYTES                   0x{custom_card_qty_bytes:04X}",
             "",
             "#endif // GUARD_CONSTANTS_CARD_COUNTS_H",
             "",

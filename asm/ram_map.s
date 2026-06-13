@@ -284,6 +284,12 @@ _kernel_malloc_ewram gPendingCoffinSellerDamageToOpponent, 1
 @ Dark Room of Nightmare deferred effect-damage trigger.
 _kernel_malloc_ewram gSuppressDarkRoomDamage, 1
 _kernel_malloc_ewram gPendingDarkRoomTarget, 1
+@ Great Maju Garzett tribute capture + per-cell atk/def/active (10 cells, 0x32 total).
+_kernel_malloc_ewram_array gGreatMajuGarzettBoardAtk, 0x14
+_kernel_malloc_ewram_array gGreatMajuGarzettBoardDef, 0x14
+_kernel_malloc_ewram_array gGreatMajuGarzettBoardActive, 0xA
+_kernel_malloc_ewram_array gGreatMajuGarzettTributeTotals, 0x4
+_kernel_malloc_ewram gGreatMajuGarzettPendingSummon, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

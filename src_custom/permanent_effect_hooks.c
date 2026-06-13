@@ -8,6 +8,7 @@
 #include "dark_magician_knight.h"
 #include "kaiser_glider.h"
 #include "moister_creature.h"
+#include "great_maju_garzett.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -116,6 +117,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MOISTER_CREATURE,
     .shouldActivate = ShouldActivateMoisterCreature,
     .activate = ActivateMoisterCreature,
+  },
+  {
+    .cardId = GREAT_MAJU_GARZETT,
+    .shouldActivate = ShouldActivateGreatMajuGarzett,
+    .activate = ActivateGreatMajuGarzett,
   },
   {
     .cardId = PETEN_THE_DARK_CLOWN,

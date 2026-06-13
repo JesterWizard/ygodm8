@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "board_placement.h"
 #include "configs/runtime.h"
+#include "constants/card_ids.h"
 #include "summon_tribute.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
@@ -42,6 +43,7 @@
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
+#include "great_maju_garzett.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -140,9 +142,9 @@ static void TryPlaceSelectedCardOnField_Local(void)
         BlockTurnSummoning(ACTIVE_DUELIST);
         LockMonsterCardsInRow(4);
         RecordPendingSummonTributeCount();
-        ResetNumTributes();
         sub_80449D8();
         TryActivatingPermanentEffects();
+        ResetNumTributes();
       }
   }
 }
@@ -236,10 +238,13 @@ void sub_80441D0__Replacement(void)
             PlayMusic(SFX_FORBIDDEN);
             WaitForVBlank();
           } else {
+            SetGreatMajuGarzettPendingSummon(handCardId == GREAT_MAJU_GARZETT);
             PlayMusic(SFX_FORBIDDEN);
             DisplayNumRequiredTributesTextbox(numTributes);
           }
         } else {
+          if (handCardId != GREAT_MAJU_GARZETT)
+            SetGreatMajuGarzettPendingSummon(FALSE);
           PlayMusic(SFX_SELECT);
           sub_80442AC();
         }
@@ -445,6 +450,7 @@ LYN_REPLACE_CHECK(sub_80442AC);
 void sub_80442AC__Replacement(void) {
   u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
 
+  SetGreatMajuGarzettPendingSummon(id == GREAT_MAJU_GARZETT);
   SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
   gDuelCursor.state = 1;
   ResetCursorDestToCurrentPos();
@@ -515,6 +521,8 @@ void sub_80449D8__Replacement(void)
 
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
+  FinishGreatMajuGarzettTributeSummon(
+      gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();

@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "player_decks.h"
 #include "copycat.h"
+#include "great_maju_garzett.h"
 #include "cost_down.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -39,6 +40,7 @@ extern u32 gLfsrState;
 extern void (*g20245AC)(int, u8 *, int);
 unsigned short GetNthCardOnScreen(u8);
 void SyncAllCustomTrunkCardQtyMirrorsToVanilla(void);
+void SanitizeCustomCardQtyBuffers(void);
 int GetTrunkCardQty(unsigned short);
 int sub_80588C4(u8 *, int, int);
 void sub_800BD44(void);
@@ -456,6 +458,9 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
+  if (zone->id == GREAT_MAJU_GARZETT && ApplyGreatMajuGarzettZoneStatsToCardInfo(zone))
+    return;
+
   if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
     ApplyCopycatStatsToCardInfo(&statMod);
     return;
@@ -488,6 +493,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
+  else if (ptr->card == GREAT_MAJU_GARZETT
+           && ApplyGreatMajuGarzettStatsToCardInfo(ptr))
+    ;
   else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
            || (gSetFinalStatZone != NULL
                && gSetFinalStatZone->id == ptr->card
@@ -546,6 +554,8 @@ void sub_803519C__Replacement(void) {
   g20245AC((int)gCustomTrunkCardQtyFlashPrimary, gCustomTrunkCardQty, NUM_CUSTOM_CARDS);
   g20245AC((int)gCustomShopCardQtyFlashPrimary, gCustomShopCardQty, NUM_CUSTOM_CARDS);
   g20245AC((int)gCustomPlayerTempCardQtyFlashPrimary, gCustomPlayerTempCardQty, NUM_CUSTOM_CARDS);
+
+  SanitizeCustomCardQtyBuffers();
 
   SyncAllCustomTrunkCardQtyMirrorsToVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {

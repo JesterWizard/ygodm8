@@ -5,6 +5,7 @@
 #include "configs/runtime.h"
 #include "mask_of_restrict.h"
 #include "summon_tribute.h"
+#include "great_maju_garzett.h"
 
 struct AI_Command {
   u16 action;
@@ -86,6 +87,7 @@ void sub_800E0D4__Replacement(void)
 
   AiTempoMaybeDelayBeforeAction();
   RecordAiSummonTributeCount();
+  TryCaptureGreatMajuGarzettAiTribute();
   sub_803FD14();
   g8DFF600[sAI_Command.action]();
   AiMemory_RecordExecutedAction();

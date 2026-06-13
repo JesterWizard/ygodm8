@@ -6,6 +6,7 @@
 #include "monster_effect_usage.h"
 #include "soul_exchange.h"
 #include "tribute.h"
+#include "great_maju_garzett.h"
 #include "weather_report.h"
 
 unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
@@ -231,6 +232,8 @@ void MonsterActionMenu__Replacement(void) {
         ApplyMonsterTributeFromFixedRow(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], OPPONENT_MONSTER_ROW);
       } else {
+        TryCaptureGreatMajuGarzettTributeFromZone(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
         IncrementNumTributes();
         if (GetKaiserSeaHorseTributeCount(
                 gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id) == 2)

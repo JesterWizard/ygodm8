@@ -9,6 +9,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from ram_map_layout import validate_ram_map_layout
 RAM_MAP = ROOT / "asm" / "ram_map.s"
 
 FLASH_TOP = 0x0E000000
@@ -152,6 +155,12 @@ def find_overlaps(regions: list[Region]) -> list[tuple[Region, Region]]:
 
 
 def main() -> int:
+    layout_errors = validate_ram_map_layout()
+    if layout_errors:
+        for error in layout_errors:
+            print(error, file=sys.stderr)
+        return 1
+
     text = RAM_MAP.read_text()
     regions = flash_regions(parse_regions(text))
     if not regions:
@@ -190,7 +199,10 @@ def main() -> int:
             return 1
 
     used = max_end - FLASH_TOP
-    print(f"validate_ram_map: ok ({len(regions)} regions, {used:#x}/{FLASH_SIZE:#x} bytes used)")
+    print(
+        f"validate_ram_map: ok ({len(regions)} flash regions, {used:#x}/{FLASH_SIZE:#x} bytes used; "
+        "IWRAM/EWRAM layout ok)"
+    )
     return 0
 
 

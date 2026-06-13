@@ -35,7 +35,7 @@ def extract_function_body(source: str, function_name: str) -> str:
 
 
 class MiniCardStatOverlayTests(unittest.TestCase):
-    def test_field_stat_overlay_uses_set_final_stat_with_stage(self):
+    def test_field_stat_overlay_uses_field_zone_stats(self):
         source = MINI_CARD_HOOKS.read_text()
 
         for function_name in (
@@ -45,9 +45,8 @@ class MiniCardStatOverlayTests(unittest.TestCase):
             body = extract_function_body(source, function_name)
             with self.subTest(function_name=function_name):
                 self.assertIn("ZoneShowsCombatStats(arg1)", body)
-                self.assertIn("GetFinalStage(arg1)", body)
-                self.assertIn("SetFinalStat(&gStatMod)", body)
-                self.assertNotIn("ApplyFieldZoneStatsToCardInfo(arg1)", body)
+                self.assertIn("ApplyFieldZoneStatsToCardInfo(arg1)", body)
+                self.assertNotIn("SetFinalStat(&gStatMod)", body)
                 self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", body)
 
     def test_shared_combat_stat_gate_uses_card_type_group(self):
@@ -63,6 +62,7 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", apply_body)
 
         set_final_body = extract_function_body(card_hooks, "SetFinalStat__Replacement")
+        self.assertIn("ApplyGreatMajuGarzettStatsToCardInfo(ptr)", set_final_body)
         self.assertIn("GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER", set_final_body)
         self.assertNotIn("gCardInfo.spellEffect == SPELL_EFFECT_MONSTER", set_final_body)
 

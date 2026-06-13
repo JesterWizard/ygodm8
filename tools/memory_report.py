@@ -4,6 +4,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from ram_map_layout import validate_layout
+
 WHITE = "\033[37m"
 YELLOW = "\033[33m"
 RED = "\033[31m"
@@ -114,9 +118,21 @@ def main() -> int:
     parser.add_argument("elf", type=Path, help="Built ELF file to inspect")
     parser.add_argument("--nm", default="arm-none-eabi-nm", help="nm executable to use")
     parser.add_argument("--no-color", action="store_true", help="Disable ANSI color")
+    parser.add_argument(
+        "--skip-layout-check",
+        action="store_true",
+        help="Skip overlap and card-growth layout validation",
+    )
     args = parser.parse_args()
 
     symbols = load_symbols(args.elf, args.nm)
+
+    if not args.skip_layout_check:
+        layout_errors = validate_layout(symbols)
+        if layout_errors:
+            for error in layout_errors:
+                print(error, file=sys.stderr)
+            return 1
 
     iwram_top      = require(symbols, "FreeRamSpaceTop")
     iwram_bottom   = require(symbols, "FreeRamSpaceBottom")

@@ -11,6 +11,7 @@
 #include "time_seal.h"
 #include "reckless_greed.h"
 #include "copycat.h"
+#include "great_maju_garzett.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
@@ -418,6 +419,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->unk4 = 0;
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
+  ClearGreatMajuGarzettBoardStatsForZone(zone);
   RecalculateAllDynamicEquips();
   if (gUnk2023EA0.unk18 == 0 && !gHideEffectText)
     ResolveCoffinSellerBattleEffect();

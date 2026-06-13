@@ -62,6 +62,7 @@ void SortCardsAccordingToContext(void);
 void sub_802FF78(u8 *, u16);
 void sub_802FFF0(u8 *, u16);
 void SyncCustomTrunkCardQtyMirror(u16 cardId);
+void SanitizeCustomCardQtyBuffers(void);
 
 static u8 IsCustomShopCardId(u16 cardId) {
   return cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS;
@@ -357,6 +358,8 @@ LYN_REPLACE_CHECK(InitNewGameShopCards);
 void InitNewGameShopCards__Replacement(void) {
   unsigned short cardId;
   unsigned short i;
+
+  SanitizeCustomCardQtyBuffers();
 
   for (cardId = 0; cardId < NUM_CARDS; cardId++) {
     if (gRuntimeConfig.start_shop_with_one_copy_of_every_card == TRUE)

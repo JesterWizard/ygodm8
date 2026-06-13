@@ -10,6 +10,16 @@ extern unsigned char gTrunkCardQty[];
 extern unsigned char gTotalCardQty[];
 extern unsigned char gCustomTotalCardQty[];
 extern unsigned char gCustomTrunkCardQty[];
+extern unsigned char gCustomShopCardQty[];
+extern unsigned char gCustomPlayerTempCardQty[];
+extern unsigned char gCustomShopTempCardQty[];
+extern unsigned char gCustomTrunkCardQtyFlashPrimary[];
+extern unsigned char gCustomTrunkCardQtyFlashBackup[];
+extern unsigned char gCustomShopCardQtyFlashPrimary[];
+extern unsigned char gCustomShopCardQtyFlashBackup[];
+extern unsigned char gCustomPlayerTempCardQtyFlashPrimary[];
+extern unsigned char gCustomPlayerTempCardQtyFlashBackup[];
+int sub_80588C4(u8 *, int, int);
 extern void SortCardsAccordingToContext(void);
 extern u8 gUnk_8DFA6A8[];
 extern struct CardSortContext gCardSortContext;
@@ -61,6 +71,8 @@ static bool8 IsCustomCardId(u16 cardId) {
 }
 
 static u8 GetTrunkQtyForCard(u16 cardId) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return 0;
   if (IsCustomCardId(cardId))
     return gCustomTrunkCardQty[cardId - CUSTOM_CARD_START];
   if (cardId < CUSTOM_CARD_START)
@@ -68,9 +80,42 @@ static u8 GetTrunkQtyForCard(u16 cardId) {
   return 0;
 }
 
+static void WriteCustomCardQtyFlashPaddingAt(int flashBase) {
+  u16 i;
+  u8 zero = 0;
+
+  for (i = NUM_CUSTOM_CARDS; i < CUSTOM_CARD_QTY_BYTES; i++)
+    sub_80588C4(&zero, flashBase + i, 1);
+}
+
+void SanitizeCustomCardQtyBuffers(void) {
+  u16 i;
+
+  if (NUM_CUSTOM_CARDS >= CUSTOM_CARD_QTY_BYTES)
+    return;
+
+  for (i = NUM_CUSTOM_CARDS; i < CUSTOM_CARD_QTY_BYTES; i++) {
+    gCustomTrunkCardQty[i] = 0;
+    gCustomShopCardQty[i] = 0;
+    gCustomPlayerTempCardQty[i] = 0;
+    gCustomTotalCardQty[i] = 0;
+    gCustomShopTempCardQty[i] = 0;
+  }
+
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomTrunkCardQtyFlashPrimary);
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomTrunkCardQtyFlashBackup);
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomShopCardQtyFlashPrimary);
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomShopCardQtyFlashBackup);
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomPlayerTempCardQtyFlashPrimary);
+  WriteCustomCardQtyFlashPaddingAt((int)gCustomPlayerTempCardQtyFlashBackup);
+}
+
 #define LAST_VANILLA_TRUNK_QTY_CARD_ID 807
 
 static void SetTrunkQtyForCard(u16 cardId, u8 qty) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return;
+
   if (IsCustomCardId(cardId)) {
     gCustomTrunkCardQty[cardId - CUSTOM_CARD_START] = qty;
     if (cardId <= LAST_VANILLA_TRUNK_QTY_CARD_ID)
@@ -348,12 +393,16 @@ void SyncAllCustomTrunkCardQtyMirrorsFromVanilla(void) {
 }
 
 unsigned char GetTotalCardQtyForCard(u16 cardId) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return 0;
   if (cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS)
     return gCustomTotalCardQty[cardId - CUSTOM_CARD_START];
   return gTotalCardQty[cardId];
 }
 
 void SetTotalCardQtyForCard(u16 cardId, u8 qty) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return;
   if (cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS)
     gCustomTotalCardQty[cardId - CUSTOM_CARD_START] = qty;
   else
@@ -451,6 +500,8 @@ void RunTrunkTask__Replacement(unsigned char task) {
 LYN_REPLACE_CHECK(InitTrunkCards);
 void InitTrunkCards__Replacement(void) {
   u32 id;
+
+  SanitizeCustomCardQtyBuffers();
 
   for (id = 0; id < GetLastTrackedCardId(); id++) {
     if (id >= CUSTOM_CARD_START) {

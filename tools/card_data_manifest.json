@@ -15637,6 +15637,35 @@
           "Draw 3 cards, then discard 2 cards."
         ]
       }
+    },
+    {
+      "card_const": "GREAT_MAJU_GARZETT",
+      "atk": 0,
+      "def": 0,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 6,
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GreatMajuGarzett",
+        "pages": [
+          "A fiend whose power mirrors its tribute.",
+          "This card's ATK and DEF become twice the ATK",
+          "and DEF of the monster Tributed to summon it."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GreatMajuGarzett",
+        "pages": [
+          "This card's ATK and DEF become twice the ATK and DEF of the monster Tributed to summon it."
+        ]
+      },
+      "card_name": "Great Maju Garzett",
+      "password": [ 0, 5, 3, 5, 7, 2, 6, 8 ]
     }
   ]
 }

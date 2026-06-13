@@ -37,10 +37,12 @@ u16 sub_800B158(void);
 
 extern void SyncAllCustomTrunkCardQtyMirrorsToVanilla(void);
 extern void SyncAllCustomTrunkCardQtyMirrorsFromVanilla(void);
+extern void SanitizeCustomCardQtyBuffers(void);
 
 static void SyncCustomCardQtyToFlashBuffers(void) {
   u16 i;
 
+  SanitizeCustomCardQtyBuffers();
   SyncAllCustomTrunkCardQtyMirrorsFromVanilla();
   for (i = 0; i < NUM_CUSTOM_CARDS; i++) {
     gCustomShopCardQty[i] = GetShopCardQty(CUSTOM_CARD_START + i);

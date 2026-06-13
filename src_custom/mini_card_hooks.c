@@ -129,12 +129,7 @@ void sub_80572A8__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (!ZoneShowsCombatStats(arg1))
     return;
 
-  gStatMod.card = arg1->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(arg1);
-  gSetFinalStatZone = arg1;
-  SetFinalStat(&gStatMod);
-  ApplyRiryokuAtkDeltaToCardInfo(arg1);
+  ApplyFieldZoneStatsToCardInfo(arg1);
 
   if (gCardInfo.atk / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);
@@ -156,11 +151,7 @@ void sub_805733C__Replacement(unsigned char* arg0, struct DuelCard* arg1) {
   if (!ZoneShowsCombatStats(arg1))
     return;
 
-  gStatMod.card = arg1->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(arg1);
-  gSetFinalStatZone = arg1;
-  SetFinalStat(&gStatMod);
+  ApplyFieldZoneStatsToCardInfo(arg1);
 
   if (gCardInfo.def / 100 > 99)
     ConvertU16ToDigitBuffer(99, DIGIT_FLAG_NONE);

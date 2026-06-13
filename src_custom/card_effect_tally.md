@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `125` effects
+- `126` effects
 
 ## Tally
 
@@ -129,6 +129,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 | `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |
 | `permanent_effects` | `Moister Creature` | `src_custom/permanent_effects/moister_creature.c` |
+| `permanent_effects` | `Great Maju Garzett` | `src_custom/permanent_effects/great_maju_garzett.c` |
 | `permanent_effects` | `Peten The Dark Clown` | `src_custom/permanent_effects/peten_the_dark_clown.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
