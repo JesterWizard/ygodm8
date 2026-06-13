@@ -363,18 +363,6 @@ static u64 GetDominoScaleMultiplier(u8 scalePower) {
   return temp;
 }
 
-struct DuelShopDropEntry {
-  u16 cardId;
-  u8 qty;
-};
-
-struct DuelShopDropRecord {
-  u8 count;
-  struct DuelShopDropEntry entries[3];
-};
-
-extern struct DuelShopDropRecord gDuelShopDropRecord;
-
 static const u8 sText_InStock[] APPEND_RODATA = "Added to shop:#0";
 static const u8 sText_NoNewCards[] APPEND_RODATA = "No new cards added";
 static const u8 sText_WaitInput[] APPEND_RODATA = "#1";
@@ -485,33 +473,27 @@ static u8 *AppendCardShopDropLine(u8 *dest, u16 cardId, u8 qty, u8 addLineBreak)
   return dest;
 }
 
-static void ClearDuelShopDropRecord(void) {
-  gDuelShopDropRecord.count = 0;
-}
-
-static void RecordDuelShopDrop(u16 cardId, u8 qty) {
+static void MergeShopDrop(u16 cardId, u8 qty, u16 *ids, u8 *qtys, u8 *count) {
   u8 i;
 
-  for (i = 0; i < gDuelShopDropRecord.count; i++) {
-    if (gDuelShopDropRecord.entries[i].cardId == cardId) {
-      gDuelShopDropRecord.entries[i].qty += qty;
+  for (i = 0; i < *count; i++) {
+    if (ids[i] == cardId) {
+      qtys[i] = (u8)(qtys[i] + qty);
       return;
     }
   }
 
-  if (gDuelShopDropRecord.count < ARRAY_COUNT(gDuelShopDropRecord.entries)) {
-    gDuelShopDropRecord.entries[gDuelShopDropRecord.count].cardId = cardId;
-    gDuelShopDropRecord.entries[gDuelShopDropRecord.count].qty = qty;
-    gDuelShopDropRecord.count++;
+  if (*count < 3) {
+    ids[*count] = cardId;
+    qtys[*count] = qty;
+    (*count)++;
   }
 }
 
-LYN_REPLACE_CHECK(AddCardDropsToShop);
-void AddCardDropsToShop__Replacement(void) {
+static void RunDuelShopDropLoop(u16 *ids, u8 *qtys, u8 *count) {
   unsigned i;
-  u8 recordDrops = gRuntimeConfig.show_duel_shop_card_drops == TRUE;
 
-  ClearDuelShopDropRecord();
+  *count = 0;
   for (i = 0; i < 3; i++) {
     u16 cardId = sub_8020050();
     u8 qtyBefore;
@@ -523,29 +505,40 @@ void AddCardDropsToShop__Replacement(void) {
     qtyBefore = GetShopCardQty(cardId);
     AddCardQtyToShop2(cardId, 1);
     qtyAdded = (u8)(GetShopCardQty(cardId) - qtyBefore);
-    if (qtyAdded > 0 && recordDrops)
-      RecordDuelShopDrop(cardId, qtyAdded);
+    if (qtyAdded > 0)
+      MergeShopDrop(cardId, qtyAdded, ids, qtys, count);
   }
+}
+
+LYN_REPLACE_CHECK(AddCardDropsToShop);
+void AddCardDropsToShop__Replacement(void) {
+  u16 ids[3];
+  u8 qtys[3];
+  u8 count;
+
+  RunDuelShopDropLoop(ids, qtys, &count);
 }
 
 void DisplayDuelShopDropText(void) {
   u8 textBuffer[384];
   u8 *write = textBuffer;
+  u16 ids[3];
+  u8 qtys[3];
+  u8 count;
   u8 i;
 
   if (gRuntimeConfig.show_duel_shop_card_drops != TRUE)
     return;
 
+  RunDuelShopDropLoop(ids, qtys, &count);
+
   write = AppendAsciiToText(write, sText_InStock);
 
-  if (gDuelShopDropRecord.count == 0) {
+  if (count == 0)
     write = AppendAsciiToText(write, sText_NoNewCards);
-  }
   else {
-    for (i = 0; i < gDuelShopDropRecord.count; i++)
-      write = AppendCardShopDropLine(write, gDuelShopDropRecord.entries[i].cardId,
-                                     gDuelShopDropRecord.entries[i].qty,
-                                     i + 1 < gDuelShopDropRecord.count);
+    for (i = 0; i < count; i++)
+      write = AppendCardShopDropLine(write, ids[i], qtys[i], i + 1 < count);
   }
 
   write = AppendAsciiToText(write, sText_WaitInput);
@@ -623,7 +616,8 @@ void HandleWin__Replacement(void) {
     gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(gUnk8E00B30[gDuelData.opponent]->capacityYield));
   IncreaseDeckCapacity(gDuelData.capacityYield);
   AddRewardCardToTrunk__Replacement();
-  AddCardDropsToShop();
+  if (gRuntimeConfig.show_duel_shop_card_drops != TRUE)
+    AddCardDropsToShop__Replacement();
   AddMoneyFromDuelVictory();
   baseMoneyReward = gDuelData.moneyReward;
   gDuelData.moneyReward = baseMoneyReward * rewardMultiplier;
