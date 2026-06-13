@@ -7,6 +7,7 @@
 #include "the_unhappy_maiden.h"
 #include "spear_dragon.h"
 #include "mad_sword_beast.h"
+#include "dark_driceratops.h"
 #include "robbin_goblin.h"
 #include "robbin_zombie.h"
 #include "yata_garasu.h"
@@ -133,6 +134,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
   ApplyMadSwordBeastBattleEffect();
+  ApplyDarkDriceratopsBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
 

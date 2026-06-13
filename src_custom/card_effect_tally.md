@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `123` effects
+- `124` effects
 
 ## Tally
 
@@ -107,6 +107,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `The Unhappy Maiden` | `src_custom/battle_effects/the_unhappy_maiden.c` |
 | `battle_effects` | `Spear Dragon` | `src_custom/battle_effects/spear_dragon.c` |
 | `battle_effects` | `Mad Sword Beast` | `src_custom/battle_effects/mad_sword_beast.c` |
+| `battle_effects` | `Dark Driceratops` | `src_custom/battle_effects/dark_driceratops.c` |
 | `battle_effects` | `Yata Garasu` | `src_custom/battle_effects/yata_garasu.c` |
 | `battle_effects` | `Kaiser Glider` | `src_custom/battle_effects/kaiser_glider.c` |
 | `battle_effects` | `Piranha Army` | `src_custom/battle_effects/piranha_army.c` |

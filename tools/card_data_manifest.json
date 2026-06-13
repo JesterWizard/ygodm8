@@ -15587,6 +15587,28 @@
           "Deal 300 LP of additional damage."
         ]
       }
+    },
+    {
+      "card_const": "DARK_DRICERATOPS",
+      "atk": 2400,
+      "def": 1500,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 6,
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DarkDriceratops",
+        "pages": [
+          "If this card attacks a Defense Position monster,",
+          "inflict piercing battle damage."
+        ]
+      },
+      "card_name": "Dark Driceratops",
+      "password": [ 6, 5, 2, 8, 7, 6, 2, 1 ]
     }
   ]
 }
