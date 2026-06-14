@@ -200,7 +200,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NECROVALLEY` — `necrovalley.png`
 - [x] `NEEDLE_BURROWER` — `needle_burrower.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
-- [ ] `NEGATIVE_ENERGY` — `negative_energy.png`
+- [x] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NIGHTMARE_WHEEL` — `nightmare_wheel.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 121
+#define NUM_CUSTOM_NAME_SORT_CARDS 122
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -123,6 +123,7 @@ static const u8 sImperialOrderSortName[] APPEND_RODATA = "Imperial Order";
 static const u8 sGrenMajuDaEizaSortName[] APPEND_RODATA = "Gren Maju Da Eiza";
 static const u8 sRoyalDecreeSortName[] APPEND_RODATA = "Royal Decree";
 static const u8 sReaperOnTheNightmareSortName[] APPEND_RODATA = "Reaper on the Nightmare";
+static const u8 sNegativeEnergySortName[] APPEND_RODATA = "Negative Energy";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -192,6 +193,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0336, // Mystical Space Typhoon
   0x0394, // Needle Burrower
   0x035D, // Negate Attack
+  0x039A, // Negative Energy
   0x0371, // Nightmare Horse
   0x0339, // Obnoxious Celtic Guardian
   0x034E, // Ojama Trio
@@ -316,60 +318,61 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   65, // Mystical Space Typhoon
   66, // Needle Burrower
   67, // Negate Attack
-  68, // Nightmare Horse
-  69, // Obnoxious Celtic Guardian
-  70, // Ojama Trio
-  71, // Paladin Of White Dragon
-  72, // Peten The Dark Clown
-  73, // Piranha Army
-  74, // Pyramid of Light
-  75, // Rain of Mercy
-  76, // Rare Metal Dragon
-  77, // Reaper on the Nightmare
-  78, // Reckless Greed
-  79, // Reload
-  80, // Riryoku
-  81, // Robbin' Goblin
-  82, // Robbin' Zombie
-  83, // Royal Decree
-  84, // Sage's Stone
-  85, // Sasuke Samurai
-  86, // Seal of Orichalcos
-  87, // Secret Barrel
-  88, // Self-Destruct Button
-  89, // Shield And Sword
-  90, // Skill Drain
-  91, // Skull Invitation
-  92, // Solar Flare Dragon
-  93, // Solar Ray
-  94, // Solemn Wishes
-  95, // Sorcerer of Dark Magic
-  96, // Soul Exchange
-  97, // Soul Taker
-  98, // Spear Dragon
-  99, // Spell Canceller
-  100, // St Joan
-  101, // Stealth Bird
-  102, // Swift Gaia The Fierce Knight
-  103, // Terrorking Salmon
-  104, // The Agent Of Creation - Venus
-  105, // The Dark Door
-  106, // The Forceful Sentry
-  107, // Thousand Energy
-  108, // Thousand Knives
-  109, // Time Seal
-  110, // Toll
-  111, // Triangle Power
-  112, // Twin Swords of Flashing Light - Tryce
-  113, // Ultimate Offering
-  114, // United We Stand
-  115, // Upstart Goblin
-  116, // Vampire Baby
-  117, // Warrior of Zera
-  118, // Wave Motion Cannon
-  119, // Weather Report
-  120, // White Magician Pikeru
-  121, // Yata-Garasu
+  68, // Negative Energy
+  69, // Nightmare Horse
+  70, // Obnoxious Celtic Guardian
+  71, // Ojama Trio
+  72, // Paladin Of White Dragon
+  73, // Peten The Dark Clown
+  74, // Piranha Army
+  75, // Pyramid of Light
+  76, // Rain of Mercy
+  77, // Rare Metal Dragon
+  78, // Reaper on the Nightmare
+  79, // Reckless Greed
+  80, // Reload
+  81, // Riryoku
+  82, // Robbin' Goblin
+  83, // Robbin' Zombie
+  84, // Royal Decree
+  85, // Sage's Stone
+  86, // Sasuke Samurai
+  87, // Seal of Orichalcos
+  88, // Secret Barrel
+  89, // Self-Destruct Button
+  90, // Shield And Sword
+  91, // Skill Drain
+  92, // Skull Invitation
+  93, // Solar Flare Dragon
+  94, // Solar Ray
+  95, // Solemn Wishes
+  96, // Sorcerer of Dark Magic
+  97, // Soul Exchange
+  98, // Soul Taker
+  99, // Spear Dragon
+  100, // Spell Canceller
+  101, // St Joan
+  102, // Stealth Bird
+  103, // Swift Gaia The Fierce Knight
+  104, // Terrorking Salmon
+  105, // The Agent Of Creation - Venus
+  106, // The Dark Door
+  107, // The Forceful Sentry
+  108, // Thousand Energy
+  109, // Thousand Knives
+  110, // Time Seal
+  111, // Toll
+  112, // Triangle Power
+  113, // Twin Swords of Flashing Light - Tryce
+  114, // Ultimate Offering
+  115, // United We Stand
+  116, // Upstart Goblin
+  117, // Vampire Baby
+  118, // Warrior of Zera
+  119, // Wave Motion Cannon
+  120, // Weather Report
+  121, // White Magician Pikeru
+  122, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -615,6 +618,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRoyalDecreeSortName;
   if (cardId == 0x0399)
     return (u8 *)sReaperOnTheNightmareSortName;
+  if (cardId == 0x039A)
+    return (u8 *)sNegativeEnergySortName;
 
   return gCardNames[cardId];
 }

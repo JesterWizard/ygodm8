@@ -16040,6 +16040,35 @@
       },
       "card_name": "Reaper on the Nightmare",
       "password": [ 2, 7, 0, 5, 4, 3, 4, 2 ]
+    },
+    {
+      "card_const": "NEGATIVE_ENERGY",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_NegativeEnergy",
+        "pages": [
+          "A spell that floods dark and fiend monsters with power.",
+          "Select 1 Level 3 or lower Dark or Fiend monster.",
+          "It gains 2 stages."
+        ]
+      },
+      "card_name": "Negative Energy",
+      "password": [ 6, 1, 7, 1, 7, 0, 3, 0 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_NegativeEnergy",
+        "pages": [
+          "Select 1 Level 3 or lower Dark or Fiend monster. It gains 2 stages."
+        ]
+      }
     }
   ]
 }

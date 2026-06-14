@@ -139,6 +139,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { IMPERIAL_ORDER, gActivationDescription_ImperialOrder },
   { ROYAL_DECREE, gActivationDescription_RoyalDecree },
   { REAPER_ON_THE_NIGHTMARE, gActivationDescription_ReaperOnTheNightmare },
+  { NEGATIVE_ENERGY, gActivationDescription_NegativeEnergy },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

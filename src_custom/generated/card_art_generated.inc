@@ -484,6 +484,10 @@ static const unsigned char sReaperOnTheNightmareBigArt[] __attribute__((section(
 static const unsigned short sReaperOnTheNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reaper_on_the_nightmare.gbapal");
 static const unsigned char sReaperOnTheNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reaper_on_the_nightmare.lz");
 
+static const unsigned char sNegativeEnergyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/negative_energy.huff");
+static const unsigned short sNegativeEnergyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/negative_energy.gbapal");
+static const unsigned char sNegativeEnergyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/negative_energy.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -606,6 +610,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0397] = sGrenMajuDaEizaBigArt,
   [0x0398] = sRoyalDecreeBigArt,
   [0x0399] = sReaperOnTheNightmareBigArt,
+  [0x039A] = sNegativeEnergyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -730,6 +735,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0397] = sGrenMajuDaEizaBigPalette,
   [0x0398] = sRoyalDecreeBigPalette,
   [0x0399] = sReaperOnTheNightmareBigPalette,
+  [0x039A] = sNegativeEnergyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -854,6 +860,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0397] = 0,
   [0x0398] = 0,
   [0x0399] = 0,
+  [0x039A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -978,4 +985,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0397] = sGrenMajuDaEizaMiniArt,
   [0x0398] = sRoyalDecreeMiniArt,
   [0x0399] = sReaperOnTheNightmareMiniArt,
+  [0x039A] = sNegativeEnergyMiniArt,
 };
