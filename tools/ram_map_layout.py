@@ -236,6 +236,23 @@ def validate_card_count_regions_before_qty(allocs: list[Allocation]) -> list[str
     return errors
 
 
+def validate_allocation_alignment(
+    regions: list[Region],
+    region_name: str,
+) -> list[str]:
+    """Flag u16-sized bump allocations that land on odd addresses."""
+    errors: list[str] = []
+    for region in regions:
+        if region.size != 2 or region.start % 2 == 0:
+            continue
+        errors.append(
+            f"{RAM_MAP}: {region.name} ({region_name}) size-2 allocation at "
+            f"{region.start:#x} is not 2-byte aligned; add a 1-byte pad in "
+            "asm/ram_map.s before it"
+        )
+    return errors
+
+
 def validate_region(
     region_name: str,
     allocs: list[Allocation],
@@ -338,6 +355,16 @@ def validate_ram_map_layout() -> list[str]:
     errors: list[str] = []
     errors.extend(validate_qty_cluster_integrity(ewram_allocs))
     errors.extend(validate_card_count_regions_before_qty(ewram_allocs))
+    try:
+        ewram_regions, _ = simulate_bump(ewram_allocs, 0x02040000, 0x02025840, constants)
+        iwram_regions, _ = simulate_bump(iwram_allocs, 0x03007E00, 0x03001678, constants)
+    except ValueError as exc:
+        errors.append(str(exc))
+        ewram_regions = []
+        iwram_regions = []
+    else:
+        errors.extend(validate_allocation_alignment(ewram_regions, "EWRAM"))
+        errors.extend(validate_allocation_alignment(iwram_regions, "IWRAM"))
     errors.extend(
         validate_region("EWRAM", ewram_allocs, 0x02040000, 0x02025840, constants)
     )

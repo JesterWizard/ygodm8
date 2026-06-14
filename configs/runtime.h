@@ -56,6 +56,7 @@ typedef struct {
     u8 enable_big_card_art_palette_extension; // Card detail view: extend big art palettes to 7 BG banks (112 colors).
     u8 show_player_screen_pixel_coords; // Show player screen pixel X/Y on overworld BG0.
     u8 show_duel_life_points_on_board; // Show player/opponent LP on the duel field (left/right).
+    u8 show_duel_turn_counter_on_board; // Show duel turn count between the board LP counters (yellow).
     u16 increase_bgm_tempo_when_lp_at_or_below; // Duel BGM tempo boost when player LP is at/below this; 0 disables.
     u16 increase_bgm_tempo_speed_percent; // Boosted duel BGM tempo as percent of normal; 100 = unchanged, 150 = 1.5x.
     u8 show_duel_shop_card_drops; // After duel win, show cards added to the shop this win.

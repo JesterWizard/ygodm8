@@ -51,6 +51,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
     .show_player_screen_pixel_coords = FALSE,
     .show_duel_life_points_on_board = TRUE,
+    .show_duel_turn_counter_on_board = TRUE,
     .increase_bgm_tempo_when_lp_at_or_below = 0,
     .increase_bgm_tempo_speed_percent = 125,
     .show_duel_shop_card_drops = TRUE,

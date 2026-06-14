@@ -62,6 +62,11 @@ _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 _kernel_malloc gDoubleSummonExtraSummonPending, 1
 _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 
+@ Duel board HUD turn counter (1-based, incremented at each turn start).
+@ ponytail: pad so the u16 lands on an even IWRAM address (ARM7 misreads odd halfwords).
+_kernel_malloc gDuelBoardTurnCountPad, 1
+_kernel_malloc gDuelBoardTurnCount, 2
+
 @ Debug Match Setter: selected duelist table index + 1, or 0 for none.
 _kernel_malloc gDebugMatchSetterSelection, 1
 
@@ -84,6 +89,8 @@ _kernel_malloc gSoulExchangeTributeCredit, 1
 _kernel_malloc gPendingSummonTributeCount, 1
 
 @ Card being tribute summoned while the player is paying tributes.
+@ ponytail: pad so the u16 below lands on an even IWRAM address (ARM7 misreads odd halfwords).
+_kernel_malloc gPendingTributeSummonCardIdPad, 1
 _kernel_malloc gPendingTributeSummonCardId, 2
 
 @ Extra tribute credit from Double Coston's dark-only bonus (not generic).
@@ -276,6 +283,8 @@ _kernel_malloc_ewram gVampireBabyPendingController, 1
 @ Fixed duelist whose graveyard holds the destroyed monster for Vampire Baby.
 _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 @ Card ID of the monster Vampire Baby destroyed in battle.
+@ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).
+_kernel_malloc_ewram gVampireBabyPendingCardIdPad, 1
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Mefist, else 0xFF.
 _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1

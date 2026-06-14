@@ -74,6 +74,7 @@ void ResetUltimateOfferingTurnState(void);
 void TryUnlockHandForUltimateOfferingExtraSummon(void);
 void UnlockCardsInRow(unsigned char turnRow);
 void UnblockTurnSummoning(unsigned char currPlayer);
+void BeginDuelBoardTurn(void);
 
 void InitBoard(void);
 void PlayerTurnMain(void);
@@ -373,6 +374,8 @@ static void TryUnlockHandForDoubleSummon(void) {
 
 LYN_REPLACE_CHECK(UnblockTurnSummoning);
 void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
+  if (gDuelType == DUEL_TYPE_LINK)
+    BeginDuelBoardTurn();
   gTurnDuelistBattleState[currPlayer]->summoningBlocked = 0;
   gDoubleSummonExtraSummonPending = FALSE;
   gDoubleSummonExtraSummonUsed = FALSE;

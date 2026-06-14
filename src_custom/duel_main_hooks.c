@@ -35,6 +35,7 @@ void OpponentTurnTextAndVoice__Replacement(void);
 void HandleOutcome(void);
 
 void UnblockTurnSummoning(unsigned char);
+void BeginDuelBoardTurn(void);
 void UpdateDuelZonePtrs(unsigned char);
 void CheckWinConditionExodia(unsigned char);
 void TryEvolveMothCards(void);
@@ -257,7 +258,10 @@ static bool8 RunDuelTurnLoop(void) {
   struct DuelText duelText;
 
   while (1) {
-    unsigned char turn = WhoseTurn();
+    unsigned char turn;
+
+    BeginDuelBoardTurn();
+    turn = WhoseTurn();
 
     UpdateDuelGfxExceptField();
     if (turn == DUEL_PLAYER)

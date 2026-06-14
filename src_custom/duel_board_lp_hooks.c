@@ -2,14 +2,18 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "digit.h"
+#include "duel.h"
 #include "duel_bgm_tempo.h"
+#include "duel_status.h"
 #include "gba/defines.h"
 #include "text.h"
 
 extern unsigned short gDuelLifePoints[];
 extern u8 gDigitBufferU16[];
+extern u16 gDuelBoardTurnCount;
 
 void sub_80411D4(void);
+void InitDuelistStatus(void);
 void LoadVRAM(void);
 void LoadBgOffsets(void);
 void LoadOam(void);
@@ -31,6 +35,14 @@ void FlushDuelFieldLayerToHardware(void);
 #define BOARD_LP_PLAYER_Y 19
 #define BOARD_LP_OPPONENT_X 25
 #define BOARD_LP_OPPONENT_Y 19
+
+#define BOARD_TURN_TILE_ATTR         0x5000
+#define BOARD_TURN_MAX_DIGITS        3
+#define BOARD_TURN_BASE_TILE         (BOARD_LP_BASE_TILE_OPPONENT + BOARD_LP_MAX_DIGITS)
+#define BOARD_TURN_CHARBUF           (BOARD_TURN_BASE_TILE * BOARD_LP_CHARBUF_TILE_BYTES)
+#define BOARD_TURN_X                 14
+#define BOARD_TURN_Y                 19
+#define BOARD_TURN_YELLOW_COLOR      0x7FE0
 
 static void FormatLifePointsString(char *buf, u16 lifePoints) {
   u8 i;
@@ -78,6 +90,50 @@ static void FlushBoardLpRow(u8 y) {
       64);
 }
 
+static void FormatTurnCountString(char *buf, u16 turnCount) {
+  u8 i;
+
+  if (turnCount > 999)
+    turnCount = 999;
+
+  for (i = 0; i < BOARD_TURN_MAX_DIGITS; i++) {
+    u8 power = BOARD_TURN_MAX_DIGITS - 1 - i;
+    u16 divisor = 1;
+
+    while (power--)
+      divisor *= 10;
+    buf[i] = (char)('0' + ((turnCount / divisor) % 10));
+  }
+  buf[BOARD_TURN_MAX_DIGITS] = '\0';
+}
+
+static void EnsureBoardTurnPalette(void) {
+  // ponytail: clone info-bar palette 3, swap glyph color to yellow on palette 5.
+  CpuCopy16(&gPaletteBuffer[0x30], &gPaletteBuffer[0x50], 0x20);
+  gPaletteBuffer[0x51] = BOARD_TURN_YELLOW_COLOR;
+  CpuCopy16(&gPaletteBuffer[0x50], (u16 *)(PLTT + 0xA0), 0x20);
+}
+
+static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
+  char buf[BOARD_TURN_MAX_DIGITS + 1];
+  u16 *tilemap = (u16 *)(gBgVram.cbb0 + BOARD_LP_MAP_BASE);
+  u16 attrs = (tilemap[y * 32 + x] & 0xC000) | BOARD_TURN_TILE_ATTR;
+  u8 i;
+
+  FormatTurnCountString(buf, turnCount);
+  CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + BOARD_TURN_CHARBUF, (const u8 *)buf, 0x001);
+
+  for (i = 0; i < BOARD_TURN_MAX_DIGITS; i++)
+    tilemap[y * 32 + x + i] = (u16)(attrs | (BOARD_TURN_BASE_TILE + i));
+}
+
+static void UploadBoardTurnCharTiles(void) {
+  CpuCopy16(
+      gBgVram.cbb0 + BOARD_TURN_CHARBUF,
+      (void *)(BG_VRAM + BOARD_TURN_CHARBUF),
+      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES);
+}
+
 static void DrawBoardLifePoints(void) {
   DrawLifePointsAt(
       BOARD_LP_PLAYER_X,
@@ -96,6 +152,13 @@ static void DrawBoardLifePoints(void) {
   FlushBoardLpRow(BOARD_LP_OPPONENT_Y);
 }
 
+static void DrawBoardTurnCounter(void) {
+  EnsureBoardTurnPalette();
+  DrawTurnCountAt(BOARD_TURN_X, BOARD_TURN_Y, gDuelBoardTurnCount);
+  UploadBoardTurnCharTiles();
+  FlushBoardLpRow(BOARD_TURN_Y);
+}
+
 LYN_REPLACE_CHECK(sub_80411D4);
 void sub_80411D4__Replacement(void) {
   LoadVRAM();
@@ -106,5 +169,22 @@ void sub_80411D4__Replacement(void) {
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
 
+  if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
+    DrawBoardTurnCounter();
+
   UpdateDuelBgmTempoForLifePoints();
+}
+
+LYN_REPLACE_CHECK(InitDuelistStatus);
+void InitDuelistStatus__Replacement(void) {
+  u8 i;
+
+  for (i = 0; i < 2; i++)
+    gDuelistStatus[i] = DUELIST_STATUS_CANNOT_ATTACK;
+  gDuelBoardTurnCount = 0;
+}
+
+void BeginDuelBoardTurn(void) {
+  if (gDuelBoardTurnCount < 999)
+    gDuelBoardTurnCount++;
 }
