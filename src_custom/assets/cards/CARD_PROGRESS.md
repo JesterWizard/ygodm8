@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-13).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-14).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 100 |
-| Art ready, needs manifest | 136 |
+| In game (manifest + art) | 124 |
+| Art ready, needs manifest | 112 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -124,7 +124,28 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_AGENT_OF_CREATION_VENUS` | The Agent Of Creation - Venus | `the_agent_of_creation_venus.png` |
 | `BLASTING_THE_RUINS` | Blasting The Ruins | `blasting_the_ruins.png` |
 | `CURSE_OF_DARKNESS` | Curse Of Darkness | `curse_of_darkness.png` |
+| `COFFIN_SELLER` | Coffin Seller | `coffin_seller.png` |
+| `CARD_DESTRUCTION` | Card Destruction | `card_destruction.png` |
+| `DARK_ROOM_OF_NIGHTMARE` | Dark Room Of Nightmare | `dark_room_of_nightmare.png` |
+| `DARK_DRICERATOPS` | Dark Driceratops | `dark_driceratops.png` |
+| `GRACEFUL_CHARITY` | Graceful Charity | `graceful_charity.png` |
+| `GREAT_MAJU_GARZETT` | Great Maju Garzett | `great_maju_garzett.png` |
+| `TRIANGLE_POWER` | Triangle Power | `triangle_power.png` |
+| `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` | Twin Swords of Flashing Light - Tryce | `twin_swords_of_flashing_light_tryce.png` |
+| `THOUSAND_KNIVES` | Thousand Knives | `thousand_knives.png` |
+| `SOUL_TAKER` | Soul Taker | `soul_taker.png` |
 | `SOLAR_RAY` | Solar Ray | `solar_ray.png` |
+| `SOLEMN_WISHES` | Solemn Wishes | `solemn_wishes.png` |
+| `STEALTH_BIRD` | Stealth Bird | `stealth_bird.png` |
+| `NEEDLE_BURROWER` | Needle Burrower | `needle_burrower.png` |
+| `DES_SCISSORS` | Des Scissors | `des_scissors.png` |
+| `IMPERIAL_ORDER` | Imperial Order | `imperial_order.png` |
+| `GREN_MAJU_DA_EIZA` | Gren Maju Da Eiza | `gren_maju_da_eiza.png` |
+| `ROYAL_DECREE` | Royal Decree | `royal_decree.png` |
+| `REAPER_ON_THE_NIGHTMARE` | Reaper on the Nightmare | `reaper_on_the_nightmare.png` |
+| `NEGATIVE_ENERGY` | Negative Energy | `negative_energy.png` |
+| `MATAZA_THE_ZAPPER` | Mataza the Zapper | `mataza_the_zapper.png` |
+| `DOUBLE_COSTON` | Double Coston | `double_coston.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -141,25 +162,19 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
-- [x] `CARD_DESTRUCTION` — `card_destruction.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
-- [x] `COFFIN_SELLER` — `coffin_seller.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CREATURE_SWAP` — `creature_swap.png`
-- [x] `CURSE_OF_DARKNESS` — `curse_of_darkness.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `DARK_DRICERATOPS` — `dark_driceratops.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
-- [x] `DARK_ROOM_OF_NIGHTMARE` — `dark_room_of_nightmare.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DIFFUSION_WAVE_MOTION` — `diffusion_wave_motion.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
-- [ ] `DOUBLE_COSTON` — `double_coston.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `DRILLAGO` — `drillago.png`
@@ -169,37 +184,29 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [x] `GRACEFUL_CHARITY` — `graceful_charity.png`
-- [x] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
-- [x] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [x] `IMPERIAL_ORDER` — `imperial_order.png`
-- [x] `KA_2_DES_SCISSORS` - `ka_2_des_scissors.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [x] `MAJU_GARZETT` — `maju_garzett.png`
+- [ ] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
-- [x] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
-- [x] `MOISTURE_CREATURE` — `moisture_creature.png`
+- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
 - [ ] `MORALE_BOOST` — `morale_boost.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
 - [ ] `NECROVALLEY` — `necrovalley.png`
-- [x] `NEEDLE_BURROWER` — `needle_burrower.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
-- [x] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NIGHTMARE_WHEEL` — `nightmare_wheel.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
@@ -211,12 +218,10 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [x] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
-- [x] `ROYAL_DECREE` — `royal_decree.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
@@ -229,16 +234,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [x] `SOLAR_RAY` — `solar_ray.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
-- [x] `SOLEMN_WISHES` — `solemn_wishes.png`
-- [x] `SOUL_TAKER` — `soul_taker.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
 - [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
-- [x] `STEALTH_BIRD` — `stealth_bird.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
@@ -251,13 +252,10 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [x] `THOUSAND_KNIVES` — `thousand_knives.png`
 - [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
-- [x] `TRIANGLE_POWER` — `triangle_power.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
-- [x] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
 - [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
