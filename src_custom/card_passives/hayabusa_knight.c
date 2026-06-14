@@ -7,7 +7,7 @@ void TryUnlockHayabusaKnightForSecondAttack(struct DuelCard *attacker) {
   if (attacker == NULL)
     return;
 
-  if (attacker->id != HAYABUSA_KNIGHT)
+  if (attacker->id != HAYABUSA_KNIGHT && attacker->id != MATAZA_THE_ZAPPER)
     return;
 
   if (IsTheDarkDoorActiveOnField())

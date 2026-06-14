@@ -184,7 +184,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
-- [ ] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
+- [x] `MATAZA_THE_ZAPPER` — `mataza_the_zapper.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`

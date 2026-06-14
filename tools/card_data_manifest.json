@@ -16069,6 +16069,35 @@
           "Select 1 Level 3 or lower Dark or Fiend monster. It gains 2 stages."
         ]
       }
+    },
+    {
+      "card_const": "MATAZA_THE_ZAPPER",
+      "atk": 1300,
+      "def": 800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "level": 3,
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_MatazaTheZapper",
+        "pages": [
+          "A warrior who strikes faster than the eye can follow.",
+          "This card can attack twice during each battle phase.",
+          "Control of this card cannot be switched."
+        ]
+      },
+      "card_name": "Mataza the Zapper",
+      "password": [ 2, 2, 6, 0, 9, 6, 1, 7 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_MatazaTheZapper",
+        "pages": [
+          "Control of this card cannot be switched."
+        ]
+      }
     }
   ]
 }

@@ -924,11 +924,12 @@
 #define ROYAL_DECREE                             0x0398
 #define REAPER_ON_THE_NIGHTMARE                  0x0399
 #define NEGATIVE_ENERGY                          0x039A
+#define MATAZA_THE_ZAPPER                        0x039B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x039B
-#define NUM_CUSTOM_CARDS                        0x007A
+#define NUM_TOTAL_CARDS                         0x039C
+#define NUM_CUSTOM_CARDS                        0x007B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

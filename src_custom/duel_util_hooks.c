@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "ai_decision.h"
+#include "card_passives.h"
 #include "custom_decks/custom_decks.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -149,6 +150,50 @@ unsigned NumFaceUpMatchingAttributeInRow__Replacement(unsigned char turnRow, uns
       count++;
   }
 
+  return count;
+}
+
+LYN_REPLACE_CHECK(HighestAtkMonInRowExceptGodCards);
+int HighestAtkMonInRowExceptGodCards__Replacement(struct DuelCard **zonePtr) {
+  unsigned char zoneIndex = 0;
+  signed char i;
+  int highestAtk = -1;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if ((*zonePtr)->id == CARD_NONE) {
+      zonePtr++;
+      continue;
+    }
+    if (IsGodCard((*zonePtr)->id) == 1 || IsImmuneToControlSwitch((*zonePtr)->id)) {
+      zonePtr++;
+      continue;
+    }
+    gStatMod.card = (*zonePtr)->id;
+    gStatMod.field = gDuel.field;
+    gStatMod.stage = GetFinalStage(*zonePtr);
+    SetFinalStat(&gStatMod);
+    if (gCardInfo.atk > highestAtk) {
+      highestAtk = gCardInfo.atk;
+      zoneIndex = i;
+    }
+    zonePtr++;
+  }
+  return (signed char)zoneIndex;
+}
+
+LYN_REPLACE_CHECK(NumEmptyZonesAndGodCardsInRow);
+int NumEmptyZonesAndGodCardsInRow__Replacement(struct DuelCard **zonePtr) {
+  signed char count = 0;
+  unsigned char i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    unsigned short currentCardId = (*zonePtr++)->id;
+
+    if (IsGodCard(currentCardId) == TRUE || IsImmuneToControlSwitch(currentCardId))
+      currentCardId = CARD_NONE;
+    if (currentCardId == CARD_NONE)
+      count++;
+  }
   return count;
 }
 
