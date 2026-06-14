@@ -6,6 +6,7 @@
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "skull_invitation.h"
+#include "imperial_order.h"
 
 #define COFFIN_SELLER_DAMAGE 300
 #define COFFIN_SELLER_MONSTER_SLOTS (MAX_ZONES_IN_ROW * 2)
@@ -167,6 +168,9 @@ void TryApplyCoffinSellerOnFieldLeave(struct DuelCard *zone)
     return;
 
   if (!ZoneWasMonster(zone))
+    return;
+
+  if (IsImperialOrderNegatingSpell(COFFIN_SELLER))
     return;
 
   if (LeaveAlreadyTriggered(zone))

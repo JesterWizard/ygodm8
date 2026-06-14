@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "spell_effects.h"
+#include "imperial_order.h"
 
 #define CHAIN_ENERGY_LP_COST 500
 
@@ -13,6 +14,9 @@ u8 IsChainEnergyActiveOnField(void)
 {
   u8 row;
   u8 i;
+
+  if (IsImperialOrderNegatingSpell(CHAIN_ENERGY))
+    return FALSE;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

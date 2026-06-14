@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "spell_effects.h"
 #include "the_dark_door.h"
+#include "imperial_order.h"
 
 extern u8 gTheDarkDoorTurnAttackUsed;
 
@@ -15,6 +16,9 @@ u8 IsTheDarkDoorActiveOnField(void)
 {
   u8 row;
   u8 i;
+
+  if (IsImperialOrderNegatingSpell(THE_DARK_DOOR))
+    return FALSE;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

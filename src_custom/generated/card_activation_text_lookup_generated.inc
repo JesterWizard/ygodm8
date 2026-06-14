@@ -136,6 +136,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { STEALTH_BIRD, gActivationDescription_StealthBird },
   { NEEDLE_BURROWER, gActivationDescription_NeedleBurrower },
   { DES_SCISSORS, gActivationDescription_DesScissors },
+  { IMPERIAL_ORDER, gActivationDescription_ImperialOrder },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

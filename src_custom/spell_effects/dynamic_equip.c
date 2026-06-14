@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "imperial_order.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -401,7 +402,8 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case MAGE_POWER:
     case UNITED_WE_STAND:
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
-      return zone->isFaceUp == TRUE && zone->isLocked == TRUE;
+      return zone->isFaceUp == TRUE && zone->isLocked == TRUE
+          && !IsImperialOrderNegatingSpell(zone->id);
     default:
       return FALSE;
   }

@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "spell_effects.h"
 #include "toll.h"
+#include "imperial_order.h"
 
 #define TOLL_LP_PER_MONSTER 500
 
@@ -15,6 +16,9 @@ u8 IsTollActiveOnField(void)
 {
   u8 row;
   u8 i;
+
+  if (IsImperialOrderNegatingSpell(TOLL))
+    return FALSE;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

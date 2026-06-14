@@ -6,6 +6,7 @@
 #include "thousand_energy.h"
 #include "triangle_power.h"
 #include "limiter_removal.h"
+#include "imperial_order.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -93,6 +94,11 @@ static void TryActivatingTurnEffect__Hook(void) {
       ActivateFairyBoxUpkeep();
     return;
   }
+  if (gActiveEffect.cardId == IMPERIAL_ORDER && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
+    if (ShouldActivateImperialOrderUpkeep())
+      ActivateImperialOrderUpkeep();
+    return;
+  }
   if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
     ActivateBowganianTurnEffect();
     return;
@@ -134,6 +140,10 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return ShouldActivateUltimateOfferingTurnEffect();
   if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
     return ShouldActivateFairyBoxUpkeep();
+  if (gActiveEffect.cardId == IMPERIAL_ORDER && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
+    return ShouldActivateImperialOrderUpkeep();
+  if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
+    return FALSE;
   if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     return ShouldActivateBowganianTurnEffect();
   if (gActiveEffect.cardId == CURE_MERMAID && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)

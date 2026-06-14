@@ -5,6 +5,7 @@
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
 #include "gravity_bind.h"
+#include "imperial_order.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -213,6 +214,14 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         ret = TRUE;
       }
       break;
+    case TRAP_IMPERIAL_ORDER:
+      ret = FALSE;
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_SPELL
+          && gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol]->isFaceUp == FALSE) {
+        gTrapEffectData.trapCardId = TRAP_IMPERIAL_ORDER;
+        ret = TRUE;
+      }
+      break;
     case TRAP_EMBODIMENT_OF_APOPHIS:
       ret = FALSE;
       if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER
@@ -278,6 +287,8 @@ unsigned IsTrapTriggered__Replacement(void) {
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     gTrapEffectData.trapZoneCol = i;
     if (CheckTrapActivationConditions__Hook(gTurnZones[0][i]->id) == TRUE) {
+      if (gTrapEffectData.trapCardId == TRAP_IMPERIAL_ORDER)
+        continue;
       if (gTrapEffectData.trapCardId != TRAP_EMBODIMENT_OF_APOPHIS)
         return TRUE;
     }

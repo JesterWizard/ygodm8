@@ -468,6 +468,10 @@ static const unsigned char sDesScissorsBigArt[] __attribute__((section(".append_
 static const unsigned short sDesScissorsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/des_scissors.gbapal");
 static const unsigned char sDesScissorsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/des_scissors.lz");
 
+static const unsigned char sImperialOrderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/imperial_order.huff");
+static const unsigned short sImperialOrderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/imperial_order.gbapal");
+static const unsigned char sImperialOrderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/imperial_order.lz");
+
 static const unsigned char sGrenMajuDaEizaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gren_maju_da_eiza.huff");
 static const unsigned short sGrenMajuDaEizaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gren_maju_da_eiza.gbapal");
 static const unsigned char sGrenMajuDaEizaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gren_maju_da_eiza.lz");
@@ -590,7 +594,8 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0393] = sStealthBirdBigArt,
   [0x0394] = sNeedleBurrowerBigArt,
   [0x0395] = sDesScissorsBigArt,
-  [0x0396] = sGrenMajuDaEizaBigArt,
+  [0x0396] = sImperialOrderBigArt,
+  [0x0397] = sGrenMajuDaEizaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -711,7 +716,8 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0393] = sStealthBirdBigPalette,
   [0x0394] = sNeedleBurrowerBigPalette,
   [0x0395] = sDesScissorsBigPalette,
-  [0x0396] = sGrenMajuDaEizaBigPalette,
+  [0x0396] = sImperialOrderBigPalette,
+  [0x0397] = sGrenMajuDaEizaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -833,6 +839,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0394] = 0,
   [0x0395] = 0,
   [0x0396] = 0,
+  [0x0397] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -953,5 +960,6 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0393] = sStealthBirdMiniArt,
   [0x0394] = sNeedleBurrowerMiniArt,
   [0x0395] = sDesScissorsMiniArt,
-  [0x0396] = sGrenMajuDaEizaMiniArt,
+  [0x0396] = sImperialOrderMiniArt,
+  [0x0397] = sGrenMajuDaEizaMiniArt,
 };

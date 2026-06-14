@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "dark_room_of_nightmare.h"
+#include "imperial_order.h"
 #include "spell_effects.h"
 
 #define DARK_ROOM_DAMAGE 300
@@ -41,7 +42,8 @@ static struct DuelCard *FindDarkRoomZone(u8 controller)
   u8 i;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[backrow][i]->id == DARK_ROOM_OF_NIGHTMARE)
+    if (gFixedZones[backrow][i]->id == DARK_ROOM_OF_NIGHTMARE
+        && !IsImperialOrderNegatingSpell(DARK_ROOM_OF_NIGHTMARE))
       return gFixedZones[backrow][i];
   }
 

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "guardian_treasure.h"
+#include "imperial_order.h"
 #include "spell_effects.h"
 
 #define GUARDIAN_TREASURE_DISCARD_COST 4
@@ -66,6 +67,9 @@ static void DrawCardsForTurn(u8 turn, u8 count)
 u8 IsGuardianTreasureActiveOnField(void)
 {
   u8 i;
+
+  if (IsImperialOrderNegatingSpell(GUARDIAN_TREASURE))
+    return FALSE;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++)
   {

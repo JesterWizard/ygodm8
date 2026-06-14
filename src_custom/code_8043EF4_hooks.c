@@ -12,6 +12,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "fairy_box.h"
+#include "imperial_order.h"
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
@@ -290,7 +291,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
   SelectZone(zone);
   ResetCursorDestToCurrentPos();
 
-  if (IsSpellCancellerSpellLockActive()
+  if ((IsSpellCancellerSpellLockActive() || IsImperialOrderActiveOnField())
       && GetTypeGroup(id) == TYPE_GROUP_SPELL) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

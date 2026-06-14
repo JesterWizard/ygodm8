@@ -9,6 +9,7 @@
 #include "kaiser_glider.h"
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
+#include "imperial_order.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -177,6 +178,9 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
 
   /* Skill Drain negates all monster effects on the field */
   if ((gActiveEffect.turnRow == 1 || gActiveEffect.turnRow == 2) && IsSkillDrainActiveOnField())
+    return FALSE;
+
+  if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
     return FALSE;
 
   override = GetPermanentEffectOverride(gActiveEffect.cardId);

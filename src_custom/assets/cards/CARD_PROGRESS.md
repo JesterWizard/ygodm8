@@ -174,8 +174,8 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
 - [x] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `IMPERIAL_ORDER` — `imperial_order.png`
-- [ ] `KA_2_DES_SCISSORS` - `ka_2_des_scissors.png`
+- [x] `IMPERIAL_ORDER` — `imperial_order.png`
+- [x] `KA_2_DES_SCISSORS` - `ka_2_des_scissors.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
@@ -198,7 +198,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MORALE_BOOST` — `morale_boost.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
 - [ ] `NECROVALLEY` — `necrovalley.png`
-- [ ] `NEEDLE_BURROWER` — `needle_burrower.png`
+- [x] `NEEDLE_BURROWER` — `needle_burrower.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEGATIVE_ENERGY` — `negative_energy.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`

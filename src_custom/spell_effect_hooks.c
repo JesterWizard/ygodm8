@@ -7,8 +7,7 @@
 #include "curse_of_darkness.h"
 #include "custom_field_spell.h"
 #include "soul_taker.h"
-
-extern void (*const gSpellEffects[])(void);
+#include "imperial_order.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -141,17 +140,25 @@ void ActivateSpellEffect__Replacement(void)
       return;
   }
 
-  if (IsSpellCancellerSpellLockActive()) {
+  ResetCardEffectTextData();
+  SetCardEffectTextType(1);
+  SetCardInfo(gSpellEffectData.id);
+  SetupSpellTrapOrigin();
+
+  if (IsSpellCancellerSpellLockActive() || IsImperialOrderActiveOnField()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(1);
-  SetCardInfo(gSpellEffectData.id);
+  TryActivateImperialOrderOnSpellChain();
 
-  SetupSpellTrapOrigin();
+  if (IsImperialOrderActiveOnField()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
   if (TryMaryokutaiSpellCounter())
     return;
 

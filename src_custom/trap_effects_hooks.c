@@ -4,6 +4,7 @@
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
 #include "gravity_bind.h"
+#include "imperial_order.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -178,6 +179,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectGravityBind();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_IMPERIAL_ORDER) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectImperialOrder();
     return;
   }
 

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `134` effects
+- `135` effects
 
 ## Tally
 
@@ -99,6 +99,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Coffin Seller` | `src_custom/trap_effects/coffin_seller.c` |
 | `spell_effects` | `Curse Of Darkness` | `src_custom/trap_effects/curse_of_darkness.c` |
 | `turn_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
+| `turn_effects` | `Imperial Order` | `src_custom/trap_effects/imperial_order.c` |
+| `trap_effects` | `Imperial Order` | `src_custom/trap_effects/imperial_order.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |
 | `turn_effects` | `Sinister Serpent` | `src_custom/turn_effects/sinister_serpent.c` |
 | `turn_effects` | `Mysterious Puppeteer` | `src_custom/turn_effects/mysterious_puppeteer.c` |

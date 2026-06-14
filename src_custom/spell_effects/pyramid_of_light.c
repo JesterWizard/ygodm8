@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "god_card.h"
 #include "pyramid_of_light.h"
+#include "imperial_order.h"
 #include "spell_effects.h"
 
 static u8 ZoneHasActivePyramidOfLight(const struct DuelCard *zone)
@@ -21,6 +22,9 @@ u8 IsPyramidOfLightActiveOnField(void)
 {
   u8 row;
   u8 i;
+
+  if (IsImperialOrderNegatingSpell(PYRAMID_OF_LIGHT))
+    return FALSE;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

@@ -13,6 +13,7 @@
 #include "reckless_greed.h"
 #include "copycat.h"
 #include "great_maju_garzett.h"
+#include "imperial_order.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
@@ -111,7 +112,8 @@ static struct DuelCard *GetSorlZoneForBlockedDuelist(u8 blockedDuelist)
 
   row = (blockedDuelist == DUEL_PLAYER) ? OPPONENT_BACKROW : PLAYER_BACKROW;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[row][i]->id == SWORDS_OF_REVEALING_LIGHT)
+    if (gFixedZones[row][i]->id == SWORDS_OF_REVEALING_LIGHT
+        && !IsImperialOrderNegatingSpell(SWORDS_OF_REVEALING_LIGHT))
       return gFixedZones[row][i];
   }
 
