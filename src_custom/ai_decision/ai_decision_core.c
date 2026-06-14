@@ -7,6 +7,7 @@
 #include "duel.h"
 #include "the_dark_door.h"
 #include "gravity_bind.h"
+#include "reaper_on_the_nightmare.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
 
@@ -17,6 +18,49 @@ static u8 AiDecision_ActionSummonsToMonsterCol(u16 actionIndex, u8 monsterCol);
 static u8 AiDecision_ActionSetsToBackrowCol(u16 actionIndex, u8 backrowCol);
 static u8 AiDecision_ActionPassesPlacementRules(
     u16 actionIndex, const struct AiDecisionContext *ctx);
+
+static u8 AiDecision_IsAttackCategory(u16 actionIndex) {
+  struct AiDecodedAction decoded;
+
+  AiDecodeActionIndex(actionIndex, &decoded);
+  return decoded.category == AI_CATEGORY_ATTACK ||
+         decoded.category == AI_CATEGORY_DIRECT;
+}
+
+// ponytail: vanilla face-up attacks finish at AI_PRIORITY_DISABLE; smarter AI must not treat that as "skip".
+static void AiDecision_NormalizeVanillaAttackPriorities(struct AiDecisionContext *ctx) {
+  u16 i;
+
+  for (i = 0; i < ctx->actionCount; i++) {
+    if (ctx->entries[i].priority != AI_PRIORITY_DISABLE)
+      continue;
+    if (!AiDecision_IsAttackCategory(ctx->entries[i].actionIndex))
+      continue;
+    ctx->entries[i].priority = AI_PRIORITY_DISABLE - AI_MOD_DELTA_MIN;
+  }
+}
+
+static void AiDecision_BoostBattleDamageVsIndestructible(struct AiDecisionContext *ctx) {
+  u16 i;
+
+  for (i = 0; i < ctx->actionCount; i++) {
+    struct AiDecodedAction decoded;
+    struct DuelCard *defender;
+
+    if (!AiTactics_ActionDealsFaceUpBattleDamage(ctx->entries[i].actionIndex))
+      continue;
+
+    AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
+    defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
+    if (!IsBattleIndestructibleMonster(defender->id))
+      continue;
+
+    if (ctx->entries[i].priority == 0)
+      ctx->entries[i].priority = AI_PRIORITY_DISABLE - AI_MOD_DELTA_MIN;
+    else
+      ctx->entries[i].priority += AI_MOD_DELTA_MIN;
+  }
+}
 
 static u8 AiDecision_ActionSummonsToMonsterCol(
     u16 actionIndex, u8 monsterCol) {
@@ -350,10 +394,12 @@ u16 AiDecision_PickAction(void) {
 
   AiDecision_BuildContext(&ctx);
   AiDecision_DisableBlockedAttackActions(&ctx);
+  AiDecision_BoostBattleDamageVsIndestructible(&ctx);
 
   if (gRuntimeConfig.enable_smarter_ai != TRUE)
     return GetVanillaHighestPriorityAction(ctx.entries, ctx.actionCount);
 
+  AiDecision_NormalizeVanillaAttackPriorities(&ctx);
   AiApplyModifiers(&ctx);
 
   filterKind = AiDecision_ChooseActionFilter(&ctx, &filterArg);

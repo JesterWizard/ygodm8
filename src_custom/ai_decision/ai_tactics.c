@@ -6,6 +6,7 @@
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
+#include "reaper_on_the_nightmare.h"
 
 static void AiTactics_GetMonsterStats(
     struct DuelCard *card, u16 *atkOut, u16 *defOut, u8 *attrOut) {
@@ -59,6 +60,13 @@ static u8 AiTactics_AttackerBeatsDefender(
   if (matchup == 2)
     return atkAtt > atkDef;
   return atkAtt > atkDef;
+}
+
+static u8 AiTactics_AttackerCanDestroyDefender(
+    struct DuelCard *attacker, struct DuelCard *defender) {
+  if (!AiTactics_AttackerBeatsDefender(attacker, defender))
+    return FALSE;
+  return !IsBattleIndestructibleMonster(defender->id);
 }
 
 static u8 AiTactics_PlayerHasSetBackrow(void) {
@@ -205,7 +213,48 @@ static u8 AiTactics_AttackerBeatsDefenderAt(
   return AiTactics_AttackerBeatsDefender(attacker, defender);
 }
 
+static u8 AiTactics_AttackerCanDestroyDefenderAt(
+    u8 attackerRow, u8 attackerCol, u8 defenderRow, u8 defenderCol) {
+  struct DuelCard *attacker;
+  struct DuelCard *defender;
+
+  if (attackerRow >= 5 || defenderRow >= 5)
+    return FALSE;
+
+  attacker = gTurnZones[attackerRow][attackerCol];
+  defender = gTurnZones[defenderRow][defenderCol];
+
+  if (attacker->id == CARD_NONE || defender->id == CARD_NONE)
+    return FALSE;
+
+  return AiTactics_AttackerCanDestroyDefender(attacker, defender);
+}
+
 u8 AiTactics_ActionDestroysFaceUpMonster(u16 actionIndex) {
+  struct AiDecodedAction decoded;
+  struct DuelCard *defender;
+
+  AiDecodeActionIndex(actionIndex, &decoded);
+
+  if (decoded.category != AI_CATEGORY_ATTACK)
+    return FALSE;
+  if (!IsAiFaceUpAttackAction(decoded.action))
+    return FALSE;
+  if (decoded.zone1Row != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
+  if (defender->id == CARD_NONE || !defender->isFaceUp)
+    return FALSE;
+
+  return AiTactics_AttackerCanDestroyDefenderAt(
+      decoded.zone0Row,
+      decoded.zone0Col,
+      decoded.zone1Row,
+      decoded.zone1Col);
+}
+
+u8 AiTactics_ActionDealsFaceUpBattleDamage(u16 actionIndex) {
   struct AiDecodedAction decoded;
   struct DuelCard *defender;
 

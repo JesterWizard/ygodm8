@@ -2,9 +2,11 @@
 #include "common-chax.h"
 #include "ai_actions.h"
 #include "duel.h"
+#include "reaper_on_the_nightmare.h"
 
 void sub_801C610(unsigned char arg0);
 void sub_801CB24(unsigned char arg0);
+void sub_801C1DC(unsigned char side);
 
 extern void sub_803EEFC(u8, const unsigned char *, u16);
 
@@ -49,6 +51,34 @@ static void LoadNeutralClashBackgroundPalette(void) {
   CpuCopy16(g80B4894, gPaletteBuffer + CLASH_PALETTE_U16_OFFSET, CLASH_PALETTE_COLOR_COUNT);
   for (i = CLASH_BG_RED_COLOR_FIRST; i <= CLASH_BG_RED_COLOR_LAST; i++)
     gPaletteBuffer[CLASH_PALETTE_U16_OFFSET + i] = 0;
+}
+
+typedef void (*BattleDestroyAnimFn)(void);
+
+// ponytail: static vanilla battle FX; upgrade path = export from monster_attack_screen.c
+#define BATTLE_DESTROY_PLAYER_ANIM ((BattleDestroyAnimFn)0x0801C2A1)
+#define BATTLE_DESTROY_OPPONENT_ANIM ((BattleDestroyAnimFn)0x0801C219)
+
+extern u8 gSharedMem[];
+
+static u8 BattleDestroyAnimTargetIsIndestructible(u8 side) {
+  if (side == 0)
+    return IsBattleIndestructibleMonster(gUnk2023EA0.unk0[0].cardId);
+  if (side == 1)
+    return IsBattleIndestructibleMonster(gUnk2023EA0.unk0[1].cardId);
+  return FALSE;
+}
+
+LYN_REPLACE_CHECK(sub_801C1DC);
+void sub_801C1DC__Replacement(unsigned char side) {
+  if (BattleDestroyAnimTargetIsIndestructible(side))
+    return;
+
+  CpuFill16(0, gSharedMem, 0x4314);
+  if (side == 0)
+    BATTLE_DESTROY_PLAYER_ANIM();
+  else if (side == 1)
+    BATTLE_DESTROY_OPPONENT_ANIM();
 }
 
 LYN_REPLACE_CHECK(sub_801C610);

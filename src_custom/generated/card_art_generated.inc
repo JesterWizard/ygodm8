@@ -480,6 +480,10 @@ static const unsigned char sRoyalDecreeBigArt[] __attribute__((section(".append_
 static const unsigned short sRoyalDecreeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/royal_decree.gbapal");
 static const unsigned char sRoyalDecreeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/royal_decree.lz");
 
+static const unsigned char sReaperOnTheNightmareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reaper_on_the_nightmare.huff");
+static const unsigned short sReaperOnTheNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reaper_on_the_nightmare.gbapal");
+static const unsigned char sReaperOnTheNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reaper_on_the_nightmare.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -601,6 +605,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0396] = sImperialOrderBigArt,
   [0x0397] = sGrenMajuDaEizaBigArt,
   [0x0398] = sRoyalDecreeBigArt,
+  [0x0399] = sReaperOnTheNightmareBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -724,6 +729,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0396] = sImperialOrderBigPalette,
   [0x0397] = sGrenMajuDaEizaBigPalette,
   [0x0398] = sRoyalDecreeBigPalette,
+  [0x0399] = sReaperOnTheNightmareBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -847,6 +853,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0396] = 0,
   [0x0397] = 0,
   [0x0398] = 0,
+  [0x0399] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -970,4 +977,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0396] = sImperialOrderMiniArt,
   [0x0397] = sGrenMajuDaEizaMiniArt,
   [0x0398] = sRoyalDecreeMiniArt,
+  [0x0399] = sReaperOnTheNightmareMiniArt,
 };

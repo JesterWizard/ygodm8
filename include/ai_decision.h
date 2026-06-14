@@ -102,6 +102,7 @@ void AiApplyModifiers(struct AiDecisionContext *ctx);
 void AiTactics_FillContext(struct AiDecisionContext *ctx);
 
 u8 AiTactics_ActionDestroysFaceUpMonster(u16 actionIndex);
+u8 AiTactics_ActionDealsFaceUpBattleDamage(u16 actionIndex);
 u8 AiTactics_HasValidDestroyFaceUpLine(
     struct AiActionPriorityEntry *entries, u16 actionCount);
 u8 AiTactics_ShouldForceDestroyFaceUp(const struct AiDecisionContext *ctx);

@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[921] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[922] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -933,9 +933,10 @@ const u8 gCardLockAfterActivation_Hook[921] APPEND_RODATA = {
   [0x0396] = 1,
   [0x0397] = 1,
   [0x0398] = 1,
+  [0x0399] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[921] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[922] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1857,9 +1858,10 @@ const u8 gCardEffectUsage_Hook[921] APPEND_RODATA = {
   [0x0396] = EFFECT_USAGE_NONE,
   [0x0397] = EFFECT_USAGE_NONE,
   [0x0398] = EFFECT_USAGE_NONE,
+  [0x0399] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[921] APPEND_RODATA = {
+const CardData gCardData_NEW[922] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13998,5 +14000,19 @@ const CardData gCardData_NEW[921] APPEND_RODATA = {
     .trapEffect = 29,
     .password = {5, 1, 4, 8, 2, 7, 5, 8},
     .description = gDescription_RoyalDecree,
+  },
+  [0x0399] = {
+    .atk = 800,
+    .def = 600,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 5,
+    .type = TYPE_ZOMBIE,
+    .color = FUSION_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 7, 0, 5, 4, 3, 4, 2},
+    .description = gDescription_ReaperOnTheNightmare,
   },
 };

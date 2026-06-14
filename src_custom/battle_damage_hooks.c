@@ -18,6 +18,7 @@
 #include "guardian_angel_joan.h"
 #include "airknight_parshath.h"
 #include "needle_burrower.h"
+#include "reaper_on_the_nightmare.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -131,6 +132,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
+  ApplyReaperOnTheNightmareBattleProtection();
   ApplyPiranhaArmyDoubleDirectDamage();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
@@ -159,6 +161,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   ApplyTheUnhappyMaidenBattleEffect();
   ApplyRobbinGoblinBattleEffect();
+  ApplyReaperOnTheNightmareDirectDamageEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();

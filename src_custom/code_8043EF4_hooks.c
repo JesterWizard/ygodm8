@@ -48,6 +48,7 @@
 #include "nightmare_horse.h"
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
+#include "reaper_on_the_nightmare.h"
 #include "great_maju_garzett.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -580,6 +581,8 @@ void sub_8044570__Replacement(void)
       || CanAmphibiousBugrothMk3AttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanBlackTyrannoAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanReaperOnTheNightmareAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
@@ -621,6 +624,7 @@ void sub_8044570__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
+      ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();
@@ -700,6 +704,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
+      ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();

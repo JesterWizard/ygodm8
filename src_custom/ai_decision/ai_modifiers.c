@@ -5,6 +5,7 @@
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
+#include "reaper_on_the_nightmare.h"
 
 static void AiMod_ApplyDelta(u32 *priority, s32 delta) {
   if (*priority == 0 || *priority == AI_PRIORITY_DISABLE)
@@ -243,6 +244,9 @@ static void AiMod_AttackTargeting(
     SetFinalStat(&gStatMod);
     defenderPower = defender->isDefending ? gCardInfo.def : gCardInfo.atk;
     if (threatAtk != 0 && defenderPower == threatAtk)
+      delta += (s32)(AI_MOD_DELTA_MIN / 2);
+
+    if (IsBattleIndestructibleMonster(defender->id) && !defender->isDefending)
       delta += (s32)(AI_MOD_DELTA_MIN / 2);
   }
 

@@ -37,6 +37,7 @@ void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
+void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
@@ -275,6 +276,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
+  ResolveReaperOnTheNightmareDirectDamageEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveNeedleBurrowerBattleEffect();

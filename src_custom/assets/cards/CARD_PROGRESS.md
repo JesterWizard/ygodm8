@@ -212,7 +212,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [ ] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
+- [x] `REAPER_ON_THE_NIGHTMARE` — `reaper_on_the_nightmare.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
