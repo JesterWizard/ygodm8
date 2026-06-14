@@ -36,6 +36,8 @@ static void AiDecision_NormalizeVanillaAttackPriorities(struct AiDecisionContext
       continue;
     if (!AiDecision_IsAttackCategory(ctx->entries[i].actionIndex))
       continue;
+    if (AiTactics_IsFutileIndestructibleDefenseLine(ctx->entries[i].actionIndex))
+      continue;
     ctx->entries[i].priority = AI_PRIORITY_DISABLE - AI_MOD_DELTA_MIN;
   }
 }

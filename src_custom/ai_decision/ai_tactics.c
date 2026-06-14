@@ -69,6 +69,16 @@ static u8 AiTactics_AttackerCanDestroyDefender(
   return !IsBattleIndestructibleMonster(defender->id);
 }
 
+static u8 AiTactics_AttackHasMeaningfulOutcome(
+    struct DuelCard *attacker, struct DuelCard *defender) {
+  if (!AiTactics_AttackerBeatsDefender(attacker, defender))
+    return FALSE;
+  if (!IsBattleIndestructibleMonster(defender->id))
+    return TRUE;
+  /* ponytail: indestructible in DEF survives with no LP change; ATK still chips LP. */
+  return !defender->isDefending;
+}
+
 static u8 AiTactics_PlayerHasSetBackrow(void) {
   u8 col;
 
@@ -123,7 +133,7 @@ static u8 AiTactics_HasBeatableFaceUpTarget(void) {
       if (defender->id == CARD_NONE || !defender->isFaceUp)
         continue;
 
-      if (AiTactics_AttackerBeatsDefender(attacker, defender))
+      if (AiTactics_AttackHasMeaningfulOutcome(attacker, defender))
         return TRUE;
     }
   }
@@ -270,12 +280,38 @@ u8 AiTactics_ActionDealsFaceUpBattleDamage(u16 actionIndex) {
   defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
   if (defender->id == CARD_NONE || !defender->isFaceUp)
     return FALSE;
+  if (defender->isDefending)
+    return FALSE;
 
   return AiTactics_AttackerBeatsDefenderAt(
       decoded.zone0Row,
       decoded.zone0Col,
       decoded.zone1Row,
       decoded.zone1Col);
+}
+
+u8 AiTactics_IsFutileIndestructibleDefenseLine(u16 actionIndex) {
+  struct AiDecodedAction decoded;
+  struct DuelCard *attacker;
+  struct DuelCard *defender;
+
+  AiDecodeActionIndex(actionIndex, &decoded);
+
+  if (decoded.category != AI_CATEGORY_ATTACK)
+    return FALSE;
+  if (!IsAiFaceUpAttackAction(decoded.action))
+    return FALSE;
+  if (decoded.zone1Row != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  attacker = gTurnZones[decoded.zone0Row][decoded.zone0Col];
+  defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
+  if (attacker->id == CARD_NONE || defender->id == CARD_NONE || !defender->isFaceUp)
+    return FALSE;
+
+  return IsBattleIndestructibleMonster(defender->id)
+      && defender->isDefending
+      && AiTactics_AttackerBeatsDefender(attacker, defender);
 }
 
 u8 AiTactics_HasValidDestroyFaceUpLine(
