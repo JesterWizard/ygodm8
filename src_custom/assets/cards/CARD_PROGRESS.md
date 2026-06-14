@@ -157,7 +157,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
-- [ ] `DES_FERAL_IMP` — `des_feral_imp.png`
 - [ ] `DIFFUSION_WAVE_MOTION` — `diffusion_wave_motion.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_COSTON` — `double_coston.png`

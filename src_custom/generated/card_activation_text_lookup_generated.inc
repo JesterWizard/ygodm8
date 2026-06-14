@@ -7,6 +7,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SANGAN, gActivationDescription_Sangan },
   { MASK_OF_DARKNESS, gActivationDescription_MaskOfDarkness },
   { FIRE_REAPER, gActivationDescription_FireReaper },
+  { DES_FERAL_IMP, gActivationDescription_DesFeralImp },
   { MYSTERIOUS_PUPPETEER, gActivationDescription_MysteriousPuppeteer },
   { BIG_EYE, gActivationDescription_BigEye },
   { KARATE_MAN, gActivationDescription_KarateMan },

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `139` effects
+- `140` effects
 
 ## Tally
 
@@ -144,6 +144,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Great Maju Garzett` | `src_custom/permanent_effects/great_maju_garzett.c` |
 | `permanent_effects` | `Gren Maju Da Eiza` | `src_custom/permanent_effects/gren_maju_da_eiza.c` |
 | `permanent_effects` | `Peten The Dark Clown` | `src_custom/permanent_effects/peten_the_dark_clown.c` |
+| `permanent_effects` | `Des Feral Imp` | `src_custom/permanent_effects/des_feral_imp.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |

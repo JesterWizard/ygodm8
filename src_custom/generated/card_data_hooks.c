@@ -4012,11 +4012,12 @@ const CardData gCardData_NEW[924] APPEND_RODATA = {
     .attribute = ATTRIBUTE_FIEND,
     .level = 4,
     .type = TYPE_FISH,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {8, 1, 9, 8, 5, 7, 8, 4},
+    .description = gDescription_DesFeralImp,
   },
   [0x00A5] = {
     .atk = 1400,

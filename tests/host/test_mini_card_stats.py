@@ -12,6 +12,8 @@ HOURGLASS_EFFECT = ROOT / "src_custom" / "activated_effects" / "hourglass_of_lif
 MANIFEST = ROOT / "tools" / "card_data_manifest.json"
 
 NON_MONSTER_TYPES = {"TYPE_SPELL", "TYPE_TRAP", "TYPE_RITUAL"}
+# Trap cards that intentionally carry monster ATK/DEF for tokens they summon.
+NON_MONSTER_STAT_EXCEPTIONS = {"OJAMA_TRIO"}
 
 
 def extract_function_body(source: str, function_name: str) -> str:
@@ -97,6 +99,8 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         self.assertTrue(spell_trap_cards, "Expected custom spell/trap cards past card 800.")
 
         for item in spell_trap_cards:
+            if item["card_const"] in NON_MONSTER_STAT_EXCEPTIONS:
+                continue
             with self.subTest(card_const=item["card_const"]):
                 self.assertIn(item["type"], NON_MONSTER_TYPES)
                 self.assertEqual(

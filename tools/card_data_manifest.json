@@ -2535,10 +2535,23 @@
       "attribute": "ATTRIBUTE_FIEND",
       "level": 4,
       "type": "TYPE_FISH",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DesFeralImp",
+        "pages": [
+          "A ferocious imp that can strikes fear into its foes.",
+          "It can return a monster from your grave to your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DesFeralImp",
+        "pages": [
+          "Return a monster from your graveyard to your hand."
+        ]
+      },
       "card_name": "Des Feral Imp",
       "password": [ 8, 1, 9, 8, 5, 7, 8, 4 ]
     },
