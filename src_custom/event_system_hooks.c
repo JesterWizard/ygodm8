@@ -8,6 +8,9 @@
 
 #include "generated/event_script_replacements.inc"
 
+extern const u32 g82AD2D0[];
+extern u16 g82AD48C[];
+
 typedef void (*SetCurrentScriptFunc)(struct ScriptCtx *, struct Script *);
 typedef void (*ScriptCtxFunc)(struct ScriptCtx *);
 
@@ -45,6 +48,13 @@ void InitiateScript__Replacement(struct Script *script) {
   bool8 saveAnywhereDialog = (gDebugSaveAnywherePendingCapture == TRUE);
 
   script = (struct Script *)EventSystem_ResolveScript(script);
+
+  EventCg_ForceClose();
+  LZ77UnCompWram(g82AD2D0, (void *)gBgVram.sbb1B);
+  CpuCopy16(g82AD48C, (void *)gBgVram.sbb1D, 0x500);
+  REG_BLDCNT = 0;
+  REG_BLDALPHA = 0;
+  REG_BLDY = 0;
 
   scriptCtx.portraitId = PORTRAIT_NONE;
   scriptCtx.pointer = 0;

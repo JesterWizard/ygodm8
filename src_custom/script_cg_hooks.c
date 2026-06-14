@@ -77,8 +77,7 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
       REG_BLDCNT = 0xDE;
       REG_BLDY = 7;
     }
-    if (!EventCg_IsActive())
-      sub_804F218();
+    sub_804F218();
     EventCg_OnScriptFrameEnd(scriptCtx);
   }
 

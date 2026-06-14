@@ -18,6 +18,8 @@ void sub_8053E34(u8);
 void LoadBgOffsets(void);
 void LoadOam(void);
 void sub_80551B8(void);
+void LoadObjVRAM(void);
+void LoadPalettes(void);
 void OverworldSetRegDispcnt(void);
 void sub_8045284(u16 *, u16, u16);
 
@@ -239,7 +241,7 @@ void sub_80532A8__Replacement(struct ScriptCtx *unused) {
     OverworldOverlay_Refresh();
   else
     UploadOverworldBg0Base();
-  SetVBlankCallback(sub_804F1E4);
+  SetVBlankCallback(sub_804ECA8);
   WaitForVBlank();
 }
 
@@ -268,7 +270,7 @@ void sub_804ECA8__Replacement(void) {
       && gDebugSaveAnywherePendingCapture != TRUE)
     OverworldOverlay_PatchVram();
   else if (gDebugSaveAnywherePendingCapture != TRUE)
-    CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x100);
+    CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x500);
 }
 
 LYN_REPLACE_CHECK(sub_804F218);
@@ -281,6 +283,11 @@ void sub_804F218__Replacement(void) {
   WaitForVBlank();
   LoadOam();
   CpuCopy32(gBgVram.sbb1B, (void *)0x0600D800, 0xE20);
+  if (gRuntimeConfig.show_player_screen_pixel_coords != TRUE
+      && gDebugSaveAnywherePendingCapture != TRUE)
+    CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x500);
+  LoadObjVRAM();
+  LoadPalettes();
   OverworldOverlay_CommitFrame();
 }
 
@@ -288,7 +295,7 @@ LYN_REPLACE_CHECK(sub_804EC64);
 void sub_804EC64__Replacement(void) {
   CpuCopy32(gBgVram.sbb1B, (void *)0x0600D800, 0xE20);
   if (gRuntimeConfig.show_player_screen_pixel_coords != TRUE)
-    CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x100);
+    CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x500);
   LoadObjVRAM();
   LoadPalettes();
   LoadOam();
