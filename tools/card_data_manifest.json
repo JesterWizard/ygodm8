@@ -14196,7 +14196,7 @@
         "symbol": "gDescription_Toll",
         "pages": [
           "A continuous spell that taxes every battle.",
-          "Each player must pay 500LP per monster when attacking",
+          "Each player must pay 500LP to declare an attack",
           "while this card is on the field."
         ]
       },
@@ -14205,7 +14205,7 @@
       "activation_description": {
         "symbol": "gActivationDescription_Toll",
         "pages": [
-          "Each player must pay 500LP per monster when attacking."
+          "Each player must pay 500LP to declare an attack."
         ]
       }
     },

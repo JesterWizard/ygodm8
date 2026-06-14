@@ -5,52 +5,45 @@
 #include "toll.h"
 #include "imperial_order.h"
 
-#define TOLL_LP_PER_MONSTER 500
+#define TOLL_LP_COST 500
 
 u8 IsActivatedTollZone(const struct DuelCard *zone)
 {
   return zone != NULL && zone->id == TOLL && zone->isFaceUp == TRUE;
 }
 
-u8 IsTollActiveOnField(void)
+static u8 CountFaceUpTollsOnField(void)
 {
   u8 row;
   u8 i;
+  u8 count = 0;
 
   if (IsImperialOrderNegatingSpell(TOLL))
-    return FALSE;
+    return 0;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-      if (gFixedZones[row][i]->id == TOLL)
-        return TRUE;
+      if (IsActivatedTollZone(gFixedZones[row][i]))
+        count++;
     }
-  }
-
-  return FALSE;
-}
-
-static u8 CountActiveDuelistMonsters(void)
-{
-  u8 i;
-  u8 count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]->id != CARD_NONE)
-      count++;
   }
 
   return count;
 }
 
+u8 IsTollActiveOnField(void)
+{
+  return CountFaceUpTollsOnField() != 0;
+}
+
 static u16 GetTollAttackCost(void)
 {
-  u8 monsterCount = CountActiveDuelistMonsters();
+  u8 tollCount = CountFaceUpTollsOnField();
 
-  if (monsterCount == 0)
+  if (tollCount == 0)
     return 0;
 
-  return (u16)monsterCount * TOLL_LP_PER_MONSTER;
+  return (u16)tollCount * TOLL_LP_COST;
 }
 
 static u8 ActiveDuelistCanPayTollAttackCost(u16 cost)
