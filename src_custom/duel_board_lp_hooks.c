@@ -42,7 +42,22 @@ void FlushDuelFieldLayerToHardware(void);
 #define BOARD_TURN_CHARBUF           (BOARD_TURN_BASE_TILE * BOARD_LP_CHARBUF_TILE_BYTES)
 #define BOARD_TURN_X                 14
 #define BOARD_TURN_Y                 19
-#define BOARD_TURN_YELLOW_COLOR      0x7FE0
+
+static void RemapSmallFontTilesToColorIndex(u8 *tiles, u32 byteCount, u8 fromIndex, u8 toIndex) {
+  u32 i;
+
+  for (i = 0; i < byteCount; i++) {
+    u8 byte = tiles[i];
+    u8 lo = byte & 0x0F;
+    u8 hi = byte >> 4;
+
+    if (lo == fromIndex)
+      lo = toIndex;
+    if (hi == fromIndex)
+      hi = toIndex;
+    tiles[i] = (hi << 4) | lo;
+  }
+}
 
 static void FormatLifePointsString(char *buf, u16 lifePoints) {
   u8 i;
@@ -107,13 +122,6 @@ static void FormatTurnCountString(char *buf, u16 turnCount) {
   buf[BOARD_TURN_MAX_DIGITS] = '\0';
 }
 
-static void EnsureBoardTurnPalette(void) {
-  // ponytail: palette 5 (colors 80+) is the duel info-bar card type icon; use palette 7 for turn digits.
-  CpuCopy16(&gPaletteBuffer[0x30], &gPaletteBuffer[0x70], 0x20);
-  gPaletteBuffer[0x71] = BOARD_TURN_YELLOW_COLOR;
-  CpuCopy16(&gPaletteBuffer[0x70], (u16 *)(PLTT + 0xE0), 0x20);
-}
-
 static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
   char buf[BOARD_TURN_MAX_DIGITS + 1];
   u16 *tilemap = (u16 *)(gBgVram.cbb0 + BOARD_LP_MAP_BASE);
@@ -122,6 +130,11 @@ static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
 
   FormatTurnCountString(buf, turnCount);
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + BOARD_TURN_CHARBUF, (const u8 *)buf, 0x001);
+  RemapSmallFontTilesToColorIndex(
+      gBgVram.cbb0 + BOARD_TURN_CHARBUF,
+      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
+      1,
+      2);
 
   for (i = 0; i < BOARD_TURN_MAX_DIGITS; i++)
     tilemap[y * 32 + x + i] = (u16)(attrs | (BOARD_TURN_BASE_TILE + i));
@@ -153,7 +166,6 @@ static void DrawBoardLifePoints(void) {
 }
 
 static void DrawBoardTurnCounter(void) {
-  EnsureBoardTurnPalette();
   DrawTurnCountAt(BOARD_TURN_X, BOARD_TURN_Y, gDuelBoardTurnCount);
   UploadBoardTurnCharTiles();
   FlushBoardLpRow(BOARD_TURN_Y);
