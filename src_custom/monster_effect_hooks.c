@@ -9,8 +9,6 @@
 #include "great_maju_garzett.h"
 #include "weather_report.h"
 
-unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
-
 extern void (*const gMonEffects[])(void);
 
 void ActivateMonsterEffect(void);
@@ -239,10 +237,8 @@ void MonsterActionMenu__Replacement(void) {
       } else {
         TryCaptureGreatMajuGarzettTributeFromZone(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
-        IncrementNumTributes();
-        if (GetKaiserSeaHorseTributeCount(
-                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id) == 2)
-          IncrementNumTributes();
+        AddTributeCredit(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
         ClearZoneAndSendMonToGraveyard2(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], DUEL_PLAYER);
       }

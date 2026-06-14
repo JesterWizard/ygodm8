@@ -7,6 +7,9 @@
 #include "summon_tribute.h"
 #include "great_maju_garzett.h"
 
+#include "constants/card_ids.h"
+#include "tribute.h"
+
 struct AI_Command {
   u16 action;
   u8 zone1Position;
@@ -25,6 +28,47 @@ void sub_800E0D4(void);
 void WaitForVBlank(void);
 u16 RandRangeU16(u16 min, u16 max);
 
+u16 RandRangeU16(u16 min, u16 max);
+u8 DoubleCostonCoversDarkTributeSummon(u16 summonCardId, u16 tributeCardId);
+
+static void RecordPendingAiTributeSummonCard(void)
+{
+  u8 handRow;
+  u8 handCol;
+  u16 handCardId;
+
+  if (!IsAiTributeSummonAction(sAI_Command.action))
+    return;
+
+  handRow = sAI_Command.zone1Position >> 4;
+  handCol = sAI_Command.zone1Position & 0xF;
+  handCardId = gTurnZones[handRow][handCol]->id;
+  SetPendingTributeSummonCardId(handCardId);
+}
+
+static u8 AiUsesDoubleCostonForOneTributeDarkSummon(void)
+{
+  u8 handRow;
+  u8 handCol;
+  u8 tributeRow;
+  u8 tributeCol;
+  u16 handCardId;
+  u16 tributeCardId;
+
+  if (sAI_Command.action != AI_ACTION_1_TRIBUTE_SUMMON
+      && sAI_Command.action != AI_ACTION_PERM_CARD_1_TRIBUTE_SUMMON)
+    return FALSE;
+
+  handRow = sAI_Command.zone1Position >> 4;
+  handCol = sAI_Command.zone1Position & 0xF;
+  tributeRow = sAI_Command.zone2Position >> 4;
+  tributeCol = sAI_Command.zone2Position & 0xF;
+  handCardId = gTurnZones[handRow][handCol]->id;
+  tributeCardId = gTurnZones[tributeRow][tributeCol]->id;
+
+  return DoubleCostonCoversDarkTributeSummon(handCardId, tributeCardId);
+}
+
 static u8 TryBlockAiTributeSummonAction(void)
 {
   if (!IsAiTributeSummonAction(sAI_Command.action))
@@ -41,6 +85,11 @@ static u8 TryBlockAiTributeSummonAction(void)
 
 static void RecordAiSummonTributeCount(void)
 {
+  if (AiUsesDoubleCostonForOneTributeDarkSummon()) {
+    SetPendingSummonTributeCount(2);
+    return;
+  }
+
   switch (sAI_Command.action) {
   case AI_ACTION_0_TRIBUTE_SUMMON:
   case AI_ACTION_PERM_CARD_0_TRIBUTE_SUMMON:
@@ -86,6 +135,7 @@ void sub_800E0D4__Replacement(void)
     return;
 
   AiTempoMaybeDelayBeforeAction();
+  RecordPendingAiTributeSummonCard();
   RecordAiSummonTributeCount();
   TryCaptureGreatMajuGarzettAiTribute();
   sub_803FD14();

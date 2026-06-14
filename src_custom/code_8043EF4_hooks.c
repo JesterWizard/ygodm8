@@ -120,7 +120,9 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 
 static void TryPlaceSelectedCardOnField_Local(void)
 {
-  SetCardInfo(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id);
+  u16 placedCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
+
+  SetCardInfo(placedCardId);
   if (CardRequiresSpecialSummonOnly(gCardInfo.id)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
@@ -151,7 +153,10 @@ static void TryPlaceSelectedCardOnField_Local(void)
         RecordPendingSummonTributeCount();
         sub_80449D8();
         TryActivatingPermanentEffects();
-        ResetNumTributes();
+        if (placedCardId == GetPendingTributeSummonCardId()) {
+          ResetNumTributes();
+          ClearPendingTributeSummonCardId();
+        }
       }
   }
 }
@@ -246,6 +251,8 @@ void sub_80441D0__Replacement(void)
             WaitForVBlank();
           } else {
             SetGreatMajuGarzettPendingSummon(handCardId == GREAT_MAJU_GARZETT);
+            SetPendingTributeSummonCardId(handCardId);
+            ResetCursorDestToCurrentPos();
             PlayMusic(SFX_FORBIDDEN);
             DisplayNumRequiredTributesTextbox(numTributes);
           }
@@ -496,6 +503,8 @@ void sub_80442AC__Replacement(void) {
   u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
 
   SetGreatMajuGarzettPendingSummon(id == GREAT_MAJU_GARZETT);
+  if (!PendingTributeSummonStillUnpaid())
+    SetPendingTributeSummonCardId(id);
   SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
   gDuelCursor.state = 1;
   ResetCursorDestToCurrentPos();

@@ -83,6 +83,12 @@ _kernel_malloc gSoulExchangeTributeCredit, 1
 @ Tribute count paid for the most recent monster Normal Summon placement.
 _kernel_malloc gPendingSummonTributeCount, 1
 
+@ Card being tribute summoned while the player is paying tributes.
+_kernel_malloc gPendingTributeSummonCardId, 2
+
+@ Extra tribute credit from Double Coston's dark-only bonus (not generic).
+_kernel_malloc gDoubleCostonDarkBonusPaid, 1
+
 @ Slifer summon penalty waiting for summon placement to finish.
 _kernel_malloc gSliferPendingPenaltyActive, 1
 _kernel_malloc gSliferPendingPenaltyBoardRow, 1

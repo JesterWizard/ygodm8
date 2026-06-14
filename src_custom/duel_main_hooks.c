@@ -26,6 +26,7 @@
 #include "yata_garasu.h"
 #include "life_points.h"
 #include "text.h"
+#include "summon_tribute.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -276,6 +277,7 @@ static bool8 RunDuelTurnLoop(void) {
     }
     UnblockTurnSummoning(ACTIVE_DUELIST);
     ResetNumTributes();
+    ClearPendingTributeSummonCardId();
     UpdateDuelZonePtrs(turn);
     if (!IsRoyalDecreeActiveOnField()) {
     TryActivateJarOfGreedOnOpponentTurnStart();

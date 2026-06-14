@@ -492,6 +492,10 @@ static const unsigned char sMatazaTheZapperBigArt[] __attribute__((section(".app
 static const unsigned short sMatazaTheZapperBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mataza_the_zapper.gbapal");
 static const unsigned char sMatazaTheZapperMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mataza_the_zapper.lz");
 
+static const unsigned char sDoubleCostonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/double_coston.huff");
+static const unsigned short sDoubleCostonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/double_coston.gbapal");
+static const unsigned char sDoubleCostonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/double_coston.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -616,6 +620,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0399] = sReaperOnTheNightmareBigArt,
   [0x039A] = sNegativeEnergyBigArt,
   [0x039B] = sMatazaTheZapperBigArt,
+  [0x039C] = sDoubleCostonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -742,6 +747,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0399] = sReaperOnTheNightmareBigPalette,
   [0x039A] = sNegativeEnergyBigPalette,
   [0x039B] = sMatazaTheZapperBigPalette,
+  [0x039C] = sDoubleCostonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -868,6 +874,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0399] = 0,
   [0x039A] = 0,
   [0x039B] = 0,
+  [0x039C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -994,4 +1001,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0399] = sReaperOnTheNightmareMiniArt,
   [0x039A] = sNegativeEnergyMiniArt,
   [0x039B] = sMatazaTheZapperMiniArt,
+  [0x039C] = sDoubleCostonMiniArt,
 };

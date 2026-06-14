@@ -22,7 +22,8 @@ void sub_802ADA4(void);
 void sub_802AE44(void);
 void UpdateDuelGfxExceptField(void);
 void ResetTempStagesForAllCards(void);
-unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
+void AddTributeCredit(u16 tributeCardId);
+u8 DoubleCostonCoversDarkTributeSummon(u16 summonCardId, u16 tributeCardId);
 
 typedef unsigned char (*PermanentEffectCondition)(void);
 typedef void (*PermanentEffectHandler)(void);

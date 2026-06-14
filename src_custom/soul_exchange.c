@@ -3,7 +3,6 @@
 #include "tribute.h"
 #include "great_maju_garzett.h"
 
-unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 
@@ -60,9 +59,7 @@ void ApplyMonsterTributeFromFixedRow(struct DuelCard *zone, u8 fixedMonsterRow)
     GrantSoulExchangeTributeCredit();
   } else {
     TryCaptureGreatMajuGarzettTributeFromZone(zone);
-    IncrementNumTributes();
-    if (GetKaiserSeaHorseTributeCount(zone->id) == 2)
-      IncrementNumTributes();
+    AddTributeCredit(zone->id);
   }
 
   ClearZoneAndSendMonToGraveyard2(zone, graveyardDuelist);

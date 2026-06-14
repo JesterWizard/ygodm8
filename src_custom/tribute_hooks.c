@@ -6,8 +6,24 @@
 #include "cost_down.h"
 #include "debug_ruleset.h"
 #include "tribute.h"
+#include "summon_tribute.h"
+#include "ai_actions.h"
 
 extern unsigned char gNumTributes;
+
+struct AI_Command {
+  u16 action;
+  u8 zone1Position;
+  u8 zone2Position;
+  u8 zone3Position;
+  u8 zone4Position;
+  u8 zone5Position;
+  u8 zone6Position;
+};
+
+extern struct AI_Command sAI_Command;
+unsigned char GetKaiserSeaHorseTributeCount(u16 cardId);
+u8 DoubleCostonCoversDarkTributeSummon(u16 summonCardId, u16 tributeCardId);
 
 void ResetNumTributes(void);
 int GetNumRequiredTributes(unsigned short cardId);
@@ -82,6 +98,7 @@ LYN_REPLACE_CHECK(ResetNumTributes);
 void ResetNumTributes__Replacement(void)
 {
   gNumTributes = 0;
+  ClearDoubleCostonDarkBonusPaid();
   ClearSoulExchangeTributeCredit();
   ClearSoulExchange();
 }
@@ -92,12 +109,45 @@ void IncrementNumTributes__Replacement(void)
   gNumTributes++;
 }
 
-static int SubtractPaidTributes(int requiredTributes)
+static u8 AiUsesDoubleCostonForOneTributeDarkSummon(u16 summonCardId)
+{
+  u8 tributeRow;
+  u8 tributeCol;
+  u16 tributeCardId;
+
+  if (sAI_Command.action != AI_ACTION_1_TRIBUTE_SUMMON
+      && sAI_Command.action != AI_ACTION_PERM_CARD_1_TRIBUTE_SUMMON)
+    return FALSE;
+
+  if (gTurnZones[sAI_Command.zone1Position >> 4][sAI_Command.zone1Position & 0xF]->id
+      != summonCardId)
+    return FALSE;
+
+  tributeRow = sAI_Command.zone2Position >> 4;
+  tributeCol = sAI_Command.zone2Position & 0xF;
+  tributeCardId = gTurnZones[tributeRow][tributeCol]->id;
+
+  return DoubleCostonCoversDarkTributeSummon(summonCardId, tributeCardId);
+}
+
+int AdjustRequiredTributesForDoubleCoston(u16 cardId, int requiredTributes)
+{
+  if (requiredTributes == 2 && AiUsesDoubleCostonForOneTributeDarkSummon(cardId))
+    return 1;
+
+  return requiredTributes;
+}
+
+static int SubtractPaidTributesForCard(int requiredTributes, u16 summonCardId)
 {
   int paidTributes = (int)gNumTributes;
 
   if (gSoulExchangeTributeCredit)
     paidTributes++;
+
+  if (GetDoubleCostonDarkBonusPaid() > 0 && summonCardId != CARD_NONE
+      && CardQualifiesForDoubleCostonDarkBonus(summonCardId))
+    paidTributes += GetDoubleCostonDarkBonusPaid();
 
   requiredTributes -= paidTributes;
 
@@ -108,6 +158,11 @@ static int SubtractPaidTributes(int requiredTributes)
     return MASK_OF_RESTRICT_TRIBUTE_BLOCK;
 
   return (unsigned char)requiredTributes;
+}
+
+static int SubtractPaidTributes(int requiredTributes)
+{
+  return SubtractPaidTributesForCard(requiredTributes, CARD_NONE);
 }
 
 int GetMonsterNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
@@ -125,7 +180,8 @@ int GetMonsterNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
   else
     requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
 
-  return SubtractPaidTributes(requiredTributes);
+  return AdjustRequiredTributesForDoubleCoston(cardId,
+      SubtractPaidTributesForCard(requiredTributes, cardId));
 }
 
 LYN_REPLACE_CHECK(GetMonsterNumRequiredTributes);
@@ -141,5 +197,6 @@ int GetMonsterNumRequiredTributes__Replacement(unsigned short cardId)
 
   requiredTributes = GetNumRequiredTributesWithCostDown(cardId);
 
-  return SubtractPaidTributes(requiredTributes);
+  return AdjustRequiredTributesForDoubleCoston(cardId,
+      SubtractPaidTributesForCard(requiredTributes, cardId));
 }

@@ -121,6 +121,7 @@ static const u8 sRoyalDecreeName[] __attribute__((section(".append_assets"))) = 
 static const u8 sReaperOnTheNightmareName[] __attribute__((section(".append_assets"))) = "Reaper on the Nightmare";
 static const u8 sNegativeEnergyName[] __attribute__((section(".append_assets"))) = "Negative Energy";
 static const u8 sMatazaTheZapperName[] __attribute__((section(".append_assets"))) = "Mataza the Zapper";
+static const u8 sDoubleCostonName[] __attribute__((section(".append_assets"))) = "Double Coston";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -369,6 +370,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sNegativeEnergyName;
   if (cardId == 0x039B)
     return (u8 *)sMatazaTheZapperName;
+  if (cardId == 0x039C)
+    return (u8 *)sDoubleCostonName;
 
   return gCardNames[cardId];
 }
