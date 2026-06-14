@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[926] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[927] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -938,9 +938,10 @@ const u8 gCardLockAfterActivation_Hook[926] APPEND_RODATA = {
   [0x039B] = 1,
   [0x039C] = 1,
   [0x039D] = 1,
+  [0x039E] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[926] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[927] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1867,9 +1868,10 @@ const u8 gCardEffectUsage_Hook[926] APPEND_RODATA = {
   [0x039B] = EFFECT_USAGE_NONE,
   [0x039C] = EFFECT_USAGE_NONE,
   [0x039D] = EFFECT_USAGE_NONE,
+  [0x039E] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[926] APPEND_RODATA = {
+const CardData gCardData_NEW[927] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14079,5 +14081,19 @@ const CardData gCardData_NEW[926] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {8, 9, 3, 9, 7, 5, 2, 6},
     .description = gDescription_PreciousCardsFromBeyond,
+  },
+  [0x039E] = {
+    .atk = 2900,
+    .def = 2500,
+    .cost = 150,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 4,
+    .type = TYPE_DRAGON,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 4, 5, 6, 8, 6, 0, 1},
+    .description = gDescription_TyrantDragon,
   },
 };

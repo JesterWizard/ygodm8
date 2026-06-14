@@ -31,6 +31,7 @@
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
 #include "twin_swords_of_flashing_light_tryce.h"
+#include "tyrant_dragon.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "soul_taker.h"
@@ -648,6 +649,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockTryceEquipForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockTyrantDragonForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -726,6 +729,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockMermaidKnightForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockTryceEquipForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();

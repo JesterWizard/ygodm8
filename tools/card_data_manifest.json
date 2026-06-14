@@ -16162,6 +16162,29 @@
           "Draw 2 cards when you tribute summon a monster that requires 2 or more tributes."
         ]
       }
+    },
+    {
+      "card_const": "TYRANT_DRAGON",
+      "atk": 2900,
+      "def": 2500,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_FIRE",
+      "level": 4,
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_TyrantDragon",
+        "pages": [
+          "A dragon that shrugs off traps and strikes again.",
+          "If your opponent still has a monster after this card's",
+          "first attack, it may attack once more that turn."
+        ]
+      },
+      "card_name": "Tyrant Dragon",
+      "password": [ 9, 4, 5, 6, 8, 6, 0, 1 ]
     }
   ]
 }

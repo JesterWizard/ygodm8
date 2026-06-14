@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 125
+#define NUM_CUSTOM_NAME_SORT_CARDS 126
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -127,6 +127,7 @@ static const u8 sNegativeEnergySortName[] APPEND_RODATA = "Negative Energy";
 static const u8 sMatazaTheZapperSortName[] APPEND_RODATA = "Mataza the Zapper";
 static const u8 sDoubleCostonSortName[] APPEND_RODATA = "Double Coston";
 static const u8 sPreciousCardsFromBeyondSortName[] APPEND_RODATA = "Precious Cards From Beyond";
+static const u8 sTyrantDragonSortName[] APPEND_RODATA = "Tyrant Dragon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -245,6 +246,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0358, // Toll
   0x038D, // Triangle Power
   0x038E, // Twin Swords of Flashing Light - Tryce
+  0x039E, // Tyrant Dragon
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
@@ -373,15 +375,16 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   114, // Toll
   115, // Triangle Power
   116, // Twin Swords of Flashing Light - Tryce
-  117, // Ultimate Offering
-  118, // United We Stand
-  119, // Upstart Goblin
-  120, // Vampire Baby
-  121, // Warrior of Zera
-  122, // Wave Motion Cannon
-  123, // Weather Report
-  124, // White Magician Pikeru
-  125, // Yata-Garasu
+  117, // Tyrant Dragon
+  118, // Ultimate Offering
+  119, // United We Stand
+  120, // Upstart Goblin
+  121, // Vampire Baby
+  122, // Warrior of Zera
+  123, // Wave Motion Cannon
+  124, // Weather Report
+  125, // White Magician Pikeru
+  126, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -635,6 +638,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sDoubleCostonSortName;
   if (cardId == 0x039D)
     return (u8 *)sPreciousCardsFromBeyondSortName;
+  if (cardId == 0x039E)
+    return (u8 *)sTyrantDragonSortName;
 
   return gCardNames[cardId];
 }

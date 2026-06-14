@@ -500,6 +500,10 @@ static const unsigned char sPreciousCardsFromBeyondBigArt[] __attribute__((secti
 static const unsigned short sPreciousCardsFromBeyondBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/precious_cards_from_beyond.gbapal");
 static const unsigned char sPreciousCardsFromBeyondMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/precious_cards_from_beyond.lz");
 
+static const unsigned char sTyrantDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tyrant_dragon.huff");
+static const unsigned short sTyrantDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tyrant_dragon.gbapal");
+static const unsigned char sTyrantDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tyrant_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -626,6 +630,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x039B] = sMatazaTheZapperBigArt,
   [0x039C] = sDoubleCostonBigArt,
   [0x039D] = sPreciousCardsFromBeyondBigArt,
+  [0x039E] = sTyrantDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -754,6 +759,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x039B] = sMatazaTheZapperBigPalette,
   [0x039C] = sDoubleCostonBigPalette,
   [0x039D] = sPreciousCardsFromBeyondBigPalette,
+  [0x039E] = sTyrantDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -882,6 +888,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x039B] = 0,
   [0x039C] = 0,
   [0x039D] = 0,
+  [0x039E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1010,4 +1017,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x039B] = sMatazaTheZapperMiniArt,
   [0x039C] = sDoubleCostonMiniArt,
   [0x039D] = sPreciousCardsFromBeyondMiniArt,
+  [0x039E] = sTyrantDragonMiniArt,
 };

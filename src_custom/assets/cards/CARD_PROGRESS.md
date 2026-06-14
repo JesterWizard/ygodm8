@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 124 |
-| Art ready, needs manifest | 112 |
+| In game (manifest + art) | 126 |
+| Art ready, needs manifest | 110 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **236** |
 
@@ -146,6 +146,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `NEGATIVE_ENERGY` | Negative Energy | `negative_energy.png` |
 | `MATAZA_THE_ZAPPER` | Mataza the Zapper | `mataza_the_zapper.png` |
 | `DOUBLE_COSTON` | Double Coston | `double_coston.png` |
+| `TYRANT_DRAGON` | Tyrant Dragon | `tyrant_dragon.png` |
+| `PRECIOUS_CARDS_FROM_BEYOND` | Precious Cards From Beyond | `precious_cards_from_beyond.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -214,7 +216,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
-- [ ] `PRECIOUS_CARDS_FROM_BEYOND` — `precious_cards_from_beyond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
@@ -256,7 +257,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
-- [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
 - [ ] `WATAPON` — `watapon.png`

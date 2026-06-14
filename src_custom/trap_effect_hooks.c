@@ -17,6 +17,8 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
     return FALSE;
   if (IsImmuneToHarmfulTargetedEffectsOnField(gTrapEffectData.originCardId, gTrapEffectData.originRow))
     return FALSE;
+  if (IsImmuneToTrapEffectsOnField(gTrapEffectData.originCardId, gTrapEffectData.originRow))
+    return FALSE;
   return TRUE;
 }
 

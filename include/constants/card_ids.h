@@ -927,11 +927,12 @@
 #define MATAZA_THE_ZAPPER                        0x039B
 #define DOUBLE_COSTON                            0x039C
 #define PRECIOUS_CARDS_FROM_BEYOND               0x039D
+#define TYRANT_DRAGON                            0x039E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x039E
-#define NUM_CUSTOM_CARDS                        0x007D
+#define NUM_TOTAL_CARDS                         0x039F
+#define NUM_CUSTOM_CARDS                        0x007E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
