@@ -190,4 +190,7 @@ void ResolveAirknightParshathDrawBattleEffect(void) {
 
   ShowAirknightEffectText();
   TryDrawingCard(duelist);
+  if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[duelist]
+      && gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
+    LockMonsterCardsInRow(ACTIVE_DUELIST_HAND);
 }

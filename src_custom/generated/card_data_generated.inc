@@ -1347,7 +1347,7 @@
     .def = 1400,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 5,
+    .level = 4,
     .type = TYPE_FAIRY,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
