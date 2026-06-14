@@ -14,6 +14,7 @@
 #include "tyrant_dragon.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
+#include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
 
@@ -56,7 +57,37 @@ static struct {
 
 static u8 sRevivedMonsterTurnCol APPEND_DATA = 0xFF;
 static u8 sAttackTollAlreadyPaid APPEND_DATA = FALSE;
+static u8 sAiResimulateAttackerRow APPEND_DATA = 0xFF;
+static u8 sAiResimulateAttackerCol APPEND_DATA = 0xFF;
 
+void CallOfTheHauntedRequestAiResimulate(void)
+{
+  if (gHideEffectText)
+    return;
+
+  gAiResimulateAfterCallOfTheHaunted = TRUE;
+  sAiResimulateAttackerRow = sAI_Command.zone1Position >> 4;
+  sAiResimulateAttackerCol = sAI_Command.zone1Position & 0xF;
+  sAttackResume.valid = FALSE;
+}
+
+void CallOfTheHauntedUnlockAiAttackerAfterTrap(void)
+{
+  struct DuelCard *zone;
+
+  if (sAiResimulateAttackerRow != 0xFF) {
+    zone = gTurnZones[sAiResimulateAttackerRow][sAiResimulateAttackerCol];
+    sAiResimulateAttackerRow = 0xFF;
+    sAiResimulateAttackerCol = 0xFF;
+  } else if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+    zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+  } else {
+    return;
+  }
+
+  if (zone->id != CARD_NONE)
+    UnlockCard(zone);
+}
 void MarkCallOfTheHauntedAttackTollPaid(void)
 {
   sAttackTollAlreadyPaid = TRUE;
@@ -82,6 +113,53 @@ u8 CallOfTheHauntedRedirectsDirectAttack(u8 *defenderFixedCol)
   return TRUE;
 }
 
+static u8 FindTurnZoneForCard(struct DuelCard *zone, u8 *row, u8 *col)
+{
+  u8 i;
+  u8 j;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (i = 0; i < 4; i++) {
+    for (j = 0; j < MAX_ZONES_IN_ROW; j++) {
+      if (gTurnZones[i][j] == zone) {
+        *row = i;
+        *col = j;
+        return TRUE;
+      }
+    }
+  }
+
+  return FALSE;
+}
+
+void PrepareCallOfTheHauntedAttackResume(struct DuelCard *attacker,
+    struct DuelCard *defender)
+{
+  u8 row;
+  u8 col;
+
+  if (attacker == NULL || attacker->id == CARD_NONE)
+    return;
+  if (!FindTurnZoneForCard(attacker, &row, &col))
+    return;
+
+  sAttackResume.valid = TRUE;
+  sAttackResume.attackerRow = row;
+  sAttackResume.attackerCol = col;
+
+  if (defender != NULL && defender->id != CARD_NONE
+      && FindTurnZoneForCard(defender, &row, &col)) {
+    sAttackResume.isDirect = FALSE;
+    sAttackResume.defenderRow = row;
+    sAttackResume.defenderCol = col;
+    return;
+  }
+
+  sAttackResume.isDirect = TRUE;
+}
+
 void SaveCallOfTheHauntedAttackResume(void)
 {
   u8 row2;
@@ -92,6 +170,14 @@ void SaveCallOfTheHauntedAttackResume(void)
   sAttackResume.valid = TRUE;
   sAttackResume.attackerRow = gTrapEffectData.originRow;
   sAttackResume.attackerCol = gTrapEffectData.originCol;
+
+  if (WhoseTurn() == DUEL_PLAYER
+      && gTrapEffectData.originRow == gDuelCursor.currentY
+      && gTrapEffectData.originCol == gDuelCursor.currentX
+      && gDuelCursor.currentY == ACTIVE_DUELIST_MONSTER_ROW) {
+    sAttackResume.isDirect = TRUE;
+    return;
+  }
 
   if (WhoseTurn() == DUEL_PLAYER
       && gTrapEffectData.originRow == gDuelCursor.destY
@@ -203,13 +289,13 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   u8 opponentCol;
   u8 defenderTurnCol;
   u8 attackerFixedCol;
+  u8 isDirect;
+  u8 useMonsterBattle;
   struct DuelCard *attacker;
   struct DuelCard *defender;
 
   if (!sAttackResume.valid)
     return;
-
-  sAttackResume.valid = FALSE;
 
   if (IsDuelOver() == TRUE)
     return;
@@ -225,6 +311,9 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   if (!TryPayResumeAttackToll())
     return;
 
+  isDirect = sAttackResume.isDirect;
+  useMonsterBattle = FALSE;
+
   if (ShouldRedirectToRevivedMonster(&defenderTurnCol)) {
     defender = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][defenderTurnCol];
     defender->isFaceUp = TRUE;
@@ -238,7 +327,8 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
     }
 
     SetAttackAction(playerCol, opponentCol);
-  } else if (sAttackResume.isDirect) {
+    useMonsterBattle = TRUE;
+  } else if (isDirect) {
     attackerFixedCol = (WhoseTurn() == DUEL_PLAYER)
         ? FixedColForZone(attacker, PLAYER_MONSTER_ROW)
         : FixedColForZone(attacker, OPPONENT_MONSTER_ROW);
@@ -259,13 +349,20 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
     }
 
     SetAttackAction(playerCol, opponentCol);
+    useMonsterBattle = TRUE;
   }
 
+  sAttackResume.valid = FALSE;
   sRevivedMonsterTurnCol = 0xFF;
 
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
-  HandleAtkAndLifePointsAction();
+  if (useMonsterBattle) {
+    RefreshPendingSasukeBattleTarget();
+    RunMonsterBattleAction();
+  } else {
+    HandleAtkAndLifePointsAction();
+  }
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();

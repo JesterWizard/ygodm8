@@ -93,17 +93,23 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
   if (attacker->id == CARD_NONE)
     return FALSE;
 
-  AiPrepareAttacker(attacker);
-  if (defender != NULL)
-    defender->isFaceUp = TRUE;
-
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
 
   if (IsTrapTriggered() != TRUE)
     return FALSE;
 
+  /* ponytail: trap stops the attack; locking here leaves the monster stuck after CoTH */
+  attacker->isDefending = FALSE;
+  attacker->isFaceUp = TRUE;
+  if (defender != NULL)
+    defender->isFaceUp = TRUE;
+
+  if (gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED)
+    CallOfTheHauntedRequestAiResimulate();
+
   ActivateTrapEffect(0);
+  CallOfTheHauntedUnlockAiAttackerAfterTrap();
   return TRUE;
 }
 
@@ -224,46 +230,22 @@ void sub_800E6B8__Replacement(void) {
   AiAttackMonster(gTurnZones[row2][col2], gTurnZones[row3][col3]);
 }
 
-static void AiActivateTrapOnAttackOrigin(u8 row2, u8 col2)
-{
-  gTurnZones[row2][col2]->isDefending = FALSE;
-  gTurnZones[row2][col2]->isFaceUp = TRUE;
-  gTurnZones[row2][col2]->isLocked = TRUE;
-  gTrapEffectData.originRow = row2;
-  gTrapEffectData.originCol = col2;
-  gTrapEffectData.originCardId = gTurnZones[row2][col2]->id;
-  IsTrapTriggered();
-  ActivateTrapEffect(0);
-}
-
 LYN_REPLACE_CHECK(sub_800E734);
 void sub_800E734__Replacement(void) {
-  u8 row2 = sAI_Command.zone1Position >> 4;
-  u8 col2 = sAI_Command.zone1Position & 0xF;
-
-  AiActivateTrapOnAttackOrigin(row2, col2);
+  sub_800E58C__Replacement();
 }
 
 LYN_REPLACE_CHECK(sub_800E794);
 void sub_800E794__Replacement(void) {
-  u8 row2 = sAI_Command.zone1Position >> 4;
-  u8 col2 = sAI_Command.zone1Position & 0xF;
-
-  AiActivateTrapOnAttackOrigin(row2, col2);
+  sub_800E5E4__Replacement();
 }
 
 LYN_REPLACE_CHECK(sub_800E7F4);
 void sub_800E7F4__Replacement(void) {
-  u8 row2 = sAI_Command.zone1Position >> 4;
-  u8 col2 = sAI_Command.zone1Position & 0xF;
-
-  AiActivateTrapOnAttackOrigin(row2, col2);
+  sub_800E63C__Replacement();
 }
 
 LYN_REPLACE_CHECK(sub_800E854);
 void sub_800E854__Replacement(void) {
-  u8 row2 = sAI_Command.zone1Position >> 4;
-  u8 col2 = sAI_Command.zone1Position & 0xF;
-
-  AiActivateTrapOnAttackOrigin(row2, col2);
+  sub_800E6B8__Replacement();
 }

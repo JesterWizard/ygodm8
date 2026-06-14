@@ -267,6 +267,9 @@ _kernel_malloc_ewram gTrianglePowerDestroyMaskOpponent, 1
 @ Set when The Unhappy Maiden ends the active duelist's turn during battle.
 @ Allocated last so earlier EWRAM symbols (trunk/sort buffers) keep stable addresses.
 _kernel_malloc_ewram gForceActiveTurnEnd, 1
+@ Set when Call of the Haunted interrupts an AI attack; AI_Main re-simulates actions.
+_kernel_malloc_ewram gAiResimulateAfterCallOfTheHaunted, 1
+_kernel_malloc_ewram gAiSimSavedResimulateAfterCallOfTheHaunted, 1
 @ Nonzero after battle destruction until effect text/turn-end resolve (see the_unhappy_maiden.c).
 _kernel_malloc_ewram gPendingUnhappyMaiden, 1
 @ Set when Sangan/Witch is sent to graveyard during battle; cleared after battle UI.

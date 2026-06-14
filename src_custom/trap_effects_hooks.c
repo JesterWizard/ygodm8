@@ -190,7 +190,12 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectCallOfTheHaunted();
-    TryResumeInterruptedAttackAfterCallOfTheHaunted();
+    if (!gHideEffectText) {
+      CallOfTheHauntedRequestAiResimulate();
+      CallOfTheHauntedUnlockAiAttackerAfterTrap();
+    }
+    if (!gAiResimulateAfterCallOfTheHaunted)
+      TryResumeInterruptedAttackAfterCallOfTheHaunted();
     CallOfTheHauntedShowActivationText();
     return;
   }

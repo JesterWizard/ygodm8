@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "ai_actions.h"
 #include "ai_decision.h"
+#include "call_of_the_haunted.h"
 #include "configs/runtime.h"
 #include "mask_of_restrict.h"
 #include "summon_tribute.h"
@@ -145,5 +146,9 @@ void sub_800E0D4__Replacement(void)
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
         GetPendingTributeSummonCardId(), WhoseTurn());
   }
-  AiMemory_RecordExecutedAction();
+  if (gAiResimulateAfterCallOfTheHaunted) {
+    CallOfTheHauntedUnlockAiAttackerAfterTrap();
+  } else {
+    AiMemory_RecordExecutedAction();
+  }
 }

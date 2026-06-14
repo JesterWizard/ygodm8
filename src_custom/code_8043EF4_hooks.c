@@ -41,6 +41,7 @@
 #include "meteor_of_destruction.h"
 #include "final_countdown.h"
 #include "toll.h"
+#include "call_of_the_haunted.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
 #include "the_dark_door.h"
@@ -676,8 +677,16 @@ void sub_8044570__Replacement(void)
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
+      if (!TryPayTollAttackCost()) {
+        PlayMusic(SFX_FORBIDDEN);
+        gDuelCursor.state = 0;
+        return;
+      }
+      if (IsTollActiveOnField())
+        MarkCallOfTheHauntedAttackTollPaid();
       PlayMusic(SFX_ATTACK_REBUFFED);
       ActivateTrapEffect(0);
+      TryResumeInterruptedAttackAfterCallOfTheHaunted();
       gDuelCursor.state = 0;
     }
     TryActivatingPermanentEffects();
@@ -758,7 +767,15 @@ void TryAttackWithMonster__Replacement(void)
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
+      if (!TryPayTollAttackCost()) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+        return;
+      }
+      if (IsTollActiveOnField())
+        MarkCallOfTheHauntedAttackTollPaid();
       ActivateTrapEffect(0);
+      TryResumeInterruptedAttackAfterCallOfTheHaunted();
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       UpdateDuelGfxExceptField();

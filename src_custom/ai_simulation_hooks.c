@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "coffin_seller.h"
+#include "call_of_the_haunted.h"
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
@@ -17,6 +18,7 @@ extern u8 gDebugRulesetTurnAttackUsed;
 extern u8 gTheDarkDoorTurnAttackUsed;
 extern u8 gAiSimSavedDebugRulesetTurnAttackUsed;
 extern u8 gAiSimSavedTheDarkDoorTurnAttackUsed;
+extern u8 gAiSimSavedResimulateAfterCallOfTheHaunted;
 
 void sub_800EE24(void);
 void sub_800EE94(void);
@@ -28,6 +30,7 @@ void sub_800EE24__Replacement(void)
 
   gAiSimSavedDebugRulesetTurnAttackUsed = gDebugRulesetTurnAttackUsed;
   gAiSimSavedTheDarkDoorTurnAttackUsed = gTheDarkDoorTurnAttackUsed;
+  gAiSimSavedResimulateAfterCallOfTheHaunted = gAiResimulateAfterCallOfTheHaunted;
 
   gUnk_8DFF6A4->duel = gDuel;
   for (i = 0; i < 2; i++) {
@@ -51,5 +54,6 @@ void sub_800EE94__Replacement(void)
 
   gDebugRulesetTurnAttackUsed = gAiSimSavedDebugRulesetTurnAttackUsed;
   gTheDarkDoorTurnAttackUsed = gAiSimSavedTheDarkDoorTurnAttackUsed;
+  gAiResimulateAfterCallOfTheHaunted = gAiSimSavedResimulateAfterCallOfTheHaunted;
   ClearCoffinSellerPending();
 }
