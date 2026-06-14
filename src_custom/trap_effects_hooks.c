@@ -5,6 +5,8 @@
 #include "negate_attack.h"
 #include "gravity_bind.h"
 #include "imperial_order.h"
+#include "royal_decree.h"
+#include "draining_shield.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -130,6 +132,24 @@ static void ActivateTrapEffectVanillaBody(u16 lp)
 LYN_REPLACE_CHECK(ActivateTrapEffect);
 void ActivateTrapEffect__Replacement(u16 lp)
 {
+  struct DuelCard *respondingZone;
+
+  if (gTrapEffectData.trapCardId != TRAP_ROYAL_DECREE
+      && gTrapEffectData.trapCardId != TRAP_NONE) {
+    TryActivateRoyalDecreeOnRespondingTrap();
+    respondingZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
+    if (respondingZone != NULL
+        && IsRoyalDecreeNegatingTrap(respondingZone->id)) {
+      if (!gHideEffectText)
+        PlayMusic(SFX_FORBIDDEN);
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+        SaveDrainingShieldAttackResume();
+        TryResumeInterruptedAttackAfterDrainingShield();
+      }
+      return;
+    }
+  }
+
   if (gTrapEffectData.trapCardId == TRAP_MAGIC_JAMMER) {
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
@@ -186,6 +206,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectImperialOrder();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_ROYAL_DECREE) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectRoyalDecree();
     return;
   }
 

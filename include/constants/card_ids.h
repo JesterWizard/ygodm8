@@ -921,11 +921,12 @@
 #define DES_SCISSORS                             0x0395
 #define IMPERIAL_ORDER                           0x0396
 #define GREN_MAJU_DA_EIZA                        0x0397
+#define ROYAL_DECREE                             0x0398
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0398
-#define NUM_CUSTOM_CARDS                        0x0077
+#define NUM_TOTAL_CARDS                         0x0399
+#define NUM_CUSTOM_CARDS                        0x0078
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

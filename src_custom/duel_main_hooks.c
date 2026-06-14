@@ -8,6 +8,7 @@
 #include "duel_status.h"
 #include "guardian_treasure.h"
 #include "jar_of_greed.h"
+#include "royal_decree.h"
 #include "ojama_trio.h"
 #include "robbin_goblin.h"
 #include "call_of_the_haunted.h"
@@ -276,6 +277,7 @@ static bool8 RunDuelTurnLoop(void) {
     UnblockTurnSummoning(ACTIVE_DUELIST);
     ResetNumTributes();
     UpdateDuelZonePtrs(turn);
+    if (!IsRoyalDecreeActiveOnField()) {
     TryActivateJarOfGreedOnOpponentTurnStart();
     TryActivateOjamaTrioOnOpponentTurnStart();
     TryActivateRobbinGoblinOnOpponentTurnStart();
@@ -291,6 +293,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateBlastingTheRuinsOnOpponentTurnStart();
     TryActivateCurseOfDarknessOnOpponentTurnStart();
     TryActivateSolarRayOnOpponentTurnStart();
+    }
     if (IsDuelOver() == TRUE)
       return TRUE;
     if (ShouldSkipDrawPhaseForYataGarasu(turn)) {

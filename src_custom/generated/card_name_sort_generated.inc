@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 119
+#define NUM_CUSTOM_NAME_SORT_CARDS 120
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -121,6 +121,7 @@ static const u8 sNeedleBurrowerSortName[] APPEND_RODATA = "Needle Burrower";
 static const u8 sDesScissorsSortName[] APPEND_RODATA = "Des Scissors";
 static const u8 sImperialOrderSortName[] APPEND_RODATA = "Imperial Order";
 static const u8 sGrenMajuDaEizaSortName[] APPEND_RODATA = "Gren Maju Da Eiza";
+static const u8 sRoyalDecreeSortName[] APPEND_RODATA = "Royal Decree";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -204,6 +205,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0342, // Riryoku
   0x0361, // Robbin' Goblin
   0x0362, // Robbin' Zombie
+  0x0398, // Royal Decree
   0x0344, // Sage's Stone
   0x0375, // Sasuke Samurai
   0x0340, // Seal of Orichalcos
@@ -326,44 +328,45 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   79, // Riryoku
   80, // Robbin' Goblin
   81, // Robbin' Zombie
-  82, // Sage's Stone
-  83, // Sasuke Samurai
-  84, // Seal of Orichalcos
-  85, // Secret Barrel
-  86, // Self-Destruct Button
-  87, // Shield And Sword
-  88, // Skill Drain
-  89, // Skull Invitation
-  90, // Solar Flare Dragon
-  91, // Solar Ray
-  92, // Solemn Wishes
-  93, // Sorcerer of Dark Magic
-  94, // Soul Exchange
-  95, // Soul Taker
-  96, // Spear Dragon
-  97, // Spell Canceller
-  98, // St Joan
-  99, // Stealth Bird
-  100, // Swift Gaia The Fierce Knight
-  101, // Terrorking Salmon
-  102, // The Agent Of Creation - Venus
-  103, // The Dark Door
-  104, // The Forceful Sentry
-  105, // Thousand Energy
-  106, // Thousand Knives
-  107, // Time Seal
-  108, // Toll
-  109, // Triangle Power
-  110, // Twin Swords of Flashing Light - Tryce
-  111, // Ultimate Offering
-  112, // United We Stand
-  113, // Upstart Goblin
-  114, // Vampire Baby
-  115, // Warrior of Zera
-  116, // Wave Motion Cannon
-  117, // Weather Report
-  118, // White Magician Pikeru
-  119, // Yata-Garasu
+  82, // Royal Decree
+  83, // Sage's Stone
+  84, // Sasuke Samurai
+  85, // Seal of Orichalcos
+  86, // Secret Barrel
+  87, // Self-Destruct Button
+  88, // Shield And Sword
+  89, // Skill Drain
+  90, // Skull Invitation
+  91, // Solar Flare Dragon
+  92, // Solar Ray
+  93, // Solemn Wishes
+  94, // Sorcerer of Dark Magic
+  95, // Soul Exchange
+  96, // Soul Taker
+  97, // Spear Dragon
+  98, // Spell Canceller
+  99, // St Joan
+  100, // Stealth Bird
+  101, // Swift Gaia The Fierce Knight
+  102, // Terrorking Salmon
+  103, // The Agent Of Creation - Venus
+  104, // The Dark Door
+  105, // The Forceful Sentry
+  106, // Thousand Energy
+  107, // Thousand Knives
+  108, // Time Seal
+  109, // Toll
+  110, // Triangle Power
+  111, // Twin Swords of Flashing Light - Tryce
+  112, // Ultimate Offering
+  113, // United We Stand
+  114, // Upstart Goblin
+  115, // Vampire Baby
+  116, // Warrior of Zera
+  117, // Wave Motion Cannon
+  118, // Weather Report
+  119, // White Magician Pikeru
+  120, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -605,6 +608,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sImperialOrderSortName;
   if (cardId == 0x0397)
     return (u8 *)sGrenMajuDaEizaSortName;
+  if (cardId == 0x0398)
+    return (u8 *)sRoyalDecreeSortName;
 
   return gCardNames[cardId];
 }

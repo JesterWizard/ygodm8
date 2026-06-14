@@ -217,7 +217,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
-- [ ] `ROYAL_DECREE` — `royal_decree.png`
+- [x] `ROYAL_DECREE` — `royal_decree.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
@@ -258,7 +258,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
 - [x] `TRIANGLE_POWER` — `triangle_power.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
-- [ ] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
+- [x] `TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE` — `twin_swords_of_flashing_light_tryce.png`
 - [ ] `TYRANT_DRAGON` — `tyrant_dragon.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`

@@ -13,6 +13,7 @@
 #include "soul_exchange.h"
 #include "fairy_box.h"
 #include "imperial_order.h"
+#include "royal_decree.h"
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
@@ -293,6 +294,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if ((IsSpellCancellerSpellLockActive() || IsImperialOrderActiveOnField())
       && GetTypeGroup(id) == TYPE_GROUP_SPELL) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsRoyalDecreeActiveOnField() && GetTypeGroup(id) == TYPE_GROUP_TRAP) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

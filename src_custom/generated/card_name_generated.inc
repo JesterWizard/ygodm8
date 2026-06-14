@@ -117,6 +117,7 @@ static const u8 sNeedleBurrowerName[] __attribute__((section(".append_assets")))
 static const u8 sDesScissorsName[] __attribute__((section(".append_assets"))) = "Des Scissors";
 static const u8 sImperialOrderName[] __attribute__((section(".append_assets"))) = "Imperial Order";
 static const u8 sGrenMajuDaEizaName[] __attribute__((section(".append_assets"))) = "Gren Maju Da Eiza";
+static const u8 sRoyalDecreeName[] __attribute__((section(".append_assets"))) = "Royal Decree";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -357,6 +358,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sImperialOrderName;
   if (cardId == 0x0397)
     return (u8 *)sGrenMajuDaEizaName;
+  if (cardId == 0x0398)
+    return (u8 *)sRoyalDecreeName;
 
   return gCardNames[cardId];
 }

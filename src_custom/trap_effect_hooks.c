@@ -6,6 +6,7 @@
 #include "negate_attack.h"
 #include "gravity_bind.h"
 #include "imperial_order.h"
+#include "royal_decree.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -283,11 +284,15 @@ unsigned IsTrapTriggered__Replacement(void) {
   gTrapEffectData.trapCardId = 0;
   if (IsSorcererOfDarkMagicTrapLockActive())
     return FALSE;
+  if (IsRoyalDecreeActiveOnField())
+    return FALSE;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     gTrapEffectData.trapZoneCol = i;
     if (CheckTrapActivationConditions__Hook(gTurnZones[0][i]->id) == TRUE) {
       if (gTrapEffectData.trapCardId == TRAP_IMPERIAL_ORDER)
+        continue;
+      if (gTrapEffectData.trapCardId == TRAP_ROYAL_DECREE)
         continue;
       if (gTrapEffectData.trapCardId != TRAP_EMBODIMENT_OF_APOPHIS)
         return TRUE;

@@ -15982,6 +15982,35 @@
       },
       "card_name": "Gren Maju Da Eiza",
       "password": [ 9, 9, 2, 6, 7, 1, 5, 0 ]
+    },
+    {
+      "card_const": "ROYAL_DECREE",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 29,
+      "description": {
+        "symbol": "gDescription_RoyalDecree",
+        "pages": [
+          "A continuous trap that negates all trap effects",
+          "while face-up on the field.",
+          "Activates when an opponent activates a trap card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_RoyalDecree",
+        "pages": [
+          "Negates all trap card effects on the field while active."
+        ]
+      },
+      "card_name": "Royal Decree",
+      "password": [ 5, 1, 4, 8, 2, 7, 5, 8 ]
     }
   ]
 }

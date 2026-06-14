@@ -8,6 +8,7 @@
 #include "custom_field_spell.h"
 #include "soul_taker.h"
 #include "imperial_order.h"
+#include "royal_decree.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -157,6 +158,15 @@ void ActivateSpellEffect__Replacement(void)
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
+  }
+
+  if (GetTypeGroup(gSpellEffectData.id) == TYPE_GROUP_TRAP) {
+    TryActivateRoyalDecreeOnTrapChain();
+    if (IsRoyalDecreeActiveOnField()) {
+      if (!gHideEffectText)
+        PlayMusic(SFX_FORBIDDEN);
+      return;
+    }
   }
 
   if (TryMaryokutaiSpellCounter())

@@ -7,6 +7,7 @@
 #include "triangle_power.h"
 #include "limiter_removal.h"
 #include "imperial_order.h"
+#include "royal_decree.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -143,6 +144,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
   if (gActiveEffect.cardId == IMPERIAL_ORDER && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
     return ShouldActivateImperialOrderUpkeep();
   if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
+    return FALSE;
+  if (IsRoyalDecreeNegatingTrap(gActiveEffect.cardId))
     return FALSE;
   if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     return ShouldActivateBowganianTurnEffect();
