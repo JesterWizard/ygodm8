@@ -101,8 +101,12 @@ void AgeFairyBoxSetFlags(void)
   u8 i;
   struct DuelCard *zone;
 
+  /* ponytail: age both fixed backrows so a trap set last turn is live when the other duelist attacks */
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gTurnZones[ACTIVE_DUELIST_BACKROW][i];
+    zone = gFixedZones[PLAYER_BACKROW][i];
+    if (zone->id == FAIRY_BOX && zone->unk4 != 0)
+      zone->unk4 = 0;
+    zone = gFixedZones[OPPONENT_BACKROW][i];
     if (zone->id == FAIRY_BOX && zone->unk4 != 0)
       zone->unk4 = 0;
   }
