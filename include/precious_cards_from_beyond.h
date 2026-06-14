@@ -4,6 +4,7 @@
 #include "global.h"
 
 u8 IsPreciousCardsFromBeyondActiveForDuelist(u8 duelist);
+u8 IsActivatedPreciousCardsFromBeyondZone(const struct DuelCard *zone);
 void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist);
 void EffectPreciousCardsFromBeyond(void);
 

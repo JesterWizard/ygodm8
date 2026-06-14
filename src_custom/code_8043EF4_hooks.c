@@ -294,6 +294,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedCurseOfDarknessZone(zone)
       || IsNonSelectableCoffinSellerZone(zone)
       || IsActivatedFinalCountdownZone(zone)
+      || IsActivatedPreciousCardsFromBeyondZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

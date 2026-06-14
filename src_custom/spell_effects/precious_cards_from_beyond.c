@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "precious_cards_from_beyond.h"
 #include "imperial_order.h"
+#include "summon_tribute.h"
 #include "tribute.h"
 #include "spell_effects.h"
 
@@ -31,6 +32,14 @@ u8 IsPreciousCardsFromBeyondActiveForDuelist(u8 duelist)
   return FALSE;
 }
 
+u8 IsActivatedPreciousCardsFromBeyondZone(const struct DuelCard *zone)
+{
+  return zone != NULL
+      && zone->id == PRECIOUS_CARDS_FROM_BEYOND
+      && zone->isFaceUp == TRUE
+      && zone->isLocked == TRUE;
+}
+
 static void DrawCardsForDuelist(u8 duelist, u8 count)
 {
   while (count > 0) {
@@ -44,13 +53,24 @@ static void DrawCardsForDuelist(u8 duelist, u8 count)
 
 void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist)
 {
+  u8 paidTributes;
+
   if (summonCardId == CARD_NONE)
     return;
 
   if (GetTypeGroup(summonCardId) != TYPE_GROUP_MONSTER)
     return;
 
+  paidTributes = GetPendingSummonTributeCount();
+
   if (GetNumRequiredTributes(summonCardId) < PRECIOUS_CARDS_FROM_BEYOND_MIN_TRIBUTES)
+    return;
+
+  if (GetDoubleCostonDarkBonusPaid() > 0
+      && CardQualifiesForDoubleCostonDarkBonus(summonCardId))
+    paidTributes += GetDoubleCostonDarkBonusPaid();
+
+  if (paidTributes < PRECIOUS_CARDS_FROM_BEYOND_MIN_TRIBUTES)
     return;
 
   if (!IsPreciousCardsFromBeyondActiveForDuelist(duelist))
