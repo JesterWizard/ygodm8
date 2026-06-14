@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 124
+#define NUM_CUSTOM_NAME_SORT_CARDS 125
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -126,6 +126,7 @@ static const u8 sReaperOnTheNightmareSortName[] APPEND_RODATA = "Reaper on the N
 static const u8 sNegativeEnergySortName[] APPEND_RODATA = "Negative Energy";
 static const u8 sMatazaTheZapperSortName[] APPEND_RODATA = "Mataza the Zapper";
 static const u8 sDoubleCostonSortName[] APPEND_RODATA = "Double Coston";
+static const u8 sPreciousCardsFromBeyondSortName[] APPEND_RODATA = "Precious Cards From Beyond";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x0381, // Airknight Parshath
@@ -204,6 +205,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0325, // Paladin Of White Dragon
   0x037A, // Peten The Dark Clown
   0x0365, // Piranha Army
+  0x039D, // Precious Cards From Beyond
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
@@ -331,54 +333,55 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   74, // Paladin Of White Dragon
   75, // Peten The Dark Clown
   76, // Piranha Army
-  77, // Pyramid of Light
-  78, // Rain of Mercy
-  79, // Rare Metal Dragon
-  80, // Reaper on the Nightmare
-  81, // Reckless Greed
-  82, // Reload
-  83, // Riryoku
-  84, // Robbin' Goblin
-  85, // Robbin' Zombie
-  86, // Royal Decree
-  87, // Sage's Stone
-  88, // Sasuke Samurai
-  89, // Seal of Orichalcos
-  90, // Secret Barrel
-  91, // Self-Destruct Button
-  92, // Shield And Sword
-  93, // Skill Drain
-  94, // Skull Invitation
-  95, // Solar Flare Dragon
-  96, // Solar Ray
-  97, // Solemn Wishes
-  98, // Sorcerer of Dark Magic
-  99, // Soul Exchange
-  100, // Soul Taker
-  101, // Spear Dragon
-  102, // Spell Canceller
-  103, // St Joan
-  104, // Stealth Bird
-  105, // Swift Gaia The Fierce Knight
-  106, // Terrorking Salmon
-  107, // The Agent Of Creation - Venus
-  108, // The Dark Door
-  109, // The Forceful Sentry
-  110, // Thousand Energy
-  111, // Thousand Knives
-  112, // Time Seal
-  113, // Toll
-  114, // Triangle Power
-  115, // Twin Swords of Flashing Light - Tryce
-  116, // Ultimate Offering
-  117, // United We Stand
-  118, // Upstart Goblin
-  119, // Vampire Baby
-  120, // Warrior of Zera
-  121, // Wave Motion Cannon
-  122, // Weather Report
-  123, // White Magician Pikeru
-  124, // Yata-Garasu
+  77, // Precious Cards From Beyond
+  78, // Pyramid of Light
+  79, // Rain of Mercy
+  80, // Rare Metal Dragon
+  81, // Reaper on the Nightmare
+  82, // Reckless Greed
+  83, // Reload
+  84, // Riryoku
+  85, // Robbin' Goblin
+  86, // Robbin' Zombie
+  87, // Royal Decree
+  88, // Sage's Stone
+  89, // Sasuke Samurai
+  90, // Seal of Orichalcos
+  91, // Secret Barrel
+  92, // Self-Destruct Button
+  93, // Shield And Sword
+  94, // Skill Drain
+  95, // Skull Invitation
+  96, // Solar Flare Dragon
+  97, // Solar Ray
+  98, // Solemn Wishes
+  99, // Sorcerer of Dark Magic
+  100, // Soul Exchange
+  101, // Soul Taker
+  102, // Spear Dragon
+  103, // Spell Canceller
+  104, // St Joan
+  105, // Stealth Bird
+  106, // Swift Gaia The Fierce Knight
+  107, // Terrorking Salmon
+  108, // The Agent Of Creation - Venus
+  109, // The Dark Door
+  110, // The Forceful Sentry
+  111, // Thousand Energy
+  112, // Thousand Knives
+  113, // Time Seal
+  114, // Toll
+  115, // Triangle Power
+  116, // Twin Swords of Flashing Light - Tryce
+  117, // Ultimate Offering
+  118, // United We Stand
+  119, // Upstart Goblin
+  120, // Vampire Baby
+  121, // Warrior of Zera
+  122, // Wave Motion Cannon
+  123, // Weather Report
+  124, // White Magician Pikeru
+  125, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -630,6 +633,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMatazaTheZapperSortName;
   if (cardId == 0x039C)
     return (u8 *)sDoubleCostonSortName;
+  if (cardId == 0x039D)
+    return (u8 *)sPreciousCardsFromBeyondSortName;
 
   return gCardNames[cardId];
 }

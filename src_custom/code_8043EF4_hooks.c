@@ -26,6 +26,7 @@
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
+#include "precious_cards_from_beyond.h"
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
@@ -575,6 +576,10 @@ void sub_80449D8__Replacement(void)
 
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
+  if (placedRow == PLAYER_MONSTER_ROW) {
+    TryApplyPreciousCardsFromBeyondOnTributeSummon(
+        gFixedZones[placedRow][placedCol]->id, WhoseTurn());
+  }
   FinishGreatMajuGarzettTributeSummon(
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);

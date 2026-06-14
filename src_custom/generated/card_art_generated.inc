@@ -496,6 +496,10 @@ static const unsigned char sDoubleCostonBigArt[] __attribute__((section(".append
 static const unsigned short sDoubleCostonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/double_coston.gbapal");
 static const unsigned char sDoubleCostonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/double_coston.lz");
 
+static const unsigned char sPreciousCardsFromBeyondBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/precious_cards_from_beyond.huff");
+static const unsigned short sPreciousCardsFromBeyondBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/precious_cards_from_beyond.gbapal");
+static const unsigned char sPreciousCardsFromBeyondMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/precious_cards_from_beyond.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -621,6 +625,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x039A] = sNegativeEnergyBigArt,
   [0x039B] = sMatazaTheZapperBigArt,
   [0x039C] = sDoubleCostonBigArt,
+  [0x039D] = sPreciousCardsFromBeyondBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -748,6 +753,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x039A] = sNegativeEnergyBigPalette,
   [0x039B] = sMatazaTheZapperBigPalette,
   [0x039C] = sDoubleCostonBigPalette,
+  [0x039D] = sPreciousCardsFromBeyondBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -875,6 +881,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x039A] = 0,
   [0x039B] = 0,
   [0x039C] = 0,
+  [0x039D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1002,4 +1009,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x039A] = sNegativeEnergyMiniArt,
   [0x039B] = sMatazaTheZapperMiniArt,
   [0x039C] = sDoubleCostonMiniArt,
+  [0x039D] = sPreciousCardsFromBeyondMiniArt,
 };

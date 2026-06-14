@@ -142,6 +142,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { REAPER_ON_THE_NIGHTMARE, gActivationDescription_ReaperOnTheNightmare },
   { NEGATIVE_ENERGY, gActivationDescription_NegativeEnergy },
   { MATAZA_THE_ZAPPER, gActivationDescription_MatazaTheZapper },
+  { PRECIOUS_CARDS_FROM_BEYOND, gActivationDescription_PreciousCardsFromBeyond },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
