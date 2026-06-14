@@ -36,7 +36,7 @@ void FlushDuelFieldLayerToHardware(void);
 #define BOARD_LP_OPPONENT_X 25
 #define BOARD_LP_OPPONENT_Y 19
 
-#define BOARD_TURN_TILE_ATTR         0x5000
+#define BOARD_TURN_TILE_ATTR         0x7000
 #define BOARD_TURN_MAX_DIGITS        3
 #define BOARD_TURN_BASE_TILE         (BOARD_LP_BASE_TILE_OPPONENT + BOARD_LP_MAX_DIGITS)
 #define BOARD_TURN_CHARBUF           (BOARD_TURN_BASE_TILE * BOARD_LP_CHARBUF_TILE_BYTES)
@@ -108,10 +108,10 @@ static void FormatTurnCountString(char *buf, u16 turnCount) {
 }
 
 static void EnsureBoardTurnPalette(void) {
-  // ponytail: clone info-bar palette 3, swap glyph color to yellow on palette 5.
-  CpuCopy16(&gPaletteBuffer[0x30], &gPaletteBuffer[0x50], 0x20);
-  gPaletteBuffer[0x51] = BOARD_TURN_YELLOW_COLOR;
-  CpuCopy16(&gPaletteBuffer[0x50], (u16 *)(PLTT + 0xA0), 0x20);
+  // ponytail: palette 5 (colors 80+) is the duel info-bar card type icon; use palette 7 for turn digits.
+  CpuCopy16(&gPaletteBuffer[0x30], &gPaletteBuffer[0x70], 0x20);
+  gPaletteBuffer[0x71] = BOARD_TURN_YELLOW_COLOR;
+  CpuCopy16(&gPaletteBuffer[0x70], (u16 *)(PLTT + 0xE0), 0x20);
 }
 
 static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
