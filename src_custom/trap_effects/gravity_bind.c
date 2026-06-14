@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel.h"
 #include "gravity_bind.h"
 
 #define GRAVITY_BIND_MIN_BLOCKED_LEVEL 4
@@ -52,10 +53,22 @@ u8 GravityBind_ShouldActivateTrapOnAttack(const struct DuelCard *trapZone, u16 a
 
 u8 GravityBind_CanMonsterAttack(u16 cardId)
 {
-  if (!IsGravityBindActiveOnField())
+  u8 i;
+
+  if (!MonsterLevelIsBlockedByGravityBind(cardId))
     return TRUE;
 
-  return !MonsterLevelIsBlockedByGravityBind(cardId);
+  if (IsGravityBindActiveOnField())
+    return FALSE;
+
+  // ponytail: face-down GB still blocks the declare; AI sim restore keeps it face-down every trial
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (GravityBind_ShouldActivateTrapOnAttack(
+            gTurnZones[INACTIVE_DUELIST_BACKROW][i], cardId))
+      return FALSE;
+  }
+
+  return TRUE;
 }
 
 APPEND_TEXT void EffectGravityBind(void)

@@ -2,7 +2,6 @@
 #include "common-chax.h"
 #include "ai_actions.h"
 #include "ai_decision.h"
-#include "configs/runtime.h"
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
@@ -358,8 +357,7 @@ static u8 AiDecision_ChooseActionFilter(
 
 static u8 AiDecision_ShouldDisableAttackAction(const struct AiDecodedAction *decoded)
 {
-  if (decoded->category == AI_CATEGORY_ATTACK ||
-      decoded->category == AI_CATEGORY_DIRECT)
+  if (IsAiAttackAction(decoded->action) || IsAiDirectAttackAction(decoded->action))
     return TRUE;
 
   if (decoded->action == AI_ACTION_ATTACK_POSITION ||
