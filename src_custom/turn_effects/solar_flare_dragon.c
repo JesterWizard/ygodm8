@@ -24,6 +24,7 @@ void ActivateSolarFlareDragonTurnEffect(void)
     SetPlayerLifePointsToSubtract(SOLAR_FLARE_DRAGON_DAMAGE);
 
   HandleAtkAndLifePointsAction();
+  CheckLoserFlags();
 
   if (!gHideEffectText)
   {
