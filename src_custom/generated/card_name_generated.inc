@@ -124,6 +124,7 @@ static const u8 sMatazaTheZapperName[] __attribute__((section(".append_assets"))
 static const u8 sDoubleCostonName[] __attribute__((section(".append_assets"))) = "Double Coston";
 static const u8 sPreciousCardsFromBeyondName[] __attribute__((section(".append_assets"))) = "Precious Cards From Beyond";
 static const u8 sTyrantDragonName[] __attribute__((section(".append_assets"))) = "Tyrant Dragon";
+static const u8 sFinalCountdownName[] __attribute__((section(".append_assets"))) = "Final Countdown";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -378,6 +379,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sPreciousCardsFromBeyondName;
   if (cardId == 0x039E)
     return (u8 *)sTyrantDragonName;
+  if (cardId == 0x039F)
+    return (u8 *)sFinalCountdownName;
 
   return gCardNames[cardId];
 }

@@ -504,6 +504,10 @@ static const unsigned char sTyrantDragonBigArt[] __attribute__((section(".append
 static const unsigned short sTyrantDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tyrant_dragon.gbapal");
 static const unsigned char sTyrantDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tyrant_dragon.lz");
 
+static const unsigned char sFinalCountdownBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/final_countdown.huff");
+static const unsigned short sFinalCountdownBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/final_countdown.gbapal");
+static const unsigned char sFinalCountdownMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/final_countdown.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
@@ -631,6 +635,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x039C] = sDoubleCostonBigArt,
   [0x039D] = sPreciousCardsFromBeyondBigArt,
   [0x039E] = sTyrantDragonBigArt,
+  [0x039F] = sFinalCountdownBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -760,6 +765,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x039C] = sDoubleCostonBigPalette,
   [0x039D] = sPreciousCardsFromBeyondBigPalette,
   [0x039E] = sTyrantDragonBigPalette,
+  [0x039F] = sFinalCountdownBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -889,6 +895,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x039C] = 0,
   [0x039D] = 0,
   [0x039E] = 0,
+  [0x039F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1018,4 +1025,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x039C] = sDoubleCostonMiniArt,
   [0x039D] = sPreciousCardsFromBeyondMiniArt,
   [0x039E] = sTyrantDragonMiniArt,
+  [0x039F] = sFinalCountdownMiniArt,
 };

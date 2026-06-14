@@ -143,6 +143,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { NEGATIVE_ENERGY, gActivationDescription_NegativeEnergy },
   { MATAZA_THE_ZAPPER, gActivationDescription_MatazaTheZapper },
   { PRECIOUS_CARDS_FROM_BEYOND, gActivationDescription_PreciousCardsFromBeyond },
+  { FINAL_COUNTDOWN, gActivationDescription_FinalCountdown },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

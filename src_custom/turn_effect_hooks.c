@@ -33,6 +33,7 @@ void ActivateFairyBoxTurnEffect(void);
 unsigned char ShouldActivateFairyBoxUpkeep(void);
 void ActivateFairyBoxUpkeep(void);
 void AgeWaveMotionCannonTurns(void);
+void AgeFinalCountdownTurns(void);
 unsigned char ShouldActivateBowganianTurnEffect(void);
 void ActivateBowganianTurnEffect(void);
 unsigned char ShouldActivateCureMermaidTurnEffect(void);
@@ -246,6 +247,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();
   AgeWaveMotionCannonTurns();
+  AgeFinalCountdownTurns();
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
     sub_802ADA4();

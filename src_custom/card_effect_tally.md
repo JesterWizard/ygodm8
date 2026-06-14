@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `142` effects
+- `143` effects
 
 ## Tally
 
@@ -51,6 +51,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Thousand Knives` | `src_custom/spell_effects/thousand_knives.c` |
 | `spell_effects` | `Soul Taker` | `src_custom/spell_effects/soul_taker.c` |
 | `spell_effects` | `Precious Cards From Beyond` | `src_custom/spell_effects/precious_cards_from_beyond.c` |
+| `spell_effects` | `Final Countdown` | `src_custom/spell_effects/final_countdown.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |

@@ -16185,6 +16185,36 @@
       },
       "card_name": "Tyrant Dragon",
       "password": [ 9, 4, 5, 6, 8, 6, 0, 1 ]
+    },
+    {
+      "card_const": "FINAL_COUNTDOWN",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_FinalCountdown",
+        "pages": [
+          "A spell that declares victory after a long wait.",
+          "Pay 2000 Life Points. After 20 turns",
+          "since activation, you win the Duel."
+        ]
+      },
+      "card_name": "Final Countdown",
+      "password": [ 5, 9, 5, 1, 4, 1, 7, 0 ],
+      "activation_description": {
+        "symbol": "gActivationDescription_FinalCountdown",
+        "pages": [
+          "Pay 2000 Life Points.",
+          "Win the Duel after 20 turns."
+        ]
+      }
     }
   ]
 }

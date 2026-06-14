@@ -52,6 +52,7 @@ extern void EffectTwinSwordsOfFlashingLightTryce(void);
 extern void EffectThousandKnives(void);
 extern void EffectSoulTaker(void);
 extern void EffectPreciousCardsFromBeyond(void);
+extern void EffectFinalCountdown(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -324,6 +325,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case PRECIOUS_CARDS_FROM_BEYOND:
       EffectPreciousCardsFromBeyond();
+      return;
+    case FINAL_COUNTDOWN:
+      EffectFinalCountdown();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

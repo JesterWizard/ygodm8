@@ -39,6 +39,7 @@
 #include "delinquent_duo.h"
 #include "the_forceful_sentry.h"
 #include "meteor_of_destruction.h"
+#include "final_countdown.h"
 #include "toll.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
@@ -292,6 +293,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedSelfDestructButtonZone(zone)
       || IsActivatedCurseOfDarknessZone(zone)
       || IsNonSelectableCoffinSellerZone(zone)
+      || IsActivatedFinalCountdownZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
@@ -419,6 +421,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == METEOR_OF_DESTRUCTION && !CanActivateMeteorOfDestruction()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == FINAL_COUNTDOWN && !CanActivateFinalCountdown()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
