@@ -48,6 +48,8 @@ unsigned char ShouldActivateMaraudingCaptain(void);
 void ActivateMaraudingCaptain(void);
 unsigned char ShouldActivatePetenTheDarkClown(void);
 void ActivatePetenTheDarkClown(void);
+unsigned char ShouldActivateGrenMajuDaEiza(void);
+void ActivateGrenMajuDaEiza(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -127,6 +129,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = PETEN_THE_DARK_CLOWN,
     .shouldActivate = ShouldActivatePetenTheDarkClown,
     .activate = ActivatePetenTheDarkClown,
+  },
+  {
+    .cardId = GREN_MAJU_DA_EIZA,
+    .shouldActivate = ShouldActivateGrenMajuDaEiza,
+    .activate = ActivateGrenMajuDaEiza,
   },
 };
 

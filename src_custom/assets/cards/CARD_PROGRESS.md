@@ -172,7 +172,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [x] `GRACEFUL_CHARITY` — `graceful_charity.png`
 - [x] `GREAT_MAJU_GARZETT` — `great_maju_garzett.png`
-- [ ] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
+- [x] `GREN_MAJU_DA_EIZA` — `gren_maju_da_eiza.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `IMPERIAL_ORDER` — `imperial_order.png`
 - [ ] `KA_2_DES_SCISSORS` - `ka_2_des_scissors.png`

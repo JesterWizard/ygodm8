@@ -15930,6 +15930,29 @@
       },
       "card_name": "Des Scissors",
       "password": [ 5, 2, 7, 6, 8, 1, 0, 3 ]
+    },
+    {
+      "card_const": "GREN_MAJU_DA_EIZA",
+      "atk": 0,
+      "def": 0,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_FIRE",
+      "level": 3,
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GrenMajuDaEiza",
+        "pages": [
+          "A fiend that grows stronger as cards leave the deck.",
+          "This card gains 1 ATK/DEF stage for every 3 cards",
+          "drawn from its controller's deck."
+        ]
+      },
+      "card_name": "Gren Maju Da Eiza",
+      "password": [ 9, 9, 2, 6, 7, 1, 5, 0 ]
     }
   ]
 }
