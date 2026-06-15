@@ -584,6 +584,10 @@ static const unsigned char sBurningAlgaeBigArt[] __attribute__((section(".append
 static const unsigned short sBurningAlgaeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/burning_algae.gbapal");
 static const unsigned char sBurningAlgaeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/burning_algae.lz");
 
+static const unsigned char sDarklordMarieBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/darklord_marie.huff");
+static const unsigned short sDarklordMarieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/darklord_marie.gbapal");
+static const unsigned char sDarklordMarieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/darklord_marie.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -731,6 +735,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03AD] = sChaosGreedBigArt,
   [0x03AE] = sBookOfMoonBigArt,
   [0x03AF] = sBurningAlgaeBigArt,
+  [0x03B0] = sDarklordMarieBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -880,6 +885,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03AD] = sChaosGreedBigPalette,
   [0x03AE] = sBookOfMoonBigPalette,
   [0x03AF] = sBurningAlgaeBigPalette,
+  [0x03B0] = sDarklordMarieBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1029,6 +1035,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03AD] = 0,
   [0x03AE] = 0,
   [0x03AF] = 0,
+  [0x03B0] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1178,4 +1185,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03AD] = sChaosGreedMiniArt,
   [0x03AE] = sBookOfMoonMiniArt,
   [0x03AF] = sBurningAlgaeMiniArt,
+  [0x03B0] = sDarklordMarieMiniArt,
 };

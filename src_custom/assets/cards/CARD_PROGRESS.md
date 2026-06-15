@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 143 |
-| Art ready, needs manifest | 176 |
+| In game (manifest + art) | 144 |
+| Art ready, needs manifest | 175 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -165,6 +165,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHAOS_GREED` | Chaos Greed | `chaos_greed.png` |
 | `BOOK_OF_MOON` | Book of Moon | `book_of_moon.png` |
 | `BURNING_ALGAE` | Burning Algae | `burning_algae.png` |
+| `DARKLORD_MARIE` | Darklord Marie | `darklord_marie.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -206,7 +207,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
-- [ ] `DARKLORD_MARIE` — `darklord_marie.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DES_KANGAROO` — `des_kangaroo.png`

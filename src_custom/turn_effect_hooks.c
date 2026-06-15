@@ -45,6 +45,7 @@ unsigned char ShouldActivateDancingFairyTurnEffect(void);
 void ActivateDancingFairyTurnEffect(void);
 unsigned char ShouldActivateSpiritOfTheBreezeTurnEffect(void);
 void ActivateSpiritOfTheBreezeTurnEffect(void);
+void ActivateDarklordMarieTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -83,6 +84,11 @@ static unsigned char MatchActiveDuelistMonsterRow(void)
   return gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW;
 }
 
+static unsigned char MatchActiveDuelistGraveyard(void)
+{
+  return gActiveEffect.turnRow == 6;
+}
+
 static unsigned char MatchActiveDuelistBackrow(void)
 {
   return gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW;
@@ -111,6 +117,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { EBON_MAGICIAN_CURRAN, MatchActiveDuelistMonsterRow, ShouldActivateEbonMagicianCurranTurnEffect, ActivateEbonMagicianCurranTurnEffect },
   { DANCING_FAIRY, MatchActiveDuelistMonsterRow, ShouldActivateDancingFairyTurnEffect, ActivateDancingFairyTurnEffect },
   { SPIRIT_OF_THE_BREEZE, MatchActiveDuelistMonsterRow, ShouldActivateSpiritOfTheBreezeTurnEffect, ActivateSpiritOfTheBreezeTurnEffect },
+  { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
 };
 
 static const TurnEffectOverride *GetTurnEffectOverride(u16 cardId)
