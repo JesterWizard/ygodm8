@@ -74,6 +74,8 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         source = HOURGLASS_EFFECT.read_text()
         self.assertIn("IncrementPermStage", source)
         self.assertIn("RefreshFieldMonsterStatOverlays", source)
+        self.assertIn("gFixedZones[monsterRow]", source)
+        self.assertNotIn("gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]", source)
 
     def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
         source = MINI_CARD_HOOKS.read_text()

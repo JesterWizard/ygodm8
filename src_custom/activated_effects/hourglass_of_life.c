@@ -2,15 +2,23 @@
 #include "common-chax.h"
 #include "mini_card.h"
 
+static u8 ActiveDuelistMonsterFixedRow(void)
+{
+  return WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+}
+
 void ActivateHourglassOfLifeEffect(void)
 {
   u8 i;
+  u8 monsterRow = ActiveDuelistMonsterFixedRow();
 
-  /* Active duelist monster row (turn-relative), not gMonEffect.row: player flip
-   * uses fixed-row cursor coords; AI flip uses turn-row coords in sub_800E8B4. */
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]->id != CARD_NONE)
-      IncrementPermStage(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]);
+  /* ponytail: gTurnZones mirror opponent columns; gFixedZones match field tiles. */
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gFixedZones[monsterRow][i];
+
+    if (zone->id != CARD_NONE)
+      IncrementPermStage(zone);
+  }
 
   if (WhoseTurn() == DUEL_PLAYER)
     SetPlayerLifePointsToSubtract(1000);

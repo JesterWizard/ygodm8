@@ -56,6 +56,7 @@ extern void EffectPreciousCardsFromBeyond(void);
 extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
 extern void EffectRaregoldArmor(void);
+extern void EffectTheAForces(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
@@ -332,6 +333,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();
+      return;
+    case THE_A_FORCES:
+      EffectTheAForces();
       return;
     case GRACEFUL_DICE:
       EffectGracefulDice();

@@ -5,6 +5,7 @@
 #include "copycat.h"
 #include "great_maju_garzett.h"
 #include "goblin_king.h"
+#include "the_a_forces.h"
 #include "gyaku_gire_panda.h"
 #include "cost_down.h"
 #include "constants/spell_effects.h"
@@ -403,7 +404,7 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == WAVE_MOTION_CANNON || cardId == PYRAMID_OF_LIGHT
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE
       || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN
-      || cardId == BURNING_LAND)
+      || cardId == BURNING_LAND || cardId == THE_A_FORCES)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
@@ -494,6 +495,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  ApplyTheAForcesAtkBonusToCardInfo(zone);
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);
@@ -541,8 +543,10 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (gSetFinalStatZone != NULL
       && gSetFinalStatZone->id == ptr->card
-      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER)
+      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+    ApplyTheAForcesAtkBonusToCardInfo(gSetFinalStatZone);
+  }
 
   gSetFinalStatZone = NULL;
 }

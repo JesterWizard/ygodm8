@@ -164,6 +164,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { FENRIR, gActivationDescription_Fenrir },
   { MAGICAL_MERCHANT, gActivationDescription_MagicalMerchant },
   { RAREGOLD_ARMOR, gActivationDescription_RaregoldArmor },
+  { THE_A_FORCES, gActivationDescription_TheAForces },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
