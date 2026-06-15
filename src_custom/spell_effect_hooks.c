@@ -55,6 +55,7 @@ extern void EffectSoulTaker(void);
 extern void EffectPreciousCardsFromBeyond(void);
 extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
+extern void EffectRaregoldArmor(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
@@ -328,6 +329,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case BURNING_LAND:
       EffectBurningLand();
+      return;
+    case RAREGOLD_ARMOR:
+      EffectRaregoldArmor();
       return;
     case GRACEFUL_DICE:
       EffectGracefulDice();

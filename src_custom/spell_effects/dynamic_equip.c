@@ -31,6 +31,16 @@ static u8 GetFixedRowForZone(const struct DuelCard *zone, u8 *outCol)
     }
   }
 
+  /* ponytail: gTurnZones uses mirrored columns on opponent rows */
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (&gDuel.board[row][col] == zone) {
+        *outCol = (row <= 1) ? (MAX_ZONES_IN_ROW - 1 - col) : col;
+        return row;
+      }
+    }
+  }
+
   return DYNAMIC_EQUIP_COORD_INVALID;
 }
 
@@ -127,6 +137,18 @@ static void ClearDynamicEquipLink(struct DynamicEquipLink *link)
   link->targetFixedCol = DYNAMIC_EQUIP_COORD_INVALID;
   link->spellId = CARD_NONE;
   link->appliedStages = 0;
+}
+
+static void DiscardDynamicEquipLink(struct DynamicEquipLink *link)
+{
+  struct DuelCard *spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
+  u16 spellId = link->spellId;
+
+  RemoveDynamicEquipStages(link);
+  ClearDynamicEquipLink(link);
+
+  if (spellZone != NULL && spellZone->id == spellId)
+    ClearZone(spellZone);
 }
 
 void ResetDynamicEquips(void)
@@ -292,15 +314,13 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
       || spellZone->id != link->spellId
       || targetZone->id == CARD_NONE
       || !IsMonsterCard(targetZone->id)) {
-    RemoveDynamicEquipStages(link);
-    ClearDynamicEquipLink(link);
+    DiscardDynamicEquipLink(link);
     return TRUE;
   }
 
   duelist = GetDuelistForZone(spellZone);
   if (duelist == 0xFF) {
-    RemoveDynamicEquipStages(link);
-    ClearDynamicEquipLink(link);
+    DiscardDynamicEquipLink(link);
     return TRUE;
   }
 
@@ -402,6 +422,7 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case MAGE_POWER:
     case UNITED_WE_STAND:
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
+    case RAREGOLD_ARMOR:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE
           && !IsImperialOrderNegatingSpell(zone->id);
     default:
@@ -460,7 +481,6 @@ void NotifyDynamicEquipFieldChanged(void)
 void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 {
   struct DynamicEquipLink *link;
-  struct DuelCard *spellZone;
 
   link = FindDynamicEquipForSpellZone(zone);
   if (link != NULL) {
@@ -471,13 +491,6 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 
   link = FindDynamicEquipForTargetZone(zone);
   if (link != NULL) {
-    u16 spellId = link->spellId;
-
-    spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
-    RemoveDynamicEquipStages(link);
-    ClearDynamicEquipLink(link);
-
-    if (spellZone != NULL && spellZone->id == spellId)
-      ClearZone(spellZone);
+    DiscardDynamicEquipLink(link);
   }
 }

@@ -60,6 +60,7 @@
 #include "reaper_on_the_nightmare.h"
 #include "great_maju_garzett.h"
 #include "goblin_king.h"
+#include "raregold_armor.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -658,7 +659,7 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW
+  } else if ((NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW
       || CanNightmareHorseAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanAmphibiousBugrothMk3AttackDirectly(
@@ -666,7 +667,9 @@ void sub_8044570__Replacement(void)
       || CanBlackTyrannoAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanReaperOnTheNightmareAttackDirectly(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
+      && !RaregoldArmor_BlocksDirectAttack(
+          WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
@@ -760,6 +763,8 @@ void TryAttackWithMonster__Replacement(void)
       || !GravityBind_CanMonsterAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)
       || !GoblinKing_CanBeAttacked(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
+      || !RaregoldArmor_CanBeAttacked(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();

@@ -17,6 +17,7 @@
 #include "gravity_bind.h"
 #include "black_tyranno.h"
 #include "goblin_king.h"
+#include "raregold_armor.h"
 
 struct AI_Command {
   u16 action;
@@ -121,7 +122,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(attacker->id))
+      || !GravityBind_CanMonsterAttack(attacker->id)
+      || RaregoldArmor_BlocksDirectAttack(
+          WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER))
     return;
 
   if (attacker->id == CARD_NONE)
@@ -156,7 +159,8 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
       || !GravityBind_CanMonsterAttack(attacker->id)
-      || !GoblinKing_CanBeAttacked(defender))
+      || !GoblinKing_CanBeAttacked(defender)
+      || !RaregoldArmor_CanBeAttacked(defender))
     return;
 
   if (attacker->id == CARD_NONE)

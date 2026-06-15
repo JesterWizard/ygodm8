@@ -407,7 +407,7 @@ int GetSpellType__Replacement(u16 cardId) {
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
-      || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE)
+      || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST

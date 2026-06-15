@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-15).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-16).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 146 |
-| Art ready, needs manifest | 173 |
+| In game (manifest + art) | 147 |
+| Art ready, needs manifest | 172 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -168,6 +168,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARKLORD_MARIE` | Darklord Marie | `darklord_marie.png` |
 | `FENRIR` | Fenrir | `fenrir.png` |
 | `MAGICAL_MERCHANT` | Magical Merchant | `magical_merchant.png` |
+| `RAREGOLD_ARMOR` | Raregold Armor | `raregold_armor.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -289,7 +290,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [ ] `RAREGOLD_ARMOR` — `raregold_armor.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`

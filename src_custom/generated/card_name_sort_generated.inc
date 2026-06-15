@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 146
+#define NUM_CUSTOM_NAME_SORT_CARDS 147
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -148,6 +148,7 @@ static const u8 sBurningAlgaeSortName[] APPEND_RODATA = "Burning Algae";
 static const u8 sDarklordMarieSortName[] APPEND_RODATA = "Darklord Marie";
 static const u8 sFenrirSortName[] APPEND_RODATA = "Fenrir";
 static const u8 sMagicalMerchantSortName[] APPEND_RODATA = "Magical Merchant";
+static const u8 sRaregoldArmorSortName[] APPEND_RODATA = "Raregold Armor";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -249,6 +250,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0334, // Pyramid of Light
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
+  0x03B3, // Raregold Armor
   0x0399, // Reaper on the Nightmare
   0x0380, // Reckless Greed
   0x035E, // Reload
@@ -398,53 +400,54 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   97, // Pyramid of Light
   98, // Rain of Mercy
   99, // Rare Metal Dragon
-  100, // Reaper on the Nightmare
-  101, // Reckless Greed
-  102, // Reload
-  103, // Riryoku
-  104, // Robbin' Goblin
-  105, // Robbin' Zombie
-  106, // Royal Decree
-  107, // Sage's Stone
-  108, // Sasuke Samurai
-  109, // Seal of Orichalcos
-  110, // Secret Barrel
-  111, // Self-Destruct Button
-  112, // Shield And Sword
-  113, // Skill Drain
-  114, // Skull Invitation
-  115, // Solar Flare Dragon
-  116, // Solar Ray
-  117, // Solemn Wishes
-  118, // Sorcerer of Dark Magic
-  119, // Soul Exchange
-  120, // Soul Taker
-  121, // Spear Dragon
-  122, // Spell Canceller
-  123, // Spirit of the Breeze
-  124, // St Joan
-  125, // Stealth Bird
-  126, // Swift Gaia The Fierce Knight
-  127, // Terrorking Salmon
-  128, // The Agent Of Creation - Venus
-  129, // The Dark Door
-  130, // The Forceful Sentry
-  131, // Thousand Energy
-  132, // Thousand Knives
-  133, // Time Seal
-  134, // Toll
-  135, // Triangle Power
-  136, // Twin Swords of Flashing Light - Tryce
-  137, // Tyrant Dragon
-  138, // Ultimate Offering
-  139, // United We Stand
-  140, // Upstart Goblin
-  141, // Vampire Baby
-  142, // Warrior of Zera
-  143, // Wave Motion Cannon
-  144, // Weather Report
-  145, // White Magician Pikeru
-  146, // Yata-Garasu
+  100, // Raregold Armor
+  101, // Reaper on the Nightmare
+  102, // Reckless Greed
+  103, // Reload
+  104, // Riryoku
+  105, // Robbin' Goblin
+  106, // Robbin' Zombie
+  107, // Royal Decree
+  108, // Sage's Stone
+  109, // Sasuke Samurai
+  110, // Seal of Orichalcos
+  111, // Secret Barrel
+  112, // Self-Destruct Button
+  113, // Shield And Sword
+  114, // Skill Drain
+  115, // Skull Invitation
+  116, // Solar Flare Dragon
+  117, // Solar Ray
+  118, // Solemn Wishes
+  119, // Sorcerer of Dark Magic
+  120, // Soul Exchange
+  121, // Soul Taker
+  122, // Spear Dragon
+  123, // Spell Canceller
+  124, // Spirit of the Breeze
+  125, // St Joan
+  126, // Stealth Bird
+  127, // Swift Gaia The Fierce Knight
+  128, // Terrorking Salmon
+  129, // The Agent Of Creation - Venus
+  130, // The Dark Door
+  131, // The Forceful Sentry
+  132, // Thousand Energy
+  133, // Thousand Knives
+  134, // Time Seal
+  135, // Toll
+  136, // Triangle Power
+  137, // Twin Swords of Flashing Light - Tryce
+  138, // Tyrant Dragon
+  139, // Ultimate Offering
+  140, // United We Stand
+  141, // Upstart Goblin
+  142, // Vampire Baby
+  143, // Warrior of Zera
+  144, // Wave Motion Cannon
+  145, // Weather Report
+  146, // White Magician Pikeru
+  147, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -740,6 +743,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sFenrirSortName;
   if (cardId == 0x03B2)
     return (u8 *)sMagicalMerchantSortName;
+  if (cardId == 0x03B3)
+    return (u8 *)sRaregoldArmorSortName;
 
   return gCardNames[cardId];
 }

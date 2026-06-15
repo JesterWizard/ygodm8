@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `161` effects
+- `162` effects
 
 ## Tally
 
@@ -23,6 +23,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Exchange` | `src_custom/spell_effects/exchange.c` |
 | `spell_effects` | `Soul Exchange` | `src_custom/spell_effects/soul_exchange.c` |
 | `spell_effects` | `Mage Power` | `src_custom/spell_effects/mage_power.c` |
+| `spell_effects` | `Raregold Armor` | `src_custom/spell_effects/raregold_armor.c` |
 | `spell_effects` | `United We Stand` | `src_custom/spell_effects/united_we_stand.c` |
 | `spell_effects` | `Twin Swords of Flashing Light - Tryce` | `src_custom/spell_effects/twin_swords_of_flashing_light_tryce.c` |
 | `spell_effects` | `Mystical Space Typhoon` | `src_custom/spell_effects/mystical_space_typhoon.c` |
