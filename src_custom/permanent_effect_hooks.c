@@ -63,6 +63,8 @@ unsigned char ShouldActivateArsenalBug(void);
 void ActivateArsenalBug(void);
 unsigned char ShouldActivateGranadora(void);
 void ActivateGranadora(void);
+unsigned char ShouldActivateBurningAlgae(void);
+void ActivateBurningAlgae(void);
 unsigned char ShouldActivateBerserkGorilla(void);
 void ActivateBerserkGorilla(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
@@ -169,6 +171,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GRANADORA,
     .shouldActivate = ShouldActivateGranadora,
     .activate = ActivateGranadora,
+  },
+  {
+    .cardId = BURNING_ALGAE,
+    .shouldActivate = ShouldActivateBurningAlgae,
+    .activate = ActivateBurningAlgae,
   },
   {
     .cardId = BERSERK_GORILLA,

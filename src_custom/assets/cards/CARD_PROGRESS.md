@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 142 |
-| Art ready, needs manifest | 177 |
+| In game (manifest + art) | 143 |
+| Art ready, needs manifest | 176 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -164,6 +164,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BERSERK_GORILLA` | Berserk Gorilla | `berserk_gorilla.png` |
 | `CHAOS_GREED` | Chaos Greed | `chaos_greed.png` |
 | `BOOK_OF_MOON` | Book of Moon | `book_of_moon.png` |
+| `BURNING_ALGAE` | Burning Algae | `burning_algae.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -192,7 +193,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
 - [ ] `BOTTOMLESS_SHIFTING_SAND` — `bottomless_shifting_sand.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
-- [ ] `BURNING_ALGAE` — `burning_algae.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`

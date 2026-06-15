@@ -16651,6 +16651,34 @@
           "Target 1 face-up monster on the field; change that target to face-down Defense Position."
         ]
       }
+    },
+    {
+      "card_const": "BURNING_ALGAE",
+      "card_name": "Burning Algae",
+      "atk": 500,
+      "def": 1500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 1, 8, 5, 9, 7, 0, 0],
+      "description": {
+        "symbol": "gDescription_BurningAlgae",
+        "pages": [
+          "When this card is sent to the Graveyard, increase",
+          "your opponent's Life Points by 1000 points."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BurningAlgae",
+        "pages": [
+          "When this card is sent to the Graveyard, increase your opponent's Life Points by 1000 points."
+        ]
+      }
     }
   ]
 }

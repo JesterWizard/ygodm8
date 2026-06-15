@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[943] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[944] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -955,9 +955,10 @@ const u8 gCardLockAfterActivation_Hook[943] APPEND_RODATA = {
   [0x03AC] = 1,
   [0x03AD] = 1,
   [0x03AE] = 1,
+  [0x03AF] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[943] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[944] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1901,9 +1902,10 @@ const u8 gCardEffectUsage_Hook[943] APPEND_RODATA = {
   [0x03AC] = EFFECT_USAGE_NONE,
   [0x03AD] = EFFECT_USAGE_NONE,
   [0x03AE] = EFFECT_USAGE_NONE,
+  [0x03AF] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[943] APPEND_RODATA = {
+const CardData gCardData_NEW[944] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14352,5 +14354,19 @@ const CardData gCardData_NEW[943] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {1, 4, 0, 8, 7, 8, 9, 3},
     .description = gDescription_BookOfMoon,
+  },
+  [0x03AF] = {
+    .atk = 500,
+    .def = 1500,
+    .cost = 183,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 3,
+    .type = TYPE_PYRO,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 1, 8, 5, 9, 7, 0, 0},
+    .description = gDescription_BurningAlgae,
   },
 };
