@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 141 |
-| Art ready, needs manifest | 178 |
+| In game (manifest + art) | 142 |
+| Art ready, needs manifest | 177 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -163,6 +163,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GRACEFUL_DICE` | Graceful Dice | `graceful_dice.png` |
 | `BERSERK_GORILLA` | Berserk Gorilla | `berserk_gorilla.png` |
 | `CHAOS_GREED` | Chaos Greed | `chaos_greed.png` |
+| `BOOK_OF_MOON` | Book of Moon | `book_of_moon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -188,7 +189,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
-- [ ] `BOOK_OF_MOON` — `book_of_moon.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
 - [ ] `BOTTOMLESS_SHIFTING_SAND` — `bottomless_shifting_sand.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`

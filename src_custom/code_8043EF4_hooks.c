@@ -43,6 +43,7 @@
 #include "meteor_of_destruction.h"
 #include "final_countdown.h"
 #include "chaos_greed.h"
+#include "book_of_moon.h"
 #include "toll.h"
 #include "call_of_the_haunted.h"
 #include "skull_invitation.h"
@@ -400,6 +401,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginNegativeEnergyTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsBookOfMoonCard(id)) {
+    if (!FieldHasBookOfMoonTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginBookOfMoonTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -848,6 +864,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       TrySelectNegativeEnergyTarget();
       break;
+    case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
+      TrySelectBookOfMoonTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -889,6 +908,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       CancelNegativeEnergyTargeting();
+      break;
+    case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
+      CancelBookOfMoonTargeting();
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();

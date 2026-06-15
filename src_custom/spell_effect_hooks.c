@@ -57,6 +57,7 @@ extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
+extern void EffectBookOfMoon(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -99,6 +100,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case DELINQUENT_DUO:
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
+    case BOOK_OF_MOON:
     case SOUL_TAKER:
     case RAIN_OF_MERCY:
     case UPSTART_GOBLIN:
@@ -332,6 +334,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case CHAOS_GREED:
       EffectChaosGreed();
+      return;
+    case BOOK_OF_MOON:
+      EffectBookOfMoon();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -576,6 +576,10 @@ static const unsigned char sChaosGreedBigArt[] __attribute__((section(".append_a
 static const unsigned short sChaosGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chaos_greed.gbapal");
 static const unsigned char sChaosGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chaos_greed.lz");
 
+static const unsigned char sBookOfMoonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/book_of_moon.huff");
+static const unsigned short sBookOfMoonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_moon.gbapal");
+static const unsigned char sBookOfMoonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_moon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -721,6 +725,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03AB] = sGracefulDiceBigArt,
   [0x03AC] = sBerserkGorillaBigArt,
   [0x03AD] = sChaosGreedBigArt,
+  [0x03AE] = sBookOfMoonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -868,6 +873,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03AB] = sGracefulDiceBigPalette,
   [0x03AC] = sBerserkGorillaBigPalette,
   [0x03AD] = sChaosGreedBigPalette,
+  [0x03AE] = sBookOfMoonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1015,6 +1021,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03AB] = 0,
   [0x03AC] = 0,
   [0x03AD] = 0,
+  [0x03AE] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1162,4 +1169,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03AB] = sGracefulDiceMiniArt,
   [0x03AC] = sBerserkGorillaMiniArt,
   [0x03AD] = sChaosGreedMiniArt,
+  [0x03AE] = sBookOfMoonMiniArt,
 };

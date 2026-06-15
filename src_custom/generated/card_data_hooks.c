@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[942] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[943] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -954,9 +954,10 @@ const u8 gCardLockAfterActivation_Hook[942] APPEND_RODATA = {
   [0x03AB] = 1,
   [0x03AC] = 1,
   [0x03AD] = 1,
+  [0x03AE] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[942] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[943] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1899,9 +1900,10 @@ const u8 gCardEffectUsage_Hook[942] APPEND_RODATA = {
   [0x03AB] = EFFECT_USAGE_NONE,
   [0x03AC] = EFFECT_USAGE_NONE,
   [0x03AD] = EFFECT_USAGE_NONE,
+  [0x03AE] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[942] APPEND_RODATA = {
+const CardData gCardData_NEW[943] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14336,5 +14338,19 @@ const CardData gCardData_NEW[942] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {9, 7, 4, 3, 9, 3, 0, 8},
     .description = gDescription_ChaosGreed,
+  },
+  [0x03AE] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 15,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {1, 4, 0, 8, 7, 8, 9, 3},
+    .description = gDescription_BookOfMoon,
   },
 };

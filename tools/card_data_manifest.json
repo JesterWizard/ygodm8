@@ -16623,6 +16623,34 @@
           "Draw 2 cards when your field and Graveyard are empty."
         ]
       }
+    },
+    {
+      "card_const": "BOOK_OF_MOON",
+      "card_name": "Book of Moon",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 4, 0, 8, 7, 8, 9, 3],
+      "description": {
+        "symbol": "gDescription_BookOfMoon",
+        "pages": [
+          "Target 1 face-up monster on the field; change that",
+          "target to face-down Defense Position."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BookOfMoon",
+        "pages": [
+          "Target 1 face-up monster on the field; change that target to face-down Defense Position."
+        ]
+      }
     }
   ]
 }

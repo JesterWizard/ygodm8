@@ -943,11 +943,12 @@
 #define GRACEFUL_DICE                            0x03AB
 #define BERSERK_GORILLA                          0x03AC
 #define CHAOS_GREED                              0x03AD
+#define BOOK_OF_MOON                             0x03AE
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03AE
-#define NUM_CUSTOM_CARDS                        0x008D
+#define NUM_TOTAL_CARDS                         0x03AF
+#define NUM_CUSTOM_CARDS                        0x008E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

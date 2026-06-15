@@ -139,6 +139,7 @@ static const u8 sGyakuGirePandaName[] __attribute__((section(".append_assets")))
 static const u8 sGracefulDiceName[] __attribute__((section(".append_assets"))) = "Graceful Dice";
 static const u8 sBerserkGorillaName[] __attribute__((section(".append_assets"))) = "Berserk Gorilla";
 static const u8 sChaosGreedName[] __attribute__((section(".append_assets"))) = "Chaos Greed";
+static const u8 sBookOfMoonName[] __attribute__((section(".append_assets"))) = "Book of Moon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -423,6 +424,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBerserkGorillaName;
   if (cardId == 0x03AD)
     return (u8 *)sChaosGreedName;
+  if (cardId == 0x03AE)
+    return (u8 *)sBookOfMoonName;
 
   return gCardNames[cardId];
 }
