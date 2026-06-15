@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[929] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[930] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -941,9 +941,10 @@ const u8 gCardLockAfterActivation_Hook[929] APPEND_RODATA = {
   [0x039E] = 1,
   [0x039F] = 1,
   [0x03A0] = 1,
+  [0x03A1] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[929] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[930] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1873,9 +1874,10 @@ const u8 gCardEffectUsage_Hook[929] APPEND_RODATA = {
   [0x039E] = EFFECT_USAGE_NONE,
   [0x039F] = EFFECT_USAGE_NONE,
   [0x03A0] = EFFECT_USAGE_NONE,
+  [0x03A1] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[929] APPEND_RODATA = {
+const CardData gCardData_NEW[930] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14128,5 +14130,19 @@ const CardData gCardData_NEW[929] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {4, 9, 7, 7, 1, 6, 0, 8},
     .description = gDescription_AbsorbingKidFromTheSky,
+  },
+  [0x03A1] = {
+    .atk = 2000,
+    .def = 2000,
+    .cost = 150,
+    .attribute = ATTRIBUTE_EARTH,
+    .level = 3,
+    .type = TYPE_INSECT,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 2, 3, 6, 4, 3, 7, 4},
+    .description = gDescription_ArsenalBug,
   },
 };

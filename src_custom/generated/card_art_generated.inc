@@ -524,6 +524,10 @@ static const unsigned char sAbsorbingKidFromTheSkyBigArt[] __attribute__((sectio
 static const unsigned short sAbsorbingKidFromTheSkyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/absorbing_kid_from_the_sky.gbapal");
 static const unsigned char sAbsorbingKidFromTheSkyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/absorbing_kid_from_the_sky.lz");
 
+static const unsigned char sArsenalBugBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arsenal_bug.huff");
+static const unsigned short sArsenalBugBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arsenal_bug.gbapal");
+static const unsigned char sArsenalBugMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arsenal_bug.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -656,6 +660,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x039E] = sTyrantDragonBigArt,
   [0x039F] = sFinalCountdownBigArt,
   [0x03A0] = sAbsorbingKidFromTheSkyBigArt,
+  [0x03A1] = sArsenalBugBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -790,6 +795,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x039E] = sTyrantDragonBigPalette,
   [0x039F] = sFinalCountdownBigPalette,
   [0x03A0] = sAbsorbingKidFromTheSkyBigPalette,
+  [0x03A1] = sArsenalBugBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -924,6 +930,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x039E] = 0,
   [0x039F] = 0,
   [0x03A0] = 0,
+  [0x03A1] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1058,4 +1065,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x039E] = sTyrantDragonMiniArt,
   [0x039F] = sFinalCountdownMiniArt,
   [0x03A0] = sAbsorbingKidFromTheSkyMiniArt,
+  [0x03A1] = sArsenalBugMiniArt,
 };

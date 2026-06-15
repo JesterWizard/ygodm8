@@ -11,6 +11,7 @@
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
 #include "imperial_order.h"
+#include "arsenal_bug.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -57,6 +58,8 @@ unsigned char ShouldActivateGrenMajuDaEiza(void);
 void ActivateGrenMajuDaEiza(void);
 unsigned char ShouldActivateDesFeralImp(void);
 void ActivateDesFeralImp(void);
+unsigned char ShouldActivateArsenalBug(void);
+void ActivateArsenalBug(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -151,6 +154,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DES_FERAL_IMP,
     .shouldActivate = ShouldActivateDesFeralImp,
     .activate = ActivateDesFeralImp,
+  },
+  {
+    .cardId = ARSENAL_BUG,
+    .shouldActivate = ShouldActivateArsenalBug,
+    .activate = ActivateArsenalBug,
   },
 };
 

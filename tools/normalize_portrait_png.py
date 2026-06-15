@@ -74,18 +74,51 @@ def normalize_portrait(image: Image.Image) -> bool:
     return True
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input", type=pathlib.Path)
-    parser.add_argument("output", type=pathlib.Path, nargs="?")
-    args = parser.parse_args()
-
-    output = args.output or args.input
-    image = Image.open(args.input)
+def normalize_portrait_file(
+    input_path: pathlib.Path, output_path: pathlib.Path | None = None
+) -> bool:
+    output = output_path or input_path
+    image = Image.open(input_path)
     changed = normalize_portrait(image)
-    if changed or output != args.input:
+    if changed or output != input_path:
         output.parent.mkdir(parents=True, exist_ok=True)
         image.save(output)
+    return changed
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("input", type=pathlib.Path, help="PNG file or directory of PNGs")
+    parser.add_argument(
+        "output",
+        type=pathlib.Path,
+        nargs="?",
+        help="output file or directory (default: in-place)",
+    )
+    args = parser.parse_args()
+
+    input_path = args.input
+    if input_path.is_dir():
+        if args.output is not None and not args.output.is_dir():
+            print(f"{args.output}: output must be a directory", file=sys.stderr)
+            return 1
+        pngs = sorted(path for path in input_path.glob("*.png") if path.is_file())
+        if not pngs:
+            print(f"no PNG files found in {input_path}", file=sys.stderr)
+            return 1
+        for png in pngs:
+            out = (args.output / png.name) if args.output is not None else png
+            normalize_portrait_file(png, out)
+        return 0
+
+    if not input_path.is_file():
+        print(f"{input_path}: not a file or directory", file=sys.stderr)
+        return 1
+    if args.output is not None and args.output.is_dir():
+        print(f"{args.output}: output must be a file when input is a file", file=sys.stderr)
+        return 1
+
+    normalize_portrait_file(input_path, args.output)
     return 0
 
 

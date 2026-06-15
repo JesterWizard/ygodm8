@@ -146,6 +146,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { PRECIOUS_CARDS_FROM_BEYOND, gActivationDescription_PreciousCardsFromBeyond },
   { FINAL_COUNTDOWN, gActivationDescription_FinalCountdown },
   { ABSORBING_KID_FROM_THE_SKY, gActivationDescription_AbsorbingKidFromTheSky },
+  { ARSENAL_BUG, gActivationDescription_ArsenalBug },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

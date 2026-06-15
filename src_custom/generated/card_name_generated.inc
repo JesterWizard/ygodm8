@@ -126,6 +126,7 @@ static const u8 sPreciousCardsFromBeyondName[] __attribute__((section(".append_a
 static const u8 sTyrantDragonName[] __attribute__((section(".append_assets"))) = "Tyrant Dragon";
 static const u8 sFinalCountdownName[] __attribute__((section(".append_assets"))) = "Final Countdown";
 static const u8 sAbsorbingKidFromTheSkyName[] __attribute__((section(".append_assets"))) = "Absorbing Kid from the Sky";
+static const u8 sArsenalBugName[] __attribute__((section(".append_assets"))) = "Arsenal Bug";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -384,6 +385,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sFinalCountdownName;
   if (cardId == 0x03A0)
     return (u8 *)sAbsorbingKidFromTheSkyName;
+  if (cardId == 0x03A1)
+    return (u8 *)sArsenalBugName;
 
   return gCardNames[cardId];
 }

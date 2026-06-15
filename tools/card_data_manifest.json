@@ -16258,6 +16258,34 @@
       },
       "card_name": "Absorbing Kid from the Sky",
       "password": [ 4, 9, 7, 7, 1, 6, 0, 8 ]
+    },
+    {
+      "card_const": "ARSENAL_BUG",
+      "atk": 2000,
+      "def": 2000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_EARTH",
+      "level": 3,
+      "type": "TYPE_INSECT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_ArsenalBug",
+        "pages": [
+          "If you control no other Insect-Type",
+          "monsters, this card's ATK and DEF each become 1000"
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ArsenalBug",
+        "pages": [
+          "You control no other Insect-Type so the ATK and DEF of Arsenal Bug become 1000."
+        ]
+      },
+      "card_name": "Arsenal Bug",
+      "password": [ 4, 2, 3, 6, 4, 3, 7, 4 ]
     }
   ]
 }

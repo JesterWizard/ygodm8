@@ -4,13 +4,14 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from normalize_portrait_png import normalize_portrait  # noqa: E402
+from normalize_portrait_png import main as normalize_main, normalize_portrait  # noqa: E402
 from offset_portrait_8bpp import offset_portrait_bytes  # noqa: E402
 from validate_portrait import (  # noqa: E402
     PORTRAIT_DIR,
@@ -84,6 +85,24 @@ class PortraitValidatorTests(unittest.TestCase):
         shifted[100] = 0xC0
         errors = validate_shifted_tiles(bytes(shifted), "fixture")
         self.assertTrue(any("0xC0" in message for message in errors))
+
+    def test_normalize_directory_in_place(self):
+        image = Image.new("P", (64, 64))
+        palette = [128, 64, 32] * 256
+        palette[0:3] = [255, 0, 0]
+        palette[63 * 3 : 63 * 3 + 3] = [0, 0, 0]
+        image.putpalette(palette)
+        image.putdata([63] * (64 * 64))
+
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            path = directory / "portrait.png"
+            image.save(path)
+            with patch.object(sys, "argv", ["normalize_portrait_png.py", str(directory)]):
+                self.assertEqual(normalize_main(), 0)
+            fixed = Image.open(path)
+            self.assertEqual(fixed.getpalette()[0:3], [0, 0, 0])
+            self.assertEqual(list(fixed.get_flattened_data()).count(0), 64 * 64)
 
     def test_normalize_swaps_black_to_index_zero(self):
         image = Image.new("P", (64, 64))
