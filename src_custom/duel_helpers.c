@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "duel_status.h"
@@ -131,6 +132,12 @@ static void InitMonsterZone(struct DuelCard *zone, enum DuelSummonMode mode, u8 
   zone->willChangeSides = 0;
   zone->effectExhausted = 0;
   zone->effectUsedThisTurn = 0;
+
+  // ponytail: Berserk Gorilla cannot be placed in Defense Position
+  if (zone->id == BERSERK_GORILLA
+      && mode != DUEL_SUMMON_NORMAL_FACE_UP_ATK
+      && mode != DUEL_SUMMON_SPECIAL_FACE_UP_ATK)
+    mode = DUEL_SUMMON_NORMAL_FACE_UP_ATK;
 
   switch (mode) {
   case DUEL_SUMMON_SPECIAL_FACE_UP_DEF:

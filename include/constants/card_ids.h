@@ -941,11 +941,12 @@
 #define HYPER_HAMMERHEAD                         0x03A9
 #define GYAKU_GIRE_PANDA                         0x03AA
 #define GRACEFUL_DICE                            0x03AB
+#define BERSERK_GORILLA                          0x03AC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03AC
-#define NUM_CUSTOM_CARDS                        0x008B
+#define NUM_TOTAL_CARDS                         0x03AD
+#define NUM_CUSTOM_CARDS                        0x008C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

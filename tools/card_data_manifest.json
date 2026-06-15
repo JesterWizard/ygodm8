@@ -16567,6 +16567,34 @@
           "Roll 1 die. Your monsters with 500 or less ATK are multiplied by the roll until end of turn."
         ]
       }
+    },
+    {
+      "card_const": "BERSERK_GORILLA",
+      "card_name": "Berserk Gorilla",
+      "atk": 2000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [3, 9, 1, 6, 8, 8, 9, 5],
+      "description": {
+        "symbol": "gDescription_BerserkGorilla",
+        "pages": [
+          "This card cannot be placed in",
+          "Defense Position."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BerserkGorilla",
+        "pages": [
+          "This card cannot be placed in Defense Position."
+        ]
+      }
     }
   ]
 }

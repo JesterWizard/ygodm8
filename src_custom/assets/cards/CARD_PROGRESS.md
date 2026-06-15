@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 139 |
-| Art ready, needs manifest | 180 |
+| In game (manifest + art) | 140 |
+| Art ready, needs manifest | 179 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -161,6 +161,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HYPER_HAMMERHEAD` | Hyper Hammerhead | `hyper_hammerhead.png` |
 | `GYAKU_GIRE_PANDA` | Gyaku-Gire Panda | `gyaku_gire_panda.png` |
 | `GRACEFUL_DICE` | Graceful Dice | `graceful_dice.png` |
+| `BERSERK_GORILLA` | Berserk Gorilla | `berserk_gorilla.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -177,7 +178,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
-- [ ] `BERSERK_GORILLA` — `berserk_gorilla.png`
 - [ ] `BIG_BANG_SHOT` — `big_bang_shot.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`

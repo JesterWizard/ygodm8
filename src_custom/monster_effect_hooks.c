@@ -8,6 +8,7 @@
 #include "tribute.h"
 #include "great_maju_garzett.h"
 #include "weather_report.h"
+#include "berserk_gorilla.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -212,7 +213,11 @@ void MonsterActionMenu__Replacement(void) {
       sub_8044570();
       break;
     case 2:
-      if (!gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
+      if (BerserkGorilla_CannotUseDefensePosition(
+              gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+        PlayMusic(SFX_FORBIDDEN);
+        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+      } else if (!gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
         PlayMusic(SFX_SELECT);
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 1;
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;

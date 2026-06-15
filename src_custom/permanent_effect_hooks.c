@@ -12,6 +12,7 @@
 #include "great_maju_garzett.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
+#include "berserk_gorilla.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -62,6 +63,8 @@ unsigned char ShouldActivateArsenalBug(void);
 void ActivateArsenalBug(void);
 unsigned char ShouldActivateGranadora(void);
 void ActivateGranadora(void);
+unsigned char ShouldActivateBerserkGorilla(void);
+void ActivateBerserkGorilla(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -166,6 +169,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GRANADORA,
     .shouldActivate = ShouldActivateGranadora,
     .activate = ActivateGranadora,
+  },
+  {
+    .cardId = BERSERK_GORILLA,
+    .shouldActivate = ShouldActivateBerserkGorilla,
+    .activate = ActivateBerserkGorilla,
   },
 };
 
