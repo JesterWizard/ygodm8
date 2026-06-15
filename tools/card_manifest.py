@@ -35,6 +35,32 @@ class ManifestValidationError(Exception):
     """Raised when a card manifest fails validation."""
 
 
+def card_const_to_pascal(card_const: str) -> str:
+    return "".join(part.capitalize() for part in card_const.lower().split("_") if part)
+
+
+def description_symbol(card_const: str) -> str:
+    return f"gDescription_{card_const_to_pascal(card_const)}"
+
+
+def activation_description_symbol(card_const: str) -> str:
+    return f"gActivationDescription_{card_const_to_pascal(card_const)}"
+
+
+def normalize_description_block(card_const: str, description: dict, *, activation: bool) -> dict:
+    if not isinstance(description, dict):
+        raise TypeError("description must be a dict")
+    pages = description.get("pages")
+    if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
+        raise ValueError("description.pages must be a non-empty string array")
+    symbol = description.get("symbol")
+    if symbol is None:
+        symbol = activation_description_symbol(card_const) if activation else description_symbol(card_const)
+    elif not isinstance(symbol, str) or not symbol:
+        raise ValueError("description.symbol must be a non-empty string when present")
+    return {"symbol": symbol, "pages": pages}
+
+
 def format_json_decode_error(path: Path | str, text: str, exc: json.JSONDecodeError) -> str:
     path = Path(path)
     lines = text.splitlines()
@@ -143,18 +169,22 @@ def validate_manifest(manifest: object) -> dict:
             description = stats[desc_key]
             if not isinstance(description, dict):
                 _fail(f"cards[{index}].{desc_key} must be an object when present.")
-            symbol = description.get("symbol")
-            pages = description.get("pages")
-            if not isinstance(symbol, str) or not symbol:
-                _fail(f"cards[{index}].{desc_key}.symbol must be a non-empty string.")
-            if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
-                _fail(f"cards[{index}].{desc_key}.pages must be an array of non-empty strings.")
+            try:
+                description = normalize_description_block(
+                    card_const,
+                    description,
+                    activation=(desc_key == "activation_description"),
+                )
+            except ValueError as exc:
+                _fail(f"cards[{index}].{desc_key}: {exc}")
+            pages = description["pages"]
             min_pages = 1 if desc_key == "activation_description" else 2
             if len(pages) < min_pages or len(pages) > description_pages_max:
                 _fail(
                     f"cards[{index}].{desc_key}.pages must contain between "
                     f"{min_pages} and {description_pages_max} strings."
                 )
+            stats[desc_key] = description
 
         for key in ASSET_ENTRY_KEYS:
             if key in stats and not isinstance(stats[key], str):

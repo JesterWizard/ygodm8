@@ -131,6 +131,7 @@ static const u8 sBurningLandName[] __attribute__((section(".append_assets"))) = 
 static const u8 sBattleFootballerName[] __attribute__((section(".append_assets"))) = "Battle Footballer";
 static const u8 sDancingFairyName[] __attribute__((section(".append_assets"))) = "Dancing Fairy";
 static const u8 sSpiritOfTheBreezeName[] __attribute__((section(".append_assets"))) = "Spirit of the Breeze";
+static const u8 sDropOffName[] __attribute__((section(".append_assets"))) = "Drop Off";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -399,6 +400,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDancingFairyName;
   if (cardId == 0x03A5)
     return (u8 *)sSpiritOfTheBreezeName;
+  if (cardId == 0x03A6)
+    return (u8 *)sDropOffName;
 
   return gCardNames[cardId];
 }

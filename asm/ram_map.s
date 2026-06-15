@@ -255,6 +255,10 @@ _kernel_malloc_ewram gTimeSealSkipDrawDuelist, 1
 _kernel_malloc_ewram gRecklessGreedSkipDrawDuelist, 1
 @ Remaining draw phases to skip for Reckless Greed (0 when inactive).
 _kernel_malloc_ewram gRecklessGreedSkipDrawRemaining, 1
+@ Nonzero while PerformGuardianTreasureDrawPhaseDraws is drawing (Drop Off gate).
+_kernel_malloc_ewram gDrawPhaseNormalDrawActive, 1
+@ ponytail: pad keeps even EWRAM alignment for following u16 symbols.
+_kernel_malloc_ewram gDrawPhaseNormalDrawActivePad, 1
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1

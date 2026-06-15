@@ -29,8 +29,6 @@ void AgeUltimateOfferingSetFlags(void);
 unsigned char ShouldActivateUltimateOfferingTurnEffect(void);
 void ActivateUltimateOfferingTurnEffect(void);
 void AgeFairyBoxSetFlags(void);
-unsigned char ShouldActivateFairyBoxTurnEffect(void);
-void ActivateFairyBoxTurnEffect(void);
 unsigned char ShouldActivateFairyBoxUpkeep(void);
 void ActivateFairyBoxUpkeep(void);
 void AgeWaveMotionCannonTurns(void);
@@ -59,120 +57,116 @@ void DestroyThousandEnergyMonstersAtEndOfTurn(void);
 void DestroyTrianglePowerMonstersAtEndOfTurn(void);
 void DestroyLimiterRemovalMonstersAtEndOfTurn(void);
 
+typedef unsigned char (*TurnEffectRowMatch)(void);
+typedef unsigned char (*TurnEffectCondition)(void);
+typedef void (*TurnEffectHandler)(void);
+
+typedef struct {
+  u16 cardId;
+  TurnEffectRowMatch matchesRow;
+  TurnEffectCondition shouldActivate;
+  TurnEffectHandler activate;
+} TurnEffectOverride;
+
+static unsigned char MatchGraveyardRows(void)
+{
+  return gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7;
+}
+
+static unsigned char MatchDeckDestructionVirusRow(void)
+{
+  return gActiveEffect.turnRow == 0;
+}
+
+static unsigned char MatchActiveDuelistMonsterRow(void)
+{
+  return gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW;
+}
+
+static unsigned char MatchActiveDuelistBackrow(void)
+{
+  return gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW;
+}
+
+static unsigned char NeverActivateTurnEffect(void)
+{
+  return FALSE;
+}
+
+static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".text"))) = {
+  { GIANT_GERM, MatchGraveyardRows, NULL, ActivateGiantGermEffect },
+  { NIMBLE_MOMONGA, MatchGraveyardRows, NULL, ActivateNimbleMomongaEffect },
+  { SKULL_MARK_LADY_BUG, MatchGraveyardRows, NULL, ActivateSkullMarkLadyBugEffect },
+  { SINISTER_SERPENT, MatchGraveyardRows, ShouldActivateSinisterSerpentEffect, ActivateSinisterSerpentEffect },
+  { MYSTERIOUS_PUPPETEER, MatchActiveDuelistMonsterRow, ShouldActivateMysteriousPuppeteerTurnEffect, ActivateMysteriousPuppeteerTurnEffect },
+  { WHITE_MAGICIAN_PIKERU, MatchActiveDuelistMonsterRow, ShouldActivateWhiteMagicianPikeruTurnEffect, ActivateWhiteMagicianPikeruTurnEffect },
+  { THE_UNHAPPY_MAIDEN, MatchGraveyardRows, NeverActivateTurnEffect, NULL },
+  { DECK_DESTRUCTION_VIRUS, MatchDeckDestructionVirusRow, NULL, ActivateDeckDestructionVirusEffect },
+  { ULTIMATE_OFFERING, MatchActiveDuelistBackrow, ShouldActivateUltimateOfferingTurnEffect, ActivateUltimateOfferingTurnEffect },
+  { FAIRY_BOX, MatchActiveDuelistBackrow, ShouldActivateFairyBoxUpkeep, ActivateFairyBoxUpkeep },
+  { IMPERIAL_ORDER, MatchActiveDuelistBackrow, ShouldActivateImperialOrderUpkeep, ActivateImperialOrderUpkeep },
+  { BOWGANIAN, MatchActiveDuelistMonsterRow, ShouldActivateBowganianTurnEffect, ActivateBowganianTurnEffect },
+  { CURE_MERMAID, MatchActiveDuelistMonsterRow, ShouldActivateCureMermaidTurnEffect, ActivateCureMermaidTurnEffect },
+  { SOLAR_FLARE_DRAGON, MatchActiveDuelistMonsterRow, ShouldActivateSolarFlareDragonTurnEffect, ActivateSolarFlareDragonTurnEffect },
+  { EBON_MAGICIAN_CURRAN, MatchActiveDuelistMonsterRow, ShouldActivateEbonMagicianCurranTurnEffect, ActivateEbonMagicianCurranTurnEffect },
+  { DANCING_FAIRY, MatchActiveDuelistMonsterRow, ShouldActivateDancingFairyTurnEffect, ActivateDancingFairyTurnEffect },
+  { SPIRIT_OF_THE_BREEZE, MatchActiveDuelistMonsterRow, ShouldActivateSpiritOfTheBreezeTurnEffect, ActivateSpiritOfTheBreezeTurnEffect },
+};
+
+static const TurnEffectOverride *GetTurnEffectOverride(u16 cardId)
+{
+  u8 i;
+
+  for (i = 0; i < ARRAY_COUNT(sTurnEffectOverrides); i++) {
+    if (sTurnEffectOverrides[i].cardId == cardId)
+      return &sTurnEffectOverrides[i];
+  }
+
+  return NULL;
+}
+
+static unsigned char ShouldRunTurnEffectOverride(const TurnEffectOverride *override)
+{
+  if (override->matchesRow != NULL && override->matchesRow() == FALSE)
+    return FALSE;
+  if (override->shouldActivate != NULL)
+    return override->shouldActivate();
+  return TRUE;
+}
+
 static void TryActivatingTurnEffect__Hook(void) {
+  const TurnEffectOverride *override;
+
   ResetCardEffectTextData();
   SetCardEffectTextType(9);
-  if (gActiveEffect.cardId == GIANT_GERM && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
-    ActivateGiantGermEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == NIMBLE_MOMONGA && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
-    ActivateNimbleMomongaEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == SKULL_MARK_LADY_BUG && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
-    ActivateSkullMarkLadyBugEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)) {
-    ActivateSinisterSerpentEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == MYSTERIOUS_PUPPETEER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateMysteriousPuppeteerTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == WHITE_MAGICIAN_PIKERU && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateWhiteMagicianPikeruTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
-    return;
-  if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0) {
-    ActivateDeckDestructionVirusEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
-    ActivateUltimateOfferingTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
-    if (ShouldActivateFairyBoxUpkeep())
-      ActivateFairyBoxUpkeep();
-    return;
-  }
-  if (gActiveEffect.cardId == IMPERIAL_ORDER && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW) {
-    if (ShouldActivateImperialOrderUpkeep())
-      ActivateImperialOrderUpkeep();
-    return;
-  }
-  if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateBowganianTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == CURE_MERMAID && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateCureMermaidTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == SOLAR_FLARE_DRAGON && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateSolarFlareDragonTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == EBON_MAGICIAN_CURRAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateEbonMagicianCurranTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == DANCING_FAIRY && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateDancingFairyTurnEffect();
-    return;
-  }
-  if (gActiveEffect.cardId == SPIRIT_OF_THE_BREEZE && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
-    ActivateSpiritOfTheBreezeTurnEffect();
-    return;
+  override = GetTurnEffectOverride(gActiveEffect.cardId);
+  if (override != NULL) {
+    if (override->matchesRow == NULL || override->matchesRow() == TRUE) {
+      if (override->activate != NULL)
+        override->activate();
+      return;
+    }
   }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
 
 static unsigned char ShouldActivateTurnEffect__Hook(void) {
-  if (gActiveEffect.cardId == GIANT_GERM && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
-    return TRUE;
-  if (gActiveEffect.cardId == NIMBLE_MOMONGA && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
-    return TRUE;
-  if (gActiveEffect.cardId == SKULL_MARK_LADY_BUG && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
-    return TRUE;
-  if (gActiveEffect.cardId == SINISTER_SERPENT && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
-    return ShouldActivateSinisterSerpentEffect();
-  if (gActiveEffect.cardId == MYSTERIOUS_PUPPETEER && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateMysteriousPuppeteerTurnEffect();
-  if (gActiveEffect.cardId == WHITE_MAGICIAN_PIKERU && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateWhiteMagicianPikeruTurnEffect();
-  if (gActiveEffect.cardId == THE_UNHAPPY_MAIDEN && (gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7))
+  const TurnEffectOverride *override;
+
+  override = GetTurnEffectOverride(gActiveEffect.cardId);
+  if (override != NULL) {
+    if (ShouldRunTurnEffectOverride(override))
+      return TRUE;
+    if (override->matchesRow != NULL && override->matchesRow() == FALSE)
+      goto vanilla;
     return FALSE;
-  if (gActiveEffect.cardId == DECK_DESTRUCTION_VIRUS && gActiveEffect.turnRow == 0)
-    return TRUE;
-  if (gActiveEffect.cardId == ULTIMATE_OFFERING && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
-    return ShouldActivateUltimateOfferingTurnEffect();
-  if (gActiveEffect.cardId == FAIRY_BOX && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
-    return ShouldActivateFairyBoxUpkeep();
-  if (gActiveEffect.cardId == IMPERIAL_ORDER && gActiveEffect.turnRow == ACTIVE_DUELIST_BACKROW)
-    return ShouldActivateImperialOrderUpkeep();
+  }
   if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
     return FALSE;
   if (IsRoyalDecreeNegatingTrap(gActiveEffect.cardId))
     return FALSE;
-  if (gActiveEffect.cardId == BOWGANIAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateBowganianTurnEffect();
-  if (gActiveEffect.cardId == CURE_MERMAID && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateCureMermaidTurnEffect();
-  if (gActiveEffect.cardId == SOLAR_FLARE_DRAGON && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateSolarFlareDragonTurnEffect();
-  if (gActiveEffect.cardId == EBON_MAGICIAN_CURRAN && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateEbonMagicianCurranTurnEffect();
-  if (gActiveEffect.cardId == DANCING_FAIRY && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateDancingFairyTurnEffect();
-  if (gActiveEffect.cardId == SPIRIT_OF_THE_BREEZE && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
-    return ShouldActivateSpiritOfTheBreezeTurnEffect();
+vanilla:
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "guardian_treasure.h"
+#include "drop_off.h"
 #include "imperial_order.h"
 #include "spell_effects.h"
 
@@ -92,7 +93,9 @@ void PerformGuardianTreasureDrawPhaseDraws(u8 turn)
       ? GUARDIAN_TREASURE_DRAW_COUNT
       : 1;
 
+  BeginDrawPhaseNormalDraws();
   DrawCardsForTurn(turn, drawCount);
+  EndDrawPhaseNormalDraws();
 }
 
 APPEND_TEXT void EffectGuardianTreasure(void)

@@ -24,18 +24,25 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 ## Fast Path Checklist
 
 ```
-- [ ] 1. Resolve card identity + stats (Yugipedia)
-- [ ] 2. Confirm art: src_custom/assets/cards/80x80/<stem>.png
-- [ ] 3. Append manifest entry (end of tools/card_data_manifest.json)
-- [ ] 4. Effect hooks? → only if card has non-vanilla behavior
-- [ ] 5. configs/runtime.c → card_in_hand_* only if user asked
-- [ ] 6. python3 tools/card_art_progress.py
-- [ ] 7. make test (or make test-host if manifest-only, no hooks/runtime)
+- [ ] 1. Scaffold manifest entry: `python3 tools/add_custom_card.py "Card Name" --write`
+- [ ] 2. Confirm art: src_custom/assets/cards/80x80/<stem>.png (script reports OK/MISSING)
+- [ ] 3. Effect hooks? → only if card has non-vanilla behavior (one table row in turn/spell/trap hooks)
+- [ ] 4. configs/runtime.c → `--runtime-hand N` or manual card_in_hand_* if user asked
+- [ ] 5. make test-cards (manifest-only) or make test-cards-build (hooks/runtime)
 ```
 
-## Step 1 — Card Data (Yugipedia)
+Or from CARD_PROGRESS todo art:
 
-Fetch `https://yugipedia.com/wiki/<Card_Name_Underscores>` (spaces → `_`).
+```bash
+python3 tools/add_custom_card.py --from-progress AMAZONESS_TIGER --write --runtime-hand 1
+make test-cards-build
+```
+
+## Step 1 — Card Data (YGOProDeck)
+
+Preferred: `python3 tools/add_custom_card.py --passcode 53530069` or pass the card name.
+
+Fallback: Yugipedia `https://yugipedia.com/wiki/<Card_Name_Underscores>` when offline or API misses a card.
 
 Record:
 
@@ -48,8 +55,10 @@ Record:
 | `type` | `TYPE_*` enum string |
 | `color` | See table below |
 | `password` | 8-digit passcode → one digit per array element (`48094997` → `[4,8,0,9,4,9,9,7]`) |
-| `cost` | See cost heuristic below |
+| `cost` | See cost heuristic below (or use value from `add_custom_card.py`) |
 | `description.pages` | Flavor/effect text (2–3 short lines); **required for every custom card** |
+
+`description.symbol` and `activation_description.symbol` are optional — derived automatically from `card_const` when omitted (`SPIRIT_OF_THE_BREEZE` → `gDescription_SpiritOfTheBreeze`).
 
 ### `color` by card kind
 
@@ -99,7 +108,6 @@ Copy the nearest template below; grep the manifest for one similar card only if 
   "spellEffect": 2,
   "trapEffect": 0,
   "description": {
-    "symbol": "gDescription_BattleFootballer",
     "pages": [
       "A cyborg with high defense power.",
       "Originally it was invented for a football machine."
@@ -147,7 +155,7 @@ Same shell as spell but `"type": "TYPE_TRAP"`, `"color": "TRAP_CARD"`, and set `
 | Trap effect | trap hooks + `src_custom/trap_effects/` |
 | Activated monster | `MONSTER_EFFECT_*` in manifest + activated hooks |
 | Passive stat / always-on | `src_custom/permanent_effects/` |
-| End-of-turn / standby | `src_custom/turn_effects/` or field spell hooks |
+| End-of-turn / standby | `src_custom/turn_effects/` + one row in `sTurnEffectOverrides[]` in `turn_effect_hooks.c` |
 
 Use `include/duel_helpers.h` for draw, destroy, discard, LP, summon, effect text — do not copy static duel helpers into card files. See `documentation/monster-card-effects.md` cheat sheet only if implementing effects.
 

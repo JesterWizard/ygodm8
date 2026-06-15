@@ -935,11 +935,12 @@
 #define BATTLE_FOOTBALLER                        0x03A3
 #define DANCING_FAIRY                            0x03A4
 #define SPIRIT_OF_THE_BREEZE                     0x03A5
+#define DROP_OFF                                 0x03A6
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03A6
-#define NUM_CUSTOM_CARDS                        0x0085
+#define NUM_TOTAL_CARDS                         0x03A7
+#define NUM_CUSTOM_CARDS                        0x0086
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

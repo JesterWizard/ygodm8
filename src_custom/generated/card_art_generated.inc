@@ -544,6 +544,10 @@ static const unsigned char sSpiritOfTheBreezeBigArt[] __attribute__((section(".a
 static const unsigned short sSpiritOfTheBreezeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_of_the_breeze.gbapal");
 static const unsigned char sSpiritOfTheBreezeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_of_the_breeze.lz");
 
+static const unsigned char sDropOffBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/drop_off.huff");
+static const unsigned short sDropOffBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/drop_off.gbapal");
+static const unsigned char sDropOffMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/drop_off.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -681,6 +685,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03A3] = sBattleFootballerBigArt,
   [0x03A4] = sDancingFairyBigArt,
   [0x03A5] = sSpiritOfTheBreezeBigArt,
+  [0x03A6] = sDropOffBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -820,6 +825,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03A3] = sBattleFootballerBigPalette,
   [0x03A4] = sDancingFairyBigPalette,
   [0x03A5] = sSpiritOfTheBreezeBigPalette,
+  [0x03A6] = sDropOffBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -959,6 +965,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03A3] = 0,
   [0x03A4] = 0,
   [0x03A5] = 0,
+  [0x03A6] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1098,4 +1105,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03A3] = sBattleFootballerMiniArt,
   [0x03A4] = sDancingFairyMiniArt,
   [0x03A5] = sSpiritOfTheBreezeMiniArt,
+  [0x03A6] = sDropOffMiniArt,
 };

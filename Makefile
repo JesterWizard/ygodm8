@@ -492,16 +492,23 @@ clean: clean-build clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: test update-goldens test-host test-cards test-cards-build
+.PHONY: test update-goldens test-host test-cards test-cards-build add-card
 
 test-cards: tools-rules
 	python3 tools/card_art_progress.py
-	PYTHONPATH=$(CURDIR) python3 -m unittest tests.host.test_cards_manifest tests.host.test_ram_map_layout -v
+	PYTHONPATH=$(CURDIR) python3 -m unittest tests.host.test_cards_manifest tests.host.test_add_custom_card tests.host.test_ram_map_layout -v
 	python3 tools/validate_trunk_sort.py
 	python3 tools/validate_trunk_qty.py
 
 test-cards-build: test-cards
 	$(MAKE) all
+
+add-card:
+	@test -n "$(CARD)" || (echo "Usage: make add-card CARD='Card Name' [WRITE=1] [RUNTIME_HAND=1]" && exit 1)
+	python3 tools/add_custom_card.py "$(CARD)" \
+		$(if $(PASSCODE),--passcode $(PASSCODE),) \
+		$(if $(WRITE),--write,) \
+		$(if $(RUNTIME_HAND),--runtime-hand $(RUNTIME_HAND),)
 
 test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
@@ -534,4 +541,4 @@ endif
 update-goldens:
 	UPDATE_GOLDENS=1 PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 
-.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build update-goldens
+.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build add-card update-goldens

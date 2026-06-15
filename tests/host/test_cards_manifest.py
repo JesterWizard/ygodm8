@@ -68,6 +68,43 @@ class CardManifestTests(unittest.TestCase):
         output = card_art.render_card_ids_header(manifest)
         assert_matches_golden(output, "cards/card_ids_header.inc")
 
+    def test_derives_description_symbols(self):
+        manifest = {
+            "cards": [
+                {
+                    "card_const": "SPIRIT_OF_THE_BREEZE",
+                    "card_name": "Spirit of the Breeze",
+                    "atk": 0,
+                    "def": 1800,
+                    "cost": 150,
+                    "attribute": "ATTRIBUTE_WIND",
+                    "level": 3,
+                    "type": "TYPE_FAIRY",
+                    "color": "EFFECT_CARD",
+                    "monsterEffect": 0,
+                    "spellEffect": 2,
+                    "trapEffect": 0,
+                    "password": [5, 3, 5, 3, 0, 0, 6, 9],
+                    "description": {
+                        "pages": [
+                            "As long as this card remains in face-up",
+                            "Attack Position, gain 1000 LP during",
+                            "each of your Standby Phases.",
+                        ]
+                    },
+                    "activation_description": {
+                        "pages": ["Gain 1000 LP during your Standby Phase."],
+                    },
+                }
+            ]
+        }
+        validated = validate_manifest(manifest)["cards"][0]
+        self.assertEqual(validated["description"]["symbol"], "gDescription_SpiritOfTheBreeze")
+        self.assertEqual(
+            validated["activation_description"]["symbol"],
+            "gActivationDescription_SpiritOfTheBreeze",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
