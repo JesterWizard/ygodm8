@@ -8,6 +8,7 @@
 #include "limiter_removal.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "burning_land.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -248,6 +249,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   AgeFairyBoxSetFlags();
   AgeWaveMotionCannonTurns();
   AgeFinalCountdownTurns();
+  TryApplyBurningLandStandbyDamage();
+  if (IsDuelOver() == 1)
+    return;
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
     sub_80408BC();
     sub_802ADA4();

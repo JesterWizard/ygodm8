@@ -931,11 +931,12 @@
 #define FINAL_COUNTDOWN                          0x039F
 #define ABSORBING_KID_FROM_THE_SKY               0x03A0
 #define ARSENAL_BUG                              0x03A1
+#define BURNING_LAND                             0x03A2
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03A2
-#define NUM_CUSTOM_CARDS                        0x0081
+#define NUM_TOTAL_CARDS                         0x03A3
+#define NUM_CUSTOM_CARDS                        0x0082
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

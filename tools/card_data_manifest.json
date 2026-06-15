@@ -16286,6 +16286,35 @@
       },
       "card_name": "Arsenal Bug",
       "password": [ 4, 2, 3, 6, 4, 3, 7, 4 ]
+    },
+    {
+      "card_const": "BURNING_LAND",
+      "atk": 65535,
+      "def": 65535,
+      "cost": 150,
+      "attribute": 0,
+      "level": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BurningLand",
+        "pages": [
+          "When this card is activated, destroy all",
+          "Field Spell Cards on the field. During each",
+          "turn the turn player takes 500 LP of damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BurningLand",
+        "pages": [
+          "Deal 500 LP of damage to the turn player."
+        ]
+      },
+      "card_name": "Burning Land",
+      "password": [ 5, 1, 2, 6, 3, 4, 6, 3 ]
     }
   ]
 }

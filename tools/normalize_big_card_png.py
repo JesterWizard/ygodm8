@@ -7,9 +7,13 @@ Photoshop "Save for Web" often places opaque edge colors on index 0 while still
 enabling transparency, which makes those pixels render black in-game.
 
 This script:
-  1. Remaps opaque index-0 pixels to the closest existing palette entry.
-  2. Sets palette entry 0 to black (reserved for transparency / empty tiles).
-  3. Optionally softens high-contrast halos by replacing body-colored pixels that
+  1. Trims oversized PLTE chunks (e.g. Photoshop's 256 slots) down to 64 entries
+     when pixel data only uses indices 0-63, so gbagfx emits a valid 64-color
+     .gbapal without re-quantizing the art.
+  2. Remaps opaque index-0 pixels to the closest existing palette entry.
+  3. Sets palette entry 0 to black (reserved for transparency / empty tiles).
+  4. Pads palettes with fewer than 64 entries up to 64 slots for the GBA pipeline.
+  5. Optionally softens high-contrast halos by replacing body-colored pixels that
      touch glow palette indices with the nearest glow index.
 """
 
@@ -25,6 +29,7 @@ from PIL import Image
 # Creature body blues on Chain Energy; extend as needed for other cards.
 DEFAULT_BODY_INDICES = frozenset({5, 6, 7, 8, 9, 10})
 DEFAULT_GLOW_INDICES = frozenset({60, 61, 62, 63})
+TARGET_PALETTE_COLORS = 64
 
 
 def color_distance_sq(a: tuple[int, int, int], b: tuple[int, int, int]) -> int:
@@ -117,18 +122,49 @@ def soften_glow_halos(
     return changed
 
 
+def trim_palette_to_64(image: Image.Image) -> int:
+    """Shrink an oversized PLTE chunk to 64 entries without re-quantizing pixels.
+
+    Photoshop "Save for Web" often writes 256 palette slots even when only the
+    first 64 are referenced. gbagfx copies the full PLTE size, which breaks the
+    64/112-color .gbapal validation in add_card_art.py.
+
+    Returns the number of trailing palette entries removed. Raises SystemExit when
+    pixel data references an index at or above 64 (extended-palette art must not be
+    trimmed here).
+    """
+    palette = image.getpalette()
+    if palette is None:
+        return 0
+
+    num_colors = len(palette) // 3
+    if num_colors <= TARGET_PALETTE_COLORS:
+        return 0
+
+    pixels = list(image.get_flattened_data())
+    if pixels:
+        max_index = max(pixels)
+        if max_index >= TARGET_PALETTE_COLORS:
+            raise SystemExit(
+                f"Cannot trim palette from {num_colors} to {TARGET_PALETTE_COLORS} entries: "
+                f"pixel data uses index {max_index}. Use <= {TARGET_PALETTE_COLORS - 1} "
+                "opaque indices or the extended big-card palette path."
+            )
+
+    image.putpalette(palette[: TARGET_PALETTE_COLORS * 3])
+    return num_colors - TARGET_PALETTE_COLORS
+
+
 def pad_palette_to_64(image: Image.Image) -> int:
-    """Ensure the PNG has exactly 64 palette entries. Pillow's 'P' mode preserves
-    the PLTE chunk size from the source file. Some export tools (e.g. Photoshop
-    'Save for Web') omit unused trailing slots, producing fewer than 64 entries.
-    The GBA pipeline expects a full 64-color palette; pad missing entries with
-    black. Returns the number of entries added."""
+    """Pad palettes with fewer than 64 entries up to the GBA big-art size.
+
+    Some export tools omit unused trailing slots. Returns the number of entries added.
+    """
     palette = image.getpalette()
     num_colors = len(palette) // 3 if palette else 0
-    if num_colors >= 64:
+    if num_colors >= TARGET_PALETTE_COLORS:
         return 0
-    added = 64 - num_colors
-    # Extend palette list with black entries (R=0, G=0, B=0)
+    added = TARGET_PALETTE_COLORS - num_colors
     image.putpalette(palette + [0, 0, 0] * added)
     return added
 
@@ -142,14 +178,17 @@ def normalize_png(
     glow_indices: frozenset[int],
 ) -> None:
     image = Image.open(path).convert("P")
+    trimmed = trim_palette_to_64(image)
     remapped = remap_opaque_index_zero(image)
     padded = pad_palette_to_64(image)
     softened = 0
     if soften_halos:
         softened = soften_glow_halos(image, glow_indices, body_indices, halo_radius)
 
-    image.save(path)
+    image.save(path, format="PNG", optimize=True)
     parts = [f"remapped {remapped} index-0 pixels"]
+    if trimmed:
+        parts.append(f"trimmed {trimmed} palette entries")
     if padded:
         parts.append(f"padded {padded} palette entries")
     if soften_halos:

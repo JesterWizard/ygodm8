@@ -400,7 +400,8 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == THE_DARK_DOOR || cardId == DARK_ROOM_OF_NIGHTMARE
       || cardId == WAVE_MOTION_CANNON || cardId == PYRAMID_OF_LIGHT
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE
-      || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN)
+      || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN
+      || cardId == BURNING_LAND)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND

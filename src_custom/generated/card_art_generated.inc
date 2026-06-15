@@ -528,6 +528,10 @@ static const unsigned char sArsenalBugBigArt[] __attribute__((section(".append_a
 static const unsigned short sArsenalBugBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arsenal_bug.gbapal");
 static const unsigned char sArsenalBugMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arsenal_bug.lz");
 
+static const unsigned char sBurningLandBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/burning_land.huff");
+static const unsigned short sBurningLandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/burning_land.gbapal");
+static const unsigned char sBurningLandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/burning_land.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -661,6 +665,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x039F] = sFinalCountdownBigArt,
   [0x03A0] = sAbsorbingKidFromTheSkyBigArt,
   [0x03A1] = sArsenalBugBigArt,
+  [0x03A2] = sBurningLandBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -796,6 +801,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x039F] = sFinalCountdownBigPalette,
   [0x03A0] = sAbsorbingKidFromTheSkyBigPalette,
   [0x03A1] = sArsenalBugBigPalette,
+  [0x03A2] = sBurningLandBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -931,6 +937,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x039F] = 0,
   [0x03A0] = 0,
   [0x03A1] = 0,
+  [0x03A2] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1066,4 +1073,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x039F] = sFinalCountdownMiniArt,
   [0x03A0] = sAbsorbingKidFromTheSkyMiniArt,
   [0x03A1] = sArsenalBugMiniArt,
+  [0x03A2] = sBurningLandMiniArt,
 };
