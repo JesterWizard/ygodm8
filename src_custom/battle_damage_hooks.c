@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "card_passives.h"
 #include "familiar_knight.h"
+#include "giant_rat.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "spear_dragon.h"
@@ -144,11 +145,15 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(
         gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]->id);
+    MarkGiantRatBattleDestruction(
+        DUEL_PLAYER, gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]->id);
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.playerMonsterRow][sActionData.unkA], 0);
   }
   if (sActionData.flags & 2) {
     MarkFamiliarKnightBattleDestruction(
         gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
+    MarkGiantRatBattleDestruction(
+        DUEL_OPPONENT, gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
     ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16], 1);
   }
 

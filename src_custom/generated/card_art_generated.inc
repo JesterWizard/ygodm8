@@ -1,5 +1,13 @@
 #include "global.h"
 
+static const unsigned char sGiantRatBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/giant_rat.huff");
+static const unsigned short sGiantRatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/giant_rat.gbapal");
+static const unsigned char sGiantRatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/giant_rat.lz");
+
+static const unsigned char sSenjuOfTheThousandHandsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/senju_of_the_thousand_hands.huff");
+static const unsigned short sSenjuOfTheThousandHandsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/senju_of_the_thousand_hands.gbapal");
+static const unsigned char sSenjuOfTheThousandHandsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/senju_of_the_thousand_hands.lz");
+
 static const unsigned char sSorcererOfDarkMagicBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sorcerer_of_dark_magic.huff");
 static const unsigned short sSorcererOfDarkMagicBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sorcerer_of_dark_magic.gbapal");
 static const unsigned char sSorcererOfDarkMagicMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sorcerer_of_dark_magic.lz");
@@ -509,6 +517,8 @@ static const unsigned short sFinalCountdownBigPalette[] __attribute__((section("
 static const unsigned char sFinalCountdownMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/final_countdown.lz");
 
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
+  [0x00AD] = sGiantRatBigArt,
+  [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0321] = sSorcererOfDarkMagicBigArt,
   [0x0322] = sDeckDestructionVirusBigArt,
   [0x0323] = sMagiciansValkyriaBigArt,
@@ -639,6 +649,8 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
+  [0x00AD] = sGiantRatBigPalette,
+  [0x00AE] = sSenjuOfTheThousandHandsBigPalette,
   [0x0321] = sSorcererOfDarkMagicBigPalette,
   [0x0322] = sDeckDestructionVirusBigPalette,
   [0x0323] = sMagiciansValkyriaBigPalette,
@@ -769,6 +781,8 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
+  [0x00AD] = 0,
+  [0x00AE] = 0,
   [0x0321] = 0,
   [0x0322] = 0,
   [0x0323] = 0,
@@ -899,6 +913,8 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
+  [0x00AD] = sGiantRatMiniArt,
+  [0x00AE] = sSenjuOfTheThousandHandsMiniArt,
   [0x0321] = sSorcererOfDarkMagicMiniArt,
   [0x0322] = sDeckDestructionVirusMiniArt,
   [0x0323] = sMagiciansValkyriaMiniArt,

@@ -4,6 +4,7 @@
 #include "dynamic_equip.h"
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
+#include "giant_rat.h"
 #include "pyramid_of_light.h"
 #include "dark_magician_knight.h"
 #include "kaiser_glider.h"
@@ -50,6 +51,8 @@ unsigned char ShouldActivateMaraudingCaptain(void);
 void ActivateMaraudingCaptain(void);
 unsigned char ShouldActivatePetenTheDarkClown(void);
 void ActivatePetenTheDarkClown(void);
+unsigned char ShouldActivateGiantRat(void);
+void ActivateGiantRat(void);
 unsigned char ShouldActivateGrenMajuDaEiza(void);
 void ActivateGrenMajuDaEiza(void);
 unsigned char ShouldActivateDesFeralImp(void);
@@ -133,6 +136,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = PETEN_THE_DARK_CLOWN,
     .shouldActivate = ShouldActivatePetenTheDarkClown,
     .activate = ActivatePetenTheDarkClown,
+  },
+  {
+    .cardId = GIANT_RAT,
+    .shouldActivate = ShouldActivateGiantRat,
+    .activate = ActivateGiantRat,
   },
   {
     .cardId = GREN_MAJU_DA_EIZA,

@@ -352,7 +352,11 @@ def ensure_custom_card_assets(manifest: dict, force_minis: bool = False) -> list
         len(manifest["cards"]),
     )
     built_minis: list[pathlib.Path] = []
-    for item in manifest["cards"][custom_start:]:
+    for index, item in enumerate(manifest["cards"]):
+        if index < custom_start:
+            big_png = BIG_DIR / f"{item['card_const'].lower()}.png"
+            if not big_png.exists():
+                continue
         stem = item["card_const"].lower()
         big_png = BIG_DIR / f"{stem}.png"
         mini_png = MINI_DIR / f"{stem}.png"
@@ -604,7 +608,11 @@ def discover_entries(manifest: dict) -> list[CardArtEntry]:
     enum_tables = load_effect_enums()
     entries = []
     custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
-    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+    for index, item in enumerate(manifest["cards"]):
+        if index < custom_start:
+            stem = item["card_const"].lower()
+            if not (BIG_DIR / f"{stem}.png").exists():
+                continue
         for key in ("monsterEffect", "spellEffect", "trapEffect"):
             item[key] = resolve_effect_value(key, item[key], enum_tables)
         stem = item["card_const"].lower()

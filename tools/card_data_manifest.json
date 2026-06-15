@@ -2706,13 +2706,27 @@
       "atk": 1400,
       "def": 1450,
       "cost": 172,
-      "attribute": "ATTRIBUTE_FOREST",
+      "attribute": "ATTRIBUTE_EARTH",
       "level": 4,
       "type": "TYPE_BEAST",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_GiantRat",
+        "pages": [
+          "A rat that attacks with its sharp fangs.",
+          "If destroyed in battle, special summon",
+          "1 'Giant Rat' from your deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GiantRat",
+        "pages": [
+          "Special summon a 'Giant Rat' from deck."
+        ]
+      },
       "card_name": "Giant Rat",
       "password": [ 9, 7, 0, 1, 7, 1, 2, 0 ]
     },
