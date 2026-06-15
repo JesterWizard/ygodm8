@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[931] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[932] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -943,9 +943,10 @@ const u8 gCardLockAfterActivation_Hook[931] APPEND_RODATA = {
   [0x03A0] = 1,
   [0x03A1] = 1,
   [0x03A2] = 1,
+  [0x03A3] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[931] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[932] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1877,9 +1878,10 @@ const u8 gCardEffectUsage_Hook[931] APPEND_RODATA = {
   [0x03A0] = EFFECT_USAGE_NONE,
   [0x03A1] = EFFECT_USAGE_NONE,
   [0x03A2] = EFFECT_USAGE_NONE,
+  [0x03A3] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[931] APPEND_RODATA = {
+const CardData gCardData_NEW[932] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14160,5 +14162,19 @@ const CardData gCardData_NEW[931] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 1, 2, 6, 3, 4, 6, 3},
     .description = gDescription_BurningLand,
+  },
+  [0x03A3] = {
+    .atk = 1000,
+    .def = 2100,
+    .cost = 319,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 4,
+    .type = TYPE_MACHINE,
+    .color = NORMAL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 8, 0, 9, 4, 9, 9, 7},
+    .description = gDescription_BattleFootballer,
   },
 };

@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-14).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-15).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 126 |
-| Art ready, needs manifest | 110 |
+| In game (manifest + art) | 130 |
+| Art ready, needs manifest | 189 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **236** |
+| **Total PNGs in `80x80/`** | **319** |
 
 ## In game
 
@@ -146,36 +146,69 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `NEGATIVE_ENERGY` | Negative Energy | `negative_energy.png` |
 | `MATAZA_THE_ZAPPER` | Mataza the Zapper | `mataza_the_zapper.png` |
 | `DOUBLE_COSTON` | Double Coston | `double_coston.png` |
-| `TYRANT_DRAGON` | Tyrant Dragon | `tyrant_dragon.png` |
 | `PRECIOUS_CARDS_FROM_BEYOND` | Precious Cards From Beyond | `precious_cards_from_beyond.png` |
+| `TYRANT_DRAGON` | Tyrant Dragon | `tyrant_dragon.png` |
+| `FINAL_COUNTDOWN` | Final Countdown | `final_countdown.png` |
+| `ABSORBING_KID_FROM_THE_SKY` | Absorbing Kid from the Sky | `absorbing_kid_from_the_sky.png` |
+| `ARSENAL_BUG` | Arsenal Bug | `arsenal_bug.png` |
+| `BURNING_LAND` | Burning Land | `burning_land.png` |
+| `BATTLE_FOOTBALLER` | Battle Footballer | `battle_footballer.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
+- [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
 - [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
+- [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
+- [ ] `AMAZONESS_ARCHER` — `amazoness_archer.png`
+- [ ] `AMAZONESS_TIGER` — `amazoness_tiger.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
+- [ ] `APPROPRIATE` — `appropriate.png`
+- [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
+- [ ] `BERSERK_GORILLA` — `berserk_gorilla.png`
 - [ ] `BIG_BANG_SHOT` — `big_bang_shot.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
+- [ ] `BLACK_PENDANT` — `black_pendant.png`
+- [ ] `BLAST_HELD_BY_A_TRIBUTE` — `blast_held_by_a_tribute.png`
+- [ ] `BLOWBACK_DRAGON` — `blowback_dragon.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
+- [ ] `BOOK_OF_LIFE` — `book_of_life.png`
+- [ ] `BOOK_OF_MOON` — `book_of_moon.png`
+- [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
+- [ ] `BOTTOMLESS_SHIFTING_SAND` — `bottomless_shifting_sand.png`
 - [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
+- [ ] `BURNING_ALGAE` — `burning_algae.png`
+- [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
+- [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
+- [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
+- [ ] `CHAOS_GREED` — `chaos_greed.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CREATURE_SWAP` — `creature_swap.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
+- [ ] `DANCING_FAIRY` — `dancing_fairy.png`
+- [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
+- [ ] `DARKLORD_MARIE` — `darklord_marie.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
+- [ ] `DES_KANGAROO` — `des_kangaroo.png`
+- [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
+- [ ] `DICE_JAR` — `dice_jar.png`
+- [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIFFUSION_WAVE_MOTION` — `diffusion_wave_motion.png`
+- [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
+- [ ] `DON_ZALOOG` — `don_zaloog.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
@@ -183,12 +216,46 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DROP_OFF` — `drop_off.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
 - [ ] `ECTOPLASMER` — `ectoplasmer.png`
+- [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
+- [ ] `FATAL_ABACUS` — `fatal_abacus.png`
+- [ ] `FENRIR` — `fenrir.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
+- [ ] `FORCED_REQUISITION` — `forced_requisition.png`
+- [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
+- [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
+- [ ] `GIANT_RAT` — `giant_rat.png`
+- [ ] `GOBLIN_KING` — `goblin_king.png`
+- [ ] `GRACEFUL_DICE` — `graceful_dice.png`
+- [ ] `GRANADORA` — `granadora.png`
+- [ ] `GRAVEKEEPERS_SERVANT` — `gravekeepers_servant.png`
+- [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
+- [ ] `GYAKU_GIRE_PANDA` — `gyaku_gire_panda.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
+- [ ] `HYPER_HAMMERHEAD` — `hyper_hammerhead.png`
+- [ ] `INSECT_IMITATION` — `insect_imitation.png`
+- [ ] `INVADER_OF_THE_THRONE` — `invader_of_the_throne.png`
+- [ ] `JAR_ROBBER` — `jar_robber.png`
+- [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
+- [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
+- [ ] `KA_2_DES_SCISSORS` — `ka_2_des_scissors.png`
+- [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
+- [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
+- [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
+- [ ] `KISHIDO_SPIRIT` — `kishido_spirit.png`
+- [ ] `KNIGHTS_TITLE` — `knights_title.png`
+- [ ] `LAST_TURN` — `last_turn.png`
+- [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
+- [ ] `LEKUNGA` — `lekunga.png`
+- [ ] `LESSER_FIEND` — `lesser_fiend.png`
+- [ ] `LEVEL_LIMIT_AREA_A` — `level_limit_area_a.png`
+- [ ] `LEVEL_LIMIT_AREA_B` — `level_limit_area_b.png`
+- [ ] `LEVIA_DRAGON_DAEDALUS` — `levia_dragon_daedalus.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
+- [ ] `MAGICAL_MERCHANT` — `magical_merchant.png`
+- [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
@@ -206,6 +273,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
 - [ ] `MORALE_BOOST` — `morale_boost.png`
+- [ ] `MUCUS_YOLK` — `mucus_yolk.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
 - [ ] `NECROVALLEY` — `necrovalley.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
@@ -216,9 +284,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
+- [ ] `POSSESSED_DARK_SOUL` — `possessed_dark_soul.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
+- [ ] `RAREGOLD_ARMOR` — `raregold_armor.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
@@ -229,6 +299,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
+- [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
 - [ ] `SERVANT_OF_CATABOLISM` — `servant_of_catabolism.png`
@@ -239,8 +310,13 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
+- [ ] `SPIRIT_CALLER` — `spirit_caller.png`
+- [ ] `SPIRIT_OF_THE_BREEZE` — `spirit_of_the_breeze.png`
 - [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
 - [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
+- [ ] `SPIRIT_RYU` — `spirit_ryu.png`
+- [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
+- [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
@@ -251,17 +327,24 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_FLUTE_OF_SUMMONING_DRAGON` — `the_flute_of_summoning_dragon.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
+- [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
+- [ ] `THEBAN_NIGHTMARE` — `theban_nightmare.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
+- [ ] `TORNADO_BIRD` — `tornado_bird.png`
+- [ ] `TORNADO_WALL` — `tornado_wall.png`
 - [ ] `TORPEDO_FISH` — `torpedo_fish.png`
+- [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
+- [ ] `VENGEFUL_BOG_SPIRIT` — `vengeful_bog_spirit.png`
 - [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
+- [ ] `WORLD_SUPPRESSION` — `world_suppression.png`
 - [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
 
 ## Todo — in manifest, missing art

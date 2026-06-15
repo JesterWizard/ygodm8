@@ -16315,6 +16315,28 @@
       },
       "card_name": "Burning Land",
       "password": [ 5, 1, 2, 6, 3, 4, 6, 3 ]
+    },
+    {
+      "card_const": "BATTLE_FOOTBALLER",
+      "atk": 1000,
+      "def": 2100,
+      "cost": 319,
+      "attribute": "ATTRIBUTE_FIRE",
+      "level": 4,
+      "type": "TYPE_MACHINE",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_BattleFootballer",
+        "pages": [
+          "A cyborg with high defense power.",
+          "Originally it was invented for a football machine."
+        ]
+      },
+      "card_name": "Battle Footballer",
+      "password": [ 4, 8, 0, 9, 4, 9, 9, 7 ]
     }
   ]
 }
