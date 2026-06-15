@@ -30,6 +30,32 @@ ALLOWED_EFFECT_USAGE = {
 ASSET_ENTRY_KEYS = {"big_art", "big_palette", "mini_art"}
 ALLOWED_ENTRY_KEYS = {"card_const", "card_name", "trunk_card"} | REQUIRED_STATS_KEYS | OPTIONAL_STATS_KEYS | ASSET_ENTRY_KEYS
 
+# Canonical per-card key order — do not reorder or reformat without explicit user approval.
+MANIFEST_CARD_KEY_ORDER = (
+    "card_const",
+    "card_name",
+    "atk",
+    "def",
+    "level",
+    "attribute",
+    "type",
+    "color",
+    "monsterEffect",
+    "spellEffect",
+    "trapEffect",
+    "cost",
+    "password",
+    "description",
+    "activation_description",
+    "trunk_card",
+    "customFieldSpell",
+    "lock_after_activation",
+    "effect_usage",
+    "big_art",
+    "big_palette",
+    "mini_art",
+)
+
 
 class ManifestValidationError(Exception):
     """Raised when a card manifest fails validation."""
@@ -45,6 +71,77 @@ def description_symbol(card_const: str) -> str:
 
 def activation_description_symbol(card_const: str) -> str:
     return f"gActivationDescription_{card_const_to_pascal(card_const)}"
+
+
+def order_card_entry(item: dict) -> dict:
+    ordered: dict = {}
+    for key in MANIFEST_CARD_KEY_ORDER:
+        if key in item:
+            ordered[key] = item[key]
+    for key in item:
+        if key not in ordered:
+            ordered[key] = item[key]
+    return ordered
+
+
+def format_password_inline(password: list[int]) -> str:
+    return "[" + ", ".join(str(digit) for digit in password) + "]"
+
+
+def _format_description_block(description: dict, indent: str) -> list[str]:
+    lines = [f'{indent}"symbol": {json.dumps(description["symbol"])},']
+    lines.append(f'{indent}"pages": [')
+    pages = description["pages"]
+    for index, page in enumerate(pages):
+        comma = "," if index < len(pages) - 1 else ""
+        lines.append(f"{indent}  {json.dumps(page)}{comma}")
+    lines.append(f"{indent}]")
+    return lines
+
+
+def format_card_entry(item: dict, base_indent: str = "    ") -> list[str]:
+    ordered = order_card_entry(item)
+    keys = list(ordered.keys())
+    inner = base_indent + "  "
+    lines = [f"{base_indent}{{"]
+
+    for index, key in enumerate(keys):
+        value = ordered[key]
+        comma = "," if index < len(keys) - 1 else ""
+
+        if key == "password":
+            lines.append(f'{inner}"password": {format_password_inline(value)}{comma}')
+        elif key in ("description", "activation_description"):
+            lines.append(f'{inner}"{key}": {{')
+            lines.extend(_format_description_block(value, inner + "  "))
+            lines.append(f"{inner}}}{comma}")
+        elif isinstance(value, bool):
+            lines.append(f'{inner}"{key}": {"true" if value else "false"}{comma}')
+        elif isinstance(value, str):
+            lines.append(f'{inner}"{key}": {json.dumps(value)}{comma}')
+        else:
+            lines.append(f'{inner}"{key}": {json.dumps(value)}{comma}')
+
+    lines.append(f"{base_indent}}}")
+    return lines
+
+
+def dump_manifest_json(manifest: dict) -> str:
+    cards = manifest["cards"]
+    lines = ["{", '  "cards": [']
+    for index, item in enumerate(cards):
+        lines.extend(format_card_entry(item))
+        if index < len(cards) - 1:
+            lines[-1] = lines[-1] + ","
+    lines.append("  ]")
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+def write_manifest(path: Path | str, manifest: object) -> None:
+    path = Path(path)
+    validated = validate_manifest(manifest)
+    path.write_text(dump_manifest_json(validated))
 
 
 def normalize_description_block(card_const: str, description: dict, *, activation: bool) -> dict:
@@ -204,13 +301,15 @@ def validate_manifest(manifest: object) -> dict:
             _fail(f"cards[{index}].customFieldSpell must be a string when present.")
 
         validated.append(
-            {
-                "card_const": card_const,
-                "card_name": card_name,
-                **stats,
-                **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {}),
-                **({"customFieldSpell": custom_field_spell} if custom_field_spell is not None else {}),
-            }
+            order_card_entry(
+                {
+                    "card_const": card_const,
+                    "card_name": card_name,
+                    **stats,
+                    **({"trunk_card": item["trunk_card"]} if "trunk_card" in item else {}),
+                    **({"customFieldSpell": custom_field_spell} if custom_field_spell is not None else {}),
+                }
+            )
         )
 
     return {"cards": validated}

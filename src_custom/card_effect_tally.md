@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `150` effects
+- `151` effects
 
 ## Tally
 
@@ -152,6 +152,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Giant Rat` | `src_custom/permanent_effects/giant_rat.c` |
 | `permanent_effects` | `Des Feral Imp` | `src_custom/permanent_effects/des_feral_imp.c` |
 | `permanent_effects` | `Arsenal Bug` | `src_custom/permanent_effects/arsenal_bug.c` |
+| `permanent_effects` | `Granadora` | `src_custom/permanent_effects/granadora.c` |
 | `permanent_effects` | `Goblin King` | `src_custom/permanent_effects/goblin_king.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |

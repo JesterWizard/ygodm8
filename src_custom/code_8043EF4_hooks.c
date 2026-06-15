@@ -89,6 +89,7 @@ unsigned char GetFirstNonEmptyMonZoneId(struct DuelCard *zone[]);
 void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
+void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
 signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
 void sub_80441D0(void);
 void MonsterActionMenu(void);
@@ -591,6 +592,8 @@ void sub_80449D8__Replacement(void)
 
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
+  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+    TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
         gFixedZones[placedRow][placedCol]->id, WhoseTurn());

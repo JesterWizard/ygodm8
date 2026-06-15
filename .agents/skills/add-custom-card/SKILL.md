@@ -90,6 +90,14 @@ Do **not** hand-edit `build/cards/` or `src_custom/generated/card_art_generated.
 
 Append to the **end** of the `cards` array in `tools/card_data_manifest.json` (after the last entry). Manifest order = card ID; never reorder existing entries.
 
+**Formatting is locked — do not change without explicit user approval:**
+
+- Use `python3 tools/add_custom_card.py ... --write` to append; it calls `write_manifest()` in `tools/card_manifest.py`.
+- Never run `json.dumps` on the manifest or hand-reorder keys.
+- Every card object must use the canonical key order from `MANIFEST_CARD_KEY_ORDER` in `card_manifest.py`.
+- `password` must always be a **single-line** array: `"password": [1, 3, 9, 4, 4, 4, 2, 2]`.
+- Copy the nearest similar card in the manifest for field order; grep `GOBLIN_KING` or another recent custom entry as the template.
+
 Copy the nearest template below; grep the manifest for one similar card only if a field is unclear (e.g. `trapEffect` for a trap clone).
 
 ### Normal monster (no effect) — e.g. Battle Footballer
@@ -97,24 +105,25 @@ Copy the nearest template below; grep the manifest for one similar card only if 
 ```json
 {
   "card_const": "BATTLE_FOOTBALLER",
+  "card_name": "Battle Footballer",
   "atk": 1000,
   "def": 2100,
-  "cost": 319,
-  "attribute": "ATTRIBUTE_FIRE",
   "level": 4,
+  "attribute": "ATTRIBUTE_FIRE",
   "type": "TYPE_MACHINE",
   "color": "NORMAL_CARD",
   "monsterEffect": 0,
   "spellEffect": 2,
   "trapEffect": 0,
+  "cost": 319,
+  "password": [4, 8, 0, 9, 4, 9, 9, 7],
   "description": {
+    "symbol": "gDescription_BattleFootballer",
     "pages": [
       "A cyborg with high defense power.",
       "Originally it was invented for a football machine."
     ]
-  },
-  "card_name": "Battle Footballer",
-  "password": [4, 8, 0, 9, 4, 9, 9, 7]
+  }
 }
 ```
 
@@ -125,20 +134,20 @@ Copy the nearest template below; grep the manifest for one similar card only if 
 ```json
 {
   "card_const": "BURNING_LAND",
+  "card_name": "Burning Land",
   "atk": 65535,
   "def": 65535,
-  "cost": 150,
-  "attribute": 0,
   "level": 0,
+  "attribute": 0,
   "type": "TYPE_SPELL",
   "color": "SPELL_CARD",
   "monsterEffect": 0,
   "spellEffect": 2,
   "trapEffect": 0,
+  "cost": 150,
+  "password": [5, 1, 2, 6, 3, 4, 6, 3],
   "description": { "symbol": "gDescription_BurningLand", "pages": ["...", "..."] },
-  "activation_description": { "symbol": "gActivationDescription_BurningLand", "pages": ["..."] },
-  "card_name": "Burning Land",
-  "password": [5, 1, 2, 6, 3, 4, 6, 3]
+  "activation_description": { "symbol": "gActivationDescription_BurningLand", "pages": ["..."] }
 }
 ```
 

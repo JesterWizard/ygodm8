@@ -21,7 +21,9 @@ from card_manifest import (  # noqa: E402
     activation_description_symbol,
     description_symbol,
     load_manifest_json,
+    order_card_entry,
     validate_manifest,
+    write_manifest,
 )
 
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
@@ -176,27 +178,27 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
     password = passcode_to_password(passcode)
 
     if frame in ("spell", "trap"):
-        entry = {
+        entry = order_card_entry({
             "card_const": card_const,
+            "card_name": card_name,
             "atk": 65535,
             "def": 65535,
-            "cost": suggest_cost(manifest, {"color": color, "level": 0, "atk": 65535, "def": 65535}),
-            "attribute": 0,
             "level": 0,
+            "attribute": 0,
             "type": "TYPE_TRAP" if frame == "trap" else "TYPE_SPELL",
             "color": color,
             "monsterEffect": 0,
             "spellEffect": 2,
             "trapEffect": 0,
+            "cost": suggest_cost(manifest, {"color": color, "level": 0, "atk": 65535, "def": 65535}),
+            "password": password,
             "description": {
                 "pages": wrap_effect_text(api_card.get("desc", card_name)),
             },
             "activation_description": {
                 "pages": [api_card.get("desc", card_name)[:120]],
             },
-            "card_name": card_name,
-            "password": password,
-        }
+        })
         return entry
 
     race = api_card.get("race")
@@ -212,28 +214,29 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
     def_ = int(api_card["def"]) if api_card["def"] is not None else 0
     level = int(api_card["level"])
 
-    entry = {
+    entry = order_card_entry({
         "card_const": card_const,
+        "card_name": card_name,
         "atk": atk,
         "def": def_,
-        "cost": suggest_cost(manifest, {"color": color, "level": level, "atk": atk, "def": def_}),
-        "attribute": attribute,
         "level": level,
+        "attribute": attribute,
         "type": card_type,
         "color": color,
         "monsterEffect": 0,
         "spellEffect": 2,
         "trapEffect": 0,
+        "cost": suggest_cost(manifest, {"color": color, "level": level, "atk": atk, "def": def_}),
+        "password": password,
         "description": {
             "pages": wrap_effect_text(api_card.get("desc", card_name)),
         },
-        "card_name": card_name,
-        "password": password,
-    }
+    })
     if color == "EFFECT_CARD":
         entry["activation_description"] = {
             "pages": [api_card.get("desc", card_name)[:120]],
         }
+        entry = order_card_entry(entry)
     return entry
 
 
@@ -275,8 +278,7 @@ def append_manifest(entry: dict) -> None:
     if any(item.get("card_const") == entry["card_const"] for item in manifest["cards"]):
         raise SystemExit(f"{entry['card_const']} is already in the manifest")
     manifest["cards"].append(entry)
-    validated = validate_manifest(manifest)
-    MANIFEST_PATH.write_text(json.dumps(validated, indent=2) + "\n")
+    write_manifest(MANIFEST_PATH, manifest)
 
 
 def main() -> int:

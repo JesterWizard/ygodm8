@@ -60,6 +60,8 @@ unsigned char ShouldActivateDesFeralImp(void);
 void ActivateDesFeralImp(void);
 unsigned char ShouldActivateArsenalBug(void);
 void ActivateArsenalBug(void);
+unsigned char ShouldActivateGranadora(void);
+void ActivateGranadora(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -159,6 +161,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ARSENAL_BUG,
     .shouldActivate = ShouldActivateArsenalBug,
     .activate = ActivateArsenalBug,
+  },
+  {
+    .cardId = GRANADORA,
+    .shouldActivate = ShouldActivateGranadora,
+    .activate = ActivateGranadora,
   },
 };
 

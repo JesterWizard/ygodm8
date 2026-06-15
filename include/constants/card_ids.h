@@ -937,11 +937,12 @@
 #define SPIRIT_OF_THE_BREEZE                     0x03A5
 #define DROP_OFF                                 0x03A6
 #define GOBLIN_KING                              0x03A7
+#define GRANADORA                                0x03A8
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03A8
-#define NUM_CUSTOM_CARDS                        0x0087
+#define NUM_TOTAL_CARDS                         0x03A9
+#define NUM_CUSTOM_CARDS                        0x0088
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

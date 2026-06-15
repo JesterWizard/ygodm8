@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from card_manifest import ManifestValidationError, format_json_decode_error, load_manifest_json, validate_manifest  # noqa: E402
+from card_manifest import ManifestValidationError, dump_manifest_json, format_password_inline, format_json_decode_error, load_manifest_json, order_card_entry, validate_manifest, write_manifest  # noqa: E402
 import add_card_art as card_art  # noqa: E402
 
 from tests.support.golden import assert_matches_golden  # noqa: E402
@@ -104,6 +104,52 @@ class CardManifestTests(unittest.TestCase):
             validated["activation_description"]["symbol"],
             "gActivationDescription_SpiritOfTheBreeze",
         )
+
+    def test_manifest_dump_uses_canonical_key_order_and_inline_password(self):
+        manifest = validate_manifest(json.loads(FIXTURE.read_text()))
+        text = dump_manifest_json(manifest)
+        self.assertIn('"password": [8, 9, 6, 3, 1, 1, 3, 9]', text)
+        self.assertNotIn('"password": [\n', text)
+        entry = manifest["cards"][1]
+        self.assertEqual(
+            list(entry.keys()),
+            [
+                "card_const",
+                "card_name",
+                "atk",
+                "def",
+                "level",
+                "attribute",
+                "type",
+                "color",
+                "monsterEffect",
+                "spellEffect",
+                "trapEffect",
+                "cost",
+                "password",
+            ],
+        )
+
+    def test_order_card_entry_matches_manifest_key_order(self):
+        entry = order_card_entry(
+            {
+                "password": [1, 2, 3, 4, 5, 6, 7, 8],
+                "card_const": "EXAMPLE",
+                "card_name": "Example",
+                "atk": 1,
+                "def": 2,
+                "level": 3,
+                "attribute": 0,
+                "type": 0,
+                "color": "NORMAL_CARD",
+                "monsterEffect": 0,
+                "spellEffect": 2,
+                "trapEffect": 0,
+                "cost": 4,
+            }
+        )
+        self.assertEqual(list(entry.keys())[:4], ["card_const", "card_name", "atk", "def"])
+        self.assertEqual(format_password_inline(entry["password"]), "[1, 2, 3, 4, 5, 6, 7, 8]")
 
 
 if __name__ == "__main__":

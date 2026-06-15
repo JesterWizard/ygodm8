@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 135 |
-| Art ready, needs manifest | 184 |
+| In game (manifest + art) | 136 |
+| Art ready, needs manifest | 183 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -157,6 +157,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPIRIT_OF_THE_BREEZE` | Spirit of the Breeze | `spirit_of_the_breeze.png` |
 | `DROP_OFF` | Drop Off | `drop_off.png` |
 | `GOBLIN_KING` | Goblin King | `goblin_king.png` |
+| `GRANADORA` | Granadora | `granadora.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -229,7 +230,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
 - [ ] `GIANT_RAT` — `giant_rat.png`
 - [ ] `GRACEFUL_DICE` — `graceful_dice.png`
-- [ ] `GRANADORA` — `granadora.png`
 - [ ] `GRAVEKEEPERS_SERVANT` — `gravekeepers_servant.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `GYAKU_GIRE_PANDA` — `gyaku_gire_panda.png`

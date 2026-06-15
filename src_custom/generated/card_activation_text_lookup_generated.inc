@@ -152,6 +152,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SPIRIT_OF_THE_BREEZE, gActivationDescription_SpiritOfTheBreeze },
   { DROP_OFF, gActivationDescription_DropOff },
   { GOBLIN_KING, gActivationDescription_GoblinKing },
+  { GRANADORA, gActivationDescription_Granadora },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
