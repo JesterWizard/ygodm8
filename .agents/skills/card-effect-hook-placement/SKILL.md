@@ -22,6 +22,7 @@ Use this skill when creating or moving a card-specific effect.
 - Spell effects:
   - `src_custom/spell_effect_hooks.c`
   - `src_custom/spell_effects/<card_name>.c`
+  - `include/duel_helpers.h` for draw/destroy/summon/LP/text helpers
 - Trap effects:
   - `src_custom/trap_effect_hooks.c`
   - `src_custom/trap_effects/<card_name>.c`
@@ -61,6 +62,7 @@ Use this skill when creating or moving a card-specific effect.
 ## Notes
 
 - Prefer one file per card effect.
+- For draw, destroy, discard, LP, summon, deck search, effect text, and spell-through-traps, use `include/duel_helpers.h` instead of copying static helpers into each card file.
 - If the effect already has a hook-side home, extend that file instead of adding new vanilla logic.
 - If the effect needs a replacement of a vanilla entrypoint, use the vanilla-function-replacements skill in addition to this one.
 - Keep `src_custom/card_effect_tally.md` current whenever hook-side card logic is added or moved.

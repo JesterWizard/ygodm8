@@ -57,29 +57,60 @@ Recommended function naming:
 - Normal effects:
   - `unsigned char CanActivate<CardName>(void);`
   - `void Activate<CardName>Effect(void);`
-src_custom
-## Code Locationssrc_custom
-src_custom
-| Feature | Location | Description |src_custom
-|--------|----------|-------------|src_custom
-| Permanent-effect dispatch | `TryActivatingPermanentEffect__Hook` in `src_custom/permanent_effect_hsrc_custom Chooses between custom permanent overrides and vanilla permanent effect handlers |
+
+## Code Locations
+
+| Feature | Location | Description |
+|--------|----------|-------------|
+| Shared duel actions | `include/duel_helpers.h`, `src_custom/duel_helpers.c` | Draw, destroy, discard, LP, summon, deck search, effect text, spell-through-traps |
+| Permanent-effect dispatch | `TryActivatingPermanentEffect__Hook` in `src_custom/permanent_effect_hooks.c` | Chooses between custom permanent overrides and vanilla permanent effect handlers |
 | Permanent-effect override table | `sPermanentEffectOverrides` in `src_custom/permanent_effect_hooks.c` | Maps a card ID to card-specific permanent-effect functions |
 | Permanent card example | `ShouldActivateMilusRadiant` and `ActivateMilusRadiant` in `src_custom/permanent_effects/milus_radiant.c` | Example custom permanent effect file with one card per file |
-| Normal-effect dispatch | `ActivateMonsterEffect__Replacement` isrc_customoks/monster_effect_hooks.c` | Runs custom activated monster effects before falling back to the vanilla monster-effect table |
-| Normal-effect actionsrc_customMonsterActionMenu__Replacement` in `src_custom/monster_effect_hooks.c` | Blocks or allows activation from the duel UI before calling the custom effect |
+| Normal-effect dispatch | `ActivateMonsterEffect__Replacement` in `src_custom/monster_effect_hooks.c` | Runs custom activated monster effects before falling back to the vanilla monster-effect table |
+| Normal-effect action menu | `MonsterActionMenu__Replacement` in `src_custom/monster_effect_hooks.c` | Blocks or allows activation from the duel UI before calling the custom effect |
 | Normal card example | `CanActivateInjectionFairyLily` and `ActivateInjectionFairyLilyEffect` in `src_custom/activated_effects/injection_fairy_lily.c` | Example custom activated monster effect file with one card per file |
 | Activated-effect enum source | `MONSTER_EFFECT_*` entries in `include/constants/monster_effects.h` | Symbolic values used by the manifest and the activated-effect dispatcher |
 | Activated-effect manifest wiring | `monsterEffect` fields in `tools/card_data_manifest.json` | Names the enum constant for cards that need custom activated monster behavior |
 | Custom description overrides | `sCardDescriptionOverrides` in `src_custom/card_hooks.c` | Optional custom card text overrides when the vanilla description no longer matches behavior |
 | Hook jump wiring | `src_custom/LynJump.event` | Maps vanilla engine entrypoints to hook-side replacement functions |
 
+### Duel helpers cheat sheet (new cards)
+
+Use `duel_helpers.h` for common actions instead of copying static helpers into each card file. Duelist args use `ACTIVE_DUELIST` / `INACTIVE_DUELIST`. Pass `updateGfx=TRUE` when the caller wants `UpdateDuelGfxExceptField()` after the action.
+
+| Verb | Function |
+|------|----------|
+| Count hand | `Duel_CountCardsInHand(handRow)` |
+| Draw | `Duel_DrawCards(duelist, count, updateGfx)` |
+| Mill deck | `Duel_MillTopDeckCards(duelist, count, updateGfx)` |
+| Destroy zone | `Duel_DestroyZone(zone, graveyardDuelist, updateGfx)` |
+| Destroy row | `Duel_DestroyAllMonstersMatching(turnRow, pred, updateGfx)` |
+| Discard | `Duel_DiscardFromHand(duelist, count, pred, updateGfx)` |
+| LP change | `Duel_ChangeLp(targetDuelist, delta, updateGfx)` — positive gain, negative burn |
+| Effect text | `Duel_ShowEffectText(cardId)` |
+| Spell vs traps | `Duel_TryResolveSpellThroughTraps(spellId, resolveBody)` |
+| Find in deck | `Duel_FindDeckCardIndex(duelist, cardId)` |
+| Remove from deck | `Duel_RemoveDeckCardAt(duelist, index, updateGfx)` |
+| Shuffle deck | `Duel_ShuffleDeckFromDrawn(duelist)` |
+| Special summon | `Duel_SpecialSummonFromHand/Grave/Deck(...)` with `Duel_DefaultSpecialSummonOpts(updateGfx)` |
+| Normal summon | `Duel_NormalSummonFromHand(duelist, cardId, pred, Duel_DefaultNormalSummonOpts(updateGfx))` |
+
+Example spell body:
+
+```c
+Duel_ShowEffectText(MY_SPELL);
+if (Duel_TryResolveSpellThroughTraps(MY_SPELL, NULL) == DUEL_ACTION_BLOCKED)
+  return;
+if (Duel_DrawCards(ACTIVE_DUELIST, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
+  return;
+Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+```
+
 ## TODO
 
-- Add a shared helper file if many normal effects start reusing the same stat, LP, or popup routines.
 - Add a second normal-effect example that does not use a manual activation gate.
 - Add a second permanent-effect example that affects types instead of attributes.
 - Add a short manifest example for an activated monster effect that uses a symbolic `monsterEffect` entry.
-src_custom
 ## Limitations & Bugs
 
 - Hook-side static data may need to live in a kept section if the linker discards normal `.rodata` for hook objects.

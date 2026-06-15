@@ -9,6 +9,7 @@
 #include "soul_taker.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "duel_helpers.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -124,16 +125,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
 
 static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
 {
-  if (GetTypeGroup(spellId) != TYPE_GROUP_SPELL)
-    return TRUE;
-
-  SetupSpellTrapOrigin();
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText)
-    return TRUE;
-
-  ActivateTrapEffect(0);
-  return FALSE;
+  return Duel_TryResolveSpellThroughTraps(spellId, NULL) != DUEL_ACTION_BLOCKED;
 }
 
 LYN_REPLACE_CHECK(ActivateSpellEffect);

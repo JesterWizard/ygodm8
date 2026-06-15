@@ -12,6 +12,7 @@
 #include "constants/monster_effects.h"
 #include "constants/spell_effects.h"
 #include "configs/runtime.h"
+#include "duel_helpers.h"
 
 extern unsigned char LowLevelAntePrompt (void);
 extern void sub_800C32C (void);
