@@ -25,6 +25,7 @@
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "needle_burrower.h"
+#include "hyper_hammerhead.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
 #include "riryoku.h"
@@ -225,6 +226,7 @@ void InitBoard__Replacement(void) {
   ClearGuardianAngelJoanPending();
   ClearAirknightParshathDrawPending();
   ClearNeedleBurrowerPending();
+  ClearHyperHammerheadPending();
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
   ClearDarkRoomPending();

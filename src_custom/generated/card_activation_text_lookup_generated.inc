@@ -153,6 +153,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { DROP_OFF, gActivationDescription_DropOff },
   { GOBLIN_KING, gActivationDescription_GoblinKing },
   { GRANADORA, gActivationDescription_Granadora },
+  { HYPER_HAMMERHEAD, gActivationDescription_HyperHammerhead },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

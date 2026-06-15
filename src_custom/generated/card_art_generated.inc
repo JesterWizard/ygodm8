@@ -556,6 +556,10 @@ static const unsigned char sGranadoraBigArt[] __attribute__((section(".append_as
 static const unsigned short sGranadoraBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/granadora.gbapal");
 static const unsigned char sGranadoraMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/granadora.lz");
 
+static const unsigned char sHyperHammerheadBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hyper_hammerhead.huff");
+static const unsigned short sHyperHammerheadBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hyper_hammerhead.gbapal");
+static const unsigned char sHyperHammerheadMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hyper_hammerhead.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -696,6 +700,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03A6] = sDropOffBigArt,
   [0x03A7] = sGoblinKingBigArt,
   [0x03A8] = sGranadoraBigArt,
+  [0x03A9] = sHyperHammerheadBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -838,6 +843,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03A6] = sDropOffBigPalette,
   [0x03A7] = sGoblinKingBigPalette,
   [0x03A8] = sGranadoraBigPalette,
+  [0x03A9] = sHyperHammerheadBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -980,6 +986,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03A6] = 0,
   [0x03A7] = 0,
   [0x03A8] = 0,
+  [0x03A9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1122,4 +1129,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03A6] = sDropOffMiniArt,
   [0x03A7] = sGoblinKingMiniArt,
   [0x03A8] = sGranadoraMiniArt,
+  [0x03A9] = sHyperHammerheadMiniArt,
 };

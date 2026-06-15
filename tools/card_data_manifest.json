@@ -16480,6 +16480,35 @@
           "Gain 1000 LP when summoned to the field. Take 2000 LP of damage if destroyed."
         ]
       }
+    },
+    {
+      "card_const": "HYPER_HAMMERHEAD",
+      "card_name": "Hyper Hammerhead",
+      "atk": 1500,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [0, 2, 6, 7, 1, 3, 3, 0],
+      "description": {
+        "symbol": "gDescription_HyperHammerhead",
+        "pages": [
+          "At Damage Step end, if the opponent's",
+          "monster this battled wasn't destroyed:",
+          "return it to the hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_HyperHammerhead",
+        "pages": [
+          "If the opponent's monster this battled wasn't destroyed: return it to the hand."
+        ]
+      }
     }
   ]
 }

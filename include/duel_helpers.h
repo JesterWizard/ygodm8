@@ -60,4 +60,6 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
 enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
                                                 struct DuelSummonOpts opts);
 
+enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u8 updateGfx);
+
 #endif // GUARD_DUEL_HELPERS_H

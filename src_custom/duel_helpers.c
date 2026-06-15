@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "duel_status.h"
 #include "god_card.h"
@@ -43,6 +44,18 @@ static u8 TurnDuelistToFixed(u8 turnDuelist)
     return DUEL_PLAYER;
 
   return DUEL_OPPONENT;
+}
+
+static u8 FixedDuelistToTurnDuelist(u8 fixedDuelist)
+{
+  u8 turnDuelist;
+
+  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
+    if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[fixedDuelist])
+      return turnDuelist;
+  }
+
+  return ACTIVE_DUELIST;
 }
 
 static u8 MonsterRowForDuelist(u8 turnDuelist)
@@ -655,6 +668,39 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
   if (IsDuelOver() == TRUE)
     return DUEL_ACTION_DUEL_OVER;
 
+  return DUEL_ACTION_OK;
+}
+
+enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u8 updateGfx)
+{
+  u8 fixedDuelist;
+  u8 turnDuelist;
+  s8 handZone;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return DUEL_ACTION_NO_TARGET;
+
+  fixedDuelist = GetDuelistForZone(zone);
+  if (fixedDuelist == 0xFF)
+    return DUEL_ACTION_INVALID;
+
+  turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
+  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
+  if (handZone < 0)
+    return DUEL_ACTION_NO_ZONE;
+
+  CopyCard(gTurnHands[turnDuelist][handZone], zone);
+  gTurnHands[turnDuelist][handZone]->isFaceUp = FALSE;
+  gTurnHands[turnDuelist][handZone]->isLocked = FALSE;
+  gTurnHands[turnDuelist][handZone]->isDefending = FALSE;
+  gTurnHands[turnDuelist][handZone]->unkTwo = 0;
+  gTurnHands[turnDuelist][handZone]->unkThree = 0;
+  gTurnHands[turnDuelist][handZone]->unk4 = 0;
+  gTurnHands[turnDuelist][handZone]->willChangeSides = FALSE;
+  ResetPermStage(gTurnHands[turnDuelist][handZone]);
+  ResetTempStage(gTurnHands[turnDuelist][handZone]);
+  ClearZone(zone);
+  MaybeUpdateGfx(updateGfx);
   return DUEL_ACTION_OK;
 }
 

@@ -134,6 +134,7 @@ static const u8 sSpiritOfTheBreezeName[] __attribute__((section(".append_assets"
 static const u8 sDropOffName[] __attribute__((section(".append_assets"))) = "Drop Off";
 static const u8 sGoblinKingName[] __attribute__((section(".append_assets"))) = "Goblin King";
 static const u8 sGranadoraName[] __attribute__((section(".append_assets"))) = "Granadora";
+static const u8 sHyperHammerheadName[] __attribute__((section(".append_assets"))) = "Hyper Hammerhead";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -408,6 +409,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGoblinKingName;
   if (cardId == 0x03A8)
     return (u8 *)sGranadoraName;
+  if (cardId == 0x03A9)
+    return (u8 *)sHyperHammerheadName;
 
   return gCardNames[cardId];
 }

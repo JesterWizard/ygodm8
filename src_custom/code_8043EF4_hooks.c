@@ -21,6 +21,7 @@
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "needle_burrower.h"
+#include "hyper_hammerhead.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
 #include "debug_ruleset.h"
@@ -678,6 +679,7 @@ void sub_8044570__Replacement(void)
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();
+      ResolveHyperHammerheadBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
       ResolveCoffinSellerBattleEffect();
       sub_8022080();
@@ -771,6 +773,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();
+      ResolveHyperHammerheadBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
       ResolveCoffinSellerBattleEffect();
       sub_8022080();
