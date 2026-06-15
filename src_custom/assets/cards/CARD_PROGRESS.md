@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 132 |
-| Art ready, needs manifest | 187 |
+| In game (manifest + art) | 133 |
+| Art ready, needs manifest | 186 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -154,6 +154,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BURNING_LAND` | Burning Land | `burning_land.png` |
 | `BATTLE_FOOTBALLER` | Battle Footballer | `battle_footballer.png` |
 | `DANCING_FAIRY` | Dancing Fairy | `dancing_fairy.png` |
+| `SPIRIT_OF_THE_BREEZE` | Spirit of the Breeze | `spirit_of_the_breeze.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -311,7 +312,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `SPIRIT_CALLER` — `spirit_caller.png`
-- [ ] `SPIRIT_OF_THE_BREEZE` — `spirit_of_the_breeze.png`
 - [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
 - [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
 - [ ] `SPIRIT_RYU` — `spirit_ryu.png`

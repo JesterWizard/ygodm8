@@ -45,6 +45,8 @@ unsigned char ShouldActivateEbonMagicianCurranTurnEffect(void);
 void ActivateEbonMagicianCurranTurnEffect(void);
 unsigned char ShouldActivateDancingFairyTurnEffect(void);
 void ActivateDancingFairyTurnEffect(void);
+unsigned char ShouldActivateSpiritOfTheBreezeTurnEffect(void);
+void ActivateSpiritOfTheBreezeTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -124,6 +126,10 @@ static void TryActivatingTurnEffect__Hook(void) {
     ActivateDancingFairyTurnEffect();
     return;
   }
+  if (gActiveEffect.cardId == SPIRIT_OF_THE_BREEZE && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
+    ActivateSpiritOfTheBreezeTurnEffect();
+    return;
+  }
   SetCardInfo(gActiveEffect.cardId);
   g8E0C940[gCardInfo.unk1E]();
 }
@@ -165,6 +171,8 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
     return ShouldActivateEbonMagicianCurranTurnEffect();
   if (gActiveEffect.cardId == DANCING_FAIRY && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
     return ShouldActivateDancingFairyTurnEffect();
+  if (gActiveEffect.cardId == SPIRIT_OF_THE_BREEZE && gActiveEffect.turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    return ShouldActivateSpiritOfTheBreezeTurnEffect();
   SetCardInfo(gActiveEffect.cardId);
   return g8E0CA80[gCardInfo.unk1E]();
 }

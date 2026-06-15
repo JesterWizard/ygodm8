@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 132
+#define NUM_CUSTOM_NAME_SORT_CARDS 133
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -134,6 +134,7 @@ static const u8 sArsenalBugSortName[] APPEND_RODATA = "Arsenal Bug";
 static const u8 sBurningLandSortName[] APPEND_RODATA = "Burning Land";
 static const u8 sBattleFootballerSortName[] APPEND_RODATA = "Battle Footballer";
 static const u8 sDancingFairySortName[] APPEND_RODATA = "Dancing Fairy";
+static const u8 sSpiritOfTheBreezeSortName[] APPEND_RODATA = "Spirit of the Breeze";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -245,6 +246,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0390, // Soul Taker
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
+  0x03A5, // Spirit of the Breeze
   0x0333, // St Joan
   0x0393, // Stealth Bird
   0x036E, // Swift Gaia The Fierce Knight
@@ -380,29 +382,30 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   107, // Soul Taker
   108, // Spear Dragon
   109, // Spell Canceller
-  110, // St Joan
-  111, // Stealth Bird
-  112, // Swift Gaia The Fierce Knight
-  113, // Terrorking Salmon
-  114, // The Agent Of Creation - Venus
-  115, // The Dark Door
-  116, // The Forceful Sentry
-  117, // Thousand Energy
-  118, // Thousand Knives
-  119, // Time Seal
-  120, // Toll
-  121, // Triangle Power
-  122, // Twin Swords of Flashing Light - Tryce
-  123, // Tyrant Dragon
-  124, // Ultimate Offering
-  125, // United We Stand
-  126, // Upstart Goblin
-  127, // Vampire Baby
-  128, // Warrior of Zera
-  129, // Wave Motion Cannon
-  130, // Weather Report
-  131, // White Magician Pikeru
-  132, // Yata-Garasu
+  110, // Spirit of the Breeze
+  111, // St Joan
+  112, // Stealth Bird
+  113, // Swift Gaia The Fierce Knight
+  114, // Terrorking Salmon
+  115, // The Agent Of Creation - Venus
+  116, // The Dark Door
+  117, // The Forceful Sentry
+  118, // Thousand Energy
+  119, // Thousand Knives
+  120, // Time Seal
+  121, // Toll
+  122, // Triangle Power
+  123, // Twin Swords of Flashing Light - Tryce
+  124, // Tyrant Dragon
+  125, // Ultimate Offering
+  126, // United We Stand
+  127, // Upstart Goblin
+  128, // Vampire Baby
+  129, // Warrior of Zera
+  130, // Wave Motion Cannon
+  131, // Weather Report
+  132, // White Magician Pikeru
+  133, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -670,6 +673,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sBattleFootballerSortName;
   if (cardId == 0x03A4)
     return (u8 *)sDancingFairySortName;
+  if (cardId == 0x03A5)
+    return (u8 *)sSpiritOfTheBreezeSortName;
 
   return gCardNames[cardId];
 }

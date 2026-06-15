@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `147` effects
+- `148` effects
 
 ## Tally
 
@@ -166,6 +166,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
 |	`turn_effects`	|	`Dancing Fairy`	|	`src_custom/turn_effects/dancing_fairy.c`	|
+|	`turn_effects`	|	`Spirit of the Breeze`	|	`src_custom/turn_effects/spirit_of_the_breeze.c`	|
 | `card_passives` | `Reaper on the Nightmare` | `src_custom/card_passives/reaper_on_the_nightmare.c` |
 | `battle_effects` | `Reaper on the Nightmare` | `src_custom/battle_effects/reaper_on_the_nightmare.c` |
 

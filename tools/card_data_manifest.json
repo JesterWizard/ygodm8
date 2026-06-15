@@ -16366,6 +16366,35 @@
       },
       "card_name": "Dancing Fairy",
       "password": [ 9, 0, 9, 2, 5, 1, 6, 3 ]
+    },
+    {
+      "card_const": "SPIRIT_OF_THE_BREEZE",
+      "atk": 0,
+      "def": 1800,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 3,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_SpiritOfTheBreeze",
+        "pages": [
+          "As long as this card remains in face-up",
+          "Attack Position, gain 1000 LP during",
+          "the start of the player's turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SpiritOfTheBreeze",
+        "pages": [
+          "Gain 1000 LP during the start of the player's turn while it is in face-up Attack Position."
+        ]
+      },
+      "card_name": "Spirit of the Breeze",
+      "password": [ 5, 3, 5, 3, 0, 0, 6, 9 ]
     }
   ]
 }
