@@ -536,6 +536,10 @@ static const unsigned char sBattleFootballerBigArt[] __attribute__((section(".ap
 static const unsigned short sBattleFootballerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/battle_footballer.gbapal");
 static const unsigned char sBattleFootballerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/battle_footballer.lz");
 
+static const unsigned char sDancingFairyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dancing_fairy.huff");
+static const unsigned short sDancingFairyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dancing_fairy.gbapal");
+static const unsigned char sDancingFairyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dancing_fairy.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -671,6 +675,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03A1] = sArsenalBugBigArt,
   [0x03A2] = sBurningLandBigArt,
   [0x03A3] = sBattleFootballerBigArt,
+  [0x03A4] = sDancingFairyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -808,6 +813,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03A1] = sArsenalBugBigPalette,
   [0x03A2] = sBurningLandBigPalette,
   [0x03A3] = sBattleFootballerBigPalette,
+  [0x03A4] = sDancingFairyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -945,6 +951,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03A1] = 0,
   [0x03A2] = 0,
   [0x03A3] = 0,
+  [0x03A4] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1082,4 +1089,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03A1] = sArsenalBugMiniArt,
   [0x03A2] = sBurningLandMiniArt,
   [0x03A3] = sBattleFootballerMiniArt,
+  [0x03A4] = sDancingFairyMiniArt,
 };

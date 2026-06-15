@@ -16337,6 +16337,35 @@
       },
       "card_name": "Battle Footballer",
       "password": [ 4, 8, 0, 9, 4, 9, 9, 7 ]
+    },
+    {
+      "card_const": "DANCING_FAIRY",
+      "atk": 1700,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_WIND",
+      "level": 4,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_DancingFairy",
+        "pages": [
+          "As long as this card remains in face-up",
+          "Defense Position, gain 1000 LP during",
+          "the start of the player's turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DancingFairy",
+        "pages": [
+          "Gain 1000 LP during your turn while it is in face up defense position."
+        ]
+      },
+      "card_name": "Dancing Fairy",
+      "password": [ 9, 0, 9, 2, 5, 1, 6, 3 ]
     }
   ]
 }

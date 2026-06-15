@@ -933,11 +933,12 @@
 #define ARSENAL_BUG                              0x03A1
 #define BURNING_LAND                             0x03A2
 #define BATTLE_FOOTBALLER                        0x03A3
+#define DANCING_FAIRY                            0x03A4
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03A4
-#define NUM_CUSTOM_CARDS                        0x0083
+#define NUM_TOTAL_CARDS                         0x03A5
+#define NUM_CUSTOM_CARDS                        0x0084
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

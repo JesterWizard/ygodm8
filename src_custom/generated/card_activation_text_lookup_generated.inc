@@ -148,6 +148,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ABSORBING_KID_FROM_THE_SKY, gActivationDescription_AbsorbingKidFromTheSky },
   { ARSENAL_BUG, gActivationDescription_ArsenalBug },
   { BURNING_LAND, gActivationDescription_BurningLand },
+  { DANCING_FAIRY, gActivationDescription_DancingFairy },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

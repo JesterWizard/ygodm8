@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 130 |
-| Art ready, needs manifest | 189 |
+| In game (manifest + art) | 132 |
+| Art ready, needs manifest | 187 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -153,6 +153,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ARSENAL_BUG` | Arsenal Bug | `arsenal_bug.png` |
 | `BURNING_LAND` | Burning Land | `burning_land.png` |
 | `BATTLE_FOOTBALLER` | Battle Footballer | `battle_footballer.png` |
+| `DANCING_FAIRY` | Dancing Fairy | `dancing_fairy.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -195,7 +196,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CREATURE_SWAP` — `creature_swap.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `DANCING_FAIRY` — `dancing_fairy.png`
 - [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
