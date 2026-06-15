@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 127
+#define NUM_CUSTOM_NAME_SORT_CARDS 128
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -129,8 +129,10 @@ static const u8 sDoubleCostonSortName[] APPEND_RODATA = "Double Coston";
 static const u8 sPreciousCardsFromBeyondSortName[] APPEND_RODATA = "Precious Cards From Beyond";
 static const u8 sTyrantDragonSortName[] APPEND_RODATA = "Tyrant Dragon";
 static const u8 sFinalCountdownSortName[] APPEND_RODATA = "Final Countdown";
+static const u8 sAbsorbingKidFromTheSkySortName[] APPEND_RODATA = "Absorbing Kid from the Sky";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
+  0x03A0, // Absorbing Kid from the Sky
   0x0381, // Airknight Parshath
   0x0382, // Amphibious Bugroth MK-3
   0x033E, // Ancient Rules
@@ -261,133 +263,134 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
-  1, // Airknight Parshath
-  2, // Amphibious Bugroth MK-3
-  3, // Ancient Rules
-  4, // Black Tyranno
-  5, // Blasting The Ruins
-  6, // Block Attack
-  7, // Blue-Eyes Alternative White Dragon
-  8, // Blue-Eyes Chaos Max Dragon
-  9, // Blue-Eyes Shining Dragon
-  10, // Bowganian
-  11, // Call of the Haunted
-  12, // Card Destruction
-  13, // Card Of Demise
-  14, // Card Of Sanctity
-  15, // Cat's Ear Tribe
-  16, // Chain Energy
-  17, // Coffin Seller
-  18, // Copycat
-  19, // Cost Down
-  20, // Cure Mermaid
-  21, // Curse Of Darkness
-  22, // Dark Driceratops
-  23, // Dark Magic Curtain
-  24, // Dark Room Of Nightmare
-  25, // Deck Destruction Virus
-  26, // Delinquent Duo
-  27, // Des Koala
-  28, // Des Scissors
-  29, // Double Coston
-  30, // Double Summon
-  31, // Draining Shield
-  32, // Ebon Magician Curran
-  33, // Exchange
-  34, // Fairy Box
-  35, // Familiar Knight
-  36, // Final Countdown
-  37, // Gift Of The Mystical Elf
-  38, // Gilasaurus
-  39, // Goblin Thief
-  40, // Graceful Charity
-  41, // Gravity Bind
-  42, // Great Maju Garzett
-  43, // Gren Maju Da Eiza
-  44, // Guardian Angel Joan
-  45, // Guardian Treasure
-  46, // Hayabusa Knight
-  47, // Imperial Order
-  48, // Jar of Greed
-  49, // Just Deserts
-  50, // Kaibaman
-  51, // Kaiser Glider
-  52, // Limiter Removal
-  53, // Luster Dragon
-  54, // Mad Sword Beast
-  55, // Mage Power
-  56, // Magic Cylinder
-  57, // Magic Jammer
-  58, // Magician's Valkyria
-  59, // Marauding Captain
-  60, // Maryokutai
-  61, // Mask of Restrict
-  62, // Mataza the Zapper
-  63, // Mefist The Infernal General
-  64, // Mermaid Knight
-  65, // Meteor of Destruction
-  66, // Moister Creature
-  67, // Mystical Shine Ball
-  68, // Mystical Space Typhoon
-  69, // Needle Burrower
-  70, // Negate Attack
-  71, // Negative Energy
-  72, // Nightmare Horse
-  73, // Obnoxious Celtic Guardian
-  74, // Ojama Trio
-  75, // Paladin Of White Dragon
-  76, // Peten The Dark Clown
-  77, // Piranha Army
-  78, // Precious Cards From Beyond
-  79, // Pyramid of Light
-  80, // Rain of Mercy
-  81, // Rare Metal Dragon
-  82, // Reaper on the Nightmare
-  83, // Reckless Greed
-  84, // Reload
-  85, // Riryoku
-  86, // Robbin' Goblin
-  87, // Robbin' Zombie
-  88, // Royal Decree
-  89, // Sage's Stone
-  90, // Sasuke Samurai
-  91, // Seal of Orichalcos
-  92, // Secret Barrel
-  93, // Self-Destruct Button
-  94, // Shield And Sword
-  95, // Skill Drain
-  96, // Skull Invitation
-  97, // Solar Flare Dragon
-  98, // Solar Ray
-  99, // Solemn Wishes
-  100, // Sorcerer of Dark Magic
-  101, // Soul Exchange
-  102, // Soul Taker
-  103, // Spear Dragon
-  104, // Spell Canceller
-  105, // St Joan
-  106, // Stealth Bird
-  107, // Swift Gaia The Fierce Knight
-  108, // Terrorking Salmon
-  109, // The Agent Of Creation - Venus
-  110, // The Dark Door
-  111, // The Forceful Sentry
-  112, // Thousand Energy
-  113, // Thousand Knives
-  114, // Time Seal
-  115, // Toll
-  116, // Triangle Power
-  117, // Twin Swords of Flashing Light - Tryce
-  118, // Tyrant Dragon
-  119, // Ultimate Offering
-  120, // United We Stand
-  121, // Upstart Goblin
-  122, // Vampire Baby
-  123, // Warrior of Zera
-  124, // Wave Motion Cannon
-  125, // Weather Report
-  126, // White Magician Pikeru
-  127, // Yata-Garasu
+  1, // Absorbing Kid from the Sky
+  2, // Airknight Parshath
+  3, // Amphibious Bugroth MK-3
+  4, // Ancient Rules
+  5, // Black Tyranno
+  6, // Blasting The Ruins
+  7, // Block Attack
+  8, // Blue-Eyes Alternative White Dragon
+  9, // Blue-Eyes Chaos Max Dragon
+  10, // Blue-Eyes Shining Dragon
+  11, // Bowganian
+  12, // Call of the Haunted
+  13, // Card Destruction
+  14, // Card Of Demise
+  15, // Card Of Sanctity
+  16, // Cat's Ear Tribe
+  17, // Chain Energy
+  18, // Coffin Seller
+  19, // Copycat
+  20, // Cost Down
+  21, // Cure Mermaid
+  22, // Curse Of Darkness
+  23, // Dark Driceratops
+  24, // Dark Magic Curtain
+  25, // Dark Room Of Nightmare
+  26, // Deck Destruction Virus
+  27, // Delinquent Duo
+  28, // Des Koala
+  29, // Des Scissors
+  30, // Double Coston
+  31, // Double Summon
+  32, // Draining Shield
+  33, // Ebon Magician Curran
+  34, // Exchange
+  35, // Fairy Box
+  36, // Familiar Knight
+  37, // Final Countdown
+  38, // Gift Of The Mystical Elf
+  39, // Gilasaurus
+  40, // Goblin Thief
+  41, // Graceful Charity
+  42, // Gravity Bind
+  43, // Great Maju Garzett
+  44, // Gren Maju Da Eiza
+  45, // Guardian Angel Joan
+  46, // Guardian Treasure
+  47, // Hayabusa Knight
+  48, // Imperial Order
+  49, // Jar of Greed
+  50, // Just Deserts
+  51, // Kaibaman
+  52, // Kaiser Glider
+  53, // Limiter Removal
+  54, // Luster Dragon
+  55, // Mad Sword Beast
+  56, // Mage Power
+  57, // Magic Cylinder
+  58, // Magic Jammer
+  59, // Magician's Valkyria
+  60, // Marauding Captain
+  61, // Maryokutai
+  62, // Mask of Restrict
+  63, // Mataza the Zapper
+  64, // Mefist The Infernal General
+  65, // Mermaid Knight
+  66, // Meteor of Destruction
+  67, // Moister Creature
+  68, // Mystical Shine Ball
+  69, // Mystical Space Typhoon
+  70, // Needle Burrower
+  71, // Negate Attack
+  72, // Negative Energy
+  73, // Nightmare Horse
+  74, // Obnoxious Celtic Guardian
+  75, // Ojama Trio
+  76, // Paladin Of White Dragon
+  77, // Peten The Dark Clown
+  78, // Piranha Army
+  79, // Precious Cards From Beyond
+  80, // Pyramid of Light
+  81, // Rain of Mercy
+  82, // Rare Metal Dragon
+  83, // Reaper on the Nightmare
+  84, // Reckless Greed
+  85, // Reload
+  86, // Riryoku
+  87, // Robbin' Goblin
+  88, // Robbin' Zombie
+  89, // Royal Decree
+  90, // Sage's Stone
+  91, // Sasuke Samurai
+  92, // Seal of Orichalcos
+  93, // Secret Barrel
+  94, // Self-Destruct Button
+  95, // Shield And Sword
+  96, // Skill Drain
+  97, // Skull Invitation
+  98, // Solar Flare Dragon
+  99, // Solar Ray
+  100, // Solemn Wishes
+  101, // Sorcerer of Dark Magic
+  102, // Soul Exchange
+  103, // Soul Taker
+  104, // Spear Dragon
+  105, // Spell Canceller
+  106, // St Joan
+  107, // Stealth Bird
+  108, // Swift Gaia The Fierce Knight
+  109, // Terrorking Salmon
+  110, // The Agent Of Creation - Venus
+  111, // The Dark Door
+  112, // The Forceful Sentry
+  113, // Thousand Energy
+  114, // Thousand Knives
+  115, // Time Seal
+  116, // Toll
+  117, // Triangle Power
+  118, // Twin Swords of Flashing Light - Tryce
+  119, // Tyrant Dragon
+  120, // Ultimate Offering
+  121, // United We Stand
+  122, // Upstart Goblin
+  123, // Vampire Baby
+  124, // Warrior of Zera
+  125, // Wave Motion Cannon
+  126, // Weather Report
+  127, // White Magician Pikeru
+  128, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -645,6 +648,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTyrantDragonSortName;
   if (cardId == 0x039F)
     return (u8 *)sFinalCountdownSortName;
+  if (cardId == 0x03A0)
+    return (u8 *)sAbsorbingKidFromTheSkySortName;
 
   return gCardNames[cardId];
 }

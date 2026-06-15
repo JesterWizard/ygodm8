@@ -19,6 +19,7 @@
 #include "guardian_angel_joan.h"
 #include "airknight_parshath.h"
 #include "needle_burrower.h"
+#include "absorbing_kid_from_the_sky.h"
 #include "reaper_on_the_nightmare.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -171,6 +172,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyGuardianAngelJoanBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
+  ApplyAbsorbingKidFromTheSkyBattleEffect();
   ApplyRobbinZombieBattleEffect();
   ApplyYataGarasuBattleEffect();
 

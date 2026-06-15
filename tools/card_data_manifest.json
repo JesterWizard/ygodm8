@@ -16229,6 +16229,35 @@
           "Win the Duel after 20 turns."
         ]
       }
+    },
+    {
+      "card_const": "ABSORBING_KID_FROM_THE_SKY",
+      "atk": 1300,
+      "def": 1000,
+      "cost": 150,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "level": 4,
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "description": {
+        "symbol": "gDescription_AbsorbingKidFromTheSky",
+        "pages": [
+          "A child from the heavens who absorbs life energy.",
+          "When this card destroys a monster by battle, increase",
+          "your Life Points by the destroyed monster's Level x 300."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AbsorbingKidFromTheSky",
+        "pages": [
+          "Increase your Life Points by the destroyed monster's Level x 300."
+        ]
+      },
+      "card_name": "Absorbing Kid from the Sky",
+      "password": [ 4, 9, 7, 7, 1, 6, 0, 8 ]
     }
   ]
 }

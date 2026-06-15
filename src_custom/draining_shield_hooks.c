@@ -41,6 +41,7 @@ void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
+void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
@@ -168,6 +169,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveGuardianAngelJoanBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveNeedleBurrowerBattleEffect();
+  ResolveAbsorbingKidFromTheSkyBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();
   FinishGraveyardDrawBattleResolve();

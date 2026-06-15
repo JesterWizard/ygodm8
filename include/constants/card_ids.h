@@ -929,11 +929,12 @@
 #define PRECIOUS_CARDS_FROM_BEYOND               0x039D
 #define TYRANT_DRAGON                            0x039E
 #define FINAL_COUNTDOWN                          0x039F
+#define ABSORBING_KID_FROM_THE_SKY               0x03A0
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03A0
-#define NUM_CUSTOM_CARDS                        0x007F
+#define NUM_TOTAL_CARDS                         0x03A1
+#define NUM_CUSTOM_CARDS                        0x0080
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

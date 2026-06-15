@@ -1,0 +1,13 @@
+#ifndef GUARD_ABSORBING_KID_FROM_THE_SKY_H
+#define GUARD_ABSORBING_KID_FROM_THE_SKY_H
+
+#define ABSORBING_KID_FROM_THE_SKY_PENDING_NONE 0xFF
+
+extern u8 gPendingAbsorbingKidFromTheSkyDuelist;
+extern u8 gPendingAbsorbingKidFromTheSkyLevel;
+
+void ApplyAbsorbingKidFromTheSkyBattleEffect(void);
+void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
+void ClearAbsorbingKidFromTheSkyPending(void);
+
+#endif

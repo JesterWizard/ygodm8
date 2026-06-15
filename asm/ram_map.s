@@ -305,6 +305,10 @@ _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 _kernel_malloc_ewram gPendingNeedleBurrowerController, 1
 @ Level of the monster Needle Burrower destroyed in battle (damage = level * 500 at resolve).
 _kernel_malloc_ewram gPendingNeedleBurrowerLevel, 1
+@ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Absorbing Kid from the Sky, else 0xFF.
+_kernel_malloc_ewram gPendingAbsorbingKidFromTheSkyDuelist, 1
+@ Level of the monster Absorbing Kid destroyed in battle (heal = level * 300 at resolve).
+_kernel_malloc_ewram gPendingAbsorbingKidFromTheSkyLevel, 1
 @ Pending Coffin Seller 300LP hits deferred until battle UI closes.
 _kernel_malloc_ewram gPendingCoffinSellerDamageToPlayer, 1
 _kernel_malloc_ewram gPendingCoffinSellerDamageToOpponent, 1
