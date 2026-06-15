@@ -55,6 +55,7 @@ extern void EffectSoulTaker(void);
 extern void EffectPreciousCardsFromBeyond(void);
 extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
+extern void EffectGracefulDice(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -324,6 +325,9 @@ void ActivateSpellEffect__Replacement(void)
       return;
     case BURNING_LAND:
       EffectBurningLand();
+      return;
+    case GRACEFUL_DICE:
+      EffectGracefulDice();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

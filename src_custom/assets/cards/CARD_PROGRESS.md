@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 138 |
-| Art ready, needs manifest | 181 |
+| In game (manifest + art) | 139 |
+| Art ready, needs manifest | 180 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -160,6 +160,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GRANADORA` | Granadora | `granadora.png` |
 | `HYPER_HAMMERHEAD` | Hyper Hammerhead | `hyper_hammerhead.png` |
 | `GYAKU_GIRE_PANDA` | Gyaku-Gire Panda | `gyaku_gire_panda.png` |
+| `GRACEFUL_DICE` | Graceful Dice | `graceful_dice.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -231,7 +232,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
 - [ ] `GIANT_RAT` — `giant_rat.png`
-- [ ] `GRACEFUL_DICE` — `graceful_dice.png`
 - [ ] `GRAVEKEEPERS_SERVANT` — `gravekeepers_servant.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`

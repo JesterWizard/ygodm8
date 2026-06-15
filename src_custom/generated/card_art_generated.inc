@@ -564,6 +564,10 @@ static const unsigned char sGyakuGirePandaBigArt[] __attribute__((section(".appe
 static const unsigned short sGyakuGirePandaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gyaku_gire_panda.gbapal");
 static const unsigned char sGyakuGirePandaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gyaku_gire_panda.lz");
 
+static const unsigned char sGracefulDiceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/graceful_dice.huff");
+static const unsigned short sGracefulDiceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/graceful_dice.gbapal");
+static const unsigned char sGracefulDiceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/graceful_dice.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -706,6 +710,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03A8] = sGranadoraBigArt,
   [0x03A9] = sHyperHammerheadBigArt,
   [0x03AA] = sGyakuGirePandaBigArt,
+  [0x03AB] = sGracefulDiceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -850,6 +855,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03A8] = sGranadoraBigPalette,
   [0x03A9] = sHyperHammerheadBigPalette,
   [0x03AA] = sGyakuGirePandaBigPalette,
+  [0x03AB] = sGracefulDiceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -994,6 +1000,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03A8] = 0,
   [0x03A9] = 0,
   [0x03AA] = 0,
+  [0x03AB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1138,4 +1145,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03A8] = sGranadoraMiniArt,
   [0x03A9] = sHyperHammerheadMiniArt,
   [0x03AA] = sGyakuGirePandaMiniArt,
+  [0x03AB] = sGracefulDiceMiniArt,
 };

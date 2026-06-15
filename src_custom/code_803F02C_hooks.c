@@ -493,7 +493,7 @@ int GetFinalStage__Replacement(struct DuelCard *zone)
   if (stage < -128)
     stage = -128;
 
-  gSetFinalStatZone = NULL;
+  /* Leave gSetFinalStatZone set for the paired SetFinalStat (battle damage, etc.). */
   return (s8)stage;
 }
 

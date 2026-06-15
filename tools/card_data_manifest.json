@@ -16538,6 +16538,35 @@
           "It gains 500 ATK per opponent's monster on the field."
         ]
       }
+    },
+    {
+      "card_const": "GRACEFUL_DICE",
+      "card_name": "Graceful Dice",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 4, 1, 3, 7, 5, 0, 9],
+      "description": {
+        "symbol": "gDescription_GracefulDice",
+        "pages": [
+          "Roll a six-sided die. Monsters you control with",
+          "500 or less ATK have their ATK multiplied by the",
+          "roll until the end of this turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GracefulDice",
+        "pages": [
+          "Roll 1 die. Your monsters with 500 or less ATK are multiplied by the roll until end of turn."
+        ]
+      }
     }
   ]
 }
