@@ -16,6 +16,7 @@
 #include "the_dark_door.h"
 #include "gravity_bind.h"
 #include "black_tyranno.h"
+#include "goblin_king.h"
 
 struct AI_Command {
   u16 action;
@@ -154,7 +155,8 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   u8 opponentCol;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(attacker->id))
+      || !GravityBind_CanMonsterAttack(attacker->id)
+      || !GoblinKing_CanBeAttacked(defender))
     return;
 
   if (attacker->id == CARD_NONE)

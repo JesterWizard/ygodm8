@@ -56,6 +56,7 @@
 #include "black_tyranno.h"
 #include "reaper_on_the_nightmare.h"
 #include "great_maju_garzett.h"
+#include "goblin_king.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -718,7 +719,9 @@ void TryAttackWithMonster__Replacement(void)
     WaitForVBlank();
   } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
       || !GravityBind_CanMonsterAttack(
-          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)) {
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)
+      || !GoblinKing_CanBeAttacked(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
   } else {
