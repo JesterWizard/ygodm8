@@ -154,6 +154,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GOBLIN_KING, gActivationDescription_GoblinKing },
   { GRANADORA, gActivationDescription_Granadora },
   { HYPER_HAMMERHEAD, gActivationDescription_HyperHammerhead },
+  { GYAKU_GIRE_PANDA, gActivationDescription_GyakuGirePanda },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -154,6 +154,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Arsenal Bug` | `src_custom/permanent_effects/arsenal_bug.c` |
 | `permanent_effects` | `Granadora` | `src_custom/permanent_effects/granadora.c` |
 | `permanent_effects` | `Goblin King` | `src_custom/permanent_effects/goblin_king.c` |
+| `permanent_effects` | `Gyaku-Gire Panda` | `src_custom/permanent_effects/gyaku_gire_panda.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
@@ -162,6 +163,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |
 | `battle_effects` | `Needle Burrower / Des Scissors` | `src_custom/battle_effects/needle_burrower.c` |
 | `battle_effects` | `Hyper Hammerhead` | `src_custom/battle_effects/hyper_hammerhead.c` |
+| `battle_effects` | `Gyaku-Gire Panda` | `src_custom/battle_effects/gyaku_gire_panda.c` |
 | `battle_effects` | `Absorbing Kid from the Sky` | `src_custom/battle_effects/absorbing_kid_from_the_sky.c` |
 | `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |
 | `activated_effects` | `The Agent Of Creation - Venus` | `src_custom/activated_effects/the_agent_of_creation_venus.c` |

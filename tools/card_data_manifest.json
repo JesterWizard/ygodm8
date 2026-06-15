@@ -16509,6 +16509,35 @@
           "If the opponent's monster this battled wasn't destroyed: return it to the hand."
         ]
       }
+    },
+    {
+      "card_const": "GYAKU_GIRE_PANDA",
+      "card_name": "Gyaku-Gire Panda",
+      "atk": 800,
+      "def": 1600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 9, 8, 1, 7, 9, 2, 7],
+      "description": {
+        "symbol": "gDescription_GyakuGirePanda",
+        "pages": [
+          "This card gains 500 ATK for each monster on the",
+          "opponent's side of the field. This card also inflicts",
+          "piercing damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GyakuGirePanda",
+        "pages": [
+          "It gains 500 ATK per opponent's monster on the field."
+        ]
+      }
     }
   ]
 }

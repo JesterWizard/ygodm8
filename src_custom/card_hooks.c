@@ -5,6 +5,7 @@
 #include "copycat.h"
 #include "great_maju_garzett.h"
 #include "goblin_king.h"
+#include "gyaku_gire_panda.h"
 #include "cost_down.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -468,6 +469,9 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   if (zone->id == GOBLIN_KING && ApplyGoblinKingZoneStatsToCardInfo(zone))
     return;
 
+  if (zone->id == GYAKU_GIRE_PANDA && ApplyGyakuGirePandaZoneStatsToCardInfo(zone))
+    return;
+
   if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
     ApplyCopycatStatsToCardInfo(&statMod);
     return;
@@ -505,6 +509,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ;
   else if (ptr->card == GOBLIN_KING
            && ApplyGoblinKingStatsToCardInfo(ptr))
+    ;
+  else if (ptr->card == GYAKU_GIRE_PANDA
+           && ApplyGyakuGirePandaStatsToCardInfo(ptr))
     ;
   else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
            || (gSetFinalStatZone != NULL

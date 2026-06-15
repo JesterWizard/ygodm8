@@ -22,6 +22,7 @@
 #include "absorbing_kid_from_the_sky.h"
 #include "reaper_on_the_nightmare.h"
 #include "hyper_hammerhead.h"
+#include "gyaku_gire_panda.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -143,6 +144,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyDarkDriceratopsBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
+  ApplyGyakuGirePandaBattleEffect();
 
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(

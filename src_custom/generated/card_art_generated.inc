@@ -560,6 +560,10 @@ static const unsigned char sHyperHammerheadBigArt[] __attribute__((section(".app
 static const unsigned short sHyperHammerheadBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hyper_hammerhead.gbapal");
 static const unsigned char sHyperHammerheadMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hyper_hammerhead.lz");
 
+static const unsigned char sGyakuGirePandaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gyaku_gire_panda.huff");
+static const unsigned short sGyakuGirePandaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gyaku_gire_panda.gbapal");
+static const unsigned char sGyakuGirePandaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gyaku_gire_panda.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -701,6 +705,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03A7] = sGoblinKingBigArt,
   [0x03A8] = sGranadoraBigArt,
   [0x03A9] = sHyperHammerheadBigArt,
+  [0x03AA] = sGyakuGirePandaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -844,6 +849,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03A7] = sGoblinKingBigPalette,
   [0x03A8] = sGranadoraBigPalette,
   [0x03A9] = sHyperHammerheadBigPalette,
+  [0x03AA] = sGyakuGirePandaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -987,6 +993,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03A7] = 0,
   [0x03A8] = 0,
   [0x03A9] = 0,
+  [0x03AA] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1130,4 +1137,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03A7] = sGoblinKingMiniArt,
   [0x03A8] = sGranadoraMiniArt,
   [0x03A9] = sHyperHammerheadMiniArt,
+  [0x03AA] = sGyakuGirePandaMiniArt,
 };
