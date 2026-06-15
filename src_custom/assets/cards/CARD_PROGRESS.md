@@ -167,6 +167,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BURNING_ALGAE` | Burning Algae | `burning_algae.png` |
 | `DARKLORD_MARIE` | Darklord Marie | `darklord_marie.png` |
 | `FENRIR` | Fenrir | `fenrir.png` |
+| `KA_2_DES_SCISSORS` | KA-2 Des Scissors | `ka_2_des_scissors.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -240,7 +241,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `JAR_ROBBER` — `jar_robber.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
-- [ ] `KA_2_DES_SCISSORS` — `ka_2_des_scissors.png`
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
