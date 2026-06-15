@@ -119,6 +119,7 @@ void HandleAtkAndLifePointsAction(void);
 void UpdateAllDuelGfx(void);
 u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
 u8 TrySpecialSummonGilasaurusFromHand(u8);
+u8 TrySpecialSummonFenrirFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -126,7 +127,7 @@ unsigned char GetDuelistStatus(unsigned char);
 
 static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 {
-  return cardId == RARE_METAL_DRAGON;
+  return cardId == RARE_METAL_DRAGON || cardId == FENRIR;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -246,6 +247,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == GILASAURUS
           && TrySpecialSummonGilasaurusFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == FENRIR
+          && TrySpecialSummonFenrirFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

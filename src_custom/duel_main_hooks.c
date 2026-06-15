@@ -1,7 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "duel_helpers.h"
 #include "custom_decks/custom_decks.h"
 #include "duel.h"
 #include "duel_main.h"
@@ -24,6 +26,7 @@
 #include "curse_of_darkness.h"
 #include "solar_ray.h"
 #include "yata_garasu.h"
+#include "fenrir.h"
 #include "life_points.h"
 #include "text.h"
 #include "summon_tribute.h"
@@ -308,6 +311,10 @@ static bool8 RunDuelTurnLoop(void) {
         gCardEffectTextData.cardId = YATA_GARASU;
         ActivateCardEffectText();
       }
+    } else if (ShouldSkipDrawPhaseForFenrir(turn)) {
+      ConsumeFenrirSkipDraw(turn);
+      if (!gHideEffectText)
+        Duel_ShowEffectText(FENRIR);
     } else if (ShouldSkipDrawPhaseForTimeSeal(turn)) {
       ConsumeTimeSealSkipDraw(turn);
     } else if (ShouldSkipDrawPhaseForRecklessGreed(turn)) {

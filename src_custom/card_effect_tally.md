@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `158` effects
+- `160` effects
 
 ## Tally
 
@@ -128,6 +128,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Mad Sword Beast` | `src_custom/battle_effects/mad_sword_beast.c` |
 | `battle_effects` | `Dark Driceratops` | `src_custom/battle_effects/dark_driceratops.c` |
 | `battle_effects` | `Yata Garasu` | `src_custom/battle_effects/yata_garasu.c` |
+| `battle_effects` | `Fenrir` | `src_custom/battle_effects/fenrir.c` |
 | `battle_effects` | `Kaiser Glider` | `src_custom/battle_effects/kaiser_glider.c` |
 | `battle_effects` | `Piranha Army` | `src_custom/battle_effects/piranha_army.c` |
 | `card_passives` | `Hayabusa Knight` | `src_custom/card_passives/hayabusa_knight.c` |
@@ -161,6 +162,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Goblin King` | `src_custom/permanent_effects/goblin_king.c` |
 | `permanent_effects` | `Gyaku-Gire Panda` | `src_custom/permanent_effects/gyaku_gire_panda.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
+| `permanent_effects` | `Fenrir` | `src_custom/permanent_effects/fenrir.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |

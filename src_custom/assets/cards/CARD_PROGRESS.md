@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 144 |
-| Art ready, needs manifest | 175 |
+| In game (manifest + art) | 145 |
+| Art ready, needs manifest | 174 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -166,6 +166,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BOOK_OF_MOON` | Book of Moon | `book_of_moon.png` |
 | `BURNING_ALGAE` | Burning Algae | `burning_algae.png` |
 | `DARKLORD_MARIE` | Darklord Marie | `darklord_marie.png` |
+| `FENRIR` | Fenrir | `fenrir.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -224,7 +225,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ECTOPLASMER` — `ectoplasmer.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
-- [ ] `FENRIR` — `fenrir.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`

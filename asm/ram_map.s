@@ -259,6 +259,10 @@ _kernel_malloc_ewram gRecklessGreedSkipDrawRemaining, 1
 _kernel_malloc_ewram gDrawPhaseNormalDrawActive, 1
 @ ponytail: pad keeps even EWRAM alignment for following u16 symbols.
 _kernel_malloc_ewram gDrawPhaseNormalDrawActivePad, 1
+@ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Fenrir, else 0xFF.
+_kernel_malloc_ewram gFenrirSkipDrawDuelist, 1
+@ ponytail: pad keeps even EWRAM alignment after Fenrir skip-draw byte.
+_kernel_malloc_ewram gFenrirSkipDrawDuelistPad, 1
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1

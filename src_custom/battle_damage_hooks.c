@@ -12,6 +12,7 @@
 #include "robbin_goblin.h"
 #include "robbin_zombie.h"
 #include "yata_garasu.h"
+#include "fenrir.h"
 #include "kaiser_glider.h"
 #include "piranha_army.h"
 #include "vampire_baby.h"
@@ -178,6 +179,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAbsorbingKidFromTheSkyBattleEffect();
   ApplyRobbinZombieBattleEffect();
   ApplyYataGarasuBattleEffect();
+  ApplyFenrirBattleEffect();
   ApplyHyperHammerheadBattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {

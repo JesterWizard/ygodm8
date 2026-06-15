@@ -16708,6 +16708,35 @@
           "Gain 200 LP from this card being in the owner's graveyard."
         ]
       }
+    },
+    {
+      "card_const": "FENRIR",
+      "card_name": "Fenrir",
+      "atk": 1400,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [0, 0, 2, 1, 8, 7, 0, 4],
+      "description": {
+        "symbol": "gDescription_Fenrir",
+        "pages": [
+          "This card cannot be Normal Summoned or Set.",
+          "Special Summon by removing 1 WATER monster",
+          "from your Graveyard. Destroys skip their Draw."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Fenrir",
+        "pages": [
+          "Skip your opponent's next draw."
+        ]
+      }
     }
   ]
 }

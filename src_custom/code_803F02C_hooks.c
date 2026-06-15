@@ -9,6 +9,7 @@
 #include "triangle_power.h"
 #include "limiter_removal.h"
 #include "yata_garasu.h"
+#include "fenrir.h"
 #include "time_seal.h"
 #include "reckless_greed.h"
 #include "copycat.h"
@@ -193,6 +194,7 @@ void InitBoard__Replacement(void) {
 
   ResetDelayedDuelEffects();
   ResetYataGarasuSkipDraw();
+  ResetFenrirSkipDraw();
   ResetTimeSealSkipDraw();
   ResetRecklessGreedSkipDraw();
   ResetThousandEnergyState();
