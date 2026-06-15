@@ -120,6 +120,7 @@ enum {
   MONSTER_EFFECT_WEATHER_REPORT,
   MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS,
   MONSTER_EFFECT_STEALTH_BIRD,
+  MONSTER_EFFECT_MAGICAL_MERCHANT,
 };
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
@@ -147,3 +148,5 @@ extern void ActivateWeatherReportEffect(void);
 extern unsigned char CanActivateTheAgentOfCreationVenus(void);
 extern void ActivateTheAgentOfCreationVenusEffect(void);
 extern void ActivateStealthBirdEffect(void);
+extern unsigned char CanActivateMagicalMerchant(void);
+extern void ActivateMagicalMerchantEffect(void);

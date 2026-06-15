@@ -65,6 +65,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateWeatherReport();
     case MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS:
       return CanActivateTheAgentOfCreationVenus();
+    case MONSTER_EFFECT_MAGICAL_MERCHANT:
+      return CanActivateMagicalMerchant();
     default:
       return TRUE;
   }
@@ -181,6 +183,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_STEALTH_BIRD) {
     ActivateStealthBirdEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MAGICAL_MERCHANT) {
+    ActivateMagicalMerchantEffect();
     return;
   }
 

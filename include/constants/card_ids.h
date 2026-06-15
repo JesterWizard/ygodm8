@@ -947,11 +947,12 @@
 #define BURNING_ALGAE                            0x03AF
 #define DARKLORD_MARIE                           0x03B0
 #define FENRIR                                   0x03B1
+#define MAGICAL_MERCHANT                         0x03B2
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03B2
-#define NUM_CUSTOM_CARDS                        0x0091
+#define NUM_TOTAL_CARDS                         0x03B3
+#define NUM_CUSTOM_CARDS                        0x0092
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

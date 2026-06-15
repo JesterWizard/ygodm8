@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 145 |
-| Art ready, needs manifest | 174 |
+| In game (manifest + art) | 146 |
+| Art ready, needs manifest | 173 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -167,7 +167,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BURNING_ALGAE` | Burning Algae | `burning_algae.png` |
 | `DARKLORD_MARIE` | Darklord Marie | `darklord_marie.png` |
 | `FENRIR` | Fenrir | `fenrir.png` |
-| `KA_2_DES_SCISSORS` | KA-2 Des Scissors | `ka_2_des_scissors.png` |
+| `MAGICAL_MERCHANT` | Magical Merchant | `magical_merchant.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -241,6 +241,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `JAR_ROBBER` — `jar_robber.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
+- [ ] `KA_2_DES_SCISSORS` — `ka_2_des_scissors.png`
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
@@ -255,7 +256,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LEVIA_DRAGON_DAEDALUS` — `levia_dragon_daedalus.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
-- [ ] `MAGICAL_MERCHANT` — `magical_merchant.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `160` effects
+- `161` effects
 
 ## Tally
 
@@ -175,6 +175,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Weather Report` | `src_custom/activated_effects/weather_report.c` |
 | `activated_effects` | `The Agent Of Creation - Venus` | `src_custom/activated_effects/the_agent_of_creation_venus.c` |
 | `activated_effects` | `Stealth Bird` | `src_custom/activated_effects/stealth_bird.c` |
+| `activated_effects` | `Magical Merchant` | `src_custom/activated_effects/magical_merchant.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
