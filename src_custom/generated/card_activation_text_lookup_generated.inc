@@ -157,6 +157,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { GYAKU_GIRE_PANDA, gActivationDescription_GyakuGirePanda },
   { GRACEFUL_DICE, gActivationDescription_GracefulDice },
   { BERSERK_GORILLA, gActivationDescription_BerserkGorilla },
+  { CHAOS_GREED, gActivationDescription_ChaosGreed },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

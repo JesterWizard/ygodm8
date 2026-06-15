@@ -42,6 +42,7 @@
 #include "the_forceful_sentry.h"
 #include "meteor_of_destruction.h"
 #include "final_countdown.h"
+#include "chaos_greed.h"
 #include "toll.h"
 #include "call_of_the_haunted.h"
 #include "skull_invitation.h"
@@ -436,6 +437,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == FINAL_COUNTDOWN && !CanActivateFinalCountdown()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == CHAOS_GREED && !CanActivateChaosGreed()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

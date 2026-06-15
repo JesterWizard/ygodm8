@@ -572,6 +572,10 @@ static const unsigned char sBerserkGorillaBigArt[] __attribute__((section(".appe
 static const unsigned short sBerserkGorillaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/berserk_gorilla.gbapal");
 static const unsigned char sBerserkGorillaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/berserk_gorilla.lz");
 
+static const unsigned char sChaosGreedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chaos_greed.huff");
+static const unsigned short sChaosGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chaos_greed.gbapal");
+static const unsigned char sChaosGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chaos_greed.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -716,6 +720,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03AA] = sGyakuGirePandaBigArt,
   [0x03AB] = sGracefulDiceBigArt,
   [0x03AC] = sBerserkGorillaBigArt,
+  [0x03AD] = sChaosGreedBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -862,6 +867,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03AA] = sGyakuGirePandaBigPalette,
   [0x03AB] = sGracefulDiceBigPalette,
   [0x03AC] = sBerserkGorillaBigPalette,
+  [0x03AD] = sChaosGreedBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1008,6 +1014,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03AA] = 0,
   [0x03AB] = 0,
   [0x03AC] = 0,
+  [0x03AD] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1154,4 +1161,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03AA] = sGyakuGirePandaMiniArt,
   [0x03AB] = sGracefulDiceMiniArt,
   [0x03AC] = sBerserkGorillaMiniArt,
+  [0x03AD] = sChaosGreedMiniArt,
 };

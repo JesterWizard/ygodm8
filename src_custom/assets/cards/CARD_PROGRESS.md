@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 140 |
-| Art ready, needs manifest | 179 |
+| In game (manifest + art) | 141 |
+| Art ready, needs manifest | 178 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -162,6 +162,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GYAKU_GIRE_PANDA` | Gyaku-Gire Panda | `gyaku_gire_panda.png` |
 | `GRACEFUL_DICE` | Graceful Dice | `graceful_dice.png` |
 | `BERSERK_GORILLA` | Berserk Gorilla | `berserk_gorilla.png` |
+| `CHAOS_GREED` | Chaos Greed | `chaos_greed.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -197,7 +198,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
-- [ ] `CHAOS_GREED` — `chaos_greed.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
