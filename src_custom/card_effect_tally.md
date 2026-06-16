@@ -177,6 +177,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `The Agent Of Creation - Venus` | `src_custom/activated_effects/the_agent_of_creation_venus.c` |
 | `activated_effects` | `Stealth Bird` | `src_custom/activated_effects/stealth_bird.c` |
 | `activated_effects` | `Magical Merchant` | `src_custom/activated_effects/magical_merchant.c` |
+| `battle_effects` | `Spirit Reaper` | `src_custom/battle_effects/spirit_reaper.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

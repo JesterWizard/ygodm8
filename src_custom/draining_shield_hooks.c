@@ -38,6 +38,7 @@ void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
+void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
@@ -167,6 +168,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveVampireBabyBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveReaperOnTheNightmareDirectDamageEffect();
+  ResolveSpiritReaperDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveNeedleBurrowerBattleEffect();

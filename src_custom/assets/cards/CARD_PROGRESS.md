@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-16).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-17).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 147 |
-| Art ready, needs manifest | 172 |
+| In game (manifest + art) | 148 |
+| Art ready, needs manifest | 171 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -169,6 +169,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `FENRIR` | Fenrir | `fenrir.png` |
 | `MAGICAL_MERCHANT` | Magical Merchant | `magical_merchant.png` |
 | `RAREGOLD_ARMOR` | Raregold Armor | `raregold_armor.png` |
+| `SPIRIT_REAPER` | Spirit Reaper | `spirit_reaper.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -313,7 +314,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `SPIRIT_CALLER` — `spirit_caller.png`
 - [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
-- [ ] `SPIRIT_REAPER` — `spirit_reaper.png`
 - [ ] `SPIRIT_RYU` — `spirit_ryu.png`
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`

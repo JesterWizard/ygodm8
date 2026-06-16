@@ -34,6 +34,7 @@
 #include "skull_invitation.h"
 #include "coffin_seller.h"
 #include "reaper_on_the_nightmare.h"
+#include "spirit_reaper.h"
 #include "dark_room_of_nightmare.h"
 #include "sasuke_samurai.h"
 
@@ -225,6 +226,7 @@ void InitBoard__Replacement(void) {
   ClearVampireBabyPending();
   ClearMefistDiscardPending();
   ClearReaperDiscardPending();
+  ClearSpiritReaperDiscardPending();
   ClearGuardianAngelJoanPending();
   ClearAirknightParshathDrawPending();
   ClearNeedleBurrowerPending();

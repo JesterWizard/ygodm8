@@ -87,6 +87,14 @@ void ApplyReaperOnTheNightmareBattleProtection(void) {
   if (sActionData.opponentCardId == REAPER_ON_THE_NIGHTMARE
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT))
     sActionData.flags &= ~FLAG_GRAVEYARD_OPPONENT;
+
+  if (sActionData.playerCardId == SPIRIT_REAPER
+      && (sActionData.flags & FLAG_GRAVEYARD_PLAYER))
+    sActionData.flags &= ~FLAG_GRAVEYARD_PLAYER;
+
+  if (sActionData.opponentCardId == SPIRIT_REAPER
+      && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT))
+    sActionData.flags &= ~FLAG_GRAVEYARD_OPPONENT;
 }
 
 void ApplyReaperOnTheNightmareDirectDamageEffect(void) {

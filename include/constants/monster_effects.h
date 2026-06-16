@@ -123,8 +123,6 @@ enum {
   MONSTER_EFFECT_MAGICAL_MERCHANT,
 };
 
-#endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
-
 extern unsigned char CanActivateInjectionFairyLily(void);
 extern void ActivateInjectionFairyLilyEffect(void);
 extern void EffectCyberJar(void);
@@ -150,3 +148,5 @@ extern void ActivateTheAgentOfCreationVenusEffect(void);
 extern void ActivateStealthBirdEffect(void);
 extern unsigned char CanActivateMagicalMerchant(void);
 extern void ActivateMagicalMerchantEffect(void);
+
+#endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

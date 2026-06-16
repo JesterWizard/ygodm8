@@ -22,6 +22,7 @@
 #include "needle_burrower.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "reaper_on_the_nightmare.h"
+#include "spirit_reaper.h"
 #include "hyper_hammerhead.h"
 #include "gyaku_gire_panda.h"
 
@@ -172,6 +173,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyTheUnhappyMaidenBattleEffect();
   ApplyRobbinGoblinBattleEffect();
   ApplyReaperOnTheNightmareDirectDamageEffect();
+  ApplySpiritReaperDiscardBattleEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();

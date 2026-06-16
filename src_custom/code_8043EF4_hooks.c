@@ -58,6 +58,7 @@
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
 #include "reaper_on_the_nightmare.h"
+#include "spirit_reaper.h"
 #include "great_maju_garzett.h"
 #include "goblin_king.h"
 #include "raregold_armor.h"
@@ -713,6 +714,7 @@ void sub_8044570__Replacement(void)
       ResolveVampireBabyBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
+      ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();
@@ -809,6 +811,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveVampireBabyBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
+      ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveNeedleBurrowerBattleEffect();

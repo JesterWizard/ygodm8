@@ -301,6 +301,10 @@ _kernel_malloc_ewram gVampireBabyPendingCardId, 2
 _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Reaper on the Nightmare, else 0xFF.
 _kernel_malloc_ewram gPendingReaperDiscardDuelist, 1
+@ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Spirit Reaper, else 0xFF.
+_kernel_malloc_ewram gPendingSpiritReaperDiscardDuelist, 1
+@ ponytail: pad keeps gPendingGuardianAngelJoanDestroyedAtk 2-byte aligned after extra u8 above.
+_kernel_malloc_ewram gPendingSpiritReaperDiscardPad, 1
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Guardian Angel Joan, else 0xFF.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
 @ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).

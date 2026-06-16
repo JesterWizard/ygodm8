@@ -43,6 +43,7 @@ enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePre
 
 enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredicate pred,
                                            u8 updateGfx);
+enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx);
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
 

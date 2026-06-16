@@ -470,6 +470,31 @@ enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredica
   return DUEL_ACTION_OK;
 }
 
+enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 updateGfx)
+{
+  struct DuelCard **handRow = gTurnHands[duelist];
+  u8 i;
+
+  for (i = 0; i < count; i++) {
+    s8 zone;
+
+    if (Duel_CountCardsInHand(handRow) == 0)
+      return DUEL_ACTION_NO_TARGET;
+
+    zone = PickRandomHandZone(handRow);
+    if (zone < 0)
+      return DUEL_ACTION_NO_TARGET;
+
+    ClearZoneAndSendMonToGraveyard(handRow[zone], duelist);
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return DUEL_ACTION_OK;
+}
+
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx)
 {
   struct DuelCard **handRow = gTurnHands[duelist];

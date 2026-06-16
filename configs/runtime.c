@@ -57,10 +57,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
-    .card_in_hand_1 = HOURGLASS_OF_LIFE,
+    .card_in_hand_1 = SPIRIT_REAPER,
     .card_in_hand_2 = THE_FURIOUS_SEA_KING,
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = HOURGLASS_OF_LIFE
+    .opponent_deck_card_id = CARD_NONE
 };

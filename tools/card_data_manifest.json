@@ -16797,6 +16797,35 @@
           "Opponents can only attack the equipped monster."
         ]
       }
+    },
+    {
+      "card_const": "SPIRIT_REAPER",
+      "card_name": "Spirit Reaper",
+      "atk": 300,
+      "def": 200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [2, 3, 2, 0, 5, 9, 7, 9],
+      "description": {
+        "symbol": "gDescription_SpiritReaper",
+        "pages": [
+          "Cannot be destroyed by battle. When this card deals battle",
+          "damage to your opponent, discard one random card from their",
+          "hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SpiritReaper",
+        "pages": [
+          "Discard 1 random card from your opponent's hand."
+        ]
+      }
     }
   ]
 }

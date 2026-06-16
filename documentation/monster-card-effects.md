@@ -86,6 +86,7 @@ Use `duel_helpers.h` for common actions instead of copying static helpers into e
 | Destroy zone | `Duel_DestroyZone(zone, graveyardDuelist, updateGfx)` |
 | Destroy row | `Duel_DestroyAllMonstersMatching(turnRow, pred, updateGfx)` |
 | Discard | `Duel_DiscardFromHand(duelist, count, pred, updateGfx)` |
+| Discard random | `Duel_DiscardRandomFromHand(duelist, count, updateGfx)` |
 | Discard all hand | `Duel_DestroyAllHandCards(duelist, updateGfx)` |
 | LP change | `Duel_ChangeLp(targetDuelist, delta, updateGfx)` — positive gain, negative burn |
 | Effect text | `Duel_ShowEffectText(cardId)` |
