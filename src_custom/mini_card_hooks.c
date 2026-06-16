@@ -59,6 +59,9 @@ void RefreshFieldMonsterStatOverlays(void)
   struct DuelCard *zone;
   u8 *tilePtr;
 
+  if (gHideEffectText)
+    return;
+
   for (row = 0; row < 5; row++) {
     for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
       zone = gFixedZones[row][col];

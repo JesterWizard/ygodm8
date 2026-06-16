@@ -1,7 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
 #include "duel_helpers.h"
-#include "mini_card.h"
 
 void ActivateHourglassOfLifeEffect(void)
 {
@@ -18,5 +17,4 @@ void ActivateHourglassOfLifeEffect(void)
   if (Duel_ChangeLp(WhoseTurn(), -1000, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  RefreshFieldMonsterStatOverlays();
 }

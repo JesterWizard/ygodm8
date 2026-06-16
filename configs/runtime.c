@@ -62,5 +62,5 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = CARD_NONE
+    .opponent_deck_card_id = HOURGLASS_OF_LIFE
 };

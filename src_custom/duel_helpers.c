@@ -37,7 +37,9 @@ struct DuelSummonOpts Duel_DefaultNormalSummonOpts(u8 updateGfx)
 
 static void MaybeUpdateGfx(u8 updateGfx)
 {
-  if (updateGfx)
+  /* ponytail: AI_Main simulates actions with gHideEffectText set; duel state is
+   * restored after each probe but field VRAM is not. */
+  if (updateGfx && !gHideEffectText)
     UpdateDuelGfxExceptField();
 }
 

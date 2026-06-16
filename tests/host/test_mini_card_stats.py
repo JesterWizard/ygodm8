@@ -73,7 +73,7 @@ class MiniCardStatOverlayTests(unittest.TestCase):
     def test_hourglass_refreshes_field_stat_overlays(self):
         source = HOURGLASS_EFFECT.read_text()
         self.assertIn("IncrementPermStage", source)
-        self.assertIn("RefreshFieldMonsterStatOverlays", source)
+        self.assertIn("Duel_ChangeLp(WhoseTurn(), -1000, TRUE)", source)
 
     def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
         source = MINI_CARD_HOOKS.read_text()
