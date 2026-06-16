@@ -1,6 +1,6 @@
 ---
 name: add-custom-card
-description: "Use when adding a custom card to this Yu-Gi-Oh GBA ROM hack: manifest entry, trunk wiring, art, descriptions, runtime test hand, and optional effect hooks. Read this skill first — do not broad-search the repo for trunk/art/build plumbing."
+description: "Use when adding a custom card to this Yu-Gi-Oh GBA ROM hack: manifest entry, trunk wiring, art, descriptions, runtime test hand, optional effect hooks, and duel_helpers for effect bodies. Read this skill first — do not broad-search the repo for trunk/art/build plumbing."
 ---
 
 # Add Custom Card
@@ -18,8 +18,9 @@ These are automatic once the manifest entry exists — **skip codebase explorati
 | Description byte data | Regenerated into `src_custom/card_description_data_generated.inc` |
 | Mini art (24×24) | Derived from 80×80 PNG unless a manual mini exists |
 | `trunk_hooks.c`, `deck_menu_hooks.c` | Custom cards piggyback existing hooks |
+| Draw / destroy / LP / summon boilerplate | Use `include/duel_helpers.h` — do not reinvent |
 
-Only search when implementing **new effect behavior** (use **card-effect-hook-placement** skill) or when art is missing.
+Only search when implementing **new effect behavior** (use **card-effect-hook-placement** skill), when **extending duel helpers**, or when art is missing.
 
 ## Fast Path Checklist
 
@@ -27,6 +28,7 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 - [ ] 1. Scaffold manifest entry: `python3 tools/add_custom_card.py "Card Name" --write`
 - [ ] 2. Confirm art: src_custom/assets/cards/80x80/<stem>.png (script reports OK/MISSING)
 - [ ] 3. Effect hooks? → only if card has non-vanilla behavior (one table row in turn/spell/trap hooks)
+- [ ] 3b. Effect body uses `duel_helpers.h` — extend `duel_helpers.c` if no helper fits (see below)
 - [ ] 4. configs/runtime.c → `--runtime-hand N` or manual card_in_hand_* if user asked
 - [ ] 5. make test-cards (manifest-only) or make test-cards-build (hooks/runtime)
 ```
@@ -166,7 +168,76 @@ Same shell as spell but `"type": "TYPE_TRAP"`, `"color": "TRAP_CARD"`, and set `
 | Passive stat / always-on | `src_custom/permanent_effects/` |
 | End-of-turn / standby | `src_custom/turn_effects/` + one row in `sTurnEffectOverrides[]` in `turn_effect_hooks.c` |
 
-Use `include/duel_helpers.h` for draw, destroy, discard, LP, summon, effect text — do not copy static duel helpers into card files. See `documentation/monster-card-effects.md` cheat sheet only if implementing effects.
+### Duel helpers (required for effect bodies)
+
+**Every effect file that touches duel state must `#include "duel_helpers.h"` and call shared helpers instead of copying vanilla duel APIs or static local helpers** (`DrawCards`, `CountCardsInHand`, `InitSummonedMonsterZone`, `SetPlayerLifePointsTo*`, etc.).
+
+Duelist args use `ACTIVE_DUELIST` / `INACTIVE_DUELIST`. Check `enum DuelActionResult` and early-return on `DUEL_ACTION_DUEL_OVER` / `DUEL_ACTION_BLOCKED` / `DUEL_ACTION_NO_TARGET` / `DUEL_ACTION_NO_ZONE` as appropriate.
+
+| Verb | Helper |
+|------|--------|
+| Count hand | `Duel_CountCardsInHand(handRow)` |
+| Draw | `Duel_DrawCards(duelist, count, updateGfx)` |
+| Mill deck | `Duel_MillTopDeckCards(duelist, count, updateGfx)` |
+| Destroy zone | `Duel_DestroyZone(zone, graveyardDuelist, updateGfx)` |
+| Destroy row | `Duel_DestroyAllMonstersMatching(turnRow, pred, updateGfx)` |
+| Discard | `Duel_DiscardFromHand(duelist, count, pred, updateGfx)` |
+| Discard all hand | `Duel_DestroyAllHandCards(duelist, updateGfx)` |
+| LP change | `Duel_ChangeLp(targetDuelist, delta, updateGfx)` — opponent burn from active player: `Duel_ChangeLp(INACTIVE_DUELIST, -amount, TRUE)` |
+| Effect text | `Duel_ShowEffectText(cardId)` |
+| Typed effect text | `Duel_ShowEffectTextTyped(cardId, textType)` — spell `1`, activated monster `2`, battle `3`, trap `3`, permanent `8`, turn `9` |
+| Spell vs traps | `Duel_TryResolveSpellThroughTraps(spellId, resolveBody)` or `Duel_TryResolveSpellThroughTrapsEx(spellId, trapLp, resolveBody)` |
+| Deck search / remove / shuffle | `Duel_FindDeckCardIndex`, `Duel_RemoveDeckCardAt`, `Duel_ShuffleDeckFromDrawn` |
+| Special summon | `Duel_SpecialSummonFromHand/Grave/Deck/HandZone/MonsterId(...)` + `Duel_DefaultSpecialSummonOpts(updateGfx)` |
+| Locked special summon | set `opts.lockMonster = TRUE` on `struct DuelSummonOpts` |
+| Normal summon | `Duel_NormalSummonFromHand(..., Duel_DefaultNormalSummonOpts(updateGfx))` |
+| Return to hand | `Duel_ReturnMonsterZoneToOwnerHand(zone, updateGfx)` |
+
+Pass `updateGfx=TRUE` only when the card should call `UpdateDuelGfxExceptField()` after that step; use `FALSE` on intermediate steps when the original flow updated gfx once at the end.
+
+**Spell pattern** — resolve body callback + trap gate (see `src_custom/spell_effects/raregold_armor.c`, `sparks.c`):
+
+```c
+#include "duel_helpers.h"
+
+static void MySpell_ResolveBody(void)
+{
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -500, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ShowEffectText(MY_SPELL);
+}
+
+APPEND_TEXT void EffectMySpell(void)
+{
+  if (Duel_TryResolveSpellThroughTrapsEx(MY_SPELL, 500, MySpell_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
+  MySpell_ResolveBody();
+}
+```
+
+**Keep vanilla calls in the card file only for card-specific logic** — equip registration, field/target selection UI, flip/set position, battle-context `gDuelLifePoints` mutation, `cardId2` effect text, tribute paths using `ClearZoneAndSendMonToGraveyard2`, custom deck/hand UI that helpers do not model.
+
+### When to add a new duel helper
+
+Before writing more than a few lines of duel plumbing in a card file:
+
+1. Grep `src_custom/*_effects/` for the same pattern — if another card does it, a helper probably already exists.
+2. If the action is a **reusable duel verb** (draw, destroy, discard, LP, summon, deck op, effect text, trap gate) and fits an existing helper signature, **use that helper**.
+3. If the card needs duel logic that **no helper covers** and would otherwise be copied (or is non-trivial inline vanilla), **add a helper** to `include/duel_helpers.h` + `src_custom/duel_helpers.c` first, then call it from the card file.
+   - Put the implementation in `duel_helpers.c`; keep the card file to activation checks + card-specific rules.
+   - Return `enum DuelActionResult`; fold in `IsDuelOver()` / gfx updates like existing helpers.
+   - Extend `DUEL_HELPERS_SELF_CHECK` or add a minimal assert when the logic is non-obvious.
+   - Update the cheat sheet in `documentation/monster-card-effects.md`.
+4. Do **not** add a helper for one-off card quirks (single-file UI, unique equip wiring, battle-only LP hacks) — keep those in the card file.
+
+| Situation | Action |
+|-----------|--------|
+| Same pattern as existing cards | Use existing `Duel_*` |
+| New pattern, likely reused | Add `Duel_*` in `duel_helpers` |
+| Truly unique card logic | Vanilla in card file only |
+
+Full API reference: `include/duel_helpers.h` and `documentation/monster-card-effects.md` (Duel helpers cheat sheet).
 
 ## Step 5 — Runtime Test Hand (if requested)
 
@@ -206,6 +277,7 @@ After `make`, confirm grep hits for the new const in:
 | Need | Read |
 |------|------|
 | Effect implementation | `.agents/skills/card-effect-hook-placement/SKILL.md` |
+| Duel helper API | `include/duel_helpers.h`, `documentation/monster-card-effects.md` |
 | Pre-reply validation | `.agents/skills/validate-before-reply/SKILL.md` |
 | Art authoring / palette | `documentation/adding-custom-cards.md` |
 | Description format | `documentation/card-descriptions.md` |
