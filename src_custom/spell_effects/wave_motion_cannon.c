@@ -1,11 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 #include "wave_motion_cannon.h"
 
 #define WAVE_MOTION_CANNON_DAMAGE_PER_TURN 1000
-
-extern void ActivateTrapEffect(u16 lp);
 
 static u16 GetWaveMotionCannonDamage(const struct DuelCard *zone)
 {
@@ -18,20 +17,6 @@ static u16 GetWaveMotionCannonDamage(const struct DuelCard *zone)
   return (u16)damage;
 }
 
-static void ApplyWaveMotionCannonDamage(u16 damage)
-{
-  if (damage == 0)
-    return;
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(damage);
-  else
-    SetPlayerLifePointsToSubtract(damage);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void PlaceWaveMotionCannon(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -39,31 +24,27 @@ static void PlaceWaveMotionCannon(void)
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
   ResetPermStage(zone);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = WAVE_MOTION_CANNON;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(WAVE_MOTION_CANNON);
 }
 
-static void FireWaveMotionCannon(void)
+static void WaveMotionCannon_ResolveBody(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
   u16 damage = GetWaveMotionCannonDamage(zone);
 
-  gTrapEffectData.originRow = gSpellEffectData.row1;
-  gTrapEffectData.originCol = gSpellEffectData.col1;
-  gTrapEffectData.originCardId = WAVE_MOTION_CANNON;
+  if (damage != 0
+      && Duel_ChangeLp(INACTIVE_DUELIST, -(s32)damage, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    ApplyWaveMotionCannonDamage(damage);
-    ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
-  } else {
-    ActivateTrapEffect(damage);
-  }
+  Duel_DestroyZone(zone, ACTIVE_DUELIST, TRUE);
+}
 
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+static void FireWaveMotionCannon(void)
+{
+  if (Duel_TryResolveSpellThroughTrapsEx(WAVE_MOTION_CANNON, GetWaveMotionCannonDamage(
+                                           gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]),
+                                         WaveMotionCannon_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }
 
 APPEND_TEXT void EffectWaveMotionCannon(void)

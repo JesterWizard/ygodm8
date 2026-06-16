@@ -1,20 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 extern const u8 gActivationDescription_BlueEyesAlternativeWhiteDragon[];
-
-void UpdateDuelGfxExceptField(void);
-
-static void InitSummonedMonsterZone(struct DuelCard *zone) {
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
 
 static void ShowBlueEyesAlternativeWhiteDragonActivationText(void) {
   u8 hideEffectText = gHideEffectText;
@@ -59,29 +47,26 @@ u8 CanSpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8 altHandZone) {
   return TRUE;
 }
 
+// ponytail: BEWD stays in hand as a visible cost; only the alt card is cleared
 u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8 altHandZone) {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
   s8 bewdZone;
-  s8 monsterZone;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   if (!CanSpecialSummonBlueEyesAlternativeWhiteDragonFromHand(altHandZone))
     return FALSE;
 
   bewdZone = GetFirstCardMatchZoneId(handRow, BLUE_EYES_WHITE_DRAGON);
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
 
-  if (bewdZone < 0 || monsterZone < 0)
+  if (bewdZone < 0)
     return FALSE;
 
   ShowBlueEyesAlternativeWhiteDragonActivationText();
 
   handRow[bewdZone]->isFaceUp = TRUE;
 
-  summonZone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterZone];
-  summonZone->id = BLUE_EYES_ALTERNATIVE_WHITE_DRAGON;
-  InitSummonedMonsterZone(summonZone);
-  ClearZone(handRow[altHandZone]);
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, altHandZone, opts) != DUEL_ACTION_OK)
+    return FALSE;
 
   return TRUE;
 }

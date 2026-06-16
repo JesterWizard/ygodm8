@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 static struct DuelCard *GetSpellOriginZone(void)
 {
@@ -23,14 +24,13 @@ APPEND_TEXT void EffectMagicJammer(void)
 {
   struct DuelCard *spellZone = GetSpellOriginZone();
 
-  ClearZoneAndSendMonToGraveyard(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
   if (spellZone != NULL)
-    ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
+    Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = MAGIC_JAMMER;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(MAGIC_JAMMER);
   }
 }

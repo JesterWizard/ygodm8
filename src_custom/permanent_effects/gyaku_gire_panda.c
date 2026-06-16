@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "gyaku_gire_panda.h"
 
 extern struct DuelCard *gSetFinalStatZone;

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "moister_creature.h"
 #include "summon_tribute.h"
 
@@ -43,18 +44,9 @@ static void DestroySpellAndTrapCardsInRow(struct DuelCard **row, u8 duelist)
     if (!BackrowZoneHasSpellOrTrap(row[i]))
       continue;
 
-    ClearZoneAndSendMonToGraveyard(row[i], duelist);
+    if (Duel_DestroyZone(row[i], duelist, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
   }
-}
-
-static void ShowMoisterCreatureActivationText(void)
-{
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = MOISTER_CREATURE;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
 }
 
 unsigned char ShouldActivateMoisterCreature(void)
@@ -81,11 +73,9 @@ void ActivateMoisterCreature(void)
   u8 opponentBackrow = OpponentBackrowForMonsterTurnRow(gActiveEffect.turnRow);
   u8 opponentDuelist = OpponentDuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(zone);
   DestroySpellAndTrapCardsInRow(gTurnZones[opponentBackrow], opponentDuelist);
   zone->unk4 = 1;
   ClearPendingSummonTributeCount();
-  ShowMoisterCreatureActivationText();
+  Duel_ShowEffectTextTyped(MOISTER_CREATURE, 8);
 }

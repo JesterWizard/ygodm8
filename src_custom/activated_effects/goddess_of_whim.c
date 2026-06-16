@@ -1,23 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateGoddessOfWhimEffect(void)
 {
   u8 turn = WhoseTurn();
 
-  if (turn == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(500);
-  else
-    SetOpponentLifePointsToSubtract(500);
+  if (Duel_ChangeLp(turn, -500, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_DrawCards(turn, 1, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  TryDrawingCard(turn);
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = GODDESS_OF_WHIM;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(GODDESS_OF_WHIM, 2);
 }

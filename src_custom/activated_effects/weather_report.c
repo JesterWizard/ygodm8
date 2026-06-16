@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "weather_report.h"
 
 static u8 OpponentBackrowHasSwordsOfRevealingLight(void)
@@ -25,7 +26,8 @@ static void DestroyOpponentSwordsOfRevealingLight(void)
     if (zone->id != SWORDS_OF_REVEALING_LIGHT)
       continue;
 
-    ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
+    if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
   }
 }
 
@@ -51,9 +53,5 @@ unsigned char CanActivateWeatherReport(void)
 void ActivateWeatherReportEffect(void)
 {
   DestroyOpponentSwordsOfRevealingLight();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = WEATHER_REPORT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(WEATHER_REPORT, 2);
 }

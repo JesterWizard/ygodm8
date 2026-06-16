@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 extern unsigned char IsSkillDrainActiveOnField(void);
 
@@ -48,10 +49,10 @@ u8 TryMaryokutaiSpellCounter(void)
   spellZone = GetSpellOriginZone();
   maryokutaiZone = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][maryokutaiCol];
 
-  ClearZoneAndSendMonToGraveyard(maryokutaiZone, INACTIVE_DUELIST);
+  Duel_DestroyZone(maryokutaiZone, INACTIVE_DUELIST, FALSE);
 
   if (spellZone != NULL)
-    ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
+    Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
   if (!gHideEffectText) {
     ResetCardEffectTextData();

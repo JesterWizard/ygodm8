@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "mini_card.h"
 #include "spell_effects.h"
 #include "thousand_energy.h"
@@ -64,7 +65,7 @@ void DestroyThousandEnergyMonstersAtEndOfTurn(void)
 
     zone = gFixedZones[row][i];
     if (zone->id != CARD_NONE)
-      ClearZoneAndSendMonToGraveyard(zone, duelist);
+      Duel_DestroyZone(zone, duelist, FALSE);
   }
 
   ResetThousandEnergyState();
@@ -77,8 +78,7 @@ APPEND_TEXT void EffectThousandEnergy(void)
   u8 duelist = WhoseTurn();
 
   ResetThousandEnergyState();
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   monsterRow = MonsterRowForDuelist(duelist);
   gThousandEnergyFixedMonsterRow = monsterRow;
@@ -94,9 +94,5 @@ APPEND_TEXT void EffectThousandEnergy(void)
   }
 
   RefreshFieldMonsterStatOverlays();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = THOUSAND_ENERGY;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(THOUSAND_ENERGY);
 }

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "dark_room_of_nightmare.h"
+#include "duel_helpers.h"
 #include "imperial_order.h"
 #include "spell_effects.h"
 

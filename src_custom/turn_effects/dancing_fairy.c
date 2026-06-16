@@ -23,5 +23,5 @@ void ActivateDancingFairyTurnEffect(void)
   if (Duel_ChangeLp(WhoseTurn(), DANCING_FAIRY_STANDBY_HEAL, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectText(DANCING_FAIRY);
+  Duel_ShowEffectTextTyped(DANCING_FAIRY, 9);
 }

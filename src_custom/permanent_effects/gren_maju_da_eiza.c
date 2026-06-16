@@ -1,5 +1,6 @@
 #include "global.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 
 static unsigned char CountGrenMajuDaEizaStages(struct DuelCard *zone)
 {
@@ -25,16 +26,11 @@ void ActivateGrenMajuDaEiza(void)
   unsigned char stages;
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(zone);
 
   stages = CountGrenMajuDaEizaStages(zone);
   while (stages--)
     IncrementTempStage(zone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = GREN_MAJU_DA_EIZA;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(GREN_MAJU_DA_EIZA, 8);
 }

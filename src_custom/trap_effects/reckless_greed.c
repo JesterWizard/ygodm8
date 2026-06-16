@@ -1,59 +1,23 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "constants/music_ids.h"
+#include "duel_helpers.h"
 #include "reckless_greed.h"
-
-void UpdateDuelGfxExceptField(void);
-
-static u8 GetFixedDuelistForTurnRelative(u8 turnDuelist)
-{
-  if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static void DrawOneCardForOwner(u8 owner)
-{
-  u8 i;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gDuel.hands[owner][i].id != CARD_NONE)
-      continue;
-
-    TryDrawingCard(owner);
-    PlayMusic(SFX_DRAW_CARD);
-    UpdateDuelGfxExceptField();
-    return;
-  }
-}
-
-static void DrawTwoCardsForOwner(u8 owner)
-{
-  DrawOneCardForOwner(owner);
-  if (IsDuelOver() == TRUE)
-    return;
-  DrawOneCardForOwner(owner);
-}
 
 static void ActivateRecklessGreedZone(struct DuelCard *zone)
 {
-  u8 owner = GetFixedDuelistForTurnRelative(INACTIVE_DUELIST);
+  u8 owner = (gTurnDuelistBattleState[INACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
+      ? DUEL_PLAYER : DUEL_OPPONENT;
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = RECKLESS_GREED;
-    ActivateCardEffectText();
-  }
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  DrawTwoCardsForOwner(owner);
-  if (IsDuelOver() == TRUE)
+  Duel_ShowEffectTextTyped(RECKLESS_GREED, 3);
+
+  if (Duel_DrawCards(INACTIVE_DUELIST, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   gRecklessGreedSkipDrawDuelist = owner;

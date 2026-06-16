@@ -1,9 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 static u8 IsValidMagePowerTarget(u16 cardId)
 {
@@ -19,7 +18,7 @@ static void ActivateDynamicEquipSpell(struct DuelCard *spellZone)
   spellZone->isLocked = TRUE;
 }
 
-APPEND_TEXT void EffectMagePower(void)
+static void MagePower_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
@@ -28,27 +27,23 @@ APPEND_TEXT void EffectMagePower(void)
   if (stages > MAX_ZONES_IN_ROW)
     stages = MAX_ZONES_IN_ROW;
 
+  ApplyDynamicEquipStages(target, stages);
+  RegisterDynamicEquip(spellZone, target, MAGE_POWER, stages);
+  ActivateDynamicEquipSpell(spellZone);
+  NotifyDynamicEquipFieldChanged();
+  Duel_ShowEffectText(MAGE_POWER);
+}
+
+APPEND_TEXT void EffectMagePower(void)
+{
+  struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
   if (!IsValidMagePowerTarget(target->id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    ApplyDynamicEquipStages(target, stages);
-    RegisterDynamicEquip(spellZone, target, MAGE_POWER, stages);
-    ActivateDynamicEquipSpell(spellZone);
-    NotifyDynamicEquipFieldChanged();
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = MAGE_POWER;
-      ActivateCardEffectText();
-    }
-  } else {
-    ActivateTrapEffect(0);
-  }
+  if (Duel_TryResolveSpellThroughTraps(MAGE_POWER, MagePower_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }

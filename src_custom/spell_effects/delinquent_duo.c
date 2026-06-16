@@ -2,29 +2,15 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "delinquent_duo.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "spell_effects.h"
 
-extern void ActivateTrapEffect(u16 lp);
-extern unsigned IsTrapTriggered(void);
-
 #define DELINQUENT_DUO_LP_COST 1000
-
-static u8 CountCardsInOpponentHand(void)
-{
-  u8 i;
-  u8 count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (gTurnHands[INACTIVE_DUELIST][i]->id != CARD_NONE)
-      count++;
-
-  return count;
-}
 
 u8 CanActivateDelinquentDuo(void)
 {
-  if (CountCardsInOpponentHand() == 0)
+  if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) == 0)
     return FALSE;
 
   if (WhoseTurn() == DUEL_PLAYER)
@@ -33,23 +19,10 @@ u8 CanActivateDelinquentDuo(void)
   return gDuelLifePoints[DUEL_OPPONENT] >= DELINQUENT_DUO_LP_COST;
 }
 
-static void PayLpCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(DELINQUENT_DUO_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(DELINQUENT_DUO_LP_COST);
-}
-
-static void DiscardOpponentHandCard(u8 zone)
-{
-  ClearZoneAndSendMonToGraveyard(gTurnHands[INACTIVE_DUELIST][zone], INACTIVE_DUELIST);
-}
-
 static u8 PickRandomOpponentHandZone(void)
 {
   u8 i;
-  u8 occupied = CountCardsInOpponentHand();
+  u8 occupied = Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
   u8 chosen;
   u8 seen = 0;
 
@@ -81,12 +54,12 @@ static void ResolveForActivePlayer(void)
   if (chosenZone < 0)
     return;
 
-  DiscardOpponentHandCard((u8)chosenZone);
+  Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
 
-  if (CountCardsInOpponentHand() > 0) {
+  if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0) {
     randomZone = PickRandomOpponentHandZone();
     if (randomZone != 0xFF)
-      DiscardOpponentHandCard(randomZone);
+      Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][randomZone], INACTIVE_DUELIST, FALSE);
   }
 
   ShowExchangeOpponentHandResult();
@@ -100,51 +73,39 @@ static void ResolveForInactivePlayer(void)
   if (chosenZone == 0xFF)
     return;
 
-  DiscardOpponentHandCard(chosenZone);
+  Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
 
-  if (CountCardsInOpponentHand() > 0) {
+  if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0) {
     chosenZone = PickRandomOpponentHandZone();
     if (chosenZone != 0xFF)
-      DiscardOpponentHandCard(chosenZone);
+      Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
   }
+}
+
+static void DelinquentDuo_ResolveBody(void)
+{
+  if (!CanActivateDelinquentDuo())
+    return;
+
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
+
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -DELINQUENT_DUO_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ShowEffectText(DELINQUENT_DUO);
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    ResolveForActivePlayer();
+  else
+    ResolveForInactivePlayer();
 }
 
 APPEND_TEXT void EffectDelinquentDuo(void)
 {
-  gTrapEffectData.originRow = gSpellEffectData.row1;
-  gTrapEffectData.originCol = gSpellEffectData.col1;
-  gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    if (!CanActivateDelinquentDuo())
-      return;
-
-    ClearZoneAndSendMonToGraveyard(
-        gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-    PayLpCost();
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
-
-    if (IsDuelOver() == TRUE)
-      return;
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = DELINQUENT_DUO;
-      ActivateCardEffectText();
-    }
-
-    if (IsDuelOver() == TRUE)
-      return;
-
-    if (WhoseTurn() == DUEL_PLAYER)
-      ResolveForActivePlayer();
-    else
-      ResolveForInactivePlayer();
-  } else {
-    ActivateTrapEffect(DELINQUENT_DUO_LP_COST);
-  }
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTrapsEx(DELINQUENT_DUO, DELINQUENT_DUO_LP_COST,
+                                         DelinquentDuo_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }

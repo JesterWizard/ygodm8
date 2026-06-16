@@ -1,9 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 static u8 IsValidUnitedWeStandTarget(u16 cardId)
 {
@@ -19,7 +18,7 @@ static void ActivateDynamicEquipSpell(struct DuelCard *spellZone)
   spellZone->isLocked = TRUE;
 }
 
-APPEND_TEXT void EffectUnitedWeStand(void)
+static void UnitedWeStand_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
@@ -28,27 +27,23 @@ APPEND_TEXT void EffectUnitedWeStand(void)
   if (stages > MAX_ZONES_IN_ROW)
     stages = MAX_ZONES_IN_ROW;
 
+  ApplyDynamicEquipStages(target, stages);
+  RegisterDynamicEquip(spellZone, target, UNITED_WE_STAND, stages);
+  ActivateDynamicEquipSpell(spellZone);
+  NotifyDynamicEquipFieldChanged();
+  Duel_ShowEffectText(UNITED_WE_STAND);
+}
+
+APPEND_TEXT void EffectUnitedWeStand(void)
+{
+  struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
   if (!IsValidUnitedWeStandTarget(target->id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    ApplyDynamicEquipStages(target, stages);
-    RegisterDynamicEquip(spellZone, target, UNITED_WE_STAND, stages);
-    ActivateDynamicEquipSpell(spellZone);
-    NotifyDynamicEquipFieldChanged();
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = UNITED_WE_STAND;
-      ActivateCardEffectText();
-    }
-  } else {
-    ActivateTrapEffect(0);
-  }
+  if (Duel_TryResolveSpellThroughTraps(UNITED_WE_STAND, UnitedWeStand_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }

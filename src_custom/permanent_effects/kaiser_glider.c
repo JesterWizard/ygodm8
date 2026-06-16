@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "graveyard_effects.h"
 #include "kaiser_glider.h"
@@ -11,26 +12,6 @@ void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
-
-static u8 TurnDuelistToFixed(u8 duelist)
-{
-  if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static u8 FixedDuelistToTurnDuelist(u8 fixedDuelist)
-{
-  u8 duelist;
-
-  for (duelist = 0; duelist < 2; duelist++) {
-    if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[fixedDuelist])
-      return duelist;
-  }
-
-  return ACTIVE_DUELIST;
-}
 
 static u8 IsMonsterFieldRow(u8 fixedRow)
 {
@@ -57,8 +38,12 @@ static u8 CanReturnMonsterAtZone(u8 fixedRow, u8 fixedCol)
   if (fixedDuelist == 0xFF)
     return FALSE;
 
-  turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
-  return FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
+  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
+    if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[fixedDuelist])
+      return FirstEmptyZoneInRow(gTurnHands[turnDuelist]) >= 0;
+  }
+
+  return FALSE;
 }
 
 static u8 FindFirstKaiserGliderTarget(u8 *outRow, u8 *outCol)
@@ -93,35 +78,6 @@ static u16 GetZoneAttackPoints(struct DuelCard *zone)
 {
   ApplyFieldZoneStatsToCardInfo(zone);
   return gCardInfo.atk;
-}
-
-static u8 ReturnMonsterAtZoneToOwnerHand(u8 fixedRow, u8 fixedCol)
-{
-  struct DuelCard *zone = gFixedZones[fixedRow][fixedCol];
-  u8 fixedDuelist = GetDuelistForZone(zone);
-  u8 turnDuelist;
-  s8 handZone;
-
-  if (fixedDuelist == 0xFF)
-    return FALSE;
-
-  turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
-  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
-  if (handZone < 0)
-    return FALSE;
-
-  CopyCard(gTurnHands[turnDuelist][handZone], zone);
-  gTurnHands[turnDuelist][handZone]->isFaceUp = FALSE;
-  gTurnHands[turnDuelist][handZone]->isLocked = FALSE;
-  gTurnHands[turnDuelist][handZone]->isDefending = FALSE;
-  gTurnHands[turnDuelist][handZone]->unkTwo = 0;
-  gTurnHands[turnDuelist][handZone]->unkThree = 0;
-  gTurnHands[turnDuelist][handZone]->unk4 = 0;
-  gTurnHands[turnDuelist][handZone]->willChangeSides = FALSE;
-  ResetPermStage(gTurnHands[turnDuelist][handZone]);
-  ResetTempStage(gTurnHands[turnDuelist][handZone]);
-  ClearZone(zone);
-  return TRUE;
 }
 
 static u8 PickAiKaiserGliderTarget(u8 *outRow, u8 *outCol)
@@ -160,22 +116,11 @@ static u8 PickAiKaiserGliderTarget(u8 *outRow, u8 *outCol)
   return FindFirstKaiserGliderTarget(outRow, outCol);
 }
 
-static u8 KaiserGliderGraveyardFixedDuelist(void)
+static u8 KaiserGliderOwnerIsPlayer(void)
 {
-  if (gActiveEffect.turnRow == 7)
-    return TurnDuelistToFixed(INACTIVE_DUELIST);
+  u8 turnDuelist = (gActiveEffect.turnRow == 7) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 
-  return TurnDuelistToFixed(ACTIVE_DUELIST);
-}
-
-static void ShowKaiserGliderActivationText(void)
-{
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = KAISER_GLIDER;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
+  return gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[DUEL_PLAYER];
 }
 
 static void ResolveKaiserGliderEffectForAi(void)
@@ -186,7 +131,7 @@ static void ResolveKaiserGliderEffectForAi(void)
   if (!PickAiKaiserGliderTarget(&targetRow, &targetCol))
     return;
 
-  ReturnMonsterAtZoneToOwnerHand(targetRow, targetCol);
+  Duel_ReturnMonsterZoneToOwnerHand(gFixedZones[targetRow][targetCol], TRUE);
 }
 
 unsigned char ShouldActivateKaiserGlider(void)
@@ -242,7 +187,7 @@ void TrySelectKaiserGliderTarget(void)
     return;
   }
 
-  ReturnMonsterAtZoneToOwnerHand(targetRow, targetCol);
+  Duel_ReturnMonsterZoneToOwnerHand(gFixedZones[targetRow][targetCol], TRUE);
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();
@@ -262,17 +207,15 @@ void CancelKaiserGliderTargeting(void)
 
 void ActivateKaiserGlider(void)
 {
-  u8 fixedOwner = KaiserGliderGraveyardFixedDuelist();
+  u8 turnDuelist = (gActiveEffect.turnRow == 7) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 
   if (!FieldHasKaiserGliderTarget())
     return;
 
-  ShowKaiserGliderActivationText();
-  GetGraveCardAndClearGrave2(gActiveEffect.turnRow == 6
-      ? TurnDuelistToFixed(ACTIVE_DUELIST)
-      : TurnDuelistToFixed(INACTIVE_DUELIST));
+  Duel_ShowEffectText(KAISER_GLIDER);
+  GetGraveCardAndClearGrave(turnDuelist);
 
-  if (fixedOwner == DUEL_PLAYER)
+  if (KaiserGliderOwnerIsPlayer())
     BeginKaiserGliderTargeting();
   else
     ResolveKaiserGliderEffectForAi();

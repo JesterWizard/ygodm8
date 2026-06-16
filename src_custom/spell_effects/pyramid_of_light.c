@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "god_card.h"
 #include "pyramid_of_light.h"
 #include "imperial_order.h"
@@ -50,7 +51,7 @@ static void DestroyGodCardsInMonsterRow(struct DuelCard **row, u8 duelist)
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (IsGodCard(row[i]->id) == TRUE)
-      ClearZoneAndSendMonToGraveyard(row[i], duelist);
+      Duel_DestroyZone(row[i], duelist, FALSE);
   }
 }
 
@@ -80,9 +81,5 @@ APPEND_TEXT void EffectPyramidOfLight(void)
 
   DestroyGodCardsOnMonsterFields();
   ActivatePyramidOfLightZone(zone);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = PYRAMID_OF_LIGHT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(PYRAMID_OF_LIGHT);
 }

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 #define EBON_MAGICIAN_CURRAN_DAMAGE_PER_MONSTER 300
 
@@ -33,16 +34,8 @@ void ActivateEbonMagicianCurranTurnEffect(void)
   u16 lifePoints = CountMonstersOnSide(INACTIVE_DUELIST_MONSTER_ROW)
       * EBON_MAGICIAN_CURRAN_DAMAGE_PER_MONSTER;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(lifePoints);
-  else
-    SetPlayerLifePointsToSubtract(lifePoints);
+  if (Duel_ChangeLp(1 - WhoseTurn(), -(s32)lifePoints, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = EBON_MAGICIAN_CURRAN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(EBON_MAGICIAN_CURRAN, 9);
 }

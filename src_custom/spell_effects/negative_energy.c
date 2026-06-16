@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "mini_card.h"
 #include "negative_energy.h"
 #include "spell_effects.h"
@@ -12,9 +13,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
-void ResetCardEffectTextData(void);
-void SetCardEffectTextType(u8);
-void ActivateCardEffectText(void);
 
 #define NEGATIVE_ENERGY_MAX_LEVEL 3
 #define NEGATIVE_ENERGY_STAGE_BOOST 2
@@ -97,12 +95,7 @@ void BeginNegativeEnergyTargeting(u8 originFixedRow, u8 originFixedCol)
   if (!FindFirstNegativeEnergyTarget(&targetCol))
     return;
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(1);
-    gCardEffectTextData.cardId = NEGATIVE_ENERGY;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(NEGATIVE_ENERGY, 1);
 
   if (IsDuelOver() == TRUE)
     return;
@@ -161,9 +154,7 @@ APPEND_TEXT void EffectNegativeEnergy(void)
     return;
   }
 
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row2][gSpellEffectData.col2], ACTIVE_DUELIST);
-
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row2][gSpellEffectData.col2], ACTIVE_DUELIST, FALSE);
   BoostMonsterStages(target);
   RefreshFieldMonsterStatOverlays();
 }

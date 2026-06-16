@@ -1,20 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "soul_exchange.h"
 #include "spell_effects.h"
 
 void EffectSoulExchange(void)
 {
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   if (!CanActivateSoulExchange())
     return;
 
   ActivateSoulExchangeForTurn();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = SOUL_EXCHANGE;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(SOUL_EXCHANGE);
 }

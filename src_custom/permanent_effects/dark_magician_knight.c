@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "dark_magician_knight.h"
+#include "duel_helpers.h"
 #include "dynamic_equip.h"
 
 void DisplayCardInfoBar(void);
@@ -120,7 +121,7 @@ static void DestroyDarkMagicianKnightTarget(u8 targetRow, u8 targetCol)
   if (duelist == 0xFF)
     return;
 
-  ClearZoneAndSendMonToGraveyard(target, duelist);
+  Duel_DestroyZone(target, duelist, FALSE);
   NotifyDynamicEquipFieldChanged();
 }
 
@@ -131,13 +132,7 @@ static void MarkDarkMagicianKnightEffectUsed(u8 originFixedRow, u8 originFixedCo
 
 static void ShowDarkMagicianKnightActivationText(void)
 {
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  ResetCardEffectTextData();
-  gCardEffectTextData.cardId = DARK_MAGICIAN_KNIGHT;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
+  Duel_ShowEffectTextTyped(DARK_MAGICIAN_KNIGHT, 8);
 }
 
 u8 FieldHasDarkMagicianKnightTarget(u8 originFixedRow, u8 originFixedCol)

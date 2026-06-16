@@ -1,19 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateFireReaperEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(500);
-  else
-    SetPlayerLifePointsToSubtract(500);
+  u8 target = (WhoseTurn() == DUEL_PLAYER) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(target, -500, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = FIRE_REAPER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(FIRE_REAPER, 2);
 }

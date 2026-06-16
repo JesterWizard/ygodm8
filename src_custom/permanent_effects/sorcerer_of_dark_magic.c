@@ -1,4 +1,5 @@
 #include "global.h"
+#include "duel_helpers.h"
 
 static unsigned char ZoneHasFaceUpSorcererOfDarkMagic(struct DuelCard* zone) {
   return zone->id == SORCERER_OF_DARK_MAGIC && zone->isFaceUp;

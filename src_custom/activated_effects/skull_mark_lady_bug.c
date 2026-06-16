@@ -1,24 +1,24 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateSkullMarkLadyBugEffect(void)
 {
+  u8 healDuelist;
+
   if ((gActiveEffect.turnRow == 6 && WhoseTurn() == DUEL_PLAYER) ||
       (gActiveEffect.turnRow == 7 && WhoseTurn() != DUEL_PLAYER))
-    SetPlayerLifePointsToAdd(1000);
+    healDuelist = ACTIVE_DUELIST;
   else
-    SetOpponentLifePointsToAdd(1000);
+    healDuelist = INACTIVE_DUELIST;
 
-  HandleAtkAndLifePointsAction();
+  if (Duel_ChangeLp(healDuelist, 1000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (gActiveEffect.turnRow == 6)
     GetGraveCardAndClearGrave(ACTIVE_DUELIST);
   else
     GetGraveCardAndClearGrave(INACTIVE_DUELIST);
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = SKULL_MARK_LADY_BUG;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(SKULL_MARK_LADY_BUG);
 }

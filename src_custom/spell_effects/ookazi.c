@@ -1,37 +1,22 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
-extern void ActivateTrapEffect(u16 lp);
+#define OOKAZI_DAMAGE 800
+
+static void Ookazi_ResolveBody(void)
+{
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -OOKAZI_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ShowEffectText(OOKAZI);
+}
 
 LYN_REPLACE_CHECK(EffectOokazi);
 APPEND_TEXT void EffectOokazi__Replacement(void)
 {
-  gTrapEffectData.originRow = gSpellEffectData.row1;
-  gTrapEffectData.originCol = gSpellEffectData.col1;
-  gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText)
-  {
-    if (WhoseTurn() == DUEL_PLAYER)
-      SetOpponentLifePointsToSubtract(800);
-    else
-      SetPlayerLifePointsToSubtract(800);
-
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
-
-    ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-    if (!gHideEffectText)
-    {
-      gCardEffectTextData.cardId = OOKAZI;
-      ActivateCardEffectText();
-    }
-  }
-  else
-    ActivateTrapEffect(800);
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTrapsEx(OOKAZI, OOKAZI_DAMAGE, Ookazi_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }

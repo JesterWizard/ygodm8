@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "robbin_goblin.h"
 
 struct RobbinGoblinActionData {
@@ -26,53 +27,6 @@ struct RobbinGoblinActionData {
 };
 
 extern struct RobbinGoblinActionData sActionData;
-
-static u8 CountCardsInDuelistHand(u8 duelist)
-{
-  u8 i;
-  u8 count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (gDuel.hands[duelist][i].id != CARD_NONE)
-      count++;
-
-  return count;
-}
-
-static u8 PickRandomHandZone(u8 duelist)
-{
-  u8 i;
-  u8 occupied = CountCardsInDuelistHand(duelist);
-  u8 chosen;
-  u8 seen = 0;
-
-  if (occupied == 0)
-    return 0xFF;
-
-  chosen = RandRangeU8(0, occupied - 1);
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gDuel.hands[duelist][i].id == CARD_NONE)
-      continue;
-
-    if (seen == chosen)
-      return i;
-
-    seen++;
-  }
-
-  return 0xFF;
-}
-
-static void DiscardRandomHandCard(u8 duelist)
-{
-  u8 zone = PickRandomHandZone(duelist);
-
-  if (zone == 0xFF)
-    return;
-
-  ClearZoneAndSendMonToGraveyard(&gDuel.hands[duelist][zone], duelist);
-}
 
 static u8 IsRobbinGoblinActiveForDuelist(u8 duelist)
 {
@@ -106,20 +60,10 @@ static u8 DidDuelistDealBattleDamage(u8 duelist, u8 actionId)
   return damage > 0;
 }
 
-static void ShowRobbinGoblinEffectText(void)
-{
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = ROBBIN_GOBLIN;
-  ActivateCardEffectText();
-}
-
 void ApplyRobbinGoblinBattleEffect(void)
 {
   u8 damagedDuelist;
+  u8 turnDuelist;
 
   if (gHideEffectText)
     return;
@@ -136,24 +80,21 @@ void ApplyRobbinGoblinBattleEffect(void)
     return;
   }
 
-  if (CountCardsInDuelistHand(damagedDuelist) == 0)
+  turnDuelist = (damagedDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
+      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+
+  if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) == 0)
     return;
 
-  ShowRobbinGoblinEffectText();
-  DiscardRandomHandCard(damagedDuelist);
+  Duel_ShowEffectTextTyped(ROBBIN_GOBLIN, 3);
+  Duel_DiscardFromHand(turnDuelist, 1, NULL, FALSE);
 }
 
 static void ActivateRobbinGoblinZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(9);
-    gCardEffectTextData.cardId = ROBBIN_GOBLIN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(ROBBIN_GOBLIN, 9);
 }
 
 void TryActivateRobbinGoblinOnOpponentTurnStart(void)

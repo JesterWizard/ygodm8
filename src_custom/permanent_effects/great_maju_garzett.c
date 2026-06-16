@@ -3,6 +3,7 @@
 #include "ai_actions.h"
 #include "card.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "great_maju_garzett.h"
 #include "mini_card.h"
 #include "summon_tribute.h"
@@ -115,12 +116,7 @@ static void ClearGreatMajuGarzettTributeAccumulators(void)
 
 static void ShowGreatMajuGarzettActivationText(void)
 {
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = GREAT_MAJU_GARZETT;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
+  Duel_ShowEffectText(GREAT_MAJU_GARZETT);
 }
 
 static u16 DoubleTributeStat(u16 stat)

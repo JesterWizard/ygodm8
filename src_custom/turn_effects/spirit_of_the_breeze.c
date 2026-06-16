@@ -23,5 +23,5 @@ void ActivateSpiritOfTheBreezeTurnEffect(void)
   if (Duel_ChangeLp(WhoseTurn(), SPIRIT_OF_THE_BREEZE_STANDBY_HEAL, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectText(SPIRIT_OF_THE_BREEZE);
+  Duel_ShowEffectTextTyped(SPIRIT_OF_THE_BREEZE, 9);
 }

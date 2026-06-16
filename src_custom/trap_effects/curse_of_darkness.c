@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "curse_of_darkness.h"
 
 #define CURSE_OF_DARKNESS_DAMAGE 1000
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 IsCurseOfDarknessActiveOnField(void)
 {
@@ -28,17 +26,6 @@ u8 IsActivatedCurseOfDarknessZone(const struct DuelCard *zone)
   return zone != NULL && zone->id == CURSE_OF_DARKNESS && zone->isFaceUp == TRUE;
 }
 
-static void ApplyCurseOfDarknessDamage(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(CURSE_OF_DARKNESS_DAMAGE);
-  else
-    SetOpponentLifePointsToSubtract(CURSE_OF_DARKNESS_DAMAGE);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 void TryApplyCurseOfDarknessSpellDamage(void)
 {
   if (gHideEffectText)
@@ -47,28 +34,19 @@ void TryApplyCurseOfDarknessSpellDamage(void)
   if (!IsCurseOfDarknessActiveOnField())
     return;
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = CURSE_OF_DARKNESS;
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(CURSE_OF_DARKNESS, 3);
 
   if (IsDuelOver() == TRUE)
     return;
 
-  ApplyCurseOfDarknessDamage();
+  Duel_ChangeLp(ACTIVE_DUELIST, -CURSE_OF_DARKNESS_DAMAGE, FALSE);
 }
 
 static void ActivateCurseOfDarknessZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(9);
-    gCardEffectTextData.cardId = CURSE_OF_DARKNESS;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(CURSE_OF_DARKNESS, 9);
 }
 
 void TryActivateCurseOfDarknessOnOpponentTurnStart(void)

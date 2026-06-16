@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "familiar_knight.h"
 #include "graveyard_effects.h"
@@ -45,26 +46,6 @@ static u8 CanSpecialSummonForDuelist(u8 duelist)
   return TRUE;
 }
 
-static u8 TurnDuelistToFixed(u8 duelist)
-{
-  if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
-
 static s8 PickFamiliarKnightHandZone(struct DuelCard **handRow, u8 pickHighestAtk)
 {
   u8 i;
@@ -93,32 +74,21 @@ static s8 PickFamiliarKnightHandZone(struct DuelCard **handRow, u8 pickHighestAt
 static void TrySpecialSummonForDuelist(u8 duelist)
 {
   struct DuelCard **handRow = gTurnHands[duelist];
-  struct DuelCard **monsterRow = gTurnZones[duelist == ACTIVE_DUELIST
-      ? ACTIVE_DUELIST_MONSTER_ROW
-      : INACTIVE_DUELIST_MONSTER_ROW];
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
   s8 handZone;
-  s8 monsterZone;
-  u16 monsterId;
-  struct DuelCard *summonZone;
 
   if (!CanSpecialSummonForDuelist(duelist))
     return;
 
-  if (TurnDuelistToFixed(duelist) == DUEL_PLAYER)
+  if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
     handZone = SelectHandCardMatchingPredicate(handRow, IsFamiliarKnightSummonTarget);
   else
     handZone = PickFamiliarKnightHandZone(handRow, TRUE);
 
-  monsterZone = FirstEmptyZoneInRow(monsterRow);
-  if (handZone < 0 || monsterZone < 0)
+  if (handZone < 0)
     return;
 
-  monsterId = handRow[handZone]->id;
-  ClearZone(handRow[handZone]);
-
-  summonZone = monsterRow[monsterZone];
-  summonZone->id = monsterId;
-  InitSummonedMonsterZone(summonZone);
+  Duel_SpecialSummonFromHandZone(duelist, handZone, opts);
 }
 
 void MarkFamiliarKnightBattleDestruction(u16 cardId)
@@ -154,18 +124,11 @@ unsigned char ShouldActivateFamiliarKnight(void)
 
 void ActivateFamiliarKnight(void)
 {
-  u8 hideEffectText;
   u8 duelist;
+  u8 turnDuelist = (gActiveEffect.turnRow == 6) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
-  hideEffectText = gHideEffectText;
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = FAMILIAR_KNIGHT;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
-
-  GetGraveCardAndClearGrave2(gActiveEffect.turnRow == 6
-      ? TurnDuelistToFixed(ACTIVE_DUELIST)
-      : TurnDuelistToFixed(INACTIVE_DUELIST));
+  Duel_ShowEffectText(FAMILIAR_KNIGHT);
+  GetGraveCardAndClearGrave(turnDuelist);
   ClearFamiliarKnightBattleDestroyPending();
 
   for (duelist = 0; duelist < 2; duelist++) {

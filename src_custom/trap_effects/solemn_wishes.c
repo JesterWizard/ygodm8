@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "solemn_wishes.h"
 
 #define SOLEMN_WISHES_LP 500
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 BackrowForDuelist(u8 duelist)
 {
@@ -30,23 +28,13 @@ static u8 HasSolemnWishesActive(u8 duelist)
 
 static void ApplySolemnWishesLpGain(u8 duelist)
 {
-  if (duelist == DUEL_PLAYER)
-    SetPlayerLifePointsToAdd(SOLEMN_WISHES_LP);
-  else
-    SetOpponentLifePointsToAdd(SOLEMN_WISHES_LP);
+  u8 turnDuelist = (duelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
+      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_ChangeLp(turnDuelist, SOLEMN_WISHES_LP, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SOLEMN_WISHES;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(SOLEMN_WISHES, 3);
 }
 
 static void ActivateSolemnWishesZone(struct DuelCard *zone)

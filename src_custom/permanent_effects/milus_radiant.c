@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 static unsigned char CardMatchesAttribute(u16 cardId, u8 attribute) {
   if (cardId == CARD_NONE)
@@ -53,13 +54,6 @@ static void ApplyStageShiftByAttribute(u8 boostedAttribute, u8 weakenedAttribute
   }
 }
 
-static void ShowPermanentEffectText(u16 cardId) {
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = cardId;
-    ActivateCardEffectText();
-  }
-}
-
 unsigned char ShouldActivateMilusRadiant(void) {
   if (gActiveEffect.turnRow != 1 && gActiveEffect.turnRow != 2)
     return FALSE;
@@ -68,9 +62,7 @@ unsigned char ShouldActivateMilusRadiant(void) {
 }
 
 void ActivateMilusRadiant(void) {
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(gTurnZones[gActiveEffect.turnRow][gActiveEffect.col]);
   ApplyStageShiftByAttribute(ATTRIBUTE_FOREST, ATTRIBUTE_WIND);
-  ShowPermanentEffectText(gActiveEffect.cardId);
+  Duel_ShowEffectTextTyped(gActiveEffect.cardId, 8);
 }

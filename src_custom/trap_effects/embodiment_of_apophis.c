@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "embodiment_of_apophis.h"
 
 APPEND_TEXT void EffectEmbodimentOfApophis(void)
@@ -21,8 +22,5 @@ APPEND_TEXT void EffectEmbodimentOfApophis(void)
   InitEmbodimentOfApophisMonsterZone(monsterZone);
   RegisterEmbodimentOfApophisLinkFromZones(trapZone, monsterZone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = EMBODIMENT_OF_APOPHIS;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(EMBODIMENT_OF_APOPHIS);
 }

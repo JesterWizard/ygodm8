@@ -1,10 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "self_destruct_button.h"
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 u8 CanActivateSelfDestructButton(void)
 {
@@ -30,31 +28,25 @@ u8 IsActivatedSelfDestructButtonZone(const struct DuelCard *zone)
   return zone != NULL && zone->id == SELF_DESTRUCT_BUTTON && zone->isFaceUp == TRUE;
 }
 
-static void ApplySelfDestructButtonEffect(void)
-{
-  SetPlayerLifePointsToSubtract(gDuelLifePoints[DUEL_PLAYER]);
-  SetOpponentLifePointsToSubtract(gDuelLifePoints[DUEL_OPPONENT]);
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void ActivateSelfDestructButtonZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SELF_DESTRUCT_BUTTON;
-    ActivateCardEffectText();
-  }
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ShowEffectTextTyped(SELF_DESTRUCT_BUTTON, 3);
 
   if (IsDuelOver() == TRUE)
     return;
 
-  ApplySelfDestructButtonEffect();
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -(s32)gDuelLifePoints[WhoseTurn() == DUEL_PLAYER ? DUEL_PLAYER : DUEL_OPPONENT],
+                    FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ChangeLp(INACTIVE_DUELIST,
+                -(s32)gDuelLifePoints[WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER], FALSE);
 }
 
 void TryActivateSelfDestructButtonOnOpponentTurnStart(void)

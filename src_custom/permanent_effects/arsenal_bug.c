@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 #define ARSENAL_BUG_DEBUFF_STAGES 2
 
@@ -41,12 +42,10 @@ void ActivateArsenalBug(void)
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
   u8 stages = ARSENAL_BUG_DEBUFF_STAGES;
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(zone);
 
   while (stages--)
     DecrementTempStage(zone);
 
-  Duel_ShowEffectText(ARSENAL_BUG);
+  Duel_ShowEffectTextTyped(ARSENAL_BUG, 8);
 }

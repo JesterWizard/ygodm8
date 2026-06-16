@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "airknight_parshath.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -133,16 +134,6 @@ static u8 DidAirknightDealBattleDamage(u8 attackerDuelist) {
   return damage > 0;
 }
 
-static void ShowAirknightEffectText(void) {
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = AIRKNIGHT_PARSHATH;
-  ActivateCardEffectText();
-}
-
 void ApplyAirknightParshathPiercingBattleEffect(void) {
   if (sActionData.playerCardId != AIRKNIGHT_PARSHATH
       && sActionData.opponentCardId != AIRKNIGHT_PARSHATH)
@@ -188,7 +179,7 @@ void ResolveAirknightParshathDrawBattleEffect(void) {
   if (!HasEmptyHandSlot(duelist))
     return;
 
-  ShowAirknightEffectText();
+  Duel_ShowEffectTextTyped(AIRKNIGHT_PARSHATH, 3);
   TryDrawingCard(duelist);
   if (gTurnDuelistBattleState[ACTIVE_DUELIST] == &gDuel.duelistbattleState[duelist]
       && gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)

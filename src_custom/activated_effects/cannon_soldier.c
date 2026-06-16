@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "cannon_soldier.h"
+#include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
 void DisplayCardInfoBar(void);
@@ -44,16 +45,12 @@ static u16 GetZoneAttackPoints(struct DuelCard *zone)
 
 static void ApplyCannonSoldierDamage(u16 damage)
 {
+  u8 target = (WhoseTurn() == DUEL_PLAYER) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+
   if (damage == 0)
     return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(damage);
-  else
-    SetPlayerLifePointsToSubtract(damage);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  Duel_ChangeLp(target, -(s32)damage, TRUE);
 }
 
 static void SacrificeFixedMonster(u8 fixedRow, u8 fixedCol)
@@ -93,7 +90,8 @@ static void ResolveCannonSoldierEffectForAi(void)
 
   zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][tributeCol];
   damage = GetZoneAttackPoints(zone);
-  ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
   ApplyCannonSoldierDamage(damage);
 }
 
@@ -138,10 +136,7 @@ void BeginCannonSoldierTargeting(u8 originFixedRow, u8 originFixedCol)
   if (!FindFirstCannonSoldierTributeTarget(&targetCol))
     return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = CANNON_SOLDIER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(CANNON_SOLDIER, 2);
 
   if (IsDuelOver() == TRUE)
     return;
@@ -193,8 +188,5 @@ void ActivateCannonSoldierEffect(void)
   }
 
   ResolveCannonSoldierEffectForAi();
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = CANNON_SOLDIER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(CANNON_SOLDIER, 2);
 }

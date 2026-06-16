@@ -54,7 +54,7 @@ void TryApplyDropOffOnDrawPhaseDraw(u8 duelist, u8 handSlot)
   if (Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectText(DROP_OFF);
+  Duel_ShowEffectTextTyped(DROP_OFF, 3);
 
   if (IsDuelOver() == TRUE)
     return;

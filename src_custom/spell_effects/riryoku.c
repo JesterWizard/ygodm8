@@ -1,10 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 #include "riryoku.h"
+#include "duel_helpers.h"
 #include "mini_card.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
@@ -13,9 +12,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
-void ResetCardEffectTextData(void);
-void SetCardEffectTextType(u8);
-void ActivateCardEffectText(void);
 
 static u8 IsMonsterFixedRow(u8 fixedRow)
 {
@@ -167,6 +163,8 @@ static u16 GetMonsterAtkOnField(struct DuelCard *zone)
   return gCardInfo.atk;
 }
 
+static void Riryoku_ResolveBody(void);
+
 u8 IsRiryokuCard(u16 cardId)
 {
   return cardId == RIRYOKU;
@@ -187,12 +185,7 @@ void BeginRiryokuTargeting(u8 originFixedRow, u8 originFixedCol)
   if (!FindFirstRiryokuMonsterTarget(0xFF, 0xFF, &targetRow, &targetCol))
     return;
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(1);
-    gCardEffectTextData.cardId = RIRYOKU;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(RIRYOKU, 1);
 
   if (IsDuelOver() == TRUE)
     return;
@@ -280,12 +273,6 @@ void CancelRiryokuTargeting(void)
 
 APPEND_TEXT void EffectRiryoku(void)
 {
-  struct DuelCard *source = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
-  struct DuelCard *recipient = gFixedZones[gRiryokuRecipientRow][gRiryokuRecipientCol];
-  struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
-  u16 currentAtk;
-  s16 lostAtk;
-
   if (!IsValidRiryokuMonsterTarget(gSpellEffectData.row1, gSpellEffectData.col1, 0xFF, 0xFF)
       || !IsValidRiryokuMonsterTarget(gRiryokuRecipientRow, gRiryokuRecipientCol,
                                       gSpellEffectData.row1, gSpellEffectData.col1)) {
@@ -294,22 +281,26 @@ APPEND_TEXT void EffectRiryoku(void)
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
+  if (Duel_TryResolveSpellThroughTraps(RIRYOKU, Riryoku_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
+}
 
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    currentAtk = GetMonsterAtkOnField(source);
-    lostAtk = (s16)(currentAtk / 2);
+static void Riryoku_ResolveBody(void)
+{
+  struct DuelCard *source = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
+  struct DuelCard *recipient = gFixedZones[gRiryokuRecipientRow][gRiryokuRecipientCol];
+  struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
+  u16 currentAtk;
+  s16 lostAtk;
 
-    if (lostAtk > 0) {
-      AddRiryokuAtkDelta(source, -lostAtk);
-      AddRiryokuAtkDelta(recipient, lostAtk);
-      RefreshFieldMonsterStatOverlays();
-    }
+  currentAtk = GetMonsterAtkOnField(source);
+  lostAtk = (s16)(currentAtk / 2);
 
-    ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
-  } else {
-    ActivateTrapEffect(0);
+  if (lostAtk > 0) {
+    AddRiryokuAtkDelta(source, -lostAtk);
+    AddRiryokuAtkDelta(recipient, lostAtk);
+    RefreshFieldMonsterStatOverlays();
   }
+
+  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 }

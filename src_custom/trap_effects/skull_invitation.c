@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "skull_invitation.h"
 
@@ -56,27 +57,21 @@ u8 ShouldSuppressSkullInvitationDamageOnCopy(const struct DuelCard *dst, const s
   return GetDuelistForZone(src) != 0xFF && ZoneIsHandSlot(dst);
 }
 
+/* ponytail: suppress effect text during LP apply to avoid double-popup; Duel_ChangeLp has no hook */
 static void ApplySkullInvitationDamage(u8 fixedDuelist)
 {
   u8 hideEffectText = gHideEffectText;
-
-  if (fixedDuelist == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(SKULL_INVITATION_DAMAGE);
-  else
-    SetOpponentLifePointsToSubtract(SKULL_INVITATION_DAMAGE);
+  u8 turnDuelist = (fixedDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
+      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
   if (!hideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SKULL_INVITATION;
-    ActivateCardEffectText();
+    Duel_ShowEffectTextTyped(SKULL_INVITATION, 3);
     ResetCardEffectTextData();
   }
 
   gHideEffectText = TRUE;
-  HandleAtkAndLifePointsAction();
+  Duel_ChangeLp(turnDuelist, -SKULL_INVITATION_DAMAGE, FALSE);
   gHideEffectText = hideEffectText;
-  CheckLoserFlags();
 }
 
 void TryApplySkullInvitationOnFieldLeave(struct DuelCard *zone)
@@ -106,14 +101,8 @@ static void ActivateSkullInvitationZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SKULL_INVITATION;
-    ActivateCardEffectText();
-    ResetCardEffectTextData();
-  }
+  Duel_ShowEffectTextTyped(SKULL_INVITATION, 3);
+  ResetCardEffectTextData();
 }
 
 void TryActivateSkullInvitationOnOpponentTurnStart(void)

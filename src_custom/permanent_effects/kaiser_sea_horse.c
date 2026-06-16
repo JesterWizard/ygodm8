@@ -2,6 +2,7 @@
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
 #include "cost_down.h"
+#include "duel_helpers.h"
 #include "summon_tribute.h"
 #include "tribute.h"
 

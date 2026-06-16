@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "needle_burrower.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -82,16 +83,11 @@ void ResolveNeedleBurrowerBattleEffect(void) {
 
   damage = (u16)level * NEEDLE_BURROWER_DAMAGE_PER_LEVEL;
 
-  if (controller == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(damage);
-  else
-    SetPlayerLifePointsToSubtract(damage);
+  if (Duel_ChangeLp(controller == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER, -(s32)damage, TRUE)
+      == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  gCardEffectTextData.cardId = BattleDestroyBurnerEffectCard(controller);
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(BattleDestroyBurnerEffectCard(controller), 3);
 }
 
 static u8 IsMonsterBattleAction(u8 id) {

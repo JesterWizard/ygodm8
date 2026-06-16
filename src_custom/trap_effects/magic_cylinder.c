@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 APPEND_TEXT void EffectMagicCylinder(void)
 {
@@ -12,19 +13,11 @@ APPEND_TEXT void EffectMagicCylinder(void)
   SetFinalStat(&gStatMod);
   atk = gCardInfo.atk;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(atk);
-  else
-    SetOpponentLifePointsToSubtract(atk);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  ClearZoneAndSendMonToGraveyard(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST);
+  Duel_ChangeLp(ACTIVE_DUELIST, -(s32)atk, FALSE);
+  Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = MAGIC_CYLINDER;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(MAGIC_CYLINDER);
   }
 }

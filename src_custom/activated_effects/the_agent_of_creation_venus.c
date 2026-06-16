@@ -1,7 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "duel.h"
+#include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
 #define VENUS_LP_COST 500
@@ -38,36 +38,6 @@ static u8 DeckHasShineBall(u8 fixedDuelist)
   return FALSE;
 }
 
-static u8 RemoveShineBallFromDeck(u8 fixedDuelist)
-{
-  u8 i;
-  u8 deckSize = NumCardsInDeck(fixedDuelist);
-  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
-
-  for (i = top; i < deckSize; i++) {
-    if (gDuelDecks[fixedDuelist].cards[i] != MYSTICAL_SHINE_BALL)
-      continue;
-
-    gDuelDecks[fixedDuelist].cards[i] = gDuelDecks[fixedDuelist].cards[top];
-    gDuelDecks[fixedDuelist].cardsDrawn++;
-    return TRUE;
-  }
-
-  return FALSE;
-}
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
-
 unsigned char CanActivateTheAgentOfCreationVenus(void)
 {
   u8 fixedDuelist;
@@ -100,32 +70,23 @@ void ActivateTheAgentOfCreationVenusEffect(void)
 {
   u8 fixedDuelist;
   u8 monsterRow;
-  s8 monsterZone;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts;
+  u8 summonDuelist;
 
   fixedDuelist = ActiveFixedDuelist();
   monsterRow = ActiveMonsterRow();
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[monsterRow]);
-  if (monsterZone < 0 || !DeckHasShineBall(fixedDuelist))
+
+  if (FirstEmptyZoneInRow(gTurnZones[monsterRow]) < 0 || !DeckHasShineBall(fixedDuelist))
     return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(VENUS_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(VENUS_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_ChangeLp(WhoseTurn(), -VENUS_LP_COST, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  if (!RemoveShineBallFromDeck(fixedDuelist))
+  summonDuelist = (monsterRow == ACTIVE_DUELIST_MONSTER_ROW) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+  opts = Duel_DefaultSpecialSummonOpts(TRUE);
+  opts.markSpecialSummon = FALSE;
+  if (Duel_SpecialSummonFromDeck(summonDuelist, MYSTICAL_SHINE_BALL, opts) != DUEL_ACTION_OK)
     return;
-
-  summonZone = gTurnZones[monsterRow][monsterZone];
-  summonZone->id = MYSTICAL_SHINE_BALL;
-  InitSummonedMonsterZone(summonZone);
 
   if (!gHideEffectText) {
     gCardEffectTextData.cardId = THE_AGENT_OF_CREATION_VENUS;

@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 #define ULTIMATE_OFFERING_LP_COST 500
 
@@ -66,25 +68,15 @@ void TryUnlockHandForUltimateOfferingExtraSummon(void)
   UnlockCardsInRow(ACTIVE_DUELIST_HAND);
 }
 
-static void ApplyUltimateOfferingLpCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(ULTIMATE_OFFERING_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(ULTIMATE_OFFERING_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 u8 TryPayUltimateOfferingCost(void)
 {
   if (!ActiveDuelistCanPayUltimateOfferingCost())
     return FALSE;
 
-  ApplyUltimateOfferingLpCost();
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -ULTIMATE_OFFERING_LP_COST, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return FALSE;
 
-  return IsDuelOver() != TRUE;
+  return TRUE;
 }
 
 void ResetUltimateOfferingTurnState(void)
@@ -128,15 +120,9 @@ void ActivateUltimateOfferingTurnEffect(void)
 {
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(9);
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = ULTIMATE_OFFERING;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(ULTIMATE_OFFERING, 9);
 }
 
 static u8 IsMonsterHandToFieldPlacement(void)

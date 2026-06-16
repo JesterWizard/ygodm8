@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
 static void ShuffleDeckRange(u8 duelist, u8 start, u8 end)
@@ -43,14 +44,10 @@ APPEND_TEXT void EffectReload(void)
     ClearZone(gTurnHands[duelist][i]);
   }
 
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], duelist);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], duelist, FALSE);
 
   if (handCount == 0) {
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = RELOAD;
-      ActivateCardEffectText();
-    }
+    Duel_ShowEffectText(RELOAD);
     return;
   }
 
@@ -67,16 +64,8 @@ APPEND_TEXT void EffectReload(void)
 
   ShuffleDeckRange(duelist, gDuelDecks[duelist].cardsDrawn, deckSize);
 
-  for (i = 0; i < handCount; i++) {
-    if (gDuelDecks[duelist].cardsDrawn >= NumCardsInDeck(duelist)) {
-      DeclareLoser(duelist);
-      break;
-    }
-    TryDrawingCard(duelist);
-  }
+  if (Duel_DrawCards(duelist, handCount, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = RELOAD;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(RELOAD);
 }

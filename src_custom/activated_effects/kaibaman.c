@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 
 void DisplayCardInfoBar(void);
@@ -33,18 +34,6 @@ static u8 DuelistForMonsterRow(u8 row)
   if (row == INACTIVE_DUELIST_MONSTER_ROW)
     return INACTIVE_DUELIST;
   return ACTIVE_DUELIST;
-}
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = TRUE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
 }
 
 static s8 PickDragonHandZone(struct DuelCard **handRow, u8 pickHighestAtk)
@@ -88,10 +77,7 @@ void ActivateKaibamanEffect(void)
   s8 handZone;
   u16 dragonId;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = KAIBAMAN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(KAIBAMAN, 2);
 
   if (WhoseTurn() == DUEL_PLAYER)
     handZone = SelectHandCardMatchingType(handRow, TYPE_DRAGON);
@@ -104,9 +90,19 @@ void ActivateKaibamanEffect(void)
   dragonId = handRow[handZone]->id;
 
   ClearZone(handRow[handZone]);
-  ClearZoneAndSendMonToGraveyard2(kaibamanZone, duelist);
+  if (Duel_DestroyZone(kaibamanZone, duelist, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  /* ponytail: tribute-replacement in same zone; not a marked special summon (unk4 stays 0) */
   kaibamanZone->id = dragonId;
-  InitSummonedMonsterZone(kaibamanZone);
+  kaibamanZone->isFaceUp = TRUE;
+  kaibamanZone->isLocked = TRUE;
+  kaibamanZone->isDefending = FALSE;
+  kaibamanZone->permStage = 0;
+  kaibamanZone->tempStage = 0;
+  kaibamanZone->unk4 = 0;
+  kaibamanZone->unkTwo = 0;
+  kaibamanZone->willChangeSides = 0;
 
   gDuelCursor.currentX = gMonEffect.zone;
   gDuelCursor.currentY = gMonEffect.row;

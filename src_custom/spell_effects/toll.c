@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 #include "toll.h"
 #include "imperial_order.h"
@@ -64,15 +65,9 @@ static void ApplyTollAttackLpCost(u16 cost)
   if (cost == 0)
     return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(cost);
-  else
-    SetOpponentLifePointsToSubtract(cost);
-
   gHideEffectText = TRUE;
-  HandleAtkAndLifePointsAction();
+  Duel_ChangeLp(ACTIVE_DUELIST, -(s32)cost, TRUE);
   gHideEffectText = hideEffectText;
-  CheckLoserFlags();
 }
 
 u8 TryPayTollAttackCost(void)

@@ -52,7 +52,7 @@ void ActivateBerserkGorilla(void)
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
   EnforceBerserkGorillaAttackPosition(zone);
-  Duel_ShowEffectText(BERSERK_GORILLA);
+  Duel_ShowEffectTextTyped(BERSERK_GORILLA, 8);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

@@ -20,6 +20,7 @@ struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
   opts.updateGfx = updateGfx;
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
   opts.markSpecialSummon = TRUE;
+  opts.lockMonster = FALSE;
   return opts;
 }
 
@@ -30,6 +31,7 @@ struct DuelSummonOpts Duel_DefaultNormalSummonOpts(u8 updateGfx)
   opts.updateGfx = updateGfx;
   opts.mode = DUEL_SUMMON_NORMAL_FACE_UP_ATK;
   opts.markSpecialSummon = FALSE;
+  opts.lockMonster = FALSE;
   return opts;
 }
 
@@ -123,8 +125,11 @@ static s8 SelectHandZone(u8 turnDuelist, u16 cardId, HandCardPredicate pred)
   return FindHandZoneMatching(turnDuelist, cardId, pred);
 }
 
-static void InitMonsterZone(struct DuelCard *zone, enum DuelSummonMode mode, u8 markSpecialSummon)
+static void InitMonsterZone(struct DuelCard *zone, struct DuelSummonOpts opts)
 {
+  enum DuelSummonMode mode = opts.mode;
+  u8 markSpecialSummon = opts.markSpecialSummon;
+
   ResetPermStage(zone);
   ResetTempStage(zone);
   zone->unkTwo = 0;
@@ -162,6 +167,9 @@ static void InitMonsterZone(struct DuelCard *zone, enum DuelSummonMode mode, u8 
     break;
   }
 
+  if (opts.lockMonster)
+    zone->isLocked = TRUE;
+
   if (markSpecialSummon
       && (mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF))
     zone->unk4 = 2;
@@ -184,9 +192,26 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
 
   summonZone = gTurnZones[monsterRow][monsterZone];
   summonZone->id = monsterId;
-  InitMonsterZone(summonZone, opts.mode, opts.markSpecialSummon);
+  InitMonsterZone(summonZone, opts);
   MaybeUpdateGfx(opts.updateGfx);
   return DUEL_ACTION_OK;
+}
+
+static u8 SpellTrapOriginUsesRow2(u16 spellId)
+{
+  if (GetSpellType(spellId) == SPELL_TYPE_EQUIP)
+    return TRUE;
+
+  switch (spellId) {
+  case MYSTICAL_SPACE_TYPHOON:
+  case RIRYOKU:
+  case BLOCK_ATTACK:
+  case BOOK_OF_MOON:
+  case SOUL_TAKER:
+    return TRUE;
+  default:
+    return FALSE;
+  }
 }
 
 static void SetupSpellTrapOrigin(void)
@@ -194,7 +219,7 @@ static void SetupSpellTrapOrigin(void)
   u8 spellRow;
   u8 spellCol;
 
-  if (GetSpellType(gSpellEffectData.id) == SPELL_TYPE_EQUIP) {
+  if (SpellTrapOriginUsesRow2(gSpellEffectData.id)) {
     spellRow = gSpellEffectData.row2;
     spellCol = gSpellEffectData.col2;
   } else {
@@ -443,6 +468,27 @@ enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredica
   return DUEL_ACTION_OK;
 }
 
+enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx)
+{
+  struct DuelCard **handRow = gTurnHands[duelist];
+  u8 i;
+  enum DuelActionResult result = DUEL_ACTION_NO_TARGET;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (handRow[i]->id == CARD_NONE)
+      continue;
+
+    ClearZoneAndSendMonToGraveyard(handRow[i], duelist);
+    result = DUEL_ACTION_OK;
+
+    if (IsDuelOver() == TRUE)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return result;
+}
+
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx)
 {
   if (delta == 0)
@@ -468,7 +514,19 @@ void Duel_ShowEffectText(u16 cardId)
   ActivateCardEffectText();
 }
 
-enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resolveBody)(void))
+void Duel_ShowEffectTextTyped(u16 cardId, u8 textType)
+{
+  if (gHideEffectText)
+    return;
+
+  ResetCardEffectTextData();
+  SetCardEffectTextType(textType);
+  gCardEffectTextData.cardId = cardId;
+  ActivateCardEffectText();
+}
+
+enum DuelActionResult Duel_TryResolveSpellThroughTrapsEx(u16 spellId, u16 trapLp,
+                                                         void (*resolveBody)(void))
 {
   if (GetTypeGroup(spellId) != TYPE_GROUP_SPELL) {
     if (resolveBody != NULL)
@@ -484,8 +542,13 @@ enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resol
     return DUEL_ACTION_OK;
   }
 
-  ActivateTrapEffect(0);
+  ActivateTrapEffect(trapLp);
   return DUEL_ACTION_BLOCKED;
+}
+
+enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resolveBody)(void))
+{
+  return Duel_TryResolveSpellThroughTrapsEx(spellId, 0, resolveBody);
 }
 
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId)
@@ -569,6 +632,32 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
   return result;
 }
 
+enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
+                                                     struct DuelSummonOpts opts)
+{
+  struct DuelCard **handRow = gTurnHands[duelist];
+  u16 monsterId;
+  enum DuelActionResult result;
+
+  if (handZone < 0 || handZone >= MAX_ZONES_IN_ROW)
+    return DUEL_ACTION_INVALID;
+
+  if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
+    return DUEL_ACTION_NO_ZONE;
+
+  if (handRow[handZone]->id == CARD_NONE)
+    return DUEL_ACTION_NO_TARGET;
+
+  monsterId = handRow[handZone]->id;
+  ClearZone(handRow[handZone]);
+  result = PlaceMonsterFromId(duelist, monsterId, opts);
+
+  if (result == DUEL_ACTION_OK && IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  return result;
+}
+
 enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct DuelSummonOpts opts)
 {
   u8 fixedDuelist = TurnDuelistToFixed(duelist);
@@ -610,6 +699,19 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
   result = Duel_RemoveDeckCardAt(duelist, (u8)deckIndex, FALSE);
   if (result != DUEL_ACTION_OK)
     return result;
+
+  result = PlaceMonsterFromId(duelist, monsterId, opts);
+
+  if (result == DUEL_ACTION_OK && IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  return result;
+}
+
+enum DuelActionResult Duel_SpecialSummonMonsterId(u8 duelist, u16 monsterId,
+                                                    struct DuelSummonOpts opts)
+{
+  enum DuelActionResult result;
 
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 
@@ -729,14 +831,24 @@ void DuelHelpers_SelfCheck(void)
       ;
 
   zone.id = 1;
-  InitMonsterZone(&zone, DUEL_SUMMON_SPECIAL_FACE_UP_ATK, TRUE);
+  InitMonsterZone(&zone, Duel_DefaultSpecialSummonOpts(FALSE));
   if (zone.unk4 != 2 || zone.isFaceUp != TRUE || zone.isDefending != FALSE)
     while (1)
       ;
 
-  InitMonsterZone(&zone, DUEL_SUMMON_NORMAL_FACE_UP_ATK, FALSE);
+  InitMonsterZone(&zone, Duel_DefaultNormalSummonOpts(FALSE));
   if (zone.unk4 != 0)
     while (1)
       ;
+
+  {
+    struct DuelSummonOpts locked = Duel_DefaultSpecialSummonOpts(FALSE);
+
+    locked.lockMonster = TRUE;
+    InitMonsterZone(&zone, locked);
+    if (zone.isLocked != TRUE)
+      while (1)
+        ;
+  }
 }
 #endif

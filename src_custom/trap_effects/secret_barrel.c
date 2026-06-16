@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "secret_barrel.h"
 
 #define SECRET_BARREL_DAMAGE_PER_CARD 200
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 CountActiveDuelistFieldAndHandCards(void)
 {
@@ -25,43 +23,24 @@ static u8 CountActiveDuelistFieldAndHandCards(void)
   return count;
 }
 
-static void ApplySecretBarrelDamage(u8 cardCount)
-{
-  u16 damage;
-
-  if (cardCount == 0)
-    return;
-
-  damage = (u16)cardCount * SECRET_BARREL_DAMAGE_PER_CARD;
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(damage);
-  else
-    SetOpponentLifePointsToSubtract(damage);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void ActivateSecretBarrelZone(struct DuelCard *zone)
 {
   u8 cardCount = CountActiveDuelistFieldAndHandCards();
+  u16 damage;
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SECRET_BARREL;
-    ActivateCardEffectText();
-  }
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  ApplySecretBarrelDamage(cardCount);
+  Duel_ShowEffectTextTyped(SECRET_BARREL, 3);
+
+  if (IsDuelOver() == TRUE || cardCount == 0)
+    return;
+
+  damage = (u16)cardCount * SECRET_BARREL_DAMAGE_PER_CARD;
+  Duel_ChangeLp(ACTIVE_DUELIST, -(s32)damage, FALSE);
 }
 
 void TryActivateSecretBarrelOnOpponentTurnStart(void)

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "robbin_zombie.h"
 
 struct RobbinZombieActionData {
@@ -27,6 +28,7 @@ struct RobbinZombieActionData {
 
 extern struct RobbinZombieActionData sActionData;
 
+/* ponytail: mill helper does not mirror top card into graveyard; keep local mill for Robbin Zombie */
 static void DiscardTopDeckCard(u8 duelist)
 {
   u16 card;
@@ -71,17 +73,6 @@ static u8 DidDuelistDealBattleDamage(u8 duelist, u8 actionId)
   return damage > 0;
 }
 
-static void ShowRobbinZombieEffectText(void)
-{
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = ROBBIN_ZOMBIE;
-  ActivateCardEffectText();
-}
-
 void ApplyRobbinZombieBattleEffect(void)
 {
   u8 milledDuelist;
@@ -104,7 +95,7 @@ void ApplyRobbinZombieBattleEffect(void)
   if (gDuelDecks[milledDuelist].cardsDrawn >= NumCardsInDeck(milledDuelist))
     return;
 
-  ShowRobbinZombieEffectText();
+  Duel_ShowEffectTextTyped(ROBBIN_ZOMBIE, 3);
   DiscardTopDeckCard(milledDuelist);
 }
 
@@ -112,13 +103,7 @@ static void ActivateRobbinZombieZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(9);
-    gCardEffectTextData.cardId = ROBBIN_ZOMBIE;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(ROBBIN_ZOMBIE, 9);
 }
 
 void TryActivateRobbinZombieOnOpponentTurnStart(void)

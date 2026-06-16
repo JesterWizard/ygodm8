@@ -1,25 +1,24 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateGiantGermEffect(void)
 {
+  u8 damageTarget;
+
   if ((gActiveEffect.turnRow == 6 && WhoseTurn() == DUEL_PLAYER) ||
       (gActiveEffect.turnRow == 7 && WhoseTurn() != DUEL_PLAYER))
-    SetOpponentLifePointsToSubtract(500);
+    damageTarget = INACTIVE_DUELIST;
   else
-    SetPlayerLifePointsToSubtract(500);
+    damageTarget = ACTIVE_DUELIST;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(damageTarget, -500, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (gActiveEffect.turnRow == 6)
     GetGraveCardAndClearGrave(ACTIVE_DUELIST);
   else
     GetGraveCardAndClearGrave(INACTIVE_DUELIST);
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = GIANT_GERM;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(GIANT_GERM);
 }

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "call_of_the_haunted.h"
+#include "duel_helpers.h"
 
 void SaveCallOfTheHauntedAttackResume(void);
 
@@ -22,33 +23,20 @@ void TryActivateCallOfTheHauntedOnOpponentTurnStart(void)
 
 APPEND_TEXT void EffectCallOfTheHaunted(void)
 {
-  u16 cardId;
   s8 monsterZone;
-  struct DuelCard *summonZone;
-  struct DuelCard **monsterRow;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   SaveCallOfTheHauntedAttackResume();
 
-  cardId = GetGraveCardAndClearGrave(INACTIVE_DUELIST);
-  monsterRow = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW];
-  monsterZone = FirstEmptyZoneInRow(monsterRow);
+  monsterZone = FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]);
   if (monsterZone < 0)
     return;
 
-  summonZone = monsterRow[monsterZone];
-  summonZone->id = cardId;
-  NoteCallOfTheHauntedRevivedMonster((u8)monsterZone);
-  ResetPermStage(summonZone);
-  ResetTempStage(summonZone);
-  summonZone->unk4 = 0;
-  UnlockCard(summonZone);
-  summonZone->isDefending = FALSE;
-  summonZone->isLocked = FALSE;
-  summonZone->unkTwo = 0;
-  summonZone->unkThree = 0;
-  FlipCardFaceUp(summonZone);
-  summonZone->willChangeSides = 0;
+  if (Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, CARD_NONE, opts) != DUEL_ACTION_OK)
+    return;
 
-  ClearZoneAndSendMonToGraveyard(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
-                                 INACTIVE_DUELIST);
+  NoteCallOfTheHauntedRevivedMonster((u8)monsterZone);
+
+  Duel_DestroyZone(gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST,
+                   FALSE);
 }

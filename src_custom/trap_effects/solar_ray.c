@@ -2,49 +2,33 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "constants/card_enums.h"
+#include "duel_helpers.h"
 #include "solar_ray.h"
 
 #define SOLAR_RAY_DAMAGE_PER_MONSTER 600
 
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 u32 NumFaceUpMatchingAttributeInRow(u8, u8);
 
-static void ApplySolarRayDamage(u8 lightMonsterCount)
+static void ActivateSolarRayZone(struct DuelCard *zone, u8 lightMonsterCount)
 {
   u16 damage;
+
+  FlipCardFaceUp(zone);
+  zone->isLocked = TRUE;
+
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ShowEffectTextTyped(SOLAR_RAY, 3);
+
+  if (IsDuelOver() == TRUE)
+    return;
 
   if (lightMonsterCount == 0)
     return;
 
   damage = (u16)lightMonsterCount * SOLAR_RAY_DAMAGE_PER_MONSTER;
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(damage);
-  else
-    SetOpponentLifePointsToSubtract(damage);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
-static void ActivateSolarRayZone(struct DuelCard *zone, u8 lightMonsterCount)
-{
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = SOLAR_RAY;
-    ActivateCardEffectText();
-  }
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  ApplySolarRayDamage(lightMonsterCount);
+  Duel_ChangeLp(ACTIVE_DUELIST, -(s32)damage, FALSE);
 }
 
 void TryActivateSolarRayOnOpponentTurnStart(void)

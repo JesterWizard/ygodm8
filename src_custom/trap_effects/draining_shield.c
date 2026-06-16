@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "draining_shield.h"
 
 void SaveDrainingShieldAttackResume(void);
@@ -17,19 +18,11 @@ APPEND_TEXT void EffectDrainingShield(void)
   SetFinalStat(&gStatMod);
   atk = gCardInfo.atk;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToAdd(atk);
-  else
-    SetPlayerLifePointsToAdd(atk);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  ClearZoneAndSendMonToGraveyard(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST);
+  Duel_ChangeLp(INACTIVE_DUELIST, atk, FALSE);
+  Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = DRAINING_SHIELD;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(DRAINING_SHIELD);
   }
 }

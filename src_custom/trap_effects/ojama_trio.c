@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "ojama_trio.h"
 #include "graveyard_effects.h"
 #include "riryoku.h"
@@ -9,10 +10,6 @@
 #define OJAMA_TRIO_TOKEN_ATK 0
 #define OJAMA_TRIO_TOKEN_DEF 1000
 #define OJAMA_TRIO_DESTRUCTION_DAMAGE 300
-
-void UpdateDuelGfxExceptField(void);
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 OjamaTrioZoneIsOnMonsterRow(const struct DuelCard *zone)
 {
@@ -75,6 +72,7 @@ apply_token_stats:
 void ApplyOjamaTrioDestructionDamage(struct DuelCard *zone)
 {
   u8 i;
+  u8 fixedTarget;
 
   if (!OjamaTrioZoneIsMonsterForm(zone))
     return;
@@ -83,19 +81,25 @@ void ApplyOjamaTrioDestructionDamage(struct DuelCard *zone)
   {
     if (gFixedZones[OPPONENT_MONSTER_ROW][i] == zone)
     {
-      SetOpponentLifePointsToSubtract(OJAMA_TRIO_DESTRUCTION_DAMAGE);
-      HandleAtkAndLifePointsAction();
-      CheckLoserFlags();
-      return;
+      fixedTarget = DUEL_OPPONENT;
+      goto apply_damage;
     }
 
     if (gFixedZones[PLAYER_MONSTER_ROW][i] == zone)
     {
-      SetPlayerLifePointsToSubtract(OJAMA_TRIO_DESTRUCTION_DAMAGE);
-      HandleAtkAndLifePointsAction();
-      CheckLoserFlags();
-      return;
+      fixedTarget = DUEL_PLAYER;
+      goto apply_damage;
     }
+  }
+
+  return;
+
+apply_damage:
+  {
+    u8 turnDuelist = (fixedTarget == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
+        ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+
+    Duel_ChangeLp(turnDuelist, -OJAMA_TRIO_DESTRUCTION_DAMAGE, FALSE);
   }
 }
 
@@ -108,33 +112,19 @@ void SendOjamaTrioZoneToGraveyardIfNeeded(struct DuelCard *zone, u8 turn)
   gDuel.duelistbattleState[turn].graveyard = zone->id;
 }
 
-static void InitOjamaTrioTokenZone(struct DuelCard *zone)
-{
-  zone->id = OJAMA_TRIO;
-  zone->isFaceUp = TRUE;
-  zone->isLocked = TRUE;
-  zone->isDefending = TRUE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
-
 static void SpecialSummonOjamaTriosToOpponent(void)
 {
   u8 i;
-  s8 monsterZone;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
+
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+  opts.markSpecialSummon = FALSE;
+  opts.lockMonster = TRUE;
 
   for (i = 0; i < OJAMA_TRIO_SUMMON_COUNT; i++)
   {
-    monsterZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
-    if (monsterZone < 0)
+    if (Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, OJAMA_TRIO, opts) != DUEL_ACTION_OK)
       break;
-
-    summonZone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterZone];
-    InitOjamaTrioTokenZone(summonZone);
   }
 }
 
@@ -142,15 +132,11 @@ static void ActivateOjamaTrioZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText)
-  {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = OJAMA_TRIO;
-    ActivateCardEffectText();
-  }
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ShowEffectTextTyped(OJAMA_TRIO, 3);
 
   if (IsDuelOver() == TRUE)
     return;

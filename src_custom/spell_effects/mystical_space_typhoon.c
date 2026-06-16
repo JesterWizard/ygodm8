@@ -1,10 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 #include "mystical_space_typhoon.h"
 #include "spell_effects.h"
 
-extern void ActivateTrapEffect(u16 lp);
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
 void ResetCursorDestToCurrentPos(void);
@@ -12,9 +12,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
-void ResetCardEffectTextData(void);
-void SetCardEffectTextType(u8);
-void ActivateCardEffectText(void);
 
 static u8 IsSpellOrTrapCard(u16 cardId)
 {
@@ -96,12 +93,7 @@ void BeginMysticalSpaceTyphoonTargeting(u8 originFixedRow, u8 originFixedCol)
   if (!FindFirstMysticalSpaceTyphoonTarget(originFixedRow, originFixedCol, &targetRow, &targetCol))
     return;
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(1);
-    gCardEffectTextData.cardId = MYSTICAL_SPACE_TYPHOON;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(MYSTICAL_SPACE_TYPHOON, 1);
 
   if (IsDuelOver() == TRUE)
     return;
@@ -148,11 +140,18 @@ void CancelMysticalSpaceTyphoonTargeting(void)
   sub_8041E70(currY, gDuelCursor.currentY);
 }
 
-APPEND_TEXT void EffectMysticalSpaceTyphoon(void)
+static void MysticalSpaceTyphoon_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
 
+  Duel_DestroyZone(target, GetTurnDuelistForFixedRow(gSpellEffectData.row1), FALSE);
+  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+  NotifyDynamicEquipFieldChanged();
+}
+
+APPEND_TEXT void EffectMysticalSpaceTyphoon(void)
+{
   if (!IsValidMysticalSpaceTyphoonTargetZone(gSpellEffectData.row1, gSpellEffectData.col1,
                                              gSpellEffectData.row2, gSpellEffectData.col2)) {
     if (!gHideEffectText)
@@ -160,18 +159,7 @@ APPEND_TEXT void EffectMysticalSpaceTyphoon(void)
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    ClearZoneAndSendMonToGraveyard(target, GetTurnDuelistForFixedRow(gSpellEffectData.row1));
-    ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
-    NotifyDynamicEquipFieldChanged();
-  } else {
-    ActivateTrapEffect(0);
-  }
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTraps(MYSTICAL_SPACE_TYPHOON, MysticalSpaceTyphoon_ResolveBody)
+      == DUEL_ACTION_BLOCKED)
+    return;
 }

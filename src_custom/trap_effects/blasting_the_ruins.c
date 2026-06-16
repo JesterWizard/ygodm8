@@ -1,13 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "blasting_the_ruins.h"
 
 #define BLASTING_THE_RUINS_DAMAGE 3000
 #define BLASTING_THE_RUINS_MAX_DECK_CARDS 10
 
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 int NumCardsInDeck(unsigned char);
 int GetCardsDrawn(unsigned char);
 
@@ -23,34 +22,20 @@ static u8 OwnerDeckHasAtMostTenCards(u8 owner)
   return remaining <= BLASTING_THE_RUINS_MAX_DECK_CARDS;
 }
 
-static void ApplyBlastingTheRuinsDamage(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(BLASTING_THE_RUINS_DAMAGE);
-  else
-    SetOpponentLifePointsToSubtract(BLASTING_THE_RUINS_DAMAGE);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void ActivateBlastingTheRuinsZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = BLASTING_THE_RUINS;
-    ActivateCardEffectText();
-  }
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_ShowEffectTextTyped(BLASTING_THE_RUINS, 3);
 
   if (IsDuelOver() == TRUE)
     return;
 
-  ApplyBlastingTheRuinsDamage();
+  Duel_ChangeLp(ACTIVE_DUELIST, -BLASTING_THE_RUINS_DAMAGE, FALSE);
 }
 
 void TryActivateBlastingTheRuinsOnOpponentTurnStart(void)

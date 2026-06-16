@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 #include "the_dark_door.h"
 #include "imperial_order.h"
@@ -55,9 +56,5 @@ APPEND_TEXT void EffectTheDarkDoor(void)
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = THE_DARK_DOOR;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(THE_DARK_DOOR);
 }

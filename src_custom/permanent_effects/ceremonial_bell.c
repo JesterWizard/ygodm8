@@ -1,4 +1,5 @@
 #include "global.h"
+#include "duel_helpers.h"
 
 static void RevealAllHands(void) {
   unsigned char i;
@@ -19,13 +20,7 @@ unsigned char ShouldActivateCeremonialBell(void) {
 }
 
 void ActivateCeremonialBell(void) {
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(gTurnZones[gActiveEffect.turnRow][gActiveEffect.col]);
   RevealAllHands();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = CEREMONIAL_BELL;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(CEREMONIAL_BELL, 8);
 }

@@ -2,9 +2,9 @@
 #include "common-chax.h"
 #include "book_of_moon.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
-extern void ActivateTrapEffect(u16 lp);
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
 void ResetCursorDestToCurrentPos(void);
@@ -12,9 +12,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
-void ResetCardEffectTextData(void);
-void SetCardEffectTextType(u8);
-void ActivateCardEffectText(void);
 
 static u8 IsMonsterFixedRow(u8 fixedRow)
 {
@@ -93,12 +90,7 @@ void BeginBookOfMoonTargeting(u8 originFixedRow, u8 originFixedCol)
   if (!FindFirstBookOfMoonTarget(&targetRow, &targetCol))
     return;
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(1);
-    gCardEffectTextData.cardId = BOOK_OF_MOON;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(BOOK_OF_MOON, 1);
 
   if (IsDuelOver() == TRUE)
     return;
@@ -147,30 +139,25 @@ void CancelBookOfMoonTargeting(void)
   sub_8041E70(currY, gDuelCursor.currentY);
 }
 
-APPEND_TEXT void EffectBookOfMoon(void)
+static void BookOfMoon_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
 
+  SetMonsterFaceDownDefense(target);
+  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
+}
+
+APPEND_TEXT void EffectBookOfMoon(void)
+{
   if (!IsValidBookOfMoonTargetZone(gSpellEffectData.row1, gSpellEffectData.col1)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    SetMonsterFaceDownDefense(target);
-    ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
-  } else {
-    ActivateTrapEffect(0);
-  }
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTraps(BOOK_OF_MOON, BookOfMoon_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

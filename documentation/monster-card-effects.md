@@ -86,20 +86,27 @@ Use `duel_helpers.h` for common actions instead of copying static helpers into e
 | Destroy zone | `Duel_DestroyZone(zone, graveyardDuelist, updateGfx)` |
 | Destroy row | `Duel_DestroyAllMonstersMatching(turnRow, pred, updateGfx)` |
 | Discard | `Duel_DiscardFromHand(duelist, count, pred, updateGfx)` |
+| Discard all hand | `Duel_DestroyAllHandCards(duelist, updateGfx)` |
 | LP change | `Duel_ChangeLp(targetDuelist, delta, updateGfx)` — positive gain, negative burn |
 | Effect text | `Duel_ShowEffectText(cardId)` |
+| Typed effect text | `Duel_ShowEffectTextTyped(cardId, textType)` |
 | Spell vs traps | `Duel_TryResolveSpellThroughTraps(spellId, resolveBody)` |
+| Spell vs traps (LP hint) | `Duel_TryResolveSpellThroughTrapsEx(spellId, trapLp, resolveBody)` |
 | Find in deck | `Duel_FindDeckCardIndex(duelist, cardId)` |
 | Remove from deck | `Duel_RemoveDeckCardAt(duelist, index, updateGfx)` |
 | Shuffle deck | `Duel_ShuffleDeckFromDrawn(duelist)` |
-| Special summon | `Duel_SpecialSummonFromHand/Grave/Deck(...)` with `Duel_DefaultSpecialSummonOpts(updateGfx)` |
+| Special summon | `Duel_SpecialSummonFromHand/Grave/Deck/HandZone/MonsterId(...)` with `Duel_DefaultSpecialSummonOpts(updateGfx)` |
+| Locked special summon | set `opts.lockMonster = TRUE` on `DuelSummonOpts` |
 | Normal summon | `Duel_NormalSummonFromHand(duelist, cardId, pred, Duel_DefaultNormalSummonOpts(updateGfx))` |
+| Return to hand | `Duel_ReturnMonsterZoneToOwnerHand(zone, updateGfx)` |
+
+All custom card effect files under `src_custom/*_effects/` use these helpers for shared duel actions. Keep vanilla calls only for card-specific logic (equip wiring, battle-context LP, custom deck/hand UI, flip position).
 
 Example spell body:
 
 ```c
 Duel_ShowEffectText(MY_SPELL);
-if (Duel_TryResolveSpellThroughTraps(MY_SPELL, NULL) == DUEL_ACTION_BLOCKED)
+if (Duel_TryResolveSpellThroughTrapsEx(MY_SPELL, 200, MySpell_ResolveBody) == DUEL_ACTION_BLOCKED)
   return;
 if (Duel_DrawCards(ACTIVE_DUELIST, 2, TRUE) == DUEL_ACTION_DUEL_OVER)
   return;

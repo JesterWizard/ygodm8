@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "coffin_seller.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -91,27 +92,21 @@ void ClearCoffinSellerPending(void)
   sTriggeredLeaveMask = 0;
 }
 
+/* ponytail: suppress effect text during LP apply to avoid double-popup; Duel_ChangeLp has no hook */
 static void ApplyCoffinSellerDamage(u8 targetDuelist)
 {
   u8 hideEffectText = gHideEffectText;
-
-  if (targetDuelist == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(COFFIN_SELLER_DAMAGE);
-  else
-    SetOpponentLifePointsToSubtract(COFFIN_SELLER_DAMAGE);
+  u8 turnDuelist = (targetDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
+      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
   if (!hideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = COFFIN_SELLER;
-    ActivateCardEffectText();
+    Duel_ShowEffectTextTyped(COFFIN_SELLER, 3);
     ResetCardEffectTextData();
   }
 
   gHideEffectText = TRUE;
-  HandleAtkAndLifePointsAction();
+  Duel_ChangeLp(turnDuelist, -COFFIN_SELLER_DAMAGE, FALSE);
   gHideEffectText = hideEffectText;
-  CheckLoserFlags();
 }
 
 static void QueueCoffinSellerDamage(u8 targetDuelist)

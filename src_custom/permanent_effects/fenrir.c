@@ -1,19 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "fenrir.h"
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
 
 static u8 GraveyardTopIsWaterMonster(u8 turnDuelist)
 {
@@ -49,23 +38,12 @@ u8 CanSpecialSummonFenrirFromHand(u8 handZone)
 
 u8 TrySpecialSummonFenrirFromHand(u8 handZone)
 {
-  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
-  s8 monsterZone;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   if (!CanSpecialSummonFenrirFromHand(handZone))
     return FALSE;
 
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
-  if (monsterZone < 0)
-    return FALSE;
-
   GetGraveCardAndClearGrave(ACTIVE_DUELIST);
 
-  summonZone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterZone];
-  summonZone->id = FENRIR;
-  InitSummonedMonsterZone(summonZone);
-  ClearZone(handRow[handZone]);
-
-  return TRUE;
+  return Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) == DUEL_ACTION_OK;
 }

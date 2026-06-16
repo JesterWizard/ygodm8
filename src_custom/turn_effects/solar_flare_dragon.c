@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 #define SOLAR_FLARE_DRAGON_DAMAGE 500
 
@@ -18,17 +19,8 @@ unsigned char ShouldActivateSolarFlareDragonTurnEffect(void)
 
 void ActivateSolarFlareDragonTurnEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(SOLAR_FLARE_DRAGON_DAMAGE);
-  else
-    SetPlayerLifePointsToSubtract(SOLAR_FLARE_DRAGON_DAMAGE);
+  if (Duel_ChangeLp(1 - WhoseTurn(), -SOLAR_FLARE_DRAGON_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = SOLAR_FLARE_DRAGON;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(SOLAR_FLARE_DRAGON, 9);
 }

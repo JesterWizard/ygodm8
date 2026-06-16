@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "just_deserts.h"
 
 #define JUST_DESERTS_DAMAGE_PER_MONSTER 500
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 CountActiveDuelistMonsters(void)
 {
@@ -21,43 +19,24 @@ static u8 CountActiveDuelistMonsters(void)
   return count;
 }
 
-static void ApplyJustDesertsDamage(u8 monsterCount)
-{
-  u16 damage;
-
-  if (monsterCount == 0)
-    return;
-
-  damage = (u16)monsterCount * JUST_DESERTS_DAMAGE_PER_MONSTER;
-
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(damage);
-  else
-    SetOpponentLifePointsToSubtract(damage);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void ActivateJustDesertsZone(struct DuelCard *zone)
 {
   u8 monsterCount = CountActiveDuelistMonsters();
+  u16 damage;
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = JUST_DESERTS;
-    ActivateCardEffectText();
-  }
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  ApplyJustDesertsDamage(monsterCount);
+  Duel_ShowEffectTextTyped(JUST_DESERTS, 3);
+
+  if (IsDuelOver() == TRUE || monsterCount == 0)
+    return;
+
+  damage = (u16)monsterCount * JUST_DESERTS_DAMAGE_PER_MONSTER;
+  Duel_ChangeLp(ACTIVE_DUELIST, -(s32)damage, FALSE);
 }
 
 void TryActivateJustDesertsOnOpponentTurnStart(void)

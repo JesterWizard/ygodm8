@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 extern const u8 gActivationDescription_BlueEyesShiningDragon[];
 
@@ -64,15 +65,19 @@ static u8 BlueEyesShiningDragonOnField(void) {
       || RowHasCardMatch(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW], BLUE_EYES_SHINING_DRAGON);
 }
 
-static void InitSummonedMonsterZone(struct DuelCard *zone) {
-  zone->isFaceUp = TRUE;
-  zone->isLocked = TRUE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
+// ponytail: in-place BEUD zone replacement; Duel_SpecialSummon* only fills empty zones
+static void InitLockedSpecialSummonZone(struct DuelCard *zone, struct DuelSummonOpts opts) {
+  ResetPermStage(zone);
+  ResetTempStage(zone);
   zone->unkTwo = 0;
+  zone->unkThree = 0;
   zone->willChangeSides = 0;
+  zone->effectExhausted = 0;
+  zone->effectUsedThisTurn = 0;
+  zone->isFaceUp = TRUE;
+  zone->isDefending = FALSE;
+  zone->isLocked = opts.lockMonster;
+  zone->unk4 = opts.markSpecialSummon ? 2 : 0;
 }
 
 unsigned char ShouldActivateBlueEyesShiningDragon(void) {
@@ -100,6 +105,7 @@ static u8 TryAutoSummonBlueEyesShiningDragonForDuelist(u8 duelist) {
   s8 beudCol;
   s8 shiningHandCol;
   struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   if (!RowHasCardMatch(gTurnZones[monsterRow], BLUE_EYES_ULTIMATE_DRAGON))
     return FALSE;
@@ -113,12 +119,13 @@ static u8 TryAutoSummonBlueEyesShiningDragonForDuelist(u8 duelist) {
   if (beudCol < 0 || shiningHandCol < 0)
     return FALSE;
 
+  opts.lockMonster = TRUE;
   ShowBlueEyesShiningDragonActivationText();
 
   summonZone = gTurnZones[monsterRow][beudCol];
   ClearZoneAndSendMonToGraveyard2(summonZone, duelist);
   summonZone->id = BLUE_EYES_SHINING_DRAGON;
-  InitSummonedMonsterZone(summonZone);
+  InitLockedSpecialSummonZone(summonZone, opts);
   ClearZone(gTurnHands[duelist][shiningHandCol]);
 
   return TRUE;

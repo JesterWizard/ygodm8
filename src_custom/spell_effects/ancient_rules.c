@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "spell_effects.h"
 
@@ -45,18 +46,6 @@ static u8 CanSpecialSummonWithAncientRules(void)
   return TRUE;
 }
 
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
-
 static s8 PickAncientRulesHandZone(struct DuelCard **handRow, u8 pickHighestAtk)
 {
   u8 i;
@@ -86,39 +75,27 @@ static void SpecialSummonAncientRulesTarget(void)
 {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
   s8 handZone;
-  s8 monsterZone;
-  u16 monsterId;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   if (!CanSpecialSummonWithAncientRules())
     return;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    handZone = SelectHandCardMatchingPredicate(handRow, IsAncientRulesSummonTarget);
-  else
-    handZone = PickAncientRulesHandZone(handRow, TRUE);
+  if (WhoseTurn() == DUEL_PLAYER) {
+    Duel_SpecialSummonFromHand(ACTIVE_DUELIST, CARD_NONE, IsAncientRulesSummonTarget, opts);
+    return;
+  }
 
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
-  if (handZone < 0 || monsterZone < 0)
+  handZone = PickAncientRulesHandZone(handRow, TRUE);
+  if (handZone < 0)
     return;
 
-  monsterId = handRow[handZone]->id;
-  ClearZone(handRow[handZone]);
-
-  summonZone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterZone];
-  summonZone->id = monsterId;
-  InitSummonedMonsterZone(summonZone);
+  Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts);
 }
 
 APPEND_TEXT void EffectAncientRules(void)
 {
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = ANCIENT_RULES;
-    ActivateCardEffectText();
-  }
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
+  Duel_ShowEffectText(ANCIENT_RULES);
 
   if (IsDuelOver() == TRUE)
     return;

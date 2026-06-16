@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "royal_decree.h"
 
 void ActivateTrapEffect(u16 lp);
@@ -61,9 +62,8 @@ void EffectRoyalDecree(void)
   zone->isLocked = TRUE;
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = ROYAL_DECREE;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(ROYAL_DECREE);
   }
 }
 

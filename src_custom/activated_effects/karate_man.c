@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 unsigned char CanActivateKarateMan(void) {
   return gMonEffect.id == KARATE_MAN;
@@ -12,10 +13,7 @@ void ActivateKarateManEffect(void) {
   IncrementPermStage(zone);
   zone->unkThree = TRUE;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = KARATE_MAN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(KARATE_MAN, 2);
 }
 
 void DestroyKarateManAtEndOfTurn(void) {
@@ -28,7 +26,7 @@ void DestroyKarateManAtEndOfTurn(void) {
       struct DuelCard *zone = gTurnZones[row][col];
 
       if (zone->id == KARATE_MAN && zone->unkThree == TRUE) {
-        ClearZoneAndSendMonToGraveyard(zone, row == 2 ? ACTIVE_DUELIST : INACTIVE_DUELIST);
+        Duel_DestroyZone(zone, row == 2 ? ACTIVE_DUELIST : INACTIVE_DUELIST, FALSE);
       }
     }
   }

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "copycat.h"
+#include "duel_helpers.h"
 
 void ActivateCopycatEffect(void) {
   u8 enemyRow = (gMonEffect.row == 1) ? 2 : 1;
@@ -23,9 +24,5 @@ void ActivateCopycatEffect(void) {
   }
 
   StoreCopycatBoardStats(copycatZone, copiedAtk, copiedDef);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = COPYCAT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(COPYCAT, 2);
 }

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 static u8 BackrowForMonsterTurnRow(u8 turnRow) {
   if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
@@ -32,14 +33,14 @@ static void PlacePotOfGreedOnBackrow(u8 backrow) {
 }
 
 static void ShowYamataDragonActivationText(void) {
-  u8 hideEffectText = gHideEffectText;
+  if (gHideEffectText)
+    return;
 
-  gHideEffectText = FALSE;
   ResetCardEffectTextData();
+  SetCardEffectTextType(8);
   gCardEffectTextData.cardId = YAMATA_DRAGON;
   gCardEffectTextData.cardId2 = POT_OF_GREED;
   ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
 }
 
 unsigned char ShouldActivateYamataDragon(void) {
@@ -62,8 +63,6 @@ unsigned char ShouldActivateYamataDragon(void) {
 void ActivateYamataDragon(void) {
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
   FlipCardFaceUp(zone);
   PlacePotOfGreedOnBackrow(BackrowForMonsterTurnRow(gActiveEffect.turnRow));
   zone->unk4 = 1;

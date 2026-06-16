@@ -65,36 +65,6 @@ static void SendTopDeckCardToGraveyard(u8 fixedDuelist)
   }
 }
 
-static u8 AddTopDeckCardToHand(u8 fixedDuelist, u8 turnDuelist)
-{
-  u16 card;
-  s8 handZone;
-  struct DuelCard *handSlot;
-
-  if (gDuelDecks[fixedDuelist].cardsDrawn >= NumCardsInDeck(fixedDuelist))
-    return FALSE;
-
-  handZone = FirstEmptyZoneInRow(gTurnHands[turnDuelist]);
-  if (handZone < 0)
-    return FALSE;
-
-  card = gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn];
-  gDuelDecks[fixedDuelist].cardsDrawn++;
-
-  handSlot = gTurnHands[turnDuelist][handZone];
-  handSlot->id = card;
-  handSlot->isFaceUp = FALSE;
-  handSlot->isLocked = FALSE;
-  handSlot->isDefending = FALSE;
-  handSlot->unkTwo = 0;
-  handSlot->unkThree = 0;
-  handSlot->unk4 = 0;
-  handSlot->willChangeSides = FALSE;
-  ResetPermStage(handSlot);
-  ResetTempStage(handSlot);
-  return TRUE;
-}
-
 unsigned char CanActivateMagicalMerchant(void)
 {
   u8 fixedDuelist;
@@ -128,13 +98,13 @@ void ActivateMagicalMerchantEffect(void)
   fixedDuelist = OwnerFixedDuelist();
   turnDuelist = OwnerTurnDuelist();
 
-  Duel_ShowEffectText(MAGICAL_MERCHANT);
+  Duel_ShowEffectTextTyped(MAGICAL_MERCHANT, 2);
 
   while (gDuelDecks[fixedDuelist].cardsDrawn < NumCardsInDeck(fixedDuelist)) {
     card = gDuelDecks[fixedDuelist].cards[gDuelDecks[fixedDuelist].cardsDrawn];
 
     if (IsSpellOrTrap(card)) {
-      AddTopDeckCardToHand(fixedDuelist, turnDuelist);
+      Duel_DrawCards(turnDuelist, 1, FALSE);
       break;
     }
 

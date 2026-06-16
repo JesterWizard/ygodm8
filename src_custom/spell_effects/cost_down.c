@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "cost_down.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
 static u8 IsMonsterCardId(u16 cardId)
@@ -78,12 +79,6 @@ u8 ShouldApplyCostDownForHandSlot(u8 handSlot, u16 cardId)
 APPEND_TEXT void EffectCostDown(void)
 {
   EnableCostDownForTurn();
-
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = COST_DOWN;
-    ActivateCardEffectText();
-  }
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ShowEffectText(COST_DOWN);
 }

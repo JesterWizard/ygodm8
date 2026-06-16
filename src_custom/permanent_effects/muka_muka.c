@@ -1,24 +1,13 @@
 #include "global.h"
-
-static unsigned char CountCardsInHand(struct DuelCard **hand) {
-  unsigned char i;
-  unsigned char count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (hand[i]->id != CARD_NONE)
-      count++;
-  }
-
-  return count;
-}
+#include "duel_helpers.h"
 
 static unsigned char CountMukaMukaStages(void) {
   unsigned char handCards;
 
   if (gActiveEffect.turnRow == 1)
-    handCards = CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
+    handCards = Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
   else if (gActiveEffect.turnRow == 2)
-    handCards = CountCardsInHand(gTurnHands[ACTIVE_DUELIST]);
+    handCards = Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]);
   else
     return 0;
 
@@ -34,17 +23,13 @@ unsigned char ShouldActivateMukaMuka(void) {
 
 void ActivateMukaMuka(void) {
   unsigned char stages;
+  struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
-  FlipCardFaceUp(gTurnZones[gActiveEffect.turnRow][gActiveEffect.col]);
+  FlipCardFaceUp(zone);
 
   stages = CountMukaMukaStages();
   while (stages--)
-    IncrementTempStage(gTurnZones[gActiveEffect.turnRow][gActiveEffect.col]);
+    IncrementTempStage(zone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = MUKA_MUKA;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(MUKA_MUKA, 8);
 }

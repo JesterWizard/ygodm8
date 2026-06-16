@@ -2,7 +2,10 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "duel_helpers.h"
 #include "graveyard_effects.h"
+
+extern void UpdateDuelGfxExceptField(void);
 
 static u8 ZoneIsHandSlot(struct DuelCard *zone)
 {
@@ -57,6 +60,18 @@ static u8 GraveyardScanDuelistToFixed(u8 duelist)
   return DUEL_OPPONENT;
 }
 
+static u8 FixedDuelistToTurnDuelist(u8 fixedDuelist)
+{
+  u8 turnDuelist;
+
+  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
+    if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[fixedDuelist])
+      return turnDuelist;
+  }
+
+  return ACTIVE_DUELIST;
+}
+
 unsigned char ShouldActivateGraveyardDrawOnDestroy(void)
 {
   if (gDeferGraveyardDrawBattleResolve)
@@ -106,12 +121,14 @@ void ActivateGraveyardDrawOnDestroy(void)
 void ResolvePendingGraveyardDrawOnDestroy(void)
 {
   u8 fixedDuelist = gPendingGraveyardDrawFixedDuelist;
+  u8 turnDuelist;
 
   if (fixedDuelist == PENDING_GRAVEYARD_DRAW_NONE)
     return;
 
   gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
-  TryDrawingCard(fixedDuelist);
+  turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
+  Duel_DrawCards(turnDuelist, 1, TRUE);
   PlayMusic(SFX_DRAW_CARD);
   SetCardInfo(CARD_NONE);
 }

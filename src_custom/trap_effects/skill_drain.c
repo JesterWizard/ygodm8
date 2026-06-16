@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 #define SKILL_DRAIN_LP_COST 1000
 
@@ -33,21 +34,11 @@ unsigned char IsSkillDrainActiveOnField(void)
   return FALSE;
 }
 
-static void PaySkillDrainCost(u8 backrowRow)
-{
-  if (backrowRow == PLAYER_BACKROW)
-    SetPlayerLifePointsToSubtract(SKILL_DRAIN_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(SKILL_DRAIN_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId)
 {
   struct DuelCard *zone;
   u8 backrowRow;
+  u8 payerTurn;
 
   zone = FindSkillDrainOnBackrow(OPPONENT_BACKROW);
   if (zone != NULL) {
@@ -62,7 +53,10 @@ unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId)
   if (!zone->isFaceUp) {
     FlipCardFaceUp(zone);
     zone->isLocked = TRUE;
-    PaySkillDrainCost(backrowRow);
+
+    payerTurn = (backrowRow == PLAYER_BACKROW) == (WhoseTurn() == DUEL_PLAYER)
+        ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+    Duel_ChangeLp(payerTurn, -SKILL_DRAIN_LP_COST, FALSE);
   }
 
   if (!gHideEffectText) {

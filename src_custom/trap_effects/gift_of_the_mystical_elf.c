@@ -1,12 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "gift_of_the_mystical_elf.h"
 
 #define GIFT_OF_THE_MYSTICAL_ELF_LP_PER_MONSTER 300
-
-void HandleAtkAndLifePointsAction(void);
-void CheckLoserFlags(void);
 
 static u8 CountMonstersOnField(void)
 {
@@ -24,43 +22,24 @@ static u8 CountMonstersOnField(void)
   return count;
 }
 
-static void ApplyGiftOfTheMysticalElfHeal(u8 monsterCount)
-{
-  u16 heal;
-
-  if (monsterCount == 0)
-    return;
-
-  heal = (u16)monsterCount * GIFT_OF_THE_MYSTICAL_ELF_LP_PER_MONSTER;
-
-  if (WhoseTurn() == DUEL_OPPONENT)
-    SetPlayerLifePointsToAdd(heal);
-  else
-    SetOpponentLifePointsToAdd(heal);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 static void ActivateGiftOfTheMysticalElfZone(struct DuelCard *zone)
 {
   u8 monsterCount = CountMonstersOnField();
+  u16 heal;
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = GIFT_OF_THE_MYSTICAL_ELF;
-    ActivateCardEffectText();
-  }
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  ApplyGiftOfTheMysticalElfHeal(monsterCount);
+  Duel_ShowEffectTextTyped(GIFT_OF_THE_MYSTICAL_ELF, 3);
+
+  if (IsDuelOver() == TRUE || monsterCount == 0)
+    return;
+
+  heal = (u16)monsterCount * GIFT_OF_THE_MYSTICAL_ELF_LP_PER_MONSTER;
+  Duel_ChangeLp(INACTIVE_DUELIST, heal, FALSE);
 }
 
 void TryActivateGiftOfTheMysticalElfOnOpponentTurnStart(void)

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 unsigned char CanActivateInjectionFairyLily(void) {
   if (gMonEffect.id != INJECTION_FAIRY_LILY)
@@ -14,19 +15,11 @@ unsigned char CanActivateInjectionFairyLily(void) {
 void ActivateInjectionFairyLilyEffect(void) {
   u8 i;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(3000);
-  else
-    SetOpponentLifePointsToSubtract(3000);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(WhoseTurn(), -3000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   for (i = 0; i < 4; i++)
     IncrementPermStage(gTurnZones[gMonEffect.row][gMonEffect.zone]);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = INJECTION_FAIRY_LILY;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(INJECTION_FAIRY_LILY, 2);
 }

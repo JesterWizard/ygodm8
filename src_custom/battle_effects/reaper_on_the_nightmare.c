@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "reaper_on_the_nightmare.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -78,16 +79,6 @@ static void DiscardRandomHandCard(u8 duelist) {
   ClearZoneAndSendMonToGraveyard(&gDuel.hands[duelist][zone], duelist);
 }
 
-static void ShowReaperOnTheNightmareEffectText(void) {
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = REAPER_ON_THE_NIGHTMARE;
-  ActivateCardEffectText();
-}
-
 void ApplyReaperOnTheNightmareBattleProtection(void) {
   if (sActionData.playerCardId == REAPER_ON_THE_NIGHTMARE
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER))
@@ -137,6 +128,6 @@ void ResolveReaperOnTheNightmareDirectDamageEffect(void) {
   if (CountCardsInDuelistHand(damagedDuelist) == 0)
     return;
 
-  ShowReaperOnTheNightmareEffectText();
+  Duel_ShowEffectTextTyped(REAPER_ON_THE_NIGHTMARE, 3);
   DiscardRandomHandCard(damagedDuelist);
 }

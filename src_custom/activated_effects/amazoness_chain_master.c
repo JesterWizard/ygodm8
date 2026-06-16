@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 static unsigned char CanStealFromOpponentHand(void)
 {
@@ -68,20 +69,11 @@ static void TransferRandomOpponentHandCard(void)
 
 void ActivateAmazonessChainMasterEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(1000);
-  else
-    SetOpponentLifePointsToSubtract(1000);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(WhoseTurn(), -1000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   if (CanStealFromOpponentHand())
     TransferRandomOpponentHandCard();
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = AMAZON_CHAIN_MASTER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(AMAZON_CHAIN_MASTER, 2);
 }

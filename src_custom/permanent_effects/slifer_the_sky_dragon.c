@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "dynamic_equip.h"
 
 extern const u8 gActivationDescription_SliferTheSkyDragon[];
@@ -80,15 +81,6 @@ static u8 ZoneAtkIsZero(struct DuelCard *zone) {
   return gCardInfo.atk == 0;
 }
 
-static void ShowSliferSummonPenaltyText(void) {
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  gCardEffectTextData.cardId = SLIFER_THE_SKY_DRAGON;
-  ActivateCardEffectText();
-}
-
 static void ApplySummonPenaltyStages(struct DuelCard *summonedZone) {
   u8 i;
 
@@ -147,7 +139,7 @@ static void ApplySliferSummonPenaltyToZone(struct DuelCard *summonedZone) {
   if (summonedZone == NULL || summonedZone->id == CARD_NONE)
     return;
 
-  ShowSliferSummonPenaltyText();
+  Duel_ShowEffectText(SLIFER_THE_SKY_DRAGON);
   ApplySummonPenaltyStages(summonedZone);
 
   if (!ZoneAtkIsZero(summonedZone))
@@ -157,7 +149,7 @@ static void ApplySliferSummonPenaltyToZone(struct DuelCard *summonedZone) {
   if (graveyardDuelist == 0xFF)
     return;
 
-  ClearZoneAndSendMonToGraveyard(summonedZone, graveyardDuelist);
+  Duel_DestroyZone(summonedZone, graveyardDuelist, FALSE);
   CheckLoserFlags();
 }
 

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "the_unhappy_maiden.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -46,8 +47,7 @@ void ResolveTheUnhappyMaidenBattleEffect(void) {
 
   gPendingUnhappyMaiden = 0;
 
-  gCardEffectTextData.cardId = THE_UNHAPPY_MAIDEN;
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(THE_UNHAPPY_MAIDEN, 3);
 
   if (pending & UNHAPPY_MAIDEN_PENDING_PLAYER)
     GetGraveCardAndClearGrave2(DUEL_PLAYER);

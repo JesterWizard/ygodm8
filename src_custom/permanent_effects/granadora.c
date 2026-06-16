@@ -50,16 +50,6 @@ static u8 FindMonsterTurnRowColForZone(struct DuelCard *zone, u8 *turnRow, u8 *c
   return FALSE;
 }
 
-static void ShowGranadoraEffectText(void)
-{
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = GRANADORA;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
-}
-
 static void ActivateGranadoraSummon(void)
 {
   u8 duelist;
@@ -68,7 +58,7 @@ static void ActivateGranadoraSummon(void)
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ShowGranadoraEffectText();
+  Duel_ShowEffectTextTyped(GRANADORA, 8);
   FlipCardFaceUp(zone);
 
   if (Duel_ChangeLp(duelist, GRANADORA_SUMMON_HEAL, TRUE) == DUEL_ACTION_DUEL_OVER)
@@ -82,7 +72,7 @@ static void ActivateGranadoraGraveyard(void)
   u8 duelist = GraveyardDuelistForTurnRow(gActiveEffect.turnRow);
   u8 turnDuelist = (gActiveEffect.turnRow == 6) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
-  ShowGranadoraEffectText();
+  Duel_ShowEffectTextTyped(GRANADORA, 8);
 
   if (Duel_ChangeLp(duelist, -GRANADORA_DESTRUCTION_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;

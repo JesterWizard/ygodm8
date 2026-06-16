@@ -1,7 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "duel.h"
+#include "duel_helpers.h"
 #include "gravity_bind.h"
 
 #define GRAVITY_BIND_MIN_BLOCKED_LEVEL 4
@@ -79,8 +79,7 @@ APPEND_TEXT void EffectGravityBind(void)
   zone->isLocked = TRUE;
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = GRAVITY_BIND;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(GRAVITY_BIND);
   }
 }

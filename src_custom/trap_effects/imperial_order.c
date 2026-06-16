@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "imperial_order.h"
 
 void ActivateTrapEffect(u16 lp);
@@ -15,9 +16,8 @@ void EffectImperialOrder(void)
   zone->isLocked = TRUE;
 
   if (!gHideEffectText) {
-    gCardEffectTextData.cardId = IMPERIAL_ORDER;
     gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    ActivateCardEffectText();
+    Duel_ShowEffectText(IMPERIAL_ORDER);
   }
 }
 
@@ -80,17 +80,6 @@ static u8 ActiveDuelistCanPayImperialOrderCost(void)
   return gDuelLifePoints[DUEL_OPPONENT] >= IMPERIAL_ORDER_LP_COST;
 }
 
-static void ApplyImperialOrderLpCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(IMPERIAL_ORDER_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(IMPERIAL_ORDER_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 unsigned char ShouldActivateImperialOrderUpkeep(void)
 {
   struct DuelCard *zone;
@@ -109,16 +98,12 @@ void ActivateImperialOrderUpkeep(void)
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
   if (ActiveDuelistCanPayImperialOrderCost()) {
-    ApplyImperialOrderLpCost();
+    Duel_ChangeLp(ACTIVE_DUELIST, -IMPERIAL_ORDER_LP_COST, TRUE);
     return;
   }
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(9);
-  ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = IMPERIAL_ORDER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(IMPERIAL_ORDER, 9);
 }

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 unsigned char ShouldActivateBowganianTurnEffect(void)
 {
@@ -16,16 +17,8 @@ unsigned char ShouldActivateBowganianTurnEffect(void)
 
 void ActivateBowganianTurnEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(600);
-  else
-    SetPlayerLifePointsToSubtract(600);
+  if (Duel_ChangeLp(1 - WhoseTurn(), -600, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = BOWGANIAN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(BOWGANIAN, 9);
 }

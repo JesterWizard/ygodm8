@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "fairy_box.h"
 
 #define FAIRY_BOX_LP_COST 500
@@ -74,17 +76,6 @@ static u8 ActiveDuelistCanPayFairyBoxCost(void)
   return gDuelLifePoints[DUEL_OPPONENT] >= FAIRY_BOX_LP_COST;
 }
 
-static void ApplyFairyBoxLpCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(FAIRY_BOX_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(FAIRY_BOX_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-}
-
 u8 IsActivatedFairyBoxZone(const struct DuelCard *zone)
 {
   return zone != NULL && zone->id == FAIRY_BOX && zone->isFaceUp == TRUE;
@@ -121,15 +112,9 @@ void ActivateFairyBoxTurnEffect(void)
 {
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(9);
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = FAIRY_BOX;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(FAIRY_BOX, 9);
 }
 
 unsigned char ShouldActivateFairyBoxUpkeep(void)
@@ -150,18 +135,14 @@ void ActivateFairyBoxUpkeep(void)
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
   if (ActiveDuelistCanPayFairyBoxCost()) {
-    ApplyFairyBoxLpCost();
+    Duel_ChangeLp(ACTIVE_DUELIST, -FAIRY_BOX_LP_COST, TRUE);
     return;
   }
 
-  ResetCardEffectTextData();
-  SetCardEffectTextType(9);
-  ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  if (Duel_DestroyZone(zone, ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = FAIRY_BOX;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(FAIRY_BOX, 9);
 }
 
 void TryApplyFairyBoxToPendingAction(void)

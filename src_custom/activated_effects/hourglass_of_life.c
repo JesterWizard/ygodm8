@@ -1,10 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "mini_card.h"
 
 void ActivateHourglassOfLifeEffect(void)
 {
   u8 i;
+
+  Duel_ShowEffectTextTyped(HOURGLASS_OF_LIFE, 2);
 
   /* Active duelist monster row (turn-relative), not gMonEffect.row: player flip
    * uses fixed-row cursor coords; AI flip uses turn-row coords in sub_800E8B4. */
@@ -12,18 +15,8 @@ void ActivateHourglassOfLifeEffect(void)
     if (gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]->id != CARD_NONE)
       IncrementPermStage(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]);
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(1000);
-  else
-    SetOpponentLifePointsToSubtract(1000);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = HOURGLASS_OF_LIFE;
-    ActivateCardEffectText();
-  }
+  if (Duel_ChangeLp(WhoseTurn(), -1000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
   RefreshFieldMonsterStatOverlays();
 }

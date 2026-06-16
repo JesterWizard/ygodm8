@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 
 #define MARAUDING_CAPTAIN_MAX_SUMMON_LEVEL 4
@@ -39,14 +40,6 @@ static u8 DuelistForMonsterTurnRow(u8 turnRow)
   return ACTIVE_DUELIST;
 }
 
-static u8 TurnDuelistToFixed(u8 duelist)
-{
-  if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
-    return DUEL_PLAYER;
-
-  return DUEL_OPPONENT;
-}
-
 static u8 CanSpecialSummonForDuelist(u8 duelist)
 {
   u8 monsterRow = duelist == ACTIVE_DUELIST
@@ -60,18 +53,6 @@ static u8 CanSpecialSummonForDuelist(u8 duelist)
     return FALSE;
 
   return TRUE;
-}
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
 }
 
 static s8 PickMaraudingCaptainHandZone(struct DuelCard **handRow, u8 pickHighestAtk)
@@ -102,33 +83,21 @@ static s8 PickMaraudingCaptainHandZone(struct DuelCard **handRow, u8 pickHighest
 static void TrySpecialSummonForDuelist(u8 duelist)
 {
   struct DuelCard **handRow = gTurnHands[duelist];
-  u8 monsterRow = duelist == ACTIVE_DUELIST
-      ? ACTIVE_DUELIST_MONSTER_ROW
-      : INACTIVE_DUELIST_MONSTER_ROW;
-  struct DuelCard **monsterRowZones = gTurnZones[monsterRow];
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
   s8 handZone;
-  s8 monsterZone;
-  u16 monsterId;
-  struct DuelCard *summonZone;
 
   if (!CanSpecialSummonForDuelist(duelist))
     return;
 
-  if (TurnDuelistToFixed(duelist) == DUEL_PLAYER)
+  if (gTurnDuelistBattleState[duelist] == &gDuel.duelistbattleState[DUEL_PLAYER])
     handZone = SelectHandCardMatchingPredicate(handRow, IsMaraudingCaptainSummonTarget);
   else
     handZone = PickMaraudingCaptainHandZone(handRow, TRUE);
 
-  monsterZone = FirstEmptyZoneInRow(monsterRowZones);
-  if (handZone < 0 || monsterZone < 0)
+  if (handZone < 0)
     return;
 
-  monsterId = handRow[handZone]->id;
-  ClearZone(handRow[handZone]);
-
-  summonZone = monsterRowZones[monsterZone];
-  summonZone->id = monsterId;
-  InitSummonedMonsterZone(summonZone);
+  Duel_SpecialSummonFromHandZone(duelist, handZone, opts);
 }
 
 unsigned char ShouldActivateMaraudingCaptain(void)
@@ -153,18 +122,12 @@ unsigned char ShouldActivateMaraudingCaptain(void)
 
 void ActivateMaraudingCaptain(void)
 {
-  u8 hideEffectText;
   u8 duelist;
   struct DuelCard *zone;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
-  hideEffectText = gHideEffectText;
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = MARAUDING_CAPTAIN;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
-
+  Duel_ShowEffectText(MARAUDING_CAPTAIN);
   TrySpecialSummonForDuelist(duelist);
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];

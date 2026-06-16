@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "mask_of_restrict.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -60,13 +62,7 @@ static void ActivateMaskOfRestrictZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(9);
-    gCardEffectTextData.cardId = MASK_OF_RESTRICT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(MASK_OF_RESTRICT, 9);
 }
 
 u8 TryBlockTributeWithMaskOfRestrict(void)

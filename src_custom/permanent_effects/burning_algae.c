@@ -24,22 +24,12 @@ unsigned char ShouldActivateBurningAlgae(void)
   return GraveyardMatchesBurningAlgae(gActiveEffect.turnRow);
 }
 
-static void ShowBurningAlgaeEffectText(void)
-{
-  u8 hideEffectText = gHideEffectText;
-
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = BURNING_ALGAE;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
-}
-
 void ActivateBurningAlgae(void)
 {
   u8 opponent = (gActiveEffect.turnRow == 6) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
   u8 turnDuelist = (gActiveEffect.turnRow == 6) ? ACTIVE_DUELIST : INACTIVE_DUELIST;
 
-  ShowBurningAlgaeEffectText();
+  Duel_ShowEffectTextTyped(BURNING_ALGAE, 8);
 
   if (Duel_ChangeLp(opponent, BURNING_ALGAE_GY_HEAL, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;

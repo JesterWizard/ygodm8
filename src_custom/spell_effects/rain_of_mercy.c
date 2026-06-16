@@ -1,37 +1,36 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 #define RAIN_OF_MERCY_LP 1000
 
+static u8 PlayerTurnDuelist(void)
+{
+  return WhoseTurn() == DUEL_PLAYER ? ACTIVE_DUELIST : INACTIVE_DUELIST;
+}
+
+static u8 OpponentTurnDuelist(void)
+{
+  return WhoseTurn() == DUEL_PLAYER ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+}
+
+static void RainOfMercy_ResolveBody(void)
+{
+  if (Duel_ChangeLp(PlayerTurnDuelist(), RAIN_OF_MERCY_LP, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  if (Duel_ChangeLp(OpponentTurnDuelist(), RAIN_OF_MERCY_LP, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ShowEffectText(RAIN_OF_MERCY);
+}
+
 APPEND_TEXT void EffectRainOfMercy(void)
 {
-  gTrapEffectData.originRow = gSpellEffectData.row1;
-  gTrapEffectData.originCol = gSpellEffectData.col1;
-  gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    SetPlayerLifePointsToAdd(RAIN_OF_MERCY_LP);
-    HandleAtkAndLifePointsAction();
-
-    SetOpponentLifePointsToAdd(RAIN_OF_MERCY_LP);
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
-
-    ClearZoneAndSendMonToGraveyard(
-        gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = RAIN_OF_MERCY;
-      ActivateCardEffectText();
-    }
-  } else {
-    ActivateTrapEffect(RAIN_OF_MERCY_LP);
-  }
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTrapsEx(RAIN_OF_MERCY, RAIN_OF_MERCY_LP, RainOfMercy_ResolveBody)
+      == DUEL_ACTION_BLOCKED)
+    return;
 }

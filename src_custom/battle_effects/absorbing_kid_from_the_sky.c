@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "absorbing_kid_from_the_sky.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -74,15 +75,10 @@ void ResolveAbsorbingKidFromTheSkyBattleEffect(void) {
 
   heal = (u16)level * ABSORBING_KID_FROM_THE_SKY_LP_PER_LEVEL;
 
-  if (duelist == DUEL_PLAYER)
-    SetPlayerLifePointsToAdd(heal);
-  else
-    SetOpponentLifePointsToAdd(heal);
+  if (Duel_ChangeLp(duelist, heal, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  gCardEffectTextData.cardId = ABSORBING_KID_FROM_THE_SKY;
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(ABSORBING_KID_FROM_THE_SKY, 3);
 }
 
 void ApplyAbsorbingKidFromTheSkyBattleEffect(void) {

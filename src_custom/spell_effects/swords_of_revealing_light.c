@@ -1,10 +1,11 @@
 #include "global.h"
+#include "common-chax.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
 APPEND_TEXT void EffectSwordsOfRevealingLight(void)
 {
   u8 i;
-
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
   InitSorlTurns(INACTIVE_DUELIST);
@@ -16,8 +17,5 @@ APPEND_TEXT void EffectSwordsOfRevealingLight(void)
       gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][i]->isFaceUp = TRUE;
   }
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = SWORDS_OF_REVEALING_LIGHT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(SWORDS_OF_REVEALING_LIGHT);
 }

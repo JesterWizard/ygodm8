@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateMaskOfDarknessEffect(void)
 {
@@ -18,9 +19,5 @@ void ActivateMaskOfDarknessEffect(void)
     ResetTempStage(gTurnZones[ACTIVE_DUELIST_BACKROW][emptyZone]);
   }
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = MASK_OF_DARKNESS;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(MASK_OF_DARKNESS, 2);
 }

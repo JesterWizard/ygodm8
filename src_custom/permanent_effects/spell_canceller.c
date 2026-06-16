@@ -1,4 +1,5 @@
 #include "global.h"
+#include "duel_helpers.h"
 
 static unsigned char ZoneHasFaceUpSpellCanceller(struct DuelCard *zone) {
   return zone->id == SPELL_CANCELLER && zone->isFaceUp;
@@ -31,7 +32,8 @@ static void ClearSpellCardsInRow(struct DuelCard **row, u8 duelist) {
     if (!BackrowZoneHasSpellCard(row[i]))
       continue;
 
-    ClearZoneAndSendMonToGraveyard(row[i], duelist);
+    if (Duel_DestroyZone(row[i], duelist, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
   }
 }
 
@@ -60,9 +62,6 @@ unsigned char ShouldActivateSpellCanceller(void) {
 }
 
 void ActivateSpellCanceller(void) {
-  ResetCardEffectTextData();
-  SetCardEffectTextType(8);
-
   if (gActiveEffect.turnRow == INACTIVE_DUELIST_MONSTER_ROW) {
     FlipCardFaceUp(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][gActiveEffect.col]);
     ClearSpellCardsInRow(gTurnZones[ACTIVE_DUELIST_BACKROW], ACTIVE_DUELIST);
@@ -71,8 +70,5 @@ void ActivateSpellCanceller(void) {
     ClearSpellCardsInRow(gTurnZones[INACTIVE_DUELIST_BACKROW], INACTIVE_DUELIST);
   }
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = SPELL_CANCELLER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(SPELL_CANCELLER, 8);
 }

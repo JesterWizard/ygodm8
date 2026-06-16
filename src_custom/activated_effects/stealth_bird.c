@@ -1,19 +1,13 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 void ActivateStealthBirdEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetOpponentLifePointsToSubtract(1000);
-  else
-    SetPlayerLifePointsToSubtract(1000);
+  u8 target = (WhoseTurn() == DUEL_PLAYER) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(target, -1000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = STEALTH_BIRD;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(STEALTH_BIRD, 2);
 }

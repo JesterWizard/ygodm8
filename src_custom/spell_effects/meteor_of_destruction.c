@@ -1,10 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "meteor_of_destruction.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 #define METEOR_OF_DESTRUCTION_DAMAGE 1000
 #define METEOR_OF_DESTRUCTION_LP_THRESHOLD 3000
@@ -17,35 +16,21 @@ u8 CanActivateMeteorOfDestruction(void)
   return gDuelLifePoints[DUEL_PLAYER] > METEOR_OF_DESTRUCTION_LP_THRESHOLD;
 }
 
+static void MeteorOfDestruction_ResolveBody(void)
+{
+  if (!CanActivateMeteorOfDestruction())
+    return;
+
+  if (Duel_ChangeLp(INACTIVE_DUELIST, -METEOR_OF_DESTRUCTION_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ShowEffectText(METEOR_OF_DESTRUCTION);
+}
+
 APPEND_TEXT void EffectMeteorOfDestruction(void)
 {
-  gTrapEffectData.originRow = gSpellEffectData.row1;
-  gTrapEffectData.originCol = gSpellEffectData.col1;
-  gTrapEffectData.originCardId = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    if (!CanActivateMeteorOfDestruction())
-      return;
-
-    if (WhoseTurn() == DUEL_PLAYER)
-      SetOpponentLifePointsToSubtract(METEOR_OF_DESTRUCTION_DAMAGE);
-    else
-      SetPlayerLifePointsToSubtract(METEOR_OF_DESTRUCTION_DAMAGE);
-
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
-
-    ClearZoneAndSendMonToGraveyard(
-        gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = METEOR_OF_DESTRUCTION;
-      ActivateCardEffectText();
-    }
-  } else {
-    ActivateTrapEffect(METEOR_OF_DESTRUCTION_DAMAGE);
-  }
-
-  gTrapEffectData.originRow = 0;
-  gTrapEffectData.originCol = 0;
+  if (Duel_TryResolveSpellThroughTrapsEx(METEOR_OF_DESTRUCTION, METEOR_OF_DESTRUCTION_DAMAGE,
+                                         MeteorOfDestruction_ResolveBody) == DUEL_ACTION_BLOCKED)
+    return;
 }

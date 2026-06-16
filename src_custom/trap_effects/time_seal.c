@@ -1,21 +1,18 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "time_seal.h"
 
 static void ActivateTimeSealZone(struct DuelCard *zone)
 {
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-  ClearZoneAndSendMonToGraveyard(zone, INACTIVE_DUELIST);
 
-  if (!gHideEffectText) {
-    ResetCardEffectTextData();
-    SetCardEffectTextType(3);
-    gCardEffectTextData.cardId = TIME_SEAL;
-    ActivateCardEffectText();
-  }
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
+  Duel_ShowEffectTextTyped(TIME_SEAL, 3);
   gTimeSealSkipDrawDuelist = WhoseTurn();
 }
 

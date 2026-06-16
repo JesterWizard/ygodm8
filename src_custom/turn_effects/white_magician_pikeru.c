@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 static u16 CountMonstersOnSide(u8 row)
 {
@@ -30,16 +31,8 @@ void ActivateWhiteMagicianPikeruTurnEffect(void)
 {
   u16 lifePoints = CountMonstersOnSide(ACTIVE_DUELIST_MONSTER_ROW) * 400;
 
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToAdd(lifePoints);
-  else
-    SetOpponentLifePointsToAdd(lifePoints);
+  if (Duel_ChangeLp(WhoseTurn(), lifePoints, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = WHITE_MAGICIAN_PIKERU;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(WHITE_MAGICIAN_PIKERU, 9);
 }

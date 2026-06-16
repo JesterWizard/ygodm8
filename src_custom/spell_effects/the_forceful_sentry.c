@@ -1,27 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "spell_effects.h"
 #include "the_forceful_sentry.h"
 
 void UpdateAllDuelGfx(void);
 
-static u8 CountCardsInOpponentHand(void)
-{
-  u8 i;
-  u8 count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (gTurnHands[INACTIVE_DUELIST][i]->id != CARD_NONE)
-      count++;
-
-  return count;
-}
-
 u8 CanActivateTheForcefulSentry(void)
 {
-  return CountCardsInOpponentHand() > 0;
+  return Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0;
 }
 
 static void ShuffleDeckRange(u8 duelist, u8 start, u8 end)
@@ -68,7 +57,7 @@ static void ReturnHandCardToDeck(u8 duelist, u8 handZone)
 static u8 PickRandomOpponentHandZone(void)
 {
   u8 i;
-  u8 occupied = CountCardsInOpponentHand();
+  u8 occupied = Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
   u8 chosen;
   u8 seen = 0;
 
@@ -115,16 +104,12 @@ static void ResolveForInactivePlayer(void)
 
 APPEND_TEXT void EffectTheForcefulSentry(void)
 {
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   if (!CanActivateTheForcefulSentry())
     return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = THE_FORCEFUL_SENTRY;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(THE_FORCEFUL_SENTRY);
 
   if (IsDuelOver() == TRUE)
     return;

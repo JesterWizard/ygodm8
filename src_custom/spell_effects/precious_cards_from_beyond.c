@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "precious_cards_from_beyond.h"
 #include "imperial_order.h"
 #include "summon_tribute.h"
@@ -40,17 +41,6 @@ u8 IsActivatedPreciousCardsFromBeyondZone(const struct DuelCard *zone)
       && zone->isLocked == TRUE;
 }
 
-static void DrawCardsForDuelist(u8 duelist, u8 count)
-{
-  while (count > 0) {
-    if (IsDuelOver() == TRUE)
-      return;
-
-    TryDrawingCard(duelist);
-    count--;
-  }
-}
-
 void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist)
 {
   u8 paidTributes;
@@ -76,12 +66,10 @@ void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist
   if (!IsPreciousCardsFromBeyondActiveForDuelist(duelist))
     return;
 
-  DrawCardsForDuelist(duelist, PRECIOUS_CARDS_FROM_BEYOND_DRAW_COUNT);
+  if (Duel_DrawCards(duelist, PRECIOUS_CARDS_FROM_BEYOND_DRAW_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = PRECIOUS_CARDS_FROM_BEYOND;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(PRECIOUS_CARDS_FROM_BEYOND);
 }
 
 APPEND_TEXT void EffectPreciousCardsFromBeyond(void)
@@ -90,11 +78,7 @@ APPEND_TEXT void EffectPreciousCardsFromBeyond(void)
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = PRECIOUS_CARDS_FROM_BEYOND;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(PRECIOUS_CARDS_FROM_BEYOND);
 }
 
 #if !defined(__GNUC__)

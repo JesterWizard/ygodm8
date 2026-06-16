@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 unsigned char ShouldActivateCureMermaidTurnEffect(void)
 {
@@ -16,16 +17,8 @@ unsigned char ShouldActivateCureMermaidTurnEffect(void)
 
 void ActivateCureMermaidTurnEffect(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToAdd(800);
-  else
-    SetOpponentLifePointsToAdd(800);
+  if (Duel_ChangeLp(WhoseTurn(), 800, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = CURE_MERMAID;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(CURE_MERMAID, 9);
 }

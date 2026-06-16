@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "mefist_the_infernal_general.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -167,16 +168,6 @@ static u8 DidMefistDealBattleDamage(u8 attackerDuelist) {
   return damage > 0;
 }
 
-static void ShowMefistEffectText(void) {
-  if (gHideEffectText)
-    return;
-
-  ResetCardEffectTextData();
-  SetCardEffectTextType(3);
-  gCardEffectTextData.cardId = MEFIST_THE_INFERNAL_GENERAL;
-  ActivateCardEffectText();
-}
-
 void ApplyMefistTheInfernalGeneralPiercingBattleEffect(void) {
   if (sActionData.playerCardId != MEFIST_THE_INFERNAL_GENERAL
       && sActionData.opponentCardId != MEFIST_THE_INFERNAL_GENERAL)
@@ -222,6 +213,6 @@ void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void) {
   if (CountCardsInDuelistHand(damagedDuelist) == 0)
     return;
 
-  ShowMefistEffectText();
+  Duel_ShowEffectTextTyped(MEFIST_THE_INFERNAL_GENERAL, 3);
   DiscardRandomHandCard(damagedDuelist);
 }

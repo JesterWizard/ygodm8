@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
+#include "god_card.h"
 #include "spell_effects.h"
 
 static u8 FieldHasDarkMagician(void)
@@ -14,23 +16,18 @@ static void ClearInactiveDuelistRow(u8 row)
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (!IsGodCard(gTurnZones[row][i]->id))
-      ClearZoneAndSendMonToGraveyard(gTurnZones[row][i], INACTIVE_DUELIST);
+      Duel_DestroyZone(gTurnZones[row][i], INACTIVE_DUELIST, FALSE);
   }
 }
 
 APPEND_TEXT void EffectThousandKnives(void)
 {
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   if (!FieldHasDarkMagician())
     return;
 
   ClearInactiveDuelistRow(INACTIVE_DUELIST_BACKROW);
   ClearInactiveDuelistRow(INACTIVE_DUELIST_MONSTER_ROW);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = THOUSAND_KNIVES;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(THOUSAND_KNIVES);
 }

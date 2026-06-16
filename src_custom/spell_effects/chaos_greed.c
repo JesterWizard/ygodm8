@@ -46,7 +46,7 @@ APPEND_TEXT void EffectChaosGreed(void)
   if (!CanActivateChaosGreed())
     return;
 
-  ClearZoneAndSendMonToGraveyard(spellZone, ACTIVE_DUELIST);
+  Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
   if (Duel_DrawCards(ACTIVE_DUELIST, CHAOS_GREED_DRAW_COUNT, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;

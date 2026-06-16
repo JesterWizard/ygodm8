@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
@@ -79,18 +80,12 @@ unsigned char ShouldActivateDesFeralImp(void)
 
 void ActivateDesFeralImp(void)
 {
-  u8 hideEffectText;
   u8 duelist;
   struct DuelCard *zone;
 
   duelist = DuelistForMonsterTurnRow(gActiveEffect.turnRow);
 
-  hideEffectText = gHideEffectText;
-  gHideEffectText = FALSE;
-  gCardEffectTextData.cardId = DES_FERAL_IMP;
-  ActivateCardEffectText();
-  gHideEffectText = hideEffectText;
-
+  Duel_ShowEffectTextTyped(DES_FERAL_IMP, 8);
   ReturnGraveyardMonsterToHand(duelist);
 
   zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];

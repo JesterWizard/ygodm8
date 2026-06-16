@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "limiter_removal.h"
 #include "mini_card.h"
 #include "riryoku.h"
@@ -68,7 +69,7 @@ void DestroyLimiterRemovalMonstersAtEndOfTurn(void)
 
     zone = gFixedZones[row][i];
     if (zone->id != CARD_NONE)
-      ClearZoneAndSendMonToGraveyard(zone, duelist);
+      Duel_DestroyZone(zone, duelist, FALSE);
   }
 
   ResetLimiterRemovalState();
@@ -81,8 +82,7 @@ APPEND_TEXT void EffectLimiterRemoval(void)
   u8 duelist = WhoseTurn();
 
   ResetLimiterRemovalState();
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   monsterRow = MonsterRowForDuelist(duelist);
   gLimiterRemovalFixedMonsterRow = monsterRow;
@@ -102,9 +102,5 @@ APPEND_TEXT void EffectLimiterRemoval(void)
   }
 
   RefreshFieldMonsterStatOverlays();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = LIMITER_REMOVAL;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(LIMITER_REMOVAL);
 }

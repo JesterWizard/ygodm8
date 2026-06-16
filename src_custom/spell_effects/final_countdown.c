@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "final_countdown.h"
 #include "imperial_order.h"
 #include "spell_effects.h"
@@ -24,14 +25,6 @@ u8 IsActivatedFinalCountdownZone(const struct DuelCard *zone)
       && zone->id == FINAL_COUNTDOWN
       && zone->isFaceUp == TRUE
       && zone->isLocked == TRUE;
-}
-
-static void PayLpCost(void)
-{
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(FINAL_COUNTDOWN_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(FINAL_COUNTDOWN_LP_COST);
 }
 
 static u8 BackrowOwner(u8 fixedRow)
@@ -89,21 +82,13 @@ APPEND_TEXT void EffectFinalCountdown(void)
   if (!CanActivateFinalCountdown())
     return;
 
-  PayLpCost();
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -FINAL_COUNTDOWN_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
   ResetPermStage(zone);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = FINAL_COUNTDOWN;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(FINAL_COUNTDOWN);
 }
 
 #if !defined(__GNUC__)

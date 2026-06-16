@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "mini_card.h"
 #include "spell_effects.h"
 #include "triangle_power.h"
@@ -49,7 +50,7 @@ static void DestroyMarkedMonstersInRow(u8 row, u8 mask, u8 duelist)
 
     zone = gFixedZones[row][i];
     if (zone->id != CARD_NONE)
-      ClearZoneAndSendMonToGraveyard(zone, duelist);
+      Duel_DestroyZone(zone, duelist, FALSE);
   }
 }
 
@@ -69,8 +70,7 @@ APPEND_TEXT void EffectTrianglePower(void)
   u8 row;
 
   ResetTrianglePowerState();
-  ClearZoneAndSendMonToGraveyard(
-      gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   for (row = 0; row < 2; row++) {
     u8 monsterRow = row == 0 ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
@@ -88,9 +88,5 @@ APPEND_TEXT void EffectTrianglePower(void)
   }
 
   RefreshFieldMonsterStatOverlays();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = TRIANGLE_POWER;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(TRIANGLE_POWER);
 }

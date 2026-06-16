@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 unsigned char CanActivateNeedleBall(void) {
   if (gMonEffect.id != NEEDLE_BALL)
@@ -12,26 +13,13 @@ unsigned char CanActivateNeedleBall(void) {
 }
 
 void ActivateNeedleBallEffect(void) {
-  if (WhoseTurn() == DUEL_PLAYER) {
-    SetPlayerLifePointsToSubtract(2000);
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
+  u8 opponent = (WhoseTurn() == DUEL_PLAYER) ? INACTIVE_DUELIST : ACTIVE_DUELIST;
 
-    SetOpponentLifePointsToSubtract(1000);
-  }
-  else {
-    SetOpponentLifePointsToSubtract(2000);
-    HandleAtkAndLifePointsAction();
-    CheckLoserFlags();
+  if (Duel_ChangeLp(WhoseTurn(), -2000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-    SetPlayerLifePointsToSubtract(1000);
-  }
+  if (Duel_ChangeLp(opponent, -1000, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = NEEDLE_BALL;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(NEEDLE_BALL, 2);
 }

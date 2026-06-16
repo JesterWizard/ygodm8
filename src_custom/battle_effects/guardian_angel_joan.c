@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "guardian_angel_joan.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
@@ -68,15 +69,10 @@ void ResolveGuardianAngelJoanBattleEffect(void) {
   destroyedAtk = gPendingGuardianAngelJoanDestroyedAtk;
   ClearGuardianAngelJoanPending();
 
-  if (duelist == DUEL_PLAYER)
-    SetPlayerLifePointsToAdd(destroyedAtk);
-  else
-    SetOpponentLifePointsToAdd(destroyedAtk);
+  if (Duel_ChangeLp(duelist, destroyedAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 
-  HandleAtkAndLifePointsAction();
-
-  gCardEffectTextData.cardId = GUARDIAN_ANGEL_JOAN;
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(GUARDIAN_ANGEL_JOAN, 3);
 }
 
 void ApplyGuardianAngelJoanBattleEffect(void) {

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 #include "imperial_order.h"
 
@@ -38,13 +39,8 @@ static u8 ActiveDuelistCanPayChainEnergyCost(void)
 
 static void ApplyChainEnergyLpCost(void)
 {
-  if (WhoseTurn() == DUEL_PLAYER)
-    SetPlayerLifePointsToSubtract(CHAIN_ENERGY_LP_COST);
-  else
-    SetOpponentLifePointsToSubtract(CHAIN_ENERGY_LP_COST);
-
-  HandleAtkAndLifePointsAction();
-  CheckLoserFlags();
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -CHAIN_ENERGY_LP_COST, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 }
 
 u8 TryPayChainEnergyCost(void)
@@ -101,9 +97,5 @@ APPEND_TEXT void EffectChainEnergy(void)
 
   FlipCardFaceUp(zone);
   zone->isLocked = TRUE;
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = CHAIN_ENERGY;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(CHAIN_ENERGY);
 }

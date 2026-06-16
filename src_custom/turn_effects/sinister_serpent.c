@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "duel_helpers.h"
 
 static u8 GetSinisterSerpentGraveyardDuelist(void)
 {
@@ -64,9 +65,5 @@ void ActivateSinisterSerpentEffect(void)
   FlipCardFaceUp(zone);
   zone->willChangeSides = 0;
 
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = SINISTER_SERPENT;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectTextTyped(SINISTER_SERPENT, 9);
 }

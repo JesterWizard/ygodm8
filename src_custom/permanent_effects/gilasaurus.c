@@ -1,34 +1,9 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 
 extern const u8 gActivationDescription_Gilasaurus[];
-
-void UpdateDuelGfxExceptField(void);
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
-
-static void InitOpponentGraveyardReviveZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = TRUE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
-}
 
 static void ShowGilasaurusActivationText(void)
 {
@@ -51,24 +26,17 @@ static void ShowGilasaurusActivationText(void)
 
 static void TrySummonOpponentGraveyardMonster(void)
 {
-  u16 cardId;
-  s8 monsterZone;
-  struct DuelCard *summonZone;
-  struct DuelCard **monsterRow;
+  u16 cardId = gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
-  cardId = gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard;
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
     return;
 
-  monsterRow = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW];
-  monsterZone = FirstEmptyZoneInRow(monsterRow);
-  if (monsterZone < 0)
+  if (FirstEmptyZoneInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return;
 
-  cardId = GetGraveCardAndClearGrave(INACTIVE_DUELIST);
-  summonZone = monsterRow[monsterZone];
-  summonZone->id = cardId;
-  InitOpponentGraveyardReviveZone(summonZone);
+  opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+  Duel_SpecialSummonFromGrave(INACTIVE_DUELIST, CARD_NONE, opts);
 }
 
 u8 CanSpecialSummonGilasaurusFromHand(u8 handZone)
@@ -89,24 +57,16 @@ u8 CanSpecialSummonGilasaurusFromHand(u8 handZone)
 
 u8 TrySpecialSummonGilasaurusFromHand(u8 handZone)
 {
-  struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
-  s8 monsterZone;
-  struct DuelCard *summonZone;
+  struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
 
   if (!CanSpecialSummonGilasaurusFromHand(handZone))
     return FALSE;
 
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
-  if (monsterZone < 0)
-    return FALSE;
-
   ShowGilasaurusActivationText();
 
-  summonZone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterZone];
-  summonZone->id = GILASAURUS;
-  InitSummonedMonsterZone(summonZone);
-  ClearZone(handRow[handZone]);
-  TrySummonOpponentGraveyardMonster();
+  if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)
+    return FALSE;
 
+  TrySummonOpponentGraveyardMonster();
   return TRUE;
 }

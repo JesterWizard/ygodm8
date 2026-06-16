@@ -1,42 +1,21 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
 #include "delayed_effects.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
-
-static u8 CountCardsInHand(struct DuelCard **hand)
-{
-  u8 i;
-  u8 count = 0;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++)
-    if (hand[i]->id != CARD_NONE)
-      count++;
-
-  return count;
-}
 
 APPEND_TEXT void EffectCardOfDemise(void)
 {
   u8 turn = WhoseTurn();
 
-  ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
-  while (CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) < 5)
-  {
-    if (gDuelDecks[ACTIVE_DUELIST].cardsDrawn >= NumCardsInDeck(ACTIVE_DUELIST))
-    {
-      DeclareLoser(ACTIVE_DUELIST);
+  while (Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) < 5) {
+    if (Duel_DrawCards(ACTIVE_DUELIST, 1, FALSE) == DUEL_ACTION_DUEL_OVER)
       break;
-    }
-
-    TryDrawingCard(ACTIVE_DUELIST);
   }
 
   QueueDelayedDuelEffect(turn, DELAYED_DUEL_EFFECT_CARD_OF_DEMISE);
-
-  if (!gHideEffectText)
-  {
-    gCardEffectTextData.cardId = CARD_OF_DEMISE;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(CARD_OF_DEMISE);
 }

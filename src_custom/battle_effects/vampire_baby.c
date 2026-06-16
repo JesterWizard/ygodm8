@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "graveyard_effects.h"
 #include "vampire_baby.h"
 
@@ -51,18 +52,6 @@ static u8 ControllerHasOpenMonsterZone(u8 controller)
       : INACTIVE_DUELIST_MONSTER_ROW;
 
   return FirstEmptyZoneInRow(gTurnZones[monsterRow]) >= 0;
-}
-
-static void InitSummonedMonsterZone(struct DuelCard *zone)
-{
-  zone->isFaceUp = TRUE;
-  zone->isLocked = FALSE;
-  zone->isDefending = FALSE;
-  zone->permStage = 0;
-  zone->tempStage = 0;
-  zone->unk4 = 0;
-  zone->unkTwo = 0;
-  zone->willChangeSides = 0;
 }
 
 static u8 VampireBabySurvivedBattle(u16 playerCardId, u16 opponentCardId, u8 flags)
@@ -123,10 +112,7 @@ void ResolveVampireBabyBattleEffect(void)
   u8 graveyardDuelist;
   u8 graveyardTurnDuelist;
   u8 controllerTurnDuelist;
-  u8 monsterRow;
   u16 cardId;
-  s8 monsterZone;
-  struct DuelCard *summonZone;
 
   if (gVampireBabyPendingController == VAMPIRE_BABY_PENDING_NONE)
     return;
@@ -135,8 +121,7 @@ void ResolveVampireBabyBattleEffect(void)
   graveyardDuelist = gVampireBabyPendingGraveyardDuelist;
   ClearVampireBabyPending();
 
-  gCardEffectTextData.cardId = VAMPIRE_BABY;
-  ActivateCardEffectText();
+  Duel_ShowEffectTextTyped(VAMPIRE_BABY, 3);
 
   if (!ControllerHasOpenMonsterZone(controller))
     return;
@@ -146,16 +131,11 @@ void ResolveVampireBabyBattleEffect(void)
     return;
 
   controllerTurnDuelist = FixedDuelistToTurnDuelist(controller);
-  monsterRow = controllerTurnDuelist == ACTIVE_DUELIST
-      ? ACTIVE_DUELIST_MONSTER_ROW
-      : INACTIVE_DUELIST_MONSTER_ROW;
 
   cardId = GetGraveCardAndClearGrave(graveyardTurnDuelist);
-  monsterZone = FirstEmptyZoneInRow(gTurnZones[monsterRow]);
-  if (monsterZone < 0 || cardId == CARD_NONE)
+  if (cardId == CARD_NONE)
     return;
 
-  summonZone = gTurnZones[monsterRow][monsterZone];
-  summonZone->id = cardId;
-  InitSummonedMonsterZone(summonZone);
+  Duel_SpecialSummonMonsterId(controllerTurnDuelist, cardId,
+                              Duel_DefaultSpecialSummonOpts(FALSE));
 }

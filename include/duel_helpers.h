@@ -25,6 +25,7 @@ struct DuelSummonOpts {
   u8 updateGfx;
   enum DuelSummonMode mode;
   u8 markSpecialSummon;
+  u8 lockMonster;
 };
 
 typedef u8 (*MonsterZonePredicate)(struct DuelCard *zone);
@@ -42,11 +43,15 @@ enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePre
 
 enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredicate pred,
                                            u8 updateGfx);
+enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx);
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
 
 void Duel_ShowEffectText(u16 cardId);
+void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);
 
 enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resolveBody)(void));
+enum DuelActionResult Duel_TryResolveSpellThroughTrapsEx(u16 spellId, u16 trapLp,
+                                                         void (*resolveBody)(void));
 
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId);
 enum DuelActionResult Duel_RemoveDeckCardAt(u8 duelist, u8 index, u8 updateGfx);
@@ -54,8 +59,12 @@ void Duel_ShuffleDeckFromDrawn(u8 duelist);
 
 enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
                                                  struct DuelSummonOpts opts);
+enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
+                                                     struct DuelSummonOpts opts);
 enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct DuelSummonOpts opts);
 enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct DuelSummonOpts opts);
+enum DuelActionResult Duel_SpecialSummonMonsterId(u8 duelist, u16 monsterId,
+                                                  struct DuelSummonOpts opts);
 
 enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
                                                 struct DuelSummonOpts opts);

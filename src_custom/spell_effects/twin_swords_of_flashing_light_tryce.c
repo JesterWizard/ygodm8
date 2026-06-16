@@ -2,9 +2,8 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
-
-extern void ActivateTrapEffect(u16 lp);
 
 static u8 IsValidTryceTarget(u16 cardId)
 {
@@ -20,10 +19,21 @@ static void ActivateDynamicEquipSpell(struct DuelCard *spellZone)
   spellZone->isLocked = TRUE;
 }
 
-APPEND_TEXT void EffectTwinSwordsOfFlashingLightTryce(void)
+static void Tryce_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
+
+  DecrementPermStage(target);
+  RegisterDynamicEquip(spellZone, target, TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE, 1);
+  ActivateDynamicEquipSpell(spellZone);
+  NotifyDynamicEquipFieldChanged();
+  Duel_ShowEffectText(TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE);
+}
+
+APPEND_TEXT void EffectTwinSwordsOfFlashingLightTryce(void)
+{
+  struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
   if (!IsValidTryceTarget(target->id)) {
     if (!gHideEffectText)
@@ -31,21 +41,7 @@ APPEND_TEXT void EffectTwinSwordsOfFlashingLightTryce(void)
     return;
   }
 
-  gTrapEffectData.originRow = gSpellEffectData.row2;
-  gTrapEffectData.originCol = gSpellEffectData.col2;
-  gTrapEffectData.originCardId = spellZone->id;
-
-  if (IsTrapTriggered() != TRUE || gHideEffectText) {
-    DecrementPermStage(target);
-    RegisterDynamicEquip(spellZone, target, TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE, 1);
-    ActivateDynamicEquipSpell(spellZone);
-    NotifyDynamicEquipFieldChanged();
-
-    if (!gHideEffectText) {
-      gCardEffectTextData.cardId = TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE;
-      ActivateCardEffectText();
-    }
-  } else {
-    ActivateTrapEffect(0);
-  }
+  if (Duel_TryResolveSpellThroughTraps(TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE, Tryce_ResolveBody)
+      == DUEL_ACTION_BLOCKED)
+    return;
 }

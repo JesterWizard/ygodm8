@@ -1,5 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "spell_effects.h"
 
 APPEND_TEXT void EffectJamBreedingMachine(void)
@@ -12,11 +14,7 @@ APPEND_TEXT void EffectJamBreedingMachine(void)
     FlipCardFaceUp(gTurnZones[2][zone]);
   }
 
-  ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
   UnblockSummoning(ACTIVE_DUELIST);
-
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId = JAM_BREEDING_MACHINE;
-    ActivateCardEffectText();
-  }
+  Duel_ShowEffectText(JAM_BREEDING_MACHINE);
 }
