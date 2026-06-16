@@ -54,7 +54,6 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Precious Cards From Beyond` | `src_custom/spell_effects/precious_cards_from_beyond.c` |
 | `spell_effects` | `Final Countdown` | `src_custom/spell_effects/final_countdown.c` |
 | `spell_effects` | `Burning Land` | `src_custom/spell_effects/burning_land.c` |
-| `spell_effects` | `The A. Forces` | `src_custom/spell_effects/the_a_forces.c` |
 | `spell_effects` | `Graceful Dice` | `src_custom/spell_effects/graceful_dice.c` |
 | `spell_effects` | `Chaos Greed` | `src_custom/spell_effects/chaos_greed.c` |
 | `spell_effects` | `Book of Moon` | `src_custom/spell_effects/book_of_moon.c` |

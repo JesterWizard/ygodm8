@@ -145,7 +145,6 @@ static const u8 sDarklordMarieName[] __attribute__((section(".append_assets"))) 
 static const u8 sFenrirName[] __attribute__((section(".append_assets"))) = "Fenrir";
 static const u8 sMagicalMerchantName[] __attribute__((section(".append_assets"))) = "Magical Merchant";
 static const u8 sRaregoldArmorName[] __attribute__((section(".append_assets"))) = "Raregold Armor";
-static const u8 sTheAForcesName[] __attribute__((section(".append_assets"))) = "The A. Forces";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -442,8 +441,6 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMagicalMerchantName;
   if (cardId == 0x03B3)
     return (u8 *)sRaregoldArmorName;
-  if (cardId == 0x03B4)
-    return (u8 *)sTheAForcesName;
 
   return gCardNames[cardId];
 }

@@ -61,7 +61,6 @@
 #include "great_maju_garzett.h"
 #include "goblin_king.h"
 #include "raregold_armor.h"
-#include "the_a_forces.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -311,7 +310,6 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsNonSelectableCoffinSellerZone(zone)
       || IsActivatedFinalCountdownZone(zone)
       || IsActivatedPreciousCardsFromBeyondZone(zone)
-      || IsActivatedTheAForcesZone(zone)
       || IsActiveDynamicEquipSpellZone(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;

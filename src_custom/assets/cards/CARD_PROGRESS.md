@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 148 |
-| Art ready, needs manifest | 171 |
+| In game (manifest + art) | 147 |
+| Art ready, needs manifest | 172 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -169,7 +169,6 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `FENRIR` | Fenrir | `fenrir.png` |
 | `MAGICAL_MERCHANT` | Magical Merchant | `magical_merchant.png` |
 | `RAREGOLD_ARMOR` | Raregold Armor | `raregold_armor.png` |
-| `THE_A_FORCES` | The A. Forces | `the_a_forces.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -321,6 +320,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
+- [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`

@@ -600,10 +600,6 @@ static const unsigned char sRaregoldArmorBigArt[] __attribute__((section(".appen
 static const unsigned short sRaregoldArmorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/raregold_armor.gbapal");
 static const unsigned char sRaregoldArmorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/raregold_armor.lz");
 
-static const unsigned char sTheAForcesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_a_forces.huff");
-static const unsigned short sTheAForcesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_a_forces.gbapal");
-static const unsigned char sTheAForcesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_a_forces.lz");
-
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -755,7 +751,6 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B1] = sFenrirBigArt,
   [0x03B2] = sMagicalMerchantBigArt,
   [0x03B3] = sRaregoldArmorBigArt,
-  [0x03B4] = sTheAForcesBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -909,7 +904,6 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B1] = sFenrirBigPalette,
   [0x03B2] = sMagicalMerchantBigPalette,
   [0x03B3] = sRaregoldArmorBigPalette,
-  [0x03B4] = sTheAForcesBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1063,7 +1057,6 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B1] = 0,
   [0x03B2] = 0,
   [0x03B3] = 0,
-  [0x03B4] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1217,5 +1210,4 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B1] = sFenrirMiniArt,
   [0x03B2] = sMagicalMerchantMiniArt,
   [0x03B3] = sRaregoldArmorMiniArt,
-  [0x03B4] = sTheAForcesMiniArt,
 };
