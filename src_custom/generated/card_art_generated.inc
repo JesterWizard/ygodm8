@@ -616,6 +616,10 @@ static const unsigned char sSevenToolsOfTheBanditBigArt[] __attribute__((section
 static const unsigned short sSevenToolsOfTheBanditBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/seven_tools_of_the_bandit.gbapal");
 static const unsigned char sSevenToolsOfTheBanditMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/seven_tools_of_the_bandit.lz");
 
+static const unsigned char sRivalryOfWarlordsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rivalry_of_warlords.huff");
+static const unsigned short sRivalryOfWarlordsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rivalry_of_warlords.gbapal");
+static const unsigned char sRivalryOfWarlordsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rivalry_of_warlords.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -771,6 +775,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B5] = sThunderCrashBigArt,
   [0x03B6] = sTorpedoFishBigArt,
   [0x03B7] = sSevenToolsOfTheBanditBigArt,
+  [0x03B8] = sRivalryOfWarlordsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -928,6 +933,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B5] = sThunderCrashBigPalette,
   [0x03B6] = sTorpedoFishBigPalette,
   [0x03B7] = sSevenToolsOfTheBanditBigPalette,
+  [0x03B8] = sRivalryOfWarlordsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1085,6 +1091,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B5] = 0,
   [0x03B6] = 0,
   [0x03B7] = 0,
+  [0x03B8] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1242,4 +1249,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B5] = sThunderCrashMiniArt,
   [0x03B6] = sTorpedoFishMiniArt,
   [0x03B7] = sSevenToolsOfTheBanditMiniArt,
+  [0x03B8] = sRivalryOfWarlordsMiniArt,
 };

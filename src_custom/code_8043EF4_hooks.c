@@ -14,6 +14,7 @@
 #include "fairy_box.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "rivalry_of_warlords.h"
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
@@ -302,6 +303,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
       || IsActivatedPyramidOfLightZone(zone)
       || IsActivatedUltimateOfferingZone(zone)
       || IsActivatedMaskOfRestrictZone(zone)
+      || IsActivatedRivalryOfWarlordsZone(zone)
       || IsActivatedGravityBindZone(zone)
       || IsActivatedFairyBoxZone(zone)
       || IsActivatedSkullInvitationZone(zone)
@@ -632,6 +634,7 @@ void sub_80449D8__Replacement(void)
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
@@ -691,6 +694,7 @@ void sub_8044570__Replacement(void)
       PlayMusic(SFX_SELECT);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
+      Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
@@ -787,13 +791,16 @@ void TryAttackWithMonster__Replacement(void)
       RefreshPendingSasukeBattleTarget();
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isDefending = 0;
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;
+      Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
       RunMonsterBattleAction();
-      if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE)
+      if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE) {
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
+        Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      }
       DebugRuleset_MarkAttackUsed();
       TheDarkDoor_MarkAttackUsed();
       CheckGraveyardAndLoserFlags();

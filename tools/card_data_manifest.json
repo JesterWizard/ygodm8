@@ -16911,6 +16911,35 @@
           "Negate and destroy an opponent's trap activation."
         ]
       }
+    },
+    {
+      "card_const": "RIVALRY_OF_WARLORDS",
+      "card_name": "Rivalry of Warlords",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 0, 8, 4, 6, 3, 5, 9],
+      "description": {
+        "symbol": "gDescription_RivalryOfWarlords",
+        "pages": [
+          "Each player can only control 1 Type of monster.",
+          "Send all other face-up monsters they control to",
+          "the GY."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_RivalryOfWarlords",
+        "pages": [
+          "Each player can only control 1 Type of monster. Send all other face-up monsters they control to the GY."
+        ]
+      }
     }
   ]
 }

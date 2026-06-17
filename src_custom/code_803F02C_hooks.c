@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
 #include "debug_ruleset.h"
+#include "duel_helpers.h"
 #include "the_dark_door.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -475,6 +476,9 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
 
   if (checkSliferSummonPenalty)
     MaybeApplySliferSummonPenaltyAfterCopy(dst);
+
+  if (dst->id != CARD_NONE && GetTypeGroup(dst->id) == TYPE_GROUP_MONSTER)
+    Duel_NotifyMonsterZoneChanged(dst);
 }
 
 s8 ComputeFinalStage(const struct DuelCard *zone)

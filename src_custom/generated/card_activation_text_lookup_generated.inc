@@ -168,6 +168,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THUNDER_CRASH, gActivationDescription_ThunderCrash },
   { TORPEDO_FISH, gActivationDescription_TorpedoFish },
   { SEVEN_TOOLS_OF_THE_BANDIT, gActivationDescription_SevenToolsOfTheBandit },
+  { RIVALRY_OF_WARLORDS, gActivationDescription_RivalryOfWarlords },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

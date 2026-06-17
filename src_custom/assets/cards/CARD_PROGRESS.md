@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-17).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-18).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 151 |
-| Art ready, needs manifest | 168 |
+| In game (manifest + art) | 152 |
+| Art ready, needs manifest | 167 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -173,6 +173,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THUNDER_CRASH` | Thunder Crash | `thunder_crash.png` |
 | `TORPEDO_FISH` | Torpedo Fish | `torpedo_fish.png` |
 | `SEVEN_TOOLS_OF_THE_BANDIT` | Seven Tools of the Bandit | `seven_tools_of_the_bandit.png` |
+| `RIVALRY_OF_WARLORDS` | Rivalry of Warlords | `rivalry_of_warlords.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -296,7 +297,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
-- [ ] `RIVALRY_OF_WARLORDS` — `rivalry_of_warlords.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`

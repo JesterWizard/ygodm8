@@ -13,6 +13,7 @@
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
+#include "duel_helpers.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -344,6 +345,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
 
   gHideEffectText = hideEffectText;
   ResolvePendingGraveyardDrawOnDestroy();
+  Duel_CheckRivalryOfWarlordsAfterFieldChange();
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();
   if (!gHideEffectText)

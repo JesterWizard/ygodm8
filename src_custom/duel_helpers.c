@@ -10,6 +10,7 @@
 #include "mini_card.h"
 #include "summon_tribute.h"
 #include "raregold_armor.h"
+#include "rivalry_of_warlords.h"
 #include "tribute.h"
 
 extern void UpdateDuelGfxExceptField(void);
@@ -204,6 +205,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   summonZone->id = monsterId;
   InitMonsterZone(summonZone, opts);
   MaybeUpdateGfx(opts.updateGfx);
+  Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }
 
@@ -964,6 +966,155 @@ u8 Duel_IsFixedMonsterRow(u8 fixedRow)
 u8 Duel_IsTurnMonsterRow(u8 turnRow)
 {
   return turnRow == INACTIVE_DUELIST_MONSTER_ROW || turnRow == ACTIVE_DUELIST_MONSTER_ROW;
+}
+
+u8 Duel_FixedMonsterRowToTurnMonsterRow(u8 fixedRow)
+{
+  u8 fixedDuelist = Duel_FixedDuelistForMonsterRow(fixedRow);
+  u8 turnDuelist = Duel_TurnDuelistForFixedDuelist(fixedDuelist);
+
+  return Duel_TurnMonsterRowForDuelist(turnDuelist);
+}
+
+u8 Duel_FixedMonsterRowHasMultipleMonsterTypes(u8 fixedRow)
+{
+  u8 col;
+  u8 otherCol;
+
+  if (!Duel_IsFixedMonsterRow(fixedRow))
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+    u8 typeA;
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+      continue;
+
+    SetCardInfo(zone->id);
+    typeA = gCardInfo.type;
+
+    for (otherCol = col + 1; otherCol < MAX_ZONES_IN_ROW; otherCol++) {
+      struct DuelCard *other = gFixedZones[fixedRow][otherCol];
+
+      if (other->id == CARD_NONE)
+        continue;
+
+      if (GetTypeGroup(other->id) != TYPE_GROUP_MONSTER)
+        continue;
+
+      SetCardInfo(other->id);
+      if (gCardInfo.type != typeA)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+u8 Duel_GetLeftmostMonsterTypeOnFixedRow(u8 fixedRow)
+{
+  u8 col;
+
+  if (!Duel_IsFixedMonsterRow(fixedRow))
+    return 0xFF;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone->id == CARD_NONE)
+      continue;
+
+    if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+      continue;
+
+    SetCardInfo(zone->id);
+    return gCardInfo.type;
+  }
+
+  return 0xFF;
+}
+
+static u8 MonsterZoneHasWrongTypeForSingleTypeLock(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+  u8 keptType;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return FALSE;
+
+  keptType = Duel_GetLeftmostMonsterTypeOnFixedRow(fixedRow);
+  if (keptType == 0xFF)
+    return FALSE;
+
+  SetCardInfo(zone->id);
+  return gCardInfo.type != keptType;
+}
+
+enum DuelActionResult Duel_EnforceSingleMonsterTypeOnFixedRow(u8 fixedRow, u8 updateGfx)
+{
+  u8 turnRow;
+
+  if (!Duel_IsFixedMonsterRow(fixedRow))
+    return DUEL_ACTION_INVALID;
+
+  if (Duel_GetLeftmostMonsterTypeOnFixedRow(fixedRow) == 0xFF)
+    return DUEL_ACTION_OK;
+
+  turnRow = Duel_FixedMonsterRowToTurnMonsterRow(fixedRow);
+  return Duel_DestroyAllMonstersMatching(turnRow, MonsterZoneHasWrongTypeForSingleTypeLock,
+                                         updateGfx);
+}
+
+void Duel_EnforceSingleMonsterTypeOnBothMonsterRows(u8 updateGfx)
+{
+  if (Duel_EnforceSingleMonsterTypeOnFixedRow(OPPONENT_MONSTER_ROW, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return;
+
+  Duel_EnforceSingleMonsterTypeOnFixedRow(PLAYER_MONSTER_ROW, updateGfx);
+}
+
+void Duel_NotifyFixedMonsterRowChanged(u8 fixedRow)
+{
+  if (!Duel_IsFixedMonsterRow(fixedRow))
+    return;
+
+  /* ponytail: opponent AI may call sub_8040EF0 after CopyCard and wipe text shown
+   * mid-action; player-turn notifies can flip immediately. */
+  if (WhoseTurn() == DUEL_PLAYER && !gHideEffectText)
+    RivalryOfWarlords_CheckAfterFieldChange();
+}
+
+void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return;
+
+  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+    return;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return;
+
+  Duel_NotifyFixedMonsterRowChanged(fixedRow);
+}
+
+void Duel_CheckRivalryOfWarlordsAfterFieldChange(void)
+{
+  RivalryOfWarlords_CheckAfterFieldChange();
 }
 
 u8 Duel_IsMonsterZoneTarget(u16 cardId)

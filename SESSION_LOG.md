@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Rivalry of Warlords
+
+**Worked on:** Added Rivalry of Warlords (continuous trap) to manifest/trunk; auto-flips when a monster row gains 2+ different Types (face-up or set) while rivalry is set; enforces leftmost monster’s Type per row via `duel_helpers` (`Duel_FixedMonsterRowHasMultipleMonsterTypes`, `Duel_EnforceSingleMonsterTypeOnBothMonsterRows`, `Duel_NotifyMonsterZoneChanged`). Rewrote on fixed rows (`gFixedZones`); fixed player summons (`CopySelectedCardToZone` → `gSelectedCard`, not hand slot). Summon-time flip via placement hooks + `RivalryOfWarlords_CheckAfterFieldChange` at end of permanent-effect scan. Opponent-turn effect text deferred there (AI `sub_8040EF0` was wiping mid-action text); player-turn checks immediately. Trap presentation: viewport scroll, scanner, typed trap text.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/trap_effects/rivalry_of_warlords.c`, `include/rivalry_of_warlords.h`, `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/card_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = RIVALRY_OF_WARLORDS` for duel testing.
+
+**Open / next:** In-game confirm flip on summon (both sides), effect text on opponent turn, same-Type second monster does not flip, continuous enforcement after activation.
+
+---
+
 ## 2026-06-17 — Seven Tools of the Bandit custom card
 
 **Worked on:** Added Seven Tools of the Bandit (counter trap) to manifest/trunk; trap-on-trap negate via `Duel_TryResolveTrapThroughTraps` + discard cost effect body.
