@@ -29,6 +29,7 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 - [ ] 2. Confirm art: src_custom/assets/cards/80x80/<stem>.png (script reports OK/MISSING)
 - [ ] 3. Effect hooks? → only if card has non-vanilla behavior (one table row in turn/spell/trap hooks)
 - [ ] 3b. Effect body uses `duel_helpers.h` — extend `duel_helpers.c` if no helper fits (see below)
+- [ ] 3c. Effect text (`Duel_ShowEffectText*`) runs **before** gameplay resolution in the resolve body
 - [ ] 4. configs/runtime.c → `--runtime-hand N` or manual card_in_hand_* if user asked
 - [ ] 5. make test-cards (manifest-only) or make test-cards-build (hooks/runtime)
 ```
@@ -195,24 +196,32 @@ Duelist args use `ACTIVE_DUELIST` / `INACTIVE_DUELIST`. Check `enum DuelActionRe
 
 Pass `updateGfx=TRUE` only when the card should call `UpdateDuelGfxExceptField()` after that step; use `FALSE` on intermediate steps when the original flow updated gfx once at the end.
 
-**Spell pattern** — resolve body callback + trap gate (see `src_custom/spell_effects/raregold_armor.c`, `sparks.c`):
+### Effect text ordering (required)
+
+**Always show effect text before any gameplay resolution** — the textbox must appear and advance before draw, destroy, LP change, summon, or other state changes.
+
+1. Call `Duel_ShowEffectText(cardId)` or `Duel_ShowEffectTextTyped(cardId, textType)` at the **start** of the resolve body (after trap gates pass), not after the effect finishes.
+2. If the textbox can end the duel or block further steps, check `IsDuelOver()` before continuing (see `graceful_charity.c`).
+3. **Do not** use `Duel_ResolveBurnSpell` for new cards — it shows text after burn/spell destruction (legacy). For burn spells, show text first, then `Duel_ChangeLp`, then send the spell to the GY with `Duel_DestroyZone`.
+
+**Spell pattern** — resolve body callback + trap gate (see `src_custom/spell_effects/graceful_charity.c`, `thunder_crash.c`):
 
 ```c
 #include "duel_helpers.h"
 
 static void MySpell_ResolveBody(void)
 {
+  Duel_ShowEffectText(MY_SPELL);
+
   if (Duel_ChangeLp(INACTIVE_DUELIST, -500, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
-  Duel_ShowEffectText(MY_SPELL);
 }
 
 APPEND_TEXT void EffectMySpell(void)
 {
   if (Duel_TryResolveSpellThroughTrapsEx(MY_SPELL, 500, MySpell_ResolveBody) == DUEL_ACTION_BLOCKED)
     return;
-  MySpell_ResolveBody();
 }
 ```
 

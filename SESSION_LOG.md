@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Thunder Crash custom card
+
+**Worked on:** Added Thunder Crash (IOC normal spell) to manifest/trunk; destroy-own-monsters + 300 burn per destroyed monster via duel_helpers.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/spell_effects/thunder_crash.c`, `src_custom/spell_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = THUNDER_CRASH` for duel testing.
+
+**Open / next:** In-game confirm trap response with variable burn; god-card skip matches Raigeki-style helper behavior.
+
+---
+
 ## 2026-06-17 — duel_helpers standardization (phase 2)
 
 **Worked on:** Closed open items from repo-wide standardization pass — backrow scans, fixed-zone lookup, forced-attack redirect dispatch, burn-spell migration.

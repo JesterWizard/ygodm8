@@ -16826,6 +16826,35 @@
           "Discard 1 random card from your opponent's hand."
         ]
       }
+    },
+    {
+      "card_const": "THUNDER_CRASH",
+      "card_name": "Thunder Crash",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 9, 1, 9, 6, 1, 6, 0],
+      "description": {
+        "symbol": "gDescription_ThunderCrash",
+        "pages": [
+          "Destroy all monsters you control, and if you do,",
+          "inflict 300 damage to your opponent for each monster",
+          "destroyed."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ThunderCrash",
+        "pages": [
+          "Destroy all monsters you control, and then inflict 300 damage to your opponent for each monster destroyed."
+        ]
+      }
     }
   ]
 }

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 148
+#define NUM_CUSTOM_NAME_SORT_CARDS 149
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -150,6 +150,7 @@ static const u8 sFenrirSortName[] APPEND_RODATA = "Fenrir";
 static const u8 sMagicalMerchantSortName[] APPEND_RODATA = "Magical Merchant";
 static const u8 sRaregoldArmorSortName[] APPEND_RODATA = "Raregold Armor";
 static const u8 sSpiritReaperSortName[] APPEND_RODATA = "Spirit Reaper";
+static const u8 sThunderCrashSortName[] APPEND_RODATA = "Thunder Crash";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -286,6 +287,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0373, // The Forceful Sentry
   0x036C, // Thousand Energy
   0x038F, // Thousand Knives
+  0x03B5, // Thunder Crash
   0x036B, // Time Seal
   0x0358, // Toll
   0x038D, // Triangle Power
@@ -437,20 +439,21 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   132, // The Forceful Sentry
   133, // Thousand Energy
   134, // Thousand Knives
-  135, // Time Seal
-  136, // Toll
-  137, // Triangle Power
-  138, // Twin Swords of Flashing Light - Tryce
-  139, // Tyrant Dragon
-  140, // Ultimate Offering
-  141, // United We Stand
-  142, // Upstart Goblin
-  143, // Vampire Baby
-  144, // Warrior of Zera
-  145, // Wave Motion Cannon
-  146, // Weather Report
-  147, // White Magician Pikeru
-  148, // Yata-Garasu
+  135, // Thunder Crash
+  136, // Time Seal
+  137, // Toll
+  138, // Triangle Power
+  139, // Twin Swords of Flashing Light - Tryce
+  140, // Tyrant Dragon
+  141, // Ultimate Offering
+  142, // United We Stand
+  143, // Upstart Goblin
+  144, // Vampire Baby
+  145, // Warrior of Zera
+  146, // Wave Motion Cannon
+  147, // Weather Report
+  148, // White Magician Pikeru
+  149, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -750,6 +753,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRaregoldArmorSortName;
   if (cardId == 0x03B4)
     return (u8 *)sSpiritReaperSortName;
+  if (cardId == 0x03B5)
+    return (u8 *)sThunderCrashSortName;
 
   return gCardNames[cardId];
 }

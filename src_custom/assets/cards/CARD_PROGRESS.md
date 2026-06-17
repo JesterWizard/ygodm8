@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 148 |
-| Art ready, needs manifest | 171 |
+| In game (manifest + art) | 149 |
+| Art ready, needs manifest | 170 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -170,6 +170,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MAGICAL_MERCHANT` | Magical Merchant | `magical_merchant.png` |
 | `RAREGOLD_ARMOR` | Raregold Armor | `raregold_armor.png` |
 | `SPIRIT_REAPER` | Spirit Reaper | `spirit_reaper.png` |
+| `THUNDER_CRASH` | Thunder Crash | `thunder_crash.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -331,7 +332,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_THING_IN_THE_CRATER` — `the_thing_in_the_crater.png`
 - [ ] `THEBAN_NIGHTMARE` — `theban_nightmare.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [ ] `THUNDER_CRASH` — `thunder_crash.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORNADO_BIRD` — `tornado_bird.png`
 - [ ] `TORNADO_WALL` — `tornado_wall.png`

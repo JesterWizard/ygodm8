@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `162` effects
+- `163` effects
 
 ## Tally
 
@@ -57,6 +57,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Graceful Dice` | `src_custom/spell_effects/graceful_dice.c` |
 | `spell_effects` | `Chaos Greed` | `src_custom/spell_effects/chaos_greed.c` |
 | `spell_effects` | `Book of Moon` | `src_custom/spell_effects/book_of_moon.c` |
+| `spell_effects` | `Thunder Crash` | `src_custom/spell_effects/thunder_crash.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |
 | `activated_effects` | `Amazoness Chain Master` | `src_custom/activated_effects/amazoness_chain_master.c` |
 | `activated_effects` | `Cyber Jar` | `src_custom/activated_effects/cyber_jar.c` |
