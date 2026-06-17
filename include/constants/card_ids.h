@@ -952,11 +952,12 @@
 #define SPIRIT_REAPER                            0x03B4
 #define THUNDER_CRASH                            0x03B5
 #define TORPEDO_FISH                             0x03B6
+#define SEVEN_TOOLS_OF_THE_BANDIT                0x03B7
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03B7
-#define NUM_CUSTOM_CARDS                        0x0096
+#define NUM_TOTAL_CARDS                         0x03B8
+#define NUM_CUSTOM_CARDS                        0x0097
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

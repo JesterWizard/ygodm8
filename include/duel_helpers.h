@@ -104,6 +104,7 @@ void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);
 enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resolveBody)(void));
 enum DuelActionResult Duel_TryResolveSpellThroughTrapsEx(u16 spellId, u16 trapLp,
                                                          void (*resolveBody)(void));
+enum DuelActionResult Duel_TryResolveTrapThroughTraps(u16 trapId);
 
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId);
 enum DuelActionResult Duel_RemoveDeckCardAt(u8 duelist, u8 index, u8 updateGfx);

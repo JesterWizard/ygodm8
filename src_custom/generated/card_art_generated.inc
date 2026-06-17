@@ -612,6 +612,10 @@ static const unsigned char sTorpedoFishBigArt[] __attribute__((section(".append_
 static const unsigned short sTorpedoFishBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/torpedo_fish.gbapal");
 static const unsigned char sTorpedoFishMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/torpedo_fish.lz");
 
+static const unsigned char sSevenToolsOfTheBanditBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/seven_tools_of_the_bandit.huff");
+static const unsigned short sSevenToolsOfTheBanditBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/seven_tools_of_the_bandit.gbapal");
+static const unsigned char sSevenToolsOfTheBanditMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/seven_tools_of_the_bandit.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -766,6 +770,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B4] = sSpiritReaperBigArt,
   [0x03B5] = sThunderCrashBigArt,
   [0x03B6] = sTorpedoFishBigArt,
+  [0x03B7] = sSevenToolsOfTheBanditBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -922,6 +927,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B4] = sSpiritReaperBigPalette,
   [0x03B5] = sThunderCrashBigPalette,
   [0x03B6] = sTorpedoFishBigPalette,
+  [0x03B7] = sSevenToolsOfTheBanditBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1078,6 +1084,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B4] = 0,
   [0x03B5] = 0,
   [0x03B6] = 0,
+  [0x03B7] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1234,4 +1241,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B4] = sSpiritReaperMiniArt,
   [0x03B5] = sThunderCrashMiniArt,
   [0x03B6] = sTorpedoFishMiniArt,
+  [0x03B7] = sSevenToolsOfTheBanditMiniArt,
 };

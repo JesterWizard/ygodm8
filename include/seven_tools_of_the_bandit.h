@@ -1,0 +1,8 @@
+#ifndef GUARD_SEVEN_TOOLS_OF_THE_BANDIT_H
+#define GUARD_SEVEN_TOOLS_OF_THE_BANDIT_H
+
+#define TRAP_SEVEN_TOOLS_OF_THE_BANDIT 30
+
+void EffectSevenToolsOfTheBandit(void);
+
+#endif // GUARD_SEVEN_TOOLS_OF_THE_BANDIT_H

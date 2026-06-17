@@ -16883,6 +16883,34 @@
           "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
         ]
       }
+    },
+    {
+      "card_const": "SEVEN_TOOLS_OF_THE_BANDIT",
+      "card_name": "Seven Tools of the Bandit",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 30,
+      "cost": 150,
+      "password": [0, 3, 8, 1, 9, 4, 7, 0],
+      "description": {
+        "symbol": "gDescription_SevenToolsOfTheBandit",
+        "pages": [
+          "A counter trap that blocks an enemy trap.",
+          "Negate and destroy an opponent's trap activation."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SevenToolsOfTheBandit",
+        "pages": [
+          "Negate and destroy an opponent's trap activation."
+        ]
+      }
     }
   ]
 }

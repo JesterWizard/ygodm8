@@ -6,7 +6,7 @@
 #include "gravity_bind.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
-#include "draining_shield.h"
+#include "seven_tools_of_the_bandit.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -34,6 +34,7 @@
 #define TRAP_DRAINING_SHIELD 24
 
 extern void EffectMagicJammer(void);
+extern void EffectSevenToolsOfTheBandit(void);
 extern void EffectEmbodimentOfApophis(void);
 extern void EffectMagicCylinder(void);
 
@@ -154,6 +155,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectMagicJammer();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_SEVEN_TOOLS_OF_THE_BANDIT) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectSevenToolsOfTheBandit();
     return;
   }
 

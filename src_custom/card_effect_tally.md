@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `164` effects
+- `165` effects
 
 ## Tally
 
@@ -83,6 +83,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |
 | `trap_effects` | `Fairy Box` | `src_custom/trap_effects/fairy_box.c` |
 | `trap_effects` | `Magic Jammer` | `src_custom/trap_effects/magic_jammer.c` |
+| `trap_effects` | `Seven Tools of the Bandit` | `src_custom/trap_effects/seven_tools_of_the_bandit.c` |
 | `trap_effects` | `Magic Cylinder` | `src_custom/trap_effects/magic_cylinder.c` |
 | `trap_effects` | `Draining Shield` | `src_custom/trap_effects/draining_shield.c` |
 | `trap_effects` | `Negate Attack` | `src_custom/trap_effects/negate_attack.c` |

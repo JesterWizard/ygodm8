@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 150 |
-| Art ready, needs manifest | 169 |
+| In game (manifest + art) | 151 |
+| Art ready, needs manifest | 168 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -172,6 +172,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPIRIT_REAPER` | Spirit Reaper | `spirit_reaper.png` |
 | `THUNDER_CRASH` | Thunder Crash | `thunder_crash.png` |
 | `TORPEDO_FISH` | Torpedo Fish | `torpedo_fish.png` |
+| `SEVEN_TOOLS_OF_THE_BANDIT` | Seven Tools of the Bandit | `seven_tools_of_the_bandit.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -307,7 +308,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
 - [ ] `SERVANT_OF_CATABOLISM` — `servant_of_catabolism.png`
-- [ ] `SEVEN_TOOLS_OF_THE_BANDIT` — `seven_tools_of_the_bandit.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`

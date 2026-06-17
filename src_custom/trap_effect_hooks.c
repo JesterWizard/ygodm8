@@ -7,6 +7,7 @@
 #include "gravity_bind.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "seven_tools_of_the_bandit.h"
 
 unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
@@ -214,6 +215,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = FALSE;
       if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_SPELL) {
         gTrapEffectData.trapCardId = TRAP_MAGIC_JAMMER;
+        ret = TRUE;
+      }
+      break;
+    case TRAP_SEVEN_TOOLS_OF_THE_BANDIT:
+      ret = FALSE;
+      if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_TRAP) {
+        gTrapEffectData.trapCardId = TRAP_SEVEN_TOOLS_OF_THE_BANDIT;
         ret = TRUE;
       }
       break;

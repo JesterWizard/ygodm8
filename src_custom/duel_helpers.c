@@ -1142,6 +1142,18 @@ enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resol
   return Duel_TryResolveSpellThroughTrapsEx(spellId, 0, resolveBody);
 }
 
+enum DuelActionResult Duel_TryResolveTrapThroughTraps(u16 trapId)
+{
+  if (GetTypeGroup(trapId) != TYPE_GROUP_TRAP)
+    return DUEL_ACTION_OK;
+
+  if (IsTrapTriggered() != TRUE || gHideEffectText)
+    return DUEL_ACTION_OK;
+
+  ActivateTrapEffect(0);
+  return DUEL_ACTION_BLOCKED;
+}
+
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId)
 {
   u8 fixedDuelist = TurnDuelistToFixed(duelist);

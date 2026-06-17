@@ -170,6 +170,8 @@ static void ActivateSpellEffect__Body(void)
         PlayMusic(SFX_FORBIDDEN);
       return;
     }
+    if (Duel_TryResolveTrapThroughTraps(gSpellEffectData.id) == DUEL_ACTION_BLOCKED)
+      return;
   }
 
   if (TryMaryokutaiSpellCounter())

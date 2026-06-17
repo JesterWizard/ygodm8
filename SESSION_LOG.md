@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Seven Tools of the Bandit custom card
+
+**Worked on:** Added Seven Tools of the Bandit (counter trap) to manifest/trunk; trap-on-trap negate via `Duel_TryResolveTrapThroughTraps` + discard cost effect body.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/trap_effects/seven_tools_of_the_bandit.c`, `include/seven_tools_of_the_bandit.h`, `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `src_custom/trap_effect_hooks.c`, `src_custom/trap_effects_hooks.c`, `src_custom/spell_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = SEVEN_TOOLS_OF_THE_BANDIT` for duel testing.
+
+**Open / next:** In-game confirm trap-chain response (set Seven Tools, opponent activates trap, discard 1, origin trap destroyed); empty-hand should not offer activation.
+
+---
+
 ## 2026-06-17 — Torpedo Fish custom card
 
 **Worked on:** Added Torpedo Fish (IOC effect monster) to manifest/trunk; Umi-gated spell immunity via card_passives + duel_helpers spell-resolve depth API.

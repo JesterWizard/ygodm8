@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 150
+#define NUM_CUSTOM_NAME_SORT_CARDS 151
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -152,6 +152,7 @@ static const u8 sRaregoldArmorSortName[] APPEND_RODATA = "Raregold Armor";
 static const u8 sSpiritReaperSortName[] APPEND_RODATA = "Spirit Reaper";
 static const u8 sThunderCrashSortName[] APPEND_RODATA = "Thunder Crash";
 static const u8 sTorpedoFishSortName[] APPEND_RODATA = "Torpedo Fish";
+static const u8 sSevenToolsOfTheBanditSortName[] APPEND_RODATA = "Seven Tools of the Bandit";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -266,6 +267,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0340, // Seal of Orichalcos
   0x0360, // Secret Barrel
   0x036F, // Self-Destruct Button
+  0x03B7, // Seven Tools of the Bandit
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
   0x0370, // Skull Invitation
@@ -419,44 +421,45 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   110, // Seal of Orichalcos
   111, // Secret Barrel
   112, // Self-Destruct Button
-  113, // Shield And Sword
-  114, // Skill Drain
-  115, // Skull Invitation
-  116, // Solar Flare Dragon
-  117, // Solar Ray
-  118, // Solemn Wishes
-  119, // Sorcerer of Dark Magic
-  120, // Soul Exchange
-  121, // Soul Taker
-  122, // Spear Dragon
-  123, // Spell Canceller
-  124, // Spirit of the Breeze
-  125, // Spirit Reaper
-  126, // St Joan
-  127, // Stealth Bird
-  128, // Swift Gaia The Fierce Knight
-  129, // Terrorking Salmon
-  130, // The Agent Of Creation - Venus
-  131, // The Dark Door
-  132, // The Forceful Sentry
-  133, // Thousand Energy
-  134, // Thousand Knives
-  135, // Thunder Crash
-  136, // Time Seal
-  137, // Toll
-  138, // Torpedo Fish
-  139, // Triangle Power
-  140, // Twin Swords of Flashing Light - Tryce
-  141, // Tyrant Dragon
-  142, // Ultimate Offering
-  143, // United We Stand
-  144, // Upstart Goblin
-  145, // Vampire Baby
-  146, // Warrior of Zera
-  147, // Wave Motion Cannon
-  148, // Weather Report
-  149, // White Magician Pikeru
-  150, // Yata-Garasu
+  113, // Seven Tools of the Bandit
+  114, // Shield And Sword
+  115, // Skill Drain
+  116, // Skull Invitation
+  117, // Solar Flare Dragon
+  118, // Solar Ray
+  119, // Solemn Wishes
+  120, // Sorcerer of Dark Magic
+  121, // Soul Exchange
+  122, // Soul Taker
+  123, // Spear Dragon
+  124, // Spell Canceller
+  125, // Spirit of the Breeze
+  126, // Spirit Reaper
+  127, // St Joan
+  128, // Stealth Bird
+  129, // Swift Gaia The Fierce Knight
+  130, // Terrorking Salmon
+  131, // The Agent Of Creation - Venus
+  132, // The Dark Door
+  133, // The Forceful Sentry
+  134, // Thousand Energy
+  135, // Thousand Knives
+  136, // Thunder Crash
+  137, // Time Seal
+  138, // Toll
+  139, // Torpedo Fish
+  140, // Triangle Power
+  141, // Twin Swords of Flashing Light - Tryce
+  142, // Tyrant Dragon
+  143, // Ultimate Offering
+  144, // United We Stand
+  145, // Upstart Goblin
+  146, // Vampire Baby
+  147, // Warrior of Zera
+  148, // Wave Motion Cannon
+  149, // Weather Report
+  150, // White Magician Pikeru
+  151, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -760,6 +763,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sThunderCrashSortName;
   if (cardId == 0x03B6)
     return (u8 *)sTorpedoFishSortName;
+  if (cardId == 0x03B7)
+    return (u8 *)sSevenToolsOfTheBanditSortName;
 
   return gCardNames[cardId];
 }
