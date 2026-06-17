@@ -39,16 +39,12 @@ u8 IsActivatedDarkRoomZone(const struct DuelCard *zone)
 
 static struct DuelCard *FindDarkRoomZone(u8 controller)
 {
-  u8 backrow = controller == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
-  u8 i;
+  struct DuelCard *zone = Duel_FindBackrowCard(controller, DARK_ROOM_OF_NIGHTMARE, FALSE);
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[backrow][i]->id == DARK_ROOM_OF_NIGHTMARE
-        && !IsImperialOrderNegatingSpell(DARK_ROOM_OF_NIGHTMARE))
-      return gFixedZones[backrow][i];
-  }
+  if (zone == NULL || IsImperialOrderNegatingSpell(DARK_ROOM_OF_NIGHTMARE))
+    return NULL;
 
-  return NULL;
+  return zone;
 }
 
 static void FlipDarkRoomFaceUpIfNeeded(struct DuelCard *zone)

@@ -53,26 +53,12 @@ struct DuelCard *RaregoldArmor_GetForcedAttackTarget(u8 defenderDuelist)
 
 u8 RaregoldArmor_CanBeAttacked(struct DuelCard *zone)
 {
-  struct DuelCard *forcedTarget;
-  u8 defenderDuelist;
-
-  if (zone == NULL || zone->id == CARD_NONE)
-    return TRUE;
-
-  defenderDuelist = GetDuelistForZone(zone);
-  if (defenderDuelist == 0xFF)
-    return TRUE;
-
-  forcedTarget = RaregoldArmor_GetForcedAttackTarget(defenderDuelist);
-  if (forcedTarget == NULL)
-    return TRUE;
-
-  return zone == forcedTarget;
+  return Duel_MonsterMayBeAttacked(zone);
 }
 
 u8 RaregoldArmor_BlocksDirectAttack(u8 defenderDuelist)
 {
-  return RaregoldArmor_GetForcedAttackTarget(defenderDuelist) != NULL;
+  return Duel_ForcedAttackBlocksDirect(defenderDuelist);
 }
 
 APPEND_TEXT void EffectRaregoldArmor(void)

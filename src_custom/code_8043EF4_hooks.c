@@ -61,7 +61,6 @@
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
 #include "duel_helpers.h"
-#include "raregold_armor.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -669,7 +668,7 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanReaperOnTheNightmareAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
-      && !RaregoldArmor_BlocksDirectAttack(
+      && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
@@ -766,7 +765,7 @@ void TryAttackWithMonster__Replacement(void)
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)
       || !Duel_CanAttackMonsterZone(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
-      || !RaregoldArmor_CanBeAttacked(
+      || !Duel_MonsterMayBeAttacked(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();

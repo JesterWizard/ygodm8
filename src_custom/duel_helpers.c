@@ -8,6 +8,7 @@
 #include "mask_of_restrict.h"
 #include "mini_card.h"
 #include "summon_tribute.h"
+#include "raregold_armor.h"
 #include "tribute.h"
 
 extern void UpdateDuelGfxExceptField(void);
@@ -640,6 +641,25 @@ u8 Duel_FindTurnMonsterZone(struct DuelCard *zone, u8 *turnRow, u8 *col)
   return FALSE;
 }
 
+u8 Duel_FindFixedZone(struct DuelCard *zone, u8 *fixedRow, u8 *col)
+{
+  u8 row;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (row = OPPONENT_BACKROW; row <= PLAYER_HAND; row++) {
+    for (*col = 0; *col < MAX_ZONES_IN_ROW; (*col)++) {
+      if (gFixedZones[row][*col] == zone) {
+        *fixedRow = row;
+        return TRUE;
+      }
+    }
+  }
+
+  return FALSE;
+}
+
 u8 Duel_CountMonstersOnFixedRow(u8 fixedRow)
 {
   u8 col;
@@ -757,6 +777,16 @@ static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"
   { GOBLIN_KING, Duel_IsFiendZone },
 };
 
+typedef struct DuelCard *(*DuelForcedAttackTargetFn)(u8 defenderDuelist);
+
+struct DuelForcedAttackRedirect {
+  DuelForcedAttackTargetFn getForcedTarget;
+};
+
+static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribute__((section(".text"))) = {
+  { RaregoldArmor_GetForcedAttackTarget },
+};
+
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
 {
   u8 i;
@@ -820,6 +850,44 @@ u8 Duel_CanAttackMonsterZone(struct DuelCard *zone)
   }
 
   return TRUE;
+}
+
+struct DuelCard *Duel_GetForcedAttackTarget(u8 defenderDuelist)
+{
+  u8 i;
+  struct DuelCard *target;
+
+  for (i = 0; i < ARRAY_COUNT(sForcedAttackRedirects); i++) {
+    target = sForcedAttackRedirects[i].getForcedTarget(defenderDuelist);
+    if (target != NULL)
+      return target;
+  }
+
+  return NULL;
+}
+
+u8 Duel_MonsterMayBeAttacked(struct DuelCard *zone)
+{
+  struct DuelCard *forcedTarget;
+  u8 defenderDuelist;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return TRUE;
+
+  defenderDuelist = GetDuelistForZone(zone);
+  if (defenderDuelist == 0xFF)
+    return TRUE;
+
+  forcedTarget = Duel_GetForcedAttackTarget(defenderDuelist);
+  if (forcedTarget == NULL)
+    return TRUE;
+
+  return zone == forcedTarget;
+}
+
+u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist)
+{
+  return Duel_GetForcedAttackTarget(defenderDuelist) != NULL;
 }
 
 void Duel_ActivateContinuousZone(struct DuelCard *zone)
@@ -924,6 +992,22 @@ struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFac
   u8 backrow = fixedDuelist == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
 
   return Duel_FindFixedZoneById(backrow, cardId, requireFaceUp);
+}
+
+struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp)
+{
+  struct DuelCard *zone = Duel_FindBackrowCard(DUEL_OPPONENT, cardId, requireFaceUp);
+
+  if (zone != NULL)
+    return zone;
+
+  return Duel_FindBackrowCard(DUEL_PLAYER, cardId, requireFaceUp);
+}
+
+u8 Duel_IsBackrowCardOnField(u16 cardId, u8 requireFaceUp)
+{
+  return Duel_FindBackrowCard(DUEL_PLAYER, cardId, requireFaceUp) != NULL
+      || Duel_FindBackrowCard(DUEL_OPPONENT, cardId, requireFaceUp) != NULL;
 }
 
 u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone)

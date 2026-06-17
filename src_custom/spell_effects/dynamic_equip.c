@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dynamic_equip.h"
+#include "duel_helpers.h"
 #include "imperial_order.h"
 
 void UpdateDuelGfxExceptField(void);
@@ -22,14 +23,8 @@ static u8 GetFixedRowForZone(const struct DuelCard *zone, u8 *outCol)
   u8 row;
   u8 col;
 
-  for (row = 0; row < PLAYER_BACKROW + 1; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      if (gFixedZones[row][col] == zone) {
-        *outCol = col;
-        return row;
-      }
-    }
-  }
+  if (Duel_FindFixedZone((struct DuelCard *)zone, &row, outCol))
+    return row;
 
   /* ponytail: gTurnZones uses mirrored columns on opponent rows */
   for (row = 0; row < 4; row++) {

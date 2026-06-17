@@ -15,6 +15,20 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — duel_helpers standardization (phase 2)
+
+**Worked on:** Closed open items from repo-wide standardization pass — backrow scans, fixed-zone lookup, forced-attack redirect dispatch, burn-spell migration.
+
+**New APIs:** `Duel_FindFixedZone`, `Duel_FindBackrowCardOnField`, `Duel_IsBackrowCardOnField`, `Duel_GetForcedAttackTarget`, `Duel_MonsterMayBeAttacked`, `Duel_ForcedAttackBlocksDirect`.
+
+**Migrated:** skill_drain, imperial_order, royal_decree (backrow active checks); dynamic_equip (zone coords); tremendous_fire (`Duel_ResolveBurnSpell`); dark_room zone find; attack hooks → generic forced-target dispatch (Raregold table row in `duel_helpers.c`).
+
+**Files:** `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `skill_drain.c`, `imperial_order.c`, `royal_decree.c`, `dynamic_equip.c`, `tremendous_fire.c`, `dark_room_of_nightmare.c`, `raregold_armor.c`, `ai_attack_hooks.c`, `code_8043EF4_hooks.c`, `tests/host/test_duel_helpers.py`.
+
+**Outcome:** `make test-cards-build` and `make test-host` pass.
+
+**Open / next:** Turn-backrow set-card scan for chain activations (imperial order / royal decree loops); `goblin_thief` / `wave_motion_cannon` burn variants; fairy_box backrow scan.
+
 ## 2026-06-17 — Repo-wide duel_helpers standardization
 
 **Worked on:** Extended `duel_helpers` with reusable zone/stat/LP/trap APIs and migrated ~60 effect files off duplicated boilerplate.

@@ -45,6 +45,9 @@ class DuelHelpersSourceTests(unittest.TestCase):
             "Duel_DestroyMaskedMonstersInFixedRow",
             "Duel_TryApplyDynamicStatMod",
             "Duel_CanAttackMonsterZone",
+            "Duel_MonsterMayBeAttacked",
+            "Duel_FindFixedZone",
+            "Duel_IsBackrowCardOnField",
             "Duel_ApplyStatModViaZoneApplier",
             "enum DuelActionResult",
         ):

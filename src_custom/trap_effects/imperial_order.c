@@ -37,26 +37,9 @@ void TryActivateImperialOrderOnSpellChain(void)
   }
 }
 
-static struct DuelCard *FindFaceUpImperialOrderOnBackrow(u8 row)
-{
-  u8 i;
-  struct DuelCard *zone;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gFixedZones[row][i];
-    if (zone != NULL && zone->id == IMPERIAL_ORDER && zone->isFaceUp)
-      return zone;
-  }
-
-  return NULL;
-}
-
 u8 IsImperialOrderActiveOnField(void)
 {
-  if (FindFaceUpImperialOrderOnBackrow(PLAYER_BACKROW) != NULL)
-    return TRUE;
-
-  return FindFaceUpImperialOrderOnBackrow(OPPONENT_BACKROW) != NULL;
+  return Duel_IsBackrowCardOnField(IMPERIAL_ORDER, TRUE);
 }
 
 u8 IsImperialOrderNegatingSpell(u16 cardId)

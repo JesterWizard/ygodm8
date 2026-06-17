@@ -8,26 +8,9 @@ void ActivateTrapEffect(u16 lp);
 
 #define TRAP_NONE 0
 
-static struct DuelCard *FindFaceUpRoyalDecreeOnBackrow(u8 row)
-{
-  u8 i;
-  struct DuelCard *zone;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gFixedZones[row][i];
-    if (zone != NULL && zone->id == ROYAL_DECREE && zone->isFaceUp)
-      return zone;
-  }
-
-  return NULL;
-}
-
 u8 IsRoyalDecreeActiveOnField(void)
 {
-  if (FindFaceUpRoyalDecreeOnBackrow(PLAYER_BACKROW) != NULL)
-    return TRUE;
-
-  return FindFaceUpRoyalDecreeOnBackrow(OPPONENT_BACKROW) != NULL;
+  return Duel_IsBackrowCardOnField(ROYAL_DECREE, TRUE);
 }
 
 u8 IsRoyalDecreeNegatingTrap(u16 cardId)

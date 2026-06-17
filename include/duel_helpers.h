@@ -57,6 +57,7 @@ u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base);
 u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType);
 u8 Duel_IsFiendZone(struct DuelCard *zone);
 u8 Duel_FindFixedMonsterZone(struct DuelCard *zone, u8 *fixedRow, u8 *col);
+u8 Duel_FindFixedZone(struct DuelCard *zone, u8 *fixedRow, u8 *col);
 u8 Duel_FindTurnMonsterZone(struct DuelCard *zone, u8 *turnRow, u8 *col);
 u8 Duel_CountMonstersOnFixedRow(u8 fixedRow);
 u8 Duel_OpponentMonsterRowForZone(struct DuelCard *zone);
@@ -70,6 +71,9 @@ u8 Duel_TryApplyDynamicStatMod(struct StatMod *ptr);
 u8 Duel_CanBeAttackedUnlessControllerHasOther(struct DuelCard *zone, u16 cardId,
                                               MonsterZonePredicate otherPred);
 u8 Duel_CanAttackMonsterZone(struct DuelCard *zone);
+struct DuelCard *Duel_GetForcedAttackTarget(u8 defenderDuelist);
+u8 Duel_MonsterMayBeAttacked(struct DuelCard *zone);
+u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist);
 
 void Duel_ActivateContinuousZone(struct DuelCard *zone);
 u16 Duel_GetZoneFinalAtk(struct DuelCard *zone);
@@ -84,6 +88,8 @@ u8 Duel_IsTurnMonsterRow(u8 turnRow);
 u8 Duel_IsMonsterZoneTarget(u16 cardId);
 struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp);
 struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp);
+struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp);
+u8 Duel_IsBackrowCardOnField(u16 cardId, u8 requireFaceUp);
 u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone);
 u8 Duel_ZoneIsHandSlot(const struct DuelCard *zone);
 enum DuelActionResult Duel_ChangeLpSuppressingEffectText(u8 turnDuelist, s32 delta, u8 updateGfx);

@@ -8,11 +8,9 @@
 
 static void TremendousFire_ResolveBody(void)
 {
-  if (Duel_ChangeLp(INACTIVE_DUELIST, -TREMENDOUS_FIRE_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ResolveBurnSpell(TREMENDOUS_FIRE, TREMENDOUS_FIRE_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
-  Duel_ShowEffectText(TREMENDOUS_FIRE);
   ResolveDarkRoomEffect();
 }
 
