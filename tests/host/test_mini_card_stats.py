@@ -80,13 +80,12 @@ class MiniCardStatOverlayTests(unittest.TestCase):
 
     def test_hourglass_refreshes_field_stat_overlays(self):
         source = HOURGLASS_EFFECT.read_text()
-        self.assertIn("IncrementPermStage", source)
-        self.assertIn("HandleAtkAndLifePointsAction();", source)
-        self.assertIn("RefreshFieldMonsterStatOverlays();", source)
-        self.assertIn("gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]", source)
+        self.assertIn("Duel_IncrementPermStageOnDuelistMonsters(ACTIVE_DUELIST)", source)
+        self.assertIn("Duel_ChangeLp(ACTIVE_DUELIST, -1000, TRUE)", source)
+        self.assertIn("Duel_RefreshMonsterStatOverlays();", source)
         text_pos = source.index("Duel_ShowEffectTextTyped(HOURGLASS_OF_LIFE, 2);")
-        self.assertIn("IncrementPermStage", source[:text_pos])
-        self.assertIn("RefreshFieldMonsterStatOverlays();", source[:text_pos])
+        self.assertIn("Duel_IncrementPermStageOnDuelistMonsters(ACTIVE_DUELIST)", source[:text_pos])
+        self.assertIn("Duel_RefreshMonsterStatOverlays();", source[:text_pos])
 
     def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
         source = MINI_CARD_HOOKS.read_text()

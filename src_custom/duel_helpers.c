@@ -6,6 +6,7 @@
 #include "duel_status.h"
 #include "god_card.h"
 #include "mask_of_restrict.h"
+#include "mini_card.h"
 #include "summon_tribute.h"
 #include "tribute.h"
 
@@ -530,6 +531,24 @@ enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx)
     return DUEL_ACTION_DUEL_OVER;
 
   return DUEL_ACTION_OK;
+}
+
+void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist)
+{
+  u8 i;
+  u8 row = MonsterRowForDuelist(turnDuelist);
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[row][i];
+
+    if (zone->id != CARD_NONE)
+      IncrementPermStage(zone);
+  }
+}
+
+void Duel_RefreshMonsterStatOverlays(void)
+{
+  RefreshFieldMonsterStatOverlays();
 }
 
 void Duel_ShowEffectText(u16 cardId)

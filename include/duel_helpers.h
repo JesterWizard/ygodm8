@@ -47,6 +47,9 @@ enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 update
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx);
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
 
+void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist);
+void Duel_RefreshMonsterStatOverlays(void);
+
 void Duel_ShowEffectText(u16 cardId);
 void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);
 
