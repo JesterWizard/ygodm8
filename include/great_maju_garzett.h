@@ -16,8 +16,6 @@ void TryCaptureGreatMajuGarzettTributeFromZone(struct DuelCard *zone);
 void ClearGreatMajuGarzettBoardStatsForZone(struct DuelCard *zone);
 void StoreGreatMajuGarzettBoardStats(struct DuelCard *zone, u16 atk, u16 def);
 u8 GreatMajuGarzettZoneHasCustomStats(struct DuelCard *zone);
-u8 ApplyGreatMajuGarzettZoneStatsToCardInfo(struct DuelCard *zone);
-u8 ApplyGreatMajuGarzettStatsToCardInfo(struct StatMod *ptr);
 void FinishGreatMajuGarzettTributeSummon(struct DuelCard *zone, u8 fixedRow, u8 fixedCol);
 unsigned char ShouldActivateGreatMajuGarzett(void);
 void ActivateGreatMajuGarzett(void);

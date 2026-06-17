@@ -202,46 +202,21 @@ u8 GreatMajuGarzettZoneHasCustomStats(struct DuelCard *zone)
   return gGreatMajuGarzettBoardActive[cellIndex];
 }
 
-u8 ApplyGreatMajuGarzettZoneStatsToCardInfo(struct DuelCard *zone)
+u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone)
 {
   u8 cellIndex;
 
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
   if (GetFixedCellIndexForZone(zone, &cellIndex) == FALSE)
     return FALSE;
   if (!gGreatMajuGarzettBoardActive[cellIndex])
     return FALSE;
 
-  SetCardInfo(GREAT_MAJU_GARZETT);
+  SetCardInfo(zone->id);
   gCardInfo.atk = LoadBoardAtk(cellIndex);
   gCardInfo.def = LoadBoardDef(cellIndex);
   return TRUE;
-}
-
-u8 ApplyGreatMajuGarzettStatsToCardInfo(struct StatMod *ptr)
-{
-  u8 row;
-  u8 col;
-
-  if (ptr == NULL || ptr->card != GREAT_MAJU_GARZETT)
-    return FALSE;
-
-  if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == GREAT_MAJU_GARZETT)
-    return ApplyGreatMajuGarzettZoneStatsToCardInfo(gSetFinalStatZone);
-
-  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      struct DuelCard *zone = gFixedZones[row][col];
-
-      if (zone->id != GREAT_MAJU_GARZETT)
-        continue;
-      if (ComputeFinalStage(zone) != ptr->stage)
-        continue;
-      if (ApplyGreatMajuGarzettZoneStatsToCardInfo(zone))
-        return TRUE;
-    }
-  }
-
-  return FALSE;
 }
 
 void FinishGreatMajuGarzettTributeSummon(struct DuelCard *zone, u8 fixedRow, u8 fixedCol)

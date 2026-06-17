@@ -37,6 +37,11 @@ class DuelHelpersSourceTests(unittest.TestCase):
             "Duel_NormalSummonFromHand",
             "Duel_TryResolveSpellThroughTraps",
             "Duel_DefaultSpecialSummonOpts",
+            "Duel_ClampStat",
+            "Duel_TryApplyDynamicZoneStats",
+            "Duel_TryApplyDynamicStatMod",
+            "Duel_CanAttackMonsterZone",
+            "Duel_ApplyStatModViaZoneApplier",
             "enum DuelActionResult",
         ):
             self.assertIn(symbol, header)

@@ -60,7 +60,7 @@
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
-#include "goblin_king.h"
+#include "duel_helpers.h"
 #include "raregold_armor.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -764,7 +764,7 @@ void TryAttackWithMonster__Replacement(void)
   } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
       || !GravityBind_CanMonsterAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)
-      || !GoblinKing_CanBeAttacked(
+      || !Duel_CanAttackMonsterZone(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || !RaregoldArmor_CanBeAttacked(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {

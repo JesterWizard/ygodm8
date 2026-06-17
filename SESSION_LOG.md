@@ -15,6 +15,42 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Card-ID dispatch for dynamic zone stats
+
+**Worked on:**
+- Replaced per-card stat/attack APIs (`ApplyGoblinKing*`, `GoblinKing_CanBeAttacked`, etc.) with ID-keyed dispatch in `duel_helpers`
+- Central tables in `duel_helpers.c` map `cardId` → zone stat applier / attack gate predicate
+- Migrated Goblin King, Gyaku Gire Panda, Great Maju Garzett; deleted `goblin_king.h`
+
+**Files:**
+- `include/duel_helpers.h`, `src_custom/duel_helpers.c` — `Duel_TryApplyDynamicZoneStats`, `Duel_TryApplyDynamicStatMod`, `Duel_CanAttackMonsterZone`, helpers
+- `src_custom/card_hooks.c`, `code_8043EF4_hooks.c`, `ai_attack_hooks.c` — generic dispatch calls
+- `src_custom/permanent_effects/goblin_king.c`, `gyaku_gire_panda.c`, `great_maju_garzett.c`
+- `include/great_maju_garzett.h`, `include/gyaku_gire_panda.h`
+
+**Outcome:** `make test-cards-build` passes. New dynamic-stat cards: implement `Card_ApplyDynamicZoneStats`, add one table row + optional attack gate row.
+
+**Open / next:** None for this thread.
+
+## 2026-06-17 — Goblin King stat helpers in duel_helpers
+
+**Worked on:**
+- Extracted reusable field-stat / zone-scan APIs from Goblin King into `duel_helpers`
+- Refactored `goblin_king.c` to card-specific rules only (Fiend count × 500, attack gate)
+
+**Files:**
+- `include/duel_helpers.h` — `Duel_ClampStat`, zone find/count, `Duel_WriteCardInfoStats`, `Duel_ApplyStatModViaZoneApplier`
+- `src_custom/duel_helpers.c` — implementations + `Duel_ClampStat` self-check
+- `src_custom/permanent_effects/goblin_king.c` — slim card file
+- `tests/host/test_duel_helpers.py` — header symbol coverage
+
+**Outcome:**
+- `make test-cards-build` and `make test-host` pass
+- Gyaku Gire Panda / Great Maju Garzett can adopt `Duel_ApplyStatModViaZoneApplier` next
+
+**Open / next:**
+- Migrate other dynamic-stat cards (Gyaku Gire Panda, Great Maju Garzett) to shared helpers
+
 ## 2026-06-17 — Repo context docs + Hourglass stat pipeline
 
 **Worked on:**

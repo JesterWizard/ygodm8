@@ -3,9 +3,6 @@
 #include "configs/runtime.h"
 #include "player_decks.h"
 #include "copycat.h"
-#include "great_maju_garzett.h"
-#include "goblin_king.h"
-#include "gyaku_gire_panda.h"
 #include "cost_down.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
@@ -13,6 +10,7 @@
 #include "ojama_trio.h"
 #include "riryoku.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "constants/card_ids.h"
 
 #include "generated/field_spell_stat_mods_generated.inc"
@@ -486,17 +484,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
-  if (zone->id == GREAT_MAJU_GARZETT && ApplyGreatMajuGarzettZoneStatsToCardInfo(zone)) {
-    gSetFinalStatZone = NULL;
-    return;
-  }
-
-  if (zone->id == GOBLIN_KING && ApplyGoblinKingZoneStatsToCardInfo(zone)) {
-    gSetFinalStatZone = NULL;
-    return;
-  }
-
-  if (zone->id == GYAKU_GIRE_PANDA && ApplyGyakuGirePandaZoneStatsToCardInfo(zone)) {
+  if (Duel_TryApplyDynamicZoneStats(zone)) {
     gSetFinalStatZone = NULL;
     return;
   }
@@ -579,14 +567,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (ptr->card == COPYCAT && gComputingCopycatStats == FALSE)
     ApplyCopycatStatsToCardInfo(ptr);
-  else if (ptr->card == GREAT_MAJU_GARZETT
-           && ApplyGreatMajuGarzettStatsToCardInfo(ptr))
-    ;
-  else if (ptr->card == GOBLIN_KING
-           && ApplyGoblinKingStatsToCardInfo(ptr))
-    ;
-  else if (ptr->card == GYAKU_GIRE_PANDA
-           && ApplyGyakuGirePandaStatsToCardInfo(ptr))
+  else if (Duel_TryApplyDynamicStatMod(ptr))
     ;
   else if (GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER
            || (gSetFinalStatZone != NULL

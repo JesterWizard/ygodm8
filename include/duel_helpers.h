@@ -29,6 +29,7 @@ struct DuelSummonOpts {
 };
 
 typedef u8 (*MonsterZonePredicate)(struct DuelCard *zone);
+typedef u8 (*DuelZoneStatApplier)(struct DuelCard *zone);
 
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx);
 struct DuelSummonOpts Duel_DefaultNormalSummonOpts(u8 updateGfx);
@@ -49,6 +50,25 @@ enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
 
 void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist);
 void Duel_RefreshMonsterStatOverlays(void);
+
+u16 Duel_ClampStat(u32 stat);
+u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base);
+u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType);
+u8 Duel_IsFiendZone(struct DuelCard *zone);
+u8 Duel_FindFixedMonsterZone(struct DuelCard *zone, u8 *fixedRow, u8 *col);
+u8 Duel_FindTurnMonsterZone(struct DuelCard *zone, u8 *turnRow, u8 *col);
+u8 Duel_CountMonstersOnFixedRow(u8 fixedRow);
+u8 Duel_OpponentMonsterRowForZone(struct DuelCard *zone);
+u8 Duel_CountFixedMonstersMatching(MonsterZonePredicate pred);
+u8 Duel_TurnRowHasOtherMonsterMatching(u8 turnRow, u8 exceptCol, MonsterZonePredicate pred);
+void Duel_WriteCardInfoStats(u16 cardId, u16 atk, u16 def);
+u8 Duel_ApplyStatModViaZoneApplier(struct StatMod *ptr, u16 cardId,
+                                   DuelZoneStatApplier applyZone);
+u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone);
+u8 Duel_TryApplyDynamicStatMod(struct StatMod *ptr);
+u8 Duel_CanBeAttackedUnlessControllerHasOther(struct DuelCard *zone, u16 cardId,
+                                              MonsterZonePredicate otherPred);
+u8 Duel_CanAttackMonsterZone(struct DuelCard *zone);
 
 void Duel_ShowEffectText(u16 cardId);
 void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);

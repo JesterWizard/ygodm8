@@ -13,6 +13,11 @@
 extern void UpdateDuelGfxExceptField(void);
 extern void ActivateTrapEffect(u16 lp);
 extern void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist);
+extern struct DuelCard *gSetFinalStatZone;
+
+u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
@@ -551,6 +556,253 @@ void Duel_RefreshMonsterStatOverlays(void)
   RefreshFieldMonsterStatOverlays();
 }
 
+u16 Duel_ClampStat(u32 stat)
+{
+  if (stat > 0xFFFE)
+    return 0xFFFE;
+  return (u16)stat;
+}
+
+u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base)
+{
+  return Duel_ClampStat(base + count * perUnit);
+}
+
+u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType)
+{
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.type == monsterType;
+}
+
+u8 Duel_IsFiendZone(struct DuelCard *zone)
+{
+  return zone != NULL && zone->id != CARD_NONE
+      && Duel_CardHasMonsterType(zone->id, TYPE_FIEND);
+}
+
+u8 Duel_FindFixedMonsterZone(struct DuelCard *zone, u8 *fixedRow, u8 *col)
+{
+  u8 row;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (*col = 0; *col < MAX_ZONES_IN_ROW; (*col)++) {
+      if (gFixedZones[row][*col] == zone) {
+        *fixedRow = row;
+        return TRUE;
+      }
+    }
+  }
+
+  return FALSE;
+}
+
+u8 Duel_FindTurnMonsterZone(struct DuelCard *zone, u8 *turnRow, u8 *col)
+{
+  u8 row;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (row = INACTIVE_DUELIST_MONSTER_ROW; row <= ACTIVE_DUELIST_MONSTER_ROW; row++) {
+    for (*col = 0; *col < MAX_ZONES_IN_ROW; (*col)++) {
+      if (gTurnZones[row][*col] == zone) {
+        *turnRow = row;
+        return TRUE;
+      }
+    }
+  }
+
+  return FALSE;
+}
+
+u8 Duel_CountMonstersOnFixedRow(u8 fixedRow)
+{
+  u8 col;
+  u8 count = 0;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gFixedZones[fixedRow][col]->id != CARD_NONE)
+      count++;
+  }
+
+  return count;
+}
+
+u8 Duel_OpponentMonsterRowForZone(struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+    return OPPONENT_MONSTER_ROW;
+
+  return fixedRow == PLAYER_MONSTER_ROW ? OPPONENT_MONSTER_ROW : PLAYER_MONSTER_ROW;
+}
+
+u8 Duel_CountFixedMonstersMatching(MonsterZonePredicate pred)
+{
+  u8 row;
+  u8 col;
+  u8 count = 0;
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone->id == CARD_NONE)
+        continue;
+      if (pred != NULL && pred(zone) != TRUE)
+        continue;
+      count++;
+    }
+  }
+
+  return count;
+}
+
+u8 Duel_TurnRowHasOtherMonsterMatching(u8 turnRow, u8 exceptCol, MonsterZonePredicate pred)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (col == exceptCol)
+      continue;
+    if (gTurnZones[turnRow][col]->id == CARD_NONE)
+      continue;
+    if (pred != NULL && pred(gTurnZones[turnRow][col]) != TRUE)
+      continue;
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+void Duel_WriteCardInfoStats(u16 cardId, u16 atk, u16 def)
+{
+  SetCardInfo(cardId);
+  gCardInfo.atk = atk;
+  gCardInfo.def = def;
+}
+
+u8 Duel_ApplyStatModViaZoneApplier(struct StatMod *ptr, u16 cardId,
+                                  DuelZoneStatApplier applyZone)
+{
+  u8 row;
+  u8 col;
+
+  if (ptr == NULL || ptr->card != cardId || applyZone == NULL)
+    return FALSE;
+
+  if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == cardId)
+    return applyZone(gSetFinalStatZone);
+
+  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      struct DuelCard *zone = gFixedZones[row][col];
+
+      if (zone->id != cardId)
+        continue;
+      if (ComputeFinalStage(zone) != ptr->stage)
+        continue;
+      if (applyZone(zone))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+struct DuelDynamicZoneStat {
+  u16 cardId;
+  DuelZoneStatApplier applyZone;
+};
+
+struct DuelAttackGate {
+  u16 cardId;
+  MonsterZonePredicate blockWhenControllerHasOther;
+};
+
+static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((section(".text"))) = {
+  { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
+  { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
+  { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
+};
+
+static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
+  { GOBLIN_KING, Duel_IsFiendZone },
+};
+
+u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
+{
+  u8 i;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  for (i = 0; i < ARRAY_COUNT(sDynamicZoneStats); i++) {
+    if (sDynamicZoneStats[i].cardId != zone->id)
+      continue;
+    return sDynamicZoneStats[i].applyZone(zone);
+  }
+
+  return FALSE;
+}
+
+u8 Duel_TryApplyDynamicStatMod(struct StatMod *ptr)
+{
+  u8 i;
+
+  if (ptr == NULL || ptr->card == CARD_NONE)
+    return FALSE;
+
+  for (i = 0; i < ARRAY_COUNT(sDynamicZoneStats); i++) {
+    if (sDynamicZoneStats[i].cardId != ptr->card)
+      continue;
+    return Duel_ApplyStatModViaZoneApplier(ptr, ptr->card,
+                                           sDynamicZoneStats[i].applyZone);
+  }
+
+  return FALSE;
+}
+
+u8 Duel_CanBeAttackedUnlessControllerHasOther(struct DuelCard *zone, u16 cardId,
+                                              MonsterZonePredicate otherPred)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (zone == NULL || zone->id != cardId)
+    return TRUE;
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
+    return TRUE;
+
+  return !Duel_TurnRowHasOtherMonsterMatching(turnRow, col, otherPred);
+}
+
+u8 Duel_CanAttackMonsterZone(struct DuelCard *zone)
+{
+  u8 i;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return TRUE;
+
+  for (i = 0; i < ARRAY_COUNT(sAttackGates); i++) {
+    if (sAttackGates[i].cardId != zone->id)
+      continue;
+    return Duel_CanBeAttackedUnlessControllerHasOther(
+        zone, sAttackGates[i].cardId, sAttackGates[i].blockWhenControllerHasOther);
+  }
+
+  return TRUE;
+}
+
 void Duel_ShowEffectText(u16 cardId)
 {
   if (gHideEffectText)
@@ -866,6 +1118,10 @@ void DuelHelpers_SelfCheck(void)
   struct DuelCard *handRow[5];
   struct DuelCard zone;
   u8 i;
+
+  if (Duel_ClampStat(0xFFFF) != 0xFFFE || Duel_ClampStat(100) != 100)
+    while (1)
+      ;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     hand[i].id = (i < 3) ? (u16)(100 + i) : CARD_NONE;
