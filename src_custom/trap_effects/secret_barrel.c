@@ -28,8 +28,7 @@ static void ActivateSecretBarrelZone(struct DuelCard *zone)
   u8 cardCount = CountActiveDuelistFieldAndHandCards();
   u16 damage;
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

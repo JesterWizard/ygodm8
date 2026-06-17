@@ -16,8 +16,5 @@ APPEND_TEXT void EffectMagicCylinder(void)
   Duel_ChangeLp(ACTIVE_DUELIST, -(s32)atk, FALSE);
   Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(MAGIC_CYLINDER);
-  }
+  Duel_ShowTrapResponseText(MAGIC_CYLINDER, gTrapEffectData.originCardId);
 }

@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "constants/duel_fields.h"
 #include "custom_field_spell.h"
+#include "duel_helpers.h"
 
 extern u8 gUnk8094FE4[NUM_FIELDS][NUM_CARD_TYPES];
 
@@ -71,12 +72,7 @@ static u16 ComputeAtkWith200Base(struct DuelCard *zone, u16 cardId)
   /* Apply stage modifier (stage * 500) */
   finalAtk = (u32)(stage * 500) + finalAtk;
 
-  if (finalAtk <= 0)
-    return 0;
-  if (finalAtk > 0xFFFE)
-    return 0xFFFE;
-
-  return (u16)finalAtk;
+  return (u16)Duel_ClampStat(finalAtk);
 }
 
 void TryApplyCatsEarTribeToPendingAction(void)

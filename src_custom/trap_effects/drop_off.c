@@ -48,8 +48,7 @@ void TryApplyDropOffOnDrawPhaseDraw(u8 duelist, u8 handSlot)
   if (drawnCard->id == CARD_NONE)
     return;
 
-  FlipCardFaceUp(trapZone);
-  trapZone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(trapZone);
 
   if (Duel_DestroyZone(trapZone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

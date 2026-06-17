@@ -9,16 +9,6 @@
 #define THOUSAND_ENERGY_MAX_LEVEL 2
 #define THOUSAND_ENERGY_STAGE_BOOST 2
 
-static u8 MonsterRowForDuelist(u8 duelist)
-{
-  return duelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
-}
-
-static u8 DuelistForFixedMonsterRow(u8 row)
-{
-  return row == PLAYER_MONSTER_ROW ? DUEL_PLAYER : DUEL_OPPONENT;
-}
-
 static u8 MonsterQualifiesForThousandEnergy(u16 cardId)
 {
   if (cardId == CARD_NONE)
@@ -47,27 +37,14 @@ void ResetThousandEnergyState(void)
 
 void DestroyThousandEnergyMonstersAtEndOfTurn(void)
 {
-  u8 i;
   u8 row;
-  u8 duelist;
 
   if (gThousandEnergyDestroyMask == 0)
     return;
 
   row = gThousandEnergyFixedMonsterRow;
-  duelist = DuelistForFixedMonsterRow(row);
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    struct DuelCard *zone;
-
-    if (!(gThousandEnergyDestroyMask & (1 << i)))
-      continue;
-
-    zone = gFixedZones[row][i];
-    if (zone->id != CARD_NONE)
-      Duel_DestroyZone(zone, duelist, FALSE);
-  }
-
+  Duel_DestroyMaskedMonstersInFixedRow(row, gThousandEnergyDestroyMask,
+                                       Duel_FixedDuelistForMonsterRow(row), FALSE);
   ResetThousandEnergyState();
 }
 
@@ -80,7 +57,7 @@ APPEND_TEXT void EffectThousandEnergy(void)
   ResetThousandEnergyState();
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
-  monsterRow = MonsterRowForDuelist(duelist);
+  monsterRow = Duel_FixedMonsterRowForDuelist(duelist);
   gThousandEnergyFixedMonsterRow = monsterRow;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

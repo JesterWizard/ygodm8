@@ -9,8 +9,7 @@ static void ActivateRecklessGreedZone(struct DuelCard *zone)
   u8 owner = (gTurnDuelistBattleState[INACTIVE_DUELIST] == &gDuel.duelistbattleState[DUEL_PLAYER])
       ? DUEL_PLAYER : DUEL_OPPONENT;
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

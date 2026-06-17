@@ -58,13 +58,9 @@ void EffectRoyalDecree(void)
   if (zone == NULL || zone->id != ROYAL_DECREE)
     return;
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(ROYAL_DECREE);
-  }
+  Duel_ShowTrapResponseText(ROYAL_DECREE, gTrapEffectData.originCardId);
 }
 
 void TryActivateRoyalDecreeOnTrapChain(void)

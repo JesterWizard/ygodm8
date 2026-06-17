@@ -54,8 +54,7 @@ static struct DuelCard *FindDarkRoomZone(u8 controller)
 static void FlipDarkRoomFaceUpIfNeeded(struct DuelCard *zone)
 {
   if (zone->isFaceUp == FALSE) {
-    FlipCardFaceUp(zone);
-    zone->isLocked = TRUE;
+    Duel_ActivateContinuousZone(zone);
   }
 }
 
@@ -163,8 +162,7 @@ APPEND_TEXT void EffectDarkRoomOfNightmare(void)
   else
     zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (!gHideEffectText) {
     gCardEffectTextData.cardId = DARK_ROOM_OF_NIGHTMARE;

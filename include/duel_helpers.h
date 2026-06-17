@@ -39,6 +39,7 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx);
 enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx);
 
 enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelist, u8 updateGfx);
+void Duel_DestroyMaskedMonstersInFixedRow(u8 fixedRow, u8 colMask, u8 graveyardDuelist, u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePredicate pred,
                                                        u8 updateGfx);
 
@@ -69,6 +70,27 @@ u8 Duel_TryApplyDynamicStatMod(struct StatMod *ptr);
 u8 Duel_CanBeAttackedUnlessControllerHasOther(struct DuelCard *zone, u16 cardId,
                                               MonsterZonePredicate otherPred);
 u8 Duel_CanAttackMonsterZone(struct DuelCard *zone);
+
+void Duel_ActivateContinuousZone(struct DuelCard *zone);
+u16 Duel_GetZoneFinalAtk(struct DuelCard *zone);
+u8 Duel_FixedMonsterRowForDuelist(u8 fixedDuelist);
+u8 Duel_FixedDuelistForMonsterRow(u8 fixedRow);
+u8 Duel_TurnMonsterRowForDuelist(u8 turnDuelist);
+u8 Duel_TurnDuelistForFixedDuelist(u8 fixedDuelist);
+u8 Duel_TurnDuelistMatchingWhoseTurn(u8 fixedDuelist);
+u8 Duel_CountMonstersOnTurnRow(u8 turnRow);
+u8 Duel_IsFixedMonsterRow(u8 fixedRow);
+u8 Duel_IsTurnMonsterRow(u8 turnRow);
+u8 Duel_IsMonsterZoneTarget(u16 cardId);
+struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp);
+struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp);
+u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone);
+u8 Duel_ZoneIsHandSlot(const struct DuelCard *zone);
+enum DuelActionResult Duel_ChangeLpSuppressingEffectText(u8 turnDuelist, s32 delta, u8 updateGfx);
+enum DuelActionResult Duel_ChangeLpWithPrefaceText(u8 turnDuelist, s32 delta, u16 cardId,
+                                                   u8 textType, u8 updateGfx);
+enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroySpellGfx);
+void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
 
 void Duel_ShowEffectText(u16 cardId);
 void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);

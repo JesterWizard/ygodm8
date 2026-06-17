@@ -6,8 +6,7 @@
 
 static void ActivateTimeSealZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

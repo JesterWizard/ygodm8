@@ -15,8 +15,7 @@ APPEND_TEXT void EffectEmbodimentOfApophis(void)
   if (monsterZone == NULL || EmbodimentOfApophisTrapZoneIsAwakened(trapZone))
     return;
 
-  FlipCardFaceUp(trapZone);
-  trapZone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(trapZone);
 
   monsterZone->id = EMBODIMENT_OF_APOPHIS;
   InitEmbodimentOfApophisMonsterZone(monsterZone);

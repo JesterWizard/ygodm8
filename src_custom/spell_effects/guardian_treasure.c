@@ -91,8 +91,7 @@ APPEND_TEXT void EffectGuardianTreasure(void)
 
   DiscardFirstCardsInHand(gTurnHands[ACTIVE_DUELIST], GUARDIAN_TREASURE_DISCARD_COST);
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   DrawCardsForTurn(turn, GUARDIAN_TREASURE_DRAW_COUNT);
   Duel_ShowEffectText(GUARDIAN_TREASURE);

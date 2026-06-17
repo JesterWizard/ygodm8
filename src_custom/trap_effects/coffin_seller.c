@@ -26,24 +26,9 @@ static u8 ZoneWasMonster(const struct DuelCard *zone)
       || OjamaTrioZoneIsMonsterForm(zone);
 }
 
-static u8 MonsterSlotBit(const struct DuelCard *zone)
-{
-  u8 row;
-  u8 col;
-
-  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      if (gFixedZones[row][col] == zone)
-        return (row - OPPONENT_MONSTER_ROW) * MAX_ZONES_IN_ROW + col;
-    }
-  }
-
-  return 0xFF;
-}
-
 static u8 LeaveAlreadyTriggered(const struct DuelCard *zone)
 {
-  u8 bit = MonsterSlotBit(zone);
+  u8 bit = Duel_FixedMonsterSlotBit(zone);
 
   if (bit >= COFFIN_SELLER_MONSTER_SLOTS)
     return FALSE;
@@ -53,31 +38,16 @@ static u8 LeaveAlreadyTriggered(const struct DuelCard *zone)
 
 static void MarkLeaveTriggered(const struct DuelCard *zone)
 {
-  u8 bit = MonsterSlotBit(zone);
+  u8 bit = Duel_FixedMonsterSlotBit(zone);
 
   if (bit < COFFIN_SELLER_MONSTER_SLOTS)
     sTriggeredLeaveMask |= (1 << bit);
 }
 
-static struct DuelCard *FindCoffinSellerZone(u8 duelist)
-{
-  u8 backrow = duelist == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
-  u8 i;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[backrow][i]->id == COFFIN_SELLER)
-      return gFixedZones[backrow][i];
-  }
-
-  return NULL;
-}
-
 static void FlipCoffinSellerFaceUp(struct DuelCard *zone)
 {
-  if (zone->isFaceUp == FALSE) {
-    FlipCardFaceUp(zone);
-    zone->isLocked = TRUE;
-  }
+  if (zone->isFaceUp == FALSE)
+    Duel_ActivateContinuousZone(zone);
 }
 
 u8 IsNonSelectableCoffinSellerZone(const struct DuelCard *zone)
@@ -92,21 +62,10 @@ void ClearCoffinSellerPending(void)
   sTriggeredLeaveMask = 0;
 }
 
-/* ponytail: suppress effect text during LP apply to avoid double-popup; Duel_ChangeLp has no hook */
 static void ApplyCoffinSellerDamage(u8 targetDuelist)
 {
-  u8 hideEffectText = gHideEffectText;
-  u8 turnDuelist = (targetDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
-      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
-
-  if (!hideEffectText) {
-    Duel_ShowEffectTextTyped(COFFIN_SELLER, 3);
-    ResetCardEffectTextData();
-  }
-
-  gHideEffectText = TRUE;
-  Duel_ChangeLp(turnDuelist, -COFFIN_SELLER_DAMAGE, FALSE);
-  gHideEffectText = hideEffectText;
+  Duel_ChangeLpWithPrefaceText(Duel_TurnDuelistMatchingWhoseTurn(targetDuelist),
+                               -COFFIN_SELLER_DAMAGE, COFFIN_SELLER, 3, FALSE);
 }
 
 static void QueueCoffinSellerDamage(u8 targetDuelist)
@@ -173,7 +132,7 @@ void TryApplyCoffinSellerOnFieldLeave(struct DuelCard *zone)
 
   owner = GetDuelistForZone(zone);
   if (owner == DUEL_OPPONENT) {
-    sellerZone = FindCoffinSellerZone(DUEL_PLAYER);
+    sellerZone = Duel_FindBackrowCard(DUEL_PLAYER, COFFIN_SELLER, FALSE);
     if (sellerZone == NULL)
       return;
 
@@ -181,7 +140,7 @@ void TryApplyCoffinSellerOnFieldLeave(struct DuelCard *zone)
     FlipCoffinSellerFaceUp(sellerZone);
     QueueCoffinSellerDamage(DUEL_OPPONENT);
   } else if (owner == DUEL_PLAYER) {
-    sellerZone = FindCoffinSellerZone(DUEL_OPPONENT);
+    sellerZone = Duel_FindBackrowCard(DUEL_OPPONENT, COFFIN_SELLER, FALSE);
     if (sellerZone == NULL)
       return;
 

@@ -12,8 +12,5 @@ APPEND_TEXT void EffectNegateAttack(void)
 
   Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(NEGATE_ATTACK);
-  }
+  Duel_ShowTrapResponseText(NEGATE_ATTACK, gTrapEffectData.originCardId);
 }

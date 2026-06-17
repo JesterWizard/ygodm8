@@ -85,8 +85,7 @@ APPEND_TEXT void EffectFinalCountdown(void)
   if (Duel_ChangeLp(ACTIVE_DUELIST, -FINAL_COUNTDOWN_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   ResetPermStage(zone);
   Duel_ShowEffectText(FINAL_COUNTDOWN);
 }

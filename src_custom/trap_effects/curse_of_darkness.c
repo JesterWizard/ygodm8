@@ -44,8 +44,7 @@ void TryApplyCurseOfDarknessSpellDamage(void)
 
 static void ActivateCurseOfDarknessZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(CURSE_OF_DARKNESS, 9);
 }
 

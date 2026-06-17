@@ -7,11 +7,8 @@
 
 static void Sparks_ResolveBody(void)
 {
-  if (Duel_ChangeLp(INACTIVE_DUELIST, -SPARKS_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ResolveBurnSpell(SPARKS, SPARKS_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
-
-  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
-  Duel_ShowEffectText(SPARKS);
 }
 
 LYN_REPLACE_CHECK(EffectSparks);

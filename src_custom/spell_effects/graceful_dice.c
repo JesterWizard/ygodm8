@@ -6,33 +6,12 @@
 #include "riryoku.h"
 #include "spell_effects.h"
 
-void UpdateDuelGfxExceptField(void);
-
 #define GRACEFUL_DICE_MAX_ATK 500
-
-static u8 MonsterRowForDuelist(u8 duelist)
-{
-  return duelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
-}
-
-static u16 GetMonsterCurrentAtk(struct DuelCard *zone)
-{
-  u16 atk;
-
-  gStatMod.card = zone->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(zone);
-  gSetFinalStatZone = zone;
-  SetFinalStat(&gStatMod);
-  atk = gCardInfo.atk;
-  gSetFinalStatZone = NULL;
-  return atk;
-}
 
 static void MultiplyLowAtkMonstersByRoll(u8 duelist, u8 diceRoll)
 {
   u8 i;
-  u8 monsterRow = MonsterRowForDuelist(duelist);
+  u8 monsterRow = Duel_FixedMonsterRowForDuelist(duelist);
 
   if (diceRoll <= 1)
     return;
@@ -45,7 +24,7 @@ static void MultiplyLowAtkMonstersByRoll(u8 duelist, u8 diceRoll)
     if (zone->id == CARD_NONE || GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
       continue;
 
-    atk = GetMonsterCurrentAtk(zone);
+    atk = Duel_GetZoneFinalAtk(zone);
     if (atk == 0 || atk > GRACEFUL_DICE_MAX_ATK)
       continue;
 

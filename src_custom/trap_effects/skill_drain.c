@@ -51,8 +51,7 @@ unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId)
   }
 
   if (!zone->isFaceUp) {
-    FlipCardFaceUp(zone);
-    zone->isLocked = TRUE;
+    Duel_ActivateContinuousZone(zone);
 
     payerTurn = (backrowRow == PLAYER_BACKROW) == (WhoseTurn() == DUEL_PLAYER)
         ? ACTIVE_DUELIST : INACTIVE_DUELIST;

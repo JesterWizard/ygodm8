@@ -29,8 +29,5 @@ APPEND_TEXT void EffectMagicJammer(void)
   if (spellZone != NULL)
     Duel_DestroyZone(spellZone, ACTIVE_DUELIST, FALSE);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(MAGIC_JAMMER);
-  }
+  Duel_ShowTrapResponseText(MAGIC_JAMMER, gTrapEffectData.originCardId);
 }

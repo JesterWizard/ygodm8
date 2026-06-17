@@ -39,8 +39,7 @@ static void ApplySolemnWishesLpGain(u8 duelist)
 
 static void ActivateSolemnWishesZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 }
 
 static u8 TryFlipFaceDownSolemnWishesOnDraw(u8 duelist)

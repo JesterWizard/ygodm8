@@ -90,8 +90,7 @@ APPEND_TEXT void EffectToll(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (!gHideEffectText) {
     gCardEffectTextData.cardId = TOLL;

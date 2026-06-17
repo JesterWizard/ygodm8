@@ -33,30 +33,12 @@ static u8 FixedMonsterCellIndex(u8 fixedRow, u8 fixedCol)
   return 0xFF;
 }
 
-static u8 GetFixedRowColForZone(struct DuelCard *zone, u8 *fixedRow, u8 *fixedCol)
-{
-  u8 row;
-  u8 col;
-
-  for (row = OPPONENT_MONSTER_ROW; row <= PLAYER_MONSTER_ROW; row++) {
-    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-      if (gFixedZones[row][col] == zone) {
-        *fixedRow = row;
-        *fixedCol = col;
-        return TRUE;
-      }
-    }
-  }
-
-  return FALSE;
-}
-
 static u8 GetFixedCellIndexForZone(struct DuelCard *zone, u8 *cellIndex)
 {
   u8 fixedRow;
   u8 fixedCol;
 
-  if (GetFixedRowColForZone(zone, &fixedRow, &fixedCol) == FALSE)
+  if (Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol) == FALSE)
     return FALSE;
 
   *cellIndex = FixedMonsterCellIndex(fixedRow, fixedCol);
@@ -268,7 +250,7 @@ void ActivateGreatMajuGarzett(void)
   u8 fixedCol;
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  if (!GetFixedRowColForZone(zone, &fixedRow, &fixedCol))
+  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &fixedCol))
     return;
 
   if (!GreatMajuGarzettZoneHasCustomStats(zone))

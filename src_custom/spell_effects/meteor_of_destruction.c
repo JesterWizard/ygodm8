@@ -21,11 +21,9 @@ static void MeteorOfDestruction_ResolveBody(void)
   if (!CanActivateMeteorOfDestruction())
     return;
 
-  if (Duel_ChangeLp(INACTIVE_DUELIST, -METEOR_OF_DESTRUCTION_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ResolveBurnSpell(METEOR_OF_DESTRUCTION, METEOR_OF_DESTRUCTION_DAMAGE, TRUE)
+      == DUEL_ACTION_DUEL_OVER)
     return;
-
-  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
-  Duel_ShowEffectText(METEOR_OF_DESTRUCTION);
 }
 
 APPEND_TEXT void EffectMeteorOfDestruction(void)

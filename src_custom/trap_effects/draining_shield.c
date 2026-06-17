@@ -21,8 +21,5 @@ APPEND_TEXT void EffectDrainingShield(void)
   Duel_ChangeLp(INACTIVE_DUELIST, atk, FALSE);
   Duel_DestroyZone(gTurnZones[0][gTrapEffectData.trapZoneCol], INACTIVE_DUELIST, FALSE);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(DRAINING_SHIELD);
-  }
+  Duel_ShowTrapResponseText(DRAINING_SHIELD, gTrapEffectData.originCardId);
 }

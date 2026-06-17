@@ -75,11 +75,7 @@ APPEND_TEXT void EffectGravityBind(void)
 {
   struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(GRAVITY_BIND);
-  }
+  Duel_ShowTrapResponseText(GRAVITY_BIND, gTrapEffectData.originCardId);
 }

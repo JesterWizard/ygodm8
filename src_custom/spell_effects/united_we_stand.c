@@ -4,20 +4,6 @@
 #include "duel_helpers.h"
 #include "spell_effects.h"
 
-static u8 IsValidUnitedWeStandTarget(u16 cardId)
-{
-  if (cardId == CARD_NONE)
-    return FALSE;
-
-  return GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
-}
-
-static void ActivateDynamicEquipSpell(struct DuelCard *spellZone)
-{
-  FlipCardFaceUp(spellZone);
-  spellZone->isLocked = TRUE;
-}
-
 static void UnitedWeStand_ResolveBody(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
@@ -29,7 +15,7 @@ static void UnitedWeStand_ResolveBody(void)
 
   ApplyDynamicEquipStages(target, stages);
   RegisterDynamicEquip(spellZone, target, UNITED_WE_STAND, stages);
-  ActivateDynamicEquipSpell(spellZone);
+  Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
   Duel_ShowEffectText(UNITED_WE_STAND);
 }
@@ -38,7 +24,7 @@ APPEND_TEXT void EffectUnitedWeStand(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  if (!IsValidUnitedWeStandTarget(target->id)) {
+  if (!Duel_IsMonsterZoneTarget(target->id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

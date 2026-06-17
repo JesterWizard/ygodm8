@@ -95,7 +95,6 @@ APPEND_TEXT void EffectChainEnergy(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectText(CHAIN_ENERGY);
 }

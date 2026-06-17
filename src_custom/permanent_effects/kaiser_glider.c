@@ -13,10 +13,6 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 
-static u8 IsMonsterFieldRow(u8 fixedRow)
-{
-  return fixedRow == PLAYER_MONSTER_ROW || fixedRow == OPPONENT_MONSTER_ROW;
-}
 
 static u8 CanReturnMonsterAtZone(u8 fixedRow, u8 fixedCol)
 {
@@ -24,7 +20,7 @@ static u8 CanReturnMonsterAtZone(u8 fixedRow, u8 fixedCol)
   u8 fixedDuelist;
   u8 turnDuelist;
 
-  if (!IsMonsterFieldRow(fixedRow))
+  if (!Duel_IsFixedMonsterRow(fixedRow))
     return FALSE;
 
   zone = gFixedZones[fixedRow][fixedCol];

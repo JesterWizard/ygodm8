@@ -15,6 +15,20 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Repo-wide duel_helpers standardization
+
+**Worked on:** Extended `duel_helpers` with reusable zone/stat/LP/trap APIs and migrated ~60 effect files off duplicated boilerplate.
+
+**New APIs:** `Duel_ActivateContinuousZone`, `Duel_GetZoneFinalAtk`, `Duel_FixedMonsterRowForDuelist` / `Duel_FixedDuelistForMonsterRow`, `Duel_CountMonstersOnTurnRow`, `Duel_IsFixedMonsterRow`, `Duel_IsMonsterZoneTarget`, `Duel_FindBackrowCard`, `Duel_FixedMonsterSlotBit`, `Duel_ZoneIsHandSlot`, `Duel_ChangeLpWithPrefaceText`, `Duel_ResolveBurnSpell`, `Duel_ShowTrapResponseText`, `Duel_DestroyMaskedMonstersInFixedRow`, `Duel_TurnDuelistMatchingWhoseTurn`.
+
+**Migrated:** 41 continuous trap/spell activations; limiter/graceful dice/thousand/triangle EOT masks; turn LP effects; equip spells; burn spells; trap response text; skull invitation/coffin seller; slifer atk check; riryoku/book_of_moon/kaiser_glider row checks.
+
+**Files:** `include/duel_helpers.h`, `src_custom/duel_helpers.c`, bulk `spell_effects/`, `trap_effects/`, `turn_effects/`, `permanent_effects/`, `battle_effects/`.
+
+**Outcome:** `make test-cards-build` and `tests.host.test_duel_helpers` pass.
+
+**Open / next:** Backrow scan helpers for skill drain/imperial order; `Duel_FindFixedZone` (all rows) for dynamic_equip; raregold attack redirect table; more burn spells (tremendous_fire + dark room).
+
 ## 2026-06-17 — Card-ID dispatch for dynamic zone stats
 
 **Worked on:**

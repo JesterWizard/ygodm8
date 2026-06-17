@@ -118,8 +118,7 @@ APPEND_TEXT void EffectBurningLand(void)
   if (IsDuelOver() == TRUE)
     return;
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   Duel_ShowEffectText(BURNING_LAND);
 }

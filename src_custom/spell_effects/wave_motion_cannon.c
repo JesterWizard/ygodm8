@@ -21,8 +21,7 @@ static void PlaceWaveMotionCannon(void)
 {
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   ResetPermStage(zone);
   Duel_ShowEffectText(WAVE_MOTION_CANNON);
 }

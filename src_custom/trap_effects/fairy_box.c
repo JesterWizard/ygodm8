@@ -113,8 +113,7 @@ void ActivateFairyBoxTurnEffect(void)
 {
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(FAIRY_BOX, 9);
 }
 
@@ -166,8 +165,7 @@ void TryApplyFairyBoxToPendingAction(void)
     return;
 
   if (!fairyBox->isFaceUp) {
-    FlipCardFaceUp(fairyBox);
-    fairyBox->isLocked = TRUE;
+    Duel_ActivateContinuousZone(fairyBox);
   }
 
   if (RandRangeU8(0, 1) != 0)

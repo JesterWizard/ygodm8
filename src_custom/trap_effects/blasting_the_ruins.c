@@ -24,8 +24,7 @@ static u8 OwnerDeckHasAtMostTenCards(u8 owner)
 
 static void ActivateBlastingTheRuinsZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

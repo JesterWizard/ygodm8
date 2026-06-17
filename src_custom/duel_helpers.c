@@ -370,6 +370,25 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
   return DUEL_ACTION_OK;
 }
 
+void Duel_DestroyMaskedMonstersInFixedRow(u8 fixedRow, u8 colMask, u8 graveyardDuelist, u8 updateGfx)
+{
+  u8 col;
+
+  if (colMask == 0)
+    return;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone;
+
+    if (!(colMask & (1 << col)))
+      continue;
+
+    zone = gFixedZones[fixedRow][col];
+    if (zone->id != CARD_NONE)
+      Duel_DestroyZone(zone, graveyardDuelist, updateGfx);
+  }
+}
+
 enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePredicate pred,
                                                       u8 updateGfx)
 {
@@ -801,6 +820,195 @@ u8 Duel_CanAttackMonsterZone(struct DuelCard *zone)
   }
 
   return TRUE;
+}
+
+void Duel_ActivateContinuousZone(struct DuelCard *zone)
+{
+  if (zone == NULL)
+    return;
+
+  FlipCardFaceUp(zone);
+  zone->isLocked = TRUE;
+}
+
+u16 Duel_GetZoneFinalAtk(struct DuelCard *zone)
+{
+  u16 atk;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return 0;
+
+  gStatMod.card = zone->id;
+  gStatMod.field = gDuel.field;
+  gStatMod.stage = GetFinalStage(zone);
+  gSetFinalStatZone = zone;
+  SetFinalStat(&gStatMod);
+  atk = gCardInfo.atk;
+  gSetFinalStatZone = NULL;
+  return atk;
+}
+
+u8 Duel_FixedMonsterRowForDuelist(u8 fixedDuelist)
+{
+  return fixedDuelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
+}
+
+u8 Duel_FixedDuelistForMonsterRow(u8 fixedRow)
+{
+  return fixedRow == PLAYER_MONSTER_ROW ? DUEL_PLAYER : DUEL_OPPONENT;
+}
+
+u8 Duel_TurnMonsterRowForDuelist(u8 turnDuelist)
+{
+  return MonsterRowForDuelist(turnDuelist);
+}
+
+u8 Duel_TurnDuelistForFixedDuelist(u8 fixedDuelist)
+{
+  return FixedDuelistToTurnDuelist(fixedDuelist);
+}
+
+u8 Duel_TurnDuelistMatchingWhoseTurn(u8 fixedDuelist)
+{
+  return (fixedDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER) ? ACTIVE_DUELIST
+                                                                         : INACTIVE_DUELIST;
+}
+
+u8 Duel_CountMonstersOnTurnRow(u8 turnRow)
+{
+  u8 col;
+  u8 count = 0;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gTurnZones[turnRow][col]->id != CARD_NONE)
+      count++;
+  }
+
+  return count;
+}
+
+u8 Duel_IsFixedMonsterRow(u8 fixedRow)
+{
+  return fixedRow == OPPONENT_MONSTER_ROW || fixedRow == PLAYER_MONSTER_ROW;
+}
+
+u8 Duel_IsTurnMonsterRow(u8 turnRow)
+{
+  return turnRow == INACTIVE_DUELIST_MONSTER_ROW || turnRow == ACTIVE_DUELIST_MONSTER_ROW;
+}
+
+u8 Duel_IsMonsterZoneTarget(u16 cardId)
+{
+  return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
+}
+
+struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *zone = gFixedZones[fixedRow][col];
+
+    if (zone->id != cardId)
+      continue;
+    if (requireFaceUp && zone->isFaceUp != TRUE)
+      continue;
+    return zone;
+  }
+
+  return NULL;
+}
+
+struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp)
+{
+  u8 backrow = fixedDuelist == DUEL_PLAYER ? PLAYER_BACKROW : OPPONENT_BACKROW;
+
+  return Duel_FindFixedZoneById(backrow, cardId, requireFaceUp);
+}
+
+u8 Duel_FixedMonsterSlotBit(const struct DuelCard *zone)
+{
+  u8 fixedRow;
+  u8 col;
+
+  if (!Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col))
+    return 0xFF;
+
+  return (fixedRow - OPPONENT_MONSTER_ROW) * MAX_ZONES_IN_ROW + col;
+}
+
+u8 Duel_ZoneIsHandSlot(const struct DuelCard *zone)
+{
+  u8 turnDuelist;
+  u8 col;
+
+  if (zone == NULL)
+    return FALSE;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (gFixedZones[PLAYER_HAND][col] == zone)
+      return TRUE;
+  }
+
+  for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+      if (gTurnHands[turnDuelist][col] == zone)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+enum DuelActionResult Duel_ChangeLpSuppressingEffectText(u8 turnDuelist, s32 delta, u8 updateGfx)
+{
+  u8 hideEffectText = gHideEffectText;
+  enum DuelActionResult result;
+
+  gHideEffectText = TRUE;
+  result = Duel_ChangeLp(turnDuelist, delta, updateGfx);
+  gHideEffectText = hideEffectText;
+  return result;
+}
+
+enum DuelActionResult Duel_ChangeLpWithPrefaceText(u8 turnDuelist, s32 delta, u16 cardId,
+                                                   u8 textType, u8 updateGfx)
+{
+  u8 hideEffectText = gHideEffectText;
+  enum DuelActionResult result;
+
+  if (!hideEffectText) {
+    Duel_ShowEffectTextTyped(cardId, textType);
+    ResetCardEffectTextData();
+  }
+
+  gHideEffectText = TRUE;
+  result = Duel_ChangeLp(turnDuelist, delta, updateGfx);
+  gHideEffectText = hideEffectText;
+  return result;
+}
+
+enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroySpellGfx)
+{
+  enum DuelActionResult result;
+
+  result = Duel_ChangeLp(INACTIVE_DUELIST, -damage, FALSE);
+  if (result == DUEL_ACTION_DUEL_OVER)
+    return result;
+
+  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
+                   destroySpellGfx);
+  Duel_ShowEffectText(spellId);
+  return DUEL_ACTION_OK;
+}
+
+void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId)
+{
+  if (gHideEffectText)
+    return;
+
+  gCardEffectTextData.cardId2 = originCardId;
+  Duel_ShowEffectText(trapId);
 }
 
 void Duel_ShowEffectText(u16 cardId)

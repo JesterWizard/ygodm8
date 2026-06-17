@@ -101,8 +101,7 @@ void ApplyRobbinZombieBattleEffect(void)
 
 static void ActivateRobbinZombieZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(ROBBIN_ZOMBIE, 9);
 }
 

@@ -30,8 +30,7 @@ u8 IsActivatedSelfDestructButtonZone(const struct DuelCard *zone)
 
 static void ActivateSelfDestructButtonZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
   if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;

@@ -7,16 +7,6 @@
 #include "riryoku.h"
 #include "spell_effects.h"
 
-static u8 MonsterRowForDuelist(u8 duelist)
-{
-  return duelist == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
-}
-
-static u8 DuelistForFixedMonsterRow(u8 row)
-{
-  return row == PLAYER_MONSTER_ROW ? DUEL_PLAYER : DUEL_OPPONENT;
-}
-
 static u8 MonsterQualifiesForLimiterRemoval(u16 cardId)
 {
   if (cardId == CARD_NONE)
@@ -29,20 +19,6 @@ static u8 MonsterQualifiesForLimiterRemoval(u16 cardId)
   return gCardInfo.type == TYPE_MACHINE;
 }
 
-static u16 GetMonsterCurrentAtk(struct DuelCard *zone)
-{
-  u16 atk;
-
-  gStatMod.card = zone->id;
-  gStatMod.field = gDuel.field;
-  gStatMod.stage = GetFinalStage(zone);
-  gSetFinalStatZone = zone;
-  SetFinalStat(&gStatMod);
-  atk = gCardInfo.atk;
-  gSetFinalStatZone = NULL;
-  return atk;
-}
-
 void ResetLimiterRemovalState(void)
 {
   gLimiterRemovalDestroyMask = 0;
@@ -51,27 +27,14 @@ void ResetLimiterRemovalState(void)
 
 void DestroyLimiterRemovalMonstersAtEndOfTurn(void)
 {
-  u8 i;
   u8 row;
-  u8 duelist;
 
   if (gLimiterRemovalDestroyMask == 0)
     return;
 
   row = gLimiterRemovalFixedMonsterRow;
-  duelist = DuelistForFixedMonsterRow(row);
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    struct DuelCard *zone;
-
-    if (!(gLimiterRemovalDestroyMask & (1 << i)))
-      continue;
-
-    zone = gFixedZones[row][i];
-    if (zone->id != CARD_NONE)
-      Duel_DestroyZone(zone, duelist, FALSE);
-  }
-
+  Duel_DestroyMaskedMonstersInFixedRow(row, gLimiterRemovalDestroyMask,
+                                       Duel_FixedDuelistForMonsterRow(row), FALSE);
   ResetLimiterRemovalState();
 }
 
@@ -84,7 +47,7 @@ APPEND_TEXT void EffectLimiterRemoval(void)
   ResetLimiterRemovalState();
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
-  monsterRow = MonsterRowForDuelist(duelist);
+  monsterRow = Duel_FixedMonsterRowForDuelist(duelist);
   gLimiterRemovalFixedMonsterRow = monsterRow;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
@@ -94,7 +57,7 @@ APPEND_TEXT void EffectLimiterRemoval(void)
     if (!MonsterQualifiesForLimiterRemoval(zone->id))
       continue;
 
-    atk = GetMonsterCurrentAtk(zone);
+    atk = Duel_GetZoneFinalAtk(zone);
     if (atk > 0)
       AddRiryokuAtkDelta(zone, (s16)atk);
 

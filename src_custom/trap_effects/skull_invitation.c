@@ -9,29 +9,6 @@
 
 extern u8 gSuppressSkullInvitationDamage;
 
-static u8 ZoneIsHandSlot(const struct DuelCard *zone)
-{
-  u8 i;
-  u8 j;
-
-  if (zone == NULL)
-    return FALSE;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[PLAYER_HAND][i] == zone)
-      return TRUE;
-  }
-
-  for (i = 0; i < 2; i++) {
-    for (j = 0; j < MAX_ZONES_IN_ROW; j++) {
-      if (gTurnHands[i][j] == zone)
-        return TRUE;
-    }
-  }
-
-  return FALSE;
-}
-
 u8 IsActivatedSkullInvitationZone(const struct DuelCard *zone)
 {
   return zone != NULL && zone->id == SKULL_INVITATION && zone->isFaceUp == TRUE;
@@ -54,24 +31,13 @@ u8 IsSkullInvitationActiveOnField(void)
 
 u8 ShouldSuppressSkullInvitationDamageOnCopy(const struct DuelCard *dst, const struct DuelCard *src)
 {
-  return GetDuelistForZone(src) != 0xFF && ZoneIsHandSlot(dst);
+  return GetDuelistForZone(src) != 0xFF && Duel_ZoneIsHandSlot(dst);
 }
 
-/* ponytail: suppress effect text during LP apply to avoid double-popup; Duel_ChangeLp has no hook */
 static void ApplySkullInvitationDamage(u8 fixedDuelist)
 {
-  u8 hideEffectText = gHideEffectText;
-  u8 turnDuelist = (fixedDuelist == DUEL_PLAYER) == (WhoseTurn() == DUEL_PLAYER)
-      ? ACTIVE_DUELIST : INACTIVE_DUELIST;
-
-  if (!hideEffectText) {
-    Duel_ShowEffectTextTyped(SKULL_INVITATION, 3);
-    ResetCardEffectTextData();
-  }
-
-  gHideEffectText = TRUE;
-  Duel_ChangeLp(turnDuelist, -SKULL_INVITATION_DAMAGE, FALSE);
-  gHideEffectText = hideEffectText;
+  Duel_ChangeLpWithPrefaceText(Duel_TurnDuelistMatchingWhoseTurn(fixedDuelist),
+                               -SKULL_INVITATION_DAMAGE, SKULL_INVITATION, 3, FALSE);
 }
 
 void TryApplySkullInvitationOnFieldLeave(struct DuelCard *zone)
@@ -99,8 +65,7 @@ void TryApplySkullInvitationOnFieldLeave(struct DuelCard *zone)
 
 static void ActivateSkullInvitationZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(SKULL_INVITATION, 3);
   ResetCardEffectTextData();
 }

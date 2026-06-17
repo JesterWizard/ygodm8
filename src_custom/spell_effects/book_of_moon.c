@@ -13,10 +13,6 @@ void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
 
-static u8 IsMonsterFixedRow(u8 fixedRow)
-{
-  return fixedRow == OPPONENT_MONSTER_ROW || fixedRow == PLAYER_MONSTER_ROW;
-}
 
 static u8 IsFaceUpMonsterTarget(struct DuelCard *zone)
 {
@@ -34,7 +30,7 @@ static u8 IsValidBookOfMoonTargetZone(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
 
-  if (!IsMonsterFixedRow(fixedRow))
+  if (!Duel_IsFixedMonsterRow(fixedRow))
     return FALSE;
 
   zone = gFixedZones[fixedRow][fixedCol];

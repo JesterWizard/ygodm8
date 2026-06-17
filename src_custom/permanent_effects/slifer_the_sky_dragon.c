@@ -69,16 +69,10 @@ static u8 ZoneIsOpponentMonsterRowForSlifer(const struct DuelCard *zone, u8 slif
 }
 
 static u8 ZoneAtkIsZero(struct DuelCard *zone) {
-  struct StatMod statMod;
-
   if (zone->id == CARD_NONE)
     return FALSE;
 
-  statMod.card = zone->id;
-  statMod.field = gDuel.field;
-  statMod.stage = GetFinalStage(zone);
-  SetFinalStat(&statMod);
-  return gCardInfo.atk == 0;
+  return Duel_GetZoneFinalAtk(zone) == 0;
 }
 
 static void ApplySummonPenaltyStages(struct DuelCard *summonedZone) {

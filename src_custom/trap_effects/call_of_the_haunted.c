@@ -16,8 +16,7 @@ void TryActivateCallOfTheHauntedOnOpponentTurnStart(void)
     if (zone->id != CALL_OF_THE_HAUNTED || zone->isFaceUp != FALSE)
       continue;
 
-    FlipCardFaceUp(zone);
-    zone->isLocked = TRUE;
+    Duel_ActivateContinuousZone(zone);
   }
 }
 

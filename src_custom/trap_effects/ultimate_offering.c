@@ -120,8 +120,7 @@ void ActivateUltimateOfferingTurnEffect(void)
 {
   struct DuelCard *zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(ULTIMATE_OFFERING, 9);
 }
 

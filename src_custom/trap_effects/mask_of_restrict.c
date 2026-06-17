@@ -60,8 +60,7 @@ u8 MaskOfRestrictOnField(void)
 
 static void ActivateMaskOfRestrictZone(struct DuelCard *zone)
 {
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
   Duel_ShowEffectTextTyped(MASK_OF_RESTRICT, 9);
 }
 

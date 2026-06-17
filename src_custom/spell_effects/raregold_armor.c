@@ -6,16 +6,10 @@
 #include "raregold_armor.h"
 #include "spell_effects.h"
 
-static u8 IsValidRaregoldArmorTarget(u16 cardId)
-{
-  return cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_MONSTER;
-}
-
 static void ActivateRaregoldEquip(struct DuelCard *spellZone, struct DuelCard *target)
 {
   RegisterDynamicEquip(spellZone, target, RAREGOLD_ARMOR, 0);
-  FlipCardFaceUp(spellZone);
-  spellZone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
 }
 
@@ -48,7 +42,7 @@ struct DuelCard *RaregoldArmor_GetForcedAttackTarget(u8 defenderDuelist)
       continue;
 
     targetZone = gFixedZones[link->targetFixedRow][link->targetFixedCol];
-    if (targetZone->id == CARD_NONE || !IsValidRaregoldArmorTarget(targetZone->id))
+    if (targetZone->id == CARD_NONE || !Duel_IsMonsterZoneTarget(targetZone->id))
       continue;
 
     return targetZone;
@@ -85,7 +79,7 @@ APPEND_TEXT void EffectRaregoldArmor(void)
 {
   struct DuelCard *target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
-  if (!IsValidRaregoldArmorTarget(target->id)) {
+  if (!Duel_IsMonsterZoneTarget(target->id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

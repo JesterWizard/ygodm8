@@ -12,13 +12,9 @@ void EffectImperialOrder(void)
 {
   struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
 
-  FlipCardFaceUp(zone);
-  zone->isLocked = TRUE;
+  Duel_ActivateContinuousZone(zone);
 
-  if (!gHideEffectText) {
-    gCardEffectTextData.cardId2 = gTrapEffectData.originCardId;
-    Duel_ShowEffectText(IMPERIAL_ORDER);
-  }
+  Duel_ShowTrapResponseText(IMPERIAL_ORDER, gTrapEffectData.originCardId);
 }
 
 void TryActivateImperialOrderOnSpellChain(void)

@@ -37,21 +37,7 @@ void ResetTrianglePowerState(void)
 
 static void DestroyMarkedMonstersInRow(u8 row, u8 mask, u8 duelist)
 {
-  u8 i;
-
-  if (mask == 0)
-    return;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    struct DuelCard *zone;
-
-    if (!(mask & (1 << i)))
-      continue;
-
-    zone = gFixedZones[row][i];
-    if (zone->id != CARD_NONE)
-      Duel_DestroyZone(zone, duelist, FALSE);
-  }
+  Duel_DestroyMaskedMonstersInFixedRow(row, mask, duelist, FALSE);
 }
 
 void DestroyTrianglePowerMonstersAtEndOfTurn(void)

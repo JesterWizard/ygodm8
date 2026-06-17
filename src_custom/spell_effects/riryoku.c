@@ -13,10 +13,6 @@ void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
 
-static u8 IsMonsterFixedRow(u8 fixedRow)
-{
-  return fixedRow == OPPONENT_MONSTER_ROW || fixedRow == PLAYER_MONSTER_ROW;
-}
 
 static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
 {
@@ -82,10 +78,8 @@ void ApplyRiryokuAtkDeltaToCardInfo(const struct DuelCard *zone)
   atk = (s32)gCardInfo.atk + (s32)(*delta);
   if (atk <= 0)
     gCardInfo.atk = 0;
-  else if (atk > 0xFFFE)
-    gCardInfo.atk = 0xFFFE;
   else
-    gCardInfo.atk = (u16)atk;
+    gCardInfo.atk = Duel_ClampStat((u32)atk);
 }
 
 static u8 IsRiryokuVisibleMonsterTarget(struct DuelCard *zone)
@@ -101,7 +95,7 @@ static u8 IsValidRiryokuMonsterTarget(u8 fixedRow, u8 fixedCol, u8 excludeRow, u
 {
   struct DuelCard *zone;
 
-  if (!IsMonsterFixedRow(fixedRow))
+  if (!Duel_IsFixedMonsterRow(fixedRow))
     return FALSE;
 
   if (excludeRow != 0xFF && fixedRow == excludeRow && fixedCol == excludeCol)
