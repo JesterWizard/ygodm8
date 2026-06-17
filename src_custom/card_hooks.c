@@ -12,8 +12,31 @@
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "riryoku.h"
+#include "duel.h"
+#include "constants/card_ids.h"
 
 #include "generated/field_spell_stat_mods_generated.inc"
+
+struct PendingBattleActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+};
+
+extern struct PendingBattleActionData sActionData;
 
 extern const u16 gCardAtks[];
 extern const u16 gCardDefs[];
@@ -463,24 +486,33 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
-  if (zone->id == GREAT_MAJU_GARZETT && ApplyGreatMajuGarzettZoneStatsToCardInfo(zone))
-    return;
-
-  if (zone->id == GOBLIN_KING && ApplyGoblinKingZoneStatsToCardInfo(zone))
-    return;
-
-  if (zone->id == GYAKU_GIRE_PANDA && ApplyGyakuGirePandaZoneStatsToCardInfo(zone))
-    return;
-
-  if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
-    ApplyCopycatStatsToCardInfo(&statMod);
+  if (zone->id == GREAT_MAJU_GARZETT && ApplyGreatMajuGarzettZoneStatsToCardInfo(zone)) {
+    gSetFinalStatZone = NULL;
     return;
   }
 
-  if (!ZoneShowsCombatStats(zone))
+  if (zone->id == GOBLIN_KING && ApplyGoblinKingZoneStatsToCardInfo(zone)) {
+    gSetFinalStatZone = NULL;
     return;
+  }
 
-  stage = GetFinalStage(zone);
+  if (zone->id == GYAKU_GIRE_PANDA && ApplyGyakuGirePandaZoneStatsToCardInfo(zone)) {
+    gSetFinalStatZone = NULL;
+    return;
+  }
+
+  if (zone->id == COPYCAT && gComputingCopycatStats == FALSE) {
+    ApplyCopycatStatsToCardInfo(&statMod);
+    gSetFinalStatZone = NULL;
+    return;
+  }
+
+  if (!ZoneShowsCombatStats(zone)) {
+    gSetFinalStatZone = NULL;
+    return;
+  }
+
+  stage = ComputeFinalStage(zone);
   fieldMod = GetFieldStatModifier(gDuel.field, gCardInfo.type);
   gCardInfo.atk = GetStageModifiedStat_Hook(
       GetFieldModifiedStat_Hook(gCardInfo.atk, fieldMod), stage);
@@ -494,6 +526,49 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  gSetFinalStatZone = NULL;
+}
+
+static u8 IsPendingMonsterAttackAction(u8 actionId)
+{
+  return actionId == 1 || actionId == 2 || actionId == 4 || actionId == 5
+      || actionId == 6;
+}
+
+static void RefreshActionCardStatsFromZone(struct DuelCard *zone, u16 *atk,
+    u16 *def, u8 *attribute)
+{
+  if (zone == NULL || zone->id == CARD_NONE || !ZoneShowsCombatStats(zone))
+    return;
+
+  ApplyFieldZoneStatsToCardInfo(zone);
+  *atk = gCardInfo.atk;
+  *def = gCardInfo.def;
+  *attribute = gCardInfo.attribute;
+}
+
+void RefreshPendingBattleActionStatsFromZones(void)
+{
+  struct DuelCard *zone;
+
+  if (!IsPendingMonsterAttackAction(sActionData.id))
+    return;
+
+  if (sActionData.playerCardId != CARD_NONE) {
+    zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+    if (zone->id == sActionData.playerCardId)
+      RefreshActionCardStatsFromZone(
+          zone, &sActionData.playerCardAtkOrLifePointsMod,
+          &sActionData.playerCardDefense, &sActionData.playerCardAttribute);
+  }
+
+  if (sActionData.opponentCardId != CARD_NONE) {
+    zone = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+    if (zone->id == sActionData.opponentCardId)
+      RefreshActionCardStatsFromZone(
+          zone, &sActionData.opponentCardAtkOrLifePointsMod,
+          &sActionData.opponentCardDefense, &sActionData.opponentCardAttribute);
+  }
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);
@@ -521,7 +596,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     s8 stage = ptr->stage;
 
     if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == ptr->card)
-      stage = (s8)GetFinalStage(gSetFinalStatZone);
+      stage = ComputeFinalStage(gSetFinalStatZone);
 
     gCardInfo.atk = GetFieldModifiedStat_Hook(gCardInfo.atk, GetFieldStatModifier(ptr->field, gCardInfo.type));
     gCardInfo.def = GetFieldModifiedStat_Hook(gCardInfo.def, GetFieldStatModifier(ptr->field, gCardInfo.type));

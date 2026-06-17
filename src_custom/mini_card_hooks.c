@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card.h"
+#include "duel.h"
 #include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
@@ -78,7 +79,7 @@ void RefreshFieldMonsterStatOverlays(void)
       tilePtr = FieldCardTilePtr(row, col);
 
       if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW)
-        StampFieldCardStage(tilePtr, GetFinalStage(zone));
+        StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
 
       if (row == OPPONENT_MONSTER_ROW || row == PLAYER_MONSTER_ROW || row == PLAYER_HAND) {
         sub_80572A8(tilePtr, zone);
@@ -252,7 +253,7 @@ static void RefreshAllFieldCardTiles(void)
       sub_80573D0(tilePtr, zone->id);
       sub_80576EC(tilePtr, zone->id);
       sub_80576B4(tilePtr, zone->id);
-      StampFieldCardStage(tilePtr, GetFinalStage(zone));
+      StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
       sub_80572A8(tilePtr, zone);
       sub_805733C(tilePtr, zone);
     } else {
@@ -275,7 +276,7 @@ static void RefreshAllFieldCardTiles(void)
       StampFieldCardLocked(tilePtr);
     sub_80576B4(tilePtr, zone->id);
     sub_80576EC(tilePtr, zone->id);
-    StampFieldCardStage(tilePtr, GetFinalStage(zone));
+    StampFieldCardStage(tilePtr, ComputeFinalStage(zone));
     sub_80572A8(tilePtr, zone);
     sub_805733C(tilePtr, zone);
 

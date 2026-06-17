@@ -111,7 +111,7 @@ u8 ApplyGoblinKingStatsToCardInfo(struct StatMod *ptr)
 
       if (zone->id != GOBLIN_KING)
         continue;
-      if (GetFinalStage(zone) != ptr->stage)
+      if (ComputeFinalStage(zone) != ptr->stage)
         continue;
       if (ApplyGoblinKingZoneStatsToCardInfo(zone))
         return TRUE;

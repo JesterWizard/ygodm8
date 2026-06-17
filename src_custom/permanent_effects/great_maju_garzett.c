@@ -234,7 +234,7 @@ u8 ApplyGreatMajuGarzettStatsToCardInfo(struct StatMod *ptr)
 
       if (zone->id != GREAT_MAJU_GARZETT)
         continue;
-      if (GetFinalStage(zone) != ptr->stage)
+      if (ComputeFinalStage(zone) != ptr->stage)
         continue;
       if (ApplyGreatMajuGarzettZoneStatsToCardInfo(zone))
         return TRUE;

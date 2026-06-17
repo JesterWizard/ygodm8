@@ -418,7 +418,7 @@ void ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(struct StatMod *ptr)
       zone = ZoneFromBoardCoords(row, col);
       if (!EmbodimentOfApophisZoneIsMonsterForm(zone))
         continue;
-      if (GetFinalStage(zone) != ptr->stage)
+      if (ComputeFinalStage(zone) != ptr->stage)
         continue;
 
       gCardInfo.type = TYPE_SEA_SERPENT;

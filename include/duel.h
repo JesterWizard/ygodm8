@@ -273,6 +273,7 @@ void ResetTempStage(struct DuelCard*);
 
 s32 PermStage(struct DuelCard*);
 int GetFinalStage(struct DuelCard*); //getnumpowerups?
+s8 ComputeFinalStage(const struct DuelCard *zone);
 
 void LockCard(struct DuelCard*);
 void UnlockCard(struct DuelCard*); //clear isLocked

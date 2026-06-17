@@ -61,11 +61,19 @@ class MiniCardStatOverlayTests(unittest.TestCase):
 
         apply_body = extract_function_body(card_hooks, "ApplyFieldZoneStatsToCardInfo")
         self.assertIn("ZoneShowsCombatStats(zone)", apply_body)
+        self.assertIn("GetStageModifiedStat_Hook", apply_body)
+        self.assertIn("ComputeFinalStage(zone)", apply_body)
+        self.assertIn("gSetFinalStatZone = NULL", apply_body)
+        self.assertNotIn("SetFinalStat(&statMod)", apply_body)
+        self.assertNotIn("GetFinalStage(zone)", apply_body)
         self.assertNotIn("gCardInfo.spellEffect != SPELL_EFFECT_MONSTER", apply_body)
 
         set_final_body = extract_function_body(card_hooks, "SetFinalStat__Replacement")
         self.assertIn("ApplyGreatMajuGarzettStatsToCardInfo(ptr)", set_final_body)
         self.assertIn("GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER", set_final_body)
+        self.assertIn("gSetFinalStatZone->id == ptr->card", set_final_body)
+        self.assertIn("ComputeFinalStage(gSetFinalStatZone)", set_final_body)
+        self.assertNotIn("GetFinalStage(gSetFinalStatZone)", set_final_body)
         self.assertNotIn("gCardInfo.spellEffect == SPELL_EFFECT_MONSTER", set_final_body)
 
         self.assertNotIn("ShouldShowMiniCardCombatStats", mini_card_hooks)
@@ -73,7 +81,12 @@ class MiniCardStatOverlayTests(unittest.TestCase):
     def test_hourglass_refreshes_field_stat_overlays(self):
         source = HOURGLASS_EFFECT.read_text()
         self.assertIn("IncrementPermStage", source)
-        self.assertIn("Duel_ChangeLp(WhoseTurn(), -1000, TRUE)", source)
+        self.assertIn("HandleAtkAndLifePointsAction();", source)
+        self.assertIn("RefreshFieldMonsterStatOverlays();", source)
+        self.assertIn("gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]", source)
+        text_pos = source.index("Duel_ShowEffectTextTyped(HOURGLASS_OF_LIFE, 2);")
+        self.assertIn("IncrementPermStage", source[:text_pos])
+        self.assertIn("RefreshFieldMonsterStatOverlays();", source[:text_pos])
 
     def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
         source = MINI_CARD_HOOKS.read_text()
@@ -81,7 +94,18 @@ class MiniCardStatOverlayTests(unittest.TestCase):
 
         self.assertIn("sub_80572A8(tilePtr, zone)", body)
         self.assertIn("sub_805733C(tilePtr, zone)", body)
-        self.assertIn("StampFieldCardStage(tilePtr, GetFinalStage(zone))", body)
+        self.assertIn("StampFieldCardStage(tilePtr, ComputeFinalStage(zone))", body)
+
+    def test_battle_action_stats_resync_from_field_zones(self):
+        card_hooks = CARD_HOOKS.read_text()
+        fairy_box = (ROOT / "src_custom" / "trap_effects" / "fairy_box.c").read_text()
+
+        refresh_body = extract_function_body(card_hooks, "RefreshPendingBattleActionStatsFromZones")
+        helper_body = extract_function_body(card_hooks, "RefreshActionCardStatsFromZone")
+        self.assertIn("ApplyFieldZoneStatsToCardInfo(zone)", helper_body)
+        self.assertIn("sActionData.playerCardAtkOrLifePointsMod", refresh_body)
+        self.assertIn("sActionData.opponentCardAtkOrLifePointsMod", refresh_body)
+        self.assertIn("RefreshPendingBattleActionStatsFromZones();", fairy_box)
 
     def test_custom_spell_and_trap_cards_are_not_monster_type(self):
         manifest = json.loads(MANIFEST.read_text())

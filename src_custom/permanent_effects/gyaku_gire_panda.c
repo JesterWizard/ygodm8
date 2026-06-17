@@ -86,7 +86,7 @@ u8 ApplyGyakuGirePandaStatsToCardInfo(struct StatMod *ptr)
 
       if (zone->id != GYAKU_GIRE_PANDA)
         continue;
-      if (GetFinalStage(zone) != ptr->stage)
+      if (ComputeFinalStage(zone) != ptr->stage)
         continue;
       if (ApplyGyakuGirePandaZoneStatsToCardInfo(zone))
         return TRUE;

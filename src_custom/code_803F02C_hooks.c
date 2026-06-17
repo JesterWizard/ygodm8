@@ -477,12 +477,13 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     MaybeApplySliferSummonPenaltyAfterCopy(dst);
 }
 
-LYN_REPLACE_CHECK(GetFinalStage);
-int GetFinalStage__Replacement(struct DuelCard *zone)
+s8 ComputeFinalStage(const struct DuelCard *zone)
 {
   int stage;
 
-  gSetFinalStatZone = zone;
+  if (zone == NULL)
+    return 0;
+
   stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
 
   if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS
@@ -497,8 +498,15 @@ int GetFinalStage__Replacement(struct DuelCard *zone)
   if (stage < -128)
     stage = -128;
 
-  /* Leave gSetFinalStatZone set for the paired SetFinalStat (battle damage, etc.). */
   return (s8)stage;
+}
+
+LYN_REPLACE_CHECK(GetFinalStage);
+int GetFinalStage__Replacement(struct DuelCard *zone)
+{
+  gSetFinalStatZone = zone;
+  /* Leave gSetFinalStatZone set for the paired SetFinalStat (battle damage, etc.). */
+  return ComputeFinalStage(zone);
 }
 
 LYN_REPLACE_CHECK(CheckLoserFlags);

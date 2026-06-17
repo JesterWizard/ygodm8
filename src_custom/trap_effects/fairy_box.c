@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "card.h"
 #include "fairy_box.h"
 
 #define FAIRY_BOX_LP_COST 500
@@ -150,6 +151,8 @@ void TryApplyFairyBoxToPendingAction(void)
   u16 *attackerAtk;
   u16 attackerCardId;
   struct DuelCard *fairyBox;
+
+  RefreshPendingBattleActionStatsFromZones();
 
   if (!IsMonsterAttackAction())
     return;

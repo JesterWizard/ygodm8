@@ -53,7 +53,7 @@ void ApplyOjamaTrioCardInfoOverridesForStatMod(struct StatMod *ptr)
       zone = gFixedZones[row][col];
       if (!OjamaTrioZoneIsMonsterForm(zone))
         continue;
-      if (GetFinalStage(zone) != ptr->stage)
+      if (ComputeFinalStage(zone) != ptr->stage)
         continue;
 
       goto apply_token_stats;
