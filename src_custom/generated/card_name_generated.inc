@@ -147,6 +147,7 @@ static const u8 sMagicalMerchantName[] __attribute__((section(".append_assets"))
 static const u8 sRaregoldArmorName[] __attribute__((section(".append_assets"))) = "Raregold Armor";
 static const u8 sSpiritReaperName[] __attribute__((section(".append_assets"))) = "Spirit Reaper";
 static const u8 sThunderCrashName[] __attribute__((section(".append_assets"))) = "Thunder Crash";
+static const u8 sTorpedoFishName[] __attribute__((section(".append_assets"))) = "Torpedo Fish";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -447,6 +448,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSpiritReaperName;
   if (cardId == 0x03B5)
     return (u8 *)sThunderCrashName;
+  if (cardId == 0x03B6)
+    return (u8 *)sTorpedoFishName;
 
   return gCardNames[cardId];
 }

@@ -34,6 +34,9 @@ static u8 IsValidBookOfMoonTargetZone(u8 fixedRow, u8 fixedCol)
     return FALSE;
 
   zone = gFixedZones[fixedRow][fixedCol];
+  if (!Duel_SpellMayTargetMonsterZone(zone))
+    return FALSE;
+
   return IsFaceUpMonsterTarget(zone);
 }
 

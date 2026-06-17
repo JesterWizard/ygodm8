@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-17 — Torpedo Fish custom card
+
+**Worked on:** Added Torpedo Fish (IOC effect monster) to manifest/trunk; Umi-gated spell immunity via card_passives + duel_helpers spell-resolve depth API.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/card_passives/torpedo_fish.c`, `include/card_passives.h`, `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `src_custom/card_passive_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/spell_effects/book_of_moon.c`, `src_custom/LynJump.event`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = TORPEDO_FISH` for duel testing.
+
+**Open / next:** In-game confirm spell immunity with Umi active (Raigeki, equip, Book of Moon); traps should still affect Torpedo Fish.
+
+---
+
 ## 2026-06-17 — Thunder Crash custom card
 
 **Worked on:** Added Thunder Crash (IOC normal spell) to manifest/trunk; destroy-own-monsters + 300 burn per destroyed monster via duel_helpers.

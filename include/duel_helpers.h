@@ -123,4 +123,10 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
 
 enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u8 updateGfx);
 
+void Duel_BeginSpellEffectResolve(void);
+void Duel_EndSpellEffectResolve(void);
+u8 Duel_IsSpellEffectResolving(void);
+u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone);
+u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone);
+
 #endif // GUARD_DUEL_HELPERS_H

@@ -137,7 +137,7 @@ static u8 TryResolveSpellActivationThroughTraps(u16 spellId)
 }
 
 LYN_REPLACE_CHECK(ActivateSpellEffect);
-void ActivateSpellEffect__Replacement(void)
+static void ActivateSpellEffect__Body(void)
 {
   if (gSpellEffectData.row1 == ACTIVE_DUELIST_HAND) {
     if (!TryPayChainEnergyCost())
@@ -354,4 +354,11 @@ void ActivateSpellEffect__Replacement(void)
         ApplyMahaVailoEquipBonus(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1]);
       return;
   }
+}
+
+void ActivateSpellEffect__Replacement(void)
+{
+  Duel_BeginSpellEffectResolve();
+  ActivateSpellEffect__Body();
+  Duel_EndSpellEffectResolve();
 }

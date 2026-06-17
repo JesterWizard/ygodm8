@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[950] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[951] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -962,9 +962,10 @@ const u8 gCardLockAfterActivation_Hook[950] APPEND_RODATA = {
   [0x03B3] = 1,
   [0x03B4] = 1,
   [0x03B5] = 1,
+  [0x03B6] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[950] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[951] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1915,9 +1916,10 @@ const u8 gCardEffectUsage_Hook[950] APPEND_RODATA = {
   [0x03B3] = EFFECT_USAGE_NONE,
   [0x03B4] = EFFECT_USAGE_NONE,
   [0x03B5] = EFFECT_USAGE_NONE,
+  [0x03B6] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[950] APPEND_RODATA = {
+const CardData gCardData_NEW[951] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14464,5 +14466,19 @@ const CardData gCardData_NEW[950] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {6, 9, 1, 9, 6, 1, 6, 0},
     .description = gDescription_ThunderCrash,
+  },
+  [0x03B6] = {
+    .atk = 1000,
+    .def = 1000,
+    .cost = 87,
+    .attribute = ATTRIBUTE_WATER,
+    .level = 3,
+    .type = TYPE_FISH,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 0, 3, 3, 7, 1, 9, 0},
+    .description = gDescription_TorpedoFish,
   },
 };

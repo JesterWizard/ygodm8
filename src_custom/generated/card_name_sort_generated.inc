@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 149
+#define NUM_CUSTOM_NAME_SORT_CARDS 150
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -151,6 +151,7 @@ static const u8 sMagicalMerchantSortName[] APPEND_RODATA = "Magical Merchant";
 static const u8 sRaregoldArmorSortName[] APPEND_RODATA = "Raregold Armor";
 static const u8 sSpiritReaperSortName[] APPEND_RODATA = "Spirit Reaper";
 static const u8 sThunderCrashSortName[] APPEND_RODATA = "Thunder Crash";
+static const u8 sTorpedoFishSortName[] APPEND_RODATA = "Torpedo Fish";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -290,6 +291,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03B5, // Thunder Crash
   0x036B, // Time Seal
   0x0358, // Toll
+  0x03B6, // Torpedo Fish
   0x038D, // Triangle Power
   0x038E, // Twin Swords of Flashing Light - Tryce
   0x039E, // Tyrant Dragon
@@ -442,18 +444,19 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   135, // Thunder Crash
   136, // Time Seal
   137, // Toll
-  138, // Triangle Power
-  139, // Twin Swords of Flashing Light - Tryce
-  140, // Tyrant Dragon
-  141, // Ultimate Offering
-  142, // United We Stand
-  143, // Upstart Goblin
-  144, // Vampire Baby
-  145, // Warrior of Zera
-  146, // Wave Motion Cannon
-  147, // Weather Report
-  148, // White Magician Pikeru
-  149, // Yata-Garasu
+  138, // Torpedo Fish
+  139, // Triangle Power
+  140, // Twin Swords of Flashing Light - Tryce
+  141, // Tyrant Dragon
+  142, // Ultimate Offering
+  143, // United We Stand
+  144, // Upstart Goblin
+  145, // Vampire Baby
+  146, // Warrior of Zera
+  147, // Wave Motion Cannon
+  148, // Weather Report
+  149, // White Magician Pikeru
+  150, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -755,6 +758,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSpiritReaperSortName;
   if (cardId == 0x03B5)
     return (u8 *)sThunderCrashSortName;
+  if (cardId == 0x03B6)
+    return (u8 *)sTorpedoFishSortName;
 
   return gCardNames[cardId];
 }

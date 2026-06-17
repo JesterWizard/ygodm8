@@ -520,6 +520,9 @@ void TrySelectSpellTarget__Replacement(void) {
   } else if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
+  } else if (!Duel_SpellMayTargetMonsterZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
   } else {
     SetCardInfo(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
     if (GetTypeGroup(gCardInfo.id) == TYPE_GROUP_MONSTER) {

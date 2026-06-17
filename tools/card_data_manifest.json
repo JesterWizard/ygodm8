@@ -16855,6 +16855,34 @@
           "Destroy all monsters you control, and then inflict 300 damage to your opponent for each monster destroyed."
         ]
       }
+    },
+    {
+      "card_const": "TORPEDO_FISH",
+      "card_name": "Torpedo Fish",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_FISH",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [9, 0, 3, 3, 7, 1, 9, 0],
+      "description": {
+        "symbol": "gDescription_TorpedoFish",
+        "pages": [
+          "While \"Umi\" is face-up on the field, this card is",
+          "unaffected by any Spell Cards."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TorpedoFish",
+        "pages": [
+          "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
+        ]
+      }
     }
   ]
 }

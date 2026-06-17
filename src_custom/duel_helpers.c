@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
@@ -1401,6 +1402,43 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   ClearZone(zone);
   MaybeUpdateGfx(updateGfx);
   return DUEL_ACTION_OK;
+}
+
+static u8 sSpellEffectResolveDepth APPEND_DATA = 0;
+
+void Duel_BeginSpellEffectResolve(void)
+{
+  sSpellEffectResolveDepth++;
+}
+
+void Duel_EndSpellEffectResolve(void)
+{
+  if (sSpellEffectResolveDepth > 0)
+    sSpellEffectResolveDepth--;
+}
+
+u8 Duel_IsSpellEffectResolving(void)
+{
+  return sSpellEffectResolveDepth > 0 && gTrapEffectData.trapCardId == 0;
+}
+
+u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone)
+{
+  u8 turnRow;
+  u8 col;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return FALSE;
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
+    return FALSE;
+
+  return IsImmuneToSpellEffectsOnField(zone->id, turnRow);
+}
+
+u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
+{
+  return !Duel_ZoneIsImmuneToSpellEffects(zone);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

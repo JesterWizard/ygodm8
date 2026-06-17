@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card_passives.h"
+#include "duel_helpers.h"
 #include "embodiment_of_apophis.h"
 #include "graveyard_effects.h"
 #include "ojama_trio.h"
@@ -29,9 +30,19 @@ static u8 ShouldBlockHarmfulEffectOnZone(struct DuelCard *zone) {
   return IsImmuneToHarmfulTargetedEffectsOnField(zone->id, turnRow);
 }
 
+static u8 ShouldBlockEffectOnZone(struct DuelCard *zone) {
+  if (ShouldBlockHarmfulEffectOnZone(zone))
+    return TRUE;
+
+  if (Duel_IsSpellEffectResolving() && Duel_ZoneIsImmuneToSpellEffects(zone))
+    return TRUE;
+
+  return FALSE;
+}
+
 LYN_REPLACE_CHECK(ClearZoneAndSendMonToGraveyard);
 void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn) {
-  if (ShouldBlockHarmfulEffectOnZone(zone))
+  if (ShouldBlockEffectOnZone(zone))
     return;
 
   ApplyOjamaTrioDestructionDamage(zone);
@@ -48,7 +59,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
 
 LYN_REPLACE_CHECK(DecrementPermStage);
 void DecrementPermStage__Replacement(struct DuelCard *zone) {
-  if (ShouldBlockHarmfulEffectOnZone(zone))
+  if (ShouldBlockEffectOnZone(zone))
     return;
 
   if (zone->permStage > -128)
@@ -57,9 +68,18 @@ void DecrementPermStage__Replacement(struct DuelCard *zone) {
 
 LYN_REPLACE_CHECK(DecrementTempStage);
 void DecrementTempStage__Replacement(struct DuelCard *zone) {
-  if (ShouldBlockHarmfulEffectOnZone(zone))
+  if (ShouldBlockEffectOnZone(zone))
     return;
 
   if (zone->tempStage > -128)
     zone->tempStage--;
+}
+
+LYN_REPLACE_CHECK(IncrementPermStage);
+void IncrementPermStage__Replacement(struct DuelCard *zone) {
+  if (ShouldBlockEffectOnZone(zone))
+    return;
+
+  if (zone->permStage < 127)
+    zone->permStage++;
 }

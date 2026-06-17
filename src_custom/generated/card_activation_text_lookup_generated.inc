@@ -166,6 +166,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { RAREGOLD_ARMOR, gActivationDescription_RaregoldArmor },
   { SPIRIT_REAPER, gActivationDescription_SpiritReaper },
   { THUNDER_CRASH, gActivationDescription_ThunderCrash },
+  { TORPEDO_FISH, gActivationDescription_TorpedoFish },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
