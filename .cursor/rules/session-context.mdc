@@ -1,0 +1,30 @@
+---
+description: Read ARCHITECTURE.md and SESSION_LOG.md before any work; update the log when done.
+alwaysApply: true
+---
+
+# Session context — read first
+
+Before **any** investigation, edit, or reply that touches this repo:
+
+1. Read [ARCHITECTURE.md](ARCHITECTURE.md) — repo goals, folder map, where to look.
+2. Read [SESSION_LOG.md](SESSION_LOG.md) — what was last worked on and open threads.
+
+Use that context to avoid redoing recent work or editing the wrong layer (`src/` vs `src_custom/`).
+
+## During work
+
+- Match existing patterns in the area you are changing.
+- Prefer `.agents/skills/` when the task fits a skill.
+- Run the narrowest validation from `validate-before-reply` after code edits.
+
+## When finishing meaningful work
+
+Append a dated entry to **SESSION_LOG.md** (newest first):
+
+- **Worked on** — task and decisions
+- **Files** — paths touched
+- **Outcome** — what works now, test results if run
+- **Open / next** — follow-ups for the next session
+
+Skip log updates for trivial one-line fixes with no architectural impact.

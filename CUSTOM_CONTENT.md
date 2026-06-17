@@ -23,6 +23,8 @@ This repository keeps custom work outside the vanilla source tree. These are com
 | Path | What it contains |
 | --- | --- |
 | `README.md` | Project overview and build instructions. |
+| `ARCHITECTURE.md` | Repo goals, folder map, where to look, core systems. |
+| `SESSION_LOG.md` | Recent work history for contributors and agents. |
 | `CUSTOM_CONTENT.md` | This index of custom folders and files. |
 | `documentation/custom-portraits.md` | How to add custom dialogue portraits and use them in event scripts. |
 | `documentation/adding-custom-cards.md` | How to add custom cards, including 80×80 big card art from source PNGs. |
