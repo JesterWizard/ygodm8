@@ -174,6 +174,7 @@ static const u8 sDiceJarName[] __attribute__((section(".append_assets"))) = "Dic
 static const u8 sKnightsTitleName[] __attribute__((section(".append_assets"))) = "Knight's Title";
 static const u8 sJowlsOfDarkDemiseName[] __attribute__((section(".append_assets"))) = "Jowls of Dark Demise";
 static const u8 sKishidoSpiritName[] __attribute__((section(".append_assets"))) = "Kishido Spirit";
+static const u8 sPossessedDarkSoulName[] __attribute__((section(".append_assets"))) = "Possessed Dark Soul";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -528,6 +529,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sJowlsOfDarkDemiseName;
   if (cardId == 0x03CD)
     return (u8 *)sKishidoSpiritName;
+  if (cardId == 0x03CE)
+    return (u8 *)sPossessedDarkSoulName;
 
   return gCardNames[cardId];
 }

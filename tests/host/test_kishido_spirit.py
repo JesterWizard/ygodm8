@@ -19,8 +19,10 @@ def apply_kishido_equal_atk(flags, player_kishido, opponent_kishido, equal_atk):
     return flags
 
 
-def remap_mutual_destroy_anim(unk18, player_destroy, opponent_destroy):
+def remap_mutual_destroy_anim(unk18, player_destroy, opponent_destroy, action_id=1):
     """Mirror Duel_RemapMutualDestroyBattleAnim."""
+    if action_id not in (1, 2, 3, 5):
+        return unk18
     if player_destroy and opponent_destroy:
         return 2
     if not player_destroy and not opponent_destroy:
@@ -70,6 +72,13 @@ class KishidoSpiritTests(unittest.TestCase):
         self.assertIn("gUnk2023EA0.unk18 != 16", helpers)
         self.assertIn("gUnk2023EA0.unk18 = 1", helpers)
         self.assertIn("gUnk2023EA0.unk18 = 3", helpers)
+        self.assertIn("IsMonsterVersusMonsterBattleAction", helpers)
+
+    def test_direct_attack_anim_not_remapped(self):
+        helpers = DUEL_HELPERS.read_text()
+        self.assertIn("IsMonsterVersusMonsterBattleAction(sActionData.id)", helpers)
+        self.assertEqual(remap_mutual_destroy_anim(15, False, False, action_id=6), 15)
+        self.assertEqual(remap_mutual_destroy_anim(10, False, False, action_id=4), 10)
 
     def test_behavior_matrix_equal_atk_scenarios(self):
         # A: no Kishido — mutual destroy, case 2

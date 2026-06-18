@@ -14,6 +14,7 @@
 #include "man_thro_tro.h"
 #include "breaker_the_magical_warrior.h"
 #include "jowls_of_dark_demise.h"
+#include "possessed_dark_soul.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -80,6 +81,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateBreakerTheMagicalWarrior();
     case MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE:
       return CanActivateJowlsOfDarkDemise();
+    case MONSTER_EFFECT_POSSESSED_DARK_SOUL:
+      return CanActivatePossessedDarkSoul();
     default:
       return TRUE;
   }
@@ -229,6 +232,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_POSSESSED_DARK_SOUL) {
+    ActivatePossessedDarkSoulEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -302,6 +310,7 @@ void MonsterActionMenu__Replacement(void) {
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
       if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == MAN_THRO_TRO
+          || zone->id == POSSESSED_DARK_SOUL
           || zone->id == BREAKER_THE_MAGICAL_WARRIOR
           || zone->id == THE_AGENT_OF_CREATION_VENUS
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {

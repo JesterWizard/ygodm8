@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-18).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-19).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 173 |
-| Art ready, needs manifest | 146 |
+| In game (manifest + art) | 174 |
+| Art ready, needs manifest | 145 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -195,6 +195,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `KNIGHTS_TITLE` | Knight's Title | `knights_title.png` |
 | `JOWLS_OF_DARK_DEMISE` | Jowls of Dark Demise | `jowls_of_dark_demise.png` |
 | `KISHIDO_SPIRIT` | Kishido Spirit | `kishido_spirit.png` |
+| `POSSESSED_DARK_SOUL` | Possessed Dark Soul | `possessed_dark_soul.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -296,7 +297,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `POLYMERIZATION` — `polymerization.png`
-- [ ] `POSSESSED_DARK_SOUL` — `possessed_dark_soul.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`

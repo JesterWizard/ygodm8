@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[974] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[975] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -986,9 +986,10 @@ const u8 gCardLockAfterActivation_Hook[974] APPEND_RODATA = {
   [0x03CB] = 1,
   [0x03CC] = 1,
   [0x03CD] = 1,
+  [0x03CE] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[974] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[975] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1963,9 +1964,10 @@ const u8 gCardEffectUsage_Hook[974] APPEND_RODATA = {
   [0x03CB] = EFFECT_USAGE_NONE,
   [0x03CC] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x03CD] = EFFECT_USAGE_NONE,
+  [0x03CE] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const CardData gCardData_NEW[974] APPEND_RODATA = {
+const CardData gCardData_NEW[975] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -11793,7 +11795,7 @@ const CardData gCardData_NEW[974] APPEND_RODATA = {
     .def = 1500,
     .cost = 231,
     .attribute = ATTRIBUTE_THUNDER,
-    .level = 4,
+    .level = 6,
     .type = TYPE_MACHINE,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -13370,7 +13372,7 @@ const CardData gCardData_NEW[974] APPEND_RODATA = {
     .def = 2200,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 4,
+    .level = 6,
     .type = TYPE_DRAGON,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -14848,5 +14850,19 @@ const CardData gCardData_NEW[974] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {6, 0, 5, 1, 9, 4, 2, 2},
     .description = gDescription_KishidoSpirit,
+  },
+  [0x03CE] = {
+    .atk = 1200,
+    .def = 800,
+    .cost = 121,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 3,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 124,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {5, 2, 8, 6, 0, 1, 7, 6},
+    .description = gDescription_PossessedDarkSoul,
   },
 };

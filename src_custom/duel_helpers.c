@@ -1009,6 +1009,11 @@ struct DuelBattleActionData {
 
 extern struct DuelBattleActionData sActionData;
 
+static u8 IsMonsterVersusMonsterBattleAction(u8 actionId)
+{
+  return actionId == 1 || actionId == 2 || actionId == 3 || actionId == 5;
+}
+
 static u8 BattleAtksEqualForKishido(u16 playerAtk, u16 opponentAtk)
 {
   return playerAtk == opponentAtk && (playerAtk | opponentAtk);
@@ -1031,6 +1036,9 @@ static void ApplyKishidoSpiritEqualAtkProtection(void)
 
 void Duel_ApplyBattleDestroyProtection(void)
 {
+  if (!IsMonsterVersusMonsterBattleAction(sActionData.id))
+    return;
+
   ApplyKishidoSpiritEqualAtkProtection();
 
   if ((sActionData.flags & 1)
@@ -1052,6 +1060,9 @@ void Duel_ApplyBattleDestroyProtection(void)
 
 void Duel_RemapMutualDestroyBattleAnim(u8 playerDestroy, u8 opponentDestroy)
 {
+  if (!IsMonsterVersusMonsterBattleAction(sActionData.id))
+    return;
+
   if (playerDestroy && opponentDestroy) {
     gUnk2023EA0.unk18 = 2;
     return;

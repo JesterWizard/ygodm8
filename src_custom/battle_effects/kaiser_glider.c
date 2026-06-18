@@ -31,6 +31,10 @@ struct KaiserGliderActionData {
 extern struct KaiserGliderActionData sActionData;
 
 void ApplyKaiserGliderBattleProtection(void) {
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 3
+      && sActionData.id != 5)
+    return;
+
   if (sActionData.playerCardId == KAISER_GLIDER
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)
       && sActionData.playerCardAtkOrLifePointsMod

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `185` effects
+- `186` effects
 
 ## Tally
 
@@ -211,6 +211,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Breaker the Magical Warrior` | `src_custom/activated_effects/breaker_the_magical_warrior.c` |
 | `activated_effects` | `Dice Jar` | `src_custom/activated_effects/dice_jar.c` |
 | `activated_effects` | `Jowls of Dark Demise` | `src_custom/activated_effects/jowls_of_dark_demise.c` |
+| `activated_effects` | `Possessed Dark Soul` | `src_custom/activated_effects/possessed_dark_soul.c` |
 
 ## Notes
 

@@ -15,6 +15,46 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Fix direct-attack phantom (Kishido anim remap regression)
+
+**Worked on:** Kishido commit added `Duel_RemapMutualDestroyBattleAnim` to all battles; with no GY flags it forced `unk18=8` (monster-vs-monster) on direct attacks (10/15), showing stale defender art (often Kaiser Glider) and 0 damage. Remap and destroy-protection (Kishido, Kaiser Glider) now run only for monster-vs-monster action ids 1/2/3/5. Reverted ineffective stale-data direct-attack band-aids.
+
+**Files:** `src_custom/duel_helpers.c`, `src_custom/battle_effects/kaiser_glider.c`, `tests/host/test_kishido_spirit.py`, reverts in `embodiment_of_apophis_hooks.c`, `code_8043EF4_hooks.c`, `ai_attack_hooks.c`, `include/duel_helpers.h`, `possessed_dark_soul.c`
+
+**Outcome:** `make test-cards-build` passes; host test asserts direct attack anim cases 10/15 are not remapped.
+
+**Open / next:** In-game: opponent direct attack with empty field after prior Kaiser Glider battle — LP damage, no phantom card.
+
+## 2026-06-18 — Direct attack phantom fix after PDS
+
+**Worked on:** Opponent direct attacks left stale player-side `sActionData` / `gUnk2023EA0` from prior battles (phantom defender on battle screen, direct attack blocked). `Duel_ClearStaleDirectAttackDefenderData` runs before `SetAttackActionDirectAttack`; direct-attack empty-row check uses `Duel_InactiveFixedMonsterRowIsEmpty()` on fixed POV; PDS ends with `UpdateAllDuelGfx()`.
+
+**Files:** `src_custom/duel_helpers.c`, `include/duel_helpers.h`, `src_custom/embodiment_of_apophis_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/activated_effects/possessed_dark_soul.c`, `tests/host/test_possessed_dark_soul.py`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game: PDS tribute + steal, clear your field, let opponent direct attack — no phantom card, LP damage applies.
+
+## 2026-06-18 — Possessed Dark Soul activation + phantom battle fix
+
+**Worked on:** Fixed PDS effect not firing and post-effect battle desync. Self-zone lookup now uses `gFixedZones` (cursor row is fixed POV, not turn POV). Control transfer uses `CopyCard` + `Duel_NotifyMonsterZoneChanged`; relaxed activation to require ≥1 stealable target and ≥1 post-tribute slot (steal as many as fit).
+
+**Files:** `src_custom/activated_effects/possessed_dark_soul.c`, `tests/host/test_possessed_dark_soul.py`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game retest: face-up PDS vs opponent face-up L3 or lower monsters; confirm field gfx matches battle screen and opponent can direct attack when your row is empty.
+
+## 2026-06-18 — Possessed Dark Soul custom card
+
+**Worked on:** Added Possessed Dark Soul to manifest/trunk (SHADOW Fiend L3 1200/800, passcode 52860176, `MONSTER_EFFECT_POSSESSED_DARK_SOUL`). Ignition effect in `activated_effects/possessed_dark_soul.c`: tribute self, permanently take control of all opponent face-up Level 3 or lower monsters (`Duel_DestroyZone`, `Duel_ShowEffectTextTyped`). `card_in_hand_1 = POSSESSED_DARK_SOUL` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/constants/monster_effects.h`, `include/possessed_dark_soul.h`, `src_custom/activated_effects/possessed_dark_soul.c`, `src_custom/monster_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, `tests/host/test_possessed_dark_soul.py`, generated card includes
+
+**Outcome:** `make test-cards-build` passes; host test passes.
+
+**Open / next:** In-game confirm self-tribute, mass steal of level 3 or lower face-up monsters, and zone-capacity gate when opponent has more targets than post-tribute slots.
+
 ## 2026-06-18 — Kishido per-side equal-ATK protection
 
 **Worked on:** Fixed over-protection bug: `ApplyKishidoSpiritEqualAtkProtection` now clears only the protected controller's GY flag (`~1` player / `~2` opponent), matching GBA card text (your-side only). Extended `Duel_RemapMutualDestroyBattleAnim`: force case 2 when both still destroy; case 8 when neither; remap 1/3 only for mutual/attribute equal-ATK cases (2/16/17) so def-position battles stay untouched.

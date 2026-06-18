@@ -700,6 +700,10 @@ static const unsigned char sKishidoSpiritBigArt[] __attribute__((section(".appen
 static const unsigned short sKishidoSpiritBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kishido_spirit.gbapal");
 static const unsigned char sKishidoSpiritMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kishido_spirit.lz");
 
+static const unsigned char sPossessedDarkSoulBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/possessed_dark_soul.huff");
+static const unsigned short sPossessedDarkSoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/possessed_dark_soul.gbapal");
+static const unsigned char sPossessedDarkSoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/possessed_dark_soul.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -876,6 +880,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03CB] = sKnightsTitleBigArt,
   [0x03CC] = sJowlsOfDarkDemiseBigArt,
   [0x03CD] = sKishidoSpiritBigArt,
+  [0x03CE] = sPossessedDarkSoulBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1054,6 +1059,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03CB] = sKnightsTitleBigPalette,
   [0x03CC] = sJowlsOfDarkDemiseBigPalette,
   [0x03CD] = sKishidoSpiritBigPalette,
+  [0x03CE] = sPossessedDarkSoulBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1232,6 +1238,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03CB] = 0,
   [0x03CC] = 0,
   [0x03CD] = 0,
+  [0x03CE] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1410,4 +1417,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03CB] = sKnightsTitleMiniArt,
   [0x03CC] = sJowlsOfDarkDemiseMiniArt,
   [0x03CD] = sKishidoSpiritMiniArt,
+  [0x03CE] = sPossessedDarkSoulMiniArt,
 };
