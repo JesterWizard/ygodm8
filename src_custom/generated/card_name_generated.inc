@@ -173,6 +173,7 @@ static const u8 sGravekeepersServantName[] __attribute__((section(".append_asset
 static const u8 sDiceJarName[] __attribute__((section(".append_assets"))) = "Dice Jar";
 static const u8 sKnightsTitleName[] __attribute__((section(".append_assets"))) = "Knight's Title";
 static const u8 sJowlsOfDarkDemiseName[] __attribute__((section(".append_assets"))) = "Jowls of Dark Demise";
+static const u8 sKishidoSpiritName[] __attribute__((section(".append_assets"))) = "Kishido Spirit";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -525,6 +526,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sKnightsTitleName;
   if (cardId == 0x03CC)
     return (u8 *)sJowlsOfDarkDemiseName;
+  if (cardId == 0x03CD)
+    return (u8 *)sKishidoSpiritName;
 
   return gCardNames[cardId];
 }

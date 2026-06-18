@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 172 |
-| Art ready, needs manifest | 147 |
+| In game (manifest + art) | 173 |
+| Art ready, needs manifest | 146 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -194,6 +194,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DICE_JAR` | Dice Jar | `dice_jar.png` |
 | `KNIGHTS_TITLE` | Knight's Title | `knights_title.png` |
 | `JOWLS_OF_DARK_DEMISE` | Jowls of Dark Demise | `jowls_of_dark_demise.png` |
+| `KISHIDO_SPIRIT` | Kishido Spirit | `kishido_spirit.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -258,7 +259,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
-- [ ] `KISHIDO_SPIRIT` — `kishido_spirit.png`
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`

@@ -78,6 +78,10 @@ struct DuelCard *Duel_GetForcedAttackTarget(u8 defenderDuelist);
 u8 Duel_MonsterMayBeAttacked(struct DuelCard *zone);
 u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist);
 
+u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 opponentBattleAtk);
+void Duel_ApplyBattleDestroyProtection(void);
+void Duel_RemapMutualDestroyBattleAnim(u8 playerDestroy, u8 opponentDestroy);
+
 void Duel_ActivateContinuousZone(struct DuelCard *zone);
 u16 Duel_GetZoneFinalAtk(struct DuelCard *zone);
 u8 Duel_FixedMonsterRowForDuelist(u8 fixedDuelist);

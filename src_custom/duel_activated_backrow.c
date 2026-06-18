@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "dark_snake_syndrome.h"
 #include "gravekeepers_servant.h"
+#include "kishido_spirit.h"
 #include "duel_activated_backrow.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -70,6 +71,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
     return TRUE;
   if (IsActivatedGravekeepersServantZone(zone))
     return TRUE;
+  if (IsActivatedKishidoSpiritZone(zone))
+    return TRUE;
   if (IsActiveDynamicEquipSpellZone(zone))
     return TRUE;
 
@@ -91,6 +94,10 @@ void DuelActivatedBackrow_SelfCheck(void)
     __builtin_trap();
 
   zone.id = GRAVEKEEPERS_SERVANT;
+  if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
+    __builtin_trap();
+
+  zone.id = KISHIDO_SPIRIT;
   if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
     __builtin_trap();
 

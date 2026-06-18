@@ -11,6 +11,7 @@
 #include "royal_decree.h"
 #include "jar_robber.h"
 #include "duel_helpers.h"
+#include "kishido_spirit.h"
 #include "ring_of_destruction.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
@@ -377,6 +378,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case KNIGHTS_TITLE:
       EffectKnightsTitle();
+      return;
+    case KISHIDO_SPIRIT:
+      EffectKishidoSpirit();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "configs/runtime.h"
 #include "card_passives.h"
+#include "duel_helpers.h"
 #include "familiar_knight.h"
 #include "giant_rat.h"
 #include "graveyard_effects.h"
@@ -141,7 +142,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyShinatoKingOfAHigherPlaneBattleEffect();
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
-  ApplyReaperOnTheNightmareBattleProtection();
+  Duel_ApplyBattleDestroyProtection();
   ApplyPiranhaArmyDoubleDirectDamage();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
@@ -152,6 +153,10 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyDesKangarooBattleEffect();
+
+  Duel_RemapMutualDestroyBattleAnim(
+      (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0,
+      (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0);
 
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(

@@ -18,6 +18,7 @@
 #include "tribute.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "kishido_spirit.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -969,6 +970,107 @@ u8 Duel_ForcedAttackBlocksDirect(u8 defenderDuelist)
   return Duel_GetForcedAttackTarget(defenderDuelist) != NULL;
 }
 
+u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 opponentBattleAtk)
+{
+  (void)duelist;
+  (void)battleAtk;
+  (void)opponentBattleAtk;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER)
+    return FALSE;
+
+  return TRUE;
+}
+
+struct DuelBattleActionData {
+  unsigned short playerCardId;
+  unsigned short playerCardAtkOrLifePointsMod;
+  unsigned short playerCardDefense;
+  unsigned short playerLifePoints;
+  unsigned char playerCardAttribute;
+  unsigned char playerMonsterRow;
+  unsigned char unkA;
+  unsigned short opponentCardId;
+  unsigned short opponentCardAtkOrLifePointsMod;
+  unsigned short opponentCardDefense;
+  unsigned short opponentLifePoints;
+  unsigned char opponentCardAttribute;
+  unsigned char opponentMonsterRow;
+  unsigned char unk16;
+  unsigned char filler17;
+  unsigned char id;
+  unsigned char flags;
+  unsigned char unk1A;
+  unsigned char unk1B;
+};
+
+extern struct DuelBattleActionData sActionData;
+
+static u8 BattleAtksEqualForKishido(u16 playerAtk, u16 opponentAtk)
+{
+  return playerAtk == opponentAtk && (playerAtk | opponentAtk);
+}
+
+static void ApplyKishidoSpiritEqualAtkProtection(void)
+{
+  // GBA text: your-side monsters only — not TCG "neither destroyed".
+  if (!BattleAtksEqualForKishido(
+          sActionData.playerCardAtkOrLifePointsMod,
+          sActionData.opponentCardAtkOrLifePointsMod))
+    return;
+
+  if (IsKishidoSpiritActiveForDuelist(DUEL_PLAYER))
+    sActionData.flags &= ~1u;
+
+  if (IsKishidoSpiritActiveForDuelist(DUEL_OPPONENT))
+    sActionData.flags &= ~2u;
+}
+
+void Duel_ApplyBattleDestroyProtection(void)
+{
+  ApplyKishidoSpiritEqualAtkProtection();
+
+  if ((sActionData.flags & 1)
+      && !CanMonsterBeDestroyedByBattle(
+          sActionData.playerCardId, DUEL_PLAYER,
+          sActionData.playerCardAtkOrLifePointsMod,
+          sActionData.opponentCardAtkOrLifePointsMod)) {
+    sActionData.flags &= ~1;
+  }
+
+  if ((sActionData.flags & 2)
+      && !CanMonsterBeDestroyedByBattle(
+          sActionData.opponentCardId, DUEL_OPPONENT,
+          sActionData.opponentCardAtkOrLifePointsMod,
+          sActionData.playerCardAtkOrLifePointsMod)) {
+    sActionData.flags &= ~2;
+  }
+}
+
+void Duel_RemapMutualDestroyBattleAnim(u8 playerDestroy, u8 opponentDestroy)
+{
+  if (playerDestroy && opponentDestroy) {
+    gUnk2023EA0.unk18 = 2;
+    return;
+  }
+
+  if (!playerDestroy && !opponentDestroy) {
+    gUnk2023EA0.unk18 = 8;
+    return;
+  }
+
+  if (gUnk2023EA0.unk18 != 2 && gUnk2023EA0.unk18 != 16 && gUnk2023EA0.unk18 != 17)
+    return;
+
+  if (!playerDestroy && opponentDestroy)
+    gUnk2023EA0.unk18 = 1;
+  else if (playerDestroy && !opponentDestroy)
+    gUnk2023EA0.unk18 = 3;
+}
+
 void Duel_ActivateContinuousZone(struct DuelCard *zone)
 {
   if (zone == NULL)
@@ -1795,5 +1897,12 @@ void DuelHelpers_SelfCheck(void)
       while (1)
         ;
   }
+
+  if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 2000) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 1999) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(KAISER_GLIDER, DUEL_PLAYER, 1500, 1500) != TRUE)
+    __builtin_trap();
 }
 #endif

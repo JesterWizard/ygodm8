@@ -696,6 +696,10 @@ static const unsigned char sJowlsOfDarkDemiseBigArt[] __attribute__((section(".a
 static const unsigned short sJowlsOfDarkDemiseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/jowls_of_dark_demise.gbapal");
 static const unsigned char sJowlsOfDarkDemiseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/jowls_of_dark_demise.lz");
 
+static const unsigned char sKishidoSpiritBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/kishido_spirit.huff");
+static const unsigned short sKishidoSpiritBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kishido_spirit.gbapal");
+static const unsigned char sKishidoSpiritMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kishido_spirit.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -871,6 +875,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03CA] = sDiceJarBigArt,
   [0x03CB] = sKnightsTitleBigArt,
   [0x03CC] = sJowlsOfDarkDemiseBigArt,
+  [0x03CD] = sKishidoSpiritBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1048,6 +1053,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03CA] = sDiceJarBigPalette,
   [0x03CB] = sKnightsTitleBigPalette,
   [0x03CC] = sJowlsOfDarkDemiseBigPalette,
+  [0x03CD] = sKishidoSpiritBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1225,6 +1231,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03CA] = 0,
   [0x03CB] = 0,
   [0x03CC] = 0,
+  [0x03CD] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1402,4 +1409,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03CA] = sDiceJarMiniArt,
   [0x03CB] = sKnightsTitleMiniArt,
   [0x03CC] = sJowlsOfDarkDemiseMiniArt,
+  [0x03CD] = sKishidoSpiritMiniArt,
 };

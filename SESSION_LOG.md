@@ -15,6 +15,56 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Kishido per-side equal-ATK protection
+
+**Worked on:** Fixed over-protection bug: `ApplyKishidoSpiritEqualAtkProtection` now clears only the protected controller's GY flag (`~1` player / `~2` opponent), matching GBA card text (your-side only). Extended `Duel_RemapMutualDestroyBattleAnim`: force case 2 when both still destroy; case 8 when neither; remap 1/3 only for mutual/attribute equal-ATK cases (2/16/17) so def-position battles stay untouched.
+
+**Files:** `src_custom/duel_helpers.c`, `tests/host/test_kishido_spirit.py`
+
+**Outcome:** `make test-cards-build` passes; host tests assert per-side flags and anim remap.
+
+**Open / next:** In-game verify A–D (especially B: Kishido active, equal ATK vs Jinzo — you survive, enemy to GY, no softlock).
+
+---
+
+**Worked on:** Removed `sub_801B66C` LynJump hook and `Duel_PersistBattleScreenAnimCase` / `Duel_RestoreBattleScreenAnimCase` — stale anim case and bad vanilla tail-call caused post-win and battle-start softlocks. Kept: force `unk18=2` on unprotected mutual destroy, Kishido equal-ATK clears both GY flags, `CanMonsterBeDestroyedByBattle` for Spirit Reaper only.
+
+**Files:** `src_custom/monster_attack_hooks.c`, `src_custom/duel_helpers.c`, `include/duel_helpers.h`, `src_custom/battle_damage_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/LynJump.event`, tests
+
+**Outcome:** `make test-cards-build` passes.
+
+## 2026-06-18 — Equal-ATK mutual destroy fix (v2)
+
+**Worked on:** Equal-ATK with no protection: force battle anim case 2 when both monsters still marked for GY; persist/restore anim case through battle screen (`Duel_PersistBattleScreenAnimCase`, hook on `sub_801B66C`). Kishido equal-ATK now clears both GY flags (card text: neither destroyed). Removed Kishido from `CanMonsterBeDestroyedByBattle` (Spirit Reaper only).
+
+**Files:** `src_custom/duel_helpers.c`, `include/duel_helpers.h`, `src_custom/battle_damage_hooks.c`, `src_custom/monster_attack_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/LynJump.event`, tests
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game retest equal-ATK without Kishido on field; with Kishido active both should survive equal ATK.
+
+## 2026-06-18 — Equal-ATK mutual destroy + battle destroy API
+
+**Worked on:** Fixed equal-ATK battles when no protection applies: both monsters go to GY with vanilla cut+fire (case 2). Consolidated battle indestructibility into `CanMonsterBeDestroyedByBattle`, `Duel_ApplyBattleDestroyProtection`, and `Duel_RemapMutualDestroyBattleAnim` (early return when both sides still marked for destroy). Removed redundant fire-anim skip hook and deleted `battle_effects/kishido_spirit.c` (logic lives in duel_helpers).
+
+**Files:** `src_custom/duel_helpers.c`, `include/duel_helpers.h`, `src_custom/battle_damage_hooks.c`, `src_custom/monster_attack_hooks.c`, `include/kishido_spirit.h`, `src_custom/card_effect_tally.md`, `tests/host/test_kishido_spirit.py`, `tests/host/test_duel_helpers.py`
+
+**Outcome:** `make test-cards-build` and host tests pass.
+
+**Open / next:** In-game verify equal-ATK with/without Kishido; reset `configs/runtime.c` test hand when done.
+
+## 2026-06-18 — Kishido Spirit custom spell
+
+**Worked on:** Added Kishido Spirit to manifest/trunk (continuous spell, passcode 60519422). Activation in `spell_effects/kishido_spirit.c` via `Duel_ActivateContinuousZone` (locks zone, not re-selectable). Battle protection in `battle_effects/kishido_spirit.c`: controller's monsters not destroyed when ATK equals opponent's ATK; respects Imperial Order. `card_in_hand_1 = KISHIDO_SPIRIT` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/kishido_spirit.h`, `src_custom/spell_effects/kishido_spirit.c`, `src_custom/battle_effects/kishido_spirit.c`, `src_custom/spell_effect_hooks.c`, `src_custom/battle_damage_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, `tests/host/test_kishido_spirit.py`, generated card includes
+
+**Outcome:** `make test-cards-build` passes; host test passes. Card ID `0x03CD`.
+
+**Open / next:** In-game confirm equal-ATK battle survival with spell active and locked continuous zone.
+
+---
+
 ## 2026-06-18 — Jowls of Dark Demise custom card
 
 **Worked on:** Added Jowls of Dark Demise to manifest/trunk (WATER Fiend L2 200/100, passcode 05257687, `MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE`). FLIP effect in `activated_effects/jowls_of_dark_demise.c`: target 1 opponent monster, take control until End Phase (`willChangeSides`), controlled monster can direct attack (`unkTwo` flag). Player targeting via `DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET`; AI picks highest ATK valid target. `card_in_hand_1 = JOWLS_OF_DARK_DEMISE` in `configs/runtime.c`.

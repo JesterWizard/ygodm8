@@ -6,7 +6,7 @@
 #include "duel.h"
 #include "the_dark_door.h"
 #include "duel_attack_restrictions.h"
-#include "reaper_on_the_nightmare.h"
+#include "duel_helpers.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
 
@@ -53,7 +53,7 @@ static void AiDecision_BoostBattleDamageVsIndestructible(struct AiDecisionContex
 
     AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
     defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
-    if (!IsBattleIndestructibleMonster(defender->id))
+    if (!CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0))
       continue;
 
     if (ctx->entries[i].priority == 0)

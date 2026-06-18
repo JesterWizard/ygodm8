@@ -2,7 +2,6 @@
 #include "common-chax.h"
 #include "ai_actions.h"
 #include "duel.h"
-#include "reaper_on_the_nightmare.h"
 
 void sub_801C610(unsigned char arg0);
 void sub_801CB24(unsigned char arg0);
@@ -61,19 +60,8 @@ typedef void (*BattleDestroyAnimFn)(void);
 
 extern u8 gSharedMem[];
 
-static u8 BattleDestroyAnimTargetIsIndestructible(u8 side) {
-  if (side == 0)
-    return IsBattleIndestructibleMonster(gUnk2023EA0.unk0[0].cardId);
-  if (side == 1)
-    return IsBattleIndestructibleMonster(gUnk2023EA0.unk0[1].cardId);
-  return FALSE;
-}
-
 LYN_REPLACE_CHECK(sub_801C1DC);
 void sub_801C1DC__Replacement(unsigned char side) {
-  if (BattleDestroyAnimTargetIsIndestructible(side))
-    return;
-
   CpuFill16(0, gSharedMem, 0x4314);
   if (side == 0)
     BATTLE_DESTROY_PLAYER_ANIM();

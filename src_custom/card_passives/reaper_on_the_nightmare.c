@@ -5,7 +5,3 @@
 u8 CanReaperOnTheNightmareAttackDirectly(u16 cardId) {
   return cardId == REAPER_ON_THE_NIGHTMARE;
 }
-
-u8 IsBattleIndestructibleMonster(u16 cardId) {
-  return cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER;
-}

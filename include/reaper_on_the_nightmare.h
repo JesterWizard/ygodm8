@@ -8,8 +8,6 @@
 extern u8 gPendingReaperDiscardDuelist;
 
 u8 CanReaperOnTheNightmareAttackDirectly(u16 cardId);
-u8 IsBattleIndestructibleMonster(u16 cardId);
-void ApplyReaperOnTheNightmareBattleProtection(void);
 void ApplyReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ClearReaperDiscardPending(void);

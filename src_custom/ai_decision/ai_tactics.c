@@ -6,7 +6,7 @@
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
-#include "reaper_on_the_nightmare.h"
+#include "duel_helpers.h"
 
 static void AiTactics_GetMonsterStats(
     struct DuelCard *card, u16 *atkOut, u16 *defOut, u8 *attrOut) {
@@ -66,14 +66,14 @@ static u8 AiTactics_AttackerCanDestroyDefender(
     struct DuelCard *attacker, struct DuelCard *defender) {
   if (!AiTactics_AttackerBeatsDefender(attacker, defender))
     return FALSE;
-  return !IsBattleIndestructibleMonster(defender->id);
+  return CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0);
 }
 
 static u8 AiTactics_AttackHasMeaningfulOutcome(
     struct DuelCard *attacker, struct DuelCard *defender) {
   if (!AiTactics_AttackerBeatsDefender(attacker, defender))
     return FALSE;
-  if (!IsBattleIndestructibleMonster(defender->id))
+  if (CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0))
     return TRUE;
   /* ponytail: indestructible in DEF survives with no LP change; ATK still chips LP. */
   return !defender->isDefending;
@@ -309,7 +309,7 @@ u8 AiTactics_IsFutileIndestructibleDefenseLine(u16 actionIndex) {
   if (attacker->id == CARD_NONE || defender->id == CARD_NONE || !defender->isFaceUp)
     return FALSE;
 
-  return IsBattleIndestructibleMonster(defender->id)
+  return !CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0)
       && defender->isDefending
       && AiTactics_AttackerBeatsDefender(attacker, defender);
 }

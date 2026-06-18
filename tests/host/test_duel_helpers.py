@@ -49,6 +49,9 @@ class DuelHelpersSourceTests(unittest.TestCase):
             "Duel_FindFixedZone",
             "Duel_IsBackrowCardOnField",
             "Duel_ApplyStatModViaZoneApplier",
+            "CanMonsterBeDestroyedByBattle",
+            "Duel_ApplyBattleDestroyProtection",
+            "Duel_RemapMutualDestroyBattleAnim",
             "enum DuelActionResult",
         ):
             self.assertIn(symbol, header)

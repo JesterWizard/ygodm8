@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `184` effects
+- `185` effects
 
 ## Tally
 
@@ -53,6 +53,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Graceful Charity` | `src_custom/spell_effects/graceful_charity.c` |
 | `spell_effects` | `Thousand Knives` | `src_custom/spell_effects/thousand_knives.c` |
 | `spell_effects` | `Knight's Title` | `src_custom/spell_effects/knights_title.c` |
+| `spell_effects` | `Kishido Spirit` | `src_custom/spell_effects/kishido_spirit.c` |
 | `spell_effects` | `Soul Taker` | `src_custom/spell_effects/soul_taker.c` |
 | `spell_effects` | `Precious Cards From Beyond` | `src_custom/spell_effects/precious_cards_from_beyond.c` |
 | `spell_effects` | `Final Countdown` | `src_custom/spell_effects/final_countdown.c` |
