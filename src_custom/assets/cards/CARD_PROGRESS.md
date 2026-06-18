@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 168 |
-| Art ready, needs manifest | 153 |
+| In game (manifest + art) | 169 |
+| Art ready, needs manifest | 152 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -190,6 +190,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DRILLAGO` | Drillago | `drillago.png` |
 | `DARK_SNAKE_SYNDROME` | Dark Snake Syndrome | `dark_snake_syndrome.png` |
 | `JAR_ROBBER` | Jar Robber | `jar_robber.png` |
+| `GRAVEKEEPERS_SERVANT` | Gravekeeper's Servant | `gravekeepers_servant.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -248,7 +249,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
 - [ ] `GIANT_RAT` — `giant_rat.png`
-- [ ] `GRAVEKEEPERS_SERVANT` — `gravekeepers_servant.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`

@@ -4,6 +4,7 @@
 #include "duel_helpers.h"
 #include "spell_effects.h"
 #include "toll.h"
+#include "gravekeepers_servant.h"
 #include "imperial_order.h"
 
 #define TOLL_LP_COST 500
@@ -84,6 +85,19 @@ u8 TryPayTollAttackCost(void)
   ApplyTollAttackLpCost(cost);
 
   return IsDuelOver() != TRUE;
+}
+
+u8 TryPayAttackFieldCosts(void)
+{
+  if (!TryPayTollAttackCost())
+    return FALSE;
+
+  return TryPayGravekeepersServantAttackCost();
+}
+
+u8 AttackFieldCostsRequireCoTHResumeSkip(void)
+{
+  return IsTollActiveOnField() || IsGravekeepersServantActiveAgainstAttacker();
 }
 
 APPEND_TEXT void EffectToll(void)

@@ -183,6 +183,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { DRILLAGO, gActivationDescription_Drillago },
   { DARK_SNAKE_SYNDROME, gActivationDescription_DarkSnakeSyndrome },
   { JAR_ROBBER, gActivationDescription_JarRobber },
+  { GRAVEKEEPERS_SERVANT, gActivationDescription_GravekeepersServant },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

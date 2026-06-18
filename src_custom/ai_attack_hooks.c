@@ -87,10 +87,10 @@ static void AiSetAttackOriginFromZone(struct DuelCard *attacker) {
 
 static u8 AiPayAttackTollIfNeeded(void)
 {
-  if (!TryPayTollAttackCost())
+  if (!TryPayAttackFieldCosts())
     return FALSE;
 
-  if (IsTollActiveOnField())
+  if (AttackFieldCostsRequireCoTHResumeSkip())
     MarkCallOfTheHauntedAttackTollPaid();
 
   return TRUE;

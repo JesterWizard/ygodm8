@@ -278,7 +278,7 @@ static u8 TryPayResumeAttackToll(void)
     return IsDuelOver() != TRUE;
   }
 
-  return TryPayTollAttackCost();
+  return TryPayAttackFieldCosts();
 }
 
 void CallOfTheHauntedShowActivationText(void)

@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Gravekeeper's Servant custom card
+
+**Worked on:** Added Gravekeeper's Servant to manifest/trunk (continuous spell, passcode 16762927). Opponent must mill 1 from Deck to declare an attack while controller's face-up copy is active (`TryPayGravekeepersServantAttackCost`, chained via `TryPayAttackFieldCosts` with Toll). Imperial Order aware; empty deck blocks attack. `card_in_hand_1 = GRAVEKEEPERS_SERVANT` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/gravekeepers_servant.h`, `include/toll.h`, `src_custom/spell_effects/gravekeepers_servant.c`, `src_custom/spell_effects/toll.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/card_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm opponent cannot attack with empty deck; mills 1 per attack when Servant is active.
+
+---
+
 ## 2026-06-18 — Jar Robber custom card
 
 **Worked on:** Added Jar Robber to manifest/trunk (trap, passcode 33784505, `trapEffect` 40). Set on backrow auto-fires when opponent activates Pot of Greed (`TryJarRobberPotOfGreedCounter` in spell activation, before trap window): negates PoG, sends both to GY, draws 1. `card_in_hand_1 = JAR_ROBBER` in `configs/runtime.c`.

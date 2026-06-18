@@ -135,7 +135,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   attacker->isFaceUp = TRUE;
   attacker->isLocked = TRUE;
 
-  if (!TryPayTollAttackCost())
+  if (!TryPayAttackFieldCosts())
     return;
 
   if (sAttackResume.isDirect) {

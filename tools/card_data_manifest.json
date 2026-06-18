@@ -17400,6 +17400,34 @@
           "Negate Pot of Greed and draw 1 card from your Deck."
         ]
       }
+    },
+    {
+      "card_const": "GRAVEKEEPERS_SERVANT",
+      "card_name": "Gravekeeper's Servant",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 6, 7, 6, 2, 9, 2, 7],
+      "description": {
+        "symbol": "gDescription_GravekeepersServant",
+        "pages": [
+          "Unless your opponent sends 1 card from the",
+          "top of their Deck to the Graveyard, they cannot attack."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_GravekeepersServant",
+        "pages": [
+          "The opponent must send 1 card from the top of their Deck to the Graveyard to attack."
+        ]
+      }
     }
   ]
 }

@@ -684,6 +684,10 @@ static const unsigned char sJarRobberBigArt[] __attribute__((section(".append_as
 static const unsigned short sJarRobberBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/jar_robber.gbapal");
 static const unsigned char sJarRobberMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/jar_robber.lz");
 
+static const unsigned char sGravekeepersServantBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gravekeepers_servant.huff");
+static const unsigned short sGravekeepersServantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_servant.gbapal");
+static const unsigned char sGravekeepersServantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_servant.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -856,6 +860,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03C6] = sDrillagoBigArt,
   [0x03C7] = sDarkSnakeSyndromeBigArt,
   [0x03C8] = sJarRobberBigArt,
+  [0x03C9] = sGravekeepersServantBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1030,6 +1035,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03C6] = sDrillagoBigPalette,
   [0x03C7] = sDarkSnakeSyndromeBigPalette,
   [0x03C8] = sJarRobberBigPalette,
+  [0x03C9] = sGravekeepersServantBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1204,6 +1210,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03C6] = 0,
   [0x03C7] = 0,
   [0x03C8] = 0,
+  [0x03C9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1378,4 +1385,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03C6] = sDrillagoMiniArt,
   [0x03C7] = sDarkSnakeSyndromeMiniArt,
   [0x03C8] = sJarRobberMiniArt,
+  [0x03C9] = sGravekeepersServantMiniArt,
 };

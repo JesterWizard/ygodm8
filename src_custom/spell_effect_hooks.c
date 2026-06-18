@@ -60,6 +60,7 @@ extern void EffectPreciousCardsFromBeyond(void);
 extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
 extern void EffectDarkSnakeSyndrome(void);
+extern void EffectGravekeepersServant(void);
 extern void EffectRaregoldArmor(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
@@ -351,6 +352,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case DARK_SNAKE_SYNDROME:
       EffectDarkSnakeSyndrome();
+      return;
+    case GRAVEKEEPERS_SERVANT:
+      EffectGravekeepersServant();
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();

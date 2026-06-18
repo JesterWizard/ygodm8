@@ -711,7 +711,7 @@ void sub_8044570__Replacement(void)
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
     if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
-      if (!TryPayTollAttackCost()) {
+      if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         gDuelCursor.state = 0;
         return;
@@ -761,12 +761,12 @@ void sub_8044570__Replacement(void)
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
-      if (!TryPayTollAttackCost()) {
+      if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         gDuelCursor.state = 0;
         return;
       }
-      if (IsTollActiveOnField())
+      if (AttackFieldCostsRequireCoTHResumeSkip())
         MarkCallOfTheHauntedAttackTollPaid();
       PlayMusic(SFX_ATTACK_REBUFFED);
       ActivateTrapEffect(0);
@@ -813,7 +813,7 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
     if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
-      if (!TryPayTollAttackCost()) {
+      if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
         return;
@@ -865,12 +865,12 @@ void TryAttackWithMonster__Replacement(void)
       sub_8022080();
       FinishGraveyardDrawBattleResolve();
     } else {
-      if (!TryPayTollAttackCost()) {
+      if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
         return;
       }
-      if (IsTollActiveOnField())
+      if (AttackFieldCostsRequireCoTHResumeSkip())
         MarkCallOfTheHauntedAttackTollPaid();
       ActivateTrapEffect(0);
       TryResumeInterruptedAttackAfterCallOfTheHaunted();
