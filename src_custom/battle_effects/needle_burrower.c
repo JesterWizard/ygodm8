@@ -38,7 +38,7 @@ void ClearNeedleBurrowerPending(void) {
 }
 
 static u8 IsBattleDestroyBurner(u16 cardId) {
-  return cardId == NEEDLE_BURROWER || cardId == DES_SCISSORS;
+  return cardId == NEEDLE_BURROWER || cardId == KA_2_DES_SCISSORS;
 }
 
 static u16 BattleDestroyBurnerEffectCard(u8 controller) {

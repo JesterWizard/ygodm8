@@ -14057,7 +14057,7 @@ const CardData gCardData_NEW[971] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {5, 2, 7, 6, 8, 1, 0, 3},
-    .description = gDescription_DesScissors,
+    .description = gDescription_Ka2DesScissors,
   },
   [0x0396] = {
     .atk = 65535,

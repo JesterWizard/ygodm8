@@ -15930,8 +15930,8 @@
       }
     },
     {
-      "card_const": "DES_SCISSORS",
-      "card_name": "Des Scissors",
+      "card_const": "KA_2_DES_SCISSORS",
+      "card_name": "KA-2 Des Scissors",
       "atk": 1000,
       "def": 1000,
       "level": 4,
@@ -15944,7 +15944,7 @@
       "cost": 150,
       "password": [5, 2, 7, 6, 8, 1, 0, 3],
       "description": {
-        "symbol": "gDescription_DesScissors",
+        "symbol": "gDescription_Ka2DesScissors",
         "pages": [
           "A machine that cuts with giant scissors.",
           "When it destroys a monster by battle,",
@@ -15952,7 +15952,7 @@
         ]
       },
       "activation_description": {
-        "symbol": "gActivationDescription_DesScissors",
+        "symbol": "gActivationDescription_Ka2DesScissors",
         "pages": [
           "500LP damage for each Level of the destroyed monster."
         ]

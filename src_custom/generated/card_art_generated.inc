@@ -1,9 +1,5 @@
 #include "global.h"
 
-static const unsigned char sGiantRatBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/giant_rat.huff");
-static const unsigned short sGiantRatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/giant_rat.gbapal");
-static const unsigned char sGiantRatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/giant_rat.lz");
-
 static const unsigned char sSenjuOfTheThousandHandsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/senju_of_the_thousand_hands.huff");
 static const unsigned short sSenjuOfTheThousandHandsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/senju_of_the_thousand_hands.gbapal");
 static const unsigned char sSenjuOfTheThousandHandsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/senju_of_the_thousand_hands.lz");
@@ -476,9 +472,9 @@ static const unsigned char sNeedleBurrowerBigArt[] __attribute__((section(".appe
 static const unsigned short sNeedleBurrowerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/needle_burrower.gbapal");
 static const unsigned char sNeedleBurrowerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/needle_burrower.lz");
 
-static const unsigned char sDesScissorsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/des_scissors.huff");
-static const unsigned short sDesScissorsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/des_scissors.gbapal");
-static const unsigned char sDesScissorsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/des_scissors.lz");
+static const unsigned char sKa2DesScissorsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ka_2_des_scissors.huff");
+static const unsigned short sKa2DesScissorsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ka_2_des_scissors.gbapal");
+static const unsigned char sKa2DesScissorsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ka_2_des_scissors.lz");
 
 static const unsigned char sImperialOrderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/imperial_order.huff");
 static const unsigned short sImperialOrderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/imperial_order.gbapal");
@@ -693,7 +689,6 @@ static const unsigned short sDiceJarBigPalette[] __attribute__((section(".append
 static const unsigned char sDiceJarMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dice_jar.lz");
 
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
-  [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
   [0x0321] = sSorcererOfDarkMagicBigArt,
@@ -812,7 +807,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0392] = sSolemnWishesBigArt,
   [0x0393] = sStealthBirdBigArt,
   [0x0394] = sNeedleBurrowerBigArt,
-  [0x0395] = sDesScissorsBigArt,
+  [0x0395] = sKa2DesScissorsBigArt,
   [0x0396] = sImperialOrderBigArt,
   [0x0397] = sGrenMajuDaEizaBigArt,
   [0x0398] = sRoyalDecreeBigArt,
@@ -869,7 +864,6 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
-  [0x00AD] = sGiantRatBigPalette,
   [0x00AE] = sSenjuOfTheThousandHandsBigPalette,
   [0x0137] = sBlackPendantBigPalette,
   [0x0321] = sSorcererOfDarkMagicBigPalette,
@@ -988,7 +982,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0392] = sSolemnWishesBigPalette,
   [0x0393] = sStealthBirdBigPalette,
   [0x0394] = sNeedleBurrowerBigPalette,
-  [0x0395] = sDesScissorsBigPalette,
+  [0x0395] = sKa2DesScissorsBigPalette,
   [0x0396] = sImperialOrderBigPalette,
   [0x0397] = sGrenMajuDaEizaBigPalette,
   [0x0398] = sRoyalDecreeBigPalette,
@@ -1045,7 +1039,6 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
-  [0x00AD] = 0,
   [0x00AE] = 0,
   [0x0137] = 0,
   [0x0321] = 0,
@@ -1221,7 +1214,6 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
-  [0x00AD] = sGiantRatMiniArt,
   [0x00AE] = sSenjuOfTheThousandHandsMiniArt,
   [0x0137] = sBlackPendantMiniArt,
   [0x0321] = sSorcererOfDarkMagicMiniArt,
@@ -1340,7 +1332,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0392] = sSolemnWishesMiniArt,
   [0x0393] = sStealthBirdMiniArt,
   [0x0394] = sNeedleBurrowerMiniArt,
-  [0x0395] = sDesScissorsMiniArt,
+  [0x0395] = sKa2DesScissorsMiniArt,
   [0x0396] = sImperialOrderMiniArt,
   [0x0397] = sGrenMajuDaEizaMiniArt,
   [0x0398] = sRoyalDecreeMiniArt,

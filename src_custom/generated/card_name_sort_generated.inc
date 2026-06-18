@@ -121,7 +121,7 @@ static const u8 sSolarRaySortName[] APPEND_RODATA = "Solar Ray";
 static const u8 sSolemnWishesSortName[] APPEND_RODATA = "Solemn Wishes";
 static const u8 sStealthBirdSortName[] APPEND_RODATA = "Stealth Bird";
 static const u8 sNeedleBurrowerSortName[] APPEND_RODATA = "Needle Burrower";
-static const u8 sDesScissorsSortName[] APPEND_RODATA = "Des Scissors";
+static const u8 sKa2DesScissorsSortName[] APPEND_RODATA = "KA-2 Des Scissors";
 static const u8 sImperialOrderSortName[] APPEND_RODATA = "Imperial Order";
 static const u8 sGrenMajuDaEizaSortName[] APPEND_RODATA = "Gren Maju Da Eiza";
 static const u8 sRoyalDecreeSortName[] APPEND_RODATA = "Royal Decree";
@@ -221,7 +221,6 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0355, // Delinquent Duo
   0x03C5, // Des Kangaroo
   0x0349, // Des Koala
-  0x0395, // Des Scissors
   0x03CA, // Dice Jar
   0x039C, // Double Coston
   0x0338, // Double Summon
@@ -254,6 +253,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x034C, // Jar of Greed
   0x03C8, // Jar Robber
   0x037C, // Just Deserts
+  0x0395, // KA-2 Des Scissors
   0x032F, // Kaibaman
   0x0364, // Kaiser Glider
   0x03BE, // Level Limit Area B
@@ -394,39 +394,39 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   42, // Delinquent Duo
   43, // Des Kangaroo
   44, // Des Koala
-  45, // Des Scissors
-  46, // Dice Jar
-  47, // Double Coston
-  48, // Double Summon
-  49, // Draining Shield
-  50, // Drillago
-  51, // Drop Off
-  52, // Ebon Magician Curran
-  53, // Exchange
-  54, // Fairy Box
-  55, // Familiar Knight
-  56, // Fenrir
-  57, // Final Countdown
-  58, // Gift Of The Mystical Elf
-  59, // Gilasaurus
-  60, // Goblin King
-  61, // Goblin Thief
-  62, // Graceful Charity
-  63, // Graceful Dice
-  64, // Granadora
-  65, // Gravekeeper's Servant
-  66, // Gravity Bind
-  67, // Great Maju Garzett
-  68, // Gren Maju Da Eiza
-  69, // Guardian Angel Joan
-  70, // Guardian Treasure
-  71, // Gyaku-Gire Panda
-  72, // Hayabusa Knight
-  73, // Hyper Hammerhead
-  74, // Imperial Order
-  75, // Jar of Greed
-  76, // Jar Robber
-  77, // Just Deserts
+  45, // Dice Jar
+  46, // Double Coston
+  47, // Double Summon
+  48, // Draining Shield
+  49, // Drillago
+  50, // Drop Off
+  51, // Ebon Magician Curran
+  52, // Exchange
+  53, // Fairy Box
+  54, // Familiar Knight
+  55, // Fenrir
+  56, // Final Countdown
+  57, // Gift Of The Mystical Elf
+  58, // Gilasaurus
+  59, // Goblin King
+  60, // Goblin Thief
+  61, // Graceful Charity
+  62, // Graceful Dice
+  63, // Granadora
+  64, // Gravekeeper's Servant
+  65, // Gravity Bind
+  66, // Great Maju Garzett
+  67, // Gren Maju Da Eiza
+  68, // Guardian Angel Joan
+  69, // Guardian Treasure
+  70, // Gyaku-Gire Panda
+  71, // Hayabusa Knight
+  72, // Hyper Hammerhead
+  73, // Imperial Order
+  74, // Jar of Greed
+  75, // Jar Robber
+  76, // Just Deserts
+  77, // KA-2 Des Scissors
   78, // Kaibaman
   79, // Kaiser Glider
   80, // Level Limit Area B
@@ -762,7 +762,7 @@ static u8 *GetSortCardName(u16 cardId) {
   if (cardId == 0x0394)
     return (u8 *)sNeedleBurrowerSortName;
   if (cardId == 0x0395)
-    return (u8 *)sDesScissorsSortName;
+    return (u8 *)sKa2DesScissorsSortName;
   if (cardId == 0x0396)
     return (u8 *)sImperialOrderSortName;
   if (cardId == 0x0397)

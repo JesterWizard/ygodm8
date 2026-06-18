@@ -15,7 +15,18 @@ Format for new entries (newest first):
 
 ---
 
-## 2026-06-18 — Dice Jar custom card
+## 2026-06-18 — Rename Des Scissors to KA-2 Des Scissors
+
+**Worked on:** Renamed card const `DES_SCISSORS` → `KA_2_DES_SCISSORS`, display name "KA-2 Des Scissors", art stem `ka_2_des_scissors.png`. Updated manifest, battle effect hook, CARD_PROGRESS, card_effect_tally; regenerated card data/art.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/battle_effects/needle_burrower.c`, `src_custom/assets/cards/80x80/ka_2_des_scissors.png`, `src_custom/assets/cards/CARD_PROGRESS.md`, `src_custom/card_effect_tally.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. Card ID unchanged at `0x0395`.
+
+**Open / next:** —
+
+---
+
 
 **Worked on:** Added Dice Jar to manifest/trunk (LIGHT Rock L3 200/300, passcode 03549275, `MONSTER_EFFECT_DICE_JAR`). FLIP effect in `activated_effects/dice_jar.c`: both players roll d6, lower roll takes winner's roll × 500 (6000 if winner rolled 6), ties reroll. Uses `Duel_ShowEffectTextTyped`, `RandRangeU8`, `Duel_ChangeLp`. `card_in_hand_1 = DICE_JAR` in `configs/runtime.c`.
 

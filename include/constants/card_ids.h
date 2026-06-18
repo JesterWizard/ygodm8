@@ -918,7 +918,7 @@
 #define SOLEMN_WISHES                            0x0392
 #define STEALTH_BIRD                             0x0393
 #define NEEDLE_BURROWER                          0x0394
-#define DES_SCISSORS                             0x0395
+#define KA_2_DES_SCISSORS                        0x0395
 #define IMPERIAL_ORDER                           0x0396
 #define GREN_MAJU_DA_EIZA                        0x0397
 #define ROYAL_DECREE                             0x0398

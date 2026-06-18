@@ -1,17 +1,3 @@
-  [0x00AD] = {
-    .atk = 1400,
-    .def = 1450,
-    .cost = 172,
-    .attribute = ATTRIBUTE_EARTH,
-    .level = 4,
-    .type = TYPE_BEAST,
-    .color = EFFECT_CARD,
-    .monsterEffect = 0,
-    .spellEffect = 2,
-    .trapEffect = 0,
-    .password = {9, 7, 0, 1, 7, 1, 2, 0},
-    .description = gDescription_GiantRat,
-  },
   [0x00AE] = {
     .atk = 1400,
     .def = 1000,
@@ -1674,7 +1660,7 @@
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {5, 2, 7, 6, 8, 1, 0, 3},
-    .description = gDescription_DesScissors,
+    .description = gDescription_Ka2DesScissors,
   },
   [0x0396] = {
     .atk = 65535,

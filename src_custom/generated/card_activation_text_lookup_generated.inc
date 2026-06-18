@@ -137,7 +137,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SOLEMN_WISHES, gActivationDescription_SolemnWishes },
   { STEALTH_BIRD, gActivationDescription_StealthBird },
   { NEEDLE_BURROWER, gActivationDescription_NeedleBurrower },
-  { DES_SCISSORS, gActivationDescription_DesScissors },
+  { KA_2_DES_SCISSORS, gActivationDescription_Ka2DesScissors },
   { IMPERIAL_ORDER, gActivationDescription_ImperialOrder },
   { ROYAL_DECREE, gActivationDescription_RoyalDecree },
   { REAPER_ON_THE_NIGHTMARE, gActivationDescription_ReaperOnTheNightmare },

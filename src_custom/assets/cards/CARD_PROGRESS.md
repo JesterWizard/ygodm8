@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 170 |
-| Art ready, needs manifest | 151 |
+| Art ready, needs manifest | 149 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **321** |
+| **Total PNGs in `80x80/`** | **319** |
 
 ## In game
 
@@ -138,7 +138,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SOLEMN_WISHES` | Solemn Wishes | `solemn_wishes.png` |
 | `STEALTH_BIRD` | Stealth Bird | `stealth_bird.png` |
 | `NEEDLE_BURROWER` | Needle Burrower | `needle_burrower.png` |
-| `DES_SCISSORS` | Des Scissors | `des_scissors.png` |
+| `KA_2_DES_SCISSORS` | KA-2 Des Scissors | `ka_2_des_scissors.png` |
 | `IMPERIAL_ORDER` | Imperial Order | `imperial_order.png` |
 | `GREN_MAJU_DA_EIZA` | Gren Maju Da Eiza | `gren_maju_da_eiza.png` |
 | `ROYAL_DECREE` | Royal Decree | `royal_decree.png` |
@@ -248,14 +248,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
-- [ ] `GIANT_RAT` — `giant_rat.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `INVADER_OF_THE_THRONE` — `invader_of_the_throne.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
-- [ ] `KA_2_DES_SCISSORS` — `ka_2_des_scissors.png`
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
