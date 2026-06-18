@@ -17457,6 +17457,35 @@
           "Both players roll a die. The lower roll takes damage from the winner's roll."
         ]
       }
+    },
+    {
+      "card_const": "KNIGHTS_TITLE",
+      "card_name": "Knight's Title",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 7, 2, 1, 0, 5, 0, 5],
+      "description": {
+        "symbol": "gDescription_KnightsTitle",
+        "pages": [
+          "Tribute 1 face-up \"Dark Magician\"; Special Summon 1",
+          "\"Dark Magician Knight\" from your hand, Deck or",
+          "Graveyard."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_KnightsTitle",
+        "pages": [
+          "Tribute 1 Dark Magician to Special Summon 1 Dark Magician Knight from your hand, Deck or Graveyard."
+        ]
+      }
     }
   ]
 }

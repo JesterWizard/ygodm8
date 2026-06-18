@@ -59,6 +59,7 @@
 #include "meteor_of_destruction.h"
 #include "final_countdown.h"
 #include "chaos_greed.h"
+#include "knights_title.h"
 #include "book_of_moon.h"
 #include "ring_of_destruction.h"
 #include "toll.h"
@@ -486,6 +487,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == CHAOS_GREED && !CanActivateChaosGreed()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == KNIGHTS_TITLE && !CanActivateKnightsTitle()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

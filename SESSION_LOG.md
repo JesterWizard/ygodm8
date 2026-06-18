@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Knight's Title custom spell
+
+**Worked on:** Added Knight's Title to manifest/trunk (`KNIGHTS_TITLE`, passcode 87210505, cost 150). Spell effect in `spell_effects/knights_title.c`: tribute face-up Dark Magician, Special Summon Dark Magician Knight from hand (player pick) / deck / grave (hand > deck > grave). `CanActivateKnightsTitle` blocks activation when requirements unmet. `card_in_hand_1 = KNIGHTS_TITLE` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/spell_effects/knights_title.c`, `include/knights_title.h`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. Card ID `0x03CB`.
+
+**Open / next:** In-game confirm tribute requires face-up DM, hand selection, and grave-only-when-on-top behavior.
+
+---
+
 ## 2026-06-18 — Rename Des Scissors to KA-2 Des Scissors
 
 **Worked on:** Renamed card const `DES_SCISSORS` → `KA_2_DES_SCISSORS`, display name "KA-2 Des Scissors", art stem `ka_2_des_scissors.png`. Updated manifest, battle effect hook, CARD_PROGRESS, card_effect_tally; regenerated card data/art.

@@ -132,7 +132,11 @@ static void MarkDarkMagicianKnightEffectUsed(u8 originFixedRow, u8 originFixedCo
 
 static void ShowDarkMagicianKnightActivationText(void)
 {
+  u8 hideEffectText = gHideEffectText;
+
+  gHideEffectText = FALSE;
   Duel_ShowEffectTextTyped(DARK_MAGICIAN_KNIGHT, 8);
+  gHideEffectText = hideEffectText;
 }
 
 u8 FieldHasDarkMagicianKnightTarget(u8 originFixedRow, u8 originFixedCol)

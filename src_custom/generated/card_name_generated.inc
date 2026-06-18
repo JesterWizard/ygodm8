@@ -171,6 +171,7 @@ static const u8 sDarkSnakeSyndromeName[] __attribute__((section(".append_assets"
 static const u8 sJarRobberName[] __attribute__((section(".append_assets"))) = "Jar Robber";
 static const u8 sGravekeepersServantName[] __attribute__((section(".append_assets"))) = "Gravekeeper's Servant";
 static const u8 sDiceJarName[] __attribute__((section(".append_assets"))) = "Dice Jar";
+static const u8 sKnightsTitleName[] __attribute__((section(".append_assets"))) = "Knight's Title";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -519,6 +520,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGravekeepersServantName;
   if (cardId == 0x03CA)
     return (u8 *)sDiceJarName;
+  if (cardId == 0x03CB)
+    return (u8 *)sKnightsTitleName;
 
   return gCardNames[cardId];
 }

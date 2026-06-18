@@ -67,6 +67,7 @@ extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
 extern void EffectThunderCrash(void);
 extern void EffectRingOfDestruction(void);
+extern void EffectKnightsTitle(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -373,6 +374,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case RING_OF_DESTRUCTION:
       EffectRingOfDestruction();
+      return;
+    case KNIGHTS_TITLE:
+      EffectKnightsTitle();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
