@@ -636,6 +636,10 @@ static const unsigned char sServantOfCatabolismBigArt[] __attribute__((section("
 static const unsigned short sServantOfCatabolismBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/servant_of_catabolism.gbapal");
 static const unsigned char sServantOfCatabolismMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/servant_of_catabolism.lz");
 
+static const unsigned char sManThroTroBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/man_thro_tro.huff");
+static const unsigned short sManThroTroBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/man_thro_tro.gbapal");
+static const unsigned char sManThroTroMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/man_thro_tro.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -796,6 +800,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03BA] = sSasukeSamurai2BigArt,
   [0x03BB] = sSasukeSamurai3BigArt,
   [0x03BC] = sServantOfCatabolismBigArt,
+  [0x03BD] = sManThroTroBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -958,6 +963,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03BA] = sSasukeSamurai2BigPalette,
   [0x03BB] = sSasukeSamurai3BigPalette,
   [0x03BC] = sServantOfCatabolismBigPalette,
+  [0x03BD] = sManThroTroBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1120,6 +1126,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03BA] = 0,
   [0x03BB] = 0,
   [0x03BC] = 0,
+  [0x03BD] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1282,4 +1289,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03BA] = sSasukeSamurai2MiniArt,
   [0x03BB] = sSasukeSamurai3MiniArt,
   [0x03BC] = sServantOfCatabolismMiniArt,
+  [0x03BD] = sManThroTroMiniArt,
 };

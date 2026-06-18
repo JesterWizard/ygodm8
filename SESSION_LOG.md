@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Man-Thro' Tro' custom card
+
+**Worked on:** Added Man-Thro' Tro' to manifest/trunk (`MAN_THRO_TRO`, EARTH Beast-Warrior L4 1000/1000, passcode 43714890). Ignition: tribute 1 Normal Monster (Ojama Trio token form excluded), inflict 800 — Cannon Soldier-style targeting in `activated_effects/man_thro_tro.c`, `multiple_per_turn`. Art from `man-thro-thro.png` copied to `man_thro_tro.png`. `card_in_hand_1 = MAN_THRO_TRO` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/man_thro_tro.h`, `include/constants/monster_effects.h`, `src_custom/activated_effects/man_thro_tro.c`, `src_custom/monster_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, `src_custom/assets/cards/80x80/man_thro_tro.png`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm tribute cursor only accepts Normal Monsters and 800 burn applies.
+
+---
+
 ## 2026-06-18 — Servant of Catabolism custom card
 
 **Worked on:** Added Servant of Catabolism to manifest/trunk (`SERVANT_OF_CATABOLISM`, LIGHT Aqua L3 700/500, passcode 02792265). Continuous direct-attack passive via `CanServantOfCatabolismAttackDirectly` (Nightmare Horse pattern) in `card_passives/servant_of_catabolism.c`, wired into player attack path in `code_8043EF4_hooks.c`. `card_in_hand_1 = SERVANT_OF_CATABOLISM` in `configs/runtime.c`.

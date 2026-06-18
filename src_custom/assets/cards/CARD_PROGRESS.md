@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 156 |
+| In game (manifest + art) | 157 |
 | Art ready, needs manifest | 163 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **319** |
+| **Total PNGs in `80x80/`** | **320** |
 
 ## In game
 
@@ -178,6 +178,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 | `SASUKE_SAMURAI_3` | Sasuke Samurai #3 | `sasuke_samurai_3.png` |
 | `SERVANT_OF_CATABOLISM` | Servant of Catabolism | `servant_of_catabolism.png` |
+| `MAN_THRO_TRO` | Man-Thro' Tro' | `man_thro_tro.png` |
 
 ## Todo — art ready, needs manifest
 

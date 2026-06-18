@@ -10,6 +10,7 @@
 #include "weather_report.h"
 #include "berserk_gorilla.h"
 #include "sasuke_samurai_2.h"
+#include "man_thro_tro.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -70,6 +71,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateMagicalMerchant();
     case MONSTER_EFFECT_SASUKE_SAMURAI_2:
       return CanActivateSasukeSamurai2();
+    case MONSTER_EFFECT_MAN_THRO_TRO:
+      return CanActivateManThroTro();
     default:
       return TRUE;
   }
@@ -199,6 +202,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_MAN_THRO_TRO) {
+    ActivateManThroTroEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -271,7 +279,8 @@ void MonsterActionMenu__Replacement(void) {
 
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
-      if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == THE_AGENT_OF_CREATION_VENUS
+      if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == MAN_THRO_TRO
+          || zone->id == THE_AGENT_OF_CREATION_VENUS
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
@@ -296,7 +305,8 @@ FAILED:
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);
           UpdateDuelGfxExceptField();
-          if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET)
+          if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET)
             break;
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)

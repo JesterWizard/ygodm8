@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `169` effects
+- `170` effects
 
 ## Tally
 
@@ -77,6 +77,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Copycat` | `src_custom/activated_effects/copycat.c` |
 | `activated_effects` | `Kaibaman` | `src_custom/activated_effects/kaibaman.c` |
 | `activated_effects` | `Cannon Soldier` | `src_custom/activated_effects/cannon_soldier.c` |
+| `activated_effects` | `Man-Thro' Tro'` | `src_custom/activated_effects/man_thro_tro.c` |
 | `activated_effects` | `Hourglass of Life` | `src_custom/activated_effects/hourglass_of_life.c` |
 | `trap_effects` | `Mask of Restrict` | `src_custom/trap_effects/mask_of_restrict.c` |
 | `trap_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |

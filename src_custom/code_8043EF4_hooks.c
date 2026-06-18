@@ -7,6 +7,7 @@
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "cannon_soldier.h"
+#include "man_thro_tro.h"
 #include "riryoku.h"
 #include "pyramid_of_light.h"
 #include "mask_of_restrict.h"
@@ -892,6 +893,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
       TrySelectCannonSoldierTarget();
       break;
+    case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
+      TrySelectManThroTroTarget();
+      break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       TrySelectDarkMagicianKnightTarget();
       break;
@@ -937,6 +941,7 @@ void HandleBButtonAction__Replacement(void)
       CancelRiryokuTargeting();
       break;
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
+    case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();
       break;

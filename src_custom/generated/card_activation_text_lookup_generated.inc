@@ -172,6 +172,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { RING_OF_DESTRUCTION, gActivationDescription_RingOfDestruction },
   { SASUKE_SAMURAI_2, gActivationDescription_SasukeSamurai2 },
   { SASUKE_SAMURAI_3, gActivationDescription_SasukeSamurai3 },
+  { MAN_THRO_TRO, gActivationDescription_ManThroTro },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
