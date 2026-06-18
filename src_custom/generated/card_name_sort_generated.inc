@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 158
+#define NUM_CUSTOM_NAME_SORT_CARDS 159
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -160,6 +160,7 @@ static const u8 sSasukeSamurai3SortName[] APPEND_RODATA = "Sasuke Samurai #3";
 static const u8 sServantOfCatabolismSortName[] APPEND_RODATA = "Servant of Catabolism";
 static const u8 sManThroTroSortName[] APPEND_RODATA = "Man-Thro-Thro";
 static const u8 sLevelLimitAreaBSortName[] APPEND_RODATA = "Level Limit Area B";
+static const u8 sSpiritRyuSortName[] APPEND_RODATA = "Spirit Ryu";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -295,6 +296,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x032B, // Spell Canceller
   0x03A5, // Spirit of the Breeze
   0x03B4, // Spirit Reaper
+  0x03BF, // Spirit Ryu
   0x0333, // St Joan
   0x0393, // Stealth Bird
   0x036E, // Swift Gaia The Fierce Knight
@@ -456,31 +458,32 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   131, // Spell Canceller
   132, // Spirit of the Breeze
   133, // Spirit Reaper
-  134, // St Joan
-  135, // Stealth Bird
-  136, // Swift Gaia The Fierce Knight
-  137, // Terrorking Salmon
-  138, // The Agent Of Creation - Venus
-  139, // The Dark Door
-  140, // The Forceful Sentry
-  141, // Thousand Energy
-  142, // Thousand Knives
-  143, // Thunder Crash
-  144, // Time Seal
-  145, // Toll
-  146, // Torpedo Fish
-  147, // Triangle Power
-  148, // Twin Swords of Flashing Light - Tryce
-  149, // Tyrant Dragon
-  150, // Ultimate Offering
-  151, // United We Stand
-  152, // Upstart Goblin
-  153, // Vampire Baby
-  154, // Warrior of Zera
-  155, // Wave Motion Cannon
-  156, // Weather Report
-  157, // White Magician Pikeru
-  158, // Yata-Garasu
+  134, // Spirit Ryu
+  135, // St Joan
+  136, // Stealth Bird
+  137, // Swift Gaia The Fierce Knight
+  138, // Terrorking Salmon
+  139, // The Agent Of Creation - Venus
+  140, // The Dark Door
+  141, // The Forceful Sentry
+  142, // Thousand Energy
+  143, // Thousand Knives
+  144, // Thunder Crash
+  145, // Time Seal
+  146, // Toll
+  147, // Torpedo Fish
+  148, // Triangle Power
+  149, // Twin Swords of Flashing Light - Tryce
+  150, // Tyrant Dragon
+  151, // Ultimate Offering
+  152, // United We Stand
+  153, // Upstart Goblin
+  154, // Vampire Baby
+  155, // Warrior of Zera
+  156, // Wave Motion Cannon
+  157, // Weather Report
+  158, // White Magician Pikeru
+  159, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -800,6 +803,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sManThroTroSortName;
   if (cardId == 0x03BE)
     return (u8 *)sLevelLimitAreaBSortName;
+  if (cardId == 0x03BF)
+    return (u8 *)sSpiritRyuSortName;
 
   return gCardNames[cardId];
 }

@@ -23,6 +23,7 @@
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "cats_ear_tribe.h"
+#include "spirit_ryu.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
@@ -704,6 +705,7 @@ void sub_8044570__Replacement(void)
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
+      TryApplySpiritRyuToPendingAction();
       HandleAtkAndLifePointsAction();
       DebugRuleset_MarkAttackUsed();
       TheDarkDoor_MarkAttackUsed();
@@ -800,6 +802,7 @@ void TryAttackWithMonster__Replacement(void)
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
+      TryApplySpiritRyuToPendingAction();
       RunMonsterBattleAction();
       if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id != CARD_NONE) {
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;

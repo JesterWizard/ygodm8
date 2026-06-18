@@ -644,6 +644,10 @@ static const unsigned char sLevelLimitAreaBBigArt[] __attribute__((section(".app
 static const unsigned short sLevelLimitAreaBBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/level_limit_area_b.gbapal");
 static const unsigned char sLevelLimitAreaBMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/level_limit_area_b.lz");
 
+static const unsigned char sSpiritRyuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spirit_ryu.huff");
+static const unsigned short sSpiritRyuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_ryu.gbapal");
+static const unsigned char sSpiritRyuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_ryu.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -806,6 +810,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03BC] = sServantOfCatabolismBigArt,
   [0x03BD] = sManThroTroBigArt,
   [0x03BE] = sLevelLimitAreaBBigArt,
+  [0x03BF] = sSpiritRyuBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -970,6 +975,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03BC] = sServantOfCatabolismBigPalette,
   [0x03BD] = sManThroTroBigPalette,
   [0x03BE] = sLevelLimitAreaBBigPalette,
+  [0x03BF] = sSpiritRyuBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1134,6 +1140,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03BC] = 0,
   [0x03BD] = 0,
   [0x03BE] = 0,
+  [0x03BF] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1298,4 +1305,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03BC] = sServantOfCatabolismMiniArt,
   [0x03BD] = sManThroTroMiniArt,
   [0x03BE] = sLevelLimitAreaBMiniArt,
+  [0x03BF] = sSpiritRyuMiniArt,
 };

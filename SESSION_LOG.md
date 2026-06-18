@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Spirit Ryu custom card
+
+**Worked on:** Added Spirit Ryu to manifest/trunk (`SPIRIT_RYU`, WIND Dragon L4 1000/1000, passcode 67957315). Passive battle effect: +1000 ATK when battling a non-Dragon monster (`TryApplySpiritRyuToPendingAction` in `battle_effects/spirit_ryu.c`, wired on all attack paths like Cat's Ear Tribe). No ignition effect (`monsterEffect` 0). `card_in_hand_1 = SPIRIT_RYU` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/spirit_ryu.h`, `src_custom/battle_effects/spirit_ryu.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/draining_shield_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm +1000 ATK applies vs non-Dragons only (not direct attacks or Dragon matchups).
+
+---
+
 ## 2026-06-18 — Level Limit Area B
 
 **Worked on:** Added Level Limit Area B to manifest/trunk (`LEVEL_LIMIT_AREA_B`, continuous spell, passcode 03136426). Effect forces face-up Lv4+ monsters to Defense Position while active (Imperial Order respected); enforcement on activation, placement, and permanent-effect scan; player monster menu blocks attack-position switch. Wired into unified attack API (`Duel_CanMonsterDeclareAttack` / `gDuelAttackRestrictionsActive`). Fixed AI flipping to attack before declare (`ai_attack_hooks`, turn-start re-enforce). Extended placement hooks to `InitMonsterZone` and `CopyCard__Replacement` for all summon paths. Split `LevelLimitAreaB_EnforceOnSummon` (Lv4+ on placement, including face-down) vs `EnforceOnZone` (face-up only for continuous scan); attack declare blocks all Lv4+ while active. Blocked re-activation via `Duel_ZoneIsNonSelectableActivatedBackrow` + `GetSpellType` normal-spell list. `card_in_hand_1 = LEVEL_LIMIT_AREA_B` in `configs/runtime.c`.

@@ -960,11 +960,12 @@
 #define SERVANT_OF_CATABOLISM                    0x03BC
 #define MAN_THRO_TRO                             0x03BD
 #define LEVEL_LIMIT_AREA_B                       0x03BE
+#define SPIRIT_RYU                               0x03BF
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03BF
-#define NUM_CUSTOM_CARDS                        0x009E
+#define NUM_TOTAL_CARDS                         0x03C0
+#define NUM_CUSTOM_CARDS                        0x009F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

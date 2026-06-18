@@ -6,6 +6,7 @@
 #include "embodiment_of_apophis.h"
 #include "fairy_box.h"
 #include "cats_ear_tribe.h"
+#include "spirit_ryu.h"
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
@@ -155,6 +156,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
 
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
+  TryApplySpiritRyuToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();

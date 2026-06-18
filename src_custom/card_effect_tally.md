@@ -79,6 +79,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Kaibaman` | `src_custom/activated_effects/kaibaman.c` |
 | `activated_effects` | `Cannon Soldier` | `src_custom/activated_effects/cannon_soldier.c` |
 | `activated_effects` | `Man-Thro' Tro'` | `src_custom/activated_effects/man_thro_tro.c` |
+| `battle_effects` | `Spirit Ryu` | `src_custom/battle_effects/spirit_ryu.c` |
 | `activated_effects` | `Hourglass of Life` | `src_custom/activated_effects/hourglass_of_life.c` |
 | `trap_effects` | `Mask of Restrict` | `src_custom/trap_effects/mask_of_restrict.c` |
 | `trap_effects` | `Ultimate Offering` | `src_custom/trap_effects/ultimate_offering.c` |

@@ -156,6 +156,7 @@ static const u8 sSasukeSamurai3Name[] __attribute__((section(".append_assets")))
 static const u8 sServantOfCatabolismName[] __attribute__((section(".append_assets"))) = "Servant of Catabolism";
 static const u8 sManThroTroName[] __attribute__((section(".append_assets"))) = "Man-Thro-Thro";
 static const u8 sLevelLimitAreaBName[] __attribute__((section(".append_assets"))) = "Level Limit Area B";
+static const u8 sSpiritRyuName[] __attribute__((section(".append_assets"))) = "Spirit Ryu";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -474,6 +475,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sManThroTroName;
   if (cardId == 0x03BE)
     return (u8 *)sLevelLimitAreaBName;
+  if (cardId == 0x03BF)
+    return (u8 *)sSpiritRyuName;
 
   return gCardNames[cardId];
 }

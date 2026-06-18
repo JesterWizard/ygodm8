@@ -6,6 +6,7 @@
 #include "duel.h"
 #include "fairy_box.h"
 #include "cats_ear_tribe.h"
+#include "spirit_ryu.h"
 #include "embodiment_of_apophis.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
@@ -161,6 +162,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
+  TryApplySpiritRyuToPendingAction();
   HandleAtkAndLifePointsAction();
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
@@ -206,6 +208,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   SetAttackAction(playerCol, opponentCol);
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
+  TryApplySpiritRyuToPendingAction();
   RunMonsterBattleAction();
   if (defender->id != CARD_NONE)
     defender->isFaceUp = TRUE;

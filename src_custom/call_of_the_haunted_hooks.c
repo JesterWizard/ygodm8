@@ -7,6 +7,7 @@
 #include "debug_ruleset.h"
 #include "fairy_box.h"
 #include "cats_ear_tribe.h"
+#include "spirit_ryu.h"
 #include "graveyard_effects.h"
 #include "hayabusa_knight.h"
 #include "mermaid_knight.h"
@@ -361,6 +362,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
 
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
+  TryApplySpiritRyuToPendingAction();
   if (useMonsterBattle) {
     RefreshPendingSasukeBattleTarget();
     RunMonsterBattleAction();

@@ -17113,6 +17113,29 @@
           "Change all face-up Level 4 or higher monsters to Defense Position."
         ]
       }
+    },
+    {
+      "card_const": "SPIRIT_RYU",
+      "card_name": "Spirit Ryu",
+      "atk": 1000,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 7, 9, 5, 7, 3, 1, 5],
+      "description": {
+        "symbol": "gDescription_SpiritRyu",
+        "pages": [
+          "If this card battles a monster that is not a",
+          "Dragon-Type monster, this card gains 1000 ATK",
+          "during that battle."
+        ]
+      }
     }
   ]
 }
