@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "dark_snake_syndrome.h"
 #include "duel_activated_backrow.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -64,6 +65,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
     return TRUE;
   if (IsActivatedLevelLimitAreaBZone(zone))
     return TRUE;
+  if (IsActivatedDarkSnakeSyndromeZone(zone))
+    return TRUE;
   if (IsActiveDynamicEquipSpellZone(zone))
     return TRUE;
 
@@ -77,6 +80,10 @@ void DuelActivatedBackrow_SelfCheck(void)
 
   zone.id = LEVEL_LIMIT_AREA_B;
   zone.isFaceUp = TRUE;
+  if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
+    __builtin_trap();
+
+  zone.id = DARK_SNAKE_SYNDROME;
   if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
     __builtin_trap();
 

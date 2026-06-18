@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 166 |
-| Art ready, needs manifest | 155 |
+| In game (manifest + art) | 167 |
+| Art ready, needs manifest | 154 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -188,6 +188,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BREAKER_THE_MAGICAL_WARRIOR` | Breaker the Magical Warrior | `breaker_the_magical_warrior.png` |
 | `DES_KANGAROO` | Des Kangaroo | `des_kangaroo.png` |
 | `DRILLAGO` | Drillago | `drillago.png` |
+| `DARK_SNAKE_SYNDROME` | Dark Snake Syndrome | `dark_snake_syndrome.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -224,7 +225,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
-- [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`

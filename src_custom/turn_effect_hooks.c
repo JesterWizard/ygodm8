@@ -9,6 +9,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "burning_land.h"
+#include "dark_snake_syndrome.h"
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
 
@@ -267,6 +268,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   AgeWaveMotionCannonTurns();
   AgeFinalCountdownTurns();
   TryApplyBurningLandStandbyDamage();
+  TryApplyDarkSnakeSyndromeStandbyDamage();
   if (IsDuelOver() == 1)
     return;
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {

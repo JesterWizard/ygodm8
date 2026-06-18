@@ -17342,6 +17342,35 @@
           "This card can attack your opponent directly."
         ]
       }
+    },
+    {
+      "card_const": "DARK_SNAKE_SYNDROME",
+      "card_name": "Dark Snake Syndrome",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 7, 2, 3, 3, 8, 0, 1],
+      "description": {
+        "symbol": "gDescription_DarkSnakeSyndrome",
+        "pages": [
+          "During each of your Standby Phases: Inflict",
+          "damage to both players. This damage begins at 200 and is",
+          "doubled during each of your following Standby Phases."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DarkSnakeSyndrome",
+        "pages": [
+          "Deal 200 damage to both players each of your Standby Phases."
+        ]
+      }
     }
   ]
 }

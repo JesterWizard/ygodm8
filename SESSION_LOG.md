@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Dark Snake Syndrome custom card
+
+**Worked on:** Added Dark Snake Syndrome to manifest/trunk (continuous spell, passcode 47233801). Standby damage via `TryApplyDarkSnakeSyndromeStandbyDamage`: 200 base to both players on controller's Standby, doubling each time (`permStage`). Wired spell activation, turn hooks, and `SPELL_TYPE_NORMAL`. `card_in_hand_1 = DARK_SNAKE_SYNDROME` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/dark_snake_syndrome.h`, `src_custom/spell_effects/dark_snake_syndrome.c`, `src_custom/spell_effect_hooks.c`, `src_custom/turn_effect_hooks.c`, `src_custom/card_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm damage doubles each controller Standby (200 → 400 → 800 …).
+
+---
+
 ## 2026-06-18 — Drillago custom card
 
 **Worked on:** Added Drillago to manifest/trunk (`DRILLAGO`, DARK Machine L4 1600/1100, passcode 99050989). Continuous direct-attack passive via `CanDrillagoAttackDirectly` (Black Tyranno pattern): opponent backrow empty, only face-up monsters with 1600+ ATK. Wired into player and AI direct-attack paths. `card_in_hand_1 = DRILLAGO` in `configs/runtime.c`.
