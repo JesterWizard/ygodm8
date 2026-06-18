@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 161 |
+| In game (manifest + art) | 162 |
 | Art ready, needs manifest | 159 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **320** |
+| **Total PNGs in `80x80/`** | **321** |
 
 ## In game
 
@@ -183,6 +183,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPIRIT_RYU` | Spirit Ryu | `spirit_ryu.png` |
 | `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
 | `BLAST_HELD_BY_A_TRIBUTE` | Blast Held by a Tribute | `blast_held_by_a_tribute.png` |
+| `D_D_WARRIOR` | D.D. Warrior | `d_d_warrior.png` |
 
 ## Todo — art ready, needs manifest
 

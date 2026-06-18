@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — D.D. Warrior custom card
+
+**Worked on:** Added D.D. Warrior to manifest/trunk (`D_D_WARRIOR`, Effect Monster, passcode 37043180, 1200/1000 L4 Earth Warrior). Battle effect: after damage calculation when battling another monster, banish both via `Duel_BanishZone` (`ClearZone` without graveyard); clears graveyard destruction flags before normal battle cleanup. Deferred resolve wired like Hyper Hammerhead. Art copied from `d.d_warrior.png` → `d_d_warrior.png` for manifest stem. `card_in_hand_1 = D_D_WARRIOR` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/assets/cards/80x80/d_d_warrior.png`, `include/d_d_warrior.h`, `src_custom/battle_effects/d_d_warrior.c`, `src_custom/battle_damage_hooks.c`, `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `asm/ram_map.s`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `documentation/monster-card-effects.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm both monsters banish on win, loss, and mutual-survival battles; opponent-side DD Warrior path.
+
+---
+
 ## 2026-06-18 — Blast Held by a Tribute custom card
 
 **Worked on:** Added Blast Held by a Tribute to manifest/trunk (`BLAST_HELD_BY_A_TRIBUTE`, Normal Trap, passcode 89041555, `trapEffect` 31). Attack-triggered trap: when a Tribute Summoned monster declares an attack, destroy all opponent face-up Attack Position monsters (`Duel_DestroyAllMonstersMatching`); if any destroyed, inflict 1000 damage (`Duel_ChangeLp`). Tribute-summon tracking via IWRAM bit masks per monster row (`gTributeSummonedMonsterMaskOpponentRow` / `PlayerRow`), marked on placement/AI tribute and cleared on zone clear; marks transfer on `CopyCard`. `card_in_hand_1 = BLAST_HELD_BY_A_TRIBUTE` in `configs/runtime.c`.

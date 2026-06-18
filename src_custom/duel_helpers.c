@@ -1668,6 +1668,20 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   return DUEL_ACTION_OK;
 }
 
+enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return DUEL_ACTION_NO_TARGET;
+
+  ClearZone(zone);
+  MaybeUpdateGfx(updateGfx);
+
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  return DUEL_ACTION_OK;
+}
+
 static u8 sSpellEffectResolveDepth APPEND_DATA = 0;
 
 void Duel_BeginSpellEffectResolve(void)

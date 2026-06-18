@@ -17195,6 +17195,35 @@
           "and inflict 1000 damage to their Life Points."
         ]
       }
+    },
+    {
+      "card_const": "D_D_WARRIOR",
+      "card_name": "D.D. Warrior",
+      "atk": 1200,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [3, 7, 0, 4, 3, 1, 8, 0],
+      "description": {
+        "symbol": "gDescription_DDWarrior",
+        "pages": [
+          "After damage calculation, when this card battles a",
+          "monster: Banish that monster, also banish this",
+          "card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DDWarrior",
+        "pages": [
+          "After damage calculation, banish both this card and the card that it battled."
+        ]
+      }
     }
   ]
 }

@@ -84,6 +84,7 @@ Use `duel_helpers.h` for common actions instead of copying static helpers into e
 | Draw | `Duel_DrawCards(duelist, count, updateGfx)` |
 | Mill deck | `Duel_MillTopDeckCards(duelist, count, updateGfx)` |
 | Destroy zone | `Duel_DestroyZone(zone, graveyardDuelist, updateGfx)` |
+| Banish zone | `Duel_BanishZone(zone, updateGfx)` — `ClearZone` without graveyard |
 | Destroy row | `Duel_DestroyAllMonstersMatching(turnRow, pred, updateGfx)` |
 | Discard | `Duel_DiscardFromHand(duelist, count, pred, updateGfx)` |
 | Discard random | `Duel_DiscardRandomFromHand(duelist, count, updateGfx)` |

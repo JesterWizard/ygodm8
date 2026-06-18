@@ -656,6 +656,10 @@ static const unsigned char sBlastHeldByATributeBigArt[] __attribute__((section("
 static const unsigned short sBlastHeldByATributeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blast_held_by_a_tribute.gbapal");
 static const unsigned char sBlastHeldByATributeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blast_held_by_a_tribute.lz");
 
+static const unsigned char sDDWarriorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/d_d_warrior.huff");
+static const unsigned short sDDWarriorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_d_warrior.gbapal");
+static const unsigned char sDDWarriorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_d_warrior.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -821,6 +825,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03BF] = sSpiritRyuBigArt,
   [0x03C0] = sAmazonessTigerBigArt,
   [0x03C1] = sBlastHeldByATributeBigArt,
+  [0x03C2] = sDDWarriorBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -988,6 +993,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03BF] = sSpiritRyuBigPalette,
   [0x03C0] = sAmazonessTigerBigPalette,
   [0x03C1] = sBlastHeldByATributeBigPalette,
+  [0x03C2] = sDDWarriorBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1155,6 +1161,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03BF] = 0,
   [0x03C0] = 0,
   [0x03C1] = 0,
+  [0x03C2] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1322,4 +1329,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03BF] = sSpiritRyuMiniArt,
   [0x03C0] = sAmazonessTigerMiniArt,
   [0x03C1] = sBlastHeldByATributeMiniArt,
+  [0x03C2] = sDDWarriorMiniArt,
 };

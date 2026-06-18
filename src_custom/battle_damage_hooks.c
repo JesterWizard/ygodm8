@@ -26,6 +26,7 @@
 #include "hyper_hammerhead.h"
 #include "gyaku_gire_panda.h"
 #include "sasuke_samurai_3.h"
+#include "d_d_warrior.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -148,6 +149,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
+  ApplyDDWarriorBattleEffect();
 
   if (sActionData.flags & 1) {
     MarkFamiliarKnightBattleDestruction(

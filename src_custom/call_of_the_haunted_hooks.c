@@ -47,6 +47,7 @@ void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveSasukeSamurai3BattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
 void ResolveHyperHammerheadBattleEffect(void);
+void ResolveDDWarriorBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
@@ -388,6 +389,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();
   ResolveHyperHammerheadBattleEffect();
+  ResolveDDWarriorBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();

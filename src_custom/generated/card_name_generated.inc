@@ -162,6 +162,7 @@ static const u8 sLevelLimitAreaBName[] __attribute__((section(".append_assets"))
 static const u8 sSpiritRyuName[] __attribute__((section(".append_assets"))) = "Spirit Ryu";
 static const u8 sAmazonessTigerName[] __attribute__((section(".append_assets"))) = "Amazoness Tiger";
 static const u8 sBlastHeldByATributeName[] __attribute__((section(".append_assets"))) = "Blast Held by a Tribute";
+static const u8 sDDWarriorName[] __attribute__((section(".append_assets"))) = "D.D. Warrior";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -492,6 +493,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAmazonessTigerName;
   if (cardId == 0x03C1)
     return (u8 *)sBlastHeldByATributeName;
+  if (cardId == 0x03C2)
+    return (u8 *)sDDWarriorName;
 
   return gCardNames[cardId];
 }

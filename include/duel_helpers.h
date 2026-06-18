@@ -137,6 +137,7 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
                                                 struct DuelSummonOpts opts);
 
 enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u8 updateGfx);
+enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx);
 
 void Duel_BeginSpellEffectResolve(void);
 void Duel_EndSpellEffectResolve(void);

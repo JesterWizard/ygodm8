@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `173` effects
+- `174` effects
 
 ## Tally
 
@@ -198,6 +198,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `card_passives` | `Reaper on the Nightmare` | `src_custom/card_passives/reaper_on_the_nightmare.c` |
 | `card_passives` | `Torpedo Fish` | `src_custom/card_passives/torpedo_fish.c` |
 | `battle_effects` | `Reaper on the Nightmare` | `src_custom/battle_effects/reaper_on_the_nightmare.c` |
+| `battle_effects` | `D.D. Warrior` | `src_custom/battle_effects/d_d_warrior.c` |
 
 ## Notes
 
