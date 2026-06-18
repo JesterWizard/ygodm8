@@ -46,6 +46,7 @@ void ResolveSasukeSamurai3BattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
 void ResolveHyperHammerheadBattleEffect(void);
 void ResolveDDWarriorBattleEffect(void);
+void ResolveDesKangarooBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
@@ -179,6 +180,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveNeedleBurrowerBattleEffect();
   ResolveHyperHammerheadBattleEffect();
   ResolveDDWarriorBattleEffect();
+  ResolveDesKangarooBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();
   ResolveCoffinSellerBattleEffect();
   sub_8022080();

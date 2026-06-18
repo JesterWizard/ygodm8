@@ -15,6 +15,40 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Des Kangaroo attribute / timing fix
+
+**Worked on:** Effect still failed when Des Kangaroo was destroyed on opponent turn despite attacker ATK < DEF (GBA attribute disadvantage path, unk18=17). Removed live-zone + `FLAG_GRAVEYARD_PLAYER` guards; judge from battle `sActionData` only. Moved `ApplyDesKangarooBattleEffect` before normal graveyard sends so attacker is still marked.
+
+**Files:** `src_custom/battle_effects/des_kangaroo.c`, `src_custom/battle_damage_hooks.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+---
+
+## 2026-06-18 — Des Kangaroo opponent-attack fix
+
+**Worked on:** Opponent AI attacks deferred Des Kangaroo resolve to post-battle animation (`sub_8040EF0`) like Hyper Hammerhead — early resolve in `ai_attack_hooks` cleared pending before animation. Added live zone validation (defender in DEF, attacker zone matches `sActionData`).
+
+**Files:** `src_custom/battle_effects/des_kangaroo.c`, `src_custom/ai_attack_hooks.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm 1600 ATK vs 1700 DEF Des Kangaroo shows popup and destroys attacker after battle animation.
+
+---
+
+## 2026-06-18 — Des Kangaroo custom card
+
+**Worked on:** Added Des Kangaroo to manifest/trunk (`DES_KANGAROO`, DARK Beast L4 1500/1700, passcode 78613627). Battle effect: when attacked in Defense Position, if attacker ATK < this card's DEF, destroy the attacker at end of damage step via deferred `Duel_DestroyZone`. `card_in_hand_1 = DES_KANGAROO` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/des_kangaroo.h`, `src_custom/battle_effects/des_kangaroo.c`, `src_custom/battle_damage_hooks.c`, `asm/ram_map.s`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/ai_attack_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm attacker destroyed when ATK < 1700 DEF; no effect when ATK ≥ DEF or Des Kangaroo is destroyed.
+
+---
+
 ## 2026-06-18 — D.D. Warrior / Breaker effect fixes
 
 **Worked on:** D.D. Warrior only marks/resolves when `sActionData` matches live monster-vs-monster zones. Breaker: spell counter = `permStage` (+500 ATK via normal stage boost); summon `IncrementPermStage`, activation `DecrementPermStage`; dropped RAM counter mask and custom overlay hooks.

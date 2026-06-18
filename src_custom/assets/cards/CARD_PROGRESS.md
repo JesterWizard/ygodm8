@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 164 |
-| Art ready, needs manifest | 157 |
+| In game (manifest + art) | 165 |
+| Art ready, needs manifest | 156 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -186,6 +186,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `D_D_WARRIOR` | D.D. Warrior | `d_d_warrior.png` |
 | `CONFISCATION` | Confiscation | `confiscation.png` |
 | `BREAKER_THE_MAGICAL_WARRIOR` | Breaker the Magical Warrior | `breaker_the_magical_warrior.png` |
+| `DES_KANGAROO` | Des Kangaroo | `des_kangaroo.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -225,7 +226,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_SNAKE_SYNDROME` — `dark_snake_syndrome.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
-- [ ] `DES_KANGAROO` — `des_kangaroo.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DICE_JAR` — `dice_jar.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`

@@ -17283,6 +17283,35 @@
       },
       "lock_after_activation": false,
       "effect_usage": "multiple_per_turn"
+    },
+    {
+      "card_const": "DES_KANGAROO",
+      "card_name": "Des Kangaroo",
+      "atk": 1500,
+      "def": 1700,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [7, 8, 6, 1, 3, 6, 2, 7],
+      "description": {
+        "symbol": "gDescription_DesKangaroo",
+        "pages": [
+          "If the ATK of a monster that attacks this monster is",
+          "lower than the DEF of this card, destroy the attacking",
+          "monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DesKangaroo",
+        "pages": [
+          "Destroy the attacking monster if its ATK is lower than this card's DEF."
+        ]
+      }
     }
   ]
 }

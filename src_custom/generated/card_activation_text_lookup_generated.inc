@@ -179,6 +179,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { D_D_WARRIOR, gActivationDescription_DDWarrior },
   { CONFISCATION, gActivationDescription_Confiscation },
   { BREAKER_THE_MAGICAL_WARRIOR, gActivationDescription_BreakerTheMagicalWarrior },
+  { DES_KANGAROO, gActivationDescription_DesKangaroo },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

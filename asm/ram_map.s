@@ -340,6 +340,9 @@ _kernel_malloc_ewram gPendingDDWarriorWarriorRow, 1
 _kernel_malloc_ewram gPendingDDWarriorWarriorCol, 1
 _kernel_malloc_ewram gPendingDDWarriorOtherRow, 1
 _kernel_malloc_ewram gPendingDDWarriorOtherCol, 1
+@ Fixed monster row/col for a pending Des Kangaroo attacker destroy, else 0xFF.
+_kernel_malloc_ewram gPendingDesKangarooAttackerRow, 1
+_kernel_malloc_ewram gPendingDesKangarooAttackerCol, 1
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Absorbing Kid from the Sky, else 0xFF.
 _kernel_malloc_ewram gPendingAbsorbingKidFromTheSkyDuelist, 1
 @ Level of the monster Absorbing Kid destroyed in battle (heal = level * 300 at resolve).

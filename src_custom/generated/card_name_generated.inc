@@ -165,6 +165,7 @@ static const u8 sBlastHeldByATributeName[] __attribute__((section(".append_asset
 static const u8 sDDWarriorName[] __attribute__((section(".append_assets"))) = "D.D. Warrior";
 static const u8 sConfiscationName[] __attribute__((section(".append_assets"))) = "Confiscation";
 static const u8 sBreakerTheMagicalWarriorName[] __attribute__((section(".append_assets"))) = "Breaker the Magical Warrior";
+static const u8 sDesKangarooName[] __attribute__((section(".append_assets"))) = "Des Kangaroo";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -501,6 +502,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sConfiscationName;
   if (cardId == 0x03C4)
     return (u8 *)sBreakerTheMagicalWarriorName;
+  if (cardId == 0x03C5)
+    return (u8 *)sDesKangarooName;
 
   return gCardNames[cardId];
 }
