@@ -16,8 +16,11 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
+#include "duel_attack_restrictions.h"
+#include "duel_activated_backrow.h"
 #include "sasuke_samurai_2.h"
 #include "rivalry_of_warlords.h"
+#include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
@@ -301,24 +304,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
   u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
   struct DuelCard *zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
 
-  if ((id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE)
-      || IsActivatedChainEnergyZone(zone)
-      || IsActivatedTollZone(zone)
-      || IsActivatedTheDarkDoorZone(zone)
-      || IsActivatedDarkRoomZone(zone)
-      || IsActivatedPyramidOfLightZone(zone)
-      || IsActivatedUltimateOfferingZone(zone)
-      || IsActivatedMaskOfRestrictZone(zone)
-      || IsActivatedRivalryOfWarlordsZone(zone)
-      || IsActivatedGravityBindZone(zone)
-      || IsActivatedFairyBoxZone(zone)
-      || IsActivatedSkullInvitationZone(zone)
-      || IsActivatedSelfDestructButtonZone(zone)
-      || IsActivatedCurseOfDarknessZone(zone)
-      || IsNonSelectableCoffinSellerZone(zone)
-      || IsActivatedFinalCountdownZone(zone)
-      || IsActivatedPreciousCardsFromBeyondZone(zone)
-      || IsActiveDynamicEquipSpellZone(zone)) {
+  if (Duel_ZoneIsNonSelectableActivatedBackrow(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
@@ -648,6 +634,7 @@ void sub_80449D8__Replacement(void)
     TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
@@ -669,13 +656,13 @@ void sub_8044570__Replacement(void)
 {
   unsigned char turn = WhoseTurn();
 
-  if (GetDuelistStatus(turn) == DUELIST_STATUS_CANNOT_ATTACK || gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns) {
+  if (GetDuelistStatus(turn) == DUELIST_STATUS_CANNOT_ATTACK) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
   } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+      || !Duel_CanMonsterDeclareAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
@@ -785,8 +772,8 @@ void TryAttackWithMonster__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
   } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(
-          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id)
+      || !Duel_CanMonsterDeclareAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX])
       || !Duel_CanAttackMonsterZone(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])
       || !Duel_MonsterMayBeAttacked(

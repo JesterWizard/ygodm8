@@ -15,6 +15,40 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Level Limit Area B
+
+**Worked on:** Added Level Limit Area B to manifest/trunk (`LEVEL_LIMIT_AREA_B`, continuous spell, passcode 03136426). Effect forces face-up Lv4+ monsters to Defense Position while active (Imperial Order respected); enforcement on activation, placement, and permanent-effect scan; player monster menu blocks attack-position switch. Wired into unified attack API (`Duel_CanMonsterDeclareAttack` / `gDuelAttackRestrictionsActive`). Fixed AI flipping to attack before declare (`ai_attack_hooks`, turn-start re-enforce). Extended placement hooks to `InitMonsterZone` and `CopyCard__Replacement` for all summon paths. Split `LevelLimitAreaB_EnforceOnSummon` (Lv4+ on placement, including face-down) vs `EnforceOnZone` (face-up only for continuous scan); attack declare blocks all Lv4+ while active. Blocked re-activation via `Duel_ZoneIsNonSelectableActivatedBackrow` + `GetSpellType` normal-spell list. `card_in_hand_1 = LEVEL_LIMIT_AREA_B` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/level_limit_area_b.h`, `src_custom/spell_effects/level_limit_area_b.c`, `src_custom/spell_effect_hooks.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/monster_effect_hooks.c`, `src_custom/duel_helpers.c`, `include/duel_helpers.h`, `src_custom/duel_attack_restrictions.c`, `include/duel_attack_restrictions.h`, `asm/ram_map.s`, `src_custom/ai_attack_hooks.c`, `src_custom/ai_decision/ai_decision_core.c`, `src_custom/duel_main_hooks.c`, `src_custom/duel_activated_backrow.c`, `include/duel_activated_backrow.h`, `src_custom/card_hooks.c`, `src_custom/LynJump.event`, `configs/runtime.c`, `src_custom/card_effect_tally.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game retest Gemini Elf summon/attack under active LLAB; confirm re-select plays forbidden SFX.
+
+---
+
+## 2026-06-18 — Activated backrow selection API
+
+**Worked on:** Centralized the `HandlePlayerBackrowAction` non-selectable guard list into `Duel_ZoneIsNonSelectableActivatedBackrow()` (Swords of Revealing Light, Chain Energy, Gravity Bind, continuous equips, etc.).
+
+**Files:** `include/duel_activated_backrow.h`, `src_custom/duel_activated_backrow.c`, `src_custom/code_8043EF4_hooks.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+---
+
+## 2026-06-18 — Duel attack restrictions API
+
+**Worked on:** Unified attack-declare checks for Swords of Revealing Light, Gravity Bind, and Level Limit Area B via `gDuelAttackRestrictionsActive` RAM bitfield (`asm/ram_map.s`) and `Duel_CanMonsterDeclareAttack()` in `src_custom/duel_attack_restrictions.c`. Refreshed on field changes and at attack time; player/AI attack paths now call the API instead of per-card checks.
+
+**Files:** `asm/ram_map.s`, `include/duel_attack_restrictions.h`, `src_custom/duel_attack_restrictions.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/ai_decision/ai_decision_core.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm SORL/GB/LLAB blocks show forbidden SFX via single API path.
+
+---
+
 ## 2026-06-18 — Man-Thro' Tro' custom card
 
 **Worked on:** Added Man-Thro' Tro' to manifest/trunk (`MAN_THRO_TRO`, EARTH Beast-Warrior L4 1000/1000, passcode 43714890). Ignition: tribute 1 Normal Monster (Ojama Trio token form excluded), inflict 800 — Cannon Soldier-style targeting in `activated_effects/man_thro_tro.c`, `multiple_per_turn`. Art from `man-thro-thro.png` copied to `man_thro_tro.png`. `card_in_hand_1 = MAN_THRO_TRO` in `configs/runtime.c`.

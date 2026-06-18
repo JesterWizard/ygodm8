@@ -424,7 +424,7 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == WAVE_MOTION_CANNON || cardId == PYRAMID_OF_LIGHT
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE
       || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN
-      || cardId == BURNING_LAND)
+      || cardId == BURNING_LAND || cardId == LEVEL_LIMIT_AREA_B)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND

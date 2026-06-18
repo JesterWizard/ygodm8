@@ -5,7 +5,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
-#include "gravity_bind.h"
+#include "duel_attack_restrictions.h"
 #include "reaper_on_the_nightmare.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
@@ -367,6 +367,17 @@ static u8 AiDecision_ShouldDisableAttackAction(const struct AiDecodedAction *dec
   return FALSE;
 }
 
+static u8 AiDecision_CanMonsterDeclareAttack(const struct AiDecodedAction *decoded)
+{
+  struct DuelCard *zone;
+
+  if (decoded->zone0Row == 0xFF || decoded->zone0Row == ACTIVE_DUELIST_HAND)
+    return TRUE;
+
+  zone = gTurnZones[decoded->zone0Row][decoded->zone0Col];
+  return Duel_CanMonsterDeclareAttack(zone);
+}
+
 static void AiDecision_DisableBlockedAttackActions(struct AiDecisionContext *ctx)
 {
   u16 i;
@@ -381,7 +392,7 @@ static void AiDecision_DisableBlockedAttackActions(struct AiDecisionContext *ctx
       continue;
 
     if (!globalAttackAllowed ||
-        !GravityBind_CanMonsterAttack(decoded.primaryCardId))
+        !AiDecision_CanMonsterDeclareAttack(&decoded))
       ctx->entries[i].priority = 0;
   }
 }

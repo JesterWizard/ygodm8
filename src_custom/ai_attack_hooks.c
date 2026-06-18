@@ -14,7 +14,8 @@
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
-#include "gravity_bind.h"
+#include "duel_attack_restrictions.h"
+#include "level_limit_area_b.h"
 #include "black_tyranno.h"
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
@@ -31,6 +32,8 @@ struct AI_Command {
 
 extern struct AI_Command sAI_Command;
 
+void sub_800E50C(void);
+void sub_800E54C(void);
 void sub_800E58C(void);
 void sub_800E5E4(void);
 void sub_800E63C(void);
@@ -118,6 +121,18 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
   return TRUE;
 }
 
+static void AiTrySetAttackPosition(struct DuelCard *zone)
+{
+  if (LevelLimitAreaB_CannotUseAttackPosition(zone->id)) {
+    LevelLimitAreaB_EnforceOnZone(zone);
+    return;
+  }
+
+  zone->isDefending = FALSE;
+  zone->isFaceUp = TRUE;
+  zone->isLocked = TRUE;
+}
+
 static void AiAttackDirect(struct DuelCard *attacker) {
   u8 fixedRow = WhoseTurn() == DUEL_PLAYER ? PLAYER_MONSTER_ROW : OPPONENT_MONSTER_ROW;
 
@@ -125,7 +140,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(attacker->id)
+      || !Duel_CanMonsterDeclareAttack(attacker)
       || Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER))
     return;
@@ -161,7 +176,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   u8 opponentCol;
 
   if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !GravityBind_CanMonsterAttack(attacker->id)
+      || !Duel_CanMonsterDeclareAttack(attacker)
       || !Duel_CanAttackMonsterZone(defender)
       || !Duel_MonsterMayBeAttacked(defender))
     return;
@@ -201,6 +216,24 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
+}
+
+LYN_REPLACE_CHECK(sub_800E50C);
+void sub_800E50C__Replacement(void)
+{
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiTrySetAttackPosition(gTurnZones[row2][col2]);
+}
+
+LYN_REPLACE_CHECK(sub_800E54C);
+void sub_800E54C__Replacement(void)
+{
+  u8 row2 = sAI_Command.zone1Position >> 4;
+  u8 col2 = sAI_Command.zone1Position & 0xF;
+
+  AiTrySetAttackPosition(gTurnZones[row2][col2]);
 }
 
 LYN_REPLACE_CHECK(sub_800E58C);

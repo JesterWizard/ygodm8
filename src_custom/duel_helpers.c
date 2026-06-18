@@ -11,6 +11,7 @@
 #include "summon_tribute.h"
 #include "raregold_armor.h"
 #include "rivalry_of_warlords.h"
+#include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "tribute.h"
 #include "imperial_order.h"
@@ -192,6 +193,8 @@ static void InitMonsterZone(struct DuelCard *zone, struct DuelSummonOpts opts)
     zone->unk4 = 2;
   else
     zone->unk4 = 0;
+
+  LevelLimitAreaB_EnforceOnSummon(zone);
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
@@ -1143,6 +1146,11 @@ void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone)
 void Duel_CheckRivalryOfWarlordsAfterFieldChange(void)
 {
   RivalryOfWarlords_CheckAfterFieldChange();
+}
+
+void Duel_CheckLevelLimitAreaBAfterFieldChange(void)
+{
+  LevelLimitAreaB_CheckAfterFieldChange();
 }
 
 void Duel_CheckRingOfDestructionAfterFieldChange(void)

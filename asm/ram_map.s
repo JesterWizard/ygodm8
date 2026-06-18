@@ -116,6 +116,9 @@ _kernel_malloc gCgId, 1
 _kernel_malloc gCgSavedDispcntPad, 1
 _kernel_malloc gCgSavedDispcnt, 2
 
+@ Active attack-blocking field effects (SORL, Gravity Bind, Level Limit Area B).
+_kernel_malloc gDuelAttackRestrictionsActive, 1
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 157 |
-| Art ready, needs manifest | 163 |
+| In game (manifest + art) | 158 |
+| Art ready, needs manifest | 162 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **320** |
 
@@ -178,7 +178,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 | `SASUKE_SAMURAI_3` | Sasuke Samurai #3 | `sasuke_samurai_3.png` |
 | `SERVANT_OF_CATABOLISM` | Servant of Catabolism | `servant_of_catabolism.png` |
-| `MAN_THRO_TRO` | Man-Thro' Tro' | `man_thro_tro.png` |
+| `MAN_THRO_TRO` | Man-Thro-Thro | `man_thro_tro.png` |
+| `LEVEL_LIMIT_AREA_B` | Level Limit Area B | `level_limit_area_b.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -263,7 +264,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LEKUNGA` — `lekunga.png`
 - [ ] `LESSER_FIEND` — `lesser_fiend.png`
 - [ ] `LEVEL_LIMIT_AREA_A` — `level_limit_area_a.png`
-- [ ] `LEVEL_LIMIT_AREA_B` — `level_limit_area_b.png`
 - [ ] `LEVIA_DRAGON_DAEDALUS` — `levia_dragon_daedalus.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`

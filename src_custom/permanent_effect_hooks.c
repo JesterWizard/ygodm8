@@ -13,7 +13,9 @@
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
+#include "level_limit_area_b.h"
 #include "duel_helpers.h"
+#include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
 
 extern void (*sPermanentEffects[])(void);
@@ -347,6 +349,8 @@ void TryActivatingPermanentEffects__Replacement(void) {
   gHideEffectText = hideEffectText;
   ResolvePendingGraveyardDrawOnDestroy();
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
+  Duel_CheckLevelLimitAreaBAfterFieldChange();
+  Duel_RefreshAttackRestrictions();
   Duel_CheckRingOfDestructionAfterFieldChange();
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();

@@ -9,6 +9,7 @@
 #include "great_maju_garzett.h"
 #include "weather_report.h"
 #include "berserk_gorilla.h"
+#include "level_limit_area_b.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
 
@@ -318,10 +319,16 @@ FAILED:
       break;
     }
     case 5:
-      if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending)
-        if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
+      if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending) {
+        if (LevelLimitAreaB_CannotUseAttackPosition(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+          PlayMusic(SFX_FORBIDDEN);
+        } else if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+        }
+      }
       UpdateDuelGfxExceptField();
+      TryActivatingPermanentEffects();
       break;
   }
 }

@@ -5,8 +5,11 @@
 #include "duel_helpers.h"
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
+#include "level_limit_area_b.h"
+#include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
+#include "duel_attack_restrictions.h"
 #include "thousand_energy.h"
 #include "triangle_power.h"
 #include "limiter_removal.h"
@@ -197,6 +200,7 @@ void InitBoard__Replacement(void) {
   unsigned char i, j;
 
   ResetDelayedDuelEffects();
+  Duel_ResetAttackRestrictions();
   ResetYataGarasuSkipDraw();
   ResetFenrirSkipDraw();
   ResetTimeSealSkipDraw();
@@ -482,6 +486,8 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
 
   if (dst->id != CARD_NONE && GetTypeGroup(dst->id) == TYPE_GROUP_MONSTER) {
     Duel_NotifyMonsterZoneChanged(dst);
+    TryEnforceBerserkGorillaOnMonsterPlacement(dst);
+    TryLevelLimitAreaBOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);
   }
 }

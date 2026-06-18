@@ -154,7 +154,8 @@ static const u8 sRingOfDestructionName[] __attribute__((section(".append_assets"
 static const u8 sSasukeSamurai2Name[] __attribute__((section(".append_assets"))) = "Sasuke Samurai #2";
 static const u8 sSasukeSamurai3Name[] __attribute__((section(".append_assets"))) = "Sasuke Samurai #3";
 static const u8 sServantOfCatabolismName[] __attribute__((section(".append_assets"))) = "Servant of Catabolism";
-static const u8 sManThroTroName[] __attribute__((section(".append_assets"))) = "Man-Thro' Tro'";
+static const u8 sManThroTroName[] __attribute__((section(".append_assets"))) = "Man-Thro-Thro";
+static const u8 sLevelLimitAreaBName[] __attribute__((section(".append_assets"))) = "Level Limit Area B";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -471,6 +472,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sServantOfCatabolismName;
   if (cardId == 0x03BD)
     return (u8 *)sManThroTroName;
+  if (cardId == 0x03BE)
+    return (u8 *)sLevelLimitAreaBName;
 
   return gCardNames[cardId];
 }
