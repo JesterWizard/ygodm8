@@ -18,6 +18,7 @@
 #include "duel_attack_restrictions.h"
 #include "level_limit_area_b.h"
 #include "black_tyranno.h"
+#include "drillago.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
 #include "sasuke_samurai_2.h"
@@ -160,6 +161,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
   TryShowBlackTyrannoDirectAttackText(attacker->id);
+  TryShowDrillagoDirectAttackText(attacker->id);
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   TryApplyCatsEarTribeToPendingAction();

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 165 |
-| Art ready, needs manifest | 156 |
+| In game (manifest + art) | 166 |
+| Art ready, needs manifest | 155 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -187,6 +187,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CONFISCATION` | Confiscation | `confiscation.png` |
 | `BREAKER_THE_MAGICAL_WARRIOR` | Breaker the Magical Warrior | `breaker_the_magical_warrior.png` |
 | `DES_KANGAROO` | Des Kangaroo | `des_kangaroo.png` |
+| `DRILLAGO` | Drillago | `drillago.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -235,7 +236,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
-- [ ] `DRILLAGO` — `drillago.png`
 - [ ] `DUST_TORNADO` — `dust_tornado.png`
 - [ ] `ECTOPLASMER` — `ectoplasmer.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`

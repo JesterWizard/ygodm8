@@ -672,6 +672,10 @@ static const unsigned char sDesKangarooBigArt[] __attribute__((section(".append_
 static const unsigned short sDesKangarooBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/des_kangaroo.gbapal");
 static const unsigned char sDesKangarooMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/des_kangaroo.lz");
 
+static const unsigned char sDrillagoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/drillago.huff");
+static const unsigned short sDrillagoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/drillago.gbapal");
+static const unsigned char sDrillagoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/drillago.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -841,6 +845,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03C3] = sConfiscationBigArt,
   [0x03C4] = sBreakerTheMagicalWarriorBigArt,
   [0x03C5] = sDesKangarooBigArt,
+  [0x03C6] = sDrillagoBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1012,6 +1017,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03C3] = sConfiscationBigPalette,
   [0x03C4] = sBreakerTheMagicalWarriorBigPalette,
   [0x03C5] = sDesKangarooBigPalette,
+  [0x03C6] = sDrillagoBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1183,6 +1189,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03C3] = 0,
   [0x03C4] = 0,
   [0x03C5] = 0,
+  [0x03C6] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1354,4 +1361,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03C3] = sConfiscationMiniArt,
   [0x03C4] = sBreakerTheMagicalWarriorMiniArt,
   [0x03C5] = sDesKangarooMiniArt,
+  [0x03C6] = sDrillagoMiniArt,
 };

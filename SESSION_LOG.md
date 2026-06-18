@@ -15,7 +15,18 @@ Format for new entries (newest first):
 
 ---
 
-## 2026-06-18 — Des Kangaroo attribute / timing fix
+## 2026-06-18 — Drillago custom card
+
+**Worked on:** Added Drillago to manifest/trunk (`DRILLAGO`, DARK Machine L4 1600/1100, passcode 99050989). Continuous direct-attack passive via `CanDrillagoAttackDirectly` (Black Tyranno pattern): opponent backrow empty, only face-up monsters with 1600+ ATK. Wired into player and AI direct-attack paths. `card_in_hand_1 = DRILLAGO` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/drillago.h`, `src_custom/card_passives/drillago.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm direct attack when opponent only has face-up 1600+ ATK monsters; blocked with backrow or sub-1600 ATK monsters.
+
+---
+
 
 **Worked on:** Effect still failed when Des Kangaroo was destroyed on opponent turn despite attacker ATK < DEF (GBA attribute disadvantage path, unk18=17). Removed live-zone + `FLAG_GRAVEYARD_PLAYER` guards; judge from battle `sActionData` only. Moved `ApplyDesKangarooBattleEffect` before normal graveyard sends so attacker is still marked.
 

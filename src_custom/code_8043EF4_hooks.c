@@ -75,6 +75,7 @@
 #include "servant_of_catabolism.h"
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
+#include "drillago.h"
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
@@ -695,6 +696,8 @@ void sub_8044570__Replacement(void)
       || CanBlackTyrannoAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanReaperOnTheNightmareAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanDrillagoAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
       && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)) {
@@ -719,6 +722,8 @@ void sub_8044570__Replacement(void)
       Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
       TryShowBlackTyrannoDirectAttackText(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
+      TryShowDrillagoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
