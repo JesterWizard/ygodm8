@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 153 |
-| Art ready, needs manifest | 166 |
+| In game (manifest + art) | 154 |
+| Art ready, needs manifest | 165 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -175,6 +175,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SEVEN_TOOLS_OF_THE_BANDIT` | Seven Tools of the Bandit | `seven_tools_of_the_bandit.png` |
 | `RIVALRY_OF_WARLORDS` | Rivalry of Warlords | `rivalry_of_warlords.png` |
 | `RING_OF_DESTRUCTION` | Ring of Destruction | `ring_of_destruction.png` |
+| `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -301,7 +302,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
-- [ ] `SASUKE_SAMURAI_2` — `sasuke_samurai_2.png`
 - [ ] `SASUKE_SAMURAI_3` — `sasuke_samurai_3.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`

@@ -9,6 +9,8 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "burning_land.h"
+#include "duel_helpers.h"
+#include "sasuke_samurai_2.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -169,9 +171,7 @@ static unsigned char ShouldActivateTurnEffect__Hook(void) {
       goto vanilla;
     return FALSE;
   }
-  if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
-    return FALSE;
-  if (IsRoyalDecreeNegatingTrap(gActiveEffect.cardId))
+  if (Duel_IsCardActivationBlocked(gActiveEffect.cardId))
     return FALSE;
 vanilla:
   SetCardInfo(gActiveEffect.cardId);
@@ -277,6 +277,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   DestroyThousandEnergyMonstersAtEndOfTurn();
   DestroyTrianglePowerMonstersAtEndOfTurn();
   DestroyLimiterRemovalMonstersAtEndOfTurn();
+  SasukeSamurai2_ClearInactiveBackrowTrapBlock();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

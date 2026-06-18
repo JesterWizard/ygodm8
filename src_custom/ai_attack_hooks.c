@@ -17,6 +17,7 @@
 #include "gravity_bind.h"
 #include "black_tyranno.h"
 #include "duel_helpers.h"
+#include "sasuke_samurai_2.h"
 
 struct AI_Command {
   u16 action;
@@ -96,6 +97,9 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
 
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+
+  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked())
+    return FALSE;
 
   if (IsTrapTriggered() != TRUE)
     return FALSE;

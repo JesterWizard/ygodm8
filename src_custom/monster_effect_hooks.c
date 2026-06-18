@@ -9,6 +9,7 @@
 #include "great_maju_garzett.h"
 #include "weather_report.h"
 #include "berserk_gorilla.h"
+#include "sasuke_samurai_2.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -67,6 +68,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateTheAgentOfCreationVenus();
     case MONSTER_EFFECT_MAGICAL_MERCHANT:
       return CanActivateMagicalMerchant();
+    case MONSTER_EFFECT_SASUKE_SAMURAI_2:
+      return CanActivateSasukeSamurai2();
     default:
       return TRUE;
   }
@@ -191,6 +194,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_SASUKE_SAMURAI_2) {
+    ActivateSasukeSamurai2Effect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -263,7 +271,8 @@ void MonsterActionMenu__Replacement(void) {
 
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
-      if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == THE_AGENT_OF_CREATION_VENUS) {
+      if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == THE_AGENT_OF_CREATION_VENUS
+          || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
         if (gMonEffect.id == NEEDLE_BALL) {

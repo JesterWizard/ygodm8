@@ -14,6 +14,8 @@
 #include "fairy_box.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "duel_helpers.h"
+#include "sasuke_samurai_2.h"
 #include "rivalry_of_warlords.h"
 #include "ring_of_destruction.h"
 #include "cats_ear_tribe.h"
@@ -75,7 +77,6 @@ void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 void MarkFairyBoxJustSet(struct DuelCard *zone);
-unsigned char IsSpellCancellerSpellLockActive(void);
 unsigned IsTrapTriggered(void);
 void ActivateTrapEffect(u16 lp);
 
@@ -325,16 +326,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
   SelectZone(zone);
   ResetCursorDestToCurrentPos();
 
-  if ((IsSpellCancellerSpellLockActive() || IsImperialOrderActiveOnField())
-      && GetTypeGroup(id) == TYPE_GROUP_SPELL) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (IsRoyalDecreeActiveOnField() && GetTypeGroup(id) == TYPE_GROUP_TRAP) {
+  if (Duel_IsCardActivationBlocked(id)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
@@ -704,7 +696,7 @@ void sub_8044570__Replacement(void)
     gTrapEffectData.originCol = gDuelCursor.currentX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
-    if (IsTrapTriggered() != 1) {
+    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
       if (!TryPayTollAttackCost()) {
         PlayMusic(SFX_FORBIDDEN);
         gDuelCursor.state = 0;
@@ -800,7 +792,7 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originCol = gDuelCursor.destX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
-    if (IsTrapTriggered() != 1) {
+    if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
       if (!TryPayTollAttackCost()) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();

@@ -151,6 +151,7 @@ static const u8 sTorpedoFishName[] __attribute__((section(".append_assets"))) = 
 static const u8 sSevenToolsOfTheBanditName[] __attribute__((section(".append_assets"))) = "Seven Tools of the Bandit";
 static const u8 sRivalryOfWarlordsName[] __attribute__((section(".append_assets"))) = "Rivalry of Warlords";
 static const u8 sRingOfDestructionName[] __attribute__((section(".append_assets"))) = "Ring of Destruction";
+static const u8 sSasukeSamurai2Name[] __attribute__((section(".append_assets"))) = "Sasuke Samurai #2";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -459,6 +460,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sRivalryOfWarlordsName;
   if (cardId == 0x03B9)
     return (u8 *)sRingOfDestructionName;
+  if (cardId == 0x03BA)
+    return (u8 *)sSasukeSamurai2Name;
 
   return gCardNames[cardId];
 }

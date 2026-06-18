@@ -6,6 +6,8 @@
 #include "gravity_bind.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "duel_helpers.h"
+#include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 
 #define TRAP_NONE 0
@@ -135,12 +137,33 @@ void ActivateTrapEffect__Replacement(u16 lp)
 {
   struct DuelCard *respondingZone;
 
+  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked()) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+      SaveDrainingShieldAttackResume();
+      TryResumeInterruptedAttackAfterDrainingShield();
+    }
+    return;
+  }
+
+  respondingZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
+  if (respondingZone != NULL && Duel_IsCardActivationBlocked(respondingZone->id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {
+      SaveDrainingShieldAttackResume();
+      TryResumeInterruptedAttackAfterDrainingShield();
+    }
+    return;
+  }
+
   if (gTrapEffectData.trapCardId != TRAP_ROYAL_DECREE
       && gTrapEffectData.trapCardId != TRAP_NONE) {
     TryActivateRoyalDecreeOnRespondingTrap();
     respondingZone = gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol];
     if (respondingZone != NULL
-        && IsRoyalDecreeNegatingTrap(respondingZone->id)) {
+        && Duel_IsCardActivationBlocked(respondingZone->id)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       if (GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER) {

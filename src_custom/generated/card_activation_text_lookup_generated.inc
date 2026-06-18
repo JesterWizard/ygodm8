@@ -170,6 +170,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SEVEN_TOOLS_OF_THE_BANDIT, gActivationDescription_SevenToolsOfTheBandit },
   { RIVALRY_OF_WARLORDS, gActivationDescription_RivalryOfWarlords },
   { RING_OF_DESTRUCTION, gActivationDescription_RingOfDestruction },
+  { SASUKE_SAMURAI_2, gActivationDescription_SasukeSamurai2 },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

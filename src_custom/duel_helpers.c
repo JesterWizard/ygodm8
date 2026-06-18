@@ -13,6 +13,11 @@
 #include "rivalry_of_warlords.h"
 #include "ring_of_destruction.h"
 #include "tribute.h"
+#include "imperial_order.h"
+#include "royal_decree.h"
+
+extern unsigned char IsSpellCancellerSpellLockActive(void);
+extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
 extern void UpdateDuelGfxExceptField(void);
 extern void ActivateTrapEffect(u16 lp);
@@ -1617,6 +1622,42 @@ u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone)
 u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone)
 {
   return !Duel_ZoneIsImmuneToSpellEffects(zone);
+}
+
+u8 Duel_IsAnyTrapActivationBlocked(void)
+{
+  if (IsRoyalDecreeActiveOnField())
+    return TRUE;
+  if (IsSorcererOfDarkMagicTrapLockActive())
+    return TRUE;
+  return FALSE;
+}
+
+u8 Duel_IsCardActivationBlocked(u16 cardId)
+{
+  u8 typeGroup;
+
+  if (cardId == CARD_NONE || cardId >= NUM_TOTAL_CARDS)
+    return FALSE;
+
+  typeGroup = GetTypeGroup(cardId);
+  if (typeGroup == TYPE_GROUP_SPELL || typeGroup == TYPE_GROUP_RITUAL) {
+    if (IsSpellCancellerSpellLockActive())
+      return TRUE;
+    if (IsImperialOrderNegatingSpell(cardId))
+      return TRUE;
+    return FALSE;
+  }
+
+  if (typeGroup == TYPE_GROUP_TRAP) {
+    if (IsRoyalDecreeNegatingTrap(cardId))
+      return TRUE;
+    if (IsSorcererOfDarkMagicTrapLockActive())
+      return TRUE;
+    return FALSE;
+  }
+
+  return FALSE;
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

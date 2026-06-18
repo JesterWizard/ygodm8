@@ -27,4 +27,4 @@ Append a dated entry to **SESSION_LOG.md** (newest first):
 - **Outcome** — what works now, test results if run
 - **Open / next** — follow-ups for the next session
 
-Skip log updates for trivial one-line fixes with no architectural impact.
+Skip log updates for trivial one-line fixes with no architectural impact. Merge similar log entries together, e.g. if working on the same feature like a card effect

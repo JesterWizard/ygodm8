@@ -624,6 +624,10 @@ static const unsigned char sRingOfDestructionBigArt[] __attribute__((section(".a
 static const unsigned short sRingOfDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ring_of_destruction.gbapal");
 static const unsigned char sRingOfDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ring_of_destruction.lz");
 
+static const unsigned char sSasukeSamurai2BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sasuke_samurai_2.huff");
+static const unsigned short sSasukeSamurai2BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sasuke_samurai_2.gbapal");
+static const unsigned char sSasukeSamurai2MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sasuke_samurai_2.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -781,6 +785,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B7] = sSevenToolsOfTheBanditBigArt,
   [0x03B8] = sRivalryOfWarlordsBigArt,
   [0x03B9] = sRingOfDestructionBigArt,
+  [0x03BA] = sSasukeSamurai2BigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -940,6 +945,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B7] = sSevenToolsOfTheBanditBigPalette,
   [0x03B8] = sRivalryOfWarlordsBigPalette,
   [0x03B9] = sRingOfDestructionBigPalette,
+  [0x03BA] = sSasukeSamurai2BigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1099,6 +1105,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B7] = 0,
   [0x03B8] = 0,
   [0x03B9] = 0,
+  [0x03BA] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1258,4 +1265,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B7] = sSevenToolsOfTheBanditMiniArt,
   [0x03B8] = sRivalryOfWarlordsMiniArt,
   [0x03B9] = sRingOfDestructionMiniArt,
+  [0x03BA] = sSasukeSamurai2MiniArt,
 };

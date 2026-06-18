@@ -4,6 +4,7 @@
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "embodiment_of_apophis.h"
+#include "sasuke_samurai_2.h"
 #include "ojama_trio.h"
 #include "duel.h"
 
@@ -107,6 +108,9 @@ void TryActivateEmbodimentOfApophisOnAttack(void)
   struct DuelCard *trapZone;
 
   if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
+    return;
+
+  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked())
     return;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

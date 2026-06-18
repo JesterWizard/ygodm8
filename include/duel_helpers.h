@@ -138,5 +138,7 @@ void Duel_EndSpellEffectResolve(void);
 u8 Duel_IsSpellEffectResolving(void);
 u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone);
 u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone);
+u8 Duel_IsAnyTrapActivationBlocked(void);
+u8 Duel_IsCardActivationBlocked(u16 cardId);
 
 #endif // GUARD_DUEL_HELPERS_H

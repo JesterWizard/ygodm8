@@ -68,7 +68,6 @@ void ActivateSpellEffect(void);
 void ActivateTrapEffect(u16 lp);
 unsigned IsTrapTriggered(void);
 u8 TryPayChainEnergyCost(void);
-unsigned char IsSpellCancellerSpellLockActive(void);
 u8 TryMaryokutaiSpellCounter(void);
 
 static void SetupSpellTrapOrigin(void)
@@ -151,7 +150,7 @@ static void ActivateSpellEffect__Body(void)
   SetCardInfo(gSpellEffectData.id);
   SetupSpellTrapOrigin();
 
-  if (IsSpellCancellerSpellLockActive() || IsImperialOrderActiveOnField()) {
+  if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
@@ -159,7 +158,7 @@ static void ActivateSpellEffect__Body(void)
 
   TryActivateImperialOrderOnSpellChain();
 
-  if (IsImperialOrderActiveOnField()) {
+  if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
@@ -167,7 +166,7 @@ static void ActivateSpellEffect__Body(void)
 
   if (GetTypeGroup(gSpellEffectData.id) == TYPE_GROUP_TRAP) {
     TryActivateRoyalDecreeOnTrapChain();
-    if (IsRoyalDecreeActiveOnField()) {
+    if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       return;

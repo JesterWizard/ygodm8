@@ -7,9 +7,9 @@
 #include "gravity_bind.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "duel_helpers.h"
+#include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
-
-unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
 static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
   if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
@@ -54,6 +54,9 @@ extern s16 gUnk_8E11788[];
 
 static bool8 CheckTrapActivationConditions__Hook(u16 id) {
   unsigned char ret;
+
+  if (Duel_IsCardActivationBlocked(id))
+    return FALSE;
 
   SetCardInfo(id);
   switch (gCardInfo.trapEffect) {
@@ -290,16 +293,21 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
 LYN_REPLACE_CHECK(IsTrapTriggered);
 unsigned IsTrapTriggered__Replacement(void) {
   unsigned char i;
+  u16 trapId;
 
   gTrapEffectData.trapCardId = 0;
-  if (IsSorcererOfDarkMagicTrapLockActive())
-    return FALSE;
-  if (IsRoyalDecreeActiveOnField())
+
+  if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked())
     return FALSE;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    trapId = gTurnZones[INACTIVE_DUELIST_BACKROW][i]->id;
     gTrapEffectData.trapZoneCol = i;
-    if (CheckTrapActivationConditions__Hook(gTurnZones[0][i]->id) == TRUE) {
+    if (trapId == CARD_NONE)
+      continue;
+    if (Duel_IsCardActivationBlocked(trapId))
+      continue;
+    if (CheckTrapActivationConditions__Hook(trapId) == TRUE) {
       if (gTrapEffectData.trapCardId == TRAP_IMPERIAL_ORDER)
         continue;
       if (gTrapEffectData.trapCardId == TRAP_ROYAL_DECREE)

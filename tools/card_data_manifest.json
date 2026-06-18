@@ -16969,6 +16969,38 @@
           "Destroy 1 opponent monster with ATK at or below their LP."
         ]
       }
+    },
+    {
+      "card_const": "SASUKE_SAMURAI_2",
+      "card_name": "Sasuke Samurai #2",
+      "atk": 200,
+      "def": 300,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_SASUKE_SAMURAI_2",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 1, 7, 6, 0, 1, 7, 4],
+      "effect_usage": "once_per_turn",
+      "lock_after_activation": false,
+      "description": {
+        "symbol": "gDescription_SasukeSamurai2",
+        "pages": [
+          "Once per turn, during your Main Phase, you can pay 800",
+          "Life Points. If you do this, until the End Phase,",
+          "your opponent's Trap Cards cannot be activated."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SasukeSamurai2",
+        "pages": [
+          "Pay 800 Life Points. Until the End Phase,",
+          "your opponent's Trap Cards cannot be activated."
+        ]
+      }
     }
   ]
 }

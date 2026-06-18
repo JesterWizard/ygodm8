@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Sasuke Samurai #2 custom card (+ trap-block iteration)
+
+**Worked on:** Added Sasuke Samurai #2 to manifest/trunk (`SASUKE_SAMURAI_2`). Ignition: pay 800 LP, once per turn, face-up OK (`lock_after_activation: false`). Until End Phase, opponent backrow traps cannot activate — `gSasukeSamurai2InactiveBackrowTrapBlock` in `asm/ram_map.s`, set at effect start, cleared in `TryActivatingTurnEffects`. Guards: `IsTrapTriggered`, `ActivateTrapEffect`, attack paths (`sub_8044570` / `TryAttackWithMonster`), Apophis on-attack, AI attack traps. Also added `Duel_IsCardActivationBlocked(cardId)` in `duel_helpers` for Imperial Order / Royal Decree / Spell Canceller (separate from Sasuke #2). Card text: opponent traps only (no spell lock). `card_in_hand_1 = SASUKE_SAMURAI_2` in `configs/runtime.c`. Sasuke Samurai (#1) already in trunk with battle effect (`battle_effects/sasuke_samurai.c`).
+
+**Files:** `tools/card_data_manifest.json`, `asm/ram_map.s`, `include/sasuke_samurai_2.h`, `include/constants/monster_effects.h`, `include/duel_helpers.h`, `src_custom/activated_effects/sasuke_samurai_2.c`, `src_custom/duel_helpers.c`, `src_custom/monster_effect_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/trap_effect_hooks.c`, `src_custom/trap_effects_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/embodiment_of_apophis_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/turn_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm Invisible Wire blocked same turn after Sasuke #2 effect; add Sasuke Samurai #3 (`sasuke_samurai_3.png` art exists).
+
+---
+
 ## 2026-06-18 — Ring of Destruction custom card
 
 **Worked on:** Added Ring of Destruction (trap) to manifest/trunk; opponent-turn targeting via Soul Taker-style cursor flow; auto-activates on opponent summon via `Duel_NotifyFixedMonsterRowChanged`, always picking highest-ATK valid face-up target; mirror damage via `duel_helpers`.

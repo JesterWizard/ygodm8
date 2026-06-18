@@ -93,6 +93,9 @@ _kernel_malloc gPendingSummonTributeCount, 1
 _kernel_malloc gPendingTributeSummonCardIdPad, 1
 _kernel_malloc gPendingTributeSummonCardId, 2
 
+@ Sasuke Samurai #2: blocks inactive-duelist backrow trap activations until end phase.
+_kernel_malloc gSasukeSamurai2InactiveBackrowTrapBlock, 1
+
 @ Extra tribute credit from Double Coston's dark-only bonus (not generic).
 _kernel_malloc gDoubleCostonDarkBonusPaid, 1
 
@@ -109,6 +112,8 @@ _kernel_malloc gCgSessionOpen, 1
 _kernel_malloc gCgActive, 1
 _kernel_malloc gCgFadeSpeed, 1
 _kernel_malloc gCgId, 1
+@ ponytail: pad so gCgSavedDispcnt lands on an even IWRAM address.
+_kernel_malloc gCgSavedDispcntPad, 1
 _kernel_malloc gCgSavedDispcnt, 2
 
 @ --------------------------------------------------------------------
