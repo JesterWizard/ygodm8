@@ -43,6 +43,7 @@ void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
+void ResolveRoyalKnightBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveSasukeSamurai3BattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
@@ -386,6 +387,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveReaperOnTheNightmareDirectDamageEffect();
   ResolveSpiritReaperDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
+  ResolveRoyalKnightBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();

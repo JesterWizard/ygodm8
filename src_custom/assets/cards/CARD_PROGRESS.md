@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 174 |
-| Art ready, needs manifest | 145 |
+| In game (manifest + art) | 175 |
+| Art ready, needs manifest | 144 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -196,6 +196,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `JOWLS_OF_DARK_DEMISE` | Jowls of Dark Demise | `jowls_of_dark_demise.png` |
 | `KISHIDO_SPIRIT` | Kishido Spirit | `kishido_spirit.png` |
 | `POSSESSED_DARK_SOUL` | Possessed Dark Soul | `possessed_dark_soul.png` |
+| `ROYAL_KNIGHT` | Royal Knight | `royal_knight.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -302,7 +303,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
-- [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`

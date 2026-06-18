@@ -704,6 +704,10 @@ static const unsigned char sPossessedDarkSoulBigArt[] __attribute__((section(".a
 static const unsigned short sPossessedDarkSoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/possessed_dark_soul.gbapal");
 static const unsigned char sPossessedDarkSoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/possessed_dark_soul.lz");
 
+static const unsigned char sRoyalKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/royal_knight.huff");
+static const unsigned short sRoyalKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/royal_knight.gbapal");
+static const unsigned char sRoyalKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/royal_knight.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -881,6 +885,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03CC] = sJowlsOfDarkDemiseBigArt,
   [0x03CD] = sKishidoSpiritBigArt,
   [0x03CE] = sPossessedDarkSoulBigArt,
+  [0x03CF] = sRoyalKnightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1060,6 +1065,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03CC] = sJowlsOfDarkDemiseBigPalette,
   [0x03CD] = sKishidoSpiritBigPalette,
   [0x03CE] = sPossessedDarkSoulBigPalette,
+  [0x03CF] = sRoyalKnightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1239,6 +1245,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03CC] = 0,
   [0x03CD] = 0,
   [0x03CE] = 0,
+  [0x03CF] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1418,4 +1425,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03CC] = sJowlsOfDarkDemiseMiniArt,
   [0x03CD] = sKishidoSpiritMiniArt,
   [0x03CE] = sPossessedDarkSoulMiniArt,
+  [0x03CF] = sRoyalKnightMiniArt,
 };

@@ -17574,6 +17574,35 @@
         ]
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ROYAL_KNIGHT",
+      "card_name": "Royal Knight",
+      "atk": 1300,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 8, 2, 8, 0, 5, 3, 0],
+      "description": {
+        "symbol": "gDescription_RoyalKnight",
+        "pages": [
+          "When this card destroys a monster by battle and sends",
+          "it to the Graveyard, gain Life Points equal to the",
+          "DEF of the destroyed monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_RoyalKnight",
+        "pages": [
+          "Increase your Life Points by the original DEF of the destroyed monster."
+        ]
+      }
     }
   ]
 }

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `186` effects
+- `187` effects
 
 ## Tally
 
@@ -184,6 +184,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Sasuke Samurai #3` | `src_custom/battle_effects/sasuke_samurai_3.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `battle_effects` | `Guardian Angel Joan` | `src_custom/battle_effects/guardian_angel_joan.c` |
+| `battle_effects` | `Royal Knight` | `src_custom/battle_effects/royal_knight.c` |
 | `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |
 | `battle_effects` | `Needle Burrower / KA-2 Des Scissors` | `src_custom/battle_effects/needle_burrower.c` |
 | `battle_effects` | `Hyper Hammerhead` | `src_custom/battle_effects/hyper_hammerhead.c` |

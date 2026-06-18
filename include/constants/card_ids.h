@@ -976,11 +976,12 @@
 #define JOWLS_OF_DARK_DEMISE                     0x03CC
 #define KISHIDO_SPIRIT                           0x03CD
 #define POSSESSED_DARK_SOUL                      0x03CE
+#define ROYAL_KNIGHT                             0x03CF
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03CF
-#define NUM_CUSTOM_CARDS                        0x00AE
+#define NUM_TOTAL_CARDS                         0x03D0
+#define NUM_CUSTOM_CARDS                        0x00AF
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

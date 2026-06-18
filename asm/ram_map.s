@@ -323,6 +323,12 @@ _kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
 _kernel_malloc_ewram gPendingGuardianAngelJoanPad, 1
 @ Original ATK of the monster Joan destroyed in battle.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
+@ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Royal Knight, else 0xFF.
+_kernel_malloc_ewram gPendingRoyalKnightDuelist, 1
+@ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).
+_kernel_malloc_ewram gPendingRoyalKnightPad, 1
+@ Original DEF of the monster Royal Knight destroyed in battle.
+_kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
 @ DUEL_PLAYER/DUEL_OPPONENT draw pending for Airknight Parshath, else 0xFF.
 _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT draw-until-7 pending for Sasuke Samurai #3, else 0xFF.

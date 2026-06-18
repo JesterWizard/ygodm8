@@ -19,6 +19,7 @@
 #include "vampire_baby.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
+#include "royal_knight.h"
 #include "airknight_parshath.h"
 #include "needle_burrower.h"
 #include "absorbing_kid_from_the_sky.h"
@@ -186,6 +187,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplySpiritReaperDiscardBattleEffect();
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
+  ApplyRoyalKnightBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
   ApplyAbsorbingKidFromTheSkyBattleEffect();

@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Royal Knight custom card
+
+**Worked on:** Added Royal Knight (LIGHT Fairy L3 1300/800, passcode 68280530) to manifest/trunk. Battle trigger: when it destroys a monster by battle, controller gains LP equal to the destroyed monster's original DEF — modeled on Guardian Angel Joan via `Duel_ChangeLp` + deferred resolve. Fixed truncated activation description text.
+
+**Files:** `tools/card_data_manifest.json`, `include/royal_knight.h`, `src_custom/battle_effects/royal_knight.c`, `src_custom/battle_damage_hooks.c`, `asm/ram_map.s`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = ROYAL_KNIGHT`.
+
+**Open / next:** In-game: summon Royal Knight, battle-destroy a monster, confirm LP gain matches defender's DEF and effect text shows.
+
+---
+
 ## 2026-06-18 — Fix direct-attack phantom (Kishido anim remap regression)
 
 **Worked on:** Kishido commit added `Duel_RemapMutualDestroyBattleAnim` to all battles; with no GY flags it forced `unk18=8` (monster-vs-monster) on direct attacks (10/15), showing stale defender art (often Kaiser Glider) and 0 damage. Remap and destroy-protection (Kishido, Kaiser Glider) now run only for monster-vs-monster action ids 1/2/3/5. Reverted ineffective stale-data direct-attack band-aids.

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 174
+#define NUM_CUSTOM_NAME_SORT_CARDS 175
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -179,6 +179,7 @@ static const u8 sKnightsTitleSortName[] APPEND_RODATA = "Knight's Title";
 static const u8 sJowlsOfDarkDemiseSortName[] APPEND_RODATA = "Jowls of Dark Demise";
 static const u8 sKishidoSpiritSortName[] APPEND_RODATA = "Kishido Spirit";
 static const u8 sPossessedDarkSoulSortName[] APPEND_RODATA = "Possessed Dark Soul";
+static const u8 sRoyalKnightSortName[] APPEND_RODATA = "Royal Knight";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -307,6 +308,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0361, // Robbin' Goblin
   0x0362, // Robbin' Zombie
   0x0398, // Royal Decree
+  0x03CF, // Royal Knight
   0x0344, // Sage's Stone
   0x0375, // Sasuke Samurai
   0x03BA, // Sasuke Samurai #2
@@ -484,54 +486,55 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   124, // Robbin' Goblin
   125, // Robbin' Zombie
   126, // Royal Decree
-  127, // Sage's Stone
-  128, // Sasuke Samurai
-  129, // Sasuke Samurai #2
-  130, // Sasuke Samurai #3
-  131, // Seal of Orichalcos
-  132, // Secret Barrel
-  133, // Self-Destruct Button
-  134, // Servant of Catabolism
-  135, // Seven Tools of the Bandit
-  136, // Shield And Sword
-  137, // Skill Drain
-  138, // Skull Invitation
-  139, // Solar Flare Dragon
-  140, // Solar Ray
-  141, // Solemn Wishes
-  142, // Sorcerer of Dark Magic
-  143, // Soul Exchange
-  144, // Soul Taker
-  145, // Spear Dragon
-  146, // Spell Canceller
-  147, // Spirit of the Breeze
-  148, // Spirit Reaper
-  149, // Spirit Ryu
-  150, // St Joan
-  151, // Stealth Bird
-  152, // Swift Gaia The Fierce Knight
-  153, // Terrorking Salmon
-  154, // The Agent Of Creation - Venus
-  155, // The Dark Door
-  156, // The Forceful Sentry
-  157, // Thousand Energy
-  158, // Thousand Knives
-  159, // Thunder Crash
-  160, // Time Seal
-  161, // Toll
-  162, // Torpedo Fish
-  163, // Triangle Power
-  164, // Twin Swords of Flashing Light - Tryce
-  165, // Tyrant Dragon
-  166, // Ultimate Offering
-  167, // United We Stand
-  168, // Upstart Goblin
-  169, // Vampire Baby
-  170, // Warrior of Zera
-  171, // Wave Motion Cannon
-  172, // Weather Report
-  173, // White Magician Pikeru
-  174, // Yata-Garasu
+  127, // Royal Knight
+  128, // Sage's Stone
+  129, // Sasuke Samurai
+  130, // Sasuke Samurai #2
+  131, // Sasuke Samurai #3
+  132, // Seal of Orichalcos
+  133, // Secret Barrel
+  134, // Self-Destruct Button
+  135, // Servant of Catabolism
+  136, // Seven Tools of the Bandit
+  137, // Shield And Sword
+  138, // Skill Drain
+  139, // Skull Invitation
+  140, // Solar Flare Dragon
+  141, // Solar Ray
+  142, // Solemn Wishes
+  143, // Sorcerer of Dark Magic
+  144, // Soul Exchange
+  145, // Soul Taker
+  146, // Spear Dragon
+  147, // Spell Canceller
+  148, // Spirit of the Breeze
+  149, // Spirit Reaper
+  150, // Spirit Ryu
+  151, // St Joan
+  152, // Stealth Bird
+  153, // Swift Gaia The Fierce Knight
+  154, // Terrorking Salmon
+  155, // The Agent Of Creation - Venus
+  156, // The Dark Door
+  157, // The Forceful Sentry
+  158, // Thousand Energy
+  159, // Thousand Knives
+  160, // Thunder Crash
+  161, // Time Seal
+  162, // Toll
+  163, // Torpedo Fish
+  164, // Triangle Power
+  165, // Twin Swords of Flashing Light - Tryce
+  166, // Tyrant Dragon
+  167, // Ultimate Offering
+  168, // United We Stand
+  169, // Upstart Goblin
+  170, // Vampire Baby
+  171, // Warrior of Zera
+  172, // Wave Motion Cannon
+  173, // Weather Report
+  174, // White Magician Pikeru
+  175, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -889,6 +892,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sKishidoSpiritSortName;
   if (cardId == 0x03CE)
     return (u8 *)sPossessedDarkSoulSortName;
+  if (cardId == 0x03CF)
+    return (u8 *)sRoyalKnightSortName;
 
   return gCardNames[cardId];
 }
