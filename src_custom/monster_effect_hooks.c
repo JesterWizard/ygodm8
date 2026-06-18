@@ -12,6 +12,7 @@
 #include "level_limit_area_b.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
+#include "breaker_the_magical_warrior.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -74,6 +75,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateSasukeSamurai2();
     case MONSTER_EFFECT_MAN_THRO_TRO:
       return CanActivateManThroTro();
+    case MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR:
+      return CanActivateBreakerTheMagicalWarrior();
     default:
       return TRUE;
   }
@@ -208,6 +211,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR) {
+    ActivateBreakerTheMagicalWarriorEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -281,6 +289,7 @@ void MonsterActionMenu__Replacement(void) {
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
       if (!isFaceUp || zone->id == CANNON_SOLDIER || zone->id == MAN_THRO_TRO
+          || zone->id == BREAKER_THE_MAGICAL_WARRIOR
           || zone->id == THE_AGENT_OF_CREATION_VENUS
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
@@ -307,7 +316,8 @@ FAILED:
             LockMonsterCardsInRow(4);
           UpdateDuelGfxExceptField();
           if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET
-              || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET)
+              || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET)
             break;
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)

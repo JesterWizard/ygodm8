@@ -56,9 +56,44 @@ static u8 IsMonsterVersusMonsterBattle(void)
   return sActionData.id == 1 || sActionData.id == 2 || sActionData.id == 5;
 }
 
-static u8 TryMarkDDWarriorBattleBanish(void)
+static u8 ZoneMatchesBattleCard(u8 fixedRow, u8 fixedCol, u16 cardId)
+{
+  struct DuelCard *zone;
+
+  if (cardId == CARD_NONE || fixedRow >= 5 || fixedCol >= MAX_ZONES_IN_ROW)
+    return FALSE;
+
+  zone = gFixedZones[fixedRow][fixedCol];
+  return zone != NULL && zone->id == cardId;
+}
+
+static u8 ValidateDDWarriorBattleContext(void)
 {
   if (!IsMonsterVersusMonsterBattle())
+    return FALSE;
+
+  if (GetTypeGroup(sActionData.playerCardId) != TYPE_GROUP_MONSTER
+      || GetTypeGroup(sActionData.opponentCardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  if (sActionData.playerCardId == D_D_WARRIOR) {
+    return ZoneMatchesBattleCard(sActionData.playerMonsterRow, sActionData.unkA, D_D_WARRIOR)
+        && ZoneMatchesBattleCard(sActionData.opponentMonsterRow, sActionData.unk16,
+                                 sActionData.opponentCardId);
+  }
+
+  if (sActionData.opponentCardId == D_D_WARRIOR) {
+    return ZoneMatchesBattleCard(sActionData.opponentMonsterRow, sActionData.unk16, D_D_WARRIOR)
+        && ZoneMatchesBattleCard(sActionData.playerMonsterRow, sActionData.unkA,
+                                 sActionData.playerCardId);
+  }
+
+  return FALSE;
+}
+
+static u8 TryMarkDDWarriorBattleBanish(void)
+{
+  if (!ValidateDDWarriorBattleContext())
     return FALSE;
 
   if (sActionData.playerCardId == D_D_WARRIOR) {
@@ -67,13 +102,9 @@ static u8 TryMarkDDWarriorBattleBanish(void)
     return TRUE;
   }
 
-  if (sActionData.opponentCardId == D_D_WARRIOR) {
-    MarkPendingBanish(sActionData.opponentMonsterRow, sActionData.unk16,
-                      sActionData.playerMonsterRow, sActionData.unkA);
-    return TRUE;
-  }
-
-  return FALSE;
+  MarkPendingBanish(sActionData.opponentMonsterRow, sActionData.unk16,
+                    sActionData.playerMonsterRow, sActionData.unkA);
+  return TRUE;
 }
 
 void ResolveDDWarriorBattleEffect(void)
@@ -97,6 +128,11 @@ void ResolveDDWarriorBattleEffect(void)
   warriorZone = gFixedZones[warriorRow][warriorCol];
   otherZone = gFixedZones[otherRow][otherCol];
 
+  if (warriorZone->id != D_D_WARRIOR
+      || otherZone->id == CARD_NONE
+      || GetTypeGroup(otherZone->id) != TYPE_GROUP_MONSTER)
+    return;
+
   Duel_ShowEffectTextTyped(D_D_WARRIOR, 3);
   if (IsDuelOver() == TRUE)
     return;
@@ -112,11 +148,10 @@ void ApplyDDWarriorBattleEffect(void)
   if (gHideEffectText)
     return;
 
-  if (!TryMarkDDWarriorBattleBanish())
+  if (!TryMarkDDWarriorBattleBanish()) {
+    ClearDDWarriorPending();
     return;
+  }
 
   sActionData.flags &= ~(FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT);
-
-  if (gUnk2023EA0.unk18 == 0)
-    ResolveDDWarriorBattleEffect();
 }

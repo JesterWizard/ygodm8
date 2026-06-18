@@ -664,6 +664,10 @@ static const unsigned char sConfiscationBigArt[] __attribute__((section(".append
 static const unsigned short sConfiscationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/confiscation.gbapal");
 static const unsigned char sConfiscationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/confiscation.lz");
 
+static const unsigned char sBreakerTheMagicalWarriorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/breaker_the_magical_warrior.huff");
+static const unsigned short sBreakerTheMagicalWarriorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/breaker_the_magical_warrior.gbapal");
+static const unsigned char sBreakerTheMagicalWarriorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/breaker_the_magical_warrior.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -831,6 +835,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03C1] = sBlastHeldByATributeBigArt,
   [0x03C2] = sDDWarriorBigArt,
   [0x03C3] = sConfiscationBigArt,
+  [0x03C4] = sBreakerTheMagicalWarriorBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1000,6 +1005,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03C1] = sBlastHeldByATributeBigPalette,
   [0x03C2] = sDDWarriorBigPalette,
   [0x03C3] = sConfiscationBigPalette,
+  [0x03C4] = sBreakerTheMagicalWarriorBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1169,6 +1175,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03C1] = 0,
   [0x03C2] = 0,
   [0x03C3] = 0,
+  [0x03C4] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1338,4 +1345,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03C1] = sBlastHeldByATributeMiniArt,
   [0x03C2] = sDDWarriorMiniArt,
   [0x03C3] = sConfiscationMiniArt,
+  [0x03C4] = sBreakerTheMagicalWarriorMiniArt,
 };

@@ -19,6 +19,7 @@
 #include "level_limit_area_b.h"
 #include "black_tyranno.h"
 #include "duel_helpers.h"
+#include "d_d_warrior.h"
 #include "sasuke_samurai_2.h"
 
 struct AI_Command {
@@ -167,6 +168,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
+  ResolveDDWarriorBattleEffect();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
@@ -215,6 +217,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   DebugRuleset_MarkAttackUsed();
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
+  ResolveDDWarriorBattleEffect();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);

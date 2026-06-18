@@ -24,6 +24,7 @@
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
+#include "breaker_the_magical_warrior.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -109,6 +110,7 @@ void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
 void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
+void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
 signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
 void sub_80441D0(void);
@@ -646,6 +648,7 @@ void sub_80449D8__Replacement(void)
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryBreakerTheMagicalWarriorOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
@@ -902,6 +905,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
       TrySelectManThroTroTarget();
       break;
+    case DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET:
+      TrySelectBreakerTheMagicalWarriorTarget();
+      break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       TrySelectDarkMagicianKnightTarget();
       break;
@@ -950,6 +956,9 @@ void HandleBButtonAction__Replacement(void)
     case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();
+      break;
+    case DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET:
+      CancelBreakerTheMagicalWarriorTargeting();
       break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       CancelDarkMagicianKnightTargeting();

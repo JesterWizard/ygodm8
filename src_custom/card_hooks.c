@@ -597,8 +597,9 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (gSetFinalStatZone != NULL
       && gSetFinalStatZone->id == ptr->card
-      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER)
+      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+  }
 
   gSetFinalStatZone = NULL;
 }

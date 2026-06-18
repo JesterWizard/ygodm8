@@ -15,6 +15,30 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — D.D. Warrior / Breaker effect fixes
+
+**Worked on:** D.D. Warrior only marks/resolves when `sActionData` matches live monster-vs-monster zones. Breaker: spell counter = `permStage` (+500 ATK via normal stage boost); summon `IncrementPermStage`, activation `DecrementPermStage`; dropped RAM counter mask and custom overlay hooks.
+
+**Files:** `src_custom/battle_effects/d_d_warrior.c`, `src_custom/ai_attack_hooks.c`, `src_custom/permanent_effects/breaker_the_magical_warrior.c`, `src_custom/activated_effects/breaker_the_magical_warrior.c`, `src_custom/card_hooks.c`, `src_custom/mini_card_hooks.c`, `src_custom/duel_helpers.c`, `include/breaker_the_magical_warrior.h`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm DD Warrior only on monster battles; Breaker shows 1600 + +300 stamp on summon, activation popup + destroy.
+
+---
+
+## 2026-06-18 — Breaker the Magical Warrior custom card
+
+**Worked on:** Added Breaker the Magical Warrior to manifest/trunk (`BREAKER_THE_MAGICAL_WARRIOR`, DARK Spellcaster L4 1600/1000, passcode 71413901). Normal Summon places 1 Spell Counter (`permStage`, max 1) via placement hook; +300 ATK per counter via dynamic zone stats. Ignition: remove counter, MST-style Spell/Trap targeting, destroy via `Duel_DestroyZone`. `multiple_per_turn`, face-up activation allowed. `card_in_hand_1 = BREAKER_THE_MAGICAL_WARRIOR` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/breaker_the_magical_warrior.h`, `include/constants/monster_effects.h`, `src_custom/permanent_effects/breaker_the_magical_warrior.c`, `src_custom/activated_effects/breaker_the_magical_warrior.c`, `src_custom/monster_effect_hooks.c`, `src_custom/duel_helpers.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm counter on normal summon (not special), 1900 ATK overlay, destroy S/T targeting, Skill Drain negation, and counter persists across turns.
+
+---
+
 ## 2026-06-18 — Confiscation custom card
 
 **Worked on:** Added Confiscation to manifest/trunk (`CONFISCATION`, Normal Spell, passcode 17375316). Effect: pay 1000 LP via `Duel_TryResolveSpellThroughTrapsEx`, reveal opponent hand with `SelectExchangeHandCard`, discard chosen card via `Duel_DestroyZone`; AI picks random hand card. `CanActivateConfiscation` blocks activation when opponent hand empty or LP < 1000. `card_in_hand_1 = CONFISCATION` in `configs/runtime.c`.

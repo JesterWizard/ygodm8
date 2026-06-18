@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 163 |
-| Art ready, needs manifest | 158 |
+| In game (manifest + art) | 164 |
+| Art ready, needs manifest | 157 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -185,6 +185,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BLAST_HELD_BY_A_TRIBUTE` | Blast Held by a Tribute | `blast_held_by_a_tribute.png` |
 | `D_D_WARRIOR` | D.D. Warrior | `d_d_warrior.png` |
 | `CONFISCATION` | Confiscation | `confiscation.png` |
+| `BREAKER_THE_MAGICAL_WARRIOR` | Breaker the Magical Warrior | `breaker_the_magical_warrior.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -210,7 +211,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
 - [ ] `BOTTOMLESS_SHIFTING_SAND` — `bottomless_shifting_sand.png`
-- [ ] `BREAKER_THE_MAGICAL_WARRIOR` — `breaker_the_magical_warrior.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`

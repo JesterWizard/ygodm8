@@ -965,11 +965,12 @@
 #define BLAST_HELD_BY_A_TRIBUTE                  0x03C1
 #define D_D_WARRIOR                              0x03C2
 #define CONFISCATION                             0x03C3
+#define BREAKER_THE_MAGICAL_WARRIOR              0x03C4
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03C4
-#define NUM_CUSTOM_CARDS                        0x00A3
+#define NUM_TOTAL_CARDS                         0x03C5
+#define NUM_CUSTOM_CARDS                        0x00A4
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
