@@ -16984,8 +16984,6 @@
       "trapEffect": 0,
       "cost": 150,
       "password": [1, 1, 7, 6, 0, 1, 7, 4],
-      "effect_usage": "once_per_turn",
-      "lock_after_activation": false,
       "description": {
         "symbol": "gDescription_SasukeSamurai2",
         "pages": [
@@ -16999,6 +16997,37 @@
         "pages": [
           "Pay 800 Life Points. Until the End Phase,",
           "your opponent's Trap Cards cannot be activated."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "SASUKE_SAMURAI_3",
+      "card_name": "Sasuke Samurai #3",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [7, 7, 3, 7, 9, 4, 8, 1],
+      "description": {
+        "symbol": "gDescription_SasukeSamurai3",
+        "pages": [
+          "When this card inflicts Battle Damage to your",
+          "opponent's Life Points, your opponent draws cards",
+          "until his/her hand has 5 cards."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SasukeSamurai3",
+        "pages": [
+          "When this card inflicts Battle Damage, your opponent draws cards until their hand has 5 cards"
         ]
       }
     }

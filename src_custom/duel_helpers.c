@@ -345,6 +345,19 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx)
   return DUEL_ACTION_OK;
 }
 
+enum DuelActionResult Duel_DrawCardsUntilHandSize(u8 turnDuelist, u8 targetHandSize, u8 updateGfx)
+{
+  while (Duel_CountCardsInHand(gTurnHands[turnDuelist]) < targetHandSize) {
+    if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) >= MAX_ZONES_IN_ROW)
+      break;
+    if (Duel_DrawCards(turnDuelist, 1, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return DUEL_ACTION_DUEL_OVER;
+  }
+
+  MaybeUpdateGfx(updateGfx);
+  return DUEL_ACTION_OK;
+}
+
 enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx)
 {
   u8 i;

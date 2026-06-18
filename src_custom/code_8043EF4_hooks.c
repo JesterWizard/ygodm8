@@ -28,6 +28,7 @@
 #include "hyper_hammerhead.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
+#include "sasuke_samurai_3.h"
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
 #include "embodiment_of_apophis.h"
@@ -734,6 +735,7 @@ void sub_8044570__Replacement(void)
       ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
+      ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
       ResolveHyperHammerheadBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();
@@ -834,6 +836,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
+      ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
       ResolveHyperHammerheadBattleEffect();
       ResolveAbsorbingKidFromTheSkyBattleEffect();

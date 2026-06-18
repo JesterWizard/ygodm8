@@ -36,6 +36,7 @@ struct DuelSummonOpts Duel_DefaultNormalSummonOpts(u8 updateGfx);
 
 u8 Duel_CountCardsInHand(struct DuelCard **handRow);
 enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx);
+enum DuelActionResult Duel_DrawCardsUntilHandSize(u8 turnDuelist, u8 targetHandSize, u8 updateGfx);
 enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx);
 
 enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelist, u8 updateGfx);

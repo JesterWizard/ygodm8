@@ -25,6 +25,7 @@
 #include "spirit_reaper.h"
 #include "hyper_hammerhead.h"
 #include "gyaku_gire_panda.h"
+#include "sasuke_samurai_3.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -183,6 +184,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyYataGarasuBattleEffect();
   ApplyFenrirBattleEffect();
   ApplyHyperHammerheadBattleEffect();
+  ApplySasukeSamurai3BattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
     if (CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)

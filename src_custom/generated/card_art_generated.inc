@@ -628,6 +628,10 @@ static const unsigned char sSasukeSamurai2BigArt[] __attribute__((section(".appe
 static const unsigned short sSasukeSamurai2BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sasuke_samurai_2.gbapal");
 static const unsigned char sSasukeSamurai2MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sasuke_samurai_2.lz");
 
+static const unsigned char sSasukeSamurai3BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sasuke_samurai_3.huff");
+static const unsigned short sSasukeSamurai3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sasuke_samurai_3.gbapal");
+static const unsigned char sSasukeSamurai3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sasuke_samurai_3.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -786,6 +790,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B8] = sRivalryOfWarlordsBigArt,
   [0x03B9] = sRingOfDestructionBigArt,
   [0x03BA] = sSasukeSamurai2BigArt,
+  [0x03BB] = sSasukeSamurai3BigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -946,6 +951,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B8] = sRivalryOfWarlordsBigPalette,
   [0x03B9] = sRingOfDestructionBigPalette,
   [0x03BA] = sSasukeSamurai2BigPalette,
+  [0x03BB] = sSasukeSamurai3BigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1106,6 +1112,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B8] = 0,
   [0x03B9] = 0,
   [0x03BA] = 0,
+  [0x03BB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1266,4 +1273,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B8] = sRivalryOfWarlordsMiniArt,
   [0x03B9] = sRingOfDestructionMiniArt,
   [0x03BA] = sSasukeSamurai2MiniArt,
+  [0x03BB] = sSasukeSamurai3MiniArt,
 };

@@ -41,6 +41,7 @@ void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
+void ResolveSasukeSamurai3BattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
 void ResolveHyperHammerheadBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
@@ -171,6 +172,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveSpiritReaperDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
+  ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();
   ResolveHyperHammerheadBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();

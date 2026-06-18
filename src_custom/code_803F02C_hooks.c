@@ -31,6 +31,7 @@
 #include "hyper_hammerhead.h"
 #include "absorbing_kid_from_the_sky.h"
 #include "airknight_parshath.h"
+#include "sasuke_samurai_3.h"
 #include "riryoku.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -231,6 +232,7 @@ void InitBoard__Replacement(void) {
   ClearSpiritReaperDiscardPending();
   ClearGuardianAngelJoanPending();
   ClearAirknightParshathDrawPending();
+  ClearSasukeSamurai3DrawPending();
   ClearNeedleBurrowerPending();
   ClearHyperHammerheadPending();
   ClearAbsorbingKidFromTheSkyPending();

@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Sasuke Samurai #3 custom card
+
+**Worked on:** Added Sasuke Samurai #3 to manifest/trunk (`SASUKE_SAMURAI_3`, LIGHT Warrior 1000/1000 L3, passcode 77379481). Trigger: when it inflicts battle damage to opponent LP, opponent draws until hand has 7 (`Duel_DrawCardsUntilHandSize` helper; capped at `MAX_ZONES_IN_ROW` 5). Battle effect in `battle_effects/sasuke_samurai_3.c`, deferred resolve like Airknight Parshath. `card_in_hand_1 = SASUKE_SAMURAI_3` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/sasuke_samurai_3.h`, `include/duel_helpers.h`, `src_custom/battle_effects/sasuke_samurai_3.c`, `src_custom/duel_helpers.c`, `src_custom/battle_damage_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `asm/ram_map.s`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm opponent draws to 5 (hand cap) when Sasuke #3 deals direct battle damage.
+
+---
+
 ## 2026-06-18 — Sasuke Samurai #2 custom card (+ trap-block iteration)
 
 **Worked on:** Added Sasuke Samurai #2 to manifest/trunk (`SASUKE_SAMURAI_2`). Ignition: pay 800 LP, once per turn, face-up OK (`lock_after_activation: false`). Until End Phase, opponent backrow traps cannot activate — `gSasukeSamurai2InactiveBackrowTrapBlock` in `asm/ram_map.s`, set at effect start, cleared in `TryActivatingTurnEffects`. Guards: `IsTrapTriggered`, `ActivateTrapEffect`, attack paths (`sub_8044570` / `TryAttackWithMonster`), Apophis on-attack, AI attack traps. Also added `Duel_IsCardActivationBlocked(cardId)` in `duel_helpers` for Imperial Order / Royal Decree / Spell Canceller (separate from Sasuke #2). Card text: opponent traps only (no spell lock). `card_in_hand_1 = SASUKE_SAMURAI_2` in `configs/runtime.c`. Sasuke Samurai (#1) already in trunk with battle effect (`battle_effects/sasuke_samurai.c`).
@@ -23,7 +35,7 @@ Format for new entries (newest first):
 
 **Outcome:** `make test-cards-build` passes.
 
-**Open / next:** In-game confirm Invisible Wire blocked same turn after Sasuke #2 effect; add Sasuke Samurai #3 (`sasuke_samurai_3.png` art exists).
+**Open / next:** In-game confirm Invisible Wire blocked same turn after Sasuke #2 effect.
 
 ---
 

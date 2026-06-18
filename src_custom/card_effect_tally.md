@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `168` effects
+- `169` effects
 
 ## Tally
 
@@ -170,6 +170,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Fenrir` | `src_custom/permanent_effects/fenrir.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
+| `battle_effects` | `Sasuke Samurai #3` | `src_custom/battle_effects/sasuke_samurai_3.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `battle_effects` | `Guardian Angel Joan` | `src_custom/battle_effects/guardian_angel_joan.c` |
 | `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |
