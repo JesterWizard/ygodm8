@@ -11,6 +11,7 @@
 #include "summon_tribute.h"
 #include "raregold_armor.h"
 #include "rivalry_of_warlords.h"
+#include "ring_of_destruction.h"
 #include "tribute.h"
 
 extern void UpdateDuelGfxExceptField(void);
@@ -1099,6 +1100,7 @@ void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone)
 {
   u8 fixedRow;
   u8 col;
+  u8 turnRow;
 
   if (zone == NULL || zone->id == CARD_NONE)
     return;
@@ -1106,15 +1108,28 @@ void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone)
   if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
     return;
 
-  if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
+  if (Duel_FindFixedMonsterZone(zone, &fixedRow, &col)) {
+    Duel_NotifyFixedMonsterRowChanged(fixedRow);
+    return;
+  }
+
+  if (!Duel_FindTurnMonsterZone(zone, &turnRow, &col))
     return;
 
+  fixedRow = Duel_FixedMonsterRowForDuelist(
+      TurnDuelistToFixed(turnRow == ACTIVE_DUELIST_MONSTER_ROW ? ACTIVE_DUELIST
+                                                               : INACTIVE_DUELIST));
   Duel_NotifyFixedMonsterRowChanged(fixedRow);
 }
 
 void Duel_CheckRivalryOfWarlordsAfterFieldChange(void)
 {
   RivalryOfWarlords_CheckAfterFieldChange();
+}
+
+void Duel_CheckRingOfDestructionAfterFieldChange(void)
+{
+  RingOfDestruction_CheckAfterFieldChange();
 }
 
 u8 Duel_IsMonsterZoneTarget(u16 cardId)

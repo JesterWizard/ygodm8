@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 152 |
-| Art ready, needs manifest | 167 |
+| In game (manifest + art) | 153 |
+| Art ready, needs manifest | 166 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -174,6 +174,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TORPEDO_FISH` | Torpedo Fish | `torpedo_fish.png` |
 | `SEVEN_TOOLS_OF_THE_BANDIT` | Seven Tools of the Bandit | `seven_tools_of_the_bandit.png` |
 | `RIVALRY_OF_WARLORDS` | Rivalry of Warlords | `rivalry_of_warlords.png` |
+| `RING_OF_DESTRUCTION` | Ring of Destruction | `ring_of_destruction.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -296,7 +297,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
-- [ ] `RING_OF_DESTRUCTION` — `ring_of_destruction.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_KNIGHT` — `royal_knight.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`

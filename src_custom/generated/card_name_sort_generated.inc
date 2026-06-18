@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 152
+#define NUM_CUSTOM_NAME_SORT_CARDS 153
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -154,6 +154,7 @@ static const u8 sThunderCrashSortName[] APPEND_RODATA = "Thunder Crash";
 static const u8 sTorpedoFishSortName[] APPEND_RODATA = "Torpedo Fish";
 static const u8 sSevenToolsOfTheBanditSortName[] APPEND_RODATA = "Seven Tools of the Bandit";
 static const u8 sRivalryOfWarlordsSortName[] APPEND_RODATA = "Rivalry of Warlords";
+static const u8 sRingOfDestructionSortName[] APPEND_RODATA = "Ring of Destruction";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -259,6 +260,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0399, // Reaper on the Nightmare
   0x0380, // Reckless Greed
   0x035E, // Reload
+  0x03B9, // Ring of Destruction
   0x0342, // Riryoku
   0x03B8, // Rivalry of Warlords
   0x0361, // Robbin' Goblin
@@ -414,55 +416,56 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   101, // Reaper on the Nightmare
   102, // Reckless Greed
   103, // Reload
-  104, // Riryoku
-  105, // Rivalry of Warlords
-  106, // Robbin' Goblin
-  107, // Robbin' Zombie
-  108, // Royal Decree
-  109, // Sage's Stone
-  110, // Sasuke Samurai
-  111, // Seal of Orichalcos
-  112, // Secret Barrel
-  113, // Self-Destruct Button
-  114, // Seven Tools of the Bandit
-  115, // Shield And Sword
-  116, // Skill Drain
-  117, // Skull Invitation
-  118, // Solar Flare Dragon
-  119, // Solar Ray
-  120, // Solemn Wishes
-  121, // Sorcerer of Dark Magic
-  122, // Soul Exchange
-  123, // Soul Taker
-  124, // Spear Dragon
-  125, // Spell Canceller
-  126, // Spirit of the Breeze
-  127, // Spirit Reaper
-  128, // St Joan
-  129, // Stealth Bird
-  130, // Swift Gaia The Fierce Knight
-  131, // Terrorking Salmon
-  132, // The Agent Of Creation - Venus
-  133, // The Dark Door
-  134, // The Forceful Sentry
-  135, // Thousand Energy
-  136, // Thousand Knives
-  137, // Thunder Crash
-  138, // Time Seal
-  139, // Toll
-  140, // Torpedo Fish
-  141, // Triangle Power
-  142, // Twin Swords of Flashing Light - Tryce
-  143, // Tyrant Dragon
-  144, // Ultimate Offering
-  145, // United We Stand
-  146, // Upstart Goblin
-  147, // Vampire Baby
-  148, // Warrior of Zera
-  149, // Wave Motion Cannon
-  150, // Weather Report
-  151, // White Magician Pikeru
-  152, // Yata-Garasu
+  104, // Ring of Destruction
+  105, // Riryoku
+  106, // Rivalry of Warlords
+  107, // Robbin' Goblin
+  108, // Robbin' Zombie
+  109, // Royal Decree
+  110, // Sage's Stone
+  111, // Sasuke Samurai
+  112, // Seal of Orichalcos
+  113, // Secret Barrel
+  114, // Self-Destruct Button
+  115, // Seven Tools of the Bandit
+  116, // Shield And Sword
+  117, // Skill Drain
+  118, // Skull Invitation
+  119, // Solar Flare Dragon
+  120, // Solar Ray
+  121, // Solemn Wishes
+  122, // Sorcerer of Dark Magic
+  123, // Soul Exchange
+  124, // Soul Taker
+  125, // Spear Dragon
+  126, // Spell Canceller
+  127, // Spirit of the Breeze
+  128, // Spirit Reaper
+  129, // St Joan
+  130, // Stealth Bird
+  131, // Swift Gaia The Fierce Knight
+  132, // Terrorking Salmon
+  133, // The Agent Of Creation - Venus
+  134, // The Dark Door
+  135, // The Forceful Sentry
+  136, // Thousand Energy
+  137, // Thousand Knives
+  138, // Thunder Crash
+  139, // Time Seal
+  140, // Toll
+  141, // Torpedo Fish
+  142, // Triangle Power
+  143, // Twin Swords of Flashing Light - Tryce
+  144, // Tyrant Dragon
+  145, // Ultimate Offering
+  146, // United We Stand
+  147, // Upstart Goblin
+  148, // Vampire Baby
+  149, // Warrior of Zera
+  150, // Wave Motion Cannon
+  151, // Weather Report
+  152, // White Magician Pikeru
+  153, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -770,6 +773,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSevenToolsOfTheBanditSortName;
   if (cardId == 0x03B8)
     return (u8 *)sRivalryOfWarlordsSortName;
+  if (cardId == 0x03B9)
+    return (u8 *)sRingOfDestructionSortName;
 
   return gCardNames[cardId];
 }

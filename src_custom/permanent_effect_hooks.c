@@ -14,6 +14,7 @@
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
 #include "duel_helpers.h"
+#include "ring_of_destruction.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -346,6 +347,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
   gHideEffectText = hideEffectText;
   ResolvePendingGraveyardDrawOnDestroy();
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
+  Duel_CheckRingOfDestructionAfterFieldChange();
   if (!gHideEffectText)
     UpdateDuelGfxExceptField();
   if (!gHideEffectText)

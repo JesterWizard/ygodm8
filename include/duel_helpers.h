@@ -93,6 +93,7 @@ void Duel_EnforceSingleMonsterTypeOnBothMonsterRows(u8 updateGfx);
 void Duel_NotifyFixedMonsterRowChanged(u8 fixedRow);
 void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone);
 void Duel_CheckRivalryOfWarlordsAfterFieldChange(void);
+void Duel_CheckRingOfDestructionAfterFieldChange(void);
 u8 Duel_IsMonsterZoneTarget(u16 cardId);
 struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp);
 struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp);

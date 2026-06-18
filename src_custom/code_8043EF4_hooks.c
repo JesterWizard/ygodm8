@@ -15,6 +15,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "rivalry_of_warlords.h"
+#include "ring_of_destruction.h"
 #include "cats_ear_tribe.h"
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
@@ -45,6 +46,7 @@
 #include "final_countdown.h"
 #include "chaos_greed.h"
 #include "book_of_moon.h"
+#include "ring_of_destruction.h"
 #include "toll.h"
 #include "call_of_the_haunted.h"
 #include "skull_invitation.h"
@@ -430,6 +432,22 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (IsRingOfDestructionCard(id)) {
+    if (!CanActivateRingOfDestruction()
+        || !FieldHasRingOfDestructionTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginRingOfDestructionTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (id == GUARDIAN_TREASURE && !CanActivateGuardianTreasure()) {
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
@@ -635,6 +653,7 @@ void sub_80449D8__Replacement(void)
     TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
@@ -890,6 +909,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       TrySelectBookOfMoonTarget();
       break;
+    case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
+      TrySelectRingOfDestructionTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -934,6 +956,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       CancelBookOfMoonTargeting();
+      break;
+    case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
+      CancelRingOfDestructionTargeting();
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();

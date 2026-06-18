@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Ring of Destruction custom card
+
+**Worked on:** Added Ring of Destruction (trap) to manifest/trunk; opponent-turn targeting via Soul Taker-style cursor flow; auto-activates on opponent summon via `Duel_NotifyFixedMonsterRowChanged`, always picking highest-ATK valid face-up target; mirror damage via `duel_helpers`.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/trap_effects/ring_of_destruction.c`, `include/ring_of_destruction.h`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = RING_OF_DESTRUCTION` for duel testing.
+
+**Open / next:** In-game confirm auto-fire on opponent summon picks highest-ATK valid target; manual activation uses same priority.
+
+---
+
 ## 2026-06-17 — Rivalry of Warlords
 
 **Worked on:** Added Rivalry of Warlords (continuous trap) to manifest/trunk; auto-flips when a monster row gains 2+ different Types (face-up or set) while rivalry is set; enforces leftmost monster’s Type per row via `duel_helpers` (`Duel_FixedMonsterRowHasMultipleMonsterTypes`, `Duel_EnforceSingleMonsterTypeOnBothMonsterRows`, `Duel_NotifyMonsterZoneChanged`). Rewrote on fixed rows (`gFixedZones`); fixed player summons (`CopySelectedCardToZone` → `gSelectedCard`, not hand slot). Summon-time flip via placement hooks + `RivalryOfWarlords_CheckAfterFieldChange` at end of permanent-effect scan. Opponent-turn effect text deferred there (AI `sub_8040EF0` was wiping mid-action text); player-turn checks immediately. Trap presentation: viewport scroll, scanner, typed trap text.

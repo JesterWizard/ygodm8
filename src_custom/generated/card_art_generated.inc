@@ -620,6 +620,10 @@ static const unsigned char sRivalryOfWarlordsBigArt[] __attribute__((section(".a
 static const unsigned short sRivalryOfWarlordsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rivalry_of_warlords.gbapal");
 static const unsigned char sRivalryOfWarlordsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rivalry_of_warlords.lz");
 
+static const unsigned char sRingOfDestructionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ring_of_destruction.huff");
+static const unsigned short sRingOfDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ring_of_destruction.gbapal");
+static const unsigned char sRingOfDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ring_of_destruction.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -776,6 +780,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B6] = sTorpedoFishBigArt,
   [0x03B7] = sSevenToolsOfTheBanditBigArt,
   [0x03B8] = sRivalryOfWarlordsBigArt,
+  [0x03B9] = sRingOfDestructionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -934,6 +939,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B6] = sTorpedoFishBigPalette,
   [0x03B7] = sSevenToolsOfTheBanditBigPalette,
   [0x03B8] = sRivalryOfWarlordsBigPalette,
+  [0x03B9] = sRingOfDestructionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1092,6 +1098,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B6] = 0,
   [0x03B7] = 0,
   [0x03B8] = 0,
+  [0x03B9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1250,4 +1257,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B6] = sTorpedoFishMiniArt,
   [0x03B7] = sSevenToolsOfTheBanditMiniArt,
   [0x03B8] = sRivalryOfWarlordsMiniArt,
+  [0x03B9] = sRingOfDestructionMiniArt,
 };

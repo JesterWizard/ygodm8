@@ -337,6 +337,8 @@ _kernel_malloc_ewram_array gGreatMajuGarzettBoardDef, 0x14
 _kernel_malloc_ewram_array gGreatMajuGarzettBoardActive, 0xA
 _kernel_malloc_ewram_array gGreatMajuGarzettTributeTotals, 0x4
 _kernel_malloc_ewram gGreatMajuGarzettPendingSummon, 1
+@ Ring of Destruction: opponent monster row changed this action; fire after permanent scan.
+_kernel_malloc_ewram gRingOfDestructionPending, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

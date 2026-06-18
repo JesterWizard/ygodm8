@@ -10,6 +10,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
+#include "ring_of_destruction.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -60,6 +61,7 @@ extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
 extern void EffectThunderCrash(void);
+extern void EffectRingOfDestruction(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -348,6 +350,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case THUNDER_CRASH:
       EffectThunderCrash();
+      return;
+    case RING_OF_DESTRUCTION:
+      EffectRingOfDestruction();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

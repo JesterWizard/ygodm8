@@ -4,6 +4,7 @@
 #include "debug_ruleset.h"
 #include "duel_helpers.h"
 #include "the_dark_door.h"
+#include "ring_of_destruction.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
 #include "thousand_energy.h"
@@ -477,8 +478,10 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   if (checkSliferSummonPenalty)
     MaybeApplySliferSummonPenaltyAfterCopy(dst);
 
-  if (dst->id != CARD_NONE && GetTypeGroup(dst->id) == TYPE_GROUP_MONSTER)
+  if (dst->id != CARD_NONE && GetTypeGroup(dst->id) == TYPE_GROUP_MONSTER) {
     Duel_NotifyMonsterZoneChanged(dst);
+    TryRingOfDestructionOnMonsterPlacement(dst);
+  }
 }
 
 s8 ComputeFinalStage(const struct DuelCard *zone)
