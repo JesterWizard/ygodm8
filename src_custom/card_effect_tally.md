@@ -209,6 +209,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Breaker the Magical Warrior` | `src_custom/permanent_effects/breaker_the_magical_warrior.c` |
 | `activated_effects` | `Breaker the Magical Warrior` | `src_custom/activated_effects/breaker_the_magical_warrior.c` |
 | `activated_effects` | `Dice Jar` | `src_custom/activated_effects/dice_jar.c` |
+| `activated_effects` | `Jowls of Dark Demise` | `src_custom/activated_effects/jowls_of_dark_demise.c` |
 
 ## Notes
 

@@ -13,6 +13,7 @@
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
 #include "breaker_the_magical_warrior.h"
+#include "jowls_of_dark_demise.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -77,6 +78,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateManThroTro();
     case MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR:
       return CanActivateBreakerTheMagicalWarrior();
+    case MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE:
+      return CanActivateJowlsOfDarkDemise();
     default:
       return TRUE;
   }
@@ -221,6 +224,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE) {
+    ActivateJowlsOfDarkDemiseEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -322,7 +330,8 @@ FAILED:
           UpdateDuelGfxExceptField();
           if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET
               || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET
-              || gDuelCursor.state == DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET)
+              || gDuelCursor.state == DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET)
             break;
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)

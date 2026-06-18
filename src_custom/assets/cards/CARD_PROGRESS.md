@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 171 |
-| Art ready, needs manifest | 148 |
+| In game (manifest + art) | 172 |
+| Art ready, needs manifest | 147 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -193,6 +193,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GRAVEKEEPERS_SERVANT` | Gravekeeper's Servant | `gravekeepers_servant.png` |
 | `DICE_JAR` | Dice Jar | `dice_jar.png` |
 | `KNIGHTS_TITLE` | Knight's Title | `knights_title.png` |
+| `JOWLS_OF_DARK_DEMISE` | Jowls of Dark Demise | `jowls_of_dark_demise.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -254,7 +255,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `INVADER_OF_THE_THRONE` — `invader_of_the_throne.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
-- [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`

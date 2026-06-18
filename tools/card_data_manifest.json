@@ -17486,6 +17486,35 @@
           "Tribute 1 Dark Magician to Special Summon 1 Dark Magician Knight from your hand, Deck or Graveyard."
         ]
       }
+    },
+    {
+      "card_const": "JOWLS_OF_DARK_DEMISE",
+      "card_name": "Jowls of Dark Demise",
+      "atk": 200,
+      "def": 100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [0, 5, 2, 5, 7, 6, 8, 7],
+      "description": {
+        "symbol": "gDescription_JowlsOfDarkDemise",
+        "pages": [
+          "Target 1 monster your opponent controls;",
+          "gain control of it until the End Phase.",
+          "It can attack your opponent directly this turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_JowlsOfDarkDemise",
+        "pages": [
+          "Target 1 opponent monster; gain control until the End Phase."
+        ]
+      }
     }
   ]
 }

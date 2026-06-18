@@ -19,6 +19,7 @@
 #include "level_limit_area_b.h"
 #include "black_tyranno.h"
 #include "drillago.h"
+#include "jowls_of_dark_demise.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
 #include "sasuke_samurai_2.h"
@@ -149,6 +150,10 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   if (attacker->id == CARD_NONE)
+    return;
+
+  if (NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) != MAX_ZONES_IN_ROW
+      && !CanJowlsControlledMonsterAttackDirectly(attacker))
     return;
 
   if (!AiPayAttackTollIfNeeded())

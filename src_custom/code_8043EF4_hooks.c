@@ -25,6 +25,7 @@
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "breaker_the_magical_warrior.h"
+#include "jowls_of_dark_demise.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -707,7 +708,9 @@ void sub_8044570__Replacement(void)
       || CanReaperOnTheNightmareAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanDrillagoAttackDirectly(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id))
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanJowlsControlledMonsterAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
           WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)) {
     if (!DebugRuleset_AllowDirectAttacks()) {
@@ -925,6 +928,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET:
       TrySelectBreakerTheMagicalWarriorTarget();
       break;
+    case DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET:
+      TrySelectJowlsOfDarkDemiseTarget();
+      break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       TrySelectDarkMagicianKnightTarget();
       break;
@@ -976,6 +982,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET:
       CancelBreakerTheMagicalWarriorTargeting();
+      break;
+    case DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET:
+      CancelJowlsOfDarkDemiseTargeting();
       break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       CancelDarkMagicianKnightTargeting();

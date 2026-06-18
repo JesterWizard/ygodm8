@@ -692,6 +692,10 @@ static const unsigned char sKnightsTitleBigArt[] __attribute__((section(".append
 static const unsigned short sKnightsTitleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/knights_title.gbapal");
 static const unsigned char sKnightsTitleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/knights_title.lz");
 
+static const unsigned char sJowlsOfDarkDemiseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/jowls_of_dark_demise.huff");
+static const unsigned short sJowlsOfDarkDemiseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/jowls_of_dark_demise.gbapal");
+static const unsigned char sJowlsOfDarkDemiseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/jowls_of_dark_demise.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -866,6 +870,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03C9] = sGravekeepersServantBigArt,
   [0x03CA] = sDiceJarBigArt,
   [0x03CB] = sKnightsTitleBigArt,
+  [0x03CC] = sJowlsOfDarkDemiseBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1042,6 +1047,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03C9] = sGravekeepersServantBigPalette,
   [0x03CA] = sDiceJarBigPalette,
   [0x03CB] = sKnightsTitleBigPalette,
+  [0x03CC] = sJowlsOfDarkDemiseBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1218,6 +1224,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03C9] = 0,
   [0x03CA] = 0,
   [0x03CB] = 0,
+  [0x03CC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1394,4 +1401,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03C9] = sGravekeepersServantMiniArt,
   [0x03CA] = sDiceJarMiniArt,
   [0x03CB] = sKnightsTitleMiniArt,
+  [0x03CC] = sJowlsOfDarkDemiseMiniArt,
 };

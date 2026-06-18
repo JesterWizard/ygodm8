@@ -973,11 +973,12 @@
 #define GRAVEKEEPERS_SERVANT                     0x03C9
 #define DICE_JAR                                 0x03CA
 #define KNIGHTS_TITLE                            0x03CB
+#define JOWLS_OF_DARK_DEMISE                     0x03CC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03CC
-#define NUM_CUSTOM_CARDS                        0x00AB
+#define NUM_TOTAL_CARDS                         0x03CD
+#define NUM_CUSTOM_CARDS                        0x00AC
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

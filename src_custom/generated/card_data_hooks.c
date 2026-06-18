@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[972] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[973] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -984,9 +984,10 @@ const u8 gCardLockAfterActivation_Hook[972] APPEND_RODATA = {
   [0x03C9] = 1,
   [0x03CA] = 1,
   [0x03CB] = 1,
+  [0x03CC] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[972] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[973] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1959,9 +1960,10 @@ const u8 gCardEffectUsage_Hook[972] APPEND_RODATA = {
   [0x03C9] = EFFECT_USAGE_NONE,
   [0x03CA] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x03CB] = EFFECT_USAGE_NONE,
+  [0x03CC] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const CardData gCardData_NEW[972] APPEND_RODATA = {
+const CardData gCardData_NEW[973] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14816,5 +14818,19 @@ const CardData gCardData_NEW[972] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {8, 7, 2, 1, 0, 5, 0, 5},
     .description = gDescription_KnightsTitle,
+  },
+  [0x03CC] = {
+    .atk = 200,
+    .def = 100,
+    .cost = 29,
+    .attribute = ATTRIBUTE_WATER,
+    .level = 2,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 123,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {0, 5, 2, 5, 7, 6, 8, 7},
+    .description = gDescription_JowlsOfDarkDemise,
   },
 };

@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Jowls of Dark Demise custom card
+
+**Worked on:** Added Jowls of Dark Demise to manifest/trunk (WATER Fiend L2 200/100, passcode 05257687, `MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE`). FLIP effect in `activated_effects/jowls_of_dark_demise.c`: target 1 opponent monster, take control until End Phase (`willChangeSides`), controlled monster can direct attack (`unkTwo` flag). Player targeting via `DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET`; AI picks highest ATK valid target. `card_in_hand_1 = JOWLS_OF_DARK_DEMISE` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/constants/monster_effects.h`, `include/jowls_of_dark_demise.h`, `src_custom/activated_effects/jowls_of_dark_demise.c`, `src_custom/monster_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/ai_attack_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, `tests/host/test_jowls_of_dark_demise.py`, generated card includes
+
+**Outcome:** `make test-cards-build` passes; host test passes.
+
+**Open / next:** In-game confirm FLIP targeting, End Phase return, and direct attack on stolen monster while opponent still has monsters.
+
+---
+
 ## 2026-06-18 — Knight's Title custom spell
 
 **Worked on:** Added Knight's Title to manifest/trunk (`KNIGHTS_TITLE`, passcode 87210505, cost 150). Spell effect in `spell_effects/knights_title.c`: tribute face-up Dark Magician, Special Summon Dark Magician Knight from hand (player pick) / deck / grave (hand > deck > grave). `CanActivateKnightsTitle` blocks activation when requirements unmet. `card_in_hand_1 = KNIGHTS_TITLE` in `configs/runtime.c`.
