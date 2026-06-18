@@ -1,3 +1,6 @@
+static const u8 sAmazonChainMasterName[] __attribute__((section(".append_assets"))) = "Amazoness Chain Master";
+static const u8 sAmazonFighterName[] __attribute__((section(".append_assets"))) = "Amazoness Fighter";
+static const u8 sAmazonSwordWomanName[] __attribute__((section(".append_assets"))) = "Amazoness Sword Woman";
 static const u8 sSorcererOfDarkMagicName[] __attribute__((section(".append_assets"))) = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusName[] __attribute__((section(".append_assets"))) = "Deck Destruction Virus";
 static const u8 sMagiciansValkyriaName[] __attribute__((section(".append_assets"))) = "Magician's Valkyria";
@@ -157,8 +160,15 @@ static const u8 sServantOfCatabolismName[] __attribute__((section(".append_asset
 static const u8 sManThroTroName[] __attribute__((section(".append_assets"))) = "Man-Thro-Thro";
 static const u8 sLevelLimitAreaBName[] __attribute__((section(".append_assets"))) = "Level Limit Area B";
 static const u8 sSpiritRyuName[] __attribute__((section(".append_assets"))) = "Spirit Ryu";
+static const u8 sAmazonessTigerName[] __attribute__((section(".append_assets"))) = "Amazoness Tiger";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
+  if (cardId == 0x021B)
+    return (u8 *)sAmazonChainMasterName;
+  if (cardId == 0x0276)
+    return (u8 *)sAmazonFighterName;
+  if (cardId == 0x0279)
+    return (u8 *)sAmazonSwordWomanName;
   if (cardId == 0x0321)
     return (u8 *)sSorcererOfDarkMagicName;
   if (cardId == 0x0322)
@@ -477,6 +487,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sLevelLimitAreaBName;
   if (cardId == 0x03BF)
     return (u8 *)sSpiritRyuName;
+  if (cardId == 0x03C0)
+    return (u8 *)sAmazonessTigerName;
 
   return gCardNames[cardId];
 }

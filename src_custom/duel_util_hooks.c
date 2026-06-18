@@ -236,7 +236,6 @@ void TryDrawingCard__Replacement(unsigned turn) {
 
   if (turn_u8 == DUEL_PLAYER && gDuelDecks[turn_u8].cardsDrawn == 0) {
     u8 slot;
-    u8 previousSlot;
     u16 cardId;
     u8 appliedSlots[MAX_ZONES_IN_ROW];
     u16 configuredCards[MAX_ZONES_IN_ROW] = {
@@ -253,16 +252,6 @@ void TryDrawingCard__Replacement(unsigned turn) {
 
     for (slot = 0; slot < MAX_ZONES_IN_ROW; slot++) {
       cardId = configuredCards[slot];
-      if (cardId == CARD_NONE)
-        continue;
-
-      for (previousSlot = 0; previousSlot < slot; previousSlot++) {
-        if (configuredCards[previousSlot] != cardId)
-          continue;
-
-        cardId = CARD_NONE;
-        break;
-      }
       if (cardId == CARD_NONE)
         continue;
 

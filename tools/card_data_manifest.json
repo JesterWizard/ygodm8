@@ -8490,7 +8490,7 @@
     },
     {
       "card_const": "AMAZON_CHAIN_MASTER",
-      "card_name": "Amazon Chain Master",
+      "card_name": "Amazoness Chain Master",
       "atk": 1500,
       "def": 1300,
       "level": 4,
@@ -9941,7 +9941,7 @@
     },
     {
       "card_const": "AMAZON_FIGHTER",
-      "card_name": "Amazon Fighter",
+      "card_name": "Amazoness Fighter",
       "atk": 1500,
       "def": 1300,
       "level": 4,
@@ -9986,7 +9986,7 @@
     },
     {
       "card_const": "AMAZON_SWORD_WOMAN",
-      "card_name": "Amazon Sword Woman",
+      "card_name": "Amazoness Sword Woman",
       "atk": 1500,
       "def": 1600,
       "level": 4,
@@ -17134,6 +17134,35 @@
           "If this card battles a monster that is not a",
           "Dragon-Type monster, this card gains 1000 ATK",
           "during that battle."
+        ]
+      }
+    },
+    {
+      "card_const": "AMAZONESS_TIGER",
+      "card_name": "Amazoness Tiger",
+      "atk": 1100,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [1, 0, 9, 7, 9, 7, 2, 3],
+      "description": {
+        "symbol": "gDescription_AmazonessTiger",
+        "pages": [
+          "Only 1 Amazoness Tiger.",
+          "Gains 400 ATK per Amazoness you control.",
+          "Opponent cannot attack other face-up Amazoness."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AmazonessTiger",
+        "pages": [
+          "You can only control one Amazoness Tiger, so the duplicate will be destroyed."
         ]
       }
     }

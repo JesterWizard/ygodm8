@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `171` effects
+- `172` effects
 
 ## Tally
 
@@ -68,6 +68,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Goddess Of Whim` | `src_custom/activated_effects/goddess_of_whim.c` |
 | `activated_effects` | `Giant Germ` | `src_custom/activated_effects/giant_germ.c` |
 | `activated_effects` | `Nimble Momonga` | `src_custom/activated_effects/nimble_momonga.c` |
+| `permanent_effects` | `Amazoness Tiger` | `src_custom/permanent_effects/amazoness_tiger.c` |
 | `permanent_effects` | `Burning Algae` | `src_custom/permanent_effects/burning_algae.c` |
 | `activated_effects` | `Mask Of Darkness` | `src_custom/activated_effects/mask_of_darkness.c` |
 | `activated_effects` | `Princess Of Tsurugi` | `src_custom/activated_effects/princess_of_tsurugi.c` |

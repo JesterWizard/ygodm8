@@ -6,6 +6,7 @@
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
 #include "level_limit_area_b.h"
+#include "amazoness_tiger.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -489,6 +490,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     TryEnforceBerserkGorillaOnMonsterPlacement(dst);
     TryLevelLimitAreaBOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);
+    TryAmazonessTigerOnMonsterPlacement(dst);
   }
 }
 

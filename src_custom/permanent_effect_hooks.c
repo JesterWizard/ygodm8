@@ -350,6 +350,7 @@ void TryActivatingPermanentEffects__Replacement(void) {
   ResolvePendingGraveyardDrawOnDestroy();
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
   Duel_CheckLevelLimitAreaBAfterFieldChange();
+  Duel_CheckAmazonessTigerAfterFieldChange();
   Duel_RefreshAttackRestrictions();
   Duel_CheckRingOfDestructionAfterFieldChange();
   if (!gHideEffectText)

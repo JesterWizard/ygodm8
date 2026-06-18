@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 159 |
-| Art ready, needs manifest | 161 |
+| In game (manifest + art) | 160 |
+| Art ready, needs manifest | 160 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **320** |
 
@@ -181,6 +181,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MAN_THRO_TRO` | Man-Thro-Thro | `man_thro_tro.png` |
 | `LEVEL_LIMIT_AREA_B` | Level Limit Area B | `level_limit_area_b.png` |
 | `SPIRIT_RYU` | Spirit Ryu | `spirit_ryu.png` |
+| `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -190,7 +191,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
 - [ ] `AMAZONESS_ARCHER` — `amazoness_archer.png`
-- [ ] `AMAZONESS_TIGER` — `amazoness_tiger.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`

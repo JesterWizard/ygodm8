@@ -13,6 +13,7 @@
 #include "rivalry_of_warlords.h"
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
+#include "amazoness_tiger.h"
 #include "tribute.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
@@ -28,6 +29,7 @@ extern struct DuelCard *gSetFinalStatZone;
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
@@ -103,6 +105,7 @@ static u8 HandMatchesCardOrPredicate(u16 handCardId, u16 cardId, HandCardPredica
 
 static u16 sSelectHandCardId APPEND_DATA = CARD_NONE;
 static HandCardPredicate sSelectHandPred APPEND_DATA = NULL;
+static const char sAmazonessArchetypeName[] APPEND_RODATA = "Amazoness";
 
 static u8 AnyHandCardForSelect(u16 handCardId)
 {
@@ -622,6 +625,44 @@ u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType)
   return gCardInfo.type == monsterType;
 }
 
+u8 Duel_CardNameContains(u16 cardId, const char *needle)
+{
+  const u8 *name;
+  u8 needleLen = 0;
+  u8 i;
+
+  if (cardId == CARD_NONE || needle == NULL)
+    return FALSE;
+
+  while (needle[needleLen] != 0)
+    needleLen++;
+
+  if (needleLen == 0)
+    return FALSE;
+
+  SetCardInfo(cardId);
+  name = gCardInfo.name;
+  if (name == NULL)
+    return FALSE;
+
+  for (i = 0; name[i] != 0; i++) {
+    u8 j = 0;
+
+    while (j < needleLen && name[i + j] == (u8)needle[j])
+      j++;
+
+    if (j == needleLen)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+u8 Duel_IsAmazonessCard(u16 cardId)
+{
+  return Duel_CardNameContains(cardId, sAmazonessArchetypeName);
+}
+
 u8 Duel_IsFiendZone(struct DuelCard *zone)
 {
   return zone != NULL && zone->id != CARD_NONE
@@ -796,6 +837,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
+  { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -810,6 +852,12 @@ struct DuelForcedAttackRedirect {
 
 static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribute__((section(".text"))) = {
   { RaregoldArmor_GetForcedAttackTarget },
+};
+
+typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
+
+static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".text"))) = {
+  AmazonessTiger_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
@@ -872,6 +920,11 @@ u8 Duel_CanAttackMonsterZone(struct DuelCard *zone)
       continue;
     return Duel_CanBeAttackedUnlessControllerHasOther(
         zone, sAttackGates[i].cardId, sAttackGates[i].blockWhenControllerHasOther);
+  }
+
+  for (i = 0; i < ARRAY_COUNT(sAttackZoneChecks); i++) {
+    if (!sAttackZoneChecks[i](zone))
+      return FALSE;
   }
 
   return TRUE;
@@ -1151,6 +1204,11 @@ void Duel_CheckRivalryOfWarlordsAfterFieldChange(void)
 void Duel_CheckLevelLimitAreaBAfterFieldChange(void)
 {
   LevelLimitAreaB_CheckAfterFieldChange();
+}
+
+void Duel_CheckAmazonessTigerAfterFieldChange(void)
+{
+  AmazonessTiger_EnforceUniquenessOnField();
 }
 
 void Duel_CheckRingOfDestructionAfterFieldChange(void)

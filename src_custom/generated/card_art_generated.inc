@@ -648,6 +648,10 @@ static const unsigned char sSpiritRyuBigArt[] __attribute__((section(".append_as
 static const unsigned short sSpiritRyuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_ryu.gbapal");
 static const unsigned char sSpiritRyuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_ryu.lz");
 
+static const unsigned char sAmazonessTigerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_tiger.huff");
+static const unsigned short sAmazonessTigerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_tiger.gbapal");
+static const unsigned char sAmazonessTigerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_tiger.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -811,6 +815,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03BD] = sManThroTroBigArt,
   [0x03BE] = sLevelLimitAreaBBigArt,
   [0x03BF] = sSpiritRyuBigArt,
+  [0x03C0] = sAmazonessTigerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -976,6 +981,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03BD] = sManThroTroBigPalette,
   [0x03BE] = sLevelLimitAreaBBigPalette,
   [0x03BF] = sSpiritRyuBigPalette,
+  [0x03C0] = sAmazonessTigerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1141,6 +1147,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03BD] = 0,
   [0x03BE] = 0,
   [0x03BF] = 0,
+  [0x03C0] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1306,4 +1313,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03BD] = sManThroTroMiniArt,
   [0x03BE] = sLevelLimitAreaBMiniArt,
   [0x03BF] = sSpiritRyuMiniArt,
+  [0x03C0] = sAmazonessTigerMiniArt,
 };

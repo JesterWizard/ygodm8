@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Amazoness Tiger custom card
+
+**Worked on:** Added Amazoness Tiger to manifest/trunk (`AMAZONESS_TIGER`, EARTH Beast L4 1100/1500, passcode 10979723). Passive permanent effect: +400 ATK per controller's "Amazoness" monsters (`AmazonessTiger_ApplyDynamicZoneStats` via `sDynamicZoneStats`); only one Tiger per row (`TryAmazonessTigerOnMonsterPlacement` + `AmazonessTiger_EnforceUniquenessOnField`, activation text on duplicate summon); opponent cannot attack other face-up Amazoness while Tiger is up (`AmazonessTiger_CanAttackMonsterZone` in `sAttackZoneChecks`). New helpers: `Duel_CardNameContains`, `Duel_IsAmazonessCard`. `card_in_hand_1 = AMAZONESS_TIGER` in `configs/runtime.c`. Fixed summon uniqueness: normal hand summon copies `isFaceUp=0` even in attack position, so enforcement only ran after battle-screen flip; uniqueness now treats attack-position Tigers as active (`isFaceUp || !isDefending`); face-down set Tigers still exempt until flip.
+
+**Files:** `tools/card_data_manifest.json`, `include/amazoness_tiger.h`, `src_custom/permanent_effects/amazoness_tiger.c`, `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/permanent_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm ATK boost with multiple Amazoness, attack redirect blocks other Amazoness, duplicate Tiger sent to GY on hand summon (activation text + immediate destroy).
+
+---
+
 ## 2026-06-18 — Spirit Ryu custom card
 
 **Worked on:** Added Spirit Ryu to manifest/trunk (`SPIRIT_RYU`, WIND Dragon L4 1000/1000, passcode 67957315). Passive battle effect: +1000 ATK when battling a non-Dragon monster (`TryApplySpiritRyuToPendingAction` in `battle_effects/spirit_ryu.c`, wired on all attack paths like Cat's Ear Tribe). No ignition effect (`monsterEffect` 0). `card_in_hand_1 = SPIRIT_RYU` in `configs/runtime.c`.

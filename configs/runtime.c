@@ -57,10 +57,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
-    .card_in_hand_1 = SPIRIT_RYU,
-    .card_in_hand_2 = CARD_NONE,
-    .card_in_hand_3 = CARD_NONE,
+    .card_in_hand_1 = AMAZONESS_TIGER,
+    .card_in_hand_2 = AMAZONESS_TIGER,
+    .card_in_hand_3 = AMAZON_SWORD_WOMAN,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = GEMINI_ELF
+    .opponent_deck_card_id = CARD_NONE
 };

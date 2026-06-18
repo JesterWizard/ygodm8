@@ -22,6 +22,7 @@
 #include "rivalry_of_warlords.h"
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
+#include "amazoness_tiger.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -637,6 +638,7 @@ void sub_80449D8__Replacement(void)
     TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(

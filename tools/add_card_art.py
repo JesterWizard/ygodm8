@@ -68,6 +68,30 @@ def validate_manifest(manifest: object) -> dict:
 BIG_PALETTE_COLORS_DEFAULT = 64
 BIG_PALETTE_COLORS_EXTENDED = 112
 
+# ponytail: vanilla ROM names for these stay "Amazon"; manifest uses "Amazoness" instead
+VANILLA_AMAZON_NAME_OVERRIDE_SKIP = frozenset({
+    "AMAZON_ARCHERS",
+    "AMAZON_OF_THE_SEAS",
+})
+
+
+def manifest_custom_start(manifest: dict) -> int:
+    return next(
+        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
+        len(manifest["cards"]),
+    )
+
+
+def manifest_name_hook_entries(manifest: dict) -> list[tuple[int, dict]]:
+    custom_start = manifest_custom_start(manifest)
+    entries: list[tuple[int, dict]] = []
+    for index, item in enumerate(manifest["cards"][:custom_start]):
+        if item["card_const"].startswith("AMAZON") and item["card_const"] not in VANILLA_AMAZON_NAME_OVERRIDE_SKIP:
+            entries.append((index, item))
+    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+        entries.append((index, item))
+    return entries
+
 
 @dataclass
 class CardArtEntry:
@@ -712,14 +736,13 @@ def render_asset_inc(entries: list[CardArtEntry]) -> str:
 
 
 def render_name_inc(manifest: dict) -> str:
-    custom_start = next((i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"), len(manifest["cards"]))
     lines = []
-    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+    for index, item in manifest_name_hook_entries(manifest):
         name_symbol = to_symbol(item["card_const"].lower(), "Name")
         lines.append(f'static const u8 {name_symbol}[] __attribute__((section(".append_assets"))) = "{item["card_name"]}";')
     lines.append("")
     lines.append("static u8 *GetCardName_Hook(unsigned short cardId) {")
-    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+    for index, item in manifest_name_hook_entries(manifest):
         name_symbol = to_symbol(item["card_const"].lower(), "Name")
         lines.append(f"  if (cardId == 0x{index:04X})")
         lines.append(f"    return (u8 *){name_symbol};")
@@ -731,10 +754,7 @@ def render_name_inc(manifest: dict) -> str:
 
 
 def render_name_sort_inc(manifest: dict) -> str:
-    custom_start = next(
-        (i for i, item in enumerate(manifest["cards"]) if item["card_const"] == "SORCERER_OF_DARK_MAGIC"),
-        len(manifest["cards"]),
-    )
+    custom_start = manifest_custom_start(manifest)
     custom_cards = [
         (index, item["card_name"], item["card_const"])
         for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start)
@@ -748,7 +768,7 @@ def render_name_sort_inc(manifest: dict) -> str:
         "",
     ]
 
-    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+    for index, item in manifest_name_hook_entries(manifest):
         name_symbol = to_symbol(item["card_const"].lower(), "SortName")
         lines.append(f'static const u8 {name_symbol}[] APPEND_RODATA = "{item["card_name"]}";')
     lines.append("")
@@ -768,7 +788,7 @@ def render_name_sort_inc(manifest: dict) -> str:
     lines.extend([
         "static u8 *GetSortCardName(u16 cardId) {",
     ])
-    for index, item in enumerate(manifest["cards"][custom_start:], start=custom_start):
+    for index, item in manifest_name_hook_entries(manifest):
         name_symbol = to_symbol(item["card_const"].lower(), "SortName")
         lines.append(f"  if (cardId == 0x{index:04X})")
         lines.append(f"    return (u8 *){name_symbol};")

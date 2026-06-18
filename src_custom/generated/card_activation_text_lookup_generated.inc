@@ -174,6 +174,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SASUKE_SAMURAI_3, gActivationDescription_SasukeSamurai3 },
   { MAN_THRO_TRO, gActivationDescription_ManThroTro },
   { LEVEL_LIMIT_AREA_B, gActivationDescription_LevelLimitAreaB },
+  { AMAZONESS_TIGER, gActivationDescription_AmazonessTiger },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
