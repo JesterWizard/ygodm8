@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `180` effects
+- `181` effects
 
 ## Tally
 
@@ -59,6 +59,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Dark Snake Syndrome` | `src_custom/spell_effects/dark_snake_syndrome.c` |
 | `spell_effects` | `Graceful Dice` | `src_custom/spell_effects/graceful_dice.c` |
 | `spell_effects` | `Chaos Greed` | `src_custom/spell_effects/chaos_greed.c` |
+| `trap_effects` | `Jar Robber` | `src_custom/trap_effects/jar_robber.c` |
 | `spell_effects` | `Book of Moon` | `src_custom/spell_effects/book_of_moon.c` |
 | `spell_effects` | `Thunder Crash` | `src_custom/spell_effects/thunder_crash.c` |
 | `activated_effects` | `Injection Fairy Lily` | `src_custom/activated_effects/injection_fairy_lily.c` |

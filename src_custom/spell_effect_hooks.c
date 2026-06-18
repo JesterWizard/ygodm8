@@ -9,6 +9,7 @@
 #include "soul_taker.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "jar_robber.h"
 #include "duel_helpers.h"
 #include "ring_of_destruction.h"
 extern void EffectCardOfDemise(void);
@@ -178,6 +179,9 @@ static void ActivateSpellEffect__Body(void)
     if (Duel_TryResolveTrapThroughTraps(gSpellEffectData.id) == DUEL_ACTION_BLOCKED)
       return;
   }
+
+  if (TryJarRobberPotOfGreedCounter())
+    return;
 
   if (TryMaryokutaiSpellCounter())
     return;

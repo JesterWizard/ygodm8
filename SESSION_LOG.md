@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Jar Robber custom card
+
+**Worked on:** Added Jar Robber to manifest/trunk (trap, passcode 33784505, `trapEffect` 40). Set on backrow auto-fires when opponent activates Pot of Greed (`TryJarRobberPotOfGreedCounter` in spell activation, before trap window): negates PoG, sends both to GY, draws 1. `card_in_hand_1 = JAR_ROBBER` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/jar_robber.h`, `src_custom/trap_effects/jar_robber.c`, `src_custom/spell_effect_hooks.c`, `src_custom/trap_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm set Jar Robber auto-negates opponent Pot of Greed and draws 1.
+
+---
+
 ## 2026-06-18 — Dark Snake Syndrome custom card
 
 **Worked on:** Added Dark Snake Syndrome to manifest/trunk (continuous spell, passcode 47233801). Standby damage via `TryApplyDarkSnakeSyndromeStandbyDamage`: 200 base to both players on controller's Standby, doubling each time (`permStage`). Wired spell activation, turn hooks, and `SPELL_TYPE_NORMAL`. `card_in_hand_1 = DARK_SNAKE_SYNDROME` in `configs/runtime.c`.

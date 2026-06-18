@@ -342,7 +342,7 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx)
       return DUEL_ACTION_DUEL_OVER;
     }
 
-    TryDrawingCard(duelist);
+    TryDrawingCard(TurnDuelistToFixed(duelist));
 
     if (IsDuelOver() == TRUE)
       return DUEL_ACTION_DUEL_OVER;

@@ -969,11 +969,12 @@
 #define DES_KANGAROO                             0x03C5
 #define DRILLAGO                                 0x03C6
 #define DARK_SNAKE_SYNDROME                      0x03C7
+#define JAR_ROBBER                               0x03C8
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03C8
-#define NUM_CUSTOM_CARDS                        0x00A7
+#define NUM_TOTAL_CARDS                         0x03C9
+#define NUM_CUSTOM_CARDS                        0x00A8
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

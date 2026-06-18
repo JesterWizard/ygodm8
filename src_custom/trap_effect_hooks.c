@@ -46,6 +46,7 @@ static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
 #define TRAP_SPIRIT_MESSAGE_L 19
 #define TRAP_DRAGON_CAPTURE_JAR 20
 #define TRAP_MAGIC_JAMMER 21
+#define TRAP_JAR_ROBBER 40
 #define TRAP_MAGIC_CYLINDER 23
 #define TRAP_DRAINING_SHIELD 24
 extern s16 gUnk_8E1172C[];
@@ -221,6 +222,9 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
         gTrapEffectData.trapCardId = TRAP_MAGIC_JAMMER;
         ret = TRUE;
       }
+      break;
+    case TRAP_JAR_ROBBER:
+      ret = FALSE;
       break;
     case TRAP_SEVEN_TOOLS_OF_THE_BANDIT:
       ret = FALSE;

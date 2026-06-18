@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 167 |
-| Art ready, needs manifest | 154 |
+| In game (manifest + art) | 168 |
+| Art ready, needs manifest | 153 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -189,6 +189,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DES_KANGAROO` | Des Kangaroo | `des_kangaroo.png` |
 | `DRILLAGO` | Drillago | `drillago.png` |
 | `DARK_SNAKE_SYNDROME` | Dark Snake Syndrome | `dark_snake_syndrome.png` |
+| `JAR_ROBBER` | Jar Robber | `jar_robber.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -252,7 +253,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `INVADER_OF_THE_THRONE` — `invader_of_the_throne.png`
-- [ ] `JAR_ROBBER` — `jar_robber.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JOWLS_OF_DARK_DEMISE` — `jowls_of_dark_demise.png`
 - [ ] `KA_2_DES_SCISSORS` — `ka_2_des_scissors.png`

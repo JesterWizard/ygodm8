@@ -17371,6 +17371,35 @@
           "Deal 200 damage to both players each of your Standby Phases."
         ]
       }
+    },
+    {
+      "card_const": "JAR_ROBBER",
+      "card_name": "Jar Robber",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 40,
+      "cost": 150,
+      "password": [3, 3, 7, 8, 4, 5, 0, 5],
+      "description": {
+        "symbol": "gDescription_JarRobber",
+        "pages": [
+          "You can only activate this card when \"Pot of Greed\" is",
+          "activated. Negate the effect of the \"Pot of",
+          "Greed\" and draw 1 card from your Deck."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_JarRobber",
+        "pages": [
+          "Negate Pot of Greed and draw 1 card from your Deck."
+        ]
+      }
     }
   ]
 }
