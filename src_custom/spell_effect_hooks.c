@@ -33,6 +33,7 @@ extern void EffectRiryoku(void);
 extern void EffectGuardianTreasure(void);
 extern void EffectGoblinThief(void);
 extern void EffectDelinquentDuo(void);
+extern void EffectConfiscation(void);
 extern void EffectMeteorOfDestruction(void);
 extern void EffectBlockAttack(void);
 extern void EffectToll(void);
@@ -102,6 +103,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case WAVE_MOTION_CANNON:
     case GOBLIN_THIEF:
     case DELINQUENT_DUO:
+    case CONFISCATION:
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
     case BOOK_OF_MOON:
@@ -275,6 +277,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case DELINQUENT_DUO:
       EffectDelinquentDuo();
+      return;
+    case CONFISCATION:
+      EffectConfiscation();
       return;
     case METEOR_OF_DESTRUCTION:
       EffectMeteorOfDestruction();

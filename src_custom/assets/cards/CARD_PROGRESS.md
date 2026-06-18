@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 162 |
-| Art ready, needs manifest | 159 |
+| In game (manifest + art) | 163 |
+| Art ready, needs manifest | 158 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -184,6 +184,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
 | `BLAST_HELD_BY_A_TRIBUTE` | Blast Held by a Tribute | `blast_held_by_a_tribute.png` |
 | `D_D_WARRIOR` | D.D. Warrior | `d_d_warrior.png` |
+| `CONFISCATION` | Confiscation | `confiscation.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -216,7 +217,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
-- [ ] `CONFISCATION` — `confiscation.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CREATURE_SWAP` — `creature_swap.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`

@@ -163,6 +163,7 @@ static const u8 sSpiritRyuName[] __attribute__((section(".append_assets"))) = "S
 static const u8 sAmazonessTigerName[] __attribute__((section(".append_assets"))) = "Amazoness Tiger";
 static const u8 sBlastHeldByATributeName[] __attribute__((section(".append_assets"))) = "Blast Held by a Tribute";
 static const u8 sDDWarriorName[] __attribute__((section(".append_assets"))) = "D.D. Warrior";
+static const u8 sConfiscationName[] __attribute__((section(".append_assets"))) = "Confiscation";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -495,6 +496,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBlastHeldByATributeName;
   if (cardId == 0x03C2)
     return (u8 *)sDDWarriorName;
+  if (cardId == 0x03C3)
+    return (u8 *)sConfiscationName;
 
   return gCardNames[cardId];
 }

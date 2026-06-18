@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `174` effects
+- `175` effects
 
 ## Tally
 
@@ -35,6 +35,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Goblin Thief` | `src_custom/spell_effects/goblin_thief.c` |
 | `spell_effects` | `Block Attack` | `src_custom/spell_effects/block_attack.c` |
 | `spell_effects` | `Delinquent Duo` | `src_custom/spell_effects/delinquent_duo.c` |
+| `spell_effects` | `Confiscation` | `src_custom/spell_effects/confiscation.c` |
 | `spell_effects` | `Meteor of Destruction` | `src_custom/spell_effects/meteor_of_destruction.c` |
 | `spell_effects` | `Toll` | `src_custom/spell_effects/toll.c` |
 | `spell_effects` | `Rain of Mercy` | `src_custom/spell_effects/rain_of_mercy.c` |

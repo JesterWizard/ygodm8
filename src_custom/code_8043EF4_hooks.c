@@ -51,6 +51,7 @@
 #include "block_attack.h"
 #include "soul_taker.h"
 #include "negative_energy.h"
+#include "confiscation.h"
 #include "delinquent_duo.h"
 #include "the_forceful_sentry.h"
 #include "meteor_of_destruction.h"
@@ -434,6 +435,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == GUARDIAN_TREASURE && !CanActivateGuardianTreasure()) {
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == CONFISCATION && !CanActivateConfiscation()) {
+    PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);

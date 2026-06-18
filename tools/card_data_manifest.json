@@ -17224,6 +17224,34 @@
           "After damage calculation, banish both this card and the card that it battled."
         ]
       }
+    },
+    {
+      "card_const": "CONFISCATION",
+      "card_name": "Confiscation",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 7, 3, 7, 5, 3, 1, 6],
+      "description": {
+        "symbol": "gDescription_Confiscation",
+        "pages": [
+          "Pay 1000 Life Points. Look at your opponent's hand,",
+          "select 1 card in it and discard that card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Confiscation",
+        "pages": [
+          "Pay 1000 Life Points. Look at your opponent's hand, select 1 card in it and discard that card."
+        ]
+      }
     }
   ]
 }

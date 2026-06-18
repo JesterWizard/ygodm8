@@ -177,6 +177,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { AMAZONESS_TIGER, gActivationDescription_AmazonessTiger },
   { BLAST_HELD_BY_A_TRIBUTE, gActivationDescription_BlastHeldByATribute },
   { D_D_WARRIOR, gActivationDescription_DDWarrior },
+  { CONFISCATION, gActivationDescription_Confiscation },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

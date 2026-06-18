@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Confiscation custom card
+
+**Worked on:** Added Confiscation to manifest/trunk (`CONFISCATION`, Normal Spell, passcode 17375316). Effect: pay 1000 LP via `Duel_TryResolveSpellThroughTrapsEx`, reveal opponent hand with `SelectExchangeHandCard`, discard chosen card via `Duel_DestroyZone`; AI picks random hand card. `CanActivateConfiscation` blocks activation when opponent hand empty or LP < 1000. `card_in_hand_1 = CONFISCATION` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/confiscation.h`, `src_custom/spell_effects/confiscation.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm LP cost, hand reveal UI, discard to GY, and trap-chain behavior.
+
+---
+
 ## 2026-06-18 — D.D. Warrior custom card
 
 **Worked on:** Added D.D. Warrior to manifest/trunk (`D_D_WARRIOR`, Effect Monster, passcode 37043180, 1200/1000 L4 Earth Warrior). Battle effect: after damage calculation when battling another monster, banish both via `Duel_BanishZone` (`ClearZone` without graveyard); clears graveyard destruction flags before normal battle cleanup. Deferred resolve wired like Hyper Hammerhead. Art copied from `d.d_warrior.png` → `d_d_warrior.png` for manifest stem. `card_in_hand_1 = D_D_WARRIOR` in `configs/runtime.c`.
