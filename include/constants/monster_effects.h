@@ -124,6 +124,7 @@ enum {
   MONSTER_EFFECT_SASUKE_SAMURAI_2,
   MONSTER_EFFECT_MAN_THRO_TRO,
   MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR,
+  MONSTER_EFFECT_DICE_JAR,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -157,5 +158,6 @@ extern unsigned char CanActivateManThroTro(void);
 extern void ActivateManThroTroEffect(void);
 extern unsigned char CanActivateBreakerTheMagicalWarrior(void);
 extern void ActivateBreakerTheMagicalWarriorEffect(void);
+extern void ActivateDiceJarEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

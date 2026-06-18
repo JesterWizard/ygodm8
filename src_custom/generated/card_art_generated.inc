@@ -688,6 +688,10 @@ static const unsigned char sGravekeepersServantBigArt[] __attribute__((section("
 static const unsigned short sGravekeepersServantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gravekeepers_servant.gbapal");
 static const unsigned char sGravekeepersServantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gravekeepers_servant.lz");
 
+static const unsigned char sDiceJarBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dice_jar.huff");
+static const unsigned short sDiceJarBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dice_jar.gbapal");
+static const unsigned char sDiceJarMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dice_jar.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -861,6 +865,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03C7] = sDarkSnakeSyndromeBigArt,
   [0x03C8] = sJarRobberBigArt,
   [0x03C9] = sGravekeepersServantBigArt,
+  [0x03CA] = sDiceJarBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1036,6 +1041,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03C7] = sDarkSnakeSyndromeBigPalette,
   [0x03C8] = sJarRobberBigPalette,
   [0x03C9] = sGravekeepersServantBigPalette,
+  [0x03CA] = sDiceJarBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1211,6 +1217,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03C7] = 0,
   [0x03C8] = 0,
   [0x03C9] = 0,
+  [0x03CA] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1386,4 +1393,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03C7] = sDarkSnakeSyndromeMiniArt,
   [0x03C8] = sJarRobberMiniArt,
   [0x03C9] = sGravekeepersServantMiniArt,
+  [0x03CA] = sDiceJarMiniArt,
 };

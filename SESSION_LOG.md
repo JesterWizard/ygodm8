@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Dice Jar custom card
+
+**Worked on:** Added Dice Jar to manifest/trunk (LIGHT Rock L3 200/300, passcode 03549275, `MONSTER_EFFECT_DICE_JAR`). FLIP effect in `activated_effects/dice_jar.c`: both players roll d6, lower roll takes winner's roll × 500 (6000 if winner rolled 6), ties reroll. Uses `Duel_ShowEffectTextTyped`, `RandRangeU8`, `Duel_ChangeLp`. `card_in_hand_1 = DICE_JAR` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/constants/monster_effects.h`, `src_custom/activated_effects/dice_jar.c`, `src_custom/monster_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, `tests/host/test_dice_jar.py`
+
+**Outcome:** `make test-cards-build` passes; host test passes.
+
+**Open / next:** In-game confirm FLIP rolls, tie reroll, and 6000 damage on winner's 6.
+
+---
+
 ## 2026-06-18 — Gravekeeper's Servant custom card
 
 **Worked on:** Added Gravekeeper's Servant to manifest/trunk (continuous spell, passcode 16762927). Opponent must mill 1 from Deck to declare an attack while controller's face-up copy is active (`TryPayGravekeepersServantAttackCost`, chained via `TryPayAttackFieldCosts` with Toll). Imperial Order aware; empty deck blocks attack. `card_in_hand_1 = GRAVEKEEPERS_SERVANT` in `configs/runtime.c`.

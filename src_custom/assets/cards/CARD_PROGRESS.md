@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 169 |
-| Art ready, needs manifest | 152 |
+| In game (manifest + art) | 170 |
+| Art ready, needs manifest | 151 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **321** |
 
@@ -191,6 +191,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARK_SNAKE_SYNDROME` | Dark Snake Syndrome | `dark_snake_syndrome.png` |
 | `JAR_ROBBER` | Jar Robber | `jar_robber.png` |
 | `GRAVEKEEPERS_SERVANT` | Gravekeeper's Servant | `gravekeepers_servant.png` |
+| `DICE_JAR` | Dice Jar | `dice_jar.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -230,7 +231,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
-- [ ] `DICE_JAR` — `dice_jar.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIFFUSION_WAVE_MOTION` — `diffusion_wave_motion.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
