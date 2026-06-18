@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 155
+#define NUM_CUSTOM_NAME_SORT_CARDS 156
 
 static const u8 sSorcererOfDarkMagicSortName[] APPEND_RODATA = "Sorcerer of Dark Magic";
 static const u8 sDeckDestructionVirusSortName[] APPEND_RODATA = "Deck Destruction Virus";
@@ -157,6 +157,7 @@ static const u8 sRivalryOfWarlordsSortName[] APPEND_RODATA = "Rivalry of Warlord
 static const u8 sRingOfDestructionSortName[] APPEND_RODATA = "Ring of Destruction";
 static const u8 sSasukeSamurai2SortName[] APPEND_RODATA = "Sasuke Samurai #2";
 static const u8 sSasukeSamurai3SortName[] APPEND_RODATA = "Sasuke Samurai #3";
+static const u8 sServantOfCatabolismSortName[] APPEND_RODATA = "Servant of Catabolism";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -275,6 +276,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0340, // Seal of Orichalcos
   0x0360, // Secret Barrel
   0x036F, // Self-Destruct Button
+  0x03BC, // Servant of Catabolism
   0x03B7, // Seven Tools of the Bandit
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
@@ -433,45 +435,46 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   114, // Seal of Orichalcos
   115, // Secret Barrel
   116, // Self-Destruct Button
-  117, // Seven Tools of the Bandit
-  118, // Shield And Sword
-  119, // Skill Drain
-  120, // Skull Invitation
-  121, // Solar Flare Dragon
-  122, // Solar Ray
-  123, // Solemn Wishes
-  124, // Sorcerer of Dark Magic
-  125, // Soul Exchange
-  126, // Soul Taker
-  127, // Spear Dragon
-  128, // Spell Canceller
-  129, // Spirit of the Breeze
-  130, // Spirit Reaper
-  131, // St Joan
-  132, // Stealth Bird
-  133, // Swift Gaia The Fierce Knight
-  134, // Terrorking Salmon
-  135, // The Agent Of Creation - Venus
-  136, // The Dark Door
-  137, // The Forceful Sentry
-  138, // Thousand Energy
-  139, // Thousand Knives
-  140, // Thunder Crash
-  141, // Time Seal
-  142, // Toll
-  143, // Torpedo Fish
-  144, // Triangle Power
-  145, // Twin Swords of Flashing Light - Tryce
-  146, // Tyrant Dragon
-  147, // Ultimate Offering
-  148, // United We Stand
-  149, // Upstart Goblin
-  150, // Vampire Baby
-  151, // Warrior of Zera
-  152, // Wave Motion Cannon
-  153, // Weather Report
-  154, // White Magician Pikeru
-  155, // Yata-Garasu
+  117, // Servant of Catabolism
+  118, // Seven Tools of the Bandit
+  119, // Shield And Sword
+  120, // Skill Drain
+  121, // Skull Invitation
+  122, // Solar Flare Dragon
+  123, // Solar Ray
+  124, // Solemn Wishes
+  125, // Sorcerer of Dark Magic
+  126, // Soul Exchange
+  127, // Soul Taker
+  128, // Spear Dragon
+  129, // Spell Canceller
+  130, // Spirit of the Breeze
+  131, // Spirit Reaper
+  132, // St Joan
+  133, // Stealth Bird
+  134, // Swift Gaia The Fierce Knight
+  135, // Terrorking Salmon
+  136, // The Agent Of Creation - Venus
+  137, // The Dark Door
+  138, // The Forceful Sentry
+  139, // Thousand Energy
+  140, // Thousand Knives
+  141, // Thunder Crash
+  142, // Time Seal
+  143, // Toll
+  144, // Torpedo Fish
+  145, // Triangle Power
+  146, // Twin Swords of Flashing Light - Tryce
+  147, // Tyrant Dragon
+  148, // Ultimate Offering
+  149, // United We Stand
+  150, // Upstart Goblin
+  151, // Vampire Baby
+  152, // Warrior of Zera
+  153, // Wave Motion Cannon
+  154, // Weather Report
+  155, // White Magician Pikeru
+  156, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -785,6 +788,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSasukeSamurai2SortName;
   if (cardId == 0x03BB)
     return (u8 *)sSasukeSamurai3SortName;
+  if (cardId == 0x03BC)
+    return (u8 *)sServantOfCatabolismSortName;
 
   return gCardNames[cardId];
 }

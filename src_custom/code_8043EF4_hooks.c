@@ -61,6 +61,7 @@
 #include "dark_room_of_nightmare.h"
 #include "kaiser_glider.h"
 #include "nightmare_horse.h"
+#include "servant_of_catabolism.h"
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
 #include "reaper_on_the_nightmare.h"
@@ -679,6 +680,8 @@ void sub_8044570__Replacement(void)
     UpdateDuelGfxExceptField();
   } else if ((NumEmptyZonesInRow(gTurnZones[1]) == MAX_ZONES_IN_ROW
       || CanNightmareHorseAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanServantOfCatabolismAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanAmphibiousBugrothMk3AttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)

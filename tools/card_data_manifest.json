@@ -17030,6 +17030,29 @@
           "When this card inflicts Battle Damage, your opponent draws cards until their hand has 5 cards"
         ]
       }
+    },
+    {
+      "card_const": "SERVANT_OF_CATABOLISM",
+      "card_name": "Servant of Catabolism",
+      "atk": 700,
+      "def": 500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [0, 2, 7, 9, 2, 2, 6, 5],
+      "description": {
+        "symbol": "gDescription_ServantOfCatabolism",
+        "pages": [
+          "A strange servant born of catabolic force.",
+          "This monster may attack your opponent's",
+          "Life Points directly."
+        ]
+      }
     }
   ]
 }

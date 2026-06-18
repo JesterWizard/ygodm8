@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 155 |
-| Art ready, needs manifest | 164 |
+| In game (manifest + art) | 156 |
+| Art ready, needs manifest | 163 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -177,6 +177,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `RING_OF_DESTRUCTION` | Ring of Destruction | `ring_of_destruction.png` |
 | `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 | `SASUKE_SAMURAI_3` | Sasuke Samurai #3 | `sasuke_samurai_3.png` |
+| `SERVANT_OF_CATABOLISM` | Servant of Catabolism | `servant_of_catabolism.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -307,7 +308,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
-- [ ] `SERVANT_OF_CATABOLISM` — `servant_of_catabolism.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`

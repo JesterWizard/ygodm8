@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Servant of Catabolism custom card
+
+**Worked on:** Added Servant of Catabolism to manifest/trunk (`SERVANT_OF_CATABOLISM`, LIGHT Aqua L3 700/500, passcode 02792265). Continuous direct-attack passive via `CanServantOfCatabolismAttackDirectly` (Nightmare Horse pattern) in `card_passives/servant_of_catabolism.c`, wired into player attack path in `code_8043EF4_hooks.c`. `card_in_hand_1 = SERVANT_OF_CATABOLISM` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/servant_of_catabolism.h`, `src_custom/card_passives/servant_of_catabolism.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm direct attack works with opponent monsters on field.
+
+---
+
 ## 2026-06-18 — Sasuke Samurai #3 custom card
 
 **Worked on:** Added Sasuke Samurai #3 to manifest/trunk (`SASUKE_SAMURAI_3`, LIGHT Warrior 1000/1000 L3, passcode 77379481). Trigger: when it inflicts battle damage to opponent LP, opponent draws until hand has 7 (`Duel_DrawCardsUntilHandSize` helper; capped at `MAX_ZONES_IN_ROW` 5). Battle effect in `battle_effects/sasuke_samurai_3.c`, deferred resolve like Airknight Parshath. `card_in_hand_1 = SASUKE_SAMURAI_3` in `configs/runtime.c`.

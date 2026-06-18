@@ -632,6 +632,10 @@ static const unsigned char sSasukeSamurai3BigArt[] __attribute__((section(".appe
 static const unsigned short sSasukeSamurai3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sasuke_samurai_3.gbapal");
 static const unsigned char sSasukeSamurai3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sasuke_samurai_3.lz");
 
+static const unsigned char sServantOfCatabolismBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/servant_of_catabolism.huff");
+static const unsigned short sServantOfCatabolismBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/servant_of_catabolism.gbapal");
+static const unsigned char sServantOfCatabolismMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/servant_of_catabolism.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AD] = sGiantRatBigArt,
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
@@ -791,6 +795,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03B9] = sRingOfDestructionBigArt,
   [0x03BA] = sSasukeSamurai2BigArt,
   [0x03BB] = sSasukeSamurai3BigArt,
+  [0x03BC] = sServantOfCatabolismBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -952,6 +957,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03B9] = sRingOfDestructionBigPalette,
   [0x03BA] = sSasukeSamurai2BigPalette,
   [0x03BB] = sSasukeSamurai3BigPalette,
+  [0x03BC] = sServantOfCatabolismBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1113,6 +1119,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03B9] = 0,
   [0x03BA] = 0,
   [0x03BB] = 0,
+  [0x03BC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1274,4 +1281,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03B9] = sRingOfDestructionMiniArt,
   [0x03BA] = sSasukeSamurai2MiniArt,
   [0x03BB] = sSasukeSamurai3MiniArt,
+  [0x03BC] = sServantOfCatabolismMiniArt,
 };

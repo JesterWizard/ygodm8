@@ -957,11 +957,12 @@
 #define RING_OF_DESTRUCTION                      0x03B9
 #define SASUKE_SAMURAI_2                         0x03BA
 #define SASUKE_SAMURAI_3                         0x03BB
+#define SERVANT_OF_CATABOLISM                    0x03BC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03BC
-#define NUM_CUSTOM_CARDS                        0x009B
+#define NUM_TOTAL_CARDS                         0x03BD
+#define NUM_CUSTOM_CARDS                        0x009C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

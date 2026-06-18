@@ -153,6 +153,7 @@ static const u8 sRivalryOfWarlordsName[] __attribute__((section(".append_assets"
 static const u8 sRingOfDestructionName[] __attribute__((section(".append_assets"))) = "Ring of Destruction";
 static const u8 sSasukeSamurai2Name[] __attribute__((section(".append_assets"))) = "Sasuke Samurai #2";
 static const u8 sSasukeSamurai3Name[] __attribute__((section(".append_assets"))) = "Sasuke Samurai #3";
+static const u8 sServantOfCatabolismName[] __attribute__((section(".append_assets"))) = "Servant of Catabolism";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x0321)
@@ -465,6 +466,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSasukeSamurai2Name;
   if (cardId == 0x03BB)
     return (u8 *)sSasukeSamurai3Name;
+  if (cardId == 0x03BC)
+    return (u8 *)sServantOfCatabolismName;
 
   return gCardNames[cardId];
 }
