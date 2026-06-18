@@ -15,6 +15,30 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-18 — Blast Held by a Tribute custom card
+
+**Worked on:** Added Blast Held by a Tribute to manifest/trunk (`BLAST_HELD_BY_A_TRIBUTE`, Normal Trap, passcode 89041555, `trapEffect` 31). Attack-triggered trap: when a Tribute Summoned monster declares an attack, destroy all opponent face-up Attack Position monsters (`Duel_DestroyAllMonstersMatching`); if any destroyed, inflict 1000 damage (`Duel_ChangeLp`). Tribute-summon tracking via IWRAM bit masks per monster row (`gTributeSummonedMonsterMaskOpponentRow` / `PlayerRow`), marked on placement/AI tribute and cleared on zone clear; marks transfer on `CopyCard`. `card_in_hand_1 = BLAST_HELD_BY_A_TRIBUTE` in `configs/runtime.c`.
+
+**Files:** `tools/card_data_manifest.json`, `include/blast_held_by_a_tribute.h`, `src_custom/trap_effects/blast_held_by_a_tribute.c`, `src_custom/trap_effect_hooks.c`, `src_custom/trap_effects_hooks.c`, `asm/ram_map.s`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/duel_helpers.c`, `src_custom/ai_tribute_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game confirm trap chains on tribute-summoned attacker (fixed AI mark row bug 2026-06-18), mass-destroy + 1000 burn only when at least one monster is destroyed, and tribute mark persists after control change (Brain Control ruling).
+
+---
+
+## 2026-06-18 — Blast Held by a Tribute: AI tribute mark fix
+
+**Worked on:** Trap did not fire when opponent (e.g. Yugi) tribute summoned and attacked — `BlastHeldByATribute_MarkTributeSummonedMonster` passed `ACTIVE_DUELIST` (turn index 0) to `Duel_FixedMonsterRowForDuelist`, which expects `DUEL_PLAYER`/`DUEL_OPPONENT`, so opponent summons were marked on the player row. Fixed by locating the summon on `ACTIVE_DUELIST_MONSTER_ROW` and mapping via `Duel_FindFixedMonsterZone`.
+
+**Files:** `src_custom/trap_effects/blast_held_by_a_tribute.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** In-game retest vs Yugi Gaia tribute summon + attack.
+
+---
+
 ## 2026-06-18 — Amazoness Tiger custom card
 
 **Worked on:** Added Amazoness Tiger to manifest/trunk (`AMAZONESS_TIGER`, EARTH Beast L4 1100/1500, passcode 10979723). Passive permanent effect: +400 ATK per controller's "Amazoness" monsters (`AmazonessTiger_ApplyDynamicZoneStats` via `sDynamicZoneStats`); only one Tiger per row (`TryAmazonessTigerOnMonsterPlacement` + `AmazonessTiger_EnforceUniquenessOnField`, activation text on duplicate summon); opponent cannot attack other face-up Amazoness while Tiger is up (`AmazonessTiger_CanAttackMonsterZone` in `sAttackZoneChecks`). New helpers: `Duel_CardNameContains`, `Duel_IsAmazonessCard`. `card_in_hand_1 = AMAZONESS_TIGER` in `configs/runtime.c`. Fixed summon uniqueness: normal hand summon copies `isFaceUp=0` even in attack position, so enforcement only ran after battle-screen flip; uniqueness now treats attack-position Tigers as active (`isFaceUp || !isDefending`); face-down set Tigers still exempt until flip.

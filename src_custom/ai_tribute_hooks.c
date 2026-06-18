@@ -8,6 +8,7 @@
 #include "summon_tribute.h"
 #include "great_maju_garzett.h"
 #include "precious_cards_from_beyond.h"
+#include "blast_held_by_a_tribute.h"
 
 #include "constants/card_ids.h"
 #include "tribute.h"
@@ -143,6 +144,7 @@ void sub_800E0D4__Replacement(void)
   sub_803FD14();
   g8DFF600[sAI_Command.action]();
   if (IsAiTributeSummonAction(sAI_Command.action)) {
+    BlastHeldByATribute_MarkTributeSummonedMonster(GetPendingTributeSummonCardId());
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
         GetPendingTributeSummonCardId(), WhoseTurn());
   }

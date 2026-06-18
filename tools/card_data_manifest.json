@@ -17165,6 +17165,36 @@
           "You can only control one Amazoness Tiger, so the duplicate will be destroyed."
         ]
       }
+    },
+    {
+      "card_const": "BLAST_HELD_BY_A_TRIBUTE",
+      "card_name": "Blast Held by a Tribute",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 31,
+      "cost": 150,
+      "password": [8, 9, 0, 4, 1, 5, 5, 5],
+      "description": {
+        "symbol": "gDescription_BlastHeldByATribute",
+        "pages": [
+          "When an opponent's Tribute Summoned",
+          "monster declares an attack: Destroy their",
+          "face-up Attack monsters and inflict 1000 damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlastHeldByATribute",
+        "pages": [
+          "When an opponent's Tribute Summoned monster declares an attack: Destroy all their face-up Attack Position monsters",
+          "and inflict 1000 damage to their Life Points."
+        ]
+      }
     }
   ]
 }

@@ -10,6 +10,7 @@
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
+#include "blast_held_by_a_tribute.h"
 
 static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
   if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
@@ -282,6 +283,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
           gTrapEffectData.originCardId);
       if (ret)
         gTrapEffectData.trapCardId = TRAP_GRAVITY_BIND;
+      break;
+    case TRAP_BLAST_HELD_BY_A_TRIBUTE:
+      ret = BlastHeldByATribute_ShouldActivateTrap();
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_BLAST_HELD_BY_A_TRIBUTE;
       break;
     default:
       ret = FALSE;

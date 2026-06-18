@@ -9,6 +9,7 @@
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
+#include "blast_held_by_a_tribute.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -249,6 +250,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectRoyalDecree();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_BLAST_HELD_BY_A_TRIBUTE) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectBlastHeldByATribute();
     return;
   }
 

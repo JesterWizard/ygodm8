@@ -23,6 +23,7 @@
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
+#include "blast_held_by_a_tribute.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -639,6 +640,7 @@ void sub_80449D8__Replacement(void)
     TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(

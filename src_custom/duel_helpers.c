@@ -14,6 +14,7 @@
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
+#include "blast_held_by_a_tribute.h"
 #include "tribute.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
@@ -216,6 +217,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   summonZone = gTurnZones[monsterRow][monsterZone];
   summonZone->id = monsterId;
   InitMonsterZone(summonZone, opts);
+  TryBlastHeldByATributeOnMonsterPlacement(summonZone);
   MaybeUpdateGfx(opts.updateGfx);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;

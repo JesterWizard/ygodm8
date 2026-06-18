@@ -7,6 +7,7 @@
 #include "ring_of_destruction.h"
 #include "level_limit_area_b.h"
 #include "amazoness_tiger.h"
+#include "blast_held_by_a_tribute.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -210,6 +211,7 @@ void InitBoard__Replacement(void) {
   ResetTrianglePowerState();
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();
+  BlastHeldByATribute_ClearAllMarks();
   ResetDynamicEquips();
   ResetApophisLinks();
   ClearCostDown();
@@ -450,6 +452,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
+  BlastHeldByATribute_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();
   if (gUnk2023EA0.unk18 == 0 && !gHideEffectText)
     ResolveCoffinSellerBattleEffect();
@@ -480,6 +483,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->willChangeSides = src->willChangeSides;
   dst->effectExhausted = src->effectExhausted;
   dst->effectUsedThisTurn = src->effectUsedThisTurn;
+  BlastHeldByATribute_TransferZoneMark(dst, src);
   RecalculateAllDynamicEquips();
 
   if (checkSliferSummonPenalty)

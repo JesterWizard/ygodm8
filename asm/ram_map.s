@@ -96,6 +96,10 @@ _kernel_malloc gPendingTributeSummonCardId, 2
 @ Sasuke Samurai #2: blocks inactive-duelist backrow trap activations until end phase.
 _kernel_malloc gSasukeSamurai2InactiveBackrowTrapBlock, 1
 
+@ Blast Held by a Tribute: tribute-summon marks per fixed monster row (5 cols each).
+_kernel_malloc gTributeSummonedMonsterMaskOpponentRow, 1
+_kernel_malloc gTributeSummonedMonsterMaskPlayerRow, 1
+
 @ Extra tribute credit from Double Coston's dark-only bonus (not generic).
 _kernel_malloc gDoubleCostonDarkBonusPaid, 1
 

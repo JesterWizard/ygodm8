@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 160 |
-| Art ready, needs manifest | 160 |
+| In game (manifest + art) | 161 |
+| Art ready, needs manifest | 159 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **320** |
 
@@ -182,6 +182,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `LEVEL_LIMIT_AREA_B` | Level Limit Area B | `level_limit_area_b.png` |
 | `SPIRIT_RYU` | Spirit Ryu | `spirit_ryu.png` |
 | `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
+| `BLAST_HELD_BY_A_TRIBUTE` | Blast Held by a Tribute | `blast_held_by_a_tribute.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -201,7 +202,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_PENDANT` — `black_pendant.png`
-- [ ] `BLAST_HELD_BY_A_TRIBUTE` — `blast_held_by_a_tribute.png`
 - [ ] `BLOWBACK_DRAGON` — `blowback_dragon.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`

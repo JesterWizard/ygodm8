@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[961] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[962] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -973,9 +973,10 @@ const u8 gCardLockAfterActivation_Hook[961] APPEND_RODATA = {
   [0x03BE] = 1,
   [0x03BF] = 1,
   [0x03C0] = 1,
+  [0x03C1] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[961] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[962] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1937,9 +1938,10 @@ const u8 gCardEffectUsage_Hook[961] APPEND_RODATA = {
   [0x03BE] = EFFECT_USAGE_NONE,
   [0x03BF] = EFFECT_USAGE_NONE,
   [0x03C0] = EFFECT_USAGE_NONE,
+  [0x03C1] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[961] APPEND_RODATA = {
+const CardData gCardData_NEW[962] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14640,5 +14642,19 @@ const CardData gCardData_NEW[961] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {1, 0, 9, 7, 9, 7, 2, 3},
     .description = gDescription_AmazonessTiger,
+  },
+  [0x03C1] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_TRAP,
+    .color = TRAP_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 31,
+    .password = {8, 9, 0, 4, 1, 5, 5, 5},
+    .description = gDescription_BlastHeldByATribute,
   },
 };
