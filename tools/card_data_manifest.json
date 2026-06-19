@@ -18088,6 +18088,35 @@
           "Opponent summons are capped at your current monster count."
         ]
       }
+    },
+    {
+      "card_const": "NIGHTMARE_WHEEL",
+      "card_name": "Nightmare Wheel",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [5, 4, 7, 0, 4, 2, 1, 6],
+      "description": {
+        "symbol": "gDescription_NightmareWheel",
+        "pages": [
+          "Target 1 opponent monster. It cannot attack",
+          "or change battle position. When it leaves the field,",
+          "destroy this card. Each of your turns, inflict 500 damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_NightmareWheel",
+        "pages": [
+          "Target an opponent's monster and deal 500LP of damage at the start of your turn."
+        ]
+      }
     }
   ]
 }

@@ -776,6 +776,10 @@ static const unsigned char sKaiserColosseumBigArt[] __attribute__((section(".app
 static const unsigned short sKaiserColosseumBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kaiser_colosseum.gbapal");
 static const unsigned char sKaiserColosseumMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kaiser_colosseum.lz");
 
+static const unsigned char sNightmareWheelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/nightmare_wheel.huff");
+static const unsigned short sNightmareWheelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nightmare_wheel.gbapal");
+static const unsigned char sNightmareWheelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nightmare_wheel.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -971,6 +975,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03DE] = sDarkDustSpiritBigArt,
   [0x03DF] = sGhostKnightOfJackalBigArt,
   [0x03E0] = sKaiserColosseumBigArt,
+  [0x03E1] = sNightmareWheelBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1168,6 +1173,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03DE] = sDarkDustSpiritBigPalette,
   [0x03DF] = sGhostKnightOfJackalBigPalette,
   [0x03E0] = sKaiserColosseumBigPalette,
+  [0x03E1] = sNightmareWheelBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1365,6 +1371,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03DE] = 0,
   [0x03DF] = 0,
   [0x03E0] = 0,
+  [0x03E1] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1562,4 +1569,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03DE] = sDarkDustSpiritMiniArt,
   [0x03DF] = sGhostKnightOfJackalMiniArt,
   [0x03E0] = sKaiserColosseumMiniArt,
+  [0x03E1] = sNightmareWheelMiniArt,
 };

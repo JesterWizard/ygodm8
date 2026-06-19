@@ -24,6 +24,7 @@
 #include "vengeful_bog_spirit.h"
 #include "kaiser_colosseum.h"
 #include "wall_of_revealing_light.h"
+#include "nightmare_wheel.h"
 
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -79,6 +80,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
   if (IsActivatedKaiserColosseumZone(zone))
     return TRUE;
   if (IsActivatedWallOfRevealingLightZone(zone))
+    return TRUE;
+  if (IsActivatedNightmareWheelZone(zone))
     return TRUE;
   if (IsActivatedKishidoSpiritZone(zone))
     return TRUE;

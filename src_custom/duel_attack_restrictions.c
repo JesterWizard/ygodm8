@@ -7,6 +7,7 @@
 #include "level_limit_area_b.h"
 #include "vengeful_bog_spirit.h"
 #include "wall_of_revealing_light.h"
+#include "nightmare_wheel.h"
 
 void Duel_ResetAttackRestrictions(void)
 {
@@ -64,6 +65,9 @@ u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
 
   if ((gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_WALL_OF_REVEALING_LIGHT)
       && !WallOfRevealingLight_CanMonsterAttack(zone))
+    return FALSE;
+
+  if (!NightmareWheel_CanMonsterDeclareAttack(zone))
     return FALSE;
 
   return TRUE;

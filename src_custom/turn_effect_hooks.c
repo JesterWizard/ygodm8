@@ -14,6 +14,7 @@
 #include "sasuke_samurai_2.h"
 #include "bottomless_shifting_sand.h"
 #include "dark_dust_spirit.h"
+#include "nightmare_wheel.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -273,6 +274,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   AgeFinalCountdownTurns();
   TryApplyBurningLandStandbyDamage();
   TryApplyDarkSnakeSyndromeStandbyDamage();
+  TryApplyNightmareWheelStandbyDamage();
   TryBottomlessShiftingSandTurnStart();
   if (IsDuelOver() == 1)
     return;

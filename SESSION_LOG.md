@@ -15,6 +15,28 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Nightmare Wheel → Continuous Spell
+
+**Worked on:** Converted Nightmare Wheel from `TYPE_TRAP`/`TRAP_CARD` to `TYPE_SPELL`/`SPELL_CARD`. Moved effect to `spell_effects/nightmare_wheel.c`; added `GetSpellType` entry; negation via Imperial Order instead of Royal Decree; spell text type (1) for activation.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/spell_effects/nightmare_wheel.c`, `src_custom/card_hooks.c`, `src_custom/card_effect_tally.md` (removed `trap_effects/nightmare_wheel.c`)
+
+**Outcome:** `make test-cards-build` passes.
+
+---
+
+## 2026-06-19 — Nightmare Wheel custom card
+
+**Worked on:** Added Nightmare Wheel (Continuous Trap, passcode 54704216) to manifest/trunk. Effect in `trap_effects/nightmare_wheel.c`: activate with opponent-monster targeting (`DUEL_CURSOR_NIGHTMARE_WHEEL_TARGET`); target stored on trap zone; blocks attack (`Duel_CanMonsterDeclareAttack`) and position changes; self-destructs when target leaves field; Standby 500 damage to opponent while target remains. Uses `Duel_ShowEffectTextTyped`, `Duel_ActivateContinuousZone`, `Duel_ChangeLp`, `Duel_DestroyZone`. `card_in_hand_1 = NIGHTMARE_WHEEL`.
+
+**Files:** `tools/card_data_manifest.json`, `include/nightmare_wheel.h`, `src_custom/trap_effects/nightmare_wheel.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/duel_attack_restrictions.c`, `src_custom/duel_activated_backrow.c`, `src_custom/monster_effect_hooks.c`, `src_custom/turn_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = NIGHTMARE_WHEEL`.
+
+**Open / next:** In-game: set NW, activate targeting opponent monster; confirm lock, Standby burn, and trap destruction when target leaves.
+
+---
+
 ## 2026-06-19 — Kaiser Colosseum custom card
 
 **Worked on:** Added Kaiser Colosseum (Continuous Spell, passcode 35059553) to manifest/trunk. Effect in `spell_effects/kaiser_colosseum.c`: while controller has ≥1 monster, opponent cannot place a monster if that would exceed controller's monster count (`Duel_CountMonstersOnFixedRow`); Imperial Order respected; grandfather clause via placement-only check. Hooks in `PlaceMonsterFromId`, `sub_80449D8`, and `CopyCard__Replacement` (AI hand→field path). `GetSpellType` lists KC as activatable continuous spell. `card_in_hand_1 = KAISER_COLOSSEUM`.

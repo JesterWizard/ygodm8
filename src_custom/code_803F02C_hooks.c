@@ -49,6 +49,7 @@
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
+#include "nightmare_wheel.h"
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "dark_room_of_nightmare.h"
@@ -445,6 +446,7 @@ LYN_REPLACE_CHECK(ClearZone);
 void ClearZone__Replacement(struct DuelCard *zone) {
   TryApplySkullInvitationOnFieldLeave(zone);
   TryApplyCoffinSellerOnFieldLeave(zone);
+  TryApplyNightmareWheelOnTargetLeave(zone);
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);

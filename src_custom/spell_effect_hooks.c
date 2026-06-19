@@ -76,6 +76,7 @@ extern void EffectRingOfDestruction(void);
 extern void EffectKnightsTitle(void);
 extern void EffectTheFluteOfSummoningDragon(void);
 extern void EffectKaiserColosseum(void);
+extern void EffectNightmareWheel(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -404,6 +405,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case RING_OF_DESTRUCTION:
       EffectRingOfDestruction();
+      return;
+    case NIGHTMARE_WHEEL:
+      EffectNightmareWheel();
       return;
     case KNIGHTS_TITLE:
       EffectKnightsTitle();

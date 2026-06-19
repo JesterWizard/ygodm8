@@ -18,6 +18,7 @@
 #include "invader_of_the_throne.h"
 #include "possessed_dark_soul.h"
 #include "ryu_kishin_clown.h"
+#include "nightmare_wheel.h"
 #include "dark_dust_spirit.h"
 #include "spirit_caller.h"
 
@@ -303,6 +304,9 @@ void MonsterActionMenu__Replacement(void) {
               gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
         PlayMusic(SFX_FORBIDDEN);
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+      } else if (NightmareWheel_CannotChangeBattlePosition(
+                     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
+        PlayMusic(SFX_FORBIDDEN);
       } else if (!gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
         PlayMusic(SFX_SELECT);
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 1;
@@ -339,6 +343,9 @@ void MonsterActionMenu__Replacement(void) {
     case 4: {
       struct DuelCard *zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
       u8 isFaceUp = zone->isFaceUp;
+
+      if (!isFaceUp && NightmareWheel_CannotChangeBattlePosition(zone))
+        goto FAILED;
 
       if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
         zone->isDefending = 0;
@@ -397,6 +404,9 @@ FAILED:
       if (gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending) {
         if (LevelLimitAreaB_CannotUseAttackPosition(
                 gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+          PlayMusic(SFX_FORBIDDEN);
+        } else if (NightmareWheel_CannotChangeBattlePosition(
+                       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
           PlayMusic(SFX_FORBIDDEN);
         } else if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;

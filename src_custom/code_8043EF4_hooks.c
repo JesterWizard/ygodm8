@@ -22,6 +22,7 @@
 #include "rivalry_of_warlords.h"
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
+#include "nightmare_wheel.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
@@ -73,6 +74,7 @@
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_moon.h"
 #include "ring_of_destruction.h"
+#include "nightmare_wheel.h"
 #include "toll.h"
 #include "call_of_the_haunted.h"
 #include "skull_invitation.h"
@@ -463,6 +465,22 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginRingOfDestructionTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsNightmareWheelCard(id)) {
+    if (!CanActivateNightmareWheel()
+        || !FieldHasNightmareWheelTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginNightmareWheelTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -1025,6 +1043,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       TrySelectRingOfDestructionTarget();
       break;
+    case DUEL_CURSOR_NIGHTMARE_WHEEL_TARGET:
+      TrySelectNightmareWheelTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -1091,6 +1112,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       CancelRingOfDestructionTargeting();
+      break;
+    case DUEL_CURSOR_NIGHTMARE_WHEEL_TARGET:
+      CancelNightmareWheelTargeting();
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();
