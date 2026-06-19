@@ -127,6 +127,7 @@ enum {
   MONSTER_EFFECT_DICE_JAR,
   MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE,
   MONSTER_EFFECT_POSSESSED_DARK_SOUL,
+  MONSTER_EFFECT_INVADER_OF_THE_THRONE,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -165,5 +166,7 @@ extern unsigned char CanActivateJowlsOfDarkDemise(void);
 extern void ActivateJowlsOfDarkDemiseEffect(void);
 extern unsigned char CanActivatePossessedDarkSoul(void);
 extern void ActivatePossessedDarkSoulEffect(void);
+extern unsigned char CanActivateInvaderOfTheThrone(void);
+extern void ActivateInvaderOfTheThroneEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

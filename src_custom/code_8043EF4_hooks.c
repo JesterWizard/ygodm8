@@ -26,6 +26,7 @@
 #include "blast_held_by_a_tribute.h"
 #include "breaker_the_magical_warrior.h"
 #include "jowls_of_dark_demise.h"
+#include "invader_of_the_throne.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -956,6 +957,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET:
       TrySelectJowlsOfDarkDemiseTarget();
       break;
+    case DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET:
+      TrySelectInvaderOfTheThroneTarget();
+      break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       TrySelectDarkMagicianKnightTarget();
       break;
@@ -1016,6 +1020,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET:
       CancelJowlsOfDarkDemiseTargeting();
+      break;
+    case DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET:
+      CancelInvaderOfTheThroneTargeting();
       break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       CancelDarkMagicianKnightTargeting();

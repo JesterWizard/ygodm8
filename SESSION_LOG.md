@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Invader of the Throne custom card
+
+**Worked on:** Added Invader of the Throne (EARTH Warrior L4 1350/1700, passcode 03056267) to manifest/trunk. FLIP effect in `activated_effects/invader_of_the_throne.c`: target 1 opponent monster, swap control with this card via zone swap + `Duel_NotifyFixedMonsterRowChanged`; player targeting via `DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET`; AI picks highest-ATK swappable opponent monster. `card_in_hand_1 = INVADER_OF_THE_THRONE`.
+
+**Files:** `tools/card_data_manifest.json`, `include/invader_of_the_throne.h`, `include/constants/monster_effects.h`, `src_custom/activated_effects/invader_of_the_throne.c`, `src_custom/monster_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = INVADER_OF_THE_THRONE`.
+
+**Open / next:** In-game: set Invader face-down, flip with opponent monster on field; confirm control swap and effect text. Skill Drain / control-immune cards should block targeting.
+
+---
+
 ## 2026-06-19 — Fire Princess custom card
 
 **Worked on:** Added Fire Princess (FIRE Pyro L4 1300/1500, passcode 64752646) to manifest/trunk. Continuous effect: when controller gains LP (action 7/10), burn opponent 500 via `Duel_ShowEffectTextTyped` + `HandleAtkAndLifePointsAction` (Dark Room defer pattern). Skill Drain blocks. `card_in_hand_1 = FIRE_PRINCESS`.

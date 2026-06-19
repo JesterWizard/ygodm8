@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 182 |
-| Art ready, needs manifest | 135 |
+| In game (manifest + art) | 183 |
+| Art ready, needs manifest | 134 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -204,6 +204,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ZABORG_THE_THUNDER_MONARCH` | Zaborg the Thunder Monarch | `zaborg_the_thunder_monarch.png` |
 | `BOTTOMLESS_SHIFTING_SAND` | Bottomless Shifting Sand | `bottomless_shifting_sand.png` |
 | `FIRE_PRINCESS` | Fire Princess | `fire_princess.png` |
+| `INVADER_OF_THE_THRONE` | Invader of the Throne | `invader_of_the_throne.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -259,7 +260,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
-- [ ] `INVADER_OF_THE_THRONE` — `invader_of_the_throne.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`

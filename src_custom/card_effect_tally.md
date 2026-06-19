@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `194` effects
+- `195` effects
 
 ## Tally
 
@@ -221,6 +221,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Dice Jar` | `src_custom/activated_effects/dice_jar.c` |
 | `activated_effects` | `Jowls of Dark Demise` | `src_custom/activated_effects/jowls_of_dark_demise.c` |
 | `activated_effects` | `Possessed Dark Soul` | `src_custom/activated_effects/possessed_dark_soul.c` |
+| `activated_effects` | `Invader of the Throne` | `src_custom/activated_effects/invader_of_the_throne.c` |
 
 ## Notes
 
