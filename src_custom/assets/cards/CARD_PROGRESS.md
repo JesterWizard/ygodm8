@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 187 |
-| Art ready, needs manifest | 130 |
+| In game (manifest + art) | 188 |
+| Art ready, needs manifest | 129 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -209,6 +209,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPIRIT_CALLER` | Spirit Caller | `spirit_caller.png` |
 | `VENGEFUL_BOG_SPIRIT` | Vengeful Bog Spirit | `vengeful_bog_spirit.png` |
 | `WALL_OF_REVEALING_LIGHT` | Wall of Revealing Light | `wall_of_revealing_light.png` |
+| `WORLD_SUPPRESSION` | World Suppression | `world_suppression.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -343,7 +344,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
-- [ ] `WORLD_SUPPRESSION` — `world_suppression.png`
 
 ## Todo — in manifest, missing art
 

@@ -5,6 +5,7 @@
 #include "negate_attack.h"
 #include "gravity_bind.h"
 #include "wall_of_revealing_light.h"
+#include "world_suppression.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
@@ -38,6 +39,7 @@
 #define TRAP_DRAINING_SHIELD 24
 
 extern void EffectMagicJammer(void);
+extern void EffectWorldSuppression(void);
 extern void EffectSevenToolsOfTheBandit(void);
 extern void EffectEmbodimentOfApophis(void);
 extern void EffectMagicCylinder(void);
@@ -244,6 +246,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectWallOfRevealingLight();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_WORLD_SUPPRESSION) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectWorldSuppression();
     return;
   }
 

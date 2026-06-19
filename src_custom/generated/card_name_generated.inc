@@ -188,6 +188,7 @@ static const u8 sTheFluteOfSummoningDragonName[] __attribute__((section(".append
 static const u8 sSpiritCallerName[] __attribute__((section(".append_assets"))) = "Spirit Caller";
 static const u8 sVengefulBogSpiritName[] __attribute__((section(".append_assets"))) = "Vengeful Bog Spirit";
 static const u8 sWallOfRevealingLightName[] __attribute__((section(".append_assets"))) = "Wall of Revealing Light";
+static const u8 sWorldSuppressionName[] __attribute__((section(".append_assets"))) = "World Suppression";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -570,6 +571,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sVengefulBogSpiritName;
   if (cardId == 0x03DB)
     return (u8 *)sWallOfRevealingLightName;
+  if (cardId == 0x03DC)
+    return (u8 *)sWorldSuppressionName;
 
   return gCardNames[cardId];
 }

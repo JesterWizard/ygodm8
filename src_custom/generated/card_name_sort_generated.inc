@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 187
+#define NUM_CUSTOM_NAME_SORT_CARDS 188
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -192,6 +192,7 @@ static const u8 sTheFluteOfSummoningDragonSortName[] APPEND_RODATA = "The Flute 
 static const u8 sSpiritCallerSortName[] APPEND_RODATA = "Spirit Caller";
 static const u8 sVengefulBogSpiritSortName[] APPEND_RODATA = "Vengeful Bog Spirit";
 static const u8 sWallOfRevealingLightSortName[] APPEND_RODATA = "Wall of Revealing Light";
+static const u8 sWorldSuppressionSortName[] APPEND_RODATA = "World Suppression";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -379,6 +380,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0332, // Wave Motion Cannon
   0x0369, // Weather Report
   0x0367, // White Magician Pikeru
+  0x03DC, // World Suppression
   0x035B, // Yata-Garasu
   0x03D4, // Zaborg the Thunder Monarch
 };
@@ -569,8 +571,9 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   183, // Wave Motion Cannon
   184, // Weather Report
   185, // White Magician Pikeru
-  186, // Yata-Garasu
-  187, // Zaborg the Thunder Monarch
+  186, // World Suppression
+  187, // Yata-Garasu
+  188, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -954,6 +957,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sVengefulBogSpiritSortName;
   if (cardId == 0x03DB)
     return (u8 *)sWallOfRevealingLightSortName;
+  if (cardId == 0x03DC)
+    return (u8 *)sWorldSuppressionSortName;
 
   return gCardNames[cardId];
 }

@@ -202,6 +202,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SPIRIT_CALLER, gActivationDescription_SpiritCaller },
   { VENGEFUL_BOG_SPIRIT, gActivationDescription_VengefulBogSpirit },
   { WALL_OF_REVEALING_LIGHT, gActivationDescription_WallOfRevealingLight },
+  { WORLD_SUPPRESSION, gActivationDescription_WorldSuppression },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

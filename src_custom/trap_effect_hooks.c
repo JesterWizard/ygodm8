@@ -6,6 +6,7 @@
 #include "negate_attack.h"
 #include "gravity_bind.h"
 #include "wall_of_revealing_light.h"
+#include "world_suppression.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
@@ -296,6 +297,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       if (ret)
         gTrapEffectData.trapCardId = TRAP_WALL_OF_REVEALING_LIGHT;
       break;
+    case TRAP_WORLD_SUPPRESSION:
+      ret = WorldSuppression_ShouldActivateTrapOnFieldSpell(gTrapEffectData.originCardId);
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_WORLD_SUPPRESSION;
+      break;
     case TRAP_BLAST_HELD_BY_A_TRIBUTE:
       ret = BlastHeldByATribute_ShouldActivateTrap();
       if (ret)
@@ -319,11 +325,17 @@ unsigned IsTrapTriggered__Replacement(void) {
     return FALSE;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    trapId = gTurnZones[INACTIVE_DUELIST_BACKROW][i]->id;
+    struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
+
+    trapId = zone->id;
     gTrapEffectData.trapZoneCol = i;
     if (trapId == CARD_NONE)
       continue;
     if (Duel_IsCardActivationBlocked(trapId))
+      continue;
+    // ponytail: AI sim (gHideEffectText) must not treat unknown face-down opponent
+    // backrow as chainable — sub_801B35C/sub_801B3AC gate spell actions on this.
+    if (gHideEffectText && !zone->isFaceUp)
       continue;
     if (CheckTrapActivationConditions__Hook(trapId) == TRUE) {
       if (gTrapEffectData.trapCardId == TRAP_IMPERIAL_ORDER)

@@ -15,6 +15,34 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — World Suppression + AI field spell scoring
+
+**Worked on:** AI terrain field spell — stopped tuning vanilla priority; `AiForceTerrainFieldSpellAction()` in `sub_800EF0C` now hard-picks activate (set Umi on backrow, field not Umi yet) or place (terrain in hand, empty backrow) before normal AI scoring.
+**Files:** `src_custom/ai_hooks.c`, `src_custom/ai_spell_hooks.c`, `src_custom/field_spell_effect_hooks.c`, `src_custom/LynJump.event`
+**Outcome:** `make test-cards-build` passes. Opponent should set then flip Umi every turn until field is active.
+
+## 2026-06-19 — World Suppression: AI hidden info fix
+
+**Worked on:** AI sim called `IsTrapTriggered` on face-down opponent backrow during spell action validation (`sub_801B35C`/`sub_801B3AC`), so it treated set World Suppression as a known counter and avoided field spells like Umi. Skip unknown face-down inactive backrow traps when `gHideEffectText` (AI simulation).
+
+**Files:** `src_custom/trap_effect_hooks.c`
+
+**Outcome:** `make test-cards-build` passes. AI should play field spells normally vs face-down WS; real activation still chains WS.
+
+---
+
+## 2026-06-19 — World Suppression custom card
+
+**Worked on:** Added World Suppression (Normal Trap, passcode 12253117) to manifest/trunk. Effect in `trap_effects/world_suppression.c`: chains when a Field Spell is activated (vanilla terrain, Burning Land, Seal of Orichalcos); sends trap + triggering spell to GY via `Duel_DestroyZone`/`Duel_ShowTrapResponseText`; sets IWRAM negation flag until end of turn (clears on turn switch). Blocks further field spell resolutions and suppresses Burning Land / Seal ongoing effects. `trapEffect` 33. `card_in_hand_1 = WORLD_SUPPRESSION`.
+
+**Files:** `tools/card_data_manifest.json`, `include/world_suppression.h`, `src_custom/trap_effects/world_suppression.c`, `asm/ram_map.s`, `src_custom/trap_effect_hooks.c`, `src_custom/trap_effects_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/field_spell_effect_hooks.c`, `src_custom/spell_effects/burning_land.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/duel_main_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = WORLD_SUPPRESSION`.
+
+**Open / next:** In-game: set World Suppression, opponent activates Field Spell; confirm trap chains, both go to GY, terrain reverts, no further field spell effects that turn.
+
+---
+
 ## 2026-06-19 — Wall of Revealing Light custom card
 
 **Worked on:** Added Wall of Revealing Light (Continuous Trap, passcode 17078030) to manifest/trunk. Effect in `trap_effects/wall_of_revealing_light.c`: auto-flips when opponent declares an attack; pays half controller LP and stores ATK threshold in IWRAM; only opponent monsters with ATK above threshold may attack while face-up (`Duel_CanMonsterDeclareAttack` via attack-restrictions API). Non-selectable when active. `card_in_hand_1 = WALL_OF_REVEALING_LIGHT`.

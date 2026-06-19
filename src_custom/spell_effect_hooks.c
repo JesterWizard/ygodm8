@@ -12,6 +12,7 @@
 #include "jar_robber.h"
 #include "spirit_of_the_pot_of_greed.h"
 #include "duel_helpers.h"
+#include "world_suppression.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
 extern void EffectCardOfDemise(void);
@@ -203,6 +204,15 @@ static void ActivateSpellEffect__Body(void)
   TryApplyCurseOfDarknessSpellDamage();
   if (IsDuelOver() == TRUE)
     return;
+
+  if (IsWorldSuppressionNegatingFieldSpell(gSpellEffectData.id)) {
+    struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
+
+    Duel_ShowEffectText(gSpellEffectData.id);
+    if (zone != NULL)
+      Duel_DestroyZone(zone, ACTIVE_DUELIST, TRUE);
+    return;
+  }
 
   if (TryActivateCustomFieldSpell(gSpellEffectData.id))
     return;

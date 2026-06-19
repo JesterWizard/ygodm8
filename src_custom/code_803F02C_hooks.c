@@ -10,6 +10,7 @@
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
 #include "wall_of_revealing_light.h"
+#include "world_suppression.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -220,6 +221,7 @@ void InitBoard__Replacement(void) {
   BlastHeldByATribute_ClearAllMarks();
   VengefulBogSpirit_ClearAllMarks();
   WallOfRevealingLight_ClearThreshold();
+  WorldSuppression_ClearNegation();
   ResetDynamicEquips();
   ResetApophisLinks();
   ClearCostDown();
@@ -413,6 +415,7 @@ void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   DebugRuleset_ResetTurnAttack();
   TheDarkDoor_ResetTurnAttack();
   VengefulBogSpirit_ClearAllMarks();
+  WorldSuppression_ClearNegation();
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);
@@ -537,7 +540,8 @@ s8 ComputeFinalStage(const struct DuelCard *zone)
       && zone->id != CARD_NONE
       && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
       && gActiveFieldSpellController != FIELD_SPELL_CONTROLLER_NONE
-      && GetDuelistForZone(zone) == gActiveFieldSpellController)
+      && GetDuelistForZone(zone) == gActiveFieldSpellController
+      && !IsWorldSuppressionNegatingFieldSpell(SEAL_OF_ORICHALCOS))
     stage++;
 
   if (stage > 127)

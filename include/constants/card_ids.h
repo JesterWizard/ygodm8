@@ -989,11 +989,12 @@
 #define SPIRIT_CALLER                            0x03D9
 #define VENGEFUL_BOG_SPIRIT                      0x03DA
 #define WALL_OF_REVEALING_LIGHT                  0x03DB
+#define WORLD_SUPPRESSION                        0x03DC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03DC
-#define NUM_CUSTOM_CARDS                        0x00BB
+#define NUM_TOTAL_CARDS                         0x03DD
+#define NUM_CUSTOM_CARDS                        0x00BC
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

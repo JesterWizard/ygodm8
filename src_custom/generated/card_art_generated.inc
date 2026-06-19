@@ -756,6 +756,10 @@ static const unsigned char sWallOfRevealingLightBigArt[] __attribute__((section(
 static const unsigned short sWallOfRevealingLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/wall_of_revealing_light.gbapal");
 static const unsigned char sWallOfRevealingLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/wall_of_revealing_light.lz");
 
+static const unsigned char sWorldSuppressionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/world_suppression.huff");
+static const unsigned short sWorldSuppressionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/world_suppression.gbapal");
+static const unsigned char sWorldSuppressionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/world_suppression.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -946,6 +950,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D9] = sSpiritCallerBigArt,
   [0x03DA] = sVengefulBogSpiritBigArt,
   [0x03DB] = sWallOfRevealingLightBigArt,
+  [0x03DC] = sWorldSuppressionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1138,6 +1143,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D9] = sSpiritCallerBigPalette,
   [0x03DA] = sVengefulBogSpiritBigPalette,
   [0x03DB] = sWallOfRevealingLightBigPalette,
+  [0x03DC] = sWorldSuppressionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1330,6 +1336,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D9] = 0,
   [0x03DA] = 0,
   [0x03DB] = 0,
+  [0x03DC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1522,4 +1529,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D9] = sSpiritCallerMiniArt,
   [0x03DA] = sVengefulBogSpiritMiniArt,
   [0x03DB] = sWallOfRevealingLightMiniArt,
+  [0x03DC] = sWorldSuppressionMiniArt,
 };

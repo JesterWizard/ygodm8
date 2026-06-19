@@ -131,6 +131,9 @@ _kernel_malloc gDuelAttackRestrictionsActive, 1
 _kernel_malloc gWallOfRevealingLightAttackThresholdPad, 1
 _kernel_malloc gWallOfRevealingLightAttackThreshold, 2
 
+@ World Suppression: field spell effects negated until end of turn.
+_kernel_malloc gWorldSuppressionNegatesFieldSpells, 1
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

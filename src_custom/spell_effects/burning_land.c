@@ -6,6 +6,7 @@
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
+#include "world_suppression.h"
 #include "spell_effects.h"
 
 #define BURNING_LAND_STANDBY_DAMAGE 500
@@ -86,6 +87,9 @@ u8 IsBurningLandActiveOnField(void)
   u8 i;
 
   if (IsImperialOrderNegatingSpell(BURNING_LAND))
+    return FALSE;
+
+  if (IsWorldSuppressionNegatingFieldSpell(BURNING_LAND))
     return FALSE;
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {

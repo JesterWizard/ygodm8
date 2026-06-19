@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
+#include "world_suppression.h"
 
 #include "generated/field_spell_card_lookup_generated.inc"
 #include "generated/field_spell_effect_table_generated.inc"
@@ -151,13 +152,22 @@ static struct DuelCard *GetFieldSpellZone(void)
   u8 zoneCol = GetFieldSpellZoneCol();
   struct DuelCard *zone;
 
-  if (zoneRow <= PLAYER_BACKROW && zoneCol < MAX_ZONES_IN_ROW)
-    zone = gFixedZones[zoneRow][zoneCol];
-  else
-    zone = NULL;
+  if (zoneCol >= MAX_ZONES_IN_ROW)
+    return NULL;
 
-  if (zone != NULL && zone->id == gSpellEffectData.id)
-    return zone;
+  // ponytail: gTurnZones uses active-duelist POV; gFixedZones[ACTIVE_DUELIST_BACKROW]
+  // is always player backrow, so opponent activations must resolve through gTurnZones.
+  if (zoneRow < 5) {
+    zone = gTurnZones[zoneRow][zoneCol];
+    if (zone != NULL && zone->id == gSpellEffectData.id)
+      return zone;
+  }
+
+  if (zoneRow <= PLAYER_HAND) {
+    zone = gFixedZones[zoneRow][zoneCol];
+    if (zone != NULL && zone->id == gSpellEffectData.id)
+      return zone;
+  }
 
   return FindFieldSpellZoneOnPlayerBackrow(gSpellEffectData.id);
 }
@@ -199,6 +209,9 @@ u8 TryActivateVanillaFieldSpell(u16 cardId, u8 spellEffect)
 {
   u8 fieldId;
 
+  if (IsWorldSuppressionNegatingFieldSpell(cardId))
+    return FALSE;
+
   SetCardInfo(cardId);
   fieldId = SpellEffectToFieldId(gCardInfo.spellEffect);
 
@@ -222,6 +235,9 @@ u8 TryActivateCustomFieldSpell(u16 cardId)
 #else
   spellId = LookupCustomFieldSpellIdForCard(cardId);
   if (spellId == CUSTOM_FIELD_SPELL_NONE)
+    return FALSE;
+
+  if (IsWorldSuppressionNegatingFieldSpell(cardId))
     return FALSE;
 
   sCustomFieldSpellEffects[spellId - 1]();

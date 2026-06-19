@@ -58,10 +58,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
-    .card_in_hand_1 = WALL_OF_REVEALING_LIGHT,
-    .card_in_hand_2 = LORD_OF_D,
-    .card_in_hand_3 = MASTER_OF_DRAGON_SOLDIER,
-    .card_in_hand_4 = F_G_D,
+    .card_in_hand_1 = WORLD_SUPPRESSION,
+    .card_in_hand_2 = CARD_NONE,
+    .card_in_hand_3 = CARD_NONE,
+    .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = CARD_NONE
+    .opponent_deck_card_id = UMI
 };

@@ -32,6 +32,7 @@
 #include "summon_tribute.h"
 #include "duel_attack_restrictions.h"
 #include "vengeful_bog_spirit.h"
+#include "world_suppression.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -352,6 +353,7 @@ static bool8 RunDuelTurnLoop(void) {
     UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
     UnlockCardsInRow(ACTIVE_DUELIST_HAND);
     VengefulBogSpirit_ClearAllMarks();
+    WorldSuppression_ClearNegation();
   }
 }
 
