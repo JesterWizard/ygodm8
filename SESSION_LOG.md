@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Spirit Caller custom card
+
+**Worked on:** Added Spirit Caller (LIGHT Spellcaster L3 1000/1000 FLIP, passcode 48659020) to manifest/trunk. FLIP effect in `activated_effects/spirit_caller.c`: if controller's graveyard holds a Level 3 or lower Normal Monster and an empty monster zone exists, Special Summon it via `Duel_SpecialSummonFromGrave` (ponytail: single-card graveyard model). `card_in_hand_1 = SPIRIT_CALLER`.
+
+**Files:** `tools/card_data_manifest.json`, `include/spirit_caller.h`, `include/constants/monster_effects.h`, `src_custom/activated_effects/spirit_caller.c`, `src_custom/monster_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = SPIRIT_CALLER`.
+
+**Open / next:** In-game: set Spirit Caller face-down, send a L3-or-lower Normal to GY, flip; confirm special summon. Flip with invalid GY or full field should skip effect.
+
+---
+
 ## 2026-06-19 — The Flute of Summoning Dragon custom card
 
 **Worked on:** Added The Flute of Summoning Dragon (Normal Spell, passcode 43973174) to manifest/trunk. Effect in `spell_effects/the_flute_of_summoning_dragon.c`: requires Lord of D on field; Special Summon up to 2 Dragon monsters from hand via `Duel_SpecialSummonFromHand` / `Duel_SpecialSummonFromHandZone`; `CanActivateTheFluteOfSummoningDragon` blocks when requirements unmet. `card_in_hand_1 = THE_FLUTE_OF_SUMMONING_DRAGON`.

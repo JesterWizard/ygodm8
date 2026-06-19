@@ -16,6 +16,7 @@
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
 #include "possessed_dark_soul.h"
+#include "spirit_caller.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -86,6 +87,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivatePossessedDarkSoul();
     case MONSTER_EFFECT_INVADER_OF_THE_THRONE:
       return CanActivateInvaderOfTheThrone();
+    case MONSTER_EFFECT_SPIRIT_CALLER:
+      return CanActivateSpiritCaller();
     default:
       return TRUE;
   }
@@ -242,6 +245,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_INVADER_OF_THE_THRONE) {
     ActivateInvaderOfTheThroneEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_SPIRIT_CALLER) {
+    ActivateSpiritCallerEffect();
     return;
   }
 

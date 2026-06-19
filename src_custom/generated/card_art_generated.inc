@@ -744,6 +744,10 @@ static const unsigned char sTheFluteOfSummoningDragonBigArt[] __attribute__((sec
 static const unsigned short sTheFluteOfSummoningDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_flute_of_summoning_dragon.gbapal");
 static const unsigned char sTheFluteOfSummoningDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_flute_of_summoning_dragon.lz");
 
+static const unsigned char sSpiritCallerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spirit_caller.huff");
+static const unsigned short sSpiritCallerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_caller.gbapal");
+static const unsigned char sSpiritCallerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_caller.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -931,6 +935,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D6] = sFirePrincessBigArt,
   [0x03D7] = sInvaderOfTheThroneBigArt,
   [0x03D8] = sTheFluteOfSummoningDragonBigArt,
+  [0x03D9] = sSpiritCallerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1120,6 +1125,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D6] = sFirePrincessBigPalette,
   [0x03D7] = sInvaderOfTheThroneBigPalette,
   [0x03D8] = sTheFluteOfSummoningDragonBigPalette,
+  [0x03D9] = sSpiritCallerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1309,6 +1315,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D6] = 0,
   [0x03D7] = 0,
   [0x03D8] = 0,
+  [0x03D9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1498,4 +1505,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D6] = sFirePrincessMiniArt,
   [0x03D7] = sInvaderOfTheThroneMiniArt,
   [0x03D8] = sTheFluteOfSummoningDragonMiniArt,
+  [0x03D9] = sSpiritCallerMiniArt,
 };

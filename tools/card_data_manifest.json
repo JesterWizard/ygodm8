@@ -17858,6 +17858,35 @@
           "Special Summon up to 2 Dragon monsters from your hand."
         ]
       }
+    },
+    {
+      "card_const": "SPIRIT_CALLER",
+      "card_name": "Spirit Caller",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_SPIRIT_CALLER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [4, 8, 6, 5, 9, 0, 2, 0],
+      "description": {
+        "symbol": "gDescription_SpiritCaller",
+        "pages": [
+          "A cemetary summoner who can summon spirits from the dead.",
+          "He can Special Summon 1 Level 3 or lower Normal Monster",
+          "from your Graveyard to your side of the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SpiritCaller",
+        "pages": [
+          "Special Summon 1 Level 3 or lower Normal Monster from your Graveyard."
+        ]
+      }
     }
   ]
 }
