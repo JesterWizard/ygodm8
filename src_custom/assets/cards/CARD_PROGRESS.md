@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 181 |
-| Art ready, needs manifest | 136 |
+| In game (manifest + art) | 182 |
+| Art ready, needs manifest | 135 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -203,6 +203,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPIRIT_OF_THE_POT_OF_GREED` | Spirit of the Pot of Greed | `spirit_of_the_pot_of_greed.png` |
 | `ZABORG_THE_THUNDER_MONARCH` | Zaborg the Thunder Monarch | `zaborg_the_thunder_monarch.png` |
 | `BOTTOMLESS_SHIFTING_SAND` | Bottomless Shifting Sand | `bottomless_shifting_sand.png` |
+| `FIRE_PRINCESS` | Fire Princess | `fire_princess.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -251,7 +252,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
-- [ ] `FIRE_PRINCESS` — `fire_princess.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`

@@ -368,6 +368,14 @@ _kernel_malloc_ewram gPendingCoffinSellerDamageToOpponent, 1
 @ Dark Room of Nightmare deferred effect-damage trigger.
 _kernel_malloc_ewram gSuppressDarkRoomDamage, 1
 _kernel_malloc_ewram gPendingDarkRoomTarget, 1
+@ Fire Princess deferred LP-gain burn trigger.
+_kernel_malloc_ewram gSuppressFirePrincessDamage, 1
+_kernel_malloc_ewram gPendingFirePrincessTarget, 1
+@ Fire Princess: skip re-trigger until controller LP rises again (player, opponent).
+_kernel_malloc_ewram gFirePrincessLpGainHandled, 1
+@ ponytail: pad keeps gLastHandledLpGainLp 2-byte aligned after u8 above.
+_kernel_malloc_ewram gFirePrincessLpGainHandledPad, 1
+_kernel_malloc_ewram_array gLastHandledLpGainLp, 2
 @ Great Maju Garzett tribute capture + per-cell atk/def/active (10 cells, 0x32 total).
 _kernel_malloc_ewram_array gGreatMajuGarzettBoardAtk, 0x14
 _kernel_malloc_ewram_array gGreatMajuGarzettBoardDef, 0x14

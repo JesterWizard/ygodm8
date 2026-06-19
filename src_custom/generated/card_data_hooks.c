@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[982] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[983] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -994,9 +994,10 @@ const u8 gCardLockAfterActivation_Hook[982] APPEND_RODATA = {
   [0x03D3] = 1,
   [0x03D4] = 1,
   [0x03D5] = 1,
+  [0x03D6] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[982] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[983] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1979,9 +1980,10 @@ const u8 gCardEffectUsage_Hook[982] APPEND_RODATA = {
   [0x03D3] = EFFECT_USAGE_NONE,
   [0x03D4] = EFFECT_USAGE_NONE,
   [0x03D5] = EFFECT_USAGE_NONE,
+  [0x03D6] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[982] APPEND_RODATA = {
+const CardData gCardData_NEW[983] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -14976,5 +14978,19 @@ const CardData gCardData_NEW[982] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 6, 5, 3, 2, 0, 7, 7},
     .description = gDescription_BottomlessShiftingSand,
+  },
+  [0x03D6] = {
+    .atk = 1300,
+    .def = 1500,
+    .cost = 161,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 4,
+    .type = TYPE_PYRO,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {6, 4, 7, 5, 2, 6, 4, 6},
+    .description = gDescription_FirePrincess,
   },
 };

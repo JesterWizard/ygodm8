@@ -17773,6 +17773,34 @@
           "Destroy the highest ATK face-up monster(s). Destroy this card if you have 3 or less cards in your hand."
         ]
       }
+    },
+    {
+      "card_const": "FIRE_PRINCESS",
+      "card_name": "Fire Princess",
+      "atk": 1300,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [6, 4, 7, 5, 2, 6, 4, 6],
+      "description": {
+        "symbol": "gDescription_FirePrincess",
+        "pages": [
+          "Each time you gain Life Points, inflict 500 damage",
+          "to your opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_FirePrincess",
+        "pages": [
+          "Each time you gain Life Points, inflict 500 damage to your opponent."
+        ]
+      }
     }
   ]
 }

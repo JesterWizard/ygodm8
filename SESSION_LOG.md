@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Fire Princess custom card
+
+**Worked on:** Added Fire Princess (FIRE Pyro L4 1300/1500, passcode 64752646) to manifest/trunk. Continuous effect: when controller gains LP (action 7/10), burn opponent 500 via `Duel_ShowEffectTextTyped` + `HandleAtkAndLifePointsAction` (Dark Room defer pattern). Skill Drain blocks. `card_in_hand_1 = FIRE_PRINCESS`.
+
+**Files:** `tools/card_data_manifest.json`, `include/fire_princess.h`, `src_custom/permanent_effects/fire_princess.c`, `asm/ram_map.s`, `src_custom/code_803F02C_hooks.c`, `src_custom/effect_text_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = FIRE_PRINCESS`.
+
+**Open / next:** In-game: summon Fire Princess face-up, activate LP gain spell (e.g. Pot of Greed + Solemn Wishes path or healing spell); confirm 500 burn and effect text.
+
+---
+
 ## 2026-06-19 — Bottomless Shifting Sand custom card
 
 **Worked on:** Added Bottomless Shifting Sand (Continuous Trap, passcode 76532077) to manifest/trunk. Turn-start hook: at controller's turn start (opponent's end), flip if set, destroy all face-up monsters tied for highest field ATK (`Duel_GetZoneFinalAtk` + `Duel_DestroyZone`); standby self-destruct when hand ≤ 3 (ponytail: scaled from TCG 4 for 5-card hand cap). `card_in_hand_1 = BOTTOMLESS_SHIFTING_SAND`.

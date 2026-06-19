@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "dark_room_of_nightmare.h"
+#include "fire_princess.h"
 #include "duel_main.h"
 
 extern unsigned char* gDuelTextStrings[];
@@ -65,8 +66,10 @@ void ActivateCardEffectText__Replacement(void)
     } while (g3000C6C);
   }
 
+  TryNotifyFirePrincessOnLpGainAction();
   sub_801CF08();
   ResolveDarkRoomEffect();
+  ResolveFirePrincessEffect();
 }
 
 LYN_REPLACE_CHECK(sub_801CF08);

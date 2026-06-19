@@ -196,6 +196,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SPIRIT_OF_THE_POT_OF_GREED, gActivationDescription_SpiritOfThePotOfGreed },
   { ZABORG_THE_THUNDER_MONARCH, gActivationDescription_ZaborgTheThunderMonarch },
   { BOTTOMLESS_SHIFTING_SAND, gActivationDescription_BottomlessShiftingSand },
+  { FIRE_PRINCESS, gActivationDescription_FirePrincess },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

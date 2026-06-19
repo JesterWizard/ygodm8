@@ -47,6 +47,7 @@
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "dark_room_of_nightmare.h"
+#include "fire_princess.h"
 #include "sasuke_samurai.h"
 
 extern u8 gSuppressSkullInvitationDamage;
@@ -251,6 +252,7 @@ void InitBoard__Replacement(void) {
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
   ClearDarkRoomPending();
+  ClearFirePrincessPending();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
@@ -550,6 +552,10 @@ void CheckLoserFlags__Replacement(void)
     TryApplyDarkRoomAfterEffectDamage(DUEL_OPPONENT);
   else if (actionId == 8 && sActionData.playerCardAtkOrLifePointsMod > 0)
     TryApplyDarkRoomAfterEffectDamage(DUEL_PLAYER);
+  else if (actionId == 7 && sActionData.playerCardAtkOrLifePointsMod > 0)
+    TryApplyFirePrincessAfterLpGain(DUEL_PLAYER);
+  else if (actionId == 10 && sActionData.opponentCardAtkOrLifePointsMod > 0)
+    TryApplyFirePrincessAfterLpGain(DUEL_OPPONENT);
 }
 
 LYN_REPLACE_CHECK(UnlockCardsInRow);
