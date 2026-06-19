@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 179 |
-| Art ready, needs manifest | 139 |
+| In game (manifest + art) | 180 |
+| Art ready, needs manifest | 138 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **318** |
 
@@ -201,6 +201,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CREATURE_SWAP` | Creature Swap | `creature_swap.png` |
 | `LESSER_FIEND` | Lesser Fiend | `lesser_fiend.png` |
 | `SPIRIT_OF_THE_POT_OF_GREED` | Spirit of the Pot of Greed | `spirit_of_the_pot_of_greed.png` |
+| `ZABORG_THE_THUNDER_MONARCH` | Zaborg the Thunder Monarch | `zaborg_the_thunder_monarch.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -344,7 +345,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
 - [ ] `WORLD_SUPPRESSION` — `world_suppression.png`
-- [ ] `ZABORG_THE_THUNDER_MONARCH` — `zaborg_the_thunder_monarch.png`
 
 ## Todo — in manifest, missing art
 

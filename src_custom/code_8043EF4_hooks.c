@@ -44,6 +44,7 @@
 #include "sasuke_samurai_3.h"
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
+#include "zaborg_the_thunder_monarch.h"
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
 #include "precious_cards_from_beyond.h"
@@ -956,6 +957,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       TrySelectDarkMagicianKnightTarget();
       break;
+    case DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET:
+      TrySelectZaborgTheThunderMonarchTarget();
+      break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       TrySelectBlockAttackTarget();
       break;
@@ -1013,6 +1017,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_DARK_MAGICIAN_KNIGHT_TARGET:
       CancelDarkMagicianKnightTargeting();
+      break;
+    case DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET:
+      CancelZaborgTheThunderMonarchTargeting();
       break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       CancelBlockAttackTargeting();

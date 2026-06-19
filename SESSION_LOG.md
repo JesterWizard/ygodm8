@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Zaborg the Thunder Monarch custom card
+
+**Worked on:** Added Zaborg the Thunder Monarch (LIGHT Thunder L5 2400/1000, passcode 51945556) to manifest/trunk. Tribute Summon trigger in `permanent_effects/zaborg_the_thunder_monarch.c`: player targets 1 field monster (excluding self) via `DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET`; AI picks highest-ATK opponent monster; destroy via `Duel_DestroyZone`. Only fires when `GetPendingTributeSummonCardId()` matches. Fixed Spirit of the Pot of Greed manifest description (2 pages required).
+
+**Files:** `tools/card_data_manifest.json`, `include/zaborg_the_thunder_monarch.h`, `src_custom/permanent_effects/zaborg_the_thunder_monarch.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = ZABORG_THE_THUNDER_MONARCH`.
+
+**Open / next:** In-game: tribute summon Zaborg with another monster on field; confirm target destroy and effect text. Skill Drain should negate.
+
+---
+
 ## 2026-06-19 — Spirit of the Pot of Greed custom card
 
 **Worked on:** Added Spirit of the Pot of Greed (LIGHT Fairy L1 100/100, passcode 04896788) to manifest/trunk. After Pot of Greed resolves, scans both monster rows for face-up Attack Position copies; PoG activator draws 1 per Spirit via `Duel_DrawCards`. Skill Drain blocks; Jar Robber/Maryokutai pre-resolution counters skip the hook.

@@ -724,6 +724,10 @@ static const unsigned char sSpiritOfThePotOfGreedBigArt[] __attribute__((section
 static const unsigned short sSpiritOfThePotOfGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_of_the_pot_of_greed.gbapal");
 static const unsigned char sSpiritOfThePotOfGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_of_the_pot_of_greed.lz");
 
+static const unsigned char sZaborgTheThunderMonarchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/zaborg_the_thunder_monarch.huff");
+static const unsigned short sZaborgTheThunderMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/zaborg_the_thunder_monarch.gbapal");
+static const unsigned char sZaborgTheThunderMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/zaborg_the_thunder_monarch.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -906,6 +910,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D1] = sCreatureSwapBigArt,
   [0x03D2] = sLesserFiendBigArt,
   [0x03D3] = sSpiritOfThePotOfGreedBigArt,
+  [0x03D4] = sZaborgTheThunderMonarchBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1090,6 +1095,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D1] = sCreatureSwapBigPalette,
   [0x03D2] = sLesserFiendBigPalette,
   [0x03D3] = sSpiritOfThePotOfGreedBigPalette,
+  [0x03D4] = sZaborgTheThunderMonarchBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1274,6 +1280,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D1] = 0,
   [0x03D2] = 0,
   [0x03D3] = 0,
+  [0x03D4] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1458,4 +1465,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D1] = sCreatureSwapMiniArt,
   [0x03D2] = sLesserFiendMiniArt,
   [0x03D3] = sSpiritOfThePotOfGreedMiniArt,
+  [0x03D4] = sZaborgTheThunderMonarchMiniArt,
 };

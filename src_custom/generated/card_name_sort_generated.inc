@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 179
+#define NUM_CUSTOM_NAME_SORT_CARDS 180
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -184,6 +184,7 @@ static const u8 sTheThingInTheCraterSortName[] APPEND_RODATA = "The Thing in the
 static const u8 sCreatureSwapSortName[] APPEND_RODATA = "Creature Swap";
 static const u8 sLesserFiendSortName[] APPEND_RODATA = "Lesser Fiend";
 static const u8 sSpiritOfThePotOfGreedSortName[] APPEND_RODATA = "Spirit of the Pot of Greed";
+static const u8 sZaborgTheThunderMonarchSortName[] APPEND_RODATA = "Zaborg the Thunder Monarch";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -365,6 +366,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0369, // Weather Report
   0x0367, // White Magician Pikeru
   0x035B, // Yata-Garasu
+  0x03D4, // Zaborg the Thunder Monarch
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
@@ -547,6 +549,7 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   177, // Weather Report
   178, // White Magician Pikeru
   179, // Yata-Garasu
+  180, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -914,6 +917,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sLesserFiendSortName;
   if (cardId == 0x03D3)
     return (u8 *)sSpiritOfThePotOfGreedSortName;
+  if (cardId == 0x03D4)
+    return (u8 *)sZaborgTheThunderMonarchSortName;
 
   return gCardNames[cardId];
 }
