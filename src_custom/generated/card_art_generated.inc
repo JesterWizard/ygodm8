@@ -800,6 +800,10 @@ static const unsigned char sLeviaDragonDaedalusBigArt[] __attribute__((section("
 static const unsigned short sLeviaDragonDaedalusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/levia_dragon_daedalus.gbapal");
 static const unsigned char sLeviaDragonDaedalusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/levia_dragon_daedalus.lz");
 
+static const unsigned char sThebanNightmareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/theban_nightmare.huff");
+static const unsigned short sThebanNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/theban_nightmare.gbapal");
+static const unsigned char sThebanNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/theban_nightmare.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1001,6 +1005,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E4] = sDustTornadoBigArt,
   [0x03E5] = sEctoplasmerBigArt,
   [0x03E6] = sLeviaDragonDaedalusBigArt,
+  [0x03E7] = sThebanNightmareBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1204,6 +1209,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E4] = sDustTornadoBigPalette,
   [0x03E5] = sEctoplasmerBigPalette,
   [0x03E6] = sLeviaDragonDaedalusBigPalette,
+  [0x03E7] = sThebanNightmareBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1407,6 +1413,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E4] = 0,
   [0x03E5] = 0,
   [0x03E6] = 0,
+  [0x03E7] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1610,4 +1617,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E4] = sDustTornadoMiniArt,
   [0x03E5] = sEctoplasmerMiniArt,
   [0x03E6] = sLeviaDragonDaedalusMiniArt,
+  [0x03E7] = sThebanNightmareMiniArt,
 };

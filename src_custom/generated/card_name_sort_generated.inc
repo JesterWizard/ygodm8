@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 198
+#define NUM_CUSTOM_NAME_SORT_CARDS 199
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -203,6 +203,7 @@ static const u8 sMajuGarzettSortName[] APPEND_RODATA = "Maju Garzett";
 static const u8 sDustTornadoSortName[] APPEND_RODATA = "Dust Tornado";
 static const u8 sEctoplasmerSortName[] APPEND_RODATA = "Ectoplasmer";
 static const u8 sLeviaDragonDaedalusSortName[] APPEND_RODATA = "Levia Dragon Daedalus";
+static const u8 sThebanNightmareSortName[] APPEND_RODATA = "Theban Nightmare";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -381,6 +382,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
   0x03D0, // The Thing in the Crater
+  0x03E7, // Theban Nightmare
   0x036C, // Thousand Energy
   0x038F, // Thousand Knives
   0x03B5, // Thunder Crash
@@ -582,28 +584,29 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   174, // The Flute of Summoning Dragon
   175, // The Forceful Sentry
   176, // The Thing in the Crater
-  177, // Thousand Energy
-  178, // Thousand Knives
-  179, // Thunder Crash
-  180, // Time Seal
-  181, // Toll
-  182, // Torpedo Fish
-  183, // Triangle Power
-  184, // Twin Swords of Flashing Light - Tryce
-  185, // Tyrant Dragon
-  186, // Ultimate Offering
-  187, // United We Stand
-  188, // Upstart Goblin
-  189, // Vampire Baby
-  190, // Vengeful Bog Spirit
-  191, // Wall of Revealing Light
-  192, // Warrior of Zera
-  193, // Wave Motion Cannon
-  194, // Weather Report
-  195, // White Magician Pikeru
-  196, // World Suppression
-  197, // Yata-Garasu
-  198, // Zaborg the Thunder Monarch
+  177, // Theban Nightmare
+  178, // Thousand Energy
+  179, // Thousand Knives
+  180, // Thunder Crash
+  181, // Time Seal
+  182, // Toll
+  183, // Torpedo Fish
+  184, // Triangle Power
+  185, // Twin Swords of Flashing Light - Tryce
+  186, // Tyrant Dragon
+  187, // Ultimate Offering
+  188, // United We Stand
+  189, // Upstart Goblin
+  190, // Vampire Baby
+  191, // Vengeful Bog Spirit
+  192, // Wall of Revealing Light
+  193, // Warrior of Zera
+  194, // Wave Motion Cannon
+  195, // Weather Report
+  196, // White Magician Pikeru
+  197, // World Suppression
+  198, // Yata-Garasu
+  199, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1009,6 +1012,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sEctoplasmerSortName;
   if (cardId == 0x03E6)
     return (u8 *)sLeviaDragonDaedalusSortName;
+  if (cardId == 0x03E7)
+    return (u8 *)sThebanNightmareSortName;
 
   return gCardNames[cardId];
 }

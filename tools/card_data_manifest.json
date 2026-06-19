@@ -18263,6 +18263,34 @@
           "Revert Umi terrain to Arena, then destroy all other cards on the field."
         ]
       }
+    },
+    {
+      "card_const": "THEBAN_NIGHTMARE",
+      "card_name": "Theban Nightmare",
+      "atk": 1500,
+      "def": 500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [5, 1, 8, 3, 8, 3, 8, 5],
+      "description": {
+        "symbol": "gDescription_ThebanNightmare",
+        "pages": [
+          "Gains 1500 ATK while you have no cards in your hand",
+          "nor in your Spell & Trap Zones."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ThebanNightmare",
+        "pages": [
+          "Gains 1500 ATK while you have no cards in your hand nor in your Spell & Trap Zones."
+        ]
+      }
     }
   ]
 }

@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Theban Nightmare custom card
+
+**Worked on:** Added Theban Nightmare (LIGHT Fiend L4, passcode 51838385) to manifest/trunk. Continuous ATK effect in `permanent_effects/theban_nightmare.c`: +1500 ATK while controller has no hand cards and no Spell/Trap Zones occupied; wired through `Duel_TryApplyDynamicZoneStats`. `card_in_hand_1 = THEBAN_NIGHTMARE`.
+
+**Files:** `tools/card_data_manifest.json`, `src_custom/permanent_effects/theban_nightmare.c`, `src_custom/duel_helpers.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = THEBAN_NIGHTMARE`.
+
+**Open / next:** In-game: summon with empty hand and backrow; confirm 3000 ATK overlay and battle stat; confirm bonus drops when drawing or setting a spell/trap.
+
+---
+
 ## 2026-06-19 — Levia Dragon Daedalus custom card
 
 **Worked on:** Added Levia Dragon Daedalus (WATER Sea Serpent L7, passcode 94620419) to manifest/trunk. Activated effect in `activated_effects/levia_dragon_daedalus.c`: requires face-up Umi you control; sends Umi to GY (reverts FIELD_UMI terrain to Arena as part of that cost), then destroys all other cards on the field via `Duel_DestroyZone` / `Duel_FindBackrowCard`. Daedalus stays on field. `card_in_hand_1 = LEVIA_DRAGON_DAEDALUS`.

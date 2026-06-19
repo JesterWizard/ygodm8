@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 198 |
-| Art ready, needs manifest | 118 |
+| In game (manifest + art) | 199 |
+| Art ready, needs manifest | 117 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -220,6 +220,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DUST_TORNADO` | Dust Tornado | `dust_tornado.png` |
 | `ECTOPLASMER` | Ectoplasmer | `ectoplasmer.png` |
 | `LEVIA_DRAGON_DAEDALUS` | Levia Dragon Daedalus | `levia_dragon_daedalus.png` |
+| `THEBAN_NIGHTMARE` | Theban Nightmare | `theban_nightmare.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -332,7 +333,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THEBAN_NIGHTMARE` — `theban_nightmare.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORNADO_BIRD` — `tornado_bird.png`
