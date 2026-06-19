@@ -209,6 +209,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { KAISER_COLOSSEUM, gActivationDescription_KaiserColosseum },
   { NIGHTMARE_WHEEL, gActivationDescription_NightmareWheel },
   { MIRROR_WALL, gActivationDescription_MirrorWall },
+  { MAJU_GARZETT, gActivationDescription_MajuGarzett },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

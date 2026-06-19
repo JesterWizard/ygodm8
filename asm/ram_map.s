@@ -402,6 +402,12 @@ _kernel_malloc_ewram_array gGreatMajuGarzettBoardDef, 0x14
 _kernel_malloc_ewram_array gGreatMajuGarzettBoardActive, 0xA
 _kernel_malloc_ewram_array gGreatMajuGarzettTributeTotals, 0x4
 _kernel_malloc_ewram gGreatMajuGarzettPendingSummon, 1
+@ Maju Garzett tribute capture + per-cell atk/active (10 cells, 0x1E total).
+_kernel_malloc_ewram gMajuGarzettPreArraysPad, 1
+_kernel_malloc_ewram_array gMajuGarzettBoardAtk, 0x14
+_kernel_malloc_ewram_array gMajuGarzettBoardActive, 0xA
+_kernel_malloc_ewram_array gMajuGarzettTributeAtk, 0x2
+_kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 @ Ring of Destruction: opponent monster row changed this action; fire after permanent scan.
 _kernel_malloc_ewram gRingOfDestructionPending, 1
 @ --------------------------------------------------------------------

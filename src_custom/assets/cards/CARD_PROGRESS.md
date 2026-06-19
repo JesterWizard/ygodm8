@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 194 |
-| Art ready, needs manifest | 122 |
+| In game (manifest + art) | 195 |
+| Art ready, needs manifest | 121 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -216,6 +216,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `KAISER_COLOSSEUM` | Kaiser Colosseum | `kaiser_colosseum.png` |
 | `NIGHTMARE_WHEEL` | Nightmare Wheel | `nightmare_wheel.png` |
 | `MIRROR_WALL` | Mirror Wall | `mirror_wall.png` |
+| `MAJU_GARZETT` | Maju Garzett | `maju_garzett.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -281,7 +282,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [ ] `MAJU_GARZETT` — `maju_garzett.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`

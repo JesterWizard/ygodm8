@@ -25,6 +25,7 @@
 #include "reckless_greed.h"
 #include "copycat.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
 #include "embodiment_of_apophis.h"
@@ -475,6 +476,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
+  ClearMajuGarzettBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);
   VengefulBogSpirit_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();

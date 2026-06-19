@@ -94,6 +94,7 @@
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 #include "duel_helpers.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -307,6 +308,7 @@ void sub_80441D0__Replacement(void)
             WaitForVBlank();
           } else {
             SetGreatMajuGarzettPendingSummon(handCardId == GREAT_MAJU_GARZETT);
+            SetMajuGarzettPendingSummon(handCardId == MAJU_GARZETT);
             SetPendingTributeSummonCardId(handCardId);
             ResetCursorDestToCurrentPos();
             PlayMusic(SFX_FORBIDDEN);
@@ -315,6 +317,8 @@ void sub_80441D0__Replacement(void)
         } else {
           if (handCardId != GREAT_MAJU_GARZETT)
             SetGreatMajuGarzettPendingSummon(FALSE);
+          if (handCardId != MAJU_GARZETT)
+            SetMajuGarzettPendingSummon(FALSE);
           PlayMusic(SFX_SELECT);
           sub_80442AC();
         }
@@ -641,6 +645,7 @@ void sub_80442AC__Replacement(void) {
   u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
 
   SetGreatMajuGarzettPendingSummon(id == GREAT_MAJU_GARZETT);
+  SetMajuGarzettPendingSummon(id == MAJU_GARZETT);
   if (!PendingTributeSummonStillUnpaid())
     SetPendingTributeSummonCardId(id);
   SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
@@ -736,6 +741,8 @@ void sub_80449D8__Replacement(void)
         gFixedZones[placedRow][placedCol]->id, WhoseTurn());
   }
   FinishGreatMajuGarzettTributeSummon(
+      gFixedZones[placedRow][placedCol], placedRow, placedCol);
+  FinishMajuGarzettTributeSummon(
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);

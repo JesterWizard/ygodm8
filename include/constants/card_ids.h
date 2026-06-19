@@ -996,11 +996,12 @@
 #define KAISER_COLOSSEUM                         0x03E0
 #define NIGHTMARE_WHEEL                          0x03E1
 #define MIRROR_WALL                              0x03E2
+#define MAJU_GARZETT                             0x03E3
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03E3
-#define NUM_CUSTOM_CARDS                        0x00C2
+#define NUM_TOTAL_CARDS                         0x03E4
+#define NUM_CUSTOM_CARDS                        0x00C3
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

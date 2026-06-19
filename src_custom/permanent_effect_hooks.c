@@ -12,6 +12,7 @@
 #include "kaiser_glider.h"
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -160,6 +161,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GREAT_MAJU_GARZETT,
     .shouldActivate = ShouldActivateGreatMajuGarzett,
     .activate = ActivateGreatMajuGarzett,
+  },
+  {
+    .cardId = MAJU_GARZETT,
+    .shouldActivate = ShouldActivateMajuGarzett,
+    .activate = ActivateMajuGarzett,
   },
   {
     .cardId = PETEN_THE_DARK_CLOWN,

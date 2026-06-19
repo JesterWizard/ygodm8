@@ -35,6 +35,7 @@ extern struct DuelCard *gSetFinalStatZone;
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
@@ -874,6 +875,7 @@ struct DuelAttackGate {
 
 static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((section(".text"))) = {
   { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
+  { MAJU_GARZETT, MajuGarzett_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },

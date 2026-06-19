@@ -195,6 +195,7 @@ static const u8 sGhostKnightOfJackalName[] __attribute__((section(".append_asset
 static const u8 sKaiserColosseumName[] __attribute__((section(".append_assets"))) = "Kaiser Colosseum";
 static const u8 sNightmareWheelName[] __attribute__((section(".append_assets"))) = "Nightmare Wheel";
 static const u8 sMirrorWallName[] __attribute__((section(".append_assets"))) = "Mirror Wall";
+static const u8 sMajuGarzettName[] __attribute__((section(".append_assets"))) = "Maju Garzett";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -591,6 +592,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sNightmareWheelName;
   if (cardId == 0x03E2)
     return (u8 *)sMirrorWallName;
+  if (cardId == 0x03E3)
+    return (u8 *)sMajuGarzettName;
 
   return gCardNames[cardId];
 }

@@ -7,6 +7,7 @@
 #include "mask_of_restrict.h"
 #include "summon_tribute.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 #include "precious_cards_from_beyond.h"
 #include "blast_held_by_a_tribute.h"
 
@@ -141,6 +142,7 @@ void sub_800E0D4__Replacement(void)
   RecordPendingAiTributeSummonCard();
   RecordAiSummonTributeCount();
   TryCaptureGreatMajuGarzettAiTribute();
+  TryCaptureMajuGarzettAiTribute();
   sub_803FD14();
   g8DFF600[sAI_Command.action]();
   if (IsAiTributeSummonAction(sAI_Command.action)) {

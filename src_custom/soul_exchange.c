@@ -2,6 +2,7 @@
 #include "soul_exchange.h"
 #include "tribute.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
@@ -59,6 +60,7 @@ void ApplyMonsterTributeFromFixedRow(struct DuelCard *zone, u8 fixedMonsterRow)
     GrantSoulExchangeTributeCredit();
   } else {
     TryCaptureGreatMajuGarzettTributeFromZone(zone);
+    TryCaptureMajuGarzettTributeFromZone(zone);
     AddTributeCredit(zone->id);
   }
 

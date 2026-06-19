@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Maju Garzett custom card
+
+**Worked on:** Added Maju Garzett (DARK Fiend L7, passcode 08794435) to manifest/trunk. Effect in `permanent_effects/maju_garzett.c`: on Tribute Summon, ATK becomes sum of original ATK of 2 tributes (pattern from Great Maju Garzett; ATK-only, no doubling). Wired tribute capture, placement finish, board stat overlay, AI 2-tribute path, Soul Exchange, and zone cleanup. `card_in_hand_1 = MAJU_GARZETT`.
+
+**Files:** `tools/card_data_manifest.json`, `include/maju_garzett.h`, `src_custom/permanent_effects/maju_garzett.c`, `asm/ram_map.s`, `src_custom/permanent_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/monster_effect_hooks.c`, `src_custom/ai_tribute_hooks.c`, `src_custom/soul_exchange.c`, `src_custom/duel_helpers.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = MAJU_GARZETT`.
+
+**Open / next:** In-game: Tribute Summon with 2 monsters; confirm ATK = sum of tribute ATK on field overlay and in battle.
+
+---
+
 ## 2026-06-19 — Mirror Wall custom card
 
 **Worked on:** Added Mirror Wall (Continuous Trap, passcode 22359980) to manifest/trunk. Effect in `trap_effects/mirror_wall.c`: flips on opponent attack; permanently halves ATK of attacking opponent monsters while face-up (board-cell mask in EWRAM); Standby Phase 2000 LP upkeep or self-destruct via turn effect. Pattern follows Fairy Box + Imperial Order. `card_in_hand_1 = MIRROR_WALL`.

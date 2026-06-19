@@ -18146,6 +18146,36 @@
           "Halve the ATK of the opponent's attacking monster."
         ]
       }
+    },
+    {
+      "card_const": "MAJU_GARZETT",
+      "card_name": "Maju Garzett",
+      "atk": 0,
+      "def": 0,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 8, 7, 9, 4, 4, 3, 5],
+      "description": {
+        "symbol": "gDescription_MajuGarzett",
+        "pages": [
+          "A fiend born from two tributes.",
+          "This card's ATK becomes the combined",
+          "original ATK of its 2 Tributes."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MajuGarzett",
+        "pages": [
+          "This card's ATK becomes the combined",
+          "original ATK of its 2 Tributes."
+        ]
+      }
     }
   ]
 }

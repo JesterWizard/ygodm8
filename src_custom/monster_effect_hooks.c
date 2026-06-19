@@ -7,6 +7,7 @@
 #include "soul_exchange.h"
 #include "tribute.h"
 #include "great_maju_garzett.h"
+#include "maju_garzett.h"
 #include "weather_report.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
@@ -331,6 +332,8 @@ void MonsterActionMenu__Replacement(void) {
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], OPPONENT_MONSTER_ROW);
       } else {
         TryCaptureGreatMajuGarzettTributeFromZone(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+        TryCaptureMajuGarzettTributeFromZone(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
         AddTributeCredit(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);

@@ -784,6 +784,10 @@ static const unsigned char sMirrorWallBigArt[] __attribute__((section(".append_a
 static const unsigned short sMirrorWallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mirror_wall.gbapal");
 static const unsigned char sMirrorWallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mirror_wall.lz");
 
+static const unsigned char sMajuGarzettBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/maju_garzett.huff");
+static const unsigned short sMajuGarzettBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/maju_garzett.gbapal");
+static const unsigned char sMajuGarzettMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/maju_garzett.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -981,6 +985,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E0] = sKaiserColosseumBigArt,
   [0x03E1] = sNightmareWheelBigArt,
   [0x03E2] = sMirrorWallBigArt,
+  [0x03E3] = sMajuGarzettBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1180,6 +1185,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E0] = sKaiserColosseumBigPalette,
   [0x03E1] = sNightmareWheelBigPalette,
   [0x03E2] = sMirrorWallBigPalette,
+  [0x03E3] = sMajuGarzettBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1379,6 +1385,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E0] = 0,
   [0x03E1] = 0,
   [0x03E2] = 0,
+  [0x03E3] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1578,4 +1585,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E0] = sKaiserColosseumMiniArt,
   [0x03E1] = sNightmareWheelMiniArt,
   [0x03E2] = sMirrorWallMiniArt,
+  [0x03E3] = sMajuGarzettMiniArt,
 };
