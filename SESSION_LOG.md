@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Ryu-Kishin Clown custom card
+
+**Worked on:** Added Ryu-Kishin Clown (DARK Fiend L2 800/500, passcode 42647539) to manifest/trunk. Summon effect in `activated_effects/ryu_kishin_clown.c`: on face-up Normal/Special Summon (placement hook) or Flip Summon (`MONSTER_EFFECT_RYU_KISHIN_CLOWN`), target 1 face-up field monster and toggle battle position via `Duel_NotifyMonsterZoneChanged`; player targeting via `DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET`; AI picks highest-ATK opponent attack-position monster. `card_in_hand_1 = RYU_KISHIN_CLOWN`.
+
+**Files:** `tools/card_data_manifest.json`, `include/constants/monster_effects.h`, `include/ryu_kishin_clown.h`, `src_custom/activated_effects/ryu_kishin_clown.c`, `src_custom/monster_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/duel_helpers.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = RYU_KISHIN_CLOWN`.
+
+**Open / next:** In-game: normal/flip/special summon Clown with a face-up monster on field; confirm position toggle and targeting UI.
+
+---
+
 ## 2026-06-19 — World Suppression + AI field spell scoring
 
 **Worked on:** AI terrain field spell — stopped tuning vanilla priority; `AiForceTerrainFieldSpellAction()` in `sub_800EF0C` now hard-picks activate (set Umi on backrow, field not Umi yet) or place (terrain in hand, empty backrow) before normal AI scoring.

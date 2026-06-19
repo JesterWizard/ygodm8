@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 188
+#define NUM_CUSTOM_NAME_SORT_CARDS 189
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -193,6 +193,7 @@ static const u8 sSpiritCallerSortName[] APPEND_RODATA = "Spirit Caller";
 static const u8 sVengefulBogSpiritSortName[] APPEND_RODATA = "Vengeful Bog Spirit";
 static const u8 sWallOfRevealingLightSortName[] APPEND_RODATA = "Wall of Revealing Light";
 static const u8 sWorldSuppressionSortName[] APPEND_RODATA = "World Suppression";
+static const u8 sRyuKishinClownSortName[] APPEND_RODATA = "Ryu-Kishin Clown";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -327,6 +328,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0362, // Robbin' Zombie
   0x0398, // Royal Decree
   0x03CF, // Royal Knight
+  0x03DD, // Ryu-Kishin Clown
   0x0344, // Sage's Stone
   0x0375, // Sasuke Samurai
   0x03BA, // Sasuke Samurai #2
@@ -518,62 +520,63 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   130, // Robbin' Zombie
   131, // Royal Decree
   132, // Royal Knight
-  133, // Sage's Stone
-  134, // Sasuke Samurai
-  135, // Sasuke Samurai #2
-  136, // Sasuke Samurai #3
-  137, // Seal of Orichalcos
-  138, // Secret Barrel
-  139, // Self-Destruct Button
-  140, // Servant of Catabolism
-  141, // Seven Tools of the Bandit
-  142, // Shield And Sword
-  143, // Skill Drain
-  144, // Skull Invitation
-  145, // Solar Flare Dragon
-  146, // Solar Ray
-  147, // Solemn Wishes
-  148, // Sorcerer of Dark Magic
-  149, // Soul Exchange
-  150, // Soul Taker
-  151, // Spear Dragon
-  152, // Spell Canceller
-  153, // Spirit Caller
-  154, // Spirit of the Breeze
-  155, // Spirit of the Pot of Greed
-  156, // Spirit Reaper
-  157, // Spirit Ryu
-  158, // St Joan
-  159, // Stealth Bird
-  160, // Swift Gaia The Fierce Knight
-  161, // Terrorking Salmon
-  162, // The Agent Of Creation - Venus
-  163, // The Dark Door
-  164, // The Flute of Summoning Dragon
-  165, // The Forceful Sentry
-  166, // The Thing in the Crater
-  167, // Thousand Energy
-  168, // Thousand Knives
-  169, // Thunder Crash
-  170, // Time Seal
-  171, // Toll
-  172, // Torpedo Fish
-  173, // Triangle Power
-  174, // Twin Swords of Flashing Light - Tryce
-  175, // Tyrant Dragon
-  176, // Ultimate Offering
-  177, // United We Stand
-  178, // Upstart Goblin
-  179, // Vampire Baby
-  180, // Vengeful Bog Spirit
-  181, // Wall of Revealing Light
-  182, // Warrior of Zera
-  183, // Wave Motion Cannon
-  184, // Weather Report
-  185, // White Magician Pikeru
-  186, // World Suppression
-  187, // Yata-Garasu
-  188, // Zaborg the Thunder Monarch
+  133, // Ryu-Kishin Clown
+  134, // Sage's Stone
+  135, // Sasuke Samurai
+  136, // Sasuke Samurai #2
+  137, // Sasuke Samurai #3
+  138, // Seal of Orichalcos
+  139, // Secret Barrel
+  140, // Self-Destruct Button
+  141, // Servant of Catabolism
+  142, // Seven Tools of the Bandit
+  143, // Shield And Sword
+  144, // Skill Drain
+  145, // Skull Invitation
+  146, // Solar Flare Dragon
+  147, // Solar Ray
+  148, // Solemn Wishes
+  149, // Sorcerer of Dark Magic
+  150, // Soul Exchange
+  151, // Soul Taker
+  152, // Spear Dragon
+  153, // Spell Canceller
+  154, // Spirit Caller
+  155, // Spirit of the Breeze
+  156, // Spirit of the Pot of Greed
+  157, // Spirit Reaper
+  158, // Spirit Ryu
+  159, // St Joan
+  160, // Stealth Bird
+  161, // Swift Gaia The Fierce Knight
+  162, // Terrorking Salmon
+  163, // The Agent Of Creation - Venus
+  164, // The Dark Door
+  165, // The Flute of Summoning Dragon
+  166, // The Forceful Sentry
+  167, // The Thing in the Crater
+  168, // Thousand Energy
+  169, // Thousand Knives
+  170, // Thunder Crash
+  171, // Time Seal
+  172, // Toll
+  173, // Torpedo Fish
+  174, // Triangle Power
+  175, // Twin Swords of Flashing Light - Tryce
+  176, // Tyrant Dragon
+  177, // Ultimate Offering
+  178, // United We Stand
+  179, // Upstart Goblin
+  180, // Vampire Baby
+  181, // Vengeful Bog Spirit
+  182, // Wall of Revealing Light
+  183, // Warrior of Zera
+  184, // Wave Motion Cannon
+  185, // Weather Report
+  186, // White Magician Pikeru
+  187, // World Suppression
+  188, // Yata-Garasu
+  189, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -959,6 +962,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sWallOfRevealingLightSortName;
   if (cardId == 0x03DC)
     return (u8 *)sWorldSuppressionSortName;
+  if (cardId == 0x03DD)
+    return (u8 *)sRyuKishinClownSortName;
 
   return gCardNames[cardId];
 }

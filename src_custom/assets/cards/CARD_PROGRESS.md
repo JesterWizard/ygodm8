@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 188 |
-| Art ready, needs manifest | 129 |
+| In game (manifest + art) | 189 |
+| Art ready, needs manifest | 128 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -210,6 +210,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `VENGEFUL_BOG_SPIRIT` | Vengeful Bog Spirit | `vengeful_bog_spirit.png` |
 | `WALL_OF_REVEALING_LIGHT` | Wall of Revealing Light | `wall_of_revealing_light.png` |
 | `WORLD_SUPPRESSION` | World Suppression | `world_suppression.png` |
+| `RYU_KISHIN_CLOWN` | Ryu-Kishin Clown | `ryu_kishin_clown.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -310,7 +311,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
-- [ ] `RYU_KISHIN_CLOWN` — `ryu_kishin_clown.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`

@@ -17975,6 +17975,34 @@
           "Negate Field Spell Cards until the end of this turn."
         ]
       }
+    },
+    {
+      "card_const": "RYU_KISHIN_CLOWN",
+      "card_name": "Ryu-Kishin Clown",
+      "atk": 800,
+      "def": 500,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_RYU_KISHIN_CLOWN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 53,
+      "password": [4, 2, 6, 4, 7, 5, 3, 9],
+      "description": {
+        "symbol": "gDescription_RyuKishinClown",
+        "pages": [
+          "When this card is Summoned select one face-up",
+          "monster on the field and change its battle position."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_RyuKishinClown",
+        "pages": [
+          "When Summoned, select one face-up monster on the field and change its battle position."
+        ]
+      }
     }
   ]
 }

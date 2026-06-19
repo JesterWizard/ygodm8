@@ -47,6 +47,7 @@
 #include "debug_ruleset.h"
 #include "dark_magician_knight.h"
 #include "zaborg_the_thunder_monarch.h"
+#include "ryu_kishin_clown.h"
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
 #include "precious_cards_from_beyond.h"
@@ -122,6 +123,7 @@ void ClearZone(struct DuelCard *zone);
 void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
 void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
+void TryActivateRyuKishinClownOnMonsterPlacement(struct DuelCard *zone);
 void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
 signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
@@ -709,9 +711,13 @@ void sub_80449D8__Replacement(void)
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
   MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
-  gDuelCursor.state = 0;
-  ResetCursorDestToCurrentPos();
   UpdateDuelGfxExceptField();
+  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+    TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+  if (gDuelCursor.state != DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET) {
+    gDuelCursor.state = 0;
+    ResetCursorDestToCurrentPos();
+  }
 }
 
 LYN_REPLACE_CHECK(sub_8044570);
@@ -984,6 +990,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET:
       TrySelectZaborgTheThunderMonarchTarget();
       break;
+    case DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET:
+      TrySelectRyuKishinClownTarget();
+      break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       TrySelectBlockAttackTarget();
       break;
@@ -1047,6 +1056,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET:
       CancelZaborgTheThunderMonarchTargeting();
+      break;
+    case DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET:
+      CancelRyuKishinClownTargeting();
       break;
     case DUEL_CURSOR_BLOCK_ATTACK_TARGET:
       CancelBlockAttackTargeting();

@@ -17,6 +17,7 @@
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
 #include "possessed_dark_soul.h"
+#include "ryu_kishin_clown.h"
 #include "spirit_caller.h"
 
 extern void (*const gMonEffects[])(void);
@@ -90,6 +91,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateInvaderOfTheThrone();
     case MONSTER_EFFECT_SPIRIT_CALLER:
       return CanActivateSpiritCaller();
+    case MONSTER_EFFECT_RYU_KISHIN_CLOWN:
+      return CanActivateRyuKishinClown();
     default:
       return TRUE;
   }
@@ -254,6 +257,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_RYU_KISHIN_CLOWN) {
+    ActivateRyuKishinClownEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -351,15 +359,19 @@ FAILED:
             zone->isFaceUp = 1;
             TryVengefulBogSpiritOnFlipSummon(zone);
           }
-          ActivateMonsterEffect();
+          if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN)
+            ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);
           UpdateDuelGfxExceptField();
+          if (gCardInfo.monsterEffect == MONSTER_EFFECT_RYU_KISHIN_CLOWN)
+            TryActivateRyuKishinClownOnMonsterPlacement(zone);
           if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET
               || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET
               || gDuelCursor.state == DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET
-              || gDuelCursor.state == DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET)
+              || gDuelCursor.state == DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET)
             break;
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)

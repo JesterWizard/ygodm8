@@ -20,6 +20,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "kishido_spirit.h"
+#include "ryu_kishin_clown.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -221,6 +222,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryBlastHeldByATributeOnMonsterPlacement(summonZone);
   TryVengefulBogSpiritOnMonsterPlacement(summonZone);
   MaybeUpdateGfx(opts.updateGfx);
+  TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }
