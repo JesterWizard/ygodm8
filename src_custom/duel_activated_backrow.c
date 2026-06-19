@@ -13,6 +13,7 @@
 #include "rivalry_of_warlords.h"
 #include "gravity_bind.h"
 #include "fairy_box.h"
+#include "mirror_wall.h"
 #include "skull_invitation.h"
 #include "self_destruct_button.h"
 #include "curse_of_darkness.h"
@@ -56,6 +57,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
   if (IsActivatedGravityBindZone(zone))
     return TRUE;
   if (IsActivatedFairyBoxZone(zone))
+    return TRUE;
+  if (IsActivatedMirrorWallZone(zone))
     return TRUE;
   if (IsActivatedSkullInvitationZone(zone))
     return TRUE;

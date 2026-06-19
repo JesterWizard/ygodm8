@@ -13,6 +13,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "fairy_box.h"
+#include "mirror_wall.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
@@ -105,6 +106,7 @@ void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 void MarkFairyBoxJustSet(struct DuelCard *zone);
+void MarkMirrorWallJustSet(struct DuelCard *zone);
 void MarkBottomlessShiftingSandJustSet(struct DuelCard *zone);
 unsigned IsTrapTriggered(void);
 void ActivateTrapEffect(u16 lp);
@@ -737,6 +739,7 @@ void sub_80449D8__Replacement(void)
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
+  MarkMirrorWallJustSet(gFixedZones[placedRow][placedCol]);
   MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   UpdateDuelGfxExceptField();
@@ -815,6 +818,7 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
+      TryApplyMirrorWallToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
       TryApplySpiritRyuToPendingAction();
       HandleAtkAndLifePointsAction();
@@ -917,6 +921,7 @@ void TryAttackWithMonster__Replacement(void)
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
+      TryApplyMirrorWallToPendingAction();
       TryApplyCatsEarTribeToPendingAction();
       TryApplySpiritRyuToPendingAction();
       RunMonsterBattleAction();

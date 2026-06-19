@@ -184,6 +184,9 @@ _kernel_malloc_ewram gCreatureSwapOppCol, 1
 @ Riryoku ATK deltas keyed by gDuel.board cell index (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
 
+@ Mirror Wall permanent ATK-halve flags keyed by gDuel.board cell index (20 cells x 1 byte).
+_kernel_malloc_ewram_array gMirrorWallHalvedMask, 0x14
+
 @ Zone used by the most recent GetFinalStage call before SetFinalStat.
 _kernel_malloc_ewram gSetFinalStatZone, 4
 

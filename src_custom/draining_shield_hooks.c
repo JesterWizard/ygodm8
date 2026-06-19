@@ -5,6 +5,7 @@
 #include "draining_shield.h"
 #include "embodiment_of_apophis.h"
 #include "fairy_box.h"
+#include "mirror_wall.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -161,6 +162,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   }
 
   TryApplyFairyBoxToPendingAction();
+  TryApplyMirrorWallToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
   TryApplySpiritRyuToPendingAction();
   HandleAtkAndLifePointsAction();

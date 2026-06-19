@@ -15,6 +15,7 @@
 #include "bottomless_shifting_sand.h"
 #include "dark_dust_spirit.h"
 #include "nightmare_wheel.h"
+#include "mirror_wall.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -37,6 +38,9 @@ void ActivateUltimateOfferingTurnEffect(void);
 void AgeFairyBoxSetFlags(void);
 unsigned char ShouldActivateFairyBoxUpkeep(void);
 void ActivateFairyBoxUpkeep(void);
+void AgeMirrorWallSetFlags(void);
+unsigned char ShouldActivateMirrorWallUpkeep(void);
+void ActivateMirrorWallUpkeep(void);
 void AgeWaveMotionCannonTurns(void);
 void AgeFinalCountdownTurns(void);
 unsigned char ShouldActivateBowganianTurnEffect(void);
@@ -116,6 +120,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { DECK_DESTRUCTION_VIRUS, MatchDeckDestructionVirusRow, NULL, ActivateDeckDestructionVirusEffect },
   { ULTIMATE_OFFERING, MatchActiveDuelistBackrow, ShouldActivateUltimateOfferingTurnEffect, ActivateUltimateOfferingTurnEffect },
   { FAIRY_BOX, MatchActiveDuelistBackrow, ShouldActivateFairyBoxUpkeep, ActivateFairyBoxUpkeep },
+  { MIRROR_WALL, MatchActiveDuelistBackrow, ShouldActivateMirrorWallUpkeep, ActivateMirrorWallUpkeep },
   { IMPERIAL_ORDER, MatchActiveDuelistBackrow, ShouldActivateImperialOrderUpkeep, ActivateImperialOrderUpkeep },
   { BOWGANIAN, MatchActiveDuelistMonsterRow, ShouldActivateBowganianTurnEffect, ActivateBowganianTurnEffect },
   { CURE_MERMAID, MatchActiveDuelistMonsterRow, ShouldActivateCureMermaidTurnEffect, ActivateCureMermaidTurnEffect },
@@ -269,6 +274,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();
+  AgeMirrorWallSetFlags();
   AgeBottomlessShiftingSandSetFlags();
   AgeWaveMotionCannonTurns();
   AgeFinalCountdownTurns();

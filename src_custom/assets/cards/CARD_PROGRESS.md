@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 193 |
-| Art ready, needs manifest | 123 |
+| In game (manifest + art) | 194 |
+| Art ready, needs manifest | 122 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -215,6 +215,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GHOST_KNIGHT_OF_JACKAL` | Ghost Knight of Jackal | `ghost_knight_of_jackal.png` |
 | `KAISER_COLOSSEUM` | Kaiser Colosseum | `kaiser_colosseum.png` |
 | `NIGHTMARE_WHEEL` | Nightmare Wheel | `nightmare_wheel.png` |
+| `MIRROR_WALL` | Mirror Wall | `mirror_wall.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -289,7 +290,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
-- [ ] `MIRROR_WALL` — `mirror_wall.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`

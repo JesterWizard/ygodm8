@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Mirror Wall custom card
+
+**Worked on:** Added Mirror Wall (Continuous Trap, passcode 22359980) to manifest/trunk. Effect in `trap_effects/mirror_wall.c`: flips on opponent attack; permanently halves ATK of attacking opponent monsters while face-up (board-cell mask in EWRAM); Standby Phase 2000 LP upkeep or self-destruct via turn effect. Pattern follows Fairy Box + Imperial Order. `card_in_hand_1 = MIRROR_WALL`.
+
+**Files:** `tools/card_data_manifest.json`, `include/mirror_wall.h`, `src_custom/trap_effects/mirror_wall.c`, `asm/ram_map.s`, `src_custom/card_hooks.c`, `src_custom/turn_effect_hooks.c`, `src_custom/duel_activated_backrow.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = MIRROR_WALL`.
+
+**Open / next:** In-game: set MW, let opponent attack; confirm ATK halved in battle and on card overlay; confirm Standby 2000 LP cost or trap destruction; confirm debuff clears when MW leaves field.
+
+---
+
 ## 2026-06-19 — Nightmare Wheel → Continuous Spell
 
 **Worked on:** Converted Nightmare Wheel from `TYPE_TRAP`/`TRAP_CARD` to `TYPE_SPELL`/`SPELL_CARD`. Moved effect to `spell_effects/nightmare_wheel.c`; added `GetSpellType` entry; negation via Imperial Order instead of Royal Decree; spell text type (1) for activation.

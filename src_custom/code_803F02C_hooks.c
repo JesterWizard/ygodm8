@@ -46,6 +46,7 @@
 #include "airknight_parshath.h"
 #include "sasuke_samurai_3.h"
 #include "riryoku.h"
+#include "mirror_wall.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
@@ -451,6 +452,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);
   ClearRiryokuAtkDeltaForZone(zone);
+  MirrorWall_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);

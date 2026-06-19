@@ -9,6 +9,7 @@
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "riryoku.h"
+#include "mirror_wall.h"
 #include "duel.h"
 #include "duel_helpers.h"
 #include "constants/card_ids.h"
@@ -518,6 +519,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  ApplyMirrorWallAtkHalving(zone);
   gSetFinalStatZone = NULL;
 }
 
@@ -603,6 +605,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && gSetFinalStatZone->id == ptr->card
       && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+    ApplyMirrorWallAtkHalving(gSetFinalStatZone);
   }
 
   gSetFinalStatZone = NULL;

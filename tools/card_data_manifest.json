@@ -18117,6 +18117,35 @@
           "Target an opponent's monster and deal 500LP of damage at the start of your turn."
         ]
       }
+    },
+    {
+      "card_const": "MIRROR_WALL",
+      "card_name": "Mirror Wall",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 2, 3, 5, 9, 9, 8, 0],
+      "description": {
+        "symbol": "gDescription_MirrorWall",
+        "pages": [
+          "Halves opponent monster ATK when they attack.",
+          "Halving lasts while this card stays face-up.",
+          "Pay 2000 LP each Standby Phase or destroy."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MirrorWall",
+        "pages": [
+          "Halve the ATK of the opponent's attacking monster."
+        ]
+      }
     }
   ]
 }

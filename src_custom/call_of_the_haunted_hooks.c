@@ -6,6 +6,7 @@
 #include "configs/runtime.h"
 #include "debug_ruleset.h"
 #include "fairy_box.h"
+#include "mirror_wall.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -367,6 +368,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   sRevivedMonsterTurnCol = 0xFF;
 
   TryApplyFairyBoxToPendingAction();
+  TryApplyMirrorWallToPendingAction();
   TryApplyCatsEarTribeToPendingAction();
   TryApplySpiritRyuToPendingAction();
   if (useMonsterBattle) {
