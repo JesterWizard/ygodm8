@@ -5,6 +5,7 @@
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "the_dark_door.h"
+#include "vengeful_bog_spirit.h"
 
 struct AiDuelSimulationState {
   struct Duel duel;
@@ -19,6 +20,8 @@ extern u8 gTheDarkDoorTurnAttackUsed;
 extern u8 gAiSimSavedDebugRulesetTurnAttackUsed;
 extern u8 gAiSimSavedTheDarkDoorTurnAttackUsed;
 extern u8 gAiSimSavedResimulateAfterCallOfTheHaunted;
+extern u8 gAiSimSavedVengefulBogSpiritMaskOpponentRow;
+extern u8 gAiSimSavedVengefulBogSpiritMaskPlayerRow;
 
 void sub_800EE24(void);
 void sub_800EE94(void);
@@ -31,6 +34,8 @@ void sub_800EE24__Replacement(void)
   gAiSimSavedDebugRulesetTurnAttackUsed = gDebugRulesetTurnAttackUsed;
   gAiSimSavedTheDarkDoorTurnAttackUsed = gTheDarkDoorTurnAttackUsed;
   gAiSimSavedResimulateAfterCallOfTheHaunted = gAiResimulateAfterCallOfTheHaunted;
+  gAiSimSavedVengefulBogSpiritMaskOpponentRow = gVengefulBogSpiritSummonedMaskOpponentRow;
+  gAiSimSavedVengefulBogSpiritMaskPlayerRow = gVengefulBogSpiritSummonedMaskPlayerRow;
 
   gUnk_8DFF6A4->duel = gDuel;
   for (i = 0; i < 2; i++) {
@@ -55,5 +60,7 @@ void sub_800EE94__Replacement(void)
   gDebugRulesetTurnAttackUsed = gAiSimSavedDebugRulesetTurnAttackUsed;
   gTheDarkDoorTurnAttackUsed = gAiSimSavedTheDarkDoorTurnAttackUsed;
   gAiResimulateAfterCallOfTheHaunted = gAiSimSavedResimulateAfterCallOfTheHaunted;
+  gVengefulBogSpiritSummonedMaskOpponentRow = gAiSimSavedVengefulBogSpiritMaskOpponentRow;
+  gVengefulBogSpiritSummonedMaskPlayerRow = gAiSimSavedVengefulBogSpiritMaskPlayerRow;
   ClearCoffinSellerPending();
 }

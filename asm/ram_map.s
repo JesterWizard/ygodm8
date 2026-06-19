@@ -100,6 +100,10 @@ _kernel_malloc gSasukeSamurai2InactiveBackrowTrapBlock, 1
 _kernel_malloc gTributeSummonedMonsterMaskOpponentRow, 1
 _kernel_malloc gTributeSummonedMonsterMaskPlayerRow, 1
 
+@ Vengeful Bog Spirit: same-turn summon marks per fixed monster row (5 cols each).
+_kernel_malloc gVengefulBogSpiritSummonedMaskOpponentRow, 1
+_kernel_malloc gVengefulBogSpiritSummonedMaskPlayerRow, 1
+
 @ Extra tribute credit from Double Coston's dark-only bonus (not generic).
 _kernel_malloc gDoubleCostonDarkBonusPaid, 1
 
@@ -246,6 +250,8 @@ _kernel_malloc_ewram gTheDarkDoorTurnAttackUsed, 1
 @ AI simulation: saved per-turn attack flags while vanilla AI save/restore runs.
 _kernel_malloc_ewram gAiSimSavedDebugRulesetTurnAttackUsed, 1
 _kernel_malloc_ewram gAiSimSavedTheDarkDoorTurnAttackUsed, 1
+_kernel_malloc_ewram gAiSimSavedVengefulBogSpiritMaskOpponentRow, 1
+_kernel_malloc_ewram gAiSimSavedVengefulBogSpiritMaskPlayerRow, 1
 
 @ Smarter AI duel-local memory (last action, board knowledge, attack order).
 _kernel_malloc gAiDuelMemory, 40

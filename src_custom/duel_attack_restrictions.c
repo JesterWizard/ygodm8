@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "gravity_bind.h"
 #include "level_limit_area_b.h"
+#include "vengeful_bog_spirit.h"
 
 void Duel_ResetAttackRestrictions(void)
 {
@@ -23,6 +24,9 @@ void Duel_RefreshAttackRestrictions(void)
 
   if (IsLevelLimitAreaBActiveOnField())
     flags |= DUEL_ATTACK_RESTRICT_LEVEL_LIMIT_AREA_B;
+
+  if (IsVengefulBogSpiritActiveOnField())
+    flags |= DUEL_ATTACK_RESTRICT_VENGEFUL_BOG_SPIRIT;
 
   gDuelAttackRestrictionsActive = flags;
 }
@@ -46,6 +50,10 @@ u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
 
   if ((gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_LEVEL_LIMIT_AREA_B)
       && !LevelLimitAreaB_CanMonsterAttack(zone))
+    return FALSE;
+
+  if ((gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_VENGEFUL_BOG_SPIRIT)
+      && !VengefulBogSpirit_CanMonsterAttack(zone))
     return FALSE;
 
   return TRUE;

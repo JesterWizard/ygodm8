@@ -425,6 +425,7 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == SWORDS_OF_REVEALING_LIGHT || cardId == GUARDIAN_TREASURE
       || cardId == PRECIOUS_CARDS_FROM_BEYOND || cardId == FINAL_COUNTDOWN
       || cardId == BURNING_LAND || cardId == LEVEL_LIMIT_AREA_B
+      || cardId == VENGEFUL_BOG_SPIRIT
       || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT)
     return SPELL_TYPE_NORMAL;
 

@@ -15,6 +15,26 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Vengeful Bog Spirit: LockCard attack block
+
+**Worked on:** Fixed AI never attacking under VBS: `CopyCard` was re-marking every monster copy as "summoned this turn" (now only hand→empty monster zone); AI sim save/restore now includes VBS masks; marks also clear at end of turn.
+
+**Outcome:** `make test-cards-build` passes.
+
+---
+
+## 2026-06-19 — Vengeful Bog Spirit custom card
+
+**Worked on:** Added Vengeful Bog Spirit (Continuous Spell, passcode 95220856) to manifest/trunk. Effect in `spell_effects/vengeful_bog_spirit.c`: while active, monsters summoned or flip-summoned this turn cannot attack (`Duel_CanMonsterDeclareAttack` via per-row IWRAM bit masks; marks clear each turn start). Imperial Order respected; re-activation blocked. `card_in_hand_1 = VENGEFUL_BOG_SPIRIT`.
+
+**Files:** `tools/card_data_manifest.json`, `include/vengeful_bog_spirit.h`, `src_custom/spell_effects/vengeful_bog_spirit.c`, `asm/ram_map.s`, `include/duel_attack_restrictions.h`, `src_custom/duel_attack_restrictions.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/duel_helpers.c`, `src_custom/monster_effect_hooks.c`, `src_custom/card_hooks.c`, `src_custom/duel_activated_backrow.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = VENGEFUL_BOG_SPIRIT`.
+
+**Open / next:** In-game: activate VBS, normal/special summon or flip-summon a monster, confirm attack blocked; next turn confirm attack allowed. Control-change should preserve same-turn mark.
+
+---
+
 ## 2026-06-19 — Spirit Caller custom card
 
 **Worked on:** Added Spirit Caller (LIGHT Spellcaster L3 1000/1000 FLIP, passcode 48659020) to manifest/trunk. FLIP effect in `activated_effects/spirit_caller.c`: if controller's graveyard holds a Level 3 or lower Normal Monster and an empty monster zone exists, Special Summon it via `Duel_SpecialSummonFromGrave` (ponytail: single-card graveyard model). `card_in_hand_1 = SPIRIT_CALLER`.

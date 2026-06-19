@@ -200,6 +200,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { INVADER_OF_THE_THRONE, gActivationDescription_InvaderOfTheThrone },
   { THE_FLUTE_OF_SUMMONING_DRAGON, gActivationDescription_TheFluteOfSummoningDragon },
   { SPIRIT_CALLER, gActivationDescription_SpiritCaller },
+  { VENGEFUL_BOG_SPIRIT, gActivationDescription_VengefulBogSpirit },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

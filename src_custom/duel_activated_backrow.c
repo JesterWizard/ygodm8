@@ -21,6 +21,7 @@
 #include "precious_cards_from_beyond.h"
 #include "dynamic_equip.h"
 #include "level_limit_area_b.h"
+#include "vengeful_bog_spirit.h"
 
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -70,6 +71,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
   if (IsActivatedDarkSnakeSyndromeZone(zone))
     return TRUE;
   if (IsActivatedGravekeepersServantZone(zone))
+    return TRUE;
+  if (IsActivatedVengefulBogSpiritZone(zone))
     return TRUE;
   if (IsActivatedKishidoSpiritZone(zone))
     return TRUE;

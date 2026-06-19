@@ -65,6 +65,7 @@ extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
 extern void EffectDarkSnakeSyndrome(void);
 extern void EffectGravekeepersServant(void);
+extern void EffectVengefulBogSpirit(void);
 extern void EffectRaregoldArmor(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
@@ -368,6 +369,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case GRAVEKEEPERS_SERVANT:
       EffectGravekeepersServant();
+      return;
+    case VENGEFUL_BOG_SPIRIT:
+      EffectVengefulBogSpirit();
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();

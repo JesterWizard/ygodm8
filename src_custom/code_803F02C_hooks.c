@@ -8,6 +8,7 @@
 #include "level_limit_area_b.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
+#include "vengeful_bog_spirit.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -216,6 +217,7 @@ void InitBoard__Replacement(void) {
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();
   BlastHeldByATribute_ClearAllMarks();
+  VengefulBogSpirit_ClearAllMarks();
   ResetDynamicEquips();
   ResetApophisLinks();
   ClearCostDown();
@@ -408,6 +410,7 @@ void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   gDoubleSummonExtraSummonUsed = FALSE;
   DebugRuleset_ResetTurnAttack();
   TheDarkDoor_ResetTurnAttack();
+  VengefulBogSpirit_ClearAllMarks();
 }
 
 LYN_REPLACE_CHECK(DecrementSorlTurns);
@@ -461,6 +464,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ClearCopycatBoardStatsForZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);
+  VengefulBogSpirit_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();
   if (gUnk2023EA0.unk18 == 0 && !gHideEffectText)
     ResolveCoffinSellerBattleEffect();
@@ -470,6 +474,15 @@ LYN_REPLACE_CHECK(CopyCard);
 void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
 {
   u8 checkSliferSummonPenalty = ShouldApplySliferSummonPenalty(dst, src);
+  u8 markVengefulBogOnHandSummon = FALSE;
+  u8 dstFixedRow;
+  u8 dstFixedCol;
+
+  if (dst->id == CARD_NONE && src->id != CARD_NONE
+      && GetTypeGroup(src->id) == TYPE_GROUP_MONSTER
+      && Duel_ZoneIsHandSlot(src)
+      && Duel_FindFixedMonsterZone(dst, &dstFixedRow, &dstFixedCol))
+    markVengefulBogOnHandSummon = TRUE;
 
   if (ShouldPayChainEnergyForHandToFieldCopy(dst, src)) {
     if (!TryPayChainEnergyCost())
@@ -492,6 +505,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   dst->effectExhausted = src->effectExhausted;
   dst->effectUsedThisTurn = src->effectUsedThisTurn;
   BlastHeldByATribute_TransferZoneMark(dst, src);
+  VengefulBogSpirit_TransferZoneMark(dst, src);
   RecalculateAllDynamicEquips();
 
   if (checkSliferSummonPenalty)
@@ -501,6 +515,8 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     Duel_NotifyMonsterZoneChanged(dst);
     TryEnforceBerserkGorillaOnMonsterPlacement(dst);
     TryLevelLimitAreaBOnMonsterPlacement(dst);
+    if (markVengefulBogOnHandSummon)
+      TryVengefulBogSpiritOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);
     TryAmazonessTigerOnMonsterPlacement(dst);
   }

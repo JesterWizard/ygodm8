@@ -10,6 +10,7 @@
 #include "weather_report.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
+#include "vengeful_bog_spirit.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
 #include "breaker_the_magical_warrior.h"
@@ -348,6 +349,7 @@ FAILED:
           if (!isFaceUp) {
             zone->isDefending = 0;
             zone->isFaceUp = 1;
+            TryVengefulBogSpiritOnFlipSummon(zone);
           }
           ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)

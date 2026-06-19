@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `197` effects
+- `198` effects
 
 ## Tally
 
@@ -224,6 +224,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `The Flute of Summoning Dragon` | `src_custom/spell_effects/the_flute_of_summoning_dragon.c` |
 | `activated_effects` | `Invader of the Throne` | `src_custom/activated_effects/invader_of_the_throne.c` |
 | `activated_effects` | `Spirit Caller` | `src_custom/activated_effects/spirit_caller.c` |
+| `spell_effects` | `Vengeful Bog Spirit` | `src_custom/spell_effects/vengeful_bog_spirit.c` |
 
 ## Notes
 

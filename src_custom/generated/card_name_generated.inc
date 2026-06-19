@@ -186,6 +186,7 @@ static const u8 sFirePrincessName[] __attribute__((section(".append_assets"))) =
 static const u8 sInvaderOfTheThroneName[] __attribute__((section(".append_assets"))) = "Invader of the Throne";
 static const u8 sTheFluteOfSummoningDragonName[] __attribute__((section(".append_assets"))) = "The Flute of Summoning Dragon";
 static const u8 sSpiritCallerName[] __attribute__((section(".append_assets"))) = "Spirit Caller";
+static const u8 sVengefulBogSpiritName[] __attribute__((section(".append_assets"))) = "Vengeful Bog Spirit";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -564,6 +565,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheFluteOfSummoningDragonName;
   if (cardId == 0x03D9)
     return (u8 *)sSpiritCallerName;
+  if (cardId == 0x03DA)
+    return (u8 *)sVengefulBogSpiritName;
 
   return gCardNames[cardId];
 }

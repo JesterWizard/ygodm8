@@ -31,6 +31,7 @@
 #include "text.h"
 #include "summon_tribute.h"
 #include "duel_attack_restrictions.h"
+#include "vengeful_bog_spirit.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -350,6 +351,7 @@ static bool8 RunDuelTurnLoop(void) {
       DecrementSorlTurns(ACTIVE_DUELIST);
     UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
     UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+    VengefulBogSpirit_ClearAllMarks();
   }
 }
 

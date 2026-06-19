@@ -24,6 +24,7 @@
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
+#include "vengeful_bog_spirit.h"
 #include "breaker_the_magical_warrior.h"
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
@@ -696,6 +697,7 @@ void sub_80449D8__Replacement(void)
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
@@ -721,9 +723,16 @@ void sub_8044570__Replacement(void)
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
-  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()
-      || !Duel_CanMonsterDeclareAttack(
-          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
+  } else if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+    UpdateDuelGfxExceptField();
+  } else if (!VengefulBogSpirit_CanMonsterAttack(
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
+    PlayMusic(SFX_FORBIDDEN);
+    UpdateDuelGfxExceptField();
+  } else if (!Duel_CanMonsterDeclareAttack(
+      gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     PlayMusic(SFX_FORBIDDEN);
     gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
     UpdateDuelGfxExceptField();
