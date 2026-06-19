@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 179 |
-| Art ready, needs manifest | 140 |
+| Art ready, needs manifest | 139 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **319** |
+| **Total PNGs in `80x80/`** | **318** |
 
 ## In game
 
@@ -274,7 +274,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
 - [ ] `MAJU_GARZETT` — `maju_garzett.png`
-- [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
