@@ -618,9 +618,23 @@ u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base)
   return Duel_ClampStat(base + count * perUnit);
 }
 
+u8 Duel_CardIsMonster(u16 cardId)
+{
+  if (cardId == CARD_NONE || cardId >= NUM_TOTAL_CARDS)
+    return FALSE;
+
+  if (gRuntimeConfig.enable_custom_cards_past_800 == FALSE && cardId >= CUSTOM_CARD_START)
+    return FALSE;
+
+  return gCardData_NEW[cardId].type < TYPE_SPELL;
+}
+
 u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType)
 {
   if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (!Duel_CardIsMonster(cardId))
     return FALSE;
 
   SetCardInfo(cardId);
@@ -1908,6 +1922,22 @@ void DuelHelpers_SelfCheck(void)
       while (1)
         ;
   }
+
+  if (Duel_CardIsMonster(THE_THING_IN_THE_CRATER) != TRUE)
+    while (1)
+      ;
+
+  if (Duel_CardHasMonsterType(THE_THING_IN_THE_CRATER, TYPE_PYRO) != TRUE)
+    while (1)
+      ;
+
+  if (Duel_CardHasMonsterType(METEOR_B_DRAGON, TYPE_PYRO) != FALSE)
+    while (1)
+      ;
+
+  if (Duel_CardHasMonsterType(FLAME_MANIPULATOR, TYPE_PYRO) != TRUE)
+    while (1)
+      ;
 
   if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();

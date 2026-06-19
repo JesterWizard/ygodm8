@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `187` effects
+- `188` effects
 
 ## Tally
 
@@ -171,6 +171,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Gren Maju Da Eiza` | `src_custom/permanent_effects/gren_maju_da_eiza.c` |
 | `permanent_effects` | `Peten The Dark Clown` | `src_custom/permanent_effects/peten_the_dark_clown.c` |
 | `permanent_effects` | `Giant Rat` | `src_custom/permanent_effects/giant_rat.c` |
+| `permanent_effects` | `The Thing in the Crater` | `src_custom/permanent_effects/the_thing_in_the_crater.c` |
 | `permanent_effects` | `Des Feral Imp` | `src_custom/permanent_effects/des_feral_imp.c` |
 | `permanent_effects` | `Arsenal Bug` | `src_custom/permanent_effects/arsenal_bug.c` |
 | `permanent_effects` | `Granadora` | `src_custom/permanent_effects/granadora.c` |

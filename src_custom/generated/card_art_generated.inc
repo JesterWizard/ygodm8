@@ -708,6 +708,10 @@ static const unsigned char sRoyalKnightBigArt[] __attribute__((section(".append_
 static const unsigned short sRoyalKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/royal_knight.gbapal");
 static const unsigned char sRoyalKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/royal_knight.lz");
 
+static const unsigned char sTheThingInTheCraterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_thing_in_the_crater.huff");
+static const unsigned short sTheThingInTheCraterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_thing_in_the_crater.gbapal");
+static const unsigned char sTheThingInTheCraterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_thing_in_the_crater.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -886,6 +890,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03CD] = sKishidoSpiritBigArt,
   [0x03CE] = sPossessedDarkSoulBigArt,
   [0x03CF] = sRoyalKnightBigArt,
+  [0x03D0] = sTheThingInTheCraterBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1066,6 +1071,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03CD] = sKishidoSpiritBigPalette,
   [0x03CE] = sPossessedDarkSoulBigPalette,
   [0x03CF] = sRoyalKnightBigPalette,
+  [0x03D0] = sTheThingInTheCraterBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1246,6 +1252,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03CD] = 0,
   [0x03CE] = 0,
   [0x03CF] = 0,
+  [0x03D0] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1426,4 +1433,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03CD] = sKishidoSpiritMiniArt,
   [0x03CE] = sPossessedDarkSoulMiniArt,
   [0x03CF] = sRoyalKnightMiniArt,
+  [0x03D0] = sTheThingInTheCraterMiniArt,
 };

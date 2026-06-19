@@ -17603,6 +17603,35 @@
           "Increase your Life Points by the original DEF of the destroyed monster."
         ]
       }
+    },
+    {
+      "card_const": "THE_THING_IN_THE_CRATER",
+      "card_name": "The Thing in the Crater",
+      "atk": 1000,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [7, 8, 2, 4, 3, 4, 0, 9],
+      "description": {
+        "symbol": "gDescription_TheThingInTheCrater",
+        "pages": [
+          "When this card is destroyed and sent from the field to",
+          "the Graveyard, you can Special Summon 1 Pyro-Type",
+          "Monster from your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheThingInTheCrater",
+        "pages": [
+          "Special Summon 1 Pyro-Type Monster from your hand."
+        ]
+      }
     }
   ]
 }

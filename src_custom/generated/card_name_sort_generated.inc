@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 175
+#define NUM_CUSTOM_NAME_SORT_CARDS 176
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -180,6 +180,7 @@ static const u8 sJowlsOfDarkDemiseSortName[] APPEND_RODATA = "Jowls of Dark Demi
 static const u8 sKishidoSpiritSortName[] APPEND_RODATA = "Kishido Spirit";
 static const u8 sPossessedDarkSoulSortName[] APPEND_RODATA = "Possessed Dark Soul";
 static const u8 sRoyalKnightSortName[] APPEND_RODATA = "Royal Knight";
+static const u8 sTheThingInTheCraterSortName[] APPEND_RODATA = "The Thing in the Crater";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -339,6 +340,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0384, // The Agent Of Creation - Venus
   0x036D, // The Dark Door
   0x0373, // The Forceful Sentry
+  0x03D0, // The Thing in the Crater
   0x036C, // Thousand Energy
   0x038F, // Thousand Knives
   0x03B5, // Thunder Crash
@@ -517,24 +519,25 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   155, // The Agent Of Creation - Venus
   156, // The Dark Door
   157, // The Forceful Sentry
-  158, // Thousand Energy
-  159, // Thousand Knives
-  160, // Thunder Crash
-  161, // Time Seal
-  162, // Toll
-  163, // Torpedo Fish
-  164, // Triangle Power
-  165, // Twin Swords of Flashing Light - Tryce
-  166, // Tyrant Dragon
-  167, // Ultimate Offering
-  168, // United We Stand
-  169, // Upstart Goblin
-  170, // Vampire Baby
-  171, // Warrior of Zera
-  172, // Wave Motion Cannon
-  173, // Weather Report
-  174, // White Magician Pikeru
-  175, // Yata-Garasu
+  158, // The Thing in the Crater
+  159, // Thousand Energy
+  160, // Thousand Knives
+  161, // Thunder Crash
+  162, // Time Seal
+  163, // Toll
+  164, // Torpedo Fish
+  165, // Triangle Power
+  166, // Twin Swords of Flashing Light - Tryce
+  167, // Tyrant Dragon
+  168, // Ultimate Offering
+  169, // United We Stand
+  170, // Upstart Goblin
+  171, // Vampire Baby
+  172, // Warrior of Zera
+  173, // Wave Motion Cannon
+  174, // Weather Report
+  175, // White Magician Pikeru
+  176, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -894,6 +897,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sPossessedDarkSoulSortName;
   if (cardId == 0x03CF)
     return (u8 *)sRoyalKnightSortName;
+  if (cardId == 0x03D0)
+    return (u8 *)sTheThingInTheCraterSortName;
 
   return gCardNames[cardId];
 }

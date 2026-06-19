@@ -3,6 +3,7 @@
 #include "call_of_the_haunted.h"
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "embodiment_of_apophis.h"
 #include "sasuke_samurai_2.h"
 #include "ojama_trio.h"
@@ -437,7 +438,7 @@ static void SendApophisZoneToGraveyardIfNeeded(struct DuelCard *zone, u8 turn)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
+  if (Duel_CardIsMonster(zone->id) || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
     MarkGraveyardSendFromField();
     gDuel.duelistbattleState[turn].graveyard = zone->id;
   }

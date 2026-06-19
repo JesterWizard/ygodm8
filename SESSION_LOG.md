@@ -15,6 +15,30 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Fix Thing in the Crater graveyard trigger
+
+**Worked on:** Effect never fired when Thing was destroyed. Root causes: (1) custom monsters used `GetTypeGroup` for graveyard registration, which could skip custom card IDs on field→GY sends; (2) test hand had Meteor B. Dragon (Dragon) not a Pyro-Type monster. Added `Duel_CardIsMonster`, wired graveyard send hooks, Sangan-style effect text, Pyro filter via `Duel_CardHasMonsterType`. Runtime hand 2 = Flame Manipulator for testing.
+
+**Files:** `include/duel_helpers.h`, `src_custom/duel_helpers.c`, `src_custom/card_passive_hooks.c`, `src_custom/embodiment_of_apophis_hooks.c`, `src_custom/permanent_effects/the_thing_in_the_crater.c`, `configs/runtime.c`
+
+**Outcome:** `make test-cards-build` passes.
+
+**Open / next:** Destroy Thing with Flame Manipulator still in hand; confirm effect text + Pyro special summon prompt.
+
+---
+
+## 2026-06-19 — The Thing in the Crater custom card
+
+**Worked on:** Added The Thing in the Crater (FIRE Pyro L4 1000/1200, passcode 78243409) to manifest/trunk. Graveyard trigger on field destruction: optional Special Summon of 1 Pyro monster from hand via permanent effect hook (Sangan-style field-send + Ancient Rules-style hand summon). Uses `Duel_CardHasMonsterType`, `Duel_SpecialSummonFromHand`/`FromHandZone`.
+
+**Files:** `tools/card_data_manifest.json`, `include/the_thing_in_the_crater.h`, `src_custom/permanent_effects/the_thing_in_the_crater.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/activated_effects/graveyard_draw_on_destroy.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = THE_THING_IN_THE_CRATER`.
+
+**Open / next:** In-game: destroy Thing in the Crater from field with a Pyro in hand, confirm optional summon prompt and AI picks highest-ATK Pyro.
+
+---
+
 ## 2026-06-19 — Royal Knight custom card
 
 **Worked on:** Added Royal Knight (LIGHT Fairy L3 1300/800, passcode 68280530) to manifest/trunk. Battle trigger: when it destroys a monster by battle, controller gains LP equal to the destroyed monster's original DEF — modeled on Guardian Angel Joan via `Duel_ChangeLp` + deferred resolve. Fixed truncated activation description text.

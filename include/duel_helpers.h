@@ -104,6 +104,7 @@ void Duel_CheckLevelLimitAreaBAfterFieldChange(void);
 void Duel_CheckAmazonessTigerAfterFieldChange(void);
 void Duel_CheckRingOfDestructionAfterFieldChange(void);
 u8 Duel_IsMonsterZoneTarget(u16 cardId);
+u8 Duel_CardIsMonster(u16 cardId);
 struct DuelCard *Duel_FindFixedZoneById(u8 fixedRow, u16 cardId, u8 requireFaceUp);
 struct DuelCard *Duel_FindBackrowCard(u8 fixedDuelist, u16 cardId, u8 requireFaceUp);
 struct DuelCard *Duel_FindBackrowCardOnField(u16 cardId, u8 requireFaceUp);

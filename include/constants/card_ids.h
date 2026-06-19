@@ -977,11 +977,12 @@
 #define KISHIDO_SPIRIT                           0x03CD
 #define POSSESSED_DARK_SOUL                      0x03CE
 #define ROYAL_KNIGHT                             0x03CF
+#define THE_THING_IN_THE_CRATER                  0x03D0
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03D0
-#define NUM_CUSTOM_CARDS                        0x00AF
+#define NUM_TOTAL_CARDS                         0x03D1
+#define NUM_CUSTOM_CARDS                        0x00B0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

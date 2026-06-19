@@ -47,7 +47,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
 
   ApplyOjamaTrioDestructionDamage(zone);
 
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
+  if (Duel_CardIsMonster(zone->id)
       || EmbodimentOfApophisZoneIsMonsterForm(zone)
       || EmbodimentOfApophisZoneOnMonsterRow(zone)
       || OjamaTrioZoneIsMonsterForm(zone)) {

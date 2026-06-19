@@ -190,6 +190,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { KISHIDO_SPIRIT, gActivationDescription_KishidoSpirit },
   { POSSESSED_DARK_SOUL, gActivationDescription_PossessedDarkSoul },
   { ROYAL_KNIGHT, gActivationDescription_RoyalKnight },
+  { THE_THING_IN_THE_CRATER, gActivationDescription_TheThingInTheCrater },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
