@@ -204,6 +204,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { WALL_OF_REVEALING_LIGHT, gActivationDescription_WallOfRevealingLight },
   { WORLD_SUPPRESSION, gActivationDescription_WorldSuppression },
   { RYU_KISHIN_CLOWN, gActivationDescription_RyuKishinClown },
+  { DARK_DUST_SPIRIT, gActivationDescription_DarkDustSpirit },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

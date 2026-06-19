@@ -124,6 +124,7 @@ void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
 void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateRyuKishinClownOnMonsterPlacement(struct DuelCard *zone);
+void TryActivateDarkDustSpiritOnMonsterPlacement(struct DuelCard *zone);
 void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
 signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
@@ -712,8 +713,10 @@ void sub_80449D8__Replacement(void)
   MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   UpdateDuelGfxExceptField();
-  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+  }
   if (gDuelCursor.state != DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET) {
     gDuelCursor.state = 0;
     ResetCursorDestToCurrentPos();

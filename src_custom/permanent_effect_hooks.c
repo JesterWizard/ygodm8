@@ -19,6 +19,7 @@
 #include "duel_helpers.h"
 #include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
+#include "dark_dust_spirit.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -134,6 +135,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ZABORG_THE_THUNDER_MONARCH,
     .shouldActivate = ShouldActivateZaborgTheThunderMonarch,
     .activate = ActivateZaborgTheThunderMonarch,
+  },
+  {
+    .cardId = DARK_DUST_SPIRIT,
+    .shouldActivate = ShouldActivateDarkDustSpiritSummon,
+    .activate = ActivateDarkDustSpiritSummon,
   },
   {
     .cardId = MARAUDING_CAPTAIN,

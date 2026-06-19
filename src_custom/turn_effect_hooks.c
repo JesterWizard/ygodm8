@@ -13,6 +13,7 @@
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
 #include "bottomless_shifting_sand.h"
+#include "dark_dust_spirit.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -121,6 +122,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { EBON_MAGICIAN_CURRAN, MatchActiveDuelistMonsterRow, ShouldActivateEbonMagicianCurranTurnEffect, ActivateEbonMagicianCurranTurnEffect },
   { DANCING_FAIRY, MatchActiveDuelistMonsterRow, ShouldActivateDancingFairyTurnEffect, ActivateDancingFairyTurnEffect },
   { SPIRIT_OF_THE_BREEZE, MatchActiveDuelistMonsterRow, ShouldActivateSpiritOfTheBreezeTurnEffect, ActivateSpiritOfTheBreezeTurnEffect },
+  { DARK_DUST_SPIRIT, MatchActiveDuelistMonsterRow, ShouldActivateDarkDustSpiritTurnEffect, ActivateDarkDustSpiritTurnEffect },
   { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
 };
 

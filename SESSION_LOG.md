@@ -15,6 +15,20 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Dark Dust Spirit custom card
+
+**Worked on:** Added Dark Dust Spirit (EARTH Zombie L6 2200/1800, passcode 89111398) to manifest/trunk. Effect in `activated_effects/dark_dust_spirit.c`: cannot Special Summon; on Normal Summon/flip destroys other face-up monsters; End Phase return to hand. Fixed summon effect not firing: Breaker-style `isFaceUp || !isDefending` placement check + `FlipCardFaceUp` before resolve; Zaborg-style permanent-effect hook for tribute summons; flip summon routed like Ryu-Kishin Clown (skip `ActivateMonsterEffect`, use placement hook).
+
+**Files:** `include/constants/monster_effects.h`, `include/dark_dust_spirit.h`, `src_custom/activated_effects/dark_dust_spirit.c`, `src_custom/monster_effect_hooks.c`, `src_custom/permanent_effect_hooks.c`, `src_custom/turn_effect_hooks.c`, `src_custom/duel_helpers.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`
+
+**Worked on:** Dark Dust Spirit destroy-on-summon fix: board wipe now runs before effect text (Cyber Jar / Penguin Soldier order); iterates `gTurnZones` with turn-row graveyard duelists; excludes source by zone pointer; calls `NotifyDynamicEquipFieldChanged`; placement hook sets `gActiveEffect` like Granadora.
+
+**Outcome:** Code updated; run `make test-cards-build` locally to verify link.
+
+**Open / next:** In-game: tribute summon with face-up opponent monsters on field; confirm they are destroyed before activation text; End Phase return still works.
+
+---
+
 ## 2026-06-19 — Ryu-Kishin Clown custom card
 
 **Worked on:** Added Ryu-Kishin Clown (DARK Fiend L2 800/500, passcode 42647539) to manifest/trunk. Summon effect in `activated_effects/ryu_kishin_clown.c`: on face-up Normal/Special Summon (placement hook) or Flip Summon (`MONSTER_EFFECT_RYU_KISHIN_CLOWN`), target 1 face-up field monster and toggle battle position via `Duel_NotifyMonsterZoneChanged`; player targeting via `DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET`; AI picks highest-ATK opponent attack-position monster. `card_in_hand_1 = RYU_KISHIN_CLOWN`.

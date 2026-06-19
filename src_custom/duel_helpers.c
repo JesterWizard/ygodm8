@@ -21,6 +21,7 @@
 #include "royal_decree.h"
 #include "kishido_spirit.h"
 #include "ryu_kishin_clown.h"
+#include "dark_dust_spirit.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -203,6 +204,16 @@ static void InitMonsterZone(struct DuelCard *zone, struct DuelSummonOpts opts)
   LevelLimitAreaB_EnforceOnSummon(zone);
 }
 
+static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
+{
+  return mode == DUEL_SUMMON_SPECIAL_FACE_UP_ATK || mode == DUEL_SUMMON_SPECIAL_FACE_UP_DEF;
+}
+
+u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
+{
+  return cardId == DARK_DUST_SPIRIT;
+}
+
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
 {
   u8 monsterRow = MonsterRowForDuelist(turnDuelist);
@@ -211,6 +222,9 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
 
   if (monsterId == CARD_NONE)
     return DUEL_ACTION_INVALID;
+
+  if (SummonModeIsSpecial(opts.mode) && Duel_CardCannotBeSpecialSummoned(monsterId))
+    return DUEL_ACTION_BLOCKED;
 
   monsterZone = FirstEmptyZoneInRow(gTurnZones[monsterRow]);
   if (monsterZone < 0)
@@ -223,6 +237,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryVengefulBogSpiritOnMonsterPlacement(summonZone);
   MaybeUpdateGfx(opts.updateGfx);
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
+  TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }

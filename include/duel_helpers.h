@@ -33,6 +33,7 @@ typedef u8 (*DuelZoneStatApplier)(struct DuelCard *zone);
 
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx);
 struct DuelSummonOpts Duel_DefaultNormalSummonOpts(u8 updateGfx);
+u8 Duel_CardCannotBeSpecialSummoned(u16 cardId);
 
 u8 Duel_CountCardsInHand(struct DuelCard **handRow);
 enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx);

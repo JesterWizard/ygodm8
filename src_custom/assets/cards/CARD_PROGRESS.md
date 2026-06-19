@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 189 |
-| Art ready, needs manifest | 128 |
+| In game (manifest + art) | 190 |
+| Art ready, needs manifest | 127 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -211,6 +211,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `WALL_OF_REVEALING_LIGHT` | Wall of Revealing Light | `wall_of_revealing_light.png` |
 | `WORLD_SUPPRESSION` | World Suppression | `world_suppression.png` |
 | `RYU_KISHIN_CLOWN` | Ryu-Kishin Clown | `ryu_kishin_clown.png` |
+| `DARK_DUST_SPIRIT` | Dark Dust Spirit | `dark_dust_spirit.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -242,7 +243,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`

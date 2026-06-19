@@ -18,6 +18,7 @@
 #include "invader_of_the_throne.h"
 #include "possessed_dark_soul.h"
 #include "ryu_kishin_clown.h"
+#include "dark_dust_spirit.h"
 #include "spirit_caller.h"
 
 extern void (*const gMonEffects[])(void);
@@ -93,6 +94,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateSpiritCaller();
     case MONSTER_EFFECT_RYU_KISHIN_CLOWN:
       return CanActivateRyuKishinClown();
+    case MONSTER_EFFECT_DARK_DUST_SPIRIT:
+      return CanActivateDarkDustSpirit();
     default:
       return TRUE;
   }
@@ -262,6 +265,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_DUST_SPIRIT) {
+    ActivateDarkDustSpiritEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_HOURGLASS_OF_LIFE) {
     ActivateHourglassOfLifeEffect();
     return;
@@ -359,13 +367,16 @@ FAILED:
             zone->isFaceUp = 1;
             TryVengefulBogSpiritOnFlipSummon(zone);
           }
-          if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN)
+          if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN
+              && gCardInfo.monsterEffect != MONSTER_EFFECT_DARK_DUST_SPIRIT)
             ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);
           UpdateDuelGfxExceptField();
           if (gCardInfo.monsterEffect == MONSTER_EFFECT_RYU_KISHIN_CLOWN)
             TryActivateRyuKishinClownOnMonsterPlacement(zone);
+          if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_DUST_SPIRIT)
+            TryActivateDarkDustSpiritOnMonsterPlacement(zone);
           if (gDuelCursor.state == DUEL_CURSOR_CANNON_SOLDIER_TARGET
               || gDuelCursor.state == DUEL_CURSOR_MAN_THRO_TRO_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BREAKER_THE_MAGICAL_WARRIOR_TARGET
