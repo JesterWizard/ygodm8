@@ -14,6 +14,7 @@
 #include "tyrant_dragon.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
+#include "ghost_knight_of_jackal.h"
 #include "toll.h"
 #include "the_dark_door.h"
 
@@ -37,6 +38,7 @@ void SetAttackAction(s32, s32);
 void UpdateAllDuelGfx(void);
 void ResolveTheUnhappyMaidenBattleEffect(void);
 void ResolveVampireBabyBattleEffect(void);
+void ResolveGhostKnightOfJackalBattleEffect(void);
 void ResolveMefistTheInfernalGeneralDiscardBattleEffect(void);
 void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
@@ -173,6 +175,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();
   ResolveVampireBabyBattleEffect();
+  ResolveGhostKnightOfJackalBattleEffect();
   ResolveMefistTheInfernalGeneralDiscardBattleEffect();
   ResolveReaperOnTheNightmareDirectDamageEffect();
   ResolveSpiritReaperDiscardBattleEffect();

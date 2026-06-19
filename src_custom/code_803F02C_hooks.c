@@ -33,6 +33,7 @@
 #include "graveyard_effects.h"
 #include "familiar_knight.h"
 #include "vampire_baby.h"
+#include "ghost_knight_of_jackal.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
@@ -244,6 +245,7 @@ void InitBoard__Replacement(void) {
   gGraveyardSendWasFromField = FALSE;
   ClearFamiliarKnightBattleDestroyPending();
   ClearVampireBabyPending();
+  ClearGhostKnightOfJackalPending();
   ClearMefistDiscardPending();
   ClearReaperDiscardPending();
   ClearSpiritReaperDiscardPending();

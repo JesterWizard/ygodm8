@@ -33,6 +33,7 @@
 #include "graveyard_effects.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
+#include "ghost_knight_of_jackal.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
@@ -807,6 +808,7 @@ void sub_8044570__Replacement(void)
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
+      ResolveGhostKnightOfJackalBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveSpiritReaperDiscardBattleEffect();
@@ -913,6 +915,7 @@ void TryAttackWithMonster__Replacement(void)
       UpdateAllDuelGfx();
       ResolveTheUnhappyMaidenBattleEffect();
       ResolveVampireBabyBattleEffect();
+      ResolveGhostKnightOfJackalBattleEffect();
       ResolveMefistTheInfernalGeneralDiscardBattleEffect();
       ResolveReaperOnTheNightmareDirectDamageEffect();
       ResolveSpiritReaperDiscardBattleEffect();

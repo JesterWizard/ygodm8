@@ -328,6 +328,10 @@ _kernel_malloc_ewram gVampireBabyPendingController, 1
 _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 @ Card ID of the monster Vampire Baby destroyed in battle.
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
+@ DUEL_PLAYER/DUEL_OPPONENT controller for a pending Ghost Knight of Jackal battle summon, else 0xFF.
+_kernel_malloc_ewram gGhostKnightOfJackalPendingController, 1
+@ Fixed duelist whose graveyard holds the monster Jackal destroyed in battle.
+_kernel_malloc_ewram gGhostKnightOfJackalPendingGraveyardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Mefist, else 0xFF.
 _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Reaper on the Nightmare, else 0xFF.

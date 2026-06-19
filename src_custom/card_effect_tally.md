@@ -220,6 +220,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Reaper on the Nightmare` | `src_custom/battle_effects/reaper_on_the_nightmare.c` |
 | `battle_effects` | `D.D. Warrior` | `src_custom/battle_effects/d_d_warrior.c` |
 | `battle_effects` | `Des Kangaroo` | `src_custom/battle_effects/des_kangaroo.c` |
+| `battle_effects` | `Ghost Knight of Jackal` | `src_custom/battle_effects/ghost_knight_of_jackal.c` |
 | `permanent_effects` | `Breaker the Magical Warrior` | `src_custom/permanent_effects/breaker_the_magical_warrior.c` |
 | `activated_effects` | `Breaker the Magical Warrior` | `src_custom/activated_effects/breaker_the_magical_warrior.c` |
 | `activated_effects` | `Dice Jar` | `src_custom/activated_effects/dice_jar.c` |

@@ -17,6 +17,7 @@
 #include "kaiser_glider.h"
 #include "piranha_army.h"
 #include "vampire_baby.h"
+#include "ghost_knight_of_jackal.h"
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
@@ -190,6 +191,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyMefistTheInfernalGeneralDiscardBattleEffect();
   ApplyGuardianAngelJoanBattleEffect();
   ApplyRoyalKnightBattleEffect();
+  ApplyGhostKnightOfJackalBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
   ApplyAbsorbingKidFromTheSkyBattleEffect();

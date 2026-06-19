@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Ghost Knight of Jackal custom card
+
+**Worked on:** Added Ghost Knight of Jackal (EARTH Beast-Warrior L5 1700/1600, passcode 13386503) to manifest/trunk. Battle effect in `battle_effects/ghost_knight_of_jackal.c`: when Jackal destroys an opponent monster by battle (and survives), special summons that monster from opponent GY to controller's field in face-up Defense Position via `GetGraveCardAndClearGrave` + `Duel_SpecialSummonMonsterId`. Pattern follows Royal Knight trigger + Vampire Baby graveyard steal. `card_in_hand_1 = GHOST_KNIGHT_OF_JACKAL`.
+
+**Files:** `tools/card_data_manifest.json`, `include/ghost_knight_of_jackal.h`, `src_custom/battle_effects/ghost_knight_of_jackal.c`, `asm/ram_map.s`, `src_custom/battle_damage_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/code_803F02C_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = GHOST_KNIGHT_OF_JACKAL`.
+
+**Open / next:** In-game: Jackal attacks and destroys opponent monster; confirm effect text, opponent monster revives on your field in Defense Position. Confirm no summon if your monster zones are full.
+
+---
+
 ## 2026-06-19 — Dark Dust Spirit custom card
 
 **Worked on:** Added Dark Dust Spirit (EARTH Zombie L6 2200/1800, passcode 89111398) to manifest/trunk. Effect in `activated_effects/dark_dust_spirit.c`: cannot Special Summon; on Normal Summon/flip destroys other face-up monsters; End Phase return to hand. Fixed summon effect not firing: Breaker-style `isFaceUp || !isDefending` placement check + `FlipCardFaceUp` before resolve; Zaborg-style permanent-effect hook for tribute summons; flip summon routed like Ryu-Kishin Clown (skip `ActivateMonsterEffect`, use placement hook).

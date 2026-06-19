@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 190 |
-| Art ready, needs manifest | 127 |
+| In game (manifest + art) | 191 |
+| Art ready, needs manifest | 126 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -212,6 +212,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `WORLD_SUPPRESSION` | World Suppression | `world_suppression.png` |
 | `RYU_KISHIN_CLOWN` | Ryu-Kishin Clown | `ryu_kishin_clown.png` |
 | `DARK_DUST_SPIRIT` | Dark Dust Spirit | `dark_dust_spirit.png` |
+| `GHOST_KNIGHT_OF_JACKAL` | Ghost Knight of Jackal | `ghost_knight_of_jackal.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -262,7 +263,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [ ] `GHOST_KNIGHT_OF_JACKAL` — `ghost_knight_of_jackal.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`

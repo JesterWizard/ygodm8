@@ -768,6 +768,10 @@ static const unsigned char sDarkDustSpiritBigArt[] __attribute__((section(".appe
 static const unsigned short sDarkDustSpiritBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_dust_spirit.gbapal");
 static const unsigned char sDarkDustSpiritMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_dust_spirit.lz");
 
+static const unsigned char sGhostKnightOfJackalBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ghost_knight_of_jackal.huff");
+static const unsigned short sGhostKnightOfJackalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ghost_knight_of_jackal.gbapal");
+static const unsigned char sGhostKnightOfJackalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ghost_knight_of_jackal.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -961,6 +965,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03DC] = sWorldSuppressionBigArt,
   [0x03DD] = sRyuKishinClownBigArt,
   [0x03DE] = sDarkDustSpiritBigArt,
+  [0x03DF] = sGhostKnightOfJackalBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1156,6 +1161,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03DC] = sWorldSuppressionBigPalette,
   [0x03DD] = sRyuKishinClownBigPalette,
   [0x03DE] = sDarkDustSpiritBigPalette,
+  [0x03DF] = sGhostKnightOfJackalBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1351,6 +1357,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03DC] = 0,
   [0x03DD] = 0,
   [0x03DE] = 0,
+  [0x03DF] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1546,4 +1553,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03DC] = sWorldSuppressionMiniArt,
   [0x03DD] = sRyuKishinClownMiniArt,
   [0x03DE] = sDarkDustSpiritMiniArt,
+  [0x03DF] = sGhostKnightOfJackalMiniArt,
 };
