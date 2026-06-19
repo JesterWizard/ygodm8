@@ -752,6 +752,10 @@ static const unsigned char sVengefulBogSpiritBigArt[] __attribute__((section(".a
 static const unsigned short sVengefulBogSpiritBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vengeful_bog_spirit.gbapal");
 static const unsigned char sVengefulBogSpiritMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vengeful_bog_spirit.lz");
 
+static const unsigned char sWallOfRevealingLightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/wall_of_revealing_light.huff");
+static const unsigned short sWallOfRevealingLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/wall_of_revealing_light.gbapal");
+static const unsigned char sWallOfRevealingLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/wall_of_revealing_light.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -941,6 +945,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D8] = sTheFluteOfSummoningDragonBigArt,
   [0x03D9] = sSpiritCallerBigArt,
   [0x03DA] = sVengefulBogSpiritBigArt,
+  [0x03DB] = sWallOfRevealingLightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1132,6 +1137,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D8] = sTheFluteOfSummoningDragonBigPalette,
   [0x03D9] = sSpiritCallerBigPalette,
   [0x03DA] = sVengefulBogSpiritBigPalette,
+  [0x03DB] = sWallOfRevealingLightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1323,6 +1329,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D8] = 0,
   [0x03D9] = 0,
   [0x03DA] = 0,
+  [0x03DB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1514,4 +1521,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D8] = sTheFluteOfSummoningDragonMiniArt,
   [0x03D9] = sSpiritCallerMiniArt,
   [0x03DA] = sVengefulBogSpiritMiniArt,
+  [0x03DB] = sWallOfRevealingLightMiniArt,
 };

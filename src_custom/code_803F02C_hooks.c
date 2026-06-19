@@ -9,6 +9,7 @@
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
+#include "wall_of_revealing_light.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
@@ -218,6 +219,7 @@ void InitBoard__Replacement(void) {
   ResetUltimateOfferingTurnState();
   BlastHeldByATribute_ClearAllMarks();
   VengefulBogSpirit_ClearAllMarks();
+  WallOfRevealingLight_ClearThreshold();
   ResetDynamicEquips();
   ResetApophisLinks();
   ClearCostDown();

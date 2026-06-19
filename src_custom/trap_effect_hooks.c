@@ -5,6 +5,7 @@
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
 #include "gravity_bind.h"
+#include "wall_of_revealing_light.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
@@ -287,6 +288,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
           gTrapEffectData.originCardId);
       if (ret)
         gTrapEffectData.trapCardId = TRAP_GRAVITY_BIND;
+      break;
+    case TRAP_WALL_OF_REVEALING_LIGHT:
+      ret = WallOfRevealingLight_ShouldActivateTrapOnAttack(
+          gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol],
+          gTrapEffectData.originCardId);
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_WALL_OF_REVEALING_LIGHT;
       break;
     case TRAP_BLAST_HELD_BY_A_TRIBUTE:
       ret = BlastHeldByATribute_ShouldActivateTrap();

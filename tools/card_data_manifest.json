@@ -17915,6 +17915,36 @@
           "Monsters cannot attack the turn they are Summoned."
         ]
       }
+    },
+    {
+      "card_const": "WALL_OF_REVEALING_LIGHT",
+      "card_name": "Wall of Revealing Light",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 32,
+      "cost": 150,
+      "password": [1, 7, 0, 7, 8, 0, 3, 0],
+      "description": {
+        "symbol": "gDescription_WallOfRevealingLight",
+        "pages": [
+          "A continuous trap that flips when your opponent attacks.",
+          "Pay half your Life Points: only opponent monsters",
+          "with ATK above that cost may attack you."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_WallOfRevealingLight",
+        "pages": [
+          "Pay half your Life Points. Opponent monsters with ATK above that cost may attack."
+        ]
+      },
+      "lock_after_activation": false
     }
   ]
 }

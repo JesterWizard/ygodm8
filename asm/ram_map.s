@@ -127,6 +127,10 @@ _kernel_malloc gCgSavedDispcnt, 2
 @ Active attack-blocking field effects (SORL, Gravity Bind, Level Limit Area B).
 _kernel_malloc gDuelAttackRestrictionsActive, 1
 
+@ ponytail: pad so gWallOfRevealingLightAttackThreshold lands on an even IWRAM address.
+_kernel_malloc gWallOfRevealingLightAttackThresholdPad, 1
+_kernel_malloc gWallOfRevealingLightAttackThreshold, 2
+
 @ --------------------------------------------------------------------
 @ EWRAM free space
 @ --------------------------------------------------------------------

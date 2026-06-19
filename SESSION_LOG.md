@@ -15,6 +15,28 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Wall of Revealing Light custom card
+
+**Worked on:** Added Wall of Revealing Light (Continuous Trap, passcode 17078030) to manifest/trunk. Effect in `trap_effects/wall_of_revealing_light.c`: auto-flips when opponent declares an attack; pays half controller LP and stores ATK threshold in IWRAM; only opponent monsters with ATK above threshold may attack while face-up (`Duel_CanMonsterDeclareAttack` via attack-restrictions API). Non-selectable when active. `card_in_hand_1 = WALL_OF_REVEALING_LIGHT`.
+
+**Files:** `tools/card_data_manifest.json`, `include/wall_of_revealing_light.h`, `src_custom/trap_effects/wall_of_revealing_light.c`, `asm/ram_map.s`, `include/duel_attack_restrictions.h`, `src_custom/duel_attack_restrictions.c`, `src_custom/trap_effect_hooks.c`, `src_custom/trap_effects_hooks.c`, `src_custom/duel_activated_backrow.c`, `src_custom/code_803F02C_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = WALL_OF_REVEALING_LIGHT`.
+
+**Open / next:** In-game: set Wall face-down, let opponent attack; confirm half LP paid, trap flips, low-ATK attacks blocked and high-ATK attacks proceed. Confirm face-up Wall is not selectable.
+
+---
+
+## 2026-06-19 — Wall of Revealing Light: AI + mini art fixes
+
+**Worked on:** AI no longer pre-blocks attacks vs set Wall (restriction only when face-up); mini art pipeline remaps palette index 0 off opaque pixels (trunk/shop force slot 0 transparent).
+
+**Files:** `src_custom/trap_effects/wall_of_revealing_light.c`, `src_custom/duel_attack_restrictions.c`, `tools/add_card_art.py`, regenerated `build/cards/24x24/wall_of_revealing_light.lz`
+
+**Outcome:** `make test-cards-build` passes.
+
+---
+
 ## 2026-06-19 — Vengeful Bog Spirit: LockCard attack block
 
 **Worked on:** Fixed AI never attacking under VBS: `CopyCard` was re-marking every monster copy as "summoned this turn" (now only hand→empty monster zone); AI sim save/restore now includes VBS masks; marks also clear at end of turn.

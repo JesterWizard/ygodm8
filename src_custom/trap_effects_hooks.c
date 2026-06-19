@@ -4,6 +4,7 @@
 #include "call_of_the_haunted.h"
 #include "negate_attack.h"
 #include "gravity_bind.h"
+#include "wall_of_revealing_light.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "duel_helpers.h"
@@ -236,6 +237,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectGravityBind();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_WALL_OF_REVEALING_LIGHT) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectWallOfRevealingLight();
     return;
   }
 

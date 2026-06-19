@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 186
+#define NUM_CUSTOM_NAME_SORT_CARDS 187
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -191,6 +191,7 @@ static const u8 sInvaderOfTheThroneSortName[] APPEND_RODATA = "Invader of the Th
 static const u8 sTheFluteOfSummoningDragonSortName[] APPEND_RODATA = "The Flute of Summoning Dragon";
 static const u8 sSpiritCallerSortName[] APPEND_RODATA = "Spirit Caller";
 static const u8 sVengefulBogSpiritSortName[] APPEND_RODATA = "Vengeful Bog Spirit";
+static const u8 sWallOfRevealingLightSortName[] APPEND_RODATA = "Wall of Revealing Light";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -373,6 +374,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x035C, // Upstart Goblin
   0x0372, // Vampire Baby
   0x03DA, // Vengeful Bog Spirit
+  0x03DB, // Wall of Revealing Light
   0x036A, // Warrior of Zera
   0x0332, // Wave Motion Cannon
   0x0369, // Weather Report
@@ -562,12 +564,13 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   178, // Upstart Goblin
   179, // Vampire Baby
   180, // Vengeful Bog Spirit
-  181, // Warrior of Zera
-  182, // Wave Motion Cannon
-  183, // Weather Report
-  184, // White Magician Pikeru
-  185, // Yata-Garasu
-  186, // Zaborg the Thunder Monarch
+  181, // Wall of Revealing Light
+  182, // Warrior of Zera
+  183, // Wave Motion Cannon
+  184, // Weather Report
+  185, // White Magician Pikeru
+  186, // Yata-Garasu
+  187, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -949,6 +952,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSpiritCallerSortName;
   if (cardId == 0x03DA)
     return (u8 *)sVengefulBogSpiritSortName;
+  if (cardId == 0x03DB)
+    return (u8 *)sWallOfRevealingLightSortName;
 
   return gCardNames[cardId];
 }

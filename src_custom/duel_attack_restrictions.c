@@ -6,6 +6,7 @@
 #include "gravity_bind.h"
 #include "level_limit_area_b.h"
 #include "vengeful_bog_spirit.h"
+#include "wall_of_revealing_light.h"
 
 void Duel_ResetAttackRestrictions(void)
 {
@@ -27,6 +28,11 @@ void Duel_RefreshAttackRestrictions(void)
 
   if (IsVengefulBogSpiritActiveOnField())
     flags |= DUEL_ATTACK_RESTRICT_VENGEFUL_BOG_SPIRIT;
+
+  if (IsWallOfRevealingLightActiveOnField())
+    flags |= DUEL_ATTACK_RESTRICT_WALL_OF_REVEALING_LIGHT;
+  else
+    WallOfRevealingLight_ClearThreshold();
 
   gDuelAttackRestrictionsActive = flags;
 }
@@ -54,6 +60,10 @@ u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
 
   if ((gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_VENGEFUL_BOG_SPIRIT)
       && !VengefulBogSpirit_CanMonsterAttack(zone))
+    return FALSE;
+
+  if ((gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_WALL_OF_REVEALING_LIGHT)
+      && !WallOfRevealingLight_CanMonsterAttack(zone))
     return FALSE;
 
   return TRUE;

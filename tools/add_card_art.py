@@ -351,6 +351,25 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
     lut = list(range(160)) + [159] * (256 - 160)
     quantized = quantized.point(lut)
 
+    # Trunk/shop force palette slot 0 to 0x0000 (transparent). Remap opaque art
+    # pixels off index 0 using the pre-quantize RGB (ponytail: index 1 fallback).
+    rgb_px = image.convert("RGB").load()
+    mini_px = quantized.load()
+    for y in range(24):
+        for x in range(24):
+            if mini_px[x, y] != 0:
+                continue
+            r, g, b = rgb_px[x, y]
+            best_index = 1
+            best_distance = float("inf")
+            for index in range(1, 160):
+                pr, pg, pb = palette[index]
+                distance = (r - pr) ** 2 + (g - pg) ** 2 + (b - pb) ** 2
+                if distance < best_distance:
+                    best_distance = distance
+                    best_index = index
+            mini_px[x, y] = best_index
+
     mini_png.parent.mkdir(parents=True, exist_ok=True)
     quantized.save(mini_png)
 

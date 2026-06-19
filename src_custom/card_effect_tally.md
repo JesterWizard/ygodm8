@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `198` effects
+- `199` effects
 
 ## Tally
 
@@ -111,6 +111,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Secret Barrel` | `src_custom/trap_effects/secret_barrel.c` |
 | `trap_effects` | `Just Deserts` | `src_custom/trap_effects/just_deserts.c` |
 | `trap_effects` | `Gravity Bind` | `src_custom/trap_effects/gravity_bind.c` |
+| `trap_effects` | `Wall of Revealing Light` | `src_custom/trap_effects/wall_of_revealing_light.c` |
 | `trap_effects` | `Gift Of The Mystical Elf` | `src_custom/trap_effects/gift_of_the_mystical_elf.c` |
 | `trap_effects` | `Reckless Greed` | `src_custom/trap_effects/reckless_greed.c` |
 | `trap_effects` | `Ojama Trio` | `src_custom/trap_effects/ojama_trio.c` |

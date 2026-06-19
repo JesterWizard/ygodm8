@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 186 |
-| Art ready, needs manifest | 131 |
+| In game (manifest + art) | 187 |
+| Art ready, needs manifest | 130 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -208,6 +208,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_FLUTE_OF_SUMMONING_DRAGON` | The Flute of Summoning Dragon | `the_flute_of_summoning_dragon.png` |
 | `SPIRIT_CALLER` | Spirit Caller | `spirit_caller.png` |
 | `VENGEFUL_BOG_SPIRIT` | Vengeful Bog Spirit | `vengeful_bog_spirit.png` |
+| `WALL_OF_REVEALING_LIGHT` | Wall of Revealing Light | `wall_of_revealing_light.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -339,7 +340,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `WALL_OF_REVEALING_LIGHT` — `wall_of_revealing_light.png`
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
