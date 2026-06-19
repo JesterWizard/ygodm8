@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 181 |
-| Art ready, needs manifest | 137 |
+| Art ready, needs manifest | 136 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **318** |
+| **Total PNGs in `80x80/`** | **317** |
 
 ## In game
 
@@ -234,7 +234,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
