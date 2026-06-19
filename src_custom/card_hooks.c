@@ -9,6 +9,7 @@
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "riryoku.h"
+#include "big_bang_shot.h"
 #include "mirror_wall.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -433,7 +434,8 @@ int GetSpellType__Replacement(u16 cardId) {
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
-      || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR)
+      || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR
+      || cardId == BIG_BANG_SHOT)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
@@ -519,6 +521,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   gSetFinalStatZone = NULL;
 }
@@ -605,6 +608,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && gSetFinalStatZone->id == ptr->card
       && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+    ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
   }
 

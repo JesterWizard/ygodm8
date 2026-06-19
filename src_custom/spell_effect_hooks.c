@@ -69,6 +69,7 @@ extern void EffectDarkSnakeSyndrome(void);
 extern void EffectGravekeepersServant(void);
 extern void EffectVengefulBogSpirit(void);
 extern void EffectRaregoldArmor(void);
+extern void EffectBigBangShot(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
@@ -395,6 +396,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();
+      return;
+    case BIG_BANG_SHOT:
+      EffectBigBangShot();
       return;
     case GRACEFUL_DICE:
       EffectGracefulDice();

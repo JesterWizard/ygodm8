@@ -32,6 +32,7 @@
 #include "sasuke_samurai_3.h"
 #include "d_d_warrior.h"
 #include "des_kangaroo.h"
+#include "big_bang_shot.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -153,6 +154,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyDarkDriceratopsBattleEffect();
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
+  ApplyBigBangShotPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyLesserFiendBattleEffect();

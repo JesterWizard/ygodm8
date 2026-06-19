@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 199 |
-| Art ready, needs manifest | 117 |
+| In game (manifest + art) | 200 |
+| Art ready, needs manifest | 116 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -221,6 +221,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ECTOPLASMER` | Ectoplasmer | `ectoplasmer.png` |
 | `LEVIA_DRAGON_DAEDALUS` | Levia Dragon Daedalus | `levia_dragon_daedalus.png` |
 | `THEBAN_NIGHTMARE` | Theban Nightmare | `theban_nightmare.png` |
+| `BIG_BANG_SHOT` | Big Bang Shot | `big_bang_shot.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -236,7 +237,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
-- [ ] `BIG_BANG_SHOT` — `big_bang_shot.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_PENDANT` — `black_pendant.png`

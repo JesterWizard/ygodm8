@@ -18291,6 +18291,35 @@
           "Gains 1500 ATK while you have no cards in your hand nor in your Spell & Trap Zones."
         ]
       }
+    },
+    {
+      "card_const": "BIG_BANG_SHOT",
+      "card_name": "Big Bang Shot",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 1, 1, 2, 7, 3, 4, 9],
+      "description": {
+        "symbol": "gDescription_BigBangShot",
+        "pages": [
+          "The equipped monster gains 400 ATK.",
+          "Piercing damage vs Defense Position.",
+          "Banish equipped monster when this leaves the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BigBangShot",
+        "pages": [
+          "The equipped monster gains 400 ATK. Piercing vs Defense. Banish on leave."
+        ]
+      }
     }
   ]
 }

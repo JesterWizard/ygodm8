@@ -214,6 +214,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ECTOPLASMER, gActivationDescription_Ectoplasmer },
   { LEVIA_DRAGON_DAEDALUS, gActivationDescription_LeviaDragonDaedalus },
   { THEBAN_NIGHTMARE, gActivationDescription_ThebanNightmare },
+  { BIG_BANG_SHOT, gActivationDescription_BigBangShot },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

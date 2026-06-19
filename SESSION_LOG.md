@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Big Bang Shot custom card
+
+**Worked on:** Added Big Bang Shot (Equip Spell, passcode 61127349) to manifest/trunk. Dynamic equip in `spell_effects/big_bang_shot.c`: +400 ATK via `gBigBangShotTargetCol[6]` EWRAM (3 slots per duelist, spell+target col encoding), applied in `ApplyBigBangShotAtkBonusToCardInfo`; cleared when spell leaves field. Piercing vs Defense in `battle_effects/big_bang_shot.c`; banish equipped monster when spell leaves. Fixed −100 ATK (`appliedStages=0`, exclude from stage delta). Fixed equip not leaving on monster destroy (`BigBangShot_OnTargetZoneLeaving`). Fixed piercing without defender destroy: `Duel_ChangeLp` re-ran `HandleAtkAndLifePointsAction` (cleared GY flags, changed action id); piercing now mutates `gDuelLifePoints` directly and re-asserts GY flag when ATK>DEF.
+
+**Files:** `tools/card_data_manifest.json`, `include/big_bang_shot.h`, `asm/ram_map.s`, `src_custom/spell_effects/big_bang_shot.c`, `src_custom/battle_effects/big_bang_shot.c`, `src_custom/spell_effects/dynamic_equip.c`, `src_custom/spell_effect_hooks.c`, `src_custom/battle_damage_hooks.c`, `src_custom/card_hooks.c`, `src_custom/code_803F02C_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = BIG_BANG_SHOT`.
+
+**Open / next:** In-game: equip, +400 ATK, attack Defense Position (pierce + defender to GY), destroy equipped monster (equip leaves), MST equip (banish).
+
+---
+
 ## 2026-06-19 — Theban Nightmare custom card
 
 **Worked on:** Added Theban Nightmare (LIGHT Fiend L4, passcode 51838385) to manifest/trunk. Continuous ATK effect in `permanent_effects/theban_nightmare.c`: +1500 ATK while controller has no hand cards and no Spell/Trap Zones occupied; wired through `Duel_TryApplyDynamicZoneStats`. `card_in_hand_1 = THEBAN_NIGHTMARE`.

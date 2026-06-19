@@ -28,6 +28,7 @@
 #include "maju_garzett.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
+#include "big_bang_shot.h"
 #include "embodiment_of_apophis.h"
 #include "ojama_trio.h"
 #include "cost_down.h"
@@ -228,6 +229,7 @@ void InitBoard__Replacement(void) {
   WallOfRevealingLight_ClearThreshold();
   WorldSuppression_ClearNegation();
   ResetDynamicEquips();
+  BigBangShot_ResetAllBoosts();
   ResetApophisLinks();
   ClearCostDown();
   ResetCustomFieldSpellState();

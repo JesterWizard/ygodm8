@@ -1,10 +1,14 @@
 #include "global.h"
 #include "common-chax.h"
+#include "big_bang_shot.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
 
 void UpdateDuelGfxExceptField(void);
+
+static struct DynamicEquipLink *FindDynamicEquipForSpellZone(const struct DuelCard *zone);
+static struct DynamicEquipLink *FindDynamicEquipForTargetZone(const struct DuelCard *zone);
 
 static u8 IsSpellOrTrapCard(u16 cardId)
 {
@@ -146,6 +150,22 @@ static void DiscardDynamicEquipLink(struct DynamicEquipLink *link)
     ClearZone(spellZone);
 }
 
+void DynamicEquip_DiscardLinkForSpellZone(const struct DuelCard *zone)
+{
+  struct DynamicEquipLink *link = FindDynamicEquipForSpellZone(zone);
+
+  if (link != NULL)
+    DiscardDynamicEquipLink(link);
+}
+
+void DynamicEquip_DiscardLinkForTargetZone(struct DuelCard *zone)
+{
+  struct DynamicEquipLink *link = FindDynamicEquipForTargetZone(zone);
+
+  if (link != NULL)
+    DiscardDynamicEquipLink(link);
+}
+
 void ResetDynamicEquips(void)
 {
   u8 i;
@@ -164,6 +184,11 @@ void RemoveDynamicEquipStages(struct DynamicEquipLink *link)
 {
   struct DuelCard *targetZone;
   u8 stages = link->appliedStages;
+
+  if (link->spellId == BIG_BANG_SHOT) {
+    BigBangShot_ClearEquipBonus(link);
+    return;
+  }
 
   targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
 
@@ -301,6 +326,9 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
   if (!link->active)
     return FALSE;
 
+  if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR)
+    return FALSE;
+
   spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
   targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
 
@@ -378,6 +406,9 @@ s8 GetDynamicEquipStageDelta(const struct DuelCard *zone)
     if (!link->active)
       continue;
 
+    if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR)
+      continue;
+
     if (link->targetFixedRow != row || link->targetFixedCol != col)
       continue;
 
@@ -418,6 +449,7 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case UNITED_WE_STAND:
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
     case RAREGOLD_ARMOR:
+    case BIG_BANG_SHOT:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE
           && !IsImperialOrderNegatingSpell(zone->id);
     default:
@@ -479,13 +511,25 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 
   link = FindDynamicEquipForSpellZone(zone);
   if (link != NULL) {
+    u8 banishEquippedMonster = link->spellId == BIG_BANG_SHOT;
+    struct DuelCard *targetZone = NULL;
+
+    if (banishEquippedMonster)
+      targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
+
     RemoveDynamicEquipStages(link);
     ClearDynamicEquipLink(link);
+
+    if (banishEquippedMonster && targetZone != NULL && targetZone->id != CARD_NONE)
+      Duel_BanishZone(targetZone, FALSE);
     return;
   }
 
   link = FindDynamicEquipForTargetZone(zone);
   if (link != NULL) {
     DiscardDynamicEquipLink(link);
+    return;
   }
+
+  BigBangShot_OnTargetZoneLeaving(zone);
 }
