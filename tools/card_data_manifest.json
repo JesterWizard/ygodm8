@@ -17688,6 +17688,33 @@
           "Banish any monster destroyed by battle with this card."
         ]
       }
+    },
+    {
+      "card_const": "SPIRIT_OF_THE_POT_OF_GREED",
+      "card_name": "Spirit of the Pot of Greed",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [0, 4, 8, 9, 6, 7, 8, 8],
+      "description": {
+        "symbol": "gDescription_SpiritOfThePotOfGreed",
+        "pages": [
+          "When a player activates Pot of Greed they can draw 1 card."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_SpiritOfThePotOfGreed",
+        "pages": [
+          "Draw 1 card when a player activates Pot of Greed."
+        ]
+      }
     }
   ]
 }

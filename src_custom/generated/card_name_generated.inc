@@ -179,6 +179,7 @@ static const u8 sRoyalKnightName[] __attribute__((section(".append_assets"))) = 
 static const u8 sTheThingInTheCraterName[] __attribute__((section(".append_assets"))) = "The Thing in the Crater";
 static const u8 sCreatureSwapName[] __attribute__((section(".append_assets"))) = "Creature Swap";
 static const u8 sLesserFiendName[] __attribute__((section(".append_assets"))) = "Lesser Fiend";
+static const u8 sSpiritOfThePotOfGreedName[] __attribute__((section(".append_assets"))) = "Spirit of the Pot of Greed";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -543,6 +544,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCreatureSwapName;
   if (cardId == 0x03D2)
     return (u8 *)sLesserFiendName;
+  if (cardId == 0x03D3)
+    return (u8 *)sSpiritOfThePotOfGreedName;
 
   return gCardNames[cardId];
 }

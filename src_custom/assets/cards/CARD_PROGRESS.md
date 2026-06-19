@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 178 |
-| Art ready, needs manifest | 141 |
+| In game (manifest + art) | 179 |
+| Art ready, needs manifest | 140 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -200,6 +200,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_THING_IN_THE_CRATER` | The Thing in the Crater | `the_thing_in_the_crater.png` |
 | `CREATURE_SWAP` | Creature Swap | `creature_swap.png` |
 | `LESSER_FIEND` | Lesser Fiend | `lesser_fiend.png` |
+| `SPIRIT_OF_THE_POT_OF_GREED` | Spirit of the Pot of Greed | `spirit_of_the_pot_of_greed.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -317,7 +318,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `SPIRIT_CALLER` — `spirit_caller.png`
-- [ ] `SPIRIT_OF_THE_POT_OF_GREED` — `spirit_of_the_pot_of_greed.png`
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`

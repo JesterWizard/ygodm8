@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Spirit of the Pot of Greed custom card
+
+**Worked on:** Added Spirit of the Pot of Greed (LIGHT Fairy L1 100/100, passcode 04896788) to manifest/trunk. After Pot of Greed resolves, scans both monster rows for face-up Attack Position copies; PoG activator draws 1 per Spirit via `Duel_DrawCards`. Skill Drain blocks; Jar Robber/Maryokutai pre-resolution counters skip the hook.
+
+**Files:** `tools/card_data_manifest.json`, `include/spirit_of_the_pot_of_greed.h`, `src_custom/permanent_effects/spirit_of_the_pot_of_greed.c`, `src_custom/spell_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = SPIRIT_OF_THE_POT_OF_GREED`.
+
+**Open / next:** In-game: normal summon Spirit face-up ATK, activate Pot of Greed; confirm bonus draw and effect text.
+
+---
+
 ## 2026-06-19 — Lesser Fiend custom card
 
 **Worked on:** Added Lesser Fiend (DARK Fiend L5 2100/1000, passcode 16475472) to manifest/trunk. Battle trigger: banishes any monster destroyed by battle with Lesser Fiend via `Duel_BanishZone` (D.D. Warrior pattern — apply before GY send clears destroy flag).

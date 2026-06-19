@@ -193,6 +193,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THE_THING_IN_THE_CRATER, gActivationDescription_TheThingInTheCrater },
   { CREATURE_SWAP, gActivationDescription_CreatureSwap },
   { LESSER_FIEND, gActivationDescription_LesserFiend },
+  { SPIRIT_OF_THE_POT_OF_GREED, gActivationDescription_SpiritOfThePotOfGreed },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 178
+#define NUM_CUSTOM_NAME_SORT_CARDS 179
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -183,6 +183,7 @@ static const u8 sRoyalKnightSortName[] APPEND_RODATA = "Royal Knight";
 static const u8 sTheThingInTheCraterSortName[] APPEND_RODATA = "The Thing in the Crater";
 static const u8 sCreatureSwapSortName[] APPEND_RODATA = "Creature Swap";
 static const u8 sLesserFiendSortName[] APPEND_RODATA = "Lesser Fiend";
+static const u8 sSpiritOfThePotOfGreedSortName[] APPEND_RODATA = "Spirit of the Pot of Greed";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -335,6 +336,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
   0x03A5, // Spirit of the Breeze
+  0x03D3, // Spirit of the Pot of Greed
   0x03B4, // Spirit Reaper
   0x03BF, // Spirit Ryu
   0x0333, // St Joan
@@ -516,34 +518,35 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   148, // Spear Dragon
   149, // Spell Canceller
   150, // Spirit of the Breeze
-  151, // Spirit Reaper
-  152, // Spirit Ryu
-  153, // St Joan
-  154, // Stealth Bird
-  155, // Swift Gaia The Fierce Knight
-  156, // Terrorking Salmon
-  157, // The Agent Of Creation - Venus
-  158, // The Dark Door
-  159, // The Forceful Sentry
-  160, // The Thing in the Crater
-  161, // Thousand Energy
-  162, // Thousand Knives
-  163, // Thunder Crash
-  164, // Time Seal
-  165, // Toll
-  166, // Torpedo Fish
-  167, // Triangle Power
-  168, // Twin Swords of Flashing Light - Tryce
-  169, // Tyrant Dragon
-  170, // Ultimate Offering
-  171, // United We Stand
-  172, // Upstart Goblin
-  173, // Vampire Baby
-  174, // Warrior of Zera
-  175, // Wave Motion Cannon
-  176, // Weather Report
-  177, // White Magician Pikeru
-  178, // Yata-Garasu
+  151, // Spirit of the Pot of Greed
+  152, // Spirit Reaper
+  153, // Spirit Ryu
+  154, // St Joan
+  155, // Stealth Bird
+  156, // Swift Gaia The Fierce Knight
+  157, // Terrorking Salmon
+  158, // The Agent Of Creation - Venus
+  159, // The Dark Door
+  160, // The Forceful Sentry
+  161, // The Thing in the Crater
+  162, // Thousand Energy
+  163, // Thousand Knives
+  164, // Thunder Crash
+  165, // Time Seal
+  166, // Toll
+  167, // Torpedo Fish
+  168, // Triangle Power
+  169, // Twin Swords of Flashing Light - Tryce
+  170, // Tyrant Dragon
+  171, // Ultimate Offering
+  172, // United We Stand
+  173, // Upstart Goblin
+  174, // Vampire Baby
+  175, // Warrior of Zera
+  176, // Wave Motion Cannon
+  177, // Weather Report
+  178, // White Magician Pikeru
+  179, // Yata-Garasu
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -909,6 +912,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sCreatureSwapSortName;
   if (cardId == 0x03D2)
     return (u8 *)sLesserFiendSortName;
+  if (cardId == 0x03D3)
+    return (u8 *)sSpiritOfThePotOfGreedSortName;
 
   return gCardNames[cardId];
 }

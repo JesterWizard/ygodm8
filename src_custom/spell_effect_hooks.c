@@ -10,6 +10,7 @@
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "jar_robber.h"
+#include "spirit_of_the_pot_of_greed.h"
 #include "duel_helpers.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
@@ -386,6 +387,16 @@ static void ActivateSpellEffect__Body(void)
       return;
     case KISHIDO_SPIRIT:
       EffectKishidoSpirit();
+      return;
+    case POT_OF_GREED:
+      TryDrawingCard(WhoseTurn());
+      TryDrawingCard(WhoseTurn());
+      ClearZoneAndSendMonToGraveyard(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
+      TrySpiritOfThePotOfGreedAfterPotOfGreed();
+      if (!gHideEffectText) {
+        gCardEffectTextData.cardId = POT_OF_GREED;
+        ActivateCardEffectText();
+      }
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

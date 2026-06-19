@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `190` effects
+- `191` effects
 
 ## Tally
 
@@ -182,6 +182,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |
 | `permanent_effects` | `Fenrir` | `src_custom/permanent_effects/fenrir.c` |
 | `permanent_effects` | `Maryokutai` | `src_custom/permanent_effects/maryokutai.c` |
+| `permanent_effects` | `Spirit of the Pot of Greed` | `src_custom/permanent_effects/spirit_of_the_pot_of_greed.c` |
 | `battle_effects` | `Vampire Baby` | `src_custom/battle_effects/vampire_baby.c` |
 | `battle_effects` | `Sasuke Samurai #3` | `src_custom/battle_effects/sasuke_samurai_3.c` |
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |

@@ -720,6 +720,10 @@ static const unsigned char sLesserFiendBigArt[] __attribute__((section(".append_
 static const unsigned short sLesserFiendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/lesser_fiend.gbapal");
 static const unsigned char sLesserFiendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/lesser_fiend.lz");
 
+static const unsigned char sSpiritOfThePotOfGreedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spirit_of_the_pot_of_greed.huff");
+static const unsigned short sSpiritOfThePotOfGreedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spirit_of_the_pot_of_greed.gbapal");
+static const unsigned char sSpiritOfThePotOfGreedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spirit_of_the_pot_of_greed.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -901,6 +905,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D0] = sTheThingInTheCraterBigArt,
   [0x03D1] = sCreatureSwapBigArt,
   [0x03D2] = sLesserFiendBigArt,
+  [0x03D3] = sSpiritOfThePotOfGreedBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1084,6 +1089,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D0] = sTheThingInTheCraterBigPalette,
   [0x03D1] = sCreatureSwapBigPalette,
   [0x03D2] = sLesserFiendBigPalette,
+  [0x03D3] = sSpiritOfThePotOfGreedBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1267,6 +1273,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D0] = 0,
   [0x03D1] = 0,
   [0x03D2] = 0,
+  [0x03D3] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1450,4 +1457,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D0] = sTheThingInTheCraterMiniArt,
   [0x03D1] = sCreatureSwapMiniArt,
   [0x03D2] = sLesserFiendMiniArt,
+  [0x03D3] = sSpiritOfThePotOfGreedMiniArt,
 };
