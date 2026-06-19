@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 192 |
-| Art ready, needs manifest | 125 |
+| Art ready, needs manifest | 124 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **317** |
+| **Total PNGs in `80x80/`** | **316** |
 
 ## In game
 
@@ -289,7 +289,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MIRROR_WALL` — `mirror_wall.png`
-- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
