@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Kaiser Colosseum custom card
+
+**Worked on:** Added Kaiser Colosseum (Continuous Spell, passcode 35059553) to manifest/trunk. Effect in `spell_effects/kaiser_colosseum.c`: while controller has ≥1 monster, opponent cannot place a monster if that would exceed controller's monster count (`Duel_CountMonstersOnFixedRow`); Imperial Order respected; grandfather clause via placement-only check. Hooks in `PlaceMonsterFromId`, `sub_80449D8`, and `CopyCard__Replacement` (AI hand→field path). `GetSpellType` lists KC as activatable continuous spell. `card_in_hand_1 = KAISER_COLOSSEUM`.
+
+**Files:** `tools/card_data_manifest.json`, `include/kaiser_colosseum.h`, `src_custom/spell_effects/kaiser_colosseum.c`, `src_custom/card_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/duel_helpers.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/duel_activated_backrow.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = KAISER_COLOSSEUM`.
+
+**Open / next:** In-game: activate KC with 1 monster; opponent cannot exceed your count. Pre-existing opponent monsters grandfathered.
+
+---
+
 ## 2026-06-19 — Ghost Knight of Jackal custom card
 
 **Worked on:** Added Ghost Knight of Jackal (EARTH Beast-Warrior L5 1700/1600, passcode 13386503) to manifest/trunk. Battle effect in `battle_effects/ghost_knight_of_jackal.c`: when Jackal destroys an opponent monster by battle (and survives), special summons that monster from opponent GY to controller's field in face-up Defense Position via `GetGraveCardAndClearGrave` + `Duel_SpecialSummonMonsterId`. Pattern follows Royal Knight trigger + Vampire Baby graveyard steal. `card_in_hand_1 = GHOST_KNIGHT_OF_JACKAL`.

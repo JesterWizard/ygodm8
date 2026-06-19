@@ -192,6 +192,7 @@ static const u8 sWorldSuppressionName[] __attribute__((section(".append_assets")
 static const u8 sRyuKishinClownName[] __attribute__((section(".append_assets"))) = "Ryu-Kishin Clown";
 static const u8 sDarkDustSpiritName[] __attribute__((section(".append_assets"))) = "Dark Dust Spirit";
 static const u8 sGhostKnightOfJackalName[] __attribute__((section(".append_assets"))) = "Ghost Knight of Jackal";
+static const u8 sKaiserColosseumName[] __attribute__((section(".append_assets"))) = "Kaiser Colosseum";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -582,6 +583,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkDustSpiritName;
   if (cardId == 0x03DF)
     return (u8 *)sGhostKnightOfJackalName;
+  if (cardId == 0x03E0)
+    return (u8 *)sKaiserColosseumName;
 
   return gCardNames[cardId];
 }

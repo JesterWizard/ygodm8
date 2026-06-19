@@ -25,6 +25,7 @@
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
+#include "kaiser_colosseum.h"
 #include "breaker_the_magical_warrior.h"
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
@@ -685,6 +686,13 @@ void sub_80449D8__Replacement(void)
   }
 
   if (gFixedZones[placedRow][placedCol]->id != CARD_NONE) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  if ((placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+      && !KaiserColosseum_AllowsMonsterPlacement(placedRow)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;

@@ -75,6 +75,7 @@ extern void EffectThunderCrash(void);
 extern void EffectRingOfDestruction(void);
 extern void EffectKnightsTitle(void);
 extern void EffectTheFluteOfSummoningDragon(void);
+extern void EffectKaiserColosseum(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -382,6 +383,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case VENGEFUL_BOG_SPIRIT:
       EffectVengefulBogSpirit();
+      return;
+    case KAISER_COLOSSEUM:
+      EffectKaiserColosseum();
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();

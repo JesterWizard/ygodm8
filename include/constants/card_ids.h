@@ -993,11 +993,12 @@
 #define RYU_KISHIN_CLOWN                         0x03DD
 #define DARK_DUST_SPIRIT                         0x03DE
 #define GHOST_KNIGHT_OF_JACKAL                   0x03DF
+#define KAISER_COLOSSEUM                         0x03E0
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03E0
-#define NUM_CUSTOM_CARDS                        0x00BF
+#define NUM_TOTAL_CARDS                         0x03E1
+#define NUM_CUSTOM_CARDS                        0x00C0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -9,6 +9,7 @@
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
+#include "kaiser_colosseum.h"
 #include "wall_of_revealing_light.h"
 #include "world_suppression.h"
 #include "berserk_gorilla.h"
@@ -488,8 +489,11 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
   if (dst->id == CARD_NONE && src->id != CARD_NONE
       && GetTypeGroup(src->id) == TYPE_GROUP_MONSTER
       && Duel_ZoneIsHandSlot(src)
-      && Duel_FindFixedMonsterZone(dst, &dstFixedRow, &dstFixedCol))
+      && Duel_FindFixedMonsterZone(dst, &dstFixedRow, &dstFixedCol)) {
+    if (!KaiserColosseum_AllowsMonsterPlacement(dstFixedRow))
+      return;
     markVengefulBogOnHandSummon = TRUE;
+  }
 
   if (ShouldPayChainEnergyForHandToFieldCopy(dst, src)) {
     if (!TryPayChainEnergyCost())

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 191 |
-| Art ready, needs manifest | 126 |
+| In game (manifest + art) | 192 |
+| Art ready, needs manifest | 125 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -213,6 +213,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `RYU_KISHIN_CLOWN` | Ryu-Kishin Clown | `ryu_kishin_clown.png` |
 | `DARK_DUST_SPIRIT` | Dark Dust Spirit | `dark_dust_spirit.png` |
 | `GHOST_KNIGHT_OF_JACKAL` | Ghost Knight of Jackal | `ghost_knight_of_jackal.png` |
+| `KAISER_COLOSSEUM` | Kaiser Colosseum | `kaiser_colosseum.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -267,7 +268,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
-- [ ] `KAISER_COLOSSEUM` — `kaiser_colosseum.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
 - [ ] `LAST_TURN` — `last_turn.png`

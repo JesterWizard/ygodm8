@@ -18060,6 +18060,34 @@
           "Special summon the monster destroyed in battle."
         ]
       }
+    },
+    {
+      "card_const": "KAISER_COLOSSEUM",
+      "card_name": "Kaiser Colosseum",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 5, 0, 5, 9, 5, 5, 3],
+      "description": {
+        "symbol": "gDescription_KaiserColosseum",
+        "pages": [
+          "While you control a monster your opponent cannot place",
+          "a monster if that exceeds your count."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_KaiserColosseum",
+        "pages": [
+          "Opponent summons are capped at your current monster count."
+        ]
+      }
     }
   ]
 }

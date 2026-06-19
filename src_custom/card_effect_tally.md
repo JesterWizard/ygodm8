@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `202` effects
+- `203` effects
 
 ## Tally
 
@@ -47,6 +47,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Negative Energy` | `src_custom/spell_effects/negative_energy.c` |
 | `spell_effects` | `Triangle Power` | `src_custom/spell_effects/triangle_power.c` |
 | `spell_effects` | `The Dark Door` | `src_custom/spell_effects/the_dark_door.c` |
+| `spell_effects` | `Kaiser Colosseum` | `src_custom/spell_effects/kaiser_colosseum.c` |
 | `spell_effects` | `Level Limit Area B` | `src_custom/spell_effects/level_limit_area_b.c` |
 | `spell_effects` | `The Forceful Sentry` | `src_custom/spell_effects/the_forceful_sentry.c` |
 | `spell_effects` | `Limiter Removal` | `src_custom/spell_effects/limiter_removal.c` |

@@ -206,6 +206,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { RYU_KISHIN_CLOWN, gActivationDescription_RyuKishinClown },
   { DARK_DUST_SPIRIT, gActivationDescription_DarkDustSpirit },
   { GHOST_KNIGHT_OF_JACKAL, gActivationDescription_GhostKnightOfJackal },
+  { KAISER_COLOSSEUM, gActivationDescription_KaiserColosseum },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

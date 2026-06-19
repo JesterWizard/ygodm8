@@ -22,6 +22,7 @@
 #include "kishido_spirit.h"
 #include "ryu_kishin_clown.h"
 #include "dark_dust_spirit.h"
+#include "kaiser_colosseum.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -224,6 +225,9 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_INVALID;
 
   if (SummonModeIsSpecial(opts.mode) && Duel_CardCannotBeSpecialSummoned(monsterId))
+    return DUEL_ACTION_BLOCKED;
+
+  if (!KaiserColosseum_AllowsMonsterPlacement(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist))))
     return DUEL_ACTION_BLOCKED;
 
   monsterZone = FirstEmptyZoneInRow(gTurnZones[monsterRow]);
