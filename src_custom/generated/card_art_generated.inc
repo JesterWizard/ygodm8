@@ -712,6 +712,10 @@ static const unsigned char sTheThingInTheCraterBigArt[] __attribute__((section("
 static const unsigned short sTheThingInTheCraterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_thing_in_the_crater.gbapal");
 static const unsigned char sTheThingInTheCraterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_thing_in_the_crater.lz");
 
+static const unsigned char sCreatureSwapBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/creature_swap.huff");
+static const unsigned short sCreatureSwapBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/creature_swap.gbapal");
+static const unsigned char sCreatureSwapMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/creature_swap.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -891,6 +895,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03CE] = sPossessedDarkSoulBigArt,
   [0x03CF] = sRoyalKnightBigArt,
   [0x03D0] = sTheThingInTheCraterBigArt,
+  [0x03D1] = sCreatureSwapBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1072,6 +1077,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03CE] = sPossessedDarkSoulBigPalette,
   [0x03CF] = sRoyalKnightBigPalette,
   [0x03D0] = sTheThingInTheCraterBigPalette,
+  [0x03D1] = sCreatureSwapBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1253,6 +1259,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03CE] = 0,
   [0x03CF] = 0,
   [0x03D0] = 0,
+  [0x03D1] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1434,4 +1441,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03CE] = sPossessedDarkSoulMiniArt,
   [0x03CF] = sRoyalKnightMiniArt,
   [0x03D0] = sTheThingInTheCraterMiniArt,
+  [0x03D1] = sCreatureSwapMiniArt,
 };

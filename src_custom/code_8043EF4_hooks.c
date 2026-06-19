@@ -54,6 +54,7 @@
 #include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "soul_taker.h"
+#include "creature_swap.h"
 #include "negative_energy.h"
 #include "confiscation.h"
 #include "delinquent_duo.h"
@@ -390,6 +391,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginSoulTakerTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsCreatureSwapCard(id)) {
+    if (!FieldHasCreatureSwapTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginCreatureSwapTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -943,6 +959,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_SOUL_TAKER_TARGET:
       TrySelectSoulTakerTarget();
       break;
+    case DUEL_CURSOR_CREATURE_SWAP_OWN:
+      TrySelectCreatureSwapOwnTarget();
+      break;
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       TrySelectNegativeEnergyTarget();
       break;
@@ -997,6 +1016,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_SOUL_TAKER_TARGET:
       CancelSoulTakerTargeting();
+      break;
+    case DUEL_CURSOR_CREATURE_SWAP_OWN:
+      CancelCreatureSwapTargeting();
       break;
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       CancelNegativeEnergyTargeting();

@@ -17632,6 +17632,34 @@
           "Special Summon 1 Pyro-Type Monster from your hand."
         ]
       }
+    },
+    {
+      "card_const": "CREATURE_SWAP",
+      "card_name": "Creature Swap",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 1, 0, 3, 6, 3, 5, 5],
+      "description": {
+        "symbol": "gDescription_CreatureSwap",
+        "pages": [
+          "Each player chooses 1 monster they control and switches",
+          "control of those monsters with each other."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CreatureSwap",
+        "pages": [
+          "Choose one of your monsters, your opponent chooses one of theirs. Swap control of those monsters."
+        ]
+      }
     }
   ]
 }

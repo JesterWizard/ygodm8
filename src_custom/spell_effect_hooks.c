@@ -57,6 +57,7 @@ extern void EffectGracefulCharity(void);
 extern void EffectTwinSwordsOfFlashingLightTryce(void);
 extern void EffectThousandKnives(void);
 extern void EffectSoulTaker(void);
+extern void EffectCreatureSwap(void);
 extern void EffectPreciousCardsFromBeyond(void);
 extern void EffectFinalCountdown(void);
 extern void EffectBurningLand(void);
@@ -113,6 +114,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case BLOCK_ATTACK:
     case BOOK_OF_MOON:
     case SOUL_TAKER:
+    case CREATURE_SWAP:
     case THUNDER_CRASH:
     case RAIN_OF_MERCY:
     case UPSTART_GOBLIN:
@@ -342,6 +344,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case SOUL_TAKER:
       EffectSoulTaker();
+      return;
+    case CREATURE_SWAP:
+      EffectCreatureSwap();
       return;
     case PRECIOUS_CARDS_FROM_BEYOND:
       EffectPreciousCardsFromBeyond();

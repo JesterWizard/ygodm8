@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Creature Swap custom card
+
+**Worked on:** Added Creature Swap (normal spell, passcode 31036355) to manifest/trunk. Two-step player targeting picks 1 own monster then 1 opponent monster; swaps them in place via zone copy. AI gives away weakest on its board and takes player's highest-ATK monster. Simplified text omits battle-position lock.
+
+**Files:** `tools/card_data_manifest.json`, `include/creature_swap.h`, `src_custom/spell_effects/creature_swap.c`, `asm/ram_map.s`, `src_custom/code_8043EF4_hooks.c`, `src_custom/spell_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = CREATURE_SWAP`.
+
+**Open / next:** In-game: activate with monsters on both sides; confirm swap and AI weakest pick.
+
+---
+
 ## 2026-06-19 — Fix Thing in the Crater graveyard trigger
 
 **Worked on:** Effect never fired when Thing was destroyed. Root causes: (1) custom monsters used `GetTypeGroup` for graveyard registration, which could skip custom card IDs on field→GY sends; (2) test hand had Meteor B. Dragon (Dragon) not a Pyro-Type monster. Added `Duel_CardIsMonster`, wired graveyard send hooks, Sangan-style effect text, Pyro filter via `Duel_CardHasMonsterType`. Runtime hand 2 = Flame Manipulator for testing.

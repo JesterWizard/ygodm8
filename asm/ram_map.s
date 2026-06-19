@@ -164,6 +164,12 @@ _kernel_malloc_ewram gRiryokuSourceCol, 1
 _kernel_malloc_ewram gRiryokuRecipientRow, 1
 _kernel_malloc_ewram gRiryokuRecipientCol, 1
 
+@ Creature Swap pending target zones during activation.
+_kernel_malloc_ewram gCreatureSwapPlayerRow, 1
+_kernel_malloc_ewram gCreatureSwapPlayerCol, 1
+_kernel_malloc_ewram gCreatureSwapOppRow, 1
+_kernel_malloc_ewram gCreatureSwapOppCol, 1
+
 @ Riryoku ATK deltas keyed by gDuel.board cell index (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
 

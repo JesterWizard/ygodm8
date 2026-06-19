@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 176 |
-| Art ready, needs manifest | 143 |
+| In game (manifest + art) | 177 |
+| Art ready, needs manifest | 142 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -198,6 +198,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `POSSESSED_DARK_SOUL` | Possessed Dark Soul | `possessed_dark_soul.png` |
 | `ROYAL_KNIGHT` | Royal Knight | `royal_knight.png` |
 | `THE_THING_IN_THE_CRATER` | The Thing in the Crater | `the_thing_in_the_crater.png` |
+| `CREATURE_SWAP` | Creature Swap | `creature_swap.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -230,7 +231,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `CREATURE_SWAP` — `creature_swap.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DARK_DUST_SPIRIT` — `dark_dust_spirit.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
