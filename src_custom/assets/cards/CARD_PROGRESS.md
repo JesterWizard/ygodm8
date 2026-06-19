@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 197 |
-| Art ready, needs manifest | 119 |
+| In game (manifest + art) | 198 |
+| Art ready, needs manifest | 118 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -219,6 +219,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MAJU_GARZETT` | Maju Garzett | `maju_garzett.png` |
 | `DUST_TORNADO` | Dust Tornado | `dust_tornado.png` |
 | `ECTOPLASMER` | Ectoplasmer | `ectoplasmer.png` |
+| `LEVIA_DRAGON_DAEDALUS` | Levia Dragon Daedalus | `levia_dragon_daedalus.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -277,7 +278,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
 - [ ] `LEVEL_LIMIT_AREA_A` — `level_limit_area_a.png`
-- [ ] `LEVIA_DRAGON_DAEDALUS` — `levia_dragon_daedalus.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`

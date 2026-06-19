@@ -21,6 +21,7 @@
 #include "ryu_kishin_clown.h"
 #include "nightmare_wheel.h"
 #include "dark_dust_spirit.h"
+#include "levia_dragon_daedalus.h"
 #include "spirit_caller.h"
 
 extern void (*const gMonEffects[])(void);
@@ -98,6 +99,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateRyuKishinClown();
     case MONSTER_EFFECT_DARK_DUST_SPIRIT:
       return CanActivateDarkDustSpirit();
+    case MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS:
+      return CanActivateLeviaDragonDaedalus();
     default:
       return TRUE;
   }
@@ -269,6 +272,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_DUST_SPIRIT) {
     ActivateDarkDustSpiritEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS) {
+    ActivateLeviaDragonDaedalusEffect();
     return;
   }
 

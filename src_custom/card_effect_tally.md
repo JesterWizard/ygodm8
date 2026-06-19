@@ -4,12 +4,13 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `208` effects
+- `209` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
+| `activated_effects` | `Levia Dragon Daedalus` | `src_custom/activated_effects/levia_dragon_daedalus.c` |
 | `activated_effects` | `Dark Dust Spirit` | `src_custom/activated_effects/dark_dust_spirit.c` |
 | `activated_effects` | `Ryu-Kishin Clown` | `src_custom/activated_effects/ryu_kishin_clown.c` |
 | `spell_effects` | `Sparks` | `src_custom/spell_effects/sparks.c` |

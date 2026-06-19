@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Levia Dragon Daedalus custom card
+
+**Worked on:** Added Levia Dragon Daedalus (WATER Sea Serpent L7, passcode 94620419) to manifest/trunk. Activated effect in `activated_effects/levia_dragon_daedalus.c`: requires face-up Umi you control; sends Umi to GY (reverts FIELD_UMI terrain to Arena as part of that cost), then destroys all other cards on the field via `Duel_DestroyZone` / `Duel_FindBackrowCard`. Daedalus stays on field. `card_in_hand_1 = LEVIA_DRAGON_DAEDALUS`.
+
+**Files:** `tools/card_data_manifest.json`, `include/levia_dragon_daedalus.h`, `include/constants/monster_effects.h`, `src_custom/activated_effects/levia_dragon_daedalus.c`, `src_custom/monster_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = LEVIA_DRAGON_DAEDALUS`.
+
+**Open / next:** In-game: set face-up Umi, summon Daedalus, activate; confirm Umi sent to GY, Arena terrain if Umi field was active, and all other field cards destroyed; confirm blocked without face-up Umi.
+
+---
+
 ## 2026-06-19 — Ectoplasmer custom card
 
 **Worked on:** Added Ectoplasmer (Continuous Spell, passcode 97342942) to manifest/trunk. Effect in `spell_effects/ectoplasmer.c`: activate face-up; each turn at End Phase (GBA turn-start timing), turn player tributes 1 face-up monster via `DUEL_CURSOR_ECTOPLASMER_TARGET` (player) or AI highest-ATK pick; inflicts half original ATK to opponent via `Duel_DestroyZone` + `Duel_ChangeLp`. Negated by Imperial Order. `card_in_hand_1 = ECTOPLASMER`.

@@ -131,6 +131,7 @@ enum {
   MONSTER_EFFECT_SPIRIT_CALLER,
   MONSTER_EFFECT_RYU_KISHIN_CLOWN,
   MONSTER_EFFECT_DARK_DUST_SPIRIT,
+  MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -175,5 +176,7 @@ extern unsigned char CanActivateSpiritCaller(void);
 extern void ActivateSpiritCallerEffect(void);
 extern unsigned char CanActivateRyuKishinClown(void);
 extern void ActivateRyuKishinClownEffect(void);
+extern unsigned char CanActivateLeviaDragonDaedalus(void);
+extern void ActivateLeviaDragonDaedalusEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

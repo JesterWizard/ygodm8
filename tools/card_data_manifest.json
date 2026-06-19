@@ -18234,6 +18234,35 @@
           "The current player must tribute 1 face-up monster to inflict half its original ATK as damage."
         ]
       }
+    },
+    {
+      "card_const": "LEVIA_DRAGON_DAEDALUS",
+      "card_name": "Levia Dragon Daedalus",
+      "atk": 2600,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 4, 6, 2, 0, 4, 1, 9],
+      "description": {
+        "symbol": "gDescription_LeviaDragonDaedalus",
+        "pages": [
+          "A sea dragon that rules the depths.",
+          "While Umi is active, revert the field to Arena",
+          "then destroy all other cards on the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_LeviaDragonDaedalus",
+        "pages": [
+          "Revert Umi terrain to Arena, then destroy all other cards on the field."
+        ]
+      }
     }
   ]
 }
