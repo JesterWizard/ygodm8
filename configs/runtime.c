@@ -2,6 +2,7 @@
 #include "constants/card_ids.h"
 #include "constants/custom_fields_generated.h"
 #include "constants/duel_fields.h"
+#include "constants/monster_effects.h"
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
@@ -57,10 +58,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
-    .card_in_hand_1 = INVADER_OF_THE_THRONE,
-    .card_in_hand_2 = ABSORBING_KID_FROM_THE_SKY,
-    .card_in_hand_3 = CARD_NONE,
-    .card_in_hand_4 = CARD_NONE,
+    .card_in_hand_1 = THE_FLUTE_OF_SUMMONING_DRAGON,
+    .card_in_hand_2 = LORD_OF_D,
+    .card_in_hand_3 = MASTER_OF_DRAGON_SOLDIER,
+    .card_in_hand_4 = F_G_D,
     .card_in_hand_5 = CARD_NONE,
     .opponent_deck_card_id = CARD_NONE
 };

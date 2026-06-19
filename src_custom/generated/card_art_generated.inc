@@ -740,6 +740,10 @@ static const unsigned char sInvaderOfTheThroneBigArt[] __attribute__((section(".
 static const unsigned short sInvaderOfTheThroneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/invader_of_the_throne.gbapal");
 static const unsigned char sInvaderOfTheThroneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/invader_of_the_throne.lz");
 
+static const unsigned char sTheFluteOfSummoningDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_flute_of_summoning_dragon.huff");
+static const unsigned short sTheFluteOfSummoningDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_flute_of_summoning_dragon.gbapal");
+static const unsigned char sTheFluteOfSummoningDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_flute_of_summoning_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -926,6 +930,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D5] = sBottomlessShiftingSandBigArt,
   [0x03D6] = sFirePrincessBigArt,
   [0x03D7] = sInvaderOfTheThroneBigArt,
+  [0x03D8] = sTheFluteOfSummoningDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1114,6 +1119,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D5] = sBottomlessShiftingSandBigPalette,
   [0x03D6] = sFirePrincessBigPalette,
   [0x03D7] = sInvaderOfTheThroneBigPalette,
+  [0x03D8] = sTheFluteOfSummoningDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1302,6 +1308,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D5] = 0,
   [0x03D6] = 0,
   [0x03D7] = 0,
+  [0x03D8] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1490,4 +1497,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D5] = sBottomlessShiftingSandMiniArt,
   [0x03D6] = sFirePrincessMiniArt,
   [0x03D7] = sInvaderOfTheThroneMiniArt,
+  [0x03D8] = sTheFluteOfSummoningDragonMiniArt,
 };

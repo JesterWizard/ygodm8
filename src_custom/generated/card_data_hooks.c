@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[984] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[985] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -996,9 +996,10 @@ const u8 gCardLockAfterActivation_Hook[984] APPEND_RODATA = {
   [0x03D5] = 1,
   [0x03D6] = 1,
   [0x03D7] = 1,
+  [0x03D8] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[984] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[985] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -1983,9 +1984,10 @@ const u8 gCardEffectUsage_Hook[984] APPEND_RODATA = {
   [0x03D5] = EFFECT_USAGE_NONE,
   [0x03D6] = EFFECT_USAGE_NONE,
   [0x03D7] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x03D8] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[984] APPEND_RODATA = {
+const CardData gCardData_NEW[985] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -15008,5 +15010,19 @@ const CardData gCardData_NEW[984] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {0, 3, 0, 5, 6, 2, 6, 7},
     .description = gDescription_InvaderOfTheThrone,
+  },
+  [0x03D8] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 150,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {4, 3, 9, 7, 3, 1, 7, 4},
+    .description = gDescription_TheFluteOfSummoningDragon,
   },
 };

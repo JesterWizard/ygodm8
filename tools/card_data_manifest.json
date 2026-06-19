@@ -17829,6 +17829,35 @@
           "Target one monster on the opponent's field and switch control of it with this card."
         ]
       }
+    },
+    {
+      "card_const": "THE_FLUTE_OF_SUMMONING_DRAGON",
+      "card_name": "The Flute of Summoning Dragon",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 3, 9, 7, 3, 1, 7, 4],
+      "description": {
+        "symbol": "gDescription_TheFluteOfSummoningDragon",
+        "pages": [
+          "Special Summon up to 2 Dragon monsters from your",
+          "hand. Lord of D. must be on your field to activate",
+          "and to resolve this effect."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheFluteOfSummoningDragon",
+        "pages": [
+          "Special Summon up to 2 Dragon monsters from your hand."
+        ]
+      }
     }
   ]
 }

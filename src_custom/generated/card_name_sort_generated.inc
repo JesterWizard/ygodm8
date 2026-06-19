@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 183
+#define NUM_CUSTOM_NAME_SORT_CARDS 184
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -188,6 +188,7 @@ static const u8 sZaborgTheThunderMonarchSortName[] APPEND_RODATA = "Zaborg the T
 static const u8 sBottomlessShiftingSandSortName[] APPEND_RODATA = "Bottomless Shifting Sand";
 static const u8 sFirePrincessSortName[] APPEND_RODATA = "Fire Princess";
 static const u8 sInvaderOfTheThroneSortName[] APPEND_RODATA = "Invader of the Throne";
+static const u8 sTheFluteOfSummoningDragonSortName[] APPEND_RODATA = "The Flute of Summoning Dragon";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -352,6 +353,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0374, // Terrorking Salmon
   0x0384, // The Agent Of Creation - Venus
   0x036D, // The Dark Door
+  0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
   0x03D0, // The Thing in the Crater
   0x036C, // Thousand Energy
@@ -538,27 +540,28 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   160, // Terrorking Salmon
   161, // The Agent Of Creation - Venus
   162, // The Dark Door
-  163, // The Forceful Sentry
-  164, // The Thing in the Crater
-  165, // Thousand Energy
-  166, // Thousand Knives
-  167, // Thunder Crash
-  168, // Time Seal
-  169, // Toll
-  170, // Torpedo Fish
-  171, // Triangle Power
-  172, // Twin Swords of Flashing Light - Tryce
-  173, // Tyrant Dragon
-  174, // Ultimate Offering
-  175, // United We Stand
-  176, // Upstart Goblin
-  177, // Vampire Baby
-  178, // Warrior of Zera
-  179, // Wave Motion Cannon
-  180, // Weather Report
-  181, // White Magician Pikeru
-  182, // Yata-Garasu
-  183, // Zaborg the Thunder Monarch
+  163, // The Flute of Summoning Dragon
+  164, // The Forceful Sentry
+  165, // The Thing in the Crater
+  166, // Thousand Energy
+  167, // Thousand Knives
+  168, // Thunder Crash
+  169, // Time Seal
+  170, // Toll
+  171, // Torpedo Fish
+  172, // Triangle Power
+  173, // Twin Swords of Flashing Light - Tryce
+  174, // Tyrant Dragon
+  175, // Ultimate Offering
+  176, // United We Stand
+  177, // Upstart Goblin
+  178, // Vampire Baby
+  179, // Warrior of Zera
+  180, // Wave Motion Cannon
+  181, // Weather Report
+  182, // White Magician Pikeru
+  183, // Yata-Garasu
+  184, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -934,6 +937,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sFirePrincessSortName;
   if (cardId == 0x03D7)
     return (u8 *)sInvaderOfTheThroneSortName;
+  if (cardId == 0x03D8)
+    return (u8 *)sTheFluteOfSummoningDragonSortName;
 
   return gCardNames[cardId];
 }

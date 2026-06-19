@@ -198,6 +198,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BOTTOMLESS_SHIFTING_SAND, gActivationDescription_BottomlessShiftingSand },
   { FIRE_PRINCESS, gActivationDescription_FirePrincess },
   { INVADER_OF_THE_THRONE, gActivationDescription_InvaderOfTheThrone },
+  { THE_FLUTE_OF_SUMMONING_DRAGON, gActivationDescription_TheFluteOfSummoningDragon },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

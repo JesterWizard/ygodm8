@@ -985,11 +985,12 @@
 #define BOTTOMLESS_SHIFTING_SAND                 0x03D5
 #define FIRE_PRINCESS                            0x03D6
 #define INVADER_OF_THE_THRONE                    0x03D7
+#define THE_FLUTE_OF_SUMMONING_DRAGON            0x03D8
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03D8
-#define NUM_CUSTOM_CARDS                        0x00B7
+#define NUM_TOTAL_CARDS                         0x03D9
+#define NUM_CUSTOM_CARDS                        0x00B8
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

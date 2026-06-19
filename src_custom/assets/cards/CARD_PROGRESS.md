@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 183 |
-| Art ready, needs manifest | 134 |
+| In game (manifest + art) | 184 |
+| Art ready, needs manifest | 133 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **317** |
 
@@ -205,6 +205,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BOTTOMLESS_SHIFTING_SAND` | Bottomless Shifting Sand | `bottomless_shifting_sand.png` |
 | `FIRE_PRINCESS` | Fire Princess | `fire_princess.png` |
 | `INVADER_OF_THE_THRONE` | Invader of the Throne | `invader_of_the_throne.png` |
+| `THE_FLUTE_OF_SUMMONING_DRAGON` | The Flute of Summoning Dragon | `the_flute_of_summoning_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -326,7 +327,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_FLUTE_OF_SUMMONING_DRAGON` — `the_flute_of_summoning_dragon.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`

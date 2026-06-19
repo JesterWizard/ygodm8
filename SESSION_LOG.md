@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — The Flute of Summoning Dragon custom card
+
+**Worked on:** Added The Flute of Summoning Dragon (Normal Spell, passcode 43973174) to manifest/trunk. Effect in `spell_effects/the_flute_of_summoning_dragon.c`: requires Lord of D on field; Special Summon up to 2 Dragon monsters from hand via `Duel_SpecialSummonFromHand` / `Duel_SpecialSummonFromHandZone`; `CanActivateTheFluteOfSummoningDragon` blocks when requirements unmet. `card_in_hand_1 = THE_FLUTE_OF_SUMMONING_DRAGON`.
+
+**Files:** `tools/card_data_manifest.json`, `include/the_flute_of_summoning_dragon.h`, `src_custom/spell_effects/the_flute_of_summoning_dragon.c`, `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = THE_FLUTE_OF_SUMMONING_DRAGON`.
+
+**Open / next:** In-game: field Lord of D, hand with 1–2 Dragons, activate Flute; confirm summons and activation block without Lord of D.
+
+---
+
 ## 2026-06-19 — Invader of the Throne custom card
 
 **Worked on:** Added Invader of the Throne (EARTH Warrior L4 1350/1700, passcode 03056267) to manifest/trunk. FLIP effect in `activated_effects/invader_of_the_throne.c`: target 1 opponent monster, swap control with this card via zone swap + `Duel_NotifyFixedMonsterRowChanged`; player targeting via `DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET`; AI picks highest-ATK swappable opponent monster. `card_in_hand_1 = INVADER_OF_THE_THRONE`.

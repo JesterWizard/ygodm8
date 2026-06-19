@@ -72,6 +72,7 @@ extern void EffectBookOfMoon(void);
 extern void EffectThunderCrash(void);
 extern void EffectRingOfDestruction(void);
 extern void EffectKnightsTitle(void);
+extern void EffectTheFluteOfSummoningDragon(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -388,6 +389,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case KNIGHTS_TITLE:
       EffectKnightsTitle();
+      return;
+    case THE_FLUTE_OF_SUMMONING_DRAGON:
+      EffectTheFluteOfSummoningDragon();
       return;
     case KISHIDO_SPIRIT:
       EffectKishidoSpirit();

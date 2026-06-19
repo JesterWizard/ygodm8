@@ -184,6 +184,7 @@ static const u8 sZaborgTheThunderMonarchName[] __attribute__((section(".append_a
 static const u8 sBottomlessShiftingSandName[] __attribute__((section(".append_assets"))) = "Bottomless Shifting Sand";
 static const u8 sFirePrincessName[] __attribute__((section(".append_assets"))) = "Fire Princess";
 static const u8 sInvaderOfTheThroneName[] __attribute__((section(".append_assets"))) = "Invader of the Throne";
+static const u8 sTheFluteOfSummoningDragonName[] __attribute__((section(".append_assets"))) = "The Flute of Summoning Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -558,6 +559,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sFirePrincessName;
   if (cardId == 0x03D7)
     return (u8 *)sInvaderOfTheThroneName;
+  if (cardId == 0x03D8)
+    return (u8 *)sTheFluteOfSummoningDragonName;
 
   return gCardNames[cardId];
 }
