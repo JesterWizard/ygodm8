@@ -22,6 +22,7 @@
 #include "jowls_of_dark_demise.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
+#include "lesser_fiend.h"
 #include "sasuke_samurai_2.h"
 
 struct AI_Command {
@@ -176,6 +177,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   ResolveDDWarriorBattleEffect();
+  ResolveLesserFiendBattleEffect();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
@@ -225,6 +227,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TheDarkDoor_MarkAttackUsed();
   CheckGraveyardAndLoserFlags();
   ResolveDDWarriorBattleEffect();
+  ResolveLesserFiendBattleEffect();
   TryUnlockHayabusaKnightForSecondAttack(attacker);
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);

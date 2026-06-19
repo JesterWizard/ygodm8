@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 177 |
-| Art ready, needs manifest | 142 |
+| In game (manifest + art) | 178 |
+| Art ready, needs manifest | 141 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **319** |
 
@@ -199,6 +199,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ROYAL_KNIGHT` | Royal Knight | `royal_knight.png` |
 | `THE_THING_IN_THE_CRATER` | The Thing in the Crater | `the_thing_in_the_crater.png` |
 | `CREATURE_SWAP` | Creature Swap | `creature_swap.png` |
+| `LESSER_FIEND` | Lesser Fiend | `lesser_fiend.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -265,7 +266,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
-- [ ] `LESSER_FIEND` — `lesser_fiend.png`
 - [ ] `LEVEL_LIMIT_AREA_A` — `level_limit_area_a.png`
 - [ ] `LEVIA_DRAGON_DAEDALUS` — `levia_dragon_daedalus.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`

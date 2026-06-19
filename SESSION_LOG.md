@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Lesser Fiend custom card
+
+**Worked on:** Added Lesser Fiend (DARK Fiend L5 2100/1000, passcode 16475472) to manifest/trunk. Battle trigger: banishes any monster destroyed by battle with Lesser Fiend via `Duel_BanishZone` (D.D. Warrior pattern — apply before GY send clears destroy flag).
+
+**Files:** `tools/card_data_manifest.json`, `include/lesser_fiend.h`, `src_custom/battle_effects/lesser_fiend.c`, `asm/ram_map.s`, `src_custom/battle_damage_hooks.c`, `src_custom/ai_attack_hooks.c`, `src_custom/code_803F02C_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/code_8041C94_hooks.c`, `src_custom/draining_shield_hooks.c`, `src_custom/call_of_the_haunted_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = LESSER_FIEND`.
+
+**Open / next:** In-game: Lesser Fiend destroys a monster by battle; confirm victim is banished (not in GY) and effect text shows.
+
+---
+
 ## 2026-06-19 — Creature Swap custom card
 
 **Worked on:** Added Creature Swap (normal spell, passcode 31036355) to manifest/trunk. Two-step player targeting picks 1 own monster then 1 opponent monster; swaps them in place via zone copy. AI gives away weakest on its board and takes player's highest-ATK monster. Simplified text omits battle-position lock.

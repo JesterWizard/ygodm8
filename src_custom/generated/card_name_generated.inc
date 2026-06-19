@@ -178,6 +178,7 @@ static const u8 sPossessedDarkSoulName[] __attribute__((section(".append_assets"
 static const u8 sRoyalKnightName[] __attribute__((section(".append_assets"))) = "Royal Knight";
 static const u8 sTheThingInTheCraterName[] __attribute__((section(".append_assets"))) = "The Thing in the Crater";
 static const u8 sCreatureSwapName[] __attribute__((section(".append_assets"))) = "Creature Swap";
+static const u8 sLesserFiendName[] __attribute__((section(".append_assets"))) = "Lesser Fiend";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -540,6 +541,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheThingInTheCraterName;
   if (cardId == 0x03D1)
     return (u8 *)sCreatureSwapName;
+  if (cardId == 0x03D2)
+    return (u8 *)sLesserFiendName;
 
   return gCardNames[cardId];
 }

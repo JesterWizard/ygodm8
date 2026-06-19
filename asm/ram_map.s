@@ -335,6 +335,9 @@ _kernel_malloc_ewram gPendingRoyalKnightDuelist, 1
 _kernel_malloc_ewram gPendingRoyalKnightPad, 1
 @ Original DEF of the monster Royal Knight destroyed in battle.
 _kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
+@ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
+_kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
+_kernel_malloc_ewram gPendingLesserFiendBanishCol, 1
 @ DUEL_PLAYER/DUEL_OPPONENT draw pending for Airknight Parshath, else 0xFF.
 _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT draw-until-7 pending for Sasuke Samurai #3, else 0xFF.

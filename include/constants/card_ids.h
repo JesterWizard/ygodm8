@@ -979,11 +979,12 @@
 #define ROYAL_KNIGHT                             0x03CF
 #define THE_THING_IN_THE_CRATER                  0x03D0
 #define CREATURE_SWAP                            0x03D1
+#define LESSER_FIEND                             0x03D2
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03D2
-#define NUM_CUSTOM_CARDS                        0x00B1
+#define NUM_TOTAL_CARDS                         0x03D3
+#define NUM_CUSTOM_CARDS                        0x00B2
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

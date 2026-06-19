@@ -34,6 +34,7 @@
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
+#include "lesser_fiend.h"
 #include "needle_burrower.h"
 #include "hyper_hammerhead.h"
 #include "des_kangaroo.h"
@@ -780,6 +781,7 @@ void sub_8044570__Replacement(void)
       ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveRoyalKnightBattleEffect();
+      ResolveLesserFiendBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
@@ -885,6 +887,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveSpiritReaperDiscardBattleEffect();
       ResolveGuardianAngelJoanBattleEffect();
       ResolveRoyalKnightBattleEffect();
+      ResolveLesserFiendBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
       ResolveSasukeSamurai3BattleEffect();
       ResolveNeedleBurrowerBattleEffect();
