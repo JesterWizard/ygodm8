@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Bottomless Shifting Sand custom card
+
+**Worked on:** Added Bottomless Shifting Sand (Continuous Trap, passcode 76532077) to manifest/trunk. Turn-start hook: at controller's turn start (opponent's end), flip if set, destroy all face-up monsters tied for highest field ATK (`Duel_GetZoneFinalAtk` + `Duel_DestroyZone`); standby self-destruct when hand ≤ 3 (ponytail: scaled from TCG 4 for 5-card hand cap). `card_in_hand_1 = BOTTOMLESS_SHIFTING_SAND`.
+
+**Files:** `tools/card_data_manifest.json`, `include/bottomless_shifting_sand.h`, `src_custom/trap_effects/bottomless_shifting_sand.c`, `src_custom/turn_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/spell_effect_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = BOTTOMLESS_SHIFTING_SAND`.
+
+**Open / next:** In-game: set trap, pass opponent's turn; confirm highest-ATK destroy and self-destruct at ≤3 hand cards.
+
+---
+
 ## 2026-06-19 — Zaborg the Thunder Monarch custom card
 
 **Worked on:** Added Zaborg the Thunder Monarch (LIGHT Thunder L5 2400/1000, passcode 51945556) to manifest/trunk. Tribute Summon trigger in `permanent_effects/zaborg_the_thunder_monarch.c`: player targets 1 field monster (excluding self) via `DUEL_CURSOR_ZABORG_THE_THUNDER_MONARCH_TARGET`; AI picks highest-ATK opponent monster; destroy via `Duel_DestroyZone`. Only fires when `GetPendingTributeSummonCardId()` matches. Fixed Spirit of the Pot of Greed manifest description (2 pages required).

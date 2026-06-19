@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `192` effects
+- `193` effects
 
 ## Tally
 
@@ -126,6 +126,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `Imperial Order` | `src_custom/trap_effects/imperial_order.c` |
 | `trap_effects` | `Imperial Order` | `src_custom/trap_effects/imperial_order.c` |
 | `trap_effects` | `Royal Decree` | `src_custom/trap_effects/royal_decree.c` |
+| `trap_effects` | `Bottomless Shifting Sand` | `src_custom/trap_effects/bottomless_shifting_sand.c` |
+| `turn_effects` | `Bottomless Shifting Sand` | `src_custom/trap_effects/bottomless_shifting_sand.c` |
 | `trap_effects` | `Blast Held by a Tribute` | `src_custom/trap_effects/blast_held_by_a_tribute.c` |
 | `trap_effects` | `Drop Off` | `src_custom/trap_effects/drop_off.c` |
 | `turn_effects` | `Deck Destruction Virus` | `src_custom/turn_effects/deck_destruction_virus.c` |

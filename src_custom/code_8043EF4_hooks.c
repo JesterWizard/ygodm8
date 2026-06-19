@@ -97,6 +97,7 @@ void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 void MarkFairyBoxJustSet(struct DuelCard *zone);
+void MarkBottomlessShiftingSandJustSet(struct DuelCard *zone);
 unsigned IsTrapTriggered(void);
 void ActivateTrapEffect(u16 lp);
 
@@ -694,6 +695,7 @@ void sub_80449D8__Replacement(void)
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
+  MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   gDuelCursor.state = 0;
   ResetCursorDestToCurrentPos();

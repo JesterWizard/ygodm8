@@ -982,11 +982,12 @@
 #define LESSER_FIEND                             0x03D2
 #define SPIRIT_OF_THE_POT_OF_GREED               0x03D3
 #define ZABORG_THE_THUNDER_MONARCH               0x03D4
+#define BOTTOMLESS_SHIFTING_SAND                 0x03D5
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03D5
-#define NUM_CUSTOM_CARDS                        0x00B4
+#define NUM_TOTAL_CARDS                         0x03D6
+#define NUM_CUSTOM_CARDS                        0x00B5
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

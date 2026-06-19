@@ -728,6 +728,10 @@ static const unsigned char sZaborgTheThunderMonarchBigArt[] __attribute__((secti
 static const unsigned short sZaborgTheThunderMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/zaborg_the_thunder_monarch.gbapal");
 static const unsigned char sZaborgTheThunderMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/zaborg_the_thunder_monarch.lz");
 
+static const unsigned char sBottomlessShiftingSandBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/bottomless_shifting_sand.huff");
+static const unsigned short sBottomlessShiftingSandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/bottomless_shifting_sand.gbapal");
+static const unsigned char sBottomlessShiftingSandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/bottomless_shifting_sand.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -911,6 +915,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03D2] = sLesserFiendBigArt,
   [0x03D3] = sSpiritOfThePotOfGreedBigArt,
   [0x03D4] = sZaborgTheThunderMonarchBigArt,
+  [0x03D5] = sBottomlessShiftingSandBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1096,6 +1101,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03D2] = sLesserFiendBigPalette,
   [0x03D3] = sSpiritOfThePotOfGreedBigPalette,
   [0x03D4] = sZaborgTheThunderMonarchBigPalette,
+  [0x03D5] = sBottomlessShiftingSandBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1281,6 +1287,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03D2] = 0,
   [0x03D3] = 0,
   [0x03D4] = 0,
+  [0x03D5] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1466,4 +1473,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03D2] = sLesserFiendMiniArt,
   [0x03D3] = sSpiritOfThePotOfGreedMiniArt,
   [0x03D4] = sZaborgTheThunderMonarchMiniArt,
+  [0x03D5] = sBottomlessShiftingSandMiniArt,
 };

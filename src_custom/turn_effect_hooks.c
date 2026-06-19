@@ -12,6 +12,7 @@
 #include "dark_snake_syndrome.h"
 #include "duel_helpers.h"
 #include "sasuke_samurai_2.h"
+#include "bottomless_shifting_sand.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -265,10 +266,12 @@ void TryActivatingTurnEffects__Replacement(void) {
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();
+  AgeBottomlessShiftingSandSetFlags();
   AgeWaveMotionCannonTurns();
   AgeFinalCountdownTurns();
   TryApplyBurningLandStandbyDamage();
   TryApplyDarkSnakeSyndromeStandbyDamage();
+  TryBottomlessShiftingSandTurnStart();
   if (IsDuelOver() == 1)
     return;
   if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {

@@ -42,6 +42,7 @@ extern void EffectBlockAttack(void);
 extern void EffectToll(void);
 extern void EffectSkullInvitation(void);
 extern void EffectCoffinSeller(void);
+extern void EffectBottomlessShiftingSand(void);
 extern void EffectRainOfMercy(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectReload(void);
@@ -240,6 +241,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case COFFIN_SELLER:
       EffectCoffinSeller();
+      return;
+    case BOTTOMLESS_SHIFTING_SAND:
+      EffectBottomlessShiftingSand();
       return;
     case RAIN_OF_MERCY:
       EffectRainOfMercy();

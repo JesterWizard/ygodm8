@@ -17744,6 +17744,35 @@
           "If this card is Tribute Summoned: Target 1 monster on the field; destroy that target."
         ]
       }
+    },
+    {
+      "card_const": "BOTTOMLESS_SHIFTING_SAND",
+      "card_name": "Bottomless Shifting Sand",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 6, 5, 3, 2, 0, 7, 7],
+      "description": {
+        "symbol": "gDescription_BottomlessShiftingSand",
+        "pages": [
+          "At the end of your opponent's turn,",
+          "destroy face-up monster(s) with the highest ATK.",
+          "Standby: destroy this if you have 3 or fewer hand cards."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BottomlessShiftingSand",
+        "pages": [
+          "Destroy the highest ATK face-up monster(s). Destroy this card if you have 3 or less cards in your hand."
+        ]
+      }
     }
   ]
 }
