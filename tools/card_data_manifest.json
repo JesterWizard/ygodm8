@@ -18205,6 +18205,35 @@
           "Target one Spell/Trap your opponent controls, destroy it, then set one Spell/Trap from your hand."
         ]
       }
+    },
+    {
+      "card_const": "ECTOPLASMER",
+      "card_name": "Ectoplasmer",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 7, 3, 4, 2, 9, 4, 2],
+      "description": {
+        "symbol": "gDescription_Ectoplasmer",
+        "pages": [
+          "Once per turn, during each player's turn start",
+          "The turn player must Tribute 1 face-up monster,",
+          "If they do, inflict damage equal to half the monster's ATK."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Ectoplasmer",
+        "pages": [
+          "The current player must tribute 1 face-up monster to inflict half its original ATK as damage."
+        ]
+      }
     }
   ]
 }

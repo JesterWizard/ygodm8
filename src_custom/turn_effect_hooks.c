@@ -16,6 +16,7 @@
 #include "dark_dust_spirit.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
+#include "ectoplasmer.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -293,6 +294,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   DestroyTrianglePowerMonstersAtEndOfTurn();
   DestroyLimiterRemovalMonstersAtEndOfTurn();
   SasukeSamurai2_ClearInactiveBackrowTrapBlock();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyEctoplasmerEndPhaseEffect();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

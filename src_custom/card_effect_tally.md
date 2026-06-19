@@ -119,6 +119,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Gravity Bind` | `src_custom/trap_effects/gravity_bind.c` |
 | `trap_effects` | `Wall of Revealing Light` | `src_custom/trap_effects/wall_of_revealing_light.c` |
 | `spell_effects` | `Nightmare Wheel` | `src_custom/spell_effects/nightmare_wheel.c` |
+| `spell_effects` | `Ectoplasmer` | `src_custom/spell_effects/ectoplasmer.c` |
+| `turn_effects` | `Ectoplasmer` | `src_custom/spell_effects/ectoplasmer.c` |
 | `trap_effects` | `World Suppression` | `src_custom/trap_effects/world_suppression.c` |
 | `trap_effects` | `Gift Of The Mystical Elf` | `src_custom/trap_effects/gift_of_the_mystical_elf.c` |
 | `trap_effects` | `Reckless Greed` | `src_custom/trap_effects/reckless_greed.c` |

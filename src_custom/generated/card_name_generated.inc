@@ -197,6 +197,7 @@ static const u8 sNightmareWheelName[] __attribute__((section(".append_assets")))
 static const u8 sMirrorWallName[] __attribute__((section(".append_assets"))) = "Mirror Wall";
 static const u8 sMajuGarzettName[] __attribute__((section(".append_assets"))) = "Maju Garzett";
 static const u8 sDustTornadoName[] __attribute__((section(".append_assets"))) = "Dust Tornado";
+static const u8 sEctoplasmerName[] __attribute__((section(".append_assets"))) = "Ectoplasmer";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -597,6 +598,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMajuGarzettName;
   if (cardId == 0x03E4)
     return (u8 *)sDustTornadoName;
+  if (cardId == 0x03E5)
+    return (u8 *)sEctoplasmerName;
 
   return gCardNames[cardId];
 }

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 196 |
-| Art ready, needs manifest | 120 |
+| In game (manifest + art) | 197 |
+| Art ready, needs manifest | 119 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -218,6 +218,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MIRROR_WALL` | Mirror Wall | `mirror_wall.png` |
 | `MAJU_GARZETT` | Maju Garzett | `maju_garzett.png` |
 | `DUST_TORNADO` | Dust Tornado | `dust_tornado.png` |
+| `ECTOPLASMER` | Ectoplasmer | `ectoplasmer.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -260,7 +261,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
-- [ ] `ECTOPLASMER` — `ectoplasmer.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`

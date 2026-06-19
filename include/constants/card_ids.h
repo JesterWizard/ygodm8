@@ -998,11 +998,12 @@
 #define MIRROR_WALL                              0x03E2
 #define MAJU_GARZETT                             0x03E3
 #define DUST_TORNADO                             0x03E4
+#define ECTOPLASMER                              0x03E5
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03E5
-#define NUM_CUSTOM_CARDS                        0x00C4
+#define NUM_TOTAL_CARDS                         0x03E6
+#define NUM_CUSTOM_CARDS                        0x00C5
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

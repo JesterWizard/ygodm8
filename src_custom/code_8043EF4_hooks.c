@@ -25,6 +25,7 @@
 #include "ring_of_destruction.h"
 #include "nightmare_wheel.h"
 #include "dust_tornado.h"
+#include "ectoplasmer.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
@@ -1077,6 +1078,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_DUST_TORNADO_TARGET:
       TrySelectDustTornadoTarget();
       break;
+    case DUEL_CURSOR_ECTOPLASMER_TARGET:
+      TrySelectEctoplasmerTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -1105,6 +1109,7 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
     case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
+    case DUEL_CURSOR_ECTOPLASMER_TARGET:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();
       break;

@@ -428,7 +428,7 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == BURNING_LAND       || cardId == LEVEL_LIMIT_AREA_B
       || cardId == VENGEFUL_BOG_SPIRIT
       || cardId == KAISER_COLOSSEUM
-      || cardId == NIGHTMARE_WHEEL
+      || cardId == NIGHTMARE_WHEEL || cardId == ECTOPLASMER
       || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT)
     return SPELL_TYPE_NORMAL;
 

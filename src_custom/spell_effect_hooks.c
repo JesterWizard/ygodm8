@@ -78,6 +78,7 @@ extern void EffectKnightsTitle(void);
 extern void EffectTheFluteOfSummoningDragon(void);
 extern void EffectKaiserColosseum(void);
 extern void EffectNightmareWheel(void);
+extern void EffectEctoplasmer(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -379,6 +380,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case DARK_SNAKE_SYNDROME:
       EffectDarkSnakeSyndrome();
+      return;
+    case ECTOPLASMER:
+      EffectEctoplasmer();
       return;
     case GRAVEKEEPERS_SERVANT:
       EffectGravekeepersServant();

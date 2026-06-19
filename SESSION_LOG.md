@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Ectoplasmer custom card
+
+**Worked on:** Added Ectoplasmer (Continuous Spell, passcode 97342942) to manifest/trunk. Effect in `spell_effects/ectoplasmer.c`: activate face-up; each turn at End Phase (GBA turn-start timing), turn player tributes 1 face-up monster via `DUEL_CURSOR_ECTOPLASMER_TARGET` (player) or AI highest-ATK pick; inflicts half original ATK to opponent via `Duel_DestroyZone` + `Duel_ChangeLp`. Negated by Imperial Order. `card_in_hand_1 = ECTOPLASMER`.
+
+**Files:** `tools/card_data_manifest.json`, `include/ectoplasmer.h`, `src_custom/spell_effects/ectoplasmer.c`, `src_custom/spell_effect_hooks.c`, `src_custom/turn_effect_hooks.c`, `src_custom/card_hooks.c`, `src_custom/code_8043EF4_hooks.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = ECTOPLASMER`.
+
+**Open / next:** In-game: set Ectoplasmer face-up with monsters on field; end turn and confirm mandatory tribute + half-ATK burn; confirm AI picks highest-ATK tribute on opponent turns.
+
+---
+
 ## 2026-06-19 — Dust Tornado custom card
 
 **Worked on:** Added Dust Tornado (Normal Trap, passcode 60082869) to manifest/trunk. Effect in `trap_effects/dust_tornado.c`: target opponent Spell/Trap, destroy target and self via `Duel_DestroyZone`; optional face-down Set from hand (B to skip). MST-style backrow targeting wired through `code_8043EF4_hooks.c`. `card_in_hand_1 = DUST_TORNADO`.
