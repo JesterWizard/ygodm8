@@ -8,8 +8,6 @@
 
 void SetDuelFieldGfx(u8 field);
 
-u8 gWorldSuppressionNegatesFieldSpells;
-
 static u8 IsVanillaTerrainFieldSpell(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_SPELL)

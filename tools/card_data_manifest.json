@@ -18176,6 +18176,35 @@
           "original ATK of its 2 Tributes."
         ]
       }
+    },
+    {
+      "card_const": "DUST_TORNADO",
+      "card_name": "Dust Tornado",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 0, 0, 8, 2, 8, 6, 9],
+      "description": {
+        "symbol": "gDescription_DustTornado",
+        "pages": [
+          "Target one Spell/Trap your opponent controls; destroy",
+          "that target, then you can Set one Spell/Trap from",
+          "your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DustTornado",
+        "pages": [
+          "Target one Spell/Trap your opponent controls, destroy it, then set one Spell/Trap from your hand."
+        ]
+      }
     }
   ]
 }

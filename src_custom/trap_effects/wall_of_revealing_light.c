@@ -5,8 +5,6 @@
 #include "royal_decree.h"
 #include "wall_of_revealing_light.h"
 
-u16 gWallOfRevealingLightAttackThreshold;
-
 static u8 ZoneIsFaceUpWallOfRevealingLight(const struct DuelCard *zone)
 {
   return zone != NULL && zone->id == WALL_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE;

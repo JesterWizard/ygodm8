@@ -254,6 +254,7 @@ static u8 SpellTrapOriginUsesRow2(u16 spellId)
 
   switch (spellId) {
   case MYSTICAL_SPACE_TYPHOON:
+  case DUST_TORNADO:
   case RIRYOKU:
   case BLOCK_ATTACK:
   case BOOK_OF_MOON:

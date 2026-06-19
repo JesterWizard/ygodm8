@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-19 — Dust Tornado custom card
+
+**Worked on:** Added Dust Tornado (Normal Trap, passcode 60082869) to manifest/trunk. Effect in `trap_effects/dust_tornado.c`: target opponent Spell/Trap, destroy target and self via `Duel_DestroyZone`; optional face-down Set from hand (B to skip). MST-style backrow targeting wired through `code_8043EF4_hooks.c`. `card_in_hand_1 = DUST_TORNADO`.
+
+**Files:** `tools/card_data_manifest.json`, `include/dust_tornado.h`, `src_custom/trap_effects/dust_tornado.c`, `src_custom/code_8043EF4_hooks.c`, `src_custom/spell_effect_hooks.c`, `src_custom/duel_helpers.c`, `configs/runtime.c`, `src_custom/card_effect_tally.md`, `src_custom/assets/cards/CARD_PROGRESS.md`, generated card includes
+
+**Outcome:** `make test-cards-build` passes. `card_in_hand_1 = DUST_TORNADO`.
+
+**Open / next:** In-game: set DT, activate with opponent S/T on field; confirm destroy + optional set from hand (B skips).
+
+---
+
 ## 2026-06-19 — Maju Garzett custom card
 
 **Worked on:** Added Maju Garzett (DARK Fiend L7, passcode 08794435) to manifest/trunk. Effect in `permanent_effects/maju_garzett.c`: on Tribute Summon, ATK becomes sum of original ATK of 2 tributes (pattern from Great Maju Garzett; ATK-only, no doubling). Wired tribute capture, placement finish, board stat overlay, AI 2-tribute path, Soul Exchange, and zone cleanup. `card_in_hand_1 = MAJU_GARZETT`.

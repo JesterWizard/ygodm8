@@ -15,6 +15,7 @@
 #include "world_suppression.h"
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
+#include "dust_tornado.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -408,6 +409,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case NIGHTMARE_WHEEL:
       EffectNightmareWheel();
+      return;
+    case DUST_TORNADO:
+      EffectDustTornado();
       return;
     case KNIGHTS_TITLE:
       EffectKnightsTitle();

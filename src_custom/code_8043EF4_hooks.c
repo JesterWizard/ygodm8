@@ -24,6 +24,7 @@
 #include "level_limit_area_b.h"
 #include "ring_of_destruction.h"
 #include "nightmare_wheel.h"
+#include "dust_tornado.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
@@ -487,6 +488,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginNightmareWheelTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsDustTornadoCard(id)) {
+    if (!FieldHasDustTornadoTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginDustTornadoTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -1058,6 +1074,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_NIGHTMARE_WHEEL_TARGET:
       TrySelectNightmareWheelTarget();
       break;
+    case DUEL_CURSOR_DUST_TORNADO_TARGET:
+      TrySelectDustTornadoTarget();
+      break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
@@ -1127,6 +1146,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_NIGHTMARE_WHEEL_TARGET:
       CancelNightmareWheelTargeting();
+      break;
+    case DUEL_CURSOR_DUST_TORNADO_TARGET:
+      CancelDustTornadoTargeting();
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();
