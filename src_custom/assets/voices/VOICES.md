@@ -64,11 +64,23 @@ Sizes:
     <tr><td>Sol Chevalsky: My Turn</td><td><code>sol_chevalsky/my_turn.wav</code></td><td><code>turn_start</code></td><td>93,912 B (91.7 KB)</td><td>10,906 B (10.7 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
     <tr><td>Sol Chevalsky: That Was</td><td><code>sol_chevalsky/that_was_nothing.wav</code></td><td><code>opponent_lp_below</code></td><td>111,308 B (108.7 KB)</td><td>12,722 B (12.4 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
     <tr><td>Sol Chevalsky: I Attack</td><td><code>sol_chevalsky/i_attack_you_with_blue_eyes_toon_dragon.wav</code></td><td><code>attack_card</code></td><td>249,992 B (244.1 KB)</td><td>29,552 B (28.9 KB)</td><td><span style="color: #3fb950">-88.2%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>5,430,976 B (5303.7 KB)</strong></td><td><strong>618,770 B (604.3 KB)</strong></td><td><strong><span style="color: #3fb950">-88.6%</span></strong></td></tr>
+    <tr><td>Mokuba: Here I Go</td><td><code>mokuba/here_i_go.wav</code></td><td><code>turn_start</code></td><td>88,124 B (86.1 KB)</td><td>10,246 B (10.0 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Mokuba: It Ain&#x27;t Over Y</td><td><code>mokuba/it_aint_over_yet.wav</code></td><td><code>opponent_lp_below</code></td><td>121,664 B (118.8 KB)</td><td>14,008 B (13.7 KB)</td><td><span style="color: #3fb950">-88.5%</span></td></tr>
+    <tr><td>Mokuba: Krokodilus Atta</td><td><code>mokuba/krokodilus_attack.wav</code></td><td><code>attack_card</code></td><td>200,012 B (195.3 KB)</td><td>23,974 B (23.4 KB)</td><td><span style="color: #3fb950">-88.0%</span></td></tr>
+    <tr><td>Para: It&#x27;s My Turn</td><td><code>para/its_my_turn.wav</code></td><td><code>turn_start</code></td><td>86,300 B (84.3 KB)</td><td>10,048 B (9.8 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Para: I Let My Guard Do</td><td><code>para/i_let_my_guard_down.wav</code></td><td><code>opponent_lp_below</code></td><td>130,234 B (127.2 KB)</td><td>15,560 B (15.2 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Para: Jirai Gumo Attack</td><td><code>para/jirai_gumo_attacks.wav</code></td><td><code>attack_card</code></td><td>155,564 B (151.9 KB)</td><td>18,794 B (18.4 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
+    <tr><td>Dox: You Don&#x27;t Know Whe</td><td><code>dox/you_dont_know_when_to_quit.wav</code></td><td><code>turn_start</code></td><td>164,060 B (160.2 KB)</td><td>19,618 B (19.2 KB)</td><td><span style="color: #3fb950">-88.0%</span></td></tr>
+    <tr><td>Dox: That the Best You </td><td><code>dox/that_the_best_you_can_do.wav</code></td><td><code>opponent_lp_below</code></td><td>152,012 B (148.4 KB)</td><td>18,134 B (17.7 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td>Dox: Jirai Gumo Attacks</td><td><code>dox/jirai_gumo_attacks.wav</code></td><td><code>attack_card</code></td><td>182,444 B (178.2 KB)</td><td>21,302 B (20.8 KB)</td><td><span style="color: #3fb950">-88.3%</span></td></tr>
+    <tr><td>Arkana: Time to Spice U</td><td><code>arkana/time_to_spice_up_this_show.wav</code></td><td><code>turn_start</code></td><td>192,716 B (188.2 KB)</td><td>23,248 B (22.7 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
+    <tr><td>Arkana: I Will Make You</td><td><code>arkana/i_will_make_you_suffer_twice_as_hard.wav</code></td><td><code>opponent_lp_below</code></td><td>202,604 B (197.9 KB)</td><td>24,536 B (24.0 KB)</td><td><span style="color: #3fb950">-87.9%</span></td></tr>
+    <tr><td>Arkana: Dark Magic Atta</td><td><code>arkana/dark_magic_attack.wav</code></td><td><code>attack_card</code></td><td>130,844 B (127.8 KB)</td><td>15,592 B (15.2 KB)</td><td><span style="color: #3fb950">-88.1%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>7,237,554 B (7067.9 KB)</strong></td><td><strong>833,830 B (814.3 KB)</strong></td><td><strong><span style="color: #3fb950">-88.5%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 39 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 51 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 

@@ -155,6 +155,54 @@
     {
       "org": 11516900,
       "wave_symbol": "CustomVoice_sol_chevalsky_3_Wave"
+    },
+    {
+      "org": 11516912,
+      "wave_symbol": "CustomVoice_mokuba_1_Wave"
+    },
+    {
+      "org": 11516924,
+      "wave_symbol": "CustomVoice_mokuba_2_Wave"
+    },
+    {
+      "org": 11516936,
+      "wave_symbol": "CustomVoice_mokuba_3_Wave"
+    },
+    {
+      "org": 11516948,
+      "wave_symbol": "CustomVoice_para_1_Wave"
+    },
+    {
+      "org": 11516960,
+      "wave_symbol": "CustomVoice_para_2_Wave"
+    },
+    {
+      "org": 11516972,
+      "wave_symbol": "CustomVoice_para_3_Wave"
+    },
+    {
+      "org": 11516984,
+      "wave_symbol": "CustomVoice_dox_1_Wave"
+    },
+    {
+      "org": 11516996,
+      "wave_symbol": "CustomVoice_dox_2_Wave"
+    },
+    {
+      "org": 11517008,
+      "wave_symbol": "CustomVoice_dox_3_Wave"
+    },
+    {
+      "org": 11517020,
+      "wave_symbol": "CustomVoice_arkana_1_Wave"
+    },
+    {
+      "org": 11517032,
+      "wave_symbol": "CustomVoice_arkana_2_Wave"
+    },
+    {
+      "org": 11517068,
+      "wave_symbol": "CustomVoice_arkana_3_Wave"
     }
   ],
   "song_patches": [
@@ -352,6 +400,66 @@
       "org": 11522524,
       "header_symbol": "CustomVoice_sol_chevalsky_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522532,
+      "header_symbol": "CustomVoice_mokuba_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522540,
+      "header_symbol": "CustomVoice_mokuba_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522548,
+      "header_symbol": "CustomVoice_mokuba_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522556,
+      "header_symbol": "CustomVoice_para_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522564,
+      "header_symbol": "CustomVoice_para_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522572,
+      "header_symbol": "CustomVoice_para_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522580,
+      "header_symbol": "CustomVoice_dox_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522588,
+      "header_symbol": "CustomVoice_dox_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522596,
+      "header_symbol": "CustomVoice_dox_3_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522604,
+      "header_symbol": "CustomVoice_arkana_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522612,
+      "header_symbol": "CustomVoice_arkana_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522620,
+      "header_symbol": "CustomVoice_arkana_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -509,6 +617,54 @@
     },
     {
       "org": 863311,
+      "mode": 3
+    },
+    {
+      "org": 863312,
+      "mode": 3
+    },
+    {
+      "org": 863313,
+      "mode": 3
+    },
+    {
+      "org": 863314,
+      "mode": 3
+    },
+    {
+      "org": 863315,
+      "mode": 3
+    },
+    {
+      "org": 863316,
+      "mode": 3
+    },
+    {
+      "org": 863317,
+      "mode": 3
+    },
+    {
+      "org": 863318,
+      "mode": 3
+    },
+    {
+      "org": 863319,
+      "mode": 3
+    },
+    {
+      "org": 863320,
+      "mode": 3
+    },
+    {
+      "org": 863321,
+      "mode": 3
+    },
+    {
+      "org": 863322,
+      "mode": 3
+    },
+    {
+      "org": 863323,
       "mode": 3
     }
   ]

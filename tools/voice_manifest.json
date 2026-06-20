@@ -376,6 +376,121 @@
       "card_id": "BLUE_EYES_TOON_DRAGON",
       "title": "Sol Chevalsky: I Attack You With Blue Eyes Toon Dragon!",
       "gain_db": 10.0
+    },
+    {
+      "clip_id": "mokuba_1",
+      "duelist": ["DUELIST_MOKUBA_013"],
+      "wav": "mokuba/here_i_go.wav",
+      "trigger": "turn_start",
+      "title": "Mokuba: Here I Go",
+      "turn_text": "Here I go.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "mokuba_2",
+      "duelist": ["DUELIST_MOKUBA_013"],
+      "wav": "mokuba/it_aint_over_yet.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Mokuba: It Ain't Over Yet",
+      "turn_text": "It ain't over yet!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "mokuba_3",
+      "duelist": ["DUELIST_MOKUBA_013"],
+      "wav": "mokuba/krokodilus_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "KROKODILUS",
+      "title": "Mokuba: Krokodilus Attack!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "para_1",
+      "duelist": ["DUELIST_PARA_039"],
+      "wav": "para/its_my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Para: It's My Turn",
+      "turn_text": "It's my turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "para_2",
+      "duelist": ["DUELIST_PARA_039"],
+      "wav": "para/i_let_my_guard_down.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Para: I Let My Guard Down",
+      "turn_text": "I let my guard down!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "para_3",
+      "duelist": ["DUELIST_PARA_039"],
+      "wav": "para/jirai_gumo_attacks.wav",
+      "trigger": "attack_card",
+      "card_id": "JIRAI_GUMO",
+      "title": "Para: Jirai Gumo Attacks!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "dox_1",
+      "duelist": ["DUELIST_ID_087"],
+      "wav": "dox/you_dont_know_when_to_quit.wav",
+      "trigger": "turn_start",
+      "title": "Dox: You Don't Know When to Quit",
+      "turn_text": "You don't know when to quit!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "dox_2",
+      "duelist": ["DUELIST_ID_087"],
+      "wav": "dox/that_the_best_you_can_do.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Dox: That the Best You Can Do",
+      "turn_text": "That the best you can do?",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "dox_3",
+      "duelist": ["DUELIST_ID_087"],
+      "wav": "dox/jirai_gumo_attacks.wav",
+      "trigger": "attack_card",
+      "card_id": "JIRAI_GUMO",
+      "title": "Dox: Jirai Gumo Attacks!",
+      "gain_db": 10.0
+    },
+
+    {
+      "clip_id": "arkana_1",
+      "duelist": ["DUELIST_ARCANA_156"],
+      "wav": "arkana/time_to_spice_up_this_show.wav",
+      "trigger": "turn_start",
+      "title": "Arkana: Time to Spice Up This Show",
+      "turn_text": "Time to spice up this show!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "arkana_2",
+      "duelist": ["DUELIST_ARCANA_156"],
+      "wav": "arkana/i_will_make_you_suffer_twice_as_hard.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Arkana: I Will Make You Suffer Twice as Hard",
+      "turn_text": "I will make you suffer twice as hard!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "arkana_3",
+      "duelist": ["DUELIST_ARCANA_156"],
+      "wav": "arkana/dark_magic_attack.wav",
+      "trigger": "attack_card",
+      "card_id": "DARK_MAGICIAN",
+      "title": "Arkana: Dark Magic Attack!",
+      "gain_db": 10.0
     }
   ]
 }

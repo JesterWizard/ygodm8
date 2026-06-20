@@ -37,6 +37,18 @@ extern struct SongHeader CustomVoice_odion_3_SongHeader;
 extern struct SongHeader CustomVoice_sol_chevalsky_1_SongHeader;
 extern struct SongHeader CustomVoice_sol_chevalsky_2_SongHeader;
 extern struct SongHeader CustomVoice_sol_chevalsky_3_SongHeader;
+extern struct SongHeader CustomVoice_mokuba_1_SongHeader;
+extern struct SongHeader CustomVoice_mokuba_2_SongHeader;
+extern struct SongHeader CustomVoice_mokuba_3_SongHeader;
+extern struct SongHeader CustomVoice_para_1_SongHeader;
+extern struct SongHeader CustomVoice_para_2_SongHeader;
+extern struct SongHeader CustomVoice_para_3_SongHeader;
+extern struct SongHeader CustomVoice_dox_1_SongHeader;
+extern struct SongHeader CustomVoice_dox_2_SongHeader;
+extern struct SongHeader CustomVoice_dox_3_SongHeader;
+extern struct SongHeader CustomVoice_arkana_1_SongHeader;
+extern struct SongHeader CustomVoice_arkana_2_SongHeader;
+extern struct SongHeader CustomVoice_arkana_3_SongHeader;
 
 static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA = {
     &CustomVoice_duke_1_SongHeader,
@@ -78,4 +90,16 @@ static const struct SongHeader * const sCustomVoiceSongHeaders[] APPEND_RODATA =
     &CustomVoice_sol_chevalsky_1_SongHeader,
     &CustomVoice_sol_chevalsky_2_SongHeader,
     &CustomVoice_sol_chevalsky_3_SongHeader,
+    &CustomVoice_mokuba_1_SongHeader,
+    &CustomVoice_mokuba_2_SongHeader,
+    &CustomVoice_mokuba_3_SongHeader,
+    &CustomVoice_para_1_SongHeader,
+    &CustomVoice_para_2_SongHeader,
+    &CustomVoice_para_3_SongHeader,
+    &CustomVoice_dox_1_SongHeader,
+    &CustomVoice_dox_2_SongHeader,
+    &CustomVoice_dox_3_SongHeader,
+    &CustomVoice_arkana_1_SongHeader,
+    &CustomVoice_arkana_2_SongHeader,
+    &CustomVoice_arkana_3_SongHeader,
 };

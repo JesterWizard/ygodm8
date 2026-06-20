@@ -76,6 +76,30 @@ extern u8 CustomVoice_sol_chevalsky_2_Wave[];
 extern u8 CustomVoice_sol_chevalsky_2_Part[];
 extern u8 CustomVoice_sol_chevalsky_3_Wave[];
 extern u8 CustomVoice_sol_chevalsky_3_Part[];
+extern u8 CustomVoice_mokuba_1_Wave[];
+extern u8 CustomVoice_mokuba_1_Part[];
+extern u8 CustomVoice_mokuba_2_Wave[];
+extern u8 CustomVoice_mokuba_2_Part[];
+extern u8 CustomVoice_mokuba_3_Wave[];
+extern u8 CustomVoice_mokuba_3_Part[];
+extern u8 CustomVoice_para_1_Wave[];
+extern u8 CustomVoice_para_1_Part[];
+extern u8 CustomVoice_para_2_Wave[];
+extern u8 CustomVoice_para_2_Part[];
+extern u8 CustomVoice_para_3_Wave[];
+extern u8 CustomVoice_para_3_Part[];
+extern u8 CustomVoice_dox_1_Wave[];
+extern u8 CustomVoice_dox_1_Part[];
+extern u8 CustomVoice_dox_2_Wave[];
+extern u8 CustomVoice_dox_2_Part[];
+extern u8 CustomVoice_dox_3_Wave[];
+extern u8 CustomVoice_dox_3_Part[];
+extern u8 CustomVoice_arkana_1_Wave[];
+extern u8 CustomVoice_arkana_1_Part[];
+extern u8 CustomVoice_arkana_2_Wave[];
+extern u8 CustomVoice_arkana_2_Part[];
+extern u8 CustomVoice_arkana_3_Wave[];
+extern u8 CustomVoice_arkana_3_Part[];
 
 struct CustomVoiceRomClip {
   const struct WaveData *dpcmWave;
@@ -122,4 +146,16 @@ static const struct CustomVoiceRomClip sCustomVoiceRomClips[] APPEND_RODATA = {
   { (const struct WaveData *)&CustomVoice_sol_chevalsky_1_Wave, CustomVoice_sol_chevalsky_1_Part },
   { (const struct WaveData *)&CustomVoice_sol_chevalsky_2_Wave, CustomVoice_sol_chevalsky_2_Part },
   { (const struct WaveData *)&CustomVoice_sol_chevalsky_3_Wave, CustomVoice_sol_chevalsky_3_Part },
+  { (const struct WaveData *)&CustomVoice_mokuba_1_Wave, CustomVoice_mokuba_1_Part },
+  { (const struct WaveData *)&CustomVoice_mokuba_2_Wave, CustomVoice_mokuba_2_Part },
+  { (const struct WaveData *)&CustomVoice_mokuba_3_Wave, CustomVoice_mokuba_3_Part },
+  { (const struct WaveData *)&CustomVoice_para_1_Wave, CustomVoice_para_1_Part },
+  { (const struct WaveData *)&CustomVoice_para_2_Wave, CustomVoice_para_2_Part },
+  { (const struct WaveData *)&CustomVoice_para_3_Wave, CustomVoice_para_3_Part },
+  { (const struct WaveData *)&CustomVoice_dox_1_Wave, CustomVoice_dox_1_Part },
+  { (const struct WaveData *)&CustomVoice_dox_2_Wave, CustomVoice_dox_2_Part },
+  { (const struct WaveData *)&CustomVoice_dox_3_Wave, CustomVoice_dox_3_Part },
+  { (const struct WaveData *)&CustomVoice_arkana_1_Wave, CustomVoice_arkana_1_Part },
+  { (const struct WaveData *)&CustomVoice_arkana_2_Wave, CustomVoice_arkana_2_Part },
+  { (const struct WaveData *)&CustomVoice_arkana_3_Wave, CustomVoice_arkana_3_Part },
 };
