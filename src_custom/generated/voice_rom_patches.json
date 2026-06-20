@@ -143,6 +143,18 @@
     {
       "org": 11516792,
       "wave_symbol": "CustomVoice_odion_3_Wave"
+    },
+    {
+      "org": 11516804,
+      "wave_symbol": "CustomVoice_sol_chevalsky_1_Wave"
+    },
+    {
+      "org": 11516828,
+      "wave_symbol": "CustomVoice_sol_chevalsky_2_Wave"
+    },
+    {
+      "org": 11516900,
+      "wave_symbol": "CustomVoice_sol_chevalsky_3_Wave"
     }
   ],
   "song_patches": [
@@ -325,6 +337,21 @@
       "org": 11522500,
       "header_symbol": "CustomVoice_odion_3_SongHeader",
       "player": 196611
+    },
+    {
+      "org": 11522508,
+      "header_symbol": "CustomVoice_sol_chevalsky_1_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522516,
+      "header_symbol": "CustomVoice_sol_chevalsky_2_SongHeader",
+      "player": 196611
+    },
+    {
+      "org": 11522524,
+      "header_symbol": "CustomVoice_sol_chevalsky_3_SongHeader",
+      "player": 196611
     }
   ],
   "mode_patches": [
@@ -470,6 +497,18 @@
     },
     {
       "org": 863308,
+      "mode": 3
+    },
+    {
+      "org": 863309,
+      "mode": 3
+    },
+    {
+      "org": 863310,
+      "mode": 3
+    },
+    {
+      "org": 863311,
       "mode": 3
     }
   ]

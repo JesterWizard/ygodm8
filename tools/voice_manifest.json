@@ -348,6 +348,34 @@
       "card_id": "MYSTICAL_BEAST_SERKET",
       "title": "Odion: Mystical Beast of Serket",
       "gain_db": 10.0
+    },
+    {
+      "clip_id": "sol_chevalsky_1",
+      "duelist": ["DUELIST_SOL_CHEVALSKY_140"],
+      "wav": "sol_chevalsky/my_turn.wav",
+      "trigger": "turn_start",
+      "title": "Sol Chevalsky: My Turn",
+      "turn_text": "My turn.",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "sol_chevalsky_2",
+      "duelist": ["DUELIST_SOL_CHEVALSKY_140"],
+      "wav": "sol_chevalsky/that_was_nothing.wav",
+      "trigger": "opponent_lp_below",
+      "lp_threshold": 3000,
+      "title": "Sol Chevalsky: That Was Nothing",
+      "turn_text": "That was nothing!",
+      "gain_db": 10.0
+    },
+    {
+      "clip_id": "sol_chevalsky_3",
+      "duelist": ["DUELIST_SOL_CHEVALSKY_140"],
+      "wav": "sol_chevalsky/i_attack_you_with_blue_eyes_toon_dragon.wav",
+      "trigger": "attack_card",
+      "card_id": "BLUE_EYES_TOON_DRAGON",
+      "title": "Sol Chevalsky: I Attack You With Blue Eyes Toon Dragon!",
+      "gain_db": 10.0
     }
   ]
 }

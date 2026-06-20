@@ -61,11 +61,14 @@ Sizes:
     <tr><td>Odion: Prepare Yours</td><td><code>odion/prepare_yourself.wav</code></td><td><code>turn_start</code></td><td>116,264 B (113.5 KB)</td><td>12,986 B (12.7 KB)</td><td><span style="color: #3fb950">-88.8%</span></td></tr>
     <tr><td>Odion: This Is Nothing</td><td><code>odion/this_is_nothing.wav</code></td><td><code>opponent_lp_below</code></td><td>154,266 B (150.7 KB)</td><td>15,790 B (15.4 KB)</td><td><span style="color: #3fb950">-89.8%</span></td></tr>
     <tr><td>Odion: Mystical Beast o</td><td><code>odion/mystical_beast_of_serket.wav</code></td><td><code>attack_card</code></td><td>155,898 B (152.2 KB)</td><td>18,232 B (17.8 KB)</td><td><span style="color: #3fb950">-88.3%</span></td></tr>
-    <tr><td colspan="3"><strong>Total</strong></td><td><strong>4,975,764 B (4859.1 KB)</strong></td><td><strong>565,590 B (552.3 KB)</strong></td><td><strong><span style="color: #3fb950">-88.6%</span></strong></td></tr>
+    <tr><td>Sol Chevalsky: My Turn</td><td><code>sol_chevalsky/my_turn.wav</code></td><td><code>turn_start</code></td><td>93,912 B (91.7 KB)</td><td>10,906 B (10.7 KB)</td><td><span style="color: #3fb950">-88.4%</span></td></tr>
+    <tr><td>Sol Chevalsky: That Was</td><td><code>sol_chevalsky/that_was_nothing.wav</code></td><td><code>opponent_lp_below</code></td><td>111,308 B (108.7 KB)</td><td>12,722 B (12.4 KB)</td><td><span style="color: #3fb950">-88.6%</span></td></tr>
+    <tr><td>Sol Chevalsky: I Attack</td><td><code>sol_chevalsky/i_attack_you_with_blue_eyes_toon_dragon.wav</code></td><td><code>attack_card</code></td><td>249,992 B (244.1 KB)</td><td>29,552 B (28.9 KB)</td><td><span style="color: #3fb950">-88.2%</span></td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>5,430,976 B (5303.7 KB)</strong></td><td><strong>618,770 B (604.3 KB)</strong></td><td><strong><span style="color: #3fb950">-88.6%</span></strong></td></tr>
   </tbody>
 </table>
 
-_Sample rate: 21024 Hz · 36 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
+_Sample rate: 21024 Hz · 39 clip(s) in [`tools/voice_manifest.json`](../../tools/voice_manifest.json)._
 
 ## Unregistered WAVs
 
