@@ -15,6 +15,20 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Skull Invitation fixes: popup-on-play and damage-timing bugs
+
+**Worked on:** Fixed two bugs in `skull_invitation.c`:
+
+1. **#114 — Popup text when card is played:** `ShouldSuppressSkullInvitationDamageOnCopy` only suppressed when copying TO a hand slot (draw/return-to-hand). When a card is played from hand to field, `CopyCard` copies the ID without clearing the source, then `ClearZone(handSlot)` triggers Skull Invitation damage because the hand slot still has the card's ID. Added suppression for hand-slot source (`Duel_ZoneIsHandSlot(src)`).
+
+2. **#113 — Damage before popup resolves:** `TryApplySkullInvitationOnFieldLeave` had no `gHideEffectText` guard, so damage could apply while the activation popup was still animating. Added the guard (same pattern as Coffin Seller).
+
+**Files:** `src_custom/trap_effects/skull_invitation.c`
+
+**Outcome:** `make test-cards-build` passes. Cards played from hand no longer trigger false 300 damage. Damage respects ongoing effect text popups.
+
+**Open / next:** —
+
 ## 2026-06-21 — Magic Cylinder fix: AI re-attack prevention (CoTH unlock leak)
 
 **Worked on:** Fixed AI re-attacking after Magic Cylinder (#108 follow-up). Root cause: `AiTryActivateTrapOnAttack` called `CallOfTheHauntedUnlockAiAttackerAfterTrap()` unconditionally after every trap effect. This function unlocks the attacking monster — the unlocking logic was meant for CoTH's AI resimulation, but it ran for all traps, undoing `LockMonsterCardsInRow()` inside `EffectMagicCylinder`.

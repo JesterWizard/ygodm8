@@ -31,7 +31,17 @@ u8 IsSkullInvitationActiveOnField(void)
 
 u8 ShouldSuppressSkullInvitationDamageOnCopy(const struct DuelCard *dst, const struct DuelCard *src)
 {
-  return GetDuelistForZone(src) != 0xFF && Duel_ZoneIsHandSlot(dst);
+  if (GetDuelistForZone(src) == 0xFF)
+    return FALSE;
+  /* Suppress when copying TO a hand slot (draw / return-to-hand): ClearZone
+     on the source zone is a copy-to-field-zone, not a GY send. */
+  if (Duel_ZoneIsHandSlot(dst))
+    return TRUE;
+  /* Suppress when copying FROM a hand slot (play card from hand to field):
+     ClearZone on the source hand slot is the placement cleanup, not a GY send. */
+  if (Duel_ZoneIsHandSlot(src))
+    return TRUE;
+  return FALSE;
 }
 
 static void ApplySkullInvitationDamage(u8 fixedDuelist)
@@ -48,6 +58,9 @@ void TryApplySkullInvitationOnFieldLeave(struct DuelCard *zone)
   gSuppressSkullInvitationDamage = FALSE;
 
   if (suppress)
+    return;
+
+  if (gHideEffectText)
     return;
 
   if (zone == NULL || zone->id == CARD_NONE)
