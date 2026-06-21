@@ -128,7 +128,7 @@ void DebugSpriteViewer(void) {
 
     DebugMenuLoadSpriteIfChanged(&shownSpriteId, sSprites[cursor].spriteId, FALSE);
     DebugMenuApplySpriteOam();
-    DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop, 0);
+    DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop, DEBUG_MENU_CURSOR_PAL_SLOT);
     LoadOam();
     DebugMenuWaitVBlank();
   }

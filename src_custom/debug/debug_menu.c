@@ -74,9 +74,9 @@ static void DebugMenuVBlank(void) {
   ((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1))();
   /* Then clobber every register the overworld just touched. */
   REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
-  REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
-  REG_BG0HOFS = 0;  REG_BG0VOFS = 0;
-  REG_BG1CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
+  REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
+  REG_BG0HOFS = 0xFFF8;  REG_BG0VOFS = 0;   /* HOFS = -8 → shift text right 8px */
+  REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
   REG_BG1HOFS = 0;  REG_BG1VOFS = 0;
   REG_BLDCNT = 0;   /* no blending */
   REG_BLDALPHA = 0;
@@ -266,7 +266,7 @@ void DebugMenuLoadGraphics(void) {
   gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16] = 0;  /* color 0 = transparent */
 
   /* Cursor palette into OBJ slot 0. */
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
+  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
 
   /* Fill sbb19 (BG0 tilemap) — all entries use palette bank 15 so color 0
    * is explicitly transparent, not black from overworld palette bank 0. */
@@ -282,9 +282,9 @@ void DebugMenuLoadGraphics(void) {
   /* Config registers: BG0 (sbb19 = text overlay, priority 1 behind art),
    * BG1 (sbb18 = sidebar art, priority 0 front). No windows, no blending. */
   REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
-  REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
-  REG_BG1CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
-  REG_BG0HOFS = 0; REG_BG0VOFS = 0;
+  REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
+  REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
+  REG_BG0HOFS = 0xFFF8; REG_BG0VOFS = 0;
   REG_BG1HOFS = 0; REG_BG1VOFS = 0;
   REG_BLDCNT = 0;
   REG_BLDALPHA = 0;
@@ -327,13 +327,13 @@ void DebugMenuDrawRoot(u8 scrollTop, u8 cursor) {
 void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow, u8 paletteNum) {
   u32 *oam = (u32 *)&gOamBuffer[oamSlot * 4];
 
-  oam[0] = (screenRow << 3) + (DEBUG_CURSOR_Y_TILES * 8) |
-           ((u32)DEBUG_CURSOR_X << 16);
+  oam[0] = ((screenRow << 3) + (DEBUG_CURSOR_Y_TILES * 8) - 4) |
+           ((u32)(DEBUG_CURSOR_X | (DEBUG_CURSOR_SIZE << 14)) << 16);
   oam[1] = 0x800 | ((paletteNum & 0xF) << 12);
 }
 
 void DebugMenuUpdateCursor(u8 screenRow) {
-  DebugMenuUpdateCursorSlot(0, screenRow, 0);
+  DebugMenuUpdateCursorSlot(0, screenRow, DEBUG_MENU_CURSOR_PAL_SLOT);
 }
 
 void DebugMenuLatchButtons(void) {

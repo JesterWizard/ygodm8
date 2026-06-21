@@ -6,7 +6,7 @@
 /* ========== Root menu ========== */
 
 #define DEBUG_ROWS 15
-#define DEBUG_CHARS 15
+#define DEBUG_CHARS 8
 #define DEBUG_ROOT_ITEMS 13
 
 /* ========== BG1 sidebar overlay ========== */
@@ -33,6 +33,7 @@
 /* Cursor positioned over the text rows. */
 #define DEBUG_CURSOR_Y_TILES 3
 #define DEBUG_CURSOR_X        0
+#define DEBUG_CURSOR_SIZE     1    /* square 16x16 (matches start menu OAM) */
 #define DEBUG_MENU_CURSOR_PAL_SLOT 15
 
 /* Text palette bank used by sub-viewers (reaction viewer, ante viewer). */
