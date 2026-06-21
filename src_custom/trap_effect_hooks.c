@@ -13,6 +13,8 @@
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
+#include "big_bang_shot.h"
+#include "riryoku.h"
 
 static u8 OriginMonsterCanBeHarmfullyTargeted(void) {
   if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_MONSTER)
@@ -75,10 +77,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_HOUSE_OF_ADHESIVE_TAPE:
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
-        gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
+        struct DuelCard *zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+        gStatMod.card = zone->id;
         gStatMod.field = gDuel.field;
-        gStatMod.stage = GetFinalStage(gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]);
+        gStatMod.stage = GetFinalStage(zone);
+        gSetFinalStatZone = NULL;
         SetFinalStat(&gStatMod);
+        ApplyBigBangShotAtkBonusToCardInfo(zone);
         ret = gCardInfo.atk <= 500;
       }
       if (ret)
@@ -87,10 +92,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_EATGABOON:
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
-        gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
+        struct DuelCard *zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+        gStatMod.card = zone->id;
         gStatMod.field = gDuel.field;
-        gStatMod.stage = GetFinalStage(gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]);
+        gStatMod.stage = GetFinalStage(zone);
+        gSetFinalStatZone = NULL;
         SetFinalStat(&gStatMod);
+        ApplyBigBangShotAtkBonusToCardInfo(zone);
         ret = gCardInfo.atk <= 1000;
       }
       if (ret)
@@ -99,10 +107,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_BEAR_TRAP:
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
-        gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
+        struct DuelCard *zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+        gStatMod.card = zone->id;
         gStatMod.field = gDuel.field;
-        gStatMod.stage = GetFinalStage(gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]);
+        gStatMod.stage = GetFinalStage(zone);
+        gSetFinalStatZone = NULL;
         SetFinalStat(&gStatMod);
+        ApplyBigBangShotAtkBonusToCardInfo(zone);
         ret = gCardInfo.atk <= 1500;
       }
       if (ret)
@@ -111,10 +122,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_INVISIBLE_WIRE:
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
-        gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
+        struct DuelCard *zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+        gStatMod.card = zone->id;
         gStatMod.field = gDuel.field;
-        gStatMod.stage = GetFinalStage(gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]);
+        gStatMod.stage = GetFinalStage(zone);
+        gSetFinalStatZone = NULL;
         SetFinalStat(&gStatMod);
+        ApplyBigBangShotAtkBonusToCardInfo(zone);
         ret = gCardInfo.atk <= 2000;
       }
       if (ret)
@@ -123,10 +137,13 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
     case TRAP_ACID_TRAP_HOLE:
       ret = OriginMonsterCanBeHarmfullyTargeted();
       if (ret) {
-        gStatMod.card = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]->id;
+        struct DuelCard *zone = gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol];
+        gStatMod.card = zone->id;
         gStatMod.field = gDuel.field;
-        gStatMod.stage = GetFinalStage(gTurnZones[gTrapEffectData.originRow][gTrapEffectData.originCol]);
+        gStatMod.stage = GetFinalStage(zone);
+        gSetFinalStatZone = NULL;
         SetFinalStat(&gStatMod);
+        ApplyBigBangShotAtkBonusToCardInfo(zone);
         ret = gCardInfo.atk <= 3000;
       }
       if (ret)

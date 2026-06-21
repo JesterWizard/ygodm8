@@ -15,6 +15,16 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Fix Eatgaboon incorrectly triggering on monsters with Big Bang Shot equipped (#117)
+
+**Worked on:** Fixed Issue #117 — Eatgaboon (and all other ATK-threshold attack-response traps) incorrectly checked the monster's ATK without including the Big Bang Shot +400 ATK bonus. Root cause: `SetFinalStat__Replacement` only applies `ApplyBigBangShotAtkBonusToCardInfo` when `gSetFinalStatZone` is set (line 607-613 of `card_hooks.c`), but `gSetFinalStatZone` was never set before the `SetFinalStat` call in the trap condition checks. Even when set by `GetFinalStage`, the `gSetFinalStatZone` path inside `SetFinalStat__Replacement` may not correctly identify the zone (since `Duel_FindFixedMonsterZone` compares `gFixedZones` pointers with the zone pointer from `gTurnZones`). Fixed by: (1) nulling `gSetFinalStatZone` before `SetFinalStat` to prevent the unreliable internal equip-bonus path, and (2) calling `ApplyBigBangShotAtkBonusToCardInfo(zone)` directly after `SetFinalStat` — matching the pattern used by `ApplyFieldZoneStatsToCardInfo`. Applied to all 5 ATK-threshold trap cases: House of Adhesive Tape (≤500), Eatgaboon (≤1000), Bear Trap (≤1500), Invisible Wire (≤2000), Acid Trap Hole (≤3000).
+
+**Files:** `src_custom/trap_effect_hooks.c`
+
+**Outcome:** `make test-cards-build` passes (ROM links cleanly). KA-2 Des Scissors (base ATK 1000) with Big Bang Shot (+400 → 1400 ATK) will no longer be wrongly targeted by Eatgaboon.
+
+**Open / next:** —
+
 ## 2026-06-21 — Fix black screen on back-to-back duels after surrender/L-victory (#112)
 
 **Worked on:** Investigated and fixed Issue #112 — black screen when starting a second duel back-to-back after the first ended via surrender or L-button victory. Traced the full duel lifecycle: `DuelMain__Replacement` → `ResetIngameDuelForRetry` → `RunDuelTurnLoop` → `FinishDuel` → script handler → overworld return. Found that `FadeDuelToBlack` (called at end of every duel) left residual display hardware state (`REG_BLDCNT=0xD4` darken blend, `REG_MOSAIC=0x0F0F` from `MosaicEffect`, BGCNT mosaic flags on BG0/BG1/BG3). Added explicit cleanup of `REG_BLDCNT`, `REG_BLDY`, and `REG_MOSAIC` in `FadeDuelToBlack` so the overworld (or next duel's init) starts from a clean hardware state.
