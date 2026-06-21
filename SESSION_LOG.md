@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Chain Energy face-down activation fix
+
+**Worked on:** Fixed bug where Chain Energy LP cost applied as soon as the card was placed face-down on the backrow, before the player manually activated it. `IsChainEnergyActiveOnField()` was only checking `id == CHAIN_ENERGY` without verifying `isFaceUp`. Now reuses `IsActivatedChainEnergyZone()` which checks both ID and face-up state — matching the pattern used by Toll (`IsActivatedTollZone`).
+
+**Files:** `src_custom/spell_effects/chain_energy.c`
+
+**Outcome:** `make test-cards-build` passes. In-game: setting Chain Energy face-down should no longer trigger LP cost; only flipping it face-up (activation) applies the cost.
+
+**Open / next:** —
+
+---
+
 ## 2026-06-19 — Big Bang Shot custom card
 
 **Worked on:** Added Big Bang Shot (Equip Spell, passcode 61127349) to manifest/trunk. Dynamic equip in `spell_effects/big_bang_shot.c`: +400 ATK via `gBigBangShotTargetCol[6]` EWRAM (3 slots per duelist, spell+target col encoding), applied in `ApplyBigBangShotAtkBonusToCardInfo`; cleared when spell leaves field. Piercing vs Defense in `battle_effects/big_bang_shot.c`; banish equipped monster when spell leaves. Fixed −100 ATK (`appliedStages=0`, exclude from stage delta). Fixed equip not leaving on monster destroy (`BigBangShot_OnTargetZoneLeaving`). Fixed piercing without defender destroy: `Duel_ChangeLp` re-ran `HandleAtkAndLifePointsAction` (cleared GY flags, changed action id); piercing now mutates `gDuelLifePoints` directly and re-asserts GY flag when ATK>DEF.

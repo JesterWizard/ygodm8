@@ -21,7 +21,7 @@ u8 IsChainEnergyActiveOnField(void)
 
   for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
     for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-      if (gFixedZones[row][i]->id == CHAIN_ENERGY)
+      if (IsActivatedChainEnergyZone(gFixedZones[row][i]))
         return TRUE;
     }
   }
