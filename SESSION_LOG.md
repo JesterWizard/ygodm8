@@ -15,7 +15,15 @@ Format for new entries (newest first):
 
 ---
 
-## 2026-06-21 — Skull Invitation fixes: popup-on-play and damage-timing bugs
+## 2026-06-21 — Fix black screen on back-to-back duels after surrender/L-victory (#112)
+
+**Worked on:** Investigated and fixed Issue #112 — black screen when starting a second duel back-to-back after the first ended via surrender or L-button victory. Traced the full duel lifecycle: `DuelMain__Replacement` → `ResetIngameDuelForRetry` → `RunDuelTurnLoop` → `FinishDuel` → script handler → overworld return. Found that `FadeDuelToBlack` (called at end of every duel) left residual display hardware state (`REG_BLDCNT=0xD4` darken blend, `REG_MOSAIC=0x0F0F` from `MosaicEffect`, BGCNT mosaic flags on BG0/BG1/BG3). Added explicit cleanup of `REG_BLDCNT`, `REG_BLDY`, and `REG_MOSAIC` in `FadeDuelToBlack` so the overworld (or next duel's init) starts from a clean hardware state.
+
+**Files:** `src_custom/duel_main_hooks.c`
+
+**Outcome:** ROM builds cleanly. 140/144 tests pass (4 pre-existing golden mismatches, unrelated). The defensive register cleanup ensures no blend/mosaic state leaks between matches on surrender or L-victory paths.
+
+**Open / next:** If the bug persists, test on hardware with the ROM from this build. Could also need clearing `REG_WIN0H`/`REG_WIN0V`/`REG_WIN1H`/`REG_WIN1V` window registers which the duel uses but `OverworldLoadGraphics` doesn't explicitly reset.
 
 **Worked on:** Fixed two bugs in `skull_invitation.c`:
 
@@ -1005,3 +1013,23 @@ Guard the unlock call with `gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNT
 - In-game confirm Hourglass field + battle ATK match after activate + attack
 - Consider migrating other stage-boost effects (Thousand Energy, Triangle Power) to `Duel_RefreshMonsterStatOverlays`
 - Broader cleanup: more effects on `duel_helpers` instead of manual LP loops
+
+## 2026-06-21 — VBlank interrupt guard for back-to-back match black screen
+
+**Worked on:**
+- Bug: black screen on back-to-back matches after surrender or L-button victory
+- CPU stuck at `WaitForVBlank` poll loop (0x8008234–0x800823C) — VBlank software flag never set
+- Previous fix (clear `REG_BLDCNT`/`BLDY`/`MOSAIC` in `FadeDuelToBlack`) was insufficient
+- Root cause: VBlank interrupt enable (IE bit 0) can be lost across the match-to-match transition, causing `WaitForVBlank` to spin forever
+- Added `EnsureVBlankInterruptEnabled()` guard that explicitly re-enables IE bit 0 before every `WaitForVBlank` call in the critical path: `FadeDuelToBlack`, `MosaicEffect` entry, and `PromptDuelRetry`
+
+**Files:**
+- `src_custom/duel_main_hooks.c` — `EnsureVBlankInterruptEnabled` helper, invoked at three call sites
+
+**Outcome:**
+- `make test-cards-build` passes
+- `make test-host`: 4 pre-existing unrelated golden-test failures only
+- Fix needs in-game confirmation on hardware/emulator
+
+**Open / next:**
+- In-game confirmation that the black screen is gone after surrender → second duel, L-win → second duel

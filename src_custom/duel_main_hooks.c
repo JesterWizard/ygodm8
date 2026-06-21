@@ -125,6 +125,19 @@ static void ShowDuelRetryPromptText(void) {
   sub_8041014();
 }
 
+static void EnsureVBlankInterruptEnabled(void) {
+  /* ponytail: Defensive re-enable of the VBlank IRQ before WaitForVBlank polls.
+   * The WaitForVBlank loop (0x8008234-0x800823C) spins on a software flag that
+   * the VBlank ISR sets via sub_8008208.  If the VBlank interrupt enable (IE bit 0)
+   * got lost between matches — e.g. the ISR never restored it because a callback
+   * or m4aSoundVSync() hung — the flag never fires and we black-screen forever.
+   * Upgrade: if per-match IRQ routing is ever configurable, stash & restore the
+   * full IE value instead of blindly setting bit 0. */
+  REG_IME = 0;
+  REG_IE |= 1;
+  REG_IME = 1;
+}
+
 static bool8 PromptDuelRetry(void) {
   u8 selectYes = TRUE;
   u8 keepProcessing = TRUE;
@@ -156,6 +169,7 @@ static bool8 PromptDuelRetry(void) {
       keepProcessing = FALSE;
     }
 
+    EnsureVBlankInterruptEnabled();
     RestoreDuelPromptTextboxDisplay();
     WaitForVBlank();
     sub_8041014();
@@ -207,9 +221,13 @@ static void ResetIngameDuelForRetry(void) {
   PlayMusic(gDuelData.duelMusic);
 }
 
+
+
 static void FadeDuelToBlack(void) {
   u16 i, j;
   struct PlttData *pltt;
+
+  EnsureVBlankInterruptEnabled();
 
   for (i = 0; i < 32; i++) {
     for (j = 0; j < 512; j++) {
@@ -222,8 +240,18 @@ static void FadeDuelToBlack(void) {
         pltt->b--;
     }
     SetVBlankCallback(LoadPalettes);
+    EnsureVBlankInterruptEnabled();
     WaitForVBlank();
   }
+  /* ponytail: Clear residual display hardware state so nothing leaks between
+   * matches.  MosaicEffect leaves REG_MOSAIC=0x0F0F and BGCNT mosaic flags on
+   * BG0/BG1/BG3; the duel blend (0xD4) is never explicitly cleared on the loss
+   * path.  The overworld may mask these, but a fresh match needs a clean slate.
+   * Upgrade: if per-match BLDCNT/MOSAIC values are ever configurable, move
+   * these to the beginning of ResetIngameDuelForRetry instead. */
+  REG_BLDCNT = 0;
+  REG_BLDY = 0;
+  REG_MOSAIC = 0;
 }
 
 static void AdvanceDuelRandomState(void) {
@@ -413,6 +441,7 @@ void DuelMain__Replacement(void) {
   do {
     retryDuel = FALSE;
     if (fadedIn == FALSE) {
+      EnsureVBlankInterruptEnabled();
       MosaicEffect();
       fadedIn = TRUE;
     }
