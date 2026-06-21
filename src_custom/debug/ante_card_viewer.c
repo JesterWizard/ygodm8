@@ -172,6 +172,8 @@ static u16 BuildDuelistAnteCardList(u16 *cards, u8 *isNormalAnte, u16 duelistId)
 static void ApplyAnteTextPalettes(void) {
   CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xE0], 32);
   gPaletteBuffer[0xE1] = ANTE_GOLD_TEXT_COLOR;
+  /* ponytail: text fg at index 9 for shared palette layout. */
+  gPaletteBuffer[0xE0 + DEBUG_BG1_TEXT_PAL_INDEX] = ANTE_GOLD_TEXT_COLOR;
   LoadPalettes();
 }
 

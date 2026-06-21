@@ -18,18 +18,18 @@ extern u16 gStartMenuCursorPalette[];
 static const u8 sDebugMenuBg[] APPEND_ASSET = INCBIN_U8("src_custom/assets/menus/debug_menu.lz");
 static const u16 sDebugMenuBgPal[] APPEND_ASSET = INCBIN_U16("src_custom/assets/menus/debug_menu.gbapal");
 
-static const u8 sText_RootMusic[] APPEND_RODATA = "Music      ";
-static const u8 sText_RootPortrait[] APPEND_RODATA = "Portrait   ";
-static const u8 sText_RootSprite[] APPEND_RODATA = "Sprite     ";
-static const u8 sText_RootReaction[] APPEND_RODATA = "Reaction   ";
-static const u8 sText_RootGraphic[] APPEND_RODATA = "Graphic    ";
-static const u8 sText_RootVoice[] APPEND_RODATA = "Voice      ";
-static const u8 sText_RootMatchSetter[] APPEND_RODATA = "Match Set  ";
-static const u8 sText_RootMap[] APPEND_RODATA = "Map Tel    ";
-static const u8 sText_RootScene[] APPEND_RODATA = "Scene      ";
-static const u8 sText_RootAiMode[] APPEND_RODATA = "AI Mode    ";
-static const u8 sText_RootRuleset[] APPEND_RODATA = "Ruleset    ";
-static const u8 sText_RootDeckPreset[] APPEND_RODATA = "Decks      ";
+static const u8 sText_RootMusic[] APPEND_RODATA        = "Music";
+static const u8 sText_RootPortrait[] APPEND_RODATA     = "Portrait";
+static const u8 sText_RootSprite[] APPEND_RODATA       = "Sprite";
+static const u8 sText_RootReaction[] APPEND_RODATA     = "Reaction";
+static const u8 sText_RootGraphic[] APPEND_RODATA      = "Graphic";
+static const u8 sText_RootVoice[] APPEND_RODATA        = "Voice";
+static const u8 sText_RootMatchSetter[] APPEND_RODATA  = "Match Set";
+static const u8 sText_RootMap[] APPEND_RODATA          = "Map Tel";
+static const u8 sText_RootScene[] APPEND_RODATA        = "Scene";
+static const u8 sText_RootAiMode[] APPEND_RODATA       = "AI Mode";
+static const u8 sText_RootRuleset[] APPEND_RODATA      = "Ruleset";
+static const u8 sText_RootDeckPreset[] APPEND_RODATA   = "Decks";
 static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "Save Anywhr";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
@@ -70,10 +70,11 @@ void SetVBlankCallback(void (*)(void));
 /* ------------------------------------------------------------------ */
 
 static void DebugMenuVBlank(void) {
-  /* Let overworld VBlank run first — it re-enables BG0 + sets scroll. */
+  /* Let overworld VBlank run first — sets ALL HOFS/VOFS from globals + OAM. */
   ((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1))();
-  /* Then clobber every register the overworld just touched. */
-  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
+  /* Then clobber only BG0/BG1 to debug menu layout.
+   * BG2/BG3 are left alone — overworld VBlank already handled them. */
+  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_OBJWIN_ON;
   REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
   REG_BG0HOFS = 0xFFF8;  REG_BG0VOFS = 0;   /* HOFS = -8 → shift text right 8px */
   REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
@@ -111,13 +112,30 @@ static void DebugMenuSetupSidebarTilemap(void) {
 /* ------------------------------------------------------------------ */
 
 void DebugMenuCopyLine(u8 row, const u8 *text) {
-  u8 i;
+  u8 i, j;
   u8 *glyphDest = (u8 *)gBgVram.cbb1 + (DEBUG_BG1_TEXT_TILE_BASE + row * DEBUG_CHARS) * 32;
   u16 tileBase = DEBUG_BG1_TEXT_TILE_BASE + row * DEBUG_CHARS;
   u16 palMask = DEBUG_BG1_TEXT_PAL_BANK << 12;
 
-  /* Render small font glyphs into cbb1 after sidebar art. */
+  /* Render small font glyphs into cbb1 after sidebar art.
+   * Font converts 1bpp→4bpp with foreground at palette index 1, but
+   * sidebar art uses indices 1..8 in the shared bank.  Shift font
+   * pixels from 1 to DEBUG_BG1_TEXT_PAL_INDEX below. */
   CopyStringTilesToVRAMBuffer(glyphDest, text, 0x001);
+
+  /* ponytail: shift font pixel index 1 → DEBUG_BG1_TEXT_PAL_INDEX
+   * so text doesn't steal sidebar color 1 in the shared palette bank. */
+  for (j = 0; j < DEBUG_CHARS; j++) {
+    u8 *tile = (u8 *)gBgVram.cbb1 + (tileBase + j) * 32;
+    for (i = 0; i < 32; i++) {
+      u8 p = tile[i];
+      u8 lo = p & 0xF;
+      u8 hi = p >> 4;
+      if (lo == 1) lo = DEBUG_BG1_TEXT_PAL_INDEX;
+      if (hi == 1) hi = DEBUG_BG1_TEXT_PAL_INDEX;
+      tile[i] = lo | (hi << 4);
+    }
+  }
 
   for (i = 0; i < DEBUG_CHARS; i++) {
     if (text[i] == '\0')
@@ -131,12 +149,18 @@ void DebugMenuCopyLine(u8 row, const u8 *text) {
 }
 
 void DebugMenuRestoreTextPalettes(void) {
-  CpuCopy16(gUnk_8079424, &gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16], 32);
+  gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = gUnk_8079424[1];
 }
 
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum) {
   u8 i;
   u16 palMask = (paletteNum & 0xF) << 12;
+
+  /* Ensure the target bank has text foreground at index 9
+   * (font pixels use index 9 in the shared palette layout). */
+  gPaletteBuffer[(paletteNum & 0xF) * 16 + DEBUG_BG1_TEXT_PAL_INDEX] =
+      gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX];
+  LoadPalettes();
 
   for (i = 0; i < DEBUG_CHARS; i++)
     gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + i] =
@@ -258,12 +282,14 @@ void DebugMenuLoadGraphics(void) {
   /* Decompress cursor tiles into cbb4. */
   LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
 
-  /* Sidebar palette -> buffer bank 14 -> LoadPalettes pushes to HW. */
-  CpuCopy16(sDebugMenuBgPal, gPaletteBuffer + DEBUG_SIDEBAR_PAL_BANK * 16, 32);
-
-  /* Text palette into bank 15. Force entry 0 transparent. */
-  CpuCopy16(gUnk_8079424, &gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16], 32);
-  gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16] = 0;  /* color 0 = transparent */
+  /* Sidebar + text → ONE palette bank (15).  Layout:
+   * [0]=0 (transparent), [1..8]=sidebar colors, [9]=text foreground.
+   * ponytail: only 1 bank clobbered = fewer overworld tiles corrupted. */
+  CpuFill16(0, gPaletteBuffer + DEBUG_SIDEBAR_PAL_BANK * 16, 32);
+  CpuCopy16(sDebugMenuBgPal, gPaletteBuffer + DEBUG_SIDEBAR_PAL_BANK * 16, 18);  /* 9 sidebar entries */
+  gPaletteBuffer[DEBUG_SIDEBAR_PAL_BANK * 16] = 0;   /* ensure index 0 transparent */
+  /* Copy text foreground (gUnk_8079424[1]) to index 9 in the shared bank. */
+  gPaletteBuffer[DEBUG_SIDEBAR_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = gUnk_8079424[1];
 
   /* Cursor palette into OBJ slot 0. */
   CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
@@ -281,11 +307,12 @@ void DebugMenuLoadGraphics(void) {
 
   /* Config registers: BG0 (sbb19 = text overlay, priority 1 behind art),
    * BG1 (sbb18 = sidebar art, priority 0 front). No windows, no blending. */
-  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
+  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_OBJWIN_ON;
   REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
   REG_BG1CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
   REG_BG0HOFS = 0xFFF8; REG_BG0VOFS = 0;
   REG_BG1HOFS = 0; REG_BG1VOFS = 0;
+  /* ponytail: BG2/BG3 left alone — overworld init already set their CNT. */
   REG_BLDCNT = 0;
   REG_BLDALPHA = 0;
 

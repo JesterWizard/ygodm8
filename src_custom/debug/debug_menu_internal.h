@@ -22,13 +22,17 @@
 #define DEBUG_SIDEBAR_COLS 10        /* 80 px = 10 tiles */
 #define DEBUG_SIDEBAR_COL_START 2    /* screen column 1 (leaves col 0 blank for 16px offset) */
 #define DEBUG_SIDEBAR_TILES 200      /* 10*20 tiles */
-#define DEBUG_SIDEBAR_PAL_BANK 14
+#define DEBUG_SIDEBAR_PAL_BANK DEBUG_BG1_TEXT_PAL_BANK
 
 /* Text glyph tiles stored in cbb1 after sidebar art.
  * 5 rows x 10 chars = 50 tiles at tile index 200+. */
 #define DEBUG_BG1_TEXT_TILE_BASE 200
 #define DEBUG_BG1_TEXT_ROW       3
-#define DEBUG_BG1_TEXT_PAL_BANK  15
+/* Sidebar / text share one palette bank so only 1 overworld bank gets
+ * clobbered instead of 2.  Text glyph pixels are shifted from index 1
+ * to DEBUG_BG1_TEXT_PAL_INDEX post-render in DebugMenuCopyLine. */
+#define DEBUG_BG1_TEXT_PAL_BANK  0
+#define DEBUG_BG1_TEXT_PAL_INDEX 9    /* free slot in bank 15 after sidebar colors */
 
 /* Cursor positioned over the text rows. */
 #define DEBUG_CURSOR_Y_TILES 3
