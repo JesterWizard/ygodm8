@@ -15,6 +15,16 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Solar Flare Dragon effect-before-popup fix
+
+**Worked on:** Fixed bug where Solar Flare Dragon's Standby Phase 500 damage applied before the popup text finished. `ActivateSolarFlareDragonTurnEffect` called `Duel_ChangeLp` first, then `Duel_ShowEffectTextTyped`. Replaced with `Duel_ChangeLpWithPrefaceText` which shows popup first, then applies damage (same pattern as Des Koala fix).
+
+**Files:** `src_custom/turn_effects/solar_flare_dragon.c`
+
+**Outcome:** `make test-cards-build` passes. Effect text now appears before LP change.
+
+**Open / next:** —
+
 ## 2026-06-21 — Des Koala effect-before-popup fix
 
 **Worked on:** Fixed bug where Des Koala's FLIP effect applied LP damage before showing the effect text popup. `Duel_ChangeLp` ran first (player saw LP change with no explanation), then `Duel_ShowEffectTextTyped` ran afterward. Replaced with `Duel_ChangeLpWithPrefaceText` which shows the popup first, then applies damage.

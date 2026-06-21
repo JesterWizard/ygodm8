@@ -19,8 +19,6 @@ unsigned char ShouldActivateSolarFlareDragonTurnEffect(void)
 
 void ActivateSolarFlareDragonTurnEffect(void)
 {
-  if (Duel_ChangeLp(1 - WhoseTurn(), -SOLAR_FLARE_DRAGON_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Duel_ShowEffectTextTyped(SOLAR_FLARE_DRAGON, 9);
+  Duel_ChangeLpWithPrefaceText(1 - WhoseTurn(), -(s32)SOLAR_FLARE_DRAGON_DAMAGE,
+                               SOLAR_FLARE_DRAGON, 9, TRUE);
 }
