@@ -15,6 +15,18 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Burning Land standby damage direction fix
+
+**Worked on:** Fixed bug where Burning Land's Standby Phase 500 damage always hit the human player instead of alternating between turn players. Root cause: `Duel_ChangeLp(WhoseTurn(), ...)` passed fixed-side duelist constants (`DUEL_PLAYER`/`DUEL_OPPONENT` = 0/1) but `ApplyLpDelta` interprets the parameter as turn-relative (`ACTIVE_DUELIST`/`INACTIVE_DUELIST`). On the opponent's turn, `DUEL_OPPONENT` (1) numerically equals `INACTIVE_DUELIST` (1) instead of `ACTIVE_DUELIST` (0), so the conversion formula mapped it back to the player side. Changed to `Duel_ChangeLp(ACTIVE_DUELIST, ...)`.
+
+**Files:** `src_custom/spell_effects/burning_land.c`
+
+**Outcome:** `make test-cards-build` passes. Burning Land now damages the current turn player on both turns.
+
+**Open / next:** —
+
+---
+
 ## 2026-06-21 — Chain Energy face-down activation fix
 
 **Worked on:** Fixed bug where Chain Energy LP cost applied as soon as the card was placed face-down on the backrow, before the player manually activated it. `IsChainEnergyActiveOnField()` was only checking `id == CHAIN_ENERGY` without verifying `isFaceUp`. Now reuses `IsActivatedChainEnergyZone()` which checks both ID and face-up state — matching the pattern used by Toll (`IsActivatedTollZone`).

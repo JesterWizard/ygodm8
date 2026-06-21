@@ -26,6 +26,7 @@
 #include "kaiser_colosseum.h"
 #include "wall_of_revealing_light.h"
 #include "nightmare_wheel.h"
+#include "burning_land.h"
 
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -88,6 +89,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
     return TRUE;
   if (IsActivatedKishidoSpiritZone(zone))
     return TRUE;
+  if (IsActivatedBurningLandZone(zone))
+    return TRUE;
   if (IsActiveDynamicEquipSpellZone(zone))
     return TRUE;
 
@@ -113,6 +116,11 @@ void DuelActivatedBackrow_SelfCheck(void)
     __builtin_trap();
 
   zone.id = KISHIDO_SPIRIT;
+  if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
+    __builtin_trap();
+
+  zone.id = BURNING_LAND;
+  zone.isFaceUp = TRUE;
   if (!Duel_ZoneIsNonSelectableActivatedBackrow(&zone))
     __builtin_trap();
 

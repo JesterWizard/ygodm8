@@ -107,10 +107,10 @@ void TryApplyBurningLandStandbyDamage(void)
   if (!IsBurningLandActiveOnField() || IsDuelOver() == TRUE)
     return;
 
-  if (Duel_ChangeLp(WhoseTurn(), -BURNING_LAND_STANDBY_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
   Duel_ShowEffectText(BURNING_LAND);
+
+  if (Duel_ChangeLp(ACTIVE_DUELIST, -BURNING_LAND_STANDBY_DAMAGE, TRUE) == DUEL_ACTION_DUEL_OVER)
+    return;
 }
 
 APPEND_TEXT void EffectBurningLand(void)
