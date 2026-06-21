@@ -26,7 +26,7 @@
 
 ## Introduction
 
-The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It reuses the start-menu background and cursor art, but lives in custom code under `src_custom/debug/`.
+The debug menu is a developer-facing overlay for testing game systems outside normal story flow. It renders as an **80px-wide sidebar on BG1** over the right edge of the overworld (screen columns 20-29), keeping the overworld map visible behind it. The sidebar art comes from `src_custom/assets/menus/debug_menu.png`. Text and cursor render on top of the sidebar. A hardware window (`WIN0`) clips BG1 to the sidebar region so the overworld BG layers show through on the left.
 
 Viewers and tools implemented today:
 
@@ -317,12 +317,12 @@ Menu text is **not** drawn with `CopyStringTilesToVRAMBuffer` for the full strin
 | Constant | Value | Role |
 |----------|-------|------|
 | `DEBUG_CHARS` | 16 | Characters per menu row |
-| `DEBUG_ROWS` | 3 | Visible list rows (music and portrait viewers) |
-| `DEBUG_TEXT_TILE` | `0x81` | First char tile in BG charblock 3 (`sbb18`) |
+| `DEBUG_ROWS` | 5 | Visible list rows |
+| `DEBUG_TEXT_TILE_BASE` | 200 | First text glyph tile index in BG1 charblock (cbb1); sidebar art uses tiles 0-199 |
 | `DEBUG_TEXT_STRIDE` | `DEBUG_TEXT_BLOCKS * 4 * 32` | Bytes between row buffers in char VRAM |
-| `DEBUG_LINE0_TILE` | Same as `DEBUG_TEXT_TILE` | First tile index referenced by the tilemap |
+| `DEBUG_LINE0_TILE` | Same as `DEBUG_TEXT_TILE_BASE` | First tile index referenced by the tilemap |
 
-Tilemap entries are written to **BG2** screenbase `sbb1F` (visible layer), at map rows `0/1`, `2/3`, `4/5` (two map rows per menu line), starting at column 0. Each character uses one 2×2 tile block; two half-width glyphs share that block (standard `0x901` packing).
+Tilemap entries are written to **BG1** screenbase `sbb18` (screenblock 18), starting at screen **column 20**, rows `0/1`, `2/3`, `4/5`, etc. (two map rows per menu line). Each character uses one 2×2 tile block; two half-width glyphs share that block (standard `0x901` packing).
 
 If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG_TEXT_BLOCKS` so row buffers do not overlap (otherwise trailing characters from one line bleed into the next).
 
@@ -359,10 +359,11 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 | Portrait cleanup | `DebugMenuClearPortraitObjStash` in `debug_menu_portrait.c` | Clears OBJ tile/palette stash on exit |
 | Portrait IDs | `enum Portrait` in `include/overworld.h` | Source of truth for `PORTRAIT_*` constants |
 | Portrait loader | `LoadPortraitGfx` in `src_custom/portrait_hooks.c` | Shared with dialogue `PORTRAIT()` |
-| Text draw | `DebugMenuCopyLine` in `debug_menu.c` | Per-glyph layout into charblock 3 |
-| Row palette | `DebugMenuSetLinePalette` in `debug_menu.c` | Per-row BG palette bank on `sbb1F` (used by ante card viewer) |
-| Tilemap setup | `DebugMenuSetupTextRows` in `debug_menu.c` | Maps 2×2 blocks on `sbb1F` for each row |
-| Graphics load | `DebugMenuLoadGraphics`, `DebugMenuLoadTilemaps` in `debug_menu.c` | Start-menu tiles + custom text rows |
+| Text draw | `DebugMenuCopyLine` in `debug_menu.c` | Per-glyph layout into BG1 charblock (cbb1) |
+| Row palette | `DebugMenuSetLinePalette` in `debug_menu.c` | Per-row BG palette bank on `sbb18` (used by ante card viewer) |
+| Tilemap setup | `DebugMenuSetupTextRows` in `debug_menu.c` | Maps 2×2 blocks on `sbb18` (sidebar columns 20-29) |
+| Graphics load | `DebugMenuLoadGraphics` in `debug_menu.c` | Sidebar art (`debug_menu.png`) into cbb1, text rows, cursor tiles |
+| Sidebar asset | `src_custom/assets/menus/debug_menu.png` | 80x160 indexed PNG - sidebar panel art |
 | Field overlay | `overworld_debug_overlay_hooks.c` in `src_custom/debug/` | Player tile/pixel coordinate HUD |
 | Public API | `include/debug_menu.h` | Declares `DebugMenuMain`, `DebugMenuClearPortraitObjStash` |
 | Music IDs | `include/constants/music_ids.h` | Source of truth for `MUSIC_*` constants |
@@ -386,5 +387,6 @@ If you increase `DEBUG_CHARS`, `DEBUG_TEXT_STRIDE` must stay derived from `DEBUG
 - Portrait preview shares OBJ tile/palette scratch with dialogue portraits (`cbb4 + 0x2000`, palette `0xC0..0xFF`); leaving the menu clears this stash.
 - Sprite preview uses a separate OBJ stash (`cbb4 + 0x3400`, palette slot 13); leaving the menu clears this stash.
 - Reaction preview uses OBJ stash `cbb4 + 0x4200` and shares entity OBJ palettes 0–11; the eye cursor must use OBJ palette slot 15 in the reaction viewer (see [reaction-viewer.md](reaction-viewer.md)).
-- Menu text shares BG2 charblock 3 with start-menu-derived assets; large future changes to tile indices need VRAM/layout checks in No$gba or similar.
+- Menu renders as a BG1 sidebar overlay on the overworld (columns 20-29, 80px wide). Overworld BG0/BG2/BG3 layers remain active behind the sidebar.
+- Overworld OBJ sprites (player, NPCs) may show incorrect colors while the debug menu is open because the cursor palette overwrites OBJ palette slot 0.
 - Debug menu is only reachable from the overworld field input hook today, not from main menu or duel.

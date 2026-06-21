@@ -3,54 +3,81 @@
 
 #include "global.h"
 
-#define DEBUG_ROWS 5
-#define DEBUG_CHARS 16
-#define DEBUG_BG2_SCROLL_TILES_VANILLA (-7)
-#define DEBUG_BG2_TEXT_NUDGE_TILES 1
-#define DEBUG_BG2_SCROLL_TILES \
-  (DEBUG_BG2_SCROLL_TILES_VANILLA + DEBUG_BG2_TEXT_NUDGE_TILES)
-#define DEBUG_BG2VOFS_FROM_TILES(scrollTiles) ((u16)(s16)((scrollTiles) * 8))
-#define DEBUG_BG2VOFS DEBUG_BG2VOFS_FROM_TILES(DEBUG_BG2_SCROLL_TILES)
-#define DEBUG_CURSOR_Y_TILES (0 - DEBUG_BG2_SCROLL_TILES)
-#define DEBUG_TEXT_BLOCKS ((DEBUG_CHARS + 1) / 2)
-#define DEBUG_TEXT_TILE 0x81
-#define DEBUG_TEXT_OFFSET (DEBUG_TEXT_TILE * 32)
-#define DEBUG_TEXT_STRIDE (DEBUG_TEXT_BLOCKS * 4 * 32)
-#define DEBUG_LINE0_TILE DEBUG_TEXT_TILE
-#define DEBUG_LINE_STRIDE (DEBUG_TEXT_STRIDE / 32)
+/* ========== Root menu ========== */
+
+#define DEBUG_ROWS 15
+#define DEBUG_CHARS 15
 #define DEBUG_ROOT_ITEMS 13
-#define DEBUG_WIN0H 0x20D8
-#define DEBUG_BG1_ROWS 20
-#define DEBUG_BG1_ROW_BYTES 60
-#define DEBUG_BG1_VRAM ((void *)0x0600E800)
-#define DEBUG_BG2_VRAM ((void *)BG_SCREEN_ADDR(31))
-#define THUMB_VBLANK_WIN 0x08005C38
-#define THUMB_VBLANK_NOWIN 0x08005C54
 
-#define DEBUG_VIEW_ROOT 0
-#define DEBUG_VIEW_MUSIC 1
-#define DEBUG_VIEW_PORTRAIT 2
-#define DEBUG_VIEW_SPRITE 3
-#define DEBUG_VIEW_REACTION 4
-#define DEBUG_VIEW_VOICE 5
-#define DEBUG_VIEW_MATCH_SETTER 6
-#define DEBUG_VIEW_AI_MODE 7
-#define DEBUG_VIEW_GRAPHIC 8
-#define DEBUG_VIEW_MAP 9
-#define DEBUG_VIEW_SCENE 10
-#define DEBUG_VIEW_DECK_PRESET 11
-#define DEBUG_VIEW_RULESET 12
+/* ========== BG1 sidebar overlay ========== */
 
-struct DebugMenuDeckEntry {
-  const u16 *cards;
-  u8 title[24];
-};
+/* BG1 is unused on the overworld; we use it as a sidebar overlay.
+ * cbb1 holds sidebar art tiles (1-200) + text glyph tiles (200+).
+ * sbb18 is the BG1 tilemap (sidebar art only).
+ * sbb19 is the BG0 tilemap (text only). */
+#define DEBUG_BG1_CBB 1
+#define DEBUG_BG1_SBB 18
+#define DEBUG_BG0_SBB 19
+
+#define DEBUG_SIDEBAR_COLS 10        /* 80 px = 10 tiles */
+#define DEBUG_SIDEBAR_COL_START 2    /* screen column 1 (leaves col 0 blank for 16px offset) */
+#define DEBUG_SIDEBAR_TILES 200      /* 10*20 tiles */
+#define DEBUG_SIDEBAR_PAL_BANK 14
+
+/* Text glyph tiles stored in cbb1 after sidebar art.
+ * 5 rows x 10 chars = 50 tiles at tile index 200+. */
+#define DEBUG_BG1_TEXT_TILE_BASE 200
+#define DEBUG_BG1_TEXT_ROW       3
+#define DEBUG_BG1_TEXT_PAL_BANK  15
+
+/* Cursor positioned over the text rows. */
+#define DEBUG_CURSOR_Y_TILES 3
+#define DEBUG_CURSOR_X        0
+#define DEBUG_MENU_CURSOR_PAL_SLOT 15
+
+/* Text palette bank used by sub-viewers (reaction viewer, ante viewer). */
+#define DEBUG_MENU_TEXT_PAL DEBUG_BG1_TEXT_PAL_BANK
+
+/* Window 0 clips BG1 to columns 0-9.
+ * REG_WIN0H = (X2 << 8) | X1  (pixel coordinates)
+ * X1=0, X2=80 → 80px = 10 tiles */
+#define DEBUG_WIN0H ((88 << 8) | 0)
+#define DEBUG_WIN0V ((160 << 8) | 0)
+
+/* Overworld VBlank (sub_804F1E4) — keeps overworld rendering. */
+#define THUMB_VBLANK_OVERWORLD 0x0804F1E4
+
+/* ========== OAM slot allocation ========== */
 
 #define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 #define DEBUG_SPRITE_OAM_SLOT 1
 #define DEBUG_SPRITE_FRAME_DOWN_IDLE 0
 /* OBJ slot 0 is overwritten by entity palettes; keep the eye cursor on slot 15. */
 #define DEBUG_MENU_CURSOR_PAL_SLOT 15
+
+/* ========== View IDs ========== */
+
+#define DEBUG_VIEW_ROOT 0
+#define DEBUG_VIEW_MUSIC 1
+#define DEBUG_VIEW_PORTRAIT 2
+#define DEBUG_VIEW_SPRITE 3
+#define DEBUG_VIEW_REACTION 4
+#define DEBUG_VIEW_GRAPHIC 5
+#define DEBUG_VIEW_VOICE 6
+#define DEBUG_VIEW_MATCH_SETTER 7
+#define DEBUG_VIEW_AI_MODE 8
+#define DEBUG_VIEW_GRAPHIC2 9
+#define DEBUG_VIEW_MAP 10
+#define DEBUG_VIEW_SCENE 11
+#define DEBUG_VIEW_DECK_PRESET 12
+#define DEBUG_VIEW_RULESET 13
+
+/* ========== Data entry structs ========== */
+
+struct DebugMenuDeckEntry {
+  const u16 *cards;
+  u8 title[24];
+};
 
 struct DebugMenuMusicEntry {
   u16 musicId;
@@ -94,6 +121,8 @@ struct DebugMenuSceneEntry {
   u8 title[20];
 };
 
+/* ========== Function declarations ========== */
+
 void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view);
 void DebugMenuLoadGraphics(void);
 void DebugMenuWaitVBlank(void);
@@ -109,8 +138,6 @@ void DebugMenuFormatTitleRow(u8 *out, const u8 *title);
 void DebugMenuCopyLine(u8 row, const u8 *text);
 void DebugMenuRestoreTextPalettes(void);
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
-
-#define DEBUG_MENU_TEXT_PAL 15
 
 extern const u8 gDebugMenuBlankLine[];
 

@@ -5,25 +5,32 @@
 #include "debug_menu_internal.h"
 #include "match_setter.h"
 #include "debug_save_anywhere.h"
+#include "text.h"
 
 extern const u16 gOverworldEntityPalettes[];
 
-void DebugMenuClearPortraitObjStash(void);
-void DebugMenuClearSpriteObjStash(void);
+/* ponytail: sidebar art replaces start-menu bg.  Cursor tiles still come from
+ * the vanilla start menu (small OBJ sprite) — not worth a custom cursor.
+ * ponytail: R button toggles BG0 (text) visibility in the root menu. */
+extern u8 gStartMenuCursorTiles[];
+extern u16 gStartMenuCursorPalette[];
 
-static const u8 sText_RootMusic[] APPEND_RODATA = "$0Music Viewer  ";
-static const u8 sText_RootPortrait[] APPEND_RODATA = "$0Portrait Viewer";
-static const u8 sText_RootSprite[] APPEND_RODATA = "$0Sprite Viewer  ";
-static const u8 sText_RootReaction[] APPEND_RODATA = "$0Reaction Viewer";
-static const u8 sText_RootGraphic[] APPEND_RODATA = "$0Graphic Viewer  ";
-static const u8 sText_RootVoice[] APPEND_RODATA = "$0Voice Viewer   ";
-static const u8 sText_RootMatchSetter[] APPEND_RODATA = "$0Match Setter   ";
-static const u8 sText_RootMap[] APPEND_RODATA = "$0Map Teleport    ";
-static const u8 sText_RootScene[] APPEND_RODATA = "$0Scene Viewer    ";
-static const u8 sText_RootAiMode[] APPEND_RODATA = "$0AI Mode         ";
-static const u8 sText_RootRuleset[] APPEND_RODATA = "$0Ruleset         ";
-static const u8 sText_RootDeckPreset[] APPEND_RODATA = "$0Deck Presets    ";
-static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "$0Save Anywhere   ";
+static const u8 sDebugMenuBg[] APPEND_ASSET = INCBIN_U8("src_custom/assets/menus/debug_menu.lz");
+static const u16 sDebugMenuBgPal[] APPEND_ASSET = INCBIN_U16("src_custom/assets/menus/debug_menu.gbapal");
+
+static const u8 sText_RootMusic[] APPEND_RODATA = "Music      ";
+static const u8 sText_RootPortrait[] APPEND_RODATA = "Portrait   ";
+static const u8 sText_RootSprite[] APPEND_RODATA = "Sprite     ";
+static const u8 sText_RootReaction[] APPEND_RODATA = "Reaction   ";
+static const u8 sText_RootGraphic[] APPEND_RODATA = "Graphic    ";
+static const u8 sText_RootVoice[] APPEND_RODATA = "Voice      ";
+static const u8 sText_RootMatchSetter[] APPEND_RODATA = "Match Set  ";
+static const u8 sText_RootMap[] APPEND_RODATA = "Map Tel    ";
+static const u8 sText_RootScene[] APPEND_RODATA = "Scene      ";
+static const u8 sText_RootAiMode[] APPEND_RODATA = "AI Mode    ";
+static const u8 sText_RootRuleset[] APPEND_RODATA = "Ruleset    ";
+static const u8 sText_RootDeckPreset[] APPEND_RODATA = "Decks      ";
+static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "Save Anywhr";
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
     sText_RootPortrait,
@@ -39,17 +46,9 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootDeckPreset,
     sText_RootSaveAnywhere,
 };
-const u8 gDebugMenuBlankLine[] APPEND_RODATA = "$0              ";
+const u8 gDebugMenuBlankLine[] APPEND_RODATA = "          ";
 
-extern u8 gStartMenuBgTiles[];
-extern u8 gStartMenuCursorTiles[];
-extern u16 gStartMenuBgPalette[];
-extern u16 gStartMenuCursorPalette[];
 extern u16 gUnk_8079424[];
-extern u16 gUnk_8079444[][30];
-extern u16 gUnk_80798F4[][30];
-extern u16 gUnk_8079CB4[][30];
-extern u16 gUnk_807A164[][30];
 extern u16 gOamBuffer[];
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
@@ -57,27 +56,34 @@ extern u16 gRepeatedOrNewButtons;
 extern vu8 gRepeatedButtonsCounter;
 extern u8 gInputRepeatTimer;
 
-void ClearGraphicsBuffers(void);
 void InitButtonMaps(void);
+void LoadObjVRAM(void);
+void LoadPalettes(void);
+void LoadBgOffsets(void);
+void LoadOam(void);
+void SetVBlankCallback(void (*)(void));
 
-static void DebugMenuUploadBg(void);
-static void DebugMenuUpload(void);
-
-static void DebugMenuApplyBg2(void) {
-  gBG2HOFS = 0xFFB0 + 28;
-  gBG2VOFS = DEBUG_BG2VOFS;
-  LoadBgOffsets();
-}
+/* ------------------------------------------------------------------ */
+/*  VBlank — keep the overworld rendering via sub_804F1E4              */
+/*  ponytail: preserve upper bytes of WININ/WINOUT (WIN1 / OBJWIN)    */
+/*  so we don't break the overworld textbox window.                   */
+/* ------------------------------------------------------------------ */
 
 static void DebugMenuVBlank(void) {
-  ((void (*)(void))(THUMB_VBLANK_WIN | 1))();
-  DebugMenuApplyBg2();
-  REG_WIN0H = DEBUG_WIN0H;
+  /* Let overworld VBlank run first — it re-enables BG0 + sets scroll. */
+  ((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1))();
+  /* Then clobber every register the overworld just touched. */
+  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
+  REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
+  REG_BG0HOFS = 0;  REG_BG0VOFS = 0;
+  REG_BG1CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
+  REG_BG1HOFS = 0;  REG_BG1VOFS = 0;
+  REG_BLDCNT = 0;   /* no blending */
+  REG_BLDALPHA = 0;
 }
 
 void DebugMenuVBlankNoWin(void) {
-  ((void (*)(void))(THUMB_VBLANK_NOWIN | 1))();
-  DebugMenuApplyBg2();
+  ((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1))();
 }
 
 void DebugMenuWaitVBlank(void) {
@@ -85,123 +91,110 @@ void DebugMenuWaitVBlank(void) {
   WaitForVBlank();
 }
 
-static void DebugMenuSetupTextRows(void) {
-  u8 line, block;
+/* ------------------------------------------------------------------ */
+/*  BG1 sidebar tilemap setup (columns 0-9)                           */
+/* ------------------------------------------------------------------ */
 
-  for (line = 0; line < DEBUG_ROWS; line++) {
-    u16 base = DEBUG_LINE0_TILE + line * DEBUG_LINE_STRIDE;
-    u8 row = line * 2;
+static void DebugMenuSetupSidebarTilemap(void) {
+  u8 i, j;
 
-    for (block = 0; block < DEBUG_TEXT_BLOCKS; block++) {
-      u8 col = block * 2;
-      u16 tile = base + block * 4;
-
-      gBgVram.sbb1F[row][col] = 0xF000 | ((tile + 0) & 0x3FF);
-      gBgVram.sbb1F[row][col + 1] = 0xF000 | ((tile + 1) & 0x3FF);
-      gBgVram.sbb1F[row + 1][col] = 0xF000 | ((tile + 2) & 0x3FF);
-      gBgVram.sbb1F[row + 1][col + 1] = 0xF000 | ((tile + 3) & 0x3FF);
+  for (i = 0; i < 20; i++) {
+    for (j = 0; j < DEBUG_SIDEBAR_COLS; j++) {
+      gBgVram.sbb18[i][DEBUG_SIDEBAR_COL_START + j] =
+          (i * DEBUG_SIDEBAR_COLS + j + 1) | (DEBUG_SIDEBAR_PAL_BANK << 12);
     }
   }
 }
 
-static void DebugMenuLoadTilemaps(void) {
-  u8 i;
-
-  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
-  for (i = 0; i < DEBUG_BG1_ROWS; i++) {
-    DmaCopy16(3, gUnk_80798F4[i], gBgVram.sbb1F[i], DEBUG_BG1_ROW_BYTES);
-    DmaCopy16(3, gUnk_8079CB4[i], gBgVram.sbb1D[i], DEBUG_BG1_ROW_BYTES);
-    DmaCopy16(3, gUnk_807A164[i], gBgVram.sbb1C[i], DEBUG_BG1_ROW_BYTES);
-  }
-  DebugMenuSetupTextRows();
-  CpuCopy16(gStartMenuBgPalette, gPaletteBuffer, 32);
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
-}
-
-static void DebugMenuUploadBg(void) {
-  LoadCharblock2();
-  LoadCharblock3();
-  LoadPalettes();
-  CpuCopy32(gBgVram.sbb1D, DEBUG_BG1_VRAM, DEBUG_BG1_ROWS * DEBUG_BG1_ROW_BYTES);
-  CpuCopy32(gBgVram.sbb1F, DEBUG_BG2_VRAM, DEBUG_BG1_ROWS * DEBUG_BG1_ROW_BYTES);
-}
-
-static void DebugMenuUpload(void) {
-  DebugMenuUploadBg();
-  LoadCharblock4();
-}
-
-static u16 DebugMenuReadGlyphArg(const u8 **textPtr) {
-  const u8 *text = *textPtr;
-  u16 glyph;
-
-  if (*text == '\0' || *text == '$') {
-    glyph = gUnk_8E00E30[0][0] << 8 | gUnk_8E00E30[0][1];
-  } else if (*text <= 127) {
-    glyph = gUnk_8E00E30[*text - 32][0] << 8 | gUnk_8E00E30[*text - 32][1];
-    text++;
-  } else {
-    glyph = text[0] << 8 | text[1];
-    text += 2;
-  }
-
-  *textPtr = text;
-  return (glyph >> 8) | (glyph << 8);
-}
+/* ------------------------------------------------------------------ */
+/*  BG1 text rendering — small overworld font in cbb1 (tiles 200+)    */
+/* ------------------------------------------------------------------ */
 
 void DebugMenuCopyLine(u8 row, const u8 *text) {
   u8 i;
-  u8 *dest = (u8 *)gBgVram.sbb18 + DEBUG_TEXT_OFFSET + row * DEBUG_TEXT_STRIDE;
+  u8 *glyphDest = (u8 *)gBgVram.cbb1 + (DEBUG_BG1_TEXT_TILE_BASE + row * DEBUG_CHARS) * 32;
+  u16 tileBase = DEBUG_BG1_TEXT_TILE_BASE + row * DEBUG_CHARS;
+  u16 palMask = DEBUG_BG1_TEXT_PAL_BANK << 12;
 
-  text = GetCurrentLanguageString(text);
-  for (i = 0; i < DEBUG_CHARS; i++)
-    sub_8020968(dest + (i / 2 * 4 + (i & 1)) * 32, DebugMenuReadGlyphArg(&text), 0x901);
+  /* Render small font glyphs into cbb1 after sidebar art. */
+  CopyStringTilesToVRAMBuffer(glyphDest, text, 0x001);
+
+  for (i = 0; i < DEBUG_CHARS; i++) {
+    if (text[i] == '\0')
+      break;
+    gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + i] =
+        palMask | (tileBase + i);
+  }
+  for (; i < DEBUG_CHARS; i++)
+    gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + i] =
+        palMask | 0;
 }
 
 void DebugMenuRestoreTextPalettes(void) {
-  CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xF0], 32);
+  CpuCopy16(gUnk_8079424, &gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16], 32);
 }
 
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum) {
-  u8 block;
-  u16 base = DEBUG_LINE0_TILE + row * DEBUG_LINE_STRIDE;
-  u8 mapRow = row * 2;
+  u8 i;
   u16 palMask = (paletteNum & 0xF) << 12;
 
-  for (block = 0; block < DEBUG_TEXT_BLOCKS; block++) {
-    u8 col = block * 2;
-    u16 tile = base + block * 4;
-
-    gBgVram.sbb1F[mapRow][col] = palMask | ((tile + 0) & 0x3FF);
-    gBgVram.sbb1F[mapRow][col + 1] = palMask | ((tile + 1) & 0x3FF);
-    gBgVram.sbb1F[mapRow + 1][col] = palMask | ((tile + 2) & 0x3FF);
-    gBgVram.sbb1F[mapRow + 1][col + 1] = palMask | ((tile + 3) & 0x3FF);
-  }
+  for (i = 0; i < DEBUG_CHARS; i++)
+    gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + i] =
+        (gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + i] & 0x0FFF) | palMask;
 }
 
 void DebugMenuFormatListRow(u8 *out, const u8 *title, bool8 selected) {
   u8 i, t = 0;
 
-  out[0] = '$';
-  out[1] = '0';
-  out[2] = selected ? '>' : ' ';
+  out[0] = selected ? '>' : ' ';
   for (i = 1; i < DEBUG_CHARS; i++)
-    out[2 + i] = title[t] ? title[t++] : ' ';
-  out[2 + DEBUG_CHARS] = '\0';
+    out[i] = title[t] ? title[t++] : ' ';
+  out[DEBUG_CHARS] = '\0';
 }
 
 void DebugMenuFormatTitleRow(u8 *out, const u8 *title) {
   u8 i, t = 0;
 
-  out[0] = '$';
-  out[1] = '0';
   for (i = 0; i < DEBUG_CHARS; i++)
-    out[2 + i] = title[t] ? title[t++] : ' ';
-  out[2 + DEBUG_CHARS] = '\0';
+    out[i] = title[t] ? title[t++] : ' ';
+  out[DEBUG_CHARS] = '\0';
 }
 
+/* ------------------------------------------------------------------ */
+/*  Text rows setup — clear to blank tile before drawing              */
+/* ------------------------------------------------------------------ */
+
+static void DebugMenuSetupTextRows(void) {
+  u8 row, col;
+  u16 palMask = DEBUG_BG1_TEXT_PAL_BANK << 12;
+
+  for (row = 0; row < DEBUG_ROWS; row++) {
+    for (col = 0; col < DEBUG_CHARS; col++)
+      gBgVram.sbb19[DEBUG_BG1_TEXT_ROW + row][DEBUG_SIDEBAR_COL_START + col] = palMask | 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Upload helpers                                                    */
+/* ------------------------------------------------------------------ */
+
+/* Upload BG1 charblock + tilemaps to real VRAM.
+   ponytail: cbb1 upload covers both sidebar art and text glyphs.
+   sbb18 = BG1 tilemap -> VRAM 0x06009000 (SB 18).
+   sbb19 = BG0 tilemap -> VRAM 0x06009800 (SB 19).
+   Screen blocks are 0x800 bytes each: SB n = 0x06000000 + n*0x800. */
+static void DebugMenuUploadBg1(void) {
+  CpuCopy32(gBgVram.cbb1, (void *)0x06004000, 0x4000);
+  CpuCopy32(gBgVram.sbb18, (void *)0x06009000, 0x800);
+  CpuCopy32(gBgVram.sbb19, (void *)0x06009800, 0x800);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Redraw                                                            */
+/* ------------------------------------------------------------------ */
+
 void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
-  DebugMenuLoadTilemaps();
+  DebugMenuSetupTextRows();
   switch (view) {
   case DEBUG_VIEW_MUSIC:
     DebugMenuDrawMusic(scrollTop, marker);
@@ -243,46 +236,99 @@ void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
   }
-  if (view == DEBUG_VIEW_PORTRAIT || view == DEBUG_VIEW_SPRITE ||
-      view == DEBUG_VIEW_REACTION || view == DEBUG_VIEW_MATCH_SETTER)
-    DebugMenuUploadBg();
-  else
-    DebugMenuUpload();
+  DebugMenuUploadBg1();
+  LoadPalettes();
 }
 
-void DebugMenuLoadGraphics(void) {
-  u8 i;
+/* ------------------------------------------------------------------ */
+/*  Graphics load                                                     */
+/* ------------------------------------------------------------------ */
 
-  ClearGraphicsBuffers();
-  LoadOam();
+void DebugMenuLoadGraphics(void) {
+  s16 i;
+  u8 r, c;
+
+  /* Decompress sidebar art into cbb1 buffer, shift tile 0 blank,
+   * then upload to VRAM via CpuCopy32. */
+  LZ77UnCompWram(sDebugMenuBg, gBgVram.cbb1);
+  for (i = DEBUG_SIDEBAR_TILES - 1; i >= 0; i--)
+    CpuCopy32(gBgVram.cbb1 + i * 32, gBgVram.cbb1 + (i + 1) * 32, 32);
+  CpuFill16(0, gBgVram.cbb1, 32);
+
+  /* Decompress cursor tiles into cbb4. */
+  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
+
+  /* Sidebar palette -> buffer bank 14 -> LoadPalettes pushes to HW. */
+  CpuCopy16(sDebugMenuBgPal, gPaletteBuffer + DEBUG_SIDEBAR_PAL_BANK * 16, 32);
+
+  /* Text palette into bank 15. Force entry 0 transparent. */
+  CpuCopy16(gUnk_8079424, &gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16], 32);
+  gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16] = 0;  /* color 0 = transparent */
+
+  /* Cursor palette into OBJ slot 0. */
+  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
+
+  /* Fill sbb19 (BG0 tilemap) — all entries use palette bank 15 so color 0
+   * is explicitly transparent, not black from overworld palette bank 0. */
+  CpuFill16(DEBUG_BG1_TEXT_PAL_BANK << 12, gBgVram.sbb19, sizeof(gBgVram.sbb19));
+
+  /* Fill sbb18 tilemap with correct tile indices. */
+  CpuFill16(0, gBgVram.sbb18, sizeof(gBgVram.sbb18));
+  for (r = 0; r < 20; r++)
+    for (c = 0; c < DEBUG_SIDEBAR_COLS; c++)
+      gBgVram.sbb18[r][DEBUG_SIDEBAR_COL_START + c] =
+          (r * DEBUG_SIDEBAR_COLS + c + 1) | (DEBUG_SIDEBAR_PAL_BANK << 12);
+
+  /* Config registers: BG0 (sbb19 = text overlay, priority 1 behind art),
+   * BG1 (sbb18 = sidebar art, priority 0 front). No windows, no blending. */
+  REG_DISPCNT = DISPCNT_BG0_ON | DISPCNT_BG1_ON | DISPCNT_OBJ_ON;
+  REG_BG0CNT = BGCNT_PRIORITY(1) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG0_SBB);
+  REG_BG1CNT = BGCNT_PRIORITY(0) | BGCNT_16COLOR | BGCNT_CHARBASE(DEBUG_BG1_CBB) | BGCNT_SCREENBASE(DEBUG_BG1_SBB);
+  REG_BG0HOFS = 0; REG_BG0VOFS = 0;
+  REG_BG1HOFS = 0; REG_BG1VOFS = 0;
+  REG_BLDCNT = 0;
+  REG_BLDALPHA = 0;
+
+  /* Upload buffers to real VRAM, push palette to HW. */
+  CpuCopy32(gBgVram.cbb1, (void *)0x06004000, 0x4000);
+  CpuCopy32(gBgVram.sbb18, (void *)0x06009000, 0x800);
+  CpuCopy32(gBgVram.sbb19, (void *)0x06009800, 0x800);
   LoadPalettes();
-  LoadVRAM();
-  DisableDisplay();
-  LZ77UnCompWram(gStartMenuBgTiles, gBgVram.cbb0);
-  for (i = 0; i < DEBUG_BG1_ROWS; i++)
-    DmaCopy16(3, gUnk_8079444[i], gBgVram.sbb1E[i], DEBUG_BG1_ROW_BYTES);
-  CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xF0], 32);
-  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
+
   SetVBlankCallback(DebugMenuVBlank);
-  LoadBgVRAM();
-  DebugMenuUpload();
+  LoadObjVRAM();
   DebugMenuVBlank();
-  REG_WIN0H = DEBUG_WIN0H;
   DebugMenuWaitVBlank();
 }
 
-void DebugMenuLoadReactionObjPalettes(void) {
-  CpuCopy16(gOverworldEntityPalettes, gPaletteBuffer + 256, 0x180);
-  CpuCopy16(gStartMenuCursorPalette,
-            gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
-  LoadPalettes();
+/* ------------------------------------------------------------------ */
+/*  Draw root                                                         */
+/* ------------------------------------------------------------------ */
+
+void DebugMenuDrawRoot(u8 scrollTop, u8 cursor) {
+  u8 row;
+
+  (void)cursor;
+
+  for (row = 0; row < DEBUG_ROWS; row++) {
+    u8 index = scrollTop + row;
+
+    if (index < DEBUG_ROOT_ITEMS)
+      DebugMenuCopyLine(row, sRootLabels[index]);
+    else
+      DebugMenuCopyLine(row, gDebugMenuBlankLine);
+  }
 }
+
+/* ------------------------------------------------------------------ */
+/*  Cursor / input helpers                                            */
+/* ------------------------------------------------------------------ */
 
 void DebugMenuUpdateCursorSlot(u8 oamSlot, u8 screenRow, u8 paletteNum) {
   u32 *oam = (u32 *)&gOamBuffer[oamSlot * 4];
 
-  oam[0] = (screenRow << 4) + (DEBUG_CURSOR_Y_TILES * 8) |
-           ((u32)(0x4040 - 28) << 16);
+  oam[0] = (screenRow << 3) + (DEBUG_CURSOR_Y_TILES * 8) |
+           ((u32)DEBUG_CURSOR_X << 16);
   oam[1] = 0x800 | ((paletteNum & 0xF) << 12);
 }
 
@@ -309,28 +355,20 @@ u16 DebugMenuButtons(void) {
   return gNewButtons | (gRepeatedOrNewButtons & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT));
 }
 
-void DebugMenuDrawRoot(u8 scrollTop, u8 cursor) {
-  u8 row;
-
-  (void)cursor;
-
-  for (row = 0; row < DEBUG_ROWS; row++) {
-    u8 index = scrollTop + row;
-
-    if (index < DEBUG_ROOT_ITEMS)
-      DebugMenuCopyLine(row, sRootLabels[index]);
-    else
-      DebugMenuCopyLine(row, gDebugMenuBlankLine);
-  }
-}
+/* ------------------------------------------------------------------ */
+/*  Root menu loop                                                    */
+/* ------------------------------------------------------------------ */
 
 static void DebugMenuRoot(void) {
   u8 cursor = 0, scrollTop = 0;
 
   DebugMenuLatchButtons();
+  DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);
   while (1) {
     u16 buttons = DebugMenuButtons();
 
+    if (buttons & R_BUTTON)
+      REG_DISPCNT ^= DISPCNT_BG0_ON;
     if (buttons & B_BUTTON)
       break;
     if (buttons & DPAD_UP && cursor != 0) {
@@ -390,6 +428,10 @@ static void DebugMenuRoot(void) {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/*  Entry / exit                                                      */
+/* ------------------------------------------------------------------ */
+
 extern u8 gDebugMenuMapViewerInitialLocation;
 extern u8 gDebugMenuPendingSceneActive;
 
@@ -399,15 +441,20 @@ void DebugMenuMain(void) {
   gDebugMenuMapViewerInitialLocation = 0xFF;
   gDebugMenuPendingSceneActive = 0xFF;
   gDebugMenuPendingSaveAnywhere = FALSE;
-  FadeOutMusic(1);
   DebugMenuLoadGraphics();
   DebugMenuLatchButtons();
-  PlayMusic(MUSIC_DECK_ADJUSTMENT_MENU);
   DebugMenuRoot();
-  PlayMusic(SFX_CANCEL);
   DebugMenuWaitRelease(B_BUTTON);
   DebugMenuClearPortraitObjStash();
   DebugMenuClearSpriteObjStash();
-  FadeOutMusic(1);
-  DisableDisplay();
+  /* Restore overworld VBlank + disable debug menu BG layers + windows. */
+  REG_DISPCNT &= ~(DISPCNT_BG1_ON | DISPCNT_BG0_ON);
+  SetVBlankCallback((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1));
+}
+
+void DebugMenuLoadReactionObjPalettes(void) {
+  CpuCopy16(gOverworldEntityPalettes, gPaletteBuffer + 256, 0x180);
+  CpuCopy16(gStartMenuCursorPalette,
+            gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  LoadPalettes();
 }

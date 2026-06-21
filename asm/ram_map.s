@@ -413,6 +413,8 @@ _kernel_malloc_ewram_array gMajuGarzettTributeAtk, 0x2
 _kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 @ Ring of Destruction: opponent monster row changed this action; fire after permanent scan.
 _kernel_malloc_ewram gRingOfDestructionPending, 1
+@ Debug menu: saved BG0CNT to restore overworld BG0 on exit (no flash storage needed).
+_kernel_malloc_ewram gSavedDebugMenuBg0Cnt, 2
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

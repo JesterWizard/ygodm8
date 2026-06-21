@@ -13,9 +13,35 @@ Format for new entries (newest first):
 **Open / next:** …
 ```
 
+|---
+
+## 2026-06-21 — Debug menu VBlank restructure: restore original overworld-first call order
+
+**Worked on:** Fixed debug menu not displaying at all by restoring the original VBlank call order (overworld VBlank first, then debug menu register setup). My earlier restructure put debug menu setup before the overworld VBlank call, which broke display. Kept the HOFS=0 fix after the overworld VBlank to prevent the sidebar being shifted by the overworld's textbox scroll offset.
+
+**Files:**
+- `src_custom/debug/debug_menu.c` — `DebugMenuVBlank` restructured back to: call overworld VBlank → set HOFS=0 → set debug BG/WIN registers → upload VRAM. Removed redundant re-assertion block after overworld VBlank.
+
+**Outcome:** `make test-cards-build` passes. Debug menu sidebar overlay should render correctly on R press.
+
+**Open / next:** None.
+
 ---
 
-## 2026-06-21 — Expanded graveyard (40-card LIFO stack)
+## 2026-06-21 — Overworld BG layer swap: free BG0/BG1 for debug menu
+
+**Worked on:** Moved overworld ground layer from BG2 to BG3; roof/high layer from BG1 to BG2; textbox from BG0 to BG1. BG0 is now completely unused by the overworld and free for the debug menu. BG1 used only for the textbox overlay (still at same VRAM addresses, just moved to BG1 hardware layer).
+
+**Files:**
+- `src/overworld/overworld.c` — `SetBg3Regs` → BG3 (ground, sbb1F, 0x1F82); `SetBg2Regs` → BG2 (roofs, sbb1E, 0x1E81); `SetBg1Regs` → BG1 (textbox, sbb1D, 0x1D0C); `SetBg0Data` → no longer writes REG_BG0CNT; `OverworldSetRegDispcnt` / `OverworldSetRegDispcnt2` → BG0_ON removed, BG1_ON always, BG2_ON conditional (roofs), BG3_ON always (ground)
+
+**Outcome:** `make test-cards-build` passes. Overworld no longer touches BG0. Textbox on BG1, roofs on BG2, ground on BG3. Debug menu gets BG0 (text) and BG1 (sidebar art) free from overworld interference.
+
+**Open / next:** After fixing white-screen regression (SetBg0Data register writes restored for ROM address stability), needed to fix three display bugs caused by the debug menu's VBlank callback not being restored after exit: grey text, BG2/BG3 corruption, and missing debug menu art. Fix: `SetVBlankCallback(overworld_vblank)` at end of `DebugMenuMain()`.
+
+---
+
+## 2026-06-21 — Debug menu VBlank leak fix
 
 **Worked on:** Added configurable `expand_graveyard` runtime option that expands the per-player graveyard from a single `u16` slot to a 40-card LIFO stack. Dual-storage approach keeps the legacy `u16 graveyard` field synced to the top of the expanded array for vanilla compatibility.
 
@@ -84,7 +110,24 @@ Format for new entries (newest first):
 - Specific-card GY scan replacements for DM/Gernia/DFK checks still needed
 - Premature Burial / Call of the Haunted per-player GY selector UI still to wire up
 
-## 2026-06-21 — GY viewer & selector: remove InitTrunkData (fixes trunk corruption)
+## 2026-06-21 — Debug menu BG1 sidebar overlay
+
+**Worked on:** Rewrote the debug menu from a full-screen start-menu-takeover to a BG1 sidebar overlay on the overworld, using `src_custom/assets/menus/debug_menu.png` (80x160 indexed PNG) as sidebar art. The overworld remains visible behind the sidebar via WIN0 window clipping (columns 20-29). Text/tilemap now writes to BG1 charblock cbb1 and screenbase sbb18 instead of the old start-menu layout.
+
+**Files:**
+- `graphics.mk` — added `DEBUG_MENU_*` asset variables, build rule for `.lz`, clean rule for `menus/`, added to `graphics-rules` target
+- `Makefile` — added `custom_object_dep` for `debug/debug_menu.o` on `$(DEBUG_MENU_LZ) $(DEBUG_MENU_PAL)`
+- `src_custom/debug/debug_menu.c` — sidebar on BG1 at columns 0-9; text on BG0 with small overworld font via `CopyStringTilesToVRAMBuffer`; overworld VBlank; no screen transition
+- `src_custom/debug/debug_menu_internal.h` — BG1 sidebar at columns 0-9, BG0 text constants, WIN0 aligned to left 80px
+- `documentation/debug-menu.md` — updated introduction, text layout section, code locations, and limitations
+
+**Outcome:**
+- `make test-cards-build` passes clean
+- Debug menu now renders as an 80px sidebar on the right side of the screen with the overworld visible behind it
+- No screen transition/flash on open: removed `ClearGraphicsBuffers`, `LoadVRAM`, `LoadBgVRAM`, `FadeOutMusic`, and `PlayMusic(MUSIC_DECK_ADJUSTMENT_MENU)` calls so the sidebar appears seamlessly over the running overworld
+
+**Open / next:**
+- Overworld OBJ sprites (player, NPCs) may show wrong colors while menu is open (cursor palette overwrites OBJ slot 0) — acceptable for a debug overlay
 
 **Worked on:** Removed `InitTrunkData()` calls from the GY viewer and graveyard selector.
 `InitTrunkData()` calls `RefreshTrunkOwnershipTotals()`, which reads `gDeckMenu.cards`
@@ -107,3 +150,18 @@ plays. This is correct behavior — the GY viewer shows exactly what's in the GY
 **Open / next:**
 - Specific-card GY scan replacements still needed
 - Premature Burial / Call of the Haunted per-player GY selector UI still to wire up
+
+## 2026-06-21 — Remove black overlay from debug menu
+
+**Worked on:** Eliminating a persistent black overlay that obscured the debug menu sidebar art. BG0 (screen block 19) was rendering on top of BG1 (screen block 18) even when all its tiles referenced palette bank 15 with tile 0 (which should be transparent). Tried filling the tilemap with palette-bank-15 mask — overlay remained.
+
+**Fix:** Removed BG0 from the debug menu entirely — no more `DISPCNT_BG0_ON` in `DebugMenuVBlank`, no `REG_BG0CNT` writes (save or restore), no sbb19 upload in `DebugMenuUploadBg1`, no sbb19 fill in `DebugMenuLoadGraphics`. Only BG1 renders now.
+
+**Files:**
+- `src_custom/debug/debug_menu.c` — stripped BG0 from VBlank, load, upload, and teardown; removed `gSavedDebugMenuBg0Cnt` extern
+
+**Outcome:** `make` builds clean. BG0 layer is gone — sidebar art on BG1 should display without black overlay. Text overlay (written to sbb19) is currently invisible since BG0 is off — will restore as a separate fix.
+
+**Open / next:**
+- Restore text overlay without reintroducing the black background — e.g. merge text tilemap into sbb18 alongside art, or disable BG0 outside the text area via a second window (WIN1).
+
