@@ -23,10 +23,6 @@ void ActivateDesKoalaEffect(void)
     if (gTurnHands[INACTIVE_DUELIST][i]->id != CARD_NONE)
       damage += 500;
 
-  if (damage > 0) {
-    if (Duel_ChangeLp(target, -(s32)damage, TRUE) == DUEL_ACTION_DUEL_OVER)
-      return;
-  }
-
-  Duel_ShowEffectTextTyped(DES_KOALA, 2);
+  if (damage > 0)
+    Duel_ChangeLpWithPrefaceText(target, -(s32)damage, DES_KOALA, 2, TRUE);
 }

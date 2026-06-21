@@ -15,6 +15,16 @@ Format for new entries (newest first):
 
 ---
 
+## 2026-06-21 — Des Koala effect-before-popup fix
+
+**Worked on:** Fixed bug where Des Koala's FLIP effect applied LP damage before showing the effect text popup. `Duel_ChangeLp` ran first (player saw LP change with no explanation), then `Duel_ShowEffectTextTyped` ran afterward. Replaced with `Duel_ChangeLpWithPrefaceText` which shows the popup first, then applies damage.
+
+**Files:** `src_custom/activated_effects/des_koala.c`
+
+**Outcome:** `make test-cards-build` passes. Effect text now appears before LP change.
+
+**Open / next:** —
+
 ## 2026-06-21 — Burning Land standby damage direction fix
 
 **Worked on:** Fixed bug where Burning Land's Standby Phase 500 damage always hit the human player instead of alternating between turn players. Root cause: `Duel_ChangeLp(WhoseTurn(), ...)` passed fixed-side duelist constants (`DUEL_PLAYER`/`DUEL_OPPONENT` = 0/1) but `ApplyLpDelta` interprets the parameter as turn-relative (`ACTIVE_DUELIST`/`INACTIVE_DUELIST`). On the opponent's turn, `DUEL_OPPONENT` (1) numerically equals `INACTIVE_DUELIST` (1) instead of `ACTIVE_DUELIST` (0), so the conversion formula mapped it back to the player side. Changed to `Duel_ChangeLp(ACTIVE_DUELIST, ...)`.
