@@ -15,13 +15,27 @@ Format for new entries (newest first):
 
 ---
 
-## 2026-06-21 — Solar Flare Dragon effect-before-popup fix
+## 2026-06-21 — Magic Cylinder fix: AI re-attack prevention (CoTH unlock leak)
 
-**Worked on:** Fixed bug where Solar Flare Dragon's Standby Phase 500 damage applied before the popup text finished. `ActivateSolarFlareDragonTurnEffect` called `Duel_ChangeLp` first, then `Duel_ShowEffectTextTyped`. Replaced with `Duel_ChangeLpWithPrefaceText` which shows popup first, then applies damage (same pattern as Des Koala fix).
+**Worked on:** Fixed AI re-attacking after Magic Cylinder (#108 follow-up). Root cause: `AiTryActivateTrapOnAttack` called `CallOfTheHauntedUnlockAiAttackerAfterTrap()` unconditionally after every trap effect. This function unlocks the attacking monster — the unlocking logic was meant for CoTH's AI resimulation, but it ran for all traps, undoing `LockMonsterCardsInRow()` inside `EffectMagicCylinder`.
 
-**Files:** `src_custom/turn_effects/solar_flare_dragon.c`
+Guard the unlock call with `gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED` so it only fires for CoTH.
 
-**Outcome:** `make test-cards-build` passes. Effect text now appears before LP change.
+**Files:** `src_custom/ai_attack_hooks.c`
+
+**Outcome:** `make test-cards-build` passes. AI monster stays locked after Magic Cylinder negates its attack.
+
+**Open / next:** —
+
+**Worked on:** Fixed Magic Cylinder (#108):
+1. **Attack not blocked** — Added `LockMonsterCardsInRow(ACTIVE_DUELIST_MONSTER_ROW)` to negate the incoming attack (same pattern as Negate Attack).
+2. **Monster incorrectly destroyed** — Removed `Duel_DestroyZone` call that destroyed the attacking monster. Magic Cylinder doesn't destroy the monster.
+3. **AI infinite loop** — Added `Duel_DestroyZone` for Magic Cylinder itself on the backrow (`gTurnZones[INACTIVE_DUELIST_BACKROW][gTrapEffectData.trapZoneCol]`). As a Normal Trap, it must leave the field after resolution. Without this, `IsTrapTriggered()` finds it in every AI simulation → execution loop and never advances.
+4. **LP damage direction** — `Duel_ChangeLp(ACTIVE_DUELIST, -(s32)atk, FALSE)` was already correct (damages the turn player = attacker).
+
+**Files:** `src_custom/trap_effects/magic_cylinder.c`
+
+**Outcome:** `make test-cards-build` passes. Magic Cylinder now correctly negates the attack, burns the attacker for ATK damage, sends itself to GY, and leaves the monster on the field.
 
 **Open / next:** —
 

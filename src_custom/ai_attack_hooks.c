@@ -123,7 +123,9 @@ static u8 AiTryActivateTrapOnAttack(struct DuelCard *attacker, struct DuelCard *
     CallOfTheHauntedRequestAiResimulate();
 
   ActivateTrapEffect(0);
-  CallOfTheHauntedUnlockAiAttackerAfterTrap();
+  /* ponytail: non-CoTH traps (Magic Cylinder, Negate Attack) must keep the lock */
+  if (gTrapEffectData.trapCardId == TRAP_CALL_OF_THE_HAUNTED)
+    CallOfTheHauntedUnlockAiAttackerAfterTrap();
   return TRUE;
 }
 
