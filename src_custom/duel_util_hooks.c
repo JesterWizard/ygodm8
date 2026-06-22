@@ -255,6 +255,23 @@ void TryDrawingCard__Replacement(unsigned turn) {
       if (cardId == CARD_NONE)
         continue;
 
+      // If card isn't in the deck at all, add it — first empty slot, or displace the last card
+      for (i = 0; i < deckSize; i++) {
+        if (gDuelDecks[turn_u8].cards[i] == cardId)
+          break;
+      }
+      if (i >= deckSize) {
+        for (i = 0; i < deckSize; i++) {
+          if (gDuelDecks[turn_u8].cards[i] == CARD_NONE) {
+            gDuelDecks[turn_u8].cards[i] = cardId;
+            break;
+          }
+        }
+        if (i >= deckSize && deckSize > 0)
+          gDuelDecks[turn_u8].cards[deckSize - 1] = cardId; // full deck — overwrite last slot
+      }
+
+      // Now swap it to the top slot so it gets drawn in the opening hand
       for (i = 0; i < deckSize; i++) {
         if (i < slot && appliedSlots[i])
           continue;
