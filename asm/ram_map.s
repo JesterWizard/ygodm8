@@ -344,18 +344,14 @@ _kernel_malloc_ewram gPendingMefistDiscardDuelist, 1
 _kernel_malloc_ewram gPendingReaperDiscardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT hand discard pending for Spirit Reaper, else 0xFF.
 _kernel_malloc_ewram gPendingSpiritReaperDiscardDuelist, 1
-@ ponytail: pad keeps gPendingGuardianAngelJoanDestroyedAtk 2-byte aligned after extra u8 above.
-_kernel_malloc_ewram gPendingSpiritReaperDiscardPad, 1
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Guardian Angel Joan, else 0xFF.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
-@ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).
-_kernel_malloc_ewram gPendingGuardianAngelJoanPad, 1
 @ Original ATK of the monster Joan destroyed in battle.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Royal Knight, else 0xFF.
 _kernel_malloc_ewram gPendingRoyalKnightDuelist, 1
-@ ponytail: pad so the u16 below lands on an even EWRAM address (ARM7 misreads odd halfwords).
-_kernel_malloc_ewram gPendingRoyalKnightPad, 1
+@ ponytail: pad keeps gPendingRoyalKnightDestroyedDef on an even EWRAM address.
+_kernel_malloc_ewram gPendingRoyalKnightDestroyedDefPad, 1
 @ Original DEF of the monster Royal Knight destroyed in battle.
 _kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
@@ -396,8 +392,8 @@ _kernel_malloc_ewram gSuppressFirePrincessDamage, 1
 _kernel_malloc_ewram gPendingFirePrincessTarget, 1
 @ Fire Princess: skip re-trigger until controller LP rises again (player, opponent).
 _kernel_malloc_ewram gFirePrincessLpGainHandled, 1
-@ ponytail: pad keeps gLastHandledLpGainLp 2-byte aligned after u8 above.
-_kernel_malloc_ewram gFirePrincessLpGainHandledPad, 1
+@ ponytail: pad keeps gLastHandledLpGainLp 2-byte aligned in EWRAM.
+_kernel_malloc_ewram gLastHandledLpGainLpPad, 1
 _kernel_malloc_ewram_array gLastHandledLpGainLp, 2
 @ Great Maju Garzett tribute capture + per-cell atk/def/active (10 cells, 0x32 total).
 _kernel_malloc_ewram_array gGreatMajuGarzettBoardAtk, 0x14

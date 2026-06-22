@@ -1002,11 +1002,12 @@
 #define LEVIA_DRAGON_DAEDALUS                    0x03E6
 #define THEBAN_NIGHTMARE                         0x03E7
 #define BIG_BANG_SHOT                            0x03E8
+#define POLYMERIZATION                           0x03E9
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03E9
-#define NUM_CUSTOM_CARDS                        0x00C8
+#define NUM_TOTAL_CARDS                         0x03EA
+#define NUM_CUSTOM_CARDS                        0x00C9
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

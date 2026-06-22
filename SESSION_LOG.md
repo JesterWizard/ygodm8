@@ -104,6 +104,46 @@ Working history for AI and human contributors. **Read this at the start of every
 
 **Open / next:** BG3 tiles using bank 0 still show sidebar colors *while* the debug menu is open — acceptable for a debug overlay since the sidebar covers the affected area. A full fix would require per-frame palette splitting or using a guaranteed-unused palette bank.
 
+## 2026-06-22 — Polymerization: custom fusion spell card with field+hand scan and deck-menu picker
+
+**Worked on:** Added POLYMERIZATION (spell card, passcode 24094653) with a full fusion mechanic:
+
+- **Manifest entry** via `add_custom_card.py` — spell card at ID 0x03E9
+- **Fusion recipe table** in `src_custom/spell_effects/polymerization.c` with `APPEND_RODATA` for linker-safe const data. Recipe format: `{ result, material1, material2 }` where `POLY_WILDCARD` (0xFFFF) = any monster (max 1 per recipe). Currently 1 recipe: FLAME_SWORDSMAN = FLAME_MANIPULATOR + any monster.
+- **Scan**: Collects monsters from own hand (first = priority) then field. Matches against recipes using `RecipeIsFeasible()`, selects materials with hand preference via `SelectMaterials()`.
+- **Auto-execute**: Single feasible fusion runs immediately. Multiple fusions: deck-menu picker via `DeckMenuMainReadOnly()` for the player; AI picks highest ATK.
+- **Resolution**: Destroys spell, sends materials to GY via `ClearZoneAndSendMonToGraveyard`, then `Duel_SpecialSummonMonsterId` to place fusion face-up ATK on an empty monster zone.
+- **Wired** in `spell_effect_hooks.c` (POLYMERIZATION case) + runtime config `card_in_hand_1 = POLYMERIZATION`
+- **Pre-existing fix**: Added 1-byte pad in `asm/ram_map.s` (`gTrunkVisiblePad`) to fix 2 misaligned u16 EWRAM allocations that the RAM layout validator flagged.
+
+**Files:**
+- `tools/card_data_manifest.json` — POLYMERIZATION entry appended
+- `configs/runtime.c` — `card_in_hand_1 = POLYMERIZATION`
+- `src_custom/spell_effects/polymerization.c` — new: fusion recipe table, scan, picker, execution
+- `src_custom/spell_effect_hooks.c` — extern + POLYMERIZATION case
+- `asm/ram_map.s` — `gTrunkVisiblePad` for u16 alignment
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK). Polymerization starts in hand slot 1 at duel start.
+
+**Open / next:**
+- Add more fusion recipes to `sFusionRecipes[]` array
+- Fusion picker uses full-screen deck menu; a compact overlay with small-font list would be more polished
+- Hand-to-GY tracking uses vanilla `ClearZoneAndSendMonToGraveyard` which sets top-card only; expanded GY stacking (if enabled) works automatically via existing LynJump hooks
+
+## 2026-06-22 — Fix phantom cards from undersized CUSTOM_CARD_QTY_BYTES in asm
+
+**Worked on:** Fixed mismatch between `render_card_counts_header` (padded to `0x200`) and `render_card_memory_sizes_asm` (padded to `0xC8`) in `tools/add_card_art.py`. With 201 custom cards (0xC9 > 0xC8), the asm render generated `0xC9` for `CUSTOM_CARD_QTY_BYTES`, meaning `ram_map.s` allocated only 201 bytes for trunk/shop/temp qty buffers. Cards with indices ≥ 201 wrote past buffer bounds, corrupting adjacent EWRAM → phantom cards.
+
+**Fix:** Changed minimum in `render_card_memory_sizes_asm` from `0xC8` to `0x200` to match the header renderer, then regenerated `generated/card_memory_sizes.inc` via `python3 tools/add_card_art.py --card-ids`.
+
+**Files:**
+- `tools/add_card_art.py` — `render_card_memory_sizes_asm` min 0xC8 → 0x200
+- `generated/card_memory_sizes.inc` — regenerated
+
+**Outcome:** Both `card_counts.h` and `card_memory_sizes.inc` now have `0x0200`. Run `make clean && make` to rebuild.
+
+**Open / next:** None.
+
 Format for new entries (newest first):
 
 ```markdown

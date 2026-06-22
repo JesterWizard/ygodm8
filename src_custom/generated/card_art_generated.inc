@@ -808,6 +808,10 @@ static const unsigned char sBigBangShotBigArt[] __attribute__((section(".append_
 static const unsigned short sBigBangShotBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/big_bang_shot.gbapal");
 static const unsigned char sBigBangShotMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/big_bang_shot.lz");
 
+static const unsigned char sPolymerizationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/polymerization.huff");
+static const unsigned short sPolymerizationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/polymerization.gbapal");
+static const unsigned char sPolymerizationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/polymerization.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1011,6 +1015,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E6] = sLeviaDragonDaedalusBigArt,
   [0x03E7] = sThebanNightmareBigArt,
   [0x03E8] = sBigBangShotBigArt,
+  [0x03E9] = sPolymerizationBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1216,6 +1221,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E6] = sLeviaDragonDaedalusBigPalette,
   [0x03E7] = sThebanNightmareBigPalette,
   [0x03E8] = sBigBangShotBigPalette,
+  [0x03E9] = sPolymerizationBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1421,6 +1427,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E6] = 0,
   [0x03E7] = 0,
   [0x03E8] = 0,
+  [0x03E9] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1626,4 +1633,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E6] = sLeviaDragonDaedalusMiniArt,
   [0x03E7] = sThebanNightmareMiniArt,
   [0x03E8] = sBigBangShotMiniArt,
+  [0x03E9] = sPolymerizationMiniArt,
 };

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 200 |
-| Art ready, needs manifest | 116 |
+| In game (manifest + art) | 201 |
+| Art ready, needs manifest | 115 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **316** |
 
@@ -222,6 +222,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `LEVIA_DRAGON_DAEDALUS` | Levia Dragon Daedalus | `levia_dragon_daedalus.png` |
 | `THEBAN_NIGHTMARE` | Theban Nightmare | `theban_nightmare.png` |
 | `BIG_BANG_SHOT` | Big Bang Shot | `big_bang_shot.png` |
+| `POLYMERIZATION` | Polymerization | `polymerization.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -304,7 +305,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
-- [ ] `POLYMERIZATION` — `polymerization.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`

@@ -80,6 +80,7 @@ extern void EffectTheFluteOfSummoningDragon(void);
 extern void EffectKaiserColosseum(void);
 extern void EffectNightmareWheel(void);
 extern void EffectEctoplasmer(void);
+extern void EffectPolymerization(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 
 void ActivateSpellEffect(void);
@@ -420,6 +421,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case DUST_TORNADO:
       EffectDustTornado();
+      return;
+    case POLYMERIZATION:
+      EffectPolymerization();
       return;
     case KNIGHTS_TITLE:
       EffectKnightsTitle();
