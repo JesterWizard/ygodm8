@@ -393,3 +393,4 @@ void sub_804EF10__Replacement(void) {
     gDebugSaveAnywhereOpenDialogReady = TRUE;
   }
 }
+

@@ -25,6 +25,7 @@ void sub_8045284(u16 *, u16, u16);
 
 extern const u32 g82AD2D0[];
 extern u16 g82AD48C[];
+extern const u16 g82ADC8C[];
 
 typedef void (*VoidFunc)(void);
 
@@ -266,6 +267,12 @@ LYN_REPLACE_CHECK(sub_804ECA8);
 void sub_804ECA8__Replacement(void) {
   CpuCopy32(gBgVram.sbb1B, (void *)0x0600D800, 0xE20);
   LoadOam();
+  /* Textbox is on BG3; BLDCNT=0xDE during dialogue darkens BG3 (bit 3).
+   * Clear bit 3 here so text isn't darkened to grey. */
+  REG_BLDCNT &= ~0x0008;
+  /* ponytail: start menu overwrites gPaletteBuffer bank 0 with grey-purple;
+   * restore font palette to hardware every VBlank so text is white. */
+  CpuCopy16(g82ADC8C, (void *)0x05000000, 0x20);
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE
       && gDebugSaveAnywherePendingCapture != TRUE)
     OverworldOverlay_PatchVram();

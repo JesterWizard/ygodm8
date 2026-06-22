@@ -2,6 +2,19 @@
 
 Working history for AI and human contributors. **Read this at the start of every session** before making changes. **Append an entry when you finish meaningful work.**
 
+## 2026-06-22 — Fix overworld dialogue text colour (font palette overwritten by start menu)
+
+**Diagnosis:** Overworld dialogue text appeared grey because the start menu overwrites palette bank 0 with `gStartMenuBgPalette` (entry 1 = `0x7AFC` = grey-purple) when it loads. When dialogue starts, the font palette `g82ADC8C` (entry 1 = `0x7FFF` = white) was never reloaded. The text tilemap uses palette bank 0, so the text displayed using the start menu's grey-purple color instead of white.
+
+**Root cause:** A red herring — the BLDCNT layer swap analysis (textbox BG0→BG3) was incorrect. The textbox was a blend target both before and after the swap (`0xDE` has both bit 1 and bit 3 set), so blending was never the issue.
+
+**Fix:** Added `CpuCopy16(g82ADC8C, gPaletteBuffer, 0x20)` to `sub_80532A8()` in `script.c`, which reloads the font palette into bank 0 every time dialogue starts, undoing any start menu palette corruption.
+
+**Files:**
+- `src/overworld/script.c` — `sub_80532A8()` now reloads font palette before setting VBlank callback
+
+**Outcome:** `make` passes clean.
+
 ## 2026-06-22 — Section titles, scroll bounds, quarter-cursor fix, cursor palette durability
 
 **Worked on:** Four bug fixes in the debug menu:
