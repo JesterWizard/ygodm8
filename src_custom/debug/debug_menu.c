@@ -89,6 +89,7 @@ static inline void CallThumbVoid(u32 addr) {
 /* ------------------------------------------------------------------ */
 /*  VBlank — overworld renders first, then debug menu overrides        */
 /*  Sidebar = OBJ sprites, text = BG0, BG2/BG3 left to overworld.     */
+/*  BG1 = debug menu's solid black backdrop.                           */
 /* ------------------------------------------------------------------ */
 
 static void DebugMenuVBlank(void) {

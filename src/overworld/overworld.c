@@ -2023,22 +2023,22 @@ void OverworldLoadGraphics (void) {
 }
 
 static void SetBg3Regs (void) {
-  // ponytail: ground layer (sbb1F, cbb0, priority 2) — was BG2
-  REG_BG3CNT = 0x1F82;
+  // ponytail: textbox (sbb1D, cbb1, priority 0) — was BG1
+  REG_BG3CNT = 0x1D0C;
   gBG3VOFS = 0;
   gBG3HOFS = 8;
 }
 
 static void SetBg2Regs (void) {
-  // ponytail: roof/high layer (sbb1E, cbb0, priority 1) — was BG1
-  REG_BG2CNT = 0x1E81;
+  // ponytail: ground layer (sbb1F, cbb0, priority 2) — was BG3
+  REG_BG2CNT = 0x1F82;
   gBG2VOFS = 0;
   gBG2HOFS = 8;
 }
 
 static void SetBg1Regs (void) {
-  // ponytail: textbox (sbb1D, cbb1, priority 0) — was BG0
-  REG_BG1CNT = 0x1D0C;
+  // ponytail: roof/high layer (sbb1E, cbb0, priority 1) — was BG2
+  REG_BG1CNT = 0x1E81;
   gBG1VOFS = 0;
   gBG1HOFS = 8;
 }
@@ -2327,14 +2327,14 @@ static inline u8 sub_804F4E4_inline (void) {
 //TODO: rename these 2 funcs
 void OverworldSetRegDispcnt (void) {
   if (!sub_804F4E4_inline())
-    REG_DISPCNT = DISPCNT_BG1_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_OBJWIN_ON;
+    REG_DISPCNT = DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_OBJWIN_ON;
   else
     REG_DISPCNT = DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_OBJWIN_ON;
 }
 
 void OverworldSetRegDispcnt2 (void) {
   if (!sub_804F4E4_inline())
-    REG_DISPCNT = DISPCNT_BG1_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON;
+    REG_DISPCNT = DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON;
   else
     REG_DISPCNT = DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON;
 }
