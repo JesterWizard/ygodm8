@@ -41,7 +41,6 @@ void DebugMenuDrawMatchSetters(u8 scrollTop, u8 cursor) {
 
 void DebugMatchSetterViewer(void) {
   u8 cursor = 0, scrollTop = 0;
-  u8 shownPortraitId = 0xFF;
   const u8 count = MatchSetter_GetEntryCount();
   const u8 totalRows = count + 1;
 
@@ -50,7 +49,6 @@ void DebugMatchSetterViewer(void) {
 
   while (1) {
     u16 buttons = DebugMenuButtons();
-    const struct MatchSetterEntry *entry;
 
     if (buttons & B_BUTTON)
       break;
@@ -77,23 +75,11 @@ void DebugMatchSetterViewer(void) {
       DebugMenuWaitRelease(A_BUTTON);
     }
 
-    if (cursor == 0) {
-      if (shownPortraitId != PORTRAIT_NONE) {
-        shownPortraitId = PORTRAIT_NONE;
-        DebugMenuHidePortrait();
-      }
-    } else {
-      entry = MatchSetter_GetEntry(cursor - 1);
-      DebugMenuLoadPortraitIfChanged(&shownPortraitId, entry->portraitId);
-      DebugMenuApplyPortraitOam();
-    }
-
     DebugMenuUpdateCursor(cursor - scrollTop);
     LoadOam();
     DebugMenuWaitVBlank();
   }
 
-  DebugMenuHidePortrait();
   DebugMenuWaitRelease(B_BUTTON);
   DebugMenuVBlankNoWin();
   DebugMenuRedraw(0, 0, DEBUG_VIEW_ROOT);

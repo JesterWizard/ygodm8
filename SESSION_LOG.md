@@ -2,6 +2,95 @@
 
 Working history for AI and human contributors. **Read this at the start of every session** before making changes. **Append an entry when you finish meaningful work.**
 
+## 2026-06-22 — Section titles, scroll bounds, quarter-cursor fix, cursor palette durability
+
+**Worked on:** Four bug fixes in the debug menu:
+
+1. **Root menu scrolls past items** — `DEBUG_ROOT_ITEMS` was 15 but only 13 entries exist in `sRootLabels`. Changed to 13 so cursor can't scroll past "Save" into blank rows.
+
+2. **Quarter cursor at top-left** — `DebugMenuLoadGraphics` called `LoadOam()` with stale overworld OAM data, which (after wiping OBJ VRAM and loading cursor at tile 0) showed a partial cursor tile at (0,0). Added `DebugMenuClearAuxOam()` and `DebugMenuUpdateCursor(0)` before the initial `LoadOam()`.
+
+3. **Section titles** — Each sub-viewer now draws a centered 16-char title at pixel y=16 (text row 2, one row above the list at row 3). Added `DebugMenuDrawSectionTitle(view)` called in `DebugMenuRedraw` for non-root views. `DebugMenuSetupTextRows` clears an extra row. `DebugMenuUploadText` uploads one extra row (title glyphs). Title strings use `APPEND_RODATA` to avoid linker section conflicts.
+
+4. **Cursor palette still breaking on portrait loads** — The VBlank-only fix was insufficient because `LoadPalettes()` (called after every `DebugMenuRedraw`) copies the full `gPaletteBuffer` after VBlank, overwriting the palette RAM fix. Added `CpuCopy16(gStartMenuCursorPalette, ...)` in `DebugMenuRedraw` just before `LoadPalettes()` so the cursor palette is correct in the buffer before it hits palette RAM.
+
+**Files touched:**
+- `src_custom/debug/debug_menu_internal.h` — `DEBUG_ROOT_ITEMS` 15→13
+- `src_custom/debug/debug_menu.c` — all four fixes
+
+**Outcome:** `make test-cards-build` passes cleanly. All 17 tests OK, full ROM links.
+
+**Open / next:** None.**
+
+## 2026-06-22 — Fix BG2/BG3 + sidebar corruption in OBJ debug menu
+
+**Worked on:** Fixed three bugs in the OBJ-sprite sidebar rewrite that caused art corruption, wrong palette, and persistent BG3 corruption:
+
+1. **BG3 corruption**: `DISPCNT_BG3_ON` was set unconditionally in VBlank, enabling BG3 on maps where it was off (showing stale VRAM data). Made BG3 conditional like BG2.
+2. **Tile corruption**: The destride function wrote to `gBgVram.cbb4` at byte offsets up to 19744, but `cbb4[0x4000]` = 16384 bytes. Rows 8+ wrote past the buffer, corrupting adjacent memory (sbb19 tilemap, palette buffer, etc.). Fixed by splitting writes between `cbb4` (offsets < 0x4000) and `cbb5` (offsets ≥ 0x4000).
+3. **Cursor tile conflict**: Cursor was at tile 0 which overlapped with sidebar tile at grid (0,0). Relocated cursor to grid row 20 (tile 640) and updated `DebugMenuUpdateCursorSlot` to use the new tile index instead of the hardcoded `0x800` value.
+
+**Files:**
+- `src_custom/debug/debug_menu.c` — VBlank BG3 conditional, destride cbb4/cbb5 split, cursor relocation, palette confirmation
+- `src_custom/debug/debug_menu_internal.h` — `DEBUG_SIDEBAR_OBJ_TILE_BASE` 256 → 0
+
+**Outcome:** `make test-cards-build` passes. All BG palette banks untouched by debug menu. Sidebar tiles within cbb4+cbb5 bounds. BG2/BG3 display their proper overworld content while menu is open.
+
+**Worked on:** Rewrote the debug menu sidebar from a BG1 tile layer to 50 16×16 OBJ sprites using **OBJ palette bank 12** (above entity palettes 0-11). This eliminates all BG palette bank conflicts — the overworld uses all 16 BG palette banks, so any BG palette bank chosen for the sidebar inevitably corrupts some overworld tiles. The OBJ palette is fully separate.
+
+- Sidebar art destrided from packed 10-wide BG layout (cbb1) to 32-stride 2D OBJ grid (cbb4+cbb5) starting at tile index 256
+- 50 OAM entries at slots 16-65 covering 80×160px sidebar as 5×10 grid of 16×16 sprites
+- Text kept on BG0 using **BG palette bank 0 slot 9** (font bank) — only 1 palette entry changed, not a full bank
+- Removed all BG1 setup from VBlank, DISPCNT, and LoadGraphics — sidebar no longer uses cbb1 or any BG tile layer
+- Sub-viewers (portrait, sprite, etc.) retain cbb4 tile area above index 256 for their OBJ data without interfering with sidebar tiles
+
+**Files:**
+- `src_custom/debug/debug_menu_internal.h` — OBJ constants, removed BG1 defines
+- `src_custom/debug/debug_menu.c` — destride, OAM setup, VBlank, redraw, exit cleanup
+
+**Outcome:** No BG palette bank is clobbered by the debug menu sidebar. The overworld's BG2/BG3 tiles display with their correct palettes while the menu is open. `make test-cards-build` passes.
+
+**Open / next:** None.
+
+## 2026-06-22 — Fix BG2/BG3 palette corruption in debug menu (bank 0 → bank 15)
+
+**Worked on:** The debug menu sidebar palette was loaded into BG palette **bank 0** (the font palette bank). Any visible BG2/BG3 tile whose tilemap entry referenced palette bank 0 showed sidebar colors instead of correct font/map colors. The earlier save/restore of bank 0 only fixed the *exit* — during-menu corruption remained.
+
+**Actual fix:** Changed `DEBUG_BG1_TEXT_PAL_BANK` from 0 to **15** (a high bank unlikely to be referenced by ground/roof tiles). The debug menu now shares sidebar art + text colors in bank 15 instead of clobbering bank 0. Font palette at bank 0 is untouched. Removed the now-unnecessary save/restore of bank 0 and its EWRAM allocation.
+
+**Files:**
+- `src_custom/debug/debug_menu_internal.h` — `DEBUG_BG1_TEXT_PAL_BANK` 0 → 15
+- `src_custom/debug/debug_menu.c` — removed `gDebugMenuSavedBgPalBank0` save/restore code
+- `asm/ram_map.s` — removed `gDebugMenuSavedBgPalBank0` allocation
+
+**Outcome:** `make test-cards-build` passes. Font palette (bank 0) is preserved. Sidebar/text use bank 15 exclusively. BG2 and BG3 tiles should no longer show palette corruption during the debug menu.
+
+**Open / next:** None.
+
+**Worked on:** Two root causes identified and fixed:
+
+1. **BG2 garbage on non-roof maps:** The debug menu VBlank unconditionally wrote `DISPCNT_BG2_ON`, enabling the roof layer (BG2) even on maps without roofs, revealing stale/garbage data in sbb1e. Fixed: read `REG_DISPCNT` at runtime and only include BG2_ON if the overworld had it on.
+
+2. **BG palette bank 0 not restored on exit:** The debug menu loads its sidebar palette into bank 0, clobbering the overworld's font palette. `DebugMenuMain` didn't restore it, and the overworld VBlank (`sub_804F1E4`) only calls `LoadBgOffsets` + `LoadOam` — never `LoadPalettes()`. Fixed: save bank 0 to EWRAM (`gDebugMenuSavedBgPalBank0`) on entry, restore + `LoadPalettes()` on exit. (The overworld restore path `OverworldRestoreAfterDebugMenu` → `sub_804F598` also reloads the font palette, but the fix in `DebugMenuMain` runs before that for correctness.)
+
+**Files:**
+- `asm/ram_map.s` — `gDebugMenuSavedBgPalBank0[16]` EWRAM allocation (0x20 bytes)
+- `src_custom/debug/debug_menu.c` — `DebugMenuVBlank` reads REG_DISPCNT for BG2 state; `DebugMenuLoadGraphics` same fix; save/restore bank 0 in entry/exit
+
+**Outcome:** `make test-cards-build` passes. Debug menu no longer enables BG2 on non-roof maps. Font palette restored correctly on exit.
+
+**Open / next:** None.
+
+**Worked on:** The debug menu overwrites BG palette bank 0 (the overworld's font/tile palette bank) with sidebar colors. The overworld VBlank (`sub_804F1E4`) only calls `LoadBgOffsets()` + `LoadOam()` — never `LoadPalettes()` — so corrupted palette entries persisted after menu exit, making BG3 ground tiles using bank 0 display wrong colors. Fix: save bank 0 on debug menu entry and restore it + call `LoadPalettes()` on exit.
+
+**Files:**
+- `asm/ram_map.s` — added `gDebugMenuSavedBgPalBank0[16]` EWRAM allocation (0x20 bytes)
+- `src_custom/debug/debug_menu.c` — save bank 0 in `DebugMenuLoadGraphics`, restore + `LoadPalettes()` in `DebugMenuMain`
+
+**Outcome:** `make test-cards-build` passes. BG palette bank 0 is restored immediately on debug menu exit, fixing BG3 ground tile colors and textbox font.
+
+**Open / next:** BG3 tiles using bank 0 still show sidebar colors *while* the debug menu is open — acceptable for a debug overlay since the sidebar covers the affected area. A full fix would require per-frame palette splitting or using a guaranteed-unused palette bank.
+
 Format for new entries (newest first):
 
 ```markdown
@@ -13,6 +102,22 @@ Format for new entries (newest first):
 **Open / next:** …
 ```
 
+## 2026-06-22 — Debug menu exit: save/restore all display registers
+
+**Worked on:** Overworld dialogue text appeared grey (not white) after exiting the debug menu and talking to an NPC. The text was white in VRAM but grey on screen, indicating stale compositing state from the debug menu.
+
+**Diagnosis:** The debug menu's VBlank callback set `REG_BLDCNT = 0` and `REG_BLDALPHA = 0`, and the standard `OverworldRestoreGraphicsAfterSubmenu()` only restored `REG_BLDCNT = 0` and `REG_BLDY = 7` — it did NOT restore `REG_BLDALPHA`, `REG_WININ`, or `REG_BG0CNT` to the exact overworld entry values. Additionally, stale debug-menu OBJ data in OAM slots beyond the explicitly-cleared ones (portrait/sprite viewer slots 4-15) could persist and render with priority over the dialogue text.
+
+**Fix:** `DebugMenuMain()` now saves all overworld display registers before entry and restores them on exit, clears ALL 128 OAM slots instead of only sidebar+cursor slots, and restores `REG_BLDALPHA` and `REG_WININ` from the saved values (which the standard restore function does not touch).
+
+**Files:**
+- `src_custom/debug/debug_menu.c` — added save/restore for REG_DISPCNT, REG_BLDCNT, REG_BLDALPHA, REG_BLDY, REG_WININ, REG_WINOUT, REG_BG0CNT; clear all 128 OAM slots
+
+**Outcome:**
+- `make all` passes clean link
+
+**Open / next:**
+- Confirm dialogue text is white after debug menu exit
 |---
 
 ## 2026-06-21 — Debug menu VBlank restructure: restore original overworld-first call order

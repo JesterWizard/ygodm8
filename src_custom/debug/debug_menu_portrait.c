@@ -72,6 +72,7 @@ void DebugPortraitViewer(void) {
   const u16 n = ARRAY_COUNT(sPortraits);
 
   DebugMenuRedraw(0, 0, DEBUG_VIEW_PORTRAIT);
+  DebugMenuHighlightRow(0);
   DebugMenuWaitVBlank();
 
   while (1) {
@@ -95,6 +96,7 @@ void DebugPortraitViewer(void) {
     DebugMenuLoadPortraitIfChanged(&shownPortraitId, sPortraits[cursor].portraitId);
     DebugMenuApplyPortraitOam();
     DebugMenuUpdateCursorSlot(1, cursor - scrollTop, DEBUG_MENU_CURSOR_PAL_SLOT);
+    DebugMenuHighlightRow(cursor - scrollTop);
     LoadOam();
     DebugMenuWaitVBlank();
   }

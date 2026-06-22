@@ -6,50 +6,41 @@
 /* ========== Root menu ========== */
 
 #define DEBUG_ROWS 15
-#define DEBUG_CHARS 8
+#define DEBUG_CHARS 16
 #define DEBUG_ROOT_ITEMS 13
 
-/* ========== BG1 sidebar overlay ========== */
+/* ========== OBJ sidebar overlay ========== */
 
-/* BG1 is unused on the overworld; we use it as a sidebar overlay.
- * cbb1 holds sidebar art tiles (1-200) + text glyph tiles (200+).
- * sbb18 is the BG1 tilemap (sidebar art only).
- * sbb19 is the BG0 tilemap (text only). */
-#define DEBUG_BG1_CBB 1
-#define DEBUG_BG1_SBB 18
+/* Sidebar art rendered as 50 16×16 OBJ sprites (5 cols × 10 rows).
+ * Tile data in cbb4+cbb5 OBJ VRAM at 0x6011000 (2D grid row 4, tile 128).
+ * Cursor eye at 0x6010000 (grid row 0, tile 0) — no overlap.
+ * OBJ palette bank 12 is used (above entity palettes 0-11). */
+#define DEBUG_SIDEBAR_OBJ_PAL_BANK  12
+#define DEBUG_SIDEBAR_OBJ_PRIORITY  1     /* priority 1 → BG0 text (prio 0) renders on top */
+#define DEBUG_SIDEBAR_SPRITE_SIZE   1     /* 16×16 square: attr1 bits14-15 = 1 (ST_OAM_SIZE_1) */
+#define DEBUG_SIDEBAR_SPRITE_SHAPE  0     /* square: attr0 bits14-15 = 0 (ST_OAM_SQUARE) */
+#define DEBUG_SIDEBAR_OAM_SLOT_BASE 16    /* 50 sprites: slots 16-65 */
+#define DEBUG_SIDEBAR_COLS 10
+#define DEBUG_SIDEBAR_ROWS 20
+#define DEBUG_SIDEBAR_TILES 200
+#define DEBUG_SIDEBAR_OBJ_TILE_BASE 384   /* grid row 12 = cbb4 + 0x3000 = 0x6013000 */
+#define DEBUG_SIDEBAR_OBJ_TILE_STRIDE 32  /* 2D mapping stride */
+
+/* Text rendered on BG0 using the overworld font palette (bank 0).
+ * Text glyphs stored in cbb1 starting at tile 200+.
+ * Text uses palette bank 0, slot 9 (font foreground). */
 #define DEBUG_BG0_SBB 19
-
-#define DEBUG_SIDEBAR_COLS 10        /* 80 px = 10 tiles */
-#define DEBUG_SIDEBAR_COL_START 2    /* screen column 1 (leaves col 0 blank for 16px offset) */
-#define DEBUG_SIDEBAR_TILES 200      /* 10*20 tiles */
-#define DEBUG_SIDEBAR_PAL_BANK DEBUG_BG1_TEXT_PAL_BANK
-
-/* Text glyph tiles stored in cbb1 after sidebar art.
- * 5 rows x 10 chars = 50 tiles at tile index 200+. */
+#define DEBUG_SIDEBAR_COL_START 2    /* text starts at tile column 2 (pixel 16) */
 #define DEBUG_BG1_TEXT_TILE_BASE 200
 #define DEBUG_BG1_TEXT_ROW       3
-/* Sidebar / text share one palette bank so only 1 overworld bank gets
- * clobbered instead of 2.  Text glyph pixels are shifted from index 1
- * to DEBUG_BG1_TEXT_PAL_INDEX post-render in DebugMenuCopyLine. */
 #define DEBUG_BG1_TEXT_PAL_BANK  0
-#define DEBUG_BG1_TEXT_PAL_INDEX 9    /* free slot in bank 15 after sidebar colors */
+#define DEBUG_BG1_TEXT_PAL_INDEX 9
 
-/* Cursor positioned over the text rows. */
-#define DEBUG_CURSOR_Y_TILES 3
-#define DEBUG_CURSOR_X        0
-#define DEBUG_CURSOR_SIZE     1    /* square 16x16 (matches start menu OAM) */
-#define DEBUG_MENU_CURSOR_PAL_SLOT 15
-
-/* Text palette bank used by sub-viewers (reaction viewer, ante viewer). */
-#define DEBUG_MENU_TEXT_PAL DEBUG_BG1_TEXT_PAL_BANK
-
-/* Window 0 clips BG1 to columns 0-9.
- * REG_WIN0H = (X2 << 8) | X1  (pixel coordinates)
- * X1=0, X2=80 → 80px = 10 tiles */
+/* Window 0 position (kept for sub-viewers). */
 #define DEBUG_WIN0H ((88 << 8) | 0)
 #define DEBUG_WIN0V ((160 << 8) | 0)
 
-/* Overworld VBlank (sub_804F1E4) — keeps overworld rendering. */
+/* Overworld VBlank (sub_804F1E4). */
 #define THUMB_VBLANK_OVERWORLD 0x0804F1E4
 
 /* ========== OAM slot allocation ========== */
@@ -57,8 +48,18 @@
 #define DEBUG_SPRITE_OAM_SLOT_CURSOR 0
 #define DEBUG_SPRITE_OAM_SLOT 1
 #define DEBUG_SPRITE_FRAME_DOWN_IDLE 0
-/* OBJ slot 0 is overwritten by entity palettes; keep the eye cursor on slot 15. */
 #define DEBUG_MENU_CURSOR_PAL_SLOT 15
+
+/* Cursor positioned over the text rows. */
+#define DEBUG_CURSOR_Y_TILES 3
+#define DEBUG_CURSOR_X        0
+#define DEBUG_CURSOR_SIZE     1    /* square 16x16 */
+
+/* Text palette bank used by sub-viewers. */
+#define DEBUG_MENU_TEXT_PAL DEBUG_BG1_TEXT_PAL_BANK
+
+/* Highlight bar replaces OBJ cursor — yellow text in BG palette bank 1. */
+#define DEBUG_MENU_HIGHLIGHT_PAL_BANK 1
 
 /* ========== View IDs ========== */
 
@@ -143,6 +144,7 @@ void DebugMenuFormatTitleRow(u8 *out, const u8 *title);
 void DebugMenuCopyLine(u8 row, const u8 *text);
 void DebugMenuRestoreTextPalettes(void);
 void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
+void DebugMenuHighlightRow(u8 row);
 
 extern const u8 gDebugMenuBlankLine[];
 

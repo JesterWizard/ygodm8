@@ -104,6 +104,7 @@ void DebugSpriteViewer(void) {
   const u16 n = ARRAY_COUNT(sSprites);
 
   DebugMenuRedraw(0, 0, DEBUG_VIEW_SPRITE);
+  DebugMenuHighlightRow(0);
   DebugMenuWaitVBlank();
 
   while (1) {
@@ -129,6 +130,7 @@ void DebugSpriteViewer(void) {
     DebugMenuLoadSpriteIfChanged(&shownSpriteId, sSprites[cursor].spriteId, FALSE);
     DebugMenuApplySpriteOam();
     DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop, DEBUG_MENU_CURSOR_PAL_SLOT);
+    DebugMenuHighlightRow(cursor - scrollTop);
     LoadOam();
     DebugMenuWaitVBlank();
   }

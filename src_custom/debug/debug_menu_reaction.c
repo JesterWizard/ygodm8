@@ -144,6 +144,7 @@ void DebugReactionViewer(void) {
   DebugMenuReactionAnimReset(sReactions[cursor].reactionId, &animFrame, &holdTimer,
                              &shownBubbleId);
   DebugMenuRedraw(0, 0, DEBUG_VIEW_REACTION);
+  DebugMenuHighlightRow(0);
   DebugMenuWaitVBlank();
 
   while (1) {
@@ -181,6 +182,7 @@ void DebugReactionViewer(void) {
     DebugMenuApplyReactionOam(bubbleId);
     DebugMenuUpdateCursorSlot(DEBUG_SPRITE_OAM_SLOT_CURSOR, cursor - scrollTop,
                               DEBUG_MENU_CURSOR_PAL_SLOT);
+    DebugMenuHighlightRow(cursor - scrollTop);
     LoadOam();
     DebugMenuWaitVBlank();
   }
