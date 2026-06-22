@@ -1,6 +1,30 @@
 # Session Log
 
+## 2026-06-22 — Camera scrolls to player's hand after drawing a card
+
+**Worked on:** Added camera scroll to player's hand after draw phase on the player's turn. In `RunDuelTurnLoop()`, after the draw completes and SFX plays, `sub_8041DF0(4)` is called to scroll the BG2 view down to row 4 (player hand, VOFS=138). Only triggers on the player's turn — opponent's draw leaves the camera on the field. Draw-skip cases (Yata, Fenrir, Time Seal, Reckless Greed) don't scroll since no draw happens.
+
+**Files:**
+- `src_custom/duel_main_hooks.c` — added `sub_8041DF0` extern declaration + scroll call after draw
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK). After drawing during the player's turn, the camera animates down to show the player's hand.
+
+**Open / next:** None.
+
 Working history for AI and human contributors. **Read this at the start of every session** before making changes. **Append an entry when you finish meaningful work.**
+
+## 2026-06-22 — `skip_to_duel` runtime config: bypass all setup and jump straight into a duel
+
+**Worked on:** Added `skip_to_duel` (bool) + `skip_to_duel_opponent_id` (u8) fields to `RuntimeConfig`. When enabled, `CopyrightScreensMain__Replacement` calls `sub_800AF68()` (new-game init), sets flags 0x2b + 0x8 (skip naming screen + cutscene), picks the configured opponent, and calls `DuelMain()`. After the duel ends, `OverworldMain()` is called so the game drops into a fully set up overworld. Default is `TRUE` (skip to duel immediately).
+
+**Files:**
+- `configs/runtime.h` — struct fields
+- `configs/runtime.c` — defaults
+- `src_custom/copyright_screens_hooks.c` — `CopyrightScreensMain__Replacement` updated with `skip_to_duel` branch
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK).
+
+**Open / next:** None.
 
 ## 2026-06-22 — Fix overworld dialogue text colour (font palette overwritten by start menu)
 

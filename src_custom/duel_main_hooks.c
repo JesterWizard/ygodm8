@@ -61,6 +61,7 @@ void SetVBlankCallback(void (*)(void));
 void LoadPalettes(void);
 void UpdateDuelGfxExceptField(void);
 void AdjustBackgroundBeforeTurnStart(unsigned char);
+void sub_8041DF0(unsigned char);
 void sub_8057808(void);
 void sub_804078C(void);
 void sub_8040FDC(void);
@@ -357,6 +358,13 @@ static bool8 RunDuelTurnLoop(void) {
       if (IsDuelOver() == TRUE)
         return TRUE;
       PlayMusic(SFX_DRAW_CARD);
+      if (turn == DUEL_PLAYER) {
+        gDuelCursor.currentY = 4;
+        gDuelCursor.destY = 4;
+        gDuelCursor.currentX = 0;
+        gDuelCursor.destX = 0;
+        sub_8041DF0(4);
+      }
     }
     UpdateDuelGfxExceptField();
     CheckWinConditionExodia(turn);

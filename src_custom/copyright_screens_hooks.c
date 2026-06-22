@@ -2,6 +2,8 @@
 #include "configs/runtime.h"
 #include "constants/opening_screens.h"
 #include "duel.h"
+#include "duel_main.h"
+#include "overworld.h"
 
 typedef void (*VoidFunc)(void);
 
@@ -235,6 +237,30 @@ static void CustomOpeningScreensMain(void) {
 
 LYN_REPLACE_CHECK(CopyrightScreensMain);
 APPEND_TEXT void CopyrightScreensMain__Replacement(void) {
+  if (gRuntimeConfig.skip_to_duel == TRUE) {
+    /* Skip everything: initialise a new game, bypass the naming screen and
+       opening cutscene, pick an opponent and jump straight into DuelMain.
+       After the duel, drop into the overworld (which is fully set up since
+       sub_800AF68 ran the new-game init). */
+
+    extern void sub_800AF68(void);
+
+    sub_800AF68();
+    SetFlag(0x2b);
+    SetFlag(0x8);
+
+    gDuelData.opponent = gRuntimeConfig.skip_to_duel_opponent_id;
+
+    REG_DISPCNT = 0;
+    DuelMain();
+
+    /* DuelMain returns after the duel ends. Enter the overworld — this never
+       returns, so AgbMain's subsequent TitleScreenMain / OverworldMain calls
+       are never reached. */
+    OverworldMain();
+    return;
+  }
+
   if (gRuntimeConfig.enable_custom_opening_screens != TRUE) {
     VanillaCopyrightScreensMain();
     return;

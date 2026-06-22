@@ -3,6 +3,7 @@
 #include "constants/custom_fields_generated.h"
 #include "constants/duel_fields.h"
 #include "constants/monster_effects.h"
+#include "overworld.h"
 
 const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
@@ -63,5 +64,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .card_in_hand_3 = MASAKI_THE_LEGENDARY_SWORDSMAN,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = CARD_NONE
+    .opponent_deck_card_id = CARD_NONE,
+    .skip_to_duel = TRUE,
+    .skip_to_duel_opponent_id = DUELIST_DARK_BAKURA_136
 };
