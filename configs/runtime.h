@@ -70,6 +70,7 @@ typedef struct {
     u16 opponent_deck_card_id; // When not CARD_NONE, every opponent deck is 40 copies of this card.
     u8 skip_to_duel; // Skip intro screens, title screen, and overworld — go straight to a duel.
     u8 skip_to_duel_opponent_id; // Opponent index to duel when skip_to_duel is TRUE.
+    u8 enable_title_screen_video; // Play intro video on title screen after 5 seconds of idle time.
 } RuntimeConfig;
 
 /*

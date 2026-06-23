@@ -1,0 +1,10 @@
+# Open a file to write the output
+
+with open("output.txt", "w") as file:
+    for i in range(939):
+
+        # Generate the frame number, padded to 4 digits
+        frame_number = str(i * 4).zfill(4)
+
+        # Write the formatted line to the file
+        file.write(f"4 frame_{frame_number}.png\n")

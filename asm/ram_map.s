@@ -300,6 +300,20 @@ _kernel_malloc_ewram gDrawPhaseNormalDrawActivePad, 1
 _kernel_malloc_ewram gFenrirSkipDrawDuelist, 1
 @ ponytail: pad keeps even EWRAM alignment after Fenrir skip-draw byte.
 _kernel_malloc_ewram gFenrirSkipDrawDuelistPad, 1
+
+@ Title screen idle frame counter (u16, counts frames with no button press).
+_kernel_malloc_ewram gTitleScreenIdleFrames, 2
+
+@ Video player state: 1 = playing, 0 = idle.
+_kernel_malloc_ewram gVideoPlayerState, 1
+@ ponytail: pad keeps gVideoPlayerFrameIndex on an even EWRAM address.
+_kernel_malloc_ewram gVideoPlayerStatePad, 1
+@ Current frame index being played.
+_kernel_malloc_ewram gVideoPlayerFrameIndex, 2
+
+@ One-frame decompression buffer in EWRAM (600 tiles x 32 bytes = 0x4B00).
+@ ponytail: 4bpp frame (16 colours), 256x160 canvas. Upgrade path: allocate from EWRAM heap.
+_kernel_malloc_ewram_array gVideoPlayerFrameBuf, 0x5000
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1

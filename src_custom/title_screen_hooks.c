@@ -198,7 +198,25 @@ static void VanillaSub80357F8(void) {
   }
 }
 
+/* Title screen idle frame counter */
+extern u16 gTitleScreenIdleFrames;
+extern bool8 VideoPlayer_Play(void);
+
+#define IDLE_FRAMES_TO_VIDEO 300  /* ~5 seconds at 60fps */
+
 /* LYN_REPLACE_CHECK(sub_80357F8) */
 APPEND_TEXT void sub_80357F8__Replacement(void) {
   VanillaSub80357F8();
+
+  if (gRuntimeConfig.enable_title_screen_video == TRUE) {
+    /* EWRAM is not zero-initialised at boot. Clear typical garbage. */
+    if (gTitleScreenIdleFrames >= 0xFF00)
+      gTitleScreenIdleFrames = 0;
+
+    gTitleScreenIdleFrames++;
+    if (gTitleScreenIdleFrames >= IDLE_FRAMES_TO_VIDEO) {
+      gTitleScreenIdleFrames = 0;
+      VideoPlayer_Play();
+    }
+  }
 }

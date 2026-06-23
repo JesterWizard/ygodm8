@@ -68,7 +68,7 @@ clean-graphics:
 	find src_custom/assets/menus -type f \( -name '*.4bpp' -o -name '*.lz' -o -name '*.gbapal' \) -delete 2>/dev/null || true
 	find src_custom/assets/thought_bubbles -type f \( -name '*.4bpp' -o -name '*.obj.4bpp' -o -name '*.dmp' -o -name '*.gbapal' -o -name '*.lz' \) -delete
 	find src_custom/assets/field_spells -type f \( -name '*.4bpp' -o -name '*.8bpp' -o -name '*.gbapal' -o -name '*.huff' -o -name '*.tilemap.bin' -o -name 'field.tilemap.c' \) -delete 2>/dev/null || true
-	rm -rf build/cgs/ build/opening_screens/ build/title_screens/
+	rm -rf build/cgs/ build/opening_screens/ build/title_screens/ build/videos/
 	find src_custom/assets/cgs -type f \( -name '*.lz' -o -name '*.gbapal' -o -name '*.8bpp' \) -delete 2>/dev/null || true
 	find src_custom/assets/opening_screens -type f \( -name '*.8bpp' -o -name '*.lz' -o -name '*.gbapal' -o -name '*.tilemap.bin' \) -delete 2>/dev/null || true
 	find src_custom/assets/title_screens -type f \( -name '*.8bpp' -o -name '*.lz' -o -name '*.gbapal' -o -name '*.tilemap.bin' \) -delete 2>/dev/null || true

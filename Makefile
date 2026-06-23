@@ -146,6 +146,9 @@ TITLE_SCREEN_PLACEHOLDER_GENERATOR := tools/generate_title_screen_placeholders.p
 TITLE_SCREEN_PNGS := src_custom/assets/title_screens/title_screen.png
 TITLE_SCREEN_BUILD_GENERATOR := tools/build_title_screen.py
 TITLE_SCREEN_STAMP := $(BUILD_DIR)/.title_screens.stamp
+VIDEO_GENERATOR := tools/encode_video.py
+VIDEO_GENERATED := src_custom/generated/video_assets_generated.inc
+VIDEO_DIR := src_custom/assets/videos
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -454,6 +457,14 @@ $(TITLE_SCREEN_RESERVED_GENERATED): $(TITLE_SCREEN_STAMP)
 	@test -f $@
 
 $(eval $(call custom_object_dep,title_screen_hooks,$(TITLE_SCREEN_GENERATED) $(TITLE_SCREEN_RESERVED_GENERATED)))
+
+# Video assets: convert MP4s to compressed frame blobs
+$(VIDEO_GENERATED): $(VIDEO_GENERATOR) | tools-rules
+	@echo "VIDEOENCODE intro videos"
+	@mkdir -p $(dir $@)
+	python3 $(VIDEO_GENERATOR)
+
+$(eval $(call custom_object_dep,video_player,$(VIDEO_GENERATED)))
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc

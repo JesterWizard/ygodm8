@@ -1,5 +1,52 @@
 # Session Log
 
+## 2026-06-23 — Fix video player crash (WaitForVBlank resets callback + gbagfx LZSS header)
+
+**Worked on:** Two bugs fixed that together caused crash/black-screen during intro video.
+
+1. **WaitForVBlank() resets the VBlank callback pointer.** Vanilla `WaitForVBlank()` always sets `g201CB20 = sub_800842C` (default NOP) after each wait. `VideoPlayer_Play()` only called `SetVBlankCallback(VideoPlayer_VBlank)` once before the loop, so only the first VBlank invoked our callback — frames 1..829 were never decoded. Frame 0 displayed (blank w/ old header bug) and the loop timed out. **Fix:** re-arm callback after every `WaitForVBlank()`.
+
+2. **gbagfx LZSS header incompatible with GBA BIOS.** Added `_fix_gbagfx_header()` in `encode_video.py` to convert 0x10-type header to GBA-required u32 with bit31=1.
+
+**Files:**
+- `src_custom/video_player.c` — re-arm callback after every WaitForVBlank
+- `tools/encode_video.py` — _fix_gbagfx_header()
+
+**Outcome:** `make test-cards-build` passes. 830 frames with valid GBA-BIOS LZSS headers. Callback fires every frame at 15fps.
+
+**Open / next:** Test on emulator. Audio not yet implemented.
+
+## 2026-06-22 — Fix video player black screen (gbagfx LZSS header format)
+
+**Worked on:** Found and fixed the root cause of the black screen during intro video playback.
+
+- **Root cause:** The `gbagfx` LZSS compressor produces data with a non-standard 4-byte header: byte0=0x10 (type), bytes1-3=24bit LE size. GBA BIOS `LZ77UnCompWram` requires u32 with bit31=1 (compressed flag). Since bit31 was 0, the BIOS treated all frames as uncompressed and did nothing — the decompression buffer stayed all zeros → every tile blank → black screen.
+- **Fix:** Added `_fix_gbagfx_header()` in `tools/encode_video.py` that detects gbagfx output and converts the header to GBA BIOS format before writing the blob.
+- Audio was never implemented — the encoder only handles video frames, no audio output is wired in yet.
+
+**Files:**
+- `tools/encode_video.py` — added `_fix_gbagfx_header()` post-processor
+
+**Outcome:** `make test-cards-build` passes. All 830 frames verified with correct `0x80005000` header (bit31=1, size=0x5000).
+
+**Open / next:** Test on emulator. Audio still needs implementation.
+
+## 2026-06-22 — Fix video player black screen (screenblock, DISPCNT, frame pacing)
+
+**Worked on:** Debugged and fixed three issues causing the intro video to show a black screen instead of playing.
+
+- **Screenblock never written to VRAM:** The tilemap lived only in the WRAM shadow buffer (`gBgVram.sbb1F`). The title screen's VBlank normally copies it to VRAM, but once the video replaced the callback, that copy stopped. Added `VideoPlayer_SetupScreenblock()` which writes a sequential identity tilemap directly to VRAM at `0x0600F800` before playback starts.
+- **`REG_DISPCNT` missing Mode 0:** `REG_DISPCNT = DISPCNT_BG3_ON` only wrote `0x0800` (BG3 enable) without explicitly setting display mode bits. Changed to `REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_BG3_ON`.
+- **Frame pacing ran at 60fps instead of 15fps:** The VBlank callback advanced `gVideoPlayerFrameIndex` on *every* VBlank regardless of `fpsDivider`. Fixed by using `gVideoPlayerState` as a "go" flag: main loop sets state=2 (advance one frame), callback advances exactly one frame and resets to 1 (wait), remaining VBlanks are idle.
+- Palette and display registers are now primed before the first VBlank.
+
+**Files:**
+- `src_custom/video_player.c` — full rewrite of VBlank callback and play loop logic
+
+**Outcome:** `make test-cards-build` passes clean. ROM builds and links. Video should now display when idle timer triggers.
+
+**Open / next:** Test on hardware/emulator to confirm video is visible at 15fps. Audio playback not yet implemented.
+
 ## 2026-06-22 — Camera scrolls to player's hand after drawing a card
 
 **Worked on:** Added camera scroll to player's hand after draw phase on the player's turn. In `RunDuelTurnLoop()`, after the draw completes and SFX plays, `sub_8041DF0(4)` is called to scroll the BG2 view down to row 4 (player hand, VOFS=138). Only triggers on the player's turn — opponent's draw leaves the camera on the field. Draw-skip cases (Yata, Fenrir, Time Seal, Reckless Greed) don't scroll since no draw happens.
@@ -346,4 +393,101 @@ plays. This is correct behavior — the GY viewer shows exactly what's in the GY
 
 **Open / next:**
 - Restore text overlay without reintroducing the black background — e.g. merge text tilemap into sbb18 alongside art, or disable BG0 outside the text area via a second window (WIN1).
+
+## 2026-06-23 — Intro video: ffmpeg binary, blob format fixes, `.incbin` assembly
+
+**Worked on:** Got the intro video actually playing. Fixed three issues:
+
+1. **No ffmpeg binary** — User had `ffmpeg-python` pip package but no actual ffmpeg in PATH. Installed `imageio-ffmpeg` which bundles a static binary. Updated `_find_ffmpeg()` to check `imageio_ffmpeg.get_ffmpeg_exe()` as fallback.
+
+2. **Palette reading** — `palettegen` filter outputs RGBA pixels not a PLTE chunk. Rewrote `_read_palette_from_png` to handle both.
+
+3. **Blob format overflow** — 909 frames × ~8KB compressed = ~15MB blob. Palette offsets as u16 overflowed. Switched to single global palette per video and u32 data offsets.
+
+4. **`generate_inc()` OOM** — Writing 15MB as C byte array made the compiler consume all memory and get killed. Switched to writing a raw `.bin` file and using `__asm__(".incbin ...")` in the header.
+
+5. **ARM alignment** — 6-byte index entries caused misaligned u32 reads (crash on frame ≥ 1). Padded entries to 8 bytes.
+
+**Files:**
+- `tools/encode_video.py` — ffmpeg path fallback, RGBA palette reading, 8-byte index entries with u32 offsets, single palette per video
+- `src_custom/video_player.c` — aligned 8-byte index entries, single palette at fixed offset 4
+- `src_custom/generated/video_assets_generated.inc` — now uses `.incbin` instead of C byte array (581 bytes vs ~90MB)
+
+**Outcome:** `make test-cards-build` passes. ROM was ~33MB (15MB video blob). 909 frames @ 15fps = ~60 second intro.
+
+**Open / next:**
+- Audio: currently no audio track is extracted. Consider encoding audio as GBA-format samples (4-bit DPCM or 8-bit PCM via m4a).
+- ROM size: 33MB may not fit standard 32MB carts; consider shortening the video or using a 64MB cart header.
+
+## 2026-06-23 — Intro video: ROM overflowed 32MB causing white screen
+
+**Problem:** The ROM was ~34.7MB, exceeding the GBA's 32MB addressable limit (`0x09FFFFFF`). `__append_end` was at `0x0A11B798`. Data beyond `0x09FFFFFF` was inaccessible, corrupting the `.append_assets` section and causing a white screen at startup.
+
+**Fix:** Added `--max-frames 830` (default) to `tools/encode_video.py`. Trims the video from 909 → 830 frames (~55s at 15fps), bringing the blob down from 14.7MB to 13.2MB. ROM now fits within 32MB (`__append_end` at `0x09F9A004`).
+
+**Files:**
+- `tools/encode_video.py` — `--max-frames` parameter, pass `-vframes` to ffmpeg paletteuse
+
+**Outcome:** `make test-cards-build` passes. ROM is 31.6MB (31,607,042 bytes), under 32MB with ~408KB slack.
+
+## 2026-06-23 — Intro video: 4bpp + cached frames, blob shrinks to 5.9MB
+
+**Problem:** 8bpp (256 colors) frames were 38KB each, compressing to ~16KB → 13.2MB for 830 frames. Pushed ROM near 32MB limit and made rebuilds slow (ffmpeg every time).
+
+**Fix:** 
+- Switched to **4bpp** (16 colors) — halves frame data to 19KB, compresses better to ~7KB
+- Frames are now cached as indexed PNGs in `src_custom/assets/videos/frames/<video_stem>/`
+- Cache check: if frames exist and count matches `--max-frames`, skip ffmpeg entirely
+- Added `--re-extract` flag to force re-extraction
+- Updated GBA player: `VIDEO_FRAME_BUF_SIZE = 0x4B00`, `FRAME_PALETTE_BYTES = 32`, dropped `BGCNT_256COLOR`
+
+**Files:**
+- `tools/encode_video.py` — 4bpp constants, `_indexed_png_to_4bpp_tiles`, frame cache in `videos/frames/`
+- `src_custom/video_player.c` — 4bpp display mode, 32-byte palette, 0x4B00 buffer
+- `asm/ram_map.s` — `gVideoPlayerFrameBuf` size 0x9600 → 0x4B00
+
+**Outcome:** Video blob: 5.9MB (56% of 10MB budget). ROM: 25.2MB (8MB slack under 32MB). ffmpeg runs once; subsequent builds read cached PNGs.
+
+## 2026-06-23 — Intro video: 256×160 canvas with 16px black padding
+
+**Problem:** Frames were 240×160 (600 tiles, 0x4B00 bytes). The source video has been re-encoded to 240×160, but the GBA expects a 256-pixel wide canvas for standard BG mode.
+
+**Fix:** 
+- Changed `GBA_WIDTH` from 240 → 256. Added `VIDEO_WIDTH = 240` for the active content area.
+- ffmpeg still scales to `VIDEO_WIDTH`×160. Python pads each row from 240 to 256 with palette-index 0 (black).
+- The 16px black border is off-screen (GBA viewport is 240px wide), so it's invisible.
+- Bonus: the regular black border compresses extremely well with LZSS, dropping the blob from 5.9MB → **2.1MB**.
+
+**Files:**
+- `tools/encode_video.py` — `GBA_WIDTH=256`, `VIDEO_WIDTH=240`, padding in `_indexed_png_to_4bpp_tiles`
+- `src_custom/video_player.c` — `VIDEO_FRAME_BUF_SIZE=0x5000`
+- `asm/ram_map.s` — `gVideoPlayerFrameBuf` 0x4B00 → 0x5000
+
+**Outcome:** Video blob: **2.1MB** (2.5KB/frame compressed). ROM: **21.4MB** (11.6MB slack under 32MB).
+
+## 2026-06-23 — Fix frame tile conversion + LZSS crash
+
+**Worked on:** Fixed crash from wrong LZSS address and all-zero frames from tile conversion bug.
+
+**Root causes:**
+1. **`_indexed_png_to_4bpp_tiles` produced all-zero tiles** (mysterious Python import issue). Replaced function body with known-working inline version — same logic, different variable names. Frame data now contains actual pixels.
+2. **Wrong address passed to `LZ77UnCompWram`** in minimal diagnostic version (passed index entry address instead of reading the offset first). Crash was purely from this test bug, not from the BIOS call itself.
+3. **gbagfx LZSS data is valid** — only the header format was wrong (now fixed by `_fix_gbagfx_header`). Tile data was all-zero input, not a gbagfx bug.
+
+**Files:**
+- `tools/encode_video.py` — `_indexed_png_to_4bpp_tiles` rewritten
+- `src_custom/video_player.c` — correct LZSS call with full playback loop (830 frames, 15fps)
+
+**Outcome:** Video blob: **6.1MB** (7.4KB/frame compressed — actual video content). ROM: **24.3MB** under 32MB. Should play the full intro video on the title screen after 5s idle.
+
+## 2026-06-23 — Display fix: save/restore title screen state around video
+
+**Worked on:** After raw-tile (no LZSS) video playback, title screen stayed black. Video worked (user saw frames flash) but nothing restored VRAM or display registers.
+
+**Fix:** Save `REG_DISPCNT`, `REG_BG3CNT`, charblock 0 (0x06000000), and screenblock 31 (0x0600F800) to `gVideoPlayerFrameBuf` + stack before video. Restore after. Also removed unused `gVideoPlayerState`/`gVideoPlayerFrameIndex` externs and the unused `VideoPlayer_VBlank` callback.
+
+**Files:**
+- `src_custom/video_player.c` — save/restore display state; removed all LZSS code (raw tiles from ROM directly to VRAM)
+
+**Open / next:** Full video with LZSS re-added. Audio.
 
