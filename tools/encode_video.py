@@ -466,8 +466,8 @@ def main() -> int:
     parser.add_argument(
         "--fps-divider",
         type=int,
-        default=4,
-        help="VBlank frames per video frame (default: 4 = 15fps)",
+        default=0,
+        help="VBlank frames per video frame (default: 0 = ~15fps with PVRAM decompressor overhead)",
     )
     parser.add_argument(
         "--max-frames",

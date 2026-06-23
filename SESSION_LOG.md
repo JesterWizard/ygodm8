@@ -1,5 +1,17 @@
 # Session Log
 
+## 2026-06-23 — Video plays but too slow: cut frame pacing divider to 2
+
+**Worked on:** Video played at ~half speed (~7.5fps instead of 15fps). The pure C LZSS decompressor running from ROM takes ~2 VBlanks (33ms) per frame, so the original `divider=4` (wait 4 VBlanks) gave 33ms + 67ms = 100ms per frame = 10fps. Dropped divider to 2: 33ms + 33ms = 66ms per frame = ~15fps.
+
+**Files:**
+- `tools/encode_video.py` — changed `--fps-divider` default from 4 → 2
+
+**Outcome:** `make test-cards-build` passes. ROM rebuilt with divider=2 blob (33ms overhead + 2 VBlank wait ≈ 15fps).
+
+**Open / next:**
+- To truly hit 15fps cleanly (no timing slip from variable decompression time), the decompressor could be moved to IWRAM for ~4× speed, or replaced with a DMA-streamed copy from ROM. But the divider fix is good enough for the intro.
+
 ## 2026-06-23 — Pure C LZSS decompressor: no SWI/BIOS dependency
 
 **Worked on:** Replaced the GBA BIOS SWI-based LZ77 decompression (LZ77UnCompVram, SWI 0x12) with a pure C LZSS decompressor. The SWI calls kept crashing despite the compressed data being verified correct (gbagfx round-trip, Python little-endian decode, all 300 frames valid).

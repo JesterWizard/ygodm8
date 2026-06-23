@@ -18,5 +18,5 @@ struct VideoAsset {
 };
 
 const struct VideoAsset sVideoAssets[VIDEO_COUNT] APPEND_RODATA = {
-    { .data = sVideo0Data, .totalFrames = 300, .fpsDivider = 4 },
+    { .data = sVideo0Data, .totalFrames = 300, .fpsDivider = 0 },
 };
