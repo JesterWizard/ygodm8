@@ -1,5 +1,87 @@
 # Session Log
 
+## 2026-06-23 — Pure C LZSS decompressor: no SWI/BIOS dependency
+
+**Worked on:** Replaced the GBA BIOS SWI-based LZ77 decompression (LZ77UnCompVram, SWI 0x12) with a pure C LZSS decompressor. The SWI calls kept crashing despite the compressed data being verified correct (gbagfx round-trip, Python little-endian decode, all 300 frames valid).
+
+**What changed:**
+- `DecompressFrame()` is now a self-contained C function that reads the LZSS flag bytes and back-refs directly. No inline assembly, no SWI calls.
+- Decompress to EWRAM byte buffer (`gVideoPlayerFrameBuf`, 0x9600 bytes, re-allocated from the earlier removal) — byte writes are safe in EWRAM.
+- Copy from EWRAM to VRAM via `CpuCopy16` (16-bit writes are VRAM-safe; 8-bit STRB is silently ignored by GBA VRAM).
+- Kept the VBlank callback kill (`SetVBlankCallback(NULL)`) and palette shadow buffer copy from the previous fix.
+
+**Files:**
+- `src_custom/video_player.c` — pure C LZSS decompressor replaces NAKED+SWI wrapper
+- `asm/ram_map.s` — re-added `gVideoPlayerFrameBuf` (0x9600 bytes)
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK). ROM: 23MB. No BIOS calls in the video path — zero SWI dependency.
+
+**Open / next:**
+- Test on emulator/hardware
+
+## 2026-06-23 — Fix crash: kill title screen VBlank callback during Mode 4 video
+
+**Worked on:** The video player kept crashing during frame decompression. The root cause was NOT the SWI call or the LZSS data compression — both are provably correct.
+
+**Real root cause:** The title screen's VBlank callback (`VBlankCbTitleScreen`) was still running during video playback. When we switch to Mode 4 bitmap display, the callback writes tile-mode data to charblock 0 (0x06000000 — our frame buffer) and accesses BGxCNT registers that are now in a different mode. This corrupts VRAM state and can trigger crashes.
+
+Old working code explicitly replaced the VBlank callback with `SetVBlankCallback(VideoPlayer_VBlank)` and re-armed it after every `WaitForVBlank()`. The Mode 4 rewrite dropped that essential step.
+
+**Fix:**
+- `SetVBlankCallback(NULL)` at video start — points `g201CB20` at `sub_800842C` (empty NOP). `WaitForVBlank()` keeps resetting the callback to the same NOP, so it stays harmless for the entire video.
+- Video palette also written to `gPaletteBuffer` so any VBlank-triggered `LoadPalettes()` copies our colours, not the title screen's.
+- Exit path: `CopyGfxAndInitGfxRegs__Replacement` re-establishes the title screen's VBlank callback as part of restoring display state.
+
+**Files:**
+- `src_custom/video_player.c` — added `SetVBlankCallback(NULL)` at entry, `gPaletteBuffer` copy for palette shadow
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK).
+
+**Open / next:**
+- Test on emulator/hardware
+
+## 2026-06-23 — Fix LZSS crash: gbagfx back-references are big-endian, GBA BIOS expects little-endian
+
+**Worked on:** Root-caused and fixed a crash during intro video frame decompression.
+
+**Root cause:** The toolchain's `gbagfx` LZSS compressor writes 16-bit back-reference values in **big-endian**, but the GBA BIOS `LZ77UnCompVram`/`LZ77UnCompWram` (SWI 0x12/0x11) reads them as **little-endian** (the GBA's native endianness).
+
+For example, gbagfx writes the bytes `0xF0 0x03` for a backref that means length=18, offset=4. The GBA BIOS reads this as little-endian `0x03F0`, which decodes to length=3, offset=1009. At frame start with only 4 bytes decompressed, offset 1009 is well past the start of the buffer → the BIOS reads garbage and crashes.
+
+The earlier `_fix_gbagfx_header()` only converted the 4-byte magic header (0x10 → u32 with bit31=1), but the body's 16-bit backreferences were never corrected.
+
+**Fix:** Added `_fix_gbagfx_endianness()` which parses the compressed body (flag bytes + 8 items per block) and byte-swaps every 16-bit back-reference value from big-endian to little-endian. Called after `_fix_gbagfx_header()` in the `lzss_compress()` pipeline.
+
+Also verified: the Python LZSS compressor `_lzss_compress_python()` correctly uses little-endian (`struct.pack("<H", enc)`) but is too slow for production use (O(n²) match search on 38400-byte frames).
+
+**Files:**
+- `tools/encode_video.py` — added `_fix_gbagfx_endianness()`, updated `lzss_compress()`
+
+**Outcome:** All 300 frames verified with little-endian Python LZ77 decoder — full round-trip, correct data. `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK).
+
+**Open / next:**
+- Test on emulator/hardware
+
+## 2026-06-23 — Mode 4 bitmap + double buffering + LZSS: better fidelity, smaller ROM, zero EWRAM
+
+**Worked on:** Switched the intro video player from BG Mode 0 tile-based (8bpp tiles, 256×160 canvas, CpuCopy16) to **Mode 4 bitmap** (240×160 raster, double buffering, BIOS LZ77UnCompVram).
+
+- **Encoder**: `_indexed_png_to_8bpp_tiles()` → `_indexed_png_to_raster()` — outputs 240×160 byte buffer in row-major order (no tile conversion, no padding). `build_video_blob()` now LZSS-compresses each frame with GBA BIOS-compatible headers.
+- **Player**: `LZ77UnCompVram` (SWI 0x12) decompresses directly from ROM to VRAM — zero EWRAM scratch buffer needed. Two 37.5KB frame buffers at `0x06000000` and `0x0600A000` with `DISPCNT` bit 4 toggling. Frame N+1 is decoded into the invisible buffer while Frame N displays.
+- **RAM map**: Removed `gVideoPlayerFrameBuf` (20KB EWRAM) — reclaimed.
+- **Inline SWI**: Wrote `DecompressFrame()` as a static inline-asm wrapper around SWI 0x12 to avoid linker dependency on the toolchain's `LZ77UnCompVram` symbol.
+
+**Files:**
+- `tools/encode_video.py` — raster layout, LZSS per-frame compression, updated blob format
+- `src_custom/video_player.c` — full rewrite: Mode 4, double buffering, NAKED+asm_unified SWI wrapper
+- `asm/ram_map.s` — removed `gVideoPlayerFrameBuf` (0x5000 bytes)
+
+**Outcome:** `make test-cards-build` passes clean (17/17 tests, ROM links, validators OK). 300-frame video blob: **4.0MB** (was ~12MB raw tile mode). ROM: **23MB** (was ~25MB). EWRAM freed: **20KB** (`gVideoPlayerFrameBuf`). Double buffering eliminates frame-tearing and the frame decode doesn't steal cycles from display.
+
+**Open / next:**
+- Test on emulator/hardware
+- Audio playback not yet implemented
+
 ## 2026-06-23 — Fix video player crash (WaitForVBlank resets callback + gbagfx LZSS header)
 
 **Worked on:** Two bugs fixed that together caused crash/black-screen during intro video.
