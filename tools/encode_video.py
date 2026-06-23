@@ -74,7 +74,7 @@ def extract_frames(mp4_path: Path, fps_divider: int, ffmpeg_bin: str,
             return frames, palette_data
 
     # Extract via ffmpeg
-    extract_fps = 60 // fps_divider
+    extract_fps = 15 // fps_divider
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     palette_png = cache_dir / "palette.png"
@@ -466,14 +466,14 @@ def main() -> int:
     parser.add_argument(
         "--fps-divider",
         type=int,
-        default=0,
-        help="VBlank frames per video frame (default: 0 = ~15fps with PVRAM decompressor overhead)",
+        default=1,
+        help="VBlank frames per video frame (default: 1 = ~15fps with PVRAM decompressor overhead)",
     )
     parser.add_argument(
         "--max-frames",
         type=int,
-        default=300,
-        help="Maximum number of frames to encode (default: 300 = 20s at 15fps).",
+        default=900,
+        help="Maximum number of frames to encode (default: 900 = 60s at 15fps).",
     )
     parser.add_argument(
         "--re-extract",
