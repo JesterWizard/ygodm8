@@ -92,7 +92,7 @@ def extract_frames(mp4_path: Path, fps_divider: int, ffmpeg_bin: str,
         "-i", str(palette_png),
         "-filter_complex",
         f"fps={extract_fps},scale={VIDEO_WIDTH}:{GBA_HEIGHT}:flags=bilinear"
-        f"[s];[s][1:v]paletteuse=dither=bayer:bayer_scale=3",
+        f"[s];[s][1:v]paletteuse=dither=none",
         "-pix_fmt", "pal8",
     ]
     if max_frames > 0:
