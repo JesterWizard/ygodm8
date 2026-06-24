@@ -110,6 +110,13 @@ VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
 AI_ACTION_TABLE_GENERATOR := tools/generate_ai_action_table.py
 AI_ACTION_TABLE_GENERATED := src_custom/generated/ai_action_table_generated.inc
+
+# Meteo COMET video blob (post-link pointer fix)
+METE0_INTEGRATE := tools/meteo_integrate.py
+METE0_GENERATED := src_custom/generated/meteo_video_assets_generated.inc
+METE0_VIDEO_SRC := src_custom/assets/videos/intro.bin
+METE0_ASM_SRC := src_custom/meteo_player_stub.s
+METE0_ASM_OBJ := $(C_BUILDDIR_CUSTOM)/meteo_player_stub.o
 FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py
 FIELD_SPELL_GFX_GENERATED := src_custom/generated/field_spell_gfx_generated.inc src_custom/generated/field_spell_tilemaps_generated.inc src_custom/generated/field_spell_card_lookup_generated.inc src_custom/generated/field_spell_gfx_tables_generated.inc src_custom/generated/field_spell_effect_table_generated.inc src_custom/generated/field_spell_stat_mods_generated.inc src_custom/generated/field_spell_mapping_generated.inc include/constants/custom_field_spells_generated.h include/constants/custom_fields_generated.h
 FIELD_SPELL_STEM_PNGS := $(wildcard src_custom/assets/field_spells/*.png)
@@ -146,9 +153,6 @@ TITLE_SCREEN_PLACEHOLDER_GENERATOR := tools/generate_title_screen_placeholders.p
 TITLE_SCREEN_PNGS := src_custom/assets/title_screens/title_screen.png
 TITLE_SCREEN_BUILD_GENERATOR := tools/build_title_screen.py
 TITLE_SCREEN_STAMP := $(BUILD_DIR)/.title_screens.stamp
-VIDEO_GENERATOR := tools/encode_video.py
-VIDEO_GENERATED := src_custom/generated/video_assets_generated.inc
-VIDEO_DIR := src_custom/assets/videos
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_RENDER_ASSETS = $(CARD_TYPE_TILES) $(CARD_TYPE_PALETTES) $(CARD_ATTRIBUTE_TILES) $(CARD_ATTRIBUTE_PALETTES)
@@ -166,7 +170,7 @@ LYNJUMP_VALIDATE_STAMP := $(BUILD_DIR)/.lynjump_validated.stamp
 LYNJUMP_VALIDATE_DEPS := $(LYNJUMP_EVENTS) tools/validate_lynjump.py
 endif
 
-ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS) $(VOICE_ASSETS_OBJ)
+ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS) $(VOICE_ASSETS_OBJ) $(METE0_ASM_OBJ)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 
@@ -238,11 +242,13 @@ $(LYNJUMP_VALIDATE_STAMP): $(LYNJUMP_VALIDATE_DEPS)
 	python3 tools/validate_lynjump.py
 	@touch $@
 
-$(ROM): $(ELF) $(LYNJUMP_VALIDATE_STAMP) tools/apply_lynjump.py
+$(ROM): $(ELF) $(LYNJUMP_VALIDATE_STAMP) tools/apply_lynjump.py $(METE0_INTEGRATE)
 	@echo "OBJCOPY $@"
 	$(OBJCOPY) -O binary --pad-to 0x9000020 $< $@
 	@echo "PATCH   tools/apply_lynjump.py"
 	python3 tools/apply_lynjump.py $(ELF) $@
+	@echo "PATCH   tools/meteo_integrate.py"
+	python3 $(METE0_INTEGRATE) --rom $@ --map $(MAP)
 else
 $(ROM): $(ELF)
 	@echo "OBJCOPY $@"
@@ -458,13 +464,16 @@ $(TITLE_SCREEN_RESERVED_GENERATED): $(TITLE_SCREEN_STAMP)
 
 $(eval $(call custom_object_dep,title_screen_hooks,$(TITLE_SCREEN_GENERATED) $(TITLE_SCREEN_RESERVED_GENERATED)))
 
-# Video assets: convert MP4s to compressed frame blobs
-$(VIDEO_GENERATED): $(VIDEO_GENERATOR) | tools-rules
-	@echo "VIDEOENCODE intro videos"
-	@mkdir -p $(dir $@)
-	python3 $(VIDEO_GENERATOR)
+# Build rule for the Meteo ARM stub
+$(METE0_ASM_OBJ): $(METE0_ASM_SRC)
+	@echo "AS      $<"
+	$(AS) $(ASFLAGS) $< -o $@
 
-$(eval $(call custom_object_dep,video_player,$(VIDEO_GENERATED)))
+# video_player.c includes the generated inc (uses __has_include for detection)
+$(eval $(call custom_object_dep,video_player,$(METE0_GENERATED)))
+
+# Post-link: fix Meteo blob pointers after LynJump patching
+$(ROM): $(METE0_INTEGRATE)
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc

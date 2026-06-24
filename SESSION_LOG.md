@@ -1,5 +1,39 @@
 # Session Log
 
+## 2026-06-24 — Replace LZSS video pipeline with Meteo/COMET codec
+
+**Worked on:** Replaced the old ffmpeg+LZSS per-frame video pipeline with the Meteo Avi-2-GBA / COMET codec. The COMET codec uses motion-compensated inter-frame compression + audio, reducing the video blob from ~14MB to ~3.5MB (target, when user provides the Meteo output). ROM dropped from 33MB → 19MB without the blob (empty section).
+
+**Decisions:**
+- COMET player is designed as a boot-time ROM, but we call it at runtime from the title screen idle handler. On exit, the player cold-boots the game (clears RAM → jumps to 0x08000000). This is simpler than trying to return cleanly, since the player's ClearRam wipes IWRAM/EWRAM including our state.
+- The cold boot path goes through our existing hooks (copyright screens skip, title screen), so the user sees the title screen again normally. Idle timer resets, preventing an infinite video loop.
+- No data dependency on a Meteo ROM — the inc include uses `__has_include` at compile time. Without `video_meteo.bin`, `METE0_VIDEO_AVAILABLE=0` and `VideoPlayer_Play()` returns FALSE.
+
+**Pipeline:**
+1. User runs Meteo 1.5.0 MOD.exe on Windows → produces `video.gba`
+2. User copies `video.gba` to `src_custom/assets/videos/video_meteo.bin`
+3. Build embeds it in `.meteo_video` section at 0x10000 alignment
+4. Post-link: `tools/meteo_integrate.py` patches 5 internal pointer offsets + exit handler at blob+0x258 → branches to `MeteoExitTrampoline`
+5. ARM trampoline disables interrupts and cold-boots via `bx 0x08000000`
+6. Game boots fresh → title screen via hooks
+
+**Files:**
+- `tools/meteo_integrate.py` — new post-link patcher
+- `src_custom/meteo_player_stub.s` — ARM trampoline stub
+- `src_custom/generated/meteo_video_assets_generated.inc` — incbin wrapper (with dummy fallback)
+- `src_custom/video_player.c` — rewritten to call COMET player
+- `ldscript.ld` — added `.meteo_stubs` and `.meteo_video` sections
+- `Makefile` — new rules, removed old encode_video.py dependency
+- `tools/encode_video.py` — deleted (obsolete)
+- `src_custom/generated/video_assets_generated.inc` — deleted (obsolete)
+
+**Outcome:** `make test-cards-build` passes. ROM links at 19MB (no blob yet). `CallMeteoPlayer()` at 0x0927030c, `MeteoExitTrampoline` at 0x09270318, `.meteo_video` section at ALIGN(0x10000) = 0x09280000.
+
+**Open / next:**
+- User needs to run Meteo 1.5.0 MOD.exe on `season_one_intro.mp4` in a Windows environment, producing `video.gba`, then copy to `src_custom/assets/videos/video_meteo.bin`
+- If the COMET player's IWRAM stubs at 0x3003000 conflict with the mixer buffer, the trampoline may need extra state save/restore
+- If the cold boot path introduces visual artifacts (e.g. VRAM garbage from the COMET player's last frame), add explicit VRAM clear before `bx 0x08000000`
+
 ## 2026-06-23 — Video plays but too slow: cut frame pacing divider to 2
 
 **Worked on:** Video played at ~half speed (~7.5fps instead of 15fps). The pure C LZSS decompressor running from ROM takes ~2 VBlanks (33ms) per frame, so the original `divider=4` (wait 4 VBlanks) gave 33ms + 67ms = 100ms per frame = 10fps. Dropped divider to 2: 33ms + 33ms = 66ms per frame = ~15fps.
@@ -585,3 +619,17 @@ plays. This is correct behavior — the GY viewer shows exactly what's in the GY
 
 **Open / next:** Full video with LZSS re-added. Audio.
 
+## 2026-06-24 — Fix Meteo: data corruption, exit handler, and replay flag
+
+**Worked on:** Three bugs in Meteo integration:
+1. **Data corruption** — patcher touched compressed video/audio data at offsets 0x0304, 0xDC4C, 0xE678, 0xF278 outside code ranges. Fixed by restricting patches to known code regions (0x0000-0x0310 boot + 0x9C2C-0xB150 IWRAM copy source).
+2. **Exit handler** — removed exit trampoline patch at +0x258 (was an init subroutine, not exit). The blob handles its own exit (bx 0x08000000).
+3. **Replay loop** — after cold boot, video replayed. Fixed by moving `gIntroVideoPlayed` from EWRAM (cleared by emulator on reset) to IWRAM (0x030075C8, survives blob + cold boot).
+
+**Files:**
+- `tools/meteo_integrate.py` — PATCH_RANGES, removed exit patch
+- `asm/ram_map.s` — gIntroVideoPlayed in IWRAM
+- `src_custom/video_player.c` — IWRAM flag check
+- `src_custom/meteo_player_stub.s` — removed trampoline (unused now)
+
+**Outcome:** Video plays correctly with audio once per power cycle, then title screen stays.

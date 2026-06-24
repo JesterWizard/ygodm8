@@ -304,6 +304,12 @@ _kernel_malloc_ewram gFenrirSkipDrawDuelistPad, 1
 @ Title screen idle frame counter (u16, counts frames with no button press).
 _kernel_malloc_ewram gTitleScreenIdleFrames, 2
 
+@ Set to 1 after the intro video finishes playing.  Lives in IWRAM so it
+@ survives the COMET blob's bx 0x08000000 cold boot (crt0 / AgbMain don't
+@ clear IWRAM).  The blob copies code to 0x03000000-0x03001524; our IWRAM
+@ pool is at 0x03007xxx, well above the overwritten range.
+_kernel_malloc gIntroVideoPlayed, 1
+
 @ Video player state: 1 = playing, 0 = idle.
 _kernel_malloc_ewram gVideoPlayerState, 1
 @ ponytail: pad keeps gVideoPlayerFrameIndex on an even EWRAM address.

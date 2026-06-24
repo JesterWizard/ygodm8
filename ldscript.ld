@@ -1012,6 +1012,20 @@ SECTIONS
         *(.append_assets);
     }
 
+    .meteo_stubs :
+    {
+        *(.meteo_stubs);
+    }
+
+    /* Meteo COMET player blob at 0x10000 alignment for internal pointer sanity. */
+    . = ALIGN(0x10000);
+    __meteo_video_start = .;
+    .meteo_video : AT(__meteo_video_start)
+    {
+        *(.meteo_video);
+    }
+    __meteo_video_end = .;
+
     .append_data :
     {
         *(.append_data);
