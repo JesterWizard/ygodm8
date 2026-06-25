@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-25).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-26).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 201 |
-| Art ready, needs manifest | 115 |
+| In game (manifest + art) | 202 |
+| Art ready, needs manifest | 148 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **316** |
+| **Total PNGs in `80x80/`** | **350** |
 
 ## In game
 
@@ -223,6 +223,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THEBAN_NIGHTMARE` | Theban Nightmare | `theban_nightmare.png` |
 | `BIG_BANG_SHOT` | Big Bang Shot | `big_bang_shot.png` |
 | `POLYMERIZATION` | Polymerization | `polymerization.png` |
+| `CYBER_DRAGON` | Cyber Dragon | `cyber_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -236,6 +237,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
+- [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
 - [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
 - [ ] `BIRDFACE` — `birdface.png`
@@ -246,14 +248,29 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
+- [ ] `CAIUS_THE_SHADOW_MONARCH` — `caius_the_shadow_monarch.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
+- [ ] `CHICKEN_GAME` — `chicken_game.png`
+- [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
+- [ ] `CHIMERATECH_OVERDRAGON` — `chimeratech_overdragon.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
+- [ ] `CYBER_BARRIER_DRAGON` — `cyber_barrier_dragon.png`
+- [ ] `CYBER_END_DRAGON` — `cyber_end_dragon.png`
+- [ ] `CYBER_KIRIN` — `cyber_kirin.png`
+- [ ] `CYBER_LASER_DRAGON` — `cyber_laser_dragon.png`
+- [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`
+- [ ] `CYBER_TWIN_DRAGON` — `cyber_twin_dragon.png`
+- [ ] `CYBER_VALLEY` — `cyber_valley.png`
+- [ ] `CYBERNETIC_FUSION_SUPPORT` — `cybernetic_fusion_support.png`
+- [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
+- [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
 - [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
+- [ ] `DE-FUSION` — `de-fusion.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
@@ -265,17 +282,25 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
+- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
+- [ ] `FUTURE_FUSION` — `future_fusion.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
+- [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
+- [ ] `HARPIES_PET_BABY_DRAGON` — `harpies_pet_baby_dragon.png`
+- [ ] `HARPY_LADY_1` — `harpy_lady_1.png`
+- [ ] `HARPY_LADY_2` — `harpy_lady_2.png`
+- [ ] `HARPY_LADY_3` — `harpy_lady_3.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
+- [ ] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
@@ -292,6 +317,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
+- [ ] `MOBIUS_THE_FROST_MONARCH` — `mobius_the_frost_monarch.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
@@ -302,11 +328,15 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
+- [ ] `OVERLOAD_FUSION` — `overload_fusion.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
+- [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
+- [ ] `POWER_BOND` — `power_bond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
+- [ ] `PROTO-CYBER_DRAGON` — `proto-cyber_dragon.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
@@ -315,6 +345,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
+- [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
@@ -331,9 +362,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
+- [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
+- [ ] `THE_UNSTOPPABLE_EXODIA_INCARNATE` — `the_unstoppable_exodia_incarnate.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
+- [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORNADO_BIRD` — `tornado_bird.png`
 - [ ] `TORNADO_WALL` — `tornado_wall.png`

@@ -202,6 +202,7 @@ static const u8 sLeviaDragonDaedalusName[] __attribute__((section(".append_asset
 static const u8 sThebanNightmareName[] __attribute__((section(".append_assets"))) = "Theban Nightmare";
 static const u8 sBigBangShotName[] __attribute__((section(".append_assets"))) = "Big Bang Shot";
 static const u8 sPolymerizationName[] __attribute__((section(".append_assets"))) = "Polymerization";
+static const u8 sCyberDragonName[] __attribute__((section(".append_assets"))) = "Cyber Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -612,6 +613,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBigBangShotName;
   if (cardId == 0x03E9)
     return (u8 *)sPolymerizationName;
+  if (cardId == 0x03EA)
+    return (u8 *)sCyberDragonName;
 
   return gCardNames[cardId];
 }

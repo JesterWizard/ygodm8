@@ -1003,11 +1003,12 @@
 #define THEBAN_NIGHTMARE                         0x03E7
 #define BIG_BANG_SHOT                            0x03E8
 #define POLYMERIZATION                           0x03E9
+#define CYBER_DRAGON                             0x03EA
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03EA
-#define NUM_CUSTOM_CARDS                        0x00C9
+#define NUM_TOTAL_CARDS                         0x03EB
+#define NUM_CUSTOM_CARDS                        0x00CA
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

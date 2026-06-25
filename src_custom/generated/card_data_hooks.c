@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1002] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1003] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1014,9 +1014,10 @@ const u8 gCardLockAfterActivation_Hook[1002] APPEND_RODATA = {
   [0x03E7] = 1,
   [0x03E8] = 1,
   [0x03E9] = 1,
+  [0x03EA] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1002] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1003] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2019,9 +2020,10 @@ const u8 gCardEffectUsage_Hook[1002] APPEND_RODATA = {
   [0x03E7] = EFFECT_USAGE_NONE,
   [0x03E8] = EFFECT_USAGE_NONE,
   [0x03E9] = EFFECT_USAGE_NONE,
+  [0x03EA] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[1002] APPEND_RODATA = {
+const CardData gCardData_NEW[1003] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -15296,5 +15298,19 @@ const CardData gCardData_NEW[1002] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {2, 4, 0, 9, 4, 6, 5, 3},
     .description = gDescription_Polymerization,
+  },
+  [0x03EA] = {
+    .atk = 2100,
+    .def = 1600,
+    .cost = 86,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 5,
+    .type = TYPE_MACHINE,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {7, 0, 0, 9, 5, 1, 5, 4},
+    .description = gDescription_CyberDragon,
   },
 };

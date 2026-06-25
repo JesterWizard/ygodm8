@@ -58,9 +58,32 @@ static u8 SwiftGaiaCanSummonWithoutTribute(u16 cardId)
       && CountActiveDuelistHandCards() == 1;
 }
 
+/* Cyber Dragon: if only opponent controls a monster, you can Special Summon this card. */
+static u8 CyberDragonCanSummonWithoutTribute(u16 cardId)
+{
+  u8 i;
+  u8 playerHasMonster = FALSE;
+  u8 opponentHasMonster = FALSE;
+
+  if (cardId != CYBER_DRAGON)
+    return FALSE;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i]->id != CARD_NONE)
+      playerHasMonster = TRUE;
+    if (gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][i]->id != CARD_NONE)
+      opponentHasMonster = TRUE;
+  }
+
+  return !playerHasMonster && opponentHasMonster;
+}
+
 static int GetBaseRequiredTributes(u16 cardId)
 {
   if (SwiftGaiaCanSummonWithoutTribute(cardId))
+    return 0;
+
+  if (CyberDragonCanSummonWithoutTribute(cardId))
     return 0;
 
   if (ShouldApplyCostDownLevelForTribute(cardId))
@@ -80,6 +103,9 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
   SetCardInfo(cardId);
 
   if (SwiftGaiaCanSummonWithoutTribute(cardId))
+    return 0;
+
+  if (CyberDragonCanSummonWithoutTribute(cardId))
     return 0;
 
   if (ShouldApplyCostDownForHandSlot(handSlot, cardId))

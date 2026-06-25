@@ -1,5 +1,36 @@
 # Session Log
 
+## 2026-06-26 — Cyber Dragon effect + palette fix
+
+**Worked on:** 
+- Fixed palette corruption: re-ran `normalize_big_card_png.py` on `cyber_dragon.png` which remapped its palette index-0 pixels to nearest colors and zeroed palette slot 0 (reserved for transparency in GBA big card art). Second pass confirmed 0 remaining index-0 pixels.
+- Implemented Cyber Dragon's inherent Special Summon: when only the opponent controls a monster and the player has none, the tribute requirement drops to 0. The check is wired into `GetBaseRequiredTributes` and `GetNumRequiredTributesForHandSlot` in `tribute_hooks.c`, which feeds both the player hand menu and the AI logic.
+
+**Files:**
+- `src_custom/assets/cards/80x80/cyber_dragon.png` — palette normalized
+- `src_custom/tribute_hooks.c` — added `CyberDragonCanSummonWithoutTribute()` and wired into both tribute check flows
+
+**Outcome:** `make test-cards-build` passes. Cyber Dragon summons without tribute when opponent has a monster and your field is empty.
+
+**Open / next:** None.
+
+## 2026-06-26 — Added Cyber Dragon (0x03EA) to custom card trunk
+
+**Worked on:** Added Cyber Dragon (passcode 70095154) to the custom card trunk via `add_custom_card.py --passcode`. Used the Yugipedia skill flow: fetched card data via YGOProDeck API, wrote manifest entry with correct fields (LEVEL 5 LIGHT Machine 2100/1600 EFFECT_CARD), set `card_in_hand_1` in runtime.c. Art is missing (no 80x80 PNG). Effect (inherent Special Summon from hand when only opponent controls a monster) is not yet implemented — requires engine-level changes to the summon phase, as it's an inherent summon from hand, not an activated field effect.
+
+**Files:**
+- `tools/card_data_manifest.json` — new CYBER_DRAGON entry
+- `configs/runtime.c` — `.card_in_hand_1 = CYBER_DRAGON`
+- `include/constants/card_ids.h` — `#define CYBER_DRAGON 0x03EA` (auto-generated)
+- `src_custom/generated/card_trunk_generated.inc` — trunk entry (auto-generated)
+- `src_custom/card_description_data_generated.inc` — description data (auto-generated)
+
+**Outcome:** `make test-cards` and `make test-cards-build` both pass. Card exists in trunk at ID 0x03EA with correct stats and description. No art asset yet.
+
+**Open / next:**
+- Create 80×80 PNG art at `src_custom/assets/cards/80x80/cyber_dragon.png`
+- Implement inherent Special Summon effect
+
 ## 2026-06-25 — Created add-custom-card-from-yugipedia skill
 
 **Worked on:** Created a new `.agents/skills/add-custom-card-from-yugipedia/SKILL.md` skill that captures the workflow of adding a real Yu-Gi-Oh! card to the custom card trunk from its Yugipedia URL. Covers: fetching card data from Yugipedia page, mapping to manifest fields, trying `add_custom_card.py --passcode` first, falling back to manual manifest entry when API is down, checking art in 80x80, setting runtime hand, and wiring effects with duel helpers. Used JOWLS_OF_DARK_DEMISE (already in manifest at ID 0x03CC) as the concrete example throughout.

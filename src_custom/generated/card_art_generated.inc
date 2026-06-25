@@ -812,6 +812,10 @@ static const unsigned char sPolymerizationBigArt[] __attribute__((section(".appe
 static const unsigned short sPolymerizationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/polymerization.gbapal");
 static const unsigned char sPolymerizationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/polymerization.lz");
 
+static const unsigned char sCyberDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_dragon.huff");
+static const unsigned short sCyberDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_dragon.gbapal");
+static const unsigned char sCyberDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1016,6 +1020,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E7] = sThebanNightmareBigArt,
   [0x03E8] = sBigBangShotBigArt,
   [0x03E9] = sPolymerizationBigArt,
+  [0x03EA] = sCyberDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1222,6 +1227,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E7] = sThebanNightmareBigPalette,
   [0x03E8] = sBigBangShotBigPalette,
   [0x03E9] = sPolymerizationBigPalette,
+  [0x03EA] = sCyberDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1428,6 +1434,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E7] = 0,
   [0x03E8] = 0,
   [0x03E9] = 0,
+  [0x03EA] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1634,4 +1641,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E7] = sThebanNightmareMiniArt,
   [0x03E8] = sBigBangShotMiniArt,
   [0x03E9] = sPolymerizationMiniArt,
+  [0x03EA] = sCyberDragonMiniArt,
 };
