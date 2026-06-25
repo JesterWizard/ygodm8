@@ -1,5 +1,16 @@
 # Session Log
 
+## 2026-06-25 — Created add-custom-card-from-yugipedia skill
+
+**Worked on:** Created a new `.agents/skills/add-custom-card-from-yugipedia/SKILL.md` skill that captures the workflow of adding a real Yu-Gi-Oh! card to the custom card trunk from its Yugipedia URL. Covers: fetching card data from Yugipedia page, mapping to manifest fields, trying `add_custom_card.py --passcode` first, falling back to manual manifest entry when API is down, checking art in 80x80, setting runtime hand, and wiring effects with duel helpers. Used JOWLS_OF_DARK_DEMISE (already in manifest at ID 0x03CC) as the concrete example throughout.
+
+**Files:**
+- `.agents/skills/add-custom-card-from-yugipedia/SKILL.md` — new skill
+
+**Outcome:** Skill created. When invoked with a Yugipedia URL, it follows a 7-step fast path: fetch → passcode → manifest check → art → hand → effects → validate.
+
+**Open / next:** None.
+
 ## 2026-06-24 — Replace LZSS video pipeline with Meteo/COMET codec
 
 **Worked on:** Replaced the old ffmpeg+LZSS per-frame video pipeline with the Meteo Avi-2-GBA / COMET codec. The COMET codec uses motion-compensated inter-frame compression + audio, reducing the video blob from ~14MB to ~3.5MB (target, when user provides the Meteo output). ROM dropped from 33MB → 19MB without the blob (empty section).
