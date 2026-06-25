@@ -1,5 +1,23 @@
 # Session Log
 
+## 2026-06-26 — Added Cyber Twin Dragon (CYBER_TWIN_DRAGON) with double attack
+
+**Worked on:** Added Cyber Twin Dragon (Fusion Monster, passcode 74157028) to the custom card trunk from Yugipedia via API. It's a LIGHT Machine Level 8 2800/2100 fusion monster. Implemented its double-attack effect following the Hayabusa Knight pattern: after each attack, `TryUnlockCyberTwinDragonForSecondAttack()` unlocks the monster for a second attack by setting `isLocked = FALSE`. Wired the unlock call into all 4 attack completion paths (`draining_shield_hooks.c`, `code_8043EF4_hooks.c`, `ai_attack_hooks.c`, `call_of_the_haunted_hooks.c`). Fixed description pages to fit GBA's 5-row card text format.
+
+**Files:**
+- `tools/card_data_manifest.json` — new CYBER_TWIN_DRAGON entry
+- `configs/runtime.c` — `card_in_hand_1 = CYBER_TWIN_DRAGON`
+- `include/cyber_twin_dragon.h` — new header
+- `src_custom/card_passives/cyber_twin_dragon.c` — new: double-attack unlock function
+- `src_custom/draining_shield_hooks.c` — include + unlock call
+- `src_custom/code_8043EF4_hooks.c` — include + unlock calls (2 sites)
+- `src_custom/ai_attack_hooks.c` — include + unlock calls (2 sites)
+- `src_custom/call_of_the_haunted_hooks.c` — include + unlock call
+
+**Outcome:** `make test-cards-build` passes. Cyber Twin Dragon starts in hand at duel start with correct stats, art, and description. It can attack twice per Battle Phase.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Cyber Dragon effect + palette fix
 
 **Worked on:** 

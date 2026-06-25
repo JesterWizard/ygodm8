@@ -13,6 +13,7 @@
 #include "mermaid_knight.h"
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
+#include "cyber_twin_dragon.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
@@ -173,6 +174,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
+  TryUnlockCyberTwinDragonForSecondAttack(attacker);
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();

@@ -59,13 +59,13 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
-    .card_in_hand_1 = CYBER_DRAGON,
+    .card_in_hand_1 = CYBER_TWIN_DRAGON,
     .card_in_hand_2 = CARD_NONE,
     .card_in_hand_3 = CARD_NONE,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
     .opponent_deck_card_id = CARD_NONE,
     .skip_to_duel = TRUE,
-    .skip_to_duel_opponent_id = DUELIST_DARK_BAKURA_136,
+    .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,
 };

@@ -13,6 +13,7 @@
 #include "mermaid_knight.h"
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
+#include "cyber_twin_dragon.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -186,6 +187,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
+  TryUnlockCyberTwinDragonForSecondAttack(attacker);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -237,6 +239,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockMermaidKnightForSecondAttack(attacker);
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
+  TryUnlockCyberTwinDragonForSecondAttack(attacker);
 }
 
 LYN_REPLACE_CHECK(sub_800E50C);

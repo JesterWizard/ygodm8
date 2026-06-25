@@ -816,6 +816,10 @@ static const unsigned char sCyberDragonBigArt[] __attribute__((section(".append_
 static const unsigned short sCyberDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_dragon.gbapal");
 static const unsigned char sCyberDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_dragon.lz");
 
+static const unsigned char sCyberTwinDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_twin_dragon.huff");
+static const unsigned short sCyberTwinDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_twin_dragon.gbapal");
+static const unsigned char sCyberTwinDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_twin_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1021,6 +1025,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E8] = sBigBangShotBigArt,
   [0x03E9] = sPolymerizationBigArt,
   [0x03EA] = sCyberDragonBigArt,
+  [0x03EB] = sCyberTwinDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1228,6 +1233,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E8] = sBigBangShotBigPalette,
   [0x03E9] = sPolymerizationBigPalette,
   [0x03EA] = sCyberDragonBigPalette,
+  [0x03EB] = sCyberTwinDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1435,6 +1441,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E8] = 0,
   [0x03E9] = 0,
   [0x03EA] = 0,
+  [0x03EB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1642,4 +1649,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E8] = sBigBangShotMiniArt,
   [0x03E9] = sPolymerizationMiniArt,
   [0x03EA] = sCyberDragonMiniArt,
+  [0x03EB] = sCyberTwinDragonMiniArt,
 };

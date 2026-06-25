@@ -18376,6 +18376,29 @@
           "If only your opponent controls a monster, you can Special Summon this card (from your hand)."
         ]
       }
+    },
+    {
+      "card_const": "CYBER_TWIN_DRAGON",
+      "card_name": "Cyber Twin Dragon",
+      "atk": 2800,
+      "def": 2100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 4, 1, 5, 7, 0, 2, 8],
+      "description": {
+        "symbol": "gDescription_CyberTwinDragon",
+        "pages": [
+          "\"Cyber Dragon\" + \"Cyber Dragon\"",
+          "Must be Fusion Summoned with the materials above.",
+          "Can attack twice during each Battle Phase."
+        ]
+      }
     }
   ]
 }
