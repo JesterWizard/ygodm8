@@ -1,12 +1,13 @@
 /* Generated — do not edit.
  *
- * If src_custom/assets/videos/intro.bin exists, it is embedded in
- * the .meteo_video section and sMeteoVideoData points to it.
- * Otherwise sMeteoVideoData is still defined (empty section) so the
- * assembly stub links; the C gate (METE0_VIDEO_AVAILABLE) prevents calls.
+ * Controlled by METE0_VIDEO in the Makefile (auto-detects file presence).
+ * When enabled AND the file exists, it is embedded in the .meteo_video
+ * section and sMeteoVideoData points to it.
+ * Otherwise sMeteoVideoData is still defined as a dummy so the assembly
+ * stub links; the C gate (METE0_VIDEO_AVAILABLE) prevents calls.
  */
 
-#if __has_include("src_custom/assets/videos/intro.bin")
+#if METE0_VIDEO_ENABLED && __has_include("src_custom/assets/videos/intro.bin")
 
 __asm__(".section .meteo_video, \"a\"\n"
         ".global sMeteoVideoData\n"

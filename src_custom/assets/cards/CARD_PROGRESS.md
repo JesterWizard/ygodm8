@@ -5,7 +5,7 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-24).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-25).
 
 ## Summary
 

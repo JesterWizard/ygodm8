@@ -317,10 +317,6 @@ _kernel_malloc_ewram gVideoPlayerStatePad, 1
 @ Current frame index being played.
 _kernel_malloc_ewram gVideoPlayerFrameIndex, 2
 
-@ Video frame decompression buffer in EWRAM (Mode 4 raster: 240x160 = 0x9600 bytes).
-@ Decompressed in C (no SWI/BIOS dependency), then copied to VRAM via CpuCopy16.
-_kernel_malloc_ewram_array gVideoPlayerFrameBuf, 0x9600
-
 @ Thousand Energy: fixed monster row + column bitmask for end-of-turn destruction.
 _kernel_malloc_ewram gThousandEnergyDestroyMask, 1
 _kernel_malloc_ewram gThousandEnergyFixedMonsterRow, 1

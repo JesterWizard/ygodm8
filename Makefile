@@ -24,10 +24,15 @@ endif
 
 
 BUILD_NAME := ygodm8
-BUILD_UPS ?= 0
-CUSTOM_CODE ?= 1
+FALSE := 0
+TRUE  := 1
+
+BUILD_UPS ?= $(FALSE)
+CUSTOM_CODE ?= $(TRUE)
 CUSTOM_EVENTS ?= $(CUSTOM_CODE)
 CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
+
+METE0_VIDEO ?= $(FALSE)
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
@@ -242,13 +247,15 @@ $(LYNJUMP_VALIDATE_STAMP): $(LYNJUMP_VALIDATE_DEPS)
 	python3 tools/validate_lynjump.py
 	@touch $@
 
-$(ROM): $(ELF) $(LYNJUMP_VALIDATE_STAMP) tools/apply_lynjump.py $(METE0_INTEGRATE)
+$(ROM): $(ELF) $(LYNJUMP_VALIDATE_STAMP) tools/apply_lynjump.py
 	@echo "OBJCOPY $@"
 	$(OBJCOPY) -O binary --pad-to 0x9000020 $< $@
 	@echo "PATCH   tools/apply_lynjump.py"
 	python3 tools/apply_lynjump.py $(ELF) $@
+ifeq ($(METE0_VIDEO),1)
 	@echo "PATCH   tools/meteo_integrate.py"
 	python3 $(METE0_INTEGRATE) --rom $@ --map $(MAP)
+endif
 else
 $(ROM): $(ELF)
 	@echo "OBJCOPY $@"
@@ -469,11 +476,20 @@ $(METE0_ASM_OBJ): $(METE0_ASM_SRC)
 	@echo "AS      $<"
 	$(AS) $(ASFLAGS) $< -o $@
 
-# video_player.c includes the generated inc (uses __has_include for detection)
-$(eval $(call custom_object_dep,video_player,$(METE0_GENERATED)))
+# video_player.c — passes -DMETE0_VIDEO_ENABLED for compile-time toggle.
+# Overrides the pattern rule to inject the flag.
+$(C_BUILDDIR_CUSTOM)/video_player.o: src_custom/video_player.c $(METE0_GENERATED) $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+	@echo "CC      $<"
+	$(CPP) $(CPPFLAGS) -DMETE0_VIDEO_ENABLED=$(METE0_VIDEO) $< -o $(C_BUILDDIR_CUSTOM)/video_player.i
+	@$(PREPROC) $(C_BUILDDIR_CUSTOM)/video_player.i charmap.txt | $(CC1) $(CFLAGS) -o $(C_BUILDDIR_CUSTOM)/video_player.s
+	@echo ".text\n\t.align\t2, 0\n" >> $(C_BUILDDIR_CUSTOM)/video_player.s
+	@echo "AS      $@"
+	$(AS) $(ASFLAGS) $(C_BUILDDIR_CUSTOM)/video_player.s -o $@
 
 # Post-link: fix Meteo blob pointers after LynJump patching
+ifeq ($(METE0_VIDEO),1)
 $(ROM): $(METE0_INTEGRATE)
+endif
 
 $(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
