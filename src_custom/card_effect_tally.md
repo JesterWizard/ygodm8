@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `211` effects
+- `212` effects
 
 ## Tally
 
@@ -180,6 +180,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Slifer The Sky Dragon` | `src_custom/permanent_effects/slifer_the_sky_dragon.c` |
 | `permanent_effects` | `Familiar Knight` | `src_custom/permanent_effects/familiar_knight.c` |
 | `permanent_effects` | `Dark Magician Knight` | `src_custom/permanent_effects/dark_magician_knight.c` |
+| `permanent_effects` | `Caius the Shadow Monarch` | `src_custom/permanent_effects/caius_the_shadow_monarch.c` |
 | `permanent_effects` | `Zaborg the Thunder Monarch` | `src_custom/permanent_effects/zaborg_the_thunder_monarch.c` |
 | `permanent_effects` | `Marauding Captain` | `src_custom/permanent_effects/marauding_captain.c` |
 | `permanent_effects` | `Kaiser Glider` | `src_custom/permanent_effects/kaiser_glider.c` |

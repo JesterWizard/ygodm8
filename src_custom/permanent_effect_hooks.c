@@ -9,6 +9,7 @@
 #include "pyramid_of_light.h"
 #include "dark_magician_knight.h"
 #include "zaborg_the_thunder_monarch.h"
+#include "caius_the_shadow_monarch.h"
 #include "kaiser_glider.h"
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
@@ -136,6 +137,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ZABORG_THE_THUNDER_MONARCH,
     .shouldActivate = ShouldActivateZaborgTheThunderMonarch,
     .activate = ActivateZaborgTheThunderMonarch,
+  },
+  {
+    .cardId = CAIUS_THE_SHADOW_MONARCH,
+    .shouldActivate = ShouldActivateCaiusTheShadowMonarch,
+    .activate = ActivateCaiusTheShadowMonarch,
   },
   {
     .cardId = DARK_DUST_SPIRIT,

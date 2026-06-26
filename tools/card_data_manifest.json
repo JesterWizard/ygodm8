@@ -18422,6 +18422,36 @@
           "Piercing battle damage when attacking Defense Position."
         ]
       }
+    },
+    {
+      "card_const": "CAIUS_THE_SHADOW_MONARCH",
+      "card_name": "Caius the Shadow Monarch",
+      "atk": 2400,
+      "def": 1000,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [9, 7, 4, 8, 9, 7, 0, 1],
+      "description": {
+        "symbol": "gDescription_CaiusTheShadowMonarch",
+        "pages": [
+          "If this card is Tribute Summoned:",
+          "Target 1 card on the field; banish it.",
+          "If it was DARK, inflict 1000 damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_CaiusTheShadowMonarch",
+        "pages": [
+          "When Tribute Summoned, target and banish 1 card. If DARK, inflict 1000 damage."
+     
+        ]
+      }
     }
   ]
 }

@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1005] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1006] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1017,9 +1017,10 @@ const u8 gCardLockAfterActivation_Hook[1005] APPEND_RODATA = {
   [0x03EA] = 1,
   [0x03EB] = 1,
   [0x03EC] = 1,
+  [0x03ED] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1005] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1006] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2025,9 +2026,10 @@ const u8 gCardEffectUsage_Hook[1005] APPEND_RODATA = {
   [0x03EA] = EFFECT_USAGE_NONE,
   [0x03EB] = EFFECT_USAGE_NONE,
   [0x03EC] = EFFECT_USAGE_NONE,
+  [0x03ED] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[1005] APPEND_RODATA = {
+const CardData gCardData_NEW[1006] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -15344,5 +15346,19 @@ const CardData gCardData_NEW[1005] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {0, 1, 5, 4, 6, 1, 2, 3},
     .description = gDescription_CyberEndDragon,
+  },
+  [0x03ED] = {
+    .atk = 2400,
+    .def = 1000,
+    .cost = 400,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 6,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 7, 4, 8, 9, 7, 0, 1},
+    .description = gDescription_CaiusTheShadowMonarch,
   },
 };

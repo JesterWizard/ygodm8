@@ -1,5 +1,22 @@
 # Session Log
 
+## 2026-06-26 — Added Caius the Shadow Monarch (CAIUS_THE_SHADOW_MONARCH) with Tribute Summon banish + burn
+
+**Worked on:** Added Caius the Shadow Monarch (Level 6 DARK Fiend 2400/1000, passcode 97489701) to the custom card trunk. Art already existed at `80x80/caius_the_shadow_monarch.png`. Implemented its Tribute Summon trigger effect (target 1 card on the field → destroy it; if it was DARK, burn opponent for 1000) following the Zaborg pattern: permanent_effects override with `ShouldActivate`/`Activate`, targeting cursor via `code_8043EF4_hooks.c`, and AI picks opponent's strongest monster. Set runtime hand to `CAIUS_THE_SHADOW_MONARCH`.
+
+**Files:**
+- `tools/card_data_manifest.json` — new CAIUS_THE_SHADOW_MONARCH entry
+- `configs/runtime.c` — `card_in_hand_1 = CAIUS_THE_SHADOW_MONARCH`
+- `include/caius_the_shadow_monarch.h` — new header with DUEL_CURSOR=25
+- `src_custom/permanent_effects/caius_the_shadow_monarch.c` — new: full effect (targeting, destroy, DARK burn check)
+- `src_custom/permanent_effect_hooks.c` — include + override table entry
+- `src_custom/code_8043EF4_hooks.c` — include + A-button/B-button cursor cases
+- `src_custom/card_effect_tally.md` — added entry, total 212
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, validators OK). Caius the Shadow Monarch starts in hand at duel start with correct 2400/1000 stats, 3-page description, and full Tribute Summon trigger effect with AI targeting.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added Cyber End Dragon (CYBER_END_DRAGON) with piercing battle damage
 
 **Worked on:** Added Cyber End Dragon (Fusion Monster, passcode 01546123) to the custom card trunk. It's a Level 10 LIGHT Machine 4000/2800 Fusion/Effect monster requiring 3x "Cyber Dragon" as materials. Added to manifest manually (the `add_custom_card.py` passcode parser drops leading zeros). Implemented piercing battle damage via a new `src_custom/battle_effects/cyber_end_dragon.c` file following the Spear Dragon pattern: after ATK > DEF against a Defense Position monster, deals the difference as battle damage to the opponent's LP. Wired into `CheckGraveyardAndLoserFlags__Replacement` in `battle_damage_hooks.c`. Set runtime hand to `CYBER_END_DRAGON`. 80x80 art already existed.

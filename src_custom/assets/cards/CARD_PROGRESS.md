@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 204 |
-| Art ready, needs manifest | 146 |
+| In game (manifest + art) | 205 |
+| Art ready, needs manifest | 145 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **350** |
 
@@ -226,6 +226,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_DRAGON` | Cyber Dragon | `cyber_dragon.png` |
 | `CYBER_TWIN_DRAGON` | Cyber Twin Dragon | `cyber_twin_dragon.png` |
 | `CYBER_END_DRAGON` | Cyber End Dragon | `cyber_end_dragon.png` |
+| `CAIUS_THE_SHADOW_MONARCH` | Caius the Shadow Monarch | `caius_the_shadow_monarch.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -250,7 +251,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
-- [ ] `CAIUS_THE_SHADOW_MONARCH` — `caius_the_shadow_monarch.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
