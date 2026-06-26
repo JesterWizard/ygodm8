@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 203 |
-| Art ready, needs manifest | 147 |
+| In game (manifest + art) | 204 |
+| Art ready, needs manifest | 146 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **350** |
 
@@ -225,6 +225,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `POLYMERIZATION` | Polymerization | `polymerization.png` |
 | `CYBER_DRAGON` | Cyber Dragon | `cyber_dragon.png` |
 | `CYBER_TWIN_DRAGON` | Cyber Twin Dragon | `cyber_twin_dragon.png` |
+| `CYBER_END_DRAGON` | Cyber End Dragon | `cyber_end_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -261,7 +262,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CYBER_BARRIER_DRAGON` — `cyber_barrier_dragon.png`
-- [ ] `CYBER_END_DRAGON` — `cyber_end_dragon.png`
 - [ ] `CYBER_KIRIN` — `cyber_kirin.png`
 - [ ] `CYBER_LASER_DRAGON` — `cyber_laser_dragon.png`
 - [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`

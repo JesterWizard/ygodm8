@@ -1,5 +1,21 @@
 # Session Log
 
+## 2026-06-26 — Added Cyber End Dragon (CYBER_END_DRAGON) with piercing battle damage
+
+**Worked on:** Added Cyber End Dragon (Fusion Monster, passcode 01546123) to the custom card trunk. It's a Level 10 LIGHT Machine 4000/2800 Fusion/Effect monster requiring 3x "Cyber Dragon" as materials. Added to manifest manually (the `add_custom_card.py` passcode parser drops leading zeros). Implemented piercing battle damage via a new `src_custom/battle_effects/cyber_end_dragon.c` file following the Spear Dragon pattern: after ATK > DEF against a Defense Position monster, deals the difference as battle damage to the opponent's LP. Wired into `CheckGraveyardAndLoserFlags__Replacement` in `battle_damage_hooks.c`. Set runtime hand to `CYBER_END_DRAGON`. 80x80 art already existed.
+
+**Files:**
+- `tools/card_data_manifest.json` — new CYBER_END_DRAGON entry
+- `configs/runtime.c` — `card_in_hand_1 = CYBER_END_DRAGON`
+- `include/cyber_end_dragon.h` — new header
+- `src_custom/battle_effects/cyber_end_dragon.c` — new piercing effect
+- `src_custom/battle_damage_hooks.c` — wired piercing call
+- `src_custom/assets/cards/CARD_PROGRESS.md` — marked CYBER_END_DRAGON done
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, validators OK). Cyber End Dragon starts in hand at duel start with correct 4000/2800 stats, 3-page description, and piercing battle damage against Defense Position monsters.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added Cyber Twin Dragon (CYBER_TWIN_DRAGON) with double attack
 
 **Worked on:** Added Cyber Twin Dragon (Fusion Monster, passcode 74157028) to the custom card trunk from Yugipedia via API. It's a LIGHT Machine Level 8 2800/2100 fusion monster. Implemented its double-attack effect following the Hayabusa Knight pattern: after each attack, `TryUnlockCyberTwinDragonForSecondAttack()` unlocks the monster for a second attack by setting `isLocked = FALSE`. Wired the unlock call into all 4 attack completion paths (`draining_shield_hooks.c`, `code_8043EF4_hooks.c`, `ai_attack_hooks.c`, `call_of_the_haunted_hooks.c`). Fixed description pages to fit GBA's 5-row card text format.

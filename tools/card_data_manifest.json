@@ -18394,9 +18394,32 @@
       "description": {
         "symbol": "gDescription_CyberTwinDragon",
         "pages": [
-          "\"Cyber Dragon\" + \"Cyber Dragon\"",
+          "Cyber Dragon + Cyber Dragon",
           "Must be Fusion Summoned with the materials above.",
           "Can attack twice during each Battle Phase."
+        ]
+      }
+    },
+    {
+      "card_const": "CYBER_END_DRAGON",
+      "card_name": "Cyber End Dragon",
+      "atk": 4000,
+      "def": 2800,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [0, 1, 5, 4, 6, 1, 2, 3],
+      "description": {
+        "symbol": "gDescription_CyberEndDragon",
+        "pages": [
+          "Cyber Dragon + Cyber Dragon + Cyber Dragon.",
+          "Must be Fusion Summoned with the materials above.",
+          "Piercing battle damage when attacking Defense Position."
         ]
       }
     }

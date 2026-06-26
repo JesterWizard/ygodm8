@@ -1005,11 +1005,12 @@
 #define POLYMERIZATION                           0x03E9
 #define CYBER_DRAGON                             0x03EA
 #define CYBER_TWIN_DRAGON                        0x03EB
+#define CYBER_END_DRAGON                         0x03EC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03EC
-#define NUM_CUSTOM_CARDS                        0x00CB
+#define NUM_TOTAL_CARDS                         0x03ED
+#define NUM_CUSTOM_CARDS                        0x00CC
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

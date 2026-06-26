@@ -820,6 +820,10 @@ static const unsigned char sCyberTwinDragonBigArt[] __attribute__((section(".app
 static const unsigned short sCyberTwinDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_twin_dragon.gbapal");
 static const unsigned char sCyberTwinDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_twin_dragon.lz");
 
+static const unsigned char sCyberEndDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_end_dragon.huff");
+static const unsigned short sCyberEndDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_end_dragon.gbapal");
+static const unsigned char sCyberEndDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_end_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1026,6 +1030,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03E9] = sPolymerizationBigArt,
   [0x03EA] = sCyberDragonBigArt,
   [0x03EB] = sCyberTwinDragonBigArt,
+  [0x03EC] = sCyberEndDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1234,6 +1239,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03E9] = sPolymerizationBigPalette,
   [0x03EA] = sCyberDragonBigPalette,
   [0x03EB] = sCyberTwinDragonBigPalette,
+  [0x03EC] = sCyberEndDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1442,6 +1448,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03E9] = 0,
   [0x03EA] = 0,
   [0x03EB] = 0,
+  [0x03EC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1650,4 +1657,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03E9] = sPolymerizationMiniArt,
   [0x03EA] = sCyberDragonMiniArt,
   [0x03EB] = sCyberTwinDragonMiniArt,
+  [0x03EC] = sCyberEndDragonMiniArt,
 };
