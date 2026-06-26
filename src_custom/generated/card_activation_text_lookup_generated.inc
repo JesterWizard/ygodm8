@@ -218,6 +218,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { POLYMERIZATION, gActivationDescription_Polymerization },
   { CYBER_DRAGON, gActivationDescription_CyberDragon },
   { CAIUS_THE_SHADOW_MONARCH, gActivationDescription_CaiusTheShadowMonarch },
+  { MOBIUS_THE_FROST_MONARCH, gActivationDescription_MobiusTheFrostMonarch },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

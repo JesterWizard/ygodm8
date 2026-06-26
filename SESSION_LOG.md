@@ -1,5 +1,22 @@
 # Session Log
 
+## 2026-06-26 — Added Mobius the Frost Monarch (MOBIUS_THE_FROST_MONARCH) with Tribute Summon double Spell/Trap destruction
+
+**Worked on:** Added Mobius the Frost Monarch (Level 6 WATER Aqua 2400/1000, passcode 04929326, ID 0x03EE) to the custom card trunk. Art already existed at `80x80/mobius_the_frost_monarch.png`. Implemented its Tribute Summon trigger effect (target up to 2 Spell/Trap Cards on the field → destroy them) following the Caius/Zaborg pattern: permanent_effects override with `ShouldActivate`/`Activate`, cursor targeting via `code_8043EF4_hooks.c`. Player targeting supports up-to-2 picks using zone `unk4` as phase flag. AI destroys up to 2 of opponent's backrow targets. Set runtime hand to `MOBIUS_THE_FROST_MONARCH`.
+
+**Files:**
+- `tools/card_data_manifest.json` — new MOBIUS_THE_FROST_MONARCH entry
+- `configs/runtime.c` — `card_in_hand_1 = MOBIUS_THE_FROST_MONARCH`
+- `include/mobius_the_frost_monarch.h` — new header with DUEL_CURSOR=26
+- `src_custom/permanent_effects/mobius_the_frost_monarch.c` — new: full effect (up-to-2 targeting, Spell/Trap destroy)
+- `src_custom/permanent_effect_hooks.c` — include + override table entry
+- `src_custom/code_8043EF4_hooks.c` — include + A-button/B-button cursor cases
+- `src_custom/card_effect_tally.md` — added entry, total 213
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, validators OK). Mobius the Frost Monarch starts in hand at duel start with correct 2400/1000 stats, 3-page description, and full Tribute Summon trigger effect with up-to-2 backrow targeting and AI support.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added Caius the Shadow Monarch (CAIUS_THE_SHADOW_MONARCH) with Tribute Summon banish + burn
 
 **Worked on:** Added Caius the Shadow Monarch (Level 6 DARK Fiend 2400/1000, passcode 97489701) to the custom card trunk. Art already existed at `80x80/caius_the_shadow_monarch.png`. Implemented its Tribute Summon trigger effect (target 1 card on the field → destroy it; if it was DARK, burn opponent for 1000) following the Zaborg pattern: permanent_effects override with `ShouldActivate`/`Activate`, targeting cursor via `code_8043EF4_hooks.c`, and AI picks opponent's strongest monster. Set runtime hand to `CAIUS_THE_SHADOW_MONARCH`.

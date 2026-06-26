@@ -10,6 +10,7 @@
 #include "dark_magician_knight.h"
 #include "zaborg_the_thunder_monarch.h"
 #include "caius_the_shadow_monarch.h"
+#include "mobius_the_frost_monarch.h"
 #include "kaiser_glider.h"
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
@@ -77,6 +78,8 @@ void ActivateGranadora(void);
 unsigned char ShouldActivateBurningAlgae(void);
 void ActivateBurningAlgae(void);
 unsigned char ShouldActivateBerserkGorilla(void);
+unsigned char ShouldActivateMobiusTheFrostMonarch(void);
+void ActivateMobiusTheFrostMonarch(void);
 void ActivateBerserkGorilla(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
@@ -217,6 +220,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = BERSERK_GORILLA,
     .shouldActivate = ShouldActivateBerserkGorilla,
     .activate = ActivateBerserkGorilla,
+  },
+  {
+    .cardId = MOBIUS_THE_FROST_MONARCH,
+    .shouldActivate = ShouldActivateMobiusTheFrostMonarch,
+    .activate = ActivateMobiusTheFrostMonarch,
   },
 };
 

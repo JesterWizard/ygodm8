@@ -54,6 +54,7 @@
 #include "dark_magician_knight.h"
 #include "zaborg_the_thunder_monarch.h"
 #include "caius_the_shadow_monarch.h"
+#include "mobius_the_frost_monarch.h"
 #include "ryu_kishin_clown.h"
 #include "embodiment_of_apophis.h"
 #include "guardian_treasure.h"
@@ -1060,6 +1061,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_CAIUS_THE_SHADOW_MONARCH_TARGET:
       TrySelectCaiusTheShadowMonarchTarget();
       break;
+    case DUEL_CURSOR_MOBIUS_THE_FROST_MONARCH_TARGET:
+      TrySelectMobiusTheFrostMonarchTarget();
+      break;
     case DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET:
       TrySelectRyuKishinClownTarget();
       break;
@@ -1139,6 +1143,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_CAIUS_THE_SHADOW_MONARCH_TARGET:
       CancelCaiusTheShadowMonarchTargeting();
+      break;
+    case DUEL_CURSOR_MOBIUS_THE_FROST_MONARCH_TARGET:
+      CancelMobiusTheFrostMonarchTargeting();
       break;
     case DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET:
       CancelRyuKishinClownTargeting();

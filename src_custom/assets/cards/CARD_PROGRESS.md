@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 205 |
-| Art ready, needs manifest | 145 |
+| In game (manifest + art) | 206 |
+| Art ready, needs manifest | 144 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **350** |
 
@@ -227,6 +227,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_TWIN_DRAGON` | Cyber Twin Dragon | `cyber_twin_dragon.png` |
 | `CYBER_END_DRAGON` | Cyber End Dragon | `cyber_end_dragon.png` |
 | `CAIUS_THE_SHADOW_MONARCH` | Caius the Shadow Monarch | `caius_the_shadow_monarch.png` |
+| `MOBIUS_THE_FROST_MONARCH` | Mobius the Frost Monarch | `mobius_the_frost_monarch.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -317,7 +318,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
-- [ ] `MOBIUS_THE_FROST_MONARCH` — `mobius_the_frost_monarch.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`

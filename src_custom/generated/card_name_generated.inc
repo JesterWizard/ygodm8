@@ -206,6 +206,7 @@ static const u8 sCyberDragonName[] __attribute__((section(".append_assets"))) = 
 static const u8 sCyberTwinDragonName[] __attribute__((section(".append_assets"))) = "Cyber Twin Dragon";
 static const u8 sCyberEndDragonName[] __attribute__((section(".append_assets"))) = "Cyber End Dragon";
 static const u8 sCaiusTheShadowMonarchName[] __attribute__((section(".append_assets"))) = "Caius the Shadow Monarch";
+static const u8 sMobiusTheFrostMonarchName[] __attribute__((section(".append_assets"))) = "Mobius the Frost Monarch";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -624,6 +625,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCyberEndDragonName;
   if (cardId == 0x03ED)
     return (u8 *)sCaiusTheShadowMonarchName;
+  if (cardId == 0x03EE)
+    return (u8 *)sMobiusTheFrostMonarchName;
 
   return gCardNames[cardId];
 }

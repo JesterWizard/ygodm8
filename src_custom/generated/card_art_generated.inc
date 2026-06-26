@@ -828,6 +828,10 @@ static const unsigned char sCaiusTheShadowMonarchBigArt[] __attribute__((section
 static const unsigned short sCaiusTheShadowMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/caius_the_shadow_monarch.gbapal");
 static const unsigned char sCaiusTheShadowMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/caius_the_shadow_monarch.lz");
 
+static const unsigned char sMobiusTheFrostMonarchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mobius_the_frost_monarch.huff");
+static const unsigned short sMobiusTheFrostMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mobius_the_frost_monarch.gbapal");
+static const unsigned char sMobiusTheFrostMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mobius_the_frost_monarch.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1036,6 +1040,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03EB] = sCyberTwinDragonBigArt,
   [0x03EC] = sCyberEndDragonBigArt,
   [0x03ED] = sCaiusTheShadowMonarchBigArt,
+  [0x03EE] = sMobiusTheFrostMonarchBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1246,6 +1251,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03EB] = sCyberTwinDragonBigPalette,
   [0x03EC] = sCyberEndDragonBigPalette,
   [0x03ED] = sCaiusTheShadowMonarchBigPalette,
+  [0x03EE] = sMobiusTheFrostMonarchBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1456,6 +1462,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03EB] = 0,
   [0x03EC] = 0,
   [0x03ED] = 0,
+  [0x03EE] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1666,4 +1673,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03EB] = sCyberTwinDragonMiniArt,
   [0x03EC] = sCyberEndDragonMiniArt,
   [0x03ED] = sCaiusTheShadowMonarchMiniArt,
+  [0x03EE] = sMobiusTheFrostMonarchMiniArt,
 };
