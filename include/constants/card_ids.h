@@ -1018,11 +1018,14 @@
 #define ELEMENTAL_HERO_BLADEDGE                  0x03F6
 #define ELEMENTAL_HERO_CLAYMAN                   0x03F7
 #define ELEMENTAL_HERO_MUDBALLMAN                0x03F8
+#define HARPIE_LADY_1                            0x03F9
+#define HARPIE_LADY_2                            0x03FA
+#define HARPIE_LADY_3                            0x03FB
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03F9
-#define NUM_CUSTOM_CARDS                        0x00D8
+#define NUM_TOTAL_CARDS                         0x03FC
+#define NUM_CUSTOM_CARDS                        0x00DB
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

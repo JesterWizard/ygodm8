@@ -23,6 +23,7 @@
 #include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
 #include "dark_dust_spirit.h"
+#include "harpie_lady_2.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -272,6 +273,13 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
 
   if (IsImperialOrderNegatingSpell(gActiveEffect.cardId))
     return FALSE;
+
+  /* Harpie Lady 2: negate effects of monsters destroyed in battle */
+  if ((gActiveEffect.turnRow == 6 || gActiveEffect.turnRow == 7)
+      && gActiveEffect.cardId == gHarpieLady2NegatedCardId) {
+    gHarpieLady2NegatedCardId = CARD_NONE;
+    return FALSE;
+  }
 
   override = GetPermanentEffectOverride(gActiveEffect.cardId);
 

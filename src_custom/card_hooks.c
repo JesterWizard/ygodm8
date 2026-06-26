@@ -11,6 +11,7 @@
 #include "riryoku.h"
 #include "big_bang_shot.h"
 #include "mirror_wall.h"
+#include "harpie_lady_1.h"
 #include "duel.h"
 #include "duel_helpers.h"
 #include "constants/card_ids.h"
@@ -523,6 +524,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyRiryokuAtkDeltaToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
+  ApplyHarpieLady1WindAtkBoost(zone);
   gSetFinalStatZone = NULL;
 }
 

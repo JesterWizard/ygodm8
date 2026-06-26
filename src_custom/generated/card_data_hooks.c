@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1017] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1020] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1029,9 +1029,12 @@ const u8 gCardLockAfterActivation_Hook[1017] APPEND_RODATA = {
   [0x03F6] = 1,
   [0x03F7] = 1,
   [0x03F8] = 1,
+  [0x03F9] = 1,
+  [0x03FA] = 1,
+  [0x03FB] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1017] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1020] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2049,9 +2052,12 @@ const u8 gCardEffectUsage_Hook[1017] APPEND_RODATA = {
   [0x03F6] = EFFECT_USAGE_NONE,
   [0x03F7] = EFFECT_USAGE_NONE,
   [0x03F8] = EFFECT_USAGE_NONE,
+  [0x03F9] = EFFECT_USAGE_NONE,
+  [0x03FA] = EFFECT_USAGE_NONE,
+  [0x03FB] = EFFECT_USAGE_NONE,
 };
 
-const CardData gCardData_NEW[1017] APPEND_RODATA = {
+const CardData gCardData_NEW[1020] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -15536,5 +15542,47 @@ const CardData gCardData_NEW[1017] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 2, 0, 3, 1, 5, 6, 7},
     .description = gDescription_ElementalHeroMudballman,
+  },
+  [0x03F9] = {
+    .atk = 1300,
+    .def = 1400,
+    .cost = 161,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 4,
+    .type = TYPE_WINGED_BEAST,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 1, 9, 3, 2, 3, 5, 0},
+    .description = gDescription_HarpieLady1,
+  },
+  [0x03FA] = {
+    .atk = 1300,
+    .def = 1400,
+    .cost = 161,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 4,
+    .type = TYPE_WINGED_BEAST,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 7, 9, 2, 7, 3, 5, 9},
+    .description = gDescription_HarpieLady2,
+  },
+  [0x03FB] = {
+    .atk = 1300,
+    .def = 1400,
+    .cost = 161,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 4,
+    .type = TYPE_WINGED_BEAST,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {5, 4, 4, 1, 5, 0, 6, 3},
+    .description = gDescription_HarpieLady3,
   },
 };

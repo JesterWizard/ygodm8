@@ -35,6 +35,8 @@
 #include "big_bang_shot.h"
 #include "cyber_end_dragon.h"
 #include "elemental_hero_bladedge.h"
+#include "harpie_lady_2.h"
+#include "harpie_lady_3.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -206,6 +208,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyFenrirBattleEffect();
   ApplyHyperHammerheadBattleEffect();
   ApplySasukeSamurai3BattleEffect();
+  ApplyHarpieLady2FlipNegation();
+  ApplyHarpieLady3AttackLock();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
     if (CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)

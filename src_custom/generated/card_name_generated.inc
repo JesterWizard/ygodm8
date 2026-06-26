@@ -217,6 +217,9 @@ static const u8 sElementalHeroWildheartName[] __attribute__((section(".append_as
 static const u8 sElementalHeroBladedgeName[] __attribute__((section(".append_assets"))) = "Elemental HERO Bladedge";
 static const u8 sElementalHeroClaymanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Clayman";
 static const u8 sElementalHeroMudballmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Mudballman";
+static const u8 sHarpieLady1Name[] __attribute__((section(".append_assets"))) = "Harpie Lady 1";
+static const u8 sHarpieLady2Name[] __attribute__((section(".append_assets"))) = "Harpie Lady 2";
+static const u8 sHarpieLady3Name[] __attribute__((section(".append_assets"))) = "Harpie Lady 3";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -657,6 +660,12 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sElementalHeroClaymanName;
   if (cardId == 0x03F8)
     return (u8 *)sElementalHeroMudballmanName;
+  if (cardId == 0x03F9)
+    return (u8 *)sHarpieLady1Name;
+  if (cardId == 0x03FA)
+    return (u8 *)sHarpieLady2Name;
+  if (cardId == 0x03FB)
+    return (u8 *)sHarpieLady3Name;
 
   return gCardNames[cardId];
 }

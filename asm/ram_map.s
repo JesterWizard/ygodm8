@@ -428,6 +428,11 @@ _kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 _kernel_malloc_ewram gRingOfDestructionPending, 1
 @ Debug menu: saved BG0CNT to restore overworld BG0 on exit (no flash storage needed).
 _kernel_malloc_ewram gSavedDebugMenuBg0Cnt, 2
+@ Card ID whose GY effect is negated by Harpie Lady 2, else CARD_NONE.
+_kernel_malloc_ewram gHarpieLady2NegatedCardId, 2
+@ Per-column turns remaining for Harpie Lady 3 attack lock (player row, opponent row).
+_kernel_malloc_ewram gHarpieLady3RestrictTurns, 0xA
+_kernel_malloc_ewram gHarpieLady3LastProcessedTurn, 1
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

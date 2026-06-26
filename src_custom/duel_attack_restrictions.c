@@ -8,6 +8,7 @@
 #include "vengeful_bog_spirit.h"
 #include "wall_of_revealing_light.h"
 #include "nightmare_wheel.h"
+#include "harpie_lady_3.h"
 
 void Duel_ResetAttackRestrictions(void)
 {
@@ -17,6 +18,18 @@ void Duel_ResetAttackRestrictions(void)
 void Duel_RefreshAttackRestrictions(void)
 {
   u8 flags = 0;
+  u8 currentTurn;
+
+  /* Decrement Harpie Lady 3 attack-lock turn counters once per turn change */
+  currentTurn = WhoseTurn();
+  if (currentTurn != gHarpieLady3LastProcessedTurn) {
+    u8 i;
+    for (i = 0; i < 10; i++) {
+      if (gHarpieLady3RestrictTurns[i] > 0)
+        gHarpieLady3RestrictTurns[i]--;
+    }
+    gHarpieLady3LastProcessedTurn = currentTurn;
+  }
 
   if (gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns)
     flags |= DUEL_ATTACK_RESTRICT_SORL;
@@ -69,6 +82,19 @@ u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
 
   if (!NightmareWheel_CanMonsterDeclareAttack(zone))
     return FALSE;
+
+  /* Harpie Lady 3: check per-zone attack lock */
+  {
+    u8 fixedRow;
+    u8 col;
+    u8 offset;
+
+    if (Duel_FindFixedMonsterZone((struct DuelCard *)zone, &fixedRow, &col)) {
+      offset = (fixedRow == 1) ? 5 : 0;
+      if (gHarpieLady3RestrictTurns[offset + col] > 0)
+        return FALSE;
+    }
+  }
 
   return TRUE;
 }

@@ -224,6 +224,9 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ELEMENTAL_HERO_BUBBLEMAN, gActivationDescription_ElementalHeroBubbleman },
   { ELEMENTAL_HERO_WILDHEART, gActivationDescription_ElementalHeroWildheart },
   { ELEMENTAL_HERO_BLADEDGE, gActivationDescription_ElementalHeroBladedge },
+  { HARPIE_LADY_1, gActivationDescription_HarpieLady1 },
+  { HARPIE_LADY_2, gActivationDescription_HarpieLady2 },
+  { HARPIE_LADY_3, gActivationDescription_HarpieLady3 },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

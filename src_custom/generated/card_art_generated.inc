@@ -872,6 +872,18 @@ static const unsigned char sElementalHeroMudballmanBigArt[] __attribute__((secti
 static const unsigned short sElementalHeroMudballmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_mudballman.gbapal");
 static const unsigned char sElementalHeroMudballmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_mudballman.lz");
 
+static const unsigned char sHarpieLady1BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_lady_1.huff");
+static const unsigned short sHarpieLady1BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_1.gbapal");
+static const unsigned char sHarpieLady1MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_1.lz");
+
+static const unsigned char sHarpieLady2BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_lady_2.huff");
+static const unsigned short sHarpieLady2BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_2.gbapal");
+static const unsigned char sHarpieLady2MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_2.lz");
+
+static const unsigned char sHarpieLady3BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_lady_3.huff");
+static const unsigned short sHarpieLady3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_3.gbapal");
+static const unsigned char sHarpieLady3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_3.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1091,6 +1103,9 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03F6] = sElementalHeroBladedgeBigArt,
   [0x03F7] = sElementalHeroClaymanBigArt,
   [0x03F8] = sElementalHeroMudballmanBigArt,
+  [0x03F9] = sHarpieLady1BigArt,
+  [0x03FA] = sHarpieLady2BigArt,
+  [0x03FB] = sHarpieLady3BigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1312,6 +1327,9 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03F6] = sElementalHeroBladedgeBigPalette,
   [0x03F7] = sElementalHeroClaymanBigPalette,
   [0x03F8] = sElementalHeroMudballmanBigPalette,
+  [0x03F9] = sHarpieLady1BigPalette,
+  [0x03FA] = sHarpieLady2BigPalette,
+  [0x03FB] = sHarpieLady3BigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1533,6 +1551,9 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03F6] = 0,
   [0x03F7] = 0,
   [0x03F8] = 0,
+  [0x03F9] = 0,
+  [0x03FA] = 0,
+  [0x03FB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1754,4 +1775,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03F6] = sElementalHeroBladedgeMiniArt,
   [0x03F7] = sElementalHeroClaymanMiniArt,
   [0x03F8] = sElementalHeroMudballmanMiniArt,
+  [0x03F9] = sHarpieLady1MiniArt,
+  [0x03FA] = sHarpieLady2MiniArt,
+  [0x03FB] = sHarpieLady3MiniArt,
 };

@@ -1,5 +1,50 @@
 # Session Log
 
+## 2026-06-26 — Implemented effects for Harpie Lady 1, 2, 3 (WIND ATK boost, Flip negation, attack lock)
+
+**Worked on:** Wired 3 continuous effects for the Harpie Lady sisters in engine-level hooks.
+
+- **Harpie Lady 1** (+300 ATK to all WIND monsters): Added `ApplyHarpieLady1WindAtkBoost()` after the stat pipeline in `ApplyFieldZoneStatsToCardInfo` in `card_hooks.c`. Scans both monster rows for a face-up Harpie Lady 1, then adds 300 to `gCardInfo.atk` for WIND attribute monsters.
+- **Harpie Lady 2** (Negate Flip monster effects): Added `ApplyHarpieLady2FlipNegation()` in `battle_damage_hooks.c`. When HL2 destroys a monster in battle, stores the destroyed card ID in `gHarpieLady2NegatedCardId`. The GY permanent-effect scan in `permanent_effect_hooks.c` (`ShouldActivatePermanentEffect__Hook`) skips activation for the negated card.
+- **Harpie Lady 3** (Attack prevention for 2 opponent turns): Added `ApplyHarpieLady3AttackLock()` in `battle_damage_hooks.c`. When HL3 battles an opponent's monster, that monster's column gets marked with 2 remaining turns in a per-zone `gHarpieLady3RestrictTurns[10]` array. Turn decrement runs in `Duel_RefreshAttackRestrictions()` on turn change. Attack check in `Duel_CanMonsterDeclareAttack()` blocks marked zones.
+
+**Files:**
+- `asm/ram_map.s` — 3 new EWRAM allocations: `gHarpieLady2NegatedCardId` (2 bytes), `gHarpieLady3RestrictTurns` (10 bytes), `gHarpieLady3LastProcessedTurn` (1 byte)
+- `include/harpie_lady_1.h` — new
+- `include/harpie_lady_2.h` — new
+- `include/harpie_lady_3.h` — new
+- `src_custom/permanent_effects/harpie_lady_1.c` — new: WIND ATK boost
+- `src_custom/battle_effects/harpie_lady_2.c` — new: Flip negation marking
+- `src_custom/battle_effects/harpie_lady_3.c` — new: attack lock marking
+- `src_custom/card_hooks.c` — `#include "harpie_lady_1.h"` + call in `ApplyFieldZoneStatsToCardInfo`
+- `src_custom/battle_damage_hooks.c` — includes + calls for HL2 and HL3
+- `src_custom/duel_attack_restrictions.c` — includes + HL3 turn decrement in `Duel_RefreshAttackRestrictions` + attack check in `Duel_CanMonsterDeclareAttack`
+- `src_custom/permanent_effect_hooks.c` — includes + GY negation check in `ShouldActivatePermanentEffect__Hook`
+- `src_custom/card_effect_tally.md` — 3 new entries, total 220
+
+**Open / next:**
+- Name-override effect ("This card's name is always treated as 'Harpie Lady'") still needs engine-level name resolution changes, same as Proto-Cyber Dragon.
+
+## 2026-06-26 — Added Harpie Lady 1, 2, 3 as effect monsters
+
+**Worked on:** Added all three "Harpie Lady" sisters (Lv4 WIND Winged Beast 1300/1400, EFFECT_CARD) to custom card trunk via `add_custom_card.py --passcode`. Cards are in manifest at cost 161 each. Fixed art filenames from `harpy_lady_X.png` (old "Harpy" spelling) to `harpie_lady_X.png` (correct TCG "Harpie" spelling, matching existing HARPIE_LADY const pattern). Harpie Lady 3's long description text was split into 3 pages to fit GBA's narrow (12,14,14,14,12) card info format. Set runtime hand to `HARPIE_LADY_1`. Effects not wired yet (continuous effects: name treatment, Lady 1's WIND ATK boost, Lady 2's Flip negation, Lady 3's attack prevention).
+
+**Files:**
+- `tools/card_data_manifest.json` — appended HARPIE_LADY_1, HARPIE_LADY_2, HARPIE_LADY_3 entries
+- `configs/runtime.c` — already set to HARPIE_LADY_1 by script
+- `src_custom/assets/cards/80x80/harpie_lady_1.png` — renamed to `harpie_lady_1.png` (copy then delete old)
+- `src_custom/assets/cards/80x80/harpie_lady_2.png` — renamed to `harpie_lady_2.png`
+- `src_custom/assets/cards/80x80/harpie_lady_3.png` — renamed to `harpie_lady_3.png`
+- `src_custom/assets/cards/512x512/harpie_lady_1.png` — renamed from `harpy_lady_1.png`
+- `src_custom/assets/cards/512x512/harpie_lady_2.png` — renamed from `harpy_lady_2.png`
+- `src_custom/assets/cards/512x512/harpie_lady_3.png` — renamed from `harpy_lady_3.png`
+
+**Outcome:** `make test-cards-build` passes (full ROM link, LynJump patches OK). Cards have correct 1300/1400 stats, 2-3 page descriptions. Harpie Lady 1 starts in hand at duel start.
+
+**Open / next:**
+- Wire continuous effects: name-override ("This card's name is always treated as 'Harpie Lady'"), Lady 1's WIND ATK boost, Lady 2's Flip negation, Lady 3's attack prevention
+- These are engine-level permanent effects in `src_custom/permanent_effects/`
+
 ## 2026-06-26 — Added Elemental Hero Mudballman (vanilla Fusion)
 
 **Worked on:** Added Elemental Hero Mudballman (Level 6 EARTH Warrior 1900/3000 Fusion Monster, "Elemental Hero Bubbleman" + "Elemental Hero Clayman") to the custom card trunk. Vanilla Fusion — no effect, no hook files needed. Art already existed at 80x80. Set runtime hand to ELEMENTAL_HERO_MUDBALLMAN.

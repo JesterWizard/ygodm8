@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 216 |
-| Art ready, needs manifest | 164 |
+| In game (manifest + art) | 219 |
+| Art ready, needs manifest | 161 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -238,6 +238,9 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_BLADEDGE` | Elemental HERO Bladedge | `elemental_hero_bladedge.png` |
 | `ELEMENTAL_HERO_CLAYMAN` | Elemental HERO Clayman | `elemental_hero_clayman.png` |
 | `ELEMENTAL_HERO_MUDBALLMAN` | Elemental HERO Mudballman | `elemental_hero_mudballman.png` |
+| `HARPIE_LADY_1` | Harpie Lady 1 | `harpie_lady_1.png` |
+| `HARPIE_LADY_2` | Harpie Lady 2 | `harpie_lady_2.png` |
+| `HARPIE_LADY_3` | Harpie Lady 3 | `harpie_lady_3.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -318,9 +321,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `H_HEATED_HEART` — `h_heated_heart.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HARPIES_PET_BABY_DRAGON` — `harpies_pet_baby_dragon.png`
-- [ ] `HARPY_LADY_1` — `harpy_lady_1.png`
-- [ ] `HARPY_LADY_2` — `harpy_lady_2.png`
-- [ ] `HARPY_LADY_3` — `harpy_lady_3.png`
 - [ ] `HERO_FLASH` — `hero_flash.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
