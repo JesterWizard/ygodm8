@@ -227,6 +227,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { HARPIE_LADY_1, gActivationDescription_HarpieLady1 },
   { HARPIE_LADY_2, gActivationDescription_HarpieLady2 },
   { HARPIE_LADY_3, gActivationDescription_HarpieLady3 },
+  { SPELL_ECONOMICS, gActivationDescription_SpellEconomics },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -4,6 +4,7 @@
 #include "duel_helpers.h"
 #include "final_countdown.h"
 #include "imperial_order.h"
+#include "spell_economics.h"
 #include "spell_effects.h"
 
 #define FINAL_COUNTDOWN_LP_COST 2000
@@ -13,6 +14,9 @@ extern void DeclareLoser(unsigned char);
 
 u8 CanActivateFinalCountdown(void)
 {
+  if (IsSpellEconomicsActiveForActiveDuelist())
+    return TRUE;
+
   if (WhoseTurn() == DUEL_PLAYER)
     return gDuelLifePoints[DUEL_PLAYER] >= FINAL_COUNTDOWN_LP_COST;
 
@@ -82,8 +86,10 @@ APPEND_TEXT void EffectFinalCountdown(void)
   if (!CanActivateFinalCountdown())
     return;
 
-  if (Duel_ChangeLp(ACTIVE_DUELIST, -FINAL_COUNTDOWN_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
+  if (!IsSpellEconomicsActiveForActiveDuelist()) {
+    if (Duel_ChangeLp(ACTIVE_DUELIST, -FINAL_COUNTDOWN_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
 
   Duel_ActivateContinuousZone(zone);
   ResetPermStage(zone);

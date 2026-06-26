@@ -4,6 +4,7 @@
 #include "confiscation.h"
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
+#include "spell_economics.h"
 #include "spell_effects.h"
 
 #define CONFISCATION_LP_COST 1000
@@ -12,6 +13,9 @@ u8 CanActivateConfiscation(void)
 {
   if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) == 0)
     return FALSE;
+
+  if (IsSpellEconomicsActiveForActiveDuelist())
+    return TRUE;
 
   if (WhoseTurn() == DUEL_PLAYER)
     return gDuelLifePoints[DUEL_PLAYER] >= CONFISCATION_LP_COST;
@@ -75,8 +79,10 @@ static void Confiscation_ResolveBody(void)
 
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
-  if (Duel_ChangeLp(ACTIVE_DUELIST, -CONFISCATION_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
+  if (!IsSpellEconomicsActiveForActiveDuelist()) {
+    if (Duel_ChangeLp(ACTIVE_DUELIST, -CONFISCATION_LP_COST, FALSE) == DUEL_ACTION_DUEL_OVER)
+      return;
+  }
 
   Duel_ShowEffectText(CONFISCATION);
 

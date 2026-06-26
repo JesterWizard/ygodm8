@@ -379,7 +379,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SPARK_BLASTER` — `spark_blaster.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
-- [ ] `SPELL_ECONOMICS` — `spell_economics.png`
+- [x] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`

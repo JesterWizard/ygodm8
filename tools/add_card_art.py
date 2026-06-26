@@ -1174,6 +1174,14 @@ def render_data_src(manifest: dict) -> str:
         lines.append(f"  [0x{index:04X}] = {effect_usage_for_item(item)},")
     lines.append("};")
     lines.append("")
+
+    lines.append(f"const u8 gCardSelectableOnce_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{")
+    for index, item in enumerate(manifest["cards"]):
+        selectable_once = item.get("selectableOnce", False)
+        lines.append(f"  [0x{index:04X}] = {1 if selectable_once else 0},")
+    lines.append("};")
+    lines.append("")
+
     lines.append(f"const CardData gCardData_NEW[{len(manifest['cards'])}] APPEND_RODATA = {{")
     lines.append("  [CARD_NONE] = {")
     lines.append("    .atk = 0xFFFF,")

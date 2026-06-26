@@ -16,6 +16,7 @@
 #include "kishido_spirit.h"
 #include "ring_of_destruction.h"
 #include "dust_tornado.h"
+#include "spell_economics.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -82,6 +83,7 @@ extern void EffectNightmareWheel(void);
 extern void EffectEctoplasmer(void);
 extern void EffectPolymerization(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
+extern const u8 gCardSelectableOnce_Hook[];
 
 void ActivateSpellEffect(void);
 void ActivateTrapEffect(u16 lp);
@@ -218,6 +220,20 @@ static void ActivateSpellEffect__Body(void)
     if (zone != NULL)
       Duel_DestroyZone(zone, ACTIVE_DUELIST, TRUE);
     return;
+  }
+
+  if (gCardSelectableOnce_Hook[gSpellEffectData.id]) {
+    u8 controllerBackrow = (WhoseTurn() == DUEL_PLAYER) ? PLAYER_BACKROW : OPPONENT_BACKROW;
+    u8 i;
+
+    for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+      struct DuelCard *zone = gFixedZones[controllerBackrow][i];
+      if (zone != NULL && zone->id == gSpellEffectData.id && zone->isFaceUp == TRUE) {
+        if (!gHideEffectText)
+          PlayMusic(SFX_FORBIDDEN);
+        return;
+      }
+    }
   }
 
   if (TryActivateCustomFieldSpell(gSpellEffectData.id))
@@ -430,6 +446,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case THE_FLUTE_OF_SUMMONING_DRAGON:
       EffectTheFluteOfSummoningDragon();
+      return;
+    case SPELL_ECONOMICS:
+      EffectSpellEconomics();
       return;
     case KISHIDO_SPIRIT:
       EffectKishidoSpirit();

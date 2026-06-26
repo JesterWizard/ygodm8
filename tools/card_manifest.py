@@ -20,7 +20,7 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell", "effect_usage"}
+OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell", "effect_usage", "selectableOnce"}
 ALLOWED_EFFECT_USAGE = {
     "once",
     "once_per_turn",

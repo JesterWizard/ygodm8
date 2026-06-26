@@ -884,6 +884,10 @@ static const unsigned char sHarpieLady3BigArt[] __attribute__((section(".append_
 static const unsigned short sHarpieLady3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_3.gbapal");
 static const unsigned char sHarpieLady3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_3.lz");
 
+static const unsigned char sSpellEconomicsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spell_economics.huff");
+static const unsigned short sSpellEconomicsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_economics.gbapal");
+static const unsigned char sSpellEconomicsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_economics.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1106,6 +1110,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03F9] = sHarpieLady1BigArt,
   [0x03FA] = sHarpieLady2BigArt,
   [0x03FB] = sHarpieLady3BigArt,
+  [0x03FC] = sSpellEconomicsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1330,6 +1335,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03F9] = sHarpieLady1BigPalette,
   [0x03FA] = sHarpieLady2BigPalette,
   [0x03FB] = sHarpieLady3BigPalette,
+  [0x03FC] = sSpellEconomicsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1554,6 +1560,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03F9] = 0,
   [0x03FA] = 0,
   [0x03FB] = 0,
+  [0x03FC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1778,4 +1785,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03F9] = sHarpieLady1MiniArt,
   [0x03FA] = sHarpieLady2MiniArt,
   [0x03FB] = sHarpieLady3MiniArt,
+  [0x03FC] = sSpellEconomicsMiniArt,
 };
