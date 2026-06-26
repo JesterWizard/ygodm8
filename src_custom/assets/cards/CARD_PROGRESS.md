@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 215 |
-| Art ready, needs manifest | 165 |
+| In game (manifest + art) | 216 |
+| Art ready, needs manifest | 164 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -237,6 +237,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_WILDHEART` | Elemental HERO Wildheart | `elemental_hero_wildheart.png` |
 | `ELEMENTAL_HERO_BLADEDGE` | Elemental HERO Bladedge | `elemental_hero_bladedge.png` |
 | `ELEMENTAL_HERO_CLAYMAN` | Elemental HERO Clayman | `elemental_hero_clayman.png` |
+| `ELEMENTAL_HERO_MUDBALLMAN` | Elemental HERO Mudballman | `elemental_hero_mudballman.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -295,7 +296,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_ELECTRUM` — `elemental_hero_electrum.png`
 - [ ] `ELEMENTAL_HERO_FLAME_WINGMAN` — `elemental_hero_flame_wingman.png`
 - [ ] `ELEMENTAL_HERO_MARINER` — `elemental_hero_mariner.png`
-- [ ] `ELEMENTAL_HERO_MUDBALLMAN` — `elemental_hero_mudballman.png`
 - [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
 - [ ] `ELEMENTAL_HERO_PHOENIX_ENFORCER` — `elemental_hero_phoenix_enforcer.png`
 - [ ] `ELEMENTAL_HERO_RAMPART_BLASTER` — `elemental_hero_rampart_blaster.png`

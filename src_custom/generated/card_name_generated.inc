@@ -216,6 +216,7 @@ static const u8 sElementalHeroBubblemanName[] __attribute__((section(".append_as
 static const u8 sElementalHeroWildheartName[] __attribute__((section(".append_assets"))) = "Elemental HERO Wildheart";
 static const u8 sElementalHeroBladedgeName[] __attribute__((section(".append_assets"))) = "Elemental HERO Bladedge";
 static const u8 sElementalHeroClaymanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Clayman";
+static const u8 sElementalHeroMudballmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Mudballman";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -654,6 +655,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sElementalHeroBladedgeName;
   if (cardId == 0x03F7)
     return (u8 *)sElementalHeroClaymanName;
+  if (cardId == 0x03F8)
+    return (u8 *)sElementalHeroMudballmanName;
 
   return gCardNames[cardId];
 }

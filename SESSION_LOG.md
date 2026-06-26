@@ -1,5 +1,17 @@
 # Session Log
 
+## 2026-06-26 — Added Elemental Hero Mudballman (vanilla Fusion)
+
+**Worked on:** Added Elemental Hero Mudballman (Level 6 EARTH Warrior 1900/3000 Fusion Monster, "Elemental Hero Bubbleman" + "Elemental Hero Clayman") to the custom card trunk. Vanilla Fusion — no effect, no hook files needed. Art already existed at 80x80. Set runtime hand to ELEMENTAL_HERO_MUDBALLMAN.
+
+**Files:**
+- `tools/card_data_manifest.json` — appended ELEMENTAL_HERO_MUDBALLMAN entry (FUSION_CARD)
+- `configs/runtime.c` — `card_in_hand_1 = ELEMENTAL_HERO_MUDBALLMAN`
+
+**Outcome:** `make test-cards-build` passes. Mudballman starts in hand at duel start with correct 1900/3000 stats and 2-page description.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added 7 Elemental HERO cards with effects (Bladedge piercing, Bubbleman draw, Wildheart Trap immunity)
 
 **Worked on:** Added 7 Elemental HERO cards. Implemented 3 card effects:

@@ -868,6 +868,10 @@ static const unsigned char sElementalHeroClaymanBigArt[] __attribute__((section(
 static const unsigned short sElementalHeroClaymanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_clayman.gbapal");
 static const unsigned char sElementalHeroClaymanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_clayman.lz");
 
+static const unsigned char sElementalHeroMudballmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_mudballman.huff");
+static const unsigned short sElementalHeroMudballmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_mudballman.gbapal");
+static const unsigned char sElementalHeroMudballmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_mudballman.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1086,6 +1090,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03F5] = sElementalHeroWildheartBigArt,
   [0x03F6] = sElementalHeroBladedgeBigArt,
   [0x03F7] = sElementalHeroClaymanBigArt,
+  [0x03F8] = sElementalHeroMudballmanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1306,6 +1311,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03F5] = sElementalHeroWildheartBigPalette,
   [0x03F6] = sElementalHeroBladedgeBigPalette,
   [0x03F7] = sElementalHeroClaymanBigPalette,
+  [0x03F8] = sElementalHeroMudballmanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1526,6 +1532,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03F5] = 0,
   [0x03F6] = 0,
   [0x03F7] = 0,
+  [0x03F8] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1746,4 +1753,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03F5] = sElementalHeroWildheartMiniArt,
   [0x03F6] = sElementalHeroBladedgeMiniArt,
   [0x03F7] = sElementalHeroClaymanMiniArt,
+  [0x03F8] = sElementalHeroMudballmanMiniArt,
 };
