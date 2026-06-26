@@ -836,6 +836,10 @@ static const unsigned char sProtoCyberDragonBigArt[] __attribute__((section(".ap
 static const unsigned short sProtoCyberDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/proto_cyber_dragon.gbapal");
 static const unsigned char sProtoCyberDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/proto_cyber_dragon.lz");
 
+static const unsigned char sAmazonessArcherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amazoness_archer.huff");
+static const unsigned short sAmazonessArcherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_archer.gbapal");
+static const unsigned char sAmazonessArcherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_archer.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1046,6 +1050,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03ED] = sCaiusTheShadowMonarchBigArt,
   [0x03EE] = sMobiusTheFrostMonarchBigArt,
   [0x03EF] = sProtoCyberDragonBigArt,
+  [0x03F0] = sAmazonessArcherBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1258,6 +1263,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03ED] = sCaiusTheShadowMonarchBigPalette,
   [0x03EE] = sMobiusTheFrostMonarchBigPalette,
   [0x03EF] = sProtoCyberDragonBigPalette,
+  [0x03F0] = sAmazonessArcherBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1470,6 +1476,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03ED] = 0,
   [0x03EE] = 0,
   [0x03EF] = 0,
+  [0x03F0] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1682,4 +1689,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03ED] = sCaiusTheShadowMonarchMiniArt,
   [0x03EE] = sMobiusTheFrostMonarchMiniArt,
   [0x03EF] = sProtoCyberDragonMiniArt,
+  [0x03F0] = sAmazonessArcherMiniArt,
 };

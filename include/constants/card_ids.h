@@ -1009,11 +1009,12 @@
 #define CAIUS_THE_SHADOW_MONARCH                 0x03ED
 #define MOBIUS_THE_FROST_MONARCH                 0x03EE
 #define PROTO_CYBER_DRAGON                       0x03EF
+#define AMAZONESS_ARCHER                         0x03F0
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03F0
-#define NUM_CUSTOM_CARDS                        0x00CF
+#define NUM_TOTAL_CARDS                         0x03F1
+#define NUM_CUSTOM_CARDS                        0x00D0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

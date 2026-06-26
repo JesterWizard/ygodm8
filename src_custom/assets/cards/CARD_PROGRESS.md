@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 207 |
-| Art ready, needs manifest | 143 |
+| In game (manifest + art) | 208 |
+| Art ready, needs manifest | 142 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **350** |
 
@@ -229,6 +229,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CAIUS_THE_SHADOW_MONARCH` | Caius the Shadow Monarch | `caius_the_shadow_monarch.png` |
 | `MOBIUS_THE_FROST_MONARCH` | Mobius the Frost Monarch | `mobius_the_frost_monarch.png` |
 | `PROTO_CYBER_DRAGON` | Proto-Cyber Dragon | `proto_cyber_dragon.png` |
+| `AMAZONESS_ARCHER` | Amazoness Archer | `amazoness_archer.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -237,7 +238,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
 - [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
-- [ ] `AMAZONESS_ARCHER` — `amazoness_archer.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`

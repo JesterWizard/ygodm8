@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `213` effects
+- `214` effects
 
 ## Tally
 
@@ -243,6 +243,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Invader of the Throne` | `src_custom/activated_effects/invader_of_the_throne.c` |
 | `activated_effects` | `Spirit Caller` | `src_custom/activated_effects/spirit_caller.c` |
 | `spell_effects` | `Vengeful Bog Spirit` | `src_custom/spell_effects/vengeful_bog_spirit.c` |
+| `activated_effects` | `Amazoness Archer` | `src_custom/activated_effects/amazoness_archer.c` |
 
 ## Notes
 

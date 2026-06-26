@@ -65,6 +65,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "amazoness_archer.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
 #include "soul_taker.h"
@@ -1097,6 +1098,10 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       TrySelectKaiserGliderTarget();
       break;
+    case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1:
+    case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2:
+      TrySelectAmazonessArcherTarget();
+      break;
   }
 }
 
@@ -1123,6 +1128,8 @@ void HandleBButtonAction__Replacement(void)
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
     case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
     case DUEL_CURSOR_ECTOPLASMER_TARGET:
+    case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1:
+    case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2:
       PlayMusic(SFX_FORBIDDEN);
       WaitForVBlank();
       break;

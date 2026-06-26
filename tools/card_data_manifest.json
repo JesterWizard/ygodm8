@@ -18509,6 +18509,37 @@
           "This card's name becomes \"Cyber Dragon\" while on the field."
         ]
       }
+    },
+    {
+      "card_const": "AMAZONESS_ARCHER",
+      "card_name": "Amazoness Archer",
+      "atk": 1400,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [9, 1, 8, 6, 9, 2, 0, 3],
+      "lock_after_activation": false,
+      "effect_usage": "multiple_per_turn",
+      "description": {
+        "symbol": "gDescription_AmazonessArcher",
+        "pages": [
+          "You can Tribute 2 monsters;",
+          "inflict 1200 damage to your",
+          "opponent."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AmazonessArcher",
+        "pages": [
+          "You can Tribute 2 monsters; inflict 1200 damage to your opponent."
+        ]
+      }
     }
   ]
 }

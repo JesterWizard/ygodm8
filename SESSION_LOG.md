@@ -1,5 +1,22 @@
 # Session Log
 
+## 2026-06-26 — Added Amazoness Archer (AMAZONESS_ARCHER) with 2-for-1 Tribute burn effect
+
+**Worked on:** Added Amazoness Archer (Level 4 EARTH Warrior 1400/1000, passcode 91869203, ID 0x03F0) to the custom card trunk. Art already existed in `80x80/`. Implemented its ignition effect ("You can Tribute 2 monsters; inflict 1200 damage to your opponent") following the Cannon Soldier/Man-Thro-Tro pattern: 2-phase cursor targeting (TRIBUTE1 → TRIBUTE2), stored first selection in `gSpellEffectData.row1/col1`. AI auto-tributes first 2 available monsters. Set runtime hand to `AMAZONESS_ARCHER`. Excludes the card itself from tribute targets.
+
+**Files:**
+- `tools/card_data_manifest.json` — new AMAZONESS_ARCHER entry
+- `configs/runtime.c` — `card_in_hand_1 = AMAZONESS_ARCHER`
+- `include/amazoness_archer.h` — new header with DUEL_CURSOR constants
+- `src_custom/activated_effects/amazoness_archer.c` — new: 2-tribute burn effect with cursor targeting
+- `src_custom/monster_effect_hooks.c` — include + AMAZONESS_ARCHER ID check + cursor state break
+- `src_custom/code_8043EF4_hooks.c` — include + A/B button cursor dispatch cases
+- `src_custom/card_effect_tally.md` — added entry, total 214
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, validators OK). Amazoness Archer starts in hand at duel start with correct 1400/1000 stats, 3-page description, and full ignition effect with 2-monster cursor targeting and AI support.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added Proto-Cyber Dragon (PROTO_CYBER_DRAGON) as effect monster with Cyber Dragon name treatment
 
 **Worked on:** Added Proto-Cyber Dragon (Level 3 LIGHT Machine 1100/600, passcode 26439287, ID 0x03EF) to the custom card trunk via `add_custom_card.py --passcode`. This is an Effect Monster whose name becomes "Cyber Dragon" while on the field. Set runtime hand to `PROTO_CYBER_DRAGON`. Art is missing (no 80x80 PNG). The continuous name-override effect requires engine-level changes to card name resolution, which is not yet implemented — only the description text and card data are in place.
