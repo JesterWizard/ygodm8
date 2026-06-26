@@ -1,5 +1,20 @@
 # Session Log
 
+## 2026-06-26 — Added Proto-Cyber Dragon (PROTO_CYBER_DRAGON) as effect monster with Cyber Dragon name treatment
+
+**Worked on:** Added Proto-Cyber Dragon (Level 3 LIGHT Machine 1100/600, passcode 26439287, ID 0x03EF) to the custom card trunk via `add_custom_card.py --passcode`. This is an Effect Monster whose name becomes "Cyber Dragon" while on the field. Set runtime hand to `PROTO_CYBER_DRAGON`. Art is missing (no 80x80 PNG). The continuous name-override effect requires engine-level changes to card name resolution, which is not yet implemented — only the description text and card data are in place.
+
+**Files:**
+- `tools/card_data_manifest.json` — new PROTO_CYBER_DRAGON entry (ID 0x03EF)
+- `configs/runtime.c` — `card_in_hand_1 = PROTO_CYBER_DRAGON`
+- `include/constants/card_ids.h` — `#define PROTO_CYBER_DRAGON 0x03EF` (auto-generated)
+
+**Outcome:** `make test-cards-build` passes (all 17 tests, ROM links, validators OK). Proto-Cyber Dragon starts in hand at duel start with correct 1100/600 stats and 3-page description.
+
+**Open / next:**
+- Create 80×80 PNG art at `src_custom/assets/cards/80x80/proto_cyber_dragon.png`
+- Implement continuous name-override effect: card's name becomes "Cyber Dragon" while face-up on the field (affects fusion materials, search targets, etc.)
+
 ## 2026-06-26 — Added Mobius the Frost Monarch (MOBIUS_THE_FROST_MONARCH) with Tribute Summon double Spell/Trap destruction
 
 **Worked on:** Added Mobius the Frost Monarch (Level 6 WATER Aqua 2400/1000, passcode 04929326, ID 0x03EE) to the custom card trunk. Art already existed at `80x80/mobius_the_frost_monarch.png`. Implemented its Tribute Summon trigger effect (target up to 2 Spell/Trap Cards on the field → destroy them) following the Caius/Zaborg pattern: permanent_effects override with `ShouldActivate`/`Activate`, cursor targeting via `code_8043EF4_hooks.c`. Player targeting supports up-to-2 picks using zone `unk4` as phase flag. AI destroys up to 2 of opponent's backrow targets. Set runtime hand to `MOBIUS_THE_FROST_MONARCH`.

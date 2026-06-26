@@ -18449,7 +18449,6 @@
         "symbol": "gActivationDescription_CaiusTheShadowMonarch",
         "pages": [
           "When Tribute Summoned, target and banish 1 card. If DARK, inflict 1000 damage."
-     
         ]
       }
     },
@@ -18479,6 +18478,35 @@
         "symbol": "gActivationDescription_MobiusTheFrostMonarch",
         "pages": [
           "If this card is Tribute Summoned: Destroy up to 2 Spell/Trap Cards."
+        ]
+      }
+    },
+    {
+      "card_const": "PROTO_CYBER_DRAGON",
+      "card_name": "Proto-Cyber Dragon",
+      "atk": 1100,
+      "def": 600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [2, 6, 4, 3, 9, 2, 8, 7],
+      "description": {
+        "symbol": "gDescription_ProtoCyberDragon",
+        "pages": [
+          "This card's name becomes",
+          "\"Cyber Dragon\" while on the",
+          "field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ProtoCyberDragon",
+        "pages": [
+          "This card's name becomes \"Cyber Dragon\" while on the field."
         ]
       }
     }

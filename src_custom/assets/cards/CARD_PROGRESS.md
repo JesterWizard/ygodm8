@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 206 |
-| Art ready, needs manifest | 144 |
+| In game (manifest + art) | 207 |
+| Art ready, needs manifest | 143 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **350** |
 
@@ -228,6 +228,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_END_DRAGON` | Cyber End Dragon | `cyber_end_dragon.png` |
 | `CAIUS_THE_SHADOW_MONARCH` | Caius the Shadow Monarch | `caius_the_shadow_monarch.png` |
 | `MOBIUS_THE_FROST_MONARCH` | Mobius the Frost Monarch | `mobius_the_frost_monarch.png` |
+| `PROTO_CYBER_DRAGON` | Proto-Cyber Dragon | `proto_cyber_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -336,7 +337,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `POWER_BOND` — `power_bond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
-- [ ] `PROTO-CYBER_DRAGON` — `proto-cyber_dragon.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
