@@ -18524,8 +18524,6 @@
       "trapEffect": 0,
       "cost": 161,
       "password": [9, 1, 8, 6, 9, 2, 0, 3],
-      "lock_after_activation": false,
-      "effect_usage": "multiple_per_turn",
       "description": {
         "symbol": "gDescription_AmazonessArcher",
         "pages": [
@@ -18538,6 +18536,180 @@
         "symbol": "gActivationDescription_AmazonessArcher",
         "pages": [
           "You can Tribute 2 monsters; inflict 1200 damage to your opponent."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "multiple_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_AVIAN",
+      "card_name": "Elemental HERO Avian",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 137,
+      "password": [2, 1, 8, 4, 4, 5, 7, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroAvian",
+        "pages": [
+          "A winged Elemental HERO who",
+          "wheels through the sky."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_BURSTINATRIX",
+      "card_name": "Elemental HERO Burstinatrix",
+      "atk": 1200,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [5, 8, 9, 3, 2, 6, 1, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroBurstinatrix",
+        "pages": [
+          "The first Elemental HERO woman.",
+          "A flame manipulator."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SPARKMAN",
+      "card_name": "Elemental HERO Sparkman",
+      "atk": 1600,
+      "def": 1400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [2, 0, 7, 2, 1, 9, 2, 8],
+      "description": {
+        "symbol": "gDescription_ElementalHeroSparkman",
+        "pages": [
+          "An Elemental HERO and",
+          "warrior of light."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_BUBBLEMAN",
+      "card_name": "Elemental HERO Bubbleman",
+      "atk": 800,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_BUBBLEMAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [7, 9, 9, 7, 9, 6, 6, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroBubbleman",
+        "pages": [
+          "If only card in hand, Special",
+          "Summon. When Summoned: draw 2."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroBubbleman",
+        "pages": [
+          "Draw 2 cards."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_WILDHEART",
+      "card_name": "Elemental HERO Wildheart",
+      "atk": 1500,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [8, 6, 1, 8, 8, 4, 1, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroWildheart",
+        "pages": [
+          "This card is unaffected by",
+          "Trap effects."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroWildheart",
+        "pages": [
+          "This card is unaffected by Trap effects."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_BLADEDGE",
+      "card_name": "Elemental HERO Bladedge",
+      "atk": 2600,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [5, 9, 7, 9, 3, 7, 0, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroBladedge",
+        "pages": [
+          "When attacking a Defense monster,",
+          "inflict piercing damage."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroBladedge",
+        "pages": [
+          "Piercing battle damage."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_CLAYMAN",
+      "card_name": "Elemental HERO Clayman",
+      "atk": 800,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [8, 4, 3, 2, 7, 3, 2, 9],
+      "description": {
+        "symbol": "gDescription_ElementalHeroClayman",
+        "pages": [
+          "An Elemental HERO with a",
+          "clay body built-to-last."
         ]
       }
     }

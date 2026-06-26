@@ -34,6 +34,7 @@
 #include "des_kangaroo.h"
 #include "big_bang_shot.h"
 #include "cyber_end_dragon.h"
+#include "elemental_hero_bladedge.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
@@ -156,6 +157,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyMefistTheInfernalGeneralPiercingBattleEffect();
   ApplyAirknightParshathPiercingBattleEffect();
   ApplyCyberEndDragonPiercingBattleEffect();
+  ApplyElementalHeroBladedgePiercingBattleEffect();
   ApplyBigBangShotPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();

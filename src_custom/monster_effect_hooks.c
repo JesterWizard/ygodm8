@@ -24,6 +24,7 @@
 #include "levia_dragon_daedalus.h"
 #include "spirit_caller.h"
 #include "amazoness_archer.h"
+#include "elemental_hero_bubbleman.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -102,6 +103,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateDarkDustSpirit();
     case MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS:
       return CanActivateLeviaDragonDaedalus();
+    case MONSTER_EFFECT_BUBBLEMAN:
+      return CanActivateElementalHeroBubbleman();
     default:
       return TRUE;
   }
@@ -278,6 +281,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS) {
     ActivateLeviaDragonDaedalusEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_BUBBLEMAN) {
+    ActivateElementalHeroBubblemanEffect();
     return;
   }
 

@@ -1010,11 +1010,18 @@
 #define MOBIUS_THE_FROST_MONARCH                 0x03EE
 #define PROTO_CYBER_DRAGON                       0x03EF
 #define AMAZONESS_ARCHER                         0x03F0
+#define ELEMENTAL_HERO_AVIAN                     0x03F1
+#define ELEMENTAL_HERO_BURSTINATRIX              0x03F2
+#define ELEMENTAL_HERO_SPARKMAN                  0x03F3
+#define ELEMENTAL_HERO_BUBBLEMAN                 0x03F4
+#define ELEMENTAL_HERO_WILDHEART                 0x03F5
+#define ELEMENTAL_HERO_BLADEDGE                  0x03F6
+#define ELEMENTAL_HERO_CLAYMAN                   0x03F7
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x03F1
-#define NUM_CUSTOM_CARDS                        0x00D0
+#define NUM_TOTAL_CARDS                         0x03F8
+#define NUM_CUSTOM_CARDS                        0x00D7
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

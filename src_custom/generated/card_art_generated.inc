@@ -840,6 +840,34 @@ static const unsigned char sAmazonessArcherBigArt[] __attribute__((section(".app
 static const unsigned short sAmazonessArcherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amazoness_archer.gbapal");
 static const unsigned char sAmazonessArcherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amazoness_archer.lz");
 
+static const unsigned char sElementalHeroAvianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_avian.huff");
+static const unsigned short sElementalHeroAvianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_avian.gbapal");
+static const unsigned char sElementalHeroAvianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_avian.lz");
+
+static const unsigned char sElementalHeroBurstinatrixBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_burstinatrix.huff");
+static const unsigned short sElementalHeroBurstinatrixBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_burstinatrix.gbapal");
+static const unsigned char sElementalHeroBurstinatrixMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_burstinatrix.lz");
+
+static const unsigned char sElementalHeroSparkmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_sparkman.huff");
+static const unsigned short sElementalHeroSparkmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_sparkman.gbapal");
+static const unsigned char sElementalHeroSparkmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_sparkman.lz");
+
+static const unsigned char sElementalHeroBubblemanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_bubbleman.huff");
+static const unsigned short sElementalHeroBubblemanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_bubbleman.gbapal");
+static const unsigned char sElementalHeroBubblemanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_bubbleman.lz");
+
+static const unsigned char sElementalHeroWildheartBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_wildheart.huff");
+static const unsigned short sElementalHeroWildheartBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_wildheart.gbapal");
+static const unsigned char sElementalHeroWildheartMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_wildheart.lz");
+
+static const unsigned char sElementalHeroBladedgeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_bladedge.huff");
+static const unsigned short sElementalHeroBladedgeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_bladedge.gbapal");
+static const unsigned char sElementalHeroBladedgeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_bladedge.lz");
+
+static const unsigned char sElementalHeroClaymanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_clayman.huff");
+static const unsigned short sElementalHeroClaymanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_clayman.gbapal");
+static const unsigned char sElementalHeroClaymanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_clayman.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1051,6 +1079,13 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03EE] = sMobiusTheFrostMonarchBigArt,
   [0x03EF] = sProtoCyberDragonBigArt,
   [0x03F0] = sAmazonessArcherBigArt,
+  [0x03F1] = sElementalHeroAvianBigArt,
+  [0x03F2] = sElementalHeroBurstinatrixBigArt,
+  [0x03F3] = sElementalHeroSparkmanBigArt,
+  [0x03F4] = sElementalHeroBubblemanBigArt,
+  [0x03F5] = sElementalHeroWildheartBigArt,
+  [0x03F6] = sElementalHeroBladedgeBigArt,
+  [0x03F7] = sElementalHeroClaymanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1264,6 +1299,13 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03EE] = sMobiusTheFrostMonarchBigPalette,
   [0x03EF] = sProtoCyberDragonBigPalette,
   [0x03F0] = sAmazonessArcherBigPalette,
+  [0x03F1] = sElementalHeroAvianBigPalette,
+  [0x03F2] = sElementalHeroBurstinatrixBigPalette,
+  [0x03F3] = sElementalHeroSparkmanBigPalette,
+  [0x03F4] = sElementalHeroBubblemanBigPalette,
+  [0x03F5] = sElementalHeroWildheartBigPalette,
+  [0x03F6] = sElementalHeroBladedgeBigPalette,
+  [0x03F7] = sElementalHeroClaymanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1477,6 +1519,13 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03EE] = 0,
   [0x03EF] = 0,
   [0x03F0] = 0,
+  [0x03F1] = 0,
+  [0x03F2] = 0,
+  [0x03F3] = 0,
+  [0x03F4] = 0,
+  [0x03F5] = 0,
+  [0x03F6] = 0,
+  [0x03F7] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1690,4 +1739,11 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03EE] = sMobiusTheFrostMonarchMiniArt,
   [0x03EF] = sProtoCyberDragonMiniArt,
   [0x03F0] = sAmazonessArcherMiniArt,
+  [0x03F1] = sElementalHeroAvianMiniArt,
+  [0x03F2] = sElementalHeroBurstinatrixMiniArt,
+  [0x03F3] = sElementalHeroSparkmanMiniArt,
+  [0x03F4] = sElementalHeroBubblemanMiniArt,
+  [0x03F5] = sElementalHeroWildheartMiniArt,
+  [0x03F6] = sElementalHeroBladedgeMiniArt,
+  [0x03F7] = sElementalHeroClaymanMiniArt,
 };

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `214` effects
+- `217` effects
 
 ## Tally
 
@@ -244,6 +244,9 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Spirit Caller` | `src_custom/activated_effects/spirit_caller.c` |
 | `spell_effects` | `Vengeful Bog Spirit` | `src_custom/spell_effects/vengeful_bog_spirit.c` |
 | `activated_effects` | `Amazoness Archer` | `src_custom/activated_effects/amazoness_archer.c` |
+|| `battle_effects` | `Elemental HERO Bladedge` | `src_custom/battle_effects/elemental_hero_bladedge.c` |
+|| `activated_effects` | `Elemental HERO Bubbleman` | `src_custom/activated_effects/elemental_hero_bubbleman.c` |
+|| `card_passives` | `Elemental HERO Wildheart` | `src_custom/card_passives/tyrant_dragon.c` |
 
 ## Notes
 

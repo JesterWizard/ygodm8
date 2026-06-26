@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 208 |
-| Art ready, needs manifest | 142 |
+| In game (manifest + art) | 215 |
+| Art ready, needs manifest | 165 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **350** |
+| **Total PNGs in `80x80/`** | **380** |
 
 ## In game
 
@@ -230,6 +230,13 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MOBIUS_THE_FROST_MONARCH` | Mobius the Frost Monarch | `mobius_the_frost_monarch.png` |
 | `PROTO_CYBER_DRAGON` | Proto-Cyber Dragon | `proto_cyber_dragon.png` |
 | `AMAZONESS_ARCHER` | Amazoness Archer | `amazoness_archer.png` |
+| `ELEMENTAL_HERO_AVIAN` | Elemental HERO Avian | `elemental_hero_avian.png` |
+| `ELEMENTAL_HERO_BURSTINATRIX` | Elemental HERO Burstinatrix | `elemental_hero_burstinatrix.png` |
+| `ELEMENTAL_HERO_SPARKMAN` | Elemental HERO Sparkman | `elemental_hero_sparkman.png` |
+| `ELEMENTAL_HERO_BUBBLEMAN` | Elemental HERO Bubbleman | `elemental_hero_bubbleman.png` |
+| `ELEMENTAL_HERO_WILDHEART` | Elemental HERO Wildheart | `elemental_hero_wildheart.png` |
+| `ELEMENTAL_HERO_BLADEDGE` | Elemental HERO Bladedge | `elemental_hero_bladedge.png` |
+| `ELEMENTAL_HERO_CLAYMAN` | Elemental HERO Clayman | `elemental_hero_clayman.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -253,6 +260,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLUE_EYES_CHAOS_DRAGON` — `blue_eyes_chaos_dragon.png`
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
+- [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
@@ -283,6 +291,20 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
+- [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
+- [ ] `ELEMENTAL_HERO_ELECTRUM` — `elemental_hero_electrum.png`
+- [ ] `ELEMENTAL_HERO_FLAME_WINGMAN` — `elemental_hero_flame_wingman.png`
+- [ ] `ELEMENTAL_HERO_MARINER` — `elemental_hero_mariner.png`
+- [ ] `ELEMENTAL_HERO_MUDBALLMAN` — `elemental_hero_mudballman.png`
+- [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
+- [ ] `ELEMENTAL_HERO_PHOENIX_ENFORCER` — `elemental_hero_phoenix_enforcer.png`
+- [ ] `ELEMENTAL_HERO_RAMPART_BLASTER` — `elemental_hero_rampart_blaster.png`
+- [ ] `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` — `elemental_hero_shining_flare_wingman.png`
+- [ ] `ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER` — `elemental_hero_shining_phoenix_enforcer.png`
+- [ ] `ELEMENTAL_HERO_STEAM_HEALER` — `elemental_hero_steam_healer.png`
+- [ ] `ELEMENTAL_HERO_TEMPEST` — `elemental_hero_tempest.png`
+- [ ] `ELEMENTAL_HERO_THUNDER_GIANT` — `elemental_hero_thunder_giant.png`
+- [ ] `ELEMENTAL_HERO_WILDEDGE` — `elemental_hero_wildedge.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
@@ -293,11 +315,13 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
+- [ ] `H_HEATED_HEART` — `h_heated_heart.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HARPIES_PET_BABY_DRAGON` — `harpies_pet_baby_dragon.png`
 - [ ] `HARPY_LADY_1` — `harpy_lady_1.png`
 - [ ] `HARPY_LADY_2` — `harpy_lady_2.png`
 - [ ] `HARPY_LADY_3` — `harpy_lady_3.png`
+- [ ] `HERO_FLASH` — `hero_flash.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
@@ -317,6 +341,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
+- [ ] `MIRACLE_FUSION` — `miracle_fusion.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
 - [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
@@ -329,6 +354,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
+- [ ] `O_OVERSOUL` — `o_oversoul.png`
 - [ ] `OVERLOAD_FUSION` — `overload_fusion.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
@@ -337,6 +363,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `POWER_BOND` — `power_bond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
+- [ ] `R_RIGHTEOUS_JUSTICE` — `r_righteous_justice.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
@@ -348,7 +375,9 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
+- [ ] `SKYSCRAPER` — `skyscraper.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
+- [ ] `SPARK_BLASTER` — `spark_blaster.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
@@ -377,6 +406,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
+- [ ] `WOUGHTWEILER` — `woughtweiler.png`
 
 ## Todo — in manifest, missing art
 

@@ -209,6 +209,13 @@ static const u8 sCaiusTheShadowMonarchName[] __attribute__((section(".append_ass
 static const u8 sMobiusTheFrostMonarchName[] __attribute__((section(".append_assets"))) = "Mobius the Frost Monarch";
 static const u8 sProtoCyberDragonName[] __attribute__((section(".append_assets"))) = "Proto-Cyber Dragon";
 static const u8 sAmazonessArcherName[] __attribute__((section(".append_assets"))) = "Amazoness Archer";
+static const u8 sElementalHeroAvianName[] __attribute__((section(".append_assets"))) = "Elemental HERO Avian";
+static const u8 sElementalHeroBurstinatrixName[] __attribute__((section(".append_assets"))) = "Elemental HERO Burstinatrix";
+static const u8 sElementalHeroSparkmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Sparkman";
+static const u8 sElementalHeroBubblemanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Bubbleman";
+static const u8 sElementalHeroWildheartName[] __attribute__((section(".append_assets"))) = "Elemental HERO Wildheart";
+static const u8 sElementalHeroBladedgeName[] __attribute__((section(".append_assets"))) = "Elemental HERO Bladedge";
+static const u8 sElementalHeroClaymanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Clayman";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -633,6 +640,20 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sProtoCyberDragonName;
   if (cardId == 0x03F0)
     return (u8 *)sAmazonessArcherName;
+  if (cardId == 0x03F1)
+    return (u8 *)sElementalHeroAvianName;
+  if (cardId == 0x03F2)
+    return (u8 *)sElementalHeroBurstinatrixName;
+  if (cardId == 0x03F3)
+    return (u8 *)sElementalHeroSparkmanName;
+  if (cardId == 0x03F4)
+    return (u8 *)sElementalHeroBubblemanName;
+  if (cardId == 0x03F5)
+    return (u8 *)sElementalHeroWildheartName;
+  if (cardId == 0x03F6)
+    return (u8 *)sElementalHeroBladedgeName;
+  if (cardId == 0x03F7)
+    return (u8 *)sElementalHeroClaymanName;
 
   return gCardNames[cardId];
 }

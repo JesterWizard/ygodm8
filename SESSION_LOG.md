@@ -1,5 +1,32 @@
 # Session Log
 
+## 2026-06-26 — Added 7 Elemental HERO cards with effects (Bladedge piercing, Bubbleman draw, Wildheart Trap immunity)
+
+**Worked on:** Added 7 Elemental HERO cards. Implemented 3 card effects:
+
+- **Bladedge**: Piercing battle damage via `battle_effects/elemental_hero_bladedge.c` (pattern: Cyber End Dragon)
+- **Bubbleman**: Activated monster effect (MONSTER_EFFECT_BUBBLEMAN) — draws 2 cards when Summoned if player controls no other cards and has no hand. Added `MONSTER_EFFECT_BUBBLEMAN` to `monster_effects.h` enum and wired in `monster_effect_hooks.c`
+- **Wildheart**: Trap immunity via `IsImmuneToTrapEffectsOnField` in `card_passives/tyrant_dragon.c` (pattern: Tyrant Dragon)
+
+All cards had existing 80×80 art. Set runtime hand to `ELEMENTAL_HERO_SPARKMAN`. Updated `card_effect_tally.md` to 217.
+
+**Files:**
+- `tools/card_data_manifest.json` — 7 entries + Bubbleman `monsterEffect` set to `MONSTER_EFFECT_BUBBLEMAN`
+- `configs/runtime.c` — `card_in_hand_1 = ELEMENTAL_HERO_SPARKMAN`
+- `include/elemental_hero_bladedge.h` — new
+- `include/elemental_hero_bubbleman.h` — new
+- `include/constants/monster_effects.h` — added `MONSTER_EFFECT_BUBBLEMAN`
+- `src_custom/battle_effects/elemental_hero_bladedge.c` — new piercing effect
+- `src_custom/activated_effects/elemental_hero_bubbleman.c` — new draw-on-summon effect
+- `src_custom/card_passives/tyrant_dragon.c` — added Wildheart to trap immunity check
+- `src_custom/battle_damage_hooks.c` — wired Bladedge piercing
+- `src_custom/monster_effect_hooks.c` — wired Bubbleman effect
+- `src_custom/card_effect_tally.md` — 3 new entries, total 217
+
+**Outcome:** `make test-cards-build` passes (all tests, ROM links, validators OK). All 3 effects compiled and linked.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added Amazoness Archer (AMAZONESS_ARCHER) with 2-for-1 Tribute burn effect
 
 **Worked on:** Added Amazoness Archer (Level 4 EARTH Warrior 1400/1000, passcode 91869203, ID 0x03F0) to the custom card trunk. Art already existed in `80x80/`. Implemented its ignition effect ("You can Tribute 2 monsters; inflict 1200 damage to your opponent") following the Cannon Soldier/Man-Thro-Tro pattern: 2-phase cursor targeting (TRIBUTE1 → TRIBUTE2), stored first selection in `gSpellEffectData.row1/col1`. AI auto-tributes first 2 available monsters. Set runtime hand to `AMAZONESS_ARCHER`. Excludes the card itself from tribute targets.
