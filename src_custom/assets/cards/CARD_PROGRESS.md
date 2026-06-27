@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-26).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-27).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 219 |
-| Art ready, needs manifest | 161 |
+| In game (manifest + art) | 221 |
+| Art ready, needs manifest | 159 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -241,6 +241,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HARPIE_LADY_1` | Harpie Lady 1 | `harpie_lady_1.png` |
 | `HARPIE_LADY_2` | Harpie Lady 2 | `harpie_lady_2.png` |
 | `HARPIE_LADY_3` | Harpie Lady 3 | `harpie_lady_3.png` |
+| `SPELL_ECONOMICS` | Spell Economics | `spell_economics.png` |
+| `THE_UNSTOPPABLE_EXODIA_INCARNATE` | The Unstoppable Exodia Incarnate | `the_unstoppable_exodia_incarnate.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -379,7 +381,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SPARK_BLASTER` — `spark_blaster.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
-- [x] `SPELL_ECONOMICS` — `spell_economics.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
@@ -394,7 +395,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THE_UNSTOPPABLE_EXODIA_INCARNATE` — `the_unstoppable_exodia_incarnate.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
 - [ ] `TOON_WORLD` — `toon_world.png`

@@ -38,6 +38,7 @@ u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 UnstoppableExodiaIncarnate_ApplyStat(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
   struct DuelSummonOpts opts;
@@ -882,6 +883,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
   { THEBAN_NIGHTMARE, ThebanNightmare_ApplyDynamicZoneStats },
+  { THE_UNSTOPPABLE_EXODIA_INCARNATE, UnstoppableExodiaIncarnate_ApplyStat },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

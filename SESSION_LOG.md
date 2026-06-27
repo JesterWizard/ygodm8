@@ -1,6 +1,48 @@
 # Session Log
 
-## 2026-06-26 — Implemented effects for Harpie Lady 1, 2, 3 (WIND ATK boost, Flip negation, attack lock)
+## 2026-06-26 — Added The Unstoppable Exodia Incarnate (Master Duel exclusive Fusion)
+
+**Worked on:** Added The Unstoppable Exodia Incarnate (Level 10 DARK Spellcaster Fusion/Effect 0/0) from Yugipedia Master Duel page. No TCG/OCG passcode (Master Duel exclusive), so manual manifest entry was required. Card has 5 effects (battle ATK gain, Spell/Trap negation, protection, End Phase search, Standby LP loss) — none are implemented yet (complex engine-level hooks). Set runtime hand to `THE_UNSTOPPABLE_EXODIA_INCARNATE`. 80×80 art is missing (listed as TODO in CARD_PROGRESS.md). Runtime opponent set to Tristan (092).
+
+**Files:**
+- `tools/card_data_manifest.json` — appended THE_UNSTOPPABLE_EXODIA_INCARNATE entry (ID auto-assigned 0x03FD)
+- `configs/runtime.c` — `card_in_hand_1 = THE_UNSTOPPABLE_EXODIA_INCARNATE`
+
+**Outcome:** `make test-cards-build` passes (all 17 tests, ROM links, LynJump patches OK). Card starts in hand at duel start with correct 0/0 stats, 3-page description.
+
+**Open / next:**
+- Create 80×80 PNG art at `src_custom/assets/cards/80x80/the_unstoppable_exodia_incarnate.png`
+- Implement remaining effects: Quick Effect negation, protection, End Phase search, Standby Phase LP loss
+- Add "once per turn" and optional activation tracking for the ATK boost
+
+## 2026-06-27 — Rewired Exodia Incarnate: simplified to 3 effects (destruction immunity, ATK=LP dynamic stat, -1000 LP turn cost)
+
+**Worked on:** Replaced the old per-battle ATK boost with 3 simplified effects matching the user's requirements:
+
+1. **Immune to card destruction** — added `THE_UNSTOPPABLE_EXODIA_INCARNATE` to `CardHasHarmfulTargetImmunityOnField` in `card_passives/blue_eyes_chaos_max_dragon.c` (same pipeline as Chaos Max Dragon / Blue-Eyes Shining Dragon). Blocks destruction through `ClearZoneAndSendMonToGraveyard`.
+
+2. **ATK = owner's LP** — registered as a `DuelDynamicZoneStat` via `sDynamicZoneStats[]` in `duel_helpers.c`. The function `UnstoppableExodiaIncarnate_ApplyStat()` continuously sets ATK = controller's LP whenever stats are computed (field display, battle, card info). Bypasses normal stage/field stat modifiers like Theban Nightmare.
+
+3. **Lose 1000 LP at turn start** — registered as a turn effect in `turn_effect_hooks.c`. `ShouldActivateUnstoppableExodiaIncarnateTurnEffect()` checks face-up on active duelist monster row. `ActivateUnstoppableExodiaIncarnateTurnEffect()` shows the activation description popup (text type 8) then applies -1000 LP.
+
+Removed old per-battle wiring: deleted `include/the_unstoppable_exodia_incarnate.h`, unwired `TryApplyUnstoppableExodiaIncarnateAtkBoost` from `card_hooks.c`. Fixed manifest: level 4 → 10, descriptions simplified. Tally: 221 → 222.
+
+**Files:**
+- `src_custom/battle_effects/the_unstoppable_exodia_incarnate.c` — rewritten: dynamic stat + turn effect functions
+- `src_custom/duel_helpers.c` — forward decl + sDynamicZoneStats[] entry
+- `src_custom/turn_effect_hooks.c` — forward decl + sTurnEffectOverrides[] entry
+- `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` — CardHasHarmfulTargetImmunityOnField
+- `src_custom/card_hooks.c` — removed include + old call
+- `include/the_unstoppable_exodia_incarnate.h` — deleted
+- `tools/card_data_manifest.json` — level 4→10, new descriptions
+- `src_custom/card_effect_tally.md` — 221→222
+
+**Outcome:** `make test-cards-build` passes (all 17 tests, full ROM link). Exodia is destruction-immune, its ATK always equals your LP, and you lose 1000 LP at the start of your turn.
+
+**Open / next:**
+- Create 80×80 PNG art at `src_custom/assets/cards/80x80/the_unstoppable_exodia_incarnate.png`
+
+## 2026-06-27 — Implemented Exodia Incarnate's battle ATK = LP effect
 
 **Worked on:** Wired 3 continuous effects for the Harpie Lady sisters in engine-level hooks.
 

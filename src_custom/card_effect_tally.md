@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `220` effects
+- `222` effects
 
 ## Tally
 
@@ -250,6 +250,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 || `permanent_effects` | `Harpie Lady 1` | `src_custom/permanent_effects/harpie_lady_1.c` |
 || `battle_effects` | `Harpie Lady 2` | `src_custom/battle_effects/harpie_lady_2.c` |
 || `battle_effects` | `Harpie Lady 3` | `src_custom/battle_effects/harpie_lady_3.c` |
+|| `battle_effects` | `The Unstoppable Exodia Incarnate` | `src_custom/battle_effects/the_unstoppable_exodia_incarnate.c` |
+|| `card_passives` | `The Unstoppable Exodia Incarnate` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
 
 ## Notes
 

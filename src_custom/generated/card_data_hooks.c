@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1021] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1022] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1033,9 +1033,10 @@ const u8 gCardLockAfterActivation_Hook[1021] APPEND_RODATA = {
   [0x03FA] = 1,
   [0x03FB] = 1,
   [0x03FC] = 1,
+  [0x03FD] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1021] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1022] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2057,9 +2058,10 @@ const u8 gCardEffectUsage_Hook[1021] APPEND_RODATA = {
   [0x03FA] = EFFECT_USAGE_NONE,
   [0x03FB] = EFFECT_USAGE_NONE,
   [0x03FC] = EFFECT_USAGE_NONE,
+  [0x03FD] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1021] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1022] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3081,9 +3083,10 @@ const u8 gCardSelectableOnce_Hook[1021] APPEND_RODATA = {
   [0x03FA] = 0,
   [0x03FB] = 0,
   [0x03FC] = 1,
+  [0x03FD] = 0,
 };
 
-const CardData gCardData_NEW[1021] APPEND_RODATA = {
+const CardData gCardData_NEW[1022] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -16624,5 +16627,19 @@ const CardData gCardData_NEW[1021] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 4, 2, 0, 9, 8, 3, 6},
     .description = gDescription_SpellEconomics,
+  },
+  [0x03FD] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 60,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_SPELLCASTER,
+    .color = FUSION_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {9, 9, 9, 9, 0, 0, 0, 1},
+    .description = gDescription_TheUnstoppableExodiaIncarnate,
   },
 };

@@ -57,6 +57,8 @@ void ActivateDancingFairyTurnEffect(void);
 unsigned char ShouldActivateSpiritOfTheBreezeTurnEffect(void);
 void ActivateSpiritOfTheBreezeTurnEffect(void);
 void ActivateDarklordMarieTurnEffect(void);
+unsigned char ShouldActivateUnstoppableExodiaIncarnateTurnEffect(void);
+void ActivateUnstoppableExodiaIncarnateTurnEffect(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -131,6 +133,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { SPIRIT_OF_THE_BREEZE, MatchActiveDuelistMonsterRow, ShouldActivateSpiritOfTheBreezeTurnEffect, ActivateSpiritOfTheBreezeTurnEffect },
   { DARK_DUST_SPIRIT, MatchActiveDuelistMonsterRow, ShouldActivateDarkDustSpiritTurnEffect, ActivateDarkDustSpiritTurnEffect },
   { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
+  { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },
 };
 
 static const TurnEffectOverride *GetTurnEffectOverride(u16 cardId)

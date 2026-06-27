@@ -18849,6 +18849,35 @@
           "You do not pay Life Points to activate Spell Cards."
         ]
       }
+    },
+    {
+      "card_const": "THE_UNSTOPPABLE_EXODIA_INCARNATE",
+      "card_name": "The Unstoppable Exodia Incarnate",
+      "atk": 0,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 60,
+      "password": [9, 9, 9, 9, 0, 0, 0, 1],
+      "description": {
+        "symbol": "gDescription_TheUnstoppableExodiaIncarnate",
+        "pages": [
+          "The wrath of Exodia brought forth through a fusion summon.",
+          "It is immune to card effects and has its ATK set to your",
+          "LP after you pay 1000 LP at the start of your turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheUnstoppableExodiaIncarnate",
+        "pages": [
+          "You lose 1000 life points at the start of your turn."
+        ]
+      }
     }
   ]
 }

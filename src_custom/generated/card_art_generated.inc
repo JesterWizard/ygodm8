@@ -888,6 +888,10 @@ static const unsigned char sSpellEconomicsBigArt[] __attribute__((section(".appe
 static const unsigned short sSpellEconomicsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_economics.gbapal");
 static const unsigned char sSpellEconomicsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_economics.lz");
 
+static const unsigned char sTheUnstoppableExodiaIncarnateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_unstoppable_exodia_incarnate.huff");
+static const unsigned short sTheUnstoppableExodiaIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_unstoppable_exodia_incarnate.gbapal");
+static const unsigned char sTheUnstoppableExodiaIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_unstoppable_exodia_incarnate.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1111,6 +1115,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03FA] = sHarpieLady2BigArt,
   [0x03FB] = sHarpieLady3BigArt,
   [0x03FC] = sSpellEconomicsBigArt,
+  [0x03FD] = sTheUnstoppableExodiaIncarnateBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1336,6 +1341,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03FA] = sHarpieLady2BigPalette,
   [0x03FB] = sHarpieLady3BigPalette,
   [0x03FC] = sSpellEconomicsBigPalette,
+  [0x03FD] = sTheUnstoppableExodiaIncarnateBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1561,6 +1567,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03FA] = 0,
   [0x03FB] = 0,
   [0x03FC] = 0,
+  [0x03FD] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1786,4 +1793,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03FA] = sHarpieLady2MiniArt,
   [0x03FB] = sHarpieLady3MiniArt,
   [0x03FC] = sSpellEconomicsMiniArt,
+  [0x03FD] = sTheUnstoppableExodiaIncarnateMiniArt,
 };

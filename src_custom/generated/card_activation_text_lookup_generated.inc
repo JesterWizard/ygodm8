@@ -228,6 +228,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { HARPIE_LADY_2, gActivationDescription_HarpieLady2 },
   { HARPIE_LADY_3, gActivationDescription_HarpieLady3 },
   { SPELL_ECONOMICS, gActivationDescription_SpellEconomics },
+  { THE_UNSTOPPABLE_EXODIA_INCARNATE, gActivationDescription_TheUnstoppableExodiaIncarnate },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
