@@ -467,7 +467,7 @@
     .type = TYPE_SPELL,
     .color = SPELL_CARD,
     .monsterEffect = 0,
-    .spellEffect = 2,
+    .spellEffect = 8,
     .trapEffect = 0,
     .password = {7, 4, 6, 7, 3, 4, 3, 8},
     .description = gDescription_SealOfOrichalcos,

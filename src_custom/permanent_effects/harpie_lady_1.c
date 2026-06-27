@@ -14,8 +14,12 @@ void ApplyHarpieLady1WindAtkBoost(struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  /* Only affects monsters */
-  if (GetTypeGroup(zone->id) != TYPE_GROUP_MONSTER)
+  /* Only affects monsters.  gCardInfo.type was already set by the caller
+   * (SetCardInfo__Replacement in ApplyFieldZoneStatsToCardInfo).  Do NOT
+   * call GetTypeGroup here — it calls SetCardInfo internally and would
+   * reset gCardInfo.atk/def back to base, undoing any field-percent or
+   * stage modifications applied by the caller. */
+  if (gCardInfo.type >= TYPE_SPELL)
     return;
 
   /* Only affects WIND monsters */

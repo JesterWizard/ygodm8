@@ -13,6 +13,8 @@
 #include "mirror_wall.h"
 #include "harpie_lady_1.h"
 #include "duel.h"
+#include "dynamic_equip.h"
+#include "world_suppression.h"
 #include "duel_helpers.h"
 #include "constants/card_ids.h"
 

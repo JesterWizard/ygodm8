@@ -550,6 +550,11 @@ s8 ComputeFinalStage(const struct DuelCard *zone)
 
   stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
 
+  /* ponytail: Orichalcos debug — only check field spell ID */
+  if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS)
+    stage++;
+
+  /* Full guarded check — commented out for debugging
   if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS
       && zone->id != CARD_NONE
       && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER
@@ -557,6 +562,7 @@ s8 ComputeFinalStage(const struct DuelCard *zone)
       && GetDuelistForZone(zone) == gActiveFieldSpellController
       && !IsWorldSuppressionNegatingFieldSpell(SEAL_OF_ORICHALCOS))
     stage++;
+  */
 
   if (stage > 127)
     stage = 127;

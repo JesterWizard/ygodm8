@@ -1,5 +1,5 @@
 ---
-description: Read ARCHITECTURE.md and SESSION_LOG.md before any work; update the log when done.
+description: Read ARCHITECTURE.md and the 2 most recent session logs before any work; update the log when done.
 alwaysApply: true
 ---
 
@@ -7,8 +7,8 @@ alwaysApply: true
 
 Before **any** investigation, edit, or reply that touches this repo:
 
-1. Read [ARCHITECTURE.md](ARCHITECTURE.md) — repo goals, folder map, where to look.
-2. Read [SESSION_LOG.md](SESSION_LOG.md) — what was last worked on and open threads.
+1. Read [ARCHITECTURE.md](../../ARCHITECTURE.md) — repo goals, folder map, where to look.
+2. Read the **2 most recent** files from [documentation/session_logs/](../../documentation/session_logs/) — what was last worked on and open threads. Sort by filename (descending) to get the latest entries. Only read older logs when explicitly asked.
 
 Use that context to avoid redoing recent work or editing the wrong layer (`src/` vs `src_custom/`).
 
@@ -20,11 +20,11 @@ Use that context to avoid redoing recent work or editing the wrong layer (`src/`
 
 ## When finishing meaningful work
 
-Append a dated entry to **SESSION_LOG.md** (newest first):
+Append a dated entry to the file **documentation/session_logs/YYYY-MM-DD.md** (newest first within the file). If no file exists for today's date, create one with a `# Session Log — YYYY-MM-DD` header.
 
 - **Worked on** — task and decisions
 - **Files** — paths touched
 - **Outcome** — what works now, test results if run
 - **Open / next** — follow-ups for the next session
 
-Skip log updates for trivial one-line fixes with no architectural impact. Merge similar log entries together, e.g. if working on the same feature like a card effect
+Skip log updates for trivial one-line fixes with no architectural impact. Merge similar log entries together, e.g. if working on the same feature like a card effect.
