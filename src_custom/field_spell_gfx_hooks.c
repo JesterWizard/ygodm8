@@ -86,6 +86,7 @@ static const u16 *GetVanillaFieldPalette(u8 field)
 u32 AdjustBackgroundBeforeTurnStart(u8);
 
 #define DUEL_FIELD_TILEMAP_VRAM_OFFSET 0xD800
+#define BATTLE_FIELD_TILEMAP_VRAM_OFFSET 0xF800
 
 static const u16 *GetActiveFieldPalette(void)
 {
@@ -163,6 +164,7 @@ void DisplayCardInfoBar(void);
 void sub_80577A4(void);
 void sub_80408FC(void);
 void sub_80411D4(void);
+void sub_8044D34(void);
 void WaitForVBlank(void);
 void LoadPalettes(void);
 void SetDuelFieldGfx(u8 field);
@@ -215,6 +217,28 @@ static void RestoreDuelFieldLayerIfNeeded(void)
     gBG2HOFS = savedHofs;
     gBG2VOFS = savedVofs;
   }
+}
+
+LYN_REPLACE_CHECK(sub_8044D34);
+void sub_8044D34__Replacement(void)
+{
+  u8 i;
+  u8 field = FIELD_ARENA;
+
+#if NUM_CUSTOM_FIELDS > 0
+  if (IsCustomField(gDuel.field))
+    field = FIELD_ARENA;
+  else if (gDuel.field < NUM_VANILLA_FIELDS)
+    field = gDuel.field;
+#else
+  if (gDuel.field < NUM_VANILLA_FIELDS)
+    field = gDuel.field;
+#endif
+
+  HuffUnComp(GetVanillaFieldTiles(field), gBgVram.cbb0);
+  for (i = 0; i < 20; i++)
+    CpuCopy16(GetVanillaFieldTilemap(field)[i], gBgVram.cbb0 + BATTLE_FIELD_TILEMAP_VRAM_OFFSET + i * 64, 62);
+  CpuCopy16(GetVanillaFieldPalette(field), gPaletteBuffer, 96);
 }
 
 LYN_REPLACE_CHECK(UpdateDuelGfxExceptField);

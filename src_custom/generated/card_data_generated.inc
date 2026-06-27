@@ -3109,7 +3109,7 @@
     .def = 0,
     .cost = 60,
     .attribute = ATTRIBUTE_SHADOW,
-    .level = 4,
+    .level = 10,
     .type = TYPE_SPELLCASTER,
     .color = FUSION_CARD,
     .monsterEffect = 0,

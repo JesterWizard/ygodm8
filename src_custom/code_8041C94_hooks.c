@@ -325,20 +325,9 @@ static void RestoreBattleOamAfterAnimation(void) {
 
 LYN_REPLACE_CHECK(sub_8040EF0);
 void sub_8040EF0__Replacement(void) {
-  u8 i;
-  u8 field;
-
   WaitForVBlank();
   DisableDisplay();
-  field = gDuel.field;
-  REG_BG2CNT = BGCNT_PRIORITY(2) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(27) | BGCNT_TXT256x512;
-  HuffUnComp(sFieldTilePtrs[field], gBgVram.cbb0);
-  CpuCopy16(sFieldPalettePtrs[field], gPaletteBuffer, 96);
-
-  for (i = 0; i < 40; i++)
-    CpuCopy16(sFieldTileMapPtrs[field][i], gBgVram.cbb0 + 0xD800 + i * 64, 64);
-  gBG2HOFS = 4;
-  gBG2VOFS = AdjustBackgroundBeforeTurnStart(gDuelCursor.currentY);
+  SetDuelFieldGfx(gDuel.field);
   gBG2VOFS = AdjustBackgroundBeforeTurnStart(1);
   sub_8040B4C();
   DisplayCardInfoBar();

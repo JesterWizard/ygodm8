@@ -1,5 +1,39 @@
 # Session Log
 
+## 2026-06-27 — Fixed Seal of Orichalcos: battle screen palette + LP/turn counter palette (round 2)
+
+**Worked on:** Two palette issues persisted after crash fix:
+
+1. **Battle screen palette** — `sub_8044D34__Replacement` was loading the custom Orichalcos tiles/palette into the battle screen's BG3 field floor render. The battle screen should show a vanilla-style floor, not the custom field overlay. Fixed by always falling back to Arena field for the battle screen (we don't have custom battle screen assets).
+
+2. **LP/turn counter palette** — `FlushDuelFieldLayerToHardware` wrote the field palette to `gPaletteBuffer[0-47]` then called `LoadPalettes()`, which pushed ALL 256 palette entries to PPU. With `turn_off_visual_scanner=TRUE`, `sub_8040FDC__Replacement` calls this during scroll loops without `sub_8040B4C` having refreshed UI palette banks 3-7 first. Fixed by pushing the field palette directly to PPU entries 0-47 (via `CpuCopy16` to `(u16 *)PLTT`), then pushing UI banks 3-7 and OBJ banks 8-15 from `gPaletteBuffer` to PPU in separate chunks — no more `LoadPalettes()` call.
+
+**Files:**
+- `src_custom/field_spell_gfx_hooks.c` — `sub_8044D34__Replacement`: always uses Arena field (via `GetVanillaField*`); `FlushDuelFieldLayerToHardware`: 3 targeted PPU pushes instead of `LoadPalettes()`
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, LynJump patches OK).
+
+**Open / next:** None.
+
+## 2026-06-27 — Fixed Seal of Orichalcos: battle screen crash + palette corruption
+
+**Worked on:** Three issues when Seal of Orichalcos is active:
+
+1. **Crash returning from battle to field** — `sub_8040EF0__Replacement` implemented in `code_8041C94_hooks.c` indexed into vanilla-only arrays (`sFieldTilePtrs[field]`, `sFieldPalettePtrs[field]`) with `gDuel.field` which is > 6 for custom fields → OOB access → crash. Fixed by replacing the direct tile/palette/tilemap loading with a call to `SetDuelFieldGfx(gDuel.field)` which already handles custom fields via `SetDuelFieldGfx__Replacement`.
+
+2. **Battle screen palette corruption** — `sub_8044D34` (battle screen field background loader in `code_8043EF4.c`) had the same OOB bug: it indexed `g8E0D960[field]`, `g8E0D97C[field]`, `g8E0D998[field]` with custom field IDs. Reading garbage ROM data as palette entries corrupted the battle screen colors. Fixed by creating a LynJump replacement `sub_8044D34__Replacement` that delegates to `GetCustomFieldGfxAsset` for custom fields.
+
+3. **LP/turn counter palette** — This was caused by the same OOB in `sub_8044D34` writing garbage to `gPaletteBuffer`, which then propagated to the LP counter (bank 3) and turn counter (bank 7) via the shared palette buffer.
+
+**Files:**
+- `src_custom/code_8041C94_hooks.c` — `sub_8040EF0__Replacement`: replaced OOB field loading with `SetDuelFieldGfx(gDuel.field)`
+- `src_custom/field_spell_gfx_hooks.c` — new `sub_8044D34__Replacement`: handles custom fields in battle screen transition; added `sub_8044D34` extern + `BATTLE_FIELD_TILEMAP_VRAM_OFFSET`
+- `src_custom/LynJump.event` — new `POIN sub_8044D34__Replacement` at `ORG $44D34`
+
+**Outcome:** `make test-cards-build` passes (17/17 tests, ROM links, LynJump patches OK). Battle screen transitions no longer crash or corrupt palettes with Seal of Orichalcos active.
+
+**Open / next:** None.
+
 ## 2026-06-26 — Added The Unstoppable Exodia Incarnate (Master Duel exclusive Fusion)
 
 **Worked on:** Added The Unstoppable Exodia Incarnate (Level 10 DARK Spellcaster Fusion/Effect 0/0) from Yugipedia Master Duel page. No TCG/OCG passcode (Master Duel exclusive), so manual manifest entry was required. Card has 5 effects (battle ATK gain, Spell/Trap negation, protection, End Phase search, Standby LP loss) — none are implemented yet (complex engine-level hooks). Set runtime hand to `THE_UNSTOPPABLE_EXODIA_INCARNATE`. 80×80 art is missing (listed as TODO in CARD_PROGRESS.md). Runtime opponent set to Tristan (092).
