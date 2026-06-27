@@ -42,7 +42,7 @@ Future per-field callbacks (`OnFieldSpellEndTurn`, etc.) are stubbed in `field_s
 
 | Requirement | Value |
 |-------------|-------|
-| Source PNG path | `src_custom/assets/field_spells/<stem>.png` (preferred) or `src_custom/assets/field_spells/<stem>/field.png` |
+| Source PNG path | `src_custom/assets/field_spells/<stem>/<stem>.png` (preferred), `src_custom/assets/field_spells/<stem>.png`, or `src_custom/assets/field_spells/<stem>/field.png` (legacy) |
 | Dimensions | **248 × 304 px** |
 | Color mode | Indexed PNG (`mode P`) |
 | Max colors | **48** (96-byte `.gbapal`) |
@@ -57,7 +57,7 @@ Future per-field callbacks (`OnFieldSpellEndTurn`, etc.) are stubbed in `field_s
 
 ## Contributor workflow
 
-1. Add `src_custom/assets/field_spells/<stem>.png` (248×304, ≤48 colors). Generated `.4bpp`/`.huff`/tilemap files land in `src_custom/assets/field_spells/<stem>/`.
+1. Add `src_custom/assets/field_spells/<stem>/<stem>.png` (248×304, ≤48 colors). (`<stem>.png` or `<stem>/field.png` also work as fallback paths.) Generated `.4bpp`/`.huff`/tilemap files land in `src_custom/assets/field_spells/<stem>/` and are cached under `.cache/field_spells/`.
 2. Add enum entries to `include/constants/custom_field_spells.h` (spell ID) and uncomment a row in `src_custom/field_spell_table.inc`:
 
    ```c
@@ -83,7 +83,7 @@ The build runs `tools/build_field_spell_gfx.py`, which validates PNGs, emits com
 
 | Feature | Location | Description |
 |--------|----------|-------------|
-| Asset folders | `src_custom/assets/field_spells/` | Source `<stem>.png`; generated assets under `<stem>/` |
+| Asset folders | `src_custom/assets/field_spells/` | Source `<stem>/<stem>.png` (or `<stem>.png` / `<stem>/field.png`); generated assets under `<stem>/` |
 | Gfx build script | `tools/build_field_spell_gfx.py` | PNG validation, asset conversion, generated tables |
 | Build rules | `graphics.mk`, `Makefile` | Wires gfx generation into `make` |
 | Registration table | `src_custom/field_spell_table.inc` | Single source of truth for spell/field/card/effect mapping |

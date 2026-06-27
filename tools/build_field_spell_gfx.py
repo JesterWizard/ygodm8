@@ -111,15 +111,18 @@ def run_gbagfx(src: Path, dst: Path, *extra: str) -> None:
 
 
 def resolve_field_spell_png(entry: FieldSpellEntry) -> Path:
+    named_png = entry.asset_dir / f"{entry.stem}.png"
     stem_png = ASSET_ROOT / f"{entry.stem}.png"
     legacy_png = entry.asset_dir / "field.png"
+    if named_png.is_file():
+        return named_png
     if stem_png.is_file():
         return stem_png
     if legacy_png.is_file():
         return legacy_png
     raise SystemExit(
         f"Missing field spell PNG for {entry.card_const}: "
-        f"expected {stem_png} or {legacy_png}"
+        f"expected {named_png}, {stem_png}, or {legacy_png}"
     )
 
 
