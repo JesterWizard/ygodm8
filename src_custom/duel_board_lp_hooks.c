@@ -82,6 +82,11 @@ static void DrawLifePointsAt(u8 x, u8 y, u16 lifePoints, u16 charBufOffset, u16 
 
   FormatLifePointsString(buf, lifePoints);
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + charBufOffset, (const u8 *)buf, 0x001);
+  RemapSmallFontTilesToColorIndex(
+      gBgVram.cbb0 + charBufOffset,
+      BOARD_LP_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
+      0,
+      3);
 
   for (i = 0; i < BOARD_LP_MAX_DIGITS; i++)
     tilemap[y * 32 + x + i] = (u16)(attrs | (baseTileId + i));
@@ -130,6 +135,12 @@ static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
 
   FormatTurnCountString(buf, turnCount);
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + BOARD_TURN_CHARBUF, (const u8 *)buf, 0x001);
+  gPaletteBuffer[0x70 + 8] = 0x0421;
+  RemapSmallFontTilesToColorIndex(
+      gBgVram.cbb0 + BOARD_TURN_CHARBUF,
+      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
+      0,
+      8);
   RemapSmallFontTilesToColorIndex(
       gBgVram.cbb0 + BOARD_TURN_CHARBUF,
       BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,

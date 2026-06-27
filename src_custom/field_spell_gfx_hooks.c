@@ -149,6 +149,18 @@ void SetDuelFieldGfx__Replacement(u8 field)
 void FlushDuelFieldLayerToHardware(void)
 {
   CpuCopy16(GetActiveFieldPalette(), gPaletteBuffer, 96);
+
+  /* ponytail: when BG3 is enabled (battle screen), the battle floor
+   * tiles reference banks 0-1.  Overwrite those banks with near-black
+   * so the battle background stays dark and independent of the active
+   * field palette.  Only bank 2 carries the custom field colors. */
+  if (REG_DISPCNT & DISPCNT_BG3_ON) {
+    u8 i;
+
+    for (i = 0; i < 32; i++)
+      gPaletteBuffer[i] = 0x0421;
+  }
+
   LoadPalettes();
   CpuCopy16(
       gBgVram.cbb0 + DUEL_FIELD_TILEMAP_VRAM_OFFSET,
@@ -219,26 +231,31 @@ static void RestoreDuelFieldLayerIfNeeded(void)
   }
 }
 
+
+
 LYN_REPLACE_CHECK(sub_8044D34);
 void sub_8044D34__Replacement(void)
 {
+  /* Battle floor tiles/tilemap for Arena — always used regardless
+   * of active field. The battle floor is drawn with BG3 using tiles
+   * that reference palette banks 0-1. Fill those with near-black so
+   * the battle floor renders as a solid dark background matching the
+   * LP counters, independent of whatever custom field palette occupies
+   * banks 0-2 during duel view. */
+  extern const u8 g80F31D0[];       /* Arena battle floor Huffman tiles */
+  extern const u16 g80F4B08[][31];  /* Arena battle floor tilemap */
+
   u8 i;
-  u8 field = FIELD_ARENA;
+  u8 row;
 
-#if NUM_CUSTOM_FIELDS > 0
-  if (IsCustomField(gDuel.field))
-    field = FIELD_ARENA;
-  else if (gDuel.field < NUM_VANILLA_FIELDS)
-    field = gDuel.field;
-#else
-  if (gDuel.field < NUM_VANILLA_FIELDS)
-    field = gDuel.field;
-#endif
+  HuffUnComp(g80F31D0, gBgVram.cbb0);
 
-  HuffUnComp(GetVanillaFieldTiles(field), gBgVram.cbb0);
-  for (i = 0; i < 20; i++)
-    CpuCopy16(GetVanillaFieldTilemap(field)[i], gBgVram.cbb0 + BATTLE_FIELD_TILEMAP_VRAM_OFFSET + i * 64, 62);
-  CpuCopy16(GetVanillaFieldPalette(field), gPaletteBuffer, 96);
+  for (i = 0; i < 32; i++)
+    gPaletteBuffer[i] = 0x0421;
+
+  for (row = 0; row < 20; row++)
+    CpuCopy16(g80F4B08[row],
+              gBgVram.cbb0 + BATTLE_FIELD_TILEMAP_VRAM_OFFSET + row * 64, 62);
 }
 
 LYN_REPLACE_CHECK(UpdateDuelGfxExceptField);
