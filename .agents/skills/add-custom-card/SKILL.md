@@ -1,11 +1,11 @@
 ---
 name: add-custom-card
-description: "Use when adding a custom card to this Yu-Gi-Oh GBA ROM hack: manifest entry, trunk wiring, art, descriptions, runtime test hand, optional effect hooks, and duel_helpers for effect bodies. Read this skill first — do not broad-search the repo for trunk/art/build plumbing."
+description: "Add a real Yu-Gi-Oh! card to the custom card trunk. Primary path: YGOProDeck API via add_custom_card.py. Fallback: Yugipedia page fetch when API misses a card or offline. Covers: data, manifest, art, runtime test hand, effect hooks with duel helpers, build validation."
 ---
 
 # Add Custom Card
 
-Use this skill when the user asks to add a custom card, wire a card into the trunk, or add a card from Yugipedia.
+Use when the user asks to add a custom card, wire a card into the trunk, or add a card from Yugipedia.
 
 ## Do Not Search For
 
@@ -25,83 +25,108 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 ## Fast Path Checklist
 
 ```
-- [ ] 1. Scaffold manifest entry: `python3 tools/add_custom_card.py "Card Name" --write`
-- [ ] 2. Confirm art: src_custom/assets/cards/80x80/<stem>.png (script reports OK/MISSING)
-- [ ] 3. Effect hooks? → only if card has non-vanilla behavior (one table row in turn/spell/trap hooks)
-- [ ] 3b. Effect body uses `duel_helpers.h` — extend `duel_helpers.c` if no helper fits (see below)
-- [ ] 3c. Effect text (`Duel_ShowEffectText*`) runs **before** gameplay resolution in the resolve body
-- [ ] 4. configs/runtime.c → `--runtime-hand N` or manual card_in_hand_* if user asked
-- [ ] 5. make test-cards (manifest-only) or make test-cards-build (hooks/runtime)
+[ ] 1. Fetch card data — try YGOProDeck first, Yugipedia fallback
+[ ] 2. Scaffold manifest: `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --runtime-hand 1`
+[ ] 3. Check art: `src_custom/assets/cards/80x80/<stem>.png`
+[ ] 4. Effect hooks? → only if card has non-vanilla behavior (use `wire_card_effect.py`)
+[ ] 5. Build: `make test-cards-link` (or `make test-cards-build` for full ROM)
 ```
 
-Or from CARD_PROGRESS todo art:
+## Step 1 — Fetch Card Data
+
+**Primary** — YGOProDeck API via `add_custom_card.py` (preferred):
 
 ```bash
-python3 tools/add_custom_card.py --from-progress AMAZONESS_TIGER --write --runtime-hand 1
-make test-cards-build
+python3 tools/add_custom_card.py --passcode 53530069 --write --runtime-hand 1
 ```
 
-## Step 1 — Card Data (YGOProDeck)
+This calls YGOProDeck API for accurate data and writes the manifest entry + runtime hand in one command.
 
-Preferred: `python3 tools/add_custom_card.py --passcode 53530069` or pass the card name.
+**Fallback** — Yugipedia page when the API is offline or misses the card:
 
-Fallback: Yugipedia `https://yugipedia.com/wiki/<Card_Name_Underscores>` when offline or API misses a card.
+`https://yugipedia.com/wiki/<Card_Name_Underscores>`
 
-Record:
+Fetch the URL and extract:
 
-| Field | Source |
-|-------|--------|
-| `card_name` | Display name |
-| `card_const` | `UPPER_SNAKE` from name (`Battle Footballer` → `BATTLE_FOOTBALLER`) |
-| `atk` / `def` / `level` | Card page |
-| `attribute` | `ATTRIBUTE_*` enum string |
-| `type` | `TYPE_*` enum string |
-| `color` | See table below |
-| `password` | 8-digit passcode → one digit per array element (`48094997` → `[4,8,0,9,4,9,9,7]`) |
-| `cost` | See cost heuristic below (or use value from `add_custom_card.py`) |
-| `description.pages` | Flavor/effect text (2–3 short lines); **required for every custom card** |
+| Field | How to get from page |
+|-------|---------------------|
+| `card_name` | `<h1>` / page title after "wiki/" |
+| `card_const` | `card_name` → `UPPER_SNAKE` via `card_name_to_const()` |
+| `passcode` | Look for "passcode", "Password", or card database number. Usually 8 digits. May appear as "05257687" |
+| `atk` / `def` | "ATK" / "DEF" in stat table or infobox |
+| `level` | "Level" in infobox |
+| `attribute` | "Attribute" → map: WATER→ATTRIBUTE_WATER, DARK→ATTRIBUTE_SHADOW, etc. |
+| `type` / `race` | Type line: e.g. "Fiend / Flip / Effect" → TYPE_FIEND. Check RACE_MAP in add_custom_card.py |
+| `effect text` | Card text below stats. Usually starts with "FLIP:" or bullet points |
+| `card kind` | "Spell Card" / "Trap Card" / "Effect Monster" / "Normal Monster" |
 
-`description.symbol` and `activation_description.symbol` are optional — derived automatically from `card_const` when omitted (`SPIRIT_OF_THE_BREEZE` → `gDescription_SpiritOfTheBreeze`).
+**Attribute mapping** (same as `add_custom_card.py`):
 
-### `color` by card kind
+| Yugipedia | Manifest value |
+|-----------|---------------|
+| DARK | `ATTRIBUTE_SHADOW` |
+| LIGHT | `ATTRIBUTE_LIGHT` |
+| FIRE | `ATTRIBUTE_FIRE` |
+| WATER | `ATTRIBUTE_WATER` |
+| WIND | `ATTRIBUTE_WIND` |
+| EARTH | `ATTRIBUTE_EARTH` |
+| DIVINE | `ATTRIBUTE_DIVINE` |
+
+**Type mapping** (same as `add_custom_card.py`):
+
+| Yugipedia | Manifest value |
+|-----------|---------------|
+| Dragon | `TYPE_DRAGON` |
+| Spellcaster | `TYPE_SPELLCASTER` |
+| Zombie | `TYPE_ZOMBIE` |
+| Warrior | `TYPE_WARRIOR` |
+| Fiend | `TYPE_FIEND` |
+| Fairy | `TYPE_FAIRY` |
+| Machine | `TYPE_MACHINE` |
+| etc. | See `RACE_MAP` in `tools/add_custom_card.py` |
+
+**Color** from card kind:
 
 | Kind | `color` | `monsterEffect` | `spellEffect` | `trapEffect` |
 |------|---------|-----------------|---------------|--------------|
-| Normal monster | `NORMAL_CARD` | `0` | `2` | `0` |
-| Effect monster | `EFFECT_CARD` | `0` or `MONSTER_EFFECT_*` | `2` | `0` |
+| Normal Monster | `NORMAL_CARD` | `0` | `2` | `0` |
+| Effect Monster | `EFFECT_CARD` | `0` or `MONSTER_EFFECT_*` | `2` | `0` |
+| Fusion Monster | `FUSION_CARD` | `0` or `MONSTER_EFFECT_*` | `2` | `0` |
+| Ritual Monster | `RITUAL_CARD` | `0` | `2` | `0` |
 | Spell | `SPELL_CARD` | `0` | `2` | `0` |
 | Trap | `TRAP_CARD` | `0` | `2` | hook id |
-| Field spell | `SPELL_CARD` + `customFieldSpell` | — | `2` | `0` |
+| Field spell | `SPELL_CARD` + `customFieldSpell` | — | `2` or `8` | `0` |
 
 Spells/traps use `atk`/`def` `65535`, `attribute` `0`, `level` `0`.
 
 Activated monsters also need `activation_description`. Effect monsters with once-per-turn logic may need `effect_usage` (`once`, `once_per_turn`, `multiple_per_turn`, `continuous`).
 
-## Step 2 — Art
+## Step 2 — Check if Already in Manifest
 
-**Stem** = `card_const.lower()` → file `src_custom/assets/cards/80x80/<stem>.png`.
+The card may already exist. Check:
 
 ```bash
-ls src_custom/assets/cards/80x80/<stem>.png
+python3 -c "
+import json
+m = json.load(open('tools/card_data_manifest.json'))
+cards = [c for c in m['cards'] if c['card_const'] == '${CARD_CONST}']
+if cards: print(f\"Already in manifest: {cards[0]['card_const']} at cost {cards[0]['cost']}\")
+else: print('NOT_FOUND')
+"
 ```
 
-If missing: check `src_custom/assets/cards/CARD_PROGRESS.md` todo list, or tell user art is needed. For PNG authoring specs, read `documentation/adding-custom-cards.md` (only then).
-
-Do **not** hand-edit `build/cards/` or `src_custom/generated/card_art_generated.inc`.
+If already in manifest: skip to art check, then runtime hand.
 
 ## Step 3 — Manifest Entry
 
-Append to the **end** of the `cards` array in `tools/card_data_manifest.json` (after the last entry). Manifest order = card ID; never reorder existing entries.
+**Preferred:** `python3 tools/add_custom_card.py ... --write` — it calls `write_manifest()` in `tools/card_manifest.py`.
 
 **Formatting is locked — do not change without explicit user approval:**
-
-- Use `python3 tools/add_custom_card.py ... --write` to append; it calls `write_manifest()` in `tools/card_manifest.py`.
-- Never run `json.dumps` on the manifest or hand-reorder keys.
 - Every card object must use the canonical key order from `MANIFEST_CARD_KEY_ORDER` in `card_manifest.py`.
 - `password` must always be a **single-line** array: `"password": [1, 3, 9, 4, 4, 4, 2, 2]`.
-- Copy the nearest similar card in the manifest for field order; grep `GOBLIN_KING` or another recent custom entry as the template.
+- Append to the **end** of the `cards` array. Manifest order = card ID; never reorder existing entries.
 
-Copy the nearest template below; grep the manifest for one similar card only if a field is unclear (e.g. `trapEffect` for a trap clone).
+**Fallback** — manual entry when API is down. Append `tools/card_data_manifest.json`:
 
 ### Normal monster (no effect) — e.g. Battle Footballer
 
@@ -158,14 +183,60 @@ Copy the nearest template below; grep the manifest for one similar card only if 
 
 Same shell as spell but `"type": "TYPE_TRAP"`, `"color": "TRAP_CARD"`, and set `"trapEffect"` to match an existing trap dispatcher id (grep manifest for a similar trap).
 
-## Step 4 — Effect Hooks (only when needed)
+## Step 4 — Art
+
+**Stem** = `card_const.lower()` → file `src_custom/assets/cards/80x80/<stem>.png`.
+
+```bash
+ls src_custom/assets/cards/80x80/<stem>.png
+```
+
+If missing: check `src_custom/assets/cards/CARD_PROGRESS.md` todo list, or tell user art is needed. For PNG authoring specs, read `documentation/adding-custom-cards.md` (only then).
+
+Do **not** hand-edit `build/cards/` or `src_custom/generated/card_art_generated.inc`.
+
+## Step 5 — Runtime Test Hand (if requested)
+
+`configs/runtime.c` → set `.card_in_hand_1` … `.card_in_hand_5` to the new `CARD_CONST`. Requires `#include "constants/card_ids.h"` (already present).
+
+```bash
+python3 tools/add_custom_card.py --passcode <passcode> --runtime-hand 1
+# (no --write, just sets the runtime C field)
+```
+
+Or manually:
+```c
+.card_in_hand_1 = CARD_CONST,
+```
+
+Trunk ownership at new game is already handled by `start_with_three_copies_of_every_card` in the same file — no trunk code changes.
+
+## Step 6 — Effect Hooks (only when needed)
+
+**Fast path:** `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`
+This creates the hook `.c` file, wires the dispatcher (extern + dispatch entry), and updates `card_effect_tally.md` in one command.
+
+| `--type` | Dispatcher | Effect dir |
+|----------|------------|------------|
+| `spell` | `spell_effect_hooks.c` | `src_custom/spell_effects/` |
+| `trap` | `trap_effect_hooks.c` | `src_custom/trap_effects/` |
+| `activated` | `monster_effect_hooks.c` | `src_custom/activated_effects/` |
+| `permanent` | `permanent_effect_hooks.c` | `src_custom/permanent_effects/` |
+| `battle` | `battle_damage_hooks.c` | `src_custom/battle_effects/` |
+| `turn` | `turn_effect_hooks.c` | `src_custom/turn_effects/` |
+| `passive` | (none) | `src_custom/card_passives/` |
+
+The `activated` and `permanent` templates include a `Duel_PickZone` targeting skeleton — **no header file, cursor constant, or `code_8043EF4_hooks.c` edit needed** for cursor targeting effects.
+
+Manual fallback — only when the fast path doesn't fit:
 
 | Card has… | Action |
 |-----------|--------|
 | No effect / normal monster | **Stop** — no hook files |
-| Spell effect | **card-effect-hook-placement** → `src_custom/spell_effects/<stem>.c`, wire `src_custom/spell_effect_hooks.c` |
-| Trap effect | trap hooks + `src_custom/trap_effects/` |
-| Activated monster | `MONSTER_EFFECT_*` in manifest + activated hooks |
+| Spell effect | `card-effect-hook-placement` → `src_custom/spell_effects/<stem>.c`, wire `src_custom/spell_effect_hooks.c` |
+| Trap effect | `src_custom/trap_effects/` |
+| Activated monster | `MONSTER_EFFECT_*` in manifest + `src_custom/activated_effects/` |
+| Flip effect | Activated monster effect — triggered on flip |
 | Passive stat / always-on | `src_custom/permanent_effects/` |
 | End-of-turn / standby | `src_custom/turn_effects/` + one row in `sTurnEffectOverrides[]` in `turn_effect_hooks.c` |
 
@@ -201,10 +272,10 @@ Pass `updateGfx=TRUE` only when the card should call `UpdateDuelGfxExceptField()
 **Always show effect text before any gameplay resolution** — the textbox must appear and advance before draw, destroy, LP change, summon, or other state changes.
 
 1. Call `Duel_ShowEffectText(cardId)` or `Duel_ShowEffectTextTyped(cardId, textType)` at the **start** of the resolve body (after trap gates pass), not after the effect finishes.
-2. If the textbox can end the duel or block further steps, check `IsDuelOver()` before continuing (see `graceful_charity.c`).
+2. If the textbox can end the duel or block further steps, check `IsDuelOver()` before continuing.
 3. **Do not** use `Duel_ResolveBurnSpell` for new cards — it shows text after burn/spell destruction (legacy). For burn spells, show text first, then `Duel_ChangeLp`, then send the spell to the GY with `Duel_DestroyZone`.
 
-**Spell pattern** — resolve body callback + trap gate (see `src_custom/spell_effects/graceful_charity.c`, `thunder_crash.c`):
+**Spell pattern** — resolve body callback + trap gate:
 
 ```c
 #include "duel_helpers.h"
@@ -248,22 +319,26 @@ Before writing more than a few lines of duel plumbing in a card file:
 
 Full API reference: `include/duel_helpers.h` and `documentation/monster-card-effects.md` (Duel helpers cheat sheet).
 
-## Step 5 — Runtime Test Hand (if requested)
+### Existing examples
 
-`configs/runtime.c` → set `.card_in_hand_1` … `.card_in_hand_5` to the new `CARD_CONST`. Requires `#include "constants/card_ids.h"` (already present).
+See `src_custom/activated_effects/jowls_of_dark_demise.c` for a complete example: it uses `Duel_ShowEffectTextTyped()`, checks `IsDuelOver()`, has `CanActivate`/`Activate` entry points, and wires through `monster_effect_hooks.c` dispatch table.
 
-Trunk ownership at new game is already handled by `start_with_three_copies_of_every_card` in the same file — no trunk code changes.
-
-## Step 6 — Progress + Build
+## Step 7 — Validate
 
 ```bash
-make test-cards        # manifest-only (no C hook / runtime edits)
-make test-cards-build  # manifest + effect hooks and/or configs/runtime.c
+make test-cards          # manifest-only (no C hook / runtime edits)
+make test-cards-link     # manifest + effect hooks (parallel compile, faster)
+make test-cards-build    # manifest + hooks + full ROM link (slower)
 ```
 
 `test-cards` runs manifest validation, RAM card-growth check, trunk validators, and `card_art_progress.py`. It skips events, portraits, CG, opening screens, and the full ROM link — those are unrelated to adding a card.
 
-Use `make test` only when the change also touches non-card systems (events, LynJump outside card hooks, RAM map, etc.).
+| After a change affecting… | Run |
+|---------------------------|-----|
+| Manifest only (no hook files / no runtime.c) | `make test-cards` |
+| Manifest + effect hooks and/or `configs/runtime.c` | `make test-cards-link` |
+| Full ROM link needed | `make test-cards-build` |
+| Events, LynJump, RAM map, or broad gameplay | `make test` |
 
 ## Cost Heuristic
 
@@ -272,6 +347,7 @@ Avoid inventing costs from scratch:
 1. Grep manifest for same `level` + similar `atk`/`def` (±200) + same `color`.
 2. Normal level-4 walls (~800/2000): often `319`.
 3. Custom spells/traps: often `150` unless a vanilla analogue exists in manifest.
+4. Jowls of Dark Demise (level 2, 200/100, effect): `29`.
 
 ## Generated Outputs (verify, never edit)
 
@@ -280,6 +356,17 @@ After `make`, confirm grep hits for the new const in:
 - `include/constants/card_ids.h`
 - `src_custom/generated/card_trunk_generated.inc`
 - `src_custom/generated/card_art_generated.inc`
+
+## Session Log
+
+When finishing meaningful card work, append a log entry:
+
+```bash
+python3 tools/log_session.py --task "Added {CardName}" \
+  --files "tools/card_data_manifest.json,configs/runtime.c,src_custom/spell_effects/{stem}.c" \
+  --outcome "make test-cards-link passes" \
+  --next "80x80 art"
+```
 
 ## Related Skills / Docs
 

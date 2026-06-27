@@ -284,9 +284,10 @@ def append_manifest(entry: dict) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Scaffold a custom card manifest entry.")
     parser.add_argument("name", nargs="?", help="Card name (YGOProDeck exact match)")
-    parser.add_argument("--passcode", type=int, help="8-digit passcode / card id")
+    parser.add_argument("--passcode", type=str, help="8-digit passcode / card id (string, preserves leading zeros)")
     parser.add_argument("--from-progress", dest="from_progress", metavar="CARD_CONST")
     parser.add_argument("--write", action="store_true", help="Append entry to card_data_manifest.json")
+    parser.add_argument("--no-desc", action="store_true", help="Use stub descriptions instead of API card text")
     parser.add_argument("--runtime-hand", type=int, metavar="N", help="Set configs/runtime.c card_in_hand_N")
     args = parser.parse_args()
 
@@ -295,7 +296,7 @@ def main() -> int:
         raise SystemExit("Manifest must be an object")
 
     lookup_name = args.name
-    lookup_passcode = args.passcode
+    lookup_passcode = int(args.passcode) if args.passcode is not None else None
     if args.from_progress:
         if parse_progress_todo(args.from_progress) is None:
             print(f"Warning: {args.from_progress} not found in CARD_PROGRESS todo list", file=sys.stderr)
@@ -303,9 +304,18 @@ def main() -> int:
         lookup_passcode = None
         api_card = fetch_card_by_const(args.from_progress)
         entry = finalize_entry(build_manifest_entry(api_card, manifest))
+
+        if args.no_desc:
+            stub = "Custom card."
+            entry["description"] = {"pages": [stub, ""]}
+            if "activation_description" in entry:
+                entry["activation_description"] = {"pages": [stub]}
+            entry = finalize_entry(entry)
+
         art_path = art_path_for(entry)
+        art_status = "OK" if art_path.is_file() else "MISSING"
         print(json.dumps(entry, indent=2))
-        print(f"\nArt: {art_path.relative_to(ROOT)} {'OK' if art_path.is_file() else 'MISSING'}", file=sys.stderr)
+        print(f"\nART: {art_path.relative_to(ROOT)} — {art_status}", file=sys.stderr)
         print(f"Description symbol: {description_symbol(entry['card_const'])}", file=sys.stderr)
         if "activation_description" in entry:
             print(f"Activation symbol: {activation_description_symbol(entry['card_const'])}", file=sys.stderr)
@@ -324,10 +334,19 @@ def main() -> int:
 
     api_card = fetch_card(name=lookup_name if lookup_passcode is None else None, passcode=lookup_passcode)
     entry = finalize_entry(build_manifest_entry(api_card, manifest))
+
+    if args.no_desc:
+        stub = "Custom card."
+        entry["description"] = {"pages": [stub, ""]}
+        if "activation_description" in entry:
+            entry["activation_description"] = {"pages": [stub]}
+        entry = finalize_entry(entry)
+
     art_path = art_path_for(entry)
 
     print(json.dumps(entry, indent=2))
-    print(f"\nArt: {art_path.relative_to(ROOT)} {'OK' if art_path.is_file() else 'MISSING'}", file=sys.stderr)
+    art_status = "OK" if art_path.is_file() else "MISSING"
+    print(f"\nART: {art_path.relative_to(ROOT)} — {art_status}", file=sys.stderr)
     print(f"Description symbol: {description_symbol(entry['card_const'])}", file=sys.stderr)
     if "activation_description" in entry:
         print(f"Activation symbol: {activation_description_symbol(entry['card_const'])}", file=sys.stderr)

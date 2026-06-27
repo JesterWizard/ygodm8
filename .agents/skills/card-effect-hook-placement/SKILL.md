@@ -38,7 +38,18 @@ Use this skill when creating or moving a card-specific effect.
   - `src_custom/turn_effect_hooks.c`
 - Search the matching dispatcher first, then the card-specific hook file, then the manifest or enum entry if the effect is activated. Avoid broad repo-wide searches unless the local files do not mention the card.
 
-## Fast Path
+## Fast Path (with tools)
+
+**Fastest: `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`**
+This creates the hook `.c` file, wires the dispatcher, and updates `card_effect_tally.md` in one command.
+
+For cursor targeting effects, use `Duel_PickZone` (no header file, no cursor constant, no `code_8043EF4_hooks.c` edit):
+1. `Duel_SetupPickZone(validator, resolver, canceller, aiPicker)` — registers 4 callbacks
+2. `Duel_EnterPickZoneTargeting()` — enters targeting mode (player path)
+3. `Duel_ResolvePickZoneForAi()` — resolves for AI path
+4. A/B button dispatch is automatic via `DUEL_CURSOR_PICK_ZONE` (shared cursor state)
+
+## Fast Path (manual)
 
 1. Decide effect type: spell, trap, activated monster, permanent, or delayed cleanup.
 2. Open the matching hook dispatcher listed above.

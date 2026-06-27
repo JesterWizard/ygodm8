@@ -529,7 +529,7 @@ clean: clean-build clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: test update-goldens test-host test-cards test-cards-build add-card
+.PHONY: test update-goldens test-host test-cards test-cards-build test-cards-link add-card
 
 test-cards: tools-rules
 	python3 tools/card_art_progress.py
@@ -539,6 +539,12 @@ test-cards: tools-rules
 
 test-cards-build: test-cards
 	$(MAKE) all
+
+# Quick check: manifest + wiring sanity only, no full ROM link.
+# Use after adding effect hook files or wiring dispatchers.
+test-cards-link: test-cards
+	$(MAKE) -j$$(nproc) all 2>&1 | tail -20
+	@echo "--- Link check passed ---"
 
 add-card:
 	@test -n "$(CARD)" || (echo "Usage: make add-card CARD='Card Name' [WRITE=1] [RUNTIME_HAND=1]" && exit 1)

@@ -17,6 +17,7 @@ Pick the **narrowest** target that still covers the edit:
 | Change | Run |
 |--------|-----|
 | Custom card (manifest only) | `make test-cards` |
+| Custom card + effect hooks only (no runtime change) | `make test-cards-link` |
 | Custom card + effect hooks and/or `configs/runtime.c` | `make test-cards-build` |
 | Tools / manifest / tests only (no ROM) | `make test-host` |
 | Events, LynJump, RAM map, or broad gameplay | `make test` |

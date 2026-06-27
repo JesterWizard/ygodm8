@@ -1102,6 +1102,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2:
       TrySelectAmazonessArcherTarget();
       break;
+    case DUEL_CURSOR_PICK_ZONE:
+      Duel_HandlePickZoneA();
+      break;
   }
 }
 
@@ -1183,6 +1186,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();
+      break;
+    case DUEL_CURSOR_PICK_ZONE:
+      Duel_HandlePickZoneB();
       break;
     case 4:
       sub_8044A88();

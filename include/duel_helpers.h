@@ -153,4 +153,45 @@ u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone);
 u8 Duel_IsAnyTrapActivationBlocked(void);
 u8 Duel_IsCardActivationBlocked(u16 cardId);
 
+// --- PickZone targeting helper ---
+// Eliminates per-card headers, cursor constants, and code_8043EF4_hooks.c edits.
+// Effects call Duel_SetupPickZone + Duel_EnterPickZoneTargeting instead of
+// defining a DUEL_CURSOR constant and wiring A/B button dispatch.
+
+#define DUEL_CURSOR_PICK_ZONE 200
+
+typedef u8 (*PickZoneValidator)(u8 fixedRow, u8 fixedCol);
+typedef void (*PickZoneResolver)(u8 fixedRow, u8 fixedCol);
+typedef void (*PickZoneCanceller)(void);
+typedef u8 (*PickZoneAiPicker)(u8 *outRow, u8 *outCol);
+
+struct PickZoneState {
+  PickZoneValidator validator;
+  PickZoneResolver resolver;
+  PickZoneCanceller canceller;
+  PickZoneAiPicker aiPicker;
+};
+
+extern struct PickZoneState gPickZoneState;
+
+// Register targeting callbacks.
+void Duel_SetupPickZone(PickZoneValidator validator,
+                        PickZoneResolver resolver,
+                        PickZoneCanceller canceller,
+                        PickZoneAiPicker aiPicker);
+
+// Enter targeting mode (finds first valid target, sets cursor).
+// Requires gDuelCursor.destY/destX set to origin zone.
+// Call AFTER Duel_SetupPickZone.
+void Duel_EnterPickZoneTargeting(void);
+
+// Handle A-button press during DUEL_CURSOR_PICK_ZONE.
+void Duel_HandlePickZoneA(void);
+
+// Handle B-button press during DUEL_CURSOR_PICK_ZONE.
+void Duel_HandlePickZoneB(void);
+
+// Resolve effect for AI (uses registered callbacks).
+void Duel_ResolvePickZoneForAi(void);
+
 #endif // GUARD_DUEL_HELPERS_H

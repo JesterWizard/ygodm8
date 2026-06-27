@@ -433,6 +433,8 @@ _kernel_malloc_ewram gHarpieLady2NegatedCardId, 2
 @ Per-column turns remaining for Harpie Lady 3 attack lock (player row, opponent row).
 _kernel_malloc_ewram gHarpieLady3RestrictTurns, 0xA
 _kernel_malloc_ewram gHarpieLady3LastProcessedTurn, 1
+@ PickZone targeting callbacks for Duel_BeginPickZone (4 function pointers = 16 bytes).
+_kernel_malloc_ewram gPickZoneState, 0x10
 @ --------------------------------------------------------------------
 @ Flash storage (SRAM)
 @ --------------------------------------------------------------------

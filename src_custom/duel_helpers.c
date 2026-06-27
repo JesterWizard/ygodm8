@@ -32,6 +32,14 @@ extern void ActivateTrapEffect(u16 lp);
 extern void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist);
 extern struct DuelCard *gSetFinalStatZone;
 
+/* Forward declarations used by PickZone targeting helpers */
+extern void DisplayCardInfoBar(void);
+extern void sub_8041E70(u8, u8);
+extern void SetCursorToCardDest(void);
+extern void ResetCursorDestToCurrentPos(void);
+extern void CheckWinConditionExodia(unsigned char);
+extern void TryActivatingPermanentEffects(void);
+
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1909,6 +1917,103 @@ u8 Duel_IsCardActivationBlocked(u16 cardId)
   }
 
   return FALSE;
+}
+
+// --- PickZone targeting ----------------------------------------------------
+
+static u8 FindFirstValidTarget(u8 *outRow, u8 *outCol)
+{
+  u8 row, col;
+
+  if (gPickZoneState.validator == NULL)
+    return FALSE;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < 5; col++) {
+      if (gPickZoneState.validator(row, col)) {
+        *outRow = row;
+        *outCol = col;
+        return TRUE;
+      }
+    }
+  }
+  return FALSE;
+}
+
+void Duel_SetupPickZone(PickZoneValidator validator, PickZoneResolver resolver,
+                         PickZoneCanceller canceller, PickZoneAiPicker aiPicker)
+{
+  gPickZoneState.validator = validator;
+  gPickZoneState.resolver = resolver;
+  gPickZoneState.canceller = canceller;
+  gPickZoneState.aiPicker = aiPicker;
+}
+
+void Duel_EnterPickZoneTargeting(void)
+{
+  u8 targetRow, targetCol;
+
+  if (!FindFirstValidTarget(&targetRow, &targetCol))
+    return;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
+  PlayMusic(SFX_SELECT);
+  gDuelCursor.state = DUEL_CURSOR_PICK_ZONE;
+  gDuelCursor.currentY = targetRow;
+  gDuelCursor.currentX = targetCol;
+  DisplayCardInfoBar();
+  sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+}
+
+void Duel_HandlePickZoneA(void)
+{
+  u8 targetRow = gDuelCursor.currentY;
+  u8 targetCol = gDuelCursor.currentX;
+  u8 originRow = gDuelCursor.destY;
+  u8 originCol = gDuelCursor.destX;
+
+  if (!gPickZoneState.validator(targetRow, targetCol)) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  gPickZoneState.resolver(targetRow, targetCol);
+
+  /* If resolver re-entered targeting (multi-pick like Mobius), skip cleanup */
+  if (gDuelCursor.state == DUEL_CURSOR_PICK_ZONE)
+    return;
+
+  gDuelCursor.state = 0;
+  gDuelCursor.currentY = originRow;
+  gDuelCursor.currentX = originCol;
+  ResetCursorDestToCurrentPos();
+  UpdateDuelGfxExceptField();
+  CheckWinConditionExodia(WhoseTurn());
+  if (IsDuelOver() != TRUE)
+    TryActivatingPermanentEffects();
+}
+
+void Duel_HandlePickZoneB(void)
+{
+  u8 currY = gDuelCursor.currentY;
+
+  gPickZoneState.canceller();
+
+  gDuelCursor.state = 0;
+  SetCursorToCardDest();
+  DisplayCardInfoBar();
+  sub_8041E70(currY, gDuelCursor.currentY);
+}
+
+void Duel_ResolvePickZoneForAi(void)
+{
+  u8 targetRow, targetCol;
+
+  if (gPickZoneState.aiPicker != NULL && gPickZoneState.aiPicker(&targetRow, &targetCol))
+    gPickZoneState.resolver(targetRow, targetCol);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)
