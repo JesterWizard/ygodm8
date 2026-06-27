@@ -2,4 +2,5 @@
 
 const u8 gCustomFieldStatMods[NUM_CUSTOM_FIELDS][NUM_CARD_TYPES] APPEND_RODATA = {
   {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 };

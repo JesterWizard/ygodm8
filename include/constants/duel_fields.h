@@ -15,6 +15,9 @@ enum {
 
 #include "constants/custom_fields_generated.h"
 
+/* 255 means "no field override" — the game picks based on opponent's deck etc. */
+#define FIELD_NONE 255
+
 #define IsCustomField(field) ((field) >= FIRST_CUSTOM_FIELD && (field) < NUM_FIELDS)
 
 #endif // GUARD_CONSTANTS_DUEL_FIELDS_H

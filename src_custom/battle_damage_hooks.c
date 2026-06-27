@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "card_passives.h"
 #include "duel_helpers.h"
+#include "card.h"
 #include "familiar_knight.h"
 #include "giant_rat.h"
 #include "graveyard_effects.h"
@@ -37,12 +38,17 @@
 #include "elemental_hero_bladedge.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
+#include "constants/card_ids.h"
+#include "custom_field_spell.h"
+#include "constants/custom_field_spells.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
 
 #define FLAG_LOSER_PLAYER 4
 #define FLAG_LOSER_OPPONENT 16
+
+void SetCardInfo(u16 id);
 
 struct StoneUnk2023E80 {
   unsigned short playerCardId;
@@ -71,6 +77,43 @@ extern struct StoneUnk2023E80 sActionData;
 void ApplyShinatoKingOfAHigherPlaneBattleEffect(void);
 void ApplyObnoxiousCelticGuardianBattleProtection(void);
 void ApplyKaiserGliderBattleProtection(void);
+
+static void ApplySanctuaryInTheSkyBattleDamageProtection(void)
+{
+  u16 playerDamage;
+  u16 opponentDamage;
+
+  if (gActiveCustomFieldSpellId != CUSTOM_FIELD_SPELL_SANCTUARY_IN_THE_SKY)
+    return;
+  if (sActionData.id != 1 && sActionData.id != 2 && sActionData.id != 5 && sActionData.id != 6)
+    return;
+
+  playerDamage = gUnk2023EA0.unk0[0].initialLifePoints - gDuelLifePoints[DUEL_PLAYER];
+  opponentDamage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];
+
+  if (playerDamage > 0 && sActionData.playerCardId != CARD_NONE) {
+    SetCardInfo(sActionData.playerCardId);
+    if (gCardInfo.type == TYPE_FAIRY) {
+      gDuelLifePoints[DUEL_PLAYER] = gUnk2023EA0.unk0[0].initialLifePoints;
+      gUnk2023EA0.unk0[0].lifePointsAfterDamage = gDuelLifePoints[DUEL_PLAYER];
+      if (opponentDamage == 0 && playerDamage >= gDuelLifePoints[DUEL_OPPONENT])
+        sActionData.flags &= ~FLAG_LOSER_PLAYER;
+    }
+  }
+
+  if (opponentDamage > 0 && sActionData.opponentCardId != CARD_NONE) {
+    SetCardInfo(sActionData.opponentCardId);
+    if (gCardInfo.type == TYPE_FAIRY) {
+      gDuelLifePoints[DUEL_OPPONENT] = gUnk2023EA0.unk0[1].initialLifePoints;
+      gUnk2023EA0.unk0[1].lifePointsAfterDamage = gDuelLifePoints[DUEL_OPPONENT];
+      if (playerDamage == 0 && opponentDamage >= gDuelLifePoints[DUEL_PLAYER])
+        sActionData.flags &= ~FLAG_LOSER_OPPONENT;
+    }
+  }
+
+  sActionData.playerLifePoints = gDuelLifePoints[DUEL_PLAYER];
+  sActionData.opponentLifePoints = gDuelLifePoints[DUEL_OPPONENT];
+}
 
 static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
   u16 playerDamage;
@@ -119,6 +162,7 @@ LYN_REPLACE_CHECK(CheckGraveyardAndLoserFlags);
 void CheckGraveyardAndLoserFlags__Replacement(void) {
   u16 damage;
 
+  ApplySanctuaryInTheSkyBattleDamageProtection();
   ApplyAmazonessSwordsWomanBattleDamageRedirect();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {

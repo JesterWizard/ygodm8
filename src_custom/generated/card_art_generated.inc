@@ -892,6 +892,10 @@ static const unsigned char sTheUnstoppableExodiaIncarnateBigArt[] __attribute__(
 static const unsigned short sTheUnstoppableExodiaIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_unstoppable_exodia_incarnate.gbapal");
 static const unsigned char sTheUnstoppableExodiaIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_unstoppable_exodia_incarnate.lz");
 
+static const unsigned char sTheSanctuaryInTheSkyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_sanctuary_in_the_sky.huff");
+static const unsigned short sTheSanctuaryInTheSkyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_sanctuary_in_the_sky.gbapal");
+static const unsigned char sTheSanctuaryInTheSkyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_sanctuary_in_the_sky.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1116,6 +1120,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03FB] = sHarpieLady3BigArt,
   [0x03FC] = sSpellEconomicsBigArt,
   [0x03FD] = sTheUnstoppableExodiaIncarnateBigArt,
+  [0x03FE] = sTheSanctuaryInTheSkyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1342,6 +1347,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03FB] = sHarpieLady3BigPalette,
   [0x03FC] = sSpellEconomicsBigPalette,
   [0x03FD] = sTheUnstoppableExodiaIncarnateBigPalette,
+  [0x03FE] = sTheSanctuaryInTheSkyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1568,6 +1574,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03FB] = 0,
   [0x03FC] = 0,
   [0x03FD] = 0,
+  [0x03FE] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1794,4 +1801,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03FB] = sHarpieLady3MiniArt,
   [0x03FC] = sSpellEconomicsMiniArt,
   [0x03FD] = sTheUnstoppableExodiaIncarnateMiniArt,
+  [0x03FE] = sTheSanctuaryInTheSkyMiniArt,
 };

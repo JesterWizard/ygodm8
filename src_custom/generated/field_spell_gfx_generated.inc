@@ -2,3 +2,6 @@
 
 const u8 gFieldSEALOFORICHALCOSTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/seal_of_orichalcos/field.huff");
 const u16 gFieldSEALOFORICHALCOSPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/seal_of_orichalcos/field.gbapal");
+
+const u8 gFieldSANCTUARYINTHESKYTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/the_sanctuary_in_the_sky/field.huff");
+const u16 gFieldSANCTUARYINTHESKYPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/the_sanctuary_in_the_sky/field.gbapal");

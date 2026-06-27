@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 221 |
-| Art ready, needs manifest | 159 |
+| In game (manifest + art) | 222 |
+| Art ready, needs manifest | 158 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -243,6 +243,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HARPIE_LADY_3` | Harpie Lady 3 | `harpie_lady_3.png` |
 | `SPELL_ECONOMICS` | Spell Economics | `spell_economics.png` |
 | `THE_UNSTOPPABLE_EXODIA_INCARNATE` | The Unstoppable Exodia Incarnate | `the_unstoppable_exodia_incarnate.png` |
+| `THE_SANCTUARY_IN_THE_SKY` | The Sanctuary in the Sky | `the_sanctuary_in_the_sky.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -393,7 +394,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
-- [ ] `THE_SANCTUARY_IN_THE_SKY` — `the_sanctuary_in_the_sky.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`

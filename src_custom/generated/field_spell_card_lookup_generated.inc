@@ -2,7 +2,12 @@
 
 static u8 LookupCustomFieldSpellIdForCard(u16 cardId)
 {
-  if (cardId == SEAL_OF_ORICHALCOS)
-    return CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS;
-  return CUSTOM_FIELD_SPELL_NONE;
+  switch (cardId) {
+    case SEAL_OF_ORICHALCOS:
+      return CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS;
+    case THE_SANCTUARY_IN_THE_SKY:
+      return CUSTOM_FIELD_SPELL_SANCTUARY_IN_THE_SKY;
+    default:
+      return CUSTOM_FIELD_SPELL_NONE;
+  }
 }

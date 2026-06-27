@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 221
+#define NUM_CUSTOM_NAME_SORT_CARDS 222
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -226,6 +226,7 @@ static const u8 sHarpieLady2SortName[] APPEND_RODATA = "Harpie Lady 2";
 static const u8 sHarpieLady3SortName[] APPEND_RODATA = "Harpie Lady 3";
 static const u8 sSpellEconomicsSortName[] APPEND_RODATA = "Spell Economics";
 static const u8 sTheUnstoppableExodiaIncarnateSortName[] APPEND_RODATA = "The Unstoppable Exodia Incarnate";
+static const u8 sTheSanctuaryInTheSkySortName[] APPEND_RODATA = "The Sanctuary in the Sky";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x03A0, // Absorbing Kid from the Sky
@@ -424,6 +425,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x036D, // The Dark Door
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
+  0x03FE, // The Sanctuary in the Sky
   0x03D0, // The Thing in the Crater
   0x03FD, // The Unstoppable Exodia Incarnate
   0x03E7, // Theban Nightmare
@@ -648,31 +650,32 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   194, // The Dark Door
   195, // The Flute of Summoning Dragon
   196, // The Forceful Sentry
-  197, // The Thing in the Crater
-  198, // The Unstoppable Exodia Incarnate
-  199, // Theban Nightmare
-  200, // Thousand Energy
-  201, // Thousand Knives
-  202, // Thunder Crash
-  203, // Time Seal
-  204, // Toll
-  205, // Torpedo Fish
-  206, // Triangle Power
-  207, // Twin Swords of Flashing Light - Tryce
-  208, // Tyrant Dragon
-  209, // Ultimate Offering
-  210, // United We Stand
-  211, // Upstart Goblin
-  212, // Vampire Baby
-  213, // Vengeful Bog Spirit
-  214, // Wall of Revealing Light
-  215, // Warrior of Zera
-  216, // Wave Motion Cannon
-  217, // Weather Report
-  218, // White Magician Pikeru
-  219, // World Suppression
-  220, // Yata-Garasu
-  221, // Zaborg the Thunder Monarch
+  197, // The Sanctuary in the Sky
+  198, // The Thing in the Crater
+  199, // The Unstoppable Exodia Incarnate
+  200, // Theban Nightmare
+  201, // Thousand Energy
+  202, // Thousand Knives
+  203, // Thunder Crash
+  204, // Time Seal
+  205, // Toll
+  206, // Torpedo Fish
+  207, // Triangle Power
+  208, // Twin Swords of Flashing Light - Tryce
+  209, // Tyrant Dragon
+  210, // Ultimate Offering
+  211, // United We Stand
+  212, // Upstart Goblin
+  213, // Vampire Baby
+  214, // Vengeful Bog Spirit
+  215, // Wall of Revealing Light
+  216, // Warrior of Zera
+  217, // Wave Motion Cannon
+  218, // Weather Report
+  219, // White Magician Pikeru
+  220, // World Suppression
+  221, // Yata-Garasu
+  222, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1124,6 +1127,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSpellEconomicsSortName;
   if (cardId == 0x03FD)
     return (u8 *)sTheUnstoppableExodiaIncarnateSortName;
+  if (cardId == 0x03FE)
+    return (u8 *)sTheSanctuaryInTheSkySortName;
 
   return gCardNames[cardId];
 }
