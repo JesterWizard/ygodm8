@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 223 |
-| Art ready, needs manifest | 157 |
+| In game (manifest + art) | 224 |
+| Art ready, needs manifest | 156 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -245,6 +245,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_UNSTOPPABLE_EXODIA_INCARNATE` | The Unstoppable Exodia Incarnate | `the_unstoppable_exodia_incarnate.png` |
 | `THE_SANCTUARY_IN_THE_SKY` | The Sanctuary in the Sky | `the_sanctuary_in_the_sky.png` |
 | `MIRROR_FORCE` | Mirror Force | `mirror_force.png` |
+| `LEVEL_LIMIT_AREA_A` | Level Limit - Area A | `level_limit_area_a.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -334,7 +335,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
-- [ ] `LEVEL_LIMIT_AREA_A` — `level_limit_area_a.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`

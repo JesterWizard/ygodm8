@@ -11,6 +11,7 @@
 #include "weather_report.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
+#include "level_limit_area_a.h"
 #include "vengeful_bog_spirit.h"
 #include "sasuke_samurai_2.h"
 #include "man_thro_tro.h"
@@ -438,6 +439,11 @@ FAILED:
           PlayMusic(SFX_FORBIDDEN);
         } else if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked) {
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isDefending = 0;
+        }
+      } else {
+        if (LevelLimitAreaA_CannotUseDefensePosition(
+                gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)) {
+          PlayMusic(SFX_FORBIDDEN);
         }
       }
       UpdateDuelGfxExceptField();

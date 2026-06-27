@@ -25,6 +25,7 @@
 #include "blasting_the_ruins.h"
 #include "curse_of_darkness.h"
 #include "solar_ray.h"
+#include "level_limit_area_a.h"
 #include "yata_garasu.h"
 #include "fenrir.h"
 #include "life_points.h"
@@ -319,6 +320,7 @@ static bool8 RunDuelTurnLoop(void) {
     ClearPendingTributeSummonCardId();
     UpdateDuelZonePtrs(turn);
     Duel_CheckLevelLimitAreaBAfterFieldChange();
+    Duel_CheckLevelLimitAreaAAfterFieldChange();
     Duel_RefreshAttackRestrictions();
     if (!IsRoyalDecreeActiveOnField()) {
     TryActivateJarOfGreedOnOpponentTurnStart();
@@ -336,6 +338,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateBlastingTheRuinsOnOpponentTurnStart();
     TryActivateCurseOfDarknessOnOpponentTurnStart();
     TryActivateSolarRayOnOpponentTurnStart();
+    TryActivateLevelLimitAreaAOnOpponentTurnStart();
     }
     if (IsDuelOver() == TRUE)
       return TRUE;

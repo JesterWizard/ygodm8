@@ -71,6 +71,7 @@ static void ResetFieldToArenaAfterUmiCost(void)
 
   Duel_CheckRivalryOfWarlordsAfterFieldChange();
   Duel_CheckLevelLimitAreaBAfterFieldChange();
+  Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_CheckAmazonessTigerAfterFieldChange();
 }
 

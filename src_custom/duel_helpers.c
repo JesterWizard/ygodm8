@@ -12,6 +12,7 @@
 #include "raregold_armor.h"
 #include "rivalry_of_warlords.h"
 #include "level_limit_area_b.h"
+#include "level_limit_area_a.h"
 #include "ring_of_destruction.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
@@ -1370,6 +1371,11 @@ void Duel_CheckRivalryOfWarlordsAfterFieldChange(void)
 void Duel_CheckLevelLimitAreaBAfterFieldChange(void)
 {
   LevelLimitAreaB_CheckAfterFieldChange();
+}
+
+void Duel_CheckLevelLimitAreaAAfterFieldChange(void)
+{
+  LevelLimitAreaA_CheckAfterFieldChange();
 }
 
 void Duel_CheckAmazonessTigerAfterFieldChange(void)

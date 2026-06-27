@@ -1025,11 +1025,12 @@
 #define THE_UNSTOPPABLE_EXODIA_INCARNATE         0x03FD
 #define THE_SANCTUARY_IN_THE_SKY                 0x03FE
 #define MIRROR_FORCE                             0x03FF
+#define LEVEL_LIMIT_AREA_A                       0x0400
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0400
-#define NUM_CUSTOM_CARDS                        0x00DF
+#define NUM_TOTAL_CARDS                         0x0401
+#define NUM_CUSTOM_CARDS                        0x00E0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

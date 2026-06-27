@@ -102,6 +102,7 @@ void Duel_NotifyFixedMonsterRowChanged(u8 fixedRow);
 void Duel_NotifyMonsterZoneChanged(struct DuelCard *zone);
 void Duel_CheckRivalryOfWarlordsAfterFieldChange(void);
 void Duel_CheckLevelLimitAreaBAfterFieldChange(void);
+void Duel_CheckLevelLimitAreaAAfterFieldChange(void);
 void Duel_CheckAmazonessTigerAfterFieldChange(void);
 void Duel_CheckRingOfDestructionAfterFieldChange(void);
 u8 Duel_IsMonsterZoneTarget(u16 cardId);

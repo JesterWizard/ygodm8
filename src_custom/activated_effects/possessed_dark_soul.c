@@ -126,5 +126,6 @@ void ActivatePossessedDarkSoulEffect(void)
 
   TakeAllPossessedDarkSoulTargets();
   Duel_CheckLevelLimitAreaBAfterFieldChange();
+  Duel_CheckLevelLimitAreaAAfterFieldChange();
   UpdateDuelGfxExceptField();
 }

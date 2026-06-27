@@ -6,6 +6,7 @@
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
 #include "level_limit_area_b.h"
+#include "level_limit_area_a.h"
 #include "amazoness_tiger.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
@@ -534,6 +535,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     Duel_NotifyMonsterZoneChanged(dst);
     TryEnforceBerserkGorillaOnMonsterPlacement(dst);
     TryLevelLimitAreaBOnMonsterPlacement(dst);
+    TryLevelLimitAreaAOnMonsterPlacement(dst);
     if (markVengefulBogOnHandSummon)
       TryVengefulBogSpiritOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);

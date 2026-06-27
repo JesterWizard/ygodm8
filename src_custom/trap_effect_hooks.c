@@ -372,3 +372,5 @@ unsigned IsTrapTriggered__Replacement(void) {
 
   return FALSE;
 }
+
+/* LEVEL_LIMIT_AREA_A handled via spell_effect_hooks.c (manual activation) */

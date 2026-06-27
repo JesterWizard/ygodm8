@@ -224,6 +224,7 @@ static const u8 sSpellEconomicsName[] __attribute__((section(".append_assets")))
 static const u8 sTheUnstoppableExodiaIncarnateName[] __attribute__((section(".append_assets"))) = "The Unstoppable Exodia Incarnate";
 static const u8 sTheSanctuaryInTheSkyName[] __attribute__((section(".append_assets"))) = "The Sanctuary in the Sky";
 static const u8 sMirrorForceName[] __attribute__((section(".append_assets"))) = "Mirror Force";
+static const u8 sLevelLimitAreaAName[] __attribute__((section(".append_assets"))) = "Level Limit - Area A";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -678,6 +679,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheSanctuaryInTheSkyName;
   if (cardId == 0x03FF)
     return (u8 *)sMirrorForceName;
+  if (cardId == 0x0400)
+    return (u8 *)sLevelLimitAreaAName;
 
   return gCardNames[cardId];
 }

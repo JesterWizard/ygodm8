@@ -54,6 +54,7 @@ extern void EffectNegativeEnergy(void);
 extern void EffectTrianglePower(void);
 extern void EffectTheDarkDoor(void);
 extern void EffectLevelLimitAreaB(void);
+extern void EffectLevelLimitAreaA(void);
 extern void EffectTheForcefulSentry(void);
 extern void EffectLimiterRemoval(void);
 extern void EffectCardDestruction(void);
@@ -359,6 +360,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case LEVEL_LIMIT_AREA_B:
       EffectLevelLimitAreaB();
+      return;
+    case LEVEL_LIMIT_AREA_A:
+      EffectLevelLimitAreaA();
       return;
     case THE_FORCEFUL_SENTRY:
       EffectTheForcefulSentry();

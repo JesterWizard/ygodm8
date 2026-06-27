@@ -140,6 +140,7 @@ void TryActivateRyuKishinClownOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateDarkDustSpiritOnMonsterPlacement(struct DuelCard *zone);
 void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
+void TryLevelLimitAreaAOnMonsterPlacement(struct DuelCard *zone);
 signed char FirstEmptyZoneInRow(struct DuelCard **zonePtr);
 void sub_80441D0(void);
 void MonsterActionMenu(void);
@@ -752,6 +753,7 @@ void sub_80449D8__Replacement(void)
     TryBreakerTheMagicalWarriorOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryLevelLimitAreaAOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);

@@ -1,17 +1,26 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — 3 agent-speed improvements: .card_state, make card-cost, CARD_STATE.md
+**Last worked on:** 2026-06-28 — Added Level Limit - Area A (Continuous Trap)
 
 **Files touched:**
-- `tools/card_manifest.py`
-- `tools/suggest_card_cost.py`
-- `tools/log_session.py`
-- `Makefile`
-- `.gitignore`
-- `.cursor/rules/session-context.mdc`
-- `.agents/skills/add-custom-card/SKILL.md`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `include/level_limit_area_a.h`
+- `src_custom/trap_effects/level_limit_area_a.c`
+- `src_custom/spell_effect_hooks.c`
+- `src_custom/code_8043EF4_hooks.c`
+- `src_custom/code_803F02C_hooks.c`
+- `src_custom/duel_helpers.c`
+- `include/duel_helpers.h`
+- `src_custom/permanent_effect_hooks.c`
+- `src_custom/duel_main_hooks.c`
+- `src_custom/monster_effect_hooks.c`
+- `src_custom/ai_attack_hooks.c`
+- `src_custom/activated_effects/levia_dragon_daedalus.c`
+- `src_custom/activated_effects/possessed_dark_soul.c`
+- `src_custom/trap_effect_hooks.c`
 
-**Outcome:** All three tools tested and working
+**Outcome:** make test-cards-link passes, card forces Lv3 or lower monsters to Attack Position continuously
 
 **Open / next:**
-- Update other skills to reference .card_state / CARD_STATE.md
+- 80x80 art check (exists from API fetch)

@@ -19,6 +19,7 @@
 #include "the_dark_door.h"
 #include "duel_attack_restrictions.h"
 #include "level_limit_area_b.h"
+#include "level_limit_area_a.h"
 #include "black_tyranno.h"
 #include "drillago.h"
 #include "jowls_of_dark_demise.h"
