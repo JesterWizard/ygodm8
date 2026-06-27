@@ -8,7 +8,8 @@ alwaysApply: true
 Before **any** investigation, edit, or reply that touches this repo:
 
 1. Read [ARCHITECTURE.md](../../ARCHITECTURE.md) — repo goals, folder map, where to look.
-2. Read the **2 most recent** files from [documentation/session_logs/](../../documentation/session_logs/) — what was last worked on and open threads. Sort by filename (descending) to get the latest entries. Only read older logs when explicitly asked.
+2. Read [documentation/CARD_STATE.md](../../documentation/CARD_STATE.md) — latest session state (fast, reads in 1 tool call).
+3. If CARD_STATE.md is missing or stale, read the **2 most recent** files from [documentation/session_logs/](../../documentation/session_logs/) instead. Sort by filename (descending) to get the latest entries.
 
 Use that context to avoid redoing recent work or editing the wrong layer (`src/` vs `src_custom/`).
 

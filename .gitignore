@@ -19,6 +19,7 @@
 tools/agbcc
 build/
 .cache/
+.card_state
 .vscode/
 *.huff
 *.tilemap.bin

@@ -529,7 +529,7 @@ clean: clean-build clean-tools clean-graphics
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: test update-goldens test-host test-cards test-cards-build test-cards-link add-card
+.PHONY: test update-goldens test-host test-cards test-cards-build test-cards-link add-card card-cost
 
 test-cards: tools-rules
 	python3 tools/card_art_progress.py
@@ -552,6 +552,13 @@ add-card:
 		$(if $(PASSCODE),--passcode $(PASSCODE),) \
 		$(if $(WRITE),--write,) \
 		$(if $(RUNTIME_HAND),--runtime-hand $(RUNTIME_HAND),)
+
+card-cost:
+	python3 tools/suggest_card_cost.py \
+		$(if $(LEVEL),--level $(LEVEL),) \
+		$(if $(ATK),--atk $(ATK),) \
+		$(if $(or $(DEFENSE),$(DEF)),--defense $(or $(DEFENSE),$(DEF)),) \
+		$(if $(COLOR),--color $(COLOR),)
 
 test-host: tools-rules
 	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
@@ -584,4 +591,4 @@ endif
 update-goldens:
 	UPDATE_GOLDENS=1 PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 
-.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build add-card update-goldens
+.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build add-card card-cost update-goldens

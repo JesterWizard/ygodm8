@@ -18,11 +18,42 @@ Flags:
 from __future__ import annotations
 
 import argparse
+import sys
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGS_DIR = ROOT / "documentation" / "session_logs"
+CARD_STATE_PATH = ROOT / "documentation" / "CARD_STATE.md"
+
+
+def write_card_state_md(args: argparse.Namespace, today: str) -> None:
+    """Write a rolling one-entry CARD_STATE.md (overwrites, never appends)."""
+    lines = ["# CARD_STATE — latest session"]
+    lines.append("")
+    lines.append(f"**Last worked on:** {today} — {args.task}")
+    lines.append("")
+
+    if args.files:
+        files = [f.strip() for f in args.files.split(",") if f.strip()]
+        lines.append("**Files touched:**")
+        for f in files:
+            lines.append(f"- `{f}`")
+        lines.append("")
+
+    if args.outcome:
+        lines.append(f"**Outcome:** {args.outcome}")
+        lines.append("")
+
+    if args.next:
+        next_items = [n.strip() for n in args.next.split(",") if n.strip()]
+        lines.append("**Open / next:**")
+        for item in next_items:
+            lines.append(f"- {item}")
+        lines.append("")
+
+    CARD_STATE_PATH.write_text("\n".join(lines).strip() + "\n")
+
 
 
 def main() -> int:
@@ -72,6 +103,8 @@ def main() -> int:
 
     log_file.write_text("\n".join(lines).strip() + "\n")
     print(f"Logged to {log_file}", file=sys.stderr)
+    write_card_state_md(args, today)
+    print(f"Updated {CARD_STATE_PATH.relative_to(ROOT)}", file=sys.stderr)
     return 0
 
 

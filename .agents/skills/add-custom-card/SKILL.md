@@ -19,6 +19,8 @@ These are automatic once the manifest entry exists — **skip codebase explorati
 | Mini art (24×24) | Derived from 80×80 PNG unless a manual mini exists |
 | `trunk_hooks.c`, `deck_menu_hooks.c` | Custom cards piggyback existing hooks |
 | Draw / destroy / LP / summon boilerplate | Use `include/duel_helpers.h` — do not reinvent |
+| **Next cost / total cards / last card** | Read `tools/.card_state` (written by `write_manifest()`) |
+| **Session state** | Read `documentation/CARD_STATE.md` — latest session in 1 tool call |
 
 Only search when implementing **new effect behavior** (use **card-effect-hook-placement** skill), when **extending duel helpers**, or when art is missing.
 
@@ -344,10 +346,13 @@ make test-cards-build    # manifest + hooks + full ROM link (slower)
 
 Avoid inventing costs from scratch:
 
-1. Grep manifest for same `level` + similar `atk`/`def` (±200) + same `color`.
-2. Normal level-4 walls (~800/2000): often `319`.
-3. Custom spells/traps: often `150` unless a vanilla analogue exists in manifest.
-4. Jowls of Dark Demise (level 2, 200/100, effect): `29`.
+1. **`make card-cost LEVEL=N ATK=N DEF=N COLOR=COLOR`** — queries the manifest for the 5 most similar cards and prints the suggested cost.
+2. Grep manifest for same `level` + similar `atk`/`def` (±200) + same `color`.
+3. Normal level-4 walls (~800/2000): often `319`.
+4. Custom spells/traps: often `150` unless a vanilla analogue exists in manifest.
+5. Jowls of Dark Demise (level 2, 200/100, effect): `29`.
+
+Prefer `make card-cost` over manual grepping — it saves tool calls.
 
 ## Generated Outputs (verify, never edit)
 
