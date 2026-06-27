@@ -13,6 +13,7 @@
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
+#include "mirror_force.h"
 #include "big_bang_shot.h"
 #include "riryoku.h"
 
@@ -323,6 +324,11 @@ static bool8 CheckTrapActivationConditions__Hook(u16 id) {
       ret = BlastHeldByATribute_ShouldActivateTrap();
       if (ret)
         gTrapEffectData.trapCardId = TRAP_BLAST_HELD_BY_A_TRIBUTE;
+      break;
+    case TRAP_MIRROR_FORCE:
+      ret = GetTypeGroup(gTrapEffectData.originCardId) == TYPE_GROUP_MONSTER;
+      if (ret)
+        gTrapEffectData.trapCardId = TRAP_MIRROR_FORCE;
       break;
     default:
       ret = FALSE;

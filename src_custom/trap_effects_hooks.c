@@ -12,6 +12,7 @@
 #include "sasuke_samurai_2.h"
 #include "seven_tools_of_the_bandit.h"
 #include "blast_held_by_a_tribute.h"
+#include "mirror_force.h"
 
 #define TRAP_NONE 0
 #define TRAP_WIDESPREAD_RUIN 1
@@ -274,6 +275,13 @@ void ActivateTrapEffect__Replacement(u16 lp)
     ResetCardEffectTextData();
     SetCardEffectTextType(3);
     EffectBlastHeldByATribute();
+    return;
+  }
+
+  if (gTrapEffectData.trapCardId == TRAP_MIRROR_FORCE) {
+    ResetCardEffectTextData();
+    SetCardEffectTextType(3);
+    EffectMirrorForce();
     return;
   }
 

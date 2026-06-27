@@ -230,6 +230,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { SPELL_ECONOMICS, gActivationDescription_SpellEconomics },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, gActivationDescription_TheUnstoppableExodiaIncarnate },
   { THE_SANCTUARY_IN_THE_SKY, gActivationDescription_TheSanctuaryInTheSky },
+  { MIRROR_FORCE, gActivationDescription_MirrorForce },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

@@ -298,6 +298,10 @@ static void ScanPermanentEffectRow__Hook(struct DuelCard **row, u8 turnRow, u8 a
 
   gActiveEffect.turnRow = turnRow;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    /* ponytail: AI sim must not read face-down opponent cards — prevents
+       logic loops from spurious effect activation on unknown cards. */
+    if (gHideEffectText && !row[i]->isFaceUp && (turnRow == 0 || turnRow == 1))
+      continue;
     gActiveEffect.col = i;
     gActiveEffect.cardId = row[i]->id;
     if (animateCursor == TRUE && !gHideEffectText)

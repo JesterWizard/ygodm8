@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-27).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-28).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 222 |
-| Art ready, needs manifest | 158 |
+| In game (manifest + art) | 223 |
+| Art ready, needs manifest | 157 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -244,6 +244,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SPELL_ECONOMICS` | Spell Economics | `spell_economics.png` |
 | `THE_UNSTOPPABLE_EXODIA_INCARNATE` | The Unstoppable Exodia Incarnate | `the_unstoppable_exodia_incarnate.png` |
 | `THE_SANCTUARY_IN_THE_SKY` | The Sanctuary in the Sky | `the_sanctuary_in_the_sky.png` |
+| `MIRROR_FORCE` | Mirror Force | `mirror_force.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -346,7 +347,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRACLE_FUSION` — `miracle_fusion.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
-- [ ] `MIRROR_FORCE` — `mirror_force.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
