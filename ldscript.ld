@@ -980,6 +980,7 @@ SECTIONS
     . = 0x08FE3400;
     .voice_pcm_rom :
     {
+        *(.music_pcm_rom)
         *(.voice_pcm_rom)
     }
 

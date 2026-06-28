@@ -30,6 +30,9 @@ M4A_WAVE_FREQ = 0x01488000
 M4A_WAVE_SAMPLE_RATE = 21024
 M4A_TONE_GROUP_PTR = 0x08AFB2CC
 M4A_TONE_TABLE_ORG = 0xAFB2CC
+# g8AFBD0C follows tone slots in ROM; patching tone index >= 218 clobbers m4a player pointers.
+M4A_PLAYER_TABLE_ORG = 0xAFBD0C
+M4A_TONE_INDEX_LAYOUT_MAX = (M4A_PLAYER_TABLE_ORG - M4A_TONE_TABLE_ORG) // 12 - 1
 M4A_SONG_TABLE_ORG = 0xAFBDE4
 M4A_SONG_MODE_TABLE_ORG = 0x80D29D0 - 0x08000000
 M4A_VOICE_PLAYER = 3
@@ -224,8 +227,11 @@ def read_wav_mono_pcm8(path, target_rate, gain_db=0.0):
         frame_rate = wf.getframerate()
         frames = wf.readframes(wf.getnframes())
 
-    if sample_width != 2:
-        raise SystemExit(f"{path}: expected 16-bit WAV, got {sample_width * 8}-bit")
+    if sample_width == 1:
+        # 8-bit WAV PCM is unsigned; the rest of the pipeline expects signed PCM.
+        frames = audioop.bias(frames, sample_width, -128)
+    elif sample_width != 2:
+        raise SystemExit(f"{path}: expected 8-bit or 16-bit WAV, got {sample_width * 8}-bit")
 
     if channels == 2:
         frames = audioop.tomono(frames, sample_width, 0.5, 0.5)
@@ -413,10 +419,26 @@ def scan_baserom_used_tone_indices(rom_path=BASEROM, max_songs=M4A_SONG_SCAN_MAX
     return used
 
 
+def layout_forbidden_tone_indices():
+    """Tone slots that overlap g8AFBD0C (m4a player table) if patched."""
+    return range(M4A_TONE_INDEX_LAYOUT_MAX + 1, M4A_TONE_INDEX_MAX + 1)
+
+
+def assert_tone_patch_org_safe(org: int, label: str = "tone patch"):
+    end = org + 12
+    if end > M4A_PLAYER_TABLE_ORG:
+        tone = (org - M4A_TONE_TABLE_ORG) // 12
+        raise SystemExit(
+            f"{label} at tone {tone} (org 0x{org:X}) overlaps m4a player table "
+            f"(max safe tone index {M4A_TONE_INDEX_LAYOUT_MAX})"
+        )
+
+
 def allocate_voice_tone_indices(num_clips, used_tones):
     """Pick unused m4a tone slots so voice DPCM patches do not hijack BGM instruments."""
     forbidden = set(used_tones)
     forbidden.add(M4A_VANILLA_DUEL_VOICE_TONE)
+    forbidden.update(layout_forbidden_tone_indices())
 
     unused_high = sorted(
         i
@@ -430,7 +452,8 @@ def allocate_voice_tone_indices(num_clips, used_tones):
     if len(chosen) < num_clips:
         raise SystemExit(
             f"need {num_clips} free m4a tone slots for custom voices, "
-            f"only {len(chosen)} unused in baserom (scan 0-{M4A_TONE_INDEX_MAX})"
+            f"only {len(chosen)} unused below tone index {M4A_TONE_INDEX_LAYOUT_MAX} "
+            f"(scan 0-{M4A_TONE_INDEX_MAX}, layout-forbidden {M4A_TONE_INDEX_LAYOUT_MAX + 1}+)"
         )
     return chosen
 
@@ -891,9 +914,11 @@ def render_rom_patches_json(songs_meta):
     mode_patches = []
     for meta in songs_meta:
         sym = meta["symbol"]
+        org = M4A_TONE_TABLE_ORG + meta["tone_index"] * 12
+        assert_tone_patch_org_safe(org, f"voice tone {meta['tone_index']} for {meta['clip_id']}")
         tone_patches.append(
             {
-                "org": M4A_TONE_TABLE_ORG + meta["tone_index"] * 12,
+                "org": org,
                 "wave_symbol": f"CustomVoice_{sym}_Wave",
             }
         )

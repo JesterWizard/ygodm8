@@ -1,12 +1,16 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
+#include "constants/custom_music_generated.h"
 #include "debug_menu_internal.h"
 
 #define DEBUG_MENU_MUSIC_ENTRY(id, title) {id, title},
 
 static const struct DebugMenuMusicEntry sTracks[] APPEND_RODATA = {
 #include "debug_menu_music_table.inc"
+#if CUSTOM_MUSIC_SONG_COUNT > 0
+#include "../generated/debug_menu_music_custom.inc"
+#endif
 };
 
 #undef DEBUG_MENU_MUSIC_ENTRY
@@ -58,9 +62,15 @@ void DebugMusicViewer(void) {
       DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_MUSIC);
     }
     if (buttons & A_BUTTON) {
+      u16 musicId;
+
       PlayMusic(SFX_SELECT);
-      playingId = sTracks[cursor].musicId;
-      PlayMusic(playingId);
+      musicId = sTracks[cursor].musicId;
+      playingId = musicId;
+      if (musicId >= CUSTOM_MUSIC_SONG_ID_MIN && musicId <= CUSTOM_MUSIC_SONG_ID_MAX)
+        PlayCustomMusicById(musicId);
+      else
+        PlayMusic(musicId);
       DebugMenuRedraw(scrollTop, playingId, DEBUG_VIEW_MUSIC);
       DebugMenuWaitRelease(A_BUTTON);
     }

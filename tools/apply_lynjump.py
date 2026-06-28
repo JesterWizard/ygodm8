@@ -134,8 +134,7 @@ def relocate_voice_pcm_rom(rom: bytearray, elf_path: pathlib.Path, owners: dict[
     checked_write(rom, start, data, owners, "voice_pcm_rom relocation")
 
 
-def apply_voice_patches(rom: bytearray, symbols: dict, owners: dict[int, str]):
-    patch_path = ROOT / "src_custom/generated/voice_rom_patches.json"
+def apply_m4a_rom_patches(rom: bytearray, symbols: dict, owners: dict[int, str], patch_path: pathlib.Path):
     if not patch_path.exists():
         return
 
@@ -152,6 +151,12 @@ def apply_voice_patches(rom: bytearray, symbols: dict, owners: dict[int, str]):
         return address
 
     for entry in data.get("tone_patches", []):
+        org = entry["org"]
+        if org + 12 > 0xAFBD0C:
+            tone = (org - 0xAFB2CC) // 12
+            raise ValueError(
+                f"{owner}: tone patch {tone} at 0x{org:X} overlaps m4a player table (g8AFBD0C)"
+            )
         wave = resolve_symbol(entry, "wave_symbol", "wave_offset")
         payload = struct.pack("<III", 0x00003C08, wave, 0x00FF00FF)
         checked_write(rom, entry["org"], payload, owners, owner)
@@ -221,7 +226,12 @@ def main() -> int:
         apply_event(event_path, rom, symbols, owners)
 
     relocate_voice_pcm_rom(rom, elf_path, owners)
-    apply_voice_patches(rom, symbols, owners)
+    apply_m4a_rom_patches(
+        rom, symbols, owners, ROOT / "src_custom/generated/music_rom_patches.json"
+    )
+    apply_m4a_rom_patches(
+        rom, symbols, owners, ROOT / "src_custom/generated/voice_rom_patches.json"
+    )
     apply_m4a_hq_mixer_patches(rom, symbols, owners)
 
     rom_path.write_bytes(rom)

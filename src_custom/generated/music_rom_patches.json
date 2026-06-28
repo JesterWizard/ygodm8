@@ -1,0 +1,21 @@
+{
+  "tone_patches": [
+    {
+      "org": 11516120,
+      "wave_symbol": "CustomMusic_hyperdrive_Wave"
+    }
+  ],
+  "song_patches": [
+    {
+      "org": 11522628,
+      "header_symbol": "CustomMusic_hyperdrive_SongHeader",
+      "player": 0
+    }
+  ],
+  "mode_patches": [
+    {
+      "org": 863324,
+      "mode": 1
+    }
+  ]
+}

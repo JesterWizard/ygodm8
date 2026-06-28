@@ -1,0 +1,13 @@
+{
+  "sample_rate": 21024,
+  "song_id_base": 900,
+  "tracks": [
+    {
+      "track_id": "test_loop",
+      "wav": "test_loop.wav",
+      "title": "Test Loop",
+      "loop": true,
+      "trim_silence": false
+    }
+  ]
+}

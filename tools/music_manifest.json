@@ -1,0 +1,25 @@
+{
+  "sample_rate": 21024,
+  "song_id_base": 0,
+  "notes": [
+    "song_id_base: 0 = auto (CUSTOM_VOICE_SONG_ID_MAX + 1). IDs must stay below 800 for PlayMusic().",
+    "wav: path relative to src_custom/assets/music/.",
+    "loop: when true (default), the track loops via m4a GOTO (0xB2) after a tied note.",
+    "codec: dpcm (default, compressed) or pcm8 (uncompressed fallback).",
+    "gain_db: optional per-track loudness boost/cut in dB before peak normalization.",
+    "trim_silence: optional; strips leading/trailing near-silence before PCM encode (default false for music).",
+    "Long tracks use one PCM WaveData and one m4a TIE/EOT note so playback is uninterrupted.",
+    "No audio-frame hook is used; custom music plays through normal PlayMusic() / BGM player 0.",
+    "gain_db: default 4 dB if omitted; levels are clamped to avoid 8-bit wrap distortion."
+  ],
+  "tracks": [
+    {
+      "track_id": "hyperdrive",
+      "wav": "hyperdrive.wav",
+      "title": "Hyperdrive",
+      "loop": true,
+      "codec": "dpcm",
+      "gain_db": 10
+    }
+  ]
+}

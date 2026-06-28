@@ -65,7 +65,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
     .opponent_deck_card_id = CARD_NONE,
-    .skip_to_duel = TRUE,
+    .skip_to_duel = FALSE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,
 };

@@ -113,6 +113,13 @@ VOICE_STAMP := $(BUILD_DIR)/.voice_generated.stamp
 VOICE_GENERATED := src_custom/generated/voice_triggers_generated.inc src_custom/generated/voice_turn_text_generated.inc src_custom/generated/voice_wave_loader_generated.inc src_custom/generated/debug_menu_voice_custom.inc src_custom/generated/voice_song_headers_generated.inc include/constants/custom_voices_generated.h src_custom/generated/voice_rom_patches.json src_custom/assets/voices/VOICES.md
 VOICE_ASSETS_S := src_custom/generated/voice_assets_generated.s
 VOICE_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o
+MUSIC_GENERATOR := tools/generate_music.py
+MUSIC_MANIFEST := tools/music_manifest.json
+MUSIC_WAV_DEPS := $(wildcard src_custom/assets/music/**/*.wav)
+MUSIC_STAMP := $(BUILD_DIR)/.music_generated.stamp
+MUSIC_GENERATED := include/constants/custom_music_generated.h src_custom/generated/music_rom_patches.json src_custom/generated/debug_menu_music_custom.inc src_custom/assets/music/MUSIC.md
+MUSIC_ASSETS_S := src_custom/generated/music_assets_generated.s
+MUSIC_ASSETS_OBJ := $(C_BUILDDIR_CUSTOM)/generated/music_assets_generated.o
 AI_ACTION_TABLE_GENERATOR := tools/generate_ai_action_table.py
 AI_ACTION_TABLE_GENERATED := src_custom/generated/ai_action_table_generated.inc
 
@@ -175,7 +182,7 @@ LYNJUMP_VALIDATE_STAMP := $(BUILD_DIR)/.lynjump_validated.stamp
 LYNJUMP_VALIDATE_DEPS := $(LYNJUMP_EVENTS) tools/validate_lynjump.py
 endif
 
-ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS) $(VOICE_ASSETS_OBJ) $(METE0_ASM_OBJ)
+ALL_OBJS := $(C_OBJS) $(CONFIGS_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS) $(CUSTOM_OBJS) $(MUSIC_ASSETS_OBJ) $(VOICE_ASSETS_OBJ) $(METE0_ASM_OBJ)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 
@@ -331,6 +338,14 @@ $(VOICE_STAMP): $(VOICE_MANIFEST) $(VOICE_GENERATOR) $(VOICE_WAV_DEPS)
 
 $(VOICE_GENERATED) $(VOICE_ASSETS_S): $(VOICE_STAMP)
 	@test -f $(VOICE_STAMP)
+
+$(MUSIC_STAMP): $(MUSIC_MANIFEST) $(MUSIC_GENERATOR) $(MUSIC_WAV_DEPS) $(VOICE_STAMP)
+	@echo "MUSIC   custom background tracks"
+	@mkdir -p $(CACHE_DIR)
+	python3 $(MUSIC_GENERATOR) $(MUSIC_MANIFEST) --stamp $@
+
+$(MUSIC_GENERATED) $(MUSIC_ASSETS_S): $(MUSIC_STAMP)
+	@test -f $(MUSIC_STAMP)
 	@test -f $@
 
 $(FIELD_SPELL_GFX_STAMP): src_custom/field_spell_table.inc $(FIELD_SPELL_GFX_GENERATOR) $(FIELD_SPELL_PNGS) $(CARD_DATA_MANIFEST) | tools-rules
@@ -380,7 +395,9 @@ $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATE
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
 $(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,voice_dpcm,$(VOICE_STAMP)))
+$(eval $(call custom_object_dep,custom_music,$(MUSIC_STAMP)))
 $(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))
+$(eval $(call custom_object_dep,debug/debug_menu_music,$(MUSIC_STAMP)))
 $(eval $(call custom_object_dep,debug/debug_menu,$(DEBUG_MENU_LZ) $(DEBUG_MENU_PAL)))
 $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
@@ -503,6 +520,11 @@ $(DATA_ASM_BUILDDIR)/%.o: $(DATA_ASM_SUBDIR)/%.s
 	$(AS) $(ASFLAGS) $< -o $@
 
 $(C_BUILDDIR_CUSTOM)/generated/voice_assets_generated.o: $(VOICE_ASSETS_S) $(VOICE_STAMP)
+	@echo "AS      $<"
+	@mkdir -p $(dir $@)
+	$(AS) $(ASFLAGS) $< -o $@
+
+$(C_BUILDDIR_CUSTOM)/generated/music_assets_generated.o: $(MUSIC_ASSETS_S) $(MUSIC_STAMP)
 	@echo "AS      $<"
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) $< -o $@
