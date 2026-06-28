@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 230 |
+| In game (manifest + art) | 231 |
 | Art ready, needs manifest | 150 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **380** |
+| **Total PNGs in `80x80/`** | **381** |
 
 ## In game
 
@@ -252,6 +252,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHAOS_COMMAND_MAGICIAN` | Chaos Command Magician | `chaos_command_magician.png` |
 | `BOOK_OF_LIFE` | Book of Life | `book_of_life.png` |
 | `BOOK_OF_TAIYOU` | Book of Taiyou | `book_of_taiyou.png` |
+| `DE_FUSION` | De-Fusion | `de_fusion.png` |
 
 ## Todo — art ready, needs manifest
 

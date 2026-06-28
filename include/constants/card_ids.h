@@ -1032,11 +1032,12 @@
 #define CHAOS_COMMAND_MAGICIAN                   0x0404
 #define BOOK_OF_LIFE                             0x0405
 #define BOOK_OF_TAIYOU                           0x0406
+#define DE_FUSION                                0x0407
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0407
-#define NUM_CUSTOM_CARDS                        0x00E6
+#define NUM_TOTAL_CARDS                         0x0408
+#define NUM_CUSTOM_CARDS                        0x00E7
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

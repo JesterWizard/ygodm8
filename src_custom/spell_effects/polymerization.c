@@ -4,37 +4,14 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "deck_menu.h"
+#include "fusion_recipes.h"
 #include "gfx_reg_buffers.h"
 #include "spell_effects.h"
 
 void InitDeckData(void);
 void ClearGraphicsBuffers(void);
 
-/* ponytail: fusion mechanic. Recipe table is the single source of truth for
-   what can fuse into what. */
-
-#define POLY_WILDCARD 0xFFFF
-
-struct FusionRecipe {
-    u16 result;
-    u16 material1;
-    u16 material2;
-    u16 material3;
-};
-
-/* APPEND_RODATA keeps const data in the linker-preserved .append_rodata section. */
-
-/* Fusion recipes. At most 1 POLY_WILDCARD per recipe. Add entries at the end;
-   sFusionRecipeCount is derived via sizeof so no manual sync needed. */
-APPEND_RODATA static const struct FusionRecipe sFusionRecipes[] = {
-    { FLAME_SWORDSMAN,    FLAME_MANIPULATOR, MASAKI_THE_LEGENDARY_SWORDSMAN },
-    { THOUSAND_DRAGON,    TIME_WIZARD,       BABY_DRAGON },
-    { GAIA_THE_DRAGON_CHAMPION, GAIA_THE_FIERCE_KNIGHT, CURSE_OF_DRAGON},
-    { ALLIGATORS_SWORD_DRAGON, ALLIGATORS_SWORD_DRAGON, BABY_DRAGON},
-    { B_SKULL_DRAGON, SUMMONED_SKULL, RED_EYES_B_DRAGON},
-    { BLUE_EYES_ULTIMATE_DRAGON, BLUE_EYES_WHITE_DRAGON, BLUE_EYES_WHITE_DRAGON, BLUE_EYES_WHITE_DRAGON}
-};
-#define sFusionRecipeCount (sizeof(sFusionRecipes) / sizeof(sFusionRecipes[0]))
+/* ponytail: fusion mechanic. Recipe table lives in fusion_recipes.c. */
 
 struct MonsterSource {
     struct DuelCard *zone;
@@ -71,7 +48,7 @@ static u8 RecipeIsFeasible(const struct FusionRecipe *recipe,
     if (recipe->result == CARD_NONE)
         return FALSE;
 
-    if (recipe->material1 == POLY_WILDCARD) {
+    if (recipe->material1 == FUSION_RECIPE_WILDCARD) {
         found1 = 1;
     } else {
         for (i = 0; i < monsterCount; i++) {
@@ -84,7 +61,7 @@ static u8 RecipeIsFeasible(const struct FusionRecipe *recipe,
     }
     if (!found1) return FALSE;
 
-    if (recipe->material2 == POLY_WILDCARD) {
+    if (recipe->material2 == FUSION_RECIPE_WILDCARD) {
         for (i = 0; i < monsterCount; i++) {
             if (!(usedMask & (1 << i))) { found2 = 1; break; }
         }
@@ -107,27 +84,27 @@ static u8 SelectMaterials(const struct FusionRecipe *recipe,
     *mat1 = NULL; *mat2 = NULL;
 
     /* Material slots are ordered: hand-first list means hand cards match first. */
-    if (recipe->material1 != POLY_WILDCARD) {
+    if (recipe->material1 != FUSION_RECIPE_WILDCARD) {
         for (i = 0; i < monsterCount; i++) {
             if (monsters[i].zone->id == recipe->material1) {
                 *mat1 = monsters[i].zone; usedMask |= (1 << i); break;
             }
         }
     }
-    if (recipe->material2 != POLY_WILDCARD) {
+    if (recipe->material2 != FUSION_RECIPE_WILDCARD) {
         for (i = 0; i < monsterCount; i++) {
             if (!(usedMask & (1 << i)) && monsters[i].zone->id == recipe->material2)
                 { *mat2 = monsters[i].zone; usedMask |= (1 << i); break; }
         }
     }
     /* Wildcards fill from earliest (hand-priority) not yet used. */
-    if (*mat1 == NULL && recipe->material1 == POLY_WILDCARD) {
+    if (*mat1 == NULL && recipe->material1 == FUSION_RECIPE_WILDCARD) {
         for (i = 0; i < monsterCount; i++) {
             if (!(usedMask & (1 << i)))
                 { *mat1 = monsters[i].zone; usedMask |= (1 << i); break; }
         }
     }
-    if (*mat2 == NULL && recipe->material2 == POLY_WILDCARD) {
+    if (*mat2 == NULL && recipe->material2 == FUSION_RECIPE_WILDCARD) {
         for (i = 0; i < monsterCount; i++) {
             if (!(usedMask & (1 << i)))
                 { *mat2 = monsters[i].zone; break; }
@@ -193,14 +170,14 @@ static void ShowFusionPicker(void)
     monsterCount = CollectMonsters(monsters, 10);
     if (monsterCount < 2) return;
 
-    for (i = 0; i < sFusionRecipeCount; i++) {
-        if (RecipeIsFeasible(&sFusionRecipes[i], monsters, monsterCount))
+    for (i = 0; i < FusionRecipe_Count(); i++) {
+        if (RecipeIsFeasible(&gFusionRecipes[i], monsters, monsterCount))
             feasibleRecipeIndices[feasibleCount++] = i;
     }
 
     if (feasibleCount == 0) return;
     if (feasibleCount == 1) {
-        ExecuteFusionByRecipe(&sFusionRecipes[feasibleRecipeIndices[0]]);
+        ExecuteFusionByRecipe(&gFusionRecipes[feasibleRecipeIndices[0]]);
         return;
     }
 
@@ -213,7 +190,7 @@ static void ShowFusionPicker(void)
             ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
 
         for (j = 0; j < feasibleCount; j++)
-            gDeckMenu.cards[j] = sFusionRecipes[feasibleRecipeIndices[j]].result;
+            gDeckMenu.cards[j] = gFusionRecipes[feasibleRecipeIndices[j]].result;
         gDeckMenu.cardCount = feasibleCount;
         gDeckMenu.currentPos = 0;
 
@@ -232,7 +209,7 @@ static void ShowFusionPicker(void)
 
             chosenId = gDeckMenu.cards[gDeckMenu.currentPos];
             for (j = 0; j < feasibleCount; j++) {
-                if (sFusionRecipes[feasibleRecipeIndices[j]].result == chosenId) {
+                if (gFusionRecipes[feasibleRecipeIndices[j]].result == chosenId) {
                     chosenRecipeIdx = feasibleRecipeIndices[j];
                     break;
                 }
@@ -247,7 +224,7 @@ static void ShowFusionPicker(void)
             LoadPalettes();
 
             if (chosenRecipeIdx != 0xFF)
-                ExecuteFusionByRecipe(&sFusionRecipes[chosenRecipeIdx]);
+                ExecuteFusionByRecipe(&gFusionRecipes[chosenRecipeIdx]);
         }
     }
 }
@@ -267,10 +244,10 @@ APPEND_TEXT void EffectPolymerization(void)
             return;
         }
 
-        for (i = 0; i < sFusionRecipeCount; i++) {
-            if (!RecipeIsFeasible(&sFusionRecipes[i], monsters, monsterCount))
+        for (i = 0; i < FusionRecipe_Count(); i++) {
+            if (!RecipeIsFeasible(&gFusionRecipes[i], monsters, monsterCount))
                 continue;
-            SetCardInfo(sFusionRecipes[i].result);
+            SetCardInfo(gFusionRecipes[i].result);
             if (bestRecipeIdx < 0 || gCardInfo.atk > bestAtk) {
                 bestRecipeIdx = (s8)i;
                 bestAtk = gCardInfo.atk;
@@ -282,7 +259,7 @@ APPEND_TEXT void EffectPolymerization(void)
             return;
         }
 
-        ExecuteFusionByRecipe(&sFusionRecipes[bestRecipeIdx]);
+        ExecuteFusionByRecipe(&gFusionRecipes[bestRecipeIdx]);
         return;
     }
 
@@ -298,8 +275,8 @@ APPEND_TEXT void EffectPolymerization(void)
             return;
         }
 
-        for (i = 0; i < sFusionRecipeCount; i++) {
-            if (RecipeIsFeasible(&sFusionRecipes[i], monsters, monsterCount)) {
+        for (i = 0; i < FusionRecipe_Count(); i++) {
+            if (RecipeIsFeasible(&gFusionRecipes[i], monsters, monsterCount)) {
                 hasAny = 1;
                 break;
             }

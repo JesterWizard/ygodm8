@@ -928,6 +928,10 @@ static const unsigned char sBookOfTaiyouBigArt[] __attribute__((section(".append
 static const unsigned short sBookOfTaiyouBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_taiyou.gbapal");
 static const unsigned char sBookOfTaiyouMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_taiyou.lz");
 
+static const unsigned char sDeFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/de_fusion.huff");
+static const unsigned short sDeFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/de_fusion.gbapal");
+static const unsigned char sDeFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/de_fusion.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1161,6 +1165,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigArt,
   [0x0405] = sBookOfLifeBigArt,
   [0x0406] = sBookOfTaiyouBigArt,
+  [0x0407] = sDeFusionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1396,6 +1401,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigPalette,
   [0x0405] = sBookOfLifeBigPalette,
   [0x0406] = sBookOfTaiyouBigPalette,
+  [0x0407] = sDeFusionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1631,6 +1637,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0404] = 0,
   [0x0405] = 0,
   [0x0406] = 0,
+  [0x0407] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1866,4 +1873,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianMiniArt,
   [0x0405] = sBookOfLifeMiniArt,
   [0x0406] = sBookOfTaiyouMiniArt,
+  [0x0407] = sDeFusionMiniArt,
 };

@@ -231,6 +231,7 @@ static const u8 sBlowbackDragonName[] __attribute__((section(".append_assets")))
 static const u8 sChaosCommandMagicianName[] __attribute__((section(".append_assets"))) = "Chaos Command Magician";
 static const u8 sBookOfLifeName[] __attribute__((section(".append_assets"))) = "Book of Life";
 static const u8 sBookOfTaiyouName[] __attribute__((section(".append_assets"))) = "Book of Taiyou";
+static const u8 sDeFusionName[] __attribute__((section(".append_assets"))) = "De-Fusion";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -699,6 +700,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBookOfLifeName;
   if (cardId == 0x0406)
     return (u8 *)sBookOfTaiyouName;
+  if (cardId == 0x0407)
+    return (u8 *)sDeFusionName;
 
   return gCardNames[cardId];
 }
