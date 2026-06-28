@@ -357,7 +357,7 @@ $(FIELD_SPELL_GFX_GENERATED): $(FIELD_SPELL_GFX_STAMP)
 	@test -f $@
 
 define compile_c_object_rule
-$1/%.o: $2/%.c $(CARD_IDS_GENERATED) | $(CARD_IDS_STAMP) tools/preproc/preproc
+$1/%.o: $2/%.c $(CARD_IDS_GENERATED) configs/runtime.h | $(CARD_IDS_STAMP) tools/preproc/preproc
 	@echo "CC      $$<"
 	$(CPP) $(CPPFLAGS) $$< -o $1/$$*.i
 	@$(PREPROC) $1/$$*.i charmap.txt | $(CC1) $(CFLAGS) -o $1/$$*.s
