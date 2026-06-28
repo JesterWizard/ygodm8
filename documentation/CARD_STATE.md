@@ -1,21 +1,17 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — De-Fusion (manifest, shared fusion recipes, spell effect hook, runtime test hand)
+**Last worked on:** 2026-06-28 — Diffusion Wave-Motion attack lock for rest of turn
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `include/fusion_recipes.h`
-- `include/de_fusion.h`
-- `src_custom/fusion_recipes.c`
-- `src_custom/spell_effects/de_fusion.c`
-- `src_custom/spell_effects/polymerization.c`
-- `src_custom/spell_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/card_effect_tally.md`
+- `asm/ram_map.s`
+- `include/diffusion_wave_motion.h`
+- `src_custom/spell_effects/diffusion_wave_motion.c`
+- `src_custom/duel_attack_restrictions.c`
+- `src_custom/code_803F02C_hooks.c`
 
-**Outcome:** `make test-cards-build` passes. De-Fusion targets a fusion monster with a Polymerization recipe entry, sends it to the GY, and Special Summons the recipe materials in Attack Position.
+**Outcome:** make test-cards-link passes; gDiffusionWaveMotionAttackLockTurn blocks all active-duelist monster attacks until turn ends
 
 **Open / next:**
-- In-duel test: Polymerize a monster, activate De-Fusion, confirm materials return
-- `src_custom/assets/cards/80x80/de_fusion.png` art still missing
+- In-duel test: activate DWM
+- confirm other monsters cannot attack same turn
+- can attack next turn

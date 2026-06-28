@@ -86,6 +86,7 @@
 #include "book_of_moon.h"
 #include "book_of_taiyou.h"
 #include "de_fusion.h"
+#include "diffusion_wave_motion.h"
 #include "ring_of_destruction.h"
 #include "nightmare_wheel.h"
 #include "toll.h"
@@ -498,6 +499,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginDeFusionTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsDiffusionWaveMotionCard(id)) {
+    if (!FieldHasDiffusionWaveMotionTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginDiffusionWaveMotionTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -1138,6 +1154,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_DE_FUSION_TARGET:
       TrySelectDeFusionTarget();
       break;
+    case DUEL_CURSOR_DIFFUSION_WAVE_MOTION_TARGET:
+      TrySelectDiffusionWaveMotionTarget();
+      break;
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       TrySelectRingOfDestructionTarget();
       break;
@@ -1241,6 +1260,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_DE_FUSION_TARGET:
       CancelDeFusionTargeting();
+      break;
+    case DUEL_CURSOR_DIFFUSION_WAVE_MOTION_TARGET:
+      CancelDiffusionWaveMotionTargeting();
       break;
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       CancelRingOfDestructionTargeting();

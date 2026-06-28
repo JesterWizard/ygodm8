@@ -86,6 +86,7 @@ extern void EffectEctoplasmer(void);
 extern void EffectPolymerization(void);
 extern void EffectDeFusion(void);
 extern void EffectBookOfLife(void);
+extern void EffectDiffusionWaveMotion(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -132,6 +133,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case BOOK_OF_MOON:
     case BOOK_OF_TAIYOU:
     case DE_FUSION:
+    case DIFFUSION_WAVE_MOTION:
     case SOUL_TAKER:
     case CREATURE_SWAP:
     case THUNDER_CRASH:
@@ -480,6 +482,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case BOOK_OF_LIFE:
       EffectBookOfLife();
+      return;
+    case DIFFUSION_WAVE_MOTION:
+      EffectDiffusionWaveMotion();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

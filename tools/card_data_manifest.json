@@ -19170,6 +19170,35 @@
           "Target a fusion monster on your side of the field, sned it to the graveyard and summon its materials"
         ]
       }
+    },
+    {
+      "card_const": "DIFFUSION_WAVE_MOTION",
+      "card_name": "Diffusion Wave-Motion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 7, 8, 8, 0, 5, 3, 1],
+      "description": {
+        "symbol": "gDescription_DiffusionWaveMotion",
+        "pages": [
+          "Pay 1000 LP and target 1 Level 7+ Spellcaster you control.",
+          "It attacks every opponent monster once each.",
+          "Other monsters you control cannot attack this turn."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DiffusionWaveMotion",
+        "pages": [
+          "Pay 1000 LP. Target 1 Level 7+ Spellcaster you control; it attacks all opponent monsters once each."
+        ]
+      }
     }
   ]
 }
