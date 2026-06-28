@@ -83,6 +83,7 @@ extern void EffectKaiserColosseum(void);
 extern void EffectNightmareWheel(void);
 extern void EffectEctoplasmer(void);
 extern void EffectPolymerization(void);
+extern void EffectBookOfLife(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -466,6 +467,9 @@ static void ActivateSpellEffect__Body(void)
         gCardEffectTextData.cardId = POT_OF_GREED;
         ActivateCardEffectText();
       }
+      return;
+    case BOOK_OF_LIFE:
+      EffectBookOfLife();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

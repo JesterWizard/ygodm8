@@ -83,8 +83,8 @@ def card_name_to_const(name: str) -> str:
 
 
 def passcode_to_password(passcode: int) -> list[int]:
-    digits = str(passcode)
-    if len(digits) != 8 or not digits.isdigit():
+    digits = f"{passcode:08d}"
+    if not digits.isdigit():
         raise SystemExit(f"Expected 8-digit passcode, got {passcode}")
     return [int(d) for d in digits]
 
