@@ -1,17 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Added Book of Life
+**Last worked on:** 2026-06-28 — Book of Moon (already in trunk; runtime test hand set)
 
 **Files touched:**
-- `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `src_custom/spell_effects/book_of_life.c`
-- `include/book_of_life.h`
-- `src_custom/spell_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `tools/add_custom_card.py`
 
-**Outcome:** make test-cards-link passes
+**Outcome:** `make test-cards-build` passes. Book of Moon was already in manifest, art, and `src_custom/spell_effects/book_of_moon.c`.
 
 **Open / next:**
-- In-duel test Book of Life with zombie in GY + opponent monster in GY
+- In-duel test Book of Moon: target a face-up monster, confirm face-down Defense Position
