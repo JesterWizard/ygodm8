@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 226 |
-| Art ready, needs manifest | 154 |
+| In game (manifest + art) | 227 |
+| Art ready, needs manifest | 153 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -248,6 +248,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `LEVEL_LIMIT_AREA_A` | Level Limit - Area A | `level_limit_area_a.png` |
 | `HARPIES_PET_BABY_DRAGON` | Harpie's Pet Baby Dragon | `harpies_pet_baby_dragon.png` |
 | `BLUE_EYES_CHAOS_DRAGON` | Blue-Eyes Chaos Dragon | `blue_eyes_chaos_dragon.png` |
+| `BLOWBACK_DRAGON` | Blowback Dragon | `blowback_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -266,7 +267,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_PENDANT` — `black_pendant.png`
-- [ ] `BLOWBACK_DRAGON` — `blowback_dragon.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BOOK_OF_LIFE` — `book_of_life.png`
 - [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`

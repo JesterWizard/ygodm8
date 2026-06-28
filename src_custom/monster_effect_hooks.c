@@ -27,6 +27,7 @@
 #include "amazoness_archer.h"
 #include "elemental_hero_bubbleman.h"
 #include "harpies_pet_baby_dragon.h"
+#include "blowback_dragon.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -54,6 +55,8 @@ unsigned char CanActivateDesKoala(void);
 void ActivateDesKoalaEffect(void);
 unsigned char CanActivateHARPIES_PET_BABY_DRAGON(void);
 void ActivateHARPIES_PET_BABY_DRAGONEffect(void);
+unsigned char CanActivateBLOWBACK_DRAGON(void);
+void ActivateBLOWBACK_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
 
@@ -111,6 +114,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroBubbleman();
     case MONSTER_EFFECT_HARPIES_PET_BABY_DRAGON:
       return CanActivateHARPIES_PET_BABY_DRAGON();
+    case MONSTER_EFFECT_BLOWBACK_DRAGON:
+      return CanActivateBLOWBACK_DRAGON();
     default:
       return TRUE;
   }
@@ -300,6 +305,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_BLOWBACK_DRAGON) {
+    ActivateBLOWBACK_DRAGONEffect();
+    return;
+  }
+
   if (gMonEffect.id == AMAZONESS_ARCHER) {
     ActivateAmazonessArcherEffect();
     return;
@@ -391,6 +401,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == THE_AGENT_OF_CREATION_VENUS
           || zone->id == AMAZONESS_ARCHER
           || zone->id == HARPIES_PET_BABY_DRAGON
+          || zone->id == BLOWBACK_DRAGON
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
@@ -428,6 +439,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_JOWLS_OF_DARK_DEMISE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_BLOWBACK_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2)

@@ -1,16 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Added Blue-Eyes Chaos Dragon
+**Last worked on:** 2026-06-28 — Fixed Blowback Dragon activation crash
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/god_card_hooks.c`
-- `src_custom/turn_effects/blue_eyes_chaos_dragon.c`
-- `src_custom/turn_effect_hooks.c`
-- `src_custom/LynJump.event`
+- `src_custom/activated_effects/blowback_dragon.c`
+- `include/blowback_dragon.h`
+- `src_custom/monster_effect_hooks.c`
+- `src_custom/code_8043EF4_hooks.c`
 
-**Outcome:** make test-cards-build passes; god-card immunity + turn-start opponent attack position force
+**Outcome:** make test-cards-build passes; dedicated cursor state like Harpies Pet Baby Dragon
 
 **Open / next:**
-- In-duel test with defense-position opponent monsters
+- In-duel verify coin-flip destroy

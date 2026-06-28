@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `225` effects
+- `226` effects
 
 ## Tally
 
@@ -224,6 +224,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Spirit Reaper` | `src_custom/battle_effects/spirit_reaper.c` |
 | `trap_effects` | `Mirror Force` | `src_custom/trap_effects/mirror_force.c` |
 | `trap_effects` | `Level Limit Area A` | `src_custom/trap_effects/level_limit_area_a.c` |
+| `activated_effects` | `Blowback Dragon` | `src_custom/activated_effects/blowback_dragon.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

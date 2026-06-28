@@ -34,6 +34,7 @@
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
 #include "harpies_pet_baby_dragon.h"
+#include "blowback_dragon.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -1108,6 +1109,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
       TrySelectHarpiesPetBabyDragonTarget();
       break;
+    case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
+      TrySelectBlowbackDragonTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1195,6 +1199,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
       CancelHarpiesPetBabyDragonTargeting();
+      break;
+    case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
+      CancelBlowbackDragonTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

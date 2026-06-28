@@ -19026,6 +19026,36 @@
           "All opponent monsters are forced Attack Position."
         ]
       }
+    },
+    {
+      "card_const": "BLOWBACK_DRAGON",
+      "card_name": "Blowback Dragon",
+      "atk": 2300,
+      "def": 1200,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_BLOWBACK_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [2, 5, 5, 5, 1, 9, 5, 1],
+      "description": {
+        "symbol": "gDescription_BlowbackDragon",
+        "pages": [
+          "Once per turn: You can target 1 card your opponent",
+          "controls; toss a coin 3 times and destroy that",
+          "target if at least 2 of the results are heads."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlowbackDragon",
+        "pages": [
+          "Target 1 card your opponent controls; toss a coin 3 times and destroy that target if at least 2 are heads."
+        ]
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }
