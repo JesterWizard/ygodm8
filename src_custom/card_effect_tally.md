@@ -230,6 +230,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Blowback Dragon` | `src_custom/activated_effects/blowback_dragon.c` |
 | `spell_effects` | `Book Of Life` | `src_custom/spell_effects/book_of_life.c` |
 | `spell_effects` | `Diffusion Wave Motion` | `src_custom/spell_effects/diffusion_wave_motion.c` |
+| `spell_effects` | `Autonomous Action Unit` | `src_custom/spell_effects/autonomous_action_unit.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

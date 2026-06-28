@@ -240,6 +240,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BOOK_OF_TAIYOU, gActivationDescription_BookOfTaiyou },
   { DE_FUSION, gActivationDescription_DeFusion },
   { DIFFUSION_WAVE_MOTION, gActivationDescription_DiffusionWaveMotion },
+  { AUTONOMOUS_ACTION_UNIT, gActivationDescription_AutonomousActionUnit },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

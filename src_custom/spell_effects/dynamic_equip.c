@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "big_bang_shot.h"
+#include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
@@ -512,9 +513,10 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
   link = FindDynamicEquipForSpellZone(zone);
   if (link != NULL) {
     u8 banishEquippedMonster = link->spellId == BIG_BANG_SHOT;
+    u8 destroyEquippedMonster = link->spellId == AUTONOMOUS_ACTION_UNIT;
     struct DuelCard *targetZone = NULL;
 
-    if (banishEquippedMonster)
+    if (banishEquippedMonster || destroyEquippedMonster)
       targetZone = GetZoneFromFixedCoords(link->targetFixedRow, link->targetFixedCol);
 
     RemoveDynamicEquipStages(link);
@@ -522,6 +524,8 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
 
     if (banishEquippedMonster && targetZone != NULL && targetZone->id != CARD_NONE)
       Duel_BanishZone(targetZone, FALSE);
+    else if (destroyEquippedMonster && targetZone != NULL && targetZone->id != CARD_NONE)
+      Duel_DestroyZone(targetZone, ACTIVE_DUELIST, FALSE);
     return;
   }
 

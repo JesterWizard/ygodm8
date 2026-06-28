@@ -233,6 +233,7 @@ static const u8 sBookOfLifeName[] __attribute__((section(".append_assets"))) = "
 static const u8 sBookOfTaiyouName[] __attribute__((section(".append_assets"))) = "Book of Taiyou";
 static const u8 sDeFusionName[] __attribute__((section(".append_assets"))) = "De-Fusion";
 static const u8 sDiffusionWaveMotionName[] __attribute__((section(".append_assets"))) = "Diffusion Wave-Motion";
+static const u8 sAutonomousActionUnitName[] __attribute__((section(".append_assets"))) = "Autonomous Action Unit";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -705,6 +706,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDeFusionName;
   if (cardId == 0x0408)
     return (u8 *)sDiffusionWaveMotionName;
+  if (cardId == 0x0409)
+    return (u8 *)sAutonomousActionUnitName;
 
   return gCardNames[cardId];
 }

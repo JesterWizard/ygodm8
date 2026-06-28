@@ -936,6 +936,10 @@ static const unsigned char sDiffusionWaveMotionBigArt[] __attribute__((section("
 static const unsigned short sDiffusionWaveMotionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/diffusion_wave_motion.gbapal");
 static const unsigned char sDiffusionWaveMotionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/diffusion_wave_motion.lz");
 
+static const unsigned char sAutonomousActionUnitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/autonomous_action_unit.huff");
+static const unsigned short sAutonomousActionUnitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/autonomous_action_unit.gbapal");
+static const unsigned char sAutonomousActionUnitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/autonomous_action_unit.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1171,6 +1175,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0406] = sBookOfTaiyouBigArt,
   [0x0407] = sDeFusionBigArt,
   [0x0408] = sDiffusionWaveMotionBigArt,
+  [0x0409] = sAutonomousActionUnitBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1408,6 +1413,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0406] = sBookOfTaiyouBigPalette,
   [0x0407] = sDeFusionBigPalette,
   [0x0408] = sDiffusionWaveMotionBigPalette,
+  [0x0409] = sAutonomousActionUnitBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1645,6 +1651,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0406] = 0,
   [0x0407] = 0,
   [0x0408] = 0,
+  [0x0409] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1882,4 +1889,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0406] = sBookOfTaiyouMiniArt,
   [0x0407] = sDeFusionMiniArt,
   [0x0408] = sDiffusionWaveMotionMiniArt,
+  [0x0409] = sAutonomousActionUnitMiniArt,
 };

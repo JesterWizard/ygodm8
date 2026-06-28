@@ -19199,6 +19199,35 @@
           "Pay 1000 LP. Target 1 Level 7+ Spellcaster you control; it attacks all opponent monsters once each."
         ]
       }
+    },
+    {
+      "card_const": "AUTONOMOUS_ACTION_UNIT",
+      "card_name": "Autonomous Action Unit",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 1, 4, 5, 3, 5, 5, 7],
+      "description": {
+        "symbol": "gDescription_AutonomousActionUnit",
+        "pages": [
+          "Pay 1500 LP, target 1 opponent GY monster;",
+          "special summon it in ATK position, equip this card.",
+          "When this card leaves the field, destroy the monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_AutonomousActionUnit",
+        "pages": [
+          "Pay 1500 Life Points, then special summon 1 monster from your opponent's Graveyard."
+        ]
+      }
     }
   ]
 }

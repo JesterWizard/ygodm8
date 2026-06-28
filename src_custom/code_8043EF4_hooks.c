@@ -83,6 +83,7 @@
 #include "knights_title.h"
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_life.h"
+#include "autonomous_action_unit.h"
 #include "book_of_moon.h"
 #include "book_of_taiyou.h"
 #include "de_fusion.h"
@@ -638,6 +639,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == BOOK_OF_LIFE && !CanActivateBookOfLife()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == AUTONOMOUS_ACTION_UNIT && !CanActivateAutonomousActionUnit()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

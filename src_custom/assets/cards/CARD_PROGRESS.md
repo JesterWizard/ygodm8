@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 232 |
-| Art ready, needs manifest | 149 |
+| In game (manifest + art) | 233 |
+| Art ready, needs manifest | 148 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **381** |
 
@@ -254,6 +254,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BOOK_OF_TAIYOU` | Book of Taiyou | `book_of_taiyou.png` |
 | `DE_FUSION` | De-Fusion | `de_fusion.png` |
 | `DIFFUSION_WAVE_MOTION` | Diffusion Wave-Motion | `diffusion_wave_motion.png` |
+| `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -267,7 +268,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
-- [ ] `AUTONOMOUS_ACTION_UNIT` — `autonomous_action_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
