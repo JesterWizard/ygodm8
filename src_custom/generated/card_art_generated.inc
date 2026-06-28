@@ -904,6 +904,10 @@ static const unsigned char sLevelLimitAreaABigArt[] __attribute__((section(".app
 static const unsigned short sLevelLimitAreaABigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/level_limit_area_a.gbapal");
 static const unsigned char sLevelLimitAreaAMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/level_limit_area_a.lz");
 
+static const unsigned char sHarpiesPetBabyDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpies_pet_baby_dragon.huff");
+static const unsigned short sHarpiesPetBabyDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpies_pet_baby_dragon.gbapal");
+static const unsigned char sHarpiesPetBabyDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpies_pet_baby_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1131,6 +1135,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x03FE] = sTheSanctuaryInTheSkyBigArt,
   [0x03FF] = sMirrorForceBigArt,
   [0x0400] = sLevelLimitAreaABigArt,
+  [0x0401] = sHarpiesPetBabyDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1360,6 +1365,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x03FE] = sTheSanctuaryInTheSkyBigPalette,
   [0x03FF] = sMirrorForceBigPalette,
   [0x0400] = sLevelLimitAreaABigPalette,
+  [0x0401] = sHarpiesPetBabyDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1589,6 +1595,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x03FE] = 0,
   [0x03FF] = 0,
   [0x0400] = 0,
+  [0x0401] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1818,4 +1825,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x03FE] = sTheSanctuaryInTheSkyMiniArt,
   [0x03FF] = sMirrorForceMiniArt,
   [0x0400] = sLevelLimitAreaAMiniArt,
+  [0x0401] = sHarpiesPetBabyDragonMiniArt,
 };

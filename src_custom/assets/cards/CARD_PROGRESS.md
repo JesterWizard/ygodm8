@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 224 |
-| Art ready, needs manifest | 156 |
+| In game (manifest + art) | 225 |
+| Art ready, needs manifest | 155 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -246,6 +246,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_SANCTUARY_IN_THE_SKY` | The Sanctuary in the Sky | `the_sanctuary_in_the_sky.png` |
 | `MIRROR_FORCE` | Mirror Force | `mirror_force.png` |
 | `LEVEL_LIMIT_AREA_A` | Level Limit - Area A | `level_limit_area_a.png` |
+| `HARPIES_PET_BABY_DRAGON` | Harpie's Pet Baby Dragon | `harpies_pet_baby_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -325,7 +326,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `H_HEATED_HEART` — `h_heated_heart.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `HARPIES_PET_BABY_DRAGON` — `harpies_pet_baby_dragon.png`
 - [ ] `HERO_FLASH` — `hero_flash.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`

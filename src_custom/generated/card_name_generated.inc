@@ -225,6 +225,7 @@ static const u8 sTheUnstoppableExodiaIncarnateName[] __attribute__((section(".ap
 static const u8 sTheSanctuaryInTheSkyName[] __attribute__((section(".append_assets"))) = "The Sanctuary in the Sky";
 static const u8 sMirrorForceName[] __attribute__((section(".append_assets"))) = "Mirror Force";
 static const u8 sLevelLimitAreaAName[] __attribute__((section(".append_assets"))) = "Level Limit - Area A";
+static const u8 sHarpiesPetBabyDragonName[] __attribute__((section(".append_assets"))) = "Harpie's Pet Baby Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -681,6 +682,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMirrorForceName;
   if (cardId == 0x0400)
     return (u8 *)sLevelLimitAreaAName;
+  if (cardId == 0x0401)
+    return (u8 *)sHarpiesPetBabyDragonName;
 
   return gCardNames[cardId];
 }

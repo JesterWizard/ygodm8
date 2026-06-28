@@ -1026,11 +1026,12 @@
 #define THE_SANCTUARY_IN_THE_SKY                 0x03FE
 #define MIRROR_FORCE                             0x03FF
 #define LEVEL_LIMIT_AREA_A                       0x0400
+#define HARPIES_PET_BABY_DRAGON                  0x0401
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0401
-#define NUM_CUSTOM_CARDS                        0x00E0
+#define NUM_TOTAL_CARDS                         0x0402
+#define NUM_CUSTOM_CARDS                        0x00E1
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

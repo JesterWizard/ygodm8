@@ -33,6 +33,7 @@
 #include "breaker_the_magical_warrior.h"
 #include "jowls_of_dark_demise.h"
 #include "invader_of_the_throne.h"
+#include "harpies_pet_baby_dragon.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -1104,6 +1105,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2:
       TrySelectAmazonessArcherTarget();
       break;
+    case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
+      TrySelectHarpiesPetBabyDragonTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1188,6 +1192,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
       CancelKaiserGliderTargeting();
+      break;
+    case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
+      CancelHarpiesPetBabyDragonTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

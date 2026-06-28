@@ -232,6 +232,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THE_SANCTUARY_IN_THE_SKY, gActivationDescription_TheSanctuaryInTheSky },
   { MIRROR_FORCE, gActivationDescription_MirrorForce },
   { LEVEL_LIMIT_AREA_A, gActivationDescription_LevelLimitAreaA },
+  { HARPIES_PET_BABY_DRAGON, gActivationDescription_HarpiesPetBabyDragon },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
