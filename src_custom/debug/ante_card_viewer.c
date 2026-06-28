@@ -44,7 +44,6 @@ extern struct CardInfo gCardInfo;
 void CopyMiniCardPalette(u16 *dest);
 const struct CardDrop *GetDuelistAnteDrops(u16 opponent, u8 normalAnte);
 void InitButtonMaps(void);
-void LoadCharblock3(void);
 void LoadObjVRAM(void);
 void LoadPalettes(void);
 void SetCardInfo(u16 id);
@@ -172,8 +171,6 @@ static u16 BuildDuelistAnteCardList(u16 *cards, u8 *isNormalAnte, u16 duelistId)
 static void ApplyAnteTextPalettes(void) {
   CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xE0], 32);
   gPaletteBuffer[0xE1] = ANTE_GOLD_TEXT_COLOR;
-  /* ponytail: text fg at index 9 for shared palette layout. */
-  gPaletteBuffer[0xE0 + DEBUG_BG1_TEXT_PAL_INDEX] = ANTE_GOLD_TEXT_COLOR;
   LoadPalettes();
 }
 
@@ -187,32 +184,34 @@ static void FormatAnteCardRow(u8 *out, u16 cardId, u8 selected) {
   name = GetCurrentLanguageString(gCardInfo.name);
   out[0] = '$';
   out[1] = '0';
-  for (i = 0; i < DEBUG_CHARS; i++) {
+  for (i = 0; i < DEBUG_SM_CHARS; i++) {
     if (name[t] != '\0' && name[t] != '$')
       out[2 + i] = name[t++];
     else
       out[2 + i] = ' ';
   }
-  out[2 + DEBUG_CHARS] = '\0';
+  out[2 + DEBUG_SM_CHARS] = '\0';
 }
 
 static void DrawAnteRows(const u16 *cards, const u8 *isNormalAnte, u16 count, u16 scrollTop, u16 cursor) {
   u8 row;
-  u8 buf[2 + DEBUG_CHARS + 1];
+  u8 buf[2 + DEBUG_SM_CHARS + 1];
 
-  for (row = 0; row < DEBUG_ROWS; row++) {
+  (void)cursor;
+
+  for (row = 0; row < DEBUG_SM_ROWS; row++) {
     u16 index = scrollTop + row;
 
     if (index < count) {
       FormatAnteCardRow(buf, cards[index], index == cursor);
-      DebugMenuCopyLine(row, buf);
-      DebugMenuSetLinePalette(row, isNormalAnte[index] ? ANTE_TEXT_PAL_GOLD : ANTE_TEXT_PAL_WHITE);
+      DebugMenuCopyLineStartMenu(row, buf);
+      DebugMenuSetLinePaletteStartMenu(row, isNormalAnte[index] ? ANTE_TEXT_PAL_GOLD : ANTE_TEXT_PAL_WHITE);
     } else {
-      DebugMenuCopyLine(row, gDebugMenuBlankLine);
-      DebugMenuSetLinePalette(row, ANTE_TEXT_PAL_WHITE);
+      DebugMenuCopyLineStartMenu(row, gDebugMenuStartMenuBlankLine);
+      DebugMenuSetLinePaletteStartMenu(row, ANTE_TEXT_PAL_WHITE);
     }
   }
-  LoadCharblock3();
+  DebugMenuUploadStartMenuText();
 }
 
 static void ClearAnteMiniCard(void) {
@@ -273,7 +272,7 @@ static void AnteCardViewerMain(const u16 *cards, const u8 *isNormalAnte, u16 cou
   u16 shownCardId = CARD_NONE;
 
   InitButtonMaps();
-  DebugMenuLoadGraphics();
+  DebugMenuLoadStartMenuGraphics();
   ApplyAnteTextPalettes();
   DebugMenuLatchButtons();
   RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
@@ -291,22 +290,22 @@ static void AnteCardViewerMain(const u16 *cards, const u8 *isNormalAnte, u16 cou
     }
     if (buttons & DPAD_DOWN && cursor < count - 1) {
       PlayMusic(SFX_MOVE_CURSOR);
-      if (++cursor >= scrollTop + DEBUG_ROWS)
-        scrollTop = cursor - (DEBUG_ROWS - 1);
+      if (++cursor >= scrollTop + DEBUG_SM_ROWS)
+        scrollTop = cursor - (DEBUG_SM_ROWS - 1);
       RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
     }
     if (buttons & A_BUTTON) {
       PlayMusic(SFX_SELECT);
       SetCardInfo(cards[cursor]);
       ShowCardDetailView();
-      DebugMenuLoadGraphics();
+      DebugMenuLoadStartMenuGraphics();
       ApplyAnteTextPalettes();
       shownCardId = CARD_NONE;
       DebugMenuLatchButtons();
       RenderAnteViewer(cards, isNormalAnte, count, scrollTop, cursor, &shownCardId);
     }
 
-    DebugMenuUpdateCursor(cursor - scrollTop);
+    DebugMenuUpdateCursorStartMenu(cursor - scrollTop);
     ApplyAnteCursorPalette();
     ApplyAnteMiniCardOam();
     LoadOam();

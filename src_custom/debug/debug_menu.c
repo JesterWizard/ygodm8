@@ -12,8 +12,14 @@ extern const u16 gOverworldEntityPalettes[];
 /* ponytail: sidebar art replaces start-menu bg.  Cursor tiles still come from
  * the vanilla start menu (small OBJ sprite) — not worth a custom cursor.
  * ponytail: R button toggles BG0 (text) visibility in the root menu. */
+extern u8 gStartMenuBgTiles[];
 extern u8 gStartMenuCursorTiles[];
+extern u16 gStartMenuBgPalette[];
 extern u16 gStartMenuCursorPalette[];
+extern u16 gUnk_8079444[][30];
+extern u16 gUnk_80798F4[][30];
+extern u16 gUnk_8079CB4[][30];
+extern u16 gUnk_807A164[][30];
 
 /* ponytail: no sidebar art — BG1 shows solid black instead. */
 
@@ -76,6 +82,8 @@ extern vu8 gRepeatedButtonsCounter;
 extern u8 gInputRepeatTimer;
 
 void InitButtonMaps(void);
+void LoadBgVRAM(void);
+void LoadCharblock4(void);
 void LoadObjVRAM(void);
 void LoadPalettes(void);
 void LoadBgOffsets(void);
@@ -91,6 +99,31 @@ static inline void CallThumbVoid(u32 addr) {
 /*  Sidebar = OBJ sprites, text = BG0, BG2/BG3 left to overworld.     */
 /*  BG1 = debug menu's solid black backdrop.                           */
 /* ------------------------------------------------------------------ */
+
+void DebugMenuLoadCursorObjTiles(void) {
+  CpuFastCopy(DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_BUF, DEBUG_OBJ_SAVE_SIZE);
+  CpuFill16(0, DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_SIZE);
+  CpuFill16(0, gBgVram.cbb4, DEBUG_OBJ_SAVE_SIZE);
+  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
+  {
+    const u32 *src3 = (const u32 *)(gBgVram.cbb4 + 0x060);
+    const u32 *src4 = (const u32 *)(gBgVram.cbb4 + 0x080);
+    u32      *dst3 = (u32       *)(gBgVram.cbb4 + 0x2400);
+    u32      *dst4 = (u32       *)(gBgVram.cbb4 + 0x2420);
+    u8 i;
+
+    for (i = 0; i < 8; i++) {
+      dst3[i] = src3[i];
+      dst4[i] = src4[i];
+    }
+  }
+}
+
+static void DebugMenuSetupTextPalettes(void) {
+  gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = gUnk_8079424[1];
+  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  gPaletteBuffer[DEBUG_MENU_HIGHLIGHT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = 0x03FF;
+}
 
 static void DebugMenuVBlank(void) {
   ((void (*)(void))(THUMB_VBLANK_OVERWORLD | 1))();
@@ -293,23 +326,7 @@ void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
 /* ------------------------------------------------------------------ */
 
 void DebugMenuLoadGraphics(void) {
-  /* Save overworld OBJ tiles at 0x06010000 so we can restore on exit.
-   * Then zero the full region and load cursor at tile 0 like the status screen. */
-  CpuFastCopy(DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_BUF, DEBUG_OBJ_SAVE_SIZE);
-  CpuFill16(0, DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_SIZE);
-
-  /* Decompress cursor tiles into cbb4 at OBJ grid tile 0 (cbb4+0x0),
-   * then copy tiles 3-4 to grid row 9 (tiles 288-289). */
-  CpuFill16(0, gBgVram.cbb4, DEBUG_OBJ_SAVE_SIZE);
-  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
-  {
-    const u32 *src3 = (const u32 *)(gBgVram.cbb4 + 0x060);
-    const u32 *src4 = (const u32 *)(gBgVram.cbb4 + 0x080);
-    u32      *dst3 = (u32       *)(gBgVram.cbb4 + 0x2400);
-    u32      *dst4 = (u32       *)(gBgVram.cbb4 + 0x2420);
-    u8 i;
-    for (i = 0; i < 8; i++) { dst3[i] = src3[i]; dst4[i] = src4[i]; }
-  }
+  DebugMenuLoadCursorObjTiles();
 
   /* BG1 = solid black: blank tile 0 in cbb0, clear screenblock 0 entries. */
   CpuFill16(0, gBgVram.cbb0, 32);
@@ -317,15 +334,7 @@ void DebugMenuLoadGraphics(void) {
 
   /* Blank cbb1 tile 0 — BG0 uses it for the "empty" text background. */
   CpuFill16(0, gBgVram.cbb1, 32);
-
-  /* Text foreground palette → BG 0, slot 9. */
-  gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = gUnk_8079424[1];
-
-  /* Cursor palette → OBJ palette bank 15. */
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
-
-  /* Yellow text for selected-row highlight (BG palette bank 1, slot 9). */
-  gPaletteBuffer[DEBUG_MENU_HIGHLIGHT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = 0x03FF;
+  DebugMenuSetupTextPalettes();
 
   /* Fill sbb19 (BG0 text tilemap) with palette bank 0. */
   CpuFill16(DEBUG_BG1_TEXT_PAL_BANK << 12, gBgVram.sbb19, sizeof(gBgVram.sbb19));

@@ -127,10 +127,30 @@ struct DebugMenuSceneEntry {
   u8 title[20];
 };
 
+/* ========== Start-menu graphics (ante card viewer; pre-black debug menu) ========== */
+
+#define DEBUG_SM_ROWS 5
+#define DEBUG_SM_CHARS 16
+#define DEBUG_SM_TEXT_BLOCKS ((DEBUG_SM_CHARS + 1) / 2)
+#define DEBUG_SM_TEXT_TILE 0x81
+#define DEBUG_SM_TEXT_OFFSET (DEBUG_SM_TEXT_TILE * 32)
+#define DEBUG_SM_TEXT_STRIDE (DEBUG_SM_TEXT_BLOCKS * 4 * 32)
+#define DEBUG_SM_LINE0_TILE DEBUG_SM_TEXT_TILE
+#define DEBUG_SM_LINE_STRIDE (DEBUG_SM_TEXT_STRIDE / 32)
+#define DEBUG_SM_WIN0H 0x20D8
+#define DEBUG_SM_BG2VOFS 0xFFD4   /* vanilla 0xFFD0 (−60), +12px lifts text rows */
+#define DEBUG_SM_CURSOR_Y 40        /* vanilla 56; tracks BG2 scroll above */
+#define DEBUG_SM_BG1_ROWS 20
+#define DEBUG_SM_ROW_BYTES 60
+#define DEBUG_SM_BG1_VRAM ((void *)0x0600E800)
+#define DEBUG_SM_BG2_VRAM ((void *)BG_SCREEN_ADDR(31))
+#define DEBUG_SM_THUMB_VBLANK_WIN 0x08005C38
+
 /* ========== Function declarations ========== */
 
 void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view);
 void DebugMenuLoadGraphics(void);
+void DebugMenuLoadCursorObjTiles(void);
 void DebugMenuWaitVBlank(void);
 void DebugMenuVBlankNoWin(void);
 void DebugMenuLatchButtons(void);
@@ -147,6 +167,13 @@ void DebugMenuSetLinePalette(u8 row, u8 paletteNum);
 void DebugMenuHighlightRow(u8 row);
 
 extern const u8 gDebugMenuBlankLine[];
+extern const u8 gDebugMenuStartMenuBlankLine[];
+
+void DebugMenuLoadStartMenuGraphics(void);
+void DebugMenuCopyLineStartMenu(u8 row, const u8 *text);
+void DebugMenuSetLinePaletteStartMenu(u8 row, u8 paletteNum);
+void DebugMenuUploadStartMenuText(void);
+void DebugMenuUpdateCursorStartMenu(u8 screenRow);
 
 void DebugMenuLoadPortraitIfChanged(u8 *shownId, u8 portraitId);
 void DebugMenuApplyPortraitOam(void);

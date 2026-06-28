@@ -18,7 +18,7 @@
 
 On the overworld, the player can inspect which cards a duelist might take as ante rewards before starting a duel. Press **SELECT** while facing an NPC that has ante data; a scrollable list appears on the left and a mini card preview on the right.
 
-The UI reuses the debug menu’s start-menu background, text layout, and cursor (`DebugMenuLoadGraphics`, `DebugMenuCopyLine`, and related helpers in `src_custom/debug/`). It is **not** opened from the debug menu root (**B**); it is a separate player-facing feature gated by its own runtime toggle.
+The UI reuses the start-menu background and large-font text path from the pre-sidebar debug menu (`src_custom/debug/debug_menu_startmenu.c`, restored from commit dc805e25). The debug menu root still uses its black backdrop; only the ante viewer calls the start-menu loader.
 
 Design goals:
 
@@ -46,7 +46,7 @@ When the viewer opens successfully, overworld state is restored the same way as 
 | **A** | Open full card detail view for the highlighted card; **B** returns to the list |
 | **B** | Close the ante card viewer and return to the field |
 
-Three card names are visible at a time (`DEBUG_ROWS`). Longer lists scroll.
+Five card names are visible at a time (`DEBUG_SM_ROWS`). Longer lists scroll.
 
 ## Card List Sources
 
@@ -74,7 +74,7 @@ Custom entries use `CustomDuelRewardEntry` (`normalDrops` / `lowDrops` arrays). 
 
 | Region | Implementation |
 |--------|----------------|
-| List (left) | Three rows × 16 characters via `DebugMenuCopyLine` / `FormatAnteCardRow` |
+| List (left) | Five rows × 16 characters via `DebugMenuCopyLineStartMenu` on `sbb1F` |
 | Cursor | OAM slot 0; palette restored each frame (`ApplyAnteCursorPalette`, slot 15) |
 | Mini card (right) | `sub_80573D0` into OBJ VRAM tile `0x180`, OAM slot 1 at (180, 64) |
 | Row labels | Card name from `gCardInfo.name` after `SetCardInfo(cardId)`; `$0` English prefix |
@@ -91,7 +91,7 @@ Card names are not prefixed with `>`; selection is shown only by the OAM cursor.
 | `ANTE_MINI_CARD_OAM_SLOT` | 1 | OAM slot (cursor uses slot 0) |
 | `ANTE_CURSOR_PAL_SLOT` | 15 | OBJ palette slot for list cursor after mini-card palette load |
 
-After **A** opens card details, `DebugMenuLoadGraphics()` and `ApplyAnteTextPalettes()` run again so list graphics and gold/white palettes are restored.
+After **A** opens card details, `DebugMenuLoadStartMenuGraphics()` and `ApplyAnteTextPalettes()` run again.
 
 ## Text Colors
 
@@ -118,7 +118,8 @@ To change gold tone, edit `ANTE_GOLD_TEXT_COLOR` in `src_custom/debug/ante_card_
 | Custom reward lookup | `CustomDecks_FindCardShopDuelRewardEntry` in `src_custom/custom_decks/custom_decks.c` | Per-sprite, per-map reward override |
 | Overworld hook | `ProcessInput__Replacement` in `src_custom/overworld_hooks.c` | **SELECT** tries viewer before status menu |
 | Runtime toggle | `enable_ante_card_viewer` in `configs/runtime.h`, `configs/runtime.c` | Gates overworld **SELECT** behavior |
-| Shared UI | `DebugMenuLoadGraphics`, `DebugMenuCopyLine`, `DebugMenuSetLinePalette` in `src_custom/debug/debug_menu.c` | Background, glyphs, per-row palette |
+| Shared UI | `DebugMenuLatchButtons`, `DebugMenuButtons` in `debug_menu.c` | Input helpers |
+| Start-menu graphics | `DebugMenuLoadStartMenuGraphics`, `DebugMenuCopyLineStartMenu`, … in `debug_menu_startmenu.c` | Background, large-font list (pre-4dbfbb7f path) |
 | Shared constants | `debug_menu_internal.h` | `DEBUG_ROWS`, `DEBUG_CHARS`, text VRAM layout |
 | Mini card draw | `sub_80573D0__Replacement` in `src_custom/mini_card_hooks.c` | Mini card tiles into OBJ VRAM |
 | Portrait cleanup | `DisplayPortrait(PORTRAIT_NONE)` in `src_custom/portrait_hooks.c` | Avoids ghost portraits after submenus (shared with debug menu) |
