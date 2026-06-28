@@ -255,6 +255,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 || `battle_effects` | `Harpie Lady 3` | `src_custom/battle_effects/harpie_lady_3.c` |
 || `battle_effects` | `The Unstoppable Exodia Incarnate` | `src_custom/battle_effects/the_unstoppable_exodia_incarnate.c` |
 || `card_passives` | `The Unstoppable Exodia Incarnate` | `src_custom/card_passives/blue_eyes_chaos_max_dragon.c` |
+|| `turn_effects` | `Blue-Eyes Chaos Dragon` | `src_custom/turn_effects/blue_eyes_chaos_dragon.c` |
+|| `card_passives` | `Blue-Eyes Chaos Dragon` | `src_custom/god_card_hooks.c` |
 
 ## Notes
 

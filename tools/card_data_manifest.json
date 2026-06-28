@@ -18997,6 +18997,35 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "BLUE_EYES_CHAOS_DRAGON",
+      "card_name": "Blue-Eyes Chaos Dragon",
+      "atk": 3000,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "RITUAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [2, 0, 6, 5, 4, 2, 4, 7],
+      "description": {
+        "symbol": "gDescription_BlueEyesChaosDragon",
+        "pages": [
+          "A Blue-Eyes White Dragon that has been strengthed through",
+          "chaos energy. It unaffected by card effects and at your",
+          "turn start, all opponent monsters are forced Attack Position."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlueEyesChaosDragon",
+        "pages": [
+          "All opponent monsters are forced Attack Position."
+        ]
+      }
     }
   ]
 }

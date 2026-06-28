@@ -1,26 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Added Level Limit - Area A (Continuous Trap)
+**Last worked on:** 2026-06-28 — Added Blue-Eyes Chaos Dragon
 
 **Files touched:**
 - `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `include/level_limit_area_a.h`
-- `src_custom/trap_effects/level_limit_area_a.c`
-- `src_custom/spell_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/code_803F02C_hooks.c`
-- `src_custom/duel_helpers.c`
-- `include/duel_helpers.h`
-- `src_custom/permanent_effect_hooks.c`
-- `src_custom/duel_main_hooks.c`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/ai_attack_hooks.c`
-- `src_custom/activated_effects/levia_dragon_daedalus.c`
-- `src_custom/activated_effects/possessed_dark_soul.c`
-- `src_custom/trap_effect_hooks.c`
+- `src_custom/god_card_hooks.c`
+- `src_custom/turn_effects/blue_eyes_chaos_dragon.c`
+- `src_custom/turn_effect_hooks.c`
+- `src_custom/LynJump.event`
 
-**Outcome:** make test-cards-link passes, card forces Lv3 or lower monsters to Attack Position continuously
+**Outcome:** make test-cards-build passes; god-card immunity + turn-start opponent attack position force
 
 **Open / next:**
-- 80x80 art check (exists from API fetch)
+- In-duel test with defense-position opponent monsters
