@@ -19,11 +19,14 @@
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
+#include "level_limit_area_a.h"
 #include "duel_helpers.h"
 #include "duel_attack_restrictions.h"
 #include "ring_of_destruction.h"
 #include "dark_dust_spirit.h"
 #include "harpie_lady_2.h"
+#include "ai_sim.h"
+#include "card.h"
 
 extern void (*sPermanentEffects[])(void);
 extern unsigned char (*g8E0C800[])(void);
@@ -240,6 +243,70 @@ static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {
   return NULL;
 }
 
+static u8 CardHasPermanentEffectSource(u16 cardId)
+{
+  const PermanentEffectOverride *override;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  override = GetPermanentEffectOverride(cardId);
+  if (override != NULL)
+    return TRUE;
+
+  SetCardInfo(cardId);
+  return gCardInfo.unk1E != 0;
+}
+
+static u8 FieldZoneHasPermanentEffectSource(struct DuelCard *zone, u8 turnRow)
+{
+  if (zone->id == CARD_NONE)
+    return FALSE;
+  if (gHideEffectText && !zone->isFaceUp && (turnRow == 0 || turnRow == 1))
+    return FALSE;
+  return CardHasPermanentEffectSource(zone->id);
+}
+
+u8 AiSimFieldNeedsPermanentRescan(void)
+{
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (FieldZoneHasPermanentEffectSource(gTurnZones[2][col], 2))
+      return TRUE;
+  }
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (FieldZoneHasPermanentEffectSource(gTurnZones[1][col], 1))
+      return TRUE;
+  }
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (FieldZoneHasPermanentEffectSource(gTurnZones[3][col], 3))
+      return TRUE;
+  }
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    if (FieldZoneHasPermanentEffectSource(gTurnZones[0][col], 0))
+      return TRUE;
+  }
+
+  if (CardHasPermanentEffectSource(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard))
+    return TRUE;
+  if (CardHasPermanentEffectSource(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard))
+    return TRUE;
+
+  return FALSE;
+}
+
+static void ResetTempStagesForFieldCards(void)
+{
+  u8 row;
+  u8 col;
+
+  for (row = 0; row < 4; row++) {
+    for (col = 0; col < MAX_ZONES_IN_ROW; col++)
+      gDuel.board[row][col].tempStage = 0;
+  }
+}
+
 static void TryActivatingPermanentEffect__Hook(void) {
   const PermanentEffectOverride *override;
 
@@ -267,6 +334,9 @@ static void TryActivatingPermanentEffect__Hook(void) {
 static unsigned char ShouldActivatePermanentEffect__Hook(void) {
   const PermanentEffectOverride *override;
 
+  if (gActiveEffect.cardId == CARD_NONE)
+    return FALSE;
+
   /* Skill Drain negates all monster effects on the field */
   if ((gActiveEffect.turnRow == 1 || gActiveEffect.turnRow == 2) && IsSkillDrainActiveOnField())
     return FALSE;
@@ -290,6 +360,8 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
     return override->shouldActivate();
 
   SetCardInfo(gActiveEffect.cardId);
+  if (gCardInfo.unk1E == 0)
+    return FALSE;
   return g8E0C800[gCardInfo.unk1E]();
 }
 
@@ -298,6 +370,8 @@ static void ScanPermanentEffectRow__Hook(struct DuelCard **row, u8 turnRow, u8 a
 
   gActiveEffect.turnRow = turnRow;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (row[i]->id == CARD_NONE)
+      continue;
     /* ponytail: AI sim must not read face-down opponent cards — prevents
        logic loops from spurious effect activation on unknown cards. */
     if (gHideEffectText && !row[i]->isFaceUp && (turnRow == 0 || turnRow == 1))
@@ -307,13 +381,15 @@ static void ScanPermanentEffectRow__Hook(struct DuelCard **row, u8 turnRow, u8 a
     if (animateCursor == TRUE && !gHideEffectText)
       sub_802ACC0();
     if (ShouldActivatePermanentEffect__Hook() == 1) {
-      sub_8034FEC(0x177);
+      if (!gHideEffectText)
+        sub_8034FEC(0x177);
       TryActivatingPermanentEffect__Hook();
       if (!gHideEffectText)
         PlayMusic(MUSIC_375);
     }
     if (IsDuelOver() == 1) {
-      sub_8034FEC(0x177);
+      if (!gHideEffectText)
+        sub_8034FEC(0x177);
       return;
     }
   }
@@ -323,10 +399,13 @@ static void ScanPermanentEffectGraveyard__Hook(u8 turnRow, u8 duelist, u8 animat
   gActiveEffect.turnRow = turnRow;
   gActiveEffect.col = 0;
   gActiveEffect.cardId = gTurnDuelistBattleState[duelist]->graveyard;
+  if (gActiveEffect.cardId == CARD_NONE)
+    return;
   if (animateCursor == TRUE && !gHideEffectText)
     sub_802ADF4();
   if (ShouldActivatePermanentEffect__Hook() == 1) {
-    sub_8034FEC(0x177);
+    if (!gHideEffectText)
+      sub_8034FEC(0x177);
     TryActivatingPermanentEffect__Hook();
     if (!gHideEffectText)
       PlayMusic(MUSIC_375);
@@ -334,27 +413,40 @@ static void ScanPermanentEffectGraveyard__Hook(u8 turnRow, u8 duelist, u8 animat
 }
 
 static void CheckBoardForPermanentEffects__Hook(u8 animateScanner) {
-  ScanPermanentEffectRow__Hook(gTurnHands[ACTIVE_DUELIST], 4, animateScanner);
+  /* ponytail: AI sim never runs continuous effects from cards still in hand. */
+  if (!gHideEffectText)
+    ScanPermanentEffectRow__Hook(gTurnHands[ACTIVE_DUELIST], 4, animateScanner);
   if (IsDuelOver() == 1)
     return;
 
-  ScanPermanentEffectRow__Hook(gTurnHands[INACTIVE_DUELIST], 5, FALSE);
-  if (IsDuelOver() == 1)
-    return;
+  /* ponytail: AI sim never activates hand permanent effects on the hidden hand. */
+  if (!gHideEffectText) {
+    ScanPermanentEffectRow__Hook(gTurnHands[INACTIVE_DUELIST], 5, FALSE);
+    if (IsDuelOver() == 1)
+      return;
+  }
 
   if (!gHideEffectText)
     PlayMusic(MUSIC_375);
 
-  ScanPermanentEffectGraveyard__Hook(6, ACTIVE_DUELIST, FALSE);
-  if (IsDuelOver() == 1) {
-    sub_8034FEC(0x177);
-    return;
+  if (!gHideEffectText ||
+      CardHasPermanentEffectSource(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard)) {
+    ScanPermanentEffectGraveyard__Hook(6, ACTIVE_DUELIST, FALSE);
+    if (IsDuelOver() == 1) {
+      if (!gHideEffectText)
+        sub_8034FEC(0x177);
+      return;
+    }
   }
 
-  ScanPermanentEffectGraveyard__Hook(7, INACTIVE_DUELIST, FALSE);
-  if (IsDuelOver() == 1) {
-    sub_8034FEC(0x177);
-    return;
+  if (!gHideEffectText ||
+      CardHasPermanentEffectSource(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard)) {
+    ScanPermanentEffectGraveyard__Hook(7, INACTIVE_DUELIST, FALSE);
+    if (IsDuelOver() == 1) {
+      if (!gHideEffectText)
+        sub_8034FEC(0x177);
+      return;
+    }
   }
 
   ScanPermanentEffectRow__Hook(gTurnZones[2], 2, animateScanner);
@@ -370,44 +462,85 @@ static void CheckBoardForPermanentEffects__Hook(u8 animateScanner) {
     return;
 
   ScanPermanentEffectRow__Hook(gTurnZones[0], 0, animateScanner);
-  sub_8034FEC(0x177);
+  if (!gHideEffectText)
+    sub_8034FEC(0x177);
 }
 
-LYN_REPLACE_CHECK(TryActivatingPermanentEffects);
-void TryActivatingPermanentEffects__Replacement(void) {
-  u8 hideEffectText = gHideEffectText;
-
-  RecalculateAllDynamicEquips();
-  gActiveEffect.turn = WhoseTurn();
-  if (!gHideEffectText && !gRuntimeConfig.turn_off_visual_scanner) {
-    sub_80408BC();
-    sub_802ADA4();
-  }
-  ResetTempStagesForAllCards();
-  if (!gHideEffectText)
-    UpdateDuelGfxExceptField();
-  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
-    gHideEffectText = TRUE;
-  CheckBoardForPermanentEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
-  EnforcePyramidOfLightGodBan();
+static void TryActivatingPermanentEffectsPostBoardScan(u8 aiSim)
+{
+  if (!aiSim || IsPyramidOfLightActiveOnField())
+    EnforcePyramidOfLightGodBan();
 
   if (TryAutoSummonBlueEyesShiningDragon() == TRUE) {
-    if (!gHideEffectText)
+    if (!aiSim)
       UpdateDuelGfxExceptField();
     ResetTempStagesForAllCards();
     CheckBoardForPermanentEffects__Hook(FALSE);
   }
 
-  gHideEffectText = hideEffectText;
   ResolvePendingGraveyardDrawOnDestroy();
-  Duel_CheckRivalryOfWarlordsAfterFieldChange();
-  Duel_CheckLevelLimitAreaBAfterFieldChange();
-  Duel_CheckLevelLimitAreaAAfterFieldChange();
-  Duel_CheckAmazonessTigerAfterFieldChange();
+  if (!aiSim || IsLevelLimitAreaBActiveOnField())
+    Duel_CheckLevelLimitAreaBAfterFieldChange();
+  if (!aiSim || IsLevelLimitAreaAActiveOnField())
+    Duel_CheckLevelLimitAreaAAfterFieldChange();
   Duel_RefreshAttackRestrictions();
+
+  if (aiSim)
+    return;
+
+  Duel_CheckRivalryOfWarlordsAfterFieldChange();
+  Duel_CheckAmazonessTigerAfterFieldChange();
   Duel_CheckRingOfDestructionAfterFieldChange();
-  if (!gHideEffectText)
+}
+
+void PermanentEffect_RunSimBoardScan(void)
+{
+  CheckBoardForPermanentEffects__Hook(FALSE);
+}
+
+void PermanentEffect_RunSimPostBoardScan(void)
+{
+  TryActivatingPermanentEffectsPostBoardScan(TRUE);
+}
+
+LYN_REPLACE_CHECK(TryActivatingPermanentEffects);
+void TryActivatingPermanentEffects__Replacement(void) {
+  u8 hideEffectText = gHideEffectText;
+  u8 aiSim = gHideEffectText == TRUE;
+  u8 needsRescan;
+
+  if (aiSim) {
+    if (HasActiveDynamicEquips())
+      RecalculateAllDynamicEquips();
+    gActiveEffect.turn = WhoseTurn();
+    ResetTempStagesForFieldCards();
+    needsRescan = AiSimFieldNeedsPermanentRescan();
+    if (needsRescan)
+      CheckBoardForPermanentEffects__Hook(FALSE);
+    TryActivatingPermanentEffectsPostBoardScan(TRUE);
+    gHideEffectText = hideEffectText;
+    return;
+  }
+
+  if (!aiSim || HasActiveDynamicEquips())
+    RecalculateAllDynamicEquips();
+  gActiveEffect.turn = WhoseTurn();
+  if (!aiSim && !gRuntimeConfig.turn_off_visual_scanner) {
+    sub_80408BC();
+    sub_802ADA4();
+  }
+  ResetTempStagesForAllCards();
+  if (!aiSim)
     UpdateDuelGfxExceptField();
-  if (!gHideEffectText)
+  if (gRuntimeConfig.turn_off_visual_scanner == TRUE)
+    gHideEffectText = TRUE;
+  CheckBoardForPermanentEffects__Hook(!aiSim && !gRuntimeConfig.turn_off_visual_scanner);
+
+  TryActivatingPermanentEffectsPostBoardScan(aiSim);
+
+  gHideEffectText = hideEffectText;
+  if (!aiSim) {
+    UpdateDuelGfxExceptField();
     sub_802AE44();
+  }
 }

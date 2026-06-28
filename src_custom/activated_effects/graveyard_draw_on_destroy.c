@@ -129,7 +129,8 @@ void ResolvePendingGraveyardDrawOnDestroy(void)
   gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
   turnDuelist = FixedDuelistToTurnDuelist(fixedDuelist);
   Duel_DrawCards(turnDuelist, 1, TRUE);
-  PlayMusic(SFX_DRAW_CARD);
+  if (!gHideEffectText)
+    PlayMusic(SFX_DRAW_CARD);
   SetCardInfo(CARD_NONE);
 }
 

@@ -17,5 +17,6 @@ extern u8 gDuelAttackRestrictionsActive;
 void Duel_ResetAttackRestrictions(void);
 void Duel_RefreshAttackRestrictions(void);
 u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone);
+u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zone);
 
 #endif // GUARD_DUEL_ATTACK_RESTRICTIONS_H

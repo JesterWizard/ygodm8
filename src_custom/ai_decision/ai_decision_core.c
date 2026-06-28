@@ -6,7 +6,9 @@
 #include "duel.h"
 #include "the_dark_door.h"
 #include "duel_attack_restrictions.h"
+#include "configs/runtime.h"
 #include "duel_helpers.h"
+#include "harpie_lady_3.h"
 
 extern u16 RandRangeU16(u16 min, u16 max);
 
@@ -41,30 +43,7 @@ static void AiDecision_NormalizeVanillaAttackPriorities(struct AiDecisionContext
   }
 }
 
-static void AiDecision_BoostBattleDamageVsIndestructible(struct AiDecisionContext *ctx) {
-  u16 i;
-
-  for (i = 0; i < ctx->actionCount; i++) {
-    struct AiDecodedAction decoded;
-    struct DuelCard *defender;
-
-    if (!AiTactics_ActionDealsFaceUpBattleDamage(ctx->entries[i].actionIndex))
-      continue;
-
-    AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
-    defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
-    if (!CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0))
-      continue;
-
-    if (ctx->entries[i].priority == 0)
-      ctx->entries[i].priority = AI_PRIORITY_DISABLE - AI_MOD_DELTA_MIN;
-    else
-      ctx->entries[i].priority += AI_MOD_DELTA_MIN;
-  }
-}
-
-static u8 AiDecision_ActionSummonsToMonsterCol(
-    u16 actionIndex, u8 monsterCol) {
+static u8 AiDecision_ActionSummonsToMonsterCol(u16 actionIndex, u8 monsterCol) {
   struct AiDecodedAction decoded;
 
   AiDecodeActionIndex(actionIndex, &decoded);
@@ -313,6 +292,11 @@ static void AiDecision_TrackOpponentTurn(void) {
     sAiWasPlayerTurn = TRUE;
 }
 
+static void AiDecision_BuildMinimalContext(struct AiDecisionContext *ctx) {
+  ctx->entries = gUnk_8DFF6A4->entries;
+  ctx->actionCount = gUnk_8DFF6A4->actionCount;
+}
+
 static void AiDecision_BuildContext(struct AiDecisionContext *ctx) {
   AiDecision_TrackOpponentTurn();
 
@@ -375,25 +359,102 @@ static u8 AiDecision_CanMonsterDeclareAttack(const struct AiDecodedAction *decod
     return TRUE;
 
   zone = gTurnZones[decoded->zone0Row][decoded->zone0Col];
-  return Duel_CanMonsterDeclareAttack(zone);
+  return Duel_CanMonsterDeclareAttackWithCachedRestrictions(zone);
 }
 
-static void AiDecision_DisableBlockedAttackActions(struct AiDecisionContext *ctx)
+static u8 AiDecision_FieldHasIndestructibleFaceUpTarget(void) {
+  u8 col;
+
+  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
+    struct DuelCard *defender = gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][col];
+
+    if (defender->id == CARD_NONE || !defender->isFaceUp)
+      continue;
+    if (!CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static u8 AiDecision_ActionDealsFaceUpBattleDamage(
+    const struct AiDecodedAction *decoded) {
+  struct DuelCard *defender;
+
+  if (decoded->category != AI_CATEGORY_ATTACK)
+    return FALSE;
+  if (!IsAiFaceUpAttackAction(decoded->action))
+    return FALSE;
+  if (decoded->zone1Row != INACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  defender = gTurnZones[decoded->zone1Row][decoded->zone1Col];
+  if (defender->id == CARD_NONE || !defender->isFaceUp)
+    return FALSE;
+  if (defender->isDefending)
+    return FALSE;
+
+  return AiTactics_AttackerBeatsDefenderAt(
+      decoded->zone0Row,
+      decoded->zone0Col,
+      decoded->zone1Row,
+      decoded->zone1Col);
+}
+
+static u8 AiDecision_AttackPriorityFixesNeeded(void)
 {
+  u8 i;
+
+  if (!DebugRuleset_CanAttackThisTurn() || !TheDarkDoor_CanAttackThisTurn())
+    return TRUE;
+  if (AiDecision_FieldHasIndestructibleFaceUpTarget())
+    return TRUE;
+
+  Duel_RefreshAttackRestrictions();
+  if (gDuelAttackRestrictionsActive != 0)
+    return TRUE;
+
+  for (i = 0; i < 10; i++) {
+    if (gHarpieLady3RestrictTurns[i] > 0)
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+static void AiDecision_ApplyVanillaPriorityFixes(struct AiDecisionContext *ctx) {
   u16 i;
   u8 globalAttackAllowed =
       DebugRuleset_CanAttackThisTurn() && TheDarkDoor_CanAttackThisTurn();
+  u8 boostIndestructibleLines = AiDecision_FieldHasIndestructibleFaceUpTarget();
+
+  Duel_RefreshAttackRestrictions();
 
   for (i = 0; i < ctx->actionCount; i++) {
     struct AiDecodedAction decoded;
+    struct DuelCard *defender;
 
     AiDecodeActionIndex(ctx->entries[i].actionIndex, &decoded);
-    if (!AiDecision_ShouldDisableAttackAction(&decoded))
+
+    if (AiDecision_ShouldDisableAttackAction(&decoded)) {
+      if (!globalAttackAllowed ||
+          !AiDecision_CanMonsterDeclareAttack(&decoded))
+        ctx->entries[i].priority = 0;
+      continue;
+    }
+
+    if (!boostIndestructibleLines ||
+        !AiDecision_ActionDealsFaceUpBattleDamage(&decoded))
       continue;
 
-    if (!globalAttackAllowed ||
-        !AiDecision_CanMonsterDeclareAttack(&decoded))
-      ctx->entries[i].priority = 0;
+    defender = gTurnZones[decoded.zone1Row][decoded.zone1Col];
+    if (CanMonsterBeDestroyedByBattle(defender->id, INACTIVE_DUELIST, 0, 0))
+      continue;
+
+    if (ctx->entries[i].priority == 0)
+      ctx->entries[i].priority = AI_PRIORITY_DISABLE - AI_MOD_DELTA_MIN;
+    else
+      ctx->entries[i].priority += AI_MOD_DELTA_MIN;
   }
 }
 
@@ -403,9 +464,12 @@ u16 AiDecision_PickAction(void) {
   u8 filterKind;
   u8 filterArg;
 
-  AiDecision_BuildContext(&ctx);
-  AiDecision_DisableBlockedAttackActions(&ctx);
-  AiDecision_BoostBattleDamageVsIndestructible(&ctx);
+  if (gRuntimeConfig.enable_smarter_ai == TRUE)
+    AiDecision_BuildContext(&ctx);
+  else
+    AiDecision_BuildMinimalContext(&ctx);
+  if (AiDecision_AttackPriorityFixesNeeded())
+    AiDecision_ApplyVanillaPriorityFixes(&ctx);
 
   if (gRuntimeConfig.enable_smarter_ai != TRUE)
     return GetVanillaHighestPriorityAction(ctx.entries, ctx.actionCount);

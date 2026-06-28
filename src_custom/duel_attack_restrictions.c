@@ -51,10 +51,8 @@ void Duel_RefreshAttackRestrictions(void)
   gDuelAttackRestrictionsActive = flags;
 }
 
-u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
+u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zone)
 {
-  Duel_RefreshAttackRestrictions();
-
   if (gDuelAttackRestrictionsActive == 0)
     return TRUE;
 
@@ -97,6 +95,12 @@ u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
   }
 
   return TRUE;
+}
+
+u8 Duel_CanMonsterDeclareAttack(const struct DuelCard *zone)
+{
+  Duel_RefreshAttackRestrictions();
+  return Duel_CanMonsterDeclareAttackWithCachedRestrictions(zone);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

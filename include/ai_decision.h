@@ -107,6 +107,8 @@ u8 AiTactics_IsFutileIndestructibleDefenseLine(u16 actionIndex);
 u8 AiTactics_HasValidDestroyFaceUpLine(
     struct AiActionPriorityEntry *entries, u16 actionCount);
 u8 AiTactics_ShouldForceDestroyFaceUp(const struct AiDecisionContext *ctx);
+u8 AiTactics_AttackerBeatsDefenderAt(
+    u8 attackerRow, u8 attackerCol, u8 defenderRow, u8 defenderCol);
 
 void AiDecodeActionIndex(u16 actionIndex, struct AiDecodedAction *out);
 u8 AiAction_GetCategory(u16 action);

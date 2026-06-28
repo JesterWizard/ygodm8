@@ -1,10 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Restored duel board life point counters
+**Last worked on:** 2026-06-28 — Fix fast AI pass-turn (zone2 pre-filter)
 
-**Files touched:**
-- `src_custom/field_spell_gfx_hooks.c`, `src_custom/duel_board_lp_hooks.c`
+**Files touched:** `src_custom/ai_sim_fast.c`
 
-**Outcome:** `FlushDuelFieldLayerToHardware` no longer calls `LoadPalettes()`; pushes field palette to PPU banks 0-2, UI banks 3-15, and OBJ palettes (`gPaletteBuffer + 256`) separately. LP/turn counters draw before the field tilemap flush. Follow-up fix restored card/cursor OBJ palette upload. `make test-cards-build` passes.
+**Outcome:** Zone2 quick-reject no longer drops summon/set candidates whose destination slot is empty. Zero-action fallback skips pre-filter. `make test-cards-build` passes.
 
-**Open / next:** Playtest LP/turn counters during scroll and with custom field spells active.
+**Open / next:** Playtest opponent turns with full hand + empty field.

@@ -206,7 +206,7 @@ void AiTactics_FillContext(struct AiDecisionContext *ctx) {
       &ctx->visibleHandHasTrapOrSpell);
 }
 
-static u8 AiTactics_AttackerBeatsDefenderAt(
+u8 AiTactics_AttackerBeatsDefenderAt(
     u8 attackerRow, u8 attackerCol, u8 defenderRow, u8 defenderCol) {
   struct DuelCard *attacker;
   struct DuelCard *defender;

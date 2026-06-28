@@ -8,7 +8,9 @@
 #include "constants/duel_fields.h"
 #include "constants/spell_effects.h"
 #include "debug_ruleset.h"
+#include "configs/runtime.h"
 #include "duel.h"
+#include "ai_sim.h"
 #include "permanent_effect.h"
 #include "the_unhappy_maiden.h"
 
@@ -45,7 +47,7 @@ static inline u8 CallThumbU8(u32 addr)
   return ((FnU8Void)(addr | 1))();
 }
 
-static void AiClearCommandData(void)
+void AiClearCommandData(void)
 {
   g2021BF8 = 0;
   sAI_Command.action = 0;
@@ -57,7 +59,7 @@ static void AiClearCommandData(void)
   sAI_Command.zone6Position = 0;
 }
 
-static void AiInitCommandData(u16 arg0)
+void AiInitCommandData(u16 arg0)
 {
   g2021BF8 = arg0;
   sAI_Command.action = gAED58[arg0].action;
@@ -84,10 +86,13 @@ static u8 TerrainFieldForCard(u16 cardId)
 static u16 AiFindActionIndex(u16 action, u8 zone1, u8 zone2)
 {
   u16 i;
+  u16 start = 0;
 
-  for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
-    if (gAED58[i].action != action)
-      continue;
+  /* ponytail: gAED58 is sorted by action; skip earlier action blocks. */
+  while (start < AI_ACTION_TABLE_COUNT && gAED58[start].action < action)
+    start++;
+
+  for (i = start; i < AI_ACTION_TABLE_COUNT && gAED58[i].action == action; i++) {
     if (gAED58[i].zone1Position != zone1)
       continue;
     if (zone2 != 0 && gAED58[i].zone2Position != zone2)
@@ -161,13 +166,22 @@ static u16 AiForceTerrainFieldSpellAction(void)
   return 0;
 }
 
-void AiResimulateAllActions(void)
+u8 gAiSimInBatch APPEND_DATA = FALSE;
+
+void AiSimulateAllCandidateActions(void)
 {
   u16 i;
 
+  if (gRuntimeConfig.fast_ai) {
+    AiSimulateAllCandidateActionsFast();
+    return;
+  }
+
   AiClearCommandData();
   CallThumbVoid(0x0800F108);
-  for (i = 0, gHideEffectText = 1; i < 0x3B2; i++) {
+  gAiSimInBatch = TRUE;
+  gHideEffectText = 1;
+  for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
     AiInitCommandData(i);
     if (CallThumbU8(0x0801A08C) == 1) {
       sub_800EE24__Replacement();
@@ -178,6 +192,13 @@ void AiResimulateAllActions(void)
       sub_800EE94__Replacement();
     }
   }
+  gAiSimInBatch = FALSE;
+}
+
+void AiResimulateAllActions(void)
+{
+  gHideEffectText = 1;
+  AiSimulateAllCandidateActions();
   gHideEffectText = 0;
 }
 

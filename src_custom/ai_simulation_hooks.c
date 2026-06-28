@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "coffin_seller.h"
 #include "call_of_the_haunted.h"
+#include "configs/runtime.h"
 #include "debug_ruleset.h"
 #include "duel.h"
 #include "expanded_graveyard.h"
@@ -48,9 +49,13 @@ void sub_800EE24__Replacement(void)
     gUnk_8DFF6A4->duelDecks[i].cardsDrawn = gDuelDecks[i].cardsDrawn;
     gUnk_8DFF6A4->lifePoints[i] = gDuelLifePoints[i];
     gUnk_8DFF6A4->duelistStatus[i] = gDuelistStatus[i];
-    gAiSimSavedExpandedGraveyardCount[i] = gExpandedGraveyardCount[i];
-    for (j = 0; j < EXPANDED_GRAVEYARD_CAPACITY; j++)
-      gAiSimSavedExpandedGraveyard[i][j] = gExpandedGraveyard[i][j];
+    if (GraveyardExpand_IsEnabled() && !gRuntimeConfig.fast_ai) {
+      u8 count = gExpandedGraveyardCount[i];
+
+      gAiSimSavedExpandedGraveyardCount[i] = count;
+      for (j = 0; j < count; j++)
+        gAiSimSavedExpandedGraveyard[i][j] = gExpandedGraveyard[i][j];
+    }
   }
 }
 
@@ -62,11 +67,17 @@ void sub_800EE94__Replacement(void)
 
   gDuel = gUnk_8DFF6A4->duel;
   for (i = 0; i < 2; i++) {
+    u8 count;
+
     gDuelDecks[i].cardsDrawn = gUnk_8DFF6A4->duelDecks[i].cardsDrawn;
     gDuelLifePoints[i] = gUnk_8DFF6A4->lifePoints[i];
     gDuelistStatus[i] = gUnk_8DFF6A4->duelistStatus[i];
-    gExpandedGraveyardCount[i] = gAiSimSavedExpandedGraveyardCount[i];
-    for (j = 0; j < EXPANDED_GRAVEYARD_CAPACITY; j++)
+    if (!GraveyardExpand_IsEnabled() || gRuntimeConfig.fast_ai)
+      continue;
+
+    count = gAiSimSavedExpandedGraveyardCount[i];
+    gExpandedGraveyardCount[i] = count;
+    for (j = 0; j < count; j++)
       gExpandedGraveyard[i][j] = gAiSimSavedExpandedGraveyard[i][j];
   }
 

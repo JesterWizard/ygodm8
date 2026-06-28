@@ -63,6 +63,7 @@ typedef struct {
     u8 show_duel_shop_card_drops; // After duel win, show cards added to the shop this win.
     u8 enable_opponent_hand_field_scroll; // Scroll up past opponent backrow to view opponent hand on the field.
     u8 enable_smarter_ai; // Vary among top-rated AI lines instead of one fixed optimal play.
+    u8 fast_ai; // Cap AI sim work per decision (~60 frames); skips heavy permanent sim.
     u16 card_in_hand_1;
     u16 card_in_hand_2;
     u16 card_in_hand_3;
