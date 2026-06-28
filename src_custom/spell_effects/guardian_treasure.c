@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "guardian_treasure.h"
 #include "drop_off.h"
 #include "imperial_order.h"
@@ -17,7 +18,7 @@ static void DiscardFirstCardsInHand(struct DuelCard **hand, u8 count)
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (hand[i]->id != CARD_NONE) {
-      gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard = hand[i]->id;
+      GraveyardExpand_PushTurn(ACTIVE_DUELIST, hand[i]->id);
       hand[i]->id = CARD_NONE;
       discarded++;
 

@@ -31,6 +31,7 @@
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
 #include "embodiment_of_apophis.h"
+#include "expanded_graveyard.h"
 #include "ojama_trio.h"
 #include "cost_down.h"
 #include "custom_field_spell.h"
@@ -236,6 +237,7 @@ void InitBoard__Replacement(void) {
   ResetCustomFieldSpellState();
   ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
+  GraveyardExpand_Init();
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
       ClearZone(&gDuel.board[i][j]);

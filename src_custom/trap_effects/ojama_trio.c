@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "ojama_trio.h"
 #include "graveyard_effects.h"
 #include "riryoku.h"
@@ -109,7 +110,7 @@ void SendOjamaTrioZoneToGraveyardIfNeeded(struct DuelCard *zone, u8 turn)
     return;
 
   MarkGraveyardSendFromField();
-  gDuel.duelistbattleState[turn].graveyard = zone->id;
+  GraveyardExpand_PushFixed(turn, zone->id);
 }
 
 static void SpecialSummonOjamaTriosToOpponent(void)

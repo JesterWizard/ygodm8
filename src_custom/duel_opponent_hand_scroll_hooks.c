@@ -284,6 +284,10 @@ static void BMenuMainVanilla(void) {
             UpdateDuelGfxExceptField();
           }
           return;
+        case B_MENU_SURRENDER:
+        case B_MENU_GY_OPPONENT:
+        case B_MENU_GY_PLAYER:
+          break;
       }
       break;
     } else if (gNewButtons & B_BUTTON) {
@@ -357,6 +361,20 @@ static void BMenuMainWithSurrender(void) {
         case B_MENU_SURRENDER:
           DuelBMenu_Surrender();
           return;
+        case B_MENU_GY_OPPONENT:
+          if (gRuntimeConfig.expand_graveyard == TRUE) {
+            Duel_GraveyardViewer_Open(DUEL_OPPONENT);
+            UpdateAllDuelGfx();
+            return;
+          }
+          break;
+        case B_MENU_GY_PLAYER:
+          if (gRuntimeConfig.expand_graveyard == TRUE) {
+            Duel_GraveyardViewer_Open(DUEL_PLAYER);
+            UpdateAllDuelGfx();
+            return;
+          }
+          break;
       }
       break;
     } else if (gNewButtons & B_BUTTON) {

@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "duel_helpers.h"
 #include "embodiment_of_apophis.h"
+#include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "ojama_trio.h"
 
@@ -58,7 +59,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
       || EmbodimentOfApophisZoneOnMonsterRow(zone)
       || OjamaTrioZoneIsMonsterForm(zone)) {
     NoteGraveyardMonsterSend(zone);
-    gTurnDuelistBattleState[turn]->graveyard = zone->id;
+    GraveyardExpand_PushTurn(turn, zone->id);
   }
   ClearZone(zone);
 }

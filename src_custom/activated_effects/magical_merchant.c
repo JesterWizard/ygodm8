@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 
 extern void UpdateDuelGfxExceptField(void);
 
@@ -59,7 +60,7 @@ static void SendTopDeckCardToGraveyard(u8 fixedDuelist)
 
   for (turnDuelist = 0; turnDuelist < 2; turnDuelist++) {
     if (gTurnDuelistBattleState[turnDuelist] == &gDuel.duelistbattleState[fixedDuelist]) {
-      gTurnDuelistBattleState[turnDuelist]->graveyard = card;
+      GraveyardExpand_PushTurn(turnDuelist, card);
       break;
     }
   }

@@ -30,6 +30,8 @@ static u16 const sBMenuHighlightTileOffsets[] APPEND_RODATA = {
   0xE8C4,
   0xE85C,
   0xE8DC,
+  0xEA44,
+  0xEBC4,
 };
 
 static u8 const sBMenuNextUp[] APPEND_RODATA = {
@@ -37,13 +39,17 @@ static u8 const sBMenuNextUp[] APPEND_RODATA = {
   [B_MENU_TURN_END] = B_MENU_DETAILS,
   [B_MENU_DISCARD] = B_MENU_DISCARD,
   [B_MENU_SURRENDER] = B_MENU_DISCARD,
+  [B_MENU_GY_OPPONENT] = B_MENU_TURN_END,
+  [B_MENU_GY_PLAYER] = B_MENU_GY_OPPONENT,
 };
 
 static u8 const sBMenuNextDown[] APPEND_RODATA = {
   [B_MENU_DETAILS] = B_MENU_TURN_END,
-  [B_MENU_TURN_END] = B_MENU_TURN_END,
+  [B_MENU_TURN_END] = B_MENU_GY_OPPONENT,
   [B_MENU_DISCARD] = B_MENU_SURRENDER,
-  [B_MENU_SURRENDER] = B_MENU_SURRENDER,
+  [B_MENU_SURRENDER] = B_MENU_GY_OPPONENT,
+  [B_MENU_GY_OPPONENT] = B_MENU_GY_PLAYER,
+  [B_MENU_GY_PLAYER] = B_MENU_GY_PLAYER,
 };
 
 static u8 const sBMenuNextLeft[] APPEND_RODATA = {
@@ -51,6 +57,8 @@ static u8 const sBMenuNextLeft[] APPEND_RODATA = {
   [B_MENU_TURN_END] = B_MENU_TURN_END,
   [B_MENU_DISCARD] = B_MENU_DETAILS,
   [B_MENU_SURRENDER] = B_MENU_TURN_END,
+  [B_MENU_GY_OPPONENT] = B_MENU_GY_OPPONENT,
+  [B_MENU_GY_PLAYER] = B_MENU_GY_PLAYER,
 };
 
 static u8 const sBMenuNextRight[] APPEND_RODATA = {
@@ -58,6 +66,8 @@ static u8 const sBMenuNextRight[] APPEND_RODATA = {
   [B_MENU_TURN_END] = B_MENU_SURRENDER,
   [B_MENU_DISCARD] = B_MENU_DISCARD,
   [B_MENU_SURRENDER] = B_MENU_SURRENDER,
+  [B_MENU_GY_OPPONENT] = B_MENU_GY_OPPONENT,
+  [B_MENU_GY_PLAYER] = B_MENU_GY_PLAYER,
 };
 
 #define B_MENU_TEMPLATE_ROWS 18
@@ -251,8 +261,10 @@ static void DrawBMenuAllOptionLabels(u16 paletteBits, u16 blankTile) {
   ClearBMenuOptionLabelCells(blankTile);
   for (option = 0; option < ARRAY_COUNT(sBMenuOptionLabels); option++)
     DrawBMenuOptionLabel(&sBMenuOptionLabels[option], paletteBits);
-  DrawGraveyardNameTilemap(paletteBits);
-  RefreshGraveyardNameTiles();
+  if (gRuntimeConfig.expand_graveyard == TRUE) {
+    DrawGraveyardNameTilemap(paletteBits);
+    RefreshGraveyardNameTiles();
+  }
 }
 
 static void HighlightBMenuOption(u8 option);
@@ -337,7 +349,7 @@ void DuelBMenu_RefreshOverlay(u8 highlightedOption) {
 static void HighlightBMenuOption(u8 option) {
   u8 i;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < ARRAY_COUNT(sBMenuHighlightTileOffsets); i++) {
     u16 const tileBase = sBMenuHighlightTileOffsets[i] / 2;
 
     if (option != i) {
@@ -364,18 +376,32 @@ void DuelBMenu_HighlightOption(u8 option) {
 }
 
 u8 DuelBMenu_GetNextUp(u8 option) {
+  if (option >= ARRAY_COUNT(sBMenuNextUp))
+    return B_MENU_DETAILS;
   return sBMenuNextUp[option];
 }
 
 u8 DuelBMenu_GetNextDown(u8 option) {
+  if (option >= ARRAY_COUNT(sBMenuNextDown))
+    return B_MENU_DETAILS;
+  if (gRuntimeConfig.expand_graveyard != TRUE) {
+    if (option == B_MENU_TURN_END)
+      return B_MENU_TURN_END;
+    if (option == B_MENU_SURRENDER)
+      return B_MENU_SURRENDER;
+  }
   return sBMenuNextDown[option];
 }
 
 u8 DuelBMenu_GetNextLeft(u8 option) {
+  if (option >= ARRAY_COUNT(sBMenuNextLeft))
+    return B_MENU_DETAILS;
   return sBMenuNextLeft[option];
 }
 
 u8 DuelBMenu_GetNextRight(u8 option) {
+  if (option >= ARRAY_COUNT(sBMenuNextRight))
+    return B_MENU_DETAILS;
   return sBMenuNextRight[option];
 }
 

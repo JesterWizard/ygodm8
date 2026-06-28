@@ -158,6 +158,13 @@ _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 @ Bitfield for one-shot delayed duel effects keyed by duelist.
 _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 
+@ Expanded graveyards: two fixed duelists x 40 u16 card IDs (80 bytes each).
+_kernel_malloc_ewram_array gExpandedGraveyard, 0xA0
+_kernel_malloc_ewram_array gExpandedGraveyardCount, 0x2
+@ AI simulations mutate graveyard state speculatively; save/restore expanded state with vanilla duel state.
+_kernel_malloc_ewram_array gAiSimSavedExpandedGraveyard, 0xA0
+_kernel_malloc_ewram_array gAiSimSavedExpandedGraveyardCount, 0x2
+
 @ Active while Cost Down reduces monster levels in the active duelist's hand.
 _kernel_malloc_ewram gCostDownActive, 1
 @ DUEL_PLAYER or DUEL_OPPONENT; set when Cost Down resolves.

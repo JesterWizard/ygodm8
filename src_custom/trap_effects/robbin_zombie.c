@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "expanded_graveyard.h"
 #include "robbin_zombie.h"
 
 struct RobbinZombieActionData {
@@ -28,7 +29,6 @@ struct RobbinZombieActionData {
 
 extern struct RobbinZombieActionData sActionData;
 
-/* ponytail: mill helper does not mirror top card into graveyard; keep local mill for Robbin Zombie */
 static void DiscardTopDeckCard(u8 duelist)
 {
   u16 card;
@@ -38,7 +38,7 @@ static void DiscardTopDeckCard(u8 duelist)
 
   card = gDuelDecks[duelist].cards[gDuelDecks[duelist].cardsDrawn];
   gDuelDecks[duelist].cardsDrawn++;
-  gTurnDuelistBattleState[duelist]->graveyard = card;
+  GraveyardExpand_PushFixed(duelist, card);
 }
 
 static u8 IsRobbinZombieActiveForDuelist(u8 duelist)
