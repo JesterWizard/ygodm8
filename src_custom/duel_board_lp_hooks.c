@@ -11,6 +11,7 @@
 extern unsigned short gDuelLifePoints[];
 extern u8 gDigitBufferU16[];
 extern u16 gDuelBoardTurnCount;
+extern u16 g80F0F00[];
 
 void sub_80411D4(void);
 void InitDuelistStatus(void);
@@ -59,6 +60,12 @@ static void RemapSmallFontTilesToColorIndex(u8 *tiles, u32 byteCount, u8 fromInd
   }
 }
 
+static void EnsureBoardLpPalette(void) {
+  /* Same bank-3 palette as the duel info bar / B-menu LP digits (sub_8040B4C). */
+  CpuCopy16(g80F0F00, &gPaletteBuffer[0x30], 32);
+  CpuCopy16(&gPaletteBuffer[0x30], (u16 *)PLTT + 0x30, 32);
+}
+
 static void FormatLifePointsString(char *buf, u16 lifePoints) {
   u8 i;
 
@@ -82,11 +89,6 @@ static void DrawLifePointsAt(u8 x, u8 y, u16 lifePoints, u16 charBufOffset, u16 
 
   FormatLifePointsString(buf, lifePoints);
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + charBufOffset, (const u8 *)buf, 0x001);
-  RemapSmallFontTilesToColorIndex(
-      gBgVram.cbb0 + charBufOffset,
-      BOARD_LP_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
-      0,
-      3);
 
   for (i = 0; i < BOARD_LP_MAX_DIGITS; i++)
     tilemap[y * 32 + x + i] = (u16)(attrs | (baseTileId + i));
@@ -159,6 +161,7 @@ static void UploadBoardTurnCharTiles(void) {
 }
 
 static void DrawBoardLifePoints(void) {
+  EnsureBoardLpPalette();
   DrawLifePointsAt(
       BOARD_LP_PLAYER_X,
       BOARD_LP_PLAYER_Y,
@@ -187,13 +190,17 @@ void sub_80411D4__Replacement(void) {
   LoadVRAM();
   LoadBgOffsets();
   LoadOam();
-  FlushDuelFieldLayerToHardware();
 
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
 
   if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
     DrawBoardTurnCounter();
+
+  FlushDuelFieldLayerToHardware();
+
+  if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
+    EnsureBoardLpPalette();
 
   UpdateDuelBgmTempoForLifePoints();
 }

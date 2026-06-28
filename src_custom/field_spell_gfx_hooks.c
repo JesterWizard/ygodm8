@@ -148,7 +148,13 @@ void SetDuelFieldGfx__Replacement(u8 field)
 
 void FlushDuelFieldLayerToHardware(void)
 {
-  CpuCopy16(GetActiveFieldPalette(), gPaletteBuffer, 96);
+  const u16 *activePal = GetActiveFieldPalette();
+
+  /* Field palette banks 0-2 only — do not call LoadPalettes(), which would
+   * push stale OBJ entries and can clobber UI banks when sub_8040B4C did not
+   * run (turn_off_visual_scanner scroll path). */
+  CpuCopy16(activePal, gPaletteBuffer, 96);
+  CpuCopy16(activePal, (u16 *)PLTT, 96);
 
   /* ponytail: when BG3 is enabled (battle screen), the battle floor
    * tiles reference banks 0-1.  Overwrite those banks with near-black
@@ -157,17 +163,23 @@ void FlushDuelFieldLayerToHardware(void)
   if (REG_DISPCNT & DISPCNT_BG3_ON) {
     u8 i;
 
-    for (i = 0; i < 32; i++)
+    for (i = 0; i < 32; i++) {
       gPaletteBuffer[i] = 0x0421;
+      ((u16 *)PLTT)[i] = 0x0421;
+    }
   }
 
-  LoadPalettes();
+  /* Info bar, board LP, and turn counter palette banks (set by sub_8040B4C). */
+  CpuCopy16(gPaletteBuffer + 0x30, (u16 *)PLTT + 0x30, BG_PLTT_SIZE - 0x30);
+
+  /* Card art, duel cursor, and other OBJ palette banks (set by sub_80577A4). */
+  CpuCopy16(gPaletteBuffer + 256, (u16 *)PLTT + 256, OBJ_PLTT_SIZE);
+
   CpuCopy16(
       gBgVram.cbb0 + DUEL_FIELD_TILEMAP_VRAM_OFFSET,
       (void *)(BG_VRAM + DUEL_FIELD_TILEMAP_VRAM_OFFSET),
       0xA00);
   CpuCopy32(gBgVram.cbb0 + 0x8040, (void *)(BG_VRAM + 0x8040), 0x740);
-  CpuCopy16(gPaletteBuffer + 0x50, (u16 *)PLTT + 0x50, 0x40);
   CpuCopy32(gBgVram.cbb0 + 0xE800, (void *)(BG_VRAM + 0xE800), 0x480);
 }
 
