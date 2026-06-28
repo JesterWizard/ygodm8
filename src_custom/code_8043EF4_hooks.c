@@ -84,6 +84,7 @@
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_life.h"
 #include "book_of_moon.h"
+#include "book_of_taiyou.h"
 #include "ring_of_destruction.h"
 #include "nightmare_wheel.h"
 #include "toll.h"
@@ -466,6 +467,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginBookOfMoonTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsBookOfTaiyouCard(id)) {
+    if (!FieldHasBookOfTaiyouTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginBookOfTaiyouTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -1100,6 +1116,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       TrySelectBookOfMoonTarget();
       break;
+    case DUEL_CURSOR_BOOK_OF_TAIYOU_TARGET:
+      TrySelectBookOfTaiyouTarget();
+      break;
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       TrySelectRingOfDestructionTarget();
       break;
@@ -1197,6 +1216,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       CancelBookOfMoonTargeting();
+      break;
+    case DUEL_CURSOR_BOOK_OF_TAIYOU_TARGET:
+      CancelBookOfTaiyouTargeting();
       break;
     case DUEL_CURSOR_RING_OF_DESTRUCTION_TARGET:
       CancelRingOfDestructionTargeting();

@@ -19113,6 +19113,35 @@
           "Target 1 Zombie monster in your GY and 1 monster in your opponent's GY; Special Summon the first, and banish the second."
         ]
       }
+    },
+    {
+      "card_const": "BOOK_OF_TAIYOU",
+      "card_name": "Book of Taiyou",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 8, 6, 9, 9, 8, 5, 4],
+      "description": {
+        "symbol": "gDescription_BookOfTaiyou",
+        "pages": [
+          "Flip 1 face-down monster on",
+          "the field into face-up",
+          "Attack Position."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BookOfTaiyou",
+        "pages": [
+          "Flip 1 face-down monster on the field into face-up Attack Position."
+        ]
+      }
     }
   ]
 }

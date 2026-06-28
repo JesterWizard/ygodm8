@@ -237,6 +237,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BLOWBACK_DRAGON, gActivationDescription_BlowbackDragon },
   { CHAOS_COMMAND_MAGICIAN, gActivationDescription_ChaosCommandMagician },
   { BOOK_OF_LIFE, gActivationDescription_BookOfLife },
+  { BOOK_OF_TAIYOU, gActivationDescription_BookOfTaiyou },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

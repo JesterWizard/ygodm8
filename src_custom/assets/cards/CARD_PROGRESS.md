@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 229 |
-| Art ready, needs manifest | 151 |
+| In game (manifest + art) | 230 |
+| Art ready, needs manifest | 150 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -251,6 +251,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BLOWBACK_DRAGON` | Blowback Dragon | `blowback_dragon.png` |
 | `CHAOS_COMMAND_MAGICIAN` | Chaos Command Magician | `chaos_command_magician.png` |
 | `BOOK_OF_LIFE` | Book of Life | `book_of_life.png` |
+| `BOOK_OF_TAIYOU` | Book of Taiyou | `book_of_taiyou.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -270,7 +271,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_PENDANT` — `black_pendant.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
-- [ ] `BOOK_OF_TAIYOU` — `book_of_taiyou.png`
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`

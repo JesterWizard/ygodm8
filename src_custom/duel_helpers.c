@@ -271,6 +271,7 @@ static u8 SpellTrapOriginUsesRow2(u16 spellId)
   case RIRYOKU:
   case BLOCK_ATTACK:
   case BOOK_OF_MOON:
+  case BOOK_OF_TAIYOU:
   case SOUL_TAKER:
     return TRUE;
   default:

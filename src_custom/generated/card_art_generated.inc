@@ -924,6 +924,10 @@ static const unsigned char sBookOfLifeBigArt[] __attribute__((section(".append_a
 static const unsigned short sBookOfLifeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_life.gbapal");
 static const unsigned char sBookOfLifeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_life.lz");
 
+static const unsigned char sBookOfTaiyouBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/book_of_taiyou.huff");
+static const unsigned short sBookOfTaiyouBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_taiyou.gbapal");
+static const unsigned char sBookOfTaiyouMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_taiyou.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1156,6 +1160,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0403] = sBlowbackDragonBigArt,
   [0x0404] = sChaosCommandMagicianBigArt,
   [0x0405] = sBookOfLifeBigArt,
+  [0x0406] = sBookOfTaiyouBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1390,6 +1395,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0403] = sBlowbackDragonBigPalette,
   [0x0404] = sChaosCommandMagicianBigPalette,
   [0x0405] = sBookOfLifeBigPalette,
+  [0x0406] = sBookOfTaiyouBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1624,6 +1630,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0403] = 0,
   [0x0404] = 0,
   [0x0405] = 0,
+  [0x0406] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1858,4 +1865,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0403] = sBlowbackDragonMiniArt,
   [0x0404] = sChaosCommandMagicianMiniArt,
   [0x0405] = sBookOfLifeMiniArt,
+  [0x0406] = sBookOfTaiyouMiniArt,
 };
