@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "jowls_of_dark_demise.h"
@@ -85,6 +86,10 @@ static void ResolveJowlsEffectForAi(void)
   u8 sourceCol = HighestAtkMonInRowExceptGodCards(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]);
 
   if (sourceCol >= MAX_ZONES_IN_ROW)
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(JOWLS_OF_DARK_DEMISE, INACTIVE_DUELIST_MONSTER_ROW,
+                                           sourceCol))
     return;
 
   TakeControlOfMonsterZone(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW][sourceCol]);

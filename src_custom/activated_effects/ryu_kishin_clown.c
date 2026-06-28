@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "ryu_kishin_clown.h"
@@ -162,6 +163,9 @@ static void ResolveRyuKishinClownEffectForAi(struct DuelCard *sourceZone, u8 ori
   (void)originFixedCol;
 
   if (!PickAiRyuKishinClownTarget(&targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(RYU_KISHIN_CLOWN, targetRow, targetCol))
     return;
 
   ResolveRyuKishinClownTarget(targetRow, targetCol, sourceZone);

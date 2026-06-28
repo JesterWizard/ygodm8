@@ -4,13 +4,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `226` effects
+- `227` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
 | `activated_effects` | `Harpies Pet Baby Dragon` | `src_custom/activated_effects/harpies_pet_baby_dragon.c` |
+| `card_passives` | `Chaos Command Magician` | `src_custom/card_passives/chaos_command_magician.c` |
 | `spell_effects` | `Big Bang Shot` | `src_custom/spell_effects/big_bang_shot.c` |
 | `activated_effects` | `Levia Dragon Daedalus` | `src_custom/activated_effects/levia_dragon_daedalus.c` |
 | `activated_effects` | `Dark Dust Spirit` | `src_custom/activated_effects/dark_dust_spirit.c` |

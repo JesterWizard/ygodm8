@@ -916,6 +916,10 @@ static const unsigned char sBlowbackDragonBigArt[] __attribute__((section(".appe
 static const unsigned short sBlowbackDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blowback_dragon.gbapal");
 static const unsigned char sBlowbackDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blowback_dragon.lz");
 
+static const unsigned char sChaosCommandMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chaos_command_magician.huff");
+static const unsigned short sChaosCommandMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chaos_command_magician.gbapal");
+static const unsigned char sChaosCommandMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chaos_command_magician.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1146,6 +1150,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0401] = sHarpiesPetBabyDragonBigArt,
   [0x0402] = sBlueEyesChaosDragonBigArt,
   [0x0403] = sBlowbackDragonBigArt,
+  [0x0404] = sChaosCommandMagicianBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1378,6 +1383,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0401] = sHarpiesPetBabyDragonBigPalette,
   [0x0402] = sBlueEyesChaosDragonBigPalette,
   [0x0403] = sBlowbackDragonBigPalette,
+  [0x0404] = sChaosCommandMagicianBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1610,6 +1616,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0401] = 0,
   [0x0402] = 0,
   [0x0403] = 0,
+  [0x0404] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1842,4 +1849,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0401] = sHarpiesPetBabyDragonMiniArt,
   [0x0402] = sBlueEyesChaosDragonMiniArt,
   [0x0403] = sBlowbackDragonMiniArt,
+  [0x0404] = sChaosCommandMagicianMiniArt,
 };

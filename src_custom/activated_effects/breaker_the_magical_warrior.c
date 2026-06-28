@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "breaker_the_magical_warrior.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
@@ -93,6 +94,9 @@ static void ResolveBreakerEffectForAi(void)
   u8 targetCol;
 
   if (!FindFirstBreakerTarget(&targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(BREAKER_THE_MAGICAL_WARRIOR, targetRow, targetCol))
     return;
 
   RemoveBreakerSpellCounter();

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
@@ -204,6 +205,9 @@ static void ResolveCaiusEffectForAi(u8 originFixedRow, u8 originFixedCol)
   u8 targetCol;
 
   if (!PickAiCaiusTarget(originFixedRow, originFixedCol, &targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(CAIUS_THE_SHADOW_MONARCH, targetRow, targetCol))
     return;
 
   BanishTargetAndBurn(targetRow, targetCol);

@@ -1,14 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Fixed Blowback Dragon activation crash
+**Last worked on:** 2026-06-28 — Fix Chiron vs CCM — explicit handler + zone negation
 
 **Files touched:**
-- `src_custom/activated_effects/blowback_dragon.c`
-- `include/blowback_dragon.h`
+- `src_custom/activated_effects/chiron_the_mage.c`
 - `src_custom/monster_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
+- `src_custom/card_passives/chaos_command_magician.c`
+- `tools/card_data_manifest.json`
 
-**Outcome:** make test-cards-build passes; dedicated cursor state like Harpies Pet Baby Dragon
+**Outcome:** make test-cards-build passes
 
 **Open / next:**
-- In-duel verify coin-flip destroy
+- In-duel retest Chiron vs face-up CCM

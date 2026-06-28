@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 227 |
-| Art ready, needs manifest | 153 |
+| In game (manifest + art) | 228 |
+| Art ready, needs manifest | 152 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -249,6 +249,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HARPIES_PET_BABY_DRAGON` | Harpie's Pet Baby Dragon | `harpies_pet_baby_dragon.png` |
 | `BLUE_EYES_CHAOS_DRAGON` | Blue-Eyes Chaos Dragon | `blue_eyes_chaos_dragon.png` |
 | `BLOWBACK_DRAGON` | Blowback Dragon | `blowback_dragon.png` |
+| `CHAOS_COMMAND_MAGICIAN` | Chaos Command Magician | `chaos_command_magician.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -273,7 +274,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
-- [ ] `CHAOS_COMMAND_MAGICIAN` — `chaos_command_magician.png`
 - [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`

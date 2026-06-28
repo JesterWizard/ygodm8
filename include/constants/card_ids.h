@@ -1029,11 +1029,12 @@
 #define HARPIES_PET_BABY_DRAGON                  0x0401
 #define BLUE_EYES_CHAOS_DRAGON                   0x0402
 #define BLOWBACK_DRAGON                          0x0403
+#define CHAOS_COMMAND_MAGICIAN                   0x0404
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0404
-#define NUM_CUSTOM_CARDS                        0x00E3
+#define NUM_TOTAL_CARDS                         0x0405
+#define NUM_CUSTOM_CARDS                        0x00E4
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

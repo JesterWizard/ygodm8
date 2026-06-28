@@ -12146,7 +12146,7 @@
       "attribute": "ATTRIBUTE_EARTH",
       "type": "TYPE_BEAST",
       "color": "EFFECT_CARD",
-      "monsterEffect": 101,
+      "monsterEffect": 100,
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 260,
@@ -19056,6 +19056,34 @@
         ]
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "CHAOS_COMMAND_MAGICIAN",
+      "card_name": "Chaos Command Magician",
+      "atk": 2400,
+      "def": 1900,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 279,
+      "password": [7, 2, 6, 3, 0, 5, 4, 9],
+      "description": {
+        "symbol": "gDescription_ChaosCommandMagician",
+        "pages": [
+          "A seasoned magician that deals in abundant chaos energy.",
+          "He can negate the effects of monsters that target him."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ChaosCommandMagician",
+        "pages": [
+          "Negate the effect of a Monster Card that targets this 1 card."
+        ]
+      }
     }
   ]
 }

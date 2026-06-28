@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1028] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1029] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1040,9 +1040,10 @@ const u8 gCardLockAfterActivation_Hook[1028] APPEND_RODATA = {
   [0x0401] = 0,
   [0x0402] = 1,
   [0x0403] = 1,
+  [0x0404] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1028] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1029] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2071,9 +2072,10 @@ const u8 gCardEffectUsage_Hook[1028] APPEND_RODATA = {
   [0x0401] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0402] = EFFECT_USAGE_NONE,
   [0x0403] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x0404] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1028] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1029] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3102,9 +3104,10 @@ const u8 gCardSelectableOnce_Hook[1028] APPEND_RODATA = {
   [0x0401] = 0,
   [0x0402] = 0,
   [0x0403] = 0,
+  [0x0404] = 0,
 };
 
-const CardData gCardData_NEW[1028] APPEND_RODATA = {
+const CardData gCardData_NEW[1029] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -13197,7 +13200,7 @@ const CardData gCardData_NEW[1028] APPEND_RODATA = {
     .level = 4,
     .type = TYPE_BEAST,
     .color = EFFECT_CARD,
-    .monsterEffect = 101,
+    .monsterEffect = 100,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {1, 6, 9, 5, 6, 4, 5, 5},
@@ -16743,5 +16746,19 @@ const CardData gCardData_NEW[1028] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {2, 5, 5, 5, 1, 9, 5, 1},
     .description = gDescription_BlowbackDragon,
+  },
+  [0x0404] = {
+    .atk = 2400,
+    .def = 1900,
+    .cost = 279,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 4,
+    .type = TYPE_SPELLCASTER,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {7, 2, 6, 3, 0, 5, 4, 9},
+    .description = gDescription_ChaosCommandMagician,
   },
 };

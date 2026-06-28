@@ -16,6 +16,7 @@
 #include "mirror_wall.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
+#include "card_passives.h"
 #include "duel_helpers.h"
 #include "duel_attack_restrictions.h"
 #include "duel_activated_backrow.h"
@@ -1020,6 +1021,9 @@ void TryAttackWithMonster__Replacement(void)
 LYN_REPLACE_CHECK(HandleAButtonAction);
 void HandleAButtonAction__Replacement(void)
 {
+  if (Duel_TryNegateMonsterEffectTargetSelection())
+    return;
+
   switch (gDuelCursor.state) {
     case 0:
       sub_80441D0__Replacement();

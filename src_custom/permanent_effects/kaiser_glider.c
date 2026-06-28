@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
@@ -125,6 +126,9 @@ static void ResolveKaiserGliderEffectForAi(void)
   u8 targetCol;
 
   if (!PickAiKaiserGliderTarget(&targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(KAISER_GLIDER, targetRow, targetCol))
     return;
 
   Duel_ReturnMonsterZoneToOwnerHand(gFixedZones[targetRow][targetCol], TRUE);

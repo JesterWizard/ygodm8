@@ -1,7 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
-#include "constants/card_ids.h"
 #include "card_passives.h"
+#include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "invader_of_the_throne.h"
 #include "monster_effect_usage.h"
@@ -109,6 +109,9 @@ static void ResolveInvaderEffectForAi(void)
     return;
 
   if (!IsSwappableOpponentMonster(targetRow, (u8)targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(INVADER_OF_THE_THRONE, targetRow, (u8)targetCol))
     return;
 
   ResolveInvaderSwap(targetRow, (u8)targetCol);

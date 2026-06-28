@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "blowback_dragon.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -117,6 +118,9 @@ static void ResolveBlowbackDragonEffectForAi(void)
   u8 targetCol;
 
   if (!FindFirstTarget(&targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(BLOWBACK_DRAGON, targetRow, targetCol))
     return;
 
   DestroyTargetIfCoinSucceeds(targetRow, targetCol);

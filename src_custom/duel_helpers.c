@@ -1857,6 +1857,7 @@ enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx)
 }
 
 static u8 sSpellEffectResolveDepth APPEND_DATA = 0;
+static u8 sMonsterEffectResolveDepth APPEND_DATA = 0;
 
 void Duel_BeginSpellEffectResolve(void)
 {
@@ -1872,6 +1873,22 @@ void Duel_EndSpellEffectResolve(void)
 u8 Duel_IsSpellEffectResolving(void)
 {
   return sSpellEffectResolveDepth > 0 && gTrapEffectData.trapCardId == 0;
+}
+
+void Duel_BeginMonsterEffectResolve(void)
+{
+  sMonsterEffectResolveDepth++;
+}
+
+void Duel_EndMonsterEffectResolve(void)
+{
+  if (sMonsterEffectResolveDepth > 0)
+    sMonsterEffectResolveDepth--;
+}
+
+u8 Duel_IsMonsterEffectResolving(void)
+{
+  return sMonsterEffectResolveDepth > 0;
 }
 
 u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone)
@@ -2021,9 +2038,23 @@ void Duel_HandlePickZoneB(void)
 void Duel_ResolvePickZoneForAi(void)
 {
   u8 targetRow, targetCol;
+  u16 originId;
 
-  if (gPickZoneState.aiPicker != NULL && gPickZoneState.aiPicker(&targetRow, &targetCol))
-    gPickZoneState.resolver(targetRow, targetCol);
+  if (gPickZoneState.aiPicker == NULL || !gPickZoneState.aiPicker(&targetRow, &targetCol))
+    return;
+
+  if (gMonEffect.id != CARD_NONE && GetTypeGroup(gMonEffect.id) == TYPE_GROUP_MONSTER)
+    originId = gMonEffect.id;
+  else if (gActiveEffect.cardId != CARD_NONE
+           && GetTypeGroup(gActiveEffect.cardId) == TYPE_GROUP_MONSTER)
+    originId = gActiveEffect.cardId;
+  else
+    originId = CARD_NONE;
+
+  if (Duel_TryNegateMonsterEffectOnTarget(originId, targetRow, targetCol))
+    return;
+
+  gPickZoneState.resolver(targetRow, targetCol);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

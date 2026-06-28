@@ -235,6 +235,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { HARPIES_PET_BABY_DRAGON, gActivationDescription_HarpiesPetBabyDragon },
   { BLUE_EYES_CHAOS_DRAGON, gActivationDescription_BlueEyesChaosDragon },
   { BLOWBACK_DRAGON, gActivationDescription_BlowbackDragon },
+  { CHAOS_COMMAND_MAGICIAN, gActivationDescription_ChaosCommandMagician },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

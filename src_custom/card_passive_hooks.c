@@ -37,6 +37,12 @@ static u8 ShouldBlockEffectOnZone(struct DuelCard *zone) {
   if (Duel_IsSpellEffectResolving() && Duel_ZoneIsImmuneToSpellEffects(zone))
     return TRUE;
 
+  if (Duel_IsMonsterEffectResolving() && !Duel_IsSpellEffectResolving()
+      && gMonEffect.id != CARD_NONE
+      && GetTypeGroup(gMonEffect.id) == TYPE_GROUP_MONSTER
+      && Duel_TryNegateMonsterEffectOnZone(gMonEffect.id, zone))
+    return TRUE;
+
   return FALSE;
 }
 

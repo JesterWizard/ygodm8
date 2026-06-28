@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "harpies_pet_baby_dragon.h"
@@ -118,6 +119,9 @@ static void ResolveHarpiesPetBabyDragonEffectForAi(void)
   u8 targetCol;
 
   if (!FindFirstDestroyTarget(&targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(HARPIES_PET_BABY_DRAGON, targetRow, targetCol))
     return;
 
   DestroyTarget(targetRow, targetCol);

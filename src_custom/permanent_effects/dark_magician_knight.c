@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "dark_magician_knight.h"
 #include "duel_helpers.h"
@@ -192,6 +193,9 @@ static void ResolveDarkMagicianKnightEffectForAi(u8 originFixedRow, u8 originFix
   u8 targetCol;
 
   if (!PickAiDarkMagicianKnightTarget(originFixedRow, originFixedCol, &targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(DARK_MAGICIAN_KNIGHT, targetRow, targetCol))
     return;
 
   DestroyDarkMagicianKnightTarget(targetRow, targetCol);

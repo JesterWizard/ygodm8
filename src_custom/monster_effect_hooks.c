@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "configs/runtime.h"
+#include "duel_helpers.h"
 #include "constants/monster_effects.h"
 #include "cannon_soldier.h"
 #include "monster_effect_usage.h"
@@ -28,6 +30,7 @@
 #include "elemental_hero_bubbleman.h"
 #include "harpies_pet_baby_dragon.h"
 #include "blowback_dragon.h"
+#include "chiron_the_mage.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -310,6 +313,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gMonEffect.id == CHIRON_THE_MAGE) {
+    ActivateChironTheMageEffect();
+    return;
+  }
+
   if (gMonEffect.id == AMAZONESS_ARCHER) {
     ActivateAmazonessArcherEffect();
     return;
@@ -334,7 +342,10 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
+  Duel_EndMonsterEffectResolve();
+  gChaosCommandMagicianBlockedOriginMonsterEffectId = CARD_NONE;
 }
 
 LYN_REPLACE_CHECK(MonsterActionMenu);

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
@@ -183,6 +184,9 @@ static void ResolveZaborgEffectForAi(u8 originFixedRow, u8 originFixedCol)
   u8 targetCol;
 
   if (!PickAiZaborgTarget(originFixedRow, originFixedCol, &targetRow, &targetCol))
+    return;
+
+  if (Duel_MonsterEffectConfirmTargetForAi(ZABORG_THE_THUNDER_MONARCH, targetRow, targetCol))
     return;
 
   DestroyZaborgTarget(targetRow, targetCol);

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "card_passives.h"
 #include "dark_room_of_nightmare.h"
 #include "fire_princess.h"
 #include "duel_main.h"
@@ -76,6 +77,12 @@ LYN_REPLACE_CHECK(sub_801CF08);
 void sub_801CF08__Replacement(void)
 {
   const u8 *activationText = GetCardActivationText(gCardEffectTextData.cardId);
+
+  if (Duel_ShouldSuppressChaosCommandMagicianBlockedMonsterEffectText(
+          gCardEffectTextData.cardId)) {
+    sub_8022080();
+    return;
+  }
 
   if (activationText != NULL) {
     PlayActivationDescriptionText(activationText);
