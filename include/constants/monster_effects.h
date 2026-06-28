@@ -135,6 +135,7 @@ enum {
   MONSTER_EFFECT_BUBBLEMAN,
   MONSTER_EFFECT_HARPIES_PET_BABY_DRAGON,
   MONSTER_EFFECT_BLOWBACK_DRAGON,
+  MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -183,5 +184,7 @@ extern unsigned char CanActivateLeviaDragonDaedalus(void);
 extern void ActivateLeviaDragonDaedalusEffect(void);
 extern unsigned char CanActivateBLOWBACK_DRAGON(void);
 extern void ActivateBLOWBACK_DRAGONEffect(void);
+extern unsigned char CanActivateElementalHeroRampartBlaster(void);
+extern void ActivateElementalHeroRampartBlasterEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

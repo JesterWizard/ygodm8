@@ -1,15 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-28 — Autonomous Action Unit spell effect
+**Last worked on:** 2026-06-28 — Rampart Blaster: once-per-turn activated direct damage
 
 **Files touched:**
-- `src_custom/spell_effects/autonomous_action_unit.c`
-- `include/autonomous_action_unit.h`
-- `src_custom/spell_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/spell_effects/dynamic_equip.c`
+- `src_custom/activated_effects/elemental_hero_rampart_blaster.c`
+- `include/constants/monster_effects.h`
+- `src_custom/monster_effect_hooks.c`
+- `tools/card_data_manifest.json`
 
-**Outcome:** make test-cards-link passes; CanActivate + 1500 LP GY summon + dynamic equip
+**Outcome:** make test-cards-build passes; 1000 LP once per turn
 
 **Open / next:**
-- In-duel test with opponent GY monster
+- In-duel test activated effect menu

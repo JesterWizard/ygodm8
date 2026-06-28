@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 233 |
-| Art ready, needs manifest | 148 |
+| In game (manifest + art) | 234 |
+| Art ready, needs manifest | 147 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **381** |
 
@@ -255,6 +255,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DE_FUSION` | De-Fusion | `de_fusion.png` |
 | `DIFFUSION_WAVE_MOTION` | Diffusion Wave-Motion | `diffusion_wave_motion.png` |
 | `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
+| `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -308,7 +309,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_MARINER` — `elemental_hero_mariner.png`
 - [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
 - [ ] `ELEMENTAL_HERO_PHOENIX_ENFORCER` — `elemental_hero_phoenix_enforcer.png`
-- [ ] `ELEMENTAL_HERO_RAMPART_BLASTER` — `elemental_hero_rampart_blaster.png`
 - [ ] `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` — `elemental_hero_shining_flare_wingman.png`
 - [ ] `ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER` — `elemental_hero_shining_phoenix_enforcer.png`
 - [ ] `ELEMENTAL_HERO_STEAM_HEALER` — `elemental_hero_steam_healer.png`

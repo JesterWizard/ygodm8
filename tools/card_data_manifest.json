@@ -19228,6 +19228,37 @@
           "Pay 1500 Life Points, then special summon 1 monster from your opponent's Graveyard."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_RAMPART_BLASTER",
+      "card_name": "Elemental HERO Rampart Blaster",
+      "atk": 2000,
+      "def": 2500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 7, 7, 3, 7, 0, 8, 7],
+      "description": {
+        "symbol": "gDescription_ElementalHeroRampartBlaster",
+        "pages": [
+          "Elemental HERO Clayman + Elemental HERO Burstinatrix",
+          "Must be Fusion Summoned. Once per turn: inflict",
+          "damage equal to half this card's current ATK."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroRampartBlaster",
+        "pages": [
+          "Inflict damage equal to half this card's current ATK."
+        ]
+      },
+      "lock_after_activation": true,
+      "effect_usage": "once_per_turn"
     }
   ]
 }
