@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "deck_menu.h"
 #include "fusion_recipes.h"
+#include "elemental_hero_electrum.h"
 #include "gfx_reg_buffers.h"
 #include "spell_effects.h"
 
@@ -145,6 +146,9 @@ static void ExecuteFusionByRecipe(const struct FusionRecipe *recipe)
     opts = Duel_DefaultSpecialSummonOpts(FALSE);
     opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
     Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, recipe->result, opts);
+
+    if (recipe->result == ELEMENTAL_HERO_ELECTRUM)
+      ElementalHeroElectrum_OnFusionSummoned();
 
     /* ponytail: fusion summoned face-down in attack position */
     {

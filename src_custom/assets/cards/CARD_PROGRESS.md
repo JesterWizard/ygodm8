@@ -267,6 +267,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_TEMPEST` | Elemental HERO Tempest | `elemental_hero_tempest.png` |
 | `ELEMENTAL_HERO_WILDEDGE` | Elemental HERO Wildedge | `elemental_hero_wildedge.png` |
 | `ELEMENTAL_HERO_THUNDER_GIANT` | Elemental HERO Thunder Giant | `elemental_hero_thunder_giant.png` |
+| `ELEMENTAL_HERO_MARINER` | Elemental HERO Mariner | `elemental_hero_mariner.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -311,8 +312,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
-- [ ] `ELEMENTAL_HERO_ELECTRUM` — `elemental_hero_electrum.png`
-| `ELEMENTAL_HERO_MARINER` | Elemental HERO Mariner | `elemental_hero_mariner.png` |
+| `ELEMENTAL_HERO_ELECTRUM` | Elemental HERO Electrum | `elemental_hero_electrum.png` |
 - [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`

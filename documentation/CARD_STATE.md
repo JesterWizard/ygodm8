@@ -1,16 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Added Elemental HERO Mariner
+**Last worked on:** 2026-06-29 — Added Elemental HERO Electrum
 
 **Files touched:**
 - `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `src_custom/card_passives/elemental_hero_mariner.c`
-- `include/elemental_hero_mariner.h`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/ai_attack_hooks.c`
+- `src_custom/permanent_effects/elemental_hero_electrum.c`
+- `include/elemental_hero_electrum.h`
+- `src_custom/duel_helpers.c`
+- `src_custom/spell_effects/polymerization.c`
 
-**Outcome:** make all passes; direct attack while controller has face-down S/T
+**Outcome:** make all passes; +300 ATK per shared-Attr foe mon; fusion summon shows effect text
 
 **Open / next:**
-- Playtest direct attack with set spell/trap
+- 4-material fusion recipe needs fusion_recipes extension
