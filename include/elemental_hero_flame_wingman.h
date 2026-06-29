@@ -5,6 +5,7 @@
 
 extern u8 gPendingElementalHeroFlameWingmanDuelist;
 extern u16 gPendingElementalHeroFlameWingmanDestroyedAtk;
+extern u16 gPendingElementalHeroFlameWingmanEffectCardId;
 
 void ApplyElementalHeroFlameWingmanBattleEffect(void);
 void ResolveElementalHeroFlameWingmanBattleEffect(void);

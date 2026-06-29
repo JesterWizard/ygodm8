@@ -19452,6 +19452,35 @@
           "Inflict damage to your opponent equal to the ATK of the destroyed monster."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SHINING_FLARE_WINGMAN",
+      "card_name": "Elemental HERO Shining Flare Wingman",
+      "atk": 2500,
+      "def": 2100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [2, 5, 3, 6, 6, 4, 8, 4],
+      "description": {
+        "symbol": "gDescription_ElementalHeroShiningFlareWingman",
+        "pages": [
+          "Elemental HERO Flame Wingman + Sparkman",
+          "Must be Fusion Summoned. +300 ATK per Elemental",
+          "HERO in GY. Battle destroy inflicts its ATK."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroShiningFlareWingman",
+        "pages": [
+          "Inflict damage to your opponent equal to the ATK of the destroyed monster."
+        ]
+      }
     }
   ]
 }

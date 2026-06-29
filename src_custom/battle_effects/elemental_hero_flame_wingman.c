@@ -36,6 +36,13 @@ void ClearElementalHeroFlameWingmanPending(void)
 {
   gPendingElementalHeroFlameWingmanDuelist = ELEMENTAL_HERO_FLAME_WINGMAN_PENDING_NONE;
   gPendingElementalHeroFlameWingmanDestroyedAtk = 0;
+  gPendingElementalHeroFlameWingmanEffectCardId = CARD_NONE;
+}
+
+static u8 IsElementalHeroBattleBurnCard(u16 cardId)
+{
+  return cardId == ELEMENTAL_HERO_FLAME_WINGMAN
+      || cardId == ELEMENTAL_HERO_SHINING_FLARE_WINGMAN;
 }
 
 static u8 IsMonsterBattleAction(u8 id)
@@ -51,7 +58,7 @@ static u16 GetOriginalCardAtk(u16 cardId)
   return gCardData_NEW[cardId].atk;
 }
 
-static void MarkPendingBurn(u8 attackingDuelist, u16 destroyedCardId)
+static void MarkPendingBurn(u8 attackingDuelist, u16 destroyedCardId, u16 effectCardId)
 {
   u16 destroyedAtk = GetOriginalCardAtk(destroyedCardId);
 
@@ -60,6 +67,7 @@ static void MarkPendingBurn(u8 attackingDuelist, u16 destroyedCardId)
 
   gPendingElementalHeroFlameWingmanDuelist = attackingDuelist;
   gPendingElementalHeroFlameWingmanDestroyedAtk = destroyedAtk;
+  gPendingElementalHeroFlameWingmanEffectCardId = effectCardId;
 }
 
 void ResolveElementalHeroFlameWingmanBattleEffect(void)
@@ -75,7 +83,10 @@ void ResolveElementalHeroFlameWingmanBattleEffect(void)
   destroyedAtk = gPendingElementalHeroFlameWingmanDestroyedAtk;
   burnTarget = attackingDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER;
 
-  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_FLAME_WINGMAN, 3);
+  if (gPendingElementalHeroFlameWingmanEffectCardId == CARD_NONE)
+    return;
+
+  Duel_ShowEffectTextTyped(gPendingElementalHeroFlameWingmanEffectCardId, 3);
   ClearElementalHeroFlameWingmanPending();
 
   if (Duel_ChangeLp(burnTarget, -(s32)destroyedAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
@@ -90,14 +101,14 @@ void ApplyElementalHeroFlameWingmanBattleEffect(void)
   if (!IsMonsterBattleAction(sActionData.id))
     return;
 
-  if (sActionData.playerCardId == ELEMENTAL_HERO_FLAME_WINGMAN
+  if (IsElementalHeroBattleBurnCard(sActionData.playerCardId)
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
       && !(sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
-    MarkPendingBurn(DUEL_PLAYER, sActionData.opponentCardId);
-  } else if (sActionData.opponentCardId == ELEMENTAL_HERO_FLAME_WINGMAN
+    MarkPendingBurn(DUEL_PLAYER, sActionData.opponentCardId, sActionData.playerCardId);
+  } else if (IsElementalHeroBattleBurnCard(sActionData.opponentCardId)
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)
       && !(sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
-    MarkPendingBurn(DUEL_OPPONENT, sActionData.playerCardId);
+    MarkPendingBurn(DUEL_OPPONENT, sActionData.playerCardId, sActionData.opponentCardId);
   } else {
     return;
   }
