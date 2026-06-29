@@ -47,6 +47,7 @@
 #include "elemental_hero_flame_wingman.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
+#include "elemental_hero_necroshade.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
@@ -244,6 +245,7 @@ void InitBoard__Replacement(void) {
   ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
+  ElementalHeroNecroshade_Reset();
   gAiSimInBatch = FALSE;
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)

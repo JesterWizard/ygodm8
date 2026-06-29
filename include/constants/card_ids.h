@@ -1049,11 +1049,12 @@
 #define ELEMENTAL_HERO_THUNDER_GIANT             0x0415
 #define ELEMENTAL_HERO_MARINER                   0x0416
 #define ELEMENTAL_HERO_ELECTRUM                  0x0417
+#define ELEMENTAL_HERO_NECROSHADE                0x0418
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0418
-#define NUM_CUSTOM_CARDS                        0x00F7
+#define NUM_TOTAL_CARDS                         0x0419
+#define NUM_CUSTOM_CARDS                        0x00F8
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

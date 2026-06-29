@@ -313,7 +313,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
 | `ELEMENTAL_HERO_ELECTRUM` | Elemental HERO Electrum | `elemental_hero_electrum.png` |
-- [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
+| `ELEMENTAL_HERO_NECROSHADE` | Elemental HERO Necroshade | `elemental_hero_necroshade.png` |
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`

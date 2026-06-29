@@ -72,6 +72,7 @@
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "elemental_hero_wildedge.h"
+#include "elemental_hero_necroshade.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
@@ -226,6 +227,7 @@ static void TryPlaceSelectedCardOnField_Local(void)
         RecordPendingSummonTributeCount();
         sub_80449D8();
         TryActivatingPermanentEffects();
+        ElementalHeroNecroshade_TryConsumeOnNormalSummon(placedCardId);
         if (placedCardId == GetPendingTributeSummonCardId()) {
           ResetNumTributes();
           ClearPendingTributeSummonCardId();

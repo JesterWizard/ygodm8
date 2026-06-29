@@ -6,6 +6,7 @@
 #include "cost_down.h"
 #include "a_legendary_ocean.h"
 #include "debug_ruleset.h"
+#include "elemental_hero_necroshade.h"
 #include "tribute.h"
 #include "summon_tribute.h"
 #include "ai_actions.h"
@@ -87,6 +88,9 @@ static int GetBaseRequiredTributes(u16 cardId)
   if (CyberDragonCanSummonWithoutTribute(cardId))
     return 0;
 
+  if (ElementalHeroNecroshade_CanNormalSummonWithoutTribute(cardId))
+    return 0;
+
   if (ShouldApplyCostDownLevelForTribute(cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
 
@@ -109,6 +113,9 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
     return 0;
 
   if (CyberDragonCanSummonWithoutTribute(cardId))
+    return 0;
+
+  if (ElementalHeroNecroshade_CanNormalSummonWithoutTributeForHandSlot(handSlot, cardId))
     return 0;
 
   if (ShouldApplyCostDownForHandSlot(handSlot, cardId))
