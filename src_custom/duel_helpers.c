@@ -41,6 +41,7 @@ extern void ResetCursorDestToCurrentPos(void);
 extern void CheckWinConditionExodia(unsigned char);
 extern void TryActivatingPermanentEffects(void);
 
+u8 ElementalHeroShiningPhoenixEnforcer_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -125,6 +126,7 @@ static u8 HandMatchesCardOrPredicate(u16 handCardId, u16 cardId, HandCardPredica
 static u16 sSelectHandCardId APPEND_DATA = CARD_NONE;
 static HandCardPredicate sSelectHandPred APPEND_DATA = NULL;
 static const char sAmazonessArchetypeName[] APPEND_RODATA = "Amazoness";
+static const char sElementalHeroArchetypeName[] APPEND_RODATA = "Elemental HERO";
 
 static u8 AnyHandCardForSelect(u16 handCardId)
 {
@@ -718,6 +720,11 @@ u8 Duel_IsAmazonessCard(u16 cardId)
   return Duel_CardNameContains(cardId, sAmazonessArchetypeName);
 }
 
+u8 Duel_IsElementalHeroCard(u16 cardId)
+{
+  return Duel_CardNameContains(cardId, sElementalHeroArchetypeName);
+}
+
 u8 Duel_IsFiendZone(struct DuelCard *zone)
 {
   return zone != NULL && zone->id != CARD_NONE
@@ -889,6 +896,7 @@ struct DuelAttackGate {
 };
 
 static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((section(".text"))) = {
+  { ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER, ElementalHeroShiningPhoenixEnforcer_ApplyDynamicZoneStats },
   { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
   { MAJU_GARZETT, MajuGarzett_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
@@ -1038,7 +1046,8 @@ u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 oppo
     return FALSE;
 
   if (cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER
-      || cardId == ELEMENTAL_HERO_PHOENIX_ENFORCER)
+      || cardId == ELEMENTAL_HERO_PHOENIX_ENFORCER
+      || cardId == ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER)
     return FALSE;
 
   return TRUE;
@@ -2122,6 +2131,8 @@ void DuelHelpers_SelfCheck(void)
   if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 1999) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(ELEMENTAL_HERO_PHOENIX_ENFORCER, DUEL_PLAYER, 2000, 2000) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(KAISER_GLIDER, DUEL_PLAYER, 1500, 1500) != TRUE)
     __builtin_trap();

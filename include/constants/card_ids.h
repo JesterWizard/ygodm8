@@ -1041,11 +1041,12 @@
 #define DEDICATION_THROUGH_LIGHT_AND_DARKNESS    0x040D
 #define ELEMENTAL_HERO_STEAM_HEALER              0x040E
 #define ELEMENTAL_HERO_PHOENIX_ENFORCER          0x040F
+#define ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER  0x0410
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0410
-#define NUM_CUSTOM_CARDS                        0x00EF
+#define NUM_TOTAL_CARDS                         0x0411
+#define NUM_CUSTOM_CARDS                        0x00F0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

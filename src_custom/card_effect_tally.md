@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `235` effects
+- `236` effects
 
 ## Tally
 
@@ -203,6 +203,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Berserk Gorilla` | `src_custom/permanent_effects/berserk_gorilla.c` |
 | `permanent_effects` | `Mobius the Frost Monarch` | `src_custom/permanent_effects/mobius_the_frost_monarch.c` |
 | `permanent_effects` | `Theban Nightmare` | `src_custom/permanent_effects/theban_nightmare.c` |
+| `permanent_effects` | `Elemental HERO Shining Phoenix Enforcer` | `src_custom/permanent_effects/elemental_hero_shining_phoenix_enforcer.c` |
 | `permanent_effects` | `Goblin King` | `src_custom/permanent_effects/goblin_king.c` |
 | `permanent_effects` | `Gyaku-Gire Panda` | `src_custom/permanent_effects/gyaku_gire_panda.c` |
 | `permanent_effects` | `Gilasaurus` | `src_custom/permanent_effects/gilasaurus.c` |

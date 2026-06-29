@@ -59,6 +59,7 @@ u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base);
 u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType);
 u8 Duel_CardNameContains(u16 cardId, const char *needle);
 u8 Duel_IsAmazonessCard(u16 cardId);
+u8 Duel_IsElementalHeroCard(u16 cardId);
 u8 Duel_IsFiendZone(struct DuelCard *zone);
 u8 Duel_FindFixedMonsterZone(struct DuelCard *zone, u8 *fixedRow, u8 *col);
 u8 Duel_FindFixedZone(struct DuelCard *zone, u8 *fixedRow, u8 *col);

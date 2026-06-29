@@ -19383,7 +19383,7 @@
       "card_name": "Elemental HERO Phoenix Enforcer",
       "atk": 2100,
       "def": 1200,
-      "level": 4,
+      "level": 6,
       "attribute": "ATTRIBUTE_FIRE",
       "type": "TYPE_WARRIOR",
       "color": "FUSION_CARD",
@@ -19398,6 +19398,29 @@
           "Elemental HERO Avian + Elemental HERO Burstinatrix",
           "Must be Fusion Summoned and cannot be Special",
           "Summoned by other ways. Cannot be destroyed by battle."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER",
+      "card_name": "Elemental HERO Shining Phoenix Enforcer",
+      "atk": 2500,
+      "def": 2100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [8, 8, 8, 2, 0, 2, 3, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroShiningPhoenixEnforcer",
+        "pages": [
+          "Elemental HERO Phoenix Enforcer + Elemental HERO",
+          "Sparkman. Must be Fusion Summoned. +300 ATK per",
+          "Elemental HERO in GY. Cannot be destroyed by battle."
         ]
       }
     }
