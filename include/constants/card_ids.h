@@ -1051,11 +1051,12 @@
 #define ELEMENTAL_HERO_ELECTRUM                  0x0417
 #define ELEMENTAL_HERO_NECROSHADE                0x0418
 #define MIRACLE_FUSION                           0x0419
+#define THE_AGENT_OF_FORCE_MARS                  0x041A
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x041A
-#define NUM_CUSTOM_CARDS                        0x00F9
+#define NUM_TOTAL_CARDS                         0x041B
+#define NUM_CUSTOM_CARDS                        0x00FA
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

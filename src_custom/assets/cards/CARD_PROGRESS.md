@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 249 |
-| Art ready, needs manifest | 131 |
+| In game (manifest + art) | 250 |
+| Art ready, needs manifest | 130 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -271,6 +271,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_ELECTRUM` | Elemental HERO Electrum | `elemental_hero_electrum.png` |
 | `ELEMENTAL_HERO_NECROSHADE` | Elemental HERO Necroshade | `elemental_hero_necroshade.png` |
 | `MIRACLE_FUSION` | Miracle Fusion | `miracle_fusion.png` |
+| `THE_AGENT_OF_FORCE_MARS` | The Agent of Force - Mars | `the_agent_of_force_mars.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -389,7 +390,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
-- [ ] `THE_AGENT_OF_FORCE_MARS` — `the_agent_of_force_mars.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`

@@ -19678,6 +19678,35 @@
           "Summon 1 Elemental HERO Fusion Monster using monsters from field or Graveyard as materials."
         ]
       }
+    },
+    {
+      "card_const": "THE_AGENT_OF_FORCE_MARS",
+      "card_name": "The Agent of Force - Mars",
+      "atk": 0,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 1, 1, 2, 3, 9, 2, 0],
+      "description": {
+        "symbol": "gDescription_TheAgentOfForceMars",
+        "pages": [
+          "Unaffected by Spell Cards.",
+          "While Sanctuary in the Sky is active",
+          "and your LP are higher, gain ATK/DEF equal to the difference."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_TheAgentOfForceMars",
+        "pages": [
+          "While Sanctuary in the Sky is active and your LP are higher, gain ATK/DEF equal to the difference."
+        ]
+      }
     }
   ]
 }

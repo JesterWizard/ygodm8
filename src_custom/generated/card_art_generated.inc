@@ -1004,6 +1004,10 @@ static const unsigned char sMiracleFusionBigArt[] __attribute__((section(".appen
 static const unsigned short sMiracleFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/miracle_fusion.gbapal");
 static const unsigned char sMiracleFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/miracle_fusion.lz");
 
+static const unsigned char sTheAgentOfForceMarsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_agent_of_force_mars.huff");
+static const unsigned short sTheAgentOfForceMarsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_agent_of_force_mars.gbapal");
+static const unsigned char sTheAgentOfForceMarsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_agent_of_force_mars.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1256,6 +1260,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0417] = sElementalHeroElectrumBigArt,
   [0x0418] = sElementalHeroNecroshadeBigArt,
   [0x0419] = sMiracleFusionBigArt,
+  [0x041A] = sTheAgentOfForceMarsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1510,6 +1515,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0417] = sElementalHeroElectrumBigPalette,
   [0x0418] = sElementalHeroNecroshadeBigPalette,
   [0x0419] = sMiracleFusionBigPalette,
+  [0x041A] = sTheAgentOfForceMarsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1764,6 +1770,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0417] = 0,
   [0x0418] = 0,
   [0x0419] = 0,
+  [0x041A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2018,4 +2025,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0417] = sElementalHeroElectrumMiniArt,
   [0x0418] = sElementalHeroNecroshadeMiniArt,
   [0x0419] = sMiracleFusionMiniArt,
+  [0x041A] = sTheAgentOfForceMarsMiniArt,
 };

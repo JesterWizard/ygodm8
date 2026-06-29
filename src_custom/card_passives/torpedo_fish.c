@@ -13,6 +13,9 @@ u8 IsImmuneToSpellEffectsOnField(u16 cardId, u8 turnRow)
   if (!IsMonsterFieldRow(turnRow))
     return FALSE;
 
+  if (cardId == THE_AGENT_OF_FORCE_MARS)
+    return TRUE;
+
   if (cardId != TORPEDO_FISH)
     return FALSE;
 

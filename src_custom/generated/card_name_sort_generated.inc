@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 249
+#define NUM_CUSTOM_NAME_SORT_CARDS 250
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -254,6 +254,7 @@ static const u8 sElementalHeroMarinerSortName[] APPEND_RODATA = "Elemental HERO 
 static const u8 sElementalHeroElectrumSortName[] APPEND_RODATA = "Elemental HERO Electrum";
 static const u8 sElementalHeroNecroshadeSortName[] APPEND_RODATA = "Elemental HERO Necroshade";
 static const u8 sMiracleFusionSortName[] APPEND_RODATA = "Miracle Fusion";
+static const u8 sTheAgentOfForceMarsSortName[] APPEND_RODATA = "The Agent of Force - Mars";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -476,6 +477,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x036E, // Swift Gaia The Fierce Knight
   0x0374, // Terrorking Salmon
   0x0384, // The Agent Of Creation - Venus
+  0x041A, // The Agent of Force - Mars
   0x036D, // The Dark Door
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
@@ -728,35 +730,36 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   218, // Swift Gaia The Fierce Knight
   219, // Terrorking Salmon
   220, // The Agent Of Creation - Venus
-  221, // The Dark Door
-  222, // The Flute of Summoning Dragon
-  223, // The Forceful Sentry
-  224, // The Sanctuary in the Sky
-  225, // The Thing in the Crater
-  226, // The Unstoppable Exodia Incarnate
-  227, // Theban Nightmare
-  228, // Thousand Energy
-  229, // Thousand Knives
-  230, // Thunder Crash
-  231, // Time Seal
-  232, // Toll
-  233, // Torpedo Fish
-  234, // Triangle Power
-  235, // Twin Swords of Flashing Light - Tryce
-  236, // Tyrant Dragon
-  237, // Ultimate Offering
-  238, // United We Stand
-  239, // Upstart Goblin
-  240, // Vampire Baby
-  241, // Vengeful Bog Spirit
-  242, // Wall of Revealing Light
-  243, // Warrior of Zera
-  244, // Wave Motion Cannon
-  245, // Weather Report
-  246, // White Magician Pikeru
-  247, // World Suppression
-  248, // Yata-Garasu
-  249, // Zaborg the Thunder Monarch
+  221, // The Agent of Force - Mars
+  222, // The Dark Door
+  223, // The Flute of Summoning Dragon
+  224, // The Forceful Sentry
+  225, // The Sanctuary in the Sky
+  226, // The Thing in the Crater
+  227, // The Unstoppable Exodia Incarnate
+  228, // Theban Nightmare
+  229, // Thousand Energy
+  230, // Thousand Knives
+  231, // Thunder Crash
+  232, // Time Seal
+  233, // Toll
+  234, // Torpedo Fish
+  235, // Triangle Power
+  236, // Twin Swords of Flashing Light - Tryce
+  237, // Tyrant Dragon
+  238, // Ultimate Offering
+  239, // United We Stand
+  240, // Upstart Goblin
+  241, // Vampire Baby
+  242, // Vengeful Bog Spirit
+  243, // Wall of Revealing Light
+  244, // Warrior of Zera
+  245, // Wave Motion Cannon
+  246, // Weather Report
+  247, // White Magician Pikeru
+  248, // World Suppression
+  249, // Yata-Garasu
+  250, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1264,6 +1267,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sElementalHeroNecroshadeSortName;
   if (cardId == 0x0419)
     return (u8 *)sMiracleFusionSortName;
+  if (cardId == 0x041A)
+    return (u8 *)sTheAgentOfForceMarsSortName;
 
   return gCardNames[cardId];
 }
