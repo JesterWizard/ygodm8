@@ -1,0 +1,13 @@
+#ifndef GUARD_ELEMENTAL_HERO_STEAM_HEALER_H
+#define GUARD_ELEMENTAL_HERO_STEAM_HEALER_H
+
+#define ELEMENTAL_HERO_STEAM_HEALER_PENDING_NONE 0xFF
+
+extern u8 gPendingElementalHeroSteamHealerDuelist;
+extern u16 gPendingElementalHeroSteamHealerDestroyedAtk;
+
+void ApplyElementalHeroSteamHealerBattleEffect(void);
+void ResolveElementalHeroSteamHealerBattleEffect(void);
+void ClearElementalHeroSteamHealerPending(void);
+
+#endif

@@ -238,6 +238,7 @@ static const u8 sElementalHeroRampartBlasterName[] __attribute__((section(".appe
 static const u8 sALegendaryOceanName[] __attribute__((section(".append_assets"))) = "A Legendary Ocean";
 static const u8 sDarkMagicianOfChaosName[] __attribute__((section(".append_assets"))) = "Dark Magician of Chaos";
 static const u8 sDedicationThroughLightAndDarknessName[] __attribute__((section(".append_assets"))) = "Dedication through Light and Darkness";
+static const u8 sElementalHeroSteamHealerName[] __attribute__((section(".append_assets"))) = "Elemental HERO Steam Healer";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -720,6 +721,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkMagicianOfChaosName;
   if (cardId == 0x040D)
     return (u8 *)sDedicationThroughLightAndDarknessName;
+  if (cardId == 0x040E)
+    return (u8 *)sElementalHeroSteamHealerName;
 
   return gCardNames[cardId];
 }

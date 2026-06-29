@@ -21,6 +21,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "mefist_the_infernal_general.h"
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
+#include "elemental_hero_steam_healer.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
@@ -351,6 +352,7 @@ void sub_8040EF0__Replacement(void) {
   ResolveSpiritReaperDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveRoyalKnightBattleEffect();
+  ResolveElementalHeroSteamHealerBattleEffect();
   ResolveLesserFiendBattleEffect();
   ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();

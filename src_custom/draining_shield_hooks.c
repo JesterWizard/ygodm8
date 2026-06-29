@@ -46,6 +46,7 @@ void ResolveReaperOnTheNightmareDirectDamageEffect(void);
 void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveRoyalKnightBattleEffect(void);
+void ResolveElementalHeroSteamHealerBattleEffect(void);
 void ResolveLesserFiendBattleEffect(void);
 void ResolveDarkMagicianOfChaosBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
@@ -186,6 +187,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveSpiritReaperDiscardBattleEffect();
   ResolveGuardianAngelJoanBattleEffect();
   ResolveRoyalKnightBattleEffect();
+  ResolveElementalHeroSteamHealerBattleEffect();
   ResolveLesserFiendBattleEffect();
   ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();

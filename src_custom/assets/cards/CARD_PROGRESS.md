@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 237 |
-| Art ready, needs manifest | 144 |
+| In game (manifest + art) | 238 |
+| Art ready, needs manifest | 142 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **381** |
+| **Total PNGs in `80x80/`** | **380** |
 
 ## In game
 
@@ -259,6 +259,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `A_LEGENDARY_OCEAN` | A Legendary Ocean | `a_legendary_ocean.png` |
 | `DARK_MAGICIAN_OF_CHAOS` | Dark Magician of Chaos | `dark_magician_of_chaos.png` |
 | `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` | Dedication through Light and Darkness | `dedication_through_light_and_darkness.png` |
+| `ELEMENTAL_HERO_STEAM_HEALER` | Elemental HERO Steam Healer | `elemental_hero_steam_healer.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -294,7 +295,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBERNETIC_FUSION_SUPPORT` — `cybernetic_fusion_support.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DE-FUSION` — `de-fusion.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
@@ -311,7 +311,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_PHOENIX_ENFORCER` — `elemental_hero_phoenix_enforcer.png`
 - [ ] `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` — `elemental_hero_shining_flare_wingman.png`
 - [ ] `ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER` — `elemental_hero_shining_phoenix_enforcer.png`
-- [ ] `ELEMENTAL_HERO_STEAM_HEALER` — `elemental_hero_steam_healer.png`
 - [ ] `ELEMENTAL_HERO_TEMPEST` — `elemental_hero_tempest.png`
 - [ ] `ELEMENTAL_HERO_THUNDER_GIANT` — `elemental_hero_thunder_giant.png`
 - [ ] `ELEMENTAL_HERO_WILDEDGE` — `elemental_hero_wildedge.png`

@@ -278,6 +278,12 @@ _kernel_malloc_ewram gPendingRoyalKnightDuelist, 1
 _kernel_malloc_ewram gPendingRoyalKnightDestroyedDefPad, 1
 @ Original DEF of the monster Royal Knight destroyed in battle.
 _kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
+@ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Elemental HERO Steam Healer, else 0xFF.
+_kernel_malloc_ewram gPendingElementalHeroSteamHealerDuelist, 1
+@ ponytail: pad keeps gPendingElementalHeroSteamHealerDestroyedAtk on an even EWRAM address.
+_kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtkPad, 1
+@ Original ATK of the monster Steam Healer destroyed in battle.
+_kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtk, 2
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1

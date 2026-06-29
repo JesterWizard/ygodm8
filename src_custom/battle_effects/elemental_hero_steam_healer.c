@@ -3,12 +3,12 @@
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "guardian_angel_joan.h"
+#include "elemental_hero_steam_healer.h"
 
 #define FLAG_GRAVEYARD_PLAYER 1
 #define FLAG_GRAVEYARD_OPPONENT 2
 
-struct GuardianAngelJoanActionData {
+struct ElementalHeroSteamHealerActionData {
   unsigned short playerCardId;
   unsigned short playerCardAtkOrLifePointsMod;
   unsigned short playerCardDefense;
@@ -30,11 +30,11 @@ struct GuardianAngelJoanActionData {
   unsigned char unk1B;
 };
 
-extern struct GuardianAngelJoanActionData sActionData;
+extern struct ElementalHeroSteamHealerActionData sActionData;
 
-void ClearGuardianAngelJoanPending(void) {
-  gPendingGuardianAngelJoanDuelist = GUARDIAN_ANGEL_JOAN_PENDING_NONE;
-  gPendingGuardianAngelJoanDestroyedAtk = 0;
+void ClearElementalHeroSteamHealerPending(void) {
+  gPendingElementalHeroSteamHealerDuelist = ELEMENTAL_HERO_STEAM_HEALER_PENDING_NONE;
+  gPendingElementalHeroSteamHealerDestroyedAtk = 0;
 }
 
 static u8 IsMonsterBattleAction(u8 id) {
@@ -54,39 +54,39 @@ static void MarkPendingGain(u8 duelist, u16 destroyedCardId) {
   if (destroyedAtk == 0)
     return;
 
-  gPendingGuardianAngelJoanDuelist = duelist;
-  gPendingGuardianAngelJoanDestroyedAtk = destroyedAtk;
+  gPendingElementalHeroSteamHealerDuelist = duelist;
+  gPendingElementalHeroSteamHealerDestroyedAtk = destroyedAtk;
 }
 
-void ResolveGuardianAngelJoanBattleEffect(void) {
+void ResolveElementalHeroSteamHealerBattleEffect(void) {
   u8 duelist;
   u16 destroyedAtk;
 
-  duelist = gPendingGuardianAngelJoanDuelist;
-  if (duelist == GUARDIAN_ANGEL_JOAN_PENDING_NONE)
+  duelist = gPendingElementalHeroSteamHealerDuelist;
+  if (duelist == ELEMENTAL_HERO_STEAM_HEALER_PENDING_NONE)
     return;
 
-  destroyedAtk = gPendingGuardianAngelJoanDestroyedAtk;
+  destroyedAtk = gPendingElementalHeroSteamHealerDestroyedAtk;
 
-  Duel_ShowEffectTextTyped(GUARDIAN_ANGEL_JOAN, 3);
-  ClearGuardianAngelJoanPending();
+  Duel_ShowEffectTextTyped(ELEMENTAL_HERO_STEAM_HEALER, 3);
+  ClearElementalHeroSteamHealerPending();
 
   if (Duel_ChangeLp(duelist, destroyedAtk, TRUE) == DUEL_ACTION_DUEL_OVER)
     return;
 }
 
-void ApplyGuardianAngelJoanBattleEffect(void) {
+void ApplyElementalHeroSteamHealerBattleEffect(void) {
   if (gHideEffectText)
     return;
 
   if (!IsMonsterBattleAction(sActionData.id))
     return;
 
-  if (sActionData.playerCardId == GUARDIAN_ANGEL_JOAN
+  if (sActionData.playerCardId == ELEMENTAL_HERO_STEAM_HEALER
       && (sActionData.flags & FLAG_GRAVEYARD_OPPONENT)
       && !(sActionData.flags & FLAG_GRAVEYARD_PLAYER)) {
     MarkPendingGain(DUEL_PLAYER, sActionData.opponentCardId);
-  } else if (sActionData.opponentCardId == GUARDIAN_ANGEL_JOAN
+  } else if (sActionData.opponentCardId == ELEMENTAL_HERO_STEAM_HEALER
       && (sActionData.flags & FLAG_GRAVEYARD_PLAYER)
       && !(sActionData.flags & FLAG_GRAVEYARD_OPPONENT)) {
     MarkPendingGain(DUEL_OPPONENT, sActionData.playerCardId);
@@ -96,5 +96,5 @@ void ApplyGuardianAngelJoanBattleEffect(void) {
 
   /* Attacks without a battle animation resolve immediately (e.g. some AI paths). */
   if (gUnk2023EA0.unk18 == 0)
-    ResolveGuardianAngelJoanBattleEffect();
+    ResolveElementalHeroSteamHealerBattleEffect();
 }
