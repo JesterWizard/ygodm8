@@ -105,6 +105,7 @@ void sub_800B288 (unsigned char);
 void SetFinalStat (struct StatMod*);
 u8 ZoneShowsCombatStats (const struct DuelCard *zone);
 void ApplyFieldZoneStatsToCardInfo (struct DuelCard *zone);
+void ApplyCardInfoBarLevelOverrides(u16 cardId);
 void RefreshPendingBattleActionStatsFromZones (void);
 void SetCardInfo (unsigned short);
 void SetCardInfoWithWarning (unsigned short*);

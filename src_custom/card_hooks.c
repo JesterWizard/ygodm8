@@ -4,6 +4,7 @@
 #include "player_decks.h"
 #include "copycat.h"
 #include "cost_down.h"
+#include "a_legendary_ocean.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "embodiment_of_apophis.h"
@@ -325,6 +326,8 @@ static u8 GetFieldStatModifier(u8 field, u8 type) {
   if (IsCustomField(field))
     return gCustomFieldStatMods[field - FIRST_CUSTOM_FIELD][type];
 #endif
+  if (IsLegendaryOceanActive() && field == FIELD_UMI)
+    return 0;
   return gUnk8094FE4[field][type];
 }
 
@@ -477,6 +480,35 @@ u8 ZoneShowsCombatStats(const struct DuelCard *zone)
   return FALSE;
 }
 
+static u8 CardUsesMonsterLevelInInfoBar(u16 cardId)
+{
+  const CardData *card;
+
+  if (cardId >= NUM_TOTAL_CARDS)
+    return FALSE;
+
+  card = &gCardData_NEW[cardId];
+  return card->color == NORMAL_CARD || card->color == EFFECT_CARD
+      || card->color == FUSION_CARD || card->color == RITUAL_CARD;
+}
+
+static u8 CardUsesMonsterCombatStats(u16 cardId)
+{
+  return CardUsesMonsterLevelInInfoBar(cardId);
+}
+
+void ApplyCardInfoBarLevelOverrides(u16 cardId)
+{
+  if (!CardUsesMonsterLevelInInfoBar(cardId))
+    return;
+
+  if (gDuelCursor.currentY == PLAYER_HAND
+      && ShouldApplyCostDownForHandSlot(gDuelCursor.currentX, cardId))
+    gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
+
+  gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
+}
+
 void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 {
   struct StatMod statMod;
@@ -517,7 +549,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   gCardInfo.def = GetStageModifiedStat_Hook(
       GetFieldModifiedStat_Hook(gCardInfo.def, fieldMod), stage);
 
-  if (gShieldAndSwordActive == TRUE && GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER) {
+  if (gShieldAndSwordActive == TRUE && CardUsesMonsterCombatStats(zone->id)) {
     u16 atk = gCardInfo.atk;
     gCardInfo.atk = gCardInfo.def;
     gCardInfo.def = atk;
@@ -527,6 +559,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
+  ApplyLegendaryOceanFieldStatBoostForZone(zone);
   gSetFinalStatZone = NULL;
 }
 
@@ -602,7 +635,10 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && ShouldApplyCostDownForHandSlot(gDuelCursor.currentX, gCardInfo.id))
     gCardInfo.level = GetCostDownAdjustedLevel(gCardInfo.id, gCardInfo.level);
 
-  if (gShieldAndSwordActive == TRUE && GetTypeGroup(gCardInfo.id) == TYPE_GROUP_MONSTER) {
+  if (CardUsesMonsterCombatStats(gCardInfo.id))
+    gCardInfo.level = GetLegendaryOceanAdjustedLevel(gCardInfo.id, gCardInfo.level);
+
+  if (gShieldAndSwordActive == TRUE && CardUsesMonsterCombatStats(gCardInfo.id)) {
     u16 atk = gCardInfo.atk;
     gCardInfo.atk = gCardInfo.def;
     gCardInfo.def = atk;
@@ -610,10 +646,11 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
 
   if (gSetFinalStatZone != NULL
       && gSetFinalStatZone->id == ptr->card
-      && GetTypeGroup(ptr->card) == TYPE_GROUP_MONSTER) {
+      && CardUsesMonsterCombatStats(ptr->card)) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
+    ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
   }
 
   gSetFinalStatZone = NULL;

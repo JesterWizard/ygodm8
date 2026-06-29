@@ -61,6 +61,18 @@ TABLE_ENTRY_RE = re.compile(
     r"\)\s*\\?\s*$"
 )
 
+VANILLA_FIELD_IDS = frozenset(
+    {
+        "FIELD_ARENA",
+        "FIELD_FOREST",
+        "FIELD_WASTELAND",
+        "FIELD_MOUNTAIN",
+        "FIELD_SOGEN",
+        "FIELD_UMI",
+        "FIELD_YAMI",
+    }
+)
+
 
 @dataclass
 class FieldSpellEntry:
@@ -74,6 +86,14 @@ class FieldSpellEntry:
 
 def card_const_to_stem(card_const: str) -> str:
     return card_const.lower()
+
+
+def uses_vanilla_field(entry: FieldSpellEntry) -> bool:
+    return entry.field_id in VANILLA_FIELD_IDS
+
+
+def custom_gfx_entries(entries: list[FieldSpellEntry]) -> list[FieldSpellEntry]:
+    return [entry for entry in entries if not uses_vanilla_field(entry)]
 
 
 def tile_symbol(field_id: str, suffix: str) -> str:
@@ -737,26 +757,27 @@ def main() -> int:
         raise SystemExit(f"Missing gbagfx tool: {GBAFX}")
 
     entries = parse_field_spell_table(TABLE_INC)
+    gfx_entries = custom_gfx_entries(entries)
     version = encoder_version()
     manifest_path = ROOT / "tools/card_data_manifest.json"
-    digest = compute_inputs_digest(entries, version, manifest_path)
+    digest = compute_inputs_digest(gfx_entries, version, manifest_path)
     if args.stamp and not args.print and stamp_is_current(args.stamp, digest):
         return 0
 
     cache_root = args.cache_dir.resolve()
     cache_root.mkdir(parents=True, exist_ok=True)
-    for entry in entries:
+    for entry in gfx_entries:
         build_entry_assets_cached(entry, cache_root, version)
 
     outputs = {
-        GFX_GENERATED_INC: render_gfx_generated_inc(entries),
-        TILEMAPS_GENERATED_INC: render_tilemaps_generated_inc(entries),
+        GFX_GENERATED_INC: render_gfx_generated_inc(gfx_entries),
+        TILEMAPS_GENERATED_INC: render_tilemaps_generated_inc(gfx_entries),
         CUSTOM_FIELD_SPELLS_GENERATED_H: render_custom_field_spells_generated_h(entries),
-        CUSTOM_FIELDS_GENERATED_H: render_custom_fields_generated_h(entries),
+        CUSTOM_FIELDS_GENERATED_H: render_custom_fields_generated_h(gfx_entries),
         CARD_LOOKUP_GENERATED_INC: render_card_lookup_generated_inc(entries),
-        GFX_TABLES_GENERATED_INC: render_gfx_tables_generated_inc(entries),
+        GFX_TABLES_GENERATED_INC: render_gfx_tables_generated_inc(gfx_entries),
         EFFECT_TABLE_GENERATED_INC: render_effect_table_generated_inc(entries),
-        STAT_MODS_GENERATED_INC: render_stat_mods_generated_inc(entries),
+        STAT_MODS_GENERATED_INC: render_stat_mods_generated_inc(gfx_entries),
         MAPPING_GENERATED_INC: render_mapping_generated_inc(entries),
     }
 
@@ -773,7 +794,7 @@ def main() -> int:
         args.stamp.parent.mkdir(parents=True, exist_ok=True)
         args.stamp.write_text(digest + "\n")
 
-    print(f"Built {len(entries)} custom field spell asset(s).")
+    print(f"Built {len(gfx_entries)} custom field spell asset(s); {len(entries)} registered.")
     return 0
 
 

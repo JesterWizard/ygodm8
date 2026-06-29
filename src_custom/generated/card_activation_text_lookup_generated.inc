@@ -242,6 +242,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { DIFFUSION_WAVE_MOTION, gActivationDescription_DiffusionWaveMotion },
   { AUTONOMOUS_ACTION_UNIT, gActivationDescription_AutonomousActionUnit },
   { ELEMENTAL_HERO_RAMPART_BLASTER, gActivationDescription_ElementalHeroRampartBlaster },
+  { A_LEGENDARY_OCEAN, gActivationDescription_ALegendaryOcean },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

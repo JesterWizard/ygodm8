@@ -19259,6 +19259,37 @@
       },
       "lock_after_activation": true,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "A_LEGENDARY_OCEAN",
+      "card_name": "A Legendary Ocean",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 8,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 0, 2, 9, 5, 5, 1, 7],
+      "description": {
+        "symbol": "gDescription_ALegendaryOcean",
+        "pages": [
+          "(This card is always treated as \"Umi\".) All WATER",
+          "monsters on the field gain 200 ATK/DEF. Reduce the",
+          "Level of WATER monsters in hands and on the field by 1."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ALegendaryOcean",
+        "pages": [
+          "Change the field to Umi. WATER monsters on the field gain 200 ATK/DEF.",
+          "Reduce the Level of all WATER monsters in both players' hands and on the field by 1."
+        ]
+      },
+      "customFieldSpell": "CUSTOM_FIELD_SPELL_A_LEGENDARY_OCEAN"
     }
   ]
 }

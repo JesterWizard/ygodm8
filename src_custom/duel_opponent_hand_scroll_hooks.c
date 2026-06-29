@@ -191,6 +191,9 @@ void DisplayCardInfoBar__Replacement(void) {
     SetCardInfo(CARD_NONE);
   }
 
+  if (gCardInfo.id != CARD_NONE)
+    ApplyCardInfoBarLevelOverrides(gCardInfo.id);
+
   DisplayCardNameInInfoBar();
   DisplayCardLevelInInfoBar();
   DisplayCardAtkDefInInfoBar();

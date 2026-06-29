@@ -439,10 +439,12 @@ static void SendApophisZoneToGraveyardIfNeeded(struct DuelCard *zone, u8 turn)
   if (zone == NULL || zone->id == CARD_NONE)
     return;
 
-  if (Duel_CardIsMonster(zone->id) || EmbodimentOfApophisZoneOnMonsterRow(zone)) {
+  if (OjamaTrioZoneIsMonsterForm(zone))
+    return;
+
+  if (Duel_CardIsMonster(zone->id) || EmbodimentOfApophisZoneOnMonsterRow(zone))
     MarkGraveyardSendFromField();
-    GraveyardExpand_PushFixed(turn, zone->id);
-  }
+  GraveyardExpand_PushFixed(turn, zone->id);
 }
 
 void OnEmbodimentOfApophisZoneAboutToClear(struct DuelCard *zone)

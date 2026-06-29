@@ -4,6 +4,7 @@
 #include "mask_of_restrict.h"
 #include "soul_exchange.h"
 #include "cost_down.h"
+#include "a_legendary_ocean.h"
 #include "debug_ruleset.h"
 #include "tribute.h"
 #include "summon_tribute.h"
@@ -89,6 +90,8 @@ static int GetBaseRequiredTributes(u16 cardId)
   if (ShouldApplyCostDownLevelForTribute(cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
 
+  gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
+
   return LookupRequiredTributes(gCardInfo.level);
 }
 
@@ -110,6 +113,8 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 
   if (ShouldApplyCostDownForHandSlot(handSlot, cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
+
+  gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
 
   return LookupRequiredTributes(gCardInfo.level);
 }

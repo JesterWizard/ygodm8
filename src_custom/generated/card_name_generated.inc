@@ -235,6 +235,7 @@ static const u8 sDeFusionName[] __attribute__((section(".append_assets"))) = "De
 static const u8 sDiffusionWaveMotionName[] __attribute__((section(".append_assets"))) = "Diffusion Wave-Motion";
 static const u8 sAutonomousActionUnitName[] __attribute__((section(".append_assets"))) = "Autonomous Action Unit";
 static const u8 sElementalHeroRampartBlasterName[] __attribute__((section(".append_assets"))) = "Elemental HERO Rampart Blaster";
+static const u8 sALegendaryOceanName[] __attribute__((section(".append_assets"))) = "A Legendary Ocean";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -711,6 +712,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAutonomousActionUnitName;
   if (cardId == 0x040A)
     return (u8 *)sElementalHeroRampartBlasterName;
+  if (cardId == 0x040B)
+    return (u8 *)sALegendaryOceanName;
 
   return gCardNames[cardId];
 }

@@ -54,11 +54,12 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
 
   ApplyOjamaTrioDestructionDamage(zone);
 
-  if (Duel_CardIsMonster(zone->id)
-      || EmbodimentOfApophisZoneIsMonsterForm(zone)
-      || EmbodimentOfApophisZoneOnMonsterRow(zone)
-      || OjamaTrioZoneIsMonsterForm(zone)) {
-    NoteGraveyardMonsterSend(zone);
+  if (zone->id != CARD_NONE) {
+    if (Duel_CardIsMonster(zone->id)
+        || EmbodimentOfApophisZoneIsMonsterForm(zone)
+        || EmbodimentOfApophisZoneOnMonsterRow(zone)
+        || OjamaTrioZoneIsMonsterForm(zone))
+      NoteGraveyardMonsterSend(zone);
     GraveyardExpand_PushTurn(turn, zone->id);
   }
   ClearZone(zone);

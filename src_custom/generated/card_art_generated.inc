@@ -944,6 +944,10 @@ static const unsigned char sElementalHeroRampartBlasterBigArt[] __attribute__((s
 static const unsigned short sElementalHeroRampartBlasterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_rampart_blaster.gbapal");
 static const unsigned char sElementalHeroRampartBlasterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_rampart_blaster.lz");
 
+static const unsigned char sALegendaryOceanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/a_legendary_ocean.huff");
+static const unsigned short sALegendaryOceanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/a_legendary_ocean.gbapal");
+static const unsigned char sALegendaryOceanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/a_legendary_ocean.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1181,6 +1185,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0408] = sDiffusionWaveMotionBigArt,
   [0x0409] = sAutonomousActionUnitBigArt,
   [0x040A] = sElementalHeroRampartBlasterBigArt,
+  [0x040B] = sALegendaryOceanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1420,6 +1425,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0408] = sDiffusionWaveMotionBigPalette,
   [0x0409] = sAutonomousActionUnitBigPalette,
   [0x040A] = sElementalHeroRampartBlasterBigPalette,
+  [0x040B] = sALegendaryOceanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1659,6 +1665,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0408] = 0,
   [0x0409] = 0,
   [0x040A] = 0,
+  [0x040B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1898,4 +1905,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0408] = sDiffusionWaveMotionMiniArt,
   [0x0409] = sAutonomousActionUnitMiniArt,
   [0x040A] = sElementalHeroRampartBlasterMiniArt,
+  [0x040B] = sALegendaryOceanMiniArt,
 };

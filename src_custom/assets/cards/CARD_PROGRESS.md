@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 234 |
-| Art ready, needs manifest | 147 |
+| In game (manifest + art) | 235 |
+| Art ready, needs manifest | 146 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **381** |
 
@@ -256,13 +256,13 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DIFFUSION_WAVE_MOTION` | Diffusion Wave-Motion | `diffusion_wave_motion.png` |
 | `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
 | `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
+| `A_LEGENDARY_OCEAN` | A Legendary Ocean | `a_legendary_ocean.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
 - [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
-- [ ] `A_LEGENDARY_OCEAN` — `a_legendary_ocean.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `APPROPRIATE` — `appropriate.png`

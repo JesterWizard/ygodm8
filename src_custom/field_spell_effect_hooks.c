@@ -4,6 +4,7 @@
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "world_suppression.h"
+#include "duel_helpers.h"
 
 #include "generated/field_spell_card_lookup_generated.inc"
 #include "generated/field_spell_effect_table_generated.inc"
@@ -197,6 +198,7 @@ static u8 RunFieldSpellActivation(u16 cardId, u8 fieldId, u8 customSpellId)
     ActivateCardEffectText();
   }
 
+  Duel_RefreshMonsterStatOverlays();
   return TRUE;
 }
 
