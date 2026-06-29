@@ -88,6 +88,7 @@ extern void EffectDeFusion(void);
 extern void EffectBookOfLife(void);
 extern void EffectDiffusionWaveMotion(void);
 extern void EffectAutonomousActionUnit(void);
+extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -490,6 +491,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case AUTONOMOUS_ACTION_UNIT:
       EffectAutonomousActionUnit();
+      return;
+    case DEDICATION_THROUGH_LIGHT_AND_DARKNESS:
+      EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -244,6 +244,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ELEMENTAL_HERO_RAMPART_BLASTER, gActivationDescription_ElementalHeroRampartBlaster },
   { A_LEGENDARY_OCEAN, gActivationDescription_ALegendaryOcean },
   { DARK_MAGICIAN_OF_CHAOS, gActivationDescription_DarkMagicianOfChaos },
+  { DEDICATION_THROUGH_LIGHT_AND_DARKNESS, gActivationDescription_DedicationThroughLightAndDarkness },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

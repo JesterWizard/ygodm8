@@ -19319,6 +19319,35 @@
           "Add a spell from your graveyard to your hand."
         ]
       }
+    },
+    {
+      "card_const": "DEDICATION_THROUGH_LIGHT_AND_DARKNESS",
+      "card_name": "Dedication through Light and Darkness",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 9, 5, 4, 2, 9, 3, 0],
+      "description": {
+        "symbol": "gDescription_DedicationThroughLightAndDarkness",
+        "pages": [
+          "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark",
+          "Magician of Chaos\" from your hand, Deck, or",
+          "Graveyard."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DedicationThroughLightAndDarkness",
+        "pages": [
+          "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark Magician of Chaos\" from your hand, Deck, or Graveyard."
+        ]
+      }
     }
   ]
 }

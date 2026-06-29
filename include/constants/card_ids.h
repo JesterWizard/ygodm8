@@ -1038,11 +1038,12 @@
 #define ELEMENTAL_HERO_RAMPART_BLASTER           0x040A
 #define A_LEGENDARY_OCEAN                        0x040B
 #define DARK_MAGICIAN_OF_CHAOS                   0x040C
+#define DEDICATION_THROUGH_LIGHT_AND_DARKNESS    0x040D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x040D
-#define NUM_CUSTOM_CARDS                        0x00EC
+#define NUM_TOTAL_CARDS                         0x040E
+#define NUM_CUSTOM_CARDS                        0x00ED
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

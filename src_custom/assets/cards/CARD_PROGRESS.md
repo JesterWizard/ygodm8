@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 236 |
-| Art ready, needs manifest | 145 |
+| In game (manifest + art) | 237 |
+| Art ready, needs manifest | 144 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **381** |
 
@@ -258,6 +258,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
 | `A_LEGENDARY_OCEAN` | A Legendary Ocean | `a_legendary_ocean.png` |
 | `DARK_MAGICIAN_OF_CHAOS` | Dark Magician of Chaos | `dark_magician_of_chaos.png` |
+| `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` | Dedication through Light and Darkness | `dedication_through_light_and_darkness.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -294,7 +295,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
 - [ ] `DE-FUSION` — `de-fusion.png`
-- [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`

@@ -1,0 +1,8 @@
+#ifndef GUARD_DEDICATION_THROUGH_LIGHT_AND_DARKNESS_H
+#define GUARD_DEDICATION_THROUGH_LIGHT_AND_DARKNESS_H
+
+#include "global.h"
+
+u8 CanActivateDedicationThroughLightAndDarkness(void);
+
+#endif // GUARD_DEDICATION_THROUGH_LIGHT_AND_DARKNESS_H

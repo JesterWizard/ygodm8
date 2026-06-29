@@ -82,6 +82,7 @@
 #include "final_countdown.h"
 #include "chaos_greed.h"
 #include "knights_title.h"
+#include "dedication_through_light_and_darkness.h"
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_life.h"
 #include "autonomous_action_unit.h"
@@ -624,6 +625,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == KNIGHTS_TITLE && !CanActivateKnightsTitle()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == DEDICATION_THROUGH_LIGHT_AND_DARKNESS && !CanActivateDedicationThroughLightAndDarkness()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
