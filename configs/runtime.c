@@ -59,6 +59,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .increase_bgm_tempo_speed_percent = 125,
     .show_duel_shop_card_drops = TRUE,
     .enable_opponent_hand_field_scroll = TRUE,
+    .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
     .card_in_hand_1 = THE_AGENT_OF_FORCE_MARS,

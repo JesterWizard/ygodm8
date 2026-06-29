@@ -364,12 +364,12 @@ static bool8 RunDuelTurnLoop(void) {
       if (IsDuelOver() == TRUE)
         return TRUE;
       PlayMusic(SFX_DRAW_CARD);
-      if (turn == DUEL_PLAYER) {
-        gDuelCursor.currentY = 4;
-        gDuelCursor.destY = 4;
+      if (turn == DUEL_PLAYER && gRuntimeConfig.move_cursor_to_hand_on_draw == TRUE) {
+        gDuelCursor.currentY = PLAYER_HAND;
+        gDuelCursor.destY = PLAYER_HAND;
         gDuelCursor.currentX = 0;
         gDuelCursor.destX = 0;
-        sub_8041DF0(4);
+        sub_8041DF0(PLAYER_HAND);
       }
     }
     UpdateDuelGfxExceptField();

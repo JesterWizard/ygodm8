@@ -1,15 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Added The Agent of Force - Mars
+**Last worked on:** 2026-06-29 — Draw-phase cursor snap runtime config
 
 **Files touched:**
-- `tools/card_data_manifest.json`
+- `configs/runtime.h`
 - `configs/runtime.c`
-- `src_custom/permanent_effects/the_agent_of_force_mars.c`
-- `src_custom/card_passives/torpedo_fish.c`
-- `src_custom/duel_helpers.c`
+- `src_custom/duel_main_hooks.c`
 
-**Outcome:** make test-cards-build passes; spell immunity + Sanctuary/LP dynamic ATK/DEF
+**Outcome:** `move_cursor_to_hand_on_draw` gates draw-phase hand cursor snap; `make test-cards-build` passes
 
 **Open / next:**
 - Playtest with Sanctuary in the Sky active
