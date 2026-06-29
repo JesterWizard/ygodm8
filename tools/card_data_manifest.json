@@ -19481,6 +19481,37 @@
           "Inflict damage to your opponent equal to the ATK of the destroyed monster."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_TEMPEST",
+      "card_name": "Elemental HERO Tempest",
+      "atk": 2800,
+      "def": 2800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [8, 3, 1, 2, 1, 6, 9, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroTempest",
+        "pages": [
+          "Elemental HERO Avian + Sparkman + Bubbleman",
+          "Must be Fusion Summoned. Send 1 other card",
+          "to the GY. Protect 1 ally from battle destruction."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroTempest",
+        "pages": [
+          "Send 1 other card to the GY; protect 1 ally from battle destruction."
+        ]
+      },
+      "lock_after_activation": true,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

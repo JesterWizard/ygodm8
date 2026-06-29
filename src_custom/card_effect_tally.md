@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `238` effects
+- `239` effects
 
 ## Tally
 
@@ -239,6 +239,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Autonomous Action Unit` | `src_custom/spell_effects/autonomous_action_unit.c` |
 | `activated_effects` | `Elemental Hero Rampart Blaster` | `src_custom/activated_effects/elemental_hero_rampart_blaster.c` |
 | `spell_effects` | `Dedication Through Light And Darkness` | `src_custom/spell_effects/dedication_through_light_and_darkness.c` |
+| `activated_effects` | `Elemental HERO Tempest` | `src_custom/activated_effects/elemental_hero_tempest.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

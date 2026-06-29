@@ -292,6 +292,15 @@ _kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtkPad, 1
 _kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtk, 2
 @ Flame Wingman / Shining Flare Wingman card id for pending battle-burn text.
 _kernel_malloc_ewram gPendingElementalHeroFlameWingmanEffectCardId, 2
+@ Tempest anchor/protected fixed zones; 0xFF when inactive.
+_kernel_malloc_ewram gElementalHeroTempestAnchorRow, 1
+_kernel_malloc_ewram gElementalHeroTempestAnchorCol, 1
+_kernel_malloc_ewram gElementalHeroTempestProtectedRow, 1
+_kernel_malloc_ewram gElementalHeroTempestProtectedCol, 1
+@ Tempest activation targeting scratch (pick phase + origin zone).
+_kernel_malloc_ewram gElementalHeroTempestPickPhase, 1
+_kernel_malloc_ewram gElementalHeroTempestOriginRow, 1
+_kernel_malloc_ewram gElementalHeroTempestOriginCol, 1
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1

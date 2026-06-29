@@ -24,6 +24,7 @@
 #include "ryu_kishin_clown.h"
 #include "dark_dust_spirit.h"
 #include "kaiser_colosseum.h"
+#include "elemental_hero_tempest.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -1112,6 +1113,7 @@ void Duel_ApplyBattleDestroyProtection(void)
   ApplyKishidoSpiritEqualAtkProtection();
 
   if ((sActionData.flags & 1)
+      && !ElementalHeroTempestProtectsBattleZone(sActionData.playerMonsterRow, sActionData.unkA)
       && !CanMonsterBeDestroyedByBattle(
           sActionData.playerCardId, DUEL_PLAYER,
           sActionData.playerCardAtkOrLifePointsMod,
@@ -1120,6 +1122,7 @@ void Duel_ApplyBattleDestroyProtection(void)
   }
 
   if ((sActionData.flags & 2)
+      && !ElementalHeroTempestProtectsBattleZone(sActionData.opponentMonsterRow, sActionData.unk16)
       && !CanMonsterBeDestroyedByBattle(
           sActionData.opponentCardId, DUEL_OPPONENT,
           sActionData.opponentCardAtkOrLifePointsMod,

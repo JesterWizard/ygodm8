@@ -31,6 +31,7 @@
 #include "harpies_pet_baby_dragon.h"
 #include "blowback_dragon.h"
 #include "elemental_hero_rampart_blaster.h"
+#include "elemental_hero_tempest.h"
 #include "chiron_the_mage.h"
 
 extern void (*const gMonEffects[])(void);
@@ -122,6 +123,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateBLOWBACK_DRAGON();
     case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
       return CanActivateElementalHeroRampartBlaster();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST:
+      return CanActivateElementalHeroTempest();
     default:
       return TRUE;
   }
@@ -321,6 +324,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST) {
+    ActivateElementalHeroTempestEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -422,6 +430,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == HARPIES_PET_BABY_DRAGON
           || zone->id == BLOWBACK_DRAGON
           || zone->id == ELEMENTAL_HERO_RAMPART_BLASTER
+          || zone->id == ELEMENTAL_HERO_TEMPEST
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);

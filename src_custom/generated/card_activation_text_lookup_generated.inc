@@ -248,6 +248,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ELEMENTAL_HERO_STEAM_HEALER, gActivationDescription_ElementalHeroSteamHealer },
   { ELEMENTAL_HERO_FLAME_WINGMAN, gActivationDescription_ElementalHeroFlameWingman },
   { ELEMENTAL_HERO_SHINING_FLARE_WINGMAN, gActivationDescription_ElementalHeroShiningFlareWingman },
+  { ELEMENTAL_HERO_TEMPEST, gActivationDescription_ElementalHeroTempest },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
