@@ -10,6 +10,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+
+from ram_map_layout import read_ram_map_text  # noqa: E402
 
 RAM_MAP = ROOT / "asm" / "ram_map.s"
 PLAYER_DECKS_C = ROOT / "src_custom" / "player_decks" / "player_decks.c"
@@ -99,7 +102,7 @@ def validate_ram_map(root: Path) -> list[str]:
     if not path.is_file():
         return [f"missing {path}"]
 
-    text = _read(path)
+    text = read_ram_map_text(root)
     ewram_arrays: dict[str, str] = {}
     ewram_bytes: set[str] = set()
 

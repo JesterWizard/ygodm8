@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from ram_map_layout import validate_ram_map_layout
+from ram_map_layout import read_ram_map_text, validate_ram_map_layout
 RAM_MAP = ROOT / "asm" / "ram_map.s"
 
 FLASH_TOP = 0x0E000000
@@ -161,7 +161,7 @@ def main() -> int:
             print(error, file=sys.stderr)
         return 1
 
-    text = RAM_MAP.read_text()
+    text = read_ram_map_text()
     regions = flash_regions(parse_regions(text))
     if not regions:
         print("validate_ram_map: no flash regions parsed", file=sys.stderr)

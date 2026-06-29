@@ -10,7 +10,15 @@
 
 ## Introduction
 
-`asm/ram_map.s` is the central address registry for the project.
+`asm/ram_map.s` is the central address registry for the project. It `.include`s three region sources that assemble into a single `ram_map.o`:
+
+| File | Region |
+|------|--------|
+| `asm/ram_map_iwram.s` | IWRAM (`0x03001678`–`0x03007E00`) |
+| `asm/ram_map_ewram.s` | EWRAM (`0x02025840`–`0x02040000`) |
+| `asm/ram_map_sram.s` | Flash/SRAM (`0x0E000000`–`0x0E008000`) |
+
+The fragments are not compiled as separate objects; they are included so bump-allocator cursors stay consistent across regions.
 
 It exists so custom code can refer to concrete IWRAM, EWRAM, and Flash/SRAM locations by symbol instead of hard-coding addresses throughout the C code. That keeps the memory layout readable, keeps symbol names stable, and makes it easier to move allocations later without touching every call site.
 
@@ -58,8 +66,8 @@ Use `ram_map.s` as a single source of truth for memory placement.
 
 ### Practical rules
 
-1. Put new helper macros near the top of the file, before region data.
-2. Keep each region grouped together and labeled.
+1. Put shared macros in `asm/ram_map.s` (before the `.include` lines).
+2. Add symbols to the matching region file (`ram_map_iwram.s`, `ram_map_ewram.s`, or `ram_map_sram.s`).
 3. Use `SET_DATA` for fixed addresses and `SET_ARRAY` for spans.
 4. Prefer cursor-based placement only when a region contains a sequence of adjacent arrays.
 5. Do not assume the whole nominal GBA SRAM window is available; this project only uses the lower `0x8000` bytes for save storage.
@@ -88,12 +96,13 @@ This layout means:
 
 | Feature | Location | Description |
 |--------|----------|-------------|
-| Core memory map | `asm/ram_map.s` | Defines the IWRAM, EWRAM, and Flash/SRAM symbols used across the build |
-| IWRAM free-space allocation | `SET_DATA`, `_kernel_malloc` in `asm/ram_map.s` | Reserves fast runtime memory from the top of free IWRAM downward |
-| EWRAM free-space allocation | `_kernel_malloc_ewram` in `asm/ram_map.s` | Reserves larger runtime buffers from the top of free EWRAM downward |
-| Flash free-space and save slots | `SET_DATA`, `SET_ARRAY`, `_kernel_malloc_flash`, `_kernel_malloc_flash_free` in `asm/ram_map.s` | Defines the persistent save areas, usable flash window, and mirrored flash pairs |
-| Custom flash mirrors | `_kernel_malloc_flash` in `asm/ram_map.s` | Places the custom trunk/shop/player-temp card quantity mirrors in flash |
+| Core memory map | `asm/ram_map.s` + `asm/ram_map_{iwram,ewram,sram}.s` | Defines the IWRAM, EWRAM, and Flash/SRAM symbols used across the build |
+| IWRAM free-space allocation | `ram_map_iwram.s` | Reserves fast runtime memory from the top of free IWRAM downward |
+| EWRAM free-space allocation | `ram_map_ewram.s` | Reserves larger runtime buffers from the top of free EWRAM downward |
+| Flash free-space and save slots | `ram_map_sram.s` | Defines the persistent save areas, usable flash window, and mirrored flash pairs |
+| Custom flash mirrors | `ram_map_sram.s` | Places the custom trunk/shop/player-temp card quantity mirrors in flash |
 | Symbol consumers | `src_custom/card_hooks.c`, `src_custom/code_800AC64_hooks.c`, `src_custom/card_shop_hooks.c` | Read and write the symbols defined in the map |
+| Expanded graveyard buffers | `gExpandedGraveyard*`, `gAiSimSaved*`, `gAiBatchCheckpoint*` in `asm/ram_map_ewram.s` | Three EWRAM layers for live GY stacks and AI sim bookkeeping; see [expanded-graveyard.md](expanded-graveyard.md) |
 
 ## TODO
 

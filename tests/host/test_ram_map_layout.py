@@ -10,6 +10,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 from ram_map_layout import (  # noqa: E402
     Allocation,
     load_size_constants,
+    parse_region_allocations,
+    read_ram_map_text,
     simulate_bump,
     validate_allocation_alignment,
     validate_card_growth,
@@ -35,10 +37,7 @@ class RamMapLayoutTests(unittest.TestCase):
 
     def test_card_growth_simulation_passes_for_repo(self):
         errors = validate_card_growth(
-            __import__("ram_map_layout").parse_region_allocations(
-                (ROOT / "asm/ram_map.s").read_text(encoding="utf-8"),
-                "ewram",
-            ),
+            parse_region_allocations(read_ram_map_text(), "ewram"),
             total_cards=0x038D,
             custom_start=0x0321,
         )

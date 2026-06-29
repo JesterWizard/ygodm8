@@ -1,6 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — AI sim phantom GY (Zone Eater) — second pass
+**Last worked on:** 2026-06-29 — Expanded graveyard documentation
+
+**Files touched:**
+- `documentation/expanded-graveyard.md`
+- `CUSTOM_CONTENT.md`
+- `documentation/ram-map.md`
+
+**Outcome:** Feature doc covers dual-storage model, all six EWRAM symbols, API, B-menu viewer, and AI sim save/restore/checkpoint layers.
+
+**Open / next:**
+- Playtest Tristan turn 1 — opponent GY empty until a real send; Zone Eater on field only
 
 **Files touched:**
 - `src_custom/expanded_graveyard.c`

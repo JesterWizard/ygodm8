@@ -13,7 +13,7 @@ Read **`documentation/ram-map.md`** before allocating memory. It covers region c
 
 ## Core Rule
 
-**`asm/ram_map.s` is the single source of truth.** Add symbols there; reference them by name from C. Do not scatter hard-coded `0x02…` / `0x0E…` addresses through hook code.
+**`asm/ram_map.s`** includes the region `.s` fragments; add symbols to the matching `asm/ram_map_{iwram,ewram,sram}.s`. Reference them by name from C. Do not scatter hard-coded `0x02…` / `0x0E…` addresses through hook code.
 
 ## When To Use Which Region
 
@@ -29,14 +29,14 @@ See the doc’s “Region model” and “Practical rules” sections before pic
 
 | Concern | Location |
 |---------|----------|
-| Symbol definitions | `asm/ram_map.s` |
+| Symbol definitions | `asm/ram_map.s`, `asm/ram_map_{iwram,ewram,sram}.s` |
 | Example consumers | `src_custom/card_hooks.c`, `src_custom/code_800AC64_hooks.c`, `src_custom/card_shop_hooks.c` |
 
 ## Workflow
 
 1. Read `documentation/ram-map.md`.
 2. Decide region: IWRAM (fast/small), EWRAM (large), or Flash (persistent / mirrored save).
-3. Add the symbol with the appropriate macro in `asm/ram_map.s` (keep region blocks grouped and labeled).
+3. Add the symbol with the appropriate macro in the matching `asm/ram_map_*.s` file (keep region blocks grouped and labeled).
 4. Declare `extern` symbols in the hook header or `.c` that consumes them.
 5. For mirrored flash pairs, follow existing `_kernel_malloc_flash` patterns in the doc.
 6. Run `make` and verify nothing overlaps existing save slots or free-space cursors.

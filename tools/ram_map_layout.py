@@ -19,6 +19,39 @@ DEFINE_RE = re.compile(r"#define\s+(\w+)\s+(0x[0-9A-Fa-f]+)")
 MALLOC_EWRAM_ARRAY_RE = re.compile(r"_kernel_malloc_ewram_array\s+(\w+),\s*(\S+)")
 MALLOC_EWRAM_RE = re.compile(r"_kernel_malloc_ewram\s+(\w+),\s*(\S+)")
 MALLOC_IWRAM_RE = re.compile(r"_kernel_malloc\s+(\w+),\s*(\S+)")
+INCLUDE_RE = re.compile(r'^\s*\.include\s+"([^"]+)"')
+
+
+def read_ram_map_text(root: Path | None = None) -> str:
+    """Return asm/ram_map.s with .include fragments expanded (for validators)."""
+    root = root or ROOT
+    entry = root / "asm" / "ram_map.s"
+    if not entry.is_file():
+        raise FileNotFoundError(entry)
+    return _expand_asm_includes(entry.read_text(encoding="utf-8"), entry.parent, root)
+
+
+def _expand_asm_includes(text: str, base_dir: Path, root: Path) -> str:
+    out: list[str] = []
+    for line in text.splitlines():
+        match = INCLUDE_RE.match(line)
+        if not match:
+            out.append(line)
+            continue
+        rel = match.group(1)
+        for candidate in (base_dir / rel, root / rel):
+            if candidate.is_file():
+                out.append(
+                    _expand_asm_includes(
+                        candidate.read_text(encoding="utf-8"),
+                        candidate.parent,
+                        root,
+                    )
+                )
+                break
+        else:
+            raise FileNotFoundError(f"ram map include not found: {rel} (from {base_dir})")
+    return "\n".join(out)
 
 
 @dataclass(frozen=True)
@@ -73,7 +106,7 @@ def load_size_constants() -> dict[str, int]:
                 constants[match.group(1)] = int(match.group(2), 16)
 
     if RAM_MAP.is_file():
-        for line in RAM_MAP.read_text(encoding="utf-8").splitlines():
+        for line in read_ram_map_text().splitlines():
             match = SET_EQU_RE.search(line.split("@", 1)[0].strip())
             if match:
                 constants[match.group(1)] = int(match.group(2), 16)
@@ -301,7 +334,7 @@ def validate_card_growth(allocs: list[Allocation], total_cards: int, custom_star
         errors.extend(
             validate_region(
                 f"IWRAM ({label})",
-                parse_region_allocations(RAM_MAP.read_text(encoding="utf-8"), "iwram"),
+                parse_region_allocations(read_ram_map_text(), "iwram"),
                 iwram_bottom,
                 iwram_top,
                 constants,
@@ -347,7 +380,7 @@ def validate_ram_map_layout() -> list[str]:
     if not RAM_MAP.is_file():
         return [f"missing {RAM_MAP}"]
 
-    text = RAM_MAP.read_text(encoding="utf-8")
+    text = read_ram_map_text()
     ewram_allocs = parse_region_allocations(text, "ewram")
     iwram_allocs = parse_region_allocations(text, "iwram")
     constants = load_size_constants()

@@ -83,7 +83,8 @@ endif
 CONFIGS_SRCS := $(wildcard $(CONFIGS_SUBDIR)/*.c)
 CONFIGS_OBJS := $(patsubst $(CONFIGS_SUBDIR)/%.c,$(CONFIGS_BUILDDIR)/%.o,$(CONFIGS_SRCS))
 
-ASM_SRCS := $(wildcard $(ASM_SUBDIR)/*.s)
+RAM_MAP_FRAGMENTS := $(ASM_SUBDIR)/ram_map_iwram.s $(ASM_SUBDIR)/ram_map_ewram.s $(ASM_SUBDIR)/ram_map_sram.s
+ASM_SRCS := $(filter-out $(RAM_MAP_FRAGMENTS),$(wildcard $(ASM_SUBDIR)/*.s))
 ASM_OBJS := $(patsubst $(ASM_SUBDIR)/%.s,$(ASM_BUILDDIR)/%.o,$(ASM_SRCS))
 
 LIB := -L ../tools/agbcc/lib -lc -lgcc
@@ -508,7 +509,7 @@ ifeq ($(METE0_VIDEO),1)
 $(ROM): $(METE0_INTEGRATE)
 endif
 
-$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc
+$(ASM_BUILDDIR)/ram_map.o: generated/card_memory_sizes.inc $(RAM_MAP_FRAGMENTS)
 $(ASM_BUILDDIR)/m4a_hq_mixer.o: $(ASM_SUBDIR)/m4a_hq_mixer_config.inc
 
 $(ASM_BUILDDIR)/%.o: $(ASM_SUBDIR)/%.s
