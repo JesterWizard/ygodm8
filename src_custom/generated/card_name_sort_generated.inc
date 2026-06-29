@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 245
+#define NUM_CUSTOM_NAME_SORT_CARDS 246
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -250,6 +250,7 @@ static const u8 sElementalHeroShiningFlareWingmanSortName[] APPEND_RODATA = "Ele
 static const u8 sElementalHeroTempestSortName[] APPEND_RODATA = "Elemental HERO Tempest";
 static const u8 sElementalHeroWildedgeSortName[] APPEND_RODATA = "Elemental HERO Wildedge";
 static const u8 sElementalHeroThunderGiantSortName[] APPEND_RODATA = "Elemental HERO Thunder Giant";
+static const u8 sElementalHeroMarinerSortName[] APPEND_RODATA = "Elemental HERO Mariner";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -331,6 +332,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03F2, // Elemental HERO Burstinatrix
   0x03F7, // Elemental HERO Clayman
   0x0411, // Elemental HERO Flame Wingman
+  0x0416, // Elemental HERO Mariner
   0x03F8, // Elemental HERO Mudballman
   0x040F, // Elemental HERO Phoenix Enforcer
   0x040A, // Elemental HERO Rampart Blaster
@@ -579,172 +581,173 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   77, // Elemental HERO Burstinatrix
   78, // Elemental HERO Clayman
   79, // Elemental HERO Flame Wingman
-  80, // Elemental HERO Mudballman
-  81, // Elemental HERO Phoenix Enforcer
-  82, // Elemental HERO Rampart Blaster
-  83, // Elemental HERO Shining Flare Wingman
-  84, // Elemental HERO Shining Phoenix Enforcer
-  85, // Elemental HERO Sparkman
-  86, // Elemental HERO Steam Healer
-  87, // Elemental HERO Tempest
-  88, // Elemental HERO Thunder Giant
-  89, // Elemental HERO Wildedge
-  90, // Elemental HERO Wildheart
-  91, // Exchange
-  92, // Fairy Box
-  93, // Familiar Knight
-  94, // Fenrir
-  95, // Final Countdown
-  96, // Fire Princess
-  97, // Ghost Knight of Jackal
-  98, // Gift Of The Mystical Elf
-  99, // Gilasaurus
-  100, // Goblin King
-  101, // Goblin Thief
-  102, // Graceful Charity
-  103, // Graceful Dice
-  104, // Granadora
-  105, // Gravekeeper's Servant
-  106, // Gravity Bind
-  107, // Great Maju Garzett
-  108, // Gren Maju Da Eiza
-  109, // Guardian Angel Joan
-  110, // Guardian Treasure
-  111, // Gyaku-Gire Panda
-  112, // Harpie Lady 1
-  113, // Harpie Lady 2
-  114, // Harpie Lady 3
-  115, // Harpie's Pet Baby Dragon
-  116, // Hayabusa Knight
-  117, // Hyper Hammerhead
-  118, // Imperial Order
-  119, // Invader of the Throne
-  120, // Jar of Greed
-  121, // Jar Robber
-  122, // Jowls of Dark Demise
-  123, // Just Deserts
-  124, // KA-2 Des Scissors
-  125, // Kaibaman
-  126, // Kaiser Colosseum
-  127, // Kaiser Glider
-  128, // Kishido Spirit
-  129, // Knight's Title
-  130, // Lesser Fiend
-  131, // Level Limit - Area A
-  132, // Level Limit Area B
-  133, // Levia Dragon Daedalus
-  134, // Limiter Removal
-  135, // Luster Dragon
-  136, // Mad Sword Beast
-  137, // Mage Power
-  138, // Magic Cylinder
-  139, // Magic Jammer
-  140, // Magical Merchant
-  141, // Magician's Valkyria
-  142, // Maju Garzett
-  143, // Man-Thro-Thro
-  144, // Marauding Captain
-  145, // Maryokutai
-  146, // Mask of Restrict
-  147, // Mataza the Zapper
-  148, // Mefist The Infernal General
-  149, // Mermaid Knight
-  150, // Meteor of Destruction
-  151, // Mirror Force
-  152, // Mirror Wall
-  153, // Mobius the Frost Monarch
-  154, // Moister Creature
-  155, // Mystical Shine Ball
-  156, // Mystical Space Typhoon
-  157, // Needle Burrower
-  158, // Negate Attack
-  159, // Negative Energy
-  160, // Nightmare Horse
-  161, // Nightmare Wheel
-  162, // Obnoxious Celtic Guardian
-  163, // Ojama Trio
-  164, // Paladin Of White Dragon
-  165, // Peten The Dark Clown
-  166, // Piranha Army
-  167, // Polymerization
-  168, // Possessed Dark Soul
-  169, // Precious Cards From Beyond
-  170, // Proto-Cyber Dragon
-  171, // Pyramid of Light
-  172, // Rain of Mercy
-  173, // Rare Metal Dragon
-  174, // Raregold Armor
-  175, // Reaper on the Nightmare
-  176, // Reckless Greed
-  177, // Reload
-  178, // Ring of Destruction
-  179, // Riryoku
-  180, // Rivalry of Warlords
-  181, // Robbin' Goblin
-  182, // Robbin' Zombie
-  183, // Royal Decree
-  184, // Royal Knight
-  185, // Ryu-Kishin Clown
-  186, // Sage's Stone
-  187, // Sasuke Samurai
-  188, // Sasuke Samurai #2
-  189, // Sasuke Samurai #3
-  190, // Seal of Orichalcos
-  191, // Secret Barrel
-  192, // Self-Destruct Button
-  193, // Servant of Catabolism
-  194, // Seven Tools of the Bandit
-  195, // Shield And Sword
-  196, // Skill Drain
-  197, // Skull Invitation
-  198, // Solar Flare Dragon
-  199, // Solar Ray
-  200, // Solemn Wishes
-  201, // Sorcerer of Dark Magic
-  202, // Soul Exchange
-  203, // Soul Taker
-  204, // Spear Dragon
-  205, // Spell Canceller
-  206, // Spell Economics
-  207, // Spirit Caller
-  208, // Spirit of the Breeze
-  209, // Spirit of the Pot of Greed
-  210, // Spirit Reaper
-  211, // Spirit Ryu
-  212, // St Joan
-  213, // Stealth Bird
-  214, // Swift Gaia The Fierce Knight
-  215, // Terrorking Salmon
-  216, // The Agent Of Creation - Venus
-  217, // The Dark Door
-  218, // The Flute of Summoning Dragon
-  219, // The Forceful Sentry
-  220, // The Sanctuary in the Sky
-  221, // The Thing in the Crater
-  222, // The Unstoppable Exodia Incarnate
-  223, // Theban Nightmare
-  224, // Thousand Energy
-  225, // Thousand Knives
-  226, // Thunder Crash
-  227, // Time Seal
-  228, // Toll
-  229, // Torpedo Fish
-  230, // Triangle Power
-  231, // Twin Swords of Flashing Light - Tryce
-  232, // Tyrant Dragon
-  233, // Ultimate Offering
-  234, // United We Stand
-  235, // Upstart Goblin
-  236, // Vampire Baby
-  237, // Vengeful Bog Spirit
-  238, // Wall of Revealing Light
-  239, // Warrior of Zera
-  240, // Wave Motion Cannon
-  241, // Weather Report
-  242, // White Magician Pikeru
-  243, // World Suppression
-  244, // Yata-Garasu
-  245, // Zaborg the Thunder Monarch
+  80, // Elemental HERO Mariner
+  81, // Elemental HERO Mudballman
+  82, // Elemental HERO Phoenix Enforcer
+  83, // Elemental HERO Rampart Blaster
+  84, // Elemental HERO Shining Flare Wingman
+  85, // Elemental HERO Shining Phoenix Enforcer
+  86, // Elemental HERO Sparkman
+  87, // Elemental HERO Steam Healer
+  88, // Elemental HERO Tempest
+  89, // Elemental HERO Thunder Giant
+  90, // Elemental HERO Wildedge
+  91, // Elemental HERO Wildheart
+  92, // Exchange
+  93, // Fairy Box
+  94, // Familiar Knight
+  95, // Fenrir
+  96, // Final Countdown
+  97, // Fire Princess
+  98, // Ghost Knight of Jackal
+  99, // Gift Of The Mystical Elf
+  100, // Gilasaurus
+  101, // Goblin King
+  102, // Goblin Thief
+  103, // Graceful Charity
+  104, // Graceful Dice
+  105, // Granadora
+  106, // Gravekeeper's Servant
+  107, // Gravity Bind
+  108, // Great Maju Garzett
+  109, // Gren Maju Da Eiza
+  110, // Guardian Angel Joan
+  111, // Guardian Treasure
+  112, // Gyaku-Gire Panda
+  113, // Harpie Lady 1
+  114, // Harpie Lady 2
+  115, // Harpie Lady 3
+  116, // Harpie's Pet Baby Dragon
+  117, // Hayabusa Knight
+  118, // Hyper Hammerhead
+  119, // Imperial Order
+  120, // Invader of the Throne
+  121, // Jar of Greed
+  122, // Jar Robber
+  123, // Jowls of Dark Demise
+  124, // Just Deserts
+  125, // KA-2 Des Scissors
+  126, // Kaibaman
+  127, // Kaiser Colosseum
+  128, // Kaiser Glider
+  129, // Kishido Spirit
+  130, // Knight's Title
+  131, // Lesser Fiend
+  132, // Level Limit - Area A
+  133, // Level Limit Area B
+  134, // Levia Dragon Daedalus
+  135, // Limiter Removal
+  136, // Luster Dragon
+  137, // Mad Sword Beast
+  138, // Mage Power
+  139, // Magic Cylinder
+  140, // Magic Jammer
+  141, // Magical Merchant
+  142, // Magician's Valkyria
+  143, // Maju Garzett
+  144, // Man-Thro-Thro
+  145, // Marauding Captain
+  146, // Maryokutai
+  147, // Mask of Restrict
+  148, // Mataza the Zapper
+  149, // Mefist The Infernal General
+  150, // Mermaid Knight
+  151, // Meteor of Destruction
+  152, // Mirror Force
+  153, // Mirror Wall
+  154, // Mobius the Frost Monarch
+  155, // Moister Creature
+  156, // Mystical Shine Ball
+  157, // Mystical Space Typhoon
+  158, // Needle Burrower
+  159, // Negate Attack
+  160, // Negative Energy
+  161, // Nightmare Horse
+  162, // Nightmare Wheel
+  163, // Obnoxious Celtic Guardian
+  164, // Ojama Trio
+  165, // Paladin Of White Dragon
+  166, // Peten The Dark Clown
+  167, // Piranha Army
+  168, // Polymerization
+  169, // Possessed Dark Soul
+  170, // Precious Cards From Beyond
+  171, // Proto-Cyber Dragon
+  172, // Pyramid of Light
+  173, // Rain of Mercy
+  174, // Rare Metal Dragon
+  175, // Raregold Armor
+  176, // Reaper on the Nightmare
+  177, // Reckless Greed
+  178, // Reload
+  179, // Ring of Destruction
+  180, // Riryoku
+  181, // Rivalry of Warlords
+  182, // Robbin' Goblin
+  183, // Robbin' Zombie
+  184, // Royal Decree
+  185, // Royal Knight
+  186, // Ryu-Kishin Clown
+  187, // Sage's Stone
+  188, // Sasuke Samurai
+  189, // Sasuke Samurai #2
+  190, // Sasuke Samurai #3
+  191, // Seal of Orichalcos
+  192, // Secret Barrel
+  193, // Self-Destruct Button
+  194, // Servant of Catabolism
+  195, // Seven Tools of the Bandit
+  196, // Shield And Sword
+  197, // Skill Drain
+  198, // Skull Invitation
+  199, // Solar Flare Dragon
+  200, // Solar Ray
+  201, // Solemn Wishes
+  202, // Sorcerer of Dark Magic
+  203, // Soul Exchange
+  204, // Soul Taker
+  205, // Spear Dragon
+  206, // Spell Canceller
+  207, // Spell Economics
+  208, // Spirit Caller
+  209, // Spirit of the Breeze
+  210, // Spirit of the Pot of Greed
+  211, // Spirit Reaper
+  212, // Spirit Ryu
+  213, // St Joan
+  214, // Stealth Bird
+  215, // Swift Gaia The Fierce Knight
+  216, // Terrorking Salmon
+  217, // The Agent Of Creation - Venus
+  218, // The Dark Door
+  219, // The Flute of Summoning Dragon
+  220, // The Forceful Sentry
+  221, // The Sanctuary in the Sky
+  222, // The Thing in the Crater
+  223, // The Unstoppable Exodia Incarnate
+  224, // Theban Nightmare
+  225, // Thousand Energy
+  226, // Thousand Knives
+  227, // Thunder Crash
+  228, // Time Seal
+  229, // Toll
+  230, // Torpedo Fish
+  231, // Triangle Power
+  232, // Twin Swords of Flashing Light - Tryce
+  233, // Tyrant Dragon
+  234, // Ultimate Offering
+  235, // United We Stand
+  236, // Upstart Goblin
+  237, // Vampire Baby
+  238, // Vengeful Bog Spirit
+  239, // Wall of Revealing Light
+  240, // Warrior of Zera
+  241, // Wave Motion Cannon
+  242, // Weather Report
+  243, // White Magician Pikeru
+  244, // World Suppression
+  245, // Yata-Garasu
+  246, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1244,6 +1247,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sElementalHeroWildedgeSortName;
   if (cardId == 0x0415)
     return (u8 *)sElementalHeroThunderGiantSortName;
+  if (cardId == 0x0416)
+    return (u8 *)sElementalHeroMarinerSortName;
 
   return gCardNames[cardId];
 }

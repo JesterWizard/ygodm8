@@ -23,6 +23,7 @@
 #include "level_limit_area_a.h"
 #include "black_tyranno.h"
 #include "drillago.h"
+#include "elemental_hero_mariner.h"
 #include "jowls_of_dark_demise.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
@@ -161,7 +162,8 @@ static void AiAttackDirect(struct DuelCard *attacker) {
     return;
 
   if (NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) != MAX_ZONES_IN_ROW
-      && !CanJowlsControlledMonsterAttackDirectly(attacker))
+      && !CanJowlsControlledMonsterAttackDirectly(attacker)
+      && !CanElementalHeroMarinerAttackDirectly(attacker->id))
     return;
 
   if (!AiPayAttackTollIfNeeded())
@@ -175,6 +177,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryActivateEmbodimentOfApophisOnAttack();
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
+  TryShowElementalHeroMarinerDirectAttackText(attacker->id);
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   TryApplyMirrorWallToPendingAction();
