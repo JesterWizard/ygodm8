@@ -1037,7 +1037,8 @@ u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 oppo
   if (cardId == CARD_NONE)
     return FALSE;
 
-  if (cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER)
+  if (cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER
+      || cardId == ELEMENTAL_HERO_PHOENIX_ENFORCER)
     return FALSE;
 
   return TRUE;
@@ -2119,6 +2120,8 @@ void DuelHelpers_SelfCheck(void)
   if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(SPIRIT_REAPER, DUEL_PLAYER, 2000, 1999) != FALSE)
+    __builtin_trap();
+  if (CanMonsterBeDestroyedByBattle(ELEMENTAL_HERO_PHOENIX_ENFORCER, DUEL_PLAYER, 2000, 2000) != FALSE)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(KAISER_GLIDER, DUEL_PLAYER, 1500, 1500) != TRUE)
     __builtin_trap();

@@ -1,14 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Fix LP/burn effects to apply after effect text popup
+**Last worked on:** 2026-06-29 — Added Elemental HERO Phoenix Enforcer
 
 **Files touched:**
-- `src_custom/battle_effects/elemental_hero_steam_healer.c`
-- `src_custom/battle_effects/guardian_angel_joan.c`
-- `src_custom/spell_effects/hinotama.c`
-- `src_custom/spell_effects/sparks.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/duel_helpers.c`
+- `src_custom/assets/cards/CARD_PROGRESS.md`
 
-**Outcome:** make test-cards-link passes; text shown via ActivateCardEffectText before Duel_ChangeLp
+**Outcome:** make test-cards-link passes; battle destruction immunity via CanMonsterBeDestroyedByBattle
 
 **Open / next:**
-- Playtest Steam Healer battle destroy + Hinotama/Sparks burn timing
+- Playtest fusion summon + battle indestructibility
