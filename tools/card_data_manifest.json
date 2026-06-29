@@ -19290,6 +19290,35 @@
         ]
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_A_LEGENDARY_OCEAN"
+    },
+    {
+      "card_const": "DARK_MAGICIAN_OF_CHAOS",
+      "card_name": "Dark Magician of Chaos",
+      "atk": 2800,
+      "def": 2600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 0, 7, 3, 7, 1, 1, 2],
+      "description": {
+        "symbol": "gDescription_DarkMagicianOfChaos",
+        "pages": [
+          "A magician wielding chaos and dark magic.",
+          "When summoned, add a spell from your graveyard to hand.",
+          "Monsters he destroys by battle are removed from play."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_DarkMagicianOfChaos",
+        "pages": [
+          "Add a spell from your graveyard to your hand."
+        ]
+      }
     }
   ]
 }

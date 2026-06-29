@@ -5,6 +5,7 @@
 #include "duel.h"
 #include "duel_b_menu.h"
 #include "duel_status.h"
+#include "expanded_graveyard.h"
 #include "text.h"
 
 union BMenuVram {
@@ -201,6 +202,17 @@ static void CopyGraveyardNameTiles(u16 cardId, u32 chrOffset) {
   u8 nameLength;
   const u8 *name;
 
+  if (cardId == CARD_NONE) {
+    for (i = 0, nameLength = 0; nameLength < B_MENU_GY_NAME_WIDTH; nameLength++) {
+      buffer[i] = 129;
+      buffer[i + 1] = 64;
+      i += 2;
+    }
+    buffer[i] = 0;
+    CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + chrOffset, buffer, 0x901);
+    return;
+  }
+
   SetCardInfo(cardId);
   i = 0;
   nameLength = 0;
@@ -225,9 +237,22 @@ static void CopyGraveyardNameTiles(u16 cardId, u32 chrOffset) {
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + chrOffset, buffer, 0x901);
 }
 
+static u16 GraveyardTopCardForDisplay(u8 fixedDuelist)
+{
+  if (gRuntimeConfig.expand_graveyard == TRUE) {
+    u8 count = GraveyardExpand_GetCount(fixedDuelist);
+
+    if (count == 0)
+      return CARD_NONE;
+    return GraveyardExpand_GetCardAt(fixedDuelist, count - 1);
+  }
+
+  return gDuel.duelistbattleState[fixedDuelist].graveyard;
+}
+
 static void RefreshGraveyardNameTiles(void) {
-  CopyGraveyardNameTiles(gDuel.duelistbattleState[DUEL_PLAYER].graveyard, B_MENU_GY_NAME_CHR_PLAYER);
-  CopyGraveyardNameTiles(gDuel.duelistbattleState[DUEL_OPPONENT].graveyard, B_MENU_GY_NAME_CHR_OPPONENT);
+  CopyGraveyardNameTiles(GraveyardTopCardForDisplay(DUEL_PLAYER), B_MENU_GY_NAME_CHR_PLAYER);
+  CopyGraveyardNameTiles(GraveyardTopCardForDisplay(DUEL_OPPONENT), B_MENU_GY_NAME_CHR_OPPONENT);
 }
 
 static void DrawGraveyardNameTilemap(u16 paletteBits) {

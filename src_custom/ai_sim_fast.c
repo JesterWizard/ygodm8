@@ -210,8 +210,6 @@ void AiSimulateAllCandidateActionsFast(void)
   AiClearCommandData();
   CallThumbVoid(0x0800F108);
   AiSimFastScanHandFlags(&handHasPermCard);
-  gAiSimInBatch = TRUE;
-  gHideEffectText = 1;
 
   for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
     if (!IsAiAttackAction(gAED58[i].action))
@@ -241,5 +239,5 @@ void AiSimulateAllCandidateActionsFast(void)
   }
 
 done:
-  gAiSimInBatch = FALSE;
+  ;
 }

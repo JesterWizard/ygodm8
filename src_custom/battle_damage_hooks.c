@@ -23,6 +23,7 @@
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "lesser_fiend.h"
+#include "dark_magician_of_chaos.h"
 #include "airknight_parshath.h"
 #include "needle_burrower.h"
 #include "absorbing_kid_from_the_sky.h"
@@ -161,6 +162,8 @@ static void ApplyAmazonessSwordsWomanBattleDamageRedirect(void) {
 LYN_REPLACE_CHECK(CheckGraveyardAndLoserFlags);
 void CheckGraveyardAndLoserFlags__Replacement(void) {
   u16 damage;
+  u8 playerGraveyardDestroy;
+  u8 opponentGraveyardDestroy;
 
   ApplySanctuaryInTheSkyBattleDamageProtection();
   ApplyAmazonessSwordsWomanBattleDamageRedirect();
@@ -195,6 +198,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyObnoxiousCelticGuardianBattleProtection();
   ApplyKaiserGliderBattleProtection();
   Duel_ApplyBattleDestroyProtection();
+  playerGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0;
+  opponentGraveyardDestroy = (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0;
   ApplyPiranhaArmyDoubleDirectDamage();
   ApplyBlueEyesChaosMaxDragonDoublePiercingDamage();
   ApplySpearDragonBattleEffect();
@@ -208,25 +213,33 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyLesserFiendBattleEffect();
+  ApplyDarkMagicianOfChaosBattleEffect();
   ApplyDesKangarooBattleEffect();
 
-  Duel_RemapMutualDestroyBattleAnim(
-      (sActionData.flags & FLAG_GRAVEYARD_PLAYER) != 0,
-      (sActionData.flags & FLAG_GRAVEYARD_OPPONENT) != 0);
+  Duel_RemapMutualDestroyBattleAnim(playerGraveyardDestroy, opponentGraveyardDestroy);
 
   if (sActionData.flags & 1) {
-    MarkFamiliarKnightBattleDestruction(
-        gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]->id);
-    MarkGiantRatBattleDestruction(
-        DUEL_PLAYER, gFixedZones[sActionData.playerMonsterRow][sActionData.unkA]->id);
-    ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.playerMonsterRow][sActionData.unkA], 0);
+    struct DuelCard *zone = gFixedZones[sActionData.playerMonsterRow][sActionData.unkA];
+
+    /* ponytail: expanded graveyard keeps every push; skip if zone already cleared. */
+    if (zone != NULL && zone->id != CARD_NONE
+        && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.playerMonsterRow,
+                                                         sActionData.unkA)) {
+      MarkFamiliarKnightBattleDestruction(zone->id);
+      MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
+      ClearZoneAndSendMonToGraveyard2(zone, 0);
+    }
   }
   if (sActionData.flags & 2) {
-    MarkFamiliarKnightBattleDestruction(
-        gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
-    MarkGiantRatBattleDestruction(
-        DUEL_OPPONENT, gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16]->id);
-    ClearZoneAndSendMonToGraveyard2(gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16], 1);
+    struct DuelCard *zone = gFixedZones[sActionData.opponentMonsterRow][sActionData.unk16];
+
+    if (zone != NULL && zone->id != CARD_NONE
+        && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.opponentMonsterRow,
+                                                         sActionData.unk16)) {
+      MarkFamiliarKnightBattleDestruction(zone->id);
+      MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);
+      ClearZoneAndSendMonToGraveyard2(zone, 1);
+    }
   }
 
   MarkVampireBabyBattleDestruction(

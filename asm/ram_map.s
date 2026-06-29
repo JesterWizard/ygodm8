@@ -164,6 +164,9 @@ _kernel_malloc_ewram_array gExpandedGraveyardCount, 0x2
 @ AI simulations mutate graveyard state speculatively; save/restore expanded state with vanilla duel state.
 _kernel_malloc_ewram_array gAiSimSavedExpandedGraveyard, 0xA0
 _kernel_malloc_ewram_array gAiSimSavedExpandedGraveyardCount, 0x2
+@ Pre-AI-batch graveyard checkpoint; per-candidate save reuses gAiSimSaved* above.
+_kernel_malloc_ewram_array gAiBatchCheckpointGraveyard, 0xA0
+_kernel_malloc_ewram_array gAiBatchCheckpointGraveyardCount, 0x2
 
 @ Active while Cost Down reduces monster levels in the active duelist's hand.
 _kernel_malloc_ewram gCostDownActive, 1
@@ -381,6 +384,8 @@ _kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1
+_kernel_malloc_ewram gPendingDarkMagicianOfChaosBanishRow, 1
+_kernel_malloc_ewram gPendingDarkMagicianOfChaosBanishCol, 1
 @ DUEL_PLAYER/DUEL_OPPONENT draw pending for Airknight Parshath, else 0xFF.
 _kernel_malloc_ewram gPendingAirknightParshathDrawDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT draw-until-7 pending for Sasuke Samurai #3, else 0xFF.

@@ -75,6 +75,8 @@ unsigned char ShouldActivateGrenMajuDaEiza(void);
 void ActivateGrenMajuDaEiza(void);
 unsigned char ShouldActivateDesFeralImp(void);
 void ActivateDesFeralImp(void);
+unsigned char ShouldActivateDARK_MAGICIAN_OF_CHAOS(void);
+void ActivateDARK_MAGICIAN_OF_CHAOS(void);
 unsigned char ShouldActivateArsenalBug(void);
 void ActivateArsenalBug(void);
 unsigned char ShouldActivateGranadora(void);
@@ -229,6 +231,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MOBIUS_THE_FROST_MONARCH,
     .shouldActivate = ShouldActivateMobiusTheFrostMonarch,
     .activate = ActivateMobiusTheFrostMonarch,
+  },
+  {
+    .cardId = DARK_MAGICIAN_OF_CHAOS,
+    .shouldActivate = ShouldActivateDARK_MAGICIAN_OF_CHAOS,
+    .activate = ActivateDARK_MAGICIAN_OF_CHAOS,
   },
 };
 

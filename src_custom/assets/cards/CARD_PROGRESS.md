@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 235 |
-| Art ready, needs manifest | 146 |
+| In game (manifest + art) | 236 |
+| Art ready, needs manifest | 145 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **381** |
 
@@ -257,6 +257,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
 | `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
 | `A_LEGENDARY_OCEAN` | A Legendary Ocean | `a_legendary_ocean.png` |
+| `DARK_MAGICIAN_OF_CHAOS` | Dark Magician of Chaos | `dark_magician_of_chaos.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -292,7 +293,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBERNETIC_FUSION_SUPPORT` — `cybernetic_fusion_support.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DARK_MAGICIAN_OF_CHAOS` — `dark_magician_of_chaos.png`
 - [ ] `DE-FUSION` — `de-fusion.png`
 - [ ] `DEDICATION_THROUGH_LIGHT_AND_DARKNESS` — `dedication_through_light_and_darkness.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`

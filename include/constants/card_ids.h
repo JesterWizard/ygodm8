@@ -1037,11 +1037,12 @@
 #define AUTONOMOUS_ACTION_UNIT                   0x0409
 #define ELEMENTAL_HERO_RAMPART_BLASTER           0x040A
 #define A_LEGENDARY_OCEAN                        0x040B
+#define DARK_MAGICIAN_OF_CHAOS                   0x040C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x040C
-#define NUM_CUSTOM_CARDS                        0x00EB
+#define NUM_TOTAL_CARDS                         0x040D
+#define NUM_CUSTOM_CARDS                        0x00EC
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

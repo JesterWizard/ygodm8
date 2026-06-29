@@ -172,15 +172,20 @@ void AiSimulateAllCandidateActions(void)
 {
   u16 i;
 
+  gAiSimInBatch = TRUE;
+  gHideEffectText = 1;
+  AiSimBeginBatchGraveyardCheckpoint();
+
   if (gRuntimeConfig.fast_ai) {
     AiSimulateAllCandidateActionsFast();
+    AiSimEndBatchGraveyardCheckpoint();
+    gAiSimInBatch = FALSE;
+    gHideEffectText = 0;
     return;
   }
 
   AiClearCommandData();
   CallThumbVoid(0x0800F108);
-  gAiSimInBatch = TRUE;
-  gHideEffectText = 1;
   for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
     AiInitCommandData(i);
     if (CallThumbU8(0x0801A08C) == 1) {
@@ -192,7 +197,9 @@ void AiSimulateAllCandidateActions(void)
       sub_800EE94__Replacement();
     }
   }
+  AiSimEndBatchGraveyardCheckpoint();
   gAiSimInBatch = FALSE;
+  gHideEffectText = 0;
 }
 
 void AiResimulateAllActions(void)

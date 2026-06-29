@@ -47,6 +47,7 @@ void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveRoyalKnightBattleEffect(void);
 void ResolveLesserFiendBattleEffect(void);
+void ResolveDarkMagicianOfChaosBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
 void ResolveSasukeSamurai3BattleEffect(void);
 void ResolveNeedleBurrowerBattleEffect(void);
@@ -186,6 +187,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveGuardianAngelJoanBattleEffect();
   ResolveRoyalKnightBattleEffect();
   ResolveLesserFiendBattleEffect();
+  ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();

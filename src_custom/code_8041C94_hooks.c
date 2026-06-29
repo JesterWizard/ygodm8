@@ -22,6 +22,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "lesser_fiend.h"
+#include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
 #include "hyper_hammerhead.h"
 #include "des_kangaroo.h"
@@ -351,6 +352,7 @@ void sub_8040EF0__Replacement(void) {
   ResolveGuardianAngelJoanBattleEffect();
   ResolveRoyalKnightBattleEffect();
   ResolveLesserFiendBattleEffect();
+  ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();
   ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();

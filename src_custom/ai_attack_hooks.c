@@ -26,6 +26,7 @@
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
 #include "lesser_fiend.h"
+#include "dark_magician_of_chaos.h"
 #include "sasuke_samurai_2.h"
 
 struct AI_Command {

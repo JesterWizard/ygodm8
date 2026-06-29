@@ -14,4 +14,9 @@ u16 GraveyardExpand_PopTurn(u8 turnDuelist);
 u8 GraveyardExpand_GetCount(u8 fixedDuelist);
 u16 GraveyardExpand_GetCardAt(u8 fixedDuelist, u8 index);
 
+u16 GraveyardExpand_RemoveAtFixed(u8 fixedDuelist, u8 index);
+u16 GraveyardExpand_RemoveAtTurn(u8 turnDuelist, u8 index);
+
+void GraveyardExpand_SyncLegacyTop(u8 fixedDuelist);
+
 #endif

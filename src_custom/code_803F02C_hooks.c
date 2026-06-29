@@ -31,6 +31,7 @@
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
 #include "embodiment_of_apophis.h"
+#include "ai_sim.h"
 #include "expanded_graveyard.h"
 #include "ojama_trio.h"
 #include "cost_down.h"
@@ -43,6 +44,7 @@
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "lesser_fiend.h"
+#include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
 #include "hyper_hammerhead.h"
 #include "des_kangaroo.h"
@@ -238,6 +240,7 @@ void InitBoard__Replacement(void) {
   ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
+  AiSimClearSavedGraveyard();
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
       ClearZone(&gDuel.board[i][j]);
@@ -261,6 +264,7 @@ void InitBoard__Replacement(void) {
   ClearGuardianAngelJoanPending();
   ClearRoyalKnightPending();
   ClearLesserFiendPending();
+  ClearDarkMagicianOfChaosPending();
   ClearAirknightParshathDrawPending();
   ClearSasukeSamurai3DrawPending();
   ClearNeedleBurrowerPending();

@@ -243,6 +243,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { AUTONOMOUS_ACTION_UNIT, gActivationDescription_AutonomousActionUnit },
   { ELEMENTAL_HERO_RAMPART_BLASTER, gActivationDescription_ElementalHeroRampartBlaster },
   { A_LEGENDARY_OCEAN, gActivationDescription_ALegendaryOcean },
+  { DARK_MAGICIAN_OF_CHAOS, gActivationDescription_DarkMagicianOfChaos },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
