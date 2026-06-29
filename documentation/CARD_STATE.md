@@ -1,16 +1,21 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Added Elemental HERO Necroshade
+**Last worked on:** 2026-06-29 — Miracle Fusion GY-only picker + A-to-summon
 
 **Files touched:**
+- `src_custom/fusion_recipes.c`
+- `include/fusion_recipes.h`
+- `src_custom/fusion_duel.c`
+- `include/fusion_duel.h`
+- `src_custom/deck_menu_hooks.c`
+- `include/deck_menu.h`
+- `src_custom/spell_effects/miracle_fusion.c`
+- `src_custom/spell_effects/polymerization.c`
+- `src_custom/spell_effect_hooks.c`
 - `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `src_custom/card_passives/elemental_hero_necroshade.c`
-- `include/elemental_hero_necroshade.h`
-- `src_custom/tribute_hooks.c`
-- `asm/ram_map_ewram.s`
 
-**Outcome:** make all passes; GY once-per-duel no-tribute for level 5+ E-HERO normal summon
+**Outcome:** make test-cards-build passes; Miracle Fusion lists only E-HERO fusions feasible from GY E-HERO monsters; A confirms and summons
 
 **Open / next:**
-- Playtest with Thunder Giant or Electrum in hand after sending Necroshade to GY
+- Playtest Miracle Fusion with varied GY stacks; Polymerization Tempest/Electrum

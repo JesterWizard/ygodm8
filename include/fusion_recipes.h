@@ -2,12 +2,14 @@
 #define GUARD_FUSION_RECIPES_H
 
 #define FUSION_RECIPE_WILDCARD 0xFFFF
+#define FUSION_MAX_MATERIALS 4
 
 struct FusionRecipe {
   u16 result;
   u16 material1;
   u16 material2;
   u16 material3;
+  u16 material4;
 };
 
 extern const struct FusionRecipe gFusionRecipes[];

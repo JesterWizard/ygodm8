@@ -3,15 +3,32 @@
 #include "constants/card_ids.h"
 #include "fusion_recipes.h"
 
-/* ponytail: shared fusion recipe table for Polymerization and De-Fusion. */
+/* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, and De-Fusion. */
 
 APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
-  { FLAME_SWORDSMAN, FLAME_MANIPULATOR, MASAKI_THE_LEGENDARY_SWORDSMAN, 0 },
-  { THOUSAND_DRAGON, TIME_WIZARD, BABY_DRAGON, 0 },
-  { GAIA_THE_DRAGON_CHAMPION, GAIA_THE_FIERCE_KNIGHT, CURSE_OF_DRAGON, 0 },
-  { ALLIGATORS_SWORD_DRAGON, ALLIGATORS_SWORD_DRAGON, BABY_DRAGON, 0 },
-  { B_SKULL_DRAGON, SUMMONED_SKULL, RED_EYES_B_DRAGON, 0 },
-  { BLUE_EYES_ULTIMATE_DRAGON, BLUE_EYES_WHITE_DRAGON, BLUE_EYES_WHITE_DRAGON, BLUE_EYES_WHITE_DRAGON },
+  { FLAME_SWORDSMAN, FLAME_MANIPULATOR, MASAKI_THE_LEGENDARY_SWORDSMAN, 0, 0 },
+  { THOUSAND_DRAGON, TIME_WIZARD, BABY_DRAGON, 0, 0 },
+  { GAIA_THE_DRAGON_CHAMPION, GAIA_THE_FIERCE_KNIGHT, CURSE_OF_DRAGON, 0, 0 },
+  { ALLIGATORS_SWORD_DRAGON, ALLIGATORS_SWORD_DRAGON, BABY_DRAGON, 0, 0 },
+  { B_SKULL_DRAGON, SUMMONED_SKULL, RED_EYES_B_DRAGON, 0, 0 },
+  { BLUE_EYES_ULTIMATE_DRAGON, BLUE_EYES_WHITE_DRAGON, BLUE_EYES_WHITE_DRAGON,
+    BLUE_EYES_WHITE_DRAGON, 0 },
+  { ELEMENTAL_HERO_MUDBALLMAN, ELEMENTAL_HERO_BUBBLEMAN, ELEMENTAL_HERO_CLAYMAN, 0, 0 },
+  { ELEMENTAL_HERO_RAMPART_BLASTER, ELEMENTAL_HERO_CLAYMAN, ELEMENTAL_HERO_BURSTINATRIX, 0, 0 },
+  { ELEMENTAL_HERO_STEAM_HEALER, ELEMENTAL_HERO_BURSTINATRIX, ELEMENTAL_HERO_BUBBLEMAN, 0, 0 },
+  { ELEMENTAL_HERO_PHOENIX_ENFORCER, ELEMENTAL_HERO_AVIAN, ELEMENTAL_HERO_BURSTINATRIX, 0, 0 },
+  { ELEMENTAL_HERO_FLAME_WINGMAN, ELEMENTAL_HERO_AVIAN, ELEMENTAL_HERO_BURSTINATRIX, 0, 0 },
+  { ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER, ELEMENTAL_HERO_PHOENIX_ENFORCER,
+    ELEMENTAL_HERO_SPARKMAN, 0, 0 },
+  { ELEMENTAL_HERO_SHINING_FLARE_WINGMAN, ELEMENTAL_HERO_FLAME_WINGMAN,
+    ELEMENTAL_HERO_SPARKMAN, 0, 0 },
+  { ELEMENTAL_HERO_TEMPEST, ELEMENTAL_HERO_AVIAN, ELEMENTAL_HERO_SPARKMAN,
+    ELEMENTAL_HERO_BUBBLEMAN, 0 },
+  { ELEMENTAL_HERO_WILDEDGE, ELEMENTAL_HERO_WILDHEART, ELEMENTAL_HERO_BLADEDGE, 0, 0 },
+  { ELEMENTAL_HERO_THUNDER_GIANT, ELEMENTAL_HERO_SPARKMAN, ELEMENTAL_HERO_CLAYMAN, 0, 0 },
+  { ELEMENTAL_HERO_MARINER, ELEMENTAL_HERO_BUBBLEMAN, ELEMENTAL_HERO_AVIAN, 0, 0 },
+  { ELEMENTAL_HERO_ELECTRUM, ELEMENTAL_HERO_AVIAN, ELEMENTAL_HERO_BURSTINATRIX,
+    ELEMENTAL_HERO_CLAYMAN, ELEMENTAL_HERO_BUBBLEMAN },
 };
 
 u8 FusionRecipe_Count(void)
@@ -37,6 +54,9 @@ u8 FusionRecipe_MaterialCount(const struct FusionRecipe *recipe)
   if (recipe == NULL)
     return 0;
 
+  if (recipe->material4 != CARD_NONE && recipe->material4 != 0)
+    return 4;
+
   if (recipe->material3 != CARD_NONE && recipe->material3 != 0)
     return 3;
 
@@ -55,6 +75,8 @@ u16 FusionRecipe_MaterialAt(const struct FusionRecipe *recipe, u8 index)
     return recipe->material2;
   case 2:
     return recipe->material3;
+  case 3:
+    return recipe->material4;
   default:
     return CARD_NONE;
   }
@@ -76,6 +98,16 @@ void FusionRecipes_SelfCheck(void)
 
   recipe = FusionRecipe_FindByResult(BLUE_EYES_ULTIMATE_DRAGON);
   if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 3)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_TEMPEST);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 3)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_ELECTRUM);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 4)
     while (1)
       ;
 

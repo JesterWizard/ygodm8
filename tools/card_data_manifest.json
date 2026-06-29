@@ -19649,6 +19649,35 @@
           "can be Summoned without Tributing."
         ]
       }
+    },
+    {
+      "card_const": "MIRACLE_FUSION",
+      "card_name": "Miracle Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 5, 9, 0, 6, 4, 2, 8],
+      "description": {
+        "symbol": "gDescription_MiracleFusion",
+        "pages": [
+          "Fusion Summon 1 \"Elemental HERO\" Fusion Monster from",
+          "your Extra Deck, by banishing Fusion Materials",
+          "listed on it from your field or your GY."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_MiracleFusion",
+        "pages": [
+          "Summon 1 Elemental HERO Fusion Monster using monsters from field or Graveyard as materials."
+        ]
+      }
     }
   ]
 }

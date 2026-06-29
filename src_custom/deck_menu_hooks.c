@@ -530,3 +530,81 @@ void DeckMenuMainReadOnly(void) {
   }
   DeckMenuShutdownGraphics();
 }
+
+bool8 DeckMenuMainPickConfirm(void)
+{
+  unsigned keepProcessing = 1;
+  bool8 confirmed = FALSE;
+
+  if (IsPlayerDeckNonempty() != 1)
+    return FALSE;
+
+  DeckMenuSort();
+  DeckMenuInitGraphics();
+  while (keepProcessing) {
+    switch (DeckMenuProcessInput()) {
+      case DPAD_UP:
+        RunPlayerDeckTask(3);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_UP | R_BUTTON:
+        RunPlayerDeckTask(5);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_DOWN:
+        RunPlayerDeckTask(2);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case DPAD_DOWN | R_BUTTON:
+        RunPlayerDeckTask(4);
+        sub_801EF30(3);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case L_BUTTON:
+        RunPlayerDeckTask(6);
+        sub_801EF30(4);
+        sub_801F5FC();
+        sub_801F4A0(4);
+        break;
+      case NEW_A_BUTTON:
+        confirmed = TRUE;
+        keepProcessing = 0;
+        PlayMusic(SFX_SELECT);
+        break;
+      case NEW_B_BUTTON:
+        keepProcessing = 0;
+        PlayMusic(SFX_CANCEL);
+        break;
+      case NEW_START_BUTTON:
+        sub_801F120();
+        sub_801EF30(7);
+        sub_801F4A0(9);
+        sub_801F644();
+        break;
+      case NEW_SELECT_BUTTON:
+        ToggleDeckSortMode();
+        sub_801EF30(6);
+        PlayMusic(SFX_SELECT);
+        sub_801F4A0(8);
+        sub_801F630();
+        break;
+      case 0:
+      default:
+        sub_801EF30(5);
+        sub_0801F62C();
+        sub_801F4A0(5);
+        break;
+    }
+    if (IsPlayerDeckNonempty() != 1)
+      keepProcessing = 0;
+  }
+  DeckMenuShutdownGraphics();
+  return confirmed;
+}
