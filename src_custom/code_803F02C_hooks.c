@@ -44,6 +44,7 @@
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
+#include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
@@ -265,6 +266,7 @@ void InitBoard__Replacement(void) {
   ClearGuardianAngelJoanPending();
   ClearRoyalKnightPending();
   ClearElementalHeroSteamHealerPending();
+  ClearElementalHeroFlameWingmanPending();
   ClearLesserFiendPending();
   ClearDarkMagicianOfChaosPending();
   ClearAirknightParshathDrawPending();

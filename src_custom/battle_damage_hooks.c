@@ -23,6 +23,7 @@
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
+#include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "airknight_parshath.h"
@@ -258,6 +259,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyGuardianAngelJoanBattleEffect();
   ApplyRoyalKnightBattleEffect();
   ApplyElementalHeroSteamHealerBattleEffect();
+  ApplyElementalHeroFlameWingmanBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();

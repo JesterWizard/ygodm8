@@ -284,6 +284,12 @@ _kernel_malloc_ewram gPendingElementalHeroSteamHealerDuelist, 1
 _kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtkPad, 1
 @ Original ATK of the monster Steam Healer destroyed in battle.
 _kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtk, 2
+@ DUEL_PLAYER/DUEL_OPPONENT burn pending for Elemental HERO Flame Wingman, else 0xFF.
+_kernel_malloc_ewram gPendingElementalHeroFlameWingmanDuelist, 1
+@ ponytail: pad keeps gPendingElementalHeroFlameWingmanDestroyedAtk on an even EWRAM address.
+_kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtkPad, 1
+@ Original ATK of the monster Flame Wingman destroyed in battle.
+_kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtk, 2
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1

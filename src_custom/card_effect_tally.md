@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `236` effects
+- `237` effects
 
 ## Tally
 
@@ -216,6 +216,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `battle_effects` | `Sasuke Samurai` | `src_custom/battle_effects/sasuke_samurai.c` |
 | `battle_effects` | `Guardian Angel Joan` | `src_custom/battle_effects/guardian_angel_joan.c` |
 | `battle_effects` | `Royal Knight` | `src_custom/battle_effects/royal_knight.c` |
+| `battle_effects` | `Elemental HERO Flame Wingman` | `src_custom/battle_effects/elemental_hero_flame_wingman.c` |
 | `battle_effects` | `Elemental HERO Steam Healer` | `src_custom/battle_effects/elemental_hero_steam_healer.c` |
 | `battle_effects` | `Lesser Fiend` | `src_custom/battle_effects/lesser_fiend.c` |
 | `battle_effects` | `Airknight Parshath` | `src_custom/battle_effects/airknight_parshath.c` |

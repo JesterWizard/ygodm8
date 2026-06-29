@@ -49,6 +49,7 @@ void ResolveSpiritReaperDiscardBattleEffect(void);
 void ResolveGuardianAngelJoanBattleEffect(void);
 void ResolveRoyalKnightBattleEffect(void);
 void ResolveElementalHeroSteamHealerBattleEffect(void);
+void ResolveElementalHeroFlameWingmanBattleEffect(void);
 void ResolveLesserFiendBattleEffect(void);
 void ResolveDarkMagicianOfChaosBattleEffect(void);
 void ResolveAirknightParshathDrawBattleEffect(void);
@@ -399,6 +400,7 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveGuardianAngelJoanBattleEffect();
   ResolveRoyalKnightBattleEffect();
   ResolveElementalHeroSteamHealerBattleEffect();
+  ResolveElementalHeroFlameWingmanBattleEffect();
   ResolveLesserFiendBattleEffect();
   ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();

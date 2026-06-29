@@ -1,0 +1,13 @@
+#ifndef GUARD_ELEMENTAL_HERO_FLAME_WINGMAN_H
+#define GUARD_ELEMENTAL_HERO_FLAME_WINGMAN_H
+
+#define ELEMENTAL_HERO_FLAME_WINGMAN_PENDING_NONE 0xFF
+
+extern u8 gPendingElementalHeroFlameWingmanDuelist;
+extern u16 gPendingElementalHeroFlameWingmanDestroyedAtk;
+
+void ApplyElementalHeroFlameWingmanBattleEffect(void);
+void ResolveElementalHeroFlameWingmanBattleEffect(void);
+void ClearElementalHeroFlameWingmanPending(void);
+
+#endif
