@@ -980,6 +980,10 @@ static const unsigned char sElementalHeroTempestBigArt[] __attribute__((section(
 static const unsigned short sElementalHeroTempestBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_tempest.gbapal");
 static const unsigned char sElementalHeroTempestMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_tempest.lz");
 
+static const unsigned char sElementalHeroWildedgeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_wildedge.huff");
+static const unsigned short sElementalHeroWildedgeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_wildedge.gbapal");
+static const unsigned char sElementalHeroWildedgeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_wildedge.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1226,6 +1230,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0411] = sElementalHeroFlameWingmanBigArt,
   [0x0412] = sElementalHeroShiningFlareWingmanBigArt,
   [0x0413] = sElementalHeroTempestBigArt,
+  [0x0414] = sElementalHeroWildedgeBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1474,6 +1479,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0411] = sElementalHeroFlameWingmanBigPalette,
   [0x0412] = sElementalHeroShiningFlareWingmanBigPalette,
   [0x0413] = sElementalHeroTempestBigPalette,
+  [0x0414] = sElementalHeroWildedgeBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1722,6 +1728,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0411] = 0,
   [0x0412] = 0,
   [0x0413] = 0,
+  [0x0414] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -1970,4 +1977,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0411] = sElementalHeroFlameWingmanMiniArt,
   [0x0412] = sElementalHeroShiningFlareWingmanMiniArt,
   [0x0413] = sElementalHeroTempestMiniArt,
+  [0x0414] = sElementalHeroWildedgeMiniArt,
 };

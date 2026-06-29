@@ -1,16 +1,20 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Added Elemental HERO Tempest
+**Last worked on:** 2026-06-29 — Added Elemental HERO Wildedge
 
 **Files touched:**
 - `tools/card_data_manifest.json`
 - `configs/runtime.c`
-- `src_custom/activated_effects/elemental_hero_tempest.c`
-- `include/elemental_hero_tempest.h`
+- `src_custom/card_passives/elemental_hero_wildedge.c`
+- `include/elemental_hero_wildedge.h`
 - `asm/ram_map_ewram.s`
-- `src_custom/duel_helpers.c`
+- `src_custom/code_803F02C_hooks.c`
+- `src_custom/code_8043EF4_hooks.c`
+- `src_custom/ai_attack_hooks.c`
+- `src_custom/call_of_the_haunted_hooks.c`
+- `src_custom/draining_shield_hooks.c`
 
-**Outcome:** make test-cards-link passes; GY cost + ally battle protection while Tempest is face-up
+**Outcome:** make test-cards-build passes; multi-attack-on-each-opponent-monster passive
 
 **Open / next:**
-- Playtest two-step targeting and protection clearing when Tempest leaves field
+- Playtest Wildedge vs multiple opponent monsters

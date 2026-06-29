@@ -71,6 +71,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "elemental_hero_wildedge.h"
 #include "amazoness_archer.h"
 #include "sasuke_samurai.h"
 #include "block_attack.h"
@@ -946,6 +947,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockCyberTwinDragonForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockElementalHeroWildedgeForNextAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       gDuelCursor.state = 0;
       sub_801BC00();
       UpdateAllDuelGfx();
@@ -1058,6 +1061,9 @@ void TryAttackWithMonster__Replacement(void)
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockCyberTwinDragonForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockElementalHeroWildedgeForNextAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gDuelCursor.state = 0;
       SetCursorToCardDest();
       sub_801BC00();

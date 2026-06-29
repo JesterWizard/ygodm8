@@ -19512,6 +19512,37 @@
       },
       "lock_after_activation": true,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_WILDEDGE",
+      "card_name": "Elemental HERO Wildedge",
+      "atk": 2600,
+      "def": 2300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_WILDEDGE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [1, 0, 5, 2, 6, 7, 9, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroWildedge",
+        "pages": [
+          "Elemental HERO Wildheart + Elemental HERO Bladedge",
+          "Must be Fusion Summoned. Activate to attack every",
+          "opponent monster once each Battle Phase."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroWildedge",
+        "pages": [
+          "Attack every opponent monster once each Battle Phase."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

@@ -301,6 +301,11 @@ _kernel_malloc_ewram gElementalHeroTempestProtectedCol, 1
 _kernel_malloc_ewram gElementalHeroTempestPickPhase, 1
 _kernel_malloc_ewram gElementalHeroTempestOriginRow, 1
 _kernel_malloc_ewram gElementalHeroTempestOriginCol, 1
+
+_kernel_malloc_ewram gElementalHeroWildedgeAttackedMask, 1
+_kernel_malloc_ewram gElementalHeroWildedgeEffectActive, 1
+_kernel_malloc_ewram gElementalHeroWildedgeAnchorRow, 1
+_kernel_malloc_ewram gElementalHeroWildedgeAnchorCol, 1
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1

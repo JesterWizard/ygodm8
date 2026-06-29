@@ -14,6 +14,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "elemental_hero_wildedge.h"
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
@@ -190,6 +191,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
 }
 
 static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender) {
@@ -242,6 +244,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
 }
 
 LYN_REPLACE_CHECK(sub_800E50C);

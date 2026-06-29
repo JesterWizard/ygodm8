@@ -15,6 +15,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "elemental_hero_wildedge.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
@@ -389,6 +390,10 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockElementalHeroWildedgeForNextAttack(
+      attacker,
+      isDirect ? NULL
+               : gTurnZones[sAttackResume.defenderRow][sAttackResume.defenderCol]);
   sub_801BC00();
   UpdateAllDuelGfx();
   ResolveTheUnhappyMaidenBattleEffect();

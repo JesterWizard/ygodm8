@@ -46,6 +46,7 @@
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_flame_wingman.h"
 #include "elemental_hero_tempest.h"
+#include "elemental_hero_wildedge.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
@@ -269,6 +270,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSteamHealerPending();
   ClearElementalHeroFlameWingmanPending();
   ClearElementalHeroTempestProtection();
+  ClearElementalHeroWildedgeState();
   ClearLesserFiendPending();
   ClearDarkMagicianOfChaosPending();
   ClearAirknightParshathDrawPending();
@@ -618,6 +620,9 @@ LYN_REPLACE_CHECK(UnlockCardsInRow);
 void UnlockCardsInRow__Replacement(unsigned char turnRow)
 {
   u8 i;
+
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+    ClearElementalHeroWildedgeState();
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[turnRow][i];
