@@ -138,6 +138,7 @@ enum {
   MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER,
   MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST,
   MONSTER_EFFECT_ELEMENTAL_HERO_WILDEDGE,
+  MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -190,5 +191,7 @@ extern unsigned char CanActivateElementalHeroRampartBlaster(void);
 extern void ActivateElementalHeroRampartBlasterEffect(void);
 extern unsigned char CanActivateElementalHeroWildedge(void);
 extern void ActivateElementalHeroWildedgeEffect(void);
+extern unsigned char CanActivateElementalHeroThunderGiant(void);
+extern void ActivateElementalHeroThunderGiantEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

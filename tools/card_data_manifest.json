@@ -19543,6 +19543,37 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_THUNDER_GIANT",
+      "card_name": "Elemental HERO Thunder Giant",
+      "atk": 2400,
+      "def": 1500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 1, 2, 0, 4, 9, 7, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroThunderGiant",
+        "pages": [
+          "Elemental HERO Sparkman + Clayman",
+          "Must be Fusion Summoned. Discard 1",
+          "card to destroy 1 weaker monster."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroThunderGiant",
+        "pages": [
+          "Discard 1 card, destroy 1 monster with less or equal ATK to Thunder Giant."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

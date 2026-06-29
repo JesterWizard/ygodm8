@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 244 |
-| Art ready, needs manifest | 136 |
+| In game (manifest + art) | 245 |
+| Art ready, needs manifest | 135 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -266,6 +266,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_SHINING_FLARE_WINGMAN` | Elemental HERO Shining Flare Wingman | `elemental_hero_shining_flare_wingman.png` |
 | `ELEMENTAL_HERO_TEMPEST` | Elemental HERO Tempest | `elemental_hero_tempest.png` |
 | `ELEMENTAL_HERO_WILDEDGE` | Elemental HERO Wildedge | `elemental_hero_wildedge.png` |
+| `ELEMENTAL_HERO_THUNDER_GIANT` | Elemental HERO Thunder Giant | `elemental_hero_thunder_giant.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -313,7 +314,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_ELECTRUM` — `elemental_hero_electrum.png`
 - [ ] `ELEMENTAL_HERO_MARINER` — `elemental_hero_mariner.png`
 - [ ] `ELEMENTAL_HERO_NECROSHADE` — `elemental_hero_necroshade.png`
-- [ ] `ELEMENTAL_HERO_THUNDER_GIANT` — `elemental_hero_thunder_giant.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`

@@ -245,6 +245,7 @@ static const u8 sElementalHeroFlameWingmanName[] __attribute__((section(".append
 static const u8 sElementalHeroShiningFlareWingmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Shining Flare Wingman";
 static const u8 sElementalHeroTempestName[] __attribute__((section(".append_assets"))) = "Elemental HERO Tempest";
 static const u8 sElementalHeroWildedgeName[] __attribute__((section(".append_assets"))) = "Elemental HERO Wildedge";
+static const u8 sElementalHeroThunderGiantName[] __attribute__((section(".append_assets"))) = "Elemental HERO Thunder Giant";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -741,6 +742,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sElementalHeroTempestName;
   if (cardId == 0x0414)
     return (u8 *)sElementalHeroWildedgeName;
+  if (cardId == 0x0415)
+    return (u8 *)sElementalHeroThunderGiantName;
 
   return gCardNames[cardId];
 }
