@@ -1,8 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ai_sim.h"
 #include "coffin_seller.h"
 #include "call_of_the_haunted.h"
-#include "configs/runtime.h"
 #include "dark_magician_of_chaos.h"
 #include "debug_ruleset.h"
 #include "duel.h"
@@ -25,65 +25,37 @@ extern u8 gAiSimSavedTheDarkDoorTurnAttackUsed;
 extern u8 gAiSimSavedResimulateAfterCallOfTheHaunted;
 extern u8 gAiSimSavedVengefulBogSpiritMaskOpponentRow;
 extern u8 gAiSimSavedVengefulBogSpiritMaskPlayerRow;
-extern u16 gExpandedGraveyard[2][EXPANDED_GRAVEYARD_CAPACITY];
-extern u8 gExpandedGraveyardCount[2];
-extern u16 gAiSimSavedExpandedGraveyard[2][EXPANDED_GRAVEYARD_CAPACITY];
-extern u8 gAiSimSavedExpandedGraveyardCount[2];
-extern u16 gAiBatchCheckpointGraveyard[2][EXPANDED_GRAVEYARD_CAPACITY];
-extern u8 gAiBatchCheckpointGraveyardCount[2];
 
-void AiSimClearSavedGraveyard(void)
+/* ponytail: AI_Data.filler1A8[0..0x13F] — not ram_map; per-candidate + batch GY snapshots. */
+#define AI_SIM_GY_CANDIDATE_SNAPSHOT_OFF 0x1A8
+#define AI_SIM_GY_BATCH_SNAPSHOT_OFF      0x248
+
+static u16 *AiSimCandidateGraveyardSnapshot(void)
 {
-  u8 duelist;
-  u8 i;
-
-  for (duelist = 0; duelist < 2; duelist++) {
-    gAiSimSavedExpandedGraveyardCount[duelist] = 0;
-    gAiBatchCheckpointGraveyardCount[duelist] = 0;
-    for (i = 0; i < EXPANDED_GRAVEYARD_CAPACITY; i++) {
-      gAiSimSavedExpandedGraveyard[duelist][i] = CARD_NONE;
-      gAiBatchCheckpointGraveyard[duelist][i] = CARD_NONE;
-    }
-  }
+  return (u16 *)((u8 *)gUnk_8DFF6A4 + AI_SIM_GY_CANDIDATE_SNAPSHOT_OFF);
 }
 
-void AiSimBeginBatchGraveyardCheckpoint(void)
+static u16 *AiSimBatchGraveyardSnapshot(void)
 {
-  u8 duelist;
-  u8 i;
+  return (u16 *)((u8 *)gUnk_8DFF6A4 + AI_SIM_GY_BATCH_SNAPSHOT_OFF);
+}
 
+void AiSimBatchGraveyardSave(void)
+{
   if (!GraveyardExpand_IsEnabled())
     return;
 
-  for (duelist = 0; duelist < 2; duelist++) {
-    u8 count = gExpandedGraveyardCount[duelist];
-
-    gAiBatchCheckpointGraveyardCount[duelist] = count;
-    for (i = 0; i < count; i++)
-      gAiBatchCheckpointGraveyard[duelist][i] = gExpandedGraveyard[duelist][i];
-    for (i = count; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
-      gAiBatchCheckpointGraveyard[duelist][i] = CARD_NONE;
-  }
+  GraveyardExpand_CopyStacks(AiSimBatchGraveyardSnapshot());
 }
 
-void AiSimEndBatchGraveyardCheckpoint(void)
+void AiSimBatchGraveyardRestore(void)
 {
-  u8 duelist;
-  u8 i;
-
   if (!GraveyardExpand_IsEnabled())
     return;
 
-  for (duelist = 0; duelist < 2; duelist++) {
-    u8 count = gAiBatchCheckpointGraveyardCount[duelist];
-
-    gExpandedGraveyardCount[duelist] = count;
-    for (i = 0; i < count; i++)
-      gExpandedGraveyard[duelist][i] = gAiBatchCheckpointGraveyard[duelist][i];
-    for (i = count; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
-      gExpandedGraveyard[duelist][i] = CARD_NONE;
-    GraveyardExpand_SyncLegacyTop(duelist);
-  }
+  GraveyardExpand_LoadStacks(AiSimBatchGraveyardSnapshot());
+  GraveyardExpand_SyncAllLegacyTops();
+  GraveyardExpand_RefreshDisplay();
 }
 
 void sub_800EE24(void);
@@ -93,7 +65,9 @@ LYN_REPLACE_CHECK(sub_800EE24);
 void sub_800EE24__Replacement(void)
 {
   u8 i;
-  u8 j;
+
+  if (GraveyardExpand_IsEnabled())
+    GraveyardExpand_CopyStacks(AiSimCandidateGraveyardSnapshot());
 
   gAiSimSavedDebugRulesetTurnAttackUsed = gDebugRulesetTurnAttackUsed;
   gAiSimSavedTheDarkDoorTurnAttackUsed = gTheDarkDoorTurnAttackUsed;
@@ -107,20 +81,14 @@ void sub_800EE24__Replacement(void)
     gUnk_8DFF6A4->lifePoints[i] = gDuelLifePoints[i];
     gUnk_8DFF6A4->duelistStatus[i] = gDuelistStatus[i];
     if (GraveyardExpand_IsEnabled()) {
-      u8 count = gExpandedGraveyardCount[i];
-
-      gAiSimSavedExpandedGraveyardCount[i] = count;
-      for (j = 0; j < count; j++)
-        gAiSimSavedExpandedGraveyard[i][j] = gExpandedGraveyard[i][j];
-      for (j = count; j < EXPANDED_GRAVEYARD_CAPACITY; j++)
-        gAiSimSavedExpandedGraveyard[i][j] = CARD_NONE;
+      u8 count = GraveyardExpand_GetCount(i);
 
       /* ponytail: expanded stack is authoritative; keep legacy top out of snapshot. */
       if (count == 0)
         gUnk_8DFF6A4->duel.duelistbattleState[i].graveyard = CARD_NONE;
       else
         gUnk_8DFF6A4->duel.duelistbattleState[i].graveyard =
-            gExpandedGraveyard[i][count - 1];
+            GraveyardExpand_GetCardAt(i, count - 1);
     }
   }
 }
@@ -129,19 +97,9 @@ LYN_REPLACE_CHECK(sub_800EE94);
 void sub_800EE94__Replacement(void)
 {
   u8 i;
-  u8 j;
 
-  if (GraveyardExpand_IsEnabled()) {
-    for (i = 0; i < 2; i++) {
-      u8 count = gAiSimSavedExpandedGraveyardCount[i];
-
-      gExpandedGraveyardCount[i] = count;
-      for (j = 0; j < count; j++)
-        gExpandedGraveyard[i][j] = gAiSimSavedExpandedGraveyard[i][j];
-      for (j = count; j < EXPANDED_GRAVEYARD_CAPACITY; j++)
-        gExpandedGraveyard[i][j] = CARD_NONE;
-    }
-  }
+  if (GraveyardExpand_IsEnabled())
+    GraveyardExpand_LoadStacks(AiSimCandidateGraveyardSnapshot());
 
   gDuel = gUnk_8DFF6A4->duel;
   for (i = 0; i < 2; i++) {
@@ -159,9 +117,4 @@ void sub_800EE94__Replacement(void)
   gVengefulBogSpiritSummonedMaskPlayerRow = gAiSimSavedVengefulBogSpiritMaskPlayerRow;
   ClearCoffinSellerPending();
   ClearDarkMagicianOfChaosPending();
-
-  if (GraveyardExpand_IsEnabled()) {
-    for (i = 0; i < 2; i++)
-      GraveyardExpand_SyncLegacyTop(i);
-  }
 }

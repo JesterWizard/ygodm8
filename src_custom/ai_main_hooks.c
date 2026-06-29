@@ -34,6 +34,7 @@ void AI_Main__Replacement(void)
     u16 temp;
 
     AiSimulateAllCandidateActions();
+    GraveyardExpand_ClearOpponentAfterSimIfFirstTurn();
 
     temp = sub_800EF0C__Replacement();
     if (temp == 0)
@@ -43,8 +44,8 @@ void AI_Main__Replacement(void)
     TryAttackVoicing();
     sub_800E0D4__Replacement();
     if (GraveyardExpand_IsEnabled()) {
-      GraveyardExpand_SyncLegacyTop(DUEL_PLAYER);
-      GraveyardExpand_SyncLegacyTop(DUEL_OPPONENT);
+      GraveyardExpand_SyncAllLegacyTops();
+      GraveyardExpand_RefreshDisplay();
     }
     if (gUnk2023EA0.unk18) {
       sub_801B66C();

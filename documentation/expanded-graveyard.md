@@ -92,6 +92,7 @@ Public header: `include/expanded_graveyard.h`.
 | `GraveyardExpand_GetCardAt` | Read card at index without removing |
 | `GraveyardExpand_RemoveAtFixed` / `RemoveAtTurn` | Remove and return card at index |
 | `GraveyardExpand_SyncLegacyTop` | Force legacy `graveyard` field to match stack top |
+| `GraveyardExpand_ClearOpponentAfterSimIfFirstTurn` | Workaround: clear opponent GY after AI sim when deck has 35 cards left |
 
 Vanilla pop entry points are replaced via LynJump:
 
@@ -109,7 +110,7 @@ All symbols are declared in `asm/ram_map.s` via `_kernel_malloc_ewram_array`. To
 | `gAiSimSavedExpandedGraveyard` | `0xA0` | AI sim | Per-candidate snapshot before speculative play |
 | `gAiSimSavedExpandedGraveyardCount` | `0x2` | AI sim | Counts for per-candidate snapshot |
 | `gAiBatchCheckpointGraveyard` | `0xA0` | AI sim | Pre-batch snapshot for full candidate loop |
-| `gAiBatchCheckpointGraveyardCount` | `0x2` | AI sim | Counts for pre-batch snapshot |
+| `gAiSimInBatch` | `0x1` | AI sim | TRUE while `AiSimulateAllCandidateActions` runs (EWRAM; must be writable) |
 
 The live pair is always required when the feature is enabled. The two AI sim pairs exist because expanded graveyard state lives **outside** `gDuel`; vanilla duel save/restore (`sub_800EE24` / `sub_800EE94`) does not include it. See [AI simulation](#ai-simulation).
 
@@ -143,16 +144,27 @@ Used by the custom AI loop (`ai_hooks.c`), fast AI path (`ai_sim_fast.c`), and v
 
 ### 3. Batch checkpoint
 
-`AiSimBeginBatchGraveyardCheckpoint` / `AiSimEndBatchGraveyardCheckpoint` wrap `AiSimulateAllCandidateActions`:
+`AiSimBatchGraveyardSave` / `AiSimBatchGraveyardRestore` wrap `AiSimulateAllCandidateActions`:
 
 ```
-Begin batch  → copy live GY → gAiBatchCheckpointGraveyard
+Begin batch  → copy live GY → AI_Data filler (+0x248)
   for each candidate:
-    save → simulate → restore   (uses gAiSimSaved*)
+    save → simulate → restore   (uses filler +0x1A8)
 End batch    → copy checkpoint → live GY, sync legacy top
 ```
 
 This restores pre-batch graveyard state even if per-candidate restore order or legacy snapshot sanitization drifts during the loop.
+
+### 4. First-turn opponent phantom purge (workaround)
+
+AI sim can still leave a phantom card in the opponent graveyard on their first turn. After `AiSimulateAllCandidateActions` returns in `AI_Main`, `GraveyardExpand_ClearOpponentAfterSimIfFirstTurn()` clears the opponent stack when their deck still has **35 cards remaining** (`DECK_SIZE` 40 minus the 5-card opening hand).
+
+| Check | Meaning |
+|-------|---------|
+| `NumCardsInDeck(DUEL_OPPONENT) - cardsDrawn == 35` | Opponent has not yet drawn for their first turn |
+| Any other remaining count | Skip — real graveyard cards are preserved |
+
+**If deck size changes:** update the `DECK_SIZE - 5` threshold in `GraveyardExpand_ClearOpponentAfterSimIfFirstTurn` (`src_custom/expanded_graveyard.c`) and this note. The constant is not derived from a shared opening-hand size symbol today.
 
 ### Duel lifecycle
 
@@ -176,7 +188,7 @@ After each real AI action (`ai_main_hooks.c`): `GraveyardExpand_SyncLegacyTop` f
 | AI batch wrapper | `AiSimulateAllCandidateActions` in `src_custom/ai_hooks.c` | Sets sim flags; batch checkpoint begin/end |
 | AI sim save/restore | `sub_800EE24__Replacement`, `sub_800EE94__Replacement` in `src_custom/ai_simulation_hooks.c` | Per-candidate expanded GY + duel snapshot |
 | AI sim helpers | `include/ai_sim.h` | `AiSimSuppressesGraveyardMutations`, checkpoint API |
-| Post-action sync | `AI_Main` replacement in `src_custom/ai_main_hooks.c` | `SyncLegacyTop` after real AI plays |
+| Post-action sync | `AI_Main` replacement in `src_custom/ai_main_hooks.c` | `SyncLegacyTop` after real AI plays; first-turn phantom purge after sim |
 | Indexed GY effects | `src_custom/permanent_effects/dark_magician_of_chaos.c` | `GetCount`, `GetCardAt`, `RemoveAtTurn` |
 | Direct push sites | `robbin_zombie.c`, `ojama_trio.c`, `embodiment_of_apophis_hooks.c`, `magical_merchant.c`, `guardian_treasure.c` | Card-specific send paths |
 
@@ -190,7 +202,7 @@ After each real AI action (`ai_main_hooks.c`): `GraveyardExpand_SyncLegacyTop` f
 
 - Graveyard state is **not persisted** in save data; it resets each duel.
 - Overflow drops the oldest card silently at 40 cards — matches deck size but differs from official rules for mill-heavy decks.
-- Pop/remove during AI sim only guard on `gAiSimInBatch`, not `gHideEffectText`; push guards on both. Asymmetric by design but worth noting when adding new GY mutation paths.
+- Pop/remove during AI sim guard on `AiSimSuppressesGraveyardMutations()` (`gAiSimInBatch || gHideEffectText`). `gAiSimInBatch` must live in EWRAM (not `APPEND_DATA`/ROM) or writes are ignored and sim can leak cards when effect code clears `gHideEffectText`.
 - Code that writes `gDuel.duelistbattleState[].graveyard` directly bypasses the expanded stack; prefer `GraveyardExpand_Push*` or the `ClearZoneAndSend*` hooks.
 - EWRAM is reserved for all six symbols at link time regardless of runtime toggle.
-- Phantom GY cards from AI sim were addressed in session logs 2026-06-28/29; report regressions with `fast_ai` + `expand_graveyard` and a save state if they reappear.
+- Phantom GY cards from AI sim: first-turn opponent purge (`GraveyardExpand_ClearOpponentAfterSimIfFirstTurn`) clears when deck remaining is 35 (`DECK_SIZE - 5`). Re-tune that threshold if deck size changes. Report regressions with `fast_ai` + `expand_graveyard` and a save state if phantoms reappear on later turns.

@@ -25,20 +25,10 @@ _kernel_malloc_ewram sStoredCostSeedRecord, 0x8
 @ Bitfield for one-shot delayed duel effects keyed by duelist.
 _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 
-@ -- Expanded graveyard (live + AI sim layers) ----------------------------------
+@ -- Expanded graveyard (two duelists x 40 u16 card IDs = 0xA0 bytes total) ------------
 @ See documentation/expanded-graveyard.md
 
-@ Expanded graveyards: two fixed duelists x 40 u16 card IDs (80 bytes each).
 _kernel_malloc_ewram_array gExpandedGraveyard, 0xA0
-_kernel_malloc_ewram_array gExpandedGraveyardCount, 0x2
-
-@ AI simulations mutate graveyard state speculatively; save/restore expanded state with vanilla duel state.
-_kernel_malloc_ewram_array gAiSimSavedExpandedGraveyard, 0xA0
-_kernel_malloc_ewram_array gAiSimSavedExpandedGraveyardCount, 0x2
-
-@ Pre-AI-batch graveyard checkpoint; per-candidate save reuses gAiSimSaved* above.
-_kernel_malloc_ewram_array gAiBatchCheckpointGraveyard, 0xA0
-_kernel_malloc_ewram_array gAiBatchCheckpointGraveyardCount, 0x2
 
 @ -- Hand modifiers & board stat overlays --------------------------------------
 
@@ -152,6 +142,10 @@ _kernel_malloc_ewram gDebugRulesetTurnAttackUsed, 1
 
 @ The Dark Door: active duelist already attacked this turn while it is on the field.
 _kernel_malloc_ewram gTheDarkDoorTurnAttackUsed, 1
+
+@ TRUE while AiSimulateAllCandidateActions runs; must be EWRAM (not APPEND_DATA/ROM).
+_kernel_malloc_ewram gAiSimInBatch, 1
+_kernel_malloc_ewram gAiSimInBatchPad, 1
 
 @ AI simulation: saved per-turn attack flags while vanilla AI save/restore runs.
 _kernel_malloc_ewram gAiSimSavedDebugRulesetTurnAttackUsed, 1

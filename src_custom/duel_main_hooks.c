@@ -7,6 +7,7 @@
 #include "custom_decks/custom_decks.h"
 #include "duel.h"
 #include "duel_main.h"
+#include "expanded_graveyard.h"
 #include "duel_status.h"
 #include "guardian_treasure.h"
 #include "jar_of_greed.h"
@@ -299,6 +300,8 @@ static bool8 RunDuelTurnLoop(void) {
     BeginDuelBoardTurn();
     turn = WhoseTurn();
 
+    if (gRuntimeConfig.expand_graveyard == TRUE)
+      GraveyardExpand_SyncFromTurnStart();
     UpdateDuelGfxExceptField();
     if (turn == DUEL_PLAYER)
       AdjustBackgroundBeforeTurnStart(gDuelCursor.currentY);

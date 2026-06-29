@@ -11,6 +11,7 @@
 #include "configs/runtime.h"
 #include "duel.h"
 #include "ai_sim.h"
+#include "expanded_graveyard.h"
 #include "permanent_effect.h"
 #include "the_unhappy_maiden.h"
 
@@ -166,21 +167,21 @@ static u16 AiForceTerrainFieldSpellAction(void)
   return 0;
 }
 
-u8 gAiSimInBatch APPEND_DATA = FALSE;
+extern u8 gAiSimInBatch;
 
 void AiSimulateAllCandidateActions(void)
 {
   u16 i;
 
+  AiSimBatchGraveyardSave();
   gAiSimInBatch = TRUE;
   gHideEffectText = 1;
-  AiSimBeginBatchGraveyardCheckpoint();
 
   if (gRuntimeConfig.fast_ai) {
     AiSimulateAllCandidateActionsFast();
-    AiSimEndBatchGraveyardCheckpoint();
     gAiSimInBatch = FALSE;
     gHideEffectText = 0;
+    AiSimBatchGraveyardRestore();
     return;
   }
 
@@ -197,9 +198,9 @@ void AiSimulateAllCandidateActions(void)
       sub_800EE94__Replacement();
     }
   }
-  AiSimEndBatchGraveyardCheckpoint();
   gAiSimInBatch = FALSE;
   gHideEffectText = 0;
+  AiSimBatchGraveyardRestore();
 }
 
 void AiResimulateAllActions(void)

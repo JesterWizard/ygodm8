@@ -18,5 +18,11 @@ u16 GraveyardExpand_RemoveAtFixed(u8 fixedDuelist, u8 index);
 u16 GraveyardExpand_RemoveAtTurn(u8 turnDuelist, u8 index);
 
 void GraveyardExpand_SyncLegacyTop(u8 fixedDuelist);
+void GraveyardExpand_SyncAllLegacyTops(void);
+void GraveyardExpand_SyncFromTurnStart(void);
+void GraveyardExpand_CopyStacks(u16 *dst);
+void GraveyardExpand_LoadStacks(const u16 *src);
+void GraveyardExpand_RefreshDisplay(void);
+void GraveyardExpand_ClearOpponentAfterSimIfFirstTurn(void);
 
 #endif

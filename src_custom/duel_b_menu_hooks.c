@@ -255,6 +255,12 @@ static void RefreshGraveyardNameTiles(void) {
   CopyGraveyardNameTiles(GraveyardTopCardForDisplay(DUEL_OPPONENT), B_MENU_GY_NAME_CHR_OPPONENT);
 }
 
+void GraveyardExpand_RefreshDisplay(void)
+{
+  if (gRuntimeConfig.expand_graveyard == TRUE)
+    RefreshGraveyardNameTiles();
+}
+
 static void DrawGraveyardNameTilemap(u16 paletteBits) {
   u8 i;
 
