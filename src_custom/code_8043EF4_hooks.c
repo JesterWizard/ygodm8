@@ -182,6 +182,7 @@ void UpdateAllDuelGfx(void);
 u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
 u8 TrySpecialSummonGilasaurusFromHand(u8);
 u8 TrySpecialSummonFenrirFromHand(u8);
+u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -189,7 +190,8 @@ unsigned char GetDuelistStatus(unsigned char);
 
 static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 {
-  return cardId == RARE_METAL_DRAGON || cardId == FENRIR;
+  return cardId == RARE_METAL_DRAGON || cardId == FENRIR
+      || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -197,7 +199,7 @@ static void TryPlaceSelectedCardOnField_Local(void)
   u16 placedCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
 
   SetCardInfo(placedCardId);
-  if (CardRequiresSpecialSummonOnly(gCardInfo.id)) {
+  if (CardRequiresSpecialSummonOnly(placedCardId)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;
@@ -315,6 +317,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == FENRIR
           && TrySpecialSummonFenrirFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
+          && TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -795,6 +802,12 @@ void sub_80449D8__Replacement(void)
   }
 
   if (ShouldBlockGodCardSummon(gSelectedCard.id)) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
+  if (CardRequiresSpecialSummonOnly(gSelectedCard.id)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;

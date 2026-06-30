@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-06-29).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-01).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 250 |
-| Art ready, needs manifest | 130 |
+| In game (manifest + art) | 251 |
+| Art ready, needs manifest | 129 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -272,6 +272,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_NECROSHADE` | Elemental HERO Necroshade | `elemental_hero_necroshade.png` |
 | `MIRACLE_FUSION` | Miracle Fusion | `miracle_fusion.png` |
 | `THE_AGENT_OF_FORCE_MARS` | The Agent of Force - Mars | `the_agent_of_force_mars.png` |
+| `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` | Chaos Emperor Dragon - Envoy of the End | `chaos_emperor_dragon_envoy_of_the_end.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -292,7 +293,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
-- [ ] `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` — `chaos_emperor_dragon_envoy_of_the_end.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`

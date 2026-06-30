@@ -254,6 +254,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ELEMENTAL_HERO_MARINER, gActivationDescription_ElementalHeroMariner },
   { MIRACLE_FUSION, gActivationDescription_MiracleFusion },
   { THE_AGENT_OF_FORCE_MARS, gActivationDescription_TheAgentOfForceMars },
+  { CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END, gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

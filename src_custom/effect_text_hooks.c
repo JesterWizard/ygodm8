@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_ids.h"
 #include "card_passives.h"
 #include "dark_room_of_nightmare.h"
 #include "fire_princess.h"
@@ -84,7 +85,9 @@ void sub_801CF08__Replacement(void)
     return;
   }
 
-  if (activationText != NULL) {
+  /* ponytail: CED shows activation text only from its field-effect handler. */
+  if (activationText != NULL
+      && gCardEffectTextData.cardId != CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     PlayActivationDescriptionText(activationText);
     sub_8022080();
     return;

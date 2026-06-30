@@ -1,13 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-29 — Draw-phase cursor snap runtime config
+**Last worked on:** 2026-06-30 — CED effect text only on direct field activation
 
 **Files touched:**
-- `configs/runtime.h`
-- `configs/runtime.c`
-- `src_custom/duel_main_hooks.c`
+- `src_custom/effect_text_hooks.c`
+- `src_custom/activated_effects/chaos_emperor_dragon_envoy_of_the_end.c`
+- `src_custom/monster_effect_hooks.c`
 
-**Outcome:** `move_cursor_to_hand_on_draw` gates draw-phase hand cursor snap; `make test-cards-build` passes
+**Outcome:** make test-cards-link passes; hand summon should not popup, field board-wipe activation should
 
 **Open / next:**
-- Playtest with Sanctuary in the Sky active
+- Playtest special summon + board wipe; no other effects this turn not enforced yet

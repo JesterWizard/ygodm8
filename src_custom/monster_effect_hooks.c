@@ -35,6 +35,7 @@
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_thunder_giant.h"
 #include "chiron_the_mage.h"
+#include "chaos_emperor_dragon_envoy_of_the_end.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -131,6 +132,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroWildedge();
     case MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT:
       return CanActivateElementalHeroThunderGiant();
+    case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
+      return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
     default:
       return TRUE;
   }
@@ -345,6 +348,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
+    ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -449,6 +457,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_TEMPEST
           || zone->id == ELEMENTAL_HERO_WILDEDGE
           || zone->id == ELEMENTAL_HERO_THUNDER_GIANT
+          || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);

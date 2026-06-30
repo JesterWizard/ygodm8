@@ -1,0 +1,12 @@
+#ifndef GUARD_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END_H
+#define GUARD_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END_H
+
+#include "gba/types.h"
+
+unsigned char CanActivateChaosEmperorDragonEnvoyOfTheEnd(void);
+void ActivateChaosEmperorDragonEnvoyOfTheEndEffect(void);
+
+u8 CanSpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8 handZone);
+u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8 handZone);
+
+#endif // GUARD_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END_H
