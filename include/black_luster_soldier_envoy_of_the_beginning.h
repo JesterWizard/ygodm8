@@ -1,0 +1,18 @@
+#ifndef GUARD_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING_H
+#define GUARD_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING_H
+
+#include "gba/types.h"
+
+#define DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET 34
+
+unsigned char CanActivateBlackLusterSoldierEnvoyOfTheBeginning(void);
+void ActivateBlackLusterSoldierEnvoyOfTheBeginningEffect(void);
+void TrySelectBlackLusterSoldierEnvoyTarget(void);
+void CancelBlackLusterSoldierEnvoyTargeting(void);
+
+u8 CanSpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8 handZone);
+u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8 handZone);
+
+void TryUnlockBlackLusterSoldierEnvoyForSecondAttack(struct DuelCard *attacker);
+
+#endif // GUARD_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING_H

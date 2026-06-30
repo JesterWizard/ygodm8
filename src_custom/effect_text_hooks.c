@@ -85,9 +85,10 @@ void sub_801CF08__Replacement(void)
     return;
   }
 
-  /* ponytail: CED shows activation text only from its field-effect handler. */
+  /* ponytail: envoy monsters show activation text only from field-effect handlers. */
   if (activationText != NULL
-      && gCardEffectTextData.cardId != CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
+      && gCardEffectTextData.cardId != CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
+      && gCardEffectTextData.cardId != BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING) {
     PlayActivationDescriptionText(activationText);
     sub_8022080();
     return;

@@ -4,6 +4,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "blowback_dragon.h"
+#include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "breaker_the_magical_warrior.h"
 #include "caius_the_shadow_monarch.h"
 #include "dark_magician_knight.h"
@@ -55,6 +56,7 @@ static u8 IsMonsterEffectTargetingCursorState(u8 state)
     case DUEL_CURSOR_KAISER_GLIDER_TARGET:
     case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
+    case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
     case DUEL_CURSOR_PICK_ZONE:
       return TRUE;
     default:

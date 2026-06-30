@@ -19722,7 +19722,6 @@
       "trapEffect": 0,
       "cost": 95,
       "password": [8, 2, 3, 0, 1, 9, 0, 4],
-      "effect_usage": "once_per_turn",
       "description": {
         "symbol": "gDescription_ChaosEmperorDragonEnvoyOfTheEnd",
         "pages": [
@@ -19735,6 +19734,38 @@
         "symbol": "gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd",
         "pages": [
           "Pay 1000 LP; send all cards to GY, then deal 300 LP of damage to your opponent for each of these cards."
+        ]
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING",
+      "card_name": "Black Luster Soldier - Envoy of the Beginning",
+      "atk": 3000,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 95,
+      "password": [7, 2, 9, 8, 9, 4, 3, 9],
+      "effect_usage": "once_per_turn",
+      "lock_after_activation": true,
+      "description": {
+        "symbol": "gDescription_BlackLusterSoldierEnvoyOfTheBeginning",
+        "pages": [
+          "Cannot Normal Summon. Banish 1 LIGHT and 1 DARK from GY.",
+          "Special Summon from hand. Once per turn:",
+          "Banish 1 monster (no attack), or extra attack on destroy."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning",
+        "pages": [
+          "Target 1 monster on the field; banish it. This card cannot attack the turn this effect is activated."
         ]
       }
     }

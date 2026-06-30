@@ -71,6 +71,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_necroshade.h"
 #include "amazoness_archer.h"
@@ -183,6 +184,7 @@ u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
 u8 TrySpecialSummonGilasaurusFromHand(u8);
 u8 TrySpecialSummonFenrirFromHand(u8);
 u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8);
+u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -191,7 +193,8 @@ unsigned char GetDuelistStatus(unsigned char);
 static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 {
   return cardId == RARE_METAL_DRAGON || cardId == FENRIR
-      || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END;
+      || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
+      || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -322,6 +325,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           && TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
+          && TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -967,6 +975,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockCyberTwinDragonForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockBlackLusterSoldierEnvoyForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockElementalHeroWildedgeForNextAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       gDuelCursor.state = 0;
@@ -1080,6 +1090,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockCyberTwinDragonForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockBlackLusterSoldierEnvoyForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockElementalHeroWildedgeForNextAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
@@ -1235,6 +1247,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
       TrySelectBlowbackDragonTarget();
       break;
+    case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
+      TrySelectBlackLusterSoldierEnvoyTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1334,6 +1349,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
       CancelBlowbackDragonTargeting();
+      break;
+    case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
+      CancelBlackLusterSoldierEnvoyTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

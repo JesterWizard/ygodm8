@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 251 |
-| Art ready, needs manifest | 129 |
+| In game (manifest + art) | 252 |
+| Art ready, needs manifest | 128 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **380** |
 
@@ -273,6 +273,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MIRACLE_FUSION` | Miracle Fusion | `miracle_fusion.png` |
 | `THE_AGENT_OF_FORCE_MARS` | The Agent of Force - Mars | `the_agent_of_force_mars.png` |
 | `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` | Chaos Emperor Dragon - Envoy of the End | `chaos_emperor_dragon_envoy_of_the_end.png` |
+| `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` | Black Luster Soldier - Envoy of the Beginning | `black_luster_soldier_envoy_of_the_beginning.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -287,7 +288,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
 - [ ] `BIRDFACE` — `birdface.png`
-- [ ] `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` — `black_luster_soldier_envoy_of_the_beginning.png`
 - [ ] `BLACK_PENDANT` — `black_pendant.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`

@@ -1,13 +1,8 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-06-30 — CED effect text only on direct field activation
+**Last worked on:** 2026-06-30 — BLS banish uses dedicated targeting cursor (face-down OK)
 
-**Files touched:**
-- `src_custom/effect_text_hooks.c`
-- `src_custom/activated_effects/chaos_emperor_dragon_envoy_of_the_end.c`
-- `src_custom/monster_effect_hooks.c`
-
-**Outcome:** make test-cards-link passes; hand summon should not popup, field board-wipe activation should
+**Outcome:** make test-cards-build passes; banish targets face-down monsters without PickZone crash
 
 **Open / next:**
-- Playtest special summon + board wipe; no other effects this turn not enforced yet
+- Playtest banish on face-down opponent; second attack after battle destroy

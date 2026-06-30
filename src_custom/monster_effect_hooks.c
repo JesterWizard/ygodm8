@@ -36,6 +36,7 @@
 #include "elemental_hero_thunder_giant.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
+#include "black_luster_soldier_envoy_of_the_beginning.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -134,6 +135,9 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroThunderGiant();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
+
+    case MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING:
+      return CanActivateBlackLusterSoldierEnvoyOfTheBeginning();
     default:
       return TRUE;
   }
@@ -353,6 +357,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING) {
+    ActivateBlackLusterSoldierEnvoyOfTheBeginningEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -458,6 +467,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_WILDEDGE
           || zone->id == ELEMENTAL_HERO_THUNDER_GIANT
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
+          || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
@@ -484,7 +494,6 @@ FAILED:
             ActivateMonsterEffect();
           if (gTurnDuelistBattleState[ACTIVE_DUELIST]->summoningBlocked)
             LockMonsterCardsInRow(4);
-          UpdateDuelGfxExceptField();
           if (gCardInfo.monsterEffect == MONSTER_EFFECT_RYU_KISHIN_CLOWN)
             TryActivateRyuKishinClownOnMonsterPlacement(zone);
           if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_DUST_SPIRIT)
@@ -496,10 +505,13 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLOWBACK_DRAGON_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
-              || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2)
+              || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2
+              || gDuelCursor.state == DUEL_CURSOR_PICK_ZONE)
             break;
+          UpdateDuelGfxExceptField();
           CheckWinConditionExodia();
           if (IsDuelOver() != 1)
             TryActivatingPermanentEffects();

@@ -14,6 +14,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "the_unhappy_maiden.h"
 #include "vampire_baby.h"
@@ -179,6 +180,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(
       attacker,
       sAttackResume.isDirect ? NULL
