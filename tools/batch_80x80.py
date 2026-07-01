@@ -2,7 +2,7 @@
 """Batch-process card art from 512x512 sources to 80x80 indexed PNG.
 
 Matches Mini Photoshop defaults: stretch resize, selective median-cut palette,
-64 colors (minus one slot when alpha is present), PNG output.
+64 colors (index 0 reserved for transparency), PNG output.
 
 Default folders:
   src_custom/assets/cards/512x512  (input)
@@ -20,7 +20,10 @@ from pathlib import Path
 
 from PIL import Image
 
+from normalize_big_card_png import pad_palette_to_64
+
 ROOT = Path(__file__).resolve().parents[1]
+TRANSPARENT_INDEX = 0
 CARD_ASSET_ROOT = ROOT / "src_custom/assets/cards"
 DEFAULT_INPUT_DIR = CARD_ASSET_ROOT / "512x512"
 DEFAULT_OUTPUT_DIR = CARD_ASSET_ROOT / "80x80"
@@ -184,11 +187,11 @@ def median_cut(buckets: list[ColorBucket], max_colors: int) -> list[tuple[int, i
 
 
 def build_selective_palette(rgba: Image.Image, color_count: int, has_alpha: bool) -> list[tuple[int, int, int, int]]:
-    palette_slots = color_count - 1 if has_alpha else color_count
+    # GBA big art treats palette index 0 as transparent; reserve one slot for it.
+    palette_slots = color_count - 1
     colors = median_cut(build_histogram(rgba, has_alpha, selective=True), max(1, palette_slots))
-    palette = [(r, g, b, 255) for r, g, b in colors]
-    if has_alpha:
-        palette.append((0, 0, 0, 0))
+    palette = [(0, 0, 0, 0)]
+    palette.extend((r, g, b, 255) for r, g, b in colors)
     return palette
 
 
@@ -199,15 +202,11 @@ def color_distance(a: tuple[int, int, int, int], b: tuple[int, int, int, int]) -
 def quantize_to_indexed(rgba: Image.Image, palette: list[tuple[int, int, int, int]], has_alpha: bool) -> Image.Image:
     w, h = rgba.size
     pixels = rgba.load()
-    transparent_index = len(palette) - 1 if has_alpha else 0
-    search_limit = len(palette) - 1 if has_alpha else len(palette)
 
     indexed = Image.new("P", (w, h))
     flat_palette: list[int] = []
-    for r, g, b, a in palette:
+    for r, g, b, _a in palette:
         flat_palette.extend((r, g, b))
-    while len(flat_palette) < 768:
-        flat_palette.extend((0, 0, 0))
     indexed.putpalette(flat_palette)
 
     index_pixels = indexed.load()
@@ -215,13 +214,13 @@ def quantize_to_indexed(rgba: Image.Image, palette: list[tuple[int, int, int, in
         for x in range(w):
             r, g, b, a = pixels[x, y]
             if has_alpha and a < 128:
-                index_pixels[x, y] = transparent_index
+                index_pixels[x, y] = TRANSPARENT_INDEX
                 continue
 
             pixel = (r, g, b, 255)
-            best = 0
-            best_dist = color_distance(pixel, palette[0])
-            for i in range(1, search_limit):
+            best = 1
+            best_dist = color_distance(pixel, palette[1])
+            for i in range(2, len(palette)):
                 dist = color_distance(pixel, palette[i])
                 if dist < best_dist:
                     best_dist = dist
@@ -231,12 +230,25 @@ def quantize_to_indexed(rgba: Image.Image, palette: list[tuple[int, int, int, in
     return indexed
 
 
+def finalize_indexed_for_gba(indexed: Image.Image, has_alpha: bool) -> Image.Image:
+    """Reserve palette index 0 for GBA transparency without remapping visible art."""
+    palette = indexed.getpalette()
+    if palette is not None:
+        palette[0:3] = [0, 0, 0]
+        indexed.putpalette(palette)
+    pad_palette_to_64(indexed)
+    if has_alpha:
+        indexed.info["transparency"] = TRANSPARENT_INDEX
+    return indexed
+
+
 def process_image(source: Image.Image, size: tuple[int, int], color_count: int) -> Image.Image:
     rgba = source.convert("RGBA")
     resized = rgba.resize(size, Image.Resampling.BILINEAR)
     alpha = has_transparency(resized)
     palette = build_selective_palette(resized, color_count, alpha)
-    return quantize_to_indexed(resized, palette, alpha)
+    indexed = quantize_to_indexed(resized, palette, alpha)
+    return finalize_indexed_for_gba(indexed, alpha)
 
 
 def collect_input_files(input_dir: Path) -> list[Path]:

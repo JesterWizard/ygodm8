@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 252 |
-| Art ready, needs manifest | 128 |
+| In game (manifest + art) | 253 |
+| Art ready, needs manifest | 157 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **380** |
+| **Total PNGs in `80x80/`** | **410** |
 
 ## In game
 
@@ -274,6 +274,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_AGENT_OF_FORCE_MARS` | The Agent of Force - Mars | `the_agent_of_force_mars.png` |
 | `CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END` | Chaos Emperor Dragon - Envoy of the End | `chaos_emperor_dragon_envoy_of_the_end.png` |
 | `BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING` | Black Luster Soldier - Envoy of the Beginning | `black_luster_soldier_envoy_of_the_beginning.png` |
+| `ELEMENTAL_HERO_NEOS` | Elemental HERO Neos | `elemental_hero_neos.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -306,7 +307,9 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBER_VALLEY` — `cyber_valley.png`
 - [ ] `CYBERNETIC_FUSION_SUPPORT` — `cybernetic_fusion_support.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
+- [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
+- [ ] `DE-FUSION` — `de-fusion.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
@@ -316,6 +319,31 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
+- [ ] `ELEMENTAL_HERO_ABSOLUTE_ZERO` — `elemental_hero_absolute_zero.png`
+- [ ] `ELEMENTAL_HERO_BLAZEMAN` — `elemental_hero_blazeman.png`
+- [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
+- [ ] `ELEMENTAL_HERO_ESCURIDAO` — `elemental_hero_escuridao.png`
+- [ ] `ELEMENTAL_HERO_FLASH` — `elemental_hero_flash.png`
+- [ ] `ELEMENTAL_HERO_GAIA` — `elemental_hero_gaia.png`
+- [ ] `ELEMENTAL_HERO_GREAT_TORNADO` — `elemental_hero_great_tornado.png`
+- [ ] `ELEMENTAL_HERO_HEAT` — `elemental_hero_heat.png`
+- [ ] `ELEMENTAL_HERO_ICE_EDGE` — `elemental_hero_ice_edge.png`
+- [ ] `ELEMENTAL_HERO_INFERNO` — `elemental_hero_inferno.png`
+- [ ] `ELEMENTAL_HERO_KNOSPE` — `elemental_hero_knospe.png`
+- [ ] `ELEMENTAL_HERO_LADY_HEAT` — `elemental_hero_lady_heat.png`
+- [ ] `ELEMENTAL_HERO_NECROID_SHAMAN` — `elemental_hero_necroid_shaman.png`
+- [ ] `ELEMENTAL_HERO_NEOS_ALIUS` — `elemental_hero_neos_alius.png`
+- [ ] `ELEMENTAL_HERO_NEOS_CORE` — `elemental_hero_neos_core.png`
+- [ ] `ELEMENTAL_HERO_OCEAN` — `elemental_hero_ocean.png`
+- [ ] `ELEMENTAL_HERO_PLASMA_VICE` — `elemental_hero_plasma_vice.png`
+- [ ] `ELEMENTAL_HERO_POISON_ROSE` — `elemental_hero_poison_rose.png`
+- [ ] `ELEMENTAL_HERO_STRATOS` — `elemental_hero_stratos.png`
+- [ ] `ELEMENTAL_HERO_SUNRISE` — `elemental_hero_sunrise.png`
+- [ ] `ELEMENTAL_HERO_TERRA_FIRMA` — `elemental_hero_terra_firma.png`
+- [ ] `ELEMENTAL_HERO_THE_SHINING` — `elemental_hero_the_shining.png`
+- [ ] `ELEMENTAL_HERO_VOLTIC` — `elemental_hero_voltic.png`
+- [ ] `ELEMENTAL_HERO_WILD_WINGMAN` — `elemental_hero_wild_wingman.png`
+- [ ] `ELEMENTAL_HERO_WOODSMAN` — `elemental_hero_woodsman.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
@@ -341,6 +369,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
+- [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
@@ -348,6 +377,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
+- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
 - [ ] `MONSTER_RECOVERY` — `monster_recovery.png`

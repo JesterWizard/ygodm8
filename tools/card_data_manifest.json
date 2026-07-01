@@ -19758,8 +19758,6 @@
       "trapEffect": 0,
       "cost": 95,
       "password": [7, 2, 9, 8, 9, 4, 3, 9],
-      "effect_usage": "once_per_turn",
-      "lock_after_activation": true,
       "description": {
         "symbol": "gDescription_BlackLusterSoldierEnvoyOfTheBeginning",
         "pages": [
@@ -19772,6 +19770,31 @@
         "symbol": "gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning",
         "pages": [
           "Target 1 monster on the field; banish it. This card cannot attack the turn this effect is activated."
+        ]
+      },
+      "lock_after_activation": true,
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_NEOS",
+      "card_name": "Elemental HERO Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [8, 9, 9, 4, 3, 7, 2, 3],
+      "description": {
+        "symbol": "gDescription_ElementalHeroNeos",
+        "pages": [
+          "A new Elemental HERO has arrived from Neo-Space!",
+          "When he initiates a Contact Fusion with a Neo-Spacian",
+          "his unknown powers are unleashed."
         ]
       }
     }

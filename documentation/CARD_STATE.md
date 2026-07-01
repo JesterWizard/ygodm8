@@ -1,8 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-01 — Polymerization trunk picker UX (effect text + fusion submenu)
+**Last worked on:** 2026-07-01 — Wired Elemental HERO Neos card art
 
-**Outcome:** make test-cards-build passes; effect text on play, Details/Fusion Summon submenu, B blocked in trunk
+**Files touched:**
+- `src_custom/assets/cards/80x80/elemental_hero_neos.png`
+- `src_custom/generated/card_art_generated.inc`
 
-**Open / next:**
-- Playtest Polymerization multi-fusion branches; Miracle Fusion shares same picker UX
+**Outcome:** make test-cards-build passes; big/mini art at 0x041D

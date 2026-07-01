@@ -253,6 +253,7 @@ static const u8 sMiracleFusionName[] __attribute__((section(".append_assets"))) 
 static const u8 sTheAgentOfForceMarsName[] __attribute__((section(".append_assets"))) = "The Agent of Force - Mars";
 static const u8 sChaosEmperorDragonEnvoyOfTheEndName[] __attribute__((section(".append_assets"))) = "Chaos Emperor Dragon - Envoy of the End";
 static const u8 sBlackLusterSoldierEnvoyOfTheBeginningName[] __attribute__((section(".append_assets"))) = "Black Luster Soldier - Envoy of the Beginning";
+static const u8 sElementalHeroNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Neos";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -765,6 +766,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sChaosEmperorDragonEnvoyOfTheEndName;
   if (cardId == 0x041C)
     return (u8 *)sBlackLusterSoldierEnvoyOfTheBeginningName;
+  if (cardId == 0x041D)
+    return (u8 *)sElementalHeroNeosName;
 
   return gCardNames[cardId];
 }
