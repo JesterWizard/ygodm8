@@ -45,6 +45,7 @@ extern void TryActivatingPermanentEffects(void);
 u8 ElementalHeroShiningPhoenixEnforcer_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroElectrum_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroShiningFlareWingman_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroHeat_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -903,6 +904,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER, ElementalHeroShiningPhoenixEnforcer_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_ELECTRUM, ElementalHeroElectrum_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_SHINING_FLARE_WINGMAN, ElementalHeroShiningFlareWingman_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_HEAT, ElementalHeroHeat_ApplyDynamicZoneStats },
   { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
   { MAJU_GARZETT, MajuGarzett_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },

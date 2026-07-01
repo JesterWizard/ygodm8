@@ -259,6 +259,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING, gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning },
   { ELEMENTAL_HERO_WOODSMAN, gActivationDescription_ElementalHeroWoodsman },
   { ELEMENTAL_HERO_OCEAN, gActivationDescription_ElementalHeroOcean },
+  { ELEMENTAL_HERO_HEAT, gActivationDescription_ElementalHeroHeat },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
