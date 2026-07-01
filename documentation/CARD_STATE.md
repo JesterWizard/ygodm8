@@ -1,14 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-01 — Elemental HERO Heat custom card + ATK boost effect
+**Last worked on:** 2026-07-01 — Lady Heat CanActivate face-down flip ordering
 
-**Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/permanent_effects/elemental_hero_heat.c`
-- `src_custom/duel_helpers.c`
-- `src_custom/card_effect_tally.md`
+**Outcome:** make test-cards-build passes; Lady Heat CanActivate no longer requires face-up before menu flip
 
-**Outcome:** make test-cards-build passes; Heat gains 200 ATK per Elemental HERO you control (dynamic zone stats)
-
-**Open / next:** —
+**Open / next:** User rebuild ROM and retest Effect from face-down DEF

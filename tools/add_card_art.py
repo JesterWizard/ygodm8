@@ -1081,29 +1081,23 @@ def render_activation_description_inc(manifest: dict) -> str:
 
 def render_activation_description_lookup_inc(manifest: dict) -> str:
     lines = [
-        "typedef struct {",
-        "  u16 cardId;",
-        "  const u8 *text;",
-        "} CardActivationTextEntry;",
-        "",
-        "static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA = {",
+        "static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = {",
     ]
-    for index, item in enumerate(manifest["cards"]):
+    for item in manifest["cards"]:
         activation_description = item.get("activation_description")
         if not activation_description:
             continue
-        lines.append(f"  {{ {item['card_const']}, {activation_description['symbol']} }},")
+        lines.append(
+            f"  [{item['card_const']}] = {activation_description['symbol']},"
+        )
     lines.extend([
         "};",
         "",
         "static const u8 *GetCardActivationText(u16 cardId) {",
-        "  u8 i;",
+        "  if (cardId >= NUM_TOTAL_CARDS)",
+        "    return NULL;",
         "",
-        "  for (i = 0; i < ARRAY_COUNT(sCardActivationTextEntries); i++)",
-        "    if (sCardActivationTextEntries[i].cardId == cardId)",
-        "      return sCardActivationTextEntries[i].text;",
-        "",
-        "  return NULL;",
+        "  return sCardActivationTextById[cardId];",
         "}",
         "",
     ])

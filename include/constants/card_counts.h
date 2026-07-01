@@ -1,8 +1,8 @@
 #ifndef GUARD_CONSTANTS_CARD_COUNTS_H
 #define GUARD_CONSTANTS_CARD_COUNTS_H
 
-#define NUM_TOTAL_CARDS                         0x0421
-#define NUM_CUSTOM_CARDS                        0x0100
+#define NUM_TOTAL_CARDS                         0x0422
+#define NUM_CUSTOM_CARDS                        0x0101
 #define CUSTOM_CARD_QTY_BYTES                   0x0200
 
 #endif // GUARD_CONSTANTS_CARD_COUNTS_H

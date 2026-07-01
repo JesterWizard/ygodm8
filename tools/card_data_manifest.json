@@ -19884,6 +19884,35 @@
           "This card gains 200 ATK for each \"Elemental HERO\" monster you control."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_LADY_HEAT",
+      "card_name": "Elemental HERO Lady Heat",
+      "atk": 1300,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_LADY_HEAT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 5, 3, 6, 2, 8, 1, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroLadyHeat",
+        "pages": [
+          "Once per turn you can inflict 200LP damage to your",
+          "opponent for each face-up Elemental HERO you control."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroLadyHeat",
+        "pages": [
+          "Inflict 200LP damage to your opponent for each face-up Elemental HERO you control."
+        ]
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }

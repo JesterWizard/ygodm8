@@ -151,6 +151,13 @@ class CardManifestTests(unittest.TestCase):
         self.assertEqual(list(entry.keys())[:4], ["card_const", "card_name", "atk", "def"])
         self.assertEqual(format_password_inline(entry["password"]), "[1, 2, 3, 4, 5, 6, 7, 8]")
 
+    def test_activation_lookup_indexes_by_card_id(self):
+        manifest = validate_manifest(json.loads((ROOT / "tools" / "card_data_manifest.json").read_text()))
+        lookup = card_art.render_activation_description_lookup_inc(manifest)
+        self.assertIn("sCardActivationTextById[NUM_TOTAL_CARDS]", lookup)
+        self.assertIn("[ELEMENTAL_HERO_LADY_HEAT] = gActivationDescription_ElementalHeroLadyHeat", lookup)
+        self.assertIn("return sCardActivationTextById[cardId];", lookup)
+
 
 if __name__ == "__main__":
     unittest.main()

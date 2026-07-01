@@ -1032,6 +1032,10 @@ static const unsigned char sElementalHeroHeatBigArt[] __attribute__((section(".a
 static const unsigned short sElementalHeroHeatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_heat.gbapal");
 static const unsigned char sElementalHeroHeatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_heat.lz");
 
+static const unsigned char sElementalHeroLadyHeatBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_lady_heat.huff");
+static const unsigned short sElementalHeroLadyHeatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_lady_heat.gbapal");
+static const unsigned char sElementalHeroLadyHeatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_lady_heat.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1291,6 +1295,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x041E] = sElementalHeroWoodsmanBigArt,
   [0x041F] = sElementalHeroOceanBigArt,
   [0x0420] = sElementalHeroHeatBigArt,
+  [0x0421] = sElementalHeroLadyHeatBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1552,6 +1557,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x041E] = sElementalHeroWoodsmanBigPalette,
   [0x041F] = sElementalHeroOceanBigPalette,
   [0x0420] = sElementalHeroHeatBigPalette,
+  [0x0421] = sElementalHeroLadyHeatBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1813,6 +1819,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x041E] = 0,
   [0x041F] = 0,
   [0x0420] = 0,
+  [0x0421] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2074,4 +2081,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x041E] = sElementalHeroWoodsmanMiniArt,
   [0x041F] = sElementalHeroOceanMiniArt,
   [0x0420] = sElementalHeroHeatMiniArt,
+  [0x0421] = sElementalHeroLadyHeatMiniArt,
 };
