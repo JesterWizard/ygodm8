@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `243` effects
+- `244` effects
 
 ## Tally
 
@@ -277,6 +277,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 || `turn_effects` | `Blue-Eyes Chaos Dragon` | `src_custom/turn_effects/blue_eyes_chaos_dragon.c` |
 || `card_passives` | `Blue-Eyes Chaos Dragon` | `src_custom/god_card_hooks.c` |
 || `permanent_effects` | `The Agent of Force - Mars` | `src_custom/permanent_effects/the_agent_of_force_mars.c` |
+| `activated_effects` | `Elemental HERO Woodsman` | `src_custom/activated_effects/elemental_hero_woodsman.c` |
 
 ## Notes
 

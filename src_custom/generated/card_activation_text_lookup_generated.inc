@@ -257,6 +257,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { THE_AGENT_OF_FORCE_MARS, gActivationDescription_TheAgentOfForceMars },
   { CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END, gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd },
   { BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING, gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning },
+  { ELEMENTAL_HERO_WOODSMAN, gActivationDescription_ElementalHeroWoodsman },
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

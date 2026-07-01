@@ -34,6 +34,7 @@
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_thunder_giant.h"
+#include "elemental_hero_woodsman.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -133,6 +134,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroWildedge();
     case MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT:
       return CanActivateElementalHeroThunderGiant();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_WOODSMAN:
+      return CanActivateElementalHeroWoodsman();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -352,6 +355,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_WOODSMAN) {
+    ActivateElementalHeroWoodsmanEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
     return;
@@ -466,6 +474,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_TEMPEST
           || zone->id == ELEMENTAL_HERO_WILDEDGE
           || zone->id == ELEMENTAL_HERO_THUNDER_GIANT
+          || zone->id == ELEMENTAL_HERO_WOODSMAN
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {

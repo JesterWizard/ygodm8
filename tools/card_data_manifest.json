@@ -19797,6 +19797,35 @@
           "his unknown powers are unleashed."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_WOODSMAN",
+      "card_name": "Elemental HERO Woodsman",
+      "atk": 1000,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_WOODSMAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [7, 5, 4, 3, 4, 6, 9, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroWoodsman",
+        "pages": [
+          "Once per turn, during your Standby Phase: You can add",
+          "1 Poly card from your Deck or Graveyard to your hand"
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroWoodsman",
+        "pages": [
+          "Add 1 Polymerization from your Deck or Graveyard to your hand."
+        ]
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }

@@ -254,6 +254,7 @@ static const u8 sTheAgentOfForceMarsName[] __attribute__((section(".append_asset
 static const u8 sChaosEmperorDragonEnvoyOfTheEndName[] __attribute__((section(".append_assets"))) = "Chaos Emperor Dragon - Envoy of the End";
 static const u8 sBlackLusterSoldierEnvoyOfTheBeginningName[] __attribute__((section(".append_assets"))) = "Black Luster Soldier - Envoy of the Beginning";
 static const u8 sElementalHeroNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Neos";
+static const u8 sElementalHeroWoodsmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Woodsman";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -768,6 +769,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBlackLusterSoldierEnvoyOfTheBeginningName;
   if (cardId == 0x041D)
     return (u8 *)sElementalHeroNeosName;
+  if (cardId == 0x041E)
+    return (u8 *)sElementalHeroWoodsmanName;
 
   return gCardNames[cardId];
 }

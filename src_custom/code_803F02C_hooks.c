@@ -123,6 +123,8 @@ void MoveCursorLeft(void);
 void MoveCursorRight(void);
 void HandleAButtonAction(void);
 void sub_8042F04(void);
+
+extern unsigned char gIsPlayerTurnOver;
 void sub_8041014(void);
 void sub_8044B2C(void);
 void UpdateAllDuelGfx(void);
@@ -175,7 +177,6 @@ static u8 GetBlockedDuelistForSorlCounter(void)
   return (WhoseTurn() == DUEL_PLAYER) ? DUEL_OPPONENT : DUEL_PLAYER;
 }
 
-extern unsigned char gIsPlayerTurnOver;
 extern u16 gRepeatedOrNewButtons;
 extern u16 gNewButtons;
 
