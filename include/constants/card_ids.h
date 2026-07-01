@@ -1059,11 +1059,12 @@
 #define ELEMENTAL_HERO_OCEAN                     0x041F
 #define ELEMENTAL_HERO_HEAT                      0x0420
 #define ELEMENTAL_HERO_LADY_HEAT                 0x0421
+#define ELEMENTAL_HERO_NEOS_ALIUS                0x0422
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0422
-#define NUM_CUSTOM_CARDS                        0x0101
+#define NUM_TOTAL_CARDS                         0x0423
+#define NUM_CUSTOM_CARDS                        0x0102
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

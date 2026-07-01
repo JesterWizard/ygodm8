@@ -8,6 +8,7 @@
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "embodiment_of_apophis.h"
+#include "elemental_hero_neos_alius.h"
 #include "ojama_trio.h"
 #include "riryoku.h"
 #include "big_bang_shot.h"
@@ -422,6 +423,7 @@ void SetCardInfo__Replacement(unsigned short id) {
   gCardInfo.name = GetCardName_Hook(id);
   gCardInfo.nameUnused = GetCardName_Hook(id);
   gCardInfo.description = GetCardDescription_Hook(card, id);
+  ElementalHeroNeosAlius_ApplyCardInfoOverridesFromContext(id);
 }
 
 LYN_REPLACE_CHECK(GetSpellType);
@@ -523,6 +525,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   statMod.stage = 0;
 
   SetCardInfo__Replacement(zone->id);
+  ElementalHeroNeosAlius_ApplyCardInfoOverrides(zone);
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(&statMod);
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
@@ -607,7 +610,15 @@ void RefreshPendingBattleActionStatsFromZones(void)
 
 LYN_REPLACE_CHECK(SetFinalStat);
 void SetFinalStat__Replacement(struct StatMod *ptr) {
+  struct DuelCard *cursorZone = NULL;
+
+  if (gDuelCursor.currentY == OPPONENT_MONSTER_ROW
+      || gDuelCursor.currentY == PLAYER_MONSTER_ROW)
+    cursorZone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
+
   SetCardInfo__Replacement(ptr->card);
+  if (cursorZone != NULL && cursorZone->id == ptr->card)
+    ElementalHeroNeosAlius_ApplyCardInfoOverrides(cursorZone);
   ApplyEmbodimentOfApophisCardInfoOverridesForStatMod(ptr);
   ApplyOjamaTrioCardInfoOverridesForStatMod(ptr);
 

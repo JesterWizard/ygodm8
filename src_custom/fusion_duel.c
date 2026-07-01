@@ -44,9 +44,14 @@ static u8 TurnDuelistToFixed(u8 turnDuelist)
   return DUEL_PLAYER;
 }
 
-static u8 MaterialMatches(u16 need, u16 have)
+static u8 MaterialMatches(u16 need, u16 have, struct DuelCard *zone)
 {
-  return need == FUSION_RECIPE_WILDCARD || need == have;
+  u16 effective = Duel_GetEffectiveCardId(zone);
+
+  if (zone == NULL)
+    effective = have;
+
+  return need == FUSION_RECIPE_WILDCARD || need == effective;
 }
 
 static void AddSource(struct FusionMaterialSource *out, u8 *count, u8 maxOut, struct DuelCard *zone,
@@ -150,7 +155,7 @@ u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
     for (i = 0; i < sourceCount; i++) {
       if (used[i])
         continue;
-      if (MaterialMatches(need, sources[i].cardId)) {
+      if (MaterialMatches(need, sources[i].cardId, sources[i].zone)) {
         used[i] = TRUE;
         found = TRUE;
         break;
@@ -191,7 +196,7 @@ u8 FusionRecipe_SelectSources(const struct FusionRecipe *recipe,
     for (i = 0; i < sourceCount; i++) {
       if (used[i])
         continue;
-      if (MaterialMatches(need, sources[i].cardId)) {
+      if (MaterialMatches(need, sources[i].cardId, sources[i].zone)) {
         used[i] = TRUE;
         selected[out++] = sources[i];
         found = TRUE;

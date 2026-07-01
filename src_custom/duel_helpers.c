@@ -25,6 +25,7 @@
 #include "dark_dust_spirit.h"
 #include "kaiser_colosseum.h"
 #include "elemental_hero_tempest.h"
+#include "elemental_hero_neos_alius.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -696,6 +697,9 @@ u8 Duel_CardNameContains(u16 cardId, const char *needle)
   if (cardId == CARD_NONE || needle == NULL)
     return FALSE;
 
+  if (gSetFinalStatZone != NULL && gSetFinalStatZone->id == cardId)
+    cardId = ElementalHeroNeosAlius_GetEffectiveCardId(gSetFinalStatZone);
+
   while (needle[needleLen] != 0)
     needleLen++;
 
@@ -728,6 +732,14 @@ u8 Duel_IsAmazonessCard(u16 cardId)
 u8 Duel_IsElementalHeroCard(u16 cardId)
 {
   return Duel_CardNameContains(cardId, sElementalHeroArchetypeName);
+}
+
+u16 Duel_GetEffectiveCardId(struct DuelCard *zone)
+{
+  if (zone == NULL || zone->id == CARD_NONE)
+    return CARD_NONE;
+
+  return ElementalHeroNeosAlius_GetEffectiveCardId(zone);
 }
 
 u8 Duel_IsFiendZone(struct DuelCard *zone)

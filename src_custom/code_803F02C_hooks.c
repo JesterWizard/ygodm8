@@ -48,6 +48,7 @@
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_necroshade.h"
+#include "elemental_hero_neos_alius.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
 #include "needle_burrower.h"
@@ -247,6 +248,7 @@ void InitBoard__Replacement(void) {
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
   ElementalHeroNecroshade_Reset();
+  ElementalHeroNeosAlius_Reset();
   gAiSimInBatch = FALSE;
   for (i = 0; i < 4; i++)
     for (j = 0; j < 5; j++)
@@ -495,6 +497,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   zone->unk4 = 0;
   zone->willChangeSides = 0;
   ClearCopycatBoardStatsForZone(zone);
+  ElementalHeroNeosAlius_ClearZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
   ClearMajuGarzettBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);

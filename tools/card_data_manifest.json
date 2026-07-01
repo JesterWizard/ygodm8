@@ -19913,6 +19913,35 @@
         ]
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_NEOS_ALIUS",
+      "card_name": "Elemental HERO Neos Alius",
+      "atk": 1900,
+      "def": 1300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [6, 9, 8, 8, 4, 1, 6, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroNeosAlius",
+        "pages": [
+          "Treated as a Normal Monster while",
+          "face-up on the field or in the GY.",
+          "Normal Summon to activate its effect."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroNeosAlius",
+        "pages": [
+          "This card's name becomes \"Elemental HERO Neos\" while on the field."
+        ]
+      }
     }
   ]
 }

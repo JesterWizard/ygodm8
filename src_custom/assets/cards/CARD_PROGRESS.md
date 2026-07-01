@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 257 |
-| Art ready, needs manifest | 153 |
+| In game (manifest + art) | 258 |
+| Art ready, needs manifest | 152 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -279,6 +279,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_OCEAN` | Elemental HERO Ocean | `elemental_hero_ocean.png` |
 | `ELEMENTAL_HERO_HEAT` | Elemental HERO Heat | `elemental_hero_heat.png` |
 | `ELEMENTAL_HERO_LADY_HEAT` | Elemental HERO Lady Heat | `elemental_hero_lady_heat.png` |
+| `ELEMENTAL_HERO_NEOS_ALIUS` | Elemental HERO Neos Alius | `elemental_hero_neos_alius.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -326,6 +327,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_ABSOLUTE_ZERO` — `elemental_hero_absolute_zero.png`
 - [ ] `ELEMENTAL_HERO_BLAZEMAN` — `elemental_hero_blazeman.png`
 - [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
+- [ ] `ELEMENTAL_HERO_CORE` — `elemental_hero_core.png`
 - [ ] `ELEMENTAL_HERO_ESCURIDAO` — `elemental_hero_escuridao.png`
 - [ ] `ELEMENTAL_HERO_FLASH` — `elemental_hero_flash.png`
 - [ ] `ELEMENTAL_HERO_GAIA` — `elemental_hero_gaia.png`
@@ -334,8 +336,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_INFERNO` — `elemental_hero_inferno.png`
 - [ ] `ELEMENTAL_HERO_KNOSPE` — `elemental_hero_knospe.png`
 - [ ] `ELEMENTAL_HERO_NECROID_SHAMAN` — `elemental_hero_necroid_shaman.png`
-- [ ] `ELEMENTAL_HERO_NEOS_ALIUS` — `elemental_hero_neos_alius.png`
-- [ ] `ELEMENTAL_HERO_NEOS_CORE` — `elemental_hero_neos_core.png`
 - [ ] `ELEMENTAL_HERO_PLASMA_VICE` — `elemental_hero_plasma_vice.png`
 - [ ] `ELEMENTAL_HERO_POISON_ROSE` — `elemental_hero_poison_rose.png`
 - [ ] `ELEMENTAL_HERO_STRATOS` — `elemental_hero_stratos.png`

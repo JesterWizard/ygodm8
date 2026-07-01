@@ -37,6 +37,7 @@
 #include "elemental_hero_woodsman.h"
 #include "elemental_hero_ocean.h"
 #include "elemental_hero_lady_heat.h"
+#include "elemental_hero_neos_alius.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -74,6 +75,9 @@ unsigned char CanActivateMonsterEffect(void) {
 
   if (!CanUseMonsterEffect(zone))
     return FALSE;
+
+  if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS)
+    return CanActivateElementalHeroNeosAlius();
 
   switch (gCardInfo.monsterEffect) {
     case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
@@ -165,6 +169,11 @@ void ActivateMonsterEffect__Replacement(void) {
   SetCardEffectTextType(2);
   SetCardInfo(gMonEffect.id);
   MarkMonsterEffectUsed(zone);
+
+  if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS) {
+    ActivateElementalHeroNeosAliusEffect();
+    return;
+  }
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_INJECTION_FAIRY_LILY) {
     ActivateInjectionFairyLilyEffect();
@@ -493,6 +502,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_WOODSMAN
           || zone->id == ELEMENTAL_HERO_OCEAN
           || zone->id == ELEMENTAL_HERO_LADY_HEAT
+          || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
@@ -505,7 +515,7 @@ void MonsterActionMenu__Replacement(void) {
         }
         gMonEffect.row = gDuelCursor.currentY;
         gMonEffect.zone = gDuelCursor.currentX;
-        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER) || !CanActivateMonsterEffect()) {
+        if ((gCardInfo.monsterEffect == MONSTER_EFFECT_NONE && gMonEffect.id != MASK_OF_DARKNESS && gMonEffect.id != NEEDLE_BALL && gMonEffect.id != AMAZONESS_ARCHER && gMonEffect.id != ELEMENTAL_HERO_NEOS_ALIUS) || !CanActivateMonsterEffect()) {
 FAILED:
           PlayMusic(SFX_FORBIDDEN);
           UpdateDuelGfxExceptField();

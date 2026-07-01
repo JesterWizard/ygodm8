@@ -307,6 +307,8 @@ _kernel_malloc_ewram gElementalHeroWildedgeEffectActive, 1
 _kernel_malloc_ewram gElementalHeroWildedgeAnchorRow, 1
 _kernel_malloc_ewram gElementalHeroWildedgeAnchorCol, 1
 _kernel_malloc_ewram gElementalHeroNecroshadeUsed, 1
+@ Per-board-cell Gemini awakened state for Elemental HERO Neos Alius (4 rows x 5 cols).
+_kernel_malloc_ewram_array gNeosAliusAwakenedBoard, 0x14
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.
 _kernel_malloc_ewram gPendingLesserFiendBanishRow, 1
 _kernel_malloc_ewram gPendingLesserFiendBanishCol, 1

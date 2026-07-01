@@ -1036,6 +1036,10 @@ static const unsigned char sElementalHeroLadyHeatBigArt[] __attribute__((section
 static const unsigned short sElementalHeroLadyHeatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_lady_heat.gbapal");
 static const unsigned char sElementalHeroLadyHeatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_lady_heat.lz");
 
+static const unsigned char sElementalHeroNeosAliusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_neos_alius.huff");
+static const unsigned short sElementalHeroNeosAliusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_neos_alius.gbapal");
+static const unsigned char sElementalHeroNeosAliusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_neos_alius.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1296,6 +1300,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x041F] = sElementalHeroOceanBigArt,
   [0x0420] = sElementalHeroHeatBigArt,
   [0x0421] = sElementalHeroLadyHeatBigArt,
+  [0x0422] = sElementalHeroNeosAliusBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1558,6 +1563,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x041F] = sElementalHeroOceanBigPalette,
   [0x0420] = sElementalHeroHeatBigPalette,
   [0x0421] = sElementalHeroLadyHeatBigPalette,
+  [0x0422] = sElementalHeroNeosAliusBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1820,6 +1826,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x041F] = 0,
   [0x0420] = 0,
   [0x0421] = 0,
+  [0x0422] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2082,4 +2089,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x041F] = sElementalHeroOceanMiniArt,
   [0x0420] = sElementalHeroHeatMiniArt,
   [0x0421] = sElementalHeroLadyHeatMiniArt,
+  [0x0422] = sElementalHeroNeosAliusMiniArt,
 };

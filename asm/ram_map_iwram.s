@@ -27,6 +27,10 @@ _kernel_malloc sRandomizedCardCosts, CARD_COST_TABLE_BYTES
 
 @ Reentrancy guard while Copycat resolves copied stats.
 _kernel_malloc gComputingCopycatStats, 1
+@ Reentrancy guard while Neos Alius patches display name from SetCardInfo.
+_kernel_malloc gApplyingNeosAliusCardInfo, 1
+@ ponytail: pad so following IWRAM u16 allocations stay 2-byte aligned.
+_kernel_malloc gApplyingNeosAliusCardInfoPad, 1
 
 @ -- Extra Normal Summon -------------------------------------------------------
 
