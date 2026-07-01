@@ -3,6 +3,8 @@
 
 #include "global.h"
 
+void ElementalHeroElectrum_ReturnRemovedMonstersToDecks(void);
+
 u8 ElementalHeroElectrum_ApplyDynamicZoneStats(struct DuelCard *zone);
 void ElementalHeroElectrum_OnFusionSummoned(void);
 

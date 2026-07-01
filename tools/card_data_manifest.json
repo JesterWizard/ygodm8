@@ -19625,6 +19625,12 @@
           "Fusion only. Also WIND/WATER/FIRE/EARTH.",
           "+300 ATK per foe mon sharing an Attribute."
         ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroElectrum",
+        "pages": [
+          "All monsters removed from player are returned to their respective decks."
+        ]
       }
     },
     {

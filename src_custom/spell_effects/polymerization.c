@@ -2,12 +2,13 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
+#include "duel_helpers.h"
 #include "fusion_duel.h"
 #include "spell_effects.h"
 
 static void RunPlayerFusionFlow(u16 spellCardId,
                                 void (*execute)(const struct FusionRecipe *,
-                                                const struct FusionMaterialSource *, u8, u16),
+                                                const struct FusionMaterialSource *, u8, u16, u8),
                                 FusionRecipeFilterFn filter)
 {
   struct FusionMaterialSource sources[FUSION_MAX_SOURCES];
@@ -31,13 +32,13 @@ static void RunPlayerFusionFlow(u16 spellCardId,
     return;
   }
 
-  if (feasibleCount == 1)
-    recipe = &gFusionRecipes[feasibleIndices[0]];
-  else
-    recipe = FusionDuel_PlayerPickRecipe(feasibleIndices, feasibleCount);
+  Duel_ShowEffectText(spellCardId);
+  if (IsDuelOver() == TRUE)
+    return;
 
+  recipe = FusionDuel_PlayerConfirmFusionPick(feasibleIndices, feasibleCount);
   if (recipe != NULL)
-    execute(recipe, sources, sourceCount, spellCardId);
+    execute(recipe, sources, sourceCount, spellCardId, FALSE);
 }
 
 APPEND_TEXT void EffectPolymerization(void)
@@ -62,7 +63,7 @@ APPEND_TEXT void EffectPolymerization(void)
     }
 
     FusionDuel_ExecutePolymerization(&gFusionRecipes[bestIdx], sources, sourceCount,
-                                     POLYMERIZATION);
+                                     POLYMERIZATION, TRUE);
     return;
   }
 

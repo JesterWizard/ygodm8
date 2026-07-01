@@ -30,7 +30,7 @@ const struct FusionRecipe *FusionDuel_PlayerPickRecipe(const u8 *recipeIndices, 
 const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIndices, u8 count);
 void FusionDuel_ExecutePolymerization(const struct FusionRecipe *recipe,
                                     const struct FusionMaterialSource *sources,
-                                    u8 sourceCount, u16 spellCardId);
+                                    u8 sourceCount, u16 spellCardId, u8 showEffectText);
 void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,
                                      const struct FusionMaterialSource *sources,
                                      u8 sourceCount, u16 spellCardId, u8 showEffectText);

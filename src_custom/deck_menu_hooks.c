@@ -94,6 +94,35 @@ static const unsigned char gDeckSubmenuText[] APPEND_TEXT = _(
     "すべてかばんへ     "
 );
 
+static const unsigned char gFusionPickSubmenuText[] APPEND_TEXT = _(
+  "{ENG}"
+    "Details   "
+    "Fusion Summon"
+  "{FRE}"
+    "Voir détails        "
+    "Invocation Fusion   "
+  "{GER}"
+    "Details ansehen     "
+    "Fusion beschwören   "
+  "{ITA}"
+    "Vedi dettagli       "
+    "Evoca Fusione       "
+  "{SPA}"
+    "Ver detalles        "
+    "Invocar Fusión      "
+  "{JAP}"
+    "カードの詳細を見る       "
+    "フュージョン召喚         "
+);
+
+static const unsigned char gFusionSubmenuNavUp[] APPEND_RODATA = {0, 0};
+static const unsigned char gFusionSubmenuNavDown[] APPEND_RODATA = {1, 1};
+
+enum {
+  FUSION_PICK_SUBMENU_BACK,
+  FUSION_PICK_SUBMENU_SUMMON,
+};
+
 static void sub_801DE5C(void) {
   unsigned char i;
   unsigned short r7;
@@ -109,6 +138,23 @@ static void sub_801DE5C(void) {
     sub_800800C(i + 9, 14, 0x7800, (g8DF811C[i] + 63) | r7);
   }
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], gDeckSubmenuText, 0x900);
+}
+
+static void FusionPickSubmenu_InitGfx(void) {
+  unsigned char i;
+  unsigned short r7;
+
+  for (i = 0; i < 20; i++)
+    CpuCopy32(gUnk_808D9B0[i], &(((struct Sbb *)&gBgVram)->sbbF[i]), 60);
+  CpuFill16(0, gBgVram.cbb1, 32);
+  r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
+  for (i = 0; i < 20; i++) {
+    sub_800800C(i + 9, 11, 0x7800, (g8DF811C[i] + 21) | r7);
+    sub_800800C(i + 9, 12, 0x7800, (g8DF811C[i] + 23) | r7);
+    sub_800800C(i + 9, 13, 0x7800, (g8DF811C[i] + 61) | r7);
+    sub_800800C(i + 9, 14, 0x7800, (g8DF811C[i] + 63) | r7);
+  }
+  CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], gFusionPickSubmenuText, 0x900);
 }
 
 static void sub_801D61C(unsigned char cursorState) {
@@ -457,6 +503,59 @@ static void DeckMenuShowSelectedCardDetails(void) {
   DeckMenuRestoreAfterCardDetails();
 }
 
+static u8 FusionPickSubmenu_Main(void) {
+  unsigned keepProcessing = 1;
+  unsigned char cursorState = 0;
+  u8 result = FUSION_PICK_SUBMENU_BACK;
+
+  PlayMusic(SFX_SELECT);
+  FusionPickSubmenu_InitGfx();
+  sub_801D61C(cursorState);
+  LoadCharblock1();
+  SetVBlankCallback(DeckSubmenuVBlank);
+  WaitForVBlank();
+  while (keepProcessing) {
+    switch (ProcessInputDeckSubmenus__Replacement()) {
+      case REPEAT_DPAD_UP:
+        cursorState = gFusionSubmenuNavUp[cursorState];
+        sub_801D61C(cursorState);
+        PlayMusic(SFX_MOVE_CURSOR);
+        SetVBlankCallback(LoadOam);
+        WaitForVBlank();
+        break;
+      case REPEAT_DPAD_DOWN:
+        cursorState = gFusionSubmenuNavDown[cursorState];
+        sub_801D61C(cursorState);
+        PlayMusic(SFX_MOVE_CURSOR);
+        SetVBlankCallback(LoadOam);
+        WaitForVBlank();
+        break;
+      case NEW_A_BUTTON:
+        switch (cursorState) {
+          case 0:
+            DeckMenuShowSelectedCardDetails();
+            keepProcessing = 0;
+            break;
+          case 1:
+            result = FUSION_PICK_SUBMENU_SUMMON;
+            keepProcessing = 0;
+            PlayMusic(SFX_SELECT);
+            break;
+        }
+        break;
+      case NEW_B_BUTTON:
+        keepProcessing = 0;
+        PlayMusic(SFX_CANCEL);
+        break;
+      default:
+        WaitForVBlank();
+        break;
+    }
+  }
+  sub_801D678();
+  return result;
+}
+
 void DeckMenuMainReadOnly(void) {
   unsigned keepProcessing = 1;
 
@@ -574,13 +673,15 @@ bool8 DeckMenuMainPickConfirm(void)
         sub_801F4A0(4);
         break;
       case NEW_A_BUTTON:
-        confirmed = TRUE;
-        keepProcessing = 0;
-        PlayMusic(SFX_SELECT);
+        if (FusionPickSubmenu_Main() == FUSION_PICK_SUBMENU_SUMMON) {
+          confirmed = TRUE;
+          keepProcessing = 0;
+        } else {
+          sub_801F4A0(7);
+        }
         break;
+      // ponytail: B does not exit fusion trunk picker — cancel via submenu only
       case NEW_B_BUTTON:
-        keepProcessing = 0;
-        PlayMusic(SFX_CANCEL);
         break;
       case NEW_START_BUTTON:
         sub_801F120();

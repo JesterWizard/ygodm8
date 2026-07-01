@@ -62,10 +62,19 @@ u8 ElementalHeroElectrum_ApplyDynamicZoneStats(struct DuelCard *zone)
   return TRUE;
 }
 
+void ElementalHeroElectrum_ReturnRemovedMonstersToDecks(void)
+{
+  /* ponytail: no removed-from-play zone yet — shuffle banished/exiled monsters back
+   * into each owner's deck once Duel_BanishZone (or equivalent) exists. */
+}
+
 void ElementalHeroElectrum_OnFusionSummoned(void)
 {
-  /* ponytail: no banish pile in this engine — Duel_BanishZone only clears zones */
   Duel_ShowEffectText(ELEMENTAL_HERO_ELECTRUM);
+  if (IsDuelOver() == TRUE)
+    return;
+
+  ElementalHeroElectrum_ReturnRemovedMonstersToDecks();
 }
 
 #if !defined(__GNUC__)

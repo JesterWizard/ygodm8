@@ -413,9 +413,10 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
 
 void FusionDuel_ExecutePolymerization(const struct FusionRecipe *recipe,
                                     const struct FusionMaterialSource *sources,
-                                    u8 sourceCount, u16 spellCardId)
+                                    u8 sourceCount, u16 spellCardId, u8 showEffectText)
 {
-  ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId, PayPolymerizationMaterials, TRUE);
+  ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId, PayPolymerizationMaterials,
+                      showEffectText);
 }
 
 void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,

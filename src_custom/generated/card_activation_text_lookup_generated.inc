@@ -252,6 +252,7 @@ static const CardActivationTextEntry sCardActivationTextEntries[] APPEND_RODATA 
   { ELEMENTAL_HERO_WILDEDGE, gActivationDescription_ElementalHeroWildedge },
   { ELEMENTAL_HERO_THUNDER_GIANT, gActivationDescription_ElementalHeroThunderGiant },
   { ELEMENTAL_HERO_MARINER, gActivationDescription_ElementalHeroMariner },
+  { ELEMENTAL_HERO_ELECTRUM, gActivationDescription_ElementalHeroElectrum },
   { MIRACLE_FUSION, gActivationDescription_MiracleFusion },
   { THE_AGENT_OF_FORCE_MARS, gActivationDescription_TheAgentOfForceMars },
   { CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END, gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd },
