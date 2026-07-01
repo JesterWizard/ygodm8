@@ -1328,7 +1328,20 @@ def main() -> int:
         action="store_true",
         help="Generate only missing 24x24 mini assets from existing 80x80 PNGs and palettes",
     )
+    parser.add_argument(
+        "--skip-art",
+        action="store_true",
+        help="Regenerate manifest-driven includes without converting card PNGs",
+    )
+    parser.add_argument(
+        "--art-only",
+        action="store_true",
+        help="Convert card PNGs in 80x80/24x24 and refresh card_art_generated.inc only",
+    )
     args = parser.parse_args()
+
+    if args.skip_art and args.art_only:
+        raise SystemExit("Cannot use --skip-art with --art-only.")
 
     manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
 
@@ -1352,6 +1365,20 @@ def main() -> int:
         print(f"Generated {len(built_minis)} mini assets.")
         return 0
 
+    if args.art_only:
+        built_minis = ensure_custom_card_assets(manifest)
+        entries = discover_entries(manifest)
+        asset_inc = render_asset_inc(entries)
+        if args.print:
+            print(f"--- {GENERATED_ASSET_INC} ---")
+            print(asset_inc, end="")
+        else:
+            update_file(GENERATED_ASSET_INC, asset_inc)
+            print(
+                f"Built {len(built_minis)} mini assets and refreshed art bindings for {len(entries)} cards."
+            )
+        return 0
+
     enum_tables = load_effect_enums()
     custom_field_spell_names = set(enum_tables.get("customFieldSpell", {}).keys())
     for item in manifest["cards"]:
@@ -1368,7 +1395,10 @@ def main() -> int:
                     f"cards[{item['card_const']}].customFieldSpell must not be CUSTOM_FIELD_SPELL_NONE."
                 )
 
-    built_minis = ensure_custom_card_assets(manifest)
+    if args.skip_art:
+        built_minis = []
+    else:
+        built_minis = ensure_custom_card_assets(manifest)
     entries = discover_entries(manifest)
 
     asset_inc = render_asset_inc(entries)
