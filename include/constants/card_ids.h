@@ -1056,11 +1056,12 @@
 #define BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING 0x041C
 #define ELEMENTAL_HERO_NEOS                      0x041D
 #define ELEMENTAL_HERO_WOODSMAN                  0x041E
+#define ELEMENTAL_HERO_OCEAN                     0x041F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x041F
-#define NUM_CUSTOM_CARDS                        0x00FE
+#define NUM_TOTAL_CARDS                         0x0420
+#define NUM_CUSTOM_CARDS                        0x00FF
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

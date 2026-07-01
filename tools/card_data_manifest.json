@@ -19826,6 +19826,35 @@
         ]
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_OCEAN",
+      "card_name": "Elemental HERO Ocean",
+      "atk": 1500,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_OCEAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [3, 7, 1, 9, 5, 8, 6, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroOcean",
+        "pages": [
+          "Once per turn, you can target 1 HERO monster on your",
+          "field or in your Graveyard and return it to your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroOcean",
+        "pages": [
+          "Once per turn, you can target 1 HERO monster on your field or in your Graveyard and return it to your hand."
+        ]
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }
