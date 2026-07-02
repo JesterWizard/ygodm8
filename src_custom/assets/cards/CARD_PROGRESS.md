@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 260 |
-| Art ready, needs manifest | 150 |
+| In game (manifest + art) | 261 |
+| Art ready, needs manifest | 149 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -282,6 +282,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_NEOS_ALIUS` | Elemental HERO Neos Alius | `elemental_hero_neos_alius.png` |
 | `ELEMENTAL_HERO_GREAT_TORNADO` | Elemental HERO Great Tornado | `elemental_hero_great_tornado.png` |
 | `ELEMENTAL_HERO_TERRA_FIRMA` | Elemental HERO Terra Firma | `elemental_hero_terra_firma.png` |
+| `ELEMENTAL_HERO_KNOSPE` | Elemental HERO Knospe | `elemental_hero_knospe.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -335,7 +336,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_GAIA` — `elemental_hero_gaia.png`
 - [ ] `ELEMENTAL_HERO_ICE_EDGE` — `elemental_hero_ice_edge.png`
 - [ ] `ELEMENTAL_HERO_INFERNO` — `elemental_hero_inferno.png`
-- [ ] `ELEMENTAL_HERO_KNOSPE` — `elemental_hero_knospe.png`
 - [ ] `ELEMENTAL_HERO_NECROID_SHAMAN` — `elemental_hero_necroid_shaman.png`
 - [ ] `ELEMENTAL_HERO_PLASMA_VICE` — `elemental_hero_plasma_vice.png`
 - [ ] `ELEMENTAL_HERO_POISON_ROSE` — `elemental_hero_poison_rose.png`

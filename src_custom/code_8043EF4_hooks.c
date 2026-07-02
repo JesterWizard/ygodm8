@@ -115,6 +115,7 @@
 #include "black_tyranno.h"
 #include "drillago.h"
 #include "elemental_hero_mariner.h"
+#include "elemental_hero_knospe.h"
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
@@ -929,6 +930,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanElementalHeroMarinerAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanElementalHeroKnospeAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanJowlsControlledMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
@@ -958,6 +961,8 @@ void sub_8044570__Replacement(void)
       TryShowDrillagoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowElementalHeroMarinerDirectAttackText(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
+      TryShowElementalHeroKnospeDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();

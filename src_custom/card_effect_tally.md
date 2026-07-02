@@ -281,6 +281,9 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Elemental HERO Woodsman` | `src_custom/activated_effects/elemental_hero_woodsman.c` |
 | `permanent_effects` | `Elemental HERO Heat` | `src_custom/permanent_effects/elemental_hero_heat.c` |
 | `activated_effects` | `Elemental HERO Lady Heat` | `src_custom/activated_effects/elemental_hero_lady_heat.c` |
+| `permanent_effects` | `Elemental HERO Knospe` | `src_custom/permanent_effects/elemental_hero_knospe.c` |
+| `card_passives` | `Elemental HERO Knospe` | `src_custom/card_passives/elemental_hero_knospe.c` |
+| `battle_effects` | `Elemental HERO Knospe` | `src_custom/battle_effects/elemental_hero_knospe.c` |
 
 ## Notes
 

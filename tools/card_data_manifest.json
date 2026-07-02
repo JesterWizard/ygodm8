@@ -20003,6 +20003,35 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_KNOSPE",
+      "card_name": "Elemental HERO Knospe",
+      "atk": 600,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [6, 2, 1, 0, 7, 9, 8, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroKnospe",
+        "pages": [
+          "Each time it inflicts Battle Damage, +100 ATK and -100 DEF.",
+          "While another Elemental HERO is face-up on your field,",
+          "this card cannot be targeted and can attack directly."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroKnospe",
+        "pages": [
+          "Each time it inflicts Battle Damage to your opponent: It gains 100 ATK and loses 100 DEF."
+        ]
+      }
     }
   ]
 }

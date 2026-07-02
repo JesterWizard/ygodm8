@@ -39,6 +39,7 @@
 #include "big_bang_shot.h"
 #include "cyber_end_dragon.h"
 #include "elemental_hero_bladedge.h"
+#include "elemental_hero_knospe.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
 #include "constants/card_ids.h"
@@ -260,6 +261,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyRoyalKnightBattleEffect();
   ApplyElementalHeroSteamHealerBattleEffect();
   ApplyElementalHeroFlameWingmanBattleEffect();
+  ApplyElementalHeroKnospeBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();
