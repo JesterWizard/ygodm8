@@ -145,6 +145,7 @@ enum {
   MONSTER_EFFECT_ELEMENTAL_HERO_OCEAN,
   MONSTER_EFFECT_ELEMENTAL_HERO_LADY_HEAT,
   MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA,
+  MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -199,5 +200,7 @@ extern unsigned char CanActivateElementalHeroWildedge(void);
 extern void ActivateElementalHeroWildedgeEffect(void);
 extern unsigned char CanActivateElementalHeroThunderGiant(void);
 extern void ActivateElementalHeroThunderGiantEffect(void);
+extern unsigned char CanActivateElementalHeroWildWingman(void);
+extern void ActivateElementalHeroWildWingmanEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

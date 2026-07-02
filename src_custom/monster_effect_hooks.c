@@ -41,6 +41,7 @@
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_terra_firma.h"
+#include "elemental_hero_wild_wingman.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -151,6 +152,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroLadyHeat();
     case MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA:
       return CanActivateElementalHeroTerraFirma();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN:
+      return CanActivateElementalHeroWildWingman();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -395,6 +398,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN) {
+    ActivateElementalHeroWildWingmanEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
     return;
@@ -513,6 +521,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_OCEAN
           || zone->id == ELEMENTAL_HERO_LADY_HEAT
           || zone->id == ELEMENTAL_HERO_TERRA_FIRMA
+          || zone->id == ELEMENTAL_HERO_WILD_WINGMAN
           || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
@@ -557,6 +566,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_BLOWBACK_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET
               || gDuelCursor.state == DUEL_CURSOR_TERRA_FIRMA_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2

@@ -262,6 +262,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ELEMENTAL_HERO_KNOSPE] = gActivationDescription_ElementalHeroKnospe,
   [ELEMENTAL_HERO_POISON_ROSE] = gActivationDescription_ElementalHeroPoisonRose,
   [ELEMENTAL_HERO_ABSOLUTE_ZERO] = gActivationDescription_ElementalHeroAbsoluteZero,
+  [ELEMENTAL_HERO_WILD_WINGMAN] = gActivationDescription_ElementalHeroWildWingman,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

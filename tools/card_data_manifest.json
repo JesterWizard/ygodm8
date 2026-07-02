@@ -20083,12 +20083,43 @@
           "If this card leaves the field: Destroy all opponent monsters."
         ]
       },
-      "activation_description":{
+      "activation_description": {
         "symbol": "gActivationDescription_ElementalHeroAbsoluteZero",
         "pages": [
           "Destroy all opponent monsters."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_WILD_WINGMAN",
+      "card_name": "Elemental HERO Wild Wingman",
+      "atk": 1900,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 5, 6, 1, 5, 8, 9, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroWildWingman",
+        "pages": [
+          "Elemental HERO Wildheart + Elemental HERO Avian",
+          "Must be Fusion Summoned. Discard 1 card to",
+          "destroy 1 Spell/Trap Card on the field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroWildWingman",
+        "pages": [
+          "Discard 1 card, destroy 1 Spell/Trap Card on the field."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

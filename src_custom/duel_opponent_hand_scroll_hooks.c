@@ -62,7 +62,8 @@ LYN_REPLACE_CHECK(MoveCursorUp);
 void MoveCursorUp__Replacement(void) {
   PlayMusic(SFX_MOVE_CURSOR);
 
-  if (IsOpponentHandFieldScrollEnabled() && gDuelCursor.currentY == OPPONENT_BACKROW) {
+  if (IsOpponentHandFieldScrollEnabled() && gDuelCursor.currentY == OPPONENT_BACKROW
+      && gDuelCursor.state == 0) {
     gDuelCursor.currentY = OPPONENT_HAND_ROW;
     gDuelCursor.destY = OPPONENT_HAND_ROW;
     gDuelCursor.destX = gDuelCursor.currentX;
@@ -82,7 +83,8 @@ LYN_REPLACE_CHECK(MoveCursorDown);
 void MoveCursorDown__Replacement(void) {
   PlayMusic(SFX_MOVE_CURSOR);
 
-  if (IsOpponentHandFieldScrollEnabled() && gDuelCursor.currentY == OPPONENT_HAND_ROW) {
+  if (IsOpponentHandFieldScrollEnabled() && gDuelCursor.currentY == OPPONENT_HAND_ROW
+      && gDuelCursor.state == 0) {
     gDuelCursor.currentY = OPPONENT_BACKROW;
     gDuelCursor.destY = OPPONENT_BACKROW;
     gDuelCursor.destX = gDuelCursor.currentX;
