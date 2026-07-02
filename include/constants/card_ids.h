@@ -1064,11 +1064,12 @@
 #define ELEMENTAL_HERO_TERRA_FIRMA               0x0424
 #define ELEMENTAL_HERO_KNOSPE                    0x0425
 #define ELEMENTAL_HERO_POISON_ROSE               0x0426
+#define ELEMENTAL_HERO_ABSOLUTE_ZERO             0x0427
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0427
-#define NUM_CUSTOM_CARDS                        0x0106
+#define NUM_TOTAL_CARDS                         0x0428
+#define NUM_CUSTOM_CARDS                        0x0107
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

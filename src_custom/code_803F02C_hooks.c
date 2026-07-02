@@ -60,6 +60,7 @@
 #include "riryoku.h"
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_absolute_zero.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
@@ -288,6 +289,7 @@ void InitBoard__Replacement(void) {
   ClearCoffinSellerPending();
   ClearDarkRoomPending();
   ClearFirePrincessPending();
+  ElementalHeroAbsoluteZero_ResetPendingState();
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
@@ -478,6 +480,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ClearRiryokuAtkDeltaForZone(zone);
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
+  ElementalHeroAbsoluteZero_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);
@@ -563,6 +566,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     TryRingOfDestructionOnMonsterPlacement(dst);
     TryAmazonessTigerOnMonsterPlacement(dst);
     TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
+    TryElementalHeroAbsoluteZeroOnMonsterPlacement(dst);
   }
 }
 

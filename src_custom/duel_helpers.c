@@ -27,6 +27,8 @@
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_absolute_zero.h"
+#include "fusion_duel.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -61,6 +63,7 @@ u8 HarpiesPetBabyDragon_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroKnospe_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroAbsoluteZero_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
@@ -271,6 +274,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
+  TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }
@@ -935,6 +939,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { HARPIES_PET_BABY_DRAGON, HarpiesPetBabyDragon_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_KNOSPE, ElementalHeroKnospe_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_POISON_ROSE, ElementalHeroPoisonRose_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_ABSOLUTE_ZERO, ElementalHeroAbsoluteZero_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -1698,6 +1703,8 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
     return DUEL_ACTION_NO_TARGET;
 
   monsterId = handRow[handZone]->id;
+  if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(handRow[handZone]);
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 
@@ -1724,6 +1731,8 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
     return DUEL_ACTION_NO_TARGET;
 
   monsterId = handRow[handZone]->id;
+  if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(handRow[handZone]);
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 
@@ -1840,6 +1849,8 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
     TryApplyPreciousCardsFromBeyondOnTributeSummon(monsterId, duelist);
   }
 
+  if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(handRow[handZone]);
   tributeResult = PlaceMonsterFromId(duelist, monsterId, opts);
   if (tributeResult != DUEL_ACTION_OK)
@@ -2171,5 +2182,7 @@ void DuelHelpers_SelfCheck(void)
     __builtin_trap();
   if (CanMonsterBeDestroyedByBattle(KAISER_GLIDER, DUEL_PLAYER, 1500, 1500) != TRUE)
     __builtin_trap();
+
+  FusionDuel_SelfCheck();
 }
 #endif

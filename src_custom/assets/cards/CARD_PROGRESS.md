@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 262 |
-| Art ready, needs manifest | 148 |
+| In game (manifest + art) | 263 |
+| Art ready, needs manifest | 147 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -284,6 +284,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_TERRA_FIRMA` | Elemental HERO Terra Firma | `elemental_hero_terra_firma.png` |
 | `ELEMENTAL_HERO_KNOSPE` | Elemental HERO Knospe | `elemental_hero_knospe.png` |
 | `ELEMENTAL_HERO_POISON_ROSE` | Elemental HERO Poison Rose | `elemental_hero_poison_rose.png` |
+| `ELEMENTAL_HERO_ABSOLUTE_ZERO` | Elemental HERO Absolute Zero | `elemental_hero_absolute_zero.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -328,7 +329,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
-- [ ] `ELEMENTAL_HERO_ABSOLUTE_ZERO` — `elemental_hero_absolute_zero.png`
 - [ ] `ELEMENTAL_HERO_BLAZEMAN` — `elemental_hero_blazeman.png`
 - [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
 - [ ] `ELEMENTAL_HERO_CORE` — `elemental_hero_core.png`

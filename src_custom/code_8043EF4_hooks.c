@@ -29,6 +29,7 @@
 #include "ectoplasmer.h"
 #include "amazoness_tiger.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_absolute_zero.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
 #include "kaiser_colosseum.h"
@@ -854,6 +855,8 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
+  if (gSelectedCard.id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
   CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
@@ -868,6 +871,7 @@ void sub_80449D8__Replacement(void)
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(

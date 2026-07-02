@@ -7,6 +7,7 @@
 #include "duel_helpers.h"
 #include "elemental_hero_electrum.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_absolute_zero.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
 #include "gfx_reg_buffers.h"
@@ -130,6 +131,19 @@ u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *
   return count;
 }
 
+static u8 SourceQualifiesAsFusionMaterial(const struct FusionRecipe *recipe,
+                                        const struct FusionMaterialSource *source)
+{
+  if (recipe == NULL || source == NULL)
+    return FALSE;
+
+  /* ponytail: hand test copies of the fusion result are not valid materials. */
+  if (source->cardId == recipe->result)
+    return FALSE;
+
+  return TRUE;
+}
+
 u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
                                       const struct FusionMaterialSource *sources,
                                       u8 sourceCount)
@@ -155,6 +169,8 @@ u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
 
     for (i = 0; i < sourceCount; i++) {
       if (used[i])
+        continue;
+      if (!SourceQualifiesAsFusionMaterial(recipe, &sources[i]))
         continue;
       if (MaterialMatches(need, sources[i].cardId, sources[i].zone)) {
         used[i] = TRUE;
@@ -196,6 +212,8 @@ u8 FusionRecipe_SelectSources(const struct FusionRecipe *recipe,
 
     for (i = 0; i < sourceCount; i++) {
       if (used[i])
+        continue;
+      if (!SourceQualifiesAsFusionMaterial(recipe, &sources[i]))
         continue;
       if (MaterialMatches(need, sources[i].cardId, sources[i].zone)) {
         used[i] = TRUE;
@@ -379,7 +397,8 @@ static void SummonFusionResult(u16 resultId)
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
     if (zone->id == resultId && zone->isFaceUp) {
       /* Great Tornado's halving is continuous while face-up on the field. */
-      if (resultId != ELEMENTAL_HERO_GREAT_TORNADO)
+      if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
+          && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO)
         FlipCardFaceDown(zone);
       break;
     }
@@ -415,10 +434,12 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
       return DUEL_ACTION_DUEL_OVER;
   }
 
+  ElementalHeroAbsoluteZero_BeginSuppressLeave();
   payMaterials(selected, selectedCount);
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
   SummonFusionResult(recipe->result);
+  ElementalHeroAbsoluteZero_EndSuppressLeave();
   return DUEL_ACTION_OK;
 }
 
@@ -463,3 +484,43 @@ s8 FusionDuel_AiPickBestRecipeIndex(const struct FusionMaterialSource *sources,
 
   return bestIdx;
 }
+
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void FusionDuel_SelfCheck(void)
+{
+  const struct FusionRecipe *recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_ABSOLUTE_ZERO);
+  struct FusionMaterialSource sources[4];
+  struct FusionMaterialSource selected[2];
+  u8 selectedCount;
+
+  if (recipe == NULL)
+    while (1)
+      ;
+
+  sources[0].zone = NULL;
+  sources[0].gyIndex = FUSION_GY_INDEX_NONE;
+  sources[0].cardId = ELEMENTAL_HERO_ABSOLUTE_ZERO;
+  sources[1].zone = NULL;
+  sources[1].gyIndex = FUSION_GY_INDEX_NONE;
+  sources[1].cardId = ELEMENTAL_HERO_OCEAN;
+
+  if (FusionRecipe_IsFeasibleWithSources(recipe, sources, 2))
+    while (1)
+      ;
+
+  sources[0].cardId = ELEMENTAL_HERO_AVIAN;
+  if (!FusionRecipe_IsFeasibleWithSources(recipe, sources, 2))
+    while (1)
+      ;
+
+  selectedCount = FusionRecipe_SelectSources(recipe, sources, 2, selected, 2);
+  if (selectedCount != 2)
+    while (1)
+      ;
+
+  if (selected[0].cardId == ELEMENTAL_HERO_ABSOLUTE_ZERO
+      || selected[1].cardId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    while (1)
+      ;
+}
+#endif

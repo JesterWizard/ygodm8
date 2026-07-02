@@ -258,6 +258,14 @@ _kernel_malloc_ewram gVampireBabyPendingController, 1
 _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 @ Card ID of the monster Vampire Baby destroyed in battle.
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
+@ TRUE when the next hand ClearZone is a graveyard send, not summon cleanup.
+_kernel_malloc_ewram gAbsoluteZeroHandGyClearPending, 1
+@ TRUE while hand ClearZone is summon placement cleanup, not a leave.
+_kernel_malloc_ewram gAbsoluteZeroHandSummonCleanupPending, 1
+@ TRUE while fusion material payment / result summon runs.
+_kernel_malloc_ewram gAbsoluteZeroSuppressLeave, 1
+@ ponytail: pad keeps gGhostKnightOfJackalPendingController on an even EWRAM address.
+_kernel_malloc_ewram gAbsoluteZeroPendingPad, 1
 @ DUEL_PLAYER/DUEL_OPPONENT controller for a pending Ghost Knight of Jackal battle summon, else 0xFF.
 _kernel_malloc_ewram gGhostKnightOfJackalPendingController, 1
 @ Fixed duelist whose graveyard holds the monster Jackal destroyed in battle.

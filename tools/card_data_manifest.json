@@ -20050,15 +20050,43 @@
       "description": {
         "symbol": "gDescription_ElementalHeroPoisonRose",
         "pages": [
-          "Each time it inflicts Battle Damage to your opponent: It gains",
-          "200 ATK and loses 200 DEF. The opponent can only target".,
-          "Elemental HERO Poison Rose with attacks."
+          "Inflicts battle damage: +200 ATK, -200 DEF.",
+          "Opponent must attack this card if able."
         ]
       },
       "activation_description": {
         "symbol": "gActivationDescription_ElementalHeroPoisonRose",
         "pages": [
-          "Each time it inflicts Battle Damage to your opponent: It gains 200 ATK and loses 200 DEF."
+          "Inflicts battle damage: +200 ATK, -200 DEF."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_ABSOLUTE_ZERO",
+      "card_name": "Elemental HERO Absolute Zero",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [4, 0, 8, 5, 4, 1, 9, 7],
+      "description": {
+        "symbol": "gDescription_ElementalHeroAbsoluteZero",
+        "pages": [
+          "1 \"HERO\" monster + 1 WATER monster. Must be Fusion Summoned.",
+          "Gains 500 ATK for each WATER monster on the field.",
+          "If this card leaves the field: Destroy all opponent monsters."
+        ]
+      },
+      "activation_description":{
+        "symbol": "gActivationDescription_ElementalHeroAbsoluteZero",
+        "pages": [
+          "Destroy all opponent monsters."
         ]
       }
     }

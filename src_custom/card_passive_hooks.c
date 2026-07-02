@@ -1,10 +1,12 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card_passives.h"
+#include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "embodiment_of_apophis.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
+#include "elemental_hero_absolute_zero.h"
 #include "ojama_trio.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
@@ -61,6 +63,8 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
         || OjamaTrioZoneIsMonsterForm(zone))
       NoteGraveyardMonsterSend(zone);
     GraveyardExpand_PushTurn(turn, zone->id);
+    if (Duel_ZoneIsHandSlot(zone) && zone->id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+      MarkAbsoluteZeroHandGraveyardClear();
   }
   ClearZone(zone);
 }

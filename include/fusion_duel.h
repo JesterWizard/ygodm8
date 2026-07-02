@@ -37,4 +37,8 @@ void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,
 s8 FusionDuel_AiPickBestRecipeIndex(const struct FusionMaterialSource *sources,
                                     u8 sourceCount, FusionRecipeFilterFn filter);
 
+#if defined(DUEL_HELPERS_SELF_CHECK)
+void FusionDuel_SelfCheck(void);
+#endif
+
 #endif // GUARD_FUSION_DUEL_H

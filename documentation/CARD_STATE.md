@@ -1,13 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Poison Rose battle damage + forced attack target
+**Last worked on:** 2026-07-02 — Added Elemental HERO Absolute Zero
 
 **Files touched:**
-- `elemental_hero_poison_rose.c (permanent+battle)`
-- `duel_helpers.c`
-- `battle_damage_hooks.c`
+- `tools/card_data_manifest.json`
+- `src_custom/permanent_effects/elemental_hero_absolute_zero.c`
+- `include/elemental_hero_absolute_zero.h`
+- `src_custom/fusion_recipes.c`
+- `configs/runtime.c`
 
-**Outcome:** make test-cards-link passes; Rose Bud summon restriction still not implemented
+**Outcome:** make test-cards-build passes
 
 **Open / next:**
-- Rose Bud spell if adding Knospe evolution line
+- playtest fusion + leave-field wipe
