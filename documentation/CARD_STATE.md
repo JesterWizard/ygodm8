@@ -1,15 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Wild Wingman backrow targeting restart fix (dedicated cursor + scroll restore)
+**Last worked on:** 2026-07-02 — Elemental HERO Voltic battle effect stub
 
 **Files touched:**
-- `src_custom/activated_effects/elemental_hero_wild_wingman.c`
-- `include/elemental_hero_wild_wingman.h`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/card_passives/chaos_command_magician.c`
+- `src_custom/battle_effects/elemental_hero_voltic.c`
+- `include/elemental_hero_voltic.h`
+- `src_custom/battle_damage_hooks.c`
 
-**Outcome:** `make test-cards-build` passes
+**Outcome:** make test-cards-link passes; battle damage triggers effect text only
 
 **Open / next:**
-- User rebuild ROM; test discard → select opponent/player Spell/Trap
+- Implement banish zone + optional special summon when removed-from-play storage exists

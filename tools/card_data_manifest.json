@@ -20120,6 +20120,35 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_VOLTIC",
+      "card_name": "Elemental HERO Voltic",
+      "atk": 1000,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_THUNDER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [0, 9, 3, 2, 7, 5, 0, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroVoltic",
+        "pages": [
+          "When this card inflicts battle damage to your",
+          "opponent: You can target 1 of your banished \"Elemental",
+          "HERO\" monsters; Special Summon that target."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroVoltic",
+        "pages": [
+          "When this card inflicts battle damage to your opponent: You can target 1 of your banished \"Elemental HERO\" monsters; Spe"
+        ]
+      }
     }
   ]
 }
