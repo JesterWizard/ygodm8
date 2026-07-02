@@ -1,19 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-01 — Neos Alius art + Gemini/name-override effects
+**Last worked on:** 2026-07-02 — Terra Firma duel-loss fix (dedicated cursor)
 
 **Files touched:**
-- `src_custom/assets/cards/80x80/elemental_hero_neos_alius.png`
-- `src_custom/activated_effects/elemental_hero_neos_alius.c`
-- `include/elemental_hero_neos_alius.h`
-- `src_custom/card_hooks.c`
+- `src_custom/activated_effects/elemental_hero_terra_firma.c`
+- `include/elemental_hero_terra_firma.h`
+- `src_custom/code_8043EF4_hooks.c`
 - `src_custom/monster_effect_hooks.c`
-- `src_custom/duel_helpers.c`
-- `src_custom/fusion_duel.c`
-- `src_custom/code_803F02C_hooks.c`
-- `asm/ram_map_ewram.s`
+- `src_custom/card_passives/chaos_command_magician.c`
 
-**Outcome:** make test-cards-build passes; Gemini awaken via face-up Effect menu; awakened name counts as Neos for fusion/archetype
+**Outcome:** Tribute targeting uses dedicated `DUEL_CURSOR_TERRA_FIRMA_TARGET` (Cannon Soldier / BLS pattern) instead of shared PickZone; validation uses `gMonEffect` origin; ATK boost refreshes overlays; effect wrapped in Begin/End monster resolve; make test-cards-build passes
 
-**Open / next:**
-- AI Gemini summon path; GY treated-as-Normal edge cases; Proto-Cyber Dragon name override reuse
+**Open / next:** User rebuild ROM — fuse TF, summon ally, activate tribute; confirm no defeat screen and ATK rises until end phase

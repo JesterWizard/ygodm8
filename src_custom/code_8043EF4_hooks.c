@@ -28,6 +28,7 @@
 #include "dust_tornado.h"
 #include "ectoplasmer.h"
 #include "amazoness_tiger.h"
+#include "elemental_hero_great_tornado.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
 #include "kaiser_colosseum.h"
@@ -72,6 +73,7 @@
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
+#include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_necroshade.h"
 #include "amazoness_archer.h"
@@ -864,6 +866,7 @@ void sub_80449D8__Replacement(void)
     TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
@@ -1250,6 +1253,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
       TrySelectBlackLusterSoldierEnvoyTarget();
       break;
+    case DUEL_CURSOR_TERRA_FIRMA_TARGET:
+      TrySelectElementalHeroTerraFirmaTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1352,6 +1358,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
       CancelBlackLusterSoldierEnvoyTargeting();
+      break;
+    case DUEL_CURSOR_TERRA_FIRMA_TARGET:
+      CancelElementalHeroTerraFirmaTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

@@ -15,6 +15,7 @@
 #include "mobius_the_frost_monarch.h"
 #include "ryu_kishin_clown.h"
 #include "zaborg_the_thunder_monarch.h"
+#include "elemental_hero_terra_firma.h"
 
 void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
@@ -57,6 +58,7 @@ static u8 IsMonsterEffectTargetingCursorState(u8 state)
     case DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET:
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
+    case DUEL_CURSOR_TERRA_FIRMA_TARGET:
     case DUEL_CURSOR_PICK_ZONE:
       return TRUE;
     default:

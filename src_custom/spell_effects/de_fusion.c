@@ -133,7 +133,7 @@ static enum DuelActionResult SummonFusionMaterials(const struct FusionRecipe *re
   for (i = 0; i < materialCount; i++) {
     u16 materialId = FusionRecipe_MaterialAt(recipe, i);
 
-    if (materialId == CARD_NONE || materialId == FUSION_RECIPE_WILDCARD)
+    if (materialId == CARD_NONE || !FusionRecipe_MaterialIsConcrete(materialId))
       continue;
 
     if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

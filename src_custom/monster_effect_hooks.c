@@ -38,6 +38,8 @@
 #include "elemental_hero_ocean.h"
 #include "elemental_hero_lady_heat.h"
 #include "elemental_hero_neos_alius.h"
+#include "elemental_hero_great_tornado.h"
+#include "elemental_hero_terra_firma.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -146,6 +148,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroOcean();
     case MONSTER_EFFECT_ELEMENTAL_HERO_LADY_HEAT:
       return CanActivateElementalHeroLadyHeat();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA:
+      return CanActivateElementalHeroTerraFirma();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -160,7 +164,7 @@ unsigned char TryActivateSkillDrainAndNegate(void);
 
 LYN_REPLACE_CHECK(ActivateMonsterEffect);
 void ActivateMonsterEffect__Replacement(void) {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
 
   if (TryActivateSkillDrainAndNegate())
     return;
@@ -385,6 +389,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA) {
+    ActivateElementalHeroTerraFirmaEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
     return;
@@ -502,6 +511,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_WOODSMAN
           || zone->id == ELEMENTAL_HERO_OCEAN
           || zone->id == ELEMENTAL_HERO_LADY_HEAT
+          || zone->id == ELEMENTAL_HERO_TERRA_FIRMA
           || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
@@ -525,6 +535,7 @@ FAILED:
             zone->isDefending = 0;
             zone->isFaceUp = 1;
             TryVengefulBogSpiritOnFlipSummon(zone);
+            TryElementalHeroGreatTornadoOnMonsterPlacement(zone);
           }
           if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN
               && gCardInfo.monsterEffect != MONSTER_EFFECT_DARK_DUST_SPIRIT)
@@ -543,6 +554,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLOWBACK_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_TERRA_FIRMA_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2

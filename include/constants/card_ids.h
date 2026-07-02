@@ -1060,11 +1060,13 @@
 #define ELEMENTAL_HERO_HEAT                      0x0420
 #define ELEMENTAL_HERO_LADY_HEAT                 0x0421
 #define ELEMENTAL_HERO_NEOS_ALIUS                0x0422
+#define ELEMENTAL_HERO_GREAT_TORNADO             0x0423
+#define ELEMENTAL_HERO_TERRA_FIRMA               0x0424
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0423
-#define NUM_CUSTOM_CARDS                        0x0102
+#define NUM_TOTAL_CARDS                         0x0425
+#define NUM_CUSTOM_CARDS                        0x0104
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

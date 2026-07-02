@@ -59,6 +59,7 @@
 #include "sasuke_samurai_3.h"
 #include "riryoku.h"
 #include "mirror_wall.h"
+#include "elemental_hero_great_tornado.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
@@ -476,6 +477,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   OnEmbodimentOfApophisZoneAboutToClear(zone);
   ClearRiryokuAtkDeltaForZone(zone);
   MirrorWall_OnZoneCleared(zone);
+  ElementalHeroGreatTornado_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);
@@ -560,6 +562,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
       TryVengefulBogSpiritOnMonsterPlacement(dst);
     TryRingOfDestructionOnMonsterPlacement(dst);
     TryAmazonessTigerOnMonsterPlacement(dst);
+    TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
   }
 }
 

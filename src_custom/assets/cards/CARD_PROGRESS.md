@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-01).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-02).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 258 |
-| Art ready, needs manifest | 152 |
+| In game (manifest + art) | 260 |
+| Art ready, needs manifest | 150 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -280,6 +280,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_HEAT` | Elemental HERO Heat | `elemental_hero_heat.png` |
 | `ELEMENTAL_HERO_LADY_HEAT` | Elemental HERO Lady Heat | `elemental_hero_lady_heat.png` |
 | `ELEMENTAL_HERO_NEOS_ALIUS` | Elemental HERO Neos Alius | `elemental_hero_neos_alius.png` |
+| `ELEMENTAL_HERO_GREAT_TORNADO` | Elemental HERO Great Tornado | `elemental_hero_great_tornado.png` |
+| `ELEMENTAL_HERO_TERRA_FIRMA` | Elemental HERO Terra Firma | `elemental_hero_terra_firma.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -331,7 +333,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_ESCURIDAO` — `elemental_hero_escuridao.png`
 - [ ] `ELEMENTAL_HERO_FLASH` — `elemental_hero_flash.png`
 - [ ] `ELEMENTAL_HERO_GAIA` — `elemental_hero_gaia.png`
-- [ ] `ELEMENTAL_HERO_GREAT_TORNADO` — `elemental_hero_great_tornado.png`
 - [ ] `ELEMENTAL_HERO_ICE_EDGE` — `elemental_hero_ice_edge.png`
 - [ ] `ELEMENTAL_HERO_INFERNO` — `elemental_hero_inferno.png`
 - [ ] `ELEMENTAL_HERO_KNOSPE` — `elemental_hero_knospe.png`
@@ -340,7 +341,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_POISON_ROSE` — `elemental_hero_poison_rose.png`
 - [ ] `ELEMENTAL_HERO_STRATOS` — `elemental_hero_stratos.png`
 - [ ] `ELEMENTAL_HERO_SUNRISE` — `elemental_hero_sunrise.png`
-- [ ] `ELEMENTAL_HERO_TERRA_FIRMA` — `elemental_hero_terra_firma.png`
 - [ ] `ELEMENTAL_HERO_THE_SHINING` — `elemental_hero_the_shining.png`
 - [ ] `ELEMENTAL_HERO_VOLTIC` — `elemental_hero_voltic.png`
 - [ ] `ELEMENTAL_HERO_WILD_WINGMAN` — `elemental_hero_wild_wingman.png`

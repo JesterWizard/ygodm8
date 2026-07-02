@@ -13,6 +13,7 @@
 #include "riryoku.h"
 #include "big_bang_shot.h"
 #include "mirror_wall.h"
+#include "elemental_hero_great_tornado.h"
 #include "harpie_lady_1.h"
 #include "duel.h"
 #include "dynamic_equip.h"
@@ -530,6 +531,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyOjamaTrioCardInfoOverridesForStatMod(&statMod);
 
   if (Duel_TryApplyDynamicZoneStats(zone)) {
+    ApplyGreatTornadoStatHalving(zone);
     gSetFinalStatZone = NULL;
     return;
   }
@@ -561,6 +563,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyRiryokuAtkDeltaToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
+  ApplyGreatTornadoStatHalving(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
   gSetFinalStatZone = NULL;
@@ -661,6 +664,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
+    ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
   }
 

@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_enums.h"
 #include "constants/card_ids.h"
+#include "duel_helpers.h"
 #include "fusion_recipes.h"
 
 /* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, and De-Fusion. */
@@ -29,6 +31,8 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_MARINER, ELEMENTAL_HERO_BUBBLEMAN, ELEMENTAL_HERO_AVIAN, 0, 0 },
   { ELEMENTAL_HERO_ELECTRUM, ELEMENTAL_HERO_AVIAN, ELEMENTAL_HERO_BURSTINATRIX,
     ELEMENTAL_HERO_CLAYMAN, ELEMENTAL_HERO_BUBBLEMAN },
+  { ELEMENTAL_HERO_GREAT_TORNADO, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_WIND, 0, 0 },
+  { ELEMENTAL_HERO_TERRA_FIRMA, ELEMENTAL_HERO_OCEAN, ELEMENTAL_HERO_WOODSMAN, 0, 0 },
 };
 
 u8 FusionRecipe_Count(void)
@@ -82,6 +86,42 @@ u16 FusionRecipe_MaterialAt(const struct FusionRecipe *recipe, u8 index)
   }
 }
 
+u8 FusionRecipe_MaterialIsConcrete(u16 material)
+{
+  if (material == CARD_NONE || material == FUSION_RECIPE_WILDCARD)
+    return FALSE;
+
+  if (material == FUSION_RECIPE_ELEMENTAL_HERO)
+    return FALSE;
+
+  if ((material & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE)
+    return FALSE;
+
+  return TRUE;
+}
+
+u8 FusionRecipe_MaterialMatches(u16 need, u16 cardId)
+{
+  u8 attribute;
+
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (need == FUSION_RECIPE_WILDCARD)
+    return TRUE;
+
+  if (need == FUSION_RECIPE_ELEMENTAL_HERO)
+    return Duel_IsElementalHeroCard(cardId);
+
+  if ((need & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE) {
+    attribute = need & FUSION_RECIPE_ATTRIBUTE_VALUE_MASK;
+    SetCardInfo(cardId);
+    return gCardInfo.attribute == attribute;
+  }
+
+  return need == cardId;
+}
+
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void FusionRecipes_SelfCheck(void)
 {
@@ -108,6 +148,28 @@ void FusionRecipes_SelfCheck(void)
 
   recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_ELECTRUM);
   if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 4)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_GREAT_TORNADO);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_TERRA_FIRMA);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
+  if (!FusionRecipe_MaterialMatches(FUSION_RECIPE_ELEMENTAL_HERO, ELEMENTAL_HERO_AVIAN))
+    while (1)
+      ;
+
+  if (!FusionRecipe_MaterialMatches(FUSION_RECIPE_ATTRIBUTE_WIND, ELEMENTAL_HERO_AVIAN))
+    while (1)
+      ;
+
+  if (FusionRecipe_MaterialMatches(FUSION_RECIPE_ATTRIBUTE_WIND, ELEMENTAL_HERO_CLAYMAN))
     while (1)
       ;
 

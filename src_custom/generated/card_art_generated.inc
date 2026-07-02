@@ -1040,6 +1040,14 @@ static const unsigned char sElementalHeroNeosAliusBigArt[] __attribute__((sectio
 static const unsigned short sElementalHeroNeosAliusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_neos_alius.gbapal");
 static const unsigned char sElementalHeroNeosAliusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_neos_alius.lz");
 
+static const unsigned char sElementalHeroGreatTornadoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_great_tornado.huff");
+static const unsigned short sElementalHeroGreatTornadoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_great_tornado.gbapal");
+static const unsigned char sElementalHeroGreatTornadoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_great_tornado.lz");
+
+static const unsigned char sElementalHeroTerraFirmaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_terra_firma.huff");
+static const unsigned short sElementalHeroTerraFirmaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_terra_firma.gbapal");
+static const unsigned char sElementalHeroTerraFirmaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_terra_firma.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1301,6 +1309,8 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0420] = sElementalHeroHeatBigArt,
   [0x0421] = sElementalHeroLadyHeatBigArt,
   [0x0422] = sElementalHeroNeosAliusBigArt,
+  [0x0423] = sElementalHeroGreatTornadoBigArt,
+  [0x0424] = sElementalHeroTerraFirmaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1564,6 +1574,8 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0420] = sElementalHeroHeatBigPalette,
   [0x0421] = sElementalHeroLadyHeatBigPalette,
   [0x0422] = sElementalHeroNeosAliusBigPalette,
+  [0x0423] = sElementalHeroGreatTornadoBigPalette,
+  [0x0424] = sElementalHeroTerraFirmaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1827,6 +1839,8 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0420] = 0,
   [0x0421] = 0,
   [0x0422] = 0,
+  [0x0423] = 0,
+  [0x0424] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2090,4 +2104,6 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0420] = sElementalHeroHeatMiniArt,
   [0x0421] = sElementalHeroLadyHeatMiniArt,
   [0x0422] = sElementalHeroNeosAliusMiniArt,
+  [0x0423] = sElementalHeroGreatTornadoMiniArt,
+  [0x0424] = sElementalHeroTerraFirmaMiniArt,
 };

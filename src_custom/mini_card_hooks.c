@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "card.h"
 #include "duel.h"
+#include "elemental_hero_terra_firma.h"
 #include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
 #include "wave_motion_cannon.h"
@@ -280,7 +281,7 @@ static void RefreshAllFieldCardTiles(void)
     sub_80572A8(tilePtr, zone);
     sub_805733C(tilePtr, zone);
 
-    if (!zone->isFaceUp) {
+    if (!zone->isFaceUp && !ElementalHeroTerraFirma_RevealsAllyZone(PLAYER_MONSTER_ROW, i)) {
       tilePtr += 0xC80;
       CpuCopy16(g89A7BDE, tilePtr, 64);
     }

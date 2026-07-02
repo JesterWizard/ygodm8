@@ -6,6 +6,7 @@
 #include "duel.h"
 #include "duel_helpers.h"
 #include "elemental_hero_electrum.h"
+#include "elemental_hero_great_tornado.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
 #include "gfx_reg_buffers.h"
@@ -51,7 +52,7 @@ static u8 MaterialMatches(u16 need, u16 have, struct DuelCard *zone)
   if (zone == NULL)
     effective = have;
 
-  return need == FUSION_RECIPE_WILDCARD || need == effective;
+  return FusionRecipe_MaterialMatches(need, effective);
 }
 
 static void AddSource(struct FusionMaterialSource *out, u8 *count, u8 maxOut, struct DuelCard *zone,
@@ -371,10 +372,15 @@ static void SummonFusionResult(u16 resultId)
   if (resultId == ELEMENTAL_HERO_ELECTRUM)
     ElementalHeroElectrum_OnFusionSummoned();
 
+  if (resultId == ELEMENTAL_HERO_GREAT_TORNADO)
+    ElementalHeroGreatTornado_OnFusionSummoned();
+
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
     if (zone->id == resultId && zone->isFaceUp) {
-      FlipCardFaceDown(zone);
+      /* Great Tornado's halving is continuous while face-up on the field. */
+      if (resultId != ELEMENTAL_HERO_GREAT_TORNADO)
+        FlipCardFaceDown(zone);
       break;
     }
   }

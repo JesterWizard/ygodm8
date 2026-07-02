@@ -26,6 +26,7 @@
 #include "kaiser_colosseum.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_neos_alius.h"
+#include "elemental_hero_great_tornado.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -264,6 +265,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   MaybeUpdateGfx(opts.updateGfx);
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
+  TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }

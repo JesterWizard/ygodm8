@@ -19942,6 +19942,67 @@
           "This card's name becomes \"Elemental HERO Neos\" while on the field."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_GREAT_TORNADO",
+      "card_name": "Elemental HERO Great Tornado",
+      "atk": 2800,
+      "def": 2800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [8, 9, 9, 6, 8, 3, 2, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroGreatTornado",
+        "pages": [
+          "1 \"Elemental HERO\" monster + 1 WIND monster",
+          "Must be Fusion Summoned. If Fusion Summoned:",
+          "halve ATK/DEF of all face-up opponent monsters."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroGreatTornado",
+        "pages": [
+          "Halve the ATK/DEF of all face-up opponent monsters."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_TERRA_FIRMA",
+      "card_name": "Elemental HERO Terra Firma",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 4, 7, 1, 1, 0, 5, 7],
+      "description": {
+        "symbol": "gDescription_ElementalHeroTerraFirma",
+        "pages": [
+          "Elemental HERO Ocean + Elemental HERO Woodsman",
+          "Must be Fusion Summoned. Tribute 1 face-up",
+          "Elemental HERO monster; gain its ATK until End Phase."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroTerraFirma",
+        "pages": [
+          "Tribute 1 Elemental HERO monster on your side of the field.",
+          "Elemental Hero Terra Firma will gain ATK equal to the Tributed monster's ATK until the End Phase."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

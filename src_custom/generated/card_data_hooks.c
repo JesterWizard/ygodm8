@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1059] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1061] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1071,9 +1071,11 @@ const u8 gCardLockAfterActivation_Hook[1059] APPEND_RODATA = {
   [0x0420] = 1,
   [0x0421] = 1,
   [0x0422] = 1,
+  [0x0423] = 1,
+  [0x0424] = 0,
 };
 
-const u8 gCardEffectUsage_Hook[1059] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1061] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2133,9 +2135,11 @@ const u8 gCardEffectUsage_Hook[1059] APPEND_RODATA = {
   [0x0420] = EFFECT_USAGE_NONE,
   [0x0421] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0422] = EFFECT_USAGE_NONE,
+  [0x0423] = EFFECT_USAGE_NONE,
+  [0x0424] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const u8 gCardSelectableOnce_Hook[1059] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1061] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3195,9 +3199,11 @@ const u8 gCardSelectableOnce_Hook[1059] APPEND_RODATA = {
   [0x0420] = 0,
   [0x0421] = 0,
   [0x0422] = 0,
+  [0x0423] = 0,
+  [0x0424] = 0,
 };
 
-const CardData gCardData_NEW[1059] APPEND_RODATA = {
+const CardData gCardData_NEW[1061] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -17270,5 +17276,33 @@ const CardData gCardData_NEW[1059] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {6, 9, 8, 8, 4, 1, 6, 2},
     .description = gDescription_ElementalHeroNeosAlius,
+  },
+  [0x0423] = {
+    .atk = 2800,
+    .def = 2800,
+    .cost = 30,
+    .attribute = ATTRIBUTE_WIND,
+    .level = 7,
+    .type = TYPE_WARRIOR,
+    .color = FUSION_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 9, 9, 6, 8, 3, 2, 6},
+    .description = gDescription_ElementalHeroGreatTornado,
+  },
+  [0x0424] = {
+    .atk = 2500,
+    .def = 2000,
+    .cost = 58,
+    .attribute = ATTRIBUTE_EARTH,
+    .level = 8,
+    .type = TYPE_WARRIOR,
+    .color = FUSION_CARD,
+    .monsterEffect = 142,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {7, 4, 7, 1, 1, 0, 5, 7},
+    .description = gDescription_ElementalHeroTerraFirma,
   },
 };
