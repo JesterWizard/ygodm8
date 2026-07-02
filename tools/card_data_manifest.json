@@ -20149,6 +20149,35 @@
           "When this card inflicts battle damage to your opponent: You can target 1 of your banished \"Elemental HERO\" monsters; Spe"
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_FLASH",
+      "card_name": "Elemental HERO Flash",
+      "atk": 1100,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 9, 5, 7, 2, 1, 6, 9],
+      "description": {
+        "symbol": "gDescription_ElementalHeroFlash",
+        "pages": [
+          "When destroyed by battle and sent to the Graveyard,",
+          "Banish this and 3 E-Hero monsters from your Graveyard.",
+          "Add 1 Normal Spell from your Graveyard to your hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroFlash",
+        "pages": [
+          "When destroyed by battle, banish this and 3 E-Heroes from GY to add 1 Normal Spell from GY to hand."
+        ]
+      }
     }
   ]
 }

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 265 |
-| Art ready, needs manifest | 145 |
+| In game (manifest + art) | 266 |
+| Art ready, needs manifest | 144 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -287,6 +287,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_ABSOLUTE_ZERO` | Elemental HERO Absolute Zero | `elemental_hero_absolute_zero.png` |
 | `ELEMENTAL_HERO_WILD_WINGMAN` | Elemental HERO Wild Wingman | `elemental_hero_wild_wingman.png` |
 | `ELEMENTAL_HERO_VOLTIC` | Elemental HERO Voltic | `elemental_hero_voltic.png` |
+| `ELEMENTAL_HERO_FLASH` | Elemental HERO Flash | `elemental_hero_flash.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -335,7 +336,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
 - [ ] `ELEMENTAL_HERO_CORE` — `elemental_hero_core.png`
 - [ ] `ELEMENTAL_HERO_ESCURIDAO` — `elemental_hero_escuridao.png`
-- [ ] `ELEMENTAL_HERO_FLASH` — `elemental_hero_flash.png`
 - [ ] `ELEMENTAL_HERO_GAIA` — `elemental_hero_gaia.png`
 - [ ] `ELEMENTAL_HERO_ICE_EDGE` — `elemental_hero_ice_edge.png`
 - [ ] `ELEMENTAL_HERO_INFERNO` — `elemental_hero_inferno.png`

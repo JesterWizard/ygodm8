@@ -4,6 +4,7 @@
 #include "card_passives.h"
 #include "duel_helpers.h"
 #include "card.h"
+#include "elemental_hero_flash.h"
 #include "familiar_knight.h"
 #include "giant_rat.h"
 #include "graveyard_effects.h"
@@ -231,6 +232,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.playerMonsterRow,
                                                          sActionData.unkA)) {
       MarkFamiliarKnightBattleDestruction(zone->id);
+      MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
     }
@@ -242,6 +244,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.opponentMonsterRow,
                                                          sActionData.unk16)) {
       MarkFamiliarKnightBattleDestruction(zone->id);
+      MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
     }

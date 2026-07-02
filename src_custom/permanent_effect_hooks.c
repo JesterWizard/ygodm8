@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
 #include "graveyard_effects.h"
+#include "elemental_hero_flash.h"
 #include "familiar_knight.h"
 #include "giant_rat.h"
 #include "the_thing_in_the_crater.h"
@@ -136,6 +137,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = FAMILIAR_KNIGHT,
     .shouldActivate = ShouldActivateFamiliarKnight,
     .activate = ActivateFamiliarKnight,
+  },
+  {
+    .cardId = ELEMENTAL_HERO_FLASH,
+    .shouldActivate = ShouldActivateElementalHeroFlash,
+    .activate = ActivateElementalHeroFlash,
   },
   {
     .cardId = DARK_MAGICIAN_KNIGHT,

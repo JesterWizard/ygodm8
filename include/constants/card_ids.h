@@ -1067,11 +1067,12 @@
 #define ELEMENTAL_HERO_ABSOLUTE_ZERO             0x0427
 #define ELEMENTAL_HERO_WILD_WINGMAN              0x0428
 #define ELEMENTAL_HERO_VOLTIC                    0x0429
+#define ELEMENTAL_HERO_FLASH                     0x042A
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x042A
-#define NUM_CUSTOM_CARDS                        0x0109
+#define NUM_TOTAL_CARDS                         0x042B
+#define NUM_CUSTOM_CARDS                        0x010A
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

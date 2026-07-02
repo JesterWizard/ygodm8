@@ -37,6 +37,7 @@
 #include "cost_down.h"
 #include "custom_field_spell.h"
 #include "graveyard_effects.h"
+#include "elemental_hero_flash.h"
 #include "familiar_knight.h"
 #include "vampire_baby.h"
 #include "ghost_knight_of_jackal.h"
@@ -267,6 +268,7 @@ void InitBoard__Replacement(void) {
   gPendingGraveyardDrawFixedDuelist = PENDING_GRAVEYARD_DRAW_NONE;
   gGraveyardSendWasFromField = FALSE;
   ClearFamiliarKnightBattleDestroyPending();
+  ClearElementalHeroFlashBattleDestroyPending();
   ClearVampireBabyPending();
   ClearGhostKnightOfJackalPending();
   ClearMefistDiscardPending();

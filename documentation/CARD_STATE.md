@@ -1,13 +1,18 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Elemental HERO Voltic battle effect stub
+**Last worked on:** 2026-07-02 — Added Elemental HERO Flash with stub GY effect
 
 **Files touched:**
-- `src_custom/battle_effects/elemental_hero_voltic.c`
-- `include/elemental_hero_voltic.h`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/assets/cards/80x80/elemental_hero_flash.png`
+- `src_custom/permanent_effects/elemental_hero_flash.c`
+- `include/elemental_hero_flash.h`
 - `src_custom/battle_damage_hooks.c`
+- `src_custom/permanent_effect_hooks.c`
+- `asm/ram_map_ewram.s`
 
-**Outcome:** make test-cards-link passes; battle damage triggers effect text only
+**Outcome:** make test-cards-build passes; battle-destruction GY trigger shows text only
 
 **Open / next:**
-- Implement banish zone + optional special summon when removed-from-play storage exists
+- Implement banish + GY spell search when banish zone exists
