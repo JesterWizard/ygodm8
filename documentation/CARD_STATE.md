@@ -1,18 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Added Elemental HERO Flash with stub GY effect
+**Last worked on:** 2026-07-02 — Gaia ATK boost persists while on field (not End Phase)
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/assets/cards/80x80/elemental_hero_flash.png`
-- `src_custom/permanent_effects/elemental_hero_flash.c`
-- `include/elemental_hero_flash.h`
-- `src_custom/battle_damage_hooks.c`
-- `src_custom/permanent_effect_hooks.c`
+- `src_custom/activated_effects/elemental_hero_gaia.c`
+- `include/elemental_hero_gaia.h`
 - `asm/ram_map_ewram.s`
+- `src_custom/card_hooks.c`
+- `src_custom/code_803F02C_hooks.c`
 
-**Outcome:** make test-cards-build passes; battle-destruction GY trigger shows text only
+**Outcome:** make test-cards-build passes; Gaia boost + target halving stored in EWRAM, applied via stat pipeline; cleared when respective monster leaves field
 
 **Open / next:**
-- Implement banish + GY spell search when banish zone exists
+- User rebuild ROM; confirm Gaia keeps boost across turns until it leaves the field

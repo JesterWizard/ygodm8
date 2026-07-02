@@ -61,6 +61,7 @@
 #include "riryoku.h"
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -482,6 +483,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ClearRiryokuAtkDeltaForZone(zone);
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
+  ElementalHeroGaia_OnZoneCleared(zone);
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {

@@ -15,6 +15,7 @@
 #include "mobius_the_frost_monarch.h"
 #include "ryu_kishin_clown.h"
 #include "zaborg_the_thunder_monarch.h"
+#include "elemental_hero_gaia.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 
@@ -61,6 +62,7 @@ static u8 IsMonsterEffectTargetingCursorState(u8 state)
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
     case DUEL_CURSOR_TERRA_FIRMA_TARGET:
     case DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET:
+    case DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET:
     case DUEL_CURSOR_PICK_ZONE:
       return TRUE;
     default:

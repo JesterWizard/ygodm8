@@ -7,6 +7,7 @@
 #include "duel_helpers.h"
 #include "elemental_hero_electrum.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
@@ -15,6 +16,7 @@
 void ClearGraphicsBuffers(void);
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
 void UpdateAllDuelGfx(void);
+void UpdateDuelGfxExceptField(void);
 
 #define FUSION_PICK_MENU_CAPACITY ((u8)ARRAY_COUNT(gDeckMenu.cards))
 
@@ -387,22 +389,28 @@ static void SummonFusionResult(u16 resultId)
   opts.mode = DUEL_SUMMON_SPECIAL_FACE_UP_ATK;
   Duel_SpecialSummonMonsterId(ACTIVE_DUELIST, resultId, opts);
 
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
+    if (zone->id == resultId && zone->isFaceUp) {
+      /* Great Tornado's halving is continuous while face-up on the field. */
+      if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
+          && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO
+          && resultId != ELEMENTAL_HERO_GAIA)
+        FlipCardFaceDown(zone);
+      break;
+    }
+  }
+
+  UpdateDuelGfxExceptField();
+
   if (resultId == ELEMENTAL_HERO_ELECTRUM)
     ElementalHeroElectrum_OnFusionSummoned();
 
   if (resultId == ELEMENTAL_HERO_GREAT_TORNADO)
     ElementalHeroGreatTornado_OnFusionSummoned();
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][i];
-    if (zone->id == resultId && zone->isFaceUp) {
-      /* Great Tornado's halving is continuous while face-up on the field. */
-      if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
-          && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO)
-        FlipCardFaceDown(zone);
-      break;
-    }
-  }
+  if (resultId == ELEMENTAL_HERO_GAIA)
+    ElementalHeroGaia_OnFusionSummoned();
 }
 
 static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *recipe,

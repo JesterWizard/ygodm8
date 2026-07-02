@@ -74,6 +74,7 @@
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
+#include "elemental_hero_gaia.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_wildedge.h"
@@ -1269,6 +1270,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET:
       TrySelectElementalHeroWildWingmanTarget();
       break;
+    case DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET:
+      TrySelectElementalHeroGaiaTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1377,6 +1381,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET:
       CancelElementalHeroWildWingmanTargeting();
+      break;
+    case DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET:
+      CancelElementalHeroGaiaTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

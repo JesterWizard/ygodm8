@@ -61,6 +61,13 @@ _kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
 @ Mirror Wall permanent ATK-halve flags keyed by gDuel.board cell index (20 cells x 1 byte).
 _kernel_malloc_ewram_array gMirrorWallHalvedMask, 0x14
 
+@ Gaia fusion effect: permanent target ATK delta keyed by board cell (20 cells x 2 bytes).
+_kernel_malloc_ewram_array gElementalHeroGaiaTargetAtkDelta, 0x28
+@ Board cell index for Gaia's active ATK boost (0xFFFF = none).
+_kernel_malloc_ewram gElementalHeroGaiaBoostCellIndex, 2
+@ ATK Gaia gained from its fusion effect while still on field.
+_kernel_malloc_ewram gElementalHeroGaiaBoostAmount, 2
+
 @ Big Bang Shot equip markers: 3 slots per duelist (target fixed col+1, 0=inactive).
 _kernel_malloc_ewram_array gBigBangShotTargetCol, 6
 

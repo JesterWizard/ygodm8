@@ -1072,6 +1072,10 @@ static const unsigned char sElementalHeroFlashBigArt[] __attribute__((section(".
 static const unsigned short sElementalHeroFlashBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_flash.gbapal");
 static const unsigned char sElementalHeroFlashMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_flash.lz");
 
+static const unsigned char sElementalHeroGaiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_gaia.huff");
+static const unsigned short sElementalHeroGaiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_gaia.gbapal");
+static const unsigned char sElementalHeroGaiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_gaia.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1341,6 +1345,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0428] = sElementalHeroWildWingmanBigArt,
   [0x0429] = sElementalHeroVolticBigArt,
   [0x042A] = sElementalHeroFlashBigArt,
+  [0x042B] = sElementalHeroGaiaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1612,6 +1617,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0428] = sElementalHeroWildWingmanBigPalette,
   [0x0429] = sElementalHeroVolticBigPalette,
   [0x042A] = sElementalHeroFlashBigPalette,
+  [0x042B] = sElementalHeroGaiaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1883,6 +1889,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0428] = 0,
   [0x0429] = 0,
   [0x042A] = 0,
+  [0x042B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2154,4 +2161,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0428] = sElementalHeroWildWingmanMiniArt,
   [0x0429] = sElementalHeroVolticMiniArt,
   [0x042A] = sElementalHeroFlashMiniArt,
+  [0x042B] = sElementalHeroGaiaMiniArt,
 };

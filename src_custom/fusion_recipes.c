@@ -35,6 +35,7 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_GREAT_TORNADO, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_WIND, 0, 0 },
   { ELEMENTAL_HERO_TERRA_FIRMA, ELEMENTAL_HERO_OCEAN, ELEMENTAL_HERO_WOODSMAN, 0, 0 },
   { ELEMENTAL_HERO_ABSOLUTE_ZERO, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_WATER, 0, 0 },
+  { ELEMENTAL_HERO_GAIA, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_EARTH, 0, 0 },
 };
 
 u8 FusionRecipe_Count(void)
@@ -173,6 +174,11 @@ void FusionRecipes_SelfCheck(void)
     while (1)
       ;
 
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_GAIA);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
   if (!FusionRecipe_MaterialMatches(FUSION_RECIPE_ELEMENTAL_HERO, ELEMENTAL_HERO_AVIAN))
     while (1)
       ;
@@ -182,6 +188,10 @@ void FusionRecipes_SelfCheck(void)
       ;
 
   if (FusionRecipe_MaterialMatches(FUSION_RECIPE_ATTRIBUTE_WIND, ELEMENTAL_HERO_CLAYMAN))
+    while (1)
+      ;
+
+  if (!FusionRecipe_MaterialMatches(FUSION_RECIPE_ATTRIBUTE_EARTH, ELEMENTAL_HERO_CLAYMAN))
     while (1)
       ;
 
