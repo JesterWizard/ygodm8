@@ -49,6 +49,7 @@ extern void TryActivatingPermanentEffects(void);
 u8 ElementalHeroShiningPhoenixEnforcer_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroElectrum_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroShiningFlareWingman_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroEscuridao_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroHeat_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -940,6 +941,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_KNOSPE, ElementalHeroKnospe_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_POISON_ROSE, ElementalHeroPoisonRose_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_ABSOLUTE_ZERO, ElementalHeroAbsoluteZero_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_ESCURIDAO, ElementalHeroEscuridao_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

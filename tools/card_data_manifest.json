@@ -20207,6 +20207,29 @@
           "Halve 1 opponent monster ATK and gain that much ATK."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_ESCURIDAO",
+      "card_name": "Elemental HERO Escuridao",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [3, 3, 5, 7, 4, 8, 0, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroEscuridao",
+        "pages": [
+          "1 E-HERO + 1 DARK. Must be Fusion Summoned and",
+          "cannot be Special Summoned by other ways.",
+          "+100 ATK per Elemental HERO in your Graveyard."
+        ]
+      }
     }
   ]
 }

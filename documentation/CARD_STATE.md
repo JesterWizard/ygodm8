@@ -1,15 +1,17 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Gaia ATK boost persists while on field (not End Phase)
+**Last worked on:** 2026-07-02 — Added Elemental HERO Escuridao
 
 **Files touched:**
-- `src_custom/activated_effects/elemental_hero_gaia.c`
-- `include/elemental_hero_gaia.h`
-- `asm/ram_map_ewram.s`
-- `src_custom/card_hooks.c`
-- `src_custom/code_803F02C_hooks.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/assets/cards/80x80/elemental_hero_escuridao.png`
+- `src_custom/permanent_effects/elemental_hero_escuridao.c`
+- `src_custom/fusion_recipes.c`
+- `include/fusion_recipes.h`
+- `src_custom/duel_helpers.c`
 
-**Outcome:** make test-cards-build passes; Gaia boost + target halving stored in EWRAM, applied via stat pipeline; cleared when respective monster leaves field
+**Outcome:** make test-cards-build passes; art reprocessed from 512x512; fusion recipe E-HERO+DARK; +100 ATK per E-HERO in GY
 
 **Open / next:**
-- User rebuild ROM; confirm Gaia keeps boost across turns until it leaves the field
+- Rebuild ROM and verify trunk/card detail art
