@@ -1,11 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-02 — Fixed Elemental HERO Knospe card art
+**Last worked on:** 2026-07-02 — Poison Rose battle damage + forced attack target
 
 **Files touched:**
-- `src_custom/assets/cards/80x80/elemental_hero_knospe.png`
+- `elemental_hero_poison_rose.c (permanent+battle)`
+- `duel_helpers.c`
+- `battle_damage_hooks.c`
 
-**Outcome:** Reprocessed 512x512 Master Duel source through batch_80x80 pipeline; make test-cards passes
+**Outcome:** make test-cards-link passes; Rose Bud summon restriction still not implemented
 
 **Open / next:**
-- Rebuild ROM and verify in trunk/card detail
+- Rose Bud spell if adding Knospe evolution line

@@ -20032,6 +20032,35 @@
           "Each time it inflicts Battle Damage to your opponent: It gains 100 ATK and loses 100 DEF."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_POISON_ROSE",
+      "card_name": "Elemental HERO Poison Rose",
+      "atk": 1900,
+      "def": 2000,
+      "level": 6,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 116,
+      "password": [5, 1, 0, 8, 5, 3, 0, 3],
+      "description": {
+        "symbol": "gDescription_ElementalHeroPoisonRose",
+        "pages": [
+          "Each time it inflicts Battle Damage to your opponent: It gains",
+          "200 ATK and loses 200 DEF. The opponent can only target".,
+          "Elemental HERO Poison Rose with attacks."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroPoisonRose",
+        "pages": [
+          "Each time it inflicts Battle Damage to your opponent: It gains 200 ATK and loses 200 DEF."
+        ]
+      }
     }
   ]
 }

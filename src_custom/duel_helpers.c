@@ -60,6 +60,9 @@ u8 HarpiesPetBabyDragon_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 HarpiesPetBabyDragon_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroKnospe_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
+u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
+struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
   struct DuelSummonOpts opts;
@@ -931,6 +934,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, UnstoppableExodiaIncarnate_ApplyStat },
   { HARPIES_PET_BABY_DRAGON, HarpiesPetBabyDragon_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_KNOSPE, ElementalHeroKnospe_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_POISON_ROSE, ElementalHeroPoisonRose_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -945,6 +949,7 @@ struct DuelForcedAttackRedirect {
 
 static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribute__((section(".text"))) = {
   { RaregoldArmor_GetForcedAttackTarget },
+  { ElementalHeroPoisonRose_GetForcedAttackTarget },
 };
 
 typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
@@ -953,6 +958,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   AmazonessTiger_CanAttackMonsterZone,
   HarpiesPetBabyDragon_CanAttackMonsterZone,
   ElementalHeroKnospe_CanAttackMonsterZone,
+  ElementalHeroPoisonRose_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

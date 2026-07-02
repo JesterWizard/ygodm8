@@ -284,6 +284,8 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Elemental HERO Knospe` | `src_custom/permanent_effects/elemental_hero_knospe.c` |
 | `card_passives` | `Elemental HERO Knospe` | `src_custom/card_passives/elemental_hero_knospe.c` |
 | `battle_effects` | `Elemental HERO Knospe` | `src_custom/battle_effects/elemental_hero_knospe.c` |
+| `permanent_effects` | `Elemental HERO Poison Rose` | `src_custom/permanent_effects/elemental_hero_poison_rose.c` |
+| `battle_effects` | `Elemental HERO Poison Rose` | `src_custom/battle_effects/elemental_hero_poison_rose.c` |
 
 ## Notes
 
