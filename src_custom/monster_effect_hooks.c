@@ -46,6 +46,7 @@
 #include "elemental_hero_plasma_vice.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
+#include "elemental_hero_ice_edge.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -160,6 +161,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroWildWingman();
     case MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE:
       return CanActivateElementalHeroPlasmaVice();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE:
+      return CanActivateElementalHeroIceEdge();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -411,6 +414,11 @@ void ActivateMonsterEffect__Replacement(void) {
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE) {
     ActivateElementalHeroPlasmaViceEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE) {
+    ActivateElementalHeroIceEdgeEffect();
     return;
   }
 

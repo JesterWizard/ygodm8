@@ -28,6 +28,7 @@
 #include "drillago.h"
 #include "elemental_hero_mariner.h"
 #include "elemental_hero_knospe.h"
+#include "elemental_hero_ice_edge.h"
 #include "jowls_of_dark_demise.h"
 #include "duel_helpers.h"
 #include "d_d_warrior.h"
@@ -168,7 +169,8 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) != MAX_ZONES_IN_ROW
       && !CanJowlsControlledMonsterAttackDirectly(attacker)
       && !CanElementalHeroMarinerAttackDirectly(attacker->id)
-      && !CanElementalHeroKnospeAttackDirectly(attacker->id))
+      && !CanElementalHeroKnospeAttackDirectly(attacker->id)
+      && !CanElementalHeroIceEdgeAttackDirectly(attacker))
     return;
 
   if (!AiPayAttackTollIfNeeded())

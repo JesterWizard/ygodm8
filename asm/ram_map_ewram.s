@@ -330,6 +330,9 @@ _kernel_malloc_ewram gElementalHeroNecroshadeUsed, 1
 @ Elemental HERO Core: post-battle destroy origin zone (0xFF = none).
 _kernel_malloc_ewram gElementalHeroCoreBattledRow, 1
 _kernel_malloc_ewram gElementalHeroCoreBattledCol, 1
+@ Elemental HERO Ice Edge: post-direct-attack destroy origin zone (0xFF = none).
+_kernel_malloc_ewram gElementalHeroIceEdgeBattledRow, 1
+_kernel_malloc_ewram gElementalHeroIceEdgeBattledCol, 1
 @ TRUE when Core was destroyed from field and revive may trigger.
 _kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
 @ ponytail: pad restores 2-byte alignment after removing a duplicate Core block.

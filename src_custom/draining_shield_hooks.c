@@ -7,6 +7,7 @@
 #include "fairy_box.h"
 #include "mirror_wall.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_ice_edge.h"
 #include "elemental_hero_sunrise.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
@@ -213,5 +214,6 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   sub_8022080();
   FinishGraveyardDrawBattleResolve();
   ResolveElementalHeroCoreBattledEffect();
+  ResolveElementalHeroIceEdgeBattleEffect();
   ResolveElementalHeroSunriseDestroyEffect();
 }

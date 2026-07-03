@@ -24,6 +24,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_flame_wingman.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_ice_edge.h"
 #include "elemental_hero_sunrise.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
@@ -369,5 +370,6 @@ void sub_8040EF0__Replacement(void) {
   ResolveCoffinSellerBattleEffect();
   FinishGraveyardDrawBattleResolve();
   ResolveElementalHeroCoreBattledEffect();
+  ResolveElementalHeroIceEdgeBattleEffect();
   ResolveElementalHeroSunriseDestroyEffect();
 }

@@ -19830,6 +19830,35 @@
         "popup_1": "Discard this card to add 1 Skyscraper from your Deck to your hand.",
         "popup_2": "Destroy this card."
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_ICE_EDGE",
+      "card_name": "Elemental HERO Ice Edge",
+      "atk": 800,
+      "def": 900,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 72,
+      "password": [4, 1, 0, 7, 7, 7, 4, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroIceEdge",
+        "pages": [
+          "Discard 1 card; this card can attack",
+          "directly this turn. When it deals",
+          "direct battle damage, destroy 1 Set S/T."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 1 card; this card can attack your opponent directly this turn.",
+        "popup_2": "Destroy 1 Set Spell/Trap Card on your opponent's field."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

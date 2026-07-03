@@ -46,6 +46,7 @@
 #include "elemental_hero_poison_rose.h"
 #include "elemental_hero_voltic.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_ice_edge.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
 #include "constants/card_ids.h"
@@ -277,6 +278,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroPoisonRoseBattleEffect();
   ApplyElementalHeroVolticBattleEffect();
   ApplyElementalHeroCoreBattleEffect();
+  ApplyElementalHeroIceEdgeBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();

@@ -47,6 +47,7 @@
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_flame_wingman.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_ice_edge.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_necroshade.h"
@@ -284,6 +285,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSteamHealerPending();
   ClearElementalHeroFlameWingmanPending();
   ClearElementalHeroCoreBattledPending();
+  ClearElementalHeroIceEdgeBattledPending();
   gElementalHeroCoreRevivePending = FALSE;
   ClearElementalHeroSunriseOptFlags();
   ClearElementalHeroSunriseDestroyPending();
@@ -654,6 +656,7 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
   if (turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
     ClearElementalHeroWildedgeState();
     ClearElementalHeroSunriseOptFlags();
+    ClearElementalHeroIceEdgeDirectAttackFlags();
   }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

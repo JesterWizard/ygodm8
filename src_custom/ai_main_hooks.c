@@ -3,6 +3,7 @@
 #include "ai_sim.h"
 #include "duel.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_ice_edge.h"
 #include "elemental_hero_sunrise.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
@@ -59,6 +60,7 @@ void AI_Main__Replacement(void)
     /* After battle anim: deferred GY triggers, then Core/Sunrise destroy (PickZone last). */
     FinishGraveyardDrawBattleResolve();
     ResolveElementalHeroCoreBattledEffect();
+    ResolveElementalHeroIceEdgeBattleEffect();
     ResolveElementalHeroSunriseDestroyEffect();
     PlayActionSoundEffect();
     CheckWinConditionFINAL();
