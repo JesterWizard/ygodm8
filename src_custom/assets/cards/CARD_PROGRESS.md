@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 277 |
-| Art ready, needs manifest | 135 |
+| In game (manifest + art) | 278 |
+| Art ready, needs manifest | 134 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -299,6 +299,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `H_HEATED_HEART` | H - Heated Heart | `h_heated_heart.png` |
 | `E_EMERGENCY_CALL` | E - Emergency Call | `e_emergency_call.png` |
 | `R_RIGHTEOUS_JUSTICE` | R - Righteous Justice | `r_righteous_justice.png` |
+| `O_OVERSOUL` | O - Oversoul | `o_oversoul.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -391,7 +392,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
-- [ ] `O_OVERSOUL` — `o_oversoul.png`
 - [ ] `OVERLOAD_FUSION` — `overload_fusion.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`

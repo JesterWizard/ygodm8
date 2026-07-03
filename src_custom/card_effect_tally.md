@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `259` effects
+- `260` effects
 
 ## Tally
 
@@ -253,6 +253,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Fusion Recovery` | `src_custom/spell_effects/fusion_recovery.c` |
 | `spell_effects` | `E Emergency Call` | `src_custom/spell_effects/e_emergency_call.c` |
 | `spell_effects` | `R Righteous Justice` | `src_custom/spell_effects/r_righteous_justice.c` |
+| `spell_effects` | `O Oversoul` | `src_custom/spell_effects/o_oversoul.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

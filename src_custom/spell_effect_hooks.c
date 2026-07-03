@@ -94,6 +94,7 @@ extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
 extern void EffectFusionRecovery(void);
 extern void EffectEEmergencyCall(void);
 extern void EffectRRighteousJustice(void);
+extern void EffectOOversoul(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -517,6 +518,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case R_RIGHTEOUS_JUSTICE:
       EffectRRighteousJustice();
+      return;
+    case O_OVERSOUL:
+      EffectOOversoul();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

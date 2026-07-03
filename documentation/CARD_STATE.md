@@ -1,11 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — R - Righteous Justice manual multi-target
+**Last worked on:** 2026-07-03 — Added O - Oversoul
 
 **Files touched:**
-- `src_custom/spell_effects/r_righteous_justice.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/spell_effects/o_oversoul.c`
+- `src_custom/spell_effect_hooks.c`
 
-**Outcome:** Manual S/T picks equal to face-up E-HEROes; exclude activating spell by zone pointer; make test-cards-link passes
+**Outcome:** make test-cards-link passes; GY pick SS Elemental HERO Normal Monster
 
 **Open / next:**
-- playtest 2 E-HEROes with 2+ opponent S/T
+- playtest with Avian/Burstinatrix in GY

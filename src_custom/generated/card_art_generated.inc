@@ -1116,6 +1116,10 @@ static const unsigned char sRRighteousJusticeBigArt[] __attribute__((section(".a
 static const unsigned short sRRighteousJusticeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/r_righteous_justice.gbapal");
 static const unsigned char sRRighteousJusticeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/r_righteous_justice.lz");
 
+static const unsigned char sOOversoulBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/o_oversoul.huff");
+static const unsigned short sOOversoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/o_oversoul.gbapal");
+static const unsigned char sOOversoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/o_oversoul.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1396,6 +1400,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0433] = sHHeatedHeartBigArt,
   [0x0434] = sEEmergencyCallBigArt,
   [0x0435] = sRRighteousJusticeBigArt,
+  [0x0436] = sOOversoulBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1678,6 +1683,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0433] = sHHeatedHeartBigPalette,
   [0x0434] = sEEmergencyCallBigPalette,
   [0x0435] = sRRighteousJusticeBigPalette,
+  [0x0436] = sOOversoulBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1960,6 +1966,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0433] = 0,
   [0x0434] = 0,
   [0x0435] = 0,
+  [0x0436] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2242,4 +2249,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0433] = sHHeatedHeartMiniArt,
   [0x0434] = sEEmergencyCallMiniArt,
   [0x0435] = sRRighteousJusticeMiniArt,
+  [0x0436] = sOOversoulMiniArt,
 };
