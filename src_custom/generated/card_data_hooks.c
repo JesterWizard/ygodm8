@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1084] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1085] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1096,9 +1096,10 @@ const u8 gCardLockAfterActivation_Hook[1084] APPEND_RODATA = {
   [0x0439] = 1,
   [0x043A] = 1,
   [0x043B] = 0,
+  [0x043C] = 0,
 };
 
-const u8 gCardEffectUsage_Hook[1084] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1085] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2183,9 +2184,10 @@ const u8 gCardEffectUsage_Hook[1084] APPEND_RODATA = {
   [0x0439] = EFFECT_USAGE_NONE,
   [0x043A] = EFFECT_USAGE_NONE,
   [0x043B] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x043C] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const u8 gCardSelectableOnce_Hook[1084] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1085] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3270,9 +3272,10 @@ const u8 gCardSelectableOnce_Hook[1084] APPEND_RODATA = {
   [0x0439] = 0,
   [0x043A] = 0,
   [0x043B] = 0,
+  [0x043C] = 0,
 };
 
-const CardData gCardData_NEW[1084] APPEND_RODATA = {
+const CardData gCardData_NEW[1085] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -3291,7 +3294,7 @@ const CardData gCardData_NEW[1084] APPEND_RODATA = {
     .def = 2500,
     .cost = 95,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 4,
+    .level = 8,
     .type = TYPE_DRAGON,
     .color = NORMAL_CARD,
     .monsterEffect = 0,
@@ -17695,5 +17698,19 @@ const CardData gCardData_NEW[1084] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {4, 1, 0, 7, 7, 7, 4, 5},
     .description = gDescription_ElementalHeroIceEdge,
+  },
+  [0x043C] = {
+    .atk = 1200,
+    .def = 1800,
+    .cost = 289,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 4,
+    .type = TYPE_WARRIOR,
+    .color = EFFECT_CARD,
+    .monsterEffect = 146,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {6, 3, 0, 6, 0, 2, 3, 8},
+    .description = gDescription_ElementalHeroBlazeman,
   },
 };

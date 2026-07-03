@@ -47,6 +47,7 @@
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_ice_edge.h"
+#include "elemental_hero_blazeman.h"
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
@@ -163,6 +164,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroPlasmaVice();
     case MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE:
       return CanActivateElementalHeroIceEdge();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN:
+      return CanActivateElementalHeroBlazeman();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -422,6 +425,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN) {
+    ActivateElementalHeroBlazemanEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
     return;
@@ -543,6 +551,8 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_WILD_WINGMAN
           || zone->id == ELEMENTAL_HERO_PLASMA_VICE
           || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
+          || zone->id == ELEMENTAL_HERO_ICE_EDGE
+          || zone->id == ELEMENTAL_HERO_BLAZEMAN
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
@@ -568,6 +578,7 @@ FAILED:
             TryElementalHeroGreatTornadoOnMonsterPlacement(zone);
             TryElementalHeroSunriseOnMonsterPlacement(zone);
             TryElementalHeroAbsoluteZeroOnMonsterPlacement(zone);
+            /* ponytail: Blazeman is NS/SS only — not Flip Summon. */
           }
           if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN
               && gCardInfo.monsterEffect != MONSTER_EFFECT_DARK_DUST_SPIRIT)

@@ -1085,11 +1085,12 @@
 #define ELEMENTAL_HERO_SUNRISE                   0x0439
 #define ELEMENTAL_HERO_CAPTAIN_GOLD              0x043A
 #define ELEMENTAL_HERO_ICE_EDGE                  0x043B
+#define ELEMENTAL_HERO_BLAZEMAN                  0x043C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x043C
-#define NUM_CUSTOM_CARDS                        0x011B
+#define NUM_TOTAL_CARDS                         0x043D
+#define NUM_CUSTOM_CARDS                        0x011C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

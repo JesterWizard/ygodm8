@@ -66,6 +66,7 @@
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_blazeman.h"
 #include "elemental_hero_the_shining.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
@@ -289,6 +290,7 @@ void InitBoard__Replacement(void) {
   gElementalHeroCoreRevivePending = FALSE;
   ClearElementalHeroSunriseOptFlags();
   ClearElementalHeroSunriseDestroyPending();
+  ClearElementalHeroBlazemanTurnState();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearLesserFiendPending();
@@ -498,6 +500,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ElementalHeroSunrise_OnZoneCleared(zone);
   ElementalHeroGaia_OnZoneCleared(zone);
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
+  ElementalHeroBlazeman_OnZoneCleared(zone);
   ElementalHeroTheShining_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
@@ -586,6 +589,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
     TryElementalHeroSunriseOnMonsterPlacement(dst);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(dst);
+    /* Blazeman on-summon runs only from placement paths that update field gfx first. */
   }
 }
 
@@ -657,6 +661,7 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
     ClearElementalHeroWildedgeState();
     ClearElementalHeroSunriseOptFlags();
     ClearElementalHeroIceEdgeDirectAttackFlags();
+    ClearElementalHeroBlazemanTurnState();
   }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

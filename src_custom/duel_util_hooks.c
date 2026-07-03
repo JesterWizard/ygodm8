@@ -261,25 +261,43 @@ void TryDrawingCard__Replacement(unsigned turn) {
       if (cardId == CARD_NONE)
         continue;
 
-      // If card isn't in the deck at all, add it — first empty slot, or displace the last card
-      for (i = 0; i < deckSize; i++) {
-        if (gDuelDecks[turn_u8].cards[i] == cardId)
-          break;
-      }
-      if (i >= deckSize) {
+      /* Plant copies for the opening hand. If the card was not already in the deck,
+       * plant two: one is drawn, one stays for deck-search effects (Blazeman, etc.). */
+      {
+        u8 copiesInDeck = 0;
+        u8 needCopies;
+
         for (i = 0; i < deckSize; i++) {
-          if (gDuelDecks[turn_u8].cards[i] == CARD_NONE) {
-            gDuelDecks[turn_u8].cards[i] = cardId;
+          if (gDuelDecks[turn_u8].cards[i] == cardId)
+            copiesInDeck++;
+        }
+
+        needCopies = (copiesInDeck == 0) ? 2 : 1;
+        while (copiesInDeck < needCopies && deckSize > 0) {
+          u8 planted = FALSE;
+
+          for (i = deckSize; i > 0; i--) {
+            u8 idx = i - 1;
+
+            if (idx < MAX_ZONES_IN_ROW && appliedSlots[idx])
+              continue;
+            if (gDuelDecks[turn_u8].cards[idx] == cardId)
+              continue;
+
+            gDuelDecks[turn_u8].cards[idx] = cardId;
+            copiesInDeck++;
+            planted = TRUE;
             break;
           }
+
+          if (!planted)
+            break;
         }
-        if (i >= deckSize && deckSize > 0)
-          gDuelDecks[turn_u8].cards[deckSize - 1] = cardId; // full deck — overwrite last slot
       }
 
-      // Now swap it to the top slot so it gets drawn in the opening hand
+      // Swap an unused copy to this hand slot so it is drawn in the opening hand
       for (i = 0; i < deckSize; i++) {
-        if (i < slot && appliedSlots[i])
+        if (i < MAX_ZONES_IN_ROW && appliedSlots[i])
           continue;
         if (gDuelDecks[turn_u8].cards[i] != cardId)
           continue;

@@ -20,7 +20,7 @@
       "card_name": "Blue Eyes White Dragon",
       "atk": 3000,
       "def": 2500,
-      "level": 4,
+      "level": 8,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_DRAGON",
       "color": "NORMAL_CARD",
@@ -19856,6 +19856,35 @@
       "effect_texts": {
         "popup_1": "Discard 1 card; this card can attack your opponent directly this turn.",
         "popup_2": "Destroy 1 Set Spell/Trap Card on your opponent's field."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_BLAZEMAN",
+      "card_name": "Elemental HERO Blazeman",
+      "atk": 1200,
+      "def": 1800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [6, 3, 0, 6, 0, 2, 3, 8],
+      "description": {
+        "symbol": "gDescription_ElementalHeroBlazeman",
+        "pages": [
+          "On NS/SS add Polymerization from Deck.",
+          "Discard 1 E-HERO from hand; copy its",
+          "Attribute and ATK/DEF until end of turn. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Add 1 Polymerization from your Deck to your hand.",
+        "popup_2": "Discard 1 Elemental HERO; copy its Attribute and ATK/DEF this turn."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"

@@ -333,6 +333,10 @@ _kernel_malloc_ewram gElementalHeroCoreBattledCol, 1
 @ Elemental HERO Ice Edge: post-direct-attack destroy origin zone (0xFF = none).
 _kernel_malloc_ewram gElementalHeroIceEdgeBattledRow, 1
 _kernel_malloc_ewram gElementalHeroIceEdgeBattledCol, 1
+@ Elemental HERO Blazeman: copied stats source + zone (until end of turn).
+_kernel_malloc_ewram gElementalHeroBlazemanCopySourceId, 2
+_kernel_malloc_ewram gElementalHeroBlazemanCopyRow, 1
+_kernel_malloc_ewram gElementalHeroBlazemanCopyCol, 1
 @ TRUE when Core was destroyed from field and revive may trigger.
 _kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
 @ ponytail: pad restores 2-byte alignment after removing a duplicate Core block.

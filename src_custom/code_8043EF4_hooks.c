@@ -50,6 +50,7 @@
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_core.h"
 #include "elemental_hero_sunrise.h"
+#include "elemental_hero_blazeman.h"
 #include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
@@ -945,9 +946,11 @@ void sub_80449D8__Replacement(void)
   MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
   UpdateDuelGfxExceptField();
+  /* ponytail: on-summon text after field draw so Blazeman is visible (popup_1). */
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (gDuelCursor.state != DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET) {
     gDuelCursor.state = 0;

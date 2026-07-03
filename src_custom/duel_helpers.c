@@ -29,6 +29,7 @@
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_blazeman.h"
 #include "elemental_hero_core.h"
 #include "fusion_duel.h"
 
@@ -273,12 +274,14 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   InitMonsterZone(summonZone, opts);
   TryBlastHeldByATributeOnMonsterPlacement(summonZone);
   TryVengefulBogSpiritOnMonsterPlacement(summonZone);
-  MaybeUpdateGfx(opts.updateGfx);
-  TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
-  TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
   TryElementalHeroSunriseOnMonsterPlacement(summonZone);
   TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
+  MaybeUpdateGfx(opts.updateGfx);
+  /* ponytail: on-summon text after field draw (Blazeman popup_1, DDS, Ryu-Kishin). */
+  TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
+  TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
+  TryElementalHeroBlazemanOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }
@@ -946,6 +949,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_POISON_ROSE, ElementalHeroPoisonRose_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_ABSOLUTE_ZERO, ElementalHeroAbsoluteZero_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_ESCURIDAO, ElementalHeroEscuridao_ApplyDynamicZoneStats },
+  { ELEMENTAL_HERO_BLAZEMAN, ElementalHeroBlazeman_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

@@ -1140,6 +1140,10 @@ static const unsigned char sElementalHeroIceEdgeBigArt[] __attribute__((section(
 static const unsigned short sElementalHeroIceEdgeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_ice_edge.gbapal");
 static const unsigned char sElementalHeroIceEdgeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_ice_edge.lz");
 
+static const unsigned char sElementalHeroBlazemanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_blazeman.huff");
+static const unsigned short sElementalHeroBlazemanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_blazeman.gbapal");
+static const unsigned char sElementalHeroBlazemanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_blazeman.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1426,6 +1430,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0439] = sElementalHeroSunriseBigArt,
   [0x043A] = sElementalHeroCaptainGoldBigArt,
   [0x043B] = sElementalHeroIceEdgeBigArt,
+  [0x043C] = sElementalHeroBlazemanBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1714,6 +1719,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0439] = sElementalHeroSunriseBigPalette,
   [0x043A] = sElementalHeroCaptainGoldBigPalette,
   [0x043B] = sElementalHeroIceEdgeBigPalette,
+  [0x043C] = sElementalHeroBlazemanBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2002,6 +2008,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0439] = 0,
   [0x043A] = 0,
   [0x043B] = 0,
+  [0x043C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2290,4 +2297,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0439] = sElementalHeroSunriseMiniArt,
   [0x043A] = sElementalHeroCaptainGoldMiniArt,
   [0x043B] = sElementalHeroIceEdgeMiniArt,
+  [0x043C] = sElementalHeroBlazemanMiniArt,
 };
