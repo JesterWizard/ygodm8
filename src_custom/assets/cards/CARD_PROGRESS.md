@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 285 |
-| Art ready, needs manifest | 127 |
+| Art ready, needs manifest | 124 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **412** |
+| **Total PNGs in `80x80/`** | **411** |
 
 ## In game
 
@@ -321,7 +321,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
 - [ ] `BIRDFACE` — `birdface.png`
-- [ ] `BLACK_PENDANT` — `black_pendant.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
@@ -341,7 +340,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DE-FUSION` — `de-fusion.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
@@ -373,7 +371,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [ ] `MAN-THRO-THRO` — `man-thro-thro.png`
+- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
@@ -407,7 +405,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
-- [ ] `SENJU_OF_THE_THOUSAND_HANDS` — `senju_of_the_thousand_hands.png`
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`

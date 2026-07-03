@@ -21,7 +21,12 @@ def const_to_stem(card_const: str) -> str:
     return card_const.lower()
 
 
-def load_custom_cards() -> list[dict]:
+def png_stem(name: str) -> str:
+    """Normalize art filename stem to manifest form (hyphens → underscores)."""
+    return Path(name).stem.lower().replace("-", "_")
+
+
+def load_manifest_cards() -> tuple[list[dict], list[dict]]:
     with MANIFEST.open(encoding="utf-8") as f:
         cards = json.load(f)["cards"]
     started = False
@@ -31,15 +36,26 @@ def load_custom_cards() -> list[dict]:
             started = True
         if started:
             custom.append(card)
-    return custom
+    return cards, custom
 
 
 def load_pngs() -> dict[str, str]:
-    return {p.stem.lower(): p.name for p in ART_DIR.glob("*.png")}
+    """Map normalized stem → filename. Prefer underscore names over hyphenated dupes."""
+    by_stem: dict[str, str] = {}
+    for path in ART_DIR.glob("*.png"):
+        stem = png_stem(path.name)
+        prev = by_stem.get(stem)
+        if prev is None or ("-" not in path.stem and "-" in Path(prev).stem):
+            by_stem[stem] = path.name
+    return by_stem
 
 
-def render_auto_section(custom_cards: list[dict], pngs: dict[str, str]) -> str:
-    manifest_stems = {const_to_stem(c["card_const"]): c for c in custom_cards}
+def render_auto_section(
+    all_cards: list[dict], custom_cards: list[dict], pngs: dict[str, str]
+) -> str:
+    # Art-only excludes any manifest card (vanilla or custom) so vanilla overrides
+    # like BLACK_PENDANT do not show as "needs manifest".
+    all_manifest_stems = {const_to_stem(c["card_const"]) for c in all_cards}
 
     in_game: list[tuple[dict, str]] = []
     missing_art: list[dict] = []
@@ -53,7 +69,7 @@ def render_auto_section(custom_cards: list[dict], pngs: dict[str, str]) -> str:
     art_only = sorted(
         (stem, pngs[stem])
         for stem in pngs
-        if stem not in manifest_stems
+        if stem not in all_manifest_stems
     )
 
     lines: list[str] = []
@@ -138,9 +154,9 @@ def merge_manual_tail(existing: str, auto: str) -> str:
 
 
 def main() -> None:
-    custom_cards = load_custom_cards()
+    all_cards, custom_cards = load_manifest_cards()
     pngs = load_pngs()
-    auto = render_auto_section(custom_cards, pngs)
+    auto = render_auto_section(all_cards, custom_cards, pngs)
 
     if PROGRESS.exists():
         content = merge_manual_tail(PROGRESS.read_text(encoding="utf-8"), auto)
