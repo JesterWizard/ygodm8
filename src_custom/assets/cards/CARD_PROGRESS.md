@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 275 |
-| Art ready, needs manifest | 137 |
+| In game (manifest + art) | 276 |
+| Art ready, needs manifest | 136 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -297,6 +297,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `FUSION_RECOVERY` | Fusion Recovery | `fusion_recovery.png` |
 | `SKYSCRAPER` | Skyscraper | `skyscraper.png` |
 | `H_HEATED_HEART` | H - Heated Heart | `h_heated_heart.png` |
+| `E_EMERGENCY_CALL` | E - Emergency Call | `e_emergency_call.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -340,7 +341,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
-- [ ] `E_EMERGENCY_CALL` — `e_emergency_call.png`
 - [ ] `ELEMENTAL_HERO_BLAZEMAN` — `elemental_hero_blazeman.png`
 - [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
 - [ ] `ELEMENTAL_HERO_CORE` — `elemental_hero_core.png`

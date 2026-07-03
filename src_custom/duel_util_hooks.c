@@ -103,6 +103,7 @@ s8 GetObjectIdInFrontOfPlayer(u8 x, u8 y, u8 playerDirection) {
 LYN_REPLACE_CHECK(InitDuelDeck);
 void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
   const u16 *deck;
+  u16 deckOverrideCardId = CARD_NONE;
 
   if (duelist == DUEL_PLAYER)
     AiMemory_Reset();
@@ -123,13 +124,18 @@ void InitDuelDeck__Replacement(unsigned char duelist, u16 duelistId) {
     }
   }
 
-  if (duelistId != 0 && gRuntimeConfig.opponent_deck_card_id != CARD_NONE) {
-    u16 opponentOverrideDeck[40];
+  if (duelistId == 0 && gRuntimeConfig.player_deck_card_id != CARD_NONE)
+    deckOverrideCardId = gRuntimeConfig.player_deck_card_id;
+  else if (duelistId != 0 && gRuntimeConfig.opponent_deck_card_id != CARD_NONE)
+    deckOverrideCardId = gRuntimeConfig.opponent_deck_card_id;
+
+  if (deckOverrideCardId != CARD_NONE) {
+    u16 overrideDeck[40];
     u8 i;
 
     for (i = 0; i < 40; i++)
-      opponentOverrideDeck[i] = gRuntimeConfig.opponent_deck_card_id;
-    InitCardsForDuelDeck(duelist, opponentOverrideDeck);
+      overrideDeck[i] = deckOverrideCardId;
+    InitCardsForDuelDeck(duelist, overrideDeck);
     return;
   }
 

@@ -443,7 +443,8 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == VENGEFUL_BOG_SPIRIT
       || cardId == KAISER_COLOSSEUM
       || cardId == NIGHTMARE_WHEEL || cardId == ECTOPLASMER
-      || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT)
+      || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT
+      || cardId == E_EMERGENCY_CALL)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND

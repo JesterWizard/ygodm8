@@ -1,20 +1,18 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "deck_menu.h"
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 #include "elemental_hero_necroid_shaman.h"
 #include "expanded_graveyard.h"
 #include "god_card.h"
-#include "gfx_reg_buffers.h"
 
 extern u16 gNewButtons;
 extern u16 gFilteredInput;
 extern u16 gPressedButtons;
 
-void ClearGraphicsBuffers(void);
 void UpdateDuelGfxExceptField(void);
-void UpdateAllDuelGfx(void);
 void UpdateFilteredInput_NoRepeat(void);
 void DeckMenuSort(void);
 unsigned IsPlayerDeckNonempty(void);
@@ -26,11 +24,6 @@ void sub_801F5FC(void);
 void sub_0801F62C(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
-
-static void NecroidShaman_RestoreDuelGfxAfterPick(void)
-{
-  UpdateAllDuelGfx();
-}
 
 static u8 FindShamanFixedZone(u8 *outRow, u8 *outCol)
 {
@@ -231,10 +224,7 @@ static s8 PickOpponentGyMonsterMenuIndex(u16 *sortedCardsOut)
   if (IsPlayerDeckNonempty() != 1)
     return -1;
 
-  ClearGraphicsBuffers();
-  LoadOam();
-  LoadPalettes();
-  DisableDisplay();
+  DeckMenu_BeginDuelTrunkView();
   DeckMenuSort();
   sub_801EF30(0);
   sub_801EF30(2);
@@ -301,7 +291,7 @@ static s8 PickOpponentGyMonsterMenuIndex(u16 *sortedCardsOut)
       keepProcessing = FALSE;
   }
 
-  NecroidShaman_RestoreDuelGfxAfterPick();
+  DeckMenu_EndDuelTrunkView();
   return selectedIndex;
 }
 

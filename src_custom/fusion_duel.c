@@ -1,7 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
-#include "constants/music_ids.h"
 #include "deck_menu.h"
 #include "duel.h"
 #include "duel_helpers.h"
@@ -12,14 +11,16 @@
 #include "elemental_hero_absolute_zero.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
-#include "gfx_reg_buffers.h"
 
-void ClearGraphicsBuffers(void);
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
-void UpdateAllDuelGfx(void);
 void UpdateDuelGfxExceptField(void);
 
 #define FUSION_PICK_MENU_CAPACITY ((u8)ARRAY_COUNT(gDeckMenu.cards))
+
+static const u8 sFusionDuelPickLabels[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_FUSION_SUMMON,
+};
 
 static void FusionDuel_LoadPickMenu(const u8 *recipeIndices, u8 count)
 {
@@ -35,11 +36,6 @@ static void FusionDuel_LoadPickMenu(const u8 *recipeIndices, u8 count)
   gDeckMenu.sortMode = 0;
   gDeckMenu.displayMode = 1;
   gDeckMenu.cardCount = count;
-}
-
-static void FusionDuel_RestoreDuelGfxAfterPick(void)
-{
-  UpdateAllDuelGfx();
 }
 
 static u8 TurnDuelistToFixed(u8 turnDuelist)
@@ -275,11 +271,15 @@ const struct FusionRecipe *FusionDuel_PlayerPickRecipe(const u8 *recipeIndices, 
 
   FusionDuel_LoadPickMenu(recipeIndices, count);
 
-  ClearGraphicsBuffers();
-  LoadOam();
-  LoadPalettes();
-  DisableDisplay();
-  DeckMenuMainReadOnly();
+  DeckMenu_BeginDuelTrunkView();
+  if (!DeckMenuMainPickConfirmWithLabels(
+          sFusionDuelPickLabels, ARRAY_COUNT(sFusionDuelPickLabels))) {
+    for (j = 0; j < sizeof(gDeckMenu); j++)
+      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+
+    DeckMenu_EndDuelTrunkView();
+    return NULL;
+  }
 
   chosenId = gDeckMenu.cards[gDeckMenu.currentPos];
   for (j = 0; j < count; j++) {
@@ -292,7 +292,7 @@ const struct FusionRecipe *FusionDuel_PlayerPickRecipe(const u8 *recipeIndices, 
   for (j = 0; j < sizeof(gDeckMenu); j++)
     ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
 
-  FusionDuel_RestoreDuelGfxAfterPick();
+  DeckMenu_EndDuelTrunkView();
 
   if (chosenRecipeIdx == 0xFF)
     return NULL;
@@ -315,15 +315,13 @@ const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIn
 
   FusionDuel_LoadPickMenu(recipeIndices, count);
 
-  ClearGraphicsBuffers();
-  LoadOam();
-  LoadPalettes();
-  DisableDisplay();
-  if (!DeckMenuMainPickConfirm()) {
+  DeckMenu_BeginDuelTrunkView();
+  if (!DeckMenuMainPickConfirmWithLabels(
+          sFusionDuelPickLabels, ARRAY_COUNT(sFusionDuelPickLabels))) {
     for (j = 0; j < sizeof(gDeckMenu); j++)
       ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
 
-    FusionDuel_RestoreDuelGfxAfterPick();
+    DeckMenu_EndDuelTrunkView();
     return NULL;
   }
 
@@ -338,7 +336,7 @@ const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIn
   for (j = 0; j < sizeof(gDeckMenu); j++)
     ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
 
-  FusionDuel_RestoreDuelGfxAfterPick();
+  DeckMenu_EndDuelTrunkView();
 
   if (chosenRecipeIdx == 0xFF)
     return NULL;

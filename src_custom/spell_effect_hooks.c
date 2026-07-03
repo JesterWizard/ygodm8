@@ -92,6 +92,7 @@ extern void EffectDiffusionWaveMotion(void);
 extern void EffectAutonomousActionUnit(void);
 extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
 extern void EffectFusionRecovery(void);
+extern void EffectEEmergencyCall(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -137,6 +138,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case BLOCK_ATTACK:
     case BOOK_OF_MOON:
     case H_HEATED_HEART:
+    case E_EMERGENCY_CALL:
     case BOOK_OF_TAIYOU:
     case DE_FUSION:
     case DIFFUSION_WAVE_MOTION:
@@ -507,6 +509,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case FUSION_RECOVERY:
       EffectFusionRecovery();
+      return;
+    case E_EMERGENCY_CALL:
+      EffectEEmergencyCall();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

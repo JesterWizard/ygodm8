@@ -272,6 +272,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [FUSION_RECOVERY] = gActivationDescription_FusionRecovery,
   [SKYSCRAPER] = gActivationDescription_Skyscraper,
   [H_HEATED_HEART] = gActivationDescription_HHeatedHeart,
+  [E_EMERGENCY_CALL] = gActivationDescription_EEmergencyCall,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

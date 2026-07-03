@@ -3,8 +3,10 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "custom_decks/custom_decks.h"
+#include "deck_menu.h"
 #include "player_decks.h"
 #include "duel.h"
+#include "text.h"
 
 extern unsigned gDeckCapacity;
 extern unsigned gDuelistLevel;
@@ -44,7 +46,11 @@ void RunTrunkTask(unsigned char);
 void DeckMenuSort(void);
 void ToggleDeckSortMode(void);
 unsigned IsPlayerDeckNonempty(void);
+void ClearGraphicsBuffers(void);
 void DisableDisplay(void);
+void LoadOam(void);
+void LoadPalettes(void);
+void UpdateAllDuelGfx(void);
 extern unsigned short gFilteredInput;
 int ProcessInputDeckSubmenus(void);
 void A_Submenu_Main(void);
@@ -94,29 +100,110 @@ static const unsigned char gDeckSubmenuText[] APPEND_TEXT = _(
     "すべてかばんへ     "
 );
 
-static const unsigned char gFusionPickSubmenuText[] APPEND_TEXT = _(
+static const unsigned char sDeckMenuPickLabelDetails[] APPEND_TEXT = _(
   "{ENG}"
     "Details   "
-    "Fusion Summon"
   "{FRE}"
-    "Voir détails        "
+    "Détails   "
+  "{GER}"
+    "Details   "
+  "{ITA}"
+    "Dettagli  "
+  "{SPA}"
+    "Detalles  "
+  "{JAP}"
+    "ディテール     "
+);
+
+static const unsigned char sDeckMenuPickLabelFusionSummon[] APPEND_TEXT = _(
+  "{ENG}"
+    "Fusion Summon       "
+  "{FRE}"
     "Invocation Fusion   "
   "{GER}"
-    "Details ansehen     "
     "Fusion beschwören   "
   "{ITA}"
-    "Vedi dettagli       "
     "Evoca Fusione       "
   "{SPA}"
-    "Ver detalles        "
     "Invocar Fusión      "
   "{JAP}"
-    "カードの詳細を見る       "
     "フュージョン召喚         "
 );
 
-static const unsigned char gFusionSubmenuNavUp[] APPEND_RODATA = {0, 0};
-static const unsigned char gFusionSubmenuNavDown[] APPEND_RODATA = {1, 1};
+static const unsigned char sDeckMenuPickLabelSelectCard[] APPEND_TEXT = _(
+  "{ENG}"
+    "Select This Card    "
+  "{FRE}"
+    "Choisir cette carte "
+  "{GER}"
+    "Diese Karte wählen  "
+  "{ITA}"
+    "Scegli questa carta "
+  "{SPA}"
+    "Elegir esta carta   "
+  "{JAP}"
+    "このカードを選ぶ   "
+);
+
+static const unsigned char sDeckMenuPickLabelBlankShort[] APPEND_TEXT =
+    "          ";
+
+static const unsigned char sDeckMenuPickLabelBlankLong[] APPEND_TEXT =
+    "                    ";
+
+static const u8 sDeckMenuPickDefaultLabels[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_FUSION_SUMMON,
+};
+
+#define DECK_MENU_PICK_SUBMENU_TEXT_CAPACITY 96
+
+static const u8 *DeckMenu_GetPickLabelText(u8 label)
+{
+  switch (label) {
+  case DECK_MENU_PICK_LABEL_FUSION_SUMMON:
+    return sDeckMenuPickLabelFusionSummon;
+  case DECK_MENU_PICK_LABEL_SELECT_CARD:
+    return sDeckMenuPickLabelSelectCard;
+  case DECK_MENU_PICK_LABEL_DETAILS:
+  default:
+    return sDeckMenuPickLabelDetails;
+  }
+}
+
+static const u8 *DeckMenu_GetPickBlankLabelText(u8 row)
+{
+  if (row == 0)
+    return sDeckMenuPickLabelBlankShort;
+
+  return sDeckMenuPickLabelBlankLong;
+}
+
+static void DeckMenu_AppendPickLabelText(u8 *dest, u8 *offset, const u8 *labelText)
+{
+  const u8 *text = GetCurrentLanguageString(labelText);
+
+  while (*text != 0 && *text != '$' &&
+         *offset < DECK_MENU_PICK_SUBMENU_TEXT_CAPACITY - 1) {
+    dest[*offset] = *text;
+    (*offset)++;
+    text++;
+  }
+}
+
+static void DeckMenu_BuildPickSubmenuText(u8 *dest, const u8 *labels, u8 labelCount)
+{
+  u8 i;
+  u8 offset = 0;
+
+  for (i = 0; i < DECK_MENU_PICK_MAX_OPTIONS; i++) {
+    if (i < labelCount)
+      DeckMenu_AppendPickLabelText(dest, &offset, DeckMenu_GetPickLabelText(labels[i]));
+    else
+      DeckMenu_AppendPickLabelText(dest, &offset, DeckMenu_GetPickBlankLabelText(i));
+  }
+  dest[offset] = 0;
+}
 
 enum {
   FUSION_PICK_SUBMENU_BACK,
@@ -140,10 +227,12 @@ static void sub_801DE5C(void) {
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], gDeckSubmenuText, 0x900);
 }
 
-static void FusionPickSubmenu_InitGfx(void) {
+static void DeckMenuPickSubmenu_InitGfx(const u8 *labels, u8 labelCount) {
   unsigned char i;
   unsigned short r7;
+  u8 submenuText[DECK_MENU_PICK_SUBMENU_TEXT_CAPACITY];
 
+  DeckMenu_BuildPickSubmenuText(submenuText, labels, labelCount);
   for (i = 0; i < 20; i++)
     CpuCopy32(gUnk_808D9B0[i], &(((struct Sbb *)&gBgVram)->sbbF[i]), 60);
   CpuFill16(0, gBgVram.cbb1, 32);
@@ -154,7 +243,7 @@ static void FusionPickSubmenu_InitGfx(void) {
     sub_800800C(i + 9, 13, 0x7800, (g8DF811C[i] + 61) | r7);
     sub_800800C(i + 9, 14, 0x7800, (g8DF811C[i] + 63) | r7);
   }
-  CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], gFusionPickSubmenuText, 0x900);
+  CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], submenuText, 0x900);
 }
 
 static void sub_801D61C(unsigned char cursorState) {
@@ -503,13 +592,13 @@ static void DeckMenuShowSelectedCardDetails(void) {
   DeckMenuRestoreAfterCardDetails();
 }
 
-static u8 FusionPickSubmenu_Main(void) {
+static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
   unsigned keepProcessing = 1;
   unsigned char cursorState = 0;
   u8 result = FUSION_PICK_SUBMENU_BACK;
 
   PlayMusic(SFX_SELECT);
-  FusionPickSubmenu_InitGfx();
+  DeckMenuPickSubmenu_InitGfx(labels, labelCount);
   sub_801D61C(cursorState);
   LoadCharblock1();
   SetVBlankCallback(DeckSubmenuVBlank);
@@ -517,26 +606,27 @@ static u8 FusionPickSubmenu_Main(void) {
   while (keepProcessing) {
     switch (ProcessInputDeckSubmenus__Replacement()) {
       case REPEAT_DPAD_UP:
-        cursorState = gFusionSubmenuNavUp[cursorState];
+        cursorState = (cursorState + labelCount - 1) % labelCount;
         sub_801D61C(cursorState);
         PlayMusic(SFX_MOVE_CURSOR);
         SetVBlankCallback(LoadOam);
         WaitForVBlank();
         break;
       case REPEAT_DPAD_DOWN:
-        cursorState = gFusionSubmenuNavDown[cursorState];
+        cursorState = (cursorState + 1) % labelCount;
         sub_801D61C(cursorState);
         PlayMusic(SFX_MOVE_CURSOR);
         SetVBlankCallback(LoadOam);
         WaitForVBlank();
         break;
       case NEW_A_BUTTON:
-        switch (cursorState) {
-          case 0:
+        switch (labels[cursorState]) {
+          case DECK_MENU_PICK_LABEL_DETAILS:
             DeckMenuShowSelectedCardDetails();
             keepProcessing = 0;
             break;
-          case 1:
+          case DECK_MENU_PICK_LABEL_FUSION_SUMMON:
+          case DECK_MENU_PICK_LABEL_SELECT_CARD:
             result = FUSION_PICK_SUBMENU_SUMMON;
             keepProcessing = 0;
             PlayMusic(SFX_SELECT);
@@ -554,6 +644,20 @@ static u8 FusionPickSubmenu_Main(void) {
   }
   sub_801D678();
   return result;
+}
+
+void DeckMenu_BeginDuelTrunkView(void)
+{
+  ClearGraphicsBuffers();
+  LoadOam();
+  LoadPalettes();
+  DisableDisplay();
+}
+
+void DeckMenu_EndDuelTrunkView(void)
+{
+  DisableDisplay();
+  UpdateAllDuelGfx();
 }
 
 void DeckMenuMainReadOnly(void) {
@@ -630,10 +734,19 @@ void DeckMenuMainReadOnly(void) {
   DeckMenuShutdownGraphics();
 }
 
-bool8 DeckMenuMainPickConfirm(void)
+bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
 {
   unsigned keepProcessing = 1;
   bool8 confirmed = FALSE;
+  const u8 *activeLabels = labels;
+  u8 activeLabelCount = labelCount;
+
+  if (activeLabels == NULL || activeLabelCount == 0) {
+    activeLabels = sDeckMenuPickDefaultLabels;
+    activeLabelCount = ARRAY_COUNT(sDeckMenuPickDefaultLabels);
+  }
+  if (activeLabelCount > DECK_MENU_PICK_MAX_OPTIONS)
+    activeLabelCount = DECK_MENU_PICK_MAX_OPTIONS;
 
   if (IsPlayerDeckNonempty() != 1)
     return FALSE;
@@ -673,7 +786,7 @@ bool8 DeckMenuMainPickConfirm(void)
         sub_801F4A0(4);
         break;
       case NEW_A_BUTTON:
-        if (FusionPickSubmenu_Main() == FUSION_PICK_SUBMENU_SUMMON) {
+        if (DeckMenuPickSubmenu_Main(activeLabels, activeLabelCount) == FUSION_PICK_SUBMENU_SUMMON) {
           confirmed = TRUE;
           keepProcessing = 0;
         } else {
@@ -682,6 +795,7 @@ bool8 DeckMenuMainPickConfirm(void)
         break;
       // ponytail: B does not exit fusion trunk picker — cancel via submenu only
       case NEW_B_BUTTON:
+        WaitForVBlank();
         break;
       case NEW_START_BUTTON:
         sub_801F120();
@@ -708,4 +822,10 @@ bool8 DeckMenuMainPickConfirm(void)
   }
   DeckMenuShutdownGraphics();
   return confirmed;
+}
+
+bool8 DeckMenuMainPickConfirm(void)
+{
+  return DeckMenuMainPickConfirmWithLabels(
+      sDeckMenuPickDefaultLabels, ARRAY_COUNT(sDeckMenuPickDefaultLabels));
 }

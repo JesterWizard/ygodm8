@@ -1,5 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — H - Heated Heart persistent equip effect
+**Last worked on:** 2026-07-03 — Duel trunk-view graphics API
 
-**Outcome:** +500 ATK and piercing now derive from the active dynamic equip link (like Big Bang Shot), not riryoku/EOT clears. Effects last while spell stays equipped on field. `make test-cards-build` passes.
+**Outcome:** Card-opened trunk/deck-menu views now bracket menu use with `DeckMenu_BeginDuelTrunkView()` / `DeckMenu_EndDuelTrunkView()` so duel graphics reload on every exit path. Non-graveyard card pickers use `DeckMenuMainPickConfirmWithLabels`; top-level B waits a frame and does nothing, avoiding both field return and input-loop freeze. `make test-cards-build` passes.
+
+**Open / next:** playtest Emergency Call and fusion picker trunk menus in emulator

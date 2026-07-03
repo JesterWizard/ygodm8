@@ -1,17 +1,16 @@
 #include "global.h"
 #include "common-chax.h"
 #include "constants/card_ids.h"
+#include "deck_menu.h"
 #include "duel_helpers.h"
 #include "elemental_hero_ocean.h"
 #include "expanded_graveyard.h"
-#include "gfx_reg_buffers.h"
 #include "monster_effect_usage.h"
 
 extern u16 gNewButtons;
 extern u16 gFilteredInput;
 extern u16 gPressedButtons;
 
-void ClearGraphicsBuffers(void);
 void UpdateAllDuelGfx(void);
 void UpdateFilteredInput_NoRepeat(void);
 void DeckMenuSort(void);
@@ -251,10 +250,7 @@ static s8 PickOceanTargetMenuIndex(void)
   if (IsPlayerDeckNonempty() != 1)
     return -1;
 
-  ClearGraphicsBuffers();
-  LoadOam();
-  LoadPalettes();
-  DisableDisplay();
+  DeckMenu_BeginDuelTrunkView();
   DeckMenuSort();
   sub_801EF30(0);
   sub_801EF30(2);
@@ -315,7 +311,7 @@ static s8 PickOceanTargetMenuIndex(void)
       keepProcessing = FALSE;
   }
 
-  Ocean_RestoreDuelGfxAfterPick();
+  DeckMenu_EndDuelTrunkView();
   return selectedIndex;
 }
 

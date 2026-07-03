@@ -1108,6 +1108,10 @@ static const unsigned char sHHeatedHeartBigArt[] __attribute__((section(".append
 static const unsigned short sHHeatedHeartBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/h_heated_heart.gbapal");
 static const unsigned char sHHeatedHeartMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/h_heated_heart.lz");
 
+static const unsigned char sEEmergencyCallBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/e_emergency_call.huff");
+static const unsigned short sEEmergencyCallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/e_emergency_call.gbapal");
+static const unsigned char sEEmergencyCallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/e_emergency_call.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1386,6 +1390,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0431] = sFusionRecoveryBigArt,
   [0x0432] = sSkyscraperBigArt,
   [0x0433] = sHHeatedHeartBigArt,
+  [0x0434] = sEEmergencyCallBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1666,6 +1671,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0431] = sFusionRecoveryBigPalette,
   [0x0432] = sSkyscraperBigPalette,
   [0x0433] = sHHeatedHeartBigPalette,
+  [0x0434] = sEEmergencyCallBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1946,6 +1952,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0431] = 0,
   [0x0432] = 0,
   [0x0433] = 0,
+  [0x0434] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2226,4 +2233,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0431] = sFusionRecoveryMiniArt,
   [0x0432] = sSkyscraperMiniArt,
   [0x0433] = sHHeatedHeartMiniArt,
+  [0x0434] = sEEmergencyCallMiniArt,
 };

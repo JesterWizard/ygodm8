@@ -8,11 +8,10 @@
 #include "fusion_recipes.h"
 #include "spell_effects.h"
 
-void ClearGraphicsBuffers(void);
-void DisableDisplay(void);
-void LoadOam(void);
-void LoadPalettes(void);
-void UpdateAllDuelGfx(void);
+static const u8 sFusionRecoveryPickLabels[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_SELECT_CARD,
+};
 
 enum FusionRecoveryPickKind {
   FR_PICK_POLYMERIZATION = 0,
@@ -155,14 +154,12 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist, enum FusionRecoveryPickKind kind, u
   for (j = 0; j < sizeof(gDeckMenu); j++)
     ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
 
-  ClearGraphicsBuffers();
-  LoadOam();
-  LoadPalettes();
-  DisableDisplay();
-  if (!DeckMenuMainPickConfirm()) {
+  DeckMenu_BeginDuelTrunkView();
+  if (!DeckMenuMainPickConfirmWithLabels(
+          sFusionRecoveryPickLabels, ARRAY_COUNT(sFusionRecoveryPickLabels))) {
     for (j = 0; j < sizeof(gDeckMenu); j++)
       ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
-    UpdateAllDuelGfx();
+    DeckMenu_EndDuelTrunkView();
     return -1;
   }
 
@@ -171,7 +168,7 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist, enum FusionRecoveryPickKind kind, u
   for (j = 0; j < sizeof(gDeckMenu); j++)
     ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
 
-  UpdateAllDuelGfx();
+  DeckMenu_EndDuelTrunkView();
   return chosenGyIndex;
 }
 
