@@ -130,6 +130,32 @@ u8 FusionRecipe_MaterialMatches(u16 need, u16 cardId)
   return need == cardId;
 }
 
+u8 FusionRecipe_CardIsFusionMaterial(u16 cardId)
+{
+  u8 recipeCount = FusionRecipe_Count();
+  u8 i;
+
+  if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+    return FALSE;
+
+  for (i = 0; i < recipeCount; i++) {
+    const struct FusionRecipe *recipe = &gFusionRecipes[i];
+    u8 matCount = FusionRecipe_MaterialCount(recipe);
+    u8 m;
+
+    for (m = 0; m < matCount; m++) {
+      u16 need = FusionRecipe_MaterialAt(recipe, m);
+
+      if (!FusionRecipe_MaterialIsConcrete(need))
+        continue;
+      if (need == cardId)
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
 #if defined(DUEL_HELPERS_SELF_CHECK)
 void FusionRecipes_SelfCheck(void)
 {
@@ -238,6 +264,22 @@ void FusionRecipes_SelfCheck(void)
       ;
 
   if (FusionRecipe_FindByResult(CARD_NONE) != NULL)
+    while (1)
+      ;
+
+  if (!FusionRecipe_CardIsFusionMaterial(ELEMENTAL_HERO_AVIAN))
+    while (1)
+      ;
+
+  if (FusionRecipe_CardIsFusionMaterial(BATTLE_FOOTBALLER))
+    while (1)
+      ;
+
+  if (FusionRecipe_CardIsFusionMaterial(WITCHS_APPRENTICE))
+    while (1)
+      ;
+
+  if (FusionRecipe_CardIsFusionMaterial(DARK_MAGICIAN))
     while (1)
       ;
 }

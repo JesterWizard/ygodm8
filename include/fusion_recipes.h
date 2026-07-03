@@ -31,5 +31,6 @@ u8 FusionRecipe_MaterialCount(const struct FusionRecipe *recipe);
 u16 FusionRecipe_MaterialAt(const struct FusionRecipe *recipe, u8 index);
 u8 FusionRecipe_MaterialIsConcrete(u16 material);
 u8 FusionRecipe_MaterialMatches(u16 need, u16 cardId);
+u8 FusionRecipe_CardIsFusionMaterial(u16 cardId);
 
 #endif // GUARD_FUSION_RECIPES_H

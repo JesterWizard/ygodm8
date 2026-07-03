@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `256` effects
+- `257` effects
 
 ## Tally
 
@@ -250,6 +250,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Elemental Hero Necroid Shaman` | `src_custom/activated_effects/elemental_hero_necroid_shaman.c` |
 | `battle_effects` | `Elemental Hero Plasma Vice` | `src_custom/battle_effects/elemental_hero_plasma_vice.c` |
 | `activated_effects` | `Elemental Hero Plasma Vice` | `src_custom/activated_effects/elemental_hero_plasma_vice.c` |
+| `spell_effects` | `Fusion Recovery` | `src_custom/spell_effects/fusion_recovery.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

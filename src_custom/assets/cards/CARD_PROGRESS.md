@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 272 |
+| In game (manifest + art) | 273 |
 | Art ready, needs manifest | 138 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **410** |
+| **Total PNGs in `80x80/`** | **411** |
 
 ## In game
 
@@ -294,6 +294,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_INFERNO` | Elemental HERO Inferno | `elemental_hero_inferno.png` |
 | `ELEMENTAL_HERO_NECROID_SHAMAN` | Elemental HERO Necroid Shaman | `elemental_hero_necroid_shaman.png` |
 | `ELEMENTAL_HERO_PLASMA_VICE` | Elemental HERO Plasma Vice | `elemental_hero_plasma_vice.png` |
+| `FUSION_RECOVERY` | Fusion Recovery | `fusion_recovery.png` |
 
 ## Todo — art ready, needs manifest
 

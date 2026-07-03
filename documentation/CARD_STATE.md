@@ -1,13 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — Fixed Plasma Vice crash on hand discard selection
+**Last worked on:** 2026-07-03 — Added Fusion Recovery spell
 
 **Files touched:**
-- `src_custom/activated_effects/elemental_hero_plasma_vice.c` — dedicated cursor + `sub_8041E70(PLAYER_HAND, targetRow)` after discard (Wild Wingman pattern)
-- `include/elemental_hero_plasma_vice.h`
-- `src_custom/code_8043EF4_hooks.c`, `monster_effect_hooks.c`, `chaos_command_magician.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/spell_effects/fusion_recovery.c`
+- `src_custom/expanded_graveyard.c`
+- `src_custom/fusion_duel.c`
+- `asm/ram_map_ewram.s`
 
-**Outcome:** `make test-cards-build` passes. Hand pick no longer corrupts field scroll before destroy targeting.
+**Outcome:** make test-cards-build passes
 
 **Open / next:**
-- Playtest Plasma Vice: discard hand card → target opponent ATK monster
+- 80x80 art at src_custom/assets/cards/80x80/fusion_recovery.png; playtest after Polymerization fusion
