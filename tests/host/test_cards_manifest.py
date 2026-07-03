@@ -92,8 +92,8 @@ class CardManifestTests(unittest.TestCase):
                             "each of your Standby Phases.",
                         ]
                     },
-                    "activation_description": {
-                        "pages": ["Gain 1000 LP during your Standby Phase."],
+                    "effect_texts": {
+                        "popup_1": "Gain 1000 LP during your Standby Phase.",
                     },
                 }
             ]
@@ -101,8 +101,8 @@ class CardManifestTests(unittest.TestCase):
         validated = validate_manifest(manifest)["cards"][0]
         self.assertEqual(validated["description"]["symbol"], "gDescription_SpiritOfTheBreeze")
         self.assertEqual(
-            validated["activation_description"]["symbol"],
-            "gActivationDescription_SpiritOfTheBreeze",
+            validated["effect_texts"]["popup_1"]["symbol"],
+            "gActivationDescription_SpiritOfTheBreeze_Popup1",
         )
 
     def test_manifest_dump_uses_canonical_key_order_and_inline_password(self):
@@ -155,7 +155,10 @@ class CardManifestTests(unittest.TestCase):
         manifest = validate_manifest(json.loads((ROOT / "tools" / "card_data_manifest.json").read_text()))
         lookup = card_art.render_activation_description_lookup_inc(manifest)
         self.assertIn("sCardActivationTextById[NUM_TOTAL_CARDS]", lookup)
-        self.assertIn("[ELEMENTAL_HERO_LADY_HEAT] = gActivationDescription_ElementalHeroLadyHeat", lookup)
+        self.assertIn(
+            "[ELEMENTAL_HERO_LADY_HEAT] = gActivationDescription_ElementalHeroLadyHeat_Popup1",
+            lookup,
+        )
         self.assertIn("return sCardActivationTextById[cardId];", lookup)
 
     def test_effect_texts_emit_named_symbols(self):
@@ -163,6 +166,10 @@ class CardManifestTests(unittest.TestCase):
         core = next(c for c in manifest["cards"] if c["card_const"] == "ELEMENTAL_HERO_CORE")
         self.assertIn("popup_1", core["effect_texts"])
         self.assertIn("popup_2", core["effect_texts"])
+        self.assertEqual(
+            core["effect_texts"]["popup_1"]["pages"],
+            ["After battle, destroy 1 monster."],
+        )
         self.assertEqual(
             core["effect_texts"]["popup_2"]["symbol"],
             "gActivationDescription_ElementalHeroCore_Popup2",

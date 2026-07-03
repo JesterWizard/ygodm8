@@ -2,7 +2,7 @@
 #include "common-chax.h"
 #include "duel_helpers.h"
 
-extern const u8 gActivationDescription_BlueEyesShiningDragon[];
+extern const u8 gActivationDescription_BlueEyesShiningDragon_Popup1[];
 
 static u8 CardIsDragon(u16 cardId) {
   if (cardId == CARD_NONE)
@@ -54,7 +54,7 @@ static void ShowBlueEyesShiningDragonActivationText(void) {
   ResetCardEffectTextData();
   gCardEffectTextData.cardId = BLUE_EYES_SHINING_DRAGON;
   PlayMusic(SFX_SPELL_ACTIVATION_START);
-  sub_8041C94((u8 *)gActivationDescription_BlueEyesShiningDragon, BLUE_EYES_SHINING_DRAGON, 0, 0, 0);
+  sub_8041C94((u8 *)gActivationDescription_BlueEyesShiningDragon_Popup1, BLUE_EYES_SHINING_DRAGON, 0, 0, 0);
   SetCardInfo(BLUE_EYES_SHINING_DRAGON);
   PlayMusic(SFX_SPELL_ACTIVATION_END);
   gHideEffectText = hideEffectText;

@@ -16,7 +16,7 @@ void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
 void sub_8022080(void);
 
-extern const u8 gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning[];
+extern const u8 gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning_Popup1[];
 
 #define BLS_BANISH_INDEX_NONE 0xFF
 
@@ -233,7 +233,7 @@ static void ShowBlackLusterSoldierActivationText(void)
   ResetCardEffectTextData();
   gCardEffectTextData.cardId = BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING;
   PlayMusic(SFX_SPELL_ACTIVATION_START);
-  sub_8041C94((u8 *)gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning,
+  sub_8041C94((u8 *)gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning_Popup1,
               BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING, CARD_NONE, 0, 0);
   SetCardInfo(BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING);
   PlayMusic(SFX_SPELL_ACTIVATION_END);

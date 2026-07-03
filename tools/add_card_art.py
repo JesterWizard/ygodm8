@@ -1076,15 +1076,19 @@ def _append_activation_text_symbol(lines: list[str], symbol: str, pages: list[st
 def render_activation_description_inc(manifest: dict) -> str:
     lines = []
     for item in manifest["cards"]:
+        # Legacy single activation_description (prefer effect_texts.popup_1).
         activation_description = item.get("activation_description")
-        if activation_description:
+        effect_texts = item.get("effect_texts") or {}
+        if activation_description and "popup_1" not in effect_texts:
             _append_activation_text_symbol(
                 lines, activation_description["symbol"], activation_description["pages"]
             )
-        effect_texts = item.get("effect_texts") or {}
         for effect_id, effect in effect_texts.items():
             symbol = effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id)
-            _append_activation_text_symbol(lines, symbol, effect["pages"])
+            pages = effect["pages"] if isinstance(effect, dict) else (
+                [effect] if isinstance(effect, str) else list(effect)
+            )
+            _append_activation_text_symbol(lines, symbol, pages)
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
@@ -1149,18 +1153,25 @@ def render_effect_text_lookup_inc(manifest: dict) -> str:
 
 
 def render_activation_description_lookup_inc(manifest: dict) -> str:
+    """Default activation text is effect_texts.popup_1 (legacy activation_description supported)."""
     lines = [
         "#include \"constants/card_effect_texts.h\"",
         "",
         "static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = {",
     ]
     for item in manifest["cards"]:
+        effect_texts = item.get("effect_texts") or {}
+        popup_1 = effect_texts.get("popup_1")
         activation_description = item.get("activation_description")
-        if not activation_description:
-            continue
-        lines.append(
-            f"  [{item['card_const']}] = {activation_description['symbol']},"
-        )
+        if popup_1 is not None:
+            symbol = popup_1["symbol"] if isinstance(popup_1, dict) else None
+            if symbol is None:
+                symbol = effect_text_symbol(item["card_const"], "popup_1")
+            lines.append(f"  [{item['card_const']}] = {symbol},")
+        elif activation_description:
+            lines.append(
+                f"  [{item['card_const']}] = {activation_description['symbol']},"
+            )
     lines.extend([
         "};",
         "",

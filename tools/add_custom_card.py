@@ -18,8 +18,8 @@ if str(ROOT / "tools") not in sys.path:
     sys.path.insert(0, str(ROOT / "tools"))
 
 from card_manifest import (  # noqa: E402
-    activation_description_symbol,
     description_symbol,
+    effect_text_symbol,
     load_manifest_json,
     order_card_entry,
     validate_manifest,
@@ -195,8 +195,8 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
             "description": {
                 "pages": wrap_effect_text(api_card.get("desc", card_name)),
             },
-            "activation_description": {
-                "pages": [api_card.get("desc", card_name)[:120]],
+            "effect_texts": {
+                "popup_1": api_card.get("desc", card_name)[:120],
             },
         })
         return entry
@@ -233,8 +233,8 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
         },
     })
     if color == "EFFECT_CARD":
-        entry["activation_description"] = {
-            "pages": [api_card.get("desc", card_name)[:120]],
+        entry["effect_texts"] = {
+            "popup_1": api_card.get("desc", card_name)[:120],
         }
         entry = order_card_entry(entry)
     return entry
@@ -308,8 +308,8 @@ def main() -> int:
         if args.no_desc:
             stub = "Custom card."
             entry["description"] = {"pages": [stub, ""]}
-            if "activation_description" in entry:
-                entry["activation_description"] = {"pages": [stub]}
+            if "effect_texts" in entry:
+                entry["effect_texts"] = {"popup_1": stub}
             entry = finalize_entry(entry)
 
         art_path = art_path_for(entry)
@@ -317,8 +317,11 @@ def main() -> int:
         print(json.dumps(entry, indent=2))
         print(f"\nART: {art_path.relative_to(ROOT)} — {art_status}", file=sys.stderr)
         print(f"Description symbol: {description_symbol(entry['card_const'])}", file=sys.stderr)
-        if "activation_description" in entry:
-            print(f"Activation symbol: {activation_description_symbol(entry['card_const'])}", file=sys.stderr)
+        if "effect_texts" in entry:
+            print(
+                f"Effect text: popup_1 → {effect_text_symbol(entry['card_const'], 'popup_1')}",
+                file=sys.stderr,
+            )
         if args.write:
             append_manifest(entry)
             print(f"Appended {entry['card_const']} to {MANIFEST_PATH.relative_to(ROOT)}", file=sys.stderr)
@@ -338,8 +341,8 @@ def main() -> int:
     if args.no_desc:
         stub = "Custom card."
         entry["description"] = {"pages": [stub, ""]}
-        if "activation_description" in entry:
-            entry["activation_description"] = {"pages": [stub]}
+        if "effect_texts" in entry:
+            entry["effect_texts"] = {"popup_1": stub}
         entry = finalize_entry(entry)
 
     art_path = art_path_for(entry)
@@ -348,8 +351,11 @@ def main() -> int:
     art_status = "OK" if art_path.is_file() else "MISSING"
     print(f"\nART: {art_path.relative_to(ROOT)} — {art_status}", file=sys.stderr)
     print(f"Description symbol: {description_symbol(entry['card_const'])}", file=sys.stderr)
-    if "activation_description" in entry:
-        print(f"Activation symbol: {activation_description_symbol(entry['card_const'])}", file=sys.stderr)
+    if "effect_texts" in entry:
+        print(
+            f"Effect text: popup_1 → {effect_text_symbol(entry['card_const'], 'popup_1')}",
+            file=sys.stderr,
+        )
 
     if args.write:
         append_manifest(entry)

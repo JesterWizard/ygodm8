@@ -3,7 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 
-extern const u8 gActivationDescription_Gilasaurus[];
+extern const u8 gActivationDescription_Gilasaurus_Popup1[];
 
 static void ShowGilasaurusActivationText(void)
 {
@@ -14,7 +14,7 @@ static void ShowGilasaurusActivationText(void)
   gCardEffectTextData.cardId = GILASAURUS;
   PlayMusic(SFX_SPELL_ACTIVATION_START);
   sub_8041C94(
-      (u8 *)gActivationDescription_Gilasaurus,
+      (u8 *)gActivationDescription_Gilasaurus_Popup1,
       GILASAURUS,
       CARD_NONE,
       0,

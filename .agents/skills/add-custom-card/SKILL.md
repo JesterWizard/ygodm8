@@ -177,7 +177,7 @@ If already in manifest: skip to art check, then runtime hand.
   "cost": 150,
   "password": [5, 1, 2, 6, 3, 4, 6, 3],
   "description": { "symbol": "gDescription_BurningLand", "pages": ["...", "..."] },
-  "activation_description": { "symbol": "gActivationDescription_BurningLand", "pages": ["..."] }
+  "effect_texts": { "popup_1": "..." }
 }
 ```
 

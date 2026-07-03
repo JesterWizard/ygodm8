@@ -12,7 +12,7 @@ void CheckWinConditionExodia(unsigned char);
 void UpdateDuelGfxExceptField(void);
 void sub_8022080(void);
 
-extern const u8 gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd[];
+extern const u8 gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd_Popup1[];
 
 #define CED_BANISH_INDEX_NONE 0xFF
 
@@ -283,7 +283,7 @@ static void ShowChaosEmperorDragonActivationText(void)
   ResetCardEffectTextData();
   gCardEffectTextData.cardId = CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END;
   PlayMusic(SFX_SPELL_ACTIVATION_START);
-  sub_8041C94((u8 *)gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd,
+  sub_8041C94((u8 *)gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd_Popup1,
               CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END, CARD_NONE, 0, 0);
   SetCardInfo(CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END);
   PlayMusic(SFX_SPELL_ACTIVATION_END);

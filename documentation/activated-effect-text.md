@@ -24,56 +24,39 @@ Use this hierarchy when adding or changing activation text:
 
 ```text
 tools/card_data_manifest.json
-  cards[*].activation_description
-    symbol
-    pages[]
+  cards[*].effect_texts
+    popup_1: "…"
+    popup_2: "…"   (optional)
 tools/add_card_art.py
   render_activation_description_inc()
   update_file(.../src_custom/generated/card_activation_text_generated.inc)
 src_custom/generated/card_activation_text_generated.inc
-  const u8 gActivationDescription_<Card>[] APPEND_TEXT = {...}
+  const u8 gActivationDescription_<Card>_Popup1[] APPEND_TEXT = {...}
 src_custom/effect_text_hooks.c
   #include "generated/card_activation_text_generated.inc"
-  ShowCardOfSanctityText()
 ```
 
 How the data flows:
 
-1. Add or edit a card's `activation_description` block in `tools/card_data_manifest.json`.
-2. `tools/add_card_art.py` reads the `pages` array and wraps it into duel-text bytes with `#1` waits between pages.
-3. The generator writes `src_custom/generated/card_activation_text_generated.inc`.
-4. `src_custom/effect_text_hooks.c` includes the generated file and passes the bytes to the effect-text renderer.
+1. Add or edit `effect_texts` in `tools/card_data_manifest.json`.
+2. `tools/add_card_art.py` wraps each popup into duel-text bytes (`CARD was activated.` then the page(s)).
+3. The generator writes activation text payloads, `GetCardActivationText` (defaults to `popup_1`), and `CARD_EFFECT_TEXT_*` enums.
+4. Runtime shows text via `ActivatePermanentEffectCardText(cardId)` (uses `popup_1`) or `Duel_ShowCardEffectText(cardId, CARD_EFFECT_TEXT_*_POPUP_N)`.
 
-Current shape of the manifest entry:
-
-| Field | Meaning |
-|--------|---------|
-| `symbol` | C symbol emitted for the activation text payload |
-| `pages` | One or more strings that become the activation textbox pages |
-
-For cards with **multiple** effect popups, use `effect_texts` with generic keys (`popup_1`, `popup_2`, …):
+Manifest shape:
 
 ```json
 "effect_texts": {
-  "popup_1": { "pages": ["After battle, destroy 1 monster."] },
-  "popup_2": { "pages": ["Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."] }
+  "popup_1": "After battle, destroy 1 monster.",
+  "popup_2": "Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."
 }
 ```
 
 Each key becomes:
-- payload symbol `gActivationDescription_<CardPascal>_Popup1`
-- enum `CARD_EFFECT_TEXT_<CARD_CONST>_POPUP_1` in `include/constants/card_effect_texts.h`
+- payload symbol `gActivationDescription_<CardPascal>_PopupN`
+- enum `CARD_EFFECT_TEXT_<CARD_CONST>_POPUP_N` in `include/constants/card_effect_texts.h`
 
-Call sites:
-
-```c
-#include "constants/card_effect_texts.h"
-Duel_ShowCardEffectText(CARD_ID, CARD_EFFECT_TEXT_CARD_CONST_POPUP_1);
-```
-
-`activation_description` remains the default text for `GetCardActivationText` / `ActivatePermanentEffectCardText` (single-effect cards).
-
-Example multi-effect card: `Elemental HERO Core` (`popup_1` = post-battle destroy, `popup_2` = GY revive).
+Single-popup cards only need `popup_1`. `ActivatePermanentEffectCardText` still works and resolves `popup_1` automatically.
 
 ## Code Locations
 

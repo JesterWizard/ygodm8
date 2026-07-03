@@ -139,9 +139,19 @@ def format_card_entry(item: dict, base_indent: str = "    ") -> list[str]:
             for effect_index, effect_id in enumerate(effect_ids):
                 effect_comma = "," if effect_index < len(effect_ids) - 1 else ""
                 effect = value[effect_id]
-                lines.append(f'{inner}  "{effect_id}": {{')
-                lines.extend(_format_description_block(effect, inner + "    "))
-                lines.append(f"{inner}  }}{effect_comma}")
+                pages = effect["pages"] if isinstance(effect, dict) else (
+                    [effect] if isinstance(effect, str) else list(effect)
+                )
+                if len(pages) == 1:
+                    lines.append(
+                        f'{inner}  "{effect_id}": {json.dumps(pages[0])}{effect_comma}'
+                    )
+                else:
+                    lines.append(f'{inner}  "{effect_id}": [')
+                    for page_index, page in enumerate(pages):
+                        page_comma = "," if page_index < len(pages) - 1 else ""
+                        lines.append(f"{inner}    {json.dumps(page)}{page_comma}")
+                    lines.append(f"{inner}  ]{effect_comma}")
             lines.append(f"{inner}}}{comma}")
         elif isinstance(value, bool):
             lines.append(f'{inner}"{key}": {"true" if value else "false"}{comma}')
@@ -338,28 +348,31 @@ def validate_manifest(manifest: object) -> dict:
                         f"cards[{index}].effect_texts keys must be lowercase identifiers "
                         f"(got {effect_id!r})."
                     )
-                if not isinstance(effect, dict):
-                    _fail(f"cards[{index}].effect_texts.{effect_id} must be an object.")
-                try:
-                    effect = normalize_description_block(
-                        card_const,
-                        {
-                            "pages": effect.get("pages"),
-                            "symbol": effect.get("symbol")
-                            or effect_text_symbol(card_const, effect_id),
-                        },
-                        activation=True,
-                    )
-                except (TypeError, ValueError) as exc:
-                    _fail(f"cards[{index}].effect_texts.{effect_id}: {exc}")
-                if len(effect["pages"]) < 1 or len(effect["pages"]) > description_pages_max:
+                if isinstance(effect, str):
+                    pages = [effect]
+                elif isinstance(effect, list):
+                    pages = effect
+                elif isinstance(effect, dict) and isinstance(effect.get("pages"), list):
+                    # Legacy { "pages": [...] } — normalize away.
+                    pages = effect["pages"]
+                else:
                     _fail(
-                        f"cards[{index}].effect_texts.{effect_id}.pages must contain between "
-                        f"1 and {description_pages_max} strings."
+                        f"cards[{index}].effect_texts.{effect_id} must be a string "
+                        f"or an array of strings."
                     )
-                # Force symbol from card+id so callers can rely on naming.
-                effect["symbol"] = effect_text_symbol(card_const, effect_id)
-                normalized_effects[effect_id] = effect
+                if (
+                    not pages
+                    or len(pages) > description_pages_max
+                    or not all(isinstance(page, str) and page for page in pages)
+                ):
+                    _fail(
+                        f"cards[{index}].effect_texts.{effect_id} must contain between "
+                        f"1 and {description_pages_max} non-empty strings."
+                    )
+                normalized_effects[effect_id] = {
+                    "symbol": effect_text_symbol(card_const, effect_id),
+                    "pages": pages,
+                }
             stats["effect_texts"] = normalized_effects
 
         for key in ASSET_ENTRY_KEYS:

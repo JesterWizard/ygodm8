@@ -3,7 +3,7 @@
 #include "duel_helpers.h"
 #include "dynamic_equip.h"
 
-extern const u8 gActivationDescription_SliferTheSkyDragon[];
+extern const u8 gActivationDescription_SliferTheSkyDragon_Popup1[];
 
 void UpdateDuelGfxExceptField(void);
 

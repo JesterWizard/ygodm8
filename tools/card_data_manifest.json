@@ -741,11 +741,8 @@
           "When sent from the field to the graveyard, draw 1 card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Sangan",
-        "pages": [
-          "Draw 1 card."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 1 card."
       }
     },
     {
@@ -1585,11 +1582,8 @@
           "It can place a bear trap card on the user's side of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MaskOfDarkness",
-        "pages": [
-          "A Bear Trap will be placed on the user's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "A Bear Trap will be placed on the user's side of the field."
       }
     },
     {
@@ -2378,11 +2372,8 @@
           "It can loose one to inflict 500LP of damage to the opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FireReaper",
-        "pages": [
-          "500LP of damage will be dealt to the opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP of damage will be dealt to the opponent."
       }
     },
     {
@@ -2548,11 +2539,8 @@
           "It can return a monster from your grave to your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DesFeralImp",
-        "pages": [
-          "Return a monster from your graveyard to your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Return a monster from your graveyard to your hand."
       }
     },
     {
@@ -2591,11 +2579,8 @@
           "Gain 500LP per monster on your field at the start of your turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MysteriousPuppeteer",
-        "pages": [
-          "500 LP will be recovered for each monster on the owner's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "500 LP will be recovered for each monster on the owner's side of the field."
       }
     },
     {
@@ -2679,11 +2664,8 @@
           "It has the ability to reveal the cards in the foe's hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BigEye",
-        "pages": [
-          "It will reveal the cards in the opponent's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "It will reveal the cards in the opponent's hand."
       }
     },
     {
@@ -2723,11 +2705,8 @@
           "1 'Giant Rat' from your deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GiantRat",
-        "pages": [
-          "Special summon a 'Giant Rat' from deck."
-        ]
+      "effect_texts": {
+        "popup_1": "Special summon a 'Giant Rat' from deck."
       }
     },
     {
@@ -2872,11 +2851,8 @@
           "being destroyed at the end of the turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_KarateMan",
-        "pages": [
-          "His original stats will be doubled in return for being destroyed at the end of the turn."
-        ]
+      "effect_texts": {
+        "popup_1": "His original stats will be doubled in return for being destroyed at the end of the turn."
       },
       "lock_after_activation": false
     },
@@ -2977,11 +2953,8 @@
           "It is then removed from the graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GiantGerm",
-        "pages": [
-          "500LP of damage will be caused to the opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP of damage will be caused to the opponent."
       }
     },
     {
@@ -3020,11 +2993,8 @@
           "It can restore 1000LP in the graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NimbleMomonga",
-        "pages": [
-          "1000LP will be restored to the owner and then this card will be removed from the graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "1000LP will be restored to the owner and then this card will be removed from the graveyard."
       }
     },
     {
@@ -3513,11 +3483,8 @@
           "While present, both hands must stay revealed."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CeremonialBell",
-        "pages": [
-          "Both hands must stay revealed while it is on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Both hands must stay revealed while it is on the field."
       }
     },
     {
@@ -3691,11 +3658,8 @@
           "It summons a Change Slime to the user's side of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_JamBreedingMachine",
-        "pages": [
-          "Summons Change Slime."
-        ]
+      "effect_texts": {
+        "popup_1": "Summons Change Slime."
       }
     },
     {
@@ -3780,9 +3744,8 @@
           "is destroyed if its ATK becomes 0."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SliferTheSkyDragon",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "The summoned monster loses 4 stages of ATK!",
           "If its ATK becomes 0, it is destroyed."
         ]
@@ -4215,11 +4178,8 @@
           "spell or trap card on their side of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PrincessOfTsurugi",
-        "pages": [
-          "500LP of damage will be dealt to the opponent for each spell or trap card on their side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP of damage will be dealt to the opponent for each spell or trap card on their side of the field."
       }
     },
     {
@@ -5390,11 +5350,8 @@
           "It inflicts 200LP damage directly on the opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Sparks",
-        "pages": [
-          "The opponent will take 200LP of damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent will take 200LP of damage."
       }
     },
     {
@@ -5418,11 +5375,8 @@
           "It inflicts 500LP damage directly on the opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Hinotama",
-        "pages": [
-          "The opponent will take 500LP of damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent will take 500LP of damage."
       }
     },
     {
@@ -5446,11 +5400,8 @@
           "It inflicts 600LP damage directly on the opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FinalFlame",
-        "pages": [
-          "The opponent will take 600LP of damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent will take 600LP of damage."
       }
     },
     {
@@ -5474,11 +5425,8 @@
           "It inflicts 800LP damage directly on the opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Ookazi",
-        "pages": [
-          "The opponent will take 800LP of damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent will take 800LP of damage."
       }
     },
     {
@@ -5937,11 +5885,8 @@
           "Activate to summon a Dungeon Worm to the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MonsterTamer",
-        "pages": [
-          "A Dungeon Worm will be summoned to the field."
-        ]
+      "effect_texts": {
+        "popup_1": "A Dungeon Worm will be summoned to the field."
       }
     },
     {
@@ -6617,11 +6562,8 @@
           "For 5000LP it can summon a Blue Eyes Ultimate Dragon."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CyberStein",
-        "pages": [
-          "In exchange for 5000LP, a Blue Eyes Ultimate Dragon will be summoned."
-        ]
+      "effect_texts": {
+        "popup_1": "In exchange for 5000LP, a Blue Eyes Ultimate Dragon will be summoned."
       }
     },
     {
@@ -6765,11 +6707,8 @@
           "In return for 500LP she can draw a card from the deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GoddessOfWhim",
-        "pages": [
-          "500LP will be exchanged to draw a card from the deck."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP will be exchanged to draw a card from the deck."
       }
     },
     {
@@ -7468,11 +7407,8 @@
           "It returns to the field in attack position next turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SinisterSerpent",
-        "pages": [
-          "This card will be returned to the field in attack position."
-        ]
+      "effect_texts": {
+        "popup_1": "This card will be returned to the field in attack position."
       }
     },
     {
@@ -7706,11 +7642,8 @@
           "It can deal 1000LP of damage in exchange for 2000LP."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NeedleBall",
-        "pages": [
-          "1000LP of damage will be dealt to the opponent at a 2000LP cost."
-        ]
+      "effect_texts": {
+        "popup_1": "1000LP of damage will be dealt to the opponent at a 2000LP cost."
       }
     },
     {
@@ -7764,11 +7697,8 @@
           "He powers up an additional stage for each equip spell used on him."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MahaVailo",
-        "pages": [
-          "In response to an equip spell, his stats will be boosted by a further stage."
-        ]
+      "effect_texts": {
+        "popup_1": "In response to an equip spell, his stats will be boosted by a further stage."
       }
     },
     {
@@ -8063,11 +7993,8 @@
           "attack points as damage to your opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CannonSoldier",
-        "pages": [
-          "Sacrifice one monster.#0Deal its ATK to opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "Sacrifice one monster.#0Deal its ATK to opponent."
       },
       "effect_usage": "once"
     },
@@ -8361,11 +8288,8 @@
           "Special summon when an opponent's monster attacks."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_EmbodimentOfApophis",
-        "pages": [
-          "Special summon this trap to the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Special summon this trap to the field."
       }
     },
     {
@@ -8509,11 +8433,8 @@
           "For 1000LP she can steal a card from the opponent's hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AmazonChainMaster",
-        "pages": [
-          "She will steal a card from the opponent's hand in exchange for 1000LP."
-        ]
+      "effect_texts": {
+        "popup_1": "She will steal a card from the opponent's hand in exchange for 1000LP."
       }
     },
     {
@@ -8777,11 +8698,8 @@
           "For 3000LP she can be boosted 4 stages."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_InjectionFairyLily",
-        "pages": [
-          "For 3000LP she will be boosted 4 stages."
-        ]
+      "effect_texts": {
+        "popup_1": "For 3000LP she will be boosted 4 stages."
       }
     },
     {
@@ -8880,11 +8798,8 @@
           "It can remove 5 cards from the opponent's deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NeedleWorm",
-        "pages": [
-          "5 cards will be removed from the opponent's deck."
-        ]
+      "effect_texts": {
+        "popup_1": "5 cards will be removed from the opponent's deck."
       }
     },
     {
@@ -9073,11 +8988,8 @@
           "When sent from the field to the graveyard, draw 1 card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WitchOfTheBlackForest",
-        "pages": [
-          "Draw 1 card."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 1 card."
       }
     },
     {
@@ -9146,11 +9058,8 @@
           "He can destroy one field card when summoned."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkMagicianKnight",
-        "pages": [
-          "Target one card on the field and destroy it."
-        ]
+      "effect_texts": {
+        "popup_1": "Target one card on the field and destroy it."
       }
     },
     {
@@ -9520,11 +9429,8 @@
           "if there is room to spare."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PenguinSoldier",
-        "pages": [
-          "Up to 2 enemy monsters will be returned to the opponent's hand if there is room."
-        ]
+      "effect_texts": {
+        "popup_1": "Up to 2 enemy monsters will be returned to the opponent's hand if there is room."
       }
     },
     {
@@ -10170,11 +10076,8 @@
           "It sets a Pot Of Greed on the own field when summoned."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_YamataDragon",
-        "pages": [
-          "Pot of Greed will be placed on the user's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Pot of Greed will be placed on the user's side of the field."
       }
     },
     {
@@ -12012,11 +11915,8 @@
           "When this card is destroyed it restores 1000LP."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SkullMarkLadyBug",
-        "pages": [
-          "1000LP will be restored to the owner and then this card will be removed from the graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "1000LP will be restored to the owner and then this card will be removed from the graveyard."
       }
     },
     {
@@ -12085,11 +11985,8 @@
           "When destroyed by battle, the current turn ends."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheUnhappyMaiden",
-        "pages": [
-          "The current duelist's turn ends."
-        ]
+      "effect_texts": {
+        "popup_1": "The current duelist's turn ends."
       }
     },
     {
@@ -12618,11 +12515,8 @@
           "Each turn it removes 5 cards from the opponent's deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DeckDestructionVirus",
-        "pages": [
-          "It will remove 5 cards from the opponent's deck."
-        ]
+      "effect_texts": {
+        "popup_1": "It will remove 5 cards from the opponent's deck."
       },
       "big_art": "src_custom/assets/cards/80x80/deck_destruction_virus.huff",
       "big_palette": "src_custom/assets/cards/80x80/deck_destruction_virus.gbapal",
@@ -12675,11 +12569,8 @@
           "It also has immunity to harmful targeted effects."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlueEyesShiningDragon",
-        "pages": [
-          "It will sacrifice the user's Blue Eyes Ultimate Dragon to summon itself."
-        ]
+      "effect_texts": {
+        "popup_1": "It will sacrifice the user's Blue Eyes Ultimate Dragon to summon itself."
       },
       "big_art": "src_custom/assets/cards/80x80/blue_eyes_shining_dragon.huff",
       "big_palette": "src_custom/assets/cards/80x80/blue_eyes_shining_dragon.gbapal",
@@ -12732,11 +12623,8 @@
           "At the end of the turn, the player's hand must be discarded."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CardOfDemise",
-        "pages": [
-          "The owner will draw until they have 5 cards in their hand."
-        ]
+      "effect_texts": {
+        "popup_1": "The owner will draw until they have 5 cards in their hand."
       },
       "big_art": "src_custom/assets/cards/80x80/card_of_demise.huff",
       "big_palette": "src_custom/assets/cards/80x80/card_of_demise.gbapal",
@@ -12763,11 +12651,8 @@
           "Both players discard their current hands and draw 5 new cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CardOfSanctity",
-        "pages": [
-          "Both players discard their\nhands and draw five new\ncards."
-        ]
+      "effect_texts": {
+        "popup_1": "Both players discard their\nhands and draw five new\ncards."
       },
       "big_art": "src_custom/assets/cards/80x80/card_of_sanctity.huff",
       "big_palette": "src_custom/assets/cards/80x80/card_of_sanctity.gbapal",
@@ -12794,11 +12679,8 @@
           "Attack and defense of all cards is swapped for a turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ShieldAndSword",
-        "pages": [
-          "All monster cards on the\nboard will have their\nattack and defense swapped."
-        ]
+      "effect_texts": {
+        "popup_1": "All monster cards on the\nboard will have their\nattack and defense swapped."
       },
       "big_art": "src_custom/assets/cards/80x80/shield_and_sword.huff",
       "big_palette": "src_custom/assets/cards/80x80/shield_and_sword.gbapal",
@@ -12851,11 +12733,8 @@
           "Each player must pay 500LP per card to set or play them."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ChainEnergy",
-        "pages": [
-          "Each player must pay 500LP per card to set or play them."
-        ]
+      "effect_texts": {
+        "popup_1": "Each player must pay 500LP per card to set or play them."
       },
       "big_art": "src_custom/assets/cards/80x80/chain_energy.huff",
       "big_palette": "src_custom/assets/cards/80x80/chain_energy.gbapal",
@@ -12882,11 +12761,8 @@
           "Neither player's spells can activate while it's played."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpellCanceller",
-        "pages": [
-          "No spells can activate whilst it is on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "No spells can activate whilst it is on the field."
       },
       "big_art": "src_custom/assets/cards/80x80/spell_canceller.huff",
       "big_palette": "src_custom/assets/cards/80x80/spell_canceller.gbapal",
@@ -12913,11 +12789,8 @@
           "Both players take one card from each other's hands."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Exchange",
-        "pages": [
-          "Both players take one card from each other's hands."
-        ]
+      "effect_texts": {
+        "popup_1": "Both players take one card from each other's hands."
       },
       "big_art": "src_custom/assets/cards/80x80/exchange.huff",
       "big_palette": "src_custom/assets/cards/80x80/exchange.gbapal",
@@ -12944,11 +12817,8 @@
           "It can copy the stats of the strongest enemy monster in play."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Copycat",
-        "pages": [
-          "It will copy the stats of the strongest enemy monster."
-        ]
+      "effect_texts": {
+        "popup_1": "It will copy the stats of the strongest enemy monster."
       },
       "big_art": "src_custom/assets/cards/80x80/copycat.huff",
       "big_palette": "src_custom/assets/cards/80x80/copycat.gbapal",
@@ -12976,11 +12846,8 @@
           "card in the player's spell and trap card zones."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MagePower",
-        "pages": [
-          "It will boost a monster's stats by 1 stage per card in your spell and trap card zones."
-        ]
+      "effect_texts": {
+        "popup_1": "It will boost a monster's stats by 1 stage per card in your spell and trap card zones."
       },
       "big_art": "src_custom/assets/cards/80x80/mage_power.huff",
       "big_palette": "src_custom/assets/cards/80x80/mage_power.gbapal",
@@ -13007,11 +12874,8 @@
           "Sacrifice him to summon a dragon from your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Kaibaman",
-        "pages": [
-          "It will sacrifice itself to summon a dragon from your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "It will sacrifice itself to summon a dragon from your hand."
       },
       "big_art": "src_custom/assets/cards/80x80/kaibaman.huff",
       "big_palette": "src_custom/assets/cards/80x80/kaibaman.gbapal",
@@ -13038,11 +12902,8 @@
           "Pay 500LP once per turn for an extra monster summon."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_UltimateOffering",
-        "pages": [
-          "Pay 500LP once per turn for an extra monster summon."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 500LP once per turn for an extra monster summon."
       },
       "big_art": "src_custom/assets/cards/80x80/ultimate_offering.huff",
       "big_palette": "src_custom/assets/cards/80x80/ultimate_offering.gbapal",
@@ -13070,11 +12931,8 @@
           "the player's monster card zones."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_UnitedWeStand",
-        "pages": [
-          "It will boost a monster's stats by 1 stage per monster in your monster card zones."
-        ]
+      "effect_texts": {
+        "popup_1": "It will boost a monster's stats by 1 stage per monster in your monster card zones."
       },
       "big_art": "src_custom/assets/cards/80x80/united_we_stand.huff",
       "big_palette": "src_custom/assets/cards/80x80/united_we_stand.gbapal",
@@ -13102,9 +12960,8 @@
           "Select it to send it to the GY and deal stored damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WaveMotionCannon",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Each turn on the field adds 1000LP of damage.",
           "Select it again to send it to the graveyard and deal that damage to your opponent."
         ]
@@ -13160,11 +13017,8 @@
           "On activation, destroy all god monsters in play."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PyramidOfLight",
-        "pages": [
-          "Destroy all god\nmonsters on both\nfields. God\nsummons are\nblocked."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy all god\nmonsters on both\nfields. God\nsummons are\nblocked."
       },
       "big_art": "src_custom/assets/cards/80x80/pyramid_of_light.huff",
       "big_palette": "src_custom/assets/cards/80x80/pyramid_of_light.gbapal",
@@ -13192,11 +13046,8 @@
           "instead of one of your own for a tribute summon."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SoulExchange",
-        "pages": [
-          "Tribute one of your opponent's monsters instead of your own this turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Tribute one of your opponent's monsters instead of your own this turn."
       },
       "big_art": "src_custom/assets/cards/80x80/soul_exchange.huff",
       "big_palette": "src_custom/assets/cards/80x80/soul_exchange.gbapal",
@@ -13223,11 +13074,8 @@
           "It can destroy one spell or trap card on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MysticalSpaceTyphoon",
-        "pages": [
-          "Select one spell or trap card on the field and destroy it."
-        ]
+      "effect_texts": {
+        "popup_1": "Select one spell or trap card on the field and destroy it."
       },
       "big_art": "src_custom/assets/cards/80x80/mystical_space_typhoon.huff",
       "big_palette": "src_custom/assets/cards/80x80/mystical_space_typhoon.gbapal",
@@ -13279,11 +13127,8 @@
           "They can conduct two normal summons this turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DoubleSummon",
-        "pages": [
-          "You can conduct two normal summons this turn."
-        ]
+      "effect_texts": {
+        "popup_1": "You can conduct two normal summons this turn."
       },
       "big_art": "src_custom/assets/cards/80x80/double_summon.huff",
       "big_palette": "src_custom/assets/cards/80x80/double_summon.gbapal",
@@ -13335,11 +13180,8 @@
           "While active, neither player can offer tributes."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MaskOfRestrict",
-        "pages": [
-          "Neither player can tribute summon while it is active."
-        ]
+      "effect_texts": {
+        "popup_1": "Neither player can tribute summon while it is active."
       },
       "big_art": "src_custom/assets/cards/80x80/mask_of_restrict.huff",
       "big_palette": "src_custom/assets/cards/80x80/mask_of_restrict.gbapal",
@@ -13367,11 +13209,8 @@
           "You must pay 500LP each Standby Phase to maintain this card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FairyBox",
-        "pages": [
-          "Due to winning the coinflip, the opponent's attacking monster's ATK will be set to 0."
-        ]
+      "effect_texts": {
+        "popup_1": "Due to winning the coinflip, the opponent's attacking monster's ATK will be set to 0."
       },
       "big_art": "src_custom/assets/cards/80x80/fairy_box.huff",
       "big_palette": "src_custom/assets/cards/80x80/fairy_box.gbapal",
@@ -13398,11 +13237,8 @@
           "Each monster in your hand loses 2 levels until end of turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CostDown",
-        "pages": [
-          "All monsters in your hand are reduced by 2 levels until end of turn."
-        ]
+      "effect_texts": {
+        "popup_1": "All monsters in your hand are reduced by 2 levels until end of turn."
       },
       "big_art": "src_custom/assets/cards/80x80/cost_down.huff",
       "big_palette": "src_custom/assets/cards/80x80/cost_down.gbapal",
@@ -13429,11 +13265,8 @@
           "Reveal Blue-Eyes in your hand to special summon."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlueEyesAlternativeWhiteDragon",
-        "pages": [
-          "This card will be special summoned by revealing Blue-Eyes White Dragon in the player's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "This card will be special summoned by revealing Blue-Eyes White Dragon in the player's hand."
       },
       "big_art": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.huff",
       "big_palette": "src_custom/assets/cards/80x80/blue_eyes_alternative_white_dragon.gbapal",
@@ -13460,11 +13293,8 @@
           "You can summon a level 5+ normal monster from your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AncientRules",
-        "pages": [
-          "Summon a level 5+ normal monster from hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Summon a level 5+ normal monster from hand."
       },
       "big_art": "src_custom/assets/cards/80x80/ancient_rules.huff",
       "big_palette": "src_custom/assets/cards/80x80/ancient_rules.gbapal",
@@ -13491,11 +13321,8 @@
           "Negate and destroy an opponent's spell activation."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MagicJammer",
-        "pages": [
-          "Negate and destroy an opponent's spell."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate and destroy an opponent's spell."
       },
       "big_art": "src_custom/assets/cards/80x80/magic_jammer.huff",
       "big_palette": "src_custom/assets/cards/80x80/magic_jammer.gbapal",
@@ -13522,11 +13349,8 @@
           "All of your monsters gain 1 stage while this field is active."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SealOfOrichalcos",
-        "pages": [
-          "Change the field to Seal of Orichalcos."
-        ]
+      "effect_texts": {
+        "popup_1": "Change the field to Seal of Orichalcos."
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS",
       "big_art": "src_custom/assets/cards/80x80/seal_of_orichalcos.huff",
@@ -13555,11 +13379,8 @@
           "a level 4 or lower monster from their hands."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FamiliarKnight",
-        "pages": [
-          "Summon a level 4 or lower monster from hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Summon a level 4 or lower monster from hand."
       }
     },
     {
@@ -13584,11 +13405,8 @@
           "Then add that amount to another monster's attack."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Riryoku",
-        "pages": [
-          "Halve one monster's attack and add it to another."
-        ]
+      "effect_texts": {
+        "popup_1": "Halve one monster's attack and add it to another."
       },
       "big_art": "src_custom/assets/cards/80x80/riryoku.huff",
       "big_palette": "src_custom/assets/cards/80x80/riryoku.gbapal",
@@ -13639,11 +13457,8 @@
           "special summon Dark Magician to your field as well."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SagesStone",
-        "pages": [
-          "If there is a Dark Magician Girl present on your side of the field, special summon a Dark Magician."
-        ]
+      "effect_texts": {
+        "popup_1": "If there is a Dark Magician Girl present on your side of the field, special summon a Dark Magician."
       },
       "big_art": "src_custom/assets/cards/80x80/sages_stone.huff",
       "big_palette": "src_custom/assets/cards/80x80/sages_stone.gbapal",
@@ -13670,11 +13485,8 @@
           "of damage at the opponent on the owner's turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Bowganian",
-        "pages": [
-          "Deals 600LP of damage to the opponent each turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Deals 600LP of damage to the opponent each turn."
       }
     },
     {
@@ -13698,11 +13510,8 @@
           "Pay half your LP to summon a Dark Magician to the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkMagicCurtain",
-        "pages": [
-          "Half your life points will be paid to special summon a Dark Magician to the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Half your life points will be paid to special summon a Dark Magician to the field."
       },
       "big_art": "src_custom/assets/cards/80x80/dark_magic_curtain.huff",
       "big_palette": "src_custom/assets/cards/80x80/dark_magic_curtain.gbapal",
@@ -13729,11 +13538,8 @@
           "attack of any monster it battles to 200."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CatsEarTribe",
-        "pages": [
-          "Any monster that battles this card has its original ATK set to 200."
-        ]
+      "effect_texts": {
+        "popup_1": "Any monster that battles this card has its original ATK set to 200."
       }
     },
     {
@@ -13757,11 +13563,8 @@
           "800LP at the start of the owner's turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CureMermaid",
-        "pages": [
-          "Recovers 800LP at the start of its owner's turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Recovers 800LP at the start of its owner's turn."
       }
     },
     {
@@ -13785,11 +13588,8 @@
           "opponent. It deals 500LP damage per card in their hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DesKoala",
-        "pages": [
-          "Deals 500LP damage per card in opponent's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Deals 500LP damage per card in opponent's hand."
       },
       "effect_usage": "once"
     },
@@ -13814,11 +13614,8 @@
           "while on the field in exchange for 1000 LP."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SkillDrain",
-        "pages": [
-          "Pay 1000 LP to activate and negate all monster effects while face-up on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 1000 LP to activate and negate all monster effects while face-up on the field."
       },
       "big_art": "src_custom/assets/cards/80x80/skill_drain.huff",
       "big_palette": "src_custom/assets/cards/80x80/skill_drain.gbapal",
@@ -13846,11 +13643,8 @@
           "While this card is on the field, draw two cards each turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GuardianTreasure",
-        "pages": [
-          "Discard 4 cards from the hand to draw 2. While on the field, draw 2 per turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 4 cards from the hand to draw 2. While on the field, draw 2 per turn."
       },
       "big_art": "src_custom/assets/cards/80x80/guardian_treasure.huff",
       "big_palette": "src_custom/assets/cards/80x80/guardian_treasure.gbapal",
@@ -13878,11 +13672,8 @@
           "The owner draws 1 card when it resolves."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_JarOfGreed",
-        "pages": [
-          "Draw 1 card."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 1 card."
       },
       "big_art": "src_custom/assets/cards/80x80/jar_of_greed.huff",
       "big_palette": "src_custom/assets/cards/80x80/jar_of_greed.gbapal",
@@ -13932,11 +13723,8 @@
           "Cannot be tributed. Destroying one deals 300 LP damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_OjamaTrio",
-        "pages": [
-          "Up to 3 Ojama tokens will be summoned to the opponent's field in defense position."
-        ]
+      "effect_texts": {
+        "popup_1": "Up to 3 Ojama tokens will be summoned to the opponent's field in defense position."
       },
       "big_art": "src_custom/assets/cards/80x80/ojama_trio.huff",
       "big_palette": "src_custom/assets/cards/80x80/ojama_trio.gbapal",
@@ -14010,11 +13798,8 @@
           "It inflicts 500 LP damage and restores 500 LP to the owner."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GoblinThief",
-        "pages": [
-          "The opponent takes 500 LP damage and you gain 500 LP."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent takes 500 LP damage and you gain 500 LP."
       }
     },
     {
@@ -14038,11 +13823,8 @@
           "This card can attack twice during each battle phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HayabusaKnight",
-        "pages": [
-          "This card can attack twice during each battle phase."
-        ]
+      "effect_texts": {
+        "popup_1": "This card can attack twice during each battle phase."
       },
       "big_art": "src_custom/assets/cards/80x80/hayabusa_knight.huff",
       "big_palette": "src_custom/assets/cards/80x80/hayabusa_knight.gbapal",
@@ -14070,11 +13852,8 @@
           "attack and inflict damage equal to its ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MagicCylinder",
-        "pages": [
-          "Negate the attack and inflict damage equal to the attacking monster's ATK."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate the attack and inflict damage equal to the attacking monster's ATK."
       }
     },
     {
@@ -14099,11 +13878,8 @@
           "It will be changed to defense position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlockAttack",
-        "pages": [
-          "Select one attack position monster on the opponent's field and change it to defense position."
-        ]
+      "effect_texts": {
+        "popup_1": "Select one attack position monster on the opponent's field and change it to defense position."
       }
     },
     {
@@ -14128,9 +13904,8 @@
           "more random card if they still have any left."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DelinquentDuo",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Pay 1000 LP. The opponent discards one card you pick,",
           "then one random card if they still have any left."
         ]
@@ -14158,11 +13933,8 @@
           "equal to its ATK, and negate the attack."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DrainingShield",
-        "pages": [
-          "Gain Life Points equal to the attacking monster's ATK."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain Life Points equal to the attacking monster's ATK."
       }
     },
     {
@@ -14187,11 +13959,8 @@
           "inflict 1000 LP damage to them."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MeteorOfDestruction",
-        "pages": [
-          "If your opponent has more than 3000 LP, inflict 1000 damage to them."
-        ]
+      "effect_texts": {
+        "popup_1": "If your opponent has more than 3000 LP, inflict 1000 damage to them."
       }
     },
     {
@@ -14216,11 +13985,8 @@
           "while this card is on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Toll",
-        "pages": [
-          "Each player must pay 500LP to declare an attack."
-        ]
+      "effect_texts": {
+        "popup_1": "Each player must pay 500LP to declare an attack."
       }
     },
     {
@@ -14244,11 +14010,8 @@
           "Both players gain 1000 Life Points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RainOfMercy",
-        "pages": [
-          "Increase the Life Points of both players by 1000 points."
-        ]
+      "effect_texts": {
+        "popup_1": "Increase the Life Points of both players by 1000 points."
       }
     },
     {
@@ -14272,11 +14035,8 @@
           "to the opponent on the owner's turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SolarFlareDragon",
-        "pages": [
-          "Deals 500LP of damage to the opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "Deals 500LP of damage to the opponent."
       }
     },
     {
@@ -14300,11 +14060,8 @@
           "The opponent skips their next draw after battle damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_YataGarasu",
-        "pages": [
-          "The opponent cannot draw next turn after battle damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent cannot draw next turn after battle damage."
       }
     },
     {
@@ -14328,11 +14085,8 @@
           "Draw 1 card, then your opponent gains 1000 Life Points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_UpstartGoblin",
-        "pages": [
-          "Draw 1 card. Then your opponent gains 1000 Life Points."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 1 card. Then your opponent gains 1000 Life Points."
       }
     },
     {
@@ -14357,11 +14111,8 @@
           "attack and end their battle phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NegateAttack",
-        "pages": [
-          "Negate the attack and end the opponent's battle phase."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate the attack and end the opponent's battle phase."
       }
     },
     {
@@ -14385,11 +14136,8 @@
           "the deck, shuffle and redraw the same number of cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Reload",
-        "pages": [
-          "Return all cards in your hand to the deck, shuffle and then redraw the same number of cards."
-        ]
+      "effect_texts": {
+        "popup_1": "Return all cards in your hand to the deck, shuffle and then redraw the same number of cards."
       }
     },
     {
@@ -14414,11 +14162,8 @@
           "a level 4 or lower monster from your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MaraudingCaptain",
-        "pages": [
-          "Summon a level 4 or lower monster from hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Summon a level 4 or lower monster from hand."
       }
     },
     {
@@ -14443,11 +14188,8 @@
           "Deals 200 LP damage per card on their field and hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SecretBarrel",
-        "pages": [
-          "The opponent is dealt 200 LP damage per card on their field and in their hand."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent is dealt 200 LP damage per card on their field and in their hand."
       }
     },
     {
@@ -14472,11 +14214,8 @@
           "1 random card from their hand. Activates on their turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RobbinGoblin",
-        "pages": [
-          "When you deal direct battle damage, your opponent discards 1 random card."
-        ]
+      "effect_texts": {
+        "popup_1": "When you deal direct battle damage, your opponent discards 1 random card."
       }
     },
     {
@@ -14501,11 +14240,8 @@
           "the top card to the graveyard. Activates on their turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RobbinZombie",
-        "pages": [
-          "When you deal direct battle damage, your opponent sends 1 deck card to the graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "When you deal direct battle damage, your opponent sends 1 deck card to the graveyard."
       }
     },
     {
@@ -14530,11 +14266,8 @@
           "1 monster from your graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CallOfTheHaunted",
-        "pages": [
-          "Revive 1 monster from your graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Revive 1 monster from your graveyard."
       }
     },
     {
@@ -14558,11 +14291,8 @@
           "If destroyed, return one monster to the owner."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_KaiserGlider",
-        "pages": [
-          "Return one monster on the field to the owner's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Return one monster on the field to the owner's hand."
       }
     },
     {
@@ -14608,11 +14338,8 @@
           "If you do, destroy all your opponent Spells and Traps."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MoistureCreature",
-        "pages": [
-          "Destroy all your opponent's Spells and Traps."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy all your opponent's Spells and Traps."
       }
     },
     {
@@ -14636,11 +14363,8 @@
           "Gain 400LP per monster on your field at the start of your turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WhiteMagicianPikeru",
-        "pages": [
-          "400 LP will be recovered for each monster on the owner's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "400 LP will be recovered for each monster on the owner's side of the field."
       }
     },
     {
@@ -14665,11 +14389,8 @@
           "opponent for each monster they control."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_EbonMagicianCurran",
-        "pages": [
-          "300 LP will be inflicted for each monster on the opponent's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "300 LP will be inflicted for each monster on the opponent's side of the field."
       }
     },
     {
@@ -14694,11 +14415,8 @@
           "Revealing Light on your opponent's field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WeatherReport",
-        "pages": [
-          "Destroy all Swords of\nRevealing Light on\nyour opponent's side\nof the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy all Swords of\nRevealing Light on\nyour opponent's side\nof the field."
       }
     },
     {
@@ -14744,11 +14462,8 @@
           "opponent skips their draw."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TimeSeal",
-        "pages": [
-          "Skip the opponent's draw."
-        ]
+      "effect_texts": {
+        "popup_1": "Skip the opponent's draw."
       },
       "big_art": "src_custom/assets/cards/80x80/time_seal.huff",
       "big_palette": "src_custom/assets/cards/80x80/time_seal.gbapal",
@@ -14776,11 +14491,8 @@
           "Destroy them at the end of the turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ThousandEnergy",
-        "pages": [
-          "All your Level 2 or lower monsters gain 2 stages. They will be destroyed at the end of the turn."
-        ]
+      "effect_texts": {
+        "popup_1": "All your Level 2 or lower monsters gain 2 stages. They will be destroyed at the end of the turn."
       },
       "big_art": "src_custom/assets/cards/80x80/thousand_energy.huff",
       "big_palette": "src_custom/assets/cards/80x80/thousand_energy.gbapal",
@@ -14807,11 +14519,8 @@
           "Only one monster may attack each turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheDarkDoor",
-        "pages": [
-          "Only one monster may attack each turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Only one monster may attack each turn."
       },
       "big_art": "src_custom/assets/cards/80x80/the_dark_door.huff",
       "big_palette": "src_custom/assets/cards/80x80/the_dark_door.gbapal",
@@ -14862,11 +14571,8 @@
           "when you trail by 7000 or more LP."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SelfDestructButton",
-        "pages": [
-          "The difference between both players life points is above 7000LP. So both players' LP become 0."
-        ]
+      "effect_texts": {
+        "popup_1": "The difference between both players life points is above 7000LP. So both players' LP become 0."
       }
     },
     {
@@ -14891,9 +14597,8 @@
           "to the hand, that card's owner takes 300LP damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SkullInvitation",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "When a card leaves the field and is not returned",
           "to the hand, its owner takes 300LP damage."
         ]
@@ -14944,11 +14649,8 @@
           "special summon that monster to your side of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_VampireBaby",
-        "pages": [
-          "Special summon the monster destroyed in battle."
-        ]
+      "effect_texts": {
+        "popup_1": "Special summon the monster destroyed in battle."
       }
     },
     {
@@ -14972,11 +14674,8 @@
           "their deck, then shuffles their deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheForcefulSentry",
-        "pages": [
-          "Select one card in the opponent's hand and return it to their deck, then shuffle."
-        ]
+      "effect_texts": {
+        "popup_1": "Select one card in the opponent's hand and return it to their deck, then shuffle."
       },
       "big_art": "src_custom/assets/cards/80x80/the_forceful_sentry.huff",
       "big_palette": "src_custom/assets/cards/80x80/the_forceful_sentry.gbapal",
@@ -15048,11 +14747,8 @@
           "sacrifice this card to destroy that Spell Card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Maryokutai",
-        "pages": [
-          "Sacrifice this card to destroy an opponent's activated Spell Card."
-        ]
+      "effect_texts": {
+        "popup_1": "Sacrifice this card to destroy an opponent's activated Spell Card."
       }
     },
     {
@@ -15077,11 +14773,8 @@
           "attack twice during each battle phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MermaidKnight",
-        "pages": [
-          "While Umi is active, this card can attack twice during each battle phase."
-        ]
+      "effect_texts": {
+        "popup_1": "While Umi is active, this card can attack twice during each battle phase."
       }
     },
     {
@@ -15106,11 +14799,8 @@
           "damage, your opponent discards 1 random card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MefistTheInfernalGeneral",
-        "pages": [
-          "Discard 1 random card from your opponent's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 1 random card from your opponent's hand."
       }
     },
     {
@@ -15135,11 +14825,8 @@
           "your Life Points by the ATK of the destroyed monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GuardianAngelJoan",
-        "pages": [
-          "Increase your Life Points by the original ATK of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Increase your Life Points by the original ATK of the destroyed monster."
       }
     },
     {
@@ -15164,11 +14851,8 @@
           "summon 1 'Peten the Dark Clown' from your hand or deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PetenTheDarkClown",
-        "pages": [
-          "Special summon 1 'Peten the Dark Clown' from your hand or deck."
-        ]
+      "effect_texts": {
+        "popup_1": "Special summon 1 'Peten the Dark Clown' from your hand or deck."
       }
     },
     {
@@ -15193,9 +14877,8 @@
           "of the field. Destroy them at the end of the turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_LimiterRemoval",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Double the ATK of all Machine-Type monsters on your side of the field.",
           "They will then be destroyed at the end of the turn."
         ]
@@ -15226,11 +14909,8 @@
           "Deals 500 LP damage per monster on their field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_JustDeserts",
-        "pages": [
-          "The opponent is dealt 500 LP damage per monster on their side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent is dealt 500 LP damage per monster on their side of the field."
       }
     },
     {
@@ -15255,9 +14935,8 @@
           "without using your normal summon."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Gilasaurus",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Special summon this card from your hand.",
           "Your opponent special summons 1 monster from their graveyard."
         ]
@@ -15285,11 +14964,8 @@
           "declares an attack. They cannot attack while active."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GravityBind",
-        "pages": [
-          "Level 4 or higher monsters cannot attack while this trap is face up."
-        ]
+      "effect_texts": {
+        "popup_1": "Level 4 or higher monsters cannot attack while this trap is face up."
       },
       "lock_after_activation": false
     },
@@ -15315,11 +14991,8 @@
           "Gain 300 LP for each monster on both sides of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GiftOfTheMysticalElf",
-        "pages": [
-          "Gain 300 LP for each monster on both sides of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain 300 LP for each monster on both sides of the field."
       }
     },
     {
@@ -15344,11 +15017,8 @@
           "Draw 2 cards, then skip your next 2 draw phases."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RecklessGreed",
-        "pages": [
-          "Draw 2 cards, then skip your next 2 draw phases."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 2 cards, then skip your next 2 draw phases."
       }
     },
     {
@@ -15373,11 +15043,8 @@
           "battle damage, its controller draws 1 card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AirknightParshath",
-        "pages": [
-          "Batte damage was inflicted, so draw 1 card."
-        ]
+      "effect_texts": {
+        "popup_1": "Batte damage was inflicted, so draw 1 card."
       }
     },
     {
@@ -15402,11 +15069,8 @@
           "opponent directly, even if they have monsters on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AmphibiousBugrothMk3",
-        "pages": [
-          "While Umi is active, this card can attack your opponent directly."
-        ]
+      "effect_texts": {
+        "popup_1": "While Umi is active, this card can attack your opponent directly."
       }
     },
     {
@@ -15431,9 +15095,8 @@
           "are in Defense Position, it can attack directly."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlackTyranno",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "All opponent monsters are in Defense Position.",
           "This card can attack your opponent directly."
         ]
@@ -15461,11 +15124,8 @@
           "'Mystical Shine Ball' from your deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheAgentOfCreationVenus",
-        "pages": [
-          "Pay 500 Life Points to special summon 1 'Mystical Shine Ball' from your deck."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 500 Life Points to special summon 1 'Mystical Shine Ball' from your deck."
       },
       "lock_after_activation": false,
       "effect_usage": "multiple_per_turn"
@@ -15492,9 +15152,8 @@
           "If you have 10 or fewer cards left, deals 3000 LP damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlastingTheRuins",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "You have 10 or fewer cards in your deck.",
           "Your opponent takes 3000 LP damage."
         ]
@@ -15522,11 +15181,8 @@
           "While face-up, spell use deals 1000 damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CurseOfDarkness",
-        "pages": [
-          "Each spell activation deals 1000 damage."
-        ]
+      "effect_texts": {
+        "popup_1": "Each spell activation deals 1000 damage."
       }
     },
     {
@@ -15551,11 +15207,8 @@
           "While face-up, monster losses deal 300LP damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CoffinSeller",
-        "pages": [
-          "Each opponent monster leaving deals 300LP damage."
-        ]
+      "effect_texts": {
+        "popup_1": "Each opponent monster leaving deals 300LP damage."
       }
     },
     {
@@ -15579,11 +15232,8 @@
           "Each player then draws the same number of cards they discarded."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CardDestruction",
-        "pages": [
-          "Both players discard their\nhands and draw that many cards."
-        ]
+      "effect_texts": {
+        "popup_1": "Both players discard their\nhands and draw that many cards."
       }
     },
     {
@@ -15608,11 +15258,8 @@
           "from a card effect, they take 300 more LP damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkRoomOfNightmare",
-        "pages": [
-          "Deal 300 LP of additional damage."
-        ]
+      "effect_texts": {
+        "popup_1": "Deal 300 LP of additional damage."
       }
     },
     {
@@ -15658,11 +15305,8 @@
           "Draw 3 cards, then discard 2 cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GracefulCharity",
-        "pages": [
-          "Draw 3 cards, then discard 2 cards."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 3 cards, then discard 2 cards."
       }
     },
     {
@@ -15687,11 +15331,8 @@
           "and DEF of the monster Tributed to summon it."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GreatMajuGarzett",
-        "pages": [
-          "This card's ATK and DEF become twice the ATK and DEF of the monster Tributed to summon it."
-        ]
+      "effect_texts": {
+        "popup_1": "This card's ATK and DEF become twice the ATK and DEF of the monster Tributed to summon it."
       }
     },
     {
@@ -15716,11 +15357,8 @@
           "Destroy them during the End Phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TrianglePower",
-        "pages": [
-          "All Level 1 monsters gain 4 stages. They will be destroyed during the End Phase."
-        ]
+      "effect_texts": {
+        "popup_1": "All Level 1 monsters gain 4 stages. They will be destroyed during the End Phase."
       }
     },
     {
@@ -15745,11 +15383,8 @@
           "but its stats are reduced by 1 stage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TwinSwordsOfFlashingLightTryce",
-        "pages": [
-          "The equipped monster can attack twice during each battle phase, but its stats are reduced by 1 stage."
-        ]
+      "effect_texts": {
+        "popup_1": "The equipped monster can attack twice during each battle phase, but its stats are reduced by 1 stage."
       }
     },
     {
@@ -15774,11 +15409,8 @@
           "opponent Spells, Traps, and monsters."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ThousandKnives",
-        "pages": [
-          "If you control Dark Magician, destroy all your opponent's Spells, Traps, and monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "If you control Dark Magician, destroy all your opponent's Spells, Traps, and monsters."
       },
       "big_art": "src_custom/assets/cards/80x80/thousand_knives.huff",
       "big_palette": "src_custom/assets/cards/80x80/thousand_knives.gbapal",
@@ -15806,11 +15438,8 @@
           "they gain 1000 Life Points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SoulTaker",
-        "pages": [
-          "Destroy 1 monster your opponent controls. Your opponent gains 1000 Life Points."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy 1 monster your opponent controls. Your opponent gains 1000 Life Points."
       }
     },
     {
@@ -15835,11 +15464,8 @@
           "Deals 600 LP damage per Light monster on your field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SolarRay",
-        "pages": [
-          "Your opponent takes 600 LP damage per face-up Light monster on your field."
-        ]
+      "effect_texts": {
+        "popup_1": "Your opponent takes 600 LP damage per face-up Light monster on your field."
       }
     },
     {
@@ -15864,11 +15490,8 @@
           "a card you gain 500 Life Points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SolemnWishes",
-        "pages": [
-          "Each time you draw a card, gain 500 Life Points."
-        ]
+      "effect_texts": {
+        "popup_1": "Each time you draw a card, gain 500 Life Points."
       }
     },
     {
@@ -15893,11 +15516,8 @@
           "to your opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_StealthBird",
-        "pages": [
-          "1000LP of damage will be dealt to the opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "1000LP of damage will be dealt to the opponent."
       }
     },
     {
@@ -15922,11 +15542,8 @@
           "inflict 500LP per Level of the destroyed monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NeedleBurrower",
-        "pages": [
-          "500LP damage for each Level of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP damage for each Level of the destroyed monster."
       }
     },
     {
@@ -15951,11 +15568,8 @@
           "inflict 500LP per Level of the destroyed monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Ka2DesScissors",
-        "pages": [
-          "500LP damage for each Level of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "500LP damage for each Level of the destroyed monster."
       }
     },
     {
@@ -15980,11 +15594,8 @@
           "Pay 700 LP each turn or this card is destroyed."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ImperialOrder",
-        "pages": [
-          "Negates all spell card effects on the field while active."
-        ]
+      "effect_texts": {
+        "popup_1": "Negates all spell card effects on the field while active."
       }
     },
     {
@@ -16032,11 +15643,8 @@
           "Activates when an opponent activates a trap card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RoyalDecree",
-        "pages": [
-          "Negates all trap card effects on the field while active."
-        ]
+      "effect_texts": {
+        "popup_1": "Negates all trap card effects on the field while active."
       }
     },
     {
@@ -16061,11 +15669,8 @@
           "damage, the opponent discards one random card in their hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ReaperOnTheNightmare",
-        "pages": [
-          "Discard one random card from your opponent's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard one random card from your opponent's hand."
       }
     },
     {
@@ -16090,11 +15695,8 @@
           "It gains 2 stages."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NegativeEnergy",
-        "pages": [
-          "Select 1 Level 3 or lower Dark or Fiend monster. It gains 2 stages."
-        ]
+      "effect_texts": {
+        "popup_1": "Select 1 Level 3 or lower Dark or Fiend monster. It gains 2 stages."
       }
     },
     {
@@ -16119,11 +15721,8 @@
           "Control of this card cannot be switched."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MatazaTheZapper",
-        "pages": [
-          "Control of this card cannot be switched."
-        ]
+      "effect_texts": {
+        "popup_1": "Control of this card cannot be switched."
       }
     },
     {
@@ -16170,11 +15769,8 @@
           "tributes, draw 2 cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PreciousCardsFromBeyond",
-        "pages": [
-          "Draw 2 cards when you tribute summon a monster that requires 2 or more tributes."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 2 cards when you tribute summon a monster that requires 2 or more tributes."
       }
     },
     {
@@ -16222,9 +15818,8 @@
           "since activation, you win the Duel."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FinalCountdown",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Pay 2000 Life Points.",
           "Win the Duel after 20 turns."
         ]
@@ -16252,11 +15847,8 @@
           "your Life Points by the destroyed monster's Level x 300."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AbsorbingKidFromTheSky",
-        "pages": [
-          "Increase your Life Points by the destroyed monster's Level x 300."
-        ]
+      "effect_texts": {
+        "popup_1": "Increase your Life Points by the destroyed monster's Level x 300."
       }
     },
     {
@@ -16280,11 +15872,8 @@
           "monsters, this card's ATK and DEF each become 1000"
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ArsenalBug",
-        "pages": [
-          "You control no other Insect-Type so the ATK and DEF of Arsenal Bug become 1000."
-        ]
+      "effect_texts": {
+        "popup_1": "You control no other Insect-Type so the ATK and DEF of Arsenal Bug become 1000."
       }
     },
     {
@@ -16309,11 +15898,8 @@
           "turn the turn player takes 500 LP of damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BurningLand",
-        "pages": [
-          "Deal 500 LP of damage to the turn player."
-        ]
+      "effect_texts": {
+        "popup_1": "Deal 500 LP of damage to the turn player."
       }
     },
     {
@@ -16360,11 +15946,8 @@
           "the start of the player's turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DancingFairy",
-        "pages": [
-          "Gain 1000 LP during your turn while it is in face up defense position."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain 1000 LP during your turn while it is in face up defense position."
       }
     },
     {
@@ -16389,11 +15972,8 @@
           "the start of the player's turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpiritOfTheBreeze",
-        "pages": [
-          "Gain 1000 LP during the start of the player's turn while it is in face-up Attack Position."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain 1000 LP during the start of the player's turn while it is in face-up Attack Position."
       }
     },
     {
@@ -16417,11 +15997,8 @@
           "during their Draw Phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DropOff",
-        "pages": [
-          "When your opponent draws for their normal draw in their Draw Phase: Your opponent discards 1 card they just drew."
-        ]
+      "effect_texts": {
+        "popup_1": "When your opponent draws for their normal draw in their Draw Phase: Your opponent discards 1 card they just drew."
       }
     },
     {
@@ -16446,11 +16023,8 @@
           "ATK/DEF of this card are set to fiends on field x 500."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GoblinKing",
-        "pages": [
-          "ATK/DEF of this card become the number of Fiend monsters on the field x 500."
-        ]
+      "effect_texts": {
+        "popup_1": "ATK/DEF of this card become the number of Fiend monsters on the field x 500."
       }
     },
     {
@@ -16474,11 +16048,8 @@
           "If destroyed the owner is dealt 2000 LP of damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Granadora",
-        "pages": [
-          "Gain 1000 LP when summoned to the field. Take 2000 LP of damage if destroyed."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain 1000 LP when summoned to the field. Take 2000 LP of damage if destroyed."
       }
     },
     {
@@ -16503,11 +16074,8 @@
           "return it to the hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HyperHammerhead",
-        "pages": [
-          "If the opponent's monster this battled wasn't destroyed: return it to the hand."
-        ]
+      "effect_texts": {
+        "popup_1": "If the opponent's monster this battled wasn't destroyed: return it to the hand."
       }
     },
     {
@@ -16532,11 +16100,8 @@
           "piercing damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GyakuGirePanda",
-        "pages": [
-          "It gains 500 ATK per opponent's monster on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "It gains 500 ATK per opponent's monster on the field."
       }
     },
     {
@@ -16561,11 +16126,8 @@
           "roll until the end of this turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GracefulDice",
-        "pages": [
-          "Roll 1 die. Your monsters with 500 or less ATK are multiplied by the roll until end of turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Roll 1 die. Your monsters with 500 or less ATK are multiplied by the roll until end of turn."
       }
     },
     {
@@ -16589,11 +16151,8 @@
           "Defense Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BerserkGorilla",
-        "pages": [
-          "This card cannot be placed in Defense Position."
-        ]
+      "effect_texts": {
+        "popup_1": "This card cannot be placed in Defense Position."
       }
     },
     {
@@ -16617,11 +16176,8 @@
           "and your Graveyard is empty. Draw 2 cards from your Deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ChaosGreed",
-        "pages": [
-          "Draw 2 cards when your field and Graveyard are empty."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 2 cards when your field and Graveyard are empty."
       }
     },
     {
@@ -16645,11 +16201,8 @@
           "target to face-down Defense Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BookOfMoon",
-        "pages": [
-          "Target 1 face-up monster on the field; change that target to face-down Defense Position."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 face-up monster on the field; change that target to face-down Defense Position."
       }
     },
     {
@@ -16673,11 +16226,8 @@
           "your opponent's Life Points by 1000 points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BurningAlgae",
-        "pages": [
-          "When this card is sent to the Graveyard, increase your opponent's Life Points by 1000 points."
-        ]
+      "effect_texts": {
+        "popup_1": "When this card is sent to the Graveyard, increase your opponent's Life Points by 1000 points."
       }
     },
     {
@@ -16702,11 +16252,8 @@
           "and to resolve this effect."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarklordMarie",
-        "pages": [
-          "Gain 200 LP from this card being in the owner's graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain 200 LP from this card being in the owner's graveyard."
       }
     },
     {
@@ -16731,11 +16278,8 @@
           "from your Graveyard. Destroys skip their Draw."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Fenrir",
-        "pages": [
-          "Skip your opponent's next draw."
-        ]
+      "effect_texts": {
+        "popup_1": "Skip your opponent's next draw."
       }
     },
     {
@@ -16760,9 +16304,8 @@
           "the remaining cards to the graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MagicalMerchant",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Excavate your Deck until a Spell/Trap is found.",
           "Add it to your hand and send the rest to the GY."
         ]
@@ -16791,11 +16334,8 @@
           "opponents can only attack the equipped monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RaregoldArmor",
-        "pages": [
-          "Opponents can only attack the equipped monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Opponents can only attack the equipped monster."
       }
     },
     {
@@ -16820,11 +16360,8 @@
           "hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpiritReaper",
-        "pages": [
-          "Discard 1 random card from your opponent's hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 1 random card from your opponent's hand."
       }
     },
     {
@@ -16849,11 +16386,8 @@
           "destroyed."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ThunderCrash",
-        "pages": [
-          "Destroy all monsters you control, and then inflict 300 damage to your opponent for each monster destroyed."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy all monsters you control, and then inflict 300 damage to your opponent for each monster destroyed."
       }
     },
     {
@@ -16877,11 +16411,8 @@
           "unaffected by any Spell Cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TorpedoFish",
-        "pages": [
-          "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
-        ]
+      "effect_texts": {
+        "popup_1": "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
       }
     },
     {
@@ -16905,11 +16436,8 @@
           "Negate and destroy an opponent's trap activation."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SevenToolsOfTheBandit",
-        "pages": [
-          "Negate and destroy an opponent's trap activation."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate and destroy an opponent's trap activation."
       }
     },
     {
@@ -16934,11 +16462,8 @@
           "the GY."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RivalryOfWarlords",
-        "pages": [
-          "Each player can only control 1 Type of monster. Send all other face-up monsters they control to the GY."
-        ]
+      "effect_texts": {
+        "popup_1": "Each player can only control 1 Type of monster. Send all other face-up monsters they control to the GY."
       }
     },
     {
@@ -16963,11 +16488,8 @@
           "Both players take damage equal to its ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RingOfDestruction",
-        "pages": [
-          "Destroy 1 opponent monster with ATK at or below their LP."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy 1 opponent monster with ATK at or below their LP."
       }
     },
     {
@@ -16992,9 +16514,8 @@
           "your opponent's Trap Cards cannot be activated."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SasukeSamurai2",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Pay 800 Life Points. Until the End Phase,",
           "your opponent's Trap Cards cannot be activated."
         ]
@@ -17024,11 +16545,8 @@
           "until his/her hand has 5 cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SasukeSamurai3",
-        "pages": [
-          "When this card inflicts Battle Damage, your opponent draws cards until their hand has 5 cards"
-        ]
+      "effect_texts": {
+        "popup_1": "When this card inflicts Battle Damage, your opponent draws cards until their hand has 5 cards"
       }
     },
     {
@@ -17076,11 +16594,8 @@
           "damage to your opponent's Life Points."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ManThroTro",
-        "pages": [
-          "Tribute 1 Normal Monster and inflict 800 damage to your opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "Tribute 1 Normal Monster and inflict 800 damage to your opponent."
       },
       "lock_after_activation": false,
       "effect_usage": "multiple_per_turn"
@@ -17107,11 +16622,8 @@
           "are changed to Defense Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_LevelLimitAreaB",
-        "pages": [
-          "Change all face-up Level 4 or higher monsters to Defense Position."
-        ]
+      "effect_texts": {
+        "popup_1": "Change all face-up Level 4 or higher monsters to Defense Position."
       }
     },
     {
@@ -17159,11 +16671,8 @@
           "Opponent cannot attack other face-up Amazoness."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AmazonessTiger",
-        "pages": [
-          "You can only control one Amazoness Tiger, so the duplicate will be destroyed."
-        ]
+      "effect_texts": {
+        "popup_1": "You can only control one Amazoness Tiger, so the duplicate will be destroyed."
       }
     },
     {
@@ -17188,9 +16697,8 @@
           "face-up Attack monsters and inflict 1000 damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlastHeldByATribute",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "When an opponent's Tribute Summoned monster declares an attack: Destroy all their face-up Attack Position monsters",
           "and inflict 1000 damage to their Life Points."
         ]
@@ -17218,11 +16726,8 @@
           "card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DDWarrior",
-        "pages": [
-          "After damage calculation, banish both this card and the card that it battled."
-        ]
+      "effect_texts": {
+        "popup_1": "After damage calculation, banish both this card and the card that it battled."
       }
     },
     {
@@ -17246,11 +16751,8 @@
           "select 1 card in it and discard that card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Confiscation",
-        "pages": [
-          "Pay 1000 Life Points. Look at your opponent's hand, select 1 card in it and discard that card."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 1000 Life Points. Look at your opponent's hand, select 1 card in it and discard that card."
       }
     },
     {
@@ -17275,11 +16777,8 @@
           "Remove 1 Spell Counter, then destroy 1 Spell/Trap on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BreakerTheMagicalWarrior",
-        "pages": [
-          "Remove 1 Spell Counter from this card and destroy 1 Spell/Trap Card on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Remove 1 Spell Counter from this card and destroy 1 Spell/Trap Card on the field."
       },
       "lock_after_activation": false,
       "effect_usage": "multiple_per_turn"
@@ -17306,11 +16805,8 @@
           "monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DesKangaroo",
-        "pages": [
-          "Destroy the attacking monster if its ATK is lower than this card's DEF."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy the attacking monster if its ATK is lower than this card's DEF."
       }
     },
     {
@@ -17335,9 +16831,8 @@
           "attack your opponent directly."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Drillago",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Opponent only controls face-up monsters with 1600+ ATK.",
           "This card can attack your opponent directly."
         ]
@@ -17365,11 +16860,8 @@
           "doubled during each of your following Standby Phases."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkSnakeSyndrome",
-        "pages": [
-          "Deal 200 damage to both players each of your Standby Phases."
-        ]
+      "effect_texts": {
+        "popup_1": "Deal 200 damage to both players each of your Standby Phases."
       }
     },
     {
@@ -17394,11 +16886,8 @@
           "Greed\" and draw 1 card from your Deck."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_JarRobber",
-        "pages": [
-          "Negate Pot of Greed and draw 1 card from your Deck."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate Pot of Greed and draw 1 card from your Deck."
       }
     },
     {
@@ -17422,11 +16911,8 @@
           "top of their Deck to the Graveyard, they cannot attack."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GravekeepersServant",
-        "pages": [
-          "The opponent must send 1 card from the top of their Deck to the Graveyard to attack."
-        ]
+      "effect_texts": {
+        "popup_1": "The opponent must send 1 card from the top of their Deck to the Graveyard to attack."
       }
     },
     {
@@ -17451,11 +16937,8 @@
           "If winner rolled 6, loser takes 6000. Ties reroll."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DiceJar",
-        "pages": [
-          "Both players roll a die. The lower roll takes damage from the winner's roll."
-        ]
+      "effect_texts": {
+        "popup_1": "Both players roll a die. The lower roll takes damage from the winner's roll."
       }
     },
     {
@@ -17480,11 +16963,8 @@
           "Graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_KnightsTitle",
-        "pages": [
-          "Tribute 1 Dark Magician to Special Summon 1 Dark Magician Knight from your hand, Deck or Graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Tribute 1 Dark Magician to Special Summon 1 Dark Magician Knight from your hand, Deck or Graveyard."
       }
     },
     {
@@ -17509,11 +16989,8 @@
           "It can attack your opponent directly this turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_JowlsOfDarkDemise",
-        "pages": [
-          "Target 1 opponent monster; gain control until the End Phase."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 opponent monster; gain control until the End Phase."
       }
     },
     {
@@ -17538,11 +17015,8 @@
           "equal."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_KishidoSpirit",
-        "pages": [
-          "Monsters on your side of the field cannot be destroyed in a battle if the monsters' ATK are equal."
-        ]
+      "effect_texts": {
+        "popup_1": "Monsters on your side of the field cannot be destroyed in a battle if the monsters' ATK are equal."
       }
     },
     {
@@ -17567,11 +17041,8 @@
           "opponent currently controls."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_PossessedDarkSoul",
-        "pages": [
-          "Tribute this card; take control of all face-up Level 3 or lower monsters your opponent controls."
-        ]
+      "effect_texts": {
+        "popup_1": "Tribute this card; take control of all face-up Level 3 or lower monsters your opponent controls."
       },
       "effect_usage": "once_per_turn"
     },
@@ -17597,11 +17068,8 @@
           "DEF of the destroyed monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RoyalKnight",
-        "pages": [
-          "Increase your Life Points by the original DEF of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Increase your Life Points by the original DEF of the destroyed monster."
       }
     },
     {
@@ -17626,11 +17094,8 @@
           "Monster from your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheThingInTheCrater",
-        "pages": [
-          "Special Summon 1 Pyro-Type Monster from your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Special Summon 1 Pyro-Type Monster from your hand."
       }
     },
     {
@@ -17654,11 +17119,8 @@
           "control of those monsters with each other."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CreatureSwap",
-        "pages": [
-          "Choose one of your monsters, your opponent chooses one of theirs. Swap control of those monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "Choose one of your monsters, your opponent chooses one of theirs. Swap control of those monsters."
       }
     },
     {
@@ -17682,11 +17144,8 @@
           "Banish any monster destroyed by battle with this card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_LesserFiend",
-        "pages": [
-          "Banish any monster destroyed by battle with this card."
-        ]
+      "effect_texts": {
+        "popup_1": "Banish any monster destroyed by battle with this card."
       }
     },
     {
@@ -17710,11 +17169,8 @@
           "they can draw 1 card."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpiritOfThePotOfGreed",
-        "pages": [
-          "Draw 1 card when a player activates Pot of Greed."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 1 card when a player activates Pot of Greed."
       }
     },
     {
@@ -17738,11 +17194,8 @@
           "monster on the field; destroy that target."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ZaborgTheThunderMonarch",
-        "pages": [
-          "If this card is Tribute Summoned: Target 1 monster on the field; destroy that target."
-        ]
+      "effect_texts": {
+        "popup_1": "If this card is Tribute Summoned: Target 1 monster on the field; destroy that target."
       }
     },
     {
@@ -17767,11 +17220,8 @@
           "Standby: destroy this if you have 3 or fewer hand cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BottomlessShiftingSand",
-        "pages": [
-          "Destroy the highest ATK face-up monster(s). Destroy this card if you have 3 or less cards in your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy the highest ATK face-up monster(s). Destroy this card if you have 3 or less cards in your hand."
       }
     },
     {
@@ -17795,11 +17245,8 @@
           "to your opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FirePrincess",
-        "pages": [
-          "Each time you gain Life Points, inflict 500 damage to your opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "Each time you gain Life Points, inflict 500 damage to your opponent."
       }
     },
     {
@@ -17823,11 +17270,8 @@
           "target one opponent's monster and switch with it."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_InvaderOfTheThrone",
-        "pages": [
-          "Target one monster on the opponent's field and switch control of it with this card."
-        ]
+      "effect_texts": {
+        "popup_1": "Target one monster on the opponent's field and switch control of it with this card."
       }
     },
     {
@@ -17852,11 +17296,8 @@
           "and to resolve this effect."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheFluteOfSummoningDragon",
-        "pages": [
-          "Special Summon up to 2 Dragon monsters from your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Special Summon up to 2 Dragon monsters from your hand."
       }
     },
     {
@@ -17881,11 +17322,8 @@
           "from your Graveyard to your side of the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpiritCaller",
-        "pages": [
-          "Special Summon 1 Level 3 or lower Normal Monster from your Graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Special Summon 1 Level 3 or lower Normal Monster from your Graveyard."
       }
     },
     {
@@ -17909,11 +17347,8 @@
           "It prevents monsters from attacking the turn they are summoned."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_VengefulBogSpirit",
-        "pages": [
-          "Monsters cannot attack the turn they are Summoned."
-        ]
+      "effect_texts": {
+        "popup_1": "Monsters cannot attack the turn they are Summoned."
       }
     },
     {
@@ -17938,11 +17373,8 @@
           "with ATK above that cost may attack you."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WallOfRevealingLight",
-        "pages": [
-          "Pay half your Life Points. Opponent monsters with ATK above that cost may attack."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay half your Life Points. Opponent monsters with ATK above that cost may attack."
       },
       "lock_after_activation": false
     },
@@ -17968,9 +17400,8 @@
           "the turn this card is activated."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_WorldSuppression",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Activate when a Field Spell Card is activated.",
           "Negate Field Spell Cards until the end of this turn."
         ]
@@ -17997,11 +17428,8 @@
           "monster on the field and change its battle position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RyuKishinClown",
-        "pages": [
-          "When Summoned, select one face-up monster on the field and change its battle position."
-        ]
+      "effect_texts": {
+        "popup_1": "When Summoned, select one face-up monster on the field and change its battle position."
       }
     },
     {
@@ -18025,11 +17453,8 @@
           "Destroy all other monsters when Normal Summoned."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkDustSpirit",
-        "pages": [
-          "When Normal Summoned destroy all other face-up monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "When Normal Summoned destroy all other face-up monsters."
       }
     },
     {
@@ -18054,11 +17479,8 @@
           "your side in face-up Defense Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_GhostKnightOfJackal",
-        "pages": [
-          "Special summon the monster destroyed in battle."
-        ]
+      "effect_texts": {
+        "popup_1": "Special summon the monster destroyed in battle."
       }
     },
     {
@@ -18082,11 +17504,8 @@
           "a monster if that exceeds your count."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_KaiserColosseum",
-        "pages": [
-          "Opponent summons are capped at your current monster count."
-        ]
+      "effect_texts": {
+        "popup_1": "Opponent summons are capped at your current monster count."
       }
     },
     {
@@ -18111,11 +17530,8 @@
           "destroy this card. Each of your turns, inflict 500 damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_NightmareWheel",
-        "pages": [
-          "Target an opponent's monster and deal 500LP of damage at the start of your turn."
-        ]
+      "effect_texts": {
+        "popup_1": "Target an opponent's monster and deal 500LP of damage at the start of your turn."
       }
     },
     {
@@ -18140,11 +17556,8 @@
           "Pay 2000 LP each Standby Phase or destroy."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MirrorWall",
-        "pages": [
-          "Halve the ATK of the opponent's attacking monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Halve the ATK of the opponent's attacking monster."
       }
     },
     {
@@ -18169,9 +17582,8 @@
           "original ATK of its 2 Tributes."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MajuGarzett",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "This card's ATK becomes the combined",
           "original ATK of its 2 Tributes."
         ]
@@ -18199,11 +17611,8 @@
           "your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DustTornado",
-        "pages": [
-          "Target one Spell/Trap your opponent controls, destroy it, then set one Spell/Trap from your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Target one Spell/Trap your opponent controls, destroy it, then set one Spell/Trap from your hand."
       }
     },
     {
@@ -18228,11 +17637,8 @@
           "If they do, inflict damage equal to half the monster's ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Ectoplasmer",
-        "pages": [
-          "The current player must tribute 1 face-up monster to inflict half its original ATK as damage."
-        ]
+      "effect_texts": {
+        "popup_1": "The current player must tribute 1 face-up monster to inflict half its original ATK as damage."
       }
     },
     {
@@ -18257,11 +17663,8 @@
           "then destroy all other cards on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_LeviaDragonDaedalus",
-        "pages": [
-          "Revert Umi terrain to Arena, then destroy all other cards on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Revert Umi terrain to Arena, then destroy all other cards on the field."
       }
     },
     {
@@ -18285,11 +17688,8 @@
           "nor in your Spell & Trap Zones."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ThebanNightmare",
-        "pages": [
-          "Gains 1500 ATK while you have no cards in your hand nor in your Spell & Trap Zones."
-        ]
+      "effect_texts": {
+        "popup_1": "Gains 1500 ATK while you have no cards in your hand nor in your Spell & Trap Zones."
       }
     },
     {
@@ -18314,11 +17714,8 @@
           "Banish equipped monster when this leaves the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BigBangShot",
-        "pages": [
-          "The equipped monster gains 400 ATK. Piercing vs Defense. Banish on leave."
-        ]
+      "effect_texts": {
+        "popup_1": "The equipped monster gains 400 ATK. Piercing vs Defense. Banish on leave."
       }
     },
     {
@@ -18342,11 +17739,8 @@
           "from your hand or field as materials."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Polymerization",
-        "pages": [
-          "Fusion Summon 1 Fusion Monster, using monsters from your hand or field as materials."
-        ]
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 Fusion Monster, using monsters from your hand or field as materials."
       }
     },
     {
@@ -18370,11 +17764,8 @@
           "Special Summon this card (from your hand)."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CyberDragon",
-        "pages": [
-          "If only your opponent controls a monster, you can Special Summon this card (from your hand)."
-        ]
+      "effect_texts": {
+        "popup_1": "If only your opponent controls a monster, you can Special Summon this card (from your hand)."
       }
     },
     {
@@ -18445,11 +17836,8 @@
           "If it was DARK, inflict 1000 damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_CaiusTheShadowMonarch",
-        "pages": [
-          "When Tribute Summoned, target and banish 1 card. If DARK, inflict 1000 damage."
-        ]
+      "effect_texts": {
+        "popup_1": "When Tribute Summoned, target and banish 1 card. If DARK, inflict 1000 damage."
       }
     },
     {
@@ -18474,11 +17862,8 @@
           "the field and destroy those targets."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MobiusTheFrostMonarch",
-        "pages": [
-          "If this card is Tribute Summoned: Destroy up to 2 Spell/Trap Cards."
-        ]
+      "effect_texts": {
+        "popup_1": "If this card is Tribute Summoned: Destroy up to 2 Spell/Trap Cards."
       }
     },
     {
@@ -18503,11 +17888,8 @@
           "field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ProtoCyberDragon",
-        "pages": [
-          "This card's name becomes \"Cyber Dragon\" while on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "This card's name becomes \"Cyber Dragon\" while on the field."
       }
     },
     {
@@ -18532,11 +17914,8 @@
           "opponent."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AmazonessArcher",
-        "pages": [
-          "You can Tribute 2 monsters; inflict 1200 damage to your opponent."
-        ]
+      "effect_texts": {
+        "popup_1": "You can Tribute 2 monsters; inflict 1200 damage to your opponent."
       },
       "lock_after_activation": false,
       "effect_usage": "multiple_per_turn"
@@ -18628,11 +18007,8 @@
           "Summon. When Summoned: draw 2."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroBubbleman",
-        "pages": [
-          "Draw 2 cards."
-        ]
+      "effect_texts": {
+        "popup_1": "Draw 2 cards."
       }
     },
     {
@@ -18656,11 +18032,8 @@
           "Trap effects."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroWildheart",
-        "pages": [
-          "This card is unaffected by Trap effects."
-        ]
+      "effect_texts": {
+        "popup_1": "This card is unaffected by Trap effects."
       }
     },
     {
@@ -18684,11 +18057,8 @@
           "inflict piercing damage."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroBladedge",
-        "pages": [
-          "Piercing battle damage."
-        ]
+      "effect_texts": {
+        "popup_1": "Piercing battle damage."
       }
     },
     {
@@ -18756,11 +18126,8 @@
           "All WIND monsters gain 300 ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HarpieLady1",
-        "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)\nAll WIND monsters gain 300 ATK."
-        ]
+      "effect_texts": {
+        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nAll WIND monsters gain 300 ATK."
       }
     },
     {
@@ -18785,11 +18152,8 @@
           "by battle."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HarpieLady2",
-        "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)\nNegate the effects of Flip monsters this card destroys by battle."
-        ]
+      "effect_texts": {
+        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nNegate the effects of Flip monsters this card destroys by battle."
       }
     },
     {
@@ -18814,11 +18178,8 @@
           "declare an attack during opponent's next 2 turns."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HarpieLady3",
-        "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)\nAn opponent's monster that battles this card cannot declare an attack during opponent's next 2 turns."
-        ]
+      "effect_texts": {
+        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nAn opponent's monster that battles this card cannot declare an attack during opponent's next 2 turns."
       }
     },
     {
@@ -18842,11 +18203,8 @@
           "activate Spell Cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_SpellEconomics",
-        "pages": [
-          "You do not pay Life Points to activate Spell Cards."
-        ]
+      "effect_texts": {
+        "popup_1": "You do not pay Life Points to activate Spell Cards."
       },
       "selectableOnce": true
     },
@@ -18872,11 +18230,8 @@
           "LP after you pay 1000 LP at the start of your turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheUnstoppableExodiaIncarnate",
-        "pages": [
-          "You lose 1000 life points at the start of your turn."
-        ]
+      "effect_texts": {
+        "popup_1": "You lose 1000 life points at the start of your turn."
       }
     },
     {
@@ -18901,11 +18256,8 @@
           "becomes 0."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheSanctuaryInTheSky",
-        "pages": [
-          "Battle damage to the controller of a Fairy monster from a battle involving that monster becomes 0."
-        ]
+      "effect_texts": {
+        "popup_1": "Battle damage to the controller of a Fairy monster from a battle involving that monster becomes 0."
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_SANCTUARY_IN_THE_SKY"
     },
@@ -18931,11 +18283,8 @@
           "your opponent Attack Position monsters."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MirrorForce",
-        "pages": [
-          "When an opponent monster declares an attack: Destroy all your opponent Attack Position monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "When an opponent monster declares an attack: Destroy all your opponent Attack Position monsters."
       }
     },
     {
@@ -18960,11 +18309,8 @@
           "Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_LevelLimitAreaA",
-        "pages": [
-          "Change all face-up Level 3 or lower monsters to Attack Position."
-        ]
+      "effect_texts": {
+        "popup_1": "Change all face-up Level 3 or lower monsters to Attack Position."
       }
     },
     {
@@ -18989,11 +18335,8 @@
           "and can destroy 1 card on the field if you control 3."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HarpiesPetBabyDragon",
-        "pages": [
-          "Once per turn, destroy one card on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Once per turn, destroy one card on the field."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
@@ -19020,11 +18363,8 @@
           "turn start, all opponent monsters are forced Attack Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlueEyesChaosDragon",
-        "pages": [
-          "All opponent monsters are forced Attack Position."
-        ]
+      "effect_texts": {
+        "popup_1": "All opponent monsters are forced Attack Position."
       }
     },
     {
@@ -19049,11 +18389,8 @@
           "target if at least 2 of the results are heads."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlowbackDragon",
-        "pages": [
-          "Target 1 card your opponent controls; toss a coin 3 times and destroy that target if at least 2 are heads."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 card your opponent controls; toss a coin 3 times and destroy that target if at least 2 are heads."
       },
       "effect_usage": "once_per_turn"
     },
@@ -19078,11 +18415,8 @@
           "He can negate the effects of monsters that target him."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ChaosCommandMagician",
-        "pages": [
-          "Negate the effect of a Monster Card that targets this 1 card."
-        ]
+      "effect_texts": {
+        "popup_1": "Negate the effect of a Monster Card that targets this 1 card."
       }
     },
     {
@@ -19107,11 +18441,8 @@
           "also banish the second target."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BookOfLife",
-        "pages": [
-          "Target 1 Zombie monster in your GY and 1 monster in your opponent's GY; Special Summon the first, and banish the second."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 Zombie monster in your GY and 1 monster in your opponent's GY; Special Summon the first, and banish the second."
       }
     },
     {
@@ -19136,11 +18467,8 @@
           "Attack Position."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BookOfTaiyou",
-        "pages": [
-          "Flip 1 face-down monster on the field into face-up Attack Position."
-        ]
+      "effect_texts": {
+        "popup_1": "Flip 1 face-down monster on the field into face-up Attack Position."
       }
     },
     {
@@ -19164,11 +18492,8 @@
           "Special Summon its fusion materials."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DeFusion",
-        "pages": [
-          "Target a fusion monster on your side of the field, sned it to the graveyard and summon its materials"
-        ]
+      "effect_texts": {
+        "popup_1": "Target a fusion monster on your side of the field, sned it to the graveyard and summon its materials"
       }
     },
     {
@@ -19193,11 +18518,8 @@
           "Other monsters you control cannot attack this turn."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DiffusionWaveMotion",
-        "pages": [
-          "Pay 1000 LP. Target 1 Level 7+ Spellcaster you control; it attacks all opponent monsters once each."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 1000 LP. Target 1 Level 7+ Spellcaster you control; it attacks all opponent monsters once each."
       }
     },
     {
@@ -19222,11 +18544,8 @@
           "When this card leaves the field, destroy the monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_AutonomousActionUnit",
-        "pages": [
-          "Pay 1500 Life Points, then special summon 1 monster from your opponent's Graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 1500 Life Points, then special summon 1 monster from your opponent's Graveyard."
       }
     },
     {
@@ -19251,11 +18570,8 @@
           "damage equal to half this card's current ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroRampartBlaster",
-        "pages": [
-          "Inflict damage equal to half this card's current ATK."
-        ]
+      "effect_texts": {
+        "popup_1": "Inflict damage equal to half this card's current ATK."
       },
       "lock_after_activation": true,
       "effect_usage": "once_per_turn"
@@ -19282,9 +18598,8 @@
           "Level of WATER monsters in hands and on the field by 1."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ALegendaryOcean",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Change the field to Umi. WATER monsters on the field gain 200 ATK/DEF.",
           "Reduce the Level of all WATER monsters in both players' hands and on the field by 1."
         ]
@@ -19313,11 +18628,8 @@
           "Monsters he destroys by battle are removed from play."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DarkMagicianOfChaos",
-        "pages": [
-          "Add a spell from your graveyard to your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Add a spell from your graveyard to your hand."
       }
     },
     {
@@ -19342,11 +18654,8 @@
           "Graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_DedicationThroughLightAndDarkness",
-        "pages": [
-          "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark Magician of Chaos\" from your hand, Deck, or Graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark Magician of Chaos\" from your hand, Deck, or Graveyard."
       }
     },
     {
@@ -19371,11 +18680,8 @@
           "monster by battle: gain Life Points equal to its ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroSteamHealer",
-        "pages": [
-          "Gain Life Points equal to the ATK of the destroyed monster in the Graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Gain Life Points equal to the ATK of the destroyed monster in the Graveyard."
       }
     },
     {
@@ -19446,11 +18752,8 @@
           "monster by battle: inflict damage equal to its ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroFlameWingman",
-        "pages": [
-          "Inflict damage to your opponent equal to the ATK of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Inflict damage to your opponent equal to the ATK of the destroyed monster."
       }
     },
     {
@@ -19475,11 +18778,8 @@
           "HERO in GY. Battle destroy inflicts its ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroShiningFlareWingman",
-        "pages": [
-          "Inflict damage to your opponent equal to the ATK of the destroyed monster."
-        ]
+      "effect_texts": {
+        "popup_1": "Inflict damage to your opponent equal to the ATK of the destroyed monster."
       }
     },
     {
@@ -19504,11 +18804,8 @@
           "to the GY. Protect 1 ally from battle destruction."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroTempest",
-        "pages": [
-          "Send 1 other card to the GY; protect 1 ally from battle destruction."
-        ]
+      "effect_texts": {
+        "popup_1": "Send 1 other card to the GY; protect 1 ally from battle destruction."
       },
       "lock_after_activation": true,
       "effect_usage": "once_per_turn"
@@ -19535,11 +18832,8 @@
           "opponent monster once each Battle Phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroWildedge",
-        "pages": [
-          "Attack every opponent monster once each Battle Phase."
-        ]
+      "effect_texts": {
+        "popup_1": "Attack every opponent monster once each Battle Phase."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
@@ -19566,11 +18860,8 @@
           "card to destroy 1 weaker monster."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroThunderGiant",
-        "pages": [
-          "Discard 1 card, destroy 1 monster with less or equal ATK to Thunder Giant."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 1 card, destroy 1 monster with less or equal ATK to Thunder Giant."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
@@ -19597,11 +18888,8 @@
           "can attack your opponent directly."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroMariner",
-        "pages": [
-          "While you have a face down spell or trap, this card can attack directly."
-        ]
+      "effect_texts": {
+        "popup_1": "While you have a face down spell or trap, this card can attack directly."
       }
     },
     {
@@ -19626,11 +18914,8 @@
           "+300 ATK per foe mon sharing an Attribute."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroElectrum",
-        "pages": [
-          "All monsters removed from player are returned to their respective decks."
-        ]
+      "effect_texts": {
+        "popup_1": "All monsters removed from player are returned to their respective decks."
       }
     },
     {
@@ -19678,11 +18963,8 @@
           "listed on it from your field or your GY."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_MiracleFusion",
-        "pages": [
-          "Summon 1 Elemental HERO Fusion Monster using monsters from field or Graveyard as materials."
-        ]
+      "effect_texts": {
+        "popup_1": "Summon 1 Elemental HERO Fusion Monster using monsters from field or Graveyard as materials."
       }
     },
     {
@@ -19707,11 +18989,8 @@
           "and your LP are higher, gain ATK/DEF equal to the difference."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_TheAgentOfForceMars",
-        "pages": [
-          "While Sanctuary in the Sky is active and your LP are higher, gain ATK/DEF equal to the difference."
-        ]
+      "effect_texts": {
+        "popup_1": "While Sanctuary in the Sky is active and your LP are higher, gain ATK/DEF equal to the difference."
       }
     },
     {
@@ -19736,11 +19015,8 @@
           "Deal 300 LP of damage to your opponent for each of these cards."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ChaosEmperorDragonEnvoyOfTheEnd",
-        "pages": [
-          "Pay 1000 LP; send all cards to GY, then deal 300 LP of damage to your opponent for each of these cards."
-        ]
+      "effect_texts": {
+        "popup_1": "Pay 1000 LP; send all cards to GY, then deal 300 LP of damage to your opponent for each of these cards."
       },
       "effect_usage": "once_per_turn"
     },
@@ -19766,11 +19042,8 @@
           "Banish 1 monster (no attack), or extra attack on destroy."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_BlackLusterSoldierEnvoyOfTheBeginning",
-        "pages": [
-          "Target 1 monster on the field; banish it. This card cannot attack the turn this effect is activated."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 monster on the field; banish it. This card cannot attack the turn this effect is activated."
       },
       "lock_after_activation": true,
       "effect_usage": "once_per_turn"
@@ -19819,11 +19092,8 @@
           "1 Poly card from your Deck or Graveyard to your hand"
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroWoodsman",
-        "pages": [
-          "Add 1 Polymerization from your Deck or Graveyard to your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Add 1 Polymerization from your Deck or Graveyard to your hand."
       },
       "effect_usage": "once_per_turn"
     },
@@ -19848,11 +19118,8 @@
           "field or in your Graveyard and return it to your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroOcean",
-        "pages": [
-          "Once per turn, you can target 1 HERO monster on your field or in your Graveyard and return it to your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Once per turn, you can target 1 HERO monster on your field or in your Graveyard and return it to your hand."
       },
       "effect_usage": "once_per_turn"
     },
@@ -19878,11 +19145,8 @@
           "monster you control."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroHeat",
-        "pages": [
-          "This card gains 200 ATK for each \"Elemental HERO\" monster you control."
-        ]
+      "effect_texts": {
+        "popup_1": "This card gains 200 ATK for each \"Elemental HERO\" monster you control."
       }
     },
     {
@@ -19906,11 +19170,8 @@
           "opponent for each face-up Elemental HERO you control."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroLadyHeat",
-        "pages": [
-          "Inflict 200LP damage to your opponent for each face-up Elemental HERO you control."
-        ]
+      "effect_texts": {
+        "popup_1": "Inflict 200LP damage to your opponent for each face-up Elemental HERO you control."
       },
       "effect_usage": "once_per_turn"
     },
@@ -19936,11 +19197,8 @@
           "Normal Summon to activate its effect."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroNeosAlius",
-        "pages": [
-          "This card's name becomes \"Elemental HERO Neos\" while on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "This card's name becomes \"Elemental HERO Neos\" while on the field."
       }
     },
     {
@@ -19965,11 +19223,8 @@
           "halve ATK/DEF of all face-up opponent monsters."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroGreatTornado",
-        "pages": [
-          "Halve the ATK/DEF of all face-up opponent monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "Halve the ATK/DEF of all face-up opponent monsters."
       }
     },
     {
@@ -19994,9 +19249,8 @@
           "Elemental HERO monster; gain its ATK until End Phase."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroTerraFirma",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Tribute 1 Elemental HERO monster on your side of the field.",
           "Elemental Hero Terra Firma will gain ATK equal to the Tributed monster's ATK until the End Phase."
         ]
@@ -20026,11 +19280,8 @@
           "this card cannot be targeted and can attack directly."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroKnospe",
-        "pages": [
-          "Each time it inflicts Battle Damage to your opponent: It gains 100 ATK and loses 100 DEF."
-        ]
+      "effect_texts": {
+        "popup_1": "Each time it inflicts Battle Damage to your opponent: It gains 100 ATK and loses 100 DEF."
       }
     },
     {
@@ -20054,11 +19305,8 @@
           "Opponent must attack this card if able."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroPoisonRose",
-        "pages": [
-          "Inflicts battle damage: +200 ATK, -200 DEF."
-        ]
+      "effect_texts": {
+        "popup_1": "Inflicts battle damage: +200 ATK, -200 DEF."
       }
     },
     {
@@ -20083,11 +19331,8 @@
           "If this card leaves the field: Destroy all opponent monsters."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroAbsoluteZero",
-        "pages": [
-          "Destroy all opponent monsters."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy all opponent monsters."
       }
     },
     {
@@ -20112,11 +19357,8 @@
           "destroy 1 Spell/Trap Card on the field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroWildWingman",
-        "pages": [
-          "Discard 1 card, destroy 1 Spell/Trap Card on the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 1 card, destroy 1 Spell/Trap Card on the field."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
@@ -20143,11 +19385,8 @@
           "HERO\" monsters; Special Summon that target."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroVoltic",
-        "pages": [
-          "When this card inflicts battle damage to your opponent: You can target 1 of your banished \"Elemental HERO\" monsters; Spe"
-        ]
+      "effect_texts": {
+        "popup_1": "When this card inflicts battle damage to your opponent: You can target 1 of your banished \"Elemental HERO\" monsters; Spe"
       }
     },
     {
@@ -20172,11 +19411,8 @@
           "Add 1 Normal Spell from your Graveyard to your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroFlash",
-        "pages": [
-          "When destroyed by battle, banish this and 3 E-Heroes from GY to add 1 Normal Spell from GY to hand."
-        ]
+      "effect_texts": {
+        "popup_1": "When destroyed by battle, banish this and 3 E-Heroes from GY to add 1 Normal Spell from GY to hand."
       }
     },
     {
@@ -20201,11 +19437,8 @@
           "Halve 1 opponent monster ATK and gain that much ATK."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroGaia",
-        "pages": [
-          "Halve 1 opponent monster ATK and gain that much ATK."
-        ]
+      "effect_texts": {
+        "popup_1": "Halve 1 opponent monster ATK and gain that much ATK."
       }
     },
     {
@@ -20253,11 +19486,8 @@
           "Leaves field: add up to 2 banished E-HERO cards to hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroTheShining",
-        "pages": [
-          "Add up to 2 Elemental HERO cards from your banished zone to your hand."
-        ]
+      "effect_texts": {
+        "popup_1": "Add up to 2 Elemental HERO cards from your banished zone to your hand."
       }
     },
     {
@@ -20305,11 +19535,8 @@
           "Then revive 1 monster from opponent graveyard."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroNecroidShaman",
-        "pages": [
-          "Destroy 1 opponent monster. Then revive 1 monster from the opponent's graveyard."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy 1 opponent monster. Then revive 1 monster from the opponent's graveyard."
       }
     },
     {
@@ -20334,11 +19561,8 @@
           "destroy 1 monster on your opponent's field."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_ElementalHeroPlasmaVice",
-        "pages": [
-          "Discard 1 card, destroy 1 monster on your opponent's side of the field."
-        ]
+      "effect_texts": {
+        "popup_1": "Discard 1 card, destroy 1 monster on your opponent's side of the field."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
@@ -20365,11 +19589,8 @@
           "Summon; add them to your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FusionRecovery",
-        "pages": [
-          "Target 1 \"Polymerization\" in your GY, and 1 monster in your GY that was used as material for a Fusion Summon; add them t"
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 \"Polymerization\" in your GY, and 1 monster in your GY that was used as material for a Fusion Summon; add them t"
       }
     },
     {
@@ -20394,11 +19615,8 @@
           "1000 ATK during damage calculation only."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_Skyscraper",
-        "pages": [
-          "If an \"Elemental HERO\" monster attacks a monster that has a higher ATK, the attacking monster gains 1000 ATK during dama"
-        ]
+      "effect_texts": {
+        "popup_1": "If an \"Elemental HERO\" monster attacks a monster that has a higher ATK, the attacking monster gains 1000 ATK during dama"
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_SKYSCRAPER"
     },
@@ -20424,11 +19642,8 @@
           "Piercing battle damage vs. Defense Position monsters."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_HHeatedHeart",
-        "pages": [
-          "Target 1 face-up monster you control."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 face-up monster you control."
       }
     },
     {
@@ -20452,9 +19667,8 @@
           "from your Deck to your hand."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_EEmergencyCall",
-        "pages": [
+      "effect_texts": {
+        "popup_1": [
           "Add 1 \"Elemental HERO\" monster",
           "from your Deck to your hand."
         ]
@@ -20481,11 +19695,8 @@
           "Elemental HERO cards you control."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_RRighteousJustice",
-        "pages": [
-          "Destroy Spell/Trap Cards equal to the number of Elemental HERO cards you control."
-        ]
+      "effect_texts": {
+        "popup_1": "Destroy Spell/Trap Cards equal to the number of Elemental HERO cards you control."
       }
     },
     {
@@ -20509,11 +19720,8 @@
           "Graveyard; Special Summon that target."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_OOversoul",
-        "pages": [
-          "Target 1 Elemental HERO Normal Monster in your Graveyard; Special Summon that target."
-        ]
+      "effect_texts": {
+        "popup_1": "Target 1 Elemental HERO Normal Monster in your Graveyard; Special Summon that target."
       }
     },
     {
@@ -20538,11 +19746,8 @@
           "this card or that monster is destroyed, destroy the other."
         ]
       },
-      "activation_description": {
-        "symbol": "gActivationDescription_FutureFusion",
-        "pages": [
-          "Send materials from Deck to GY; select a Fusion Monster. SS it on your 2nd Standby Phase."
-        ]
+      "effect_texts": {
+        "popup_1": "Send materials from Deck to GY; select a Fusion Monster. SS it on your 2nd Standby Phase."
       }
     },
     {
@@ -20568,16 +19773,8 @@
         ]
       },
       "effect_texts": {
-        "popup_1": {
-          "pages": [
-            "After battle, destroy 1 monster."
-          ]
-        },
-        "popup_2": {
-          "pages": [
-            "Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."
-          ]
-        }
+        "popup_1": "After battle, destroy 1 monster.",
+        "popup_2": "Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."
       }
     }
   ]
