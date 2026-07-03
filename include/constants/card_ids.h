@@ -1070,11 +1070,12 @@
 #define ELEMENTAL_HERO_FLASH                     0x042A
 #define ELEMENTAL_HERO_GAIA                      0x042B
 #define ELEMENTAL_HERO_ESCURIDAO                 0x042C
+#define ELEMENTAL_HERO_THE_SHINING               0x042D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x042D
-#define NUM_CUSTOM_CARDS                        0x010C
+#define NUM_TOTAL_CARDS                         0x042E
+#define NUM_CUSTOM_CARDS                        0x010D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

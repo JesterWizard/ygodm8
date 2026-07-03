@@ -63,6 +63,7 @@
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_the_shining.h"
 #include "monster_effect_usage.h"
 #include "skull_invitation.h"
 #include "coffin_seller.h"
@@ -485,6 +486,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ElementalHeroGreatTornado_OnZoneCleared(zone);
   ElementalHeroGaia_OnZoneCleared(zone);
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
+  ElementalHeroTheShining_OnZoneCleared(zone);
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);

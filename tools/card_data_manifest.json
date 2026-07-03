@@ -20230,6 +20230,35 @@
           "+100 ATK per Elemental HERO in your Graveyard."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_THE_SHINING",
+      "card_name": "Elemental HERO The Shining",
+      "atk": 2600,
+      "def": 2100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [2, 2, 0, 6, 1, 4, 1, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroTheShining",
+        "pages": [
+          "1 E-HERO + 1 LIGHT monster. Must be Fusion Summoned and cannot be",
+          "Special Summoned. +300 ATK per banished E-HERO.",
+          "Leaves field: add up to 2 banished E-HERO cards to hand."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroTheShining",
+        "pages": [
+          "Add up to 2 Elemental HERO cards from your banished zone to your hand."
+        ]
+      }
     }
   ]
 }

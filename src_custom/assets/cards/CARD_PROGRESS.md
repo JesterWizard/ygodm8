@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-02).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-03).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 268 |
-| Art ready, needs manifest | 142 |
+| In game (manifest + art) | 269 |
+| Art ready, needs manifest | 141 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **410** |
 
@@ -290,6 +290,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_FLASH` | Elemental HERO Flash | `elemental_hero_flash.png` |
 | `ELEMENTAL_HERO_GAIA` | Elemental HERO Gaia | `elemental_hero_gaia.png` |
 | `ELEMENTAL_HERO_ESCURIDAO` | Elemental HERO Escuridao | `elemental_hero_escuridao.png` |
+| `ELEMENTAL_HERO_THE_SHINING` | Elemental HERO The Shining | `elemental_hero_the_shining.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -343,7 +344,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ELEMENTAL_HERO_PLASMA_VICE` — `elemental_hero_plasma_vice.png`
 - [ ] `ELEMENTAL_HERO_STRATOS` — `elemental_hero_stratos.png`
 - [ ] `ELEMENTAL_HERO_SUNRISE` — `elemental_hero_sunrise.png`
-- [ ] `ELEMENTAL_HERO_THE_SHINING` — `elemental_hero_the_shining.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
