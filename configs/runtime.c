@@ -62,13 +62,13 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
-    .card_in_hand_1 = ELEMENTAL_HERO_BLAZEMAN,
+    .card_in_hand_1 = ELEMENTAL_HERO_STRATOS,
     .card_in_hand_2 = POLYMERIZATION,
     .card_in_hand_3 = ELEMENTAL_HERO_SPARKMAN,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = CARD_NONE,
-    /* Spare Poly stays in deck for on-summon; Sparkman in hand is the discard target. */
+    .opponent_deck_card_id = EATGABOON,
+    /* Sparkman in deck for Stratos on-summon search. */
     .player_deck_card_id = ELEMENTAL_HERO_SPARKMAN,
     .skip_to_duel = TRUE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,

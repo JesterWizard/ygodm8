@@ -1144,6 +1144,10 @@ static const unsigned char sElementalHeroBlazemanBigArt[] __attribute__((section
 static const unsigned short sElementalHeroBlazemanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_blazeman.gbapal");
 static const unsigned char sElementalHeroBlazemanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_blazeman.lz");
 
+static const unsigned char sElementalHeroStratosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_stratos.huff");
+static const unsigned short sElementalHeroStratosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_stratos.gbapal");
+static const unsigned char sElementalHeroStratosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_stratos.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1431,6 +1435,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x043A] = sElementalHeroCaptainGoldBigArt,
   [0x043B] = sElementalHeroIceEdgeBigArt,
   [0x043C] = sElementalHeroBlazemanBigArt,
+  [0x043D] = sElementalHeroStratosBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1720,6 +1725,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x043A] = sElementalHeroCaptainGoldBigPalette,
   [0x043B] = sElementalHeroIceEdgeBigPalette,
   [0x043C] = sElementalHeroBlazemanBigPalette,
+  [0x043D] = sElementalHeroStratosBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2009,6 +2015,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x043A] = 0,
   [0x043B] = 0,
   [0x043C] = 0,
+  [0x043D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2298,4 +2305,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x043A] = sElementalHeroCaptainGoldMiniArt,
   [0x043B] = sElementalHeroIceEdgeMiniArt,
   [0x043C] = sElementalHeroBlazemanMiniArt,
+  [0x043D] = sElementalHeroStratosMiniArt,
 };

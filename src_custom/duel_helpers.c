@@ -30,6 +30,7 @@
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
+#include "elemental_hero_stratos.h"
 #include "elemental_hero_core.h"
 #include "fusion_duel.h"
 
@@ -278,10 +279,11 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryElementalHeroSunriseOnMonsterPlacement(summonZone);
   TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
   MaybeUpdateGfx(opts.updateGfx);
-  /* ponytail: on-summon text after field draw (Blazeman popup_1, DDS, Ryu-Kishin). */
+  /* ponytail: on-summon text after field draw (Blazeman/Stratos popup, DDS, Ryu-Kishin). */
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroBlazemanOnMonsterPlacement(summonZone);
+  TryElementalHeroStratosOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;
 }
