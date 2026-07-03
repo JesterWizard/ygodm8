@@ -97,6 +97,11 @@ static u8 GetFixedColForZone(struct DuelCard *zone)
   return FIELD_SPELL_ZONE_ROW_INVALID;
 }
 
+static u8 CustomFieldSpellRemainsOnField(u8 customSpellId)
+{
+  return customSpellId == CUSTOM_FIELD_SPELL_SKYSCRAPER;
+}
+
 static u8 ZoneStillHeldActiveCustomFieldSpell(struct DuelCard *zone, u8 row, u8 col)
 {
 #if NUM_CUSTOM_FIELDS == 0
@@ -183,9 +188,14 @@ static u8 RunFieldSpellActivation(u16 cardId, u8 fieldId, u8 customSpellId)
   ResetCustomFieldSpellState();
   gDuel.field = fieldId;
 
-  // Match vanilla field spells: the activating card leaves its zone before the
-  // terrain change is shown.
-  ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  if (CustomFieldSpellRemainsOnField(customSpellId)) {
+    gActiveFieldSpellZoneRow = GetFixedRowForZone(zone);
+    gActiveFieldSpellZoneCol = GetFixedColForZone(zone);
+  } else {
+    // Match vanilla field spells: the activating card leaves its zone before the
+    // terrain change is shown.
+    ClearZoneAndSendMonToGraveyard(zone, ACTIVE_DUELIST);
+  }
 
   if (customSpellId != CUSTOM_FIELD_SPELL_NONE) {
     gActiveCustomFieldSpellId = customSpellId;

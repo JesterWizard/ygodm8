@@ -20371,6 +20371,36 @@
           "Target 1 \"Polymerization\" in your GY, and 1 monster in your GY that was used as material for a Fusion Summon; add them t"
         ]
       }
+    },
+    {
+      "card_const": "SKYSCRAPER",
+      "card_name": "Skyscraper",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 8,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 3, 0, 3, 5, 4, 3, 0],
+      "description": {
+        "symbol": "gDescription_Skyscraper",
+        "pages": [
+          "If an \"Elemental HERO\" monster attacks a monster",
+          "that has a higher ATK, the attacking monster gains",
+          "1000 ATK during damage calculation only."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_Skyscraper",
+        "pages": [
+          "If an \"Elemental HERO\" monster attacks a monster that has a higher ATK, the attacking monster gains 1000 ATK during dama"
+        ]
+      },
+      "customFieldSpell": "CUSTOM_FIELD_SPELL_SKYSCRAPER"
     }
   ]
 }

@@ -5,3 +5,6 @@ const u16 gFieldSEALOFORICHALCOSPalette[] APPEND_ASSET = INCBIN_U16("src_custom/
 
 const u8 gFieldSANCTUARYINTHESKYTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/the_sanctuary_in_the_sky/field.huff");
 const u16 gFieldSANCTUARYINTHESKYPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/the_sanctuary_in_the_sky/field.gbapal");
+
+const u8 gFieldSKYSCRAPERTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/skyscraper/field.huff");
+const u16 gFieldSKYSCRAPERPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/skyscraper/field.gbapal");

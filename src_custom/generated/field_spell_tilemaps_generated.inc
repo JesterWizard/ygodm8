@@ -2,3 +2,4 @@
 
 #include "src_custom/assets/field_spells/seal_of_orichalcos/field.tilemap.c"
 #include "src_custom/assets/field_spells/the_sanctuary_in_the_sky/field.tilemap.c"
+#include "src_custom/assets/field_spells/skyscraper/field.tilemap.c"

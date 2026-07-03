@@ -3,4 +3,5 @@
 static const struct CustomFieldGfxAsset sCustomFieldGfxAssets[NUM_CUSTOM_FIELDS] APPEND_RODATA = {
   {gFieldSEALOFORICHALCOSTiles, gFieldSEALOFORICHALCOSTilemap, gFieldSEALOFORICHALCOSPalette},
   {gFieldSANCTUARYINTHESKYTiles, gFieldSANCTUARYINTHESKYTilemap, gFieldSANCTUARYINTHESKYPalette},
+  {gFieldSKYSCRAPERTiles, gFieldSKYSCRAPERTilemap, gFieldSKYSCRAPERPalette},
 };

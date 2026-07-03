@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 273 |
+| In game (manifest + art) | 274 |
 | Art ready, needs manifest | 138 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **411** |
+| **Total PNGs in `80x80/`** | **412** |
 
 ## In game
 
@@ -295,6 +295,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_NECROID_SHAMAN` | Elemental HERO Necroid Shaman | `elemental_hero_necroid_shaman.png` |
 | `ELEMENTAL_HERO_PLASMA_VICE` | Elemental HERO Plasma Vice | `elemental_hero_plasma_vice.png` |
 | `FUSION_RECOVERY` | Fusion Recovery | `fusion_recovery.png` |
+| `SKYSCRAPER` | Skyscraper | `skyscraper.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -410,7 +411,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SKYSCRAPER` — `skyscraper.png`
+- [ ] `SKYSCRAPER_2_HERO_CITY` — `skyscraper_2_hero_city.png`
 - [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
 - [ ] `SPARK_BLASTER` — `spark_blaster.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`

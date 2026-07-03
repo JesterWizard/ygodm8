@@ -3,9 +3,11 @@
 extern void EffectActivateSealOfOrichalcos(void);
 extern void EffectActivateSanctuaryInTheSky(void);
 extern void EffectActivateALegendaryOcean(void);
+extern void EffectActivateSkyscraper(void);
 
 static const CustomFieldSpellEffectFn sCustomFieldSpellEffects[NUM_CUSTOM_FIELD_SPELLS - 1] APPEND_RODATA = {
   [CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS - 1] = EffectActivateSealOfOrichalcos,
   [CUSTOM_FIELD_SPELL_SANCTUARY_IN_THE_SKY - 1] = EffectActivateSanctuaryInTheSky,
   [CUSTOM_FIELD_SPELL_A_LEGENDARY_OCEAN - 1] = EffectActivateALegendaryOcean,
+  [CUSTOM_FIELD_SPELL_SKYSCRAPER - 1] = EffectActivateSkyscraper,
 };

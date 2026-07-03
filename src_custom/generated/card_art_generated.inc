@@ -1100,6 +1100,10 @@ static const unsigned char sFusionRecoveryBigArt[] __attribute__((section(".appe
 static const unsigned short sFusionRecoveryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusion_recovery.gbapal");
 static const unsigned char sFusionRecoveryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusion_recovery.lz");
 
+static const unsigned char sSkyscraperBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skyscraper.huff");
+static const unsigned short sSkyscraperBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skyscraper.gbapal");
+static const unsigned char sSkyscraperMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skyscraper.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1376,6 +1380,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x042F] = sElementalHeroNecroidShamanBigArt,
   [0x0430] = sElementalHeroPlasmaViceBigArt,
   [0x0431] = sFusionRecoveryBigArt,
+  [0x0432] = sSkyscraperBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1654,6 +1659,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x042F] = sElementalHeroNecroidShamanBigPalette,
   [0x0430] = sElementalHeroPlasmaViceBigPalette,
   [0x0431] = sFusionRecoveryBigPalette,
+  [0x0432] = sSkyscraperBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1932,6 +1938,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x042F] = 0,
   [0x0430] = 0,
   [0x0431] = 0,
+  [0x0432] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2210,4 +2217,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x042F] = sElementalHeroNecroidShamanMiniArt,
   [0x0430] = sElementalHeroPlasmaViceMiniArt,
   [0x0431] = sFusionRecoveryMiniArt,
+  [0x0432] = sSkyscraperMiniArt,
 };

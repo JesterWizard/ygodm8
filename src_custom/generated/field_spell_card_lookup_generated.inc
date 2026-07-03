@@ -7,6 +7,8 @@ static u8 LookupCustomFieldSpellIdForCard(u16 cardId)
       return CUSTOM_FIELD_SPELL_A_LEGENDARY_OCEAN;
     case SEAL_OF_ORICHALCOS:
       return CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS;
+    case SKYSCRAPER:
+      return CUSTOM_FIELD_SPELL_SKYSCRAPER;
     case THE_SANCTUARY_IN_THE_SKY:
       return CUSTOM_FIELD_SPELL_SANCTUARY_IN_THE_SKY;
     default:

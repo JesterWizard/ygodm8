@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 273
+#define NUM_CUSTOM_NAME_SORT_CARDS 274
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -278,6 +278,7 @@ static const u8 sElementalHeroInfernoSortName[] APPEND_RODATA = "Elemental HERO 
 static const u8 sElementalHeroNecroidShamanSortName[] APPEND_RODATA = "Elemental HERO Necroid Shaman";
 static const u8 sElementalHeroPlasmaViceSortName[] APPEND_RODATA = "Elemental HERO Plasma Vice";
 static const u8 sFusionRecoverySortName[] APPEND_RODATA = "Fusion Recovery";
+static const u8 sSkyscraperSortName[] APPEND_RODATA = "Skyscraper";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -504,6 +505,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0328, // Shield And Sword
   0x034A, // Skill Drain
   0x0370, // Skull Invitation
+  0x0432, // Skyscraper
   0x035A, // Solar Flare Dragon
   0x0391, // Solar Ray
   0x0392, // Solemn Wishes
@@ -780,55 +782,56 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   222, // Shield And Sword
   223, // Skill Drain
   224, // Skull Invitation
-  225, // Solar Flare Dragon
-  226, // Solar Ray
-  227, // Solemn Wishes
-  228, // Sorcerer of Dark Magic
-  229, // Soul Exchange
-  230, // Soul Taker
-  231, // Spear Dragon
-  232, // Spell Canceller
-  233, // Spell Economics
-  234, // Spirit Caller
-  235, // Spirit of the Breeze
-  236, // Spirit of the Pot of Greed
-  237, // Spirit Reaper
-  238, // Spirit Ryu
-  239, // St Joan
-  240, // Stealth Bird
-  241, // Swift Gaia The Fierce Knight
-  242, // Terrorking Salmon
-  243, // The Agent Of Creation - Venus
-  244, // The Agent of Force - Mars
-  245, // The Dark Door
-  246, // The Flute of Summoning Dragon
-  247, // The Forceful Sentry
-  248, // The Sanctuary in the Sky
-  249, // The Thing in the Crater
-  250, // The Unstoppable Exodia Incarnate
-  251, // Theban Nightmare
-  252, // Thousand Energy
-  253, // Thousand Knives
-  254, // Thunder Crash
-  255, // Time Seal
-  256, // Toll
-  257, // Torpedo Fish
-  258, // Triangle Power
-  259, // Twin Swords of Flashing Light - Tryce
-  260, // Tyrant Dragon
-  261, // Ultimate Offering
-  262, // United We Stand
-  263, // Upstart Goblin
-  264, // Vampire Baby
-  265, // Vengeful Bog Spirit
-  266, // Wall of Revealing Light
-  267, // Warrior of Zera
-  268, // Wave Motion Cannon
-  269, // Weather Report
-  270, // White Magician Pikeru
-  271, // World Suppression
-  272, // Yata-Garasu
-  273, // Zaborg the Thunder Monarch
+  225, // Skyscraper
+  226, // Solar Flare Dragon
+  227, // Solar Ray
+  228, // Solemn Wishes
+  229, // Sorcerer of Dark Magic
+  230, // Soul Exchange
+  231, // Soul Taker
+  232, // Spear Dragon
+  233, // Spell Canceller
+  234, // Spell Economics
+  235, // Spirit Caller
+  236, // Spirit of the Breeze
+  237, // Spirit of the Pot of Greed
+  238, // Spirit Reaper
+  239, // Spirit Ryu
+  240, // St Joan
+  241, // Stealth Bird
+  242, // Swift Gaia The Fierce Knight
+  243, // Terrorking Salmon
+  244, // The Agent Of Creation - Venus
+  245, // The Agent of Force - Mars
+  246, // The Dark Door
+  247, // The Flute of Summoning Dragon
+  248, // The Forceful Sentry
+  249, // The Sanctuary in the Sky
+  250, // The Thing in the Crater
+  251, // The Unstoppable Exodia Incarnate
+  252, // Theban Nightmare
+  253, // Thousand Energy
+  254, // Thousand Knives
+  255, // Thunder Crash
+  256, // Time Seal
+  257, // Toll
+  258, // Torpedo Fish
+  259, // Triangle Power
+  260, // Twin Swords of Flashing Light - Tryce
+  261, // Tyrant Dragon
+  262, // Ultimate Offering
+  263, // United We Stand
+  264, // Upstart Goblin
+  265, // Vampire Baby
+  266, // Vengeful Bog Spirit
+  267, // Wall of Revealing Light
+  268, // Warrior of Zera
+  269, // Wave Motion Cannon
+  270, // Weather Report
+  271, // White Magician Pikeru
+  272, // World Suppression
+  273, // Yata-Garasu
+  274, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1384,6 +1387,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sElementalHeroPlasmaViceSortName;
   if (cardId == 0x0431)
     return (u8 *)sFusionRecoverySortName;
+  if (cardId == 0x0432)
+    return (u8 *)sSkyscraperSortName;
 
   return gCardNames[cardId];
 }

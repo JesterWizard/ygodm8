@@ -1075,11 +1075,12 @@
 #define ELEMENTAL_HERO_NECROID_SHAMAN            0x042F
 #define ELEMENTAL_HERO_PLASMA_VICE               0x0430
 #define FUSION_RECOVERY                          0x0431
+#define SKYSCRAPER                               0x0432
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0432
-#define NUM_CUSTOM_CARDS                        0x0111
+#define NUM_TOTAL_CARDS                         0x0433
+#define NUM_CUSTOM_CARDS                        0x0112
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
