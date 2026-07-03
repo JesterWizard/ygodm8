@@ -1120,6 +1120,10 @@ static const unsigned char sOOversoulBigArt[] __attribute__((section(".append_as
 static const unsigned short sOOversoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/o_oversoul.gbapal");
 static const unsigned char sOOversoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/o_oversoul.lz");
 
+static const unsigned char sFutureFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/future_fusion.huff");
+static const unsigned short sFutureFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/future_fusion.gbapal");
+static const unsigned char sFutureFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/future_fusion.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1401,6 +1405,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0434] = sEEmergencyCallBigArt,
   [0x0435] = sRRighteousJusticeBigArt,
   [0x0436] = sOOversoulBigArt,
+  [0x0437] = sFutureFusionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1684,6 +1689,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0434] = sEEmergencyCallBigPalette,
   [0x0435] = sRRighteousJusticeBigPalette,
   [0x0436] = sOOversoulBigPalette,
+  [0x0437] = sFutureFusionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1967,6 +1973,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0434] = 0,
   [0x0435] = 0,
   [0x0436] = 0,
+  [0x0437] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2250,4 +2257,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0434] = sEEmergencyCallMiniArt,
   [0x0435] = sRRighteousJusticeMiniArt,
   [0x0436] = sOOversoulMiniArt,
+  [0x0437] = sFutureFusionMiniArt,
 };

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 278 |
-| Art ready, needs manifest | 134 |
+| In game (manifest + art) | 279 |
+| Art ready, needs manifest | 133 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -300,6 +300,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `E_EMERGENCY_CALL` | E - Emergency Call | `e_emergency_call.png` |
 | `R_RIGHTEOUS_JUSTICE` | R - Righteous Justice | `r_righteous_justice.png` |
 | `O_OVERSOUL` | O - Oversoul | `o_oversoul.png` |
+| `FUTURE_FUSION` | Future Fusion | `future_fusion.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -355,7 +356,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
-- [ ] `FUTURE_FUSION` — `future_fusion.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`

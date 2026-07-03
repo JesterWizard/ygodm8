@@ -1,14 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — Added O - Oversoul
+**Last worked on:** 2026-07-03 — Future Fusion: mutual destroy, non-selectable, seamless material picks
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/spell_effects/o_oversoul.c`
-- `src_custom/spell_effect_hooks.c`
+- `src_custom/spell_effects/future_fusion.c`
+- `include/future_fusion.h`
+- `src_custom/duel_activated_backrow.c`
 
-**Outcome:** make test-cards-link passes; GY pick SS Elemental HERO Normal Monster
+**Outcome:** make test-cards-link passes; activated FF non-selectable; one trunk session for recipe+materials; destroy spell kills linked monster
 
 **Open / next:**
-- playtest with Avian/Burstinatrix in GY
+- playtest MST on FF before/after summon

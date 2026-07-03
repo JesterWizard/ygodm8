@@ -3,7 +3,7 @@
 
 #include "fusion_recipes.h"
 
-#define FUSION_MAX_SOURCES 20
+#define FUSION_MAX_SOURCES 40
 #define FUSION_GY_INDEX_NONE 0xFF
 
 struct FusionMaterialSource {
@@ -17,6 +17,8 @@ typedef u8 (*FusionRecipeFilterFn)(const struct FusionRecipe *recipe);
 u8 FusionDuel_CollectHandAndFieldSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *out, u8 maxOut);
+u8 FusionDuel_CollectDeckSources(struct FusionMaterialSource *out, u8 maxOut);
+void FusionDuel_SpecialSummonResult(u16 resultId);
 u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
                                       const struct FusionMaterialSource *sources,
                                       u8 sourceCount);

@@ -68,6 +68,7 @@
 #include "skull_invitation.h"
 #include "coffin_seller.h"
 #include "nightmare_wheel.h"
+#include "future_fusion.h"
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
 #include "dark_room_of_nightmare.h"
@@ -478,6 +479,8 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   TryApplySkullInvitationOnFieldLeave(zone);
   TryApplyCoffinSellerOnFieldLeave(zone);
   TryApplyNightmareWheelOnTargetLeave(zone);
+  TryApplyFutureFusionOnMonsterLeave(zone);
+  FutureFusion_OnZoneCleared(zone);
   OnCustomFieldSpellZoneCleared(zone);
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);

@@ -17,6 +17,7 @@
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
 #include "ectoplasmer.h"
+#include "future_fusion.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -292,6 +293,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   TryApplyBurningLandStandbyDamage();
   TryApplyDarkSnakeSyndromeStandbyDamage();
   TryApplyNightmareWheelStandbyDamage();
+  TryApplyFutureFusionStandby();
   TryBottomlessShiftingSandTurnStart();
   if (IsDuelOver() == 1)
     return;

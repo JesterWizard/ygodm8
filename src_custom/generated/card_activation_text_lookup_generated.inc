@@ -275,6 +275,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [E_EMERGENCY_CALL] = gActivationDescription_EEmergencyCall,
   [R_RIGHTEOUS_JUSTICE] = gActivationDescription_RRighteousJustice,
   [O_OVERSOUL] = gActivationDescription_OOversoul,
+  [FUTURE_FUSION] = gActivationDescription_FutureFusion,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {

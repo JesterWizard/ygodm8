@@ -20515,6 +20515,35 @@
           "Target 1 Elemental HERO Normal Monster in your Graveyard; Special Summon that target."
         ]
       }
+    },
+    {
+      "card_const": "FUTURE_FUSION",
+      "card_name": "Future Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 7, 5, 6, 5, 2, 0, 4],
+      "description": {
+        "symbol": "gDescription_FutureFusion",
+        "pages": [
+          "Send Fusion Materials from Deck to GY; select that Fusion",
+          "Monster. SS it on your 2nd Standby Phase (as a Fusion Summon). If",
+          "this card or that monster is destroyed, destroy the other."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_FutureFusion",
+        "pages": [
+          "Send materials from Deck to GY; select a Fusion Monster. SS it on your 2nd Standby Phase."
+        ]
+      }
     }
   ]
 }

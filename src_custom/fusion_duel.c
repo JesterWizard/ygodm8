@@ -130,6 +130,25 @@ u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *
   return count;
 }
 
+u8 FusionDuel_CollectDeckSources(struct FusionMaterialSource *out, u8 maxOut)
+{
+  u8 fixedDuelist = TurnDuelistToFixed(ACTIVE_DUELIST);
+  u8 deckSize = NumCardsInDeck(fixedDuelist);
+  u8 top = gDuelDecks[fixedDuelist].cardsDrawn;
+  u8 count = 0;
+  u8 i;
+
+  for (i = top; i < deckSize; i++) {
+    u16 cardId = gDuelDecks[fixedDuelist].cards[i];
+
+    if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
+      continue;
+    AddSource(out, &count, maxOut, NULL, i, cardId);
+  }
+
+  return count;
+}
+
 static u8 SourceQualifiesAsFusionMaterial(const struct FusionRecipe *recipe,
                                         const struct FusionMaterialSource *source)
 {
@@ -379,7 +398,7 @@ static void PayMiracleFusionMaterials(const struct FusionMaterialSource *selecte
   }
 }
 
-static void SummonFusionResult(u16 resultId)
+void FusionDuel_SpecialSummonResult(u16 resultId)
 {
   struct DuelSummonOpts opts;
   u8 i;
@@ -449,7 +468,7 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   payMaterials(selected, selectedCount);
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-  SummonFusionResult(recipe->result);
+  FusionDuel_SpecialSummonResult(recipe->result);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   return DUEL_ACTION_OK;
 }
