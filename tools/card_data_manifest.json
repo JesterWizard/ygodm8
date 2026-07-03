@@ -19776,6 +19776,33 @@
         "popup_1": "After battle, destroy 1 monster.",
         "popup_2": "Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SUNRISE",
+      "card_name": "Elemental HERO Sunrise",
+      "atk": 2500,
+      "def": 1200,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [2, 2, 9, 0, 8, 8, 2, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroSunrise",
+        "pages": [
+          "2 HERO monsters, different Attributes.",
+          "Must be Fusion Summoned. +200 ATK per Attribute.",
+          "On SS add Miracle Fusion. On HERO attack destroy 1."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Add 1 Miracle Fusion from your Deck to your hand.",
+        "popup_2": "Destroy 1 card on the field."
+      }
     }
   ]
 }

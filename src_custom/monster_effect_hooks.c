@@ -39,6 +39,7 @@
 #include "elemental_hero_lady_heat.h"
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_necroid_shaman.h"
@@ -557,6 +558,7 @@ FAILED:
             zone->isFaceUp = 1;
             TryVengefulBogSpiritOnFlipSummon(zone);
             TryElementalHeroGreatTornadoOnMonsterPlacement(zone);
+            TryElementalHeroSunriseOnMonsterPlacement(zone);
             TryElementalHeroAbsoluteZeroOnMonsterPlacement(zone);
           }
           if (gCardInfo.monsterEffect != MONSTER_EFFECT_RYU_KISHIN_CLOWN

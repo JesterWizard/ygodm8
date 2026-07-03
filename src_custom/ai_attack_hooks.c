@@ -7,6 +7,7 @@
 #include "fairy_box.h"
 #include "mirror_wall.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_sunrise.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "embodiment_of_apophis.h"
@@ -179,6 +180,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   AiPrepareAttacker(attacker);
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+  TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
   TryShowElementalHeroMarinerDirectAttackText(attacker->id);
@@ -227,6 +229,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   RefreshPendingSasukeBattleTarget();
   AiSetAttackOriginFromZone(attacker);
   TryActivateEmbodimentOfApophisOnAttack();
+  TryArmElementalHeroSunriseOnAttackDeclared(attacker, defender);
 
   if (WhoseTurn() == DUEL_PLAYER) {
     playerCol = AiFixedColForZone(attacker, PLAYER_MONSTER_ROW);

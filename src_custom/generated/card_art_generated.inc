@@ -1128,6 +1128,10 @@ static const unsigned char sElementalHeroCoreBigArt[] __attribute__((section(".a
 static const unsigned short sElementalHeroCoreBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_core.gbapal");
 static const unsigned char sElementalHeroCoreMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_core.lz");
 
+static const unsigned char sElementalHeroSunriseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_sunrise.huff");
+static const unsigned short sElementalHeroSunriseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_sunrise.gbapal");
+static const unsigned char sElementalHeroSunriseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_sunrise.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1411,6 +1415,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0436] = sOOversoulBigArt,
   [0x0437] = sFutureFusionBigArt,
   [0x0438] = sElementalHeroCoreBigArt,
+  [0x0439] = sElementalHeroSunriseBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1696,6 +1701,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0436] = sOOversoulBigPalette,
   [0x0437] = sFutureFusionBigPalette,
   [0x0438] = sElementalHeroCoreBigPalette,
+  [0x0439] = sElementalHeroSunriseBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1981,6 +1987,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0436] = 0,
   [0x0437] = 0,
   [0x0438] = 0,
+  [0x0439] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2266,4 +2273,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0436] = sOOversoulMiniArt,
   [0x0437] = sFutureFusionMiniArt,
   [0x0438] = sElementalHeroCoreMiniArt,
+  [0x0439] = sElementalHeroSunriseMiniArt,
 };

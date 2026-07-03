@@ -43,6 +43,7 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_PLASMA_VICE, ELEMENTAL_HERO_SPARKMAN, ELEMENTAL_HERO_BLADEDGE, 0, 0 },
   { ELEMENTAL_HERO_CORE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO,
     FUSION_RECIPE_ELEMENTAL_HERO, 0 },
+  { ELEMENTAL_HERO_SUNRISE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO, 0, 0 },
 };
 
 u8 FusionRecipe_Count(void)
@@ -239,6 +240,11 @@ void FusionRecipes_SelfCheck(void)
 
   recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_CORE);
   if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 3)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_SUNRISE);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
     while (1)
       ;
 

@@ -49,6 +49,7 @@
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_core.h"
+#include "elemental_hero_sunrise.h"
 #include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
@@ -920,6 +921,7 @@ void sub_80449D8__Replacement(void)
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryElementalHeroSunriseOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (placedRow == PLAYER_MONSTER_ROW) {
@@ -1009,6 +1011,8 @@ void sub_8044570__Replacement(void)
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isFaceUp = 1;
       Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
+      TryArmElementalHeroSunriseOnAttackDeclared(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX], NULL);
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowDrillagoDirectAttackText(
@@ -1055,7 +1059,6 @@ void sub_8044570__Replacement(void)
       ResolveRoyalKnightBattleEffect();
       ResolveElementalHeroSteamHealerBattleEffect();
       ResolveElementalHeroFlameWingmanBattleEffect();
-      ResolveElementalHeroCoreBattledEffect();
       ResolveLesserFiendBattleEffect();
       ResolveDarkMagicianOfChaosBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
@@ -1082,6 +1085,10 @@ void sub_8044570__Replacement(void)
       gDuelCursor.state = 0;
     }
     TryActivatingPermanentEffects();
+    /* PickZone last — after attack cleanup and permanent effects, so targeting
+     * survives into PlayerTurnMain (inline resolve was wiped by state = 0). */
+    ResolveElementalHeroCoreBattledEffect();
+    ResolveElementalHeroSunriseDestroyEffect();
     }
   } else {
     PlayMusic(SFX_SELECT);
@@ -1132,6 +1139,9 @@ void TryAttackWithMonster__Replacement(void)
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isFaceUp = 1;
       Duel_NotifyMonsterZoneChanged(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->isLocked = 1;
+      TryArmElementalHeroSunriseOnAttackDeclared(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX],
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyMirrorWallToPendingAction();
@@ -1175,7 +1185,6 @@ void TryAttackWithMonster__Replacement(void)
       ResolveRoyalKnightBattleEffect();
       ResolveElementalHeroSteamHealerBattleEffect();
       ResolveElementalHeroFlameWingmanBattleEffect();
-      ResolveElementalHeroCoreBattledEffect();
       ResolveLesserFiendBattleEffect();
       ResolveDarkMagicianOfChaosBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
@@ -1203,6 +1212,10 @@ void TryAttackWithMonster__Replacement(void)
       UpdateDuelGfxExceptField();
     }
     TryActivatingPermanentEffects();
+    /* PickZone last — after attack cleanup and permanent effects, so targeting
+     * survives into PlayerTurnMain (inline resolve was wiped by state = 0). */
+    ResolveElementalHeroCoreBattledEffect();
+    ResolveElementalHeroSunriseDestroyEffect();
   }
 }
 

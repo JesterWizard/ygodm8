@@ -15,6 +15,7 @@
 #include "h_heated_heart.h"
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
 #include "elemental_hero_inferno.h"
@@ -537,6 +538,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 
   if (Duel_TryApplyDynamicZoneStats(zone)) {
     ApplyGreatTornadoStatHalving(zone);
+    ApplyElementalHeroSunriseAtkBoost(zone);
     ApplyElementalHeroGaiaStatMod(zone);
     gSetFinalStatZone = NULL;
     return;
@@ -571,6 +573,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
+  ApplyElementalHeroSunriseAtkBoost(zone);
   ApplyElementalHeroGaiaStatMod(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
@@ -677,6 +680,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
+    ApplyElementalHeroSunriseAtkBoost(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
   }

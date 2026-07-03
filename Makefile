@@ -407,6 +407,7 @@ $(eval $(call custom_object_dep,ai_decision/ai_action_decode,$(AI_ACTION_TABLE_G
 $(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED) $(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,battle_effects/elemental_hero_core,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,permanent_effects/elemental_hero_core,$(CARD_EFFECT_TEXTS_H)))
+$(eval $(call custom_object_dep,permanent_effects/elemental_hero_sunrise,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
 $(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))

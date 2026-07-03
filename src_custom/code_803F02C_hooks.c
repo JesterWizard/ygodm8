@@ -62,6 +62,7 @@
 #include "riryoku.h"
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_the_shining.h"
@@ -284,6 +285,8 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroFlameWingmanPending();
   ClearElementalHeroCoreBattledPending();
   gElementalHeroCoreRevivePending = FALSE;
+  ClearElementalHeroSunriseOptFlags();
+  ClearElementalHeroSunriseDestroyPending();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearLesserFiendPending();
@@ -490,6 +493,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ClearRiryokuAtkDeltaForZone(zone);
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
+  ElementalHeroSunrise_OnZoneCleared(zone);
   ElementalHeroGaia_OnZoneCleared(zone);
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
   ElementalHeroTheShining_OnZoneCleared(zone);
@@ -578,6 +582,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     TryRingOfDestructionOnMonsterPlacement(dst);
     TryAmazonessTigerOnMonsterPlacement(dst);
     TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
+    TryElementalHeroSunriseOnMonsterPlacement(dst);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(dst);
   }
 }
@@ -646,8 +651,10 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
 {
   u8 i;
 
-  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW)
+  if (turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
     ClearElementalHeroWildedgeState();
+    ClearElementalHeroSunriseOptFlags();
+  }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[turnRow][i];

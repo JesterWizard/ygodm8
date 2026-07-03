@@ -27,6 +27,7 @@
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
+#include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_core.h"
 #include "fusion_duel.h"
@@ -276,6 +277,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
+  TryElementalHeroSunriseOnMonsterPlacement(summonZone);
   TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
   return DUEL_ACTION_OK;

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "deck_menu.h"
 #include "duel.h"
@@ -9,6 +10,7 @@
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_sunrise.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
 
@@ -162,6 +164,92 @@ static u8 SourceQualifiesAsFusionMaterial(const struct FusionRecipe *recipe,
   return TRUE;
 }
 
+static u8 SourceAttribute(const struct FusionMaterialSource *source)
+{
+  u16 cardId;
+
+  if (source == NULL)
+    return 0;
+
+  cardId = source->cardId;
+  if (source->zone != NULL)
+    cardId = Duel_GetEffectiveCardId(source->zone);
+
+  if (cardId == CARD_NONE)
+    return 0;
+
+  return gCardData_NEW[cardId].attribute;
+}
+
+static u16 SunriseSourceCardId(const struct FusionMaterialSource *source)
+{
+  if (source == NULL)
+    return CARD_NONE;
+
+  if (source->zone != NULL)
+    return Duel_GetEffectiveCardId(source->zone);
+
+  return source->cardId;
+}
+
+static u8 SunriseSourceIsEligibleHero(const struct FusionMaterialSource *source)
+{
+  u16 cardId = SunriseSourceCardId(source);
+
+  if (cardId == CARD_NONE || cardId == ELEMENTAL_HERO_SUNRISE)
+    return FALSE;
+
+  return Duel_IsElementalHeroCard(cardId);
+}
+
+static u8 SunriseMaterialsFeasible(const struct FusionMaterialSource *sources, u8 sourceCount)
+{
+  u8 i;
+  u8 j;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (!SunriseSourceIsEligibleHero(&sources[i]))
+      continue;
+
+    for (j = i + 1; j < sourceCount; j++) {
+      if (!SunriseSourceIsEligibleHero(&sources[j]))
+        continue;
+      if (SourceAttribute(&sources[i]) != SourceAttribute(&sources[j]))
+        return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+static u8 SunriseSelectSources(const struct FusionMaterialSource *sources, u8 sourceCount,
+                               struct FusionMaterialSource *selected, u8 maxSelected)
+{
+  u8 i;
+  u8 j;
+
+  if (maxSelected < 2)
+    return 0;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (!SunriseSourceIsEligibleHero(&sources[i]))
+      continue;
+
+    for (j = i + 1; j < sourceCount; j++) {
+      if (!SunriseSourceIsEligibleHero(&sources[j]))
+        continue;
+      if (SourceAttribute(&sources[i]) == SourceAttribute(&sources[j]))
+        continue;
+
+      selected[0] = sources[i];
+      selected[1] = sources[j];
+      return 2;
+    }
+  }
+
+  return 0;
+}
+
 u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
                                       const struct FusionMaterialSource *sources,
                                       u8 sourceCount)
@@ -173,6 +261,9 @@ u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
 
   if (recipe == NULL || recipe->result == CARD_NONE)
     return FALSE;
+
+  if (recipe->result == ELEMENTAL_HERO_SUNRISE)
+    return SunriseMaterialsFeasible(sources, sourceCount);
 
   matCount = FusionRecipe_MaterialCount(recipe);
   if (matCount < 2 || sourceCount < matCount)
@@ -216,6 +307,9 @@ u8 FusionRecipe_SelectSources(const struct FusionRecipe *recipe,
 
   if (recipe == NULL || selected == NULL)
     return 0;
+
+  if (recipe->result == ELEMENTAL_HERO_SUNRISE)
+    return SunriseSelectSources(sources, sourceCount, selected, maxSelected);
 
   matCount = FusionRecipe_MaterialCount(recipe);
   if (maxSelected < matCount)
@@ -433,6 +527,9 @@ void FusionDuel_SpecialSummonResult(u16 resultId)
 
   if (resultId == ELEMENTAL_HERO_NECROID_SHAMAN)
     ElementalHeroNecroidShaman_OnFusionSummoned();
+
+  if (resultId == ELEMENTAL_HERO_SUNRISE)
+    ElementalHeroSunrise_OnFusionSummoned();
 }
 
 static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *recipe,

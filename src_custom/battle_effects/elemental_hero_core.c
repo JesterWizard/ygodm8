@@ -203,14 +203,15 @@ static void BeginDestroyTargeting(u8 originRow, u8 originCol)
   u8 targetRow;
   u8 targetCol;
 
+  /* Exclude Core before scanning — dest is the origin for PickZone validators. */
+  gDuelCursor.destY = originRow;
+  gDuelCursor.destX = originCol;
+
   if (!FindFirstDestroyTarget(&targetRow, &targetCol))
     return;
 
   if (IsDuelOver() == TRUE)
     return;
-
-  gDuelCursor.destY = originRow;
-  gDuelCursor.destX = originCol;
 
   Duel_SetupPickZone(ZoneIsValidDestroyTarget, ResolveDestroyTarget, CancelDestroyTargeting,
                      PickAiDestroyTarget);
@@ -335,13 +336,9 @@ void ApplyElementalHeroCoreBattleEffect(void)
   gElementalHeroCoreBattledRow = row;
   gElementalHeroCoreBattledCol = col;
 
-  /* Opponent-turn battles resolve from AiAttackMonster (not inline here) —
-   * textboxes inside CheckGraveyardAndLoserFlags freeze the AI attack path. */
-  if (WhoseTurn() != DUEL_PLAYER)
-    return;
-
-  if (gUnk2023EA0.unk18 == 0)
-    ResolveElementalHeroCoreBattledEffect();
+  /* Resolve only from post-battle sites (code_8043EF4 / AI_Main / etc.).
+   * Inline PickZone here is wiped by attack cleanup (gDuelCursor.state = 0)
+   * after pending is already consumed, softlocking the owner's turn. */
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)
