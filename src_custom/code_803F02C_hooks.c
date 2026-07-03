@@ -46,6 +46,7 @@
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
 #include "elemental_hero_flame_wingman.h"
+#include "elemental_hero_core.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
 #include "elemental_hero_necroshade.h"
@@ -281,6 +282,8 @@ void InitBoard__Replacement(void) {
   ClearRoyalKnightPending();
   ClearElementalHeroSteamHealerPending();
   ClearElementalHeroFlameWingmanPending();
+  ClearElementalHeroCoreBattledPending();
+  gElementalHeroCoreRevivePending = FALSE;
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearLesserFiendPending();

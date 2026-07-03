@@ -13,6 +13,7 @@
 #include "caius_the_shadow_monarch.h"
 #include "mobius_the_frost_monarch.h"
 #include "kaiser_glider.h"
+#include "elemental_hero_core.h"
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
@@ -172,6 +173,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = KAISER_GLIDER,
     .shouldActivate = ShouldActivateKaiserGlider,
     .activate = ActivateKaiserGlider,
+  },
+  {
+    .cardId = ELEMENTAL_HERO_CORE,
+    .shouldActivate = ShouldActivateElementalHeroCore,
+    .activate = ActivateElementalHeroCore,
   },
   {
     .cardId = MOISTER_CREATURE,

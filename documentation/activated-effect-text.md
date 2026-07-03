@@ -51,7 +51,29 @@ Current shape of the manifest entry:
 | `symbol` | C symbol emitted for the activation text payload |
 | `pages` | One or more strings that become the activation textbox pages |
 
-The current in-repo example is `Card Of Sanctity`.
+For cards with **multiple** effect popups, use `effect_texts` with generic keys (`popup_1`, `popup_2`, …):
+
+```json
+"effect_texts": {
+  "popup_1": { "pages": ["After battle, destroy 1 monster."] },
+  "popup_2": { "pages": ["Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."] }
+}
+```
+
+Each key becomes:
+- payload symbol `gActivationDescription_<CardPascal>_Popup1`
+- enum `CARD_EFFECT_TEXT_<CARD_CONST>_POPUP_1` in `include/constants/card_effect_texts.h`
+
+Call sites:
+
+```c
+#include "constants/card_effect_texts.h"
+Duel_ShowCardEffectText(CARD_ID, CARD_EFFECT_TEXT_CARD_CONST_POPUP_1);
+```
+
+`activation_description` remains the default text for `GetCardActivationText` / `ActivatePermanentEffectCardText` (single-effect cards).
+
+Example multi-effect card: `Elemental HERO Core` (`popup_1` = post-battle destroy, `popup_2` = GY revive).
 
 ## Code Locations
 
@@ -66,14 +88,11 @@ The current in-repo example is `Card Of Sanctity`.
 
 ## TODO
 
-- Add a second activation-text example so the hierarchy is not tied to one card.
-- Split the current special-case playback into a small helper table if more cards need activation text.
-- Add a short build note next to the manifest entry format if more activation text is added often.
+- Migrate more multi-effect cards from a single `activation_description` to `effect_texts`.
 
 ## Limitations & Bugs
 
-- Only `Card Of Sanctity` currently uses custom activation text in runtime code.
-- The generated include is a build artifact and should not be edited by hand.
+- The generated includes are build artifacts and should not be edited by hand.
 - Activation text is emitted as plain duel text; it does not use the card-description `^n` header or leading padding.
 - Activation text is word-wrapped at 27 columns and words are moved whole to the next line when they do not fit.
 - If the manifest text does not fit the renderer's expected layout, the generator will fail and the wording must be shortened.

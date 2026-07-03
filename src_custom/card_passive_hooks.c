@@ -7,6 +7,7 @@
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_core.h"
 #include "ojama_trio.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
@@ -65,6 +66,8 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
     GraveyardExpand_PushTurn(turn, zone->id);
     if (Duel_ZoneIsHandSlot(zone) && zone->id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
       MarkAbsoluteZeroHandGraveyardClear();
+    /* Hand sends skip NoteGraveyardMonsterSend for non-monsters; always clear Core arm. */
+    ClearElementalHeroCoreReviveIfHandSend(zone);
   }
   ClearZone(zone);
 }

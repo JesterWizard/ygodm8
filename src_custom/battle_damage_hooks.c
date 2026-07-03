@@ -45,6 +45,7 @@
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_poison_rose.h"
 #include "elemental_hero_voltic.h"
+#include "elemental_hero_core.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
 #include "constants/card_ids.h"
@@ -238,6 +239,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkFamiliarKnightBattleDestruction(zone->id);
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
+      MarkElementalHeroCoreDestroyedFromField(zone);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
     }
   }
@@ -250,6 +252,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkFamiliarKnightBattleDestruction(zone->id);
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);
+      MarkElementalHeroCoreDestroyedFromField(zone);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
     }
   }
@@ -273,6 +276,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroKnospeBattleEffect();
   ApplyElementalHeroPoisonRoseBattleEffect();
   ApplyElementalHeroVolticBattleEffect();
+  ApplyElementalHeroCoreBattleEffect();
   ApplyGhostKnightOfJackalBattleEffect();
   ApplyAirknightParshathDrawBattleEffect();
   ApplyNeedleBurrowerBattleEffect();

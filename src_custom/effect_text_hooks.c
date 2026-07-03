@@ -108,13 +108,11 @@ static void PlayActivationDescriptionText(const u8 *text) {
   PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
 }
 
-void ActivatePermanentEffectCardText(u16 cardId) {
-  const u8 *text;
-
+static void ShowCardEffectTextPayload(u16 cardId, const u8 *text, u8 usePermanentSfx)
+{
   if (gHideEffectText)
     return;
 
-  text = GetCardActivationText(cardId);
   gCardEffectTextData.cardId = cardId;
   PlayMusic(SFX_SPELL_ACTIVATION_START);
   if (text != NULL)
@@ -122,8 +120,22 @@ void ActivatePermanentEffectCardText(u16 cardId) {
   else
     sub_8041C94(g8F9E35C[cardId], cardId, gCardEffectTextData.cardId2, 0, 0);
   SetCardInfo(cardId);
-  PlayMusic(g89DC23C[gCardInfo.unk1E]);
+  /* Permanent effects use unk1E SFX; multi-effect popups use spell-activation end
+   * (custom cards have unk1E=0 — g89DC23C[0] can hang in battle/AI resolve). */
+  if (usePermanentSfx)
+    PlayMusic(g89DC23C[gCardInfo.unk1E]);
+  else
+    PlayActivationEndSfx(g89DC020[gCardInfo.spellEffect]);
   sub_8022080();
+}
+
+void Duel_ShowCardEffectText(u16 cardId, u16 effectTextId)
+{
+  ShowCardEffectTextPayload(cardId, GetCardEffectText(effectTextId), FALSE);
+}
+
+void ActivatePermanentEffectCardText(u16 cardId) {
+  ShowCardEffectTextPayload(cardId, GetCardActivationText(cardId), TRUE);
 }
 
 static void PlayActivationEndSfx(u16 soundId) {

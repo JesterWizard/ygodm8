@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
+#include "elemental_hero_core.h"
 #include "graveyard_effects.h"
 
 extern void UpdateDuelGfxExceptField(void);
@@ -33,6 +34,7 @@ static u8 ZoneIsHandSlot(struct DuelCard *zone)
 void NoteGraveyardMonsterSend(struct DuelCard *zone)
 {
   gGraveyardSendWasFromField = ZoneIsHandSlot(zone) ? FALSE : TRUE;
+  ClearElementalHeroCoreReviveIfHandSend(zone);
 }
 
 void MarkGraveyardSendFromField(void)
@@ -49,7 +51,8 @@ u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
 {
   return CardTriggersDrawOnFieldDestroy(cardId) || cardId == FAMILIAR_KNIGHT
       || cardId == ELEMENTAL_HERO_FLASH || cardId == KAISER_GLIDER || cardId == PETEN_THE_DARK_CLOWN
-      || cardId == GIANT_RAT || cardId == THE_THING_IN_THE_CRATER;
+      || cardId == GIANT_RAT || cardId == THE_THING_IN_THE_CRATER
+      || cardId == ELEMENTAL_HERO_CORE;
 }
 
 static u8 GraveyardScanDuelistToFixed(u8 duelist)
@@ -137,4 +140,6 @@ void ResolvePendingGraveyardDrawOnDestroy(void)
 void FinishGraveyardDrawBattleResolve(void)
 {
   gDeferGraveyardDrawBattleResolve = FALSE;
+  /* Core revive (popup_2) — must run here on both player and AI battle paths. */
+  ElementalHeroCore_TryResolveRevive();
 }

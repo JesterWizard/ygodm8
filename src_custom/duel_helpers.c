@@ -28,6 +28,7 @@
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_absolute_zero.h"
+#include "elemental_hero_core.h"
 #include "fusion_duel.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
@@ -451,6 +452,7 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
 
+  MarkElementalHeroCoreDestroyedFromField(zone);
   ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
   MaybeUpdateGfx(updateGfx);
 

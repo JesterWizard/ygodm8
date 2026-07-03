@@ -22,7 +22,15 @@ REQUIRED_STATS_KEYS = {
     "trapEffect",
     "password",
 }
-OPTIONAL_STATS_KEYS = {"description", "activation_description", "lock_after_activation", "customFieldSpell", "effect_usage", "selectableOnce"}
+OPTIONAL_STATS_KEYS = {
+    "description",
+    "activation_description",
+    "effect_texts",
+    "lock_after_activation",
+    "customFieldSpell",
+    "effect_usage",
+    "selectableOnce",
+}
 ALLOWED_EFFECT_USAGE = {
     "once",
     "once_per_turn",
@@ -49,6 +57,7 @@ MANIFEST_CARD_KEY_ORDER = (
     "password",
     "description",
     "activation_description",
+    "effect_texts",
     "trunk_card",
     "customFieldSpell",
     "lock_after_activation",
@@ -73,6 +82,13 @@ def description_symbol(card_const: str) -> str:
 
 def activation_description_symbol(card_const: str) -> str:
     return f"gActivationDescription_{card_const_to_pascal(card_const)}"
+
+
+def effect_text_symbol(card_const: str, effect_id: str) -> str:
+    return (
+        f"gActivationDescription_{card_const_to_pascal(card_const)}"
+        f"_{card_const_to_pascal(effect_id)}"
+    )
 
 
 def order_card_entry(item: dict) -> dict:
@@ -116,6 +132,16 @@ def format_card_entry(item: dict, base_indent: str = "    ") -> list[str]:
         elif key in ("description", "activation_description"):
             lines.append(f'{inner}"{key}": {{')
             lines.extend(_format_description_block(value, inner + "  "))
+            lines.append(f"{inner}}}{comma}")
+        elif key == "effect_texts":
+            lines.append(f'{inner}"effect_texts": {{')
+            effect_ids = list(value.keys())
+            for effect_index, effect_id in enumerate(effect_ids):
+                effect_comma = "," if effect_index < len(effect_ids) - 1 else ""
+                effect = value[effect_id]
+                lines.append(f'{inner}  "{effect_id}": {{')
+                lines.extend(_format_description_block(effect, inner + "    "))
+                lines.append(f"{inner}  }}{effect_comma}")
             lines.append(f"{inner}}}{comma}")
         elif isinstance(value, bool):
             lines.append(f'{inner}"{key}": {"true" if value else "false"}{comma}')
@@ -300,6 +326,41 @@ def validate_manifest(manifest: object) -> dict:
                     f"{min_pages} and {description_pages_max} strings."
                 )
             stats[desc_key] = description
+
+        if "effect_texts" in stats:
+            effect_texts = stats["effect_texts"]
+            if not isinstance(effect_texts, dict) or not effect_texts:
+                _fail(f"cards[{index}].effect_texts must be a non-empty object when present.")
+            normalized_effects: dict = {}
+            for effect_id, effect in effect_texts.items():
+                if not isinstance(effect_id, str) or not re.fullmatch(r"[a-z][a-z0-9_]*", effect_id):
+                    _fail(
+                        f"cards[{index}].effect_texts keys must be lowercase identifiers "
+                        f"(got {effect_id!r})."
+                    )
+                if not isinstance(effect, dict):
+                    _fail(f"cards[{index}].effect_texts.{effect_id} must be an object.")
+                try:
+                    effect = normalize_description_block(
+                        card_const,
+                        {
+                            "pages": effect.get("pages"),
+                            "symbol": effect.get("symbol")
+                            or effect_text_symbol(card_const, effect_id),
+                        },
+                        activation=True,
+                    )
+                except (TypeError, ValueError) as exc:
+                    _fail(f"cards[{index}].effect_texts.{effect_id}: {exc}")
+                if len(effect["pages"]) < 1 or len(effect["pages"]) > description_pages_max:
+                    _fail(
+                        f"cards[{index}].effect_texts.{effect_id}.pages must contain between "
+                        f"1 and {description_pages_max} strings."
+                    )
+                # Force symbol from card+id so callers can rely on naming.
+                effect["symbol"] = effect_text_symbol(card_const, effect_id)
+                normalized_effects[effect_id] = effect
+            stats["effect_texts"] = normalized_effects
 
         for key in ASSET_ENTRY_KEYS:
             if key in stats and not isinstance(stats[key], str):

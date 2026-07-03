@@ -327,6 +327,16 @@ _kernel_malloc_ewram gElementalHeroWildedgeEffectActive, 1
 _kernel_malloc_ewram gElementalHeroWildedgeAnchorRow, 1
 _kernel_malloc_ewram gElementalHeroWildedgeAnchorCol, 1
 _kernel_malloc_ewram gElementalHeroNecroshadeUsed, 1
+@ Elemental HERO Core: post-battle destroy origin zone (0xFF = none).
+_kernel_malloc_ewram gElementalHeroCoreBattledRow, 1
+_kernel_malloc_ewram gElementalHeroCoreBattledCol, 1
+@ TRUE when Core was destroyed from field and revive may trigger.
+_kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
+@ Elemental HERO Core: post-battle destroy origin zone (0xFF = none).
+_kernel_malloc_ewram gElementalHeroCoreBattledRow, 1
+_kernel_malloc_ewram gElementalHeroCoreBattledCol, 1
+@ TRUE when Core was destroyed from field and revive may trigger.
+_kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
 @ Per-board-cell Gemini awakened state for Elemental HERO Neos Alius (4 rows x 5 cols).
 _kernel_malloc_ewram_array gNeosAliusAwakenedBoard, 0x14
 @ TRUE when Lesser Fiend destroyed an opponent's monster by battle and banish is pending.

@@ -2,7 +2,9 @@
 #include "common-chax.h"
 #include "ai_sim.h"
 #include "duel.h"
+#include "elemental_hero_core.h"
 #include "expanded_graveyard.h"
+#include "graveyard_effects.h"
 #include "permanent_effect.h"
 
 void TryActivatingTurnEffects(void);
@@ -53,6 +55,9 @@ void AI_Main__Replacement(void)
     } else {
       UpdateDuelGfxExceptField();
     }
+    /* After battle anim: Core post-battle destroy, then deferred GY triggers. */
+    ResolveElementalHeroCoreBattledEffect();
+    FinishGraveyardDrawBattleResolve();
     PlayActionSoundEffect();
     CheckWinConditionFINAL();
     CheckWinConditionExodia();

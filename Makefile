@@ -144,6 +144,7 @@ CARD_TRUNK_GENERATED := src_custom/generated/card_trunk_generated.inc
 CARD_DATA_GENERATED_SRC := src_custom/generated/card_data_hooks.c
 CARD_ACTIVATION_TEXT_GENERATED := src_custom/generated/card_activation_text_generated.inc
 CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src_custom/generated/card_activation_text_lookup_generated.inc
+CARD_EFFECT_TEXTS_H := include/constants/card_effect_texts.h
 EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
@@ -316,7 +317,7 @@ endif
 src_custom/generated/card_art_generated.inc: $(CARD_ART_STAMP)
 	@test -f $@
 
-$(CARD_DESCRIPTION_GENERATED) src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED): $(CARD_GENERATED_STAMP)
+$(CARD_DESCRIPTION_GENERATED) src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED) $(CARD_EFFECT_TEXTS_H): $(CARD_GENERATED_STAMP)
 	@test -f $@
 
 $(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERATOR)
@@ -403,7 +404,9 @@ $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED))
 $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
 $(eval $(call custom_object_dep,ai_hooks,$(AI_ACTION_TABLE_GENERATED)))
 $(eval $(call custom_object_dep,ai_decision/ai_action_decode,$(AI_ACTION_TABLE_GENERATED)))
-$(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED)))
+$(eval $(call custom_object_dep,effect_text_hooks,$(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED) $(CARD_EFFECT_TEXTS_H)))
+$(eval $(call custom_object_dep,battle_effects/elemental_hero_core,$(CARD_EFFECT_TEXTS_H)))
+$(eval $(call custom_object_dep,permanent_effects/elemental_hero_core,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
 $(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))

@@ -21,6 +21,7 @@ from card_manifest import (  # noqa: E402
     ManifestValidationError,
     OPTIONAL_STATS_KEYS,
     REQUIRED_STATS_KEYS,
+    effect_text_symbol,
     load_manifest_json,
     validate_manifest as _validate_manifest,
 )
@@ -42,6 +43,7 @@ GENERATED_DATA_SRC = GENERATED_DIR / "card_data_hooks.c"
 GENERATED_TRUNK_INC = GENERATED_DIR / "card_trunk_generated.inc"
 GENERATED_ACTIVATION_TEXT_INC = GENERATED_DIR / "card_activation_text_generated.inc"
 GENERATED_ACTIVATION_TEXT_LOOKUP_INC = GENERATED_DIR / "card_activation_text_lookup_generated.inc"
+GENERATED_EFFECT_TEXT_IDS_H = ROOT / "include/constants/card_effect_texts.h"
 CARD_IDS_H = ROOT / "include/constants/card_ids.h"
 CARD_COUNTS_H = ROOT / "include/constants/card_counts.h"
 CARD_COUNTS_LD = ROOT / "generated/card_counts.ld"
@@ -1056,31 +1058,100 @@ def render_description_inc(manifest: dict) -> str:
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
 
 
+def _append_activation_text_symbol(lines: list[str], symbol: str, pages: list[str]) -> None:
+    # Always lead with "CARD was activated." then card-specific pages.
+    payload = [wrap_activation_page("#2\nwas activated."), "#1"]
+    for page in pages:
+        payload.append(wrap_activation_page(page))
+        payload.append("#1")
+    data = "".join(payload).encode("ascii") + b"\0"
+    lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
+    for i in range(0, len(data), 12):
+        chunk = data[i:i + 12]
+        lines.append("    " + ", ".join(f"0x{byte:02X}" for byte in chunk) + ",")
+    lines.append("};")
+    lines.append("")
+
+
 def render_activation_description_inc(manifest: dict) -> str:
     lines = []
-    intro_page = "#2\nwas activated."
     for item in manifest["cards"]:
         activation_description = item.get("activation_description")
-        if not activation_description:
-            continue
-        symbol = activation_description["symbol"]
-        pages = activation_description["pages"]
-        payload = [wrap_activation_page(intro_page), "#1"]
-        for page in pages:
-            payload.append(wrap_activation_page(page))
-            payload.append("#1")
-        data = "".join(payload).encode("ascii") + b"\0"
-        lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
-        for i in range(0, len(data), 12):
-            chunk = data[i:i + 12]
-            lines.append("    " + ", ".join(f"0x{byte:02X}" for byte in chunk) + ",")
-        lines.append("};")
-        lines.append("")
+        if activation_description:
+            _append_activation_text_symbol(
+                lines, activation_description["symbol"], activation_description["pages"]
+            )
+        effect_texts = item.get("effect_texts") or {}
+        for effect_id, effect in effect_texts.items():
+            symbol = effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id)
+            _append_activation_text_symbol(lines, symbol, effect["pages"])
     return "\n".join(lines).rstrip() + ("\n" if lines else "")
+
+
+def iter_effect_text_entries(manifest: dict):
+    for item in manifest["cards"]:
+        effect_texts = item.get("effect_texts") or {}
+        for effect_id, effect in effect_texts.items():
+            symbol = effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id)
+            enum_name = f"CARD_EFFECT_TEXT_{item['card_const']}_{effect_id.upper()}"
+            yield item["card_const"], effect_id, symbol, enum_name
+
+
+def render_effect_text_ids_header(manifest: dict) -> str:
+    lines = [
+        "#ifndef GUARD_CARD_EFFECT_TEXTS_H",
+        "#define GUARD_CARD_EFFECT_TEXTS_H",
+        "",
+        "/* Generated from manifest effect_texts — do not edit. */",
+        "",
+        "enum CardEffectTextId {",
+        "  CARD_EFFECT_TEXT_NONE = 0,",
+    ]
+    for _card, _effect_id, _symbol, enum_name in iter_effect_text_entries(manifest):
+        lines.append(f"  {enum_name},")
+    lines.extend(
+        [
+            "  NUM_CARD_EFFECT_TEXTS",
+            "};",
+            "",
+            "const u8 *GetCardEffectText(u16 effectTextId);",
+            "",
+            "#endif /* GUARD_CARD_EFFECT_TEXTS_H */",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def render_effect_text_lookup_inc(manifest: dict) -> str:
+    """Appended into activation-text lookup include (compiled in effect_text_hooks.c)."""
+    lines = [
+        "static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA = {",
+        "  [CARD_EFFECT_TEXT_NONE] = NULL,",
+    ]
+    for _card, _effect_id, symbol, enum_name in iter_effect_text_entries(manifest):
+        lines.append(f"  [{enum_name}] = {symbol},")
+    lines.extend(
+        [
+            "};",
+            "",
+            "const u8 *GetCardEffectText(u16 effectTextId)",
+            "{",
+            "  if (effectTextId >= NUM_CARD_EFFECT_TEXTS)",
+            "    return NULL;",
+            "",
+            "  return sCardEffectTextById[effectTextId];",
+            "}",
+            "",
+        ]
+    )
+    return "\n".join(lines)
 
 
 def render_activation_description_lookup_inc(manifest: dict) -> str:
     lines = [
+        "#include \"constants/card_effect_texts.h\"",
+        "",
         "static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = {",
     ]
     for item in manifest["cards"]:
@@ -1101,6 +1172,8 @@ def render_activation_description_lookup_inc(manifest: dict) -> str:
         "}",
         "",
     ])
+    lines.append(render_effect_text_lookup_inc(manifest).rstrip())
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -1403,6 +1476,7 @@ def main() -> int:
     description_inc = render_description_inc(manifest)
     activation_description_inc = render_activation_description_inc(manifest)
     activation_description_lookup_inc = render_activation_description_lookup_inc(manifest)
+    effect_text_ids_h = render_effect_text_ids_header(manifest)
     trunk_inc = render_trunk_inc(manifest, load_runtime_flag("enable_custom_cards_past_800"))
 
     if args.print:
@@ -1424,6 +1498,8 @@ def main() -> int:
         print(activation_description_inc, end="")
         print(f"--- {GENERATED_ACTIVATION_TEXT_LOOKUP_INC} ---")
         print(activation_description_lookup_inc, end="")
+        print(f"--- {GENERATED_EFFECT_TEXT_IDS_H} ---")
+        print(effect_text_ids_h, end="")
         print(f"--- {GENERATED_TRUNK_INC} ---")
         print(trunk_inc, end="")
         return 0
@@ -1440,6 +1516,7 @@ def main() -> int:
     update_file(ROOT / "src_custom/card_description_data_generated.inc", description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_INC, activation_description_inc)
     update_file(GENERATED_ACTIVATION_TEXT_LOOKUP_INC, activation_description_lookup_inc)
+    update_file(GENERATED_EFFECT_TEXT_IDS_H, effect_text_ids_h)
     update_file(GENERATED_TRUNK_INC, trunk_inc)
     print(f"Generated {len(entries)} card art bindings and built {len(built_minis)} mini assets.")
     return 0

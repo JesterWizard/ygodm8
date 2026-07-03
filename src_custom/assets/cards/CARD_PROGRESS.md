@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 279 |
-| Art ready, needs manifest | 133 |
+| In game (manifest + art) | 280 |
+| Art ready, needs manifest | 132 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -301,6 +301,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `R_RIGHTEOUS_JUSTICE` | R - Righteous Justice | `r_righteous_justice.png` |
 | `O_OVERSOUL` | O - Oversoul | `o_oversoul.png` |
 | `FUTURE_FUSION` | Future Fusion | `future_fusion.png` |
+| `ELEMENTAL_HERO_CORE` | Elemental HERO Core | `elemental_hero_core.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -346,7 +347,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `ELEMENTAL_HERO_BLAZEMAN` — `elemental_hero_blazeman.png`
 - [ ] `ELEMENTAL_HERO_CAPTAIN_GOLD` — `elemental_hero_captain_gold.png`
-- [ ] `ELEMENTAL_HERO_CORE` — `elemental_hero_core.png`
 - [ ] `ELEMENTAL_HERO_ICE_EDGE` — `elemental_hero_ice_edge.png`
 - [ ] `ELEMENTAL_HERO_STRATOS` — `elemental_hero_stratos.png`
 - [ ] `ELEMENTAL_HERO_SUNRISE` — `elemental_hero_sunrise.png`

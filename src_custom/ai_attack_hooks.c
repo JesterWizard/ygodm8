@@ -6,6 +6,7 @@
 #include "duel.h"
 #include "fairy_box.h"
 #include "mirror_wall.h"
+#include "elemental_hero_core.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "embodiment_of_apophis.h"
@@ -185,6 +186,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));
   TryApplyFairyBoxToPendingAction();
   TryApplyMirrorWallToPendingAction();
+  TryApplyElementalHeroCoreAtkDouble();
   TryApplyCatsEarTribeToPendingAction();
   TryApplySpiritRyuToPendingAction();
   HandleAtkAndLifePointsAction();
@@ -237,6 +239,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   SetAttackAction(playerCol, opponentCol);
   TryApplyFairyBoxToPendingAction();
   TryApplyMirrorWallToPendingAction();
+  TryApplyElementalHeroCoreAtkDouble();
   TryApplyCatsEarTribeToPendingAction();
   TryApplySpiritRyuToPendingAction();
   RunMonsterBattleAction();

@@ -1,3 +1,5 @@
+#include "constants/card_effect_texts.h"
+
 static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = {
   [SANGAN] = gActivationDescription_Sangan,
   [MASK_OF_DARKNESS] = gActivationDescription_MaskOfDarkness,
@@ -283,4 +285,18 @@ static const u8 *GetCardActivationText(u16 cardId) {
     return NULL;
 
   return sCardActivationTextById[cardId];
+}
+
+static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA = {
+  [CARD_EFFECT_TEXT_NONE] = NULL,
+  [CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_1] = gActivationDescription_ElementalHeroCore_Popup1,
+  [CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_2] = gActivationDescription_ElementalHeroCore_Popup2,
+};
+
+const u8 *GetCardEffectText(u16 effectTextId)
+{
+  if (effectTextId >= NUM_CARD_EFFECT_TEXTS)
+    return NULL;
+
+  return sCardEffectTextById[effectTextId];
 }

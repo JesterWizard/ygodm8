@@ -48,6 +48,7 @@
 #include "guardian_angel_joan.h"
 #include "royal_knight.h"
 #include "elemental_hero_steam_healer.h"
+#include "elemental_hero_core.h"
 #include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
@@ -1019,6 +1020,8 @@ void sub_8044570__Replacement(void)
       PerformDirectAttackOrRedirectToEmbodimentOfApophis(gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyMirrorWallToPendingAction();
+      TryApplyElementalHeroCoreAtkDouble();
+      TryApplyElementalHeroCoreAtkDouble();
       TryApplyCatsEarTribeToPendingAction();
       TryApplySpiritRyuToPendingAction();
       HandleAtkAndLifePointsAction();
@@ -1052,6 +1055,7 @@ void sub_8044570__Replacement(void)
       ResolveRoyalKnightBattleEffect();
       ResolveElementalHeroSteamHealerBattleEffect();
       ResolveElementalHeroFlameWingmanBattleEffect();
+      ResolveElementalHeroCoreBattledEffect();
       ResolveLesserFiendBattleEffect();
       ResolveDarkMagicianOfChaosBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();
@@ -1131,6 +1135,7 @@ void TryAttackWithMonster__Replacement(void)
       SetAttackAction(gDuelCursor.destX, gDuelCursor.currentX);
       TryApplyFairyBoxToPendingAction();
       TryApplyMirrorWallToPendingAction();
+      TryApplyElementalHeroCoreAtkDouble();
       TryApplyCatsEarTribeToPendingAction();
       TryApplySpiritRyuToPendingAction();
       RunMonsterBattleAction();
@@ -1170,6 +1175,7 @@ void TryAttackWithMonster__Replacement(void)
       ResolveRoyalKnightBattleEffect();
       ResolveElementalHeroSteamHealerBattleEffect();
       ResolveElementalHeroFlameWingmanBattleEffect();
+      ResolveElementalHeroCoreBattledEffect();
       ResolveLesserFiendBattleEffect();
       ResolveDarkMagicianOfChaosBattleEffect();
       ResolveAirknightParshathDrawBattleEffect();

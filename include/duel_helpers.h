@@ -123,6 +123,8 @@ void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
 
 void Duel_ShowEffectText(u16 cardId);
 void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);
+/* Popup for one of a card's manifest effect_texts (see card_effect_texts.h). */
+void Duel_ShowCardEffectText(u16 cardId, u16 effectTextId);
 
 enum DuelActionResult Duel_TryResolveSpellThroughTraps(u16 spellId, void (*resolveBody)(void));
 enum DuelActionResult Duel_TryResolveSpellThroughTrapsEx(u16 spellId, u16 trapLp,

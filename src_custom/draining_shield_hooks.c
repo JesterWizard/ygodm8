@@ -6,6 +6,7 @@
 #include "embodiment_of_apophis.h"
 #include "fairy_box.h"
 #include "mirror_wall.h"
+#include "elemental_hero_core.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -169,6 +170,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
 
   TryApplyFairyBoxToPendingAction();
   TryApplyMirrorWallToPendingAction();
+  TryApplyElementalHeroCoreAtkDouble();
   TryApplyCatsEarTribeToPendingAction();
   TryApplySpiritRyuToPendingAction();
   HandleAtkAndLifePointsAction();
@@ -197,6 +199,7 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveRoyalKnightBattleEffect();
   ResolveElementalHeroSteamHealerBattleEffect();
   ResolveElementalHeroFlameWingmanBattleEffect();
+  ResolveElementalHeroCoreBattledEffect();
   ResolveLesserFiendBattleEffect();
   ResolveDarkMagicianOfChaosBattleEffect();
   ResolveAirknightParshathDrawBattleEffect();

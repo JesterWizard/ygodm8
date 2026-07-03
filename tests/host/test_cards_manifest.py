@@ -158,6 +158,25 @@ class CardManifestTests(unittest.TestCase):
         self.assertIn("[ELEMENTAL_HERO_LADY_HEAT] = gActivationDescription_ElementalHeroLadyHeat", lookup)
         self.assertIn("return sCardActivationTextById[cardId];", lookup)
 
+    def test_effect_texts_emit_named_symbols(self):
+        manifest = validate_manifest(json.loads((ROOT / "tools" / "card_data_manifest.json").read_text()))
+        core = next(c for c in manifest["cards"] if c["card_const"] == "ELEMENTAL_HERO_CORE")
+        self.assertIn("popup_1", core["effect_texts"])
+        self.assertIn("popup_2", core["effect_texts"])
+        self.assertEqual(
+            core["effect_texts"]["popup_2"]["symbol"],
+            "gActivationDescription_ElementalHeroCore_Popup2",
+        )
+        text_inc = card_art.render_activation_description_inc(manifest)
+        self.assertIn("gActivationDescription_ElementalHeroCore_Popup1", text_inc)
+        self.assertIn("gActivationDescription_ElementalHeroCore_Popup2", text_inc)
+        ids_h = card_art.render_effect_text_ids_header(manifest)
+        self.assertIn("CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_1", ids_h)
+        self.assertIn("CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_2", ids_h)
+        lookup = card_art.render_activation_description_lookup_inc(manifest)
+        self.assertIn("GetCardEffectText", lookup)
+        self.assertIn("[CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_2]", lookup)
+
 
 if __name__ == "__main__":
     unittest.main()

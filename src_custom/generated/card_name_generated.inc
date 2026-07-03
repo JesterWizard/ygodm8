@@ -280,6 +280,7 @@ static const u8 sEEmergencyCallName[] __attribute__((section(".append_assets")))
 static const u8 sRRighteousJusticeName[] __attribute__((section(".append_assets"))) = "R - Righteous Justice";
 static const u8 sOOversoulName[] __attribute__((section(".append_assets"))) = "O - Oversoul";
 static const u8 sFutureFusionName[] __attribute__((section(".append_assets"))) = "Future Fusion";
+static const u8 sElementalHeroCoreName[] __attribute__((section(".append_assets"))) = "Elemental HERO Core";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -846,6 +847,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sOOversoulName;
   if (cardId == 0x0437)
     return (u8 *)sFutureFusionName;
+  if (cardId == 0x0438)
+    return (u8 *)sElementalHeroCoreName;
 
   return gCardNames[cardId];
 }

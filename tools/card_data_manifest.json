@@ -20,7 +20,7 @@
       "card_name": "Blue Eyes White Dragon",
       "atk": 3000,
       "def": 2500,
-      "level": 8,
+      "level": 4,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_DRAGON",
       "color": "NORMAL_CARD",
@@ -20543,6 +20543,41 @@
         "pages": [
           "Send materials from Deck to GY; select a Fusion Monster. SS it on your 2nd Standby Phase."
         ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_CORE",
+      "card_name": "Elemental HERO Core",
+      "atk": 2700,
+      "def": 2200,
+      "level": 9,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [9, 5, 4, 8, 6, 5, 8, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroCore",
+        "pages": [
+          "3 E-HERO monsters. Must be Fusion Summoned.",
+          "Once per turn, double original ATK when battling.",
+          "After battle destroy 1 mon. When destroyed SS E-HERO Fusion."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": {
+          "pages": [
+            "After battle, destroy 1 monster."
+          ]
+        },
+        "popup_2": {
+          "pages": [
+            "Special Summon 1 Level 8 or lower Elemental HERO Fusion from GY."
+          ]
+        }
       }
     }
   ]
