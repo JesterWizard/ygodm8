@@ -16,6 +16,7 @@
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_gaia.h"
 #include "harpie_lady_1.h"
+#include "elemental_hero_inferno.h"
 #include "duel.h"
 #include "dynamic_equip.h"
 #include "world_suppression.h"
@@ -612,6 +613,8 @@ void RefreshPendingBattleActionStatsFromZones(void)
           zone, &sActionData.opponentCardAtkOrLifePointsMod,
           &sActionData.opponentCardDefense, &sActionData.opponentCardAttribute);
   }
+
+  ApplyElementalHeroInfernoBattleAtkBoost();
 }
 
 LYN_REPLACE_CHECK(SetFinalStat);

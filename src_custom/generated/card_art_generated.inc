@@ -1084,6 +1084,10 @@ static const unsigned char sElementalHeroTheShiningBigArt[] __attribute__((secti
 static const unsigned short sElementalHeroTheShiningBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_the_shining.gbapal");
 static const unsigned char sElementalHeroTheShiningMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_the_shining.lz");
 
+static const unsigned char sElementalHeroInfernoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_inferno.huff");
+static const unsigned short sElementalHeroInfernoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_inferno.gbapal");
+static const unsigned char sElementalHeroInfernoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_inferno.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1356,6 +1360,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x042B] = sElementalHeroGaiaBigArt,
   [0x042C] = sElementalHeroEscuridaoBigArt,
   [0x042D] = sElementalHeroTheShiningBigArt,
+  [0x042E] = sElementalHeroInfernoBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1630,6 +1635,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x042B] = sElementalHeroGaiaBigPalette,
   [0x042C] = sElementalHeroEscuridaoBigPalette,
   [0x042D] = sElementalHeroTheShiningBigPalette,
+  [0x042E] = sElementalHeroInfernoBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1904,6 +1910,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x042B] = 0,
   [0x042C] = 0,
   [0x042D] = 0,
+  [0x042E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2178,4 +2185,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x042B] = sElementalHeroGaiaMiniArt,
   [0x042C] = sElementalHeroEscuridaoMiniArt,
   [0x042D] = sElementalHeroTheShiningMiniArt,
+  [0x042E] = sElementalHeroInfernoMiniArt,
 };
