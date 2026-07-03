@@ -277,6 +277,7 @@ static const u8 sFusionRecoveryName[] __attribute__((section(".append_assets")))
 static const u8 sSkyscraperName[] __attribute__((section(".append_assets"))) = "Skyscraper";
 static const u8 sHHeatedHeartName[] __attribute__((section(".append_assets"))) = "H - Heated Heart";
 static const u8 sEEmergencyCallName[] __attribute__((section(".append_assets"))) = "E - Emergency Call";
+static const u8 sRRighteousJusticeName[] __attribute__((section(".append_assets"))) = "R - Righteous Justice";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -837,6 +838,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHHeatedHeartName;
   if (cardId == 0x0434)
     return (u8 *)sEEmergencyCallName;
+  if (cardId == 0x0435)
+    return (u8 *)sRRighteousJusticeName;
 
   return gCardNames[cardId];
 }

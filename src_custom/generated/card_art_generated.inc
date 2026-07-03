@@ -1112,6 +1112,10 @@ static const unsigned char sEEmergencyCallBigArt[] __attribute__((section(".appe
 static const unsigned short sEEmergencyCallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/e_emergency_call.gbapal");
 static const unsigned char sEEmergencyCallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/e_emergency_call.lz");
 
+static const unsigned char sRRighteousJusticeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/r_righteous_justice.huff");
+static const unsigned short sRRighteousJusticeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/r_righteous_justice.gbapal");
+static const unsigned char sRRighteousJusticeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/r_righteous_justice.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1391,6 +1395,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0432] = sSkyscraperBigArt,
   [0x0433] = sHHeatedHeartBigArt,
   [0x0434] = sEEmergencyCallBigArt,
+  [0x0435] = sRRighteousJusticeBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1672,6 +1677,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0432] = sSkyscraperBigPalette,
   [0x0433] = sHHeatedHeartBigPalette,
   [0x0434] = sEEmergencyCallBigPalette,
+  [0x0435] = sRRighteousJusticeBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1953,6 +1959,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0432] = 0,
   [0x0433] = 0,
   [0x0434] = 0,
+  [0x0435] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2234,4 +2241,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0432] = sSkyscraperMiniArt,
   [0x0433] = sHHeatedHeartMiniArt,
   [0x0434] = sEEmergencyCallMiniArt,
+  [0x0435] = sRRighteousJusticeMiniArt,
 };

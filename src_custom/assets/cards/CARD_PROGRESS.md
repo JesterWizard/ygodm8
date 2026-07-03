@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 276 |
-| Art ready, needs manifest | 136 |
+| In game (manifest + art) | 277 |
+| Art ready, needs manifest | 135 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -298,6 +298,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SKYSCRAPER` | Skyscraper | `skyscraper.png` |
 | `H_HEATED_HEART` | H - Heated Heart | `h_heated_heart.png` |
 | `E_EMERGENCY_CALL` | E - Emergency Call | `e_emergency_call.png` |
+| `R_RIGHTEOUS_JUSTICE` | R - Righteous Justice | `r_righteous_justice.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -399,7 +400,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `POWER_BOND` — `power_bond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
-- [ ] `R_RIGHTEOUS_JUSTICE` — `r_righteous_justice.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`

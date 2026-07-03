@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1077] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1078] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1089,9 +1089,10 @@ const u8 gCardLockAfterActivation_Hook[1077] APPEND_RODATA = {
   [0x0432] = 1,
   [0x0433] = 1,
   [0x0434] = 1,
+  [0x0435] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1077] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1078] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2169,9 +2170,10 @@ const u8 gCardEffectUsage_Hook[1077] APPEND_RODATA = {
   [0x0432] = EFFECT_USAGE_NONE,
   [0x0433] = EFFECT_USAGE_NONE,
   [0x0434] = EFFECT_USAGE_NONE,
+  [0x0435] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1077] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1078] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3249,9 +3251,10 @@ const u8 gCardSelectableOnce_Hook[1077] APPEND_RODATA = {
   [0x0432] = 0,
   [0x0433] = 0,
   [0x0434] = 0,
+  [0x0435] = 0,
 };
 
-const CardData gCardData_NEW[1077] APPEND_RODATA = {
+const CardData gCardData_NEW[1078] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -17576,5 +17579,19 @@ const CardData gCardData_NEW[1077] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {0, 0, 2, 1, 3, 3, 2, 6},
     .description = gDescription_EEmergencyCall,
+  },
+  [0x0435] = {
+    .atk = 65535,
+    .def = 65535,
+    .cost = 15,
+    .attribute = 0,
+    .level = 0,
+    .type = TYPE_SPELL,
+    .color = SPELL_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 7, 3, 1, 8, 0, 3, 1},
+    .description = gDescription_RRighteousJustice,
   },
 };

@@ -1,7 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — Duel trunk-view graphics API
+**Last worked on:** 2026-07-03 — R - Righteous Justice manual multi-target
 
-**Outcome:** Card-opened trunk/deck-menu views now bracket menu use with `DeckMenu_BeginDuelTrunkView()` / `DeckMenu_EndDuelTrunkView()` so duel graphics reload on every exit path. Non-graveyard card pickers use `DeckMenuMainPickConfirmWithLabels`; top-level B waits a frame and does nothing, avoiding both field return and input-loop freeze. `make test-cards-build` passes.
+**Files touched:**
+- `src_custom/spell_effects/r_righteous_justice.c`
 
-**Open / next:** playtest Emergency Call and fusion picker trunk menus in emulator
+**Outcome:** Manual S/T picks equal to face-up E-HEROes; exclude activating spell by zone pointer; make test-cards-link passes
+
+**Open / next:**
+- playtest 2 E-HEROes with 2+ opponent S/T

@@ -288,12 +288,15 @@ $(CARD_IDS_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR)
 $(CARD_IDS_GENERATED) $(CARD_COUNTS_GENERATED): $(CARD_IDS_STAMP)
 	@test -f $@
 
-$(CARD_ART_STAMP): $(CARD_ART_GENERATOR) $(CUSTOM_CARD_80_PNGS) $(CUSTOM_CARD_24_PNGS) src_custom/assets/cards/mini.pal
+# Manifest is a dep so pre-existing 80x80 PNGs bind when a card entry is added.
+# --skip-art rewrites art tables from build/ artifacts only; without this, new
+# manifest cards whose PNGs were already on disk get [id] = 0 pointers.
+$(CARD_ART_STAMP): $(CARD_ART_GENERATOR) $(CARD_DATA_MANIFEST) $(CUSTOM_CARD_80_PNGS) $(CUSTOM_CARD_24_PNGS) src_custom/assets/cards/mini.pal
 	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR) --art-only
 	touch $@
 
-$(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CARD_IDS_GENERATED) | $(CARD_ART_STAMP)
+$(CARD_GENERATED_STAMP): $(CARD_DATA_MANIFEST) $(CARD_ART_GENERATOR) configs/runtime.c $(CARD_IDS_GENERATED) $(CARD_ART_STAMP)
 	@mkdir -p $(dir $@)
 	python3 $(CARD_ART_GENERATOR) --skip-art
 	touch $@

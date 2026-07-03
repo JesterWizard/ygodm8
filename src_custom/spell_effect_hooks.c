@@ -93,6 +93,7 @@ extern void EffectAutonomousActionUnit(void);
 extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
 extern void EffectFusionRecovery(void);
 extern void EffectEEmergencyCall(void);
+extern void EffectRRighteousJustice(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -148,6 +149,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case THUNDER_CRASH:
     case RAIN_OF_MERCY:
     case UPSTART_GOBLIN:
+    case R_RIGHTEOUS_JUSTICE:
       return TRUE;
     default:
       break;
@@ -512,6 +514,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case E_EMERGENCY_CALL:
       EffectEEmergencyCall();
+      return;
+    case R_RIGHTEOUS_JUSTICE:
+      EffectRRighteousJustice();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();
