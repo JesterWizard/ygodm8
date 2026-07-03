@@ -12,6 +12,7 @@
 #include "ojama_trio.h"
 #include "riryoku.h"
 #include "big_bang_shot.h"
+#include "h_heated_heart.h"
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_gaia.h"
@@ -447,7 +448,7 @@ int GetSpellType__Replacement(u16 cardId) {
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND
       || cardId == TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE || cardId == RAREGOLD_ARMOR
-      || cardId == BIG_BANG_SHOT)
+      || cardId == BIG_BANG_SHOT || cardId == H_HEATED_HEART)
     return SPELL_TYPE_EQUIP;
 
   if (gCardInfo.spellEffect >= SPELL_EFFECT_FOREST
@@ -566,6 +567,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
+  ApplyHeatedHeartAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
   ApplyElementalHeroGaiaStatMod(zone);
@@ -671,6 +673,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && CardUsesMonsterCombatStats(ptr->card)) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
+    ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);

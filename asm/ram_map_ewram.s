@@ -231,6 +231,8 @@ _kernel_malloc_ewram gLimiterRemovalFixedMonsterRow, 1
 @ Triangle Power: column bitmasks for both monster rows, destroyed at end phase.
 _kernel_malloc_ewram gTrianglePowerDestroyMaskPlayer, 1
 _kernel_malloc_ewram gTrianglePowerDestroyMaskOpponent, 1
+@ ponytail: pad keeps EWRAM layout stable; Heated Heart stats come from dynamic equip link.
+_kernel_malloc_ewram gHeatedHeartPad, 2
 
 @ -- Turn flow & AI re-simulation ----------------------------------------------
 

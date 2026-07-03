@@ -327,7 +327,8 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
   if (!link->active)
     return FALSE;
 
-  if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR)
+  if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR
+      || link->spellId == H_HEATED_HEART)
     return FALSE;
 
   spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
@@ -407,7 +408,8 @@ s8 GetDynamicEquipStageDelta(const struct DuelCard *zone)
     if (!link->active)
       continue;
 
-    if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR)
+    if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR
+        || link->spellId == H_HEATED_HEART)
       continue;
 
     if (link->targetFixedRow != row || link->targetFixedCol != col)
@@ -451,6 +453,7 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
     case RAREGOLD_ARMOR:
     case BIG_BANG_SHOT:
+    case H_HEATED_HEART:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE
           && !IsImperialOrderNegatingSpell(zone->id);
     default:

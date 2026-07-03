@@ -20401,6 +20401,35 @@
         ]
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_SKYSCRAPER"
+    },
+    {
+      "card_const": "H_HEATED_HEART",
+      "card_name": "H - Heated Heart",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 4, 8, 2, 5, 7, 8, 8],
+      "description": {
+        "symbol": "gDescription_HHeatedHeart",
+        "pages": [
+          "Target 1 face-up monster you control.",
+          "It gains 500 ATK this turn.",
+          "Piercing battle damage vs. Defense Position monsters."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_HHeatedHeart",
+        "pages": [
+          "Target 1 face-up monster you control."
+        ]
+      }
     }
   ]
 }

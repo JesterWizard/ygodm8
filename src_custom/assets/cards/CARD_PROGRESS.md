@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 274 |
-| Art ready, needs manifest | 138 |
+| In game (manifest + art) | 275 |
+| Art ready, needs manifest | 137 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **412** |
 
@@ -296,6 +296,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_PLASMA_VICE` | Elemental HERO Plasma Vice | `elemental_hero_plasma_vice.png` |
 | `FUSION_RECOVERY` | Fusion Recovery | `fusion_recovery.png` |
 | `SKYSCRAPER` | Skyscraper | `skyscraper.png` |
+| `H_HEATED_HEART` | H - Heated Heart | `h_heated_heart.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -356,7 +357,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
-- [ ] `H_HEATED_HEART` — `h_heated_heart.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HERO_FLASH` — `hero_flash.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`

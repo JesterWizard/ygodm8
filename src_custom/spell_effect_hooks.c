@@ -75,6 +75,7 @@ extern void EffectBigBangShot(void);
 extern void EffectGracefulDice(void);
 extern void EffectChaosGreed(void);
 extern void EffectBookOfMoon(void);
+extern void EffectHHeatedHeart(void);
 extern void EffectBookOfTaiyou(void);
 extern void EffectThunderCrash(void);
 extern void EffectRingOfDestruction(void);
@@ -135,6 +136,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case METEOR_OF_DESTRUCTION:
     case BLOCK_ATTACK:
     case BOOK_OF_MOON:
+    case H_HEATED_HEART:
     case BOOK_OF_TAIYOU:
     case DE_FUSION:
     case DIFFUSION_WAVE_MOTION:
@@ -441,6 +443,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case BOOK_OF_MOON:
       EffectBookOfMoon();
+      return;
+    case H_HEATED_HEART:
+      EffectHHeatedHeart();
       return;
     case BOOK_OF_TAIYOU:
       EffectBookOfTaiyou();

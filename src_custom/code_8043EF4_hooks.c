@@ -99,6 +99,7 @@
 #include "book_of_life.h"
 #include "autonomous_action_unit.h"
 #include "book_of_moon.h"
+#include "h_heated_heart.h"
 #include "book_of_taiyou.h"
 #include "de_fusion.h"
 #include "diffusion_wave_motion.h"
@@ -486,6 +487,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     }
 
     BeginNegativeEnergyTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsHHeatedHeartCard(id)) {
+    if (!FieldHasHHeatedHeartTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginHHeatedHeartTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;
@@ -1226,6 +1242,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       TrySelectNegativeEnergyTarget();
       break;
+    case DUEL_CURSOR_H_HEATED_HEART_TARGET:
+      TrySelectHHeatedHeartTarget();
+      break;
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       TrySelectBookOfMoonTarget();
       break;
@@ -1347,6 +1366,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       CancelNegativeEnergyTargeting();
+      break;
+    case DUEL_CURSOR_H_HEATED_HEART_TARGET:
+      CancelHHeatedHeartTargeting();
       break;
     case DUEL_CURSOR_BOOK_OF_MOON_TARGET:
       CancelBookOfMoonTargeting();

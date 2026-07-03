@@ -38,6 +38,7 @@
 #include "d_d_warrior.h"
 #include "des_kangaroo.h"
 #include "big_bang_shot.h"
+#include "h_heated_heart.h"
 #include "cyber_end_dragon.h"
 #include "elemental_hero_bladedge.h"
 #include "elemental_hero_plasma_vice.h"
@@ -218,6 +219,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyElementalHeroBladedgePiercingBattleEffect();
   ApplyElementalHeroPlasmaVicePiercingBattleEffect();
   ApplyBigBangShotPiercingBattleEffect();
+  ApplyHHeatedHeartPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();
   ApplyLesserFiendBattleEffect();
