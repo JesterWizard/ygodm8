@@ -199,6 +199,7 @@ u8 TrySpecialSummonGilasaurusFromHand(u8);
 u8 TrySpecialSummonFenrirFromHand(u8);
 u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8);
 u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8);
+u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -344,6 +345,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           && TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ELEMENTAL_HERO_CAPTAIN_GOLD
+          && TryActivateElementalHeroCaptainGoldFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

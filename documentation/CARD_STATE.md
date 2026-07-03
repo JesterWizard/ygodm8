@@ -1,13 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-03 — Fix Sunrise field glitch on opponent turn
+**Last worked on:** 2026-07-03 — Added Elemental HERO Captain Gold
 
 **Files touched:**
-- `src_custom/permanent_effects/elemental_hero_sunrise.c`
-- `src_custom/fusion_duel.c`
-- `asm/ram_map_ewram.s`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/permanent_effects/elemental_hero_captain_gold.c`
+- `src_custom/permanent_effect_hooks.c`
+- `src_custom/code_8043EF4_hooks.c`
+- `Makefile`
 
-**Outcome:** No longer stamps stat overlays on updateGfx=FALSE placements (AI summon); ATK boost still applies on real draws; opponent-turn destroy is silent
+**Outcome:** make test-cards-build passes; hand discard searches Skyscraper; face-up on field without Skyscraper self-destructs
 
 **Open / next:**
-- playtest Sunrise on field through opponent turn and AI summons
+- playtest hand search and field self-destruct with/without Skyscraper

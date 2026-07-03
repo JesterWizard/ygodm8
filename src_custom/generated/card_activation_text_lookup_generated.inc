@@ -280,6 +280,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [FUTURE_FUSION] = gActivationDescription_FutureFusion_Popup1,
   [ELEMENTAL_HERO_CORE] = gActivationDescription_ElementalHeroCore_Popup1,
   [ELEMENTAL_HERO_SUNRISE] = gActivationDescription_ElementalHeroSunrise_Popup1,
+  [ELEMENTAL_HERO_CAPTAIN_GOLD] = gActivationDescription_ElementalHeroCaptainGold_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -572,6 +573,8 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_ELEMENTAL_HERO_CORE_POPUP_2] = gActivationDescription_ElementalHeroCore_Popup2,
   [CARD_EFFECT_TEXT_ELEMENTAL_HERO_SUNRISE_POPUP_1] = gActivationDescription_ElementalHeroSunrise_Popup1,
   [CARD_EFFECT_TEXT_ELEMENTAL_HERO_SUNRISE_POPUP_2] = gActivationDescription_ElementalHeroSunrise_Popup2,
+  [CARD_EFFECT_TEXT_ELEMENTAL_HERO_CAPTAIN_GOLD_POPUP_1] = gActivationDescription_ElementalHeroCaptainGold_Popup1,
+  [CARD_EFFECT_TEXT_ELEMENTAL_HERO_CAPTAIN_GOLD_POPUP_2] = gActivationDescription_ElementalHeroCaptainGold_Popup2,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

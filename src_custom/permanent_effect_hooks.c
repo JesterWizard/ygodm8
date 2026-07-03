@@ -89,6 +89,8 @@ unsigned char ShouldActivateBerserkGorilla(void);
 unsigned char ShouldActivateMobiusTheFrostMonarch(void);
 void ActivateMobiusTheFrostMonarch(void);
 void ActivateBerserkGorilla(void);
+unsigned char ShouldActivateElementalHeroCaptainGold(void);
+void ActivateElementalHeroCaptainGold(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -248,6 +250,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DARK_MAGICIAN_OF_CHAOS,
     .shouldActivate = ShouldActivateDARK_MAGICIAN_OF_CHAOS,
     .activate = ActivateDARK_MAGICIAN_OF_CHAOS,
+  },
+  {
+    .cardId = ELEMENTAL_HERO_CAPTAIN_GOLD,
+    .shouldActivate = ShouldActivateElementalHeroCaptainGold,
+    .activate = ActivateElementalHeroCaptainGold,
   },
 };
 

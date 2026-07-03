@@ -19803,6 +19803,33 @@
         "popup_1": "Add 1 Miracle Fusion from your Deck to your hand.",
         "popup_2": "Destroy 1 card on the field."
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_CAPTAIN_GOLD",
+      "card_name": "Elemental HERO Captain Gold",
+      "atk": 2100,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [8, 0, 9, 0, 8, 5, 4, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroCaptainGold",
+        "pages": [
+          "Discard this card to add 1 Skyscraper from",
+          "your Deck to your hand. If this card is on",
+          "the field and Skyscraper is not, destroy it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard this card to add 1 Skyscraper from your Deck to your hand.",
+        "popup_2": "Destroy this card."
+      }
     }
   ]
 }

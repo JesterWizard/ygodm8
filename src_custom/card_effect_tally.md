@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `263` effects
+- `264` effects
 
 ## Tally
 
@@ -303,6 +303,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Elemental HERO Absolute Zero` | `src_custom/permanent_effects/elemental_hero_absolute_zero.c` |
 | `battle_effects` | `Elemental HERO Core` | `src_custom/battle_effects/elemental_hero_core.c` |
 | `permanent_effects` | `Elemental HERO Core` | `src_custom/permanent_effects/elemental_hero_core.c` |
+| `permanent_effects` | `Elemental HERO Captain Gold` | `src_custom/permanent_effects/elemental_hero_captain_gold.c` |
 
 ## Notes
 
