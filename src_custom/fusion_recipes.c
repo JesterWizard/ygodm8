@@ -39,6 +39,7 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_ESCURIDAO, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_SHADOW, 0, 0 },
   { ELEMENTAL_HERO_THE_SHINING, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ATTRIBUTE_LIGHT, 0, 0 },
   { ELEMENTAL_HERO_INFERNO, ELEMENTAL_HERO_HEAT, ELEMENTAL_HERO_LADY_HEAT, 0, 0 },
+  { ELEMENTAL_HERO_NECROID_SHAMAN, ELEMENTAL_HERO_WILDHEART, ELEMENTAL_HERO_NECROSHADE, 0, 0 },
 };
 
 u8 FusionRecipe_Count(void)
@@ -193,6 +194,11 @@ void FusionRecipes_SelfCheck(void)
       ;
 
   recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_INFERNO);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_NECROID_SHAMAN);
   if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
     while (1)
       ;

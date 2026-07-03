@@ -41,6 +41,7 @@
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_gaia.h"
+#include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "chiron_the_mage.h"
@@ -569,6 +570,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_TERRA_FIRMA_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_NECROID_SHAMAN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2

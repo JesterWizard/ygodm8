@@ -20282,6 +20282,35 @@
           "card battles a WATER monster, +1000 ATK in Damage Step."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_NECROID_SHAMAN",
+      "card_name": "Elemental HERO Necroid Shaman",
+      "atk": 1900,
+      "def": 1800,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 1, 0, 0, 3, 5, 0, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroNecroidShaman",
+        "pages": [
+          "Elemental HERO Wildheart + Elemental HERO Necroshade.",
+          "When summoned, destroy 1 opponent monster.",
+          "Then revive 1 monster from opponent graveyard."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroNecroidShaman",
+        "pages": [
+          "Destroy 1 opponent monster. Then revive 1 monster from the opponent's graveyard."
+        ]
+      }
     }
   ]
 }

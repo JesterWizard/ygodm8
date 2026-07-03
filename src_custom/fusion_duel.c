@@ -8,6 +8,7 @@
 #include "elemental_hero_electrum.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_gaia.h"
+#include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_absolute_zero.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
@@ -395,7 +396,8 @@ static void SummonFusionResult(u16 resultId)
       /* Great Tornado's halving is continuous while face-up on the field. */
       if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
           && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO
-          && resultId != ELEMENTAL_HERO_GAIA)
+          && resultId != ELEMENTAL_HERO_GAIA
+          && resultId != ELEMENTAL_HERO_NECROID_SHAMAN)
         FlipCardFaceDown(zone);
       break;
     }
@@ -411,6 +413,9 @@ static void SummonFusionResult(u16 resultId)
 
   if (resultId == ELEMENTAL_HERO_GAIA)
     ElementalHeroGaia_OnFusionSummoned();
+
+  if (resultId == ELEMENTAL_HERO_NECROID_SHAMAN)
+    ElementalHeroNecroidShaman_OnFusionSummoned();
 }
 
 static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *recipe,
