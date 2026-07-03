@@ -20311,6 +20311,37 @@
           "Destroy 1 opponent monster. Then revive 1 monster from the opponent's graveyard."
         ]
       }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_PLASMA_VICE",
+      "card_name": "Elemental HERO Plasma Vice",
+      "atk": 2600,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [6, 0, 4, 9, 3, 1, 8, 9],
+      "description": {
+        "symbol": "gDescription_ElementalHeroPlasmaVice",
+        "pages": [
+          "Sparkman + Bladedge. Must be Fusion Summoned.",
+          "Can inflict piercing damage. Discard 1 card to",
+          "destroy 1 monster on your opponent's field."
+        ]
+      },
+      "activation_description": {
+        "symbol": "gActivationDescription_ElementalHeroPlasmaVice",
+        "pages": [
+          "Discard 1 card, destroy 1 monster on your opponent's side of the field."
+        ]
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

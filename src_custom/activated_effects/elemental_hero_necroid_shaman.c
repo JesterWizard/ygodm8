@@ -13,9 +13,6 @@ extern u16 gFilteredInput;
 extern u16 gPressedButtons;
 
 void ClearGraphicsBuffers(void);
-void DisplayCardInfoBar(void);
-void sub_8041E70(u8, u8);
-void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
 void UpdateAllDuelGfx(void);
 void UpdateFilteredInput_NoRepeat(void);
@@ -405,22 +402,12 @@ static void TryReviveOpponentGraveyardMonster(u8 allowPlayerPicker)
   SpecialSummonOpponentGraveyardMonsterAtIndex(gyIndex);
 }
 
-static void FinishNecroidShamanTargeting(void)
+static void CancelDestroyTargeting(void)
 {
-  u8 originRow = gDuelCursor.destY;
-  u8 originCol = gDuelCursor.destX;
-
-  gDuelCursor.state = 0;
-  gDuelCursor.currentY = originRow;
-  gDuelCursor.currentX = originCol;
-  ResetCursorDestToCurrentPos();
-  UpdateDuelGfxExceptField();
-  CheckWinConditionExodia(WhoseTurn());
-  if (IsDuelOver() != TRUE)
-    TryActivatingPermanentEffects();
+  PlayMusic(SFX_CANCEL);
 }
 
-static void ResolveDestroyAndRevive(u8 targetRow, u8 targetCol)
+static void ResolveDestroyTarget(u8 targetRow, u8 targetCol)
 {
   struct DuelCard *target = gFixedZones[targetRow][targetCol];
 
@@ -449,14 +436,16 @@ static void BeginNecroidShamanTargeting(u8 originRow, u8 originCol)
   if (IsDuelOver() == TRUE)
     return;
 
-  PlayMusic(SFX_SELECT);
   gDuelCursor.destY = originRow;
   gDuelCursor.destX = originCol;
-  gDuelCursor.state = DUEL_CURSOR_ELEMENTAL_HERO_NECROID_SHAMAN_TARGET;
-  gDuelCursor.currentY = targetRow;
-  gDuelCursor.currentX = targetCol;
-  DisplayCardInfoBar();
-  sub_8041E70(originRow, targetRow);
+
+  Duel_SetupPickZone(ZoneIsValidDestroyTarget, ResolveDestroyTarget, CancelDestroyTargeting,
+                     PickAiDestroyTarget);
+
+  if (WhoseTurn() == DUEL_PLAYER)
+    Duel_EnterPickZoneTargeting();
+  else
+    Duel_ResolvePickZoneForAi();
 }
 
 static void ResolveNecroidShamanEffectForAi(void)
@@ -467,39 +456,11 @@ static void ResolveNecroidShamanEffectForAi(void)
   if (!PickAiDestroyTarget(&targetRow, &targetCol))
     return;
 
-  ResolveDestroyAndRevive(targetRow, targetCol);
+  ResolveDestroyTarget(targetRow, targetCol);
   UpdateDuelGfxExceptField();
   CheckWinConditionExodia(WhoseTurn());
   if (IsDuelOver() != TRUE)
     TryActivatingPermanentEffects();
-}
-
-void TrySelectElementalHeroNecroidShamanTarget(void)
-{
-  u8 targetRow = gDuelCursor.currentY;
-  u8 targetCol = gDuelCursor.currentX;
-
-  if (!ZoneIsValidDestroyTarget(targetRow, targetCol)) {
-    PlayMusic(SFX_FORBIDDEN);
-    WaitForVBlank();
-    return;
-  }
-
-  ResolveDestroyAndRevive(targetRow, targetCol);
-  FinishNecroidShamanTargeting();
-}
-
-void CancelElementalHeroNecroidShamanTargeting(void)
-{
-  u8 currY = gDuelCursor.currentY;
-
-  PlayMusic(SFX_CANCEL);
-  gDuelCursor.state = 0;
-  gDuelCursor.currentY = gDuelCursor.destY;
-  gDuelCursor.currentX = gDuelCursor.destX;
-  ResetCursorDestToCurrentPos();
-  DisplayCardInfoBar();
-  sub_8041E70(currY, gDuelCursor.currentY);
 }
 
 void ElementalHeroNecroidShaman_OnFusionSummoned(void)

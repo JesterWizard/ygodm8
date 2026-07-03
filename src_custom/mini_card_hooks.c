@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "card.h"
+#include "constants/card_ids.h"
 #include "duel.h"
 #include "elemental_hero_terra_firma.h"
 #include "riryoku.h"
@@ -99,6 +100,8 @@ static const unsigned char *GetMiniArtForCard(u16 cardId) {
     return g8E17F70[CARD_NONE];
   if (gMiniCardArts_Hook[cardId] != NULL)
     return gMiniCardArts_Hook[cardId];
+  if (cardId >= CUSTOM_CARD_START)
+    return g8E17F70[CARD_NONE];
   return g8E17F70[cardId];
 }
 

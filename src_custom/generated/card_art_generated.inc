@@ -1092,6 +1092,10 @@ static const unsigned char sElementalHeroNecroidShamanBigArt[] __attribute__((se
 static const unsigned short sElementalHeroNecroidShamanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_necroid_shaman.gbapal");
 static const unsigned char sElementalHeroNecroidShamanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_necroid_shaman.lz");
 
+static const unsigned char sElementalHeroPlasmaViceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_plasma_vice.huff");
+static const unsigned short sElementalHeroPlasmaViceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_plasma_vice.gbapal");
+static const unsigned char sElementalHeroPlasmaViceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_plasma_vice.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1366,6 +1370,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x042D] = sElementalHeroTheShiningBigArt,
   [0x042E] = sElementalHeroInfernoBigArt,
   [0x042F] = sElementalHeroNecroidShamanBigArt,
+  [0x0430] = sElementalHeroPlasmaViceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1642,6 +1647,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x042D] = sElementalHeroTheShiningBigPalette,
   [0x042E] = sElementalHeroInfernoBigPalette,
   [0x042F] = sElementalHeroNecroidShamanBigPalette,
+  [0x0430] = sElementalHeroPlasmaViceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -1918,6 +1924,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x042D] = 0,
   [0x042E] = 0,
   [0x042F] = 0,
+  [0x0430] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2194,4 +2201,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x042D] = sElementalHeroTheShiningMiniArt,
   [0x042E] = sElementalHeroInfernoMiniArt,
   [0x042F] = sElementalHeroNecroidShamanMiniArt,
+  [0x0430] = sElementalHeroPlasmaViceMiniArt,
 };

@@ -40,6 +40,7 @@
 #include "big_bang_shot.h"
 #include "cyber_end_dragon.h"
 #include "elemental_hero_bladedge.h"
+#include "elemental_hero_plasma_vice.h"
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_poison_rose.h"
 #include "elemental_hero_voltic.h"
@@ -215,6 +216,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplyAirknightParshathPiercingBattleEffect();
   ApplyCyberEndDragonPiercingBattleEffect();
   ApplyElementalHeroBladedgePiercingBattleEffect();
+  ApplyElementalHeroPlasmaVicePiercingBattleEffect();
   ApplyBigBangShotPiercingBattleEffect();
   ApplyGyakuGirePandaBattleEffect();
   ApplyDDWarriorBattleEffect();

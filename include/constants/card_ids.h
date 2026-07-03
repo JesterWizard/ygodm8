@@ -1073,11 +1073,12 @@
 #define ELEMENTAL_HERO_THE_SHINING               0x042D
 #define ELEMENTAL_HERO_INFERNO                   0x042E
 #define ELEMENTAL_HERO_NECROID_SHAMAN            0x042F
+#define ELEMENTAL_HERO_PLASMA_VICE               0x0430
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0430
-#define NUM_CUSTOM_CARDS                        0x010F
+#define NUM_TOTAL_CARDS                         0x0431
+#define NUM_CUSTOM_CARDS                        0x0110
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

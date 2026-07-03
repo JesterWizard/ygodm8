@@ -42,6 +42,7 @@
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_necroid_shaman.h"
+#include "elemental_hero_plasma_vice.h"
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "chiron_the_mage.h"
@@ -156,6 +157,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateElementalHeroTerraFirma();
     case MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN:
       return CanActivateElementalHeroWildWingman();
+    case MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE:
+      return CanActivateElementalHeroPlasmaVice();
     case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
       return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
 
@@ -405,6 +408,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE) {
+    ActivateElementalHeroPlasmaViceEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END) {
     ActivateChaosEmperorDragonEnvoyOfTheEndEffect();
     return;
@@ -524,6 +532,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_LADY_HEAT
           || zone->id == ELEMENTAL_HERO_TERRA_FIRMA
           || zone->id == ELEMENTAL_HERO_WILD_WINGMAN
+          || zone->id == ELEMENTAL_HERO_PLASMA_VICE
           || zone->id == ELEMENTAL_HERO_NEOS_ALIUS
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
@@ -570,7 +579,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_TERRA_FIRMA_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET
-              || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_NECROID_SHAMAN_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2
