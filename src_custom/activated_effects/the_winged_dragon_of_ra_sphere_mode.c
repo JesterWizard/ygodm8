@@ -70,10 +70,11 @@ static u8 TryAutoSummonSphereModeForOwner(u8 ownerDuelist)
   struct DuelCard *handZone;
   struct DuelCard *summonZone;
 
+  if (!RowHasCardMatch(gTurnHands[ownerDuelist], THE_WINGED_DRAGON_OF_RA_SPHERE_MODE))
+    return FALSE;
+
   handCol = GetFirstCardMatchZoneId(gTurnHands[ownerDuelist],
                                     THE_WINGED_DRAGON_OF_RA_SPHERE_MODE);
-  if (handCol < 0)
-    return FALSE;
 
   if (CountTributeTargetsOnRow(opponentMonsterRow) < SPHERE_MODE_OPPONENT_TRIBUTES)
     return FALSE;
@@ -176,9 +177,9 @@ static u8 TryTakeBattleModeFromHandOrDeck(u8 turnDuelist)
   s8 handZone;
   s16 deckIndex;
 
-  handZone = GetFirstCardMatchZoneId(gTurnHands[turnDuelist],
-                                     THE_WINGED_DRAGON_OF_RA_BATTLE_MODE);
-  if (handZone >= 0) {
+  if (RowHasCardMatch(gTurnHands[turnDuelist], THE_WINGED_DRAGON_OF_RA_BATTLE_MODE)) {
+    handZone = GetFirstCardMatchZoneId(gTurnHands[turnDuelist],
+                                       THE_WINGED_DRAGON_OF_RA_BATTLE_MODE);
     ClearZone(gTurnHands[turnDuelist][handZone]);
     return TRUE;
   }
