@@ -415,6 +415,19 @@ _kernel_malloc_ewram_array gMajuGarzettBoardActive, 0xA
 _kernel_malloc_ewram_array gMajuGarzettTributeAtk, 0x2
 _kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 
+@ The Tyrant Neptune tribute capture + per-cell atk/def/active/copy (10 cells).
+_kernel_malloc_ewram gTheTyrantNeptunePreArraysPad, 1
+_kernel_malloc_ewram_array gTheTyrantNeptuneBoardAtk, 0x14
+_kernel_malloc_ewram_array gTheTyrantNeptuneBoardDef, 0x14
+_kernel_malloc_ewram_array gTheTyrantNeptuneBoardActive, 0xA
+_kernel_malloc_ewram_array gTheTyrantNeptuneCopiedCardId, 0x14
+_kernel_malloc_ewram_array gTheTyrantNeptuneTributeTotals, 0x4
+_kernel_malloc_ewram_array gTheTyrantNeptuneTributeIds, 0x6
+_kernel_malloc_ewram gTheTyrantNeptuneTributeCount, 1
+_kernel_malloc_ewram gTheTyrantNeptunePendingSummon, 1
+@ Keep following Ring-of-Destruction byte + u16 pair halfword-aligned.
+_kernel_malloc_ewram gTheTyrantNeptunePostPad, 1
+
 @ Chimeratech Overdragon: per-cell material count + attacks used this turn (10 cells each).
 _kernel_malloc_ewram_array gChimeratechOverdragonMaterialCount, 0xA
 _kernel_malloc_ewram_array gChimeratechOverdragonAttacksUsed, 0xA

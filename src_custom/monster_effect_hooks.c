@@ -10,6 +10,7 @@
 #include "tribute.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "the_tyrant_neptune.h"
 #include "weather_report.h"
 #include "berserk_gorilla.h"
 #include "level_limit_area_b.h"
@@ -83,113 +84,158 @@ unsigned char CanActivateBLOWBACK_DRAGON(void);
 void ActivateBLOWBACK_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  u16 neptuneSavedId;
+  unsigned char canActivate;
 
   if (!CanUseMonsterEffect(zone))
     return FALSE;
 
+  neptuneSavedId = Duel_BeginCopiedEffectIdentity(zone);
+
   if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS)
-    return CanActivateElementalHeroNeosAlius();
-
-  switch (gCardInfo.monsterEffect) {
-    case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
-      return CanActivateInjectionFairyLily();
-    case MONSTER_EFFECT_CYBER_STEIN:
-      return CanActivateCyberStein();
-    case MONSTER_EFFECT_NEEDLE_BALL:
-      return CanActivateNeedleBall();
-    case MONSTER_EFFECT_AMAZON_CHAIN_MASTER:
-      return CanActivateAmazonessChainMaster();
-    case MONSTER_EFFECT_PENGUIN_SOLDIER:
-      return CanActivatePenguinSoldier();
-    case MONSTER_EFFECT_KARATE_MAN:
-      return CanActivateKarateMan();
-    case MONSTER_EFFECT_KAIBAMAN:
-      return CanActivateKaibaman();
-    case MONSTER_EFFECT_MONSTER_TAMER:
-      return CanActivateMonsterTamer();
-    case MONSTER_EFFECT_CANNON_SOLDIER:
-      return CanActivateCannonSoldier();
-    case MONSTER_EFFECT_DES_KOALA:
-      return CanActivateDesKoala();
-    case MONSTER_EFFECT_WEATHER_REPORT:
-      return CanActivateWeatherReport();
-    case MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS:
-      return CanActivateTheAgentOfCreationVenus();
-    case MONSTER_EFFECT_MAGICAL_MERCHANT:
-      return CanActivateMagicalMerchant();
-    case MONSTER_EFFECT_SASUKE_SAMURAI_2:
-      return CanActivateSasukeSamurai2();
-    case MONSTER_EFFECT_MAN_THRO_TRO:
-      return CanActivateManThroTro();
-    case MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR:
-      return CanActivateBreakerTheMagicalWarrior();
-    case MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE:
-      return CanActivateJowlsOfDarkDemise();
-    case MONSTER_EFFECT_POSSESSED_DARK_SOUL:
-      return CanActivatePossessedDarkSoul();
-    case MONSTER_EFFECT_INVADER_OF_THE_THRONE:
-      return CanActivateInvaderOfTheThrone();
-    case MONSTER_EFFECT_SPIRIT_CALLER:
-      return CanActivateSpiritCaller();
-    case MONSTER_EFFECT_RYU_KISHIN_CLOWN:
-      return CanActivateRyuKishinClown();
-    case MONSTER_EFFECT_DARK_DUST_SPIRIT:
-      return CanActivateDarkDustSpirit();
-    case MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS:
-      return CanActivateLeviaDragonDaedalus();
-    case MONSTER_EFFECT_BUBBLEMAN:
-      return CanActivateElementalHeroBubbleman();
-    case MONSTER_EFFECT_HARPIES_PET_BABY_DRAGON:
-      return CanActivateHARPIES_PET_BABY_DRAGON();
-    case MONSTER_EFFECT_BLOWBACK_DRAGON:
-      return CanActivateBLOWBACK_DRAGON();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
-      return CanActivateElementalHeroRampartBlaster();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST:
-      return CanActivateElementalHeroTempest();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_WILDEDGE:
-      return CanActivateElementalHeroWildedge();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT:
-      return CanActivateElementalHeroThunderGiant();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_WOODSMAN:
-      return CanActivateElementalHeroWoodsman();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_OCEAN:
-      return CanActivateElementalHeroOcean();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_LADY_HEAT:
-      return CanActivateElementalHeroLadyHeat();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA:
-      return CanActivateElementalHeroTerraFirma();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN:
-      return CanActivateElementalHeroWildWingman();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE:
-      return CanActivateElementalHeroPlasmaVice();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE:
-      return CanActivateElementalHeroIceEdge();
-    case MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN:
-      return CanActivateElementalHeroBlazeman();
-    case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
-      return CanActivateChaosEmperorDragonEnvoyOfTheEnd();
-
-    case MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING:
-      return CanActivateBlackLusterSoldierEnvoyOfTheBeginning();
-    case MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE:
-      return CanActivateTheWingedDragonOfRaSphereMode();
-    case MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE:
-      return CanActivateLyriluscIndependentNightingale();
-    default:
-      return TRUE;
+    canActivate = CanActivateElementalHeroNeosAlius();
+  else {
+    switch (gCardInfo.monsterEffect) {
+      case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
+        canActivate = CanActivateInjectionFairyLily();
+        break;
+      case MONSTER_EFFECT_CYBER_STEIN:
+        canActivate = CanActivateCyberStein();
+        break;
+      case MONSTER_EFFECT_NEEDLE_BALL:
+        canActivate = CanActivateNeedleBall();
+        break;
+      case MONSTER_EFFECT_AMAZON_CHAIN_MASTER:
+        canActivate = CanActivateAmazonessChainMaster();
+        break;
+      case MONSTER_EFFECT_PENGUIN_SOLDIER:
+        canActivate = CanActivatePenguinSoldier();
+        break;
+      case MONSTER_EFFECT_KARATE_MAN:
+        canActivate = CanActivateKarateMan();
+        break;
+      case MONSTER_EFFECT_KAIBAMAN:
+        canActivate = CanActivateKaibaman();
+        break;
+      case MONSTER_EFFECT_MONSTER_TAMER:
+        canActivate = CanActivateMonsterTamer();
+        break;
+      case MONSTER_EFFECT_CANNON_SOLDIER:
+        canActivate = CanActivateCannonSoldier();
+        break;
+      case MONSTER_EFFECT_DES_KOALA:
+        canActivate = CanActivateDesKoala();
+        break;
+      case MONSTER_EFFECT_WEATHER_REPORT:
+        canActivate = CanActivateWeatherReport();
+        break;
+      case MONSTER_EFFECT_THE_AGENT_OF_CREATION_VENUS:
+        canActivate = CanActivateTheAgentOfCreationVenus();
+        break;
+      case MONSTER_EFFECT_MAGICAL_MERCHANT:
+        canActivate = CanActivateMagicalMerchant();
+        break;
+      case MONSTER_EFFECT_SASUKE_SAMURAI_2:
+        canActivate = CanActivateSasukeSamurai2();
+        break;
+      case MONSTER_EFFECT_MAN_THRO_TRO:
+        canActivate = CanActivateManThroTro();
+        break;
+      case MONSTER_EFFECT_BREAKER_THE_MAGICAL_WARRIOR:
+        canActivate = CanActivateBreakerTheMagicalWarrior();
+        break;
+      case MONSTER_EFFECT_JOWLS_OF_DARK_DEMISE:
+        canActivate = CanActivateJowlsOfDarkDemise();
+        break;
+      case MONSTER_EFFECT_POSSESSED_DARK_SOUL:
+        canActivate = CanActivatePossessedDarkSoul();
+        break;
+      case MONSTER_EFFECT_INVADER_OF_THE_THRONE:
+        canActivate = CanActivateInvaderOfTheThrone();
+        break;
+      case MONSTER_EFFECT_SPIRIT_CALLER:
+        canActivate = CanActivateSpiritCaller();
+        break;
+      case MONSTER_EFFECT_RYU_KISHIN_CLOWN:
+        canActivate = CanActivateRyuKishinClown();
+        break;
+      case MONSTER_EFFECT_DARK_DUST_SPIRIT:
+        canActivate = CanActivateDarkDustSpirit();
+        break;
+      case MONSTER_EFFECT_LEVIA_DRAGON_DAEDALUS:
+        canActivate = CanActivateLeviaDragonDaedalus();
+        break;
+      case MONSTER_EFFECT_BUBBLEMAN:
+        canActivate = CanActivateElementalHeroBubbleman();
+        break;
+      case MONSTER_EFFECT_HARPIES_PET_BABY_DRAGON:
+        canActivate = CanActivateHARPIES_PET_BABY_DRAGON();
+        break;
+      case MONSTER_EFFECT_BLOWBACK_DRAGON:
+        canActivate = CanActivateBLOWBACK_DRAGON();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
+        canActivate = CanActivateElementalHeroRampartBlaster();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_TEMPEST:
+        canActivate = CanActivateElementalHeroTempest();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_WILDEDGE:
+        canActivate = CanActivateElementalHeroWildedge();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_THUNDER_GIANT:
+        canActivate = CanActivateElementalHeroThunderGiant();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_WOODSMAN:
+        canActivate = CanActivateElementalHeroWoodsman();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_OCEAN:
+        canActivate = CanActivateElementalHeroOcean();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_LADY_HEAT:
+        canActivate = CanActivateElementalHeroLadyHeat();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_TERRA_FIRMA:
+        canActivate = CanActivateElementalHeroTerraFirma();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_WILD_WINGMAN:
+        canActivate = CanActivateElementalHeroWildWingman();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_PLASMA_VICE:
+        canActivate = CanActivateElementalHeroPlasmaVice();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE:
+        canActivate = CanActivateElementalHeroIceEdge();
+        break;
+      case MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN:
+        canActivate = CanActivateElementalHeroBlazeman();
+        break;
+      case MONSTER_EFFECT_CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END:
+        canActivate = CanActivateChaosEmperorDragonEnvoyOfTheEnd();
+        break;
+      case MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING:
+        canActivate = CanActivateBlackLusterSoldierEnvoyOfTheBeginning();
+        break;
+      case MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE:
+        canActivate = CanActivateTheWingedDragonOfRaSphereMode();
+        break;
+      case MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE:
+        canActivate = CanActivateLyriluscIndependentNightingale();
+        break;
+      default:
+        canActivate = TRUE;
+        break;
+    }
   }
+
+  Duel_EndCopiedEffectIdentity(zone, neptuneSavedId);
+  return canActivate;
 }
 
 unsigned char TryActivateSkillDrainAndNegate(void);
 
-LYN_REPLACE_CHECK(ActivateMonsterEffect);
-void ActivateMonsterEffect__Replacement(void) {
-  struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
-
-  if (TryActivateSkillDrainAndNegate())
-    return;
-
+static void ActivateMonsterEffectBody(struct DuelCard *zone)
+{
   ResetCardEffectTextData();
   SetCardEffectTextType(2);
   SetCardInfo(gMonEffect.id);
@@ -490,6 +536,19 @@ void ActivateMonsterEffect__Replacement(void) {
   gChaosCommandMagicianBlockedOriginMonsterEffectId = CARD_NONE;
 }
 
+LYN_REPLACE_CHECK(ActivateMonsterEffect);
+void ActivateMonsterEffect__Replacement(void) {
+  struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
+  u16 neptuneSavedId;
+
+  if (TryActivateSkillDrainAndNegate())
+    return;
+
+  neptuneSavedId = Duel_BeginCopiedEffectIdentity(zone);
+  ActivateMonsterEffectBody(zone);
+  Duel_EndCopiedEffectIdentity(zone, neptuneSavedId);
+}
+
 LYN_REPLACE_CHECK(MonsterActionMenu);
 void MonsterActionMenu__Replacement(void) {
   switch (HandlePlayerMonsterAction()) {
@@ -531,6 +590,8 @@ void MonsterActionMenu__Replacement(void) {
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
         TryCaptureMajuGarzettTributeFromZone(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+        TryCaptureTheTyrantNeptuneTributeFromZone(
+            gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
         AddTributeCredit(
             gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
         ClearZoneAndSendMonToGraveyard2(
@@ -542,6 +603,7 @@ void MonsterActionMenu__Replacement(void) {
     case 4: {
       struct DuelCard *zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
       u8 isFaceUp = zone->isFaceUp;
+      u16 effectCardId = Duel_ZoneEffectCardId(zone);
 
       if (!isFaceUp && NightmareWheel_CannotChangeBattlePosition(zone))
         goto FAILED;
@@ -572,8 +634,9 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || zone->id == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
           || zone->id == LYRILUSC_INDEPENDENT_NIGHTINGALE
-          || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
-        gMonEffect.id = zone->id;
+          || effectCardId != zone->id
+          || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
+        gMonEffect.id = effectCardId;
         SetCardInfo(gMonEffect.id);
         if (gMonEffect.id == NEEDLE_BALL) {
           PlayMusic(SFX_FORBIDDEN);

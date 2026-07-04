@@ -17,6 +17,7 @@
 #include "moister_creature.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "the_tyrant_neptune.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -198,6 +199,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .activate = ActivateMajuGarzett,
   },
   {
+    .cardId = THE_TYRANT_NEPTUNE,
+    .shouldActivate = ShouldActivateTheTyrantNeptune,
+    .activate = ActivateTheTyrantNeptune,
+  },
+  {
     .cardId = PETEN_THE_DARK_CLOWN,
     .shouldActivate = ShouldActivatePetenTheDarkClown,
     .activate = ActivatePetenTheDarkClown,
@@ -287,11 +293,20 @@ static u8 CardHasPermanentEffectSource(u16 cardId)
 
 static u8 FieldZoneHasPermanentEffectSource(struct DuelCard *zone, u8 turnRow)
 {
+  u16 copied;
+
   if (zone->id == CARD_NONE)
     return FALSE;
   if (gHideEffectText && !zone->isFaceUp && (turnRow == 0 || turnRow == 1))
     return FALSE;
-  return CardHasPermanentEffectSource(zone->id);
+  if (CardHasPermanentEffectSource(zone->id))
+    return TRUE;
+
+  copied = TheTyrantNeptune_GetCopiedCardId(zone);
+  if (copied == CARD_NONE)
+    return FALSE;
+
+  return CardHasPermanentEffectSource(copied);
 }
 
 u8 AiSimFieldNeedsPermanentRescan(void)
@@ -392,32 +407,54 @@ static unsigned char ShouldActivatePermanentEffect__Hook(void) {
   return g8E0C800[gCardInfo.unk1E]();
 }
 
+static void TryScanPermanentEffectAt(struct DuelCard **row, u8 turnRow, u8 col,
+                                     u8 animateCursor)
+{
+  gActiveEffect.turnRow = turnRow;
+  gActiveEffect.col = col;
+  gActiveEffect.cardId = row[col]->id;
+  if (animateCursor == TRUE && !gHideEffectText)
+    sub_802ACC0();
+  if (ShouldActivatePermanentEffect__Hook() == 1) {
+    if (!gHideEffectText)
+      sub_8034FEC(0x177);
+    TryActivatingPermanentEffect__Hook();
+    if (!gHideEffectText)
+      PlayMusic(MUSIC_375);
+  }
+}
+
 static void ScanPermanentEffectRow__Hook(struct DuelCard **row, u8 turnRow, u8 animateCursor) {
   u8 i;
 
   gActiveEffect.turnRow = turnRow;
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    u16 neptuneSavedId;
+
     if (row[i]->id == CARD_NONE)
       continue;
     /* ponytail: AI sim must not read face-down opponent cards — prevents
        logic loops from spurious effect activation on unknown cards. */
     if (gHideEffectText && !row[i]->isFaceUp && (turnRow == 0 || turnRow == 1))
       continue;
-    gActiveEffect.col = i;
-    gActiveEffect.cardId = row[i]->id;
-    if (animateCursor == TRUE && !gHideEffectText)
-      sub_802ACC0();
-    if (ShouldActivatePermanentEffect__Hook() == 1) {
-      if (!gHideEffectText)
-        sub_8034FEC(0x177);
-      TryActivatingPermanentEffect__Hook();
-      if (!gHideEffectText)
-        PlayMusic(MUSIC_375);
-    }
+
+    TryScanPermanentEffectAt(row, turnRow, i, animateCursor);
     if (IsDuelOver() == 1) {
       if (!gHideEffectText)
         sub_8034FEC(0x177);
       return;
+    }
+
+    /* Neptune gains permanent effects of its copied tribute. */
+    neptuneSavedId = TheTyrantNeptune_BeginEffectIdentity(row[i]);
+    if (neptuneSavedId != CARD_NONE) {
+      TryScanPermanentEffectAt(row, turnRow, i, FALSE);
+      TheTyrantNeptune_EndEffectIdentity(row[i], neptuneSavedId);
+      if (IsDuelOver() == 1) {
+        if (!gHideEffectText)
+          sub_8034FEC(0x177);
+        return;
+      }
     }
   }
 }

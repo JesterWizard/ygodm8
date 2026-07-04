@@ -55,10 +55,23 @@ void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist);
 void Duel_RefreshMonsterStatOverlays(void);
 
 u16 Duel_ClampStat(u32 stat);
+/* ATK/DEF after stage modifier (matches vanilla GetStageModifiedStat). */
+u16 Duel_StageModifiedStat(u16 stat, s8 stage);
 u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base);
 u8 Duel_CardHasMonsterType(u16 cardId, u8 monsterType);
 u8 Duel_CardNameContains(u16 cardId, const char *needle);
 u16 Duel_GetEffectiveCardId(struct DuelCard *zone);
+/* Card whose printed Level/stats "this card" refers to (host when effects are copied). */
+u16 Duel_EffectHostCardId(struct DuelCard *zone);
+/* Effect card currently active on the zone (copied effect id, else zone->id). */
+u16 Duel_ZoneEffectCardId(struct DuelCard *zone);
+/* True if zone is effectCardId, or a host that has copied effectCardId's effects. */
+u8 Duel_ZoneHasEffectOfCard(struct DuelCard *zone, u16 effectCardId);
+/* Additive ATK from a copied passive/continuous effect (0 if none registered). */
+u16 Duel_CopiedPassiveAtkBonus(struct DuelCard *hostZone, u16 effectCardId);
+/* Temporarily treat a copy-host zone as its effect card for handler dispatch. */
+u16 Duel_BeginCopiedEffectIdentity(struct DuelCard *zone);
+void Duel_EndCopiedEffectIdentity(struct DuelCard *zone, u16 savedHostId);
 u8 Duel_IsAmazonessCard(u16 cardId);
 u8 Duel_IsElementalHeroCard(u16 cardId);
 u8 Duel_IsFiendZone(struct DuelCard *zone);

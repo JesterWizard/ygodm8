@@ -1172,6 +1172,10 @@ static const unsigned char sLyriluscIndependentNightingaleBigArt[] __attribute__
 static const unsigned short sLyriluscIndependentNightingaleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/lyrilusc_independent_nightingale.gbapal");
 static const unsigned char sLyriluscIndependentNightingaleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/lyrilusc_independent_nightingale.lz");
 
+static const unsigned char sTheTyrantNeptuneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_tyrant_neptune.huff");
+static const unsigned short sTheTyrantNeptuneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_tyrant_neptune.gbapal");
+static const unsigned char sTheTyrantNeptuneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_tyrant_neptune.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1466,6 +1470,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0441] = sPowerBondBigArt,
   [0x0442] = sFusionSageBigArt,
   [0x0443] = sLyriluscIndependentNightingaleBigArt,
+  [0x0444] = sTheTyrantNeptuneBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1762,6 +1767,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0441] = sPowerBondBigPalette,
   [0x0442] = sFusionSageBigPalette,
   [0x0443] = sLyriluscIndependentNightingaleBigPalette,
+  [0x0444] = sTheTyrantNeptuneBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2058,6 +2064,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0441] = 0,
   [0x0442] = 0,
   [0x0443] = 0,
+  [0x0444] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2354,4 +2361,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0441] = sPowerBondMiniArt,
   [0x0442] = sFusionSageMiniArt,
   [0x0443] = sLyriluscIndependentNightingaleMiniArt,
+  [0x0444] = sTheTyrantNeptuneMiniArt,
 };

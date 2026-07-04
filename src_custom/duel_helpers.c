@@ -34,6 +34,9 @@
 #include "elemental_hero_core.h"
 #include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
+#include "the_tyrant_neptune.h"
+#include "lyrilusc_independent_nightingale.h"
+#include "theban_nightmare.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -60,6 +63,7 @@ u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 AmazonessTiger_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheAgentOfForceMars_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -251,7 +255,7 @@ static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
 
 u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
 {
-  return cardId == DARK_DUST_SPIRIT;
+  return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
@@ -684,6 +688,22 @@ u16 Duel_ClampStat(u32 stat)
   return (u16)stat;
 }
 
+u16 Duel_StageModifiedStat(u16 stat, s8 stage)
+{
+  s32 finalStat;
+
+  if (stat == 0xFFFF)
+    return stat;
+
+  finalStat = (s32)stage * 500 + (s32)stat;
+
+  if (finalStat <= 0)
+    return 0;
+  if (finalStat > 0xFFFE)
+    return 0xFFFE;
+  return (u16)finalStat;
+}
+
 u16 Duel_StatFromCount(u32 count, u16 perUnit, u32 base)
 {
   return Duel_ClampStat(base + count * perUnit);
@@ -764,6 +784,82 @@ u16 Duel_GetEffectiveCardId(struct DuelCard *zone)
     return CARD_NONE;
 
   return ElementalHeroNeosAlius_GetEffectiveCardId(zone);
+}
+
+u16 Duel_EffectHostCardId(struct DuelCard *zone)
+{
+  u16 hostId;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return CARD_NONE;
+
+  hostId = TheTyrantNeptune_HostCardId(zone);
+  if (hostId != CARD_NONE)
+    return hostId;
+
+  return zone->id;
+}
+
+u16 Duel_ZoneEffectCardId(struct DuelCard *zone)
+{
+  u16 copied;
+
+  if (zone == NULL || zone->id == CARD_NONE)
+    return CARD_NONE;
+
+  copied = TheTyrantNeptune_GetCopiedCardId(zone);
+  if (copied != CARD_NONE)
+    return copied;
+
+  return zone->id;
+}
+
+u8 Duel_ZoneHasEffectOfCard(struct DuelCard *zone, u16 effectCardId)
+{
+  if (zone == NULL || effectCardId == CARD_NONE)
+    return FALSE;
+  return Duel_ZoneEffectCardId(zone) == effectCardId;
+}
+
+u16 Duel_BeginCopiedEffectIdentity(struct DuelCard *zone)
+{
+  return TheTyrantNeptune_BeginEffectIdentity(zone);
+}
+
+void Duel_EndCopiedEffectIdentity(struct DuelCard *zone, u16 savedHostId)
+{
+  TheTyrantNeptune_EndEffectIdentity(zone, savedHostId);
+}
+
+typedef u16 (*CopiedPassiveAtkBonusFn)(struct DuelCard *hostZone);
+
+struct CopiedPassiveAtkBonus {
+  u16 cardId;
+  CopiedPassiveAtkBonusFn atkBonus;
+};
+
+/* Register passive/continuous ATK bonuses that apply when a host copies this card. */
+static const struct CopiedPassiveAtkBonus sCopiedPassiveAtkBonuses[] __attribute__((section(".text"))) = {
+  { LYRILUSC_INDEPENDENT_NIGHTINGALE, LyriluscIndependentNightingale_CopiedAtkBonus },
+  { THEBAN_NIGHTMARE, ThebanNightmare_CopiedAtkBonus },
+};
+
+u16 Duel_CopiedPassiveAtkBonus(struct DuelCard *hostZone, u16 effectCardId)
+{
+  u8 i;
+
+  if (hostZone == NULL || effectCardId == CARD_NONE)
+    return 0;
+
+  for (i = 0; i < ARRAY_COUNT(sCopiedPassiveAtkBonuses); i++) {
+    if (sCopiedPassiveAtkBonuses[i].cardId != effectCardId)
+      continue;
+    if (sCopiedPassiveAtkBonuses[i].atkBonus == NULL)
+      return 0;
+    return sCopiedPassiveAtkBonuses[i].atkBonus(hostZone);
+  }
+
+  return 0;
 }
 
 u8 Duel_IsFiendZone(struct DuelCard *zone)
@@ -943,6 +1039,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_HEAT, ElementalHeroHeat_ApplyDynamicZoneStats },
   { GREAT_MAJU_GARZETT, GreatMajuGarzett_ApplyDynamicZoneStats },
   { MAJU_GARZETT, MajuGarzett_ApplyDynamicZoneStats },
+  { THE_TYRANT_NEPTUNE, TheTyrantNeptune_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
@@ -987,12 +1084,16 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)
 {
   u8 i;
+  u16 statsCardId;
 
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
+  /* Effect-copy hosts (identity-swapped) use the host card's stat applier. */
+  statsCardId = Duel_EffectHostCardId(zone);
+
   for (i = 0; i < ARRAY_COUNT(sDynamicZoneStats); i++) {
-    if (sDynamicZoneStats[i].cardId != zone->id)
+    if (sDynamicZoneStats[i].cardId != statsCardId)
       continue;
     return sDynamicZoneStats[i].applyZone(zone);
   }

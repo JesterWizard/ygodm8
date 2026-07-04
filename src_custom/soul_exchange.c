@@ -3,6 +3,7 @@
 #include "tribute.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "the_tyrant_neptune.h"
 
 void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
@@ -61,6 +62,7 @@ void ApplyMonsterTributeFromFixedRow(struct DuelCard *zone, u8 fixedMonsterRow)
   } else {
     TryCaptureGreatMajuGarzettTributeFromZone(zone);
     TryCaptureMajuGarzettTributeFromZone(zone);
+    TryCaptureTheTyrantNeptuneTributeFromZone(zone);
     AddTributeCredit(zone->id);
   }
 

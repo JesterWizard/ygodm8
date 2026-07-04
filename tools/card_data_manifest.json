@@ -20087,6 +20087,32 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "THE_TYRANT_NEPTUNE",
+      "card_name": "The Tyrant Neptune",
+      "atk": 0,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 8, 0, 7, 1, 6, 2, 5],
+      "description": {
+        "symbol": "gDescription_TheTyrantNeptune",
+        "pages": [
+          "Cannot be Special Summoned. Tribute Summon",
+          "with 1 monster. Gains original ATK/DEF of",
+          "Tributes and an Effect Monster's effects."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Gains ATK/DEF of Tributes. Choose one Effect Monster Tribute and gain its effects."
+      }
     }
   ]
 }

@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "theban_nightmare.h"
 
 #define THEBAN_NIGHTMARE_BASE_ATK 1500
 #define THEBAN_NIGHTMARE_BONUS_ATK 1500
@@ -36,12 +37,13 @@ static u8 ControllerHasEmptyHandAndBackrow(struct DuelCard *zone)
   return NumEmptyZonesInRow(gFixedZones[fixedBackrow]) == MAX_ZONES_IN_ROW;
 }
 
-static u16 ThebanNightmareCurrentAtk(struct DuelCard *zone)
+u16 ThebanNightmare_CopiedAtkBonus(struct DuelCard *hostZone)
 {
-  if (ControllerHasEmptyHandAndBackrow(zone))
-    return THEBAN_NIGHTMARE_BASE_ATK + THEBAN_NIGHTMARE_BONUS_ATK;
-
-  return THEBAN_NIGHTMARE_BASE_ATK;
+  if (hostZone == NULL)
+    return 0;
+  if (!ControllerHasEmptyHandAndBackrow(hostZone))
+    return 0;
+  return THEBAN_NIGHTMARE_BONUS_ATK;
 }
 
 u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone)
@@ -50,7 +52,9 @@ u8 ThebanNightmare_ApplyDynamicZoneStats(struct DuelCard *zone)
     return FALSE;
 
   SetCardInfo(zone->id);
-  Duel_WriteCardInfoStats(zone->id, ThebanNightmareCurrentAtk(zone), gCardInfo.def);
+  Duel_WriteCardInfoStats(zone->id,
+                          THEBAN_NIGHTMARE_BASE_ATK + ThebanNightmare_CopiedAtkBonus(zone),
+                          gCardInfo.def);
   return TRUE;
 }
 

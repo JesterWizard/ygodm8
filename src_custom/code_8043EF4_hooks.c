@@ -135,6 +135,7 @@
 #include "spirit_reaper.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "the_tyrant_neptune.h"
 #include "duel_helpers.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -371,6 +372,9 @@ void sub_80441D0__Replacement(void)
           } else {
             SetGreatMajuGarzettPendingSummon(handCardId == GREAT_MAJU_GARZETT);
             SetMajuGarzettPendingSummon(handCardId == MAJU_GARZETT);
+            /* Clear then arm so a fresh tribute list is used for this summon. */
+            SetTheTyrantNeptunePendingSummon(FALSE);
+            SetTheTyrantNeptunePendingSummon(handCardId == THE_TYRANT_NEPTUNE);
             SetPendingTributeSummonCardId(handCardId);
             ResetCursorDestToCurrentPos();
             PlayMusic(SFX_FORBIDDEN);
@@ -381,6 +385,8 @@ void sub_80441D0__Replacement(void)
             SetGreatMajuGarzettPendingSummon(FALSE);
           if (handCardId != MAJU_GARZETT)
             SetMajuGarzettPendingSummon(FALSE);
+          if (handCardId != THE_TYRANT_NEPTUNE)
+            SetTheTyrantNeptunePendingSummon(FALSE);
           PlayMusic(SFX_SELECT);
           sub_80442AC();
         }
@@ -832,6 +838,7 @@ void sub_80442AC__Replacement(void) {
 
   SetGreatMajuGarzettPendingSummon(id == GREAT_MAJU_GARZETT);
   SetMajuGarzettPendingSummon(id == MAJU_GARZETT);
+  SetTheTyrantNeptunePendingSummon(id == THE_TYRANT_NEPTUNE);
   if (!PendingTributeSummonStillUnpaid())
     SetPendingTributeSummonCardId(id);
   SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
@@ -941,6 +948,8 @@ void sub_80449D8__Replacement(void)
   FinishGreatMajuGarzettTributeSummon(
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   FinishMajuGarzettTributeSummon(
+      gFixedZones[placedRow][placedCol], placedRow, placedCol);
+  FinishTheTyrantNeptuneTributeSummon(
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);

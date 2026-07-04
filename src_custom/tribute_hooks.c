@@ -91,6 +91,10 @@ static int GetBaseRequiredTributes(u16 cardId)
   if (ElementalHeroNecroshade_CanNormalSummonWithoutTribute(cardId))
     return 0;
 
+  /* Can Tribute Summon by Tributing 1 monster (printed Level 10 would need 3). */
+  if (cardId == THE_TYRANT_NEPTUNE)
+    return 1;
+
   if (ShouldApplyCostDownLevelForTribute(cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);
 
@@ -117,6 +121,9 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 
   if (ElementalHeroNecroshade_CanNormalSummonWithoutTributeForHandSlot(handSlot, cardId))
     return 0;
+
+  if (cardId == THE_TYRANT_NEPTUNE)
+    return 1;
 
   if (ShouldApplyCostDownForHandSlot(handSlot, cardId))
     gCardInfo.level = GetCostDownAdjustedLevel(cardId, gCardInfo.level);

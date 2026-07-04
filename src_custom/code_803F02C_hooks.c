@@ -27,6 +27,7 @@
 #include "copycat.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "the_tyrant_neptune.h"
 #include "chimeratech_overdragon.h"
 #include "cybernetic_fusion_support.h"
 #include "power_bond.h"
@@ -533,6 +534,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ElementalHeroNeosAlius_ClearZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
   ClearMajuGarzettBoardStatsForZone(zone);
+  ClearTheTyrantNeptuneBoardStatsForZone(zone);
   ClearChimeratechOverdragonBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);
   VengefulBogSpirit_ClearZoneMark(zone);

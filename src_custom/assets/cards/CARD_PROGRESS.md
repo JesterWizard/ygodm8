@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 291 |
-| Art ready, needs manifest | 131 |
+| In game (manifest + art) | 292 |
+| Art ready, needs manifest | 130 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -313,6 +313,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `POWER_BOND` | Power Bond | `power_bond.png` |
 | `FUSION_SAGE` | Fusion Sage | `fusion_sage.png` |
 | `LYRILUSC_INDEPENDENT_NIGHTINGALE` | Lyrilusc - Independent Nightingale | `lyrilusc_independent_nightingale.png` |
+| `THE_TYRANT_NEPTUNE` | The Tyrant Neptune | `the_tyrant_neptune.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -436,7 +437,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_SUPPRESSION_PLUTO` — `the_suppression_pluto.png`
 - [ ] `THE_SUPREMACY_SUN` — `the_supremacy_sun.png`
 - [ ] `THE_TRIPPER_MERCURY` — `the_tripper_mercury.png`
-- [ ] `THE_TYRANT_NEPTUNE` — `the_tyrant_neptune.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
 - [ ] `TOON_WORLD` — `toon_world.png`

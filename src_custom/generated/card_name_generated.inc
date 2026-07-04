@@ -292,6 +292,7 @@ static const u8 sOverloadFusionName[] __attribute__((section(".append_assets")))
 static const u8 sPowerBondName[] __attribute__((section(".append_assets"))) = "Power Bond";
 static const u8 sFusionSageName[] __attribute__((section(".append_assets"))) = "Fusion Sage";
 static const u8 sLyriluscIndependentNightingaleName[] __attribute__((section(".append_assets"))) = "Lyrilusc - Independent Nightingale";
+static const u8 sTheTyrantNeptuneName[] __attribute__((section(".append_assets"))) = "The Tyrant Neptune";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -882,6 +883,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sFusionSageName;
   if (cardId == 0x0443)
     return (u8 *)sLyriluscIndependentNightingaleName;
+  if (cardId == 0x0444)
+    return (u8 *)sTheTyrantNeptuneName;
 
   return gCardNames[cardId];
 }
