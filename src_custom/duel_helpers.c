@@ -32,6 +32,7 @@
 #include "elemental_hero_blazeman.h"
 #include "elemental_hero_stratos.h"
 #include "elemental_hero_core.h"
+#include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
@@ -952,6 +953,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_ABSOLUTE_ZERO, ElementalHeroAbsoluteZero_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_ESCURIDAO, ElementalHeroEscuridao_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_BLAZEMAN, ElementalHeroBlazeman_ApplyDynamicZoneStats },
+  { CHIMERATECH_OVERDRAGON, ChimeratechOverdragon_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

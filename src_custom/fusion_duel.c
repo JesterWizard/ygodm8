@@ -11,6 +11,7 @@
 #include "elemental_hero_necroid_shaman.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_sunrise.h"
+#include "chimeratech_overdragon.h"
 #include "expanded_graveyard.h"
 #include "fusion_duel.h"
 
@@ -23,6 +24,21 @@ static const u8 sFusionDuelPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_FUSION_SUMMON,
 };
+
+static const u8 sFusionMaterialPickLabelsRequired[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_SELECT_CARD,
+};
+
+/* After minimum materials: Select Card adds one, Fusion Summon finishes. */
+static const u8 sFusionMaterialPickLabelsOptional[] APPEND_RODATA = {
+  DECK_MENU_PICK_LABEL_DETAILS,
+  DECK_MENU_PICK_LABEL_SELECT_CARD,
+  DECK_MENU_PICK_LABEL_FUSION_SUMMON,
+};
+
+#define OVERDRAGON_PICK_ABORT (-1)
+#define OVERDRAGON_PICK_DONE (-2)
 
 static void FusionDuel_LoadPickMenu(const u8 *recipeIndices, u8 count)
 {
@@ -250,6 +266,266 @@ static u8 SunriseSelectSources(const struct FusionMaterialSource *sources, u8 so
   return 0;
 }
 
+static u16 OverdragonSourceCardId(const struct FusionMaterialSource *source)
+{
+  if (source == NULL)
+    return CARD_NONE;
+
+  if (source->zone != NULL)
+    return source->zone->id;
+
+  return source->cardId;
+}
+
+/* Proto-Cyber Dragon is treated as Cyber Dragon only while on the field. */
+static u8 OverdragonSourceIsCyberDragon(const struct FusionMaterialSource *source)
+{
+  u16 cardId = OverdragonSourceCardId(source);
+
+  if (cardId == CYBER_DRAGON)
+    return TRUE;
+
+  if (cardId == PROTO_CYBER_DRAGON && source->zone != NULL)
+    return TRUE;
+
+  return FALSE;
+}
+
+static u8 OverdragonSourceIsMachine(const struct FusionMaterialSource *source)
+{
+  u16 cardId = OverdragonSourceCardId(source);
+
+  if (cardId == CARD_NONE || cardId == CHIMERATECH_OVERDRAGON)
+    return FALSE;
+
+  return Duel_CardHasMonsterType(cardId, TYPE_MACHINE);
+}
+
+static u8 OverdragonMaterialsFeasible(const struct FusionMaterialSource *sources, u8 sourceCount)
+{
+  u8 i;
+  u8 cyberIdx = 0xFF;
+  u8 machineCount = 0;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (cyberIdx == 0xFF && OverdragonSourceIsCyberDragon(&sources[i]))
+      cyberIdx = i;
+  }
+
+  if (cyberIdx == 0xFF)
+    return FALSE;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (i == cyberIdx)
+      continue;
+    if (OverdragonSourceIsMachine(&sources[i]))
+      machineCount++;
+  }
+
+  return machineCount >= 1;
+}
+
+typedef u8 (*OverdragonSourcePred)(const struct FusionMaterialSource *source);
+
+static u8 OverdragonCountMatching(const struct FusionMaterialSource *sources, u8 sourceCount,
+                                  const u8 *used, OverdragonSourcePred pred)
+{
+  u8 i;
+  u8 count = 0;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (used[i])
+      continue;
+    if (pred(&sources[i]))
+      count++;
+  }
+
+  return count;
+}
+
+/* Greedy max for AI. */
+static u8 OverdragonSelectSourcesAuto(const struct FusionMaterialSource *sources, u8 sourceCount,
+                                      struct FusionMaterialSource *selected, u8 maxSelected)
+{
+  u8 i;
+  u8 cyberIdx = 0xFF;
+  u8 out = 0;
+  u8 used[FUSION_MAX_SOURCES];
+
+  if (maxSelected < 2)
+    return 0;
+
+  for (i = 0; i < FUSION_MAX_SOURCES; i++)
+    used[i] = FALSE;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (OverdragonSourceIsCyberDragon(&sources[i])) {
+      cyberIdx = i;
+      break;
+    }
+  }
+
+  if (cyberIdx == 0xFF)
+    return 0;
+
+  selected[out++] = sources[cyberIdx];
+  used[cyberIdx] = TRUE;
+
+  for (i = 0; i < sourceCount && out < maxSelected; i++) {
+    if (used[i])
+      continue;
+    if (!OverdragonSourceIsMachine(&sources[i]))
+      continue;
+
+    selected[out++] = sources[i];
+    used[i] = TRUE;
+  }
+
+  if (out < 2)
+    return 0;
+
+  return out;
+}
+
+/* Returns source index, OVERDRAGON_PICK_DONE, or OVERDRAGON_PICK_ABORT.
+ * required: Details + Select Card; single candidate auto-picked; cancel aborts.
+ * optional: Details + Select Card + Fusion Summon (finish without adding more). */
+static s8 OverdragonPlayerPickSource(const struct FusionMaterialSource *sources, u8 sourceCount,
+                                     const u8 *used, OverdragonSourcePred pred, u8 required)
+{
+  u8 sourceIndexMap[FUSION_MAX_SOURCES];
+  u8 savedDeckMenu[sizeof(gDeckMenu)];
+  u8 menuCount = 0;
+  u8 i;
+  u8 j;
+  u8 action;
+  u8 currentPos;
+
+  for (i = 0; i < sourceCount; i++) {
+    if (used[i])
+      continue;
+    if (!pred(&sources[i]))
+      continue;
+
+    sourceIndexMap[menuCount] = i;
+    menuCount++;
+  }
+
+  if (menuCount == 0)
+    return required ? OVERDRAGON_PICK_ABORT : OVERDRAGON_PICK_DONE;
+
+  if (required && menuCount == 1)
+    return (s8)sourceIndexMap[0];
+
+  for (j = 0; j < sizeof(gDeckMenu); j++)
+    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+
+  for (i = 0; i < FUSION_PICK_MENU_CAPACITY; i++)
+    gDeckMenu.cards[i] = CARD_NONE;
+
+  for (i = 0; i < menuCount && i < FUSION_PICK_MENU_CAPACITY; i++)
+    gDeckMenu.cards[i] = OverdragonSourceCardId(&sources[sourceIndexMap[i]]);
+
+  gDeckMenu.cost = 0;
+  gDeckMenu.currentPos = 0;
+  gDeckMenu.sortMode = 0;
+  gDeckMenu.displayMode = 1;
+  gDeckMenu.cardCount = menuCount;
+
+  if (required) {
+    action = DeckMenuMainPickChosenLabel(sFusionMaterialPickLabelsRequired,
+                                         ARRAY_COUNT(sFusionMaterialPickLabelsRequired));
+  } else {
+    action = DeckMenuMainPickChosenLabel(sFusionMaterialPickLabelsOptional,
+                                         ARRAY_COUNT(sFusionMaterialPickLabelsOptional));
+  }
+
+  currentPos = gDeckMenu.currentPos;
+
+  for (j = 0; j < sizeof(gDeckMenu); j++)
+    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+
+  if (action == DECK_MENU_PICK_LABEL_FUSION_SUMMON)
+    return OVERDRAGON_PICK_DONE;
+
+  if (action != DECK_MENU_PICK_LABEL_SELECT_CARD)
+    return OVERDRAGON_PICK_ABORT;
+
+  if (currentPos >= menuCount)
+    return OVERDRAGON_PICK_ABORT;
+
+  return (s8)sourceIndexMap[currentPos];
+}
+
+static u8 OverdragonSelectSourcesPlayer(const struct FusionMaterialSource *sources, u8 sourceCount,
+                                        struct FusionMaterialSource *selected, u8 maxSelected)
+{
+  u8 used[FUSION_MAX_SOURCES];
+  u8 out = 0;
+  s8 pick;
+  u8 i;
+
+  if (maxSelected < 2 || sources == NULL || selected == NULL)
+    return 0;
+
+  for (i = 0; i < FUSION_MAX_SOURCES; i++)
+    used[i] = FALSE;
+
+  /* Caller must bracket with DeckMenu_Begin/EndDuelTrunkView when needed. */
+  pick = OverdragonPlayerPickSource(sources, sourceCount, used, OverdragonSourceIsCyberDragon,
+                                    TRUE);
+  if (pick < 0)
+    return 0;
+
+  selected[out++] = sources[pick];
+  used[pick] = TRUE;
+
+  pick = OverdragonPlayerPickSource(sources, sourceCount, used, OverdragonSourceIsMachine, TRUE);
+  if (pick < 0)
+    return 0;
+
+  selected[out++] = sources[pick];
+  used[pick] = TRUE;
+
+  /* Further Machines optional: Select Card adds one, Fusion Summon finishes. */
+  while (out < maxSelected
+         && OverdragonCountMatching(sources, sourceCount, used, OverdragonSourceIsMachine) > 0) {
+    pick = OverdragonPlayerPickSource(sources, sourceCount, used, OverdragonSourceIsMachine,
+                                      FALSE);
+    if (pick == OVERDRAGON_PICK_DONE)
+      break;
+    if (pick < 0)
+      return 0;
+
+    selected[out++] = sources[pick];
+    used[pick] = TRUE;
+  }
+
+  return out;
+}
+
+u8 FusionDuel_SelectOverdragonMaterials(const struct FusionMaterialSource *sources,
+                                        u8 sourceCount,
+                                        struct FusionMaterialSource *selected,
+                                        u8 maxSelected, u8 playerControlled)
+{
+  if (playerControlled)
+    return OverdragonSelectSourcesPlayer(sources, sourceCount, selected, maxSelected);
+
+  return OverdragonSelectSourcesAuto(sources, sourceCount, selected, maxSelected);
+}
+
+u8 FusionRecipe_SelectedCountIsValid(const struct FusionRecipe *recipe, u8 selectedCount)
+{
+  if (recipe == NULL)
+    return FALSE;
+
+  if (recipe->result == CHIMERATECH_OVERDRAGON)
+    return selectedCount >= 2 && selectedCount <= FUSION_MAX_MATERIALS;
+
+  return selectedCount == FusionRecipe_MaterialCount(recipe);
+}
+
 u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
                                       const struct FusionMaterialSource *sources,
                                       u8 sourceCount)
@@ -264,6 +540,9 @@ u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
 
   if (recipe->result == ELEMENTAL_HERO_SUNRISE)
     return SunriseMaterialsFeasible(sources, sourceCount);
+
+  if (recipe->result == CHIMERATECH_OVERDRAGON)
+    return OverdragonMaterialsFeasible(sources, sourceCount);
 
   matCount = FusionRecipe_MaterialCount(recipe);
   if (matCount < 2 || sourceCount < matCount)
@@ -310,6 +589,9 @@ u8 FusionRecipe_SelectSources(const struct FusionRecipe *recipe,
 
   if (recipe->result == ELEMENTAL_HERO_SUNRISE)
     return SunriseSelectSources(sources, sourceCount, selected, maxSelected);
+
+  if (recipe->result == CHIMERATECH_OVERDRAGON)
+    return OverdragonSelectSourcesAuto(sources, sourceCount, selected, maxSelected);
 
   matCount = FusionRecipe_MaterialCount(recipe);
   if (maxSelected < matCount)
@@ -492,7 +774,7 @@ static void PayMiracleFusionMaterials(const struct FusionMaterialSource *selecte
   }
 }
 
-void FusionDuel_SpecialSummonResult(u16 resultId)
+void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount)
 {
   struct DuelSummonOpts opts;
   u8 i;
@@ -508,7 +790,8 @@ void FusionDuel_SpecialSummonResult(u16 resultId)
       if (resultId != ELEMENTAL_HERO_GREAT_TORNADO
           && resultId != ELEMENTAL_HERO_ABSOLUTE_ZERO
           && resultId != ELEMENTAL_HERO_GAIA
-          && resultId != ELEMENTAL_HERO_NECROID_SHAMAN)
+          && resultId != ELEMENTAL_HERO_NECROID_SHAMAN
+          && resultId != CHIMERATECH_OVERDRAGON)
         FlipCardFaceDown(zone);
       break;
     }
@@ -530,6 +813,9 @@ void FusionDuel_SpecialSummonResult(u16 resultId)
 
   if (resultId == ELEMENTAL_HERO_SUNRISE)
     ElementalHeroSunrise_OnFusionSummoned();
+
+  if (resultId == CHIMERATECH_OVERDRAGON)
+    ChimeratechOverdragon_OnFusionSummoned(materialCount);
 }
 
 static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *recipe,
@@ -546,9 +832,20 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   if (recipe == NULL || payMaterials == NULL)
     return DUEL_ACTION_INVALID;
 
-  selectedCount = FusionRecipe_SelectSources(recipe, sources, sourceCount, selected,
-                                             FUSION_MAX_MATERIALS);
-  if (selectedCount != FusionRecipe_MaterialCount(recipe))
+  if (recipe->result == CHIMERATECH_OVERDRAGON) {
+    u8 playerPick = WhoseTurn() == DUEL_PLAYER;
+
+    if (playerPick)
+      DeckMenu_BeginDuelTrunkView();
+    selectedCount = FusionDuel_SelectOverdragonMaterials(
+        sources, sourceCount, selected, FUSION_MAX_MATERIALS, playerPick);
+    if (playerPick)
+      DeckMenu_EndDuelTrunkView();
+  } else {
+    selectedCount = FusionRecipe_SelectSources(recipe, sources, sourceCount, selected,
+                                               FUSION_MAX_MATERIALS);
+  }
+  if (!FusionRecipe_SelectedCountIsValid(recipe, selectedCount))
     return DUEL_ACTION_NO_TARGET;
 
   emptyZone = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
@@ -565,7 +862,7 @@ static enum DuelActionResult ExecuteFusionRecipe(const struct FusionRecipe *reci
   payMaterials(selected, selectedCount);
   ClearZoneAndSendMonToGraveyard(
       gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST);
-  FusionDuel_SpecialSummonResult(recipe->result);
+  FusionDuel_SpecialSummonResult(recipe->result, selectedCount);
   ElementalHeroAbsoluteZero_EndSuppressLeave();
   return DUEL_ACTION_OK;
 }
@@ -596,16 +893,28 @@ s8 FusionDuel_AiPickBestRecipeIndex(const struct FusionMaterialSource *sources,
 
   for (i = 0; i < recipeCount; i++) {
     const struct FusionRecipe *recipe = &gFusionRecipes[i];
+    u16 candidateAtk;
 
     if (filter != NULL && !filter(recipe))
       continue;
     if (!FusionRecipe_IsFeasibleWithSources(recipe, sources, sourceCount))
       continue;
 
-    SetCardInfo(recipe->result);
-    if (bestIdx < 0 || gCardInfo.atk > bestAtk) {
+    if (recipe->result == CHIMERATECH_OVERDRAGON) {
+      u8 selectedCount;
+      struct FusionMaterialSource selected[FUSION_MAX_MATERIALS];
+
+      selectedCount = FusionRecipe_SelectSources(recipe, sources, sourceCount, selected,
+                                                 FUSION_MAX_MATERIALS);
+      candidateAtk = ChimeratechOverdragon_EstimateAtk(selectedCount);
+    } else {
+      SetCardInfo(recipe->result);
+      candidateAtk = gCardInfo.atk;
+    }
+
+    if (bestIdx < 0 || candidateAtk > bestAtk) {
       bestIdx = (s8)i;
-      bestAtk = gCardInfo.atk;
+      bestAtk = candidateAtk;
     }
   }
 
@@ -647,6 +956,44 @@ void FusionDuel_SelfCheck(void)
 
   if (selected[0].cardId == ELEMENTAL_HERO_ABSOLUTE_ZERO
       || selected[1].cardId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(CHIMERATECH_OVERDRAGON);
+  if (recipe == NULL)
+    while (1)
+      ;
+
+  sources[0].cardId = CYBER_DRAGON;
+  sources[1].cardId = BATTLE_FOOTBALLER;
+  sources[2].zone = NULL;
+  sources[2].gyIndex = FUSION_GY_INDEX_NONE;
+  sources[2].cardId = CYBER_DRAGON;
+  sources[3].zone = NULL;
+  sources[3].gyIndex = FUSION_GY_INDEX_NONE;
+  sources[3].cardId = PROTO_CYBER_DRAGON;
+
+  if (!FusionRecipe_IsFeasibleWithSources(recipe, sources, 4))
+    while (1)
+      ;
+
+  {
+    struct FusionMaterialSource overSelected[FUSION_MAX_MATERIALS];
+
+    selectedCount = FusionRecipe_SelectSources(recipe, sources, 4, overSelected,
+                                               FUSION_MAX_MATERIALS);
+    if (selectedCount != 4)
+      while (1)
+        ;
+
+    if (!FusionRecipe_SelectedCountIsValid(recipe, selectedCount))
+      while (1)
+        ;
+  }
+
+  sources[0].cardId = ELEMENTAL_HERO_AVIAN;
+  sources[1].cardId = BATTLE_FOOTBALLER;
+  if (FusionRecipe_IsFeasibleWithSources(recipe, sources, 2))
     while (1)
       ;
 }

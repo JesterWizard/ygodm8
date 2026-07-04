@@ -207,6 +207,8 @@ static void DeckMenu_BuildPickSubmenuText(u8 *dest, const u8 *labels, u8 labelCo
 
 enum {
   FUSION_PICK_SUBMENU_BACK,
+  FUSION_PICK_SUBMENU_DETAILS,
+  FUSION_PICK_SUBMENU_SELECT,
   FUSION_PICK_SUBMENU_SUMMON,
 };
 
@@ -623,10 +625,15 @@ static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
         switch (labels[cursorState]) {
           case DECK_MENU_PICK_LABEL_DETAILS:
             DeckMenuShowSelectedCardDetails();
+            result = FUSION_PICK_SUBMENU_DETAILS;
             keepProcessing = 0;
             break;
-          case DECK_MENU_PICK_LABEL_FUSION_SUMMON:
           case DECK_MENU_PICK_LABEL_SELECT_CARD:
+            result = FUSION_PICK_SUBMENU_SELECT;
+            keepProcessing = 0;
+            PlayMusic(SFX_SELECT);
+            break;
+          case DECK_MENU_PICK_LABEL_FUSION_SUMMON:
             result = FUSION_PICK_SUBMENU_SUMMON;
             keepProcessing = 0;
             PlayMusic(SFX_SELECT);
@@ -634,6 +641,7 @@ static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
         }
         break;
       case NEW_B_BUTTON:
+        result = FUSION_PICK_SUBMENU_BACK;
         keepProcessing = 0;
         PlayMusic(SFX_CANCEL);
         break;
@@ -734,10 +742,10 @@ void DeckMenuMainReadOnly(void) {
   DeckMenuShutdownGraphics();
 }
 
-bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
+u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount)
 {
   unsigned keepProcessing = 1;
-  bool8 confirmed = FALSE;
+  u8 chosen = DECK_MENU_PICK_RESULT_CANCEL;
   const u8 *activeLabels = labels;
   u8 activeLabelCount = labelCount;
 
@@ -749,7 +757,7 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
     activeLabelCount = DECK_MENU_PICK_MAX_OPTIONS;
 
   if (IsPlayerDeckNonempty() != 1)
-    return FALSE;
+    return DECK_MENU_PICK_RESULT_CANCEL;
 
   DeckMenuSort();
   DeckMenuInitGraphics();
@@ -786,14 +794,27 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
         sub_801F4A0(4);
         break;
       case NEW_A_BUTTON:
-        if (DeckMenuPickSubmenu_Main(activeLabels, activeLabelCount) == FUSION_PICK_SUBMENU_SUMMON) {
-          confirmed = TRUE;
-          keepProcessing = 0;
-        } else {
-          sub_801F4A0(7);
+        switch (DeckMenuPickSubmenu_Main(activeLabels, activeLabelCount)) {
+          case FUSION_PICK_SUBMENU_SELECT:
+            chosen = DECK_MENU_PICK_LABEL_SELECT_CARD;
+            keepProcessing = 0;
+            break;
+          case FUSION_PICK_SUBMENU_SUMMON:
+            chosen = DECK_MENU_PICK_LABEL_FUSION_SUMMON;
+            keepProcessing = 0;
+            break;
+          case FUSION_PICK_SUBMENU_BACK:
+            /* ponytail: submenu B cancels the whole pick (not just the submenu). */
+            chosen = DECK_MENU_PICK_RESULT_CANCEL;
+            keepProcessing = 0;
+            break;
+          case FUSION_PICK_SUBMENU_DETAILS:
+          default:
+            sub_801F4A0(7);
+            break;
         }
         break;
-      // ponytail: B does not exit fusion trunk picker — cancel via submenu only
+      /* ponytail: B on the card list does not exit — cancel via submenu B only. */
       case NEW_B_BUTTON:
         WaitForVBlank();
         break;
@@ -821,7 +842,15 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
       keepProcessing = 0;
   }
   DeckMenuShutdownGraphics();
-  return confirmed;
+  return chosen;
+}
+
+bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount)
+{
+  u8 chosen = DeckMenuMainPickChosenLabel(labels, labelCount);
+
+  return chosen == DECK_MENU_PICK_LABEL_SELECT_CARD
+      || chosen == DECK_MENU_PICK_LABEL_FUSION_SUMMON;
 }
 
 bool8 DeckMenuMainPickConfirm(void)

@@ -410,6 +410,14 @@ _kernel_malloc_ewram_array gMajuGarzettBoardActive, 0xA
 _kernel_malloc_ewram_array gMajuGarzettTributeAtk, 0x2
 _kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 
+@ Chimeratech Overdragon: per-cell material count + attacks used this turn (10 cells each).
+_kernel_malloc_ewram_array gChimeratechOverdragonMaterialCount, 0xA
+_kernel_malloc_ewram_array gChimeratechOverdragonAttacksUsed, 0xA
+
+@ Future Fusion: material count for pending summons (fixed backrow: opp 0-4, player 5-9).
+@ ponytail: cannot use tempStage — permanent effects zero it before the delayed summon.
+_kernel_malloc_ewram_array gFutureFusionMaterialCount, 0xA
+
 @ -- Misc duel UI state ----------------------------------------------------------
 
 @ Ring of Destruction: opponent monster row changed this action; fire after permanent scan.

@@ -16,6 +16,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
 #include "sasuke_samurai.h"
@@ -166,6 +167,9 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   if (attacker->id == CARD_NONE)
     return;
 
+  if (ChimeratechOverdragon_BlocksDirectAttack(attacker))
+    return;
+
   if (NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW]) != MAX_ZONES_IN_ROW
       && !CanJowlsControlledMonsterAttackDirectly(attacker)
       && !CanElementalHeroMarinerAttackDirectly(attacker->id)
@@ -204,6 +208,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
 }
@@ -260,6 +265,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);
 }

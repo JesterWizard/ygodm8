@@ -77,6 +77,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_necroid_shaman.h"
@@ -1004,7 +1005,9 @@ void sub_8044570__Replacement(void)
       || CanJowlsControlledMonsterAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]))
       && !Duel_ForcedAttackBlocksDirect(
-          WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)) {
+          WhoseTurn() == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER)
+      && !ChimeratechOverdragon_BlocksDirectAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX])) {
     if (!DebugRuleset_AllowDirectAttacks()) {
       PlayMusic(SFX_FORBIDDEN);
       gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->isLocked = 1;
@@ -1055,6 +1058,8 @@ void sub_8044570__Replacement(void)
       TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockCyberTwinDragonForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockChimeratechOverdragonForNextAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockBlackLusterSoldierEnvoyForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
@@ -1180,6 +1185,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockCyberTwinDragonForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockChimeratechOverdragonForNextAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockBlackLusterSoldierEnvoyForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);

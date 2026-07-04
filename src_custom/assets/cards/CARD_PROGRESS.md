@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 285 |
-| Art ready, needs manifest | 124 |
+| In game (manifest + art) | 286 |
+| Art ready, needs manifest | 123 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **411** |
 
@@ -307,6 +307,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_ICE_EDGE` | Elemental HERO Ice Edge | `elemental_hero_ice_edge.png` |
 | `ELEMENTAL_HERO_BLAZEMAN` | Elemental HERO Blazeman | `elemental_hero_blazeman.png` |
 | `ELEMENTAL_HERO_STRATOS` | Elemental HERO Stratos | `elemental_hero_stratos.png` |
+| `CHIMERATECH_OVERDRAGON` | Chimeratech Overdragon | `chimeratech_overdragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -328,7 +329,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
-- [ ] `CHIMERATECH_OVERDRAGON` — `chimeratech_overdragon.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CYBER_BARRIER_DRAGON` — `cyber_barrier_dragon.png`

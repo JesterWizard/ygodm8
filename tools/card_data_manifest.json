@@ -19915,6 +19915,32 @@
         "popup_1": "Add 1 HERO monster from your Deck to your hand.",
         "popup_2": "Destroy Spell/Trap Cards up to the number of other HERO monsters you control."
       }
+    },
+    {
+      "card_const": "CHIMERATECH_OVERDRAGON",
+      "card_name": "Chimeratech Overdragon",
+      "atk": 0,
+      "def": 0,
+      "level": 9,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 60,
+      "password": [6, 4, 5, 9, 9, 5, 6, 9],
+      "description": {
+        "symbol": "gDescription_ChimeratechOverdragon",
+        "pages": [
+          "Cyber Dragon + 1+ Machine monsters.",
+          "Must be Fusion Summoned. If Fusion Summoned,",
+          "send all other cards you control to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send all other cards on your field to the GY."
+      }
     }
   ]
 }

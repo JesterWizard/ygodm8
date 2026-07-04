@@ -15,10 +15,14 @@ enum {
 };
 
 #define DECK_MENU_PICK_MAX_OPTIONS 3
+#define DECK_MENU_PICK_RESULT_CANCEL 0xFF
 
 /* ponytail: card-opened duel trunk views should bracket menu calls with
  * Begin/End so duel graphics are restored consistently on every exit path. */
 bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount);
+/* Returns DECK_MENU_PICK_LABEL_* for the confirmed action, or
+ * DECK_MENU_PICK_RESULT_CANCEL if the player backs out of the submenu. */
+u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount);
 bool8 DeckMenuMainPickConfirm(void);
 
 #endif // GUARD_DECK_MENU_H

@@ -412,6 +412,7 @@ $(eval $(call custom_object_dep,activated_effects/elemental_hero_blazeman,$(CARD
 $(eval $(call custom_object_dep,activated_effects/elemental_hero_stratos,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,permanent_effects/elemental_hero_core,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,permanent_effects/elemental_hero_sunrise,$(CARD_EFFECT_TEXTS_H)))
+$(eval $(call custom_object_dep,permanent_effects/chimeratech_overdragon,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,permanent_effects/elemental_hero_captain_gold,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))

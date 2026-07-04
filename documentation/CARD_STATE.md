@@ -1,19 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Added Elemental HERO Stratos
+**Last worked on:** 2026-07-04 — Fix Future Fusion Chimeratech material count
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/activated_effects/elemental_hero_stratos.c`
-- `include/elemental_hero_stratos.h`
-- `src_custom/duel_helpers.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `Makefile`
-- `src_custom/card_effect_tally.md`
-- `src_custom/assets/cards/CARD_PROGRESS.md`
+- `src_custom/spell_effects/future_fusion.c`
+- `asm/ram_map_ewram.s`
 
-**Outcome:** make test-cards-build passes; on-summon search HERO or destroy S/T up to other HEROes (cancel deck pick falls through to destroy)
+**Outcome:** make test-cards-build passes; material count stored in EWRAM not tempStage (was zeroed by permanent effects, defaulting to 2 mats / 1600 ATK)
 
 **Open / next:**
-- playtest: NS Stratos with Sparkman in deck; cancel search to destroy S/T when another HERO is on field
+- playtest: Future Fusion 5 Cyber Dragons -> Overdragon 4000 ATK

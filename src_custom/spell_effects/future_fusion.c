@@ -17,6 +17,8 @@
 
 static u8 sSuppressFutureFusionLink APPEND_DATA = FALSE;
 
+extern u8 gFutureFusionMaterialCount[];
+
 static const u8 sFutureFusionRecipeLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_FUSION_SUMMON,
@@ -42,6 +44,58 @@ static u8 FutureFusionMonsterRowForSpell(struct DuelCard *spellZone)
     return OPPONENT_MONSTER_ROW;
 
   return 0xFF;
+}
+
+/* Fixed backrow cell: opponent cols 0-4, player cols 5-9. */
+static u8 FutureFusionBackrowCellIndex(struct DuelCard *spellZone, u8 *cellIndex)
+{
+  u8 fixedRow;
+  u8 fixedCol;
+
+  if (spellZone == NULL || cellIndex == NULL)
+    return FALSE;
+
+  if (!Duel_FindFixedZone(spellZone, &fixedRow, &fixedCol))
+    return FALSE;
+
+  if (fixedRow == OPPONENT_BACKROW)
+    *cellIndex = fixedCol;
+  else if (fixedRow == PLAYER_BACKROW)
+    *cellIndex = MAX_ZONES_IN_ROW + fixedCol;
+  else
+    return FALSE;
+
+  return TRUE;
+}
+
+static void FutureFusion_StoreMaterialCount(struct DuelCard *spellZone, u8 materialCount)
+{
+  u8 cellIndex;
+
+  if (!FutureFusionBackrowCellIndex(spellZone, &cellIndex))
+    return;
+
+  gFutureFusionMaterialCount[cellIndex] = materialCount;
+}
+
+static u8 FutureFusion_LoadMaterialCount(struct DuelCard *spellZone)
+{
+  u8 cellIndex;
+
+  if (!FutureFusionBackrowCellIndex(spellZone, &cellIndex))
+    return 0;
+
+  return gFutureFusionMaterialCount[cellIndex];
+}
+
+static void FutureFusion_ClearMaterialCount(struct DuelCard *spellZone)
+{
+  u8 cellIndex;
+
+  if (!FutureFusionBackrowCellIndex(spellZone, &cellIndex))
+    return;
+
+  gFutureFusionMaterialCount[cellIndex] = 0;
 }
 
 u8 IsActivatedFutureFusionZone(const struct DuelCard *zone)
@@ -312,7 +366,7 @@ static void ActivateFutureFusionWithMaterials(const struct FusionRecipe *recipe,
   u8 recipeIndex;
 
   if (recipe == NULL || selected == NULL
-      || selectedCount != FusionRecipe_MaterialCount(recipe))
+      || !FusionRecipe_SelectedCountIsValid(recipe, selectedCount))
     return;
 
   recipeIndex = (u8)(recipe - gFusionRecipes);
@@ -324,6 +378,7 @@ static void ActivateFutureFusionWithMaterials(const struct FusionRecipe *recipe,
   Duel_ActivateContinuousZone(spellZone);
   ResetPermStage(spellZone);
   spellZone->unk4 = recipeIndex + 1;
+  FutureFusion_StoreMaterialCount(spellZone, selectedCount);
 }
 
 static void RunPlayerFutureFusionFlow(void)
@@ -363,7 +418,11 @@ static void RunPlayerFutureFusionFlow(void)
     return;
   }
 
-  selectedCount = PlayerSelectDeckMaterials(recipe, sources, sourceCount, selected);
+  if (recipe->result == CHIMERATECH_OVERDRAGON)
+    selectedCount = FusionDuel_SelectOverdragonMaterials(sources, sourceCount, selected,
+                                                         FUSION_MAX_MATERIALS, TRUE);
+  else
+    selectedCount = PlayerSelectDeckMaterials(recipe, sources, sourceCount, selected);
   DeckMenu_EndDuelTrunkView();
   if (selectedCount == 0)
     return;
@@ -399,6 +458,7 @@ static void TrySummonPendingFutureFusion(struct DuelCard *spellZone)
   recipeIndex = spellZone->unk4 - 1;
   if (recipeIndex >= FusionRecipe_Count()) {
     spellZone->unk4 = 0;
+    FutureFusion_ClearMaterialCount(spellZone);
     return;
   }
 
@@ -406,10 +466,12 @@ static void TrySummonPendingFutureFusion(struct DuelCard *spellZone)
   monsterCol = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
   if (monsterCol < 0) {
     spellZone->unk4 = 0;
+    FutureFusion_ClearMaterialCount(spellZone);
     return;
   }
 
-  FusionDuel_SpecialSummonResult(recipe->result);
+  FusionDuel_SpecialSummonResult(recipe->result, FutureFusion_LoadMaterialCount(spellZone));
+  FutureFusion_ClearMaterialCount(spellZone);
 
   monster = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][monsterCol];
   if (monster->id != recipe->result) {
@@ -456,6 +518,7 @@ static void DestroyLinkedMonsterForSpell(struct DuelCard *spellZone)
   monster = FutureFusionGetLinkedMonster(spellZone);
   spellZone->unk4 = 0;
   spellZone->permStage = 0;
+  FutureFusion_ClearMaterialCount(spellZone);
 
   if (monster == NULL || monster->id == CARD_NONE)
     return;
@@ -477,6 +540,8 @@ void FutureFusion_OnZoneCleared(struct DuelCard *zone)
   /* Pending: clearing the spell cancels the delayed summon (unk4/permStage die with zone). */
   if (FutureFusionHasLinkedMonster(zone))
     DestroyLinkedMonsterForSpell(zone);
+  else
+    FutureFusion_ClearMaterialCount(zone);
 }
 
 void TryApplyFutureFusionOnMonsterLeave(struct DuelCard *zone)
@@ -502,6 +567,7 @@ void TryApplyFutureFusionOnMonsterLeave(struct DuelCard *zone)
 
       spellZone->unk4 = 0;
       spellZone->permStage = 0;
+      FutureFusion_ClearMaterialCount(spellZone);
       if (!Duel_FindFixedZone(spellZone, &fixedRow, &spellCol))
         continue;
 
@@ -547,7 +613,7 @@ APPEND_TEXT void EffectFutureFusion(void)
 
     selectedCount = FusionRecipe_SelectSources(&gFusionRecipes[bestIdx], sources, sourceCount,
                                                selected, FUSION_MAX_MATERIALS);
-    if (selectedCount != FusionRecipe_MaterialCount(&gFusionRecipes[bestIdx])) {
+    if (!FusionRecipe_SelectedCountIsValid(&gFusionRecipes[bestIdx], selectedCount)) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);
       return;

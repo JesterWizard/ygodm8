@@ -27,6 +27,7 @@
 #include "copycat.h"
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
+#include "chimeratech_overdragon.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
@@ -293,6 +294,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroBlazemanTurnState();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
+  ClearChimeratechOverdragonState();
   ClearLesserFiendPending();
   ClearDarkMagicianOfChaosPending();
   ClearAirknightParshathDrawPending();
@@ -526,6 +528,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ElementalHeroNeosAlius_ClearZone(zone);
   ClearGreatMajuGarzettBoardStatsForZone(zone);
   ClearMajuGarzettBoardStatsForZone(zone);
+  ClearChimeratechOverdragonBoardStatsForZone(zone);
   BlastHeldByATribute_ClearZoneMark(zone);
   VengefulBogSpirit_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();
@@ -659,6 +662,7 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
 
   if (turnRow == ACTIVE_DUELIST_MONSTER_ROW) {
     ClearElementalHeroWildedgeState();
+    ClearChimeratechOverdragonAttacksUsed();
     ClearElementalHeroSunriseOptFlags();
     ClearElementalHeroIceEdgeDirectAttackFlags();
     ClearElementalHeroBlazemanTurnState();

@@ -18,7 +18,14 @@ u8 FusionDuel_CollectHandAndFieldSources(struct FusionMaterialSource *out, u8 ma
 u8 FusionDuel_CollectFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectDeckSources(struct FusionMaterialSource *out, u8 maxOut);
-void FusionDuel_SpecialSummonResult(u16 resultId);
+void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount);
+u8 FusionRecipe_SelectedCountIsValid(const struct FusionRecipe *recipe, u8 selectedCount);
+/* Player: pick Cyber Dragon then Machines; B cancels required picks, or stops once min met.
+ * AI/non-player: greedy max materials. */
+u8 FusionDuel_SelectOverdragonMaterials(const struct FusionMaterialSource *sources,
+                                        u8 sourceCount,
+                                        struct FusionMaterialSource *selected,
+                                        u8 maxSelected, u8 playerControlled);
 u8 FusionRecipe_IsFeasibleWithSources(const struct FusionRecipe *recipe,
                                       const struct FusionMaterialSource *sources,
                                       u8 sourceCount);

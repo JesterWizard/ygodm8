@@ -44,6 +44,8 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_CORE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO,
     FUSION_RECIPE_ELEMENTAL_HERO, 0 },
   { ELEMENTAL_HERO_SUNRISE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO, 0, 0 },
+  /* ponytail: material2+ are variable Machines; fusion_duel selects 2–4 materials. */
+  { CHIMERATECH_OVERDRAGON, FUSION_RECIPE_MACHINE, FUSION_RECIPE_MACHINE, 0, 0 },
 };
 
 u8 FusionRecipe_Count(void)
@@ -105,6 +107,9 @@ u8 FusionRecipe_MaterialIsConcrete(u16 material)
   if (material == FUSION_RECIPE_ELEMENTAL_HERO)
     return FALSE;
 
+  if (material == FUSION_RECIPE_MACHINE)
+    return FALSE;
+
   if ((material & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE)
     return FALSE;
 
@@ -123,6 +128,9 @@ u8 FusionRecipe_MaterialMatches(u16 need, u16 cardId)
 
   if (need == FUSION_RECIPE_ELEMENTAL_HERO)
     return Duel_IsElementalHeroCard(cardId);
+
+  if (need == FUSION_RECIPE_MACHINE)
+    return Duel_CardHasMonsterType(cardId, TYPE_MACHINE);
 
   if ((need & ~FUSION_RECIPE_ATTRIBUTE_VALUE_MASK) == FUSION_RECIPE_ATTRIBUTE_BASE) {
     attribute = need & FUSION_RECIPE_ATTRIBUTE_VALUE_MASK;
@@ -245,6 +253,19 @@ void FusionRecipes_SelfCheck(void)
 
   recipe = FusionRecipe_FindByResult(ELEMENTAL_HERO_SUNRISE);
   if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
+  recipe = FusionRecipe_FindByResult(CHIMERATECH_OVERDRAGON);
+  if (recipe == NULL || FusionRecipe_MaterialCount(recipe) != 2)
+    while (1)
+      ;
+
+  if (!FusionRecipe_MaterialMatches(FUSION_RECIPE_MACHINE, CYBER_DRAGON))
+    while (1)
+      ;
+
+  if (FusionRecipe_MaterialMatches(FUSION_RECIPE_MACHINE, ELEMENTAL_HERO_AVIAN))
     while (1)
       ;
 
