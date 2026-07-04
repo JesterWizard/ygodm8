@@ -1,18 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Cybernetic Fusion Support: turn-long material enabler
+**Last worked on:** 2026-07-04 — Added Overload Fusion
 
 **Files touched:**
-- `src_custom/spell_effects/cybernetic_fusion_support.c`
-- `include/cybernetic_fusion_support.h`
-- `src_custom/fusion_duel.c`
-- `include/fusion_duel.h`
-- `src_custom/spell_effects/polymerization.c`
-- `asm/ram_map_iwram.s`
-- `src_custom/code_803F02C_hooks.c`
 - `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/spell_effects/overload_fusion.c`
+- `src_custom/spell_effect_hooks.c`
 
-**Outcome:** make test-cards-build passes; CFS pays half LP and enables hand/field/GY banished materials for Polymerization this turn
+**Outcome:** make test-cards-build passes; banishes field/GY Machines for DARK Machine Fusion (Overdragon)
 
 **Open / next:**
-- playtest: CFS then Poly with GY Machines for Overdragon
+- playtest: summon 2+ Machines then activate Overload Fusion

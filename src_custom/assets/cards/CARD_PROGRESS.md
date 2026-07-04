@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 287 |
-| Art ready, needs manifest | 122 |
+| In game (manifest + art) | 288 |
+| Art ready, needs manifest | 121 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **411** |
 
@@ -309,6 +309,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_STRATOS` | Elemental HERO Stratos | `elemental_hero_stratos.png` |
 | `CHIMERATECH_OVERDRAGON` | Chimeratech Overdragon | `chimeratech_overdragon.png` |
 | `CYBERNETIC_FUSION_SUPPORT` | Cybernetic Fusion Support | `cybernetic_fusion_support.png` |
+| `OVERLOAD_FUSION` | Overload Fusion | `overload_fusion.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -390,7 +391,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
-- [ ] `OVERLOAD_FUSION` — `overload_fusion.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`

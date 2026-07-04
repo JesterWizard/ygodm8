@@ -1156,6 +1156,10 @@ static const unsigned char sCyberneticFusionSupportBigArt[] __attribute__((secti
 static const unsigned short sCyberneticFusionSupportBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cybernetic_fusion_support.gbapal");
 static const unsigned char sCyberneticFusionSupportMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cybernetic_fusion_support.lz");
 
+static const unsigned char sOverloadFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/overload_fusion.huff");
+static const unsigned short sOverloadFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/overload_fusion.gbapal");
+static const unsigned char sOverloadFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/overload_fusion.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1446,6 +1450,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x043D] = sElementalHeroStratosBigArt,
   [0x043E] = sChimeratechOverdragonBigArt,
   [0x043F] = sCyberneticFusionSupportBigArt,
+  [0x0440] = sOverloadFusionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1738,6 +1743,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x043D] = sElementalHeroStratosBigPalette,
   [0x043E] = sChimeratechOverdragonBigPalette,
   [0x043F] = sCyberneticFusionSupportBigPalette,
+  [0x0440] = sOverloadFusionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2030,6 +2036,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x043D] = 0,
   [0x043E] = 0,
   [0x043F] = 0,
+  [0x0440] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2322,4 +2329,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x043D] = sElementalHeroStratosMiniArt,
   [0x043E] = sChimeratechOverdragonMiniArt,
   [0x043F] = sCyberneticFusionSupportMiniArt,
+  [0x0440] = sOverloadFusionMiniArt,
 };

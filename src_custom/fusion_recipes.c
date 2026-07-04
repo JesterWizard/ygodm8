@@ -5,7 +5,7 @@
 #include "duel_helpers.h"
 #include "fusion_recipes.h"
 
-/* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, and De-Fusion. */
+/* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, Overload Fusion, and De-Fusion. */
 
 APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { FLAME_SWORDSMAN, FLAME_MANIPULATOR, MASAKI_THE_LEGENDARY_SWORDSMAN, 0, 0 },

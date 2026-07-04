@@ -62,11 +62,11 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
-    .card_in_hand_1 = CYBERNETIC_FUSION_SUPPORT,
+    .card_in_hand_1 = OVERLOAD_FUSION,
     .card_in_hand_2 = CYBER_DRAGON,
     .card_in_hand_3 = CYBER_DRAGON,
     .card_in_hand_4 = PROTO_CYBER_DRAGON,
-    .card_in_hand_5 = POLYMERIZATION,
+    .card_in_hand_5 = CYBER_DRAGON,
     .opponent_deck_card_id = CARD_NONE,
     /* Extra Machines in deck for Overdragon material count playtests. */
     .player_deck_card_id = CARD_NONE,
