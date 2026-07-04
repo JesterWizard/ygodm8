@@ -391,8 +391,7 @@ static bool8 RunDuelTurnLoop(void) {
     SwitchTurn();
     if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
       gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked = 0;
-    if (gTurnDuelistBattleState[ACTIVE_DUELIST]->sorlTurns)
-      DecrementSorlTurns(ACTIVE_DUELIST);
+    Sorl_TryDecrementAfterTurnEnd();
     UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
     UnlockCardsInRow(ACTIVE_DUELIST_HAND);
     VengefulBogSpirit_ClearAllMarks();

@@ -1,18 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Added Splendid Venus
+**Last worked on:** 2026-07-04 — SORL word turn counts and first-popup fix (Three not Two)
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/permanent_effects/splendid_venus.c`
-- `include/splendid_venus.h`
 - `src_custom/code_803F02C_hooks.c`
-- `src_custom/duel_helpers.c`
-- `src_custom/trap_effects/imperial_order.c`
-- `tests/host/test_splendid_venus.py`
+- `src_custom/spell_effects/swords_of_revealing_light.c`
+- `src_custom/duel_main_hooks.c`
+- `include/duel_helpers.h`
+- `asm/ram_map_iwram.s`
+- `tests/host/test_swords_of_revealing_light.py`
 
-**Outcome:** make test-cards-build passes; stage-1 debuff via ComputeFinalStage; negation immunity on spell/trap chain
+**Outcome:** make test-cards-build passes; remain text uses One/Two/Three; first blocked turn shows Three
 
 **Open / next:**
-- 80x80 art: splendid_venus.png
+- Splendid Venus 80x80 art

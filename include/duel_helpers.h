@@ -219,4 +219,7 @@ void Duel_HandlePickZoneB(void);
 // Resolve effect for AI (uses registered callbacks).
 void Duel_ResolvePickZoneForAi(void);
 
+void Sorl_MarkActivatedThisTurn(void);
+void Sorl_TryDecrementAfterTurnEnd(void);
+
 #endif // GUARD_DUEL_HELPERS_H

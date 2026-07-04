@@ -9,6 +9,7 @@ APPEND_TEXT void EffectSwordsOfRevealingLight(void)
   struct DuelCard *zone = gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1];
 
   InitSorlTurns(INACTIVE_DUELIST);
+  Sorl_MarkActivatedThisTurn();
   Duel_ActivateContinuousZone(zone);
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
@@ -17,4 +18,5 @@ APPEND_TEXT void EffectSwordsOfRevealingLight(void)
   }
 
   Duel_ShowEffectText(SWORDS_OF_REVEALING_LIGHT);
+  ResetCardEffectTextData();
 }

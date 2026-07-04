@@ -100,6 +100,11 @@ _kernel_malloc gSliferPendingPenaltyActive, 1
 _kernel_malloc gSliferPendingPenaltyBoardRow, 1
 _kernel_malloc gSliferPendingPenaltyCol, 1
 
+@ Swords of Revealing Light: skip end-of-turn decrement on the activating turn.
+_kernel_malloc gSorlSkipDecrementAfterActivation, 1
+@ ponytail: keep downstream u16 symbols 2-byte aligned after the extra byte above.
+_kernel_malloc gSorlSkipDecrementAfterActivationPad, 1
+
 @ -- Shop, event CG, field restrictions ----------------------------------------
 
 @ Duel win shop drop popup: count plus up to three (cardId, qty) pairs.

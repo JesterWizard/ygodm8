@@ -64,10 +64,10 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .fast_ai = TRUE,
     .card_in_hand_1 = THE_SPLENDID_VENUS,
     .card_in_hand_2 = THE_TYRANT_NEPTUNE,
-    .card_in_hand_3 = SPARKS,
+    .card_in_hand_3 = SWORDS_OF_REVEALING_LIGHT,
     .card_in_hand_4 = CARD_NONE,
     .card_in_hand_5 = CARD_NONE,
-    .opponent_deck_card_id = MAGIC_JAMMER,
+    .opponent_deck_card_id = CARD_NONE,
     /* Extra Machines in deck for Overdragon material count playtests. */
     .player_deck_card_id = CARD_NONE,
     .skip_to_duel = TRUE,

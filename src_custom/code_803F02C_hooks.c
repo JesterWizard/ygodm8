@@ -85,6 +85,68 @@
 #include "fire_princess.h"
 #include "sasuke_samurai.h"
 
+void DecrementSorlTurns(unsigned char);
+
+extern u8 gSorlSkipDecrementAfterActivation;
+
+static const u8 sSorlRemainPrefix[] APPEND_RODATA =
+    "Swords of Revealing Light#0remains in effect for ";
+static const u8 sSorlRemainSingular[] APPEND_RODATA = "#0more turn.#1";
+static const u8 sSorlRemainPlural[] APPEND_RODATA = "#0more turns.#1";
+static const u8 sSorlTurnCountOne[] APPEND_RODATA = "One";
+static const u8 sSorlTurnCountTwo[] APPEND_RODATA = "Two";
+static const u8 sSorlTurnCountThree[] APPEND_RODATA = "Three";
+
+static const u8 *const sSorlTurnCountWords[] APPEND_RODATA = {
+  NULL,
+  sSorlTurnCountOne,
+  sSorlTurnCountTwo,
+  sSorlTurnCountThree,
+};
+
+static u8 *AppendSorlAscii(u8 *dest, const u8 *src) {
+  while (*src)
+    *dest++ = *src++;
+  return dest;
+}
+
+static void Sorl_ShowTurnsRemainingText(u8 turnsRemaining) {
+  u8 buffer[96];
+  u8 *write = buffer;
+  const u8 *turnWord;
+
+  if (turnsRemaining == 0 || turnsRemaining > 3)
+    return;
+
+  turnWord = sSorlTurnCountWords[turnsRemaining];
+  if (turnWord == NULL)
+    return;
+
+  write = AppendSorlAscii(write, sSorlRemainPrefix);
+  write = AppendSorlAscii(write, turnWord);
+  if (turnsRemaining == 1)
+    write = AppendSorlAscii(write, sSorlRemainSingular);
+  else
+    write = AppendSorlAscii(write, sSorlRemainPlural);
+  *write = 0;
+
+  sub_8041C94(buffer, SWORDS_OF_REVEALING_LIGHT, 0, 0, 0);
+}
+
+void Sorl_MarkActivatedThisTurn(void) {
+  gSorlSkipDecrementAfterActivation = TRUE;
+}
+
+void Sorl_TryDecrementAfterTurnEnd(void) {
+  if (gSorlSkipDecrementAfterActivation) {
+    gSorlSkipDecrementAfterActivation = FALSE;
+    return;
+  }
+
+  if (gTurnDuelistBattleState[INACTIVE_DUELIST]->sorlTurns)
+    DecrementSorlTurns(INACTIVE_DUELIST);
+}
+
 extern u8 gSuppressSkullInvitationDamage;
 
 #define FLAG_LOSER_PLAYER 4
@@ -160,16 +222,20 @@ extern u8 gDoubleSummonExtraSummonUsed;
 void EnableDoubleSummonForTurn(void);
 static void TryUnlockHandForDoubleSummon(void);
 
-static struct DuelCard *GetSorlZoneForBlockedDuelist(u8 blockedDuelist)
+static struct DuelCard *FindActiveSorlZone(void)
 {
   u8 row;
   u8 i;
 
-  row = (blockedDuelist == DUEL_PLAYER) ? OPPONENT_BACKROW : PLAYER_BACKROW;
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gFixedZones[row][i]->id == SWORDS_OF_REVEALING_LIGHT
-        && !IsImperialOrderNegatingSpell(SWORDS_OF_REVEALING_LIGHT))
-      return gFixedZones[row][i];
+  for (row = OPPONENT_BACKROW; row <= PLAYER_BACKROW; row++) {
+    for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+      struct DuelCard *zone = gFixedZones[row][i];
+
+      if (zone->id == SWORDS_OF_REVEALING_LIGHT
+          && zone->isFaceUp == TRUE
+          && !IsImperialOrderNegatingSpell(SWORDS_OF_REVEALING_LIGHT))
+        return zone;
+    }
   }
 
   return NULL;
@@ -187,11 +253,6 @@ static u8 GetSorlBlockedDuelistByZone(struct DuelCard *zone)
   }
 
   return 2;
-}
-
-static u8 GetBlockedDuelistForSorlCounter(void)
-{
-  return (WhoseTurn() == DUEL_PLAYER) ? DUEL_OPPONENT : DUEL_PLAYER;
 }
 
 extern u16 gRepeatedOrNewButtons;
@@ -314,6 +375,7 @@ void InitBoard__Replacement(void) {
   ClearDarkRoomPending();
   ClearFirePrincessPending();
   ElementalHeroAbsoluteZero_ResetPendingState();
+  gSorlSkipDecrementAfterActivation = FALSE;
   for (i = 0; i < 2; i++) {
     gDuel.duelistbattleState[i].sorlTurns = 0;
     gDuel.duelistbattleState[i].defenseBlocked = 0;
@@ -473,24 +535,47 @@ void UnblockTurnSummoning__Replacement(unsigned char currPlayer) {
   WorldSuppression_ClearNegation();
 }
 
+LYN_REPLACE_CHECK(TryDisplaySorlTurnsRemainingText);
+void TryDisplaySorlTurnsRemainingText__Replacement(void) {
+  u8 turns = gDuel.duelistbattleState[WhoseTurn()].sorlTurns;
+
+  if (turns == 0)
+    return;
+  if (FindActiveSorlZone() == NULL)
+    return;
+
+  Sorl_ShowTurnsRemainingText(turns);
+}
+
 LYN_REPLACE_CHECK(DecrementSorlTurns);
 void DecrementSorlTurns__Replacement(unsigned char currPlayer) {
-  struct DuelCard *sorlZone;
+  struct DuelCard *sorlZone = FindActiveSorlZone();
   u8 blockedDuelist;
+  u8 turns;
 
-  blockedDuelist = GetBlockedDuelistForSorlCounter();
-  sorlZone = GetSorlZoneForBlockedDuelist(blockedDuelist);
+  (void)currPlayer;
 
   if (sorlZone == NULL) {
-    gTurnDuelistBattleState[currPlayer]->sorlTurns = 0;
+    gDuel.duelistbattleState[DUEL_PLAYER].sorlTurns = 0;
+    gDuel.duelistbattleState[DUEL_OPPONENT].sorlTurns = 0;
     return;
   }
 
-  if (gTurnDuelistBattleState[currPlayer]->sorlTurns)
-    gTurnDuelistBattleState[currPlayer]->sorlTurns--;
+  blockedDuelist = GetSorlBlockedDuelistByZone(sorlZone);
+  if (blockedDuelist >= 2)
+    return;
 
-  if (gTurnDuelistBattleState[currPlayer]->sorlTurns == 0)
-    ClearZoneAndSendMonToGraveyard(sorlZone, blockedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER);
+  turns = gDuel.duelistbattleState[blockedDuelist].sorlTurns;
+  if (turns == 0)
+    return;
+
+  turns--;
+  gDuel.duelistbattleState[blockedDuelist].sorlTurns = turns;
+
+  if (turns == 0) {
+    ClearZoneAndSendMonToGraveyard(sorlZone,
+        blockedDuelist == DUEL_PLAYER ? DUEL_OPPONENT : DUEL_PLAYER);
+  }
 }
 
 LYN_REPLACE_CHECK(ClearZone);
