@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "imperial_order.h"
+#include "duel_helpers.h"
 
 void ActivateTrapEffect(u16 lp);
 
@@ -23,6 +24,9 @@ void TryActivateImperialOrderOnSpellChain(void)
   struct DuelCard *zone;
 
   if (GetTypeGroup(gTrapEffectData.originCardId) != TYPE_GROUP_SPELL)
+    return;
+
+  if (Duel_IsOriginActivationProtectedFromNegation())
     return;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

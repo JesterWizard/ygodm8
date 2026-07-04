@@ -174,6 +174,9 @@ u8 Duel_ZoneIsImmuneToSpellEffects(struct DuelCard *zone);
 u8 Duel_SpellMayTargetMonsterZone(struct DuelCard *zone);
 u8 Duel_IsAnyTrapActivationBlocked(void);
 u8 Duel_IsCardActivationBlocked(u16 cardId);
+u8 Duel_DuelistActivationsProtectedFromNegation(u8 fixedDuelist);
+/* True when gTrapEffectData.origin is a spell/trap activation protected from negation. */
+u8 Duel_IsOriginActivationProtectedFromNegation(void);
 
 // --- PickZone targeting helper ---
 // Eliminates per-card headers, cursor constants, and code_8043EF4_hooks.c edits.

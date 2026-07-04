@@ -20113,6 +20113,34 @@
       "effect_texts": {
         "popup_1": "Gains ATK/DEF of Tributes. Choose one Effect Monster Tribute and gain its effects."
       }
+    },
+    {
+      "card_const": "THE_SPLENDID_VENUS",
+      "card_name": "The Splendid Venus",
+      "atk": 2800,
+      "def": 2400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 76,
+      "password": [0, 5, 6, 4, 5, 2, 1, 0],
+      "description": {
+        "symbol": "gDescription_TheSplendidVenus",
+        "pages": [
+          "All non-Fairy monsters lose 500 ATK/DEF.",
+          "Your Spell/Trap activations on your field",
+          "cannot be negated."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": [
+          "Your Spell/Trap activations on your field cannot be negated."
+        ]
+      }
     }
   ]
 }

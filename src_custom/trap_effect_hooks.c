@@ -347,6 +347,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked())
     return FALSE;
 
+  if (Duel_IsOriginActivationProtectedFromNegation())
+    return FALSE;
+
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
 

@@ -1723,6 +1723,12 @@ enum DuelActionResult Duel_TryResolveSpellThroughTrapsEx(u16 spellId, u16 trapLp
 
   SetupSpellTrapOrigin();
 
+  if (Duel_IsOriginActivationProtectedFromNegation()) {
+    if (resolveBody != NULL)
+      resolveBody();
+    return DUEL_ACTION_OK;
+  }
+
   if (IsTrapTriggered() != TRUE || gHideEffectText) {
     if (resolveBody != NULL)
       resolveBody();
@@ -1743,11 +1749,28 @@ enum DuelActionResult Duel_TryResolveTrapThroughTraps(u16 trapId)
   if (GetTypeGroup(trapId) != TYPE_GROUP_TRAP)
     return DUEL_ACTION_OK;
 
+  if (Duel_IsOriginActivationProtectedFromNegation())
+    return DUEL_ACTION_OK;
+
   if (IsTrapTriggered() != TRUE || gHideEffectText)
     return DUEL_ACTION_OK;
 
   ActivateTrapEffect(0);
   return DUEL_ACTION_BLOCKED;
+}
+
+u8 Duel_IsOriginActivationProtectedFromNegation(void)
+{
+  u8 originType;
+
+  if (gTrapEffectData.originCardId == CARD_NONE)
+    return FALSE;
+
+  originType = GetTypeGroup(gTrapEffectData.originCardId);
+  if (originType != TYPE_GROUP_SPELL && originType != TYPE_GROUP_TRAP)
+    return FALSE;
+
+  return Duel_DuelistActivationsProtectedFromNegation(TurnDuelistToFixed(ACTIVE_DUELIST));
 }
 
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId)

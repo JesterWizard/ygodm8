@@ -28,6 +28,8 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
+#include "splendid_venus.h"
+#include "card.h"
 #include "chimeratech_overdragon.h"
 #include "cybernetic_fusion_support.h"
 #include "power_bond.h"
@@ -611,6 +613,8 @@ s8 ComputeFinalStage(const struct DuelCard *zone)
     return 0;
 
   stage = zone->permStage + zone->tempStage + GetDynamicEquipStageDelta(zone);
+
+  stage = SplendidVenus_AdjustStage((s8)stage, zone->id);
 
   /* ponytail: Orichalcos debug — only check field spell ID */
   if (gActiveCustomFieldSpellId == CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS)

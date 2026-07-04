@@ -94,6 +94,7 @@ Use `duel_helpers.h` for common actions instead of copying static helpers into e
 | Typed effect text | `Duel_ShowEffectTextTyped(cardId, textType)` |
 | Spell vs traps | `Duel_TryResolveSpellThroughTraps(spellId, resolveBody)` |
 | Spell vs traps (LP hint) | `Duel_TryResolveSpellThroughTrapsEx(spellId, trapLp, resolveBody)` |
+| Negation immunity (origin) | `Duel_IsOriginActivationProtectedFromNegation()` — per-duelist: `Duel_DuelistActivationsProtectedFromNegation(fixedDuelist)` |
 | Find in deck | `Duel_FindDeckCardIndex(duelist, cardId)` |
 | Remove from deck | `Duel_RemoveDeckCardAt(duelist, index, updateGfx)` |
 | Shuffle deck | `Duel_ShuffleDeckFromDrawn(duelist)` |

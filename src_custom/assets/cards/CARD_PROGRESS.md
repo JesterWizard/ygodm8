@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 292 |
-| Art ready, needs manifest | 130 |
+| In game (manifest + art) | 293 |
+| Art ready, needs manifest | 129 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -314,6 +314,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `FUSION_SAGE` | Fusion Sage | `fusion_sage.png` |
 | `LYRILUSC_INDEPENDENT_NIGHTINGALE` | Lyrilusc - Independent Nightingale | `lyrilusc_independent_nightingale.png` |
 | `THE_TYRANT_NEPTUNE` | The Tyrant Neptune | `the_tyrant_neptune.png` |
+| `THE_SPLENDID_VENUS` | The Splendid Venus | `the_splendid_venus.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -433,7 +434,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THE_SPLENDID_VENUS` — `the_splendid_venus.png`
 - [ ] `THE_SUPPRESSION_PLUTO` — `the_suppression_pluto.png`
 - [ ] `THE_SUPREMACY_SUN` — `the_supremacy_sun.png`
 - [ ] `THE_TRIPPER_MERCURY` — `the_tripper_mercury.png`
