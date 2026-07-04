@@ -29,7 +29,7 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 ```
 [ ] 1. Fetch card data — try YGOProDeck first, Yugipedia fallback
 [ ] 2. Scaffold manifest: `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --runtime-hand 1`
-[ ] 3. Check art: `src_custom/assets/cards/80x80/<stem>.png`
+[ ] 3. Check art: `512x512/<stem>.png` (preferred) or `80x80/<stem>.png`
 [ ] 4. Effect hooks? → only if card has non-vanilla behavior (use `wire_card_effect.py`)
 [ ] 5. Build: `make test-cards-link` (or `make test-cards-build` for full ROM)
 ```
@@ -187,13 +187,13 @@ Same shell as spell but `"type": "TYPE_TRAP"`, `"color": "TRAP_CARD"`, and set `
 
 ## Step 4 — Art
 
-**Stem** = `card_const.lower()` → file `src_custom/assets/cards/80x80/<stem>.png`.
+**Stem** = `card_const.lower()`. Prefer `src_custom/assets/cards/512x512/<stem>.png`; `make` runs `batch_80x80.py` to fill missing `80x80/<stem>.png`. Hand-authored `80x80/` is also fine (not overwritten).
 
 ```bash
-ls src_custom/assets/cards/80x80/<stem>.png
+ls src_custom/assets/cards/512x512/<stem>.png src_custom/assets/cards/80x80/<stem>.png
 ```
 
-If missing: check `src_custom/assets/cards/CARD_PROGRESS.md` todo list, or tell user art is needed. For PNG authoring specs, read `documentation/adding-custom-cards.md` (only then).
+If both missing: check `src_custom/assets/cards/CARD_PROGRESS.md` todo list, or tell user art is needed. For PNG authoring specs, read `documentation/adding-custom-cards.md` (only then).
 
 Do **not** hand-edit `build/cards/` or `src_custom/generated/card_art_generated.inc`.
 
@@ -370,7 +370,7 @@ When finishing meaningful card work, append a log entry:
 python3 tools/log_session.py --task "Added {CardName}" \
   --files "tools/card_data_manifest.json,configs/runtime.c,src_custom/spell_effects/{stem}.c" \
   --outcome "make test-cards-link passes" \
-  --next "80x80 art"
+  --next "512x512 or 80x80 art"
 ```
 
 ## Related Skills / Docs

@@ -6,24 +6,19 @@ Put assets for cards with IDs `>= CUSTOM_CARD_START` here.
 
 **Progress tracker:** [CARD_PROGRESS.md](CARD_PROGRESS.md) — which cards are in the manifest vs art-only. Refresh with `python3 tools/card_art_progress.py`.
 
-## Big art (`80x80/`)
+## Big art (`512x512/` → `80x80/`)
 
-Commit one indexed PNG per card:
+Preferred: drop Master Duel source art here:
 
 ```text
-src_custom/assets/cards/80x80/<stem>.png
+src_custom/assets/cards/512x512/<stem>.png
 ```
 
 `<stem>` is the manifest `card_const` in lowercase with underscores (for example `ancient_rules.png` for `ANCIENT_RULES`).
 
-Authoring summary:
+On `make`, `tools/batch_80x80.py` writes any missing `80x80/<stem>.png` (bilinear, selective 64-color). Existing `80x80/` files are not overwritten. You can also commit a hand-authored `80x80/<stem>.png` directly.
 
-1. Start from a **512×512** PNG (prefer [Yugipedia](https://yugipedia.com) **Master Duel** art).
-2. Resize to **80×80** at **72 DPI** with a **bilinear** filter.
-3. In Photoshop **Save for Web**: **64** colors max, color adaptation **Selective**.
-4. Save into this folder.
-
-`make` runs `tools/add_card_art.py`, which converts each PNG into `build/cards/80x80/<stem>.gbapal` and `<stem>.huff` (`.8bpp` stays in temp files only).
+Then `tools/add_card_art.py` converts each `80x80/` PNG into `build/cards/80x80/*.gbapal` and `<stem>.huff` (`.8bpp` stays in temp files only).
 
 ## Mini art (`24x24/`)
 

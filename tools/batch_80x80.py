@@ -314,17 +314,12 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
     files = collect_input_files(input_dir)
     if not files:
-        print(f"No supported images found in {input_dir}")
         return 0
-
-    print(f"Input:  {input_dir}")
-    print(f"Output: {output_dir}\n")
 
     processed = skipped = errors = 0
     for path in files:
         output_path = output_dir / f"{path.stem}.png"
         if output_path.exists() and not args.force:
-            print(f"skip  {path.name}")
             skipped += 1
             continue
 
@@ -338,7 +333,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f"error {path.name}: {exc}", file=sys.stderr)
             errors += 1
 
-    print(f"\nProcessed: {processed}, skipped: {skipped}, errors: {errors}")
+    if processed or errors:
+        print(f"Processed: {processed}, skipped: {skipped}, errors: {errors}")
     return 1 if errors else 0
 
 

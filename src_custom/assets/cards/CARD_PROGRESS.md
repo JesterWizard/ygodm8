@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 289 |
-| Art ready, needs manifest | 120 |
+| Art ready, needs manifest | 133 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **411** |
+| **Total PNGs in `80x80/`** | **424** |
 
 ## In game
 
@@ -356,6 +356,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
+- [ ] `FUSION_SAGE` — `fusion_sage.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
@@ -369,6 +370,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
+- [ ] `LYRILUSC_INDEPENDENT_NIGHTINGALE` — `lyrilusc_independent_nightingale.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
@@ -405,6 +407,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
+- [ ] `SHARE_THE_PAIN` — `share_the_pain.png`
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
@@ -417,13 +420,23 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
+- [ ] `SUPER_POLYMERIZATION` — `super_polymerization.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
+- [ ] `THE_BIG_SATURN` — `the_big_saturn.png`
+- [ ] `THE_BLAZING_MARS` — `the_blazing_mars.png`
+- [ ] `THE_DESPAIR_URANUS` — `the_despair_uranus.png`
+- [ ] `THE_GRAND_JUPITER` — `the_grand_jupiter.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
+- [ ] `THE_SPLENDID_VENUS` — `the_splendid_venus.png`
+- [ ] `THE_SUPPRESSION_PLUTO` — `the_suppression_pluto.png`
+- [ ] `THE_SUPREMACY_SUN` — `the_supremacy_sun.png`
+- [ ] `THE_TRIPPER_MERCURY` — `the_tripper_mercury.png`
+- [ ] `THE_TYRANT_NEPTUNE` — `the_tyrant_neptune.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
 - [ ] `TOON_WORLD` — `toon_world.png`

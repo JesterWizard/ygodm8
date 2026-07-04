@@ -19,7 +19,7 @@ Custom cards are defined in `tools/card_data_manifest.json` and backed by art un
 
 A new card needs at least:
 
-1. An **80×80** indexed PNG for trunk/card-detail **big** art (this doc).
+1. Big art: a **512×512** source PNG (preferred) or an **80×80** indexed PNG (this doc).
 2. A manifest entry with stats, name, password, and effects.
 3. A successful `make` run to build ROM assets under `build/cards/`, regenerate includes, and automatic 24x24 mini card art.
 
@@ -29,7 +29,7 @@ See also [custom-card-memory.md](custom-card-memory.md) for save/RAM growth, [ca
 
 | Step | What you do | What the build does |
 |------|-------------|---------------------|
-| Author big art | Save an indexed `80x80/<stem>.png` (see below) | `add_card_art.py` runs `gbagfx` → `build/cards/80x80/*.gbapal` and `*.huff` |
+| Author big art | Drop a `512x512/<stem>.png` (preferred), or an indexed `80x80/<stem>.png` | `batch_80x80.py` fills missing `80x80/`; `add_card_art.py` runs `gbagfx` → `build/cards/80x80/*.gbapal` and `*.huff` |
 | Author mini art (optional) | Add `24x24/<stem>.png`, or omit and let the script derive it | `add_card_art.py` → `build/cards/24x24/<stem>.lz` |
 | Manifest | Append a card object to `tools/card_data_manifest.json` | `tools/add_card_art.py` regenerates IDs, data, names, art includes |
 | Verify | `make` | Links custom art into the ROM |
@@ -52,39 +52,19 @@ Use the highest-quality Master Duel asset available on Yugipedia so fine detail 
 
 ### 2. Downscale to 80×80
 
-In an image editor (Photoshop, GIMP, etc.):
-
-| Setting | Value |
-|---------|-------|
-| Output size | **80×80** pixels |
-| Resolution | **72 DPI** (document resolution; pixel dimensions matter for the game) |
-| Resampling / interpolation | **Bilinear** |
-
-Do not use nearest-neighbor for this step; bilinear keeps gradients smoother before the 64-color quantize.
-
-### 3. Export indexed PNG (Photoshop)
-
-In **Photoshop**, use **File → Export → Save for Web** (legacy name: *Save for Web*):
-
-| Setting | Value |
-|---------|-------|
-| File format | PNG-8 (indexed) |
-| Colors | **64** (maximum) |
-| Color reduction / adaptation | **Selective** |
-
-**Selective** adaptation keeps the exported palette as close as possible to the downscaled truecolor image, which matters because the build copies palette indices from this PNG into the in-game card detail view.
-
-Save the file as:
+**Preferred:** save the source as:
 
 ```text
-src_custom/assets/cards/80x80/<stem>.png
+src_custom/assets/cards/512x512/<stem>.png
 ```
 
-Example: `ANCIENT_RULES` → `src_custom/assets/cards/80x80/ancient_rules.png`.
+On `make`, `tools/batch_80x80.py` writes any missing `80x80/<stem>.png` (bilinear resize, selective 64-color palette). Existing `80x80/` files are left alone.
 
-Other editors can produce equivalent indexed PNGs if they honor the same **80×80**, **≤64 colors**, and a selective/perceptual quantize; the project workflow above is what contributors have validated against in-game.
+**Manual override:** author `80x80/<stem>.png` yourself (Photoshop Save for Web: PNG-8, **64** colors, **Selective**; bilinear downscale to 80×80). Hand-authored files are not overwritten by the batch step.
 
-### 4. Build conversion
+Example: `ANCIENT_RULES` → `512x512/ancient_rules.png` (or `80x80/ancient_rules.png`).
+
+### 3. Build conversion
 
 You only commit the **PNG**. On `make`, `tools/add_card_art.py` converts each `80x80/<stem>.png` straight into ROM-ready assets under `build/cards/80x80/` (intermediate `.8bpp` tiles are kept in temp files only):
 
@@ -95,7 +75,7 @@ You only commit the **PNG**. On `make`, `tools/add_card_art.py` converts each `8
 
 Do not hand-edit generated binaries unless you know you are bypassing the normal pipeline.
 
-### 5. More than 64 colors
+### 4. More than 64 colors
 
 If the indexed PNG uses **more than 64** non-transparent palette indices, the build enables the extended card-detail palette path (up to **112** colors). That requires a matching 112-entry `.gbapal` and runtime config; see [big-card-art-palette-extension.md](big-card-art-palette-extension.md). For most cards, staying at **64 colors** in Save for Web keeps behavior aligned with vanilla.
 
@@ -118,7 +98,7 @@ python3 tools/add_card_art.py --generate-minis
 
 1. Append a card entry to `tools/card_data_manifest.json` after the last custom card (or in the custom section). Required fields include `card_const`, `card_name`, combat stats, `password`, and effect IDs.
 2. Optional overrides: `big_art`, `big_palette`, `mini_art` (defaults are `build/cards/80x80/<stem>.huff`, `.gbapal`, and `build/cards/24x24/<stem>.lz`).
-3. Run `make`. This runs `tools/add_card_art.py` and rebuilds generated includes under `src_custom/generated/`.
+3. Run `make`. This runs `tools/batch_80x80.py` (missing `80x80/` only), then `tools/add_card_art.py`, and rebuilds generated includes under `src_custom/generated/`.
 
 After adding many custom cards, run `make memory-report` if you need updated save/RAM sizes (see [custom-card-memory.md](custom-card-memory.md)).
 
@@ -126,7 +106,9 @@ After adding many custom cards, run `make memory-report` if you need updated sav
 
 | Feature | Location | Description |
 |---------|----------|-------------|
-| Authoring PNG drop folder | `src_custom/assets/cards/80x80/` | Commit `<stem>.png` here |
+| High-res source drop folder | `src_custom/assets/cards/512x512/` | Commit `<stem>.png` here; `make` fills missing `80x80/` |
+| Authoring PNG drop folder | `src_custom/assets/cards/80x80/` | Commit `<stem>.png` here, or let `batch_80x80.py` generate it |
+| 512 → 80 downscale | `tools/batch_80x80.py` | Missing `80x80/<stem>.png` only (skips existing) |
 | PNG → ROM gfx | `tools/add_card_art.py` | Builds `build/cards/80x80/*.gbapal` and `*.huff`, plus `build/cards/24x24/*.lz` (`.8bpp` in temp only) |
 | Manifest source | `tools/card_data_manifest.json` | Card order, stats, optional asset paths |
 | Art / data generator | `tools/add_card_art.py` | Regenerates IDs, `card_art_generated.inc`, mini derivation |

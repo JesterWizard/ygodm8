@@ -10,8 +10,10 @@ CARD_ATTRIBUTE_PNGS := $(wildcard graphics/cards/attributes/*.png)
 CARD_ATTRIBUTE_TILES := $(patsubst graphics/cards/attributes/%.png,graphics/cards/attributes/%.4bpp,$(CARD_ATTRIBUTE_PNGS))
 CARD_ATTRIBUTE_PALETTES := $(patsubst graphics/cards/attributes/%.png,graphics/cards/attributes/%.gbapal,$(CARD_ATTRIBUTE_PNGS))
 
+CUSTOM_CARD_512_PNGS := $(wildcard src_custom/assets/cards/512x512/*.png)
 CUSTOM_CARD_80_PNGS := $(wildcard src_custom/assets/cards/80x80/*.png)
 CUSTOM_CARD_24_PNGS := $(wildcard src_custom/assets/cards/24x24/*.png)
+BATCH_80X80 := tools/batch_80x80.py
 
 OVERWORLD_ENTITY_PNGS := $(wildcard src/overworld/entities/*.png)
 OVERWORLD_ENTITY_TILES := $(patsubst src/overworld/entities/%.png,src/overworld/entities/%.4bpp,$(OVERWORLD_ENTITY_PNGS))
