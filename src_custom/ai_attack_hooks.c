@@ -28,6 +28,7 @@
 #include "level_limit_area_a.h"
 #include "black_tyranno.h"
 #include "drillago.h"
+#include "thunder_nyan_nyan.h"
 #include "elemental_hero_mariner.h"
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_ice_edge.h"
@@ -175,7 +176,8 @@ static void AiAttackDirect(struct DuelCard *attacker) {
       && !CanJowlsControlledMonsterAttackDirectly(attacker)
       && !CanElementalHeroMarinerAttackDirectly(attacker->id)
       && !CanElementalHeroKnospeAttackDirectly(attacker->id)
-      && !CanElementalHeroIceEdgeAttackDirectly(attacker))
+      && !CanElementalHeroIceEdgeAttackDirectly(attacker)
+      && !CanThunderNyanNyanAttackDirectly(attacker->id))
     return;
 
   if (!AiPayAttackTollIfNeeded())
@@ -190,6 +192,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryArmElementalHeroSunriseOnAttackDeclared(attacker, NULL);
   TryShowBlackTyrannoDirectAttackText(attacker->id);
   TryShowDrillagoDirectAttackText(attacker->id);
+  TryShowThunderNyanNyanDirectAttackText(attacker->id);
   TryShowElementalHeroMarinerDirectAttackText(attacker->id);
   TryShowElementalHeroKnospeDirectAttackText(attacker->id);
   PerformDirectAttackOrRedirectToEmbodimentOfApophis(AiFixedColForZone(attacker, fixedRow));

@@ -10432,6 +10432,7 @@ const CardData gCardData_NEW[1101] APPEND_RODATA = {
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {7, 0, 7, 9, 7, 1, 1, 8},
+    .description = gDescription_ThunderNyanNyan,
   },
   [0x0220] = {
     .atk = 900,

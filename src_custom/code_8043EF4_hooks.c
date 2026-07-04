@@ -130,6 +130,7 @@
 #include "amphibious_bugroth_mk_3.h"
 #include "black_tyranno.h"
 #include "drillago.h"
+#include "thunder_nyan_nyan.h"
 #include "elemental_hero_mariner.h"
 #include "elemental_hero_knospe.h"
 #include "elemental_hero_ice_edge.h"
@@ -1028,6 +1029,8 @@ void sub_8044570__Replacement(void)
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanDrillagoAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
+      || CanThunderNyanNyanAttackDirectly(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanElementalHeroMarinerAttackDirectly(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id)
       || CanElementalHeroKnospeAttackDirectly(
@@ -1065,6 +1068,8 @@ void sub_8044570__Replacement(void)
       TryShowBlackTyrannoDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowDrillagoDirectAttackText(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
+      TryShowThunderNyanNyanDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
       TryShowElementalHeroMarinerDirectAttackText(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id);
