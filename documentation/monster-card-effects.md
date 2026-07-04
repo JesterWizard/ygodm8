@@ -97,6 +97,7 @@ Use `duel_helpers.h` for common actions instead of copying static helpers into e
 | Find in deck | `Duel_FindDeckCardIndex(duelist, cardId)` |
 | Remove from deck | `Duel_RemoveDeckCardAt(duelist, index, updateGfx)` |
 | Shuffle deck | `Duel_ShuffleDeckFromDrawn(duelist)` |
+| Add deck card to hand | `Duel_AddDeckCardToHand(duelist, cardId, updateGfx)` |
 | Special summon | `Duel_SpecialSummonFromHand/Grave/Deck/HandZone/MonsterId(...)` with `Duel_DefaultSpecialSummonOpts(updateGfx)` |
 | Locked special summon | set `opts.lockMonster = TRUE` on `DuelSummonOpts` |
 | Normal summon | `Duel_NormalSummonFromHand(duelist, cardId, pred, Duel_DefaultNormalSummonOpts(updateGfx))` |

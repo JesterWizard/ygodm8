@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 289 |
-| Art ready, needs manifest | 133 |
+| In game (manifest + art) | 290 |
+| Art ready, needs manifest | 132 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -311,6 +311,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBERNETIC_FUSION_SUPPORT` | Cybernetic Fusion Support | `cybernetic_fusion_support.png` |
 | `OVERLOAD_FUSION` | Overload Fusion | `overload_fusion.png` |
 | `POWER_BOND` | Power Bond | `power_bond.png` |
+| `FUSION_SAGE` | Fusion Sage | `fusion_sage.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -356,7 +357,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
-- [ ] `FUSION_SAGE` — `fusion_sage.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`

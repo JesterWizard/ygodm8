@@ -288,6 +288,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [CYBERNETIC_FUSION_SUPPORT] = gActivationDescription_CyberneticFusionSupport_Popup1,
   [OVERLOAD_FUSION] = gActivationDescription_OverloadFusion_Popup1,
   [POWER_BOND] = gActivationDescription_PowerBond_Popup1,
+  [FUSION_SAGE] = gActivationDescription_FusionSage_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -593,6 +594,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_OVERLOAD_FUSION_POPUP_1] = gActivationDescription_OverloadFusion_Popup1,
   [CARD_EFFECT_TEXT_POWER_BOND_POPUP_1] = gActivationDescription_PowerBond_Popup1,
   [CARD_EFFECT_TEXT_POWER_BOND_POPUP_2] = gActivationDescription_PowerBond_Popup2,
+  [CARD_EFFECT_TEXT_FUSION_SAGE_POPUP_1] = gActivationDescription_FusionSage_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

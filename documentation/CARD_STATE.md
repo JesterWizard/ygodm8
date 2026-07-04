@@ -1,12 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — `make` auto-fills missing 80x80 from 512x512
+**Last worked on:** 2026-07-04 — Added Fusion Sage
 
 **Files touched:**
-- `Makefile`, `graphics.mk` — `CARD_80_FROM_512_STAMP` runs `batch_80x80.py`
-- `tools/batch_80x80.py` — quiet when nothing to process
-- docs / skill / `512x512/de_fusion.png` rename
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/spell_effects/fusion_sage.c`
+- `src_custom/spell_effect_hooks.c`
+- `src_custom/duel_helpers.c`
+- `include/duel_helpers.h`
 
-**Outcome:** New `512x512/<stem>.png` → missing `80x80/<stem>.png` on `make`; existing 80x80 left alone; `make test-cards` passes
+**Outcome:** make test-cards-build passes; adds Polymerization from deck to hand
 
-**Open / next:** none
+**Open / next:**
+- none

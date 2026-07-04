@@ -134,6 +134,7 @@ enum DuelActionResult Duel_TryResolveTrapThroughTraps(u16 trapId);
 s16 Duel_FindDeckCardIndex(u8 duelist, u16 cardId);
 enum DuelActionResult Duel_RemoveDeckCardAt(u8 duelist, u8 index, u8 updateGfx);
 void Duel_ShuffleDeckFromDrawn(u8 duelist);
+enum DuelActionResult Duel_AddDeckCardToHand(u8 duelist, u16 cardId, u8 updateGfx);
 
 enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
                                                  struct DuelSummonOpts opts);

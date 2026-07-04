@@ -1164,6 +1164,10 @@ static const unsigned char sPowerBondBigArt[] __attribute__((section(".append_as
 static const unsigned short sPowerBondBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/power_bond.gbapal");
 static const unsigned char sPowerBondMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/power_bond.lz");
 
+static const unsigned char sFusionSageBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fusion_sage.huff");
+static const unsigned short sFusionSageBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusion_sage.gbapal");
+static const unsigned char sFusionSageMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusion_sage.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1456,6 +1460,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x043F] = sCyberneticFusionSupportBigArt,
   [0x0440] = sOverloadFusionBigArt,
   [0x0441] = sPowerBondBigArt,
+  [0x0442] = sFusionSageBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1750,6 +1755,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x043F] = sCyberneticFusionSupportBigPalette,
   [0x0440] = sOverloadFusionBigPalette,
   [0x0441] = sPowerBondBigPalette,
+  [0x0442] = sFusionSageBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2044,6 +2050,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x043F] = 0,
   [0x0440] = 0,
   [0x0441] = 0,
+  [0x0442] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2338,4 +2345,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x043F] = sCyberneticFusionSupportMiniArt,
   [0x0440] = sOverloadFusionMiniArt,
   [0x0441] = sPowerBondMiniArt,
+  [0x0442] = sFusionSageMiniArt,
 };

@@ -1701,6 +1701,49 @@ void Duel_ShuffleDeckFromDrawn(u8 duelist)
   }
 }
 
+enum DuelActionResult Duel_AddDeckCardToHand(u8 duelist, u16 cardId, u8 updateGfx)
+{
+  u8 fixedDuelist = TurnDuelistToFixed(duelist);
+  s16 deckIndex;
+  s8 handZone;
+  u16 foundId;
+  struct DuelCard *handSlot;
+  enum DuelActionResult result;
+
+  if (cardId == CARD_NONE)
+    return DUEL_ACTION_INVALID;
+
+  handZone = FirstEmptyZoneInRow(gTurnHands[duelist]);
+  if (handZone < 0)
+    return DUEL_ACTION_NO_ZONE;
+
+  deckIndex = Duel_FindDeckCardIndex(duelist, cardId);
+  if (deckIndex < 0)
+    return DUEL_ACTION_NO_TARGET;
+
+  foundId = gDuelDecks[fixedDuelist].cards[deckIndex];
+  result = Duel_RemoveDeckCardAt(duelist, (u8)deckIndex, FALSE);
+  if (result != DUEL_ACTION_OK)
+    return result;
+
+  Duel_ShuffleDeckFromDrawn(duelist);
+
+  handSlot = gTurnHands[duelist][handZone];
+  handSlot->id = foundId;
+  handSlot->isFaceUp = FALSE;
+  handSlot->isLocked = FALSE;
+  handSlot->isDefending = FALSE;
+  handSlot->unkTwo = 0;
+  handSlot->unkThree = 0;
+  handSlot->unk4 = 0;
+  handSlot->willChangeSides = FALSE;
+  ResetPermStage(handSlot);
+  ResetTempStage(handSlot);
+
+  MaybeUpdateGfx(updateGfx);
+  return DUEL_ACTION_OK;
+}
+
 enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
                                                  struct DuelSummonOpts opts)
 {

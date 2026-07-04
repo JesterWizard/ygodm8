@@ -290,6 +290,7 @@ static const u8 sChimeratechOverdragonName[] __attribute__((section(".append_ass
 static const u8 sCyberneticFusionSupportName[] __attribute__((section(".append_assets"))) = "Cybernetic Fusion Support";
 static const u8 sOverloadFusionName[] __attribute__((section(".append_assets"))) = "Overload Fusion";
 static const u8 sPowerBondName[] __attribute__((section(".append_assets"))) = "Power Bond";
+static const u8 sFusionSageName[] __attribute__((section(".append_assets"))) = "Fusion Sage";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -876,6 +877,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sOverloadFusionName;
   if (cardId == 0x0441)
     return (u8 *)sPowerBondName;
+  if (cardId == 0x0442)
+    return (u8 *)sFusionSageName;
 
   return gCardNames[cardId];
 }
