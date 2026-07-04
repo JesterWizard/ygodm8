@@ -2123,7 +2123,7 @@ void Duel_EndSpellEffectResolve(void)
 
 u8 Duel_IsSpellEffectResolving(void)
 {
-  return sSpellEffectResolveDepth > 0 && gTrapEffectData.trapCardId == 0;
+  return sSpellEffectResolveDepth > 0;
 }
 
 void Duel_BeginMonsterEffectResolve(void)

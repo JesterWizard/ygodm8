@@ -467,3 +467,17 @@ _kernel_malloc_ewram gTheBigSaturnGyDamagePending, 2
 _kernel_malloc_ewram gTheBigSaturnGyDamageTurnRow, 1
 @ Field destroy (not hand) when pending was armed.
 _kernel_malloc_ewram gTheBigSaturnGyDamageFromField, 1
+
+@ -- Ameba control-switch burn (deferred until field gfx refresh) ----------------
+
+@ Number of queued Ameba control-switch triggers (0..2).
+_kernel_malloc_ewram gAmebaPendingCount, 1
+@ DUEL_PLAYER/DUEL_OPPONENT damage target for each queued trigger.
+_kernel_malloc_ewram gAmebaPendingDamageTarget0, 1
+_kernel_malloc_ewram gAmebaPendingDamageTarget1, 1
+@ Re-entry guard for flush during UpdateDuelGfxExceptField.
+_kernel_malloc_ewram gAmebaFlushing, 1
+@ AI sim snapshots (see ai_simulation_hooks.c).
+_kernel_malloc_ewram gAiSimSavedAmebaPendingCount, 1
+_kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget0, 1
+_kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1

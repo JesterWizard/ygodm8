@@ -9652,11 +9652,12 @@ const CardData gCardData_NEW[1101] APPEND_RODATA = {
     .attribute = ATTRIBUTE_WATER,
     .level = 1,
     .type = TYPE_AQUA,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {9, 5, 1, 7, 4, 3, 5, 3},
+    .description = gDescription_Ameba,
   },
   [0x01E5] = {
     .atk = 550,

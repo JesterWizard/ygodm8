@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ameba.h"
 #include "constants/card_ids.h"
 #include "creature_swap.h"
 #include "duel_helpers.h"
@@ -133,8 +134,17 @@ static void CreatureSwap_ResolveBody(void)
   playerZone = gFixedZones[gCreatureSwapPlayerRow][gCreatureSwapPlayerCol];
   oppZone = gFixedZones[gCreatureSwapOppRow][gCreatureSwapOppCol];
   spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
+  {
+    u16 playerCardId = playerZone->id;
+    u16 oppCardId = oppZone->id;
+    u8 playerRow = gCreatureSwapPlayerRow;
+    u8 oppRow = gCreatureSwapOppRow;
 
-  SwapMonsterZones(playerZone, oppZone);
+    SwapMonsterZones(playerZone, oppZone);
+    Duel_NotifyMonsterControlSwitched(playerCardId, oppRow);
+    if (IsDuelOver() != TRUE)
+      Duel_NotifyMonsterControlSwitched(oppCardId, playerRow);
+  }
   Duel_NotifyFixedMonsterRowChanged(PLAYER_MONSTER_ROW);
   Duel_NotifyFixedMonsterRowChanged(OPPONENT_MONSTER_ROW);
   Duel_RefreshMonsterStatOverlays();

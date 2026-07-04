@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ameba.h"
 #include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -86,7 +87,17 @@ static void ResolveInvaderSwap(u8 targetRow, u8 targetCol)
     return;
 
   targetZone = gFixedZones[targetRow][targetCol];
-  SwapMonsterZones(selfZone, targetZone);
+  {
+    u16 selfCardId = selfZone->id;
+    u16 targetCardId = targetZone->id;
+    u8 selfRow = gMonEffect.row;
+    u8 targetFixedRow = targetRow;
+
+    SwapMonsterZones(selfZone, targetZone);
+    Duel_NotifyMonsterControlSwitched(selfCardId, targetFixedRow);
+    if (IsDuelOver() != TRUE)
+      Duel_NotifyMonsterControlSwitched(targetCardId, selfRow);
+  }
   Duel_NotifyFixedMonsterRowChanged(gMonEffect.row);
   Duel_NotifyFixedMonsterRowChanged(targetRow);
   Duel_RefreshMonsterStatOverlays();

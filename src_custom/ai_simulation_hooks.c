@@ -25,6 +25,12 @@ extern u8 gAiSimSavedTheDarkDoorTurnAttackUsed;
 extern u8 gAiSimSavedResimulateAfterCallOfTheHaunted;
 extern u8 gAiSimSavedVengefulBogSpiritMaskOpponentRow;
 extern u8 gAiSimSavedVengefulBogSpiritMaskPlayerRow;
+extern u8 gAmebaPendingCount;
+extern u8 gAmebaPendingDamageTarget0;
+extern u8 gAmebaPendingDamageTarget1;
+extern u8 gAiSimSavedAmebaPendingCount;
+extern u8 gAiSimSavedAmebaPendingDamageTarget0;
+extern u8 gAiSimSavedAmebaPendingDamageTarget1;
 
 /* ponytail: AI_Data.filler1A8[0..0x13F] — not ram_map; per-candidate + batch GY snapshots. */
 #define AI_SIM_GY_CANDIDATE_SNAPSHOT_OFF 0x1A8
@@ -74,6 +80,9 @@ void sub_800EE24__Replacement(void)
   gAiSimSavedResimulateAfterCallOfTheHaunted = gAiResimulateAfterCallOfTheHaunted;
   gAiSimSavedVengefulBogSpiritMaskOpponentRow = gVengefulBogSpiritSummonedMaskOpponentRow;
   gAiSimSavedVengefulBogSpiritMaskPlayerRow = gVengefulBogSpiritSummonedMaskPlayerRow;
+  gAiSimSavedAmebaPendingCount = gAmebaPendingCount;
+  gAiSimSavedAmebaPendingDamageTarget0 = gAmebaPendingDamageTarget0;
+  gAiSimSavedAmebaPendingDamageTarget1 = gAmebaPendingDamageTarget1;
 
   gUnk_8DFF6A4->duel = gDuel;
   for (i = 0; i < 2; i++) {
@@ -115,6 +124,9 @@ void sub_800EE94__Replacement(void)
   gAiResimulateAfterCallOfTheHaunted = gAiSimSavedResimulateAfterCallOfTheHaunted;
   gVengefulBogSpiritSummonedMaskOpponentRow = gAiSimSavedVengefulBogSpiritMaskOpponentRow;
   gVengefulBogSpiritSummonedMaskPlayerRow = gAiSimSavedVengefulBogSpiritMaskPlayerRow;
+  gAmebaPendingCount = gAiSimSavedAmebaPendingCount;
+  gAmebaPendingDamageTarget0 = gAiSimSavedAmebaPendingDamageTarget0;
+  gAmebaPendingDamageTarget1 = gAiSimSavedAmebaPendingDamageTarget1;
   ClearCoffinSellerPending();
   ClearDarkMagicianOfChaosPending();
 }

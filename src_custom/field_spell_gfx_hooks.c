@@ -1,6 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ameba.h"
 #include "custom_field_spell.h"
+#include "duel_helpers.h"
 #include "dynamic_equip.h"
 
 extern unsigned short gBG2HOFS;
@@ -278,4 +280,7 @@ void UpdateDuelGfxExceptField__Replacement(void)
 
   if (gSliferPendingPenaltyActive == TRUE)
     ResolvePendingSliferSummonPenalty();
+
+  if (!Duel_IsSpellEffectResolving() && !Duel_IsMonsterEffectResolving())
+    Duel_FlushMonsterControlSwitchEffects();
 }

@@ -7553,12 +7553,22 @@
       "level": 1,
       "attribute": "ATTRIBUTE_WATER",
       "type": "TYPE_AQUA",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 19,
-      "password": [9, 5, 1, 7, 4, 3, 5, 3]
+      "password": [9, 5, 1, 7, 4, 3, 5, 3],
+      "description": {
+        "symbol": "gDescription_Ameba",
+        "pages": [
+          "When the control of this card is switched, inflict",
+          "2000 LP of damage to the duelist who now controls it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Deal 2000 LP of damage when control of this card switches."
+      }
     },
     {
       "card_const": "KOROGASHI",

@@ -40,6 +40,11 @@ u8 AiNormalSpellHasActivationTargets(u16 cardId)
         && FieldHasDestroyableSpellTrapBoardState();
   case SPELL_EFFECT_HARPIES_FEATHER_DUSTER:
     return TurnBackrowHasAnyCard(INACTIVE_DUELIST_BACKROW);
+  case SPELL_EFFECT_CHANGE_OF_HEART:
+  case SPELL_EFFECT_BRAIN_CONTROL:
+    return NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) > 0
+        && NumEmptyZonesAndGodCardsInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
+            != MAX_ZONES_IN_ROW;
   default:
     return TRUE;
   }

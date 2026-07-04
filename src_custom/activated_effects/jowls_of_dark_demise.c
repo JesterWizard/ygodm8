@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ameba.h"
 #include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -58,17 +59,22 @@ static void TakeControlOfMonsterZone(struct DuelCard *src)
 
   destCol = FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]);
   dst = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][destCol];
+  {
+    u16 cardId = src->id;
+    u8 newFixedRow = Duel_FixedMonsterRowForDuelist(ACTIVE_DUELIST);
 
-  dst->id = src->id;
-  dst->isFaceUp = TRUE;
-  dst->isLocked = FALSE;
-  dst->isDefending = FALSE;
-  dst->unkTwo = TRUE; // ponytail: Jowls direct-attack flag; cleared when zone resets
-  dst->unk4 = 2;
-  SetPermStage(dst, PermStage(src));
-  ResetTempStage(dst);
-  dst->willChangeSides = TRUE;
-  ClearZone(src);
+    dst->id = cardId;
+    dst->isFaceUp = TRUE;
+    dst->isLocked = FALSE;
+    dst->isDefending = FALSE;
+    dst->unkTwo = TRUE; // ponytail: Jowls direct-attack flag; cleared when zone resets
+    dst->unk4 = 2;
+    SetPermStage(dst, PermStage(src));
+    ResetTempStage(dst);
+    dst->willChangeSides = TRUE;
+    ClearZone(src);
+    Duel_NotifyMonsterControlSwitched(cardId, newFixedRow);
+  }
 }
 
 static void TakeControlFromOpponentFixedCol(u8 fixedCol)
@@ -176,4 +182,5 @@ void ActivateJowlsOfDarkDemiseEffect(void)
     return;
 
   ResolveJowlsEffectForAi();
+  UpdateDuelGfxExceptField();
 }

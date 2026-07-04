@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ameba.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
@@ -63,15 +64,21 @@ static void TakeControlOfMonsterZone(struct DuelCard *src)
     return;
 
   dst = gTurnZones[ACTIVE_DUELIST_MONSTER_ROW][destCol];
-  CopyCard(dst, src);
-  dst->isFaceUp = TRUE;
-  dst->isLocked = FALSE;
-  dst->isDefending = FALSE;
-  dst->unkTwo = 0;
-  dst->unk4 = 2;
-  dst->willChangeSides = FALSE;
-  ClearZone(src);
-  Duel_NotifyMonsterZoneChanged(dst);
+  {
+    u16 cardId = src->id;
+    u8 newFixedRow = Duel_FixedMonsterRowForDuelist(ACTIVE_DUELIST);
+
+    CopyCard(dst, src);
+    dst->isFaceUp = TRUE;
+    dst->isLocked = FALSE;
+    dst->isDefending = FALSE;
+    dst->unkTwo = 0;
+    dst->unk4 = 2;
+    dst->willChangeSides = FALSE;
+    ClearZone(src);
+    Duel_NotifyMonsterZoneChanged(dst);
+    Duel_NotifyMonsterControlSwitched(cardId, newFixedRow);
+  }
 }
 
 static void TakeAllPossessedDarkSoulTargets(void)

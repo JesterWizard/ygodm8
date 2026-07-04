@@ -4,12 +4,13 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `278` effects
+- `279` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
+| `permanent_effects` | `Ameba` | `src_custom/permanent_effects/ameba.c` |
 | `activated_effects` | `The Big Saturn` | `src_custom/activated_effects/the_big_saturn.c` |
 | `permanent_effects` | `The Splendid Venus` | `src_custom/permanent_effects/splendid_venus.c` |
 | `activated_effects` | `Lyrilusc Independent Nightingale` | `src_custom/activated_effects/lyrilusc_independent_nightingale.c` |
