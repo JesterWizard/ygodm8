@@ -255,7 +255,8 @@ static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
 
 u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
 {
-  return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE;
+  return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE
+      || cardId == THE_BIG_SATURN;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)

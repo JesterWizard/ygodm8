@@ -19,6 +19,7 @@
 #include "ectoplasmer.h"
 #include "future_fusion.h"
 #include "power_bond.h"
+#include "the_big_saturn.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -303,6 +304,7 @@ void TryActivatingTurnEffects__Replacement(void) {
     sub_802ADA4();
   }
   DestroyKarateManAtEndOfTurn();
+  ClearTheBigSaturnAtkBoostAtEndOfTurn();
   DestroyThousandEnergyMonstersAtEndOfTurn();
   DestroyTrianglePowerMonstersAtEndOfTurn();
   DestroyLimiterRemovalMonstersAtEndOfTurn();

@@ -4,12 +4,13 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `273` effects
+- `275` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
+| `activated_effects` | `The Big Saturn` | `src_custom/activated_effects/the_big_saturn.c` |
 | `permanent_effects` | `The Splendid Venus` | `src_custom/permanent_effects/splendid_venus.c` |
 | `activated_effects` | `Lyrilusc Independent Nightingale` | `src_custom/activated_effects/lyrilusc_independent_nightingale.c` |
 | `activated_effects` | `The Winged Dragon Of Ra Sphere Mode` | `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c` |
@@ -262,6 +263,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Cybernetic Fusion Support` | `src_custom/spell_effects/cybernetic_fusion_support.c` |
 | `spell_effects` | `Overload Fusion` | `src_custom/spell_effects/overload_fusion.c` |
 | `spell_effects` | `Fusion Sage` | `src_custom/spell_effects/fusion_sage.c` |
+| `permanent_effects` | `The Big Saturn` | `src_custom/permanent_effects/the_big_saturn.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

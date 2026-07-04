@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 293
+#define NUM_CUSTOM_NAME_SORT_CARDS 294
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -298,6 +298,7 @@ static const u8 sFusionSageSortName[] APPEND_RODATA = "Fusion Sage";
 static const u8 sLyriluscIndependentNightingaleSortName[] APPEND_RODATA = "Lyrilusc - Independent Nightingale";
 static const u8 sTheTyrantNeptuneSortName[] APPEND_RODATA = "The Tyrant Neptune";
 static const u8 sTheSplendidVenusSortName[] APPEND_RODATA = "The Splendid Venus";
+static const u8 sTheBigSaturnSortName[] APPEND_RODATA = "The Big Saturn";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -562,6 +563,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0374, // Terrorking Salmon
   0x0384, // The Agent Of Creation - Venus
   0x041A, // The Agent of Force - Mars
+  0x0446, // The Big Saturn
   0x036D, // The Dark Door
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
@@ -858,37 +860,38 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   260, // Terrorking Salmon
   261, // The Agent Of Creation - Venus
   262, // The Agent of Force - Mars
-  263, // The Dark Door
-  264, // The Flute of Summoning Dragon
-  265, // The Forceful Sentry
-  266, // The Sanctuary in the Sky
-  267, // The Splendid Venus
-  268, // The Thing in the Crater
-  269, // The Tyrant Neptune
-  270, // The Unstoppable Exodia Incarnate
-  271, // Theban Nightmare
-  272, // Thousand Energy
-  273, // Thousand Knives
-  274, // Thunder Crash
-  275, // Time Seal
-  276, // Toll
-  277, // Torpedo Fish
-  278, // Triangle Power
-  279, // Twin Swords of Flashing Light - Tryce
-  280, // Tyrant Dragon
-  281, // Ultimate Offering
-  282, // United We Stand
-  283, // Upstart Goblin
-  284, // Vampire Baby
-  285, // Vengeful Bog Spirit
-  286, // Wall of Revealing Light
-  287, // Warrior of Zera
-  288, // Wave Motion Cannon
-  289, // Weather Report
-  290, // White Magician Pikeru
-  291, // World Suppression
-  292, // Yata-Garasu
-  293, // Zaborg the Thunder Monarch
+  263, // The Big Saturn
+  264, // The Dark Door
+  265, // The Flute of Summoning Dragon
+  266, // The Forceful Sentry
+  267, // The Sanctuary in the Sky
+  268, // The Splendid Venus
+  269, // The Thing in the Crater
+  270, // The Tyrant Neptune
+  271, // The Unstoppable Exodia Incarnate
+  272, // Theban Nightmare
+  273, // Thousand Energy
+  274, // Thousand Knives
+  275, // Thunder Crash
+  276, // Time Seal
+  277, // Toll
+  278, // Torpedo Fish
+  279, // Triangle Power
+  280, // Twin Swords of Flashing Light - Tryce
+  281, // Tyrant Dragon
+  282, // Ultimate Offering
+  283, // United We Stand
+  284, // Upstart Goblin
+  285, // Vampire Baby
+  286, // Vengeful Bog Spirit
+  287, // Wall of Revealing Light
+  288, // Warrior of Zera
+  289, // Wave Motion Cannon
+  290, // Weather Report
+  291, // White Magician Pikeru
+  292, // World Suppression
+  293, // Yata-Garasu
+  294, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1484,6 +1487,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheTyrantNeptuneSortName;
   if (cardId == 0x0445)
     return (u8 *)sTheSplendidVenusSortName;
+  if (cardId == 0x0446)
+    return (u8 *)sTheBigSaturnSortName;
 
   return gCardNames[cardId];
 }

@@ -1,16 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — SORL word turn counts and first-popup fix (Three not Two)
+**Last worked on:** 2026-07-04 — Fix Big Saturn popup_2 on opponent effect destroy (explicit resolve + owner scan)
 
 **Files touched:**
-- `src_custom/code_803F02C_hooks.c`
-- `src_custom/spell_effects/swords_of_revealing_light.c`
-- `src_custom/duel_main_hooks.c`
-- `include/duel_helpers.h`
-- `asm/ram_map_iwram.s`
-- `tests/host/test_swords_of_revealing_light.py`
+- `src_custom/permanent_effects/the_big_saturn.c`
+- `src_custom/permanent_effect_hooks.c`
+- `include/the_big_saturn.h`
+- `asm/ram_map_ewram.s`
 
-**Outcome:** make test-cards-build passes; remain text uses One/Two/Three; first blocked turn shows Three
+**Outcome:** Effect owner from origin card on field; TheBigSaturn_TryResolveGyDamage after board scan; force gHideEffectText off for popup; make test-cards-build passes
 
 **Open / next:**
-- Splendid Venus 80x80 art
+- Playtest Raigeki/MST/monarch destroy on opponent turn

@@ -1095,11 +1095,12 @@
 #define LYRILUSC_INDEPENDENT_NIGHTINGALE         0x0443
 #define THE_TYRANT_NEPTUNE                       0x0444
 #define THE_SPLENDID_VENUS                       0x0445
+#define THE_BIG_SATURN                           0x0446
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0446
-#define NUM_CUSTOM_CARDS                        0x0125
+#define NUM_TOTAL_CARDS                         0x0447
+#define NUM_CUSTOM_CARDS                        0x0126
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

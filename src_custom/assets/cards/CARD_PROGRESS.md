@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 293 |
-| Art ready, needs manifest | 129 |
+| In game (manifest + art) | 294 |
+| Art ready, needs manifest | 128 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -315,6 +315,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `LYRILUSC_INDEPENDENT_NIGHTINGALE` | Lyrilusc - Independent Nightingale | `lyrilusc_independent_nightingale.png` |
 | `THE_TYRANT_NEPTUNE` | The Tyrant Neptune | `the_tyrant_neptune.png` |
 | `THE_SPLENDID_VENUS` | The Splendid Venus | `the_splendid_venus.png` |
+| `THE_BIG_SATURN` | The Big Saturn | `the_big_saturn.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -427,7 +428,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_BIG_SATURN` — `the_big_saturn.png`
 - [ ] `THE_BLAZING_MARS` — `the_blazing_mars.png`
 - [ ] `THE_DESPAIR_URANUS` — `the_despair_uranus.png`
 - [ ] `THE_GRAND_JUPITER` — `the_grand_jupiter.png`

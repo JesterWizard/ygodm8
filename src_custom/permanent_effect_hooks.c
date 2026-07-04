@@ -18,6 +18,7 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
+#include "the_big_saturn.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -84,6 +85,8 @@ unsigned char ShouldActivateArsenalBug(void);
 void ActivateArsenalBug(void);
 unsigned char ShouldActivateGranadora(void);
 void ActivateGranadora(void);
+unsigned char ShouldActivateTheBigSaturn(void);
+void ActivateTheBigSaturn(void);
 unsigned char ShouldActivateBurningAlgae(void);
 void ActivateBurningAlgae(void);
 unsigned char ShouldActivateBerserkGorilla(void);
@@ -262,6 +265,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ELEMENTAL_HERO_CAPTAIN_GOLD,
     .shouldActivate = ShouldActivateElementalHeroCaptainGold,
     .activate = ActivateElementalHeroCaptainGold,
+  },
+  {
+    .cardId = THE_BIG_SATURN,
+    .shouldActivate = ShouldActivateTheBigSaturn,
+    .activate = ActivateTheBigSaturn,
   },
 };
 
@@ -463,6 +471,7 @@ static void ScanPermanentEffectGraveyard__Hook(u8 turnRow, u8 duelist, u8 animat
   gActiveEffect.turnRow = turnRow;
   gActiveEffect.col = 0;
   gActiveEffect.cardId = gTurnDuelistBattleState[duelist]->graveyard;
+  TheBigSaturn_PrepareGraveyardScan(turnRow, &gActiveEffect.cardId);
   if (gActiveEffect.cardId == CARD_NONE)
     return;
   if (animateCursor == TRUE && !gHideEffectText)
@@ -494,7 +503,8 @@ static void CheckBoardForPermanentEffects__Hook(u8 animateScanner) {
     PlayMusic(MUSIC_375);
 
   if (!gHideEffectText ||
-      CardHasPermanentEffectSource(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard)) {
+      CardHasPermanentEffectSource(gTurnDuelistBattleState[ACTIVE_DUELIST]->graveyard) ||
+      TheBigSaturn_PendingGraveyardTurnRow() == 6) {
     ScanPermanentEffectGraveyard__Hook(6, ACTIVE_DUELIST, FALSE);
     if (IsDuelOver() == 1) {
       if (!gHideEffectText)
@@ -504,7 +514,8 @@ static void CheckBoardForPermanentEffects__Hook(u8 animateScanner) {
   }
 
   if (!gHideEffectText ||
-      CardHasPermanentEffectSource(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard)) {
+      CardHasPermanentEffectSource(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard) ||
+      TheBigSaturn_PendingGraveyardTurnRow() == 7) {
     ScanPermanentEffectGraveyard__Hook(7, INACTIVE_DUELIST, FALSE);
     if (IsDuelOver() == 1) {
       if (!gHideEffectText)
@@ -544,6 +555,8 @@ static void TryActivatingPermanentEffectsPostBoardScan(u8 aiSim)
   }
 
   ResolvePendingGraveyardDrawOnDestroy();
+  if (!aiSim)
+    TheBigSaturn_TryResolveGyDamage();
   if (!aiSim || IsLevelLimitAreaBActiveOnField())
     Duel_CheckLevelLimitAreaBAfterFieldChange();
   if (!aiSim || IsLevelLimitAreaAActiveOnField())

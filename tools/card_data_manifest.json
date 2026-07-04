@@ -20119,7 +20119,7 @@
       "card_name": "The Splendid Venus",
       "atk": 2800,
       "def": 2400,
-      "level": 4,
+      "level": 8,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_FAIRY",
       "color": "EFFECT_CARD",
@@ -20137,10 +20137,37 @@
         ]
       },
       "effect_texts": {
-        "popup_1": [
-          "Your Spell/Trap activations on your field cannot be negated."
-        ]
+        "popup_1": "Your Spell/Trap activations on your field cannot be negated."
       }
+    },
+    {
+      "card_const": "THE_BIG_SATURN",
+      "card_name": "The Big Saturn",
+      "atk": 2800,
+      "def": 2200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_THE_BIG_SATURN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [3, 4, 0, 0, 4, 4, 7, 0],
+      "description": {
+        "symbol": "gDescription_TheBigSaturn",
+        "pages": [
+          "Cannot be Special Summoned from hand or Deck.",
+          "Discard 1 card and pay 1000 LP; gain 1000 ATK until end of turn.",
+          "If destroyed by opponent effect, both take its ATK as damage."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 1 card and pay 1000 LP; gain 1000 ATK until end of turn.",
+        "popup_2": "As it was destroyed by an opponent's effect, both players take its ATK as damage."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

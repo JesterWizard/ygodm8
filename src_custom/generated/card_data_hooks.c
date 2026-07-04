@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1094] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1095] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1106,9 +1106,10 @@ const u8 gCardLockAfterActivation_Hook[1094] APPEND_RODATA = {
   [0x0443] = 0,
   [0x0444] = 1,
   [0x0445] = 1,
+  [0x0446] = 0,
 };
 
-const u8 gCardEffectUsage_Hook[1094] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1095] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2203,9 +2204,10 @@ const u8 gCardEffectUsage_Hook[1094] APPEND_RODATA = {
   [0x0443] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0444] = EFFECT_USAGE_NONE,
   [0x0445] = EFFECT_USAGE_NONE,
+  [0x0446] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const u8 gCardSelectableOnce_Hook[1094] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1095] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3300,9 +3302,10 @@ const u8 gCardSelectableOnce_Hook[1094] APPEND_RODATA = {
   [0x0443] = 0,
   [0x0444] = 0,
   [0x0445] = 0,
+  [0x0446] = 0,
 };
 
-const CardData gCardData_NEW[1094] APPEND_RODATA = {
+const CardData gCardData_NEW[1095] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -17858,7 +17861,7 @@ const CardData gCardData_NEW[1094] APPEND_RODATA = {
     .def = 2400,
     .cost = 76,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 4,
+    .level = 8,
     .type = TYPE_FAIRY,
     .color = EFFECT_CARD,
     .monsterEffect = 0,
@@ -17866,5 +17869,19 @@ const CardData gCardData_NEW[1094] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {0, 5, 6, 4, 5, 2, 1, 0},
     .description = gDescription_TheSplendidVenus,
+  },
+  [0x0446] = {
+    .atk = 2800,
+    .def = 2200,
+    .cost = 58,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_MACHINE,
+    .color = EFFECT_CARD,
+    .monsterEffect = 149,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 4, 0, 0, 4, 4, 7, 0},
+    .description = gDescription_TheBigSaturn,
   },
 };

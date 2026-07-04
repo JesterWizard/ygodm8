@@ -53,6 +53,7 @@
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "lyrilusc_independent_nightingale.h"
+#include "the_big_saturn.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -221,6 +222,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE:
         canActivate = CanActivateLyriluscIndependentNightingale();
+        break;
+      case MONSTER_EFFECT_THE_BIG_SATURN:
+        canActivate = CanActivateTheBigSaturn();
         break;
       default:
         canActivate = TRUE;
@@ -498,6 +502,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE) {
     ActivateLyriluscIndependentNightingaleEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_BIG_SATURN) {
+    ActivateTheBigSaturnEffect();
     return;
   }
 

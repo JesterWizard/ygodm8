@@ -293,6 +293,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [LYRILUSC_INDEPENDENT_NIGHTINGALE] = gActivationDescription_LyriluscIndependentNightingale_Popup1,
   [THE_TYRANT_NEPTUNE] = gActivationDescription_TheTyrantNeptune_Popup1,
   [THE_SPLENDID_VENUS] = gActivationDescription_TheSplendidVenus_Popup1,
+  [THE_BIG_SATURN] = gActivationDescription_TheBigSaturn_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -605,6 +606,8 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_LYRILUSC_INDEPENDENT_NIGHTINGALE_POPUP_1] = gActivationDescription_LyriluscIndependentNightingale_Popup1,
   [CARD_EFFECT_TEXT_THE_TYRANT_NEPTUNE_POPUP_1] = gActivationDescription_TheTyrantNeptune_Popup1,
   [CARD_EFFECT_TEXT_THE_SPLENDID_VENUS_POPUP_1] = gActivationDescription_TheSplendidVenus_Popup1,
+  [CARD_EFFECT_TEXT_THE_BIG_SATURN_POPUP_1] = gActivationDescription_TheBigSaturn_Popup1,
+  [CARD_EFFECT_TEXT_THE_BIG_SATURN_POPUP_2] = gActivationDescription_TheBigSaturn_Popup2,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -294,6 +294,7 @@ static const u8 sFusionSageName[] __attribute__((section(".append_assets"))) = "
 static const u8 sLyriluscIndependentNightingaleName[] __attribute__((section(".append_assets"))) = "Lyrilusc - Independent Nightingale";
 static const u8 sTheTyrantNeptuneName[] __attribute__((section(".append_assets"))) = "The Tyrant Neptune";
 static const u8 sTheSplendidVenusName[] __attribute__((section(".append_assets"))) = "The Splendid Venus";
+static const u8 sTheBigSaturnName[] __attribute__((section(".append_assets"))) = "The Big Saturn";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -888,6 +889,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheTyrantNeptuneName;
   if (cardId == 0x0445)
     return (u8 *)sTheSplendidVenusName;
+  if (cardId == 0x0446)
+    return (u8 *)sTheBigSaturnName;
 
   return gCardNames[cardId];
 }

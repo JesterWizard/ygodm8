@@ -28,6 +28,7 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
+#include "the_big_saturn.h"
 #include "splendid_venus.h"
 #include "card.h"
 #include "chimeratech_overdragon.h"
@@ -360,6 +361,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroBlazemanTurnState();
   ClearCyberneticFusionSupport();
   PowerBond_ClearState();
+  ClearTheBigSaturnPending();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearChimeratechOverdragonState();
@@ -392,6 +394,7 @@ void PlayerTurnMain__Replacement(void) {
     if (IsDuelOver() == TRUE)
       return;
     DestroyKarateManAtEndOfTurn();
+    ClearTheBigSaturnAtkBoostAtEndOfTurn();
     DestroyThousandEnergyMonstersAtEndOfTurn();
     DestroyTrianglePowerMonstersAtEndOfTurn();
     DestroyLimiterRemovalMonstersAtEndOfTurn();
@@ -481,6 +484,7 @@ void PlayerTurnMain__Replacement(void) {
     return;
 
   DestroyKarateManAtEndOfTurn();
+  ClearTheBigSaturnAtkBoostAtEndOfTurn();
   DestroyThousandEnergyMonstersAtEndOfTurn();
   DestroyTrianglePowerMonstersAtEndOfTurn();
   DestroyLimiterRemovalMonstersAtEndOfTurn();

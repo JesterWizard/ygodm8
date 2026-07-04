@@ -1180,6 +1180,10 @@ static const unsigned char sTheSplendidVenusBigArt[] __attribute__((section(".ap
 static const unsigned short sTheSplendidVenusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_splendid_venus.gbapal");
 static const unsigned char sTheSplendidVenusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_splendid_venus.lz");
 
+static const unsigned char sTheBigSaturnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_big_saturn.huff");
+static const unsigned short sTheBigSaturnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_big_saturn.gbapal");
+static const unsigned char sTheBigSaturnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_big_saturn.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1476,6 +1480,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0443] = sLyriluscIndependentNightingaleBigArt,
   [0x0444] = sTheTyrantNeptuneBigArt,
   [0x0445] = sTheSplendidVenusBigArt,
+  [0x0446] = sTheBigSaturnBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1774,6 +1779,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0443] = sLyriluscIndependentNightingaleBigPalette,
   [0x0444] = sTheTyrantNeptuneBigPalette,
   [0x0445] = sTheSplendidVenusBigPalette,
+  [0x0446] = sTheBigSaturnBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2072,6 +2078,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0443] = 0,
   [0x0444] = 0,
   [0x0445] = 0,
+  [0x0446] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2370,4 +2377,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0443] = sLyriluscIndependentNightingaleMiniArt,
   [0x0444] = sTheTyrantNeptuneMiniArt,
   [0x0445] = sTheSplendidVenusMiniArt,
+  [0x0446] = sTheBigSaturnMiniArt,
 };

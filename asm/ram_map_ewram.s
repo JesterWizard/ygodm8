@@ -449,3 +449,11 @@ _kernel_malloc_ewram gHarpieLady3RestrictTurns, 0xA
 _kernel_malloc_ewram gHarpieLady3LastProcessedTurn, 1
 @ PickZone targeting callbacks for Duel_BeginPickZone (4 function pointers = 16 bytes).
 _kernel_malloc_ewram gPickZoneState, 0x10
+@ ponytail: pad keeps gTheBigSaturnGyDamagePending on an even EWRAM address.
+_kernel_malloc_ewram gTheBigSaturnGyDamagePendingPad, 1
+@ ATK snapshot for The Big Saturn graveyard damage when destroyed by opponent effect.
+_kernel_malloc_ewram gTheBigSaturnGyDamagePending, 2
+@ Permanent-effect GY scan row (6 or 7) for pending Big Saturn damage.
+_kernel_malloc_ewram gTheBigSaturnGyDamageTurnRow, 1
+@ Field destroy (not hand) when pending was armed.
+_kernel_malloc_ewram gTheBigSaturnGyDamageFromField, 1
