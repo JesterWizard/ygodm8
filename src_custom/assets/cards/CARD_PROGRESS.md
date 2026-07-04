@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 288 |
-| Art ready, needs manifest | 121 |
+| In game (manifest + art) | 289 |
+| Art ready, needs manifest | 120 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **411** |
 
@@ -310,6 +310,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHIMERATECH_OVERDRAGON` | Chimeratech Overdragon | `chimeratech_overdragon.png` |
 | `CYBERNETIC_FUSION_SUPPORT` | Cybernetic Fusion Support | `cybernetic_fusion_support.png` |
 | `OVERLOAD_FUSION` | Overload Fusion | `overload_fusion.png` |
+| `POWER_BOND` | Power Bond | `power_bond.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -395,7 +396,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PANDEMONIUM` — `pandemonium.png`
 - [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
-- [ ] `POWER_BOND` — `power_bond.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`

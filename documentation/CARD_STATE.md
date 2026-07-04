@@ -1,14 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Added Overload Fusion
+**Last worked on:** 2026-07-04 — Fixed Power Bond End Phase burn target and popup_2
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/spell_effects/overload_fusion.c`
-- `src_custom/spell_effect_hooks.c`
+- `src_custom/spell_effects/power_bond.c`
 
-**Outcome:** make test-cards-build passes; banishes field/GY Machines for DARK Machine Fusion (Overdragon)
+**Outcome:** Burn hits activator (INACTIVE_DUELIST at next-turn start); shows popup_2; make test-cards-build passes
 
 **Open / next:**
-- playtest: summon 2+ Machines then activate Overload Fusion
+- playtest End Phase burn on owner with popup_2 text

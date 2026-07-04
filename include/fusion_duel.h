@@ -46,6 +46,9 @@ void FusionDuel_ExecutePolymerization(const struct FusionRecipe *recipe,
 void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,
                                      const struct FusionMaterialSource *sources,
                                      u8 sourceCount, u16 spellCardId, u8 showEffectText);
+void FusionDuel_ExecutePowerBond(const struct FusionRecipe *recipe,
+                                 const struct FusionMaterialSource *sources,
+                                 u8 sourceCount, u16 spellCardId, u8 showEffectText);
 s8 FusionDuel_AiPickBestRecipeIndex(const struct FusionMaterialSource *sources,
                                     u8 sourceCount, FusionRecipeFilterFn filter);
 

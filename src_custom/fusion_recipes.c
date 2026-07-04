@@ -5,7 +5,7 @@
 #include "duel_helpers.h"
 #include "fusion_recipes.h"
 
-/* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, Overload Fusion, and De-Fusion. */
+/* ponytail: shared fusion recipe table for Polymerization, Miracle Fusion, Overload Fusion, Power Bond, and De-Fusion. */
 
 APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { FLAME_SWORDSMAN, FLAME_MANIPULATOR, MASAKI_THE_LEGENDARY_SWORDSMAN, 0, 0 },
@@ -46,6 +46,8 @@ APPEND_RODATA const struct FusionRecipe gFusionRecipes[] = {
   { ELEMENTAL_HERO_SUNRISE, FUSION_RECIPE_ELEMENTAL_HERO, FUSION_RECIPE_ELEMENTAL_HERO, 0, 0 },
   /* ponytail: material2+ are variable Machines; fusion_duel selects 2–4 materials. */
   { CHIMERATECH_OVERDRAGON, FUSION_RECIPE_MACHINE, FUSION_RECIPE_MACHINE, 0, 0 },
+  { .result=CYBER_TWIN_DRAGON, .material1=CYBER_DRAGON, .material2=CYBER_DRAGON, 0, 0},
+  { .result=CYBER_END_DRAGON, .material1=CYBER_DRAGON, .material2=CYBER_DRAGON, CYBER_DRAGON, 0},
 };
 
 u8 FusionRecipe_Count(void)

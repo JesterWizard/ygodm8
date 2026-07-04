@@ -29,6 +29,7 @@
 #include "maju_garzett.h"
 #include "chimeratech_overdragon.h"
 #include "cybernetic_fusion_support.h"
+#include "power_bond.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
@@ -294,6 +295,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSunriseDestroyPending();
   ClearElementalHeroBlazemanTurnState();
   ClearCyberneticFusionSupport();
+  PowerBond_ClearState();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearChimeratechOverdragonState();
@@ -499,6 +501,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   OnDynamicEquipZoneAboutToClear(zone);
   OnEmbodimentOfApophisZoneAboutToClear(zone);
   ClearRiryokuAtkDeltaForZone(zone);
+  PowerBond_ClearAtkBonusForZone(zone);
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
   ElementalHeroSunrise_OnZoneCleared(zone);

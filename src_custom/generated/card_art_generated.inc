@@ -1160,6 +1160,10 @@ static const unsigned char sOverloadFusionBigArt[] __attribute__((section(".appe
 static const unsigned short sOverloadFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/overload_fusion.gbapal");
 static const unsigned char sOverloadFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/overload_fusion.lz");
 
+static const unsigned char sPowerBondBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/power_bond.huff");
+static const unsigned short sPowerBondBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/power_bond.gbapal");
+static const unsigned char sPowerBondMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/power_bond.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1451,6 +1455,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x043E] = sChimeratechOverdragonBigArt,
   [0x043F] = sCyberneticFusionSupportBigArt,
   [0x0440] = sOverloadFusionBigArt,
+  [0x0441] = sPowerBondBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1744,6 +1749,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x043E] = sChimeratechOverdragonBigPalette,
   [0x043F] = sCyberneticFusionSupportBigPalette,
   [0x0440] = sOverloadFusionBigPalette,
+  [0x0441] = sPowerBondBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2037,6 +2043,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x043E] = 0,
   [0x043F] = 0,
   [0x0440] = 0,
+  [0x0441] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2330,4 +2337,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x043E] = sChimeratechOverdragonMiniArt,
   [0x043F] = sCyberneticFusionSupportMiniArt,
   [0x0440] = sOverloadFusionMiniArt,
+  [0x0441] = sPowerBondMiniArt,
 };

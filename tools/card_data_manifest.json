@@ -19993,6 +19993,33 @@
       "effect_texts": {
         "popup_1": "Summon 1 DARK Machine Fusion Monster using monsters from field or Graveyard as materials."
       }
+    },
+    {
+      "card_const": "POWER_BOND",
+      "card_name": "Power Bond",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 7, 6, 3, 0, 7, 3, 2],
+      "description": {
+        "symbol": "gDescription_PowerBond",
+        "pages": [
+          "Fusion Summon 1 Machine Fusion Monster",
+          "from hand or field. Gains ATK equal to",
+          "its original ATK. End Phase: take that damage."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 Machine Monster using materials from your hand or field and double its original ATK.",
+        "popup_2": "Take damage equal to the original ATK of the Fusion Monster that was summoned."
+      }
     }
   ]
 }

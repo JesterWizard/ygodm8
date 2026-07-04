@@ -87,6 +87,7 @@ extern void EffectEctoplasmer(void);
 extern void EffectPolymerization(void);
 extern void EffectMiracleFusion(void);
 extern void EffectOverloadFusion(void);
+extern void EffectPowerBond(void);
 extern void EffectCyberneticFusionSupport(void);
 extern void EffectDeFusion(void);
 extern void EffectBookOfLife(void);
@@ -533,6 +534,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case OVERLOAD_FUSION:
       EffectOverloadFusion();
+      return;
+    case POWER_BOND:
+      EffectPowerBond();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

@@ -18,6 +18,7 @@
 #include "mirror_wall.h"
 #include "ectoplasmer.h"
 #include "future_fusion.h"
+#include "power_bond.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -309,6 +310,9 @@ void TryActivatingTurnEffects__Replacement(void) {
   if (IsDuelOver() == 1)
     return;
   TryApplyEctoplasmerEndPhaseEffect();
+  if (IsDuelOver() == 1)
+    return;
+  TryApplyPowerBondEndPhaseBurn();
   if (IsDuelOver() == 1)
     return;
   ResetTempStagesForAllCards();

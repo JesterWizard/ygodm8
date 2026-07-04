@@ -15,6 +15,7 @@
 #include "expanded_graveyard.h"
 #include "cybernetic_fusion_support.h"
 #include "fusion_duel.h"
+#include "power_bond.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
 void UpdateDuelGfxExceptField(void);
@@ -917,6 +918,18 @@ void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,
 {
   ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId, PayMiracleFusionMaterials,
                       showEffectText);
+}
+
+void FusionDuel_ExecutePowerBond(const struct FusionRecipe *recipe,
+                                 const struct FusionMaterialSource *sources,
+                                 u8 sourceCount, u16 spellCardId, u8 showEffectText)
+{
+  enum DuelActionResult result;
+
+  result = ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId,
+                               PayPolymerizationMaterials, showEffectText);
+  if (result == DUEL_ACTION_OK && recipe != NULL)
+    PowerBond_OnFusionSummoned(recipe->result);
 }
 
 s8 FusionDuel_AiPickBestRecipeIndex(const struct FusionMaterialSource *sources,

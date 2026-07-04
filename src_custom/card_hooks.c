@@ -11,6 +11,7 @@
 #include "elemental_hero_neos_alius.h"
 #include "ojama_trio.h"
 #include "riryoku.h"
+#include "power_bond.h"
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "mirror_wall.h"
@@ -569,6 +570,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  ApplyPowerBondAtkBonusToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
@@ -676,6 +678,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && gSetFinalStatZone->id == ptr->card
       && CardUsesMonsterCombatStats(ptr->card)) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+    ApplyPowerBondAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);

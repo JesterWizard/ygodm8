@@ -58,6 +58,11 @@ _kernel_malloc_ewram gCreatureSwapOppCol, 1
 @ Riryoku ATK deltas keyed by gDuel.board cell index (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
 
+@ Power Bond ATK bonus keyed by gDuel.board cell index (20 cells x 2 bytes).
+_kernel_malloc_ewram_array gPowerBondAtkBonus, 0x28
+@ Power Bond End Phase burn pending for the turn player (2 bytes).
+_kernel_malloc_ewram gPowerBondEndPhaseBurn, 2
+
 @ Mirror Wall permanent ATK-halve flags keyed by gDuel.board cell index (20 cells x 1 byte).
 _kernel_malloc_ewram_array gMirrorWallHalvedMask, 0x14
 
