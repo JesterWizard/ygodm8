@@ -4,6 +4,7 @@
 #include "constants/music_ids.h"
 #include "duel_helpers.h"
 #include "elemental_hero_core.h"
+#include "the_supremacy_sun.h"
 #include "the_big_saturn.h"
 #include "graveyard_effects.h"
 
@@ -36,6 +37,7 @@ void NoteGraveyardMonsterSend(struct DuelCard *zone)
 {
   gGraveyardSendWasFromField = ZoneIsHandSlot(zone) ? FALSE : TRUE;
   ClearElementalHeroCoreReviveIfHandSend(zone);
+  MarkTheSupremacySunDestroyedFromField(zone);
   NoteTheBigSaturnGraveyardSend(zone);
 }
 

@@ -46,6 +46,7 @@
 #include "elemental_hero_poison_rose.h"
 #include "elemental_hero_voltic.h"
 #include "elemental_hero_core.h"
+#include "the_supremacy_sun.h"
 #include "elemental_hero_ice_edge.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
@@ -241,6 +242,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
       MarkElementalHeroCoreDestroyedFromField(zone);
+      MarkTheSupremacySunDestroyedFromField(zone);
       ClearZoneAndSendMonToGraveyard2(zone, 0);
     }
   }
@@ -254,6 +256,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);
       MarkElementalHeroCoreDestroyedFromField(zone);
+      MarkTheSupremacySunDestroyedFromField(zone);
       ClearZoneAndSendMonToGraveyard2(zone, 1);
     }
   }

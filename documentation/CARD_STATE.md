@@ -1,17 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Added The Suppression Pluto
+**Last worked on:** 2026-07-04 — Fixed The Supremacy Sun standby revival
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/activated_effects/the_suppression_pluto.c`
-- `include/the_suppression_pluto.h`
-- `src_custom/duel_helpers.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `tests/host/test_the_suppression_pluto.py`
+- `src_custom/turn_effects/the_supremacy_sun.c`
+- `src_custom/activated_effects/graveyard_draw_on_destroy.c`
+- `src_custom/embodiment_of_apophis_hooks.c`
+- `src_custom/battle_damage_hooks.c`
+- `tests/host/test_the_supremacy_sun.py`
 
-**Outcome:** make test-cards-build passes; on-summon opponent Spell/Trap steal implemented (simplified from full hand-reveal choice effect)
-
-**Open / next:**
-- Full once-per-turn declare/hand-reveal/choice effect when choice UI exists
+**Outcome:** Armed flag now set on battle/effect GY paths; standby window no longer cleared on opponent turn before owner can activate; make all passes

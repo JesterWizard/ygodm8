@@ -33,6 +33,7 @@
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
 #include "elemental_hero_core.h"
+#include "the_supremacy_sun.h"
 #include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
 #include "the_tyrant_neptune.h"
@@ -257,8 +258,11 @@ static u8 SummonModeIsSpecial(enum DuelSummonMode mode)
 
 u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
 {
+  if (cardId == THE_SUPREMACY_SUN && gTheSupremacySunOwnEffectSummon)
+    return FALSE;
+
   return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE
-      || cardId == THE_BIG_SATURN;
+      || cardId == THE_BIG_SATURN || cardId == THE_SUPREMACY_SUN;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
@@ -471,6 +475,7 @@ enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelis
     return DUEL_ACTION_NO_TARGET;
 
   MarkElementalHeroCoreDestroyedFromField(zone);
+  MarkTheSupremacySunDestroyedFromField(zone);
   ClearZoneAndSendMonToGraveyard(zone, graveyardDuelist);
   MaybeUpdateGfx(updateGfx);
 

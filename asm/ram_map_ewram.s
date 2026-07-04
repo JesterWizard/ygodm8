@@ -346,6 +346,10 @@ _kernel_malloc_ewram gElementalHeroBlazemanCopyCol, 1
 _kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
 @ ponytail: pad restores 2-byte alignment after removing a duplicate Core block.
 _kernel_malloc_ewram gElementalHeroCorePad, 1
+@ The Supremacy Sun: armed + next-standby-ready flags per fixed duelist.
+_kernel_malloc_ewram_array gTheSupremacySunArmed, 2
+_kernel_malloc_ewram_array gTheSupremacySunStandbyReady, 2
+_kernel_malloc_ewram gTheSupremacySunOwnEffectSummon, 1
 @ Elemental HERO Sunrise: once-per-turn flags + post-battle destroy origin (0xFF = none).
 _kernel_malloc_ewram gElementalHeroSunriseSearchUsed, 1
 _kernel_malloc_ewram gElementalHeroSunriseDestroyUsed, 1

@@ -21,6 +21,7 @@
 #include "power_bond.h"
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
+#include "the_supremacy_sun.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -328,5 +329,9 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   ResetTempStagesForAllCards();
   ClearAllRiryokuAtkDeltas();
+  TheSupremacySun_AgeStandbyFlags();
+  TheSupremacySun_TryResolveStandbyRevive();
+  if (IsDuelOver() == 1)
+    return;
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }

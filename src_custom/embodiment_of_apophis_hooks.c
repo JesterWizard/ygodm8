@@ -8,6 +8,7 @@
 #include "embodiment_of_apophis.h"
 #include "sasuke_samurai_2.h"
 #include "ojama_trio.h"
+#include "the_supremacy_sun.h"
 #include "duel.h"
 
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
@@ -492,6 +493,7 @@ LYN_REPLACE_CHECK(ClearZoneAndSendMonToGraveyard2);
 void ClearZoneAndSendMonToGraveyard2__Replacement(struct DuelCard *zone, u8 turn)
 {
   ApplyOjamaTrioDestructionDamage(zone);
+  MarkTheSupremacySunDestroyedFromField(zone);
   SendOjamaTrioZoneToGraveyardIfNeeded(zone, turn);
   SendApophisZoneToGraveyardIfNeeded(zone, turn);
   ClearZone(zone);
