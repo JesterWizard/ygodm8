@@ -19,6 +19,7 @@
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
 #include "the_big_saturn.h"
+#include "the_tripper_mercury.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -270,6 +271,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = THE_BIG_SATURN,
     .shouldActivate = ShouldActivateTheBigSaturn,
     .activate = ActivateTheBigSaturn,
+  },
+  {
+    .cardId = THE_TRIPPER_MERCURY,
+    .shouldActivate = ShouldActivateTheTripperMercury,
+    .activate = ActivateTheTripperMercury,
   },
 };
 

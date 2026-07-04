@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 294
+#define NUM_CUSTOM_NAME_SORT_CARDS 295
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -299,6 +299,7 @@ static const u8 sLyriluscIndependentNightingaleSortName[] APPEND_RODATA = "Lyril
 static const u8 sTheTyrantNeptuneSortName[] APPEND_RODATA = "The Tyrant Neptune";
 static const u8 sTheSplendidVenusSortName[] APPEND_RODATA = "The Splendid Venus";
 static const u8 sTheBigSaturnSortName[] APPEND_RODATA = "The Big Saturn";
+static const u8 sTheTripperMercurySortName[] APPEND_RODATA = "The Tripper Mercury";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -570,6 +571,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03FE, // The Sanctuary in the Sky
   0x0445, // The Splendid Venus
   0x03D0, // The Thing in the Crater
+  0x0447, // The Tripper Mercury
   0x0444, // The Tyrant Neptune
   0x03FD, // The Unstoppable Exodia Incarnate
   0x03E7, // Theban Nightmare
@@ -867,31 +869,32 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   267, // The Sanctuary in the Sky
   268, // The Splendid Venus
   269, // The Thing in the Crater
-  270, // The Tyrant Neptune
-  271, // The Unstoppable Exodia Incarnate
-  272, // Theban Nightmare
-  273, // Thousand Energy
-  274, // Thousand Knives
-  275, // Thunder Crash
-  276, // Time Seal
-  277, // Toll
-  278, // Torpedo Fish
-  279, // Triangle Power
-  280, // Twin Swords of Flashing Light - Tryce
-  281, // Tyrant Dragon
-  282, // Ultimate Offering
-  283, // United We Stand
-  284, // Upstart Goblin
-  285, // Vampire Baby
-  286, // Vengeful Bog Spirit
-  287, // Wall of Revealing Light
-  288, // Warrior of Zera
-  289, // Wave Motion Cannon
-  290, // Weather Report
-  291, // White Magician Pikeru
-  292, // World Suppression
-  293, // Yata-Garasu
-  294, // Zaborg the Thunder Monarch
+  270, // The Tripper Mercury
+  271, // The Tyrant Neptune
+  272, // The Unstoppable Exodia Incarnate
+  273, // Theban Nightmare
+  274, // Thousand Energy
+  275, // Thousand Knives
+  276, // Thunder Crash
+  277, // Time Seal
+  278, // Toll
+  279, // Torpedo Fish
+  280, // Triangle Power
+  281, // Twin Swords of Flashing Light - Tryce
+  282, // Tyrant Dragon
+  283, // Ultimate Offering
+  284, // United We Stand
+  285, // Upstart Goblin
+  286, // Vampire Baby
+  287, // Vengeful Bog Spirit
+  288, // Wall of Revealing Light
+  289, // Warrior of Zera
+  290, // Wave Motion Cannon
+  291, // Weather Report
+  292, // White Magician Pikeru
+  293, // World Suppression
+  294, // Yata-Garasu
+  295, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1489,6 +1492,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheSplendidVenusSortName;
   if (cardId == 0x0446)
     return (u8 *)sTheBigSaturnSortName;
+  if (cardId == 0x0447)
+    return (u8 *)sTheTripperMercurySortName;
 
   return gCardNames[cardId];
 }

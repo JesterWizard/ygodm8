@@ -16,6 +16,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "the_tripper_mercury.h"
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_wildedge.h"
@@ -208,6 +209,7 @@ static void AiAttackDirect(struct DuelCard *attacker) {
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockTheTripperMercuryForSecondAttack(attacker);
   TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, NULL);
@@ -265,6 +267,7 @@ static void AiAttackMonster(struct DuelCard *attacker, struct DuelCard *defender
   TryUnlockTryceEquipForSecondAttack(attacker);
   TryUnlockTyrantDragonForSecondAttack(attacker);
   TryUnlockCyberTwinDragonForSecondAttack(attacker);
+  TryUnlockTheTripperMercuryForSecondAttack(attacker);
   TryUnlockChimeratechOverdragonForNextAttack(attacker);
   TryUnlockBlackLusterSoldierEnvoyForSecondAttack(attacker);
   TryUnlockElementalHeroWildedgeForNextAttack(attacker, defender);

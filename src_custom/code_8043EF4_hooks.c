@@ -77,6 +77,7 @@
 #include "twin_swords_of_flashing_light_tryce.h"
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
+#include "the_tripper_mercury.h"
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_gaia.h"
@@ -136,6 +137,7 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
+#include "the_tripper_mercury.h"
 #include "duel_helpers.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -959,6 +961,8 @@ void sub_80449D8__Replacement(void)
   UpdateDuelGfxExceptField();
   /* ponytail: on-summon text after field draw so Blazeman/Stratos is visible. */
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
+    FinishTheTripperMercuryTributeSummon(
+        gFixedZones[placedRow][placedCol], placedRow, placedCol);
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
@@ -1067,6 +1071,8 @@ void sub_8044570__Replacement(void)
       TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockCyberTwinDragonForSecondAttack(
+          gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+      TryUnlockTheTripperMercuryForSecondAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
       TryUnlockChimeratechOverdragonForNextAttack(
           gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
@@ -1194,6 +1200,8 @@ void TryAttackWithMonster__Replacement(void)
       TryUnlockTyrantDragonForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockCyberTwinDragonForSecondAttack(
+          gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+      TryUnlockTheTripperMercuryForSecondAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
       TryUnlockChimeratechOverdragonForNextAttack(
           gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);

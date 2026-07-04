@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `275` effects
+- `276` effects
 
 ## Tally
 
@@ -264,6 +264,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Overload Fusion` | `src_custom/spell_effects/overload_fusion.c` |
 | `spell_effects` | `Fusion Sage` | `src_custom/spell_effects/fusion_sage.c` |
 | `permanent_effects` | `The Big Saturn` | `src_custom/permanent_effects/the_big_saturn.c` |
+| `permanent_effects` | `The Tripper Mercury` | `src_custom/permanent_effects/the_tripper_mercury.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
