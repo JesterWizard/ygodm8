@@ -1088,11 +1088,12 @@
 #define ELEMENTAL_HERO_BLAZEMAN                  0x043C
 #define ELEMENTAL_HERO_STRATOS                   0x043D
 #define CHIMERATECH_OVERDRAGON                   0x043E
+#define CYBERNETIC_FUSION_SUPPORT                0x043F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x043F
-#define NUM_CUSTOM_CARDS                        0x011E
+#define NUM_TOTAL_CARDS                         0x0440
+#define NUM_CUSTOM_CARDS                        0x011F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

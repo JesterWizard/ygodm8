@@ -285,6 +285,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ELEMENTAL_HERO_BLAZEMAN] = gActivationDescription_ElementalHeroBlazeman_Popup1,
   [ELEMENTAL_HERO_STRATOS] = gActivationDescription_ElementalHeroStratos_Popup1,
   [CHIMERATECH_OVERDRAGON] = gActivationDescription_ChimeratechOverdragon_Popup1,
+  [CYBERNETIC_FUSION_SUPPORT] = gActivationDescription_CyberneticFusionSupport_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -586,6 +587,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_ELEMENTAL_HERO_STRATOS_POPUP_1] = gActivationDescription_ElementalHeroStratos_Popup1,
   [CARD_EFFECT_TEXT_ELEMENTAL_HERO_STRATOS_POPUP_2] = gActivationDescription_ElementalHeroStratos_Popup2,
   [CARD_EFFECT_TEXT_CHIMERATECH_OVERDRAGON_POPUP_1] = gActivationDescription_ChimeratechOverdragon_Popup1,
+  [CARD_EFFECT_TEXT_CYBERNETIC_FUSION_SUPPORT_POPUP_1] = gActivationDescription_CyberneticFusionSupport_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

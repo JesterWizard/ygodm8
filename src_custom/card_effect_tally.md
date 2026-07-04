@@ -255,6 +255,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `R Righteous Justice` | `src_custom/spell_effects/r_righteous_justice.c` |
 | `spell_effects` | `O Oversoul` | `src_custom/spell_effects/o_oversoul.c` |
 | `spell_effects` | `Future Fusion` | `src_custom/spell_effects/future_fusion.c` |
+| `spell_effects` | `Cybernetic Fusion Support` | `src_custom/spell_effects/cybernetic_fusion_support.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

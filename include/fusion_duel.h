@@ -16,6 +16,9 @@ typedef u8 (*FusionRecipeFilterFn)(const struct FusionRecipe *recipe);
 
 u8 FusionDuel_CollectHandAndFieldSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut);
+u8 FusionDuel_CollectHandFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut);
+/* Hand+field, or hand+field+GY while Cybernetic Fusion Support is active this turn. */
+u8 FusionDuel_CollectFusionSpellSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *out, u8 maxOut);
 u8 FusionDuel_CollectDeckSources(struct FusionMaterialSource *out, u8 maxOut);
 void FusionDuel_SpecialSummonResult(u16 resultId, u8 materialCount);

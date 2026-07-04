@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 286 |
-| Art ready, needs manifest | 123 |
+| In game (manifest + art) | 287 |
+| Art ready, needs manifest | 122 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **411** |
 
@@ -308,6 +308,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_BLAZEMAN` | Elemental HERO Blazeman | `elemental_hero_blazeman.png` |
 | `ELEMENTAL_HERO_STRATOS` | Elemental HERO Stratos | `elemental_hero_stratos.png` |
 | `CHIMERATECH_OVERDRAGON` | Chimeratech Overdragon | `chimeratech_overdragon.png` |
+| `CYBERNETIC_FUSION_SUPPORT` | Cybernetic Fusion Support | `cybernetic_fusion_support.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -336,7 +337,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CYBER_LASER_DRAGON` — `cyber_laser_dragon.png`
 - [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`
 - [ ] `CYBER_VALLEY` — `cyber_valley.png`
-- [ ] `CYBERNETIC_FUSION_SUPPORT` — `cybernetic_fusion_support.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`

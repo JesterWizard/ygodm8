@@ -287,6 +287,7 @@ static const u8 sElementalHeroIceEdgeName[] __attribute__((section(".append_asse
 static const u8 sElementalHeroBlazemanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Blazeman";
 static const u8 sElementalHeroStratosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Stratos";
 static const u8 sChimeratechOverdragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Overdragon";
+static const u8 sCyberneticFusionSupportName[] __attribute__((section(".append_assets"))) = "Cybernetic Fusion Support";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -867,6 +868,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sElementalHeroStratosName;
   if (cardId == 0x043E)
     return (u8 *)sChimeratechOverdragonName;
+  if (cardId == 0x043F)
+    return (u8 *)sCyberneticFusionSupportName;
 
   return gCardNames[cardId];
 }

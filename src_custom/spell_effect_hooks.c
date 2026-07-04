@@ -86,6 +86,7 @@ extern void EffectNightmareWheel(void);
 extern void EffectEctoplasmer(void);
 extern void EffectPolymerization(void);
 extern void EffectMiracleFusion(void);
+extern void EffectCyberneticFusionSupport(void);
 extern void EffectDeFusion(void);
 extern void EffectBookOfLife(void);
 extern void EffectDiffusionWaveMotion(void);
@@ -473,6 +474,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case MIRACLE_FUSION:
       EffectMiracleFusion();
+      return;
+    case CYBERNETIC_FUSION_SUPPORT:
+      EffectCyberneticFusionSupport();
       return;
     case DE_FUSION:
       EffectDeFusion();

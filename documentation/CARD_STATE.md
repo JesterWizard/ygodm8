@@ -1,12 +1,18 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Fix Future Fusion Chimeratech material count
+**Last worked on:** 2026-07-04 — Cybernetic Fusion Support: turn-long material enabler
 
 **Files touched:**
-- `src_custom/spell_effects/future_fusion.c`
-- `asm/ram_map_ewram.s`
+- `src_custom/spell_effects/cybernetic_fusion_support.c`
+- `include/cybernetic_fusion_support.h`
+- `src_custom/fusion_duel.c`
+- `include/fusion_duel.h`
+- `src_custom/spell_effects/polymerization.c`
+- `asm/ram_map_iwram.s`
+- `src_custom/code_803F02C_hooks.c`
+- `tools/card_data_manifest.json`
 
-**Outcome:** make test-cards-build passes; material count stored in EWRAM not tempStage (was zeroed by permanent effects, defaulting to 2 mats / 1600 ATK)
+**Outcome:** make test-cards-build passes; CFS pays half LP and enables hand/field/GY banished materials for Polymerization this turn
 
 **Open / next:**
-- playtest: Future Fusion 5 Cyber Dragons -> Overdragon 4000 ATK
+- playtest: CFS then Poly with GY Machines for Overdragon

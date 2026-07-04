@@ -66,6 +66,10 @@ _kernel_malloc gDebugMenuPendingSceneConnection, 1
 @ Active while Soul Exchange lets the player tribute opponent monsters this turn.
 _kernel_malloc gSoulExchangeActive, 1
 
+@ Active while Cybernetic Fusion Support lets fusion spells use hand/field/GY materials.
+@ Also keeps gPendingTributeSummonCardId 2-byte aligned (replaces former pad byte).
+_kernel_malloc gCyberneticFusionSupportActive, 1
+
 @ Counts as one paid tribute when an opponent monster was used for Soul Exchange.
 _kernel_malloc gSoulExchangeTributeCredit, 1
 
@@ -73,8 +77,6 @@ _kernel_malloc gSoulExchangeTributeCredit, 1
 _kernel_malloc gPendingSummonTributeCount, 1
 
 @ Card being tribute summoned while the player is paying tributes.
-@ ponytail: pad so the u16 below lands on an even IWRAM address (ARM7 misreads odd halfwords).
-_kernel_malloc gPendingTributeSummonCardIdPad, 1
 _kernel_malloc gPendingTributeSummonCardId, 2
 
 @ -- Per-card IWRAM flags --------------------------------------------------------

@@ -17,7 +17,7 @@ static void RunPlayerFusionFlow(u16 spellCardId,
   u8 feasibleCount;
   const struct FusionRecipe *recipe;
 
-  sourceCount = FusionDuel_CollectHandAndFieldSources(sources, FUSION_MAX_SOURCES);
+  sourceCount = FusionDuel_CollectFusionSpellSources(sources, FUSION_MAX_SOURCES);
   if (sourceCount < 2) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
@@ -48,7 +48,7 @@ APPEND_TEXT void EffectPolymerization(void)
     u8 sourceCount;
     s8 bestIdx;
 
-    sourceCount = FusionDuel_CollectHandAndFieldSources(sources, FUSION_MAX_SOURCES);
+    sourceCount = FusionDuel_CollectFusionSpellSources(sources, FUSION_MAX_SOURCES);
     if (sourceCount < 2) {
       if (!gHideEffectText)
         PlayMusic(SFX_FORBIDDEN);

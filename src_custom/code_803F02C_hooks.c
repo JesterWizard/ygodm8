@@ -28,6 +28,7 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "chimeratech_overdragon.h"
+#include "cybernetic_fusion_support.h"
 #include "imperial_order.h"
 #include "dynamic_equip.h"
 #include "big_bang_shot.h"
@@ -292,6 +293,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSunriseOptFlags();
   ClearElementalHeroSunriseDestroyPending();
   ClearElementalHeroBlazemanTurnState();
+  ClearCyberneticFusionSupport();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearChimeratechOverdragonState();
@@ -666,6 +668,7 @@ void UnlockCardsInRow__Replacement(unsigned char turnRow)
     ClearElementalHeroSunriseOptFlags();
     ClearElementalHeroIceEdgeDirectAttackFlags();
     ClearElementalHeroBlazemanTurnState();
+    ClearCyberneticFusionSupport();
   }
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {

@@ -13,6 +13,7 @@
 #include "elemental_hero_sunrise.h"
 #include "chimeratech_overdragon.h"
 #include "expanded_graveyard.h"
+#include "cybernetic_fusion_support.h"
 #include "fusion_duel.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -126,6 +127,31 @@ u8 FusionDuel_CollectFieldAndGraveyardSources(struct FusionMaterialSource *out, 
   }
 
   return count;
+}
+
+u8 FusionDuel_CollectHandFieldAndGraveyardSources(struct FusionMaterialSource *out, u8 maxOut)
+{
+  u8 count = FusionDuel_CollectHandAndFieldSources(out, maxOut);
+  u8 fixedDuelist = TurnDuelistToFixed(ACTIVE_DUELIST);
+  u8 gyCount;
+  u8 i;
+
+  gyCount = GraveyardExpand_GetCount(fixedDuelist);
+  for (i = 0; i < gyCount; i++) {
+    u16 cardId = GraveyardExpand_GetCardAt(fixedDuelist, i);
+    if (cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_MONSTER)
+      AddSource(out, &count, maxOut, NULL, i, cardId);
+  }
+
+  return count;
+}
+
+u8 FusionDuel_CollectFusionSpellSources(struct FusionMaterialSource *out, u8 maxOut)
+{
+  if (IsCyberneticFusionSupportActive())
+    return FusionDuel_CollectHandFieldAndGraveyardSources(out, maxOut);
+
+  return FusionDuel_CollectHandAndFieldSources(out, maxOut);
 }
 
 u8 FusionDuel_CollectGraveyardElementalHeroSources(struct FusionMaterialSource *out, u8 maxOut)
@@ -758,7 +784,9 @@ static void PayMiracleFusionMaterials(const struct FusionMaterialSource *selecte
   u8 g;
 
   for (i = 0; i < selectedCount; i++) {
-    if (selected[i].gyIndex != FUSION_GY_INDEX_NONE)
+    if (selected[i].zone != NULL)
+      Duel_BanishZone(selected[i].zone, FALSE);
+    else if (selected[i].gyIndex != FUSION_GY_INDEX_NONE)
       gyIndices[gyCount++] = selected[i].gyIndex;
   }
 
@@ -871,8 +899,16 @@ void FusionDuel_ExecutePolymerization(const struct FusionRecipe *recipe,
                                     const struct FusionMaterialSource *sources,
                                     u8 sourceCount, u16 spellCardId, u8 showEffectText)
 {
-  ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId, PayPolymerizationMaterials,
-                      showEffectText);
+  enum DuelActionResult result;
+  u8 useCybernetic = IsCyberneticFusionSupportActive();
+
+  /* ponytail: CFS makes materials banish from hand/field/GY for this fusion only. */
+  result = ExecuteFusionRecipe(recipe, sources, sourceCount, spellCardId,
+                               useCybernetic ? PayMiracleFusionMaterials
+                                             : PayPolymerizationMaterials,
+                               showEffectText);
+  if (useCybernetic && result == DUEL_ACTION_OK)
+    ClearCyberneticFusionSupport();
 }
 
 void FusionDuel_ExecuteMiracleFusion(const struct FusionRecipe *recipe,
