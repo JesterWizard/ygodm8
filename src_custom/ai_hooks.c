@@ -11,6 +11,7 @@
 #include "configs/runtime.h"
 #include "duel.h"
 #include "ai_sim.h"
+#include "ai_spell_targets.h"
 #include "expanded_graveyard.h"
 #include "permanent_effect.h"
 #include "the_unhappy_maiden.h"
@@ -167,32 +168,6 @@ static u16 AiForceTerrainFieldSpellAction(void)
   return 0;
 }
 
-/* Match vanilla AI target checks for board-wipe normals (see src/duel/ai.c). */
-static u8 SetNormalSpellHasActivationTargets(u16 cardId)
-{
-  SetCardInfo(cardId);
-
-  switch (gCardInfo.spellEffect) {
-  case SPELL_EFFECT_RAIGEKI:
-    return NumEmptyZonesAndGodCardsInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
-        != MAX_ZONES_IN_ROW;
-  case SPELL_EFFECT_DARK_HOLE:
-    return NumEmptyZonesAndGodCardsInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW])
-            == MAX_ZONES_IN_ROW
-        && NumEmptyZonesAndGodCardsInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
-            != MAX_ZONES_IN_ROW;
-  case SPELL_EFFECT_HEAVY_STORM:
-    return NumEmptyZonesAndGodCardsInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW])
-            == MAX_ZONES_IN_ROW
-        && (NumEmptyZonesAndGodCardsInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
-                != MAX_ZONES_IN_ROW
-            || NumEmptyZonesInRow(gTurnZones[INACTIVE_DUELIST_BACKROW])
-                != MAX_ZONES_IN_ROW);
-  default:
-    return TRUE;
-  }
-}
-
 /* ponytail: place priority outranks activate, so fast_ai can set Raigeki then idle.
  * Force-flip set normals with live targets (same idea as terrain force above). */
 static u16 AiForceSetNormalSpellActivation(void)
@@ -209,7 +184,7 @@ static u16 AiForceSetNormalSpellActivation(void)
       continue;
     if (GetSpellType(zone->id) != SPELL_TYPE_NORMAL)
       continue;
-    if (!SetNormalSpellHasActivationTargets(zone->id))
+    if (!AiNormalSpellHasActivationTargets(zone->id))
       continue;
 
     actionIndex = AiFindActionIndex(

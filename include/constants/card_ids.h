@@ -1098,11 +1098,12 @@
 #define THE_BIG_SATURN                           0x0446
 #define THE_TRIPPER_MERCURY                      0x0447
 #define THE_GRAND_JUPITER                        0x0448
+#define THE_DESPAIR_URANUS                       0x0449
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0449
-#define NUM_CUSTOM_CARDS                        0x0128
+#define NUM_TOTAL_CARDS                         0x044A
+#define NUM_CUSTOM_CARDS                        0x0129
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

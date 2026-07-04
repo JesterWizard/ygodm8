@@ -296,6 +296,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [THE_BIG_SATURN] = gActivationDescription_TheBigSaturn_Popup1,
   [THE_TRIPPER_MERCURY] = gActivationDescription_TheTripperMercury_Popup1,
   [THE_GRAND_JUPITER] = gActivationDescription_TheGrandJupiter_Popup1,
+  [THE_DESPAIR_URANUS] = gActivationDescription_TheDespairUranus_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -614,6 +615,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_THE_TRIPPER_MERCURY_POPUP_2] = gActivationDescription_TheTripperMercury_Popup2,
   [CARD_EFFECT_TEXT_THE_GRAND_JUPITER_POPUP_1] = gActivationDescription_TheGrandJupiter_Popup1,
   [CARD_EFFECT_TEXT_THE_GRAND_JUPITER_POPUP_2] = gActivationDescription_TheGrandJupiter_Popup2,
+  [CARD_EFFECT_TEXT_THE_DESPAIR_URANUS_POPUP_1] = gActivationDescription_TheDespairUranus_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

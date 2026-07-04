@@ -20223,6 +20223,32 @@
         "popup_2": "Target 1 monster equipped by this effect; Special Summon it."
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "THE_DESPAIR_URANUS",
+      "card_name": "The Despair Uranus",
+      "atk": 2900,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_ROCK",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 76,
+      "password": [3, 2, 5, 8, 8, 8, 0, 5],
+      "description": {
+        "symbol": "gDescription_TheDespairUranus",
+        "pages": [
+          "Gain 300 ATK for each face-up Spell or Trap on your side of",
+          "the field. While this card is face up, Spell and Trap cards",
+          "on your side of the field cannot be destroyed by effects."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Tribute Summoned while you control no Spell/Trap Cards: You can activate this effect; your opponent de"
+      }
     }
   ]
 }

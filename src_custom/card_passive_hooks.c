@@ -9,6 +9,7 @@
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_core.h"
 #include "ojama_trio.h"
+#include "the_despair_uranus.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -45,6 +46,9 @@ static u8 ShouldBlockEffectOnZone(struct DuelCard *zone) {
       && gMonEffect.id != CARD_NONE
       && GetTypeGroup(gMonEffect.id) == TYPE_GROUP_MONSTER
       && Duel_TryNegateMonsterEffectOnZone(gMonEffect.id, zone))
+    return TRUE;
+
+  if (IsTheDespairUranusProtectingZoneFromEffectDestroy(zone))
     return TRUE;
 
   return FALSE;

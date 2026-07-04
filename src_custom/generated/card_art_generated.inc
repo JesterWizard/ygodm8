@@ -1192,6 +1192,10 @@ static const unsigned char sTheGrandJupiterBigArt[] __attribute__((section(".app
 static const unsigned short sTheGrandJupiterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_grand_jupiter.gbapal");
 static const unsigned char sTheGrandJupiterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_grand_jupiter.lz");
 
+static const unsigned char sTheDespairUranusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_despair_uranus.huff");
+static const unsigned short sTheDespairUranusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_despair_uranus.gbapal");
+static const unsigned char sTheDespairUranusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_despair_uranus.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1491,6 +1495,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0446] = sTheBigSaturnBigArt,
   [0x0447] = sTheTripperMercuryBigArt,
   [0x0448] = sTheGrandJupiterBigArt,
+  [0x0449] = sTheDespairUranusBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1792,6 +1797,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0446] = sTheBigSaturnBigPalette,
   [0x0447] = sTheTripperMercuryBigPalette,
   [0x0448] = sTheGrandJupiterBigPalette,
+  [0x0449] = sTheDespairUranusBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2093,6 +2099,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0446] = 0,
   [0x0447] = 0,
   [0x0448] = 0,
+  [0x0449] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2394,4 +2401,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0446] = sTheBigSaturnMiniArt,
   [0x0447] = sTheTripperMercuryMiniArt,
   [0x0448] = sTheGrandJupiterMiniArt,
+  [0x0449] = sTheDespairUranusMiniArt,
 };

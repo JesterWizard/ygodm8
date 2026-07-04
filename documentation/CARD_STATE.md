@@ -1,16 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Grand Jupiter equip ATK via stat pipeline post-hook (Power Bond pattern)
+**Last worked on:** 2026-07-04 — AI spell/trap wipe gating + Despair Uranus ATK fix
 
 **Files touched:**
-- `src_custom/activated_effects/the_grand_jupiter.c`
-- `include/the_grand_jupiter.h`
-- `asm/ram_map_ewram.s`
-- `src_custom/card_hooks.c`
-- `src_custom/duel_helpers.c`
-- `tests/host/test_the_grand_jupiter.py`
+- `src_custom/ai_spell_targets.c`, `include/ai_spell_targets.h`
+- `src_custom/ai_hooks.c`, `src_custom/ai_sim_fast.c`
+- `src_custom/permanent_effects/the_despair_uranus.c`
+- `tests/host/test_ai_spell_targets.py`, `tests/host/test_the_despair_uranus.py`
 
-**Outcome:** Absorb still places monster in backrow; ATK bonus now applied in `ApplyFieldZoneStatsToCardInfo` via `ApplyTheGrandJupiterEquipAtkBonus` (sums equipped monsters' original ATK from `gCardData_NEW`). Equip links store Jupiter fixed row/col instead of board-cell index. `make test-cards-build` passes.
+**Outcome:** AI skips Harpie's Feather Duster / Heavy Storm / Raigeki / Dark Hole when they have no valid targets (shared `AiNormalSpellHasActivationTargets`; fast-AI quick reject too). Uranus ATK boost now treats attack-position summons as active and counts owner face-up backrow Spell/Traps ×300. Protection still applies while Uranus is in monster zone (face-down OK). `make test-cards-link` passes.
 
 **Open / next:**
-- Playtest absorb → 2750 with Zone Eater; multi-equip stacking; End Phase SS
+- Playtest opponent AI with empty player backrow + set Feather Duster; Uranus ATK with multiple face-up backrow cards
