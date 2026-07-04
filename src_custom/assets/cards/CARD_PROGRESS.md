@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 298 |
-| Art ready, needs manifest | 124 |
+| In game (manifest + art) | 299 |
+| Art ready, needs manifest | 123 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -320,6 +320,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_GRAND_JUPITER` | The Grand Jupiter | `the_grand_jupiter.png` |
 | `THE_DESPAIR_URANUS` | The Despair Uranus | `the_despair_uranus.png` |
 | `THE_BLAZING_MARS` | The Blazing Mars | `the_blazing_mars.png` |
+| `THE_SUPPRESSION_PLUTO` | The Suppression Pluto | `the_suppression_pluto.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -435,7 +436,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THE_SUPPRESSION_PLUTO` — `the_suppression_pluto.png`
 - [ ] `THE_SUPREMACY_SUN` — `the_supremacy_sun.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`

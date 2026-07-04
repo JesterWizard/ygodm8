@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1099] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1100] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1111,9 +1111,10 @@ const u8 gCardLockAfterActivation_Hook[1099] APPEND_RODATA = {
   [0x0448] = 1,
   [0x0449] = 1,
   [0x044A] = 0,
+  [0x044B] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1099] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1100] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2213,9 +2214,10 @@ const u8 gCardEffectUsage_Hook[1099] APPEND_RODATA = {
   [0x0448] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0449] = EFFECT_USAGE_NONE,
   [0x044A] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x044B] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1099] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1100] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3315,9 +3317,10 @@ const u8 gCardSelectableOnce_Hook[1099] APPEND_RODATA = {
   [0x0448] = 0,
   [0x0449] = 0,
   [0x044A] = 0,
+  [0x044B] = 0,
 };
 
-const CardData gCardData_NEW[1099] APPEND_RODATA = {
+const CardData gCardData_NEW[1100] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -17951,5 +17954,19 @@ const CardData gCardData_NEW[1099] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {1, 5, 0, 3, 3, 5, 2, 5},
     .description = gDescription_TheBlazingMars,
+  },
+  [0x044B] = {
+    .atk = 2600,
+    .def = 2000,
+    .cost = 58,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 8,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 4, 4, 1, 3, 2, 9, 9},
+    .description = gDescription_TheSuppressionPluto,
   },
 };

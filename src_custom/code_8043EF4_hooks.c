@@ -52,6 +52,7 @@
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_blazeman.h"
 #include "elemental_hero_stratos.h"
+#include "the_suppression_pluto.h"
 #include "elemental_hero_flame_wingman.h"
 #include "lesser_fiend.h"
 #include "dark_magician_of_chaos.h"
@@ -984,6 +985,7 @@ void sub_80449D8__Replacement(void)
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryTheSuppressionPlutoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
   if (gDuelCursor.state != DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET) {
     gDuelCursor.state = 0;

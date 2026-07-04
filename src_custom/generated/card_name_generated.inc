@@ -299,6 +299,7 @@ static const u8 sTheTripperMercuryName[] __attribute__((section(".append_assets"
 static const u8 sTheGrandJupiterName[] __attribute__((section(".append_assets"))) = "The Grand Jupiter";
 static const u8 sTheDespairUranusName[] __attribute__((section(".append_assets"))) = "The Despair Uranus";
 static const u8 sTheBlazingMarsName[] __attribute__((section(".append_assets"))) = "The Blazing Mars";
+static const u8 sTheSuppressionPlutoName[] __attribute__((section(".append_assets"))) = "The Suppression Pluto";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -903,6 +904,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheDespairUranusName;
   if (cardId == 0x044A)
     return (u8 *)sTheBlazingMarsName;
+  if (cardId == 0x044B)
+    return (u8 *)sTheSuppressionPlutoName;
 
   return gCardNames[cardId];
 }
