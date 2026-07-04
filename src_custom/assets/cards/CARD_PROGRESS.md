@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 297 |
-| Art ready, needs manifest | 125 |
+| In game (manifest + art) | 298 |
+| Art ready, needs manifest | 124 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -319,6 +319,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_TRIPPER_MERCURY` | The Tripper Mercury | `the_tripper_mercury.png` |
 | `THE_GRAND_JUPITER` | The Grand Jupiter | `the_grand_jupiter.png` |
 | `THE_DESPAIR_URANUS` | The Despair Uranus | `the_despair_uranus.png` |
+| `THE_BLAZING_MARS` | The Blazing Mars | `the_blazing_mars.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -431,7 +432,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_BLAZING_MARS` — `the_blazing_mars.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`

@@ -55,6 +55,7 @@
 #include "lyrilusc_independent_nightingale.h"
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
+#include "the_blazing_mars.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -85,7 +86,7 @@ void ActivateHARPIES_PET_BABY_DRAGONEffect(void);
 unsigned char CanActivateBLOWBACK_DRAGON(void);
 void ActivateBLOWBACK_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
-  struct DuelCard *zone = gTurnZones[gMonEffect.row][gMonEffect.zone];
+  struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
   unsigned char canActivate;
 
@@ -231,6 +232,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_THE_GRAND_JUPITER:
         canActivate = CanActivateTheGrandJupiter();
+        break;
+      case MONSTER_EFFECT_THE_BLAZING_MARS:
+        canActivate = CanActivateTheBlazingMars();
         break;
       default:
         canActivate = TRUE;
@@ -523,6 +527,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_BLAZING_MARS) {
+    ActivateTheBlazingMarsEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -657,6 +666,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
           || zone->id == LYRILUSC_INDEPENDENT_NIGHTINGALE
           || zone->id == THE_GRAND_JUPITER
+          || zone->id == THE_BLAZING_MARS
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;

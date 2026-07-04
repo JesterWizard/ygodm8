@@ -20249,6 +20249,35 @@
       "effect_texts": {
         "popup_1": "When this card is Tribute Summoned while you control no Spell/Trap Cards: You can activate this effect; your opponent de"
       }
+    },
+    {
+      "card_const": "THE_BLAZING_MARS",
+      "card_name": "The Blazing Mars",
+      "atk": 2600,
+      "def": 2200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_THE_BLAZING_MARS",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 125,
+      "password": [1, 5, 0, 3, 3, 5, 2, 5],
+      "description": {
+        "symbol": "gDescription_TheBlazingMars",
+        "pages": [
+          "In hand or GY: banish 3 GY monsters; Special Summon.",
+          "Cannot Special Summon other monsters this turn.",
+          "Main Phase 1: send other monsters to GY; 500 damage each."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish 3 other monsters from your GY; Special Summon this card from hand or GY.",
+        "popup_2": "Send your other monsters to the GY; inflict 500 damage per monster sent."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

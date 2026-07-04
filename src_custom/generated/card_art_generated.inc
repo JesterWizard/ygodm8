@@ -1196,6 +1196,10 @@ static const unsigned char sTheDespairUranusBigArt[] __attribute__((section(".ap
 static const unsigned short sTheDespairUranusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_despair_uranus.gbapal");
 static const unsigned char sTheDespairUranusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_despair_uranus.lz");
 
+static const unsigned char sTheBlazingMarsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_blazing_mars.huff");
+static const unsigned short sTheBlazingMarsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_blazing_mars.gbapal");
+static const unsigned char sTheBlazingMarsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_blazing_mars.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1496,6 +1500,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0447] = sTheTripperMercuryBigArt,
   [0x0448] = sTheGrandJupiterBigArt,
   [0x0449] = sTheDespairUranusBigArt,
+  [0x044A] = sTheBlazingMarsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1798,6 +1803,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0447] = sTheTripperMercuryBigPalette,
   [0x0448] = sTheGrandJupiterBigPalette,
   [0x0449] = sTheDespairUranusBigPalette,
+  [0x044A] = sTheBlazingMarsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2100,6 +2106,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0447] = 0,
   [0x0448] = 0,
   [0x0449] = 0,
+  [0x044A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2402,4 +2409,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0447] = sTheTripperMercuryMiniArt,
   [0x0448] = sTheGrandJupiterMiniArt,
   [0x0449] = sTheDespairUranusMiniArt,
+  [0x044A] = sTheBlazingMarsMiniArt,
 };
