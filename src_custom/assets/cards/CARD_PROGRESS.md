@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 290 |
-| Art ready, needs manifest | 132 |
+| In game (manifest + art) | 291 |
+| Art ready, needs manifest | 131 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **424** |
 
@@ -312,6 +312,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `OVERLOAD_FUSION` | Overload Fusion | `overload_fusion.png` |
 | `POWER_BOND` | Power Bond | `power_bond.png` |
 | `FUSION_SAGE` | Fusion Sage | `fusion_sage.png` |
+| `LYRILUSC_INDEPENDENT_NIGHTINGALE` | Lyrilusc - Independent Nightingale | `lyrilusc_independent_nightingale.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -370,7 +371,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
-- [ ] `LYRILUSC_INDEPENDENT_NIGHTINGALE` — `lyrilusc_independent_nightingale.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`

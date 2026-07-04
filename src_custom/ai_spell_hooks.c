@@ -40,20 +40,17 @@ static u8 FieldForTerrainSpellEffect(u8 spellEffect)
   return spellEffect - SPELL_EFFECT_FOREST + FIELD_FOREST;
 }
 
-static u8 BackrowHasSetTerrainSpellWaiting(void)
+static u8 BackrowHasSetNormalSpell(void)
 {
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     struct DuelCard *zone = gTurnZones[ACTIVE_DUELIST_BACKROW][col];
-    u8 terrainField;
 
     if (zone->id == CARD_NONE)
       continue;
-
-    SetCardInfo(zone->id);
-    terrainField = FieldForTerrainSpellEffect(gCardInfo.spellEffect);
-    if (terrainField != FIELD_ARENA && gDuel.field != terrainField)
+    if (GetTypeGroup(zone->id) == TYPE_GROUP_SPELL
+        && GetSpellType(zone->id) == SPELL_TYPE_NORMAL)
       return TRUE;
   }
 
@@ -111,16 +108,14 @@ void sub_80116F0__Replacement(void)
   u8 col2 = sAI_Command.zone1Position & 0xF;
   u8 row3 = sAI_Command.zone2Position >> 4;
   u8 col3 = sAI_Command.zone2Position & 0xF;
-  u8 terrainField;
 
   SetCardInfo(gTurnZones[row2][col2]->id);
-  terrainField = FieldForTerrainSpellEffect(gCardInfo.spellEffect);
 
   if (!gCardInfo.unk1E && gTurnZones[row3][col3]->id == CARD_NONE) {
-    // ponytail: vanilla always prefers setting another copy (0x7FFFFFF7) over flipping one
-    // already on backrow; skip redundant terrain sets until the field is live.
-    if (terrainField != FIELD_ARENA && gDuel.field != terrainField
-        && BackrowHasSetTerrainSpellWaiting())
+    /* ponytail: place priority (0x7FFFFFF7) outranks Raigeki/Heavy Storm activate (0x7FF…).
+     * With duplicate copies in hand the AI kept setting and never flipped. Activate any
+     * set normal spell before placing another (covers terrain waiting too). */
+    if (BackrowHasSetNormalSpell())
       AI_SIM_PRIORITY = AI_PRIORITY_DISABLE;
     else
       AI_SIM_PRIORITY = AI_PRIORITY_PLACE_NORMAL_SPELL;

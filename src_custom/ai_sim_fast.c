@@ -211,6 +211,16 @@ void AiSimulateAllCandidateActionsFast(void)
   CallThumbVoid(0x0800F108);
   AiSimFastScanHandFlags(&handHasPermCard);
 
+  /* ponytail: activate-spell first — Raigeki/Heavy Storm outrank attacks (0x7FF… vs 0x7EE…),
+   * but the old attack-first pass early-stopped at 0x7EE and never simmed board wipes. */
+  for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
+    if (!IsAiActivateSpellAction(gAED58[i].action))
+      continue;
+    if (AiSimFastTryCandidate(i, handHasPermCard, &fullSims, &lightSims) &&
+        AiSimFastShouldStop(fullSims, lightSims))
+      goto done;
+  }
+
   for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
     if (!IsAiAttackAction(gAED58[i].action))
       continue;
@@ -220,7 +230,9 @@ void AiSimulateAllCandidateActionsFast(void)
   }
 
   for (i = 0; i < AI_ACTION_TABLE_COUNT; i++) {
-    if (IsAiAttackAction(gAED58[i].action))
+    u16 action = gAED58[i].action;
+
+    if (IsAiActivateSpellAction(action) || IsAiAttackAction(action))
       continue;
     if (AiSimFastTryCandidate(i, handHasPermCard, &fullSims, &lightSims) &&
         AiSimFastShouldStop(fullSims, lightSims))

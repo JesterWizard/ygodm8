@@ -1092,11 +1092,12 @@
 #define OVERLOAD_FUSION                          0x0440
 #define POWER_BOND                               0x0441
 #define FUSION_SAGE                              0x0442
+#define LYRILUSC_INDEPENDENT_NIGHTINGALE         0x0443
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0443
-#define NUM_CUSTOM_CARDS                        0x0122
+#define NUM_TOTAL_CARDS                         0x0444
+#define NUM_CUSTOM_CARDS                        0x0123
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -70,6 +70,7 @@ u8 ElementalHeroKnospe_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroAbsoluteZero_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 LyriluscIndependentNightingale_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
 u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
@@ -955,6 +956,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_ESCURIDAO, ElementalHeroEscuridao_ApplyDynamicZoneStats },
   { ELEMENTAL_HERO_BLAZEMAN, ElementalHeroBlazeman_ApplyDynamicZoneStats },
   { CHIMERATECH_OVERDRAGON, ChimeratechOverdragon_ApplyDynamicZoneStats },
+  { LYRILUSC_INDEPENDENT_NIGHTINGALE, LyriluscIndependentNightingale_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

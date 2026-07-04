@@ -62,14 +62,14 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
-    .card_in_hand_1 = THE_WINGED_DRAGON_OF_RA_SPHERE_MODE,
+    .card_in_hand_1 = LYRILUSC_INDEPENDENT_NIGHTINGALE,
     .card_in_hand_2 = THE_WINGED_DRAGON_OF_RA_BATTLE_MODE,
     .card_in_hand_3 = CYBER_DRAGON,
     .card_in_hand_4 = CYBER_DRAGON,
     .card_in_hand_5 = CYBER_DRAGON,
-    .opponent_deck_card_id = CARD_NONE,
+    .opponent_deck_card_id = HEAVY_STORM,
     /* Extra Machines in deck for Overdragon material count playtests. */
-    .player_deck_card_id = POLYMERIZATION,
+    .player_deck_card_id = CARD_NONE,
     .skip_to_duel = TRUE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,

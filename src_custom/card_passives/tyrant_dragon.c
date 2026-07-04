@@ -7,7 +7,9 @@ u8 IsImmuneToTrapEffectsOnField(u16 cardId, u8 turnRow) {
   if (turnRow != ACTIVE_DUELIST_MONSTER_ROW && turnRow != INACTIVE_DUELIST_MONSTER_ROW)
     return FALSE;
 
-  return cardId == TYRANT_DRAGON || cardId == ELEMENTAL_HERO_WILDHEART;
+  return cardId == TYRANT_DRAGON
+      || cardId == ELEMENTAL_HERO_WILDHEART
+      || cardId == LYRILUSC_INDEPENDENT_NIGHTINGALE;
 }
 
 static u8 OpponentMonsterRowForAttacker(void) {

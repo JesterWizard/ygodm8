@@ -196,7 +196,10 @@ int NumEmptyZonesAndGodCardsInRow__Replacement(struct DuelCard **zonePtr) {
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     unsigned short currentCardId = (*zonePtr++)->id;
 
-    if (IsGodCard(currentCardId) == TRUE || IsImmuneToControlSwitch(currentCardId))
+    /* Board-wipe AI (Raigeki/Dark Hole) treats destruction-immune monsters as empty.
+     * Control-switch immunity alone must not count — Mataza still dies to Raigeki. */
+    if (IsGodCard(currentCardId) == TRUE
+        || IsImmuneToHarmfulTargetedEffectsOnField(currentCardId, ACTIVE_DUELIST_MONSTER_ROW))
       currentCardId = CARD_NONE;
     if (currentCardId == CARD_NONE)
       count++;

@@ -150,6 +150,7 @@ enum {
   MONSTER_EFFECT_ELEMENTAL_HERO_ICE_EDGE,
   MONSTER_EFFECT_ELEMENTAL_HERO_BLAZEMAN,
   MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE,
+  MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -210,5 +211,7 @@ extern unsigned char CanActivateElementalHeroPlasmaVice(void);
 extern void ActivateElementalHeroPlasmaViceEffect(void);
 extern unsigned char CanActivateTheWingedDragonOfRaSphereMode(void);
 extern void ActivateTheWingedDragonOfRaSphereModeEffect(void);
+extern unsigned char CanActivateLyriluscIndependentNightingale(void);
+extern void ActivateLyriluscIndependentNightingaleEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

@@ -51,6 +51,7 @@
 #include "chiron_the_mage.h"
 #include "chaos_emperor_dragon_envoy_of_the_end.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
+#include "lyrilusc_independent_nightingale.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -173,6 +174,8 @@ unsigned char CanActivateMonsterEffect(void) {
       return CanActivateBlackLusterSoldierEnvoyOfTheBeginning();
     case MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE:
       return CanActivateTheWingedDragonOfRaSphereMode();
+    case MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE:
+      return CanActivateLyriluscIndependentNightingale();
     default:
       return TRUE;
   }
@@ -447,6 +450,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE) {
+    ActivateLyriluscIndependentNightingaleEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -563,6 +571,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || zone->id == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
+          || zone->id == LYRILUSC_INDEPENDENT_NIGHTINGALE
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);

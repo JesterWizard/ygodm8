@@ -13,7 +13,7 @@ u8 IsImmuneToSpellEffectsOnField(u16 cardId, u8 turnRow)
   if (!IsMonsterFieldRow(turnRow))
     return FALSE;
 
-  if (cardId == THE_AGENT_OF_FORCE_MARS)
+  if (cardId == THE_AGENT_OF_FORCE_MARS || cardId == LYRILUSC_INDEPENDENT_NIGHTINGALE)
     return TRUE;
 
   if (cardId != TORPEDO_FISH)

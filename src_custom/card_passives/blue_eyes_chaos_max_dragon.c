@@ -38,7 +38,8 @@ static u8 CardHasHarmfulTargetImmunityOnField(u16 cardId) {
   return cardId == BLUE_EYES_CHAOS_MAX_DRAGON
       || cardId == BLUE_EYES_SHINING_DRAGON
       || cardId == THE_UNSTOPPABLE_EXODIA_INCARNATE
-      || cardId == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE;
+      || cardId == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
+      || cardId == LYRILUSC_INDEPENDENT_NIGHTINGALE;
 }
 
 u8 IsImmuneToHarmfulTargetedEffectsOnField(u16 cardId, u8 turnRow) {

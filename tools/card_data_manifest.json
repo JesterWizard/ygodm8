@@ -20059,6 +20059,34 @@
       "effect_texts": {
         "popup_1": "Add 1 \"Polymerization\" from your Deck to your hand."
       }
+    },
+    {
+      "card_const": "LYRILUSC_INDEPENDENT_NIGHTINGALE",
+      "card_name": "Lyrilusc - Independent Nightingale",
+      "atk": 1000,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 500,
+      "password": [7, 6, 8, 1, 5, 9, 4, 2],
+      "description": {
+        "symbol": "gDescription_LyriluscIndependentNightingale",
+        "pages": [
+          "Gains ATK equal to its Level x 500.",
+          "Unaffected by other cards' effects.",
+          "Once per turn: inflict damage equal to Level x 500."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Inflict damage to your opponent equal to this card's Level x 500."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

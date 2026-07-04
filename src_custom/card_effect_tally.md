@@ -4,12 +4,13 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `271` effects
+- `272` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
+| `activated_effects` | `Lyrilusc Independent Nightingale` | `src_custom/activated_effects/lyrilusc_independent_nightingale.c` |
 | `activated_effects` | `The Winged Dragon Of Ra Sphere Mode` | `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c` |
 | `permanent_effects` | `The Winged Dragon Of Ra Sphere Mode` | `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c` |
 | `activated_effects` | `Harpies Pet Baby Dragon` | `src_custom/activated_effects/harpies_pet_baby_dragon.c` |
