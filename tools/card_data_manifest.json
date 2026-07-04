@@ -4648,11 +4648,25 @@
       "attribute": "ATTRIBUTE_DIVINE",
       "type": "TYPE_MACHINE",
       "color": 8,
-      "monsterEffect": 0,
+      "monsterEffect": "MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE",
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 0,
-      "password": [15, 15, 15, 15, 15, 15, 15, 14]
+      "password": [15, 15, 15, 15, 15, 15, 15, 14],
+      "description": {
+        "symbol": "gDescription_TheWingedDragonOfRaSphereMode",
+        "pages": [
+          "Tributes 3 enemy monsters to appear on the foe's field.",
+          "Cannot attack. Opponent cannot target it.",
+          "Tribute it to summon Ra Battle Mode from hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tributes 3 enemy monsters to appear on the foe's field.",
+        "popup_2": "It now switches back to the owner's field.",
+        "popup_3": "It will tribute itself to summon Ra Battle Mode from hand or Deck."
+      },
+      "effect_usage": "once"
     },
     {
       "card_const": "WICKED_DRAGON_WITH_THE_ERSATZ_HEAD",

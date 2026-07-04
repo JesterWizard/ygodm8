@@ -68,6 +68,7 @@ void sub_8057808(void);
 void sub_804078C(void);
 void sub_8040FDC(void);
 void ReturnMonstersToOwner(void);
+void TryReturnSphereModeAtTurnEnd(void);
 void TryDisplaySorlTurnsRemainingText(void);
 void TryDrawingCard(u32);
 u16 LfsrNextWord(void);
@@ -384,7 +385,7 @@ static bool8 RunDuelTurnLoop(void) {
       AI_Main();
     if (IsDuelOver() == TRUE)
       return TRUE;
-    ReturnMonstersToOwner();
+    TryReturnSphereModeAtTurnEnd();
     FlipAtkPosCardsFaceUp(2);
     EndFirstTurnAttackBan();
     SwitchTurn();

@@ -51,13 +51,18 @@ void Duel_RefreshAttackRestrictions(void)
   gDuelAttackRestrictionsActive = flags;
 }
 
+u8 SphereMode_CanDeclareAttack(const struct DuelCard *zone);
+
 u8 Duel_CanMonsterDeclareAttackWithCachedRestrictions(const struct DuelCard *zone)
 {
-  if (gDuelAttackRestrictionsActive == 0)
-    return TRUE;
-
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
+
+  if (!SphereMode_CanDeclareAttack(zone))
+    return FALSE;
+
+  if (gDuelAttackRestrictionsActive == 0)
+    return TRUE;
 
   if (gDuelAttackRestrictionsActive & DUEL_ATTACK_RESTRICT_SORL)
     return FALSE;

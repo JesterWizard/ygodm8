@@ -72,6 +72,7 @@ u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroAbsoluteZero_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
+u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
   struct DuelSummonOpts opts;
@@ -978,6 +979,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   HarpiesPetBabyDragon_CanAttackMonsterZone,
   ElementalHeroKnospe_CanAttackMonsterZone,
   ElementalHeroPoisonRose_CanAttackMonsterZone,
+  SphereMode_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

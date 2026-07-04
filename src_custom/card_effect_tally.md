@@ -4,12 +4,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `269` effects
+- `271` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
+| `activated_effects` | `The Winged Dragon Of Ra Sphere Mode` | `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c` |
+| `permanent_effects` | `The Winged Dragon Of Ra Sphere Mode` | `src_custom/activated_effects/the_winged_dragon_of_ra_sphere_mode.c` |
 | `activated_effects` | `Harpies Pet Baby Dragon` | `src_custom/activated_effects/harpies_pet_baby_dragon.c` |
 | `battle_effects` | `Dark Magician Of Chaos` | `src_custom/battle_effects/dark_magician_of_chaos.c` |
 | `card_passives` | `Chaos Command Magician` | `src_custom/card_passives/chaos_command_magician.c` |

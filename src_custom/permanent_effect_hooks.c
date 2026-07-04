@@ -92,6 +92,7 @@ void ActivateBerserkGorilla(void);
 unsigned char ShouldActivateElementalHeroCaptainGold(void);
 void ActivateElementalHeroCaptainGold(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
+u8 TryAutoSummonTheWingedDragonOfRaSphereMode(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
 
@@ -497,7 +498,8 @@ static void TryActivatingPermanentEffectsPostBoardScan(u8 aiSim)
   if (!aiSim || IsPyramidOfLightActiveOnField())
     EnforcePyramidOfLightGodBan();
 
-  if (TryAutoSummonBlueEyesShiningDragon() == TRUE) {
+  if (TryAutoSummonBlueEyesShiningDragon() == TRUE
+      || TryAutoSummonTheWingedDragonOfRaSphereMode() == TRUE) {
     if (!aiSim)
       UpdateDuelGfxExceptField();
     ResetTempStagesForAllCards();

@@ -171,6 +171,8 @@ unsigned char CanActivateMonsterEffect(void) {
 
     case MONSTER_EFFECT_BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING:
       return CanActivateBlackLusterSoldierEnvoyOfTheBeginning();
+    case MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE:
+      return CanActivateTheWingedDragonOfRaSphereMode();
     default:
       return TRUE;
   }
@@ -440,6 +442,11 @@ void ActivateMonsterEffect__Replacement(void) {
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE) {
+    ActivateTheWingedDragonOfRaSphereModeEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -555,6 +562,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ELEMENTAL_HERO_BLAZEMAN
           || zone->id == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
+          || zone->id == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
           || SasukeSamurai2_AllowsFaceUpEffectActivation(zone->id)) {
         gMonEffect.id = zone->id;
         SetCardInfo(gMonEffect.id);
