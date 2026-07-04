@@ -33,6 +33,7 @@ void sub_8041C94(u8 *, u16, u16, u16, u16);
 
 extern u8 g201CB58;
 extern u8 g201CB59;
+extern u16 g201CB60[2][2240];
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
 extern u8 gInputRepeatTimer;
@@ -113,10 +114,10 @@ void ShowCardDetailView__Replacement(void) {
   u8 buffer[144];
   const u8 *text = gCardInfo.description + 2;
   const u8 *pageStarts[9];
-  u16 pageBuffer[2240];
+  u16 *pageBuffer = g201CB60[0];
 
-  /* Vanilla clears g201CB60[] before writing; zero tilemap so stale page-nav glyphs do not show. */
-  CpuFastFill16(0, pageBuffer, sizeof(pageBuffer));
+  /* EWRAM scratch (vanilla g201CB60); stack cannot hold 2240 u16 without clobbering IWRAM. */
+  CpuFastFill16(0, pageBuffer, 4480);
 
   text = GetCurrentLanguageString(text);
   if (*text == '^') {

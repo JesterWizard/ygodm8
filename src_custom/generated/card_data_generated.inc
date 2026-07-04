@@ -4211,11 +4211,11 @@
     .description = gDescription_TheSuppressionPluto,
   },
   [0x044C] = {
-    .atk = 100,
+    .atk = 3000,
     .def = 3000,
     .cost = 183,
     .attribute = ATTRIBUTE_SHADOW,
-    .level = 4,
+    .level = 10,
     .type = TYPE_FIEND,
     .color = EFFECT_CARD,
     .monsterEffect = 0,

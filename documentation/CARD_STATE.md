@@ -1,12 +1,10 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Fixed The Supremacy Sun standby revival
+**Last worked on:** 2026-07-04 — Fixed turn counter corruption after card detail view
 
 **Files touched:**
-- `src_custom/turn_effects/the_supremacy_sun.c`
-- `src_custom/activated_effects/graveyard_draw_on_destroy.c`
-- `src_custom/embodiment_of_apophis_hooks.c`
-- `src_custom/battle_damage_hooks.c`
-- `tests/host/test_the_supremacy_sun.py`
+- `src_custom/code_801EF30_hooks.c`
 
-**Outcome:** Armed flag now set on battle/effect GY paths; standby window no longer cleared on opponent turn before owner can activate; make all passes
+**Outcome:** Description tilemap scratch moved from IWRAM stack to `g201CB60[0]`; `make all` passes
+
+**Open / next:** Playtest duel B menu → Details; confirm turn counter unchanged after viewing card
