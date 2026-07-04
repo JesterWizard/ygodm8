@@ -432,6 +432,12 @@ _kernel_malloc_ewram gTheTyrantNeptunePostPad, 1
 _kernel_malloc_ewram_array gChimeratechOverdragonMaterialCount, 0xA
 _kernel_malloc_ewram_array gChimeratechOverdragonAttacksUsed, 0xA
 
+@ The Grand Jupiter: absorbed monsters in controller backrow (10 slots: opp 0-4, player 5-9).
+_kernel_malloc_ewram_array gGrandJupiterEquipActive, 0xA
+_kernel_malloc_ewram_array gGrandJupiterEquipOriginalAtk, 0x14
+_kernel_malloc_ewram_array gGrandJupiterEquipJupiterRow, 0xA
+_kernel_malloc_ewram_array gGrandJupiterEquipJupiterCol, 0xA
+
 @ Future Fusion: material count for pending summons (fixed backrow: opp 0-4, player 5-9).
 @ ponytail: cannot use tempStage — permanent effects zero it before the delayed summon.
 _kernel_malloc_ewram_array gFutureFusionMaterialCount, 0xA

@@ -210,6 +210,10 @@ void Duel_SetupPickZone(PickZoneValidator validator,
 // Call AFTER Duel_SetupPickZone.
 void Duel_EnterPickZoneTargeting(void);
 
+// Like Duel_EnterPickZoneTargeting but scrolls from fromFixedRow (use PLAYER_HAND
+// after Duel_DiscardFromHand — hand selection leaves the field BG on the hand row).
+void Duel_EnterPickZoneTargetingFromRow(u8 fromFixedRow);
+
 // Handle A-button press during DUEL_CURSOR_PICK_ZONE.
 void Duel_HandlePickZoneA(void);
 

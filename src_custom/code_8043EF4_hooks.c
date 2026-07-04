@@ -138,6 +138,7 @@
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
 #include "the_tripper_mercury.h"
+#include "the_grand_jupiter.h"
 #include "duel_helpers.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -408,6 +409,22 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if (Duel_ZoneIsNonSelectableActivatedBackrow(zone)) {
     PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsGrandJupiterEquipZone(gDuelCursor.currentY, gDuelCursor.currentX)) {
+    if (!CanActivateGrandJupiterEquippedMonster(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    ActivateGrandJupiterEquippedMonster(gDuelCursor.currentY, gDuelCursor.currentX);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
@@ -1384,6 +1401,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET:
       TrySelectElementalHeroPlasmaViceTarget();
       break;
+    case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
+      TrySelectTheGrandJupiterAbsorbTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1501,6 +1521,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET:
       CancelElementalHeroPlasmaViceTargeting();
+      break;
+    case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
+      CancelTheGrandJupiterAbsorbTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

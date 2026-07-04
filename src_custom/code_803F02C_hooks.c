@@ -28,6 +28,7 @@
 #include "great_maju_garzett.h"
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
+#include "the_grand_jupiter.h"
 #include "the_big_saturn.h"
 #include "splendid_venus.h"
 #include "card.h"
@@ -318,6 +319,7 @@ void InitBoard__Replacement(void) {
   WallOfRevealingLight_ClearThreshold();
   WorldSuppression_ClearNegation();
   ResetDynamicEquips();
+  ResetTheGrandJupiterEquipState();
   BigBangShot_ResetAllBoosts();
   ResetApophisLinks();
   ClearCostDown();
@@ -601,6 +603,18 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
   ElementalHeroBlazeman_OnZoneCleared(zone);
   ElementalHeroTheShining_OnZoneCleared(zone);
+
+  if (zone->id == THE_GRAND_JUPITER)
+    ClearTheGrandJupiterEquipsForJupiterZone(zone);
+  else {
+    u8 fixedRow;
+    u8 fixedCol;
+
+    if (Duel_FindFixedZone(zone, &fixedRow, &fixedCol)
+        && (fixedRow == OPPONENT_BACKROW || fixedRow == PLAYER_BACKROW)
+        && IsGrandJupiterEquipZone(fixedRow, fixedCol))
+      ClearTheGrandJupiterEquipSlot(fixedRow, fixedCol);
+  }
 
   if (zone->id == SWORDS_OF_REVEALING_LIGHT && zone->isFaceUp == TRUE) {
     u8 blockedDuelist = GetSorlBlockedDuelistByZone(zone);

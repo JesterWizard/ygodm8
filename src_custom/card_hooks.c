@@ -22,6 +22,7 @@
 #include "elemental_hero_inferno.h"
 #include "skyscraper.h"
 #include "the_tripper_mercury.h"
+#include "the_grand_jupiter.h"
 #include "duel.h"
 #include "dynamic_equip.h"
 #include "world_suppression.h"
@@ -543,6 +544,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
     ApplyElementalHeroSunriseAtkBoost(zone);
     ApplyElementalHeroGaiaStatMod(zone);
     ApplyTheTripperMercuryOpponentAtkDrain(zone);
+    ApplyTheGrandJupiterEquipAtkBonus(zone);
     gSetFinalStatZone = NULL;
     return;
   }
@@ -582,6 +584,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
+  ApplyTheGrandJupiterEquipAtkBonus(zone);
   gSetFinalStatZone = NULL;
 }
 
@@ -690,6 +693,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);
+    ApplyTheGrandJupiterEquipAtkBonus(gSetFinalStatZone);
   }
 
   gSetFinalStatZone = NULL;

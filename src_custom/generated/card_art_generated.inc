@@ -1188,6 +1188,10 @@ static const unsigned char sTheTripperMercuryBigArt[] __attribute__((section(".a
 static const unsigned short sTheTripperMercuryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_tripper_mercury.gbapal");
 static const unsigned char sTheTripperMercuryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_tripper_mercury.lz");
 
+static const unsigned char sTheGrandJupiterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_grand_jupiter.huff");
+static const unsigned short sTheGrandJupiterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_grand_jupiter.gbapal");
+static const unsigned char sTheGrandJupiterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_grand_jupiter.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1486,6 +1490,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0445] = sTheSplendidVenusBigArt,
   [0x0446] = sTheBigSaturnBigArt,
   [0x0447] = sTheTripperMercuryBigArt,
+  [0x0448] = sTheGrandJupiterBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1786,6 +1791,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0445] = sTheSplendidVenusBigPalette,
   [0x0446] = sTheBigSaturnBigPalette,
   [0x0447] = sTheTripperMercuryBigPalette,
+  [0x0448] = sTheGrandJupiterBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2086,6 +2092,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0445] = 0,
   [0x0446] = 0,
   [0x0447] = 0,
+  [0x0448] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2386,4 +2393,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0445] = sTheSplendidVenusMiniArt,
   [0x0446] = sTheBigSaturnMiniArt,
   [0x0447] = sTheTripperMercuryMiniArt,
+  [0x0448] = sTheGrandJupiterMiniArt,
 };

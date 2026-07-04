@@ -35,6 +35,7 @@
 #include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
 #include "the_tyrant_neptune.h"
+#include "the_grand_jupiter.h"
 #include "lyrilusc_independent_nightingale.h"
 #include "theban_nightmare.h"
 
@@ -2221,6 +2222,11 @@ void Duel_SetupPickZone(PickZoneValidator validator, PickZoneResolver resolver,
 
 void Duel_EnterPickZoneTargeting(void)
 {
+  Duel_EnterPickZoneTargetingFromRow(gDuelCursor.destY);
+}
+
+void Duel_EnterPickZoneTargetingFromRow(u8 fromFixedRow)
+{
   u8 targetRow, targetCol;
 
   if (!FindFirstValidTarget(&targetRow, &targetCol))
@@ -2234,7 +2240,7 @@ void Duel_EnterPickZoneTargeting(void)
   gDuelCursor.currentY = targetRow;
   gDuelCursor.currentX = targetCol;
   DisplayCardInfoBar();
-  sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+  sub_8041E70(fromFixedRow, gDuelCursor.currentY);
 }
 
 void Duel_HandlePickZoneA(void)

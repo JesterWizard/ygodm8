@@ -152,6 +152,7 @@ enum {
   MONSTER_EFFECT_THE_WINGED_DRAGON_OF_RA_SPHERE_MODE,
   MONSTER_EFFECT_LYRILUSC_INDEPENDENT_NIGHTINGALE,
   MONSTER_EFFECT_THE_BIG_SATURN,
+  MONSTER_EFFECT_THE_GRAND_JUPITER,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -214,5 +215,7 @@ extern unsigned char CanActivateTheWingedDragonOfRaSphereMode(void);
 extern void ActivateTheWingedDragonOfRaSphereModeEffect(void);
 extern unsigned char CanActivateLyriluscIndependentNightingale(void);
 extern void ActivateLyriluscIndependentNightingaleEffect(void);
+extern unsigned char CanActivateTheGrandJupiter(void);
+extern void ActivateTheGrandJupiterEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

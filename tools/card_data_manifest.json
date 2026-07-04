@@ -20195,6 +20195,34 @@
         "popup_1": "Change all monsters on the field to face-up Attack Position.",
         "popup_2": "As it was Tribute Summoned with 3 tributes, opponent monsters lose their original ATK."
       }
+    },
+    {
+      "card_const": "THE_GRAND_JUPITER",
+      "card_name": "The Grand Jupiter",
+      "atk": 2500,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_THE_GRAND_JUPITER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [1, 6, 2, 5, 5, 1, 7, 3],
+      "description": {
+        "symbol": "gDescription_TheGrandJupiter",
+        "pages": [
+          "Discard 2 cards to equip 1 face-up opponent monster.",
+          "Gains ATK from equipped monsters.",
+          "End Phase: Special Summon 1 equipped monster."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 2 cards, then target 1 face-up opponent monster; equip it.",
+        "popup_2": "Target 1 monster equipped by this effect; Special Summon it."
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }

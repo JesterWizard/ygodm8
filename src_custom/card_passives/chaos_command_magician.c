@@ -20,6 +20,7 @@
 #include "elemental_hero_terra_firma.h"
 #include "elemental_hero_wild_wingman.h"
 #include "elemental_hero_necroid_shaman.h"
+#include "the_grand_jupiter.h"
 
 void ResetCursorDestToCurrentPos(void);
 void UpdateDuelGfxExceptField(void);
@@ -66,6 +67,7 @@ static u8 IsMonsterEffectTargetingCursorState(u8 state)
     case DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET:
     case DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET:
     case DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET:
+    case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
     case DUEL_CURSOR_PICK_ZONE:
       return TRUE;
     default:

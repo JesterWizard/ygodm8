@@ -20,6 +20,7 @@
 #include "future_fusion.h"
 #include "power_bond.h"
 #include "the_big_saturn.h"
+#include "the_grand_jupiter.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -117,6 +118,12 @@ static unsigned char NeverActivateTurnEffect(void)
   return FALSE;
 }
 
+static unsigned char MatchAnyMonsterRow(void)
+{
+  return gActiveEffect.turnRow == OPPONENT_MONSTER_ROW
+      || gActiveEffect.turnRow == PLAYER_MONSTER_ROW;
+}
+
 static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".text"))) = {
   { GIANT_GERM, MatchGraveyardRows, NULL, ActivateGiantGermEffect },
   { NIMBLE_MOMONGA, MatchGraveyardRows, NULL, ActivateNimbleMomongaEffect },
@@ -140,6 +147,7 @@ static const TurnEffectOverride sTurnEffectOverrides[] __attribute__((section(".
   { DARKLORD_MARIE, MatchActiveDuelistGraveyard, NULL, ActivateDarklordMarieTurnEffect },
   { THE_UNSTOPPABLE_EXODIA_INCARNATE, MatchActiveDuelistMonsterRow, ShouldActivateUnstoppableExodiaIncarnateTurnEffect, ActivateUnstoppableExodiaIncarnateTurnEffect },
   { BLUE_EYES_CHAOS_DRAGON, MatchActiveDuelistMonsterRow, ShouldActivateBlueEyesChaosDragonTurnEffect, ActivateBlueEyesChaosDragonTurnEffect },
+  { THE_GRAND_JUPITER, MatchAnyMonsterRow, ShouldActivateTheGrandJupiterTurnEffect, ActivateTheGrandJupiterTurnEffect },
 };
 
 static const TurnEffectOverride *GetTurnEffectOverride(u16 cardId)
@@ -284,6 +292,7 @@ LYN_REPLACE_CHECK(TryActivatingTurnEffects);
 void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
+  ResetTheGrandJupiterEndPhaseFlags();
   ClearCostDown();
   ResetUltimateOfferingTurnState();
   AgeUltimateOfferingSetFlags();

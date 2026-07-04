@@ -54,6 +54,7 @@
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "lyrilusc_independent_nightingale.h"
 #include "the_big_saturn.h"
+#include "the_grand_jupiter.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -95,6 +96,8 @@ unsigned char CanActivateMonsterEffect(void) {
 
   if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS)
     canActivate = CanActivateElementalHeroNeosAlius();
+  else if (zone->id == THE_GRAND_JUPITER)
+    canActivate = CanActivateTheGrandJupiter();
   else {
     switch (gCardInfo.monsterEffect) {
       case MONSTER_EFFECT_INJECTION_FAIRY_LILY:
@@ -226,6 +229,9 @@ unsigned char CanActivateMonsterEffect(void) {
       case MONSTER_EFFECT_THE_BIG_SATURN:
         canActivate = CanActivateTheBigSaturn();
         break;
+      case MONSTER_EFFECT_THE_GRAND_JUPITER:
+        canActivate = CanActivateTheGrandJupiter();
+        break;
       default:
         canActivate = TRUE;
         break;
@@ -243,6 +249,13 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   ResetCardEffectTextData();
   SetCardEffectTextType(2);
   SetCardInfo(gMonEffect.id);
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_GRAND_JUPITER
+      || zone->id == THE_GRAND_JUPITER) {
+    ActivateTheGrandJupiterEffect();
+    return;
+  }
+
   MarkMonsterEffectUsed(zone);
 
   if (gMonEffect.id == ELEMENTAL_HERO_NEOS_ALIUS) {
@@ -643,6 +656,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           || zone->id == THE_WINGED_DRAGON_OF_RA_SPHERE_MODE
           || zone->id == LYRILUSC_INDEPENDENT_NIGHTINGALE
+          || zone->id == THE_GRAND_JUPITER
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;
@@ -690,6 +704,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_GAIA_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2
