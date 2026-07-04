@@ -38,6 +38,11 @@ _kernel_malloc gApplyingNeosAliusCardInfoPad, 1
 _kernel_malloc gUltimateOfferingExtraSummonPending, 1
 _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 
+@ Executor Makyura: owner may activate eligible traps from hand this turn.
+_kernel_malloc gExecutorMakyuraActivePlayer, 1
+_kernel_malloc gExecutorMakyuraActiveOpponent, 1
+_kernel_malloc gExecutorMakyuraPendingPopup, 1
+
 @ Double Summon extra-summon state for the active duelist's turn.
 _kernel_malloc gDoubleSummonExtraSummonPending, 1
 _kernel_malloc gDoubleSummonExtraSummonUsed, 1

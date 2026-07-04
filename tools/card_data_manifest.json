@@ -9681,12 +9681,23 @@
       "level": 4,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_WARRIOR",
-      "color": "NORMAL_CARD",
+      "color": "EFFECT_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 207,
-      "password": [2, 1, 5, 9, 3, 9, 7, 7]
+      "password": [2, 1, 5, 9, 3, 9, 7, 7],
+      "description": {
+        "symbol": "gDescription_ExecutorMakyura",
+        "pages": [
+          "A swift executor of the underworld.",
+          "The turn it is sent to the Graveyard, you can",
+          "activate eligible Trap Cards from your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This turn, you can activate eligible Trap Cards from your hand."
+      }
     },
     {
       "card_const": "MARINE_BEAST",

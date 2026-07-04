@@ -4,15 +4,20 @@
 #include "duel_helpers.h"
 #include "jar_of_greed.h"
 
-static void ActivateJarOfGreedZone(struct DuelCard *zone)
+void ActivateJarOfGreedFromZone(struct DuelCard *zone, u8 drawTurnDuelist)
 {
   Duel_ActivateContinuousZone(zone);
 
-  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_DestroyZone(zone, drawTurnDuelist, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   Duel_ShowEffectTextTyped(JAR_OF_GREED, 3);
-  Duel_DrawCards(INACTIVE_DUELIST, 1, TRUE);
+  Duel_DrawCards(drawTurnDuelist, 1, TRUE);
+}
+
+static void ActivateJarOfGreedZone(struct DuelCard *zone)
+{
+  ActivateJarOfGreedFromZone(zone, INACTIVE_DUELIST);
 }
 
 void TryActivateJarOfGreedOnOpponentTurnStart(void)

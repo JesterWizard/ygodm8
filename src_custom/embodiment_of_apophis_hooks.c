@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "call_of_the_haunted.h"
 #include "expanded_graveyard.h"
+#include "executor_makyura.h"
 #include "graveyard_effects.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
@@ -492,9 +493,13 @@ void InitEmbodimentOfApophisMonsterZone(struct DuelCard *zone)
 LYN_REPLACE_CHECK(ClearZoneAndSendMonToGraveyard2);
 void ClearZoneAndSendMonToGraveyard2__Replacement(struct DuelCard *zone, u8 turn)
 {
+  u16 cardId = zone->id;
+
   ApplyOjamaTrioDestructionDamage(zone);
   MarkTheSupremacySunDestroyedFromField(zone);
   SendOjamaTrioZoneToGraveyardIfNeeded(zone, turn);
   SendApophisZoneToGraveyardIfNeeded(zone, turn);
+  TryArmExecutorMakyuraOnGraveyardSendFixed(turn, cardId);
   ClearZone(zone);
+  TryShowPendingExecutorMakyuraPopup();
 }

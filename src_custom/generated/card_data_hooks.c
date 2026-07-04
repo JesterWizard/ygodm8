@@ -11383,11 +11383,12 @@ const CardData gCardData_NEW[1101] APPEND_RODATA = {
     .attribute = ATTRIBUTE_SHADOW,
     .level = 4,
     .type = TYPE_WARRIOR,
-    .color = NORMAL_CARD,
+    .color = EFFECT_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,
     .password = {2, 1, 5, 9, 3, 9, 7, 7},
+    .description = gDescription_ExecutorMakyura,
   },
   [0x0269] = {
     .atk = 1700,

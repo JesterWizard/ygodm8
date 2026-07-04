@@ -6,6 +6,7 @@
 #include "embodiment_of_apophis.h"
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
+#include "executor_makyura.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_core.h"
 #include "ojama_trio.h"
@@ -68,12 +69,14 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
         || OjamaTrioZoneIsMonsterForm(zone))
       NoteGraveyardMonsterSend(zone);
     GraveyardExpand_PushTurn(turn, zone->id);
+    TryArmExecutorMakyuraOnGraveyardSend(turn, zone->id);
     if (Duel_ZoneIsHandSlot(zone) && zone->id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
       MarkAbsoluteZeroHandGraveyardClear();
     /* Hand sends skip NoteGraveyardMonsterSend for non-monsters; always clear Core arm. */
     ClearElementalHeroCoreReviveIfHandSend(zone);
   }
   ClearZone(zone);
+  TryShowPendingExecutorMakyuraPopup();
 }
 
 LYN_REPLACE_CHECK(DecrementPermStage);

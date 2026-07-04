@@ -141,6 +141,7 @@
 #include "the_tyrant_neptune.h"
 #include "the_tripper_mercury.h"
 #include "the_grand_jupiter.h"
+#include "executor_makyura.h"
 #include "duel_helpers.h"
 
 u8 TryPayChainEnergyCost(void);
@@ -770,6 +771,13 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if (id == AUTONOMOUS_ACTION_UNIT && !CanActivateAutonomousActionUnit()) {
     PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (TryActivateExecutorMakyuraTrapFromBackrow(gDuelCursor.currentY, gDuelCursor.currentX)) {
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);

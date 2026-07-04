@@ -187,6 +187,7 @@ void MaybeApplySliferSummonPenaltyAfterCopy(struct DuelCard *dst);
 void ClearPendingSliferSummonPenalty(void);
 void ResolvePendingSliferSummonPenalty(void);
 void ResetUltimateOfferingTurnState(void);
+void ResetExecutorMakyuraTurnState(void);
 void TryUnlockHandForUltimateOfferingExtraSummon(void);
 void UnlockCardsInRow(unsigned char turnRow);
 void UnblockTurnSummoning(unsigned char currPlayer);
@@ -315,6 +316,7 @@ void InitBoard__Replacement(void) {
   ResetTrianglePowerState();
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();
+  ResetExecutorMakyuraTurnState();
   BlastHeldByATribute_ClearAllMarks();
   VengefulBogSpirit_ClearAllMarks();
   WallOfRevealingLight_ClearThreshold();

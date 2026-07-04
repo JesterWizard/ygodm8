@@ -25,6 +25,14 @@ extern u16 gPressedButtons;
 
 #define PLAYER_HAND_ROW 4
 
+static struct DuelCard *TrapOriginZone(u8 row, u8 col)
+{
+  if (row == ACTIVE_DUELIST_HAND)
+    return gTurnHands[ACTIVE_DUELIST][col];
+
+  return gFixedZones[row][col];
+}
+
 static void WaitForNoButtonsHeld(void)
 {
   while (gPressedButtons & ANY_BUTTON)
@@ -283,7 +291,7 @@ APPEND_TEXT void EffectDustTornado(void)
   }
 
   target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
-  trapZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
+  trapZone = TrapOriginZone(gSpellEffectData.row2, gSpellEffectData.col2);
 
   if (trapZone->id != DUST_TORNADO)
     return;

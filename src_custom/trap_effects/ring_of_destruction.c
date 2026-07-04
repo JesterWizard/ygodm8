@@ -18,6 +18,14 @@ void ActivateSpellEffect(void);
 
 extern u8 gRingOfDestructionPending;
 
+static struct DuelCard *TrapOriginZone(u8 row, u8 col)
+{
+  if (row == ACTIVE_DUELIST_HAND)
+    return gTurnHands[ACTIVE_DUELIST][col];
+
+  return gFixedZones[row][col];
+}
+
 static u16 GetTargetOriginalAtk(struct DuelCard *zone)
 {
   SetCardInfo(zone->id);
@@ -308,7 +316,7 @@ APPEND_TEXT void EffectRingOfDestruction(void)
   }
 
   target = gFixedZones[gSpellEffectData.row1][gSpellEffectData.col1];
-  trapZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
+  trapZone = TrapOriginZone(gSpellEffectData.row2, gSpellEffectData.col2);
 
   if (trapZone->id != RING_OF_DESTRUCTION)
     return;
