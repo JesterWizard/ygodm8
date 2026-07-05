@@ -1236,6 +1236,10 @@ static const unsigned char sArchlordKristyaBigArt[] __attribute__((section(".app
 static const unsigned short sArchlordKristyaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/archlord_kristya.gbapal");
 static const unsigned char sArchlordKristyaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/archlord_kristya.lz");
 
+static const unsigned char sTethysGoddessOfLightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tethys_goddess_of_light.huff");
+static const unsigned short sTethysGoddessOfLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tethys_goddess_of_light.gbapal");
+static const unsigned char sTethysGoddessOfLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tethys_goddess_of_light.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1546,6 +1550,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0451] = sSeraphimBlasterBigArt,
   [0x0452] = sIofielBigArt,
   [0x0453] = sArchlordKristyaBigArt,
+  [0x0454] = sTethysGoddessOfLightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1858,6 +1863,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0451] = sSeraphimBlasterBigPalette,
   [0x0452] = sIofielBigPalette,
   [0x0453] = sArchlordKristyaBigPalette,
+  [0x0454] = sTethysGoddessOfLightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2170,6 +2176,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0451] = 0,
   [0x0452] = 0,
   [0x0453] = 0,
+  [0x0454] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2482,4 +2489,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0451] = sSeraphimBlasterMiniArt,
   [0x0452] = sIofielMiniArt,
   [0x0453] = sArchlordKristyaMiniArt,
+  [0x0454] = sTethysGoddessOfLightMiniArt,
 };

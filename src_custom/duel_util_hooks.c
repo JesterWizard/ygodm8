@@ -8,6 +8,7 @@
 #include "ojama_trio.h"
 #include "solemn_wishes.h"
 #include "drop_off.h"
+#include "tethys_goddess_of_light.h"
 #include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
@@ -325,6 +326,7 @@ void TryDrawingCard__Replacement(unsigned turn) {
     if (cardDrawn != CARD_NONE) {
       gDuel.hands[turn_u8][i].id = cardDrawn;
       TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, i);
+      TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, i);
       if (gDrawPhaseNormalDrawActive)
         TryApplyDropOffOnDrawPhaseDraw(turn_u8, i);
     } else

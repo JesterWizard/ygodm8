@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1108] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1109] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1120,9 +1120,10 @@ const u8 gCardLockAfterActivation_Hook[1108] APPEND_RODATA = {
   [0x0451] = 1,
   [0x0452] = 1,
   [0x0453] = 1,
+  [0x0454] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1108] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1109] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2231,9 +2232,10 @@ const u8 gCardEffectUsage_Hook[1108] APPEND_RODATA = {
   [0x0451] = EFFECT_USAGE_NONE,
   [0x0452] = EFFECT_USAGE_NONE,
   [0x0453] = EFFECT_USAGE_NONE,
+  [0x0454] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1108] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1109] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3342,9 +3344,10 @@ const u8 gCardSelectableOnce_Hook[1108] APPEND_RODATA = {
   [0x0451] = 0,
   [0x0452] = 0,
   [0x0453] = 0,
+  [0x0454] = 0,
 };
 
-const CardData gCardData_NEW[1108] APPEND_RODATA = {
+const CardData gCardData_NEW[1109] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -18107,5 +18110,19 @@ const CardData gCardData_NEW[1108] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {9, 9, 9, 9, 0, 0, 0, 8},
     .description = gDescription_ArchlordKristya,
+  },
+  [0x0454] = {
+    .atk = 2400,
+    .def = 1800,
+    .cost = 86,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 5,
+    .type = TYPE_FAIRY,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {8, 7, 1, 4, 8, 3, 3, 0},
+    .description = gDescription_TethysGoddessOfLight,
   },
 };

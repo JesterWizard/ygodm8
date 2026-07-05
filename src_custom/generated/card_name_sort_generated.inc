@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 307
+#define NUM_CUSTOM_NAME_SORT_CARDS 308
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -312,6 +312,7 @@ static const u8 sShatielSortName[] APPEND_RODATA = "Shatiel";
 static const u8 sSeraphimBlasterSortName[] APPEND_RODATA = "Seraphim Blaster";
 static const u8 sIofielSortName[] APPEND_RODATA = "Iofiel";
 static const u8 sArchlordKristyaSortName[] APPEND_RODATA = "Archlord Kristya";
+static const u8 sTethysGoddessOfLightSortName[] APPEND_RODATA = "Tethys, Goddess of Light";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -579,6 +580,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0393, // Stealth Bird
   0x036E, // Swift Gaia The Fierce Knight
   0x0374, // Terrorking Salmon
+  0x0454, // Tethys, Goddess of Light
   0x0384, // The Agent Of Creation - Venus
   0x041A, // The Agent of Force - Mars
   0x0446, // The Big Saturn
@@ -889,48 +891,49 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   263, // Stealth Bird
   264, // Swift Gaia The Fierce Knight
   265, // Terrorking Salmon
-  266, // The Agent Of Creation - Venus
-  267, // The Agent of Force - Mars
-  268, // The Big Saturn
-  269, // The Blazing Mars
-  270, // The Dark Door
-  271, // The Despair Uranus
-  272, // The Flute of Summoning Dragon
-  273, // The Forceful Sentry
-  274, // The Grand Jupiter
-  275, // The Sanctuary in the Sky
-  276, // The Splendid Venus
-  277, // The Suppression Pluto
-  278, // The Supremacy Sun
-  279, // The Thing in the Crater
-  280, // The Tripper Mercury
-  281, // The Tyrant Neptune
-  282, // The Unstoppable Exodia Incarnate
-  283, // Theban Nightmare
-  284, // Thousand Energy
-  285, // Thousand Knives
-  286, // Thunder Crash
-  287, // Time Seal
-  288, // Tiny Angel
-  289, // Toll
-  290, // Torpedo Fish
-  291, // Triangle Power
-  292, // Twin Swords of Flashing Light - Tryce
-  293, // Tyrant Dragon
-  294, // Ultimate Offering
-  295, // United We Stand
-  296, // Upstart Goblin
-  297, // Vampire Baby
-  298, // Vengeful Bog Spirit
-  299, // Wall of Revealing Light
-  300, // Warrior of Zera
-  301, // Wave Motion Cannon
-  302, // Weather Report
-  303, // White Magician Pikeru
-  304, // World Suppression
-  305, // Yata-Garasu
-  306, // Zaborg the Thunder Monarch
-  307, // Zeriel
+  266, // Tethys, Goddess of Light
+  267, // The Agent Of Creation - Venus
+  268, // The Agent of Force - Mars
+  269, // The Big Saturn
+  270, // The Blazing Mars
+  271, // The Dark Door
+  272, // The Despair Uranus
+  273, // The Flute of Summoning Dragon
+  274, // The Forceful Sentry
+  275, // The Grand Jupiter
+  276, // The Sanctuary in the Sky
+  277, // The Splendid Venus
+  278, // The Suppression Pluto
+  279, // The Supremacy Sun
+  280, // The Thing in the Crater
+  281, // The Tripper Mercury
+  282, // The Tyrant Neptune
+  283, // The Unstoppable Exodia Incarnate
+  284, // Theban Nightmare
+  285, // Thousand Energy
+  286, // Thousand Knives
+  287, // Thunder Crash
+  288, // Time Seal
+  289, // Tiny Angel
+  290, // Toll
+  291, // Torpedo Fish
+  292, // Triangle Power
+  293, // Twin Swords of Flashing Light - Tryce
+  294, // Tyrant Dragon
+  295, // Ultimate Offering
+  296, // United We Stand
+  297, // Upstart Goblin
+  298, // Vampire Baby
+  299, // Vengeful Bog Spirit
+  300, // Wall of Revealing Light
+  301, // Warrior of Zera
+  302, // Wave Motion Cannon
+  303, // Weather Report
+  304, // White Magician Pikeru
+  305, // World Suppression
+  306, // Yata-Garasu
+  307, // Zaborg the Thunder Monarch
+  308, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1554,6 +1557,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sIofielSortName;
   if (cardId == 0x0453)
     return (u8 *)sArchlordKristyaSortName;
+  if (cardId == 0x0454)
+    return (u8 *)sTethysGoddessOfLightSortName;
 
   return gCardNames[cardId];
 }

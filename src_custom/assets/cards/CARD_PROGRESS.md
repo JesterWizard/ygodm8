@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 307 |
-| Art ready, needs manifest | 166 |
+| In game (manifest + art) | 308 |
+| Art ready, needs manifest | 165 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -329,6 +329,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SERAPHIM_BLASTER` | Seraphim Blaster | `seraphim_blaster.png` |
 | `IOFIEL` | Iofiel | `iofiel.png` |
 | `ARCHLORD_KRISTYA` | Archlord Kristya | `archlord_kristya.png` |
+| `TETHYS_GODDESS_OF_LIGHT` | Tethys, Goddess of Light | `tethys_goddess_of_light.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -471,7 +472,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `SUPER_POLYMERIZATION` — `super_polymerization.png`
 - [ ] `TERRAFORMING` — `terraforming.png`
-- [ ] `TETHYS_GODDESS_OF_LIGHT` — `tethys_goddess_of_light.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`

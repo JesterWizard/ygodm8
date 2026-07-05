@@ -308,6 +308,7 @@ static const u8 sShatielName[] __attribute__((section(".append_assets"))) = "Sha
 static const u8 sSeraphimBlasterName[] __attribute__((section(".append_assets"))) = "Seraphim Blaster";
 static const u8 sIofielName[] __attribute__((section(".append_assets"))) = "Iofiel";
 static const u8 sArchlordKristyaName[] __attribute__((section(".append_assets"))) = "Archlord Kristya";
+static const u8 sTethysGoddessOfLightName[] __attribute__((section(".append_assets"))) = "Tethys, Goddess of Light";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -930,6 +931,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sIofielName;
   if (cardId == 0x0453)
     return (u8 *)sArchlordKristyaName;
+  if (cardId == 0x0454)
+    return (u8 *)sTethysGoddessOfLightName;
 
   return gCardNames[cardId];
 }
