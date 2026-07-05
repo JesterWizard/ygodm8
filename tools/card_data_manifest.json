@@ -20576,7 +20576,7 @@
       "card_name": "Athena",
       "atk": 2600,
       "def": 800,
-      "level": 4,
+      "level": 6,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_FAIRY",
       "color": "EFFECT_CARD",
@@ -20713,6 +20713,31 @@
       "lock_after_activation": false,
       "effect_usage": "once_per_turn",
       "selectableOnce": true
+    },
+    {
+      "card_const": "HECATRICE",
+      "card_name": "Hecatrice",
+      "atk": 1500,
+      "def": 1100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 4, 9, 6, 8, 0, 6, 5],
+      "description": {
+        "symbol": "gDescription_Hecatrice",
+        "pages": [
+          "You can discard this card to the GY; add 1 \"Valhalla,",
+          "Hall of the Fallen\" from your Deck to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can discard this card to the GY; add 1 \"Valhalla, Hall of the Fallen\" from your Deck to your hand."
+      }
     }
   ]
 }

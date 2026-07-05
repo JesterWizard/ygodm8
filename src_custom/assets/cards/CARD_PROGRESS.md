@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 313 |
+| In game (manifest + art) | 314 |
 | Art ready, needs manifest | 160 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **475** |
+| **Total PNGs in `80x80/`** | **476** |
 
 ## In game
 
@@ -335,6 +335,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ANGELS_TEAR` | Angel's Tear | `angels_tear.png` |
 | `DIVINE_SANCTUARY` | Divine Sanctuary | `divine_sanctuary.png` |
 | `COURT_OF_JUSTICE` | Court of Justice | `court_of_justice.png` |
+| `HECATRICE` | Hecatrice | `hecatrice.png` |
 
 ## Todo — art ready, needs manifest
 

@@ -1115,11 +1115,12 @@
 #define ANGELS_TEAR                              0x0457
 #define DIVINE_SANCTUARY                         0x0458
 #define COURT_OF_JUSTICE                         0x0459
+#define HECATRICE                                0x045A
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x045A
-#define NUM_CUSTOM_CARDS                        0x0139
+#define NUM_TOTAL_CARDS                         0x045B
+#define NUM_CUSTOM_CARDS                        0x013A
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

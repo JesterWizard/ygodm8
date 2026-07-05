@@ -1260,6 +1260,10 @@ static const unsigned char sCourtOfJusticeBigArt[] __attribute__((section(".appe
 static const unsigned short sCourtOfJusticeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/court_of_justice.gbapal");
 static const unsigned char sCourtOfJusticeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/court_of_justice.lz");
 
+static const unsigned char sHecatriceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hecatrice.huff");
+static const unsigned short sHecatriceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hecatrice.gbapal");
+static const unsigned char sHecatriceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hecatrice.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1576,6 +1580,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0457] = sAngelsTearBigArt,
   [0x0458] = sDivineSanctuaryBigArt,
   [0x0459] = sCourtOfJusticeBigArt,
+  [0x045A] = sHecatriceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1894,6 +1899,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0457] = sAngelsTearBigPalette,
   [0x0458] = sDivineSanctuaryBigPalette,
   [0x0459] = sCourtOfJusticeBigPalette,
+  [0x045A] = sHecatriceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2212,6 +2218,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0457] = 0,
   [0x0458] = 0,
   [0x0459] = 0,
+  [0x045A] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2530,4 +2537,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0457] = sAngelsTearMiniArt,
   [0x0458] = sDivineSanctuaryMiniArt,
   [0x0459] = sCourtOfJusticeMiniArt,
+  [0x045A] = sHecatriceMiniArt,
 };
