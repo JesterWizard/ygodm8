@@ -167,6 +167,10 @@ TITLE_SCREEN_PLACEHOLDER_GENERATOR := tools/generate_title_screen_placeholders.p
 TITLE_SCREEN_PNGS := src_custom/assets/title_screens/title_screen.png
 TITLE_SCREEN_BUILD_GENERATOR := tools/build_title_screen.py
 TITLE_SCREEN_STAMP := $(BUILD_DIR)/.title_screens.stamp
+MILLENNIUM_ITEM_GENERATOR := tools/generate_millennium_item_assets.py
+MILLENNIUM_ITEM_PNGS := $(wildcard src_custom/assets/millenium_items/*.png)
+MILLENNIUM_ITEM_GENERATED := src_custom/generated/millennium_item_assets_generated.inc
+MILLENNIUM_ITEM_STAMP := $(BUILD_DIR)/.millennium_items.stamp
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_ART_STAMP := $(BUILD_DIR)/.card_art.stamp
@@ -517,6 +521,17 @@ $(TITLE_SCREEN_RESERVED_GENERATED): $(TITLE_SCREEN_STAMP)
 	@test -f $@
 
 $(eval $(call custom_object_dep,title_screen_hooks,$(TITLE_SCREEN_GENERATED) $(TITLE_SCREEN_RESERVED_GENERATED)))
+
+$(MILLENNIUM_ITEM_STAMP): $(MILLENNIUM_ITEM_PNGS) $(MILLENNIUM_ITEM_GENERATOR) | tools-rules
+	@echo "MILLGEN millennium item icons"
+	@mkdir -p $(dir $@)
+	python3 $(MILLENNIUM_ITEM_GENERATOR)
+	touch $@
+
+$(MILLENNIUM_ITEM_GENERATED): $(MILLENNIUM_ITEM_STAMP)
+	@test -f $@
+
+$(eval $(call custom_object_dep,status_menu_hooks,$(MILLENNIUM_ITEM_GENERATED)))
 
 # Build rule for the Meteo ARM stub
 $(METE0_ASM_OBJ): $(METE0_ASM_SRC)

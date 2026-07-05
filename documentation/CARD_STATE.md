@@ -1,12 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Hourglass defers field gfx until popup finishes
+**Last worked on:** 2026-07-05 — Status menu millennium tracker panel + silhouettes
 
 **Files touched:**
-- `src_custom/activated_effects/hourglass_of_life.c`
-- `src_custom/activated_effects/injection_fairy_lily.c`
-- `src_custom/activated_effects/karate_man.c`
+- `tools/generate_millennium_item_assets.py`, `src_custom/generated/millennium_item_assets_generated.inc`
+- `src_custom/status_menu_hooks.c`, `documentation/status-menu-layout.md`
 
-**Outcome:** LP pay uses `Duel_ChangeLp(..., FALSE)`; field refresh happens when `sub_8041CCC` completes after popup; `make all` passes
+**Outcome:** Middle panel overlay + black silhouettes that fill in with color when acquired; draw order fixed; `make all` passes
 
-**Open / next:** Playtest Hourglass — stats should update only after dismissing popup
+**Open / next:** Playtest status screen on hardware — panel tint and icon spacing

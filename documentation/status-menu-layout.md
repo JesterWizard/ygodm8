@@ -37,8 +37,9 @@ Player-facing goals:
 | 4 | `PlaceStatusMenuAccentTiles` | Decorative accent grids and left icons |
 | 5 | `PlaceStatusMenuMoneySuffix` | `"domino"` suffix tiles |
 | 6 | `PlaceStatusMenuLabelGfx` | Palettes + `CopyStringTilesToVRAMBuffer` for all label/digit gfx |
-| 7 | Stat draw helpers | Write tall digit glyphs for level, capacity, LP, money |
-| 8 | `LoadCharblock3` / `LoadPalettes` | Push VRAM and palette buffers to hardware |
+| 7 | `PlaceStatusMenuMillenniumTracker` | Semi-transparent panel + seven item icons (silhouette or color) |
+| 8 | Stat draw helpers | Write tall digit glyphs for level, capacity, LP, money |
+| 9 | `LoadCharblock3` / `LoadPalettes` | Push VRAM and palette buffers to hardware |
 
 The menu blocks on **B** until exit, then plays the cancel SFX.
 
@@ -92,6 +93,44 @@ Edit the `STATUS_*_VALUE_ROW`, `STATUS_*_VALUE_COL`, and `STATUS_*_VALUE_DIGITS`
 
 LynJump also replaces the four vanilla stat writers (`sub_80079C4`, `sub_8007AB8`, `sub_8007BB0`, `sub_8007CA0`) so values refresh if the vanilla helpers are called again.
 
+### Millennium item progress tracker
+
+Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
+
+The middle band gets a **semi-transparent panel** (rows 9–14, cols 1–28) using palette bank 12. Seven icons sit on row 10, spaced four tiles apart:
+
+- **Uncollected:** black silhouette tiles (palette bank 14: transparent + black).
+- **Collected:** full-color tiles (palette bank 13).
+
+Progress flags in `sMillenniumItems[]`:
+
+| Index | Item | Collected when |
+|-------|------|----------------|
+| 0 | Puzzle | Not defeated Bandit Keith, or finished game |
+| 1 | Ring | Defeated Millennium Guardian 3 |
+| 2 | Key | Defeated Millennium Guardian 2 |
+| 3 | Scale | Defeated Mimic of Doom |
+| 4 | Rod | Defeated Millennium Guardian 5 |
+| 5 | Eye | Defeated Millennium Guardian 4 |
+| 6 | Necklace | Defeated Millennium Guardian 1 |
+
+To re-export from overworld OBJ sprites:
+
+```bash
+python3 tools/export_millennium_item_pngs.py
+make all
+```
+
+| File | Item |
+|------|------|
+| `puzzle.png` | Millennium Puzzle |
+| `ring.png` | Millennium Ring |
+| `key.png` | Millennium Key |
+| `scale.png` | Millennium Scale |
+| `rod.png` | Millennium Rod |
+| `eye.png` | Millennium Eye |
+| `necklace.png` | Millennium Necklace |
+
 ### Palette and text color
 
 - Full status BG palette: 512 halfwords from `gUnk_8088288`.
@@ -124,6 +163,10 @@ LynJump also replaces the four vanilla stat writers (`sub_80079C4`, `sub_8007AB8
 | Label map patch | `PlaceStatusMenuLabels` / `StatusMenuPlaceSplitLabel` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Writes BG tilemap label entries |
 | Label gfx | `PlaceStatusMenuLabelGfx` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Palettes and small/tall font tile uploads |
 | Stat digits | `StatusMenuDrawU32Value`, `StatusMenuDrawMoneyValue` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Tall digit rendering via `g8DF811C` |
+| Millennium tracker | `PlaceStatusMenuMillenniumTracker`, `sMillenniumItems[]` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Panel fill + event-flag silhouettes / color icons |
+| Icon PNG sources | [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) | 32×32 indexed PNGs |
+| Icon build | [`tools/generate_millennium_item_assets.py`](../tools/generate_millennium_item_assets.py) | PNG → `millennium_item_assets_generated.inc` |
+| Icon export | [`tools/export_millennium_item_pngs.py`](../tools/export_millennium_item_pngs.py) | Overworld `.4bpp` → PNG (one-time / refresh) |
 | Stat LynJumps | `sub_80079C4__Replacement` … `sub_8007CA0__Replacement` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Per-stat redraw hooks |
 | LynJump wiring | [`src_custom/LynJump.event`](../src_custom/LynJump.event) `@ $75DC`, `$79C4`, `$7AB8`, `$7BB0`, `$7CA0` | Redirects vanilla StatusMenu and stat helpers |
 | Vanilla asm reference | [`asm/status_menu.s`](../asm/status_menu.s) | Original map-index loops and stat helpers |
