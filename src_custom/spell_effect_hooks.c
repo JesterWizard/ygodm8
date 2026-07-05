@@ -104,6 +104,7 @@ extern void EffectFutureFusion(void);
 extern void EffectFusionSage(void);
 extern void EffectValhallaHallOfTheFallen(void);
 extern void EffectCourtOfJustice(void);
+extern void EffectPrematureBurial(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -154,6 +155,7 @@ static u8 SpellHandlesOwnTrapResponse(u16 spellId, u8 spellEffect)
     case DE_FUSION:
     case DIFFUSION_WAVE_MOTION:
     case AUTONOMOUS_ACTION_UNIT:
+    case PREMATURE_BURIAL:
     case SOUL_TAKER:
     case CREATURE_SWAP:
     case THUNDER_CRASH:
@@ -560,6 +562,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case COURT_OF_JUSTICE:
       EffectCourtOfJustice();
+      return;
+    case PREMATURE_BURIAL:
+      EffectPrematureBurial();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

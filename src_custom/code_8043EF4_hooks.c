@@ -113,6 +113,7 @@
 #include "valhalla_hall_of_the_fallen.h"
 #include "court_of_justice.h"
 #include "autonomous_action_unit.h"
+#include "premature_burial.h"
 #include "book_of_moon.h"
 #include "h_heated_heart.h"
 #include "book_of_taiyou.h"
@@ -829,6 +830,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == AUTONOMOUS_ACTION_UNIT && !CanActivateAutonomousActionUnit()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == PREMATURE_BURIAL && !CanActivatePrematureBurial()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

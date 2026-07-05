@@ -315,6 +315,7 @@ static const u8 sAngelsTearName[] __attribute__((section(".append_assets"))) = "
 static const u8 sDivineSanctuaryName[] __attribute__((section(".append_assets"))) = "Divine Sanctuary";
 static const u8 sCourtOfJusticeName[] __attribute__((section(".append_assets"))) = "Court of Justice";
 static const u8 sHecatriceName[] __attribute__((section(".append_assets"))) = "Hecatrice";
+static const u8 sPrematureBurialName[] __attribute__((section(".append_assets"))) = "Premature Burial";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -951,6 +952,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCourtOfJusticeName;
   if (cardId == 0x045A)
     return (u8 *)sHecatriceName;
+  if (cardId == 0x045B)
+    return (u8 *)sPrematureBurialName;
 
   return gCardNames[cardId];
 }

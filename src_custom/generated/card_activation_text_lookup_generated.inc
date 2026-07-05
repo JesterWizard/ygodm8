@@ -315,6 +315,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DIVINE_SANCTUARY] = gActivationDescription_DivineSanctuary_Popup1,
   [COURT_OF_JUSTICE] = gActivationDescription_CourtOfJustice_Popup1,
   [HECATRICE] = gActivationDescription_Hecatrice_Popup1,
+  [PREMATURE_BURIAL] = gActivationDescription_PrematureBurial_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -656,6 +657,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DIVINE_SANCTUARY_POPUP_1] = gActivationDescription_DivineSanctuary_Popup1,
   [CARD_EFFECT_TEXT_COURT_OF_JUSTICE_POPUP_1] = gActivationDescription_CourtOfJustice_Popup1,
   [CARD_EFFECT_TEXT_HECATRICE_POPUP_1] = gActivationDescription_Hecatrice_Popup1,
+  [CARD_EFFECT_TEXT_PREMATURE_BURIAL_POPUP_1] = gActivationDescription_PrematureBurial_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

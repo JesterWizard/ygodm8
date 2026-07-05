@@ -70,7 +70,9 @@ void sub_8013B98(void);
 
 static u8 SpellShouldRemainOnFieldAfterActivation(u16 cardId)
 {
-  return cardId == SWORDS_OF_REVEALING_LIGHT;
+  return cardId == SWORDS_OF_REVEALING_LIGHT
+      || cardId == AUTONOMOUS_ACTION_UNIT
+      || cardId == PREMATURE_BURIAL;
 }
 
 static void AiActivateNormalSpellFromBackrow(u8 lockMonstersAfterActivation, u8 clearZoneAfterActivation)

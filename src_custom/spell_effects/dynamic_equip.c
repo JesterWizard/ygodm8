@@ -328,7 +328,8 @@ static u8 RecalculateDynamicEquip(struct DynamicEquipLink *link)
     return FALSE;
 
   if (link->spellId == BIG_BANG_SHOT || link->spellId == RAREGOLD_ARMOR
-      || link->spellId == H_HEATED_HEART)
+      || link->spellId == H_HEATED_HEART || link->spellId == AUTONOMOUS_ACTION_UNIT
+      || link->spellId == PREMATURE_BURIAL)
     return FALSE;
 
   spellZone = GetZoneFromFixedCoords(link->spellFixedRow, link->spellFixedCol);
@@ -454,6 +455,8 @@ u8 IsActiveDynamicEquipSpellZone(const struct DuelCard *zone)
     case RAREGOLD_ARMOR:
     case BIG_BANG_SHOT:
     case H_HEATED_HEART:
+    case AUTONOMOUS_ACTION_UNIT:
+    case PREMATURE_BURIAL:
       return zone->isFaceUp == TRUE && zone->isLocked == TRUE
           && !IsImperialOrderNegatingSpell(zone->id);
     default:
@@ -516,7 +519,8 @@ void OnDynamicEquipZoneAboutToClear(struct DuelCard *zone)
   link = FindDynamicEquipForSpellZone(zone);
   if (link != NULL) {
     u8 banishEquippedMonster = link->spellId == BIG_BANG_SHOT;
-    u8 destroyEquippedMonster = link->spellId == AUTONOMOUS_ACTION_UNIT;
+    u8 destroyEquippedMonster = link->spellId == AUTONOMOUS_ACTION_UNIT
+        || link->spellId == PREMATURE_BURIAL;
     struct DuelCard *targetZone = NULL;
 
     if (banishEquippedMonster || destroyEquippedMonster)

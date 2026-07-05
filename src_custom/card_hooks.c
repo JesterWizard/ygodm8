@@ -453,7 +453,8 @@ int GetSpellType__Replacement(u16 cardId) {
       || cardId == NIGHTMARE_WHEEL || cardId == ECTOPLASMER
       || cardId == DARK_SNAKE_SYNDROME || cardId == GRAVEKEEPERS_SERVANT
       || cardId == E_EMERGENCY_CALL || cardId == FUTURE_FUSION
-      || cardId == VALHALLA_HALL_OF_THE_FALLEN || cardId == COURT_OF_JUSTICE)
+      || cardId == VALHALLA_HALL_OF_THE_FALLEN || cardId == COURT_OF_JUSTICE
+      || cardId == AUTONOMOUS_ACTION_UNIT || cardId == PREMATURE_BURIAL)
     return SPELL_TYPE_NORMAL;
 
   if (cardId == MAGE_POWER || cardId == UNITED_WE_STAND

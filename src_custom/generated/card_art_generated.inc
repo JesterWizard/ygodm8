@@ -1264,6 +1264,10 @@ static const unsigned char sHecatriceBigArt[] __attribute__((section(".append_as
 static const unsigned short sHecatriceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hecatrice.gbapal");
 static const unsigned char sHecatriceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hecatrice.lz");
 
+static const unsigned char sPrematureBurialBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/premature_burial.huff");
+static const unsigned short sPrematureBurialBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/premature_burial.gbapal");
+static const unsigned char sPrematureBurialMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/premature_burial.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1581,6 +1585,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0458] = sDivineSanctuaryBigArt,
   [0x0459] = sCourtOfJusticeBigArt,
   [0x045A] = sHecatriceBigArt,
+  [0x045B] = sPrematureBurialBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1900,6 +1905,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0458] = sDivineSanctuaryBigPalette,
   [0x0459] = sCourtOfJusticeBigPalette,
   [0x045A] = sHecatriceBigPalette,
+  [0x045B] = sPrematureBurialBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2219,6 +2225,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0458] = 0,
   [0x0459] = 0,
   [0x045A] = 0,
+  [0x045B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2538,4 +2545,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0458] = sDivineSanctuaryMiniArt,
   [0x0459] = sCourtOfJusticeMiniArt,
   [0x045A] = sHecatriceMiniArt,
+  [0x045B] = sPrematureBurialMiniArt,
 };

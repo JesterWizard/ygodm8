@@ -20738,6 +20738,33 @@
       "effect_texts": {
         "popup_1": "You can discard this card to the GY; add 1 \"Valhalla, Hall of the Fallen\" from your Deck to your hand."
       }
+    },
+    {
+      "card_const": "PREMATURE_BURIAL",
+      "card_name": "Premature Burial",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 0, 8, 2, 8, 9, 1, 2],
+      "description": {
+        "symbol": "gDescription_PrematureBurial",
+        "pages": [
+          "Pay 800 LP; target 1 monster in your Graveyard;",
+          "special summon it in ATK position and equip this card.",
+          "When this card is destroyed, destroy that monster.",
+          "If either card leaves the field, destroy the other."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay 800 LP and special summon 1 monster from your Graveyard."
+      }
     }
   ]
 }

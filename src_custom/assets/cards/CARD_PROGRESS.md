@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-05).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-06).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 314 |
+| In game (manifest + art) | 315 |
 | Art ready, needs manifest | 238 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **554** |
+| **Total PNGs in `80x80/`** | **555** |
 
 ## In game
 
@@ -336,6 +336,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DIVINE_SANCTUARY` | Divine Sanctuary | `divine_sanctuary.png` |
 | `COURT_OF_JUSTICE` | Court of Justice | `court_of_justice.png` |
 | `HECATRICE` | Hecatrice | `hecatrice.png` |
+| `PREMATURE_BURIAL` | Premature Burial | `premature_burial.png` |
 
 ## Todo — art ready, needs manifest
 
