@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 304
+#define NUM_CUSTOM_NAME_SORT_CARDS 305
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -309,6 +309,7 @@ static const u8 sMightyAngelVirchSortName[] APPEND_RODATA = "Mighty Angel Virch"
 static const u8 sTinyAngelSortName[] APPEND_RODATA = "Tiny Angel";
 static const u8 sZerielSortName[] APPEND_RODATA = "Zeriel";
 static const u8 sShatielSortName[] APPEND_RODATA = "Shatiel";
+static const u8 sSeraphimBlasterSortName[] APPEND_RODATA = "Seraphim Blaster";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -548,6 +549,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0340, // Seal of Orichalcos
   0x0360, // Secret Barrel
   0x036F, // Self-Destruct Button
+  0x0451, // Seraphim Blaster
   0x03BC, // Servant of Catabolism
   0x03B7, // Seven Tools of the Bandit
   0x0450, // Shatiel
@@ -855,73 +857,74 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   235, // Seal of Orichalcos
   236, // Secret Barrel
   237, // Self-Destruct Button
-  238, // Servant of Catabolism
-  239, // Seven Tools of the Bandit
-  240, // Shatiel
-  241, // Shield And Sword
-  242, // Skill Drain
-  243, // Skull Invitation
-  244, // Skyscraper
-  245, // Solar Flare Dragon
-  246, // Solar Ray
-  247, // Solemn Wishes
-  248, // Sorcerer of Dark Magic
-  249, // Soul Exchange
-  250, // Soul Taker
-  251, // Spear Dragon
-  252, // Spell Canceller
-  253, // Spell Economics
-  254, // Spirit Caller
-  255, // Spirit of the Breeze
-  256, // Spirit of the Pot of Greed
-  257, // Spirit Reaper
-  258, // Spirit Ryu
-  259, // St Joan
-  260, // Stealth Bird
-  261, // Swift Gaia The Fierce Knight
-  262, // Terrorking Salmon
-  263, // The Agent Of Creation - Venus
-  264, // The Agent of Force - Mars
-  265, // The Big Saturn
-  266, // The Blazing Mars
-  267, // The Dark Door
-  268, // The Despair Uranus
-  269, // The Flute of Summoning Dragon
-  270, // The Forceful Sentry
-  271, // The Grand Jupiter
-  272, // The Sanctuary in the Sky
-  273, // The Splendid Venus
-  274, // The Suppression Pluto
-  275, // The Supremacy Sun
-  276, // The Thing in the Crater
-  277, // The Tripper Mercury
-  278, // The Tyrant Neptune
-  279, // The Unstoppable Exodia Incarnate
-  280, // Theban Nightmare
-  281, // Thousand Energy
-  282, // Thousand Knives
-  283, // Thunder Crash
-  284, // Time Seal
-  285, // Tiny Angel
-  286, // Toll
-  287, // Torpedo Fish
-  288, // Triangle Power
-  289, // Twin Swords of Flashing Light - Tryce
-  290, // Tyrant Dragon
-  291, // Ultimate Offering
-  292, // United We Stand
-  293, // Upstart Goblin
-  294, // Vampire Baby
-  295, // Vengeful Bog Spirit
-  296, // Wall of Revealing Light
-  297, // Warrior of Zera
-  298, // Wave Motion Cannon
-  299, // Weather Report
-  300, // White Magician Pikeru
-  301, // World Suppression
-  302, // Yata-Garasu
-  303, // Zaborg the Thunder Monarch
-  304, // Zeriel
+  238, // Seraphim Blaster
+  239, // Servant of Catabolism
+  240, // Seven Tools of the Bandit
+  241, // Shatiel
+  242, // Shield And Sword
+  243, // Skill Drain
+  244, // Skull Invitation
+  245, // Skyscraper
+  246, // Solar Flare Dragon
+  247, // Solar Ray
+  248, // Solemn Wishes
+  249, // Sorcerer of Dark Magic
+  250, // Soul Exchange
+  251, // Soul Taker
+  252, // Spear Dragon
+  253, // Spell Canceller
+  254, // Spell Economics
+  255, // Spirit Caller
+  256, // Spirit of the Breeze
+  257, // Spirit of the Pot of Greed
+  258, // Spirit Reaper
+  259, // Spirit Ryu
+  260, // St Joan
+  261, // Stealth Bird
+  262, // Swift Gaia The Fierce Knight
+  263, // Terrorking Salmon
+  264, // The Agent Of Creation - Venus
+  265, // The Agent of Force - Mars
+  266, // The Big Saturn
+  267, // The Blazing Mars
+  268, // The Dark Door
+  269, // The Despair Uranus
+  270, // The Flute of Summoning Dragon
+  271, // The Forceful Sentry
+  272, // The Grand Jupiter
+  273, // The Sanctuary in the Sky
+  274, // The Splendid Venus
+  275, // The Suppression Pluto
+  276, // The Supremacy Sun
+  277, // The Thing in the Crater
+  278, // The Tripper Mercury
+  279, // The Tyrant Neptune
+  280, // The Unstoppable Exodia Incarnate
+  281, // Theban Nightmare
+  282, // Thousand Energy
+  283, // Thousand Knives
+  284, // Thunder Crash
+  285, // Time Seal
+  286, // Tiny Angel
+  287, // Toll
+  288, // Torpedo Fish
+  289, // Triangle Power
+  290, // Twin Swords of Flashing Light - Tryce
+  291, // Tyrant Dragon
+  292, // Ultimate Offering
+  293, // United We Stand
+  294, // Upstart Goblin
+  295, // Vampire Baby
+  296, // Vengeful Bog Spirit
+  297, // Wall of Revealing Light
+  298, // Warrior of Zera
+  299, // Wave Motion Cannon
+  300, // Weather Report
+  301, // White Magician Pikeru
+  302, // World Suppression
+  303, // Yata-Garasu
+  304, // Zaborg the Thunder Monarch
+  305, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1539,6 +1542,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sZerielSortName;
   if (cardId == 0x0450)
     return (u8 *)sShatielSortName;
+  if (cardId == 0x0451)
+    return (u8 *)sSeraphimBlasterSortName;
 
   return gCardNames[cardId];
 }

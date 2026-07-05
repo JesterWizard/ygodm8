@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 304 |
-| Art ready, needs manifest | 169 |
+| In game (manifest + art) | 305 |
+| Art ready, needs manifest | 168 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -326,6 +326,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TINY_ANGEL` | Tiny Angel | `tiny_angel.png` |
 | `ZERIEL` | Zeriel | `zeriel.png` |
 | `SHATIEL` | Shatiel | `shatiel.png` |
+| `SERAPHIM_BLASTER` | Seraphim Blaster | `seraphim_blaster.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -454,7 +455,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
-- [ ] `SERAPHIM_BLASTER` — `seraphim_blaster.png`
 - [ ] `SHARE_THE_PAIN` — `share_the_pain.png`
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`

@@ -64,6 +64,7 @@ u8 ElementalHeroEscuridao_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroHeat_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GoblinKing_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GyakuGirePanda_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 SeraphimBlaster_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 GreatMajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 MajuGarzett_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 TheTyrantNeptune_ApplyDynamicZoneStats(struct DuelCard *zone);
@@ -1051,6 +1052,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { THE_TYRANT_NEPTUNE, TheTyrantNeptune_ApplyDynamicZoneStats },
   { GOBLIN_KING, GoblinKing_ApplyDynamicZoneStats },
   { GYAKU_GIRE_PANDA, GyakuGirePanda_ApplyDynamicZoneStats },
+  { SERAPHIM_BLASTER, SeraphimBlaster_ApplyDynamicZoneStats },
   { AMAZONESS_TIGER, AmazonessTiger_ApplyDynamicZoneStats },
   { THEBAN_NIGHTMARE, ThebanNightmare_ApplyDynamicZoneStats },
   { THE_AGENT_OF_FORCE_MARS, TheAgentOfForceMars_ApplyDynamicZoneStats },
