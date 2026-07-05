@@ -398,7 +398,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `HECATICE` — `hecatice.png`
 - [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`
 - [ ] `HERO_FLASH` — `hero_flash.png`
 - [ ] `HOLACTIE_THE_CREATOR_OF_LIGHT` — `holactie_the_creator_of_light.png`
