@@ -1208,6 +1208,10 @@ static const unsigned char sTheSupremacySunBigArt[] __attribute__((section(".app
 static const unsigned short sTheSupremacySunBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_supremacy_sun.gbapal");
 static const unsigned char sTheSupremacySunMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_supremacy_sun.lz");
 
+static const unsigned char sMightyAngelVirchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mighty_angel_virch.huff");
+static const unsigned short sMightyAngelVirchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mighty_angel_virch.gbapal");
+static const unsigned char sMightyAngelVirchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mighty_angel_virch.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1511,6 +1515,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x044A] = sTheBlazingMarsBigArt,
   [0x044B] = sTheSuppressionPlutoBigArt,
   [0x044C] = sTheSupremacySunBigArt,
+  [0x044D] = sMightyAngelVirchBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1816,6 +1821,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x044A] = sTheBlazingMarsBigPalette,
   [0x044B] = sTheSuppressionPlutoBigPalette,
   [0x044C] = sTheSupremacySunBigPalette,
+  [0x044D] = sMightyAngelVirchBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2121,6 +2127,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x044A] = 0,
   [0x044B] = 0,
   [0x044C] = 0,
+  [0x044D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2426,4 +2433,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x044A] = sTheBlazingMarsMiniArt,
   [0x044B] = sTheSuppressionPlutoMiniArt,
   [0x044C] = sTheSupremacySunMiniArt,
+  [0x044D] = sMightyAngelVirchMiniArt,
 };

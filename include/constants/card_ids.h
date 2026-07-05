@@ -1102,11 +1102,12 @@
 #define THE_BLAZING_MARS                         0x044A
 #define THE_SUPPRESSION_PLUTO                    0x044B
 #define THE_SUPREMACY_SUN                        0x044C
+#define MIGHTY_ANGEL_VIRCH                       0x044D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x044D
-#define NUM_CUSTOM_CARDS                        0x012C
+#define NUM_TOTAL_CARDS                         0x044E
+#define NUM_CUSTOM_CARDS                        0x012D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
