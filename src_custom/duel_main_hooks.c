@@ -35,6 +35,7 @@
 #include "duel_attack_restrictions.h"
 #include "vengeful_bog_spirit.h"
 #include "world_suppression.h"
+#include "timed_duel.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -217,6 +218,8 @@ static void ResetIngameDuelForRetry(void) {
     gWhoseTurn = DUEL_PLAYER;
   else
     gWhoseTurn = DUEL_OPPONENT;
+  if (TimedDuel_IsActive() == TRUE)
+    gWhoseTurn = DUEL_PLAYER;
   InitBoard();
   InitDuelLifePoints();
   InitDuelistStatus();
@@ -360,6 +363,8 @@ static bool8 RunDuelTurnLoop(void) {
       ConsumeTimeSealSkipDraw(turn);
     } else if (ShouldSkipDrawPhaseForRecklessGreed(turn)) {
       ConsumeRecklessGreedSkipDraw(turn);
+    } else if (TimedDuel_ShouldSkipDrawPhase(turn)) {
+      /* ponytail: board and hand are pre-seeded; skip the draw phase. */
     } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)
@@ -384,6 +389,12 @@ static bool8 RunDuelTurnLoop(void) {
     else
       AI_Main();
     if (IsDuelOver() == TRUE)
+      return TRUE;
+    if (TimedDuel_IsActive() == TRUE && turn == DUEL_PLAYER)
+      TimedDuel_OnPlayerTurnEnded();
+    if (IsDuelOver() == TRUE)
+      return TRUE;
+    if (TimedDuel_IsActive() == TRUE)
       return TRUE;
     TryReturnSphereModeAtTurnEnd();
     FlipAtkPosCardsFaceUp(2);
@@ -473,14 +484,15 @@ void DuelMain__Replacement(void) {
       gDuelData.winner = DUEL_WINNER_OPPONENT;
 
     if (gDuelData.winner == DUEL_WINNER_OPPONENT
-        && gRuntimeConfig.offer_duel_retry_after_defeat == TRUE) {
+        && (TimedDuel_IsActive() == TRUE
+            || gRuntimeConfig.offer_duel_retry_after_defeat == TRUE)) {
       retryDuel = TryRetryDuelAfterDefeat();
       if (retryDuel == TRUE) {
         fadedIn = TRUE;
         skipInit = TRUE;
         continue;
       }
-      FinishDuel(TRUE);
+      FinishDuel(TimedDuel_IsActive() == TRUE ? FALSE : TRUE);
       return;
     }
 

@@ -2,9 +2,11 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "debug_menu.h"
+#include "debug_menu.h"
 #include "debug_menu_internal.h"
 #include "match_setter.h"
 #include "debug_save_anywhere.h"
+#include "timed_duel.h"
 #include "text.h"
 
 extern const u16 gOverworldEntityPalettes[];
@@ -40,6 +42,7 @@ static const u8 sText_RootScene[] APPEND_RODATA        = "Scene";
 static const u8 sText_RootAiMode[] APPEND_RODATA       = "AI Mode";
 static const u8 sText_RootRuleset[] APPEND_RODATA      = "Ruleset";
 static const u8 sText_RootDeckPreset[] APPEND_RODATA   = "Decks";
+static const u8 sText_RootTimedDuels[] APPEND_RODATA   = "Timed Duels";
 static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "Save";
 
 /* Section titles — 16 chars each, centered. */
@@ -54,7 +57,8 @@ static const u8 sText_SectionAiMode[] APPEND_RODATA   = "   AI Mode      ";
 static const u8 sText_SectionRuleset[] APPEND_RODATA  = "   Ruleset      ";
 static const u8 sText_SectionMap[] APPEND_RODATA      = "  Map Teleport  ";
 static const u8 sText_SectionScene[] APPEND_RODATA    = " Scene Viewer   ";
-static const u8 sText_SectionDecks[] APPEND_RODATA    = "  Deck Presets  ";
+static const u8 sText_SectionDecks[] APPEND_RODATA       = "  Deck Presets  ";
+static const u8 sText_SectionTimedDuels[] APPEND_RODATA  = "  Timed Duels   ";
 
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
@@ -69,6 +73,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootAiMode,
     sText_RootRuleset,
     sText_RootDeckPreset,
+    sText_RootTimedDuels,
     sText_RootSaveAnywhere,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "          ";
@@ -308,6 +313,9 @@ void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_DECK_PRESET:
     DebugMenuDrawDecks(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_TIMED_DUEL:
+    DebugMenuDrawTimedDuels(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
@@ -455,6 +463,32 @@ static void DebugMenuClearAuxOam(void) {
   CpuFill16(0, gOamBuffer + 4, 0x3F8);
 }
 
+void DebugMenu_TeardownForDuel(void) {
+  u8 i;
+
+  DebugMenuClearPortraitObjStash();
+  DebugMenuClearSpriteObjStash();
+  DebugMenuClearCursorOam();
+  DebugMenuClearAuxOam();
+  for (i = 0; i < 128; i++) {
+    u32 *oam = (u32 *)&gOamBuffer[i * 4];
+    oam[0] = 160;
+    oam[1] = 0;
+  }
+  LoadOam();
+  CpuFastCopy(DEBUG_OBJ_SAVE_BUF, gBgVram.cbb4, DEBUG_OBJ_SAVE_SIZE);
+  CpuFastCopy(DEBUG_OBJ_SAVE_BUF, DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_SIZE);
+  CallThumbVoid(0x0804F598);
+  LoadPalettes();
+  OverworldRestoreAfterDebugMenu();
+}
+
+void DebugMenu_ReinitAfterDuel(void) {
+  DebugMenuLoadGraphics();
+  DebugMenuLatchButtons();
+  SetVBlankCallback(DebugMenuVBlank);
+}
+
 /* ------------------------------------------------------------------ */
 /*  Section title — centered X at col 7, SBB row 1 (8 px down)       */
 /* ------------------------------------------------------------------ */
@@ -475,6 +509,7 @@ static const u8 *const sSectionTitles[] APPEND_RODATA = {
     [DEBUG_VIEW_MAP]           = sText_SectionMap,
     [DEBUG_VIEW_SCENE]         = sText_SectionScene,
     [DEBUG_VIEW_DECK_PRESET]   = sText_SectionDecks,
+    [DEBUG_VIEW_TIMED_DUEL]    = sText_SectionTimedDuels,
 };
 
 static void DebugMenuDrawSectionTitle(u8 view) {
@@ -548,7 +583,7 @@ static void DebugMenuRoot(void) {
       else if (cursor == 9) DebugAiModeViewer();
       else if (cursor == 10) DebugRulesetViewer();
       else if (cursor == 11) DebugDeckPresetViewer();
-      else { gDebugMenuPendingSaveAnywhere = TRUE; break; }
+      else if (cursor == 12) DebugTimedDuelViewer(); else { gDebugMenuPendingSaveAnywhere = TRUE; break; }
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS) scrollTop = cursor - (DEBUG_ROWS - 1);
@@ -585,6 +620,7 @@ void DebugMenuMain(void) {
   gDebugMenuMapViewerInitialLocation = 0xFF;
   gDebugMenuPendingSceneActive = 0xFF;
   gDebugMenuPendingSaveAnywhere = FALSE;
+  TimedDuel_ResetRuntime();
   DebugMenuLoadGraphics();
   DebugMenuLatchButtons();
   DebugMenuRoot();

@@ -57,7 +57,7 @@ static void OverworldRestoreGraphicsAfterSubmenu(void) {
   OverworldSetRegDispcnt();
 }
 
-static void OverworldRestoreAfterDebugMenu(void) {
+void OverworldRestoreAfterDebugMenu(void) {
   DebugMenuClearPortraitObjStash();
   OverworldRestoreGraphicsAfterSubmenu();
   CallThumbVoid(0x0804F580);

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "timed_duel.h"
 #include "debug_ai_mode.h"
 #include "debug_deck_swap.h"
 #include "debug_ruleset.h"
@@ -100,6 +101,7 @@ int sub_800AD84__Replacement(void) {
   DebugRuleset_SaveToFlashPrimary();
   DebugDeckSwap_SaveToFlashPrimary();
   DebugSaveAnywhere_SaveToFlashPrimary();
+  TimedDuel_SaveToFlashPrimary();
 
   return result;
 }
@@ -118,6 +120,7 @@ int sub_800ADA4__Replacement(void) {
   DebugRuleset_SaveToFlashBackup();
   DebugDeckSwap_SaveToFlashBackup();
   DebugSaveAnywhere_SaveToFlashBackup();
+  TimedDuel_SaveToFlashBackup();
 
   return result;
 }
@@ -134,6 +137,7 @@ void sub_800ADC4__Replacement(void) {
   DebugAiMode_LoadFromFlashPrimary();
   DebugRuleset_LoadFromFlashPrimary();
   DebugSaveAnywhere_LoadFromFlashPrimary();
+  TimedDuel_LoadFromFlashPrimary();
 }
 
 LYN_REPLACE_CHECK(sub_800ADF0);
@@ -148,6 +152,7 @@ void sub_800ADF0__Replacement(void) {
   DebugAiMode_LoadFromFlashBackup();
   DebugRuleset_LoadFromFlashBackup();
   DebugSaveAnywhere_LoadFromFlashBackup();
+  TimedDuel_LoadFromFlashBackup();
 }
 
 LYN_REPLACE_CHECK(sub_800AE1C);
@@ -216,6 +221,7 @@ void sub_800AED0__Replacement(void) {
   InitNewGame();
   DebugAiMode_Reset();
   DebugRuleset_Reset();
+  TimedDuel_ResetOnNewGame();
   DebugDeckSwap_Reset();
   DebugSaveAnywhere_Reset();
   sub_80351F8();

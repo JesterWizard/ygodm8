@@ -4,6 +4,7 @@
 #include "duel_main.h"
 #include "duel_status.h"
 #include "custom_decks/custom_decks.h"
+#include "timed_duel.h"
 #include "generated/duelist_rewards_generated.inc"
 #include "generated/card_trunk_generated.inc"
 #include "card_shop.h"
@@ -662,10 +663,22 @@ void HandleOutcome__Replacement(void) {
 LYN_REPLACE_CHECK(HandleWin);
 void HandleWin__Replacement(void) {
   struct DuelText duelText;
-  u32 rewardMultiplier = GetAlternateWinRewardMultiplier();
+  u32 rewardMultiplier;
   u64 baseMoneyReward;
-  const CustomDuelRewardEntry *entry = GetCustomDuelRewardEntry();
-  const CustomDuelistRewardEntry *duelistEntry = GetCustomDuelistRewardEntry();
+  const CustomDuelRewardEntry *entry;
+  const CustomDuelistRewardEntry *duelistEntry;
+
+  if (TimedDuel_IsActive() == TRUE) {
+    TimedDuel_HandleWin();
+    if (gDuelType == DUEL_TYPE_INGAME)
+      CapLifePointsAfterDuel();
+    CustomDecks_ClearPendingCardShopDuel();
+    return;
+  }
+
+  rewardMultiplier = GetAlternateWinRewardMultiplier();
+  entry = GetCustomDuelRewardEntry();
+  duelistEntry = GetCustomDuelistRewardEntry();
 
   if (entry != NULL)
     gDuelData.capacityYield = ApplyCapacityRewardMultiplier(GetConfiguredCapacityReward(entry->capacityYield));
@@ -726,6 +739,32 @@ void HandleWin__Replacement(void) {
 LYN_REPLACE_CHECK(HandleLoss);
 void HandleLoss__Replacement(void) {
   struct DuelText duelText;
+
+  if (TimedDuel_IsActive() == TRUE) {
+    if (!gDuelLifePoints[DUEL_PLAYER]) {
+      FadeOutMusic(4);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_PLAYER_OUT_OF_LP;
+      DisplayDuelText(&duelText);
+    } else if (NumCardsInDeck(0) < GetCardsDrawn(0)) {
+      FadeOutMusic(4);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_PLAYER_DECK_OUT;
+      DisplayDuelText(&duelText);
+    }
+    if (gDuelData.unk2d) {
+      PlayMusic(gDuelData.lossMusic);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_DUEL_LOSS;
+      DisplayDuelText(&duelText);
+    }
+    if (gDuelType == DUEL_TYPE_INGAME)
+      CapLifePointsAfterDuel();
+    TimedDuel_OnDuelEnd();
+    CustomDecks_ClearPendingCardShopDuel();
+    return;
+  }
+
   if (gAnte != CARD_NONE)
     RemoveCardQtyFromTrunk(gAnte, 1);
   if (!gDuelLifePoints[DUEL_PLAYER]) {

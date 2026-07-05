@@ -1,11 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Status menu millennium tracker panel + silhouettes
+**Last worked on:** 2026-07-05 — Timed duel layouts in C file; EWRAM-only completion until manual save
 
 **Files touched:**
-- `tools/generate_millennium_item_assets.py`, `src_custom/generated/millennium_item_assets_generated.inc`
-- `src_custom/status_menu_hooks.c`, `documentation/status-menu-layout.md`
+- `src_custom/debug/debug_menu_timed_duel_layouts.c`, `include/debug_menu_timed_duel_*.h`
+- `src_custom/timed_duel.c`, `documentation/timed-duels.md`
 
-**Outcome:** Middle panel overlay + black silhouettes that fill in with color when acquired; draw order fixed; `make all` passes
+**Outcome:** Layout blocks in highlighted `.c`; win marks EWRAM only; flash on save; `make all` passes
 
-**Open / next:** Playtest status screen on hardware — panel tint and icon spacing
+**Open / next:** Add puzzles in layouts `.c`; playtest save/reload of completion flags

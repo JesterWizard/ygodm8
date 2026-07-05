@@ -149,6 +149,11 @@ _kernel_malloc_ewram gDebugSaveAnywhereOpenDialogReady, 0x1
 @ Debug menu: active duel ruleset (default / Duelist Kingdom).
 _kernel_malloc_ewram gDebugRuleset, 1
 
+@ Timed duel puzzles: active id (index + 1), pending menu selection, completion bitfield.
+_kernel_malloc_ewram gTimedDuelActiveId, 1
+_kernel_malloc_ewram gDebugMenuPendingTimedDuelIndex, 1
+_kernel_malloc_ewram_array gTimedDuelCompletionFlags, 0x10
+
 @ Duelist Kingdom: active duelist already attacked this turn.
 _kernel_malloc_ewram gDebugRulesetTurnAttackUsed, 1
 

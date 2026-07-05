@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
 #include "debug_ruleset.h"
+#include "timed_duel.h"
 #include "duel_helpers.h"
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
@@ -390,6 +391,7 @@ void InitBoard__Replacement(void) {
     gDuel.duelistbattleState[i].graveyard = CARD_NONE;
     UnblockSummoning(i);
   }
+  TimedDuel_ApplySetupIfActive();
 }
 
 LYN_REPLACE_CHECK(PlayerTurnMain);

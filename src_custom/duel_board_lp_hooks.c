@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "digit.h"
 #include "duel.h"
+#include "timed_duel.h"
 #include "duel_bgm_tempo.h"
 #include "duel_status.h"
 #include "gba/defines.h"
@@ -211,7 +212,19 @@ void InitDuelistStatus__Replacement(void) {
 
   for (i = 0; i < 2; i++)
     gDuelistStatus[i] = DUELIST_STATUS_CANNOT_ATTACK;
-  gDuelBoardTurnCount = 0;
+  if (TimedDuel_IsActive() == TRUE) {
+    const struct TimedDuelLayout *layout;
+
+    layout = TimedDuel_GetActiveLayout();
+    if (layout != NULL && layout->turnCount != 0)
+      gDuelBoardTurnCount = layout->turnCount - 1;
+    else
+      gDuelBoardTurnCount = (u16)(RandRangeU8(2, 30) - 1);
+    /* ponytail: timed-duel loop returns before EndFirstTurnAttackBan; allow attacks immediately. */
+    gDuelistStatus[DUEL_PLAYER] = DUELIST_STATUS_CAN_ATTACK;
+  } else {
+    gDuelBoardTurnCount = 0;
+  }
 }
 
 void BeginDuelBoardTurn(void) {
