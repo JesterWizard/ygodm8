@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Fixed Athena ignition crash after popup_2 (field cost targeting)
+**Last worked on:** 2026-07-05 — Fixed Valhalla as continuous spell (was wrongly a field spell); backrow ignition now works
 
-**Outcome:** Ignition uses dedicated `DUEL_CURSOR_ATHENA_COST_TARGET` (Cannon Soldier pattern) instead of generic PickZone; cursor cleared before GY deck menu opens. `make test-cards-build` passes.
+**Outcome:** Continuous spell activation + once-per-turn Fairy special summon from empty field; `selectableOnce` only blocks duplicate from hand; `make test-cards-build` passes.
 
-**Open / next:** Playtest full ignition (field sacrifice → GY special summon)
+**Open / next:** Playtest: activate Valhalla from hand, then select it on backrow with empty monster row + Fairy in hand

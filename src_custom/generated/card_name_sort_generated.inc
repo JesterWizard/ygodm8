@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 309
+#define NUM_CUSTOM_NAME_SORT_CARDS 310
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -314,6 +314,7 @@ static const u8 sIofielSortName[] APPEND_RODATA = "Iofiel";
 static const u8 sArchlordKristyaSortName[] APPEND_RODATA = "Archlord Kristya";
 static const u8 sTethysGoddessOfLightSortName[] APPEND_RODATA = "Tethys, Goddess of Light";
 static const u8 sAthenaSortName[] APPEND_RODATA = "Athena";
+static const u8 sValhallaHallOfTheFallenSortName[] APPEND_RODATA = "Valhalla, Hall of the Fallen";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -614,6 +615,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
+  0x0456, // Valhalla, Hall of the Fallen
   0x0372, // Vampire Baby
   0x03DA, // Vengeful Bog Spirit
   0x03DB, // Wall of Revealing Light
@@ -926,17 +928,18 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   296, // Ultimate Offering
   297, // United We Stand
   298, // Upstart Goblin
-  299, // Vampire Baby
-  300, // Vengeful Bog Spirit
-  301, // Wall of Revealing Light
-  302, // Warrior of Zera
-  303, // Wave Motion Cannon
-  304, // Weather Report
-  305, // White Magician Pikeru
-  306, // World Suppression
-  307, // Yata-Garasu
-  308, // Zaborg the Thunder Monarch
-  309, // Zeriel
+  299, // Valhalla, Hall of the Fallen
+  300, // Vampire Baby
+  301, // Vengeful Bog Spirit
+  302, // Wall of Revealing Light
+  303, // Warrior of Zera
+  304, // Wave Motion Cannon
+  305, // Weather Report
+  306, // White Magician Pikeru
+  307, // World Suppression
+  308, // Yata-Garasu
+  309, // Zaborg the Thunder Monarch
+  310, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1564,6 +1567,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTethysGoddessOfLightSortName;
   if (cardId == 0x0455)
     return (u8 *)sAthenaSortName;
+  if (cardId == 0x0456)
+    return (u8 *)sValhallaHallOfTheFallenSortName;
 
   return gCardNames[cardId];
 }

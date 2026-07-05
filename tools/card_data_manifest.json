@@ -20585,7 +20585,6 @@
       "trapEffect": 0,
       "cost": 150,
       "password": [4, 8, 9, 6, 4, 9, 6, 6],
-      "effect_usage": "once_per_turn",
       "description": {
         "symbol": "gDescription_Athena",
         "pages": [
@@ -20598,7 +20597,37 @@
       "effect_texts": {
         "popup_1": "Inflict 600 LP damage to your opponent.",
         "popup_2": "Send 1 other face-up Fairy monster you control to the GY; Special Summon 1 Fairy monster from your GY."
-      }
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "VALHALLA_HALL_OF_THE_FALLEN",
+      "card_name": "Valhalla, Hall of the Fallen",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 1, 3, 5, 3, 7, 7, 0],
+      "description": {
+        "symbol": "gDescription_ValhallaHallOfTheFallen",
+        "pages": [
+          "Once per turn: You can Special Summon 1 Fairy",
+          "monster from your hand. You must control no monsters to",
+          "activate and to resolve this effect."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can Special Summon 1 Fairy monster from your hand."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn",
+      "selectableOnce": true
     }
   ]
 }

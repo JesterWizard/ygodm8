@@ -310,6 +310,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ARCHLORD_KRISTYA] = gActivationDescription_ArchlordKristya_Popup1,
   [TETHYS_GODDESS_OF_LIGHT] = gActivationDescription_TethysGoddessOfLight_Popup1,
   [ATHENA] = gActivationDescription_Athena_Popup1,
+  [VALHALLA_HALL_OF_THE_FALLEN] = gActivationDescription_ValhallaHallOfTheFallen_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -646,6 +647,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_TETHYS_GODDESS_OF_LIGHT_POPUP_1] = gActivationDescription_TethysGoddessOfLight_Popup1,
   [CARD_EFFECT_TEXT_ATHENA_POPUP_1] = gActivationDescription_Athena_Popup1,
   [CARD_EFFECT_TEXT_ATHENA_POPUP_2] = gActivationDescription_Athena_Popup2,
+  [CARD_EFFECT_TEXT_VALHALLA_HALL_OF_THE_FALLEN_POPUP_1] = gActivationDescription_ValhallaHallOfTheFallen_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

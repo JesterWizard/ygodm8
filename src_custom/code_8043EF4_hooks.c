@@ -110,6 +110,7 @@
 #include "monster_reborn.h"
 #include "e_emergency_call.h"
 #include "r_righteous_justice.h"
+#include "valhalla_hall_of_the_fallen.h"
 #include "autonomous_action_unit.h"
 #include "book_of_moon.h"
 #include "h_heated_heart.h"
@@ -772,6 +773,15 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == E_EMERGENCY_CALL && !CanActivateEEmergencyCall()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == VALHALLA_HALL_OF_THE_FALLEN && zone->isLocked
+      && !CanActivateValhallaHallOfTheFallenIgnition(zone)) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

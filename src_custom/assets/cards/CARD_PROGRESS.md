@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 309 |
-| Art ready, needs manifest | 164 |
+| In game (manifest + art) | 310 |
+| Art ready, needs manifest | 163 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -331,6 +331,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ARCHLORD_KRISTYA` | Archlord Kristya | `archlord_kristya.png` |
 | `TETHYS_GODDESS_OF_LIGHT` | Tethys, Goddess of Light | `tethys_goddess_of_light.png` |
 | `ATHENA` | Athena | `athena.png` |
+| `VALHALLA_HALL_OF_THE_FALLEN` | Valhalla, Hall of the Fallen | `valhalla_hall_of_the_fallen.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -492,7 +493,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `VALHALLA_HALL_OF_THE_FALLEN` — `valhalla_hall_of_the_fallen.png`
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`

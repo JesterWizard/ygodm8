@@ -102,6 +102,7 @@ extern void EffectRRighteousJustice(void);
 extern void EffectOOversoul(void);
 extern void EffectFutureFusion(void);
 extern void EffectFusionSage(void);
+extern void EffectValhallaHallOfTheFallen(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -255,7 +256,7 @@ static void ActivateSpellEffect__Body(void)
     return;
   }
 
-  if (gCardSelectableOnce_Hook[gSpellEffectData.id]) {
+  if (gCardSelectableOnce_Hook[gSpellEffectData.id] && gSpellEffectData.row1 == ACTIVE_DUELIST_HAND) {
     u8 controllerBackrow = (WhoseTurn() == DUEL_PLAYER) ? PLAYER_BACKROW : OPPONENT_BACKROW;
     u8 i;
 
@@ -552,6 +553,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case FUSION_SAGE:
       EffectFusionSage();
+      return;
+    case VALHALLA_HALL_OF_THE_FALLEN:
+      EffectValhallaHallOfTheFallen();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

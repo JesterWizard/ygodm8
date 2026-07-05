@@ -1244,6 +1244,10 @@ static const unsigned char sAthenaBigArt[] __attribute__((section(".append_asset
 static const unsigned short sAthenaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/athena.gbapal");
 static const unsigned char sAthenaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/athena.lz");
 
+static const unsigned char sValhallaHallOfTheFallenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/valhalla_hall_of_the_fallen.huff");
+static const unsigned short sValhallaHallOfTheFallenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/valhalla_hall_of_the_fallen.gbapal");
+static const unsigned char sValhallaHallOfTheFallenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/valhalla_hall_of_the_fallen.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1556,6 +1560,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0453] = sArchlordKristyaBigArt,
   [0x0454] = sTethysGoddessOfLightBigArt,
   [0x0455] = sAthenaBigArt,
+  [0x0456] = sValhallaHallOfTheFallenBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1870,6 +1875,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0453] = sArchlordKristyaBigPalette,
   [0x0454] = sTethysGoddessOfLightBigPalette,
   [0x0455] = sAthenaBigPalette,
+  [0x0456] = sValhallaHallOfTheFallenBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2184,6 +2190,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0453] = 0,
   [0x0454] = 0,
   [0x0455] = 0,
+  [0x0456] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2498,4 +2505,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0453] = sArchlordKristyaMiniArt,
   [0x0454] = sTethysGoddessOfLightMiniArt,
   [0x0455] = sAthenaMiniArt,
+  [0x0456] = sValhallaHallOfTheFallenMiniArt,
 };
