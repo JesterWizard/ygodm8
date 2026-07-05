@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 308 |
-| Art ready, needs manifest | 165 |
+| In game (manifest + art) | 309 |
+| Art ready, needs manifest | 164 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -330,6 +330,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `IOFIEL` | Iofiel | `iofiel.png` |
 | `ARCHLORD_KRISTYA` | Archlord Kristya | `archlord_kristya.png` |
 | `TETHYS_GODDESS_OF_LIGHT` | Tethys, Goddess of Light | `tethys_goddess_of_light.png` |
+| `ATHENA` | Athena | `athena.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -345,7 +346,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
 - [ ] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
 - [ ] `ARMED_DRAGON_LEVEL_THREE` — `armed_dragon_level_three.png`
-- [ ] `ATHENA` — `athena.png`
 - [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
 - [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
 - [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`

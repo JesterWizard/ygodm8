@@ -7,6 +7,7 @@
 #include "archlord_kristya.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
+#include "athena.h"
 #include "cannon_soldier.h"
 #include "man_thro_tro.h"
 #include "riryoku.h"
@@ -181,6 +182,7 @@ void sub_80449D8(void);
 void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateRyuKishinClownOnMonsterPlacement(struct DuelCard *zone);
 void TryIofielOnMonsterPlacement(struct DuelCard *zone);
+void TryAthenaOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateDarkDustSpiritOnMonsterPlacement(struct DuelCard *zone);
 void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
@@ -1019,6 +1021,7 @@ void sub_80449D8__Replacement(void)
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryIofielOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryAthenaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheSuppressionPlutoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
@@ -1445,6 +1448,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
       TrySelectTheGrandJupiterAbsorbTarget();
       break;
+    case DUEL_CURSOR_ATHENA_COST_TARGET:
+      TrySelectAthenaCostTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1565,6 +1571,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
       CancelTheGrandJupiterAbsorbTargeting();
+      break;
+    case DUEL_CURSOR_ATHENA_COST_TARGET:
+      CancelAthenaCostTargeting();
       break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneB();

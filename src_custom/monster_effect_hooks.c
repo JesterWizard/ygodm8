@@ -56,6 +56,7 @@
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
 #include "the_blazing_mars.h"
+#include "athena.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -235,6 +236,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_THE_BLAZING_MARS:
         canActivate = CanActivateTheBlazingMars();
+        break;
+      case MONSTER_EFFECT_ATHENA:
+        canActivate = CanActivateATHENA();
         break;
       default:
         canActivate = TRUE;
@@ -532,6 +536,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_ATHENA) {
+    ActivateATHENAEffect();
+    return;
+  }
+
   if (gMonEffect.id == CHIRON_THE_MAGE) {
     ActivateChironTheMageEffect();
     return;
@@ -667,6 +676,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == LYRILUSC_INDEPENDENT_NIGHTINGALE
           || zone->id == THE_GRAND_JUPITER
           || zone->id == THE_BLAZING_MARS
+          || zone->id == ATHENA
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;
@@ -718,6 +728,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_RYU_KISHIN_CLOWN_TARGET
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2
+              || gDuelCursor.state == DUEL_CURSOR_ATHENA_COST_TARGET
               || gDuelCursor.state == DUEL_CURSOR_PICK_ZONE)
             break;
           UpdateDuelGfxExceptField();

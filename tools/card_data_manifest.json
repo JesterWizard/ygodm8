@@ -20570,6 +20570,35 @@
       "effect_texts": {
         "popup_1": "When you draw a Fairy monster: reveal it; draw 1 card. Must be face-up on field."
       }
+    },
+    {
+      "card_const": "ATHENA",
+      "card_name": "Athena",
+      "atk": 2600,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_ATHENA",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 8, 9, 6, 4, 9, 6, 6],
+      "effect_usage": "once_per_turn",
+      "description": {
+        "symbol": "gDescription_Athena",
+        "pages": [
+          "When another Fairy is Summoned,",
+          "inflict 600 damage to your opponent.",
+          "Once per turn: send 1 Fairy you control to the GY,",
+          "except this card. Target 1 Fairy in your GY and Special Summon it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Inflict 600 LP damage to your opponent.",
+        "popup_2": "Send 1 other face-up Fairy monster you control to the GY; Special Summon 1 Fairy monster from your GY."
+      }
     }
   ]
 }

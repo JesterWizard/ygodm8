@@ -31,6 +31,7 @@
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
 #include "iofiel.h"
+#include "athena.h"
 #include "archlord_kristya.h"
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
@@ -304,6 +305,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroBlazemanOnMonsterPlacement(summonZone);
   TryIofielOnMonsterPlacement(summonZone);
+  TryAthenaOnMonsterPlacement(summonZone);
   TryElementalHeroStratosOnMonsterPlacement(summonZone);
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
