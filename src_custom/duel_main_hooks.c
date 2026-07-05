@@ -27,6 +27,7 @@
 #include "curse_of_darkness.h"
 #include "solar_ray.h"
 #include "level_limit_area_a.h"
+#include "angels_tear.h"
 #include "yata_garasu.h"
 #include "fenrir.h"
 #include "life_points.h"
@@ -346,6 +347,7 @@ static bool8 RunDuelTurnLoop(void) {
     TryActivateCurseOfDarknessOnOpponentTurnStart();
     TryActivateSolarRayOnOpponentTurnStart();
     TryActivateLevelLimitAreaAOnOpponentTurnStart();
+    TryActivateAngelsTearOnOpponentTurnStart();
     }
     if (IsDuelOver() == TRUE)
       return TRUE;

@@ -1248,6 +1248,10 @@ static const unsigned char sValhallaHallOfTheFallenBigArt[] __attribute__((secti
 static const unsigned short sValhallaHallOfTheFallenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/valhalla_hall_of_the_fallen.gbapal");
 static const unsigned char sValhallaHallOfTheFallenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/valhalla_hall_of_the_fallen.lz");
 
+static const unsigned char sAngelsTearBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/angels_tear.huff");
+static const unsigned short sAngelsTearBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/angels_tear.gbapal");
+static const unsigned char sAngelsTearMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/angels_tear.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1561,6 +1565,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0454] = sTethysGoddessOfLightBigArt,
   [0x0455] = sAthenaBigArt,
   [0x0456] = sValhallaHallOfTheFallenBigArt,
+  [0x0457] = sAngelsTearBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1876,6 +1881,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0454] = sTethysGoddessOfLightBigPalette,
   [0x0455] = sAthenaBigPalette,
   [0x0456] = sValhallaHallOfTheFallenBigPalette,
+  [0x0457] = sAngelsTearBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2191,6 +2197,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0454] = 0,
   [0x0455] = 0,
   [0x0456] = 0,
+  [0x0457] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2506,4 +2513,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0454] = sTethysGoddessOfLightMiniArt,
   [0x0455] = sAthenaMiniArt,
   [0x0456] = sValhallaHallOfTheFallenMiniArt,
+  [0x0457] = sAngelsTearMiniArt,
 };

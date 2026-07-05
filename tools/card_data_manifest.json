@@ -20628,6 +20628,33 @@
       "lock_after_activation": false,
       "effect_usage": "once_per_turn",
       "selectableOnce": true
+    },
+    {
+      "card_const": "ANGELS_TEAR",
+      "card_name": "Angel's Tear",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 0,
+      "trapEffect": 0,
+      "cost": 593,
+      "password": [9, 9, 9, 9, 0, 0, 0, 8],
+      "description": {
+        "symbol": "gDescription_AngelsTear",
+        "pages": [
+          "A trap from the Yu-Gi-Oh! GX manga.",
+          "Banish 4 Fairy-Type monsters from your",
+          "Graveyard; Special Summon 1 Fairy-Type",
+          "monster from your Graveyard."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish 4 Fairy monsters from your Graveyard to Special Summon 1 Fairy monster from your Graveyard."
+      }
     }
   ]
 }

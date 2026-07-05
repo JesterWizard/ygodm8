@@ -1,7 +1,7 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Fixed Valhalla as continuous spell (was wrongly a field spell); backrow ignition now works
+**Last worked on:** 2026-07-05 — Added Angel's Tear (GX manga trap)
 
-**Outcome:** Continuous spell activation + once-per-turn Fairy special summon from empty field; `selectableOnce` only blocks duplicate from hand; `make test-cards-build` passes.
+**Outcome:** Manifest + effect hook; banish 4 GY Fairies then Special Summon 1 Fairy; runtime hand slot 1; `make test-cards-build` passes.
 
-**Open / next:** Playtest: activate Valhalla from hand, then select it on backrow with empty monster row + Fairy in hand
+**Open / next:** Playtest: set Angel's Tear, fill GY with 5+ Fairies, activate trap

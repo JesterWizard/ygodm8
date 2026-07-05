@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 310 |
-| Art ready, needs manifest | 163 |
+| In game (manifest + art) | 311 |
+| Art ready, needs manifest | 162 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -332,6 +332,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TETHYS_GODDESS_OF_LIGHT` | Tethys, Goddess of Light | `tethys_goddess_of_light.png` |
 | `ATHENA` | Athena | `athena.png` |
 | `VALHALLA_HALL_OF_THE_FALLEN` | Valhalla, Hall of the Fallen | `valhalla_hall_of_the_fallen.png` |
+| `ANGELS_TEAR` | Angel's Tear | `angels_tear.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -340,7 +341,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
-- [ ] `ANGELS_TEAR` — `angels_tear.png`
 - [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
