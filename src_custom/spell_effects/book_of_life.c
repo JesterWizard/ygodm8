@@ -60,7 +60,7 @@ static void BookOfLife_ResolveBody(void)
 
   // ponytail: single-card GY model — banish removes opponent's top graveyard card
   if (IsMonsterCard(gTurnDuelistBattleState[INACTIVE_DUELIST]->graveyard))
-    GetGraveCardAndClearGrave(INACTIVE_DUELIST);
+    Duel_BanishGraveyardTopTurn(INACTIVE_DUELIST);
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 }

@@ -4,6 +4,7 @@
 #include "duel.h"
 #include "duel_b_menu.h"
 #include "expanded_graveyard.h"
+#include "removed_from_play.h"
 
 extern u16 gNewButtons;
 extern u16 gFilteredInput;
@@ -26,7 +27,7 @@ u16 GetSelectedCardWithOffset(u8 offset);
 void SetCardInfoWithWarning(u16 *id);
 void ShowCardDetailView(void);
 
-static u16 GraveyardViewerProcessInput(void)
+static u16 CardListViewerProcessInput(void)
 {
   u8 i;
   u16 mask;
@@ -57,7 +58,7 @@ static u16 GraveyardViewerProcessInput(void)
   return ret;
 }
 
-static void GraveyardViewerInitGraphics(void)
+static void CardListViewerInitGraphics(void)
 {
   sub_801EF30(0);
   sub_801EF30(2);
@@ -66,7 +67,7 @@ static void GraveyardViewerInitGraphics(void)
   sub_801F4A0(3);
 }
 
-static void GraveyardViewerRestoreAfterCardDetails(void)
+static void CardListViewerRestoreAfterCardDetails(void)
 {
   sub_801EF30(0);
   sub_801EF30(2);
@@ -80,7 +81,7 @@ static void GraveyardViewerRestoreAfterCardDetails(void)
   LoadCharblock1();
 }
 
-static void GraveyardViewerShowSelectedCardDetails(void)
+static void CardListViewerShowSelectedCardDetails(void)
 {
   u16 cardId;
 
@@ -88,29 +89,10 @@ static void GraveyardViewerShowSelectedCardDetails(void)
   SetCardInfoWithWarning(&cardId);
   PlayMusic(SFX_SELECT);
   ShowCardDetailView();
-  GraveyardViewerRestoreAfterCardDetails();
+  CardListViewerRestoreAfterCardDetails();
 }
 
-static void GraveyardViewerLoadDeckMenu(u8 fixedDuelist)
-{
-  u8 i;
-  u8 count;
-
-  for (i = 0; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
-    gDeckMenu.cards[i] = CARD_NONE;
-
-  count = GraveyardExpand_GetCount(fixedDuelist);
-  for (i = 0; i < count; i++)
-    gDeckMenu.cards[i] = GraveyardExpand_GetCardAt(fixedDuelist, i);
-
-  gDeckMenu.cost = 0;
-  gDeckMenu.currentPos = 0;
-  gDeckMenu.sortMode = 0;
-  gDeckMenu.displayMode = 1;
-  gDeckMenu.cardCount = count;
-}
-
-static void GraveyardViewerMain(void)
+static void CardListViewerMain(void)
 {
   u8 keepProcessing;
 
@@ -118,10 +100,10 @@ static void GraveyardViewerMain(void)
     return;
 
   DeckMenuSort();
-  GraveyardViewerInitGraphics();
+  CardListViewerInitGraphics();
   keepProcessing = TRUE;
   while (keepProcessing) {
-    switch (GraveyardViewerProcessInput()) {
+    switch (CardListViewerProcessInput()) {
       case DPAD_UP:
         RunPlayerDeckTask(3);
         sub_801EF30(3);
@@ -153,7 +135,7 @@ static void GraveyardViewerMain(void)
         sub_801F4A0(4);
         break;
       case A_BUTTON:
-        GraveyardViewerShowSelectedCardDetails();
+        CardListViewerShowSelectedCardDetails();
         sub_801F4A0(7);
         break;
       case B_BUTTON:
@@ -186,14 +168,12 @@ static void GraveyardViewerMain(void)
   }
 }
 
-void Duel_GraveyardViewer_Open(u8 fixedDuelist)
+static void CardListViewerOpenLoaded(u8 cardCount)
 {
   u8 savedDeckMenu[sizeof(gDeckMenu)];
   u8 i;
 
-  if (gRuntimeConfig.expand_graveyard != TRUE)
-    return;
-  if (GraveyardExpand_GetCount(fixedDuelist) == 0) {
+  if (cardCount == 0) {
     PlayMusic(SFX_FORBIDDEN);
     return;
   }
@@ -201,10 +181,46 @@ void Duel_GraveyardViewer_Open(u8 fixedDuelist)
   for (i = 0; i < sizeof(gDeckMenu); i++)
     savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
 
-  GraveyardViewerLoadDeckMenu(fixedDuelist);
+  gDeckMenu.cost = 0;
+  gDeckMenu.currentPos = 0;
+  gDeckMenu.sortMode = 0;
+  gDeckMenu.displayMode = 1;
+  gDeckMenu.cardCount = cardCount;
   PlayMusic(SFX_SELECT);
-  GraveyardViewerMain();
+  CardListViewerMain();
 
   for (i = 0; i < sizeof(gDeckMenu); i++)
     ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+}
+
+static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,
+                                    u16 (*getCardAt)(u8, u8))
+{
+  u8 i;
+
+  for (i = 0; i < capacity; i++)
+    gDeckMenu.cards[i] = CARD_NONE;
+
+  for (i = 0; i < count; i++)
+    gDeckMenu.cards[i] = getCardAt(fixedDuelist, i);
+
+  CardListViewerOpenLoaded(count);
+}
+
+void Duel_GraveyardViewer_Open(u8 fixedDuelist)
+{
+  if (gRuntimeConfig.expand_graveyard != TRUE)
+    return;
+
+  CardListViewerLoadCards(fixedDuelist, GraveyardExpand_GetCount(fixedDuelist),
+                          EXPANDED_GRAVEYARD_CAPACITY, GraveyardExpand_GetCardAt);
+}
+
+void Duel_RemovedFromPlayViewer_Open(u8 fixedDuelist)
+{
+  if (RemovedFromPlay_IsEnabled() != TRUE)
+    return;
+
+  CardListViewerLoadCards(fixedDuelist, RemovedFromPlay_GetCount(fixedDuelist),
+                          REMOVED_FROM_PLAY_CAPACITY, RemovedFromPlay_GetCardAt);
 }

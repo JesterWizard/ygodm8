@@ -30,6 +30,11 @@ _kernel_malloc_ewram_array gDelayedDuelEffects, 0x2
 
 _kernel_malloc_ewram_array gExpandedGraveyard, 0xA0
 
+@ -- Removed from play (two duelists x 40 u16 card IDs = 0xA0 bytes total) -----------
+@ See documentation/removed-from-play.md
+
+_kernel_malloc_ewram_array gRemovedFromPlay, 0xA0
+
 @ -- Hand modifiers & board stat overlays --------------------------------------
 
 @ Active while Cost Down reduces monster levels in the active duelist's hand.

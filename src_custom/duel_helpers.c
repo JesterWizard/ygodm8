@@ -43,6 +43,8 @@
 #include "the_grand_jupiter.h"
 #include "lyrilusc_independent_nightingale.h"
 #include "theban_nightmare.h"
+#include "expanded_graveyard.h"
+#include "removed_from_play.h"
 
 extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
@@ -2140,6 +2142,7 @@ enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx)
   if (zone == NULL || zone->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
 
+  RemovedFromPlay_PushZone(zone);
   ClearZone(zone);
   MaybeUpdateGfx(updateGfx);
 
@@ -2147,6 +2150,35 @@ enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx)
     return DUEL_ACTION_DUEL_OVER;
 
   return DUEL_ACTION_OK;
+}
+
+u16 Duel_BanishGraveyardAtFixed(u8 fixedDuelist, u8 index)
+{
+  u16 cardId;
+
+  if (fixedDuelist > DUEL_OPPONENT)
+    return CARD_NONE;
+
+  cardId = GraveyardExpand_RemoveAtFixed(fixedDuelist, index);
+  RemovedFromPlay_PushFixed(fixedDuelist, cardId);
+  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  return cardId;
+}
+
+u16 Duel_BanishGraveyardAtTurn(u8 turnDuelist, u8 index)
+{
+  return Duel_BanishGraveyardAtFixed(TurnDuelistToFixed(turnDuelist), index);
+}
+
+u16 Duel_BanishGraveyardTopTurn(u8 turnDuelist)
+{
+  u8 fixedDuelist = TurnDuelistToFixed(turnDuelist);
+  u8 count = GraveyardExpand_GetCount(fixedDuelist);
+
+  if (count == 0)
+    return CARD_NONE;
+
+  return Duel_BanishGraveyardAtTurn(turnDuelist, count - 1);
 }
 
 static u8 sSpellEffectResolveDepth APPEND_DATA = 0;

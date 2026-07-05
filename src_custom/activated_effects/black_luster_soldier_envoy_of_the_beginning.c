@@ -90,14 +90,8 @@ static u8 GraveyardHasLightAndDarkMonsters(u8 fixedDuelist)
 
 static void BanishGraveyardCardAt(u8 fixedDuelist, u8 index)
 {
-  if (GraveyardExpand_IsEnabled()) {
-    GraveyardExpand_RemoveAtFixed(fixedDuelist, index);
-    GraveyardExpand_SyncLegacyTop(fixedDuelist);
-    GraveyardExpand_RefreshDisplay();
-    return;
-  }
-
-  gDuel.duelistbattleState[fixedDuelist].graveyard = CARD_NONE;
+  Duel_BanishGraveyardAtFixed(fixedDuelist, index);
+  GraveyardExpand_RefreshDisplay();
 }
 
 static u8 BanishLightAndDarkFromGraveyard(u8 fixedDuelist)

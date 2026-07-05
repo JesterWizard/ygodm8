@@ -48,6 +48,7 @@ typedef struct {
     u8 instant_win_with_start_button; // START in duel -> immediate player win.
     u8 enable_surrender_in_duel_b_menu; // B menu 4th option -> forfeit the duel.
     u8 expand_graveyard; // Store each player's graveyard as a 40-card stack and enable in-duel viewing.
+    u8 enable_removed_from_play_zone; // Track banished cards; L/R in duel opens each duelist's list.
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.
     u8 enable_debug_menu; // R alone on field overworld opens debug menu.
     u8 enable_ante_card_viewer; // SELECT facing a duelist opens their ante reward card list.

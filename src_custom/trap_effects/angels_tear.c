@@ -261,10 +261,7 @@ static s8 FindHighestAtkFairyGyIndex(u8 fixedDuelist)
 
 static void BanishGraveyardCardAt(u8 turnDuelist, u8 gyIndex)
 {
-  u8 fixedDuelist = FixedDuelistForTurnDuelist(turnDuelist);
-
-  GraveyardExpand_RemoveAtTurn(turnDuelist, gyIndex);
-  GraveyardExpand_SyncLegacyTop(fixedDuelist);
+  Duel_BanishGraveyardAtTurn(turnDuelist, gyIndex);
 }
 
 static u8 OwnerUsesPlayerMenu(u8 turnDuelist)

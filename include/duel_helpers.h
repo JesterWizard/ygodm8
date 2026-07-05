@@ -163,6 +163,9 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
 
 enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u8 updateGfx);
 enum DuelActionResult Duel_BanishZone(struct DuelCard *zone, u8 updateGfx);
+u16 Duel_BanishGraveyardAtFixed(u8 fixedDuelist, u8 index);
+u16 Duel_BanishGraveyardAtTurn(u8 turnDuelist, u8 index);
+u16 Duel_BanishGraveyardTopTurn(u8 turnDuelist);
 
 void Duel_BeginSpellEffectResolve(void);
 void Duel_EndSpellEffectResolve(void);

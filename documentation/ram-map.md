@@ -103,6 +103,7 @@ This layout means:
 | Custom flash mirrors | `ram_map_sram.s` | Places the custom trunk/shop/player-temp card quantity mirrors in flash |
 | Symbol consumers | `src_custom/card_hooks.c`, `src_custom/code_800AC64_hooks.c`, `src_custom/card_shop_hooks.c` | Read and write the symbols defined in the map |
 | Expanded graveyard buffers | `gExpandedGraveyard*`, `gAiSimSaved*`, `gAiBatchCheckpoint*` in `asm/ram_map_ewram.s` | Three EWRAM layers for live GY stacks and AI sim bookkeeping; see [expanded-graveyard.md](expanded-graveyard.md) |
+| Removed-from-play buffers | `gRemovedFromPlay` in `asm/ram_map_ewram.s` | Two 40-card banish lists (80 bytes per duelist); see [removed-from-play.md](removed-from-play.md) |
 
 ## TODO
 

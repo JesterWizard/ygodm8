@@ -16,6 +16,7 @@
 #include "world_suppression.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
+#include "removed_from_play.h"
 #include "delayed_effects.h"
 #include "court_of_justice.h"
 #include "valhalla_hall_of_the_fallen.h"
@@ -46,6 +47,7 @@
 #include "embodiment_of_apophis.h"
 #include "ai_sim.h"
 #include "expanded_graveyard.h"
+#include "removed_from_play.h"
 #include "ojama_trio.h"
 #include "cost_down.h"
 #include "custom_field_spell.h"
@@ -344,6 +346,7 @@ void InitBoard__Replacement(void) {
   ClearPendingSliferSummonPenalty();
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
+  RemovedFromPlay_Init();
   ElementalHeroNecroshade_Reset();
   ElementalHeroNeosAlius_Reset();
   gAiSimInBatch = FALSE;
@@ -469,12 +472,20 @@ void PlayerTurnMain__Replacement(void) {
         HandleAButtonAction();
         break;
       case 6:
-        sub_8042F04();
-        WaitForVBlank();
-        sub_8041014();
+        if (gRuntimeConfig.enable_removed_from_play_zone == TRUE) {
+          Duel_RemovedFromPlayViewer_Open(DUEL_PLAYER);
+          UpdateAllDuelGfx();
+        } else {
+          sub_8042F04();
+          WaitForVBlank();
+          sub_8041014();
+        }
         break;
       case 7:
-        if (!IsOpponentHandFieldScrollEnabled()) {
+        if (gRuntimeConfig.enable_removed_from_play_zone == TRUE) {
+          Duel_RemovedFromPlayViewer_Open(DUEL_OPPONENT);
+          UpdateAllDuelGfx();
+        } else if (!IsOpponentHandFieldScrollEnabled()) {
           sub_8044B2C();
           UpdateAllDuelGfx();
         } else {

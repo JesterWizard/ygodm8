@@ -797,7 +797,7 @@ static void PayMiracleFusionMaterials(const struct FusionMaterialSource *selecte
       if (gyIndices[g] > gyIndices[best])
         best = g;
     }
-    GraveyardExpand_RemoveAtFixed(fixedDuelist, gyIndices[best]);
+    Duel_BanishGraveyardAtFixed(fixedDuelist, gyIndices[best]);
     gyIndices[best] = gyIndices[gyCount - 1];
     gyCount--;
   }
