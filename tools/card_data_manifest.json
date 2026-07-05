@@ -20515,6 +20515,35 @@
       "effect_texts": {
         "popup_1": "When Summoned, send 1 Level 1 Fairy-Type monster from your Deck to the Graveyard to gain 1000 ATK."
       }
+    },
+    {
+      "card_const": "ARCHLORD_KRISTYA",
+      "card_name": "Archlord Kristya",
+      "atk": 2800,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 592,
+      "password": [9, 9, 9, 9, 0, 0, 0, 8],
+      "description": {
+        "symbol": "gDescription_ArchlordKristya",
+        "pages": [
+          "If you have exactly 4 Fairy monsters in your GY, you can",
+          "Special Summon this card from your hand. If summoned",
+          "this way add one Fairy type monster from your GY to your",
+          "hand. Neither player can Special Summon monsters."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Fairy monster in your Graveyard; add that target to your hand.",
+        "popup_2": "Neither player can Special Summon monsters.",
+        "popup_3": "If this face-up card would be sent from the field to the GY, place it on top of the Deck instead."
+      }
     }
   ]
 }

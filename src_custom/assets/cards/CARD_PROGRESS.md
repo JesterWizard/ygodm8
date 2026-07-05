@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 306 |
-| Art ready, needs manifest | 167 |
+| In game (manifest + art) | 307 |
+| Art ready, needs manifest | 166 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -328,6 +328,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SHATIEL` | Shatiel | `shatiel.png` |
 | `SERAPHIM_BLASTER` | Seraphim Blaster | `seraphim_blaster.png` |
 | `IOFIEL` | Iofiel | `iofiel.png` |
+| `ARCHLORD_KRISTYA` | Archlord Kristya | `archlord_kristya.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -339,7 +340,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ANGELS_TEAR` — `angels_tear.png`
 - [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
-- [ ] `ARCHLORD_KRISTYA` — `archlord_kristya.png`
 - [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
 - [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
 - [ ] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`

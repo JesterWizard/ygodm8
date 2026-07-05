@@ -17,6 +17,7 @@
 #include "ring_of_destruction.h"
 #include "dust_tornado.h"
 #include "spell_economics.h"
+#include "monster_reborn.h"
 extern void EffectCardOfDemise(void);
 extern void EffectCardOfSanctity(void);
 extern void EffectJamBreedingMachine(void);
@@ -91,6 +92,7 @@ extern void EffectPowerBond(void);
 extern void EffectCyberneticFusionSupport(void);
 extern void EffectDeFusion(void);
 extern void EffectBookOfLife(void);
+extern void EffectMonsterReborn(void);
 extern void EffectDiffusionWaveMotion(void);
 extern void EffectAutonomousActionUnit(void);
 extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
@@ -199,6 +201,12 @@ static void ActivateSpellEffect__Body(void)
   SetupSpellTrapOrigin();
 
   if (Duel_IsCardActivationBlocked(gSpellEffectData.id)) {
+    if (!gHideEffectText)
+      PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  if (gSpellEffectData.id == MONSTER_REBORN && !CanActivateMonsterReborn()) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;
@@ -508,6 +516,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case BOOK_OF_LIFE:
       EffectBookOfLife();
+      return;
+    case MONSTER_REBORN:
+      EffectMonsterReborn();
       return;
     case DIFFUSION_WAVE_MOTION:
       EffectDiffusionWaveMotion();

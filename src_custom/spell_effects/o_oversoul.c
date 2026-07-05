@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "deck_menu.h"
@@ -48,6 +49,9 @@ static s8 FindFirstEligibleGyIndex(u8 fixedDuelist)
 static u8 CanActivateOOversoul(void)
 {
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;

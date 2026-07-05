@@ -6,6 +6,7 @@
 #include "constants/duel_fields.h"
 #include "constants/spell_effects.h"
 #include "duel.h"
+#include "monster_reborn.h"
 
 struct AI_Command {
   u16 action;
@@ -65,6 +66,7 @@ void sub_800ECC0(void);
 void sub_80116F0(void);
 void sub_80124D8(void);
 void sub_80124F8(void);
+void sub_8013B98(void);
 
 static u8 SpellShouldRemainOnFieldAfterActivation(u16 cardId)
 {
@@ -76,6 +78,9 @@ static void AiActivateNormalSpellFromBackrow(u8 lockMonstersAfterActivation, u8 
   u8 row2 = sAI_Command.zone1Position >> 4;
   u8 col2 = sAI_Command.zone1Position & 0xF;
   u16 spellId = gTurnZones[row2][col2]->id;
+
+  if (spellId == MONSTER_REBORN && !CanActivateMonsterReborn())
+    return;
 
   gSpellEffectData.id = spellId;
   gSpellEffectData.row1 = row2;
@@ -157,4 +162,13 @@ void sub_80124D8__Replacement(void)
   // saved in sub_80124F8 — the backrow zone is empty by now (activation sim clears it).
   if (preField != targetField && gDuel.field == targetField)
     AI_SIM_PRIORITY = AI_PRIORITY_TERRAIN_FIELD_ACTIVATION;
+}
+
+LYN_REPLACE_CHECK(sub_8013B98);
+void sub_8013B98__Replacement(void)
+{
+  if (!CanActivateMonsterReborn())
+    AI_SIM_PRIORITY = AI_PRIORITY_DISABLE;
+  else
+    AI_SIM_PRIORITY = 0x7FB3183D;
 }

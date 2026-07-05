@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "summon_tribute.h"
+#include "archlord_kristya.h"
 #include "dynamic_equip.h"
 #include "mystical_space_typhoon.h"
 #include "cannon_soldier.h"
@@ -105,6 +106,7 @@
 #include "dedication_through_light_and_darkness.h"
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_life.h"
+#include "monster_reborn.h"
 #include "e_emergency_call.h"
 #include "r_righteous_justice.h"
 #include "autonomous_action_unit.h"
@@ -211,6 +213,7 @@ u8 TrySpecialSummonGilasaurusFromHand(u8);
 u8 TrySpecialSummonFenrirFromHand(u8);
 u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8);
 u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8);
+u8 TrySpecialSummonArchlordKristyaFromHand(u8);
 u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
@@ -357,6 +360,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           && TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == ARCHLORD_KRISTYA
+          && TrySpecialSummonArchlordKristyaFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -753,6 +761,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (id == MONSTER_REBORN && !CanActivateMonsterReborn()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (id == E_EMERGENCY_CALL && !CanActivateEEmergencyCall()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
@@ -916,14 +932,22 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
-  if (CardRequiresSpecialSummonOnly(gSelectedCard.id)) {
+  placedRow = gDuelCursor.currentY;
+  placedCol = gDuelCursor.currentX;
+
+  if ((placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+      && ArchlordKristya_ShouldBlockFieldPlacement(gSelectedCard.id,
+                                                   GetPendingSummonTributeCount())) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;
   }
 
-  placedRow = gDuelCursor.currentY;
-  placedCol = gDuelCursor.currentX;
+  if (CardRequiresSpecialSummonOnly(gSelectedCard.id)) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
 
   if (gRuntimeConfig.enable_smarter_ai == TRUE) {
     u8 preferredCol;

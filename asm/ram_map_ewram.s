@@ -355,6 +355,8 @@ _kernel_malloc_ewram gElementalHeroCorePad, 1
 _kernel_malloc_ewram_array gTheSupremacySunArmed, 2
 _kernel_malloc_ewram_array gTheSupremacySunStandbyReady, 2
 _kernel_malloc_ewram gTheSupremacySunOwnEffectSummon, 1
+@ TRUE while resolving Archlord Kristya's own Special Summon effect.
+_kernel_malloc_ewram gArchlordKristyaEffectSummon, 1
 @ Elemental HERO Sunrise: once-per-turn flags + post-battle destroy origin (0xFF = none).
 _kernel_malloc_ewram gElementalHeroSunriseSearchUsed, 1
 _kernel_malloc_ewram gElementalHeroSunriseDestroyUsed, 1

@@ -2,8 +2,10 @@
 #include "common-chax.h"
 #include "ai_spell_targets.h"
 #include "card.h"
+#include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "duel.h"
+#include "monster_reborn.h"
 
 static u8 TurnBackrowHasAnyCard(u8 turnBackrowRow)
 {
@@ -45,6 +47,8 @@ u8 AiNormalSpellHasActivationTargets(u16 cardId)
     return NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) > 0
         && NumEmptyZonesAndGodCardsInRow(gTurnZones[INACTIVE_DUELIST_MONSTER_ROW])
             != MAX_ZONES_IN_ROW;
+  case SPELL_EFFECT_MONSTER_REBORN:
+    return CanActivateMonsterReborn();
   default:
     return TRUE;
   }

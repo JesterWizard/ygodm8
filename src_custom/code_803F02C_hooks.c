@@ -32,6 +32,7 @@
 #include "the_grand_jupiter.h"
 #include "the_big_saturn.h"
 #include "the_supremacy_sun.h"
+#include "archlord_kristya.h"
 #include "splendid_venus.h"
 #include "card.h"
 #include "chimeratech_overdragon.h"
@@ -372,6 +373,7 @@ void InitBoard__Replacement(void) {
   PowerBond_ClearState();
   ClearTheBigSaturnPending();
   ClearTheSupremacySunState();
+  ClearArchlordKristyaState();
   ClearElementalHeroTempestProtection();
   ClearElementalHeroWildedgeState();
   ClearChimeratechOverdragonState();

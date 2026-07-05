@@ -1,17 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Added Iofiel (GX manga)
+**Last worked on:** 2026-07-05 — Monster Reborn wired through custom spell hook (Kristya lock + no-target block)
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/activated_effects/iofiel.c`
-- `include/iofiel.h`
-- `src_custom/duel_helpers.c`
-- `src_custom/code_8043EF4_hooks.c`
+- `src_custom/spell_effects/monster_reborn.c`
+- `src_custom/spell_effect_hooks.c`
 
-**Outcome:** Optional on-summon: deck pick Level 1 Fairy to GY for +1000 ATK; make all passes
+**Outcome:** Monster Reborn uses `Duel_SpecialSummonMonsterId` and respects Kristya lock; cannot activate with empty field, no opponent-GY monster, or lock active; `make test-cards-build` passes
+
+**Open / next:** Archlord Kristya playtest; combined GY picker for expanded graveyard
 
 **Open / next:**
-- Other Reggie manga angels (Tethys
-- etc.)
+- Test in duel with 4 fairies in GY

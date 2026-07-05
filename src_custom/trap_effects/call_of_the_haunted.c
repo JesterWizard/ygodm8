@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "call_of_the_haunted.h"
 #include "duel_helpers.h"
@@ -24,6 +25,9 @@ APPEND_TEXT void EffectCallOfTheHaunted(void)
 {
   s8 monsterZone;
   struct DuelSummonOpts opts = Duel_DefaultSpecialSummonOpts(FALSE);
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return;
 
   SaveCallOfTheHauntedAttackResume();
 

@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "ameba.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "spell_effects.h"
@@ -10,7 +11,8 @@ static void BrainControl_ResolveBody(void)
   u16 takenCardId = CARD_NONE;
   u8 newFixedRow = Duel_FixedMonsterRowForDuelist(ACTIVE_DUELIST);
 
-  if (NumEmptyZonesInRow(gTurnZones[2])
+  if (!ArchlordKristya_IsSpecialSummonLocked()
+      && NumEmptyZonesInRow(gTurnZones[2])
       && NumEmptyZonesAndGodCardsInRow(gTurnZones[1]) != MAX_ZONES_IN_ROW) {
     u8 emptyZone = FirstEmptyZoneInRow(gTurnZones[2]);
     u8 highestAtkZone = HighestAtkMonInRowExceptGodCards(gTurnZones[1]);

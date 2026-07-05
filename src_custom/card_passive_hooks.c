@@ -11,6 +11,7 @@
 #include "elemental_hero_core.h"
 #include "ojama_trio.h"
 #include "the_despair_uranus.h"
+#include "archlord_kristya.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -61,6 +62,11 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
     return;
 
   ApplyOjamaTrioDestructionDamage(zone);
+
+  if (ArchlordKristya_TrySendFaceUpFieldToDeckTop(zone, turn)) {
+    ClearZone(zone);
+    return;
+  }
 
   if (zone->id != CARD_NONE) {
     if (Duel_CardIsMonster(zone->id)

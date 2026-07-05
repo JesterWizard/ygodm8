@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "autonomous_action_unit.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
@@ -40,6 +41,9 @@ static struct DuelCard *FindSummonedMonsterZone(u16 monsterId)
 
 u8 CanActivateAutonomousActionUnit(void)
 {
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
   if (!ActiveDuelistHasLpForCost())
     return FALSE;
 

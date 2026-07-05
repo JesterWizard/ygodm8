@@ -1232,6 +1232,10 @@ static const unsigned char sIofielBigArt[] __attribute__((section(".append_asset
 static const unsigned short sIofielBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/iofiel.gbapal");
 static const unsigned char sIofielMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/iofiel.lz");
 
+static const unsigned char sArchlordKristyaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/archlord_kristya.huff");
+static const unsigned short sArchlordKristyaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/archlord_kristya.gbapal");
+static const unsigned char sArchlordKristyaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/archlord_kristya.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1541,6 +1545,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0450] = sShatielBigArt,
   [0x0451] = sSeraphimBlasterBigArt,
   [0x0452] = sIofielBigArt,
+  [0x0453] = sArchlordKristyaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1852,6 +1857,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0450] = sShatielBigPalette,
   [0x0451] = sSeraphimBlasterBigPalette,
   [0x0452] = sIofielBigPalette,
+  [0x0453] = sArchlordKristyaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2163,6 +2169,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0450] = 0,
   [0x0451] = 0,
   [0x0452] = 0,
+  [0x0453] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2474,4 +2481,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0450] = sShatielMiniArt,
   [0x0451] = sSeraphimBlasterMiniArt,
   [0x0452] = sIofielMiniArt,
+  [0x0453] = sArchlordKristyaMiniArt,
 };

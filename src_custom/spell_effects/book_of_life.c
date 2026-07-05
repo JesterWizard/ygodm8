@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "archlord_kristya.h"
 #include "constants/card_ids.h"
 #include "book_of_life.h"
 #include "duel_helpers.h"
@@ -26,6 +27,9 @@ static u8 IsMonsterCard(u16 cardId)
 
 u8 CanActivateBookOfLife(void)
 {
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return FALSE;
+
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
     return FALSE;
 

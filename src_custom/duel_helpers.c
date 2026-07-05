@@ -31,6 +31,7 @@
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
 #include "iofiel.h"
+#include "archlord_kristya.h"
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
 #include "elemental_hero_core.h"
@@ -277,6 +278,9 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_INVALID;
 
   if (SummonModeIsSpecial(opts.mode) && Duel_CardCannotBeSpecialSummoned(monsterId))
+    return DUEL_ACTION_BLOCKED;
+
+  if (SummonModeIsSpecial(opts.mode) && ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
   if (!KaiserColosseum_AllowsMonsterPlacement(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist))))
@@ -1886,12 +1890,15 @@ enum DuelActionResult Duel_AddDeckCardToHand(u8 duelist, u16 cardId, u8 updateGf
 }
 
 enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCardPredicate pred,
-                                                 struct DuelSummonOpts opts)
+                                                struct DuelSummonOpts opts)
 {
   struct DuelCard **handRow = gTurnHands[duelist];
   s8 handZone;
   u16 monsterId;
   enum DuelActionResult result;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
 
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
@@ -1919,6 +1926,9 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
   u16 monsterId;
   enum DuelActionResult result;
 
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
+
   if (handZone < 0 || handZone >= MAX_ZONES_IN_ROW)
     return DUEL_ACTION_INVALID;
 
@@ -1945,6 +1955,9 @@ enum DuelActionResult Duel_SpecialSummonFromGrave(u8 duelist, u16 cardId, struct
   u8 fixedDuelist = TurnDuelistToFixed(duelist);
   u16 revivedId;
 
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
+
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
 
@@ -1966,6 +1979,9 @@ enum DuelActionResult Duel_SpecialSummonFromDeck(u8 duelist, u16 cardId, struct 
   s16 deckIndex;
   u16 monsterId;
   enum DuelActionResult result;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
 
   if (cardId == CARD_NONE)
     return DUEL_ACTION_INVALID;
@@ -1994,6 +2010,9 @@ enum DuelActionResult Duel_SpecialSummonMonsterId(u8 duelist, u16 monsterId,
                                                     struct DuelSummonOpts opts)
 {
   enum DuelActionResult result;
+
+  if (ArchlordKristya_IsSpecialSummonLocked())
+    return DUEL_ACTION_BLOCKED;
 
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 

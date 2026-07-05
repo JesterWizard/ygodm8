@@ -1108,11 +1108,12 @@
 #define SHATIEL                                  0x0450
 #define SERAPHIM_BLASTER                         0x0451
 #define IOFIEL                                   0x0452
+#define ARCHLORD_KRISTYA                         0x0453
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0453
-#define NUM_CUSTOM_CARDS                        0x0132
+#define NUM_TOTAL_CARDS                         0x0454
+#define NUM_CUSTOM_CARDS                        0x0133
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
