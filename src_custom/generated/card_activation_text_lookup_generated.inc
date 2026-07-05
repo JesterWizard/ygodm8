@@ -312,6 +312,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ATHENA] = gActivationDescription_Athena_Popup1,
   [VALHALLA_HALL_OF_THE_FALLEN] = gActivationDescription_ValhallaHallOfTheFallen_Popup1,
   [ANGELS_TEAR] = gActivationDescription_AngelsTear_Popup1,
+  [DIVINE_SANCTUARY] = gActivationDescription_DivineSanctuary_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -650,6 +651,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_ATHENA_POPUP_2] = gActivationDescription_Athena_Popup2,
   [CARD_EFFECT_TEXT_VALHALLA_HALL_OF_THE_FALLEN_POPUP_1] = gActivationDescription_ValhallaHallOfTheFallen_Popup1,
   [CARD_EFFECT_TEXT_ANGELS_TEAR_POPUP_1] = gActivationDescription_AngelsTear_Popup1,
+  [CARD_EFFECT_TEXT_DIVINE_SANCTUARY_POPUP_1] = gActivationDescription_DivineSanctuary_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

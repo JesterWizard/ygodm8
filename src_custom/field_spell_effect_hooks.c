@@ -99,7 +99,8 @@ static u8 GetFixedColForZone(struct DuelCard *zone)
 
 static u8 CustomFieldSpellRemainsOnField(u8 customSpellId)
 {
-  return customSpellId == CUSTOM_FIELD_SPELL_SKYSCRAPER;
+  return customSpellId == CUSTOM_FIELD_SPELL_SKYSCRAPER
+      || customSpellId == CUSTOM_FIELD_SPELL_DIVINE_SANCTUARY;
 }
 
 static u8 ZoneStillHeldActiveCustomFieldSpell(struct DuelCard *zone, u8 row, u8 col)
@@ -191,6 +192,7 @@ static u8 RunFieldSpellActivation(u16 cardId, u8 fieldId, u8 customSpellId)
   if (CustomFieldSpellRemainsOnField(customSpellId)) {
     gActiveFieldSpellZoneRow = GetFixedRowForZone(zone);
     gActiveFieldSpellZoneCol = GetFixedColForZone(zone);
+    Duel_ActivateContinuousZone(zone);
   } else {
     // Match vanilla field spells: the activating card leaves its zone before the
     // terrain change is shown.

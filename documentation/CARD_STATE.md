@@ -1,7 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Added Angel's Tear (GX manga trap)
+**Last worked on:** 2026-07-05 — Added Divine Sanctuary (GX manga field spell)
 
-**Outcome:** Manifest + effect hook; banish 4 GY Fairies then Special Summon 1 Fairy; runtime hand slot 1; `make test-cards-build` passes.
+**Files touched:**
+- `tools/card_data_manifest.json`
+- `src_custom/divine_sanctuary.c`
+- `src_custom/field_spell_effects/divine_sanctuary.c`
+- `src_custom/field_spell_table.inc`
+- `configs/runtime.c`
 
-**Open / next:** Playtest: set Angel's Tear, fill GY with 5+ Fairies, activate trap
+**Outcome:** make test-cards-build passes; -500 ATK non-Fairies, Fairy tribute relief on FIELD_SOGEN
+
+**Open / next:**
+- Optional custom field gfx PNG

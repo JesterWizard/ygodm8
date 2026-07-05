@@ -4,4 +4,5 @@ static const struct CustomFieldGfxAsset sCustomFieldGfxAssets[NUM_CUSTOM_FIELDS]
   {gFieldSEALOFORICHALCOSTiles, gFieldSEALOFORICHALCOSTilemap, gFieldSEALOFORICHALCOSPalette},
   {gFieldSANCTUARYINTHESKYTiles, gFieldSANCTUARYINTHESKYTilemap, gFieldSANCTUARYINTHESKYPalette},
   {gFieldSKYSCRAPERTiles, gFieldSKYSCRAPERTilemap, gFieldSKYSCRAPERPalette},
+  {gFieldDIVINESANCTUARYTiles, gFieldDIVINESANCTUARYTilemap, gFieldDIVINESANCTUARYPalette},
 };

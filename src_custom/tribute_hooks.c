@@ -5,6 +5,7 @@
 #include "soul_exchange.h"
 #include "cost_down.h"
 #include "a_legendary_ocean.h"
+#include "divine_sanctuary.h"
 #include "debug_ruleset.h"
 #include "elemental_hero_necroshade.h"
 #include "tribute.h"
@@ -100,7 +101,7 @@ static int GetBaseRequiredTributes(u16 cardId)
 
   gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
 
-  return LookupRequiredTributes(gCardInfo.level);
+  return ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
 }
 
 int GetNumRequiredTributesWithCostDown(u16 cardId)
@@ -130,7 +131,7 @@ int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 
   gCardInfo.level = GetLegendaryOceanAdjustedLevel(cardId, gCardInfo.level);
 
-  return LookupRequiredTributes(gCardInfo.level);
+  return ApplyDivineSanctuaryTributeOverride(cardId, LookupRequiredTributes(gCardInfo.level));
 }
 
 LYN_REPLACE_CHECK(GetNumRequiredTributes);

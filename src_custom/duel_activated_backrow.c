@@ -28,6 +28,7 @@
 #include "nightmare_wheel.h"
 #include "burning_land.h"
 #include "future_fusion.h"
+#include "divine_sanctuary.h"
 
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
@@ -95,6 +96,8 @@ u8 Duel_ZoneIsNonSelectableActivatedBackrow(const struct DuelCard *zone)
   if (IsActiveDynamicEquipSpellZone(zone))
     return TRUE;
   if (IsActivatedFutureFusionZone(zone))
+    return TRUE;
+  if (IsActivatedDivineSanctuaryZone(zone))
     return TRUE;
 
   return FALSE;

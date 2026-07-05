@@ -5,6 +5,7 @@
 #include "copycat.h"
 #include "cost_down.h"
 #include "a_legendary_ocean.h"
+#include "divine_sanctuary.h"
 #include "constants/spell_effects.h"
 #include "custom_field_spell.h"
 #include "embodiment_of_apophis.h"
@@ -593,6 +594,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyElementalHeroGaiaStatMod(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
+  ApplyDivineSanctuaryFieldStatPenaltyForZone(zone);
   ApplyTheTripperMercuryOpponentAtkDrain(zone);
   ApplyTheGrandJupiterEquipAtkBonus(zone);
   ApplyTheDespairUranusAtkBoost(zone);

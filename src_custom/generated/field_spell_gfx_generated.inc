@@ -8,3 +8,6 @@ const u16 gFieldSANCTUARYINTHESKYPalette[] APPEND_ASSET = INCBIN_U16("src_custom
 
 const u8 gFieldSKYSCRAPERTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/skyscraper/field.huff");
 const u16 gFieldSKYSCRAPERPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/skyscraper/field.gbapal");
+
+const u8 gFieldDIVINESANCTUARYTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/field_spells/divine_sanctuary/field.huff");
+const u16 gFieldDIVINESANCTUARYPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/field_spells/divine_sanctuary/field.gbapal");

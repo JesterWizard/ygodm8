@@ -1252,6 +1252,10 @@ static const unsigned char sAngelsTearBigArt[] __attribute__((section(".append_a
 static const unsigned short sAngelsTearBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/angels_tear.gbapal");
 static const unsigned char sAngelsTearMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/angels_tear.lz");
 
+static const unsigned char sDivineSanctuaryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/divine_sanctuary.huff");
+static const unsigned short sDivineSanctuaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/divine_sanctuary.gbapal");
+static const unsigned char sDivineSanctuaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/divine_sanctuary.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1566,6 +1570,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0455] = sAthenaBigArt,
   [0x0456] = sValhallaHallOfTheFallenBigArt,
   [0x0457] = sAngelsTearBigArt,
+  [0x0458] = sDivineSanctuaryBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1882,6 +1887,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0455] = sAthenaBigPalette,
   [0x0456] = sValhallaHallOfTheFallenBigPalette,
   [0x0457] = sAngelsTearBigPalette,
+  [0x0458] = sDivineSanctuaryBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2198,6 +2204,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0455] = 0,
   [0x0456] = 0,
   [0x0457] = 0,
+  [0x0458] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2514,4 +2521,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0455] = sAthenaMiniArt,
   [0x0456] = sValhallaHallOfTheFallenMiniArt,
   [0x0457] = sAngelsTearMiniArt,
+  [0x0458] = sDivineSanctuaryMiniArt,
 };

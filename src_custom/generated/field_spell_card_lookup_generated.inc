@@ -5,6 +5,8 @@ static u8 LookupCustomFieldSpellIdForCard(u16 cardId)
   switch (cardId) {
     case A_LEGENDARY_OCEAN:
       return CUSTOM_FIELD_SPELL_A_LEGENDARY_OCEAN;
+    case DIVINE_SANCTUARY:
+      return CUSTOM_FIELD_SPELL_DIVINE_SANCTUARY;
     case SEAL_OF_ORICHALCOS:
       return CUSTOM_FIELD_SPELL_SEAL_OF_ORICHALCOS;
     case SKYSCRAPER:

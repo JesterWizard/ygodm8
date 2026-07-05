@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 311 |
-| Art ready, needs manifest | 162 |
+| In game (manifest + art) | 312 |
+| Art ready, needs manifest | 161 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -333,6 +333,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ATHENA` | Athena | `athena.png` |
 | `VALHALLA_HALL_OF_THE_FALLEN` | Valhalla, Hall of the Fallen | `valhalla_hall_of_the_fallen.png` |
 | `ANGELS_TEAR` | Angel's Tear | `angels_tear.png` |
+| `DIVINE_SANCTUARY` | Divine Sanctuary | `divine_sanctuary.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -378,7 +379,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
-- [ ] `DIVINE_SANCTUARY` — `divine_sanctuary.png`
 - [ ] `DON_ZALOOG` — `don_zaloog.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`

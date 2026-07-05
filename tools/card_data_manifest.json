@@ -20655,6 +20655,34 @@
       "effect_texts": {
         "popup_1": "Banish 4 Fairy monsters from your Graveyard to Special Summon 1 Fairy monster from your Graveyard."
       }
+    },
+    {
+      "card_const": "DIVINE_SANCTUARY",
+      "card_name": "Divine Sanctuary",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 8,
+      "trapEffect": 0,
+      "cost": 594,
+      "password": [9, 9, 9, 9, 0, 0, 0, 9],
+      "description": {
+        "symbol": "gDescription_DivineSanctuary",
+        "pages": [
+          "A field spell from the Yu-Gi-Oh! GX manga.",
+          "Non-Fairy monsters lose 500 ATK. You can.",
+          "normal summon Fairy monsters with one less",
+          "tribute than required."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Non-Fairy monsters lose 500 ATK. You can normal summon Fairy monsters with one less tribute."
+      },
+      "customFieldSpell": "CUSTOM_FIELD_SPELL_DIVINE_SANCTUARY"
     }
   ]
 }

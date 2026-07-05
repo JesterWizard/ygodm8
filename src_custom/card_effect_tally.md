@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `288` effects
+- `289` effects
 
 ## Tally
 
@@ -154,6 +154,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Royal Decree` | `src_custom/trap_effects/royal_decree.c` |
 | `trap_effects` | `Bottomless Shifting Sand` | `src_custom/trap_effects/bottomless_shifting_sand.c` |
 | `turn_effects` | `Bottomless Shifting Sand` | `src_custom/trap_effects/bottomless_shifting_sand.c` |
+| `field_spell_effects` | `Divine Sanctuary` | `src_custom/field_spell_effects/divine_sanctuary.c` |
 | `trap_effects` | `Angel's Tear` | `src_custom/trap_effects/angels_tear.c` |
 | `trap_effects` | `Blast Held by a Tribute` | `src_custom/trap_effects/blast_held_by_a_tribute.c` |
 | `trap_effects` | `Drop Off` | `src_custom/trap_effects/drop_off.c` |
