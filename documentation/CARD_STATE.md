@@ -1,16 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-05 — Added Hecatrice (hand discard → search Valhalla)
+**Last worked on:** 2026-07-05 — Instant win cheat moved from L to START in duel
 
 **Files touched:**
-- `tools/card_data_manifest.json`
+- `configs/runtime.h`
 - `configs/runtime.c`
-- `src_custom/activated_effects/hecatrice.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/assets/cards/512x512/hecatrice.png`
-- `src_custom/assets/cards/80x80/hecatrice.png`
+- `src_custom/code_803F02C_hooks.c`
 
-**Outcome:** `make test-cards-build` passes. HECATRICE (0x045A) in trunk; runtime hand slot 1. Hand ignition discards self and adds Valhalla from deck.
+**Outcome:** `make test-cards-build` passes. `instant_win_with_start_button` triggers player win on START; L restores vanilla stat-screen behavior.
 
 **Open / next:**
-- Playtest with Valhalla in deck; pair with Valhalla/Court fairy lines
+- Playtest START instant win in duel; L should open stat screen again

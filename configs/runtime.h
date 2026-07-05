@@ -45,7 +45,7 @@ typedef struct {
     u8 story_opponent_capacity_reward;
     u8 alternate_win_reward_multiplier;
     u8 discount_shop_costs_by_duelist_level; // 5% off buy price per 100 duelist levels.
-    u8 instant_win_with_l_button; // L in duel -> immediate player win.
+    u8 instant_win_with_start_button; // START in duel -> immediate player win.
     u8 enable_surrender_in_duel_b_menu; // B menu 4th option -> forfeit the duel.
     u8 expand_graveyard; // Store each player's graveyard as a 40-card stack and enable in-duel viewing.
     u8 enable_world_map_thought_bubbles; // L on world map toggles thought bubble sprite.

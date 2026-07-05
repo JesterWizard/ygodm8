@@ -290,8 +290,11 @@ static unsigned char ProcessInput__Replacement(void) {
     return 7;
   if (gNewButtons & B_BUTTON)
     return 8;
-  if (gRepeatedOrNewButtons & START_BUTTON)
+  if (gRepeatedOrNewButtons & START_BUTTON) {
+    if (gRuntimeConfig.instant_win_with_start_button == TRUE)
+      return 10;
     return 0;
+  }
   if (gRepeatedOrNewButtons & SELECT_BUTTON)
     return 0;
   return 0;
@@ -466,13 +469,9 @@ void PlayerTurnMain__Replacement(void) {
         HandleAButtonAction();
         break;
       case 6:
-        if (gRuntimeConfig.instant_win_with_l_button == TRUE)
-          DeclareLoser(1);
-        else {
-          sub_8042F04();
-          WaitForVBlank();
-          sub_8041014();
-        }
+        sub_8042F04();
+        WaitForVBlank();
+        sub_8041014();
         break;
       case 7:
         if (!IsOpponentHandFieldScrollEnabled()) {

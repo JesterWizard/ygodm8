@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 314 |
-| Art ready, needs manifest | 160 |
+| Art ready, needs manifest | 238 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **476** |
+| **Total PNGs in `80x80/`** | **554** |
 
 ## In game
 
@@ -342,10 +342,14 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
 - [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
+- [ ] `A_HERO_LIVES` — `a_hero_lives.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
+- [ ] `ALLURE_OF_DARKNESS` — `allure_of_darkness.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
+- [ ] `APPARATION` — `Apparation.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
+- [ ] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
 - [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
 - [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
 - [ ] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
@@ -357,46 +361,99 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BACKUP_SQUAD` — `backup_squad.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
+- [ ] `BREAK_THE_DESTINY` — `break_the_destiny.png`
 - [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
+- [ ] `BURDEN_OF_THE_MIGHTY` — `burden_of_the_mighty.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
+- [ ] `CLOCK_TOWER_PRISON` — `clock_tower_prison.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
 - [ ] `CYBER_BARRIER_DRAGON` — `cyber_barrier_dragon.png`
+- [ ] `CYBER_ELTANIN` — `cyber_eltanin.png`
 - [ ] `CYBER_KIRIN` — `cyber_kirin.png`
 - [ ] `CYBER_LASER_DRAGON` — `cyber_laser_dragon.png`
 - [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`
 - [ ] `CYBER_VALLEY` — `cyber_valley.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
+- [ ] `D_BURST` — `d_burst.png`
+- [ ] `D_FORCE` — `d_force.png`
+- [ ] `D_TACTICS` — `d_tactics.png`
+- [ ] `D_TIME` — `d_time.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
+- [ ] `DARK_ARMED_DRAGON` — `dark_armed_dragon.png`
 - [ ] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
+- [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
+- [ ] `DARK_END_DRAGON` — `dark_end_dragon.png`
+- [ ] `DARK_GREPHER` — `dark_grepher.png`
 - [ ] `DARKLORD_NURSE_REFICULE` — `darklord_nurse_reficule.png`
+- [ ] `DARKNESS_NEOSPHERE` — `darkness_neosphere.png`
 - [ ] `DECOY_DRAGON` — `decoy_dragon.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
+- [ ] `DESTINY_DRAW` — `destiny_draw.png`
+- [ ] `DESTINY_END_DRAGOON` — `destiny_end_dragoon.png`
+- [ ] `DESTINY_HERO_BLADE_MASTER` — `destiny_hero_blade_master.png`
+- [ ] `DESTINY_HERO_CAPTAIN_TENACIOUS` — `destiny_hero_captain_tenacious.png`
+- [ ] `DESTINY_HERO_CELESTIAL` — `destiny_hero_celestial.png`
+- [ ] `DESTINY_HERO_DANGEROUS` — `destiny_hero_dangerous.png`
+- [ ] `DESTINY_HERO_DARK_ANGEL` — `destiny_hero_dark_angel.png`
+- [ ] `DESTINY_HERO_DASHER` — `destiny_hero_dasher.png`
+- [ ] `DESTINY_HERO_DECIDER` — `destiny_hero_decider.png`
+- [ ] `DESTINY_HERO_DEFENDER` — `destiny_hero_defender.png`
+- [ ] `DESTINY_HERO_DENIER` — `destiny_hero_denier.png`
+- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
+- [ ] `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` — `destiny_hero_destroyer_phoenix_enforcer.png`
+- [ ] `DESTINY_HERO_DIAMOND_DUDE` — `destiny_hero_diamond_dude.png`
+- [ ] `DESTINY_HERO_DISK_COMMANDER` — `destiny_hero_disk_commander.png`
+- [ ] `DESTINY_HERO_DOGMA` — `destiny_hero_dogma.png`
+- [ ] `DESTINY_HERO_DOMINANCE` — `destiny_hero_dominance.png`
+- [ ] `DESTINY_HERO_DOOM_LORD` — `destiny_hero_doom_lord.png`
+- [ ] `DESTINY_HERO_DOOM_OVERLORD` — `destiny_hero_doom_overlord.png`
+- [ ] `DESTINY_HERO_DOUBLE_DUDE` — `destiny_hero_double_dude.png`
+- [ ] `DESTINY_HERO_DRAWHAND` — `destiny_hero_drawhand.png`
+- [ ] `DESTINY_HERO_DREAD_SERVANT` — `destiny_hero_dread_servant.png`
+- [ ] `DESTINY_HERO_DREADMASTER` — `destiny_hero_dreadmaster.png`
+- [ ] `DESTINY_HERO_DREADNOUGHT_MASTER` — `destiny_hero_dreadnought_master.png`
+- [ ] `DESTINY_HERO_DREADNOUGHT_SERVANT` — `destiny_hero_dreadnought_servant.png`
+- [ ] `DESTINY_HERO_DREAMER` — `destiny_hero_dreamer.png`
+- [ ] `DESTINY_HERO_DRILLDARK` — `destiny_hero_drilldark.png`
+- [ ] `DESTINY_HERO_DUNKER` — `destiny_hero_dunker.png`
+- [ ] `DESTINY_HERO_DUSKTOPIA` — `destiny_hero_dusktopia.png`
+- [ ] `DESTINY_HERO_DYNATAG` — `destiny_hero_dynatag.png`
+- [ ] `DESTINY_HERO_DYSTOPIA` — `destiny_hero_dystopia.png`
+- [ ] `DESTINY_HERO_FEAR_MONGER` — `destiny_hero_fear_monger.png`
+- [ ] `DESTINY_HERO_MALICIOUS` — `destiny_hero_malicious.png`
+- [ ] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
+- [ ] `DOCTOR_D` — `doctor_d.png`
 - [ ] `DON_ZALOOG` — `don_zaloog.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
+- [ ] `DRAIN_TIME` — `drain_time.png`
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
+- [ ] `FIRES_OF_DOOMSDAY` — `fires_of_doomsday.png`
 - [ ] `FORCED_REQUISITION` — `forced_requisition.png`
+- [ ] `FUSION_DESTINY` — `fusion_destiny.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GIFT_CARD` — `gift_card.png`
 - [ ] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
+- [ ] `GREEN_GADGET` — `green_gadget.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
+- [ ] `GUARDIAN_EATOS` — `guardian_eatos.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`
 - [ ] `HERO_FLASH` — `hero_flash.png`
@@ -415,10 +472,14 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LAST_TURN` — `last_turn.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEKUNGA` — `lekunga.png`
+- [ ] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
+- [ ] `LIGHT_END_DRAGON` — `light_end_dragon.png`
+- [ ] `MA'AT` — `ma'at.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
 - [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
+- [ ] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
 - [ ] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`
 - [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
 - [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
@@ -443,14 +504,17 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NIBIRU_THE_PRIMAL_BEING` — `nibiru_the_primal_being.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
 - [ ] `OJAMA_KING` — `ojama_king.png`
+- [ ] `OVER_DESTINY` — `over_destiny.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
+- [ ] `PARALLEL_WORLD_FUSION` — `parallel_world_fusion.png`
 - [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `RED_EYES_DARKNESS_METAL_DRAGON` — `red_eyes_darkness_metal_dragon.png`
+- [ ] `RED_GADGET` — `red_gadget.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
@@ -469,6 +533,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
 - [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
 - [ ] `STRAY_LAMBS` — `stray_lambs.png`
+- [ ] `STRONGHOLD_THE_MOVING_FORTRESS` — `stronghold_the_moving_fortress.png`
 - [ ] `SUMMONER_MONK` — `summoner_monk.png`
 - [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
 - [ ] `SUPER_POLYMERIZATION` — `super_polymerization.png`
@@ -481,6 +546,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
+- [ ] `THE_TRICKY` — `the_tricky.png`
 - [ ] `THE_WICKED_AVATAR` — `the_wicked_avatar.png`
 - [ ] `THE_WICKED_DREADROOT` — `the_wicked_dreadroot.png`
 - [ ] `THE_WICKED_ERASER` — `the_wicked_eraser.png`
@@ -493,10 +559,23 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
 - [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
+- [ ] `VISION_FUSION` — `vision_fusion.png`
+- [ ] `VISION_HERO_ADORATION` — `vision_hero_adoration.png`
+- [ ] `VISION_HERO_FARIS` — `vision_hero_faris.png`
+- [ ] `VISION_HERO_GRAVITO` — `vision_hero_gravito.png`
+- [ ] `VISION_HERO_INCREASE` — `vision_hero_increase.png`
+- [ ] `VISION_HERO_MINIMUM_RAY` — `vision_hero_minimum_ray.png`
+- [ ] `VISION_HERO_MULTIPLY_GUY` — `vision_hero_multiply_guy.png`
+- [ ] `VISION_HERO_POISONER` — `vision_hero_poisoner.png`
+- [ ] `VISION_HERO_TRINITY` — `vision_hero_trinity.png`
+- [ ] `VISION_HERO_VYON` — `vision_hero_vyon.png`
+- [ ] `VISION_HERO_WITCH_RAIDER` — `vision_hero_witch_raider.png`
+- [ ] `VISION_RELEASE` — `vision_release.png`
 - [ ] `WATAPON` — `watapon.png`
 - [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
 - [ ] `WOUGHTWEILER` — `woughtweiler.png`
+- [ ] `YELLOW_GADGET` — `yellow_gadget.png`
 - [ ] `YUBEL` — `yubel.png`
 - [ ] `YUBEL_TERROR_INCARNATE` — `yubel_terror_incarnate.png`
 - [ ] `YUBEL_THE_ULTIMATE_NIGHTMARE` — `yubel_the_ultimate_nightmare.png`
