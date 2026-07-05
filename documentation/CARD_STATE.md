@@ -1,10 +1,10 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-04 — Fixed turn counter corruption after card detail view
+**Last worked on:** 2026-07-05 — Fixed turn counter frozen at 0 (IWRAM misalignment)
 
 **Files touched:**
-- `src_custom/code_801EF30_hooks.c`
+- `asm/ram_map_iwram.s`
 
-**Outcome:** Description tilemap scratch moved from IWRAM stack to `g201CB60[0]`; `make all` passes
+**Outcome:** `gDuelBoardTurnCount` pad increased to 2 bytes so u16 lands at even address; `make all` passes
 
-**Open / next:** Playtest duel B menu → Details; confirm turn counter unchanged after viewing card
+**Open / next:** Playtest turn counter increments each turn start

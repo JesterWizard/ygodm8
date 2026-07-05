@@ -57,21 +57,12 @@ def validate_palette_blob(palette_data: bytes, png_path: Path) -> None:
     if errors:
         raise SystemExit("\n".join(errors))
 
-    from PIL import Image
+    from build_opening_palette import build_opening_palette_png  # noqa: E402
 
-    image = Image.open(png_path)
-    used = set(image.get_flattened_data())
-    missing = [
-        index
-        for index in sorted(used)
-        if struct.unpack_from("<H", palette_data, index * 2)[0] == 0
-    ]
-    if missing:
-        preview = ", ".join(str(index) for index in missing[:8])
-        suffix = "..." if len(missing) > 8 else ""
+    expected = build_opening_palette_png(png_path)
+    if palette_data != expected:
         raise SystemExit(
-            f"{png_path.name}: palette blob has zeroed entries for used indices "
-            f"({preview}{suffix}); regenerate from the indexed PNG"
+            f"{png_path.name}: palette blob does not match indexed PNG palette"
         )
 
 

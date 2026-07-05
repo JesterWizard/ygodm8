@@ -50,8 +50,8 @@ _kernel_malloc gDoubleSummonExtraSummonUsed, 1
 @ -- Duel HUD & debug menus ----------------------------------------------------
 
 @ Duel board HUD turn counter (1-based, incremented at each turn start).
-@ ponytail: pad so the u16 lands on an even IWRAM address (ARM7 misreads odd halfwords).
-_kernel_malloc gDuelBoardTurnCountPad, 1
+@ ponytail: 2-byte pad — byte flags above leave the bump cursor odd; one pad byte does not flip parity.
+_kernel_malloc gDuelBoardTurnCountPad, 2
 _kernel_malloc gDuelBoardTurnCount, 2
 
 @ Debug Match Setter: selected duelist table index + 1, or 0 for none.
