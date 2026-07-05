@@ -178,6 +178,7 @@ void CopySelectedCardToZone(struct DuelCard *zone);
 void sub_80449D8(void);
 void TryActivateGranadoraOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateRyuKishinClownOnMonsterPlacement(struct DuelCard *zone);
+void TryIofielOnMonsterPlacement(struct DuelCard *zone);
 void TryActivateDarkDustSpiritOnMonsterPlacement(struct DuelCard *zone);
 void TryBreakerTheMagicalWarriorOnMonsterPlacement(struct DuelCard *zone);
 void TryEnforceBerserkGorillaOnMonsterPlacement(struct DuelCard *zone);
@@ -993,6 +994,7 @@ void sub_80449D8__Replacement(void)
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryIofielOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheSuppressionPlutoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }

@@ -306,6 +306,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ZERIEL] = gActivationDescription_Zeriel_Popup1,
   [SHATIEL] = gActivationDescription_Shatiel_Popup1,
   [SERAPHIM_BLASTER] = gActivationDescription_SeraphimBlaster_Popup1,
+  [IOFIEL] = gActivationDescription_Iofiel_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -635,6 +636,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_ZERIEL_POPUP_1] = gActivationDescription_Zeriel_Popup1,
   [CARD_EFFECT_TEXT_SHATIEL_POPUP_1] = gActivationDescription_Shatiel_Popup1,
   [CARD_EFFECT_TEXT_SERAPHIM_BLASTER_POPUP_1] = gActivationDescription_SeraphimBlaster_Popup1,
+  [CARD_EFFECT_TEXT_IOFIEL_POPUP_1] = gActivationDescription_Iofiel_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

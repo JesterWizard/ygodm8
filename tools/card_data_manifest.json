@@ -20488,6 +20488,33 @@
       "effect_texts": {
         "popup_1": "Gains 300 ATK for each other Fairy-Type monster on the field."
       }
+    },
+    {
+      "card_const": "IOFIEL",
+      "card_name": "Iofiel",
+      "atk": 1000,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 591,
+      "password": [9, 9, 9, 9, 0, 0, 0, 7],
+      "description": {
+        "symbol": "gDescription_Iofiel",
+        "pages": [
+          "A Fairy from the Yu-Gi-Oh! GX manga.",
+          "When Summoned, send 1 Level 1 Fairy",
+          "from your Deck to the GY to gain",
+          "1000 ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When Summoned, send 1 Level 1 Fairy-Type monster from your Deck to the Graveyard to gain 1000 ATK."
+      }
     }
   ]
 }

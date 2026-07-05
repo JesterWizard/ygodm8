@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `283` effects
+- `284` effects
 
 ## Tally
 
@@ -326,6 +326,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Zeriel` | `src_custom/permanent_effects/zeriel.c` |
 | `permanent_effects` | `Shatiel` | `src_custom/permanent_effects/shatiel.c` |
 | `permanent_effects` | `Seraphim Blaster` | `src_custom/permanent_effects/seraphim_blaster.c` |
+| `activated_effects` | `Iofiel` | `src_custom/activated_effects/iofiel.c` |
 
 ## Notes
 

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 305 |
-| Art ready, needs manifest | 168 |
+| In game (manifest + art) | 306 |
+| Art ready, needs manifest | 167 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -327,6 +327,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ZERIEL` | Zeriel | `zeriel.png` |
 | `SHATIEL` | Shatiel | `shatiel.png` |
 | `SERAPHIM_BLASTER` | Seraphim Blaster | `seraphim_blaster.png` |
+| `IOFIEL` | Iofiel | `iofiel.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -403,7 +404,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
 - [ ] `INSECT_IMITATION` — `insect_imitation.png`
 - [ ] `INSTANT_FUSION` — `instant_fusion.png`
-- [ ] `IOFIEL` — `iofiel.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JUDGMENT_DRAGON` — `judgment_dragon.png`
 - [ ] `KING_DRAGUN` — `king_dragun.png`
