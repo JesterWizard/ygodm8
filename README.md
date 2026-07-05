@@ -4,201 +4,93 @@
 
 It is intended for inspecting, modifying, and rebuilding the game from a C and assembly decompiled source. That makes it useful for reverse engineering, bug fixes, feature work, and ROM hacking.
 
-## Toolchain Overview
-
-This project uses:
-
-- `agbcc` for the legacy matching C build
-- `arm-none-eabi` tools for assembling and linking
-- `gbagfx` for graphics conversion
-- `preproc` for source and script preprocessing
-
-The local helper tools are built from this repository during `make`. `agbcc` must be installed separately into `tools/agbcc`.
-
-## Requirements
-
-You can build on **Linux**, **WSL**, or **Windows without WSL** (via MSYS2). All three use the same `make` commands once set up.
-
-Every platform needs:
-
-- `git`, `make`, `gcc`, `g++`, Python 3
-- `libpng` and `zlib` development headers
-- an `arm-none-eabi` toolchain (`arm-none-eabi-gcc`, `arm-none-eabi-as`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`)
-- a copy of `baserom.gba` in the repo root (for patching and tests)
-
-Pick one setup path below, then follow [Setup](#setup).
-
-### Linux or WSL
-
-On Ubuntu or WSL:
-
-```bash
-sudo apt update
-sudo apt install build-essential git make libpng-dev zlib1g-dev python3
-sudo apt install binutils-arm-none-eabi   # or another arm-none-eabi toolchain
-```
-
-### Windows (without WSL)
-
-Use **devkitPro**. It gives you MSYS2 (a small Linux-like shell) and the ARM toolchain in one installer. You do not need WSL.
-
-1. Download and run the [devkitPro installer](https://github.com/devkitPro/installer/releases).
-   - In **Choose Components**, leave only **GBA Development** checked.
-   - Keep the default install location (`C:\devkitpro`).
-
-2. Open the devkitPro MSYS2 shell:
-   - Start Menu → **devkitPro MSYS2**, or run `C:\devkitpro\msys2\msys2_shell.bat`.
-
-3. Install the remaining build tools (paste into the MSYS2 window):
-
-```bash
-pacman -Sy msys2-keyring
-pacman -S make gcc git zlib-devel libpng-devel python
-```
-
-4. Go to where you want the project (example: Desktop):
-
-```bash
-cd /c/Users/YourName/Desktop
-```
-
-Replace `YourName` with your Windows username. MSYS2 paths use `/c/` instead of `C:\`.
-
 ## Setup
 
-1. Clone the repository.
+See [SETUP.md](SETUP.md) for toolchain requirements, platform setup (Linux, WSL, or Windows via devkitPro), building, testing, and troubleshooting.
 
-```bash
-git clone <your-repo-url> ygodm8
-cd ygodm8
-```
+## Custom features
 
-2. Clone, build, and install `agbcc`.
+This build extends vanilla Yu-Gi-Oh! Forbidden Memories with manifest-driven content, LynJump hooks, and runtime toggles in `configs/runtime.c`. Most features can be turned on or off at compile time.
 
-This project expects `tools/agbcc/bin/agbcc` to exist for your current environment. Run these commands in the **same shell** you will use for `make` (WSL, Linux, or MSYS2 — not PowerShell).
+### Cards and effects
 
-```bash
-cd ..
-git clone https://github.com/pret/agbcc.git
-cd agbcc
-./build.sh
-./install.sh ../ygodm8
-cd ../ygodm8
-```
+- **Custom cards** — New cards past ID 800 via `tools/card_data_manifest.json`, with 512×512 art pipeline, auto mini-art, and expanded save/trunk memory ([adding-custom-cards.md](documentation/adding-custom-cards.md), [custom-card-memory.md](documentation/custom-card-memory.md)).
+- **280+ card effect hooks** — Spell, trap, activated, permanent, battle, turn, and passive effects for existing cards (`src_custom/card_effect_tally.md`).
+- **Custom field spells** — New terrain graphics and field-spell behavior ([custom-field-spells.md](documentation/custom-field-spells.md)).
+- **Card descriptions** — Generated description text for custom cards ([card-descriptions.md](documentation/card-descriptions.md)).
+- **Activated effect text** — Improved in-duel effect messaging ([activated-effect-text.md](documentation/activated-effect-text.md)).
+- **Big card art palette extension** — Up to 112 colors on the card detail view (experimental; off by default) ([big-card-art-palette-extension.md](documentation/big-card-art-palette-extension.md)).
+- **Duel helpers API** — Reusable draw, destroy, LP change, summon, and stat-overlay helpers for effect authors (`include/duel_helpers.h`).
 
-If you already have an `agbcc` checkout, you can reuse it instead of cloning a fresh copy.
+### Duel gameplay
 
-3. Add `baserom.gba` to the `ygodm8` folder (same directory as the Makefile).
+- **Expanded graveyard** — 40-card graveyard stacks with in-duel B-menu viewer ([expanded-graveyard.md](documentation/expanded-graveyard.md)).
+- **Duel board life points** — Player and opponent LP counters on the field ([duel-board-life-points.md](documentation/duel-board-life-points.md)).
+- **Turn counter on board** — Yellow turn count between the LP displays.
+- **Duel retry after defeat** — Immediate restart prompt after losing ([duel-retry-after-defeat.md](documentation/duel-retry-after-defeat.md)).
+- **Surrender in B menu** — Fourth B-menu option to forfeit ([duel-b-menu-surrender.md](documentation/duel-b-menu-surrender.md)).
+- **Opponent hand field scroll** — Scroll past the opponent back row to peek at their hand.
+- **Low-LP BGM tempo** — Speed up duel music when LP drops below a threshold ([duel-low-lp-bgm-tempo.md](documentation/duel-low-lp-bgm-tempo.md)).
+- **Duel shop card drops** — Post-win popup listing cards added to the shop ([duel-shop-card-drops.md](documentation/duel-shop-card-drops.md)).
+- **Smarter AI** — Vary among top-rated AI lines instead of one fixed play ([smarter-ai.md](documentation/smarter-ai.md)).
+- **Fast AI** — Cap speculative sim work per decision to keep turns responsive.
+- **AI both sides** — Fully automated duels from the debug menu ([ai-both-sides-duel-mode.md](documentation/ai-both-sides-duel-mode.md)).
+- **Timed duels** — Puzzle layouts with EWRAM completion tracking ([timed-duels.md](documentation/timed-duels.md)).
+- **Ban list disabled** — Freedoms for testing and custom rulesets.
+- **Configurable duel start field** — Force a terrain or use each duelist’s default.
+- **Element system toggle** — Optional disable of the vanilla element wheel.
 
-## Building
+### Progression and economy
 
-Build the ROM with:
+- **Multiple player decks** — Switch between saved deck loadouts ([multiple-decks.md](documentation/multiple-decks.md)).
+- **Custom deck definitions** — Author decks under `src_custom/custom_decks/`.
+- **Deck capacity rewards** — Configurable trunk-size rewards for story and repeat wins.
+- **Alternate win reward multiplier** — Boost non-story duel payouts.
+- **Duelist level shop discounts** — Buy-price reduction scaled by duelist level ([duelist-level-shop-discounts.md](documentation/duelist-level-shop-discounts.md)).
+- **Dynamic card shop costs** — Shop prices from card cost × 40.
+- **Dynamic trunk and shop sorting** — Manifest-driven sort order.
+- **Hide unowned trunk cards** — Optional trunk list that only shows owned cards.
+- **Ante and sell with one copy** — Loosen vanilla copy restrictions for QoL.
+- **Add deck cards to trunk** — Deck builder cards sync into the trunk.
+- **Persistent card cost randomizer** — Seeded shop price shuffle at new game ([card-cost-randomizer.md](documentation/card-cost-randomizer.md)).
+- **Start with full trunk** — Optional new-game grants (one or three copies of every card).
+- **Duelist reward manifest** — Data-driven normal and low ante drop tables ([duelist-reward-manifest.md](documentation/duelist-reward-manifest.md)).
+- **Password terminal feedback** — Result popups and pay-only-on-success for card passwords ([password-terminal-feedback.md](documentation/password-terminal-feedback.md)).
 
-```bash
-make
-```
+### Overworld and UI
 
-This compiles the local helper tools first, then builds `ygodm8.gba` and `ygodm8.ups`.
+- **Custom opening screens** — Replace boot copyright splashes ([opening-screens.md](documentation/opening-screens.md)).
+- **Custom title screen** — Replace title background art ([title-screen.md](documentation/title-screen.md)).
+- **Title screen intro video** — Optional idle-triggered FMV on the title screen ([intro-videos.md](documentation/intro-videos.md)).
+- **Skip opening sequence** — Jump straight to gameplay for faster iteration.
+- **Custom dialogue portraits** — PNG portraits wired into event scripts ([custom-portraits.md](documentation/custom-portraits.md)).
+- **Thought bubbles** — Event-flag-driven overworld bubble art ([thought-bubbles.md](documentation/thought-bubbles.md)).
+- **Shiny zones** — Interactable overworld card pickups from a manifest ([shiny-zones.md](documentation/shiny-zones.md)).
+- **Custom event scripts** — Overworld script replacements under `events/`.
+- **Event CG framework** — Full-screen event illustrations ([event-cg.md](documentation/event-cg.md)).
+- **Status menu layout** — Custom millennium-item icons and label/value layout ([status-menu-layout.md](documentation/status-menu-layout.md)).
+- **Faster walking speed** — Configurable overworld move rate.
+- **Ante card viewer** — **SELECT** facing a duelist to preview their ante pools ([ante-card-viewer.md](documentation/ante-card-viewer.md)).
+- **Duelist deck viewer** — **START** facing a duelist for a read-only deck list ([duelist-deck-viewer.md](documentation/duelist-deck-viewer.md)).
 
-The UPS patch is generated from `baserom.gba` to `ygodm8.gba`.
+### Audio and visuals
 
-To skip UPS patch generation for a build:
+- **Custom background music** — DPCM music manifest and in-ROM track slots ([custom-music.md](documentation/custom-music.md)).
+- **Custom duelist voices** — Per-duelist voice clip overrides ([custom-voices.md](documentation/custom-voices.md)).
+- **m4a HQ mixer** — Higher-quality music playback path ([m4a-hq-mixer.md](documentation/m4a-hq-mixer.md)).
 
-```bash
-make BUILD_UPS=0
-```
+### Developer tools
 
-To remove build output and rebuild from scratch:
+- **Debug menu** — Overworld **R** sidebar with music, portrait, sprite, reaction, voice, graphic, match-setter, map teleport, scene, ruleset, and deck-preset tools ([debug-menu.md](documentation/debug-menu.md)).
+- **Save anywhere** — House save prompt from any overworld tile via the debug menu ([save-anywhere.md](documentation/save-anywhere.md)).
+- **Reaction viewer** — Preview overworld reaction animations ([reaction-viewer.md](documentation/reaction-viewer.md)).
+- **Runtime test hand and skip-to-duel** — Opening hand, mono-deck, and direct-to-duel shortcuts in `configs/runtime.c`.
+- **Test-driven development harness** — Host unit tests, golden output, and ROM validators (`make test`, `make test-host`) ([tdd-framework.md](documentation/tdd-framework.md)).
 
-```bash
-make clean
-make
-```
+### Infrastructure
 
-To run the project test suite (host tests, validators, full ROM build, memory report):
+- **LynJump replacements** — Patch vanilla functions post-link without editing `src/` ([lynjump-replacements.md](documentation/lynjump-replacements.md)).
+- **RAM map allocation** — Documented IWRAM/EWRAM/Flash layout for custom globals and save growth ([ram-map.md](documentation/ram-map.md)).
+- **Toggle custom layers** — `CUSTOM_CODE=0`, `CUSTOM_EVENTS=0`, and `CUSTOM_CARD_MANIFEST=0` Makefile switches for vanilla comparisons.
 
-```bash
-make test
-```
-
-For a faster loop without linking the ROM:
-
-```bash
-make test-host
-```
-
-See [documentation/tdd-framework.md](documentation/tdd-framework.md) for what the framework is, why it exists, and the manual smoke checklist.
-
-To verify the built ROM against the expected hash:
-
-```bash
-make compare
-```
-
-Expected SHA-1:
-
-```text
-dad3aa7dd470c9b475236fed2ea867b04ab1b089  ygodm8.gba
-```
-
-## Troubleshooting
-
-### `tools/agbcc/bin/agbcc: not found`
-
-This usually means `agbcc` is missing, stale, or was built in a different environment. Rebuild and reinstall it from the same environment you are using for this repo:
-
-```bash
-cd ../agbcc
-./build.sh
-./install.sh ../ygodm8
-cd ../ygodm8
-make clean
-make
-```
-
-### `SHRT_MAX` undeclared
-
-If you hit an error like:
-
-```text
-'SHRT_MAX' undeclared
-```
-
-add this include near the top of the source file using `SHRT_MAX`:
-
-```c
-#include <limits.h>
-```
-
-`agbcc` can be stricter than modern compilers about indirect includes.
-
-### `arm-none-eabi-gcc: command not found`
-
-Install an ARM embedded GCC toolchain and make sure the `arm-none-eabi` binaries are available in your shell `PATH`.
-
-On Windows, open the **devkitPro MSYS2** shell (not PowerShell or CMD). devkitARM should already be on `PATH` there.
-
-### Windows: `libpng-devel` not found
-
-If `pacman -S libpng-devel` fails, install the other packages first, then ask for help or follow the libpng build steps in [pret/pokeemerald INSTALL.md](https://github.com/pret/pokeemerald/blob/master/INSTALL.md) under **Windows (msys2)**.
-
-### Switched between WSL and Windows (or Linux)
-
-Build tools are not interchangeable across environments. From the new shell:
-
-```bash
-cd ../agbcc
-git clean -fX
-./build.sh
-./install.sh ../ygodm8
-cd ../ygodm8
-make clean
-make
-```
-
-## Notes
-
-- Always build from one environment: Linux, WSL, or MSYS2. Do not mix artifacts between them.
-- PowerShell and CMD cannot run this build directly; use WSL or devkitPro MSYS2 on Windows.
-- Manual `agbcc` installation is expected for older decompilation-style repositories like this one.
-- See [CUSTOM_CONTENT.md](CUSTOM_CONTENT.md) for the custom folders and files in this repo.
+See [CUSTOM_CONTENT.md](CUSTOM_CONTENT.md) for the custom folder index and [ARCHITECTURE.md](ARCHITECTURE.md) for how the pieces fit together.
