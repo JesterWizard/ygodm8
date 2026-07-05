@@ -313,6 +313,7 @@ static const u8 sAthenaName[] __attribute__((section(".append_assets"))) = "Athe
 static const u8 sValhallaHallOfTheFallenName[] __attribute__((section(".append_assets"))) = "Valhalla, Hall of the Fallen";
 static const u8 sAngelsTearName[] __attribute__((section(".append_assets"))) = "Angel's Tear";
 static const u8 sDivineSanctuaryName[] __attribute__((section(".append_assets"))) = "Divine Sanctuary";
+static const u8 sCourtOfJusticeName[] __attribute__((section(".append_assets"))) = "Court of Justice";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -945,6 +946,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAngelsTearName;
   if (cardId == 0x0458)
     return (u8 *)sDivineSanctuaryName;
+  if (cardId == 0x0459)
+    return (u8 *)sCourtOfJusticeName;
 
   return gCardNames[cardId];
 }

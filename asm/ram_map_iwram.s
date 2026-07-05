@@ -38,6 +38,10 @@ _kernel_malloc gApplyingNeosAliusCardInfoPad, 1
 _kernel_malloc gUltimateOfferingExtraSummonPending, 1
 _kernel_malloc gUltimateOfferingExtraSummonUsed, 1
 
+@ Court of Justice hand ignition after a face-up Level 1 Fairy is on field.
+_kernel_malloc gCourtOfJusticeIgnitionPending, 1
+_kernel_malloc gCourtOfJusticeHandPlacementActive, 1
+
 @ Executor Makyura: owner may activate eligible traps from hand this turn.
 _kernel_malloc gExecutorMakyuraActivePlayer, 1
 _kernel_malloc gExecutorMakyuraActiveOpponent, 1

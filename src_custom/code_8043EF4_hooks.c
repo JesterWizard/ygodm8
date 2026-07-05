@@ -111,6 +111,7 @@
 #include "e_emergency_call.h"
 #include "r_righteous_justice.h"
 #include "valhalla_hall_of_the_fallen.h"
+#include "court_of_justice.h"
 #include "autonomous_action_unit.h"
 #include "book_of_moon.h"
 #include "h_heated_heart.h"
@@ -155,6 +156,12 @@ u8 IsActivatedTheDarkDoorZone(const struct DuelCard *zone);
 u8 IsActivatedDarkRoomZone(const struct DuelCard *zone);
 u8 TryConsumeUltimateOfferingExtraSummonPayment(void);
 void TryEnableUltimateOfferingExtraSummonAfterPlacement(void);
+void TryEnableCourtOfJusticeIgnitionAfterPlacement(void);
+u8 TryConsumeCourtOfJusticeIgnitionPlacement(void);
+void CourtOfJustice_FinishHandPlacement(struct DuelCard *zone);
+u8 CourtOfJustice_HandSlotMayIgnition(u8 handSlot);
+u8 CanUseCourtOfJusticeHandIgnition(void);
+void TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement(void);
 u8 IsActivatedUltimateOfferingZone(const struct DuelCard *zone);
 void MarkUltimateOfferingJustSet(struct DuelCard *zone);
 void MarkFairyBoxJustSet(struct DuelCard *zone);
@@ -258,6 +265,10 @@ static void TryPlaceSelectedCardOnField_Local(void)
       if (gDuelCursor.currentY != 2) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
+      } else if (CourtOfJustice_HandSlotMayIgnition(gDuelCursor.destX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        sub_80449D8();
+        TryActivatingPermanentEffects();
       } else {
         PlayMusic(SFX_PLACE_CARD);
         BlockTurnSummoning(ACTIVE_DUELIST);
@@ -336,9 +347,13 @@ void sub_80441D0__Replacement(void)
       break;
     case PLAYER_HAND: {
       u16 handCardId = gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id;
+      u8 courtIgnitionSlot = CourtOfJustice_HandSlotMayIgnition(gDuelCursor.currentX);
 
-      if (handCardId == CARD_NONE
-          || gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked) {
+      if (handCardId == CARD_NONE) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+      } else if (gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked
+          && !courtIgnitionSlot) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
       } else if (handCardId == BLUE_EYES_ALTERNATIVE_WHITE_DRAGON
@@ -383,7 +398,7 @@ void sub_80441D0__Replacement(void)
         unsigned char numTributes = GetMonsterNumRequiredTributesForHandSlot(
             gDuelCursor.currentX,
             gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id);
-        if (numTributes) {
+        if (numTributes && !courtIgnitionSlot) {
           if (IsMaskOfRestrictActiveOnField()) {
             PlayMusic(SFX_FORBIDDEN);
             WaitForVBlank();
@@ -789,6 +804,15 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (id == COURT_OF_JUSTICE && zone->isLocked
+      && !CanActivateCourtOfJusticeIgnition(zone)) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (id == R_RIGHTEOUS_JUSTICE
       && !CanActivateRRighteousJustice(gDuelCursor.currentY, gDuelCursor.currentX)) {
     PlayMusic(SFX_FORBIDDEN);
@@ -938,6 +962,12 @@ void sub_80449D8__Replacement(void)
     return;
   }
 
+  if (!TryConsumeCourtOfJusticeIgnitionPlacement()) {
+    PlayMusic(SFX_FORBIDDEN);
+    WaitForVBlank();
+    return;
+  }
+
   if (ShouldBlockGodCardSummon(gSelectedCard.id)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
@@ -1017,11 +1047,15 @@ void sub_80449D8__Replacement(void)
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
   FinishTheTyrantNeptuneTributeSummon(
       gFixedZones[placedRow][placedCol], placedRow, placedCol);
+  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+    CourtOfJustice_FinishHandPlacement(gFixedZones[placedRow][placedCol]);
   MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
   MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
   MarkMirrorWallJustSet(gFixedZones[placedRow][placedCol]);
   MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
   TryEnableUltimateOfferingExtraSummonAfterPlacement();
+  TryEnableCourtOfJusticeIgnitionAfterPlacement();
+  TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement();
   UpdateDuelGfxExceptField();
   /* ponytail: on-summon text after field draw so Blazeman/Stratos is visible. */
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {

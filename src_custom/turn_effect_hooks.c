@@ -38,6 +38,7 @@ unsigned char ShouldActivateWhiteMagicianPikeruTurnEffect(void);
 void ActivateWhiteMagicianPikeruTurnEffect(void);
 void ActivateDeckDestructionVirusEffect(void);
 void ResetUltimateOfferingTurnState(void);
+void CourtOfJustice_ResetTurnState(void);
 void ResetExecutorMakyuraTurnState(void);
 void AgeUltimateOfferingSetFlags(void);
 unsigned char ShouldActivateUltimateOfferingTurnEffect(void);
@@ -297,6 +298,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   ResetTheGrandJupiterEndPhaseFlags();
   ClearCostDown();
   ResetUltimateOfferingTurnState();
+  CourtOfJustice_ResetTurnState();
   ResetExecutorMakyuraTurnState();
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();

@@ -20683,6 +20683,36 @@
         "popup_1": "Non-Fairy monsters lose 500 ATK. You can normal summon Fairy monsters with one less tribute."
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_DIVINE_SANCTUARY"
+    },
+    {
+      "card_const": "COURT_OF_JUSTICE",
+      "card_name": "Court of Justice",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 4, 4, 4, 9, 0, 8, 3],
+      "description": {
+        "symbol": "gDescription_CourtOfJustice",
+        "pages": [
+          "Once per turn: You can Special Summon 1",
+          "Fairy-Type monster from your hand. You must",
+          "control a face-up Level 1 Fairy-Type monster",
+          "to activate and to resolve this effect."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can Special Summon 1 Fairy-Type monster from your hand."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn",
+      "selectableOnce": true
     }
   ]
 }

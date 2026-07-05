@@ -6,6 +6,8 @@
 #include "spell_effects.h"
 #include "valhalla_hall_of_the_fallen.h"
 
+void UnlockCardsInRow(unsigned char turnRow);
+
 static u8 IsFairyMonster(u16 cardId)
 {
   if (cardId == CARD_NONE || GetTypeGroup(cardId) != TYPE_GROUP_MONSTER)
@@ -93,4 +95,21 @@ APPEND_TEXT void EffectValhallaHallOfTheFallen(void)
   }
 
   Duel_ShowEffectText(VALHALLA_HALL_OF_THE_FALLEN);
+}
+
+void TryUnlockHandForValhallaHallOfTheFallenIgnition(void)
+{
+  u8 i;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (CanActivateValhallaHallOfTheFallenIgnition(gTurnZones[ACTIVE_DUELIST_BACKROW][i])) {
+      UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+      return;
+    }
+  }
+}
+
+void TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement(void)
+{
+  TryUnlockHandForValhallaHallOfTheFallenIgnition();
 }

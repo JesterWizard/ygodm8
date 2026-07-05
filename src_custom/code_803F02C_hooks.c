@@ -17,6 +17,8 @@
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
 #include "delayed_effects.h"
+#include "court_of_justice.h"
+#include "valhalla_hall_of_the_fallen.h"
 #include "duel_attack_restrictions.h"
 #include "thousand_energy.h"
 #include "triangle_power.h"
@@ -194,6 +196,9 @@ void ResolvePendingSliferSummonPenalty(void);
 void ResetUltimateOfferingTurnState(void);
 void ResetExecutorMakyuraTurnState(void);
 void TryUnlockHandForUltimateOfferingExtraSummon(void);
+void TryUnlockHandForCourtOfJusticeIgnition(void);
+void CourtOfJustice_ResetTurnState(void);
+void TryUnlockHandForValhallaHallOfTheFallenIgnition(void);
 void UnlockCardsInRow(unsigned char turnRow);
 void UnblockTurnSummoning(unsigned char currPlayer);
 void BeginDuelBoardTurn(void);
@@ -321,6 +326,7 @@ void InitBoard__Replacement(void) {
   ResetTrianglePowerState();
   ResetLimiterRemovalState();
   ResetUltimateOfferingTurnState();
+  CourtOfJustice_ResetTurnState();
   ResetExecutorMakyuraTurnState();
   BlastHeldByATribute_ClearAllMarks();
   VengefulBogSpirit_ClearAllMarks();
@@ -521,6 +527,10 @@ void LockMonsterCardsInRow__Replacement(unsigned char turnRow) {
     TryUnlockHandForUltimateOfferingExtraSummon();
   if (turnRow == ACTIVE_DUELIST_HAND)
     TryUnlockHandForDoubleSummon();
+  if (turnRow == ACTIVE_DUELIST_HAND)
+    TryUnlockHandForCourtOfJusticeIgnition();
+  if (turnRow == ACTIVE_DUELIST_HAND)
+    TryUnlockHandForValhallaHallOfTheFallenIgnition();
 }
 
 void EnableDoubleSummonForTurn(void) {

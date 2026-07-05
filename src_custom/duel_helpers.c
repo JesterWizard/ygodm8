@@ -48,6 +48,8 @@ extern unsigned char IsSpellCancellerSpellLockActive(void);
 extern unsigned char IsSorcererOfDarkMagicTrapLockActive(void);
 
 extern void UpdateDuelGfxExceptField(void);
+extern void UnlockCardsInRow(unsigned char turnRow);
+extern void CourtOfJustice_RefreshHandUnlocks(void);
 extern void ActivateTrapEffect(u16 lp);
 extern void TryApplyPreciousCardsFromBeyondOnTributeSummon(u16 summonCardId, u8 duelist);
 extern struct DuelCard *gSetFinalStatZone;
@@ -309,6 +311,8 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryElementalHeroStratosOnMonsterPlacement(summonZone);
   TryTheSuppressionPlutoOnMonsterPlacement(summonZone);
   Duel_NotifyFixedMonsterRowChanged(Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)));
+  if (turnDuelist == ACTIVE_DUELIST)
+    CourtOfJustice_RefreshHandUnlocks();
   return DUEL_ACTION_OK;
 }
 
@@ -1898,6 +1902,7 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
   s8 handZone;
   u16 monsterId;
   enum DuelActionResult result;
+  u8 relockHand = FALSE;
 
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
@@ -1905,15 +1910,27 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
 
+  if (duelist == ACTIVE_DUELIST
+      && gTurnDuelistBattleState[duelist]->summoningBlocked) {
+    UnlockCardsInRow(ACTIVE_DUELIST_HAND);
+    relockHand = TRUE;
+  }
+
   handZone = SelectHandZone(duelist, cardId, pred);
-  if (handZone < 0)
+  if (handZone < 0) {
+    if (relockHand)
+      LockMonsterCardsInRow(ACTIVE_DUELIST_HAND);
     return DUEL_ACTION_NO_TARGET;
+  }
 
   monsterId = handRow[handZone]->id;
   if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
   ClearZone(handRow[handZone]);
   result = PlaceMonsterFromId(duelist, monsterId, opts);
+
+  if (relockHand)
+    LockMonsterCardsInRow(ACTIVE_DUELIST_HAND);
 
   if (result == DUEL_ACTION_OK && IsDuelOver() == TRUE)
     return DUEL_ACTION_DUEL_OVER;

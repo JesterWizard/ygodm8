@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `289` effects
+- `290` effects
 
 ## Tally
 
@@ -273,6 +273,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `The Grand Jupiter` | `src_custom/activated_effects/the_grand_jupiter.c` |
 | `permanent_effects` | `The Despair Uranus` | `src_custom/permanent_effects/the_despair_uranus.c` |
 | `turn_effects` | `The Supremacy Sun` | `src_custom/turn_effects/the_supremacy_sun.c` |
+| `spell_effects` | `Court Of Justice` | `src_custom/spell_effects/court_of_justice.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

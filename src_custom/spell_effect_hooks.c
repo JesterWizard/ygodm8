@@ -103,6 +103,7 @@ extern void EffectOOversoul(void);
 extern void EffectFutureFusion(void);
 extern void EffectFusionSage(void);
 extern void EffectValhallaHallOfTheFallen(void);
+extern void EffectCourtOfJustice(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -556,6 +557,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case VALHALLA_HALL_OF_THE_FALLEN:
       EffectValhallaHallOfTheFallen();
+      return;
+    case COURT_OF_JUSTICE:
+      EffectCourtOfJustice();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

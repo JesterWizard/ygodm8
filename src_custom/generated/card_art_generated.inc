@@ -1256,6 +1256,10 @@ static const unsigned char sDivineSanctuaryBigArt[] __attribute__((section(".app
 static const unsigned short sDivineSanctuaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/divine_sanctuary.gbapal");
 static const unsigned char sDivineSanctuaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/divine_sanctuary.lz");
 
+static const unsigned char sCourtOfJusticeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/court_of_justice.huff");
+static const unsigned short sCourtOfJusticeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/court_of_justice.gbapal");
+static const unsigned char sCourtOfJusticeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/court_of_justice.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1571,6 +1575,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0456] = sValhallaHallOfTheFallenBigArt,
   [0x0457] = sAngelsTearBigArt,
   [0x0458] = sDivineSanctuaryBigArt,
+  [0x0459] = sCourtOfJusticeBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1888,6 +1893,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0456] = sValhallaHallOfTheFallenBigPalette,
   [0x0457] = sAngelsTearBigPalette,
   [0x0458] = sDivineSanctuaryBigPalette,
+  [0x0459] = sCourtOfJusticeBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2205,6 +2211,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0456] = 0,
   [0x0457] = 0,
   [0x0458] = 0,
+  [0x0459] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2522,4 +2529,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0456] = sValhallaHallOfTheFallenMiniArt,
   [0x0457] = sAngelsTearMiniArt,
   [0x0458] = sDivineSanctuaryMiniArt,
+  [0x0459] = sCourtOfJusticeMiniArt,
 };

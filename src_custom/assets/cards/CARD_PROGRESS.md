@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 312 |
-| Art ready, needs manifest | 161 |
+| In game (manifest + art) | 313 |
+| Art ready, needs manifest | 160 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -334,6 +334,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `VALHALLA_HALL_OF_THE_FALLEN` | Valhalla, Hall of the Fallen | `valhalla_hall_of_the_fallen.png` |
 | `ANGELS_TEAR` | Angel's Tear | `angels_tear.png` |
 | `DIVINE_SANCTUARY` | Divine Sanctuary | `divine_sanctuary.png` |
+| `COURT_OF_JUSTICE` | Court of Justice | `court_of_justice.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -363,7 +364,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `COURT_OF_JUSTICE` — `court_of_justice.png`
 - [ ] `CYBER_BARRIER_DRAGON` — `cyber_barrier_dragon.png`
 - [ ] `CYBER_KIRIN` — `cyber_kirin.png`
 - [ ] `CYBER_LASER_DRAGON` — `cyber_laser_dragon.png`
