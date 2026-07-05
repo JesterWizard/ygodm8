@@ -1105,11 +1105,12 @@
 #define MIGHTY_ANGEL_VIRCH                       0x044D
 #define TINY_ANGEL                               0x044E
 #define ZERIEL                                   0x044F
+#define SHATIEL                                  0x0450
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0450
-#define NUM_CUSTOM_CARDS                        0x012F
+#define NUM_TOTAL_CARDS                         0x0451
+#define NUM_CUSTOM_CARDS                        0x0130
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

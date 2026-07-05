@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `281` effects
+- `282` effects
 
 ## Tally
 
@@ -324,6 +324,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Elemental HERO Stratos` | `src_custom/activated_effects/elemental_hero_stratos.c` |
 | `permanent_effects` | `Chimeratech Overdragon` | `src_custom/permanent_effects/chimeratech_overdragon.c` |
 | `permanent_effects` | `Zeriel` | `src_custom/permanent_effects/zeriel.c` |
+| `permanent_effects` | `Shatiel` | `src_custom/permanent_effects/shatiel.c` |
 
 ## Notes
 

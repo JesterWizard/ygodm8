@@ -304,6 +304,7 @@ static const u8 sTheSupremacySunName[] __attribute__((section(".append_assets"))
 static const u8 sMightyAngelVirchName[] __attribute__((section(".append_assets"))) = "Mighty Angel Virch";
 static const u8 sTinyAngelName[] __attribute__((section(".append_assets"))) = "Tiny Angel";
 static const u8 sZerielName[] __attribute__((section(".append_assets"))) = "Zeriel";
+static const u8 sShatielName[] __attribute__((section(".append_assets"))) = "Shatiel";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -918,6 +919,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTinyAngelName;
   if (cardId == 0x044F)
     return (u8 *)sZerielName;
+  if (cardId == 0x0450)
+    return (u8 *)sShatielName;
 
   return gCardNames[cardId];
 }

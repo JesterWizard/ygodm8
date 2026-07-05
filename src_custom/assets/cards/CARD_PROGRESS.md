@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 301 |
-| Art ready, needs manifest | 172 |
+| In game (manifest + art) | 304 |
+| Art ready, needs manifest | 169 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **475** |
 
@@ -323,6 +323,9 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_SUPPRESSION_PLUTO` | The Suppression Pluto | `the_suppression_pluto.png` |
 | `THE_SUPREMACY_SUN` | The Supremacy Sun | `the_supremacy_sun.png` |
 | `MIGHTY_ANGEL_VIRCH` | Mighty Angel Virch | `mighty_angel_virch.png` |
+| `TINY_ANGEL` | Tiny Angel | `tiny_angel.png` |
+| `ZERIEL` | Zeriel | `zeriel.png` |
+| `SHATIEL` | Shatiel | `shatiel.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -453,7 +456,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
 - [ ] `SERAPHIM_BLASTER` — `seraphim_blaster.png`
 - [ ] `SHARE_THE_PAIN` — `share_the_pain.png`
-- [ ] `SHATIEL` — `shatiel.png`
 - [ ] `SIXTH_SENSE` — `sixth_sense.png`
 - [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
 - [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
@@ -483,7 +485,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_WICKED_ERASER` — `the_wicked_eraser.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
-- [ ] `TINY_ANGEL` — `tiny_angel.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORNADO_BIRD` — `tornado_bird.png`
 - [ ] `TORNADO_WALL` — `tornado_wall.png`
@@ -499,7 +500,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `YUBEL` — `yubel.png`
 - [ ] `YUBEL_TERROR_INCARNATE` — `yubel_terror_incarnate.png`
 - [ ] `YUBEL_THE_ULTIMATE_NIGHTMARE` — `yubel_the_ultimate_nightmare.png`
-- [ ] `ZERIEL` — `zeriel.png`
 
 ## Todo — in manifest, missing art
 
