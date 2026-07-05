@@ -20387,6 +20387,28 @@
           "It appeared in Judai's duel against Reggie."
         ]
       }
+    },
+    {
+      "card_const": "TINY_ANGEL",
+      "card_name": "Tiny Angel",
+      "atk": 200,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 587,
+      "password": [9, 9, 9, 9, 0, 0, 0, 3],
+      "description": {
+        "symbol": "gDescription_TinyAngel",
+        "pages": [
+          "A tiny angel from the Yu-Gi-Oh! GX manga.",
+          "It appeared in Reggie MacKenzie's Fairy deck."
+        ]
+      }
     }
   ]
 }

@@ -1212,6 +1212,10 @@ static const unsigned char sMightyAngelVirchBigArt[] __attribute__((section(".ap
 static const unsigned short sMightyAngelVirchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mighty_angel_virch.gbapal");
 static const unsigned char sMightyAngelVirchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mighty_angel_virch.lz");
 
+static const unsigned char sTinyAngelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tiny_angel.huff");
+static const unsigned short sTinyAngelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tiny_angel.gbapal");
+static const unsigned char sTinyAngelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tiny_angel.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1516,6 +1520,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x044B] = sTheSuppressionPlutoBigArt,
   [0x044C] = sTheSupremacySunBigArt,
   [0x044D] = sMightyAngelVirchBigArt,
+  [0x044E] = sTinyAngelBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1822,6 +1827,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x044B] = sTheSuppressionPlutoBigPalette,
   [0x044C] = sTheSupremacySunBigPalette,
   [0x044D] = sMightyAngelVirchBigPalette,
+  [0x044E] = sTinyAngelBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2128,6 +2134,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x044B] = 0,
   [0x044C] = 0,
   [0x044D] = 0,
+  [0x044E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2434,4 +2441,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x044B] = sTheSuppressionPlutoMiniArt,
   [0x044C] = sTheSupremacySunMiniArt,
   [0x044D] = sMightyAngelVirchMiniArt,
+  [0x044E] = sTinyAngelMiniArt,
 };

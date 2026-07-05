@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 301
+#define NUM_CUSTOM_NAME_SORT_CARDS 302
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -306,6 +306,7 @@ static const u8 sTheBlazingMarsSortName[] APPEND_RODATA = "The Blazing Mars";
 static const u8 sTheSuppressionPlutoSortName[] APPEND_RODATA = "The Suppression Pluto";
 static const u8 sTheSupremacySunSortName[] APPEND_RODATA = "The Supremacy Sun";
 static const u8 sMightyAngelVirchSortName[] APPEND_RODATA = "Mighty Angel Virch";
+static const u8 sTinyAngelSortName[] APPEND_RODATA = "Tiny Angel";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -591,6 +592,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x038F, // Thousand Knives
   0x03B5, // Thunder Crash
   0x036B, // Time Seal
+  0x044E, // Tiny Angel
   0x0358, // Toll
   0x03B6, // Torpedo Fish
   0x038D, // Triangle Power
@@ -895,24 +897,25 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   281, // Thousand Knives
   282, // Thunder Crash
   283, // Time Seal
-  284, // Toll
-  285, // Torpedo Fish
-  286, // Triangle Power
-  287, // Twin Swords of Flashing Light - Tryce
-  288, // Tyrant Dragon
-  289, // Ultimate Offering
-  290, // United We Stand
-  291, // Upstart Goblin
-  292, // Vampire Baby
-  293, // Vengeful Bog Spirit
-  294, // Wall of Revealing Light
-  295, // Warrior of Zera
-  296, // Wave Motion Cannon
-  297, // Weather Report
-  298, // White Magician Pikeru
-  299, // World Suppression
-  300, // Yata-Garasu
-  301, // Zaborg the Thunder Monarch
+  284, // Tiny Angel
+  285, // Toll
+  286, // Torpedo Fish
+  287, // Triangle Power
+  288, // Twin Swords of Flashing Light - Tryce
+  289, // Tyrant Dragon
+  290, // Ultimate Offering
+  291, // United We Stand
+  292, // Upstart Goblin
+  293, // Vampire Baby
+  294, // Vengeful Bog Spirit
+  295, // Wall of Revealing Light
+  296, // Warrior of Zera
+  297, // Wave Motion Cannon
+  298, // Weather Report
+  299, // White Magician Pikeru
+  300, // World Suppression
+  301, // Yata-Garasu
+  302, // Zaborg the Thunder Monarch
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1524,6 +1527,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheSupremacySunSortName;
   if (cardId == 0x044D)
     return (u8 *)sMightyAngelVirchSortName;
+  if (cardId == 0x044E)
+    return (u8 *)sTinyAngelSortName;
 
   return gCardNames[cardId];
 }
