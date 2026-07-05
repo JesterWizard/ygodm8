@@ -70,6 +70,6 @@ APPEND_TEXT void EffectThousandEnergy(void)
     gThousandEnergyDestroyMask |= (1 << i);
   }
 
-  RefreshFieldMonsterStatOverlays();
   Duel_ShowEffectText(THOUSAND_ENERGY);
+  RefreshFieldMonsterStatOverlays();
 }

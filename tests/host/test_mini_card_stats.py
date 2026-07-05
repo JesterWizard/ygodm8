@@ -56,7 +56,7 @@ class MiniCardStatOverlayTests(unittest.TestCase):
         mini_card_hooks = MINI_CARD_HOOKS.read_text()
 
         self.assertIn("ZoneShowsCombatStats", card_hooks)
-        self.assertIn("GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER", card_hooks)
+        self.assertIn("gCardData_NEW[zone->id].type < TYPE_SPELL", card_hooks)
         self.assertIn("EmbodimentOfApophisZoneIsMonsterForm(zone)", card_hooks)
 
         apply_body = extract_function_body(card_hooks, "ApplyFieldZoneStatsToCardInfo")
@@ -78,14 +78,15 @@ class MiniCardStatOverlayTests(unittest.TestCase):
 
         self.assertNotIn("ShouldShowMiniCardCombatStats", mini_card_hooks)
 
-    def test_hourglass_refreshes_field_stat_overlays(self):
+    def test_hourglass_defers_gfx_until_after_effect_text(self):
         source = HOURGLASS_EFFECT.read_text()
-        self.assertIn("Duel_IncrementPermStageOnDuelistMonsters(ACTIVE_DUELIST)", source)
-        self.assertIn("Duel_ChangeLp(ACTIVE_DUELIST, -1000, TRUE)", source)
-        self.assertIn("Duel_RefreshMonsterStatOverlays();", source)
         text_pos = source.index("Duel_ShowEffectTextTyped(HOURGLASS_OF_LIFE, 2);")
+
+        self.assertIn("Duel_IncrementPermStageOnDuelistMonsters(ACTIVE_DUELIST)", source)
+        self.assertIn("Duel_ChangeLp(ACTIVE_DUELIST, -1000, FALSE)", source)
         self.assertIn("Duel_IncrementPermStageOnDuelistMonsters(ACTIVE_DUELIST)", source[:text_pos])
-        self.assertIn("Duel_RefreshMonsterStatOverlays();", source[:text_pos])
+        self.assertNotIn("Duel_RefreshMonsterStatOverlays();", source[:text_pos])
+        self.assertNotIn("UpdateDuelGfxExceptField();", source[:text_pos])
 
     def test_refresh_field_monster_stat_overlays_updates_atk_and_def_tiles(self):
         source = MINI_CARD_HOOKS.read_text()

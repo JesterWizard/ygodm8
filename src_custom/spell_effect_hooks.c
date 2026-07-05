@@ -556,4 +556,5 @@ void ActivateSpellEffect__Replacement(void)
   Duel_BeginSpellEffectResolve();
   ActivateSpellEffect__Body();
   Duel_EndSpellEffectResolve();
+  Duel_RefreshMonsterStatOverlays();
 }

@@ -41,9 +41,8 @@ APPEND_TEXT void EffectGracefulDice(void)
 
   diceRoll = RandRangeU8(1, 6);
   MultiplyLowAtkMonstersByRoll(WhoseTurn(), diceRoll);
-  RefreshFieldMonsterStatOverlays();
-
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
 
   Duel_ShowEffectText(GRACEFUL_DICE);
+  RefreshFieldMonsterStatOverlays();
 }

@@ -15,7 +15,7 @@ unsigned char CanActivateInjectionFairyLily(void) {
 void ActivateInjectionFairyLilyEffect(void) {
   u8 i;
 
-  if (Duel_ChangeLp(WhoseTurn(), -3000, TRUE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ChangeLp(WhoseTurn(), -3000, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   for (i = 0; i < 4; i++)

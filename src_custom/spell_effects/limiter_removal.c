@@ -64,6 +64,6 @@ APPEND_TEXT void EffectLimiterRemoval(void)
     gLimiterRemovalDestroyMask |= (1 << i);
   }
 
-  RefreshFieldMonsterStatOverlays();
   Duel_ShowEffectText(LIMITER_REMOVAL);
+  RefreshFieldMonsterStatOverlays();
 }

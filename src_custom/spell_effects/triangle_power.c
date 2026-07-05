@@ -73,6 +73,6 @@ APPEND_TEXT void EffectTrianglePower(void)
     }
   }
 
-  RefreshFieldMonsterStatOverlays();
   Duel_ShowEffectText(TRIANGLE_POWER);
+  RefreshFieldMonsterStatOverlays();
 }

@@ -81,7 +81,10 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
 
 LYN_REPLACE_CHECK(DecrementPermStage);
 void DecrementPermStage__Replacement(struct DuelCard *zone) {
-  if (ShouldBlockEffectOnZone(zone))
+  if (ShouldBlockHarmfulEffectOnZone(zone))
+    return;
+
+  if (Duel_IsSpellEffectResolving() && Duel_ZoneIsImmuneToSpellEffects(zone))
     return;
 
   if (zone->permStage > -128)
@@ -90,7 +93,10 @@ void DecrementPermStage__Replacement(struct DuelCard *zone) {
 
 LYN_REPLACE_CHECK(DecrementTempStage);
 void DecrementTempStage__Replacement(struct DuelCard *zone) {
-  if (ShouldBlockEffectOnZone(zone))
+  if (ShouldBlockHarmfulEffectOnZone(zone))
+    return;
+
+  if (Duel_IsSpellEffectResolving() && Duel_ZoneIsImmuneToSpellEffects(zone))
     return;
 
   if (zone->tempStage > -128)
@@ -99,9 +105,6 @@ void DecrementTempStage__Replacement(struct DuelCard *zone) {
 
 LYN_REPLACE_CHECK(IncrementPermStage);
 void IncrementPermStage__Replacement(struct DuelCard *zone) {
-  if (ShouldBlockEffectOnZone(zone))
-    return;
-
   if (zone->permStage < 127)
     zone->permStage++;
 }

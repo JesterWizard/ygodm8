@@ -176,8 +176,11 @@ void ApplyTheTripperMercuryOpponentAtkDrain(struct DuelCard *zone)
     return;
 
   computedAtk = gCardInfo.atk;
-  SetCardInfo(zone->id);
-  originalAtk = gCardInfo.atk;
+  /* ponytail: SetCardInfo would reset gCardInfo.atk/def back to printed base. */
+  if (zone->id < NUM_TOTAL_CARDS)
+    originalAtk = gCardData_NEW[zone->id].atk;
+  else
+    originalAtk = 0;
   gCardInfo.atk = (computedAtk > originalAtk) ? computedAtk - originalAtk : 0;
 }
 

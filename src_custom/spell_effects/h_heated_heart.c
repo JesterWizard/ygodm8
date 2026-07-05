@@ -162,8 +162,8 @@ static void HHeatedHeart_ResolveBody(void)
 
   Duel_ActivateContinuousZone(spellZone);
   NotifyDynamicEquipFieldChanged();
-  RefreshFieldMonsterStatOverlays();
   Duel_ShowEffectText(H_HEATED_HEART);
+  RefreshFieldMonsterStatOverlays();
 }
 
 APPEND_TEXT void EffectHHeatedHeart(void)

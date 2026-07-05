@@ -481,7 +481,8 @@ u8 ZoneShowsCombatStats(const struct DuelCard *zone)
   if (zone == NULL || zone->id == CARD_NONE)
     return FALSE;
 
-  if (GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER)
+  /* ponytail: GetTypeGroup calls SetCardInfo and clobbers gCardInfo.atk/def. */
+  if (zone->id < NUM_TOTAL_CARDS && gCardData_NEW[zone->id].type < TYPE_SPELL)
     return TRUE;
 
   if (EmbodimentOfApophisZoneIsMonsterForm(zone))

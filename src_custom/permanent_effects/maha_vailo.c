@@ -7,4 +7,5 @@ void ApplyMahaVailoEquipBonus(struct DuelCard* zone) {
 
   IncrementPermStage(zone);
   Duel_ShowEffectText(MAHA_VAILO);
+  Duel_RefreshMonsterStatOverlays();
 }

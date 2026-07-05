@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "ai_sim.h"
 #include "card.h"
 #include "constants/card_ids.h"
 #include "duel.h"
@@ -62,7 +63,10 @@ void RefreshFieldMonsterStatOverlays(void)
   struct DuelCard *zone;
   u8 *tilePtr;
 
-  if (gHideEffectText)
+  /* ponytail: skip VRAM stat writes during AI batch sim only; gHideEffectText
+   * must not block refresh — Hourglass/Spellbinding stage changes need ATK/DEF
+   * tiles updated while effect text is queued. */
+  if (gAiSimInBatch)
     return;
 
   for (row = 0; row < 5; row++) {
