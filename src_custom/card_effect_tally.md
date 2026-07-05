@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `280` effects
+- `281` effects
 
 ## Tally
 
@@ -323,6 +323,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Elemental HERO Captain Gold` | `src_custom/permanent_effects/elemental_hero_captain_gold.c` |
 | `activated_effects` | `Elemental HERO Stratos` | `src_custom/activated_effects/elemental_hero_stratos.c` |
 | `permanent_effects` | `Chimeratech Overdragon` | `src_custom/permanent_effects/chimeratech_overdragon.c` |
+| `permanent_effects` | `Zeriel` | `src_custom/permanent_effects/zeriel.c` |
 
 ## Notes
 

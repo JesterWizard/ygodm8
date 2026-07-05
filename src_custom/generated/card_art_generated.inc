@@ -1216,6 +1216,10 @@ static const unsigned char sTinyAngelBigArt[] __attribute__((section(".append_as
 static const unsigned short sTinyAngelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tiny_angel.gbapal");
 static const unsigned char sTinyAngelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tiny_angel.lz");
 
+static const unsigned char sZerielBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/zeriel.huff");
+static const unsigned short sZerielBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/zeriel.gbapal");
+static const unsigned char sZerielMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/zeriel.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1521,6 +1525,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x044C] = sTheSupremacySunBigArt,
   [0x044D] = sMightyAngelVirchBigArt,
   [0x044E] = sTinyAngelBigArt,
+  [0x044F] = sZerielBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1828,6 +1833,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x044C] = sTheSupremacySunBigPalette,
   [0x044D] = sMightyAngelVirchBigPalette,
   [0x044E] = sTinyAngelBigPalette,
+  [0x044F] = sZerielBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2135,6 +2141,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x044C] = 0,
   [0x044D] = 0,
   [0x044E] = 0,
+  [0x044F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2442,4 +2449,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x044C] = sTheSupremacySunMiniArt,
   [0x044D] = sMightyAngelVirchMiniArt,
   [0x044E] = sTinyAngelMiniArt,
+  [0x044F] = sZerielMiniArt,
 };

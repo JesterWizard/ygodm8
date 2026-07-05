@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 302
+#define NUM_CUSTOM_NAME_SORT_CARDS 303
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -307,6 +307,7 @@ static const u8 sTheSuppressionPlutoSortName[] APPEND_RODATA = "The Suppression 
 static const u8 sTheSupremacySunSortName[] APPEND_RODATA = "The Supremacy Sun";
 static const u8 sMightyAngelVirchSortName[] APPEND_RODATA = "Mighty Angel Virch";
 static const u8 sTinyAngelSortName[] APPEND_RODATA = "Tiny Angel";
+static const u8 sZerielSortName[] APPEND_RODATA = "Zeriel";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -611,6 +612,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03DC, // World Suppression
   0x035B, // Yata-Garasu
   0x03D4, // Zaborg the Thunder Monarch
+  0x044F, // Zeriel
 };
 
 static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
@@ -916,6 +918,7 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   300, // World Suppression
   301, // Yata-Garasu
   302, // Zaborg the Thunder Monarch
+  303, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1529,6 +1532,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sMightyAngelVirchSortName;
   if (cardId == 0x044E)
     return (u8 *)sTinyAngelSortName;
+  if (cardId == 0x044F)
+    return (u8 *)sZerielSortName;
 
   return gCardNames[cardId];
 }

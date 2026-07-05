@@ -24,6 +24,7 @@
 #include "the_tripper_mercury.h"
 #include "the_grand_jupiter.h"
 #include "the_despair_uranus.h"
+#include "zeriel.h"
 #include "duel.h"
 #include "dynamic_equip.h"
 #include "world_suppression.h"
@@ -544,6 +545,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   if (Duel_TryApplyDynamicZoneStats(zone)) {
     ApplyGreatTornadoStatHalving(zone);
     ApplyElementalHeroSunriseAtkBoost(zone);
+    ApplyZerielFairyAtkBoost(zone);
     ApplyElementalHeroGaiaStatMod(zone);
     ApplyTheTripperMercuryOpponentAtkDrain(zone);
     ApplyTheGrandJupiterEquipAtkBonus(zone);
@@ -583,6 +585,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
   ApplyElementalHeroSunriseAtkBoost(zone);
+  ApplyZerielFairyAtkBoost(zone);
   ApplyElementalHeroGaiaStatMod(zone);
   ApplyHarpieLady1WindAtkBoost(zone);
   ApplyLegendaryOceanFieldStatBoostForZone(zone);
@@ -694,6 +697,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
     ApplyElementalHeroSunriseAtkBoost(gSetFinalStatZone);
+    ApplyZerielFairyAtkBoost(gSetFinalStatZone);
     ApplyElementalHeroGaiaStatMod(gSetFinalStatZone);
     ApplyLegendaryOceanFieldStatBoostForZone(gSetFinalStatZone);
     ApplyTheTripperMercuryOpponentAtkDrain(gSetFinalStatZone);

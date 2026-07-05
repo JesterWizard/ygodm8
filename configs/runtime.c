@@ -62,14 +62,14 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
-    .card_in_hand_1 = TINY_ANGEL,
+    .card_in_hand_1 = ZERIEL,
     .card_in_hand_2 = HOURGLASS_OF_LIFE,
     .card_in_hand_3 = MUKA_MUKA,
     .card_in_hand_4 = THE_SPLENDID_VENUS,
     .card_in_hand_5 = JAR_OF_GREED,
     .opponent_deck_card_id = SPELLBINDING_CIRCLE,
     .player_deck_card_id = CARD_NONE,
-    .skip_to_duel = FALSE,
+    .skip_to_duel = TRUE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,
 };

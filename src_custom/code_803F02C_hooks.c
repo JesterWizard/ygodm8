@@ -74,6 +74,7 @@
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
+#include "zeriel.h"
 #include "elemental_hero_gaia.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
@@ -605,6 +606,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
   ElementalHeroSunrise_OnZoneCleared(zone);
+  Zeriel_OnZoneCleared(zone);
   ElementalHeroGaia_OnZoneCleared(zone);
   ElementalHeroAbsoluteZero_OnZoneCleared(zone);
   ElementalHeroBlazeman_OnZoneCleared(zone);
