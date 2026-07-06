@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 327 |
-| Art ready, needs manifest | 266 |
+| In game (manifest + art) | 328 |
+| Art ready, needs manifest | 265 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -349,6 +349,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_BARRIER_DRAGON` | Cyber Barrier Dragon | `cyber_barrier_dragon.png` |
 | `CYBER_LASER_DRAGON` | Cyber Laser Dragon | `cyber_laser_dragon.png` |
 | `DARK_END_DRAGON` | Dark End Dragon | `dark_end_dragon.png` |
+| `LIGHT_END_DRAGON` | Light End Dragon | `light_end_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -501,7 +502,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
 - [ ] `LEKUNGA` — `lekunga.png`
 - [ ] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
-- [ ] `LIGHT_END_DRAGON` — `light_end_dragon.png`
 - [ ] `LORD_OF_THE_RED` — `lord_of_the_red.png`
 - [ ] `MA'AT` — `ma'at.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`

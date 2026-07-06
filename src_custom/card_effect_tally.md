@@ -4,13 +4,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `300` effects
+- `301` effects
 
 ## Tally
 
 | Category | Card | Hook file |
 |--------|------|-----------|
 | `activated_effects` | `Athena` | `src_custom/activated_effects/athena.c` |
+| `battle_effects` | `Light End Dragon` | `src_custom/battle_effects/light_end_dragon.c` |
 | `permanent_effects` | `Ameba` | `src_custom/permanent_effects/ameba.c` |
 | `activated_effects` | `The Big Saturn` | `src_custom/activated_effects/the_big_saturn.c` |
 | `permanent_effects` | `The Splendid Venus` | `src_custom/permanent_effects/splendid_venus.c` |

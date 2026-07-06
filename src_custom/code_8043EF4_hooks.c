@@ -44,6 +44,7 @@
 #include "harpies_pet_baby_dragon.h"
 #include "blowback_dragon.h"
 #include "dark_end_dragon.h"
+#include "light_end_dragon.h"
 #include "cyber_laser_dragon.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
@@ -1417,6 +1418,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_DARK_END_DRAGON_TARGET:
       TrySelectDarkEndDragonTarget();
       break;
+    case DUEL_CURSOR_LIGHT_END_DRAGON_TARGET:
+      TrySelectLightEndDragonTarget();
+      break;
     case DUEL_CURSOR_CYBER_LASER_DRAGON_TARGET:
       TrySelectCyberLaserDragonTarget();
       break;
@@ -1553,6 +1557,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_DARK_END_DRAGON_TARGET:
       CancelDarkEndDragonTargeting();
+      break;
+    case DUEL_CURSOR_LIGHT_END_DRAGON_TARGET:
+      CancelLightEndDragonTargeting();
       break;
     case DUEL_CURSOR_CYBER_LASER_DRAGON_TARGET:
       CancelCyberLaserDragonTargeting();

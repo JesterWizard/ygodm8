@@ -63,6 +63,9 @@ _kernel_malloc_ewram gCreatureSwapOppCol, 1
 @ Riryoku ATK deltas keyed by gDuel.board cell index (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gRiryokuAtkDelta, 0x28
 
+@ Light End Dragon ATK/DEF reduction for target (20 cells x 2 bytes; ATK and DEF both reduced by same amount).
+_kernel_malloc_ewram_array gLightEndDragonDefDelta, 0x28
+
 @ Power Bond ATK bonus keyed by gDuel.board cell index (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gPowerBondAtkBonus, 0x28
 @ Power Bond End Phase burn pending for the turn player (2 bytes).

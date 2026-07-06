@@ -21093,6 +21093,35 @@
         "popup_1": "Target 1 monster your opponent controls; lose 500 ATK and DEF, and send that target to the Graveyard."
       },
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "LIGHT_END_DRAGON",
+      "card_name": "Light End Dragon",
+      "atk": 2600,
+      "def": 2100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 156,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [2, 5, 1, 3, 2, 2, 8, 8],
+      "description": {
+        "symbol": "gDescription_LightEndDragon",
+        "pages": [
+          "At attack declaration: you can have this card",
+          "lose 500 ATK and DEF permanently, and the",
+          "battling monster loses 1500 ATK and DEF",
+          "until End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Lose 500 ATK and DEF, and the target monster loses 1500 ATK and DEF until End Phase."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

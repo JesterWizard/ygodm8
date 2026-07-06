@@ -328,6 +328,7 @@ static const u8 sTradeInName[] __attribute__((section(".append_assets"))) = "Tra
 static const u8 sCyberBarrierDragonName[] __attribute__((section(".append_assets"))) = "Cyber Barrier Dragon";
 static const u8 sCyberLaserDragonName[] __attribute__((section(".append_assets"))) = "Cyber Laser Dragon";
 static const u8 sDarkEndDragonName[] __attribute__((section(".append_assets"))) = "Dark End Dragon";
+static const u8 sLightEndDragonName[] __attribute__((section(".append_assets"))) = "Light End Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -990,6 +991,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCyberLaserDragonName;
   if (cardId == 0x0467)
     return (u8 *)sDarkEndDragonName;
+  if (cardId == 0x0468)
+    return (u8 *)sLightEndDragonName;
 
   return gCardNames[cardId];
 }

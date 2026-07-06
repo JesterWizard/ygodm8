@@ -23,6 +23,7 @@
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
 #include "the_supremacy_sun.h"
+#include "light_end_dragon.h"
 #include "yubel.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
@@ -338,6 +339,7 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   ResetTempStagesForAllCards();
   ClearAllRiryokuAtkDeltas();
+  ClearLightEndDragonDefDeltas();
   TheSupremacySun_AgeStandbyFlags();
   TheSupremacySun_TryResolveStandbyRevive();
   if (IsDuelOver() == 1)

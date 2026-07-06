@@ -16,6 +16,7 @@
 #include "big_bang_shot.h"
 #include "h_heated_heart.h"
 #include "mirror_wall.h"
+#include "light_end_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_gaia.h"
@@ -586,6 +587,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
+  ApplyLightEndDragonDefDeltaToCardInfo(zone);
   ApplyPowerBondAtkBonusToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
@@ -701,6 +703,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && gSetFinalStatZone->id == ptr->card
       && CardUsesMonsterCombatStats(ptr->card)) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
+    ApplyLightEndDragonDefDeltaToCardInfo(gSetFinalStatZone);
     ApplyPowerBondAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);

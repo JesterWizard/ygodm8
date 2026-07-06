@@ -306,3 +306,4 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
       gDeferGraveyardDrawBattleResolve = TRUE;
   }
 }
+/* Light End Dragon converted to activated effect in activated_effects/light_end_dragon.c */
