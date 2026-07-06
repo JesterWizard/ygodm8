@@ -97,6 +97,8 @@ unsigned char CanActivateDARK_END_DRAGON(void);
 void ActivateDARK_END_DRAGONEffect(void);
 unsigned char CanActivateLIGHT_END_DRAGON(void);
 void ActivateLIGHT_END_DRAGONEffect(void);
+unsigned char CanActivateDARK_ARMED_DRAGON(void);
+void ActivateDARK_ARMED_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -199,6 +201,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_LIGHT_END_DRAGON:
         canActivate = CanActivateLIGHT_END_DRAGON();
+        break;
+      case MONSTER_EFFECT_DARK_ARMED_DRAGON:
+        canActivate = CanActivateDARK_ARMED_DRAGON();
         break;
       case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
         canActivate = CanActivateElementalHeroRampartBlaster();
@@ -613,6 +618,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_ARMED_DRAGON) {
+    ActivateDARK_ARMED_DRAGONEffect();
+    return;
+  }
+
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
   Duel_EndMonsterEffectResolve();
@@ -721,6 +731,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == THE_GRAND_JUPITER
           || zone->id == THE_BLAZING_MARS
           || zone->id == ATHENA
+          || zone->id == DARK_ARMED_DRAGON
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;

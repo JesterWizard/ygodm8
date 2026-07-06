@@ -1320,6 +1320,10 @@ static const unsigned char sLightEndDragonBigArt[] __attribute__((section(".appe
 static const unsigned short sLightEndDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/light_end_dragon.gbapal");
 static const unsigned char sLightEndDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/light_end_dragon.lz");
 
+static const unsigned char sDarkArmedDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_armed_dragon.huff");
+static const unsigned short sDarkArmedDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_armed_dragon.gbapal");
+static const unsigned char sDarkArmedDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_armed_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1651,6 +1655,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0466] = sCyberLaserDragonBigArt,
   [0x0467] = sDarkEndDragonBigArt,
   [0x0468] = sLightEndDragonBigArt,
+  [0x0469] = sDarkArmedDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1984,6 +1989,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0466] = sCyberLaserDragonBigPalette,
   [0x0467] = sDarkEndDragonBigPalette,
   [0x0468] = sLightEndDragonBigPalette,
+  [0x0469] = sDarkArmedDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2317,6 +2323,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0466] = 0,
   [0x0467] = 0,
   [0x0468] = 0,
+  [0x0469] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2650,4 +2657,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0466] = sCyberLaserDragonMiniArt,
   [0x0467] = sDarkEndDragonMiniArt,
   [0x0468] = sLightEndDragonMiniArt,
+  [0x0469] = sDarkArmedDragonMiniArt,
 };

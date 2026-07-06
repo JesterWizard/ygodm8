@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 328 |
-| Art ready, needs manifest | 265 |
+| In game (manifest + art) | 329 |
+| Art ready, needs manifest | 264 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -350,6 +350,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_LASER_DRAGON` | Cyber Laser Dragon | `cyber_laser_dragon.png` |
 | `DARK_END_DRAGON` | Dark End Dragon | `dark_end_dragon.png` |
 | `LIGHT_END_DRAGON` | Light End Dragon | `light_end_dragon.png` |
+| `DARK_ARMED_DRAGON` | Dark Armed Dragon | `dark_armed_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -403,7 +404,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `D_TACTICS` — `d_tactics.png`
 - [ ] `D_TIME` — `d_time.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DARK_ARMED_DRAGON` — `dark_armed_dragon.png`
 - [ ] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
 - [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
 - [ ] `DARK_GREPHER` — `dark_grepher.png`

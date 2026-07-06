@@ -220,6 +220,7 @@ u8 TrySpecialSummonBlueEyesAlternativeWhiteDragonFromHand(u8);
 u8 TrySpecialSummonGilasaurusFromHand(u8);
 u8 TrySpecialSummonFenrirFromHand(u8);
 u8 TrySpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8);
+u8 TrySpecialSummonDarkArmedDragonFromHand(u8);
 u8 TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(u8);
 u8 TrySpecialSummonArchlordKristyaFromHand(u8);
 u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
@@ -235,6 +236,7 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
   return cardId == RARE_METAL_DRAGON || cardId == FENRIR
       || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
       || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
+      || cardId == DARK_ARMED_DRAGON
       || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
 }
 
@@ -379,6 +381,11 @@ void sub_80441D0__Replacement(void)
         TryActivatingPermanentEffects();
       } else if (handCardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
           && TrySpecialSummonBlackLusterSoldierEnvoyOfTheBeginningFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == DARK_ARMED_DRAGON
+          && TrySpecialSummonDarkArmedDragonFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();

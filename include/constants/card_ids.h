@@ -1130,11 +1130,12 @@
 #define CYBER_LASER_DRAGON                       0x0466
 #define DARK_END_DRAGON                          0x0467
 #define LIGHT_END_DRAGON                         0x0468
+#define DARK_ARMED_DRAGON                        0x0469
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0469
-#define NUM_CUSTOM_CARDS                        0x0148
+#define NUM_TOTAL_CARDS                         0x046A
+#define NUM_CUSTOM_CARDS                        0x0149
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

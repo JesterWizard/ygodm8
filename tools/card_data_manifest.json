@@ -20940,7 +20940,7 @@
       "card_name": "The Wicked Avatar",
       "atk": 0,
       "def": 0,
-      "level": 4,
+      "level": 10,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_FIEND",
       "color": "EFFECT_CARD",
@@ -21072,7 +21072,7 @@
       "card_name": "Dark End Dragon",
       "atk": 2600,
       "def": 2100,
-      "level": 4,
+      "level": 8,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_DRAGON",
       "color": "EFFECT_CARD",
@@ -21099,7 +21099,7 @@
       "card_name": "Light End Dragon",
       "atk": 2600,
       "def": 2100,
-      "level": 4,
+      "level": 8,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_DRAGON",
       "color": "EFFECT_CARD",
@@ -21119,6 +21119,36 @@
       },
       "effect_texts": {
         "popup_1": "Lose 500 ATK and DEF, and the target monster loses 1500 ATK and DEF until End Phase."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DARK_ARMED_DRAGON",
+      "card_name": "Dark Armed Dragon",
+      "atk": 2800,
+      "def": 1000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARK_ARMED_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 1, 9, 2, 0, 2, 7],
+      "description": {
+        "symbol": "gDescription_DarkArmedDragon",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must be",
+          "Special Summoned from hand by having",
+          "exactly 3 DARK monsters in your GY.",
+          "Once per turn: banish 1 DARK from GY;",
+          "target 1 card on the field, destroy it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Remove 1 DARK monster from your Graveyard to destroy 1 card on the field."
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
