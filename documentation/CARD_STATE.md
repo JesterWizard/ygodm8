@@ -1,7 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Yubel evolution aligned with Terror Incarnate
+**Last worked on:** 2026-07-06 — Added The Tricky with hand special summon effect
 
-**Outcome:** `make test-cards-build` passes. Yubel→Terror evolution uses `gYubelLeftFieldPending` like Terror→Ultimate; End Phase self-destruct does not set pending (no Terror cheat).
+**Files touched:**
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/activated_effects/the_tricky.c`
+- `src_custom/code_8043EF4_hooks.c`
 
-**Open / next:** Playtest Yubel solo self-destruct vs MST/battle destroy evolution
+**Outcome:** make test-cards-build passes; discard 1 card from hand then special summon from hand slot
+
+**Open / next:**
+- playtest with duplicate Tricky in hand

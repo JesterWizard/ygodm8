@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 318
+#define NUM_CUSTOM_NAME_SORT_CARDS 319
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -323,6 +323,7 @@ static const u8 sPrematureBurialSortName[] APPEND_RODATA = "Premature Burial";
 static const u8 sYubelSortName[] APPEND_RODATA = "Yubel";
 static const u8 sYubelTerrorIncarnateSortName[] APPEND_RODATA = "Yubel - Terror Incarnate";
 static const u8 sYubelTheUltimateNightmareSortName[] APPEND_RODATA = "Yubel - The Ultimate Nightmare";
+static const u8 sTheTrickySortName[] APPEND_RODATA = "The Tricky";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -611,6 +612,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x044B, // The Suppression Pluto
   0x044C, // The Supremacy Sun
   0x03D0, // The Thing in the Crater
+  0x045F, // The Tricky
   0x0447, // The Tripper Mercury
   0x0444, // The Tyrant Neptune
   0x03FD, // The Unstoppable Exodia Incarnate
@@ -932,38 +934,39 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   284, // The Suppression Pluto
   285, // The Supremacy Sun
   286, // The Thing in the Crater
-  287, // The Tripper Mercury
-  288, // The Tyrant Neptune
-  289, // The Unstoppable Exodia Incarnate
-  290, // Theban Nightmare
-  291, // Thousand Energy
-  292, // Thousand Knives
-  293, // Thunder Crash
-  294, // Time Seal
-  295, // Tiny Angel
-  296, // Toll
-  297, // Torpedo Fish
-  298, // Triangle Power
-  299, // Twin Swords of Flashing Light - Tryce
-  300, // Tyrant Dragon
-  301, // Ultimate Offering
-  302, // United We Stand
-  303, // Upstart Goblin
-  304, // Valhalla, Hall of the Fallen
-  305, // Vampire Baby
-  306, // Vengeful Bog Spirit
-  307, // Wall of Revealing Light
-  308, // Warrior of Zera
-  309, // Wave Motion Cannon
-  310, // Weather Report
-  311, // White Magician Pikeru
-  312, // World Suppression
-  313, // Yata-Garasu
-  314, // Yubel
-  315, // Yubel - Terror Incarnate
-  316, // Yubel - The Ultimate Nightmare
-  317, // Zaborg the Thunder Monarch
-  318, // Zeriel
+  287, // The Tricky
+  288, // The Tripper Mercury
+  289, // The Tyrant Neptune
+  290, // The Unstoppable Exodia Incarnate
+  291, // Theban Nightmare
+  292, // Thousand Energy
+  293, // Thousand Knives
+  294, // Thunder Crash
+  295, // Time Seal
+  296, // Tiny Angel
+  297, // Toll
+  298, // Torpedo Fish
+  299, // Triangle Power
+  300, // Twin Swords of Flashing Light - Tryce
+  301, // Tyrant Dragon
+  302, // Ultimate Offering
+  303, // United We Stand
+  304, // Upstart Goblin
+  305, // Valhalla, Hall of the Fallen
+  306, // Vampire Baby
+  307, // Vengeful Bog Spirit
+  308, // Wall of Revealing Light
+  309, // Warrior of Zera
+  310, // Wave Motion Cannon
+  311, // Weather Report
+  312, // White Magician Pikeru
+  313, // World Suppression
+  314, // Yata-Garasu
+  315, // Yubel
+  316, // Yubel - Terror Incarnate
+  317, // Yubel - The Ultimate Nightmare
+  318, // Zaborg the Thunder Monarch
+  319, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1609,6 +1612,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sYubelTerrorIncarnateSortName;
   if (cardId == 0x045E)
     return (u8 *)sYubelTheUltimateNightmareSortName;
+  if (cardId == 0x045F)
+    return (u8 *)sTheTrickySortName;
 
   return gCardNames[cardId];
 }

@@ -1280,6 +1280,10 @@ static const unsigned char sYubelTheUltimateNightmareBigArt[] __attribute__((sec
 static const unsigned short sYubelTheUltimateNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yubel_the_ultimate_nightmare.gbapal");
 static const unsigned char sYubelTheUltimateNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yubel_the_ultimate_nightmare.lz");
 
+static const unsigned char sTheTrickyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_tricky.huff");
+static const unsigned short sTheTrickyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_tricky.gbapal");
+static const unsigned char sTheTrickyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_tricky.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1601,6 +1605,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x045C] = sYubelBigArt,
   [0x045D] = sYubelTerrorIncarnateBigArt,
   [0x045E] = sYubelTheUltimateNightmareBigArt,
+  [0x045F] = sTheTrickyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1924,6 +1929,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x045C] = sYubelBigPalette,
   [0x045D] = sYubelTerrorIncarnateBigPalette,
   [0x045E] = sYubelTheUltimateNightmareBigPalette,
+  [0x045F] = sTheTrickyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2247,6 +2253,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x045C] = 0,
   [0x045D] = 0,
   [0x045E] = 0,
+  [0x045F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2570,4 +2577,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x045C] = sYubelMiniArt,
   [0x045D] = sYubelTerrorIncarnateMiniArt,
   [0x045E] = sYubelTheUltimateNightmareMiniArt,
+  [0x045F] = sTheTrickyMiniArt,
 };
