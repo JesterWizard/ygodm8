@@ -80,6 +80,7 @@
 #include "sasuke_samurai_3.h"
 #include "riryoku.h"
 #include "mirror_wall.h"
+#include "cyber_barrier_dragon.h"
 #include "elemental_hero_great_tornado.h"
 #include "the_wicked_dreadroot.h"
 #include "the_wicked_eraser.h"
@@ -431,6 +432,7 @@ void InitBoard__Replacement(void) {
   ClearElementalHeroSteamHealerPending();
   ClearElementalHeroFlameWingmanPending();
   ClearElementalHeroCoreBattledPending();
+  ClearCyberBarrierDragonTurnState();
   ClearElementalHeroIceEdgeBattledPending();
   gElementalHeroCoreRevivePending = FALSE;
   ClearElementalHeroSunriseOptFlags();

@@ -7,6 +7,7 @@
 #include "debug_ruleset.h"
 #include "fairy_box.h"
 #include "mirror_wall.h"
+#include "cyber_barrier_dragon.h"
 #include "elemental_hero_core.h"
 #include "elemental_hero_ice_edge.h"
 #include "elemental_hero_sunrise.h"
@@ -334,6 +335,15 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
 
   if (!TryPayResumeAttackToll())
     return;
+
+  gTrapEffectData.originRow = sAttackResume.attackerRow;
+  gTrapEffectData.originCol = sAttackResume.attackerCol;
+  gTrapEffectData.originCardId = attacker->id;
+  if (TryNegateDeclaredAttackWithCyberBarrierDragon()) {
+    sub_801BC00();
+    UpdateAllDuelGfx();
+    return;
+  }
 
   isDirect = sAttackResume.isDirect;
   useMonsterBattle = FALSE;

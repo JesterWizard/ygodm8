@@ -10,6 +10,7 @@
 #include "the_dark_door.h"
 #include "the_wicked_avatar.h"
 #include "vengeful_bog_spirit.h"
+#include "cyber_barrier_dragon.h"
 
 struct AiDuelSimulationState {
   struct Duel duel;
@@ -34,6 +35,7 @@ extern u8 gAiSimSavedAmebaPendingDamageTarget0;
 extern u8 gAiSimSavedAmebaPendingDamageTarget1;
 extern u8 gAiSimSavedTheWickedAvatarLockFixedDuelist;
 extern u8 gAiSimSavedTheWickedAvatarLockTurnsRemaining;
+extern u8 gAiSimSavedCyberBarrierDragonUsedMask;
 
 /* ponytail: AI_Data.filler1A8[0..0x13F] — not ram_map; per-candidate + batch GY snapshots. */
 #define AI_SIM_GY_CANDIDATE_SNAPSHOT_OFF 0x1A8
@@ -88,6 +90,7 @@ void sub_800EE24__Replacement(void)
   gAiSimSavedAmebaPendingDamageTarget1 = gAmebaPendingDamageTarget1;
   gAiSimSavedTheWickedAvatarLockFixedDuelist = gTheWickedAvatarLockFixedDuelist;
   gAiSimSavedTheWickedAvatarLockTurnsRemaining = gTheWickedAvatarLockTurnsRemaining;
+  gAiSimSavedCyberBarrierDragonUsedMask = gCyberBarrierDragonUsedMask;
 
   gUnk_8DFF6A4->duel = gDuel;
   for (i = 0; i < 2; i++) {
@@ -134,6 +137,7 @@ void sub_800EE94__Replacement(void)
   gAmebaPendingDamageTarget1 = gAiSimSavedAmebaPendingDamageTarget1;
   gTheWickedAvatarLockFixedDuelist = gAiSimSavedTheWickedAvatarLockFixedDuelist;
   gTheWickedAvatarLockTurnsRemaining = gAiSimSavedTheWickedAvatarLockTurnsRemaining;
+  gCyberBarrierDragonUsedMask = gAiSimSavedCyberBarrierDragonUsedMask;
   ClearCoffinSellerPending();
   ClearDarkMagicianOfChaosPending();
 }

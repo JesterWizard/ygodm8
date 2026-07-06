@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `298` effects
+- `299` effects
 
 ## Tally
 
@@ -279,6 +279,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `The Wicked Avatar` | `src_custom/permanent_effects/the_wicked_avatar.c` |
 | `spell_effects` | `Tribute Doll` | `src_custom/spell_effects/tribute_doll.c` |
 | `spell_effects` | `Trade In` | `src_custom/spell_effects/trade_in.c` |
+| `permanent_effects` | `Cyber Barrier Dragon` | `src_custom/permanent_effects/cyber_barrier_dragon.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

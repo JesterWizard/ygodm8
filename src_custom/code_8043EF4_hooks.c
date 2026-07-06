@@ -16,6 +16,7 @@
 #include "soul_exchange.h"
 #include "fairy_box.h"
 #include "mirror_wall.h"
+#include "cyber_barrier_dragon.h"
 #include "imperial_order.h"
 #include "royal_decree.h"
 #include "card_passives.h"
@@ -1053,6 +1054,11 @@ void sub_8044570__Replacement(void)
     gTrapEffectData.originCol = gDuelCursor.currentX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
+    if (TryNegateDeclaredAttackWithCyberBarrierDragon()) {
+      PlayMusic(SFX_ATTACK_REBUFFED);
+      gDuelCursor.state = 0;
+      return;
+    }
     if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
       if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);
@@ -1188,6 +1194,11 @@ void TryAttackWithMonster__Replacement(void)
     gTrapEffectData.originCol = gDuelCursor.destX;
     gTrapEffectData.originCardId = gFixedZones[gDuelCursor.destY][gDuelCursor.destX]->id;
     TryActivateEmbodimentOfApophisOnAttack();
+    if (TryNegateDeclaredAttackWithCyberBarrierDragon()) {
+      PlayMusic(SFX_ATTACK_REBUFFED);
+      gDuelCursor.state = 0;
+      return;
+    }
     if (SasukeSamurai2_AreInactiveBackrowTrapsBlocked() || IsTrapTriggered() != 1) {
       if (!TryPayAttackFieldCosts()) {
         PlayMusic(SFX_FORBIDDEN);

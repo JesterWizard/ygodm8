@@ -70,6 +70,7 @@ _kernel_malloc_ewram gPowerBondEndPhaseBurn, 2
 
 @ Mirror Wall permanent ATK-halve flags keyed by gDuel.board cell index (20 cells x 1 byte).
 _kernel_malloc_ewram_array gMirrorWallHalvedMask, 0x14
+_kernel_malloc_ewram gCyberBarrierDragonUsedMask, 4
 
 @ Gaia fusion effect: permanent target ATK delta keyed by board cell (20 cells x 2 bytes).
 _kernel_malloc_ewram_array gElementalHeroGaiaTargetAtkDelta, 0x28
@@ -174,6 +175,7 @@ _kernel_malloc_ewram gAiSimSavedDebugRulesetTurnAttackUsed, 1
 _kernel_malloc_ewram gAiSimSavedTheDarkDoorTurnAttackUsed, 1
 _kernel_malloc_ewram gAiSimSavedVengefulBogSpiritMaskOpponentRow, 1
 _kernel_malloc_ewram gAiSimSavedVengefulBogSpiritMaskPlayerRow, 1
+_kernel_malloc_ewram gAiSimSavedCyberBarrierDragonUsedMask, 4
 
 @ -- IWRAM bump (mid-EWRAM block; uses _kernel_malloc above) -------------------
 @ Smarter AI, overworld, and intro state need IWRAM but sit mid-EWRAM for stable layout.

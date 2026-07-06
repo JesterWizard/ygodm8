@@ -16,6 +16,7 @@
 #include "dark_dust_spirit.h"
 #include "nightmare_wheel.h"
 #include "mirror_wall.h"
+#include "cyber_barrier_dragon.h"
 #include "ectoplasmer.h"
 #include "future_fusion.h"
 #include "power_bond.h"
@@ -306,6 +307,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   AgeUltimateOfferingSetFlags();
   AgeFairyBoxSetFlags();
   AgeMirrorWallSetFlags();
+  ClearCyberBarrierDragonTurnState();
   AgeBottomlessShiftingSandSetFlags();
   AgeWaveMotionCannonTurns();
   AgeFinalCountdownTurns();

@@ -1,14 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Spell workflow: generated dispatch + activation gates
+**Last worked on:** 2026-07-06 — Cyber Barrier Dragon fast_ai sim mask + popup fix
 
 **Files touched:**
-- `tools/generate_spell_effect_dispatch.py`, `tools/add_custom_card.py`, `tools/wire_card_effect.py`
-- `src_custom/spell_effect_hooks.c`, `src_custom/code_8043EF4_hooks.c`
-- `src_custom/generated/spell_effect_dispatch_*.inc`, `src_custom/generated/spell_activation_gates.c`
-- `include/spell_activation_gates.h`
+- `asm/ram_map_ewram.s`
+- `src_custom/ai_simulation_hooks.c`
+- `src_custom/battle_effects/cyber_barrier_dragon.c`
+- `src_custom/ai_attack_hooks.c`
 
-**Outcome:** `make test-cards-build` passes; new spells need manifest + effect `.c` only (no dispatcher/header/gate edits)
+**Outcome:** `make test-cards-build` passes; AI sim no longer consumes CBD once-per-turn mask before real attack; popup forced on negate
 
 **Open / next:**
-- playtest Trade-In activation gate still works via generated table
+- playtest opponent first attack with CBD in ATK vs Tristan

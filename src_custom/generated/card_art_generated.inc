@@ -1304,6 +1304,10 @@ static const unsigned char sTradeInBigArt[] __attribute__((section(".append_asse
 static const unsigned short sTradeInBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/trade_in.gbapal");
 static const unsigned char sTradeInMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/trade_in.lz");
 
+static const unsigned char sCyberBarrierDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_barrier_dragon.huff");
+static const unsigned short sCyberBarrierDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_barrier_dragon.gbapal");
+static const unsigned char sCyberBarrierDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_barrier_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1631,6 +1635,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0462] = sTheWickedAvatarBigArt,
   [0x0463] = sTributeDollBigArt,
   [0x0464] = sTradeInBigArt,
+  [0x0465] = sCyberBarrierDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1960,6 +1965,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0462] = sTheWickedAvatarBigPalette,
   [0x0463] = sTributeDollBigPalette,
   [0x0464] = sTradeInBigPalette,
+  [0x0465] = sCyberBarrierDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2289,6 +2295,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0462] = 0,
   [0x0463] = 0,
   [0x0464] = 0,
+  [0x0465] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2618,4 +2625,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0462] = sTheWickedAvatarMiniArt,
   [0x0463] = sTributeDollMiniArt,
   [0x0464] = sTradeInMiniArt,
+  [0x0465] = sCyberBarrierDragonMiniArt,
 };
