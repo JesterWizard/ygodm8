@@ -1,13 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Fixed Tribute Doll crash: replaced PickZone with dedicated cursor (Negative Energy pattern)
+**Last worked on:** 2026-07-06 — Added Trade-In spell with effect
 
 **Files touched:**
-- `src_custom/spell_effects/tribute_doll.c`
-- `include/tribute_doll.h`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/spell_effects/trade_in.c`
+- `include/trade_in.h`
+- `src_custom/spell_effect_hooks.c`
 - `src_custom/code_8043EF4_hooks.c`
 
-**Outcome:** make test-cards-build passes; hand activation uses DUEL_CURSOR_TRIBUTE_DOLL_TARGET
+**Outcome:** make test-cards-build passes; discard Level 8 monster from hand, draw 2
 
 **Open / next:**
-- playtest hand tribute select + Level 7 summon
+- playtest activation gate without Level 8 in hand

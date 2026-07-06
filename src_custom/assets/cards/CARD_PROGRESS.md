@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 323 |
-| Art ready, needs manifest | 230 |
+| In game (manifest + art) | 324 |
+| Art ready, needs manifest | 269 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **555** |
+| **Total PNGs in `80x80/`** | **595** |
 
 ## In game
 
@@ -345,6 +345,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_WICKED_ERASER` | The Wicked Eraser | `the_wicked_eraser.png` |
 | `THE_WICKED_AVATAR` | The Wicked Avatar | `the_wicked_avatar.png` |
 | `TRIBUTE_DOLL` | Tribute Doll | `tribute_doll.png` |
+| `TRADE_IN` | Trade-In | `trade_in.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -354,9 +355,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `A_HERO_LIVES` — `a_hero_lives.png`
 - [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
 - [ ] `ALLURE_OF_DARKNESS` — `allure_of_darkness.png`
+- [ ] `AMULET_DRAGON` — `amulet_dragon.png`
 - [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
 - [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
 - [ ] `APPARATION` — `Apparation.png`
+- [ ] `APPRENTICE_ILLUSION_MAGICIAN` — `apprentice_illusion_magician.png`
 - [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
 - [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
@@ -368,6 +371,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
 - [ ] `BACKFIRE` — `backfire.png`
 - [ ] `BACKUP_SQUAD` — `backup_squad.png`
+- [ ] `BERSERKER_SOUL` — `berserker_soul.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
 - [ ] `BREAK_THE_DESTINY` — `break_the_destiny.png`
@@ -375,9 +379,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `BURDEN_OF_THE_MIGHTY` — `burden_of_the_mighty.png`
 - [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
 - [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
+- [ ] `CELESTIAL_SWORD_EATOS` — `celestial_sword_eatos.png`
 - [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
+- [ ] `CHIMERATECH_MEGAFLEET_DRAGON` — `chimeratech_megafleet_dragon.png`
+- [ ] `CHIMERATECH_RAMPAGE_DRAGON` — `chimeratech_rampage_dragon.png`
 - [ ] `CLOCK_TOWER_PRISON` — `clock_tower_prison.png`
 - [ ] `COLD_WAVE` — `cold_wave.png`
 - [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
@@ -399,6 +406,8 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
 - [ ] `DARK_END_DRAGON` — `dark_end_dragon.png`
 - [ ] `DARK_GREPHER` — `dark_grepher.png`
+- [ ] `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` — `dark_magician_girl_the_dragon_knight.png`
+- [ ] `DARK_MAGICIAN_THE_DRAGON_KNIGHT` — `dark_magician_the_dragon_knight.png`
 - [ ] `DARKLORD_NURSE_REFICULE` — `darklord_nurse_reficule.png`
 - [ ] `DARKNESS_NEOSPHERE` — `darkness_neosphere.png`
 - [ ] `DECOY_DRAGON` — `decoy_dragon.png`
@@ -440,13 +449,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
 - [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
+- [ ] `DIVINE_SERPENT_GEH` — `divine_serpent_geh.png`
 - [ ] `DOCTOR_D` — `doctor_d.png`
 - [ ] `DON_ZALOOG` — `don_zaloog.png`
+- [ ] `DOOM_VIRUS_DRAGON` — `doom_virus_dragon.png`
 - [ ] `DOPPLEGANGER` — `doppleganger.png`
 - [ ] `DOUBLE_SPELL` — `double_spell.png`
 - [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `DRAIN_TIME` — `drain_time.png`
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
+- [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
 - [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
@@ -458,10 +470,12 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
 - [ ] `GIFT_CARD` — `gift_card.png`
+- [ ] `GODDESS_BOW` — `goddess_bow.png`
 - [ ] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
 - [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
 - [ ] `GREEN_GADGET` — `green_gadget.png`
 - [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
+- [ ] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
 - [ ] `GUARDIAN_EATOS` — `guardian_eatos.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`
@@ -478,11 +492,17 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
 - [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
 - [ ] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
+- [ ] `KURIBANDIT` — `kuribandit.png`
 - [ ] `LAST_TURN` — `last_turn.png`
+- [ ] `LEGEND_OF_HEART` — `legend_of_heart.png`
 - [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
+- [ ] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
+- [ ] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
+- [ ] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
 - [ ] `LEKUNGA` — `lekunga.png`
 - [ ] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
 - [ ] `LIGHT_END_DRAGON` — `light_end_dragon.png`
+- [ ] `LORD_OF_THE_RED` — `lord_of_the_red.png`
 - [ ] `MA'AT` — `ma'at.png`
 - [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [ ] `MAGICAL_HATS` — `magical_hats.png`
@@ -495,11 +515,13 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `MARSHMALLON` — `marshmallon.png`
 - [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
 - [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
+- [ ] `MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING` — `master_peace_the_true_dracroslaying_king.png`
 - [ ] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`
 - [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
+- [ ] `MIRROR_FORCE_DRAGON` — `mirror_force_dragon.png`
 - [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
 - [ ] `MONSTER_GATE` — `monster_gate.png`
@@ -510,9 +532,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `NECROVALLEY` — `necrovalley.png`
 - [ ] `NEEDLE_WALL` — `needle_wall.png`
 - [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
+- [ ] `NEOS_WISEMAN` — `neos_wiseman.png`
 - [ ] `NIBIRU_THE_PRIMAL_BEING` — `nibiru_the_primal_being.png`
 - [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
 - [ ] `OJAMA_KING` — `ojama_king.png`
+- [ ] `ORICHALCOS_SHUNOROS` — `orichalcos_shunoros.png`
 - [ ] `OVER_DESTINY` — `over_destiny.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
@@ -521,10 +545,17 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
 - [ ] `PROPHECY` — `prophecy.png`
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
+- [ ] `QUINTET_MAGICIAN` — `quintet_magician.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
+- [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
+- [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
+- [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`
 - [ ] `RED_EYES_DARKNESS_METAL_DRAGON` — `red_eyes_darkness_metal_dragon.png`
+- [ ] `RED_EYES_TRANSMIGRATION` — `red_eyes_transmigration.png`
 - [ ] `RED_GADGET` — `red_gadget.png`
+- [ ] `RELAY_SOUL` — `relay_soul.png`
 - [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
+- [ ] `ROCKET_HERMOS_CANNON` — `rocket_hermos_cannon.png`
 - [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
@@ -550,18 +581,27 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
+- [ ] `THE_CLAW_OF_HERMOS` — `the_claw_of_hermos.png`
 - [ ] `THE_CREATOR` — `the_creator.png`
 - [ ] `THE_CREATOR_INCARNATE` — `the_creator_incarnate.png`
+- [ ] `THE_EYE_OF_TIMAEUS` — `the_eye_of_timaeus.png`
+- [ ] `THE_FANG_OF_CRITIAS` — `the_fang_of_critias.png`
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
+- [ ] `THUNDER_DRAGON_COLOSSUS` — `thunder_dragon_colossus.png`
+- [ ] `THUNDER_DRAGON_TITAN` — `thunder_dragon_titan.png`
+- [ ] `TIMAEUS_THE_KNIGHT_OF_DESTINY` — `timaeus_the_knight_of_destiny.png`
+- [ ] `TIME_MAGIC_HAMMER` — `time_magic_hammer.png`
 - [ ] `TOON_WORLD` — `toon_world.png`
 - [ ] `TORNADO_BIRD` — `tornado_bird.png`
 - [ ] `TORNADO_WALL` — `tornado_wall.png`
-- [ ] `TRADE_IN` — `trade_in.png`
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
+- [ ] `TYRANT_BURST_DRAGON` — `tyrant_burst_dragon.png`
+- [ ] `TYRANT_WING` — `tyrant_wing.png`
+- [ ] `ULTIMATE_CONDUCTOR_TYRANNO` — `ultimate_conductor_tyranno.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `VISION_FUSION` — `vision_fusion.png`
 - [ ] `VISION_HERO_ADORATION` — `vision_hero_adoration.png`

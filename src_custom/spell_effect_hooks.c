@@ -106,6 +106,7 @@ extern void EffectValhallaHallOfTheFallen(void);
 extern void EffectCourtOfJustice(void);
 extern void EffectPrematureBurial(void);
 extern void EffectTRIBUTE_DOLL(void);
+extern void EffectTRADE_IN(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -569,6 +570,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case TRIBUTE_DOLL:
       EffectTRIBUTE_DOLL();
+      return;
+    case TRADE_IN:
+      EffectTRADE_IN();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

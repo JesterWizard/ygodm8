@@ -107,6 +107,7 @@
 #include "final_countdown.h"
 #include "future_fusion.h"
 #include "chaos_greed.h"
+#include "trade_in.h"
 #include "knights_title.h"
 #include "dedication_through_light_and_darkness.h"
 #include "tribute_doll.h"
@@ -777,6 +778,14 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   if (id == CHAOS_GREED && !CanActivateChaosGreed()) {
+    PlayMusic(SFX_FORBIDDEN);
+    gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (id == TRADE_IN && !CanActivateTradeIn()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();
