@@ -21,6 +21,7 @@
 #include "the_tyrant_neptune.h"
 #include "the_big_saturn.h"
 #include "the_tripper_mercury.h"
+#include "the_wicked_eraser.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -286,6 +287,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = THE_BIG_SATURN,
     .shouldActivate = ShouldActivateTheBigSaturn,
     .activate = ActivateTheBigSaturn,
+  },
+  {
+    .cardId = THE_WICKED_ERASER,
+    .shouldActivate = ShouldActivateTheWickedEraser,
+    .activate = ActivateTheWickedEraser,
   },
   {
     .cardId = THE_TRIPPER_MERCURY,
@@ -576,8 +582,10 @@ static void TryActivatingPermanentEffectsPostBoardScan(u8 aiSim)
   }
 
   ResolvePendingGraveyardDrawOnDestroy();
-  if (!aiSim)
+  if (!aiSim) {
     TheBigSaturn_TryResolveGyDamage();
+    TheWickedEraser_TryResolveFieldWipe();
+  }
   if (!aiSim || IsLevelLimitAreaBActiveOnField())
     Duel_CheckLevelLimitAreaBAfterFieldChange();
   if (!aiSim || IsLevelLimitAreaAActiveOnField())

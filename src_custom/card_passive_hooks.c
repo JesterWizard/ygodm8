@@ -12,6 +12,7 @@
 #include "ojama_trio.h"
 #include "the_despair_uranus.h"
 #include "archlord_kristya.h"
+#include "the_wicked_eraser.h"
 
 static u8 GetTurnRowForZone(struct DuelCard *zone) {
   u8 i;
@@ -83,6 +84,7 @@ void ClearZoneAndSendMonToGraveyard__Replacement(struct DuelCard *zone, u8 turn)
   }
   ClearZone(zone);
   TryShowPendingExecutorMakyuraPopup();
+  TheWickedEraser_TryResolveFieldWipe();
 }
 
 LYN_REPLACE_CHECK(DecrementPermStage);

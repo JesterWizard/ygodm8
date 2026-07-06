@@ -240,6 +240,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     if (zone != NULL && zone->id != CARD_NONE
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.playerMonsterRow,
                                                          sActionData.unkA)) {
+      if (CardDefersGraveyardEffectUntilBattleFinish(zone->id))
+        gDeferGraveyardDrawBattleResolve = TRUE;
       MarkFamiliarKnightBattleDestruction(zone->id);
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_PLAYER, zone->id);
@@ -254,6 +256,8 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
     if (zone != NULL && zone->id != CARD_NONE
         && !DarkMagicianOfChaosBattleZoneIsPendingBanish(sActionData.opponentMonsterRow,
                                                          sActionData.unk16)) {
+      if (CardDefersGraveyardEffectUntilBattleFinish(zone->id))
+        gDeferGraveyardDrawBattleResolve = TRUE;
       MarkFamiliarKnightBattleDestruction(zone->id);
       MarkElementalHeroFlashBattleDestruction(zone->id);
       MarkGiantRatBattleDestruction(DUEL_OPPONENT, zone->id);

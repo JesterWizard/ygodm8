@@ -7,6 +7,7 @@
 #include "the_supremacy_sun.h"
 #include "yubel.h"
 #include "the_big_saturn.h"
+#include "the_wicked_eraser.h"
 #include "graveyard_effects.h"
 
 extern void UpdateDuelGfxExceptField(void);
@@ -41,6 +42,7 @@ void NoteGraveyardMonsterSend(struct DuelCard *zone)
   MarkTheSupremacySunDestroyedFromField(zone);
   Yubel_NoteMonsterLeftField(zone);
   NoteTheBigSaturnGraveyardSend(zone);
+  NoteTheWickedEraserGraveyardSend(zone);
 }
 
 void MarkGraveyardSendFromField(void)
@@ -59,6 +61,7 @@ u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
       || cardId == ELEMENTAL_HERO_FLASH || cardId == KAISER_GLIDER || cardId == PETEN_THE_DARK_CLOWN
       || cardId == GIANT_RAT || cardId == THE_THING_IN_THE_CRATER
       || cardId == ELEMENTAL_HERO_CORE || cardId == YUBEL
+      || cardId == THE_WICKED_ERASER
       || cardId == YUBEL_TERROR_INCARNATE;
 }
 
@@ -149,4 +152,5 @@ void FinishGraveyardDrawBattleResolve(void)
   gDeferGraveyardDrawBattleResolve = FALSE;
   /* Core revive (popup_2) — must run here on both player and AI battle paths. */
   ElementalHeroCore_TryResolveRevive();
+  TheWickedEraser_TryResolveFieldWipe();
 }

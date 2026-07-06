@@ -1,14 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Fixed Wicked Dreadroot as continuous permanent field effect
+**Last worked on:** 2026-07-06 — Added The Wicked Eraser with dynamic ATK/DEF and field wipe
 
 **Files touched:**
-- `src_custom/permanent_effects/the_wicked_dreadroot.c`
-- `include/the_wicked_dreadroot.h`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/code_8043EF4_hooks.c`
+- `tools/card_data_manifest.json`
+- `configs/runtime.c`
+- `src_custom/permanent_effects/the_wicked_eraser.c`
+- `src_custom/activated_effects/the_wicked_eraser.c`
+- `include/the_wicked_eraser.h`
+- `asm/ram_map_ewram.s`
 
-**Outcome:** make test-cards-build passes; halving active while Dreadroot on field including attack-position; stats restore on leave
+**Outcome:** make test-cards-build passes; ATK/DEF = opponent cards x1000; GY wipe destroys all field cards; Main Phase self-destruct ignition
 
 **Open / next:**
-- playtest flip-summon and Cost Down tribute edge cases
+- playtest cannot-be-set restriction; verify opponent card count includes field spell

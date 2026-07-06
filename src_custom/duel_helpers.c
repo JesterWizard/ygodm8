@@ -28,6 +28,7 @@
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
 #include "the_wicked_dreadroot.h"
+#include "the_wicked_eraser.h"
 #include "elemental_hero_sunrise.h"
 #include "elemental_hero_absolute_zero.h"
 #include "elemental_hero_blazeman.h"
@@ -88,6 +89,7 @@ u8 ElementalHeroKnospe_CanAttackMonsterZone(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroAbsoluteZero_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 LyriluscIndependentNightingale_ApplyDynamicZoneStats(struct DuelCard *zone);
+u8 TheWickedEraser_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
 u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
@@ -276,7 +278,8 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
 
   return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE
       || cardId == THE_BIG_SATURN || cardId == THE_SUPREMACY_SUN
-      || cardId == THE_WICKED_DREADROOT || cardId == YUBEL_TERROR_INCARNATE
+      || cardId == THE_WICKED_DREADROOT || cardId == THE_WICKED_ERASER
+      || cardId == YUBEL_TERROR_INCARNATE
       || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
 }
 
@@ -309,6 +312,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
   TryVengefulBogSpiritOnMonsterPlacement(summonZone);
   TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
   TryTheWickedDreadrootOnMonsterPlacement(summonZone);
+  TryTheWickedEraserOnMonsterPlacement(summonZone);
   TryElementalHeroSunriseOnMonsterPlacement(summonZone);
   TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
   MaybeUpdateGfx(opts.updateGfx);
@@ -1088,6 +1092,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { ELEMENTAL_HERO_BLAZEMAN, ElementalHeroBlazeman_ApplyDynamicZoneStats },
   { CHIMERATECH_OVERDRAGON, ChimeratechOverdragon_ApplyDynamicZoneStats },
   { LYRILUSC_INDEPENDENT_NIGHTINGALE, LyriluscIndependentNightingale_ApplyDynamicZoneStats },
+  { THE_WICKED_ERASER, TheWickedEraser_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {

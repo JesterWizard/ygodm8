@@ -35,6 +35,7 @@
 #include "the_tyrant_neptune.h"
 #include "the_grand_jupiter.h"
 #include "the_big_saturn.h"
+#include "the_wicked_eraser.h"
 #include "the_supremacy_sun.h"
 #include "archlord_kristya.h"
 #include "splendid_venus.h"
@@ -80,6 +81,7 @@
 #include "mirror_wall.h"
 #include "elemental_hero_great_tornado.h"
 #include "the_wicked_dreadroot.h"
+#include "the_wicked_eraser.h"
 #include "elemental_hero_sunrise.h"
 #include "zeriel.h"
 #include "shatiel.h"
@@ -435,6 +437,7 @@ void InitBoard__Replacement(void) {
   ClearCyberneticFusionSupport();
   PowerBond_ClearState();
   ClearTheBigSaturnPending();
+  ClearTheWickedEraserPending();
   ClearTheSupremacySunState();
   ClearArchlordKristyaState();
   ClearElementalHeroTempestProtection();
@@ -691,6 +694,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   MirrorWall_OnZoneCleared(zone);
   ElementalHeroGreatTornado_OnZoneCleared(zone);
   TheWickedDreadroot_OnZoneCleared(zone);
+  TheWickedEraser_OnZoneCleared(zone);
   ElementalHeroSunrise_OnZoneCleared(zone);
   Zeriel_OnZoneCleared(zone);
   Shatiel_OnZoneCleared(zone);
@@ -799,6 +803,7 @@ void CopyCard__Replacement(struct DuelCard *dst, struct DuelCard *src)
     TryAmazonessTigerOnMonsterPlacement(dst);
     TryElementalHeroGreatTornadoOnMonsterPlacement(dst);
     TryTheWickedDreadrootOnMonsterPlacement(dst);
+    TryTheWickedEraserOnMonsterPlacement(dst);
     TryElementalHeroSunriseOnMonsterPlacement(dst);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(dst);
     /* Blazeman on-summon runs only from placement paths that update field gfx first. */

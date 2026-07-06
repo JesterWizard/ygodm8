@@ -20905,6 +20905,35 @@
       "effect_texts": {
         "popup_1": "Halve the ATK and DEF of all monsters on the field, except this card."
       }
+    },
+    {
+      "card_const": "THE_WICKED_ERASER",
+      "card_name": "The Wicked Eraser",
+      "atk": 0,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_THE_WICKED_ERASER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [5, 7, 7, 9, 3, 8, 6, 9],
+      "description": {
+        "symbol": "gDescription_TheWickedEraser",
+        "pages": [
+          "Cannot be Special Summoned.",
+          "Must be Normal Summoned by Tributing 3 monsters.",
+          "ATK/DEF = opponent's cards x 1000.",
+          "When sent to the Graveyard, destroy all cards on the field."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When sent to the Graveyard, destroy all cards on the field."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

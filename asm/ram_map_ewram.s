@@ -500,6 +500,12 @@ _kernel_malloc_ewram gTheBigSaturnGyDamagePending, 2
 _kernel_malloc_ewram gTheBigSaturnGyDamageTurnRow, 1
 @ Field destroy (not hand) when pending was armed.
 _kernel_malloc_ewram gTheBigSaturnGyDamageFromField, 1
+@ Pending field wipe when The Wicked Eraser is sent to the Graveyard from the field.
+_kernel_malloc_ewram gTheWickedEraserFieldWipePending, 1
+@ Permanent-effect GY scan row (6 or 7) for pending Eraser field wipe.
+_kernel_malloc_ewram gTheWickedEraserFieldWipeTurnRow, 1
+@ Field destroy (not hand) when pending was armed.
+_kernel_malloc_ewram gTheWickedEraserFieldWipeFromField, 1
 
 @ -- Ameba control-switch burn (deferred until field gfx refresh) ----------------
 

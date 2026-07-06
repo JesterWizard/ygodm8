@@ -55,6 +55,7 @@
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "lyrilusc_independent_nightingale.h"
 #include "the_big_saturn.h"
+#include "the_wicked_eraser.h"
 #include "the_grand_jupiter.h"
 #include "the_blazing_mars.h"
 #include "athena.h"
@@ -232,6 +233,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_THE_BIG_SATURN:
         canActivate = CanActivateTheBigSaturn();
+        break;
+      case MONSTER_EFFECT_THE_WICKED_ERASER:
+        canActivate = CanActivateTheWickedEraser();
         break;
       case MONSTER_EFFECT_THE_GRAND_JUPITER:
         canActivate = CanActivateTheGrandJupiter();
@@ -530,6 +534,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_BIG_SATURN) {
     ActivateTheBigSaturnEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_THE_WICKED_ERASER) {
+    ActivateTheWickedEraserEffect();
     return;
   }
 

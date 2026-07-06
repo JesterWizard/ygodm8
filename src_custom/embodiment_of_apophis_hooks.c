@@ -10,6 +10,7 @@
 #include "sasuke_samurai_2.h"
 #include "ojama_trio.h"
 #include "the_supremacy_sun.h"
+#include "the_wicked_eraser.h"
 #include "duel.h"
 
 extern struct ApophisLink gApophisLinks[MAX_APOPHIS_LINKS];
@@ -499,7 +500,12 @@ void ClearZoneAndSendMonToGraveyard2__Replacement(struct DuelCard *zone, u8 turn
   MarkTheSupremacySunDestroyedFromField(zone);
   SendOjamaTrioZoneToGraveyardIfNeeded(zone, turn);
   SendApophisZoneToGraveyardIfNeeded(zone, turn);
+  if (cardId != CARD_NONE
+      && (Duel_CardIsMonster(cardId) || EmbodimentOfApophisZoneOnMonsterRow(zone)
+          || OjamaTrioZoneIsMonsterForm(zone)))
+    NoteGraveyardMonsterSend(zone);
   TryArmExecutorMakyuraOnGraveyardSendFixed(turn, cardId);
   ClearZone(zone);
   TryShowPendingExecutorMakyuraPopup();
+  TheWickedEraser_TryResolveFieldWipe();
 }
