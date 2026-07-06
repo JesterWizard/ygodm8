@@ -1,6 +1,6 @@
 ---
 name: add-custom-card
-description: "Add a real Yu-Gi-Oh! card to the custom card trunk. Primary path: YGOProDeck API via add_custom_card.py. Fallback: Yugipedia page fetch when API misses a card or offline. Covers: data, manifest, art, runtime test hand, effect hooks with duel helpers, build validation."
+description: "Add a real Yu-Gi-Oh! card to the custom card trunk. Primary path: YGOProDeck API via add_custom_card.py. Fallback: Yugipedia page fetch when API misses a card or offline. Covers: data, manifest, art, runtime test hand, effect implementation (wire + logic, not stubs), build validation."
 ---
 
 # Add Custom Card
@@ -22,7 +22,7 @@ These are automatic once the manifest entry exists — **skip codebase explorati
 | **Next cost / total cards / last card** | Read `tools/.card_state` (written by `write_manifest()`) |
 | **Session state** | Read `documentation/CARD_STATE.md` — latest session in 1 tool call |
 
-Only search when implementing **new effect behavior** (use **card-effect-hook-placement** skill), when **extending duel helpers**, or when art is missing.
+Search when **classifying or implementing effects** (grep similar cards in `src_custom/*_effects/`), when **extending duel helpers**, or when art is missing. Use **card-effect-hook-placement** for non-standard dispatch paths.
 
 ## Fast Path Checklist
 
@@ -30,9 +30,11 @@ Only search when implementing **new effect behavior** (use **card-effect-hook-pl
 [ ] 1. Fetch card data — try YGOProDeck first, Yugipedia fallback
 [ ] 2. Scaffold manifest: `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --runtime-hand 1`
 [ ] 3. Check art: `512x512/<stem>.png` (preferred) or `80x80/<stem>.png`
-[ ] 4. Effect hooks? → only if card has non-vanilla behavior (use `wire_card_effect.py`)
+[ ] 4. Implement effects (required for spells/traps/effect monsters — see Step 6)
 [ ] 5. Build: `make test-cards-link` (or `make test-cards-build` for full ROM)
 ```
+
+**Default expectation:** adding a card means the card **works in duel**, not just exists in the trunk. Normal monsters with no effect text are the only skip.
 
 ## Step 1 — Fetch Card Data
 
@@ -213,10 +215,39 @@ Or manually:
 
 Trunk ownership at new game is already handled by `start_with_three_copies_of_every_card` in the same file — no trunk code changes.
 
-## Step 6 — Effect Hooks (only when needed)
+## Step 6 — Implement Effects (required by default)
 
-**Fast path:** `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>`
-This creates the hook `.c` file, wires the dispatcher (extern + dispatch entry), and updates `card_effect_tally.md` in one command.
+**Do not stop at manifest + art.** For every spell, trap, and effect monster (anything with card text beyond flavor), wire the hook **and implement the effect logic** before calling the card done.
+
+**Skip only:** `NORMAL_CARD` monsters with no effect text (vanilla stat stick).
+
+### 6a — Classify effect type from card text
+
+Read `effect_texts.popup_1` / API `desc` / Yugipedia text. Pick the primary hook category:
+
+| Card text signals | `--type` | Notes |
+|-------------------|----------|-------|
+| Spell Card | `spell` | Manifest keeps `spellEffect: 2`; dispatch is by card ID in `spell_effect_hooks.c` |
+| Trap Card | `trap` | Manifest keeps `trapEffect: 0` until wired; dispatch by card ID |
+| `FLIP:`, `You can` (ignition), once-per-turn menu effect | `activated` | Add `MONSTER_EFFECT_*` to `monster_effects.h`; set manifest `monsterEffect` |
+| Continuous / while face-up / when Summoned field trigger | `permanent` | Standby/End Phase on-field triggers often land here |
+| Standby / End Phase / maintenance timing only | `turn` | Also add row in `sTurnEffectOverrides[]` in `turn_effect_hooks.c` |
+| Battle damage / when this card attacks or is attacked | `battle` | |
+| Cannot be negated, immunity, name override, rules-layer hook | `passive` | May also need engine hooks beyond the passive file |
+| Quick effect from hand/GY, non-menu ignition | — | Grep `code_8043EF4_hooks.c` / existing hand-activation cards (e.g. `hecatrice.c`) |
+
+Cards with **multiple effects** (e.g. FLIP + ignition) may need more than one `--type` run or extra wiring — implement each part that has a dispatch path.
+
+### 6b — Find a similar card, then wire
+
+1. **Grep** `src_custom/*_effects/` for the same verb (burn, draw, destroy, tribute, search, flip, etc.) or a card with similar text.
+2. **Scaffold:** `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>` — creates the `.c` file, patches the dispatcher, updates `card_effect_tally.md`.
+3. **Implement** — replace every `/* TODO */` in the new file. Copy structure from the similar card; adapt targets, amounts, and conditions to match the real card text. Do **not** leave stub bodies.
+4. **Manifest fields** (after wiring):
+   - Spells/traps: `spellEffect: 2` / `trapEffect: 0` is normal; routing is by card ID.
+   - Activated monsters: append `MONSTER_EFFECT_<CARD>` to `include/constants/monster_effects.h`, set manifest `monsterEffect`, add `effect_usage` (`once`, `once_per_turn`, etc.) and `activation_description` when the card ignites from the menu.
+   - Field spells: `"customFieldSpell": "CUSTOM_FIELD_SPELL_*"` only when using the custom field-spell pipeline (see `documentation/custom-field-spells.md`).
+5. **Non-template paths** — hand/GY quick effects, equip registration, flip triggers: read **card-effect-hook-placement** and grep the card name in `src_custom/` before inventing a new entry point.
 
 | `--type` | Dispatcher | Effect dir |
 |----------|------------|------------|
@@ -228,19 +259,15 @@ This creates the hook `.c` file, wires the dispatcher (extern + dispatch entry),
 | `turn` | `turn_effect_hooks.c` | `src_custom/turn_effects/` |
 | `passive` | (none) | `src_custom/card_passives/` |
 
-The `activated` and `permanent` templates include a `Duel_PickZone` targeting skeleton — **no header file, cursor constant, or `code_8043EF4_hooks.c` edit needed** for cursor targeting effects.
+The `activated` and `permanent` templates include a `Duel_PickZone` targeting skeleton — **no header file, cursor constant, or `code_8043EF4_hooks.c` edit needed** for standard cursor-targeting ignitions.
 
-Manual fallback — only when the fast path doesn't fit:
+### 6c — Implementation bar
 
-| Card has… | Action |
-|-----------|--------|
-| No effect / normal monster | **Stop** — no hook files |
-| Spell effect | `card-effect-hook-placement` → `src_custom/spell_effects/<stem>.c`, wire `src_custom/spell_effect_hooks.c` |
-| Trap effect | `src_custom/trap_effects/` |
-| Activated monster | `MONSTER_EFFECT_*` in manifest + `src_custom/activated_effects/` |
-| Flip effect | Activated monster effect — triggered on flip |
-| Passive stat / always-on | `src_custom/permanent_effects/` |
-| End-of-turn / standby | `src_custom/turn_effects/` + one row in `sTurnEffectOverrides[]` in `turn_effect_hooks.c` |
+- Match the card's printed effect text (TCG/OCG errata from API/Yugipedia).
+- Use `duel_helpers.h` for draw/destroy/LP/summon/text/trap gates (see cheat sheet below).
+- Show effect text **before** state changes (`Duel_ShowEffectText` / `Duel_ShowEffectTextTyped` first).
+- If part of the effect needs missing engine support (banish zone, global name override, etc.), implement what you can and mark the gap with a `ponytail:` comment naming the ceiling — do **not** ship an empty `TODO` body for behavior that is implementable today.
+- **Data-only add** (user explicitly asked for trunk entry only): skip Step 6 and say so in the session log.
 
 ### Duel helpers (required for effect bodies)
 
@@ -328,17 +355,17 @@ See `src_custom/activated_effects/jowls_of_dark_demise.c` for a complete example
 ## Step 7 — Validate
 
 ```bash
-make test-cards          # manifest-only (no C hook / runtime edits)
-make test-cards-link     # manifest + effect hooks (parallel compile, faster)
-make test-cards-build    # manifest + hooks + full ROM link (slower)
+make test-cards          # manifest-only (normal monsters, no hook files)
+make test-cards-link     # default after adding a card with effects
+make test-cards-build    # full ROM link (use when hooks touch LynJump / broad gameplay)
 ```
 
 `test-cards` runs manifest validation, RAM card-growth check, trunk validators, and `card_art_progress.py`. It skips events, portraits, CG, opening screens, and the full ROM link — those are unrelated to adding a card.
 
 | After a change affecting… | Run |
 |---------------------------|-----|
-| Manifest only (no hook files / no runtime.c) | `make test-cards` |
-| Manifest + effect hooks and/or `configs/runtime.c` | `make test-cards-link` |
+| Manifest only (normal monster, no effect) | `make test-cards` |
+| Manifest + effect implementation (usual path) | `make test-cards-link` |
 | Full ROM link needed | `make test-cards-build` |
 | Events, LynJump, RAM map, or broad gameplay | `make test` |
 
@@ -367,10 +394,10 @@ After `make`, confirm grep hits for the new const in:
 When finishing meaningful card work, append a log entry:
 
 ```bash
-python3 tools/log_session.py --task "Added {CardName}" \
+python3 tools/log_session.py --task "Added {CardName} with effect" \
   --files "tools/card_data_manifest.json,configs/runtime.c,src_custom/spell_effects/{stem}.c" \
-  --outcome "make test-cards-link passes" \
-  --next "512x512 or 80x80 art"
+  --outcome "make test-cards-link passes; {brief effect summary}" \
+  --next "playtest edge cases"
 ```
 
 ## Related Skills / Docs
