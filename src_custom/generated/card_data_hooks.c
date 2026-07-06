@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1122] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1123] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1134,9 +1134,10 @@ const u8 gCardLockAfterActivation_Hook[1122] APPEND_RODATA = {
   [0x045F] = 1,
   [0x0460] = 1,
   [0x0461] = 0,
+  [0x0462] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1122] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1123] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2259,9 +2260,10 @@ const u8 gCardEffectUsage_Hook[1122] APPEND_RODATA = {
   [0x045F] = EFFECT_USAGE_NONE,
   [0x0460] = EFFECT_USAGE_NONE,
   [0x0461] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x0462] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1122] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1123] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3384,9 +3386,10 @@ const u8 gCardSelectableOnce_Hook[1122] APPEND_RODATA = {
   [0x045F] = 0,
   [0x0460] = 0,
   [0x0461] = 0,
+  [0x0462] = 0,
 };
 
-const CardData gCardData_NEW[1122] APPEND_RODATA = {
+const CardData gCardData_NEW[1123] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -18337,7 +18340,7 @@ const CardData gCardData_NEW[1122] APPEND_RODATA = {
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
-    .level = 4,
+    .level = 10,
     .type = TYPE_FIEND,
     .color = EFFECT_CARD,
     .monsterEffect = 153,
@@ -18345,5 +18348,19 @@ const CardData gCardData_NEW[1122] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {5, 7, 7, 9, 3, 8, 6, 9},
     .description = gDescription_TheWickedEraser,
+  },
+  [0x0462] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {2, 1, 2, 0, 8, 1, 5, 4},
+    .description = gDescription_TheWickedAvatar,
   },
 };

@@ -322,6 +322,7 @@ static const u8 sYubelTheUltimateNightmareName[] __attribute__((section(".append
 static const u8 sTheTrickyName[] __attribute__((section(".append_assets"))) = "The Tricky";
 static const u8 sTheWickedDreadrootName[] __attribute__((section(".append_assets"))) = "The Wicked Dreadroot";
 static const u8 sTheWickedEraserName[] __attribute__((section(".append_assets"))) = "The Wicked Eraser";
+static const u8 sTheWickedAvatarName[] __attribute__((section(".append_assets"))) = "The Wicked Avatar";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -972,6 +973,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheWickedDreadrootName;
   if (cardId == 0x0461)
     return (u8 *)sTheWickedEraserName;
+  if (cardId == 0x0462)
+    return (u8 *)sTheWickedAvatarName;
 
   return gCardNames[cardId];
 }

@@ -1,16 +1,9 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Added The Wicked Eraser with dynamic ATK/DEF and field wipe
+**Last worked on:** 2026-07-06 — Wicked Avatar lock arms on any normal summon (no tribute gate)
 
-**Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/permanent_effects/the_wicked_eraser.c`
-- `src_custom/activated_effects/the_wicked_eraser.c`
-- `include/the_wicked_eraser.h`
-- `asm/ram_map_ewram.s`
+**Files touched:** `src_custom/permanent_effects/the_wicked_avatar.c`, `src_custom/tribute_hooks.c`, `tests/host/test_ai_spell_targets.py`
 
-**Outcome:** make test-cards-build passes; ATK/DEF = opponent cards x1000; GY wipe destroys all field cards; Main Phase self-destruct ignition
+**Outcome:** Lock + popup_1 fire whenever Avatar is normal summoned to the field; tribute count / level no longer gate the effect. make test-cards-build passes.
 
-**Open / next:**
-- playtest cannot-be-set restriction; verify opponent card count includes field spell
+**Open / next:** playtest summon Avatar → popup_1 → opponent Raigeki forbidden

@@ -4,6 +4,7 @@
 #include "ai_decision.h"
 #include "ai_sim.h"
 #include "ai_spell_targets.h"
+#include "duel_helpers.h"
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
@@ -81,10 +82,17 @@ static u8 AiSimFastQuickReject(u16 i, u8 handHasPermCard)
       return TRUE;
   }
 
-  if (IsAiActivateSpellAction(action) && row == ACTIVE_DUELIST_BACKROW) {
-    u16 cardId = gTurnZones[row][col]->id;
+  if (IsAiActivateSpellAction(action)) {
+    u16 cardId = CARD_NONE;
 
-    if (cardId != CARD_NONE && GetTypeGroup(cardId) == TYPE_GROUP_SPELL
+    if (row <= ACTIVE_DUELIST_HAND)
+      cardId = gTurnZones[row][col]->id;
+
+    if (cardId != CARD_NONE && Duel_IsCardActivationBlocked(cardId))
+      return TRUE;
+
+    if (row == ACTIVE_DUELIST_BACKROW && cardId != CARD_NONE
+        && GetTypeGroup(cardId) == TYPE_GROUP_SPELL
         && GetSpellType(cardId) == SPELL_TYPE_NORMAL
         && !AiNormalSpellHasActivationTargets(cardId))
       return TRUE;

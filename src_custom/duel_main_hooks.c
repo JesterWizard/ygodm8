@@ -37,6 +37,7 @@
 #include "vengeful_bog_spirit.h"
 #include "world_suppression.h"
 #include "timed_duel.h"
+#include "the_wicked_avatar.h"
 
 void sub_8041B38(void);
 void sub_8041014(void);
@@ -405,6 +406,7 @@ static bool8 RunDuelTurnLoop(void) {
     if (gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked)
       gTurnDuelistBattleState[ACTIVE_DUELIST]->defenseBlocked = 0;
     Sorl_TryDecrementAfterTurnEnd();
+    TheWickedAvatar_TryDecrementLockAtTurnEnd();
     UnlockCardsInRow(ACTIVE_DUELIST_MONSTER_ROW);
     UnlockCardsInRow(ACTIVE_DUELIST_HAND);
     VengefulBogSpirit_ClearAllMarks();

@@ -20911,7 +20911,7 @@
       "card_name": "The Wicked Eraser",
       "atk": 0,
       "def": 0,
-      "level": 4,
+      "level": 10,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_FIEND",
       "color": "EFFECT_CARD",
@@ -20934,6 +20934,34 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "THE_WICKED_AVATAR",
+      "card_name": "The Wicked Avatar",
+      "atk": 0,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 1, 2, 0, 8, 1, 5, 4],
+      "description": {
+        "symbol": "gDescription_TheWickedAvatar",
+        "pages": [
+          "Cannot be Special Summoned.",
+          "Must be Normal Summoned by Tributing 3 monsters.",
+          "Opponent cannot activate Spells/Traps.",
+          "Lock lasts for their next 2 turns.",
+          "ATK/DEF = highest face-up monster ATK + 100."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opponent cannot activate Spells/Traps for their next 2 turns."
+      }
     }
   ]
 }

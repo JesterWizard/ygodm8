@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 321 |
-| Art ready, needs manifest | 232 |
+| In game (manifest + art) | 322 |
+| Art ready, needs manifest | 231 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **555** |
 
@@ -343,6 +343,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_TRICKY` | The Tricky | `the_tricky.png` |
 | `THE_WICKED_DREADROOT` | The Wicked Dreadroot | `the_wicked_dreadroot.png` |
 | `THE_WICKED_ERASER` | The Wicked Eraser | `the_wicked_eraser.png` |
+| `THE_WICKED_AVATAR` | The Wicked Avatar | `the_wicked_avatar.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -553,7 +554,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THE_WICKED_AVATAR` — `the_wicked_avatar.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
 - [ ] `TOON_WORLD` — `toon_world.png`

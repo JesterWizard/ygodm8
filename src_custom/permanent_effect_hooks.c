@@ -22,6 +22,7 @@
 #include "the_big_saturn.h"
 #include "the_tripper_mercury.h"
 #include "the_wicked_eraser.h"
+#include "the_wicked_avatar.h"
 #include "imperial_order.h"
 #include "arsenal_bug.h"
 #include "berserk_gorilla.h"
@@ -102,6 +103,8 @@ void ActivateMobiusTheFrostMonarch(void);
 void ActivateBerserkGorilla(void);
 unsigned char ShouldActivateElementalHeroCaptainGold(void);
 void ActivateElementalHeroCaptainGold(void);
+unsigned char ShouldActivateTheWickedAvatar(void);
+void ActivateTheWickedAvatar(void);
 u8 TryAutoSummonBlueEyesShiningDragon(void);
 u8 TryAutoSummonTheWingedDragonOfRaSphereMode(void);
 unsigned char IsSkillDrainActiveOnField(void);
@@ -297,6 +300,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = THE_TRIPPER_MERCURY,
     .shouldActivate = ShouldActivateTheTripperMercury,
     .activate = ActivateTheTripperMercury,
+  },
+  {
+    .cardId = THE_WICKED_AVATAR,
+    .shouldActivate = ShouldActivateTheWickedAvatar,
+    .activate = ActivateTheWickedAvatar,
   },
 };
 

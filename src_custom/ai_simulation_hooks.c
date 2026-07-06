@@ -8,6 +8,7 @@
 #include "duel.h"
 #include "expanded_graveyard.h"
 #include "the_dark_door.h"
+#include "the_wicked_avatar.h"
 #include "vengeful_bog_spirit.h"
 
 struct AiDuelSimulationState {
@@ -31,6 +32,8 @@ extern u8 gAmebaPendingDamageTarget1;
 extern u8 gAiSimSavedAmebaPendingCount;
 extern u8 gAiSimSavedAmebaPendingDamageTarget0;
 extern u8 gAiSimSavedAmebaPendingDamageTarget1;
+extern u8 gAiSimSavedTheWickedAvatarLockFixedDuelist;
+extern u8 gAiSimSavedTheWickedAvatarLockTurnsRemaining;
 
 /* ponytail: AI_Data.filler1A8[0..0x13F] — not ram_map; per-candidate + batch GY snapshots. */
 #define AI_SIM_GY_CANDIDATE_SNAPSHOT_OFF 0x1A8
@@ -83,6 +86,8 @@ void sub_800EE24__Replacement(void)
   gAiSimSavedAmebaPendingCount = gAmebaPendingCount;
   gAiSimSavedAmebaPendingDamageTarget0 = gAmebaPendingDamageTarget0;
   gAiSimSavedAmebaPendingDamageTarget1 = gAmebaPendingDamageTarget1;
+  gAiSimSavedTheWickedAvatarLockFixedDuelist = gTheWickedAvatarLockFixedDuelist;
+  gAiSimSavedTheWickedAvatarLockTurnsRemaining = gTheWickedAvatarLockTurnsRemaining;
 
   gUnk_8DFF6A4->duel = gDuel;
   for (i = 0; i < 2; i++) {
@@ -127,6 +132,8 @@ void sub_800EE94__Replacement(void)
   gAmebaPendingCount = gAiSimSavedAmebaPendingCount;
   gAmebaPendingDamageTarget0 = gAiSimSavedAmebaPendingDamageTarget0;
   gAmebaPendingDamageTarget1 = gAiSimSavedAmebaPendingDamageTarget1;
+  gTheWickedAvatarLockFixedDuelist = gAiSimSavedTheWickedAvatarLockFixedDuelist;
+  gTheWickedAvatarLockTurnsRemaining = gAiSimSavedTheWickedAvatarLockTurnsRemaining;
   ClearCoffinSellerPending();
   ClearDarkMagicianOfChaosPending();
 }

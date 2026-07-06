@@ -5,6 +5,7 @@
 #include "constants/card_ids.h"
 #include "constants/spell_effects.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "monster_reborn.h"
 
 static u8 TurnBackrowHasAnyCard(u8 turnBackrowRow)
@@ -25,6 +26,12 @@ static u8 FieldHasDestroyableSpellTrapBoardState(void)
 /* Match vanilla AI target checks for board-wipe normals (see src/duel/ai.c). */
 u8 AiNormalSpellHasActivationTargets(u16 cardId)
 {
+  if (cardId == CARD_NONE)
+    return FALSE;
+
+  if (Duel_IsCardActivationBlocked(cardId))
+    return FALSE;
+
   SetCardInfo(cardId);
 
   switch (gCardInfo.spellEffect) {

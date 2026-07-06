@@ -1292,6 +1292,10 @@ static const unsigned char sTheWickedEraserBigArt[] __attribute__((section(".app
 static const unsigned short sTheWickedEraserBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_wicked_eraser.gbapal");
 static const unsigned char sTheWickedEraserMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_wicked_eraser.lz");
 
+static const unsigned char sTheWickedAvatarBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_wicked_avatar.huff");
+static const unsigned short sTheWickedAvatarBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_wicked_avatar.gbapal");
+static const unsigned char sTheWickedAvatarMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_wicked_avatar.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1616,6 +1620,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x045F] = sTheTrickyBigArt,
   [0x0460] = sTheWickedDreadrootBigArt,
   [0x0461] = sTheWickedEraserBigArt,
+  [0x0462] = sTheWickedAvatarBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1942,6 +1947,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x045F] = sTheTrickyBigPalette,
   [0x0460] = sTheWickedDreadrootBigPalette,
   [0x0461] = sTheWickedEraserBigPalette,
+  [0x0462] = sTheWickedAvatarBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2268,6 +2274,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x045F] = 0,
   [0x0460] = 0,
   [0x0461] = 0,
+  [0x0462] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2594,4 +2601,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x045F] = sTheTrickyMiniArt,
   [0x0460] = sTheWickedDreadrootMiniArt,
   [0x0461] = sTheWickedEraserMiniArt,
+  [0x0462] = sTheWickedAvatarMiniArt,
 };

@@ -1123,11 +1123,12 @@
 #define THE_TRICKY                               0x045F
 #define THE_WICKED_DREADROOT                     0x0460
 #define THE_WICKED_ERASER                        0x0461
+#define THE_WICKED_AVATAR                        0x0462
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0462
-#define NUM_CUSTOM_CARDS                        0x0141
+#define NUM_TOTAL_CARDS                         0x0463
+#define NUM_CUSTOM_CARDS                        0x0142
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

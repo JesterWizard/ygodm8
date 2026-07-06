@@ -507,6 +507,9 @@ _kernel_malloc_ewram gTheWickedEraserFieldWipeTurnRow, 1
 @ Field destroy (not hand) when pending was armed.
 _kernel_malloc_ewram gTheWickedEraserFieldWipeFromField, 1
 
+_kernel_malloc_ewram gTheWickedAvatarLockFixedDuelist, 1
+_kernel_malloc_ewram gTheWickedAvatarLockTurnsRemaining, 1
+
 @ -- Ameba control-switch burn (deferred until field gfx refresh) ----------------
 
 @ Number of queued Ameba control-switch triggers (0..2).
@@ -520,3 +523,5 @@ _kernel_malloc_ewram gAmebaFlushing, 1
 _kernel_malloc_ewram gAiSimSavedAmebaPendingCount, 1
 _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget0, 1
 _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1
+_kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockFixedDuelist, 1
+_kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockTurnsRemaining, 1

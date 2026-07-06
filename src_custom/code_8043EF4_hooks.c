@@ -84,6 +84,7 @@
 #include "the_tripper_mercury.h"
 #include "the_wicked_dreadroot.h"
 #include "the_wicked_eraser.h"
+#include "the_wicked_avatar.h"
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_gaia.h"
@@ -151,6 +152,7 @@
 #include "the_tripper_mercury.h"
 #include "the_wicked_dreadroot.h"
 #include "the_wicked_eraser.h"
+#include "the_wicked_avatar.h"
 #include "the_grand_jupiter.h"
 #include "executor_makyura.h"
 #include "duel_helpers.h"
@@ -1063,6 +1065,7 @@ void sub_80449D8__Replacement(void)
     TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheWickedDreadrootOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryTheWickedEraserOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryTheWickedAvatarOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroSunriseOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
@@ -1089,6 +1092,8 @@ void sub_80449D8__Replacement(void)
   /* ponytail: on-summon text after field draw so Blazeman/Stratos is visible. */
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     FinishTheTripperMercuryTributeSummon(
+        gFixedZones[placedRow][placedCol], placedRow, placedCol);
+    FinishTheWickedAvatarTributeSummon(
         gFixedZones[placedRow][placedCol], placedRow, placedCol);
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);

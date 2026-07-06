@@ -2,10 +2,10 @@
 #include "common-chax.h"
 #include "ai_decision.h"
 #include "card.h"
-#include "constants/card_ids.h"
 #include "constants/duel_fields.h"
 #include "constants/spell_effects.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "monster_reborn.h"
 
 struct AI_Command {
@@ -81,6 +81,9 @@ static void AiActivateNormalSpellFromBackrow(u8 lockMonstersAfterActivation, u8 
   u8 col2 = sAI_Command.zone1Position & 0xF;
   u16 spellId = gTurnZones[row2][col2]->id;
 
+  if (Duel_IsCardActivationBlocked(spellId))
+    return;
+
   if (spellId == MONSTER_REBORN && !CanActivateMonsterReborn())
     return;
 
@@ -136,8 +139,14 @@ void sub_80124F8__Replacement(void)
 {
   u8 row2 = sAI_Command.zone1Position >> 4;
   u8 col2 = sAI_Command.zone1Position & 0xF;
+  u16 cardId = gTurnZones[row2][col2]->id;
 
-  SetCardInfo(gTurnZones[row2][col2]->id);
+  SetCardInfo(cardId);
+  if (Duel_IsCardActivationBlocked(cardId)) {
+    AI_SIM_PRIORITY = AI_PRIORITY_DISABLE;
+    return;
+  }
+
   sAiScoringSpellEffect = gCardInfo.spellEffect;
   g8DFF7F0[gCardInfo.spellEffect]();
 }

@@ -10,6 +10,7 @@
 #include "debug_ruleset.h"
 #include "configs/runtime.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "ai_sim.h"
 #include "ai_spell_targets.h"
 #include "expanded_graveyard.h"
@@ -133,6 +134,8 @@ static u16 AiForceTerrainFieldSpellAction(void)
 
     if (targetField == FIELD_ARENA || gDuel.field == targetField)
       continue;
+    if (Duel_IsCardActivationBlocked(gTurnZones[ACTIVE_DUELIST_BACKROW][col]->id))
+      continue;
 
     actionIndex = AiFindActionIndex(
         AI_ACTION_ACTIVATE_NORMAL_SPELL_NO_TRAP,
@@ -207,6 +210,8 @@ static u16 AiForceSetNormalSpellActivation(void)
 
 extern u8 gAiSimInBatch;
 
+void UpdateDuelGfxExceptField(void);
+
 void AiSimulateAllCandidateActions(void)
 {
   u16 i;
@@ -219,6 +224,8 @@ void AiSimulateAllCandidateActions(void)
     AiSimulateAllCandidateActionsFast();
     gAiSimInBatch = FALSE;
     gHideEffectText = 0;
+    /* ponytail: sim restores gDuel but not field VRAM — resync tiles after batch. */
+    UpdateDuelGfxExceptField();
     AiSimBatchGraveyardRestore();
     return;
   }
@@ -238,6 +245,7 @@ void AiSimulateAllCandidateActions(void)
   }
   gAiSimInBatch = FALSE;
   gHideEffectText = 0;
+  UpdateDuelGfxExceptField();
   AiSimBatchGraveyardRestore();
 }
 

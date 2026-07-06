@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `295` effects
+- `296` effects
 
 ## Tally
 
@@ -276,6 +276,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `The Supremacy Sun` | `src_custom/turn_effects/the_supremacy_sun.c` |
 | `spell_effects` | `Court Of Justice` | `src_custom/spell_effects/court_of_justice.c` |
 | `spell_effects` | `Premature Burial` | `src_custom/spell_effects/premature_burial.c` |
+| `permanent_effects` | `The Wicked Avatar` | `src_custom/permanent_effects/the_wicked_avatar.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
