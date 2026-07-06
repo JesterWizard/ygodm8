@@ -105,6 +105,7 @@ extern void EffectFusionSage(void);
 extern void EffectValhallaHallOfTheFallen(void);
 extern void EffectCourtOfJustice(void);
 extern void EffectPrematureBurial(void);
+extern void EffectTRIBUTE_DOLL(void);
 void ApplyMahaVailoEquipBonus(struct DuelCard* zone);
 extern const u8 gCardSelectableOnce_Hook[];
 
@@ -565,6 +566,9 @@ static void ActivateSpellEffect__Body(void)
       return;
     case PREMATURE_BURIAL:
       EffectPrematureBurial();
+      return;
+    case TRIBUTE_DOLL:
+      EffectTRIBUTE_DOLL();
       return;
     default:
       gSpellEffects[gCardInfo.spellEffect]();

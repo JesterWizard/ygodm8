@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 322
+#define NUM_CUSTOM_NAME_SORT_CARDS 323
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -327,6 +327,7 @@ static const u8 sTheTrickySortName[] APPEND_RODATA = "The Tricky";
 static const u8 sTheWickedDreadrootSortName[] APPEND_RODATA = "The Wicked Dreadroot";
 static const u8 sTheWickedEraserSortName[] APPEND_RODATA = "The Wicked Eraser";
 static const u8 sTheWickedAvatarSortName[] APPEND_RODATA = "The Wicked Avatar";
+static const u8 sTributeDollSortName[] APPEND_RODATA = "Tribute Doll";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -631,6 +632,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0358, // Toll
   0x03B6, // Torpedo Fish
   0x038D, // Triangle Power
+  0x0463, // Tribute Doll
   0x038E, // Twin Swords of Flashing Light - Tryce
   0x039E, // Tyrant Dragon
   0x0330, // Ultimate Offering
@@ -956,26 +958,27 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   300, // Toll
   301, // Torpedo Fish
   302, // Triangle Power
-  303, // Twin Swords of Flashing Light - Tryce
-  304, // Tyrant Dragon
-  305, // Ultimate Offering
-  306, // United We Stand
-  307, // Upstart Goblin
-  308, // Valhalla, Hall of the Fallen
-  309, // Vampire Baby
-  310, // Vengeful Bog Spirit
-  311, // Wall of Revealing Light
-  312, // Warrior of Zera
-  313, // Wave Motion Cannon
-  314, // Weather Report
-  315, // White Magician Pikeru
-  316, // World Suppression
-  317, // Yata-Garasu
-  318, // Yubel
-  319, // Yubel - Terror Incarnate
-  320, // Yubel - The Ultimate Nightmare
-  321, // Zaborg the Thunder Monarch
-  322, // Zeriel
+  303, // Tribute Doll
+  304, // Twin Swords of Flashing Light - Tryce
+  305, // Tyrant Dragon
+  306, // Ultimate Offering
+  307, // United We Stand
+  308, // Upstart Goblin
+  309, // Valhalla, Hall of the Fallen
+  310, // Vampire Baby
+  311, // Vengeful Bog Spirit
+  312, // Wall of Revealing Light
+  313, // Warrior of Zera
+  314, // Wave Motion Cannon
+  315, // Weather Report
+  316, // White Magician Pikeru
+  317, // World Suppression
+  318, // Yata-Garasu
+  319, // Yubel
+  320, // Yubel - Terror Incarnate
+  321, // Yubel - The Ultimate Nightmare
+  322, // Zaborg the Thunder Monarch
+  323, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1629,6 +1632,8 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheWickedEraserSortName;
   if (cardId == 0x0462)
     return (u8 *)sTheWickedAvatarSortName;
+  if (cardId == 0x0463)
+    return (u8 *)sTributeDollSortName;
 
   return gCardNames[cardId];
 }

@@ -1,8 +1,8 @@
 #include "global.h"
-#include "common-chax.h"
 #include "configs/runtime.h"
 #include "gfx_reg_buffers.h"
 #include "mini_card.h"
+#include "duel_opponent_hand_scroll.h"
 #include "exchange_hand_selection.h"
 
 extern u16 gNewButtons;
@@ -21,6 +21,7 @@ void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
 void MoveCursorLeft(void);
 void MoveCursorRight(void);
+void sub_8057808(void);
 
 extern u16 gPressedButtons;
 
@@ -199,6 +200,97 @@ static u8 MoveDisplayIndex(struct DuelCard **handRow, u8 displayIndex, s8 delta)
   }
 
   return displayIndex;
+}
+
+static u8 FindFirstHandZoneMatchingPredicate(struct DuelCard **handRow, HandCardPredicate predicate)
+{
+  u8 zone;
+
+  for (zone = 0; zone < MAX_ZONES_IN_ROW; zone++) {
+    if (HandZoneMatchesPredicate(handRow, zone, predicate))
+      return zone;
+  }
+
+  return 0xFF;
+}
+
+static u8 FindNextHandZoneMatchingPredicate(struct DuelCard **handRow, u8 fromZone,
+                                            HandCardPredicate predicate, s8 delta)
+{
+  u8 zone = fromZone;
+  u8 attempts = 0;
+
+  while (attempts < MAX_ZONES_IN_ROW) {
+    zone = (zone + delta + MAX_ZONES_IN_ROW) % MAX_ZONES_IN_ROW;
+
+    if (HandZoneMatchesPredicate(handRow, zone, predicate))
+      return zone;
+
+    attempts++;
+  }
+
+  return 0xFF;
+}
+
+APPEND_TEXT s8 SelectHandCardMatchingPredicatePinnedFieldRow(struct DuelCard **handRow,
+                                                           HandCardPredicate predicate,
+                                                           u8 pinnedFieldRow)
+{
+  struct DuelCursor savedCursor = gDuelCursor;
+  u16 pinnedVofs = GetBoardScrollVofs(pinnedFieldRow);
+  u8 handZone;
+  u8 running;
+
+  handZone = FindFirstHandZoneMatchingPredicate(handRow, predicate);
+  if (handZone == 0xFF)
+    return -1;
+
+  InitButtonMaps();
+  WaitForNoButtonsHeld();
+  InitButtonMaps();
+
+  running = TRUE;
+  while (running) {
+    gDuelCursor.currentY = PLAYER_HAND_ROW;
+    gDuelCursor.currentX = handZone;
+    gBG2VOFS = pinnedVofs;
+    sub_8057808();
+    sub_804078C();
+    DisplayCardInfoBar();
+
+    UpdateFilteredInput_WithRepeat();
+
+    if (gRepeatedOrNewButtons & DPAD_LEFT) {
+      u8 nextZone = FindNextHandZoneMatchingPredicate(handRow, handZone, predicate, -1);
+
+      if (nextZone != 0xFF) {
+        PlayMusic(SFX_MOVE_CURSOR);
+        handZone = nextZone;
+      }
+    } else if (gRepeatedOrNewButtons & DPAD_RIGHT) {
+      u8 nextZone = FindNextHandZoneMatchingPredicate(handRow, handZone, predicate, 1);
+
+      if (nextZone != 0xFF) {
+        PlayMusic(SFX_MOVE_CURSOR);
+        handZone = nextZone;
+      }
+    } else if (gNewButtons & A_BUTTON) {
+      if (HandZoneMatchesPredicate(handRow, handZone, predicate)) {
+        PlayMusic(SFX_SELECT);
+        running = FALSE;
+      } else {
+        PlayMusic(SFX_FORBIDDEN);
+      }
+    }
+
+    WaitForVBlank();
+  }
+
+  gDuelCursor = savedCursor;
+  gBG2VOFS = pinnedVofs;
+  sub_8057808();
+  sub_804078C();
+  return handZone;
 }
 
 APPEND_TEXT s8 SelectHandCardMatchingType(struct DuelCard **handRow, u8 type)

@@ -20962,6 +20962,32 @@
       "effect_texts": {
         "popup_1": "Opponent cannot activate Spells/Traps for their next 2 turns."
       }
+    },
+    {
+      "card_const": "TRIBUTE_DOLL",
+      "card_name": "Tribute Doll",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 2, 9, 0, 3, 0, 3, 6],
+      "description": {
+        "symbol": "gDescription_TributeDoll",
+        "pages": [
+          "Tribute 1 monster; Special Summon 1 Level 7 monster",
+          "from your hand that can be Normal Summoned/Set. It",
+          "cannot attack this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 monster; Special Summon 1 Level 7 monster from your hand. It cannot attack this turn."
+      }
     }
   ]
 }

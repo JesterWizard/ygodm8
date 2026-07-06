@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 322 |
-| Art ready, needs manifest | 231 |
+| In game (manifest + art) | 323 |
+| Art ready, needs manifest | 230 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **555** |
 
@@ -344,6 +344,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_WICKED_DREADROOT` | The Wicked Dreadroot | `the_wicked_dreadroot.png` |
 | `THE_WICKED_ERASER` | The Wicked Eraser | `the_wicked_eraser.png` |
 | `THE_WICKED_AVATAR` | The Wicked Avatar | `the_wicked_avatar.png` |
+| `TRIBUTE_DOLL` | Tribute Doll | `tribute_doll.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -561,7 +562,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `TORNADO_WALL` — `tornado_wall.png`
 - [ ] `TRADE_IN` — `trade_in.png`
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
-- [ ] `TRIBUTE_DOLL` — `tribute_doll.png`
 - [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
 - [ ] `VISION_FUSION` — `vision_fusion.png`
 - [ ] `VISION_HERO_ADORATION` — `vision_hero_adoration.png`

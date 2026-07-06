@@ -109,6 +109,7 @@
 #include "chaos_greed.h"
 #include "knights_title.h"
 #include "dedication_through_light_and_darkness.h"
+#include "tribute_doll.h"
 #include "the_flute_of_summoning_dragon.h"
 #include "book_of_life.h"
 #include "monster_reborn.h"
@@ -568,6 +569,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
+  if (id == TRIBUTE_DOLL && WhoseTurn() == DUEL_PLAYER) {
+    if (!CanActivateTributeDoll()) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginTributeDollTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
   if (IsNegativeEnergyCard(id)) {
     if (!FieldHasNegativeEnergyTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
       PlayMusic(SFX_FORBIDDEN);
@@ -867,7 +883,9 @@ void HandlePlayerBackrowAction__Replacement(void) {
   }
 
   switch (GetSpellType(id)) {
-    case SPELL_TYPE_NORMAL:
+    case SPELL_TYPE_NORMAL: {
+      u8 ranPickZone = FALSE;
+
       gDuelCursor.state = 0;
       gSpellEffectData.id = id;
       gSpellEffectData.row1 = gDuelCursor.currentY;
@@ -877,9 +895,15 @@ void HandlePlayerBackrowAction__Replacement(void) {
         LockMonsterCardsInRow(4);
       UpdateDuelGfxExceptField();
       CheckWinConditionExodia(WhoseTurn());
-      if (IsDuelOver() != TRUE)
+      if (gDuelCursor.state == DUEL_CURSOR_PICK_ZONE) {
+        ranPickZone = TRUE;
+        Duel_RunPickZoneInputLoop();
+        Duel_ClearPickZone();
+      }
+      if (IsDuelOver() != TRUE && !ranPickZone)
         TryActivatingPermanentEffects();
       break;
+    }
     case SPELL_TYPE_EQUIP:
       PlayMusic(SFX_SELECT);
       gDuelCursor.state = 2;
@@ -1471,6 +1495,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       TrySelectNegativeEnergyTarget();
       break;
+    case DUEL_CURSOR_TRIBUTE_DOLL_TARGET:
+      TrySelectTributeDollTarget();
+      break;
     case DUEL_CURSOR_H_HEATED_HEART_TARGET:
       TrySelectHHeatedHeartTarget();
       break;
@@ -1605,6 +1632,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_NEGATIVE_ENERGY_TARGET:
       CancelNegativeEnergyTargeting();
+      break;
+    case DUEL_CURSOR_TRIBUTE_DOLL_TARGET:
+      CancelTributeDollTargeting();
       break;
     case DUEL_CURSOR_H_HEATED_HEART_TARGET:
       CancelHHeatedHeartTargeting();

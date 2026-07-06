@@ -323,6 +323,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [THE_WICKED_DREADROOT] = gActivationDescription_TheWickedDreadroot_Popup1,
   [THE_WICKED_ERASER] = gActivationDescription_TheWickedEraser_Popup1,
   [THE_WICKED_AVATAR] = gActivationDescription_TheWickedAvatar_Popup1,
+  [TRIBUTE_DOLL] = gActivationDescription_TributeDoll_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -676,6 +677,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_THE_WICKED_DREADROOT_POPUP_1] = gActivationDescription_TheWickedDreadroot_Popup1,
   [CARD_EFFECT_TEXT_THE_WICKED_ERASER_POPUP_1] = gActivationDescription_TheWickedEraser_Popup1,
   [CARD_EFFECT_TEXT_THE_WICKED_AVATAR_POPUP_1] = gActivationDescription_TheWickedAvatar_Popup1,
+  [CARD_EFFECT_TEXT_TRIBUTE_DOLL_POPUP_1] = gActivationDescription_TributeDoll_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)
