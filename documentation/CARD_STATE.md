@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Replaced Light End Dragon's tempStage reduction with EWRAM delta array (persists until End Phase)
+**Last worked on:** 2026-07-06 — Shrunk Light End Dragon EWRAM: 6 × s8 (6 bytes, was 40)
 
 **Files touched:**
-- `src_custom/activated_effects/light_end_dragon.c`
-- `include/light_end_dragon.h`
 - `asm/ram_map_ewram.s`
+- `include/light_end_dragon.h`
+- `src_custom/activated_effects/light_end_dragon.c`
 - `src_custom/card_hooks.c`
 - `src_custom/turn_effect_hooks.c`
 
-**Outcome:** make test-cards-build passes; target ATK/DEF -1500 now stored in `gLightEndDragonDefDelta[]` EWRAM array (not tempStage which was reset prematurely). Delta applied in `card_hooks.c` stat pipeline alongside Riryoku/PowerBond deltas. Cleared at End Phase alongside `ClearAllRiryokuAtkDeltas()`. Self still uses permanent -500 via `DecrementPermStage`.
+**Outcome:** make test-cards-build passes. Replaced 20 × s16 (40 bytes) delta array with 6 × s8 (6 bytes) stage-count array. Stores stage count (-3) per column; applies `stages * 500` to both ATK and DEF. Cleared at End Phase.
 
 **Open / next:**
 - playtest both End Dragons

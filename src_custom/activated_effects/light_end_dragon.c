@@ -5,7 +5,8 @@
 #include "duel_helpers.h"
 #include "monster_effect_usage.h"
 
-#define LIGHT_END_DEF_REDUCTION (-1500)
+#define LIGHT_END_STAGE_COUNT (-3)
+#define LIGHT_END_STAGE_DENOM 500
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
@@ -16,57 +17,63 @@ void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(u8);
 void RefreshFieldMonsterStatOverlays(void);
 
-static u16 GetDuelBoardCellIndex(const struct DuelCard *zone)
-{
-  const struct DuelCard *base = &gDuel.board[0][0];
-
-  if (zone < base || zone >= base + MAX_DUEL_BOARD_CELLS)
-    return 0xFFFF;
-
-  return (u16)(zone - base);
-}
-
-void ClearLightEndDragonDefDeltas(void)
+void ClearLightEndDragonDefStages(void)
 {
   u16 i;
 
-  for (i = 0; i < MAX_DUEL_BOARD_CELLS; i++)
-    gLightEndDragonDefDelta[i] = 0;
+  for (i = 0; i < 6; i++)
+    gLightEndDragonDefStages[i] = 0;
 }
 
-void ApplyLightEndDragonDefDeltaToCardInfo(const struct DuelCard *zone)
+void ApplyLightEndDragonDefStagesToCardInfo(const struct DuelCard *zone)
 {
-  const s16 *delta;
-  s32 stat;
+  s8 stages;
+  u16 col;
+  s32 adj;
 
   if (zone == NULL)
     return;
 
   {
-    u16 index = GetDuelBoardCellIndex(zone);
-    if (index >= MAX_DUEL_BOARD_CELLS)
+    const struct DuelCard *base = &gDuel.board[0][0];
+    u16 index;
+
+    if (zone < base || zone >= base + (4 * MAX_ZONES_IN_ROW))
       return;
-    delta = &gLightEndDragonDefDelta[index];
+
+    index = (u16)(zone - base);
+    col = index % MAX_ZONES_IN_ROW;
+    /* Only apply to opponent monster row (board row 1). Light End Dragon
+       on the player's monster row must not get the -1500 from its own effect. */
+    if (index / MAX_ZONES_IN_ROW != 1)
+      return;
   }
 
-  if (*delta == 0)
+  stages = gLightEndDragonDefStages[col];
+  if (stages == 0)
     return;
 
-  stat = (s32)gCardInfo.atk + (s32)(*delta);
-  if (stat <= 0)
-    gCardInfo.atk = 0;
-  else if (stat > 0xFFFE)
-    gCardInfo.atk = 0xFFFE;
-  else
-    gCardInfo.atk = (u16)stat;
+  adj = (s32)stages * LIGHT_END_STAGE_DENOM;
 
-  stat = (s32)gCardInfo.def + (s32)(*delta);
-  if (stat <= 0)
-    gCardInfo.def = 0;
-  else if (stat > 0xFFFE)
-    gCardInfo.def = 0xFFFE;
-  else
-    gCardInfo.def = (u16)stat;
+  {
+    s32 atk = (s32)gCardInfo.atk + adj;
+    if (atk <= 0)
+      gCardInfo.atk = 0;
+    else if (atk > 0xFFFE)
+      gCardInfo.atk = 0xFFFE;
+    else
+      gCardInfo.atk = (u16)atk;
+  }
+
+  {
+    s32 def = (s32)gCardInfo.def + adj;
+    if (def <= 0)
+      gCardInfo.def = 0;
+    else if (def > 0xFFFE)
+      gCardInfo.def = 0xFFFE;
+    else
+      gCardInfo.def = (u16)def;
+  }
 }
 
 static u8 OpponentMonsterRow(void)
@@ -122,10 +129,8 @@ static void ResolveEffect(u8 targetRow, u8 targetCol)
     DecrementPermStage(selfZone);
 
   if (targetZone != NULL && targetZone->id != CARD_NONE) {
-    u16 index = GetDuelBoardCellIndex(targetZone);
-
-    if (index < MAX_DUEL_BOARD_CELLS)
-      gLightEndDragonDefDelta[index] = LIGHT_END_DEF_REDUCTION;
+    u16 boardCol = (u16)(targetZone - &gDuel.board[0][0]) % MAX_ZONES_IN_ROW;
+    gLightEndDragonDefStages[boardCol] = LIGHT_END_STAGE_COUNT;
   }
 
   RefreshFieldMonsterStatOverlays();

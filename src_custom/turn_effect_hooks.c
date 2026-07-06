@@ -339,7 +339,7 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   ResetTempStagesForAllCards();
   ClearAllRiryokuAtkDeltas();
-  ClearLightEndDragonDefDeltas();
+  ClearLightEndDragonDefStages();
   TheSupremacySun_AgeStandbyFlags();
   TheSupremacySun_TryResolveStandbyRevive();
   if (IsDuelOver() == 1)

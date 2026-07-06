@@ -587,7 +587,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   }
 
   ApplyRiryokuAtkDeltaToCardInfo(zone);
-  ApplyLightEndDragonDefDeltaToCardInfo(zone);
+  ApplyLightEndDragonDefStagesToCardInfo(zone);
   ApplyPowerBondAtkBonusToCardInfo(zone);
   ApplyBigBangShotAtkBonusToCardInfo(zone);
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
@@ -703,7 +703,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
       && gSetFinalStatZone->id == ptr->card
       && CardUsesMonsterCombatStats(ptr->card)) {
     ApplyRiryokuAtkDeltaToCardInfo(gSetFinalStatZone);
-    ApplyLightEndDragonDefDeltaToCardInfo(gSetFinalStatZone);
+    ApplyLightEndDragonDefStagesToCardInfo(gSetFinalStatZone);
     ApplyPowerBondAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyBigBangShotAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
