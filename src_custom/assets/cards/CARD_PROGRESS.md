@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 319 |
-| Art ready, needs manifest | 234 |
+| In game (manifest + art) | 320 |
+| Art ready, needs manifest | 233 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **555** |
 
@@ -341,6 +341,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `YUBEL_TERROR_INCARNATE` | Yubel - Terror Incarnate | `yubel_terror_incarnate.png` |
 | `YUBEL_THE_ULTIMATE_NIGHTMARE` | Yubel - The Ultimate Nightmare | `yubel_the_ultimate_nightmare.png` |
 | `THE_TRICKY` | The Tricky | `the_tricky.png` |
+| `THE_WICKED_DREADROOT` | The Wicked Dreadroot | `the_wicked_dreadroot.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -552,7 +553,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
 - [ ] `THE_WICKED_AVATAR` — `the_wicked_avatar.png`
-- [ ] `THE_WICKED_DREADROOT` — `the_wicked_dreadroot.png`
 - [ ] `THE_WICKED_ERASER` — `the_wicked_eraser.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`

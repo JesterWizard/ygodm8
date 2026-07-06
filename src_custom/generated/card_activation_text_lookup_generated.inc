@@ -320,6 +320,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [YUBEL_TERROR_INCARNATE] = gActivationDescription_YubelTerrorIncarnate_Popup1,
   [YUBEL_THE_ULTIMATE_NIGHTMARE] = gActivationDescription_YubelTheUltimateNightmare_Popup1,
   [THE_TRICKY] = gActivationDescription_TheTricky_Popup1,
+  [THE_WICKED_DREADROOT] = gActivationDescription_TheWickedDreadroot_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -670,6 +671,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_3] = gActivationDescription_YubelTerrorIncarnate_Popup3,
   [CARD_EFFECT_TEXT_YUBEL_THE_ULTIMATE_NIGHTMARE_POPUP_1] = gActivationDescription_YubelTheUltimateNightmare_Popup1,
   [CARD_EFFECT_TEXT_THE_TRICKY_POPUP_1] = gActivationDescription_TheTricky_Popup1,
+  [CARD_EFFECT_TEXT_THE_WICKED_DREADROOT_POPUP_1] = gActivationDescription_TheWickedDreadroot_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

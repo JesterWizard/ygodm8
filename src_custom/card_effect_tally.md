@@ -339,6 +339,9 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `turn_effects` | `Yubel` | `src_custom/turn_effects/yubel.c` |
 | `permanent_effects` | `Yubel` | `src_custom/permanent_effects/yubel.c` |
 
+| `activated_effects` | `The Tricky` | `src_custom/activated_effects/the_tricky.c` |
+| `permanent_effects` | `The Wicked Dreadroot` | `src_custom/permanent_effects/the_wicked_dreadroot.c` |
+
 ## Notes
 
 - Count only includes effects implemented as standalone hook-side card logic.

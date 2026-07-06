@@ -20878,6 +20878,33 @@
       "effect_texts": {
         "popup_1": "You can Special Summon this card (from your hand) by discarding 1 card."
       }
+    },
+    {
+      "card_const": "THE_WICKED_DREADROOT",
+      "card_name": "The Wicked Dreadroot",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 2, 1, 8, 0, 2, 0, 1],
+      "description": {
+        "symbol": "gDescription_TheWickedDreadroot",
+        "pages": [
+          "Cannot be Special Summoned.",
+          "Must be Normal Summoned by Tributing 3 monsters.",
+          "Halve the ATK and DEF of all monsters on the field,",
+          "except this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Halve the ATK and DEF of all monsters on the field, except this card."
+      }
     }
   ]
 }

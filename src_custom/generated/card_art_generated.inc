@@ -1284,6 +1284,10 @@ static const unsigned char sTheTrickyBigArt[] __attribute__((section(".append_as
 static const unsigned short sTheTrickyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_tricky.gbapal");
 static const unsigned char sTheTrickyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_tricky.lz");
 
+static const unsigned char sTheWickedDreadrootBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_wicked_dreadroot.huff");
+static const unsigned short sTheWickedDreadrootBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_wicked_dreadroot.gbapal");
+static const unsigned char sTheWickedDreadrootMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_wicked_dreadroot.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1606,6 +1610,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x045D] = sYubelTerrorIncarnateBigArt,
   [0x045E] = sYubelTheUltimateNightmareBigArt,
   [0x045F] = sTheTrickyBigArt,
+  [0x0460] = sTheWickedDreadrootBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1930,6 +1935,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x045D] = sYubelTerrorIncarnateBigPalette,
   [0x045E] = sYubelTheUltimateNightmareBigPalette,
   [0x045F] = sTheTrickyBigPalette,
+  [0x0460] = sTheWickedDreadrootBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2254,6 +2260,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x045D] = 0,
   [0x045E] = 0,
   [0x045F] = 0,
+  [0x0460] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2578,4 +2585,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x045D] = sYubelTerrorIncarnateMiniArt,
   [0x045E] = sYubelTheUltimateNightmareMiniArt,
   [0x045F] = sTheTrickyMiniArt,
+  [0x0460] = sTheWickedDreadrootMiniArt,
 };

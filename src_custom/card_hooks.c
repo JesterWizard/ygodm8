@@ -23,6 +23,7 @@
 #include "elemental_hero_inferno.h"
 #include "skyscraper.h"
 #include "the_tripper_mercury.h"
+#include "the_wicked_dreadroot.h"
 #include "the_grand_jupiter.h"
 #include "the_despair_uranus.h"
 #include "zeriel.h"
@@ -548,6 +549,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
 
   if (Duel_TryApplyDynamicZoneStats(zone)) {
     ApplyGreatTornadoStatHalving(zone);
+    ApplyTheWickedDreadrootStatHalving(zone);
     ApplyElementalHeroSunriseAtkBoost(zone);
     ApplyZerielFairyAtkBoost(zone);
     ApplyShatielFairyStatBoost(zone);
@@ -589,6 +591,7 @@ void ApplyFieldZoneStatsToCardInfo(struct DuelCard *zone)
   ApplyHeatedHeartAtkBonusToCardInfo(zone);
   ApplyMirrorWallAtkHalving(zone);
   ApplyGreatTornadoStatHalving(zone);
+  ApplyTheWickedDreadrootStatHalving(zone);
   ApplyElementalHeroSunriseAtkBoost(zone);
   ApplyZerielFairyAtkBoost(zone);
   ApplyShatielFairyStatBoost(zone);
@@ -703,6 +706,7 @@ void SetFinalStat__Replacement(struct StatMod *ptr) {
     ApplyHeatedHeartAtkBonusToCardInfo(gSetFinalStatZone);
     ApplyMirrorWallAtkHalving(gSetFinalStatZone);
     ApplyGreatTornadoStatHalving(gSetFinalStatZone);
+    ApplyTheWickedDreadrootStatHalving(gSetFinalStatZone);
     ApplyElementalHeroSunriseAtkBoost(gSetFinalStatZone);
     ApplyZerielFairyAtkBoost(gSetFinalStatZone);
     ApplyShatielFairyStatBoost(gSetFinalStatZone);

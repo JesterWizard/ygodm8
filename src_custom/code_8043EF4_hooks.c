@@ -82,6 +82,7 @@
 #include "tyrant_dragon.h"
 #include "cyber_twin_dragon.h"
 #include "the_tripper_mercury.h"
+#include "the_wicked_dreadroot.h"
 #include "chimeratech_overdragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "elemental_hero_gaia.h"
@@ -147,6 +148,7 @@
 #include "maju_garzett.h"
 #include "the_tyrant_neptune.h"
 #include "the_tripper_mercury.h"
+#include "the_wicked_dreadroot.h"
 #include "the_grand_jupiter.h"
 #include "executor_makyura.h"
 #include "duel_helpers.h"
@@ -1057,6 +1059,7 @@ void sub_80449D8__Replacement(void)
     TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryTheWickedDreadrootOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroSunriseOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
   }
@@ -1087,6 +1090,7 @@ void sub_80449D8__Replacement(void)
     TryActivateRyuKishinClownOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryActivateDarkDustSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroBlazemanOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    TryTheWickedDreadrootEffectTextOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryIofielOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryAthenaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
     TryElementalHeroStratosOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
