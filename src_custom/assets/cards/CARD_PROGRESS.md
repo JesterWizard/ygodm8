@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 326 |
-| Art ready, needs manifest | 267 |
+| In game (manifest + art) | 327 |
+| Art ready, needs manifest | 266 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -348,6 +348,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TRADE_IN` | Trade-In | `trade_in.png` |
 | `CYBER_BARRIER_DRAGON` | Cyber Barrier Dragon | `cyber_barrier_dragon.png` |
 | `CYBER_LASER_DRAGON` | Cyber Laser Dragon | `cyber_laser_dragon.png` |
+| `DARK_END_DRAGON` | Dark End Dragon | `dark_end_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -404,7 +405,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `DARK_ARMED_DRAGON` — `dark_armed_dragon.png`
 - [ ] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
 - [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
-- [ ] `DARK_END_DRAGON` — `dark_end_dragon.png`
 - [ ] `DARK_GREPHER` — `dark_grepher.png`
 - [ ] `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` — `dark_magician_girl_the_dragon_knight.png`
 - [ ] `DARK_MAGICIAN_THE_DRAGON_KNIGHT` — `dark_magician_the_dragon_knight.png`

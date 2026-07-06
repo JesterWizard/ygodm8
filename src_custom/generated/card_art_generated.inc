@@ -1312,6 +1312,10 @@ static const unsigned char sCyberLaserDragonBigArt[] __attribute__((section(".ap
 static const unsigned short sCyberLaserDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_laser_dragon.gbapal");
 static const unsigned char sCyberLaserDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_laser_dragon.lz");
 
+static const unsigned char sDarkEndDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_end_dragon.huff");
+static const unsigned short sDarkEndDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_end_dragon.gbapal");
+static const unsigned char sDarkEndDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_end_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1641,6 +1645,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0464] = sTradeInBigArt,
   [0x0465] = sCyberBarrierDragonBigArt,
   [0x0466] = sCyberLaserDragonBigArt,
+  [0x0467] = sDarkEndDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1972,6 +1977,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0464] = sTradeInBigPalette,
   [0x0465] = sCyberBarrierDragonBigPalette,
   [0x0466] = sCyberLaserDragonBigPalette,
+  [0x0467] = sDarkEndDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2303,6 +2309,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0464] = 0,
   [0x0465] = 0,
   [0x0466] = 0,
+  [0x0467] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2634,4 +2641,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0464] = sTradeInMiniArt,
   [0x0465] = sCyberBarrierDragonMiniArt,
   [0x0466] = sCyberLaserDragonMiniArt,
+  [0x0467] = sDarkEndDragonMiniArt,
 };

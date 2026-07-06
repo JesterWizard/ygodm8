@@ -327,6 +327,7 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [TRADE_IN] = gActivationDescription_TradeIn_Popup1,
   [CYBER_BARRIER_DRAGON] = gActivationDescription_CyberBarrierDragon_Popup1,
   [CYBER_LASER_DRAGON] = gActivationDescription_CyberLaserDragon_Popup1,
+  [DARK_END_DRAGON] = gActivationDescription_DarkEndDragon_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -684,6 +685,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_TRADE_IN_POPUP_1] = gActivationDescription_TradeIn_Popup1,
   [CARD_EFFECT_TEXT_CYBER_BARRIER_DRAGON_POPUP_1] = gActivationDescription_CyberBarrierDragon_Popup1,
   [CARD_EFFECT_TEXT_CYBER_LASER_DRAGON_POPUP_1] = gActivationDescription_CyberLaserDragon_Popup1,
+  [CARD_EFFECT_TEXT_DARK_END_DRAGON_POPUP_1] = gActivationDescription_DarkEndDragon_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

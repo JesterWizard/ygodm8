@@ -131,9 +131,10 @@ def fetch_card(*, name: str | None = None, passcode: int | None = None, fname: s
 
 def frame_kind(card_type: str) -> str:
     lowered = card_type.lower()
-    for key in ("normal", "effect", "fusion", "ritual", "spell", "trap"):
+    # Synchro, XYZ, Link, Pendulum etc. use effect frame
+    for key in ("normal", "effect", "fusion", "ritual", "spell", "trap", "synchro"):
         if key in lowered:
-            return key
+            return "effect" if key == "synchro" else key
     raise SystemExit(f"Unsupported card type from API: {card_type!r}")
 
 

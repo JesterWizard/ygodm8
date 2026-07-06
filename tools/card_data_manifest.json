@@ -21066,6 +21066,33 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DARK_END_DRAGON",
+      "card_name": "Dark End Dragon",
+      "atk": 2600,
+      "def": 2100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 155,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [8, 8, 6, 4, 3, 5, 7, 9],
+      "description": {
+        "symbol": "gDescription_DarkEndDragon",
+        "pages": [
+          "Once per turn: target 1 opponent monster;",
+          "this card loses 500 ATK and DEF,",
+          "then send that target to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 monster your opponent controls; lose 500 ATK and DEF, and send that target to the Graveyard."
+      },
+      "effect_usage": "once_per_turn"
     }
   ]
 }

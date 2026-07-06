@@ -93,6 +93,8 @@ unsigned char CanActivateBLOWBACK_DRAGON(void);
 void ActivateBLOWBACK_DRAGONEffect(void);
 unsigned char CanActivateCYBER_LASER_DRAGON(void);
 void ActivateCYBER_LASER_DRAGONEffect(void);
+unsigned char CanActivateDARK_END_DRAGON(void);
+void ActivateDARK_END_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -189,6 +191,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_CYBER_LASER_DRAGON:
         canActivate = CanActivateCYBER_LASER_DRAGON();
+        break;
+      case MONSTER_EFFECT_DARK_END_DRAGON:
+        canActivate = CanActivateDARK_END_DRAGON();
         break;
       case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
         canActivate = CanActivateElementalHeroRampartBlaster();
@@ -461,6 +466,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
 
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_LASER_DRAGON) {
     ActivateCYBER_LASER_DRAGONEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_DARK_END_DRAGON) {
+    ActivateDARK_END_DRAGONEffect();
     return;
   }
 
