@@ -1,5 +1,6 @@
 #include "global.h"
 #include "common-chax.h"
+#include "constants/card_effect_texts.h"
 #include "constants/card_ids.h"
 #include "dynamic_equip.h"
 #include "duel_helpers.h"
@@ -35,11 +36,15 @@ struct YubelActionData {
 extern struct YubelActionData sActionData;
 extern u8 gPendingYubelUltimateDestroyRow;
 extern u8 gPendingYubelUltimateDestroyCol;
+extern u8 gYubelAttackedReflectPending;
+extern u8 gYubelTerrorAttackedReflectPending;
 
 void Yubel_ClearBattlePending(void)
 {
   gPendingYubelUltimateDestroyRow = YUBEL_PENDING_DESTROY_NONE;
   gPendingYubelUltimateDestroyCol = 0;
+  gYubelAttackedReflectPending = FALSE;
+  gYubelTerrorAttackedReflectPending = FALSE;
 }
 
 u8 Yubel_IsFamilyCard(u16 cardId)
@@ -149,8 +154,12 @@ static void ApplyYubelAttackedReflect(void)
   if (gHideEffectText)
     return;
 
-  Duel_ShowEffectTextTyped(defenderCardId, 3);
   InflictBattleBurn(burnTarget, attackerAtk);
+
+  if (defenderCardId == YUBEL)
+    gYubelAttackedReflectPending = TRUE;
+  else
+    gYubelTerrorAttackedReflectPending = TRUE;
 }
 
 static void MarkUltimateDestroyTarget(u8 targetRow, u8 targetCol)
@@ -213,6 +222,30 @@ static void ApplyYubelUltimateNightmarePostBattle(void)
 
   if (gUnk2023EA0.unk18 == 0)
     ResolveYubelUltimateNightmareBattleEffect();
+}
+
+void ResolveYubelAttackedReflectEffect(void)
+{
+  u8 hideEffectText;
+
+  if (!gYubelAttackedReflectPending && !gYubelTerrorAttackedReflectPending)
+    return;
+
+  hideEffectText = gHideEffectText;
+  gHideEffectText = FALSE;
+
+  if (gYubelAttackedReflectPending) {
+    gYubelAttackedReflectPending = FALSE;
+    Duel_ShowCardEffectText(YUBEL, CARD_EFFECT_TEXT_YUBEL_POPUP_2);
+  }
+
+  if (gYubelTerrorAttackedReflectPending) {
+    gYubelTerrorAttackedReflectPending = FALSE;
+    Duel_ShowCardEffectText(YUBEL_TERROR_INCARNATE,
+                            CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_1);
+  }
+
+  gHideEffectText = hideEffectText;
 }
 
 void ResolveYubelUltimateNightmareBattleEffect(void)

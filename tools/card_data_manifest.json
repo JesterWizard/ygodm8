@@ -20771,7 +20771,7 @@
       "card_name": "Yubel",
       "atk": 0,
       "def": 0,
-      "level": 4,
+      "level": 10,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_FIEND",
       "color": "EFFECT_CARD",
@@ -20785,13 +20785,14 @@
         "pages": [
           "Cannot be destroyed in battle or suffer battle damage.",
           "If this card is attacked face up, deal the damage back to",
-          "your opponent. Sacrifice 1 other monster or destroy.",
+          "your opponent. Sacrifice 1 other monster or destroy",
           "this card. If destroyed, summon Yubel Terror Incarnate."
         ]
       },
       "effect_texts": {
-        "popup_1": "Sacrifice 1 other monster or destroy this card.",
-        "popup_2": "If destroyed outside of its own effect, summon Yubel Terror Incarnate from your hand, Deck, or GY."
+        "popup_1": "Sacrifice 1 other monster on your side of the field or destroy this card.",
+        "popup_2": "Deal the battle damage back to your opponent.",
+        "popup_3": "If destroyed outside of its own effect, summon Yubel Terror Incarnate from your hand, Deck, or GY."
       }
     },
     {
@@ -20811,14 +20812,17 @@
       "description": {
         "symbol": "gDescription_YubelTerrorIncarnate",
         "pages": [
-          "Cannot be Normal Summoned or Set.",
-          "Must be Special Summoned by \"Yubel\" only.",
-          "Cannot be destroyed by battle.",
-          "No Battle Damage from battles involving this card."
+          "Cannot be summoned except by the effect of Yubel.",
+          "Cannot be destroyed by battle or suffer battle damage.",
+          "If this card is attacked face up, deal the damage back to",
+          "your opponent. At your turn end, destroy all other",
+          "monsters. If destroyed, summon Yubel - The Ultimate Nightmare."
         ]
       },
       "effect_texts": {
-        "popup_1": "Attacked in face-up ATK: inflict its ATK to your opponent. End Phase: destroy all other monsters. Leaves field: Special Summon Ultimate Nightmare."
+        "popup_1": "Deal the battle damage back to your opponent.",
+        "popup_2": "At your turn end, destroy all other monsters.",
+        "popup_3": "Summon Yubel - The Ultimate Nightmare from your hand, Deck, or GY."
       }
     },
     {
@@ -20838,14 +20842,15 @@
       "description": {
         "symbol": "gDescription_YubelTheUltimateNightmare",
         "pages": [
-          "Cannot be Normal Summoned or Set.",
-          "Special Summon by Terror Incarnate only.",
-          "Cannot be destroyed by battle.",
-          "Battles in ATK: inflict its ATK as damage and destroy it."
+          "Cannot be summoned except by Yubel - Terror Incarnate.",
+          "Cannot be destroyed by battle or suffer battle damage.",
+          "If this card is attacked face up, deal the damage back to",
+          "your opponent and then destroy the opposing monster",
+          "that battled with Yubel - The Ultimate Nightmare."
         ]
       },
       "effect_texts": {
-        "popup_1": "No Battle Damage from battles involving this card."
+        "popup_1": "Deal the battle damage back to your opponent and destroy the opposing monster."
       }
     }
   ]

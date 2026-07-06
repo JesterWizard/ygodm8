@@ -373,5 +373,6 @@ void sub_8040EF0__Replacement(void) {
   FinishGraveyardDrawBattleResolve();
   ResolveElementalHeroCoreBattledEffect();
   ResolveElementalHeroIceEdgeBattleEffect();
+  ResolveYubelAttackedReflectEffect();
   ResolveElementalHeroSunriseDestroyEffect();
 }

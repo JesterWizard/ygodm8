@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "ai_sim.h"
+#include "constants/card_effect_texts.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
 #include "dynamic_equip.h"
@@ -273,7 +274,8 @@ void ActivateYubelTerrorEndPhase(void)
   gActiveEffect.col = col;
   gActiveEffect.cardId = YUBEL_TERROR_INCARNATE;
 
-  Duel_ShowEffectTextTyped(YUBEL_TERROR_INCARNATE, 9);
+  Duel_ShowCardEffectText(YUBEL_TERROR_INCARNATE,
+                          CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_2);
 
   if (IsDuelOver() == TRUE)
     return;

@@ -663,7 +663,10 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_PREMATURE_BURIAL_POPUP_1] = gActivationDescription_PrematureBurial_Popup1,
   [CARD_EFFECT_TEXT_YUBEL_POPUP_1] = gActivationDescription_Yubel_Popup1,
   [CARD_EFFECT_TEXT_YUBEL_POPUP_2] = gActivationDescription_Yubel_Popup2,
+  [CARD_EFFECT_TEXT_YUBEL_POPUP_3] = gActivationDescription_Yubel_Popup3,
   [CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_1] = gActivationDescription_YubelTerrorIncarnate_Popup1,
+  [CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_2] = gActivationDescription_YubelTerrorIncarnate_Popup2,
+  [CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_3] = gActivationDescription_YubelTerrorIncarnate_Popup3,
   [CARD_EFFECT_TEXT_YUBEL_THE_ULTIMATE_NIGHTMARE_POPUP_1] = gActivationDescription_YubelTheUltimateNightmare_Popup1,
 };
 

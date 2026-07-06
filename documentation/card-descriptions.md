@@ -34,7 +34,7 @@ Use this workflow when adding or editing a custom card description:
 1. Open `tools/card_data_manifest.json`.
 2. Add or edit a card entry with a `description` object:
    - `symbol`: the runtime symbol name
-   - `pages`: 2 to 4 strings, one per page
+   - `pages`: 2 to 5 strings, one per page
 4. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
 5. Run `make` as normal.
 6. Test the card in-game.
@@ -67,7 +67,7 @@ How conversion works:
 - The generator script reads every `description.pages` array in `tools/card_data_manifest.json`.
 - It wraps each page into the currently observed in-game row widths.
 - It emits raw byte data for `<Symbol>Data` into `card_description_data_generated.inc`.
-- The page-count token is emitted automatically as `^2` or `^3` based on the number of pages.
+- The page-count token is emitted automatically as `^2` through `^5` based on the number of pages.
 
 Current layout constraints:
 
@@ -97,7 +97,7 @@ These tokens are interpreted by the duel textbox renderer:
 Important constraints:
 
 - Each description must have at least 2 pages.
-- Descriptions can have up to 4 pages.
+- Descriptions can have up to 5 pages.
 - Wrapping is word-based. The generator will not split a word across rows.
 - If any word is longer than 27 characters, generation fails.
 - If the page text does not fit within the 5 available rows, generation fails.
@@ -138,5 +138,5 @@ Build behavior:
 
 - The current row widths are based on observed in-game behavior, not a fully reverse-engineered format spec.
 - Description fit is currently strict. Text that barely misses the row model must be shortened manually.
-- The generator now supports 2-page through 4-page descriptions, but not longer ones.
+- The generator now supports 2-page through 5-page descriptions.
 - If the in-game renderer turns out to use different widths for some cards or languages, the generator will need to be updated.

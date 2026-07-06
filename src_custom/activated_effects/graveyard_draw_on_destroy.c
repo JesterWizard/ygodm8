@@ -39,7 +39,6 @@ void NoteGraveyardMonsterSend(struct DuelCard *zone)
   gGraveyardSendWasFromField = ZoneIsHandSlot(zone) ? FALSE : TRUE;
   ClearElementalHeroCoreReviveIfHandSend(zone);
   MarkTheSupremacySunDestroyedFromField(zone);
-  Yubel_NoteGraveyardMonsterSend(zone);
   Yubel_NoteMonsterLeftField(zone);
   NoteTheBigSaturnGraveyardSend(zone);
 }

@@ -9,7 +9,7 @@
 
 extern u8 gYubelOwnEffectSummon;
 extern u8 gYubelSelfDestructActive;
-extern u8 gYubelSuppressGyEvolution;
+extern u8 gYubelLeftFieldPending;
 extern u8 gYubelTerrorLeftFieldPending;
 extern u8 gPendingYubelUltimateDestroyRow;
 extern u8 gPendingYubelUltimateDestroyCol;
@@ -17,6 +17,8 @@ extern u8 gYubelTributeOriginRow;
 extern u8 gYubelTributeOriginCol;
 extern u8 gYubelTributeOwner;
 extern u8 gYubelEndPhaseResolvedThisTurn;
+extern u8 gYubelAttackedReflectPending;
+extern u8 gYubelTerrorAttackedReflectPending;
 
 u8 Yubel_IsFamilyCard(u16 cardId);
 u8 Yubel_IsEvolutionForm(u16 cardId);
@@ -24,9 +26,9 @@ u8 Yubel_IsEvolutionForm(u16 cardId);
 void Yubel_ClearBattlePending(void);
 void Yubel_ClearTurnState(void);
 void Yubel_NoteMonsterLeftField(struct DuelCard *zone);
-void Yubel_NoteGraveyardMonsterSend(struct DuelCard *zone);
 
 void ApplyYubelBattleEffects(void);
+void ResolveYubelAttackedReflectEffect(void);
 void ResolveYubelUltimateNightmareBattleEffect(void);
 
 unsigned char ShouldActivateYubelEndPhase(void);

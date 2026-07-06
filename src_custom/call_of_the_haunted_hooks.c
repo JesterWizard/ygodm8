@@ -67,6 +67,7 @@ void ResolveDDWarriorBattleEffect(void);
 void ResolveDesKangarooBattleEffect(void);
 void ResolveAbsorbingKidFromTheSkyBattleEffect(void);
 void ResolveCoffinSellerBattleEffect(void);
+void ResolveYubelAttackedReflectEffect(void);
 void FinishGraveyardDrawBattleResolve(void);
 
 static struct {
@@ -430,5 +431,6 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   FinishGraveyardDrawBattleResolve();
   ResolveElementalHeroCoreBattledEffect();
   ResolveElementalHeroIceEdgeBattleEffect();
+  ResolveYubelAttackedReflectEffect();
   ResolveElementalHeroSunriseDestroyEffect();
 }

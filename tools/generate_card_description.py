@@ -54,8 +54,8 @@ def wrap_page(text: str) -> list[str]:
 
 
 def emit_runtime_symbol(symbol: str, pages: list[str]) -> str:
-    if len(pages) not in (2, 3, 4):
-        raise ValueError(f"Expected 2, 3, or 4 pages, got {len(pages)}")
+    if len(pages) not in (2, 3, 4, 5):
+        raise ValueError(f"Expected 2, 3, 4, or 5 pages, got {len(pages)}")
 
     payload = ["  ", f"^{len(pages)}"]
     for page in pages:
@@ -101,7 +101,7 @@ def update_description_file(path: pathlib.Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Wrap two to four human-readable card description strings into the repo's card format."
+        description="Wrap two to five human-readable card description strings into the repo's card format."
     )
     parser.add_argument("--update-file", dest="update_file", help="Update a card_description_data.c-style file in place")
     parser.add_argument("symbol", nargs="?", help="C symbol name, e.g. gMilusRadiantDescription")

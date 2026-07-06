@@ -386,8 +386,8 @@ _kernel_malloc_ewram gPendingNeedleBurrowerLevel, 1
 _kernel_malloc_ewram gYubelOwnEffectSummon, 1
 @ TRUE when Yubel destroys itself during its End Phase tribute check.
 _kernel_malloc_ewram gYubelSelfDestructActive, 1
-@ Set when Yubel self-destructs; consumed when GY evolution scan is suppressed.
-_kernel_malloc_ewram gYubelSuppressGyEvolution, 1
+@ TRUE when face-up Yubel left the monster field (not End Phase self-destruct).
+_kernel_malloc_ewram gYubelLeftFieldPending, 1
 @ TRUE when face-up Terror Incarnate left the monster field.
 _kernel_malloc_ewram gYubelTerrorLeftFieldPending, 1
 @ Fixed row/col for Ultimate Nightmare post-battle destroy, else YUBEL_PENDING_DESTROY_NONE.
@@ -399,6 +399,10 @@ _kernel_malloc_ewram gYubelTributeOriginCol, 1
 _kernel_malloc_ewram gYubelTributeOwner, 1
 @ TRUE after this turn's Yubel/Terror End Phase chain has been started.
 _kernel_malloc_ewram gYubelEndPhaseResolvedThisTurn, 1
+@ TRUE when base Yubel reflected attack damage; popup_2 runs after battle anim.
+_kernel_malloc_ewram gYubelAttackedReflectPending, 1
+@ TRUE when Terror Incarnate reflected attack damage; popup_1 runs after battle anim.
+_kernel_malloc_ewram gYubelTerrorAttackedReflectPending, 1
 @ Fixed monster row for a pending Hyper Hammerhead bounce, else 0xFF.
 _kernel_malloc_ewram gPendingHyperHammerheadRow, 1
 @ Fixed monster column for a pending Hyper Hammerhead bounce.

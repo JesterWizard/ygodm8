@@ -124,21 +124,12 @@ static void TrySpecialSummonEvolution(u8 turnDuelist, u16 cardId)
   gYubelOwnEffectSummon = FALSE;
 }
 
-void Yubel_NoteGraveyardMonsterSend(struct DuelCard *zone)
-{
-  if (zone == NULL || zone->id != YUBEL)
-    return;
-
-  if (gYubelSelfDestructActive)
-    gYubelSuppressGyEvolution = TRUE;
-}
-
 void Yubel_NoteMonsterLeftField(struct DuelCard *zone)
 {
   u8 fixedRow;
   u8 col;
 
-  if (zone == NULL || zone->id != YUBEL_TERROR_INCARNATE)
+  if (zone == NULL)
     return;
 
   if (Duel_ZoneIsHandSlot(zone))
@@ -150,7 +141,18 @@ void Yubel_NoteMonsterLeftField(struct DuelCard *zone)
   if (!Duel_FindFixedMonsterZone(zone, &fixedRow, &col))
     return;
 
-  gYubelTerrorLeftFieldPending = TRUE;
+  if (zone->id == YUBEL) {
+    if (gYubelSelfDestructActive) {
+      gYubelSelfDestructActive = FALSE;
+      return;
+    }
+
+    gYubelLeftFieldPending = TRUE;
+    return;
+  }
+
+  if (zone->id == YUBEL_TERROR_INCARNATE)
+    gYubelTerrorLeftFieldPending = TRUE;
 }
 
 static u8 GraveyardTopMatches(u8 turnDuelist, u16 cardId)
@@ -168,6 +170,9 @@ unsigned char ShouldActivateYubelEvolution(void)
   if (gDeferGraveyardDrawBattleResolve)
     return FALSE;
 
+  if (!gYubelLeftFieldPending)
+    return FALSE;
+
   if (gActiveEffect.turnRow != 6 && gActiveEffect.turnRow != 7)
     return FALSE;
 
@@ -176,16 +181,6 @@ unsigned char ShouldActivateYubelEvolution(void)
 
   if (!GraveyardTopMatches(
           gActiveEffect.turnRow == 7 ? INACTIVE_DUELIST : ACTIVE_DUELIST, YUBEL))
-    return FALSE;
-
-  if (gYubelSelfDestructActive || gYubelSuppressGyEvolution) {
-    gYubelSelfDestructActive = FALSE;
-    gYubelSuppressGyEvolution = FALSE;
-    gGraveyardSendWasFromField = FALSE;
-    return FALSE;
-  }
-
-  if (!gGraveyardSendWasFromField)
     return FALSE;
 
   turnDuelist = gActiveEffect.turnRow == 7 ? INACTIVE_DUELIST : ACTIVE_DUELIST;
@@ -197,16 +192,11 @@ void ActivateYubelEvolution(void)
   u8 turnDuelist = gActiveEffect.turnRow == 7 ? INACTIVE_DUELIST : ACTIVE_DUELIST;
   u8 hideEffectText;
 
-  if (gYubelSelfDestructActive || gYubelSuppressGyEvolution) {
-    gYubelSelfDestructActive = FALSE;
-    gYubelSuppressGyEvolution = FALSE;
-    gGraveyardSendWasFromField = FALSE;
-    return;
-  }
+  gYubelLeftFieldPending = FALSE;
 
   hideEffectText = gHideEffectText;
   gHideEffectText = FALSE;
-  Duel_ShowCardEffectText(YUBEL, CARD_EFFECT_TEXT_YUBEL_POPUP_2);
+  Duel_ShowCardEffectText(YUBEL, CARD_EFFECT_TEXT_YUBEL_POPUP_3);
   gHideEffectText = hideEffectText;
 
   if (IsDuelOver() == TRUE)
@@ -244,9 +234,19 @@ unsigned char ShouldActivateYubelTerrorEvolution(void)
 void ActivateYubelTerrorEvolution(void)
 {
   u8 turnDuelist = gActiveEffect.turnRow == 7 ? INACTIVE_DUELIST : ACTIVE_DUELIST;
+  u8 hideEffectText;
 
   gYubelTerrorLeftFieldPending = FALSE;
-  Duel_ShowEffectText(YUBEL_TERROR_INCARNATE);
+
+  hideEffectText = gHideEffectText;
+  gHideEffectText = FALSE;
+  Duel_ShowCardEffectText(YUBEL_TERROR_INCARNATE,
+                          CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_3);
+  gHideEffectText = hideEffectText;
+
+  if (IsDuelOver() == TRUE)
+    return;
+
   GetGraveCardAndClearGrave(turnDuelist);
   TrySpecialSummonEvolution(turnDuelist, YUBEL_THE_ULTIMATE_NIGHTMARE);
 }

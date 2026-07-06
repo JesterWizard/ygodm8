@@ -264,7 +264,7 @@ def validate_manifest(manifest: object) -> dict:
     cards = manifest.get("cards")
     if not isinstance(cards, list):
         _fail("Manifest must contain a top-level 'cards' array.")
-    description_pages_max = 4
+    description_pages_max = 5
 
     seen_consts: set[str] = set()
     validated = []

@@ -448,6 +448,7 @@ void InitBoard__Replacement(void) {
   ClearDesKangarooPending();
   ClearAbsorbingKidFromTheSkyPending();
   ClearCoffinSellerPending();
+  Yubel_ClearBattlePending();
   ClearDarkRoomPending();
   ClearFirePrincessPending();
   ElementalHeroAbsoluteZero_ResetPendingState();

@@ -62,6 +62,7 @@ void AI_Main__Replacement(void)
     FinishGraveyardDrawBattleResolve();
     ResolveElementalHeroCoreBattledEffect();
     ResolveElementalHeroIceEdgeBattleEffect();
+    ResolveYubelAttackedReflectEffect();
     ResolveElementalHeroSunriseDestroyEffect();
     PlayActionSoundEffect();
     CheckWinConditionFINAL();

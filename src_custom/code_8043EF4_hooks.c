@@ -1245,6 +1245,7 @@ void sub_8044570__Replacement(void)
      * survives into PlayerTurnMain (inline resolve was wiped by state = 0). */
     ResolveElementalHeroCoreBattledEffect();
     ResolveElementalHeroIceEdgeBattleEffect();
+    ResolveYubelAttackedReflectEffect();
     ResolveElementalHeroSunriseDestroyEffect();
     }
   } else {
@@ -1377,6 +1378,7 @@ void TryAttackWithMonster__Replacement(void)
      * survives into PlayerTurnMain (inline resolve was wiped by state = 0). */
     ResolveElementalHeroCoreBattledEffect();
     ResolveElementalHeroIceEdgeBattleEffect();
+    ResolveYubelAttackedReflectEffect();
     ResolveElementalHeroSunriseDestroyEffect();
   }
 }
