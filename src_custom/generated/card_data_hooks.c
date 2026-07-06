@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1116] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1119] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1128,9 +1128,12 @@ const u8 gCardLockAfterActivation_Hook[1116] APPEND_RODATA = {
   [0x0459] = 0,
   [0x045A] = 1,
   [0x045B] = 1,
+  [0x045C] = 1,
+  [0x045D] = 1,
+  [0x045E] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1116] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1119] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2247,9 +2250,12 @@ const u8 gCardEffectUsage_Hook[1116] APPEND_RODATA = {
   [0x0459] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x045A] = EFFECT_USAGE_NONE,
   [0x045B] = EFFECT_USAGE_NONE,
+  [0x045C] = EFFECT_USAGE_NONE,
+  [0x045D] = EFFECT_USAGE_NONE,
+  [0x045E] = EFFECT_USAGE_NONE,
 };
 
-const u8 gCardSelectableOnce_Hook[1116] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1119] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3366,9 +3372,12 @@ const u8 gCardSelectableOnce_Hook[1116] APPEND_RODATA = {
   [0x0459] = 1,
   [0x045A] = 0,
   [0x045B] = 0,
+  [0x045C] = 0,
+  [0x045D] = 0,
+  [0x045E] = 0,
 };
 
-const CardData gCardData_NEW[1116] APPEND_RODATA = {
+const CardData gCardData_NEW[1119] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -18243,5 +18252,47 @@ const CardData gCardData_NEW[1116] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {7, 0, 8, 2, 8, 9, 1, 2},
     .description = gDescription_PrematureBurial,
+  },
+  [0x045C] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 4,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {7, 8, 3, 7, 1, 3, 9, 3},
+    .description = gDescription_Yubel,
+  },
+  [0x045D] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 11,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {0, 4, 7, 7, 9, 0, 9, 1},
+    .description = gDescription_YubelTerrorIncarnate,
+  },
+  [0x045E] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 150,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 12,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 1, 7, 6, 4, 7, 0, 0},
+    .description = gDescription_YubelTheUltimateNightmare,
   },
 };

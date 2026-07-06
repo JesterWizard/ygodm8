@@ -382,6 +382,23 @@ _kernel_malloc_ewram gPendingSasukeSamurai3DrawDuelist, 1
 _kernel_malloc_ewram gPendingNeedleBurrowerController, 1
 @ Level of the monster Needle Burrower destroyed in battle (damage = level * 500 at resolve).
 _kernel_malloc_ewram gPendingNeedleBurrowerLevel, 1
+@ TRUE while Yubel evolution special summons bypass the normal SS lock.
+_kernel_malloc_ewram gYubelOwnEffectSummon, 1
+@ TRUE when Yubel destroys itself during its End Phase tribute check.
+_kernel_malloc_ewram gYubelSelfDestructActive, 1
+@ Set when Yubel self-destructs; consumed when GY evolution scan is suppressed.
+_kernel_malloc_ewram gYubelSuppressGyEvolution, 1
+@ TRUE when face-up Terror Incarnate left the monster field.
+_kernel_malloc_ewram gYubelTerrorLeftFieldPending, 1
+@ Fixed row/col for Ultimate Nightmare post-battle destroy, else YUBEL_PENDING_DESTROY_NONE.
+_kernel_malloc_ewram gPendingYubelUltimateDestroyRow, 1
+_kernel_malloc_ewram gPendingYubelUltimateDestroyCol, 1
+@ Fixed row/col/owner while Yubel End Phase tribute targeting is active.
+_kernel_malloc_ewram gYubelTributeOriginRow, 1
+_kernel_malloc_ewram gYubelTributeOriginCol, 1
+_kernel_malloc_ewram gYubelTributeOwner, 1
+@ TRUE after this turn's Yubel/Terror End Phase chain has been started.
+_kernel_malloc_ewram gYubelEndPhaseResolvedThisTurn, 1
 @ Fixed monster row for a pending Hyper Hammerhead bounce, else 0xFF.
 _kernel_malloc_ewram gPendingHyperHammerheadRow, 1
 @ Fixed monster column for a pending Hyper Hammerhead bounce.

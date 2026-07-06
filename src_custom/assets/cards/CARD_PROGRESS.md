@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 315 |
-| Art ready, needs manifest | 238 |
+| In game (manifest + art) | 318 |
+| Art ready, needs manifest | 235 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **555** |
 
@@ -337,6 +337,9 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `COURT_OF_JUSTICE` | Court of Justice | `court_of_justice.png` |
 | `HECATRICE` | Hecatrice | `hecatrice.png` |
 | `PREMATURE_BURIAL` | Premature Burial | `premature_burial.png` |
+| `YUBEL` | Yubel | `yubel.png` |
+| `YUBEL_TERROR_INCARNATE` | Yubel - Terror Incarnate | `yubel_terror_incarnate.png` |
+| `YUBEL_THE_ULTIMATE_NIGHTMARE` | Yubel - The Ultimate Nightmare | `yubel_the_ultimate_nightmare.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -577,9 +580,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
 - [ ] `WOUGHTWEILER` — `woughtweiler.png`
 - [ ] `YELLOW_GADGET` — `yellow_gadget.png`
-- [ ] `YUBEL` — `yubel.png`
-- [ ] `YUBEL_TERROR_INCARNATE` — `yubel_terror_incarnate.png`
-- [ ] `YUBEL_THE_ULTIMATE_NIGHTMARE` — `yubel_the_ultimate_nightmare.png`
 
 ## Todo — in manifest, missing art
 

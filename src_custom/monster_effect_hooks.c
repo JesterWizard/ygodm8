@@ -57,6 +57,7 @@
 #include "the_grand_jupiter.h"
 #include "the_blazing_mars.h"
 #include "athena.h"
+#include "yubel.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -729,6 +730,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1
               || gDuelCursor.state == DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2
               || gDuelCursor.state == DUEL_CURSOR_ATHENA_COST_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_YUBEL_TRIBUTE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_PICK_ZONE)
             break;
           UpdateDuelGfxExceptField();

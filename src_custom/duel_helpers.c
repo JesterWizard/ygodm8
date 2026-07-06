@@ -37,6 +37,7 @@
 #include "the_suppression_pluto.h"
 #include "elemental_hero_core.h"
 #include "the_supremacy_sun.h"
+#include "yubel.h"
 #include "chimeratech_overdragon.h"
 #include "fusion_duel.h"
 #include "the_tyrant_neptune.h"
@@ -269,8 +270,12 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
   if (cardId == THE_SUPREMACY_SUN && gTheSupremacySunOwnEffectSummon)
     return FALSE;
 
+  if (Yubel_IsEvolutionForm(cardId) && gYubelOwnEffectSummon)
+    return FALSE;
+
   return cardId == DARK_DUST_SPIRIT || cardId == THE_TYRANT_NEPTUNE
-      || cardId == THE_BIG_SATURN || cardId == THE_SUPREMACY_SUN;
+      || cardId == THE_BIG_SATURN || cardId == THE_SUPREMACY_SUN
+      || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
@@ -1229,7 +1234,9 @@ u8 CanMonsterBeDestroyedByBattle(u16 cardId, u8 duelist, u16 battleAtk, u16 oppo
 
   if (cardId == REAPER_ON_THE_NIGHTMARE || cardId == SPIRIT_REAPER
       || cardId == ELEMENTAL_HERO_PHOENIX_ENFORCER
-      || cardId == ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER)
+      || cardId == ELEMENTAL_HERO_SHINING_PHOENIX_ENFORCER
+      || cardId == YUBEL || cardId == YUBEL_TERROR_INCARNATE
+      || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE)
     return FALSE;
 
   return TRUE;
@@ -2299,6 +2306,14 @@ void Duel_SetupPickZone(PickZoneValidator validator, PickZoneResolver resolver,
   gPickZoneState.resolver = resolver;
   gPickZoneState.canceller = canceller;
   gPickZoneState.aiPicker = aiPicker;
+}
+
+void Duel_ClearPickZone(void)
+{
+  gPickZoneState.validator = NULL;
+  gPickZoneState.resolver = NULL;
+  gPickZoneState.canceller = NULL;
+  gPickZoneState.aiPicker = NULL;
 }
 
 void Duel_EnterPickZoneTargeting(void)

@@ -316,6 +316,9 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [COURT_OF_JUSTICE] = gActivationDescription_CourtOfJustice_Popup1,
   [HECATRICE] = gActivationDescription_Hecatrice_Popup1,
   [PREMATURE_BURIAL] = gActivationDescription_PrematureBurial_Popup1,
+  [YUBEL] = gActivationDescription_Yubel_Popup1,
+  [YUBEL_TERROR_INCARNATE] = gActivationDescription_YubelTerrorIncarnate_Popup1,
+  [YUBEL_THE_ULTIMATE_NIGHTMARE] = gActivationDescription_YubelTheUltimateNightmare_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -658,6 +661,10 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_COURT_OF_JUSTICE_POPUP_1] = gActivationDescription_CourtOfJustice_Popup1,
   [CARD_EFFECT_TEXT_HECATRICE_POPUP_1] = gActivationDescription_Hecatrice_Popup1,
   [CARD_EFFECT_TEXT_PREMATURE_BURIAL_POPUP_1] = gActivationDescription_PrematureBurial_Popup1,
+  [CARD_EFFECT_TEXT_YUBEL_POPUP_1] = gActivationDescription_Yubel_Popup1,
+  [CARD_EFFECT_TEXT_YUBEL_POPUP_2] = gActivationDescription_Yubel_Popup2,
+  [CARD_EFFECT_TEXT_YUBEL_TERROR_INCARNATE_POPUP_1] = gActivationDescription_YubelTerrorIncarnate_Popup1,
+  [CARD_EFFECT_TEXT_YUBEL_THE_ULTIMATE_NIGHTMARE_POPUP_1] = gActivationDescription_YubelTheUltimateNightmare_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

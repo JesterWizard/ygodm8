@@ -4,7 +4,9 @@
 #include "card.h"
 #include "duel.h"
 #include "duel_b_menu.h"
+#include "duel_helpers.h"
 #include "duel_opponent_hand_scroll.h"
+#include "yubel.h"
 
 #define OPPONENT_BACKROW 0
 
@@ -272,6 +274,9 @@ static void BMenuMainVanilla(void) {
           return;
         case B_MENU_TURN_END:
           PlayMusic(SFX_SELECT);
+          UpdateDuelGfxExceptField();
+          if (!Yubel_ConfirmTurnEndFromMenu())
+            return;
           gIsPlayerTurnOver = 1;
           UpdateDuelGfxExceptField();
           return;
@@ -346,6 +351,9 @@ static void BMenuMainWithSurrender(void) {
           return;
         case B_MENU_TURN_END:
           PlayMusic(SFX_SELECT);
+          UpdateDuelGfxExceptField();
+          if (!Yubel_ConfirmTurnEndFromMenu())
+            return;
           gIsPlayerTurnOver = 1;
           UpdateDuelGfxExceptField();
           return;

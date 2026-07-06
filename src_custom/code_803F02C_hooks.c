@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "debug_ai_mode.h"
 #include "debug_ruleset.h"
+#include "yubel.h"
 #include "timed_duel.h"
 #include "duel_helpers.h"
 #include "the_dark_door.h"
@@ -302,6 +303,55 @@ static unsigned char ProcessInput__Replacement(void) {
   return 0;
 }
 
+void Duel_RunPickZoneInputLoop(void)
+{
+  u8 y;
+
+  if (gDuelCursor.state != DUEL_CURSOR_PICK_ZONE && gPickZoneState.validator != NULL
+      && IsDuelOver() != TRUE)
+    Duel_EnterPickZoneTargeting();
+
+  if (gDuelCursor.state != DUEL_CURSOR_PICK_ZONE || IsDuelOver() == TRUE)
+    return;
+
+  InitButtonMaps();
+  while (gDuelCursor.state == DUEL_CURSOR_PICK_ZONE && IsDuelOver() != TRUE) {
+    y = gDuelCursor.currentY;
+    switch (ProcessInput__Replacement()) {
+      case 1:
+        MoveCursorUp();
+        DisplayCardInfoBar();
+        sub_8041E70(y, gDuelCursor.currentY);
+        break;
+      case 2:
+        MoveCursorDown();
+        DisplayCardInfoBar();
+        sub_8041E70(y, gDuelCursor.currentY);
+        break;
+      case 3:
+        MoveCursorLeft();
+        DisplayCardInfoBar();
+        sub_8041E70(y, gDuelCursor.currentY);
+        break;
+      case 4:
+        MoveCursorRight();
+        DisplayCardInfoBar();
+        sub_8041E70(y, gDuelCursor.currentY);
+        break;
+      case 5:
+        HandleAButtonAction();
+        break;
+      case 8:
+        HandleBButtonAction();
+        WaitForVBlank();
+        break;
+      default:
+        WaitForVBlank();
+        break;
+    }
+  }
+}
+
 LYN_REPLACE_CHECK(sub_803FBCC);
 unsigned char sub_803FBCC__Replacement(unsigned char a, unsigned char b) {
   if (gRuntimeConfig.disable_element_system == TRUE)
@@ -509,6 +559,15 @@ void PlayerTurnMain__Replacement(void) {
   }
 
   DebugRuleset_TryEnforceMustPlayMonsterRule();
+  if (IsDuelOver() == TRUE)
+    return;
+
+  ResolveYubelEndPhaseEffectsAtTurnEnd();
+  if (IsDuelOver() == TRUE)
+    return;
+
+  if (gPickZoneState.validator != NULL)
+    Duel_RunPickZoneInputLoop();
   if (IsDuelOver() == TRUE)
     return;
 

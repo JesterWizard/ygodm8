@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 315
+#define NUM_CUSTOM_NAME_SORT_CARDS 318
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -320,6 +320,9 @@ static const u8 sDivineSanctuarySortName[] APPEND_RODATA = "Divine Sanctuary";
 static const u8 sCourtOfJusticeSortName[] APPEND_RODATA = "Court of Justice";
 static const u8 sHecatriceSortName[] APPEND_RODATA = "Hecatrice";
 static const u8 sPrematureBurialSortName[] APPEND_RODATA = "Premature Burial";
+static const u8 sYubelSortName[] APPEND_RODATA = "Yubel";
+static const u8 sYubelTerrorIncarnateSortName[] APPEND_RODATA = "Yubel - Terror Incarnate";
+static const u8 sYubelTheUltimateNightmareSortName[] APPEND_RODATA = "Yubel - The Ultimate Nightmare";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x040B, // A Legendary Ocean
@@ -635,6 +638,9 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0367, // White Magician Pikeru
   0x03DC, // World Suppression
   0x035B, // Yata-Garasu
+  0x045C, // Yubel
+  0x045D, // Yubel - Terror Incarnate
+  0x045E, // Yubel - The Ultimate Nightmare
   0x03D4, // Zaborg the Thunder Monarch
   0x044F, // Zeriel
 };
@@ -953,8 +959,11 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   311, // White Magician Pikeru
   312, // World Suppression
   313, // Yata-Garasu
-  314, // Zaborg the Thunder Monarch
-  315, // Zeriel
+  314, // Yubel
+  315, // Yubel - Terror Incarnate
+  316, // Yubel - The Ultimate Nightmare
+  317, // Zaborg the Thunder Monarch
+  318, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -1594,6 +1603,12 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sHecatriceSortName;
   if (cardId == 0x045B)
     return (u8 *)sPrematureBurialSortName;
+  if (cardId == 0x045C)
+    return (u8 *)sYubelSortName;
+  if (cardId == 0x045D)
+    return (u8 *)sYubelTerrorIncarnateSortName;
+  if (cardId == 0x045E)
+    return (u8 *)sYubelTheUltimateNightmareSortName;
 
   return gCardNames[cardId];
 }

@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "dynamic_equip.h"
 #include "graveyard_effects.h"
+#include "yubel.h"
 #include "elemental_hero_flash.h"
 #include "familiar_knight.h"
 #include "giant_rat.h"
@@ -72,6 +73,10 @@ unsigned char ShouldActivateMaraudingCaptain(void);
 void ActivateMaraudingCaptain(void);
 unsigned char ShouldActivatePetenTheDarkClown(void);
 void ActivatePetenTheDarkClown(void);
+unsigned char ShouldActivateYubelEvolution(void);
+void ActivateYubelEvolution(void);
+unsigned char ShouldActivateYubelTerrorEvolution(void);
+void ActivateYubelTerrorEvolution(void);
 unsigned char ShouldActivateGiantRat(void);
 void ActivateGiantRat(void);
 unsigned char ShouldActivateTheThingInTheCrater(void);
@@ -211,6 +216,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = PETEN_THE_DARK_CLOWN,
     .shouldActivate = ShouldActivatePetenTheDarkClown,
     .activate = ActivatePetenTheDarkClown,
+  },
+  {
+    .cardId = YUBEL,
+    .shouldActivate = ShouldActivateYubelEvolution,
+    .activate = ActivateYubelEvolution,
+  },
+  {
+    .cardId = YUBEL_TERROR_INCARNATE,
+    .shouldActivate = ShouldActivateYubelTerrorEvolution,
+    .activate = ActivateYubelTerrorEvolution,
   },
   {
     .cardId = GIANT_RAT,

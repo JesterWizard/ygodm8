@@ -22,6 +22,7 @@
 #include "the_big_saturn.h"
 #include "the_grand_jupiter.h"
 #include "the_supremacy_sun.h"
+#include "yubel.h"
 
 #define gShieldAndSwordActive (*(u8 *)0x02022EBC)
 
@@ -68,6 +69,7 @@ unsigned char ShouldActivateUnstoppableExodiaIncarnateTurnEffect(void);
 void ActivateUnstoppableExodiaIncarnateTurnEffect(void);
 unsigned char ShouldActivateBlueEyesChaosDragonTurnEffect(void);
 void ActivateBlueEyesChaosDragonTurnEffect(void);
+void ResolveYubelEndPhaseEffectsAtTurnEnd(void);
 
 void TryActivatingTurnEffects(void);
 void sub_802ACC0(void);
@@ -296,6 +298,7 @@ void TryActivatingTurnEffects__Replacement(void) {
   gActiveEffect.turn = WhoseTurn();
   gShieldAndSwordActive = FALSE;
   ResetTheGrandJupiterEndPhaseFlags();
+  Yubel_ClearTurnState();
   ClearCostDown();
   ResetUltimateOfferingTurnState();
   CourtOfJustice_ResetTurnState();

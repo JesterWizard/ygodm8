@@ -8,6 +8,7 @@
 #include "expanded_graveyard.h"
 #include "graveyard_effects.h"
 #include "permanent_effect.h"
+#include "yubel.h"
 
 void TryActivatingTurnEffects(void);
 void TryAttackVoicing(void);
@@ -67,4 +68,6 @@ void AI_Main__Replacement(void)
     CheckWinConditionExodia();
     TryActivatingPermanentEffects();
   }
+
+  ResolveYubelEndPhaseEffectsAtTurnEnd();
 }

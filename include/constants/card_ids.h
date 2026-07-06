@@ -1117,11 +1117,14 @@
 #define COURT_OF_JUSTICE                         0x0459
 #define HECATRICE                                0x045A
 #define PREMATURE_BURIAL                         0x045B
+#define YUBEL                                    0x045C
+#define YUBEL_TERROR_INCARNATE                   0x045D
+#define YUBEL_THE_ULTIMATE_NIGHTMARE             0x045E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x045C
-#define NUM_CUSTOM_CARDS                        0x013B
+#define NUM_TOTAL_CARDS                         0x045F
+#define NUM_CUSTOM_CARDS                        0x013E
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

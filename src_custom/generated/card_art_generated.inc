@@ -1268,6 +1268,18 @@ static const unsigned char sPrematureBurialBigArt[] __attribute__((section(".app
 static const unsigned short sPrematureBurialBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/premature_burial.gbapal");
 static const unsigned char sPrematureBurialMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/premature_burial.lz");
 
+static const unsigned char sYubelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yubel.huff");
+static const unsigned short sYubelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yubel.gbapal");
+static const unsigned char sYubelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yubel.lz");
+
+static const unsigned char sYubelTerrorIncarnateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yubel_terror_incarnate.huff");
+static const unsigned short sYubelTerrorIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yubel_terror_incarnate.gbapal");
+static const unsigned char sYubelTerrorIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yubel_terror_incarnate.lz");
+
+static const unsigned char sYubelTheUltimateNightmareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yubel_the_ultimate_nightmare.huff");
+static const unsigned short sYubelTheUltimateNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yubel_the_ultimate_nightmare.gbapal");
+static const unsigned char sYubelTheUltimateNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yubel_the_ultimate_nightmare.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1586,6 +1598,9 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0459] = sCourtOfJusticeBigArt,
   [0x045A] = sHecatriceBigArt,
   [0x045B] = sPrematureBurialBigArt,
+  [0x045C] = sYubelBigArt,
+  [0x045D] = sYubelTerrorIncarnateBigArt,
+  [0x045E] = sYubelTheUltimateNightmareBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1906,6 +1921,9 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0459] = sCourtOfJusticeBigPalette,
   [0x045A] = sHecatriceBigPalette,
   [0x045B] = sPrematureBurialBigPalette,
+  [0x045C] = sYubelBigPalette,
+  [0x045D] = sYubelTerrorIncarnateBigPalette,
+  [0x045E] = sYubelTheUltimateNightmareBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2226,6 +2244,9 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0459] = 0,
   [0x045A] = 0,
   [0x045B] = 0,
+  [0x045C] = 0,
+  [0x045D] = 0,
+  [0x045E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2546,4 +2567,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0459] = sCourtOfJusticeMiniArt,
   [0x045A] = sHecatriceMiniArt,
   [0x045B] = sPrematureBurialMiniArt,
+  [0x045C] = sYubelMiniArt,
+  [0x045D] = sYubelTerrorIncarnateMiniArt,
+  [0x045E] = sYubelTheUltimateNightmareMiniArt,
 };

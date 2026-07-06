@@ -29,6 +29,7 @@
 #include "nightmare_wheel.h"
 #include "dust_tornado.h"
 #include "ectoplasmer.h"
+#include "yubel.h"
 #include "amazoness_tiger.h"
 #include "elemental_hero_great_tornado.h"
 #include "elemental_hero_absolute_zero.h"
@@ -236,7 +237,8 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
 {
   return cardId == RARE_METAL_DRAGON || cardId == FENRIR
       || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
-      || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING;
+      || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
+      || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -1510,6 +1512,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_ATHENA_COST_TARGET:
       TrySelectAthenaCostTarget();
       break;
+    case DUEL_CURSOR_YUBEL_TRIBUTE_TARGET:
+      TrySelectYubelTributeTarget();
+      break;
     case DUEL_CURSOR_PICK_ZONE:
       Duel_HandlePickZoneA();
       break;
@@ -1539,6 +1544,7 @@ void HandleBButtonAction__Replacement(void)
     case DUEL_CURSOR_CANNON_SOLDIER_TARGET:
     case DUEL_CURSOR_MAN_THRO_TRO_TARGET:
     case DUEL_CURSOR_ECTOPLASMER_TARGET:
+    case DUEL_CURSOR_YUBEL_TRIBUTE_TARGET:
     case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE1:
     case DUEL_CURSOR_AMAZONESS_ARCHER_TRIBUTE2:
       PlayMusic(SFX_FORBIDDEN);

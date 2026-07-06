@@ -3,6 +3,7 @@
 #include "card_passives.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "yubel.h"
 #include "blowback_dragon.h"
 #include "black_luster_soldier_envoy_of_the_beginning.h"
 #include "breaker_the_magical_warrior.h"
@@ -70,6 +71,7 @@ static u8 IsMonsterEffectTargetingCursorState(u8 state)
     case DUEL_CURSOR_ELEMENTAL_HERO_PLASMA_VICE_TARGET:
     case DUEL_CURSOR_THE_GRAND_JUPITER_ABSORB_TARGET:
     case DUEL_CURSOR_ATHENA_COST_TARGET:
+    case DUEL_CURSOR_YUBEL_TRIBUTE_TARGET:
     case DUEL_CURSOR_PICK_ZONE:
       return TRUE;
     default:

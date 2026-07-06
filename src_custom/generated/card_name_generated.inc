@@ -316,6 +316,9 @@ static const u8 sDivineSanctuaryName[] __attribute__((section(".append_assets"))
 static const u8 sCourtOfJusticeName[] __attribute__((section(".append_assets"))) = "Court of Justice";
 static const u8 sHecatriceName[] __attribute__((section(".append_assets"))) = "Hecatrice";
 static const u8 sPrematureBurialName[] __attribute__((section(".append_assets"))) = "Premature Burial";
+static const u8 sYubelName[] __attribute__((section(".append_assets"))) = "Yubel";
+static const u8 sYubelTerrorIncarnateName[] __attribute__((section(".append_assets"))) = "Yubel - Terror Incarnate";
+static const u8 sYubelTheUltimateNightmareName[] __attribute__((section(".append_assets"))) = "Yubel - The Ultimate Nightmare";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -954,6 +957,12 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHecatriceName;
   if (cardId == 0x045B)
     return (u8 *)sPrematureBurialName;
+  if (cardId == 0x045C)
+    return (u8 *)sYubelName;
+  if (cardId == 0x045D)
+    return (u8 *)sYubelTerrorIncarnateName;
+  if (cardId == 0x045E)
+    return (u8 *)sYubelTheUltimateNightmareName;
 
   return gCardNames[cardId];
 }

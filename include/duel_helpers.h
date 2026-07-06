@@ -226,6 +226,11 @@ void Duel_HandlePickZoneB(void);
 // Resolve effect for AI (uses registered callbacks).
 void Duel_ResolvePickZoneForAi(void);
 
+// Block until PickZone targeting finishes (player end-of-turn effects).
+void Duel_RunPickZoneInputLoop(void);
+
+void Duel_ClearPickZone(void);
+
 void Sorl_MarkActivatedThisTurn(void);
 void Sorl_TryDecrementAfterTurnEnd(void);
 

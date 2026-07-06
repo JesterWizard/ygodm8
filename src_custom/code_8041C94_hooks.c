@@ -38,6 +38,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "coffin_seller.h"
 #include "reaper_on_the_nightmare.h"
 #include "spirit_reaper.h"
+#include "yubel.h"
 #include "dark_room_of_nightmare.h"
 
 void sub_8040B4C(void);
@@ -364,6 +365,7 @@ void sub_8040EF0__Replacement(void) {
   ResolveSasukeSamurai3BattleEffect();
   ResolveNeedleBurrowerBattleEffect();
   ResolveHyperHammerheadBattleEffect();
+  ResolveYubelUltimateNightmareBattleEffect();
   ResolveDDWarriorBattleEffect();
   ResolveDesKangarooBattleEffect();
   ResolveAbsorbingKidFromTheSkyBattleEffect();

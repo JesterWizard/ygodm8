@@ -51,6 +51,7 @@
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
 #include "constants/card_ids.h"
+#include "yubel.h"
 #include "custom_field_spell.h"
 #include "constants/custom_field_spells.h"
 
@@ -178,6 +179,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
 
   ApplySanctuaryInTheSkyBattleDamageProtection();
   ApplyAmazonessSwordsWomanBattleDamageRedirect();
+  ApplyYubelBattleEffects();
 
   if (sActionData.playerCardId == STONE_STATUE_OF_THE_AZTECS && sActionData.id == 5) {
     damage = gUnk2023EA0.unk0[1].initialLifePoints - gDuelLifePoints[DUEL_OPPONENT];

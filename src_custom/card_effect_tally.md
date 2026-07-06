@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `291` effects
+- `294` effects
 
 ## Tally
 
@@ -334,6 +334,9 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Iofiel` | `src_custom/activated_effects/iofiel.c` |
 | `activated_effects` | `Archlord Kristya` | `src_custom/activated_effects/archlord_kristya.c` |
 | `spell_effects` | `Monster Reborn` | `src_custom/spell_effects/monster_reborn.c` |
+| `battle_effects` | `Yubel` | `src_custom/battle_effects/yubel.c` |
+| `turn_effects` | `Yubel` | `src_custom/turn_effects/yubel.c` |
+| `permanent_effects` | `Yubel` | `src_custom/permanent_effects/yubel.c` |
 
 ## Notes
 

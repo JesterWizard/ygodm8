@@ -5,6 +5,7 @@
 #include "duel_helpers.h"
 #include "elemental_hero_core.h"
 #include "the_supremacy_sun.h"
+#include "yubel.h"
 #include "the_big_saturn.h"
 #include "graveyard_effects.h"
 
@@ -38,6 +39,8 @@ void NoteGraveyardMonsterSend(struct DuelCard *zone)
   gGraveyardSendWasFromField = ZoneIsHandSlot(zone) ? FALSE : TRUE;
   ClearElementalHeroCoreReviveIfHandSend(zone);
   MarkTheSupremacySunDestroyedFromField(zone);
+  Yubel_NoteGraveyardMonsterSend(zone);
+  Yubel_NoteMonsterLeftField(zone);
   NoteTheBigSaturnGraveyardSend(zone);
 }
 
@@ -56,7 +59,8 @@ u8 CardDefersGraveyardEffectUntilBattleFinish(u16 cardId)
   return CardTriggersDrawOnFieldDestroy(cardId) || cardId == FAMILIAR_KNIGHT
       || cardId == ELEMENTAL_HERO_FLASH || cardId == KAISER_GLIDER || cardId == PETEN_THE_DARK_CLOWN
       || cardId == GIANT_RAT || cardId == THE_THING_IN_THE_CRATER
-      || cardId == ELEMENTAL_HERO_CORE;
+      || cardId == ELEMENTAL_HERO_CORE || cardId == YUBEL
+      || cardId == YUBEL_TERROR_INCARNATE;
 }
 
 static u8 GraveyardScanDuelistToFixed(u8 duelist)

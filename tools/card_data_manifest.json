@@ -20765,6 +20765,88 @@
       "effect_texts": {
         "popup_1": "Pay 800 LP and special summon 1 monster from your Graveyard."
       }
+    },
+    {
+      "card_const": "YUBEL",
+      "card_name": "Yubel",
+      "atk": 0,
+      "def": 0,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 8, 3, 7, 1, 3, 9, 3],
+      "description": {
+        "symbol": "gDescription_Yubel",
+        "pages": [
+          "Cannot be destroyed in battle or suffer battle damage.",
+          "If this card is attacked face up, deal the damage back to",
+          "your opponent. Sacrifice 1 other monster or destroy.",
+          "this card. If destroyed, summon Yubel Terror Incarnate."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Sacrifice 1 other monster or destroy this card.",
+        "popup_2": "If destroyed outside of its own effect, summon Yubel Terror Incarnate from your hand, Deck, or GY."
+      }
+    },
+    {
+      "card_const": "YUBEL_TERROR_INCARNATE",
+      "card_name": "Yubel - Terror Incarnate",
+      "atk": 0,
+      "def": 0,
+      "level": 11,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 4, 7, 7, 9, 0, 9, 1],
+      "description": {
+        "symbol": "gDescription_YubelTerrorIncarnate",
+        "pages": [
+          "Cannot be Normal Summoned or Set.",
+          "Must be Special Summoned by \"Yubel\" only.",
+          "Cannot be destroyed by battle.",
+          "No Battle Damage from battles involving this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Attacked in face-up ATK: inflict its ATK to your opponent. End Phase: destroy all other monsters. Leaves field: Special Summon Ultimate Nightmare."
+      }
+    },
+    {
+      "card_const": "YUBEL_THE_ULTIMATE_NIGHTMARE",
+      "card_name": "Yubel - The Ultimate Nightmare",
+      "atk": 0,
+      "def": 0,
+      "level": 12,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 1, 7, 6, 4, 7, 0, 0],
+      "description": {
+        "symbol": "gDescription_YubelTheUltimateNightmare",
+        "pages": [
+          "Cannot be Normal Summoned or Set.",
+          "Special Summon by Terror Incarnate only.",
+          "Cannot be destroyed by battle.",
+          "Battles in ATK: inflict its ATK as damage and destroy it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "No Battle Damage from battles involving this card."
+      }
     }
   ]
 }
