@@ -145,6 +145,10 @@ CARD_DATA_GENERATED_SRC := src_custom/generated/card_data_hooks.c
 CARD_ACTIVATION_TEXT_GENERATED := src_custom/generated/card_activation_text_generated.inc
 CARD_ACTIVATION_TEXT_LOOKUP_GENERATED := src_custom/generated/card_activation_text_lookup_generated.inc
 CARD_EFFECT_TEXTS_H := include/constants/card_effect_texts.h
+SPELL_EFFECT_DISPATCH_GENERATOR := tools/generate_spell_effect_dispatch.py
+SPELL_EFFECT_DISPATCH_GENERATED := src_custom/generated/spell_effect_dispatch_decls.inc src_custom/generated/spell_effect_dispatch_cases.inc src_custom/generated/spell_activation_gates.c include/spell_activation_gates.h
+SPELL_EFFECT_DISPATCH_STAMP := $(BUILD_DIR)/.spell_effect_dispatch.stamp
+SPELL_EFFECT_SOURCES := $(wildcard src_custom/spell_effects/*.c)
 EVENTS_YAML := events/vanilla/vanilla_events.yaml
 EVENTS_CATALOG := events/vanilla/vanilla_event_catalog.md
 EVENTS_C_DIR := events/scripts
@@ -329,6 +333,13 @@ src_custom/generated/card_art_generated.inc: $(CARD_ART_STAMP)
 	@test -f $@
 
 $(CARD_DESCRIPTION_GENERATED) src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED) $(CARD_EFFECT_TEXTS_H): $(CARD_GENERATED_STAMP)
+
+$(SPELL_EFFECT_DISPATCH_STAMP): $(SPELL_EFFECT_SOURCES) $(SPELL_EFFECT_DISPATCH_GENERATOR) | tools-rules
+	@echo "SPELL   effect dispatch tables"
+	python3 $(SPELL_EFFECT_DISPATCH_GENERATOR) --stamp $@
+
+$(SPELL_EFFECT_DISPATCH_GENERATED): $(SPELL_EFFECT_DISPATCH_STAMP)
+	@test -f $@
 	@test -f $@
 
 $(DUELIST_REWARDS_GENERATED): $(DUELIST_REWARD_MANIFEST) $(DUELIST_REWARD_GENERATOR)
@@ -437,7 +448,9 @@ $(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
 $(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,debug/debug_menu_match_setter,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,debug/debug_menu_scene,$(DEBUG_MENU_SCENE_TABLE)))
-$(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
+$(eval $(call custom_object_dep,spell_effect_hooks,$(SPELL_EFFECT_DISPATCH_STAMP)))
+$(eval $(call custom_object_dep,code_8043EF4_hooks,$(SPELL_EFFECT_DISPATCH_STAMP)))
+$(eval $(call custom_object_dep,generated/spell_activation_gates,$(SPELL_EFFECT_DISPATCH_STAMP)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
 $(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))

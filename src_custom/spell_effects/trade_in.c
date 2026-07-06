@@ -4,7 +4,6 @@
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
 #include "spell_effects.h"
-#include "trade_in.h"
 
 #define TRADE_IN_DRAW_COUNT 2
 #define TRADE_IN_DISCARD_LEVEL 8

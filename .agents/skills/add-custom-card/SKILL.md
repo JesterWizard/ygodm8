@@ -18,6 +18,7 @@ These are automatic once the manifest entry exists — **skip codebase explorati
 | Description byte data | Regenerated into `src_custom/card_description_data_generated.inc` |
 | Mini art (24×24) | Derived from 80×80 PNG unless a manual mini exists |
 | `trunk_hooks.c`, `deck_menu_hooks.c` | Custom cards piggyback existing hooks |
+| Spell dispatch / activation gates | `tools/generate_spell_effect_dispatch.py` → `src_custom/generated/spell_effect_dispatch_*.inc`, `spell_activation_gates.c` (run via `make`) |
 | Draw / destroy / LP / summon boilerplate | Use `include/duel_helpers.h` — do not reinvent |
 | **Next cost / total cards / last card** | Read `tools/.card_state` (written by `write_manifest()`) |
 | **Session state** | Read `documentation/CARD_STATE.md` — latest session in 1 tool call |
@@ -28,7 +29,7 @@ Search when **classifying or implementing effects** (grep similar cards in `src_
 
 ```
 [ ] 1. Fetch card data — try YGOProDeck first, Yugipedia fallback
-[ ] 2. Scaffold manifest: `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --runtime-hand 1`
+[ ] 2. Scaffold manifest (+ optional wire): `python3 tools/add_custom_card.py --passcode XXXXXXXX --write --type spell --wire --runtime-hand 1`
 [ ] 3. Check art: `512x512/<stem>.png` (preferred) or `80x80/<stem>.png`
 [ ] 4. Implement effects (required for spells/traps/effect monsters — see Step 6)
 [ ] 5. Build: `make test-cards-link` (or `make test-cards-build` for full ROM)
@@ -241,10 +242,10 @@ Cards with **multiple effects** (e.g. FLIP + ignition) may need more than one `-
 ### 6b — Find a similar card, then wire
 
 1. **Grep** `src_custom/*_effects/` for the same verb (burn, draw, destroy, tribute, search, flip, etc.) or a card with similar text.
-2. **Scaffold:** `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>` — creates the `.c` file, patches the dispatcher, updates `card_effect_tally.md`.
+2. **Scaffold:** `python3 tools/add_custom_card.py --passcode <passcode> --write --type <type> --wire --runtime-hand 1` — manifest, runtime hand, effect `.c`, and (for spells) regenerated dispatch in one step. Or: `python3 tools/wire_card_effect.py <CARD_CONST> --type <type>` after manifest exists.
 3. **Implement** — replace every `/* TODO */` in the new file. Copy structure from the similar card; adapt targets, amounts, and conditions to match the real card text. Do **not** leave stub bodies.
 4. **Manifest fields** (after wiring):
-   - Spells/traps: `spellEffect: 2` / `trapEffect: 0` is normal; routing is by card ID.
+   - Spells: no `spell_effect_hooks.c` edit — dispatch is generated from `src_custom/spell_effects/*.c` at build time. Export `u8 CanActivate*(void)` in the spell file when the card needs an activation gate (auto-wired via generated table).
    - Activated monsters: append `MONSTER_EFFECT_<CARD>` to `include/constants/monster_effects.h`, set manifest `monsterEffect`, add `effect_usage` (`once`, `once_per_turn`, etc.) and `activation_description` when the card ignites from the menu.
    - Field spells: `"customFieldSpell": "CUSTOM_FIELD_SPELL_*"` only when using the custom field-spell pipeline (see `documentation/custom-field-spells.md`).
 5. **Non-template paths** — hand/GY quick effects, equip registration, flip triggers: read **card-effect-hook-placement** and grep the card name in `src_custom/` before inventing a new entry point.

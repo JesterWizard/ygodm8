@@ -33,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EFFECT_CONFIG = {
     "spell": {
         "dir": "src_custom/spell_effects",
-        "dispatcher": "src_custom/spell_effect_hooks.c",
+        "dispatcher": None,
         "label": "spell_effects",
         "template": """#include "global.h"
 #include "common-chax.h"
@@ -353,6 +353,17 @@ def find_tally_insertion(content: str, category: str) -> int:
     return len(content)
 
 
+def regenerate_spell_dispatch() -> None:
+    script = ROOT / "tools" / "generate_spell_effect_dispatch.py"
+    if not script.is_file():
+        print(f"  Warning: {script} not found", file=sys.stderr)
+        return
+    import subprocess
+
+    subprocess.run([sys.executable, str(script)], check=True)
+    print("  Regenerated spell effect dispatch tables", file=sys.stderr)
+
+
 def patch_dispatcher(dispatcher_path: Path, card_const: str, config: dict) -> bool:
     if config["dispatcher"] is None:
         return True  # No dispatcher to patch
@@ -456,7 +467,7 @@ def main() -> int:
                 hook_file.write_text(config["template"].format(const=card_const))
                 print(f"  Created {hook_file}", file=sys.stderr)
 
-    # 2. Patch dispatcher
+    # 2. Patch dispatcher (spell dispatch is generated — see generate_spell_effect_dispatch.py)
     if config["dispatcher"]:
         dispatcher_path = ROOT / config["dispatcher"]
         if dispatcher_path.is_file():
@@ -465,6 +476,10 @@ def main() -> int:
             else:
                 if not patch_dispatcher(dispatcher_path, card_const, config):
                     return 1
+    elif args.type == "spell" and not args.dry_run:
+        regenerate_spell_dispatch()
+    elif args.type == "spell" and args.dry_run:
+        print("  Would regenerate spell effect dispatch tables", file=sys.stderr)
 
     # 3. Update tally
     if not args.no_tally:
@@ -479,7 +494,7 @@ def main() -> int:
     print(f"  2. In manifest, set card's type fields appropriately", file=sys.stderr)
     if args.type in ("activated",):
         print(f"  3. Add MONSTER_EFFECT_* to include/constants/monster_effects.h if not already present", file=sys.stderr)
-    print(f"  4. Run: make test-cards-build", file=sys.stderr)
+    print(f"  4. Run: make test-cards-link", file=sys.stderr)
 
     return 0
 

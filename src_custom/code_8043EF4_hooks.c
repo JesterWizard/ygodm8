@@ -20,6 +20,7 @@
 #include "royal_decree.h"
 #include "card_passives.h"
 #include "duel_helpers.h"
+#include "spell_activation_gates.h"
 #include "duel_attack_restrictions.h"
 #include "duel_activated_backrow.h"
 #include "sasuke_samurai_2.h"
@@ -73,7 +74,6 @@
 #include "mobius_the_frost_monarch.h"
 #include "ryu_kishin_clown.h"
 #include "embodiment_of_apophis.h"
-#include "guardian_treasure.h"
 #include "precious_cards_from_beyond.h"
 #include "ojama_trio.h"
 #include "hayabusa_knight.h"
@@ -100,26 +100,10 @@
 #include "soul_taker.h"
 #include "creature_swap.h"
 #include "negative_energy.h"
-#include "confiscation.h"
-#include "delinquent_duo.h"
-#include "the_forceful_sentry.h"
-#include "meteor_of_destruction.h"
-#include "final_countdown.h"
-#include "future_fusion.h"
-#include "chaos_greed.h"
-#include "trade_in.h"
-#include "knights_title.h"
-#include "dedication_through_light_and_darkness.h"
 #include "tribute_doll.h"
-#include "the_flute_of_summoning_dragon.h"
-#include "book_of_life.h"
-#include "monster_reborn.h"
-#include "e_emergency_call.h"
 #include "r_righteous_justice.h"
 #include "valhalla_hall_of_the_fallen.h"
 #include "court_of_justice.h"
-#include "autonomous_action_unit.h"
-#include "premature_burial.h"
 #include "book_of_moon.h"
 #include "h_heated_heart.h"
 #include "book_of_taiyou.h"
@@ -722,124 +706,8 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
-  if (id == GUARDIAN_TREASURE && !CanActivateGuardianTreasure()) {
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+  if (TryRejectSpellActivationGate(id))
     return;
-  }
-
-  if (id == CONFISCATION && !CanActivateConfiscation()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == DELINQUENT_DUO && !CanActivateDelinquentDuo()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == THE_FORCEFUL_SENTRY && !CanActivateTheForcefulSentry()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == METEOR_OF_DESTRUCTION && !CanActivateMeteorOfDestruction()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == FINAL_COUNTDOWN && !CanActivateFinalCountdown()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == FUTURE_FUSION && !CanActivateFutureFusion()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == CHAOS_GREED && !CanActivateChaosGreed()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == TRADE_IN && !CanActivateTradeIn()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == KNIGHTS_TITLE && !CanActivateKnightsTitle()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == DEDICATION_THROUGH_LIGHT_AND_DARKNESS && !CanActivateDedicationThroughLightAndDarkness()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == THE_FLUTE_OF_SUMMONING_DRAGON && !CanActivateTheFluteOfSummoningDragon()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == BOOK_OF_LIFE && !CanActivateBookOfLife()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == MONSTER_REBORN && !CanActivateMonsterReborn()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == E_EMERGENCY_CALL && !CanActivateEEmergencyCall()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
 
   if (id == VALHALLA_HALL_OF_THE_FALLEN && zone->isLocked
       && !CanActivateValhallaHallOfTheFallenIgnition(zone)) {
@@ -861,22 +729,6 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if (id == R_RIGHTEOUS_JUSTICE
       && !CanActivateRRighteousJustice(gDuelCursor.currentY, gDuelCursor.currentX)) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == AUTONOMOUS_ACTION_UNIT && !CanActivateAutonomousActionUnit()) {
-    PlayMusic(SFX_FORBIDDEN);
-    gDuelCursor.state = 0;
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
-
-  if (id == PREMATURE_BURIAL && !CanActivatePrematureBurial()) {
     PlayMusic(SFX_FORBIDDEN);
     gDuelCursor.state = 0;
     DisplayCardInfoBar();

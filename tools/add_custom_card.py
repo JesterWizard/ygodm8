@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 import textwrap
 import urllib.error
@@ -271,6 +272,14 @@ def set_runtime_hand(hand_slot: int, card_const: str) -> None:
     RUNTIME_CONFIG_C.write_text(updated)
 
 
+def wire_card_effect(card_const: str, effect_type: str) -> None:
+    script = ROOT / "tools" / "wire_card_effect.py"
+    subprocess.run(
+        [sys.executable, str(script), card_const, "--type", effect_type],
+        check=True,
+    )
+
+
 def append_manifest(entry: dict) -> None:
     manifest = load_manifest_json(MANIFEST_PATH)
     if not isinstance(manifest, dict) or not isinstance(manifest.get("cards"), list):
@@ -289,7 +298,20 @@ def main() -> int:
     parser.add_argument("--write", action="store_true", help="Append entry to card_data_manifest.json")
     parser.add_argument("--no-desc", action="store_true", help="Use stub descriptions instead of API card text")
     parser.add_argument("--runtime-hand", type=int, metavar="N", help="Set configs/runtime.c card_in_hand_N")
+    parser.add_argument(
+        "--type",
+        choices=["spell", "trap", "activated", "permanent", "battle", "turn", "passive"],
+        help="Effect hook type; use with --wire",
+    )
+    parser.add_argument(
+        "--wire",
+        action="store_true",
+        help="Run wire_card_effect.py after scaffold (requires --type)",
+    )
     args = parser.parse_args()
+
+    if args.wire and not args.type:
+        parser.error("--wire requires --type")
 
     manifest = load_manifest_json(MANIFEST_PATH)
     if not isinstance(manifest, dict):
@@ -330,6 +352,8 @@ def main() -> int:
                 print("Warning: --runtime-hand without --write updates runtime only", file=sys.stderr)
             set_runtime_hand(args.runtime_hand, entry["card_const"])
             print(f"Set card_in_hand_{args.runtime_hand} = {entry['card_const']}", file=sys.stderr)
+        if args.wire:
+            wire_card_effect(entry["card_const"], args.type)
         return 0
 
     if lookup_name is None and lookup_passcode is None:
@@ -365,6 +389,8 @@ def main() -> int:
             print("Warning: --runtime-hand without --write updates runtime only", file=sys.stderr)
         set_runtime_hand(args.runtime_hand, entry["card_const"])
         print(f"Set card_in_hand_{args.runtime_hand} = {entry['card_const']}", file=sys.stderr)
+    if args.wire:
+        wire_card_effect(entry["card_const"], args.type)
     return 0
 
 
