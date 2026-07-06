@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1126] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1127] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1138,9 +1138,10 @@ const u8 gCardLockAfterActivation_Hook[1126] APPEND_RODATA = {
   [0x0463] = 1,
   [0x0464] = 1,
   [0x0465] = 1,
+  [0x0466] = 0,
 };
 
-const u8 gCardEffectUsage_Hook[1126] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1127] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2267,9 +2268,10 @@ const u8 gCardEffectUsage_Hook[1126] APPEND_RODATA = {
   [0x0463] = EFFECT_USAGE_NONE,
   [0x0464] = EFFECT_USAGE_NONE,
   [0x0465] = EFFECT_USAGE_NONE,
+  [0x0466] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const u8 gCardSelectableOnce_Hook[1126] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1127] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3396,9 +3398,10 @@ const u8 gCardSelectableOnce_Hook[1126] APPEND_RODATA = {
   [0x0463] = 0,
   [0x0464] = 0,
   [0x0465] = 0,
+  [0x0466] = 0,
 };
 
-const CardData gCardData_NEW[1126] APPEND_RODATA = {
+const CardData gCardData_NEW[1127] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -3417,7 +3420,7 @@ const CardData gCardData_NEW[1126] APPEND_RODATA = {
     .def = 2500,
     .cost = 95,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 8,
+    .level = 4,
     .type = TYPE_DRAGON,
     .color = NORMAL_CARD,
     .monsterEffect = 0,
@@ -18413,5 +18416,19 @@ const CardData gCardData_NEW[1126] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {6, 8, 7, 7, 4, 3, 7, 9},
     .description = gDescription_CyberBarrierDragon,
+  },
+  [0x0466] = {
+    .atk = 2400,
+    .def = 1800,
+    .cost = 150,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 4,
+    .type = TYPE_MACHINE,
+    .color = EFFECT_CARD,
+    .monsterEffect = 154,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {0, 4, 1, 6, 2, 0, 8, 8},
+    .description = gDescription_CyberLaserDragon,
   },
 };

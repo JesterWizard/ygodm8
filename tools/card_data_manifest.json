@@ -21038,6 +21038,34 @@
       "effect_texts": {
         "popup_1": "Once per turn, while this card is in Attack Position, your opponent's next attack is negated."
       }
+    },
+    {
+      "card_const": "CYBER_LASER_DRAGON",
+      "card_name": "Cyber Laser Dragon",
+      "atk": 2400,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CYBER_LASER_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 4, 1, 6, 2, 0, 8, 8],
+      "description": {
+        "symbol": "gDescription_CyberLaserDragon",
+        "pages": [
+          "Once per turn, you can destroy 1 monster",
+          "with ATK or DEF equal to or higher",
+          "than the ATK of this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, destroy 1 monster with ATK or DEF >= this card's ATK."
+      },
+      "lock_after_activation": false,
+      "effect_usage": "once_per_turn"
     }
   ]
 }

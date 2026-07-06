@@ -1308,6 +1308,10 @@ static const unsigned char sCyberBarrierDragonBigArt[] __attribute__((section(".
 static const unsigned short sCyberBarrierDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_barrier_dragon.gbapal");
 static const unsigned char sCyberBarrierDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_barrier_dragon.lz");
 
+static const unsigned char sCyberLaserDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_laser_dragon.huff");
+static const unsigned short sCyberLaserDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_laser_dragon.gbapal");
+static const unsigned char sCyberLaserDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_laser_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1636,6 +1640,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0463] = sTributeDollBigArt,
   [0x0464] = sTradeInBigArt,
   [0x0465] = sCyberBarrierDragonBigArt,
+  [0x0466] = sCyberLaserDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1966,6 +1971,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0463] = sTributeDollBigPalette,
   [0x0464] = sTradeInBigPalette,
   [0x0465] = sCyberBarrierDragonBigPalette,
+  [0x0466] = sCyberLaserDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2296,6 +2302,7 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0463] = 0,
   [0x0464] = 0,
   [0x0465] = 0,
+  [0x0466] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2626,4 +2633,5 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0463] = sTributeDollMiniArt,
   [0x0464] = sTradeInMiniArt,
   [0x0465] = sCyberBarrierDragonMiniArt,
+  [0x0466] = sCyberLaserDragonMiniArt,
 };

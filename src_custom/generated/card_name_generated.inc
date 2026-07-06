@@ -326,6 +326,7 @@ static const u8 sTheWickedAvatarName[] __attribute__((section(".append_assets"))
 static const u8 sTributeDollName[] __attribute__((section(".append_assets"))) = "Tribute Doll";
 static const u8 sTradeInName[] __attribute__((section(".append_assets"))) = "Trade-In";
 static const u8 sCyberBarrierDragonName[] __attribute__((section(".append_assets"))) = "Cyber Barrier Dragon";
+static const u8 sCyberLaserDragonName[] __attribute__((section(".append_assets"))) = "Cyber Laser Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -984,6 +985,8 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTradeInName;
   if (cardId == 0x0465)
     return (u8 *)sCyberBarrierDragonName;
+  if (cardId == 0x0466)
+    return (u8 *)sCyberLaserDragonName;
 
   return gCardNames[cardId];
 }

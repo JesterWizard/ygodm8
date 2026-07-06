@@ -43,6 +43,7 @@
 #include "invader_of_the_throne.h"
 #include "harpies_pet_baby_dragon.h"
 #include "blowback_dragon.h"
+#include "cyber_laser_dragon.h"
 #include "cats_ear_tribe.h"
 #include "spirit_ryu.h"
 #include "graveyard_effects.h"
@@ -1410,6 +1411,9 @@ void HandleAButtonAction__Replacement(void)
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
       TrySelectBlowbackDragonTarget();
       break;
+    case DUEL_CURSOR_CYBER_LASER_DRAGON_TARGET:
+      TrySelectCyberLaserDragonTarget();
+      break;
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
       TrySelectBlackLusterSoldierEnvoyTarget();
       break;
@@ -1540,6 +1544,9 @@ void HandleBButtonAction__Replacement(void)
       break;
     case DUEL_CURSOR_BLOWBACK_DRAGON_TARGET:
       CancelBlowbackDragonTargeting();
+      break;
+    case DUEL_CURSOR_CYBER_LASER_DRAGON_TARGET:
+      CancelCyberLaserDragonTargeting();
       break;
     case DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET:
       CancelBlackLusterSoldierEnvoyTargeting();

@@ -4,6 +4,7 @@
 #include "configs/runtime.h"
 #include "duel_helpers.h"
 #include "constants/monster_effects.h"
+#include "constants/card_ids.h"
 #include "cannon_soldier.h"
 #include "monster_effect_usage.h"
 #include "soul_exchange.h"
@@ -31,6 +32,7 @@
 #include "elemental_hero_bubbleman.h"
 #include "harpies_pet_baby_dragon.h"
 #include "blowback_dragon.h"
+#include "cyber_laser_dragon.h"
 #include "elemental_hero_rampart_blaster.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_wildedge.h"
@@ -89,6 +91,8 @@ unsigned char CanActivateHARPIES_PET_BABY_DRAGON(void);
 void ActivateHARPIES_PET_BABY_DRAGONEffect(void);
 unsigned char CanActivateBLOWBACK_DRAGON(void);
 void ActivateBLOWBACK_DRAGONEffect(void);
+unsigned char CanActivateCYBER_LASER_DRAGON(void);
+void ActivateCYBER_LASER_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -182,6 +186,9 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_BLOWBACK_DRAGON:
         canActivate = CanActivateBLOWBACK_DRAGON();
+        break;
+      case MONSTER_EFFECT_CYBER_LASER_DRAGON:
+        canActivate = CanActivateCYBER_LASER_DRAGON();
         break;
       case MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER:
         canActivate = CanActivateElementalHeroRampartBlaster();
@@ -452,6 +459,11 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_CYBER_LASER_DRAGON) {
+    ActivateCYBER_LASER_DRAGONEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER) {
     ActivateElementalHeroRampartBlasterEffect();
     return;
@@ -668,6 +680,7 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == AMAZONESS_ARCHER
           || zone->id == HARPIES_PET_BABY_DRAGON
           || zone->id == BLOWBACK_DRAGON
+          || zone->id == CYBER_LASER_DRAGON
           || zone->id == ELEMENTAL_HERO_RAMPART_BLASTER
           || zone->id == ELEMENTAL_HERO_TEMPEST
           || zone->id == ELEMENTAL_HERO_WILDEDGE
@@ -733,6 +746,7 @@ FAILED:
               || gDuelCursor.state == DUEL_CURSOR_INVADER_OF_THE_THRONE_TARGET
               || gDuelCursor.state == DUEL_CURSOR_HARPIES_PET_BABY_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLOWBACK_DRAGON_TARGET
+              || gDuelCursor.state == DUEL_CURSOR_CYBER_LASER_DRAGON_TARGET
               || gDuelCursor.state == DUEL_CURSOR_BLACK_LUSTER_SOLDIER_ENVOY_TARGET
               || gDuelCursor.state == DUEL_CURSOR_TERRA_FIRMA_TARGET
               || gDuelCursor.state == DUEL_CURSOR_ELEMENTAL_HERO_WILD_WINGMAN_TARGET

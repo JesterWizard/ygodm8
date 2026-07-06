@@ -156,6 +156,7 @@ enum {
   MONSTER_EFFECT_THE_BLAZING_MARS,
   MONSTER_EFFECT_ATHENA,
   MONSTER_EFFECT_THE_WICKED_ERASER,
+  MONSTER_EFFECT_CYBER_LASER_DRAGON,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -225,5 +226,7 @@ extern void ActivateTheBlazingMarsEffect(void);
 extern u8 CanSpecialSummonTheBlazingMarsFromHandOrGrave(void);
 extern unsigned char CanActivateATHENA(void);
 extern void ActivateATHENAEffect(void);
+extern unsigned char CanActivateCYBER_LASER_DRAGON(void);
+extern void ActivateCYBER_LASER_DRAGONEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
