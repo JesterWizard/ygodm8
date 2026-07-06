@@ -151,22 +151,19 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist, enum FusionRecoveryPickKind kind, u
   if (menuCount == 1)
     return (s8)gyIndexMap[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sFusionRecoveryPickLabels, ARRAY_COUNT(sFusionRecoveryPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return -1;
   }
 
   chosenGyIndex = (s8)gyIndexMap[gDeckMenu.currentPos];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
   return chosenGyIndex;

@@ -249,22 +249,19 @@ static u8 PickHeroDeckIndex(u8 turnDuelist)
   if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER || gHideEffectText)
     return deckIndexMap[0];
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sStratosPickLabels, ARRAY_COUNT(sStratosPickLabels))) {
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return 0xFF;
   }
 
   deckIndex = deckIndexMap[gDeckMenu.currentPos];
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+  DECKMENU_RESTORE();
   DeckMenu_EndDuelTrunkView();
 
   return deckIndex;

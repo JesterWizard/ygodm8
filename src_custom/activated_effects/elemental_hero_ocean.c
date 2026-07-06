@@ -443,14 +443,12 @@ static u8 PickOceanTargetForPlayer(const struct OceanTargetRef *refs, u8 refCoun
     return TRUE;
   }
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+  DECKMENU_SAVE();
 
   LoadOceanTargetMenu(refs, refCount);
   menuIndex = PickOceanTargetMenuIndex();
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+  DECKMENU_RESTORE();
 
   if (menuIndex < 0)
     return FALSE;

@@ -23,35 +23,10 @@ u8 CanActivateDelinquentDuo(void)
   return gDuelLifePoints[DUEL_OPPONENT] >= DELINQUENT_DUO_LP_COST;
 }
 
-static u8 PickRandomOpponentHandZone(void)
-{
-  u8 i;
-  u8 occupied = Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
-  u8 chosen;
-  u8 seen = 0;
-
-  if (occupied == 0)
-    return 0xFF;
-
-  chosen = RandRangeU8(0, occupied - 1);
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gTurnHands[INACTIVE_DUELIST][i]->id == CARD_NONE)
-      continue;
-
-    if (seen == chosen)
-      return i;
-
-    seen++;
-  }
-
-  return 0xFF;
-}
-
 static void ResolveForActivePlayer(void)
 {
   s8 chosenZone;
-  u8 randomZone;
+  s8 randomZone;
 
   chosenZone = SelectExchangeHandCard(gTurnHands[INACTIVE_DUELIST]);
 
@@ -61,8 +36,8 @@ static void ResolveForActivePlayer(void)
   Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
 
   if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0) {
-    randomZone = PickRandomOpponentHandZone();
-    if (randomZone != 0xFF)
+    randomZone = Duel_PickRandomHandZone(INACTIVE_DUELIST);
+    if (randomZone >= 0)
       Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][randomZone], INACTIVE_DUELIST, FALSE);
   }
 
@@ -71,17 +46,17 @@ static void ResolveForActivePlayer(void)
 
 static void ResolveForInactivePlayer(void)
 {
-  u8 chosenZone;
+  s8 chosenZone;
 
-  chosenZone = PickRandomOpponentHandZone();
-  if (chosenZone == 0xFF)
+  chosenZone = Duel_PickRandomHandZone(INACTIVE_DUELIST);
+  if (chosenZone < 0)
     return;
 
   Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
 
   if (Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]) > 0) {
-    chosenZone = PickRandomOpponentHandZone();
-    if (chosenZone != 0xFF)
+    chosenZone = Duel_PickRandomHandZone(INACTIVE_DUELIST);
+    if (chosenZone >= 0)
       Duel_DestroyZone(gTurnHands[INACTIVE_DUELIST][chosenZone], INACTIVE_DUELIST, FALSE);
   }
 }

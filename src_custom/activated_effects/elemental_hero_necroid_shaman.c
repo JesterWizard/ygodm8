@@ -371,13 +371,11 @@ static void TryReviveOpponentGraveyardMonster(u8 allowPlayerPicker)
     for (i = 0; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
       sortedMenuCards[i] = CARD_NONE;
 
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+    DECKMENU_SAVE();
 
     menuIndex = PickOpponentGyMonsterMenuIndex(sortedMenuCards);
 
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+    DECKMENU_RESTORE();
 
     if (menuIndex < 0)
       return;

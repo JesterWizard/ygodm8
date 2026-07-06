@@ -239,15 +239,13 @@ static const struct FusionRecipe *PlayerPickFusionRecipe(const u8 *recipeIndices
   if (recipeIndices == NULL || count == 0)
     return NULL;
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   LoadRecipePickMenu(recipeIndices, count);
 
   if (!DeckMenuMainPickConfirmWithLabels(
           sFutureFusionRecipeLabels, ARRAY_COUNT(sFutureFusionRecipeLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     return NULL;
   }
 
@@ -259,8 +257,7 @@ static const struct FusionRecipe *PlayerPickFusionRecipe(const u8 *recipeIndices
     }
   }
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   if (chosenRecipeIdx == 0xFF)
     return NULL;
@@ -295,8 +292,7 @@ static s8 PlayerPickDeckMaterialSource(const struct FusionRecipe *recipe, u16 ne
   if (menuCount == 1)
     return (s8)sourceIndexMap[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   for (i = 0; i < FUTURE_FUSION_PICK_MENU_CAPACITY; i++)
     gDeckMenu.cards[i] = CARD_NONE;
@@ -312,15 +308,13 @@ static s8 PlayerPickDeckMaterialSource(const struct FusionRecipe *recipe, u16 ne
 
   if (!DeckMenuMainPickConfirmWithLabels(
           sFutureFusionMaterialLabels, ARRAY_COUNT(sFutureFusionMaterialLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     return -1;
   }
 
   chosen = (s8)sourceIndexMap[gDeckMenu.currentPos];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   return chosen;
 }

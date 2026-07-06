@@ -1,8 +1,8 @@
 #include "global.h"
 #include "common-chax.h"
+#include "soul_taker.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
-#include "soul_taker.h"
 #include "spell_effects.h"
 
 #define SOUL_TAKER_LP 1000
@@ -15,7 +15,7 @@ void TryActivatingPermanentEffects(void);
 void SetCursorToCardDest(void);
 void ActivateSpellEffect(void);
 
-static u8 IsValidSoulTakerTargetZone(u8 fixedRow, u8 fixedCol)
+static u8 IsValidTargetZone(u8 fixedRow, u8 fixedCol)
 {
   struct DuelCard *zone;
 
@@ -29,12 +29,12 @@ static u8 IsValidSoulTakerTargetZone(u8 fixedRow, u8 fixedCol)
   return GetTypeGroup(zone->id) == TYPE_GROUP_MONSTER;
 }
 
-static u8 FindFirstSoulTakerTarget(u8 *outCol)
+static u8 FindFirstTarget(u8 *outCol)
 {
   u8 col;
 
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    if (!IsValidSoulTakerTargetZone(OPPONENT_MONSTER_ROW, col))
+    if (!IsValidTargetZone(OPPONENT_MONSTER_ROW, col))
       continue;
 
     *outCol = col;
@@ -55,14 +55,14 @@ u8 FieldHasSoulTakerTarget(u8 originFixedRow, u8 originFixedCol)
 
   (void)originFixedRow;
   (void)originFixedCol;
-  return FindFirstSoulTakerTarget(&col);
+  return FindFirstTarget(&col);
 }
 
 void BeginSoulTakerTargeting(u8 originFixedRow, u8 originFixedCol)
 {
   u8 targetCol;
 
-  if (!FindFirstSoulTakerTarget(&targetCol))
+  if (!FindFirstTarget(&targetCol))
     return;
 
   Duel_ShowEffectTextTyped(SOUL_TAKER, 1);
@@ -85,7 +85,7 @@ void TrySelectSoulTakerTarget(void)
   u8 originRow = gDuelCursor.destY;
   u8 originCol = gDuelCursor.destX;
 
-  if (!IsValidSoulTakerTargetZone(targetRow, targetCol)) {
+  if (!IsValidTargetZone(targetRow, targetCol)) {
     PlayMusic(SFX_FORBIDDEN);
     WaitForVBlank();
     return;
@@ -121,7 +121,7 @@ static void SoulTaker_ResolveBody(void)
 
   Duel_DestroyZone(target, INACTIVE_DUELIST, FALSE);
 
-  if (Duel_ChangeLp(ACTIVE_DUELIST, SOUL_TAKER_LP, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ChangeLp(INACTIVE_DUELIST, SOUL_TAKER_LP, FALSE) == DUEL_ACTION_DUEL_OVER)
     return;
 
   Duel_DestroyZone(spellZone, ACTIVE_DUELIST, TRUE);
@@ -129,7 +129,7 @@ static void SoulTaker_ResolveBody(void)
 
 APPEND_TEXT void EffectSoulTaker(void)
 {
-  if (!IsValidSoulTakerTargetZone(gSpellEffectData.row1, gSpellEffectData.col1)) {
+  if (!IsValidTargetZone(gSpellEffectData.row1, gSpellEffectData.col1)) {
     if (!gHideEffectText)
       PlayMusic(SFX_FORBIDDEN);
     return;

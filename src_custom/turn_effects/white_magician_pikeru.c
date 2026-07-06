@@ -4,15 +4,7 @@
 
 unsigned char ShouldActivateWhiteMagicianPikeruTurnEffect(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != WHITE_MAGICIAN_PIKERU)
-    return FALSE;
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  return zone->isFaceUp;
+  return Duel_ShouldActivateTurnEffect(WHITE_MAGICIAN_PIKERU, FALSE, FALSE);
 }
 
 void ActivateWhiteMagicianPikeruTurnEffect(void)

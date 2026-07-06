@@ -1,14 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Cyber Barrier Dragon fast_ai sim mask + popup fix
+**Last worked on:** 2026-07-06 — Soul Taker: rewritten as standard cursor-targeting card (like Block Attack)
 
 **Files touched:**
-- `asm/ram_map_ewram.s`
-- `src_custom/ai_simulation_hooks.c`
-- `src_custom/battle_effects/cyber_barrier_dragon.c`
-- `src_custom/ai_attack_hooks.c`
+- `src_custom/spell_effects/soul_taker.c` — rewritten from PickZone to traditional cursor targeting (IsSoulTakerCard, FieldHasSoulTakerTarget, BeginSoulTakerTargeting, TrySelectSoulTakerTarget, CancelSoulTakerTargeting, EffectSoulTaker)
+- `include/soul_taker.h` — defines DUEL_CURSOR_SOUL_TAKER_TARGET (45), declares all 6 functions
+- `src_custom/code_8043EF4_hooks.c` — added SOUL_TAKER if-block in HandlePlayerBackrowAction, A/B button case dispatch
 
-**Outcome:** `make test-cards-build` passes; AI sim no longer consumes CBD once-per-turn mask before real attack; popup forced on negate
+**How it works:** Matches the proven Block Attack pattern. HandlePlayerBackrowAction shows popup + sets cursor state. Main input loop handles movement. On A: validates target, calls ActivateSpellEffect → EffectSoulTaker → trap check → destroy target + give opponent 1000 LP + self-destruct. On B: cancel.
 
-**Open / next:**
-- playtest opponent first attack with CBD in ATK vs Tristan
+**Outcome:** `make test-cards-build` passes clean. Ready to playtest.

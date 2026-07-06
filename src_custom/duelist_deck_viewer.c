@@ -5,6 +5,7 @@
 #include "custom_decks/custom_decks.h"
 #include "deck_menu.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "event_system.h"
 #include "overworld.h"
 #include <string.h>
@@ -169,10 +170,10 @@ u8 DuelistDeckViewer_TryOpen(void) {
   if (deck == NULL)
     return FALSE;
 
-  memcpy(savedDeckMenu, &gDeckMenu, sizeof(gDeckMenu));
+  DECKMENU_SAVE();
   CopyDeckIntoMenu(deck);
   if (IsPlayerDeckNonempty() != 1) {
-    memcpy(&gDeckMenu, savedDeckMenu, sizeof(gDeckMenu));
+    DECKMENU_RESTORE();
     InitDeckData();
     return FALSE;
   }
@@ -188,7 +189,7 @@ u8 DuelistDeckViewer_TryOpen(void) {
   DeckMenuMainReadOnly();
   DisableDisplay();
 
-  memcpy(&gDeckMenu, savedDeckMenu, sizeof(gDeckMenu));
+  DECKMENU_RESTORE();
   InitDeckData();
   return TRUE;
 }

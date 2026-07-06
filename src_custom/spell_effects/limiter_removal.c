@@ -7,6 +7,9 @@
 #include "riryoku.h"
 #include "spell_effects.h"
 
+u8 gLimiterRemovalDestroyMask;
+u8 gLimiterRemovalFixedMonsterRow;
+
 static u8 MonsterQualifiesForLimiterRemoval(u16 cardId)
 {
   if (cardId == CARD_NONE)
@@ -21,21 +24,12 @@ static u8 MonsterQualifiesForLimiterRemoval(u16 cardId)
 
 void ResetLimiterRemovalState(void)
 {
-  gLimiterRemovalDestroyMask = 0;
-  gLimiterRemovalFixedMonsterRow = 0;
+  Duel_ResetDestroyMaskState(&gLimiterRemovalDestroyMask, &gLimiterRemovalFixedMonsterRow);
 }
 
 void DestroyLimiterRemovalMonstersAtEndOfTurn(void)
 {
-  u8 row;
-
-  if (gLimiterRemovalDestroyMask == 0)
-    return;
-
-  row = gLimiterRemovalFixedMonsterRow;
-  Duel_DestroyMaskedMonstersInFixedRow(row, gLimiterRemovalDestroyMask,
-                                       Duel_FixedDuelistForMonsterRow(row), FALSE);
-  ResetLimiterRemovalState();
+  Duel_DestroyMaskedMonstersFromState(&gLimiterRemovalDestroyMask, &gLimiterRemovalFixedMonsterRow);
 }
 
 APPEND_TEXT void EffectLimiterRemoval(void)
@@ -44,7 +38,7 @@ APPEND_TEXT void EffectLimiterRemoval(void)
   u8 monsterRow;
   u8 duelist = WhoseTurn();
 
-  ResetLimiterRemovalState();
+  Duel_ResetDestroyMaskState(&gLimiterRemovalDestroyMask, &gLimiterRemovalFixedMonsterRow);
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
   monsterRow = Duel_FixedMonsterRowForDuelist(duelist);
@@ -52,14 +46,15 @@ APPEND_TEXT void EffectLimiterRemoval(void)
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     struct DuelCard *zone = gFixedZones[monsterRow][i];
-    u16 atk;
 
     if (!MonsterQualifiesForLimiterRemoval(zone->id))
       continue;
 
-    atk = Duel_GetZoneFinalAtk(zone);
-    if (atk > 0)
-      AddRiryokuAtkDelta(zone, (s16)atk);
+    {
+      u16 atk = Duel_GetZoneFinalAtk(zone);
+      if (atk > 0)
+        AddRiryokuAtkDelta(zone, (s16)atk);
+    }
 
     gLimiterRemovalDestroyMask |= (1 << i);
   }

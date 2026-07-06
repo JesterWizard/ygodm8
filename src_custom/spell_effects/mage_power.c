@@ -10,14 +10,7 @@ static void MagePower_ResolveBody(void)
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
   u8 stages = CountDuelistSpellTrapBackrowCards(GetDuelistForZone(spellZone));
 
-  if (stages > MAX_ZONES_IN_ROW)
-    stages = MAX_ZONES_IN_ROW;
-
-  ApplyDynamicEquipStages(target, stages);
-  RegisterDynamicEquip(spellZone, target, MAGE_POWER, stages);
-  Duel_ActivateContinuousZone(spellZone);
-  NotifyDynamicEquipFieldChanged();
-  Duel_ShowEffectText(MAGE_POWER);
+  Duel_ResolveEquipStatBoost(target, spellZone, MAGE_POWER, stages);
 }
 
 APPEND_TEXT void EffectMagePower(void)

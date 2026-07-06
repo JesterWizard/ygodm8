@@ -4,15 +4,7 @@
 
 unsigned char ShouldActivateMysteriousPuppeteerTurnEffect(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != MYSTERIOUS_PUPPETEER)
-    return FALSE;
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  return zone->isFaceUp;
+  return Duel_ShouldActivateTurnEffect(MYSTERIOUS_PUPPETEER, FALSE, FALSE);
 }
 
 void ActivateMysteriousPuppeteerTurnEffect(void)

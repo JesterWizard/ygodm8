@@ -54,31 +54,6 @@ static void ReturnHandCardToDeck(u8 duelist, u8 handZone)
   ShuffleDeckRange(duelist, gDuelDecks[duelist].cardsDrawn, deckSize);
 }
 
-static u8 PickRandomOpponentHandZone(void)
-{
-  u8 i;
-  u8 occupied = Duel_CountCardsInHand(gTurnHands[INACTIVE_DUELIST]);
-  u8 chosen;
-  u8 seen = 0;
-
-  if (occupied == 0)
-    return 0xFF;
-
-  chosen = RandRangeU8(0, occupied - 1);
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    if (gTurnHands[INACTIVE_DUELIST][i]->id == CARD_NONE)
-      continue;
-
-    if (seen == chosen)
-      return i;
-
-    seen++;
-  }
-
-  return 0xFF;
-}
-
 static void ResolveForActivePlayer(void)
 {
   s8 chosenZone;
@@ -93,13 +68,13 @@ static void ResolveForActivePlayer(void)
 
 static void ResolveForInactivePlayer(void)
 {
-  u8 chosenZone;
+  s8 chosenZone;
 
-  chosenZone = PickRandomOpponentHandZone();
-  if (chosenZone == 0xFF)
+  chosenZone = Duel_PickRandomHandZone(INACTIVE_DUELIST);
+  if (chosenZone < 0)
     return;
 
-  ReturnHandCardToDeck(INACTIVE_DUELIST, chosenZone);
+  ReturnHandCardToDeck(INACTIVE_DUELIST, (u8)chosenZone);
 }
 
 APPEND_TEXT void EffectTheForcefulSentry(void)

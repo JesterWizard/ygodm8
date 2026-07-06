@@ -132,22 +132,19 @@ static u8 PickLevel1FairyDeckIndex(u8 turnDuelist)
   if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER)
     return PickAiLevel1FairyDeckIndex(turnDuelist);
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sIofielPickLabels, ARRAY_COUNT(sIofielPickLabels))) {
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return 0xFF;
   }
 
   deckIndex = deckIndexMap[gDeckMenu.currentPos];
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+  DECKMENU_RESTORE();
   DeckMenu_EndDuelTrunkView();
 
   return deckIndex;

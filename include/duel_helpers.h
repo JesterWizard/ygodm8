@@ -41,6 +41,18 @@ enum DuelActionResult Duel_DrawCardsUntilHandSize(u8 turnDuelist, u8 targetHandS
 enum DuelActionResult Duel_MillTopDeckCards(u8 duelist, u8 count, u8 updateGfx);
 
 enum DuelActionResult Duel_DestroyZone(struct DuelCard *zone, u8 graveyardDuelist, u8 updateGfx);
+
+#define DECKMENU_SAVE() do { \
+  u32 _i; \
+  for (_i = 0; _i < sizeof(gDeckMenu); _i++) \
+    ((u8 *)&savedDeckMenu)[_i] = ((u8 *)&gDeckMenu)[_i]; \
+} while(0)
+
+#define DECKMENU_RESTORE() do { \
+  u32 _i; \
+  for (_i = 0; _i < sizeof(gDeckMenu); _i++) \
+    ((u8 *)&gDeckMenu)[_i] = ((u8 *)&savedDeckMenu)[_i]; \
+} while(0)
 void Duel_DestroyMaskedMonstersInFixedRow(u8 fixedRow, u8 colMask, u8 graveyardDuelist, u8 updateGfx);
 enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePredicate pred,
                                                        u8 updateGfx);
@@ -48,11 +60,13 @@ enum DuelActionResult Duel_DestroyAllMonstersMatching(u8 turnRow, MonsterZonePre
 enum DuelActionResult Duel_DiscardFromHand(u8 duelist, u8 count, HandCardPredicate pred,
                                            u8 updateGfx);
 enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 updateGfx);
+s8 Duel_PickRandomHandZone(u8 turnDuelist);
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx);
 enum DuelActionResult Duel_ChangeLp(u8 targetDuelist, s32 delta, u8 updateGfx);
 
 void Duel_IncrementPermStageOnDuelistMonsters(u8 turnDuelist);
 void Duel_RefreshMonsterStatOverlays(void);
+u8 Duel_ShouldActivateTurnEffect(u16 cardId, u8 requireDefending, u8 requireAttacking);
 
 u16 Duel_ClampStat(u32 stat);
 /* ATK/DEF after stage modifier (matches vanilla GetStageModifiedStat). */
@@ -99,6 +113,9 @@ void Duel_ApplyBattleDestroyProtection(void);
 void Duel_RemapMutualDestroyBattleAnim(u8 playerDestroy, u8 opponentDestroy);
 
 void Duel_ActivateContinuousZone(struct DuelCard *zone);
+enum DuelActionResult Duel_ActivateContinuousTrapPreamble(struct DuelCard *zone, u16 trapId);
+void Duel_TryActivateBackrowTrapOnTurnStart(u16 trapId,
+                                            void (*activateBody)(struct DuelCard *));
 u16 Duel_GetZoneFinalAtk(struct DuelCard *zone);
 u8 Duel_FixedMonsterRowForDuelist(u8 fixedDuelist);
 u8 Duel_FixedDuelistForMonsterRow(u8 fixedRow);
@@ -133,6 +150,11 @@ enum DuelActionResult Duel_ChangeLpWithPrefaceText(u8 turnDuelist, s32 delta, u1
                                                    u8 textType, u8 updateGfx);
 enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroySpellGfx);
 void Duel_ShowTrapResponseText(u16 trapId, u16 originCardId);
+
+void Duel_ResetDestroyMaskState(u8 *destroyMask, u8 *fixedMonsterRow);
+void Duel_DestroyMaskedMonstersFromState(u8 *destroyMask, u8 *fixedMonsterRow);
+void Duel_ResolveEquipStatBoost(struct DuelCard *target, struct DuelCard *spellZone,
+                                u16 spellId, u8 stages);
 
 void Duel_ShowEffectText(u16 cardId);
 void Duel_ShowEffectTextTyped(u16 cardId, u8 textType);

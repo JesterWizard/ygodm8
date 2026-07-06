@@ -444,8 +444,7 @@ static s8 OverdragonPlayerPickSource(const struct FusionMaterialSource *sources,
   if (required && menuCount == 1)
     return (s8)sourceIndexMap[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   for (i = 0; i < FUSION_PICK_MENU_CAPACITY; i++)
     gDeckMenu.cards[i] = CARD_NONE;
@@ -469,8 +468,7 @@ static s8 OverdragonPlayerPickSource(const struct FusionMaterialSource *sources,
 
   currentPos = gDeckMenu.currentPos;
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   if (action == DECK_MENU_PICK_LABEL_FUSION_SUMMON)
     return OVERDRAGON_PICK_DONE;
@@ -688,16 +686,14 @@ const struct FusionRecipe *FusionDuel_PlayerPickRecipe(const u8 *recipeIndices, 
   if (count == 1)
     return &gFusionRecipes[recipeIndices[0]];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   FusionDuel_LoadPickMenu(recipeIndices, count);
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sFusionDuelPickLabels, ARRAY_COUNT(sFusionDuelPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
 
     DeckMenu_EndDuelTrunkView();
     return NULL;
@@ -711,8 +707,7 @@ const struct FusionRecipe *FusionDuel_PlayerPickRecipe(const u8 *recipeIndices, 
     }
   }
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
 
@@ -732,16 +727,14 @@ const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIn
   if (recipeIndices == NULL || count == 0)
     return NULL;
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   FusionDuel_LoadPickMenu(recipeIndices, count);
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sFusionDuelPickLabels, ARRAY_COUNT(sFusionDuelPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
 
     DeckMenu_EndDuelTrunkView();
     return NULL;
@@ -755,8 +748,7 @@ const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIn
     }
   }
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
 

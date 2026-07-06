@@ -11,10 +11,7 @@ APPEND_TEXT void EffectCardOfDemise(void)
 
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, FALSE);
 
-  while (Duel_CountCardsInHand(gTurnHands[ACTIVE_DUELIST]) < 5) {
-    if (Duel_DrawCards(ACTIVE_DUELIST, 1, FALSE) == DUEL_ACTION_DUEL_OVER)
-      break;
-  }
+  Duel_DrawCardsUntilHandSize(ACTIVE_DUELIST, 5, FALSE);
 
   QueueDelayedDuelEffect(turn, DELAYED_DUEL_EFFECT_CARD_OF_DEMISE);
   Duel_ShowEffectText(CARD_OF_DEMISE);

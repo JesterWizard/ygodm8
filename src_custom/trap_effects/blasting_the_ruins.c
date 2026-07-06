@@ -24,14 +24,7 @@ static u8 OwnerDeckHasAtMostTenCards(u8 owner)
 
 static void ActivateBlastingTheRuinsZone(struct DuelCard *zone)
 {
-  Duel_ActivateContinuousZone(zone);
-
-  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Duel_ShowEffectTextTyped(BLASTING_THE_RUINS, 3);
-
-  if (IsDuelOver() == TRUE)
+  if (Duel_ActivateContinuousTrapPreamble(zone, BLASTING_THE_RUINS) == DUEL_ACTION_DUEL_OVER)
     return;
 
   Duel_ChangeLp(ACTIVE_DUELIST, -BLASTING_THE_RUINS_DAMAGE, FALSE);
@@ -39,19 +32,8 @@ static void ActivateBlastingTheRuinsZone(struct DuelCard *zone)
 
 void TryActivateBlastingTheRuinsOnOpponentTurnStart(void)
 {
-  u8 i;
-  struct DuelCard *zone;
-
   if (!OwnerDeckHasAtMostTenCards(INACTIVE_DUELIST))
     return;
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
-    if (zone->id != BLASTING_THE_RUINS || zone->isFaceUp != FALSE)
-      continue;
-
-    ActivateBlastingTheRuinsZone(zone);
-    if (IsDuelOver() == TRUE)
-      return;
-  }
+  Duel_TryActivateBackrowTrapOnTurnStart(BLASTING_THE_RUINS, ActivateBlastingTheRuinsZone);
 }

@@ -11,14 +11,10 @@ static void ActivateGiftOfTheMysticalElfZone(struct DuelCard *zone)
   u8 monsterCount = Duel_CountFixedMonstersMatching(NULL);
   u16 heal;
 
-  Duel_ActivateContinuousZone(zone);
-
-  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ActivateContinuousTrapPreamble(zone, GIFT_OF_THE_MYSTICAL_ELF) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectTextTyped(GIFT_OF_THE_MYSTICAL_ELF, 3);
-
-  if (IsDuelOver() == TRUE || monsterCount == 0)
+  if (monsterCount == 0)
     return;
 
   heal = (u16)monsterCount * GIFT_OF_THE_MYSTICAL_ELF_LP_PER_MONSTER;
@@ -27,16 +23,5 @@ static void ActivateGiftOfTheMysticalElfZone(struct DuelCard *zone)
 
 void TryActivateGiftOfTheMysticalElfOnOpponentTurnStart(void)
 {
-  u8 i;
-  struct DuelCard *zone;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
-    if (zone->id != GIFT_OF_THE_MYSTICAL_ELF || zone->isFaceUp != FALSE)
-      continue;
-
-    ActivateGiftOfTheMysticalElfZone(zone);
-    if (IsDuelOver() == TRUE)
-      return;
-  }
+  Duel_TryActivateBackrowTrapOnTurnStart(GIFT_OF_THE_MYSTICAL_ELF, ActivateGiftOfTheMysticalElfZone);
 }

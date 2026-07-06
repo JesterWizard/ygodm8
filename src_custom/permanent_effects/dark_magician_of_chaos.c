@@ -248,12 +248,10 @@ static u8 TryReturnSelectedGraveyardSpell(u8 turnDuelist, u8 allowPlayerPicker)
   if (WhoseTurn() == DUEL_PLAYER && turnDuelist == ACTIVE_DUELIST && allowPlayerPicker) {
     s8 menuIndex;
 
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+    DECKMENU_SAVE();
 
     menuIndex = PickGraveyardSpellMenuIndex();
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+    DECKMENU_RESTORE();
 
     if (menuIndex < 0)
       return FALSE;

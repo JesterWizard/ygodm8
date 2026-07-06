@@ -203,22 +203,19 @@ static s8 PlayerPickFairyGyIndex(u8 fixedDuelist)
   if (menuCount == 1)
     return (s8)gyIndexMap[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sArchlordKristyaPickLabels, ARRAY_COUNT(sArchlordKristyaPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = savedDeckMenu[j];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return -1;
   }
 
   chosenGyIndex = GyIndexForSortedMenuPick(fixedDuelist, gDeckMenu.currentPos, menuCount);
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = savedDeckMenu[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
   return chosenGyIndex;

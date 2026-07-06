@@ -28,14 +28,10 @@ static void ActivateSecretBarrelZone(struct DuelCard *zone)
   u8 cardCount = CountActiveDuelistFieldAndHandCards();
   u16 damage;
 
-  Duel_ActivateContinuousZone(zone);
-
-  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ActivateContinuousTrapPreamble(zone, SECRET_BARREL) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectTextTyped(SECRET_BARREL, 3);
-
-  if (IsDuelOver() == TRUE || cardCount == 0)
+  if (cardCount == 0)
     return;
 
   damage = (u16)cardCount * SECRET_BARREL_DAMAGE_PER_CARD;
@@ -44,16 +40,5 @@ static void ActivateSecretBarrelZone(struct DuelCard *zone)
 
 void TryActivateSecretBarrelOnOpponentTurnStart(void)
 {
-  u8 i;
-  struct DuelCard *zone;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
-    if (zone->id != SECRET_BARREL || zone->isFaceUp != FALSE)
-      continue;
-
-    ActivateSecretBarrelZone(zone);
-    if (IsDuelOver() == TRUE)
-      return;
-  }
+  Duel_TryActivateBackrowTrapOnTurnStart(SECRET_BARREL, ActivateSecretBarrelZone);
 }

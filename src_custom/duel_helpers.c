@@ -667,8 +667,13 @@ enum DuelActionResult Duel_DiscardRandomFromHand(u8 duelist, u8 count, u8 update
       return DUEL_ACTION_DUEL_OVER;
   }
 
-  MaybeUpdateGfx(updateGfx);
+    MaybeUpdateGfx(updateGfx);
   return DUEL_ACTION_OK;
+}
+
+s8 Duel_PickRandomHandZone(u8 turnDuelist)
+{
+  return PickRandomHandZone(gTurnHands[turnDuelist]);
 }
 
 enum DuelActionResult Duel_DestroyAllHandCards(u8 duelist, u8 updateGfx)
@@ -1727,9 +1732,9 @@ enum DuelActionResult Duel_ResolveBurnSpell(u16 spellId, s32 damage, u8 destroyS
   if (result == DUEL_ACTION_DUEL_OVER)
     return result;
 
+  Duel_ShowEffectText(spellId);
   Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST,
                    destroySpellGfx);
-  Duel_ShowEffectText(spellId);
   return DUEL_ACTION_OK;
 }
 
@@ -2338,6 +2343,58 @@ void Duel_ClearPickZone(void)
   gPickZoneState.aiPicker = NULL;
 }
 
+enum DuelActionResult Duel_ActivateContinuousTrapPreamble(struct DuelCard *zone, u16 trapId)
+{
+  Duel_ActivateContinuousZone(zone);
+
+  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+    return DUEL_ACTION_DUEL_OVER;
+
+  Duel_ShowEffectTextTyped(trapId, 3);
+
+  if (IsDuelOver() == TRUE)
+    return DUEL_ACTION_DUEL_OVER;
+
+  return DUEL_ACTION_OK;
+}
+
+void Duel_TryActivateBackrowTrapOnTurnStart(u16 trapId,
+                                            void (*activateBody)(struct DuelCard *))
+{
+  u8 i;
+  struct DuelCard *zone;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
+    if (zone->id != trapId || zone->isFaceUp != FALSE)
+      continue;
+
+    activateBody(zone);
+    if (IsDuelOver() == TRUE)
+      return;
+  }
+}
+
+u8 Duel_ShouldActivateTurnEffect(u16 cardId, u8 requireDefending, u8 requireAttacking)
+{
+  struct DuelCard *zone;
+
+  if (gActiveEffect.cardId != cardId)
+    return FALSE;
+  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW)
+    return FALSE;
+
+  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
+  if (zone->isFaceUp != TRUE)
+    return FALSE;
+  if (requireDefending && zone->isDefending != TRUE)
+    return FALSE;
+  if (requireAttacking && zone->isDefending != FALSE)
+    return FALSE;
+
+  return TRUE;
+}
+
 void Duel_EnterPickZoneTargeting(void)
 {
   Duel_EnterPickZoneTargetingFromRow(gDuelCursor.destY);
@@ -2422,6 +2479,38 @@ void Duel_ResolvePickZoneForAi(void)
     return;
 
   gPickZoneState.resolver(targetRow, targetCol);
+}
+
+void Duel_ResolveEquipStatBoost(struct DuelCard *target, struct DuelCard *spellZone,
+                                u16 spellId, u8 stages)
+{
+  if (stages > MAX_ZONES_IN_ROW)
+    stages = MAX_ZONES_IN_ROW;
+
+  ApplyDynamicEquipStages(target, stages);
+  RegisterDynamicEquip(spellZone, target, spellId, stages);
+  Duel_ActivateContinuousZone(spellZone);
+  NotifyDynamicEquipFieldChanged();
+  Duel_ShowEffectText(spellId);
+}
+
+void Duel_ResetDestroyMaskState(u8 *destroyMask, u8 *fixedMonsterRow)
+{
+  *destroyMask = 0;
+  *fixedMonsterRow = 0;
+}
+
+void Duel_DestroyMaskedMonstersFromState(u8 *destroyMask, u8 *fixedMonsterRow)
+{
+  u8 row;
+
+  if (*destroyMask == 0)
+    return;
+
+  row = *fixedMonsterRow;
+  Duel_DestroyMaskedMonstersInFixedRow(row, *destroyMask,
+                                       Duel_FixedDuelistForMonsterRow(row), FALSE);
+  Duel_ResetDestroyMaskState(destroyMask, fixedMonsterRow);
 }
 
 #if defined(DUEL_HELPERS_SELF_CHECK)

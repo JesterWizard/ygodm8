@@ -184,13 +184,11 @@ static u16 PlayerPickCopiedEffectCard(void)
   u16 chosenId;
 
   /* gDeckMenu.cards is the player deck — save before overwriting for the picker. */
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   menuCount = LoadTributedEffectMonsterMenu();
   if (menuCount == 0) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     return CARD_NONE;
   }
 
@@ -198,8 +196,7 @@ static u16 PlayerPickCopiedEffectCard(void)
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sNeptuneGyPickLabels, ARRAY_COUNT(sNeptuneGyPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return CARD_NONE;
   }
@@ -209,8 +206,7 @@ static u16 PlayerPickCopiedEffectCard(void)
   if (gDeckMenu.currentPos < gDeckMenu.cardCount)
     chosenId = gDeckMenu.cards[gDeckMenu.currentPos];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
   return chosenId;
@@ -223,14 +219,12 @@ static u16 PickCopiedEffectCardForAi(void)
   u8 j;
   u16 chosenId;
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   menuCount = LoadTributedEffectMonsterMenu();
   chosenId = menuCount == 0 ? CARD_NONE : gDeckMenu.cards[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   return chosenId;
 }

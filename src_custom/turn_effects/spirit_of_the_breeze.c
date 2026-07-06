@@ -7,15 +7,7 @@
 
 unsigned char ShouldActivateSpiritOfTheBreezeTurnEffect(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != SPIRIT_OF_THE_BREEZE)
-    return FALSE;
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  return zone->isFaceUp == TRUE && zone->isDefending == FALSE;
+  return Duel_ShouldActivateTurnEffect(SPIRIT_OF_THE_BREEZE, FALSE, TRUE);
 }
 
 void ActivateSpiritOfTheBreezeTurnEffect(void)

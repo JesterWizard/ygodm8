@@ -526,20 +526,7 @@ void HandlePlayerBackrowAction__Replacement(void) {
     return;
   }
 
-  if (IsSoulTakerCard(id)) {
-    if (!FieldHasSoulTakerTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
-      PlayMusic(SFX_FORBIDDEN);
-      gDuelCursor.state = 0;
-      DisplayCardInfoBar();
-      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-      return;
-    }
 
-    BeginSoulTakerTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
-    DisplayCardInfoBar();
-    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
-    return;
-  }
 
   if (IsCreatureSwapCard(id)) {
     if (!FieldHasCreatureSwapTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
@@ -740,6 +727,21 @@ void HandlePlayerBackrowAction__Replacement(void) {
 
   if (TryActivateExecutorMakyuraTrapFromBackrow(gDuelCursor.currentY, gDuelCursor.currentX)) {
     gDuelCursor.state = 0;
+    DisplayCardInfoBar();
+    sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+    return;
+  }
+
+  if (IsSoulTakerCard(id)) {
+    if (!FieldHasSoulTakerTarget(gDuelCursor.currentY, gDuelCursor.currentX)) {
+      PlayMusic(SFX_FORBIDDEN);
+      gDuelCursor.state = 0;
+      DisplayCardInfoBar();
+      sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
+      return;
+    }
+
+    BeginSoulTakerTargeting(gDuelCursor.currentY, gDuelCursor.currentX);
     DisplayCardInfoBar();
     sub_8041E70(gDuelCursor.destY, gDuelCursor.currentY);
     return;

@@ -115,22 +115,19 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist)
     return -1;
 
   /* Always open the picker, even for a single eligible Fusion. */
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sCoreGyPickLabels, ARRAY_COUNT(sCoreGyPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return -1;
   }
 
   chosenGyIndex = (s8)gyIndexMap[gDeckMenu.currentPos];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = ((u8 *)&savedDeckMenu)[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
   return chosenGyIndex;

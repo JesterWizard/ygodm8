@@ -24,14 +24,10 @@ static void ActivateJustDesertsZone(struct DuelCard *zone)
   u8 monsterCount = CountActiveDuelistMonsters();
   u16 damage;
 
-  Duel_ActivateContinuousZone(zone);
-
-  if (Duel_DestroyZone(zone, INACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_ActivateContinuousTrapPreamble(zone, JUST_DESERTS) == DUEL_ACTION_DUEL_OVER)
     return;
 
-  Duel_ShowEffectTextTyped(JUST_DESERTS, 3);
-
-  if (IsDuelOver() == TRUE || monsterCount == 0)
+  if (monsterCount == 0)
     return;
 
   damage = (u16)monsterCount * JUST_DESERTS_DAMAGE_PER_MONSTER;
@@ -40,16 +36,5 @@ static void ActivateJustDesertsZone(struct DuelCard *zone)
 
 void TryActivateJustDesertsOnOpponentTurnStart(void)
 {
-  u8 i;
-  struct DuelCard *zone;
-
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-    zone = gTurnZones[INACTIVE_DUELIST_BACKROW][i];
-    if (zone->id != JUST_DESERTS || zone->isFaceUp != FALSE)
-      continue;
-
-    ActivateJustDesertsZone(zone);
-    if (IsDuelOver() == TRUE)
-      return;
-  }
+  Duel_TryActivateBackrowTrapOnTurnStart(JUST_DESERTS, ActivateJustDesertsZone);
 }

@@ -4579,7 +4579,7 @@
     .def = 1800,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
-    .level = 4,
+    .level = 7,
     .type = TYPE_MACHINE,
     .color = EFFECT_CARD,
     .monsterEffect = 154,

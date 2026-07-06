@@ -190,22 +190,19 @@ static s8 PlayerPickTargetableGyIndex(u8 fixedDuelist)
   if (menuCount == 1)
     return (s8)gyIndexMap[0];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&savedDeckMenu)[j] = ((u8 *)&gDeckMenu)[j];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sAthenaPickLabels, ARRAY_COUNT(sAthenaPickLabels))) {
-    for (j = 0; j < sizeof(gDeckMenu); j++)
-      ((u8 *)&gDeckMenu)[j] = savedDeckMenu[j];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return -1;
   }
 
   chosenGyIndex = (s8)gyIndexMap[gDeckMenu.currentPos];
 
-  for (j = 0; j < sizeof(gDeckMenu); j++)
-    ((u8 *)&gDeckMenu)[j] = savedDeckMenu[j];
+  DECKMENU_RESTORE();
 
   DeckMenu_EndDuelTrunkView();
   return chosenGyIndex;

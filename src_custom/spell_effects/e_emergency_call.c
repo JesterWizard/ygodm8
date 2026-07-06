@@ -166,22 +166,19 @@ static u8 PickElementalHeroDeckIndex(u8 turnDuelist)
   if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER)
     return deckIndexMap[0];
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+  DECKMENU_SAVE();
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sEmergencyCallPickLabels, ARRAY_COUNT(sEmergencyCallPickLabels))) {
-    for (i = 0; i < sizeof(gDeckMenu); i++)
-      ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+    DECKMENU_RESTORE();
     DeckMenu_EndDuelTrunkView();
     return 0xFF;
   }
 
   deckIndex = deckIndexMap[gDeckMenu.currentPos];
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+  DECKMENU_RESTORE();
   DeckMenu_EndDuelTrunkView();
 
   return deckIndex;

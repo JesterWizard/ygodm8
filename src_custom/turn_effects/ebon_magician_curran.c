@@ -6,15 +6,7 @@
 
 unsigned char ShouldActivateEbonMagicianCurranTurnEffect(void)
 {
-  struct DuelCard *zone;
-
-  if (gActiveEffect.cardId != EBON_MAGICIAN_CURRAN)
-    return FALSE;
-  if (gActiveEffect.turnRow != ACTIVE_DUELIST_MONSTER_ROW)
-    return FALSE;
-
-  zone = gTurnZones[gActiveEffect.turnRow][gActiveEffect.col];
-  return zone->isFaceUp;
+  return Duel_ShouldActivateTurnEffect(EBON_MAGICIAN_CURRAN, FALSE, FALSE);
 }
 
 void ActivateEbonMagicianCurranTurnEffect(void)

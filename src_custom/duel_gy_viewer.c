@@ -2,6 +2,7 @@
 #include "card.h"
 #include "configs/runtime.h"
 #include "duel.h"
+#include "duel_helpers.h"
 #include "duel_b_menu.h"
 #include "expanded_graveyard.h"
 #include "removed_from_play.h"
@@ -178,8 +179,7 @@ static void CardListViewerOpenLoaded(u8 cardCount)
     return;
   }
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    savedDeckMenu[i] = ((u8 *)&gDeckMenu)[i];
+  DECKMENU_SAVE();
 
   gDeckMenu.cost = 0;
   gDeckMenu.currentPos = 0;
@@ -189,8 +189,7 @@ static void CardListViewerOpenLoaded(u8 cardCount)
   PlayMusic(SFX_SELECT);
   CardListViewerMain();
 
-  for (i = 0; i < sizeof(gDeckMenu); i++)
-    ((u8 *)&gDeckMenu)[i] = savedDeckMenu[i];
+  DECKMENU_RESTORE();
 }
 
 static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,

@@ -10,14 +10,7 @@ static void UnitedWeStand_ResolveBody(void)
   struct DuelCard *spellZone = gFixedZones[gSpellEffectData.row2][gSpellEffectData.col2];
   u8 stages = CountDuelistMonsterRowCards(GetDuelistForZone(spellZone));
 
-  if (stages > MAX_ZONES_IN_ROW)
-    stages = MAX_ZONES_IN_ROW;
-
-  ApplyDynamicEquipStages(target, stages);
-  RegisterDynamicEquip(spellZone, target, UNITED_WE_STAND, stages);
-  Duel_ActivateContinuousZone(spellZone);
-  NotifyDynamicEquipFieldChanged();
-  Duel_ShowEffectText(UNITED_WE_STAND);
+  Duel_ResolveEquipStatBoost(target, spellZone, UNITED_WE_STAND, stages);
 }
 
 APPEND_TEXT void EffectUnitedWeStand(void)

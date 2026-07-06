@@ -7,15 +7,7 @@
 
 static void Hinotama_ResolveBody(void)
 {
-  Duel_ShowEffectText(HINOTAMA);
-
-  if (IsDuelOver() == TRUE)
-    return;
-
-  if (Duel_ChangeLp(INACTIVE_DUELIST, -HINOTAMA_DAMAGE, FALSE) == DUEL_ACTION_DUEL_OVER)
-    return;
-
-  Duel_DestroyZone(gTurnZones[gSpellEffectData.row1][gSpellEffectData.col1], ACTIVE_DUELIST, TRUE);
+  Duel_ResolveBurnSpell(HINOTAMA, HINOTAMA_DAMAGE, TRUE);
 }
 
 LYN_REPLACE_CHECK(EffectHinotama);
