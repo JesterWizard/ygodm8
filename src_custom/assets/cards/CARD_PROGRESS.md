@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 592 |
+| In game (manifest + art) | 591 |
 | Art ready, needs manifest | 0 |
-| In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **594** |
+| In manifest, missing art | 1 |
+| **Total PNGs in `80x80/`** | **593** |
 
 ## In game
 
@@ -178,7 +178,6 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 | `SASUKE_SAMURAI_3` | Sasuke Samurai #3 | `sasuke_samurai_3.png` |
 | `SERVANT_OF_CATABOLISM` | Servant of Catabolism | `servant_of_catabolism.png` |
-| `MAN_THRO_TRO` | Man-Thro-Thro | `man_thro_tro.png` |
 | `LEVEL_LIMIT_AREA_B` | Level Limit Area B | `level_limit_area_b.png` |
 | `SPIRIT_RYU` | Spirit Ryu | `spirit_ryu.png` |
 | `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
@@ -575,7 +574,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DESTINY_HERO_PLASMA` | Destiny HERO - Plasma | `destiny_hero_plasma.png` |
 | `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` | Blue-Eyes Alternative Ultimate Dragon | `blue_eyes_alternative_ultimate_dragon.png` |
 | `CELESTIAL_SWORD_EATOS` | Celestial Sword - Eatos | `celestial_sword_eatos.png` |
-| `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` | Exodius the Ultimate Forbidden Lord | `Exodius_The_Ultimate_Forbidden_Lord.png` |
+| `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` | Exodius the Ultimate Forbidden Lord | `exodius_the_ultimate_forbidden_lord.png` |
 | `MAJESTIC_MECH_GORYU` | Majestic Mech - Goryu | `majestic_mech_goryu.png` |
 | `NEO_BLUE_EYES_ULTIMATE_DRAGON` | Neo Blue-Eyes Ultimate Dragon | `neo_blue_eyes_ultimate_dragon.png` |
 | `REAPER_SCYTHE_DREADSCYTHE` | Reaper Scythe - Dreadscythe | `reaper_scythe_dreadscythe.png` |
@@ -598,13 +597,13 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` | Horus the Black Flame Dragon LV4 | `horus_the_black_flame_dragon_level_four.png` |
 | `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` | Horus the Black Flame Dragon LV6 | `horus_the_black_flame_dragon_level_six.png` |
 | `ANTI_SPELL_FRAGRANCE` | Anti-Spell Fragrance | `anti_spell_fragrance.png` |
-| `APPARATION` | Apparation | `Apparation.png` |
+| `APPARATION` | Apparation | `apparation.png` |
 | `DESTINY_HERO_DESTROY_DOGMA` | Destiny HERO - Destroy Dogma | `destiny_hero_destroy_dogma.png` |
 | `DOPPLEGANGER` | Doppleganger | `doppleganger.png` |
 | `DRAGONS_RAGE` | Dragon's Rage | `dragons_rage.png` |
 | `DRAIN_TIME` | Drain Time | `drain_time.png` |
 | `FIELDS_SANCTUARY` | Field's Sanctuary | `fields_sanctuary.png` |
-| `MAN_THRO_THRO` | Man-Thro-Thro | `man-thro-thro.png` |
+| `MAN_THRO_THRO` | Man-Thro-Thro | `man_thro_thro.png` |
 | `MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING` | Master Peace the True Dracoslaying King | `master_peace_the_true_dracroslaying_king.png` |
 | `MYSTIC_WOK` | Mystic Wok | `mystic_wok.png` |
 | `NIBIRU_THE_PRIMAL_BEING` | Nibiru the Primal Being | `nibiru_the_primal_being.png` |
@@ -622,7 +621,9 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 ## Todo — in manifest, missing art
 
-_No manifest entries are missing art right now._
+Manifest entry exists but `80x80/<stem>.png` is missing.
+
+- [ ] `MAN_THRO_TRO` — needs `80x80/man_thro_tro.png`
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art

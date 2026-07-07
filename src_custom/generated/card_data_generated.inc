@@ -10,6 +10,7 @@
     .spellEffect = (u8)2,
     .trapEffect = (u8)0,
     .password = {2, 3, 4, 0, 1, 8, 3, 9},
+    .description = gDescription_SenjuOfTheThousandHands,
   },
   [0x0137] = {
     .atk = 65535,
@@ -23,6 +24,7 @@
     .spellEffect = (u8)31,
     .trapEffect = (u8)0,
     .password = {6, 5, 1, 6, 9, 7, 9, 4},
+    .description = gDescription_BlackPendant,
   },
   [0x0321] = {
     .atk = 3200,
@@ -5037,8 +5039,8 @@
     .description = gDescription_ContinuousDestructionPunch,
   },
   [0x0487] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 10,
@@ -5317,7 +5319,7 @@
     .description = gDescription_DimensionFusion,
   },
   [0x049B] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -5681,8 +5683,8 @@
     .description = gDescription_HeroFlash,
   },
   [0x04B5] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_DIVINE,
     .level = 12,
@@ -6311,7 +6313,7 @@
     .description = gDescription_OjamaKing,
   },
   [0x04E2] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -6871,7 +6873,7 @@
     .description = gDescription_TheLawOfTheNormal,
   },
   [0x050A] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -6955,8 +6957,8 @@
     .description = gDescription_ThunderDragonTitan,
   },
   [0x0510] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 60,
     .attribute = ATTRIBUTE_LIGHT,
     .level = 10,
@@ -7571,8 +7573,8 @@
     .description = gDescription_DestinyHeroDreadServant,
   },
   [0x053C] = {
-    .atk = -1,
-    .def = -1,
+    .atk = 0,
+    .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
     .level = 8,
@@ -7585,7 +7587,7 @@
     .description = gDescription_DestinyHeroDreadmaster,
   },
   [0x053D] = {
-    .atk = -1,
+    .atk = 0,
     .def = 2800,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
@@ -7767,7 +7769,7 @@
     .description = gDescription_CelestialSwordEatos,
   },
   [0x054A] = {
-    .atk = -1,
+    .atk = 0,
     .def = 0,
     .cost = 150,
     .attribute = ATTRIBUTE_SHADOW,
