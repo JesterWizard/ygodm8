@@ -16,7 +16,7 @@
 *.dump*
 *.ss*
 *.bak
-tools/agbcc
+tools/agbccW
 build/
 .cache/
 .card_state
