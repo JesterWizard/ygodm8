@@ -21170,8 +21170,8 @@
       "description": {
         "symbol": "gDescription_AHeroEmerges",
         "pages": [
-          "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monster that can",
-          "be Special Summoned, Special Summon it. Otherwise, send it to the Graveyard."
+          "Opponent attack: take 1 random from hand; Summon if monster.",
+          "Otherwise, send it to the Graveyard."
         ]
       },
       "effect_texts": {

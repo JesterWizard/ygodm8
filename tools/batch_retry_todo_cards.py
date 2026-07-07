@@ -486,7 +486,7 @@ void Activate{const}(void)
 
 def main() -> int:
     manifest = load_manifest_json(MANIFEST_PATH)
-    # Normalize: treat D.D_WARRIOR as D_D_WARRIOR for comparison
+    # Normalize: treat D_D_WARRIOR as D_D_WARRIOR for comparison
     def normalize_const(c):
         return c.replace(".", "_")
     existing_consts = {normalize_const(c["card_const"]) for c in manifest["cards"]}
@@ -524,7 +524,7 @@ def main() -> int:
         ("DESTINY_HERO_FEAR_MONGER", "Destiny HERO - Fear Monger", None),
         ("DESTINY_HERO_MALICIOUS", "Destiny HERO - Malicious", None),
         ("DESTINY_HERO_PLASMA", "Destiny HERO - Plasma", None),
-        ("D.D_WARRIOR", "D.D. Warrior", None),
+        ("D_D_WARRIOR", "D.D. Warrior", None),
         ("BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON", "Blue-Eyes Alternative Ultimate Dragon", None),
         ("CELESTIAL_SWORD_EATOS", "Celestial Sword - Eatos", None),
         ("EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD", "Exodius the Ultimate Forbidden Lord", None),

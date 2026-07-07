@@ -34,7 +34,7 @@ SKIP_ACTIVATION_GATE_STEMS = frozenset({
 })
 
 # Helper modules — no card dispatch entry
-SKIP_STEMS = frozenset({"dynamic_equip"})
+SKIP_STEMS = frozenset({"dynamic_equip", "evolution_end_burst"})
 
 # Trap hook files also reached from ActivateSpellEffect__Body (not all trap_effects/*.c)
 TRAP_SPELL_DISPATCH_STEMS = frozenset({

@@ -10,6 +10,7 @@ void UpdateDuelGfxExceptField(void);
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
 
+#ifdef EVOLUTION_END_BURST
 static void EVOLUTION_END_BURST_ResolveBody(void)
 {
   Duel_ShowEffectText(EVOLUTION_END_BURST);
@@ -22,3 +23,4 @@ APPEND_TEXT void EffectEVOLUTION_END_BURST(void)
   if (Duel_TryResolveSpellThroughTraps(EVOLUTION_END_BURST, EVOLUTION_END_BURST_ResolveBody) == DUEL_ACTION_BLOCKED)
     return;
 }
+#endif

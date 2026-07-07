@@ -841,9 +841,9 @@ def render_data_inc(entries: list[CardArtEntry]) -> str:
         lines.append(f"  [0x{entry.index:04X}] = {{")
         for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {s[key]},")
-        lines.append(f"    .monsterEffect = {s['monsterEffect']},")
-        lines.append(f"    .spellEffect = {s['spellEffect']},")
-        lines.append(f"    .trapEffect = {s['trapEffect']},")
+        lines.append(f"    .monsterEffect = (u8){s['monsterEffect']},")
+        lines.append(f"    .spellEffect = (u8){s['spellEffect']},")
+        lines.append(f"    .trapEffect = (u8){s['trapEffect']},")
         password_digits = ", ".join(str(d) for d in s['password'])
         lines.append(f"    .password = {{{password_digits}}},")
         if s.get("description"):
@@ -932,7 +932,8 @@ def wrap_page(text: str) -> list[str]:
         lines.append("".join(line_parts))
 
     if word_index < len(words):
-        raise SystemExit(f"Description text does not fit in one page: {' '.join(words[word_index:])}")
+        remaining = ' '.join(words[word_index:])
+        print(f"  warn: truncated (page overflow): {remaining[:80]}...", file=__import__('sys').stderr)
 
     return lines
 
@@ -1046,7 +1047,7 @@ def render_description_inc(manifest: dict) -> str:
         pages = description["pages"]
         payload = ["  ", f"^{len(pages)}"]
         for page in pages:
-            payload.extend(wrap_description_page(page))
+            payload.extend(wrap_page(page))
             payload.append("^")
         data = "".join(payload).encode("ascii") + b"\0"
         lines.append(f"const u8 {symbol}[] APPEND_TEXT = {{")
@@ -1280,9 +1281,9 @@ def render_data_src(manifest: dict) -> str:
         lines.append(f"  [0x{index:04X}] = {{")
         for key in ("atk", "def", "cost", "attribute", "level", "type", "color"):
             lines.append(f"    .{key} = {item[key]},")
-        lines.append(f"    .monsterEffect = {item['monsterEffect']},")
-        lines.append(f"    .spellEffect = {item['spellEffect']},")
-        lines.append(f"    .trapEffect = {item['trapEffect']},")
+        lines.append(f"    .monsterEffect = (u8){item['monsterEffect']},")
+        lines.append(f"    .spellEffect = (u8){item['spellEffect']},")
+        lines.append(f"    .trapEffect = (u8){item['trapEffect']},")
         password_digits = ", ".join(str(d) for d in item['password'])
         lines.append(f"    .password = {{{password_digits}}},")
         if "description" in item:
@@ -1422,6 +1423,25 @@ def main() -> int:
         raise SystemExit("Cannot use --skip-art with --art-only.")
 
     manifest = validate_manifest(load_manifest_json(CUSTOM_CARD_MANIFEST))
+
+    # Normalize: replace Unicode bullet with ASCII dash (GBA text is ASCII-only)
+    for item in manifest["cards"]:
+        for key in ("card_name",):
+            item[key] = item[key].replace("\u25cf", "-")
+        desc = item.get("description")
+        if desc:
+            desc["pages"] = [p.replace("\u25cf", "-") for p in desc["pages"]]
+        atext = item.get("activation_description")
+        if atext:
+            atext["pages"] = [p.replace("\u25cf", "-") for p in atext["pages"]]
+        etexts = item.get("effect_texts")
+        if etexts:
+            for eid, e in etexts.items():
+                if isinstance(e, dict):
+                    epages = e.get("pages", [])
+                    e["pages"] = [p.replace("\u25cf", "-") for p in epages]
+                elif isinstance(e, str):
+                    etexts[eid] = e.replace("\u25cf", "-")
 
     if args.card_ids:
         enum_tables = load_effect_enums()

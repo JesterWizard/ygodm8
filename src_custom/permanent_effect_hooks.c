@@ -662,29 +662,33 @@ void TryActivatingPermanentEffects__Replacement(void) {
 
 unsigned char ShouldActivateDARKLORD_NURSE_REFICULE(void);
 void ActivateDARKLORD_NURSE_REFICULE(void);
+unsigned char ShouldActivatePROTECTOR_OF_THE_SANCTUARY(void);
+void ActivatePROTECTOR_OF_THE_SANCTUARY(void);
+unsigned char ShouldActivateVISION_HERO_TRINITY(void);
+void ActivateVISION_HERO_TRINITY(void);
+unsigned char ShouldActivateTHE_AGENT_OF_WISDOM_MERCURY(void);
+void ActivateTHE_AGENT_OF_WISDOM_MERCURY(void);
+
+static const PermanentEffectOverride sPermanentEffectOverrides2[] __attribute__((section(".text"))) = {
   {
     .cardId = DARKLORD_NURSE_REFICULE,
     .shouldActivate = ShouldActivateDARKLORD_NURSE_REFICULE,
     .activate = ActivateDARKLORD_NURSE_REFICULE,
   },
-unsigned char ShouldActivatePROTECTOR_OF_THE_SANCTUARY(void);
-void ActivatePROTECTOR_OF_THE_SANCTUARY(void);
   {
     .cardId = PROTECTOR_OF_THE_SANCTUARY,
     .shouldActivate = ShouldActivatePROTECTOR_OF_THE_SANCTUARY,
     .activate = ActivatePROTECTOR_OF_THE_SANCTUARY,
   },
-unsigned char ShouldActivateVISION_HERO_TRINITY(void);
-void ActivateVISION_HERO_TRINITY(void);
   {
     .cardId = VISION_HERO_TRINITY,
     .shouldActivate = ShouldActivateVISION_HERO_TRINITY,
     .activate = ActivateVISION_HERO_TRINITY,
   },
-unsigned char ShouldActivateTHE_AGENT_OF_WISDOM_MERCURY(void);
-void ActivateTHE_AGENT_OF_WISDOM_MERCURY(void);
   {
     .cardId = THE_AGENT_OF_WISDOM_MERCURY,
     .shouldActivate = ShouldActivateTHE_AGENT_OF_WISDOM_MERCURY,
     .activate = ActivateTHE_AGENT_OF_WISDOM_MERCURY,
   },
+};
+

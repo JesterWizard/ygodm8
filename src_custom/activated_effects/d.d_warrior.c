@@ -39,16 +39,16 @@ static u8 AiPickTarget(u8 *outRow, u8 *outCol)
   return FALSE;
 }
 
-unsigned char CanActivateD.D_WARRIOR(void)
+unsigned char CanActivateD_D_WARRIOR(void)
 {
-  if (gMonEffect.id != D.D_WARRIOR)
+  if (gMonEffect.id != D_D_WARRIOR)
     return FALSE;
   return TRUE; /* TODO: add additional activation conditions */
 }
 
-void ActivateD.D_WARRIOREffect(void)
+void ActivateD_D_WARRIOREffect(void)
 {
-  Duel_ShowEffectTextTyped(D.D_WARRIOR, 2);
+  Duel_ShowEffectTextTyped(D_D_WARRIOR, 2);
 
   if (IsDuelOver() == TRUE)
     return;

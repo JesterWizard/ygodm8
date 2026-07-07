@@ -330,6 +330,269 @@ static const u8 sCyberLaserDragonName[] __attribute__((section(".append_assets")
 static const u8 sDarkEndDragonName[] __attribute__((section(".append_assets"))) = "Dark End Dragon";
 static const u8 sLightEndDragonName[] __attribute__((section(".append_assets"))) = "Light End Dragon";
 static const u8 sDarkArmedDragonName[] __attribute__((section(".append_assets"))) = "Dark Armed Dragon";
+static const u8 sAHeroEmergesName[] __attribute__((section(".append_assets"))) = "A Hero Emerges";
+static const u8 sAHeroLivesName[] __attribute__((section(".append_assets"))) = "A Hero Lives";
+static const u8 sAWingbeatOfGiantDragonName[] __attribute__((section(".append_assets"))) = "A Wingbeat of Giant Dragon";
+static const u8 sAllureOfDarknessName[] __attribute__((section(".append_assets"))) = "Allure of Darkness";
+static const u8 sAmuletDragonName[] __attribute__((section(".append_assets"))) = "Amulet Dragon";
+static const u8 sAndroSphinxName[] __attribute__((section(".append_assets"))) = "Andro Sphinx";
+static const u8 sApprenticeIllusionMagicianName[] __attribute__((section(".append_assets"))) = "Apprentice Illusion Magician";
+static const u8 sAppropriateName[] __attribute__((section(".append_assets"))) = "Appropriate";
+static const u8 sArmageddonKnightName[] __attribute__((section(".append_assets"))) = "Armageddon Knight";
+static const u8 sAttackAndReceiveName[] __attribute__((section(".append_assets"))) = "Attack and Receive";
+static const u8 sAttackGuidanceArmorName[] __attribute__((section(".append_assets"))) = "Attack Guidance Armor";
+static const u8 sAttackReflectorUnitName[] __attribute__((section(".append_assets"))) = "Attack Reflector Unit";
+static const u8 sBackfireName[] __attribute__((section(".append_assets"))) = "Backfire";
+static const u8 sBackupSquadName[] __attribute__((section(".append_assets"))) = "Backup Squad";
+static const u8 sBerserkerSoulName[] __attribute__((section(".append_assets"))) = "Berserker Soul";
+static const u8 sBirdfaceName[] __attribute__((section(".append_assets"))) = "Birdface";
+static const u8 sBreakTheDestinyName[] __attribute__((section(".append_assets"))) = "Break the Destiny";
+static const u8 sBubbleBlasterName[] __attribute__((section(".append_assets"))) = "Bubble Blaster";
+static const u8 sBurdenOfTheMightyName[] __attribute__((section(".append_assets"))) = "Burden of the Mighty";
+static const u8 sCallOfTheMummyName[] __attribute__((section(".append_assets"))) = "Call of the Mummy";
+static const u8 sCannonballSpearShellfishName[] __attribute__((section(".append_assets"))) = "Cannonball Spear Shellfish";
+static const u8 sChaosFormName[] __attribute__((section(".append_assets"))) = "Chaos Form";
+static const u8 sChickenGameName[] __attribute__((section(".append_assets"))) = "Chicken Game";
+static const u8 sChimeratechFortressDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Fortress Dragon";
+static const u8 sChimeratechMegafleetDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Megafleet Dragon";
+static const u8 sChimeratechRampageDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Rampage Dragon";
+static const u8 sClockTowerPrisonName[] __attribute__((section(".append_assets"))) = "Clock Tower Prison";
+static const u8 sColdWaveName[] __attribute__((section(".append_assets"))) = "Cold Wave";
+static const u8 sContinuousDestructionPunchName[] __attribute__((section(".append_assets"))) = "Continuous Destruction Punch";
+static const u8 sCyberEltaninName[] __attribute__((section(".append_assets"))) = "Cyber Eltanin";
+static const u8 sCyberKirinName[] __attribute__((section(".append_assets"))) = "Cyber Kirin";
+static const u8 sCyberPhoenixName[] __attribute__((section(".append_assets"))) = "Cyber Phoenix";
+static const u8 sCyberValleyName[] __attribute__((section(".append_assets"))) = "Cyber Valley";
+static const u8 sCyberneticZoneName[] __attribute__((section(".append_assets"))) = "Cybernetic Zone";
+static const u8 sDamagePolarizerName[] __attribute__((section(".append_assets"))) = "Damage Polarizer";
+static const u8 sDarkBladeTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Blade the Dragon Knight";
+static const u8 sDarkCityAtMidnightName[] __attribute__((section(".append_assets"))) = "Dark City at Midnight";
+static const u8 sDarkGrepherName[] __attribute__((section(".append_assets"))) = "Dark Grepher";
+static const u8 sDarkMagicianGirlTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Magician Girl the Dragon Knight";
+static const u8 sDarkMagicianTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Magician the Dragon Knight";
+static const u8 sDarklordNurseReficuleName[] __attribute__((section(".append_assets"))) = "Darklord Nurse Reficule";
+static const u8 sDarknessNeosphereName[] __attribute__((section(".append_assets"))) = "Darkness Neosphere";
+static const u8 sDecoyDragonName[] __attribute__((section(".append_assets"))) = "Decoy Dragon";
+static const u8 sDesCounterblowName[] __attribute__((section(".append_assets"))) = "Des Counterblow";
+static const u8 sDespairFromTheDarkName[] __attribute__((section(".append_assets"))) = "Despair from the Dark";
+static const u8 sDestinyDrawName[] __attribute__((section(".append_assets"))) = "Destiny Draw";
+static const u8 sDestinyEndDragoonName[] __attribute__((section(".append_assets"))) = "Destiny End Dragoon";
+static const u8 sDifferentDimensionCapsuleName[] __attribute__((section(".append_assets"))) = "Different Dimension Capsule";
+static const u8 sDimensionFusionName[] __attribute__((section(".append_assets"))) = "Dimension Fusion";
+static const u8 sDivineSerpentGehName[] __attribute__((section(".append_assets"))) = "Divine Serpent Geh";
+static const u8 sDoctorDName[] __attribute__((section(".append_assets"))) = "Doctor D";
+static const u8 sDonZaloogName[] __attribute__((section(".append_assets"))) = "Don Zaloog";
+static const u8 sDoomVirusDragonName[] __attribute__((section(".append_assets"))) = "Doom Virus Dragon";
+static const u8 sDoubleSpellName[] __attribute__((section(".append_assets"))) = "Double Spell";
+static const u8 sEgyptianGodSlimeName[] __attribute__((section(".append_assets"))) = "Egyptian God Slime";
+static const u8 sElementalHeroNeosKlugerName[] __attribute__((section(".append_assets"))) = "Elemental HERO Neos Kluger";
+static const u8 sEmergencyProvisionsName[] __attribute__((section(".append_assets"))) = "Emergency Provisions";
+static const u8 sFatalAbacusName[] __attribute__((section(".append_assets"))) = "Fatal Abacus";
+static const u8 sFelgrandDragonName[] __attribute__((section(".append_assets"))) = "Felgrand Dragon";
+static const u8 sFiresOfDoomsdayName[] __attribute__((section(".append_assets"))) = "Fires of Doomsday";
+static const u8 sForcedRequisitionName[] __attribute__((section(".append_assets"))) = "Forced Requisition";
+static const u8 sFusionDestinyName[] __attribute__((section(".append_assets"))) = "Fusion Destiny";
+static const u8 sFusionGateName[] __attribute__((section(".append_assets"))) = "Fusion Gate";
+static const u8 sGateGuardiansCombinedName[] __attribute__((section(".append_assets"))) = "Gate Guardians Combined";
+static const u8 sGiftCardName[] __attribute__((section(".append_assets"))) = "Gift Card";
+static const u8 sGoddessBowName[] __attribute__((section(".append_assets"))) = "Goddess Bow";
+static const u8 sGorzTheEmissaryOfDarknessName[] __attribute__((section(".append_assets"))) = "Gorz the Emissary of Darkness";
+static const u8 sGranmargTheRockMonarchName[] __attribute__((section(".append_assets"))) = "Granmarg the Rock Monarch";
+static const u8 sGreenGadgetName[] __attribute__((section(".append_assets"))) = "Green Gadget";
+static const u8 sGroundCollapseName[] __attribute__((section(".append_assets"))) = "Ground Collapse";
+static const u8 sGuardianDreadscytheName[] __attribute__((section(".append_assets"))) = "Guardian Dreadscythe";
+static const u8 sGuardianEatosName[] __attribute__((section(".append_assets"))) = "Guardian Eatos";
+static const u8 sHarpieLadyPhoenixFormationName[] __attribute__((section(".append_assets"))) = "Harpie Lady Phoenix Formation";
+static const u8 sHeraldOfCreationName[] __attribute__((section(".append_assets"))) = "Herald of Creation";
+static const u8 sHeroFlashName[] __attribute__((section(".append_assets"))) = "Hero Flash!!";
+static const u8 sHolactieTheCreatorOfLightName[] __attribute__((section(".append_assets"))) = "Holactie the Creator of Light";
+static const u8 sInsectImitationName[] __attribute__((section(".append_assets"))) = "Insect Imitation";
+static const u8 sInstantFusionName[] __attribute__((section(".append_assets"))) = "Instant Fusion";
+static const u8 sJowgenTheSpiritualistName[] __attribute__((section(".append_assets"))) = "Jowgen the Spiritualist";
+static const u8 sJudgmentDragonName[] __attribute__((section(".append_assets"))) = "Judgment Dragon";
+static const u8 sKingDragunName[] __attribute__((section(".append_assets"))) = "King Dragun";
+static const u8 sKingOfTheSwampName[] __attribute__((section(".append_assets"))) = "King of the Swamp";
+static const u8 sKingTigerWanghuName[] __attribute__((section(".append_assets"))) = "King Tiger Wanghu";
+static const u8 sKurazTheLightMonarchName[] __attribute__((section(".append_assets"))) = "Kuraz the Light Monarch";
+static const u8 sKuribanditName[] __attribute__((section(".append_assets"))) = "Kuribandit";
+static const u8 sLastTurnName[] __attribute__((section(".append_assets"))) = "Last Turn";
+static const u8 sLegendOfHeartName[] __attribute__((section(".append_assets"))) = "Legend of Heart";
+static const u8 sLegendaryFlameLordName[] __attribute__((section(".append_assets"))) = "Legendary Flame Lord";
+static const u8 sLegendaryKnightCritiasName[] __attribute__((section(".append_assets"))) = "Legendary Knight Critias";
+static const u8 sLegendaryKnightHermosName[] __attribute__((section(".append_assets"))) = "Legendary Knight Hermos";
+static const u8 sLegendaryKnightTimaeusName[] __attribute__((section(".append_assets"))) = "Legendary Knight Timaeus";
+static const u8 sLekungaName[] __attribute__((section(".append_assets"))) = "Lekunga";
+static const u8 sLightAndDarknessDragonName[] __attribute__((section(".append_assets"))) = "Light and Darkness Dragon";
+static const u8 sLordOfTheRedName[] __attribute__((section(".append_assets"))) = "Lord of the Red";
+static const u8 sMagicalDimensionName[] __attribute__((section(".append_assets"))) = "Magical Dimension";
+static const u8 sMagicalHatsName[] __attribute__((section(".append_assets"))) = "Magical Hats";
+static const u8 sMagicalPlantMandragolaName[] __attribute__((section(".append_assets"))) = "Magical Plant Mandragola";
+static const u8 sMagicalScientistName[] __attribute__((section(".append_assets"))) = "Magical Scientist";
+static const u8 sMagicalStoneExcavationName[] __attribute__((section(".append_assets"))) = "Magical Stone Excavation";
+static const u8 sManjuOfTheTenThousandHandsName[] __attribute__((section(".append_assets"))) = "Manju of the Ten Thousand Hands";
+static const u8 sMarshmallonName[] __attribute__((section(".append_assets"))) = "Marshmallon";
+static const u8 sMaskOfDispelName[] __attribute__((section(".append_assets"))) = "Mask of Dispel";
+static const u8 sMaskOfTheAccursedName[] __attribute__((section(".append_assets"))) = "Mask of the Accursed";
+static const u8 sMausoleumOfTheEmperorName[] __attribute__((section(".append_assets"))) = "Mausoleum of the Emperor";
+static const u8 sMazeraDevilleName[] __attribute__((section(".append_assets"))) = "Mazera DeVille";
+static const u8 sMetamorphosisName[] __attribute__((section(".append_assets"))) = "Metamorphosis";
+static const u8 sMeteorainName[] __attribute__((section(".append_assets"))) = "Meteorain";
+static const u8 sMirageOfNightmareName[] __attribute__((section(".append_assets"))) = "Mirage of Nightmare";
+static const u8 sMirrorForceDragonName[] __attribute__((section(".append_assets"))) = "Mirror Force Dragon";
+static const u8 sMoistureCreatureName[] __attribute__((section(".append_assets"))) = "Moisture Creature";
+static const u8 sMoltenZombieName[] __attribute__((section(".append_assets"))) = "Molten Zombie";
+static const u8 sMonsterGateName[] __attribute__((section(".append_assets"))) = "Monster Gate";
+static const u8 sMonsterRecoveryName[] __attribute__((section(".append_assets"))) = "Monster Recovery";
+static const u8 sMoraleBoostName[] __attribute__((section(".append_assets"))) = "Morale Boost";
+static const u8 sMucusYolkName[] __attribute__((section(".append_assets"))) = "Mucus Yolk";
+static const u8 sNecrovalleyName[] __attribute__((section(".append_assets"))) = "Necrovalley";
+static const u8 sNeedleWallName[] __attribute__((section(".append_assets"))) = "Needle Wall";
+static const u8 sNeosWisemanName[] __attribute__((section(".append_assets"))) = "Neos Wiseman";
+static const u8 sNuminousHealerName[] __attribute__((section(".append_assets"))) = "Numinous Healer";
+static const u8 sOjamaKingName[] __attribute__((section(".append_assets"))) = "Ojama King";
+static const u8 sOrichalcosShunorosName[] __attribute__((section(".append_assets"))) = "Orichalcos Shunoros";
+static const u8 sOverDestinyName[] __attribute__((section(".append_assets"))) = "Over Destiny";
+static const u8 sPainfulChoiceName[] __attribute__((section(".append_assets"))) = "Painful Choice";
+static const u8 sPandemoniumName[] __attribute__((section(".append_assets"))) = "Pandemonium";
+static const u8 sParallelWorldFusionName[] __attribute__((section(".append_assets"))) = "Parallel World Fusion";
+static const u8 sPhotonGeneratorUnitName[] __attribute__((section(".append_assets"))) = "Photon Generator Unit";
+static const u8 sPoisonOfTheOldManName[] __attribute__((section(".append_assets"))) = "Poison of the Old Man";
+static const u8 sProtectorOfTheSanctuaryName[] __attribute__((section(".append_assets"))) = "Protector of the Sanctuary";
+static const u8 sQuintetMagicianName[] __attribute__((section(".append_assets"))) = "Quintet Magician";
+static const u8 sRaigekiBreakName[] __attribute__((section(".append_assets"))) = "Raigeki Break";
+static const u8 sRedGadgetName[] __attribute__((section(".append_assets"))) = "Red Gadget";
+static const u8 sRelaySoulName[] __attribute__((section(".append_assets"))) = "Relay Soul";
+static const u8 sRocketHermosCannonName[] __attribute__((section(".append_assets"))) = "Rocket Hermos Cannon";
+static const u8 sRopeOfLifeName[] __attribute__((section(".append_assets"))) = "Rope of Life";
+static const u8 sRoyalMagicalLibraryName[] __attribute__((section(".append_assets"))) = "Royal Magical Library";
+static const u8 sScapegoatName[] __attribute__((section(".append_assets"))) = "Scapegoat";
+static const u8 sSecondCoinTossName[] __attribute__((section(".append_assets"))) = "Second Coin Toss";
+static const u8 sSecretVillageOfTheSpellcastersName[] __attribute__((section(".append_assets"))) = "Secret Village of the Spellcasters";
+static const u8 sShareThePainName[] __attribute__((section(".append_assets"))) = "Share the Pain";
+static const u8 sSixthSenseName[] __attribute__((section(".append_assets"))) = "Sixth Sense";
+static const u8 sSkilledDarkMagicianName[] __attribute__((section(".append_assets"))) = "Skilled Dark Magician";
+static const u8 sSkilledWhiteMagicianName[] __attribute__((section(".append_assets"))) = "Skilled White Magician";
+static const u8 sSolemnJudgementName[] __attribute__((section(".append_assets"))) = "Solemn Judgment";
+static const u8 sSparkBlasterName[] __attribute__((section(".append_assets"))) = "Spark Blaster";
+static const u8 sSpellAbsorptionName[] __attribute__((section(".append_assets"))) = "Spell Absorption";
+static const u8 sSphinxTeleiaName[] __attribute__((section(".append_assets"))) = "Sphinx Teleia";
+static const u8 sStatueOfTheWickedName[] __attribute__((section(".append_assets"))) = "Statue of the Wicked";
+static const u8 sStaunchDefenderName[] __attribute__((section(".append_assets"))) = "Staunch Defender";
+static const u8 sStrayLambsName[] __attribute__((section(".append_assets"))) = "Stray Lambs";
+static const u8 sStrongholdTheMovingFortressName[] __attribute__((section(".append_assets"))) = "Stronghold the Moving Fortress";
+static const u8 sSummonerMonkName[] __attribute__((section(".append_assets"))) = "Summoner Monk";
+static const u8 sSummonerOfIllusionsName[] __attribute__((section(".append_assets"))) = "Summoner of Illusions";
+static const u8 sSuperPolymerizationName[] __attribute__((section(".append_assets"))) = "Super Polymerization";
+static const u8 sTerraformingName[] __attribute__((section(".append_assets"))) = "Terraforming";
+static const u8 sTheClawOfHermosName[] __attribute__((section(".append_assets"))) = "The Claw of Hermos";
+static const u8 sTheCreatorName[] __attribute__((section(".append_assets"))) = "The Creator";
+static const u8 sTheCreatorIncarnateName[] __attribute__((section(".append_assets"))) = "The Creator Incarnate";
+static const u8 sTheEyeOfTimaeusName[] __attribute__((section(".append_assets"))) = "The Eye of Timaeus";
+static const u8 sTheFangOfCritiasName[] __attribute__((section(".append_assets"))) = "The Fang of Critias";
+static const u8 sTheLawOfTheNormalName[] __attribute__((section(".append_assets"))) = "The Law of the Normal";
+static const u8 sTheLegendaryExodiaIncarnateName[] __attribute__((section(".append_assets"))) = "The Legendary Exodia Incarnate";
+static const u8 sTheShallowGraveName[] __attribute__((section(".append_assets"))) = "The Shallow Grave";
+static const u8 sTheinenTheGreatSphinxName[] __attribute__((section(".append_assets"))) = "Theinen the Great Sphinx";
+static const u8 sThestalosTheFirestormMonarchName[] __attribute__((section(".append_assets"))) = "Thestalos the Firestorm Monarch";
+static const u8 sThunderDragonColossusName[] __attribute__((section(".append_assets"))) = "Thunder Dragon Colossus";
+static const u8 sThunderDragonTitanName[] __attribute__((section(".append_assets"))) = "Thunder Dragon Titan";
+static const u8 sTimaeusTheKnightOfDestinyName[] __attribute__((section(".append_assets"))) = "Timaeus the Knight of Destiny";
+static const u8 sTimeMagicHammerName[] __attribute__((section(".append_assets"))) = "Time Magic Hammer";
+static const u8 sToonWorldName[] __attribute__((section(".append_assets"))) = "Toon World";
+static const u8 sTornadoBirdName[] __attribute__((section(".append_assets"))) = "Tornado Bird";
+static const u8 sTornadoWallName[] __attribute__((section(".append_assets"))) = "Tornado Wall";
+static const u8 sTrapDustshootName[] __attribute__((section(".append_assets"))) = "Trap Dustshoot";
+static const u8 sTyrantBurstDragonName[] __attribute__((section(".append_assets"))) = "Tyrant Burst Dragon";
+static const u8 sTyrantWingName[] __attribute__((section(".append_assets"))) = "Tyrant Wing";
+static const u8 sUltimateConductorTyrannoName[] __attribute__((section(".append_assets"))) = "Ultimate Conductor Tyranno";
+static const u8 sUltimateObedientFiendName[] __attribute__((section(".append_assets"))) = "Ultimate Obedient Fiend";
+static const u8 sVisionFusionName[] __attribute__((section(".append_assets"))) = "Vision Fusion";
+static const u8 sVisionHeroAdorationName[] __attribute__((section(".append_assets"))) = "Vision HERO Adoration";
+static const u8 sVisionHeroFarisName[] __attribute__((section(".append_assets"))) = "Vision HERO Faris";
+static const u8 sVisionHeroGravitoName[] __attribute__((section(".append_assets"))) = "Vision HERO Gravito";
+static const u8 sVisionHeroIncreaseName[] __attribute__((section(".append_assets"))) = "Vision HERO Increase";
+static const u8 sVisionHeroMinimumRayName[] __attribute__((section(".append_assets"))) = "Vision HERO Minimum Ray";
+static const u8 sVisionHeroMultiplyGuyName[] __attribute__((section(".append_assets"))) = "Vision HERO Multiply Guy";
+static const u8 sVisionHeroPoisonerName[] __attribute__((section(".append_assets"))) = "Vision HERO Poisoner";
+static const u8 sVisionHeroTrinityName[] __attribute__((section(".append_assets"))) = "Vision HERO Trinity";
+static const u8 sVisionHeroVyonName[] __attribute__((section(".append_assets"))) = "Vision HERO Vyon";
+static const u8 sVisionHeroWitchRaiderName[] __attribute__((section(".append_assets"))) = "Vision HERO Witch Raider";
+static const u8 sVisionReleaseName[] __attribute__((section(".append_assets"))) = "Vision Release";
+static const u8 sWataponName[] __attribute__((section(".append_assets"))) = "Watapon";
+static const u8 sWhiteDragonRitualName[] __attribute__((section(".append_assets"))) = "White Dragon Ritual";
+static const u8 sYellowGadgetName[] __attribute__((section(".append_assets"))) = "Yellow Gadget";
+static const u8 sDestinyHeroBladeMasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Blade Master";
+static const u8 sDestinyHeroCaptainTenaciousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Captain Tenacious";
+static const u8 sDestinyHeroCelestialName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Celestial";
+static const u8 sDestinyHeroDangerousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dangerous";
+static const u8 sDestinyHeroDarkAngelName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dark Angel";
+static const u8 sDestinyHeroDasherName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dasher";
+static const u8 sDestinyHeroDeciderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Decider";
+static const u8 sDestinyHeroDefenderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Defender";
+static const u8 sDestinyHeroDenierName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Denier";
+static const u8 sDestinyHeroDestroyerPhoenixEnforcerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Destroyer Phoenix Enforcer";
+static const u8 sDestinyHeroDiamondDudeName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Diamond Dude";
+static const u8 sDestinyHeroDiskCommanderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Disk Commander";
+static const u8 sDestinyHeroDogmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dogma";
+static const u8 sDestinyHeroDominanceName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dominance";
+static const u8 sDestinyHeroDoomLordName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Doom Lord";
+static const u8 sDestinyHeroDoomOverlordName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Doom Overlord";
+static const u8 sDestinyHeroDoubleDudeName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Double Dude";
+static const u8 sDestinyHeroDrawhandName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Drawhand";
+static const u8 sDestinyHeroDreadServantName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dread Servant";
+static const u8 sDestinyHeroDreadmasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadmaster";
+static const u8 sDestinyHeroDreadnoughtMasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Master";
+static const u8 sDestinyHeroDreadnoughtServantName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Servant";
+static const u8 sDestinyHeroDreamerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreamer";
+static const u8 sDestinyHeroDrilldarkName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Drilldark";
+static const u8 sDestinyHeroDunkerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dunker";
+static const u8 sDestinyHeroDusktopiaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dusktopia";
+static const u8 sDestinyHeroDynatagName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dynatag";
+static const u8 sDestinyHeroDystopiaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dystopia";
+static const u8 sDestinyHeroFearMongerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Fear Monger";
+static const u8 sDestinyHeroMaliciousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Malicious";
+static const u8 sDestinyHeroPlasmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Plasma";
+static const u8 sBlueEyesAlternativeUltimateDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Alternative Ultimate Dragon";
+static const u8 sCelestialSwordEatosName[] __attribute__((section(".append_assets"))) = "Celestial Sword - Eatos";
+static const u8 sExodiusTheUltimateForbiddenLordName[] __attribute__((section(".append_assets"))) = "Exodius the Ultimate Forbidden Lord";
+static const u8 sMajesticMechGoryuName[] __attribute__((section(".append_assets"))) = "Majestic Mech - Goryu";
+static const u8 sNeoBlueEyesUltimateDragonName[] __attribute__((section(".append_assets"))) = "Neo Blue-Eyes Ultimate Dragon";
+static const u8 sReaperScytheDreadscytheName[] __attribute__((section(".append_assets"))) = "Reaper Scythe - Dreadscythe";
+static const u8 sRedEyesBlackDragonSwordName[] __attribute__((section(".append_assets"))) = "Red-Eyes Black Dragon Sword";
+static const u8 sRedEyesDarkDragoonName[] __attribute__((section(".append_assets"))) = "Red-Eyes Dark Dragoon";
+static const u8 sRedEyesDarknessMetalDragonName[] __attribute__((section(".append_assets"))) = "Red-Eyes Darkness Metal Dragon";
+static const u8 sRedEyesTransmigrationName[] __attribute__((section(".append_assets"))) = "Red-Eyes Transmigration";
+static const u8 sSkyscraper2HeroCityName[] __attribute__((section(".append_assets"))) = "Skyscraper 2 - Hero City";
+static const u8 sTheAgentOfJudgmentSaturnName[] __attribute__((section(".append_assets"))) = "The Agent of Judgment - Saturn";
+static const u8 sTheAgentOfWisdomMercuryName[] __attribute__((section(".append_assets"))) = "The Agent of Wisdom - Mercury";
+static const u8 sDBurstName[] __attribute__((section(".append_assets"))) = "D - Burst";
+static const u8 sDForceName[] __attribute__((section(".append_assets"))) = "D - Force";
+static const u8 sDTacticsName[] __attribute__((section(".append_assets"))) = "D - Tactics";
+static const u8 sDTimeName[] __attribute__((section(".append_assets"))) = "D - Time";
+static const u8 sArmedDragonLevelFiveName[] __attribute__((section(".append_assets"))) = "Armed Dragon LV5";
+static const u8 sArmedDragonLevelSevenName[] __attribute__((section(".append_assets"))) = "Armed Dragon LV7";
+static const u8 sArmedDragonLevelTenName[] __attribute__((section(".append_assets"))) = "Armed Dragon LV10";
+static const u8 sArmedDragonLevelThreeName[] __attribute__((section(".append_assets"))) = "Armed Dragon LV3";
+static const u8 sHorusTheBlackFlameDragonLevelEightName[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV8";
+static const u8 sHorusTheBlackFlameDragonLevelFourName[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV4";
+static const u8 sHorusTheBlackFlameDragonLevelSixName[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV6";
+static const u8 sAntiSpellFragranceName[] __attribute__((section(".append_assets"))) = "Anti-Spell Fragrance";
+static const u8 sApparationName[] __attribute__((section(".append_assets"))) = "Apparation";
+static const u8 sDestinyHeroDestroyDogmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Destroy Dogma";
+static const u8 sDopplegangerName[] __attribute__((section(".append_assets"))) = "Doppleganger";
+static const u8 sDragonsRageName[] __attribute__((section(".append_assets"))) = "Dragon's Rage";
+static const u8 sDrainTimeName[] __attribute__((section(".append_assets"))) = "Drain Time";
+static const u8 sFieldsSanctuaryName[] __attribute__((section(".append_assets"))) = "Field's Sanctuary";
+static const u8 sManThroThroName[] __attribute__((section(".append_assets"))) = "Man-Thro-Thro";
+static const u8 sMasterPeaceTheTrueDracroslayingKingName[] __attribute__((section(".append_assets"))) = "Master Peace the True Dracoslaying King";
+static const u8 sMysticWokName[] __attribute__((section(".append_assets"))) = "Mystic Wok";
+static const u8 sNibiruThePrimalBeingName[] __attribute__((section(".append_assets"))) = "Nibiru the Primal Being";
+static const u8 sProphecyName[] __attribute__((section(".append_assets"))) = "Prophecy";
+static const u8 sReverseOfReverseName[] __attribute__((section(".append_assets"))) = "Reverse of Reverse";
+static const u8 sTheAForcesName[] __attribute__((section(".append_assets"))) = "The A Forces";
+static const u8 sWildNaturesReleaseName[] __attribute__((section(".append_assets"))) = "Wild Nature's Release";
+static const u8 sWoughtweilerName[] __attribute__((section(".append_assets"))) = "Woughtweiler";
+static const u8 sMaAtName[] __attribute__((section(".append_assets"))) = "Ma'at";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -996,6 +1259,532 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sLightEndDragonName;
   if (cardId == 0x0469)
     return (u8 *)sDarkArmedDragonName;
+  if (cardId == 0x046A)
+    return (u8 *)sAHeroEmergesName;
+  if (cardId == 0x046B)
+    return (u8 *)sAHeroLivesName;
+  if (cardId == 0x046C)
+    return (u8 *)sAWingbeatOfGiantDragonName;
+  if (cardId == 0x046D)
+    return (u8 *)sAllureOfDarknessName;
+  if (cardId == 0x046E)
+    return (u8 *)sAmuletDragonName;
+  if (cardId == 0x046F)
+    return (u8 *)sAndroSphinxName;
+  if (cardId == 0x0470)
+    return (u8 *)sApprenticeIllusionMagicianName;
+  if (cardId == 0x0471)
+    return (u8 *)sAppropriateName;
+  if (cardId == 0x0472)
+    return (u8 *)sArmageddonKnightName;
+  if (cardId == 0x0473)
+    return (u8 *)sAttackAndReceiveName;
+  if (cardId == 0x0474)
+    return (u8 *)sAttackGuidanceArmorName;
+  if (cardId == 0x0475)
+    return (u8 *)sAttackReflectorUnitName;
+  if (cardId == 0x0476)
+    return (u8 *)sBackfireName;
+  if (cardId == 0x0477)
+    return (u8 *)sBackupSquadName;
+  if (cardId == 0x0478)
+    return (u8 *)sBerserkerSoulName;
+  if (cardId == 0x0479)
+    return (u8 *)sBirdfaceName;
+  if (cardId == 0x047A)
+    return (u8 *)sBreakTheDestinyName;
+  if (cardId == 0x047B)
+    return (u8 *)sBubbleBlasterName;
+  if (cardId == 0x047C)
+    return (u8 *)sBurdenOfTheMightyName;
+  if (cardId == 0x047D)
+    return (u8 *)sCallOfTheMummyName;
+  if (cardId == 0x047E)
+    return (u8 *)sCannonballSpearShellfishName;
+  if (cardId == 0x047F)
+    return (u8 *)sChaosFormName;
+  if (cardId == 0x0480)
+    return (u8 *)sChickenGameName;
+  if (cardId == 0x0481)
+    return (u8 *)sChimeratechFortressDragonName;
+  if (cardId == 0x0482)
+    return (u8 *)sChimeratechMegafleetDragonName;
+  if (cardId == 0x0483)
+    return (u8 *)sChimeratechRampageDragonName;
+  if (cardId == 0x0484)
+    return (u8 *)sClockTowerPrisonName;
+  if (cardId == 0x0485)
+    return (u8 *)sColdWaveName;
+  if (cardId == 0x0486)
+    return (u8 *)sContinuousDestructionPunchName;
+  if (cardId == 0x0487)
+    return (u8 *)sCyberEltaninName;
+  if (cardId == 0x0488)
+    return (u8 *)sCyberKirinName;
+  if (cardId == 0x0489)
+    return (u8 *)sCyberPhoenixName;
+  if (cardId == 0x048A)
+    return (u8 *)sCyberValleyName;
+  if (cardId == 0x048B)
+    return (u8 *)sCyberneticZoneName;
+  if (cardId == 0x048C)
+    return (u8 *)sDamagePolarizerName;
+  if (cardId == 0x048D)
+    return (u8 *)sDarkBladeTheDragonKnightName;
+  if (cardId == 0x048E)
+    return (u8 *)sDarkCityAtMidnightName;
+  if (cardId == 0x048F)
+    return (u8 *)sDarkGrepherName;
+  if (cardId == 0x0490)
+    return (u8 *)sDarkMagicianGirlTheDragonKnightName;
+  if (cardId == 0x0491)
+    return (u8 *)sDarkMagicianTheDragonKnightName;
+  if (cardId == 0x0492)
+    return (u8 *)sDarklordNurseReficuleName;
+  if (cardId == 0x0493)
+    return (u8 *)sDarknessNeosphereName;
+  if (cardId == 0x0494)
+    return (u8 *)sDecoyDragonName;
+  if (cardId == 0x0495)
+    return (u8 *)sDesCounterblowName;
+  if (cardId == 0x0496)
+    return (u8 *)sDespairFromTheDarkName;
+  if (cardId == 0x0497)
+    return (u8 *)sDestinyDrawName;
+  if (cardId == 0x0498)
+    return (u8 *)sDestinyEndDragoonName;
+  if (cardId == 0x0499)
+    return (u8 *)sDifferentDimensionCapsuleName;
+  if (cardId == 0x049A)
+    return (u8 *)sDimensionFusionName;
+  if (cardId == 0x049B)
+    return (u8 *)sDivineSerpentGehName;
+  if (cardId == 0x049C)
+    return (u8 *)sDoctorDName;
+  if (cardId == 0x049D)
+    return (u8 *)sDonZaloogName;
+  if (cardId == 0x049E)
+    return (u8 *)sDoomVirusDragonName;
+  if (cardId == 0x049F)
+    return (u8 *)sDoubleSpellName;
+  if (cardId == 0x04A0)
+    return (u8 *)sEgyptianGodSlimeName;
+  if (cardId == 0x04A1)
+    return (u8 *)sElementalHeroNeosKlugerName;
+  if (cardId == 0x04A2)
+    return (u8 *)sEmergencyProvisionsName;
+  if (cardId == 0x04A3)
+    return (u8 *)sFatalAbacusName;
+  if (cardId == 0x04A4)
+    return (u8 *)sFelgrandDragonName;
+  if (cardId == 0x04A5)
+    return (u8 *)sFiresOfDoomsdayName;
+  if (cardId == 0x04A6)
+    return (u8 *)sForcedRequisitionName;
+  if (cardId == 0x04A7)
+    return (u8 *)sFusionDestinyName;
+  if (cardId == 0x04A8)
+    return (u8 *)sFusionGateName;
+  if (cardId == 0x04A9)
+    return (u8 *)sGateGuardiansCombinedName;
+  if (cardId == 0x04AA)
+    return (u8 *)sGiftCardName;
+  if (cardId == 0x04AB)
+    return (u8 *)sGoddessBowName;
+  if (cardId == 0x04AC)
+    return (u8 *)sGorzTheEmissaryOfDarknessName;
+  if (cardId == 0x04AD)
+    return (u8 *)sGranmargTheRockMonarchName;
+  if (cardId == 0x04AE)
+    return (u8 *)sGreenGadgetName;
+  if (cardId == 0x04AF)
+    return (u8 *)sGroundCollapseName;
+  if (cardId == 0x04B0)
+    return (u8 *)sGuardianDreadscytheName;
+  if (cardId == 0x04B1)
+    return (u8 *)sGuardianEatosName;
+  if (cardId == 0x04B2)
+    return (u8 *)sHarpieLadyPhoenixFormationName;
+  if (cardId == 0x04B3)
+    return (u8 *)sHeraldOfCreationName;
+  if (cardId == 0x04B4)
+    return (u8 *)sHeroFlashName;
+  if (cardId == 0x04B5)
+    return (u8 *)sHolactieTheCreatorOfLightName;
+  if (cardId == 0x04B6)
+    return (u8 *)sInsectImitationName;
+  if (cardId == 0x04B7)
+    return (u8 *)sInstantFusionName;
+  if (cardId == 0x04B8)
+    return (u8 *)sJowgenTheSpiritualistName;
+  if (cardId == 0x04B9)
+    return (u8 *)sJudgmentDragonName;
+  if (cardId == 0x04BA)
+    return (u8 *)sKingDragunName;
+  if (cardId == 0x04BB)
+    return (u8 *)sKingOfTheSwampName;
+  if (cardId == 0x04BC)
+    return (u8 *)sKingTigerWanghuName;
+  if (cardId == 0x04BD)
+    return (u8 *)sKurazTheLightMonarchName;
+  if (cardId == 0x04BE)
+    return (u8 *)sKuribanditName;
+  if (cardId == 0x04BF)
+    return (u8 *)sLastTurnName;
+  if (cardId == 0x04C0)
+    return (u8 *)sLegendOfHeartName;
+  if (cardId == 0x04C1)
+    return (u8 *)sLegendaryFlameLordName;
+  if (cardId == 0x04C2)
+    return (u8 *)sLegendaryKnightCritiasName;
+  if (cardId == 0x04C3)
+    return (u8 *)sLegendaryKnightHermosName;
+  if (cardId == 0x04C4)
+    return (u8 *)sLegendaryKnightTimaeusName;
+  if (cardId == 0x04C5)
+    return (u8 *)sLekungaName;
+  if (cardId == 0x04C6)
+    return (u8 *)sLightAndDarknessDragonName;
+  if (cardId == 0x04C7)
+    return (u8 *)sLordOfTheRedName;
+  if (cardId == 0x04C8)
+    return (u8 *)sMagicalDimensionName;
+  if (cardId == 0x04C9)
+    return (u8 *)sMagicalHatsName;
+  if (cardId == 0x04CA)
+    return (u8 *)sMagicalPlantMandragolaName;
+  if (cardId == 0x04CB)
+    return (u8 *)sMagicalScientistName;
+  if (cardId == 0x04CC)
+    return (u8 *)sMagicalStoneExcavationName;
+  if (cardId == 0x04CD)
+    return (u8 *)sManjuOfTheTenThousandHandsName;
+  if (cardId == 0x04CE)
+    return (u8 *)sMarshmallonName;
+  if (cardId == 0x04CF)
+    return (u8 *)sMaskOfDispelName;
+  if (cardId == 0x04D0)
+    return (u8 *)sMaskOfTheAccursedName;
+  if (cardId == 0x04D1)
+    return (u8 *)sMausoleumOfTheEmperorName;
+  if (cardId == 0x04D2)
+    return (u8 *)sMazeraDevilleName;
+  if (cardId == 0x04D3)
+    return (u8 *)sMetamorphosisName;
+  if (cardId == 0x04D4)
+    return (u8 *)sMeteorainName;
+  if (cardId == 0x04D5)
+    return (u8 *)sMirageOfNightmareName;
+  if (cardId == 0x04D6)
+    return (u8 *)sMirrorForceDragonName;
+  if (cardId == 0x04D7)
+    return (u8 *)sMoistureCreatureName;
+  if (cardId == 0x04D8)
+    return (u8 *)sMoltenZombieName;
+  if (cardId == 0x04D9)
+    return (u8 *)sMonsterGateName;
+  if (cardId == 0x04DA)
+    return (u8 *)sMonsterRecoveryName;
+  if (cardId == 0x04DB)
+    return (u8 *)sMoraleBoostName;
+  if (cardId == 0x04DC)
+    return (u8 *)sMucusYolkName;
+  if (cardId == 0x04DD)
+    return (u8 *)sNecrovalleyName;
+  if (cardId == 0x04DE)
+    return (u8 *)sNeedleWallName;
+  if (cardId == 0x04DF)
+    return (u8 *)sNeosWisemanName;
+  if (cardId == 0x04E0)
+    return (u8 *)sNuminousHealerName;
+  if (cardId == 0x04E1)
+    return (u8 *)sOjamaKingName;
+  if (cardId == 0x04E2)
+    return (u8 *)sOrichalcosShunorosName;
+  if (cardId == 0x04E3)
+    return (u8 *)sOverDestinyName;
+  if (cardId == 0x04E4)
+    return (u8 *)sPainfulChoiceName;
+  if (cardId == 0x04E5)
+    return (u8 *)sPandemoniumName;
+  if (cardId == 0x04E6)
+    return (u8 *)sParallelWorldFusionName;
+  if (cardId == 0x04E7)
+    return (u8 *)sPhotonGeneratorUnitName;
+  if (cardId == 0x04E8)
+    return (u8 *)sPoisonOfTheOldManName;
+  if (cardId == 0x04E9)
+    return (u8 *)sProtectorOfTheSanctuaryName;
+  if (cardId == 0x04EA)
+    return (u8 *)sQuintetMagicianName;
+  if (cardId == 0x04EB)
+    return (u8 *)sRaigekiBreakName;
+  if (cardId == 0x04EC)
+    return (u8 *)sRedGadgetName;
+  if (cardId == 0x04ED)
+    return (u8 *)sRelaySoulName;
+  if (cardId == 0x04EE)
+    return (u8 *)sRocketHermosCannonName;
+  if (cardId == 0x04EF)
+    return (u8 *)sRopeOfLifeName;
+  if (cardId == 0x04F0)
+    return (u8 *)sRoyalMagicalLibraryName;
+  if (cardId == 0x04F1)
+    return (u8 *)sScapegoatName;
+  if (cardId == 0x04F2)
+    return (u8 *)sSecondCoinTossName;
+  if (cardId == 0x04F3)
+    return (u8 *)sSecretVillageOfTheSpellcastersName;
+  if (cardId == 0x04F4)
+    return (u8 *)sShareThePainName;
+  if (cardId == 0x04F5)
+    return (u8 *)sSixthSenseName;
+  if (cardId == 0x04F6)
+    return (u8 *)sSkilledDarkMagicianName;
+  if (cardId == 0x04F7)
+    return (u8 *)sSkilledWhiteMagicianName;
+  if (cardId == 0x04F8)
+    return (u8 *)sSolemnJudgementName;
+  if (cardId == 0x04F9)
+    return (u8 *)sSparkBlasterName;
+  if (cardId == 0x04FA)
+    return (u8 *)sSpellAbsorptionName;
+  if (cardId == 0x04FB)
+    return (u8 *)sSphinxTeleiaName;
+  if (cardId == 0x04FC)
+    return (u8 *)sStatueOfTheWickedName;
+  if (cardId == 0x04FD)
+    return (u8 *)sStaunchDefenderName;
+  if (cardId == 0x04FE)
+    return (u8 *)sStrayLambsName;
+  if (cardId == 0x04FF)
+    return (u8 *)sStrongholdTheMovingFortressName;
+  if (cardId == 0x0500)
+    return (u8 *)sSummonerMonkName;
+  if (cardId == 0x0501)
+    return (u8 *)sSummonerOfIllusionsName;
+  if (cardId == 0x0502)
+    return (u8 *)sSuperPolymerizationName;
+  if (cardId == 0x0503)
+    return (u8 *)sTerraformingName;
+  if (cardId == 0x0504)
+    return (u8 *)sTheClawOfHermosName;
+  if (cardId == 0x0505)
+    return (u8 *)sTheCreatorName;
+  if (cardId == 0x0506)
+    return (u8 *)sTheCreatorIncarnateName;
+  if (cardId == 0x0507)
+    return (u8 *)sTheEyeOfTimaeusName;
+  if (cardId == 0x0508)
+    return (u8 *)sTheFangOfCritiasName;
+  if (cardId == 0x0509)
+    return (u8 *)sTheLawOfTheNormalName;
+  if (cardId == 0x050A)
+    return (u8 *)sTheLegendaryExodiaIncarnateName;
+  if (cardId == 0x050B)
+    return (u8 *)sTheShallowGraveName;
+  if (cardId == 0x050C)
+    return (u8 *)sTheinenTheGreatSphinxName;
+  if (cardId == 0x050D)
+    return (u8 *)sThestalosTheFirestormMonarchName;
+  if (cardId == 0x050E)
+    return (u8 *)sThunderDragonColossusName;
+  if (cardId == 0x050F)
+    return (u8 *)sThunderDragonTitanName;
+  if (cardId == 0x0510)
+    return (u8 *)sTimaeusTheKnightOfDestinyName;
+  if (cardId == 0x0511)
+    return (u8 *)sTimeMagicHammerName;
+  if (cardId == 0x0512)
+    return (u8 *)sToonWorldName;
+  if (cardId == 0x0513)
+    return (u8 *)sTornadoBirdName;
+  if (cardId == 0x0514)
+    return (u8 *)sTornadoWallName;
+  if (cardId == 0x0515)
+    return (u8 *)sTrapDustshootName;
+  if (cardId == 0x0516)
+    return (u8 *)sTyrantBurstDragonName;
+  if (cardId == 0x0517)
+    return (u8 *)sTyrantWingName;
+  if (cardId == 0x0518)
+    return (u8 *)sUltimateConductorTyrannoName;
+  if (cardId == 0x0519)
+    return (u8 *)sUltimateObedientFiendName;
+  if (cardId == 0x051A)
+    return (u8 *)sVisionFusionName;
+  if (cardId == 0x051B)
+    return (u8 *)sVisionHeroAdorationName;
+  if (cardId == 0x051C)
+    return (u8 *)sVisionHeroFarisName;
+  if (cardId == 0x051D)
+    return (u8 *)sVisionHeroGravitoName;
+  if (cardId == 0x051E)
+    return (u8 *)sVisionHeroIncreaseName;
+  if (cardId == 0x051F)
+    return (u8 *)sVisionHeroMinimumRayName;
+  if (cardId == 0x0520)
+    return (u8 *)sVisionHeroMultiplyGuyName;
+  if (cardId == 0x0521)
+    return (u8 *)sVisionHeroPoisonerName;
+  if (cardId == 0x0522)
+    return (u8 *)sVisionHeroTrinityName;
+  if (cardId == 0x0523)
+    return (u8 *)sVisionHeroVyonName;
+  if (cardId == 0x0524)
+    return (u8 *)sVisionHeroWitchRaiderName;
+  if (cardId == 0x0525)
+    return (u8 *)sVisionReleaseName;
+  if (cardId == 0x0526)
+    return (u8 *)sWataponName;
+  if (cardId == 0x0527)
+    return (u8 *)sWhiteDragonRitualName;
+  if (cardId == 0x0528)
+    return (u8 *)sYellowGadgetName;
+  if (cardId == 0x0529)
+    return (u8 *)sDestinyHeroBladeMasterName;
+  if (cardId == 0x052A)
+    return (u8 *)sDestinyHeroCaptainTenaciousName;
+  if (cardId == 0x052B)
+    return (u8 *)sDestinyHeroCelestialName;
+  if (cardId == 0x052C)
+    return (u8 *)sDestinyHeroDangerousName;
+  if (cardId == 0x052D)
+    return (u8 *)sDestinyHeroDarkAngelName;
+  if (cardId == 0x052E)
+    return (u8 *)sDestinyHeroDasherName;
+  if (cardId == 0x052F)
+    return (u8 *)sDestinyHeroDeciderName;
+  if (cardId == 0x0530)
+    return (u8 *)sDestinyHeroDefenderName;
+  if (cardId == 0x0531)
+    return (u8 *)sDestinyHeroDenierName;
+  if (cardId == 0x0532)
+    return (u8 *)sDestinyHeroDestroyerPhoenixEnforcerName;
+  if (cardId == 0x0533)
+    return (u8 *)sDestinyHeroDiamondDudeName;
+  if (cardId == 0x0534)
+    return (u8 *)sDestinyHeroDiskCommanderName;
+  if (cardId == 0x0535)
+    return (u8 *)sDestinyHeroDogmaName;
+  if (cardId == 0x0536)
+    return (u8 *)sDestinyHeroDominanceName;
+  if (cardId == 0x0537)
+    return (u8 *)sDestinyHeroDoomLordName;
+  if (cardId == 0x0538)
+    return (u8 *)sDestinyHeroDoomOverlordName;
+  if (cardId == 0x0539)
+    return (u8 *)sDestinyHeroDoubleDudeName;
+  if (cardId == 0x053A)
+    return (u8 *)sDestinyHeroDrawhandName;
+  if (cardId == 0x053B)
+    return (u8 *)sDestinyHeroDreadServantName;
+  if (cardId == 0x053C)
+    return (u8 *)sDestinyHeroDreadmasterName;
+  if (cardId == 0x053D)
+    return (u8 *)sDestinyHeroDreadnoughtMasterName;
+  if (cardId == 0x053E)
+    return (u8 *)sDestinyHeroDreadnoughtServantName;
+  if (cardId == 0x053F)
+    return (u8 *)sDestinyHeroDreamerName;
+  if (cardId == 0x0540)
+    return (u8 *)sDestinyHeroDrilldarkName;
+  if (cardId == 0x0541)
+    return (u8 *)sDestinyHeroDunkerName;
+  if (cardId == 0x0542)
+    return (u8 *)sDestinyHeroDusktopiaName;
+  if (cardId == 0x0543)
+    return (u8 *)sDestinyHeroDynatagName;
+  if (cardId == 0x0544)
+    return (u8 *)sDestinyHeroDystopiaName;
+  if (cardId == 0x0545)
+    return (u8 *)sDestinyHeroFearMongerName;
+  if (cardId == 0x0546)
+    return (u8 *)sDestinyHeroMaliciousName;
+  if (cardId == 0x0547)
+    return (u8 *)sDestinyHeroPlasmaName;
+  if (cardId == 0x0548)
+    return (u8 *)sBlueEyesAlternativeUltimateDragonName;
+  if (cardId == 0x0549)
+    return (u8 *)sCelestialSwordEatosName;
+  if (cardId == 0x054A)
+    return (u8 *)sExodiusTheUltimateForbiddenLordName;
+  if (cardId == 0x054B)
+    return (u8 *)sMajesticMechGoryuName;
+  if (cardId == 0x054C)
+    return (u8 *)sNeoBlueEyesUltimateDragonName;
+  if (cardId == 0x054D)
+    return (u8 *)sReaperScytheDreadscytheName;
+  if (cardId == 0x054E)
+    return (u8 *)sRedEyesBlackDragonSwordName;
+  if (cardId == 0x054F)
+    return (u8 *)sRedEyesDarkDragoonName;
+  if (cardId == 0x0550)
+    return (u8 *)sRedEyesDarknessMetalDragonName;
+  if (cardId == 0x0551)
+    return (u8 *)sRedEyesTransmigrationName;
+  if (cardId == 0x0552)
+    return (u8 *)sSkyscraper2HeroCityName;
+  if (cardId == 0x0553)
+    return (u8 *)sTheAgentOfJudgmentSaturnName;
+  if (cardId == 0x0554)
+    return (u8 *)sTheAgentOfWisdomMercuryName;
+  if (cardId == 0x0555)
+    return (u8 *)sDBurstName;
+  if (cardId == 0x0556)
+    return (u8 *)sDForceName;
+  if (cardId == 0x0557)
+    return (u8 *)sDTacticsName;
+  if (cardId == 0x0558)
+    return (u8 *)sDTimeName;
+  if (cardId == 0x0559)
+    return (u8 *)sArmedDragonLevelFiveName;
+  if (cardId == 0x055A)
+    return (u8 *)sArmedDragonLevelSevenName;
+  if (cardId == 0x055B)
+    return (u8 *)sArmedDragonLevelTenName;
+  if (cardId == 0x055C)
+    return (u8 *)sArmedDragonLevelThreeName;
+  if (cardId == 0x055D)
+    return (u8 *)sHorusTheBlackFlameDragonLevelEightName;
+  if (cardId == 0x055E)
+    return (u8 *)sHorusTheBlackFlameDragonLevelFourName;
+  if (cardId == 0x055F)
+    return (u8 *)sHorusTheBlackFlameDragonLevelSixName;
+  if (cardId == 0x0560)
+    return (u8 *)sAntiSpellFragranceName;
+  if (cardId == 0x0561)
+    return (u8 *)sApparationName;
+  if (cardId == 0x0562)
+    return (u8 *)sDestinyHeroDestroyDogmaName;
+  if (cardId == 0x0563)
+    return (u8 *)sDopplegangerName;
+  if (cardId == 0x0564)
+    return (u8 *)sDragonsRageName;
+  if (cardId == 0x0565)
+    return (u8 *)sDrainTimeName;
+  if (cardId == 0x0566)
+    return (u8 *)sFieldsSanctuaryName;
+  if (cardId == 0x0567)
+    return (u8 *)sManThroThroName;
+  if (cardId == 0x0568)
+    return (u8 *)sMasterPeaceTheTrueDracroslayingKingName;
+  if (cardId == 0x0569)
+    return (u8 *)sMysticWokName;
+  if (cardId == 0x056A)
+    return (u8 *)sNibiruThePrimalBeingName;
+  if (cardId == 0x056B)
+    return (u8 *)sProphecyName;
+  if (cardId == 0x056C)
+    return (u8 *)sReverseOfReverseName;
+  if (cardId == 0x056D)
+    return (u8 *)sTheAForcesName;
+  if (cardId == 0x056E)
+    return (u8 *)sWildNaturesReleaseName;
+  if (cardId == 0x056F)
+    return (u8 *)sWoughtweilerName;
+  if (cardId == 0x0570)
+    return (u8 *)sMaAtName;
 
   return gCardNames[cardId];
 }
