@@ -377,3 +377,77 @@ unsigned IsTrapTriggered__Replacement(void) {
 }
 
 /* LEVEL_LIMIT_AREA_A handled via spell_effect_hooks.c (manual activation) */
+/* A_HERO_EMERGES trap effect */
+  /* TODO: wire A_HERO_EMERGES in trap dispatcher */
+/* APPROPRIATE trap effect */
+  /* TODO: wire APPROPRIATE in trap dispatcher */
+/* ATTACK_AND_RECEIVE trap effect */
+  /* TODO: wire ATTACK_AND_RECEIVE in trap dispatcher */
+/* ATTACK_GUIDANCE_ARMOR trap effect */
+  /* TODO: wire ATTACK_GUIDANCE_ARMOR in trap dispatcher */
+/* ATTACK_REFLECTOR_UNIT trap effect */
+  /* TODO: wire ATTACK_REFLECTOR_UNIT in trap dispatcher */
+/* BACKFIRE trap effect */
+  /* TODO: wire BACKFIRE in trap dispatcher */
+/* BREAK_THE_DESTINY trap effect */
+  /* TODO: wire BREAK_THE_DESTINY in trap dispatcher */
+/* DAMAGE_POLARIZER trap effect */
+  /* TODO: wire DAMAGE_POLARIZER in trap dispatcher */
+/* DES_COUNTERBLOW trap effect */
+  /* TODO: wire DES_COUNTERBLOW in trap dispatcher */
+/* FATAL_ABACUS trap effect */
+  /* TODO: wire FATAL_ABACUS in trap dispatcher */
+/* FORCED_REQUISITION trap effect */
+  /* TODO: wire FORCED_REQUISITION in trap dispatcher */
+/* GIFT_CARD trap effect */
+  /* TODO: wire GIFT_CARD in trap dispatcher */
+/* LAST_TURN trap effect */
+  /* TODO: wire LAST_TURN in trap dispatcher */
+/* MAGICAL_HATS trap effect */
+  /* TODO: wire MAGICAL_HATS in trap dispatcher */
+/* METEORAIN trap effect */
+  /* TODO: wire METEORAIN in trap dispatcher */
+/* NEEDLE_WALL trap effect */
+  /* TODO: wire NEEDLE_WALL in trap dispatcher */
+/* NUMINOUS_HEALER trap effect */
+  /* TODO: wire NUMINOUS_HEALER in trap dispatcher */
+/* RAIGEKI_BREAK trap effect */
+  /* TODO: wire RAIGEKI_BREAK in trap dispatcher */
+/* RELAY_SOUL trap effect */
+  /* TODO: wire RELAY_SOUL in trap dispatcher */
+/* ROPE_OF_LIFE trap effect */
+  /* TODO: wire ROPE_OF_LIFE in trap dispatcher */
+/* SIXTH_SENSE trap effect */
+  /* TODO: wire SIXTH_SENSE in trap dispatcher */
+/* SOLEMN_JUDGMENT trap effect */
+  /* TODO: wire SOLEMN_JUDGMENT in trap dispatcher */
+/* STATUE_OF_THE_WICKED trap effect */
+  /* TODO: wire STATUE_OF_THE_WICKED in trap dispatcher */
+/* STAUNCH_DEFENDER trap effect */
+  /* TODO: wire STAUNCH_DEFENDER in trap dispatcher */
+/* STRONGHOLD_THE_MOVING_FORTRESS trap effect */
+  /* TODO: wire STRONGHOLD_THE_MOVING_FORTRESS in trap dispatcher */
+/* TORNADO_WALL trap effect */
+  /* TODO: wire TORNADO_WALL in trap dispatcher */
+/* TRAP_DUSTSHOOT trap effect */
+  /* TODO: wire TRAP_DUSTSHOOT in trap dispatcher */
+/* TYRANT_WING trap effect */
+  /* TODO: wire TYRANT_WING in trap dispatcher */
+/* D_TACTICS trap effect */
+  /* TODO: wire D_TACTICS in trap dispatcher */
+/* D_TIME trap effect */
+  /* TODO: wire D_TIME in trap dispatcher */
+/* ANTI_SPELL_FRAGRANCE trap effect */
+  /* TODO: wire ANTI_SPELL_FRAGRANCE in trap dispatcher */
+/* APPARATION trap effect */
+  /* TODO: wire APPARATION in trap dispatcher */
+/* DOPPLEGANGER trap effect */
+  /* TODO: wire DOPPLEGANGER in trap dispatcher */
+/* DRAGONS_RAGE trap effect */
+  /* TODO: wire DRAGONS_RAGE in trap dispatcher */
+/* DRAIN_TIME trap effect */
+  /* TODO: wire DRAIN_TIME in trap dispatcher */
+/* REVERSE_OF_REVERSE trap effect */
+  /* TODO: wire REVERSE_OF_REVERSE in trap dispatcher */
+/* WILD_NATURES_RELEASE trap effect */
+  /* TODO: wire WILD_NATURES_RELEASE in trap dispatcher */

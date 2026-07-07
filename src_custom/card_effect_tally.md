@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `302` effects
+- `791` effects
 
 ## Tally
 
@@ -283,6 +283,495 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Cyber Barrier Dragon` | `src_custom/permanent_effects/cyber_barrier_dragon.c` |
 | `activated_effects` | `Dark End Dragon` | `src_custom/activated_effects/dark_end_dragon.c` |
 | `activated_effects` | `Dark Armed Dragon` | `src_custom/activated_effects/dark_armed_dragon.c` |
+| `trap_effects` | `A Hero Emerges` | `src_custom/trap_effects/a_hero_emerges.c` |
+| `activated_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
+| `activated_effects` | `Andro Sphinx` | `src_custom/activated_effects/andro_sphinx.c` |
+| `activated_effects` | `Apprentice Illusion Magician` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
+| `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |
+| `activated_effects` | `Armageddon Knight` | `src_custom/activated_effects/armageddon_knight.c` |
+| `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
+| `trap_effects` | `Attack Guidance Armor` | `src_custom/trap_effects/attack_guidance_armor.c` |
+| `trap_effects` | `Attack Reflector Unit` | `src_custom/trap_effects/attack_reflector_unit.c` |
+| `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
+| `activated_effects` | `Birdface` | `src_custom/activated_effects/birdface.c` |
+| `trap_effects` | `Break The Destiny` | `src_custom/trap_effects/break_the_destiny.c` |
+| `activated_effects` | `Cannonball Spear Shellfish` | `src_custom/activated_effects/cannonball_spear_shellfish.c` |
+| `activated_effects` | `Chimeratech Fortress Dragon` | `src_custom/activated_effects/chimeratech_fortress_dragon.c` |
+| `activated_effects` | `Chimeratech Megafleet Dragon` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
+| `activated_effects` | `Chimeratech Rampage Dragon` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
+| `activated_effects` | `Cyber Eltanin` | `src_custom/activated_effects/cyber_eltanin.c` |
+| `activated_effects` | `Cyber Kirin` | `src_custom/activated_effects/cyber_kirin.c` |
+| `activated_effects` | `Cyber Phoenix` | `src_custom/activated_effects/cyber_phoenix.c` |
+| `activated_effects` | `Cyber Valley` | `src_custom/activated_effects/cyber_valley.c` |
+| `trap_effects` | `Damage Polarizer` | `src_custom/trap_effects/damage_polarizer.c` |
+| `activated_effects` | `Dark Blade The Dragon Knight` | `src_custom/activated_effects/dark_blade_the_dragon_knight.c` |
+| `activated_effects` | `Dark Grepher` | `src_custom/activated_effects/dark_grepher.c` |
+| `activated_effects` | `Dark Magician Girl The Dragon Knight` | `src_custom/activated_effects/dark_magician_girl_the_dragon_knight.c` |
+| `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
+| `permanent_effects` | `Darklord Nurse Reficule` | `src_custom/permanent_effects/darklord_nurse_reficule.c` |
+| `activated_effects` | `Darkness Neosphere` | `src_custom/activated_effects/darkness_neosphere.c` |
+| `activated_effects` | `Decoy Dragon` | `src_custom/activated_effects/decoy_dragon.c` |
+| `trap_effects` | `Des Counterblow` | `src_custom/trap_effects/des_counterblow.c` |
+| `activated_effects` | `Despair From The Dark` | `src_custom/activated_effects/despair_from_the_dark.c` |
+| `activated_effects` | `Destiny End Dragoon` | `src_custom/activated_effects/destiny_end_dragoon.c` |
+| `activated_effects` | `Divine Serpent Geh` | `src_custom/activated_effects/divine_serpent_geh.c` |
+| `activated_effects` | `Don Zaloog` | `src_custom/activated_effects/don_zaloog.c` |
+| `activated_effects` | `Doom Virus Dragon` | `src_custom/activated_effects/doom_virus_dragon.c` |
+| `activated_effects` | `Egyptian God Slime` | `src_custom/activated_effects/egyptian_god_slime.c` |
+| `activated_effects` | `Elemental Hero Neos Kluger` | `src_custom/activated_effects/elemental_hero_neos_kluger.c` |
+| `trap_effects` | `Fatal Abacus` | `src_custom/trap_effects/fatal_abacus.c` |
+| `activated_effects` | `Felgrand Dragon` | `src_custom/activated_effects/felgrand_dragon.c` |
+| `trap_effects` | `Forced Requisition` | `src_custom/trap_effects/forced_requisition.c` |
+| `activated_effects` | `Gate Guardians Combined` | `src_custom/activated_effects/gate_guardians_combined.c` |
+| `trap_effects` | `Gift Card` | `src_custom/trap_effects/gift_card.c` |
+| `activated_effects` | `Goddess Bow` | `src_custom/activated_effects/goddess_bow.c` |
+| `activated_effects` | `Gorz The Emissary Of Darkness` | `src_custom/activated_effects/gorz_the_emissary_of_darkness.c` |
+| `activated_effects` | `Granmarg The Rock Monarch` | `src_custom/activated_effects/granmarg_the_rock_monarch.c` |
+| `activated_effects` | `Green Gadget` | `src_custom/activated_effects/green_gadget.c` |
+| `activated_effects` | `Guardian Dreadscythe` | `src_custom/activated_effects/guardian_dreadscythe.c` |
+| `activated_effects` | `Guardian Eatos` | `src_custom/activated_effects/guardian_eatos.c` |
+| `activated_effects` | `Herald Of Creation` | `src_custom/activated_effects/herald_of_creation.c` |
+| `activated_effects` | `Holactie The Creator Of Light` | `src_custom/activated_effects/holactie_the_creator_of_light.c` |
+| `activated_effects` | `Jowgen The Spiritualist` | `src_custom/activated_effects/jowgen_the_spiritualist.c` |
+| `activated_effects` | `Judgment Dragon` | `src_custom/activated_effects/judgment_dragon.c` |
+| `activated_effects` | `King Dragun` | `src_custom/activated_effects/king_dragun.c` |
+| `activated_effects` | `King Of The Swamp` | `src_custom/activated_effects/king_of_the_swamp.c` |
+| `activated_effects` | `King Tiger Wanghu` | `src_custom/activated_effects/king_tiger_wanghu.c` |
+| `activated_effects` | `Kuraz The Light Monarch` | `src_custom/activated_effects/kuraz_the_light_monarch.c` |
+| `activated_effects` | `Kuribandit` | `src_custom/activated_effects/kuribandit.c` |
+| `trap_effects` | `Last Turn` | `src_custom/trap_effects/last_turn.c` |
+| `activated_effects` | `Legendary Flame Lord` | `src_custom/activated_effects/legendary_flame_lord.c` |
+| `activated_effects` | `Legendary Knight Critias` | `src_custom/activated_effects/legendary_knight_critias.c` |
+| `activated_effects` | `Legendary Knight Hermos` | `src_custom/activated_effects/legendary_knight_hermos.c` |
+| `activated_effects` | `Legendary Knight Timaeus` | `src_custom/activated_effects/legendary_knight_timaeus.c` |
+| `activated_effects` | `Lekunga` | `src_custom/activated_effects/lekunga.c` |
+| `activated_effects` | `Light And Darkness Dragon` | `src_custom/activated_effects/light_and_darkness_dragon.c` |
+| `activated_effects` | `Lord Of The Red` | `src_custom/activated_effects/lord_of_the_red.c` |
+| `trap_effects` | `Magical Hats` | `src_custom/trap_effects/magical_hats.c` |
+| `activated_effects` | `Magical Plant Mandragola` | `src_custom/activated_effects/magical_plant_mandragola.c` |
+| `activated_effects` | `Magical Scientist` | `src_custom/activated_effects/magical_scientist.c` |
+| `activated_effects` | `Manju Of The Ten Thousand Hands` | `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c` |
+| `activated_effects` | `Marshmallon` | `src_custom/activated_effects/marshmallon.c` |
+| `activated_effects` | `Mazera Deville` | `src_custom/activated_effects/mazera_deville.c` |
+| `trap_effects` | `Meteorain` | `src_custom/trap_effects/meteorain.c` |
+| `activated_effects` | `Mirror Force Dragon` | `src_custom/activated_effects/mirror_force_dragon.c` |
+| `activated_effects` | `Moisture Creature` | `src_custom/activated_effects/moisture_creature.c` |
+| `activated_effects` | `Molten Zombie` | `src_custom/activated_effects/molten_zombie.c` |
+| `activated_effects` | `Mucus Yolk` | `src_custom/activated_effects/mucus_yolk.c` |
+| `trap_effects` | `Needle Wall` | `src_custom/trap_effects/needle_wall.c` |
+| `activated_effects` | `Neos Wiseman` | `src_custom/activated_effects/neos_wiseman.c` |
+| `trap_effects` | `Numinous Healer` | `src_custom/trap_effects/numinous_healer.c` |
+| `activated_effects` | `Ojama King` | `src_custom/activated_effects/ojama_king.c` |
+| `activated_effects` | `Orichalcos Shunoros` | `src_custom/activated_effects/orichalcos_shunoros.c` |
+| `permanent_effects` | `Protector Of The Sanctuary` | `src_custom/permanent_effects/protector_of_the_sanctuary.c` |
+| `activated_effects` | `Quintet Magician` | `src_custom/activated_effects/quintet_magician.c` |
+| `trap_effects` | `Raigeki Break` | `src_custom/trap_effects/raigeki_break.c` |
+| `activated_effects` | `Red Gadget` | `src_custom/activated_effects/red_gadget.c` |
+| `trap_effects` | `Relay Soul` | `src_custom/trap_effects/relay_soul.c` |
+| `activated_effects` | `Rocket Hermos Cannon` | `src_custom/activated_effects/rocket_hermos_cannon.c` |
+| `trap_effects` | `Rope Of Life` | `src_custom/trap_effects/rope_of_life.c` |
+| `activated_effects` | `Royal Magical Library` | `src_custom/activated_effects/royal_magical_library.c` |
+| `trap_effects` | `Sixth Sense` | `src_custom/trap_effects/sixth_sense.c` |
+| `activated_effects` | `Skilled Dark Magician` | `src_custom/activated_effects/skilled_dark_magician.c` |
+| `activated_effects` | `Skilled White Magician` | `src_custom/activated_effects/skilled_white_magician.c` |
+| `trap_effects` | `Solemn Judgment` | `src_custom/trap_effects/solemn_judgment.c` |
+| `activated_effects` | `Sphinx Teleia` | `src_custom/activated_effects/sphinx_teleia.c` |
+| `trap_effects` | `Statue Of The Wicked` | `src_custom/trap_effects/statue_of_the_wicked.c` |
+| `trap_effects` | `Staunch Defender` | `src_custom/trap_effects/staunch_defender.c` |
+| `trap_effects` | `Stronghold The Moving Fortress` | `src_custom/trap_effects/stronghold_the_moving_fortress.c` |
+| `activated_effects` | `Summoner Monk` | `src_custom/activated_effects/summoner_monk.c` |
+| `activated_effects` | `Summoner Of Illusions` | `src_custom/activated_effects/summoner_of_illusions.c` |
+| `activated_effects` | `The Creator` | `src_custom/activated_effects/the_creator.c` |
+| `activated_effects` | `The Creator Incarnate` | `src_custom/activated_effects/the_creator_incarnate.c` |
+| `activated_effects` | `The Legendary Exodia Incarnate` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
+| `activated_effects` | `Theinen The Great Sphinx` | `src_custom/activated_effects/theinen_the_great_sphinx.c` |
+| `activated_effects` | `Thestalos The Firestorm Monarch` | `src_custom/activated_effects/thestalos_the_firestorm_monarch.c` |
+| `activated_effects` | `Thunder Dragon Colossus` | `src_custom/activated_effects/thunder_dragon_colossus.c` |
+| `activated_effects` | `Thunder Dragon Titan` | `src_custom/activated_effects/thunder_dragon_titan.c` |
+| `activated_effects` | `Timaeus The Knight Of Destiny` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
+| `activated_effects` | `Time Magic Hammer` | `src_custom/activated_effects/time_magic_hammer.c` |
+| `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
+| `trap_effects` | `Tornado Wall` | `src_custom/trap_effects/tornado_wall.c` |
+| `trap_effects` | `Trap Dustshoot` | `src_custom/trap_effects/trap_dustshoot.c` |
+| `activated_effects` | `Tyrant Burst Dragon` | `src_custom/activated_effects/tyrant_burst_dragon.c` |
+| `trap_effects` | `Tyrant Wing` | `src_custom/trap_effects/tyrant_wing.c` |
+| `activated_effects` | `Ultimate Conductor Tyranno` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
+| `activated_effects` | `Ultimate Obedient Fiend` | `src_custom/activated_effects/ultimate_obedient_fiend.c` |
+| `activated_effects` | `Vision Hero Adoration` | `src_custom/activated_effects/vision_hero_adoration.c` |
+| `activated_effects` | `Vision Hero Faris` | `src_custom/activated_effects/vision_hero_faris.c` |
+| `activated_effects` | `Vision Hero Gravito` | `src_custom/activated_effects/vision_hero_gravito.c` |
+| `activated_effects` | `Vision Hero Increase` | `src_custom/activated_effects/vision_hero_increase.c` |
+| `activated_effects` | `Vision Hero Minimum Ray` | `src_custom/activated_effects/vision_hero_minimum_ray.c` |
+| `activated_effects` | `Vision Hero Multiply Guy` | `src_custom/activated_effects/vision_hero_multiply_guy.c` |
+| `activated_effects` | `Vision Hero Poisoner` | `src_custom/activated_effects/vision_hero_poisoner.c` |
+| `permanent_effects` | `Vision Hero Trinity` | `src_custom/permanent_effects/vision_hero_trinity.c` |
+| `activated_effects` | `Vision Hero Vyon` | `src_custom/activated_effects/vision_hero_vyon.c` |
+| `activated_effects` | `Vision Hero Witch Raider` | `src_custom/activated_effects/vision_hero_witch_raider.c` |
+| `activated_effects` | `Watapon` | `src_custom/activated_effects/watapon.c` |
+| `activated_effects` | `Yellow Gadget` | `src_custom/activated_effects/yellow_gadget.c` |
+| `trap_effects` | `A Hero Emerges` | `src_custom/trap_effects/a_hero_emerges.c` |
+| `activated_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
+| `activated_effects` | `Andro Sphinx` | `src_custom/activated_effects/andro_sphinx.c` |
+| `activated_effects` | `Apprentice Illusion Magician` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
+| `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |
+| `activated_effects` | `Armageddon Knight` | `src_custom/activated_effects/armageddon_knight.c` |
+| `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
+| `trap_effects` | `Attack Guidance Armor` | `src_custom/trap_effects/attack_guidance_armor.c` |
+| `trap_effects` | `Attack Reflector Unit` | `src_custom/trap_effects/attack_reflector_unit.c` |
+| `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
+| `activated_effects` | `Birdface` | `src_custom/activated_effects/birdface.c` |
+| `trap_effects` | `Break The Destiny` | `src_custom/trap_effects/break_the_destiny.c` |
+| `activated_effects` | `Cannonball Spear Shellfish` | `src_custom/activated_effects/cannonball_spear_shellfish.c` |
+| `activated_effects` | `Chimeratech Fortress Dragon` | `src_custom/activated_effects/chimeratech_fortress_dragon.c` |
+| `activated_effects` | `Chimeratech Megafleet Dragon` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
+| `activated_effects` | `Chimeratech Rampage Dragon` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
+| `activated_effects` | `Cyber Eltanin` | `src_custom/activated_effects/cyber_eltanin.c` |
+| `activated_effects` | `Cyber Kirin` | `src_custom/activated_effects/cyber_kirin.c` |
+| `activated_effects` | `Cyber Phoenix` | `src_custom/activated_effects/cyber_phoenix.c` |
+| `activated_effects` | `Cyber Valley` | `src_custom/activated_effects/cyber_valley.c` |
+| `trap_effects` | `Damage Polarizer` | `src_custom/trap_effects/damage_polarizer.c` |
+| `activated_effects` | `Dark Blade The Dragon Knight` | `src_custom/activated_effects/dark_blade_the_dragon_knight.c` |
+| `activated_effects` | `Dark Grepher` | `src_custom/activated_effects/dark_grepher.c` |
+| `activated_effects` | `Dark Magician Girl The Dragon Knight` | `src_custom/activated_effects/dark_magician_girl_the_dragon_knight.c` |
+| `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
+| `permanent_effects` | `Darklord Nurse Reficule` | `src_custom/permanent_effects/darklord_nurse_reficule.c` |
+| `activated_effects` | `Darkness Neosphere` | `src_custom/activated_effects/darkness_neosphere.c` |
+| `activated_effects` | `Decoy Dragon` | `src_custom/activated_effects/decoy_dragon.c` |
+| `trap_effects` | `Des Counterblow` | `src_custom/trap_effects/des_counterblow.c` |
+| `activated_effects` | `Despair From The Dark` | `src_custom/activated_effects/despair_from_the_dark.c` |
+| `activated_effects` | `Destiny End Dragoon` | `src_custom/activated_effects/destiny_end_dragoon.c` |
+| `activated_effects` | `Divine Serpent Geh` | `src_custom/activated_effects/divine_serpent_geh.c` |
+| `activated_effects` | `Don Zaloog` | `src_custom/activated_effects/don_zaloog.c` |
+| `activated_effects` | `Doom Virus Dragon` | `src_custom/activated_effects/doom_virus_dragon.c` |
+| `activated_effects` | `Egyptian God Slime` | `src_custom/activated_effects/egyptian_god_slime.c` |
+| `activated_effects` | `Elemental Hero Neos Kluger` | `src_custom/activated_effects/elemental_hero_neos_kluger.c` |
+| `trap_effects` | `Fatal Abacus` | `src_custom/trap_effects/fatal_abacus.c` |
+| `activated_effects` | `Felgrand Dragon` | `src_custom/activated_effects/felgrand_dragon.c` |
+| `trap_effects` | `Forced Requisition` | `src_custom/trap_effects/forced_requisition.c` |
+| `activated_effects` | `Gate Guardians Combined` | `src_custom/activated_effects/gate_guardians_combined.c` |
+| `trap_effects` | `Gift Card` | `src_custom/trap_effects/gift_card.c` |
+| `activated_effects` | `Goddess Bow` | `src_custom/activated_effects/goddess_bow.c` |
+| `activated_effects` | `Gorz The Emissary Of Darkness` | `src_custom/activated_effects/gorz_the_emissary_of_darkness.c` |
+| `activated_effects` | `Granmarg The Rock Monarch` | `src_custom/activated_effects/granmarg_the_rock_monarch.c` |
+| `activated_effects` | `Green Gadget` | `src_custom/activated_effects/green_gadget.c` |
+| `activated_effects` | `Guardian Dreadscythe` | `src_custom/activated_effects/guardian_dreadscythe.c` |
+| `activated_effects` | `Guardian Eatos` | `src_custom/activated_effects/guardian_eatos.c` |
+| `activated_effects` | `Herald Of Creation` | `src_custom/activated_effects/herald_of_creation.c` |
+| `activated_effects` | `Holactie The Creator Of Light` | `src_custom/activated_effects/holactie_the_creator_of_light.c` |
+| `activated_effects` | `Jowgen The Spiritualist` | `src_custom/activated_effects/jowgen_the_spiritualist.c` |
+| `activated_effects` | `Judgment Dragon` | `src_custom/activated_effects/judgment_dragon.c` |
+| `activated_effects` | `King Dragun` | `src_custom/activated_effects/king_dragun.c` |
+| `activated_effects` | `King Of The Swamp` | `src_custom/activated_effects/king_of_the_swamp.c` |
+| `activated_effects` | `King Tiger Wanghu` | `src_custom/activated_effects/king_tiger_wanghu.c` |
+| `activated_effects` | `Kuraz The Light Monarch` | `src_custom/activated_effects/kuraz_the_light_monarch.c` |
+| `activated_effects` | `Kuribandit` | `src_custom/activated_effects/kuribandit.c` |
+| `trap_effects` | `Last Turn` | `src_custom/trap_effects/last_turn.c` |
+| `activated_effects` | `Legendary Flame Lord` | `src_custom/activated_effects/legendary_flame_lord.c` |
+| `activated_effects` | `Legendary Knight Critias` | `src_custom/activated_effects/legendary_knight_critias.c` |
+| `activated_effects` | `Legendary Knight Hermos` | `src_custom/activated_effects/legendary_knight_hermos.c` |
+| `activated_effects` | `Legendary Knight Timaeus` | `src_custom/activated_effects/legendary_knight_timaeus.c` |
+| `activated_effects` | `Lekunga` | `src_custom/activated_effects/lekunga.c` |
+| `activated_effects` | `Light And Darkness Dragon` | `src_custom/activated_effects/light_and_darkness_dragon.c` |
+| `activated_effects` | `Lord Of The Red` | `src_custom/activated_effects/lord_of_the_red.c` |
+| `trap_effects` | `Magical Hats` | `src_custom/trap_effects/magical_hats.c` |
+| `activated_effects` | `Magical Plant Mandragola` | `src_custom/activated_effects/magical_plant_mandragola.c` |
+| `activated_effects` | `Magical Scientist` | `src_custom/activated_effects/magical_scientist.c` |
+| `activated_effects` | `Manju Of The Ten Thousand Hands` | `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c` |
+| `activated_effects` | `Marshmallon` | `src_custom/activated_effects/marshmallon.c` |
+| `activated_effects` | `Mazera Deville` | `src_custom/activated_effects/mazera_deville.c` |
+| `trap_effects` | `Meteorain` | `src_custom/trap_effects/meteorain.c` |
+| `activated_effects` | `Mirror Force Dragon` | `src_custom/activated_effects/mirror_force_dragon.c` |
+| `activated_effects` | `Moisture Creature` | `src_custom/activated_effects/moisture_creature.c` |
+| `activated_effects` | `Molten Zombie` | `src_custom/activated_effects/molten_zombie.c` |
+| `activated_effects` | `Mucus Yolk` | `src_custom/activated_effects/mucus_yolk.c` |
+| `trap_effects` | `Needle Wall` | `src_custom/trap_effects/needle_wall.c` |
+| `activated_effects` | `Neos Wiseman` | `src_custom/activated_effects/neos_wiseman.c` |
+| `trap_effects` | `Numinous Healer` | `src_custom/trap_effects/numinous_healer.c` |
+| `activated_effects` | `Ojama King` | `src_custom/activated_effects/ojama_king.c` |
+| `activated_effects` | `Orichalcos Shunoros` | `src_custom/activated_effects/orichalcos_shunoros.c` |
+| `permanent_effects` | `Protector Of The Sanctuary` | `src_custom/permanent_effects/protector_of_the_sanctuary.c` |
+| `activated_effects` | `Quintet Magician` | `src_custom/activated_effects/quintet_magician.c` |
+| `trap_effects` | `Raigeki Break` | `src_custom/trap_effects/raigeki_break.c` |
+| `activated_effects` | `Red Gadget` | `src_custom/activated_effects/red_gadget.c` |
+| `trap_effects` | `Relay Soul` | `src_custom/trap_effects/relay_soul.c` |
+| `activated_effects` | `Rocket Hermos Cannon` | `src_custom/activated_effects/rocket_hermos_cannon.c` |
+| `trap_effects` | `Rope Of Life` | `src_custom/trap_effects/rope_of_life.c` |
+| `activated_effects` | `Royal Magical Library` | `src_custom/activated_effects/royal_magical_library.c` |
+| `trap_effects` | `Sixth Sense` | `src_custom/trap_effects/sixth_sense.c` |
+| `activated_effects` | `Skilled Dark Magician` | `src_custom/activated_effects/skilled_dark_magician.c` |
+| `activated_effects` | `Skilled White Magician` | `src_custom/activated_effects/skilled_white_magician.c` |
+| `trap_effects` | `Solemn Judgment` | `src_custom/trap_effects/solemn_judgment.c` |
+| `activated_effects` | `Sphinx Teleia` | `src_custom/activated_effects/sphinx_teleia.c` |
+| `trap_effects` | `Statue Of The Wicked` | `src_custom/trap_effects/statue_of_the_wicked.c` |
+| `trap_effects` | `Staunch Defender` | `src_custom/trap_effects/staunch_defender.c` |
+| `trap_effects` | `Stronghold The Moving Fortress` | `src_custom/trap_effects/stronghold_the_moving_fortress.c` |
+| `activated_effects` | `Summoner Monk` | `src_custom/activated_effects/summoner_monk.c` |
+| `activated_effects` | `Summoner Of Illusions` | `src_custom/activated_effects/summoner_of_illusions.c` |
+| `activated_effects` | `The Creator` | `src_custom/activated_effects/the_creator.c` |
+| `activated_effects` | `The Creator Incarnate` | `src_custom/activated_effects/the_creator_incarnate.c` |
+| `activated_effects` | `The Legendary Exodia Incarnate` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
+| `activated_effects` | `Theinen The Great Sphinx` | `src_custom/activated_effects/theinen_the_great_sphinx.c` |
+| `activated_effects` | `Thestalos The Firestorm Monarch` | `src_custom/activated_effects/thestalos_the_firestorm_monarch.c` |
+| `activated_effects` | `Thunder Dragon Colossus` | `src_custom/activated_effects/thunder_dragon_colossus.c` |
+| `activated_effects` | `Thunder Dragon Titan` | `src_custom/activated_effects/thunder_dragon_titan.c` |
+| `activated_effects` | `Timaeus The Knight Of Destiny` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
+| `activated_effects` | `Time Magic Hammer` | `src_custom/activated_effects/time_magic_hammer.c` |
+| `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
+| `trap_effects` | `Tornado Wall` | `src_custom/trap_effects/tornado_wall.c` |
+| `trap_effects` | `Trap Dustshoot` | `src_custom/trap_effects/trap_dustshoot.c` |
+| `activated_effects` | `Tyrant Burst Dragon` | `src_custom/activated_effects/tyrant_burst_dragon.c` |
+| `trap_effects` | `Tyrant Wing` | `src_custom/trap_effects/tyrant_wing.c` |
+| `activated_effects` | `Ultimate Conductor Tyranno` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
+| `activated_effects` | `Ultimate Obedient Fiend` | `src_custom/activated_effects/ultimate_obedient_fiend.c` |
+| `activated_effects` | `Vision Hero Adoration` | `src_custom/activated_effects/vision_hero_adoration.c` |
+| `activated_effects` | `Vision Hero Faris` | `src_custom/activated_effects/vision_hero_faris.c` |
+| `activated_effects` | `Vision Hero Gravito` | `src_custom/activated_effects/vision_hero_gravito.c` |
+| `activated_effects` | `Vision Hero Increase` | `src_custom/activated_effects/vision_hero_increase.c` |
+| `activated_effects` | `Vision Hero Minimum Ray` | `src_custom/activated_effects/vision_hero_minimum_ray.c` |
+| `activated_effects` | `Vision Hero Multiply Guy` | `src_custom/activated_effects/vision_hero_multiply_guy.c` |
+| `activated_effects` | `Vision Hero Poisoner` | `src_custom/activated_effects/vision_hero_poisoner.c` |
+| `permanent_effects` | `Vision Hero Trinity` | `src_custom/permanent_effects/vision_hero_trinity.c` |
+| `activated_effects` | `Vision Hero Vyon` | `src_custom/activated_effects/vision_hero_vyon.c` |
+| `activated_effects` | `Vision Hero Witch Raider` | `src_custom/activated_effects/vision_hero_witch_raider.c` |
+| `activated_effects` | `Watapon` | `src_custom/activated_effects/watapon.c` |
+| `activated_effects` | `Yellow Gadget` | `src_custom/activated_effects/yellow_gadget.c` |
+| `trap_effects` | `A Hero Emerges` | `src_custom/trap_effects/a_hero_emerges.c` |
+| `activated_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
+| `activated_effects` | `Andro Sphinx` | `src_custom/activated_effects/andro_sphinx.c` |
+| `activated_effects` | `Apprentice Illusion Magician` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
+| `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |
+| `activated_effects` | `Armageddon Knight` | `src_custom/activated_effects/armageddon_knight.c` |
+| `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
+| `trap_effects` | `Attack Guidance Armor` | `src_custom/trap_effects/attack_guidance_armor.c` |
+| `trap_effects` | `Attack Reflector Unit` | `src_custom/trap_effects/attack_reflector_unit.c` |
+| `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
+| `activated_effects` | `Birdface` | `src_custom/activated_effects/birdface.c` |
+| `trap_effects` | `Break The Destiny` | `src_custom/trap_effects/break_the_destiny.c` |
+| `activated_effects` | `Cannonball Spear Shellfish` | `src_custom/activated_effects/cannonball_spear_shellfish.c` |
+| `activated_effects` | `Chimeratech Fortress Dragon` | `src_custom/activated_effects/chimeratech_fortress_dragon.c` |
+| `activated_effects` | `Chimeratech Megafleet Dragon` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
+| `activated_effects` | `Chimeratech Rampage Dragon` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
+| `activated_effects` | `Cyber Eltanin` | `src_custom/activated_effects/cyber_eltanin.c` |
+| `activated_effects` | `Cyber Kirin` | `src_custom/activated_effects/cyber_kirin.c` |
+| `activated_effects` | `Cyber Phoenix` | `src_custom/activated_effects/cyber_phoenix.c` |
+| `activated_effects` | `Cyber Valley` | `src_custom/activated_effects/cyber_valley.c` |
+| `trap_effects` | `Damage Polarizer` | `src_custom/trap_effects/damage_polarizer.c` |
+| `activated_effects` | `Dark Blade The Dragon Knight` | `src_custom/activated_effects/dark_blade_the_dragon_knight.c` |
+| `activated_effects` | `Dark Grepher` | `src_custom/activated_effects/dark_grepher.c` |
+| `activated_effects` | `Dark Magician Girl The Dragon Knight` | `src_custom/activated_effects/dark_magician_girl_the_dragon_knight.c` |
+| `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
+| `permanent_effects` | `Darklord Nurse Reficule` | `src_custom/permanent_effects/darklord_nurse_reficule.c` |
+| `activated_effects` | `Darkness Neosphere` | `src_custom/activated_effects/darkness_neosphere.c` |
+| `activated_effects` | `Decoy Dragon` | `src_custom/activated_effects/decoy_dragon.c` |
+| `trap_effects` | `Des Counterblow` | `src_custom/trap_effects/des_counterblow.c` |
+| `activated_effects` | `Despair From The Dark` | `src_custom/activated_effects/despair_from_the_dark.c` |
+| `activated_effects` | `Destiny End Dragoon` | `src_custom/activated_effects/destiny_end_dragoon.c` |
+| `activated_effects` | `Divine Serpent Geh` | `src_custom/activated_effects/divine_serpent_geh.c` |
+| `activated_effects` | `Don Zaloog` | `src_custom/activated_effects/don_zaloog.c` |
+| `activated_effects` | `Doom Virus Dragon` | `src_custom/activated_effects/doom_virus_dragon.c` |
+| `activated_effects` | `Egyptian God Slime` | `src_custom/activated_effects/egyptian_god_slime.c` |
+| `activated_effects` | `Elemental Hero Neos Kluger` | `src_custom/activated_effects/elemental_hero_neos_kluger.c` |
+| `trap_effects` | `Fatal Abacus` | `src_custom/trap_effects/fatal_abacus.c` |
+| `activated_effects` | `Felgrand Dragon` | `src_custom/activated_effects/felgrand_dragon.c` |
+| `trap_effects` | `Forced Requisition` | `src_custom/trap_effects/forced_requisition.c` |
+| `activated_effects` | `Gate Guardians Combined` | `src_custom/activated_effects/gate_guardians_combined.c` |
+| `trap_effects` | `Gift Card` | `src_custom/trap_effects/gift_card.c` |
+| `activated_effects` | `Goddess Bow` | `src_custom/activated_effects/goddess_bow.c` |
+| `activated_effects` | `Gorz The Emissary Of Darkness` | `src_custom/activated_effects/gorz_the_emissary_of_darkness.c` |
+| `activated_effects` | `Granmarg The Rock Monarch` | `src_custom/activated_effects/granmarg_the_rock_monarch.c` |
+| `activated_effects` | `Green Gadget` | `src_custom/activated_effects/green_gadget.c` |
+| `activated_effects` | `Guardian Dreadscythe` | `src_custom/activated_effects/guardian_dreadscythe.c` |
+| `activated_effects` | `Guardian Eatos` | `src_custom/activated_effects/guardian_eatos.c` |
+| `activated_effects` | `Herald Of Creation` | `src_custom/activated_effects/herald_of_creation.c` |
+| `activated_effects` | `Holactie The Creator Of Light` | `src_custom/activated_effects/holactie_the_creator_of_light.c` |
+| `activated_effects` | `Jowgen The Spiritualist` | `src_custom/activated_effects/jowgen_the_spiritualist.c` |
+| `activated_effects` | `Judgment Dragon` | `src_custom/activated_effects/judgment_dragon.c` |
+| `activated_effects` | `King Dragun` | `src_custom/activated_effects/king_dragun.c` |
+| `activated_effects` | `King Of The Swamp` | `src_custom/activated_effects/king_of_the_swamp.c` |
+| `activated_effects` | `King Tiger Wanghu` | `src_custom/activated_effects/king_tiger_wanghu.c` |
+| `activated_effects` | `Kuraz The Light Monarch` | `src_custom/activated_effects/kuraz_the_light_monarch.c` |
+| `activated_effects` | `Kuribandit` | `src_custom/activated_effects/kuribandit.c` |
+| `trap_effects` | `Last Turn` | `src_custom/trap_effects/last_turn.c` |
+| `activated_effects` | `Legendary Flame Lord` | `src_custom/activated_effects/legendary_flame_lord.c` |
+| `activated_effects` | `Legendary Knight Critias` | `src_custom/activated_effects/legendary_knight_critias.c` |
+| `activated_effects` | `Legendary Knight Hermos` | `src_custom/activated_effects/legendary_knight_hermos.c` |
+| `activated_effects` | `Legendary Knight Timaeus` | `src_custom/activated_effects/legendary_knight_timaeus.c` |
+| `activated_effects` | `Lekunga` | `src_custom/activated_effects/lekunga.c` |
+| `activated_effects` | `Light And Darkness Dragon` | `src_custom/activated_effects/light_and_darkness_dragon.c` |
+| `activated_effects` | `Lord Of The Red` | `src_custom/activated_effects/lord_of_the_red.c` |
+| `trap_effects` | `Magical Hats` | `src_custom/trap_effects/magical_hats.c` |
+| `activated_effects` | `Magical Plant Mandragola` | `src_custom/activated_effects/magical_plant_mandragola.c` |
+| `activated_effects` | `Magical Scientist` | `src_custom/activated_effects/magical_scientist.c` |
+| `activated_effects` | `Manju Of The Ten Thousand Hands` | `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c` |
+| `activated_effects` | `Marshmallon` | `src_custom/activated_effects/marshmallon.c` |
+| `activated_effects` | `Mazera Deville` | `src_custom/activated_effects/mazera_deville.c` |
+| `trap_effects` | `Meteorain` | `src_custom/trap_effects/meteorain.c` |
+| `activated_effects` | `Mirror Force Dragon` | `src_custom/activated_effects/mirror_force_dragon.c` |
+| `activated_effects` | `Moisture Creature` | `src_custom/activated_effects/moisture_creature.c` |
+| `activated_effects` | `Molten Zombie` | `src_custom/activated_effects/molten_zombie.c` |
+| `activated_effects` | `Mucus Yolk` | `src_custom/activated_effects/mucus_yolk.c` |
+| `trap_effects` | `Needle Wall` | `src_custom/trap_effects/needle_wall.c` |
+| `activated_effects` | `Neos Wiseman` | `src_custom/activated_effects/neos_wiseman.c` |
+| `trap_effects` | `Numinous Healer` | `src_custom/trap_effects/numinous_healer.c` |
+| `activated_effects` | `Ojama King` | `src_custom/activated_effects/ojama_king.c` |
+| `activated_effects` | `Orichalcos Shunoros` | `src_custom/activated_effects/orichalcos_shunoros.c` |
+| `permanent_effects` | `Protector Of The Sanctuary` | `src_custom/permanent_effects/protector_of_the_sanctuary.c` |
+| `activated_effects` | `Quintet Magician` | `src_custom/activated_effects/quintet_magician.c` |
+| `trap_effects` | `Raigeki Break` | `src_custom/trap_effects/raigeki_break.c` |
+| `activated_effects` | `Red Gadget` | `src_custom/activated_effects/red_gadget.c` |
+| `trap_effects` | `Relay Soul` | `src_custom/trap_effects/relay_soul.c` |
+| `activated_effects` | `Rocket Hermos Cannon` | `src_custom/activated_effects/rocket_hermos_cannon.c` |
+| `trap_effects` | `Rope Of Life` | `src_custom/trap_effects/rope_of_life.c` |
+| `activated_effects` | `Royal Magical Library` | `src_custom/activated_effects/royal_magical_library.c` |
+| `trap_effects` | `Sixth Sense` | `src_custom/trap_effects/sixth_sense.c` |
+| `activated_effects` | `Skilled Dark Magician` | `src_custom/activated_effects/skilled_dark_magician.c` |
+| `activated_effects` | `Skilled White Magician` | `src_custom/activated_effects/skilled_white_magician.c` |
+| `trap_effects` | `Solemn Judgment` | `src_custom/trap_effects/solemn_judgment.c` |
+| `activated_effects` | `Sphinx Teleia` | `src_custom/activated_effects/sphinx_teleia.c` |
+| `trap_effects` | `Statue Of The Wicked` | `src_custom/trap_effects/statue_of_the_wicked.c` |
+| `trap_effects` | `Staunch Defender` | `src_custom/trap_effects/staunch_defender.c` |
+| `trap_effects` | `Stronghold The Moving Fortress` | `src_custom/trap_effects/stronghold_the_moving_fortress.c` |
+| `activated_effects` | `Summoner Monk` | `src_custom/activated_effects/summoner_monk.c` |
+| `activated_effects` | `Summoner Of Illusions` | `src_custom/activated_effects/summoner_of_illusions.c` |
+| `activated_effects` | `The Creator` | `src_custom/activated_effects/the_creator.c` |
+| `activated_effects` | `The Creator Incarnate` | `src_custom/activated_effects/the_creator_incarnate.c` |
+| `activated_effects` | `The Legendary Exodia Incarnate` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
+| `activated_effects` | `Theinen The Great Sphinx` | `src_custom/activated_effects/theinen_the_great_sphinx.c` |
+| `activated_effects` | `Thestalos The Firestorm Monarch` | `src_custom/activated_effects/thestalos_the_firestorm_monarch.c` |
+| `activated_effects` | `Thunder Dragon Colossus` | `src_custom/activated_effects/thunder_dragon_colossus.c` |
+| `activated_effects` | `Thunder Dragon Titan` | `src_custom/activated_effects/thunder_dragon_titan.c` |
+| `activated_effects` | `Timaeus The Knight Of Destiny` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
+| `activated_effects` | `Time Magic Hammer` | `src_custom/activated_effects/time_magic_hammer.c` |
+| `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
+| `trap_effects` | `Tornado Wall` | `src_custom/trap_effects/tornado_wall.c` |
+| `trap_effects` | `Trap Dustshoot` | `src_custom/trap_effects/trap_dustshoot.c` |
+| `activated_effects` | `Tyrant Burst Dragon` | `src_custom/activated_effects/tyrant_burst_dragon.c` |
+| `trap_effects` | `Tyrant Wing` | `src_custom/trap_effects/tyrant_wing.c` |
+| `activated_effects` | `Ultimate Conductor Tyranno` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
+| `activated_effects` | `Ultimate Obedient Fiend` | `src_custom/activated_effects/ultimate_obedient_fiend.c` |
+| `activated_effects` | `Vision Hero Adoration` | `src_custom/activated_effects/vision_hero_adoration.c` |
+| `activated_effects` | `Vision Hero Faris` | `src_custom/activated_effects/vision_hero_faris.c` |
+| `activated_effects` | `Vision Hero Gravito` | `src_custom/activated_effects/vision_hero_gravito.c` |
+| `activated_effects` | `Vision Hero Increase` | `src_custom/activated_effects/vision_hero_increase.c` |
+| `activated_effects` | `Vision Hero Minimum Ray` | `src_custom/activated_effects/vision_hero_minimum_ray.c` |
+| `activated_effects` | `Vision Hero Multiply Guy` | `src_custom/activated_effects/vision_hero_multiply_guy.c` |
+| `activated_effects` | `Vision Hero Poisoner` | `src_custom/activated_effects/vision_hero_poisoner.c` |
+| `permanent_effects` | `Vision Hero Trinity` | `src_custom/permanent_effects/vision_hero_trinity.c` |
+| `activated_effects` | `Vision Hero Vyon` | `src_custom/activated_effects/vision_hero_vyon.c` |
+| `activated_effects` | `Vision Hero Witch Raider` | `src_custom/activated_effects/vision_hero_witch_raider.c` |
+| `activated_effects` | `Watapon` | `src_custom/activated_effects/watapon.c` |
+| `activated_effects` | `Yellow Gadget` | `src_custom/activated_effects/yellow_gadget.c` |
+| `activated_effects` | `Destiny Hero Blade Master` | `src_custom/activated_effects/destiny_hero_blade_master.c` |
+| `activated_effects` | `Destiny Hero Captain Tenacious` | `src_custom/activated_effects/destiny_hero_captain_tenacious.c` |
+| `activated_effects` | `Destiny Hero Celestial` | `src_custom/activated_effects/destiny_hero_celestial.c` |
+| `activated_effects` | `Destiny Hero Dangerous` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
+| `activated_effects` | `Destiny Hero Dark Angel` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
+| `activated_effects` | `Destiny Hero Dasher` | `src_custom/activated_effects/destiny_hero_dasher.c` |
+| `activated_effects` | `Destiny Hero Decider` | `src_custom/activated_effects/destiny_hero_decider.c` |
+| `activated_effects` | `Destiny Hero Defender` | `src_custom/activated_effects/destiny_hero_defender.c` |
+| `activated_effects` | `Destiny Hero Denier` | `src_custom/activated_effects/destiny_hero_denier.c` |
+| `activated_effects` | `Destiny Hero Destroyer Phoenix Enforcer` | `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c` |
+| `activated_effects` | `Destiny Hero Diamond Dude` | `src_custom/activated_effects/destiny_hero_diamond_dude.c` |
+| `activated_effects` | `Destiny Hero Disk Commander` | `src_custom/activated_effects/destiny_hero_disk_commander.c` |
+| `activated_effects` | `Destiny Hero Dogma` | `src_custom/activated_effects/destiny_hero_dogma.c` |
+| `activated_effects` | `Destiny Hero Dominance` | `src_custom/activated_effects/destiny_hero_dominance.c` |
+| `activated_effects` | `Destiny Hero Doom Lord` | `src_custom/activated_effects/destiny_hero_doom_lord.c` |
+| `activated_effects` | `Destiny Hero Doom Overlord` | `src_custom/activated_effects/destiny_hero_doom_overlord.c` |
+| `activated_effects` | `Destiny Hero Double Dude` | `src_custom/activated_effects/destiny_hero_double_dude.c` |
+| `activated_effects` | `Destiny Hero Drawhand` | `src_custom/activated_effects/destiny_hero_drawhand.c` |
+| `activated_effects` | `Destiny Hero Dread Servant` | `src_custom/activated_effects/destiny_hero_dread_servant.c` |
+| `activated_effects` | `Destiny Hero Dreadmaster` | `src_custom/activated_effects/destiny_hero_dreadmaster.c` |
+| `activated_effects` | `Destiny Hero Dreadnought Master` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
+| `activated_effects` | `Destiny Hero Dreadnought Servant` | `src_custom/activated_effects/destiny_hero_dreadnought_servant.c` |
+| `activated_effects` | `Destiny Hero Dreamer` | `src_custom/activated_effects/destiny_hero_dreamer.c` |
+| `activated_effects` | `Destiny Hero Drilldark` | `src_custom/activated_effects/destiny_hero_drilldark.c` |
+| `activated_effects` | `Destiny Hero Dunker` | `src_custom/activated_effects/destiny_hero_dunker.c` |
+| `activated_effects` | `Destiny Hero Dusktopia` | `src_custom/activated_effects/destiny_hero_dusktopia.c` |
+| `activated_effects` | `Destiny Hero Dynatag` | `src_custom/activated_effects/destiny_hero_dynatag.c` |
+| `activated_effects` | `Destiny Hero Dystopia` | `src_custom/activated_effects/destiny_hero_dystopia.c` |
+| `activated_effects` | `Destiny Hero Fear Monger` | `src_custom/activated_effects/destiny_hero_fear_monger.c` |
+| `activated_effects` | `Destiny Hero Malicious` | `src_custom/activated_effects/destiny_hero_malicious.c` |
+| `activated_effects` | `Destiny Hero Plasma` | `src_custom/activated_effects/destiny_hero_plasma.c` |
+| `activated_effects` | `D.D Warrior` | `src_custom/activated_effects/d.d_warrior.c` |
+| `activated_effects` | `Blue Eyes Alternative Ultimate Dragon` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
+| `activated_effects` | `Exodius The Ultimate Forbidden Lord` | `src_custom/activated_effects/exodius_the_ultimate_forbidden_lord.c` |
+| `activated_effects` | `Majestic Mech Goryu` | `src_custom/activated_effects/majestic_mech_goryu.c` |
+| `activated_effects` | `Neo Blue Eyes Ultimate Dragon` | `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c` |
+| `activated_effects` | `Red Eyes Black Dragon Sword` | `src_custom/activated_effects/red_eyes_black_dragon_sword.c` |
+| `activated_effects` | `Red Eyes Dark Dragoon` | `src_custom/activated_effects/red_eyes_dark_dragoon.c` |
+| `activated_effects` | `Red Eyes Darkness Metal Dragon` | `src_custom/activated_effects/red_eyes_darkness_metal_dragon.c` |
+| `activated_effects` | `The Agent Of Judgment Saturn` | `src_custom/activated_effects/the_agent_of_judgment_saturn.c` |
+| `permanent_effects` | `The Agent Of Wisdom Mercury` | `src_custom/permanent_effects/the_agent_of_wisdom_mercury.c` |
+| `trap_effects` | `D Tactics` | `src_custom/trap_effects/d_tactics.c` |
+| `trap_effects` | `D Time` | `src_custom/trap_effects/d_time.c` |
+| `activated_effects` | `Armed Dragon Level Five` | `src_custom/activated_effects/armed_dragon_level_five.c` |
+| `activated_effects` | `Armed Dragon Level Seven` | `src_custom/activated_effects/armed_dragon_level_seven.c` |
+| `activated_effects` | `Armed Dragon Level Ten` | `src_custom/activated_effects/armed_dragon_level_ten.c` |
+| `activated_effects` | `Armed Dragon Level Three` | `src_custom/activated_effects/armed_dragon_level_three.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Eight` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_eight.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Four` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_four.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Six` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_six.c` |
+| `activated_effects` | `Destiny Hero Blade Master` | `src_custom/activated_effects/destiny_hero_blade_master.c` |
+| `activated_effects` | `Destiny Hero Captain Tenacious` | `src_custom/activated_effects/destiny_hero_captain_tenacious.c` |
+| `activated_effects` | `Destiny Hero Celestial` | `src_custom/activated_effects/destiny_hero_celestial.c` |
+| `activated_effects` | `Destiny Hero Dangerous` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
+| `activated_effects` | `Destiny Hero Dark Angel` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
+| `activated_effects` | `Destiny Hero Dasher` | `src_custom/activated_effects/destiny_hero_dasher.c` |
+| `activated_effects` | `Destiny Hero Decider` | `src_custom/activated_effects/destiny_hero_decider.c` |
+| `activated_effects` | `Destiny Hero Defender` | `src_custom/activated_effects/destiny_hero_defender.c` |
+| `activated_effects` | `Destiny Hero Denier` | `src_custom/activated_effects/destiny_hero_denier.c` |
+| `activated_effects` | `Destiny Hero Destroyer Phoenix Enforcer` | `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c` |
+| `activated_effects` | `Destiny Hero Diamond Dude` | `src_custom/activated_effects/destiny_hero_diamond_dude.c` |
+| `activated_effects` | `Destiny Hero Disk Commander` | `src_custom/activated_effects/destiny_hero_disk_commander.c` |
+| `activated_effects` | `Destiny Hero Dogma` | `src_custom/activated_effects/destiny_hero_dogma.c` |
+| `activated_effects` | `Destiny Hero Dominance` | `src_custom/activated_effects/destiny_hero_dominance.c` |
+| `activated_effects` | `Destiny Hero Doom Lord` | `src_custom/activated_effects/destiny_hero_doom_lord.c` |
+| `activated_effects` | `Destiny Hero Doom Overlord` | `src_custom/activated_effects/destiny_hero_doom_overlord.c` |
+| `activated_effects` | `Destiny Hero Double Dude` | `src_custom/activated_effects/destiny_hero_double_dude.c` |
+| `activated_effects` | `Destiny Hero Drawhand` | `src_custom/activated_effects/destiny_hero_drawhand.c` |
+| `activated_effects` | `Destiny Hero Dread Servant` | `src_custom/activated_effects/destiny_hero_dread_servant.c` |
+| `activated_effects` | `Destiny Hero Dreadmaster` | `src_custom/activated_effects/destiny_hero_dreadmaster.c` |
+| `activated_effects` | `Destiny Hero Dreadnought Master` | `src_custom/activated_effects/destiny_hero_dreadnought_master.c` |
+| `activated_effects` | `Destiny Hero Dreadnought Servant` | `src_custom/activated_effects/destiny_hero_dreadnought_servant.c` |
+| `activated_effects` | `Destiny Hero Dreamer` | `src_custom/activated_effects/destiny_hero_dreamer.c` |
+| `activated_effects` | `Destiny Hero Drilldark` | `src_custom/activated_effects/destiny_hero_drilldark.c` |
+| `activated_effects` | `Destiny Hero Dunker` | `src_custom/activated_effects/destiny_hero_dunker.c` |
+| `activated_effects` | `Destiny Hero Dusktopia` | `src_custom/activated_effects/destiny_hero_dusktopia.c` |
+| `activated_effects` | `Destiny Hero Dynatag` | `src_custom/activated_effects/destiny_hero_dynatag.c` |
+| `activated_effects` | `Destiny Hero Dystopia` | `src_custom/activated_effects/destiny_hero_dystopia.c` |
+| `activated_effects` | `Destiny Hero Fear Monger` | `src_custom/activated_effects/destiny_hero_fear_monger.c` |
+| `activated_effects` | `Destiny Hero Malicious` | `src_custom/activated_effects/destiny_hero_malicious.c` |
+| `activated_effects` | `Destiny Hero Plasma` | `src_custom/activated_effects/destiny_hero_plasma.c` |
+| `activated_effects` | `Blue Eyes Alternative Ultimate Dragon` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
+| `activated_effects` | `Exodius The Ultimate Forbidden Lord` | `src_custom/activated_effects/exodius_the_ultimate_forbidden_lord.c` |
+| `activated_effects` | `Majestic Mech Goryu` | `src_custom/activated_effects/majestic_mech_goryu.c` |
+| `activated_effects` | `Neo Blue Eyes Ultimate Dragon` | `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c` |
+| `activated_effects` | `Red Eyes Black Dragon Sword` | `src_custom/activated_effects/red_eyes_black_dragon_sword.c` |
+| `activated_effects` | `Red Eyes Dark Dragoon` | `src_custom/activated_effects/red_eyes_dark_dragoon.c` |
+| `activated_effects` | `Red Eyes Darkness Metal Dragon` | `src_custom/activated_effects/red_eyes_darkness_metal_dragon.c` |
+| `activated_effects` | `The Agent Of Judgment Saturn` | `src_custom/activated_effects/the_agent_of_judgment_saturn.c` |
+| `permanent_effects` | `The Agent Of Wisdom Mercury` | `src_custom/permanent_effects/the_agent_of_wisdom_mercury.c` |
+| `trap_effects` | `D Tactics` | `src_custom/trap_effects/d_tactics.c` |
+| `trap_effects` | `D Time` | `src_custom/trap_effects/d_time.c` |
+| `activated_effects` | `Armed Dragon Level Five` | `src_custom/activated_effects/armed_dragon_level_five.c` |
+| `activated_effects` | `Armed Dragon Level Seven` | `src_custom/activated_effects/armed_dragon_level_seven.c` |
+| `activated_effects` | `Armed Dragon Level Ten` | `src_custom/activated_effects/armed_dragon_level_ten.c` |
+| `activated_effects` | `Armed Dragon Level Three` | `src_custom/activated_effects/armed_dragon_level_three.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Eight` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_eight.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Four` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_four.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Level Six` | `src_custom/activated_effects/horus_the_black_flame_dragon_level_six.c` |
+| `trap_effects` | `Anti Spell Fragrance` | `src_custom/trap_effects/anti_spell_fragrance.c` |
+| `trap_effects` | `Apparation` | `src_custom/trap_effects/apparation.c` |
+| `trap_effects` | `Doppleganger` | `src_custom/trap_effects/doppleganger.c` |
+| `trap_effects` | `Dragons Rage` | `src_custom/trap_effects/dragons_rage.c` |
+| `trap_effects` | `Drain Time` | `src_custom/trap_effects/drain_time.c` |
+| `activated_effects` | `Man Thro Thro` | `src_custom/activated_effects/man_thro_thro.c` |
+| `activated_effects` | `Master Peace The True Dracroslaying King` | `src_custom/activated_effects/master_peace_the_true_dracroslaying_king.c` |
+| `activated_effects` | `Nibiru The Primal Being` | `src_custom/activated_effects/nibiru_the_primal_being.c` |
+| `trap_effects` | `Reverse Of Reverse` | `src_custom/trap_effects/reverse_of_reverse.c` |
+| `trap_effects` | `Wild Natures Release` | `src_custom/trap_effects/wild_natures_release.c` |
+| `activated_effects` | `Woughtweiler` | `src_custom/activated_effects/woughtweiler.c` |
+| `activated_effects` | `Ma At` | `src_custom/activated_effects/ma_at.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

@@ -823,3 +823,879 @@ FAILED:
       break;
   }
 }
+unsigned char CanActivateAMULET_DRAGON(void);
+void ActivateAMULET_DRAGONEffect(void);
+    if (gMonEffect.id == AMULET_DRAGON) {
+      ActivateAMULET_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateANDRO_SPHINX(void);
+void ActivateANDRO_SPHINXEffect(void);
+    if (gMonEffect.id == ANDRO_SPHINX) {
+      ActivateANDRO_SPHINXEffect();
+      return;
+    }
+unsigned char CanActivateAPPRENTICE_ILLUSION_MAGICIAN(void);
+void ActivateAPPRENTICE_ILLUSION_MAGICIANEffect(void);
+    if (gMonEffect.id == APPRENTICE_ILLUSION_MAGICIAN) {
+      ActivateAPPRENTICE_ILLUSION_MAGICIANEffect();
+      return;
+    }
+unsigned char CanActivateARMAGEDDON_KNIGHT(void);
+void ActivateARMAGEDDON_KNIGHTEffect(void);
+    if (gMonEffect.id == ARMAGEDDON_KNIGHT) {
+      ActivateARMAGEDDON_KNIGHTEffect();
+      return;
+    }
+unsigned char CanActivateBIRDFACE(void);
+void ActivateBIRDFACEEffect(void);
+    if (gMonEffect.id == BIRDFACE) {
+      ActivateBIRDFACEEffect();
+      return;
+    }
+unsigned char CanActivateCANNONBALL_SPEAR_SHELLFISH(void);
+void ActivateCANNONBALL_SPEAR_SHELLFISHEffect(void);
+    if (gMonEffect.id == CANNONBALL_SPEAR_SHELLFISH) {
+      ActivateCANNONBALL_SPEAR_SHELLFISHEffect();
+      return;
+    }
+unsigned char CanActivateCHIMERATECH_FORTRESS_DRAGON(void);
+void ActivateCHIMERATECH_FORTRESS_DRAGONEffect(void);
+    if (gMonEffect.id == CHIMERATECH_FORTRESS_DRAGON) {
+      ActivateCHIMERATECH_FORTRESS_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void);
+void ActivateCHIMERATECH_MEGAFLEET_DRAGONEffect(void);
+    if (gMonEffect.id == CHIMERATECH_MEGAFLEET_DRAGON) {
+      ActivateCHIMERATECH_MEGAFLEET_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void);
+void ActivateCHIMERATECH_RAMPAGE_DRAGONEffect(void);
+    if (gMonEffect.id == CHIMERATECH_RAMPAGE_DRAGON) {
+      ActivateCHIMERATECH_RAMPAGE_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateCYBER_ELTANIN(void);
+void ActivateCYBER_ELTANINEffect(void);
+    if (gMonEffect.id == CYBER_ELTANIN) {
+      ActivateCYBER_ELTANINEffect();
+      return;
+    }
+unsigned char CanActivateCYBER_KIRIN(void);
+void ActivateCYBER_KIRINEffect(void);
+    if (gMonEffect.id == CYBER_KIRIN) {
+      ActivateCYBER_KIRINEffect();
+      return;
+    }
+unsigned char CanActivateCYBER_PHOENIX(void);
+void ActivateCYBER_PHOENIXEffect(void);
+    if (gMonEffect.id == CYBER_PHOENIX) {
+      ActivateCYBER_PHOENIXEffect();
+      return;
+    }
+unsigned char CanActivateCYBER_VALLEY(void);
+void ActivateCYBER_VALLEYEffect(void);
+    if (gMonEffect.id == CYBER_VALLEY) {
+      ActivateCYBER_VALLEYEffect();
+      return;
+    }
+unsigned char CanActivateDARK_BLADE_THE_DRAGON_KNIGHT(void);
+void ActivateDARK_BLADE_THE_DRAGON_KNIGHTEffect(void);
+    if (gMonEffect.id == DARK_BLADE_THE_DRAGON_KNIGHT) {
+      ActivateDARK_BLADE_THE_DRAGON_KNIGHTEffect();
+      return;
+    }
+unsigned char CanActivateDARK_GREPHER(void);
+void ActivateDARK_GREPHEREffect(void);
+    if (gMonEffect.id == DARK_GREPHER) {
+      ActivateDARK_GREPHEREffect();
+      return;
+    }
+unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT(void);
+void ActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHTEffect(void);
+    if (gMonEffect.id == DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT) {
+      ActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHTEffect();
+      return;
+    }
+unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void);
+void ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect(void);
+    if (gMonEffect.id == DARK_MAGICIAN_THE_DRAGON_KNIGHT) {
+      ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect();
+      return;
+    }
+unsigned char CanActivateDARKNESS_NEOSPHERE(void);
+void ActivateDARKNESS_NEOSPHEREEffect(void);
+    if (gMonEffect.id == DARKNESS_NEOSPHERE) {
+      ActivateDARKNESS_NEOSPHEREEffect();
+      return;
+    }
+unsigned char CanActivateDECOY_DRAGON(void);
+void ActivateDECOY_DRAGONEffect(void);
+    if (gMonEffect.id == DECOY_DRAGON) {
+      ActivateDECOY_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateDESPAIR_FROM_THE_DARK(void);
+void ActivateDESPAIR_FROM_THE_DARKEffect(void);
+    if (gMonEffect.id == DESPAIR_FROM_THE_DARK) {
+      ActivateDESPAIR_FROM_THE_DARKEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_END_DRAGOON(void);
+void ActivateDESTINY_END_DRAGOONEffect(void);
+    if (gMonEffect.id == DESTINY_END_DRAGOON) {
+      ActivateDESTINY_END_DRAGOONEffect();
+      return;
+    }
+unsigned char CanActivateDIVINE_SERPENT_GEH(void);
+void ActivateDIVINE_SERPENT_GEHEffect(void);
+    if (gMonEffect.id == DIVINE_SERPENT_GEH) {
+      ActivateDIVINE_SERPENT_GEHEffect();
+      return;
+    }
+unsigned char CanActivateDON_ZALOOG(void);
+void ActivateDON_ZALOOGEffect(void);
+    if (gMonEffect.id == DON_ZALOOG) {
+      ActivateDON_ZALOOGEffect();
+      return;
+    }
+unsigned char CanActivateDOOM_VIRUS_DRAGON(void);
+void ActivateDOOM_VIRUS_DRAGONEffect(void);
+    if (gMonEffect.id == DOOM_VIRUS_DRAGON) {
+      ActivateDOOM_VIRUS_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateEGYPTIAN_GOD_SLIME(void);
+void ActivateEGYPTIAN_GOD_SLIMEEffect(void);
+    if (gMonEffect.id == EGYPTIAN_GOD_SLIME) {
+      ActivateEGYPTIAN_GOD_SLIMEEffect();
+      return;
+    }
+unsigned char CanActivateELEMENTAL_HERO_NEOS_KLUGER(void);
+void ActivateELEMENTAL_HERO_NEOS_KLUGEREffect(void);
+    if (gMonEffect.id == ELEMENTAL_HERO_NEOS_KLUGER) {
+      ActivateELEMENTAL_HERO_NEOS_KLUGEREffect();
+      return;
+    }
+unsigned char CanActivateFELGRAND_DRAGON(void);
+void ActivateFELGRAND_DRAGONEffect(void);
+    if (gMonEffect.id == FELGRAND_DRAGON) {
+      ActivateFELGRAND_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateGATE_GUARDIANS_COMBINED(void);
+void ActivateGATE_GUARDIANS_COMBINEDEffect(void);
+    if (gMonEffect.id == GATE_GUARDIANS_COMBINED) {
+      ActivateGATE_GUARDIANS_COMBINEDEffect();
+      return;
+    }
+unsigned char CanActivateGODDESS_BOW(void);
+void ActivateGODDESS_BOWEffect(void);
+    if (gMonEffect.id == GODDESS_BOW) {
+      ActivateGODDESS_BOWEffect();
+      return;
+    }
+unsigned char CanActivateGORZ_THE_EMISSARY_OF_DARKNESS(void);
+void ActivateGORZ_THE_EMISSARY_OF_DARKNESSEffect(void);
+    if (gMonEffect.id == GORZ_THE_EMISSARY_OF_DARKNESS) {
+      ActivateGORZ_THE_EMISSARY_OF_DARKNESSEffect();
+      return;
+    }
+unsigned char CanActivateGRANMARG_THE_ROCK_MONARCH(void);
+void ActivateGRANMARG_THE_ROCK_MONARCHEffect(void);
+    if (gMonEffect.id == GRANMARG_THE_ROCK_MONARCH) {
+      ActivateGRANMARG_THE_ROCK_MONARCHEffect();
+      return;
+    }
+unsigned char CanActivateGREEN_GADGET(void);
+void ActivateGREEN_GADGETEffect(void);
+    if (gMonEffect.id == GREEN_GADGET) {
+      ActivateGREEN_GADGETEffect();
+      return;
+    }
+unsigned char CanActivateGUARDIAN_DREADSCYTHE(void);
+void ActivateGUARDIAN_DREADSCYTHEEffect(void);
+    if (gMonEffect.id == GUARDIAN_DREADSCYTHE) {
+      ActivateGUARDIAN_DREADSCYTHEEffect();
+      return;
+    }
+unsigned char CanActivateGUARDIAN_EATOS(void);
+void ActivateGUARDIAN_EATOSEffect(void);
+    if (gMonEffect.id == GUARDIAN_EATOS) {
+      ActivateGUARDIAN_EATOSEffect();
+      return;
+    }
+unsigned char CanActivateHERALD_OF_CREATION(void);
+void ActivateHERALD_OF_CREATIONEffect(void);
+    if (gMonEffect.id == HERALD_OF_CREATION) {
+      ActivateHERALD_OF_CREATIONEffect();
+      return;
+    }
+unsigned char CanActivateHOLACTIE_THE_CREATOR_OF_LIGHT(void);
+void ActivateHOLACTIE_THE_CREATOR_OF_LIGHTEffect(void);
+    if (gMonEffect.id == HOLACTIE_THE_CREATOR_OF_LIGHT) {
+      ActivateHOLACTIE_THE_CREATOR_OF_LIGHTEffect();
+      return;
+    }
+unsigned char CanActivateJOWGEN_THE_SPIRITUALIST(void);
+void ActivateJOWGEN_THE_SPIRITUALISTEffect(void);
+    if (gMonEffect.id == JOWGEN_THE_SPIRITUALIST) {
+      ActivateJOWGEN_THE_SPIRITUALISTEffect();
+      return;
+    }
+unsigned char CanActivateJUDGMENT_DRAGON(void);
+void ActivateJUDGMENT_DRAGONEffect(void);
+    if (gMonEffect.id == JUDGMENT_DRAGON) {
+      ActivateJUDGMENT_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateKING_DRAGUN(void);
+void ActivateKING_DRAGUNEffect(void);
+    if (gMonEffect.id == KING_DRAGUN) {
+      ActivateKING_DRAGUNEffect();
+      return;
+    }
+unsigned char CanActivateKING_OF_THE_SWAMP(void);
+void ActivateKING_OF_THE_SWAMPEffect(void);
+    if (gMonEffect.id == KING_OF_THE_SWAMP) {
+      ActivateKING_OF_THE_SWAMPEffect();
+      return;
+    }
+unsigned char CanActivateKING_TIGER_WANGHU(void);
+void ActivateKING_TIGER_WANGHUEffect(void);
+    if (gMonEffect.id == KING_TIGER_WANGHU) {
+      ActivateKING_TIGER_WANGHUEffect();
+      return;
+    }
+unsigned char CanActivateKURAZ_THE_LIGHT_MONARCH(void);
+void ActivateKURAZ_THE_LIGHT_MONARCHEffect(void);
+    if (gMonEffect.id == KURAZ_THE_LIGHT_MONARCH) {
+      ActivateKURAZ_THE_LIGHT_MONARCHEffect();
+      return;
+    }
+unsigned char CanActivateKURIBANDIT(void);
+void ActivateKURIBANDITEffect(void);
+    if (gMonEffect.id == KURIBANDIT) {
+      ActivateKURIBANDITEffect();
+      return;
+    }
+unsigned char CanActivateLEGENDARY_FLAME_LORD(void);
+void ActivateLEGENDARY_FLAME_LORDEffect(void);
+    if (gMonEffect.id == LEGENDARY_FLAME_LORD) {
+      ActivateLEGENDARY_FLAME_LORDEffect();
+      return;
+    }
+unsigned char CanActivateLEGENDARY_KNIGHT_CRITIAS(void);
+void ActivateLEGENDARY_KNIGHT_CRITIASEffect(void);
+    if (gMonEffect.id == LEGENDARY_KNIGHT_CRITIAS) {
+      ActivateLEGENDARY_KNIGHT_CRITIASEffect();
+      return;
+    }
+unsigned char CanActivateLEGENDARY_KNIGHT_HERMOS(void);
+void ActivateLEGENDARY_KNIGHT_HERMOSEffect(void);
+    if (gMonEffect.id == LEGENDARY_KNIGHT_HERMOS) {
+      ActivateLEGENDARY_KNIGHT_HERMOSEffect();
+      return;
+    }
+unsigned char CanActivateLEGENDARY_KNIGHT_TIMAEUS(void);
+void ActivateLEGENDARY_KNIGHT_TIMAEUSEffect(void);
+    if (gMonEffect.id == LEGENDARY_KNIGHT_TIMAEUS) {
+      ActivateLEGENDARY_KNIGHT_TIMAEUSEffect();
+      return;
+    }
+unsigned char CanActivateLEKUNGA(void);
+void ActivateLEKUNGAEffect(void);
+    if (gMonEffect.id == LEKUNGA) {
+      ActivateLEKUNGAEffect();
+      return;
+    }
+unsigned char CanActivateLIGHT_AND_DARKNESS_DRAGON(void);
+void ActivateLIGHT_AND_DARKNESS_DRAGONEffect(void);
+    if (gMonEffect.id == LIGHT_AND_DARKNESS_DRAGON) {
+      ActivateLIGHT_AND_DARKNESS_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateLORD_OF_THE_RED(void);
+void ActivateLORD_OF_THE_REDEffect(void);
+    if (gMonEffect.id == LORD_OF_THE_RED) {
+      ActivateLORD_OF_THE_REDEffect();
+      return;
+    }
+unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void);
+void ActivateMAGICAL_PLANT_MANDRAGOLAEffect(void);
+    if (gMonEffect.id == MAGICAL_PLANT_MANDRAGOLA) {
+      ActivateMAGICAL_PLANT_MANDRAGOLAEffect();
+      return;
+    }
+unsigned char CanActivateMAGICAL_SCIENTIST(void);
+void ActivateMAGICAL_SCIENTISTEffect(void);
+    if (gMonEffect.id == MAGICAL_SCIENTIST) {
+      ActivateMAGICAL_SCIENTISTEffect();
+      return;
+    }
+unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void);
+void ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect(void);
+    if (gMonEffect.id == MANJU_OF_THE_TEN_THOUSAND_HANDS) {
+      ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect();
+      return;
+    }
+unsigned char CanActivateMARSHMALLON(void);
+void ActivateMARSHMALLONEffect(void);
+    if (gMonEffect.id == MARSHMALLON) {
+      ActivateMARSHMALLONEffect();
+      return;
+    }
+unsigned char CanActivateMAZERA_DEVILLE(void);
+void ActivateMAZERA_DEVILLEEffect(void);
+    if (gMonEffect.id == MAZERA_DEVILLE) {
+      ActivateMAZERA_DEVILLEEffect();
+      return;
+    }
+unsigned char CanActivateMIRROR_FORCE_DRAGON(void);
+void ActivateMIRROR_FORCE_DRAGONEffect(void);
+    if (gMonEffect.id == MIRROR_FORCE_DRAGON) {
+      ActivateMIRROR_FORCE_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateMOISTURE_CREATURE(void);
+void ActivateMOISTURE_CREATUREEffect(void);
+    if (gMonEffect.id == MOISTURE_CREATURE) {
+      ActivateMOISTURE_CREATUREEffect();
+      return;
+    }
+unsigned char CanActivateMOLTEN_ZOMBIE(void);
+void ActivateMOLTEN_ZOMBIEEffect(void);
+    if (gMonEffect.id == MOLTEN_ZOMBIE) {
+      ActivateMOLTEN_ZOMBIEEffect();
+      return;
+    }
+unsigned char CanActivateMUCUS_YOLK(void);
+void ActivateMUCUS_YOLKEffect(void);
+    if (gMonEffect.id == MUCUS_YOLK) {
+      ActivateMUCUS_YOLKEffect();
+      return;
+    }
+unsigned char CanActivateNEOS_WISEMAN(void);
+void ActivateNEOS_WISEMANEffect(void);
+    if (gMonEffect.id == NEOS_WISEMAN) {
+      ActivateNEOS_WISEMANEffect();
+      return;
+    }
+unsigned char CanActivateOJAMA_KING(void);
+void ActivateOJAMA_KINGEffect(void);
+    if (gMonEffect.id == OJAMA_KING) {
+      ActivateOJAMA_KINGEffect();
+      return;
+    }
+unsigned char CanActivateORICHALCOS_SHUNOROS(void);
+void ActivateORICHALCOS_SHUNOROSEffect(void);
+    if (gMonEffect.id == ORICHALCOS_SHUNOROS) {
+      ActivateORICHALCOS_SHUNOROSEffect();
+      return;
+    }
+unsigned char CanActivateQUINTET_MAGICIAN(void);
+void ActivateQUINTET_MAGICIANEffect(void);
+    if (gMonEffect.id == QUINTET_MAGICIAN) {
+      ActivateQUINTET_MAGICIANEffect();
+      return;
+    }
+unsigned char CanActivateRED_GADGET(void);
+void ActivateRED_GADGETEffect(void);
+    if (gMonEffect.id == RED_GADGET) {
+      ActivateRED_GADGETEffect();
+      return;
+    }
+unsigned char CanActivateROCKET_HERMOS_CANNON(void);
+void ActivateROCKET_HERMOS_CANNONEffect(void);
+    if (gMonEffect.id == ROCKET_HERMOS_CANNON) {
+      ActivateROCKET_HERMOS_CANNONEffect();
+      return;
+    }
+unsigned char CanActivateROYAL_MAGICAL_LIBRARY(void);
+void ActivateROYAL_MAGICAL_LIBRARYEffect(void);
+    if (gMonEffect.id == ROYAL_MAGICAL_LIBRARY) {
+      ActivateROYAL_MAGICAL_LIBRARYEffect();
+      return;
+    }
+unsigned char CanActivateSKILLED_DARK_MAGICIAN(void);
+void ActivateSKILLED_DARK_MAGICIANEffect(void);
+    if (gMonEffect.id == SKILLED_DARK_MAGICIAN) {
+      ActivateSKILLED_DARK_MAGICIANEffect();
+      return;
+    }
+unsigned char CanActivateSKILLED_WHITE_MAGICIAN(void);
+void ActivateSKILLED_WHITE_MAGICIANEffect(void);
+    if (gMonEffect.id == SKILLED_WHITE_MAGICIAN) {
+      ActivateSKILLED_WHITE_MAGICIANEffect();
+      return;
+    }
+unsigned char CanActivateSPHINX_TELEIA(void);
+void ActivateSPHINX_TELEIAEffect(void);
+    if (gMonEffect.id == SPHINX_TELEIA) {
+      ActivateSPHINX_TELEIAEffect();
+      return;
+    }
+unsigned char CanActivateSUMMONER_MONK(void);
+void ActivateSUMMONER_MONKEffect(void);
+    if (gMonEffect.id == SUMMONER_MONK) {
+      ActivateSUMMONER_MONKEffect();
+      return;
+    }
+unsigned char CanActivateSUMMONER_OF_ILLUSIONS(void);
+void ActivateSUMMONER_OF_ILLUSIONSEffect(void);
+    if (gMonEffect.id == SUMMONER_OF_ILLUSIONS) {
+      ActivateSUMMONER_OF_ILLUSIONSEffect();
+      return;
+    }
+unsigned char CanActivateTHE_CREATOR_INCARNATE(void);
+void ActivateTHE_CREATOR_INCARNATEEffect(void);
+    if (gMonEffect.id == THE_CREATOR_INCARNATE) {
+      ActivateTHE_CREATOR_INCARNATEEffect();
+      return;
+    }
+unsigned char CanActivateTHE_LEGENDARY_EXODIA_INCARNATE(void);
+void ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect(void);
+    if (gMonEffect.id == THE_LEGENDARY_EXODIA_INCARNATE) {
+      ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect();
+      return;
+    }
+unsigned char CanActivateTHEINEN_THE_GREAT_SPHINX(void);
+void ActivateTHEINEN_THE_GREAT_SPHINXEffect(void);
+    if (gMonEffect.id == THEINEN_THE_GREAT_SPHINX) {
+      ActivateTHEINEN_THE_GREAT_SPHINXEffect();
+      return;
+    }
+unsigned char CanActivateTHESTALOS_THE_FIRESTORM_MONARCH(void);
+void ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect(void);
+    if (gMonEffect.id == THESTALOS_THE_FIRESTORM_MONARCH) {
+      ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect();
+      return;
+    }
+unsigned char CanActivateTHUNDER_DRAGON_COLOSSUS(void);
+void ActivateTHUNDER_DRAGON_COLOSSUSEffect(void);
+    if (gMonEffect.id == THUNDER_DRAGON_COLOSSUS) {
+      ActivateTHUNDER_DRAGON_COLOSSUSEffect();
+      return;
+    }
+unsigned char CanActivateTHUNDER_DRAGON_TITAN(void);
+void ActivateTHUNDER_DRAGON_TITANEffect(void);
+    if (gMonEffect.id == THUNDER_DRAGON_TITAN) {
+      ActivateTHUNDER_DRAGON_TITANEffect();
+      return;
+    }
+unsigned char CanActivateTIMAEUS_THE_KNIGHT_OF_DESTINY(void);
+void ActivateTIMAEUS_THE_KNIGHT_OF_DESTINYEffect(void);
+    if (gMonEffect.id == TIMAEUS_THE_KNIGHT_OF_DESTINY) {
+      ActivateTIMAEUS_THE_KNIGHT_OF_DESTINYEffect();
+      return;
+    }
+unsigned char CanActivateTIME_MAGIC_HAMMER(void);
+void ActivateTIME_MAGIC_HAMMEREffect(void);
+    if (gMonEffect.id == TIME_MAGIC_HAMMER) {
+      ActivateTIME_MAGIC_HAMMEREffect();
+      return;
+    }
+unsigned char CanActivateTORNADO_BIRD(void);
+void ActivateTORNADO_BIRDEffect(void);
+    if (gMonEffect.id == TORNADO_BIRD) {
+      ActivateTORNADO_BIRDEffect();
+      return;
+    }
+unsigned char CanActivateTYRANT_BURST_DRAGON(void);
+void ActivateTYRANT_BURST_DRAGONEffect(void);
+    if (gMonEffect.id == TYRANT_BURST_DRAGON) {
+      ActivateTYRANT_BURST_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateULTIMATE_CONDUCTOR_TYRANNO(void);
+void ActivateULTIMATE_CONDUCTOR_TYRANNOEffect(void);
+    if (gMonEffect.id == ULTIMATE_CONDUCTOR_TYRANNO) {
+      ActivateULTIMATE_CONDUCTOR_TYRANNOEffect();
+      return;
+    }
+unsigned char CanActivateULTIMATE_OBEDIENT_FIEND(void);
+void ActivateULTIMATE_OBEDIENT_FIENDEffect(void);
+    if (gMonEffect.id == ULTIMATE_OBEDIENT_FIEND) {
+      ActivateULTIMATE_OBEDIENT_FIENDEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_ADORATION(void);
+void ActivateVISION_HERO_ADORATIONEffect(void);
+    if (gMonEffect.id == VISION_HERO_ADORATION) {
+      ActivateVISION_HERO_ADORATIONEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_FARIS(void);
+void ActivateVISION_HERO_FARISEffect(void);
+    if (gMonEffect.id == VISION_HERO_FARIS) {
+      ActivateVISION_HERO_FARISEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_GRAVITO(void);
+void ActivateVISION_HERO_GRAVITOEffect(void);
+    if (gMonEffect.id == VISION_HERO_GRAVITO) {
+      ActivateVISION_HERO_GRAVITOEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_INCREASE(void);
+void ActivateVISION_HERO_INCREASEEffect(void);
+    if (gMonEffect.id == VISION_HERO_INCREASE) {
+      ActivateVISION_HERO_INCREASEEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_MINIMUM_RAY(void);
+void ActivateVISION_HERO_MINIMUM_RAYEffect(void);
+    if (gMonEffect.id == VISION_HERO_MINIMUM_RAY) {
+      ActivateVISION_HERO_MINIMUM_RAYEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_MULTIPLY_GUY(void);
+void ActivateVISION_HERO_MULTIPLY_GUYEffect(void);
+    if (gMonEffect.id == VISION_HERO_MULTIPLY_GUY) {
+      ActivateVISION_HERO_MULTIPLY_GUYEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_POISONER(void);
+void ActivateVISION_HERO_POISONEREffect(void);
+    if (gMonEffect.id == VISION_HERO_POISONER) {
+      ActivateVISION_HERO_POISONEREffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_VYON(void);
+void ActivateVISION_HERO_VYONEffect(void);
+    if (gMonEffect.id == VISION_HERO_VYON) {
+      ActivateVISION_HERO_VYONEffect();
+      return;
+    }
+unsigned char CanActivateVISION_HERO_WITCH_RAIDER(void);
+void ActivateVISION_HERO_WITCH_RAIDEREffect(void);
+    if (gMonEffect.id == VISION_HERO_WITCH_RAIDER) {
+      ActivateVISION_HERO_WITCH_RAIDEREffect();
+      return;
+    }
+unsigned char CanActivateWATAPON(void);
+void ActivateWATAPONEffect(void);
+    if (gMonEffect.id == WATAPON) {
+      ActivateWATAPONEffect();
+      return;
+    }
+unsigned char CanActivateYELLOW_GADGET(void);
+void ActivateYELLOW_GADGETEffect(void);
+    if (gMonEffect.id == YELLOW_GADGET) {
+      ActivateYELLOW_GADGETEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_BLADE_MASTER(void);
+void ActivateDESTINY_HERO_BLADE_MASTEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_BLADE_MASTER) {
+      ActivateDESTINY_HERO_BLADE_MASTEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_CAPTAIN_TENACIOUS(void);
+void ActivateDESTINY_HERO_CAPTAIN_TENACIOUSEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_CAPTAIN_TENACIOUS) {
+      ActivateDESTINY_HERO_CAPTAIN_TENACIOUSEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_CELESTIAL(void);
+void ActivateDESTINY_HERO_CELESTIALEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_CELESTIAL) {
+      ActivateDESTINY_HERO_CELESTIALEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DANGEROUS(void);
+void ActivateDESTINY_HERO_DANGEROUSEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DANGEROUS) {
+      ActivateDESTINY_HERO_DANGEROUSEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DARK_ANGEL(void);
+void ActivateDESTINY_HERO_DARK_ANGELEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DARK_ANGEL) {
+      ActivateDESTINY_HERO_DARK_ANGELEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DASHER(void);
+void ActivateDESTINY_HERO_DASHEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DASHER) {
+      ActivateDESTINY_HERO_DASHEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DECIDER(void);
+void ActivateDESTINY_HERO_DECIDEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DECIDER) {
+      ActivateDESTINY_HERO_DECIDEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DEFENDER(void);
+void ActivateDESTINY_HERO_DEFENDEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DEFENDER) {
+      ActivateDESTINY_HERO_DEFENDEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DENIER(void);
+void ActivateDESTINY_HERO_DENIEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DENIER) {
+      ActivateDESTINY_HERO_DENIEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCER(void);
+void ActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER) {
+      ActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DIAMOND_DUDE(void);
+void ActivateDESTINY_HERO_DIAMOND_DUDEEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DIAMOND_DUDE) {
+      ActivateDESTINY_HERO_DIAMOND_DUDEEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DISK_COMMANDER(void);
+void ActivateDESTINY_HERO_DISK_COMMANDEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DISK_COMMANDER) {
+      ActivateDESTINY_HERO_DISK_COMMANDEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DOGMA(void);
+void ActivateDESTINY_HERO_DOGMAEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DOGMA) {
+      ActivateDESTINY_HERO_DOGMAEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DOMINANCE(void);
+void ActivateDESTINY_HERO_DOMINANCEEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DOMINANCE) {
+      ActivateDESTINY_HERO_DOMINANCEEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DOOM_LORD(void);
+void ActivateDESTINY_HERO_DOOM_LORDEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DOOM_LORD) {
+      ActivateDESTINY_HERO_DOOM_LORDEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DOOM_OVERLORD(void);
+void ActivateDESTINY_HERO_DOOM_OVERLORDEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DOOM_OVERLORD) {
+      ActivateDESTINY_HERO_DOOM_OVERLORDEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DOUBLE_DUDE(void);
+void ActivateDESTINY_HERO_DOUBLE_DUDEEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DOUBLE_DUDE) {
+      ActivateDESTINY_HERO_DOUBLE_DUDEEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DRAWHAND(void);
+void ActivateDESTINY_HERO_DRAWHANDEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DRAWHAND) {
+      ActivateDESTINY_HERO_DRAWHANDEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DREAD_SERVANT(void);
+void ActivateDESTINY_HERO_DREAD_SERVANTEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DREAD_SERVANT) {
+      ActivateDESTINY_HERO_DREAD_SERVANTEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DREADMASTER(void);
+void ActivateDESTINY_HERO_DREADMASTEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DREADMASTER) {
+      ActivateDESTINY_HERO_DREADMASTEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void);
+void ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_MASTER) {
+      ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void);
+void ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_SERVANT) {
+      ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DREAMER(void);
+void ActivateDESTINY_HERO_DREAMEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DREAMER) {
+      ActivateDESTINY_HERO_DREAMEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DRILLDARK(void);
+void ActivateDESTINY_HERO_DRILLDARKEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DRILLDARK) {
+      ActivateDESTINY_HERO_DRILLDARKEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DUNKER(void);
+void ActivateDESTINY_HERO_DUNKEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DUNKER) {
+      ActivateDESTINY_HERO_DUNKEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DUSKTOPIA(void);
+void ActivateDESTINY_HERO_DUSKTOPIAEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DUSKTOPIA) {
+      ActivateDESTINY_HERO_DUSKTOPIAEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DYNATAG(void);
+void ActivateDESTINY_HERO_DYNATAGEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DYNATAG) {
+      ActivateDESTINY_HERO_DYNATAGEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void);
+void ActivateDESTINY_HERO_DYSTOPIAEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_DYSTOPIA) {
+      ActivateDESTINY_HERO_DYSTOPIAEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_FEAR_MONGER(void);
+void ActivateDESTINY_HERO_FEAR_MONGEREffect(void);
+    if (gMonEffect.id == DESTINY_HERO_FEAR_MONGER) {
+      ActivateDESTINY_HERO_FEAR_MONGEREffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_MALICIOUS(void);
+void ActivateDESTINY_HERO_MALICIOUSEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_MALICIOUS) {
+      ActivateDESTINY_HERO_MALICIOUSEffect();
+      return;
+    }
+unsigned char CanActivateDESTINY_HERO_PLASMA(void);
+void ActivateDESTINY_HERO_PLASMAEffect(void);
+    if (gMonEffect.id == DESTINY_HERO_PLASMA) {
+      ActivateDESTINY_HERO_PLASMAEffect();
+      return;
+    }
+unsigned char CanActivateD.D_WARRIOR(void);
+void ActivateD.D_WARRIOREffect(void);
+    if (gMonEffect.id == D.D_WARRIOR) {
+      ActivateD.D_WARRIOREffect();
+      return;
+    }
+unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void);
+void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void);
+    if (gMonEffect.id == BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON) {
+      ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateEXODIUS_THE_ULTIMATE_FORBIDDEN_LORD(void);
+void ActivateEXODIUS_THE_ULTIMATE_FORBIDDEN_LORDEffect(void);
+    if (gMonEffect.id == EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD) {
+      ActivateEXODIUS_THE_ULTIMATE_FORBIDDEN_LORDEffect();
+      return;
+    }
+unsigned char CanActivateMAJESTIC_MECH_GORYU(void);
+void ActivateMAJESTIC_MECH_GORYUEffect(void);
+    if (gMonEffect.id == MAJESTIC_MECH_GORYU) {
+      ActivateMAJESTIC_MECH_GORYUEffect();
+      return;
+    }
+unsigned char CanActivateNEO_BLUE_EYES_ULTIMATE_DRAGON(void);
+void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void);
+    if (gMonEffect.id == NEO_BLUE_EYES_ULTIMATE_DRAGON) {
+      ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateRED_EYES_BLACK_DRAGON_SWORD(void);
+void ActivateRED_EYES_BLACK_DRAGON_SWORDEffect(void);
+    if (gMonEffect.id == RED_EYES_BLACK_DRAGON_SWORD) {
+      ActivateRED_EYES_BLACK_DRAGON_SWORDEffect();
+      return;
+    }
+unsigned char CanActivateRED_EYES_DARK_DRAGOON(void);
+void ActivateRED_EYES_DARK_DRAGOONEffect(void);
+    if (gMonEffect.id == RED_EYES_DARK_DRAGOON) {
+      ActivateRED_EYES_DARK_DRAGOONEffect();
+      return;
+    }
+unsigned char CanActivateRED_EYES_DARKNESS_METAL_DRAGON(void);
+void ActivateRED_EYES_DARKNESS_METAL_DRAGONEffect(void);
+    if (gMonEffect.id == RED_EYES_DARKNESS_METAL_DRAGON) {
+      ActivateRED_EYES_DARKNESS_METAL_DRAGONEffect();
+      return;
+    }
+unsigned char CanActivateTHE_AGENT_OF_JUDGMENT_SATURN(void);
+void ActivateTHE_AGENT_OF_JUDGMENT_SATURNEffect(void);
+    if (gMonEffect.id == THE_AGENT_OF_JUDGMENT_SATURN) {
+      ActivateTHE_AGENT_OF_JUDGMENT_SATURNEffect();
+      return;
+    }
+unsigned char CanActivateARMED_DRAGON_LEVEL_FIVE(void);
+void ActivateARMED_DRAGON_LEVEL_FIVEEffect(void);
+    if (gMonEffect.id == ARMED_DRAGON_LEVEL_FIVE) {
+      ActivateARMED_DRAGON_LEVEL_FIVEEffect();
+      return;
+    }
+unsigned char CanActivateARMED_DRAGON_LEVEL_SEVEN(void);
+void ActivateARMED_DRAGON_LEVEL_SEVENEffect(void);
+    if (gMonEffect.id == ARMED_DRAGON_LEVEL_SEVEN) {
+      ActivateARMED_DRAGON_LEVEL_SEVENEffect();
+      return;
+    }
+unsigned char CanActivateARMED_DRAGON_LEVEL_TEN(void);
+void ActivateARMED_DRAGON_LEVEL_TENEffect(void);
+    if (gMonEffect.id == ARMED_DRAGON_LEVEL_TEN) {
+      ActivateARMED_DRAGON_LEVEL_TENEffect();
+      return;
+    }
+unsigned char CanActivateARMED_DRAGON_LEVEL_THREE(void);
+void ActivateARMED_DRAGON_LEVEL_THREEEffect(void);
+    if (gMonEffect.id == ARMED_DRAGON_LEVEL_THREE) {
+      ActivateARMED_DRAGON_LEVEL_THREEEffect();
+      return;
+    }
+unsigned char CanActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT(void);
+void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHTEffect(void);
+    if (gMonEffect.id == HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT) {
+      ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHTEffect();
+      return;
+    }
+unsigned char CanActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR(void);
+void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUREffect(void);
+    if (gMonEffect.id == HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR) {
+      ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUREffect();
+      return;
+    }
+unsigned char CanActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX(void);
+void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIXEffect(void);
+    if (gMonEffect.id == HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX) {
+      ActivateHORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIXEffect();
+      return;
+    }
+unsigned char CanActivateMAN_THRO_THRO(void);
+void ActivateMAN_THRO_THROEffect(void);
+    if (gMonEffect.id == MAN_THRO_THRO) {
+      ActivateMAN_THRO_THROEffect();
+      return;
+    }
+unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACROSLAYING_KING(void);
+void ActivateMASTER_PEACE_THE_TRUE_DRACROSLAYING_KINGEffect(void);
+    if (gMonEffect.id == MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING) {
+      ActivateMASTER_PEACE_THE_TRUE_DRACROSLAYING_KINGEffect();
+      return;
+    }
+unsigned char CanActivateNIBIRU_THE_PRIMAL_BEING(void);
+void ActivateNIBIRU_THE_PRIMAL_BEINGEffect(void);
+    if (gMonEffect.id == NIBIRU_THE_PRIMAL_BEING) {
+      ActivateNIBIRU_THE_PRIMAL_BEINGEffect();
+      return;
+    }
+unsigned char CanActivateWOUGHTWEILER(void);
+void ActivateWOUGHTWEILEREffect(void);
+    if (gMonEffect.id == WOUGHTWEILER) {
+      ActivateWOUGHTWEILEREffect();
+      return;
+    }
+unsigned char CanActivateMA_AT(void);
+void ActivateMA_ATEffect(void);
+    if (gMonEffect.id == MA_AT) {
+      ActivateMA_ATEffect();
+      return;
+    }
