@@ -30,4 +30,8 @@ jobs:
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         with:
+<<<<<<< HEAD
           model: deepseek-v4-flash
+=======
+          model: deepseek-v4-flash
+>>>>>>> 229262689eca2fce6f6f83dc7a256141e8b2a5cb
