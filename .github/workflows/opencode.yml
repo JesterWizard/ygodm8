@@ -31,4 +31,4 @@ jobs:
         uses: anomalyco/opencode/github@latest
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
-          MODEL: ${{ secrets.OPENCODE_MODEL }}
+          MODEL: opencode-go/deepseek-v4-pro
