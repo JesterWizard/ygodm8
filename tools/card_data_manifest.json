@@ -16456,12 +16456,12 @@
       "description": {
         "symbol": "gDescription_TorpedoFish",
         "pages": [
-          "While \"Umi\" is face-up on the field, this card is",
+          "While Umi is face-up on the field, this card is",
           "unaffected by any Spell Cards."
         ]
       },
       "effect_texts": {
-        "popup_1": "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
+        "popup_1": "While Umi is face-up on the field, this card is unaffected by any Spell Cards."
       }
     },
     {
@@ -16930,9 +16930,9 @@
       "description": {
         "symbol": "gDescription_JarRobber",
         "pages": [
-          "You can only activate this card when \"Pot of Greed\" is",
-          "activated. Negate the effect of the \"Pot of",
-          "Greed\" and draw 1 card from your Deck."
+          "You can only activate this card when Pot of Greed is",
+          "activated. Negate the effect of the Pot of",
+          "Greed and draw 1 card from your Deck."
         ]
       },
       "effect_texts": {
@@ -17007,8 +17007,8 @@
       "description": {
         "symbol": "gDescription_KnightsTitle",
         "pages": [
-          "Tribute 1 face-up \"Dark Magician\"; Special Summon 1",
-          "\"Dark Magician Knight\" from your hand, Deck or",
+          "Tribute 1 face-up Dark Magician; Special Summon 1",
+          "Dark Magician Knight from your hand, Deck or",
           "Graveyard."
         ]
       },
@@ -17933,12 +17933,12 @@
         "symbol": "gDescription_ProtoCyberDragon",
         "pages": [
           "This card's name becomes",
-          "\"Cyber Dragon\" while on the",
+          "Cyber Dragon while on the",
           "field."
         ]
       },
       "effect_texts": {
-        "popup_1": "This card's name becomes \"Cyber Dragon\" while on the field."
+        "popup_1": "This card's name becomes Cyber Dragon while on the field."
       }
     },
     {
@@ -18171,12 +18171,12 @@
       "description": {
         "symbol": "gDescription_HarpieLady1",
         "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)",
+          "(This card's name is always treated as Harpie Lady.)",
           "All WIND monsters gain 300 ATK."
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nAll WIND monsters gain 300 ATK."
+        "popup_1": "(This card's name is always treated as Harpie Lady.)\nAll WIND monsters gain 300 ATK."
       }
     },
     {
@@ -18196,13 +18196,13 @@
       "description": {
         "symbol": "gDescription_HarpieLady2",
         "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)",
+          "(This card's name is always treated as Harpie Lady.)",
           "Negate the effects of Flip monsters this card destroys",
           "by battle."
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nNegate the effects of Flip monsters this card destroys by battle."
+        "popup_1": "(This card's name is always treated as Harpie Lady.)\nNegate the effects of Flip monsters this card destroys by battle."
       }
     },
     {
@@ -18222,13 +18222,13 @@
       "description": {
         "symbol": "gDescription_HarpieLady3",
         "pages": [
-          "(This card's name is always treated as \"Harpie Lady\".)",
+          "(This card's name is always treated as Harpie Lady.)",
           "An opponent's monster that battles this card cannot",
           "declare an attack during opponent's next 2 turns."
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card's name is always treated as \"Harpie Lady\".)\nAn opponent's monster that battles this card cannot declare an attack during opponent's next 2 turns."
+        "popup_1": "(This card's name is always treated as Harpie Lady.)\nAn opponent's monster that battles this card cannot declare an attack during opponent's next 2 turns."
       }
     },
     {
@@ -18642,7 +18642,7 @@
       "description": {
         "symbol": "gDescription_ALegendaryOcean",
         "pages": [
-          "(This card is always treated as \"Umi\".) All WATER",
+          "(This card is always treated as Umi.) All WATER",
           "monsters on the field gain 200 ATK/DEF. Reduce the",
           "Level of WATER monsters in hands and on the field by 1."
         ]
@@ -18698,13 +18698,13 @@
       "description": {
         "symbol": "gDescription_DedicationThroughLightAndDarkness",
         "pages": [
-          "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark",
-          "Magician of Chaos\" from your hand, Deck, or",
+          "Tribute 1 Dark Magician; Special Summon 1 Dark",
+          "Magician of Chaos from your hand, Deck, or",
           "Graveyard."
         ]
       },
       "effect_texts": {
-        "popup_1": "Tribute 1 \"Dark Magician\"; Special Summon 1 \"Dark Magician of Chaos\" from your hand, Deck, or Graveyard."
+        "popup_1": "Tribute 1 Dark Magician; Special Summon 1 Dark Magician of Chaos from your hand, Deck, or Graveyard."
       }
     },
     {
@@ -18985,7 +18985,7 @@
         "symbol": "gDescription_ElementalHeroNecroshade",
         "pages": [
           "Once, while this card is in the Graveyard, 1 Level 5 or",
-          "higher \"Elemental HERO\" monster you Normal Summon",
+          "higher Elemental HERO monster you Normal Summon",
           "can be Summoned without Tributing."
         ]
       }
@@ -19007,7 +19007,7 @@
       "description": {
         "symbol": "gDescription_MiracleFusion",
         "pages": [
-          "Fusion Summon 1 \"Elemental HERO\" Fusion Monster from",
+          "Fusion Summon 1 Elemental HERO Fusion Monster from",
           "your Extra Deck, by banishing Fusion Materials",
           "listed on it from your field or your GY."
         ]
@@ -19190,12 +19190,12 @@
         "symbol": "gDescription_ElementalHeroHeat",
         "pages": [
           "This card gains 200 ATK for",
-          "each \"Elemental HERO\"",
+          "each Elemental HERO",
           "monster you control."
         ]
       },
       "effect_texts": {
-        "popup_1": "This card gains 200 ATK for each \"Elemental HERO\" monster you control."
+        "popup_1": "This card gains 200 ATK for each Elemental HERO monster you control."
       }
     },
     {
@@ -19247,7 +19247,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "This card's name becomes \"Elemental HERO Neos\" while on the field."
+        "popup_1": "This card's name becomes Elemental HERO Neos while on the field."
       }
     },
     {
@@ -19267,7 +19267,7 @@
       "description": {
         "symbol": "gDescription_ElementalHeroGreatTornado",
         "pages": [
-          "1 \"Elemental HERO\" monster + 1 WIND monster",
+          "1 Elemental HERO monster + 1 WIND monster",
           "Must be Fusion Summoned. If Fusion Summoned:",
           "halve ATK/DEF of all face-up opponent monsters."
         ]
@@ -19375,7 +19375,7 @@
       "description": {
         "symbol": "gDescription_ElementalHeroAbsoluteZero",
         "pages": [
-          "1 \"HERO\" monster + 1 WATER monster. Must be Fusion Summoned.",
+          "1 HERO monster + 1 WATER monster. Must be Fusion Summoned.",
           "Gains 500 ATK for each WATER monster on the field.",
           "If this card leaves the field: Destroy all opponent monsters."
         ]
@@ -19430,12 +19430,12 @@
         "symbol": "gDescription_ElementalHeroVoltic",
         "pages": [
           "When this card inflicts battle damage to your",
-          "opponent: You can target 1 of your banished \"Elemental",
-          "HERO\" monsters; Special Summon that target."
+          "opponent: You can target 1 of your banished Elemental",
+          "HERO monsters; Special Summon that target."
         ]
       },
       "effect_texts": {
-        "popup_1": "When this card inflicts battle damage to your opponent: You can target 1 of your banished \"Elemental HERO\" monsters; Spe"
+        "popup_1": "When this card inflicts battle damage to your opponent: You can target 1 of your banished Elemental HERO monsters; Spe"
       }
     },
     {
@@ -19481,7 +19481,7 @@
       "description": {
         "symbol": "gDescription_ElementalHeroGaia",
         "pages": [
-          "1 \"Elemental HERO\" monster + 1 EARTH monster",
+          "1 Elemental HERO monster + 1 EARTH monster",
           "Must be Fusion Summoned. When Fusion Summoned:",
           "Halve 1 opponent monster ATK and gain that much ATK."
         ]
@@ -19633,13 +19633,13 @@
       "description": {
         "symbol": "gDescription_FusionRecovery",
         "pages": [
-          "Target 1 \"Polymerization\" in your GY, and 1 monster",
+          "Target 1 Polymerization in your GY, and 1 monster",
           "in your GY that was used as material for a Fusion",
           "Summon; add them to your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "Target 1 \"Polymerization\" in your GY, and 1 monster in your GY that was used as material for a Fusion Summon; add them t"
+        "popup_1": "Target 1 Polymerization in your GY, and 1 monster in your GY that was used as material for a Fusion Summon; add them t"
       }
     },
     {
@@ -19659,13 +19659,13 @@
       "description": {
         "symbol": "gDescription_Skyscraper",
         "pages": [
-          "If an \"Elemental HERO\" monster attacks a monster",
+          "If an Elemental HERO monster attacks a monster",
           "that has a higher ATK, the attacking monster gains",
           "1000 ATK during damage calculation only."
         ]
       },
       "effect_texts": {
-        "popup_1": "If an \"Elemental HERO\" monster attacks a monster that has a higher ATK, the attacking monster gains 1000 ATK during dama"
+        "popup_1": "If an Elemental HERO monster attacks a monster that has a higher ATK, the attacking monster gains 1000 ATK during dama"
       },
       "customFieldSpell": "CUSTOM_FIELD_SPELL_SKYSCRAPER"
     },
@@ -19712,13 +19712,13 @@
       "description": {
         "symbol": "gDescription_EEmergencyCall",
         "pages": [
-          "Add 1 \"Elemental HERO\" monster",
+          "Add 1 Elemental HERO monster",
           "from your Deck to your hand."
         ]
       },
       "effect_texts": {
         "popup_1": [
-          "Add 1 \"Elemental HERO\" monster",
+          "Add 1 Elemental HERO monster",
           "from your Deck to your hand."
         ]
       }
@@ -20087,12 +20087,12 @@
       "description": {
         "symbol": "gDescription_FusionSage",
         "pages": [
-          "Add 1 \"Polymerization\" from",
+          "Add 1 Polymerization from",
           "your Deck to your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "Add 1 \"Polymerization\" from your Deck to your hand."
+        "popup_1": "Add 1 Polymerization from your Deck to your hand."
       }
     },
     {
@@ -20731,12 +20731,12 @@
       "description": {
         "symbol": "gDescription_Hecatrice",
         "pages": [
-          "You can discard this card to the GY; add 1 \"Valhalla,",
-          "Hall of the Fallen\" from your Deck to your hand."
+          "You can discard this card to the GY; add 1 Valhalla,",
+          "Hall of the Fallen from your Deck to your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "You can discard this card to the GY; add 1 \"Valhalla, Hall of the Fallen\" from your Deck to your hand."
+        "popup_1": "You can discard this card to the GY; add 1 Valhalla, Hall of the Fallen from your Deck to your hand."
       }
     },
     {
@@ -21152,6 +21152,271 @@
       },
       "lock_after_activation": false,
       "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "A_HERO_EMERGES",
+      "card_name": "A Hero Emerges",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 1, 5, 9, 7, 1, 1, 7],
+      "description": {
+        "symbol": "gDescription_AHeroEmerges",
+        "pages": [
+          "When an opponent's monster declares an attack: Your",
+          "opponent chooses 1 random card from your hand, then",
+          "if it is a monster that can be Special Summoned, Special",
+          "Summon it. Otherwise, send it to the Graveyard."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When an opponent's monster declares an attack: Your opponent chooses 1 random card from your hand, then if it is a monst"
+      }
+    },
+    {
+      "card_const": "A_HERO_LIVES",
+      "card_name": "A Hero Lives",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 8, 9, 4, 9, 5, 8, 4],
+      "description": {
+        "symbol": "gDescription_AHeroLives",
+        "pages": [
+          "If you control no face-up monsters: Pay half your",
+          "LP; Special Summon 1 Level 4 or lower Elemental HERO",
+          "monster from your Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you control no face-up monsters: Pay half your LP; Special Summon 1 Level 4 or lower Elemental HERO monster from yo"
+      }
+    },
+    {
+      "card_const": "A_WINGBEAT_OF_GIANT_DRAGON",
+      "card_name": "A Wingbeat of Giant Dragon",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 8, 5, 9, 6, 9, 3, 3],
+      "description": {
+        "symbol": "gDescription_AWingbeatOfGiantDragon",
+        "pages": [
+          "Return 1 Level 5 or higher Dragon-Type monster you",
+          "control to the hand, and if you do, destroy all Spell and",
+          "Trap Cards on the field."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Return 1 Level 5 or higher Dragon-Type monster you control to the hand, and if you do, destroy all Spell and Trap Cards "
+      }
+    },
+    {
+      "card_const": "ALLURE_OF_DARKNESS",
+      "card_name": "Allure of Darkness",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 1, 4, 7, 5, 3, 1, 1],
+      "description": {
+        "symbol": "gDescription_AllureOfDarkness",
+        "pages": [
+          "Draw 2 cards, then banish 1 DARK monster from your hand,",
+          "or, if you do not have any in your hand, send your entire",
+          "hand to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Draw 2 cards, then banish 1 DARK monster from your hand, or, if you do not have any in your hand, send your entire hand "
+      }
+    },
+    {
+      "card_const": "AMULET_DRAGON",
+      "card_name": "Amulet Dragon",
+      "atk": 2900,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 5, 3, 8, 0, 6, 8, 7],
+      "description": {
+        "symbol": "gDescription_AmuletDragon",
+        "pages": [
+          "Dark Magician + 1 Dragon. Fusion Summon with above",
+          "materials or Eye of Timaeus. If FS: target any number of",
+          "Spells in GY(s); banish them, gains 100 ATK each. If",
+          "destroyed: target 1 Spellcaster in GY; Special Summon it."
+        ]
+      }
+    },
+    {
+      "card_const": "ANDRO_SPHINX",
+      "card_name": "Andro Sphinx",
+      "atk": 3000,
+      "def": 2500,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [1, 5, 0, 1, 3, 4, 6, 8],
+      "description": {
+        "symbol": "gDescription_AndroSphinx",
+        "pages": [
+          "Pay 500 LP to Special Summon this card when Pyramid of",
+          "Light is on the field. Cannot attack the turn it is Summoned.",
+          "Cannot be Special Summoned from GY. If this card",
+          "destroys a Defense Position monster by battle:",
+          "inflict damage equal to half the destroyed monster ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can pay 500 Life Points to Special Summon this card when Pyramid of Light is on the field. This card cannot attack"
+      }
+    },
+    {
+      "card_const": "ANTI_SPELL_FRAGRANCE",
+      "card_name": "Anti-Spell Fragrance",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 8, 9, 2, 1, 0, 4, 1],
+      "description": {
+        "symbol": "gDescription_AntiSpellFragrance",
+        "pages": [
+          "Both players must Set Spell Cards before activating them, and",
+          "cannot activate them until their next turn after",
+          "Setting them."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Both players must Set Spell Cards before activating them, and cannot activate them until their next turn after Setting t"
+      }
+    },
+    {
+      "card_const": "APPROPRIATE",
+      "card_name": "Appropriate",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 8, 5, 3, 9, 2, 3, 4],
+      "description": {
+        "symbol": "gDescription_Appropriate",
+        "pages": [
+          "Activate only when your opponent draws a card(s) outside of",
+          "either Draw Phase. After that, each time your opponent",
+          "draws a card(s) outside of either Draw Phase,",
+          "immediately draw 2 cards."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Activate only when your opponent draws a card(s) outside of either Draw Phase. After that, each time your opponent draws"
+      }
+    },
+    {
+      "card_const": "APPRENTICE_ILLUSION_MAGICIAN",
+      "card_name": "Apprentice Illusion Magician",
+      "atk": 2000,
+      "def": 1700,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [3, 0, 6, 0, 3, 6, 8, 8],
+      "description": {
+        "symbol": "gDescription_ApprenticeIllusionMagician",
+        "pages": [
+          "SS this card from hand by discarding 1 card. If NS or SS: add 1",
+          "Dark Magician from Deck to hand. During damage calc, if",
+          "your other DARK Spellcaster battles: send this card",
+          "from hand or field to GY; that monster gains 2000 ATK/DEF."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand) by discarding 1 card. If this card is Normal or Special Summoned: You "
+      }
+    },
+    {
+      "card_const": "APPARATION",
+      "card_name": "Apparition",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 1, 3, 9, 2, 9, 7, 4],
+      "description": {
+        "symbol": "gDescription_Apparation",
+        "pages": [
+          "If a face-up HERO monster(s) you control is destroyed by",
+          "battle or card effect: Special Summon 1 Level 4 or lower",
+          "Vision HERO monster from your Deck, then you can halve",
+          "the original ATK/DEF of 1 monster your opponent controls.",
+          "You can only activate 1 Apparition per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If a face-up HERO monster(s) you control is destroyed by battle or card effect: Special Summon 1 Level 4 or lower Vision HERO monster from your Deck, then you can halve the original ATK/DEF of 1 monster your opponent controls. You can only activate 1 Apparition per turn."
+      }
     }
   ]
 }

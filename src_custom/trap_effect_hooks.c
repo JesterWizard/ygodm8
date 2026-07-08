@@ -377,3 +377,9 @@ unsigned IsTrapTriggered__Replacement(void) {
 }
 
 /* LEVEL_LIMIT_AREA_A handled via spell_effect_hooks.c (manual activation) */
+/* A_HERO_EMERGES trap effect */
+  /* TODO: wire A_HERO_EMERGES in trap dispatcher */
+/* ANTI_SPELL_FRAGRANCE trap effect */
+  /* TODO: wire ANTI_SPELL_FRAGRANCE in trap dispatcher */
+/* APPROPRIATE trap effect */
+  /* TODO: wire APPROPRIATE in trap dispatcher */

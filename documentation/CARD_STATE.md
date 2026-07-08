@@ -1,12 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-06 — Fixed Dark Armed Dragon effect text display
+**Last worked on:** 2026-07-08 — Fixed description pages for 10 new cards
 
 **Files touched:**
-- `src_custom/activated_effects/dark_armed_dragon.c`
-- `src_custom/effect_text_hooks.c`
+- `tools/card_data_manifest.json` — rewrote description pages for all 10 cards
+- `documentation/session_logs/2026-07-08.md` — updated
 
-**Outcome:** make test-cards-link passes. Changed from Duel_ShowEffectTextTyped → Duel_ShowCardEffectText with direct popup_1 ID. Excluded DAD from sub_801CF08 auto-popup path (like BLS/Chaos Emperor) so it shows only the popup text without the 'was activated.' prefix + #1 page break. Added include for card_effect_texts.h.
+**Outcome:** `make` builds and links successfully. Descriptions condensed to fit 2-5 pages of ≤66 chars each (row widths 12,14,14,14,12).
 
 **Open / next:**
-- playtest both effect text and targeting flow
+- Implement actual effect logic for these 10 cards
+- Apparation art only at 80x80, needs 512x512 source
+- `add_custom_card.py`'s `wrap_effect_text` generates pages too large for game renderer

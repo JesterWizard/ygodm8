@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `302` effects
+- `311` effects
 
 ## Tally
 
@@ -283,6 +283,15 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Cyber Barrier Dragon` | `src_custom/permanent_effects/cyber_barrier_dragon.c` |
 | `activated_effects` | `Dark End Dragon` | `src_custom/activated_effects/dark_end_dragon.c` |
 | `activated_effects` | `Dark Armed Dragon` | `src_custom/activated_effects/dark_armed_dragon.c` |
+| `trap_effects` | `A Hero Emerges` | `src_custom/trap_effects/a_hero_emerges.c` |
+| `spell_effects` | `A Hero Lives` | `src_custom/spell_effects/a_hero_lives.c` |
+| `spell_effects` | `A Wingbeat Of Giant Dragon` | `src_custom/spell_effects/a_wingbeat_of_giant_dragon.c` |
+| `spell_effects` | `Allure Of Darkness` | `src_custom/spell_effects/allure_of_darkness.c` |
+| `activated_effects` | `Amulet Dragon` | `src_custom/activated_effects/amulet_dragon.c` |
+| `activated_effects` | `Andro Sphinx` | `src_custom/activated_effects/andro_sphinx.c` |
+| `trap_effects` | `Anti Spell Fragrance` | `src_custom/trap_effects/anti_spell_fragrance.c` |
+| `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |
+| `activated_effects` | `Apprentice Illusion Magician` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

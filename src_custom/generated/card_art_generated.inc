@@ -1324,6 +1324,46 @@ static const unsigned char sDarkArmedDragonBigArt[] __attribute__((section(".app
 static const unsigned short sDarkArmedDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_armed_dragon.gbapal");
 static const unsigned char sDarkArmedDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_armed_dragon.lz");
 
+static const unsigned char sAHeroEmergesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/a_hero_emerges.huff");
+static const unsigned short sAHeroEmergesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/a_hero_emerges.gbapal");
+static const unsigned char sAHeroEmergesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/a_hero_emerges.lz");
+
+static const unsigned char sAHeroLivesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/a_hero_lives.huff");
+static const unsigned short sAHeroLivesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/a_hero_lives.gbapal");
+static const unsigned char sAHeroLivesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/a_hero_lives.lz");
+
+static const unsigned char sAWingbeatOfGiantDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/a_wingbeat_of_giant_dragon.huff");
+static const unsigned short sAWingbeatOfGiantDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/a_wingbeat_of_giant_dragon.gbapal");
+static const unsigned char sAWingbeatOfGiantDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/a_wingbeat_of_giant_dragon.lz");
+
+static const unsigned char sAllureOfDarknessBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/allure_of_darkness.huff");
+static const unsigned short sAllureOfDarknessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/allure_of_darkness.gbapal");
+static const unsigned char sAllureOfDarknessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/allure_of_darkness.lz");
+
+static const unsigned char sAmuletDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/amulet_dragon.huff");
+static const unsigned short sAmuletDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/amulet_dragon.gbapal");
+static const unsigned char sAmuletDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/amulet_dragon.lz");
+
+static const unsigned char sAndroSphinxBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/andro_sphinx.huff");
+static const unsigned short sAndroSphinxBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/andro_sphinx.gbapal");
+static const unsigned char sAndroSphinxMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/andro_sphinx.lz");
+
+static const unsigned char sAntiSpellFragranceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/anti_spell_fragrance.huff");
+static const unsigned short sAntiSpellFragranceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/anti_spell_fragrance.gbapal");
+static const unsigned char sAntiSpellFragranceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/anti_spell_fragrance.lz");
+
+static const unsigned char sAppropriateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/appropriate.huff");
+static const unsigned short sAppropriateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/appropriate.gbapal");
+static const unsigned char sAppropriateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/appropriate.lz");
+
+static const unsigned char sApprenticeIllusionMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/apprentice_illusion_magician.huff");
+static const unsigned short sApprenticeIllusionMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/apprentice_illusion_magician.gbapal");
+static const unsigned char sApprenticeIllusionMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/apprentice_illusion_magician.lz");
+
+static const unsigned char sApparationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/apparation.huff");
+static const unsigned short sApparationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/apparation.gbapal");
+static const unsigned char sApparationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/apparation.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1656,6 +1696,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0467] = sDarkEndDragonBigArt,
   [0x0468] = sLightEndDragonBigArt,
   [0x0469] = sDarkArmedDragonBigArt,
+  [0x046A] = sAHeroEmergesBigArt,
+  [0x046B] = sAHeroLivesBigArt,
+  [0x046C] = sAWingbeatOfGiantDragonBigArt,
+  [0x046D] = sAllureOfDarknessBigArt,
+  [0x046E] = sAmuletDragonBigArt,
+  [0x046F] = sAndroSphinxBigArt,
+  [0x0470] = sAntiSpellFragranceBigArt,
+  [0x0471] = sAppropriateBigArt,
+  [0x0472] = sApprenticeIllusionMagicianBigArt,
+  [0x0473] = sApparationBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1990,6 +2040,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0467] = sDarkEndDragonBigPalette,
   [0x0468] = sLightEndDragonBigPalette,
   [0x0469] = sDarkArmedDragonBigPalette,
+  [0x046A] = sAHeroEmergesBigPalette,
+  [0x046B] = sAHeroLivesBigPalette,
+  [0x046C] = sAWingbeatOfGiantDragonBigPalette,
+  [0x046D] = sAllureOfDarknessBigPalette,
+  [0x046E] = sAmuletDragonBigPalette,
+  [0x046F] = sAndroSphinxBigPalette,
+  [0x0470] = sAntiSpellFragranceBigPalette,
+  [0x0471] = sAppropriateBigPalette,
+  [0x0472] = sApprenticeIllusionMagicianBigPalette,
+  [0x0473] = sApparationBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2324,6 +2384,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0467] = 0,
   [0x0468] = 0,
   [0x0469] = 0,
+  [0x046A] = 0,
+  [0x046B] = 0,
+  [0x046C] = 0,
+  [0x046D] = 0,
+  [0x046E] = 0,
+  [0x046F] = 0,
+  [0x0470] = 0,
+  [0x0471] = 0,
+  [0x0472] = 0,
+  [0x0473] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2658,4 +2728,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0467] = sDarkEndDragonMiniArt,
   [0x0468] = sLightEndDragonMiniArt,
   [0x0469] = sDarkArmedDragonMiniArt,
+  [0x046A] = sAHeroEmergesMiniArt,
+  [0x046B] = sAHeroLivesMiniArt,
+  [0x046C] = sAWingbeatOfGiantDragonMiniArt,
+  [0x046D] = sAllureOfDarknessMiniArt,
+  [0x046E] = sAmuletDragonMiniArt,
+  [0x046F] = sAndroSphinxMiniArt,
+  [0x0470] = sAntiSpellFragranceMiniArt,
+  [0x0471] = sAppropriateMiniArt,
+  [0x0472] = sApprenticeIllusionMagicianMiniArt,
+  [0x0473] = sApparationMiniArt,
 };

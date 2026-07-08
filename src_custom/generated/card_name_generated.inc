@@ -330,6 +330,16 @@ static const u8 sCyberLaserDragonName[] __attribute__((section(".append_assets")
 static const u8 sDarkEndDragonName[] __attribute__((section(".append_assets"))) = "Dark End Dragon";
 static const u8 sLightEndDragonName[] __attribute__((section(".append_assets"))) = "Light End Dragon";
 static const u8 sDarkArmedDragonName[] __attribute__((section(".append_assets"))) = "Dark Armed Dragon";
+static const u8 sAHeroEmergesName[] __attribute__((section(".append_assets"))) = "A Hero Emerges";
+static const u8 sAHeroLivesName[] __attribute__((section(".append_assets"))) = "A Hero Lives";
+static const u8 sAWingbeatOfGiantDragonName[] __attribute__((section(".append_assets"))) = "A Wingbeat of Giant Dragon";
+static const u8 sAllureOfDarknessName[] __attribute__((section(".append_assets"))) = "Allure of Darkness";
+static const u8 sAmuletDragonName[] __attribute__((section(".append_assets"))) = "Amulet Dragon";
+static const u8 sAndroSphinxName[] __attribute__((section(".append_assets"))) = "Andro Sphinx";
+static const u8 sAntiSpellFragranceName[] __attribute__((section(".append_assets"))) = "Anti-Spell Fragrance";
+static const u8 sAppropriateName[] __attribute__((section(".append_assets"))) = "Appropriate";
+static const u8 sApprenticeIllusionMagicianName[] __attribute__((section(".append_assets"))) = "Apprentice Illusion Magician";
+static const u8 sApparationName[] __attribute__((section(".append_assets"))) = "Apparition";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -996,6 +1006,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sLightEndDragonName;
   if (cardId == 0x0469)
     return (u8 *)sDarkArmedDragonName;
+  if (cardId == 0x046A)
+    return (u8 *)sAHeroEmergesName;
+  if (cardId == 0x046B)
+    return (u8 *)sAHeroLivesName;
+  if (cardId == 0x046C)
+    return (u8 *)sAWingbeatOfGiantDragonName;
+  if (cardId == 0x046D)
+    return (u8 *)sAllureOfDarknessName;
+  if (cardId == 0x046E)
+    return (u8 *)sAmuletDragonName;
+  if (cardId == 0x046F)
+    return (u8 *)sAndroSphinxName;
+  if (cardId == 0x0470)
+    return (u8 *)sAntiSpellFragranceName;
+  if (cardId == 0x0471)
+    return (u8 *)sAppropriateName;
+  if (cardId == 0x0472)
+    return (u8 *)sApprenticeIllusionMagicianName;
+  if (cardId == 0x0473)
+    return (u8 *)sApparationName;
 
   return gCardNames[cardId];
 }

@@ -92,9 +92,9 @@ int sub_800AD84__Replacement(void) {
   int result = sub_80588C4(g8E0CD10, (int)gSaveSlotPrimary, 0x747);
 
   SyncCustomCardQtyToFlashBuffers();
-  sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
-  sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
-  sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashPrimary, NUM_CUSTOM_CARDS);
+  sub_80588C4(gCustomTrunkCardQty, (int)gCustomTrunkCardQtyFlashPrimary, CUSTOM_CARD_QTY_BYTES);
+  sub_80588C4(gCustomShopCardQty, (int)gCustomShopCardQtyFlashPrimary, CUSTOM_CARD_QTY_BYTES);
+  sub_80588C4(gCustomPlayerTempCardQty, (int)gCustomPlayerTempCardQtyFlashPrimary, CUSTOM_CARD_QTY_BYTES);
   ShinyZones_SaveFlagsToFlashPrimary();
   PlayerDecks_OnSaveSlotWrite();
   DebugAiMode_SaveToFlashPrimary();

@@ -330,6 +330,15 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DARK_END_DRAGON] = gActivationDescription_DarkEndDragon_Popup1,
   [LIGHT_END_DRAGON] = gActivationDescription_LightEndDragon_Popup1,
   [DARK_ARMED_DRAGON] = gActivationDescription_DarkArmedDragon_Popup1,
+  [A_HERO_EMERGES] = gActivationDescription_AHeroEmerges_Popup1,
+  [A_HERO_LIVES] = gActivationDescription_AHeroLives_Popup1,
+  [A_WINGBEAT_OF_GIANT_DRAGON] = gActivationDescription_AWingbeatOfGiantDragon_Popup1,
+  [ALLURE_OF_DARKNESS] = gActivationDescription_AllureOfDarkness_Popup1,
+  [ANDRO_SPHINX] = gActivationDescription_AndroSphinx_Popup1,
+  [ANTI_SPELL_FRAGRANCE] = gActivationDescription_AntiSpellFragrance_Popup1,
+  [APPROPRIATE] = gActivationDescription_Appropriate_Popup1,
+  [APPRENTICE_ILLUSION_MAGICIAN] = gActivationDescription_ApprenticeIllusionMagician_Popup1,
+  [APPARATION] = gActivationDescription_Apparation_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -690,6 +699,15 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DARK_END_DRAGON_POPUP_1] = gActivationDescription_DarkEndDragon_Popup1,
   [CARD_EFFECT_TEXT_LIGHT_END_DRAGON_POPUP_1] = gActivationDescription_LightEndDragon_Popup1,
   [CARD_EFFECT_TEXT_DARK_ARMED_DRAGON_POPUP_1] = gActivationDescription_DarkArmedDragon_Popup1,
+  [CARD_EFFECT_TEXT_A_HERO_EMERGES_POPUP_1] = gActivationDescription_AHeroEmerges_Popup1,
+  [CARD_EFFECT_TEXT_A_HERO_LIVES_POPUP_1] = gActivationDescription_AHeroLives_Popup1,
+  [CARD_EFFECT_TEXT_A_WINGBEAT_OF_GIANT_DRAGON_POPUP_1] = gActivationDescription_AWingbeatOfGiantDragon_Popup1,
+  [CARD_EFFECT_TEXT_ALLURE_OF_DARKNESS_POPUP_1] = gActivationDescription_AllureOfDarkness_Popup1,
+  [CARD_EFFECT_TEXT_ANDRO_SPHINX_POPUP_1] = gActivationDescription_AndroSphinx_Popup1,
+  [CARD_EFFECT_TEXT_ANTI_SPELL_FRAGRANCE_POPUP_1] = gActivationDescription_AntiSpellFragrance_Popup1,
+  [CARD_EFFECT_TEXT_APPROPRIATE_POPUP_1] = gActivationDescription_Appropriate_Popup1,
+  [CARD_EFFECT_TEXT_APPRENTICE_ILLUSION_MAGICIAN_POPUP_1] = gActivationDescription_ApprenticeIllusionMagician_Popup1,
+  [CARD_EFFECT_TEXT_APPARATION_POPUP_1] = gActivationDescription_Apparation_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

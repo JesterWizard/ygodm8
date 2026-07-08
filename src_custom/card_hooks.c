@@ -744,9 +744,9 @@ void sub_803519C__Replacement(void) {
   }
 
   InitializeRandomizedCardCosts();
-  g20245AC((int)gCustomTrunkCardQtyFlashPrimary, gCustomTrunkCardQty, NUM_CUSTOM_CARDS);
-  g20245AC((int)gCustomShopCardQtyFlashPrimary, gCustomShopCardQty, NUM_CUSTOM_CARDS);
-  g20245AC((int)gCustomPlayerTempCardQtyFlashPrimary, gCustomPlayerTempCardQty, NUM_CUSTOM_CARDS);
+  g20245AC((int)gCustomTrunkCardQtyFlashPrimary, gCustomTrunkCardQty, CUSTOM_CARD_QTY_BYTES);
+  g20245AC((int)gCustomShopCardQtyFlashPrimary, gCustomShopCardQty, CUSTOM_CARD_QTY_BYTES);
+  g20245AC((int)gCustomPlayerTempCardQtyFlashPrimary, gCustomPlayerTempCardQty, CUSTOM_CARD_QTY_BYTES);
 
   SanitizeCustomCardQtyBuffers();
 

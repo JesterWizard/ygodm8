@@ -62,6 +62,9 @@
 #include "the_blazing_mars.h"
 #include "athena.h"
 #include "yubel.h"
+#include "amulet_dragon.h"
+#include "andro_sphinx.h"
+#include "apprentice_illusion_magician.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -623,6 +626,20 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  /* stub activated monster effect dispatches */
+  if (gMonEffect.id == AMULET_DRAGON) {
+    ActivateAMULET_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ANDRO_SPHINX) {
+    ActivateANDRO_SPHINXEffect();
+    return;
+  }
+  if (gMonEffect.id == APPRENTICE_ILLUSION_MAGICIAN) {
+    ActivateAPPRENTICE_ILLUSION_MAGICIANEffect();
+    return;
+  }
+
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
   Duel_EndMonsterEffectResolve();
@@ -732,6 +749,9 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == THE_BLAZING_MARS
           || zone->id == ATHENA
           || zone->id == DARK_ARMED_DRAGON
+          || zone->id == AMULET_DRAGON
+          || zone->id == ANDRO_SPHINX
+          || zone->id == APPRENTICE_ILLUSION_MAGICIAN
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;

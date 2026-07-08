@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-06).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-08).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 329 |
-| Art ready, needs manifest | 264 |
+| In game (manifest + art) | 339 |
+| Art ready, needs manifest | 254 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -351,21 +351,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARK_END_DRAGON` | Dark End Dragon | `dark_end_dragon.png` |
 | `LIGHT_END_DRAGON` | Light End Dragon | `light_end_dragon.png` |
 | `DARK_ARMED_DRAGON` | Dark Armed Dragon | `dark_armed_dragon.png` |
+| `A_HERO_EMERGES` | A Hero Emerges | `a_hero_emerges.png` |
+| `A_HERO_LIVES` | A Hero Lives | `a_hero_lives.png` |
+| `A_WINGBEAT_OF_GIANT_DRAGON` | A Wingbeat of Giant Dragon | `a_wingbeat_of_giant_dragon.png` |
+| `ALLURE_OF_DARKNESS` | Allure of Darkness | `allure_of_darkness.png` |
+| `AMULET_DRAGON` | Amulet Dragon | `amulet_dragon.png` |
+| `ANDRO_SPHINX` | Andro Sphinx | `andro_sphinx.png` |
+| `ANTI_SPELL_FRAGRANCE` | Anti-Spell Fragrance | `anti_spell_fragrance.png` |
+| `APPROPRIATE` | Appropriate | `appropriate.png` |
+| `APPRENTICE_ILLUSION_MAGICIAN` | Apprentice Illusion Magician | `apprentice_illusion_magician.png` |
+| `APPARATION` | Apparition | `apparation.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
-- [ ] `A_HERO_LIVES` — `a_hero_lives.png`
-- [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
-- [ ] `ALLURE_OF_DARKNESS` — `allure_of_darkness.png`
-- [ ] `AMULET_DRAGON` — `amulet_dragon.png`
-- [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
-- [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
-- [ ] `APPARATION` — `Apparation.png`
-- [ ] `APPRENTICE_ILLUSION_MAGICIAN` — `apprentice_illusion_magician.png`
-- [ ] `APPROPRIATE` — `appropriate.png`
 - [ ] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
 - [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
 - [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
@@ -461,7 +461,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
 - [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
-- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
+- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `exodius_the_ultimate_forbidden_lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`

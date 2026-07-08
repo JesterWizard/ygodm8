@@ -1131,11 +1131,21 @@
 #define DARK_END_DRAGON                          0x0467
 #define LIGHT_END_DRAGON                         0x0468
 #define DARK_ARMED_DRAGON                        0x0469
+#define A_HERO_EMERGES                           0x046A
+#define A_HERO_LIVES                             0x046B
+#define A_WINGBEAT_OF_GIANT_DRAGON               0x046C
+#define ALLURE_OF_DARKNESS                       0x046D
+#define AMULET_DRAGON                            0x046E
+#define ANDRO_SPHINX                             0x046F
+#define ANTI_SPELL_FRAGRANCE                     0x0470
+#define APPROPRIATE                              0x0471
+#define APPRENTICE_ILLUSION_MAGICIAN             0x0472
+#define APPARATION                               0x0473
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x046A
-#define NUM_CUSTOM_CARDS                        0x0149
+#define NUM_TOTAL_CARDS                         0x0474
+#define NUM_CUSTOM_CARDS                        0x0153
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
