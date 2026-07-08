@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `311` effects
+- `323` effects
 
 ## Tally
 
@@ -292,6 +292,18 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Anti Spell Fragrance` | `src_custom/trap_effects/anti_spell_fragrance.c` |
 | `trap_effects` | `Appropriate` | `src_custom/trap_effects/appropriate.c` |
 | `activated_effects` | `Apprentice Illusion Magician` | `src_custom/activated_effects/apprentice_illusion_magician.c` |
+| `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
+| `trap_effects` | `Attack Guidance Armor` | `src_custom/trap_effects/attack_guidance_armor.c` |
+| `trap_effects` | `Attack Reflector Unit` | `src_custom/trap_effects/attack_reflector_unit.c` |
+| `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
+| `spell_effects` | `Backup Squad` | `src_custom/spell_effects/backup_squad.c` |
+| `permanent_effects` | `Armageddon Knight` | `src_custom/permanent_effects/armageddon_knight.c` |
+| `turn_effects` | `Armed Dragon Lv3` | `src_custom/turn_effects/armed_dragon_lv3.c` |
+| `activated_effects` | `Armed Dragon Lv5` | `src_custom/activated_effects/armed_dragon_lv5.c` |
+| `activated_effects` | `Armed Dragon Lv7` | `src_custom/activated_effects/armed_dragon_lv7.c` |
+| `activated_effects` | `Armed Dragon Lv10` | `src_custom/activated_effects/armed_dragon_lv10.c` |
+| `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
+| `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

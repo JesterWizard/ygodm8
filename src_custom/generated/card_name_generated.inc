@@ -340,6 +340,16 @@ static const u8 sAntiSpellFragranceName[] __attribute__((section(".append_assets
 static const u8 sAppropriateName[] __attribute__((section(".append_assets"))) = "Appropriate";
 static const u8 sApprenticeIllusionMagicianName[] __attribute__((section(".append_assets"))) = "Apprentice Illusion Magician";
 static const u8 sApparationName[] __attribute__((section(".append_assets"))) = "Apparition";
+static const u8 sAttackGuidanceArmorName[] __attribute__((section(".append_assets"))) = "Attack Guidance Armor";
+static const u8 sAttackReflectorUnitName[] __attribute__((section(".append_assets"))) = "Attack Reflector Unit";
+static const u8 sBackupSquadName[] __attribute__((section(".append_assets"))) = "Backup Squad";
+static const u8 sArmageddonKnightName[] __attribute__((section(".append_assets"))) = "Armageddon Knight";
+static const u8 sArmedDragonLv3Name[] __attribute__((section(".append_assets"))) = "Armed Dragon LV3";
+static const u8 sArmedDragonLv5Name[] __attribute__((section(".append_assets"))) = "Armed Dragon LV5";
+static const u8 sArmedDragonLv7Name[] __attribute__((section(".append_assets"))) = "Armed Dragon LV7";
+static const u8 sArmedDragonLv10Name[] __attribute__((section(".append_assets"))) = "Armed Dragon LV10";
+static const u8 sAttackAndReceiveName[] __attribute__((section(".append_assets"))) = "Attack and Receive";
+static const u8 sBackfireName[] __attribute__((section(".append_assets"))) = "Backfire";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1026,6 +1036,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sApprenticeIllusionMagicianName;
   if (cardId == 0x0473)
     return (u8 *)sApparationName;
+  if (cardId == 0x0474)
+    return (u8 *)sAttackGuidanceArmorName;
+  if (cardId == 0x0475)
+    return (u8 *)sAttackReflectorUnitName;
+  if (cardId == 0x0476)
+    return (u8 *)sBackupSquadName;
+  if (cardId == 0x0477)
+    return (u8 *)sArmageddonKnightName;
+  if (cardId == 0x0478)
+    return (u8 *)sArmedDragonLv3Name;
+  if (cardId == 0x0479)
+    return (u8 *)sArmedDragonLv5Name;
+  if (cardId == 0x047A)
+    return (u8 *)sArmedDragonLv7Name;
+  if (cardId == 0x047B)
+    return (u8 *)sArmedDragonLv10Name;
+  if (cardId == 0x047C)
+    return (u8 *)sAttackAndReceiveName;
+  if (cardId == 0x047D)
+    return (u8 *)sBackfireName;
 
   return gCardNames[cardId];
 }

@@ -1141,11 +1141,21 @@
 #define APPROPRIATE                              0x0471
 #define APPRENTICE_ILLUSION_MAGICIAN             0x0472
 #define APPARATION                               0x0473
+#define ATTACK_GUIDANCE_ARMOR                    0x0474
+#define ATTACK_REFLECTOR_UNIT                    0x0475
+#define BACKUP_SQUAD                             0x0476
+#define ARMAGEDDON_KNIGHT                        0x0477
+#define ARMED_DRAGON_LV3                         0x0478
+#define ARMED_DRAGON_LV5                         0x0479
+#define ARMED_DRAGON_LV7                         0x047A
+#define ARMED_DRAGON_LV10                        0x047B
+#define ATTACK_AND_RECEIVE                       0x047C
+#define BACKFIRE                                 0x047D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0474
-#define NUM_CUSTOM_CARDS                        0x0153
+#define NUM_TOTAL_CARDS                         0x047E
+#define NUM_CUSTOM_CARDS                        0x015D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

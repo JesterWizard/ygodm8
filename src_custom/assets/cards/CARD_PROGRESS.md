@@ -366,16 +366,16 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
-- [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
-- [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
-- [ ] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
-- [ ] `ARMED_DRAGON_LEVEL_THREE` — `armed_dragon_level_three.png`
-- [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
-- [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
-- [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
-- [ ] `BACKFIRE` — `backfire.png`
-- [ ] `BACKUP_SQUAD` — `backup_squad.png`
+- [x] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
+- [x] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
+- [x] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
+- [x] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
+- [x] `ARMED_DRAGON_LEVEL_THREE` — `armed_dragon_level_three.png`
+- [x] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
+- [x] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
+- [x] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
+- [x] `BACKFIRE` — `backfire.png`
+- [x] `BACKUP_SQUAD` — `backup_squad.png`
 - [ ] `BERSERKER_SOUL` — `berserker_soul.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`

@@ -339,6 +339,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [APPROPRIATE] = gActivationDescription_Appropriate_Popup1,
   [APPRENTICE_ILLUSION_MAGICIAN] = gActivationDescription_ApprenticeIllusionMagician_Popup1,
   [APPARATION] = gActivationDescription_Apparation_Popup1,
+  [ATTACK_GUIDANCE_ARMOR] = gActivationDescription_AttackGuidanceArmor_Popup1,
+  [ATTACK_REFLECTOR_UNIT] = gActivationDescription_AttackReflectorUnit_Popup1,
+  [BACKUP_SQUAD] = gActivationDescription_BackupSquad_Popup1,
+  [ARMAGEDDON_KNIGHT] = gActivationDescription_ArmageddonKnight_Popup1,
+  [ARMED_DRAGON_LV3] = gActivationDescription_ArmedDragonLv3_Popup1,
+  [ARMED_DRAGON_LV5] = gActivationDescription_ArmedDragonLv5_Popup1,
+  [ARMED_DRAGON_LV7] = gActivationDescription_ArmedDragonLv7_Popup1,
+  [ARMED_DRAGON_LV10] = gActivationDescription_ArmedDragonLv10_Popup1,
+  [ATTACK_AND_RECEIVE] = gActivationDescription_AttackAndReceive_Popup1,
+  [BACKFIRE] = gActivationDescription_Backfire_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -708,6 +718,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_APPROPRIATE_POPUP_1] = gActivationDescription_Appropriate_Popup1,
   [CARD_EFFECT_TEXT_APPRENTICE_ILLUSION_MAGICIAN_POPUP_1] = gActivationDescription_ApprenticeIllusionMagician_Popup1,
   [CARD_EFFECT_TEXT_APPARATION_POPUP_1] = gActivationDescription_Apparation_Popup1,
+  [CARD_EFFECT_TEXT_ATTACK_GUIDANCE_ARMOR_POPUP_1] = gActivationDescription_AttackGuidanceArmor_Popup1,
+  [CARD_EFFECT_TEXT_ATTACK_REFLECTOR_UNIT_POPUP_1] = gActivationDescription_AttackReflectorUnit_Popup1,
+  [CARD_EFFECT_TEXT_BACKUP_SQUAD_POPUP_1] = gActivationDescription_BackupSquad_Popup1,
+  [CARD_EFFECT_TEXT_ARMAGEDDON_KNIGHT_POPUP_1] = gActivationDescription_ArmageddonKnight_Popup1,
+  [CARD_EFFECT_TEXT_ARMED_DRAGON_LV3_POPUP_1] = gActivationDescription_ArmedDragonLv3_Popup1,
+  [CARD_EFFECT_TEXT_ARMED_DRAGON_LV5_POPUP_1] = gActivationDescription_ArmedDragonLv5_Popup1,
+  [CARD_EFFECT_TEXT_ARMED_DRAGON_LV7_POPUP_1] = gActivationDescription_ArmedDragonLv7_Popup1,
+  [CARD_EFFECT_TEXT_ARMED_DRAGON_LV10_POPUP_1] = gActivationDescription_ArmedDragonLv10_Popup1,
+  [CARD_EFFECT_TEXT_ATTACK_AND_RECEIVE_POPUP_1] = gActivationDescription_AttackAndReceive_Popup1,
+  [CARD_EFFECT_TEXT_BACKFIRE_POPUP_1] = gActivationDescription_Backfire_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

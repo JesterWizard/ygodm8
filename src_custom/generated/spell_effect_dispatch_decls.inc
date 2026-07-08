@@ -4,6 +4,7 @@ extern void EffectAncientRules(void);
 extern void EffectAutonomousActionUnit(void);
 extern void EffectA_HERO_LIVES(void);
 extern void EffectA_WINGBEAT_OF_GIANT_DRAGON(void);
+extern void EffectBACKUP_SQUAD(void);
 extern void EffectBigBangShot(void);
 extern void EffectBlockAttack(void);
 extern void EffectBookOfLife(void);

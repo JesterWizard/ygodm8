@@ -346,3 +346,5 @@ void TryActivatingTurnEffects__Replacement(void) {
     return;
   CheckBoardForTurnEffects__Hook(!gRuntimeConfig.turn_off_visual_scanner);
 }
+/* ARMED_DRAGON_LV3 turn effect */
+  /* TODO: wire ARMED_DRAGON_LV3 in turn effect hooks */

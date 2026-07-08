@@ -14,6 +14,9 @@
     case A_WINGBEAT_OF_GIANT_DRAGON:
       EffectA_WINGBEAT_OF_GIANT_DRAGON();
       return;
+    case BACKUP_SQUAD:
+      EffectBACKUP_SQUAD();
+      return;
     case BIG_BANG_SHOT:
       EffectBigBangShot();
       return;

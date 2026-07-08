@@ -1364,6 +1364,46 @@ static const unsigned char sApparationBigArt[] __attribute__((section(".append_a
 static const unsigned short sApparationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/apparation.gbapal");
 static const unsigned char sApparationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/apparation.lz");
 
+static const unsigned char sAttackGuidanceArmorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/attack_guidance_armor.huff");
+static const unsigned short sAttackGuidanceArmorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/attack_guidance_armor.gbapal");
+static const unsigned char sAttackGuidanceArmorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/attack_guidance_armor.lz");
+
+static const unsigned char sAttackReflectorUnitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/attack_reflector_unit.huff");
+static const unsigned short sAttackReflectorUnitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/attack_reflector_unit.gbapal");
+static const unsigned char sAttackReflectorUnitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/attack_reflector_unit.lz");
+
+static const unsigned char sBackupSquadBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/backup_squad.huff");
+static const unsigned short sBackupSquadBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/backup_squad.gbapal");
+static const unsigned char sBackupSquadMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/backup_squad.lz");
+
+static const unsigned char sArmageddonKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armageddon_knight.huff");
+static const unsigned short sArmageddonKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armageddon_knight.gbapal");
+static const unsigned char sArmageddonKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armageddon_knight.lz");
+
+static const unsigned char sArmedDragonLv3BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armed_dragon_lv3.huff");
+static const unsigned short sArmedDragonLv3BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armed_dragon_lv3.gbapal");
+static const unsigned char sArmedDragonLv3MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armed_dragon_lv3.lz");
+
+static const unsigned char sArmedDragonLv5BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armed_dragon_lv5.huff");
+static const unsigned short sArmedDragonLv5BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armed_dragon_lv5.gbapal");
+static const unsigned char sArmedDragonLv5MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armed_dragon_lv5.lz");
+
+static const unsigned char sArmedDragonLv7BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armed_dragon_lv7.huff");
+static const unsigned short sArmedDragonLv7BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armed_dragon_lv7.gbapal");
+static const unsigned char sArmedDragonLv7MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armed_dragon_lv7.lz");
+
+static const unsigned char sArmedDragonLv10BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armed_dragon_lv10.huff");
+static const unsigned short sArmedDragonLv10BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armed_dragon_lv10.gbapal");
+static const unsigned char sArmedDragonLv10MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armed_dragon_lv10.lz");
+
+static const unsigned char sAttackAndReceiveBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/attack_and_receive.huff");
+static const unsigned short sAttackAndReceiveBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/attack_and_receive.gbapal");
+static const unsigned char sAttackAndReceiveMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/attack_and_receive.lz");
+
+static const unsigned char sBackfireBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/backfire.huff");
+static const unsigned short sBackfireBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/backfire.gbapal");
+static const unsigned char sBackfireMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/backfire.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1706,6 +1746,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0471] = sAppropriateBigArt,
   [0x0472] = sApprenticeIllusionMagicianBigArt,
   [0x0473] = sApparationBigArt,
+  [0x0474] = sAttackGuidanceArmorBigArt,
+  [0x0475] = sAttackReflectorUnitBigArt,
+  [0x0476] = sBackupSquadBigArt,
+  [0x0477] = sArmageddonKnightBigArt,
+  [0x0478] = sArmedDragonLv3BigArt,
+  [0x0479] = sArmedDragonLv5BigArt,
+  [0x047A] = sArmedDragonLv7BigArt,
+  [0x047B] = sArmedDragonLv10BigArt,
+  [0x047C] = sAttackAndReceiveBigArt,
+  [0x047D] = sBackfireBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2050,6 +2100,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0471] = sAppropriateBigPalette,
   [0x0472] = sApprenticeIllusionMagicianBigPalette,
   [0x0473] = sApparationBigPalette,
+  [0x0474] = sAttackGuidanceArmorBigPalette,
+  [0x0475] = sAttackReflectorUnitBigPalette,
+  [0x0476] = sBackupSquadBigPalette,
+  [0x0477] = sArmageddonKnightBigPalette,
+  [0x0478] = sArmedDragonLv3BigPalette,
+  [0x0479] = sArmedDragonLv5BigPalette,
+  [0x047A] = sArmedDragonLv7BigPalette,
+  [0x047B] = sArmedDragonLv10BigPalette,
+  [0x047C] = sAttackAndReceiveBigPalette,
+  [0x047D] = sBackfireBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2394,6 +2454,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0471] = 0,
   [0x0472] = 0,
   [0x0473] = 0,
+  [0x0474] = 0,
+  [0x0475] = 0,
+  [0x0476] = 0,
+  [0x0477] = 0,
+  [0x0478] = 0,
+  [0x0479] = 0,
+  [0x047A] = 0,
+  [0x047B] = 0,
+  [0x047C] = 0,
+  [0x047D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2738,4 +2808,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0471] = sAppropriateMiniArt,
   [0x0472] = sApprenticeIllusionMagicianMiniArt,
   [0x0473] = sApparationMiniArt,
+  [0x0474] = sAttackGuidanceArmorMiniArt,
+  [0x0475] = sAttackReflectorUnitMiniArt,
+  [0x0476] = sBackupSquadMiniArt,
+  [0x0477] = sArmageddonKnightMiniArt,
+  [0x0478] = sArmedDragonLv3MiniArt,
+  [0x0479] = sArmedDragonLv5MiniArt,
+  [0x047A] = sArmedDragonLv7MiniArt,
+  [0x047B] = sArmedDragonLv10MiniArt,
+  [0x047C] = sAttackAndReceiveMiniArt,
+  [0x047D] = sBackfireMiniArt,
 };

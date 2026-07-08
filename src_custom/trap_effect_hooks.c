@@ -383,3 +383,11 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire ANTI_SPELL_FRAGRANCE in trap dispatcher */
 /* APPROPRIATE trap effect */
   /* TODO: wire APPROPRIATE in trap dispatcher */
+/* ATTACK_AND_RECEIVE trap effect */
+  /* TODO: wire ATTACK_AND_RECEIVE in trap dispatcher */
+/* ATTACK_GUIDANCE_ARMOR trap effect */
+  /* TODO: wire ATTACK_GUIDANCE_ARMOR in trap dispatcher */
+/* ATTACK_REFLECTOR_UNIT trap effect */
+  /* TODO: wire ATTACK_REFLECTOR_UNIT in trap dispatcher */
+/* BACKFIRE trap effect */
+  /* TODO: wire BACKFIRE in trap dispatcher */

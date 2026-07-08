@@ -65,6 +65,9 @@
 #include "amulet_dragon.h"
 #include "andro_sphinx.h"
 #include "apprentice_illusion_magician.h"
+#include "armed_dragon_lv5.h"
+#include "armed_dragon_lv7.h"
+#include "armed_dragon_lv10.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -639,6 +642,18 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateAPPRENTICE_ILLUSION_MAGICIANEffect();
     return;
   }
+  if (gMonEffect.id == ARMED_DRAGON_LV5) {
+    ActivateARMED_DRAGON_LV5Effect();
+    return;
+  }
+  if (gMonEffect.id == ARMED_DRAGON_LV7) {
+    ActivateARMED_DRAGON_LV7Effect();
+    return;
+  }
+  if (gMonEffect.id == ARMED_DRAGON_LV10) {
+    ActivateARMED_DRAGON_LV10Effect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
@@ -752,6 +767,9 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == AMULET_DRAGON
           || zone->id == ANDRO_SPHINX
           || zone->id == APPRENTICE_ILLUSION_MAGICIAN
+          || zone->id == ARMED_DRAGON_LV5
+          || zone->id == ARMED_DRAGON_LV7
+          || zone->id == ARMED_DRAGON_LV10
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;

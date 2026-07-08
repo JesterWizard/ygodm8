@@ -109,6 +109,8 @@ u8 TryAutoSummonBlueEyesShiningDragon(void);
 u8 TryAutoSummonTheWingedDragonOfRaSphereMode(void);
 unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
+unsigned char ShouldActivateARMAGEDDON_KNIGHT(void);
+void ActivateARMAGEDDON_KNIGHT(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -305,6 +307,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = THE_WICKED_AVATAR,
     .shouldActivate = ShouldActivateTheWickedAvatar,
     .activate = ActivateTheWickedAvatar,
+  },
+  {
+    .cardId = ARMAGEDDON_KNIGHT,
+    .shouldActivate = ShouldActivateARMAGEDDON_KNIGHT,
+    .activate = ActivateARMAGEDDON_KNIGHT,
   },
 };
 
