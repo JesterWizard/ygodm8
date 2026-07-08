@@ -5,15 +5,15 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-06).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-08).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 329 |
-| Art ready, needs manifest | 264 |
-| In manifest, missing art | 0 |
+| In game (manifest + art) | 590 |
+| Art ready, needs manifest | 3 |
+| In manifest, missing art | 1 |
 | **Total PNGs in `80x80/`** | **595** |
 
 ## In game
@@ -178,7 +178,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SASUKE_SAMURAI_2` | Sasuke Samurai #2 | `sasuke_samurai_2.png` |
 | `SASUKE_SAMURAI_3` | Sasuke Samurai #3 | `sasuke_samurai_3.png` |
 | `SERVANT_OF_CATABOLISM` | Servant of Catabolism | `servant_of_catabolism.png` |
-| `MAN_THRO_TRO` | Man-Thro-Thro | `man_thro_tro.png` |
+| `MAN_THRO_THRO` | Man-Thro-Thro | `man-thro-thro.png` |
 | `LEVEL_LIMIT_AREA_B` | Level Limit Area B | `level_limit_area_b.png` |
 | `SPIRIT_RYU` | Spirit Ryu | `spirit_ryu.png` |
 | `AMAZONESS_TIGER` | Amazoness Tiger | `amazoness_tiger.png` |
@@ -351,279 +351,281 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARK_END_DRAGON` | Dark End Dragon | `dark_end_dragon.png` |
 | `LIGHT_END_DRAGON` | Light End Dragon | `light_end_dragon.png` |
 | `DARK_ARMED_DRAGON` | Dark Armed Dragon | `dark_armed_dragon.png` |
+| `A_HERO_EMERGES` | A Hero Emerges | `a_hero_emerges.png` |
+| `A_HERO_LIVES` | A Hero Lives | `a_hero_lives.png` |
+| `A_WINGBEAT_OF_GIANT_DRAGON` | A Wingbeat of Giant Dragon | `a_wingbeat_of_giant_dragon.png` |
+| `ALLURE_OF_DARKNESS` | Allure of Darkness | `allure_of_darkness.png` |
+| `AMULET_DRAGON` | Amulet Dragon | `amulet_dragon.png` |
+| `ANDRO_SPHINX` | Andro Sphinx | `andro_sphinx.png` |
+| `APPARATION` | Apparition | `Apparation.png` |
+| `APPRENTICE_ILLUSION_MAGICIAN` | Apprentice Illusion Magician | `apprentice_illusion_magician.png` |
+| `APPROPRIATE` | Appropriate | `appropriate.png` |
+| `ARMAGEDDON_KNIGHT` | Armageddon Knight | `armageddon_knight.png` |
+| `ARMED_DRAGON_LEVEL_FIVE` | Armed Dragon LV5 | `armed_dragon_level_five.png` |
+| `ARMED_DRAGON_LEVEL_SEVEN` | Armed Dragon LV7 | `armed_dragon_level_seven.png` |
+| `ARMED_DRAGON_LEVEL_TEN` | Armed Dragon LV10 | `armed_dragon_level_ten.png` |
+| `ARMED_DRAGON_LEVEL_THREE` | Armed Dragon LV3 | `armed_dragon_level_three.png` |
+| `ATTACK_AND_RECEIVE` | Attack and Receive | `attack_and_receive.png` |
+| `ATTACK_GUIDANCE_ARMOR` | Attack Guidance Armor | `attack_guidance_armor.png` |
+| `ATTACK_REFLECTOR_UNIT` | Attack Reflector Unit | `attack_reflector_unit.png` |
+| `BACKFIRE` | Backfire | `backfire.png` |
+| `BACKUP_SQUAD` | Backup Squad | `backup_squad.png` |
+| `BERSERKER_SOUL` | Berserker Soul | `berserker_soul.png` |
+| `BIRDFACE` | Birdface | `birdface.png` |
+| `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` | Blue-Eyes Alternative Ultimate Dragon | `blue_eyes_alternative_ultimate_dragon.png` |
+| `BREAK_THE_DESTINY` | Break the Destiny | `break_the_destiny.png` |
+| `BUBBLE_BLASTER` | Bubble Blaster | `bubble_blaster.png` |
+| `BURDEN_OF_THE_MIGHTY` | Burden of the Mighty | `burden_of_the_mighty.png` |
+| `CALL_OF_THE_MUMMY` | Call of the Mummy | `call_of_the_mummy.png` |
+| `CANNONBALL_SPEAR_SHELLFISH` | Cannonball Spear Shellfish | `cannonball_spear_shellfish.png` |
+| `CELESTIAL_SWORD_EATOS` | Celestial Sword - Eatos | `celestial_sword_eatos.png` |
+| `CHAOS_FORM` | Chaos Form | `chaos_form.png` |
+| `CHICKEN_GAME` | Chicken Game | `chicken_game.png` |
+| `CHIMERATECH_FORTRESS_DRAGON` | Chimeratech Fortress Dragon | `chimeratech_fortress_dragon.png` |
+| `CHIMERATECH_MEGAFLEET_DRAGON` | Chimeratech Megafleet Dragon | `chimeratech_megafleet_dragon.png` |
+| `CHIMERATECH_RAMPAGE_DRAGON` | Chimeratech Rampage Dragon | `chimeratech_rampage_dragon.png` |
+| `CLOCK_TOWER_PRISON` | Clock Tower Prison | `clock_tower_prison.png` |
+| `COLD_WAVE` | Cold Wave | `cold_wave.png` |
+| `CONTINUOUS_DESTRUCTION_PUNCH` | Continuous Destruction Punch | `continuous_destruction_punch.png` |
+| `CYBER_ELTANIN` | Cyber Eltanin | `cyber_eltanin.png` |
+| `CYBER_KIRIN` | Cyber Kirin | `cyber_kirin.png` |
+| `CYBER_PHOENIX` | Cyber Phoenix | `cyber_phoenix.png` |
+| `CYBER_VALLEY` | Cyber Valley | `cyber_valley.png` |
+| `CYBERNETIC_ZONE` | Cybernetic Zone | `cybernetic_zone.png` |
+| `D_BURST` | D - Burst | `d_burst.png` |
+| `D_FORCE` | D - Force | `d_force.png` |
+| `D_TACTICS` | D - Tactics | `d_tactics.png` |
+| `D_TIME` | D - Time | `d_time.png` |
+| `DAMAGE_POLARIZER` | Damage Polarizer | `damage_polarizer.png` |
+| `DARK_BLADE_THE_DRAGON_KNIGHT` | Dark Blade the Dragon Knight | `dark_blade_the_dragon_knight.png` |
+| `DARK_CITY_AT_MIDNIGHT` | Dark City at Midnight | `dark_city_at_midnight.png` |
+| `DARK_GREPHER` | Dark Grepher | `dark_grepher.png` |
+| `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` | Dark Magician Girl the Dragon Knight | `dark_magician_girl_the_dragon_knight.png` |
+| `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | Dark Magician the Dragon Knight | `dark_magician_the_dragon_knight.png` |
+| `DARKLORD_NURSE_REFICULE` | Darklord Nurse Reficule | `darklord_nurse_reficule.png` |
+| `DARKNESS_NEOSPHERE` | Darkness Neosphere | `darkness_neosphere.png` |
+| `DECOY_DRAGON` | Decoy Dragon | `decoy_dragon.png` |
+| `DES_COUNTERBLOW` | Des Counterblow | `des_counterblow.png` |
+| `DESPAIR_FROM_THE_DARK` | Despair from the Dark | `despair_from_the_dark.png` |
+| `DESTINY_DRAW` | Destiny Draw | `destiny_draw.png` |
+| `DESTINY_END_DRAGOON` | Destiny End Dragoon | `destiny_end_dragoon.png` |
+| `DESTINY_HERO_BLADE_MASTER` | Destiny HERO - Blade Master | `destiny_hero_blade_master.png` |
+| `DESTINY_HERO_CAPTAIN_TENACIOUS` | Destiny HERO - Captain Tenacious | `destiny_hero_captain_tenacious.png` |
+| `DESTINY_HERO_CELESTIAL` | Destiny HERO - Celestial | `destiny_hero_celestial.png` |
+| `DESTINY_HERO_DARK_ANGEL` | Destiny HERO - Dark Angel | `destiny_hero_dark_angel.png` |
+| `DESTINY_HERO_DASHER` | Destiny HERO - Dasher | `destiny_hero_dasher.png` |
+| `DESTINY_HERO_DECIDER` | Destiny HERO - Decider | `destiny_hero_decider.png` |
+| `DESTINY_HERO_DEFENDER` | Destiny HERO - Defender | `destiny_hero_defender.png` |
+| `DESTINY_HERO_DENIER` | Destiny HERO - Denier | `destiny_hero_denier.png` |
+| `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` | Destiny HERO - Destroyer Phoenix Enforcer | `destiny_hero_destroyer_phoenix_enforcer.png` |
+| `DESTINY_HERO_DIAMOND_DUDE` | Destiny HERO - Diamond Dude | `destiny_hero_diamond_dude.png` |
+| `DESTINY_HERO_DISK_COMMANDER` | Destiny HERO - Disk Commander | `destiny_hero_disk_commander.png` |
+| `DESTINY_HERO_DOGMA` | Destiny HERO - Dogma | `destiny_hero_dogma.png` |
+| `DESTINY_HERO_DOMINANCE` | Destiny HERO - Dominance | `destiny_hero_dominance.png` |
+| `DESTINY_HERO_DOOM_LORD` | Destiny HERO - Doom Lord | `destiny_hero_doom_lord.png` |
+| `DESTINY_HERO_DOOM_OVERLORD` | Destiny HERO - Doom Overlord | `destiny_hero_doom_overlord.png` |
+| `DESTINY_HERO_DOUBLE_DUDE` | Destiny HERO - Double Dude | `destiny_hero_double_dude.png` |
+| `DESTINY_HERO_DRAWHAND` | Destiny HERO - Drawhand | `destiny_hero_drawhand.png` |
+| `DESTINY_HERO_DREAD_SERVANT` | Destiny HERO - Dread Servant | `destiny_hero_dread_servant.png` |
+| `DESTINY_HERO_DREADMASTER` | Destiny HERO - Dreadmaster | `destiny_hero_dreadmaster.png` |
+| `DESTINY_HERO_DREADNOUGHT_MASTER` | Destiny HERO - Dreadnought Master | `destiny_hero_dreadnought_master.png` |
+| `DESTINY_HERO_DREAMER` | Destiny HERO - Dreamer | `destiny_hero_dreamer.png` |
+| `DESTINY_HERO_DRILLDARK` | Destiny HERO - Drilldark | `destiny_hero_drilldark.png` |
+| `DESTINY_HERO_DUSKTOPIA` | Destiny HERO - Dusktopia | `destiny_hero_dusktopia.png` |
+| `DESTINY_HERO_DYNATAG` | Destiny HERO - Dynatag | `destiny_hero_dynatag.png` |
+| `DESTINY_HERO_DYSTOPIA` | Destiny HERO - Dystopia | `destiny_hero_dystopia.png` |
+| `DESTINY_HERO_FEAR_MONGER` | Destiny HERO - Fear Monger | `destiny_hero_fear_monger.png` |
+| `DESTINY_HERO_MALICIOUS` | Destiny HERO - Malicious | `destiny_hero_malicious.png` |
+| `DESTINY_HERO_PLASMA` | Destiny HERO - Plasma | `destiny_hero_plasma.png` |
+| `DIFFERENT_DIMENSION_CAPSULE` | Different Dimension Capsule | `different_dimension_capsule.png` |
+| `DIMENSION_FUSION` | Dimension Fusion | `dimension_fusion.png` |
+| `DIVINE_SERPENT_GEH` | Divine Serpent Geh | `divine_serpent_geh.png` |
+| `DOCTOR_D` | Doctor D | `doctor_d.png` |
+| `DON_ZALOOG` | Don Zaloog | `don_zaloog.png` |
+| `DOUBLE_SPELL` | Double Spell | `double_spell.png` |
+| `DRAGONS_RAGE` | Dragon's Rage | `dragons_rage.png` |
+| `EGYPTIAN_GOD_SLIME` | Egyptian God Slime | `egyptian_god_slime.png` |
+| `ELEMENTAL_HERO_NEOS_KLUGER` | Elemental HERO Neos Kluger | `elemental_hero_neos_kluger.png` |
+| `EMERGENCY_PROVISIONS` | Emergency Provisions | `emergency_provisions.png` |
+| `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` | Exodius the Ultimate Forbidden Lord | `Exodius_The_Ultimate_Forbidden_Lord.png` |
+| `FATAL_ABACUS` | Fatal Abacus | `fatal_abacus.png` |
+| `FELGRAND_DRAGON` | Felgrand Dragon | `felgrand_dragon.png` |
+| `FORCED_REQUISITION` | Forced Requisition | `forced_requisition.png` |
+| `FUSION_DESTINY` | Fusion Destiny | `fusion_destiny.png` |
+| `FUSION_GATE` | Fusion Gate | `fusion_gate.png` |
+| `GATE_GUARDIANS_COMBINED` | Gate Guardians Combined | `gate_guardians_combined.png` |
+| `GIFT_CARD` | Gift Card | `gift_card.png` |
+| `GODDESS_BOW` | Goddess Bow | `goddess_bow.png` |
+| `GORZ_THE_EMISSARY_OF_DARKNESS` | Gorz the Emissary of Darkness | `gorz_the_emissary_of_darkness.png` |
+| `GRANMARG_THE_ROCK_MONARCH` | Granmarg the Rock Monarch | `granmarg_the_rock_monarch.png` |
+| `GREEN_GADGET` | Green Gadget | `green_gadget.png` |
+| `GROUND_COLLAPSE` | Ground Collapse | `ground_collapse.png` |
+| `GUARDIAN_EATOS` | Guardian Eatos | `guardian_eatos.png` |
+| `HARPIE_LADY_PHOENIX_FORMATION` | Harpie Lady Phoenix Formation | `harpie_lady_phoenix_formation.png` |
+| `HERALD_OF_CREATION` | Herald of Creation | `herald_of_creation.png` |
+| `HERO_FLASH` | Hero Flash!! | `hero_flash.png` |
+| `THE_CREATOR` | The Creator | `the_creator.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` | Horus the Black Flame Dragon LV8 | `horus_the_black_flame_dragon_level_eight.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` | Horus the Black Flame Dragon LV6 | `horus_the_black_flame_dragon_level_six.png` |
+| `INSECT_IMITATION` | Insect Imitation | `insect_imitation.png` |
+| `INSTANT_FUSION` | Instant Fusion | `instant_fusion.png` |
+| `JOWGEN_THE_SPIRITUALIST` | Jowgen the Spiritualist | `jowgen_the_spiritualist.png` |
+| `JUDGMENT_DRAGON` | Judgment Dragon | `judgment_dragon.png` |
+| `KING_DRAGUN` | King Dragun | `king_dragun.png` |
+| `KING_OF_THE_SWAMP` | King of the Swamp | `king_of_the_swamp.png` |
+| `KING_TIGER_WANGHU` | King Tiger Wanghu | `king_tiger_wanghu.png` |
+| `KURAZ_THE_LIGHT_MONARCH` | Kuraz the Light Monarch | `kuraz_the_light_monarch.png` |
+| `KURIBANDIT` | Kuribandit | `kuribandit.png` |
+| `LAST_TURN` | Last Turn | `last_turn.png` |
+| `LEGEND_OF_HEART` | Legend of Heart | `legend_of_heart.png` |
+| `LEGENDARY_FLAME_LORD` | Legendary Flame Lord | `legendary_flame_lord.png` |
+| `LEGENDARY_KNIGHT_CRITIAS` | Legendary Knight Critias | `legendary_knight_critias.png` |
+| `LEGENDARY_KNIGHT_HERMOS` | Legendary Knight Hermos | `legendary_knight_hermos.png` |
+| `LEGENDARY_KNIGHT_TIMAEUS` | Legendary Knight Timaeus | `legendary_knight_timaeus.png` |
+| `LEKUNGA` | Lekunga | `lekunga.png` |
+| `LIGHT_AND_DARKNESS_DRAGON` | Light and Darkness Dragon | `light_and_darkness_dragon.png` |
+| `LORD_OF_THE_RED` | Lord of the Red | `lord_of_the_red.png` |
+| `MAGICAL_DIMENSION` | Magical Dimension | `magical_dimension.png` |
+| `MAGICAL_HATS` | Magical Hats | `magical_hats.png` |
+| `MAGICAL_PLANT_MANDRAGOLA` | Magical Plant Mandragola | `magical_plant_mandragola.png` |
+| `MAGICAL_SCIENTIST` | Magical Scientist | `magical_scientist.png` |
+| `MAGICAL_STONE_EXCAVATION` | Magical Stone Excavation | `magical_stone_excavation.png` |
+| `MANJU_OF_THE_TEN_THOUSAND_HANDS` | Manju of the Ten Thousand Hands | `manju_of_the_ten_thousand_hands.png` |
+| `MARSHMALLON` | Marshmallon | `marshmallon.png` |
+| `MASK_OF_DISPEL` | Mask of Dispel | `mask_of_dispel.png` |
+| `MASK_OF_THE_ACCURSED` | Mask of the Accursed | `mask_of_the_accursed.png` |
+| `MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING` | Master Peace, the True Dracoslaying King | `master_peace_the_true_dracroslaying_king.png` |
+| `MAUSOLEUM_OF_THE_EMPEROR` | Mausoleum of the Emperor | `mausoleum_of_the_emperor.png` |
+| `MAZERA_DEVILLE` | Mazera DeVille | `mazera_deville.png` |
+| `METAMORPHOSIS` | Metamorphosis | `metamorphosis.png` |
+| `METEORAIN` | Meteorain | `meteorain.png` |
+| `MIRAGE_OF_NIGHTMARE` | Mirage of Nightmare | `mirage_of_nightmare.png` |
+| `MOISTURE_CREATURE` | Moisture Creature | `moisture_creature.png` |
+| `MOLTEN_ZOMBIE` | Molten Zombie | `molten_zombie.png` |
+| `MONSTER_GATE` | Monster Gate | `monster_gate.png` |
+| `MONSTER_RECOVERY` | Monster Recovery | `monster_recovery.png` |
+| `MORALE_BOOST` | Morale Boost | `morale_boost.png` |
+| `MUCUS_YOLK` | Mucus Yolk | `mucus_yolk.png` |
+| `NECROVALLEY` | Necrovalley | `necrovalley.png` |
+| `NEEDLE_WALL` | Needle Wall | `needle_wall.png` |
+| `NEO_BLUE_EYES_ULTIMATE_DRAGON` | Neo Blue-Eyes Ultimate Dragon | `neo_blue_eyes_ultimate_dragon.png` |
+| `NEOS_WISEMAN` | Neos Wiseman | `neos_wiseman.png` |
+| `NIBIRU_THE_PRIMAL_BEING` | Nibiru, the Primal Being | `nibiru_the_primal_being.png` |
+| `NUMINOUS_HEALER` | Numinous Healer | `numinous_healer.png` |
+| `OJAMA_KING` | Ojama King | `ojama_king.png` |
+| `ORICHALCOS_SHUNOROS` | Orichalcos Shunoros | `orichalcos_shunoros.png` |
+| `OVER_DESTINY` | Over Destiny | `over_destiny.png` |
+| `PAINFUL_CHOICE` | Painful Choice | `painful_choice.png` |
+| `PANDEMONIUM` | Pandemonium | `pandemonium.png` |
+| `PARALLEL_WORLD_FUSION` | Parallel World Fusion | `parallel_world_fusion.png` |
+| `PHOTON_GENERATOR_UNIT` | Photon Generator Unit | `photon_generator_unit.png` |
+| `POISON_OF_THE_OLD_MAN` | Poison of the Old Man | `poison_of_the_old_man.png` |
+| `PROTECTOR_OF_THE_SANCTUARY` | Protector of the Sanctuary | `protector_of_the_sanctuary.png` |
+| `QUINTET_MAGICIAN` | Quintet Magician | `quintet_magician.png` |
+| `RAIGEKI_BREAK` | Raigeki Break | `raigeki_break.png` |
+| `REAPER_SCYTHE_DREADSCYTHE` | Reaper Scythe - Dreadscythe | `reaper_scythe_dreadscythe.png` |
+| `RED_EYES_BLACK_DRAGON_SWORD` | Red-Eyes Black Dragon Sword | `red_eyes_black_dragon_sword.png` |
+| `RED_EYES_DARK_DRAGOON` | Red-Eyes Dark Dragoon | `red_eyes_dark_dragoon.png` |
+| `RED_EYES_DARKNESS_METAL_DRAGON` | Red-Eyes Darkness Metal Dragon | `red_eyes_darkness_metal_dragon.png` |
+| `RED_EYES_TRANSMIGRATION` | Red-Eyes Transmigration | `red_eyes_transmigration.png` |
+| `RED_GADGET` | Red Gadget | `red_gadget.png` |
+| `RELAY_SOUL` | Relay Soul | `relay_soul.png` |
+| `ROCKET_HERMOS_CANNON` | Rocket Hermos Cannon | `rocket_hermos_cannon.png` |
+| `ROPE_OF_LIFE` | Rope of Life | `rope_of_life.png` |
+| `ROYAL_MAGICAL_LIBRARY` | Royal Magical Library | `royal_magical_library.png` |
+| `SCAPEGOAT` | Scapegoat | `scapegoat.png` |
+| `SECOND_COIN_TOSS` | Second Coin Toss | `second_coin_toss.png` |
+| `SECRET_VILLAGE_OF_THE_SPELLCASTERS` | Secret Village of the Spellcasters | `secret_village_of_the_spellcasters.png` |
+| `SHARE_THE_PAIN` | Share the Pain | `share_the_pain.png` |
+| `SIXTH_SENSE` | Sixth Sense | `sixth_sense.png` |
+| `SKILLED_DARK_MAGICIAN` | Skilled Dark Magician | `skilled_dark_magician.png` |
+| `SKILLED_WHITE_MAGICIAN` | Skilled White Magician | `skilled_white_magician.png` |
+| `SOLEMN_JUDGEMENT` | Solemn Judgment | `solemn_judgement.png` |
+| `SPARK_BLASTER` | Spark Blaster | `spark_blaster.png` |
+| `SPELL_ABSORPTION` | Spell Absorption | `spell_absorption.png` |
+| `SPHINX_TELEIA` | Sphinx Teleia | `sphinx_teleia.png` |
+| `STATUE_OF_THE_WICKED` | Statue of the Wicked | `statue_of_the_wicked.png` |
+| `STAUNCH_DEFENDER` | Staunch Defender | `staunch_defender.png` |
+| `STRAY_LAMBS` | Stray Lambs | `stray_lambs.png` |
+| `STRONGHOLD_THE_MOVING_FORTRESS` | Stronghold the Moving Fortress | `stronghold_the_moving_fortress.png` |
+| `SUMMONER_MONK` | Summoner Monk | `summoner_monk.png` |
+| `SUMMONER_OF_ILLUSIONS` | Summoner of Illusions | `summoner_of_illusions.png` |
+| `SUPER_POLYMERIZATION` | Super Polymerization | `super_polymerization.png` |
+| `TERRAFORMING` | Terraforming | `terraforming.png` |
+| `THE_AGENT_OF_JUDGMENT_SATURN` | The Agent of Judgment - Saturn | `the_agent_of_judgment_saturn.png` |
+| `THE_AGENT_OF_WISDOM_MERCURY` | The Agent of Wisdom - Mercury | `the_agent_of_wisdom_mercury.png` |
+| `THE_CLAW_OF_HERMOS` | The Claw of Hermos | `the_claw_of_hermos.png` |
+| `THE_CREATOR_INCARNATE` | The Creator Incarnate | `the_creator_incarnate.png` |
+| `THE_EYE_OF_TIMAEUS` | The Eye of Timaeus | `the_eye_of_timaeus.png` |
+| `THE_FANG_OF_CRITIAS` | The Fang of Critias | `the_fang_of_critias.png` |
+| `THE_LAW_OF_THE_NORMAL` | The Law of the Normal | `the_law_of_the_normal.png` |
+| `THE_LEGENDARY_EXODIA_INCARNATE` | The Legendary Exodia Incarnate | `the_legendary_exodia_incarnate.png` |
+| `THE_SHALLOW_GRAVE` | The Shallow Grave | `the_shallow_grave.png` |
+| `THEINEN_THE_GREAT_SPHINX` | Theinen the Great Sphinx | `theinen_the_great_sphinx.png` |
+| `THESTALOS_THE_FIRESTORM_MONARCH` | Thestalos the Firestorm Monarch | `thestalos_the_firestorm_monarch.png` |
+| `THUNDER_DRAGON_COLOSSUS` | Thunder Dragon Colossus | `thunder_dragon_colossus.png` |
+| `THUNDER_DRAGON_TITAN` | Thunder Dragon Titan | `thunder_dragon_titan.png` |
+| `TIMAEUS_THE_KNIGHT_OF_DESTINY` | Timaeus the Knight of Destiny | `timaeus_the_knight_of_destiny.png` |
+| `TIME_MAGIC_HAMMER` | Time Magic Hammer | `time_magic_hammer.png` |
+| `TOON_WORLD` | Toon World | `toon_world.png` |
+| `TORNADO_BIRD` | Tornado Bird | `tornado_bird.png` |
+| `TORNADO_WALL` | Tornado Wall | `tornado_wall.png` |
+| `TRAP_DUSTSHOOT` | Trap Dustshoot | `trap_dustshoot.png` |
+| `TYRANT_BURST_DRAGON` | Tyrant Burst Dragon | `tyrant_burst_dragon.png` |
+| `TYRANT_WING` | Tyrant Wing | `tyrant_wing.png` |
+| `ULTIMATE_OBEDIENT_FIEND` | Ultimate Obedient Fiend | `ultimate_obedient_fiend.png` |
+| `VISION_FUSION` | Vision Fusion | `vision_fusion.png` |
+| `VISION_HERO_ADORATION` | Vision HERO Adoration | `vision_hero_adoration.png` |
+| `VISION_HERO_FARIS` | Vision HERO Faris | `vision_hero_faris.png` |
+| `VISION_HERO_GRAVITO` | Vision HERO Gravito | `vision_hero_gravito.png` |
+| `VISION_HERO_INCREASE` | Vision HERO Increase | `vision_hero_increase.png` |
+| `VISION_HERO_MINIMUM_RAY` | Vision HERO Minimum Ray | `vision_hero_minimum_ray.png` |
+| `VISION_HERO_MULTIPLY_GUY` | Vision HERO Multiply Guy | `vision_hero_multiply_guy.png` |
+| `VISION_HERO_POISONER` | Vision HERO Poisoner | `vision_hero_poisoner.png` |
+| `VISION_HERO_TRINITY` | Vision HERO Trinity | `vision_hero_trinity.png` |
+| `VISION_HERO_VYON` | Vision HERO Vyon | `vision_hero_vyon.png` |
+| `VISION_HERO_WITCH_RAIDER` | Vision HERO Witch Raider | `vision_hero_witch_raider.png` |
+| `VISION_RELEASE` | Vision Release | `vision_release.png` |
+| `WATAPON` | Watapon | `watapon.png` |
+| `WHITE_DRAGON_RITUAL` | White Dragon Ritual | `white_dragon_ritual.png` |
+| `WILD_NATURES_RELEASE` | Wild Nature's Release | `wild_natures_release.png` |
+| `YELLOW_GADGET` | Yellow Gadget | `yellow_gadget.png` |
+| `DESTINY_HERO_DUNKER` | Destiny HERO - Dunker | `destiny_hero_dunker.png` |
+| `DOOM_VIRUS_DRAGON` | Doom Virus Dragon | `doom_virus_dragon.png` |
+| `DOPPLEGANGER` | Doppelganger | `doppleganger.png` |
+| `FIRES_OF_DOOMSDAY` | Fires of Doomsday | `fires_of_doomsday.png` |
+| `GUARDIAN_DREADSCYTHE` | Guardian Dreadscythe | `guardian_dreadscythe.png` |
+| `MIRROR_FORCE_DRAGON` | Mirror Force Dragon | `mirror_force_dragon.png` |
+| `ANTI_SPELL_FRAGRANCE` | Anti-Spell Fragrance | `anti_spell_fragrance.png` |
+| `DESTINY_HERO_DANGEROUS` | Destiny HERO - Dangerous | `destiny_hero_dangerous.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` | Horus the Black Flame Dragon LV4 | `horus_the_black_flame_dragon_level_four.png` |
+| `MAJESTIC_MECH_GORYU` | Majestic Mech - Goryu | `majestic_mech_goryu.png` |
+| `SKYSCRAPER_2_HERO_CITY` | Skyscraper 2 - Hero City | `skyscraper_2_hero_city.png` |
+| `WOUGHTWEILER` | Wroughtweiler | `woughtweiler.png` |
+| `ULTIMATE_CONDUCTOR_TYRANNO` | Ultimate Conductor Tyranno | `ultimate_conductor_tyranno.png` |
+| `THE_A_FORCES` | The A. Forces | `the_a_forces.png` |
+| `MYSTIC_WOK` | Mystik Wok | `mystic_wok.png` |
+| `FIELDS_SANCTUARY` | The Sanctuary in the Sky | `fields_sanctuary.png` |
+| `PROPHECY` | Prophecy | `prophecy.png` |
+| `DRAIN_TIME` | Drain Time | `drain_time.png` |
+| `REVERSE_OF_REVERSE` | Reverse of Reverse | `reverse_of_reverse.png` |
+| `DESTINY_HERO_DESTROY_DOGMA` | Destiny HERO - Destroy Dogma | `destiny_hero_destroy_dogma.png` |
+| `HOLACTIE_THE_CREATOR_OF_LIGHT` | Holactie the Creator of Light | `holactie_the_creator_of_light.png` |
+| `DESTINY_HERO_DREADNOUGHT_SERVANT` | Destiny HERO - Dreadnought Servant | `destiny_hero_dreadnought_servant.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `A_HERO_EMERGES` — `a_hero_emerges.png`
-- [ ] `A_HERO_LIVES` — `a_hero_lives.png`
-- [ ] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
-- [ ] `ALLURE_OF_DARKNESS` — `allure_of_darkness.png`
-- [ ] `AMULET_DRAGON` — `amulet_dragon.png`
-- [ ] `ANDRO_SPHINX` — `andro_sphinx.png`
-- [ ] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
-- [ ] `APPARATION` — `Apparation.png`
-- [ ] `APPRENTICE_ILLUSION_MAGICIAN` — `apprentice_illusion_magician.png`
-- [ ] `APPROPRIATE` — `appropriate.png`
-- [ ] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
-- [ ] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
-- [ ] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
-- [ ] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
-- [ ] `ARMED_DRAGON_LEVEL_THREE` — `armed_dragon_level_three.png`
-- [ ] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
-- [ ] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
-- [ ] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
-- [ ] `BACKFIRE` — `backfire.png`
-- [ ] `BACKUP_SQUAD` — `backup_squad.png`
-- [ ] `BERSERKER_SOUL` — `berserker_soul.png`
-- [ ] `BIRDFACE` — `birdface.png`
-- [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
-- [ ] `BREAK_THE_DESTINY` — `break_the_destiny.png`
-- [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
-- [ ] `BURDEN_OF_THE_MIGHTY` — `burden_of_the_mighty.png`
-- [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
-- [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
-- [ ] `CELESTIAL_SWORD_EATOS` — `celestial_sword_eatos.png`
-- [ ] `CHAOS_FORM` — `chaos_form.png`
-- [ ] `CHICKEN_GAME` — `chicken_game.png`
-- [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
-- [ ] `CHIMERATECH_MEGAFLEET_DRAGON` — `chimeratech_megafleet_dragon.png`
-- [ ] `CHIMERATECH_RAMPAGE_DRAGON` — `chimeratech_rampage_dragon.png`
-- [ ] `CLOCK_TOWER_PRISON` — `clock_tower_prison.png`
-- [ ] `COLD_WAVE` — `cold_wave.png`
-- [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `CYBER_ELTANIN` — `cyber_eltanin.png`
-- [ ] `CYBER_KIRIN` — `cyber_kirin.png`
-- [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`
-- [ ] `CYBER_VALLEY` — `cyber_valley.png`
-- [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `D_BURST` — `d_burst.png`
-- [ ] `D_FORCE` — `d_force.png`
-- [ ] `D_TACTICS` — `d_tactics.png`
-- [ ] `D_TIME` — `d_time.png`
-- [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
-- [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
-- [ ] `DARK_GREPHER` — `dark_grepher.png`
-- [ ] `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` — `dark_magician_girl_the_dragon_knight.png`
-- [ ] `DARK_MAGICIAN_THE_DRAGON_KNIGHT` — `dark_magician_the_dragon_knight.png`
-- [ ] `DARKLORD_NURSE_REFICULE` — `darklord_nurse_reficule.png`
-- [ ] `DARKNESS_NEOSPHERE` — `darkness_neosphere.png`
-- [ ] `DECOY_DRAGON` — `decoy_dragon.png`
-- [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
-- [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
-- [ ] `DESTINY_DRAW` — `destiny_draw.png`
-- [ ] `DESTINY_END_DRAGOON` — `destiny_end_dragoon.png`
-- [ ] `DESTINY_HERO_BLADE_MASTER` — `destiny_hero_blade_master.png`
-- [ ] `DESTINY_HERO_CAPTAIN_TENACIOUS` — `destiny_hero_captain_tenacious.png`
-- [ ] `DESTINY_HERO_CELESTIAL` — `destiny_hero_celestial.png`
-- [ ] `DESTINY_HERO_DANGEROUS` — `destiny_hero_dangerous.png`
-- [ ] `DESTINY_HERO_DARK_ANGEL` — `destiny_hero_dark_angel.png`
-- [ ] `DESTINY_HERO_DASHER` — `destiny_hero_dasher.png`
-- [ ] `DESTINY_HERO_DECIDER` — `destiny_hero_decider.png`
-- [ ] `DESTINY_HERO_DEFENDER` — `destiny_hero_defender.png`
-- [ ] `DESTINY_HERO_DENIER` — `destiny_hero_denier.png`
-- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
-- [ ] `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` — `destiny_hero_destroyer_phoenix_enforcer.png`
-- [ ] `DESTINY_HERO_DIAMOND_DUDE` — `destiny_hero_diamond_dude.png`
-- [ ] `DESTINY_HERO_DISK_COMMANDER` — `destiny_hero_disk_commander.png`
-- [ ] `DESTINY_HERO_DOGMA` — `destiny_hero_dogma.png`
-- [ ] `DESTINY_HERO_DOMINANCE` — `destiny_hero_dominance.png`
-- [ ] `DESTINY_HERO_DOOM_LORD` — `destiny_hero_doom_lord.png`
-- [ ] `DESTINY_HERO_DOOM_OVERLORD` — `destiny_hero_doom_overlord.png`
-- [ ] `DESTINY_HERO_DOUBLE_DUDE` — `destiny_hero_double_dude.png`
-- [ ] `DESTINY_HERO_DRAWHAND` — `destiny_hero_drawhand.png`
-- [ ] `DESTINY_HERO_DREAD_SERVANT` — `destiny_hero_dread_servant.png`
-- [ ] `DESTINY_HERO_DREADMASTER` — `destiny_hero_dreadmaster.png`
-- [ ] `DESTINY_HERO_DREADNOUGHT_MASTER` — `destiny_hero_dreadnought_master.png`
-- [ ] `DESTINY_HERO_DREADNOUGHT_SERVANT` — `destiny_hero_dreadnought_servant.png`
-- [ ] `DESTINY_HERO_DREAMER` — `destiny_hero_dreamer.png`
-- [ ] `DESTINY_HERO_DRILLDARK` — `destiny_hero_drilldark.png`
-- [ ] `DESTINY_HERO_DUNKER` — `destiny_hero_dunker.png`
-- [ ] `DESTINY_HERO_DUSKTOPIA` — `destiny_hero_dusktopia.png`
-- [ ] `DESTINY_HERO_DYNATAG` — `destiny_hero_dynatag.png`
-- [ ] `DESTINY_HERO_DYSTOPIA` — `destiny_hero_dystopia.png`
-- [ ] `DESTINY_HERO_FEAR_MONGER` — `destiny_hero_fear_monger.png`
-- [ ] `DESTINY_HERO_MALICIOUS` — `destiny_hero_malicious.png`
-- [ ] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
-- [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
-- [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
-- [ ] `DIVINE_SERPENT_GEH` — `divine_serpent_geh.png`
-- [ ] `DOCTOR_D` — `doctor_d.png`
-- [ ] `DON_ZALOOG` — `don_zaloog.png`
-- [ ] `DOOM_VIRUS_DRAGON` — `doom_virus_dragon.png`
-- [ ] `DOPPLEGANGER` — `doppleganger.png`
-- [ ] `DOUBLE_SPELL` — `double_spell.png`
-- [ ] `DRAGONS_RAGE` — `dragons_rage.png`
-- [ ] `DRAIN_TIME` — `drain_time.png`
-- [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
-- [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
-- [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
-- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
-- [ ] `FATAL_ABACUS` — `fatal_abacus.png`
-- [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
-- [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
-- [ ] `FIRES_OF_DOOMSDAY` — `fires_of_doomsday.png`
-- [ ] `FORCED_REQUISITION` — `forced_requisition.png`
-- [ ] `FUSION_DESTINY` — `fusion_destiny.png`
-- [ ] `FUSION_GATE` — `fusion_gate.png`
-- [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [ ] `GIFT_CARD` — `gift_card.png`
-- [ ] `GODDESS_BOW` — `goddess_bow.png`
-- [ ] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
-- [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
-- [ ] `GREEN_GADGET` — `green_gadget.png`
-- [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
-- [ ] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
-- [ ] `GUARDIAN_EATOS` — `guardian_eatos.png`
-- [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`
-- [ ] `HERO_FLASH` — `hero_flash.png`
-- [ ] `HOLACTIE_THE_CREATOR_OF_LIGHT` — `holactie_the_creator_of_light.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` — `horus_the_black_flame_dragon_level_eight.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` — `horus_the_black_flame_dragon_level_four.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
-- [ ] `INSECT_IMITATION` — `insect_imitation.png`
-- [ ] `INSTANT_FUSION` — `instant_fusion.png`
-- [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
-- [ ] `JUDGMENT_DRAGON` — `judgment_dragon.png`
-- [ ] `KING_DRAGUN` — `king_dragun.png`
-- [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
-- [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
-- [ ] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
-- [ ] `KURIBANDIT` — `kuribandit.png`
-- [ ] `LAST_TURN` — `last_turn.png`
-- [ ] `LEGEND_OF_HEART` — `legend_of_heart.png`
-- [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
-- [ ] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
-- [ ] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
-- [ ] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
-- [ ] `LEKUNGA` — `lekunga.png`
-- [ ] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
-- [ ] `LORD_OF_THE_RED` — `lord_of_the_red.png`
 - [ ] `MA'AT` — `ma'at.png`
-- [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
-- [ ] `MAGICAL_HATS` — `magical_hats.png`
-- [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
-- [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [ ] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
-- [ ] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`
-- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
-- [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
-- [ ] `MARSHMALLON` — `marshmallon.png`
-- [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
-- [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
-- [ ] `MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING` — `master_peace_the_true_dracroslaying_king.png`
-- [ ] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
-- [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
-- [ ] `METAMORPHOSIS` — `metamorphosis.png`
-- [ ] `METEORAIN` — `meteorain.png`
-- [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
-- [ ] `MIRROR_FORCE_DRAGON` — `mirror_force_dragon.png`
-- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
-- [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
-- [ ] `MONSTER_GATE` — `monster_gate.png`
-- [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
-- [ ] `MORALE_BOOST` — `morale_boost.png`
-- [ ] `MUCUS_YOLK` — `mucus_yolk.png`
-- [ ] `MYSTIC_WOK` — `mystic_wok.png`
-- [ ] `NECROVALLEY` — `necrovalley.png`
-- [ ] `NEEDLE_WALL` — `needle_wall.png`
-- [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
-- [ ] `NEOS_WISEMAN` — `neos_wiseman.png`
-- [ ] `NIBIRU_THE_PRIMAL_BEING` — `nibiru_the_primal_being.png`
-- [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
-- [ ] `OJAMA_KING` — `ojama_king.png`
-- [ ] `ORICHALCOS_SHUNOROS` — `orichalcos_shunoros.png`
-- [ ] `OVER_DESTINY` — `over_destiny.png`
-- [ ] `PAINFUL_CHOICE` — `painful_choice.png`
-- [ ] `PANDEMONIUM` — `pandemonium.png`
-- [ ] `PARALLEL_WORLD_FUSION` — `parallel_world_fusion.png`
-- [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`
-- [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
-- [ ] `PROPHECY` — `prophecy.png`
-- [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
-- [ ] `QUINTET_MAGICIAN` — `quintet_magician.png`
-- [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
-- [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
-- [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`
-- [ ] `RED_EYES_DARKNESS_METAL_DRAGON` — `red_eyes_darkness_metal_dragon.png`
-- [ ] `RED_EYES_TRANSMIGRATION` — `red_eyes_transmigration.png`
-- [ ] `RED_GADGET` — `red_gadget.png`
-- [ ] `RELAY_SOUL` — `relay_soul.png`
-- [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
-- [ ] `ROCKET_HERMOS_CANNON` — `rocket_hermos_cannon.png`
-- [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
-- [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
-- [ ] `SCAPEGOAT` — `scapegoat.png`
-- [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
-- [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
-- [ ] `SHARE_THE_PAIN` — `share_the_pain.png`
-- [ ] `SIXTH_SENSE` — `sixth_sense.png`
-- [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
-- [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SKYSCRAPER_2_HERO_CITY` — `skyscraper_2_hero_city.png`
-- [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
-- [ ] `SPARK_BLASTER` — `spark_blaster.png`
-- [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
-- [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
-- [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
-- [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
-- [ ] `STRAY_LAMBS` — `stray_lambs.png`
-- [ ] `STRONGHOLD_THE_MOVING_FORTRESS` — `stronghold_the_moving_fortress.png`
-- [ ] `SUMMONER_MONK` — `summoner_monk.png`
-- [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
-- [ ] `SUPER_POLYMERIZATION` — `super_polymerization.png`
-- [ ] `TERRAFORMING` — `terraforming.png`
-- [ ] `THE_A_FORCES` — `the_a_forces.png`
-- [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
-- [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_CLAW_OF_HERMOS` — `the_claw_of_hermos.png`
-- [ ] `THE_CREATOR` — `the_creator.png`
-- [ ] `THE_CREATOR_INCARNATE` — `the_creator_incarnate.png`
-- [ ] `THE_EYE_OF_TIMAEUS` — `the_eye_of_timaeus.png`
-- [ ] `THE_FANG_OF_CRITIAS` — `the_fang_of_critias.png`
-- [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
-- [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
-- [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
-- [ ] `THUNDER_DRAGON_COLOSSUS` — `thunder_dragon_colossus.png`
-- [ ] `THUNDER_DRAGON_TITAN` — `thunder_dragon_titan.png`
-- [ ] `TIMAEUS_THE_KNIGHT_OF_DESTINY` — `timaeus_the_knight_of_destiny.png`
-- [ ] `TIME_MAGIC_HAMMER` — `time_magic_hammer.png`
-- [ ] `TOON_WORLD` — `toon_world.png`
-- [ ] `TORNADO_BIRD` — `tornado_bird.png`
-- [ ] `TORNADO_WALL` — `tornado_wall.png`
-- [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
-- [ ] `TYRANT_BURST_DRAGON` — `tyrant_burst_dragon.png`
-- [ ] `TYRANT_WING` — `tyrant_wing.png`
-- [ ] `ULTIMATE_CONDUCTOR_TYRANNO` — `ultimate_conductor_tyranno.png`
-- [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `VISION_FUSION` — `vision_fusion.png`
-- [ ] `VISION_HERO_ADORATION` — `vision_hero_adoration.png`
-- [ ] `VISION_HERO_FARIS` — `vision_hero_faris.png`
-- [ ] `VISION_HERO_GRAVITO` — `vision_hero_gravito.png`
-- [ ] `VISION_HERO_INCREASE` — `vision_hero_increase.png`
-- [ ] `VISION_HERO_MINIMUM_RAY` — `vision_hero_minimum_ray.png`
-- [ ] `VISION_HERO_MULTIPLY_GUY` — `vision_hero_multiply_guy.png`
-- [ ] `VISION_HERO_POISONER` — `vision_hero_poisoner.png`
-- [ ] `VISION_HERO_TRINITY` — `vision_hero_trinity.png`
-- [ ] `VISION_HERO_VYON` — `vision_hero_vyon.png`
-- [ ] `VISION_HERO_WITCH_RAIDER` — `vision_hero_witch_raider.png`
-- [ ] `VISION_RELEASE` — `vision_release.png`
-- [ ] `WATAPON` — `watapon.png`
-- [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
-- [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
-- [ ] `WOUGHTWEILER` — `woughtweiler.png`
-- [ ] `YELLOW_GADGET` — `yellow_gadget.png`
+- [ ] `MAN_THRO_TRO` — `man_thro_tro.png`
 
 ## Todo — in manifest, missing art
 
-_No manifest entries are missing art right now._
+Manifest entry exists but `80x80/<stem>.png` is missing.
+
+- [ ] `MA_AT` — needs `80x80/ma_at.png`
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art
