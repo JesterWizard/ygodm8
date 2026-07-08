@@ -1,13 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-08 — Bulk-added 262 custom card manifest entries (effects stubbed) for all 264 cards in the 'Todo - art ready, needs manifest' section of CARD_PROGRESS.md. Used YGOProDeck API for primary card data, with hardcoded fallback for 4 anime-only cards (Prophecy, Drain Time, Reverse of Reverse, Destiny HERO - Destroy Dogma). All effects stubbed: monsterEffect=0, spellEffect=2, trapEffect=0. No effect hook files created.
+**Last worked on:** 2026-07-06 — Fixed Dark Armed Dragon effect text display
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `src_custom/assets/cards/CARD_PROGRESS.md`
+- `src_custom/activated_effects/dark_armed_dragon.c`
+- `src_custom/effect_text_hooks.c`
 
-**Outcome:** Manifest valid (1392 total, +262 from 1130). No description word-wrap violations. Trunk sort/qty validators pass. Some consts differ from CARD_PROGRESS.md entries due to API naming conventions (LV->LEVEL, apostrophe->underscore, typos corrected). Art files referenced by const.lower() may need renaming on case-sensitive systems.
+**Outcome:** make test-cards-link passes. Changed from Duel_ShowEffectTextTyped → Duel_ShowCardEffectText with direct popup_1 ID. Excluded DAD from sub_801CF08 auto-popup path (like BLS/Chaos Emperor) so it shows only the popup text without the 'was activated.' prefix + #1 page break. Added include for card_effect_texts.h.
 
 **Open / next:**
-- Run make test-cards-build with libpng-dev to validate full ROM link; rename art files for const mismatches (MA_AT->ma'at.png
-- D_D_WARRIOR already present); implement effects for wired cards.
+- playtest both effect text and targeting flow
