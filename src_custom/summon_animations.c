@@ -34,6 +34,7 @@ extern void sub_8051740(void);
 extern void LoadCharblock5(void);
 extern void LoadCharblock2(void);
 extern void LoadPalettes(void);
+extern void LoadObjVRAM(void);
 extern struct OamData gOamBuffer[];
 extern struct BgVram gBgVram;
 
@@ -107,7 +108,8 @@ extern unsigned char gSharedMem[];
 
 /* -- custom popup renderer (1D tile mapping) ------------------------------ */
 
-static void PlayCustomPopupAnimation(const u8 *lzTiles, const u16 *palette,
+static void PlayCustomPopupAnimation(const u8 *lzTilesCbb4, const u8 *lzTilesCbb5,
+                                     const u16 *palette,
                                      const u16 *oamData, u8 numSprites)
 {
     void (*prevVBlankCb)(void);
@@ -137,7 +139,7 @@ static void PlayCustomPopupAnimation(const u8 *lzTiles, const u16 *palette,
     REG_DISPCNT = savedDispCnt
                 & ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
     LoadCharblock2();
-    LoadCharblock5();
+    LoadObjVRAM();
     WaitForVBlank();
     LoadOam();
 
@@ -148,12 +150,15 @@ static void PlayCustomPopupAnimation(const u8 *lzTiles, const u16 *palette,
         WaitForVBlank();
     }
 
-    /* 4. Load custom tiles + palette (1D mapping) */
-    LZ77UnCompWram(lzTiles, gSharedMem + 0x400);
+    /* 4. Load custom tiles + palette (1D mapping, 8bpp OBJ) */
+    LZ77UnCompWram(lzTilesCbb4, gSharedMem + 0x400);
+    CpuCopy32(gSharedMem + 0x400, gBgVram.cbb4, 0x4000);
+    LZ77UnCompWram(lzTilesCbb5, gSharedMem + 0x400);
     CpuCopy32(gSharedMem + 0x400, gBgVram.cbb5, 0x4000);
-    CpuCopy16(palette, gPaletteBuffer + 0x170, 0xA0);
+    CpuCopy16(palette, gPaletteBuffer + 0x100, 0x200);  /* 256 colors into OBJ palette */
     REG_DISPCNT |= DISPCNT_OBJ_1D_MAP;
     WaitForVBlank();
+    LoadObjVRAM();
     sub_804F2DC();
 
     /* 5. Set up custom OAM (entry 0 stays as sub_804EB04 placeholder) */
@@ -246,7 +251,7 @@ static void PlayCustomPopupAnimation(const u8 *lzTiles, const u16 *palette,
     CpuFill16(0, gOamBuffer, 0x400);
     SetVBlankCallback(prevVBlankCb);
     WaitForVBlank();
-    LoadCharblock5();
+    LoadObjVRAM();
     LoadOam();
     LoadPalettes();
 }
@@ -379,8 +384,9 @@ void FinishSummonAnimation(void)
     if (graphicId >= CUSTOM_POPUP_ANIM_START) {
         switch (graphicId) {
         case CUSTOM_POPUP_ANIM_START:
-            PlayCustomPopupAnimation(gPopupYubelTiles, gPopupYubelPalette,
-                                     gPopupYubelOam, POPUP_YUBEL_NUM_SPRITES);
+            PlayCustomPopupAnimation(gPopupYubelTilesCbb4, gPopupYubelTilesCbb5,
+                                     gPopupYubelPalette, gPopupYubelOam,
+                                     POPUP_YUBEL_NUM_SPRITES);
             break;
         }
     } else {

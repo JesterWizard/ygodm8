@@ -38,10 +38,10 @@ GENERATED_DIR = ROOT / "src_custom" / "generated"
 SCREEN_W = 240
 SCREEN_H = 160
 TILE_SIZE = 8
-MAX_TILES = 512
+MAX_TILES = 512          # 32KB OBJ VRAM / 64 bytes per 8bpp tile
 MAX_SPRITES = 128
-MAX_PALETTE_BANKS = 3
-COLORS_PER_BANK = 16
+MAX_PALETTE_BANKS = 1    # 8bpp uses single 256-color palette
+COLORS_PER_BANK = 256    # 8bpp mode
 TRANSPARENT_IDX = 0
 
 OBJ_SIZES: dict[tuple[int, int], tuple[int, int]] = {
@@ -159,7 +159,7 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
     unique_rgb = pal[unique_indices]
     print(f"  Unique non-transparent colors: {len(unique_rgb)}")
 
-    # Reduce to target colors via k-means
+    # Reduce to 75 colors via k-means
     target = MAX_PALETTE_BANKS * (COLORS_PER_BANK - 1)
     if len(unique_rgb) > target:
         kmeans = KMeans(n_clusters=target, random_state=42, n_init=10)
@@ -167,13 +167,8 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
         centroids = kmeans.cluster_centers_.astype(np.uint8)
     else:
         centroids = unique_rgb
-    # Aggressively merge similar centroids to improve spatial coherence
-    if len(centroids) > 24:
-        sub = KMeans(n_clusters=24, random_state=42, n_init=10)
-        sub.fit(centroids)
-        centroids = sub.cluster_centers_.astype(np.uint8)
 
-    # Group centroids into MAX_PALETTE_BANKS groups
+    # Group 75 centroids into 5 groups of 15
     group_kmeans = KMeans(n_clusters=MAX_PALETTE_BANKS, random_state=42, n_init=10)
     group_kmeans.fit(centroids)
     group_labels = group_kmeans.labels_
@@ -226,49 +221,6 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
                     best_err = err
                     best_bank = bank
             tile_banks[ty, tx] = best_bank
-
-    # Spatial smoothing: try to flip tiles to match dominant neighbor bank
-    for _ in range(10):
-        changed = 0
-        for ty in range(h_tiles):
-            for tx in range(w_tiles):
-                if tile_banks[ty, tx] < 0:
-                    continue
-                cur = int(tile_banks[ty, tx])
-                neigh: list[int] = []
-                for dy, dx in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                    ny, nx = ty + dy, tx + dx
-                    if 0 <= ny < h_tiles and 0 <= nx < w_tiles and tile_banks[ny, nx] >= 0:
-                        neigh.append(int(tile_banks[ny, nx]))
-                if not neigh:
-                    continue
-                from collections import Counter
-                mc, cnt = Counter(neigh).most_common(1)[0]
-                if mc == cur:
-                    continue
-                # Compute error for current vs neighbor bank
-                tile = pixels[ty * TILE_SIZE : (ty + 1) * TILE_SIZE,
-                              tx * TILE_SIZE : (tx + 1) * TILE_SIZE]
-                mask = np.ones_like(tile, dtype=bool)
-                for gi in bg_indices:
-                    mask &= tile != gi
-                if not np.any(mask):
-                    continue
-                tile_rgb = pal[tile[mask]]
-                cur_err = sum(
-                    color_dist(tuple(int(v) for v in rgb), palettes[cur][find_nearest_palette_index(tuple(int(v) for v in rgb), palettes[cur])])
-                    for rgb in tile_rgb
-                )
-                new_err = sum(
-                    color_dist(tuple(int(v) for v in rgb), palettes[mc][find_nearest_palette_index(tuple(int(v) for v in rgb), palettes[mc])])
-                    for rgb in tile_rgb
-                )
-                # Very permissive threshold to encourage clustering
-                if new_err < cur_err * 4.0 or cnt >= 3:
-                    tile_banks[ty, tx] = mc
-                    changed += 1
-        if changed == 0:
-            break
 
     # Remap pixels
     new_pixels = np.zeros_like(pixels)
@@ -366,14 +318,12 @@ def pack_sprites(tile_banks: np.ndarray) -> list[Sprite]:
 # Tile encoding
 # ---------------------------------------------------------------------------
 
-def encode_4bpp_tile(pixels: np.ndarray, palette: list[tuple[int, int, int]]) -> bytes:
-    """Encode an 8x8 tile to 32 bytes of 4bpp data."""
-    out = bytearray(32)
+def encode_8bpp_tile(pixels: np.ndarray) -> bytes:
+    """Encode an 8x8 tile to 64 bytes of 8bpp data."""
+    out = bytearray(64)
     for row in range(8):
-        for col in range(0, 8, 2):
-            low = int(pixels[row, col + 1]) & 0x0F
-            high = int(pixels[row, col]) & 0x0F
-            out[row * 4 + col // 2] = (high << 4) | low
+        for col in range(8):
+            out[row * 8 + col] = int(pixels[row, col]) & 0xFF
     return bytes(out)
 
 
@@ -383,12 +333,13 @@ def build_cbb5_tiles(
     sprites: list[Sprite],
     palettes: list[list[tuple[int, int, int]]],
 ) -> tuple[bytes, list[Sprite]]:
-    """Build the 16KB cbb5 tile blob and assign tile indices to sprites."""
+    """Build the 32KB OBJ VRAM tile blob and assign tile indices to sprites."""
     h_tiles = SCREEN_H // TILE_SIZE
     w_tiles = SCREEN_W // TILE_SIZE
 
-    cbb5 = bytearray(0x4000)
-    occupied = np.zeros(MAX_TILES, dtype=bool)  # 1D mapping: 512 tiles linear
+    # OBJ VRAM is 32KB (charblocks 4+5), 8bpp tiles = 64 bytes each
+    obj_vram = bytearray(0x8000)
+    occupied = np.zeros(MAX_TILES, dtype=bool)  # 1D mapping: 512 tiles linear (8bpp)
 
     total_tile_area = sum((spr.w // TILE_SIZE) * (spr.h // TILE_SIZE) for spr in sprites)
     print(f"  Total tile area: {total_tile_area} tiles (max {MAX_TILES})")
@@ -401,7 +352,7 @@ def build_cbb5_tiles(
         for start in range(MAX_TILES - num_tiles + 1):
             if not np.any(occupied[start : start + num_tiles]):
                 return start
-        raise SystemExit(f"Cannot fit {num_tiles} contiguous tiles in cbb5 (1D mapping)")
+        raise SystemExit(f"Cannot fit {num_tiles} contiguous tiles in OBJ VRAM (1D mapping)")
 
     updated_sprites: list[Sprite] = []
     for spr in sprites:
@@ -419,17 +370,17 @@ def build_cbb5_tiles(
                     abs_ty * TILE_SIZE : (abs_ty + 1) * TILE_SIZE,
                     abs_tx * TILE_SIZE : (abs_tx + 1) * TILE_SIZE,
                 ]
-                tile_bytes = encode_4bpp_tile(tile_pixels, palettes[spr.bank])
+                tile_bytes = encode_8bpp_tile(tile_pixels)
                 idx = start_idx + tile_offset
-                cbb5[idx * 32 : (idx + 1) * 32] = tile_bytes
+                obj_vram[idx * 64 : (idx + 1) * 64] = tile_bytes
                 tiles.append(idx)
                 tile_offset += 1
 
         updated_sprites.append(spr._replace(tiles=tiles))
 
     used = int(np.sum(occupied))
-    print(f"  Used {used} tiles ({used * 32} bytes)")
-    return bytes(cbb5), updated_sprites
+    print(f"  Used {used} tiles ({used * 64} bytes)")
+    return bytes(obj_vram), updated_sprites
 
 
 # ---------------------------------------------------------------------------
@@ -447,7 +398,7 @@ def generate_c_data(
     lz_tiles = lz77_compress(cbb5)
     print(f"  LZ77: {len(cbb5)} -> {len(lz_tiles)} bytes")
 
-    # Build palette blob (80 colors = 5 banks x 16)
+    # Build palette blob (256 colors for 8bpp)
     pal_entries = []
     for bank in range(MAX_PALETTE_BANKS):
         for i in range(COLORS_PER_BANK):
@@ -457,14 +408,22 @@ def generate_c_data(
     # Build OAM blob
     oam_entries = []
     for spr in sprites:
-        attr0 = (spr.y & 0xFF) | ((spr.shape & 3) << 14)
+        attr0 = (spr.y & 0xFF) | (1 << 13) | ((spr.shape & 3) << 14)  # bit 13 = 8bpp
         attr1 = (spr.x & 0x1FF) | ((spr.size & 3) << 14)
-        # hardware tile base = 512 (charblock 5), palette bank = 7 + bank
-        attr2 = (512 + spr.tiles[0]) | ((spr.bank + 7) << 12)
+        # 8bpp ignores palette bank bits; tile index is direct
+        attr2 = spr.tiles[0]
         oam_entries.append(attr0)
         oam_entries.append(attr1)
         oam_entries.append(attr2)
         oam_entries.append(0)  # padding
+
+    # Split tiles into cbb4 (first 16KB) and cbb5 (second 16KB) halves
+    cbb4_half = cbb5[:0x4000]
+    cbb5_half = cbb5[0x4000:]
+    lz_cbb4 = lz77_compress(cbb4_half)
+    lz_cbb5 = lz77_compress(cbb5_half)
+    print(f"  LZ77 cbb4: {len(cbb4_half)} -> {len(lz_cbb4)} bytes")
+    print(f"  LZ77 cbb5: {len(cbb5_half)} -> {len(lz_cbb5)} bytes")
 
     # Write the .inc file
     upper = name.upper()
@@ -478,12 +437,17 @@ def generate_c_data(
         f"#define POPUP_{upper}_NUM_SPRITES {len(sprites)}",
         f"#define POPUP_{upper}_DURATION 50",
         "",
-        f"static const unsigned char gPopup{upper.title().replace('_', '')}Tiles[] APPEND_RODATA = {{",
+        f"static const unsigned char gPopup{upper.title().replace('_', '')}TilesCbb4[] APPEND_RODATA = {{",
     ]
+    for i in range(0, len(lz_cbb4), 12):
+        row = ", ".join(f"0x{b:02X}" for b in lz_cbb4[i : i + 12])
+        lines.append(f"    {row},")
+    lines.append("};")
+    lines.append("")
 
-    # LZ77 bytes as hex
-    for i in range(0, len(lz_tiles), 12):
-        row = ", ".join(f"0x{b:02X}" for b in lz_tiles[i : i + 12])
+    lines.append(f"static const unsigned char gPopup{upper.title().replace('_', '')}TilesCbb5[] APPEND_RODATA = {{")
+    for i in range(0, len(lz_cbb5), 12):
+        row = ", ".join(f"0x{b:02X}" for b in lz_cbb5[i : i + 12])
         lines.append(f"    {row},")
     lines.append("};")
     lines.append("")
@@ -539,13 +503,13 @@ def main() -> int:
     if len(sprites) > MAX_SPRITES:
         raise SystemExit(f"Too many sprites: {len(sprites)} (max {MAX_SPRITES})")
 
-    print("=== 3. Build cbb5 tiles ===")
-    cbb5, sprites = build_cbb5_tiles(new_pixels, tile_banks, sprites, palettes)
+    print("=== 3. Build OBJ VRAM tiles ===")
+    obj_vram, sprites = build_cbb5_tiles(new_pixels, tile_banks, sprites, palettes)
 
     print("=== 4. Generate C data ===")
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     out_path = GENERATED_DIR / f"popup_{name}_data.inc"
-    generate_c_data(name, cbb5, palettes, sprites, out_path)
+    generate_c_data(name, obj_vram, palettes, sprites, out_path)
 
     print(f"\nDone. Include in summon_animations.c:")
     print(f'  #include "generated/popup_{name}_data.inc"')
