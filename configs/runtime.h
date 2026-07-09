@@ -67,6 +67,7 @@ typedef struct {
     u8 move_cursor_to_hand_on_draw; // After the draw phase, snap the player cursor to their hand.
     u8 enable_smarter_ai; // Vary among top-rated AI lines instead of one fixed optimal play.
     u8 fast_ai; // Cap AI sim work per decision (~60 frames); skips heavy permanent sim.
+    u8 ignore_tribute_requirements; // When TRUE, all tribute summon requirements are waived.
     u16 card_in_hand_1;
     u16 card_in_hand_2;
     u16 card_in_hand_3;

@@ -12,9 +12,9 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 351 |
-| Art ready, needs manifest | 245 |
+| Art ready, needs manifest | 244 |
 | In manifest, missing art | 1 |
-| **Total PNGs in `80x80/`** | **598** |
+| **Total PNGs in `80x80/`** | **597** |
 
 ## In game
 
@@ -252,7 +252,6 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHAOS_COMMAND_MAGICIAN` | Chaos Command Magician | `chaos_command_magician.png` |
 | `BOOK_OF_LIFE` | Book of Life | `book_of_life.png` |
 | `BOOK_OF_TAIYOU` | Book of Taiyou | `book_of_taiyou.png` |
-| `DE_FUSION` | De-Fusion | `de_fusion.png` |
 | `DIFFUSION_WAVE_MOTION` | Diffusion Wave-Motion | `diffusion_wave_motion.png` |
 | `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
 | `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
@@ -373,6 +372,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BACKFIRE` | Backfire | `backfire.png` |
 | `HAMON_LORD_OF_STRIKING_THUNDER` | Hamon, Lord of Striking Thunder | `hamon_lord_of_striking_thunder.png` |
 | `URIA_LORD_OF_SEARING_FLAMES` | Uria, Lord of Searing Flames | `uria_lord_of_searing_flames.png` |
+| `RAVIEL_LORD_OF_PHANTASMS` | Raviel, Lord of Phantasms | `raviel_lord_of_phantasms.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -549,7 +549,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `QUINTET_MAGICIAN` — `quintet_magician.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
-- [ ] `RAVIEL_LORD_OF_PHANASMS` — `raviel_lord_of_phanasms.png`
 - [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
 - [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
 - [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`
@@ -628,7 +627,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 Manifest entry exists but `80x80/<stem>.png` is missing.
 
-- [ ] `RAVIEL_LORD_OF_PHANTASMS` — needs `80x80/raviel_lord_of_phantasms.png`
+- [ ] `DE_FUSION` — needs `80x80/de_fusion.png`
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art

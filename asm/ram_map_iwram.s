@@ -137,3 +137,14 @@ _kernel_malloc gWallOfRevealingLightAttackThreshold, 2
 
 @ World Suppression: field spell effects negated until end of turn.
 _kernel_malloc gWorldSuppressionNegatesFieldSpells, 1
+
+@ ---------------------------------------------------------------------------
+@ Hamon, Lord of Striking Thunder: battle-burn pending state
+@ ponytail: pad so gPendingHamonBattleBurnEffectCardId (u16) is 2-byte aligned.
+_kernel_malloc gPendingHamonBattleBurnDuelistPad, 1
+_kernel_malloc gPendingHamonBattleBurnDuelist, 1
+_kernel_malloc gPendingHamonBattleBurnEffectCardId, 2
+
+@ Raviel, Lord of Phantasms: token-summon pending state
+_kernel_malloc gRavielTokenSummonDuelist, 1
+_kernel_malloc gRavielPendingTokenCount, 1

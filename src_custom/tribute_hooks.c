@@ -11,6 +11,7 @@
 #include "tribute.h"
 #include "summon_tribute.h"
 #include "ai_actions.h"
+#include "configs/runtime.h"
 
 extern unsigned char gNumTributes;
 
@@ -83,6 +84,9 @@ static u8 CyberDragonCanSummonWithoutTribute(u16 cardId)
 
 static int GetBaseRequiredTributes(u16 cardId)
 {
+  if (gRuntimeConfig.ignore_tribute_requirements)
+    return 0;
+
   if (SwiftGaiaCanSummonWithoutTribute(cardId))
     return 0;
 
@@ -112,6 +116,9 @@ int GetNumRequiredTributesWithCostDown(u16 cardId)
 
 int GetNumRequiredTributesForHandSlot(u8 handSlot, u16 cardId)
 {
+  if (gRuntimeConfig.ignore_tribute_requirements)
+    return 0;
+
   SetCardInfo(cardId);
 
   if (SwiftGaiaCanSummonWithoutTribute(cardId))

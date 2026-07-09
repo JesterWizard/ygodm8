@@ -928,6 +928,9 @@ static const unsigned char sBookOfTaiyouBigArt[] __attribute__((section(".append
 static const unsigned short sBookOfTaiyouBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_taiyou.gbapal");
 static const unsigned char sBookOfTaiyouMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_taiyou.lz");
 
+static const unsigned char sDeFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/de_fusion.huff");
+static const unsigned short sDeFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/de_fusion.gbapal");
+static const unsigned char sDeFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/de_fusion.lz");
 
 static const unsigned char sDiffusionWaveMotionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/diffusion_wave_motion.huff");
 static const unsigned short sDiffusionWaveMotionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/diffusion_wave_motion.gbapal");
@@ -1646,7 +1649,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigArt,
   [0x0405] = sBookOfLifeBigArt,
   [0x0406] = sBookOfTaiyouBigArt,
-  [0x0407] = 0,
+  [0x0407] = sDeFusionBigArt,
   [0x0408] = sDiffusionWaveMotionBigArt,
   [0x0409] = sAutonomousActionUnitBigArt,
   [0x040A] = sElementalHeroRampartBlasterBigArt,
@@ -2003,7 +2006,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigPalette,
   [0x0405] = sBookOfLifeBigPalette,
   [0x0406] = sBookOfTaiyouBigPalette,
-  [0x0407] = 0,
+  [0x0407] = sDeFusionBigPalette,
   [0x0408] = sDiffusionWaveMotionBigPalette,
   [0x0409] = sAutonomousActionUnitBigPalette,
   [0x040A] = sElementalHeroRampartBlasterBigPalette,
@@ -2717,7 +2720,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianMiniArt,
   [0x0405] = sBookOfLifeMiniArt,
   [0x0406] = sBookOfTaiyouMiniArt,
-  [0x0407] = 0,
+  [0x0407] = sDeFusionMiniArt,
   [0x0408] = sDiffusionWaveMotionMiniArt,
   [0x0409] = sAutonomousActionUnitMiniArt,
   [0x040A] = sElementalHeroRampartBlasterMiniArt,

@@ -64,6 +64,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
+    .ignore_tribute_requirements = TRUE,
     .card_in_hand_1 = BLUE_EYES_WHITE_DRAGON,
     .card_in_hand_2 = RED_EYES_B_DRAGON,
     .card_in_hand_3 = DARK_MAGICIAN,
