@@ -531,3 +531,19 @@ _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget0, 1
 _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockFixedDuelist, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockTurnsRemaining, 1
+
+@ -- Hamon, Lord of Striking Thunder battle burn pending ------------------------
+
+@ DUEL_PLAYER/DUEL_OPPONENT burn pending, else 0xFF.
+_kernel_malloc_ewram gPendingHamonBattleBurnDuelist, 1
+@ ponytail: pad keeps gPendingHamonBattleBurnEffectCardId on an even EWRAM address.
+_kernel_malloc_ewram gPendingHamonBattleBurnEffectCardIdPad, 1
+@ Hamon card id for pending battle-burn text.
+_kernel_malloc_ewram gPendingHamonBattleBurnEffectCardId, 2
+
+@ -- Raviel, Lord of Phantasms token summon pending ----------------------------
+
+@ Number of Phantasm Tokens pending to summon (0 = none).
+_kernel_malloc_ewram gRavielPendingTokenCount, 1
+@ Turn duelist who should receive the tokens.
+_kernel_malloc_ewram gRavielTokenSummonDuelist, 1

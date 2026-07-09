@@ -5,15 +5,15 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-08).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-09).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 339 |
-| Art ready, needs manifest | 254 |
-| In manifest, missing art | 0 |
+| In game (manifest + art) | 349 |
+| Art ready, needs manifest | 244 |
+| In manifest, missing art | 3 |
 | **Total PNGs in `80x80/`** | **595** |
 
 ## In game
@@ -360,22 +360,22 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ANTI_SPELL_FRAGRANCE` | Anti-Spell Fragrance | `anti_spell_fragrance.png` |
 | `APPROPRIATE` | Appropriate | `appropriate.png` |
 | `APPRENTICE_ILLUSION_MAGICIAN` | Apprentice Illusion Magician | `apprentice_illusion_magician.png` |
-| `APPARATION` | Apparition | `apparation.png` |
+| `APPARATION` | Apparition | `Apparation.png` |
+| `ATTACK_GUIDANCE_ARMOR` | Attack Guidance Armor | `attack_guidance_armor.png` |
+| `ATTACK_REFLECTOR_UNIT` | Attack Reflector Unit | `attack_reflector_unit.png` |
+| `BACKUP_SQUAD` | Backup Squad | `backup_squad.png` |
+| `ARMAGEDDON_KNIGHT` | Armageddon Knight | `armageddon_knight.png` |
+| `ARMED_DRAGON_LV3` | Armed Dragon LV3 | `armed_dragon_lv3.png` |
+| `ARMED_DRAGON_LV5` | Armed Dragon LV5 | `armed_dragon_lv5.png` |
+| `ARMED_DRAGON_LV7` | Armed Dragon LV7 | `armed_dragon_lv7.png` |
+| `ARMED_DRAGON_LV10` | Armed Dragon LV10 | `armed_dragon_lv10.png` |
+| `ATTACK_AND_RECEIVE` | Attack and Receive | `attack_and_receive.png` |
+| `BACKFIRE` | Backfire | `backfire.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [x] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
-- [x] `ARMED_DRAGON_LEVEL_FIVE` — `armed_dragon_level_five.png`
-- [x] `ARMED_DRAGON_LEVEL_SEVEN` — `armed_dragon_level_seven.png`
-- [x] `ARMED_DRAGON_LEVEL_TEN` — `armed_dragon_level_ten.png`
-- [x] `ARMED_DRAGON_LEVEL_THREE` — `armed_dragon_level_three.png`
-- [x] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
-- [x] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
-- [x] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
-- [x] `BACKFIRE` — `backfire.png`
-- [x] `BACKUP_SQUAD` — `backup_squad.png`
 - [ ] `BERSERKER_SOUL` — `berserker_soul.png`
 - [ ] `BIRDFACE` — `birdface.png`
 - [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
@@ -461,7 +461,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
 - [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
-- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `exodius_the_ultimate_forbidden_lord.png`
+- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
@@ -623,7 +623,11 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 ## Todo — in manifest, missing art
 
-_No manifest entries are missing art right now._
+Manifest entry exists but `80x80/<stem>.png` is missing.
+
+- [ ] `HAMON_LORD_OF_STRIKING_THUNDER` — needs `80x80/hamon_lord_of_striking_thunder.png`
+- [ ] `URIA_LORD_OF_SEARING_FLAMES` — needs `80x80/uria_lord_of_searing_flames.png`
+- [ ] `RAVIEL_LORD_OF_PHANTASMS` — needs `80x80/raviel_lord_of_phantasms.png`
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art

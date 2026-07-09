@@ -146,6 +146,9 @@
 #include "the_grand_jupiter.h"
 #include "executor_makyura.h"
 #include "duel_helpers.h"
+#include "hamon_lord_of_striking_thunder.h"
+#include "uria_lord_of_searing_flames.h"
+#include "raviel_lord_of_phantasms.h"
 
 u8 TryPayChainEnergyCost(void);
 u8 IsActivatedChainEnergyZone(const struct DuelCard *zone);
@@ -226,6 +229,9 @@ u8 TrySpecialSummonArchlordKristyaFromHand(u8);
 u8 TryActivateElementalHeroCaptainGoldFromHand(u8);
 u8 TryActivateHecatriceFromHand(u8);
 u8 TrySpecialSummonTheTrickyFromHand(u8);
+u8 TrySpecialSummonHamonLordOfStrikingThunderFromHand(u8);
+u8 TrySpecialSummonUriaLordOfSearingFlamesFromHand(u8);
+u8 TrySpecialSummonRavielLordOfPhantasmsFromHand(u8);
 void sub_801BC00(void);
 unsigned char GetLastNonEmptyMonZoneId(struct DuelCard *zone[]);
 s32 NumEmptyZonesInRow(struct DuelCard **row);
@@ -237,7 +243,10 @@ static u8 CardRequiresSpecialSummonOnly(u16 cardId)
       || cardId == CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END
       || cardId == BLACK_LUSTER_SOLDIER_ENVOY_OF_THE_BEGINNING
       || cardId == DARK_ARMED_DRAGON
-      || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
+      || cardId == YUBEL_TERROR_INCARNATE || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE
+      || cardId == HAMON_LORD_OF_STRIKING_THUNDER
+      || cardId == URIA_LORD_OF_SEARING_FLAMES
+      || cardId == RAVIEL_LORD_OF_PHANTASMS;
 }
 
 static void TryPlaceSelectedCardOnField_Local(void)
@@ -404,8 +413,23 @@ void sub_80441D0__Replacement(void)
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
-      } else if (handCardId == THE_TRICKY
+        } else if (handCardId == THE_TRICKY
           && TrySpecialSummonTheTrickyFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == HAMON_LORD_OF_STRIKING_THUNDER
+          && TrySpecialSummonHamonLordOfStrikingThunderFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == URIA_LORD_OF_SEARING_FLAMES
+          && TrySpecialSummonUriaLordOfSearingFlamesFromHand(gDuelCursor.currentX)) {
+        PlayMusic(SFX_PLACE_CARD);
+        UpdateDuelGfxExceptField();
+        TryActivatingPermanentEffects();
+      } else if (handCardId == RAVIEL_LORD_OF_PHANTASMS
+          && TrySpecialSummonRavielLordOfPhantasmsFromHand(gDuelCursor.currentX)) {
         PlayMusic(SFX_PLACE_CARD);
         UpdateDuelGfxExceptField();
         TryActivatingPermanentEffects();
@@ -1168,6 +1192,7 @@ void sub_8044570__Replacement(void)
     ResolveElementalHeroIceEdgeBattleEffect();
     ResolveYubelAttackedReflectEffect();
     ResolveElementalHeroSunriseDestroyEffect();
+    ResolveHamonLordOfStrikingThunderBattleEffect();
     }
   } else {
     PlayMusic(SFX_SELECT);

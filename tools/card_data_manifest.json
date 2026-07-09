@@ -32032,6 +32032,125 @@
       "effect_texts": {
         "popup_1": "If a face-up FIRE monster(s) you control is destroyed and sent to the GY: Inflict 500 damage to your opponent."
       }
+    },
+    {
+      "card_const": "HAMON_LORD_OF_STRIKING_THUNDER",
+      "card_name": "Hamon, Lord of Striking Thunder",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_THUNDER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        3,
+        2,
+        4,
+        9,
+        1,
+        8,
+        2,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_HamonLordOfStrikingThunder",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Continuous Spell Cards you control to the Graveyard, and cannot be Special",
+          "Summoned by other ways. If this card destroys an opponent's monster by battle and sends it to the Graveyard: Inflict 1000 damage to your opponent. While this card is in face-",
+          "up Defense Position, monsters your opponent controls cannot target monsters for attacks, except this one."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Continuous Spell Cards you"
+      }
+    },
+    {
+      "card_const": "URIA_LORD_OF_SEARING_FLAMES",
+      "card_name": "Uria, Lord of Searing Flames",
+      "atk": 0,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 160,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        0,
+        6,
+        0,
+        0,
+        7,
+        2,
+        1,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_UriaLordOfSearingFlames",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Traps you control to the",
+          "GY. Gains 1000 ATK for each Continuous Trap in your GY. Once per turn: You can target 1 Set Spell/Trap your opponent controls;",
+          "destroy that target. Neither player can activate Spell/Trap Cards in response to this effect's activation."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Traps you control to the G"
+      },
+      "effect_usage": "once_per_turn",
+      "activation_description": {
+        "symbol": "gActivationDescription_UriaLordOfSearingFlames",
+        "pages": [
+          "Destroy 1 Set Spell/Trap your opponent controls."
+        ]
+      }
+    },
+    {
+      "card_const": "RAVIEL_LORD_OF_PHANTASMS",
+      "card_name": "Raviel, Lord of Phantasms",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 161,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        6,
+        9,
+        8,
+        9,
+        0,
+        9,
+        6,
+        7
+      ],
+      "description": {
+        "symbol": "gDescription_RavielLordOfPhantasms",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 Fiend- Type monsters, and cannot be Special Summoned by other ways. If your",
+          "opponent Normal Summons a monster(s): Special Summon 1 \"Phantasm Token\" (Fiend- Type/DARK/Level 1/ATK 1000/DEF 1000) for each monster Summoned, but it cannot declare an attack.",
+          "Once per turn: You can Tribute 1 monster; this card gains ATK equal to the original ATK of the Tributed monster until the end of this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 Fiend-Type monsters, and cannot "
+      },
+      "effect_usage": "once_per_turn",
+      "activation_description": {
+        "symbol": "gActivationDescription_RavielLordOfPhantasms",
+        "pages": [
+          "Tribute 1 monster; this card gains ATK equal to the Tributed monster original ATK."
+        ]
+      }
     }
   ]
 }
