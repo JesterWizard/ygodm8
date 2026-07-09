@@ -34,6 +34,7 @@
 #include "yubel.h"
 #include "amazoness_tiger.h"
 #include "elemental_hero_great_tornado.h"
+#include "summon_animations.h"
 #include "elemental_hero_absolute_zero.h"
 #include "blast_held_by_a_tribute.h"
 #include "vengeful_bog_spirit.h"
@@ -947,46 +948,51 @@ void sub_80449D8__Replacement(void)
 
   if (gSelectedCard.id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
-  ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
-  CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
-  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
-    TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryBreakerTheMagicalWarriorOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryLevelLimitAreaAOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryTheWickedDreadrootOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryTheWickedEraserOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryTheWickedAvatarOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryElementalHeroSunriseOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
-    TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+  {
+    bool32 summonAnim = TryPlaySummonAnimation(gSelectedCard.id);
+    ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+    CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
+    if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
+      TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryActivateGranadoraOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryBreakerTheMagicalWarriorOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryRivalryOfWarlordsOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryLevelLimitAreaBOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryLevelLimitAreaAOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryRingOfDestructionOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryAmazonessTigerOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryBlastHeldByATributeOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryVengefulBogSpiritOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryElementalHeroGreatTornadoOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryTheWickedDreadrootOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryTheWickedEraserOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryTheWickedAvatarOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryElementalHeroSunriseOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+      TryElementalHeroAbsoluteZeroOnMonsterPlacement(gFixedZones[placedRow][placedCol]);
+    }
+    if (placedRow == PLAYER_MONSTER_ROW) {
+      TryApplyPreciousCardsFromBeyondOnTributeSummon(
+          gFixedZones[placedRow][placedCol]->id, WhoseTurn());
+    }
+    FinishGreatMajuGarzettTributeSummon(
+        gFixedZones[placedRow][placedCol], placedRow, placedCol);
+    FinishMajuGarzettTributeSummon(
+        gFixedZones[placedRow][placedCol], placedRow, placedCol);
+    FinishTheTyrantNeptuneTributeSummon(
+        gFixedZones[placedRow][placedCol], placedRow, placedCol);
+    if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
+      CourtOfJustice_FinishHandPlacement(gFixedZones[placedRow][placedCol]);
+    MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
+    MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
+    MarkMirrorWallJustSet(gFixedZones[placedRow][placedCol]);
+    MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
+    TryEnableUltimateOfferingExtraSummonAfterPlacement();
+    TryEnableCourtOfJusticeIgnitionAfterPlacement();
+    TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement();
+    UpdateDuelGfxExceptField();
+    if (summonAnim == TRUE)
+      FinishSummonAnimation();
   }
-  if (placedRow == PLAYER_MONSTER_ROW) {
-    TryApplyPreciousCardsFromBeyondOnTributeSummon(
-        gFixedZones[placedRow][placedCol]->id, WhoseTurn());
-  }
-  FinishGreatMajuGarzettTributeSummon(
-      gFixedZones[placedRow][placedCol], placedRow, placedCol);
-  FinishMajuGarzettTributeSummon(
-      gFixedZones[placedRow][placedCol], placedRow, placedCol);
-  FinishTheTyrantNeptuneTributeSummon(
-      gFixedZones[placedRow][placedCol], placedRow, placedCol);
-  if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW)
-    CourtOfJustice_FinishHandPlacement(gFixedZones[placedRow][placedCol]);
-  MarkUltimateOfferingJustSet(gFixedZones[placedRow][placedCol]);
-  MarkFairyBoxJustSet(gFixedZones[placedRow][placedCol]);
-  MarkMirrorWallJustSet(gFixedZones[placedRow][placedCol]);
-  MarkBottomlessShiftingSandJustSet(gFixedZones[placedRow][placedCol]);
-  TryEnableUltimateOfferingExtraSummonAfterPlacement();
-  TryEnableCourtOfJusticeIgnitionAfterPlacement();
-  TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement();
-  UpdateDuelGfxExceptField();
   /* ponytail: on-summon text after field draw so Blazeman/Stratos is visible. */
   if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
     FinishTheTripperMercuryTributeSummon(

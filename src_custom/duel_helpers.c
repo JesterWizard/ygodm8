@@ -39,6 +39,7 @@
 #include "elemental_hero_stratos.h"
 #include "the_suppression_pluto.h"
 #include "elemental_hero_core.h"
+#include "summon_animations.h"
 #include "the_supremacy_sun.h"
 #include "yubel.h"
 #include "chimeratech_overdragon.h"
@@ -309,21 +310,26 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     return DUEL_ACTION_NO_ZONE;
 
   summonZone = gTurnZones[monsterRow][monsterZone];
-  summonZone->id = monsterId;
-  InitMonsterZone(summonZone, opts);
-  FinishTheWickedAvatarTributeSummon(
-      summonZone,
-      Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)),
-      (u8)monsterZone);
-  TryBlastHeldByATributeOnMonsterPlacement(summonZone);
-  TryVengefulBogSpiritOnMonsterPlacement(summonZone);
-  TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
-  TryTheWickedDreadrootOnMonsterPlacement(summonZone);
-  TryTheWickedEraserOnMonsterPlacement(summonZone);
-  TryTheWickedAvatarOnMonsterPlacement(summonZone);
-  TryElementalHeroSunriseOnMonsterPlacement(summonZone);
-  TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
-  MaybeUpdateGfx(opts.updateGfx);
+  {
+    bool32 summonAnim = TryPlaySummonAnimation(monsterId);
+    summonZone->id = monsterId;
+    InitMonsterZone(summonZone, opts);
+    FinishTheWickedAvatarTributeSummon(
+        summonZone,
+        Duel_FixedMonsterRowForDuelist(TurnDuelistToFixed(turnDuelist)),
+        (u8)monsterZone);
+    TryBlastHeldByATributeOnMonsterPlacement(summonZone);
+    TryVengefulBogSpiritOnMonsterPlacement(summonZone);
+    TryElementalHeroGreatTornadoOnMonsterPlacement(summonZone);
+    TryTheWickedDreadrootOnMonsterPlacement(summonZone);
+    TryTheWickedEraserOnMonsterPlacement(summonZone);
+    TryTheWickedAvatarOnMonsterPlacement(summonZone);
+    TryElementalHeroSunriseOnMonsterPlacement(summonZone);
+    TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
+    MaybeUpdateGfx(opts.updateGfx);
+    if (summonAnim == TRUE)
+      FinishSummonAnimation();
+  }
   /* ponytail: on-summon text after field draw (Blazeman/Stratos popup, DDS, Ryu-Kishin). */
   TryActivateRyuKishinClownOnMonsterPlacement(summonZone);
   TryActivateDarkDustSpiritOnMonsterPlacement(summonZone);
