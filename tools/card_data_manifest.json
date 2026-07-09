@@ -32059,9 +32059,10 @@
       "description": {
         "symbol": "gDescription_HamonLordOfStrikingThunder",
         "pages": [
-          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Continuous Spell Cards you control to the Graveyard, and cannot be Special",
-          "Summoned by other ways. If this card destroys an opponent's monster by battle and sends it to the Graveyard: Inflict 1000 damage to your opponent. While this card is in face-",
-          "up Defense Position, monsters your opponent controls cannot target monsters for attacks, except this one."
+          "Cannot be NS/Set. Must SS from hand: send 3 Cont. Spells to GY",
+          "If destroys a monster by battle, deal 1000 damage to opponent.",
+          "While in face-up Def Pos., monsters cannot target for attacks",
+          "except this card."
         ]
       },
       "effect_texts": {
@@ -32094,9 +32095,10 @@
       "description": {
         "symbol": "gDescription_UriaLordOfSearingFlames",
         "pages": [
-          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 face-up Traps you control to the",
-          "GY. Gains 1000 ATK for each Continuous Trap in your GY. Once per turn: You can target 1 Set Spell/Trap your opponent controls;",
-          "destroy that target. Neither player can activate Spell/Trap Cards in response to this effect's activation."
+          "Cannot be NS/Set. Must SS from hand: send 3 face-up Traps to GY.",
+          "Gains 1000 ATK for each Cont. Trap in your GY. Once per turn:",
+          "target 1 Set S/T opp. controls; destroy it.",
+          "Neither player can activate S/T in response."
         ]
       },
       "effect_texts": {
@@ -32136,9 +32138,11 @@
       "description": {
         "symbol": "gDescription_RavielLordOfPhantasms",
         "pages": [
-          "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 Fiend- Type monsters, and cannot be Special Summoned by other ways. If your",
-          "opponent Normal Summons a monster(s): Special Summon 1 \"Phantasm Token\" (Fiend- Type/DARK/Level 1/ATK 1000/DEF 1000) for each monster Summoned, but it cannot declare an attack.",
-          "Once per turn: You can Tribute 1 monster; this card gains ATK equal to the original ATK of the Tributed monster until the end of this turn."
+          "Cannot be NS/Set. Must SS from hand: Tribute 3 Fiends.",
+          "When opponent NS a monster: SS 1 Phantasm Token",
+          "(Fiend/DARK/Lv1/ATK1000/DEF1000) for each, but cannot",
+          "attack. Once per turn: Tribute 1 monster; card gains ATK",
+          "equal to the original ATK until end of turn."
         ]
       },
       "effect_texts": {

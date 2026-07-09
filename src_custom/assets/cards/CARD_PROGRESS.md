@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 349 |
-| Art ready, needs manifest | 244 |
-| In manifest, missing art | 3 |
-| **Total PNGs in `80x80/`** | **595** |
+| In game (manifest + art) | 351 |
+| Art ready, needs manifest | 245 |
+| In manifest, missing art | 1 |
+| **Total PNGs in `80x80/`** | **598** |
 
 ## In game
 
@@ -360,7 +360,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ANTI_SPELL_FRAGRANCE` | Anti-Spell Fragrance | `anti_spell_fragrance.png` |
 | `APPROPRIATE` | Appropriate | `appropriate.png` |
 | `APPRENTICE_ILLUSION_MAGICIAN` | Apprentice Illusion Magician | `apprentice_illusion_magician.png` |
-| `APPARATION` | Apparition | `Apparation.png` |
+| `APPARATION` | Apparition | `apparation.png` |
 | `ATTACK_GUIDANCE_ARMOR` | Attack Guidance Armor | `attack_guidance_armor.png` |
 | `ATTACK_REFLECTOR_UNIT` | Attack Reflector Unit | `attack_reflector_unit.png` |
 | `BACKUP_SQUAD` | Backup Squad | `backup_squad.png` |
@@ -371,6 +371,8 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ARMED_DRAGON_LV10` | Armed Dragon LV10 | `armed_dragon_lv10.png` |
 | `ATTACK_AND_RECEIVE` | Attack and Receive | `attack_and_receive.png` |
 | `BACKFIRE` | Backfire | `backfire.png` |
+| `HAMON_LORD_OF_STRIKING_THUNDER` | Hamon, Lord of Striking Thunder | `hamon_lord_of_striking_thunder.png` |
+| `URIA_LORD_OF_SEARING_FLAMES` | Uria, Lord of Searing Flames | `uria_lord_of_searing_flames.png` |
 
 ## Todo — art ready, needs manifest
 
@@ -461,7 +463,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
 - [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
 - [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
-- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `Exodius_The_Ultimate_Forbidden_Lord.png`
+- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `exodius_the_ultimate_forbidden_lord.png`
 - [ ] `FATAL_ABACUS` — `fatal_abacus.png`
 - [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
 - [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
@@ -547,6 +549,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
 - [ ] `QUINTET_MAGICIAN` — `quintet_magician.png`
 - [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
+- [ ] `RAVIEL_LORD_OF_PHANASMS` — `raviel_lord_of_phanasms.png`
 - [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
 - [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
 - [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`
@@ -625,8 +628,6 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 Manifest entry exists but `80x80/<stem>.png` is missing.
 
-- [ ] `HAMON_LORD_OF_STRIKING_THUNDER` — needs `80x80/hamon_lord_of_striking_thunder.png`
-- [ ] `URIA_LORD_OF_SEARING_FLAMES` — needs `80x80/uria_lord_of_searing_flames.png`
 - [ ] `RAVIEL_LORD_OF_PHANTASMS` — needs `80x80/raviel_lord_of_phantasms.png`
 <!-- card-art-progress:auto:end -->
 

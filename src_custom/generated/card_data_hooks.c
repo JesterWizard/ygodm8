@@ -11,7 +11,7 @@
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
 
-const u8 gCardLockAfterActivation_Hook[1150] APPEND_RODATA = {
+const u8 gCardLockAfterActivation_Hook[1153] APPEND_RODATA = {
   [0x0000] = 1,
   [0x0001] = 1,
   [0x0002] = 1,
@@ -1162,9 +1162,12 @@ const u8 gCardLockAfterActivation_Hook[1150] APPEND_RODATA = {
   [0x047B] = 1,
   [0x047C] = 1,
   [0x047D] = 1,
+  [0x047E] = 1,
+  [0x047F] = 1,
+  [0x0480] = 1,
 };
 
-const u8 gCardEffectUsage_Hook[1150] APPEND_RODATA = {
+const u8 gCardEffectUsage_Hook[1153] APPEND_RODATA = {
   [0x0000] = EFFECT_USAGE_ONCE_PER_TURN,
   [0x0001] = EFFECT_USAGE_NONE,
   [0x0002] = EFFECT_USAGE_NONE,
@@ -2315,9 +2318,12 @@ const u8 gCardEffectUsage_Hook[1150] APPEND_RODATA = {
   [0x047B] = EFFECT_USAGE_NONE,
   [0x047C] = EFFECT_USAGE_NONE,
   [0x047D] = EFFECT_USAGE_NONE,
+  [0x047E] = EFFECT_USAGE_NONE,
+  [0x047F] = EFFECT_USAGE_ONCE_PER_TURN,
+  [0x0480] = EFFECT_USAGE_ONCE_PER_TURN,
 };
 
-const u8 gCardSelectableOnce_Hook[1150] APPEND_RODATA = {
+const u8 gCardSelectableOnce_Hook[1153] APPEND_RODATA = {
   [0x0000] = 0,
   [0x0001] = 0,
   [0x0002] = 0,
@@ -3468,9 +3474,12 @@ const u8 gCardSelectableOnce_Hook[1150] APPEND_RODATA = {
   [0x047B] = 0,
   [0x047C] = 0,
   [0x047D] = 0,
+  [0x047E] = 0,
+  [0x047F] = 0,
+  [0x0480] = 0,
 };
 
-const CardData gCardData_NEW[1150] APPEND_RODATA = {
+const CardData gCardData_NEW[1153] APPEND_RODATA = {
   [CARD_NONE] = {
     .atk = 0xFFFF,
     .def = 0xFFFF,
@@ -18821,5 +18830,47 @@ const CardData gCardData_NEW[1150] APPEND_RODATA = {
     .trapEffect = 0,
     .password = {8, 2, 7, 0, 5, 5, 7, 3},
     .description = gDescription_Backfire,
+  },
+  [0x047E] = {
+    .atk = 4000,
+    .def = 4000,
+    .cost = 183,
+    .attribute = ATTRIBUTE_LIGHT,
+    .level = 10,
+    .type = TYPE_THUNDER,
+    .color = EFFECT_CARD,
+    .monsterEffect = 0,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {3, 2, 4, 9, 1, 8, 2, 2},
+    .description = gDescription_HamonLordOfStrikingThunder,
+  },
+  [0x047F] = {
+    .atk = 0,
+    .def = 0,
+    .cost = 150,
+    .attribute = ATTRIBUTE_FIRE,
+    .level = 10,
+    .type = TYPE_PYRO,
+    .color = EFFECT_CARD,
+    .monsterEffect = 160,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {0, 6, 0, 0, 7, 2, 1, 3},
+    .description = gDescription_UriaLordOfSearingFlames,
+  },
+  [0x0480] = {
+    .atk = 4000,
+    .def = 4000,
+    .cost = 183,
+    .attribute = ATTRIBUTE_SHADOW,
+    .level = 10,
+    .type = TYPE_FIEND,
+    .color = EFFECT_CARD,
+    .monsterEffect = 161,
+    .spellEffect = 2,
+    .trapEffect = 0,
+    .password = {6, 9, 8, 9, 0, 9, 6, 7},
+    .description = gDescription_RavielLordOfPhantasms,
   },
 };
