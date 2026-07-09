@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 351 |
+| In game (manifest + art) | 352 |
 | Art ready, needs manifest | 244 |
-| In manifest, missing art | 1 |
-| **Total PNGs in `80x80/`** | **597** |
+| In manifest, missing art | 0 |
+| **Total PNGs in `80x80/`** | **598** |
 
 ## In game
 
@@ -252,6 +252,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CHAOS_COMMAND_MAGICIAN` | Chaos Command Magician | `chaos_command_magician.png` |
 | `BOOK_OF_LIFE` | Book of Life | `book_of_life.png` |
 | `BOOK_OF_TAIYOU` | Book of Taiyou | `book_of_taiyou.png` |
+| `DE_FUSION` | De-Fusion | `de_fusion.png` |
 | `DIFFUSION_WAVE_MOTION` | Diffusion Wave-Motion | `diffusion_wave_motion.png` |
 | `AUTONOMOUS_ACTION_UNIT` | Autonomous Action Unit | `autonomous_action_unit.png` |
 | `ELEMENTAL_HERO_RAMPART_BLASTER` | Elemental HERO Rampart Blaster | `elemental_hero_rampart_blaster.png` |
@@ -625,9 +626,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 ## Todo — in manifest, missing art
 
-Manifest entry exists but `80x80/<stem>.png` is missing.
-
-- [ ] `DE_FUSION` — needs `80x80/de_fusion.png`
+_No manifest entries are missing art right now._
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art
