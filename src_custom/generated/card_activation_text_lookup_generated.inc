@@ -349,6 +349,9 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [ARMED_DRAGON_LV10] = gActivationDescription_ArmedDragonLv10_Popup1,
   [ATTACK_AND_RECEIVE] = gActivationDescription_AttackAndReceive_Popup1,
   [BACKFIRE] = gActivationDescription_Backfire_Popup1,
+  [HAMON_LORD_OF_STRIKING_THUNDER] = gActivationDescription_HamonLordOfStrikingThunder_Popup1,
+  [URIA_LORD_OF_SEARING_FLAMES] = gActivationDescription_UriaLordOfSearingFlames_Popup1,
+  [RAVIEL_LORD_OF_PHANTASMS] = gActivationDescription_RavielLordOfPhantasms_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -728,6 +731,9 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_ARMED_DRAGON_LV10_POPUP_1] = gActivationDescription_ArmedDragonLv10_Popup1,
   [CARD_EFFECT_TEXT_ATTACK_AND_RECEIVE_POPUP_1] = gActivationDescription_AttackAndReceive_Popup1,
   [CARD_EFFECT_TEXT_BACKFIRE_POPUP_1] = gActivationDescription_Backfire_Popup1,
+  [CARD_EFFECT_TEXT_HAMON_LORD_OF_STRIKING_THUNDER_POPUP_1] = gActivationDescription_HamonLordOfStrikingThunder_Popup1,
+  [CARD_EFFECT_TEXT_URIA_LORD_OF_SEARING_FLAMES_POPUP_1] = gActivationDescription_UriaLordOfSearingFlames_Popup1,
+  [CARD_EFFECT_TEXT_RAVIEL_LORD_OF_PHANTASMS_POPUP_1] = gActivationDescription_RavielLordOfPhantasms_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

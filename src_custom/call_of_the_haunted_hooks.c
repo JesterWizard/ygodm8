@@ -29,6 +29,7 @@
 #include "sasuke_samurai.h"
 #include "toll.h"
 #include "the_dark_door.h"
+#include "hamon_lord_of_striking_thunder.h"
 
 struct AI_Command {
   u16 action;
@@ -443,4 +444,5 @@ void TryResumeInterruptedAttackAfterCallOfTheHaunted(void)
   ResolveElementalHeroIceEdgeBattleEffect();
   ResolveYubelAttackedReflectEffect();
   ResolveElementalHeroSunriseDestroyEffect();
+  ResolveHamonLordOfStrikingThunderBattleEffect();
 }

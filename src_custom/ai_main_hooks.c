@@ -9,6 +9,7 @@
 #include "graveyard_effects.h"
 #include "permanent_effect.h"
 #include "yubel.h"
+#include "hamon_lord_of_striking_thunder.h"
 
 void TryActivatingTurnEffects(void);
 void TryAttackVoicing(void);
@@ -64,6 +65,7 @@ void AI_Main__Replacement(void)
     ResolveElementalHeroIceEdgeBattleEffect();
     ResolveYubelAttackedReflectEffect();
     ResolveElementalHeroSunriseDestroyEffect();
+    ResolveHamonLordOfStrikingThunderBattleEffect();
     PlayActionSoundEffect();
     CheckWinConditionFINAL();
     CheckWinConditionExodia();

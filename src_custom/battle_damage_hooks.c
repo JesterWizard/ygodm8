@@ -50,6 +50,7 @@
 #include "elemental_hero_ice_edge.h"
 #include "harpie_lady_2.h"
 #include "harpie_lady_3.h"
+#include "hamon_lord_of_striking_thunder.h"
 #include "constants/card_ids.h"
 #include "yubel.h"
 #include "custom_field_spell.h"
@@ -299,6 +300,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   ApplySasukeSamurai3BattleEffect();
   ApplyHarpieLady2FlipNegation();
   ApplyHarpieLady3AttackLock();
+  ApplyHamonLordOfStrikingThunderBattleEffect();
 
   if ((sActionData.flags & (FLAG_GRAVEYARD_PLAYER | FLAG_GRAVEYARD_OPPONENT)) != 0) {
     if (CardDefersGraveyardEffectUntilBattleFinish(gDuel.duelistbattleState[DUEL_PLAYER].graveyard)

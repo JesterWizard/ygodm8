@@ -40,6 +40,7 @@ static const u8 sTextboxClearSpaces[] APPEND_RODATA =
 #include "spirit_reaper.h"
 #include "yubel.h"
 #include "dark_room_of_nightmare.h"
+#include "hamon_lord_of_striking_thunder.h"
 
 void sub_8040B4C(void);
 void sub_80408FC(void);
@@ -375,4 +376,5 @@ void sub_8040EF0__Replacement(void) {
   ResolveElementalHeroIceEdgeBattleEffect();
   ResolveYubelAttackedReflectEffect();
   ResolveElementalHeroSunriseDestroyEffect();
+  ResolveHamonLordOfStrikingThunderBattleEffect();
 }

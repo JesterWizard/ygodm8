@@ -27,6 +27,7 @@
 #include "ghost_knight_of_jackal.h"
 #include "toll.h"
 #include "the_dark_door.h"
+#include "hamon_lord_of_striking_thunder.h"
 
 struct AI_Command {
   u16 action;
@@ -232,4 +233,5 @@ void TryResumeInterruptedAttackAfterDrainingShield(void)
   ResolveElementalHeroIceEdgeBattleEffect();
   ResolveYubelAttackedReflectEffect();
   ResolveElementalHeroSunriseDestroyEffect();
+  ResolveHamonLordOfStrikingThunderBattleEffect();
 }
