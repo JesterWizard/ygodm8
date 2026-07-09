@@ -532,18 +532,17 @@ _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockFixedDuelist, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockTurnsRemaining, 1
 
-@ -- Hamon, Lord of Striking Thunder battle burn pending ------------------------
+@ -- Summon animation save buffers (~0x4402 bytes total) -------------------
+@ gSummonAnimSavedPalette: full 512-entry palette (BG+OBJ) = 0x400 bytes.
+@ Darkened during the fade and restored after.
+_kernel_malloc_ewram_array gSummonAnimSavedPalette, 0x400
+@ Saved REG_DISPCNT value to restore after animation.
+_kernel_malloc_ewram gSummonAnimSavedDispCnt, 2
+@ Saved cbb5 (hand-card / popup tile region, 0x4000 bytes). The effect
+@ overwrites the mirror with popup tiles; restoring it brings hand cards
+@ back instantly without waiting for the duel to reload.
+_kernel_malloc_ewram_array gSummonAnimSavedCbb5, 0x4000
 
-@ DUEL_PLAYER/DUEL_OPPONENT burn pending, else 0xFF.
-_kernel_malloc_ewram gPendingHamonBattleBurnDuelist, 1
-@ ponytail: pad keeps gPendingHamonBattleBurnEffectCardId on an even EWRAM address.
-_kernel_malloc_ewram gPendingHamonBattleBurnEffectCardIdPad, 1
-@ Hamon card id for pending battle-burn text.
-_kernel_malloc_ewram gPendingHamonBattleBurnEffectCardId, 2
-
-@ -- Raviel, Lord of Phantasms token summon pending ----------------------------
-
-@ Number of Phantasm Tokens pending to summon (0 = none).
-_kernel_malloc_ewram gRavielPendingTokenCount, 1
-@ Turn duelist who should receive the tokens.
-_kernel_malloc_ewram gRavielTokenSummonDuelist, 1
+@ Pending graphic ID passed from phase 1 (TryPlaySummonAnimation) to
+@ phase 2 (FinishSummonAnimation). Remains valid only until Finish is called.
+_kernel_malloc_ewram gSummonAnimPendingGraphicId, 1

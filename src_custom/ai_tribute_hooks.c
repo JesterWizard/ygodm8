@@ -12,6 +12,7 @@
 #include "precious_cards_from_beyond.h"
 #include "blast_held_by_a_tribute.h"
 #include "elemental_hero_necroshade.h"
+#include "summon_animations.h"
 
 #include "constants/card_ids.h"
 #include "tribute.h"
@@ -147,7 +148,17 @@ void sub_800E0D4__Replacement(void)
   TryCaptureMajuGarzettAiTribute();
   TryCaptureTheTyrantNeptuneAiTribute();
   sub_803FD14();
-  g8DFF600[sAI_Command.action]();
+  {
+    bool32 summonAnim = FALSE;
+    if (IsAiSummonAction(sAI_Command.action)) {
+      u8 handRow = sAI_Command.zone1Position >> 4;
+      u8 handCol = sAI_Command.zone1Position & 0xF;
+      summonAnim = TryPlaySummonAnimation(gTurnZones[handRow][handCol]->id);
+    }
+    g8DFF600[sAI_Command.action]();
+    if (summonAnim == TRUE)
+      FinishSummonAnimation();
+  }
   if (IsAiTributeSummonAction(sAI_Command.action)) {
     BlastHeldByATribute_MarkTributeSummonedMonster(GetPendingTributeSummonCardId());
     TryApplyPreciousCardsFromBeyondOnTributeSummon(
