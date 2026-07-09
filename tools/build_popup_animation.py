@@ -40,7 +40,7 @@ SCREEN_H = 160
 TILE_SIZE = 8
 MAX_TILES = 512
 MAX_SPRITES = 128
-MAX_PALETTE_BANKS = 5
+MAX_PALETTE_BANKS = 3
 COLORS_PER_BANK = 16
 TRANSPARENT_IDX = 0
 
@@ -137,17 +137,19 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
     pal = np.array(img.getpalette(), dtype=np.uint8).reshape(-1, 3)
     num_pal = len(pal)
 
-    # Detect green background indices
-    green_indices: set[int] = set()
+    # Detect green and near-black background indices
+    bg_indices: set[int] = set()
     for i in range(num_pal):
         r, g, b = pal[i]
         if g > 200 and r < 50 and b < 50:
-            green_indices.add(i)
-    print(f"  Transparent green indices: {green_indices}")
+            bg_indices.add(i)
+        if r < 20 and g < 20 and b < 20:
+            bg_indices.add(i)
+    print(f"  Transparent bg indices: {bg_indices}")
 
-    # Collect non-green pixels
+    # Collect non-background pixels
     mask = np.ones_like(pixels, dtype=bool)
-    for gi in green_indices:
+    for gi in bg_indices:
         mask &= pixels != gi
     non_green_px = pixels[mask]
     if non_green_px.size == 0:
@@ -165,6 +167,11 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
         centroids = kmeans.cluster_centers_.astype(np.uint8)
     else:
         centroids = unique_rgb
+    # Aggressively merge similar centroids to improve spatial coherence
+    if len(centroids) > 24:
+        sub = KMeans(n_clusters=24, random_state=42, n_init=10)
+        sub.fit(centroids)
+        centroids = sub.cluster_centers_.astype(np.uint8)
 
     # Group centroids into MAX_PALETTE_BANKS groups
     group_kmeans = KMeans(n_clusters=MAX_PALETTE_BANKS, random_state=42, n_init=10)
@@ -202,7 +209,7 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
             tile = pixels[ty * TILE_SIZE : (ty + 1) * TILE_SIZE,
                           tx * TILE_SIZE : (tx + 1) * TILE_SIZE]
             tile_mask = np.ones_like(tile, dtype=bool)
-            for gi in green_indices:
+            for gi in bg_indices:
                 tile_mask &= tile != gi
             if not np.any(tile_mask):
                 continue
@@ -243,7 +250,7 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
                 tile = pixels[ty * TILE_SIZE : (ty + 1) * TILE_SIZE,
                               tx * TILE_SIZE : (tx + 1) * TILE_SIZE]
                 mask = np.ones_like(tile, dtype=bool)
-                for gi in green_indices:
+                for gi in bg_indices:
                     mask &= tile != gi
                 if not np.any(mask):
                     continue
@@ -274,7 +281,7 @@ def load_and_quantize(png_path: Path) -> tuple[np.ndarray, list[list[tuple[int, 
             for y in range(ty * TILE_SIZE, (ty + 1) * TILE_SIZE):
                 for x in range(tx * TILE_SIZE, (tx + 1) * TILE_SIZE):
                     idx = pixels[y, x]
-                    if idx in green_indices:
+                    if idx in bg_indices:
                         new_pixels[y, x] = 0
                     else:
                         rgb = tuple(int(v) for v in pal[idx])
@@ -520,7 +527,15 @@ def main() -> int:
     new_pixels, palettes, tile_banks = load_and_quantize(png_path)
 
     print("=== 2. Pack sprites ===")
+    non_empty_tiles = np.sum(tile_banks >= 0)
+    print(f"  Non-empty tiles: {non_empty_tiles}")
     sprites = pack_sprites(tile_banks)
+    print(f"  Sprites: {len(sprites)} (max {MAX_SPRITES})")
+    size_counts = {}
+    for s in sprites:
+        k = (s.w, s.h)
+        size_counts[k] = size_counts.get(k, 0) + 1
+    print(f"  Sprite sizes: {size_counts}")
     if len(sprites) > MAX_SPRITES:
         raise SystemExit(f"Too many sprites: {len(sprites)} (max {MAX_SPRITES})")
 
