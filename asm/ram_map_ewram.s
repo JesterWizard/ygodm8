@@ -547,6 +547,10 @@ _kernel_malloc_ewram gSummonAnimSavedDispCnt, 2
 @ sprite tiles (cbb4 + cbb5). Cleared to hardware before the popup so no
 @ card tiles corrupt the animation; restored after.
 _kernel_malloc_ewram_array gSummonAnimSavedObjVram, 0x7FE0
+@ Saved BG1 charblock (cbb2 = 0x4000 bytes) — the info-bar layer. Cleared
+@ during the popup so the bottom card stats are hidden; restored after.
+_kernel_malloc_ewram_array gSummonAnimSavedBg1Tiles, 0x4000
+
 @ Pending graphic ID passed from phase 1 (TryPlaySummonAnimation) to
 @ phase 2 (FinishSummonAnimation). Remains valid only until Finish is called.
 _kernel_malloc_ewram gSummonAnimPendingGraphicId, 1

@@ -27,6 +27,7 @@ extern void sub_805022C(struct GfxEffect *arg0);
 extern void sub_8051740(void);
 
 extern void LoadCharblock5(void);
+extern void LoadCharblock2(void);
 extern void LoadPalettes(void);
 extern struct OamData gOamBuffer[];
 extern struct BgVram gBgVram;
@@ -37,6 +38,7 @@ extern struct OamData gSummonAnimSavedOam[];
 extern u16 gSummonAnimSavedPalette[];
 extern u16 gSummonAnimSavedDispCnt;
 extern u8 gSummonAnimSavedObjVram[];
+extern u8 gSummonAnimSavedBg1Tiles[];
 
 /* -- EWRAM-backed state shared between phase 1 and phase 2 -------------- */
 
@@ -116,7 +118,7 @@ static void DarkenBgPalette(u8 amount)
  *   6. Restore everything.                                              */
 
 #define SUMMON_ANIM_DIM_FRAMES 8
-#define SUMMON_ANIM_DIM_STEP   2   /* per-channel subtract per fade frame */
+#define SUMMON_ANIM_DIM_STEP   1   /* per-channel subtract per fade frame */
 
 static void PlayGfxEffectByGraphic(u8 graphicId)
 {
@@ -135,6 +137,7 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     CpuCopy16((void *)0x06010000, gSummonAnimSavedObjVram, 0x7FE0);
     CpuCopy16(gOamBuffer, gSummonAnimSavedOam, 0x400);
     CpuCopy16(gPaletteBuffer, gSummonAnimSavedPalette, 0x800);
+    CpuCopy16(gBgVram.cbb2, gSummonAnimSavedBg1Tiles, 0x4000);
     gSummonAnimSavedDispCnt = REG_DISPCNT;
     prevVBlankCb = g201CB20;
     prevWinIn = REG_WININ;
@@ -144,11 +147,14 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     prevBldY = REG_BLDY;
 
     /* 2. Disable textbox windows; keep BG0-BG3 + OBJ on so the board    *
-     * shows through, dimmed.                                            */
+     * shows through, dimmed.  Clear BG1's charblock (cbb2) to hide the  *
+     * bottom info bar (card name, level, atk/def, attribute/type).      */
     REG_WININ = 0;
     REG_WINOUT = 0x3F;
     REG_DISPCNT = gSummonAnimSavedDispCnt
                 & ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
+    ZeroFill32(gBgVram.cbb2, 0x4000);
+    LoadCharblock2();
 
     /* 3. Clear ALL OBJ tile VRAM (0x6010000-0x6017FE0) so no duel card    *
      * sprites remain in the OBJ tile space when the popup plays.  The    *
@@ -193,6 +199,7 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     CpuCopy16(gSummonAnimSavedObjVram, (void *)0x06010000, 0x7FE0);
     CpuCopy16(gSummonAnimSavedOam, gOamBuffer, 0x400);
     CpuCopy16(gSummonAnimSavedPalette, gPaletteBuffer, 0x800);
+    CpuCopy16(gSummonAnimSavedBg1Tiles, gBgVram.cbb2, 0x4000);
     REG_BLDCNT = prevBldCnt;
     REG_BLDALPHA = prevBldAlpha;
     REG_BLDY = prevBldY;
@@ -201,6 +208,7 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     REG_DISPCNT = gSummonAnimSavedDispCnt;
     SetVBlankCallback(prevVBlankCb);
     WaitForVBlank();
+    LoadCharblock2();
     LoadCharblock5();
     LoadOam();
     LoadPalettes();
