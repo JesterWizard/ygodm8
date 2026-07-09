@@ -51,8 +51,18 @@ extern void (*g201CB20)(void);
 static u8 GetSummonAnimGraphic(u16 cardId)
 {
     switch (cardId) {
-    case JINZO:  return GRAPHIC_JINZO_FULL_ART;
-    default:     return 0;
+    case BLUE_EYES_WHITE_DRAGON:              return GRAPHIC_BLUE_EYES_WHITE_DRAGON_FULL_ART;
+    case DARK_MAGICIAN:                       return GRAPHIC_DARK_MAGICIAN_FULL_ART;
+    case HARPIE_LADY_SISTERS:                 return GRAPHIC_HARPIE_LADY_SISTERS_FULL_ART;
+    case JINZO:                               return GRAPHIC_JINZO_FULL_ART;
+    case MASTER_OF_DRAGON_SOLDIER:            return GRAPHIC_DRAGON_MASTER_KNIGHT_FULL_ART;
+    case OBELISK_THE_TORMENTOR:               return GRAPHIC_OBELISK_FULL_ART;
+    case RED_EYES_B_DRAGON:                   return GRAPHIC_RED_EYES_FULL_ART;
+    case SLIFER_THE_SKY_DRAGON:               return GRAPHIC_SLIFER_FULL_ART;
+    case THE_WINGED_DRAGON_OF_RA_BATTLE_MODE: return GRAPHIC_RA_FULL_ART;
+    case THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE:return GRAPHIC_PHOENIX_RA_FULL_ART;
+    case THE_WINGED_DRAGON_OF_RA_SPHERE_MODE: return GRAPHIC_RA_FULL_ART;
+    default:                                  return 0;
     }
 }
 

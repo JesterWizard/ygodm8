@@ -18536,7 +18536,7 @@
       "card_name": "Jinzo",
       "atk": 2400,
       "def": 1500,
-      "level": 4,
+      "level": 6,
       "attribute": "ATTRIBUTE_THUNDER",
       "type": "TYPE_MACHINE",
       "color": "EFFECT_CARD",
