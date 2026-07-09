@@ -532,24 +532,16 @@ _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockFixedDuelist, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockTurnsRemaining, 1
 
-@ -- Summon animation save buffers ---------------------------------------
-@ Saved in FinishSummonAnimation() (phase 2, after the new card is drawn)
-@ and restored after the popup GFX effect finishes.
-@ gSummonAnimSavedOam: 128 OamData entries = 0x400 bytes
-_kernel_malloc_ewram_array gSummonAnimSavedOam, 0x400
-@ gSummonAnimSavedPalette: full 512-entry palette (BG+OBJ) = 0x800 bytes.
-@ Saved before the dim fade and restored after so the duel's OBJ palette
-@ (which the GFX effect partially overwrites) returns cleanly.
-_kernel_malloc_ewram_array gSummonAnimSavedPalette, 0x800
+@ -- Summon animation save buffers (~0x4402 bytes total) -------------------
+@ gSummonAnimSavedPalette: full 512-entry palette (BG+OBJ) = 0x400 bytes.
+@ Darkened during the fade and restored after.
+_kernel_malloc_ewram_array gSummonAnimSavedPalette, 0x400
 @ Saved REG_DISPCNT value to restore after animation.
 _kernel_malloc_ewram gSummonAnimSavedDispCnt, 2
-@ Saved OBJ tile VRAM (0x6010000-0x6017FE0 = 0x7FE0 bytes) — all duel card
-@ sprite tiles (cbb4 + cbb5). Cleared to hardware before the popup so no
-@ card tiles corrupt the animation; restored after.
-_kernel_malloc_ewram_array gSummonAnimSavedObjVram, 0x7FE0
-@ Saved BG1 charblock (cbb2 = 0x4000 bytes) — the info-bar layer. Cleared
-@ during the popup so the bottom card stats are hidden; restored after.
-_kernel_malloc_ewram_array gSummonAnimSavedBg1Tiles, 0x4000
+@ Saved cbb5 (hand-card / popup tile region, 0x4000 bytes). The effect
+@ overwrites the mirror with popup tiles; restoring it brings hand cards
+@ back instantly without waiting for the duel to reload.
+_kernel_malloc_ewram_array gSummonAnimSavedCbb5, 0x4000
 
 @ Pending graphic ID passed from phase 1 (TryPlaySummonAnimation) to
 @ phase 2 (FinishSummonAnimation). Remains valid only until Finish is called.

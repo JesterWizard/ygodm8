@@ -34,11 +34,9 @@ extern struct BgVram gBgVram;
 
 /* -- EWRAM-backed save buffers (declared in asm/ram_map_ewram.s) -------- */
 
-extern struct OamData gSummonAnimSavedOam[];
 extern u16 gSummonAnimSavedPalette[];
 extern u16 gSummonAnimSavedDispCnt;
-extern u8 gSummonAnimSavedObjVram[];
-extern u8 gSummonAnimSavedBg1Tiles[];
+extern u8 gSummonAnimSavedCbb5[];
 
 /* -- EWRAM-backed state shared between phase 1 and phase 2 -------------- */
 
@@ -88,34 +86,24 @@ static void DarkenBgPalette(u8 amount)
 
 /* -- renderer dispatch -------------------------------------------------- *
  *                                                                       *
+ * EWRAM budget: ~0x4402 bytes total                                      *
+ *   - gSummonAnimSavedPalette   0x400  (full palette, darkened then     *
+ *                                       restored)                        *
+ *   - gSummonAnimSavedCbb5      0x4000 (effect overwrites hand-card     *
+ *                                       tiles; must restore)             *
+ *   - gSummonAnimSavedDispCnt   2      (DISPCNT restore)                 *
+ *                                                                       *
+ * Everything else is cleared without saving:                             *
+ *   - cbb4 + cbb2 mirrors & hardware OBJ VRAM → the duel's next frame   *
+ *     rebuilds field cards (cbb4) and the info bar (cbb2).              *
+ *   - OAM → cleared after the effect; next UpdateDuelGfx rebuilds it.    *
+ *                                                                       *
  * Dimming approach: BG palette darkening, NOT BLD registers.            *
- *                                                                       *
- * The engine's WaitForVBlank() resets the VBlank callback pointer to    *
- * the no-op sub_800842C after EVERY wait (src/code_8008030.c:166), so a *
- * custom VBlank callback cannot persist across the effect's internal    *
- * frame loop.  The GFX effect's sub_804F2DC also writes REG_BLDCNT =    *
- * gBLDCNT (= 0) once at start.  Together these wipe any BLD-based dim   *
- * after one frame.                                                      *
- *                                                                       *
- * Palette darkening is robust: sub_804F2DC commits gPaletteBuffer's BG  *
- * entries (0-255) to hardware inside the effect, so darkening them      *
- * bakes the dim in for the whole animation.  OBJ palette (256-511) is   *
- * untouched, so the popup sprite renders at full brightness over the    *
- * dimmed board.                                                         *
- *                                                                       *
- * Sequence:                                                             *
- *   1. Save full duel display state (OBJ VRAM, OAM, full palette,       *
- *      DISPCNT, window + blend regs).                                   *
- *   2. Disable the duel's textbox windows; keep BG0-BG3 + OBJ enabled.  *
- *   3. Fade the board to dim: darken the BG palette one step per frame, *
- *      LoadPalettes + WaitForVBlank, repeated.  The board + card        *
- *      sprites stay fully rendered, just darkening.                     *
- *   4. Clear OBJ VRAM + OAM so the effect has clean tile space; the     *
- *      duel's card sprites vanish here (popup is about to play).        *
- *   5. Run the overworld GFX renderer directly (NOT sub_80512E0, which  *
- *      calls sub_8053404 -> sub_804F508 and turns BG0-BG3 OFF, killing  *
- *      the dimmed board).  The board stays dim behind the popup.        *
- *   6. Restore everything.                                              */
+ * WaitForVBlank() resets the VBlank callback to a no-op after every    *
+ * wait, so a custom callback cannot persist.  The effect's sub_804F2DC   *
+ * also clobbers REG_BLDCNT once at start.  Palette darkening is the     *
+ * only robust dim: sub_804F2DC commits gPaletteBuffer BG entries to      *
+ * hardware, baking the dim in for the whole animation.                  */
 
 #define SUMMON_ANIM_DIM_FRAMES 8
 #define SUMMON_ANIM_DIM_STEP   1   /* per-channel subtract per fade frame */
@@ -133,11 +121,9 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     fx.unk4 = 0;
     fx.unk6bit0 = 0;
 
-    /* 1. Save duel display state. */
-    CpuCopy16((void *)0x06010000, gSummonAnimSavedObjVram, 0x7FE0);
-    CpuCopy16(gOamBuffer, gSummonAnimSavedOam, 0x400);
-    CpuCopy16(gPaletteBuffer, gSummonAnimSavedPalette, 0x800);
-    CpuCopy16(gBgVram.cbb2, gSummonAnimSavedBg1Tiles, 0x4000);
+    /* 1. Save the pieces the effect mutates and the duel won't auto-fix. */
+    CpuCopy16(gBgVram.cbb5, gSummonAnimSavedCbb5, 0x4000);
+    CpuCopy16(gPaletteBuffer, gSummonAnimSavedPalette, 0x400);
     gSummonAnimSavedDispCnt = REG_DISPCNT;
     prevVBlankCb = g201CB20;
     prevWinIn = REG_WININ;
@@ -146,39 +132,34 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     prevBldAlpha = REG_BLDALPHA;
     prevBldY = REG_BLDY;
 
-    /* 2. Disable textbox windows; keep BG0-BG3 + OBJ on so the board    *
-     * shows through, dimmed.  Clear BG1's charblock (cbb2) to hide the  *
-     * bottom info bar (card name, level, atk/def, attribute/type).      */
+    /* 2. Hide everything the popup shouldn't cover:                   *
+     *    - BG1 (cbb2)          → bottom info bar (name, level, etc.)  *
+     *    - OBJ tiles (cbb4/5)  → field + hand card sprites              *
+     *    - OAM                 → all OBJ sprite positions               *
+     *  The duel's next UpdateDuelGfx will redraw cbb2/cbb4; we save    *
+     *  cbb5 because the effect overwrites it with popup tiles.          */
+    ZeroFill32(gBgVram.cbb2, 0x4000);
+    ZeroFill32(gBgVram.cbb4, 0x4000);
+    ZeroFill32(gBgVram.cbb5, 0x4000);
+    ZeroFill32((void *)0x06010000, 0x7FE0);
+    sub_804EB04(gOamBuffer, 2);
     REG_WININ = 0;
     REG_WINOUT = 0x3F;
     REG_DISPCNT = gSummonAnimSavedDispCnt
                 & ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
-    ZeroFill32(gBgVram.cbb2, 0x4000);
     LoadCharblock2();
-
-    /* 3. Clear ALL OBJ tile VRAM (0x6010000-0x6017FE0) so no duel card    *
-     * sprites remain in the OBJ tile space when the popup plays.  The    *
-     * popup effect writes its own tiles into this region; any leftover   *
-     * card tiles get partially overwritten and render corrupted.         *
-     * Both the hardware VRAM AND the gBgVram mirror (cbb4 + cbb5) are    *
-     * cleared: the duel's VBlank callback copies the mirror back into    *
-     * hardware, so the mirror must be zeroed too or the clear is undone. */
-    ZeroFill32((void *)0x06010000, 0x7FE0);
-    ZeroFill32(gBgVram.cbb4, 0x4000);
-    ZeroFill32(gBgVram.cbb5, 0x4000);
-    sub_804EB04(gOamBuffer, 2);
+    LoadCharblock5();
     WaitForVBlank();
     LoadOam();
 
-    /* 4. Fade the board to dim over the (now card-less) board display.   */
+    /* 3. Fade the board to dim over the card-less board display.         */
     for (i = 0; i < SUMMON_ANIM_DIM_FRAMES; i++) {
         DarkenBgPalette(SUMMON_ANIM_DIM_STEP);
         LoadPalettes();
         WaitForVBlank();
     }
 
-    /* 5. Play the popup.  BG palette stays darkened in hardware, so the *
-     * board remains dim behind the bright popup sprite.                 */
+    /* 4. Play the popup.  BG palette stays darkened in hardware.        */
     switch (g8E0E384[graphicId]) {
     case 3:  sub_804FE78(&fx);  break;
     case 4:  sub_8050114(&fx);  break;
@@ -189,39 +170,28 @@ static void PlayGfxEffectByGraphic(u8 graphicId)
     }
     sub_8051740();
 
-    /* 6. Restore the duel display.  Restore both the hardware OBJ VRAM    *
-     * AND the gBgVram mirror (cbb4 + cbb5): the duel's VBlank callback   *
-     * copies the mirror to hardware, so a zeroed mirror would wipe the   *
-     * restore on the next frame.                                         */
+    /* 5. Restore the duel display.  cbb2/cbb4 are left for the duel to   *
+     * redraw; cbb5 and palette are restored immediately so hand cards    *
+     * and colours come back on the very next frame.  OAM is wiped so    *
+     * no stale popup sprites leak through before the duel rebuilds.      */
     REG_DISPCNT = 0;
-    CpuCopy16(gSummonAnimSavedObjVram, gBgVram.cbb4, 0x4000);
-    CpuCopy16(gSummonAnimSavedObjVram + 0x4000, gBgVram.cbb5, 0x4000);
-    CpuCopy16(gSummonAnimSavedObjVram, (void *)0x06010000, 0x7FE0);
-    CpuCopy16(gSummonAnimSavedOam, gOamBuffer, 0x400);
-    CpuCopy16(gSummonAnimSavedPalette, gPaletteBuffer, 0x800);
-    CpuCopy16(gSummonAnimSavedBg1Tiles, gBgVram.cbb2, 0x4000);
+    CpuCopy16(gSummonAnimSavedCbb5, gBgVram.cbb5, 0x4000);
+    CpuCopy16(gSummonAnimSavedPalette, gPaletteBuffer, 0x400);
     REG_BLDCNT = prevBldCnt;
     REG_BLDALPHA = prevBldAlpha;
     REG_BLDY = prevBldY;
     REG_WININ = prevWinIn;
     REG_WINOUT = prevWinOut;
     REG_DISPCNT = gSummonAnimSavedDispCnt;
+    CpuFill16(0, gOamBuffer, 0x400);
     SetVBlankCallback(prevVBlankCb);
     WaitForVBlank();
-    LoadCharblock2();
     LoadCharblock5();
     LoadOam();
     LoadPalettes();
 }
 
-/* -- public API --------------------------------------------------------- *
- *                                                                       *
- * Phase 1 (TryPlaySummonAnimation): called BEFORE card placement. Only  *
- * records the graphic id; no VRAM save so the post-placement draw is    *
- * captured correctly in phase 2.                                        *
- * Phase 2 (FinishSummonAnimation): called AFTER UpdateDuelGfx /         *
- * MaybeUpdateGfx has drawn the new card. Fades the board to dim, plays  *
- * the popup over it, then restores the duel display.                    */
+/* -- public API --------------------------------------------------------- */
 
 bool32 TryPlaySummonAnimation(u16 cardId)
 {
