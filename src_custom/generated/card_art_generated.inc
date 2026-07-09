@@ -928,9 +928,6 @@ static const unsigned char sBookOfTaiyouBigArt[] __attribute__((section(".append
 static const unsigned short sBookOfTaiyouBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/book_of_taiyou.gbapal");
 static const unsigned char sBookOfTaiyouMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/book_of_taiyou.lz");
 
-static const unsigned char sDeFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/de_fusion.huff");
-static const unsigned short sDeFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/de_fusion.gbapal");
-static const unsigned char sDeFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/de_fusion.lz");
 
 static const unsigned char sDiffusionWaveMotionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/diffusion_wave_motion.huff");
 static const unsigned short sDiffusionWaveMotionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/diffusion_wave_motion.gbapal");
@@ -1404,6 +1401,18 @@ static const unsigned char sBackfireBigArt[] __attribute__((section(".append_ass
 static const unsigned short sBackfireBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/backfire.gbapal");
 static const unsigned char sBackfireMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/backfire.lz");
 
+static const unsigned char sHamonLordOfStrikingThunderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hamon_lord_of_striking_thunder.huff");
+static const unsigned short sHamonLordOfStrikingThunderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hamon_lord_of_striking_thunder.gbapal");
+static const unsigned char sHamonLordOfStrikingThunderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hamon_lord_of_striking_thunder.lz");
+
+static const unsigned char sUriaLordOfSearingFlamesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/uria_lord_of_searing_flames.huff");
+static const unsigned short sUriaLordOfSearingFlamesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/uria_lord_of_searing_flames.gbapal");
+static const unsigned char sUriaLordOfSearingFlamesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/uria_lord_of_searing_flames.lz");
+
+static const unsigned char sRavielLordOfPhantasmsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/raviel_lord_of_phantasms.huff");
+static const unsigned short sRavielLordOfPhantasmsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/raviel_lord_of_phantasms.gbapal");
+static const unsigned char sRavielLordOfPhantasmsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/raviel_lord_of_phantasms.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1637,7 +1646,7 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigArt,
   [0x0405] = sBookOfLifeBigArt,
   [0x0406] = sBookOfTaiyouBigArt,
-  [0x0407] = sDeFusionBigArt,
+  [0x0407] = 0,
   [0x0408] = sDiffusionWaveMotionBigArt,
   [0x0409] = sAutonomousActionUnitBigArt,
   [0x040A] = sElementalHeroRampartBlasterBigArt,
@@ -1756,6 +1765,9 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x047B] = sArmedDragonLv10BigArt,
   [0x047C] = sAttackAndReceiveBigArt,
   [0x047D] = sBackfireBigArt,
+  [0x047E] = sHamonLordOfStrikingThunderBigArt,
+  [0x047F] = sUriaLordOfSearingFlamesBigArt,
+  [0x0480] = sRavielLordOfPhantasmsBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -1991,7 +2003,7 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianBigPalette,
   [0x0405] = sBookOfLifeBigPalette,
   [0x0406] = sBookOfTaiyouBigPalette,
-  [0x0407] = sDeFusionBigPalette,
+  [0x0407] = 0,
   [0x0408] = sDiffusionWaveMotionBigPalette,
   [0x0409] = sAutonomousActionUnitBigPalette,
   [0x040A] = sElementalHeroRampartBlasterBigPalette,
@@ -2110,6 +2122,9 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x047B] = sArmedDragonLv10BigPalette,
   [0x047C] = sAttackAndReceiveBigPalette,
   [0x047D] = sBackfireBigPalette,
+  [0x047E] = sHamonLordOfStrikingThunderBigPalette,
+  [0x047F] = sUriaLordOfSearingFlamesBigPalette,
+  [0x0480] = sRavielLordOfPhantasmsBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2464,6 +2479,9 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x047B] = 0,
   [0x047C] = 0,
   [0x047D] = 0,
+  [0x047E] = 0,
+  [0x047F] = 0,
+  [0x0480] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2699,7 +2717,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0404] = sChaosCommandMagicianMiniArt,
   [0x0405] = sBookOfLifeMiniArt,
   [0x0406] = sBookOfTaiyouMiniArt,
-  [0x0407] = sDeFusionMiniArt,
+  [0x0407] = 0,
   [0x0408] = sDiffusionWaveMotionMiniArt,
   [0x0409] = sAutonomousActionUnitMiniArt,
   [0x040A] = sElementalHeroRampartBlasterMiniArt,
@@ -2818,4 +2836,7 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x047B] = sArmedDragonLv10MiniArt,
   [0x047C] = sAttackAndReceiveMiniArt,
   [0x047D] = sBackfireMiniArt,
+  [0x047E] = sHamonLordOfStrikingThunderMiniArt,
+  [0x047F] = sUriaLordOfSearingFlamesMiniArt,
+  [0x0480] = sRavielLordOfPhantasmsMiniArt,
 };

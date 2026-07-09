@@ -48,6 +48,9 @@
 #include "the_grand_jupiter.h"
 #include "lyrilusc_independent_nightingale.h"
 #include "theban_nightmare.h"
+#include "hamon_lord_of_striking_thunder.h"
+#include "uria_lord_of_searing_flames.h"
+#include "raviel_lord_of_phantasms.h"
 #include "expanded_graveyard.h"
 #include "removed_from_play.h"
 
@@ -96,6 +99,10 @@ u8 TheWickedAvatar_ApplyDynamicZoneStats(struct DuelCard *zone);
 u8 ElementalHeroPoisonRose_CanAttackMonsterZone(struct DuelCard *zone);
 struct DuelCard *ElementalHeroPoisonRose_GetForcedAttackTarget(u8 defenderDuelist);
 u8 SphereMode_CanAttackMonsterZone(struct DuelCard *zone);
+struct DuelCard *HamonLordOfStrikingThunder_GetForcedAttackTarget(u8 defenderDuelist);
+u8 HamonLordOfStrikingThunder_CanAttackMonsterZone(struct DuelCard *zone);
+u8 UriaLordOfSearingFlames_ApplyDynamicZoneStats(struct DuelCard *zone);
+void TryRavielOnOpponentMonsterPlacement(struct DuelCard *zone);
 struct DuelSummonOpts Duel_DefaultSpecialSummonOpts(u8 updateGfx)
 {
   struct DuelSummonOpts opts;
@@ -284,7 +291,10 @@ u8 Duel_CardCannotBeSpecialSummoned(u16 cardId)
       || cardId == THE_WICKED_DREADROOT || cardId == THE_WICKED_ERASER
       || cardId == THE_WICKED_AVATAR
       || cardId == YUBEL_TERROR_INCARNATE
-      || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE;
+      || cardId == YUBEL_THE_ULTIMATE_NIGHTMARE
+      || cardId == HAMON_LORD_OF_STRIKING_THUNDER
+      || cardId == URIA_LORD_OF_SEARING_FLAMES
+      || cardId == RAVIEL_LORD_OF_PHANTASMS;
 }
 
 static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, struct DuelSummonOpts opts)
@@ -1113,6 +1123,7 @@ static const struct DuelDynamicZoneStat sDynamicZoneStats[] __attribute__((secti
   { LYRILUSC_INDEPENDENT_NIGHTINGALE, LyriluscIndependentNightingale_ApplyDynamicZoneStats },
   { THE_WICKED_ERASER, TheWickedEraser_ApplyDynamicZoneStats },
   { THE_WICKED_AVATAR, TheWickedAvatar_ApplyDynamicZoneStats },
+  { URIA_LORD_OF_SEARING_FLAMES, UriaLordOfSearingFlames_ApplyDynamicZoneStats },
 };
 
 static const struct DuelAttackGate sAttackGates[] __attribute__((section(".text"))) = {
@@ -1128,6 +1139,7 @@ struct DuelForcedAttackRedirect {
 static const struct DuelForcedAttackRedirect sForcedAttackRedirects[] __attribute__((section(".text"))) = {
   { RaregoldArmor_GetForcedAttackTarget },
   { ElementalHeroPoisonRose_GetForcedAttackTarget },
+  { HamonLordOfStrikingThunder_GetForcedAttackTarget },
 };
 
 typedef u8 (*DuelAttackZoneCheckFn)(struct DuelCard *zone);
@@ -1138,6 +1150,7 @@ static const DuelAttackZoneCheckFn sAttackZoneChecks[] __attribute__((section(".
   ElementalHeroKnospe_CanAttackMonsterZone,
   ElementalHeroPoisonRose_CanAttackMonsterZone,
   SphereMode_CanAttackMonsterZone,
+  HamonLordOfStrikingThunder_CanAttackMonsterZone,
 };
 
 u8 Duel_TryApplyDynamicZoneStats(struct DuelCard *zone)

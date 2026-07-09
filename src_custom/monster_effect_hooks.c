@@ -68,6 +68,8 @@
 #include "armed_dragon_lv5.h"
 #include "armed_dragon_lv7.h"
 #include "armed_dragon_lv10.h"
+#include "uria_lord_of_searing_flames.h"
+#include "raviel_lord_of_phantasms.h"
 
 extern void (*const gMonEffects[])(void);
 
@@ -103,6 +105,10 @@ unsigned char CanActivateDARK_END_DRAGON(void);
 void ActivateDARK_END_DRAGONEffect(void);
 unsigned char CanActivateLIGHT_END_DRAGON(void);
 void ActivateLIGHT_END_DRAGONEffect(void);
+unsigned char CanActivateURIA_LORD_OF_SEARING_FLAMES(void);
+void ActivateURIA_LORD_OF_SEARING_FLAMESEffect(void);
+unsigned char CanActivateRAVIEL_LORD_OF_PHANTASMS(void);
+void ActivateRAVIEL_LORD_OF_PHANTASMSEffect(void);
 unsigned char CanActivateDARK_ARMED_DRAGON(void);
 void ActivateDARK_ARMED_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
@@ -207,6 +213,12 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_LIGHT_END_DRAGON:
         canActivate = CanActivateLIGHT_END_DRAGON();
+        break;
+      case MONSTER_EFFECT_URIA_LORD_OF_SEARING_FLAMES:
+        canActivate = CanActivateURIA_LORD_OF_SEARING_FLAMES();
+        break;
+      case MONSTER_EFFECT_RAVIEL_LORD_OF_PHANTASMS:
+        canActivate = CanActivateRAVIEL_LORD_OF_PHANTASMS();
         break;
       case MONSTER_EFFECT_DARK_ARMED_DRAGON:
         canActivate = CanActivateDARK_ARMED_DRAGON();
@@ -495,6 +507,16 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     return;
   }
 
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_URIA_LORD_OF_SEARING_FLAMES) {
+    ActivateURIA_LORD_OF_SEARING_FLAMESEffect();
+    return;
+  }
+
+  if (gCardInfo.monsterEffect == MONSTER_EFFECT_RAVIEL_LORD_OF_PHANTASMS) {
+    ActivateRAVIEL_LORD_OF_PHANTASMSEffect();
+    return;
+  }
+
   if (gCardInfo.monsterEffect == MONSTER_EFFECT_ELEMENTAL_HERO_RAMPART_BLASTER) {
     ActivateElementalHeroRampartBlasterEffect();
     return;
@@ -770,6 +792,8 @@ void MonsterActionMenu__Replacement(void) {
           || zone->id == ARMED_DRAGON_LV5
           || zone->id == ARMED_DRAGON_LV7
           || zone->id == ARMED_DRAGON_LV10
+          || zone->id == URIA_LORD_OF_SEARING_FLAMES
+          || zone->id == RAVIEL_LORD_OF_PHANTASMS
           || effectCardId != zone->id
           || SasukeSamurai2_AllowsFaceUpEffectActivation(effectCardId)) {
         gMonEffect.id = effectCardId;

@@ -1151,11 +1151,14 @@
 #define ARMED_DRAGON_LV10                        0x047B
 #define ATTACK_AND_RECEIVE                       0x047C
 #define BACKFIRE                                 0x047D
+#define HAMON_LORD_OF_STRIKING_THUNDER           0x047E
+#define URIA_LORD_OF_SEARING_FLAMES              0x047F
+#define RAVIEL_LORD_OF_PHANTASMS                 0x0480
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x047E
-#define NUM_CUSTOM_CARDS                        0x015D
+#define NUM_TOTAL_CARDS                         0x0481
+#define NUM_CUSTOM_CARDS                        0x0160
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

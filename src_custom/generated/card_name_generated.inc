@@ -350,6 +350,9 @@ static const u8 sArmedDragonLv7Name[] __attribute__((section(".append_assets")))
 static const u8 sArmedDragonLv10Name[] __attribute__((section(".append_assets"))) = "Armed Dragon LV10";
 static const u8 sAttackAndReceiveName[] __attribute__((section(".append_assets"))) = "Attack and Receive";
 static const u8 sBackfireName[] __attribute__((section(".append_assets"))) = "Backfire";
+static const u8 sHamonLordOfStrikingThunderName[] __attribute__((section(".append_assets"))) = "Hamon, Lord of Striking Thunder";
+static const u8 sUriaLordOfSearingFlamesName[] __attribute__((section(".append_assets"))) = "Uria, Lord of Searing Flames";
+static const u8 sRavielLordOfPhantasmsName[] __attribute__((section(".append_assets"))) = "Raviel, Lord of Phantasms";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1056,6 +1059,12 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAttackAndReceiveName;
   if (cardId == 0x047D)
     return (u8 *)sBackfireName;
+  if (cardId == 0x047E)
+    return (u8 *)sHamonLordOfStrikingThunderName;
+  if (cardId == 0x047F)
+    return (u8 *)sUriaLordOfSearingFlamesName;
+  if (cardId == 0x0480)
+    return (u8 *)sRavielLordOfPhantasmsName;
 
   return gCardNames[cardId];
 }
