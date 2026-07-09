@@ -457,6 +457,7 @@ $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD
 $(eval $(call custom_object_dep,field_spell_gfx_hooks,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_effect_hooks,$(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_803F02C_hooks,$(FIELD_SPELL_GFX_STAMP)))
+$(eval $(call custom_object_dep,summon_animations,src_custom/generated/popup_yubel_data.inc))
 PORTRAIT_NORM = $(BUILD_DIR)/portraits/player.normalized.png
 
 $(BUILD_DIR)/portraits:

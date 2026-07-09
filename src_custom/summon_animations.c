@@ -7,6 +7,11 @@
 #include "gba/io_reg.h"
 #include "gba/types.h"
 #include "gfx_reg_buffers.h"
+#include "duel.h"
+#include "generated/popup_yubel_data.inc"
+
+/* -- custom popup animation IDs (outside vanilla 0-58 range) ------------ */
+#define CUSTOM_POPUP_ANIM_START 200
 
 /* -- externs from the overworld GFX effects engine ---------------------- */
 
@@ -62,6 +67,7 @@ static u8 GetSummonAnimGraphic(u16 cardId)
     case THE_WINGED_DRAGON_OF_RA_BATTLE_MODE: return GRAPHIC_RA_FULL_ART;
     case THE_WINGED_DRAGON_OF_RA_PHOENIX_MODE:return GRAPHIC_PHOENIX_RA_FULL_ART;
     case THE_WINGED_DRAGON_OF_RA_SPHERE_MODE: return GRAPHIC_RA_FULL_ART;
+    case YUBEL:                               return CUSTOM_POPUP_ANIM_START;
     default:                                  return 0;
     }
 }
@@ -94,6 +100,157 @@ static void DarkenBgPalette(u8 amount)
     }
 }
 
+extern unsigned char gSharedMem[];
+
+#define SUMMON_ANIM_DIM_FRAMES 8
+#define SUMMON_ANIM_DIM_STEP   1   /* per-channel subtract per fade frame */
+
+/* -- custom popup renderer (1D tile mapping) ------------------------------ */
+
+static void PlayCustomPopupAnimation(const u8 *lzTiles, const u16 *palette,
+                                     const u16 *oamData, u8 numSprites)
+{
+    void (*prevVBlankCb)(void);
+    u16 prevWinIn, prevWinOut, prevBldCnt, prevBldAlpha, prevBldY;
+    u16 savedDispCnt;
+    int i;
+
+    /* 1. Save state */
+    CpuCopy16(gBgVram.cbb5, gSummonAnimSavedCbb5, 0x4000);
+    CpuCopy16(gPaletteBuffer, gSummonAnimSavedPalette, 0x400);
+    savedDispCnt = REG_DISPCNT;
+    prevVBlankCb = g201CB20;
+    prevWinIn = REG_WININ;
+    prevWinOut = REG_WINOUT;
+    prevBldCnt = REG_BLDCNT;
+    prevBldAlpha = REG_BLDALPHA;
+    prevBldY = REG_BLDY;
+
+    /* 2. Hide duel display */
+    ZeroFill32(gBgVram.cbb2, 0x4000);
+    ZeroFill32(gBgVram.cbb4, 0x4000);
+    ZeroFill32(gBgVram.cbb5, 0x4000);
+    ZeroFill32((void *)0x06010000, 0x7FE0);
+    sub_804EB04(gOamBuffer, 2);
+    REG_WININ = 0;
+    REG_WINOUT = 0x3F;
+    REG_DISPCNT = savedDispCnt
+                & ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
+    LoadCharblock2();
+    LoadCharblock5();
+    WaitForVBlank();
+    LoadOam();
+
+    /* 3. Fade board to dim */
+    for (i = 0; i < SUMMON_ANIM_DIM_FRAMES; i++) {
+        DarkenBgPalette(SUMMON_ANIM_DIM_STEP);
+        LoadPalettes();
+        WaitForVBlank();
+    }
+
+    /* 4. Load custom tiles + palette (1D mapping) */
+    LZ77UnCompWram(lzTiles, gSharedMem + 0x400);
+    CpuCopy32(gSharedMem + 0x400, gBgVram.cbb5, 0x4000);
+    CpuCopy16(palette, gPaletteBuffer + 0x170, 0xA0);
+    REG_DISPCNT |= DISPCNT_OBJ_1D_MAP;
+    WaitForVBlank();
+    sub_804F2DC();
+
+    /* 5. Set up custom OAM (entry 0 stays as sub_804EB04 placeholder) */
+    CpuFill16(0, gOamBuffer + 1, 0x400 - 8);
+    CpuCopy16(oamData, (u8 *)gOamBuffer + 8, numSprites * 8);
+
+    /* 6. Slide in from right, hold, then slide out to left */
+    {
+        u8 baseX[128];
+        u8 baseY[128];
+        int slideFrames = 2;
+        int numSlideSteps = 10;
+        int holdFrames = POPUP_YUBEL_DURATION;
+        int totalSlideIn = numSlideSteps * slideFrames;
+        int totalHold = totalSlideIn + holdFrames;
+        int totalFrames = totalHold + numSlideSteps * slideFrames;
+        int frame, step;
+
+        for (i = 0; i < numSprites; i++) {
+            baseX[i] = oamData[i * 4 + 1] & 0x1FF;
+            baseY[i] = oamData[i * 4 + 0] & 0xFF;
+        }
+
+        for (frame = 0; frame < totalFrames; frame++) {
+            if (frame < totalSlideIn) {
+                /* slide in from right */
+                switch (frame / slideFrames) {
+                case 0: step = 240; break;
+                case 1: step = 120; break;
+                case 2: step = 60;  break;
+                case 3: step = 30;  break;
+                case 4: step = 15;  break;
+                case 5: step = 8;   break;
+                case 6: step = 4;   break;
+                case 7: step = 2;   break;
+                case 8: step = 1;   break;
+                default: step = 0;  break;
+                }
+                for (i = 0; i < numSprites; i++) {
+                    gOamBuffer[i + 1].x = (baseX[i] + step) & 0x1FF;
+                    gOamBuffer[i + 1].y = baseY[i];
+                }
+            } else if (frame < totalHold) {
+                /* hold at final position */
+                for (i = 0; i < numSprites; i++) {
+                    gOamBuffer[i + 1].x = baseX[i];
+                    gOamBuffer[i + 1].y = baseY[i];
+                }
+            } else {
+                /* slide out to left */
+                switch ((frame - totalHold) / slideFrames) {
+                case 0: step = 1;   break;
+                case 1: step = 2;   break;
+                case 2: step = 4;   break;
+                case 3: step = 8;   break;
+                case 4: step = 15;  break;
+                case 5: step = 30;  break;
+                case 6: step = 60;  break;
+                case 7: step = 120; break;
+                case 8: step = 240; break;
+                default: step = 240; break;
+                }
+                for (i = 0; i < numSprites; i++) {
+                    int newX = (int)baseX[i] - step;
+                    if (newX < 0) {
+                        gOamBuffer[i + 1].y = 255; /* hide off-screen */
+                    } else {
+                        gOamBuffer[i + 1].x = newX & 0x1FF;
+                        gOamBuffer[i + 1].y = baseY[i];
+                    }
+                }
+            }
+
+            WaitForVBlank();
+            LoadOam();
+            LoadPalettes();
+        }
+    }
+
+    /* 7. Restore duel display */
+    REG_DISPCNT = 0;
+    CpuCopy16(gSummonAnimSavedCbb5, gBgVram.cbb5, 0x4000);
+    CpuCopy16(gSummonAnimSavedPalette, gPaletteBuffer, 0x400);
+    REG_BLDCNT = prevBldCnt;
+    REG_BLDALPHA = prevBldAlpha;
+    REG_BLDY = prevBldY;
+    REG_WININ = prevWinIn;
+    REG_WINOUT = prevWinOut;
+    REG_DISPCNT = savedDispCnt;
+    CpuFill16(0, gOamBuffer, 0x400);
+    SetVBlankCallback(prevVBlankCb);
+    WaitForVBlank();
+    LoadCharblock5();
+    LoadOam();
+    LoadPalettes();
+}
+
 /* -- renderer dispatch -------------------------------------------------- *
  *                                                                       *
  * EWRAM budget: ~0x4402 bytes total                                      *
@@ -114,9 +271,6 @@ static void DarkenBgPalette(u8 amount)
  * also clobbers REG_BLDCNT once at start.  Palette darkening is the     *
  * only robust dim: sub_804F2DC commits gPaletteBuffer BG entries to      *
  * hardware, baking the dim in for the whole animation.                  */
-
-#define SUMMON_ANIM_DIM_FRAMES 8
-#define SUMMON_ANIM_DIM_STEP   1   /* per-channel subtract per fade frame */
 
 static void PlayGfxEffectByGraphic(u8 graphicId)
 {
@@ -220,5 +374,16 @@ bool32 TryPlaySummonAnimation(u16 cardId)
 
 void FinishSummonAnimation(void)
 {
-    PlayGfxEffectByGraphic(gSummonAnimPendingGraphicId);
+    u8 graphicId = gSummonAnimPendingGraphicId;
+
+    if (graphicId >= CUSTOM_POPUP_ANIM_START) {
+        switch (graphicId) {
+        case CUSTOM_POPUP_ANIM_START:
+            PlayCustomPopupAnimation(gPopupYubelTiles, gPopupYubelPalette,
+                                     gPopupYubelOam, POPUP_YUBEL_NUM_SPRITES);
+            break;
+        }
+    } else {
+        PlayGfxEffectByGraphic(graphicId);
+    }
 }

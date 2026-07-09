@@ -28,7 +28,7 @@ Two placement hooks intercept every summon path (human normal summon, special su
 
 ## Extracted Reference Art
 
-All registered popup graphics live in `src_custom/assets/popup_animations/` as 240x160 RGBA PNGs:
+All registered popup graphics live in `src_custom/assets/popup_animations/` as 240×160 indexed PNGs:
 
 | Card | Graphic | Effect Type |
 |------|---------|-------------|
@@ -46,6 +46,15 @@ All registered popup graphics live in `src_custom/assets/popup_animations/` as 2
 Re-extract from the built ROM:
 ```bash
 python3 tools/extract_popup_animations.py
+```
+
+Normalize a PNG so the background color moves to palette index 0 (required for GBA OBJ transparency):
+```bash
+# Auto-detect background from corners
+python3 tools/normalize_popup_png.py src_custom/assets/popup_animations/your_card.png
+
+# Explicit background color (e.g. green screen)
+python3 tools/normalize_popup_png.py src_custom/assets/popup_animations/your_card.png --bg 0,255,0
 ```
 
 ## Technical Limits
