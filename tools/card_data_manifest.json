@@ -31741,12 +31741,12 @@
       "description": {
         "symbol": "gDescription_AttackReflectorUnit",
         "pages": [
-          "Tribute 1 \"Cyber Dragon\". Special Summon 1 \"Cyber",
-          "Barrier Dragon\" from your hand or Deck."
+          "Tribute 1 Cyber Dragon. Special Summon 1 Cyber",
+          "Barrier Dragon from your hand or Deck."
         ]
       },
       "effect_texts": {
-        "popup_1": "Tribute 1 \"Cyber Dragon\". Special Summon 1 \"Cyber Barrier Dragon\" from your hand or Deck."
+        "popup_1": "Tribute 1 Cyber Dragon. Special Summon 1 Cyber Barrier Dragon from your hand or Deck."
       }
     },
     {
@@ -31846,12 +31846,12 @@
         "symbol": "gDescription_ArmedDragonLv3",
         "pages": [
           "During your Standby Phase: You can send this card to",
-          "the GY; Special Summon 1 \"Armed Dragon LV5\" from",
+          "the GY; Special Summon 1 Armed Dragon LV5 from",
           "your hand or Deck."
         ]
       },
       "effect_texts": {
-        "popup_1": "During your Standby Phase: You can send this card to the GY; Special Summon 1 \"Armed Dragon LV5\" from your hand or Deck."
+        "popup_1": "During your Standby Phase: You can send this card to the GY; Special Summon 1 Armed Dragon LV5 from your hand or Deck."
       }
     },
     {
@@ -31884,7 +31884,7 @@
           "opponent monster with ATK <= sent monster's ATK; destroy it.",
           "During the End Phase, if this card destroyed a monster",
           "by battle this turn: Send this card to GY; Special Summon",
-          "1 \"Armed Dragon LV7\" from hand or Deck."
+          "1 Armed Dragon LV7 from hand or Deck."
         ]
       },
       "effect_texts": {
@@ -31924,7 +31924,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned by \"Armed Dragon LV5\". You can send 1 monster from your hand to "
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned by Armed Dragon LV5. You can send 1 monster from your hand to "
       }
     },
     {
@@ -31960,7 +31960,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 \"Armed Dragon LV7\". You can send"
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Armed Dragon LV7. You can send"
       }
     },
     {
@@ -31991,7 +31991,7 @@
         "pages": [
           "You can only activate this card when you take damage to LP.",
           "Inflict 700 damage to your opponent's LP. Also, inflict 300",
-          "damage for each \"Attack and Receive\" in your GY."
+          "damage for each Attack and Receive in your GY."
         ]
       },
       "effect_texts": {
@@ -32182,19 +32182,14 @@
       "description": {
         "symbol": "gDescription_BerserkerSoul",
         "pages": [
-          "When your monster deals 1500 or less direct dmg:",
-          "Discard hand (min. 1); excavate deck top. If monster,",
-          "send to GY & deal 500 dmg. Repeat up to 7 more times",
-          "or until non-Monster. Place on deck top. 1 per turn."
+          "When your monster deals 1500 or less direct damage:",
+          "Discard hand (min 1); excavate top of Deck. If",
+          "monster, send to GY & deal 500 dmg. Repeat up to",
+          "7 more times or until non-Monster. 1 per turn."
         ]
       },
       "effect_texts": {
-        "popup_1": {
-          "symbol": "gActivationDescription_BerserkerSoul_Popup1",
-          "pages": [
-            "When your monster deals 1500 or less direct dmg: Discard hand and excavate; repeat up to 7 times for monsters."
-          ]
-        }
+        "popup_1": "When monster deals 1500 or less direct damage: Discard hand, excavate; if Monster 500 dmg. Repeat up to 7x."
       }
     },
     {
@@ -32223,13 +32218,13 @@
       "description": {
         "symbol": "gDescription_Birdface",
         "pages": [
-          "When this card is destroyed by battle and sent to the",
-          "GY: You can add 1 \"Harpie Lady\" from your Deck to",
-          "your hand."
+          "When this card is destroyed by battle and sent to",
+          "the GY: you can add 1 Harpie Lady from your Deck",
+          "to your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "When this card is destroyed by battle and sent to the GY: You can add 1 \"Harpie Lady\" from your Deck to your hand."
+        "popup_1": "When destroyed by battle and sent to GY: add 1 Harpie Lady from Deck to hand."
       }
     },
     {
@@ -32258,13 +32253,15 @@
       "description": {
         "symbol": "gDescription_BlueEyesAlternativeUltimateDragon",
         "pages": [
-          "3x Blue-Eyes White Dragon. Cannot be targeted or destroyed.",
-          "Once per turn: destroy 1 opp. card (up to 3 if Alt used).",
-          "Cannot attack the turn this effect is activated."
+          "3 Blue-Eyes White Dragon. Cannot be targeted or",
+          "destroyed by card effects. Once per turn: destroy",
+          "1 card opponent controls (up to 3 if Alt. White",
+          "Dragon was used as material). Cannot attack the",
+          "turn this effect is activated."
         ]
       },
       "effect_texts": {
-        "popup_1": "Once per turn: destroy 1 opp. card (up to 3 if Alt White Dragon used as material)."
+        "popup_1": "Once per turn: destroy 1 opponent card (up to 3 if Alt. White Dragon used). Cannot attack that turn."
       }
     },
     {
@@ -32293,13 +32290,15 @@
       "description": {
         "symbol": "gDescription_BreakTheDestiny",
         "pages": [
-          "Target Lv8+ D-HERO/D-End Dragoon; destroy, opp skips M1",
-          "Banish from GY; add 1 S/T listing D-HERO/D-End Dragoon",
-          "Only 1 effect per turn, and only once that turn."
+          "Target Lv8+ Destiny HERO or Destiny End Dragoon",
+          "you control; destroy it, opp skips Main Phase 1.",
+          "Banish from GY; add 1 S/T listing Destiny HERO",
+          "or Destiny End Dragoon. 1 effect per turn, and",
+          "only once that turn."
         ]
       },
       "effect_texts": {
-        "popup_1": "Target 1 Level 8 or higher \"Destiny HERO\" monster, or 1 \"Destiny End Dragoon\", you control; destroy it, and if you do, y"
+        "popup_1": "Target Lv8+ D-HERO or Dest End Dragoon; destroy it, opp skips M1. Banish from GY: add S/T listing them."
       }
     },
     {
@@ -32328,13 +32327,14 @@
       "description": {
         "symbol": "gDescription_BubbleBlaster",
         "pages": [
-          "Equip only to E-HERO Bubbleman. Gains 800 ATK.",
-          "If equipped monster destroyed by battle: destroy it.",
-          "Battle damage to controller becomes 0."
+          "Equip only to Elemental Hero Bubbleman. The",
+          "equipped monster gains 800 ATK. If the equipped",
+          "monster would be destroyed by battle, destroy this",
+          "card instead and battle damage to controller is 0."
         ]
       },
       "effect_texts": {
-        "popup_1": "You can only equip this card to \"Elemental Hero Bubbleman\". Increase the ATK of the equipped monster by 800 points. If t"
+        "popup_1": "Equip to E-HERO Bubbleman. +800 ATK. If destroyed by battle, destroy this instead; battle damage 0."
       }
     },
     {
@@ -32363,9 +32363,8 @@
       "description": {
         "symbol": "gDescription_BurdenOfTheMighty",
         "pages": [
-          "Each face-up monster your",
-          "opponent controls loses 100",
-          "ATK x its own Level."
+          "Each face-up monster your opponent controls loses",
+          "ATK equal to 100 x its own Level."
         ]
       },
       "effect_texts": {
@@ -32399,12 +32398,12 @@
         "symbol": "gDescription_CallOfTheMummy",
         "pages": [
           "Once per turn: You can Special Summon 1 Zombie",
-          "monster from your hand. You must control no monsters to",
-          "activate and to resolve this effect."
+          "monster from your hand. You must control no",
+          "monsters to activate and resolve this effect."
         ]
       },
       "effect_texts": {
-        "popup_1": "Once per turn: You can Special Summon 1 Zombie monster from your hand. You must control no monsters to activate and to r"
+        "popup_1": "1/turn: Special Summon 1 Zombie from hand. Must control no monsters to activate and resolve."
       }
     },
     {
@@ -32433,12 +32432,12 @@
       "description": {
         "symbol": "gDescription_CannonballSpearShellfish",
         "pages": [
-          "While \"Umi\" is face-up on the field, this card is",
-          "unaffected by any Spell Cards."
+          "While Umi is face-up on the field, this card is",
+          "unaffected by any Spell Cards targeting this card."
         ]
       },
       "effect_texts": {
-        "popup_1": "While \"Umi\" is face-up on the field, this card is unaffected by any Spell Cards."
+        "popup_1": "While Umi is face-up, this card is unaffected by any Spell Cards."
       }
     },
     {
@@ -32467,13 +32466,14 @@
       "description": {
         "symbol": "gDescription_CelestialSwordEatos",
         "pages": [
-          "Always Noble Arms. Equipped monster gains 500 ATK.",
-          "When sent field to GY: target Guardian Eatos.",
-          "Gains 500 ATK per banished monster."
+          "Always treated as a Noble Arms card. The equipped",
+          "monster gains 500 ATK. When sent from field to GY:",
+          "target 1 Guardian Eatos you control; it gains",
+          "500 ATK for each of your banished monsters."
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card is always treated as a \"Noble Arms\" card.)\nThe equipped monster gains 500 ATK. When this card is sent from th"
+        "popup_1": "Equipped gains 500 ATK. When sent to GY: target Guardian Eatos; gains 500 ATK per banished monster."
       }
     },
     {
@@ -32502,13 +32502,369 @@
       "description": {
         "symbol": "gDescription_ChaosForm",
         "pages": [
-          "Ritual Summon Chaos/Black Luster Soldier.",
-          "Tribute from hand/field and/or banish Blue-Eyes/DM from GY.",
-          "Total Levels must equal Ritual Monsters Level."
+          "Ritual Summon any Chaos or Black Luster Soldier",
+          "Ritual Monster. Tribute monsters from hand/field",
+          "and/or banish Blue-Eyes White Dragon or Dark",
+          "Magician from your GY. Total Levels must equal",
+          "the Ritual Monsters Level."
         ]
       },
       "effect_texts": {
-        "popup_1": "This card can be used to Ritual Summon any \"Chaos\" or \"Black Luster Soldier\" Ritual Monster. You must also Tribute monst"
+        "popup_1": "Ritual Summon Chaos/Black Luster Soldier. Tribute hand/field; banish Blue-Eyes/DM from GY."
+      }
+    },
+    {
+      "card_const": "CHICKEN_GAME",
+      "card_name": "Chicken Game",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        7,
+        6,
+        1,
+        6,
+        3,
+        0,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_ChickenGame",
+        "pages": [
+          "Lowest LP player takes no damage. Once per turn",
+          "Main Phase: The turn player pays 1000 LP, draws",
+          "1 card or gains 1000 LP. Neither player can",
+          "activate cards or effects in response."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Lowest LP player takes no damage. Turn MP: pay 1000 LP; draw 1 or gain 1000 LP. No response."
+      }
+    },
+    {
+      "card_const": "CHIMERATECH_FORTRESS_DRAGON",
+      "card_name": "Chimeratech Fortress Dragon",
+      "atk": 0,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CHIMERATECH_FORTRESS_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 60,
+      "password": [
+        7,
+        9,
+        2,
+        2,
+        9,
+        5,
+        2,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_ChimeratechFortressDragon",
+        "pages": [
+          "Cyber Dragon + 1 or more Machine. Cannot be used",
+          "as Fusion Material. Must be Special Summoned from",
+          "Extra Deck by sending the materials from either",
+          "field to the GY. Original ATK = 1000 x number of",
+          "Fusion Materials used."
+        ]
+      }
+    },
+    {
+      "card_const": "CHIMERATECH_MEGAFLEET_DRAGON",
+      "card_name": "Chimeratech Megafleet Dragon",
+      "atk": 0,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CHIMERATECH_MEGAFLEET_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 60,
+      "password": [
+        8,
+        7,
+        1,
+        1,
+        6,
+        9,
+        2,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_ChimeratechMegafleetDragon",
+        "pages": [
+          "1 Cyber Dragon monster + 1 or more monsters in",
+          "the Extra Monster Zone. Must be Special Summoned",
+          "from Extra Deck by sending materials from field",
+          "to GY. Original ATK = 1200 x number of Fusion",
+          "Materials used."
+        ]
+      }
+    },
+    {
+      "card_const": "CHIMERATECH_RAMPAGE_DRAGON",
+      "card_name": "Chimeratech Rampage Dragon",
+      "atk": 2100,
+      "def": 1600,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CHIMERATECH_RAMPAGE_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 41,
+      "password": [
+        8,
+        4,
+        0,
+        5,
+        8,
+        2,
+        5,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_ChimeratechRampageDragon",
+        "pages": [
+          "2 or more Cyber Dragon monsters. Must be Fusion",
+          "Summoned. When Fusion Summoned: destroy Spell/Trap",
+          "Cards on the field up to the number of materials.",
+          "This card cannot attack directly. It can make",
+          "attacks up to the number of materials used."
+        ]
+      }
+    },
+    {
+      "card_const": "CLOCK_TOWER_PRISON",
+      "card_name": "Clock Tower Prison",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        7,
+        5,
+        0,
+        4,
+        1,
+        2,
+        6,
+        9
+      ],
+      "description": {
+        "symbol": "gDescription_ClockTowerPrison",
+        "pages": [
+          "Opponent Standby Phase: place 1 Clock Counter on",
+          "this card (max 4). While 4 or more Counters are",
+          "on this card, you take no battle damage. If this",
+          "card would be destroyed by a card effect: remove",
+          "1 Clock Counter instead."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opp SP: place 1 Clock Counter (max 4). 4+: no battle dmg. If destroyed: remove 1 counter."
+      }
+    },
+    {
+      "card_const": "COLD_WAVE",
+      "card_name": "Cold Wave",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        0,
+        6,
+        8,
+        2,
+        2,
+        0,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_ColdWave",
+        "pages": [
+          "Cannot activate or Set any Spell or Trap Cards",
+          "until your next Standby Phase. Activate only at",
+          "the start of Main Phase 1."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "No Spell/Trap activations until your next Standby Phase. Activate only at start of Main Phase 1."
+      }
+    },
+    {
+      "card_const": "CONTINUOUS_DESTRUCTION_PUNCH",
+      "card_name": "Continuous Destruction Punch",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        8,
+        0,
+        5,
+        7,
+        6,
+        2,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_ContinuousDestructionPunch",
+        "pages": [
+          "If the DEF Position monster on your side has DEF",
+          "higher than the ATK of the attacking monster:",
+          "destroy it after damage calc is applied."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If attacked DEF monster has higher DEF than attackers ATK: destroy attacker after damage calc."
+      }
+    },
+    {
+      "card_const": "CYBER_ELTANIN",
+      "card_name": "Cyber Eltanin",
+      "atk": -1,
+      "def": -1,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CYBER_ELTANIN",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        3,
+        3,
+        0,
+        9,
+        3,
+        4,
+        3,
+        9
+      ],
+      "description": {
+        "symbol": "gDescription_CyberEltanin",
+        "pages": [
+          "Cannot be Normal Summoned or Set. Must be Special",
+          "Summoned from your hand by banishing all LIGHT",
+          "Machine monsters from your field and GY. ATK/DEF",
+          "become 500 x number of your banished monsters.",
+          "When Summoned: send all other face-ups to GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be NS/Set. SS by banishing LIGHT Machines. When Summoned: send all other face-ups to GY."
+      }
+    },
+    {
+      "card_const": "CYBER_KIRIN",
+      "card_name": "Cyber Kirin",
+      "atk": 300,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        7,
+        6,
+        9,
+        8,
+        6,
+        0,
+        0,
+        5
+      ],
+      "description": {
+        "symbol": "gDescription_CyberKirin",
+        "pages": [
+          "While in Attack Position: negate any Spell/Trap",
+          "effects that target this card. When destroyed by",
+          "battle and sent to the GY: you can draw 1 card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "While in Attack Position: negate Spell/Trap targeting this card. When destroyed by battle: draw 1."
+      }
+    },
+    {
+      "card_const": "CYBER_PHOENIX",
+      "card_name": "Cyber Phoenix",
+      "atk": 1200,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_CYBER_PHOENIX",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        0,
+        3,
+        3,
+        7,
+        0,
+        1,
+        0,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_CyberPhoenix",
+        "pages": [
+          "While in Attack Position: negate any Spell/Trap",
+          "effects that target Machine monsters you control.",
+          "When destroyed by battle and sent to the GY: you",
+          "can destroy 1 face-up Spell or Trap Card on the",
+          "field."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "While in Attack Position: negate S/T targeting your Machine. When destroyed: destroy 1 face-up S/T."
       }
     }
   ]

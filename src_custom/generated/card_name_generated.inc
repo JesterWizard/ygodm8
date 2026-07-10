@@ -363,6 +363,16 @@ static const u8 sCallOfTheMummyName[] __attribute__((section(".append_assets")))
 static const u8 sCannonballSpearShellfishName[] __attribute__((section(".append_assets"))) = "Cannonball Spear Shellfish";
 static const u8 sCelestialSwordEatosName[] __attribute__((section(".append_assets"))) = "Celestial Sword - Eatos";
 static const u8 sChaosFormName[] __attribute__((section(".append_assets"))) = "Chaos Form";
+static const u8 sChickenGameName[] __attribute__((section(".append_assets"))) = "Chicken Game";
+static const u8 sChimeratechFortressDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Fortress Dragon";
+static const u8 sChimeratechMegafleetDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Megafleet Dragon";
+static const u8 sChimeratechRampageDragonName[] __attribute__((section(".append_assets"))) = "Chimeratech Rampage Dragon";
+static const u8 sClockTowerPrisonName[] __attribute__((section(".append_assets"))) = "Clock Tower Prison";
+static const u8 sColdWaveName[] __attribute__((section(".append_assets"))) = "Cold Wave";
+static const u8 sContinuousDestructionPunchName[] __attribute__((section(".append_assets"))) = "Continuous Destruction Punch";
+static const u8 sCyberEltaninName[] __attribute__((section(".append_assets"))) = "Cyber Eltanin";
+static const u8 sCyberKirinName[] __attribute__((section(".append_assets"))) = "Cyber Kirin";
+static const u8 sCyberPhoenixName[] __attribute__((section(".append_assets"))) = "Cyber Phoenix";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1095,6 +1105,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCelestialSwordEatosName;
   if (cardId == 0x048A)
     return (u8 *)sChaosFormName;
+  if (cardId == 0x048B)
+    return (u8 *)sChickenGameName;
+  if (cardId == 0x048C)
+    return (u8 *)sChimeratechFortressDragonName;
+  if (cardId == 0x048D)
+    return (u8 *)sChimeratechMegafleetDragonName;
+  if (cardId == 0x048E)
+    return (u8 *)sChimeratechRampageDragonName;
+  if (cardId == 0x048F)
+    return (u8 *)sClockTowerPrisonName;
+  if (cardId == 0x0490)
+    return (u8 *)sColdWaveName;
+  if (cardId == 0x0491)
+    return (u8 *)sContinuousDestructionPunchName;
+  if (cardId == 0x0492)
+    return (u8 *)sCyberEltaninName;
+  if (cardId == 0x0493)
+    return (u8 *)sCyberKirinName;
+  if (cardId == 0x0494)
+    return (u8 *)sCyberPhoenixName;
 
   return gCardNames[cardId];
 }

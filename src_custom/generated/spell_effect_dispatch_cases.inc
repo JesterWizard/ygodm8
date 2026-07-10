@@ -71,11 +71,23 @@
     case CHAOS_GREED:
       EffectChaosGreed();
       return;
+    case CHICKEN_GAME:
+      EffectCHICKEN_GAME();
+      return;
+    case CLOCK_TOWER_PRISON:
+      EffectCLOCK_TOWER_PRISON();
+      return;
     case COFFIN_SELLER:
       EffectCoffinSeller();
       return;
+    case COLD_WAVE:
+      EffectCOLD_WAVE();
+      return;
     case CONFISCATION:
       EffectConfiscation();
+      return;
+    case CONTINUOUS_DESTRUCTION_PUNCH:
+      EffectCONTINUOUS_DESTRUCTION_PUNCH();
       return;
     case COST_DOWN:
       EffectCostDown();

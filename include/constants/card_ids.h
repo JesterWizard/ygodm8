@@ -1164,11 +1164,21 @@
 #define CANNONBALL_SPEAR_SHELLFISH               0x0488
 #define CELESTIAL_SWORD_EATOS                    0x0489
 #define CHAOS_FORM                               0x048A
+#define CHICKEN_GAME                             0x048B
+#define CHIMERATECH_FORTRESS_DRAGON              0x048C
+#define CHIMERATECH_MEGAFLEET_DRAGON             0x048D
+#define CHIMERATECH_RAMPAGE_DRAGON               0x048E
+#define CLOCK_TOWER_PRISON                       0x048F
+#define COLD_WAVE                                0x0490
+#define CONTINUOUS_DESTRUCTION_PUNCH             0x0491
+#define CYBER_ELTANIN                            0x0492
+#define CYBER_KIRIN                              0x0493
+#define CYBER_PHOENIX                            0x0494
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x048B
-#define NUM_CUSTOM_CARDS                        0x016A
+#define NUM_TOTAL_CARDS                         0x0495
+#define NUM_CUSTOM_CARDS                        0x0174
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

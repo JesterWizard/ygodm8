@@ -113,6 +113,16 @@ unsigned char CanActivateBIRDFACE(void);
 void ActivateBIRDFACEEffect(void);
 unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void);
 void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void);
+unsigned char CanActivateCHIMERATECH_FORTRESS_DRAGON(void);
+void ActivateCHIMERATECH_FORTRESS_DRAGONEffect(void);
+unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void);
+void ActivateCHIMERATECH_MEGAFLEET_DRAGONEffect(void);
+unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void);
+void ActivateCHIMERATECH_RAMPAGE_DRAGONEffect(void);
+unsigned char CanActivateCYBER_ELTANIN(void);
+void ActivateCYBER_ELTANINEffect(void);
+unsigned char CanActivateCYBER_PHOENIX(void);
+void ActivateCYBER_PHOENIXEffect(void);
 unsigned char CanActivateDARK_ARMED_DRAGON(void);
 void ActivateDARK_ARMED_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
@@ -686,6 +696,26 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON) {
     ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CHIMERATECH_FORTRESS_DRAGON) {
+    ActivateCHIMERATECH_FORTRESS_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CHIMERATECH_MEGAFLEET_DRAGON) {
+    ActivateCHIMERATECH_MEGAFLEET_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CHIMERATECH_RAMPAGE_DRAGON) {
+    ActivateCHIMERATECH_RAMPAGE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == CYBER_ELTANIN) {
+    ActivateCYBER_ELTANINEffect();
+    return;
+  }
+  if (gMonEffect.id == CYBER_PHOENIX) {
+    ActivateCYBER_PHOENIXEffect();
     return;
   }
 

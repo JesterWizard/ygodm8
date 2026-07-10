@@ -164,6 +164,11 @@ enum {
   MONSTER_EFFECT_RAVIEL_LORD_OF_PHANTASMS,
   MONSTER_EFFECT_BIRDFACE,
   MONSTER_EFFECT_BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON,
+  MONSTER_EFFECT_CHIMERATECH_FORTRESS_DRAGON,
+  MONSTER_EFFECT_CHIMERATECH_MEGAFLEET_DRAGON,
+  MONSTER_EFFECT_CHIMERATECH_RAMPAGE_DRAGON,
+  MONSTER_EFFECT_CYBER_ELTANIN,
+  MONSTER_EFFECT_CYBER_PHOENIX,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -247,5 +252,15 @@ extern unsigned char CanActivateBIRDFACE(void);
 extern void ActivateBIRDFACEEffect(void);
 extern unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void);
 extern void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void);
+extern unsigned char CanActivateCHIMERATECH_FORTRESS_DRAGON(void);
+extern void ActivateCHIMERATECH_FORTRESS_DRAGONEffect(void);
+extern unsigned char CanActivateCHIMERATECH_MEGAFLEET_DRAGON(void);
+extern void ActivateCHIMERATECH_MEGAFLEET_DRAGONEffect(void);
+extern unsigned char CanActivateCHIMERATECH_RAMPAGE_DRAGON(void);
+extern void ActivateCHIMERATECH_RAMPAGE_DRAGONEffect(void);
+extern unsigned char CanActivateCYBER_ELTANIN(void);
+extern void ActivateCYBER_ELTANINEffect(void);
+extern unsigned char CanActivateCYBER_PHOENIX(void);
+extern void ActivateCYBER_PHOENIXEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

@@ -113,6 +113,8 @@ unsigned char ShouldActivateARMAGEDDON_KNIGHT(void);
 void ActivateARMAGEDDON_KNIGHT(void);
 unsigned char ShouldActivateCANNONBALL_SPEAR_SHELLFISH(void);
 void ActivateCANNONBALL_SPEAR_SHELLFISH(void);
+unsigned char ShouldActivateCYBER_KIRIN(void);
+void ActivateCYBER_KIRIN(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -319,6 +321,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = CANNONBALL_SPEAR_SHELLFISH,
     .shouldActivate = ShouldActivateCANNONBALL_SPEAR_SHELLFISH,
     .activate = ActivateCANNONBALL_SPEAR_SHELLFISH,
+  },
+  {
+    .cardId = CYBER_KIRIN,
+    .shouldActivate = ShouldActivateCYBER_KIRIN,
+    .activate = ActivateCYBER_KIRIN,
   },
 };
 

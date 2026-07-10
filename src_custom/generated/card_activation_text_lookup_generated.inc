@@ -362,6 +362,13 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [CANNONBALL_SPEAR_SHELLFISH] = gActivationDescription_CannonballSpearShellfish_Popup1,
   [CELESTIAL_SWORD_EATOS] = gActivationDescription_CelestialSwordEatos_Popup1,
   [CHAOS_FORM] = gActivationDescription_ChaosForm_Popup1,
+  [CHICKEN_GAME] = gActivationDescription_ChickenGame_Popup1,
+  [CLOCK_TOWER_PRISON] = gActivationDescription_ClockTowerPrison_Popup1,
+  [COLD_WAVE] = gActivationDescription_ColdWave_Popup1,
+  [CONTINUOUS_DESTRUCTION_PUNCH] = gActivationDescription_ContinuousDestructionPunch_Popup1,
+  [CYBER_ELTANIN] = gActivationDescription_CyberEltanin_Popup1,
+  [CYBER_KIRIN] = gActivationDescription_CyberKirin_Popup1,
+  [CYBER_PHOENIX] = gActivationDescription_CyberPhoenix_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -754,6 +761,13 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_CANNONBALL_SPEAR_SHELLFISH_POPUP_1] = gActivationDescription_CannonballSpearShellfish_Popup1,
   [CARD_EFFECT_TEXT_CELESTIAL_SWORD_EATOS_POPUP_1] = gActivationDescription_CelestialSwordEatos_Popup1,
   [CARD_EFFECT_TEXT_CHAOS_FORM_POPUP_1] = gActivationDescription_ChaosForm_Popup1,
+  [CARD_EFFECT_TEXT_CHICKEN_GAME_POPUP_1] = gActivationDescription_ChickenGame_Popup1,
+  [CARD_EFFECT_TEXT_CLOCK_TOWER_PRISON_POPUP_1] = gActivationDescription_ClockTowerPrison_Popup1,
+  [CARD_EFFECT_TEXT_COLD_WAVE_POPUP_1] = gActivationDescription_ColdWave_Popup1,
+  [CARD_EFFECT_TEXT_CONTINUOUS_DESTRUCTION_PUNCH_POPUP_1] = gActivationDescription_ContinuousDestructionPunch_Popup1,
+  [CARD_EFFECT_TEXT_CYBER_ELTANIN_POPUP_1] = gActivationDescription_CyberEltanin_Popup1,
+  [CARD_EFFECT_TEXT_CYBER_KIRIN_POPUP_1] = gActivationDescription_CyberKirin_Popup1,
+  [CARD_EFFECT_TEXT_CYBER_PHOENIX_POPUP_1] = gActivationDescription_CyberPhoenix_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

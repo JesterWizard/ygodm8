@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-10).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-11).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 362 |
-| Art ready, needs manifest | 234 |
+| In game (manifest + art) | 372 |
+| Art ready, needs manifest | 224 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **598** |
 
@@ -384,21 +384,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CANNONBALL_SPEAR_SHELLFISH` | Cannonball Spear Shellfish | `cannonball_spear_shellfish.png` |
 | `CELESTIAL_SWORD_EATOS` | Celestial Sword - Eatos | `celestial_sword_eatos.png` |
 | `CHAOS_FORM` | Chaos Form | `chaos_form.png` |
+| `CHICKEN_GAME` | Chicken Game | `chicken_game.png` |
+| `CHIMERATECH_FORTRESS_DRAGON` | Chimeratech Fortress Dragon | `chimeratech_fortress_dragon.png` |
+| `CHIMERATECH_MEGAFLEET_DRAGON` | Chimeratech Megafleet Dragon | `chimeratech_megafleet_dragon.png` |
+| `CHIMERATECH_RAMPAGE_DRAGON` | Chimeratech Rampage Dragon | `chimeratech_rampage_dragon.png` |
+| `CLOCK_TOWER_PRISON` | Clock Tower Prison | `clock_tower_prison.png` |
+| `COLD_WAVE` | Cold Wave | `cold_wave.png` |
+| `CONTINUOUS_DESTRUCTION_PUNCH` | Continuous Destruction Punch | `continuous_destruction_punch.png` |
+| `CYBER_ELTANIN` | Cyber Eltanin | `cyber_eltanin.png` |
+| `CYBER_KIRIN` | Cyber Kirin | `cyber_kirin.png` |
+| `CYBER_PHOENIX` | Cyber Phoenix | `cyber_phoenix.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `CHICKEN_GAME` — `chicken_game.png`
-- [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
-- [ ] `CHIMERATECH_MEGAFLEET_DRAGON` — `chimeratech_megafleet_dragon.png`
-- [ ] `CHIMERATECH_RAMPAGE_DRAGON` — `chimeratech_rampage_dragon.png`
-- [ ] `CLOCK_TOWER_PRISON` — `clock_tower_prison.png`
-- [ ] `COLD_WAVE` — `cold_wave.png`
-- [ ] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
-- [ ] `CYBER_ELTANIN` — `cyber_eltanin.png`
-- [ ] `CYBER_KIRIN` — `cyber_kirin.png`
-- [ ] `CYBER_PHOENIX` — `cyber_phoenix.png`
 - [ ] `CYBER_VALLEY` — `cyber_valley.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`

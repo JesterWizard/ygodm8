@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `333` effects
+- `343` effects
 
 ## Tally
 
@@ -314,6 +314,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Birdface` | `src_custom/activated_effects/birdface.c` |
 | `permanent_effects` | `Cannonball Spear Shellfish` | `src_custom/permanent_effects/cannonball_spear_shellfish.c` |
 | `activated_effects` | `Blue Eyes Alternative Ultimate Dragon` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
+| `spell_effects` | `Chicken Game` | `src_custom/spell_effects/chicken_game.c` |
+| `spell_effects` | `Clock Tower Prison` | `src_custom/spell_effects/clock_tower_prison.c` |
+| `spell_effects` | `Cold Wave` | `src_custom/spell_effects/cold_wave.c` |
+| `spell_effects` | `Continuous Destruction Punch` | `src_custom/spell_effects/continuous_destruction_punch.c` |
+| `activated_effects` | `Chimeratech Fortress Dragon` | `src_custom/activated_effects/chimeratech_fortress_dragon.c` |
+| `activated_effects` | `Chimeratech Megafleet Dragon` | `src_custom/activated_effects/chimeratech_megafleet_dragon.c` |
+| `activated_effects` | `Chimeratech Rampage Dragon` | `src_custom/activated_effects/chimeratech_rampage_dragon.c` |
+| `activated_effects` | `Cyber Eltanin` | `src_custom/activated_effects/cyber_eltanin.c` |
+| `activated_effects` | `Cyber Phoenix` | `src_custom/activated_effects/cyber_phoenix.c` |
+| `permanent_effects` | `Cyber Kirin` | `src_custom/permanent_effects/cyber_kirin.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

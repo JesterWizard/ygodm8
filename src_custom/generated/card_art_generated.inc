@@ -1456,6 +1456,46 @@ static const unsigned char sChaosFormBigArt[] __attribute__((section(".append_as
 static const unsigned short sChaosFormBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chaos_form.gbapal");
 static const unsigned char sChaosFormMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chaos_form.lz");
 
+static const unsigned char sChickenGameBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chicken_game.huff");
+static const unsigned short sChickenGameBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chicken_game.gbapal");
+static const unsigned char sChickenGameMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chicken_game.lz");
+
+static const unsigned char sChimeratechFortressDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chimeratech_fortress_dragon.huff");
+static const unsigned short sChimeratechFortressDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chimeratech_fortress_dragon.gbapal");
+static const unsigned char sChimeratechFortressDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chimeratech_fortress_dragon.lz");
+
+static const unsigned char sChimeratechMegafleetDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chimeratech_megafleet_dragon.huff");
+static const unsigned short sChimeratechMegafleetDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chimeratech_megafleet_dragon.gbapal");
+static const unsigned char sChimeratechMegafleetDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chimeratech_megafleet_dragon.lz");
+
+static const unsigned char sChimeratechRampageDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chimeratech_rampage_dragon.huff");
+static const unsigned short sChimeratechRampageDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chimeratech_rampage_dragon.gbapal");
+static const unsigned char sChimeratechRampageDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chimeratech_rampage_dragon.lz");
+
+static const unsigned char sClockTowerPrisonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/clock_tower_prison.huff");
+static const unsigned short sClockTowerPrisonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/clock_tower_prison.gbapal");
+static const unsigned char sClockTowerPrisonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/clock_tower_prison.lz");
+
+static const unsigned char sColdWaveBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cold_wave.huff");
+static const unsigned short sColdWaveBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cold_wave.gbapal");
+static const unsigned char sColdWaveMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cold_wave.lz");
+
+static const unsigned char sContinuousDestructionPunchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/continuous_destruction_punch.huff");
+static const unsigned short sContinuousDestructionPunchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/continuous_destruction_punch.gbapal");
+static const unsigned char sContinuousDestructionPunchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/continuous_destruction_punch.lz");
+
+static const unsigned char sCyberEltaninBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_eltanin.huff");
+static const unsigned short sCyberEltaninBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_eltanin.gbapal");
+static const unsigned char sCyberEltaninMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_eltanin.lz");
+
+static const unsigned char sCyberKirinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_kirin.huff");
+static const unsigned short sCyberKirinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_kirin.gbapal");
+static const unsigned char sCyberKirinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_kirin.lz");
+
+static const unsigned char sCyberPhoenixBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_phoenix.huff");
+static const unsigned short sCyberPhoenixBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_phoenix.gbapal");
+static const unsigned char sCyberPhoenixMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_phoenix.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1821,6 +1861,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0488] = sCannonballSpearShellfishBigArt,
   [0x0489] = sCelestialSwordEatosBigArt,
   [0x048A] = sChaosFormBigArt,
+  [0x048B] = sChickenGameBigArt,
+  [0x048C] = sChimeratechFortressDragonBigArt,
+  [0x048D] = sChimeratechMegafleetDragonBigArt,
+  [0x048E] = sChimeratechRampageDragonBigArt,
+  [0x048F] = sClockTowerPrisonBigArt,
+  [0x0490] = sColdWaveBigArt,
+  [0x0491] = sContinuousDestructionPunchBigArt,
+  [0x0492] = sCyberEltaninBigArt,
+  [0x0493] = sCyberKirinBigArt,
+  [0x0494] = sCyberPhoenixBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2188,6 +2238,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0488] = sCannonballSpearShellfishBigPalette,
   [0x0489] = sCelestialSwordEatosBigPalette,
   [0x048A] = sChaosFormBigPalette,
+  [0x048B] = sChickenGameBigPalette,
+  [0x048C] = sChimeratechFortressDragonBigPalette,
+  [0x048D] = sChimeratechMegafleetDragonBigPalette,
+  [0x048E] = sChimeratechRampageDragonBigPalette,
+  [0x048F] = sClockTowerPrisonBigPalette,
+  [0x0490] = sColdWaveBigPalette,
+  [0x0491] = sContinuousDestructionPunchBigPalette,
+  [0x0492] = sCyberEltaninBigPalette,
+  [0x0493] = sCyberKirinBigPalette,
+  [0x0494] = sCyberPhoenixBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2555,6 +2615,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0488] = 0,
   [0x0489] = 0,
   [0x048A] = 0,
+  [0x048B] = 0,
+  [0x048C] = 0,
+  [0x048D] = 0,
+  [0x048E] = 0,
+  [0x048F] = 0,
+  [0x0490] = 0,
+  [0x0491] = 0,
+  [0x0492] = 0,
+  [0x0493] = 0,
+  [0x0494] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -2922,4 +2992,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0488] = sCannonballSpearShellfishMiniArt,
   [0x0489] = sCelestialSwordEatosMiniArt,
   [0x048A] = sChaosFormMiniArt,
+  [0x048B] = sChickenGameMiniArt,
+  [0x048C] = sChimeratechFortressDragonMiniArt,
+  [0x048D] = sChimeratechMegafleetDragonMiniArt,
+  [0x048E] = sChimeratechRampageDragonMiniArt,
+  [0x048F] = sClockTowerPrisonMiniArt,
+  [0x0490] = sColdWaveMiniArt,
+  [0x0491] = sContinuousDestructionPunchMiniArt,
+  [0x0492] = sCyberEltaninMiniArt,
+  [0x0493] = sCyberKirinMiniArt,
+  [0x0494] = sCyberPhoenixMiniArt,
 };

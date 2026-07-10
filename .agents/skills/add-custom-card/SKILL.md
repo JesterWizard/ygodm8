@@ -188,6 +188,36 @@ If already in manifest: skip to art check, then runtime hand.
 
 Same shell as spell but `"type": "TYPE_TRAP"`, `"color": "TRAP_CARD"`, and set `"trapEffect"` to match an existing trap dispatcher id (grep manifest for a similar trap).
 
+### Description & popup formatting
+
+Add **after** the manifest entry is in place — the `description.pages` and `effect_texts.popup_1` fields need careful sizing to render correctly in-game.
+
+**Main description (card detail screen):**
+- Each page is 5 rows (widths: 12, 14, 14, 14, 12). Max ~66 chars per page.
+- Write each page as natural text — wrapping is automatic.
+- Aim for ~55–65 chars per page so text fills the rows (no huge gaps).
+- 2–5 pages per card. The last page can be shorter.
+- Validate with `wrap_description_page()` from `add_card_art.py`.
+
+**Popup / activation text (`effect_texts.popup_1`):**
+- Max 4 lines of 27 characters each = 108 chars total.
+- Condense wording to fit. Lines beyond 4 wrap off-screen.
+- Validate with `wrap_activation_page()` from `add_card_art.py`.
+
+**Quotes around card names:**
+- Leave out `"` quotation marks around monster card names. The in-game font cannot render `"` — they display as garbage characters. Write `add 1 Harpie Lady from your Deck`, not `add 1 "Harpie Lady" from your Deck`.
+
+**Quick validation in terminal:**
+```bash
+python3 -c "
+from tools.add_card_art import wrap_description_page, wrap_activation_page
+print(wrap_description_page('Your text here...'))
+wrapped = wrap_activation_page('Your popup text...')
+lines = wrapped.split('#0')
+print(f'{len(lines)} lines: {\"OK\" if len(lines) <= 4 else \"FAIL\"}')
+"
+```
+
 ## Step 4 — Art
 
 **Stem** = `card_const.lower()`. Prefer `src_custom/assets/cards/512x512/<stem>.png`; `make` runs `batch_80x80.py` to fill missing `80x80/<stem>.png`. Hand-authored `80x80/` is also fine (not overwritten).

@@ -71,13 +71,29 @@ How conversion works:
 
 Current layout constraints:
 
-| Row | Observed width |
-|--------|----------|
-| 1 | 27 |
-| 2 | 27 |
-| 3 | 27 |
-| 4 | 27 |
-| 5 | 27 |
+### Main description (card detail screen)
+
+Each page is 5 rows with these widths:
+
+| Row | Width (chars) |
+|-----|---------------|
+| 1 | 12 |
+| 2 | 14 |
+| 3 | 14 |
+| 4 | 14 |
+| 5 | 12 |
+
+Aim for ~55–65 characters per page (out of 66 max) so text fills the rows rather than leaving large gaps. The last page of a multi-page description can be shorter.
+
+### Popup / activation text (in-duel popup box)
+
+Each popup is max 4 lines of 27 characters each (108 chars total).
+
+Use `wrap_activation_page()` to validate. Popups exceeding 4 lines wrap off-screen and must be condensed.
+
+### Quotes
+
+Leave out quotation marks around monster card names. The in-game font cannot render `"` — they show as garbage or blank. Write `add 1 Harpie Lady from your Deck` not `add 1 "Harpie Lady" from your Deck`.
 
 ## Control Tokens
 
@@ -99,7 +115,7 @@ Important constraints:
 - Each description must have at least 2 pages.
 - Descriptions can have up to 5 pages.
 - Wrapping is word-based. The generator will not split a word across rows.
-- If any word is longer than 27 characters, generation fails.
+- If any word is longer than its row width (max 14 in middle rows), generation fails.
 - If the page text does not fit within the 5 available rows, generation fails.
 - The generated include is runtime data. It is not meant to be edited manually.
 
@@ -109,6 +125,8 @@ Practical advice for newcomers:
 - Run `make`.
 - If the generator fails, shorten the wording rather than forcing awkward punctuation.
 - If the text compiles but looks wrong in-game, adjust the wording until it fits the current row model cleanly.
+- For popup (activation) text: keep it ≤4 lines of 27 chars. Use `wrap_activation_page()` from `add_card_art.py` to validate.
+- Omit `"` quotes around monster card names — the in-game font cannot render them.
 
 Build behavior:
 
