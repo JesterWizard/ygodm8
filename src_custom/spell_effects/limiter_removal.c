@@ -7,8 +7,8 @@
 #include "riryoku.h"
 #include "spell_effects.h"
 
-u8 gLimiterRemovalDestroyMask;
-u8 gLimiterRemovalFixedMonsterRow;
+extern u8 gLimiterRemovalDestroyMask;
+extern u8 gLimiterRemovalFixedMonsterRow;
 
 static u8 MonsterQualifiesForLimiterRemoval(u16 cardId)
 {

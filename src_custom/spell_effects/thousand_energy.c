@@ -9,8 +9,8 @@
 #define THOUSAND_ENERGY_MAX_LEVEL 2
 #define THOUSAND_ENERGY_STAGE_BOOST 2
 
-u8 gThousandEnergyDestroyMask;
-u8 gThousandEnergyFixedMonsterRow;
+extern u8 gThousandEnergyDestroyMask;
+extern u8 gThousandEnergyFixedMonsterRow;
 
 static u8 MonsterQualifiesForThousandEnergy(u16 cardId)
 {
