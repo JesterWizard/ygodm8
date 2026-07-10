@@ -143,64 +143,83 @@ static void PlayCustomPopupBg8bpp(const u8 *tiles, const u16 *palette,
     savedWinOut    = REG_WINOUT;
     prevVBlankCb   = g201CB20;
 
-    /* -- 2. hide duel display ---------------------------------------- */
-    ZeroFill32(gBgVram.cbb2, 0x4000);
-    ZeroFill32(gBgVram.cbb4, 0x4000);
-    ZeroFill32(gBgVram.cbb5, 0x4000);
-    ZeroFill32((void *)0x06010000, 0x7FE0);
+    /* -- 2. hide OBJs, clear windows (display BGs stay ON this frame) -- */
+    CpuFill16(0, gOamBuffer, 0x400);
     sub_804EB04(gOamBuffer, 2);
+    CpuFill16(0, (void *)0x06010000, 0x7FE0);   /* OBJ VRAM */
     REG_WININ  = 0;
     REG_WINOUT = 0x3F;
-    REG_DISPCNT = savedDispCnt
-                & ~(DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
-    LoadCharblock2();
-    LoadObjVRAM();
+
+    /* -- 3. switch to fully-blank display (mode 0, no layers) -------- */
+    REG_DISPCNT = DISPCNT_MODE_0;
     WaitForVBlank();
     LoadOam();
 
-    /* -- 3. fade duel to dim ----------------------------------------- */
-    for (i = 0; i < POPUP_DIM_FRAMES; i++) {
-        DarkenBgPalette(POPUP_DIM_STEP);
-        LoadPalettes();
-        WaitForVBlank();
-    }
-
-    /* -- 4. upload tiles to hardware charblock 0-2 -------------------- */
+    /* -- 4. upload popup tiles to HW charblock 0-2 (display is off) -- */
     CpuCopy16(tiles,                     (void *)BG_CHAR_ADDR(0), 0x4000);
     CpuCopy16(tiles + 0x4000,            (void *)BG_CHAR_ADDR(1), 0x4000);
     CpuCopy16(tiles + 0x8000,            (void *)BG_CHAR_ADDR(2), 0x1600);
 
-    /* -- 5. build 30x20 tilemap in gBgVram.sbb1F ---------------------- */
+    /* -- 5. build & commit tilemap ----------------------------------- */
     for (row = 0; row < POPUP_BG_TILE_H; row++) {
         for (col = 0; col < POPUP_BG_TILE_W; col++)
             gBgVram.sbb1F[row][col] = (u16)(row * POPUP_BG_TILE_W + col);
         gBgVram.sbb1F[row][30] = (u16)(row * POPUP_BG_TILE_W + POPUP_BG_TILE_W - 1);
         gBgVram.sbb1F[row][31] = (u16)(row * POPUP_BG_TILE_W + POPUP_BG_TILE_W - 1);
     }
-
-    /* -- 6. commit tilemap to hardware screenblock 31 ----------------- */
     CpuCopy16(gBgVram.sbb1F, (void *)BG_SCREEN_ADDR(POPUP_BG_SCREENBASE), 0x800);
 
-    /* -- 7. popup palette at BG slot 0-255 ---------------------------- */
-    CpuCopy16(palette, gPaletteBuffer, 0x200);
-
-    /* -- 8. enable BG0, disable everything else ----------------------- */
-    REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_BG0_ON;
+    /* -- 6. black out palette, enable BG0 (screen stays black) ------- */
+    CpuFill16(0, gPaletteBuffer, 0x200);
     REG_BG0CNT = POPUP_BG0CNT;
     gBG0HOFS = 0;
     gBG0VOFS = 0;
     LoadBgOffsets();
+    REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_BG0_ON;
     WaitForVBlank();
-    LoadPalettes();
+    LoadPalettes();  /* HW palette all-black → nothing visible */
 
-    /* -- 9. hold ------------------------------------------------------- */
+    /* -- 7. fade in popup palette ------------------------------------- */
+    for (i = 1; i <= POPUP_DIM_FRAMES; i++) {
+        int blend = (i * 16) / POPUP_DIM_FRAMES;  /* 1 → 16 */
+        u16 c;
+        for (c = 0; c < 256; c++) {
+            struct PlttData *src = (struct PlttData *)&palette[c];
+            struct PlttData *dst = (struct PlttData *)&gPaletteBuffer[c];
+            dst->r = (src->r * blend) >> 4;
+            dst->g = (src->g * blend) >> 4;
+            dst->b = (src->b * blend) >> 4;
+        }
+        LoadPalettes();
+        WaitForVBlank();
+    }
+
+    /* -- 8. hold at full brightness ----------------------------------- */
     for (frame = 0; frame < holdFrames; frame++)
         WaitForVBlank();
 
-    /* -- 10. restore duel display ------------------------------------- */
+    /* -- 9. fade out popup palette to black --------------------------- */
+    for (i = POPUP_DIM_FRAMES - 1; i >= 0; i--) {
+        int blend = (i * 16) / POPUP_DIM_FRAMES;
+        u16 c;
+        for (c = 0; c < 256; c++) {
+            struct PlttData *src = (struct PlttData *)&palette[c];
+            struct PlttData *dst = (struct PlttData *)&gPaletteBuffer[c];
+            dst->r = (src->r * blend) >> 4;
+            dst->g = (src->g * blend) >> 4;
+            dst->b = (src->b * blend) >> 4;
+        }
+        LoadPalettes();
+        WaitForVBlank();
+    }
+
+    /* -- 10. restore duel display (HW palette still black => invisible) - */
     REG_DISPCNT = 0;
     CpuCopy16(gSummonAnimSavedCbb5,     gBgVram.cbb5,     0x4000);
     CpuCopy16(gSummonAnimSavedPalette,  gPaletteBuffer,    0x400);
+    CpuCopy16(gBgVram.cbb0, (void *)BG_CHAR_ADDR(0), 0x4000);
+    CpuCopy16(gBgVram.cbb1, (void *)BG_CHAR_ADDR(1), 0x4000);
+    CpuCopy16(gBgVram.cbb2, (void *)BG_CHAR_ADDR(2), 0x4000);
     REG_BG0CNT   = 0;
     REG_BLDCNT   = savedBldCnt;
     REG_BLDALPHA = savedBldAlpha;
@@ -212,11 +231,13 @@ static void PlayCustomPopupBg8bpp(const u8 *tiles, const u16 *palette,
     gBG0HOFS = 0;
     gBG0VOFS = 0;
     SetVBlankCallback(prevVBlankCb);
-    WaitForVBlank();
+    WaitForVBlank();  /* callback runs, HW palette still black */
     LoadCharblock5();
     LoadOam();
-    LoadPalettes();
+    LoadPalettes();   /* HW palette now has duel colors */
 }
+
+/* -- overworld GFX effects engine (vanilla full-art popups) ---------------
 
 /* -- overworld GFX effects engine (vanilla full-art popups) ---------------
  *
