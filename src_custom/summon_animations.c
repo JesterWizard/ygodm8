@@ -32,7 +32,8 @@ struct GfxEffect {
 #define POPUP_BG0CNT (BGCNT_PRIORITY(0) | BGCNT_CHARBASE(POPUP_BG_CHARBASE) \
                        | BGCNT_256COLOR | BGCNT_SCREENBASE(POPUP_BG_SCREENBASE) \
                        | BGCNT_TXT512x256)
-#define POPUP_SLIDE_FRAMES 12
+#define POPUP_SLIDE_FRAMES 48
+#define POPUP_BLANK_TILE   601  /* dedicated blank tile; pixel bytes=255, palette[255]=black */
 
 /* -- EWRAM-backed save buffers (declared in asm/ram_map_ewram.s) -------- */
 extern u16 gSummonAnimSavedPalette[];
@@ -119,23 +120,20 @@ static void DarkenBgPalette(u8 amount)
  *
  * Writes tiles directly from ROM to hardware charblock 0-2.  Builds a
  * 512-wide tilemap with the image in the RIGHT half (sbb1F cols 0-29)
- * and tile 0 (blank) filler everywhere else.  Animates HOFS
- * 496→256→496 so the image enters from the right, holds centred for
- * 1 second (60 frames), then exits through the left.  The blank filler
- * spans enough of the virtual map that no wrapping is ever visible.
+ * and a dedicated blank tile (index 601, pixel bytes 0xFF, palette[255]
+ * forced to black) in all filler positions.  Animates HOFS 0→256→496
+ * so the image enters from the right, holds centred for 1 second, then
+ * exits through the left.  Palette[255] is forced to black on every
+ * call so the filler is always black regardless of the PNG's palette.
  *
  * Virtual map (512px = 64 cols):
- *   sbb1E[0..31]      = tile 0 (blank)
+ *   sbb1E[0..31]      = BLANK_TILE (palette[255]=black)
  *   sbb1F[0..29]      = image tile indices 1..600
- *   sbb1F[30..31]     = tile 0 (blank)
+ *   sbb1F[30..31]     = BLANK_TILE
  *
- * HOFS = 0           → all blank (image off-screen right).
- * HOFS = 256         → image perfectly centred on screen.
- * HOFS = 496-511     → all blank (image fully exited left).
- *
- * ponytail: the blank padding (tile 0 zeroed in VRAM on every call) means
- *           even if HOFS wraps past the tilemap boundary, the wrapped
- *           portion is also tile 0 → always black, never loops.
+ * HOFS = 0       → all blank (image off-screen right).
+ * HOFS = 256     → image perfectly centred.
+ * HOFS ≥ 496     → all blank (image fully exited left).
  *                                                                       */
 static void PlayCustomPopupBg8bpp(const u8 *tiles, const u16 *palette,
                                    int holdFrames)
@@ -147,6 +145,10 @@ static void PlayCustomPopupBg8bpp(const u8 *tiles, const u16 *palette,
     u16 row, col;
     int frame;
     const int hold = 60;   /* 1 second at 60 fps */
+    /* blank tile sits in charblock 2, tile 601-512=89 → offset 89*64 */
+    void * const blankTileVram = (void *)(BG_CHAR_ADDR(2) + 89 * 64);
+    int i;
+    u8 *p;
 
     /* -- 1. save duel state ------------------------------------------ */
     CpuCopy16(gBgVram.cbb5, gSummonAnimSavedCbb5, 0x4000);
@@ -176,24 +178,29 @@ static void PlayCustomPopupBg8bpp(const u8 *tiles, const u16 *palette,
     CpuCopy16(tiles + 0x4000,            (void *)BG_CHAR_ADDR(1), 0x4000);
     CpuCopy16(tiles + 0x8000,            (void *)BG_CHAR_ADDR(2), 0x1600);
 
-    /* tile 0 → blank filler (kills any stale tile-0 data from duel) */
-    CpuFill16(0, (void *)BG_CHAR_ADDR(0), 64);
+    /* write blank tile: 64 pixel bytes = 0xFF */
+    p = (u8 *)blankTileVram;
+    for (i = 0; i < 64; i++)
+        p[i] = 0xFF;
 
     /* -- 5. fill 512-wide tilemap: blank left, image right ------------ */
     for (row = 0; row < POPUP_BG_TILE_H; row++) {
         for (col = 0; col < 32; col++)
-            gBgVram.sbb1E[row][col] = 0;
+            gBgVram.sbb1E[row][col] = POPUP_BLANK_TILE;
         for (col = 0; col < POPUP_BG_TILE_W; col++)
             gBgVram.sbb1F[row][col] = (u16)(row * POPUP_BG_TILE_W + col + 1);
-        gBgVram.sbb1F[row][30] = 0;
-        gBgVram.sbb1F[row][31] = 0;
+        gBgVram.sbb1F[row][30] = POPUP_BLANK_TILE;
+        gBgVram.sbb1F[row][31] = POPUP_BLANK_TILE;
     }
+    /* bottom-right 8×8 corner → blank (palette[255]=black) */
+    gBgVram.sbb1F[POPUP_BG_TILE_H - 1][POPUP_BG_TILE_W - 1] = POPUP_BLANK_TILE;
     CpuCopy16(gBgVram.sbb1E, (void *)BG_SCREEN_ADDR(30), 0x800);
     CpuCopy16(gBgVram.sbb1F, (void *)BG_SCREEN_ADDR(31), 0x800);
 
-    /* -- 6. load palette, set initial HOFS so image starts             *
-     *     off-screen right, enable BG0 -------------------------------- */
+    /* -- 6. load palette, force entry 255 to black for blank filler,   *
+     *     set initial HOFS, enable BG0 -------------------------------- */
     CpuCopy16(palette, gPaletteBuffer, 0x200);
+    gPaletteBuffer[255] = 0;                /* palette[255] = black for blank tile */
     REG_BG0CNT = POPUP_BG0CNT;
     gBG0HOFS = 0;                            /* off-screen right (image at cols 32+) */
     gBG0VOFS = 0;
