@@ -144,6 +144,13 @@ _kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
 _kernel_malloc_ewram gPlayerDeck3Capacity, 0x4
 _kernel_malloc_ewram gActiveDeckIndex, 0x1
 
+@ -- Runtime config EWRAM mirror (debug-menu-toggleable) -----------------------
+
+@ Mirror of RuntimeConfig in EWRAM so the debug menu can toggle configs at runtime.
+@ Initialized from the const ROM copy (gRuntimeConfigRom) at boot.
+@ sizeof(RuntimeConfig) ≈ 0x48; allocate 0x60 for padding headroom.
+_kernel_malloc_ewram_array gRuntimeConfigEwram, 0x60
+
 @ -- Debug menu & duel rulesets ------------------------------------------------
 
 @ Debug menu: AI controls both duelists when enabled.

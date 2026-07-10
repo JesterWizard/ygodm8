@@ -5,7 +5,7 @@
 #include "constants/monster_effects.h"
 #include "overworld.h"
 
-const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) = {
+const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))) = {
     .restore_life_points_after_duel = TRUE,
     .cap_life_points_after_duel = FALSE,
     .preserve_life_points_above_8000_after_duel = TRUE,
@@ -72,7 +72,7 @@ const RuntimeConfig gRuntimeConfig __attribute__((section(".runtime_config"))) =
     .card_in_hand_5 = HARPIE_LADY_SISTERS,
     .opponent_deck_card_id = CARD_NONE,
     .player_deck_card_id = CARD_NONE,
-    .skip_to_duel = TRUE,
+    .skip_to_duel = FALSE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,
 };

@@ -42,8 +42,9 @@ static const u8 sText_RootScene[] APPEND_RODATA        = "Scene";
 static const u8 sText_RootAiMode[] APPEND_RODATA       = "AI Mode";
 static const u8 sText_RootRuleset[] APPEND_RODATA      = "Ruleset";
 static const u8 sText_RootDeckPreset[] APPEND_RODATA   = "Decks";
-static const u8 sText_RootTimedDuels[] APPEND_RODATA   = "Timed Duels";
-static const u8 sText_RootSaveAnywhere[] APPEND_RODATA = "Save";
+static const u8 sText_RootTimedDuels[] APPEND_RODATA     = "Timed Duels";
+static const u8 sText_RootRuntimeConfig[] APPEND_RODATA = "Runtime";
+static const u8 sText_RootSaveAnywhere[] APPEND_RODATA  = "Save";
 
 /* Section titles — 16 chars each, centered. */
 static const u8 sText_SectionMusic[] APPEND_RODATA    = "  Music Player  ";
@@ -59,6 +60,7 @@ static const u8 sText_SectionMap[] APPEND_RODATA      = "  Map Teleport  ";
 static const u8 sText_SectionScene[] APPEND_RODATA    = " Scene Viewer   ";
 static const u8 sText_SectionDecks[] APPEND_RODATA       = "  Deck Presets  ";
 static const u8 sText_SectionTimedDuels[] APPEND_RODATA  = "  Timed Duels   ";
+static const u8 sText_SectionRuntimeConfig[] APPEND_RODATA = " Runtime Config ";
 
 static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootMusic,
@@ -73,6 +75,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootAiMode,
     sText_RootRuleset,
     sText_RootDeckPreset,
+    sText_RootRuntimeConfig,
     sText_RootTimedDuels,
     sText_RootSaveAnywhere,
 };
@@ -316,6 +319,9 @@ void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_TIMED_DUEL:
     DebugMenuDrawTimedDuels(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_RUNTIME_CONFIG:
+    DebugMenuDrawRuntimeConfig(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
@@ -510,6 +516,7 @@ static const u8 *const sSectionTitles[] APPEND_RODATA = {
     [DEBUG_VIEW_SCENE]         = sText_SectionScene,
     [DEBUG_VIEW_DECK_PRESET]   = sText_SectionDecks,
     [DEBUG_VIEW_TIMED_DUEL]    = sText_SectionTimedDuels,
+    [DEBUG_VIEW_RUNTIME_CONFIG] = sText_SectionRuntimeConfig,
 };
 
 static void DebugMenuDrawSectionTitle(u8 view) {
@@ -583,7 +590,8 @@ static void DebugMenuRoot(void) {
       else if (cursor == 9) DebugAiModeViewer();
       else if (cursor == 10) DebugRulesetViewer();
       else if (cursor == 11) DebugDeckPresetViewer();
-      else if (cursor == 12) DebugTimedDuelViewer(); else { gDebugMenuPendingSaveAnywhere = TRUE; break; }
+      else if (cursor == 12) DebugRuntimeConfigViewer();
+      else if (cursor == 13) DebugTimedDuelViewer(); else { gDebugMenuPendingSaveAnywhere = TRUE; break; }
       DebugMenuLatchButtons();
       scrollTop = 0;
       if (cursor >= DEBUG_ROWS) scrollTop = cursor - (DEBUG_ROWS - 1);

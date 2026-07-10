@@ -81,11 +81,17 @@ typedef struct {
 } RuntimeConfig;
 
 /*
- * Build-time PC port settings.
+ * Build-time PC port settings (ROM const copy).
  * Toggle these before building to change default runtime behavior.
  */
 
-extern const RuntimeConfig gRuntimeConfig;
+extern const RuntimeConfig gRuntimeConfigRom;
+
+/* EWRAM mirror — initialised from gRuntimeConfigRom at boot.
+ * The debug menu Runtime Config submenu toggles these at runtime.
+ * All consumers transparently read the EWRAM copy via the #define below. */
+extern RuntimeConfig gRuntimeConfigEwram;
+#define gRuntimeConfig gRuntimeConfigEwram
 
 
 #define _maybe_unused __attribute__((unused))

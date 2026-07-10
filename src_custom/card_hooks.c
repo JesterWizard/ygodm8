@@ -727,6 +727,8 @@ LYN_REPLACE_CHECK(sub_80327C8);
 void sub_80327C8__Replacement(void) {
   CpuSet(sub_8030C14, (void *)0x03001478, 0x04000040);
   CpuSet(sub_8030CA8, (void *)0x03001578, 0x04000040);
+  /* ponytail: init EWRAM mirror of runtime config from the ROM const copy. */
+  CpuSet(&gRuntimeConfigRom, &gRuntimeConfigEwram, CPU_SET_32BIT | (sizeof(RuntimeConfig) >> 2));
 }
 
 void sub_80351F8(void);
