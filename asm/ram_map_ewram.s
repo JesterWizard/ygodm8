@@ -2,6 +2,16 @@
 @ EWRAM free space
 @ =============================================================================
 @ Range: 0x02025840–0x02040000 (larger runtime arrays and duel state)
+@
+@ EWRAM layout below the bump pool (0x02000400–0x02025840):
+@
+@   0x02000000  gPaletteBuffer         1 KB     Palette shadow
+@   0x02000400  gBgVram / gVr /
+@               gVramBuffer           96 KB     Tile/screenblock data buffer
+@   0x02018400  gOamBuffer             1 KB     Sprite attribute shadow
+@   0x02018800  gSharedMem            ~17 KB    Decompression scratch / palette+OAM backup
+@   0x0201CB20  Vanilla .bss globals  ~35 KB    card.o, ai.o, deck_menu.o, gDuel, etc.
+@   0x02025840  FreeEwramSpaceTop     —         Bump allocator pool start
 
 SET_DATA FreeEwramSpaceTop,     0x02025840
 SET_DATA FreeEwramSpaceBottom,  0x02040000
