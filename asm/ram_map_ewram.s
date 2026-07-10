@@ -532,7 +532,7 @@ _kernel_malloc_ewram gAiSimSavedAmebaPendingDamageTarget1, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockFixedDuelist, 1
 _kernel_malloc_ewram gAiSimSavedTheWickedAvatarLockTurnsRemaining, 1
 
-@ -- Summon animation save buffers (~0x4402 bytes total) -------------------
+@ -- Summon animation save buffers (~0x4403 bytes total) -------------------
 @ gSummonAnimSavedPalette: full 512-entry palette (BG+OBJ) = 0x400 bytes.
 @ Darkened during the fade and restored after.
 _kernel_malloc_ewram_array gSummonAnimSavedPalette, 0x400

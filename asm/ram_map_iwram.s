@@ -140,9 +140,11 @@ _kernel_malloc gWorldSuppressionNegatesFieldSpells, 1
 
 @ ---------------------------------------------------------------------------
 @ Hamon, Lord of Striking Thunder: battle-burn pending state
-@ ponytail: pad so gPendingHamonBattleBurnEffectCardId (u16) is 2-byte aligned.
+@ ponytail: 3 bytes pad (1 existing + 1 new for u16 alignment) + 1 duelist byte
+@ ensures gPendingHamonBattleBurnEffectCardId (u16) is 2-byte aligned.
 _kernel_malloc gPendingHamonBattleBurnDuelistPad, 1
 _kernel_malloc gPendingHamonBattleBurnDuelist, 1
+_kernel_malloc gPendingHamonBattleBurnEffectCardIdUnalign, 1
 _kernel_malloc gPendingHamonBattleBurnEffectCardId, 2
 
 @ Raviel, Lord of Phantasms: token-summon pending state

@@ -973,7 +973,7 @@ void sub_80449D8__Replacement(void)
   if (gSelectedCard.id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
   {
-    bool32 summonAnim = TryPlaySummonAnimation(gSelectedCard.id);
+    bool32 _summonAnim = TryPlaySummonAnimation(gSelectedCard.id);
     ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
     CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
     if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
@@ -1014,7 +1014,7 @@ void sub_80449D8__Replacement(void)
     TryEnableCourtOfJusticeIgnitionAfterPlacement();
     TryEnableValhallaHallOfTheFallenIgnitionAfterPlacement();
     UpdateDuelGfxExceptField();
-    if (summonAnim == TRUE)
+    if (_summonAnim == TRUE)
       FinishSummonAnimation();
   }
   /* ponytail: on-summon text after field draw so Blazeman/Stratos is visible. */

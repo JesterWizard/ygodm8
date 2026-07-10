@@ -321,7 +321,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
 
   summonZone = gTurnZones[monsterRow][monsterZone];
   {
-    bool32 summonAnim = TryPlaySummonAnimation(monsterId);
+    bool32 _summonAnim = TryPlaySummonAnimation(monsterId);
     summonZone->id = monsterId;
     InitMonsterZone(summonZone, opts);
     FinishTheWickedAvatarTributeSummon(
@@ -337,7 +337,7 @@ static enum DuelActionResult PlaceMonsterFromId(u8 turnDuelist, u16 monsterId, s
     TryElementalHeroSunriseOnMonsterPlacement(summonZone);
     TryElementalHeroAbsoluteZeroOnMonsterPlacement(summonZone);
     MaybeUpdateGfx(opts.updateGfx);
-    if (summonAnim == TRUE)
+    if (_summonAnim == TRUE)
       FinishSummonAnimation();
   }
   /* ponytail: on-summon text after field draw (Blazeman/Stratos popup, DDS, Ryu-Kishin). */
