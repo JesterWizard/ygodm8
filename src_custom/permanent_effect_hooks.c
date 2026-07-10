@@ -111,6 +111,8 @@ unsigned char IsSkillDrainActiveOnField(void);
 unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
 unsigned char ShouldActivateARMAGEDDON_KNIGHT(void);
 void ActivateARMAGEDDON_KNIGHT(void);
+unsigned char ShouldActivateCANNONBALL_SPEAR_SHELLFISH(void);
+void ActivateCANNONBALL_SPEAR_SHELLFISH(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -312,6 +314,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ARMAGEDDON_KNIGHT,
     .shouldActivate = ShouldActivateARMAGEDDON_KNIGHT,
     .activate = ActivateARMAGEDDON_KNIGHT,
+  },
+  {
+    .cardId = CANNONBALL_SPEAR_SHELLFISH,
+    .shouldActivate = ShouldActivateCANNONBALL_SPEAR_SHELLFISH,
+    .activate = ActivateCANNONBALL_SPEAR_SHELLFISH,
   },
 };
 

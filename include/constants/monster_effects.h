@@ -162,6 +162,8 @@ enum {
   MONSTER_EFFECT_LIGHT_END_DRAGON,
   MONSTER_EFFECT_URIA_LORD_OF_SEARING_FLAMES,
   MONSTER_EFFECT_RAVIEL_LORD_OF_PHANTASMS,
+  MONSTER_EFFECT_BIRDFACE,
+  MONSTER_EFFECT_BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -241,5 +243,9 @@ extern unsigned char CanActivateURIA_LORD_OF_SEARING_FLAMES(void);
 extern void ActivateURIA_LORD_OF_SEARING_FLAMESEffect(void);
 extern unsigned char CanActivateRAVIEL_LORD_OF_PHANTASMS(void);
 extern void ActivateRAVIEL_LORD_OF_PHANTASMSEffect(void);
+extern unsigned char CanActivateBIRDFACE(void);
+extern void ActivateBIRDFACEEffect(void);
+extern unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void);
+extern void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

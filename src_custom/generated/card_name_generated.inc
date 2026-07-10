@@ -353,6 +353,16 @@ static const u8 sBackfireName[] __attribute__((section(".append_assets"))) = "Ba
 static const u8 sHamonLordOfStrikingThunderName[] __attribute__((section(".append_assets"))) = "Hamon, Lord of Striking Thunder";
 static const u8 sUriaLordOfSearingFlamesName[] __attribute__((section(".append_assets"))) = "Uria, Lord of Searing Flames";
 static const u8 sRavielLordOfPhantasmsName[] __attribute__((section(".append_assets"))) = "Raviel, Lord of Phantasms";
+static const u8 sBerserkerSoulName[] __attribute__((section(".append_assets"))) = "Berserker Soul";
+static const u8 sBirdfaceName[] __attribute__((section(".append_assets"))) = "Birdface";
+static const u8 sBlueEyesAlternativeUltimateDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Alternative Ultimate Dragon";
+static const u8 sBreakTheDestinyName[] __attribute__((section(".append_assets"))) = "Break the Destiny";
+static const u8 sBubbleBlasterName[] __attribute__((section(".append_assets"))) = "Bubble Blaster";
+static const u8 sBurdenOfTheMightyName[] __attribute__((section(".append_assets"))) = "Burden of the Mighty";
+static const u8 sCallOfTheMummyName[] __attribute__((section(".append_assets"))) = "Call of the Mummy";
+static const u8 sCannonballSpearShellfishName[] __attribute__((section(".append_assets"))) = "Cannonball Spear Shellfish";
+static const u8 sCelestialSwordEatosName[] __attribute__((section(".append_assets"))) = "Celestial Sword - Eatos";
+static const u8 sChaosFormName[] __attribute__((section(".append_assets"))) = "Chaos Form";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1065,6 +1075,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sUriaLordOfSearingFlamesName;
   if (cardId == 0x0480)
     return (u8 *)sRavielLordOfPhantasmsName;
+  if (cardId == 0x0481)
+    return (u8 *)sBerserkerSoulName;
+  if (cardId == 0x0482)
+    return (u8 *)sBirdfaceName;
+  if (cardId == 0x0483)
+    return (u8 *)sBlueEyesAlternativeUltimateDragonName;
+  if (cardId == 0x0484)
+    return (u8 *)sBreakTheDestinyName;
+  if (cardId == 0x0485)
+    return (u8 *)sBubbleBlasterName;
+  if (cardId == 0x0486)
+    return (u8 *)sBurdenOfTheMightyName;
+  if (cardId == 0x0487)
+    return (u8 *)sCallOfTheMummyName;
+  if (cardId == 0x0488)
+    return (u8 *)sCannonballSpearShellfishName;
+  if (cardId == 0x0489)
+    return (u8 *)sCelestialSwordEatosName;
+  if (cardId == 0x048A)
+    return (u8 *)sChaosFormName;
 
   return gCardNames[cardId];
 }

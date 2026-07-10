@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 352 |
-| Art ready, needs manifest | 244 |
+| In game (manifest + art) | 362 |
+| Art ready, needs manifest | 234 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **598** |
 
@@ -374,21 +374,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HAMON_LORD_OF_STRIKING_THUNDER` | Hamon, Lord of Striking Thunder | `hamon_lord_of_striking_thunder.png` |
 | `URIA_LORD_OF_SEARING_FLAMES` | Uria, Lord of Searing Flames | `uria_lord_of_searing_flames.png` |
 | `RAVIEL_LORD_OF_PHANTASMS` | Raviel, Lord of Phantasms | `raviel_lord_of_phantasms.png` |
+| `BERSERKER_SOUL` | Berserker Soul | `berserker_soul.png` |
+| `BIRDFACE` | Birdface | `birdface.png` |
+| `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` | Blue-Eyes Alternative Ultimate Dragon | `blue_eyes_alternative_ultimate_dragon.png` |
+| `BREAK_THE_DESTINY` | Break the Destiny | `break_the_destiny.png` |
+| `BUBBLE_BLASTER` | Bubble Blaster | `bubble_blaster.png` |
+| `BURDEN_OF_THE_MIGHTY` | Burden of the Mighty | `burden_of_the_mighty.png` |
+| `CALL_OF_THE_MUMMY` | Call of the Mummy | `call_of_the_mummy.png` |
+| `CANNONBALL_SPEAR_SHELLFISH` | Cannonball Spear Shellfish | `cannonball_spear_shellfish.png` |
+| `CELESTIAL_SWORD_EATOS` | Celestial Sword - Eatos | `celestial_sword_eatos.png` |
+| `CHAOS_FORM` | Chaos Form | `chaos_form.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `BERSERKER_SOUL` — `berserker_soul.png`
-- [ ] `BIRDFACE` — `birdface.png`
-- [ ] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
-- [ ] `BREAK_THE_DESTINY` — `break_the_destiny.png`
-- [ ] `BUBBLE_BLASTER` — `bubble_blaster.png`
-- [ ] `BURDEN_OF_THE_MIGHTY` — `burden_of_the_mighty.png`
-- [ ] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
-- [ ] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
-- [ ] `CELESTIAL_SWORD_EATOS` — `celestial_sword_eatos.png`
-- [ ] `CHAOS_FORM` — `chaos_form.png`
 - [ ] `CHICKEN_GAME` — `chicken_game.png`
 - [ ] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
 - [ ] `CHIMERATECH_MEGAFLEET_DRAGON` — `chimeratech_megafleet_dragon.png`

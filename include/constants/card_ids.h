@@ -1154,11 +1154,21 @@
 #define HAMON_LORD_OF_STRIKING_THUNDER           0x047E
 #define URIA_LORD_OF_SEARING_FLAMES              0x047F
 #define RAVIEL_LORD_OF_PHANTASMS                 0x0480
+#define BERSERKER_SOUL                           0x0481
+#define BIRDFACE                                 0x0482
+#define BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON    0x0483
+#define BREAK_THE_DESTINY                        0x0484
+#define BUBBLE_BLASTER                           0x0485
+#define BURDEN_OF_THE_MIGHTY                     0x0486
+#define CALL_OF_THE_MUMMY                        0x0487
+#define CANNONBALL_SPEAR_SHELLFISH               0x0488
+#define CELESTIAL_SWORD_EATOS                    0x0489
+#define CHAOS_FORM                               0x048A
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0481
-#define NUM_CUSTOM_CARDS                        0x0160
+#define NUM_TOTAL_CARDS                         0x048B
+#define NUM_CUSTOM_CARDS                        0x016A
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

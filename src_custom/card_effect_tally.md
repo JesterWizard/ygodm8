@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `323` effects
+- `333` effects
 
 ## Tally
 
@@ -304,6 +304,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Armed Dragon Lv10` | `src_custom/activated_effects/armed_dragon_lv10.c` |
 | `trap_effects` | `Attack And Receive` | `src_custom/trap_effects/attack_and_receive.c` |
 | `trap_effects` | `Backfire` | `src_custom/trap_effects/backfire.c` |
+| `spell_effects` | `Berserker Soul` | `src_custom/spell_effects/berserker_soul.c` |
+| `spell_effects` | `Bubble Blaster` | `src_custom/spell_effects/bubble_blaster.c` |
+| `spell_effects` | `Burden Of The Mighty` | `src_custom/spell_effects/burden_of_the_mighty.c` |
+| `spell_effects` | `Call Of The Mummy` | `src_custom/spell_effects/call_of_the_mummy.c` |
+| `spell_effects` | `Celestial Sword Eatos` | `src_custom/spell_effects/celestial_sword_eatos.c` |
+| `spell_effects` | `Chaos Form` | `src_custom/spell_effects/chaos_form.c` |
+| `trap_effects` | `Break The Destiny` | `src_custom/trap_effects/break_the_destiny.c` |
+| `activated_effects` | `Birdface` | `src_custom/activated_effects/birdface.c` |
+| `permanent_effects` | `Cannonball Spear Shellfish` | `src_custom/permanent_effects/cannonball_spear_shellfish.c` |
+| `activated_effects` | `Blue Eyes Alternative Ultimate Dragon` | `src_custom/activated_effects/blue_eyes_alternative_ultimate_dragon.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

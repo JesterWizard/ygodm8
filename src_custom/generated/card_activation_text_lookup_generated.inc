@@ -352,6 +352,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [HAMON_LORD_OF_STRIKING_THUNDER] = gActivationDescription_HamonLordOfStrikingThunder_Popup1,
   [URIA_LORD_OF_SEARING_FLAMES] = gActivationDescription_UriaLordOfSearingFlames_Popup1,
   [RAVIEL_LORD_OF_PHANTASMS] = gActivationDescription_RavielLordOfPhantasms_Popup1,
+  [BERSERKER_SOUL] = gActivationDescription_BerserkerSoul_Popup1,
+  [BIRDFACE] = gActivationDescription_Birdface_Popup1,
+  [BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON] = gActivationDescription_BlueEyesAlternativeUltimateDragon_Popup1,
+  [BREAK_THE_DESTINY] = gActivationDescription_BreakTheDestiny_Popup1,
+  [BUBBLE_BLASTER] = gActivationDescription_BubbleBlaster_Popup1,
+  [BURDEN_OF_THE_MIGHTY] = gActivationDescription_BurdenOfTheMighty_Popup1,
+  [CALL_OF_THE_MUMMY] = gActivationDescription_CallOfTheMummy_Popup1,
+  [CANNONBALL_SPEAR_SHELLFISH] = gActivationDescription_CannonballSpearShellfish_Popup1,
+  [CELESTIAL_SWORD_EATOS] = gActivationDescription_CelestialSwordEatos_Popup1,
+  [CHAOS_FORM] = gActivationDescription_ChaosForm_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -734,6 +744,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_HAMON_LORD_OF_STRIKING_THUNDER_POPUP_1] = gActivationDescription_HamonLordOfStrikingThunder_Popup1,
   [CARD_EFFECT_TEXT_URIA_LORD_OF_SEARING_FLAMES_POPUP_1] = gActivationDescription_UriaLordOfSearingFlames_Popup1,
   [CARD_EFFECT_TEXT_RAVIEL_LORD_OF_PHANTASMS_POPUP_1] = gActivationDescription_RavielLordOfPhantasms_Popup1,
+  [CARD_EFFECT_TEXT_BERSERKER_SOUL_POPUP_1] = gActivationDescription_BerserkerSoul_Popup1,
+  [CARD_EFFECT_TEXT_BIRDFACE_POPUP_1] = gActivationDescription_Birdface_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON_POPUP_1] = gActivationDescription_BlueEyesAlternativeUltimateDragon_Popup1,
+  [CARD_EFFECT_TEXT_BREAK_THE_DESTINY_POPUP_1] = gActivationDescription_BreakTheDestiny_Popup1,
+  [CARD_EFFECT_TEXT_BUBBLE_BLASTER_POPUP_1] = gActivationDescription_BubbleBlaster_Popup1,
+  [CARD_EFFECT_TEXT_BURDEN_OF_THE_MIGHTY_POPUP_1] = gActivationDescription_BurdenOfTheMighty_Popup1,
+  [CARD_EFFECT_TEXT_CALL_OF_THE_MUMMY_POPUP_1] = gActivationDescription_CallOfTheMummy_Popup1,
+  [CARD_EFFECT_TEXT_CANNONBALL_SPEAR_SHELLFISH_POPUP_1] = gActivationDescription_CannonballSpearShellfish_Popup1,
+  [CARD_EFFECT_TEXT_CELESTIAL_SWORD_EATOS_POPUP_1] = gActivationDescription_CelestialSwordEatos_Popup1,
+  [CARD_EFFECT_TEXT_CHAOS_FORM_POPUP_1] = gActivationDescription_ChaosForm_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

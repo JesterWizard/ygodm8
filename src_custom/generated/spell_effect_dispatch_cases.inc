@@ -17,6 +17,9 @@
     case BACKUP_SQUAD:
       EffectBACKUP_SQUAD();
       return;
+    case BERSERKER_SOUL:
+      EffectBERSERKER_SOUL();
+      return;
     case BIG_BANG_SHOT:
       EffectBigBangShot();
       return;
@@ -35,8 +38,17 @@
     case BOTTOMLESS_SHIFTING_SAND:
       EffectBottomlessShiftingSand();
       return;
+    case BUBBLE_BLASTER:
+      EffectBUBBLE_BLASTER();
+      return;
+    case BURDEN_OF_THE_MIGHTY:
+      EffectBURDEN_OF_THE_MIGHTY();
+      return;
     case BURNING_LAND:
       EffectBurningLand();
+      return;
+    case CALL_OF_THE_MUMMY:
+      EffectCALL_OF_THE_MUMMY();
       return;
     case CARD_DESTRUCTION:
       EffectCardDestruction();
@@ -47,8 +59,14 @@
     case CARD_OF_SANCTITY:
       EffectCardOfSanctity();
       return;
+    case CELESTIAL_SWORD_EATOS:
+      EffectCELESTIAL_SWORD_EATOS();
+      return;
     case CHAIN_ENERGY:
       EffectChainEnergy();
+      return;
+    case CHAOS_FORM:
+      EffectCHAOS_FORM();
       return;
     case CHAOS_GREED:
       EffectChaosGreed();

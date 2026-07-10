@@ -109,6 +109,10 @@ unsigned char CanActivateURIA_LORD_OF_SEARING_FLAMES(void);
 void ActivateURIA_LORD_OF_SEARING_FLAMESEffect(void);
 unsigned char CanActivateRAVIEL_LORD_OF_PHANTASMS(void);
 void ActivateRAVIEL_LORD_OF_PHANTASMSEffect(void);
+unsigned char CanActivateBIRDFACE(void);
+void ActivateBIRDFACEEffect(void);
+unsigned char CanActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON(void);
+void ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect(void);
 unsigned char CanActivateDARK_ARMED_DRAGON(void);
 void ActivateDARK_ARMED_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
@@ -674,6 +678,14 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == ARMED_DRAGON_LV10) {
     ActivateARMED_DRAGON_LV10Effect();
+    return;
+  }
+  if (gMonEffect.id == BIRDFACE) {
+    ActivateBIRDFACEEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON) {
+    ActivateBLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGONEffect();
     return;
   }
 
