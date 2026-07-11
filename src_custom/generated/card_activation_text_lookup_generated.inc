@@ -439,6 +439,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [GREEN_GADGET] = gActivationDescription_GreenGadget_Popup1,
   [GROUND_COLLAPSE] = gActivationDescription_GroundCollapse_Popup1,
   [GUARDIAN_DREADSCYTHE] = gActivationDescription_GuardianDreadscythe_Popup1,
+  [HARPIE_LADY_PHOENIX_FORMATION] = gActivationDescription_HarpieLadyPhoenixFormation_Popup1,
+  [HERO_FLASH] = gActivationDescription_HeroFlash_Popup1,
+  [INSECT_IMITATION] = gActivationDescription_InsectImitation_Popup1,
+  [INSTANT_FUSION] = gActivationDescription_InstantFusion_Popup1,
+  [GUARDIAN_EATOS] = gActivationDescription_GuardianEatos_Popup1,
+  [HERALD_OF_CREATION] = gActivationDescription_HeraldOfCreation_Popup1,
+  [HOLACTIE_THE_CREATOR_OF_LIGHT] = gActivationDescription_HolactieTheCreatorOfLight_Popup1,
+  [HORUS_THE_BLACK_FLAME_DRAGON_LV8] = gActivationDescription_HorusTheBlackFlameDragonLv8_Popup1,
+  [HORUS_THE_BLACK_FLAME_DRAGON_LV4] = gActivationDescription_HorusTheBlackFlameDragonLv4_Popup1,
+  [HORUS_THE_BLACK_FLAME_DRAGON_LV6] = gActivationDescription_HorusTheBlackFlameDragonLv6_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -908,6 +918,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_GREEN_GADGET_POPUP_1] = gActivationDescription_GreenGadget_Popup1,
   [CARD_EFFECT_TEXT_GROUND_COLLAPSE_POPUP_1] = gActivationDescription_GroundCollapse_Popup1,
   [CARD_EFFECT_TEXT_GUARDIAN_DREADSCYTHE_POPUP_1] = gActivationDescription_GuardianDreadscythe_Popup1,
+  [CARD_EFFECT_TEXT_HARPIE_LADY_PHOENIX_FORMATION_POPUP_1] = gActivationDescription_HarpieLadyPhoenixFormation_Popup1,
+  [CARD_EFFECT_TEXT_HERO_FLASH_POPUP_1] = gActivationDescription_HeroFlash_Popup1,
+  [CARD_EFFECT_TEXT_INSECT_IMITATION_POPUP_1] = gActivationDescription_InsectImitation_Popup1,
+  [CARD_EFFECT_TEXT_INSTANT_FUSION_POPUP_1] = gActivationDescription_InstantFusion_Popup1,
+  [CARD_EFFECT_TEXT_GUARDIAN_EATOS_POPUP_1] = gActivationDescription_GuardianEatos_Popup1,
+  [CARD_EFFECT_TEXT_HERALD_OF_CREATION_POPUP_1] = gActivationDescription_HeraldOfCreation_Popup1,
+  [CARD_EFFECT_TEXT_HOLACTIE_THE_CREATOR_OF_LIGHT_POPUP_1] = gActivationDescription_HolactieTheCreatorOfLight_Popup1,
+  [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV8_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv8_Popup1,
+  [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV4_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv4_Popup1,
+  [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV6_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv6_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

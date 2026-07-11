@@ -133,6 +133,10 @@ unsigned char ShouldActivateDESTINY_HERO_DREAD_SERVANT(void);
 void ActivateDESTINY_HERO_DREAD_SERVANT(void);
 unsigned char ShouldActivateDESTINY_HERO_DREADMASTER(void);
 void ActivateDESTINY_HERO_DREADMASTER(void);
+unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void);
+void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void);
+unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6(void);
+void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -389,6 +393,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DESTINY_HERO_DREADMASTER,
     .shouldActivate = ShouldActivateDESTINY_HERO_DREADMASTER,
     .activate = ActivateDESTINY_HERO_DREADMASTER,
+  },
+  {
+    .cardId = HORUS_THE_BLACK_FLAME_DRAGON_LV4,
+    .shouldActivate = ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4,
+    .activate = ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4,
+  },
+  {
+    .cardId = HORUS_THE_BLACK_FLAME_DRAGON_LV6,
+    .shouldActivate = ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6,
+    .activate = ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6,
   },
 };
 

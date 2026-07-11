@@ -1816,6 +1816,46 @@ static const unsigned char sGuardianDreadscytheBigArt[] __attribute__((section("
 static const unsigned short sGuardianDreadscytheBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/guardian_dreadscythe.gbapal");
 static const unsigned char sGuardianDreadscytheMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/guardian_dreadscythe.lz");
 
+static const unsigned char sHarpieLadyPhoenixFormationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_lady_phoenix_formation.huff");
+static const unsigned short sHarpieLadyPhoenixFormationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_phoenix_formation.gbapal");
+static const unsigned char sHarpieLadyPhoenixFormationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_phoenix_formation.lz");
+
+static const unsigned char sHeroFlashBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hero_flash.huff");
+static const unsigned short sHeroFlashBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hero_flash.gbapal");
+static const unsigned char sHeroFlashMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hero_flash.lz");
+
+static const unsigned char sInsectImitationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/insect_imitation.huff");
+static const unsigned short sInsectImitationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/insect_imitation.gbapal");
+static const unsigned char sInsectImitationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/insect_imitation.lz");
+
+static const unsigned char sInstantFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/instant_fusion.huff");
+static const unsigned short sInstantFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/instant_fusion.gbapal");
+static const unsigned char sInstantFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/instant_fusion.lz");
+
+static const unsigned char sGuardianEatosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/guardian_eatos.huff");
+static const unsigned short sGuardianEatosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/guardian_eatos.gbapal");
+static const unsigned char sGuardianEatosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/guardian_eatos.lz");
+
+static const unsigned char sHeraldOfCreationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/herald_of_creation.huff");
+static const unsigned short sHeraldOfCreationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/herald_of_creation.gbapal");
+static const unsigned char sHeraldOfCreationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/herald_of_creation.lz");
+
+static const unsigned char sHolactieTheCreatorOfLightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/holactie_the_creator_of_light.huff");
+static const unsigned short sHolactieTheCreatorOfLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/holactie_the_creator_of_light.gbapal");
+static const unsigned char sHolactieTheCreatorOfLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/holactie_the_creator_of_light.lz");
+
+static const unsigned char sHorusTheBlackFlameDragonLv8BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/horus_the_black_flame_dragon_lv8.huff");
+static const unsigned short sHorusTheBlackFlameDragonLv8BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/horus_the_black_flame_dragon_lv8.gbapal");
+static const unsigned char sHorusTheBlackFlameDragonLv8MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/horus_the_black_flame_dragon_lv8.lz");
+
+static const unsigned char sHorusTheBlackFlameDragonLv4BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/horus_the_black_flame_dragon_lv4.huff");
+static const unsigned short sHorusTheBlackFlameDragonLv4BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/horus_the_black_flame_dragon_lv4.gbapal");
+static const unsigned char sHorusTheBlackFlameDragonLv4MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/horus_the_black_flame_dragon_lv4.lz");
+
+static const unsigned char sHorusTheBlackFlameDragonLv6BigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/horus_the_black_flame_dragon_lv6.huff");
+static const unsigned short sHorusTheBlackFlameDragonLv6BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/horus_the_black_flame_dragon_lv6.gbapal");
+static const unsigned char sHorusTheBlackFlameDragonLv6MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/horus_the_black_flame_dragon_lv6.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2271,6 +2311,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04E2] = sGreenGadgetBigArt,
   [0x04E3] = sGroundCollapseBigArt,
   [0x04E4] = sGuardianDreadscytheBigArt,
+  [0x04E5] = sHarpieLadyPhoenixFormationBigArt,
+  [0x04E6] = sHeroFlashBigArt,
+  [0x04E7] = sInsectImitationBigArt,
+  [0x04E8] = sInstantFusionBigArt,
+  [0x04E9] = sGuardianEatosBigArt,
+  [0x04EA] = sHeraldOfCreationBigArt,
+  [0x04EB] = sHolactieTheCreatorOfLightBigArt,
+  [0x04EC] = sHorusTheBlackFlameDragonLv8BigArt,
+  [0x04ED] = sHorusTheBlackFlameDragonLv4BigArt,
+  [0x04EE] = sHorusTheBlackFlameDragonLv6BigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2728,6 +2778,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04E2] = sGreenGadgetBigPalette,
   [0x04E3] = sGroundCollapseBigPalette,
   [0x04E4] = sGuardianDreadscytheBigPalette,
+  [0x04E5] = sHarpieLadyPhoenixFormationBigPalette,
+  [0x04E6] = sHeroFlashBigPalette,
+  [0x04E7] = sInsectImitationBigPalette,
+  [0x04E8] = sInstantFusionBigPalette,
+  [0x04E9] = sGuardianEatosBigPalette,
+  [0x04EA] = sHeraldOfCreationBigPalette,
+  [0x04EB] = sHolactieTheCreatorOfLightBigPalette,
+  [0x04EC] = sHorusTheBlackFlameDragonLv8BigPalette,
+  [0x04ED] = sHorusTheBlackFlameDragonLv4BigPalette,
+  [0x04EE] = sHorusTheBlackFlameDragonLv6BigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3185,6 +3245,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04E2] = 0,
   [0x04E3] = 0,
   [0x04E4] = 0,
+  [0x04E5] = 0,
+  [0x04E6] = 0,
+  [0x04E7] = 0,
+  [0x04E8] = 0,
+  [0x04E9] = 0,
+  [0x04EA] = 0,
+  [0x04EB] = 0,
+  [0x04EC] = 0,
+  [0x04ED] = 0,
+  [0x04EE] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3642,4 +3712,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04E2] = sGreenGadgetMiniArt,
   [0x04E3] = sGroundCollapseMiniArt,
   [0x04E4] = sGuardianDreadscytheMiniArt,
+  [0x04E5] = sHarpieLadyPhoenixFormationMiniArt,
+  [0x04E6] = sHeroFlashMiniArt,
+  [0x04E7] = sInsectImitationMiniArt,
+  [0x04E8] = sInstantFusionMiniArt,
+  [0x04E9] = sGuardianEatosMiniArt,
+  [0x04EA] = sHeraldOfCreationMiniArt,
+  [0x04EB] = sHolactieTheCreatorOfLightMiniArt,
+  [0x04EC] = sHorusTheBlackFlameDragonLv8MiniArt,
+  [0x04ED] = sHorusTheBlackFlameDragonLv4MiniArt,
+  [0x04EE] = sHorusTheBlackFlameDragonLv6MiniArt,
 };

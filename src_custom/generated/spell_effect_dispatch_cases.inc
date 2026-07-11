@@ -200,8 +200,20 @@
     case GUARDIAN_TREASURE:
       EffectGuardianTreasure();
       return;
+    case HARPIE_LADY_PHOENIX_FORMATION:
+      EffectHARPIE_LADY_PHOENIX_FORMATION();
+      return;
+    case HERO_FLASH:
+      EffectHERO_FLASH();
+      return;
     case H_HEATED_HEART:
       EffectHHeatedHeart();
+      return;
+    case INSECT_IMITATION:
+      EffectINSECT_IMITATION();
+      return;
+    case INSTANT_FUSION:
+      EffectINSTANT_FUSION();
       return;
     case JAM_BREEDING_MACHINE:
       EffectJamBreedingMachine();

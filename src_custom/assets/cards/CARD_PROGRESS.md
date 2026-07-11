@@ -479,16 +479,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `GREEN_GADGET` — `green_gadget.png`
 - [x] `GROUND_COLLAPSE` — `ground_collapse.png`
 - [x] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
-- [ ] `GUARDIAN_EATOS` — `guardian_eatos.png`
-- [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`
-- [ ] `HERO_FLASH` — `hero_flash.png`
-- [ ] `HOLACTIE_THE_CREATOR_OF_LIGHT` — `holactie_the_creator_of_light.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` — `horus_the_black_flame_dragon_level_eight.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` — `horus_the_black_flame_dragon_level_four.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
-- [ ] `INSECT_IMITATION` — `insect_imitation.png`
-- [ ] `INSTANT_FUSION` — `instant_fusion.png`
+- [x] `GUARDIAN_EATOS` — `guardian_eatos.png`
+- [x] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
+- [x] `HERALD_OF_CREATION` — `herald_of_creation.png`
+- [x] `HERO_FLASH` — `hero_flash.png`
+- [x] `HOLACTIE_THE_CREATOR_OF_LIGHT` — `holactie_the_creator_of_light.png`
+- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV8` — `horus_the_black_flame_dragon_lv8.png`
+- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV4` — `horus_the_black_flame_dragon_lv4.png`
+- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV6` — `horus_the_black_flame_dragon_lv6.png`
+- [x] `INSECT_IMITATION` — `insect_imitation.png`
+- [x] `INSTANT_FUSION` — `instant_fusion.png`
 - [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
 - [ ] `JUDGMENT_DRAGON` — `judgment_dragon.png`
 - [ ] `KING_DRAGUN` — `king_dragun.png`

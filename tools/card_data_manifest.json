@@ -35717,6 +35717,373 @@
       "effect_texts": {
         "popup_1": "If Guardian Eatos is destroyed, Summon this from hand. Equip Reaper Scythe. Cannot Summon other monsters. Wh"
       }
+    },
+    {
+      "card_const": "HARPIE_LADY_PHOENIX_FORMATION",
+      "card_name": "Harpie Lady Phoenix Formation",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        8,
+        6,
+        3,
+        0,
+        8,
+        2,
+        1,
+        9
+      ],
+      "description": {
+        "symbol": "gDescription_HarpieLadyPhoenixFormation",
+        "pages": [
+          "If you control 3+ Harpie Lady",
+          "and/or Harpie Lady Sisters: destroy",
+          "monsters opponent controls up to",
+          "number of Harpies you control, then",
+          "inflict dmg = highest ATK destroyed."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you control 3 or more Harpie Lady and/or Harpie Lady Sisters: Target as many monsters your opponent "
+      }
+    },
+    {
+      "card_const": "HERO_FLASH",
+      "card_name": "Hero Flash!!",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        0,
+        0,
+        1,
+        9,
+        1,
+        7,
+        4,
+        9
+      ],
+      "description": {
+        "symbol": "gDescription_HeroFlash",
+        "pages": [
+          "Banish H-Heated Heart, E-Emergency",
+          "Call, R-Righteous Justice and",
+          "O-Oversoul from your GY; Special",
+          "Summon 1 Elemental HERO Normal",
+          "Monster from Deck. They attack direct."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish H - Heated Heart, E - Emergency Call, R - Righteous Justice and O - Oversoul from your Graveyard; "
+      }
+    },
+    {
+      "card_const": "INSECT_IMITATION",
+      "card_name": "Insect Imitation",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        9,
+        6,
+        9,
+        6,
+        5,
+        3,
+        6,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_InsectImitation",
+        "pages": [
+          "Tribute 1 monster. Special Summon 1",
+          "Insect-Type monster from your Deck",
+          "whose Level is 1 higher than the",
+          "Tributed monster."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 monster. Special Summon 1 Insect-Type monster from your Deck whose Level is 1 higher than the "
+      }
+    },
+    {
+      "card_const": "INSTANT_FUSION",
+      "card_name": "Instant Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        0,
+        1,
+        8,
+        4,
+        5,
+        2,
+        0,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_InstantFusion",
+        "pages": [
+          "Pay 1000 LP; Special Summon 1 Level 5",
+          "or lower Fusion Monster from Extra",
+          "Deck, but it cannot attack and is",
+          "destroyed during End Phase.",
+          "(Treat as Fusion Summon.) 1 per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay 1000 LP; Special Summon 1 Level 5 or lower Fusion Monster from your Extra Deck, but it cannot attack, "
+      }
+    },
+    {
+      "card_const": "GUARDIAN_EATOS",
+      "card_name": "Guardian Eatos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        3,
+        4,
+        0,
+        2,
+        2,
+        2,
+        9,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_GuardianEatos",
+        "pages": [
+          "If no monsters in your GY, Special",
+          "Summon this card from your hand. You",
+          "can send 1 Equip Spell equipped to",
+          "this card to the GY, then banish up",
+          "to 3 in opponent GY; gains 500 ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you have no monsters in your Graveyard, you can Special Summon this card (from your hand). You can send "
+      }
+    },
+    {
+      "card_const": "HERALD_OF_CREATION",
+      "card_name": "Herald of Creation",
+      "atk": 1800,
+      "def": 600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [
+        6,
+        6,
+        3,
+        3,
+        7,
+        2,
+        1,
+        5
+      ],
+      "description": {
+        "symbol": "gDescription_HeraldOfCreation",
+        "pages": [
+          "Once per turn: You can discard 1 card, then target",
+          "1 Level 7 or higher monster in your Graveyard; add that",
+          "target to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn: You can discard 1 card, then target 1 Level 7 or higher monster in your Graveyard; add that "
+      }
+    },
+    {
+      "card_const": "HOLACTIE_THE_CREATOR_OF_LIGHT",
+      "card_name": "Holactie the Creator of Light",
+      "atk": -1,
+      "def": -1,
+      "level": 12,
+      "attribute": "ATTRIBUTE_DIVINE",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_HolactieTheCreatorOfLight",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must",
+          "be Special Summoned by Tributing 3",
+          "monsters: Slifer the Sky Dragon,",
+          "Obelisk the Tormentor, and The Winged",
+          "Dragon of Ra. Summoner wins the Duel."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 3 monsters whose "
+      }
+    },
+    {
+      "card_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV8",
+      "card_name": "Horus the Black Flame Dragon LV8",
+      "atk": 3000,
+      "def": 1800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        4,
+        8,
+        2,
+        2,
+        9,
+        8,
+        0,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_HorusTheBlackFlameDragonLv8",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must",
+          "be Special Summoned by Horus the Black",
+          "Flame Dragon LV6. When a Spell is",
+          "activated: Negate and destroy it.",
+          "Must be face-up to activate."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned by Horus the Black Flame Dragon LV6, and cannot be "
+      }
+    },
+    {
+      "card_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV4",
+      "card_name": "Horus the Black Flame Dragon LV4",
+      "atk": 1600,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [
+        7,
+        5,
+        8,
+        3,
+        0,
+        0,
+        9,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_HorusTheBlackFlameDragonLv4",
+        "pages": [
+          "Control cannot switch. During End",
+          "Phase, if this card destroyed a monster",
+          "by battle: Send it to the GY; Special",
+          "Summon 1 Horus the Black Flame Dragon",
+          "LV6 from hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Control of this face-up card cannot switch. During the End Phase, if this card destroyed a monster by "
+      }
+    },
+    {
+      "card_const": "HORUS_THE_BLACK_FLAME_DRAGON_LV6",
+      "card_name": "Horus the Black Flame Dragon LV6",
+      "atk": 2300,
+      "def": 1600,
+      "level": 6,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        1,
+        1,
+        2,
+        2,
+        4,
+        1,
+        0,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_HorusTheBlackFlameDragonLv6",
+        "pages": [
+          "Unaffected by Spell effects. During",
+          "End Phase, if this card destroyed a",
+          "monster by battle: Send it to the GY;",
+          "Special Summon 1 Horus the Black Flame",
+          "Dragon LV8 from hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This card is unaffected by Spell effects. During the End Phase, if this card destroyed a monster by battle "
+      }
     }
   ]
 }

@@ -1147,8 +1147,9 @@ FAILED:
 }
 
 
-/* BEGIN CUSTOM ACTIVATED EFFECTS WIRING */
-/* Activated effects for cards added via trunk:
+/* Custom activated effects — wire manually when implementing:
    GATE_GUARDIANS_COMBINED, GODDESS_BOW, GORZ_THE_EMISSARY_OF_DARKNESS,
-   GRANMARG_THE_ROCK_MONARCH, GREEN_GADGET, GUARDIAN_DREADSCYTHE
-   (hooks exist in src_custom/activated_effects/ - wire manually when implementing) */
+   GRANMARG_THE_ROCK_MONARCH, GREEN_GADGET, GUARDIAN_DREADSCYTHE,
+   GUARDIAN_EATOS, HERALD_OF_CREATION, HOLACTIE_THE_CREATOR_OF_LIGHT,
+   HORUS_THE_BLACK_FLAME_DRAGON_LV8
+   (hooks exist in src_custom/activated_effects/) */

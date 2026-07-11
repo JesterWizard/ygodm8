@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `410` effects
+- `420` effects
 
 ## Tally
 
@@ -391,6 +391,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Granmarg The Rock Monarch` | `src_custom/activated_effects/granmarg_the_rock_monarch.c` |
 | `activated_effects` | `Green Gadget` | `src_custom/activated_effects/green_gadget.c` |
 | `activated_effects` | `Guardian Dreadscythe` | `src_custom/activated_effects/guardian_dreadscythe.c` |
+| `spell_effects` | `Harpie Lady Phoenix Formation` | `src_custom/spell_effects/harpie_lady_phoenix_formation.c` |
+| `spell_effects` | `Hero Flash` | `src_custom/spell_effects/hero_flash.c` |
+| `spell_effects` | `Insect Imitation` | `src_custom/spell_effects/insect_imitation.c` |
+| `spell_effects` | `Instant Fusion` | `src_custom/spell_effects/instant_fusion.c` |
+| `activated_effects` | `Guardian Eatos` | `src_custom/activated_effects/guardian_eatos.c` |
+| `activated_effects` | `Herald Of Creation` | `src_custom/activated_effects/herald_of_creation.c` |
+| `activated_effects` | `Holactie The Creator Of Light` | `src_custom/activated_effects/holactie_the_creator_of_light.c` |
+| `activated_effects` | `Horus The Black Flame Dragon Lv8` | `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c` |
+| `permanent_effects` | `Horus The Black Flame Dragon Lv4` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c` |
+| `permanent_effects` | `Horus The Black Flame Dragon Lv6` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

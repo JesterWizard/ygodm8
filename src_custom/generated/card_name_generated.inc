@@ -453,6 +453,16 @@ static const u8 sGranmargTheRockMonarchName[] __attribute__((section(".append_as
 static const u8 sGreenGadgetName[] __attribute__((section(".append_assets"))) = "Green Gadget";
 static const u8 sGroundCollapseName[] __attribute__((section(".append_assets"))) = "Ground Collapse";
 static const u8 sGuardianDreadscytheName[] __attribute__((section(".append_assets"))) = "Guardian Dreadscythe";
+static const u8 sHarpieLadyPhoenixFormationName[] __attribute__((section(".append_assets"))) = "Harpie Lady Phoenix Formation";
+static const u8 sHeroFlashName[] __attribute__((section(".append_assets"))) = "Hero Flash!!";
+static const u8 sInsectImitationName[] __attribute__((section(".append_assets"))) = "Insect Imitation";
+static const u8 sInstantFusionName[] __attribute__((section(".append_assets"))) = "Instant Fusion";
+static const u8 sGuardianEatosName[] __attribute__((section(".append_assets"))) = "Guardian Eatos";
+static const u8 sHeraldOfCreationName[] __attribute__((section(".append_assets"))) = "Herald of Creation";
+static const u8 sHolactieTheCreatorOfLightName[] __attribute__((section(".append_assets"))) = "Holactie the Creator of Light";
+static const u8 sHorusTheBlackFlameDragonLv8Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV8";
+static const u8 sHorusTheBlackFlameDragonLv4Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV4";
+static const u8 sHorusTheBlackFlameDragonLv6Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV6";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1365,6 +1375,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGroundCollapseName;
   if (cardId == 0x04E4)
     return (u8 *)sGuardianDreadscytheName;
+  if (cardId == 0x04E5)
+    return (u8 *)sHarpieLadyPhoenixFormationName;
+  if (cardId == 0x04E6)
+    return (u8 *)sHeroFlashName;
+  if (cardId == 0x04E7)
+    return (u8 *)sInsectImitationName;
+  if (cardId == 0x04E8)
+    return (u8 *)sInstantFusionName;
+  if (cardId == 0x04E9)
+    return (u8 *)sGuardianEatosName;
+  if (cardId == 0x04EA)
+    return (u8 *)sHeraldOfCreationName;
+  if (cardId == 0x04EB)
+    return (u8 *)sHolactieTheCreatorOfLightName;
+  if (cardId == 0x04EC)
+    return (u8 *)sHorusTheBlackFlameDragonLv8Name;
+  if (cardId == 0x04ED)
+    return (u8 *)sHorusTheBlackFlameDragonLv4Name;
+  if (cardId == 0x04EE)
+    return (u8 *)sHorusTheBlackFlameDragonLv6Name;
 
   return gCardNames[cardId];
 }

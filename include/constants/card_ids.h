@@ -1254,11 +1254,21 @@
 #define GREEN_GADGET                             0x04E2
 #define GROUND_COLLAPSE                          0x04E3
 #define GUARDIAN_DREADSCYTHE                     0x04E4
+#define HARPIE_LADY_PHOENIX_FORMATION            0x04E5
+#define HERO_FLASH                               0x04E6
+#define INSECT_IMITATION                         0x04E7
+#define INSTANT_FUSION                           0x04E8
+#define GUARDIAN_EATOS                           0x04E9
+#define HERALD_OF_CREATION                       0x04EA
+#define HOLACTIE_THE_CREATOR_OF_LIGHT            0x04EB
+#define HORUS_THE_BLACK_FLAME_DRAGON_LV8         0x04EC
+#define HORUS_THE_BLACK_FLAME_DRAGON_LV4         0x04ED
+#define HORUS_THE_BLACK_FLAME_DRAGON_LV6         0x04EE
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04E5
-#define NUM_CUSTOM_CARDS                        0x01C4
+#define NUM_TOTAL_CARDS                         0x04EF
+#define NUM_CUSTOM_CARDS                        0x01CE
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
