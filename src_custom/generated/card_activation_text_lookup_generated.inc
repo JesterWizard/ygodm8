@@ -431,6 +431,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [FORCED_REQUISITION] = gActivationDescription_ForcedRequisition_Popup1,
   [DRAIN_TIME] = gActivationDescription_DrainTime_Popup1,
   [FIELDS_SANCTUARY] = gActivationDescription_FieldsSanctuary_Popup1,
+  [FUSION_DESTINY] = gActivationDescription_FusionDestiny_Popup1,
+  [FUSION_GATE] = gActivationDescription_FusionGate_Popup1,
+  [GIFT_CARD] = gActivationDescription_GiftCard_Popup1,
+  [GORZ_THE_EMISSARY_OF_DARKNESS] = gActivationDescription_GorzTheEmissaryOfDarkness_Popup1,
+  [GRANMARG_THE_ROCK_MONARCH] = gActivationDescription_GranmargTheRockMonarch_Popup1,
+  [GREEN_GADGET] = gActivationDescription_GreenGadget_Popup1,
+  [GROUND_COLLAPSE] = gActivationDescription_GroundCollapse_Popup1,
+  [GUARDIAN_DREADSCYTHE] = gActivationDescription_GuardianDreadscythe_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -892,6 +900,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_FORCED_REQUISITION_POPUP_1] = gActivationDescription_ForcedRequisition_Popup1,
   [CARD_EFFECT_TEXT_DRAIN_TIME_POPUP_1] = gActivationDescription_DrainTime_Popup1,
   [CARD_EFFECT_TEXT_FIELDS_SANCTUARY_POPUP_1] = gActivationDescription_FieldsSanctuary_Popup1,
+  [CARD_EFFECT_TEXT_FUSION_DESTINY_POPUP_1] = gActivationDescription_FusionDestiny_Popup1,
+  [CARD_EFFECT_TEXT_FUSION_GATE_POPUP_1] = gActivationDescription_FusionGate_Popup1,
+  [CARD_EFFECT_TEXT_GIFT_CARD_POPUP_1] = gActivationDescription_GiftCard_Popup1,
+  [CARD_EFFECT_TEXT_GORZ_THE_EMISSARY_OF_DARKNESS_POPUP_1] = gActivationDescription_GorzTheEmissaryOfDarkness_Popup1,
+  [CARD_EFFECT_TEXT_GRANMARG_THE_ROCK_MONARCH_POPUP_1] = gActivationDescription_GranmargTheRockMonarch_Popup1,
+  [CARD_EFFECT_TEXT_GREEN_GADGET_POPUP_1] = gActivationDescription_GreenGadget_Popup1,
+  [CARD_EFFECT_TEXT_GROUND_COLLAPSE_POPUP_1] = gActivationDescription_GroundCollapse_Popup1,
+  [CARD_EFFECT_TEXT_GUARDIAN_DREADSCYTHE_POPUP_1] = gActivationDescription_GuardianDreadscythe_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `400` effects
+- `410` effects
 
 ## Tally
 
@@ -381,6 +381,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Destiny Hero Destroy Dogma` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
 | `spell_effects` | `Doctor D` | `src_custom/spell_effects/doctor_d.c` |
 | `trap_effects` | `Doppelganger` | `src_custom/trap_effects/doppelganger.c` |
+| `spell_effects` | `Fusion Destiny` | `src_custom/spell_effects/fusion_destiny.c` |
+| `spell_effects` | `Fusion Gate` | `src_custom/spell_effects/fusion_gate.c` |
+| `spell_effects` | `Ground Collapse` | `src_custom/spell_effects/ground_collapse.c` |
+| `trap_effects` | `Gift Card` | `src_custom/trap_effects/gift_card.c` |
+| `activated_effects` | `Gate Guardians Combined` | `src_custom/activated_effects/gate_guardians_combined.c` |
+| `activated_effects` | `Goddess Bow` | `src_custom/activated_effects/goddess_bow.c` |
+| `activated_effects` | `Gorz The Emissary Of Darkness` | `src_custom/activated_effects/gorz_the_emissary_of_darkness.c` |
+| `activated_effects` | `Granmarg The Rock Monarch` | `src_custom/activated_effects/granmarg_the_rock_monarch.c` |
+| `activated_effects` | `Green Gadget` | `src_custom/activated_effects/green_gadget.c` |
+| `activated_effects` | `Guardian Dreadscythe` | `src_custom/activated_effects/guardian_dreadscythe.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

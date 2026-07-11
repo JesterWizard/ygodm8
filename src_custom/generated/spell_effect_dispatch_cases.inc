@@ -167,6 +167,12 @@
     case FINAL_COUNTDOWN:
       EffectFinalCountdown();
       return;
+    case FUSION_DESTINY:
+      EffectFUSION_DESTINY();
+      return;
+    case FUSION_GATE:
+      EffectFUSION_GATE();
+      return;
     case FUSION_RECOVERY:
       EffectFusionRecovery();
       return;
@@ -187,6 +193,9 @@
       return;
     case GRAVEKEEPERS_SERVANT:
       EffectGravekeepersServant();
+      return;
+    case GROUND_COLLAPSE:
+      EffectGROUND_COLLAPSE();
       return;
     case GUARDIAN_TREASURE:
       EffectGuardianTreasure();

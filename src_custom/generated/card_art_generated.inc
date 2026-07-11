@@ -1776,6 +1776,46 @@ static const unsigned char sFieldsSanctuaryBigArt[] __attribute__((section(".app
 static const unsigned short sFieldsSanctuaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fields_sanctuary.gbapal");
 static const unsigned char sFieldsSanctuaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fields_sanctuary.lz");
 
+static const unsigned char sFusionDestinyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fusion_destiny.huff");
+static const unsigned short sFusionDestinyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusion_destiny.gbapal");
+static const unsigned char sFusionDestinyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusion_destiny.lz");
+
+static const unsigned char sFusionGateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fusion_gate.huff");
+static const unsigned short sFusionGateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusion_gate.gbapal");
+static const unsigned char sFusionGateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusion_gate.lz");
+
+static const unsigned char sGateGuardiansCombinedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gate_guardians_combined.huff");
+static const unsigned short sGateGuardiansCombinedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gate_guardians_combined.gbapal");
+static const unsigned char sGateGuardiansCombinedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gate_guardians_combined.lz");
+
+static const unsigned char sGiftCardBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gift_card.huff");
+static const unsigned short sGiftCardBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gift_card.gbapal");
+static const unsigned char sGiftCardMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gift_card.lz");
+
+static const unsigned char sGoddessBowBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/goddess_bow.huff");
+static const unsigned short sGoddessBowBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/goddess_bow.gbapal");
+static const unsigned char sGoddessBowMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/goddess_bow.lz");
+
+static const unsigned char sGorzTheEmissaryOfDarknessBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gorz_the_emissary_of_darkness.huff");
+static const unsigned short sGorzTheEmissaryOfDarknessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gorz_the_emissary_of_darkness.gbapal");
+static const unsigned char sGorzTheEmissaryOfDarknessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gorz_the_emissary_of_darkness.lz");
+
+static const unsigned char sGranmargTheRockMonarchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/granmarg_the_rock_monarch.huff");
+static const unsigned short sGranmargTheRockMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/granmarg_the_rock_monarch.gbapal");
+static const unsigned char sGranmargTheRockMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/granmarg_the_rock_monarch.lz");
+
+static const unsigned char sGreenGadgetBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/green_gadget.huff");
+static const unsigned short sGreenGadgetBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/green_gadget.gbapal");
+static const unsigned char sGreenGadgetMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/green_gadget.lz");
+
+static const unsigned char sGroundCollapseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ground_collapse.huff");
+static const unsigned short sGroundCollapseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ground_collapse.gbapal");
+static const unsigned char sGroundCollapseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ground_collapse.lz");
+
+static const unsigned char sGuardianDreadscytheBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/guardian_dreadscythe.huff");
+static const unsigned short sGuardianDreadscytheBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/guardian_dreadscythe.gbapal");
+static const unsigned char sGuardianDreadscytheMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/guardian_dreadscythe.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2221,6 +2261,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04D8] = sForcedRequisitionBigArt,
   [0x04D9] = sDrainTimeBigArt,
   [0x04DA] = sFieldsSanctuaryBigArt,
+  [0x04DB] = sFusionDestinyBigArt,
+  [0x04DC] = sFusionGateBigArt,
+  [0x04DD] = sGateGuardiansCombinedBigArt,
+  [0x04DE] = sGiftCardBigArt,
+  [0x04DF] = sGoddessBowBigArt,
+  [0x04E0] = sGorzTheEmissaryOfDarknessBigArt,
+  [0x04E1] = sGranmargTheRockMonarchBigArt,
+  [0x04E2] = sGreenGadgetBigArt,
+  [0x04E3] = sGroundCollapseBigArt,
+  [0x04E4] = sGuardianDreadscytheBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2668,6 +2718,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04D8] = sForcedRequisitionBigPalette,
   [0x04D9] = sDrainTimeBigPalette,
   [0x04DA] = sFieldsSanctuaryBigPalette,
+  [0x04DB] = sFusionDestinyBigPalette,
+  [0x04DC] = sFusionGateBigPalette,
+  [0x04DD] = sGateGuardiansCombinedBigPalette,
+  [0x04DE] = sGiftCardBigPalette,
+  [0x04DF] = sGoddessBowBigPalette,
+  [0x04E0] = sGorzTheEmissaryOfDarknessBigPalette,
+  [0x04E1] = sGranmargTheRockMonarchBigPalette,
+  [0x04E2] = sGreenGadgetBigPalette,
+  [0x04E3] = sGroundCollapseBigPalette,
+  [0x04E4] = sGuardianDreadscytheBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3115,6 +3175,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04D8] = 0,
   [0x04D9] = 0,
   [0x04DA] = 0,
+  [0x04DB] = 0,
+  [0x04DC] = 0,
+  [0x04DD] = 0,
+  [0x04DE] = 0,
+  [0x04DF] = 0,
+  [0x04E0] = 0,
+  [0x04E1] = 0,
+  [0x04E2] = 0,
+  [0x04E3] = 0,
+  [0x04E4] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3562,4 +3632,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04D8] = sForcedRequisitionMiniArt,
   [0x04D9] = sDrainTimeMiniArt,
   [0x04DA] = sFieldsSanctuaryMiniArt,
+  [0x04DB] = sFusionDestinyMiniArt,
+  [0x04DC] = sFusionGateMiniArt,
+  [0x04DD] = sGateGuardiansCombinedMiniArt,
+  [0x04DE] = sGiftCardMiniArt,
+  [0x04DF] = sGoddessBowMiniArt,
+  [0x04E0] = sGorzTheEmissaryOfDarknessMiniArt,
+  [0x04E1] = sGranmargTheRockMonarchMiniArt,
+  [0x04E2] = sGreenGadgetMiniArt,
+  [0x04E3] = sGroundCollapseMiniArt,
+  [0x04E4] = sGuardianDreadscytheMiniArt,
 };

@@ -469,16 +469,16 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `FUSION_DESTINY` — `fusion_destiny.png`
-- [ ] `FUSION_GATE` — `fusion_gate.png`
-- [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [ ] `GIFT_CARD` — `gift_card.png`
-- [ ] `GODDESS_BOW` — `goddess_bow.png`
-- [ ] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
-- [ ] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
-- [ ] `GREEN_GADGET` — `green_gadget.png`
-- [ ] `GROUND_COLLAPSE` — `ground_collapse.png`
-- [ ] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
+- [x] `FUSION_DESTINY` — `fusion_destiny.png`
+- [x] `FUSION_GATE` — `fusion_gate.png`
+- [x] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
+- [x] `GIFT_CARD` — `gift_card.png`
+- [x] `GODDESS_BOW` — `goddess_bow.png`
+- [x] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
+- [x] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
+- [x] `GREEN_GADGET` — `green_gadget.png`
+- [x] `GROUND_COLLAPSE` — `ground_collapse.png`
+- [x] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
 - [ ] `GUARDIAN_EATOS` — `guardian_eatos.png`
 - [ ] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
 - [ ] `HERALD_OF_CREATION` — `herald_of_creation.png`

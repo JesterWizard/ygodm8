@@ -405,3 +405,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DOPPELGANGER in trap dispatcher */
 /* DRAGON_S_RAGE trap effect */
   /* TODO: wire DRAGON_S_RAGE in trap dispatcher */
+/* GIFT_CARD trap effect */
+  /* TODO: wire GIFT_CARD in trap dispatcher */

@@ -443,6 +443,16 @@ static const u8 sFiresOfDoomsdayName[] __attribute__((section(".append_assets"))
 static const u8 sForcedRequisitionName[] __attribute__((section(".append_assets"))) = "Forced Requisition";
 static const u8 sDrainTimeName[] __attribute__((section(".append_assets"))) = "Drain Time";
 static const u8 sFieldsSanctuaryName[] __attribute__((section(".append_assets"))) = "Fields Sanctuary";
+static const u8 sFusionDestinyName[] __attribute__((section(".append_assets"))) = "Fusion Destiny";
+static const u8 sFusionGateName[] __attribute__((section(".append_assets"))) = "Fusion Gate";
+static const u8 sGateGuardiansCombinedName[] __attribute__((section(".append_assets"))) = "Gate Guardians Combined";
+static const u8 sGiftCardName[] __attribute__((section(".append_assets"))) = "Gift Card";
+static const u8 sGoddessBowName[] __attribute__((section(".append_assets"))) = "Goddess Bow";
+static const u8 sGorzTheEmissaryOfDarknessName[] __attribute__((section(".append_assets"))) = "Gorz the Emissary of Darkness";
+static const u8 sGranmargTheRockMonarchName[] __attribute__((section(".append_assets"))) = "Granmarg the Rock Monarch";
+static const u8 sGreenGadgetName[] __attribute__((section(".append_assets"))) = "Green Gadget";
+static const u8 sGroundCollapseName[] __attribute__((section(".append_assets"))) = "Ground Collapse";
+static const u8 sGuardianDreadscytheName[] __attribute__((section(".append_assets"))) = "Guardian Dreadscythe";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1335,6 +1345,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDrainTimeName;
   if (cardId == 0x04DA)
     return (u8 *)sFieldsSanctuaryName;
+  if (cardId == 0x04DB)
+    return (u8 *)sFusionDestinyName;
+  if (cardId == 0x04DC)
+    return (u8 *)sFusionGateName;
+  if (cardId == 0x04DD)
+    return (u8 *)sGateGuardiansCombinedName;
+  if (cardId == 0x04DE)
+    return (u8 *)sGiftCardName;
+  if (cardId == 0x04DF)
+    return (u8 *)sGoddessBowName;
+  if (cardId == 0x04E0)
+    return (u8 *)sGorzTheEmissaryOfDarknessName;
+  if (cardId == 0x04E1)
+    return (u8 *)sGranmargTheRockMonarchName;
+  if (cardId == 0x04E2)
+    return (u8 *)sGreenGadgetName;
+  if (cardId == 0x04E3)
+    return (u8 *)sGroundCollapseName;
+  if (cardId == 0x04E4)
+    return (u8 *)sGuardianDreadscytheName;
 
   return gCardNames[cardId];
 }

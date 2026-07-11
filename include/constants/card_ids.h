@@ -1244,11 +1244,21 @@
 #define FORCED_REQUISITION                       0x04D8
 #define DRAIN_TIME                               0x04D9
 #define FIELDS_SANCTUARY                         0x04DA
+#define FUSION_DESTINY                           0x04DB
+#define FUSION_GATE                              0x04DC
+#define GATE_GUARDIANS_COMBINED                  0x04DD
+#define GIFT_CARD                                0x04DE
+#define GODDESS_BOW                              0x04DF
+#define GORZ_THE_EMISSARY_OF_DARKNESS            0x04E0
+#define GRANMARG_THE_ROCK_MONARCH                0x04E1
+#define GREEN_GADGET                             0x04E2
+#define GROUND_COLLAPSE                          0x04E3
+#define GUARDIAN_DREADSCYTHE                     0x04E4
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04DB
-#define NUM_CUSTOM_CARDS                        0x01BA
+#define NUM_TOTAL_CARDS                         0x04E5
+#define NUM_CUSTOM_CARDS                        0x01C4
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
