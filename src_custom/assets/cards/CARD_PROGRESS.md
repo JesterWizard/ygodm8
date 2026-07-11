@@ -394,18 +394,16 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CYBER_ELTANIN` | Cyber Eltanin | `cyber_eltanin.png` |
 | `CYBER_KIRIN` | Cyber Kirin | `cyber_kirin.png` |
 | `CYBER_PHOENIX` | Cyber Phoenix | `cyber_phoenix.png` |
+| `CYBER_VALLEY` | Cyber Valley | `cyber_valley.png` |
+| `CYBERNETIC_ZONE` | Cybernetic Zone | `cybernetic_zone.png` |
+| `D.D_WARRIOR` | D.D. Warrior | `d.d_warrior.png` |
+| `D_BURST` | D Burst | `d_burst.png` |
+| `D_FORCE` | F Dorce | `d_force.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-Add the cards from lines 392 - 401 to the trunk with the artwork included and their effects stubbed.@src_custom/assets/cards/CARD_PROGRESS.md 
-
-After you are done run make clean and then make- [ ] `CYBER_VALLEY` — `cyber_valley.png`
-- [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
-- [ ] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `D_BURST` — `d_burst.png`
-- [ ] `D_FORCE` — `d_force.png`
 - [ ] `D_TACTICS` — `d_tactics.png`
 - [ ] `D_TIME` — `d_time.png`
 - [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
