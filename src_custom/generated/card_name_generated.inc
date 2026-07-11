@@ -552,6 +552,16 @@ static const u8 sSummonerMonkName[] __attribute__((section(".append_assets"))) =
 static const u8 sSummonerOfIllusionsName[] __attribute__((section(".append_assets"))) = "Summoner of Illusions";
 static const u8 sSuperPolymerizationName[] __attribute__((section(".append_assets"))) = "Super Polymerization";
 static const u8 sTerraformingName[] __attribute__((section(".append_assets"))) = "Terraforming";
+static const u8 sTheAForcesName[] __attribute__((section(".append_assets"))) = "The A. Forces";
+static const u8 sTheAgentOfJudgmentSaturnName[] __attribute__((section(".append_assets"))) = "The Agent of Judgment - Saturn";
+static const u8 sTheAgentOfWisdomMercuryName[] __attribute__((section(".append_assets"))) = "The Agent of Wisdom - Mercury";
+static const u8 sTheClawOfHermosName[] __attribute__((section(".append_assets"))) = "The Claw of Hermos";
+static const u8 sTheCreatorName[] __attribute__((section(".append_assets"))) = "The Creator";
+static const u8 sTheCreatorIncarnateName[] __attribute__((section(".append_assets"))) = "The Creator Incarnate";
+static const u8 sTheEyeOfTimaeusName[] __attribute__((section(".append_assets"))) = "The Eye of Timaeus";
+static const u8 sTheFangOfCritiasName[] __attribute__((section(".append_assets"))) = "The Fang of Critias";
+static const u8 sTheLawOfTheNormalName[] __attribute__((section(".append_assets"))) = "The Law of the Normal";
+static const u8 sTheLegendaryExodiaIncarnateName[] __attribute__((section(".append_assets"))) = "The Legendary Exodia Incarnate";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1662,6 +1672,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSuperPolymerizationName;
   if (cardId == 0x0547)
     return (u8 *)sTerraformingName;
+  if (cardId == 0x0548)
+    return (u8 *)sTheAForcesName;
+  if (cardId == 0x0549)
+    return (u8 *)sTheAgentOfJudgmentSaturnName;
+  if (cardId == 0x054A)
+    return (u8 *)sTheAgentOfWisdomMercuryName;
+  if (cardId == 0x054B)
+    return (u8 *)sTheClawOfHermosName;
+  if (cardId == 0x054C)
+    return (u8 *)sTheCreatorName;
+  if (cardId == 0x054D)
+    return (u8 *)sTheCreatorIncarnateName;
+  if (cardId == 0x054E)
+    return (u8 *)sTheEyeOfTimaeusName;
+  if (cardId == 0x054F)
+    return (u8 *)sTheFangOfCritiasName;
+  if (cardId == 0x0550)
+    return (u8 *)sTheLawOfTheNormalName;
+  if (cardId == 0x0551)
+    return (u8 *)sTheLegendaryExodiaIncarnateName;
 
   return gCardNames[cardId];
 }

@@ -1353,11 +1353,21 @@
 #define SUMMONER_OF_ILLUSIONS                    0x0545
 #define SUPER_POLYMERIZATION                     0x0546
 #define TERRAFORMING                             0x0547
+#define THE_A_FORCES                             0x0548
+#define THE_AGENT_OF_JUDGMENT_SATURN             0x0549
+#define THE_AGENT_OF_WISDOM_MERCURY              0x054A
+#define THE_CLAW_OF_HERMOS                       0x054B
+#define THE_CREATOR                              0x054C
+#define THE_CREATOR_INCARNATE                    0x054D
+#define THE_EYE_OF_TIMAEUS                       0x054E
+#define THE_FANG_OF_CRITIAS                      0x054F
+#define THE_LAW_OF_THE_NORMAL                    0x0550
+#define THE_LEGENDARY_EXODIA_INCARNATE           0x0551
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0548
-#define NUM_CUSTOM_CARDS                        0x0227
+#define NUM_TOTAL_CARDS                         0x0552
+#define NUM_CUSTOM_CARDS                        0x0231
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

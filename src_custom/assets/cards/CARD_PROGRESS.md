@@ -573,21 +573,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SUMMONER_OF_ILLUSIONS` | Summoner of Illusions | `summoner_of_illusions.png` |
 | `SUPER_POLYMERIZATION` | Super Polymerization | `super_polymerization.png` |
 | `TERRAFORMING` | Terraforming | `terraforming.png` |
+| `THE_A_FORCES` | The A. Forces | `the_a_forces.png` |
+| `THE_AGENT_OF_JUDGMENT_SATURN` | The Agent of Judgment - Saturn | `the_agent_of_judgment_saturn.png` |
+| `THE_AGENT_OF_WISDOM_MERCURY` | The Agent of Wisdom - Mercury | `the_agent_of_wisdom_mercury.png` |
+| `THE_CLAW_OF_HERMOS` | The Claw of Hermos | `the_claw_of_hermos.png` |
+| `THE_CREATOR` | The Creator | `the_creator.png` |
+| `THE_CREATOR_INCARNATE` | The Creator Incarnate | `the_creator_incarnate.png` |
+| `THE_EYE_OF_TIMAEUS` | The Eye of Timaeus | `the_eye_of_timaeus.png` |
+| `THE_FANG_OF_CRITIAS` | The Fang of Critias | `the_fang_of_critias.png` |
+| `THE_LAW_OF_THE_NORMAL` | The Law of the Normal | `the_law_of_the_normal.png` |
+| `THE_LEGENDARY_EXODIA_INCARNATE` | The Legendary Exodia Incarnate | `the_legendary_exodia_incarnate.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `THE_A_FORCES` — `the_a_forces.png`
-- [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
-- [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`
-- [ ] `THE_CLAW_OF_HERMOS` — `the_claw_of_hermos.png`
-- [ ] `THE_CREATOR` — `the_creator.png`
-- [ ] `THE_CREATOR_INCARNATE` — `the_creator_incarnate.png`
-- [ ] `THE_EYE_OF_TIMAEUS` — `the_eye_of_timaeus.png`
-- [ ] `THE_FANG_OF_CRITIAS` — `the_fang_of_critias.png`
-- [ ] `THE_LAW_OF_THE_NORMAL` — `the_law_of_the_normal.png`
-- [ ] `THE_LEGENDARY_EXODIA_INCARNATE` — `the_legendary_exodia_incarnate.png`
 - [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
 - [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
 - [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`

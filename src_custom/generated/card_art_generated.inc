@@ -2212,6 +2212,46 @@ static const unsigned char sTerraformingBigArt[] __attribute__((section(".append
 static const unsigned short sTerraformingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/terraforming.gbapal");
 static const unsigned char sTerraformingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/terraforming.lz");
 
+static const unsigned char sTheAForcesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_a_forces.huff");
+static const unsigned short sTheAForcesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_a_forces.gbapal");
+static const unsigned char sTheAForcesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_a_forces.lz");
+
+static const unsigned char sTheAgentOfJudgmentSaturnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_agent_of_judgment_saturn.huff");
+static const unsigned short sTheAgentOfJudgmentSaturnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_agent_of_judgment_saturn.gbapal");
+static const unsigned char sTheAgentOfJudgmentSaturnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_agent_of_judgment_saturn.lz");
+
+static const unsigned char sTheAgentOfWisdomMercuryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_agent_of_wisdom_mercury.huff");
+static const unsigned short sTheAgentOfWisdomMercuryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_agent_of_wisdom_mercury.gbapal");
+static const unsigned char sTheAgentOfWisdomMercuryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_agent_of_wisdom_mercury.lz");
+
+static const unsigned char sTheClawOfHermosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_claw_of_hermos.huff");
+static const unsigned short sTheClawOfHermosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_claw_of_hermos.gbapal");
+static const unsigned char sTheClawOfHermosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_claw_of_hermos.lz");
+
+static const unsigned char sTheCreatorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_creator.huff");
+static const unsigned short sTheCreatorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_creator.gbapal");
+static const unsigned char sTheCreatorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_creator.lz");
+
+static const unsigned char sTheCreatorIncarnateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_creator_incarnate.huff");
+static const unsigned short sTheCreatorIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_creator_incarnate.gbapal");
+static const unsigned char sTheCreatorIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_creator_incarnate.lz");
+
+static const unsigned char sTheEyeOfTimaeusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_eye_of_timaeus.huff");
+static const unsigned short sTheEyeOfTimaeusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_eye_of_timaeus.gbapal");
+static const unsigned char sTheEyeOfTimaeusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_eye_of_timaeus.lz");
+
+static const unsigned char sTheFangOfCritiasBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_fang_of_critias.huff");
+static const unsigned short sTheFangOfCritiasBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_fang_of_critias.gbapal");
+static const unsigned char sTheFangOfCritiasMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_fang_of_critias.lz");
+
+static const unsigned char sTheLawOfTheNormalBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_law_of_the_normal.huff");
+static const unsigned short sTheLawOfTheNormalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_law_of_the_normal.gbapal");
+static const unsigned char sTheLawOfTheNormalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_law_of_the_normal.lz");
+
+static const unsigned char sTheLegendaryExodiaIncarnateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_legendary_exodia_incarnate.huff");
+static const unsigned short sTheLegendaryExodiaIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_legendary_exodia_incarnate.gbapal");
+static const unsigned char sTheLegendaryExodiaIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_legendary_exodia_incarnate.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2766,6 +2806,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0545] = sSummonerOfIllusionsBigArt,
   [0x0546] = sSuperPolymerizationBigArt,
   [0x0547] = sTerraformingBigArt,
+  [0x0548] = sTheAForcesBigArt,
+  [0x0549] = sTheAgentOfJudgmentSaturnBigArt,
+  [0x054A] = sTheAgentOfWisdomMercuryBigArt,
+  [0x054B] = sTheClawOfHermosBigArt,
+  [0x054C] = sTheCreatorBigArt,
+  [0x054D] = sTheCreatorIncarnateBigArt,
+  [0x054E] = sTheEyeOfTimaeusBigArt,
+  [0x054F] = sTheFangOfCritiasBigArt,
+  [0x0550] = sTheLawOfTheNormalBigArt,
+  [0x0551] = sTheLegendaryExodiaIncarnateBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3322,6 +3372,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0545] = sSummonerOfIllusionsBigPalette,
   [0x0546] = sSuperPolymerizationBigPalette,
   [0x0547] = sTerraformingBigPalette,
+  [0x0548] = sTheAForcesBigPalette,
+  [0x0549] = sTheAgentOfJudgmentSaturnBigPalette,
+  [0x054A] = sTheAgentOfWisdomMercuryBigPalette,
+  [0x054B] = sTheClawOfHermosBigPalette,
+  [0x054C] = sTheCreatorBigPalette,
+  [0x054D] = sTheCreatorIncarnateBigPalette,
+  [0x054E] = sTheEyeOfTimaeusBigPalette,
+  [0x054F] = sTheFangOfCritiasBigPalette,
+  [0x0550] = sTheLawOfTheNormalBigPalette,
+  [0x0551] = sTheLegendaryExodiaIncarnateBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3878,6 +3938,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0545] = 0,
   [0x0546] = 0,
   [0x0547] = 0,
+  [0x0548] = 0,
+  [0x0549] = 0,
+  [0x054A] = 0,
+  [0x054B] = 0,
+  [0x054C] = 0,
+  [0x054D] = 0,
+  [0x054E] = 0,
+  [0x054F] = 0,
+  [0x0550] = 0,
+  [0x0551] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4434,4 +4504,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0545] = sSummonerOfIllusionsMiniArt,
   [0x0546] = sSuperPolymerizationMiniArt,
   [0x0547] = sTerraformingMiniArt,
+  [0x0548] = sTheAForcesMiniArt,
+  [0x0549] = sTheAgentOfJudgmentSaturnMiniArt,
+  [0x054A] = sTheAgentOfWisdomMercuryMiniArt,
+  [0x054B] = sTheClawOfHermosMiniArt,
+  [0x054C] = sTheCreatorMiniArt,
+  [0x054D] = sTheCreatorIncarnateMiniArt,
+  [0x054E] = sTheEyeOfTimaeusMiniArt,
+  [0x054F] = sTheFangOfCritiasMiniArt,
+  [0x0550] = sTheLawOfTheNormalMiniArt,
+  [0x0551] = sTheLegendaryExodiaIncarnateMiniArt,
 };

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `493` effects
+- `503` effects
 
 ## Tally
 
@@ -474,6 +474,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Solemn Judgment` | `src_custom/trap_effects/solemn_judgment.c` |
 | `trap_effects` | `Spark Blaster` | `src_custom/trap_effects/spark_blaster.c` |
 | `spell_effects` | `Skyscraper 2 Hero City` | `src_custom/spell_effects/skyscraper_2_hero_city.c` |
+| `spell_effects` | `The A Forces` | `src_custom/spell_effects/the_a_forces.c` |
+| `activated_effects` | `The Agent Of Judgment Saturn` | `src_custom/activated_effects/the_agent_of_judgment_saturn.c` |
+| `activated_effects` | `The Agent Of Wisdom Mercury` | `src_custom/activated_effects/the_agent_of_wisdom_mercury.c` |
+| `spell_effects` | `The Claw Of Hermos` | `src_custom/spell_effects/the_claw_of_hermos.c` |
+| `activated_effects` | `The Creator` | `src_custom/activated_effects/the_creator.c` |
+| `activated_effects` | `The Creator Incarnate` | `src_custom/activated_effects/the_creator_incarnate.c` |
+| `spell_effects` | `The Eye Of Timaeus` | `src_custom/spell_effects/the_eye_of_timaeus.c` |
+| `spell_effects` | `The Fang Of Critias` | `src_custom/spell_effects/the_fang_of_critias.c` |
+| `spell_effects` | `The Law Of The Normal` | `src_custom/spell_effects/the_law_of_the_normal.c` |
+| `activated_effects` | `The Legendary Exodia Incarnate` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

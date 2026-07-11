@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 551
+#define NUM_CUSTOM_NAME_SORT_CARDS 561
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -556,6 +556,16 @@ static const u8 sSummonerMonkSortName[] APPEND_RODATA = "Summoner Monk";
 static const u8 sSummonerOfIllusionsSortName[] APPEND_RODATA = "Summoner of Illusions";
 static const u8 sSuperPolymerizationSortName[] APPEND_RODATA = "Super Polymerization";
 static const u8 sTerraformingSortName[] APPEND_RODATA = "Terraforming";
+static const u8 sTheAForcesSortName[] APPEND_RODATA = "The A. Forces";
+static const u8 sTheAgentOfJudgmentSaturnSortName[] APPEND_RODATA = "The Agent of Judgment - Saturn";
+static const u8 sTheAgentOfWisdomMercurySortName[] APPEND_RODATA = "The Agent of Wisdom - Mercury";
+static const u8 sTheClawOfHermosSortName[] APPEND_RODATA = "The Claw of Hermos";
+static const u8 sTheCreatorSortName[] APPEND_RODATA = "The Creator";
+static const u8 sTheCreatorIncarnateSortName[] APPEND_RODATA = "The Creator Incarnate";
+static const u8 sTheEyeOfTimaeusSortName[] APPEND_RODATA = "The Eye of Timaeus";
+static const u8 sTheFangOfCritiasSortName[] APPEND_RODATA = "The Fang of Critias";
+static const u8 sTheLawOfTheNormalSortName[] APPEND_RODATA = "The Law of the Normal";
+static const u8 sTheLegendaryExodiaIncarnateSortName[] APPEND_RODATA = "The Legendary Exodia Incarnate";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1056,15 +1066,25 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0547, // Terraforming
   0x0374, // Terrorking Salmon
   0x0454, // Tethys, Goddess of Light
+  0x0548, // The A. Forces
   0x0384, // The Agent Of Creation - Venus
   0x041A, // The Agent of Force - Mars
+  0x0549, // The Agent of Judgment - Saturn
+  0x054A, // The Agent of Wisdom - Mercury
   0x0446, // The Big Saturn
   0x044A, // The Blazing Mars
+  0x054B, // The Claw of Hermos
+  0x054C, // The Creator
+  0x054D, // The Creator Incarnate
   0x036D, // The Dark Door
   0x0449, // The Despair Uranus
+  0x054E, // The Eye of Timaeus
+  0x054F, // The Fang of Critias
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
   0x0448, // The Grand Jupiter
+  0x0550, // The Law of the Normal
+  0x0551, // The Legendary Exodia Incarnate
   0x03FE, // The Sanctuary in the Sky
   0x0445, // The Splendid Venus
   0x044B, // The Suppression Pluto
@@ -1610,59 +1630,69 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   496, // Terraforming
   497, // Terrorking Salmon
   498, // Tethys, Goddess of Light
-  499, // The Agent Of Creation - Venus
-  500, // The Agent of Force - Mars
-  501, // The Big Saturn
-  502, // The Blazing Mars
-  503, // The Dark Door
-  504, // The Despair Uranus
-  505, // The Flute of Summoning Dragon
-  506, // The Forceful Sentry
-  507, // The Grand Jupiter
-  508, // The Sanctuary in the Sky
-  509, // The Splendid Venus
-  510, // The Suppression Pluto
-  511, // The Supremacy Sun
-  512, // The Thing in the Crater
-  513, // The Tricky
-  514, // The Tripper Mercury
-  515, // The Tyrant Neptune
-  516, // The Unstoppable Exodia Incarnate
-  517, // The Wicked Avatar
-  518, // The Wicked Dreadroot
-  519, // The Wicked Eraser
-  520, // Theban Nightmare
-  521, // Thousand Energy
-  522, // Thousand Knives
-  523, // Thunder Crash
-  524, // Time Seal
-  525, // Tiny Angel
-  526, // Toll
-  527, // Torpedo Fish
-  528, // Trade-In
-  529, // Triangle Power
-  530, // Tribute Doll
-  531, // Twin Swords of Flashing Light - Tryce
-  532, // Tyrant Dragon
-  533, // Ultimate Offering
-  534, // United We Stand
-  535, // Upstart Goblin
-  536, // Uria, Lord of Searing Flames
-  537, // Valhalla, Hall of the Fallen
-  538, // Vampire Baby
-  539, // Vengeful Bog Spirit
-  540, // Wall of Revealing Light
-  541, // Warrior of Zera
-  542, // Wave Motion Cannon
-  543, // Weather Report
-  544, // White Magician Pikeru
-  545, // World Suppression
-  546, // Yata-Garasu
-  547, // Yubel
-  548, // Yubel - Terror Incarnate
-  549, // Yubel - The Ultimate Nightmare
-  550, // Zaborg the Thunder Monarch
-  551, // Zeriel
+  499, // The A. Forces
+  500, // The Agent Of Creation - Venus
+  501, // The Agent of Force - Mars
+  502, // The Agent of Judgment - Saturn
+  503, // The Agent of Wisdom - Mercury
+  504, // The Big Saturn
+  505, // The Blazing Mars
+  506, // The Claw of Hermos
+  507, // The Creator
+  508, // The Creator Incarnate
+  509, // The Dark Door
+  510, // The Despair Uranus
+  511, // The Eye of Timaeus
+  512, // The Fang of Critias
+  513, // The Flute of Summoning Dragon
+  514, // The Forceful Sentry
+  515, // The Grand Jupiter
+  516, // The Law of the Normal
+  517, // The Legendary Exodia Incarnate
+  518, // The Sanctuary in the Sky
+  519, // The Splendid Venus
+  520, // The Suppression Pluto
+  521, // The Supremacy Sun
+  522, // The Thing in the Crater
+  523, // The Tricky
+  524, // The Tripper Mercury
+  525, // The Tyrant Neptune
+  526, // The Unstoppable Exodia Incarnate
+  527, // The Wicked Avatar
+  528, // The Wicked Dreadroot
+  529, // The Wicked Eraser
+  530, // Theban Nightmare
+  531, // Thousand Energy
+  532, // Thousand Knives
+  533, // Thunder Crash
+  534, // Time Seal
+  535, // Tiny Angel
+  536, // Toll
+  537, // Torpedo Fish
+  538, // Trade-In
+  539, // Triangle Power
+  540, // Tribute Doll
+  541, // Twin Swords of Flashing Light - Tryce
+  542, // Tyrant Dragon
+  543, // Ultimate Offering
+  544, // United We Stand
+  545, // Upstart Goblin
+  546, // Uria, Lord of Searing Flames
+  547, // Valhalla, Hall of the Fallen
+  548, // Vampire Baby
+  549, // Vengeful Bog Spirit
+  550, // Wall of Revealing Light
+  551, // Warrior of Zera
+  552, // Wave Motion Cannon
+  553, // Weather Report
+  554, // White Magician Pikeru
+  555, // World Suppression
+  556, // Yata-Garasu
+  557, // Yubel
+  558, // Yubel - Terror Incarnate
+  559, // Yubel - The Ultimate Nightmare
+  560, // Zaborg the Thunder Monarch
+  561, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2774,6 +2804,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSuperPolymerizationSortName;
   if (cardId == 0x0547)
     return (u8 *)sTerraformingSortName;
+  if (cardId == 0x0548)
+    return (u8 *)sTheAForcesSortName;
+  if (cardId == 0x0549)
+    return (u8 *)sTheAgentOfJudgmentSaturnSortName;
+  if (cardId == 0x054A)
+    return (u8 *)sTheAgentOfWisdomMercurySortName;
+  if (cardId == 0x054B)
+    return (u8 *)sTheClawOfHermosSortName;
+  if (cardId == 0x054C)
+    return (u8 *)sTheCreatorSortName;
+  if (cardId == 0x054D)
+    return (u8 *)sTheCreatorIncarnateSortName;
+  if (cardId == 0x054E)
+    return (u8 *)sTheEyeOfTimaeusSortName;
+  if (cardId == 0x054F)
+    return (u8 *)sTheFangOfCritiasSortName;
+  if (cardId == 0x0550)
+    return (u8 *)sTheLawOfTheNormalSortName;
+  if (cardId == 0x0551)
+    return (u8 *)sTheLegendaryExodiaIncarnateSortName;
 
   return gCardNames[cardId];
 }

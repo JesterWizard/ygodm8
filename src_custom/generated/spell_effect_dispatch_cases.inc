@@ -386,14 +386,29 @@
     case SWORDS_OF_REVEALING_LIGHT:
       EffectSwordsOfRevealingLight();
       return;
+    case THE_A_FORCES:
+      EffectTHE_A_FORCES();
+      return;
+    case THE_CLAW_OF_HERMOS:
+      EffectTHE_CLAW_OF_HERMOS();
+      return;
     case THE_DARK_DOOR:
       EffectTheDarkDoor();
+      return;
+    case THE_EYE_OF_TIMAEUS:
+      EffectTHE_EYE_OF_TIMAEUS();
+      return;
+    case THE_FANG_OF_CRITIAS:
+      EffectTHE_FANG_OF_CRITIAS();
       return;
     case THE_FLUTE_OF_SUMMONING_DRAGON:
       EffectTheFluteOfSummoningDragon();
       return;
     case THE_FORCEFUL_SENTRY:
       EffectTheForcefulSentry();
+      return;
+    case THE_LAW_OF_THE_NORMAL:
+      EffectTHE_LAW_OF_THE_NORMAL();
       return;
     case THOUSAND_ENERGY:
       EffectThousandEnergy();

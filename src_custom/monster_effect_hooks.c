@@ -226,6 +226,16 @@ unsigned char CanActivateMIRROR_FORCE_DRAGON(void);
 void ActivateMIRROR_FORCE_DRAGONEffect(void);
 unsigned char CanActivateMOLTEN_ZOMBIE(void);
 void ActivateMOLTEN_ZOMBIEEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_JUDGMENT_SATURN(void);
+void ActivateTHE_AGENT_OF_JUDGMENT_SATURNEffect(void);
+unsigned char CanActivateTHE_AGENT_OF_WISDOM_MERCURY(void);
+void ActivateTHE_AGENT_OF_WISDOM_MERCURYEffect(void);
+unsigned char CanActivateTHE_CREATOR(void);
+void ActivateTHE_CREATOREffect(void);
+unsigned char CanActivateTHE_CREATOR_INCARNATE(void);
+void ActivateTHE_CREATOR_INCARNATEEffect(void);
+unsigned char CanActivateTHE_LEGENDARY_EXODIA_INCARNATE(void);
+void ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1295,6 +1305,25 @@ FAILED:
     ActivateSKILLED_WHITE_MAGICIANEffect();
     return;
   }
+  if (gMonEffect.id == THE_AGENT_OF_JUDGMENT_SATURN) {
+    ActivateTHE_AGENT_OF_JUDGMENT_SATURNEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_AGENT_OF_WISDOM_MERCURY) {
+    ActivateTHE_AGENT_OF_WISDOM_MERCURYEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_CREATOR) {
+    ActivateTHE_CREATOREffect();
+    return;
+  }
+  if (gMonEffect.id == THE_CREATOR_INCARNATE) {
+    ActivateTHE_CREATOR_INCARNATEEffect();
+    return;
+  }
+  if (gMonEffect.id == THE_LEGENDARY_EXODIA_INCARNATE) {
+    ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect();
+    return;
+  }
 }
-
 /* END MONSTER EFFECT DISPATCH */

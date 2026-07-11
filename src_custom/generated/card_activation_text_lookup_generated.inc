@@ -533,6 +533,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [SUMMONER_OF_ILLUSIONS] = gActivationDescription_SummonerOfIllusions_Popup1,
   [SUPER_POLYMERIZATION] = gActivationDescription_SuperPolymerization_Popup1,
   [TERRAFORMING] = gActivationDescription_Terraforming_Popup1,
+  [THE_A_FORCES] = gActivationDescription_TheAForces_Popup1,
+  [THE_AGENT_OF_JUDGMENT_SATURN] = gActivationDescription_TheAgentOfJudgmentSaturn_Popup1,
+  [THE_AGENT_OF_WISDOM_MERCURY] = gActivationDescription_TheAgentOfWisdomMercury_Popup1,
+  [THE_CLAW_OF_HERMOS] = gActivationDescription_TheClawOfHermos_Popup1,
+  [THE_CREATOR] = gActivationDescription_TheCreator_Popup1,
+  [THE_CREATOR_INCARNATE] = gActivationDescription_TheCreatorIncarnate_Popup1,
+  [THE_EYE_OF_TIMAEUS] = gActivationDescription_TheEyeOfTimaeus_Popup1,
+  [THE_FANG_OF_CRITIAS] = gActivationDescription_TheFangOfCritias_Popup1,
+  [THE_LAW_OF_THE_NORMAL] = gActivationDescription_TheLawOfTheNormal_Popup1,
+  [THE_LEGENDARY_EXODIA_INCARNATE] = gActivationDescription_TheLegendaryExodiaIncarnate_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1096,6 +1106,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_SUMMONER_OF_ILLUSIONS_POPUP_1] = gActivationDescription_SummonerOfIllusions_Popup1,
   [CARD_EFFECT_TEXT_SUPER_POLYMERIZATION_POPUP_1] = gActivationDescription_SuperPolymerization_Popup1,
   [CARD_EFFECT_TEXT_TERRAFORMING_POPUP_1] = gActivationDescription_Terraforming_Popup1,
+  [CARD_EFFECT_TEXT_THE_A_FORCES_POPUP_1] = gActivationDescription_TheAForces_Popup1,
+  [CARD_EFFECT_TEXT_THE_AGENT_OF_JUDGMENT_SATURN_POPUP_1] = gActivationDescription_TheAgentOfJudgmentSaturn_Popup1,
+  [CARD_EFFECT_TEXT_THE_AGENT_OF_WISDOM_MERCURY_POPUP_1] = gActivationDescription_TheAgentOfWisdomMercury_Popup1,
+  [CARD_EFFECT_TEXT_THE_CLAW_OF_HERMOS_POPUP_1] = gActivationDescription_TheClawOfHermos_Popup1,
+  [CARD_EFFECT_TEXT_THE_CREATOR_POPUP_1] = gActivationDescription_TheCreator_Popup1,
+  [CARD_EFFECT_TEXT_THE_CREATOR_INCARNATE_POPUP_1] = gActivationDescription_TheCreatorIncarnate_Popup1,
+  [CARD_EFFECT_TEXT_THE_EYE_OF_TIMAEUS_POPUP_1] = gActivationDescription_TheEyeOfTimaeus_Popup1,
+  [CARD_EFFECT_TEXT_THE_FANG_OF_CRITIAS_POPUP_1] = gActivationDescription_TheFangOfCritias_Popup1,
+  [CARD_EFFECT_TEXT_THE_LAW_OF_THE_NORMAL_POPUP_1] = gActivationDescription_TheLawOfTheNormal_Popup1,
+  [CARD_EFFECT_TEXT_THE_LEGENDARY_EXODIA_INCARNATE_POPUP_1] = gActivationDescription_TheLegendaryExodiaIncarnate_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)
