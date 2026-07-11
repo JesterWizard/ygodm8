@@ -18,7 +18,7 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 ## In game
 
-Manifest entry exists and `80x80/<stem>.png` is present.
+Manifest entry exists, effects are added and `80x80/<stem>.png` is present.
 
 | `card_const` | Card name | Art file |
 |--------------|-----------|----------|
@@ -413,6 +413,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
+[x] indicates a card has a manifest entry but no effects.
 
 - [x] `A_HERO_EMERGES` — `a_hero_emerges.png`
 - [x] `A_HERO_LIVES` — `a_hero_lives.png`
@@ -482,16 +483,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `DESTINY_HERO_CELESTIAL` — `destiny_hero_celestial.png`
 - [x] `DESTINY_HERO_DANGEROUS` — `destiny_hero_dangerous.png`
 - [x] `DESTINY_HERO_DARK_ANGEL` — `destiny_hero_dark_angel.png`
-- [ ] `DESTINY_HERO_DASHER` — `destiny_hero_dasher.png`
-- [ ] `DESTINY_HERO_DECIDER` — `destiny_hero_decider.png`
-- [ ] `DESTINY_HERO_DEFENDER` — `destiny_hero_defender.png`
-- [ ] `DESTINY_HERO_DENIER` — `destiny_hero_denier.png`
-- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
-- [ ] `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` — `destiny_hero_destroyer_phoenix_enforcer.png`
-- [ ] `DESTINY_HERO_DIAMOND_DUDE` — `destiny_hero_diamond_dude.png`
-- [ ] `DESTINY_HERO_DISK_COMMANDER` — `destiny_hero_disk_commander.png`
-- [ ] `DESTINY_HERO_DOGMA` — `destiny_hero_dogma.png`
-- [ ] `DESTINY_HERO_DOMINANCE` — `destiny_hero_dominance.png`
+- [x] `DESTINY_HERO_DASHER` — `destiny_hero_dasher.png`
+- [x] `DESTINY_HERO_DECIDER` — `destiny_hero_decider.png`
+- [x] `DESTINY_HERO_DEFENDER` — `destiny_hero_defender.png`
+- [x] `DESTINY_HERO_DENIER` — `destiny_hero_denier.png`
+- [x] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
+- [x] `DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER` — `destiny_hero_destroyer_phoenix_enforcer.png`
+- [x] `DESTINY_HERO_DIAMOND_DUDE` — `destiny_hero_diamond_dude.png`
+- [x] `DESTINY_HERO_DISK_COMMANDER` — `destiny_hero_disk_commander.png`
+- [x] `DESTINY_HERO_DOGMA` — `destiny_hero_dogma.png`
+- [x] `DESTINY_HERO_DOMINANCE` — `destiny_hero_dominance.png`
 - [ ] `DESTINY_HERO_DOOM_LORD` — `destiny_hero_doom_lord.png`
 - [ ] `DESTINY_HERO_DOOM_OVERLORD` — `destiny_hero_doom_overlord.png`
 - [ ] `DESTINY_HERO_DOUBLE_DUDE` — `destiny_hero_double_dude.png`

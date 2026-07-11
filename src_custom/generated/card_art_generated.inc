@@ -1592,6 +1592,42 @@ static const unsigned char sDestinyHeroDarkAngelBigArt[] __attribute__((section(
 static const unsigned short sDestinyHeroDarkAngelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_dark_angel.gbapal");
 static const unsigned char sDestinyHeroDarkAngelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_dark_angel.lz");
 
+static const unsigned char sDestinyHeroDasherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_dasher.huff");
+static const unsigned short sDestinyHeroDasherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_dasher.gbapal");
+static const unsigned char sDestinyHeroDasherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_dasher.lz");
+
+static const unsigned char sDestinyHeroDeciderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_decider.huff");
+static const unsigned short sDestinyHeroDeciderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_decider.gbapal");
+static const unsigned char sDestinyHeroDeciderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_decider.lz");
+
+static const unsigned char sDestinyHeroDefenderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_defender.huff");
+static const unsigned short sDestinyHeroDefenderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_defender.gbapal");
+static const unsigned char sDestinyHeroDefenderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_defender.lz");
+
+static const unsigned char sDestinyHeroDenierBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_denier.huff");
+static const unsigned short sDestinyHeroDenierBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_denier.gbapal");
+static const unsigned char sDestinyHeroDenierMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_denier.lz");
+
+static const unsigned char sDestinyHeroDestroyerPhoenixEnforcerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_destroyer_phoenix_enforcer.huff");
+static const unsigned short sDestinyHeroDestroyerPhoenixEnforcerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_destroyer_phoenix_enforcer.gbapal");
+static const unsigned char sDestinyHeroDestroyerPhoenixEnforcerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_destroyer_phoenix_enforcer.lz");
+
+static const unsigned char sDestinyHeroDiamondDudeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_diamond_dude.huff");
+static const unsigned short sDestinyHeroDiamondDudeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_diamond_dude.gbapal");
+static const unsigned char sDestinyHeroDiamondDudeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_diamond_dude.lz");
+
+static const unsigned char sDestinyHeroDiskCommanderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_disk_commander.huff");
+static const unsigned short sDestinyHeroDiskCommanderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_disk_commander.gbapal");
+static const unsigned char sDestinyHeroDiskCommanderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_disk_commander.lz");
+
+static const unsigned char sDestinyHeroDogmaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_dogma.huff");
+static const unsigned short sDestinyHeroDogmaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_dogma.gbapal");
+static const unsigned char sDestinyHeroDogmaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_dogma.lz");
+
+static const unsigned char sDestinyHeroDominanceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_dominance.huff");
+static const unsigned short sDestinyHeroDominanceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_dominance.gbapal");
+static const unsigned char sDestinyHeroDominanceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_dominance.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1991,6 +2027,15 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04AA] = sDestinyHeroCelestialBigArt,
   [0x04AB] = sDestinyHeroDangerousBigArt,
   [0x04AC] = sDestinyHeroDarkAngelBigArt,
+  [0x04AD] = sDestinyHeroDasherBigArt,
+  [0x04AE] = sDestinyHeroDeciderBigArt,
+  [0x04AF] = sDestinyHeroDefenderBigArt,
+  [0x04B0] = sDestinyHeroDenierBigArt,
+  [0x04B1] = sDestinyHeroDestroyerPhoenixEnforcerBigArt,
+  [0x04B2] = sDestinyHeroDiamondDudeBigArt,
+  [0x04B3] = sDestinyHeroDiskCommanderBigArt,
+  [0x04B4] = sDestinyHeroDogmaBigArt,
+  [0x04B5] = sDestinyHeroDominanceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2392,6 +2437,15 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04AA] = sDestinyHeroCelestialBigPalette,
   [0x04AB] = sDestinyHeroDangerousBigPalette,
   [0x04AC] = sDestinyHeroDarkAngelBigPalette,
+  [0x04AD] = sDestinyHeroDasherBigPalette,
+  [0x04AE] = sDestinyHeroDeciderBigPalette,
+  [0x04AF] = sDestinyHeroDefenderBigPalette,
+  [0x04B0] = sDestinyHeroDenierBigPalette,
+  [0x04B1] = sDestinyHeroDestroyerPhoenixEnforcerBigPalette,
+  [0x04B2] = sDestinyHeroDiamondDudeBigPalette,
+  [0x04B3] = sDestinyHeroDiskCommanderBigPalette,
+  [0x04B4] = sDestinyHeroDogmaBigPalette,
+  [0x04B5] = sDestinyHeroDominanceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2793,6 +2847,15 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04AA] = 0,
   [0x04AB] = 0,
   [0x04AC] = 0,
+  [0x04AD] = 0,
+  [0x04AE] = 0,
+  [0x04AF] = 0,
+  [0x04B0] = 0,
+  [0x04B1] = 0,
+  [0x04B2] = 0,
+  [0x04B3] = 0,
+  [0x04B4] = 0,
+  [0x04B5] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3194,4 +3257,13 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04AA] = sDestinyHeroCelestialMiniArt,
   [0x04AB] = sDestinyHeroDangerousMiniArt,
   [0x04AC] = sDestinyHeroDarkAngelMiniArt,
+  [0x04AD] = sDestinyHeroDasherMiniArt,
+  [0x04AE] = sDestinyHeroDeciderMiniArt,
+  [0x04AF] = sDestinyHeroDefenderMiniArt,
+  [0x04B0] = sDestinyHeroDenierMiniArt,
+  [0x04B1] = sDestinyHeroDestroyerPhoenixEnforcerMiniArt,
+  [0x04B2] = sDestinyHeroDiamondDudeMiniArt,
+  [0x04B3] = sDestinyHeroDiskCommanderMiniArt,
+  [0x04B4] = sDestinyHeroDogmaMiniArt,
+  [0x04B5] = sDestinyHeroDominanceMiniArt,
 };

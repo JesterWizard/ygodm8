@@ -119,6 +119,10 @@ unsigned char ShouldActivateDARKLORD_NURSE_REFICULE(void);
 void ActivateDARKLORD_NURSE_REFICULE(void);
 unsigned char ShouldActivateDESPAIR_FROM_THE_DARK(void);
 void ActivateDESPAIR_FROM_THE_DARK(void);
+unsigned char ShouldActivateDESTINY_HERO_DEFENDER(void);
+void ActivateDESTINY_HERO_DEFENDER(void);
+unsigned char ShouldActivateDESTINY_HERO_DOGMA(void);
+void ActivateDESTINY_HERO_DOGMA(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -340,6 +344,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DESPAIR_FROM_THE_DARK,
     .shouldActivate = ShouldActivateDESPAIR_FROM_THE_DARK,
     .activate = ActivateDESPAIR_FROM_THE_DARK,
+  },
+  {
+    .cardId = DESTINY_HERO_DEFENDER,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DEFENDER,
+    .activate = ActivateDESTINY_HERO_DEFENDER,
+  },
+  {
+    .cardId = DESTINY_HERO_DOGMA,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DOGMA,
+    .activate = ActivateDESTINY_HERO_DOGMA,
   },
 };
 

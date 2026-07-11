@@ -184,6 +184,14 @@ enum {
   MONSTER_EFFECT_DESTINY_HERO_CELESTIAL,
   MONSTER_EFFECT_DESTINY_HERO_DANGEROUS,
   MONSTER_EFFECT_DESTINY_HERO_DARK_ANGEL,
+
+  MONSTER_EFFECT_DESTINY_HERO_DASHER,
+  MONSTER_EFFECT_DESTINY_HERO_DECIDER,
+  MONSTER_EFFECT_DESTINY_HERO_DENIER,
+  MONSTER_EFFECT_DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER,
+  MONSTER_EFFECT_DESTINY_HERO_DIAMOND_DUDE,
+  MONSTER_EFFECT_DESTINY_HERO_DISK_COMMANDER,
+  MONSTER_EFFECT_DESTINY_HERO_DOMINANCE,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -307,5 +315,20 @@ extern unsigned char CanActivateDESTINY_HERO_DANGEROUS(void);
 extern void ActivateDESTINY_HERO_DANGEROUSEffect(void);
 extern unsigned char CanActivateDESTINY_HERO_DARK_ANGEL(void);
 extern void ActivateDESTINY_HERO_DARK_ANGELEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DASHER(void);
+extern void ActivateDESTINY_HERO_DASHEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DECIDER(void);
+extern void ActivateDESTINY_HERO_DECIDEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DENIER(void);
+extern void ActivateDESTINY_HERO_DENIEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCER(void);
+extern void ActivateDESTINY_HERO_DESTROYER_PHOENIX_ENFORCEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DIAMOND_DUDE(void);
+extern void ActivateDESTINY_HERO_DIAMOND_DUDEEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DISK_COMMANDER(void);
+extern void ActivateDESTINY_HERO_DISK_COMMANDEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DOMINANCE(void);
+extern void ActivateDESTINY_HERO_DOMINANCEEffect(void);
+
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

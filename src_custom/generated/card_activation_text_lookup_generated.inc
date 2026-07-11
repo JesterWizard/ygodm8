@@ -390,6 +390,15 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DESTINY_HERO_CELESTIAL] = gActivationDescription_DestinyHeroCelestial_Popup1,
   [DESTINY_HERO_DANGEROUS] = gActivationDescription_DestinyHeroDangerous_Popup1,
   [DESTINY_HERO_DARK_ANGEL] = gActivationDescription_DestinyHeroDarkAngel_Popup1,
+  [DESTINY_HERO_DASHER] = gActivationDescription_DestinyHeroDasher_Popup1,
+  [DESTINY_HERO_DECIDER] = gActivationDescription_DestinyHeroDecider_Popup1,
+  [DESTINY_HERO_DEFENDER] = gActivationDescription_DestinyHeroDefender_Popup1,
+  [DESTINY_HERO_DENIER] = gActivationDescription_DestinyHeroDenier_Popup1,
+  [DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER] = gActivationDescription_DestinyHeroDestroyerPhoenixEnforcer_Popup1,
+  [DESTINY_HERO_DIAMOND_DUDE] = gActivationDescription_DestinyHeroDiamondDude_Popup1,
+  [DESTINY_HERO_DISK_COMMANDER] = gActivationDescription_DestinyHeroDiskCommander_Popup1,
+  [DESTINY_HERO_DOGMA] = gActivationDescription_DestinyHeroDogma_Popup1,
+  [DESTINY_HERO_DOMINANCE] = gActivationDescription_DestinyHeroDominance_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -810,6 +819,15 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DESTINY_HERO_CELESTIAL_POPUP_1] = gActivationDescription_DestinyHeroCelestial_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DANGEROUS_POPUP_1] = gActivationDescription_DestinyHeroDangerous_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DARK_ANGEL_POPUP_1] = gActivationDescription_DestinyHeroDarkAngel_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DASHER_POPUP_1] = gActivationDescription_DestinyHeroDasher_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DECIDER_POPUP_1] = gActivationDescription_DestinyHeroDecider_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DEFENDER_POPUP_1] = gActivationDescription_DestinyHeroDefender_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DENIER_POPUP_1] = gActivationDescription_DestinyHeroDenier_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER_POPUP_1] = gActivationDescription_DestinyHeroDestroyerPhoenixEnforcer_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DIAMOND_DUDE_POPUP_1] = gActivationDescription_DestinyHeroDiamondDude_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DISK_COMMANDER_POPUP_1] = gActivationDescription_DestinyHeroDiskCommander_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DOGMA_POPUP_1] = gActivationDescription_DestinyHeroDogma_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DOMINANCE_POPUP_1] = gActivationDescription_DestinyHeroDominance_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

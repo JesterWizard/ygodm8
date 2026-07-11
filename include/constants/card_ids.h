@@ -1198,11 +1198,20 @@
 #define DESTINY_HERO_CELESTIAL                   0x04AA
 #define DESTINY_HERO_DANGEROUS                   0x04AB
 #define DESTINY_HERO_DARK_ANGEL                  0x04AC
+#define DESTINY_HERO_DASHER                      0x04AD
+#define DESTINY_HERO_DECIDER                     0x04AE
+#define DESTINY_HERO_DEFENDER                    0x04AF
+#define DESTINY_HERO_DENIER                      0x04B0
+#define DESTINY_HERO_DESTROYER_PHOENIX_ENFORCER  0x04B1
+#define DESTINY_HERO_DIAMOND_DUDE                0x04B2
+#define DESTINY_HERO_DISK_COMMANDER              0x04B3
+#define DESTINY_HERO_DOGMA                       0x04B4
+#define DESTINY_HERO_DOMINANCE                   0x04B5
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04AD
-#define NUM_CUSTOM_CARDS                        0x018C
+#define NUM_TOTAL_CARDS                         0x04B6
+#define NUM_CUSTOM_CARDS                        0x0195
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

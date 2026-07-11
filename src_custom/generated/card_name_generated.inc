@@ -397,6 +397,15 @@ static const u8 sDestinyHeroCaptainTenaciousName[] __attribute__((section(".appe
 static const u8 sDestinyHeroCelestialName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Celestial";
 static const u8 sDestinyHeroDangerousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dangerous";
 static const u8 sDestinyHeroDarkAngelName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dark Angel";
+static const u8 sDestinyHeroDasherName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dasher";
+static const u8 sDestinyHeroDeciderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Decider";
+static const u8 sDestinyHeroDefenderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Defender";
+static const u8 sDestinyHeroDenierName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Denier";
+static const u8 sDestinyHeroDestroyerPhoenixEnforcerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Destroyer Phoenix Enforcer";
+static const u8 sDestinyHeroDiamondDudeName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Diamond Dude";
+static const u8 sDestinyHeroDiskCommanderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Disk Commander";
+static const u8 sDestinyHeroDogmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dogma";
+static const u8 sDestinyHeroDominanceName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dominance";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1197,6 +1206,24 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDestinyHeroDangerousName;
   if (cardId == 0x04AC)
     return (u8 *)sDestinyHeroDarkAngelName;
+  if (cardId == 0x04AD)
+    return (u8 *)sDestinyHeroDasherName;
+  if (cardId == 0x04AE)
+    return (u8 *)sDestinyHeroDeciderName;
+  if (cardId == 0x04AF)
+    return (u8 *)sDestinyHeroDefenderName;
+  if (cardId == 0x04B0)
+    return (u8 *)sDestinyHeroDenierName;
+  if (cardId == 0x04B1)
+    return (u8 *)sDestinyHeroDestroyerPhoenixEnforcerName;
+  if (cardId == 0x04B2)
+    return (u8 *)sDestinyHeroDiamondDudeName;
+  if (cardId == 0x04B3)
+    return (u8 *)sDestinyHeroDiskCommanderName;
+  if (cardId == 0x04B4)
+    return (u8 *)sDestinyHeroDogmaName;
+  if (cardId == 0x04B5)
+    return (u8 *)sDestinyHeroDominanceName;
 
   return gCardNames[cardId];
 }

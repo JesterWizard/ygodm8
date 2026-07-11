@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `369` effects
+- `378` effects
 
 ## Tally
 
@@ -350,6 +350,15 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Destiny Hero Celestial` | `src_custom/activated_effects/destiny_hero_celestial.c` |
 | `activated_effects` | `Destiny Hero Dangerous` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
 | `activated_effects` | `Destiny Hero Dark Angel` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
+| `activated_effects` | `Destiny Hero Dasher` | `src_custom/activated_effects/destiny_hero_dasher.c` |
+| `activated_effects` | `Destiny Hero Decider` | `src_custom/activated_effects/destiny_hero_decider.c` |
+| `permanent_effects` | `Destiny Hero Defender` | `src_custom/permanent_effects/destiny_hero_defender.c` |
+| `activated_effects` | `Destiny Hero Denier` | `src_custom/activated_effects/destiny_hero_denier.c` |
+| `activated_effects` | `Destiny Hero Destroyer Phoenix Enforcer` | `src_custom/activated_effects/destiny_hero_destroyer_phoenix_enforcer.c` |
+| `activated_effects` | `Destiny Hero Diamond Dude` | `src_custom/activated_effects/destiny_hero_diamond_dude.c` |
+| `activated_effects` | `Destiny Hero Disk Commander` | `src_custom/activated_effects/destiny_hero_disk_commander.c` |
+| `permanent_effects` | `Destiny Hero Dogma` | `src_custom/permanent_effects/destiny_hero_dogma.c` |
+| `activated_effects` | `Destiny Hero Dominance` | `src_custom/activated_effects/destiny_hero_dominance.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
