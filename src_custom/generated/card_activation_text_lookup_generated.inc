@@ -376,6 +376,10 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DAMAGE_POLARIZER] = gActivationDescription_DamagePolarizer_Popup1,
   [D_BURST] = gActivationDescription_DBurst_Popup1,
   [D_FORCE] = gActivationDescription_DForce_Popup1,
+  [DARK_GREPHER] = gActivationDescription_DarkGrepher_Popup1,
+  [DARKLORD_NURSE_REFICULE] = gActivationDescription_DarklordNurseReficule_Popup1,
+  [DARKNESS_NEOSPHERE] = gActivationDescription_DarknessNeosphere_Popup1,
+  [DARK_CITY_AT_MIDNIGHT] = gActivationDescription_DarkCityAtMidnight_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -782,6 +786,10 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DAMAGE_POLARIZER_POPUP_1] = gActivationDescription_DamagePolarizer_Popup1,
   [CARD_EFFECT_TEXT_D_BURST_POPUP_1] = gActivationDescription_DBurst_Popup1,
   [CARD_EFFECT_TEXT_D_FORCE_POPUP_1] = gActivationDescription_DForce_Popup1,
+  [CARD_EFFECT_TEXT_DARK_GREPHER_POPUP_1] = gActivationDescription_DarkGrepher_Popup1,
+  [CARD_EFFECT_TEXT_DARKLORD_NURSE_REFICULE_POPUP_1] = gActivationDescription_DarklordNurseReficule_Popup1,
+  [CARD_EFFECT_TEXT_DARKNESS_NEOSPHERE_POPUP_1] = gActivationDescription_DarknessNeosphere_Popup1,
+  [CARD_EFFECT_TEXT_DARK_CITY_AT_MIDNIGHT_POPUP_1] = gActivationDescription_DarkCityAtMidnight_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -34,6 +34,7 @@ extern void EffectCourtOfJustice(void);
 extern void EffectCreatureSwap(void);
 extern void EffectCyberneticFusionSupport(void);
 extern void EffectCYBERNETIC_ZONE(void);
+extern void EffectDARK_CITY_AT_MIDNIGHT(void);
 extern void EffectDarkMagicCurtain(void);
 extern void EffectDarkRoomOfNightmare(void);
 extern void EffectDarkSnakeSyndrome(void);

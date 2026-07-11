@@ -1181,11 +1181,18 @@
 #define DAMAGE_POLARIZER                         0x0499
 #define D_BURST                                  0x049A
 #define D_FORCE                                  0x049B
+#define DARK_BLADE_THE_DRAGON_KNIGHT             0x049C
+#define DARK_GREPHER                             0x049D
+#define DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT     0x049E
+#define DARKLORD_NURSE_REFICULE                  0x049F
+#define DARKNESS_NEOSPHERE                       0x04A0
+#define DARK_CITY_AT_MIDNIGHT                    0x04A1
+#define DARK_MAGICIAN_THE_DRAGON_KNIGHT          0x04A2
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x049C
-#define NUM_CUSTOM_CARDS                        0x017B
+#define NUM_TOTAL_CARDS                         0x04A3
+#define NUM_CUSTOM_CARDS                        0x0182
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

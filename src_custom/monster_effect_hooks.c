@@ -726,6 +726,26 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateD_D_WARRIOREffect();
     return;
   }
+  if (gMonEffect.id == DARK_BLADE_THE_DRAGON_KNIGHT) {
+    ActivateDARK_BLADE_THE_DRAGON_KNIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_GREPHER) {
+    ActivateDARK_GREPHEREffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT) {
+    ActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_THE_DRAGON_KNIGHT) {
+    ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == DARKNESS_NEOSPHERE) {
+    ActivateDARKNESS_NEOSPHEREEffect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();

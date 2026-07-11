@@ -171,6 +171,12 @@ enum {
   MONSTER_EFFECT_CYBER_PHOENIX,
   MONSTER_EFFECT_CYBER_VALLEY,
   MONSTER_EFFECT_D_D_WARRIOR,
+  MONSTER_EFFECT_DARK_BLADE_THE_DRAGON_KNIGHT,
+  MONSTER_EFFECT_DARK_GREPHER,
+  MONSTER_EFFECT_DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT,
+  MONSTER_EFFECT_DARK_MAGICIAN_THE_DRAGON_KNIGHT,
+  MONSTER_EFFECT_DARKLORD_NURSE_REFICULE,
+  MONSTER_EFFECT_DARKNESS_NEOSPHERE,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -268,5 +274,17 @@ extern unsigned char CanActivateCYBER_VALLEY(void);
 extern void ActivateCYBER_VALLEYEffect(void);
 extern unsigned char CanActivateD_D_WARRIOR(void);
 extern void ActivateD_D_WARRIOREffect(void);
+extern unsigned char CanActivateDARK_BLADE_THE_DRAGON_KNIGHT(void);
+extern void ActivateDARK_BLADE_THE_DRAGON_KNIGHTEffect(void);
+extern unsigned char CanActivateDARK_GREPHER(void);
+extern void ActivateDARK_GREPHEREffect(void);
+extern unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT(void);
+extern void ActivateDARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHTEffect(void);
+extern unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void);
+extern void ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect(void);
+extern unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void);
+extern void ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect(void);
+extern unsigned char CanActivateDARKNESS_NEOSPHERE(void);
+extern void ActivateDARKNESS_NEOSPHEREEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

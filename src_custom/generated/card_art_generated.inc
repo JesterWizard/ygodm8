@@ -1524,6 +1524,34 @@ static const unsigned char sDForceBigArt[] __attribute__((section(".append_asset
 static const unsigned short sDForceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_force.gbapal");
 static const unsigned char sDForceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_force.lz");
 
+static const unsigned char sDarkBladeTheDragonKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_blade_the_dragon_knight.huff");
+static const unsigned short sDarkBladeTheDragonKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_blade_the_dragon_knight.gbapal");
+static const unsigned char sDarkBladeTheDragonKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_blade_the_dragon_knight.lz");
+
+static const unsigned char sDarkGrepherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_grepher.huff");
+static const unsigned short sDarkGrepherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_grepher.gbapal");
+static const unsigned char sDarkGrepherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_grepher.lz");
+
+static const unsigned char sDarkMagicianGirlTheDragonKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_magician_girl_the_dragon_knight.huff");
+static const unsigned short sDarkMagicianGirlTheDragonKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_magician_girl_the_dragon_knight.gbapal");
+static const unsigned char sDarkMagicianGirlTheDragonKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_magician_girl_the_dragon_knight.lz");
+
+static const unsigned char sDarklordNurseReficuleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/darklord_nurse_reficule.huff");
+static const unsigned short sDarklordNurseReficuleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/darklord_nurse_reficule.gbapal");
+static const unsigned char sDarklordNurseReficuleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/darklord_nurse_reficule.lz");
+
+static const unsigned char sDarknessNeosphereBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/darkness_neosphere.huff");
+static const unsigned short sDarknessNeosphereBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/darkness_neosphere.gbapal");
+static const unsigned char sDarknessNeosphereMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/darkness_neosphere.lz");
+
+static const unsigned char sDarkCityAtMidnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_city_at_midnight.huff");
+static const unsigned short sDarkCityAtMidnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_city_at_midnight.gbapal");
+static const unsigned char sDarkCityAtMidnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_city_at_midnight.lz");
+
+static const unsigned char sDarkMagicianTheDragonKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_magician_the_dragon_knight.huff");
+static const unsigned short sDarkMagicianTheDragonKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_magician_the_dragon_knight.gbapal");
+static const unsigned char sDarkMagicianTheDragonKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_magician_the_dragon_knight.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1906,6 +1934,13 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0499] = sDamagePolarizerBigArt,
   [0x049A] = sDBurstBigArt,
   [0x049B] = sDForceBigArt,
+  [0x049C] = sDarkBladeTheDragonKnightBigArt,
+  [0x049D] = sDarkGrepherBigArt,
+  [0x049E] = sDarkMagicianGirlTheDragonKnightBigArt,
+  [0x049F] = sDarklordNurseReficuleBigArt,
+  [0x04A0] = sDarknessNeosphereBigArt,
+  [0x04A1] = sDarkCityAtMidnightBigArt,
+  [0x04A2] = sDarkMagicianTheDragonKnightBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2290,6 +2325,13 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0499] = sDamagePolarizerBigPalette,
   [0x049A] = sDBurstBigPalette,
   [0x049B] = sDForceBigPalette,
+  [0x049C] = sDarkBladeTheDragonKnightBigPalette,
+  [0x049D] = sDarkGrepherBigPalette,
+  [0x049E] = sDarkMagicianGirlTheDragonKnightBigPalette,
+  [0x049F] = sDarklordNurseReficuleBigPalette,
+  [0x04A0] = sDarknessNeosphereBigPalette,
+  [0x04A1] = sDarkCityAtMidnightBigPalette,
+  [0x04A2] = sDarkMagicianTheDragonKnightBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2674,6 +2716,13 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0499] = 0,
   [0x049A] = 0,
   [0x049B] = 0,
+  [0x049C] = 0,
+  [0x049D] = 0,
+  [0x049E] = 0,
+  [0x049F] = 0,
+  [0x04A0] = 0,
+  [0x04A1] = 0,
+  [0x04A2] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3058,4 +3107,11 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0499] = sDamagePolarizerMiniArt,
   [0x049A] = sDBurstMiniArt,
   [0x049B] = sDForceMiniArt,
+  [0x049C] = sDarkBladeTheDragonKnightMiniArt,
+  [0x049D] = sDarkGrepherMiniArt,
+  [0x049E] = sDarkMagicianGirlTheDragonKnightMiniArt,
+  [0x049F] = sDarklordNurseReficuleMiniArt,
+  [0x04A0] = sDarknessNeosphereMiniArt,
+  [0x04A1] = sDarkCityAtMidnightMiniArt,
+  [0x04A2] = sDarkMagicianTheDragonKnightMiniArt,
 };

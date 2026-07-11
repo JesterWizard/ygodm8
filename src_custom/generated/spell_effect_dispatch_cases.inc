@@ -104,6 +104,9 @@
     case CYBERNETIC_ZONE:
       EffectCYBERNETIC_ZONE();
       return;
+    case DARK_CITY_AT_MIDNIGHT:
+      EffectDARK_CITY_AT_MIDNIGHT();
+      return;
     case DARK_MAGIC_CURTAIN:
       EffectDarkMagicCurtain();
       return;

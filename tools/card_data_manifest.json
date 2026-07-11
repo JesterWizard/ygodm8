@@ -22499,6 +22499,188 @@
       "effect_texts": {
         "popup_1": "When this card is activated: You can add 1 \"Destiny HERO - Plasma\" from your Deck or GY to your hand. While you control "
       }
+    },
+    {
+  "card_const": "DARK_BLADE_THE_DRAGON_KNIGHT",
+  "card_name": "Dark Blade the Dragon Knight",
+  "atk": 2200,
+  "def": 1500,
+  "level": 6,
+  "attribute": "ATTRIBUTE_SHADOW",
+  "type": "TYPE_WARRIOR",
+  "color": "FUSION_CARD",
+  "monsterEffect": "MONSTER_EFFECT_DARK_BLADE_THE_DRAGON_KNIGHT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 6, 8, 0, 5, 8, 5, 5],
+      "description": {
+        "symbol": "gDescription_DarkBladeTheDragonKnight",
+        "pages": [
+          "Dark Blade + Pitch-Dark Dragon.",
+          "Each time this card inflicts Battle Damage to your",
+          "opponent, select up to 3 Monster Cards from your",
+          "opponent GY and remove them from play."
+        ]
+      }
+    },
+    {
+      "card_const": "DARK_GREPHER",
+  "card_name": "Dark Grepher",
+  "atk": 1700,
+  "def": 1600,
+  "level": 4,
+  "attribute": "ATTRIBUTE_SHADOW",
+  "type": "TYPE_WARRIOR",
+  "color": "EFFECT_CARD",
+  "monsterEffect": "MONSTER_EFFECT_DARK_GREPHER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 233,
+      "password": [1, 4, 5, 3, 6, 0, 3, 5],
+      "description": {
+        "symbol": "gDescription_DarkGrepher",
+        "pages": [
+          "Special Summon this card from hand by",
+          "discarding 1 Level 5+ DARK monster. Once",
+          "per turn: discard 1 DARK monster; send 1",
+          "DARK monster from Deck to GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can Special Summon this card (from your hand) by discarding 1 Level 5 or higher DARK monster. Once per turn: You can"
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT",
+      "card_name": "Dark Magician Girl the Dragon Knight",
+      "atk": 2600,
+      "def": 1700,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [4, 3, 8, 9, 2, 4, 0, 8],
+      "description": {
+        "symbol": "gDescription_DarkMagicianGirlTheDragonKnight",
+        "pages": [
+          "Dark Magician Girl + 1 Dragon monster.",
+          "Must be Fusion Summoned or with The Eye of",
+          "Timaeus. Once per turn (Quick Effect): send 1",
+          "card from hand to GY, then target 1 face-up",
+          "card on the field; destroy it."
+        ]
+      }
+    },
+    {
+  "card_const": "DARKLORD_NURSE_REFICULE",
+  "card_name": "Darklord Nurse Reficule",
+  "atk": 1400,
+  "def": 600,
+  "level": 4,
+  "attribute": "ATTRIBUTE_SHADOW",
+  "type": "TYPE_FAIRY",
+  "color": "EFFECT_CARD",
+  "monsterEffect": "MONSTER_EFFECT_DARKLORD_NURSE_REFICULE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 7, 3, 1, 6, 0, 7, 5],
+      "description": {
+        "symbol": "gDescription_DarklordNurseReficule",
+        "pages": [
+          "Any effect that would make your opponent gain LP",
+          "inflicts the same amount of damage to them, instead."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Any effect that would make your opponent gain LP inflicts the same amount of damage to them, instead."
+      }
+    },
+    {
+  "card_const": "DARKNESS_NEOSPHERE",
+  "card_name": "Darkness Neosphere",
+  "atk": 4000,
+  "def": 4000,
+  "level": 10,
+  "attribute": "ATTRIBUTE_SHADOW",
+  "type": "TYPE_FIEND",
+  "color": "EFFECT_CARD",
+  "monsterEffect": "MONSTER_EFFECT_DARKNESS_NEOSPHERE",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 0, 4, 1, 7, 3, 9, 5],
+      "description": {
+        "symbol": "gDescription_DarknessNeosphere",
+        "pages": [
+          "Cannot be Normal Summoned. Special Summon by",
+          "sending 1 Fiend-Type monster you control and",
+          "1 from hand to GY when opponent declares",
+          "attack. Cannot be destroyed by battle. Once per",
+          "turn: return all face-up Traps you control to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This card cannot be Normal Summoned or Set. This card cannot be Special Summoned except by sending 1 Fiend-Type monster "
+      }
+    },
+    {
+      "card_const": "DARK_CITY_AT_MIDNIGHT",
+      "card_name": "Dark City at Midnight",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 0, 1, 4, 0, 2, 0, 6],
+      "description": {
+        "symbol": "gDescription_DarkCityAtMidnight",
+        "pages": [
+          "When you Special Summon a Level 8+ Destiny",
+          "HERO: Warrior monsters you control gain 300",
+          "ATK. Your Main Phase, if activated this turn:",
+          "add 1 Destiny HERO or card mentioning a",
+          "Destiny HERO name from Deck to hand. If"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Each time you Special Summon a Level 8+ Destiny HERO: Warrior monsters you control gain 300 ATK."
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_THE_DRAGON_KNIGHT",
+      "card_name": "Dark Magician the Dragon Knight",
+      "atk": 3000,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARK_MAGICIAN_THE_DRAGON_KNIGHT",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [4, 1, 7, 2, 1, 2, 1, 0],
+      "description": {
+        "symbol": "gDescription_DarkMagicianTheDragonKnight",
+        "pages": [
+          "Dark Magician + 1 Dragon monster. This card",
+          "name becomes Dark Magician while on field or",
+          "in GY. Opponent cannot target Spells/Traps",
+          "you control with card effects, also they cannot",
+          "be destroyed by opponent card effects."
+        ]
+      }
     }
   ]
 }

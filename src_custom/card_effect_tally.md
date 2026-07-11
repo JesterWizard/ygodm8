@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `351` effects
+- `359` effects
 
 ## Tally
 
@@ -332,6 +332,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `D Tactics` | `src_custom/trap_effects/d_tactics.c` |
 | `trap_effects` | `D Time` | `src_custom/trap_effects/d_time.c` |
 | `trap_effects` | `Damage Polarizer` | `src_custom/trap_effects/damage_polarizer.c` |
+| `activated_effects` | `Dark Blade The Dragon Knight` | `src_custom/activated_effects/dark_blade_the_dragon_knight.c` |
+| `spell_effects` | `Dark City At Midnight` | `src_custom/spell_effects/dark_city_at_midnight.c` |
+| `activated_effects` | `Dark Grepher` | `src_custom/activated_effects/dark_grepher.c` |
+| `activated_effects` | `Dark Magician Girl The Dragon Knight` | `src_custom/activated_effects/dark_magician_girl_the_dragon_knight.c` |
+| `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
+| `permanent_effects` | `Darklord Nurse Reficule` | `src_custom/permanent_effects/darklord_nurse_reficule.c` |
+| `activated_effects` | `Darkness Neosphere` | `src_custom/activated_effects/darkness_neosphere.c` |
+| `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

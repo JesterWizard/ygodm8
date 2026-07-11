@@ -399,21 +399,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `D.D_WARRIOR` | D.D. Warrior | `d.d_warrior.png` |
 | `D_BURST` | D Burst | `d_burst.png` |
 | `D_FORCE` | F Dorce | `d_force.png` |
+| `D_TACTICS` | D Tactics | `d_tactics.png` |
+| `D_TIME` | D Time | `d_time.png` |
+| `DAMAGE_POLARIZER` | Damage Polarizer | `damage_polarizer.png` |
+| `DARK_BLADE_THE_DRAGON_KNIGHT` | Dark Blade the Dragon Knight | `dark_blade_the_dragon_knight.png` |
+| `DARK_CITY_AT_MIDNIGHT` | Dark City at Midnight | `dark_city_at_midnight.png` |
+| `DARK_GREPHER` | Dark Grepher | `dark_grepher.png` |
+| `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` | Dark Magician Girl the Dragon Knight | `dark_magician_girl_the_dragon_knight.png` |
+| `DARK_MAGICIAN_THE_DRAGON_KNIGHT` | Dark Magician the Dragon Knight | `dark_magician_the_dragon_knight.png` |
+| `DARKLORD_NURSE_REFICULE` | Darklord Nurse Reficule | `darklord_nurse_reficule.png` |
+| `DARKNESS_NEOSPHERE` | Darkness Neosphere | `darkness_neosphere.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `D_TACTICS` — `d_tactics.png`
-- [ ] `D_TIME` — `d_time.png`
-- [ ] `DAMAGE_POLARIZER` — `damage_polarizer.png`
-- [ ] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
-- [ ] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
-- [ ] `DARK_GREPHER` — `dark_grepher.png`
-- [ ] `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` — `dark_magician_girl_the_dragon_knight.png`
-- [ ] `DARK_MAGICIAN_THE_DRAGON_KNIGHT` — `dark_magician_the_dragon_knight.png`
-- [ ] `DARKLORD_NURSE_REFICULE` — `darklord_nurse_reficule.png`
-- [ ] `DARKNESS_NEOSPHERE` — `darkness_neosphere.png`
 - [ ] `DECOY_DRAGON` — `decoy_dragon.png`
 - [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
 - [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`

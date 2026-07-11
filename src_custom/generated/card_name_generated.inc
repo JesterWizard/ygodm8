@@ -380,6 +380,13 @@ static const u8 sDTimeName[] __attribute__((section(".append_assets"))) = "D - T
 static const u8 sDamagePolarizerName[] __attribute__((section(".append_assets"))) = "Damage Polarizer";
 static const u8 sDBurstName[] __attribute__((section(".append_assets"))) = "D - Burst";
 static const u8 sDForceName[] __attribute__((section(".append_assets"))) = "D - Force";
+static const u8 sDarkBladeTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Blade the Dragon Knight";
+static const u8 sDarkGrepherName[] __attribute__((section(".append_assets"))) = "Dark Grepher";
+static const u8 sDarkMagicianGirlTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Magician Girl the Dragon Knight";
+static const u8 sDarklordNurseReficuleName[] __attribute__((section(".append_assets"))) = "Darklord Nurse Reficule";
+static const u8 sDarknessNeosphereName[] __attribute__((section(".append_assets"))) = "Darkness Neosphere";
+static const u8 sDarkCityAtMidnightName[] __attribute__((section(".append_assets"))) = "Dark City at Midnight";
+static const u8 sDarkMagicianTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Magician the Dragon Knight";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1146,6 +1153,20 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDBurstName;
   if (cardId == 0x049B)
     return (u8 *)sDForceName;
+  if (cardId == 0x049C)
+    return (u8 *)sDarkBladeTheDragonKnightName;
+  if (cardId == 0x049D)
+    return (u8 *)sDarkGrepherName;
+  if (cardId == 0x049E)
+    return (u8 *)sDarkMagicianGirlTheDragonKnightName;
+  if (cardId == 0x049F)
+    return (u8 *)sDarklordNurseReficuleName;
+  if (cardId == 0x04A0)
+    return (u8 *)sDarknessNeosphereName;
+  if (cardId == 0x04A1)
+    return (u8 *)sDarkCityAtMidnightName;
+  if (cardId == 0x04A2)
+    return (u8 *)sDarkMagicianTheDragonKnightName;
 
   return gCardNames[cardId];
 }
