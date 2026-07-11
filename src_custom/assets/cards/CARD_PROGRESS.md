@@ -531,28 +531,20 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `NUMINOUS_HEALER` | Numinous Healer | `numinous_healer.png` |
 | `OJAMA_KING` | Ojama King | `ojama_king.png` |
 | `ORICHALCOS_SHUNOROS` | Orichalcos Shunoros | `orichalcos_shunoros.png` |
+| `OVER_DESTINY` | Over Destiny | `over_destiny.png` |
+| `PAINFUL_CHOICE` | Painful Choice | `painful_choice.png` |
+| `PANDEMONIUM` | Pandemonium | `pandemonium.png` |
+| `PARALLEL_WORLD_FUSION` | Parallel World Fusion | `parallel_world_fusion.png` |
+| `PHOTON_GENERATOR_UNIT` | Photon Generator Unit | `photon_generator_unit.png` |
+| `POISON_OF_THE_OLD_MAN` | Poison of the Old Man | `poison_of_the_old_man.png` |
+| `PROPHECY` | Prophecy | `prophecy.png` |
+| `PROTECTOR_OF_THE_SANCTUARY` | Protector of the Sanctuary | `protector_of_the_sanctuary.png` |
+| `QUINTET_MAGICIAN` | Quintet Magician | `quintet_magician.png` |
+| `RAIGEKI_BREAK` | Raigeki Break | `raigeki_break.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
-
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` — `horus_the_black_flame_dragon_level_eight.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` — `horus_the_black_flame_dragon_level_four.png`
-- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
-- [ ] `MA'AT` — `ma'at.png`
-- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
-- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
-- [ ] `MYSTIC_WOK` — `mystic_wok.png`
-- [ ] `OVER_DESTINY` — `over_destiny.png`
-- [ ] `PAINFUL_CHOICE` — `painful_choice.png`
-- [ ] `PANDEMONIUM` — `pandemonium.png`
-- [ ] `PARALLEL_WORLD_FUSION` — `parallel_world_fusion.png`
-- [ ] `PHOTON_GENERATOR_UNIT` — `photon_generator_unit.png`
-- [ ] `POISON_OF_THE_OLD_MAN` — `poison_of_the_old_man.png`
-- [ ] `PROPHECY` — `prophecy.png`
-- [ ] `PROTECTOR_OF_THE_SANCTUARY` — `protector_of_the_sanctuary.png`
-- [ ] `QUINTET_MAGICIAN` — `quintet_magician.png`
-- [ ] `RAIGEKI_BREAK` — `raigeki_break.png`
 - [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
 - [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
 - [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`

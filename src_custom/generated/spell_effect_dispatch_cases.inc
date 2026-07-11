@@ -296,8 +296,26 @@
     case OVERLOAD_FUSION:
       EffectOverloadFusion();
       return;
+    case OVER_DESTINY:
+      EffectOVER_DESTINY();
+      return;
     case O_OVERSOUL:
       EffectOOversoul();
+      return;
+    case PAINFUL_CHOICE:
+      EffectPAINFUL_CHOICE();
+      return;
+    case PANDEMONIUM:
+      EffectPANDEMONIUM();
+      return;
+    case PARALLEL_WORLD_FUSION:
+      EffectPARALLEL_WORLD_FUSION();
+      return;
+    case PHOTON_GENERATOR_UNIT:
+      EffectPHOTON_GENERATOR_UNIT();
+      return;
+    case POISON_OF_THE_OLD_MAN:
+      EffectPOISON_OF_THE_OLD_MAN();
       return;
     case POLYMERIZATION:
       EffectPolymerization();

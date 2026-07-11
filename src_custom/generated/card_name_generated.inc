@@ -511,6 +511,16 @@ static const u8 sNibiruThePrimalBeingName[] __attribute__((section(".append_asse
 static const u8 sNuminousHealerName[] __attribute__((section(".append_assets"))) = "Numinous Healer";
 static const u8 sOjamaKingName[] __attribute__((section(".append_assets"))) = "Ojama King";
 static const u8 sOrichalcosShunorosName[] __attribute__((section(".append_assets"))) = "Orichalcos Shunoros";
+static const u8 sOverDestinyName[] __attribute__((section(".append_assets"))) = "Over Destiny";
+static const u8 sPainfulChoiceName[] __attribute__((section(".append_assets"))) = "Painful Choice";
+static const u8 sPandemoniumName[] __attribute__((section(".append_assets"))) = "Pandemonium";
+static const u8 sParallelWorldFusionName[] __attribute__((section(".append_assets"))) = "Parallel World Fusion";
+static const u8 sPhotonGeneratorUnitName[] __attribute__((section(".append_assets"))) = "Photon Generator Unit";
+static const u8 sPoisonOfTheOldManName[] __attribute__((section(".append_assets"))) = "Poison of the Old Man";
+static const u8 sProtectorOfTheSanctuaryName[] __attribute__((section(".append_assets"))) = "Protector of the Sanctuary";
+static const u8 sQuintetMagicianName[] __attribute__((section(".append_assets"))) = "Quintet Magician";
+static const u8 sRaigekiBreakName[] __attribute__((section(".append_assets"))) = "Raigeki Break";
+static const u8 sProphecyName[] __attribute__((section(".append_assets"))) = "Prophecy";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1539,6 +1549,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sOjamaKingName;
   if (cardId == 0x051E)
     return (u8 *)sOrichalcosShunorosName;
+  if (cardId == 0x051F)
+    return (u8 *)sOverDestinyName;
+  if (cardId == 0x0520)
+    return (u8 *)sPainfulChoiceName;
+  if (cardId == 0x0521)
+    return (u8 *)sPandemoniumName;
+  if (cardId == 0x0522)
+    return (u8 *)sParallelWorldFusionName;
+  if (cardId == 0x0523)
+    return (u8 *)sPhotonGeneratorUnitName;
+  if (cardId == 0x0524)
+    return (u8 *)sPoisonOfTheOldManName;
+  if (cardId == 0x0525)
+    return (u8 *)sProtectorOfTheSanctuaryName;
+  if (cardId == 0x0526)
+    return (u8 *)sQuintetMagicianName;
+  if (cardId == 0x0527)
+    return (u8 *)sRaigekiBreakName;
+  if (cardId == 0x0528)
+    return (u8 *)sProphecyName;
 
   return gCardNames[cardId];
 }

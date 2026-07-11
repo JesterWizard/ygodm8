@@ -415,3 +415,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire NEEDLE_WALL in trap dispatcher */
 /* NUMINOUS_HEALER trap effect */
   /* TODO: wire NUMINOUS_HEALER in trap dispatcher */
+/* PROPHECY trap effect */
+  /* TODO: wire PROPHECY in trap dispatcher */
+/* RAIGEKI_BREAK trap effect */
+  /* TODO: wire RAIGEKI_BREAK in trap dispatcher */

@@ -493,6 +493,15 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [NIBIRU_THE_PRIMAL_BEING] = gActivationDescription_NibiruThePrimalBeing_Popup1,
   [NUMINOUS_HEALER] = gActivationDescription_NuminousHealer_Popup1,
   [ORICHALCOS_SHUNOROS] = gActivationDescription_OrichalcosShunoros_Popup1,
+  [OVER_DESTINY] = gActivationDescription_OverDestiny_Popup1,
+  [PAINFUL_CHOICE] = gActivationDescription_PainfulChoice_Popup1,
+  [PANDEMONIUM] = gActivationDescription_Pandemonium_Popup1,
+  [PARALLEL_WORLD_FUSION] = gActivationDescription_ParallelWorldFusion_Popup1,
+  [PHOTON_GENERATOR_UNIT] = gActivationDescription_PhotonGeneratorUnit_Popup1,
+  [POISON_OF_THE_OLD_MAN] = gActivationDescription_PoisonOfTheOldMan_Popup1,
+  [PROTECTOR_OF_THE_SANCTUARY] = gActivationDescription_ProtectorOfTheSanctuary_Popup1,
+  [RAIGEKI_BREAK] = gActivationDescription_RaigekiBreak_Popup1,
+  [PROPHECY] = gActivationDescription_Prophecy_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1016,6 +1025,15 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_NIBIRU_THE_PRIMAL_BEING_POPUP_1] = gActivationDescription_NibiruThePrimalBeing_Popup1,
   [CARD_EFFECT_TEXT_NUMINOUS_HEALER_POPUP_1] = gActivationDescription_NuminousHealer_Popup1,
   [CARD_EFFECT_TEXT_ORICHALCOS_SHUNOROS_POPUP_1] = gActivationDescription_OrichalcosShunoros_Popup1,
+  [CARD_EFFECT_TEXT_OVER_DESTINY_POPUP_1] = gActivationDescription_OverDestiny_Popup1,
+  [CARD_EFFECT_TEXT_PAINFUL_CHOICE_POPUP_1] = gActivationDescription_PainfulChoice_Popup1,
+  [CARD_EFFECT_TEXT_PANDEMONIUM_POPUP_1] = gActivationDescription_Pandemonium_Popup1,
+  [CARD_EFFECT_TEXT_PARALLEL_WORLD_FUSION_POPUP_1] = gActivationDescription_ParallelWorldFusion_Popup1,
+  [CARD_EFFECT_TEXT_PHOTON_GENERATOR_UNIT_POPUP_1] = gActivationDescription_PhotonGeneratorUnit_Popup1,
+  [CARD_EFFECT_TEXT_POISON_OF_THE_OLD_MAN_POPUP_1] = gActivationDescription_PoisonOfTheOldMan_Popup1,
+  [CARD_EFFECT_TEXT_PROTECTOR_OF_THE_SANCTUARY_POPUP_1] = gActivationDescription_ProtectorOfTheSanctuary_Popup1,
+  [CARD_EFFECT_TEXT_RAIGEKI_BREAK_POPUP_1] = gActivationDescription_RaigekiBreak_Popup1,
+  [CARD_EFFECT_TEXT_PROPHECY_POPUP_1] = gActivationDescription_Prophecy_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

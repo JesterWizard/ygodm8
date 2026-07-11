@@ -2048,6 +2048,46 @@ static const unsigned char sOrichalcosShunorosBigArt[] __attribute__((section(".
 static const unsigned short sOrichalcosShunorosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/orichalcos_shunoros.gbapal");
 static const unsigned char sOrichalcosShunorosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/orichalcos_shunoros.lz");
 
+static const unsigned char sOverDestinyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/over_destiny.huff");
+static const unsigned short sOverDestinyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/over_destiny.gbapal");
+static const unsigned char sOverDestinyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/over_destiny.lz");
+
+static const unsigned char sPainfulChoiceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/painful_choice.huff");
+static const unsigned short sPainfulChoiceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/painful_choice.gbapal");
+static const unsigned char sPainfulChoiceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/painful_choice.lz");
+
+static const unsigned char sPandemoniumBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/pandemonium.huff");
+static const unsigned short sPandemoniumBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/pandemonium.gbapal");
+static const unsigned char sPandemoniumMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/pandemonium.lz");
+
+static const unsigned char sParallelWorldFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/parallel_world_fusion.huff");
+static const unsigned short sParallelWorldFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/parallel_world_fusion.gbapal");
+static const unsigned char sParallelWorldFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/parallel_world_fusion.lz");
+
+static const unsigned char sPhotonGeneratorUnitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/photon_generator_unit.huff");
+static const unsigned short sPhotonGeneratorUnitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/photon_generator_unit.gbapal");
+static const unsigned char sPhotonGeneratorUnitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/photon_generator_unit.lz");
+
+static const unsigned char sPoisonOfTheOldManBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/poison_of_the_old_man.huff");
+static const unsigned short sPoisonOfTheOldManBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/poison_of_the_old_man.gbapal");
+static const unsigned char sPoisonOfTheOldManMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/poison_of_the_old_man.lz");
+
+static const unsigned char sProtectorOfTheSanctuaryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/protector_of_the_sanctuary.huff");
+static const unsigned short sProtectorOfTheSanctuaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/protector_of_the_sanctuary.gbapal");
+static const unsigned char sProtectorOfTheSanctuaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/protector_of_the_sanctuary.lz");
+
+static const unsigned char sQuintetMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/quintet_magician.huff");
+static const unsigned short sQuintetMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/quintet_magician.gbapal");
+static const unsigned char sQuintetMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/quintet_magician.lz");
+
+static const unsigned char sRaigekiBreakBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/raigeki_break.huff");
+static const unsigned short sRaigekiBreakBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/raigeki_break.gbapal");
+static const unsigned char sRaigekiBreakMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/raigeki_break.lz");
+
+static const unsigned char sProphecyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/prophecy.huff");
+static const unsigned short sProphecyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/prophecy.gbapal");
+static const unsigned char sProphecyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/prophecy.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2561,6 +2601,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x051C] = sNuminousHealerBigArt,
   [0x051D] = sOjamaKingBigArt,
   [0x051E] = sOrichalcosShunorosBigArt,
+  [0x051F] = sOverDestinyBigArt,
+  [0x0520] = sPainfulChoiceBigArt,
+  [0x0521] = sPandemoniumBigArt,
+  [0x0522] = sParallelWorldFusionBigArt,
+  [0x0523] = sPhotonGeneratorUnitBigArt,
+  [0x0524] = sPoisonOfTheOldManBigArt,
+  [0x0525] = sProtectorOfTheSanctuaryBigArt,
+  [0x0526] = sQuintetMagicianBigArt,
+  [0x0527] = sRaigekiBreakBigArt,
+  [0x0528] = sProphecyBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3076,6 +3126,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x051C] = sNuminousHealerBigPalette,
   [0x051D] = sOjamaKingBigPalette,
   [0x051E] = sOrichalcosShunorosBigPalette,
+  [0x051F] = sOverDestinyBigPalette,
+  [0x0520] = sPainfulChoiceBigPalette,
+  [0x0521] = sPandemoniumBigPalette,
+  [0x0522] = sParallelWorldFusionBigPalette,
+  [0x0523] = sPhotonGeneratorUnitBigPalette,
+  [0x0524] = sPoisonOfTheOldManBigPalette,
+  [0x0525] = sProtectorOfTheSanctuaryBigPalette,
+  [0x0526] = sQuintetMagicianBigPalette,
+  [0x0527] = sRaigekiBreakBigPalette,
+  [0x0528] = sProphecyBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3591,6 +3651,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x051C] = 0,
   [0x051D] = 0,
   [0x051E] = 0,
+  [0x051F] = 0,
+  [0x0520] = 0,
+  [0x0521] = 0,
+  [0x0522] = 0,
+  [0x0523] = 0,
+  [0x0524] = 0,
+  [0x0525] = 0,
+  [0x0526] = 0,
+  [0x0527] = 0,
+  [0x0528] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4106,4 +4176,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x051C] = sNuminousHealerMiniArt,
   [0x051D] = sOjamaKingMiniArt,
   [0x051E] = sOrichalcosShunorosMiniArt,
+  [0x051F] = sOverDestinyMiniArt,
+  [0x0520] = sPainfulChoiceMiniArt,
+  [0x0521] = sPandemoniumMiniArt,
+  [0x0522] = sParallelWorldFusionMiniArt,
+  [0x0523] = sPhotonGeneratorUnitMiniArt,
+  [0x0524] = sPoisonOfTheOldManMiniArt,
+  [0x0525] = sProtectorOfTheSanctuaryMiniArt,
+  [0x0526] = sQuintetMagicianMiniArt,
+  [0x0527] = sRaigekiBreakMiniArt,
+  [0x0528] = sProphecyMiniArt,
 };

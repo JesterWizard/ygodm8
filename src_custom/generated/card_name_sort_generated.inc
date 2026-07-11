@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 510
+#define NUM_CUSTOM_NAME_SORT_CARDS 520
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -515,6 +515,16 @@ static const u8 sNibiruThePrimalBeingSortName[] APPEND_RODATA = "Nibiru, the Pri
 static const u8 sNuminousHealerSortName[] APPEND_RODATA = "Numinous Healer";
 static const u8 sOjamaKingSortName[] APPEND_RODATA = "Ojama King";
 static const u8 sOrichalcosShunorosSortName[] APPEND_RODATA = "Orichalcos Shunoros";
+static const u8 sOverDestinySortName[] APPEND_RODATA = "Over Destiny";
+static const u8 sPainfulChoiceSortName[] APPEND_RODATA = "Painful Choice";
+static const u8 sPandemoniumSortName[] APPEND_RODATA = "Pandemonium";
+static const u8 sParallelWorldFusionSortName[] APPEND_RODATA = "Parallel World Fusion";
+static const u8 sPhotonGeneratorUnitSortName[] APPEND_RODATA = "Photon Generator Unit";
+static const u8 sPoisonOfTheOldManSortName[] APPEND_RODATA = "Poison of the Old Man";
+static const u8 sProtectorOfTheSanctuarySortName[] APPEND_RODATA = "Protector of the Sanctuary";
+static const u8 sQuintetMagicianSortName[] APPEND_RODATA = "Quintet Magician";
+static const u8 sRaigekiBreakSortName[] APPEND_RODATA = "Raigeki Break";
+static const u8 sProphecySortName[] APPEND_RODATA = "Prophecy";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -913,18 +923,28 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x051D, // Ojama King
   0x034E, // Ojama Trio
   0x051E, // Orichalcos Shunoros
+  0x051F, // Over Destiny
   0x0440, // Overload Fusion
+  0x0520, // Painful Choice
   0x0325, // Paladin Of White Dragon
+  0x0521, // Pandemonium
+  0x0522, // Parallel World Fusion
   0x037A, // Peten The Dark Clown
+  0x0523, // Photon Generator Unit
   0x0365, // Piranha Army
+  0x0524, // Poison of the Old Man
   0x03E9, // Polymerization
   0x03CE, // Possessed Dark Soul
   0x0441, // Power Bond
   0x039D, // Precious Cards From Beyond
   0x045B, // Premature Burial
+  0x0528, // Prophecy
+  0x0525, // Protector of the Sanctuary
   0x03EF, // Proto-Cyber Dragon
   0x0334, // Pyramid of Light
+  0x0526, // Quintet Magician
   0x0435, // R - Righteous Justice
+  0x0527, // Raigeki Break
   0x0359, // Rain of Mercy
   0x0337, // Rare Metal Dragon
   0x03B3, // Raregold Armor
@@ -1426,120 +1446,130 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   394, // Ojama King
   395, // Ojama Trio
   396, // Orichalcos Shunoros
-  397, // Overload Fusion
-  398, // Paladin Of White Dragon
-  399, // Peten The Dark Clown
-  400, // Piranha Army
-  401, // Polymerization
-  402, // Possessed Dark Soul
-  403, // Power Bond
-  404, // Precious Cards From Beyond
-  405, // Premature Burial
-  406, // Proto-Cyber Dragon
-  407, // Pyramid of Light
-  408, // R - Righteous Justice
-  409, // Rain of Mercy
-  410, // Rare Metal Dragon
-  411, // Raregold Armor
-  412, // Raviel, Lord of Phantasms
-  413, // Reaper on the Nightmare
-  414, // Reckless Greed
-  415, // Reload
-  416, // Ring of Destruction
-  417, // Riryoku
-  418, // Rivalry of Warlords
-  419, // Robbin' Goblin
-  420, // Robbin' Zombie
-  421, // Royal Decree
-  422, // Royal Knight
-  423, // Ryu-Kishin Clown
-  424, // Sage's Stone
-  425, // Sasuke Samurai
-  426, // Sasuke Samurai #2
-  427, // Sasuke Samurai #3
-  428, // Seal of Orichalcos
-  429, // Secret Barrel
-  430, // Self-Destruct Button
-  431, // Seraphim Blaster
-  432, // Servant of Catabolism
-  433, // Seven Tools of the Bandit
-  434, // Shatiel
-  435, // Shield And Sword
-  436, // Skill Drain
-  437, // Skull Invitation
-  438, // Skyscraper
-  439, // Solar Flare Dragon
-  440, // Solar Ray
-  441, // Solemn Wishes
-  442, // Sorcerer of Dark Magic
-  443, // Soul Exchange
-  444, // Soul Taker
-  445, // Spear Dragon
-  446, // Spell Canceller
-  447, // Spell Economics
-  448, // Spirit Caller
-  449, // Spirit of the Breeze
-  450, // Spirit of the Pot of Greed
-  451, // Spirit Reaper
-  452, // Spirit Ryu
-  453, // St Joan
-  454, // Stealth Bird
-  455, // Swift Gaia The Fierce Knight
-  456, // Terrorking Salmon
-  457, // Tethys, Goddess of Light
-  458, // The Agent Of Creation - Venus
-  459, // The Agent of Force - Mars
-  460, // The Big Saturn
-  461, // The Blazing Mars
-  462, // The Dark Door
-  463, // The Despair Uranus
-  464, // The Flute of Summoning Dragon
-  465, // The Forceful Sentry
-  466, // The Grand Jupiter
-  467, // The Sanctuary in the Sky
-  468, // The Splendid Venus
-  469, // The Suppression Pluto
-  470, // The Supremacy Sun
-  471, // The Thing in the Crater
-  472, // The Tricky
-  473, // The Tripper Mercury
-  474, // The Tyrant Neptune
-  475, // The Unstoppable Exodia Incarnate
-  476, // The Wicked Avatar
-  477, // The Wicked Dreadroot
-  478, // The Wicked Eraser
-  479, // Theban Nightmare
-  480, // Thousand Energy
-  481, // Thousand Knives
-  482, // Thunder Crash
-  483, // Time Seal
-  484, // Tiny Angel
-  485, // Toll
-  486, // Torpedo Fish
-  487, // Trade-In
-  488, // Triangle Power
-  489, // Tribute Doll
-  490, // Twin Swords of Flashing Light - Tryce
-  491, // Tyrant Dragon
-  492, // Ultimate Offering
-  493, // United We Stand
-  494, // Upstart Goblin
-  495, // Uria, Lord of Searing Flames
-  496, // Valhalla, Hall of the Fallen
-  497, // Vampire Baby
-  498, // Vengeful Bog Spirit
-  499, // Wall of Revealing Light
-  500, // Warrior of Zera
-  501, // Wave Motion Cannon
-  502, // Weather Report
-  503, // White Magician Pikeru
-  504, // World Suppression
-  505, // Yata-Garasu
-  506, // Yubel
-  507, // Yubel - Terror Incarnate
-  508, // Yubel - The Ultimate Nightmare
-  509, // Zaborg the Thunder Monarch
-  510, // Zeriel
+  397, // Over Destiny
+  398, // Overload Fusion
+  399, // Painful Choice
+  400, // Paladin Of White Dragon
+  401, // Pandemonium
+  402, // Parallel World Fusion
+  403, // Peten The Dark Clown
+  404, // Photon Generator Unit
+  405, // Piranha Army
+  406, // Poison of the Old Man
+  407, // Polymerization
+  408, // Possessed Dark Soul
+  409, // Power Bond
+  410, // Precious Cards From Beyond
+  411, // Premature Burial
+  412, // Prophecy
+  413, // Protector of the Sanctuary
+  414, // Proto-Cyber Dragon
+  415, // Pyramid of Light
+  416, // Quintet Magician
+  417, // R - Righteous Justice
+  418, // Raigeki Break
+  419, // Rain of Mercy
+  420, // Rare Metal Dragon
+  421, // Raregold Armor
+  422, // Raviel, Lord of Phantasms
+  423, // Reaper on the Nightmare
+  424, // Reckless Greed
+  425, // Reload
+  426, // Ring of Destruction
+  427, // Riryoku
+  428, // Rivalry of Warlords
+  429, // Robbin' Goblin
+  430, // Robbin' Zombie
+  431, // Royal Decree
+  432, // Royal Knight
+  433, // Ryu-Kishin Clown
+  434, // Sage's Stone
+  435, // Sasuke Samurai
+  436, // Sasuke Samurai #2
+  437, // Sasuke Samurai #3
+  438, // Seal of Orichalcos
+  439, // Secret Barrel
+  440, // Self-Destruct Button
+  441, // Seraphim Blaster
+  442, // Servant of Catabolism
+  443, // Seven Tools of the Bandit
+  444, // Shatiel
+  445, // Shield And Sword
+  446, // Skill Drain
+  447, // Skull Invitation
+  448, // Skyscraper
+  449, // Solar Flare Dragon
+  450, // Solar Ray
+  451, // Solemn Wishes
+  452, // Sorcerer of Dark Magic
+  453, // Soul Exchange
+  454, // Soul Taker
+  455, // Spear Dragon
+  456, // Spell Canceller
+  457, // Spell Economics
+  458, // Spirit Caller
+  459, // Spirit of the Breeze
+  460, // Spirit of the Pot of Greed
+  461, // Spirit Reaper
+  462, // Spirit Ryu
+  463, // St Joan
+  464, // Stealth Bird
+  465, // Swift Gaia The Fierce Knight
+  466, // Terrorking Salmon
+  467, // Tethys, Goddess of Light
+  468, // The Agent Of Creation - Venus
+  469, // The Agent of Force - Mars
+  470, // The Big Saturn
+  471, // The Blazing Mars
+  472, // The Dark Door
+  473, // The Despair Uranus
+  474, // The Flute of Summoning Dragon
+  475, // The Forceful Sentry
+  476, // The Grand Jupiter
+  477, // The Sanctuary in the Sky
+  478, // The Splendid Venus
+  479, // The Suppression Pluto
+  480, // The Supremacy Sun
+  481, // The Thing in the Crater
+  482, // The Tricky
+  483, // The Tripper Mercury
+  484, // The Tyrant Neptune
+  485, // The Unstoppable Exodia Incarnate
+  486, // The Wicked Avatar
+  487, // The Wicked Dreadroot
+  488, // The Wicked Eraser
+  489, // Theban Nightmare
+  490, // Thousand Energy
+  491, // Thousand Knives
+  492, // Thunder Crash
+  493, // Time Seal
+  494, // Tiny Angel
+  495, // Toll
+  496, // Torpedo Fish
+  497, // Trade-In
+  498, // Triangle Power
+  499, // Tribute Doll
+  500, // Twin Swords of Flashing Light - Tryce
+  501, // Tyrant Dragon
+  502, // Ultimate Offering
+  503, // United We Stand
+  504, // Upstart Goblin
+  505, // Uria, Lord of Searing Flames
+  506, // Valhalla, Hall of the Fallen
+  507, // Vampire Baby
+  508, // Vengeful Bog Spirit
+  509, // Wall of Revealing Light
+  510, // Warrior of Zera
+  511, // Wave Motion Cannon
+  512, // Weather Report
+  513, // White Magician Pikeru
+  514, // World Suppression
+  515, // Yata-Garasu
+  516, // Yubel
+  517, // Yubel - Terror Incarnate
+  518, // Yubel - The Ultimate Nightmare
+  519, // Zaborg the Thunder Monarch
+  520, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2569,6 +2599,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sOjamaKingSortName;
   if (cardId == 0x051E)
     return (u8 *)sOrichalcosShunorosSortName;
+  if (cardId == 0x051F)
+    return (u8 *)sOverDestinySortName;
+  if (cardId == 0x0520)
+    return (u8 *)sPainfulChoiceSortName;
+  if (cardId == 0x0521)
+    return (u8 *)sPandemoniumSortName;
+  if (cardId == 0x0522)
+    return (u8 *)sParallelWorldFusionSortName;
+  if (cardId == 0x0523)
+    return (u8 *)sPhotonGeneratorUnitSortName;
+  if (cardId == 0x0524)
+    return (u8 *)sPoisonOfTheOldManSortName;
+  if (cardId == 0x0525)
+    return (u8 *)sProtectorOfTheSanctuarySortName;
+  if (cardId == 0x0526)
+    return (u8 *)sQuintetMagicianSortName;
+  if (cardId == 0x0527)
+    return (u8 *)sRaigekiBreakSortName;
+  if (cardId == 0x0528)
+    return (u8 *)sProphecySortName;
 
   return gCardNames[cardId];
 }

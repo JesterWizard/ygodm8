@@ -82,6 +82,10 @@ void ActivateNEOS_WISEMANEffect(void);
 void ActivateNIBIRU_THE_PRIMAL_BEINGEffect(void);
 void ActivateOJAMA_KINGEffect(void);
 void ActivateORICHALCOS_SHUNOROSEffect(void);
+unsigned char CanActivatePROTECTOR_OF_THE_SANCTUARY(void);
+void ActivatePROTECTOR_OF_THE_SANCTUARYEffect(void);
+unsigned char CanActivateQUINTET_MAGICIAN(void);
+void ActivateQUINTET_MAGICIANEffect(void);
 void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
@@ -1055,6 +1059,14 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == ORICHALCOS_SHUNOROS) {
     ActivateORICHALCOS_SHUNOROSEffect();
+    return;
+  }
+  if (gMonEffect.id == PROTECTOR_OF_THE_SANCTUARY) {
+    ActivatePROTECTOR_OF_THE_SANCTUARYEffect();
+    return;
+  }
+  if (gMonEffect.id == QUINTET_MAGICIAN) {
+    ActivateQUINTET_MAGICIANEffect();
     return;
   }
 

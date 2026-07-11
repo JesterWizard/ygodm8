@@ -1312,11 +1312,21 @@
 #define NUMINOUS_HEALER                          0x051C
 #define OJAMA_KING                               0x051D
 #define ORICHALCOS_SHUNOROS                      0x051E
+#define OVER_DESTINY                             0x051F
+#define PAINFUL_CHOICE                           0x0520
+#define PANDEMONIUM                              0x0521
+#define PARALLEL_WORLD_FUSION                    0x0522
+#define PHOTON_GENERATOR_UNIT                    0x0523
+#define POISON_OF_THE_OLD_MAN                    0x0524
+#define PROTECTOR_OF_THE_SANCTUARY               0x0525
+#define QUINTET_MAGICIAN                         0x0526
+#define RAIGEKI_BREAK                            0x0527
+#define PROPHECY                                 0x0528
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x051F
-#define NUM_CUSTOM_CARDS                        0x01FE
+#define NUM_TOTAL_CARDS                         0x0529
+#define NUM_CUSTOM_CARDS                        0x0208
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

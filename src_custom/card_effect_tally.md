@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `471` effects
+- `481` effects
 
 ## Tally
 
@@ -452,6 +452,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Numinous Healer` | `src_custom/trap_effects/numinous_healer.c` |
 | `activated_effects` | `Ojama King` | `src_custom/activated_effects/ojama_king.c` |
 | `activated_effects` | `Orichalcos Shunoros` | `src_custom/activated_effects/orichalcos_shunoros.c` |
+| `spell_effects` | `Over Destiny` | `src_custom/spell_effects/over_destiny.c` |
+| `spell_effects` | `Painful Choice` | `src_custom/spell_effects/painful_choice.c` |
+| `spell_effects` | `Pandemonium` | `src_custom/spell_effects/pandemonium.c` |
+| `spell_effects` | `Parallel World Fusion` | `src_custom/spell_effects/parallel_world_fusion.c` |
+| `spell_effects` | `Photon Generator Unit` | `src_custom/spell_effects/photon_generator_unit.c` |
+| `spell_effects` | `Poison Of The Old Man` | `src_custom/spell_effects/poison_of_the_old_man.c` |
+| `trap_effects` | `Prophecy` | `src_custom/trap_effects/prophecy.c` |
+| `trap_effects` | `Raigeki Break` | `src_custom/trap_effects/raigeki_break.c` |
+| `activated_effects` | `Protector Of The Sanctuary` | `src_custom/activated_effects/protector_of_the_sanctuary.c` |
+| `activated_effects` | `Quintet Magician` | `src_custom/activated_effects/quintet_magician.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
