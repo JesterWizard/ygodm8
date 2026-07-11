@@ -1322,11 +1322,21 @@
 #define QUINTET_MAGICIAN                         0x0526
 #define RAIGEKI_BREAK                            0x0527
 #define PROPHECY                                 0x0528
+#define REAPER_SCYTHE_DREADSCYTHE                0x0529
+#define RED_EYES_BLACK_DRAGON_SWORD              0x052A
+#define RED_EYES_DARK_DRAGOON                    0x052B
+#define RED_EYES_DARKNESS_METAL_DRAGON           0x052C
+#define RED_EYES_TRANSMIGRATION                  0x052D
+#define RED_GADGET                               0x052E
+#define RELAY_SOUL                               0x052F
+#define REVERSE_OF_REVERSE                       0x0530
+#define ROCKET_HERMOS_CANNON                     0x0531
+#define ROPE_OF_LIFE                             0x0532
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0529
-#define NUM_CUSTOM_CARDS                        0x0208
+#define NUM_TOTAL_CARDS                         0x0533
+#define NUM_CUSTOM_CARDS                        0x0212
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

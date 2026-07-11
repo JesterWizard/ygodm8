@@ -502,6 +502,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [PROTECTOR_OF_THE_SANCTUARY] = gActivationDescription_ProtectorOfTheSanctuary_Popup1,
   [RAIGEKI_BREAK] = gActivationDescription_RaigekiBreak_Popup1,
   [PROPHECY] = gActivationDescription_Prophecy_Popup1,
+  [REAPER_SCYTHE_DREADSCYTHE] = gActivationDescription_ReaperScytheDreadscythe_Popup1,
+  [RED_EYES_BLACK_DRAGON_SWORD] = gActivationDescription_RedEyesBlackDragonSword_Popup1,
+  [RED_EYES_DARK_DRAGOON] = gActivationDescription_RedEyesDarkDragoon_Popup1,
+  [RED_EYES_DARKNESS_METAL_DRAGON] = gActivationDescription_RedEyesDarknessMetalDragon_Popup1,
+  [RED_EYES_TRANSMIGRATION] = gActivationDescription_RedEyesTransmigration_Popup1,
+  [RED_GADGET] = gActivationDescription_RedGadget_Popup1,
+  [RELAY_SOUL] = gActivationDescription_RelaySoul_Popup1,
+  [REVERSE_OF_REVERSE] = gActivationDescription_ReverseOfReverse_Popup1,
+  [ROCKET_HERMOS_CANNON] = gActivationDescription_RocketHermosCannon_Popup1,
+  [ROPE_OF_LIFE] = gActivationDescription_RopeOfLife_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1034,6 +1044,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_PROTECTOR_OF_THE_SANCTUARY_POPUP_1] = gActivationDescription_ProtectorOfTheSanctuary_Popup1,
   [CARD_EFFECT_TEXT_RAIGEKI_BREAK_POPUP_1] = gActivationDescription_RaigekiBreak_Popup1,
   [CARD_EFFECT_TEXT_PROPHECY_POPUP_1] = gActivationDescription_Prophecy_Popup1,
+  [CARD_EFFECT_TEXT_REAPER_SCYTHE_DREADSCYTHE_POPUP_1] = gActivationDescription_ReaperScytheDreadscythe_Popup1,
+  [CARD_EFFECT_TEXT_RED_EYES_BLACK_DRAGON_SWORD_POPUP_1] = gActivationDescription_RedEyesBlackDragonSword_Popup1,
+  [CARD_EFFECT_TEXT_RED_EYES_DARK_DRAGOON_POPUP_1] = gActivationDescription_RedEyesDarkDragoon_Popup1,
+  [CARD_EFFECT_TEXT_RED_EYES_DARKNESS_METAL_DRAGON_POPUP_1] = gActivationDescription_RedEyesDarknessMetalDragon_Popup1,
+  [CARD_EFFECT_TEXT_RED_EYES_TRANSMIGRATION_POPUP_1] = gActivationDescription_RedEyesTransmigration_Popup1,
+  [CARD_EFFECT_TEXT_RED_GADGET_POPUP_1] = gActivationDescription_RedGadget_Popup1,
+  [CARD_EFFECT_TEXT_RELAY_SOUL_POPUP_1] = gActivationDescription_RelaySoul_Popup1,
+  [CARD_EFFECT_TEXT_REVERSE_OF_REVERSE_POPUP_1] = gActivationDescription_ReverseOfReverse_Popup1,
+  [CARD_EFFECT_TEXT_ROCKET_HERMOS_CANNON_POPUP_1] = gActivationDescription_RocketHermosCannon_Popup1,
+  [CARD_EFFECT_TEXT_ROPE_OF_LIFE_POPUP_1] = gActivationDescription_RopeOfLife_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

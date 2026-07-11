@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 509 |
-| Art ready, needs manifest | 90 |
-| In manifest, missing art | 1 |
-| **Total PNGs in `80x80/`** | **601** |
+| In game (manifest + art) | 530 |
+| Art ready, needs manifest | 70 |
+| In manifest, missing art | 0 |
+| **Total PNGs in `80x80/`** | **602** |
 
 ## In game
 
@@ -523,6 +523,7 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MONSTER_RECOVERY` | Monster Recovery | `monster_recovery.png` |
 | `MORALE_BOOST` | Morale Boost | `morale_boost.png` |
 | `MUCUS_YOLK` | Mucus Yolk | `mucus_yolk.png` |
+| `MYSTIK_WOK` | Mystik Wok | `mystik_wok.png` |
 | `NECROVALLEY` | Necrovalley | `necrovalley.png` |
 | `NEEDLE_WALL` | Needle Wall | `needle_wall.png` |
 | `NEO_BLUE_EYES_ULTIMATE_DRAGON` | Neo Blue-Eyes Ultimate Dragon | `neo_blue_eyes_ultimate_dragon.png` |
@@ -537,24 +538,32 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `PARALLEL_WORLD_FUSION` | Parallel World Fusion | `parallel_world_fusion.png` |
 | `PHOTON_GENERATOR_UNIT` | Photon Generator Unit | `photon_generator_unit.png` |
 | `POISON_OF_THE_OLD_MAN` | Poison of the Old Man | `poison_of_the_old_man.png` |
-| `PROPHECY` | Prophecy | `prophecy.png` |
 | `PROTECTOR_OF_THE_SANCTUARY` | Protector of the Sanctuary | `protector_of_the_sanctuary.png` |
 | `QUINTET_MAGICIAN` | Quintet Magician | `quintet_magician.png` |
 | `RAIGEKI_BREAK` | Raigeki Break | `raigeki_break.png` |
+| `PROPHECY` | Prophecy | `prophecy.png` |
+| `REAPER_SCYTHE_DREADSCYTHE` | Reaper Scythe - Dreadscythe | `reaper_scythe_dreadscythe.png` |
+| `RED_EYES_BLACK_DRAGON_SWORD` | Red-Eyes Black Dragon Sword | `red_eyes_black_dragon_sword.png` |
+| `RED_EYES_DARK_DRAGOON` | Red-Eyes Dark Dragoon | `red_eyes_dark_dragoon.png` |
+| `RED_EYES_DARKNESS_METAL_DRAGON` | Red-Eyes Darkness Metal Dragon | `red_eyes_darkness_metal_dragon.png` |
+| `RED_EYES_TRANSMIGRATION` | Red-Eyes Transmigration | `red_eyes_transmigration.png` |
+| `RED_GADGET` | Red Gadget | `red_gadget.png` |
+| `RELAY_SOUL` | Relay Soul | `relay_soul.png` |
+| `REVERSE_OF_REVERSE` | Reverse of Reverse | `reverse_of_reverse.png` |
+| `ROCKET_HERMOS_CANNON` | Rocket Hermos Cannon | `rocket_hermos_cannon.png` |
+| `ROPE_OF_LIFE` | Rope of Life | `rope_of_life.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
-- [ ] `REAPER_SCYTHE_DREADSCYTHE` — `reaper_scythe_dreadscythe.png`
-- [ ] `RED_EYES_BLACK_DRAGON_SWORD` — `red_eyes_black_dragon_sword.png`
-- [ ] `RED_EYES_DARK_DRAGOON` — `red_eyes_dark_dragoon.png`
-- [ ] `RED_EYES_DARKNESS_METAL_DRAGON` — `red_eyes_darkness_metal_dragon.png`
-- [ ] `RED_EYES_TRANSMIGRATION` — `red_eyes_transmigration.png`
-- [ ] `RED_GADGET` — `red_gadget.png`
-- [ ] `RELAY_SOUL` — `relay_soul.png`
-- [ ] `REVERSE_OF_REVERSE` — `reverse_of_reverse.png`
-- [ ] `ROCKET_HERMOS_CANNON` — `rocket_hermos_cannon.png`
-- [ ] `ROPE_OF_LIFE` — `rope_of_life.png`
+
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` — `horus_the_black_flame_dragon_level_eight.png`
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` — `horus_the_black_flame_dragon_level_four.png`
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
+- [ ] `MA'AT` — `ma'at.png`
+- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
+- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
+- [ ] `MYSTIC_WOK` — `mystic_wok.png`
 - [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
 - [ ] `SCAPEGOAT` — `scapegoat.png`
 - [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
@@ -621,9 +630,7 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 ## Todo — in manifest, missing art
 
-Manifest entry exists but `80x80/<stem>.png` is missing.
-
-- [ ] `MYSTIK_WOK` — needs `80x80/mystik_wok.png`
+_No manifest entries are missing art right now._
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art

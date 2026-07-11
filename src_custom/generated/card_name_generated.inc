@@ -521,6 +521,16 @@ static const u8 sProtectorOfTheSanctuaryName[] __attribute__((section(".append_a
 static const u8 sQuintetMagicianName[] __attribute__((section(".append_assets"))) = "Quintet Magician";
 static const u8 sRaigekiBreakName[] __attribute__((section(".append_assets"))) = "Raigeki Break";
 static const u8 sProphecyName[] __attribute__((section(".append_assets"))) = "Prophecy";
+static const u8 sReaperScytheDreadscytheName[] __attribute__((section(".append_assets"))) = "Reaper Scythe - Dreadscythe";
+static const u8 sRedEyesBlackDragonSwordName[] __attribute__((section(".append_assets"))) = "Red-Eyes Black Dragon Sword";
+static const u8 sRedEyesDarkDragoonName[] __attribute__((section(".append_assets"))) = "Red-Eyes Dark Dragoon";
+static const u8 sRedEyesDarknessMetalDragonName[] __attribute__((section(".append_assets"))) = "Red-Eyes Darkness Metal Dragon";
+static const u8 sRedEyesTransmigrationName[] __attribute__((section(".append_assets"))) = "Red-Eyes Transmigration";
+static const u8 sRedGadgetName[] __attribute__((section(".append_assets"))) = "Red Gadget";
+static const u8 sRelaySoulName[] __attribute__((section(".append_assets"))) = "Relay Soul";
+static const u8 sReverseOfReverseName[] __attribute__((section(".append_assets"))) = "Reverse of Reverse";
+static const u8 sRocketHermosCannonName[] __attribute__((section(".append_assets"))) = "Rocket Hermos Cannon";
+static const u8 sRopeOfLifeName[] __attribute__((section(".append_assets"))) = "Rope of Life";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1569,6 +1579,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sRaigekiBreakName;
   if (cardId == 0x0528)
     return (u8 *)sProphecyName;
+  if (cardId == 0x0529)
+    return (u8 *)sReaperScytheDreadscytheName;
+  if (cardId == 0x052A)
+    return (u8 *)sRedEyesBlackDragonSwordName;
+  if (cardId == 0x052B)
+    return (u8 *)sRedEyesDarkDragoonName;
+  if (cardId == 0x052C)
+    return (u8 *)sRedEyesDarknessMetalDragonName;
+  if (cardId == 0x052D)
+    return (u8 *)sRedEyesTransmigrationName;
+  if (cardId == 0x052E)
+    return (u8 *)sRedGadgetName;
+  if (cardId == 0x052F)
+    return (u8 *)sRelaySoulName;
+  if (cardId == 0x0530)
+    return (u8 *)sReverseOfReverseName;
+  if (cardId == 0x0531)
+    return (u8 *)sRocketHermosCannonName;
+  if (cardId == 0x0532)
+    return (u8 *)sRopeOfLifeName;
 
   return gCardNames[cardId];
 }

@@ -2088,6 +2088,46 @@ static const unsigned char sProphecyBigArt[] __attribute__((section(".append_ass
 static const unsigned short sProphecyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/prophecy.gbapal");
 static const unsigned char sProphecyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/prophecy.lz");
 
+static const unsigned char sReaperScytheDreadscytheBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reaper_scythe_dreadscythe.huff");
+static const unsigned short sReaperScytheDreadscytheBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reaper_scythe_dreadscythe.gbapal");
+static const unsigned char sReaperScytheDreadscytheMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reaper_scythe_dreadscythe.lz");
+
+static const unsigned char sRedEyesBlackDragonSwordBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_eyes_black_dragon_sword.huff");
+static const unsigned short sRedEyesBlackDragonSwordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_eyes_black_dragon_sword.gbapal");
+static const unsigned char sRedEyesBlackDragonSwordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_eyes_black_dragon_sword.lz");
+
+static const unsigned char sRedEyesDarkDragoonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_eyes_dark_dragoon.huff");
+static const unsigned short sRedEyesDarkDragoonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_eyes_dark_dragoon.gbapal");
+static const unsigned char sRedEyesDarkDragoonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_eyes_dark_dragoon.lz");
+
+static const unsigned char sRedEyesDarknessMetalDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_eyes_darkness_metal_dragon.huff");
+static const unsigned short sRedEyesDarknessMetalDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_eyes_darkness_metal_dragon.gbapal");
+static const unsigned char sRedEyesDarknessMetalDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_eyes_darkness_metal_dragon.lz");
+
+static const unsigned char sRedEyesTransmigrationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_eyes_transmigration.huff");
+static const unsigned short sRedEyesTransmigrationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_eyes_transmigration.gbapal");
+static const unsigned char sRedEyesTransmigrationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_eyes_transmigration.lz");
+
+static const unsigned char sRedGadgetBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_gadget.huff");
+static const unsigned short sRedGadgetBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_gadget.gbapal");
+static const unsigned char sRedGadgetMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_gadget.lz");
+
+static const unsigned char sRelaySoulBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/relay_soul.huff");
+static const unsigned short sRelaySoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/relay_soul.gbapal");
+static const unsigned char sRelaySoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/relay_soul.lz");
+
+static const unsigned char sReverseOfReverseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reverse_of_reverse.huff");
+static const unsigned short sReverseOfReverseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reverse_of_reverse.gbapal");
+static const unsigned char sReverseOfReverseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reverse_of_reverse.lz");
+
+static const unsigned char sRocketHermosCannonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rocket_hermos_cannon.huff");
+static const unsigned short sRocketHermosCannonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rocket_hermos_cannon.gbapal");
+static const unsigned char sRocketHermosCannonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rocket_hermos_cannon.lz");
+
+static const unsigned char sRopeOfLifeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rope_of_life.huff");
+static const unsigned short sRopeOfLifeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rope_of_life.gbapal");
+static const unsigned char sRopeOfLifeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rope_of_life.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2611,6 +2651,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0526] = sQuintetMagicianBigArt,
   [0x0527] = sRaigekiBreakBigArt,
   [0x0528] = sProphecyBigArt,
+  [0x0529] = sReaperScytheDreadscytheBigArt,
+  [0x052A] = sRedEyesBlackDragonSwordBigArt,
+  [0x052B] = sRedEyesDarkDragoonBigArt,
+  [0x052C] = sRedEyesDarknessMetalDragonBigArt,
+  [0x052D] = sRedEyesTransmigrationBigArt,
+  [0x052E] = sRedGadgetBigArt,
+  [0x052F] = sRelaySoulBigArt,
+  [0x0530] = sReverseOfReverseBigArt,
+  [0x0531] = sRocketHermosCannonBigArt,
+  [0x0532] = sRopeOfLifeBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3136,6 +3186,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0526] = sQuintetMagicianBigPalette,
   [0x0527] = sRaigekiBreakBigPalette,
   [0x0528] = sProphecyBigPalette,
+  [0x0529] = sReaperScytheDreadscytheBigPalette,
+  [0x052A] = sRedEyesBlackDragonSwordBigPalette,
+  [0x052B] = sRedEyesDarkDragoonBigPalette,
+  [0x052C] = sRedEyesDarknessMetalDragonBigPalette,
+  [0x052D] = sRedEyesTransmigrationBigPalette,
+  [0x052E] = sRedGadgetBigPalette,
+  [0x052F] = sRelaySoulBigPalette,
+  [0x0530] = sReverseOfReverseBigPalette,
+  [0x0531] = sRocketHermosCannonBigPalette,
+  [0x0532] = sRopeOfLifeBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3661,6 +3721,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0526] = 0,
   [0x0527] = 0,
   [0x0528] = 0,
+  [0x0529] = 0,
+  [0x052A] = 0,
+  [0x052B] = 0,
+  [0x052C] = 0,
+  [0x052D] = 0,
+  [0x052E] = 0,
+  [0x052F] = 0,
+  [0x0530] = 0,
+  [0x0531] = 0,
+  [0x0532] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4186,4 +4256,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0526] = sQuintetMagicianMiniArt,
   [0x0527] = sRaigekiBreakMiniArt,
   [0x0528] = sProphecyMiniArt,
+  [0x0529] = sReaperScytheDreadscytheMiniArt,
+  [0x052A] = sRedEyesBlackDragonSwordMiniArt,
+  [0x052B] = sRedEyesDarkDragoonMiniArt,
+  [0x052C] = sRedEyesDarknessMetalDragonMiniArt,
+  [0x052D] = sRedEyesTransmigrationMiniArt,
+  [0x052E] = sRedGadgetMiniArt,
+  [0x052F] = sRelaySoulMiniArt,
+  [0x0530] = sReverseOfReverseMiniArt,
+  [0x0531] = sRocketHermosCannonMiniArt,
+  [0x0532] = sRopeOfLifeMiniArt,
 };
