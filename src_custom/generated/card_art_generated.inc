@@ -1936,6 +1936,42 @@ static const unsigned char sMagicalPlantMandragolaBigArt[] __attribute__((sectio
 static const unsigned short sMagicalPlantMandragolaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_plant_mandragola.gbapal");
 static const unsigned char sMagicalPlantMandragolaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_plant_mandragola.lz");
 
+static const unsigned char sMagicalScientistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magical_scientist.huff");
+static const unsigned short sMagicalScientistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_scientist.gbapal");
+static const unsigned char sMagicalScientistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_scientist.lz");
+
+static const unsigned char sMagicalStoneExcavationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magical_stone_excavation.huff");
+static const unsigned short sMagicalStoneExcavationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_stone_excavation.gbapal");
+static const unsigned char sMagicalStoneExcavationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_stone_excavation.lz");
+
+static const unsigned char sMajesticMechGoryuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/majestic_mech_goryu.huff");
+static const unsigned short sMajesticMechGoryuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/majestic_mech_goryu.gbapal");
+static const unsigned char sMajesticMechGoryuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/majestic_mech_goryu.lz");
+
+static const unsigned char sManjuOfTheTenThousandHandsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/manju_of_the_ten_thousand_hands.huff");
+static const unsigned short sManjuOfTheTenThousandHandsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/manju_of_the_ten_thousand_hands.gbapal");
+static const unsigned char sManjuOfTheTenThousandHandsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/manju_of_the_ten_thousand_hands.lz");
+
+static const unsigned char sMarshmallonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/marshmallon.huff");
+static const unsigned short sMarshmallonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/marshmallon.gbapal");
+static const unsigned char sMarshmallonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/marshmallon.lz");
+
+static const unsigned char sMaskOfDispelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mask_of_dispel.huff");
+static const unsigned short sMaskOfDispelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mask_of_dispel.gbapal");
+static const unsigned char sMaskOfDispelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mask_of_dispel.lz");
+
+static const unsigned char sMasterPeaceTheTrueDracoslayingKingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/master_peace_the_true_dracoslaying_king.huff");
+static const unsigned short sMasterPeaceTheTrueDracoslayingKingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/master_peace_the_true_dracoslaying_king.gbapal");
+static const unsigned char sMasterPeaceTheTrueDracoslayingKingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/master_peace_the_true_dracoslaying_king.lz");
+
+static const unsigned char sMaskOfTheAccursedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mask_of_the_accursed.huff");
+static const unsigned short sMaskOfTheAccursedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mask_of_the_accursed.gbapal");
+static const unsigned char sMaskOfTheAccursedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mask_of_the_accursed.lz");
+
+static const unsigned char sMausoleumOfTheEmperorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mausoleum_of_the_emperor.huff");
+static const unsigned short sMausoleumOfTheEmperorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mausoleum_of_the_emperor.gbapal");
+static const unsigned char sMausoleumOfTheEmperorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mausoleum_of_the_emperor.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2421,6 +2457,15 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0500] = sMagicalDimensionBigArt,
   [0x0501] = sMagicalHatsBigArt,
   [0x0502] = sMagicalPlantMandragolaBigArt,
+  [0x0503] = sMagicalScientistBigArt,
+  [0x0504] = sMagicalStoneExcavationBigArt,
+  [0x0505] = sMajesticMechGoryuBigArt,
+  [0x0506] = sManjuOfTheTenThousandHandsBigArt,
+  [0x0507] = sMarshmallonBigArt,
+  [0x0508] = sMaskOfDispelBigArt,
+  [0x0509] = sMasterPeaceTheTrueDracoslayingKingBigArt,
+  [0x050A] = sMaskOfTheAccursedBigArt,
+  [0x050B] = sMausoleumOfTheEmperorBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2908,6 +2953,15 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0500] = sMagicalDimensionBigPalette,
   [0x0501] = sMagicalHatsBigPalette,
   [0x0502] = sMagicalPlantMandragolaBigPalette,
+  [0x0503] = sMagicalScientistBigPalette,
+  [0x0504] = sMagicalStoneExcavationBigPalette,
+  [0x0505] = sMajesticMechGoryuBigPalette,
+  [0x0506] = sManjuOfTheTenThousandHandsBigPalette,
+  [0x0507] = sMarshmallonBigPalette,
+  [0x0508] = sMaskOfDispelBigPalette,
+  [0x0509] = sMasterPeaceTheTrueDracoslayingKingBigPalette,
+  [0x050A] = sMaskOfTheAccursedBigPalette,
+  [0x050B] = sMausoleumOfTheEmperorBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3395,6 +3449,15 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0500] = 0,
   [0x0501] = 0,
   [0x0502] = 0,
+  [0x0503] = 0,
+  [0x0504] = 0,
+  [0x0505] = 0,
+  [0x0506] = 0,
+  [0x0507] = 0,
+  [0x0508] = 0,
+  [0x0509] = 0,
+  [0x050A] = 0,
+  [0x050B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3882,4 +3945,13 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0500] = sMagicalDimensionMiniArt,
   [0x0501] = sMagicalHatsMiniArt,
   [0x0502] = sMagicalPlantMandragolaMiniArt,
+  [0x0503] = sMagicalScientistMiniArt,
+  [0x0504] = sMagicalStoneExcavationMiniArt,
+  [0x0505] = sMajesticMechGoryuMiniArt,
+  [0x0506] = sManjuOfTheTenThousandHandsMiniArt,
+  [0x0507] = sMarshmallonMiniArt,
+  [0x0508] = sMaskOfDispelMiniArt,
+  [0x0509] = sMasterPeaceTheTrueDracoslayingKingMiniArt,
+  [0x050A] = sMaskOfTheAccursedMiniArt,
+  [0x050B] = sMausoleumOfTheEmperorMiniArt,
 };

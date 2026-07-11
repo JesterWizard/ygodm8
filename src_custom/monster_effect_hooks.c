@@ -194,6 +194,16 @@ unsigned char CanActivateMA_AT(void);
 void ActivateMA_ATEffect(void);
 unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void);
 void ActivateMAGICAL_PLANT_MANDRAGOLAEffect(void);
+unsigned char CanActivateMAGICAL_SCIENTIST(void);
+void ActivateMAGICAL_SCIENTISTEffect(void);
+unsigned char CanActivateMAJESTIC_MECH_GORYU(void);
+void ActivateMAJESTIC_MECH_GORYUEffect(void);
+unsigned char CanActivateMANJU_OF_THE_TEN_THOUSAND_HANDS(void);
+void ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect(void);
+unsigned char CanActivateMARSHMALLON(void);
+void ActivateMARSHMALLONEffect(void);
+unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KING(void);
+void ActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KINGEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -977,6 +987,26 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == MAGICAL_PLANT_MANDRAGOLA) {
     ActivateMAGICAL_PLANT_MANDRAGOLAEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGICAL_SCIENTIST) {
+    ActivateMAGICAL_SCIENTISTEffect();
+    return;
+  }
+  if (gMonEffect.id == MAJESTIC_MECH_GORYU) {
+    ActivateMAJESTIC_MECH_GORYUEffect();
+    return;
+  }
+  if (gMonEffect.id == MANJU_OF_THE_TEN_THOUSAND_HANDS) {
+    ActivateMANJU_OF_THE_TEN_THOUSAND_HANDSEffect();
+    return;
+  }
+  if (gMonEffect.id == MARSHMALLON) {
+    ActivateMARSHMALLONEffect();
+    return;
+  }
+  if (gMonEffect.id == MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING) {
+    ActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KINGEffect();
     return;
   }
 

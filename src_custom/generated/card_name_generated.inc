@@ -483,6 +483,15 @@ static const u8 sMaAtName[] __attribute__((section(".append_assets"))) = "Ma'at"
 static const u8 sMagicalDimensionName[] __attribute__((section(".append_assets"))) = "Magical Dimension";
 static const u8 sMagicalHatsName[] __attribute__((section(".append_assets"))) = "Magical Hats";
 static const u8 sMagicalPlantMandragolaName[] __attribute__((section(".append_assets"))) = "Magical Plant Mandragola";
+static const u8 sMagicalScientistName[] __attribute__((section(".append_assets"))) = "Magical Scientist";
+static const u8 sMagicalStoneExcavationName[] __attribute__((section(".append_assets"))) = "Magical Stone Excavation";
+static const u8 sMajesticMechGoryuName[] __attribute__((section(".append_assets"))) = "Majestic Mech - Goryu";
+static const u8 sManjuOfTheTenThousandHandsName[] __attribute__((section(".append_assets"))) = "Manju of the Ten Thousand Hands";
+static const u8 sMarshmallonName[] __attribute__((section(".append_assets"))) = "Marshmallon";
+static const u8 sMaskOfDispelName[] __attribute__((section(".append_assets"))) = "Mask of Dispel";
+static const u8 sMasterPeaceTheTrueDracoslayingKingName[] __attribute__((section(".append_assets"))) = "Master Peace, the True Dracoslaying King";
+static const u8 sMaskOfTheAccursedName[] __attribute__((section(".append_assets"))) = "Mask of the Accursed";
+static const u8 sMausoleumOfTheEmperorName[] __attribute__((section(".append_assets"))) = "Mausoleum of the Emperor";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1455,6 +1464,24 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMagicalHatsName;
   if (cardId == 0x0502)
     return (u8 *)sMagicalPlantMandragolaName;
+  if (cardId == 0x0503)
+    return (u8 *)sMagicalScientistName;
+  if (cardId == 0x0504)
+    return (u8 *)sMagicalStoneExcavationName;
+  if (cardId == 0x0505)
+    return (u8 *)sMajesticMechGoryuName;
+  if (cardId == 0x0506)
+    return (u8 *)sManjuOfTheTenThousandHandsName;
+  if (cardId == 0x0507)
+    return (u8 *)sMarshmallonName;
+  if (cardId == 0x0508)
+    return (u8 *)sMaskOfDispelName;
+  if (cardId == 0x0509)
+    return (u8 *)sMasterPeaceTheTrueDracoslayingKingName;
+  if (cardId == 0x050A)
+    return (u8 *)sMaskOfTheAccursedName;
+  if (cardId == 0x050B)
+    return (u8 *)sMausoleumOfTheEmperorName;
 
   return gCardNames[cardId];
 }

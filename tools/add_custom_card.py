@@ -65,6 +65,7 @@ RACE_MAP = {
     "Rock": "TYPE_ROCK",
     "Plant": "TYPE_PLANT",
     "Creator God": "TYPE_FAIRY",
+    "Wyrm": "TYPE_DRAGON",
 }
 
 COLOR_BY_FRAME = {

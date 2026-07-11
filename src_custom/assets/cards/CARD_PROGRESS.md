@@ -509,16 +509,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `MAGICAL_DIMENSION` — `magical_dimension.png`
 - [x] `MAGICAL_HATS` — `magical_hats.png`
 - [x] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
-- [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [ ] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
-- [ ] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`
-- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
-- [ ] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
-- [ ] `MARSHMALLON` — `marshmallon.png`
-- [ ] `MASK_OF_DISPEL` — `mask_of_dispel.png`
-- [ ] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
-- [ ] `MASTER_PEACE_THE_TRUE_DRACROSLAYING_KING` — `master_peace_the_true_dracroslaying_king.png`
-- [ ] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
+- [x] `MAGICAL_SCIENTIST` — `magical_scientist.png`
+- [x] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
+- [x] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`
+- [x] `MAN_THRO_TRO` — `man_thro_tro.png`
+- [x] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
+- [x] `MARSHMALLON` — `marshmallon.png`
+- [x] `MASK_OF_DISPEL` — `mask_of_dispel.png`
+- [x] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
+- [x] `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING` — `master_peace_the_true_dracoslaying_king.png`
+- [x] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
 - [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
 - [ ] `METAMORPHOSIS` — `metamorphosis.png`
 - [ ] `METEORAIN` — `meteorain.png`

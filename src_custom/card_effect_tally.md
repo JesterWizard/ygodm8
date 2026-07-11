@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `430` effects
+- `451` effects
 
 ## Tally
 
@@ -411,6 +411,27 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Magical Dimension` | `src_custom/spell_effects/magical_dimension.c` |
 | `trap_effects` | `Magical Hats` | `src_custom/trap_effects/magical_hats.c` |
 | `activated_effects` | `Magical Plant Mandragola` | `src_custom/activated_effects/magical_plant_mandragola.c` |
+| `activated_effects` | `Magical Scientist` | `src_custom/activated_effects/magical_scientist.c` |
+| `spell_effects` | `Magical Stone Excavation` | `src_custom/spell_effects/magical_stone_excavation.c` |
+| `activated_effects` | `Majestic Mech Goryu` | `src_custom/activated_effects/majestic_mech_goryu.c` |
+| `activated_effects` | `Manju Of The Ten Thousand Hands` | `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c` |
+| `activated_effects` | `Man Thro Tro` | `src_custom/activated_effects/man_thro_tro.c` |
+| `activated_effects` | `Marshmallon` | `src_custom/activated_effects/marshmallon.c` |
+| `spell_effects` | `Mask Of Dispel` | `src_custom/spell_effects/mask_of_dispel.c` |
+| `spell_effects` | `Mask Of The Accursed` | `src_custom/spell_effects/mask_of_the_accursed.c` |
+| `spell_effects` | `Mausoleum Of The Emperor` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
+| `activated_effects` | `Master Peace The True Dracoslaying King` | `src_custom/activated_effects/master_peace_the_true_dracoslaying_king.c` |
+| `activated_effects` | `Magical Scientist` | `src_custom/activated_effects/magical_scientist.c` |
+| `spell_effects` | `Magical Stone Excavation` | `src_custom/spell_effects/magical_stone_excavation.c` |
+| `activated_effects` | `Majestic Mech Goryu` | `src_custom/activated_effects/majestic_mech_goryu.c` |
+| `activated_effects` | `Manju Of The Ten Thousand Hands` | `src_custom/activated_effects/manju_of_the_ten_thousand_hands.c` |
+| `activated_effects` | `Marshmallon` | `src_custom/activated_effects/marshmallon.c` |
+| `spell_effects` | `Mask Of Dispel` | `src_custom/spell_effects/mask_of_dispel.c` |
+| `activated_effects` | `Master Peace The True Dracoslaying King` | `src_custom/activated_effects/master_peace_the_true_dracoslaying_king.c` |
+| `spell_effects` | `Mask Of The Accursed` | `src_custom/spell_effects/mask_of_the_accursed.c` |
+| `spell_effects` | `Mausoleum Of The Emperor` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
+| `spell_effects` | `Mask Of The Accursed` | `src_custom/spell_effects/mask_of_the_accursed.c` |
+| `spell_effects` | `Mausoleum Of The Emperor` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

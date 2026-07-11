@@ -468,6 +468,15 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [MAGICAL_DIMENSION] = gActivationDescription_MagicalDimension_Popup1,
   [MAGICAL_HATS] = gActivationDescription_MagicalHats_Popup1,
   [MAGICAL_PLANT_MANDRAGOLA] = gActivationDescription_MagicalPlantMandragola_Popup1,
+  [MAGICAL_SCIENTIST] = gActivationDescription_MagicalScientist_Popup1,
+  [MAGICAL_STONE_EXCAVATION] = gActivationDescription_MagicalStoneExcavation_Popup1,
+  [MAJESTIC_MECH_GORYU] = gActivationDescription_MajesticMechGoryu_Popup1,
+  [MANJU_OF_THE_TEN_THOUSAND_HANDS] = gActivationDescription_ManjuOfTheTenThousandHands_Popup1,
+  [MARSHMALLON] = gActivationDescription_Marshmallon_Popup1,
+  [MASK_OF_DISPEL] = gActivationDescription_MaskOfDispel_Popup1,
+  [MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING] = gActivationDescription_MasterPeaceTheTrueDracoslayingKing_Popup1,
+  [MASK_OF_THE_ACCURSED] = gActivationDescription_MaskOfTheAccursed_Popup1,
+  [MAUSOLEUM_OF_THE_EMPEROR] = gActivationDescription_MausoleumOfTheEmperor_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -966,6 +975,15 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_MAGICAL_DIMENSION_POPUP_1] = gActivationDescription_MagicalDimension_Popup1,
   [CARD_EFFECT_TEXT_MAGICAL_HATS_POPUP_1] = gActivationDescription_MagicalHats_Popup1,
   [CARD_EFFECT_TEXT_MAGICAL_PLANT_MANDRAGOLA_POPUP_1] = gActivationDescription_MagicalPlantMandragola_Popup1,
+  [CARD_EFFECT_TEXT_MAGICAL_SCIENTIST_POPUP_1] = gActivationDescription_MagicalScientist_Popup1,
+  [CARD_EFFECT_TEXT_MAGICAL_STONE_EXCAVATION_POPUP_1] = gActivationDescription_MagicalStoneExcavation_Popup1,
+  [CARD_EFFECT_TEXT_MAJESTIC_MECH_GORYU_POPUP_1] = gActivationDescription_MajesticMechGoryu_Popup1,
+  [CARD_EFFECT_TEXT_MANJU_OF_THE_TEN_THOUSAND_HANDS_POPUP_1] = gActivationDescription_ManjuOfTheTenThousandHands_Popup1,
+  [CARD_EFFECT_TEXT_MARSHMALLON_POPUP_1] = gActivationDescription_Marshmallon_Popup1,
+  [CARD_EFFECT_TEXT_MASK_OF_DISPEL_POPUP_1] = gActivationDescription_MaskOfDispel_Popup1,
+  [CARD_EFFECT_TEXT_MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING_POPUP_1] = gActivationDescription_MasterPeaceTheTrueDracoslayingKing_Popup1,
+  [CARD_EFFECT_TEXT_MASK_OF_THE_ACCURSED_POPUP_1] = gActivationDescription_MaskOfTheAccursed_Popup1,
+  [CARD_EFFECT_TEXT_MAUSOLEUM_OF_THE_EMPEROR_POPUP_1] = gActivationDescription_MausoleumOfTheEmperor_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

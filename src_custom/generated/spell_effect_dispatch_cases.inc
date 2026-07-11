@@ -242,6 +242,18 @@
     case MAGICAL_DIMENSION:
       EffectMAGICAL_DIMENSION();
       return;
+    case MAGICAL_STONE_EXCAVATION:
+      EffectMAGICAL_STONE_EXCAVATION();
+      return;
+    case MASK_OF_DISPEL:
+      EffectMASK_OF_DISPEL();
+      return;
+    case MASK_OF_THE_ACCURSED:
+      EffectMASK_OF_THE_ACCURSED();
+      return;
+    case MAUSOLEUM_OF_THE_EMPEROR:
+      EffectMAUSOLEUM_OF_THE_EMPEROR();
+      return;
     case METEOR_OF_DESTRUCTION:
       EffectMeteorOfDestruction();
       return;

@@ -1284,11 +1284,20 @@
 #define MAGICAL_DIMENSION                        0x0500
 #define MAGICAL_HATS                             0x0501
 #define MAGICAL_PLANT_MANDRAGOLA                 0x0502
+#define MAGICAL_SCIENTIST                        0x0503
+#define MAGICAL_STONE_EXCAVATION                 0x0504
+#define MAJESTIC_MECH_GORYU                      0x0505
+#define MANJU_OF_THE_TEN_THOUSAND_HANDS          0x0506
+#define MARSHMALLON                              0x0507
+#define MASK_OF_DISPEL                           0x0508
+#define MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING  0x0509
+#define MASK_OF_THE_ACCURSED                     0x050A
+#define MAUSOLEUM_OF_THE_EMPEROR                 0x050B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0503
-#define NUM_CUSTOM_CARDS                        0x01E2
+#define NUM_TOTAL_CARDS                         0x050C
+#define NUM_CUSTOM_CARDS                        0x01EB
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
