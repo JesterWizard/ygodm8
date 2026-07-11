@@ -56,6 +56,15 @@ void WaitForVBlank(void);
 void LoadCharblock1(void);
 u8 CardUsesExtendedBigCardPalette(u16 cardId);
 void ApplyCardDetailPaletteExtension(void);
+void SetCardInfo(u16 id);
+u16 GetNthCardOnScreen(u8 n);
+u16 GetTrunkCardCount(void);
+
+/* Card detail navigation context — allocated in ram_map_ewram.s.
+ * Set by callers before ShowCardDetailView for deck (active=1)
+ * or auto-detected from gTrunkMenu.cursorState for trunk (active=2). */
+extern u8 gCardDetailNavActive;
+extern u8 gCardDetailNavIndex;
 
 static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
   u8 buffer[144];
@@ -108,18 +117,26 @@ static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u1
   CopyStringTilesToVRAMBuffer(dest, buffer, 0x901);
 }
 
-LYN_REPLACE_CHECK(ShowCardDetailView);
-void ShowCardDetailView__Replacement(void) {
+static void CardDetailViewRenderPage(u16 *pageBuffer, const u8 *pageStarts[], u8 pageCount) {
+  g201CB58 = 0;
+  sub_801FB2C();
+  sub_800B618(pageBuffer);
+  ApplyCardDetailPaletteExtension();
+  sub_801FA84();
+  SetVBlankCallback(sub_801FADC);
+  WaitForVBlank();
+  sub_801FB38();
+  SetVBlankCallback(sub_801FB14);
+  WaitForVBlank();
+}
+
+static u8 CardDetailViewBuildDescription(u16 *pageBuffer, const u8 *pageStarts[9]) {
   u8 i;
   u8 page;
   u8 buffer[144];
   const u8 *text = gCardInfo.description + 2;
-  const u8 *pageStarts[9];
-  u16 *pageBuffer = g201CB60[0];
 
-  /* EWRAM scratch (vanilla g201CB60); stack cannot hold 2240 u16 without clobbering IWRAM. */
   CpuFastFill16(0, pageBuffer, 4480);
-
   text = GetCurrentLanguageString(text);
   if (*text == '^') {
     u8 pageCount;
@@ -146,35 +163,43 @@ void ShowCardDetailView__Replacement(void) {
     }
     g201CB59 = pageCount;
     BuildDescriptionPageBuffer(pageStarts[0], 0, pageCount, pageBuffer);
-  } else {
-    for (i = 0; *text && *text != '$';) {
-      buffer[i] = *text;
-      if (*text > 127)
-        buffer[++i] = *++text;
-      i++;
-      text++;
-      if (i == 12) {
-        buffer[i++] = ' ';
-        buffer[i++] = ' ';
-      }
-    }
-    buffer[i] = 0;
-    CopyStringTilesToVRAMBuffer(pageBuffer, buffer, 0x901);
-    g201CB59 = 0;
+    return pageCount;
   }
 
-  g201CB58 = 0;
-  sub_801FB2C();
-  sub_800B618(pageBuffer);
+  for (i = 0; *text && *text != '$';) {
+    buffer[i] = *text;
+    if (*text > 127)
+      buffer[++i] = *++text;
+    i++;
+    text++;
+    if (i == 12) {
+      buffer[i++] = ' ';
+      buffer[i++] = ' ';
+    }
+  }
+  buffer[i] = 0;
+  CopyStringTilesToVRAMBuffer(pageBuffer, buffer, 0x901);
+  g201CB59 = 0;
+  return 0;
+}
 
-  ApplyCardDetailPaletteExtension();
+LYN_REPLACE_CHECK(ShowCardDetailView);
+void ShowCardDetailView__Replacement(void) {
+  const u8 *pageStarts[9];
+  u16 *pageBuffer = g201CB60[0];
 
-  sub_801FA84();
-  SetVBlankCallback(sub_801FADC);
-  WaitForVBlank();
-  sub_801FB38();
-  SetVBlankCallback(sub_801FB14);
-  WaitForVBlank();
+  /* Auto-detect trunk context from gTrunkMenu.cursorState. */
+  if (gRuntimeConfig.enable_card_detail_navigation) {
+    if (!gCardDetailNavActive && gTrunkMenu.cursorState == TRUNK_CURSOR_DETAILS) {
+      gCardDetailNavActive = 2;
+      gCardDetailNavIndex = gTrunkMenu.currentPos;
+    }
+  }
+
+render_card:
+  CardDetailViewBuildDescription(pageBuffer, pageStarts);
+  CardDetailViewRenderPage(pageBuffer, pageStarts, g201CB59);
+
   while (1) {
     if (gNewButtons & DPAD_UP && g201CB59 > 1 && g201CB58) {
       g201CB58--;
@@ -190,6 +215,54 @@ void ShowCardDetailView__Replacement(void) {
       sub_800BCB0(pageBuffer);
       LoadCharblock1();
     }
+
+    if (gRuntimeConfig.enable_card_detail_navigation && gCardDetailNavActive) {
+      if (gNewButtons & DPAD_LEFT) {
+        u16 newCard = CARD_NONE;
+
+        if (gCardDetailNavActive == 1) {         /* Deck */
+          if (gCardDetailNavIndex > 0) {
+            gCardDetailNavIndex--;
+            newCard = gDeckMenu.cards[gCardDetailNavIndex];
+          }
+        } else if (gCardDetailNavActive == 2) {  /* Trunk */
+          if (gTrunkMenu.currentPos == 0)
+            gTrunkMenu.currentPos = GetTrunkCardCount() - 1;
+          else
+            gTrunkMenu.currentPos--;
+          newCard = GetNthCardOnScreen(2);
+        }
+
+        if (newCard != CARD_NONE) {
+          SetCardInfo(newCard);
+          PlayMusic(SFX_MOVE_CURSOR);
+          goto render_card;
+        }
+      }
+
+      if (gNewButtons & DPAD_RIGHT) {
+        u16 newCard = CARD_NONE;
+
+        if (gCardDetailNavActive == 1) {         /* Deck */
+          if (gCardDetailNavIndex < gDeckMenu.cardCount - 1) {
+            gCardDetailNavIndex++;
+            newCard = gDeckMenu.cards[gCardDetailNavIndex];
+          }
+        } else if (gCardDetailNavActive == 2) {  /* Trunk */
+          gTrunkMenu.currentPos++;
+          if (gTrunkMenu.currentPos >= GetTrunkCardCount())
+            gTrunkMenu.currentPos = 0;
+          newCard = GetNthCardOnScreen(2);
+        }
+
+        if (newCard != CARD_NONE) {
+          SetCardInfo(newCard);
+          PlayMusic(SFX_MOVE_CURSOR);
+          goto render_card;
+        }
+      }
+    }
+
     if (gNewButtons & B_BUTTON || gNewButtons & A_BUTTON)
       break;
     WaitForVBlank();

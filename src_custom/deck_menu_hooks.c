@@ -22,6 +22,10 @@ extern unsigned short gNewButtons;
 extern unsigned short gPressedButtons;
 extern unsigned short gRepeatedOrNewButtons;
 extern unsigned short gOamBuffer[];
+
+/* Set by deck_menu callers to enable DPAD left/right card navigation in detail view. */
+extern u8 gCardDetailNavActive;
+extern u8 gCardDetailNavIndex;
 extern unsigned short gStarterDeck[];
 void UpdateFilteredInput_NoRepeat(void);
 void RunPlayerDeckTask(unsigned char);
@@ -489,9 +493,12 @@ void A_Submenu_Main__Replacement(void) {
           case 0: {
             u16 cardId = GetSelectedCardWithOffset(2);
 
+            gCardDetailNavActive = 1;
+            gCardDetailNavIndex = gDeckMenu.currentPos;
             SetCardInfoWithWarning(&cardId);
             PlayMusic(SFX_SELECT);
             ShowCardDetailView();
+            gCardDetailNavActive = 0;
             sub_801EF30(0);
             sub_801EF30(2);
             sub_801F4A0(1);
@@ -588,9 +595,12 @@ static void DeckMenuShutdownGraphics(void) {
 static void DeckMenuShowSelectedCardDetails(void) {
   u16 cardId = GetSelectedCardWithOffset(2);
 
+  gCardDetailNavActive = 1;
+  gCardDetailNavIndex = gDeckMenu.currentPos;
   SetCardInfoWithWarning(&cardId);
   PlayMusic(SFX_SELECT);
   ShowCardDetailView();
+  gCardDetailNavActive = 0;
   DeckMenuRestoreAfterCardDetails();
 }
 

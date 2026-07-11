@@ -192,7 +192,7 @@ static u16 GetFullTrunkCardCount(void) {
   return NUM_TRUE_CARDS + (gRuntimeConfig.enable_custom_cards_past_800 == TRUE ? NUM_CUSTOM_TRUNK_CARDS : 0);
 }
 
-static u16 GetTrunkCardCount(void) {
+u16 GetTrunkCardCount(void) {
   if (TrunkHidesUnownedCards())
     return gTrunkVisibleCardCount;
   return GetFullTrunkCardCount();

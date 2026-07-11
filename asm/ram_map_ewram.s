@@ -565,3 +565,9 @@ _kernel_malloc_ewram_array gSummonAnimSavedCbb5, 0x4000
 @ Pending graphic ID passed from phase 1 (TryPlaySummonAnimation) to
 @ phase 2 (FinishSummonAnimation). Remains valid only until Finish is called.
 _kernel_malloc_ewram gSummonAnimPendingGraphicId, 1
+
+@ -- Card detail navigation context ------------------------------------------
+@ Set when ShowCardDetailView is entered from deck or trunk; enables
+@ DPAD left/right to switch between cards.
+_kernel_malloc_ewram gCardDetailNavActive, 1
+_kernel_malloc_ewram gCardDetailNavIndex, 1

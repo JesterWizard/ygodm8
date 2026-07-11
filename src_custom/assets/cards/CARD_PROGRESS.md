@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 405 |
-| Art ready, needs manifest | 191 |
+| In game (manifest + art) | 423 |
+| Art ready, needs manifest | 173 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **598** |
 
@@ -427,31 +427,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DESTINY_HERO_DISK_COMMANDER` | Destiny HERO - Disk Commander | `destiny_hero_disk_commander.png` |
 | `DESTINY_HERO_DOGMA` | Destiny HERO - Dogma | `destiny_hero_dogma.png` |
 | `DESTINY_HERO_DOMINANCE` | Destiny HERO - Dominance | `destiny_hero_dominance.png` |
+| `DESTINY_HERO_DOOM_LORD` | Destiny HERO - Doom Lord | `destiny_hero_doom_lord.png` |
+| `DESTINY_HERO_DOUBLE_DUDE` | Destiny HERO - Double Dude | `destiny_hero_double_dude.png` |
+| `DESTINY_HERO_DRAWHAND` | Destiny HERO - Drawhand | `destiny_hero_drawhand.png` |
+| `DESTINY_HERO_DREAD_SERVANT` | Destiny HERO - Dread Servant | `destiny_hero_dread_servant.png` |
+| `DESTINY_HERO_DREADMASTER` | Destiny HERO - Dreadmaster | `destiny_hero_dreadmaster.png` |
+| `DESTINY_HERO_DOOM_OVERLORD` | Destiny HERO - Doom Overlord | `destiny_hero_doom_overlord.png` |
+| `DESTINY_HERO_DREADNOUGHT_MASTER` | Destiny HERO - Dreadnought Master | `destiny_hero_dreadnought_master.png` |
+| `DESTINY_HERO_DREADNOUGHT_SERVANT` | Destiny HERO - Dreadnought Servant | `destiny_hero_dreadnought_servant.png` |
+| `DESTINY_HERO_DREAMER` | Destiny HERO - Dreamer | `destiny_hero_dreamer.png` |
+| `DESTINY_HERO_DRILLDARK` | Destiny HERO - Drilldark | `destiny_hero_drilldark.png` |
+| `DESTINY_HERO_DUNKER` | Destiny HERO - Dunker | `destiny_hero_dunker.png` |
+| `DESTINY_HERO_DYNATAG` | Destiny HERO - Dynatag | `destiny_hero_dynatag.png` |
+| `DESTINY_HERO_DYSTOPIA` | Destiny HERO - Dystopia | `destiny_hero_dystopia.png` |
+| `DESTINY_HERO_FEAR_MONGER` | Destiny HERO - Fear Monger | `destiny_hero_fear_monger.png` |
+| `DESTINY_HERO_MALICIOUS` | Destiny HERO - Malicious | `destiny_hero_malicious.png` |
+| `DESTINY_HERO_PLASMA` | Destiny HERO - Plasma | `destiny_hero_plasma.png` |
+| `DIFFERENT_DIMENSION_CAPSULE` | Different Dimension Capsule | `different_dimension_capsule.png` |
+| `DESTINY_HERO_DUSKTOPIA` | Destiny HERO - Dusktopia | `destiny_hero_dusktopia.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [x] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png` (not a real card)
-- [x] `DESTINY_HERO_DOOM_LORD` — `destiny_hero_doom_lord.png`
-- [x] `DESTINY_HERO_DOOM_OVERLORD` — `destiny_hero_doom_overlord.png`
-- [x] `DESTINY_HERO_DOUBLE_DUDE` — `destiny_hero_double_dude.png`
-- [x] `DESTINY_HERO_DRAWHAND` — `destiny_hero_drawhand.png`
-- [x] `DESTINY_HERO_DREAD_SERVANT` — `destiny_hero_dread_servant.png`
-- [x] `DESTINY_HERO_DREADMASTER` — `destiny_hero_dreadmaster.png`
-- [x] `DESTINY_HERO_DREADNOUGHT_MASTER` — `destiny_hero_dreadnought_master.png`
-- [x] `DESTINY_HERO_DREADNOUGHT_SERVANT` — `destiny_hero_dreadnought_servant.png`
-- [x] `DESTINY_HERO_DREAMER` — `destiny_hero_dreamer.png`
-- [x] `DESTINY_HERO_DRILLDARK` — `destiny_hero_drilldark.png`
-- [x] `DESTINY_HERO_DUNKER` — `destiny_hero_dunker.png`
-- [x] `DESTINY_HERO_DUSKTOPIA` — `destiny_hero_dusktopia.png`
-- [x] `DESTINY_HERO_DYNATAG` — `destiny_hero_dynatag.png`
-- [x] `DESTINY_HERO_DYSTOPIA` — `destiny_hero_dystopia.png`
-- [x] `DESTINY_HERO_FEAR_MONGER` — `destiny_hero_fear_monger.png`
-- [x] `DESTINY_HERO_MALICIOUS` — `destiny_hero_malicious.png`
-- [x] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
-- [x] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
+- [ ] `D.D_WARRIOR` — `d.d_warrior.png`
+- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
 - [ ] `DIVINE_SERPENT_GEH` — `divine_serpent_geh.png`
 - [ ] `DOCTOR_D` — `doctor_d.png`
