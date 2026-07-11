@@ -399,3 +399,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire D_TIME in trap dispatcher */
 /* DAMAGE_POLARIZER trap effect */
   /* TODO: wire DAMAGE_POLARIZER in trap dispatcher */
+/* DES_COUNTERBLOW trap effect */
+  /* TODO: wire DES_COUNTERBLOW in trap dispatcher */

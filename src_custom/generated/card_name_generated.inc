@@ -387,6 +387,16 @@ static const u8 sDarklordNurseReficuleName[] __attribute__((section(".append_ass
 static const u8 sDarknessNeosphereName[] __attribute__((section(".append_assets"))) = "Darkness Neosphere";
 static const u8 sDarkCityAtMidnightName[] __attribute__((section(".append_assets"))) = "Dark City at Midnight";
 static const u8 sDarkMagicianTheDragonKnightName[] __attribute__((section(".append_assets"))) = "Dark Magician the Dragon Knight";
+static const u8 sDecoyDragonName[] __attribute__((section(".append_assets"))) = "Decoy Dragon";
+static const u8 sDesCounterblowName[] __attribute__((section(".append_assets"))) = "Des Counterblow";
+static const u8 sDespairFromTheDarkName[] __attribute__((section(".append_assets"))) = "Despair from the Dark";
+static const u8 sDestinyDrawName[] __attribute__((section(".append_assets"))) = "Destiny Draw";
+static const u8 sDestinyEndDragoonName[] __attribute__((section(".append_assets"))) = "Destiny End Dragoon";
+static const u8 sDestinyHeroBladeMasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Blade Master";
+static const u8 sDestinyHeroCaptainTenaciousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Captain Tenacious";
+static const u8 sDestinyHeroCelestialName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Celestial";
+static const u8 sDestinyHeroDangerousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dangerous";
+static const u8 sDestinyHeroDarkAngelName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dark Angel";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1167,6 +1177,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkCityAtMidnightName;
   if (cardId == 0x04A2)
     return (u8 *)sDarkMagicianTheDragonKnightName;
+  if (cardId == 0x04A3)
+    return (u8 *)sDecoyDragonName;
+  if (cardId == 0x04A4)
+    return (u8 *)sDesCounterblowName;
+  if (cardId == 0x04A5)
+    return (u8 *)sDespairFromTheDarkName;
+  if (cardId == 0x04A6)
+    return (u8 *)sDestinyDrawName;
+  if (cardId == 0x04A7)
+    return (u8 *)sDestinyEndDragoonName;
+  if (cardId == 0x04A8)
+    return (u8 *)sDestinyHeroBladeMasterName;
+  if (cardId == 0x04A9)
+    return (u8 *)sDestinyHeroCaptainTenaciousName;
+  if (cardId == 0x04AA)
+    return (u8 *)sDestinyHeroCelestialName;
+  if (cardId == 0x04AB)
+    return (u8 *)sDestinyHeroDangerousName;
+  if (cardId == 0x04AC)
+    return (u8 *)sDestinyHeroDarkAngelName;
 
   return gCardNames[cardId];
 }

@@ -22501,15 +22501,15 @@
       }
     },
     {
-  "card_const": "DARK_BLADE_THE_DRAGON_KNIGHT",
-  "card_name": "Dark Blade the Dragon Knight",
-  "atk": 2200,
-  "def": 1500,
-  "level": 6,
-  "attribute": "ATTRIBUTE_SHADOW",
-  "type": "TYPE_WARRIOR",
-  "color": "FUSION_CARD",
-  "monsterEffect": "MONSTER_EFFECT_DARK_BLADE_THE_DRAGON_KNIGHT",
+      "card_const": "DARK_BLADE_THE_DRAGON_KNIGHT",
+      "card_name": "Dark Blade the Dragon Knight",
+      "atk": 2200,
+      "def": 1500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARK_BLADE_THE_DRAGON_KNIGHT",
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 150,
@@ -22526,14 +22526,14 @@
     },
     {
       "card_const": "DARK_GREPHER",
-  "card_name": "Dark Grepher",
-  "atk": 1700,
-  "def": 1600,
-  "level": 4,
-  "attribute": "ATTRIBUTE_SHADOW",
-  "type": "TYPE_WARRIOR",
-  "color": "EFFECT_CARD",
-  "monsterEffect": "MONSTER_EFFECT_DARK_GREPHER",
+      "card_name": "Dark Grepher",
+      "atk": 1700,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARK_GREPHER",
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 233,
@@ -22577,15 +22577,15 @@
       }
     },
     {
-  "card_const": "DARKLORD_NURSE_REFICULE",
-  "card_name": "Darklord Nurse Reficule",
-  "atk": 1400,
-  "def": 600,
-  "level": 4,
-  "attribute": "ATTRIBUTE_SHADOW",
-  "type": "TYPE_FAIRY",
-  "color": "EFFECT_CARD",
-  "monsterEffect": "MONSTER_EFFECT_DARKLORD_NURSE_REFICULE",
+      "card_const": "DARKLORD_NURSE_REFICULE",
+      "card_name": "Darklord Nurse Reficule",
+      "atk": 1400,
+      "def": 600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARKLORD_NURSE_REFICULE",
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 183,
@@ -22602,15 +22602,15 @@
       }
     },
     {
-  "card_const": "DARKNESS_NEOSPHERE",
-  "card_name": "Darkness Neosphere",
-  "atk": 4000,
-  "def": 4000,
-  "level": 10,
-  "attribute": "ATTRIBUTE_SHADOW",
-  "type": "TYPE_FIEND",
-  "color": "EFFECT_CARD",
-  "monsterEffect": "MONSTER_EFFECT_DARKNESS_NEOSPHERE",
+      "card_const": "DARKNESS_NEOSPHERE",
+      "card_name": "Darkness Neosphere",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DARKNESS_NEOSPHERE",
       "spellEffect": 2,
       "trapEffect": 0,
       "cost": 183,
@@ -22680,6 +22680,281 @@
           "you control with card effects, also they cannot",
           "be destroyed by opponent card effects."
         ]
+      }
+    },
+    {
+      "card_const": "DECOY_DRAGON",
+      "card_name": "Decoy Dragon",
+      "atk": 300,
+      "def": 200,
+      "level": 2,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DECOY_DRAGON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [0, 2, 7, 3, 2, 3, 2, 3],
+      "description": {
+        "symbol": "gDescription_DecoyDragon",
+        "pages": [
+          "If this card is targeted for an attack: Target 1",
+          "Level 7 or higher Dragon-Type monster in your",
+          "Graveyard; Special Summon it, and if you do,",
+          "change the attack target to it and perform",
+          "damage calculation."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If this card is targeted for an attack: Target 1 Level 7 or higher Dragon-Type monster in your Graveyard; Special Summon"
+      }
+    },
+    {
+      "card_const": "DES_COUNTERBLOW",
+      "card_name": "Des Counterblow",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 9, 1, 3, 1, 9, 6, 3],
+      "description": {
+        "symbol": "gDescription_DesCounterblow",
+        "pages": [
+          "Destroy any monster that inflicts Battle Damage",
+          "to a player's Life Points by attacking directly."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy any monster that inflicts Battle Damage to a player's Life Points by attacking directly."
+      }
+    },
+    {
+      "card_const": "DESPAIR_FROM_THE_DARK",
+      "card_name": "Despair from the Dark",
+      "atk": 2800,
+      "def": 3000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_ZOMBIE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 1, 2, 0, 0, 7, 3, 0],
+      "description": {
+        "symbol": "gDescription_DespairFromTheDark",
+        "pages": [
+          "If this card is sent from your hand or Deck to",
+          "your GY by an opponent's card effect: Special",
+          "Summon this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If this card is sent from your hand or Deck to your GY by an opponent's card effect: Special Summon this card."
+      }
+    },
+    {
+      "card_const": "DESTINY_DRAW",
+      "card_name": "Destiny Draw",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 5, 8, 0, 9, 0, 0, 8],
+      "description": {
+        "symbol": "gDescription_DestinyDraw",
+        "pages": [
+          "Discard 1 Destiny HERO card; draw 2",
+          "cards."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 1 Destiny HERO card; draw 2 cards."
+      }
+    },
+    {
+      "card_const": "DESTINY_END_DRAGOON",
+      "card_name": "Destiny End Dragoon",
+      "atk": 3000,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_END_DRAGOON",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [7, 6, 2, 6, 3, 6, 4, 4],
+      "description": {
+        "symbol": "gDescription_DestinyEndDragoon",
+        "pages": [
+          "Destiny HERO - Plasma + Destiny HERO - Dogma.",
+          "Once per turn: target 1 monster; destroy it,",
+          "inflict damage equal to its ATK. Skip Battle",
+          "Phase. Once per turn, during Standby Phase, if",
+          "in GY: banish 1 Destiny HERO; Special Summon."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destiny HERO - Plasma + Destiny HERO - Dogma\nA Fusion Summon of this card can only be done with the above Fusion Materia"
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DESTINY_HERO_BLADE_MASTER",
+      "card_name": "Destiny HERO - Blade Master",
+      "atk": 300,
+      "def": 600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_HERO_BLADE_MASTER",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [5, 5, 4, 6, 1, 0, 6, 4],
+      "description": {
+        "symbol": "gDescription_DestinyHeroBladeMaster",
+        "pages": [
+          "During your opponent's Battle Phase: You can",
+          "discard this card; all face-up Destiny HERO",
+          "monsters you control gain 800 ATK until the",
+          "End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "During your opponent's Battle Phase: You can discard this card; all face-up Destiny HERO monsters you control gain 800 A"
+      }
+    },
+    {
+      "card_const": "DESTINY_HERO_CAPTAIN_TENACIOUS",
+      "card_name": "Destiny HERO - Captain Tenacious",
+      "atk": 800,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_HERO_CAPTAIN_TENACIOUS",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 65,
+      "password": [7, 7, 6, 0, 8, 6, 4, 3],
+      "description": {
+        "symbol": "gDescription_DestinyHeroCaptainTenacious",
+        "pages": [
+          "Once per turn, during your Standby Phase: You can",
+          "target 1 Destiny HERO monster in your Graveyard",
+          "that was destroyed by battle since your last",
+          "Standby Phase, if you controlled this face-up",
+          "card when the target was destroyed; Special Summon that target."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, during your Standby Phase: You can target 1 Destiny HERO monster in your Graveyard that was destroyed by "
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DESTINY_HERO_CELESTIAL",
+      "card_name": "Destiny HERO - Celestial",
+      "atk": 1600,
+      "def": 1400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_HERO_CELESTIAL",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 195,
+      "password": [6, 3, 3, 6, 2, 4, 6, 0],
+      "description": {
+        "symbol": "gDescription_DestinyHeroCelestial",
+        "pages": [
+          "When this card attacks: target 1 face-up Spell;",
+          "destroy it, inflict 500 damage to your opponent.",
+          "While you have no cards in hand (except the turn",
+          "this was sent to GY): banish this + 1 Destiny",
+          "HERO from GY; draw 2. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When this card declares an attack: You can target 1 face-up Spell your opponent controls; destroy it, and if you do, inf"
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DESTINY_HERO_DANGEROUS",
+      "card_name": "Destiny HERO - Dangerous",
+      "atk": 2000,
+      "def": 2600,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_HERO_DANGEROUS",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 0, 7, 5, 7, 1, 2, 7],
+      "description": {
+        "symbol": "gDescription_DestinyHeroDangerous",
+        "pages": [
+          "1 Destiny HERO + 1 DARK Effect Monster.",
+          "Quick Effect: discard 1 card; send 1 Destiny",
+          "HERO from hand/Deck to GY; your monsters gain",
+          "200 ATK for each Destiny HERO in your GY until",
+          "end of turn. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "1 Destiny HERO monster + 1 DARK Effect Monster\n(Quick Effect): You can discard 1 card; send 1 Destiny HERO monster from "
+      },
+      "effect_usage": "once_per_turn"
+    },
+    {
+      "card_const": "DESTINY_HERO_DARK_ANGEL",
+      "card_name": "Destiny HERO - Dark Angel",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": "MONSTER_EFFECT_DESTINY_HERO_DARK_ANGEL",
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [2, 6, 9, 6, 4, 7, 6, 2],
+      "description": {
+        "symbol": "gDescription_DestinyHeroDarkAngel",
+        "pages": [
+          "If 3+ Destiny HERO in GY: discard this; target",
+          "1 in GY; Special Summon to opponent's field in",
+          "Defense. Your Spells are negated and destroyed.",
+          "Standby Phase: banish this + 1 Destiny HERO",
+          "from GY; each player puts 1 Normal Spell from Deck on top."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you have 3 or more Destiny HERO monsters in your GY: You can discard this card, then target 1 Destiny HERO monster in"
       }
     }
   ]

@@ -122,6 +122,9 @@
     case DELINQUENT_DUO:
       EffectDelinquentDuo();
       return;
+    case DESTINY_DRAW:
+      EffectDESTINY_DRAW();
+      return;
     case DE_FUSION:
       EffectDeFusion();
       return;

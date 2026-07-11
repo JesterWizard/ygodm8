@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `359` effects
+- `369` effects
 
 ## Tally
 
@@ -340,6 +340,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Darklord Nurse Reficule` | `src_custom/permanent_effects/darklord_nurse_reficule.c` |
 | `activated_effects` | `Darkness Neosphere` | `src_custom/activated_effects/darkness_neosphere.c` |
 | `activated_effects` | `Dark Magician The Dragon Knight` | `src_custom/activated_effects/dark_magician_the_dragon_knight.c` |
+| `activated_effects` | `Decoy Dragon` | `src_custom/activated_effects/decoy_dragon.c` |
+| `trap_effects` | `Des Counterblow` | `src_custom/trap_effects/des_counterblow.c` |
+| `permanent_effects` | `Despair From The Dark` | `src_custom/permanent_effects/despair_from_the_dark.c` |
+| `spell_effects` | `Destiny Draw` | `src_custom/spell_effects/destiny_draw.c` |
+| `activated_effects` | `Destiny End Dragoon` | `src_custom/activated_effects/destiny_end_dragoon.c` |
+| `activated_effects` | `Destiny Hero Blade Master` | `src_custom/activated_effects/destiny_hero_blade_master.c` |
+| `activated_effects` | `Destiny Hero Captain Tenacious` | `src_custom/activated_effects/destiny_hero_captain_tenacious.c` |
+| `activated_effects` | `Destiny Hero Celestial` | `src_custom/activated_effects/destiny_hero_celestial.c` |
+| `activated_effects` | `Destiny Hero Dangerous` | `src_custom/activated_effects/destiny_hero_dangerous.c` |
+| `activated_effects` | `Destiny Hero Dark Angel` | `src_custom/activated_effects/destiny_hero_dark_angel.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

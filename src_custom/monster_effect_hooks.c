@@ -125,6 +125,20 @@ unsigned char CanActivateCYBER_PHOENIX(void);
 void ActivateCYBER_PHOENIXEffect(void);
 unsigned char CanActivateDARK_ARMED_DRAGON(void);
 void ActivateDARK_ARMED_DRAGONEffect(void);
+unsigned char CanActivateDECOY_DRAGON(void);
+void ActivateDECOY_DRAGONEffect(void);
+unsigned char CanActivateDESTINY_END_DRAGOON(void);
+void ActivateDESTINY_END_DRAGOONEffect(void);
+unsigned char CanActivateDESTINY_HERO_BLADE_MASTER(void);
+void ActivateDESTINY_HERO_BLADE_MASTEREffect(void);
+unsigned char CanActivateDESTINY_HERO_CAPTAIN_TENACIOUS(void);
+void ActivateDESTINY_HERO_CAPTAIN_TENACIOUSEffect(void);
+unsigned char CanActivateDESTINY_HERO_CELESTIAL(void);
+void ActivateDESTINY_HERO_CELESTIALEffect(void);
+unsigned char CanActivateDESTINY_HERO_DANGEROUS(void);
+void ActivateDESTINY_HERO_DANGEROUSEffect(void);
+unsigned char CanActivateDESTINY_HERO_DARK_ANGEL(void);
+void ActivateDESTINY_HERO_DARK_ANGELEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -744,6 +758,34 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == DARKNESS_NEOSPHERE) {
     ActivateDARKNESS_NEOSPHEREEffect();
+    return;
+  }
+  if (gMonEffect.id == DECOY_DRAGON) {
+    ActivateDECOY_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_END_DRAGOON) {
+    ActivateDESTINY_END_DRAGOONEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_BLADE_MASTER) {
+    ActivateDESTINY_HERO_BLADE_MASTEREffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_CAPTAIN_TENACIOUS) {
+    ActivateDESTINY_HERO_CAPTAIN_TENACIOUSEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_CELESTIAL) {
+    ActivateDESTINY_HERO_CELESTIALEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DANGEROUS) {
+    ActivateDESTINY_HERO_DANGEROUSEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DARK_ANGEL) {
+    ActivateDESTINY_HERO_DARK_ANGELEffect();
     return;
   }
 

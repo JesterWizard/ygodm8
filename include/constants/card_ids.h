@@ -1188,11 +1188,21 @@
 #define DARKNESS_NEOSPHERE                       0x04A0
 #define DARK_CITY_AT_MIDNIGHT                    0x04A1
 #define DARK_MAGICIAN_THE_DRAGON_KNIGHT          0x04A2
+#define DECOY_DRAGON                             0x04A3
+#define DES_COUNTERBLOW                          0x04A4
+#define DESPAIR_FROM_THE_DARK                    0x04A5
+#define DESTINY_DRAW                             0x04A6
+#define DESTINY_END_DRAGOON                      0x04A7
+#define DESTINY_HERO_BLADE_MASTER                0x04A8
+#define DESTINY_HERO_CAPTAIN_TENACIOUS           0x04A9
+#define DESTINY_HERO_CELESTIAL                   0x04AA
+#define DESTINY_HERO_DANGEROUS                   0x04AB
+#define DESTINY_HERO_DARK_ANGEL                  0x04AC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04A3
-#define NUM_CUSTOM_CARDS                        0x0182
+#define NUM_TOTAL_CARDS                         0x04AD
+#define NUM_CUSTOM_CARDS                        0x018C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

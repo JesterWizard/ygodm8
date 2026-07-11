@@ -117,6 +117,8 @@ unsigned char ShouldActivateCYBER_KIRIN(void);
 void ActivateCYBER_KIRIN(void);
 unsigned char ShouldActivateDARKLORD_NURSE_REFICULE(void);
 void ActivateDARKLORD_NURSE_REFICULE(void);
+unsigned char ShouldActivateDESPAIR_FROM_THE_DARK(void);
+void ActivateDESPAIR_FROM_THE_DARK(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -333,6 +335,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DARKLORD_NURSE_REFICULE,
     .shouldActivate = ShouldActivateDARKLORD_NURSE_REFICULE,
     .activate = ActivateDARKLORD_NURSE_REFICULE,
+  },
+  {
+    .cardId = DESPAIR_FROM_THE_DARK,
+    .shouldActivate = ShouldActivateDESPAIR_FROM_THE_DARK,
+    .activate = ActivateDESPAIR_FROM_THE_DARK,
   },
 };
 

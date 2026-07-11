@@ -177,6 +177,13 @@ enum {
   MONSTER_EFFECT_DARK_MAGICIAN_THE_DRAGON_KNIGHT,
   MONSTER_EFFECT_DARKLORD_NURSE_REFICULE,
   MONSTER_EFFECT_DARKNESS_NEOSPHERE,
+  MONSTER_EFFECT_DECOY_DRAGON,
+  MONSTER_EFFECT_DESTINY_END_DRAGOON,
+  MONSTER_EFFECT_DESTINY_HERO_BLADE_MASTER,
+  MONSTER_EFFECT_DESTINY_HERO_CAPTAIN_TENACIOUS,
+  MONSTER_EFFECT_DESTINY_HERO_CELESTIAL,
+  MONSTER_EFFECT_DESTINY_HERO_DANGEROUS,
+  MONSTER_EFFECT_DESTINY_HERO_DARK_ANGEL,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -286,5 +293,19 @@ extern unsigned char CanActivateDARK_MAGICIAN_THE_DRAGON_KNIGHT(void);
 extern void ActivateDARK_MAGICIAN_THE_DRAGON_KNIGHTEffect(void);
 extern unsigned char CanActivateDARKNESS_NEOSPHERE(void);
 extern void ActivateDARKNESS_NEOSPHEREEffect(void);
+extern unsigned char CanActivateDECOY_DRAGON(void);
+extern void ActivateDECOY_DRAGONEffect(void);
+extern unsigned char CanActivateDESTINY_END_DRAGOON(void);
+extern void ActivateDESTINY_END_DRAGOONEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_BLADE_MASTER(void);
+extern void ActivateDESTINY_HERO_BLADE_MASTEREffect(void);
+extern unsigned char CanActivateDESTINY_HERO_CAPTAIN_TENACIOUS(void);
+extern void ActivateDESTINY_HERO_CAPTAIN_TENACIOUSEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_CELESTIAL(void);
+extern void ActivateDESTINY_HERO_CELESTIALEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DANGEROUS(void);
+extern void ActivateDESTINY_HERO_DANGEROUSEffect(void);
+extern unsigned char CanActivateDESTINY_HERO_DARK_ANGEL(void);
+extern void ActivateDESTINY_HERO_DARK_ANGELEffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H

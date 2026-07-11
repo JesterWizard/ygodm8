@@ -380,6 +380,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DARKLORD_NURSE_REFICULE] = gActivationDescription_DarklordNurseReficule_Popup1,
   [DARKNESS_NEOSPHERE] = gActivationDescription_DarknessNeosphere_Popup1,
   [DARK_CITY_AT_MIDNIGHT] = gActivationDescription_DarkCityAtMidnight_Popup1,
+  [DECOY_DRAGON] = gActivationDescription_DecoyDragon_Popup1,
+  [DES_COUNTERBLOW] = gActivationDescription_DesCounterblow_Popup1,
+  [DESPAIR_FROM_THE_DARK] = gActivationDescription_DespairFromTheDark_Popup1,
+  [DESTINY_DRAW] = gActivationDescription_DestinyDraw_Popup1,
+  [DESTINY_END_DRAGOON] = gActivationDescription_DestinyEndDragoon_Popup1,
+  [DESTINY_HERO_BLADE_MASTER] = gActivationDescription_DestinyHeroBladeMaster_Popup1,
+  [DESTINY_HERO_CAPTAIN_TENACIOUS] = gActivationDescription_DestinyHeroCaptainTenacious_Popup1,
+  [DESTINY_HERO_CELESTIAL] = gActivationDescription_DestinyHeroCelestial_Popup1,
+  [DESTINY_HERO_DANGEROUS] = gActivationDescription_DestinyHeroDangerous_Popup1,
+  [DESTINY_HERO_DARK_ANGEL] = gActivationDescription_DestinyHeroDarkAngel_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -790,6 +800,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DARKLORD_NURSE_REFICULE_POPUP_1] = gActivationDescription_DarklordNurseReficule_Popup1,
   [CARD_EFFECT_TEXT_DARKNESS_NEOSPHERE_POPUP_1] = gActivationDescription_DarknessNeosphere_Popup1,
   [CARD_EFFECT_TEXT_DARK_CITY_AT_MIDNIGHT_POPUP_1] = gActivationDescription_DarkCityAtMidnight_Popup1,
+  [CARD_EFFECT_TEXT_DECOY_DRAGON_POPUP_1] = gActivationDescription_DecoyDragon_Popup1,
+  [CARD_EFFECT_TEXT_DES_COUNTERBLOW_POPUP_1] = gActivationDescription_DesCounterblow_Popup1,
+  [CARD_EFFECT_TEXT_DESPAIR_FROM_THE_DARK_POPUP_1] = gActivationDescription_DespairFromTheDark_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_DRAW_POPUP_1] = gActivationDescription_DestinyDraw_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_END_DRAGOON_POPUP_1] = gActivationDescription_DestinyEndDragoon_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_BLADE_MASTER_POPUP_1] = gActivationDescription_DestinyHeroBladeMaster_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_CAPTAIN_TENACIOUS_POPUP_1] = gActivationDescription_DestinyHeroCaptainTenacious_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_CELESTIAL_POPUP_1] = gActivationDescription_DestinyHeroCelestial_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DANGEROUS_POPUP_1] = gActivationDescription_DestinyHeroDangerous_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DARK_ANGEL_POPUP_1] = gActivationDescription_DestinyHeroDarkAngel_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

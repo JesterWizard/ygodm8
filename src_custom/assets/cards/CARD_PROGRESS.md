@@ -414,16 +414,74 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `DECOY_DRAGON` — `decoy_dragon.png`
-- [ ] `DES_COUNTERBLOW` — `des_counterblow.png`
-- [ ] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
-- [ ] `DESTINY_DRAW` — `destiny_draw.png`
-- [ ] `DESTINY_END_DRAGOON` — `destiny_end_dragoon.png`
-- [ ] `DESTINY_HERO_BLADE_MASTER` — `destiny_hero_blade_master.png`
-- [ ] `DESTINY_HERO_CAPTAIN_TENACIOUS` — `destiny_hero_captain_tenacious.png`
-- [ ] `DESTINY_HERO_CELESTIAL` — `destiny_hero_celestial.png`
-- [ ] `DESTINY_HERO_DANGEROUS` — `destiny_hero_dangerous.png`
-- [ ] `DESTINY_HERO_DARK_ANGEL` — `destiny_hero_dark_angel.png`
+- [x] `A_HERO_EMERGES` — `a_hero_emerges.png`
+- [x] `A_HERO_LIVES` — `a_hero_lives.png`
+- [x] `A_WINGBEAT_OF_GIANT_DRAGON` — `a_wingbeat_of_giant_dragon.png`
+- [x] `ALLURE_OF_DARKNESS` — `allure_of_darkness.png`
+- [x] `AMULET_DRAGON` — `amulet_dragon.png`
+- [x] `ANDRO_SPHINX` — `andro_sphinx.png`
+- [x] `ANTI_SPELL_FRAGRANCE` — `anti_spell_fragrance.png`
+- [x] `APPROPRIATE` — `appropriate.png`
+- [x] `APPRENTICE_ILLUSION_MAGICIAN` — `apprentice_illusion_magician.png`
+- [x] `APPARATION` — `apparation.png`
+- [x] `ATTACK_GUIDANCE_ARMOR` — `attack_guidance_armor.png`
+- [x] `ATTACK_REFLECTOR_UNIT` — `attack_reflector_unit.png`
+- [x] `BACKUP_SQUAD` — `backup_squad.png`
+- [x] `ARMAGEDDON_KNIGHT` — `armageddon_knight.png`
+- [x] `ARMED_DRAGON_LV3` — `armed_dragon_lv3.png`
+- [x] `ARMED_DRAGON_LV5` — `armed_dragon_lv5.png`
+- [x] `ARMED_DRAGON_LV7` — `armed_dragon_lv7.png`
+- [x] `ARMED_DRAGON_LV10` — `armed_dragon_lv10.png`
+- [x] `ATTACK_AND_RECEIVE` — `attack_and_receive.png`
+- [x] `BACKFIRE` — `backfire.png`
+- [x] `HAMON_LORD_OF_STRIKING_THUNDER` — `hamon_lord_of_striking_thunder.png`
+- [x] `URIA_LORD_OF_SEARING_FLAMES` — `uria_lord_of_searing_flames.png`
+- [x] `RAVIEL_LORD_OF_PHANTASMS` — `raviel_lord_of_phantasms.png`
+- [x] `BERSERKER_SOUL` — `berserker_soul.png`
+- [x] `BIRDFACE` — `birdface.png`
+- [x] `BLUE_EYES_ALTERNATIVE_ULTIMATE_DRAGON` — `blue_eyes_alternative_ultimate_dragon.png`
+- [x] `BREAK_THE_DESTINY` — `break_the_destiny.png`
+- [x] `BUBBLE_BLASTER` — `bubble_blaster.png`
+- [x] `BURDEN_OF_THE_MIGHTY` — `burden_of_the_mighty.png`
+- [x] `CALL_OF_THE_MUMMY` — `call_of_the_mummy.png`
+- [x] `CANNONBALL_SPEAR_SHELLFISH` — `cannonball_spear_shellfish.png`
+- [x] `CELESTIAL_SWORD_EATOS` — `celestial_sword_eatos.png`
+- [x] `CHAOS_FORM` — `chaos_form.png`
+- [x] `CHICKEN_GAME` — `chicken_game.png`
+- [x] `CHIMERATECH_FORTRESS_DRAGON` — `chimeratech_fortress_dragon.png`
+- [x] `CHIMERATECH_MEGAFLEET_DRAGON` — `chimeratech_megafleet_dragon.png`
+- [x] `CHIMERATECH_RAMPAGE_DRAGON` — `chimeratech_rampage_dragon.png`
+- [x] `CLOCK_TOWER_PRISON` — `clock_tower_prison.png`
+- [x] `COLD_WAVE` — `cold_wave.png`
+- [x] `CONTINUOUS_DESTRUCTION_PUNCH` — `continuous_destruction_punch.png`
+- [x] `CYBER_ELTANIN` — `cyber_eltanin.png`
+- [x] `CYBER_KIRIN` — `cyber_kirin.png`
+- [x] `CYBER_PHOENIX` — `cyber_phoenix.png`
+- [x] `CYBER_VALLEY` — `cyber_valley.png`
+- [x] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
+- [x] `D.D_WARRIOR` — `d.d_warrior.png`
+- [x] `D_BURST` — `d_burst.png`
+- [x] `D_FORCE` — `d_force.png`
+- [x] `D_TACTICS` — `d_tactics.png`
+- [x] `D_TIME` — `d_time.png`
+- [x] `DAMAGE_POLARIZER` — `damage_polarizer.png`
+- [x] `DARK_BLADE_THE_DRAGON_KNIGHT` — `dark_blade_the_dragon_knight.png`
+- [x] `DARK_CITY_AT_MIDNIGHT` — `dark_city_at_midnight.png`
+- [x] `DARK_GREPHER` — `dark_grepher.png`
+- [x] `DARK_MAGICIAN_GIRL_THE_DRAGON_KNIGHT` — `dark_magician_girl_the_dragon_knight.png`
+- [x] `DARK_MAGICIAN_THE_DRAGON_KNIGHT` — `dark_magician_the_dragon_knight.png`
+- [x] `DARKLORD_NURSE_REFICULE` — `darklord_nurse_reficule.png`
+- [x] `DARKNESS_NEOSPHERE` — `darkness_neosphere.png`
+- [x] `DECOY_DRAGON` — `decoy_dragon.png`
+- [x] `DES_COUNTERBLOW` — `des_counterblow.png`
+- [x] `DESPAIR_FROM_THE_DARK` — `despair_from_the_dark.png`
+- [x] `DESTINY_DRAW` — `destiny_draw.png`
+- [x] `DESTINY_END_DRAGOON` — `destiny_end_dragoon.png`
+- [x] `DESTINY_HERO_BLADE_MASTER` — `destiny_hero_blade_master.png`
+- [x] `DESTINY_HERO_CAPTAIN_TENACIOUS` — `destiny_hero_captain_tenacious.png`
+- [x] `DESTINY_HERO_CELESTIAL` — `destiny_hero_celestial.png`
+- [x] `DESTINY_HERO_DANGEROUS` — `destiny_hero_dangerous.png`
+- [x] `DESTINY_HERO_DARK_ANGEL` — `destiny_hero_dark_angel.png`
 - [ ] `DESTINY_HERO_DASHER` — `destiny_hero_dasher.png`
 - [ ] `DESTINY_HERO_DECIDER` — `destiny_hero_decider.png`
 - [ ] `DESTINY_HERO_DEFENDER` — `destiny_hero_defender.png`
