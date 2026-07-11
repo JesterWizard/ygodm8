@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 571 |
-| Art ready, needs manifest | 22 |
+| In game (manifest + art) | 581 |
+| Art ready, needs manifest | 12 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -593,21 +593,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `TORNADO_WALL` | Tornado Wall | `tornado_wall.png` |
 | `TOON_WORLD` | Toon World | `toon_world.png` |
 | `TORNADO_BIRD` | Tornado Bird | `tornado_bird.png` |
+| `TRAP_DUSTSHOOT` | Trap Dustshoot | `trap_dustshoot.png` |
+| `TYRANT_BURST_DRAGON` | Tyrant Burst Dragon | `tyrant_burst_dragon.png` |
+| `TYRANT_WING` | Tyrant Wing | `tyrant_wing.png` |
+| `ULTIMATE_CONDUCTOR_TYRANNO` | Ultimate Conductor Tyranno | `ultimate_conductor_tyranno.png` |
+| `ULTIMATE_OBEDIENT_FIEND` | Ultimate Obedient Fiend | `ultimate_obedient_fiend.png` |
+| `VISION_FUSION` | Vision Fusion | `vision_fusion.png` |
+| `VISION_HERO_ADORATION` | Vision HERO Adoration | `vision_hero_adoration.png` |
+| `VISION_HERO_FARIS` | Vision HERO Faris | `vision_hero_faris.png` |
+| `VISION_HERO_GRAVITO` | Vision HERO Gravito | `vision_hero_gravito.png` |
+| `VISION_HERO_INCREASE` | Vision HERO Increase | `vision_hero_increase.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
-- [ ] `TYRANT_BURST_DRAGON` — `tyrant_burst_dragon.png`
-- [ ] `TYRANT_WING` — `tyrant_wing.png`
-- [ ] `ULTIMATE_CONDUCTOR_TYRANNO` — `ultimate_conductor_tyranno.png`
-- [ ] `ULTIMATE_OBEDIENT_FIEND` — `ultimate_obedient_fiend.png`
-- [ ] `VISION_FUSION` — `vision_fusion.png`
-- [ ] `VISION_HERO_ADORATION` — `vision_hero_adoration.png`
-- [ ] `VISION_HERO_FARIS` — `vision_hero_faris.png`
-- [ ] `VISION_HERO_GRAVITO` — `vision_hero_gravito.png`
-- [ ] `VISION_HERO_INCREASE` — `vision_hero_increase.png`
 - [ ] `VISION_HERO_MINIMUM_RAY` — `vision_hero_minimum_ray.png`
 - [ ] `VISION_HERO_MULTIPLY_GUY` — `vision_hero_multiply_guy.png`
 - [ ] `VISION_HERO_POISONER` — `vision_hero_poisoner.png`

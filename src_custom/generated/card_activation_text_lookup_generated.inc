@@ -549,6 +549,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [TORNADO_WALL] = gActivationDescription_TornadoWall_Popup1,
   [TOON_WORLD] = gActivationDescription_ToonWorld_Popup1,
   [TORNADO_BIRD] = gActivationDescription_TornadoBird_Popup1,
+  [TRAP_DUSTSHOOT] = gActivationDescription_TrapDustshoot_Popup1,
+  [TYRANT_WING] = gActivationDescription_TyrantWing_Popup1,
+  [ULTIMATE_CONDUCTOR_TYRANNO] = gActivationDescription_UltimateConductorTyranno_Popup1,
+  [ULTIMATE_OBEDIENT_FIEND] = gActivationDescription_UltimateObedientFiend_Popup1,
+  [VISION_FUSION] = gActivationDescription_VisionFusion_Popup1,
+  [VISION_HERO_FARIS] = gActivationDescription_VisionHeroFaris_Popup1,
+  [VISION_HERO_GRAVITO] = gActivationDescription_VisionHeroGravito_Popup1,
+  [VISION_HERO_INCREASE] = gActivationDescription_VisionHeroIncrease_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1128,6 +1136,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_TORNADO_WALL_POPUP_1] = gActivationDescription_TornadoWall_Popup1,
   [CARD_EFFECT_TEXT_TOON_WORLD_POPUP_1] = gActivationDescription_ToonWorld_Popup1,
   [CARD_EFFECT_TEXT_TORNADO_BIRD_POPUP_1] = gActivationDescription_TornadoBird_Popup1,
+  [CARD_EFFECT_TEXT_TRAP_DUSTSHOOT_POPUP_1] = gActivationDescription_TrapDustshoot_Popup1,
+  [CARD_EFFECT_TEXT_TYRANT_WING_POPUP_1] = gActivationDescription_TyrantWing_Popup1,
+  [CARD_EFFECT_TEXT_ULTIMATE_CONDUCTOR_TYRANNO_POPUP_1] = gActivationDescription_UltimateConductorTyranno_Popup1,
+  [CARD_EFFECT_TEXT_ULTIMATE_OBEDIENT_FIEND_POPUP_1] = gActivationDescription_UltimateObedientFiend_Popup1,
+  [CARD_EFFECT_TEXT_VISION_FUSION_POPUP_1] = gActivationDescription_VisionFusion_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_FARIS_POPUP_1] = gActivationDescription_VisionHeroFaris_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_GRAVITO_POPUP_1] = gActivationDescription_VisionHeroGravito_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_INCREASE_POPUP_1] = gActivationDescription_VisionHeroIncrease_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

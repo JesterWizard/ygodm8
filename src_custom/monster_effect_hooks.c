@@ -248,6 +248,20 @@ unsigned char CanActivateTIME_MAGIC_HAMMER(void);
 void ActivateTIME_MAGIC_HAMMEREffect(void);
 unsigned char CanActivateTORNADO_BIRD(void);
 void ActivateTORNADO_BIRDEffect(void);
+unsigned char CanActivateTYRANT_BURST_DRAGON(void);
+void ActivateTYRANT_BURST_DRAGONEffect(void);
+unsigned char CanActivateULTIMATE_CONDUCTOR_TYRANNO(void);
+void ActivateULTIMATE_CONDUCTOR_TYRANNOEffect(void);
+unsigned char CanActivateULTIMATE_OBEDIENT_FIEND(void);
+void ActivateULTIMATE_OBEDIENT_FIENDEffect(void);
+unsigned char CanActivateVISION_HERO_ADORATION(void);
+void ActivateVISION_HERO_ADORATIONEffect(void);
+unsigned char CanActivateVISION_HERO_FARIS(void);
+void ActivateVISION_HERO_FARISEffect(void);
+unsigned char CanActivateVISION_HERO_GRAVITO(void);
+void ActivateVISION_HERO_GRAVITOEffect(void);
+unsigned char CanActivateVISION_HERO_INCREASE(void);
+void ActivateVISION_HERO_INCREASEEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1359,6 +1373,34 @@ FAILED:
   }
   if (gMonEffect.id == TORNADO_BIRD) {
     ActivateTORNADO_BIRDEffect();
+    return;
+  }
+  if (gMonEffect.id == TYRANT_BURST_DRAGON) {
+    ActivateTYRANT_BURST_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == ULTIMATE_CONDUCTOR_TYRANNO) {
+    ActivateULTIMATE_CONDUCTOR_TYRANNOEffect();
+    return;
+  }
+  if (gMonEffect.id == ULTIMATE_OBEDIENT_FIEND) {
+    ActivateULTIMATE_OBEDIENT_FIENDEffect();
+    return;
+  }
+  if (gMonEffect.id == VISION_HERO_ADORATION) {
+    ActivateVISION_HERO_ADORATIONEffect();
+    return;
+  }
+  if (gMonEffect.id == VISION_HERO_FARIS) {
+    ActivateVISION_HERO_FARISEffect();
+    return;
+  }
+  if (gMonEffect.id == VISION_HERO_GRAVITO) {
+    ActivateVISION_HERO_GRAVITOEffect();
+    return;
+  }
+  if (gMonEffect.id == VISION_HERO_INCREASE) {
+    ActivateVISION_HERO_INCREASEEffect();
     return;
   }
 }

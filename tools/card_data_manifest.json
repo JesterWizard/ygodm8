@@ -39982,6 +39982,367 @@
       "effect_texts": {
         "popup_1": "FLIP: Return 2 Spell or Trap Cards on the field to their owners' hands."
       }
+    },
+    {
+      "card_const": "TRAP_DUSTSHOOT",
+      "card_name": "Trap Dustshoot",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        4,
+        6,
+        9,
+        7,
+        2,
+        3,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_TrapDustshoot",
+        "pages": [
+          "Activate   only if your   opponent has 4   or more cards   in their  ",
+          "hand. Look   at your   opponent's   hand, select 1   Monster Card  ",
+          "in it, and   return that   card to its   owner's Deck.  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Activate only if your opponent has 4 or more cards in their hand. Look at your opponent's hand, select 1 Monster Card in"
+      }
+    },
+    {
+      "card_const": "TYRANT_BURST_DRAGON",
+      "card_name": "Tyrant Burst Dragon",
+      "atk": 2900,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        5,
+        8,
+        2,
+        9,
+        3,
+        3,
+        4,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_TyrantBurstDragon",
+        "pages": [
+          "Must be   Special   Summoned with   \"The Fang of   Critias\",  ",
+          "using   \"Tyrant Wing\".   This card can   attack all   your  ",
+          "opponent's   monsters, once   each. You can   target 1   face-up  ",
+          "monster you   control; equip   this monster   to that   target. It  ",
+          "gains 400   ATK/DEF, also   it can make 3   attacks during   each Battle  "
+        ]
+      }
+    },
+    {
+      "card_const": "TYRANT_WING",
+      "card_name": "Tyrant Wing",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        5,
+        7,
+        4,
+        7,
+        0,
+        7,
+        6,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_TyrantWing",
+        "pages": [
+          "Target 1   Dragon monster   on the field;   equip this   card to it.  ",
+          "It gains 400   ATK/DEF, also   it can make up   to 2 attacks   on monsters  ",
+          "during each   Battle Phase.   Once per turn,   during the End   Phase, if  ",
+          "the monster   equipped with   this card by   this effect   attacked an  ",
+          "opponent's   monster this   turn: Destroy   this card.  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Dragon monster on the field; equip this card to it. It gains 400 ATK/DEF, also it can make up to 2 attacks on m"
+      }
+    },
+    {
+      "card_const": "ULTIMATE_CONDUCTOR_TYRANNO",
+      "card_name": "Ultimate Conductor Tyranno",
+      "atk": 3500,
+      "def": 3200,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        1,
+        8,
+        9,
+        4,
+        0,
+        5,
+        5,
+        6
+      ],
+      "description": {
+        "symbol": "gDescription_UltimateConductorTyranno",
+        "pages": [
+          "Cannot be   Normal   Summoned/Set.   Must first be   Special  ",
+          "Summoned   (from your   hand) by   banishing 2  ",
+          "Dinosaur-Type   monsters from   your   Graveyard.  ",
+          "Once per   turn, during   either   player's Main   Phase: You  ",
+          "can destroy   1 monster in   your hand or   field, and if   you do,  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must first be Special Summoned (from your hand) by banishing 2 Dinosaur-Type monsters fro"
+      }
+    },
+    {
+      "card_const": "ULTIMATE_OBEDIENT_FIEND",
+      "card_name": "Ultimate Obedient Fiend",
+      "atk": 3500,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        3,
+        2,
+        2,
+        4,
+        0,
+        9,
+        3,
+        7
+      ],
+      "description": {
+        "symbol": "gDescription_UltimateObedientFiend",
+        "pages": [
+          "This card   can only   attack if this   card is the   only card on  ",
+          "your side of   the field and   if you also   have no cards   in your  ",
+          "hand. The   effects of   Effect   Monsters that   this card  ",
+          "destroys are   negated.  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This card can only attack if this card is the only card on your side of the field and if you also have no cards in your "
+      }
+    },
+    {
+      "card_const": "VISION_FUSION",
+      "card_name": "Vision Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        5,
+        7,
+        4,
+        2,
+        5,
+        0,
+        6,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_VisionFusion",
+        "pages": [
+          "Fusion   Summon 1   \"HERO\" Fusion   Monster from   your Extra  ",
+          "Deck, using   monsters from   your hand or   field as   Fusion  ",
+          "Material.   You can also   use up to 2   monsters in   your Spell &  ",
+          "Trap Zone   that are being   treated as   Continuous   Traps as  ",
+          "Fusion   Material, by   banishing   them. You can   only  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 \"HERO\" Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. Y"
+      }
+    },
+    {
+      "card_const": "VISION_HERO_ADORATION",
+      "card_name": "Vision HERO Adoration",
+      "atk": 2800,
+      "def": 2100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        4,
+        5,
+        1,
+        7,
+        0,
+        8,
+        2,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroAdoration",
+        "pages": [
+          "2 \"HERO\"   monsters Once   per turn: You   can target 1   face-up  ",
+          "monster your   opponent   controls and 1   other \"HERO\"   monster you  ",
+          "control; the   opponent's   targeted   monster loses   ATK and DEF  ",
+          "equal to the   ATK of your   targeted   monster, until   the end of  ",
+          "this turn.  "
+        ]
+      }
+    },
+    {
+      "card_const": "VISION_HERO_FARIS",
+      "card_name": "Vision HERO Faris",
+      "atk": 1600,
+      "def": 1800,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 41,
+      "password": [
+        1,
+        8,
+        0,
+        9,
+        4,
+        1,
+        6,
+        6
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroFaris",
+        "pages": [
+          "You can   discard 1   other \"HERO\"   monster;   Special  ",
+          "Summon this   card from your   hand. If this   card is Normal   or Special  ",
+          "Summoned:   You can place   1 \"Vision   HERO\" monster   from your  ",
+          "Deck, except   \"Vision HERO   Faris\", in   your Spell &   Trap Zone as  ",
+          "a face-up   Continuous   Trap, also you   cannot Special   Summon  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can discard 1 other \"HERO\" monster; Special Summon this card from your hand. If this card is Normal or Special Summo"
+      }
+    },
+    {
+      "card_const": "VISION_HERO_GRAVITO",
+      "card_name": "Vision HERO Gravito",
+      "atk": 500,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [
+        5,
+        4,
+        1,
+        8,
+        5,
+        2,
+        2,
+        7
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroGravito",
+        "pages": [
+          "If this card   is Normal or   Special   Summoned: You   can target 1  ",
+          "of your   banished   \"HERO\"   monsters; add   it to your  ",
+          "hand. You   can Tribute   this card,   then target 2   \"Vision  ",
+          "HERO\"   Monster Cards   in your Spell   & Trap Zone;   Special  ",
+          "Summon them.   You can only   use each   effect of   \"Vision HERO  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If this card is Normal or Special Summoned: You can target 1 of your banished \"HERO\" monsters; add it to your hand. You "
+      }
+    },
+    {
+      "card_const": "VISION_HERO_INCREASE",
+      "card_name": "Vision HERO Increase",
+      "atk": 900,
+      "def": 1100,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        2,
+        2,
+        8,
+        6,
+        5,
+        4,
+        9,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroIncrease",
+        "pages": [
+          "If you take   battle or   effect damage   while this   card is in  ",
+          "your GY: You   can place this   card from your   GY in your   Spell & Trap  ",
+          "Zone as a   face-up   Continuous   Trap. During   the Main  ",
+          "Phase, if   this card is   treated as a   Continuous   Trap: You  ",
+          "can Tribute   1 \"HERO\"   monster;   Special Summon   this card.  "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you take battle or effect damage while this card is in your GY: You can place this card from your GY in your Spell & "
+      }
     }
   ]
 }

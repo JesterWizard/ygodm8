@@ -2292,6 +2292,46 @@ static const unsigned char sTornadoBirdBigArt[] __attribute__((section(".append_
 static const unsigned short sTornadoBirdBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tornado_bird.gbapal");
 static const unsigned char sTornadoBirdMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tornado_bird.lz");
 
+static const unsigned char sTrapDustshootBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/trap_dustshoot.huff");
+static const unsigned short sTrapDustshootBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/trap_dustshoot.gbapal");
+static const unsigned char sTrapDustshootMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/trap_dustshoot.lz");
+
+static const unsigned char sTyrantBurstDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tyrant_burst_dragon.huff");
+static const unsigned short sTyrantBurstDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tyrant_burst_dragon.gbapal");
+static const unsigned char sTyrantBurstDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tyrant_burst_dragon.lz");
+
+static const unsigned char sTyrantWingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tyrant_wing.huff");
+static const unsigned short sTyrantWingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tyrant_wing.gbapal");
+static const unsigned char sTyrantWingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tyrant_wing.lz");
+
+static const unsigned char sUltimateConductorTyrannoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ultimate_conductor_tyranno.huff");
+static const unsigned short sUltimateConductorTyrannoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ultimate_conductor_tyranno.gbapal");
+static const unsigned char sUltimateConductorTyrannoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ultimate_conductor_tyranno.lz");
+
+static const unsigned char sUltimateObedientFiendBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ultimate_obedient_fiend.huff");
+static const unsigned short sUltimateObedientFiendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ultimate_obedient_fiend.gbapal");
+static const unsigned char sUltimateObedientFiendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ultimate_obedient_fiend.lz");
+
+static const unsigned char sVisionFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_fusion.huff");
+static const unsigned short sVisionFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_fusion.gbapal");
+static const unsigned char sVisionFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_fusion.lz");
+
+static const unsigned char sVisionHeroAdorationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_adoration.huff");
+static const unsigned short sVisionHeroAdorationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_adoration.gbapal");
+static const unsigned char sVisionHeroAdorationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_adoration.lz");
+
+static const unsigned char sVisionHeroFarisBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_faris.huff");
+static const unsigned short sVisionHeroFarisBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_faris.gbapal");
+static const unsigned char sVisionHeroFarisMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_faris.lz");
+
+static const unsigned char sVisionHeroGravitoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_gravito.huff");
+static const unsigned short sVisionHeroGravitoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_gravito.gbapal");
+static const unsigned char sVisionHeroGravitoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_gravito.lz");
+
+static const unsigned char sVisionHeroIncreaseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_increase.huff");
+static const unsigned short sVisionHeroIncreaseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_increase.gbapal");
+static const unsigned char sVisionHeroIncreaseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_increase.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2866,6 +2906,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0559] = sTornadoWallBigArt,
   [0x055A] = sToonWorldBigArt,
   [0x055B] = sTornadoBirdBigArt,
+  [0x055C] = sTrapDustshootBigArt,
+  [0x055D] = sTyrantBurstDragonBigArt,
+  [0x055E] = sTyrantWingBigArt,
+  [0x055F] = sUltimateConductorTyrannoBigArt,
+  [0x0560] = sUltimateObedientFiendBigArt,
+  [0x0561] = sVisionFusionBigArt,
+  [0x0562] = sVisionHeroAdorationBigArt,
+  [0x0563] = sVisionHeroFarisBigArt,
+  [0x0564] = sVisionHeroGravitoBigArt,
+  [0x0565] = sVisionHeroIncreaseBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3442,6 +3492,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0559] = sTornadoWallBigPalette,
   [0x055A] = sToonWorldBigPalette,
   [0x055B] = sTornadoBirdBigPalette,
+  [0x055C] = sTrapDustshootBigPalette,
+  [0x055D] = sTyrantBurstDragonBigPalette,
+  [0x055E] = sTyrantWingBigPalette,
+  [0x055F] = sUltimateConductorTyrannoBigPalette,
+  [0x0560] = sUltimateObedientFiendBigPalette,
+  [0x0561] = sVisionFusionBigPalette,
+  [0x0562] = sVisionHeroAdorationBigPalette,
+  [0x0563] = sVisionHeroFarisBigPalette,
+  [0x0564] = sVisionHeroGravitoBigPalette,
+  [0x0565] = sVisionHeroIncreaseBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4018,6 +4078,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0559] = 0,
   [0x055A] = 0,
   [0x055B] = 0,
+  [0x055C] = 0,
+  [0x055D] = 0,
+  [0x055E] = 0,
+  [0x055F] = 0,
+  [0x0560] = 0,
+  [0x0561] = 0,
+  [0x0562] = 0,
+  [0x0563] = 0,
+  [0x0564] = 0,
+  [0x0565] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4594,4 +4664,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0559] = sTornadoWallMiniArt,
   [0x055A] = sToonWorldMiniArt,
   [0x055B] = sTornadoBirdMiniArt,
+  [0x055C] = sTrapDustshootMiniArt,
+  [0x055D] = sTyrantBurstDragonMiniArt,
+  [0x055E] = sTyrantWingMiniArt,
+  [0x055F] = sUltimateConductorTyrannoMiniArt,
+  [0x0560] = sUltimateObedientFiendMiniArt,
+  [0x0561] = sVisionFusionMiniArt,
+  [0x0562] = sVisionHeroAdorationMiniArt,
+  [0x0563] = sVisionHeroFarisMiniArt,
+  [0x0564] = sVisionHeroGravitoMiniArt,
+  [0x0565] = sVisionHeroIncreaseMiniArt,
 };

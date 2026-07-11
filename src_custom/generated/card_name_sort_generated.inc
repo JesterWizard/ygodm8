@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 571
+#define NUM_CUSTOM_NAME_SORT_CARDS 581
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -576,6 +576,16 @@ static const u8 sTimeMagicHammerSortName[] APPEND_RODATA = "Time Magic Hammer";
 static const u8 sTornadoWallSortName[] APPEND_RODATA = "Tornado Wall";
 static const u8 sToonWorldSortName[] APPEND_RODATA = "Toon World";
 static const u8 sTornadoBirdSortName[] APPEND_RODATA = "Tornado Bird";
+static const u8 sTrapDustshootSortName[] APPEND_RODATA = "Trap Dustshoot";
+static const u8 sTyrantBurstDragonSortName[] APPEND_RODATA = "Tyrant Burst Dragon";
+static const u8 sTyrantWingSortName[] APPEND_RODATA = "Tyrant Wing";
+static const u8 sUltimateConductorTyrannoSortName[] APPEND_RODATA = "Ultimate Conductor Tyranno";
+static const u8 sUltimateObedientFiendSortName[] APPEND_RODATA = "Ultimate Obedient Fiend";
+static const u8 sVisionFusionSortName[] APPEND_RODATA = "Vision Fusion";
+static const u8 sVisionHeroAdorationSortName[] APPEND_RODATA = "Vision HERO Adoration";
+static const u8 sVisionHeroFarisSortName[] APPEND_RODATA = "Vision HERO Faris";
+static const u8 sVisionHeroGravitoSortName[] APPEND_RODATA = "Vision HERO Gravito";
+static const u8 sVisionHeroIncreaseSortName[] APPEND_RODATA = "Vision HERO Increase";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1126,10 +1136,15 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0559, // Tornado Wall
   0x03B6, // Torpedo Fish
   0x0464, // Trade-In
+  0x055C, // Trap Dustshoot
   0x038D, // Triangle Power
   0x0463, // Tribute Doll
   0x038E, // Twin Swords of Flashing Light - Tryce
+  0x055D, // Tyrant Burst Dragon
   0x039E, // Tyrant Dragon
+  0x055E, // Tyrant Wing
+  0x055F, // Ultimate Conductor Tyranno
+  0x0560, // Ultimate Obedient Fiend
   0x0330, // Ultimate Offering
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
@@ -1137,6 +1152,11 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0456, // Valhalla, Hall of the Fallen
   0x0372, // Vampire Baby
   0x03DA, // Vengeful Bog Spirit
+  0x0561, // Vision Fusion
+  0x0562, // Vision HERO Adoration
+  0x0563, // Vision HERO Faris
+  0x0564, // Vision HERO Gravito
+  0x0565, // Vision HERO Increase
   0x03DB, // Wall of Revealing Light
   0x036A, // Warrior of Zera
   0x0332, // Wave Motion Cannon
@@ -1700,29 +1720,39 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   546, // Tornado Wall
   547, // Torpedo Fish
   548, // Trade-In
-  549, // Triangle Power
-  550, // Tribute Doll
-  551, // Twin Swords of Flashing Light - Tryce
-  552, // Tyrant Dragon
-  553, // Ultimate Offering
-  554, // United We Stand
-  555, // Upstart Goblin
-  556, // Uria, Lord of Searing Flames
-  557, // Valhalla, Hall of the Fallen
-  558, // Vampire Baby
-  559, // Vengeful Bog Spirit
-  560, // Wall of Revealing Light
-  561, // Warrior of Zera
-  562, // Wave Motion Cannon
-  563, // Weather Report
-  564, // White Magician Pikeru
-  565, // World Suppression
-  566, // Yata-Garasu
-  567, // Yubel
-  568, // Yubel - Terror Incarnate
-  569, // Yubel - The Ultimate Nightmare
-  570, // Zaborg the Thunder Monarch
-  571, // Zeriel
+  549, // Trap Dustshoot
+  550, // Triangle Power
+  551, // Tribute Doll
+  552, // Twin Swords of Flashing Light - Tryce
+  553, // Tyrant Burst Dragon
+  554, // Tyrant Dragon
+  555, // Tyrant Wing
+  556, // Ultimate Conductor Tyranno
+  557, // Ultimate Obedient Fiend
+  558, // Ultimate Offering
+  559, // United We Stand
+  560, // Upstart Goblin
+  561, // Uria, Lord of Searing Flames
+  562, // Valhalla, Hall of the Fallen
+  563, // Vampire Baby
+  564, // Vengeful Bog Spirit
+  565, // Vision Fusion
+  566, // Vision HERO Adoration
+  567, // Vision HERO Faris
+  568, // Vision HERO Gravito
+  569, // Vision HERO Increase
+  570, // Wall of Revealing Light
+  571, // Warrior of Zera
+  572, // Wave Motion Cannon
+  573, // Weather Report
+  574, // White Magician Pikeru
+  575, // World Suppression
+  576, // Yata-Garasu
+  577, // Yubel
+  578, // Yubel - Terror Incarnate
+  579, // Yubel - The Ultimate Nightmare
+  580, // Zaborg the Thunder Monarch
+  581, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2874,6 +2904,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sToonWorldSortName;
   if (cardId == 0x055B)
     return (u8 *)sTornadoBirdSortName;
+  if (cardId == 0x055C)
+    return (u8 *)sTrapDustshootSortName;
+  if (cardId == 0x055D)
+    return (u8 *)sTyrantBurstDragonSortName;
+  if (cardId == 0x055E)
+    return (u8 *)sTyrantWingSortName;
+  if (cardId == 0x055F)
+    return (u8 *)sUltimateConductorTyrannoSortName;
+  if (cardId == 0x0560)
+    return (u8 *)sUltimateObedientFiendSortName;
+  if (cardId == 0x0561)
+    return (u8 *)sVisionFusionSortName;
+  if (cardId == 0x0562)
+    return (u8 *)sVisionHeroAdorationSortName;
+  if (cardId == 0x0563)
+    return (u8 *)sVisionHeroFarisSortName;
+  if (cardId == 0x0564)
+    return (u8 *)sVisionHeroGravitoSortName;
+  if (cardId == 0x0565)
+    return (u8 *)sVisionHeroIncreaseSortName;
 
   return gCardNames[cardId];
 }

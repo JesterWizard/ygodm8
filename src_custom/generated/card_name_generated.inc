@@ -572,6 +572,16 @@ static const u8 sTimeMagicHammerName[] __attribute__((section(".append_assets"))
 static const u8 sTornadoWallName[] __attribute__((section(".append_assets"))) = "Tornado Wall";
 static const u8 sToonWorldName[] __attribute__((section(".append_assets"))) = "Toon World";
 static const u8 sTornadoBirdName[] __attribute__((section(".append_assets"))) = "Tornado Bird";
+static const u8 sTrapDustshootName[] __attribute__((section(".append_assets"))) = "Trap Dustshoot";
+static const u8 sTyrantBurstDragonName[] __attribute__((section(".append_assets"))) = "Tyrant Burst Dragon";
+static const u8 sTyrantWingName[] __attribute__((section(".append_assets"))) = "Tyrant Wing";
+static const u8 sUltimateConductorTyrannoName[] __attribute__((section(".append_assets"))) = "Ultimate Conductor Tyranno";
+static const u8 sUltimateObedientFiendName[] __attribute__((section(".append_assets"))) = "Ultimate Obedient Fiend";
+static const u8 sVisionFusionName[] __attribute__((section(".append_assets"))) = "Vision Fusion";
+static const u8 sVisionHeroAdorationName[] __attribute__((section(".append_assets"))) = "Vision HERO Adoration";
+static const u8 sVisionHeroFarisName[] __attribute__((section(".append_assets"))) = "Vision HERO Faris";
+static const u8 sVisionHeroGravitoName[] __attribute__((section(".append_assets"))) = "Vision HERO Gravito";
+static const u8 sVisionHeroIncreaseName[] __attribute__((section(".append_assets"))) = "Vision HERO Increase";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1722,6 +1732,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sToonWorldName;
   if (cardId == 0x055B)
     return (u8 *)sTornadoBirdName;
+  if (cardId == 0x055C)
+    return (u8 *)sTrapDustshootName;
+  if (cardId == 0x055D)
+    return (u8 *)sTyrantBurstDragonName;
+  if (cardId == 0x055E)
+    return (u8 *)sTyrantWingName;
+  if (cardId == 0x055F)
+    return (u8 *)sUltimateConductorTyrannoName;
+  if (cardId == 0x0560)
+    return (u8 *)sUltimateObedientFiendName;
+  if (cardId == 0x0561)
+    return (u8 *)sVisionFusionName;
+  if (cardId == 0x0562)
+    return (u8 *)sVisionHeroAdorationName;
+  if (cardId == 0x0563)
+    return (u8 *)sVisionHeroFarisName;
+  if (cardId == 0x0564)
+    return (u8 *)sVisionHeroGravitoName;
+  if (cardId == 0x0565)
+    return (u8 *)sVisionHeroIncreaseName;
 
   return gCardNames[cardId];
 }

@@ -150,4 +150,5 @@ extern void EffectUnitedWeStand(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectValhallaHallOfTheFallen(void);
 extern void EffectVengefulBogSpirit(void);
+extern void EffectVISION_FUSION(void);
 extern void EffectWaveMotionCannon(void);

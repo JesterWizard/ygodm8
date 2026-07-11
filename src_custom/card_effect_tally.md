@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `515` effects
+- `525` effects
 
 ## Tally
 
@@ -496,6 +496,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Toon World` | `src_custom/spell_effects/toon_world.c` |
 | `spell_effects` | `Toon World` | `src_custom/spell_effects/toon_world.c` |
 | `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
+| `spell_effects` | `Vision Fusion` | `src_custom/spell_effects/vision_fusion.c` |
+| `trap_effects` | `Trap Dustshoot` | `src_custom/trap_effects/trap_dustshoot.c` |
+| `trap_effects` | `Tyrant Wing` | `src_custom/trap_effects/tyrant_wing.c` |
+| `activated_effects` | `Tyrant Burst Dragon` | `src_custom/activated_effects/tyrant_burst_dragon.c` |
+| `activated_effects` | `Ultimate Conductor Tyranno` | `src_custom/activated_effects/ultimate_conductor_tyranno.c` |
+| `activated_effects` | `Ultimate Obedient Fiend` | `src_custom/activated_effects/ultimate_obedient_fiend.c` |
+| `activated_effects` | `Vision Hero Adoration` | `src_custom/activated_effects/vision_hero_adoration.c` |
+| `activated_effects` | `Vision Hero Faris` | `src_custom/activated_effects/vision_hero_faris.c` |
+| `activated_effects` | `Vision Hero Gravito` | `src_custom/activated_effects/vision_hero_gravito.c` |
+| `activated_effects` | `Vision Hero Increase` | `src_custom/activated_effects/vision_hero_increase.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

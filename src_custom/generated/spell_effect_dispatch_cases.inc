@@ -452,6 +452,9 @@
     case VENGEFUL_BOG_SPIRIT:
       EffectVengefulBogSpirit();
       return;
+    case VISION_FUSION:
+      EffectVISION_FUSION();
+      return;
     case WAVE_MOTION_CANNON:
       EffectWaveMotionCannon();
       return;

@@ -1373,11 +1373,21 @@
 #define TORNADO_WALL                             0x0559
 #define TOON_WORLD                               0x055A
 #define TORNADO_BIRD                             0x055B
+#define TRAP_DUSTSHOOT                           0x055C
+#define TYRANT_BURST_DRAGON                      0x055D
+#define TYRANT_WING                              0x055E
+#define ULTIMATE_CONDUCTOR_TYRANNO               0x055F
+#define ULTIMATE_OBEDIENT_FIEND                  0x0560
+#define VISION_FUSION                            0x0561
+#define VISION_HERO_ADORATION                    0x0562
+#define VISION_HERO_FARIS                        0x0563
+#define VISION_HERO_GRAVITO                      0x0564
+#define VISION_HERO_INCREASE                     0x0565
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x055C
-#define NUM_CUSTOM_CARDS                        0x023B
+#define NUM_TOTAL_CARDS                         0x0566
+#define NUM_CUSTOM_CARDS                        0x0245
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
