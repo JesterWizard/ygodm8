@@ -1225,11 +1225,20 @@
 #define DESTINY_HERO_PLASMA                      0x04C5
 #define DIFFERENT_DIMENSION_CAPSULE              0x04C6
 #define DESTINY_HERO_DUSKTOPIA                   0x04C7
+#define DIMENSION_FUSION                         0x04C8
+#define DIVINE_SERPENT_GEH                       0x04C9
+#define DON_ZALOOG                               0x04CA
+#define DOUBLE_SPELL                             0x04CB
+#define DRAGON_S_RAGE                            0x04CC
+#define DESTINY_HERO_DESTROY_DOGMA               0x04CD
+#define DOCTOR_D                                 0x04CE
+#define DOOM_VIRUS_DRAGON                        0x04CF
+#define DOPPELGANGER                             0x04D0
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04C8
-#define NUM_CUSTOM_CARDS                        0x01A7
+#define NUM_TOTAL_CARDS                         0x04D1
+#define NUM_CUSTOM_CARDS                        0x01B0
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

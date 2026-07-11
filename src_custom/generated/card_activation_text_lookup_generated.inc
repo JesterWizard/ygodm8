@@ -415,6 +415,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DESTINY_HERO_MALICIOUS] = gActivationDescription_DestinyHeroMalicious_Popup1,
   [DESTINY_HERO_PLASMA] = gActivationDescription_DestinyHeroPlasma_Popup1,
   [DIFFERENT_DIMENSION_CAPSULE] = gActivationDescription_DifferentDimensionCapsule_Popup1,
+  [DIMENSION_FUSION] = gActivationDescription_DimensionFusion_Popup1,
+  [DIVINE_SERPENT_GEH] = gActivationDescription_DivineSerpentGeh_Popup1,
+  [DON_ZALOOG] = gActivationDescription_DonZaloog_Popup1,
+  [DOUBLE_SPELL] = gActivationDescription_DoubleSpell_Popup1,
+  [DRAGON_S_RAGE] = gActivationDescription_DragonSRage_Popup1,
+  [DESTINY_HERO_DESTROY_DOGMA] = gActivationDescription_DestinyHeroDestroyDogma_Popup1,
+  [DOCTOR_D] = gActivationDescription_DoctorD_Popup1,
+  [DOPPELGANGER] = gActivationDescription_Doppelganger_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -860,6 +868,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DESTINY_HERO_MALICIOUS_POPUP_1] = gActivationDescription_DestinyHeroMalicious_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_PLASMA_POPUP_1] = gActivationDescription_DestinyHeroPlasma_Popup1,
   [CARD_EFFECT_TEXT_DIFFERENT_DIMENSION_CAPSULE_POPUP_1] = gActivationDescription_DifferentDimensionCapsule_Popup1,
+  [CARD_EFFECT_TEXT_DIMENSION_FUSION_POPUP_1] = gActivationDescription_DimensionFusion_Popup1,
+  [CARD_EFFECT_TEXT_DIVINE_SERPENT_GEH_POPUP_1] = gActivationDescription_DivineSerpentGeh_Popup1,
+  [CARD_EFFECT_TEXT_DON_ZALOOG_POPUP_1] = gActivationDescription_DonZaloog_Popup1,
+  [CARD_EFFECT_TEXT_DOUBLE_SPELL_POPUP_1] = gActivationDescription_DoubleSpell_Popup1,
+  [CARD_EFFECT_TEXT_DRAGON_S_RAGE_POPUP_1] = gActivationDescription_DragonSRage_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DESTROY_DOGMA_POPUP_1] = gActivationDescription_DestinyHeroDestroyDogma_Popup1,
+  [CARD_EFFECT_TEXT_DOCTOR_D_POPUP_1] = gActivationDescription_DoctorD_Popup1,
+  [CARD_EFFECT_TEXT_DOPPELGANGER_POPUP_1] = gActivationDescription_Doppelganger_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

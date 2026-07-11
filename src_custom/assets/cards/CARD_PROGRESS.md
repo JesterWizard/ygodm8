@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 423 |
-| Art ready, needs manifest | 173 |
+| In game (manifest + art) | 432 |
+| Art ready, needs manifest | 163 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **598** |
+| **Total PNGs in `80x80/`** | **597** |
 
 ## In game
 
@@ -445,21 +445,20 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DESTINY_HERO_PLASMA` | Destiny HERO - Plasma | `destiny_hero_plasma.png` |
 | `DIFFERENT_DIMENSION_CAPSULE` | Different Dimension Capsule | `different_dimension_capsule.png` |
 | `DESTINY_HERO_DUSKTOPIA` | Destiny HERO - Dusktopia | `destiny_hero_dusktopia.png` |
+| `DIMENSION_FUSION` | Dimension Fusion | `dimension_fusion.png` |
+| `DIVINE_SERPENT_GEH` | Divine Serpent Geh | `divine_serpent_geh.png` |
+| `DON_ZALOOG` | Don Zaloog | `don_zaloog.png` |
+| `DOUBLE_SPELL` | Double Spell | `double_spell.png` |
+| `DRAGON_S_RAGE` | Dragon's Rage | `dragon_s_rage.png` |
+| `DESTINY_HERO_DESTROY_DOGMA` | Destiny HERO - Destro-Dogma | `destiny_hero_destroy_dogma.png` |
+| `DOCTOR_D` | Doctor D | `doctor_d.png` |
+| `DOOM_VIRUS_DRAGON` | Doom Virus Dragon | `doom_virus_dragon.png` |
+| `DOPPELGANGER` | Doppelganger | `doppelganger.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `D.D_WARRIOR` — `d.d_warrior.png`
-- [ ] `DESTINY_HERO_DESTROY_DOGMA` — `destiny_hero_destroy_dogma.png`
-- [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
-- [ ] `DIVINE_SERPENT_GEH` — `divine_serpent_geh.png`
-- [ ] `DOCTOR_D` — `doctor_d.png`
-- [ ] `DON_ZALOOG` — `don_zaloog.png`
-- [ ] `DOOM_VIRUS_DRAGON` — `doom_virus_dragon.png`
-- [ ] `DOPPLEGANGER` — `doppleganger.png`
-- [ ] `DOUBLE_SPELL` — `double_spell.png`
-- [ ] `DRAGONS_RAGE` — `dragons_rage.png`
 - [ ] `DRAIN_TIME` — `drain_time.png`
 - [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
 - [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`

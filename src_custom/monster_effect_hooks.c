@@ -176,6 +176,10 @@ unsigned char CanActivateDESTINY_HERO_MALICIOUS(void);
 void ActivateDESTINY_HERO_MALICIOUSEffect(void);
 unsigned char CanActivateDESTINY_HERO_PLASMA(void);
 void ActivateDESTINY_HERO_PLASMAEffect(void);
+unsigned char CanActivateDIVINE_SERPENT_GEH(void);
+void ActivateDIVINE_SERPENT_GEHEffect(void);
+unsigned char CanActivateDESTINY_HERO_DESTROY_DOGMA(void);
+void ActivateDESTINY_HERO_DESTROY_DOGMAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -924,6 +928,14 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateDESTINY_HERO_PLASMAEffect();
     return;
   }
+  if (gMonEffect.id == DIVINE_SERPENT_GEH) {
+    ActivateDIVINE_SERPENT_GEHEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DESTROY_DOGMA) {
+    ActivateDESTINY_HERO_DESTROY_DOGMAEffect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
@@ -1134,3 +1146,5 @@ FAILED:
   }
 }
 
+
+/* BEGIN CUSTOM ACTIVATED EFFECTS WIRING */

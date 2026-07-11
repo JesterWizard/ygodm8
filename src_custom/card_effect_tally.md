@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `389` effects
+- `400` effects
 
 ## Tally
 
@@ -370,6 +370,17 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Destiny Hero Plasma` | `src_custom/activated_effects/destiny_hero_plasma.c` |
 | `spell_effects` | `Different Dimension Capsule` | `src_custom/spell_effects/different_dimension_capsule.c` |
 | `activated_effects` | `Destiny Hero Dusktopia` | `src_custom/activated_effects/destiny_hero_dusktopia.c` |
+| `battle_effects` | `D D Warrior` | `src_custom/battle_effects/d_d_warrior.c` |
+| `activated_effects` | `Divine Serpent Geh` | `src_custom/activated_effects/divine_serpent_geh.c` |
+| `spell_effects` | `Dimension Fusion` | `src_custom/spell_effects/dimension_fusion.c` |
+| `battle_effects` | `Don Zaloog` | `src_custom/battle_effects/don_zaloog.c` |
+| `spell_effects` | `Doctor D` | `src_custom/spell_effects/doctor_d.c` |
+| `trap_effects` | `Doppelganger` | `src_custom/trap_effects/doppelganger.c` |
+| `spell_effects` | `Double Spell` | `src_custom/spell_effects/double_spell.c` |
+| `trap_effects` | `Dragon S Rage` | `src_custom/trap_effects/dragon_s_rage.c` |
+| `activated_effects` | `Destiny Hero Destroy Dogma` | `src_custom/activated_effects/destiny_hero_destroy_dogma.c` |
+| `spell_effects` | `Doctor D` | `src_custom/spell_effects/doctor_d.c` |
+| `trap_effects` | `Doppelganger` | `src_custom/trap_effects/doppelganger.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

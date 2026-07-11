@@ -1700,6 +1700,42 @@ static const unsigned char sDestinyHeroDusktopiaBigArt[] __attribute__((section(
 static const unsigned short sDestinyHeroDusktopiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_dusktopia.gbapal");
 static const unsigned char sDestinyHeroDusktopiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_dusktopia.lz");
 
+static const unsigned char sDimensionFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dimension_fusion.huff");
+static const unsigned short sDimensionFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dimension_fusion.gbapal");
+static const unsigned char sDimensionFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dimension_fusion.lz");
+
+static const unsigned char sDivineSerpentGehBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/divine_serpent_geh.huff");
+static const unsigned short sDivineSerpentGehBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/divine_serpent_geh.gbapal");
+static const unsigned char sDivineSerpentGehMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/divine_serpent_geh.lz");
+
+static const unsigned char sDonZaloogBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/don_zaloog.huff");
+static const unsigned short sDonZaloogBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/don_zaloog.gbapal");
+static const unsigned char sDonZaloogMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/don_zaloog.lz");
+
+static const unsigned char sDoubleSpellBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/double_spell.huff");
+static const unsigned short sDoubleSpellBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/double_spell.gbapal");
+static const unsigned char sDoubleSpellMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/double_spell.lz");
+
+static const unsigned char sDragonSRageBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dragon_s_rage.huff");
+static const unsigned short sDragonSRageBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_s_rage.gbapal");
+static const unsigned char sDragonSRageMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_s_rage.lz");
+
+static const unsigned char sDestinyHeroDestroyDogmaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destiny_hero_destroy_dogma.huff");
+static const unsigned short sDestinyHeroDestroyDogmaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destiny_hero_destroy_dogma.gbapal");
+static const unsigned char sDestinyHeroDestroyDogmaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destiny_hero_destroy_dogma.lz");
+
+static const unsigned char sDoctorDBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/doctor_d.huff");
+static const unsigned short sDoctorDBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/doctor_d.gbapal");
+static const unsigned char sDoctorDMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/doctor_d.lz");
+
+static const unsigned char sDoomVirusDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/doom_virus_dragon.huff");
+static const unsigned short sDoomVirusDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/doom_virus_dragon.gbapal");
+static const unsigned char sDoomVirusDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/doom_virus_dragon.lz");
+
+static const unsigned char sDoppelgangerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/doppelganger.huff");
+static const unsigned short sDoppelgangerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/doppelganger.gbapal");
+static const unsigned char sDoppelgangerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/doppelganger.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2126,6 +2162,15 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04C5] = sDestinyHeroPlasmaBigArt,
   [0x04C6] = sDifferentDimensionCapsuleBigArt,
   [0x04C7] = sDestinyHeroDusktopiaBigArt,
+  [0x04C8] = sDimensionFusionBigArt,
+  [0x04C9] = sDivineSerpentGehBigArt,
+  [0x04CA] = sDonZaloogBigArt,
+  [0x04CB] = sDoubleSpellBigArt,
+  [0x04CC] = sDragonSRageBigArt,
+  [0x04CD] = sDestinyHeroDestroyDogmaBigArt,
+  [0x04CE] = sDoctorDBigArt,
+  [0x04CF] = sDoomVirusDragonBigArt,
+  [0x04D0] = sDoppelgangerBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2554,6 +2599,15 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04C5] = sDestinyHeroPlasmaBigPalette,
   [0x04C6] = sDifferentDimensionCapsuleBigPalette,
   [0x04C7] = sDestinyHeroDusktopiaBigPalette,
+  [0x04C8] = sDimensionFusionBigPalette,
+  [0x04C9] = sDivineSerpentGehBigPalette,
+  [0x04CA] = sDonZaloogBigPalette,
+  [0x04CB] = sDoubleSpellBigPalette,
+  [0x04CC] = sDragonSRageBigPalette,
+  [0x04CD] = sDestinyHeroDestroyDogmaBigPalette,
+  [0x04CE] = sDoctorDBigPalette,
+  [0x04CF] = sDoomVirusDragonBigPalette,
+  [0x04D0] = sDoppelgangerBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2982,6 +3036,15 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04C5] = 0,
   [0x04C6] = 0,
   [0x04C7] = 0,
+  [0x04C8] = 0,
+  [0x04C9] = 0,
+  [0x04CA] = 0,
+  [0x04CB] = 0,
+  [0x04CC] = 0,
+  [0x04CD] = 0,
+  [0x04CE] = 0,
+  [0x04CF] = 0,
+  [0x04D0] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3410,4 +3473,13 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04C5] = sDestinyHeroPlasmaMiniArt,
   [0x04C6] = sDifferentDimensionCapsuleMiniArt,
   [0x04C7] = sDestinyHeroDusktopiaMiniArt,
+  [0x04C8] = sDimensionFusionMiniArt,
+  [0x04C9] = sDivineSerpentGehMiniArt,
+  [0x04CA] = sDonZaloogMiniArt,
+  [0x04CB] = sDoubleSpellMiniArt,
+  [0x04CC] = sDragonSRageMiniArt,
+  [0x04CD] = sDestinyHeroDestroyDogmaMiniArt,
+  [0x04CE] = sDoctorDMiniArt,
+  [0x04CF] = sDoomVirusDragonMiniArt,
+  [0x04D0] = sDoppelgangerMiniArt,
 };

@@ -401,3 +401,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DAMAGE_POLARIZER in trap dispatcher */
 /* DES_COUNTERBLOW trap effect */
   /* TODO: wire DES_COUNTERBLOW in trap dispatcher */
+/* DOPPELGANGER trap effect */
+  /* TODO: wire DOPPELGANGER in trap dispatcher */
+/* DRAGON_S_RAGE trap effect */
+  /* TODO: wire DRAGON_S_RAGE in trap dispatcher */

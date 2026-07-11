@@ -309,3 +309,7 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   }
 }
 /* Light End Dragon converted to activated effect in activated_effects/light_end_dragon.c */
+/* D_D_WARRIOR battle effect */
+  /* TODO: wire D_D_WARRIOR in battle damage hooks */
+/* DON_ZALOOG battle effect */
+  /* TODO: wire DON_ZALOOG in battle damage hooks */

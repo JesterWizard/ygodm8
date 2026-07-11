@@ -424,6 +424,15 @@ static const u8 sDestinyHeroMaliciousName[] __attribute__((section(".append_asse
 static const u8 sDestinyHeroPlasmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Plasma";
 static const u8 sDifferentDimensionCapsuleName[] __attribute__((section(".append_assets"))) = "Different Dimension Capsule";
 static const u8 sDestinyHeroDusktopiaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dusktopia";
+static const u8 sDimensionFusionName[] __attribute__((section(".append_assets"))) = "Dimension Fusion";
+static const u8 sDivineSerpentGehName[] __attribute__((section(".append_assets"))) = "Divine Serpent Geh";
+static const u8 sDonZaloogName[] __attribute__((section(".append_assets"))) = "Don Zaloog";
+static const u8 sDoubleSpellName[] __attribute__((section(".append_assets"))) = "Double Spell";
+static const u8 sDragonSRageName[] __attribute__((section(".append_assets"))) = "Dragon's Rage";
+static const u8 sDestinyHeroDestroyDogmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Destro-Dogma";
+static const u8 sDoctorDName[] __attribute__((section(".append_assets"))) = "Doctor D";
+static const u8 sDoomVirusDragonName[] __attribute__((section(".append_assets"))) = "Doom Virus Dragon";
+static const u8 sDoppelgangerName[] __attribute__((section(".append_assets"))) = "Doppelganger";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1278,6 +1287,24 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDifferentDimensionCapsuleName;
   if (cardId == 0x04C7)
     return (u8 *)sDestinyHeroDusktopiaName;
+  if (cardId == 0x04C8)
+    return (u8 *)sDimensionFusionName;
+  if (cardId == 0x04C9)
+    return (u8 *)sDivineSerpentGehName;
+  if (cardId == 0x04CA)
+    return (u8 *)sDonZaloogName;
+  if (cardId == 0x04CB)
+    return (u8 *)sDoubleSpellName;
+  if (cardId == 0x04CC)
+    return (u8 *)sDragonSRageName;
+  if (cardId == 0x04CD)
+    return (u8 *)sDestinyHeroDestroyDogmaName;
+  if (cardId == 0x04CE)
+    return (u8 *)sDoctorDName;
+  if (cardId == 0x04CF)
+    return (u8 *)sDoomVirusDragonName;
+  if (cardId == 0x04D0)
+    return (u8 *)sDoppelgangerName;
 
   return gCardNames[cardId];
 }

@@ -134,6 +134,15 @@
     case DIFFUSION_WAVE_MOTION:
       EffectDiffusionWaveMotion();
       return;
+    case DIMENSION_FUSION:
+      EffectDIMENSION_FUSION();
+      return;
+    case DOCTOR_D:
+      EffectDOCTOR_D();
+      return;
+    case DOUBLE_SPELL:
+      EffectDOUBLE_SPELL();
+      return;
     case DOUBLE_SUMMON:
       EffectDoubleSummon();
       return;
