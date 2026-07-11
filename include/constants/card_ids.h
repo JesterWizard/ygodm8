@@ -1274,11 +1274,21 @@
 #define LEGEND_OF_HEART                          0x04F6
 #define LEGENDARY_FLAME_LORD                     0x04F7
 #define KING_TIGER_WANGHU                        0x04F8
+#define LEGENDARY_KNIGHT_CRITIAS                 0x04F9
+#define LEGENDARY_KNIGHT_HERMOS                  0x04FA
+#define LEGENDARY_KNIGHT_TIMAEUS                 0x04FB
+#define LEKUNGA                                  0x04FC
+#define LIGHT_AND_DARKNESS_DRAGON                0x04FD
+#define LORD_OF_THE_RED                          0x04FE
+#define MA_AT                                    0x04FF
+#define MAGICAL_DIMENSION                        0x0500
+#define MAGICAL_HATS                             0x0501
+#define MAGICAL_PLANT_MANDRAGOLA                 0x0502
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04F9
-#define NUM_CUSTOM_CARDS                        0x01D8
+#define NUM_TOTAL_CARDS                         0x0503
+#define NUM_CUSTOM_CARDS                        0x01E2
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

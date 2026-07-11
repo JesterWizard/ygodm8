@@ -137,6 +137,8 @@ unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void);
 void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV4(void);
 unsigned char ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6(void);
 void ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6(void);
+unsigned char ShouldActivateLIGHT_AND_DARKNESS_DRAGON(void);
+void ActivateLIGHT_AND_DARKNESS_DRAGON(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -403,6 +405,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = HORUS_THE_BLACK_FLAME_DRAGON_LV6,
     .shouldActivate = ShouldActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6,
     .activate = ActivateHORUS_THE_BLACK_FLAME_DRAGON_LV6,
+  },
+  {
+    .cardId = LIGHT_AND_DARKNESS_DRAGON,
+    .shouldActivate = ShouldActivateLIGHT_AND_DARKNESS_DRAGON,
+    .activate = ActivateLIGHT_AND_DARKNESS_DRAGON,
   },
 };
 

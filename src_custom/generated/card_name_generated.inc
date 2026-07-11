@@ -473,6 +473,16 @@ static const u8 sLastTurnName[] __attribute__((section(".append_assets"))) = "La
 static const u8 sLegendOfHeartName[] __attribute__((section(".append_assets"))) = "Legend of Heart";
 static const u8 sLegendaryFlameLordName[] __attribute__((section(".append_assets"))) = "Legendary Flame Lord";
 static const u8 sKingTigerWanghuName[] __attribute__((section(".append_assets"))) = "King Tiger Wanghu";
+static const u8 sLegendaryKnightCritiasName[] __attribute__((section(".append_assets"))) = "Legendary Knight Critias";
+static const u8 sLegendaryKnightHermosName[] __attribute__((section(".append_assets"))) = "Legendary Knight Hermos";
+static const u8 sLegendaryKnightTimaeusName[] __attribute__((section(".append_assets"))) = "Legendary Knight Timaeus";
+static const u8 sLekungaName[] __attribute__((section(".append_assets"))) = "Lekunga";
+static const u8 sLightAndDarknessDragonName[] __attribute__((section(".append_assets"))) = "Light and Darkness Dragon";
+static const u8 sLordOfTheRedName[] __attribute__((section(".append_assets"))) = "Lord of the Red";
+static const u8 sMaAtName[] __attribute__((section(".append_assets"))) = "Ma'at";
+static const u8 sMagicalDimensionName[] __attribute__((section(".append_assets"))) = "Magical Dimension";
+static const u8 sMagicalHatsName[] __attribute__((section(".append_assets"))) = "Magical Hats";
+static const u8 sMagicalPlantMandragolaName[] __attribute__((section(".append_assets"))) = "Magical Plant Mandragola";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1425,6 +1435,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sLegendaryFlameLordName;
   if (cardId == 0x04F8)
     return (u8 *)sKingTigerWanghuName;
+  if (cardId == 0x04F9)
+    return (u8 *)sLegendaryKnightCritiasName;
+  if (cardId == 0x04FA)
+    return (u8 *)sLegendaryKnightHermosName;
+  if (cardId == 0x04FB)
+    return (u8 *)sLegendaryKnightTimaeusName;
+  if (cardId == 0x04FC)
+    return (u8 *)sLekungaName;
+  if (cardId == 0x04FD)
+    return (u8 *)sLightAndDarknessDragonName;
+  if (cardId == 0x04FE)
+    return (u8 *)sLordOfTheRedName;
+  if (cardId == 0x04FF)
+    return (u8 *)sMaAtName;
+  if (cardId == 0x0500)
+    return (u8 *)sMagicalDimensionName;
+  if (cardId == 0x0501)
+    return (u8 *)sMagicalHatsName;
+  if (cardId == 0x0502)
+    return (u8 *)sMagicalPlantMandragolaName;
 
   return gCardNames[cardId];
 }

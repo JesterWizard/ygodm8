@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `420` effects
+- `430` effects
 
 ## Tally
 
@@ -401,6 +401,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Horus The Black Flame Dragon Lv8` | `src_custom/activated_effects/horus_the_black_flame_dragon_lv8.c` |
 | `permanent_effects` | `Horus The Black Flame Dragon Lv4` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv4.c` |
 | `permanent_effects` | `Horus The Black Flame Dragon Lv6` | `src_custom/permanent_effects/horus_the_black_flame_dragon_lv6.c` |
+| `activated_effects` | `Legendary Knight Critias` | `src_custom/activated_effects/legendary_knight_critias.c` |
+| `activated_effects` | `Legendary Knight Hermos` | `src_custom/activated_effects/legendary_knight_hermos.c` |
+| `activated_effects` | `Legendary Knight Timaeus` | `src_custom/activated_effects/legendary_knight_timaeus.c` |
+| `activated_effects` | `Lekunga` | `src_custom/activated_effects/lekunga.c` |
+| `permanent_effects` | `Light And Darkness Dragon` | `src_custom/permanent_effects/light_and_darkness_dragon.c` |
+| `activated_effects` | `Lord Of The Red` | `src_custom/activated_effects/lord_of_the_red.c` |
+| `activated_effects` | `Ma At` | `src_custom/activated_effects/ma_at.c` |
+| `spell_effects` | `Magical Dimension` | `src_custom/spell_effects/magical_dimension.c` |
+| `trap_effects` | `Magical Hats` | `src_custom/trap_effects/magical_hats.c` |
+| `activated_effects` | `Magical Plant Mandragola` | `src_custom/activated_effects/magical_plant_mandragola.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

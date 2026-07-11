@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 472
+#define NUM_CUSTOM_NAME_SORT_CARDS 482
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -477,6 +477,16 @@ static const u8 sLastTurnSortName[] APPEND_RODATA = "Last Turn";
 static const u8 sLegendOfHeartSortName[] APPEND_RODATA = "Legend of Heart";
 static const u8 sLegendaryFlameLordSortName[] APPEND_RODATA = "Legendary Flame Lord";
 static const u8 sKingTigerWanghuSortName[] APPEND_RODATA = "King Tiger Wanghu";
+static const u8 sLegendaryKnightCritiasSortName[] APPEND_RODATA = "Legendary Knight Critias";
+static const u8 sLegendaryKnightHermosSortName[] APPEND_RODATA = "Legendary Knight Hermos";
+static const u8 sLegendaryKnightTimaeusSortName[] APPEND_RODATA = "Legendary Knight Timaeus";
+static const u8 sLekungaSortName[] APPEND_RODATA = "Lekunga";
+static const u8 sLightAndDarknessDragonSortName[] APPEND_RODATA = "Light and Darkness Dragon";
+static const u8 sLordOfTheRedSortName[] APPEND_RODATA = "Lord of the Red";
+static const u8 sMaAtSortName[] APPEND_RODATA = "Ma'at";
+static const u8 sMagicalDimensionSortName[] APPEND_RODATA = "Magical Dimension";
+static const u8 sMagicalHatsSortName[] APPEND_RODATA = "Magical Hats";
+static const u8 sMagicalPlantMandragolaSortName[] APPEND_RODATA = "Magical Plant Mandragola";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -798,19 +808,29 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x04F5, // Last Turn
   0x04F6, // Legend of Heart
   0x04F7, // Legendary Flame Lord
+  0x04F9, // Legendary Knight Critias
+  0x04FA, // Legendary Knight Hermos
+  0x04FB, // Legendary Knight Timaeus
+  0x04FC, // Lekunga
   0x03D2, // Lesser Fiend
   0x0400, // Level Limit - Area A
   0x03BE, // Level Limit Area B
   0x03E6, // Levia Dragon Daedalus
+  0x04FD, // Light and Darkness Dragon
   0x0468, // Light End Dragon
   0x037B, // Limiter Removal
+  0x04FE, // Lord of the Red
   0x034F, // Luster Dragon
   0x0443, // Lyrilusc - Independent Nightingale
+  0x04FF, // Ma'at
   0x034D, // Mad Sword Beast
   0x032E, // Mage Power
   0x0353, // Magic Cylinder
   0x033F, // Magic Jammer
+  0x0500, // Magical Dimension
+  0x0501, // Magical Hats
   0x03B2, // Magical Merchant
+  0x0502, // Magical Plant Mandragola
   0x0323, // Magician's Valkyria
   0x03E3, // Maju Garzett
   0x03BD, // Man-Thro-Thro
@@ -1273,159 +1293,169 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   317, // Last Turn
   318, // Legend of Heart
   319, // Legendary Flame Lord
-  320, // Lesser Fiend
-  321, // Level Limit - Area A
-  322, // Level Limit Area B
-  323, // Levia Dragon Daedalus
-  324, // Light End Dragon
-  325, // Limiter Removal
-  326, // Luster Dragon
-  327, // Lyrilusc - Independent Nightingale
-  328, // Mad Sword Beast
-  329, // Mage Power
-  330, // Magic Cylinder
-  331, // Magic Jammer
-  332, // Magical Merchant
-  333, // Magician's Valkyria
-  334, // Maju Garzett
-  335, // Man-Thro-Thro
-  336, // Marauding Captain
-  337, // Maryokutai
-  338, // Mask of Restrict
-  339, // Mataza the Zapper
-  340, // Mefist The Infernal General
-  341, // Mermaid Knight
-  342, // Meteor of Destruction
-  343, // Mighty Angel Virch
-  344, // Miracle Fusion
-  345, // Mirror Force
-  346, // Mirror Wall
-  347, // Mobius the Frost Monarch
-  348, // Moister Creature
-  349, // Mystical Shine Ball
-  350, // Mystical Space Typhoon
-  351, // Needle Burrower
-  352, // Negate Attack
-  353, // Negative Energy
-  354, // Nightmare Horse
-  355, // Nightmare Wheel
-  356, // O - Oversoul
-  357, // Obnoxious Celtic Guardian
-  358, // Ojama Trio
-  359, // Overload Fusion
-  360, // Paladin Of White Dragon
-  361, // Peten The Dark Clown
-  362, // Piranha Army
-  363, // Polymerization
-  364, // Possessed Dark Soul
-  365, // Power Bond
-  366, // Precious Cards From Beyond
-  367, // Premature Burial
-  368, // Proto-Cyber Dragon
-  369, // Pyramid of Light
-  370, // R - Righteous Justice
-  371, // Rain of Mercy
-  372, // Rare Metal Dragon
-  373, // Raregold Armor
-  374, // Raviel, Lord of Phantasms
-  375, // Reaper on the Nightmare
-  376, // Reckless Greed
-  377, // Reload
-  378, // Ring of Destruction
-  379, // Riryoku
-  380, // Rivalry of Warlords
-  381, // Robbin' Goblin
-  382, // Robbin' Zombie
-  383, // Royal Decree
-  384, // Royal Knight
-  385, // Ryu-Kishin Clown
-  386, // Sage's Stone
-  387, // Sasuke Samurai
-  388, // Sasuke Samurai #2
-  389, // Sasuke Samurai #3
-  390, // Seal of Orichalcos
-  391, // Secret Barrel
-  392, // Self-Destruct Button
-  393, // Seraphim Blaster
-  394, // Servant of Catabolism
-  395, // Seven Tools of the Bandit
-  396, // Shatiel
-  397, // Shield And Sword
-  398, // Skill Drain
-  399, // Skull Invitation
-  400, // Skyscraper
-  401, // Solar Flare Dragon
-  402, // Solar Ray
-  403, // Solemn Wishes
-  404, // Sorcerer of Dark Magic
-  405, // Soul Exchange
-  406, // Soul Taker
-  407, // Spear Dragon
-  408, // Spell Canceller
-  409, // Spell Economics
-  410, // Spirit Caller
-  411, // Spirit of the Breeze
-  412, // Spirit of the Pot of Greed
-  413, // Spirit Reaper
-  414, // Spirit Ryu
-  415, // St Joan
-  416, // Stealth Bird
-  417, // Swift Gaia The Fierce Knight
-  418, // Terrorking Salmon
-  419, // Tethys, Goddess of Light
-  420, // The Agent Of Creation - Venus
-  421, // The Agent of Force - Mars
-  422, // The Big Saturn
-  423, // The Blazing Mars
-  424, // The Dark Door
-  425, // The Despair Uranus
-  426, // The Flute of Summoning Dragon
-  427, // The Forceful Sentry
-  428, // The Grand Jupiter
-  429, // The Sanctuary in the Sky
-  430, // The Splendid Venus
-  431, // The Suppression Pluto
-  432, // The Supremacy Sun
-  433, // The Thing in the Crater
-  434, // The Tricky
-  435, // The Tripper Mercury
-  436, // The Tyrant Neptune
-  437, // The Unstoppable Exodia Incarnate
-  438, // The Wicked Avatar
-  439, // The Wicked Dreadroot
-  440, // The Wicked Eraser
-  441, // Theban Nightmare
-  442, // Thousand Energy
-  443, // Thousand Knives
-  444, // Thunder Crash
-  445, // Time Seal
-  446, // Tiny Angel
-  447, // Toll
-  448, // Torpedo Fish
-  449, // Trade-In
-  450, // Triangle Power
-  451, // Tribute Doll
-  452, // Twin Swords of Flashing Light - Tryce
-  453, // Tyrant Dragon
-  454, // Ultimate Offering
-  455, // United We Stand
-  456, // Upstart Goblin
-  457, // Uria, Lord of Searing Flames
-  458, // Valhalla, Hall of the Fallen
-  459, // Vampire Baby
-  460, // Vengeful Bog Spirit
-  461, // Wall of Revealing Light
-  462, // Warrior of Zera
-  463, // Wave Motion Cannon
-  464, // Weather Report
-  465, // White Magician Pikeru
-  466, // World Suppression
-  467, // Yata-Garasu
-  468, // Yubel
-  469, // Yubel - Terror Incarnate
-  470, // Yubel - The Ultimate Nightmare
-  471, // Zaborg the Thunder Monarch
-  472, // Zeriel
+  320, // Legendary Knight Critias
+  321, // Legendary Knight Hermos
+  322, // Legendary Knight Timaeus
+  323, // Lekunga
+  324, // Lesser Fiend
+  325, // Level Limit - Area A
+  326, // Level Limit Area B
+  327, // Levia Dragon Daedalus
+  328, // Light and Darkness Dragon
+  329, // Light End Dragon
+  330, // Limiter Removal
+  331, // Lord of the Red
+  332, // Luster Dragon
+  333, // Lyrilusc - Independent Nightingale
+  334, // Ma'at
+  335, // Mad Sword Beast
+  336, // Mage Power
+  337, // Magic Cylinder
+  338, // Magic Jammer
+  339, // Magical Dimension
+  340, // Magical Hats
+  341, // Magical Merchant
+  342, // Magical Plant Mandragola
+  343, // Magician's Valkyria
+  344, // Maju Garzett
+  345, // Man-Thro-Thro
+  346, // Marauding Captain
+  347, // Maryokutai
+  348, // Mask of Restrict
+  349, // Mataza the Zapper
+  350, // Mefist The Infernal General
+  351, // Mermaid Knight
+  352, // Meteor of Destruction
+  353, // Mighty Angel Virch
+  354, // Miracle Fusion
+  355, // Mirror Force
+  356, // Mirror Wall
+  357, // Mobius the Frost Monarch
+  358, // Moister Creature
+  359, // Mystical Shine Ball
+  360, // Mystical Space Typhoon
+  361, // Needle Burrower
+  362, // Negate Attack
+  363, // Negative Energy
+  364, // Nightmare Horse
+  365, // Nightmare Wheel
+  366, // O - Oversoul
+  367, // Obnoxious Celtic Guardian
+  368, // Ojama Trio
+  369, // Overload Fusion
+  370, // Paladin Of White Dragon
+  371, // Peten The Dark Clown
+  372, // Piranha Army
+  373, // Polymerization
+  374, // Possessed Dark Soul
+  375, // Power Bond
+  376, // Precious Cards From Beyond
+  377, // Premature Burial
+  378, // Proto-Cyber Dragon
+  379, // Pyramid of Light
+  380, // R - Righteous Justice
+  381, // Rain of Mercy
+  382, // Rare Metal Dragon
+  383, // Raregold Armor
+  384, // Raviel, Lord of Phantasms
+  385, // Reaper on the Nightmare
+  386, // Reckless Greed
+  387, // Reload
+  388, // Ring of Destruction
+  389, // Riryoku
+  390, // Rivalry of Warlords
+  391, // Robbin' Goblin
+  392, // Robbin' Zombie
+  393, // Royal Decree
+  394, // Royal Knight
+  395, // Ryu-Kishin Clown
+  396, // Sage's Stone
+  397, // Sasuke Samurai
+  398, // Sasuke Samurai #2
+  399, // Sasuke Samurai #3
+  400, // Seal of Orichalcos
+  401, // Secret Barrel
+  402, // Self-Destruct Button
+  403, // Seraphim Blaster
+  404, // Servant of Catabolism
+  405, // Seven Tools of the Bandit
+  406, // Shatiel
+  407, // Shield And Sword
+  408, // Skill Drain
+  409, // Skull Invitation
+  410, // Skyscraper
+  411, // Solar Flare Dragon
+  412, // Solar Ray
+  413, // Solemn Wishes
+  414, // Sorcerer of Dark Magic
+  415, // Soul Exchange
+  416, // Soul Taker
+  417, // Spear Dragon
+  418, // Spell Canceller
+  419, // Spell Economics
+  420, // Spirit Caller
+  421, // Spirit of the Breeze
+  422, // Spirit of the Pot of Greed
+  423, // Spirit Reaper
+  424, // Spirit Ryu
+  425, // St Joan
+  426, // Stealth Bird
+  427, // Swift Gaia The Fierce Knight
+  428, // Terrorking Salmon
+  429, // Tethys, Goddess of Light
+  430, // The Agent Of Creation - Venus
+  431, // The Agent of Force - Mars
+  432, // The Big Saturn
+  433, // The Blazing Mars
+  434, // The Dark Door
+  435, // The Despair Uranus
+  436, // The Flute of Summoning Dragon
+  437, // The Forceful Sentry
+  438, // The Grand Jupiter
+  439, // The Sanctuary in the Sky
+  440, // The Splendid Venus
+  441, // The Suppression Pluto
+  442, // The Supremacy Sun
+  443, // The Thing in the Crater
+  444, // The Tricky
+  445, // The Tripper Mercury
+  446, // The Tyrant Neptune
+  447, // The Unstoppable Exodia Incarnate
+  448, // The Wicked Avatar
+  449, // The Wicked Dreadroot
+  450, // The Wicked Eraser
+  451, // Theban Nightmare
+  452, // Thousand Energy
+  453, // Thousand Knives
+  454, // Thunder Crash
+  455, // Time Seal
+  456, // Tiny Angel
+  457, // Toll
+  458, // Torpedo Fish
+  459, // Trade-In
+  460, // Triangle Power
+  461, // Tribute Doll
+  462, // Twin Swords of Flashing Light - Tryce
+  463, // Tyrant Dragon
+  464, // Ultimate Offering
+  465, // United We Stand
+  466, // Upstart Goblin
+  467, // Uria, Lord of Searing Flames
+  468, // Valhalla, Hall of the Fallen
+  469, // Vampire Baby
+  470, // Vengeful Bog Spirit
+  471, // Wall of Revealing Light
+  472, // Warrior of Zera
+  473, // Wave Motion Cannon
+  474, // Weather Report
+  475, // White Magician Pikeru
+  476, // World Suppression
+  477, // Yata-Garasu
+  478, // Yubel
+  479, // Yubel - Terror Incarnate
+  480, // Yubel - The Ultimate Nightmare
+  481, // Zaborg the Thunder Monarch
+  482, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2379,6 +2409,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sLegendaryFlameLordSortName;
   if (cardId == 0x04F8)
     return (u8 *)sKingTigerWanghuSortName;
+  if (cardId == 0x04F9)
+    return (u8 *)sLegendaryKnightCritiasSortName;
+  if (cardId == 0x04FA)
+    return (u8 *)sLegendaryKnightHermosSortName;
+  if (cardId == 0x04FB)
+    return (u8 *)sLegendaryKnightTimaeusSortName;
+  if (cardId == 0x04FC)
+    return (u8 *)sLekungaSortName;
+  if (cardId == 0x04FD)
+    return (u8 *)sLightAndDarknessDragonSortName;
+  if (cardId == 0x04FE)
+    return (u8 *)sLordOfTheRedSortName;
+  if (cardId == 0x04FF)
+    return (u8 *)sMaAtSortName;
+  if (cardId == 0x0500)
+    return (u8 *)sMagicalDimensionSortName;
+  if (cardId == 0x0501)
+    return (u8 *)sMagicalHatsSortName;
+  if (cardId == 0x0502)
+    return (u8 *)sMagicalPlantMandragolaSortName;
 
   return gCardNames[cardId];
 }

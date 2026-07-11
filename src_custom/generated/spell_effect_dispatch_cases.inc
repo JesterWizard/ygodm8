@@ -239,6 +239,9 @@
     case MAGE_POWER:
       EffectMagePower();
       return;
+    case MAGICAL_DIMENSION:
+      EffectMAGICAL_DIMENSION();
+      return;
     case METEOR_OF_DESTRUCTION:
       EffectMeteorOfDestruction();
       return;

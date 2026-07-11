@@ -1896,6 +1896,46 @@ static const unsigned char sKingTigerWanghuBigArt[] __attribute__((section(".app
 static const unsigned short sKingTigerWanghuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/king_tiger_wanghu.gbapal");
 static const unsigned char sKingTigerWanghuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/king_tiger_wanghu.lz");
 
+static const unsigned char sLegendaryKnightCritiasBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/legendary_knight_critias.huff");
+static const unsigned short sLegendaryKnightCritiasBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/legendary_knight_critias.gbapal");
+static const unsigned char sLegendaryKnightCritiasMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/legendary_knight_critias.lz");
+
+static const unsigned char sLegendaryKnightHermosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/legendary_knight_hermos.huff");
+static const unsigned short sLegendaryKnightHermosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/legendary_knight_hermos.gbapal");
+static const unsigned char sLegendaryKnightHermosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/legendary_knight_hermos.lz");
+
+static const unsigned char sLegendaryKnightTimaeusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/legendary_knight_timaeus.huff");
+static const unsigned short sLegendaryKnightTimaeusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/legendary_knight_timaeus.gbapal");
+static const unsigned char sLegendaryKnightTimaeusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/legendary_knight_timaeus.lz");
+
+static const unsigned char sLekungaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/lekunga.huff");
+static const unsigned short sLekungaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/lekunga.gbapal");
+static const unsigned char sLekungaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/lekunga.lz");
+
+static const unsigned char sLightAndDarknessDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/light_and_darkness_dragon.huff");
+static const unsigned short sLightAndDarknessDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/light_and_darkness_dragon.gbapal");
+static const unsigned char sLightAndDarknessDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/light_and_darkness_dragon.lz");
+
+static const unsigned char sLordOfTheRedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/lord_of_the_red.huff");
+static const unsigned short sLordOfTheRedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/lord_of_the_red.gbapal");
+static const unsigned char sLordOfTheRedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/lord_of_the_red.lz");
+
+static const unsigned char sMaAtBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ma_at.huff");
+static const unsigned short sMaAtBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ma_at.gbapal");
+static const unsigned char sMaAtMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ma_at.lz");
+
+static const unsigned char sMagicalDimensionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magical_dimension.huff");
+static const unsigned short sMagicalDimensionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_dimension.gbapal");
+static const unsigned char sMagicalDimensionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_dimension.lz");
+
+static const unsigned char sMagicalHatsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magical_hats.huff");
+static const unsigned short sMagicalHatsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_hats.gbapal");
+static const unsigned char sMagicalHatsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_hats.lz");
+
+static const unsigned char sMagicalPlantMandragolaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/magical_plant_mandragola.huff");
+static const unsigned short sMagicalPlantMandragolaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/magical_plant_mandragola.gbapal");
+static const unsigned char sMagicalPlantMandragolaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/magical_plant_mandragola.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2371,6 +2411,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04F6] = sLegendOfHeartBigArt,
   [0x04F7] = sLegendaryFlameLordBigArt,
   [0x04F8] = sKingTigerWanghuBigArt,
+  [0x04F9] = sLegendaryKnightCritiasBigArt,
+  [0x04FA] = sLegendaryKnightHermosBigArt,
+  [0x04FB] = sLegendaryKnightTimaeusBigArt,
+  [0x04FC] = sLekungaBigArt,
+  [0x04FD] = sLightAndDarknessDragonBigArt,
+  [0x04FE] = sLordOfTheRedBigArt,
+  [0x04FF] = sMaAtBigArt,
+  [0x0500] = sMagicalDimensionBigArt,
+  [0x0501] = sMagicalHatsBigArt,
+  [0x0502] = sMagicalPlantMandragolaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2848,6 +2898,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04F6] = sLegendOfHeartBigPalette,
   [0x04F7] = sLegendaryFlameLordBigPalette,
   [0x04F8] = sKingTigerWanghuBigPalette,
+  [0x04F9] = sLegendaryKnightCritiasBigPalette,
+  [0x04FA] = sLegendaryKnightHermosBigPalette,
+  [0x04FB] = sLegendaryKnightTimaeusBigPalette,
+  [0x04FC] = sLekungaBigPalette,
+  [0x04FD] = sLightAndDarknessDragonBigPalette,
+  [0x04FE] = sLordOfTheRedBigPalette,
+  [0x04FF] = sMaAtBigPalette,
+  [0x0500] = sMagicalDimensionBigPalette,
+  [0x0501] = sMagicalHatsBigPalette,
+  [0x0502] = sMagicalPlantMandragolaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3325,6 +3385,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04F6] = 0,
   [0x04F7] = 0,
   [0x04F8] = 0,
+  [0x04F9] = 0,
+  [0x04FA] = 0,
+  [0x04FB] = 0,
+  [0x04FC] = 0,
+  [0x04FD] = 0,
+  [0x04FE] = 0,
+  [0x04FF] = 0,
+  [0x0500] = 0,
+  [0x0501] = 0,
+  [0x0502] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3802,4 +3872,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04F6] = sLegendOfHeartMiniArt,
   [0x04F7] = sLegendaryFlameLordMiniArt,
   [0x04F8] = sKingTigerWanghuMiniArt,
+  [0x04F9] = sLegendaryKnightCritiasMiniArt,
+  [0x04FA] = sLegendaryKnightHermosMiniArt,
+  [0x04FB] = sLegendaryKnightTimaeusMiniArt,
+  [0x04FC] = sLekungaMiniArt,
+  [0x04FD] = sLightAndDarknessDragonMiniArt,
+  [0x04FE] = sLordOfTheRedMiniArt,
+  [0x04FF] = sMaAtMiniArt,
+  [0x0500] = sMagicalDimensionMiniArt,
+  [0x0501] = sMagicalHatsMiniArt,
+  [0x0502] = sMagicalPlantMandragolaMiniArt,
 };

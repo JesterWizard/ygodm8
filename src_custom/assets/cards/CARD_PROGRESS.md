@@ -499,16 +499,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `LAST_TURN` — `last_turn.png`
 - [x] `LEGEND_OF_HEART` — `legend_of_heart.png`
 - [x] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
-- [ ] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
-- [ ] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
-- [ ] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
-- [ ] `LEKUNGA` — `lekunga.png`
-- [ ] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
-- [ ] `LORD_OF_THE_RED` — `lord_of_the_red.png`
-- [ ] `MA'AT` — `ma'at.png`
-- [ ] `MAGICAL_DIMENSION` — `magical_dimension.png`
-- [ ] `MAGICAL_HATS` — `magical_hats.png`
-- [ ] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
+- [x] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
+- [x] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
+- [x] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
+- [x] `LEKUNGA` — `lekunga.png`
+- [x] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
+- [x] `LORD_OF_THE_RED` — `lord_of_the_red.png`
+- [x] `MA_AT` — `ma_at.png`
+- [x] `MAGICAL_DIMENSION` — `magical_dimension.png`
+- [x] `MAGICAL_HATS` — `magical_hats.png`
+- [x] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
 - [ ] `MAGICAL_SCIENTIST` — `magical_scientist.png`
 - [ ] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
 - [ ] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`

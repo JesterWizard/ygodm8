@@ -180,6 +180,20 @@ unsigned char CanActivateDIVINE_SERPENT_GEH(void);
 void ActivateDIVINE_SERPENT_GEHEffect(void);
 unsigned char CanActivateDESTINY_HERO_DESTROY_DOGMA(void);
 void ActivateDESTINY_HERO_DESTROY_DOGMAEffect(void);
+unsigned char CanActivateLEGENDARY_KNIGHT_CRITIAS(void);
+void ActivateLEGENDARY_KNIGHT_CRITIASEffect(void);
+unsigned char CanActivateLEGENDARY_KNIGHT_HERMOS(void);
+void ActivateLEGENDARY_KNIGHT_HERMOSEffect(void);
+unsigned char CanActivateLEGENDARY_KNIGHT_TIMAEUS(void);
+void ActivateLEGENDARY_KNIGHT_TIMAEUSEffect(void);
+unsigned char CanActivateLEKUNGA(void);
+void ActivateLEKUNGAEffect(void);
+unsigned char CanActivateLORD_OF_THE_RED(void);
+void ActivateLORD_OF_THE_REDEffect(void);
+unsigned char CanActivateMA_AT(void);
+void ActivateMA_ATEffect(void);
+unsigned char CanActivateMAGICAL_PLANT_MANDRAGOLA(void);
+void ActivateMAGICAL_PLANT_MANDRAGOLAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -934,6 +948,35 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == DESTINY_HERO_DESTROY_DOGMA) {
     ActivateDESTINY_HERO_DESTROY_DOGMAEffect();
+    return;
+  }
+
+  if (gMonEffect.id == LEGENDARY_KNIGHT_CRITIAS) {
+    ActivateLEGENDARY_KNIGHT_CRITIASEffect();
+    return;
+  }
+  if (gMonEffect.id == LEGENDARY_KNIGHT_HERMOS) {
+    ActivateLEGENDARY_KNIGHT_HERMOSEffect();
+    return;
+  }
+  if (gMonEffect.id == LEGENDARY_KNIGHT_TIMAEUS) {
+    ActivateLEGENDARY_KNIGHT_TIMAEUSEffect();
+    return;
+  }
+  if (gMonEffect.id == LEKUNGA) {
+    ActivateLEKUNGAEffect();
+    return;
+  }
+  if (gMonEffect.id == LORD_OF_THE_RED) {
+    ActivateLORD_OF_THE_REDEffect();
+    return;
+  }
+  if (gMonEffect.id == MA_AT) {
+    ActivateMA_ATEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGICAL_PLANT_MANDRAGOLA) {
+    ActivateMAGICAL_PLANT_MANDRAGOLAEffect();
     return;
   }
 

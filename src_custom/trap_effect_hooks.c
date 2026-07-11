@@ -407,3 +407,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DRAGON_S_RAGE in trap dispatcher */
 /* GIFT_CARD trap effect */
   /* TODO: wire GIFT_CARD in trap dispatcher */
+/* MAGICAL_HATS trap effect */
+  /* TODO: wire MAGICAL_HATS in trap dispatcher */

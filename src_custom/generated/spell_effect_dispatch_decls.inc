@@ -79,6 +79,7 @@ extern void EffectLevelLimitAreaA(void);
 extern void EffectLevelLimitAreaB(void);
 extern void EffectLimiterRemoval(void);
 extern void EffectMagePower(void);
+extern void EffectMAGICAL_DIMENSION(void);
 extern void EffectMeteorOfDestruction(void);
 extern void EffectMiracleFusion(void);
 extern void EffectMonsterReborn(void);

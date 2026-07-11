@@ -458,6 +458,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [LEGEND_OF_HEART] = gActivationDescription_LegendOfHeart_Popup1,
   [LEGENDARY_FLAME_LORD] = gActivationDescription_LegendaryFlameLord_Popup1,
   [KING_TIGER_WANGHU] = gActivationDescription_KingTigerWanghu_Popup1,
+  [LEGENDARY_KNIGHT_CRITIAS] = gActivationDescription_LegendaryKnightCritias_Popup1,
+  [LEGENDARY_KNIGHT_HERMOS] = gActivationDescription_LegendaryKnightHermos_Popup1,
+  [LEGENDARY_KNIGHT_TIMAEUS] = gActivationDescription_LegendaryKnightTimaeus_Popup1,
+  [LEKUNGA] = gActivationDescription_Lekunga_Popup1,
+  [LIGHT_AND_DARKNESS_DRAGON] = gActivationDescription_LightAndDarknessDragon_Popup1,
+  [LORD_OF_THE_RED] = gActivationDescription_LordOfTheRed_Popup1,
+  [MA_AT] = gActivationDescription_MaAt_Popup1,
+  [MAGICAL_DIMENSION] = gActivationDescription_MagicalDimension_Popup1,
+  [MAGICAL_HATS] = gActivationDescription_MagicalHats_Popup1,
+  [MAGICAL_PLANT_MANDRAGOLA] = gActivationDescription_MagicalPlantMandragola_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -946,6 +956,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_LEGEND_OF_HEART_POPUP_1] = gActivationDescription_LegendOfHeart_Popup1,
   [CARD_EFFECT_TEXT_LEGENDARY_FLAME_LORD_POPUP_1] = gActivationDescription_LegendaryFlameLord_Popup1,
   [CARD_EFFECT_TEXT_KING_TIGER_WANGHU_POPUP_1] = gActivationDescription_KingTigerWanghu_Popup1,
+  [CARD_EFFECT_TEXT_LEGENDARY_KNIGHT_CRITIAS_POPUP_1] = gActivationDescription_LegendaryKnightCritias_Popup1,
+  [CARD_EFFECT_TEXT_LEGENDARY_KNIGHT_HERMOS_POPUP_1] = gActivationDescription_LegendaryKnightHermos_Popup1,
+  [CARD_EFFECT_TEXT_LEGENDARY_KNIGHT_TIMAEUS_POPUP_1] = gActivationDescription_LegendaryKnightTimaeus_Popup1,
+  [CARD_EFFECT_TEXT_LEKUNGA_POPUP_1] = gActivationDescription_Lekunga_Popup1,
+  [CARD_EFFECT_TEXT_LIGHT_AND_DARKNESS_DRAGON_POPUP_1] = gActivationDescription_LightAndDarknessDragon_Popup1,
+  [CARD_EFFECT_TEXT_LORD_OF_THE_RED_POPUP_1] = gActivationDescription_LordOfTheRed_Popup1,
+  [CARD_EFFECT_TEXT_MA_AT_POPUP_1] = gActivationDescription_MaAt_Popup1,
+  [CARD_EFFECT_TEXT_MAGICAL_DIMENSION_POPUP_1] = gActivationDescription_MagicalDimension_Popup1,
+  [CARD_EFFECT_TEXT_MAGICAL_HATS_POPUP_1] = gActivationDescription_MagicalHats_Popup1,
+  [CARD_EFFECT_TEXT_MAGICAL_PLANT_MANDRAGOLA_POPUP_1] = gActivationDescription_MagicalPlantMandragola_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)
