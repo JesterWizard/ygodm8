@@ -37143,6 +37143,313 @@
       "effect_texts": {
         "popup_1": "During any Main Phase: The turn player can pay 1000 LP x the number of monsters normally needed for the Tribute Summon o"
       }
+    },
+    {
+      "card_const": "MAZERA_DEVILLE",
+      "card_name": "Mazera DeVille",
+      "atk": 2800,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 592,
+      "password": [
+        0,
+        6,
+        1,
+        3,
+        3,
+        8,
+        9,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_MazeraDeville",
+        "pages": [
+          "Cannot Normal Summon. Must be Special Summon from hand.",
+          "Tribute Warrior of Zera while Pandemonium is on field.",
+          "Opponent discards 3 random cards when Summoned."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot NS. SS from hand by Tributing Warrior of Zera with Pandemonium. Opponent discards 3 random cards."
+      }
+    },
+    {
+      "card_const": "METAMORPHOSIS",
+      "card_name": "Metamorphosis",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        4,
+        6,
+        4,
+        1,
+        1,
+        2,
+        5,
+        9
+      ],
+      "description": {
+        "symbol": "gDescription_Metamorphosis",
+        "pages": [
+          "Tribute 1 monster. Special Summon 1 Fusion Monster",
+          "from your Extra Deck with the same Level as the",
+          "Tributed monster."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 monster. Special Summon 1 Fusion Monster from your Extra Deck with the same Level as the Tributed monster."
+      }
+    },
+    {
+      "card_const": "METEORAIN",
+      "card_name": "Meteorain",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        4,
+        2,
+        7,
+        4,
+        2,
+        9,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_Meteorain",
+        "pages": [
+          "For piercing damage, attack a Defence monster with higher ATK.",
+          "This turn only."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This turn, attacks on Defense monsters with higher ATK than their DEF inflict piercing damage."
+      }
+    },
+    {
+      "card_const": "MIRAGE_OF_NIGHTMARE",
+      "card_name": "Mirage of Nightmare",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        4,
+        1,
+        4,
+        8,
+        2,
+        5,
+        9,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_MirageOfNightmare",
+        "pages": [
+          "Opponent Standby Phase: Draw cards until you have 4 in hand.",
+          "Your next Standby Phase: Randomly discard"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opponent Standby: Draw until 4. Your Standby: Randomly discard equal number (or whole hand)."
+      }
+    },
+    {
+      "card_const": "MIRROR_FORCE_DRAGON",
+      "card_name": "Mirror Force Dragon",
+      "atk": 2800,
+      "def": 1200,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        8,
+        4,
+        6,
+        8,
+        7,
+        3,
+        5,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_MirrorForceDragon",
+        "pages": [
+          "Special Summoned with The Fang of Critias",
+          "When a monster you control is targeted for"
+        ]
+      }
+    },
+    {
+      "card_const": "MOLTEN_ZOMBIE",
+      "card_name": "Molten Zombie",
+      "atk": 1600,
+      "def": 400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PYRO",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        0,
+        4,
+        7,
+        3,
+        2,
+        0,
+        1,
+        7
+      ],
+      "description": {
+        "symbol": "gDescription_MoltenZombie",
+        "pages": [
+          "When this card is Special",
+          "Summoned from the",
+          "Graveyard: Draw 1 card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Special Summoned from the Graveyard: Draw 1 card."
+      }
+    },
+    {
+      "card_const": "MONSTER_GATE",
+      "card_name": "Monster Gate",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        4,
+        3,
+        0,
+        4,
+        0,
+        6,
+        0,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_MonsterGate",
+        "pages": [
+          "Tribute 1 monster. Excavate top of Deck until",
+          "Special Summon it, then send other excavated"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 monster. Excavate until a Normal Summonable monster found. Special Summon it, send rest to GY."
+      }
+    },
+    {
+      "card_const": "MONSTER_RECOVERY",
+      "card_name": "Monster Recovery",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        9,
+        3,
+        1,
+        0,
+        8,
+        4,
+        3,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_MonsterRecovery",
+        "pages": [
+          "Target 1 monster you own. If still on field,",
+          "Draw equal to the number of hand cards shuffled by this effect.",
+          "Cannot activate if opponent owns any card in your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 monster you own. Shuffle it and your hand into Deck. Draw equal to"
+      }
+    },
+    {
+      "card_const": "MORALE_BOOST",
+      "card_name": "Morale Boost",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        9,
+        3,
+        6,
+        7,
+        1,
+        9,
+        3,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_MoraleBoost",
+        "pages": [
+          "Each time an Equip Spell is equipped, its",
+          "Each time an Equip Spell leaves the field,"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Equip Spell equipped: gain 1000 LP. Equip Spell leaves field: take 1000 damage."
+      }
     }
   ]
 }

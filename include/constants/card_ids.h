@@ -1293,11 +1293,20 @@
 #define MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING  0x0509
 #define MASK_OF_THE_ACCURSED                     0x050A
 #define MAUSOLEUM_OF_THE_EMPEROR                 0x050B
+#define MAZERA_DEVILLE                           0x050C
+#define METAMORPHOSIS                            0x050D
+#define METEORAIN                                0x050E
+#define MIRAGE_OF_NIGHTMARE                      0x050F
+#define MIRROR_FORCE_DRAGON                      0x0510
+#define MOLTEN_ZOMBIE                            0x0511
+#define MONSTER_GATE                             0x0512
+#define MONSTER_RECOVERY                         0x0513
+#define MORALE_BOOST                             0x0514
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x050C
-#define NUM_CUSTOM_CARDS                        0x01EB
+#define NUM_TOTAL_CARDS                         0x0515
+#define NUM_CUSTOM_CARDS                        0x01F4
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

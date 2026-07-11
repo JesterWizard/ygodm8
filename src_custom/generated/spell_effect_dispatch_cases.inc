@@ -254,14 +254,29 @@
     case MAUSOLEUM_OF_THE_EMPEROR:
       EffectMAUSOLEUM_OF_THE_EMPEROR();
       return;
+    case METAMORPHOSIS:
+      EffectMETAMORPHOSIS();
+      return;
     case METEOR_OF_DESTRUCTION:
       EffectMeteorOfDestruction();
       return;
     case MIRACLE_FUSION:
       EffectMiracleFusion();
       return;
+    case MIRAGE_OF_NIGHTMARE:
+      EffectMIRAGE_OF_NIGHTMARE();
+      return;
+    case MONSTER_GATE:
+      EffectMONSTER_GATE();
+      return;
     case MONSTER_REBORN:
       EffectMonsterReborn();
+      return;
+    case MONSTER_RECOVERY:
+      EffectMONSTER_RECOVERY();
+      return;
+    case MORALE_BOOST:
+      EffectMORALE_BOOST();
       return;
     case MYSTICAL_SPACE_TYPHOON:
       EffectMysticalSpaceTyphoon();

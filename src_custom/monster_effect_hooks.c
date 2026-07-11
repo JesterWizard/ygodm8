@@ -204,6 +204,12 @@ unsigned char CanActivateMARSHMALLON(void);
 void ActivateMARSHMALLONEffect(void);
 unsigned char CanActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KING(void);
 void ActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KINGEffect(void);
+unsigned char CanActivateMAZERA_DEVILLE(void);
+void ActivateMAZERA_DEVILLEEffect(void);
+unsigned char CanActivateMIRROR_FORCE_DRAGON(void);
+void ActivateMIRROR_FORCE_DRAGONEffect(void);
+unsigned char CanActivateMOLTEN_ZOMBIE(void);
+void ActivateMOLTEN_ZOMBIEEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1007,6 +1013,18 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
   }
   if (gMonEffect.id == MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING) {
     ActivateMASTER_PEACE_THE_TRUE_DRACOSLAYING_KINGEffect();
+    return;
+  }
+  if (gMonEffect.id == MAZERA_DEVILLE) {
+    ActivateMAZERA_DEVILLEEffect();
+    return;
+  }
+  if (gMonEffect.id == MIRROR_FORCE_DRAGON) {
+    ActivateMIRROR_FORCE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == MOLTEN_ZOMBIE) {
+    ActivateMOLTEN_ZOMBIEEffect();
     return;
   }
 

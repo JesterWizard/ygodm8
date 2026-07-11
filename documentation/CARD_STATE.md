@@ -1,16 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-11 — Added 10 cards (MAGICAL_SCIENTIST through MAUSOLEUM_OF_THE_EMPEROR) from lines 512-521.
+**Last worked on:** 2026-07-11 — Removed duplicate MOISTURE_CREATURE; fixed Master Peace palette
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `configs/runtime.c`
-- `src_custom/activated_effects/magical_scientist.c`, `majestic_mech_goryu.c`, `manju_of_the_ten_thousand_hands.c`, `marshmallon.c`, `master_peace_the_true_dracoslaying_king.c`, `man_thro_tro.c`
-- `src_custom/spell_effects/magical_stone_excavation.c`, `mask_of_dispel.c`, `mask_of_the_accursed.c`, `mausoleum_of_the_emperor.c`
-- `src_custom/monster_effect_hooks.c`
-- `tools/add_custom_card.py`
+- `tools/card_data_manifest.json` — removed MOISTURE_CREATURE entry
+- `src_custom/monster_effect_hooks.c` — removed MOISTURE_CREATURE forward declarations and dispatch
+- `src_custom/activated_effects/moisture_creature.c` — deleted
+- `src_custom/assets/cards/80x80/master_peace_the_true_dracoslaying_king.png` — fixed palette (index 0 gray→black, remapped 221 pixels)
+- `src_custom/assets/cards/CARD_PROGRESS.md` — removed MOISTURE_CREATURE line
 
-**Outcome:** `make clean && make` passes. All 10 cards in trunk with 512x512 art; effects stubbed with TODO bodies.
+**Outcome:** `make clean && make` passes. MOISTURE_CREATURE removed; Master Peace art no longer has black splotches.
 
 **Open / next:**
-- Implement actual effect logic for these 10 cards
+- Implement actual effect logic for remaining cards in trunk

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `451` effects
+- `461` effects
 
 ## Tally
 
@@ -432,6 +432,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Mausoleum Of The Emperor` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
 | `spell_effects` | `Mask Of The Accursed` | `src_custom/spell_effects/mask_of_the_accursed.c` |
 | `spell_effects` | `Mausoleum Of The Emperor` | `src_custom/spell_effects/mausoleum_of_the_emperor.c` |
+| `activated_effects` | `Mazera Deville` | `src_custom/activated_effects/mazera_deville.c` |
+| `spell_effects` | `Metamorphosis` | `src_custom/spell_effects/metamorphosis.c` |
+| `trap_effects` | `Meteorain` | `src_custom/trap_effects/meteorain.c` |
+| `spell_effects` | `Mirage Of Nightmare` | `src_custom/spell_effects/mirage_of_nightmare.c` |
+| `activated_effects` | `Mirror Force Dragon` | `src_custom/activated_effects/mirror_force_dragon.c` |
+| `activated_effects` | `Moisture Creature` | `src_custom/activated_effects/moisture_creature.c` |
+| `activated_effects` | `Molten Zombie` | `src_custom/activated_effects/molten_zombie.c` |
+| `spell_effects` | `Monster Gate` | `src_custom/spell_effects/monster_gate.c` |
+| `spell_effects` | `Monster Recovery` | `src_custom/spell_effects/monster_recovery.c` |
+| `spell_effects` | `Morale Boost` | `src_custom/spell_effects/morale_boost.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

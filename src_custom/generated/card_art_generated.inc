@@ -1972,6 +1972,42 @@ static const unsigned char sMausoleumOfTheEmperorBigArt[] __attribute__((section
 static const unsigned short sMausoleumOfTheEmperorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mausoleum_of_the_emperor.gbapal");
 static const unsigned char sMausoleumOfTheEmperorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mausoleum_of_the_emperor.lz");
 
+static const unsigned char sMazeraDevilleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mazera_deville.huff");
+static const unsigned short sMazeraDevilleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mazera_deville.gbapal");
+static const unsigned char sMazeraDevilleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mazera_deville.lz");
+
+static const unsigned char sMetamorphosisBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/metamorphosis.huff");
+static const unsigned short sMetamorphosisBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/metamorphosis.gbapal");
+static const unsigned char sMetamorphosisMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/metamorphosis.lz");
+
+static const unsigned char sMeteorainBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/meteorain.huff");
+static const unsigned short sMeteorainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/meteorain.gbapal");
+static const unsigned char sMeteorainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/meteorain.lz");
+
+static const unsigned char sMirageOfNightmareBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mirage_of_nightmare.huff");
+static const unsigned short sMirageOfNightmareBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mirage_of_nightmare.gbapal");
+static const unsigned char sMirageOfNightmareMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mirage_of_nightmare.lz");
+
+static const unsigned char sMirrorForceDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mirror_force_dragon.huff");
+static const unsigned short sMirrorForceDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mirror_force_dragon.gbapal");
+static const unsigned char sMirrorForceDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mirror_force_dragon.lz");
+
+static const unsigned char sMoltenZombieBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/molten_zombie.huff");
+static const unsigned short sMoltenZombieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/molten_zombie.gbapal");
+static const unsigned char sMoltenZombieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/molten_zombie.lz");
+
+static const unsigned char sMonsterGateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/monster_gate.huff");
+static const unsigned short sMonsterGateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/monster_gate.gbapal");
+static const unsigned char sMonsterGateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/monster_gate.lz");
+
+static const unsigned char sMonsterRecoveryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/monster_recovery.huff");
+static const unsigned short sMonsterRecoveryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/monster_recovery.gbapal");
+static const unsigned char sMonsterRecoveryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/monster_recovery.lz");
+
+static const unsigned char sMoraleBoostBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/morale_boost.huff");
+static const unsigned short sMoraleBoostBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morale_boost.gbapal");
+static const unsigned char sMoraleBoostMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morale_boost.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2466,6 +2502,15 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0509] = sMasterPeaceTheTrueDracoslayingKingBigArt,
   [0x050A] = sMaskOfTheAccursedBigArt,
   [0x050B] = sMausoleumOfTheEmperorBigArt,
+  [0x050C] = sMazeraDevilleBigArt,
+  [0x050D] = sMetamorphosisBigArt,
+  [0x050E] = sMeteorainBigArt,
+  [0x050F] = sMirageOfNightmareBigArt,
+  [0x0510] = sMirrorForceDragonBigArt,
+  [0x0511] = sMoltenZombieBigArt,
+  [0x0512] = sMonsterGateBigArt,
+  [0x0513] = sMonsterRecoveryBigArt,
+  [0x0514] = sMoraleBoostBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2962,6 +3007,15 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0509] = sMasterPeaceTheTrueDracoslayingKingBigPalette,
   [0x050A] = sMaskOfTheAccursedBigPalette,
   [0x050B] = sMausoleumOfTheEmperorBigPalette,
+  [0x050C] = sMazeraDevilleBigPalette,
+  [0x050D] = sMetamorphosisBigPalette,
+  [0x050E] = sMeteorainBigPalette,
+  [0x050F] = sMirageOfNightmareBigPalette,
+  [0x0510] = sMirrorForceDragonBigPalette,
+  [0x0511] = sMoltenZombieBigPalette,
+  [0x0512] = sMonsterGateBigPalette,
+  [0x0513] = sMonsterRecoveryBigPalette,
+  [0x0514] = sMoraleBoostBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3455,9 +3509,18 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0506] = 0,
   [0x0507] = 0,
   [0x0508] = 0,
-  [0x0509] = 0,
+  [0x0509] = 1,
   [0x050A] = 0,
   [0x050B] = 0,
+  [0x050C] = 0,
+  [0x050D] = 0,
+  [0x050E] = 0,
+  [0x050F] = 0,
+  [0x0510] = 0,
+  [0x0511] = 0,
+  [0x0512] = 0,
+  [0x0513] = 0,
+  [0x0514] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3954,4 +4017,13 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0509] = sMasterPeaceTheTrueDracoslayingKingMiniArt,
   [0x050A] = sMaskOfTheAccursedMiniArt,
   [0x050B] = sMausoleumOfTheEmperorMiniArt,
+  [0x050C] = sMazeraDevilleMiniArt,
+  [0x050D] = sMetamorphosisMiniArt,
+  [0x050E] = sMeteorainMiniArt,
+  [0x050F] = sMirageOfNightmareMiniArt,
+  [0x0510] = sMirrorForceDragonMiniArt,
+  [0x0511] = sMoltenZombieMiniArt,
+  [0x0512] = sMonsterGateMiniArt,
+  [0x0513] = sMonsterRecoveryMiniArt,
+  [0x0514] = sMoraleBoostMiniArt,
 };

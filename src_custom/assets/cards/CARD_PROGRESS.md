@@ -519,16 +519,15 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
 - [x] `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING` — `master_peace_the_true_dracoslaying_king.png`
 - [x] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
-- [ ] `MAZERA_DEVILLE` — `mazera_deville.png`
-- [ ] `METAMORPHOSIS` — `metamorphosis.png`
-- [ ] `METEORAIN` — `meteorain.png`
-- [ ] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
-- [ ] `MIRROR_FORCE_DRAGON` — `mirror_force_dragon.png`
-- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
-- [ ] `MOLTEN_ZOMBIE` — `molten_zombie.png`
-- [ ] `MONSTER_GATE` — `monster_gate.png`
-- [ ] `MONSTER_RECOVERY` — `monster_recovery.png`
-- [ ] `MORALE_BOOST` — `morale_boost.png`
+- [x] `MAZERA_DEVILLE` — `mazera_deville.png`
+- [x] `METAMORPHOSIS` — `metamorphosis.png`
+- [x] `METEORAIN` — `meteorain.png`
+- [x] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
+- [x] `MIRROR_FORCE_DRAGON` — `mirror_force_dragon.png`
+- [x] `MOLTEN_ZOMBIE` — `molten_zombie.png`
+- [x] `MONSTER_GATE` — `monster_gate.png`
+- [x] `MONSTER_RECOVERY` — `monster_recovery.png`
+- [x] `MORALE_BOOST` — `morale_boost.png`
 - [ ] `MUCUS_YOLK` — `mucus_yolk.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
 - [ ] `NECROVALLEY` — `necrovalley.png`

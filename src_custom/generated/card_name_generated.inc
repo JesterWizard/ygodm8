@@ -492,6 +492,15 @@ static const u8 sMaskOfDispelName[] __attribute__((section(".append_assets"))) =
 static const u8 sMasterPeaceTheTrueDracoslayingKingName[] __attribute__((section(".append_assets"))) = "Master Peace, the True Dracoslaying King";
 static const u8 sMaskOfTheAccursedName[] __attribute__((section(".append_assets"))) = "Mask of the Accursed";
 static const u8 sMausoleumOfTheEmperorName[] __attribute__((section(".append_assets"))) = "Mausoleum of the Emperor";
+static const u8 sMazeraDevilleName[] __attribute__((section(".append_assets"))) = "Mazera DeVille";
+static const u8 sMetamorphosisName[] __attribute__((section(".append_assets"))) = "Metamorphosis";
+static const u8 sMeteorainName[] __attribute__((section(".append_assets"))) = "Meteorain";
+static const u8 sMirageOfNightmareName[] __attribute__((section(".append_assets"))) = "Mirage of Nightmare";
+static const u8 sMirrorForceDragonName[] __attribute__((section(".append_assets"))) = "Mirror Force Dragon";
+static const u8 sMoltenZombieName[] __attribute__((section(".append_assets"))) = "Molten Zombie";
+static const u8 sMonsterGateName[] __attribute__((section(".append_assets"))) = "Monster Gate";
+static const u8 sMonsterRecoveryName[] __attribute__((section(".append_assets"))) = "Monster Recovery";
+static const u8 sMoraleBoostName[] __attribute__((section(".append_assets"))) = "Morale Boost";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1482,6 +1491,24 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMaskOfTheAccursedName;
   if (cardId == 0x050B)
     return (u8 *)sMausoleumOfTheEmperorName;
+  if (cardId == 0x050C)
+    return (u8 *)sMazeraDevilleName;
+  if (cardId == 0x050D)
+    return (u8 *)sMetamorphosisName;
+  if (cardId == 0x050E)
+    return (u8 *)sMeteorainName;
+  if (cardId == 0x050F)
+    return (u8 *)sMirageOfNightmareName;
+  if (cardId == 0x0510)
+    return (u8 *)sMirrorForceDragonName;
+  if (cardId == 0x0511)
+    return (u8 *)sMoltenZombieName;
+  if (cardId == 0x0512)
+    return (u8 *)sMonsterGateName;
+  if (cardId == 0x0513)
+    return (u8 *)sMonsterRecoveryName;
+  if (cardId == 0x0514)
+    return (u8 *)sMoraleBoostName;
 
   return gCardNames[cardId];
 }

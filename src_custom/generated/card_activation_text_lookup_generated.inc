@@ -477,6 +477,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING] = gActivationDescription_MasterPeaceTheTrueDracoslayingKing_Popup1,
   [MASK_OF_THE_ACCURSED] = gActivationDescription_MaskOfTheAccursed_Popup1,
   [MAUSOLEUM_OF_THE_EMPEROR] = gActivationDescription_MausoleumOfTheEmperor_Popup1,
+  [MAZERA_DEVILLE] = gActivationDescription_MazeraDeville_Popup1,
+  [METAMORPHOSIS] = gActivationDescription_Metamorphosis_Popup1,
+  [METEORAIN] = gActivationDescription_Meteorain_Popup1,
+  [MIRAGE_OF_NIGHTMARE] = gActivationDescription_MirageOfNightmare_Popup1,
+  [MOLTEN_ZOMBIE] = gActivationDescription_MoltenZombie_Popup1,
+  [MONSTER_GATE] = gActivationDescription_MonsterGate_Popup1,
+  [MONSTER_RECOVERY] = gActivationDescription_MonsterRecovery_Popup1,
+  [MORALE_BOOST] = gActivationDescription_MoraleBoost_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -984,6 +992,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING_POPUP_1] = gActivationDescription_MasterPeaceTheTrueDracoslayingKing_Popup1,
   [CARD_EFFECT_TEXT_MASK_OF_THE_ACCURSED_POPUP_1] = gActivationDescription_MaskOfTheAccursed_Popup1,
   [CARD_EFFECT_TEXT_MAUSOLEUM_OF_THE_EMPEROR_POPUP_1] = gActivationDescription_MausoleumOfTheEmperor_Popup1,
+  [CARD_EFFECT_TEXT_MAZERA_DEVILLE_POPUP_1] = gActivationDescription_MazeraDeville_Popup1,
+  [CARD_EFFECT_TEXT_METAMORPHOSIS_POPUP_1] = gActivationDescription_Metamorphosis_Popup1,
+  [CARD_EFFECT_TEXT_METEORAIN_POPUP_1] = gActivationDescription_Meteorain_Popup1,
+  [CARD_EFFECT_TEXT_MIRAGE_OF_NIGHTMARE_POPUP_1] = gActivationDescription_MirageOfNightmare_Popup1,
+  [CARD_EFFECT_TEXT_MOLTEN_ZOMBIE_POPUP_1] = gActivationDescription_MoltenZombie_Popup1,
+  [CARD_EFFECT_TEXT_MONSTER_GATE_POPUP_1] = gActivationDescription_MonsterGate_Popup1,
+  [CARD_EFFECT_TEXT_MONSTER_RECOVERY_POPUP_1] = gActivationDescription_MonsterRecovery_Popup1,
+  [CARD_EFFECT_TEXT_MORALE_BOOST_POPUP_1] = gActivationDescription_MoraleBoost_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

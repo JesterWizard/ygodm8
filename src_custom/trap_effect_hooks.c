@@ -409,3 +409,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire GIFT_CARD in trap dispatcher */
 /* MAGICAL_HATS trap effect */
   /* TODO: wire MAGICAL_HATS in trap dispatcher */
+/* METEORAIN trap effect */
+  /* TODO: wire METEORAIN in trap dispatcher */
