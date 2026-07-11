@@ -463,6 +463,16 @@ static const u8 sHolactieTheCreatorOfLightName[] __attribute__((section(".append
 static const u8 sHorusTheBlackFlameDragonLv8Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV8";
 static const u8 sHorusTheBlackFlameDragonLv4Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV4";
 static const u8 sHorusTheBlackFlameDragonLv6Name[] __attribute__((section(".append_assets"))) = "Horus the Black Flame Dragon LV6";
+static const u8 sJowgenTheSpiritualistName[] __attribute__((section(".append_assets"))) = "Jowgen the Spiritualist";
+static const u8 sJudgmentDragonName[] __attribute__((section(".append_assets"))) = "Judgment Dragon";
+static const u8 sKingDragunName[] __attribute__((section(".append_assets"))) = "King Dragun";
+static const u8 sKingOfTheSwampName[] __attribute__((section(".append_assets"))) = "King of the Swamp";
+static const u8 sKurazTheLightMonarchName[] __attribute__((section(".append_assets"))) = "Kuraz the Light Monarch";
+static const u8 sKuribanditName[] __attribute__((section(".append_assets"))) = "Kuribandit";
+static const u8 sLastTurnName[] __attribute__((section(".append_assets"))) = "Last Turn";
+static const u8 sLegendOfHeartName[] __attribute__((section(".append_assets"))) = "Legend of Heart";
+static const u8 sLegendaryFlameLordName[] __attribute__((section(".append_assets"))) = "Legendary Flame Lord";
+static const u8 sKingTigerWanghuName[] __attribute__((section(".append_assets"))) = "King Tiger Wanghu";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1395,6 +1405,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHorusTheBlackFlameDragonLv4Name;
   if (cardId == 0x04EE)
     return (u8 *)sHorusTheBlackFlameDragonLv6Name;
+  if (cardId == 0x04EF)
+    return (u8 *)sJowgenTheSpiritualistName;
+  if (cardId == 0x04F0)
+    return (u8 *)sJudgmentDragonName;
+  if (cardId == 0x04F1)
+    return (u8 *)sKingDragunName;
+  if (cardId == 0x04F2)
+    return (u8 *)sKingOfTheSwampName;
+  if (cardId == 0x04F3)
+    return (u8 *)sKurazTheLightMonarchName;
+  if (cardId == 0x04F4)
+    return (u8 *)sKuribanditName;
+  if (cardId == 0x04F5)
+    return (u8 *)sLastTurnName;
+  if (cardId == 0x04F6)
+    return (u8 *)sLegendOfHeartName;
+  if (cardId == 0x04F7)
+    return (u8 *)sLegendaryFlameLordName;
+  if (cardId == 0x04F8)
+    return (u8 *)sKingTigerWanghuName;
 
   return gCardNames[cardId];
 }

@@ -449,6 +449,15 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [HORUS_THE_BLACK_FLAME_DRAGON_LV8] = gActivationDescription_HorusTheBlackFlameDragonLv8_Popup1,
   [HORUS_THE_BLACK_FLAME_DRAGON_LV4] = gActivationDescription_HorusTheBlackFlameDragonLv4_Popup1,
   [HORUS_THE_BLACK_FLAME_DRAGON_LV6] = gActivationDescription_HorusTheBlackFlameDragonLv6_Popup1,
+  [JOWGEN_THE_SPIRITUALIST] = gActivationDescription_JowgenTheSpiritualist_Popup1,
+  [JUDGMENT_DRAGON] = gActivationDescription_JudgmentDragon_Popup1,
+  [KING_OF_THE_SWAMP] = gActivationDescription_KingOfTheSwamp_Popup1,
+  [KURAZ_THE_LIGHT_MONARCH] = gActivationDescription_KurazTheLightMonarch_Popup1,
+  [KURIBANDIT] = gActivationDescription_Kuribandit_Popup1,
+  [LAST_TURN] = gActivationDescription_LastTurn_Popup1,
+  [LEGEND_OF_HEART] = gActivationDescription_LegendOfHeart_Popup1,
+  [LEGENDARY_FLAME_LORD] = gActivationDescription_LegendaryFlameLord_Popup1,
+  [KING_TIGER_WANGHU] = gActivationDescription_KingTigerWanghu_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -928,6 +937,15 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV8_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv8_Popup1,
   [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV4_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv4_Popup1,
   [CARD_EFFECT_TEXT_HORUS_THE_BLACK_FLAME_DRAGON_LV6_POPUP_1] = gActivationDescription_HorusTheBlackFlameDragonLv6_Popup1,
+  [CARD_EFFECT_TEXT_JOWGEN_THE_SPIRITUALIST_POPUP_1] = gActivationDescription_JowgenTheSpiritualist_Popup1,
+  [CARD_EFFECT_TEXT_JUDGMENT_DRAGON_POPUP_1] = gActivationDescription_JudgmentDragon_Popup1,
+  [CARD_EFFECT_TEXT_KING_OF_THE_SWAMP_POPUP_1] = gActivationDescription_KingOfTheSwamp_Popup1,
+  [CARD_EFFECT_TEXT_KURAZ_THE_LIGHT_MONARCH_POPUP_1] = gActivationDescription_KurazTheLightMonarch_Popup1,
+  [CARD_EFFECT_TEXT_KURIBANDIT_POPUP_1] = gActivationDescription_Kuribandit_Popup1,
+  [CARD_EFFECT_TEXT_LAST_TURN_POPUP_1] = gActivationDescription_LastTurn_Popup1,
+  [CARD_EFFECT_TEXT_LEGEND_OF_HEART_POPUP_1] = gActivationDescription_LegendOfHeart_Popup1,
+  [CARD_EFFECT_TEXT_LEGENDARY_FLAME_LORD_POPUP_1] = gActivationDescription_LegendaryFlameLord_Popup1,
+  [CARD_EFFECT_TEXT_KING_TIGER_WANGHU_POPUP_1] = gActivationDescription_KingTigerWanghu_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

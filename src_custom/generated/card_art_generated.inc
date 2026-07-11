@@ -1856,6 +1856,46 @@ static const unsigned char sHorusTheBlackFlameDragonLv6BigArt[] __attribute__((s
 static const unsigned short sHorusTheBlackFlameDragonLv6BigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/horus_the_black_flame_dragon_lv6.gbapal");
 static const unsigned char sHorusTheBlackFlameDragonLv6MiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/horus_the_black_flame_dragon_lv6.lz");
 
+static const unsigned char sJowgenTheSpiritualistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/jowgen_the_spiritualist.huff");
+static const unsigned short sJowgenTheSpiritualistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/jowgen_the_spiritualist.gbapal");
+static const unsigned char sJowgenTheSpiritualistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/jowgen_the_spiritualist.lz");
+
+static const unsigned char sJudgmentDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/judgment_dragon.huff");
+static const unsigned short sJudgmentDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/judgment_dragon.gbapal");
+static const unsigned char sJudgmentDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/judgment_dragon.lz");
+
+static const unsigned char sKingDragunBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/king_dragun.huff");
+static const unsigned short sKingDragunBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/king_dragun.gbapal");
+static const unsigned char sKingDragunMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/king_dragun.lz");
+
+static const unsigned char sKingOfTheSwampBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/king_of_the_swamp.huff");
+static const unsigned short sKingOfTheSwampBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/king_of_the_swamp.gbapal");
+static const unsigned char sKingOfTheSwampMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/king_of_the_swamp.lz");
+
+static const unsigned char sKurazTheLightMonarchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/kuraz_the_light_monarch.huff");
+static const unsigned short sKurazTheLightMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kuraz_the_light_monarch.gbapal");
+static const unsigned char sKurazTheLightMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kuraz_the_light_monarch.lz");
+
+static const unsigned char sKuribanditBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/kuribandit.huff");
+static const unsigned short sKuribanditBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/kuribandit.gbapal");
+static const unsigned char sKuribanditMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/kuribandit.lz");
+
+static const unsigned char sLastTurnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/last_turn.huff");
+static const unsigned short sLastTurnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/last_turn.gbapal");
+static const unsigned char sLastTurnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/last_turn.lz");
+
+static const unsigned char sLegendOfHeartBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/legend_of_heart.huff");
+static const unsigned short sLegendOfHeartBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/legend_of_heart.gbapal");
+static const unsigned char sLegendOfHeartMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/legend_of_heart.lz");
+
+static const unsigned char sLegendaryFlameLordBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/legendary_flame_lord.huff");
+static const unsigned short sLegendaryFlameLordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/legendary_flame_lord.gbapal");
+static const unsigned char sLegendaryFlameLordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/legendary_flame_lord.lz");
+
+static const unsigned char sKingTigerWanghuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/king_tiger_wanghu.huff");
+static const unsigned short sKingTigerWanghuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/king_tiger_wanghu.gbapal");
+static const unsigned char sKingTigerWanghuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/king_tiger_wanghu.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2321,6 +2361,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x04EC] = sHorusTheBlackFlameDragonLv8BigArt,
   [0x04ED] = sHorusTheBlackFlameDragonLv4BigArt,
   [0x04EE] = sHorusTheBlackFlameDragonLv6BigArt,
+  [0x04EF] = sJowgenTheSpiritualistBigArt,
+  [0x04F0] = sJudgmentDragonBigArt,
+  [0x04F1] = sKingDragunBigArt,
+  [0x04F2] = sKingOfTheSwampBigArt,
+  [0x04F3] = sKurazTheLightMonarchBigArt,
+  [0x04F4] = sKuribanditBigArt,
+  [0x04F5] = sLastTurnBigArt,
+  [0x04F6] = sLegendOfHeartBigArt,
+  [0x04F7] = sLegendaryFlameLordBigArt,
+  [0x04F8] = sKingTigerWanghuBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2788,6 +2838,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x04EC] = sHorusTheBlackFlameDragonLv8BigPalette,
   [0x04ED] = sHorusTheBlackFlameDragonLv4BigPalette,
   [0x04EE] = sHorusTheBlackFlameDragonLv6BigPalette,
+  [0x04EF] = sJowgenTheSpiritualistBigPalette,
+  [0x04F0] = sJudgmentDragonBigPalette,
+  [0x04F1] = sKingDragunBigPalette,
+  [0x04F2] = sKingOfTheSwampBigPalette,
+  [0x04F3] = sKurazTheLightMonarchBigPalette,
+  [0x04F4] = sKuribanditBigPalette,
+  [0x04F5] = sLastTurnBigPalette,
+  [0x04F6] = sLegendOfHeartBigPalette,
+  [0x04F7] = sLegendaryFlameLordBigPalette,
+  [0x04F8] = sKingTigerWanghuBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3255,6 +3315,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x04EC] = 0,
   [0x04ED] = 0,
   [0x04EE] = 0,
+  [0x04EF] = 0,
+  [0x04F0] = 0,
+  [0x04F1] = 0,
+  [0x04F2] = 0,
+  [0x04F3] = 0,
+  [0x04F4] = 0,
+  [0x04F5] = 0,
+  [0x04F6] = 0,
+  [0x04F7] = 0,
+  [0x04F8] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3722,4 +3792,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x04EC] = sHorusTheBlackFlameDragonLv8MiniArt,
   [0x04ED] = sHorusTheBlackFlameDragonLv4MiniArt,
   [0x04EE] = sHorusTheBlackFlameDragonLv6MiniArt,
+  [0x04EF] = sJowgenTheSpiritualistMiniArt,
+  [0x04F0] = sJudgmentDragonMiniArt,
+  [0x04F1] = sKingDragunMiniArt,
+  [0x04F2] = sKingOfTheSwampMiniArt,
+  [0x04F3] = sKurazTheLightMonarchMiniArt,
+  [0x04F4] = sKuribanditMiniArt,
+  [0x04F5] = sLastTurnMiniArt,
+  [0x04F6] = sLegendOfHeartMiniArt,
+  [0x04F7] = sLegendaryFlameLordMiniArt,
+  [0x04F8] = sKingTigerWanghuMiniArt,
 };

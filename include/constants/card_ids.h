@@ -1264,11 +1264,21 @@
 #define HORUS_THE_BLACK_FLAME_DRAGON_LV8         0x04EC
 #define HORUS_THE_BLACK_FLAME_DRAGON_LV4         0x04ED
 #define HORUS_THE_BLACK_FLAME_DRAGON_LV6         0x04EE
+#define JOWGEN_THE_SPIRITUALIST                  0x04EF
+#define JUDGMENT_DRAGON                          0x04F0
+#define KING_DRAGUN                              0x04F1
+#define KING_OF_THE_SWAMP                        0x04F2
+#define KURAZ_THE_LIGHT_MONARCH                  0x04F3
+#define KURIBANDIT                               0x04F4
+#define LAST_TURN                                0x04F5
+#define LEGEND_OF_HEART                          0x04F6
+#define LEGENDARY_FLAME_LORD                     0x04F7
+#define KING_TIGER_WANGHU                        0x04F8
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04EF
-#define NUM_CUSTOM_CARDS                        0x01CE
+#define NUM_TOTAL_CARDS                         0x04F9
+#define NUM_CUSTOM_CARDS                        0x01D8
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

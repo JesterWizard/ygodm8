@@ -489,16 +489,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV6` — `horus_the_black_flame_dragon_lv6.png`
 - [x] `INSECT_IMITATION` — `insect_imitation.png`
 - [x] `INSTANT_FUSION` — `instant_fusion.png`
-- [ ] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
-- [ ] `JUDGMENT_DRAGON` — `judgment_dragon.png`
-- [ ] `KING_DRAGUN` — `king_dragun.png`
-- [ ] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
-- [ ] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
-- [ ] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
-- [ ] `KURIBANDIT` — `kuribandit.png`
-- [ ] `LAST_TURN` — `last_turn.png`
-- [ ] `LEGEND_OF_HEART` — `legend_of_heart.png`
-- [ ] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
+- [x] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
+- [x] `JUDGMENT_DRAGON` — `judgment_dragon.png`
+- [x] `KING_DRAGUN` — `king_dragun.png`
+- [x] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
+- [x] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
+- [x] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
+- [x] `KURIBANDIT` — `kuribandit.png`
+- [x] `LAST_TURN` — `last_turn.png`
+- [x] `LEGEND_OF_HEART` — `legend_of_heart.png`
+- [x] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
 - [ ] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
 - [ ] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
 - [ ] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
