@@ -369,6 +369,13 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [CYBER_ELTANIN] = gActivationDescription_CyberEltanin_Popup1,
   [CYBER_KIRIN] = gActivationDescription_CyberKirin_Popup1,
   [CYBER_PHOENIX] = gActivationDescription_CyberPhoenix_Popup1,
+  [CYBER_VALLEY] = gActivationDescription_CyberValley_Popup1,
+  [CYBERNETIC_ZONE] = gActivationDescription_CyberneticZone_Popup1,
+  [D_TACTICS] = gActivationDescription_DTactics_Popup1,
+  [D_TIME] = gActivationDescription_DTime_Popup1,
+  [DAMAGE_POLARIZER] = gActivationDescription_DamagePolarizer_Popup1,
+  [D_BURST] = gActivationDescription_DBurst_Popup1,
+  [D_FORCE] = gActivationDescription_DForce_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -768,6 +775,13 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_CYBER_ELTANIN_POPUP_1] = gActivationDescription_CyberEltanin_Popup1,
   [CARD_EFFECT_TEXT_CYBER_KIRIN_POPUP_1] = gActivationDescription_CyberKirin_Popup1,
   [CARD_EFFECT_TEXT_CYBER_PHOENIX_POPUP_1] = gActivationDescription_CyberPhoenix_Popup1,
+  [CARD_EFFECT_TEXT_CYBER_VALLEY_POPUP_1] = gActivationDescription_CyberValley_Popup1,
+  [CARD_EFFECT_TEXT_CYBERNETIC_ZONE_POPUP_1] = gActivationDescription_CyberneticZone_Popup1,
+  [CARD_EFFECT_TEXT_D_TACTICS_POPUP_1] = gActivationDescription_DTactics_Popup1,
+  [CARD_EFFECT_TEXT_D_TIME_POPUP_1] = gActivationDescription_DTime_Popup1,
+  [CARD_EFFECT_TEXT_DAMAGE_POLARIZER_POPUP_1] = gActivationDescription_DamagePolarizer_Popup1,
+  [CARD_EFFECT_TEXT_D_BURST_POPUP_1] = gActivationDescription_DBurst_Popup1,
+  [CARD_EFFECT_TEXT_D_FORCE_POPUP_1] = gActivationDescription_DForce_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

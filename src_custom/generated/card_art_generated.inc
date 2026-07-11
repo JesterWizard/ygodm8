@@ -1496,6 +1496,34 @@ static const unsigned char sCyberPhoenixBigArt[] __attribute__((section(".append
 static const unsigned short sCyberPhoenixBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_phoenix.gbapal");
 static const unsigned char sCyberPhoenixMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_phoenix.lz");
 
+static const unsigned char sCyberValleyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cyber_valley.huff");
+static const unsigned short sCyberValleyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cyber_valley.gbapal");
+static const unsigned char sCyberValleyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cyber_valley.lz");
+
+static const unsigned char sCyberneticZoneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cybernetic_zone.huff");
+static const unsigned short sCyberneticZoneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cybernetic_zone.gbapal");
+static const unsigned char sCyberneticZoneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cybernetic_zone.lz");
+
+static const unsigned char sDTacticsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/d_tactics.huff");
+static const unsigned short sDTacticsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_tactics.gbapal");
+static const unsigned char sDTacticsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_tactics.lz");
+
+static const unsigned char sDTimeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/d_time.huff");
+static const unsigned short sDTimeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_time.gbapal");
+static const unsigned char sDTimeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_time.lz");
+
+static const unsigned char sDamagePolarizerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/damage_polarizer.huff");
+static const unsigned short sDamagePolarizerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/damage_polarizer.gbapal");
+static const unsigned char sDamagePolarizerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/damage_polarizer.lz");
+
+static const unsigned char sDBurstBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/d_burst.huff");
+static const unsigned short sDBurstBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_burst.gbapal");
+static const unsigned char sDBurstMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_burst.lz");
+
+static const unsigned char sDForceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/d_force.huff");
+static const unsigned short sDForceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/d_force.gbapal");
+static const unsigned char sDForceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/d_force.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -1871,6 +1899,13 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0492] = sCyberEltaninBigArt,
   [0x0493] = sCyberKirinBigArt,
   [0x0494] = sCyberPhoenixBigArt,
+  [0x0495] = sCyberValleyBigArt,
+  [0x0496] = sCyberneticZoneBigArt,
+  [0x0497] = sDTacticsBigArt,
+  [0x0498] = sDTimeBigArt,
+  [0x0499] = sDamagePolarizerBigArt,
+  [0x049A] = sDBurstBigArt,
+  [0x049B] = sDForceBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -2248,6 +2283,13 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0492] = sCyberEltaninBigPalette,
   [0x0493] = sCyberKirinBigPalette,
   [0x0494] = sCyberPhoenixBigPalette,
+  [0x0495] = sCyberValleyBigPalette,
+  [0x0496] = sCyberneticZoneBigPalette,
+  [0x0497] = sDTacticsBigPalette,
+  [0x0498] = sDTimeBigPalette,
+  [0x0499] = sDamagePolarizerBigPalette,
+  [0x049A] = sDBurstBigPalette,
+  [0x049B] = sDForceBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -2625,6 +2667,13 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0492] = 0,
   [0x0493] = 0,
   [0x0494] = 0,
+  [0x0495] = 0,
+  [0x0496] = 0,
+  [0x0497] = 0,
+  [0x0498] = 0,
+  [0x0499] = 0,
+  [0x049A] = 0,
+  [0x049B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -3002,4 +3051,11 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0492] = sCyberEltaninMiniArt,
   [0x0493] = sCyberKirinMiniArt,
   [0x0494] = sCyberPhoenixMiniArt,
+  [0x0495] = sCyberValleyMiniArt,
+  [0x0496] = sCyberneticZoneMiniArt,
+  [0x0497] = sDTacticsMiniArt,
+  [0x0498] = sDTimeMiniArt,
+  [0x0499] = sDamagePolarizerMiniArt,
+  [0x049A] = sDBurstMiniArt,
+  [0x049B] = sDForceMiniArt,
 };

@@ -393,3 +393,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire BACKFIRE in trap dispatcher */
 /* BREAK_THE_DESTINY trap effect */
   /* TODO: wire BREAK_THE_DESTINY in trap dispatcher */
+/* D_TACTICS trap effect */
+  /* TODO: wire D_TACTICS in trap dispatcher */
+/* D_TIME trap effect */
+  /* TODO: wire D_TIME in trap dispatcher */
+/* DAMAGE_POLARIZER trap effect */
+  /* TODO: wire DAMAGE_POLARIZER in trap dispatcher */

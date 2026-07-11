@@ -373,6 +373,13 @@ static const u8 sContinuousDestructionPunchName[] __attribute__((section(".appen
 static const u8 sCyberEltaninName[] __attribute__((section(".append_assets"))) = "Cyber Eltanin";
 static const u8 sCyberKirinName[] __attribute__((section(".append_assets"))) = "Cyber Kirin";
 static const u8 sCyberPhoenixName[] __attribute__((section(".append_assets"))) = "Cyber Phoenix";
+static const u8 sCyberValleyName[] __attribute__((section(".append_assets"))) = "Cyber Valley";
+static const u8 sCyberneticZoneName[] __attribute__((section(".append_assets"))) = "Cybernetic Zone";
+static const u8 sDTacticsName[] __attribute__((section(".append_assets"))) = "D - Tactics";
+static const u8 sDTimeName[] __attribute__((section(".append_assets"))) = "D - Time";
+static const u8 sDamagePolarizerName[] __attribute__((section(".append_assets"))) = "Damage Polarizer";
+static const u8 sDBurstName[] __attribute__((section(".append_assets"))) = "D - Burst";
+static const u8 sDForceName[] __attribute__((section(".append_assets"))) = "D - Force";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1125,6 +1132,20 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCyberKirinName;
   if (cardId == 0x0494)
     return (u8 *)sCyberPhoenixName;
+  if (cardId == 0x0495)
+    return (u8 *)sCyberValleyName;
+  if (cardId == 0x0496)
+    return (u8 *)sCyberneticZoneName;
+  if (cardId == 0x0497)
+    return (u8 *)sDTacticsName;
+  if (cardId == 0x0498)
+    return (u8 *)sDTimeName;
+  if (cardId == 0x0499)
+    return (u8 *)sDamagePolarizerName;
+  if (cardId == 0x049A)
+    return (u8 *)sDBurstName;
+  if (cardId == 0x049B)
+    return (u8 *)sDForceName;
 
   return gCardNames[cardId];
 }

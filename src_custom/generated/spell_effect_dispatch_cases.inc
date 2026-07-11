@@ -101,6 +101,9 @@
     case CYBERNETIC_FUSION_SUPPORT:
       EffectCyberneticFusionSupport();
       return;
+    case CYBERNETIC_ZONE:
+      EffectCYBERNETIC_ZONE();
+      return;
     case DARK_MAGIC_CURTAIN:
       EffectDarkMagicCurtain();
       return;
@@ -127,6 +130,12 @@
       return;
     case DUST_TORNADO:
       EffectDustTornado();
+      return;
+    case D_BURST:
+      EffectD_BURST();
+      return;
+    case D_FORCE:
+      EffectD_FORCE();
       return;
     case ECTOPLASMER:
       EffectEctoplasmer();

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `343` effects
+- `351` effects
 
 ## Tally
 
@@ -324,6 +324,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Cyber Eltanin` | `src_custom/activated_effects/cyber_eltanin.c` |
 | `activated_effects` | `Cyber Phoenix` | `src_custom/activated_effects/cyber_phoenix.c` |
 | `permanent_effects` | `Cyber Kirin` | `src_custom/permanent_effects/cyber_kirin.c` |
+| `activated_effects` | `Cyber Valley` | `src_custom/activated_effects/cyber_valley.c` |
+| `spell_effects` | `Cybernetic Zone` | `src_custom/spell_effects/cybernetic_zone.c` |
+| `activated_effects` | `D D Warrior` | `src_custom/activated_effects/d_d_warrior.c` |
+| `spell_effects` | `D Burst` | `src_custom/spell_effects/d_burst.c` |
+| `spell_effects` | `D Force` | `src_custom/spell_effects/d_force.c` |
+| `trap_effects` | `D Tactics` | `src_custom/trap_effects/d_tactics.c` |
+| `trap_effects` | `D Time` | `src_custom/trap_effects/d_time.c` |
+| `trap_effects` | `Damage Polarizer` | `src_custom/trap_effects/damage_polarizer.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

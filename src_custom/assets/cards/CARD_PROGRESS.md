@@ -399,7 +399,9 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `CYBER_VALLEY` — `cyber_valley.png`
+Add the cards from lines 392 - 401 to the trunk with the artwork included and their effects stubbed.@src_custom/assets/cards/CARD_PROGRESS.md 
+
+After you are done run make clean and then make- [ ] `CYBER_VALLEY` — `cyber_valley.png`
 - [ ] `CYBERNETIC_ZONE` — `cybernetic_zone.png`
 - [ ] `D.D_WARRIOR` — `d.d_warrior.png`
 - [ ] `D_BURST` — `d_burst.png`

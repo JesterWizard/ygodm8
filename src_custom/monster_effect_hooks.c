@@ -718,6 +718,14 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateCYBER_PHOENIXEffect();
     return;
   }
+  if (gMonEffect.id == CYBER_VALLEY) {
+    ActivateCYBER_VALLEYEffect();
+    return;
+  }
+  if (gMonEffect.id == D_D_WARRIOR) {
+    ActivateD_D_WARRIOREffect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();

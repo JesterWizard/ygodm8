@@ -1174,11 +1174,18 @@
 #define CYBER_ELTANIN                            0x0492
 #define CYBER_KIRIN                              0x0493
 #define CYBER_PHOENIX                            0x0494
+#define CYBER_VALLEY                             0x0495
+#define CYBERNETIC_ZONE                          0x0496
+#define D_TACTICS                                0x0497
+#define D_TIME                                   0x0498
+#define DAMAGE_POLARIZER                         0x0499
+#define D_BURST                                  0x049A
+#define D_FORCE                                  0x049B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0495
-#define NUM_CUSTOM_CARDS                        0x0174
+#define NUM_TOTAL_CARDS                         0x049C
+#define NUM_CUSTOM_CARDS                        0x017B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

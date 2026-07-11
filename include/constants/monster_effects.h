@@ -169,6 +169,8 @@ enum {
   MONSTER_EFFECT_CHIMERATECH_RAMPAGE_DRAGON,
   MONSTER_EFFECT_CYBER_ELTANIN,
   MONSTER_EFFECT_CYBER_PHOENIX,
+  MONSTER_EFFECT_CYBER_VALLEY,
+  MONSTER_EFFECT_D_D_WARRIOR,
 };
 
 extern unsigned char CanActivateInjectionFairyLily(void);
@@ -262,5 +264,9 @@ extern unsigned char CanActivateCYBER_ELTANIN(void);
 extern void ActivateCYBER_ELTANINEffect(void);
 extern unsigned char CanActivateCYBER_PHOENIX(void);
 extern void ActivateCYBER_PHOENIXEffect(void);
+extern unsigned char CanActivateCYBER_VALLEY(void);
+extern void ActivateCYBER_VALLEYEffect(void);
+extern unsigned char CanActivateD_D_WARRIOR(void);
+extern void ActivateD_D_WARRIOREffect(void);
 
 #endif // GUARD_CONSTANTS_MONSTER_EFFECTS_H
