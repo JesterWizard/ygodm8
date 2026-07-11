@@ -433,6 +433,16 @@ static const u8 sDestinyHeroDestroyDogmaName[] __attribute__((section(".append_a
 static const u8 sDoctorDName[] __attribute__((section(".append_assets"))) = "Doctor D";
 static const u8 sDoomVirusDragonName[] __attribute__((section(".append_assets"))) = "Doom Virus Dragon";
 static const u8 sDoppelgangerName[] __attribute__((section(".append_assets"))) = "Doppelganger";
+static const u8 sEgyptianGodSlimeName[] __attribute__((section(".append_assets"))) = "Egyptian God Slime";
+static const u8 sElementalHeroNeosKlugerName[] __attribute__((section(".append_assets"))) = "Elemental HERO Neos Kluger";
+static const u8 sEmergencyProvisionsName[] __attribute__((section(".append_assets"))) = "Emergency Provisions";
+static const u8 sExodiusTheUltimateForbiddenLordName[] __attribute__((section(".append_assets"))) = "Exodius the Ultimate Forbidden Lord";
+static const u8 sFatalAbacusName[] __attribute__((section(".append_assets"))) = "Fatal Abacus";
+static const u8 sFelgrandDragonName[] __attribute__((section(".append_assets"))) = "Felgrand Dragon";
+static const u8 sFiresOfDoomsdayName[] __attribute__((section(".append_assets"))) = "Fires of Doomsday";
+static const u8 sForcedRequisitionName[] __attribute__((section(".append_assets"))) = "Forced Requisition";
+static const u8 sDrainTimeName[] __attribute__((section(".append_assets"))) = "Drain Time";
+static const u8 sFieldsSanctuaryName[] __attribute__((section(".append_assets"))) = "Fields Sanctuary";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1305,6 +1315,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDoomVirusDragonName;
   if (cardId == 0x04D0)
     return (u8 *)sDoppelgangerName;
+  if (cardId == 0x04D1)
+    return (u8 *)sEgyptianGodSlimeName;
+  if (cardId == 0x04D2)
+    return (u8 *)sElementalHeroNeosKlugerName;
+  if (cardId == 0x04D3)
+    return (u8 *)sEmergencyProvisionsName;
+  if (cardId == 0x04D4)
+    return (u8 *)sExodiusTheUltimateForbiddenLordName;
+  if (cardId == 0x04D5)
+    return (u8 *)sFatalAbacusName;
+  if (cardId == 0x04D6)
+    return (u8 *)sFelgrandDragonName;
+  if (cardId == 0x04D7)
+    return (u8 *)sFiresOfDoomsdayName;
+  if (cardId == 0x04D8)
+    return (u8 *)sForcedRequisitionName;
+  if (cardId == 0x04D9)
+    return (u8 *)sDrainTimeName;
+  if (cardId == 0x04DA)
+    return (u8 *)sFieldsSanctuaryName;
 
   return gCardNames[cardId];
 }

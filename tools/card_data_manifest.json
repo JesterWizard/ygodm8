@@ -23917,6 +23917,272 @@
       "effect_texts": {
         "popup_1": "When you take damage from opponent monster effect, inflict same to opponent."
       }
+    },
+    {
+      "card_const": "EGYPTIAN_GOD_SLIME",
+      "card_name": "Egyptian God Slime",
+      "atk": 3000,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [4, 2, 1, 6, 6, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_EgyptianGodSlime",
+        "pages": [
+          "Must be Fusion Summoned using 1 Aqua monster",
+          "and 1 Level 10 WATER monster with 0 ATK.",
+          "Can be treated as 1 or 3 Tributes. Cannot be",
+          "destroyed by battle. Opponent cannot target",
+          "your other monsters with card effects."
+        ]
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_NEOS_KLUGER",
+      "card_name": "Elemental HERO Neos Kluger",
+      "atk": 3000,
+      "def": 2500,
+      "level": 9,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [9, 0, 3, 0, 7, 4, 9, 8],
+      "description": {
+        "symbol": "gDescription_ElementalHeroNeosKluger",
+        "pages": [
+          "Elemental HERO Neos + Yubel. Before damage",
+          "calculation, if this card battles: inflict",
+          "damage equal to opponent monster ATK.",
+          "If destroyed or leaves field by opponent",
+          "card: Special Summon 1 Neos Wiseman."
+        ]
+      }
+    },
+    {
+      "card_const": "EMERGENCY_PROVISIONS",
+      "card_name": "Emergency Provisions",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 3, 0, 4, 6, 4, 0, 8],
+      "description": {
+        "symbol": "gDescription_EmergencyProvisions",
+        "pages": [
+          "Send any number of other Spell/Trap Cards you",
+          "control to the Graveyard; gain 1000 LP for each card",
+          "sent to the Graveyard this way."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send any number of other Spell/Trap Cards you control to the Graveyard; gain 1000 LP for each card sent to the Graveyard"
+      }
+    },
+    {
+      "card_const": "EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD",
+      "card_name": "Exodius the Ultimate Forbidden Lord",
+      "atk": -1,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 3, 8, 9, 3, 5, 9, 6],
+      "description": {
+        "symbol": "gDescription_ExodiusTheUltimateForbiddenLord",
+        "pages": [
+          "Cannot be Normal Summoned. Special Summon",
+          "by shuffling all monsters in Graveyard",
+          "into Deck. When attacking: send 1 monster",
+          "from hand or Deck to Graveyard. Gains 1000",
+          "ATK per Normal Monster in Graveyard. Win"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by shuffling all monsters in your Graveyard int"
+      }
+    },
+    {
+      "card_const": "FATAL_ABACUS",
+      "card_name": "Fatal Abacus",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 7, 9, 1, 0, 0, 4, 5],
+      "description": {
+        "symbol": "gDescription_FatalAbacus",
+        "pages": [
+          "Each time 1 monster is sent from the field to the",
+          "Graveyard, inflict 500 points of damage per card",
+          "to the respective card owner's Life Points."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Each time 1 monster is sent from the field to the Graveyard, inflict 500 points of damage per card to the respective car"
+      }
+    },
+    {
+      "card_const": "FELGRAND_DRAGON",
+      "card_name": "Felgrand Dragon",
+      "atk": 2800,
+      "def": 2800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 3, 9, 5, 4, 9, 0, 1],
+      "description": {
+        "symbol": "gDescription_FelgrandDragon",
+        "pages": [
+          "Cannot be Special Summoned except from",
+          "the Graveyard, and only if sent from the",
+          "field. When Special Summoned: target 1",
+          "monster in your Graveyard; gain ATK equal",
+          "to its Level x 200."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Special Summoned except from the Graveyard, and only if it was sent there from the field. If this card is Spec"
+      }
+    },
+    {
+      "card_const": "FIRES_OF_DOOMSDAY",
+      "card_name": "Fires of Doomsday",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 6, 1, 7, 3, 6, 7, 9],
+      "description": {
+        "symbol": "gDescription_FiresOfDoomsday",
+        "pages": [
+          "Special Summon 2 Doomsday Tokens",
+          "(Fiend/DARK/Level 1/ATK 0/DEF 0) in",
+          "Defense Position. They cannot be Tributed",
+          "except for a DARK monster. Cannot Summon",
+          "other monsters this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Special Summon 2 \"Doomsday Tokens\" (Fiend/DARK/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be Tributed for a T"
+      }
+    },
+    {
+      "card_const": "FORCED_REQUISITION",
+      "card_name": "Forced Requisition",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 4, 9, 2, 3, 9, 7, 8],
+      "description": {
+        "symbol": "gDescription_ForcedRequisition",
+        "pages": [
+          "Activate when you discard from your hand.",
+          "After that, each time you discard, your",
+          "opponent must discard the same number of",
+          "cards from their hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can activate this card when you discard from your hand. After that, each time you discard from your hand, your oppon"
+      }
+    },
+    {
+      "card_const": "DRAIN_TIME",
+      "card_name": "Drain Time",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_DrainTime",
+        "pages": [
+          "Activate while you control Destiny Hero",
+          "Plasma. Select a phase: Draw, Standby,",
+          "Main, Battle, or End. Both players skip",
+          "their next phase of that choice. During",
+          "your Standby Phase, pay 1000 LP to return"
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Activate only while you control a face-up Destiny Hero - Plasma. Select 1 phase. Both players skip their next phase of that choice."
+      }
+    },
+    {
+      "card_const": "FIELDS_SANCTUARY",
+      "card_name": "Fields Sanctuary",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_FieldsSanctuary",
+        "pages": [
+          "A sanctuary that protects all who enter its domain.",
+          "Custom card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "A sanctuary that protects all who enter its domain."
+      }
     }
   ]
 }

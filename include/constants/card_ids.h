@@ -1234,11 +1234,21 @@
 #define DOCTOR_D                                 0x04CE
 #define DOOM_VIRUS_DRAGON                        0x04CF
 #define DOPPELGANGER                             0x04D0
+#define EGYPTIAN_GOD_SLIME                       0x04D1
+#define ELEMENTAL_HERO_NEOS_KLUGER               0x04D2
+#define EMERGENCY_PROVISIONS                     0x04D3
+#define EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD      0x04D4
+#define FATAL_ABACUS                             0x04D5
+#define FELGRAND_DRAGON                          0x04D6
+#define FIRES_OF_DOOMSDAY                        0x04D7
+#define FORCED_REQUISITION                       0x04D8
+#define DRAIN_TIME                               0x04D9
+#define FIELDS_SANCTUARY                         0x04DA
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04D1
-#define NUM_CUSTOM_CARDS                        0x01B0
+#define NUM_TOTAL_CARDS                         0x04DB
+#define NUM_CUSTOM_CARDS                        0x01BA
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

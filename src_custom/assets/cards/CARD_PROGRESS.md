@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 432 |
-| Art ready, needs manifest | 163 |
+| In game (manifest + art) | 442 |
+| Art ready, needs manifest | 153 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **597** |
 
@@ -454,21 +454,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DOCTOR_D` | Doctor D | `doctor_d.png` |
 | `DOOM_VIRUS_DRAGON` | Doom Virus Dragon | `doom_virus_dragon.png` |
 | `DOPPELGANGER` | Doppelganger | `doppelganger.png` |
+| `EGYPTIAN_GOD_SLIME` | Egyptian God Slime | `egyptian_god_slime.png` |
+| `ELEMENTAL_HERO_NEOS_KLUGER` | Elemental HERO Neos Kluger | `elemental_hero_neos_kluger.png` |
+| `EMERGENCY_PROVISIONS` | Emergency Provisions | `emergency_provisions.png` |
+| `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` | Exodius the Ultimate Forbidden Lord | `exodius_the_ultimate_forbidden_lord.png` |
+| `FATAL_ABACUS` | Fatal Abacus | `fatal_abacus.png` |
+| `FELGRAND_DRAGON` | Felgrand Dragon | `felgrand_dragon.png` |
+| `FIRES_OF_DOOMSDAY` | Fires of Doomsday | `fires_of_doomsday.png` |
+| `FORCED_REQUISITION` | Forced Requisition | `forced_requisition.png` |
+| `DRAIN_TIME` | Drain Time | `drain_time.png` |
+| `FIELDS_SANCTUARY` | Fields Sanctuary | `fields_sanctuary.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `DRAIN_TIME` — `drain_time.png`
-- [ ] `EGYPTIAN_GOD_SLIME` — `egyptian_god_slime.png`
-- [ ] `ELEMENTAL_HERO_NEOS_KLUGER` — `elemental_hero_neos_kluger.png`
-- [ ] `EMERGENCY_PROVISIONS` — `emergency_provisions.png`
-- [ ] `EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD` — `exodius_the_ultimate_forbidden_lord.png`
-- [ ] `FATAL_ABACUS` — `fatal_abacus.png`
-- [ ] `FELGRAND_DRAGON` — `felgrand_dragon.png`
-- [ ] `FIELDS_SANCTUARY` — `fields_sanctuary.png`
-- [ ] `FIRES_OF_DOOMSDAY` — `fires_of_doomsday.png`
-- [ ] `FORCED_REQUISITION` — `forced_requisition.png`
 - [ ] `FUSION_DESTINY` — `fusion_destiny.png`
 - [ ] `FUSION_GATE` — `fusion_gate.png`
 - [ ] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`

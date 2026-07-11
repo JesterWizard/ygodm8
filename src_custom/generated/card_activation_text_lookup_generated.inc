@@ -423,6 +423,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DESTINY_HERO_DESTROY_DOGMA] = gActivationDescription_DestinyHeroDestroyDogma_Popup1,
   [DOCTOR_D] = gActivationDescription_DoctorD_Popup1,
   [DOPPELGANGER] = gActivationDescription_Doppelganger_Popup1,
+  [EMERGENCY_PROVISIONS] = gActivationDescription_EmergencyProvisions_Popup1,
+  [EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD] = gActivationDescription_ExodiusTheUltimateForbiddenLord_Popup1,
+  [FATAL_ABACUS] = gActivationDescription_FatalAbacus_Popup1,
+  [FELGRAND_DRAGON] = gActivationDescription_FelgrandDragon_Popup1,
+  [FIRES_OF_DOOMSDAY] = gActivationDescription_FiresOfDoomsday_Popup1,
+  [FORCED_REQUISITION] = gActivationDescription_ForcedRequisition_Popup1,
+  [DRAIN_TIME] = gActivationDescription_DrainTime_Popup1,
+  [FIELDS_SANCTUARY] = gActivationDescription_FieldsSanctuary_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -876,6 +884,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DESTINY_HERO_DESTROY_DOGMA_POPUP_1] = gActivationDescription_DestinyHeroDestroyDogma_Popup1,
   [CARD_EFFECT_TEXT_DOCTOR_D_POPUP_1] = gActivationDescription_DoctorD_Popup1,
   [CARD_EFFECT_TEXT_DOPPELGANGER_POPUP_1] = gActivationDescription_Doppelganger_Popup1,
+  [CARD_EFFECT_TEXT_EMERGENCY_PROVISIONS_POPUP_1] = gActivationDescription_EmergencyProvisions_Popup1,
+  [CARD_EFFECT_TEXT_EXODIUS_THE_ULTIMATE_FORBIDDEN_LORD_POPUP_1] = gActivationDescription_ExodiusTheUltimateForbiddenLord_Popup1,
+  [CARD_EFFECT_TEXT_FATAL_ABACUS_POPUP_1] = gActivationDescription_FatalAbacus_Popup1,
+  [CARD_EFFECT_TEXT_FELGRAND_DRAGON_POPUP_1] = gActivationDescription_FelgrandDragon_Popup1,
+  [CARD_EFFECT_TEXT_FIRES_OF_DOOMSDAY_POPUP_1] = gActivationDescription_FiresOfDoomsday_Popup1,
+  [CARD_EFFECT_TEXT_FORCED_REQUISITION_POPUP_1] = gActivationDescription_ForcedRequisition_Popup1,
+  [CARD_EFFECT_TEXT_DRAIN_TIME_POPUP_1] = gActivationDescription_DrainTime_Popup1,
+  [CARD_EFFECT_TEXT_FIELDS_SANCTUARY_POPUP_1] = gActivationDescription_FieldsSanctuary_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)
