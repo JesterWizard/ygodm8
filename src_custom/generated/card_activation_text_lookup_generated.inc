@@ -523,6 +523,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [SOLEMN_JUDGMENT] = gActivationDescription_SolemnJudgment_Popup1,
   [SPARK_BLASTER] = gActivationDescription_SparkBlaster_Popup1,
   [SKYSCRAPER_2_HERO_CITY] = gActivationDescription_Skyscraper2HeroCity_Popup1,
+  [SPELL_ABSORPTION] = gActivationDescription_SpellAbsorption_Popup1,
+  [SPHINX_TELEIA] = gActivationDescription_SphinxTeleia_Popup1,
+  [STATUE_OF_THE_WICKED] = gActivationDescription_StatueOfTheWicked_Popup1,
+  [STAUNCH_DEFENDER] = gActivationDescription_StaunchDefender_Popup1,
+  [STRAY_LAMBS] = gActivationDescription_StrayLambs_Popup1,
+  [STRONGHOLD_THE_MOVING_FORTRESS] = gActivationDescription_StrongholdTheMovingFortress_Popup1,
+  [SUMMONER_MONK] = gActivationDescription_SummonerMonk_Popup1,
+  [SUMMONER_OF_ILLUSIONS] = gActivationDescription_SummonerOfIllusions_Popup1,
+  [SUPER_POLYMERIZATION] = gActivationDescription_SuperPolymerization_Popup1,
+  [TERRAFORMING] = gActivationDescription_Terraforming_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1076,6 +1086,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_SOLEMN_JUDGMENT_POPUP_1] = gActivationDescription_SolemnJudgment_Popup1,
   [CARD_EFFECT_TEXT_SPARK_BLASTER_POPUP_1] = gActivationDescription_SparkBlaster_Popup1,
   [CARD_EFFECT_TEXT_SKYSCRAPER_2_HERO_CITY_POPUP_1] = gActivationDescription_Skyscraper2HeroCity_Popup1,
+  [CARD_EFFECT_TEXT_SPELL_ABSORPTION_POPUP_1] = gActivationDescription_SpellAbsorption_Popup1,
+  [CARD_EFFECT_TEXT_SPHINX_TELEIA_POPUP_1] = gActivationDescription_SphinxTeleia_Popup1,
+  [CARD_EFFECT_TEXT_STATUE_OF_THE_WICKED_POPUP_1] = gActivationDescription_StatueOfTheWicked_Popup1,
+  [CARD_EFFECT_TEXT_STAUNCH_DEFENDER_POPUP_1] = gActivationDescription_StaunchDefender_Popup1,
+  [CARD_EFFECT_TEXT_STRAY_LAMBS_POPUP_1] = gActivationDescription_StrayLambs_Popup1,
+  [CARD_EFFECT_TEXT_STRONGHOLD_THE_MOVING_FORTRESS_POPUP_1] = gActivationDescription_StrongholdTheMovingFortress_Popup1,
+  [CARD_EFFECT_TEXT_SUMMONER_MONK_POPUP_1] = gActivationDescription_SummonerMonk_Popup1,
+  [CARD_EFFECT_TEXT_SUMMONER_OF_ILLUSIONS_POPUP_1] = gActivationDescription_SummonerOfIllusions_Popup1,
+  [CARD_EFFECT_TEXT_SUPER_POLYMERIZATION_POPUP_1] = gActivationDescription_SuperPolymerization_Popup1,
+  [CARD_EFFECT_TEXT_TERRAFORMING_POPUP_1] = gActivationDescription_Terraforming_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

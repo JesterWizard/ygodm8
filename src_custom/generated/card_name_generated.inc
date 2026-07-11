@@ -542,6 +542,16 @@ static const u8 sSkilledWhiteMagicianName[] __attribute__((section(".append_asse
 static const u8 sSolemnJudgmentName[] __attribute__((section(".append_assets"))) = "Solemn Judgment";
 static const u8 sSparkBlasterName[] __attribute__((section(".append_assets"))) = "Spark Blaster";
 static const u8 sSkyscraper2HeroCityName[] __attribute__((section(".append_assets"))) = "Skyscraper 2 - Hero City";
+static const u8 sSpellAbsorptionName[] __attribute__((section(".append_assets"))) = "Spell Absorption";
+static const u8 sSphinxTeleiaName[] __attribute__((section(".append_assets"))) = "Sphinx Teleia";
+static const u8 sStatueOfTheWickedName[] __attribute__((section(".append_assets"))) = "Statue of the Wicked";
+static const u8 sStaunchDefenderName[] __attribute__((section(".append_assets"))) = "Staunch Defender";
+static const u8 sStrayLambsName[] __attribute__((section(".append_assets"))) = "Stray Lambs";
+static const u8 sStrongholdTheMovingFortressName[] __attribute__((section(".append_assets"))) = "Stronghold the Moving Fortress";
+static const u8 sSummonerMonkName[] __attribute__((section(".append_assets"))) = "Summoner Monk";
+static const u8 sSummonerOfIllusionsName[] __attribute__((section(".append_assets"))) = "Summoner of Illusions";
+static const u8 sSuperPolymerizationName[] __attribute__((section(".append_assets"))) = "Super Polymerization";
+static const u8 sTerraformingName[] __attribute__((section(".append_assets"))) = "Terraforming";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1632,6 +1642,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSparkBlasterName;
   if (cardId == 0x053D)
     return (u8 *)sSkyscraper2HeroCityName;
+  if (cardId == 0x053E)
+    return (u8 *)sSpellAbsorptionName;
+  if (cardId == 0x053F)
+    return (u8 *)sSphinxTeleiaName;
+  if (cardId == 0x0540)
+    return (u8 *)sStatueOfTheWickedName;
+  if (cardId == 0x0541)
+    return (u8 *)sStaunchDefenderName;
+  if (cardId == 0x0542)
+    return (u8 *)sStrayLambsName;
+  if (cardId == 0x0543)
+    return (u8 *)sStrongholdTheMovingFortressName;
+  if (cardId == 0x0544)
+    return (u8 *)sSummonerMonkName;
+  if (cardId == 0x0545)
+    return (u8 *)sSummonerOfIllusionsName;
+  if (cardId == 0x0546)
+    return (u8 *)sSuperPolymerizationName;
+  if (cardId == 0x0547)
+    return (u8 *)sTerraformingName;
 
   return gCardNames[cardId];
 }

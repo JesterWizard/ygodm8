@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 541 |
-| Art ready, needs manifest | 52 |
+| In game (manifest + art) | 551 |
+| Art ready, needs manifest | 42 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -563,21 +563,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `SOLEMN_JUDGMENT` | Solemn Judgment | `solemn_judgment.png` |
 | `SPARK_BLASTER` | Spark Blaster | `spark_blaster.png` |
 | `SKYSCRAPER_2_HERO_CITY` | Skyscraper 2 - Hero City | `skyscraper_2_hero_city.png` |
+| `SPELL_ABSORPTION` | Spell Absorption | `spell_absorption.png` |
+| `SPHINX_TELEIA` | Sphinx Teleia | `sphinx_teleia.png` |
+| `STATUE_OF_THE_WICKED` | Statue of the Wicked | `statue_of_the_wicked.png` |
+| `STAUNCH_DEFENDER` | Staunch Defender | `staunch_defender.png` |
+| `STRAY_LAMBS` | Stray Lambs | `stray_lambs.png` |
+| `STRONGHOLD_THE_MOVING_FORTRESS` | Stronghold the Moving Fortress | `stronghold_the_moving_fortress.png` |
+| `SUMMONER_MONK` | Summoner Monk | `summoner_monk.png` |
+| `SUMMONER_OF_ILLUSIONS` | Summoner of Illusions | `summoner_of_illusions.png` |
+| `SUPER_POLYMERIZATION` | Super Polymerization | `super_polymerization.png` |
+| `TERRAFORMING` | Terraforming | `terraforming.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
-- [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
-- [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`
-- [ ] `STAUNCH_DEFENDER` — `staunch_defender.png`
-- [ ] `STRAY_LAMBS` — `stray_lambs.png`
-- [ ] `STRONGHOLD_THE_MOVING_FORTRESS` — `stronghold_the_moving_fortress.png`
-- [ ] `SUMMONER_MONK` — `summoner_monk.png`
-- [ ] `SUMMONER_OF_ILLUSIONS` — `summoner_of_illusions.png`
-- [ ] `SUPER_POLYMERIZATION` — `super_polymerization.png`
-- [ ] `TERRAFORMING` — `terraforming.png`
 - [ ] `THE_A_FORCES` — `the_a_forces.png`
 - [ ] `THE_AGENT_OF_JUDGMENT_SATURN` — `the_agent_of_judgment_saturn.png`
 - [ ] `THE_AGENT_OF_WISDOM_MERCURY` — `the_agent_of_wisdom_mercury.png`

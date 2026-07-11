@@ -2172,6 +2172,46 @@ static const unsigned char sSkyscraper2HeroCityBigArt[] __attribute__((section("
 static const unsigned short sSkyscraper2HeroCityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skyscraper_2_hero_city.gbapal");
 static const unsigned char sSkyscraper2HeroCityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skyscraper_2_hero_city.lz");
 
+static const unsigned char sSpellAbsorptionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spell_absorption.huff");
+static const unsigned short sSpellAbsorptionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spell_absorption.gbapal");
+static const unsigned char sSpellAbsorptionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spell_absorption.lz");
+
+static const unsigned char sSphinxTeleiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sphinx_teleia.huff");
+static const unsigned short sSphinxTeleiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sphinx_teleia.gbapal");
+static const unsigned char sSphinxTeleiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sphinx_teleia.lz");
+
+static const unsigned char sStatueOfTheWickedBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/statue_of_the_wicked.huff");
+static const unsigned short sStatueOfTheWickedBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/statue_of_the_wicked.gbapal");
+static const unsigned char sStatueOfTheWickedMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/statue_of_the_wicked.lz");
+
+static const unsigned char sStaunchDefenderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/staunch_defender.huff");
+static const unsigned short sStaunchDefenderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/staunch_defender.gbapal");
+static const unsigned char sStaunchDefenderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/staunch_defender.lz");
+
+static const unsigned char sStrayLambsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/stray_lambs.huff");
+static const unsigned short sStrayLambsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/stray_lambs.gbapal");
+static const unsigned char sStrayLambsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/stray_lambs.lz");
+
+static const unsigned char sStrongholdTheMovingFortressBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/stronghold_the_moving_fortress.huff");
+static const unsigned short sStrongholdTheMovingFortressBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/stronghold_the_moving_fortress.gbapal");
+static const unsigned char sStrongholdTheMovingFortressMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/stronghold_the_moving_fortress.lz");
+
+static const unsigned char sSummonerMonkBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/summoner_monk.huff");
+static const unsigned short sSummonerMonkBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/summoner_monk.gbapal");
+static const unsigned char sSummonerMonkMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/summoner_monk.lz");
+
+static const unsigned char sSummonerOfIllusionsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/summoner_of_illusions.huff");
+static const unsigned short sSummonerOfIllusionsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/summoner_of_illusions.gbapal");
+static const unsigned char sSummonerOfIllusionsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/summoner_of_illusions.lz");
+
+static const unsigned char sSuperPolymerizationBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/super_polymerization.huff");
+static const unsigned short sSuperPolymerizationBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/super_polymerization.gbapal");
+static const unsigned char sSuperPolymerizationMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/super_polymerization.lz");
+
+static const unsigned char sTerraformingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/terraforming.huff");
+static const unsigned short sTerraformingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/terraforming.gbapal");
+static const unsigned char sTerraformingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/terraforming.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2716,6 +2756,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x053B] = sSolemnJudgmentBigArt,
   [0x053C] = sSparkBlasterBigArt,
   [0x053D] = sSkyscraper2HeroCityBigArt,
+  [0x053E] = sSpellAbsorptionBigArt,
+  [0x053F] = sSphinxTeleiaBigArt,
+  [0x0540] = sStatueOfTheWickedBigArt,
+  [0x0541] = sStaunchDefenderBigArt,
+  [0x0542] = sStrayLambsBigArt,
+  [0x0543] = sStrongholdTheMovingFortressBigArt,
+  [0x0544] = sSummonerMonkBigArt,
+  [0x0545] = sSummonerOfIllusionsBigArt,
+  [0x0546] = sSuperPolymerizationBigArt,
+  [0x0547] = sTerraformingBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3262,6 +3312,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x053B] = sSolemnJudgmentBigPalette,
   [0x053C] = sSparkBlasterBigPalette,
   [0x053D] = sSkyscraper2HeroCityBigPalette,
+  [0x053E] = sSpellAbsorptionBigPalette,
+  [0x053F] = sSphinxTeleiaBigPalette,
+  [0x0540] = sStatueOfTheWickedBigPalette,
+  [0x0541] = sStaunchDefenderBigPalette,
+  [0x0542] = sStrayLambsBigPalette,
+  [0x0543] = sStrongholdTheMovingFortressBigPalette,
+  [0x0544] = sSummonerMonkBigPalette,
+  [0x0545] = sSummonerOfIllusionsBigPalette,
+  [0x0546] = sSuperPolymerizationBigPalette,
+  [0x0547] = sTerraformingBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3808,6 +3868,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x053B] = 0,
   [0x053C] = 0,
   [0x053D] = 0,
+  [0x053E] = 0,
+  [0x053F] = 0,
+  [0x0540] = 0,
+  [0x0541] = 0,
+  [0x0542] = 0,
+  [0x0543] = 0,
+  [0x0544] = 0,
+  [0x0545] = 0,
+  [0x0546] = 0,
+  [0x0547] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4354,4 +4424,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x053B] = sSolemnJudgmentMiniArt,
   [0x053C] = sSparkBlasterMiniArt,
   [0x053D] = sSkyscraper2HeroCityMiniArt,
+  [0x053E] = sSpellAbsorptionMiniArt,
+  [0x053F] = sSphinxTeleiaMiniArt,
+  [0x0540] = sStatueOfTheWickedMiniArt,
+  [0x0541] = sStaunchDefenderMiniArt,
+  [0x0542] = sStrayLambsMiniArt,
+  [0x0543] = sStrongholdTheMovingFortressMiniArt,
+  [0x0544] = sSummonerMonkMiniArt,
+  [0x0545] = sSummonerOfIllusionsMiniArt,
+  [0x0546] = sSuperPolymerizationMiniArt,
+  [0x0547] = sTerraformingMiniArt,
 };

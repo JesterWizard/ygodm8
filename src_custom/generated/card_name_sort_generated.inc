@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 541
+#define NUM_CUSTOM_NAME_SORT_CARDS 551
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -546,6 +546,16 @@ static const u8 sSkilledWhiteMagicianSortName[] APPEND_RODATA = "Skilled White M
 static const u8 sSolemnJudgmentSortName[] APPEND_RODATA = "Solemn Judgment";
 static const u8 sSparkBlasterSortName[] APPEND_RODATA = "Spark Blaster";
 static const u8 sSkyscraper2HeroCitySortName[] APPEND_RODATA = "Skyscraper 2 - Hero City";
+static const u8 sSpellAbsorptionSortName[] APPEND_RODATA = "Spell Absorption";
+static const u8 sSphinxTeleiaSortName[] APPEND_RODATA = "Sphinx Teleia";
+static const u8 sStatueOfTheWickedSortName[] APPEND_RODATA = "Statue of the Wicked";
+static const u8 sStaunchDefenderSortName[] APPEND_RODATA = "Staunch Defender";
+static const u8 sStrayLambsSortName[] APPEND_RODATA = "Stray Lambs";
+static const u8 sStrongholdTheMovingFortressSortName[] APPEND_RODATA = "Stronghold the Moving Fortress";
+static const u8 sSummonerMonkSortName[] APPEND_RODATA = "Summoner Monk";
+static const u8 sSummonerOfIllusionsSortName[] APPEND_RODATA = "Summoner of Illusions";
+static const u8 sSuperPolymerizationSortName[] APPEND_RODATA = "Super Polymerization";
+static const u8 sTerraformingSortName[] APPEND_RODATA = "Terraforming";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1024,16 +1034,26 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0390, // Soul Taker
   0x053C, // Spark Blaster
   0x0343, // Spear Dragon
+  0x053E, // Spell Absorption
   0x032B, // Spell Canceller
   0x03FC, // Spell Economics
+  0x053F, // Sphinx Teleia
   0x03D9, // Spirit Caller
   0x03A5, // Spirit of the Breeze
   0x03D3, // Spirit of the Pot of Greed
   0x03B4, // Spirit Reaper
   0x03BF, // Spirit Ryu
   0x0333, // St Joan
+  0x0540, // Statue of the Wicked
+  0x0541, // Staunch Defender
   0x0393, // Stealth Bird
+  0x0542, // Stray Lambs
+  0x0543, // Stronghold the Moving Fortress
+  0x0544, // Summoner Monk
+  0x0545, // Summoner of Illusions
+  0x0546, // Super Polymerization
   0x036E, // Swift Gaia The Fierce Knight
+  0x0547, // Terraforming
   0x0374, // Terrorking Salmon
   0x0454, // Tethys, Goddess of Light
   0x0384, // The Agent Of Creation - Venus
@@ -1568,71 +1588,81 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   474, // Soul Taker
   475, // Spark Blaster
   476, // Spear Dragon
-  477, // Spell Canceller
-  478, // Spell Economics
-  479, // Spirit Caller
-  480, // Spirit of the Breeze
-  481, // Spirit of the Pot of Greed
-  482, // Spirit Reaper
-  483, // Spirit Ryu
-  484, // St Joan
-  485, // Stealth Bird
-  486, // Swift Gaia The Fierce Knight
-  487, // Terrorking Salmon
-  488, // Tethys, Goddess of Light
-  489, // The Agent Of Creation - Venus
-  490, // The Agent of Force - Mars
-  491, // The Big Saturn
-  492, // The Blazing Mars
-  493, // The Dark Door
-  494, // The Despair Uranus
-  495, // The Flute of Summoning Dragon
-  496, // The Forceful Sentry
-  497, // The Grand Jupiter
-  498, // The Sanctuary in the Sky
-  499, // The Splendid Venus
-  500, // The Suppression Pluto
-  501, // The Supremacy Sun
-  502, // The Thing in the Crater
-  503, // The Tricky
-  504, // The Tripper Mercury
-  505, // The Tyrant Neptune
-  506, // The Unstoppable Exodia Incarnate
-  507, // The Wicked Avatar
-  508, // The Wicked Dreadroot
-  509, // The Wicked Eraser
-  510, // Theban Nightmare
-  511, // Thousand Energy
-  512, // Thousand Knives
-  513, // Thunder Crash
-  514, // Time Seal
-  515, // Tiny Angel
-  516, // Toll
-  517, // Torpedo Fish
-  518, // Trade-In
-  519, // Triangle Power
-  520, // Tribute Doll
-  521, // Twin Swords of Flashing Light - Tryce
-  522, // Tyrant Dragon
-  523, // Ultimate Offering
-  524, // United We Stand
-  525, // Upstart Goblin
-  526, // Uria, Lord of Searing Flames
-  527, // Valhalla, Hall of the Fallen
-  528, // Vampire Baby
-  529, // Vengeful Bog Spirit
-  530, // Wall of Revealing Light
-  531, // Warrior of Zera
-  532, // Wave Motion Cannon
-  533, // Weather Report
-  534, // White Magician Pikeru
-  535, // World Suppression
-  536, // Yata-Garasu
-  537, // Yubel
-  538, // Yubel - Terror Incarnate
-  539, // Yubel - The Ultimate Nightmare
-  540, // Zaborg the Thunder Monarch
-  541, // Zeriel
+  477, // Spell Absorption
+  478, // Spell Canceller
+  479, // Spell Economics
+  480, // Sphinx Teleia
+  481, // Spirit Caller
+  482, // Spirit of the Breeze
+  483, // Spirit of the Pot of Greed
+  484, // Spirit Reaper
+  485, // Spirit Ryu
+  486, // St Joan
+  487, // Statue of the Wicked
+  488, // Staunch Defender
+  489, // Stealth Bird
+  490, // Stray Lambs
+  491, // Stronghold the Moving Fortress
+  492, // Summoner Monk
+  493, // Summoner of Illusions
+  494, // Super Polymerization
+  495, // Swift Gaia The Fierce Knight
+  496, // Terraforming
+  497, // Terrorking Salmon
+  498, // Tethys, Goddess of Light
+  499, // The Agent Of Creation - Venus
+  500, // The Agent of Force - Mars
+  501, // The Big Saturn
+  502, // The Blazing Mars
+  503, // The Dark Door
+  504, // The Despair Uranus
+  505, // The Flute of Summoning Dragon
+  506, // The Forceful Sentry
+  507, // The Grand Jupiter
+  508, // The Sanctuary in the Sky
+  509, // The Splendid Venus
+  510, // The Suppression Pluto
+  511, // The Supremacy Sun
+  512, // The Thing in the Crater
+  513, // The Tricky
+  514, // The Tripper Mercury
+  515, // The Tyrant Neptune
+  516, // The Unstoppable Exodia Incarnate
+  517, // The Wicked Avatar
+  518, // The Wicked Dreadroot
+  519, // The Wicked Eraser
+  520, // Theban Nightmare
+  521, // Thousand Energy
+  522, // Thousand Knives
+  523, // Thunder Crash
+  524, // Time Seal
+  525, // Tiny Angel
+  526, // Toll
+  527, // Torpedo Fish
+  528, // Trade-In
+  529, // Triangle Power
+  530, // Tribute Doll
+  531, // Twin Swords of Flashing Light - Tryce
+  532, // Tyrant Dragon
+  533, // Ultimate Offering
+  534, // United We Stand
+  535, // Upstart Goblin
+  536, // Uria, Lord of Searing Flames
+  537, // Valhalla, Hall of the Fallen
+  538, // Vampire Baby
+  539, // Vengeful Bog Spirit
+  540, // Wall of Revealing Light
+  541, // Warrior of Zera
+  542, // Wave Motion Cannon
+  543, // Weather Report
+  544, // White Magician Pikeru
+  545, // World Suppression
+  546, // Yata-Garasu
+  547, // Yubel
+  548, // Yubel - Terror Incarnate
+  549, // Yubel - The Ultimate Nightmare
+  550, // Zaborg the Thunder Monarch
+  551, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2724,6 +2754,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSparkBlasterSortName;
   if (cardId == 0x053D)
     return (u8 *)sSkyscraper2HeroCitySortName;
+  if (cardId == 0x053E)
+    return (u8 *)sSpellAbsorptionSortName;
+  if (cardId == 0x053F)
+    return (u8 *)sSphinxTeleiaSortName;
+  if (cardId == 0x0540)
+    return (u8 *)sStatueOfTheWickedSortName;
+  if (cardId == 0x0541)
+    return (u8 *)sStaunchDefenderSortName;
+  if (cardId == 0x0542)
+    return (u8 *)sStrayLambsSortName;
+  if (cardId == 0x0543)
+    return (u8 *)sStrongholdTheMovingFortressSortName;
+  if (cardId == 0x0544)
+    return (u8 *)sSummonerMonkSortName;
+  if (cardId == 0x0545)
+    return (u8 *)sSummonerOfIllusionsSortName;
+  if (cardId == 0x0546)
+    return (u8 *)sSuperPolymerizationSortName;
+  if (cardId == 0x0547)
+    return (u8 *)sTerraformingSortName;
 
   return gCardNames[cardId];
 }

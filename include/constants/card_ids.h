@@ -1343,11 +1343,21 @@
 #define SOLEMN_JUDGMENT                          0x053B
 #define SPARK_BLASTER                            0x053C
 #define SKYSCRAPER_2_HERO_CITY                   0x053D
+#define SPELL_ABSORPTION                         0x053E
+#define SPHINX_TELEIA                            0x053F
+#define STATUE_OF_THE_WICKED                     0x0540
+#define STAUNCH_DEFENDER                         0x0541
+#define STRAY_LAMBS                              0x0542
+#define STRONGHOLD_THE_MOVING_FORTRESS           0x0543
+#define SUMMONER_MONK                            0x0544
+#define SUMMONER_OF_ILLUSIONS                    0x0545
+#define SUPER_POLYMERIZATION                     0x0546
+#define TERRAFORMING                             0x0547
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x053E
-#define NUM_CUSTOM_CARDS                        0x021D
+#define NUM_TOTAL_CARDS                         0x0548
+#define NUM_CUSTOM_CARDS                        0x0227
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
