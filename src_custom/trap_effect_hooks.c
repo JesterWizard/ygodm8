@@ -411,3 +411,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire MAGICAL_HATS in trap dispatcher */
 /* METEORAIN trap effect */
   /* TODO: wire METEORAIN in trap dispatcher */
+/* NEEDLE_WALL trap effect */
+  /* TODO: wire NEEDLE_WALL in trap dispatcher */
+/* NUMINOUS_HEALER trap effect */
+  /* TODO: wire NUMINOUS_HEALER in trap dispatcher */

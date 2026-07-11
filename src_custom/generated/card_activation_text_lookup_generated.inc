@@ -485,6 +485,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [MONSTER_GATE] = gActivationDescription_MonsterGate_Popup1,
   [MONSTER_RECOVERY] = gActivationDescription_MonsterRecovery_Popup1,
   [MORALE_BOOST] = gActivationDescription_MoraleBoost_Popup1,
+  [MUCUS_YOLK] = gActivationDescription_MucusYolk_Popup1,
+  [MYSTIK_WOK] = gActivationDescription_MystikWok_Popup1,
+  [NECROVALLEY] = gActivationDescription_Necrovalley_Popup1,
+  [NEEDLE_WALL] = gActivationDescription_NeedleWall_Popup1,
+  [NEOS_WISEMAN] = gActivationDescription_NeosWiseman_Popup1,
+  [NIBIRU_THE_PRIMAL_BEING] = gActivationDescription_NibiruThePrimalBeing_Popup1,
+  [NUMINOUS_HEALER] = gActivationDescription_NuminousHealer_Popup1,
+  [ORICHALCOS_SHUNOROS] = gActivationDescription_OrichalcosShunoros_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1000,6 +1008,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_MONSTER_GATE_POPUP_1] = gActivationDescription_MonsterGate_Popup1,
   [CARD_EFFECT_TEXT_MONSTER_RECOVERY_POPUP_1] = gActivationDescription_MonsterRecovery_Popup1,
   [CARD_EFFECT_TEXT_MORALE_BOOST_POPUP_1] = gActivationDescription_MoraleBoost_Popup1,
+  [CARD_EFFECT_TEXT_MUCUS_YOLK_POPUP_1] = gActivationDescription_MucusYolk_Popup1,
+  [CARD_EFFECT_TEXT_MYSTIK_WOK_POPUP_1] = gActivationDescription_MystikWok_Popup1,
+  [CARD_EFFECT_TEXT_NECROVALLEY_POPUP_1] = gActivationDescription_Necrovalley_Popup1,
+  [CARD_EFFECT_TEXT_NEEDLE_WALL_POPUP_1] = gActivationDescription_NeedleWall_Popup1,
+  [CARD_EFFECT_TEXT_NEOS_WISEMAN_POPUP_1] = gActivationDescription_NeosWiseman_Popup1,
+  [CARD_EFFECT_TEXT_NIBIRU_THE_PRIMAL_BEING_POPUP_1] = gActivationDescription_NibiruThePrimalBeing_Popup1,
+  [CARD_EFFECT_TEXT_NUMINOUS_HEALER_POPUP_1] = gActivationDescription_NuminousHealer_Popup1,
+  [CARD_EFFECT_TEXT_ORICHALCOS_SHUNOROS_POPUP_1] = gActivationDescription_OrichalcosShunoros_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

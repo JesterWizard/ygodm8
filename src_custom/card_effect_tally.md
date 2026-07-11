@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `461` effects
+- `471` effects
 
 ## Tally
 
@@ -442,6 +442,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Monster Gate` | `src_custom/spell_effects/monster_gate.c` |
 | `spell_effects` | `Monster Recovery` | `src_custom/spell_effects/monster_recovery.c` |
 | `spell_effects` | `Morale Boost` | `src_custom/spell_effects/morale_boost.c` |
+| `activated_effects` | `Mucus Yolk` | `src_custom/activated_effects/mucus_yolk.c` |
+| `spell_effects` | `Mystik Wok` | `src_custom/spell_effects/mystik_wok.c` |
+| `spell_effects` | `Necrovalley` | `src_custom/spell_effects/necrovalley.c` |
+| `trap_effects` | `Needle Wall` | `src_custom/trap_effects/needle_wall.c` |
+| `activated_effects` | `Neo Blue Eyes Ultimate Dragon` | `src_custom/activated_effects/neo_blue_eyes_ultimate_dragon.c` |
+| `activated_effects` | `Neos Wiseman` | `src_custom/activated_effects/neos_wiseman.c` |
+| `activated_effects` | `Nibiru The Primal Being` | `src_custom/activated_effects/nibiru_the_primal_being.c` |
+| `trap_effects` | `Numinous Healer` | `src_custom/trap_effects/numinous_healer.c` |
+| `activated_effects` | `Ojama King` | `src_custom/activated_effects/ojama_king.c` |
+| `activated_effects` | `Orichalcos Shunoros` | `src_custom/activated_effects/orichalcos_shunoros.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

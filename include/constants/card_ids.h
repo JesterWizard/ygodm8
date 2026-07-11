@@ -1302,11 +1302,21 @@
 #define MONSTER_GATE                             0x0512
 #define MONSTER_RECOVERY                         0x0513
 #define MORALE_BOOST                             0x0514
+#define MUCUS_YOLK                               0x0515
+#define MYSTIK_WOK                               0x0516
+#define NECROVALLEY                              0x0517
+#define NEEDLE_WALL                              0x0518
+#define NEO_BLUE_EYES_ULTIMATE_DRAGON            0x0519
+#define NEOS_WISEMAN                             0x051A
+#define NIBIRU_THE_PRIMAL_BEING                  0x051B
+#define NUMINOUS_HEALER                          0x051C
+#define OJAMA_KING                               0x051D
+#define ORICHALCOS_SHUNOROS                      0x051E
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0515
-#define NUM_CUSTOM_CARDS                        0x01F4
+#define NUM_TOTAL_CARDS                         0x051F
+#define NUM_CUSTOM_CARDS                        0x01FE
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

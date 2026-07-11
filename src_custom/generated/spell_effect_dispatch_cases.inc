@@ -281,6 +281,12 @@
     case MYSTICAL_SPACE_TYPHOON:
       EffectMysticalSpaceTyphoon();
       return;
+    case MYSTIK_WOK:
+      EffectMYSTIK_WOK();
+      return;
+    case NECROVALLEY:
+      EffectNECROVALLEY();
+      return;
     case NEGATIVE_ENERGY:
       EffectNegativeEnergy();
       return;

@@ -501,6 +501,16 @@ static const u8 sMoltenZombieName[] __attribute__((section(".append_assets"))) =
 static const u8 sMonsterGateName[] __attribute__((section(".append_assets"))) = "Monster Gate";
 static const u8 sMonsterRecoveryName[] __attribute__((section(".append_assets"))) = "Monster Recovery";
 static const u8 sMoraleBoostName[] __attribute__((section(".append_assets"))) = "Morale Boost";
+static const u8 sMucusYolkName[] __attribute__((section(".append_assets"))) = "Mucus Yolk";
+static const u8 sMystikWokName[] __attribute__((section(".append_assets"))) = "Mystik Wok";
+static const u8 sNecrovalleyName[] __attribute__((section(".append_assets"))) = "Necrovalley";
+static const u8 sNeedleWallName[] __attribute__((section(".append_assets"))) = "Needle Wall";
+static const u8 sNeoBlueEyesUltimateDragonName[] __attribute__((section(".append_assets"))) = "Neo Blue-Eyes Ultimate Dragon";
+static const u8 sNeosWisemanName[] __attribute__((section(".append_assets"))) = "Neos Wiseman";
+static const u8 sNibiruThePrimalBeingName[] __attribute__((section(".append_assets"))) = "Nibiru, the Primal Being";
+static const u8 sNuminousHealerName[] __attribute__((section(".append_assets"))) = "Numinous Healer";
+static const u8 sOjamaKingName[] __attribute__((section(".append_assets"))) = "Ojama King";
+static const u8 sOrichalcosShunorosName[] __attribute__((section(".append_assets"))) = "Orichalcos Shunoros";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1509,6 +1519,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMonsterRecoveryName;
   if (cardId == 0x0514)
     return (u8 *)sMoraleBoostName;
+  if (cardId == 0x0515)
+    return (u8 *)sMucusYolkName;
+  if (cardId == 0x0516)
+    return (u8 *)sMystikWokName;
+  if (cardId == 0x0517)
+    return (u8 *)sNecrovalleyName;
+  if (cardId == 0x0518)
+    return (u8 *)sNeedleWallName;
+  if (cardId == 0x0519)
+    return (u8 *)sNeoBlueEyesUltimateDragonName;
+  if (cardId == 0x051A)
+    return (u8 *)sNeosWisemanName;
+  if (cardId == 0x051B)
+    return (u8 *)sNibiruThePrimalBeingName;
+  if (cardId == 0x051C)
+    return (u8 *)sNuminousHealerName;
+  if (cardId == 0x051D)
+    return (u8 *)sOjamaKingName;
+  if (cardId == 0x051E)
+    return (u8 *)sOrichalcosShunorosName;
 
   return gCardNames[cardId];
 }

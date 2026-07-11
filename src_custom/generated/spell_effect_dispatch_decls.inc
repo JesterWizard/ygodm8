@@ -93,6 +93,8 @@ extern void EffectMonsterReborn(void);
 extern void EffectMONSTER_RECOVERY(void);
 extern void EffectMORALE_BOOST(void);
 extern void EffectMysticalSpaceTyphoon(void);
+extern void EffectMYSTIK_WOK(void);
+extern void EffectNECROVALLEY(void);
 extern void EffectNegativeEnergy(void);
 extern void EffectNightmareWheel(void);
 extern void EffectOverloadFusion(void);

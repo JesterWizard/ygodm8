@@ -2008,6 +2008,46 @@ static const unsigned char sMoraleBoostBigArt[] __attribute__((section(".append_
 static const unsigned short sMoraleBoostBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/morale_boost.gbapal");
 static const unsigned char sMoraleBoostMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/morale_boost.lz");
 
+static const unsigned char sMucusYolkBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mucus_yolk.huff");
+static const unsigned short sMucusYolkBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mucus_yolk.gbapal");
+static const unsigned char sMucusYolkMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mucus_yolk.lz");
+
+static const unsigned char sMystikWokBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/mystik_wok.huff");
+static const unsigned short sMystikWokBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/mystik_wok.gbapal");
+static const unsigned char sMystikWokMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/mystik_wok.lz");
+
+static const unsigned char sNecrovalleyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/necrovalley.huff");
+static const unsigned short sNecrovalleyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/necrovalley.gbapal");
+static const unsigned char sNecrovalleyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/necrovalley.lz");
+
+static const unsigned char sNeedleWallBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/needle_wall.huff");
+static const unsigned short sNeedleWallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/needle_wall.gbapal");
+static const unsigned char sNeedleWallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/needle_wall.lz");
+
+static const unsigned char sNeoBlueEyesUltimateDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_blue_eyes_ultimate_dragon.huff");
+static const unsigned short sNeoBlueEyesUltimateDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_blue_eyes_ultimate_dragon.gbapal");
+static const unsigned char sNeoBlueEyesUltimateDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_blue_eyes_ultimate_dragon.lz");
+
+static const unsigned char sNeosWisemanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neos_wiseman.huff");
+static const unsigned short sNeosWisemanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neos_wiseman.gbapal");
+static const unsigned char sNeosWisemanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neos_wiseman.lz");
+
+static const unsigned char sNibiruThePrimalBeingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/nibiru_the_primal_being.huff");
+static const unsigned short sNibiruThePrimalBeingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nibiru_the_primal_being.gbapal");
+static const unsigned char sNibiruThePrimalBeingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nibiru_the_primal_being.lz");
+
+static const unsigned char sNuminousHealerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/numinous_healer.huff");
+static const unsigned short sNuminousHealerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/numinous_healer.gbapal");
+static const unsigned char sNuminousHealerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/numinous_healer.lz");
+
+static const unsigned char sOjamaKingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ojama_king.huff");
+static const unsigned short sOjamaKingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ojama_king.gbapal");
+static const unsigned char sOjamaKingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ojama_king.lz");
+
+static const unsigned char sOrichalcosShunorosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/orichalcos_shunoros.huff");
+static const unsigned short sOrichalcosShunorosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/orichalcos_shunoros.gbapal");
+static const unsigned char sOrichalcosShunorosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/orichalcos_shunoros.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2511,6 +2551,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0512] = sMonsterGateBigArt,
   [0x0513] = sMonsterRecoveryBigArt,
   [0x0514] = sMoraleBoostBigArt,
+  [0x0515] = sMucusYolkBigArt,
+  [0x0516] = sMystikWokBigArt,
+  [0x0517] = sNecrovalleyBigArt,
+  [0x0518] = sNeedleWallBigArt,
+  [0x0519] = sNeoBlueEyesUltimateDragonBigArt,
+  [0x051A] = sNeosWisemanBigArt,
+  [0x051B] = sNibiruThePrimalBeingBigArt,
+  [0x051C] = sNuminousHealerBigArt,
+  [0x051D] = sOjamaKingBigArt,
+  [0x051E] = sOrichalcosShunorosBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3016,6 +3066,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0512] = sMonsterGateBigPalette,
   [0x0513] = sMonsterRecoveryBigPalette,
   [0x0514] = sMoraleBoostBigPalette,
+  [0x0515] = sMucusYolkBigPalette,
+  [0x0516] = sMystikWokBigPalette,
+  [0x0517] = sNecrovalleyBigPalette,
+  [0x0518] = sNeedleWallBigPalette,
+  [0x0519] = sNeoBlueEyesUltimateDragonBigPalette,
+  [0x051A] = sNeosWisemanBigPalette,
+  [0x051B] = sNibiruThePrimalBeingBigPalette,
+  [0x051C] = sNuminousHealerBigPalette,
+  [0x051D] = sOjamaKingBigPalette,
+  [0x051E] = sOrichalcosShunorosBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3521,6 +3581,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0512] = 0,
   [0x0513] = 0,
   [0x0514] = 0,
+  [0x0515] = 0,
+  [0x0516] = 0,
+  [0x0517] = 0,
+  [0x0518] = 0,
+  [0x0519] = 0,
+  [0x051A] = 0,
+  [0x051B] = 0,
+  [0x051C] = 0,
+  [0x051D] = 0,
+  [0x051E] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4026,4 +4096,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0512] = sMonsterGateMiniArt,
   [0x0513] = sMonsterRecoveryMiniArt,
   [0x0514] = sMoraleBoostMiniArt,
+  [0x0515] = sMucusYolkMiniArt,
+  [0x0516] = sMystikWokMiniArt,
+  [0x0517] = sNecrovalleyMiniArt,
+  [0x0518] = sNeedleWallMiniArt,
+  [0x0519] = sNeoBlueEyesUltimateDragonMiniArt,
+  [0x051A] = sNeosWisemanMiniArt,
+  [0x051B] = sNibiruThePrimalBeingMiniArt,
+  [0x051C] = sNuminousHealerMiniArt,
+  [0x051D] = sOjamaKingMiniArt,
+  [0x051E] = sOrichalcosShunorosMiniArt,
 };

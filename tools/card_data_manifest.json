@@ -37450,6 +37450,364 @@
       "effect_texts": {
         "popup_1": "Equip Spell equipped: gain 1000 LP. Equip Spell leaves field: take 1000 damage."
       }
+    },
+    {
+      "card_const": "MUCUS_YOLK",
+      "card_name": "Mucus Yolk",
+      "atk": 0,
+      "def": 100,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        7,
+        0,
+        3,
+        0,
+        7,
+        6,
+        5,
+        6
+      ],
+      "description": {
+        "symbol": "gDescription_MucusYolk",
+        "pages": [
+          "This card can attack your opponent",
+          "directly. Each time it inflicts",
+          "Battle Damage, increase its ATK",
+          "by 1000 during your next Standby",
+          "Phase. ATK lasts while face-up."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This card can attack your opponent's Life Points directly. Each time this card inflicts Battle Damage to your opponent's"
+      }
+    },
+    {
+      "card_const": "MYSTIK_WOK",
+      "card_name": "Mystik Wok",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        8,
+        0,
+        1,
+        6,
+        1,
+        3,
+        9,
+        5
+      ],
+      "description": {
+        "symbol": "gDescription_MystikWok",
+        "pages": [
+          "Tribute 1 monster. Select",
+          "either its ATK or DEF and",
+          "gain that many Life Points."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 monster. Select either its ATK or DEF and gain that many Life Points."
+      }
+    },
+    {
+      "card_const": "NECROVALLEY",
+      "card_name": "Necrovalley",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        4,
+        7,
+        3,
+        5,
+        5,
+        4,
+        9,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_Necrovalley",
+        "pages": [
+          "All Gravekeeper monsters gain",
+          "500 ATK/DEF. Cards in the GY",
+          "cannot be banished. Negate any",
+          "card effect that would move a",
+          "card in the GY elsewhere."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "All \"Gravekeeper's\" monsters gain 500 ATK and DEF. Cards in the Graveyard cannot be banished. Negate any card effect tha"
+      }
+    },
+    {
+      "card_const": "NEEDLE_WALL",
+      "card_name": "Needle Wall",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        3,
+        8,
+        2,
+        9,
+        9,
+        2,
+        3,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_NeedleWall",
+        "pages": [
+          "Once per turn, during your",
+          "Standby Phase: roll a six-sided",
+          "die. Destroy the monster in",
+          "the same Zone as the result.",
+          "If 6, roll again."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Once per turn, during your Standby Phase: Roll a six-sided die. Treat your opponent's Main Monster Zones as numbers 1-5,"
+      }
+    },
+    {
+      "card_const": "NEO_BLUE_EYES_ULTIMATE_DRAGON",
+      "card_name": "Neo Blue-Eyes Ultimate Dragon",
+      "atk": 4500,
+      "def": 3800,
+      "level": 12,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [
+        5,
+        6,
+        5,
+        3,
+        2,
+        3,
+        5,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_NeoBlueEyesUltimateDragon",
+        "pages": [
+          "Blue-Eyes White Dragon x3.",
+          "If this attacked, send 1",
+          "Blue-Eyes Fusion from Extra",
+          "Deck to GY to attack again.",
+          "From GY: banish to negate."
+        ]
+      }
+    },
+    {
+      "card_const": "NEOS_WISEMAN",
+      "card_name": "Neos Wiseman",
+      "atk": 3000,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        0,
+        5,
+        1,
+        2,
+        6,
+        4,
+        9,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_NeosWiseman",
+        "pages": [
+          "Cannot be Normal Summoned. Send Neos and Yubel",
+          "to GY, Special Summon from hand. After battle",
+          "inflict damage to opponent equal to the ATK",
+          "of the monster it battled, and gain LP equal",
+          "to its DEF. Cannot be destroyed by card effects."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned or Set. Must be Special Summoned (from your hand) by sending 1 face-up \"Elemental HERO Neos\" a"
+      }
+    },
+    {
+      "card_const": "NIBIRU_THE_PRIMAL_BEING",
+      "card_name": "Nibiru, the Primal Being",
+      "atk": 3000,
+      "def": 600,
+      "level": 11,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_ROCK",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [
+        2,
+        7,
+        2,
+        0,
+        4,
+        3,
+        1,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_NibiruThePrimalBeing",
+        "pages": [
+          "If opponent Summoned 5+ monsters this turn:",
+          "Tribute all face-up monsters, Special Summon",
+          "this from hand, then Summon a Token with",
+          "combined ATK/DEF to opponent. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "During the Main Phase, if your opponent Normal or Special Summoned 5 or more monsters this turn (Quick Effect): You can "
+      }
+    },
+    {
+      "card_const": "NUMINOUS_HEALER",
+      "card_name": "Numinous Healer",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        0,
+        2,
+        1,
+        3,
+        0,
+        6,
+        2,
+        5
+      ],
+      "description": {
+        "symbol": "gDescription_NuminousHealer",
+        "pages": [
+          "Activate when you take damage.",
+          "Gain 1000 LP. Also gain 500 LP",
+          "for each Numinous Healer card",
+          "in your Graveyard."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can only activate this card when you take damage to your Life Points. Increase your Life Points by 1000 points. Also"
+      }
+    },
+    {
+      "card_const": "OJAMA_KING",
+      "card_name": "Ojama King",
+      "atk": 0,
+      "def": 3000,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        9,
+        0,
+        1,
+        4,
+        0,
+        9,
+        8,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_OjamaKing",
+        "pages": [
+          "\"Ojama Green\" + \"Ojama Yellow\" + \"Ojama Black\"",
+          "Select up to 3 of your opponent's Monster Card",
+          "Zones. The selected zones cannot be used."
+        ]
+      }
+    },
+    {
+      "card_const": "ORICHALCOS_SHUNOROS",
+      "card_name": "Orichalcos Shunoros",
+      "atk": -1,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [
+        0,
+        7,
+        6,
+        3,
+        4,
+        5,
+        8,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_OrichalcosShunoros",
+        "pages": [
+          "Cannot be Normal Summoned. When Normal Monster",
+          "is destroyed by battle, Special Summon this",
+          "from hand. Gains 1000 ATK per opponent monster.",
+          "Level 4 Normal Monsters on field cannot be",
+          "destroyed by card effects."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "This card cannot be Normal Summoned or Set. If a Normal Monster you control is destroyed by battle, you can Special Summ"
+      }
     }
   ]
 }

@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 442 |
-| Art ready, needs manifest | 153 |
-| In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **597** |
+| In game (manifest + art) | 509 |
+| Art ready, needs manifest | 90 |
+| In manifest, missing art | 1 |
+| **Total PNGs in `80x80/`** | **601** |
 
 ## In game
 
@@ -464,80 +464,85 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `FORCED_REQUISITION` | Forced Requisition | `forced_requisition.png` |
 | `DRAIN_TIME` | Drain Time | `drain_time.png` |
 | `FIELDS_SANCTUARY` | Fields Sanctuary | `fields_sanctuary.png` |
+| `FUSION_DESTINY` | Fusion Destiny | `fusion_destiny.png` |
+| `FUSION_GATE` | Fusion Gate | `fusion_gate.png` |
+| `GATE_GUARDIANS_COMBINED` | Gate Guardians Combined | `gate_guardians_combined.png` |
+| `GIFT_CARD` | Gift Card | `gift_card.png` |
+| `GODDESS_BOW` | Goddess Bow | `goddess_bow.png` |
+| `GORZ_THE_EMISSARY_OF_DARKNESS` | Gorz the Emissary of Darkness | `gorz_the_emissary_of_darkness.png` |
+| `GRANMARG_THE_ROCK_MONARCH` | Granmarg the Rock Monarch | `granmarg_the_rock_monarch.png` |
+| `GREEN_GADGET` | Green Gadget | `green_gadget.png` |
+| `GROUND_COLLAPSE` | Ground Collapse | `ground_collapse.png` |
+| `GUARDIAN_DREADSCYTHE` | Guardian Dreadscythe | `guardian_dreadscythe.png` |
+| `HARPIE_LADY_PHOENIX_FORMATION` | Harpie Lady Phoenix Formation | `harpie_lady_phoenix_formation.png` |
+| `HERO_FLASH` | Hero Flash!! | `hero_flash.png` |
+| `INSECT_IMITATION` | Insect Imitation | `insect_imitation.png` |
+| `INSTANT_FUSION` | Instant Fusion | `instant_fusion.png` |
+| `GUARDIAN_EATOS` | Guardian Eatos | `guardian_eatos.png` |
+| `HERALD_OF_CREATION` | Herald of Creation | `herald_of_creation.png` |
+| `HOLACTIE_THE_CREATOR_OF_LIGHT` | Holactie the Creator of Light | `holactie_the_creator_of_light.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LV8` | Horus the Black Flame Dragon LV8 | `horus_the_black_flame_dragon_lv8.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LV4` | Horus the Black Flame Dragon LV4 | `horus_the_black_flame_dragon_lv4.png` |
+| `HORUS_THE_BLACK_FLAME_DRAGON_LV6` | Horus the Black Flame Dragon LV6 | `horus_the_black_flame_dragon_lv6.png` |
+| `JOWGEN_THE_SPIRITUALIST` | Jowgen the Spiritualist | `jowgen_the_spiritualist.png` |
+| `JUDGMENT_DRAGON` | Judgment Dragon | `judgment_dragon.png` |
+| `KING_DRAGUN` | King Dragun | `king_dragun.png` |
+| `KING_OF_THE_SWAMP` | King of the Swamp | `king_of_the_swamp.png` |
+| `KURAZ_THE_LIGHT_MONARCH` | Kuraz the Light Monarch | `kuraz_the_light_monarch.png` |
+| `KURIBANDIT` | Kuribandit | `kuribandit.png` |
+| `LAST_TURN` | Last Turn | `last_turn.png` |
+| `LEGEND_OF_HEART` | Legend of Heart | `legend_of_heart.png` |
+| `LEGENDARY_FLAME_LORD` | Legendary Flame Lord | `legendary_flame_lord.png` |
+| `KING_TIGER_WANGHU` | King Tiger Wanghu | `king_tiger_wanghu.png` |
+| `LEGENDARY_KNIGHT_CRITIAS` | Legendary Knight Critias | `legendary_knight_critias.png` |
+| `LEGENDARY_KNIGHT_HERMOS` | Legendary Knight Hermos | `legendary_knight_hermos.png` |
+| `LEGENDARY_KNIGHT_TIMAEUS` | Legendary Knight Timaeus | `legendary_knight_timaeus.png` |
+| `LEKUNGA` | Lekunga | `lekunga.png` |
+| `LIGHT_AND_DARKNESS_DRAGON` | Light and Darkness Dragon | `light_and_darkness_dragon.png` |
+| `LORD_OF_THE_RED` | Lord of the Red | `lord_of_the_red.png` |
+| `MA_AT` | Ma'at | `ma_at.png` |
+| `MAGICAL_DIMENSION` | Magical Dimension | `magical_dimension.png` |
+| `MAGICAL_HATS` | Magical Hats | `magical_hats.png` |
+| `MAGICAL_PLANT_MANDRAGOLA` | Magical Plant Mandragola | `magical_plant_mandragola.png` |
+| `MAGICAL_SCIENTIST` | Magical Scientist | `magical_scientist.png` |
+| `MAGICAL_STONE_EXCAVATION` | Magical Stone Excavation | `magical_stone_excavation.png` |
+| `MAJESTIC_MECH_GORYU` | Majestic Mech - Goryu | `majestic_mech_goryu.png` |
+| `MANJU_OF_THE_TEN_THOUSAND_HANDS` | Manju of the Ten Thousand Hands | `manju_of_the_ten_thousand_hands.png` |
+| `MARSHMALLON` | Marshmallon | `marshmallon.png` |
+| `MASK_OF_DISPEL` | Mask of Dispel | `mask_of_dispel.png` |
+| `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING` | Master Peace, the True Dracoslaying King | `master_peace_the_true_dracoslaying_king.png` |
+| `MASK_OF_THE_ACCURSED` | Mask of the Accursed | `mask_of_the_accursed.png` |
+| `MAUSOLEUM_OF_THE_EMPEROR` | Mausoleum of the Emperor | `mausoleum_of_the_emperor.png` |
+| `MAZERA_DEVILLE` | Mazera DeVille | `mazera_deville.png` |
+| `METAMORPHOSIS` | Metamorphosis | `metamorphosis.png` |
+| `METEORAIN` | Meteorain | `meteorain.png` |
+| `MIRAGE_OF_NIGHTMARE` | Mirage of Nightmare | `mirage_of_nightmare.png` |
+| `MIRROR_FORCE_DRAGON` | Mirror Force Dragon | `mirror_force_dragon.png` |
+| `MOLTEN_ZOMBIE` | Molten Zombie | `molten_zombie.png` |
+| `MONSTER_GATE` | Monster Gate | `monster_gate.png` |
+| `MONSTER_RECOVERY` | Monster Recovery | `monster_recovery.png` |
+| `MORALE_BOOST` | Morale Boost | `morale_boost.png` |
+| `MUCUS_YOLK` | Mucus Yolk | `mucus_yolk.png` |
+| `NECROVALLEY` | Necrovalley | `necrovalley.png` |
+| `NEEDLE_WALL` | Needle Wall | `needle_wall.png` |
+| `NEO_BLUE_EYES_ULTIMATE_DRAGON` | Neo Blue-Eyes Ultimate Dragon | `neo_blue_eyes_ultimate_dragon.png` |
+| `NEOS_WISEMAN` | Neos Wiseman | `neos_wiseman.png` |
+| `NIBIRU_THE_PRIMAL_BEING` | Nibiru, the Primal Being | `nibiru_the_primal_being.png` |
+| `NUMINOUS_HEALER` | Numinous Healer | `numinous_healer.png` |
+| `OJAMA_KING` | Ojama King | `ojama_king.png` |
+| `ORICHALCOS_SHUNOROS` | Orichalcos Shunoros | `orichalcos_shunoros.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [x] `FUSION_DESTINY` — `fusion_destiny.png`
-- [x] `FUSION_GATE` — `fusion_gate.png`
-- [x] `GATE_GUARDIANS_COMBINED` — `gate_guardians_combined.png`
-- [x] `GIFT_CARD` — `gift_card.png`
-- [x] `GODDESS_BOW` — `goddess_bow.png`
-- [x] `GORZ_THE_EMISSARY_OF_DARKNESS` — `gorz_the_emissary_of_darkness.png`
-- [x] `GRANMARG_THE_ROCK_MONARCH` — `granmarg_the_rock_monarch.png`
-- [x] `GREEN_GADGET` — `green_gadget.png`
-- [x] `GROUND_COLLAPSE` — `ground_collapse.png`
-- [x] `GUARDIAN_DREADSCYTHE` — `guardian_dreadscythe.png`
-- [x] `GUARDIAN_EATOS` — `guardian_eatos.png`
-- [x] `HARPIE_LADY_PHOENIX_FORMATION` — `harpie_lady_phoenix_formation.png`
-- [x] `HERALD_OF_CREATION` — `herald_of_creation.png`
-- [x] `HERO_FLASH` — `hero_flash.png`
-- [x] `HOLACTIE_THE_CREATOR_OF_LIGHT` — `holactie_the_creator_of_light.png`
-- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV8` — `horus_the_black_flame_dragon_lv8.png`
-- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV4` — `horus_the_black_flame_dragon_lv4.png`
-- [x] `HORUS_THE_BLACK_FLAME_DRAGON_LV6` — `horus_the_black_flame_dragon_lv6.png`
-- [x] `INSECT_IMITATION` — `insect_imitation.png`
-- [x] `INSTANT_FUSION` — `instant_fusion.png`
-- [x] `JOWGEN_THE_SPIRITUALIST` — `jowgen_the_spiritualist.png`
-- [x] `JUDGMENT_DRAGON` — `judgment_dragon.png`
-- [x] `KING_DRAGUN` — `king_dragun.png`
-- [x] `KING_OF_THE_SWAMP` — `king_of_the_swamp.png`
-- [x] `KING_TIGER_WANGHU` — `king_tiger_wanghu.png`
-- [x] `KURAZ_THE_LIGHT_MONARCH` — `kuraz_the_light_monarch.png`
-- [x] `KURIBANDIT` — `kuribandit.png`
-- [x] `LAST_TURN` — `last_turn.png`
-- [x] `LEGEND_OF_HEART` — `legend_of_heart.png`
-- [x] `LEGENDARY_FLAME_LORD` — `legendary_flame_lord.png`
-- [x] `LEGENDARY_KNIGHT_CRITIAS` — `legendary_knight_critias.png`
-- [x] `LEGENDARY_KNIGHT_HERMOS` — `legendary_knight_hermos.png`
-- [x] `LEGENDARY_KNIGHT_TIMAEUS` — `legendary_knight_timaeus.png`
-- [x] `LEKUNGA` — `lekunga.png`
-- [x] `LIGHT_AND_DARKNESS_DRAGON` — `light_and_darkness_dragon.png`
-- [x] `LORD_OF_THE_RED` — `lord_of_the_red.png`
-- [x] `MA_AT` — `ma_at.png`
-- [x] `MAGICAL_DIMENSION` — `magical_dimension.png`
-- [x] `MAGICAL_HATS` — `magical_hats.png`
-- [x] `MAGICAL_PLANT_MANDRAGOLA` — `magical_plant_mandragola.png`
-- [x] `MAGICAL_SCIENTIST` — `magical_scientist.png`
-- [x] `MAGICAL_STONE_EXCAVATION` — `magical_stone_excavation.png`
-- [x] `MAJESTIC_MECH_GORYU` — `majestic_mech_goryu.png`
-- [x] `MAN_THRO_TRO` — `man_thro_tro.png`
-- [x] `MANJU_OF_THE_TEN_THOUSAND_HANDS` — `manju_of_the_ten_thousand_hands.png`
-- [x] `MARSHMALLON` — `marshmallon.png`
-- [x] `MASK_OF_DISPEL` — `mask_of_dispel.png`
-- [x] `MASK_OF_THE_ACCURSED` — `mask_of_the_accursed.png`
-- [x] `MASTER_PEACE_THE_TRUE_DRACOSLAYING_KING` — `master_peace_the_true_dracoslaying_king.png`
-- [x] `MAUSOLEUM_OF_THE_EMPEROR` — `mausoleum_of_the_emperor.png`
-- [x] `MAZERA_DEVILLE` — `mazera_deville.png`
-- [x] `METAMORPHOSIS` — `metamorphosis.png`
-- [x] `METEORAIN` — `meteorain.png`
-- [x] `MIRAGE_OF_NIGHTMARE` — `mirage_of_nightmare.png`
-- [x] `MIRROR_FORCE_DRAGON` — `mirror_force_dragon.png`
-- [x] `MOLTEN_ZOMBIE` — `molten_zombie.png`
-- [x] `MONSTER_GATE` — `monster_gate.png`
-- [x] `MONSTER_RECOVERY` — `monster_recovery.png`
-- [x] `MORALE_BOOST` — `morale_boost.png`
-- [ ] `MUCUS_YOLK` — `mucus_yolk.png`
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_EIGHT` — `horus_the_black_flame_dragon_level_eight.png`
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_FOUR` — `horus_the_black_flame_dragon_level_four.png`
+- [ ] `HORUS_THE_BLACK_FLAME_DRAGON_LEVEL_SIX` — `horus_the_black_flame_dragon_level_six.png`
+- [ ] `MA'AT` — `ma'at.png`
+- [ ] `MAN_THRO_THRO` — `man-thro-thro.png`
+- [ ] `MOISTURE_CREATURE` — `moisture_creature.png`
 - [ ] `MYSTIC_WOK` — `mystic_wok.png`
-- [ ] `NECROVALLEY` — `necrovalley.png`
-- [ ] `NEEDLE_WALL` — `needle_wall.png`
-- [ ] `NEO_BLUE_EYES_ULTIMATE_DRAGON` — `neo_blue_eyes_ultimate_dragon.png`
-- [ ] `NEOS_WISEMAN` — `neos_wiseman.png`
-- [ ] `NIBIRU_THE_PRIMAL_BEING` — `nibiru_the_primal_being.png`
-- [ ] `NUMINOUS_HEALER` — `numinous_healer.png`
-- [ ] `OJAMA_KING` — `ojama_king.png`
-- [ ] `ORICHALCOS_SHUNOROS` — `orichalcos_shunoros.png`
 - [ ] `OVER_DESTINY` — `over_destiny.png`
 - [ ] `PAINFUL_CHOICE` — `painful_choice.png`
 - [ ] `PANDEMONIUM` — `pandemonium.png`
@@ -624,7 +629,9 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 
 ## Todo — in manifest, missing art
 
-_No manifest entries are missing art right now._
+Manifest entry exists but `80x80/<stem>.png` is missing.
+
+- [ ] `MYSTIK_WOK` — needs `80x80/mystik_wok.png`
 <!-- card-art-progress:auto:end -->
 
 ## Backlog — needs art

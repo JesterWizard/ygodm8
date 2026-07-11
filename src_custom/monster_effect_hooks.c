@@ -76,6 +76,12 @@ extern void (*const gMonEffects[])(void);
 void ActivateMonsterEffect(void);
 void MonsterActionMenu(void);
 unsigned char HandlePlayerMonsterAction(void);
+void ActivateMUCUS_YOLKEffect(void);
+void ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect(void);
+void ActivateNEOS_WISEMANEffect(void);
+void ActivateNIBIRU_THE_PRIMAL_BEINGEffect(void);
+void ActivateOJAMA_KINGEffect(void);
+void ActivateORICHALCOS_SHUNOROSEffect(void);
 void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
@@ -1027,6 +1033,30 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateMOLTEN_ZOMBIEEffect();
     return;
   }
+  if (gMonEffect.id == MUCUS_YOLK) {
+    ActivateMUCUS_YOLKEffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_BLUE_EYES_ULTIMATE_DRAGON) {
+    ActivateNEO_BLUE_EYES_ULTIMATE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == NEOS_WISEMAN) {
+    ActivateNEOS_WISEMANEffect();
+    return;
+  }
+  if (gMonEffect.id == NIBIRU_THE_PRIMAL_BEING) {
+    ActivateNIBIRU_THE_PRIMAL_BEINGEffect();
+    return;
+  }
+  if (gMonEffect.id == OJAMA_KING) {
+    ActivateOJAMA_KINGEffect();
+    return;
+  }
+  if (gMonEffect.id == ORICHALCOS_SHUNOROS) {
+    ActivateORICHALCOS_SHUNOROSEffect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();
@@ -1236,11 +1266,3 @@ FAILED:
       break;
   }
 }
-
-
-/* Custom activated effects — wire manually when implementing:
-   GATE_GUARDIANS_COMBINED, GODDESS_BOW, GORZ_THE_EMISSARY_OF_DARKNESS,
-   GRANMARG_THE_ROCK_MONARCH, GREEN_GADGET, GUARDIAN_DREADSCYTHE,
-   GUARDIAN_EATOS, HERALD_OF_CREATION, HOLACTIE_THE_CREATOR_OF_LIGHT,
-   HORUS_THE_BLACK_FLAME_DRAGON_LV8
-   (hooks exist in src_custom/activated_effects/) */
