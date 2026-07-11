@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 561
+#define NUM_CUSTOM_NAME_SORT_CARDS 571
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -566,6 +566,16 @@ static const u8 sTheEyeOfTimaeusSortName[] APPEND_RODATA = "The Eye of Timaeus";
 static const u8 sTheFangOfCritiasSortName[] APPEND_RODATA = "The Fang of Critias";
 static const u8 sTheLawOfTheNormalSortName[] APPEND_RODATA = "The Law of the Normal";
 static const u8 sTheLegendaryExodiaIncarnateSortName[] APPEND_RODATA = "The Legendary Exodia Incarnate";
+static const u8 sTheShallowGraveSortName[] APPEND_RODATA = "The Shallow Grave";
+static const u8 sTheinenTheGreatSphinxSortName[] APPEND_RODATA = "Theinen the Great Sphinx";
+static const u8 sThestalosTheFirestormMonarchSortName[] APPEND_RODATA = "Thestalos the Firestorm Monarch";
+static const u8 sThunderDragonColossusSortName[] APPEND_RODATA = "Thunder Dragon Colossus";
+static const u8 sThunderDragonTitanSortName[] APPEND_RODATA = "Thunder Dragon Titan";
+static const u8 sTimaeusTheKnightOfDestinySortName[] APPEND_RODATA = "Timaeus the Knight of Destiny";
+static const u8 sTimeMagicHammerSortName[] APPEND_RODATA = "Time Magic Hammer";
+static const u8 sTornadoWallSortName[] APPEND_RODATA = "Tornado Wall";
+static const u8 sToonWorldSortName[] APPEND_RODATA = "Toon World";
+static const u8 sTornadoBirdSortName[] APPEND_RODATA = "Tornado Bird";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1086,6 +1096,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0550, // The Law of the Normal
   0x0551, // The Legendary Exodia Incarnate
   0x03FE, // The Sanctuary in the Sky
+  0x0552, // The Shallow Grave
   0x0445, // The Splendid Venus
   0x044B, // The Suppression Pluto
   0x044C, // The Supremacy Sun
@@ -1098,12 +1109,21 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0460, // The Wicked Dreadroot
   0x0461, // The Wicked Eraser
   0x03E7, // Theban Nightmare
+  0x0553, // Theinen the Great Sphinx
+  0x0554, // Thestalos the Firestorm Monarch
   0x036C, // Thousand Energy
   0x038F, // Thousand Knives
   0x03B5, // Thunder Crash
+  0x0555, // Thunder Dragon Colossus
+  0x0556, // Thunder Dragon Titan
+  0x0557, // Timaeus the Knight of Destiny
+  0x0558, // Time Magic Hammer
   0x036B, // Time Seal
   0x044E, // Tiny Angel
   0x0358, // Toll
+  0x055A, // Toon World
+  0x055B, // Tornado Bird
+  0x0559, // Tornado Wall
   0x03B6, // Torpedo Fish
   0x0464, // Trade-In
   0x038D, // Triangle Power
@@ -1650,49 +1670,59 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   516, // The Law of the Normal
   517, // The Legendary Exodia Incarnate
   518, // The Sanctuary in the Sky
-  519, // The Splendid Venus
-  520, // The Suppression Pluto
-  521, // The Supremacy Sun
-  522, // The Thing in the Crater
-  523, // The Tricky
-  524, // The Tripper Mercury
-  525, // The Tyrant Neptune
-  526, // The Unstoppable Exodia Incarnate
-  527, // The Wicked Avatar
-  528, // The Wicked Dreadroot
-  529, // The Wicked Eraser
-  530, // Theban Nightmare
-  531, // Thousand Energy
-  532, // Thousand Knives
-  533, // Thunder Crash
-  534, // Time Seal
-  535, // Tiny Angel
-  536, // Toll
-  537, // Torpedo Fish
-  538, // Trade-In
-  539, // Triangle Power
-  540, // Tribute Doll
-  541, // Twin Swords of Flashing Light - Tryce
-  542, // Tyrant Dragon
-  543, // Ultimate Offering
-  544, // United We Stand
-  545, // Upstart Goblin
-  546, // Uria, Lord of Searing Flames
-  547, // Valhalla, Hall of the Fallen
-  548, // Vampire Baby
-  549, // Vengeful Bog Spirit
-  550, // Wall of Revealing Light
-  551, // Warrior of Zera
-  552, // Wave Motion Cannon
-  553, // Weather Report
-  554, // White Magician Pikeru
-  555, // World Suppression
-  556, // Yata-Garasu
-  557, // Yubel
-  558, // Yubel - Terror Incarnate
-  559, // Yubel - The Ultimate Nightmare
-  560, // Zaborg the Thunder Monarch
-  561, // Zeriel
+  519, // The Shallow Grave
+  520, // The Splendid Venus
+  521, // The Suppression Pluto
+  522, // The Supremacy Sun
+  523, // The Thing in the Crater
+  524, // The Tricky
+  525, // The Tripper Mercury
+  526, // The Tyrant Neptune
+  527, // The Unstoppable Exodia Incarnate
+  528, // The Wicked Avatar
+  529, // The Wicked Dreadroot
+  530, // The Wicked Eraser
+  531, // Theban Nightmare
+  532, // Theinen the Great Sphinx
+  533, // Thestalos the Firestorm Monarch
+  534, // Thousand Energy
+  535, // Thousand Knives
+  536, // Thunder Crash
+  537, // Thunder Dragon Colossus
+  538, // Thunder Dragon Titan
+  539, // Timaeus the Knight of Destiny
+  540, // Time Magic Hammer
+  541, // Time Seal
+  542, // Tiny Angel
+  543, // Toll
+  544, // Toon World
+  545, // Tornado Bird
+  546, // Tornado Wall
+  547, // Torpedo Fish
+  548, // Trade-In
+  549, // Triangle Power
+  550, // Tribute Doll
+  551, // Twin Swords of Flashing Light - Tryce
+  552, // Tyrant Dragon
+  553, // Ultimate Offering
+  554, // United We Stand
+  555, // Upstart Goblin
+  556, // Uria, Lord of Searing Flames
+  557, // Valhalla, Hall of the Fallen
+  558, // Vampire Baby
+  559, // Vengeful Bog Spirit
+  560, // Wall of Revealing Light
+  561, // Warrior of Zera
+  562, // Wave Motion Cannon
+  563, // Weather Report
+  564, // White Magician Pikeru
+  565, // World Suppression
+  566, // Yata-Garasu
+  567, // Yubel
+  568, // Yubel - Terror Incarnate
+  569, // Yubel - The Ultimate Nightmare
+  570, // Zaborg the Thunder Monarch
+  571, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2824,6 +2854,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sTheLawOfTheNormalSortName;
   if (cardId == 0x0551)
     return (u8 *)sTheLegendaryExodiaIncarnateSortName;
+  if (cardId == 0x0552)
+    return (u8 *)sTheShallowGraveSortName;
+  if (cardId == 0x0553)
+    return (u8 *)sTheinenTheGreatSphinxSortName;
+  if (cardId == 0x0554)
+    return (u8 *)sThestalosTheFirestormMonarchSortName;
+  if (cardId == 0x0555)
+    return (u8 *)sThunderDragonColossusSortName;
+  if (cardId == 0x0556)
+    return (u8 *)sThunderDragonTitanSortName;
+  if (cardId == 0x0557)
+    return (u8 *)sTimaeusTheKnightOfDestinySortName;
+  if (cardId == 0x0558)
+    return (u8 *)sTimeMagicHammerSortName;
+  if (cardId == 0x0559)
+    return (u8 *)sTornadoWallSortName;
+  if (cardId == 0x055A)
+    return (u8 *)sToonWorldSortName;
+  if (cardId == 0x055B)
+    return (u8 *)sTornadoBirdSortName;
 
   return gCardNames[cardId];
 }

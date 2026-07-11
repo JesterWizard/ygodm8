@@ -562,6 +562,16 @@ static const u8 sTheEyeOfTimaeusName[] __attribute__((section(".append_assets"))
 static const u8 sTheFangOfCritiasName[] __attribute__((section(".append_assets"))) = "The Fang of Critias";
 static const u8 sTheLawOfTheNormalName[] __attribute__((section(".append_assets"))) = "The Law of the Normal";
 static const u8 sTheLegendaryExodiaIncarnateName[] __attribute__((section(".append_assets"))) = "The Legendary Exodia Incarnate";
+static const u8 sTheShallowGraveName[] __attribute__((section(".append_assets"))) = "The Shallow Grave";
+static const u8 sTheinenTheGreatSphinxName[] __attribute__((section(".append_assets"))) = "Theinen the Great Sphinx";
+static const u8 sThestalosTheFirestormMonarchName[] __attribute__((section(".append_assets"))) = "Thestalos the Firestorm Monarch";
+static const u8 sThunderDragonColossusName[] __attribute__((section(".append_assets"))) = "Thunder Dragon Colossus";
+static const u8 sThunderDragonTitanName[] __attribute__((section(".append_assets"))) = "Thunder Dragon Titan";
+static const u8 sTimaeusTheKnightOfDestinyName[] __attribute__((section(".append_assets"))) = "Timaeus the Knight of Destiny";
+static const u8 sTimeMagicHammerName[] __attribute__((section(".append_assets"))) = "Time Magic Hammer";
+static const u8 sTornadoWallName[] __attribute__((section(".append_assets"))) = "Tornado Wall";
+static const u8 sToonWorldName[] __attribute__((section(".append_assets"))) = "Toon World";
+static const u8 sTornadoBirdName[] __attribute__((section(".append_assets"))) = "Tornado Bird";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1692,6 +1702,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sTheLawOfTheNormalName;
   if (cardId == 0x0551)
     return (u8 *)sTheLegendaryExodiaIncarnateName;
+  if (cardId == 0x0552)
+    return (u8 *)sTheShallowGraveName;
+  if (cardId == 0x0553)
+    return (u8 *)sTheinenTheGreatSphinxName;
+  if (cardId == 0x0554)
+    return (u8 *)sThestalosTheFirestormMonarchName;
+  if (cardId == 0x0555)
+    return (u8 *)sThunderDragonColossusName;
+  if (cardId == 0x0556)
+    return (u8 *)sThunderDragonTitanName;
+  if (cardId == 0x0557)
+    return (u8 *)sTimaeusTheKnightOfDestinyName;
+  if (cardId == 0x0558)
+    return (u8 *)sTimeMagicHammerName;
+  if (cardId == 0x0559)
+    return (u8 *)sTornadoWallName;
+  if (cardId == 0x055A)
+    return (u8 *)sToonWorldName;
+  if (cardId == 0x055B)
+    return (u8 *)sTornadoBirdName;
 
   return gCardNames[cardId];
 }

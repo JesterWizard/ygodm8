@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `503` effects
+- `515` effects
 
 ## Tally
 
@@ -484,6 +484,18 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `The Fang Of Critias` | `src_custom/spell_effects/the_fang_of_critias.c` |
 | `spell_effects` | `The Law Of The Normal` | `src_custom/spell_effects/the_law_of_the_normal.c` |
 | `activated_effects` | `The Legendary Exodia Incarnate` | `src_custom/activated_effects/the_legendary_exodia_incarnate.c` |
+| `spell_effects` | `The Shallow Grave` | `src_custom/spell_effects/the_shallow_grave.c` |
+| `activated_effects` | `Theinen The Great Sphinx` | `src_custom/activated_effects/theinen_the_great_sphinx.c` |
+| `activated_effects` | `Thestalos The Firestorm Monarch` | `src_custom/activated_effects/thestalos_the_firestorm_monarch.c` |
+| `permanent_effects` | `Thunder Dragon Colossus` | `src_custom/permanent_effects/thunder_dragon_colossus.c` |
+| `activated_effects` | `Thunder Dragon Titan` | `src_custom/activated_effects/thunder_dragon_titan.c` |
+| `activated_effects` | `Timaeus The Knight Of Destiny` | `src_custom/activated_effects/timaeus_the_knight_of_destiny.c` |
+| `activated_effects` | `Time Magic Hammer` | `src_custom/activated_effects/time_magic_hammer.c` |
+| `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
+| `trap_effects` | `Tornado Wall` | `src_custom/trap_effects/tornado_wall.c` |
+| `spell_effects` | `Toon World` | `src_custom/spell_effects/toon_world.c` |
+| `spell_effects` | `Toon World` | `src_custom/spell_effects/toon_world.c` |
+| `activated_effects` | `Tornado Bird` | `src_custom/activated_effects/tornado_bird.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

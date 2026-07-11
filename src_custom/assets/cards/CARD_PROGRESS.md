@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 551 |
-| Art ready, needs manifest | 42 |
+| In game (manifest + art) | 571 |
+| Art ready, needs manifest | 22 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -583,21 +583,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `THE_FANG_OF_CRITIAS` | The Fang of Critias | `the_fang_of_critias.png` |
 | `THE_LAW_OF_THE_NORMAL` | The Law of the Normal | `the_law_of_the_normal.png` |
 | `THE_LEGENDARY_EXODIA_INCARNATE` | The Legendary Exodia Incarnate | `the_legendary_exodia_incarnate.png` |
+| `THE_SHALLOW_GRAVE` | The Shallow Grave | `the_shallow_grave.png` |
+| `THEINEN_THE_GREAT_SPHINX` | Theinen the Great Sphinx | `theinen_the_great_sphinx.png` |
+| `THESTALOS_THE_FIRESTORM_MONARCH` | Thestalos the Firestorm Monarch | `thestalos_the_firestorm_monarch.png` |
+| `THUNDER_DRAGON_COLOSSUS` | Thunder Dragon Colossus | `thunder_dragon_colossus.png` |
+| `THUNDER_DRAGON_TITAN` | Thunder Dragon Titan | `thunder_dragon_titan.png` |
+| `TIMAEUS_THE_KNIGHT_OF_DESTINY` | Timaeus the Knight of Destiny | `timaeus_the_knight_of_destiny.png` |
+| `TIME_MAGIC_HAMMER` | Time Magic Hammer | `time_magic_hammer.png` |
+| `TORNADO_WALL` | Tornado Wall | `tornado_wall.png` |
+| `TOON_WORLD` | Toon World | `toon_world.png` |
+| `TORNADO_BIRD` | Tornado Bird | `tornado_bird.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `THE_SHALLOW_GRAVE` — `the_shallow_grave.png`
-- [ ] `THEINEN_THE_GREAT_SPHINX` — `theinen_the_great_sphinx.png`
-- [ ] `THESTALOS_THE_FIRESTORM_MONARCH` — `thestalos_the_firestorm_monarch.png`
-- [ ] `THUNDER_DRAGON_COLOSSUS` — `thunder_dragon_colossus.png`
-- [ ] `THUNDER_DRAGON_TITAN` — `thunder_dragon_titan.png`
-- [ ] `TIMAEUS_THE_KNIGHT_OF_DESTINY` — `timaeus_the_knight_of_destiny.png`
-- [ ] `TIME_MAGIC_HAMMER` — `time_magic_hammer.png`
-- [ ] `TOON_WORLD` — `toon_world.png`
-- [ ] `TORNADO_BIRD` — `tornado_bird.png`
-- [ ] `TORNADO_WALL` — `tornado_wall.png`
 - [ ] `TRAP_DUSTSHOOT` — `trap_dustshoot.png`
 - [ ] `TYRANT_BURST_DRAGON` — `tyrant_burst_dragon.png`
 - [ ] `TYRANT_WING` — `tyrant_wing.png`

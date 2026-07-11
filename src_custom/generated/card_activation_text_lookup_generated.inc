@@ -543,6 +543,12 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [THE_FANG_OF_CRITIAS] = gActivationDescription_TheFangOfCritias_Popup1,
   [THE_LAW_OF_THE_NORMAL] = gActivationDescription_TheLawOfTheNormal_Popup1,
   [THE_LEGENDARY_EXODIA_INCARNATE] = gActivationDescription_TheLegendaryExodiaIncarnate_Popup1,
+  [THE_SHALLOW_GRAVE] = gActivationDescription_TheShallowGrave_Popup1,
+  [THEINEN_THE_GREAT_SPHINX] = gActivationDescription_TheinenTheGreatSphinx_Popup1,
+  [THESTALOS_THE_FIRESTORM_MONARCH] = gActivationDescription_ThestalosTheFirestormMonarch_Popup1,
+  [TORNADO_WALL] = gActivationDescription_TornadoWall_Popup1,
+  [TOON_WORLD] = gActivationDescription_ToonWorld_Popup1,
+  [TORNADO_BIRD] = gActivationDescription_TornadoBird_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1116,6 +1122,12 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_THE_FANG_OF_CRITIAS_POPUP_1] = gActivationDescription_TheFangOfCritias_Popup1,
   [CARD_EFFECT_TEXT_THE_LAW_OF_THE_NORMAL_POPUP_1] = gActivationDescription_TheLawOfTheNormal_Popup1,
   [CARD_EFFECT_TEXT_THE_LEGENDARY_EXODIA_INCARNATE_POPUP_1] = gActivationDescription_TheLegendaryExodiaIncarnate_Popup1,
+  [CARD_EFFECT_TEXT_THE_SHALLOW_GRAVE_POPUP_1] = gActivationDescription_TheShallowGrave_Popup1,
+  [CARD_EFFECT_TEXT_THEINEN_THE_GREAT_SPHINX_POPUP_1] = gActivationDescription_TheinenTheGreatSphinx_Popup1,
+  [CARD_EFFECT_TEXT_THESTALOS_THE_FIRESTORM_MONARCH_POPUP_1] = gActivationDescription_ThestalosTheFirestormMonarch_Popup1,
+  [CARD_EFFECT_TEXT_TORNADO_WALL_POPUP_1] = gActivationDescription_TornadoWall_Popup1,
+  [CARD_EFFECT_TEXT_TOON_WORLD_POPUP_1] = gActivationDescription_ToonWorld_Popup1,
+  [CARD_EFFECT_TEXT_TORNADO_BIRD_POPUP_1] = gActivationDescription_TornadoBird_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

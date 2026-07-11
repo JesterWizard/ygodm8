@@ -1363,11 +1363,21 @@
 #define THE_FANG_OF_CRITIAS                      0x054F
 #define THE_LAW_OF_THE_NORMAL                    0x0550
 #define THE_LEGENDARY_EXODIA_INCARNATE           0x0551
+#define THE_SHALLOW_GRAVE                        0x0552
+#define THEINEN_THE_GREAT_SPHINX                 0x0553
+#define THESTALOS_THE_FIRESTORM_MONARCH          0x0554
+#define THUNDER_DRAGON_COLOSSUS                  0x0555
+#define THUNDER_DRAGON_TITAN                     0x0556
+#define TIMAEUS_THE_KNIGHT_OF_DESTINY            0x0557
+#define TIME_MAGIC_HAMMER                        0x0558
+#define TORNADO_WALL                             0x0559
+#define TOON_WORLD                               0x055A
+#define TORNADO_BIRD                             0x055B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0552
-#define NUM_CUSTOM_CARDS                        0x0231
+#define NUM_TOTAL_CARDS                         0x055C
+#define NUM_CUSTOM_CARDS                        0x023B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

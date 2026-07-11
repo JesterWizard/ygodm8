@@ -236,6 +236,18 @@ unsigned char CanActivateTHE_CREATOR_INCARNATE(void);
 void ActivateTHE_CREATOR_INCARNATEEffect(void);
 unsigned char CanActivateTHE_LEGENDARY_EXODIA_INCARNATE(void);
 void ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect(void);
+unsigned char CanActivateTHEINEN_THE_GREAT_SPHINX(void);
+void ActivateTHEINEN_THE_GREAT_SPHINXEffect(void);
+unsigned char CanActivateTHESTALOS_THE_FIRESTORM_MONARCH(void);
+void ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect(void);
+unsigned char CanActivateTHUNDER_DRAGON_TITAN(void);
+void ActivateTHUNDER_DRAGON_TITANEffect(void);
+unsigned char CanActivateTIMAEUS_THE_KNIGHT_OF_DESTINY(void);
+void ActivateTIMAEUS_THE_KNIGHT_OF_DESTINYEffect(void);
+unsigned char CanActivateTIME_MAGIC_HAMMER(void);
+void ActivateTIME_MAGIC_HAMMEREffect(void);
+unsigned char CanActivateTORNADO_BIRD(void);
+void ActivateTORNADO_BIRDEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1323,6 +1335,30 @@ FAILED:
   }
   if (gMonEffect.id == THE_LEGENDARY_EXODIA_INCARNATE) {
     ActivateTHE_LEGENDARY_EXODIA_INCARNATEEffect();
+    return;
+  }
+  if (gMonEffect.id == THEINEN_THE_GREAT_SPHINX) {
+    ActivateTHEINEN_THE_GREAT_SPHINXEffect();
+    return;
+  }
+  if (gMonEffect.id == THESTALOS_THE_FIRESTORM_MONARCH) {
+    ActivateTHESTALOS_THE_FIRESTORM_MONARCHEffect();
+    return;
+  }
+  if (gMonEffect.id == THUNDER_DRAGON_TITAN) {
+    ActivateTHUNDER_DRAGON_TITANEffect();
+    return;
+  }
+  if (gMonEffect.id == TIMAEUS_THE_KNIGHT_OF_DESTINY) {
+    ActivateTIMAEUS_THE_KNIGHT_OF_DESTINYEffect();
+    return;
+  }
+  if (gMonEffect.id == TIME_MAGIC_HAMMER) {
+    ActivateTIME_MAGIC_HAMMEREffect();
+    return;
+  }
+  if (gMonEffect.id == TORNADO_BIRD) {
+    ActivateTORNADO_BIRDEffect();
     return;
   }
 }

@@ -410,6 +410,9 @@
     case THE_LAW_OF_THE_NORMAL:
       EffectTHE_LAW_OF_THE_NORMAL();
       return;
+    case THE_SHALLOW_GRAVE:
+      EffectTHE_SHALLOW_GRAVE();
+      return;
     case THOUSAND_ENERGY:
       EffectThousandEnergy();
       return;
@@ -421,6 +424,9 @@
       return;
     case TOLL:
       EffectToll();
+      return;
+    case TOON_WORLD:
+      EffectTOON_WORLD();
       return;
     case TRADE_IN:
       EffectTRADE_IN();

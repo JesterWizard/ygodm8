@@ -2252,6 +2252,46 @@ static const unsigned char sTheLegendaryExodiaIncarnateBigArt[] __attribute__((s
 static const unsigned short sTheLegendaryExodiaIncarnateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_legendary_exodia_incarnate.gbapal");
 static const unsigned char sTheLegendaryExodiaIncarnateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_legendary_exodia_incarnate.lz");
 
+static const unsigned char sTheShallowGraveBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/the_shallow_grave.huff");
+static const unsigned short sTheShallowGraveBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/the_shallow_grave.gbapal");
+static const unsigned char sTheShallowGraveMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/the_shallow_grave.lz");
+
+static const unsigned char sTheinenTheGreatSphinxBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/theinen_the_great_sphinx.huff");
+static const unsigned short sTheinenTheGreatSphinxBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/theinen_the_great_sphinx.gbapal");
+static const unsigned char sTheinenTheGreatSphinxMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/theinen_the_great_sphinx.lz");
+
+static const unsigned char sThestalosTheFirestormMonarchBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/thestalos_the_firestorm_monarch.huff");
+static const unsigned short sThestalosTheFirestormMonarchBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thestalos_the_firestorm_monarch.gbapal");
+static const unsigned char sThestalosTheFirestormMonarchMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thestalos_the_firestorm_monarch.lz");
+
+static const unsigned char sThunderDragonColossusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/thunder_dragon_colossus.huff");
+static const unsigned short sThunderDragonColossusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thunder_dragon_colossus.gbapal");
+static const unsigned char sThunderDragonColossusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thunder_dragon_colossus.lz");
+
+static const unsigned char sThunderDragonTitanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/thunder_dragon_titan.huff");
+static const unsigned short sThunderDragonTitanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/thunder_dragon_titan.gbapal");
+static const unsigned char sThunderDragonTitanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/thunder_dragon_titan.lz");
+
+static const unsigned char sTimaeusTheKnightOfDestinyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/timaeus_the_knight_of_destiny.huff");
+static const unsigned short sTimaeusTheKnightOfDestinyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/timaeus_the_knight_of_destiny.gbapal");
+static const unsigned char sTimaeusTheKnightOfDestinyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/timaeus_the_knight_of_destiny.lz");
+
+static const unsigned char sTimeMagicHammerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/time_magic_hammer.huff");
+static const unsigned short sTimeMagicHammerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/time_magic_hammer.gbapal");
+static const unsigned char sTimeMagicHammerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/time_magic_hammer.lz");
+
+static const unsigned char sTornadoWallBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tornado_wall.huff");
+static const unsigned short sTornadoWallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tornado_wall.gbapal");
+static const unsigned char sTornadoWallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tornado_wall.lz");
+
+static const unsigned char sToonWorldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/toon_world.huff");
+static const unsigned short sToonWorldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/toon_world.gbapal");
+static const unsigned char sToonWorldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/toon_world.lz");
+
+static const unsigned char sTornadoBirdBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/tornado_bird.huff");
+static const unsigned short sTornadoBirdBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/tornado_bird.gbapal");
+static const unsigned char sTornadoBirdMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/tornado_bird.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2816,6 +2856,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x054F] = sTheFangOfCritiasBigArt,
   [0x0550] = sTheLawOfTheNormalBigArt,
   [0x0551] = sTheLegendaryExodiaIncarnateBigArt,
+  [0x0552] = sTheShallowGraveBigArt,
+  [0x0553] = sTheinenTheGreatSphinxBigArt,
+  [0x0554] = sThestalosTheFirestormMonarchBigArt,
+  [0x0555] = sThunderDragonColossusBigArt,
+  [0x0556] = sThunderDragonTitanBigArt,
+  [0x0557] = sTimaeusTheKnightOfDestinyBigArt,
+  [0x0558] = sTimeMagicHammerBigArt,
+  [0x0559] = sTornadoWallBigArt,
+  [0x055A] = sToonWorldBigArt,
+  [0x055B] = sTornadoBirdBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3382,6 +3432,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x054F] = sTheFangOfCritiasBigPalette,
   [0x0550] = sTheLawOfTheNormalBigPalette,
   [0x0551] = sTheLegendaryExodiaIncarnateBigPalette,
+  [0x0552] = sTheShallowGraveBigPalette,
+  [0x0553] = sTheinenTheGreatSphinxBigPalette,
+  [0x0554] = sThestalosTheFirestormMonarchBigPalette,
+  [0x0555] = sThunderDragonColossusBigPalette,
+  [0x0556] = sThunderDragonTitanBigPalette,
+  [0x0557] = sTimaeusTheKnightOfDestinyBigPalette,
+  [0x0558] = sTimeMagicHammerBigPalette,
+  [0x0559] = sTornadoWallBigPalette,
+  [0x055A] = sToonWorldBigPalette,
+  [0x055B] = sTornadoBirdBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3948,6 +4008,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x054F] = 0,
   [0x0550] = 0,
   [0x0551] = 0,
+  [0x0552] = 0,
+  [0x0553] = 0,
+  [0x0554] = 0,
+  [0x0555] = 0,
+  [0x0556] = 0,
+  [0x0557] = 0,
+  [0x0558] = 0,
+  [0x0559] = 0,
+  [0x055A] = 0,
+  [0x055B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4514,4 +4584,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x054F] = sTheFangOfCritiasMiniArt,
   [0x0550] = sTheLawOfTheNormalMiniArt,
   [0x0551] = sTheLegendaryExodiaIncarnateMiniArt,
+  [0x0552] = sTheShallowGraveMiniArt,
+  [0x0553] = sTheinenTheGreatSphinxMiniArt,
+  [0x0554] = sThestalosTheFirestormMonarchMiniArt,
+  [0x0555] = sThunderDragonColossusMiniArt,
+  [0x0556] = sThunderDragonTitanMiniArt,
+  [0x0557] = sTimaeusTheKnightOfDestinyMiniArt,
+  [0x0558] = sTimeMagicHammerMiniArt,
+  [0x0559] = sTornadoWallMiniArt,
+  [0x055A] = sToonWorldMiniArt,
+  [0x055B] = sTornadoBirdMiniArt,
 };

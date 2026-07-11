@@ -425,3 +425,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire SOLEMN_JUDGMENT in trap dispatcher */
 /* SPARK_BLASTER trap effect */
   /* TODO: wire SPARK_BLASTER in trap dispatcher */
+/* TORNADO_WALL trap effect */
+  /* TODO: wire TORNADO_WALL in trap dispatcher */
