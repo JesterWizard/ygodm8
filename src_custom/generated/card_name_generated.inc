@@ -406,6 +406,14 @@ static const u8 sDestinyHeroDiamondDudeName[] __attribute__((section(".append_as
 static const u8 sDestinyHeroDiskCommanderName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Disk Commander";
 static const u8 sDestinyHeroDogmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dogma";
 static const u8 sDestinyHeroDominanceName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dominance";
+static const u8 sDestinyHeroDoomLordName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Doom Lord";
+static const u8 sDestinyHeroDoubleDudeName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Double Dude";
+static const u8 sDestinyHeroDrawhandName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Drawhand";
+static const u8 sDestinyHeroDreadServantName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dread Servant";
+static const u8 sDestinyHeroDreadmasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadmaster";
+static const u8 sDestinyHeroDoomOverlordName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Doom Overlord";
+static const u8 sDestinyHeroDreadnoughtMasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Master";
+static const u8 sDestinyHeroDreadnoughtServantName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Servant";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1224,6 +1232,22 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDestinyHeroDogmaName;
   if (cardId == 0x04B5)
     return (u8 *)sDestinyHeroDominanceName;
+  if (cardId == 0x04B6)
+    return (u8 *)sDestinyHeroDoomLordName;
+  if (cardId == 0x04B7)
+    return (u8 *)sDestinyHeroDoubleDudeName;
+  if (cardId == 0x04B8)
+    return (u8 *)sDestinyHeroDrawhandName;
+  if (cardId == 0x04B9)
+    return (u8 *)sDestinyHeroDreadServantName;
+  if (cardId == 0x04BA)
+    return (u8 *)sDestinyHeroDreadmasterName;
+  if (cardId == 0x04BB)
+    return (u8 *)sDestinyHeroDoomOverlordName;
+  if (cardId == 0x04BC)
+    return (u8 *)sDestinyHeroDreadnoughtMasterName;
+  if (cardId == 0x04BD)
+    return (u8 *)sDestinyHeroDreadnoughtServantName;
 
   return gCardNames[cardId];
 }

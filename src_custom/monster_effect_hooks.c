@@ -154,6 +154,12 @@ unsigned char CanActivateDESTINY_HERO_DISK_COMMANDER(void);
 void ActivateDESTINY_HERO_DISK_COMMANDEREffect(void);
 unsigned char CanActivateDESTINY_HERO_DOMINANCE(void);
 void ActivateDESTINY_HERO_DOMINANCEEffect(void);
+unsigned char CanActivateDESTINY_HERO_DOOM_LORD(void);
+void ActivateDESTINY_HERO_DOOM_LORDEffect(void);
+unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void);
+void ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect(void);
+unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void);
+void ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -349,6 +355,15 @@ unsigned char CanActivateMonsterEffect(void) {
         break;
       case MONSTER_EFFECT_DESTINY_HERO_DOMINANCE:
         canActivate = CanActivateDESTINY_HERO_DOMINANCE();
+        break;
+      case DESTINY_HERO_DOOM_LORD:
+        canActivate = CanActivateDESTINY_HERO_DOOM_LORD();
+        break;
+      case DESTINY_HERO_DREADNOUGHT_MASTER:
+        canActivate = CanActivateDESTINY_HERO_DREADNOUGHT_MASTER();
+        break;
+      case DESTINY_HERO_DREADNOUGHT_SERVANT:
+        canActivate = CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT();
         break;
       default:
         canActivate = TRUE;
@@ -853,7 +868,18 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateDESTINY_HERO_DOMINANCEEffect();
     return;
   }
-
+  if (gMonEffect.id == DESTINY_HERO_DOOM_LORD) {
+    ActivateDESTINY_HERO_DOOM_LORDEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_MASTER) {
+    ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_SERVANT) {
+    ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect();
+    return;
+  }
 
   Duel_BeginMonsterEffectResolve();
   gMonEffects[gCardInfo.monsterEffect]();

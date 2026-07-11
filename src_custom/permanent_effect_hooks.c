@@ -123,6 +123,16 @@ unsigned char ShouldActivateDESTINY_HERO_DEFENDER(void);
 void ActivateDESTINY_HERO_DEFENDER(void);
 unsigned char ShouldActivateDESTINY_HERO_DOGMA(void);
 void ActivateDESTINY_HERO_DOGMA(void);
+unsigned char ShouldActivateDESTINY_HERO_DOOM_OVERLORD(void);
+void ActivateDESTINY_HERO_DOOM_OVERLORD(void);
+unsigned char ShouldActivateDESTINY_HERO_DOUBLE_DUDE(void);
+void ActivateDESTINY_HERO_DOUBLE_DUDE(void);
+unsigned char ShouldActivateDESTINY_HERO_DRAWHAND(void);
+void ActivateDESTINY_HERO_DRAWHAND(void);
+unsigned char ShouldActivateDESTINY_HERO_DREAD_SERVANT(void);
+void ActivateDESTINY_HERO_DREAD_SERVANT(void);
+unsigned char ShouldActivateDESTINY_HERO_DREADMASTER(void);
+void ActivateDESTINY_HERO_DREADMASTER(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -354,6 +364,31 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DESTINY_HERO_DOGMA,
     .shouldActivate = ShouldActivateDESTINY_HERO_DOGMA,
     .activate = ActivateDESTINY_HERO_DOGMA,
+  },
+  {
+    .cardId = DESTINY_HERO_DOOM_OVERLORD,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DOOM_OVERLORD,
+    .activate = ActivateDESTINY_HERO_DOOM_OVERLORD,
+  },
+  {
+    .cardId = DESTINY_HERO_DOUBLE_DUDE,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DOUBLE_DUDE,
+    .activate = ActivateDESTINY_HERO_DOUBLE_DUDE,
+  },
+  {
+    .cardId = DESTINY_HERO_DRAWHAND,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DRAWHAND,
+    .activate = ActivateDESTINY_HERO_DRAWHAND,
+  },
+  {
+    .cardId = DESTINY_HERO_DREAD_SERVANT,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DREAD_SERVANT,
+    .activate = ActivateDESTINY_HERO_DREAD_SERVANT,
+  },
+  {
+    .cardId = DESTINY_HERO_DREADMASTER,
+    .shouldActivate = ShouldActivateDESTINY_HERO_DREADMASTER,
+    .activate = ActivateDESTINY_HERO_DREADMASTER,
   },
 };
 

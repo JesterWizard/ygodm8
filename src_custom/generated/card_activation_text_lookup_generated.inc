@@ -399,6 +399,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DESTINY_HERO_DISK_COMMANDER] = gActivationDescription_DestinyHeroDiskCommander_Popup1,
   [DESTINY_HERO_DOGMA] = gActivationDescription_DestinyHeroDogma_Popup1,
   [DESTINY_HERO_DOMINANCE] = gActivationDescription_DestinyHeroDominance_Popup1,
+  [DESTINY_HERO_DOOM_LORD] = gActivationDescription_DestinyHeroDoomLord_Popup1,
+  [DESTINY_HERO_DOUBLE_DUDE] = gActivationDescription_DestinyHeroDoubleDude_Popup1,
+  [DESTINY_HERO_DRAWHAND] = gActivationDescription_DestinyHeroDrawhand_Popup1,
+  [DESTINY_HERO_DREAD_SERVANT] = gActivationDescription_DestinyHeroDreadServant_Popup1,
+  [DESTINY_HERO_DREADMASTER] = gActivationDescription_DestinyHeroDreadmaster_Popup1,
+  [DESTINY_HERO_DOOM_OVERLORD] = gActivationDescription_DestinyHeroDoomOverlord_Popup1,
+  [DESTINY_HERO_DREADNOUGHT_MASTER] = gActivationDescription_DestinyHeroDreadnoughtMaster_Popup1,
+  [DESTINY_HERO_DREADNOUGHT_SERVANT] = gActivationDescription_DestinyHeroDreadnoughtServant_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -828,6 +836,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DESTINY_HERO_DISK_COMMANDER_POPUP_1] = gActivationDescription_DestinyHeroDiskCommander_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DOGMA_POPUP_1] = gActivationDescription_DestinyHeroDogma_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DOMINANCE_POPUP_1] = gActivationDescription_DestinyHeroDominance_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DOOM_LORD_POPUP_1] = gActivationDescription_DestinyHeroDoomLord_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DOUBLE_DUDE_POPUP_1] = gActivationDescription_DestinyHeroDoubleDude_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DRAWHAND_POPUP_1] = gActivationDescription_DestinyHeroDrawhand_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DREAD_SERVANT_POPUP_1] = gActivationDescription_DestinyHeroDreadServant_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DREADMASTER_POPUP_1] = gActivationDescription_DestinyHeroDreadmaster_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DOOM_OVERLORD_POPUP_1] = gActivationDescription_DestinyHeroDoomOverlord_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DREADNOUGHT_MASTER_POPUP_1] = gActivationDescription_DestinyHeroDreadnoughtMaster_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DREADNOUGHT_SERVANT_POPUP_1] = gActivationDescription_DestinyHeroDreadnoughtServant_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

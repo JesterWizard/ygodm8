@@ -65,7 +65,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
     .ignore_tribute_requirements = TRUE,
-    .card_in_hand_1 = DESTINY_HERO_DASHER,
+    .card_in_hand_1 = DESTINY_HERO_DOOM_LORD,
     .card_in_hand_2 = DESTINY_HERO_DECIDER,
     .card_in_hand_3 = DESTINY_HERO_DEFENDER,
     .card_in_hand_4 = DESTINY_HERO_DENIER,

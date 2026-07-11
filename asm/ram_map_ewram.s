@@ -19,11 +19,13 @@ SET_DATA UsedFreeEwramSpaceTop, FreeEwramSpaceBottom
 
 .macro _kernel_malloc_ewram name, size
     .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop - \size
+    .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop & ~3
     SET_DATA \name, UsedFreeEwramSpaceTop
 .endm
 
 .macro _kernel_malloc_ewram_array name, size
     .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop - \size
+    .set UsedFreeEwramSpaceTop, UsedFreeEwramSpaceTop & ~3
     SET_ARRAY \name, UsedFreeEwramSpaceTop, \size
 .endm
 
