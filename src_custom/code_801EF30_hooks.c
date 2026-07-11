@@ -37,6 +37,7 @@ extern u8 g201CB59;
 extern u16 g201CB60[2][2240];
 extern u16 gNewButtons;
 extern u16 gPressedButtons;
+extern u16 gRepeatedOrNewButtons;
 extern u8 gInputRepeatTimer;
 extern struct CardInfo gCardInfo;
 
@@ -217,15 +218,18 @@ render_card:
     }
 
     if (gRuntimeConfig.enable_card_detail_navigation && gCardDetailNavActive) {
-      if (gNewButtons & DPAD_LEFT) {
+      if (gRepeatedOrNewButtons & DPAD_LEFT) {
         u16 newCard = CARD_NONE;
 
-        if (gCardDetailNavActive == 1) {         /* Deck */
-          if (gCardDetailNavIndex > 0) {
-            gCardDetailNavIndex--;
+        if (gCardDetailNavActive == 1) {         /* Deck — wraps */
+          if (gDeckMenu.cardCount > 0) {
+            if (gCardDetailNavIndex == 0)
+              gCardDetailNavIndex = gDeckMenu.cardCount - 1;
+            else
+              gCardDetailNavIndex--;
             newCard = gDeckMenu.cards[gCardDetailNavIndex];
           }
-        } else if (gCardDetailNavActive == 2) {  /* Trunk */
+        } else if (gCardDetailNavActive == 2) {  /* Trunk — wraps */
           if (gTrunkMenu.currentPos == 0)
             gTrunkMenu.currentPos = GetTrunkCardCount() - 1;
           else
@@ -240,15 +244,18 @@ render_card:
         }
       }
 
-      if (gNewButtons & DPAD_RIGHT) {
+      if (gRepeatedOrNewButtons & DPAD_RIGHT) {
         u16 newCard = CARD_NONE;
 
-        if (gCardDetailNavActive == 1) {         /* Deck */
-          if (gCardDetailNavIndex < gDeckMenu.cardCount - 1) {
-            gCardDetailNavIndex++;
+        if (gCardDetailNavActive == 1) {         /* Deck — wraps */
+          if (gDeckMenu.cardCount > 0) {
+            if (gCardDetailNavIndex >= gDeckMenu.cardCount - 1)
+              gCardDetailNavIndex = 0;
+            else
+              gCardDetailNavIndex++;
             newCard = gDeckMenu.cards[gCardDetailNavIndex];
           }
-        } else if (gCardDetailNavActive == 2) {  /* Trunk */
+        } else if (gCardDetailNavActive == 2) {  /* Trunk — wraps */
           gTrunkMenu.currentPos++;
           if (gTrunkMenu.currentPos >= GetTrunkCardCount())
             gTrunkMenu.currentPos = 0;
