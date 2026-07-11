@@ -557,6 +557,17 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [VISION_HERO_FARIS] = gActivationDescription_VisionHeroFaris_Popup1,
   [VISION_HERO_GRAVITO] = gActivationDescription_VisionHeroGravito_Popup1,
   [VISION_HERO_INCREASE] = gActivationDescription_VisionHeroIncrease_Popup1,
+  [VISION_HERO_MINIMUM_RAY] = gActivationDescription_VisionHeroMinimumRay_Popup1,
+  [VISION_HERO_MULTIPLY_GUY] = gActivationDescription_VisionHeroMultiplyGuy_Popup1,
+  [VISION_HERO_POISONER] = gActivationDescription_VisionHeroPoisoner_Popup1,
+  [VISION_HERO_VYON] = gActivationDescription_VisionHeroVyon_Popup1,
+  [VISION_RELEASE] = gActivationDescription_VisionRelease_Popup1,
+  [WATAPON] = gActivationDescription_Watapon_Popup1,
+  [WHITE_DRAGON_RITUAL] = gActivationDescription_WhiteDragonRitual_Popup1,
+  [WILD_NATURES_RELEASE] = gActivationDescription_WildNaturesRelease_Popup1,
+  [WOUGHTWEILER] = gActivationDescription_Woughtweiler_Popup1,
+  [YELLOW_GADGET] = gActivationDescription_YellowGadget_Popup1,
+  [VISION_HERO_WITCH_RAIDER] = gActivationDescription_VisionHeroWitchRaider_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1144,6 +1155,17 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_VISION_HERO_FARIS_POPUP_1] = gActivationDescription_VisionHeroFaris_Popup1,
   [CARD_EFFECT_TEXT_VISION_HERO_GRAVITO_POPUP_1] = gActivationDescription_VisionHeroGravito_Popup1,
   [CARD_EFFECT_TEXT_VISION_HERO_INCREASE_POPUP_1] = gActivationDescription_VisionHeroIncrease_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_MINIMUM_RAY_POPUP_1] = gActivationDescription_VisionHeroMinimumRay_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_MULTIPLY_GUY_POPUP_1] = gActivationDescription_VisionHeroMultiplyGuy_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_POISONER_POPUP_1] = gActivationDescription_VisionHeroPoisoner_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_VYON_POPUP_1] = gActivationDescription_VisionHeroVyon_Popup1,
+  [CARD_EFFECT_TEXT_VISION_RELEASE_POPUP_1] = gActivationDescription_VisionRelease_Popup1,
+  [CARD_EFFECT_TEXT_WATAPON_POPUP_1] = gActivationDescription_Watapon_Popup1,
+  [CARD_EFFECT_TEXT_WHITE_DRAGON_RITUAL_POPUP_1] = gActivationDescription_WhiteDragonRitual_Popup1,
+  [CARD_EFFECT_TEXT_WILD_NATURES_RELEASE_POPUP_1] = gActivationDescription_WildNaturesRelease_Popup1,
+  [CARD_EFFECT_TEXT_WOUGHTWEILER_POPUP_1] = gActivationDescription_Woughtweiler_Popup1,
+  [CARD_EFFECT_TEXT_YELLOW_GADGET_POPUP_1] = gActivationDescription_YellowGadget_Popup1,
+  [CARD_EFFECT_TEXT_VISION_HERO_WITCH_RAIDER_POPUP_1] = gActivationDescription_VisionHeroWitchRaider_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

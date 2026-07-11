@@ -1,24 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-11 — Added 10 cards (THE_SHALLOW_GRAVE through TORNADO_WALL) with stubbed effects
+**Last worked on:** 2026-07-11 — Added 12 Vision HERO and other cards to trunk
 
 **Files touched:**
 - `tools/card_data_manifest.json`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/permanent_effect_hooks.c`
-- `src_custom/spell_effects/the_shallow_grave.c`
-- `src_custom/spell_effects/toon_world.c`
-- `src_custom/activated_effects/theinen_the_great_sphinx.c`
-- `src_custom/activated_effects/thestalos_the_firestorm_monarch.c`
-- `src_custom/activated_effects/thunder_dragon_titan.c`
-- `src_custom/activated_effects/timaeus_the_knight_of_destiny.c`
-- `src_custom/activated_effects/time_magic_hammer.c`
-- `src_custom/activated_effects/tornado_bird.c`
-- `src_custom/permanent_effects/thunder_dragon_colossus.c`
-- `src_custom/trap_effects/tornado_wall.c`
+- `include/constants/card_ids.h`
+- `src_custom/assets/cards/CARD_PROGRESS.md`
 
-**Outcome:** make clean && make passes; 10 cards added to manifest (costs ranged 15-500), art already present in 80x80/ and 512x512/, effect stubs created and wired, monster_effect_hooks.c and permanent_effect_hooks.c fixed for wiring script issues; CARD_PROGRESS.md updated (in-game: 551->571)
+**Outcome:** make clean && make passes (exit 0). 12 cards added: VISION_HERO_MINIMUM_RAY, VISION_HERO_MULTIPLY_GUY, VISION_HERO_POISONER, VISION_HERO_TRINITY, VISION_HERO_VYON, VISION_HERO_WITCH_RAIDER, VISION_RELEASE, WATAPON, WHITE_DRAGON_RITUAL, WILD_NATURES_RELEASE, WOUGHTWEILER, YELLOW_GADGET. All have 80x80 + 512x512 art. Manifest entries with condensed descriptions and popup texts. Effects stubbed (no hook files).
 
 **Open / next:**
-- implement effect logic for the 10 stubbed effects
-- or tackle next batch from TRAP_DUSTSHOOT onward
+- Implement effects for these cards

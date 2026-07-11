@@ -582,6 +582,18 @@ static const u8 sVisionHeroAdorationName[] __attribute__((section(".append_asset
 static const u8 sVisionHeroFarisName[] __attribute__((section(".append_assets"))) = "Vision HERO Faris";
 static const u8 sVisionHeroGravitoName[] __attribute__((section(".append_assets"))) = "Vision HERO Gravito";
 static const u8 sVisionHeroIncreaseName[] __attribute__((section(".append_assets"))) = "Vision HERO Increase";
+static const u8 sVisionHeroMinimumRayName[] __attribute__((section(".append_assets"))) = "Vision HERO Minimum Ray";
+static const u8 sVisionHeroMultiplyGuyName[] __attribute__((section(".append_assets"))) = "Vision HERO Multiply Guy";
+static const u8 sVisionHeroPoisonerName[] __attribute__((section(".append_assets"))) = "Vision HERO Poisoner";
+static const u8 sVisionHeroTrinityName[] __attribute__((section(".append_assets"))) = "Vision HERO Trinity";
+static const u8 sVisionHeroVyonName[] __attribute__((section(".append_assets"))) = "Vision HERO Vyon";
+static const u8 sVisionReleaseName[] __attribute__((section(".append_assets"))) = "Vision Release";
+static const u8 sWataponName[] __attribute__((section(".append_assets"))) = "Watapon";
+static const u8 sWhiteDragonRitualName[] __attribute__((section(".append_assets"))) = "White Dragon Ritual";
+static const u8 sWildNaturesReleaseName[] __attribute__((section(".append_assets"))) = "Wild Nature's Release";
+static const u8 sWoughtweilerName[] __attribute__((section(".append_assets"))) = "Wroughtweiler";
+static const u8 sYellowGadgetName[] __attribute__((section(".append_assets"))) = "Yellow Gadget";
+static const u8 sVisionHeroWitchRaiderName[] __attribute__((section(".append_assets"))) = "Vision HERO Witch Raider";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1752,6 +1764,30 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sVisionHeroGravitoName;
   if (cardId == 0x0565)
     return (u8 *)sVisionHeroIncreaseName;
+  if (cardId == 0x0566)
+    return (u8 *)sVisionHeroMinimumRayName;
+  if (cardId == 0x0567)
+    return (u8 *)sVisionHeroMultiplyGuyName;
+  if (cardId == 0x0568)
+    return (u8 *)sVisionHeroPoisonerName;
+  if (cardId == 0x0569)
+    return (u8 *)sVisionHeroTrinityName;
+  if (cardId == 0x056A)
+    return (u8 *)sVisionHeroVyonName;
+  if (cardId == 0x056B)
+    return (u8 *)sVisionReleaseName;
+  if (cardId == 0x056C)
+    return (u8 *)sWataponName;
+  if (cardId == 0x056D)
+    return (u8 *)sWhiteDragonRitualName;
+  if (cardId == 0x056E)
+    return (u8 *)sWildNaturesReleaseName;
+  if (cardId == 0x056F)
+    return (u8 *)sWoughtweilerName;
+  if (cardId == 0x0570)
+    return (u8 *)sYellowGadgetName;
+  if (cardId == 0x0571)
+    return (u8 *)sVisionHeroWitchRaiderName;
 
   return gCardNames[cardId];
 }

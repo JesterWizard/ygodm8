@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 581
+#define NUM_CUSTOM_NAME_SORT_CARDS 593
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -586,6 +586,18 @@ static const u8 sVisionHeroAdorationSortName[] APPEND_RODATA = "Vision HERO Ador
 static const u8 sVisionHeroFarisSortName[] APPEND_RODATA = "Vision HERO Faris";
 static const u8 sVisionHeroGravitoSortName[] APPEND_RODATA = "Vision HERO Gravito";
 static const u8 sVisionHeroIncreaseSortName[] APPEND_RODATA = "Vision HERO Increase";
+static const u8 sVisionHeroMinimumRaySortName[] APPEND_RODATA = "Vision HERO Minimum Ray";
+static const u8 sVisionHeroMultiplyGuySortName[] APPEND_RODATA = "Vision HERO Multiply Guy";
+static const u8 sVisionHeroPoisonerSortName[] APPEND_RODATA = "Vision HERO Poisoner";
+static const u8 sVisionHeroTrinitySortName[] APPEND_RODATA = "Vision HERO Trinity";
+static const u8 sVisionHeroVyonSortName[] APPEND_RODATA = "Vision HERO Vyon";
+static const u8 sVisionReleaseSortName[] APPEND_RODATA = "Vision Release";
+static const u8 sWataponSortName[] APPEND_RODATA = "Watapon";
+static const u8 sWhiteDragonRitualSortName[] APPEND_RODATA = "White Dragon Ritual";
+static const u8 sWildNaturesReleaseSortName[] APPEND_RODATA = "Wild Nature's Release";
+static const u8 sWoughtweilerSortName[] APPEND_RODATA = "Wroughtweiler";
+static const u8 sYellowGadgetSortName[] APPEND_RODATA = "Yellow Gadget";
+static const u8 sVisionHeroWitchRaiderSortName[] APPEND_RODATA = "Vision HERO Witch Raider";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1157,13 +1169,25 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0563, // Vision HERO Faris
   0x0564, // Vision HERO Gravito
   0x0565, // Vision HERO Increase
+  0x0566, // Vision HERO Minimum Ray
+  0x0567, // Vision HERO Multiply Guy
+  0x0568, // Vision HERO Poisoner
+  0x0569, // Vision HERO Trinity
+  0x056A, // Vision HERO Vyon
+  0x0571, // Vision HERO Witch Raider
+  0x056B, // Vision Release
   0x03DB, // Wall of Revealing Light
   0x036A, // Warrior of Zera
+  0x056C, // Watapon
   0x0332, // Wave Motion Cannon
   0x0369, // Weather Report
+  0x056D, // White Dragon Ritual
   0x0367, // White Magician Pikeru
+  0x056E, // Wild Nature's Release
   0x03DC, // World Suppression
+  0x056F, // Wroughtweiler
   0x035B, // Yata-Garasu
+  0x0570, // Yellow Gadget
   0x045C, // Yubel
   0x045D, // Yubel - Terror Incarnate
   0x045E, // Yubel - The Ultimate Nightmare
@@ -1741,18 +1765,30 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   567, // Vision HERO Faris
   568, // Vision HERO Gravito
   569, // Vision HERO Increase
-  570, // Wall of Revealing Light
-  571, // Warrior of Zera
-  572, // Wave Motion Cannon
-  573, // Weather Report
-  574, // White Magician Pikeru
-  575, // World Suppression
-  576, // Yata-Garasu
-  577, // Yubel
-  578, // Yubel - Terror Incarnate
-  579, // Yubel - The Ultimate Nightmare
-  580, // Zaborg the Thunder Monarch
-  581, // Zeriel
+  570, // Vision HERO Minimum Ray
+  571, // Vision HERO Multiply Guy
+  572, // Vision HERO Poisoner
+  573, // Vision HERO Trinity
+  574, // Vision HERO Vyon
+  575, // Vision HERO Witch Raider
+  576, // Vision Release
+  577, // Wall of Revealing Light
+  578, // Warrior of Zera
+  579, // Watapon
+  580, // Wave Motion Cannon
+  581, // Weather Report
+  582, // White Dragon Ritual
+  583, // White Magician Pikeru
+  584, // Wild Nature's Release
+  585, // World Suppression
+  586, // Wroughtweiler
+  587, // Yata-Garasu
+  588, // Yellow Gadget
+  589, // Yubel
+  590, // Yubel - Terror Incarnate
+  591, // Yubel - The Ultimate Nightmare
+  592, // Zaborg the Thunder Monarch
+  593, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2924,6 +2960,30 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sVisionHeroGravitoSortName;
   if (cardId == 0x0565)
     return (u8 *)sVisionHeroIncreaseSortName;
+  if (cardId == 0x0566)
+    return (u8 *)sVisionHeroMinimumRaySortName;
+  if (cardId == 0x0567)
+    return (u8 *)sVisionHeroMultiplyGuySortName;
+  if (cardId == 0x0568)
+    return (u8 *)sVisionHeroPoisonerSortName;
+  if (cardId == 0x0569)
+    return (u8 *)sVisionHeroTrinitySortName;
+  if (cardId == 0x056A)
+    return (u8 *)sVisionHeroVyonSortName;
+  if (cardId == 0x056B)
+    return (u8 *)sVisionReleaseSortName;
+  if (cardId == 0x056C)
+    return (u8 *)sWataponSortName;
+  if (cardId == 0x056D)
+    return (u8 *)sWhiteDragonRitualSortName;
+  if (cardId == 0x056E)
+    return (u8 *)sWildNaturesReleaseSortName;
+  if (cardId == 0x056F)
+    return (u8 *)sWoughtweilerSortName;
+  if (cardId == 0x0570)
+    return (u8 *)sYellowGadgetSortName;
+  if (cardId == 0x0571)
+    return (u8 *)sVisionHeroWitchRaiderSortName;
 
   return gCardNames[cardId];
 }

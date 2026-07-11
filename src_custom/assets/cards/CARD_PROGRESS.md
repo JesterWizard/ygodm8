@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 581 |
-| Art ready, needs manifest | 12 |
+| In game (manifest + art) | 593 |
+| Art ready, needs manifest | 0 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **595** |
 
@@ -603,23 +603,23 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `VISION_HERO_FARIS` | Vision HERO Faris | `vision_hero_faris.png` |
 | `VISION_HERO_GRAVITO` | Vision HERO Gravito | `vision_hero_gravito.png` |
 | `VISION_HERO_INCREASE` | Vision HERO Increase | `vision_hero_increase.png` |
+| `VISION_HERO_MINIMUM_RAY` | Vision HERO Minimum Ray | `vision_hero_minimum_ray.png` |
+| `VISION_HERO_MULTIPLY_GUY` | Vision HERO Multiply Guy | `vision_hero_multiply_guy.png` |
+| `VISION_HERO_POISONER` | Vision HERO Poisoner | `vision_hero_poisoner.png` |
+| `VISION_HERO_TRINITY` | Vision HERO Trinity | `vision_hero_trinity.png` |
+| `VISION_HERO_VYON` | Vision HERO Vyon | `vision_hero_vyon.png` |
+| `VISION_RELEASE` | Vision Release | `vision_release.png` |
+| `WATAPON` | Watapon | `watapon.png` |
+| `WHITE_DRAGON_RITUAL` | White Dragon Ritual | `white_dragon_ritual.png` |
+| `WILD_NATURES_RELEASE` | Wild Nature's Release | `wild_natures_release.png` |
+| `WOUGHTWEILER` | Wroughtweiler | `woughtweiler.png` |
+| `YELLOW_GADGET` | Yellow Gadget | `yellow_gadget.png` |
+| `VISION_HERO_WITCH_RAIDER` | Vision HERO Witch Raider | `vision_hero_witch_raider.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `VISION_HERO_MINIMUM_RAY` — `vision_hero_minimum_ray.png`
-- [ ] `VISION_HERO_MULTIPLY_GUY` — `vision_hero_multiply_guy.png`
-- [ ] `VISION_HERO_POISONER` — `vision_hero_poisoner.png`
-- [ ] `VISION_HERO_TRINITY` — `vision_hero_trinity.png`
-- [ ] `VISION_HERO_VYON` — `vision_hero_vyon.png`
-- [ ] `VISION_HERO_WITCH_RAIDER` — `vision_hero_witch_raider.png`
-- [ ] `VISION_RELEASE` — `vision_release.png`
-- [ ] `WATAPON` — `watapon.png`
-- [ ] `WHITE_DRAGON_RITUAL` — `white_dragon_ritual.png`
-- [ ] `WILD_NATURES_RELEASE` — `wild_natures_release.png`
-- [ ] `WOUGHTWEILER` — `woughtweiler.png`
-- [ ] `YELLOW_GADGET` — `yellow_gadget.png`
 
 ## Todo — in manifest, missing art
 

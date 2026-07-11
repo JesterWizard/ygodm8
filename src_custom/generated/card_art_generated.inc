@@ -2332,6 +2332,54 @@ static const unsigned char sVisionHeroIncreaseBigArt[] __attribute__((section(".
 static const unsigned short sVisionHeroIncreaseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_increase.gbapal");
 static const unsigned char sVisionHeroIncreaseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_increase.lz");
 
+static const unsigned char sVisionHeroMinimumRayBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_minimum_ray.huff");
+static const unsigned short sVisionHeroMinimumRayBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_minimum_ray.gbapal");
+static const unsigned char sVisionHeroMinimumRayMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_minimum_ray.lz");
+
+static const unsigned char sVisionHeroMultiplyGuyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_multiply_guy.huff");
+static const unsigned short sVisionHeroMultiplyGuyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_multiply_guy.gbapal");
+static const unsigned char sVisionHeroMultiplyGuyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_multiply_guy.lz");
+
+static const unsigned char sVisionHeroPoisonerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_poisoner.huff");
+static const unsigned short sVisionHeroPoisonerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_poisoner.gbapal");
+static const unsigned char sVisionHeroPoisonerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_poisoner.lz");
+
+static const unsigned char sVisionHeroTrinityBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_trinity.huff");
+static const unsigned short sVisionHeroTrinityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_trinity.gbapal");
+static const unsigned char sVisionHeroTrinityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_trinity.lz");
+
+static const unsigned char sVisionHeroVyonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_vyon.huff");
+static const unsigned short sVisionHeroVyonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_vyon.gbapal");
+static const unsigned char sVisionHeroVyonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_vyon.lz");
+
+static const unsigned char sVisionReleaseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_release.huff");
+static const unsigned short sVisionReleaseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_release.gbapal");
+static const unsigned char sVisionReleaseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_release.lz");
+
+static const unsigned char sWataponBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/watapon.huff");
+static const unsigned short sWataponBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/watapon.gbapal");
+static const unsigned char sWataponMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/watapon.lz");
+
+static const unsigned char sWhiteDragonRitualBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/white_dragon_ritual.huff");
+static const unsigned short sWhiteDragonRitualBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/white_dragon_ritual.gbapal");
+static const unsigned char sWhiteDragonRitualMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/white_dragon_ritual.lz");
+
+static const unsigned char sWildNaturesReleaseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/wild_natures_release.huff");
+static const unsigned short sWildNaturesReleaseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/wild_natures_release.gbapal");
+static const unsigned char sWildNaturesReleaseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/wild_natures_release.lz");
+
+static const unsigned char sWoughtweilerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/woughtweiler.huff");
+static const unsigned short sWoughtweilerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/woughtweiler.gbapal");
+static const unsigned char sWoughtweilerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/woughtweiler.lz");
+
+static const unsigned char sYellowGadgetBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yellow_gadget.huff");
+static const unsigned short sYellowGadgetBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yellow_gadget.gbapal");
+static const unsigned char sYellowGadgetMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yellow_gadget.lz");
+
+static const unsigned char sVisionHeroWitchRaiderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vision_hero_witch_raider.huff");
+static const unsigned short sVisionHeroWitchRaiderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_witch_raider.gbapal");
+static const unsigned char sVisionHeroWitchRaiderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_witch_raider.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2916,6 +2964,18 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0563] = sVisionHeroFarisBigArt,
   [0x0564] = sVisionHeroGravitoBigArt,
   [0x0565] = sVisionHeroIncreaseBigArt,
+  [0x0566] = sVisionHeroMinimumRayBigArt,
+  [0x0567] = sVisionHeroMultiplyGuyBigArt,
+  [0x0568] = sVisionHeroPoisonerBigArt,
+  [0x0569] = sVisionHeroTrinityBigArt,
+  [0x056A] = sVisionHeroVyonBigArt,
+  [0x056B] = sVisionReleaseBigArt,
+  [0x056C] = sWataponBigArt,
+  [0x056D] = sWhiteDragonRitualBigArt,
+  [0x056E] = sWildNaturesReleaseBigArt,
+  [0x056F] = sWoughtweilerBigArt,
+  [0x0570] = sYellowGadgetBigArt,
+  [0x0571] = sVisionHeroWitchRaiderBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3502,6 +3562,18 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0563] = sVisionHeroFarisBigPalette,
   [0x0564] = sVisionHeroGravitoBigPalette,
   [0x0565] = sVisionHeroIncreaseBigPalette,
+  [0x0566] = sVisionHeroMinimumRayBigPalette,
+  [0x0567] = sVisionHeroMultiplyGuyBigPalette,
+  [0x0568] = sVisionHeroPoisonerBigPalette,
+  [0x0569] = sVisionHeroTrinityBigPalette,
+  [0x056A] = sVisionHeroVyonBigPalette,
+  [0x056B] = sVisionReleaseBigPalette,
+  [0x056C] = sWataponBigPalette,
+  [0x056D] = sWhiteDragonRitualBigPalette,
+  [0x056E] = sWildNaturesReleaseBigPalette,
+  [0x056F] = sWoughtweilerBigPalette,
+  [0x0570] = sYellowGadgetBigPalette,
+  [0x0571] = sVisionHeroWitchRaiderBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4088,6 +4160,18 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0563] = 0,
   [0x0564] = 0,
   [0x0565] = 0,
+  [0x0566] = 0,
+  [0x0567] = 0,
+  [0x0568] = 0,
+  [0x0569] = 0,
+  [0x056A] = 0,
+  [0x056B] = 0,
+  [0x056C] = 0,
+  [0x056D] = 0,
+  [0x056E] = 0,
+  [0x056F] = 0,
+  [0x0570] = 0,
+  [0x0571] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4674,4 +4758,16 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0563] = sVisionHeroFarisMiniArt,
   [0x0564] = sVisionHeroGravitoMiniArt,
   [0x0565] = sVisionHeroIncreaseMiniArt,
+  [0x0566] = sVisionHeroMinimumRayMiniArt,
+  [0x0567] = sVisionHeroMultiplyGuyMiniArt,
+  [0x0568] = sVisionHeroPoisonerMiniArt,
+  [0x0569] = sVisionHeroTrinityMiniArt,
+  [0x056A] = sVisionHeroVyonMiniArt,
+  [0x056B] = sVisionReleaseMiniArt,
+  [0x056C] = sWataponMiniArt,
+  [0x056D] = sWhiteDragonRitualMiniArt,
+  [0x056E] = sWildNaturesReleaseMiniArt,
+  [0x056F] = sWoughtweilerMiniArt,
+  [0x0570] = sYellowGadgetMiniArt,
+  [0x0571] = sVisionHeroWitchRaiderMiniArt,
 };

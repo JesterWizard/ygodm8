@@ -1383,11 +1383,23 @@
 #define VISION_HERO_FARIS                        0x0563
 #define VISION_HERO_GRAVITO                      0x0564
 #define VISION_HERO_INCREASE                     0x0565
+#define VISION_HERO_MINIMUM_RAY                  0x0566
+#define VISION_HERO_MULTIPLY_GUY                 0x0567
+#define VISION_HERO_POISONER                     0x0568
+#define VISION_HERO_TRINITY                      0x0569
+#define VISION_HERO_VYON                         0x056A
+#define VISION_RELEASE                           0x056B
+#define WATAPON                                  0x056C
+#define WHITE_DRAGON_RITUAL                      0x056D
+#define WILD_NATURES_RELEASE                     0x056E
+#define WOUGHTWEILER                             0x056F
+#define YELLOW_GADGET                            0x0570
+#define VISION_HERO_WITCH_RAIDER                 0x0571
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0566
-#define NUM_CUSTOM_CARDS                        0x0245
+#define NUM_TOTAL_CARDS                         0x0572
+#define NUM_CUSTOM_CARDS                        0x0251
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

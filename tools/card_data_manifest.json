@@ -40343,6 +40343,422 @@
       "effect_texts": {
         "popup_1": "If you take battle or effect damage while this card is in your GY: You can place this card from your GY in your Spell & "
       }
+    },
+    {
+      "card_const": "VISION_HERO_MINIMUM_RAY",
+      "card_name": "Vision HERO Minimum Ray",
+      "atk": 1200,
+      "def": 700,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        6,
+        1,
+        3,
+        2,
+        0,
+        9,
+        1,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroMinimumRay",
+        "pages": [
+          "Take damage in GY: move this to S/T as Continuous Trap.",
+          "Main Phase: Tribute 1 HERO to Special Summon from S/T.",
+          "Summoned from S/T: destroy 1 Lv4 or lower monster.",
+          "Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Damage in GY: place in S/T Trap. Tribute 1 HERO: SS, destroy 1 monster."
+      }
+    },
+    {
+      "card_const": "VISION_HERO_MULTIPLY_GUY",
+      "card_name": "Vision HERO Multiply Guy",
+      "atk": 800,
+      "def": 700,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 59,
+      "password": [
+        9,
+        6,
+        6,
+        9,
+        3,
+        3,
+        7,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroMultiplyGuy",
+        "pages": [
+          "Take damage in GY: move this to S/T as Continuous Trap.",
+          "Main Phase: Tribute 1 HERO to Special Summon from S/T.",
+          "Summoned from S/T: 1 face-up gains 800 ATK.",
+          "Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Damage in GY: place in S/T Trap. Tribute 1 HERO: SS, 1 monster +800 ATK."
+      }
+    },
+    {
+      "card_const": "VISION_HERO_POISONER",
+      "card_name": "Vision HERO Poisoner",
+      "atk": 900,
+      "def": 700,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 72,
+      "password": [
+        8,
+        3,
+        4,
+        1,
+        4,
+        0,
+        0,
+        6
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroPoisoner",
+        "pages": [
+          "Take damage in GY: move this to S/T as Continuous Trap.",
+          "Main Phase: Tribute 1 HERO to Special Summon from S/T.",
+          "Summoned from S/T: halve 1 face-up monster ATK.",
+          "Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Damage in GY: place in S/T Trap. Tribute 1 HERO: SS, halve 1 monster ATK."
+      }
+    },
+    {
+      "card_const": "VISION_HERO_TRINITY",
+      "card_name": "Vision HERO Trinity",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        4,
+        6,
+        7,
+        5,
+        9,
+        9,
+        3,
+        1
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroTrinity",
+        "pages": [
+          "3 HERO monsters. Fusion Summon: this card ATK x2.",
+          "Can attack 3 times during each Battle Phase.",
+          "Cannot attack directly."
+        ]
+      }
+    },
+    {
+      "card_const": "VISION_HERO_VYON",
+      "card_name": "Vision HERO Vyon",
+      "atk": 1000,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        2,
+        7,
+        7,
+        8,
+        0,
+        6,
+        1,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroVyon",
+        "pages": [
+          "On Summon: send 1 HERO from Deck to GY. Once per turn.",
+          "Once per turn: banish 1 HERO from GY; add Poly from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On Summon: send 1 HERO from Deck to GY. Once per turn: banish 1 HERO from GY; add Poly from Deck."
+      }
+    },
+    {
+      "card_const": "VISION_RELEASE",
+      "card_name": "Vision Release",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        1,
+        9,
+        1,
+        8,
+        6,
+        1,
+        2,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_VisionRelease",
+        "pages": [
+          "Target 1 Vision HERO in S/T Zone; Special Summon it.",
+          "Main Phase (not turn sent to GY): banish this from GY,",
+          "target 1 Vision HERO in GY; add to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Vision HERO in S/T Zone; SS. Banish from GY: add 1 Vision HERO from GY to hand."
+      }
+    },
+    {
+      "card_const": "WATAPON",
+      "card_name": "Watapon",
+      "atk": 200,
+      "def": 300,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [
+        8,
+        7,
+        7,
+        7,
+        4,
+        2,
+        3,
+        4
+      ],
+      "description": {
+        "symbol": "gDescription_Watapon",
+        "pages": [
+          "If this card is added from your Deck to your hand by a",
+          "card effect: You can Special Summon this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If this card is added from your Deck to your hand by a card effect: You can Special Summon this card."
+      }
+    },
+    {
+      "card_const": "WHITE_DRAGON_RITUAL",
+      "card_name": "White Dragon Ritual",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        0,
+        9,
+        7,
+        8,
+        6,
+        4,
+        9,
+        2
+      ],
+      "description": {
+        "symbol": "gDescription_WhiteDragonRitual",
+        "pages": [
+          "This card is used to Ritual Summon \"Paladin of White",
+          "Dragon\". You must also Tribute monsters from your",
+          "hand or field whose total Levels equal 4 or more."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Ritual Summon Paladin of White Dragon. Tribute monsters whose total Levels equal 4+."
+      }
+    },
+    {
+      "card_const": "WILD_NATURES_RELEASE",
+      "card_name": "Wild Nature's Release",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [
+        6,
+        1,
+        1,
+        6,
+        6,
+        9,
+        8,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_WildNaturesRelease",
+        "pages": [
+          "Target 1 Beast or Beast- Warrior-Type monster; it",
+          "gains ATK equal to its current DEF until the End",
+          "Phase. During the End Phase, destroy it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Beast/Beast-Warrior; ATK equals DEF until End Phase. Then destroy."
+      }
+    },
+    {
+      "card_const": "WOUGHTWEILER",
+      "card_name": "Wroughtweiler",
+      "atk": 800,
+      "def": 1200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        0,
+        6,
+        4,
+        8,
+        0,
+        2,
+        5,
+        3
+      ],
+      "description": {
+        "symbol": "gDescription_Woughtweiler",
+        "pages": [
+          "When destroyed by battle: target 1 Elemental HERO and",
+          "1 Polymerization in GY; add both to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When destroyed by battle: target 1 Elemental HERO and 1 Poly in GY; add both to hand."
+      }
+    },
+    {
+      "card_const": "YELLOW_GADGET",
+      "card_name": "Yellow Gadget",
+      "atk": 1200,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [
+        1,
+        3,
+        8,
+        3,
+        9,
+        1,
+        2,
+        0
+      ],
+      "description": {
+        "symbol": "gDescription_YellowGadget",
+        "pages": [
+          "When this card is Normal or Special Summoned: You can",
+          "add 1 \"Green Gadget\" from your Deck to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Normal or Special Summoned: You can add 1 \"Green Gadget\" from your Deck to your hand."
+      }
+    },
+    {
+      "card_const": "VISION_HERO_WITCH_RAIDER",
+      "card_name": "Vision HERO Witch Raider",
+      "atk": 2700,
+      "def": 1900,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [
+        8,
+        2,
+        6,
+        9,
+        7,
+        4,
+        2,
+        8
+      ],
+      "description": {
+        "symbol": "gDescription_VisionHeroWitchRaider",
+        "pages": [
+          "Tribute Summon using Traps as tributes too.",
+          "On Normal Summon: destroy all opponent Spells/Traps.",
+          "Cannot SS except HERO that turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute Summon with Traps. On Normal Summon: destroy all opponent S/T. Cannot SS except HERO that turn."
+      }
     }
   ]
 }
