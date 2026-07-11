@@ -1215,11 +1215,21 @@
 #define DESTINY_HERO_DOOM_OVERLORD               0x04BB
 #define DESTINY_HERO_DREADNOUGHT_MASTER          0x04BC
 #define DESTINY_HERO_DREADNOUGHT_SERVANT         0x04BD
+#define DESTINY_HERO_DREAMER                     0x04BE
+#define DESTINY_HERO_DRILLDARK                   0x04BF
+#define DESTINY_HERO_DUNKER                      0x04C0
+#define DESTINY_HERO_DYNATAG                     0x04C1
+#define DESTINY_HERO_DYSTOPIA                    0x04C2
+#define DESTINY_HERO_FEAR_MONGER                 0x04C3
+#define DESTINY_HERO_MALICIOUS                   0x04C4
+#define DESTINY_HERO_PLASMA                      0x04C5
+#define DIFFERENT_DIMENSION_CAPSULE              0x04C6
+#define DESTINY_HERO_DUSKTOPIA                   0x04C7
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x04BE
-#define NUM_CUSTOM_CARDS                        0x019D
+#define NUM_TOTAL_CARDS                         0x04C8
+#define NUM_CUSTOM_CARDS                        0x01A7
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

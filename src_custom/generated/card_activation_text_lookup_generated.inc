@@ -407,6 +407,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DESTINY_HERO_DOOM_OVERLORD] = gActivationDescription_DestinyHeroDoomOverlord_Popup1,
   [DESTINY_HERO_DREADNOUGHT_MASTER] = gActivationDescription_DestinyHeroDreadnoughtMaster_Popup1,
   [DESTINY_HERO_DREADNOUGHT_SERVANT] = gActivationDescription_DestinyHeroDreadnoughtServant_Popup1,
+  [DESTINY_HERO_DREAMER] = gActivationDescription_DestinyHeroDreamer_Popup1,
+  [DESTINY_HERO_DRILLDARK] = gActivationDescription_DestinyHeroDrilldark_Popup1,
+  [DESTINY_HERO_DUNKER] = gActivationDescription_DestinyHeroDunker_Popup1,
+  [DESTINY_HERO_DYNATAG] = gActivationDescription_DestinyHeroDynatag_Popup1,
+  [DESTINY_HERO_FEAR_MONGER] = gActivationDescription_DestinyHeroFearMonger_Popup1,
+  [DESTINY_HERO_MALICIOUS] = gActivationDescription_DestinyHeroMalicious_Popup1,
+  [DESTINY_HERO_PLASMA] = gActivationDescription_DestinyHeroPlasma_Popup1,
+  [DIFFERENT_DIMENSION_CAPSULE] = gActivationDescription_DifferentDimensionCapsule_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -844,6 +852,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DESTINY_HERO_DOOM_OVERLORD_POPUP_1] = gActivationDescription_DestinyHeroDoomOverlord_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DREADNOUGHT_MASTER_POPUP_1] = gActivationDescription_DestinyHeroDreadnoughtMaster_Popup1,
   [CARD_EFFECT_TEXT_DESTINY_HERO_DREADNOUGHT_SERVANT_POPUP_1] = gActivationDescription_DestinyHeroDreadnoughtServant_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DREAMER_POPUP_1] = gActivationDescription_DestinyHeroDreamer_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DRILLDARK_POPUP_1] = gActivationDescription_DestinyHeroDrilldark_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DUNKER_POPUP_1] = gActivationDescription_DestinyHeroDunker_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_DYNATAG_POPUP_1] = gActivationDescription_DestinyHeroDynatag_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_FEAR_MONGER_POPUP_1] = gActivationDescription_DestinyHeroFearMonger_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_MALICIOUS_POPUP_1] = gActivationDescription_DestinyHeroMalicious_Popup1,
+  [CARD_EFFECT_TEXT_DESTINY_HERO_PLASMA_POPUP_1] = gActivationDescription_DestinyHeroPlasma_Popup1,
+  [CARD_EFFECT_TEXT_DIFFERENT_DIMENSION_CAPSULE_POPUP_1] = gActivationDescription_DifferentDimensionCapsule_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -442,16 +442,16 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `DESTINY_HERO_DREADMASTER` — `destiny_hero_dreadmaster.png`
 - [x] `DESTINY_HERO_DREADNOUGHT_MASTER` — `destiny_hero_dreadnought_master.png`
 - [x] `DESTINY_HERO_DREADNOUGHT_SERVANT` — `destiny_hero_dreadnought_servant.png`
-- [ ] `DESTINY_HERO_DREAMER` — `destiny_hero_dreamer.png`
-- [ ] `DESTINY_HERO_DRILLDARK` — `destiny_hero_drilldark.png`
-- [ ] `DESTINY_HERO_DUNKER` — `destiny_hero_dunker.png`
-- [ ] `DESTINY_HERO_DUSKTOPIA` — `destiny_hero_dusktopia.png`
-- [ ] `DESTINY_HERO_DYNATAG` — `destiny_hero_dynatag.png`
-- [ ] `DESTINY_HERO_DYSTOPIA` — `destiny_hero_dystopia.png`
-- [ ] `DESTINY_HERO_FEAR_MONGER` — `destiny_hero_fear_monger.png`
-- [ ] `DESTINY_HERO_MALICIOUS` — `destiny_hero_malicious.png`
-- [ ] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
-- [ ] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
+- [x] `DESTINY_HERO_DREAMER` — `destiny_hero_dreamer.png`
+- [x] `DESTINY_HERO_DRILLDARK` — `destiny_hero_drilldark.png`
+- [x] `DESTINY_HERO_DUNKER` — `destiny_hero_dunker.png`
+- [x] `DESTINY_HERO_DUSKTOPIA` — `destiny_hero_dusktopia.png`
+- [x] `DESTINY_HERO_DYNATAG` — `destiny_hero_dynatag.png`
+- [x] `DESTINY_HERO_DYSTOPIA` — `destiny_hero_dystopia.png`
+- [x] `DESTINY_HERO_FEAR_MONGER` — `destiny_hero_fear_monger.png`
+- [x] `DESTINY_HERO_MALICIOUS` — `destiny_hero_malicious.png`
+- [x] `DESTINY_HERO_PLASMA` — `destiny_hero_plasma.png`
+- [x] `DIFFERENT_DIMENSION_CAPSULE` — `different_dimension_capsule.png`
 - [ ] `DIMENSION_FUSION` — `dimension_fusion.png`
 - [ ] `DIVINE_SERPENT_GEH` — `divine_serpent_geh.png`
 - [ ] `DOCTOR_D` — `doctor_d.png`

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `378` effects
+- `389` effects
 
 ## Tally
 
@@ -359,6 +359,17 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Destiny Hero Disk Commander` | `src_custom/activated_effects/destiny_hero_disk_commander.c` |
 | `permanent_effects` | `Destiny Hero Dogma` | `src_custom/permanent_effects/destiny_hero_dogma.c` |
 | `activated_effects` | `Destiny Hero Dominance` | `src_custom/activated_effects/destiny_hero_dominance.c` |
+| `activated_effects` | `Destiny Hero Dreamer` | `src_custom/activated_effects/destiny_hero_dreamer.c` |
+| `activated_effects` | `Destiny Hero Drilldark` | `src_custom/activated_effects/destiny_hero_drilldark.c` |
+| `activated_effects` | `Destiny Hero Dunker` | `src_custom/activated_effects/destiny_hero_dunker.c` |
+| `activated_effects` | `Destiny Hero Dusktopia` | `src_custom/activated_effects/destiny_hero_dusktopia.c` |
+| `activated_effects` | `Destiny Hero Dynatag` | `src_custom/activated_effects/destiny_hero_dynatag.c` |
+| `activated_effects` | `Destiny Hero Dystopia` | `src_custom/activated_effects/destiny_hero_dystopia.c` |
+| `turn_effects` | `Destiny Hero Fear Monger` | `src_custom/turn_effects/destiny_hero_fear_monger.c` |
+| `activated_effects` | `Destiny Hero Malicious` | `src_custom/activated_effects/destiny_hero_malicious.c` |
+| `activated_effects` | `Destiny Hero Plasma` | `src_custom/activated_effects/destiny_hero_plasma.c` |
+| `spell_effects` | `Different Dimension Capsule` | `src_custom/spell_effects/different_dimension_capsule.c` |
+| `activated_effects` | `Destiny Hero Dusktopia` | `src_custom/activated_effects/destiny_hero_dusktopia.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

@@ -160,6 +160,22 @@ unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_MASTER(void);
 void ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect(void);
 unsigned char CanActivateDESTINY_HERO_DREADNOUGHT_SERVANT(void);
 void ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect(void);
+unsigned char CanActivateDESTINY_HERO_DREAMER(void);
+void ActivateDESTINY_HERO_DREAMEREffect(void);
+unsigned char CanActivateDESTINY_HERO_DRILLDARK(void);
+void ActivateDESTINY_HERO_DRILLDARKEffect(void);
+unsigned char CanActivateDESTINY_HERO_DUNKER(void);
+void ActivateDESTINY_HERO_DUNKEREffect(void);
+unsigned char CanActivateDESTINY_HERO_DUSKTOPIA(void);
+void ActivateDESTINY_HERO_DUSKTOPIAEffect(void);
+unsigned char CanActivateDESTINY_HERO_DYNATAG(void);
+void ActivateDESTINY_HERO_DYNATAGEffect(void);
+unsigned char CanActivateDESTINY_HERO_DYSTOPIA(void);
+void ActivateDESTINY_HERO_DYSTOPIAEffect(void);
+unsigned char CanActivateDESTINY_HERO_MALICIOUS(void);
+void ActivateDESTINY_HERO_MALICIOUSEffect(void);
+unsigned char CanActivateDESTINY_HERO_PLASMA(void);
+void ActivateDESTINY_HERO_PLASMAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -876,8 +892,36 @@ static void ActivateMonsterEffectBody(struct DuelCard *zone)
     ActivateDESTINY_HERO_DREADNOUGHT_MASTEREffect();
     return;
   }
-  if (gMonEffect.id == DESTINY_HERO_DREADNOUGHT_SERVANT) {
-    ActivateDESTINY_HERO_DREADNOUGHT_SERVANTEffect();
+  if (gMonEffect.id == DESTINY_HERO_DREAMER) {
+    ActivateDESTINY_HERO_DREAMEREffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DRILLDARK) {
+    ActivateDESTINY_HERO_DRILLDARKEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DUNKER) {
+    ActivateDESTINY_HERO_DUNKEREffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DUSKTOPIA) {
+    ActivateDESTINY_HERO_DUSKTOPIAEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DYNATAG) {
+    ActivateDESTINY_HERO_DYNATAGEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_DYSTOPIA) {
+    ActivateDESTINY_HERO_DYSTOPIAEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_MALICIOUS) {
+    ActivateDESTINY_HERO_MALICIOUSEffect();
+    return;
+  }
+  if (gMonEffect.id == DESTINY_HERO_PLASMA) {
+    ActivateDESTINY_HERO_PLASMAEffect();
     return;
   }
 
@@ -1089,3 +1133,4 @@ FAILED:
       break;
   }
 }
+

@@ -128,6 +128,9 @@
     case DE_FUSION:
       EffectDeFusion();
       return;
+    case DIFFERENT_DIMENSION_CAPSULE:
+      EffectDIFFERENT_DIMENSION_CAPSULE();
+      return;
     case DIFFUSION_WAVE_MOTION:
       EffectDiffusionWaveMotion();
       return;

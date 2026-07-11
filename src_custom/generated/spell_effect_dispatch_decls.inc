@@ -42,6 +42,7 @@ extern void EffectDEDICATION_THROUGH_LIGHT_AND_DARKNESS(void);
 extern void EffectDelinquentDuo(void);
 extern void EffectDESTINY_DRAW(void);
 extern void EffectDeFusion(void);
+extern void EffectDIFFERENT_DIMENSION_CAPSULE(void);
 extern void EffectDiffusionWaveMotion(void);
 extern void EffectDoubleSummon(void);
 extern void EffectDustTornado(void);

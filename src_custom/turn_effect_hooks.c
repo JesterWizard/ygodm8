@@ -348,3 +348,5 @@ void TryActivatingTurnEffects__Replacement(void) {
 }
 /* ARMED_DRAGON_LV3 turn effect */
   /* TODO: wire ARMED_DRAGON_LV3 in turn effect hooks */
+/* DESTINY_HERO_FEAR_MONGER turn effect */
+  /* TODO: wire DESTINY_HERO_FEAR_MONGER in turn effect hooks */

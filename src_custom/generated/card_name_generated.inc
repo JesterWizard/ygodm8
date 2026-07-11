@@ -414,6 +414,16 @@ static const u8 sDestinyHeroDreadmasterName[] __attribute__((section(".append_as
 static const u8 sDestinyHeroDoomOverlordName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Doom Overlord";
 static const u8 sDestinyHeroDreadnoughtMasterName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Master";
 static const u8 sDestinyHeroDreadnoughtServantName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreadnought Servant";
+static const u8 sDestinyHeroDreamerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dreamer";
+static const u8 sDestinyHeroDrilldarkName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Drilldark";
+static const u8 sDestinyHeroDunkerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dunker";
+static const u8 sDestinyHeroDynatagName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dynatag";
+static const u8 sDestinyHeroDystopiaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dystopia";
+static const u8 sDestinyHeroFearMongerName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Fear Monger";
+static const u8 sDestinyHeroMaliciousName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Malicious";
+static const u8 sDestinyHeroPlasmaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Plasma";
+static const u8 sDifferentDimensionCapsuleName[] __attribute__((section(".append_assets"))) = "Different Dimension Capsule";
+static const u8 sDestinyHeroDusktopiaName[] __attribute__((section(".append_assets"))) = "Destiny HERO - Dusktopia";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1248,6 +1258,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDestinyHeroDreadnoughtMasterName;
   if (cardId == 0x04BD)
     return (u8 *)sDestinyHeroDreadnoughtServantName;
+  if (cardId == 0x04BE)
+    return (u8 *)sDestinyHeroDreamerName;
+  if (cardId == 0x04BF)
+    return (u8 *)sDestinyHeroDrilldarkName;
+  if (cardId == 0x04C0)
+    return (u8 *)sDestinyHeroDunkerName;
+  if (cardId == 0x04C1)
+    return (u8 *)sDestinyHeroDynatagName;
+  if (cardId == 0x04C2)
+    return (u8 *)sDestinyHeroDystopiaName;
+  if (cardId == 0x04C3)
+    return (u8 *)sDestinyHeroFearMongerName;
+  if (cardId == 0x04C4)
+    return (u8 *)sDestinyHeroMaliciousName;
+  if (cardId == 0x04C5)
+    return (u8 *)sDestinyHeroPlasmaName;
+  if (cardId == 0x04C6)
+    return (u8 *)sDifferentDimensionCapsuleName;
+  if (cardId == 0x04C7)
+    return (u8 *)sDestinyHeroDusktopiaName;
 
   return gCardNames[cardId];
 }
