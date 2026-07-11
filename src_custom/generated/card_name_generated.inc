@@ -531,6 +531,17 @@ static const u8 sRelaySoulName[] __attribute__((section(".append_assets"))) = "R
 static const u8 sReverseOfReverseName[] __attribute__((section(".append_assets"))) = "Reverse of Reverse";
 static const u8 sRocketHermosCannonName[] __attribute__((section(".append_assets"))) = "Rocket Hermos Cannon";
 static const u8 sRopeOfLifeName[] __attribute__((section(".append_assets"))) = "Rope of Life";
+static const u8 sRoyalMagicalLibraryName[] __attribute__((section(".append_assets"))) = "Royal Magical Library";
+static const u8 sScapegoatName[] __attribute__((section(".append_assets"))) = "Scapegoat";
+static const u8 sSecondCoinTossName[] __attribute__((section(".append_assets"))) = "Second Coin Toss";
+static const u8 sSecretVillageOfTheSpellcastersName[] __attribute__((section(".append_assets"))) = "Secret Village of the Spellcasters";
+static const u8 sShareThePainName[] __attribute__((section(".append_assets"))) = "Share the Pain";
+static const u8 sSixthSenseName[] __attribute__((section(".append_assets"))) = "Sixth Sense";
+static const u8 sSkilledDarkMagicianName[] __attribute__((section(".append_assets"))) = "Skilled Dark Magician";
+static const u8 sSkilledWhiteMagicianName[] __attribute__((section(".append_assets"))) = "Skilled White Magician";
+static const u8 sSolemnJudgmentName[] __attribute__((section(".append_assets"))) = "Solemn Judgment";
+static const u8 sSparkBlasterName[] __attribute__((section(".append_assets"))) = "Spark Blaster";
+static const u8 sSkyscraper2HeroCityName[] __attribute__((section(".append_assets"))) = "Skyscraper 2 - Hero City";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1599,6 +1610,28 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sRocketHermosCannonName;
   if (cardId == 0x0532)
     return (u8 *)sRopeOfLifeName;
+  if (cardId == 0x0533)
+    return (u8 *)sRoyalMagicalLibraryName;
+  if (cardId == 0x0534)
+    return (u8 *)sScapegoatName;
+  if (cardId == 0x0535)
+    return (u8 *)sSecondCoinTossName;
+  if (cardId == 0x0536)
+    return (u8 *)sSecretVillageOfTheSpellcastersName;
+  if (cardId == 0x0537)
+    return (u8 *)sShareThePainName;
+  if (cardId == 0x0538)
+    return (u8 *)sSixthSenseName;
+  if (cardId == 0x0539)
+    return (u8 *)sSkilledDarkMagicianName;
+  if (cardId == 0x053A)
+    return (u8 *)sSkilledWhiteMagicianName;
+  if (cardId == 0x053B)
+    return (u8 *)sSolemnJudgmentName;
+  if (cardId == 0x053C)
+    return (u8 *)sSparkBlasterName;
+  if (cardId == 0x053D)
+    return (u8 *)sSkyscraper2HeroCityName;
 
   return gCardNames[cardId];
 }

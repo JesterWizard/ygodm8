@@ -2128,6 +2128,50 @@ static const unsigned char sRopeOfLifeBigArt[] __attribute__((section(".append_a
 static const unsigned short sRopeOfLifeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rope_of_life.gbapal");
 static const unsigned char sRopeOfLifeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rope_of_life.lz");
 
+static const unsigned char sRoyalMagicalLibraryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/royal_magical_library.huff");
+static const unsigned short sRoyalMagicalLibraryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/royal_magical_library.gbapal");
+static const unsigned char sRoyalMagicalLibraryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/royal_magical_library.lz");
+
+static const unsigned char sScapegoatBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/scapegoat.huff");
+static const unsigned short sScapegoatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/scapegoat.gbapal");
+static const unsigned char sScapegoatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/scapegoat.lz");
+
+static const unsigned char sSecondCoinTossBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/second_coin_toss.huff");
+static const unsigned short sSecondCoinTossBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/second_coin_toss.gbapal");
+static const unsigned char sSecondCoinTossMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/second_coin_toss.lz");
+
+static const unsigned char sSecretVillageOfTheSpellcastersBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/secret_village_of_the_spellcasters.huff");
+static const unsigned short sSecretVillageOfTheSpellcastersBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/secret_village_of_the_spellcasters.gbapal");
+static const unsigned char sSecretVillageOfTheSpellcastersMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/secret_village_of_the_spellcasters.lz");
+
+static const unsigned char sShareThePainBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/share_the_pain.huff");
+static const unsigned short sShareThePainBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/share_the_pain.gbapal");
+static const unsigned char sShareThePainMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/share_the_pain.lz");
+
+static const unsigned char sSixthSenseBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/sixth_sense.huff");
+static const unsigned short sSixthSenseBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/sixth_sense.gbapal");
+static const unsigned char sSixthSenseMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/sixth_sense.lz");
+
+static const unsigned char sSkilledDarkMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skilled_dark_magician.huff");
+static const unsigned short sSkilledDarkMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skilled_dark_magician.gbapal");
+static const unsigned char sSkilledDarkMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skilled_dark_magician.lz");
+
+static const unsigned char sSkilledWhiteMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skilled_white_magician.huff");
+static const unsigned short sSkilledWhiteMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skilled_white_magician.gbapal");
+static const unsigned char sSkilledWhiteMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skilled_white_magician.lz");
+
+static const unsigned char sSolemnJudgmentBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/solemn_judgment.huff");
+static const unsigned short sSolemnJudgmentBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/solemn_judgment.gbapal");
+static const unsigned char sSolemnJudgmentMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/solemn_judgment.lz");
+
+static const unsigned char sSparkBlasterBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/spark_blaster.huff");
+static const unsigned short sSparkBlasterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/spark_blaster.gbapal");
+static const unsigned char sSparkBlasterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/spark_blaster.lz");
+
+static const unsigned char sSkyscraper2HeroCityBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/skyscraper_2_hero_city.huff");
+static const unsigned short sSkyscraper2HeroCityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/skyscraper_2_hero_city.gbapal");
+static const unsigned char sSkyscraper2HeroCityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/skyscraper_2_hero_city.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2661,6 +2705,17 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0530] = sReverseOfReverseBigArt,
   [0x0531] = sRocketHermosCannonBigArt,
   [0x0532] = sRopeOfLifeBigArt,
+  [0x0533] = sRoyalMagicalLibraryBigArt,
+  [0x0534] = sScapegoatBigArt,
+  [0x0535] = sSecondCoinTossBigArt,
+  [0x0536] = sSecretVillageOfTheSpellcastersBigArt,
+  [0x0537] = sShareThePainBigArt,
+  [0x0538] = sSixthSenseBigArt,
+  [0x0539] = sSkilledDarkMagicianBigArt,
+  [0x053A] = sSkilledWhiteMagicianBigArt,
+  [0x053B] = sSolemnJudgmentBigArt,
+  [0x053C] = sSparkBlasterBigArt,
+  [0x053D] = sSkyscraper2HeroCityBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3196,6 +3251,17 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0530] = sReverseOfReverseBigPalette,
   [0x0531] = sRocketHermosCannonBigPalette,
   [0x0532] = sRopeOfLifeBigPalette,
+  [0x0533] = sRoyalMagicalLibraryBigPalette,
+  [0x0534] = sScapegoatBigPalette,
+  [0x0535] = sSecondCoinTossBigPalette,
+  [0x0536] = sSecretVillageOfTheSpellcastersBigPalette,
+  [0x0537] = sShareThePainBigPalette,
+  [0x0538] = sSixthSenseBigPalette,
+  [0x0539] = sSkilledDarkMagicianBigPalette,
+  [0x053A] = sSkilledWhiteMagicianBigPalette,
+  [0x053B] = sSolemnJudgmentBigPalette,
+  [0x053C] = sSparkBlasterBigPalette,
+  [0x053D] = sSkyscraper2HeroCityBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -3731,6 +3797,17 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0530] = 0,
   [0x0531] = 0,
   [0x0532] = 0,
+  [0x0533] = 0,
+  [0x0534] = 0,
+  [0x0535] = 0,
+  [0x0536] = 0,
+  [0x0537] = 0,
+  [0x0538] = 0,
+  [0x0539] = 0,
+  [0x053A] = 0,
+  [0x053B] = 0,
+  [0x053C] = 0,
+  [0x053D] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4266,4 +4343,15 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0530] = sReverseOfReverseMiniArt,
   [0x0531] = sRocketHermosCannonMiniArt,
   [0x0532] = sRopeOfLifeMiniArt,
+  [0x0533] = sRoyalMagicalLibraryMiniArt,
+  [0x0534] = sScapegoatMiniArt,
+  [0x0535] = sSecondCoinTossMiniArt,
+  [0x0536] = sSecretVillageOfTheSpellcastersMiniArt,
+  [0x0537] = sShareThePainMiniArt,
+  [0x0538] = sSixthSenseMiniArt,
+  [0x0539] = sSkilledDarkMagicianMiniArt,
+  [0x053A] = sSkilledWhiteMagicianMiniArt,
+  [0x053B] = sSolemnJudgmentMiniArt,
+  [0x053C] = sSparkBlasterMiniArt,
+  [0x053D] = sSkyscraper2HeroCityMiniArt,
 };

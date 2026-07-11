@@ -419,3 +419,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire PROPHECY in trap dispatcher */
 /* RAIGEKI_BREAK trap effect */
   /* TODO: wire RAIGEKI_BREAK in trap dispatcher */
+/* SIXTH_SENSE trap effect */
+  /* TODO: wire SIXTH_SENSE in trap dispatcher */
+/* SOLEMN_JUDGMENT trap effect */
+  /* TODO: wire SOLEMN_JUDGMENT in trap dispatcher */
+/* SPARK_BLASTER trap effect */
+  /* TODO: wire SPARK_BLASTER in trap dispatcher */

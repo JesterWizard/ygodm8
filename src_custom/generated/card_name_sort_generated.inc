@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 530
+#define NUM_CUSTOM_NAME_SORT_CARDS 541
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -535,6 +535,17 @@ static const u8 sRelaySoulSortName[] APPEND_RODATA = "Relay Soul";
 static const u8 sReverseOfReverseSortName[] APPEND_RODATA = "Reverse of Reverse";
 static const u8 sRocketHermosCannonSortName[] APPEND_RODATA = "Rocket Hermos Cannon";
 static const u8 sRopeOfLifeSortName[] APPEND_RODATA = "Rope of Life";
+static const u8 sRoyalMagicalLibrarySortName[] APPEND_RODATA = "Royal Magical Library";
+static const u8 sScapegoatSortName[] APPEND_RODATA = "Scapegoat";
+static const u8 sSecondCoinTossSortName[] APPEND_RODATA = "Second Coin Toss";
+static const u8 sSecretVillageOfTheSpellcastersSortName[] APPEND_RODATA = "Secret Village of the Spellcasters";
+static const u8 sShareThePainSortName[] APPEND_RODATA = "Share the Pain";
+static const u8 sSixthSenseSortName[] APPEND_RODATA = "Sixth Sense";
+static const u8 sSkilledDarkMagicianSortName[] APPEND_RODATA = "Skilled Dark Magician";
+static const u8 sSkilledWhiteMagicianSortName[] APPEND_RODATA = "Skilled White Magician";
+static const u8 sSolemnJudgmentSortName[] APPEND_RODATA = "Solemn Judgment";
+static const u8 sSparkBlasterSortName[] APPEND_RODATA = "Spark Blaster";
+static const u8 sSkyscraper2HeroCitySortName[] APPEND_RODATA = "Skyscraper 2 - Hero City";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -979,28 +990,39 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0532, // Rope of Life
   0x0398, // Royal Decree
   0x03CF, // Royal Knight
+  0x0533, // Royal Magical Library
   0x03DD, // Ryu-Kishin Clown
   0x0344, // Sage's Stone
   0x0375, // Sasuke Samurai
   0x03BA, // Sasuke Samurai #2
   0x03BB, // Sasuke Samurai #3
+  0x0534, // Scapegoat
   0x0340, // Seal of Orichalcos
+  0x0535, // Second Coin Toss
   0x0360, // Secret Barrel
+  0x0536, // Secret Village of the Spellcasters
   0x036F, // Self-Destruct Button
   0x0451, // Seraphim Blaster
   0x03BC, // Servant of Catabolism
   0x03B7, // Seven Tools of the Bandit
+  0x0537, // Share the Pain
   0x0450, // Shatiel
   0x0328, // Shield And Sword
+  0x0538, // Sixth Sense
   0x034A, // Skill Drain
+  0x0539, // Skilled Dark Magician
+  0x053A, // Skilled White Magician
   0x0370, // Skull Invitation
   0x0432, // Skyscraper
+  0x053D, // Skyscraper 2 - Hero City
   0x035A, // Solar Flare Dragon
   0x0391, // Solar Ray
+  0x053B, // Solemn Judgment
   0x0392, // Solemn Wishes
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
   0x0390, // Soul Taker
+  0x053C, // Spark Blaster
   0x0343, // Spear Dragon
   0x032B, // Spell Canceller
   0x03FC, // Spell Economics
@@ -1512,94 +1534,105 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   440, // Rope of Life
   441, // Royal Decree
   442, // Royal Knight
-  443, // Ryu-Kishin Clown
-  444, // Sage's Stone
-  445, // Sasuke Samurai
-  446, // Sasuke Samurai #2
-  447, // Sasuke Samurai #3
-  448, // Seal of Orichalcos
-  449, // Secret Barrel
-  450, // Self-Destruct Button
-  451, // Seraphim Blaster
-  452, // Servant of Catabolism
-  453, // Seven Tools of the Bandit
-  454, // Shatiel
-  455, // Shield And Sword
-  456, // Skill Drain
-  457, // Skull Invitation
-  458, // Skyscraper
-  459, // Solar Flare Dragon
-  460, // Solar Ray
-  461, // Solemn Wishes
-  462, // Sorcerer of Dark Magic
-  463, // Soul Exchange
-  464, // Soul Taker
-  465, // Spear Dragon
-  466, // Spell Canceller
-  467, // Spell Economics
-  468, // Spirit Caller
-  469, // Spirit of the Breeze
-  470, // Spirit of the Pot of Greed
-  471, // Spirit Reaper
-  472, // Spirit Ryu
-  473, // St Joan
-  474, // Stealth Bird
-  475, // Swift Gaia The Fierce Knight
-  476, // Terrorking Salmon
-  477, // Tethys, Goddess of Light
-  478, // The Agent Of Creation - Venus
-  479, // The Agent of Force - Mars
-  480, // The Big Saturn
-  481, // The Blazing Mars
-  482, // The Dark Door
-  483, // The Despair Uranus
-  484, // The Flute of Summoning Dragon
-  485, // The Forceful Sentry
-  486, // The Grand Jupiter
-  487, // The Sanctuary in the Sky
-  488, // The Splendid Venus
-  489, // The Suppression Pluto
-  490, // The Supremacy Sun
-  491, // The Thing in the Crater
-  492, // The Tricky
-  493, // The Tripper Mercury
-  494, // The Tyrant Neptune
-  495, // The Unstoppable Exodia Incarnate
-  496, // The Wicked Avatar
-  497, // The Wicked Dreadroot
-  498, // The Wicked Eraser
-  499, // Theban Nightmare
-  500, // Thousand Energy
-  501, // Thousand Knives
-  502, // Thunder Crash
-  503, // Time Seal
-  504, // Tiny Angel
-  505, // Toll
-  506, // Torpedo Fish
-  507, // Trade-In
-  508, // Triangle Power
-  509, // Tribute Doll
-  510, // Twin Swords of Flashing Light - Tryce
-  511, // Tyrant Dragon
-  512, // Ultimate Offering
-  513, // United We Stand
-  514, // Upstart Goblin
-  515, // Uria, Lord of Searing Flames
-  516, // Valhalla, Hall of the Fallen
-  517, // Vampire Baby
-  518, // Vengeful Bog Spirit
-  519, // Wall of Revealing Light
-  520, // Warrior of Zera
-  521, // Wave Motion Cannon
-  522, // Weather Report
-  523, // White Magician Pikeru
-  524, // World Suppression
-  525, // Yata-Garasu
-  526, // Yubel
-  527, // Yubel - Terror Incarnate
-  528, // Yubel - The Ultimate Nightmare
-  529, // Zaborg the Thunder Monarch
-  530, // Zeriel
+  443, // Royal Magical Library
+  444, // Ryu-Kishin Clown
+  445, // Sage's Stone
+  446, // Sasuke Samurai
+  447, // Sasuke Samurai #2
+  448, // Sasuke Samurai #3
+  449, // Scapegoat
+  450, // Seal of Orichalcos
+  451, // Second Coin Toss
+  452, // Secret Barrel
+  453, // Secret Village of the Spellcasters
+  454, // Self-Destruct Button
+  455, // Seraphim Blaster
+  456, // Servant of Catabolism
+  457, // Seven Tools of the Bandit
+  458, // Share the Pain
+  459, // Shatiel
+  460, // Shield And Sword
+  461, // Sixth Sense
+  462, // Skill Drain
+  463, // Skilled Dark Magician
+  464, // Skilled White Magician
+  465, // Skull Invitation
+  466, // Skyscraper
+  467, // Skyscraper 2 - Hero City
+  468, // Solar Flare Dragon
+  469, // Solar Ray
+  470, // Solemn Judgment
+  471, // Solemn Wishes
+  472, // Sorcerer of Dark Magic
+  473, // Soul Exchange
+  474, // Soul Taker
+  475, // Spark Blaster
+  476, // Spear Dragon
+  477, // Spell Canceller
+  478, // Spell Economics
+  479, // Spirit Caller
+  480, // Spirit of the Breeze
+  481, // Spirit of the Pot of Greed
+  482, // Spirit Reaper
+  483, // Spirit Ryu
+  484, // St Joan
+  485, // Stealth Bird
+  486, // Swift Gaia The Fierce Knight
+  487, // Terrorking Salmon
+  488, // Tethys, Goddess of Light
+  489, // The Agent Of Creation - Venus
+  490, // The Agent of Force - Mars
+  491, // The Big Saturn
+  492, // The Blazing Mars
+  493, // The Dark Door
+  494, // The Despair Uranus
+  495, // The Flute of Summoning Dragon
+  496, // The Forceful Sentry
+  497, // The Grand Jupiter
+  498, // The Sanctuary in the Sky
+  499, // The Splendid Venus
+  500, // The Suppression Pluto
+  501, // The Supremacy Sun
+  502, // The Thing in the Crater
+  503, // The Tricky
+  504, // The Tripper Mercury
+  505, // The Tyrant Neptune
+  506, // The Unstoppable Exodia Incarnate
+  507, // The Wicked Avatar
+  508, // The Wicked Dreadroot
+  509, // The Wicked Eraser
+  510, // Theban Nightmare
+  511, // Thousand Energy
+  512, // Thousand Knives
+  513, // Thunder Crash
+  514, // Time Seal
+  515, // Tiny Angel
+  516, // Toll
+  517, // Torpedo Fish
+  518, // Trade-In
+  519, // Triangle Power
+  520, // Tribute Doll
+  521, // Twin Swords of Flashing Light - Tryce
+  522, // Tyrant Dragon
+  523, // Ultimate Offering
+  524, // United We Stand
+  525, // Upstart Goblin
+  526, // Uria, Lord of Searing Flames
+  527, // Valhalla, Hall of the Fallen
+  528, // Vampire Baby
+  529, // Vengeful Bog Spirit
+  530, // Wall of Revealing Light
+  531, // Warrior of Zera
+  532, // Wave Motion Cannon
+  533, // Weather Report
+  534, // White Magician Pikeru
+  535, // World Suppression
+  536, // Yata-Garasu
+  537, // Yubel
+  538, // Yubel - Terror Incarnate
+  539, // Yubel - The Ultimate Nightmare
+  540, // Zaborg the Thunder Monarch
+  541, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -2669,6 +2702,28 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sRocketHermosCannonSortName;
   if (cardId == 0x0532)
     return (u8 *)sRopeOfLifeSortName;
+  if (cardId == 0x0533)
+    return (u8 *)sRoyalMagicalLibrarySortName;
+  if (cardId == 0x0534)
+    return (u8 *)sScapegoatSortName;
+  if (cardId == 0x0535)
+    return (u8 *)sSecondCoinTossSortName;
+  if (cardId == 0x0536)
+    return (u8 *)sSecretVillageOfTheSpellcastersSortName;
+  if (cardId == 0x0537)
+    return (u8 *)sShareThePainSortName;
+  if (cardId == 0x0538)
+    return (u8 *)sSixthSenseSortName;
+  if (cardId == 0x0539)
+    return (u8 *)sSkilledDarkMagicianSortName;
+  if (cardId == 0x053A)
+    return (u8 *)sSkilledWhiteMagicianSortName;
+  if (cardId == 0x053B)
+    return (u8 *)sSolemnJudgmentSortName;
+  if (cardId == 0x053C)
+    return (u8 *)sSparkBlasterSortName;
+  if (cardId == 0x053D)
+    return (u8 *)sSkyscraper2HeroCitySortName;
 
   return gCardNames[cardId];
 }

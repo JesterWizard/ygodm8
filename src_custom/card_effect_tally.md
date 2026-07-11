@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `481` effects
+- `493` effects
 
 ## Tally
 
@@ -462,6 +462,18 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `trap_effects` | `Raigeki Break` | `src_custom/trap_effects/raigeki_break.c` |
 | `activated_effects` | `Protector Of The Sanctuary` | `src_custom/activated_effects/protector_of_the_sanctuary.c` |
 | `activated_effects` | `Quintet Magician` | `src_custom/activated_effects/quintet_magician.c` |
+| `spell_effects` | `Royal Magical Library` | `src_custom/spell_effects/royal_magical_library.c` |
+| `activated_effects` | `Royal Magical Library` | `src_custom/activated_effects/royal_magical_library.c` |
+| `spell_effects` | `Scapegoat` | `src_custom/spell_effects/scapegoat.c` |
+| `spell_effects` | `Second Coin Toss` | `src_custom/spell_effects/second_coin_toss.c` |
+| `spell_effects` | `Secret Village Of The Spellcasters` | `src_custom/spell_effects/secret_village_of_the_spellcasters.c` |
+| `spell_effects` | `Share The Pain` | `src_custom/spell_effects/share_the_pain.c` |
+| `trap_effects` | `Sixth Sense` | `src_custom/trap_effects/sixth_sense.c` |
+| `activated_effects` | `Skilled Dark Magician` | `src_custom/activated_effects/skilled_dark_magician.c` |
+| `activated_effects` | `Skilled White Magician` | `src_custom/activated_effects/skilled_white_magician.c` |
+| `trap_effects` | `Solemn Judgment` | `src_custom/trap_effects/solemn_judgment.c` |
+| `trap_effects` | `Spark Blaster` | `src_custom/trap_effects/spark_blaster.c` |
+| `spell_effects` | `Skyscraper 2 Hero City` | `src_custom/spell_effects/skyscraper_2_hero_city.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

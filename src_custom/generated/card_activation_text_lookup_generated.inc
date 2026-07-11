@@ -512,6 +512,17 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [REVERSE_OF_REVERSE] = gActivationDescription_ReverseOfReverse_Popup1,
   [ROCKET_HERMOS_CANNON] = gActivationDescription_RocketHermosCannon_Popup1,
   [ROPE_OF_LIFE] = gActivationDescription_RopeOfLife_Popup1,
+  [ROYAL_MAGICAL_LIBRARY] = gActivationDescription_RoyalMagicalLibrary_Popup1,
+  [SCAPEGOAT] = gActivationDescription_Scapegoat_Popup1,
+  [SECOND_COIN_TOSS] = gActivationDescription_SecondCoinToss_Popup1,
+  [SECRET_VILLAGE_OF_THE_SPELLCASTERS] = gActivationDescription_SecretVillageOfTheSpellcasters_Popup1,
+  [SHARE_THE_PAIN] = gActivationDescription_ShareThePain_Popup1,
+  [SIXTH_SENSE] = gActivationDescription_SixthSense_Popup1,
+  [SKILLED_DARK_MAGICIAN] = gActivationDescription_SkilledDarkMagician_Popup1,
+  [SKILLED_WHITE_MAGICIAN] = gActivationDescription_SkilledWhiteMagician_Popup1,
+  [SOLEMN_JUDGMENT] = gActivationDescription_SolemnJudgment_Popup1,
+  [SPARK_BLASTER] = gActivationDescription_SparkBlaster_Popup1,
+  [SKYSCRAPER_2_HERO_CITY] = gActivationDescription_Skyscraper2HeroCity_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1054,6 +1065,17 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_REVERSE_OF_REVERSE_POPUP_1] = gActivationDescription_ReverseOfReverse_Popup1,
   [CARD_EFFECT_TEXT_ROCKET_HERMOS_CANNON_POPUP_1] = gActivationDescription_RocketHermosCannon_Popup1,
   [CARD_EFFECT_TEXT_ROPE_OF_LIFE_POPUP_1] = gActivationDescription_RopeOfLife_Popup1,
+  [CARD_EFFECT_TEXT_ROYAL_MAGICAL_LIBRARY_POPUP_1] = gActivationDescription_RoyalMagicalLibrary_Popup1,
+  [CARD_EFFECT_TEXT_SCAPEGOAT_POPUP_1] = gActivationDescription_Scapegoat_Popup1,
+  [CARD_EFFECT_TEXT_SECOND_COIN_TOSS_POPUP_1] = gActivationDescription_SecondCoinToss_Popup1,
+  [CARD_EFFECT_TEXT_SECRET_VILLAGE_OF_THE_SPELLCASTERS_POPUP_1] = gActivationDescription_SecretVillageOfTheSpellcasters_Popup1,
+  [CARD_EFFECT_TEXT_SHARE_THE_PAIN_POPUP_1] = gActivationDescription_ShareThePain_Popup1,
+  [CARD_EFFECT_TEXT_SIXTH_SENSE_POPUP_1] = gActivationDescription_SixthSense_Popup1,
+  [CARD_EFFECT_TEXT_SKILLED_DARK_MAGICIAN_POPUP_1] = gActivationDescription_SkilledDarkMagician_Popup1,
+  [CARD_EFFECT_TEXT_SKILLED_WHITE_MAGICIAN_POPUP_1] = gActivationDescription_SkilledWhiteMagician_Popup1,
+  [CARD_EFFECT_TEXT_SOLEMN_JUDGMENT_POPUP_1] = gActivationDescription_SolemnJudgment_Popup1,
+  [CARD_EFFECT_TEXT_SPARK_BLASTER_POPUP_1] = gActivationDescription_SparkBlaster_Popup1,
+  [CARD_EFFECT_TEXT_SKYSCRAPER_2_HERO_CITY_POPUP_1] = gActivationDescription_Skyscraper2HeroCity_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

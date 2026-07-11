@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 530 |
-| Art ready, needs manifest | 70 |
+| In game (manifest + art) | 541 |
+| Art ready, needs manifest | 52 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **602** |
+| **Total PNGs in `80x80/`** | **595** |
 
 ## In game
 
@@ -552,22 +552,22 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `REVERSE_OF_REVERSE` | Reverse of Reverse | `reverse_of_reverse.png` |
 | `ROCKET_HERMOS_CANNON` | Rocket Hermos Cannon | `rocket_hermos_cannon.png` |
 | `ROPE_OF_LIFE` | Rope of Life | `rope_of_life.png` |
+| `ROYAL_MAGICAL_LIBRARY` | Royal Magical Library | `royal_magical_library.png` |
+| `SCAPEGOAT` | Scapegoat | `scapegoat.png` |
+| `SECOND_COIN_TOSS` | Second Coin Toss | `second_coin_toss.png` |
+| `SECRET_VILLAGE_OF_THE_SPELLCASTERS` | Secret Village of the Spellcasters | `secret_village_of_the_spellcasters.png` |
+| `SHARE_THE_PAIN` | Share the Pain | `share_the_pain.png` |
+| `SIXTH_SENSE` | Sixth Sense | `sixth_sense.png` |
+| `SKILLED_DARK_MAGICIAN` | Skilled Dark Magician | `skilled_dark_magician.png` |
+| `SKILLED_WHITE_MAGICIAN` | Skilled White Magician | `skilled_white_magician.png` |
+| `SOLEMN_JUDGMENT` | Solemn Judgment | `solemn_judgment.png` |
+| `SPARK_BLASTER` | Spark Blaster | `spark_blaster.png` |
+| `SKYSCRAPER_2_HERO_CITY` | Skyscraper 2 - Hero City | `skyscraper_2_hero_city.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ROYAL_MAGICAL_LIBRARY` — `royal_magical_library.png`
-- [ ] `SCAPEGOAT` — `scapegoat.png`
-- [ ] `SECOND_COIN_TOSS` — `second_coin_toss.png`
-- [ ] `SECRET_VILLAGE_OF_THE_SPELLCASTERS` — `secret_village_of_the_spellcasters.png`
-- [ ] `SHARE_THE_PAIN` — `share_the_pain.png`
-- [ ] `SIXTH_SENSE` — `sixth_sense.png`
-- [ ] `SKILLED_DARK_MAGICIAN` — `skilled_dark_magician.png`
-- [ ] `SKILLED_WHITE_MAGICIAN` — `skilled_white_magician.png`
-- [ ] `SKYSCRAPER_2_HERO_CITY` — `skyscraper_2_hero_city.png`
-- [ ] `SOLEMN_JUDGEMENT` — `solemn_judgement.png`
-- [ ] `SPARK_BLASTER` — `spark_blaster.png`
 - [ ] `SPELL_ABSORPTION` — `spell_absorption.png`
 - [ ] `SPHINX_TELEIA` — `sphinx_teleia.png`
 - [ ] `STATUE_OF_THE_WICKED` — `statue_of_the_wicked.png`

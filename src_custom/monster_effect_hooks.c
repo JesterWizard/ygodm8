@@ -86,6 +86,12 @@ unsigned char CanActivatePROTECTOR_OF_THE_SANCTUARY(void);
 void ActivatePROTECTOR_OF_THE_SANCTUARYEffect(void);
 unsigned char CanActivateQUINTET_MAGICIAN(void);
 void ActivateQUINTET_MAGICIANEffect(void);
+unsigned char CanActivateROYAL_MAGICAL_LIBRARY(void);
+void ActivateROYAL_MAGICAL_LIBRARYEffect(void);
+unsigned char CanActivateSKILLED_DARK_MAGICIAN(void);
+void ActivateSKILLED_DARK_MAGICIANEffect(void);
+unsigned char CanActivateSKILLED_WHITE_MAGICIAN(void);
+void ActivateSKILLED_WHITE_MAGICIANEffect(void);
 void sub_8044570(void);
 void UpdateDuelGfxExceptField(void);
 void CheckWinConditionExodia(void);
@@ -1277,4 +1283,18 @@ FAILED:
       TryActivatingPermanentEffects();
       break;
   }
+  if (gMonEffect.id == ROYAL_MAGICAL_LIBRARY) {
+    ActivateROYAL_MAGICAL_LIBRARYEffect();
+    return;
+  }
+  if (gMonEffect.id == SKILLED_DARK_MAGICIAN) {
+    ActivateSKILLED_DARK_MAGICIANEffect();
+    return;
+  }
+  if (gMonEffect.id == SKILLED_WHITE_MAGICIAN) {
+    ActivateSKILLED_WHITE_MAGICIANEffect();
+    return;
+  }
 }
+
+/* END MONSTER EFFECT DISPATCH */

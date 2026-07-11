@@ -1332,11 +1332,22 @@
 #define REVERSE_OF_REVERSE                       0x0530
 #define ROCKET_HERMOS_CANNON                     0x0531
 #define ROPE_OF_LIFE                             0x0532
+#define ROYAL_MAGICAL_LIBRARY                    0x0533
+#define SCAPEGOAT                                0x0534
+#define SECOND_COIN_TOSS                         0x0535
+#define SECRET_VILLAGE_OF_THE_SPELLCASTERS       0x0536
+#define SHARE_THE_PAIN                           0x0537
+#define SIXTH_SENSE                              0x0538
+#define SKILLED_DARK_MAGICIAN                    0x0539
+#define SKILLED_WHITE_MAGICIAN                   0x053A
+#define SOLEMN_JUDGMENT                          0x053B
+#define SPARK_BLASTER                            0x053C
+#define SKYSCRAPER_2_HERO_CITY                   0x053D
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0533
-#define NUM_CUSTOM_CARDS                        0x0212
+#define NUM_TOTAL_CARDS                         0x053E
+#define NUM_CUSTOM_CARDS                        0x021D
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

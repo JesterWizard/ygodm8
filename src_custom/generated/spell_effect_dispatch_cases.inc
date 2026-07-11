@@ -353,11 +353,26 @@
     case SAGES_STONE:
       EffectSagesStone();
       return;
+    case SCAPEGOAT:
+      EffectSCAPEGOAT();
+      return;
+    case SECOND_COIN_TOSS:
+      EffectSECOND_COIN_TOSS();
+      return;
+    case SECRET_VILLAGE_OF_THE_SPELLCASTERS:
+      EffectSECRET_VILLAGE_OF_THE_SPELLCASTERS();
+      return;
+    case SHARE_THE_PAIN:
+      EffectSHARE_THE_PAIN();
+      return;
     case SHIELD_AND_SWORD:
       EffectShieldAndSword();
       return;
     case SKULL_INVITATION:
       EffectSkullInvitation();
+      return;
+    case SKYSCRAPER_2_HERO_CITY:
+      EffectSKYSCRAPER_2_HERO_CITY();
       return;
     case SOUL_EXCHANGE:
       EffectSoulExchange();
