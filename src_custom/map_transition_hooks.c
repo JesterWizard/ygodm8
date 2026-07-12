@@ -1,8 +1,11 @@
 #include "global.h"
 #include "common-chax.h"
+#include "configs/runtime.h"
 #include "debug_save_anywhere.h"
 #include "overworld.h"
 #include "maps_custom.h"
+
+#include "src_custom/generated/maps/manifest_connection_overrides.inc"
 
 struct MapState {
   u16 id;
@@ -65,6 +68,15 @@ LYN_REPLACE_CHECK(sub_80523EC);
 void sub_80523EC__Replacement(u16 id, u16 state, u16 connection) {
   int i = -1;
   struct DebugSaveAnywhereData *data;
+
+  /* Check manifest connection overrides before using the ROM-sourced target.
+   * This allows the manifest to redirect vanilla edge and script transitions. */
+  if (gRuntimeConfig.enable_manifest_map_overrides) {
+    u8 override = gManifestConnectionOverrides[gOverworld.map.id][gOverworld.map.unk6];
+    if (override != 0xFF) {
+      id = override;
+    }
+  }
 
   if (gDebugSaveAnywhereRestorePending == TRUE) {
     data = DebugSaveAnywhereData();

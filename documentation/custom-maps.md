@@ -59,21 +59,17 @@ Each entry in the JSON array describes one map location:
     "ground": "src_custom/assets/maps/map_09_ground.png",
     "roof": "src_custom/assets/maps/map_09_roof.png"
   },
-  "music": 5,
-  "collision": {
-    "blocked": [
-      [0, 0, 120, 1],
-      [0, 79, 120, 1]
-    ]
+  "tiles": {
+    "tile_w": 32,
+    "tile_h": 32
   },
-  "rom": {
-    "tileset_ptr": "0x082FF528",
-    "ground_tilemap_ptr": "0x083047D8",
-    "roof_tilemap_ptr": "0x08304FD8",
-    "palette_ptr": "0x083057D8",
-    "collision_ptr": "0x0850DB14",
-    "mapdata_ptr": "0x08E18D9C"
-  }
+  "music": "MUSIC_HOME",
+  "collision": {
+    "blocked": []
+  },
+  "connections": [
+    {"edge": 2, "range": [0, 119], "target": "LOCATION_LUMBERYARD"}
+  ]
 }
 ```
 
@@ -83,9 +79,10 @@ Each entry in the JSON array describes one map location:
 | `constant` | Yes | The C enum name from `include/overworld.h`. Reference this in event scripts. |
 | `label` | No | Human-readable name for debug menus. |
 | `images` | Yes | PNG paths for the ground and optional roof layers. |
-| `music` | Yes | Music track ID read from ROM (auto-detected when regenerating). |
-| `collision` | No | Custom collision overrides. Omit or set to `null` to use the ROM's default. |
-| `rom` | Yes | ROM pointers for the original assets. **Regenerate these** with `python3 tools/regenerate_manifest.py` after re-extracting maps. |
+| `tiles` | Yes | Tile grid dimensions derived from the PNG (`width/8`, `height/8`). |
+| `music` | Yes | Music track constant name from `include/constants/music_ids.h` (e.g. `MUSIC_CLOCK_TOWER_SQUARE`). |
+| `collision` | No | Custom collision overrides — `blocked` rects `[x, y, w, h]`. |
+| `connections` | Yes | Map edge exits — which edges lead to which maps. Auto-detected from ROM. |
 
 ### The `images` field
 
@@ -98,9 +95,43 @@ All image paths are relative to the repo root:
 }
 ```
 
-- **`ground`** (required) — the 256×256 pixel background layer
+- **`ground`** (required) — the ground layer image
 - **`roof`** (optional) — roof/overhang layer that renders on top. Omit the key entirely if the map has no roof (the manifest auto-detects this from the extracted PNG).
 - **`cable_car_overlay`** — special case for map 41 (cable car interior BG3 window overlay)
+
+### The `connections` field
+
+Each entry lists the map's edge exits, auto-detected from the ROM's collision data:
+
+```json
+"connections": [
+  {"edge": 2, "range": [48, 72], "target": "LOCATION_CEMETERY_CHAPEL"},
+  {"edge": 3, "range": [61, 78], "target": "LOCATION_FOREST_DECK_SHOP"}
+]
+```
+
+| Field | Description |
+|-------|-------------|
+| `edge` | Direction: 0=bottom, 1=left, 2=top, 3=right (matching the game's internal enum). |
+| `range` | Tile coordinate range on that edge that triggers the exit. Single range like `[48, 72]`, or multiple ranges like `[[16, 24], [51, 119]]` for disjoint triggers. |
+| `target` | Target map's constant name (e.g. `LOCATION_CEMETERY_CHAPEL`) or `WORLD_MAP` for world map triggers. |
+
+The `range` is in tile coordinates:
+- **top/bottom edges**: x tiles (0–119)
+- **left/right edges**: y tiles (0–79)
+
+### The `tiles` field
+
+Derived automatically from the ground PNG dimensions:
+
+```json
+"tiles": {
+  "tile_w": 32,
+  "tile_h": 32
+}
+```
+
+`tile_w` = PNG width ÷ 8, `tile_h` = PNG height ÷ 8. All vanilla maps are 32×32 tiles (256×256 px).
 
 ---
 
@@ -179,6 +210,27 @@ At runtime, `gOverworld.unk23C` is redirected to the custom collision data (gate
 - Rectangles outside the 120×80 grid are clamped and a build warning is printed
 - Multiple rectangles overlap cleanly
 - Omit `collision` entirely or use `"collision": null` to keep the ROM's original collision
+
+### Overriding map connections
+
+Each manifest connection includes a `slot` (0-4) identifying which of the 5 hardware connection slots it maps to. By default the manifest stores the ROM's own values, producing zero overrides at build time.
+
+To redirect where a map transition goes, change the `target` constant:
+
+```json
+// Map 9 (Clock Tower Foyer): instead of going to Clock Tower Entrance,
+// make it go to a different map
+{
+  "id": 9,
+  "connections": [
+    {"slot": 0, "target": "LOCATION_SOUTH_AVENUE_EAST"}
+  ]
+}
+```
+
+The build script reads the ROM's per-slot targets, compares them to the manifest, and emits only the differences into `manifest_connection_overrides.inc`. At runtime, `sub_80523EC__Replacement` checks the override table before using the ROM-sourced value. Gated by `enable_manifest_map_overrides`.
+
+This works for both edge-triggered transitions (walking off the map) and script-triggered transitions (doors, elevators, etc).
 
 ---
 
@@ -272,7 +324,7 @@ Set to `TRUE` to activate manifest-driven graphics redirects and custom collisio
 | Command | When to run | What it does |
 |---------|-------------|--------------|
 | `python3 tools/extract_maps.py` | After adding new vanilla maps | Extracts all 61 maps from `baserom.gba` as separate ground + roof PNGs into `src_custom/assets/maps/`. |
-| `python3 tools/regenerate_manifest.py` | After re-extracting maps | Rebuilds `tools/custom_map_manifest.json` from scratch using ROM data. Preserves your `images` redirects and `collision` blocks? **No** — it overwrites everything. Only run to refresh pointer data. |
+| `python3 tools/regenerate_manifest.py` | After re-extracting maps | Rebuilds `tools/custom_map_manifest.json` from scratch using ROM data — connections, music, collision, tiles. **Overwrites everything**; save custom entries (with `name` fields) separately and re-add after regeneration. |
 | `python3 tools/build_custom_maps.py` | Automatically during `make` | Reads manifest, generates dispatch tables and override tables into `src_custom/generated/maps/`. |
 | `make -j$(nproc)` | After any manifest changes | Full rebuild including custom map assets. |
 
@@ -294,9 +346,9 @@ Set to `TRUE` to activate manifest-driven graphics redirects and custom collisio
 
 | Component | File | Description |
 |-----------|------|-------------|
-| Manifest | `tools/custom_map_manifest.json` | All map definitions: IDs, image paths, music, collision, ROM pointers |
+| Manifest | `tools/custom_map_manifest.json` | All map definitions: IDs, image paths, music constants, collision rects, connections, tile dims |
 | Extract script | `tools/extract_maps.py` | Renders 61 vanilla maps as PNGs from ROM binary |
-| Regenerate script | `tools/regenerate_manifest.py` | Rebuilds manifest JSON from ROM pointer tables |
+| Regenerate script | `tools/regenerate_manifest.py` | Rebuilds manifest JSON from ROM: connections, music constants, collision rects, PNG tile dims |
 | Build script | `tools/build_custom_maps.py` | Generates `.inc` dispatch tables, graphics source table, collision override table |
 | Generated dispatch | `src_custom/generated/maps/custom_map_dispatch.inc` | Custom map (≥61) asset pointer tables |
 | Graphics sources | `src_custom/generated/maps/manifest_map_sources.inc` | `u16[61]` — which map ID's graphics each vanilla map pulls from |

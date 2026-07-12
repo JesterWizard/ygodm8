@@ -7,7 +7,11 @@
       "ground": "src_custom/assets/maps/map_00_ground.png",
       "roof": "src_custom/assets/maps/map_00_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [49, 0, 15, 71],
@@ -44,14 +48,42 @@
         [51, 72, 13, 8]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082ADCAC",
-      "ground_tilemap_ptr": "0x082B6628",
-      "roof_tilemap_ptr": "0x082B6E28",
-      "palette_ptr": "0x082B7628",
-      "collision_ptr": "0x084E3814",
-      "mapdata_ptr": "0x08E18BF4"
-    }
+    "connections": [
+      {
+        "rect": [119, 5, 1, 9],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 1
+      },
+      {
+        "rect": [0, 24, 1, 44],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [119, 31, 1, 48],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 1
+      },
+      {
+        "rect": [16, 79, 9, 1],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 2
+      },
+      {
+        "rect": [51, 79, 69, 1],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 2
+      },
+      {
+        "rect": [119, 79, 1, 1],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 1,
@@ -61,7 +93,11 @@
       "ground": "src_custom/assets/maps/map_01_ground.png",
       "roof": "src_custom/assets/maps/map_01_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [20, 0, 29, 20],
@@ -100,14 +136,47 @@
         [36, 48, 49, 32]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082B7808",
-      "ground_tilemap_ptr": "0x082BFD9C",
-      "roof_tilemap_ptr": "0x082C059C",
-      "palette_ptr": "0x082C0D9C",
-      "collision_ptr": "0x084E8314",
-      "mapdata_ptr": "0x08E18C48"
-    }
+    "connections": [
+      {
+        "rect": [0, 11, 1, 3],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
+        "slot": 3
+      },
+      {
+        "rect": [119, 11, 1, 3],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 31, 1, 48],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
+        "slot": 3
+      },
+      {
+        "rect": [119, 31, 1, 48],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 79, 120, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 2
+      },
+      {
+        "rect": [0, 79, 1, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 2
+      },
+      {
+        "rect": [119, 79, 1, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 2,
@@ -117,7 +186,11 @@
       "ground": "src_custom/assets/maps/map_02_ground.png",
       "roof": "src_custom/assets/maps/map_02_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [39, 0, 16, 80],
@@ -171,14 +244,37 @@
         [101, 73, 1, 7]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082C0F7C",
-      "ground_tilemap_ptr": "0x082C9A28",
-      "roof_tilemap_ptr": "0x082CA228",
-      "palette_ptr": "0x082CAA28",
-      "collision_ptr": "0x084ECE14",
-      "mapdata_ptr": "0x08E18C74"
-    }
+    "connections": [
+      {
+        "rect": [0, 13, 1, 3],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 2
+      },
+      {
+        "rect": [0, 31, 1, 48],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 2
+      },
+      {
+        "rect": [0, 79, 76, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 79, 1, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [101, 79, 5, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_MAIDEN_GARDEN",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 3,
@@ -188,7 +284,11 @@
       "ground": "src_custom/assets/maps/map_03_ground.png",
       "roof": "src_custom/assets/maps/map_03_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [0, 0, 76, 64],
@@ -255,14 +355,27 @@
         [73, 78, 3, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082CAC08",
-      "ground_tilemap_ptr": "0x082D2CB4",
-      "roof_tilemap_ptr": "0x082D34B4",
-      "palette_ptr": "0x082D3CB4",
-      "collision_ptr": "0x084F1914",
-      "mapdata_ptr": "0x08E18CA0"
-    }
+    "connections": [
+      {
+        "rect": [0, 1, 1, 65],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 2
+      },
+      {
+        "rect": [119, 58, 1, 22],
+        "target": "LOCATION_CLOCK_TOWER_ROOF",
+        "slot": 1
+      },
+      {
+        "rect": [73, 79, 47, 1],
+        "target": "LOCATION_CLOCK_TOWER_ROOF",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 4,
@@ -272,7 +385,11 @@
       "ground": "src_custom/assets/maps/map_04_ground.png",
       "roof": "src_custom/assets/maps/map_04_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [0, 0, 120, 33],
@@ -298,14 +415,22 @@
         [102, 59, 18, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082D3E94",
-      "ground_tilemap_ptr": "0x082DC098",
-      "roof_tilemap_ptr": "0x082DC898",
-      "palette_ptr": "0x082DD098",
-      "collision_ptr": "0x084F6414",
-      "mapdata_ptr": "0x08E18CC4"
-    }
+    "connections": [
+      {
+        "rect": [0, 1, 1, 59],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 2
+      },
+      {
+        "rect": [119, 1, 1, 59],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 5,
@@ -315,7 +440,11 @@
       "ground": "src_custom/assets/maps/map_05_ground.png",
       "roof": "src_custom/assets/maps/map_05_roof.png"
     },
-    "music": 4,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_CLOCK_TOWER_SQUARE",
     "collision": {
       "blocked": [
         [5, 0, 23, 8],
@@ -396,14 +525,23 @@
         [51, 78, 4, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082DD278",
-      "ground_tilemap_ptr": "0x082E5B54",
-      "roof_tilemap_ptr": "0x082E6354",
-      "palette_ptr": "0x082E6B54",
-      "collision_ptr": "0x084FAF14",
-      "mapdata_ptr": "0x08E18CEC"
-    }
+    "connections": [
+      {
+        "rect": [119, 1, 1, 54],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 57, 1, 23],
+        "target": "LOCATION_SOUTH_AVENUE_WEST",
+        "slot": 2
+      },
+      {
+        "rect": [0, 79, 55, 1],
+        "target": "LOCATION_SOUTH_AVENUE_WEST",
+        "slot": 2
+      }
+    ]
   },
   {
     "id": 6,
@@ -413,7 +551,11 @@
       "ground": "src_custom/assets/maps/map_06_ground.png",
       "roof": "src_custom/assets/maps/map_06_roof.png"
     },
-    "music": 6,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_GAME_SHOP",
     "collision": {
       "blocked": [
         [21, 0, 16, 25],
@@ -457,14 +599,22 @@
         [51, 62, 1, 3]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082E6D34",
-      "ground_tilemap_ptr": "0x082EEDF8",
-      "roof_tilemap_ptr": "0x082EF5F8",
-      "palette_ptr": "0x082EFDF8",
-      "collision_ptr": "0x084FFA14",
-      "mapdata_ptr": "0x08E18D14"
-    }
+    "connections": [
+      {
+        "rect": [118, 0, 2, 1],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 1
+      },
+      {
+        "rect": [119, 0, 1, 65],
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_SOUTH_AVENUE_EAST",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 7,
@@ -474,7 +624,11 @@
       "ground": "src_custom/assets/maps/map_07_ground.png",
       "roof": "src_custom/assets/maps/map_07_roof.png"
     },
-    "music": 6,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_GAME_SHOP",
     "collision": {
       "blocked": [
         [53, 21, 13, 12],
@@ -495,14 +649,12 @@
         [54, 77, 12, 3]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082EFFD8",
-      "ground_tilemap_ptr": "0x082F59A8",
-      "roof_tilemap_ptr": "0x082F61A8",
-      "palette_ptr": "0x082F69A8",
-      "collision_ptr": "0x08504514",
-      "mapdata_ptr": "0x08E18D58"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_SOUTH_AVENUE_WEST",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 8,
@@ -512,7 +664,11 @@
       "ground": "src_custom/assets/maps/map_08_ground.png",
       "roof": "src_custom/assets/maps/map_08_roof.png"
     },
-    "music": 5,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_HOME",
     "collision": {
       "blocked": [
         [51, 0, 4, 80],
@@ -560,14 +716,17 @@
         [21, 79, 23, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082F6B88",
-      "ground_tilemap_ptr": "0x082FE348",
-      "roof_tilemap_ptr": "0x082FEB48",
-      "palette_ptr": "0x082FF348",
-      "collision_ptr": "0x08509014",
-      "mapdata_ptr": "0x08E18D94"
-    }
+    "connections": [
+      {
+        "rect": [21, 79, 92, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 9,
@@ -577,7 +736,11 @@
       "ground": "src_custom/assets/maps/map_09_ground.png",
       "roof": "src_custom/assets/maps/map_09_roof.png"
     },
-    "music": 5,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_HOME",
     "collision": {
       "blocked": [
         [46, 29, 2, 13],
@@ -586,14 +749,12 @@
         [45, 72, 9, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082FF528",
-      "ground_tilemap_ptr": "0x083047D8",
-      "roof_tilemap_ptr": "0x08304FD8",
-      "palette_ptr": "0x083057D8",
-      "collision_ptr": "0x0850DB14",
-      "mapdata_ptr": "0x08E18D9C"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 10,
@@ -603,7 +764,11 @@
       "ground": "src_custom/assets/maps/map_10_ground.png",
       "roof": "src_custom/assets/maps/map_10_roof.png"
     },
-    "music": 7,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_BACK_ALLEY",
     "collision": {
       "blocked": [
         [29, 0, 6, 22],
@@ -658,14 +823,12 @@
         [86, 71, 6, 9]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083059B8",
-      "ground_tilemap_ptr": "0x0830C63C",
-      "roof_tilemap_ptr": "0x0830CE3C",
-      "palette_ptr": "0x0830D63C",
-      "collision_ptr": "0x08512614",
-      "mapdata_ptr": "0x08E18DA8"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 11,
@@ -675,7 +838,11 @@
       "ground": "src_custom/assets/maps/map_11_ground.png",
       "roof": "src_custom/assets/maps/map_11_roof.png"
     },
-    "music": 7,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_BACK_ALLEY",
     "collision": {
       "blocked": [
         [45, 0, 18, 12],
@@ -683,14 +850,12 @@
         [36, 78, 42, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0830D81C",
-      "ground_tilemap_ptr": "0x083152FC",
-      "roof_tilemap_ptr": "0x08315AFC",
-      "palette_ptr": "0x083162FC",
-      "collision_ptr": "0x08517114",
-      "mapdata_ptr": "0x08E18DB8"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 12,
@@ -700,7 +865,11 @@
       "ground": "src_custom/assets/maps/map_12_ground.png",
       "roof": "src_custom/assets/maps/map_12_roof.png"
     },
-    "music": 12,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_KAIBACORP",
     "collision": {
       "blocked": [
         [0, 0, 13, 68],
@@ -731,14 +900,27 @@
         [46, 72, 6, 8]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083164DC",
-      "ground_tilemap_ptr": "0x0831D500",
-      "roof_tilemap_ptr": "0x0831DD00",
-      "palette_ptr": "0x0831E500",
-      "collision_ptr": "0x0851BC14",
-      "mapdata_ptr": "0x08E18DC8"
-    }
+    "connections": [
+      {
+        "rect": [0, 0, 2, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 0, 1, 80],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "rect": [0, 79, 2, 1],
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_COLOSSEUM_YARD",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 13,
@@ -748,7 +930,11 @@
       "ground": "src_custom/assets/maps/map_13_ground.png",
       "roof": "src_custom/assets/maps/map_13_roof.png"
     },
-    "music": 12,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_KAIBACORP",
     "collision": {
       "blocked": [
         [22, 36, 69, 13],
@@ -759,14 +945,12 @@
         [19, 50, 2, 12]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0831E6E0",
-      "ground_tilemap_ptr": "0x08324AB8",
-      "roof_tilemap_ptr": "0x083252B8",
-      "palette_ptr": "0x08325AB8",
-      "collision_ptr": "0x08520714",
-      "mapdata_ptr": "0x08E18E04"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CLOCK_TOWER_ROOF",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 14,
@@ -776,7 +960,11 @@
       "ground": "src_custom/assets/maps/map_14_ground.png",
       "roof": "src_custom/assets/maps/map_14_roof.png"
     },
-    "music": 230,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_230",
     "collision": {
       "blocked": [
         [30, 0, 59, 12],
@@ -822,14 +1010,37 @@
         [100, 78, 20, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08325C98",
-      "ground_tilemap_ptr": "0x0832C748",
-      "roof_tilemap_ptr": "0x0832CF48",
-      "palette_ptr": "0x0832D748",
-      "collision_ptr": "0x08525214",
-      "mapdata_ptr": "0x08E18E14"
-    }
+    "connections": [
+      {
+        "rect": [0, 78, 1, 2],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [119, 78, 1, 2],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [0, 79, 21, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [43, 79, 35, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [100, 79, 20, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_COLOSSEUM_INTERIOR",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 15,
@@ -839,7 +1050,11 @@
       "ground": "src_custom/assets/maps/map_15_ground.png",
       "roof": "src_custom/assets/maps/map_15_roof.png"
     },
-    "music": 231,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_231",
     "collision": {
       "blocked": [
         [19, 0, 21, 16],
@@ -905,14 +1120,57 @@
         [77, 78, 1, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0832D928",
-      "ground_tilemap_ptr": "0x08334AF0",
-      "roof_tilemap_ptr": "0x083352F0",
-      "palette_ptr": "0x08335AF0",
-      "collision_ptr": "0x08529D14",
-      "mapdata_ptr": "0x08E18E40"
-    }
+    "connections": [
+      {
+        "rect": [19, 0, 21, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [80, 0, 21, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [15, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [29, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [42, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [51, 79, 18, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [77, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [90, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "rect": [104, 79, 1, 1],
+        "target": "LOCATION_COLOSSEUM_ENTRANCE",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_COLOSSEUM_ROOFTOP",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 16,
@@ -922,21 +1180,28 @@
       "ground": "src_custom/assets/maps/map_16_ground.png",
       "roof": "src_custom/assets/maps/map_16_roof.png"
     },
-    "music": 232,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_232",
     "collision": {
       "blocked": [
         [0, 22, 20, 43],
         [104, 59, 10, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08335CD0",
-      "ground_tilemap_ptr": "0x0833AE6C",
-      "roof_tilemap_ptr": "0x0833B66C",
-      "palette_ptr": "0x0833BE6C",
-      "collision_ptr": "0x0852E814",
-      "mapdata_ptr": "0x08E18E58"
-    }
+    "connections": [
+      {
+        "rect": [0, 49, 1, 6],
+        "target": "LOCATION_COLOSSEUM_STOREHOUSE",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_COLOSSEUM_INTERIOR",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 17,
@@ -945,21 +1210,28 @@
     "images": {
       "ground": "src_custom/assets/maps/map_17_ground.png"
     },
-    "music": 232,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_232",
     "collision": {
       "blocked": [
         [0, 52, 2, 7],
         [118, 52, 2, 7]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0833C04C",
-      "ground_tilemap_ptr": "0x08341A10",
-      "roof_tilemap_ptr": "0x08342210",
-      "palette_ptr": "0x08342A10",
-      "collision_ptr": "0x08533314",
-      "mapdata_ptr": "0x08E18E88"
-    }
+    "connections": [
+      {
+        "rect": [0, 52, 1, 7],
+        "target": "LOCATION_COLOSSEUM_FOYER",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_COLOSSEUM_ROOFTOP",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 18,
@@ -969,7 +1241,11 @@
       "ground": "src_custom/assets/maps/map_18_ground.png",
       "roof": "src_custom/assets/maps/map_18_roof.png"
     },
-    "music": 232,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_232",
     "collision": {
       "blocked": [
         [0, 46, 7, 8],
@@ -981,14 +1257,12 @@
         [12, 55, 3, 4]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08342BF0",
-      "ground_tilemap_ptr": "0x08348678",
-      "roof_tilemap_ptr": "0x08348E78",
-      "palette_ptr": "0x08349678",
-      "collision_ptr": "0x08537E14",
-      "mapdata_ptr": "0x08E18EAC"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_COLOSSEUM_STOREHOUSE",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 19,
@@ -997,21 +1271,44 @@
     "images": {
       "ground": "src_custom/assets/maps/map_19_ground.png"
     },
-    "music": 16,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_ITALY",
     "collision": {
       "blocked": [
         [0, 57, 2, 16],
         [118, 63, 2, 10]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08349858",
-      "ground_tilemap_ptr": "0x08352DFC",
-      "roof_tilemap_ptr": "0x083535FC",
-      "palette_ptr": "0x08353DFC",
-      "collision_ptr": "0x0853C914",
-      "mapdata_ptr": "0x08E18EC4"
-    }
+    "connections": [
+      {
+        "rect": [35, 0, 1, 1],
+        "target": "LOCATION_RUINS_EXTERIOR",
+        "slot": 3
+      },
+      {
+        "rect": [39, 0, 25, 1],
+        "target": "LOCATION_RUINS_HALL",
+        "slot": 1
+      },
+      {
+        "rect": [0, 57, 1, 16],
+        "target": "LOCATION_RUINS_EXTERIOR",
+        "slot": 3
+      },
+      {
+        "rect": [119, 63, 1, 10],
+        "target": "LOCATION_RUINS_HALL",
+        "slot": 1
+      },
+      {
+        "rect": [39, 79, 25, 1],
+        "target": "LOCATION_RUINS_HALL",
+        "slot": 1
+      }
+    ]
   },
   {
     "id": 20,
@@ -1021,7 +1318,11 @@
       "ground": "src_custom/assets/maps/map_20_ground.png",
       "roof": "src_custom/assets/maps/map_20_roof.png"
     },
-    "music": 231,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_231",
     "collision": {
       "blocked": [
         [30, 16, 44, 17],
@@ -1053,14 +1354,12 @@
         [76, 64, 12, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08353FDC",
-      "ground_tilemap_ptr": "0x0835A398",
-      "roof_tilemap_ptr": "0x0835AB98",
-      "palette_ptr": "0x0835B398",
-      "collision_ptr": "0x08541414",
-      "mapdata_ptr": "0x08E18ED4"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_PALACE_FOYER_LOWER",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 21,
@@ -1070,7 +1369,11 @@
       "ground": "src_custom/assets/maps/map_21_ground.png",
       "roof": "src_custom/assets/maps/map_21_roof.png"
     },
-    "music": 230,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_230",
     "collision": {
       "blocked": [
         [43, 12, 28, 26],
@@ -1128,14 +1431,27 @@
         [118, 68, 2, 12]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0835B578",
-      "ground_tilemap_ptr": "0x083634E8",
-      "roof_tilemap_ptr": "0x08363CE8",
-      "palette_ptr": "0x083644E8",
-      "collision_ptr": "0x08545F14",
-      "mapdata_ptr": "0x08E18EEC"
-    }
+    "connections": [
+      {
+        "rect": [0, 17, 1, 22],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [119, 68, 1, 12],
+        "target": "LOCATION_PALACE_GATE",
+        "slot": 1
+      },
+      {
+        "rect": [118, 79, 2, 1],
+        "target": "LOCATION_PALACE_GATE",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_PALACE_FOYER_UPPER",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 22,
@@ -1145,7 +1461,11 @@
       "ground": "src_custom/assets/maps/map_22_ground.png",
       "roof": "src_custom/assets/maps/map_22_roof.png"
     },
-    "music": 230,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_230",
     "collision": {
       "blocked": [
         [2, 0, 106, 36],
@@ -1175,14 +1495,21 @@
         [20, 66, 2, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083646C8",
-      "ground_tilemap_ptr": "0x0836BB20",
-      "roof_tilemap_ptr": "0x0836C320",
-      "palette_ptr": "0x0836CB20",
-      "collision_ptr": "0x0854AA14",
-      "mapdata_ptr": "0x08E18F0C"
-    }
+    "connections": [
+      {
+        "rect": [0, 18, 1, 18],
+        "target": "LOCATION_PALACE_FOYER_LOWER",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_PALACE_THRONE_ROOM",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 23,
@@ -1192,7 +1519,11 @@
       "ground": "src_custom/assets/maps/map_23_ground.png",
       "roof": "src_custom/assets/maps/map_23_roof.png"
     },
-    "music": 233,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_233",
     "collision": {
       "blocked": [
         [50, 25, 17, 34],
@@ -1217,14 +1548,16 @@
         [16, 78, 9, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0836CD00",
-      "ground_tilemap_ptr": "0x08373D18",
-      "roof_tilemap_ptr": "0x08374518",
-      "palette_ptr": "0x08374D18",
-      "collision_ptr": "0x0854F514",
-      "mapdata_ptr": "0x08E18F34"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_PALACE_FOYER_UPPER",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 24,
@@ -1234,7 +1567,11 @@
       "ground": "src_custom/assets/maps/map_24_ground.png",
       "roof": "src_custom/assets/maps/map_24_roof.png"
     },
-    "music": 239,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_239",
     "collision": {
       "blocked": [
         [21, 0, 8, 72],
@@ -1292,14 +1629,22 @@
         [47, 78, 3, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08374EF8",
-      "ground_tilemap_ptr": "0x0837C798",
-      "roof_tilemap_ptr": "0x0837CF98",
-      "palette_ptr": "0x0837D798",
-      "collision_ptr": "0x08554014",
-      "mapdata_ptr": "0x08E18F60"
-    }
+    "connections": [
+      {
+        "rect": [119, 34, 1, 12],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [119, 61, 1, 13],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_PALACE_STUDY",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 25,
@@ -1309,7 +1654,11 @@
       "ground": "src_custom/assets/maps/map_25_ground.png",
       "roof": "src_custom/assets/maps/map_25_roof.png"
     },
-    "music": 15,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DOMINO_PIER",
     "collision": {
       "blocked": [
         [44, 17, 11, 1],
@@ -1370,14 +1719,17 @@
         [43, 72, 1, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0837D978",
-      "ground_tilemap_ptr": "0x083848F8",
-      "roof_tilemap_ptr": "0x083850F8",
-      "palette_ptr": "0x083858F8",
-      "collision_ptr": "0x08558B14",
-      "mapdata_ptr": "0x08E18F78"
-    }
+    "connections": [
+      {
+        "rect": [119, 42, 1, 32],
+        "target": "LOCATION_PALACE_STUDY",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 26,
@@ -1387,7 +1739,11 @@
       "ground": "src_custom/assets/maps/map_26_ground.png",
       "roof": "src_custom/assets/maps/map_26_roof.png"
     },
-    "music": 15,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DOMINO_PIER",
     "collision": {
       "blocked": [
         [0, 0, 120, 26],
@@ -1412,14 +1768,27 @@
         [38, 77, 36, 3]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08385AD8",
-      "ground_tilemap_ptr": "0x0838D300",
-      "roof_tilemap_ptr": "0x0838DB00",
-      "palette_ptr": "0x0838E300",
-      "collision_ptr": "0x0855D614",
-      "mapdata_ptr": "0x08E18F88"
-    }
+    "connections": [
+      {
+        "rect": [119, 49, 1, 16],
+        "target": "LOCATION_PALACE_BEDROOM",
+        "slot": 1
+      },
+      {
+        "rect": [0, 50, 1, 26],
+        "target": "LOCATION_PALACE_KITCHEN",
+        "slot": 3
+      },
+      {
+        "rect": [38, 79, 36, 1],
+        "target": "LOCATION_PALACE_DINING_ROOM",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 27,
@@ -1429,7 +1798,11 @@
       "ground": "src_custom/assets/maps/map_27_ground.png",
       "roof": "src_custom/assets/maps/map_27_roof.png"
     },
-    "music": 240,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_240",
     "collision": {
       "blocked": [
         [69, 37, 3, 39],
@@ -1466,14 +1839,17 @@
         [84, 75, 2, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0838E4E0",
-      "ground_tilemap_ptr": "0x08395968",
-      "roof_tilemap_ptr": "0x08396168",
-      "palette_ptr": "0x08396968",
-      "collision_ptr": "0x08562114",
-      "mapdata_ptr": "0x08E18FB8"
-    }
+    "connections": [
+      {
+        "rect": [0, 49, 1, 14],
+        "target": "LOCATION_PALACE_STUDY",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 28,
@@ -1483,7 +1859,11 @@
       "ground": "src_custom/assets/maps/map_28_ground.png",
       "roof": "src_custom/assets/maps/map_28_roof.png"
     },
-    "music": 16,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_ITALY",
     "collision": {
       "blocked": [
         [15, 35, 25, 42],
@@ -1522,14 +1902,18 @@
         [110, 77, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08396B48",
-      "ground_tilemap_ptr": "0x083A0088",
-      "roof_tilemap_ptr": "0x083A0888",
-      "palette_ptr": "0x083A1088",
-      "collision_ptr": "0x08566C14",
-      "mapdata_ptr": "0x08E18FC4"
-    }
+    "connections": [
+      {
+        "rect": [0, 51, 1, 14],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [119, 54, 1, 14],
+        "target": "LOCATION_FOUNTAIN_COURTYARD",
+        "slot": 1
+      }
+    ]
   },
   {
     "id": 29,
@@ -1539,7 +1923,11 @@
       "ground": "src_custom/assets/maps/map_29_ground.png",
       "roof": "src_custom/assets/maps/map_29_roof.png"
     },
-    "music": 16,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_ITALY",
     "collision": {
       "blocked": [
         [9, 19, 65, 43],
@@ -1569,14 +1957,21 @@
         [46, 76, 28, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083A1268",
-      "ground_tilemap_ptr": "0x083AA098",
-      "roof_tilemap_ptr": "0x083AA898",
-      "palette_ptr": "0x083AB098",
-      "collision_ptr": "0x0856B714",
-      "mapdata_ptr": "0x08E18FD8"
-    }
+    "connections": [
+      {
+        "rect": [0, 49, 1, 15],
+        "target": "LOCATION_FOUNTAIN_COURTYARD",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_RUINS_SANCTUARY",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 30,
@@ -1586,7 +1981,11 @@
       "ground": "src_custom/assets/maps/map_30_ground.png",
       "roof": "src_custom/assets/maps/map_30_roof.png"
     },
-    "music": 241,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_241",
     "collision": {
       "blocked": [
         [42, 22, 4, 11],
@@ -1599,14 +1998,17 @@
         [48, 34, 6, 46]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083AB278",
-      "ground_tilemap_ptr": "0x083B40CC",
-      "roof_tilemap_ptr": "0x083B48CC",
-      "palette_ptr": "0x083B50CC",
-      "collision_ptr": "0x08570214",
-      "mapdata_ptr": "0x08E18FFC"
-    }
+    "connections": [
+      {
+        "rect": [48, 79, 25, 1],
+        "target": "LOCATION_RUINS_HALL",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 31,
@@ -1616,7 +2018,11 @@
       "ground": "src_custom/assets/maps/map_31_ground.png",
       "roof": "src_custom/assets/maps/map_31_roof.png"
     },
-    "music": 242,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_242",
     "collision": {
       "blocked": [
         [12, 21, 4, 16],
@@ -1670,14 +2076,18 @@
         [99, 64, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083B52AC",
-      "ground_tilemap_ptr": "0x083BE4E4",
-      "roof_tilemap_ptr": "0x083BECE4",
-      "palette_ptr": "0x083BF4E4",
-      "collision_ptr": "0x08574D14",
-      "mapdata_ptr": "0x08E19008"
-    }
+    "connections": [
+      {
+        "rect": [119, 37, 1, 25],
+        "target": "LOCATION_UNDERWATER_RUINS",
+        "slot": 1
+      },
+      {
+        "rect": [46, 79, 53, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 32,
@@ -1687,7 +2097,11 @@
       "ground": "src_custom/assets/maps/map_32_ground.png",
       "roof": "src_custom/assets/maps/map_32_roof.png"
     },
-    "music": 242,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_242",
     "collision": {
       "blocked": [
         [0, 34, 52, 16],
@@ -1697,14 +2111,21 @@
         [0, 51, 49, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083BF6C4",
-      "ground_tilemap_ptr": "0x083C9274",
-      "roof_tilemap_ptr": "0x083C9A74",
-      "palette_ptr": "0x083CA274",
-      "collision_ptr": "0x08579814",
-      "mapdata_ptr": "0x08E19034"
-    }
+    "connections": [
+      {
+        "rect": [0, 34, 1, 19],
+        "target": "LOCATION_RUINS_PASSAGE",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_LAKESIDE_LABORATORY",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 33,
@@ -1714,7 +2135,11 @@
       "ground": "src_custom/assets/maps/map_33_ground.png",
       "roof": "src_custom/assets/maps/map_33_roof.png"
     },
-    "music": 243,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_243",
     "collision": {
       "blocked": [
         [28, 37, 63, 39],
@@ -1733,14 +2158,16 @@
         [30, 77, 59, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083CA454",
-      "ground_tilemap_ptr": "0x083D1894",
-      "roof_tilemap_ptr": "0x083D2094",
-      "palette_ptr": "0x083D2894",
-      "collision_ptr": "0x0857E314",
-      "mapdata_ptr": "0x08E19060"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_UNDERWATER_RUINS",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_LUMBERYARD",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 34,
@@ -1750,7 +2177,11 @@
       "ground": "src_custom/assets/maps/map_34_ground.png",
       "roof": "src_custom/assets/maps/map_34_roof.png"
     },
-    "music": 244,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_244",
     "collision": {
       "blocked": [
         [104, 28, 5, 2],
@@ -1774,14 +2205,17 @@
         [20, 48, 3, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083D2A74",
-      "ground_tilemap_ptr": "0x083DBA40",
-      "roof_tilemap_ptr": "0x083DC240",
-      "palette_ptr": "0x083DCA40",
-      "collision_ptr": "0x08582E14",
-      "mapdata_ptr": "0x08E1907C"
-    }
+    "connections": [
+      {
+        "rect": [119, 35, 1, 27],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_LAKESIDE_LAB_MAIN",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 35,
@@ -1790,21 +2224,33 @@
     "images": {
       "ground": "src_custom/assets/maps/map_35_ground.png"
     },
-    "music": 245,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_245",
     "collision": {
       "blocked": [
         [118, 37, 2, 26],
         [0, 43, 2, 13]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083DCC20",
-      "ground_tilemap_ptr": "0x083E4230",
-      "roof_tilemap_ptr": "0x083E4A30",
-      "palette_ptr": "0x083E5230",
-      "collision_ptr": "0x08587914",
-      "mapdata_ptr": "0x08E19094"
-    }
+    "connections": [
+      {
+        "rect": [119, 37, 1, 26],
+        "target": "LOCATION_LAKESIDE_LAB_STORAGE",
+        "slot": 1
+      },
+      {
+        "rect": [0, 43, 1, 13],
+        "target": "LOCATION_LAKESIDE_LAB_ENTRY",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_SOUTH_AVENUE_WEST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 36,
@@ -1814,7 +2260,11 @@
       "ground": "src_custom/assets/maps/map_36_ground.png",
       "roof": "src_custom/assets/maps/map_36_roof.png"
     },
-    "music": 245,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_245",
     "collision": {
       "blocked": [
         [90, 23, 3, 30],
@@ -1930,14 +2380,17 @@
         [27, 76, 4, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083E5410",
-      "ground_tilemap_ptr": "0x083ED038",
-      "roof_tilemap_ptr": "0x083ED838",
-      "palette_ptr": "0x083EE038",
-      "collision_ptr": "0x0858C414",
-      "mapdata_ptr": "0x08E190B0"
-    }
+    "connections": [
+      {
+        "rect": [0, 45, 1, 18],
+        "target": "LOCATION_LAKESIDE_LAB_MAIN",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_SOUTH_AVENUE_WEST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 37,
@@ -1946,21 +2399,29 @@
     "images": {
       "ground": "src_custom/assets/maps/map_37_ground.png"
     },
-    "music": 246,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_246",
     "collision": {
       "blocked": [
         [0, 36, 2, 9],
         [118, 49, 2, 16]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083EE218",
-      "ground_tilemap_ptr": "0x083F6E28",
-      "roof_tilemap_ptr": "0x083F7628",
-      "palette_ptr": "0x083F7E28",
-      "collision_ptr": "0x08590F14",
-      "mapdata_ptr": "0x08E190C0"
-    }
+    "connections": [
+      {
+        "rect": [0, 36, 1, 9],
+        "target": "LOCATION_LAKESIDE_LAB_ROOM2",
+        "slot": 3
+      },
+      {
+        "rect": [119, 49, 1, 16],
+        "target": "WORLD_MAP",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 38,
@@ -1970,7 +2431,11 @@
       "ground": "src_custom/assets/maps/map_38_ground.png",
       "roof": "src_custom/assets/maps/map_38_roof.png"
     },
-    "music": 247,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_247",
     "collision": {
       "blocked": [
         [0, 0, 38, 80],
@@ -2014,14 +2479,21 @@
         [93, 74, 2, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x083F8008",
-      "ground_tilemap_ptr": "0x08402A94",
-      "roof_tilemap_ptr": "0x08403294",
-      "palette_ptr": "0x08403A94",
-      "collision_ptr": "0x08595A14",
-      "mapdata_ptr": "0x08E190E0"
-    }
+    "connections": [
+      {
+        "rect": [119, 32, 1, 39],
+        "target": "LOCATION_LAKESIDE_LAB_ROOM1",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_LAKESIDE_LAB_OFFICE",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_SOUTH_AVENUE_EAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 39,
@@ -2031,7 +2503,11 @@
       "ground": "src_custom/assets/maps/map_39_ground.png",
       "roof": "src_custom/assets/maps/map_39_roof.png"
     },
-    "music": 248,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_248",
     "collision": {
       "blocked": [
         [44, 19, 22, 1],
@@ -2060,14 +2536,16 @@
         [111, 77, 9, 3]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08403C74",
-      "ground_tilemap_ptr": "0x0840D460",
-      "roof_tilemap_ptr": "0x0840DC60",
-      "palette_ptr": "0x0840E460",
-      "collision_ptr": "0x0859A514",
-      "mapdata_ptr": "0x08E19100"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_LAKESIDE_LAB_ROOM2",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_SOUTH_AVENUE_EAST",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 40,
@@ -2076,21 +2554,28 @@
     "images": {
       "ground": "src_custom/assets/maps/map_40_ground.png"
     },
-    "music": 252,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_252",
     "collision": {
       "blocked": [
         [44, 54, 30, 2],
         [118, 56, 2, 22]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0840E640",
-      "ground_tilemap_ptr": "0x08415AA8",
-      "roof_tilemap_ptr": "0x084162A8",
-      "palette_ptr": "0x08416AA8",
-      "collision_ptr": "0x0859F014",
-      "mapdata_ptr": "0x08E19124"
-    }
+    "connections": [
+      {
+        "rect": [119, 56, 1, 22],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_FOREST_CLEARING",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 41,
@@ -2099,20 +2584,26 @@
     "images": {
       "ground": "src_custom/assets/maps/map_41_ground.png"
     },
-    "music": 253,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_253",
     "collision": {
       "blocked": [
         [43, 60, 33, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08416C88",
-      "ground_tilemap_ptr": "0x0841C91C",
-      "roof_tilemap_ptr": "0x0841D11C",
-      "palette_ptr": "0x0841E11C",
-      "collision_ptr": "0x085A3B14",
-      "mapdata_ptr": "0x08E19134"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_FOREST_TRAIL",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 42,
@@ -2122,7 +2613,11 @@
       "ground": "src_custom/assets/maps/map_42_ground.png",
       "roof": "src_custom/assets/maps/map_42_roof.png"
     },
-    "music": 254,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_254",
     "collision": {
       "blocked": [
         [3, 38, 39, 42],
@@ -2131,14 +2626,16 @@
         [116, 58, 2, 20]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0841E2FC",
-      "ground_tilemap_ptr": "0x0842696C",
-      "roof_tilemap_ptr": "0x0842716C",
-      "palette_ptr": "0x0842796C",
-      "collision_ptr": "0x085A8614",
-      "mapdata_ptr": "0x08E19140"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_FOREST_CLEARING",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 43,
@@ -2148,7 +2645,11 @@
       "ground": "src_custom/assets/maps/map_43_ground.png",
       "roof": "src_custom/assets/maps/map_43_roof.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [0, 15, 1, 23],
@@ -2251,14 +2752,23 @@
         [48, 75, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08427B4C",
-      "ground_tilemap_ptr": "0x084318E8",
-      "roof_tilemap_ptr": "0x084320E8",
-      "palette_ptr": "0x084328E8",
-      "collision_ptr": "0x085AD114",
-      "mapdata_ptr": "0x08E19154"
-    }
+    "connections": [
+      {
+        "rect": [0, 15, 1, 23],
+        "target": "LOCATION_FOREST_BLUE_HOUSE",
+        "slot": 2
+      },
+      {
+        "rect": [119, 20, 1, 22],
+        "target": "LOCATION_FOREST_CAFE",
+        "slot": 1
+      },
+      {
+        "rect": [51, 79, 15, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 44,
@@ -2267,7 +2777,11 @@
     "images": {
       "ground": "src_custom/assets/maps/map_44_ground.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [41, 0, 40, 1],
@@ -2276,14 +2790,21 @@
         [119, 76, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08432AC8",
-      "ground_tilemap_ptr": "0x0843B180",
-      "roof_tilemap_ptr": "0x0843B980",
-      "palette_ptr": "0x0843C180",
-      "collision_ptr": "0x085B1C14",
-      "mapdata_ptr": "0x08E19164"
-    }
+    "connections": [
+      {
+        "rect": [41, 0, 40, 1],
+        "target": "LOCATION_FOREST_ITEM_SHOP",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_FOREST_GROVE",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 45,
@@ -2293,7 +2814,11 @@
       "ground": "src_custom/assets/maps/map_45_ground.png",
       "roof": "src_custom/assets/maps/map_45_roof.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [70, 0, 24, 2],
@@ -2309,14 +2834,21 @@
         [12, 72, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0843C360",
-      "ground_tilemap_ptr": "0x08445A34",
-      "roof_tilemap_ptr": "0x08446234",
-      "palette_ptr": "0x08446A34",
-      "collision_ptr": "0x085B6714",
-      "mapdata_ptr": "0x08E1916C"
-    }
+    "connections": [
+      {
+        "rect": [70, 0, 24, 1],
+        "target": "LOCATION_FOREST_DECK_SHOP",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_FOREST_GROVE",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 46,
@@ -2325,7 +2857,11 @@
     "images": {
       "ground": "src_custom/assets/maps/map_46_ground.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [118, 0, 2, 22],
@@ -2334,14 +2870,26 @@
         [85, 79, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08446C14",
-      "ground_tilemap_ptr": "0x0844EC84",
-      "roof_tilemap_ptr": "0x0844F484",
-      "palette_ptr": "0x0844FC84",
-      "collision_ptr": "0x085BB214",
-      "mapdata_ptr": "0x08E19174"
-    }
+    "connections": [
+      {
+        "rect": [118, 0, 2, 1],
+        "target": "LOCATION_CEMETERY_EXTERIOR",
+        "slot": 1
+      },
+      {
+        "rect": [119, 0, 1, 22],
+        "target": "LOCATION_CEMETERY_EXTERIOR",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_FOREST_BLUE_HOUSE",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 47,
@@ -2351,7 +2899,11 @@
       "ground": "src_custom/assets/maps/map_47_ground.png",
       "roof": "src_custom/assets/maps/map_47_roof.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [0, 9, 27, 10],
@@ -2406,14 +2958,21 @@
         [77, 79, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0844FE64",
-      "ground_tilemap_ptr": "0x0845811C",
-      "roof_tilemap_ptr": "0x0845891C",
-      "palette_ptr": "0x0845911C",
-      "collision_ptr": "0x085BFD14",
-      "mapdata_ptr": "0x08E1917C"
-    }
+    "connections": [
+      {
+        "rect": [0, 9, 1, 10],
+        "target": "LOCATION_CEMETERY_EXTERIOR",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_FOREST_CAFE",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 48,
@@ -2423,7 +2982,11 @@
       "ground": "src_custom/assets/maps/map_48_ground.png",
       "roof": "src_custom/assets/maps/map_48_roof.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [48, 0, 25, 2],
@@ -2468,14 +3031,26 @@
         [112, 78, 1, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084592FC",
-      "ground_tilemap_ptr": "0x084627EC",
-      "roof_tilemap_ptr": "0x08462FEC",
-      "palette_ptr": "0x084637EC",
-      "collision_ptr": "0x085C4814",
-      "mapdata_ptr": "0x08E19188"
-    }
+    "connections": [
+      {
+        "rect": [48, 0, 25, 1],
+        "target": "LOCATION_CEMETERY_CHAPEL",
+        "slot": 2
+      },
+      {
+        "rect": [119, 61, 1, 18],
+        "target": "LOCATION_FOREST_DECK_SHOP",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_FOREST_ITEM_SHOP",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_FOYER",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 49,
@@ -2485,7 +3060,11 @@
       "ground": "src_custom/assets/maps/map_49_ground.png",
       "roof": "src_custom/assets/maps/map_49_roof.png"
     },
-    "music": 17,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
     "collision": {
       "blocked": [
         [9, 0, 100, 1],
@@ -2563,14 +3142,21 @@
         [36, 78, 52, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084639CC",
-      "ground_tilemap_ptr": "0x0846DA08",
-      "roof_tilemap_ptr": "0x0846E208",
-      "palette_ptr": "0x0846EA08",
-      "collision_ptr": "0x085C9314",
-      "mapdata_ptr": "0x08E191A4"
-    }
+    "connections": [
+      {
+        "rect": [9, 0, 100, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_CEMETERY_EXTERIOR",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CEMETERY_STORAGE",
+        "slot": 1
+      }
+    ]
   },
   {
     "id": 50,
@@ -2580,7 +3166,11 @@
       "ground": "src_custom/assets/maps/map_50_ground.png",
       "roof": "src_custom/assets/maps/map_50_roof.png"
     },
-    "music": 18,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_PEGASUS_CASTLE",
     "collision": {
       "blocked": [
         [52, 38, 16, 42],
@@ -2618,14 +3208,17 @@
         [69, 75, 3, 5]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0846EBE8",
-      "ground_tilemap_ptr": "0x08478900",
-      "roof_tilemap_ptr": "0x08479100",
-      "palette_ptr": "0x08479900",
-      "collision_ptr": "0x085CDE14",
-      "mapdata_ptr": "0x08E191AC"
-    }
+    "connections": [
+      {
+        "rect": [48, 79, 24, 1],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_CEMETERY_LIBRARY",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 51,
@@ -2635,7 +3228,11 @@
       "ground": "src_custom/assets/maps/map_51_ground.png",
       "roof": "src_custom/assets/maps/map_51_roof.png"
     },
-    "music": 18,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_PEGASUS_CASTLE",
     "collision": {
       "blocked": [
         [56, 31, 8, 49],
@@ -2671,14 +3268,29 @@
         [100, 64, 12, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08479AE0",
-      "ground_tilemap_ptr": "0x08480744",
-      "roof_tilemap_ptr": "0x08480F44",
-      "palette_ptr": "0x08481744",
-      "collision_ptr": "0x085D2914",
-      "mapdata_ptr": "0x08E191BC"
-    }
+    "connections": [
+      {
+        "rect": [37, 79, 45, 1],
+        "target": "LOCATION_CEMETERY_STORAGE",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_FOREST_REST_ROOM",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_HIGHWAY",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CEMETERY_BASEMENT",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 52,
@@ -2688,7 +3300,11 @@
       "ground": "src_custom/assets/maps/map_52_ground.png",
       "roof": "src_custom/assets/maps/map_52_roof.png"
     },
-    "music": 18,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_PEGASUS_CASTLE",
     "collision": {
       "blocked": [
         [84, 32, 4, 45],
@@ -2750,14 +3366,16 @@
         [69, 73, 5, 4]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08481924",
-      "ground_tilemap_ptr": "0x08489754",
-      "roof_tilemap_ptr": "0x08489F54",
-      "palette_ptr": "0x0848A754",
-      "collision_ptr": "0x085D7414",
-      "mapdata_ptr": "0x08E191E8"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CEMETERY_LIBRARY",
+        "slot": 1
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 53,
@@ -2767,7 +3385,11 @@
       "ground": "src_custom/assets/maps/map_53_ground.png",
       "roof": "src_custom/assets/maps/map_53_roof.png"
     },
-    "music": 18,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_PEGASUS_CASTLE",
     "collision": {
       "blocked": [
         [86, 32, 21, 18],
@@ -2845,14 +3467,16 @@
         [71, 74, 7, 4]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0848A934",
-      "ground_tilemap_ptr": "0x08492B88",
-      "roof_tilemap_ptr": "0x08493388",
-      "palette_ptr": "0x08493B88",
-      "collision_ptr": "0x085DBF14",
-      "mapdata_ptr": "0x08E191F0"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_CEMETERY_LIBRARY",
+        "slot": 3
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 54,
@@ -2862,7 +3486,11 @@
       "ground": "src_custom/assets/maps/map_54_ground.png",
       "roof": "src_custom/assets/maps/map_54_roof.png"
     },
-    "music": 19,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_INSIDE_PEGASUS_CASTLE",
     "collision": {
       "blocked": [
         [55, 10, 11, 70],
@@ -2935,14 +3563,21 @@
         [82, 76, 2, 4]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x08493D68",
-      "ground_tilemap_ptr": "0x0849BE8C",
-      "roof_tilemap_ptr": "0x0849C68C",
-      "palette_ptr": "0x0849CE8C",
-      "collision_ptr": "0x085E0A14",
-      "mapdata_ptr": "0x08E191FC"
-    }
+    "connections": [
+      {
+        "rect": [36, 79, 48, 1],
+        "target": "LOCATION_CEMETERY_LIBRARY",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CABLE_CAR_STATION",
+        "slot": 0
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 55,
@@ -2952,20 +3587,27 @@
       "ground": "src_custom/assets/maps/map_55_ground.png",
       "roof": "src_custom/assets/maps/map_55_roof.png"
     },
-    "music": 20,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_SOL_CHEVALSKY",
     "collision": {
       "blocked": [
         [45, 78, 30, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x0849D06C",
-      "ground_tilemap_ptr": "0x084A5CC0",
-      "roof_tilemap_ptr": "0x084A64C0",
-      "palette_ptr": "0x084A6CC0",
-      "collision_ptr": "0x085E5514",
-      "mapdata_ptr": "0x08E1920C"
-    }
+    "connections": [
+      {
+        "rect": [45, 79, 30, 1],
+        "target": "LOCATION_FOREST_REST_ROOM",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_INTERIOR",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 56,
@@ -2974,20 +3616,22 @@
     "images": {
       "ground": "src_custom/assets/maps/map_56_ground.png"
     },
-    "music": 25,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_HALL_OF_ETERNITY",
     "collision": {
       "blocked": [
         [53, 22, 15, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084A6EA0",
-      "ground_tilemap_ptr": "0x084ADCB8",
-      "roof_tilemap_ptr": "0x084AE4B8",
-      "palette_ptr": "0x084AECB8",
-      "collision_ptr": "0x085EA014",
-      "mapdata_ptr": "0x08E19220"
-    }
+    "connections": [
+      {
+        "target": "LOCATION_MAIDEN_GARDEN",
+        "slot": 4
+      }
+    ]
   },
   {
     "id": 57,
@@ -2997,7 +3641,11 @@
       "ground": "src_custom/assets/maps/map_57_ground.png",
       "roof": "src_custom/assets/maps/map_57_roof.png"
     },
-    "music": 13,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_KAIBALAND",
     "collision": {
       "blocked": [
         [34, 5, 6, 16],
@@ -3124,14 +3772,13 @@
         [71, 76, 1, 4]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084AEE98",
-      "ground_tilemap_ptr": "0x084B5BA8",
-      "roof_tilemap_ptr": "0x084B63A8",
-      "palette_ptr": "0x084B6BA8",
-      "collision_ptr": "0x085EEB14",
-      "mapdata_ptr": "0x08E1922C"
-    }
+    "connections": [
+      {
+        "rect": [2, 79, 70, 1],
+        "target": "LOCATION_CLOCK_TOWER_ROOF",
+        "slot": 2
+      }
+    ]
   },
   {
     "id": 58,
@@ -3141,7 +3788,11 @@
       "ground": "src_custom/assets/maps/map_58_ground.png",
       "roof": "src_custom/assets/maps/map_58_roof.png"
     },
-    "music": 0,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "SOUND_NONE",
     "collision": {
       "blocked": [
         [49, 0, 15, 71],
@@ -3178,14 +3829,32 @@
         [51, 72, 13, 8]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x082ADCAC",
-      "ground_tilemap_ptr": "0x082B6628",
-      "roof_tilemap_ptr": "0x082B6E28",
-      "palette_ptr": "0x082B7628",
-      "collision_ptr": "0x084E3814",
-      "mapdata_ptr": "0x08E19240"
-    }
+    "connections": [
+      {
+        "rect": [0, 24, 1, 44],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "rect": [16, 79, 9, 1],
+        "target": "LOCATION_CEMETERY_CHAPEL",
+        "slot": 2
+      },
+      {
+        "rect": [51, 79, 69, 1],
+        "target": "LOCATION_CEMETERY_CHAPEL",
+        "slot": 2
+      },
+      {
+        "rect": [119, 79, 1, 1],
+        "target": "LOCATION_CEMETERY_CHAPEL",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CEMETERY_STORAGE",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 59,
@@ -3195,7 +3864,11 @@
       "ground": "src_custom/assets/maps/map_59_ground.png",
       "roof": "src_custom/assets/maps/map_59_roof.png"
     },
-    "music": 26,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_EGYPT",
     "collision": {
       "blocked": [
         [56, 23, 10, 2],
@@ -3216,14 +3889,17 @@
         [10, 77, 18, 1]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084B6D88",
-      "ground_tilemap_ptr": "0x084BF6A0",
-      "roof_tilemap_ptr": "0x084BFEA0",
-      "palette_ptr": "0x084C06A0",
-      "collision_ptr": "0x085F3614",
-      "mapdata_ptr": "0x08E19244"
-    }
+    "connections": [
+      {
+        "rect": [119, 32, 1, 39],
+        "target": "WORLD_MAP",
+        "slot": 4
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTH",
+        "slot": 0
+      }
+    ]
   },
   {
     "id": 60,
@@ -3233,19 +3909,26 @@
       "ground": "src_custom/assets/maps/map_60_ground.png",
       "roof": "src_custom/assets/maps/map_60_roof.png"
     },
-    "music": 27,
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_MARIK_ISHTAR",
     "collision": {
       "blocked": [
         [47, 78, 24, 2]
       ]
     },
-    "rom": {
-      "tileset_ptr": "0x084C0880",
-      "ground_tilemap_ptr": "0x084C8DDC",
-      "roof_tilemap_ptr": "0x084C95DC",
-      "palette_ptr": "0x084C9DDC",
-      "collision_ptr": "0x085F8114",
-      "mapdata_ptr": "0x08E1925C"
-    }
+    "connections": [
+      {
+        "rect": [47, 79, 24, 1],
+        "target": "LOCATION_FOREST_AVENUE",
+        "slot": 2
+      },
+      {
+        "target": "LOCATION_CLOCK_TOWER_ROOF",
+        "slot": 4
+      }
+    ]
   }
 ]

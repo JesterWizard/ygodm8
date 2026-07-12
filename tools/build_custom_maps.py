@@ -36,19 +36,33 @@ COLLISION_H = 80
 MAX_UNIQUE_TILES = 512
 PALETTE_COUNT = 240  # 15 palettes x 16 colors
 
+# Music constant name → value lookup
+_MUSIC_VALUES: dict[str, int] = {}
+_music_header = (ROOT / "include" / "constants" / "music_ids.h").read_text()
+for m in re.finditer(r'(\w+)\s*=\s*(0x[0-9A-Fa-f]+)', _music_header):
+    _MUSIC_VALUES[m.group(1)] = int(m.group(2), 16)
 
-def _read_base_collision(entry: dict) -> list[int] | None:
-    """Read original collision grid from ROM for a manifest entry.
+
+def _music_value(name: str) -> int:
+    """Convert a music constant name like 'MUSIC_HOME' to its integer value."""
+    if name in _MUSIC_VALUES:
+        return _MUSIC_VALUES[name]
+    try:
+        return int(name, 0)
+    except ValueError:
+        return 1
+
+
+def _read_base_collision(mid: int) -> list[int] | None:
+    """Read original collision grid from ROM by map ID.
     Returns flat list of u16 values (120*80) or None on failure."""
     try:
-        ptr = int(entry.get("rom", {}).get("collision_ptr", "0"), 16)
-        if not ptr:
-            return None
         rom = ROM_PATH.read_bytes()
+        ptr_off = 0x08E11DC4 - ROM_BASE
+        ptr = struct.unpack_from("<I", rom, ptr_off + mid * 4)[0]
         off = ptr - ROM_BASE
-        raw = struct.unpack_from("<9600H", rom, off)
-        return list(raw)
-    except (FileNotFoundError, struct.error, ValueError):
+        return list(struct.unpack_from("<9600H", rom, off))
+    except (FileNotFoundError, struct.error):
         return None
 
 
@@ -427,7 +441,7 @@ def gen_dispatch_inc(entries: list[dict]) -> tuple[str, str, str]:
         md_lines.append(
             f"static const struct MapData sCustomMapData_{n} = {{\n"
             f"  .objects = {{ {{ .spriteId = -1 }} }},  /* no NPCs — use event scripts */\n"
-            f"  .music = {e.get('music', 1)},\n"
+            f"  .music = {_music_value(e.get('music', 'MUSIC_TITLE_SCREEN'))},\n"
             f"}};\n"
         )
     md_lines.append(
@@ -462,6 +476,7 @@ def main() -> int:
     # Always generate the manifest map sources table (for vanilla map overrides)
     generate_manifest_map_sources(manifest, OUT_DIR)
     generate_manifest_collision_overrides(manifest, OUT_DIR)
+    generate_manifest_connection_overrides(manifest, OUT_DIR)
 
     if not manifest:
         # Empty manifest — generate empty dispatch tables
@@ -600,7 +615,7 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None
             continue
 
         # Start from ROM's original collision to preserve void(0)/walkable(1)
-        base = _read_base_collision(entry)
+        base = _read_base_collision(mid)
         if base is None:
             print(f"warning: map {mid}: cannot read ROM collision, skipping")
             continue
@@ -719,6 +734,89 @@ def generate_manifest_map_sources(manifest: list, out_dir: Path) -> None:
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "manifest_map_sources.inc").write_text("".join(lines))
+
+
+def generate_manifest_connection_overrides(manifest: list, out_dir: Path) -> None:
+    """Generate manifest_connection_overrides.inc — per-slot target map
+    overrides for vanilla map transitions.
+
+    For each map (0-60), builds a u8[5] table.  0xFF means "use ROM default".
+    Only non-default slot targets are stored.
+
+    The runtime hook in map_transition_hooks.c checks this table to redirect
+    edge and script-driven map transitions.
+    """
+    # Build constant → numeric ID lookup from manifest entries
+    const_to_id: dict[str, int] = {}
+    for entry in manifest:
+        c = entry.get("constant")
+        mid = entry.get("id")
+        if isinstance(mid, int) and isinstance(c, str):
+            const_to_id[c] = mid
+
+    # Read ROM base slot targets (gMapData[mid][0]->unk168[slot].unk4)
+    rom_slot_targets: list[list[int | None]] = [[None] * 5 for _ in range(61)]
+    try:
+        rom_bytes = ROM_PATH.read_bytes()
+        for mid in range(61):
+            off = 0x08E19274 - ROM_BASE
+            mapdata_ptr = struct.unpack_from("<I", rom_bytes, off + mid * 4)[0]
+            state0_ptr = struct.unpack_from("<I", rom_bytes, mapdata_ptr - ROM_BASE)[0]
+            base = state0_ptr - ROM_BASE
+            for slot in range(5):
+                rom_slot_targets[mid][slot] = struct.unpack_from(
+                    "<B", rom_bytes, base + 0x168 + slot * 8 + 4)[0]
+    except (FileNotFoundError, struct.error):
+        print("warning: cannot read ROM — connection overrides will be empty")
+        rom_slot_targets = []
+
+    # Build override table
+    overrides: list[list[int]] = [[0xFF] * 5 for _ in range(61)]
+    override_count = 0
+
+    for entry in manifest:
+        mid = entry.get("id")
+        if not isinstance(mid, int) or mid < 0 or mid >= 61:
+            continue
+
+        for conn in entry.get("connections", []):
+            slot = conn.get("slot")
+            if not isinstance(slot, int) or slot < 0 or slot >= 5:
+                continue
+
+            target_const = conn.get("target", "")
+            if target_const == "WORLD_MAP":
+                continue
+
+            target_id = const_to_id.get(target_const)
+            if target_id is None:
+                continue
+
+            # Only override if different from ROM base
+            if (rom_slot_targets
+                    and rom_slot_targets[mid][slot] is not None
+                    and rom_slot_targets[mid][slot] == target_id):
+                continue
+
+            overrides[mid][slot] = target_id
+            override_count += 1
+
+    lines = [
+        "// Auto-generated connection overrides from tools/custom_map_manifest.json\n",
+        "// Per-map per-slot (5) target map overrides. 0xFF = use ROM default.\n\n",
+        "#ifndef GUARD_MANIFEST_CONNECTION_OVERRIDES\n",
+        "#define GUARD_MANIFEST_CONNECTION_OVERRIDES\n\n",
+        "static const u8 gManifestConnectionOverrides[61][5] APPEND_RODATA = {\n",
+    ]
+    for mid in range(61):
+        ov = overrides[mid]
+        vals = ", ".join(f"0x{v:02X}" for v in ov)
+        lines.append(f"  {{{vals}}},\n")
+    lines.append("};\n\n#endif /* GUARD_MANIFEST_CONNECTION_OVERRIDES */\n")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "manifest_connection_overrides.inc").write_text("".join(lines))
+    print(f"  connections: {override_count} overrides across {sum(1 for m in overrides if any(v != 0xFF for v in m))} maps")
 
 
 if __name__ == "__main__":

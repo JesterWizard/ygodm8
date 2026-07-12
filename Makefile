@@ -357,7 +357,7 @@ $(AI_ACTION_TABLE_GENERATED): src/duel/ai.c $(AI_ACTION_TABLE_GENERATOR)
 CUSTOM_MAP_MANIFEST := tools/custom_map_manifest.json
 CUSTOM_MAP_GENERATOR := tools/build_custom_maps.py
 CUSTOM_MAP_GENERATED_STAMP := $(BUILD_DIR)/.custom_maps.stamp
-CUSTOM_MAP_GENERATED := src_custom/generated/maps/custom_map_dispatch.inc src_custom/generated/maps/custom_map_connections.inc src_custom/generated/maps/manifest_map_sources.inc src_custom/generated/maps/manifest_collision_overrides.inc
+CUSTOM_MAP_GENERATED := src_custom/generated/maps/custom_map_dispatch.inc src_custom/generated/maps/custom_map_connections.inc src_custom/generated/maps/manifest_map_sources.inc src_custom/generated/maps/manifest_collision_overrides.inc src_custom/generated/maps/manifest_connection_overrides.inc
 
 $(CUSTOM_MAP_GENERATED_STAMP): $(CUSTOM_MAP_MANIFEST) $(CUSTOM_MAP_GENERATOR)
 	@echo "MAPS    custom maps"
