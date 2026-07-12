@@ -80,6 +80,7 @@ typedef struct {
     u8 enable_title_screen_video; // Play intro video on title screen after 5 seconds of idle time.
     u8 enable_repeatable_duel_icon; // Show duel icon above duelable overworld NPCs.
     u8 enable_card_detail_navigation; // DPAD LEFT/RIGHT in card detail view switches between deck/trunk cards.
+    u8 enable_manifest_map_overrides; // Override map graphics via custom_map_manifest.json redirects.
 } RuntimeConfig;
 
 /*

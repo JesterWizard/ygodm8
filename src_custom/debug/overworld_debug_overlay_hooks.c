@@ -193,6 +193,9 @@ void OverworldOverlay_Refresh(void) {
 /* Pending custom map override state lives in gCustomMapOverridePending /
  * gCustomMapOverrideId (maps_custom.h), set by sub_804EF84__Replacement. */
 
+/* Manifest graphics-source override table — generated from manifest. */
+#include "src_custom/generated/maps/manifest_map_sources.inc"
+
 /* Custom map CopyOverworldBgGraphics logic. */
 extern const u16 gOverworldEntityPalettes[];
 
@@ -256,7 +259,15 @@ void OverworldLoadGraphics__Replacement(void) {
     gCustomMapOverrideId = realId;
     gCustomMapOverridePending = TRUE;
   } else {
+    u16 graphicsId = gOverworld.map.id;
+    if (gRuntimeConfig.enable_manifest_map_overrides) {
+        u16 srcId = sManifestMapSources[gOverworld.map.id];
+        if (srcId != gOverworld.map.id)
+            graphicsId = srcId;
+    }
+    gOverworld.map.id = graphicsId;
     CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics */
+    gOverworld.map.id = gOverworld.map.unk8;  /* restore after redirect */
   }
 
   CallThumbVoid(0x0804EDA0);  /* SetBg3Regs */

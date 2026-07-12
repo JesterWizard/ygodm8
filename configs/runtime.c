@@ -77,4 +77,5 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_title_screen_video = FALSE,
     .enable_repeatable_duel_icon = TRUE,
     .enable_card_detail_navigation = TRUE,
+    .enable_manifest_map_overrides = TRUE,
 };

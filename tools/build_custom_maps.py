@@ -10,6 +10,7 @@ dispatch/connection tables into src_custom/generated/maps/.
 from __future__ import annotations
 
 import json
+import re
 import struct
 import sys
 from pathlib import Path
@@ -441,6 +442,9 @@ def main() -> int:
         print("error: manifest must be a JSON array")
         return 1
 
+    # Always generate the manifest map sources table (for vanilla map overrides)
+    generate_manifest_map_sources(manifest, OUT_DIR)
+
     if not manifest:
         # Empty manifest — generate empty dispatch tables
         OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -458,7 +462,10 @@ def main() -> int:
     processed = []
 
     for entry in manifest:
-        name = entry.get("name", "unnamed")
+        name = entry.get("name")
+        if not name:
+            # Skip entries without a name (e.g. vanilla map entries in manifest)
+            continue
         folder_str = entry.get("manifest_folder", f"src_custom/assets/maps/{name}/")
         folder = ROOT / folder_str
         if not folder.exists():
@@ -551,6 +558,52 @@ def gen_empty_dispatch() -> str:
         "#define CUSTOM_MAP_COUNT 0\n"
         "#define CUSTOM_MAP_CONNECTION_COUNT 0\n"
     )
+
+
+def generate_manifest_map_sources(manifest: list, out_dir: Path) -> None:
+    """Generate manifest_map_sources.inc — maps each vanilla map ID (0-60) to
+    the source map ID whose graphics data to load at runtime.
+
+    Reads each manifest entry's 'ground' PNG filename (e.g. map_09_ground.png).
+    If the source map ID differs from the entry's own id, the entry is an
+    override. Identity mappings (id == source) are the default.
+
+    Gated by gRuntimeConfig.enable_manifest_map_overrides in the hook.
+
+    ponytail: the PNG is a visual reference only — the real redirection
+    uses which source map's ROM data to load. The source is determined by
+    parsing the ground PNG filename for the map number.
+    Upgrade: accept an explicit 'graphics_source_id' field in the manifest
+    if PNG filename matching isn't flexible enough.
+    """
+    sources = list(range(61))  # default: identity (each map loads its own data)
+    for entry in manifest:
+        mid = entry.get("id")
+        if not isinstance(mid, int) or mid < 0 or mid >= 61:
+            continue
+        ground = entry.get("ground", "")
+        m = re.search(r"map_(\d+)_ground\.png", ground)
+        if m:
+            src = int(m.group(1))
+            if src != mid and 0 <= src < 61:
+                sources[mid] = src
+
+    lines = [
+        "// Auto-generated from tools/custom_map_manifest.json\n",
+        "// Maps each vanilla map ID to the source map ID whose graphics\n",
+        "// data to load. When source == id no override occurs.\n",
+        "#ifndef MANIFEST_MAP_SOURCE_COUNT\n",
+        "#define MANIFEST_MAP_SOURCE_COUNT 61\n",
+        "#endif\n\n",
+        "static const u16 sManifestMapSources[MANIFEST_MAP_SOURCE_COUNT] APPEND_RODATA = {\n",
+    ]
+    for i in range(61):
+        comma = "," if i < 60 else ""
+        lines.append(f"  {sources[i]}{comma}\n")
+    lines.append("};\n")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "manifest_map_sources.inc").write_text("".join(lines))
 
 
 if __name__ == "__main__":
