@@ -24,6 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "tools" / "custom_map_manifest.json"
 OUT_DIR = ROOT / "src_custom" / "generated" / "maps"
 ASSETS_DIR = ROOT / "src_custom" / "assets" / "maps"
+ROM_PATH = ROOT / "baserom.gba"
+ROM_BASE = 0x08000000
 
 TILE_W = 8
 TILE_H = 8
@@ -33,6 +35,21 @@ COLLISION_W = 120
 COLLISION_H = 80
 MAX_UNIQUE_TILES = 512
 PALETTE_COUNT = 240  # 15 palettes x 16 colors
+
+
+def _read_base_collision(entry: dict) -> list[int] | None:
+    """Read original collision grid from ROM for a manifest entry.
+    Returns flat list of u16 values (120*80) or None on failure."""
+    try:
+        ptr = int(entry.get("rom", {}).get("collision_ptr", "0"), 16)
+        if not ptr:
+            return None
+        rom = ROM_PATH.read_bytes()
+        off = ptr - ROM_BASE
+        raw = struct.unpack_from("<9600H", rom, off)
+        return list(raw)
+    except (FileNotFoundError, struct.error, ValueError):
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -557,9 +574,10 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None
     """Generate manifest_collision_overrides.inc — collision data for maps
     that specify custom collision in the manifest.
 
-    Reads each entry's `collision.blocked` array (rects [x, y, w, h, value]
-    in tile coordinates, 120x80 grid, value defaults to 1). Rasterises
-    rects to u16 arrays and a lookup pointer table.
+    Reads each entry's `collision.blocked` array (rects [x, y, w, h] in
+    tile coordinates, 120x80 grid). Starts from ROM collision base, stamps
+    blocked rects with 4096 (0x1000, wall flag). Generates static u16 arrays
+    and a lookup pointer table.
 
     The runtime hook checks sManifestCollisionOverrides[mapId] and
     redirects gOverworld.unk23C when non-NULL.
@@ -576,25 +594,43 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None
         if not col:
             continue
 
-        # blocked rects [x, y, w, h] or [x, y, w, h, value] in tile coordinates
+        # blocked rects [x, y, w, h] in tile coordinates
         rects = col.get("blocked", [])
         if not rects:
             continue
 
-        grid = [0] * (cw * ch)
+        # Start from ROM's original collision to preserve void(0)/walkable(1)
+        base = _read_base_collision(entry)
+        if base is None:
+            print(f"warning: map {mid}: cannot read ROM collision, skipping")
+            continue
+        grid = base[:]  # copy
+
+        # Stamp blocked rects with 4096 (= 0x1000, wall flag)
         for rect in rects:
             if not isinstance(rect, (list, tuple)) or len(rect) < 4:
                 print(f"warning: map {mid}: invalid collision rect {rect}")
                 continue
             rx, ry, rw, rh = rect[:4]
-            v = rect[4] if len(rect) > 4 else 1
             for dy in range(rh):
                 for dx in range(rw):
                     cx, cy = rx + dx, ry + dy
                     if 0 <= cx < cw and 0 <= cy < ch:
-                        grid[cy * cw + cx] = v
+                        grid[cy * cw + cx] = 4096
                     else:
                         print(f"warning: map {mid}: rect {rect} extends beyond 120x80")
+
+        # Only generate an override if passability actually differs from ROM.
+        # Value changes like 8192→4096 (both blocked) don't count.
+        diff = False
+        for i in range(cw * ch):
+            bv = grid[i] >= 4096
+            rv = base[i] >= 4096
+            if bv != rv:
+                diff = True
+                break
+        if not diff:
+            continue
         blocks[mid] = grid
 
     lines = [

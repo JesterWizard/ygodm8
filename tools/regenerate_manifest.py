@@ -95,40 +95,41 @@ def read_ptr_table(rom: bytes, addr: int, count: int) -> list[int]:
 CW, CH = 120, 80  # collision grid
 
 
+BLOCKED_THRESHOLD = 4096  # 0x1000 — values >= this are walls
+
+
 def _collision_to_blocked(rom: bytes, ptr: int) -> list[list[int]]:
-    """Read u16 collision grid from ROM and compress same-valued cells into
-    [x, y, w, h, value] rectangles using a greedy scan."""
+    """Read u16 collision grid from ROM, compress blocked cells into
+    [x, y, w, h] rectangles. Values < 4096 are passable."""
     off = ptr - ROM_BASE
     raw = struct.unpack_from("<9600H", rom, off)
-    val = [[raw[y * CW + x] for x in range(CW)] for y in range(CH)]
+    grid = [[1 if raw[y * CW + x] >= BLOCKED_THRESHOLD else 0 for x in range(CW)] for y in range(CH)]
     visited = [[False] * CW for _ in range(CH)]
 
     rects = []
     for y in range(CH):
         for x in range(CW):
-            v = val[y][x]
-            if v == 0 or visited[y][x]:
+            if not grid[y][x] or visited[y][x]:
                 continue
-            # max width from (x, y) in current row for this value
+            # max rightward extent from seed
             w = 0
-            while x + w < CW and val[y][x + w] == v and not visited[y][x + w]:
+            while x + w < CW and grid[y][x + w] and not visited[y][x + w]:
                 w += 1
-            # try to extend height
+            # extend downward as far as all w cells are blocked
             h = 1
             while y + h < CH:
                 ok = True
                 for dx in range(w):
-                    if val[y + h][x + dx] != v or visited[y + h][x + dx]:
+                    if not grid[y + h][x + dx] or visited[y + h][x + dx]:
                         ok = False
                         break
                 if not ok:
                     break
                 h += 1
-            # mark visited
             for dy in range(h):
                 for dx in range(w):
                     visited[y + dy][x + dx] = True
-            rects.append([x, y, w, h, v])
+            rects.append([x, y, w, h])
     return rects
 
 
