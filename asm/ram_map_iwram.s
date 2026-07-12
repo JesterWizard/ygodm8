@@ -150,3 +150,10 @@ _kernel_malloc gPendingHamonBattleBurnEffectCardId, 2
 @ Raviel, Lord of Phantasms: token-summon pending state
 _kernel_malloc gRavielTokenSummonDuelist, 1
 _kernel_malloc gRavielPendingTokenCount, 1
+
+@ -- Custom map state (overworld map backgrounds) --------------------------------
+@ Written by map_transition_hooks.c, read by overworld_hooks.c.
+_kernel_malloc gCustomMapOverridePad, 2
+_kernel_malloc gCustomMapActive, 4
+_kernel_malloc gCustomMapOverridePending, 4
+_kernel_malloc gCustomMapOverrideId, 2

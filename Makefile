@@ -354,6 +354,26 @@ $(AI_ACTION_TABLE_GENERATED): src/duel/ai.c $(AI_ACTION_TABLE_GENERATOR)
 	@echo "AIACT   $@"
 	python3 $(AI_ACTION_TABLE_GENERATOR)
 
+CUSTOM_MAP_MANIFEST := tools/custom_map_manifest.json
+CUSTOM_MAP_GENERATOR := tools/build_custom_maps.py
+CUSTOM_MAP_GENERATED_STAMP := $(BUILD_DIR)/.custom_maps.stamp
+CUSTOM_MAP_GENERATED := src_custom/generated/maps/custom_map_dispatch.inc src_custom/generated/maps/custom_map_connections.inc
+
+$(CUSTOM_MAP_GENERATED_STAMP): $(CUSTOM_MAP_MANIFEST) $(CUSTOM_MAP_GENERATOR)
+	@echo "MAPS    custom maps"
+	@mkdir -p src_custom/generated/maps
+	python3 $(CUSTOM_MAP_GENERATOR)
+	touch $@
+
+$(CUSTOM_MAP_GENERATED): $(CUSTOM_MAP_GENERATED_STAMP)
+	@test -f $@
+
+# Custom map generated .inc files are #included by C sources.
+# Explicit dependency ensures they're built before compilation.
+$(C_BUILDDIR_CUSTOM)/maps_custom.o: $(CUSTOM_MAP_GENERATED)
+$(C_BUILDDIR_CUSTOM)/map_transition_hooks.o: $(CUSTOM_MAP_GENERATED)
+$(C_BUILDDIR_CUSTOM)/debug/overworld_debug_overlay_hooks.o: $(CUSTOM_MAP_GENERATED)
+
 $(SHINY_ZONES_GENERATED): $(SHINY_ZONE_MANIFEST) $(SHINY_ZONE_GENERATOR) $(CARD_DATA_MANIFEST) $(CARD_IDS_GENERATED) include/overworld.h include/shiny_zones.h
 	@echo "SHINY   $@"
 	python3 $(SHINY_ZONE_GENERATOR) $(SHINY_ZONE_MANIFEST) --out $@

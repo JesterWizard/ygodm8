@@ -7,6 +7,7 @@
 #include "overworld.h"
 #include "overworld_debug_overlay.h"
 #include "text.h"
+#include "maps_custom.h"
 
 void sub_804F1E4(void);
 void sub_804EC4C(void);
@@ -189,16 +190,80 @@ void OverworldOverlay_Refresh(void) {
   SetVBlankCallback(sub_804F1E4);
 }
 
+/* Pending custom map override state lives in gCustomMapOverridePending /
+ * gCustomMapOverrideId (maps_custom.h), set by sub_804EF84__Replacement. */
+
+/* Custom map CopyOverworldBgGraphics logic. */
+extern const u16 gOverworldEntityPalettes[];
+
+static void CopyCustomBgGraphics(u16 mapId) {
+  const u8 *tileset = GetCustomMapTileset(mapId);
+  const u16 *groundTm = GetCustomMapGroundTilemap(mapId);
+  const u16 *roofTm = GetCustomMapRoofTilemap(mapId);
+  const u16 *pal = GetCustomMapPalette(mapId);
+
+  if (!tileset || !groundTm || !pal)
+    return;
+
+  LZ77UnCompWram(tileset, gBgVram.cbb0);
+  /* sub_804F5D8 copies entity+font+map palettes but reads g8E11CD0[map.id]
+   * which is OOB for custom maps. Replicate entity+font manually. */
+  CpuCopy16(gOverworldEntityPalettes, gPaletteBuffer + 256, 0x180);
+  CpuCopy16(g82ADC8C, gPaletteBuffer, 0x20);
+  CpuCopy16(pal, gPaletteBuffer + 0x10, 0x1E0);
+  CpuCopy16(groundTm, gBgVram.sbb1F, 0x800);
+  if (roofTm)
+    CpuCopy16(roofTm, gBgVram.sbb1E, 0x800);
+}
+
+/* Called at end-of-frame from sub_804EF10 when a custom map transition
+ * is pending. Overrides VRAM with custom map tiles/tilemaps/palettes. */
+void ApplyCustomMapOverride(void) {
+  u16 id = gCustomMapOverrideId;
+  gCustomMapOverridePending = FALSE;
+
+  CopyCustomBgGraphics(id);
+
+  /* Override collision pointer. InitOverworld set it to gMapCollisions[0]
+   * because we redirected unk8 to 0. Fix it here. */
+  gOverworld.unk23C = (u16 *)GetCustomMapCollision(id);
+
+  /* Play the custom map's music. */
+  gOverworld.music = GetCustomMapMusic(id);
+  PlayOverworldMusic();
+}
+
 LYN_REPLACE_CHECK(OverworldLoadGraphics);
 void OverworldLoadGraphics__Replacement(void) {
   REG_DISPCNT = 0;
   REG_BLDCNT = 0;
-  CallThumbVoid(0x0804DCE8);
-  CallThumbVoid(0x0804EDA0);
-  CallThumbVoid(0x0804EDC8);
-  CallThumbVoid(0x0804EDF0);
-  CallThumbVoid(0x0804EE18);
-  CallThumbVoid(0x0804EE6C);
+
+  /* unk8→id copy: the original OverworldLoadGraphics at 0x0804ED08 does
+   * this, but since we replaced that function, do it here. This ensures
+   * gOverworld.map.id reflects the current transition destination. */
+  gOverworld.map.id = gOverworld.map.unk8;
+  gOverworld.map.state = gOverworld.map.unkA;
+  gOverworld.map.unk4 = gOverworld.map.unkC;
+
+  if (gOverworld.map.id >= CUSTOM_MAP_BASE) {
+    /* Custom map: use safe dummy map (0) for vanilla loading to avoid
+     * out-of-bounds array access. Schedule override for end-of-frame. */
+    u16 realId = gOverworld.map.id;
+    gOverworld.map.id = 0;
+    gOverworld.map.state = 0;
+    CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics (safe, reads map 0) */
+    gOverworld.map.id = realId; /* restore for remaining setup */
+    gCustomMapOverrideId = realId;
+    gCustomMapOverridePending = TRUE;
+  } else {
+    CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics */
+  }
+
+  CallThumbVoid(0x0804EDA0);  /* SetBg3Regs */
+  CallThumbVoid(0x0804EDC8);  /* SetBg2Regs */
+  CallThumbVoid(0x0804EDF0);  /* SetBg1Regs */
+  CallThumbVoid(0x0804EE18);  /* SetBg0Data */
+  CallThumbVoid(0x0804EE6C);  /* LoadSpriteGraphics */
   DebugMenuClearPortraitObjStash();
   if (CheckFlag(0xF3))
     sub_8044E50(gPaletteBuffer, 0x10, 0x1FF);
@@ -213,6 +278,11 @@ void OverworldLoadGraphics__Replacement(void) {
   OverworldSetRegDispcnt();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();
+
+  /* Apply custom map override AFTER all graphics are loaded and VRAM
+   * is committed, but before the first ProcessInput runs. */
+  if (gCustomMapOverridePending)
+    ApplyCustomMapOverride();
 }
 
 LYN_REPLACE_CHECK(sub_8053E34);

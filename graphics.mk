@@ -84,6 +84,7 @@ clean-graphics:
 	rm -f src/overworld/entities/*.gbapal
 	rm -f src_custom/assets/icons/*.4bpp
 	rm -f src_custom/assets/icons/*.gbapal
+	rm -rf src_custom/generated/maps/
 
 %.4bpp: %.png | tools-rules
 	tools/gbagfx/gbagfx $< $@

@@ -262,6 +262,8 @@ enum OverworldLocation {
   LOCATION_EGYPT_MARIK_ROOM = 60
 };
 
+#define CUSTOM_MAP_BASE 61  // first custom map ID after vanilla 0-60
+
 // TODO: OVERWORLD_ENTITY_SPRITE?
 enum OverworldEntitySprite {
   SPRITE_NONE = -1,

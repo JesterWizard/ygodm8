@@ -34,11 +34,24 @@ static inline void CallThumbVoidU8(u32 addr, u8 arg) {
   ((VoidU8Func)(addr | 1))(arg);
 }
 
-/* Same path as START_MENU -> OverworldLoadGraphics_inline(), not the overlay replacement. */
+/* Same path as START_MENU -> OverworldLoadGraphics_inline(), not the overlay replacement.
+ * For custom maps (id >= CUSTOM_MAP_BASE), temporarily use map 0 as a safe dummy
+ * to avoid out-of-bounds array access in CopyOverworldBgGraphics, then schedule
+ * an end-of-frame override to load the real custom map assets. */
+#include "maps_custom.h"
 static void OverworldRestoreGraphicsAfterSubmenu(void) {
+  u16 realId = gOverworld.map.id;
+
   REG_DISPCNT = 0;
   REG_BLDCNT = 0;
+  if (realId >= CUSTOM_MAP_BASE) {
+    gOverworld.map.id = 0;
+    gCustomMapOverrideId = realId;
+    gCustomMapOverridePending = TRUE;
+  }
   CallThumbVoid(0x0804DCE8);
+  if (realId >= CUSTOM_MAP_BASE)
+    gOverworld.map.id = realId;
   CallThumbVoid(0x0804EDA0);
   CallThumbVoid(0x0804EDC8);
   CallThumbVoid(0x0804EDF0);
@@ -55,6 +68,8 @@ static void OverworldRestoreGraphicsAfterSubmenu(void) {
   sub_804EC4C();
   REG_WINOUT = 0x3D3F;
   OverworldSetRegDispcnt();
+  if (gCustomMapOverridePending)
+    ApplyCustomMapOverride();
 }
 
 void OverworldRestoreAfterDebugMenu(void) {

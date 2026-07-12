@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "debug_save_anywhere.h"
 #include "overworld.h"
+#include "maps_custom.h"
 
 struct MapState {
   u16 id;
@@ -12,10 +13,52 @@ struct MapState {
 
 extern const struct MapState gMapStates[];
 void sub_804EF84(u16 id, u16 state, u16 connection);
+
+#include "src_custom/generated/maps/custom_map_connections.inc"
+
 extern u8 gDebugSaveAnywhereRestorePending;
 
 static struct DebugSaveAnywhereData *DebugSaveAnywhereData(void) {
   return (struct DebugSaveAnywhereData *)gDebugSaveAnywhereData;
+}
+
+/* Replace sub_804EF84 — the final step of any map transition.
+ * Intercepts vanilla→custom map connections defined in the manifest.
+ * Custom maps use map id 0 (safe dummy) internally to prevent out-of-bounds
+ * array accesses; OverworldLoadGraphics__Replacement handles the real
+ * custom graphics loading via the sCustomMapOverride* variables. */
+LYN_REPLACE_CHECK(sub_804EF84);
+void sub_804EF84__Replacement(u16 id, u16 state, u16 connection) {
+#if CUSTOM_MAP_CONNECTION_COUNT > 0 && CUSTOM_MAP_COUNT > 0
+  unsigned i;
+  for (i = 0; i < CUSTOM_MAP_CONNECTION_COUNT; i++) {
+    if (sCustomMapConnections[i].vanillaLocation == id) {
+      /* Vanilla→custom redirect: store real custom ID for the
+       * graphics override, but use safe dummy map (0) for loading. */
+      gCustomMapOverridePending = TRUE;
+      gCustomMapOverrideId = sCustomMapConnections[i].customMapId;
+      gOverworld.map.unk8 = 0;    /* safe dummy */
+      gOverworld.map.unkA = 0;
+      gOverworld.map.unkC = connection;
+      return;
+    }
+  }
+#endif
+  if (id >= CUSTOM_MAP_BASE) {
+    /* Custom→custom or direct custom transition: set override and redirect
+     * to safe dummy map (0) so InitOverworld doesn't read out-of-bounds
+     * from gMapCollisions / gMapData. */
+    gCustomMapOverridePending = TRUE;
+    gCustomMapOverrideId = id;
+    gOverworld.map.unk8 = 0;
+    gOverworld.map.unkA = 0;
+    gOverworld.map.unkC = connection;
+    return;
+  }
+  gCustomMapOverridePending = FALSE;
+  gOverworld.map.unk8 = id;
+  gOverworld.map.unkA = state;
+  gOverworld.map.unkC = connection;
 }
 
 LYN_REPLACE_CHECK(sub_80523EC);

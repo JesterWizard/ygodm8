@@ -1,13 +1,19 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-11 — Added 12 Vision HERO and other cards to trunk
+**Last worked on:** 2026-07-12 — Fixed map extraction: sRGB gamma + 256-color palette
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `include/constants/card_ids.h`
-- `src_custom/assets/cards/CARD_PROGRESS.md`
+- `tools/extract_maps.py` — rewritten: reads 256 colors, applies sRGB gamma (1/2.2), separate ground/roof layers
+- `src_custom/assets/maps/` — all 122 files re-extracted (61 ground + 61 roof)
+- `documentation/session_logs/2026-07-12.md` — updated
 
-**Outcome:** make clean && make passes (exit 0). 12 cards added: VISION_HERO_MINIMUM_RAY, VISION_HERO_MULTIPLY_GUY, VISION_HERO_POISONER, VISION_HERO_TRINITY, VISION_HERO_VYON, VISION_HERO_WITCH_RAIDER, VISION_RELEASE, WATAPON, WHITE_DRAGON_RITUAL, WILD_NATURES_RELEASE, WOUGHTWEILER, YELLOW_GADGET. All have 80x80 + 512x512 art. Manifest entries with condensed descriptions and popup texts. Effects stubbed (no hook files).
+**Outcome:** Map extraction is now correct:
+- Palette: 256 colors from pointer (not 240+font palette)
+- Gamma: sRGB correction applied (avg brightness 108→273)
+- Layers: separate ground + roof PNGs for all 61 maps
+- Cable car overlay (map 0x29) saved as separate file
+- Game code confirmed: 4bpp mode, CBB0, SBB31/30
 
 **Open / next:**
-- Implement effects for these cards
+- Run `make test-host` to verify no regressions
+- Implement effects for Vision HERO and other cards
