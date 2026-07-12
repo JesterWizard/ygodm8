@@ -103,10 +103,12 @@ static void RemapDialogFontPixels(void) {
   /* The 1bpp font renderer writes pixel value 0xFF for text.
    * Remap to palette index 0x17 (23) which is pure white (0x7FFF)
    * in the custom title screen palette, avoiding conflict with
-   * background pixels that use palette index 255. */
+   * background pixels that use palette index 255.
+   * Scan only the tile area (max 0x2000 bytes = 128 tiles) to
+   * avoid corrupting tilemaps at sbb1E/sbb1F (0xF000+). */
   u8 *p = gVr.a + 0xC000;
   u32 i;
-  for (i = 0; i < 0x4000; i++) {
+  for (i = 0; i < 0x2000; i++) {
     if (p[i] == 0xFF)
       p[i] = 0x17;
   }
