@@ -13,13 +13,15 @@
  * Each map gets: tileset, ground_tilemap, [roof_tilemap,] palette, collision. */
 #include "src_custom/generated/maps/custom_map_dispatch.inc"
 
+/* Override tables for collision, connection, spawn, map sources. */
+#include "src_custom/generated/maps/manifest_collision_overrides.inc"
+#include "src_custom/generated/maps/manifest_connection_overrides.inc"
+#include "src_custom/generated/maps/manifest_map_sources.inc"
+#include "src_custom/generated/maps/manifest_spawn_overrides.inc"
+
 /* MapData dummy provider for custom maps (no NPCs — uses event scripts). */
 const struct MapData *GetCustomMapData(u16 mapId) {
-#if CUSTOM_MAP_COUNT > 0
-    u16 idx = mapId - CUSTOM_MAP_BASE;
-    if (idx < CUSTOM_MAP_COUNT)
-        return sCustomMapData[idx];
-#endif
+    (void)mapId;
     return NULL;
 }
 
@@ -75,10 +77,6 @@ const u16 *GetCustomMapPalette(u16 mapId) {
 
 /* Music ID for a custom map. */
 u16 GetCustomMapMusic(u16 mapId) {
-#if CUSTOM_MAP_COUNT > 0
-    u16 idx = mapId - CUSTOM_MAP_BASE;
-    if (idx < CUSTOM_MAP_COUNT)
-        return sCustomMapMusic[idx];
-#endif
+    (void)mapId;
     return 1; /* default overworld track */
 }

@@ -1,11 +1,7 @@
-// Auto-generated from tools/custom_map_manifest.json
-// Maps each vanilla map ID to the source map ID whose graphics
-// data to load. When source == id no override occurs.
-#ifndef MANIFEST_MAP_SOURCE_COUNT
-#define MANIFEST_MAP_SOURCE_COUNT 61
-#endif
+// Auto-generated map source table. Do not edit.
+#define CUSTOM_MAP_COUNT (1)
 
-static const u16 sManifestMapSources[MANIFEST_MAP_SOURCE_COUNT] APPEND_RODATA = {
+static const u16 sManifestMapSources[62] __attribute__((section(".append_rodata"), aligned(4))) = {
   0,
   1,
   2,
@@ -66,5 +62,14 @@ static const u16 sManifestMapSources[MANIFEST_MAP_SOURCE_COUNT] APPEND_RODATA = 
   57,
   58,
   59,
-  60
+  60,
+  61,
+};
+
+static const u16 sCustomSourceMaps[] = {
+  61,
+};
+
+static const u16 sCustomSlots[] = {
+  255,
 };

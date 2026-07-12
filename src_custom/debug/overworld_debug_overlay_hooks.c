@@ -21,6 +21,7 @@ void LoadOam(void);
 void sub_80551B8(void);
 void LoadObjVRAM(void);
 void LoadPalettes(void);
+void LoadVRAM(void);
 void LoadDuelIconGfx(void);
 void OverworldSetRegDispcnt(void);
 void sub_8045284(u16 *, u16, u16);
@@ -220,6 +221,14 @@ static void CopyCustomBgGraphics(u16 mapId) {
   CpuCopy16(groundTm, gBgVram.sbb1F, 0x800);
   if (roofTm)
     CpuCopy16(roofTm, gBgVram.sbb1E, 0x800);
+  else
+    CpuFill16(0, gBgVram.sbb1E, 0x800);  /* tile 0 = all-zero → transparent */
+
+  /* Commit to hardware immediately. The vanilla sub_804EC4C already ran
+   * with map_0 data, so without this commit the graveyard tileset, tilemap,
+   * and palette stay in the backing buffer and never reach VRAM/hardware. */
+  LoadVRAM();
+  LoadPalettes();
 }
 
 /* Called at end-of-frame from sub_804EF10 when a custom map transition
@@ -233,6 +242,14 @@ void ApplyCustomMapOverride(void) {
   /* Override collision pointer. InitOverworld set it to gMapCollisions[0]
    * because we redirected unk8 to 0. Fix it here. */
   gOverworld.unk23C = (u16 *)GetCustomMapCollision(id);
+
+  /* Disable BG1 (roof layer) when the map has no roof — otherwise stale
+   * tile data in sbb1E would cover BG2 (ground) since all 8bpp pixels
+   * are non-zero (shifted by +16 palette offset) and therefore opaque. */
+  if (!GetCustomMapRoofTilemap(id))
+    REG_DISPCNT &= ~DISPCNT_BG1_ON;
+  else
+    REG_DISPCNT |= DISPCNT_BG1_ON;
 
   /* Play the custom map's music. */
   gOverworld.music = GetCustomMapMusic(id);
@@ -320,10 +337,18 @@ void OverworldLoadGraphics__Replacement(void) {
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();
 
-  /* Apply custom map override AFTER all graphics are loaded and VRAM
-   * is committed, but before the first ProcessInput runs. */
-  if (gCustomMapOverridePending)
-    ApplyCustomMapOverride();
+    /* Apply custom map override AFTER all graphics are loaded and VRAM
+     * is committed, but before the first ProcessInput runs. */
+    if (gCustomMapOverridePending)
+      ApplyCustomMapOverride();
+}
+
+/* OverworldSetRegDispcnt re-enables BG1 every frame, which would re-enable
+ * the roof layer even for roof-less custom maps.  Suppress it here. */
+static void ClearBg1IfNoRoof(void) {
+  u16 id = gOverworld.map.id;
+  if (id >= CUSTOM_MAP_BASE && !GetCustomMapRoofTilemap(id))
+    REG_DISPCNT &= ~DISPCNT_BG1_ON;
 }
 
 LYN_REPLACE_CHECK(sub_8053E34);
@@ -332,6 +357,7 @@ void sub_8053E34__Replacement(u8 arg0) {
 
   CallThumbVoid(0x0805339C);
   OverworldSetRegDispcnt();
+  ClearBg1IfNoRoof();
   REG_BLDCNT = 0xFF;
   REG_WINOUT = 0x3D3E;
   for (i = 0; i < 16; i++) {
@@ -342,6 +368,7 @@ void sub_8053E34__Replacement(u8 arg0) {
   }
   OverworldOverlay_RestoreDisplayRegs();
   OverworldSetRegDispcnt();
+  ClearBg1IfNoRoof();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_OnWalkFrame();
 }

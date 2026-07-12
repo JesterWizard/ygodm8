@@ -936,7 +936,7 @@
     },
     "connections": [
       {
-        "target": "LOCATION_SOUTH_AVENUE_EAST",
+        "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
         "slot": 0,
         "spawn": {
           "x": 59,
@@ -1053,6 +1053,16 @@
           "x": 60,
           "y": 72,
           "dir": "DIRECTION_UP"
+        }
+      },
+      {
+        "rect": [0, 0, 45, 1],
+        "target": "LOCATION_GRAVEYARD",
+        "slot": 1,
+        "spawn": {
+          "x": 22,
+          "y": 1,
+          "dir": "DIRECTION_DOWN"
         }
       }
     ]
@@ -4806,6 +4816,35 @@
         "spawn": {
           "x": 60,
           "y": 48,
+          "dir": "DIRECTION_DOWN"
+        }
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "constant": "LOCATION_GRAVEYARD",
+    "label": "Graveyard",
+    "name": "graveyard",
+    "images": {
+      "ground": "src_custom/assets/maps/map_graveyard_ground.png"
+    },
+    "tiles": {
+      "tile_w": 32,
+      "tile_h": 32
+    },
+    "music": "MUSIC_DUNGEON",
+    "collision": {
+      "blocked": []
+    },
+    "connections": [
+      {
+        "rect": [80, 79, 40, 1],
+        "target": "LOCATION_MAIDEN_GARDEN",
+        "slot": 0,
+        "spawn": {
+          "x": 80,
+          "y": 10,
           "dir": "DIRECTION_DOWN"
         }
       }

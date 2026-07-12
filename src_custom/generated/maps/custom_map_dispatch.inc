@@ -1,58 +1,23 @@
-// 0 custom maps
-
-#define CUSTOM_MAP_COUNT 0
-
-
-// Tileset pointers
-
-static const u8 *const sCustomTilesets[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+#include "src_custom/generated/maps/tileset_graveyard.inc"
+#include "src_custom/generated/maps/ground_tilemap_graveyard.inc"
+#include "src_custom/generated/maps/palette_graveyard.inc"
+#include "src_custom/generated/maps/collision_graveyard.inc"
+// Custom map pointer tables (1 maps)
+static const u8* const sCustomTilesets[] __attribute__((section(".append_rodata"), aligned(4))) = {
+  sCustomTileset_graveyard,
 };
-
-
-// Ground tilemap pointers
-
-static const u16 *const sCustomGroundTilemaps[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+static const u16* const sCustomGroundTilemaps[]__attribute__((section(".append_rodata"), aligned(4))) = {
+  sCustomGroundTilemap_graveyard,
 };
-
-
-// Roof tilemap pointers (NULL = no roof layer)
-
-static const u16 *const sCustomRoofTilemaps[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+static const u16* const sCustomRoofTilemaps[]__attribute__((section(".append_rodata"), aligned(4))) = {
+  NULL,
 };
-
-
-// Palette pointers
-
-static const u16 *const sCustomPalettes[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+static const u16* const sCustomPalettes[]__attribute__((section(".append_rodata"), aligned(4))) = {
+  sCustomPalette_graveyard,
 };
-
-
-// Collision pointers
-
-static const u16 *const sCustomCollisions[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+static const u16* const sCustomCollisions[]__attribute__((section(".append_rodata"), aligned(4))) = {
+  sCustomCollision_graveyard,
 };
-
-
-// Music IDs per custom map
-
-static const u16 sCustomMapMusic[CUSTOM_MAP_COUNT] APPEND_RODATA = {
+static const u8 sCustomTileTypes[]__attribute__((section(".append_rodata"), aligned(4))) = {
+  0,
 };
-
-// Vanilla → custom map transition patches
-
-#if CUSTOM_MAP_COUNT > 0
-
-static const struct { u16 vanillaLocation; u16 edge; u8 triggerX; u8 triggerYMin; u8 triggerYMax; u16 customMapId; } sCustomMapConnections[] APPEND_RODATA = {
-};
-
-#define CUSTOM_MAP_CONNECTION_COUNT 0
-#endif
-
-// Custom map dummy MapData entries
-
-#if CUSTOM_MAP_COUNT > 0
-
-
-static const struct MapData *const sCustomMapData[CUSTOM_MAP_COUNT] APPEND_RODATA = {
-};
-#endif
