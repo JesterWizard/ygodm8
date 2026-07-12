@@ -20,6 +20,7 @@ void LoadOam(void);
 void sub_80551B8(void);
 void LoadObjVRAM(void);
 void LoadPalettes(void);
+void LoadDuelIconGfx(void);
 void OverworldSetRegDispcnt(void);
 void sub_8045284(u16 *, u16, u16);
 
@@ -295,6 +296,8 @@ void sub_804F218__Replacement(void) {
     CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x500);
   LoadObjVRAM();
   LoadPalettes();
+  if (gRuntimeConfig.enable_repeatable_duel_icon == TRUE)
+    LoadDuelIconGfx();
   OverworldOverlay_CommitFrame();
 }
 
@@ -305,6 +308,8 @@ void sub_804EC64__Replacement(void) {
     CpuCopy32(gBgVram.sbb1D, (void *)0x0600E800, 0x500);
   LoadObjVRAM();
   LoadPalettes();
+  if (gRuntimeConfig.enable_repeatable_duel_icon == TRUE)
+    LoadDuelIconGfx();
   LoadOam();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();

@@ -123,7 +123,7 @@ enum {
 
 #define DUEL_ICON_OAM_START 50
 #define DUEL_ICON_TILE_NUM 0x3FF
-#define DUEL_ICON_PALETTE_NUM 14
+#define DUEL_ICON_PALETTE_NUM 11
 #define DUEL_ICON_X_OFFSET 4
 #define DUEL_ICON_Y_OFFSET 36
 
@@ -236,7 +236,7 @@ static u8 ObjectHasAvailableDuel(s8 objId) {
 
   return FALSE;
 }
-static void LoadDuelIconGfx(void) {
+void LoadDuelIconGfx(void) {
   CpuFastCopy(sDuelIconTiles, (void *)(0x06010000 + DUEL_ICON_TILE_NUM * 32), 32);
   CpuCopy16(sDuelIconPalette, gPaletteBuffer + 0x100 + DUEL_ICON_PALETTE_NUM * 16, 0x20);
   CpuCopy16(sDuelIconPalette, (void *)(OBJ_PLTT + DUEL_ICON_PALETTE_NUM * 0x20), 0x20);
