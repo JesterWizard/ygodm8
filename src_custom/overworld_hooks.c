@@ -218,13 +218,16 @@ static u8 ObjectHasAvailableDuel(s8 objId) {
   script = EventSystem_ResolveScript(gOverworld.objects[objId].scriptR);
   data = script->start;
 
-  /* Story duelists (Ishizu, etc.) gate the DUEL behind CHECK_FLAG
-   * (0x40, '7', flagByte). If the flag is set, the duel is over
-   * and cannot be replayed -- hide the icon. */
-  if (data[0] == 0x40 && data[1] == '7')
+  /* Story duelists gate the DUEL behind CHECK_FLAG (0x23, '7', flagByte).
+   * If the flag is NOT set, the duel is still available. */
+  if (data[0] == 0x23 && data[1] == '7')
     return !CheckFlag(data[2]);
 
-  return TRUE;
+  /* Repeatable duelists start directly with DUEL (0x40, '0', opponent). */
+  if (data[0] == 0x40 && data[1] == '0')
+    return TRUE;
+
+  return FALSE;
 }
 static void LoadDuelIconGfx(void) {
   CpuFastCopy(sDuelIconTiles, (void *)(0x06010000 + DUEL_ICON_TILE_NUM * 32), 32);
