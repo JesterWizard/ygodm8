@@ -122,7 +122,7 @@ enum {
 #define THOUGHT_BUBBLE_SCREEN_HEIGHT 160
 
 #define DUEL_ICON_OAM_START 50
-#define DUEL_ICON_TILE_NUM 0x3F8
+#define DUEL_ICON_TILE_NUM 0x3FF
 #define DUEL_ICON_PALETTE_NUM 14
 #define DUEL_ICON_X_OFFSET 4
 #define DUEL_ICON_Y_OFFSET 36
@@ -249,10 +249,20 @@ static void SetDuelIconOam(void) {
                - DUEL_ICON_Y_OFFSET;
       int npcX = gOverworld.objects[i].x * 2 + gOverworld.unk24E - DUEL_ICON_X_OFFSET;
 
-      oam[idx]     = npcY;
-      oam[idx + 1] = npcX;
-      oam[idx + 2] = DUEL_ICON_TILE_NUM | (DUEL_ICON_PALETTE_NUM << 12);
-      oam[idx + 3] = 0;
+      /* Hide when off-screen to prevent GBA OAM wrap-around glitch.
+       * Writing a negative Y as u16 corrupts affineMode/objMode/shape
+       * bits in the upper byte of the first OAM halfword. */
+      if (npcY < 0 || npcY > 159 || npcX < 0 || npcX > 239) {
+        oam[idx]     = 0xA0;
+        oam[idx + 1] = 0xF0;
+        oam[idx + 2] = 0xC00;
+        oam[idx + 3] = 0;
+      } else {
+        oam[idx]     = (u8)npcY;
+        oam[idx + 1] = npcX;
+        oam[idx + 2] = DUEL_ICON_TILE_NUM | (DUEL_ICON_PALETTE_NUM << 12);
+        oam[idx + 3] = 0;
+      }
     } else {
       oam[idx]     = 0xA0;
       oam[idx + 1] = 0xF0;
