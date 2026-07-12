@@ -444,6 +444,7 @@ def main() -> int:
 
     # Always generate the manifest map sources table (for vanilla map overrides)
     generate_manifest_map_sources(manifest, OUT_DIR)
+    generate_manifest_collision_overrides(manifest, OUT_DIR)
 
     if not manifest:
         # Empty manifest — generate empty dispatch tables
@@ -552,6 +553,86 @@ def main() -> int:
     return 0
 
 
+def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None:
+    """Generate manifest_collision_overrides.inc — collision data for maps
+    that specify custom collision in the manifest.
+
+    Reads each entry's `collision.blocked` array (rects [x, y, w, h] in
+    tile coordinates, 120x80 grid). Generates static u16 arrays and a
+    lookup pointer table. Maps without overrides get NULL.
+
+    The runtime hook checks sManifestCollisionOverrides[mapId] and
+    redirects gOverworld.unk23C when non-NULL.
+    """
+    cw = 120
+    ch = 80
+    blocks: list[list[int] | None] = [None] * 61
+
+    for entry in manifest:
+        mid = entry.get("id")
+        if not isinstance(mid, int) or mid < 0 or mid >= 61:
+            continue
+        col = entry.get("collision")
+        if not col:
+            continue
+        rects = col.get("blocked", [])
+        if not rects:
+            continue
+
+        grid = bytearray(cw * ch)
+        for rect in rects:
+            if not isinstance(rect, (list, tuple)) or len(rect) < 4:
+                print(f"warning: map {mid}: invalid collision rect {rect}")
+                continue
+            rx, ry, rw, rh = rect[:4]
+            for dy in range(rh):
+                for dx in range(rw):
+                    cx, cy = rx + dx, ry + dy
+                    if 0 <= cx < cw and 0 <= cy < ch:
+                        grid[cy * cw + cx] = 1
+                    else:
+                        print(f"warning: map {mid}: rect {rect} extends beyond 120x80")
+        blocks[mid] = [int(b) for b in grid]
+
+    lines = [
+        "// Auto-generated collision overrides from tools/custom_map_manifest.json\n",
+        "#ifndef COLLISION_OVERRIDE_W\n",
+        f"#define COLLISION_OVERRIDE_W {cw}\n",
+        f"#define COLLISION_OVERRIDE_H {ch}\n",
+        "#endif\n\n",
+    ]
+
+    # Emit data arrays for maps with overrides
+    any_override = False
+    for mid in range(61):
+        b = blocks[mid]
+        if b is None:
+            continue
+        any_override = True
+        lines.append(f"// Map {mid} custom collision\n")
+        lines.append(f"static const u16 sColOverrideMap{mid}[] APPEND_RODATA = {{\n")
+        for row in range(ch):
+            start = row * cw
+            chunk = ",".join(str(v) for v in b[start:start + cw])
+            lines.append(f"  {chunk},\n")
+        lines.append("};\n\n")
+
+    # Pointer lookup table (NULL for maps without overrides)
+    lines.append("// Collision override pointer table — NULL = use ROM default\n")
+    lines.append("static const u16 *const sManifestCollisionOverrides[61] APPEND_RODATA = {\n")
+    for mid in range(61):
+        if blocks[mid] is not None:
+            lines.append(f"  sColOverrideMap{mid},\n")
+        else:
+            lines.append("  NULL,\n")
+    lines.append("};\n")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "manifest_collision_overrides.inc").write_text("".join(lines))
+    count = sum(1 for b in blocks if b is not None)
+    print(f"  collision: {count} maps with custom collision data")
+
+
 def gen_empty_dispatch() -> str:
     return (
         "// No custom maps defined.\n"
@@ -564,24 +645,19 @@ def generate_manifest_map_sources(manifest: list, out_dir: Path) -> None:
     """Generate manifest_map_sources.inc — maps each vanilla map ID (0-60) to
     the source map ID whose graphics data to load at runtime.
 
-    Reads each manifest entry's 'ground' PNG filename (e.g. map_09_ground.png).
+    Reads each manifest entry's `images.ground` PNG filename.
     If the source map ID differs from the entry's own id, the entry is an
     override. Identity mappings (id == source) are the default.
 
     Gated by gRuntimeConfig.enable_manifest_map_overrides in the hook.
-
-    ponytail: the PNG is a visual reference only — the real redirection
-    uses which source map's ROM data to load. The source is determined by
-    parsing the ground PNG filename for the map number.
-    Upgrade: accept an explicit 'graphics_source_id' field in the manifest
-    if PNG filename matching isn't flexible enough.
     """
-    sources = list(range(61))  # default: identity (each map loads its own data)
+    sources = list(range(61))
     for entry in manifest:
         mid = entry.get("id")
         if not isinstance(mid, int) or mid < 0 or mid >= 61:
             continue
-        ground = entry.get("ground", "")
+        images = entry.get("images", {})
+        ground = images.get("ground", entry.get("ground", ""))
         m = re.search(r"map_(\d+)_ground\.png", ground)
         if m:
             src = int(m.group(1))

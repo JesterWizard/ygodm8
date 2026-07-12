@@ -1,19 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-12 — Fixed map extraction: sRGB gamma + 256-color palette
+**Last worked on:** 2026-07-12 — Maps: manifest restructure, collision overrides, docs
 
 **Files touched:**
-- `tools/extract_maps.py` — rewritten: reads 256 colors, applies sRGB gamma (1/2.2), separate ground/roof layers
-- `src_custom/assets/maps/` — all 122 files re-extracted (61 ground + 61 roof)
-- `documentation/session_logs/2026-07-12.md` — updated
+- `tools/custom_map_manifest.json` — restructured with `images` grouping, collision support
+- `tools/regenerate_manifest.py` — created
+- `tools/build_custom_maps.py` — generates `manifest_collision_overrides.inc`
+- `src_custom/debug/overworld_debug_overlay_hooks.c` — collision override redirect
+- `configs/runtime.h` / `runtime.c` — `enable_manifest_map_overrides` toggle
+- `Makefile` — added generated inc files
+- `documentation/custom-maps.md` — created
+- `documentation/CARD_STATE.md` — this update
 
-**Outcome:** Map extraction is now correct:
-- Palette: 256 colors from pointer (not 240+font palette)
-- Gamma: sRGB correction applied (avg brightness 108→273)
-- Layers: separate ground + roof PNGs for all 61 maps
-- Cable car overlay (map 0x29) saved as separate file
-- Game code confirmed: 4bpp mode, CBB0, SBB31/30
-
-**Open / next:**
-- Run `make test-host` to verify no regressions
-- Implement effects for Vision HERO and other cards
+**Outcome:** Map editing is fully documented. User can swap graphics, add collision rects, create new maps — all from a single JSON manifest.

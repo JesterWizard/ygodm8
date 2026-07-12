@@ -3,7 +3,10 @@
     "id": 0,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
     "label": "Clock Tower Square NW",
-    "ground": "src_custom/assets/maps/map_00_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_00_ground.png",
+      "roof": "src_custom/assets/maps/map_00_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082ADCAC",
@@ -12,14 +15,16 @@
       "palette_ptr": "0x082B7628",
       "collision_ptr": "0x084E3814",
       "mapdata_ptr": "0x08E18BF4"
-    },
-    "roof": "src_custom/assets/maps/map_00_roof.png"
+    }
   },
   {
     "id": 1,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
     "label": "Clock Tower Square N",
-    "ground": "src_custom/assets/maps/map_01_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_01_ground.png",
+      "roof": "src_custom/assets/maps/map_01_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082B7808",
@@ -28,14 +33,16 @@
       "palette_ptr": "0x082C0D9C",
       "collision_ptr": "0x084E8314",
       "mapdata_ptr": "0x08E18C48"
-    },
-    "roof": "src_custom/assets/maps/map_01_roof.png"
+    }
   },
   {
     "id": 2,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
     "label": "Clock Tower Square NE",
-    "ground": "src_custom/assets/maps/map_02_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_02_ground.png",
+      "roof": "src_custom/assets/maps/map_02_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082C0F7C",
@@ -44,14 +51,16 @@
       "palette_ptr": "0x082CAA28",
       "collision_ptr": "0x084ECE14",
       "mapdata_ptr": "0x08E18C74"
-    },
-    "roof": "src_custom/assets/maps/map_02_roof.png"
+    }
   },
   {
     "id": 3,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
     "label": "Clock Tower Square SE",
-    "ground": "src_custom/assets/maps/map_03_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_03_ground.png",
+      "roof": "src_custom/assets/maps/map_03_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082CAC08",
@@ -60,14 +69,16 @@
       "palette_ptr": "0x082D3CB4",
       "collision_ptr": "0x084F1914",
       "mapdata_ptr": "0x08E18CA0"
-    },
-    "roof": "src_custom/assets/maps/map_03_roof.png"
+    }
   },
   {
     "id": 4,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_SOUTH",
     "label": "Clock Tower Square S",
-    "ground": "src_custom/assets/maps/map_04_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_04_ground.png",
+      "roof": "src_custom/assets/maps/map_04_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082D3E94",
@@ -76,14 +87,16 @@
       "palette_ptr": "0x082DD098",
       "collision_ptr": "0x084F6414",
       "mapdata_ptr": "0x08E18CC4"
-    },
-    "roof": "src_custom/assets/maps/map_04_roof.png"
+    }
   },
   {
     "id": 5,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
     "label": "Clock Tower Square SW",
-    "ground": "src_custom/assets/maps/map_05_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_05_ground.png",
+      "roof": "src_custom/assets/maps/map_05_roof.png"
+    },
     "music": 4,
     "rom": {
       "tileset_ptr": "0x082DD278",
@@ -92,14 +105,16 @@
       "palette_ptr": "0x082E6B54",
       "collision_ptr": "0x084FAF14",
       "mapdata_ptr": "0x08E18CEC"
-    },
-    "roof": "src_custom/assets/maps/map_05_roof.png"
+    }
   },
   {
     "id": 6,
     "constant": "LOCATION_CARD_SHOP_OUTSIDE",
     "label": "Card Shop Outside",
-    "ground": "src_custom/assets/maps/map_06_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_06_ground.png",
+      "roof": "src_custom/assets/maps/map_06_roof.png"
+    },
     "music": 6,
     "rom": {
       "tileset_ptr": "0x082E6D34",
@@ -108,14 +123,16 @@
       "palette_ptr": "0x082EFDF8",
       "collision_ptr": "0x084FFA14",
       "mapdata_ptr": "0x08E18D14"
-    },
-    "roof": "src_custom/assets/maps/map_06_roof.png"
+    }
   },
   {
     "id": 7,
     "constant": "LOCATION_CARD_SHOP_INSIDE",
     "label": "Card Shop Inside",
-    "ground": "src_custom/assets/maps/map_07_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_07_ground.png",
+      "roof": "src_custom/assets/maps/map_07_roof.png"
+    },
     "music": 6,
     "rom": {
       "tileset_ptr": "0x082EFFD8",
@@ -124,14 +141,16 @@
       "palette_ptr": "0x082F69A8",
       "collision_ptr": "0x08504514",
       "mapdata_ptr": "0x08E18D58"
-    },
-    "roof": "src_custom/assets/maps/map_07_roof.png"
+    }
   },
   {
     "id": 8,
     "constant": "LOCATION_PLAYER_HOUSE_OUTSIDE",
     "label": "Player House Outside",
-    "ground": "src_custom/assets/maps/map_08_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_08_ground.png",
+      "roof": "src_custom/assets/maps/map_08_roof.png"
+    },
     "music": 5,
     "rom": {
       "tileset_ptr": "0x082F6B88",
@@ -140,15 +159,20 @@
       "palette_ptr": "0x082FF348",
       "collision_ptr": "0x08509014",
       "mapdata_ptr": "0x08E18D94"
-    },
-    "roof": "src_custom/assets/maps/map_08_roof.png"
+    }
   },
   {
     "id": 9,
     "constant": "LOCATION_PLAYER_HOUSE_INSIDE",
     "label": "Player House Inside",
-    "ground": "src_custom/assets/maps/map_00_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_09_ground.png",
+      "roof": "src_custom/assets/maps/map_09_roof.png"
+    },
     "music": 5,
+    "collision": {
+      "blocked": [[0, 0, 120, 1], [0, 79, 120, 1], [0, 0, 1, 80], [119, 0, 1, 80]]
+    },
     "rom": {
       "tileset_ptr": "0x082FF528",
       "ground_tilemap_ptr": "0x083047D8",
@@ -156,14 +180,16 @@
       "palette_ptr": "0x083057D8",
       "collision_ptr": "0x0850DB14",
       "mapdata_ptr": "0x08E18D9C"
-    },
-    "roof": "src_custom/assets/maps/map_09_roof.png"
+    }
   },
   {
     "id": 10,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_BACK_ALLEY_NORTH",
     "label": "Back Alley North",
-    "ground": "src_custom/assets/maps/map_10_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_10_ground.png",
+      "roof": "src_custom/assets/maps/map_10_roof.png"
+    },
     "music": 7,
     "rom": {
       "tileset_ptr": "0x083059B8",
@@ -172,14 +198,16 @@
       "palette_ptr": "0x0830D63C",
       "collision_ptr": "0x08512614",
       "mapdata_ptr": "0x08E18DA8"
-    },
-    "roof": "src_custom/assets/maps/map_10_roof.png"
+    }
   },
   {
     "id": 11,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_BACK_ALLEY_NORTH_EAST",
     "label": "Back Alley NE",
-    "ground": "src_custom/assets/maps/map_11_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_11_ground.png",
+      "roof": "src_custom/assets/maps/map_11_roof.png"
+    },
     "music": 7,
     "rom": {
       "tileset_ptr": "0x0830D81C",
@@ -188,14 +216,16 @@
       "palette_ptr": "0x083162FC",
       "collision_ptr": "0x08517114",
       "mapdata_ptr": "0x08E18DB8"
-    },
-    "roof": "src_custom/assets/maps/map_11_roof.png"
+    }
   },
   {
     "id": 12,
     "constant": "LOCATION_KAIBACORP",
     "label": "KaibaCorp",
-    "ground": "src_custom/assets/maps/map_12_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_12_ground.png",
+      "roof": "src_custom/assets/maps/map_12_roof.png"
+    },
     "music": 12,
     "rom": {
       "tileset_ptr": "0x083164DC",
@@ -204,14 +234,16 @@
       "palette_ptr": "0x0831E500",
       "collision_ptr": "0x0851BC14",
       "mapdata_ptr": "0x08E18DC8"
-    },
-    "roof": "src_custom/assets/maps/map_12_roof.png"
+    }
   },
   {
     "id": 13,
     "constant": "LOCATION_DUEL_MACHINE",
     "label": "Duel Machine",
-    "ground": "src_custom/assets/maps/map_13_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_13_ground.png",
+      "roof": "src_custom/assets/maps/map_13_roof.png"
+    },
     "music": 12,
     "rom": {
       "tileset_ptr": "0x0831E6E0",
@@ -220,14 +252,16 @@
       "palette_ptr": "0x08325AB8",
       "collision_ptr": "0x08520714",
       "mapdata_ptr": "0x08E18E04"
-    },
-    "roof": "src_custom/assets/maps/map_13_roof.png"
+    }
   },
   {
     "id": 14,
     "constant": "LOCATION_DOMINO_STATION_TURNSTILES",
     "label": "Domino Station Turnstiles",
-    "ground": "src_custom/assets/maps/map_14_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_14_ground.png",
+      "roof": "src_custom/assets/maps/map_14_roof.png"
+    },
     "music": 230,
     "rom": {
       "tileset_ptr": "0x08325C98",
@@ -236,14 +270,16 @@
       "palette_ptr": "0x0832D748",
       "collision_ptr": "0x08525214",
       "mapdata_ptr": "0x08E18E14"
-    },
-    "roof": "src_custom/assets/maps/map_14_roof.png"
+    }
   },
   {
     "id": 15,
     "constant": "LOCATION_DOMINO_STATION_TRAIN_STATION",
     "label": "Domino Station Train",
-    "ground": "src_custom/assets/maps/map_15_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_15_ground.png",
+      "roof": "src_custom/assets/maps/map_15_roof.png"
+    },
     "music": 231,
     "rom": {
       "tileset_ptr": "0x0832D928",
@@ -252,14 +288,16 @@
       "palette_ptr": "0x08335AF0",
       "collision_ptr": "0x08529D14",
       "mapdata_ptr": "0x08E18E40"
-    },
-    "roof": "src_custom/assets/maps/map_15_roof.png"
+    }
   },
   {
     "id": 16,
     "constant": "LOCATION_DUEL_EXPRESS_CARRIAGE_RIGHT",
     "label": "Duel Express Right",
-    "ground": "src_custom/assets/maps/map_16_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_16_ground.png",
+      "roof": "src_custom/assets/maps/map_16_roof.png"
+    },
     "music": 232,
     "rom": {
       "tileset_ptr": "0x08335CD0",
@@ -268,14 +306,15 @@
       "palette_ptr": "0x0833BE6C",
       "collision_ptr": "0x0852E814",
       "mapdata_ptr": "0x08E18E58"
-    },
-    "roof": "src_custom/assets/maps/map_16_roof.png"
+    }
   },
   {
     "id": 17,
     "constant": "LOCATION_DUEL_EXPRESS_CARRIAGE_MIDDLE",
     "label": "Duel Express Middle",
-    "ground": "src_custom/assets/maps/map_17_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_17_ground.png"
+    },
     "music": 232,
     "rom": {
       "tileset_ptr": "0x0833C04C",
@@ -290,7 +329,10 @@
     "id": 18,
     "constant": "LOCATION_DUEL_EXPRESS_CARRIAGE_LEFT",
     "label": "Duel Express Left",
-    "ground": "src_custom/assets/maps/map_18_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_18_ground.png",
+      "roof": "src_custom/assets/maps/map_18_roof.png"
+    },
     "music": 232,
     "rom": {
       "tileset_ptr": "0x08342BF0",
@@ -299,14 +341,15 @@
       "palette_ptr": "0x08349678",
       "collision_ptr": "0x08537E14",
       "mapdata_ptr": "0x08E18EAC"
-    },
-    "roof": "src_custom/assets/maps/map_18_roof.png"
+    }
   },
   {
     "id": 19,
     "constant": "LOCATION_ITALY_CATACOMBS_MIDDLE",
     "label": "Italy Catacombs Middle",
-    "ground": "src_custom/assets/maps/map_19_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_19_ground.png"
+    },
     "music": 16,
     "rom": {
       "tileset_ptr": "0x08349858",
@@ -321,7 +364,10 @@
     "id": 20,
     "constant": "LOCATION_EGYPT_EXHIBITION_TRAIN_STATION",
     "label": "Egypt Exhibition Station",
-    "ground": "src_custom/assets/maps/map_20_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_20_ground.png",
+      "roof": "src_custom/assets/maps/map_20_roof.png"
+    },
     "music": 231,
     "rom": {
       "tileset_ptr": "0x08353FDC",
@@ -330,14 +376,16 @@
       "palette_ptr": "0x0835B398",
       "collision_ptr": "0x08541414",
       "mapdata_ptr": "0x08E18ED4"
-    },
-    "roof": "src_custom/assets/maps/map_20_roof.png"
+    }
   },
   {
     "id": 21,
     "constant": "LOCATION_EGYPT_EXHIBITION_TURNSTILES",
     "label": "Egypt Exhibition Turnstiles",
-    "ground": "src_custom/assets/maps/map_21_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_21_ground.png",
+      "roof": "src_custom/assets/maps/map_21_roof.png"
+    },
     "music": 230,
     "rom": {
       "tileset_ptr": "0x0835B578",
@@ -346,14 +394,16 @@
       "palette_ptr": "0x083644E8",
       "collision_ptr": "0x08545F14",
       "mapdata_ptr": "0x08E18EEC"
-    },
-    "roof": "src_custom/assets/maps/map_21_roof.png"
+    }
   },
   {
     "id": 22,
     "constant": "LOCATION_EGYPT_EXHIBITION_ARTWORK",
     "label": "Egypt Exhibition Artwork",
-    "ground": "src_custom/assets/maps/map_22_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_22_ground.png",
+      "roof": "src_custom/assets/maps/map_22_roof.png"
+    },
     "music": 230,
     "rom": {
       "tileset_ptr": "0x083646C8",
@@ -362,14 +412,16 @@
       "palette_ptr": "0x0836CB20",
       "collision_ptr": "0x0854AA14",
       "mapdata_ptr": "0x08E18F0C"
-    },
-    "roof": "src_custom/assets/maps/map_22_roof.png"
+    }
   },
   {
     "id": 23,
     "constant": "LOCATION_EGYPT_EXHIBITION_MILLENNIUM_GUARDIAN",
     "label": "Egypt Exhibition Guardian",
-    "ground": "src_custom/assets/maps/map_23_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_23_ground.png",
+      "roof": "src_custom/assets/maps/map_23_roof.png"
+    },
     "music": 233,
     "rom": {
       "tileset_ptr": "0x0836CD00",
@@ -378,14 +430,16 @@
       "palette_ptr": "0x08374D18",
       "collision_ptr": "0x0854F514",
       "mapdata_ptr": "0x08E18F34"
-    },
-    "roof": "src_custom/assets/maps/map_23_roof.png"
+    }
   },
   {
     "id": 24,
     "constant": "LOCATION_DOMINO_PIER_DOCKS",
     "label": "Domino Pier Docks",
-    "ground": "src_custom/assets/maps/map_24_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_24_ground.png",
+      "roof": "src_custom/assets/maps/map_24_roof.png"
+    },
     "music": 239,
     "rom": {
       "tileset_ptr": "0x08374EF8",
@@ -394,14 +448,16 @@
       "palette_ptr": "0x0837D798",
       "collision_ptr": "0x08554014",
       "mapdata_ptr": "0x08E18F60"
-    },
-    "roof": "src_custom/assets/maps/map_24_roof.png"
+    }
   },
   {
     "id": 25,
     "constant": "LOCATION_DOMINO_PIER_CASINO_LEFT_ROOM",
     "label": "Pier Casino Left",
-    "ground": "src_custom/assets/maps/map_25_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_25_ground.png",
+      "roof": "src_custom/assets/maps/map_25_roof.png"
+    },
     "music": 15,
     "rom": {
       "tileset_ptr": "0x0837D978",
@@ -410,14 +466,16 @@
       "palette_ptr": "0x083858F8",
       "collision_ptr": "0x08558B14",
       "mapdata_ptr": "0x08E18F78"
-    },
-    "roof": "src_custom/assets/maps/map_25_roof.png"
+    }
   },
   {
     "id": 26,
     "constant": "LOCATION_DOMINO_PIER_CASINO_MAIN_ROOM",
     "label": "Pier Casino Main",
-    "ground": "src_custom/assets/maps/map_26_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_26_ground.png",
+      "roof": "src_custom/assets/maps/map_26_roof.png"
+    },
     "music": 15,
     "rom": {
       "tileset_ptr": "0x08385AD8",
@@ -426,14 +484,16 @@
       "palette_ptr": "0x0838E300",
       "collision_ptr": "0x0855D614",
       "mapdata_ptr": "0x08E18F88"
-    },
-    "roof": "src_custom/assets/maps/map_26_roof.png"
+    }
   },
   {
     "id": 27,
     "constant": "LOCATION_DOMINO_PIER_MILLENNIUM_GUARDIAN",
     "label": "Pier Millennium Guardian",
-    "ground": "src_custom/assets/maps/map_27_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_27_ground.png",
+      "roof": "src_custom/assets/maps/map_27_roof.png"
+    },
     "music": 240,
     "rom": {
       "tileset_ptr": "0x0838E4E0",
@@ -442,14 +502,16 @@
       "palette_ptr": "0x08396968",
       "collision_ptr": "0x08562114",
       "mapdata_ptr": "0x08E18FB8"
-    },
-    "roof": "src_custom/assets/maps/map_27_roof.png"
+    }
   },
   {
     "id": 28,
     "constant": "LOCATION_ITALY_CATACOMBS_LEFT",
     "label": "Italy Catacombs Left",
-    "ground": "src_custom/assets/maps/map_28_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_28_ground.png",
+      "roof": "src_custom/assets/maps/map_28_roof.png"
+    },
     "music": 16,
     "rom": {
       "tileset_ptr": "0x08396B48",
@@ -458,14 +520,16 @@
       "palette_ptr": "0x083A1088",
       "collision_ptr": "0x08566C14",
       "mapdata_ptr": "0x08E18FC4"
-    },
-    "roof": "src_custom/assets/maps/map_28_roof.png"
+    }
   },
   {
     "id": 29,
     "constant": "LOCATION_ITALY_CATACOMBS_RIGHT",
     "label": "Italy Catacombs Right",
-    "ground": "src_custom/assets/maps/map_29_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_29_ground.png",
+      "roof": "src_custom/assets/maps/map_29_roof.png"
+    },
     "music": 16,
     "rom": {
       "tileset_ptr": "0x083A1268",
@@ -474,14 +538,16 @@
       "palette_ptr": "0x083AB098",
       "collision_ptr": "0x0856B714",
       "mapdata_ptr": "0x08E18FD8"
-    },
-    "roof": "src_custom/assets/maps/map_29_roof.png"
+    }
   },
   {
     "id": 30,
     "constant": "LOCATION_ITALY_MILLENNIUM_GUARDIAN",
     "label": "Italy Millennium Guardian",
-    "ground": "src_custom/assets/maps/map_30_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_30_ground.png",
+      "roof": "src_custom/assets/maps/map_30_roof.png"
+    },
     "music": 241,
     "rom": {
       "tileset_ptr": "0x083AB278",
@@ -490,14 +556,16 @@
       "palette_ptr": "0x083B50CC",
       "collision_ptr": "0x08570214",
       "mapdata_ptr": "0x08E18FFC"
-    },
-    "roof": "src_custom/assets/maps/map_30_roof.png"
+    }
   },
   {
     "id": 31,
     "constant": "LOCATION_CHINA_GREAT_WALL_ENTRANCE",
     "label": "Great Wall Entrance",
-    "ground": "src_custom/assets/maps/map_31_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_31_ground.png",
+      "roof": "src_custom/assets/maps/map_31_roof.png"
+    },
     "music": 242,
     "rom": {
       "tileset_ptr": "0x083B52AC",
@@ -506,14 +574,16 @@
       "palette_ptr": "0x083BF4E4",
       "collision_ptr": "0x08574D14",
       "mapdata_ptr": "0x08E19008"
-    },
-    "roof": "src_custom/assets/maps/map_31_roof.png"
+    }
   },
   {
     "id": 32,
     "constant": "LOCATION_CHINA_GREAT_WALL",
     "label": "Great Wall",
-    "ground": "src_custom/assets/maps/map_32_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_32_ground.png",
+      "roof": "src_custom/assets/maps/map_32_roof.png"
+    },
     "music": 242,
     "rom": {
       "tileset_ptr": "0x083BF6C4",
@@ -522,14 +592,16 @@
       "palette_ptr": "0x083CA274",
       "collision_ptr": "0x08579814",
       "mapdata_ptr": "0x08E19034"
-    },
-    "roof": "src_custom/assets/maps/map_32_roof.png"
+    }
   },
   {
     "id": 33,
     "constant": "LOCATION_CHINA_GREAT_WALL_MILLENNIUM_GUARDIAN",
     "label": "Great Wall Guardian",
-    "ground": "src_custom/assets/maps/map_33_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_33_ground.png",
+      "roof": "src_custom/assets/maps/map_33_roof.png"
+    },
     "music": 243,
     "rom": {
       "tileset_ptr": "0x083CA454",
@@ -538,14 +610,16 @@
       "palette_ptr": "0x083D2894",
       "collision_ptr": "0x0857E314",
       "mapdata_ptr": "0x08E19060"
-    },
-    "roof": "src_custom/assets/maps/map_33_roof.png"
+    }
   },
   {
     "id": 34,
     "constant": "LOCATION_CANADA_RUINS_OUTSIDE",
     "label": "Canada Ruins Outside",
-    "ground": "src_custom/assets/maps/map_34_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_34_ground.png",
+      "roof": "src_custom/assets/maps/map_34_roof.png"
+    },
     "music": 244,
     "rom": {
       "tileset_ptr": "0x083D2A74",
@@ -554,14 +628,15 @@
       "palette_ptr": "0x083DCA40",
       "collision_ptr": "0x08582E14",
       "mapdata_ptr": "0x08E1907C"
-    },
-    "roof": "src_custom/assets/maps/map_34_roof.png"
+    }
   },
   {
     "id": 35,
     "constant": "LOCATION_CANADA_RUINS_INSIDE",
     "label": "Canada Ruins Inside",
-    "ground": "src_custom/assets/maps/map_35_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_35_ground.png"
+    },
     "music": 245,
     "rom": {
       "tileset_ptr": "0x083DCC20",
@@ -576,7 +651,10 @@
     "id": 36,
     "constant": "LOCATION_CANADA_RUINS_MILLENNIUM_GUARDIAN",
     "label": "Canada Ruins Guardian",
-    "ground": "src_custom/assets/maps/map_36_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_36_ground.png",
+      "roof": "src_custom/assets/maps/map_36_roof.png"
+    },
     "music": 245,
     "rom": {
       "tileset_ptr": "0x083E5410",
@@ -585,14 +663,15 @@
       "palette_ptr": "0x083EE038",
       "collision_ptr": "0x0858C414",
       "mapdata_ptr": "0x08E190B0"
-    },
-    "roof": "src_custom/assets/maps/map_36_roof.png"
+    }
   },
   {
     "id": 37,
     "constant": "LOCATION_GALAPAGOS_BEACH",
     "label": "Galapagos Beach",
-    "ground": "src_custom/assets/maps/map_37_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_37_ground.png"
+    },
     "music": 246,
     "rom": {
       "tileset_ptr": "0x083EE218",
@@ -607,7 +686,10 @@
     "id": 38,
     "constant": "LOCATION_GALAPAGOS_FOREST",
     "label": "Galapagos Forest",
-    "ground": "src_custom/assets/maps/map_38_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_38_ground.png",
+      "roof": "src_custom/assets/maps/map_38_roof.png"
+    },
     "music": 247,
     "rom": {
       "tileset_ptr": "0x083F8008",
@@ -616,14 +698,16 @@
       "palette_ptr": "0x08403A94",
       "collision_ptr": "0x08595A14",
       "mapdata_ptr": "0x08E190E0"
-    },
-    "roof": "src_custom/assets/maps/map_38_roof.png"
+    }
   },
   {
     "id": 39,
     "constant": "LOCATION_GALAPAGOS_TEMPLE",
     "label": "Galapagos Temple",
-    "ground": "src_custom/assets/maps/map_39_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_39_ground.png",
+      "roof": "src_custom/assets/maps/map_39_roof.png"
+    },
     "music": 248,
     "rom": {
       "tileset_ptr": "0x08403C74",
@@ -632,14 +716,15 @@
       "palette_ptr": "0x0840E460",
       "collision_ptr": "0x0859A514",
       "mapdata_ptr": "0x08E19100"
-    },
-    "roof": "src_custom/assets/maps/map_39_roof.png"
+    }
   },
   {
     "id": 40,
     "constant": "LOCATION_PEGASUS_ISLAND_CABLE_CAR_BOTTOM_OUTSIDE",
     "label": "Cable Car Bottom",
-    "ground": "src_custom/assets/maps/map_40_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_40_ground.png"
+    },
     "music": 252,
     "rom": {
       "tileset_ptr": "0x0840E640",
@@ -654,7 +739,10 @@
     "id": 41,
     "constant": "LOCATION_PEGASUS_ISLAND_CABLE_CAR_INSIDE",
     "label": "Cable Car Inside",
-    "ground": "src_custom/assets/maps/map_41_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_41_ground.png",
+      "cable_car_overlay": "src_custom/assets/maps/map_41_cable.png"
+    },
     "music": 253,
     "rom": {
       "tileset_ptr": "0x08416C88",
@@ -663,14 +751,16 @@
       "palette_ptr": "0x0841E11C",
       "collision_ptr": "0x085A3B14",
       "mapdata_ptr": "0x08E19134"
-    },
-    "cable_car_overlay": "src_custom/assets/maps/map_41_cable.png"
+    }
   },
   {
     "id": 42,
     "constant": "LOCATION_PEGASUS_ISLAND_CABLE_CAR_TOP_OUTSIDE",
     "label": "Cable Car Top",
-    "ground": "src_custom/assets/maps/map_42_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_42_ground.png",
+      "roof": "src_custom/assets/maps/map_42_roof.png"
+    },
     "music": 254,
     "rom": {
       "tileset_ptr": "0x0841E2FC",
@@ -679,14 +769,16 @@
       "palette_ptr": "0x0842796C",
       "collision_ptr": "0x085A8614",
       "mapdata_ptr": "0x08E19140"
-    },
-    "roof": "src_custom/assets/maps/map_42_roof.png"
+    }
   },
   {
     "id": 43,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_ENTRANCE",
     "label": "Dungeon Entrance",
-    "ground": "src_custom/assets/maps/map_43_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_43_ground.png",
+      "roof": "src_custom/assets/maps/map_43_roof.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x08427B4C",
@@ -695,14 +787,15 @@
       "palette_ptr": "0x084328E8",
       "collision_ptr": "0x085AD114",
       "mapdata_ptr": "0x08E19154"
-    },
-    "roof": "src_custom/assets/maps/map_43_roof.png"
+    }
   },
   {
     "id": 44,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_LAVA_ROOM_SOUTH",
     "label": "Dungeon Lava South",
-    "ground": "src_custom/assets/maps/map_44_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_44_ground.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x08432AC8",
@@ -717,7 +810,10 @@
     "id": 45,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_CLIFF",
     "label": "Dungeon Cliff",
-    "ground": "src_custom/assets/maps/map_45_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_45_ground.png",
+      "roof": "src_custom/assets/maps/map_45_roof.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x0843C360",
@@ -726,14 +822,15 @@
       "palette_ptr": "0x08446A34",
       "collision_ptr": "0x085B6714",
       "mapdata_ptr": "0x08E1916C"
-    },
-    "roof": "src_custom/assets/maps/map_45_roof.png"
+    }
   },
   {
     "id": 46,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_LAVA_ROOM_NORTH",
     "label": "Dungeon Lava North",
-    "ground": "src_custom/assets/maps/map_46_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_46_ground.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x08446C14",
@@ -748,7 +845,10 @@
     "id": 47,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_BRIDGE",
     "label": "Dungeon Bridge",
-    "ground": "src_custom/assets/maps/map_47_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_47_ground.png",
+      "roof": "src_custom/assets/maps/map_47_roof.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x0844FE64",
@@ -757,14 +857,16 @@
       "palette_ptr": "0x0845911C",
       "collision_ptr": "0x085BFD14",
       "mapdata_ptr": "0x08E1917C"
-    },
-    "roof": "src_custom/assets/maps/map_47_roof.png"
+    }
   },
   {
     "id": 48,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_STAIRCASE",
     "label": "Dungeon Staircase",
-    "ground": "src_custom/assets/maps/map_48_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_48_ground.png",
+      "roof": "src_custom/assets/maps/map_48_roof.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x084592FC",
@@ -773,14 +875,16 @@
       "palette_ptr": "0x084637EC",
       "collision_ptr": "0x085C4814",
       "mapdata_ptr": "0x08E19188"
-    },
-    "roof": "src_custom/assets/maps/map_48_roof.png"
+    }
   },
   {
     "id": 49,
     "constant": "LOCATION_PEGASUS_ISLAND_DUNGEON_RUINS",
     "label": "Dungeon Ruins",
-    "ground": "src_custom/assets/maps/map_49_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_49_ground.png",
+      "roof": "src_custom/assets/maps/map_49_roof.png"
+    },
     "music": 17,
     "rom": {
       "tileset_ptr": "0x084639CC",
@@ -789,14 +893,16 @@
       "palette_ptr": "0x0846EA08",
       "collision_ptr": "0x085C9314",
       "mapdata_ptr": "0x08E191A4"
-    },
-    "roof": "src_custom/assets/maps/map_49_roof.png"
+    }
   },
   {
     "id": 50,
     "constant": "LOCATION_PEGASUS_CASTLE_OUTSIDE",
     "label": "Pegasus Castle Outside",
-    "ground": "src_custom/assets/maps/map_50_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_50_ground.png",
+      "roof": "src_custom/assets/maps/map_50_roof.png"
+    },
     "music": 18,
     "rom": {
       "tileset_ptr": "0x0846EBE8",
@@ -805,14 +911,16 @@
       "palette_ptr": "0x08479900",
       "collision_ptr": "0x085CDE14",
       "mapdata_ptr": "0x08E191AC"
-    },
-    "roof": "src_custom/assets/maps/map_50_roof.png"
+    }
   },
   {
     "id": 51,
     "constant": "LOCATION_PEGASUS_CASTLE_HALLWAY",
     "label": "Pegasus Castle Hallway",
-    "ground": "src_custom/assets/maps/map_51_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_51_ground.png",
+      "roof": "src_custom/assets/maps/map_51_roof.png"
+    },
     "music": 18,
     "rom": {
       "tileset_ptr": "0x08479AE0",
@@ -821,14 +929,16 @@
       "palette_ptr": "0x08481744",
       "collision_ptr": "0x085D2914",
       "mapdata_ptr": "0x08E191BC"
-    },
-    "roof": "src_custom/assets/maps/map_51_roof.png"
+    }
   },
   {
     "id": 52,
     "constant": "LOCATION_PEGASUS_CASTLE_LEFT_ROOM",
     "label": "Pegasus Castle Left",
-    "ground": "src_custom/assets/maps/map_52_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_52_ground.png",
+      "roof": "src_custom/assets/maps/map_52_roof.png"
+    },
     "music": 18,
     "rom": {
       "tileset_ptr": "0x08481924",
@@ -837,14 +947,16 @@
       "palette_ptr": "0x0848A754",
       "collision_ptr": "0x085D7414",
       "mapdata_ptr": "0x08E191E8"
-    },
-    "roof": "src_custom/assets/maps/map_52_roof.png"
+    }
   },
   {
     "id": 53,
     "constant": "LOCATION_PEGASUS_CASTLE_RIGHT_ROOM",
     "label": "Pegasus Castle Right",
-    "ground": "src_custom/assets/maps/map_53_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_53_ground.png",
+      "roof": "src_custom/assets/maps/map_53_roof.png"
+    },
     "music": 18,
     "rom": {
       "tileset_ptr": "0x0848A934",
@@ -853,14 +965,16 @@
       "palette_ptr": "0x08493B88",
       "collision_ptr": "0x085DBF14",
       "mapdata_ptr": "0x08E191F0"
-    },
-    "roof": "src_custom/assets/maps/map_53_roof.png"
+    }
   },
   {
     "id": 54,
     "constant": "LOCATION_PEGASUS_CASTLE_DUEL_ROOM",
     "label": "Pegasus Castle Duel Room",
-    "ground": "src_custom/assets/maps/map_54_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_54_ground.png",
+      "roof": "src_custom/assets/maps/map_54_roof.png"
+    },
     "music": 19,
     "rom": {
       "tileset_ptr": "0x08493D68",
@@ -869,14 +983,16 @@
       "palette_ptr": "0x0849CE8C",
       "collision_ptr": "0x085E0A14",
       "mapdata_ptr": "0x08E191FC"
-    },
-    "roof": "src_custom/assets/maps/map_54_roof.png"
+    }
   },
   {
     "id": 55,
     "constant": "LOCATION_PEGASUS_CASTLE_RESHEF_TABLET_ROOM",
     "label": "Reshef Tablet Room",
-    "ground": "src_custom/assets/maps/map_55_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_55_ground.png",
+      "roof": "src_custom/assets/maps/map_55_roof.png"
+    },
     "music": 20,
     "rom": {
       "tileset_ptr": "0x0849D06C",
@@ -885,14 +1001,15 @@
       "palette_ptr": "0x084A6CC0",
       "collision_ptr": "0x085E5514",
       "mapdata_ptr": "0x08E1920C"
-    },
-    "roof": "src_custom/assets/maps/map_55_roof.png"
+    }
   },
   {
     "id": 56,
     "constant": "LOCATION_HALL_OF_ETERNITY",
     "label": "Hall of Eternity",
-    "ground": "src_custom/assets/maps/map_56_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_56_ground.png"
+    },
     "music": 25,
     "rom": {
       "tileset_ptr": "0x084A6EA0",
@@ -907,7 +1024,10 @@
     "id": 57,
     "constant": "LOCATION_KAIBA_LAND",
     "label": "Kaiba Land",
-    "ground": "src_custom/assets/maps/map_57_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_57_ground.png",
+      "roof": "src_custom/assets/maps/map_57_roof.png"
+    },
     "music": 13,
     "rom": {
       "tileset_ptr": "0x084AEE98",
@@ -916,14 +1036,16 @@
       "palette_ptr": "0x084B6BA8",
       "collision_ptr": "0x085EEB14",
       "mapdata_ptr": "0x08E1922C"
-    },
-    "roof": "src_custom/assets/maps/map_57_roof.png"
+    }
   },
   {
     "id": 58,
     "constant": "LOCATION_CLOCK_TOWER_SQUARE_NORTH_WEST2_TODO",
     "label": "Clock Tower NW2 (TODO)",
-    "ground": "src_custom/assets/maps/map_58_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_58_ground.png",
+      "roof": "src_custom/assets/maps/map_58_roof.png"
+    },
     "music": 0,
     "rom": {
       "tileset_ptr": "0x082ADCAC",
@@ -932,14 +1054,16 @@
       "palette_ptr": "0x082B7628",
       "collision_ptr": "0x084E3814",
       "mapdata_ptr": "0x08E19240"
-    },
-    "roof": "src_custom/assets/maps/map_58_roof.png"
+    }
   },
   {
     "id": 59,
     "constant": "LOCATION_EGYPT",
     "label": "Egypt",
-    "ground": "src_custom/assets/maps/map_59_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_59_ground.png",
+      "roof": "src_custom/assets/maps/map_59_roof.png"
+    },
     "music": 26,
     "rom": {
       "tileset_ptr": "0x084B6D88",
@@ -948,14 +1072,16 @@
       "palette_ptr": "0x084C06A0",
       "collision_ptr": "0x085F3614",
       "mapdata_ptr": "0x08E19244"
-    },
-    "roof": "src_custom/assets/maps/map_59_roof.png"
+    }
   },
   {
     "id": 60,
     "constant": "LOCATION_EGYPT_MARIK_ROOM",
     "label": "Egypt Marik Room",
-    "ground": "src_custom/assets/maps/map_60_ground.png",
+    "images": {
+      "ground": "src_custom/assets/maps/map_60_ground.png",
+      "roof": "src_custom/assets/maps/map_60_roof.png"
+    },
     "music": 27,
     "rom": {
       "tileset_ptr": "0x084C0880",
@@ -964,7 +1090,6 @@
       "palette_ptr": "0x084C9DDC",
       "collision_ptr": "0x085F8114",
       "mapdata_ptr": "0x08E1925C"
-    },
-    "roof": "src_custom/assets/maps/map_60_roof.png"
+    }
   }
 ]

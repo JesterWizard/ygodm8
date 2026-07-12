@@ -15,7 +15,7 @@ static const u16 sManifestMapSources[MANIFEST_MAP_SOURCE_COUNT] APPEND_RODATA = 
   6,
   7,
   8,
-  0,
+  9,
   10,
   11,
   12,

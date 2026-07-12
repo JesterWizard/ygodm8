@@ -195,6 +195,7 @@ void OverworldOverlay_Refresh(void) {
 
 /* Manifest graphics-source override table — generated from manifest. */
 #include "src_custom/generated/maps/manifest_map_sources.inc"
+#include "src_custom/generated/maps/manifest_collision_overrides.inc"
 
 /* Custom map CopyOverworldBgGraphics logic. */
 extern const u16 gOverworldEntityPalettes[];
@@ -268,6 +269,15 @@ void OverworldLoadGraphics__Replacement(void) {
     gOverworld.map.id = graphicsId;
     CallThumbVoid(0x0804DCE8);  /* CopyOverworldBgGraphics */
     gOverworld.map.id = gOverworld.map.unk8;  /* restore after redirect */
+
+    /* Collision override: if the manifest specifies custom collision for
+     * this map (gated by enable_manifest_map_overrides), replace the
+     * pointer that InitOverworld set from gMapCollisions[]. */
+    if (gRuntimeConfig.enable_manifest_map_overrides) {
+        u16 overrideMapId = gOverworld.map.id;
+        if (sManifestCollisionOverrides[overrideMapId] != NULL)
+            gOverworld.unk23C = (u16 *)sManifestCollisionOverrides[overrideMapId];
+    }
   }
 
   CallThumbVoid(0x0804EDA0);  /* SetBg3Regs */
