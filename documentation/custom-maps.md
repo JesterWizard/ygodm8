@@ -141,7 +141,38 @@ Add a `collision` block to any entry:
 }
 ```
 
-Each rect is `[x, y, width, height]` in tile coordinates. At build time these rectangles are rasterized into a `u16[9600]` array. At runtime, `gOverworld.unk23C` is redirected to this custom data (gated by `enable_manifest_map_overrides`).
+Each map entry contains the **real collision data extracted from the ROM**, stored as 80 hex-encoded rows. Each hex string is 480 characters: 120 `u16` values, each as 4 hex digits. For example, map 9's collision starts like:
+
+```
+"collision": {
+  "data": [
+    "000100010001000100010001...",   // row 0: 120 values
+    "000100010001000100010001...",   // row 1
+    ...
+  ]
+}
+```
+
+- `0001` = wall blocked
+- `1000` = passable (direction flag)
+- `0000` = fully passable
+- Other values encode different collision behaviors (direction restrictions, etc.)
+
+To edit collision, you can replace any hex group. For a large change, it's easier to delete the `data` array and use blocked rectangles instead:
+
+```json
+"collision": {
+  "blocked": [
+    [0, 0, 120, 1],     // top border: x=0, y=0, width=120, height=1
+    [0, 79, 120, 1],    // bottom border
+    ...
+  ]
+}
+```
+
+The `blocked` format rasterizes blocked tiles to `0001`. Everything else becomes `0000` (fully passable). This loses the bitflag information but is much easier to edit by hand. For full flag fidelity, edit the hex `data` rows directly.
+
+At runtime, `gOverworld.unk23C` is redirected to the custom collision data (gated by `enable_manifest_map_overrides`).
 
 **Tips:**
 - The overworld collision viewer in the debug menu (`R` on the overworld) shows blocked tiles as red overlays

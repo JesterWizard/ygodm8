@@ -557,9 +557,9 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None
     """Generate manifest_collision_overrides.inc — collision data for maps
     that specify custom collision in the manifest.
 
-    Reads each entry's `collision.blocked` array (rects [x, y, w, h] in
-    tile coordinates, 120x80 grid). Generates static u16 arrays and a
-    lookup pointer table. Maps without overrides get NULL.
+    Reads each entry's `collision.blocked` array (rects [x, y, w, h, value]
+    in tile coordinates, 120x80 grid, value defaults to 1). Rasterises
+    rects to u16 arrays and a lookup pointer table.
 
     The runtime hook checks sManifestCollisionOverrides[mapId] and
     redirects gOverworld.unk23C when non-NULL.
@@ -575,24 +575,27 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: Path) -> None
         col = entry.get("collision")
         if not col:
             continue
+
+        # blocked rects [x, y, w, h] or [x, y, w, h, value] in tile coordinates
         rects = col.get("blocked", [])
         if not rects:
             continue
 
-        grid = bytearray(cw * ch)
+        grid = [0] * (cw * ch)
         for rect in rects:
             if not isinstance(rect, (list, tuple)) or len(rect) < 4:
                 print(f"warning: map {mid}: invalid collision rect {rect}")
                 continue
             rx, ry, rw, rh = rect[:4]
+            v = rect[4] if len(rect) > 4 else 1
             for dy in range(rh):
                 for dx in range(rw):
                     cx, cy = rx + dx, ry + dy
                     if 0 <= cx < cw and 0 <= cy < ch:
-                        grid[cy * cw + cx] = 1
+                        grid[cy * cw + cx] = v
                     else:
                         print(f"warning: map {mid}: rect {rect} extends beyond 120x80")
-        blocks[mid] = [int(b) for b in grid]
+        blocks[mid] = grid
 
     lines = [
         "// Auto-generated collision overrides from tools/custom_map_manifest.json\n",
