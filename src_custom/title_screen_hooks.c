@@ -99,10 +99,24 @@ static void VanillaCopyBgGfx(void) {
   CpuCopy32(g8E0CDA0, gPaletteBuffer, TITLE_SCREEN_PALETTE_BYTES);
 }
 
+static void RemapDialogFontPixels(void) {
+  /* The 1bpp font renderer writes pixel value 0xFF for text.
+   * Remap to palette index 0x17 (23) which is pure white (0x7FFF)
+   * in the custom title screen palette, avoiding conflict with
+   * background pixels that use palette index 255. */
+  u8 *p = gVr.a + 0xC000;
+  u32 i;
+  for (i = 0; i < 0x4000; i++) {
+    if (p[i] == 0xFF)
+      p[i] = 0x17;
+  }
+}
+
 static void CustomCopyBgGfx(void) {
   LZ77UnCompWram(sTitleScreenTiles, gBgVram.cbb0);
   TitleScreen_BuildTilemap();
   TitleScreen_SetupSaveDialogGfx();
+  RemapDialogFontPixels();
   CpuFill16(0, gPaletteBuffer, TITLE_SCREEN_PALETTE_BYTES);
   TitleScreen_LoadCustomPalette();
 }
