@@ -200,6 +200,8 @@ void OverworldOverlay_Refresh(void) {
 /* Custom map CopyOverworldBgGraphics logic. */
 extern const u16 gOverworldEntityPalettes[];
 
+#include "src_custom/generated/maps/manifest_spawn_overrides.inc"
+
 static void CopyCustomBgGraphics(u16 mapId) {
   const u8 *tileset = GetCustomMapTileset(mapId);
   const u16 *groundTm = GetCustomMapGroundTilemap(mapId);
@@ -275,8 +277,26 @@ void OverworldLoadGraphics__Replacement(void) {
      * pointer that InitOverworld set from gMapCollisions[]. */
     if (gRuntimeConfig.enable_manifest_map_overrides) {
         u16 overrideMapId = gOverworld.map.id;
+        u8 slot;
+        u8 sx, sy, sd;
+
         if (sManifestCollisionOverrides[overrideMapId] != NULL)
             gOverworld.unk23C = (u16 *)sManifestCollisionOverrides[overrideMapId];
+
+        /* Spawn override: apply player position/direction from manifest
+         * if the active connection slot has an override. */
+        slot = gOverworld.map.unk4;
+        if (slot < 5) {
+            sx = gManifestSpawnOverrideX[overrideMapId][slot];
+            sy = gManifestSpawnOverrideY[overrideMapId][slot];
+            sd = gManifestSpawnOverrideDir[overrideMapId][slot];
+            if (sd != 0xFF)
+                gOverworld.objects[0].direction = sd;
+            if (sx != 0xFF)
+                gOverworld.objects[0].x = sx;
+            if (sy != 0xFF)
+                gOverworld.objects[0].y = sy;
+        }
     }
   }
 

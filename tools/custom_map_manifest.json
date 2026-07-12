@@ -52,36 +52,71 @@
       {
         "rect": [119, 5, 1, 9],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 24, 1, 44],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 15,
+          "y": 29,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 31, 1, 48],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [16, 79, 9, 1],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [51, 79, 69, 1],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [119, 79, 1, 1],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -140,41 +175,81 @@
       {
         "rect": [0, 11, 1, 3],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 11, 1, 3],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 31, 1, 48],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 31, 1, 48],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 79, 120, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [0, 79, 1, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [119, 79, 1, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -248,31 +323,61 @@
       {
         "rect": [0, 13, 1, 3],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [0, 31, 1, 48],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [0, 79, 76, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [0, 79, 1, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [101, 79, 5, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_MAIDEN_GARDEN",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 48,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -359,21 +464,41 @@
       {
         "rect": [0, 1, 1, 65],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 8,
+          "y": 32,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 58, 1, 22],
         "target": "LOCATION_CLOCK_TOWER_ROOF",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 104,
+          "y": 63,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [73, 79, 47, 1],
         "target": "LOCATION_CLOCK_TOWER_ROOF",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 104,
+          "y": 63,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 8,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -419,16 +544,31 @@
       {
         "rect": [0, 1, 1, 59],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 8,
+          "y": 32,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 1, 1, 59],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 32,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 8,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -529,17 +669,32 @@
       {
         "rect": [119, 1, 1, 54],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 32,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 57, 1, 23],
         "target": "LOCATION_SOUTH_AVENUE_WEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 27,
+          "y": 56,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [0, 79, 55, 1],
         "target": "LOCATION_SOUTH_AVENUE_WEST",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 27,
+          "y": 56,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -603,16 +758,31 @@
       {
         "rect": [118, 0, 2, 1],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [119, 0, 1, 65],
         "target": "LOCATION_LUMBERYARD",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_SOUTH_AVENUE_EAST",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 75,
+          "y": 48,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -652,7 +822,12 @@
     "connections": [
       {
         "target": "LOCATION_SOUTH_AVENUE_WEST",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -720,11 +895,21 @@
       {
         "rect": [21, 79, 92, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHWEST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 52,
+          "y": 24,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -751,8 +936,13 @@
     },
     "connections": [
       {
-        "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
-        "slot": 0
+        "target": "LOCATION_SOUTH_AVENUE_EAST",
+        "slot": 0,
+        "spawn": {
+          "x": 59,
+          "y": 38,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -826,7 +1016,12 @@
     "connections": [
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTH",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -853,7 +1048,12 @@
     "connections": [
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -904,21 +1104,41 @@
       {
         "rect": [0, 0, 2, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [0, 0, 1, 80],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [0, 79, 2, 1],
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_COLOSSEUM_YARD",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 100,
+          "y": 47,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -948,7 +1168,12 @@
     "connections": [
       {
         "target": "LOCATION_CLOCK_TOWER_ROOF",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 20,
+          "y": 46,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -1014,31 +1239,61 @@
       {
         "rect": [0, 78, 1, 2],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [119, 78, 1, 2],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [0, 79, 21, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [43, 79, 35, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [100, 79, 20, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_COLOSSEUM_INTERIOR",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 56,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -1124,51 +1379,101 @@
       {
         "rect": [19, 0, 21, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [80, 0, 21, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [15, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [29, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [42, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [51, 79, 18, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [77, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [90, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [104, 79, 1, 1],
         "target": "LOCATION_COLOSSEUM_ENTRANCE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 71,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_COLOSSEUM_ROOFTOP",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 96,
+          "y": 40,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1195,11 +1500,21 @@
       {
         "rect": [0, 49, 1, 6],
         "target": "LOCATION_COLOSSEUM_STOREHOUSE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 8,
+          "y": 52,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_COLOSSEUM_INTERIOR",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 112,
+          "y": 56,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -1225,11 +1540,21 @@
       {
         "rect": [0, 52, 1, 7],
         "target": "LOCATION_COLOSSEUM_FOYER",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 8,
+          "y": 52,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_COLOSSEUM_ROOFTOP",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 112,
+          "y": 52,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1260,7 +1585,12 @@
     "connections": [
       {
         "target": "LOCATION_COLOSSEUM_STOREHOUSE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 112,
+          "y": 52,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1286,27 +1616,52 @@
       {
         "rect": [35, 0, 1, 1],
         "target": "LOCATION_RUINS_EXTERIOR",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 13,
+          "y": 64,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [39, 0, 25, 1],
         "target": "LOCATION_RUINS_HALL",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 109,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 57, 1, 16],
         "target": "LOCATION_RUINS_EXTERIOR",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 13,
+          "y": 64,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 63, 1, 10],
         "target": "LOCATION_RUINS_HALL",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 109,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [39, 79, 25, 1],
         "target": "LOCATION_RUINS_HALL",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 109,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1357,7 +1712,12 @@
     "connections": [
       {
         "target": "LOCATION_PALACE_FOYER_LOWER",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 24,
+          "y": 40,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -1435,21 +1795,41 @@
       {
         "rect": [0, 17, 1, 22],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 16,
+          "y": 24,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 68, 1, 12],
         "target": "LOCATION_PALACE_GATE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 108,
+          "y": 72,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [118, 79, 2, 1],
         "target": "LOCATION_PALACE_GATE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 108,
+          "y": 72,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_PALACE_FOYER_UPPER",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 104,
+          "y": 24,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1499,15 +1879,30 @@
       {
         "rect": [0, 18, 1, 18],
         "target": "LOCATION_PALACE_FOYER_LOWER",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 12,
+          "y": 28,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_PALACE_THRONE_ROOM",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 96,
+          "y": 18,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 96,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -1551,11 +1946,21 @@
     "connections": [
       {
         "target": "LOCATION_PALACE_FOYER_UPPER",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 20,
+          "y": 74,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_NORTHEAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -1633,16 +2038,31 @@
       {
         "rect": [119, 34, 1, 12],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 103,
+          "y": 62,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [119, 61, 1, 13],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 103,
+          "y": 62,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_PALACE_STUDY",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 26,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -1723,11 +2143,21 @@
       {
         "rect": [119, 42, 1, 32],
         "target": "LOCATION_PALACE_STUDY",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 112,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1772,21 +2202,41 @@
       {
         "rect": [119, 49, 1, 16],
         "target": "LOCATION_PALACE_BEDROOM",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 60,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 50, 1, 26],
         "target": "LOCATION_PALACE_KITCHEN",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 8,
+          "y": 64,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [38, 79, 36, 1],
         "target": "LOCATION_PALACE_DINING_ROOM",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 56,
+          "y": 76,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 16,
+          "y": 64,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -1843,11 +2293,21 @@
       {
         "rect": [0, 49, 1, 14],
         "target": "LOCATION_PALACE_STUDY",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 16,
+          "y": 52,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHEAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 56,
+          "y": 48,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -1906,12 +2366,22 @@
       {
         "rect": [0, 51, 1, 14],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 16,
+          "y": 60,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 54, 1, 14],
         "target": "LOCATION_FOUNTAIN_COURTYARD",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 104,
+          "y": 61,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -1961,15 +2431,30 @@
       {
         "rect": [0, 49, 1, 15],
         "target": "LOCATION_FOUNTAIN_COURTYARD",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 13,
+          "y": 54,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_RUINS_SANCTUARY",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 97,
+          "y": 58,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 92,
+          "y": 274,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2002,11 +2487,21 @@
       {
         "rect": [48, 79, 25, 1],
         "target": "LOCATION_RUINS_HALL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 59,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTHWEST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 104,
+          "y": 54,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -2080,12 +2575,22 @@
       {
         "rect": [119, 37, 1, 25],
         "target": "LOCATION_UNDERWATER_RUINS",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 104,
+          "y": 44,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [46, 79, 53, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 72,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2115,15 +2620,30 @@
       {
         "rect": [0, 34, 1, 19],
         "target": "LOCATION_RUINS_PASSAGE",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 10,
+          "y": 45,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_LAKESIDE_LABORATORY",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 77,
+          "y": 45,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_LUMBERYARD",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 20,
+          "y": 108,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -2161,11 +2681,21 @@
     "connections": [
       {
         "target": "LOCATION_UNDERWATER_RUINS",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 34,
+          "y": 68,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_LUMBERYARD",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 46,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2209,11 +2739,21 @@
       {
         "rect": [119, 35, 1, 27],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 112,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_LAKESIDE_LAB_MAIN",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 106,
+          "y": 40,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -2239,16 +2779,31 @@
       {
         "rect": [119, 37, 1, 26],
         "target": "LOCATION_LAKESIDE_LAB_STORAGE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 107,
+          "y": 50,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [0, 43, 1, 13],
         "target": "LOCATION_LAKESIDE_LAB_ENTRY",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 12,
+          "y": 50,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_SOUTH_AVENUE_WEST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 36,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2384,11 +2939,21 @@
       {
         "rect": [0, 45, 1, 18],
         "target": "LOCATION_LAKESIDE_LAB_MAIN",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 13,
+          "y": 58,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_SOUTH_AVENUE_WEST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 56,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2414,12 +2979,22 @@
       {
         "rect": [0, 36, 1, 9],
         "target": "LOCATION_LAKESIDE_LAB_ROOM2",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 11,
+          "y": 39,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 49, 1, 16],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 112,
+          "y": 56,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -2483,15 +3058,30 @@
       {
         "rect": [119, 32, 1, 39],
         "target": "LOCATION_LAKESIDE_LAB_ROOM1",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 110,
+          "y": 52,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_LAKESIDE_LAB_OFFICE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 23,
+          "y": 17,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_SOUTH_AVENUE_EAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 124,
+          "y": 82,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2539,11 +3129,21 @@
     "connections": [
       {
         "target": "LOCATION_LAKESIDE_LAB_ROOM2",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 101,
+          "y": 69,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_SOUTH_AVENUE_EAST",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 8,
+          "y": 48,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -2569,11 +3169,21 @@
       {
         "rect": [119, 56, 1, 22],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 112,
+          "y": 72,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_FOREST_CLEARING",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 59,
+          "y": 63,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -2597,11 +3207,21 @@
     "connections": [
       {
         "target": "LOCATION_FOREST_TRAIL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 58,
+          "y": 50,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_ENTRANCE",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 58,
+          "y": 50,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2629,11 +3249,21 @@
     "connections": [
       {
         "target": "LOCATION_FOREST_CLEARING",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 56,
+          "y": 61,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 79,
+          "y": 38,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -2756,17 +3386,32 @@
       {
         "rect": [0, 15, 1, 23],
         "target": "LOCATION_FOREST_BLUE_HOUSE",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 14,
+          "y": 34,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "rect": [119, 20, 1, 22],
         "target": "LOCATION_FOREST_CAFE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 106,
+          "y": 37,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [51, 79, 15, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2794,15 +3439,30 @@
       {
         "rect": [41, 0, 40, 1],
         "target": "LOCATION_FOREST_ITEM_SHOP",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_FOREST_GROVE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 112,
+          "y": 64,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -2838,15 +3498,30 @@
       {
         "rect": [70, 0, 24, 1],
         "target": "LOCATION_FOREST_DECK_SHOP",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 81,
+          "y": 10,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_FOREST_GROVE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 9,
+          "y": 53,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -2874,20 +3549,40 @@
       {
         "rect": [118, 0, 2, 1],
         "target": "LOCATION_CEMETERY_EXTERIOR",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 92,
+          "y": 17,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "rect": [119, 0, 1, 22],
         "target": "LOCATION_CEMETERY_EXTERIOR",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 92,
+          "y": 17,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_FOREST_BLUE_HOUSE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -2962,15 +3657,30 @@
       {
         "rect": [0, 9, 1, 10],
         "target": "LOCATION_CEMETERY_EXTERIOR",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 19,
+          "y": 14,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_FOREST_CAFE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 89,
+          "y": 74,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 103,
+          "y": 45,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -3035,20 +3745,40 @@
       {
         "rect": [48, 0, 25, 1],
         "target": "LOCATION_CEMETERY_CHAPEL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 12,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "rect": [119, 61, 1, 18],
         "target": "LOCATION_FOREST_DECK_SHOP",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 112,
+          "y": 68,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_FOREST_ITEM_SHOP",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 8,
+          "y": 72,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_FOYER",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 8,
+          "y": 72,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -3146,15 +3876,30 @@
       {
         "rect": [9, 0, 100, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_CEMETERY_EXTERIOR",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 69,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CEMETERY_STORAGE",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -3212,11 +3957,21 @@
       {
         "rect": [48, 79, 24, 1],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CEMETERY_LIBRARY",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 42,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -3272,23 +4027,48 @@
       {
         "rect": [37, 79, 45, 1],
         "target": "LOCATION_CEMETERY_STORAGE",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_FOREST_REST_ROOM",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 34,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_HIGHWAY",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 109,
+          "y": 53,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CEMETERY_BASEMENT",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 11,
+          "y": 53,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -3369,11 +4149,21 @@
     "connections": [
       {
         "target": "LOCATION_CEMETERY_LIBRARY",
-        "slot": 1
+        "slot": 1,
+        "spawn": {
+          "x": 104,
+          "y": 53,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -3470,11 +4260,21 @@
     "connections": [
       {
         "target": "LOCATION_CEMETERY_LIBRARY",
-        "slot": 3
+        "slot": 3,
+        "spawn": {
+          "x": 15,
+          "y": 54,
+          "dir": "DIRECTION_RIGHT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 15,
+          "y": 54,
+          "dir": "DIRECTION_RIGHT"
+        }
       }
     ]
   },
@@ -3567,15 +4367,30 @@
       {
         "rect": [36, 79, 48, 1],
         "target": "LOCATION_CEMETERY_LIBRARY",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CABLE_CAR_STATION",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 16,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -3601,11 +4416,21 @@
       {
         "rect": [45, 79, 30, 1],
         "target": "LOCATION_FOREST_REST_ROOM",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_INTERIOR",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       }
     ]
   },
@@ -3629,7 +4454,12 @@
     "connections": [
       {
         "target": "LOCATION_MAIDEN_GARDEN",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 26,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -3776,7 +4606,12 @@
       {
         "rect": [2, 79, 70, 1],
         "target": "LOCATION_CLOCK_TOWER_ROOF",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       }
     ]
   },
@@ -3833,26 +4668,51 @@
       {
         "rect": [0, 24, 1, 44],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 8,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "rect": [16, 79, 9, 1],
         "target": "LOCATION_CEMETERY_CHAPEL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [51, 79, 69, 1],
         "target": "LOCATION_CEMETERY_CHAPEL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "rect": [119, 79, 1, 1],
         "target": "LOCATION_CEMETERY_CHAPEL",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 72,
+          "dir": "DIRECTION_UP"
+        }
       },
       {
         "target": "LOCATION_CEMETERY_STORAGE",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 60,
+          "y": 8,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -3893,11 +4753,21 @@
       {
         "rect": [119, 32, 1, 39],
         "target": "WORLD_MAP",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 108,
+          "y": 48,
+          "dir": "DIRECTION_LEFT"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_SQUARE_SOUTH",
-        "slot": 0
+        "slot": 0,
+        "spawn": {
+          "x": 61,
+          "y": 30,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   },
@@ -3923,11 +4793,21 @@
       {
         "rect": [47, 79, 24, 1],
         "target": "LOCATION_FOREST_AVENUE",
-        "slot": 2
+        "slot": 2,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_DOWN"
+        }
       },
       {
         "target": "LOCATION_CLOCK_TOWER_ROOF",
-        "slot": 4
+        "slot": 4,
+        "spawn": {
+          "x": 60,
+          "y": 48,
+          "dir": "DIRECTION_DOWN"
+        }
       }
     ]
   }

@@ -26,6 +26,9 @@ ROM_BASE = 0x08000000
 CW, CH = 120, 80  # collision grid
 BLOCKED_THRESHOLD = 4096
 
+# Direction constant names (matching overworld.h enum)
+DIRECTION_NAMES = {0: "DIRECTION_DOWN", 1: "DIRECTION_LEFT", 2: "DIRECTION_UP", 3: "DIRECTION_RIGHT"}
+
 # Edge direction constants (matching overworld.h)
 EDGES = ["bottom", "left", "top", "right"]
 
@@ -245,6 +248,28 @@ def _extract_connections(rom: bytes, mapdata_ptr: int, collision_ptr: int,
     ))
 
 
+def _read_player_start(rom: bytes, mapdata_ptr: int) -> dict:
+    """Read playerInitialState[5] from ROM for a map.
+
+    Returns dict keyed by slot index (int): {0: {"x": 60, "y": 16, "dir": "DIRECTION_DOWN"}, ...}
+    Only includes slots where spriteId != 0xFFFF (unused slot).
+    Each entry is 20 bytes: i16 spriteId, u8 dir, u8 pad, u16 x, u16 y,
+    u32 scriptA, u32 scriptR, u32 bitfield.
+    """
+    state0_ptr = struct.unpack_from("<I", rom, mapdata_ptr - ROM_BASE)[0]
+    base = state0_ptr - ROM_BASE
+    start: dict[int, dict] = {}
+    for slot in range(5):
+        off = base + 0x190 + slot * 20
+        sprite_id, dir_, _, x, y, _, _, _ = struct.unpack_from(
+            "<h B B H H I I I", rom, off)
+        if sprite_id == -1:
+            continue  # unused slot
+        dir_name = DIRECTION_NAMES.get(dir_, str(dir_))
+        start[slot] = {"x": x, "y": y, "dir": dir_name}
+    return start
+
+
 def _png_tile_dims(png_path: Path) -> dict:
     """Derive tile grid dimensions from a PNG. Returns {tile_w, tile_h} or None."""
     try:
@@ -298,6 +323,9 @@ def main() -> int:
         connections = _extract_connections(
             rom, mapdata_ptrs[mid], collision_ptrs[mid], mid)
 
+        # Player start positions per connection slot
+        start = _read_player_start(rom, mapdata_ptrs[mid])
+
         # Music constant name
         music_val = music_by_map[mid]
         music_name = _MUSIC_NAMES.get(music_val, f"0x{music_val:X}")
@@ -317,6 +345,12 @@ def main() -> int:
 
         # Tile dimensions from ground PNG
         dims = _png_tile_dims(ROOT / ground_png)
+
+        # Merge spawn data into each connection entry
+        for conn in connections:
+            slot = conn.get("slot")
+            if slot in start:
+                conn["spawn"] = start[slot]
 
         entry = {
             "id": mid,

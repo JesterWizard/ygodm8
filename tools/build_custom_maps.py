@@ -36,6 +36,10 @@ COLLISION_H = 80
 MAX_UNIQUE_TILES = 512
 PALETTE_COUNT = 240  # 15 palettes x 16 colors
 
+# Direction constant names → numeric values (matching overworld.h enum)
+DIRECTION_VALUES = {"DIRECTION_DOWN": 0, "DIRECTION_LEFT": 1,
+                    "DIRECTION_UP": 2, "DIRECTION_RIGHT": 3}
+
 # Music constant name → value lookup
 _MUSIC_VALUES: dict[str, int] = {}
 _music_header = (ROOT / "include" / "constants" / "music_ids.h").read_text()
@@ -477,6 +481,7 @@ def main() -> int:
     generate_manifest_map_sources(manifest, OUT_DIR)
     generate_manifest_collision_overrides(manifest, OUT_DIR)
     generate_manifest_connection_overrides(manifest, OUT_DIR)
+    generate_manifest_spawn_overrides(manifest, OUT_DIR)
 
     if not manifest:
         # Empty manifest — generate empty dispatch tables
@@ -817,6 +822,106 @@ def generate_manifest_connection_overrides(manifest: list, out_dir: Path) -> Non
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "manifest_connection_overrides.inc").write_text("".join(lines))
     print(f"  connections: {override_count} overrides across {sum(1 for m in overrides if any(v != 0xFF for v in m))} maps")
+
+
+def _read_base_spawn(mid: int) -> list[tuple[int, int, int]]:
+    """Read ROM playerInitialState for a map.
+
+    Returns list of (x, y, dir) for each of 5 slots.
+    """
+    try:
+        rom = ROM_PATH.read_bytes()
+        off = 0x08E19274 - ROM_BASE
+        mapdata_ptr = struct.unpack_from("<I", rom, off + mid * 4)[0]
+        state0_ptr = struct.unpack_from("<I", rom, mapdata_ptr - ROM_BASE)[0]
+        base = state0_ptr - ROM_BASE
+        slots = []
+        for slot in range(5):
+            sp, dp, _, xp, yp, _, _, _ = struct.unpack_from(
+                "<h B B H H I I I", rom, base + 0x190 + slot * 20)
+            slots.append((xp, yp, dp))
+        return slots
+    except (FileNotFoundError, struct.error):
+        return [(0xFF, 0xFF, 0xFF)] * 5
+
+
+def generate_manifest_spawn_overrides(manifest: list, out_dir: Path) -> None:
+    """Generate manifest_spawn_overrides.inc — player spawn (x, y, dir)
+    overrides per connection slot.
+
+    Three parallel u8[61][5] tables. 0xFF = use ROM default.
+    Only emits overrides where the manifest value differs from ROM base.
+    """
+    x_table: list[list[int]] = [[0xFF] * 5 for _ in range(61)]
+    y_table: list[list[int]] = [[0xFF] * 5 for _ in range(61)]
+    d_table: list[list[int]] = [[0xFF] * 5 for _ in range(61)]
+    override_count = 0
+
+    for entry in manifest:
+        mid = entry.get("id")
+        if not isinstance(mid, int) or mid < 0 or mid >= 61:
+            continue
+
+        base = _read_base_spawn(mid)
+
+        for conn in entry.get("connections", []):
+            slot = conn.get("slot")
+            spawn = conn.get("spawn")
+            if not isinstance(slot, int) or slot < 0 or slot >= 5 or spawn is None:
+                continue
+
+            mx = spawn.get("x")
+            my = spawn.get("y")
+            md_str = spawn.get("dir")
+            md = DIRECTION_VALUES.get(md_str, 0xFF) if isinstance(md_str, str) else md_str
+            bx, by, bd = base[slot]
+
+            changed = False
+            if isinstance(mx, int) and mx != bx:
+                x_table[mid][slot] = mx
+                changed = True
+            if isinstance(my, int) and my != by:
+                y_table[mid][slot] = my
+                changed = True
+            if isinstance(md, int) and md != bd:
+                d_table[mid][slot] = md
+                changed = True
+            if changed:
+                override_count += 1
+
+    def _row(vals: list[int]) -> str:
+        parts = []
+        for v in vals:
+            if v == 0xFF:
+                parts.append("0xFF")
+            else:
+                parts.append(str(v))
+        return "{" + ", ".join(parts) + "}"
+
+    lines = [
+        "// Auto-generated spawn overrides from tools/custom_map_manifest.json\n",
+        "// 0xFF = use ROM default position for this slot.\n\n",
+        "#ifndef GUARD_MANIFEST_SPAWN_OVERRIDES\n",
+        "#define GUARD_MANIFEST_SPAWN_OVERRIDES\n\n",
+        "static const u8 gManifestSpawnOverrideX[61][5] APPEND_RODATA = {\n",
+    ]
+    for mid in range(61):
+        lines.append(f"  {_row(x_table[mid])},\n")
+    lines.append("};\n\n")
+    lines.append("static const u8 gManifestSpawnOverrideY[61][5] APPEND_RODATA = {\n")
+    for mid in range(61):
+        lines.append(f"  {_row(y_table[mid])},\n")
+    lines.append("};\n\n")
+    lines.append("static const u8 gManifestSpawnOverrideDir[61][5] APPEND_RODATA = {\n")
+    for mid in range(61):
+        lines.append(f"  {_row(d_table[mid])},\n")
+    lines.append("};\n\n#endif /* GUARD_MANIFEST_SPAWN_OVERRIDES */\n")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "manifest_spawn_overrides.inc").write_text("".join(lines))
+    has = sum(1 for m in range(61)
+              if any(x_table[m][s] != 0xFF or y_table[m][s] != 0xFF or d_table[m][s] != 0xFF for s in range(5)))
+    print(f"  spawn: {override_count} overrides across {has} maps")
 
 
 if __name__ == "__main__":

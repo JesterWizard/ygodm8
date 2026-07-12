@@ -83,6 +83,7 @@ Each entry in the JSON array describes one map location:
 | `music` | Yes | Music track constant name from `include/constants/music_ids.h` (e.g. `MUSIC_CLOCK_TOWER_SQUARE`). |
 | `collision` | No | Custom collision overrides — `blocked` rects `[x, y, w, h]`. |
 | `connections` | Yes | Map edge exits — which edges lead to which maps. Auto-detected from ROM. |
+| `start` | Yes | Player spawn positions per connection slot — `{"0": {"x":60, "y":16, "dir":0}, ...}`. Auto-detected from ROM. |
 
 ### The `images` field
 
@@ -231,6 +232,32 @@ To redirect where a map transition goes, change the `target` constant:
 The build script reads the ROM's per-slot targets, compares them to the manifest, and emits only the differences into `manifest_connection_overrides.inc`. At runtime, `sub_80523EC__Replacement` checks the override table before using the ROM-sourced value. Gated by `enable_manifest_map_overrides`.
 
 This works for both edge-triggered transitions (walking off the map) and script-triggered transitions (doors, elevators, etc).
+
+### Overriding player spawn position
+
+Each manifest entry includes a `start` dict that stores the player's spawn position and direction per connection slot:
+
+```json
+"start": {
+  "0": {"x": 60, "y": 16, "dir": 0},
+  "1": {"x": 112, "y": 48, "dir": 1},
+  "2": {"x": 60, "y": 72, "dir": 2},
+  "3": {"x": 60, "y": 16, "dir": 0},
+  "4": {"x": 15, "y": 29, "dir": 3}
+}
+```
+
+- `x`, `y` — spawn tile coordinates (sub-tile units, half of a pixel). Max ~128 per map edge.
+- `dir` — direction: 0=down, 1=left, 2=up, 3=right (matching the game's `enum Direction`).
+
+To change where the player appears when entering a map, edit the `start` entry for the relevant slot. Only values that differ from the ROM are turned into runtime overrides — zero ROM overhead by default.
+
+```json
+// Map 9 slot 0: spawn at x=30, y=40, facing up
+"start": {
+  "0": {"x": 30, "y": 40, "dir": 2}
+}
+```
 
 ---
 
