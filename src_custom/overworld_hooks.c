@@ -121,6 +121,12 @@ enum {
 #define THOUGHT_BUBBLE_SCREEN_WIDTH 240
 #define THOUGHT_BUBBLE_SCREEN_HEIGHT 160
 
+#define DUEL_ICON_OAM_START 50
+#define DUEL_ICON_TILE_NUM 0x3F8
+#define DUEL_ICON_PALETTE_NUM 14
+#define DUEL_ICON_X_OFFSET 4
+#define DUEL_ICON_Y_OFFSET 36
+
 enum {
   THOUGHT_BUBBLE_ASSET_LIST(DECLARE_THOUGHT_BUBBLE_ENUM)
   THOUGHT_BUBBLE_COUNT
@@ -148,6 +154,9 @@ static const struct ThoughtBubbleFlagMapping sThoughtBubbleFlagMappings[] APPEND
 #undef DECLARE_THOUGHT_BUBBLE_ENUM
 #undef DECLARE_THOUGHT_BUBBLE_ASSET_ENTRY
 #undef DECLARE_THOUGHT_BUBBLE_FLAG_ENTRY
+
+static const u8 sDuelIconTiles[] APPEND_ASSET = INCBIN_U8("src_custom/assets/icons/duel.4bpp");
+static const u16 sDuelIconPalette[] APPEND_ASSET = INCBIN_U16("src_custom/assets/icons/duel.gbapal");
 
 static int ClampInt(int value, int min, int max) {
   if (value < min)
@@ -197,6 +206,57 @@ static u8 ObjectHasDuelDialogue(s8 objId) {
     return FALSE;
 
   return TRUE;
+}
+
+static u8 ObjectHasAvailableDuel(s8 objId) {
+  const struct Script *script;
+  const u8 *data;
+
+  if (!ObjectHasDuelDialogue(objId))
+    return FALSE;
+
+  script = EventSystem_ResolveScript(gOverworld.objects[objId].scriptR);
+  data = script->start;
+
+  /* Story duelists (Ishizu, etc.) gate the DUEL behind CHECK_FLAG
+   * (0x40, '7', flagByte). If the flag is set, the duel is over
+   * and cannot be replayed -- hide the icon. */
+  if (data[0] == 0x40 && data[1] == '7')
+    return !CheckFlag(data[2]);
+
+  return TRUE;
+}
+static void LoadDuelIconGfx(void) {
+  CpuFastCopy(sDuelIconTiles, (void *)(0x06010000 + DUEL_ICON_TILE_NUM * 32), 32);
+  CpuCopy16(sDuelIconPalette, gPaletteBuffer + 0x100 + DUEL_ICON_PALETTE_NUM * 16, 0x20);
+  CpuCopy16(sDuelIconPalette, (void *)(OBJ_PLTT + DUEL_ICON_PALETTE_NUM * 0x20), 0x20);
+}
+
+static void SetDuelIconOam(void) {
+  u16 *oam = (u16 *)gOamBuffer;
+  u8 i;
+
+  for (i = 1; i < 15; i++) {
+    u16 idx = (DUEL_ICON_OAM_START + (i - 1)) * 4;
+
+    if (ObjectHasAvailableDuel(i)) {
+      int npcY = gOverworld.objects[i].y * 2
+               - gOverworld.objects[i].unk8
+               + gOverworld.unk24C
+               - DUEL_ICON_Y_OFFSET;
+      int npcX = gOverworld.objects[i].x * 2 + gOverworld.unk24E - DUEL_ICON_X_OFFSET;
+
+      oam[idx]     = npcY;
+      oam[idx + 1] = npcX;
+      oam[idx + 2] = DUEL_ICON_TILE_NUM | (DUEL_ICON_PALETTE_NUM << 12);
+      oam[idx + 3] = 0;
+    } else {
+      oam[idx]     = 0xA0;
+      oam[idx + 1] = 0xF0;
+      oam[idx + 2] = 0xC00;
+      oam[idx + 3] = 0;
+    }
+  }
 }
 
 static void SetThoughtBubbleOam(u8 visible) {
@@ -365,6 +425,10 @@ void OverworldRunEndFrame(void) {
   }
   else
     SetThoughtBubbleOam(FALSE);
+  if (gRuntimeConfig.enable_repeatable_duel_icon == TRUE) {
+    LoadDuelIconGfx();
+    SetDuelIconOam();
+  }
   SetVBlankCallback(sub_804F1E4);
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);

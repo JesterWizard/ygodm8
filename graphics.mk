@@ -42,6 +42,10 @@ FIELD_SPELL_PNGS := $(sort $(FIELD_SPELL_STEM_PNGS) $(FIELD_SPELL_DIR_PNGS))
 FIELD_SPELL_HUFFS := $(shell find src_custom/assets/field_spells -mindepth 2 -type f -name 'field.huff' 2>/dev/null | sort)
 FIELD_SPELL_PALETTES := $(shell find src_custom/assets/field_spells -mindepth 2 -type f -name 'field.gbapal' 2>/dev/null | sort)
 
+DUEL_ICON_PNG := src_custom/assets/icons/duel.png
+DUEL_ICON_4BPP := src_custom/assets/icons/duel.4bpp
+DUEL_ICON_PAL := src_custom/assets/icons/duel.gbapal
+
 src_custom/assets/menus/debug_menu.lz: src_custom/assets/menus/debug_menu.4bpp | tools-rules
 	tools/gbagfx/gbagfx $< $@
 
@@ -53,7 +57,9 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(THOUGHT_BUBBLE_DUMPS) \
                 $(THOUGHT_BUBBLE_PALETTES) \
                 $(DEBUG_MENU_LZ) \
-                $(DEBUG_MENU_PAL)
+                $(DEBUG_MENU_PAL) \
+                $(DUEL_ICON_4BPP) \
+                $(DUEL_ICON_PAL)
 
 clean-graphics:
 	rm -f graphics/cards/artwork/*.8bpp
@@ -76,6 +82,8 @@ clean-graphics:
 	find src_custom/assets/title_screens -type f \( -name '*.8bpp' -o -name '*.lz' -o -name '*.gbapal' -o -name '*.tilemap.bin' \) -delete 2>/dev/null || true
 	rm -f src/overworld/entities/*.4bpp
 	rm -f src/overworld/entities/*.gbapal
+	rm -f src_custom/assets/icons/*.4bpp
+	rm -f src_custom/assets/icons/*.gbapal
 
 %.4bpp: %.png | tools-rules
 	tools/gbagfx/gbagfx $< $@

@@ -452,7 +452,7 @@ $(eval $(call custom_object_dep,spell_effect_hooks,$(SPELL_EFFECT_DISPATCH_STAMP
 $(eval $(call custom_object_dep,code_8043EF4_hooks,$(SPELL_EFFECT_DISPATCH_STAMP)))
 $(eval $(call custom_object_dep,generated/spell_activation_gates,$(SPELL_EFFECT_DISPATCH_STAMP)))
 $(C_BUILDDIR)/overworld/entities/entities.o: $(OVERWORLD_ENTITY_TILES) src/overworld/entities/palette.gbapal
-$(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES)))
+$(eval $(call custom_object_dep,overworld_hooks,$(THOUGHT_BUBBLE_DUMPS) $(THOUGHT_BUBBLE_PALETTES) $(DUEL_ICON_4BPP) $(DUEL_ICON_PAL)))
 $(eval $(call custom_object_dep,field_spell_gfx,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_gfx_hooks,$(FIELD_SPELL_GFX_STAMP) $(FIELD_SPELL_HUFFS) $(FIELD_SPELL_PALETTES)))
 $(eval $(call custom_object_dep,field_spell_effect_hooks,$(FIELD_SPELL_GFX_STAMP)))

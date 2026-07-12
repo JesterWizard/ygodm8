@@ -73,6 +73,7 @@ static const struct {
     CONF("Smart AI",     enable_smarter_ai),
     CONF("Fast AI",      fast_ai),
     CONF("No Tribute",   ignore_tribute_requirements),
+    CONF("Repeat Duel",  enable_repeatable_duel_icon),
     CONF("Skip Duel",    skip_to_duel),
     CONF("Title Video",  enable_title_screen_video),
 };

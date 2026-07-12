@@ -75,5 +75,6 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .skip_to_duel = FALSE,
     .skip_to_duel_opponent_id = DUELIST_TRISTAN_092,
     .enable_title_screen_video = FALSE,
+    .enable_repeatable_duel_icon = TRUE,
     .enable_card_detail_navigation = TRUE,
 };
