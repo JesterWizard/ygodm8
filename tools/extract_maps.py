@@ -14,8 +14,10 @@ The GBA BG palette is assembled at runtime from two sources:
 The combined 256-color palette is copied to PLTT (0x05000000).
 Pixel values in tile data directly index this palette.
 
-Gamma: GBA RGB555 values are linear. Modern sRGB monitors apply ~2.2 gamma,
-so we apply inverse gamma (^0.455) for correct display.
+Gamma: GBA RGB555 values are linear. The GBA LCD had lower gamma than modern
+sRGB monitors, so we apply inverse gamma (^0.714 ≈ 1/1.4) which is a lighter
+correction than full sRGB (1/2.2). This gives colors closer to the original
+GBA appearance without over-brightening.
 """
 
 from __future__ import annotations
@@ -55,7 +57,7 @@ FONT_PALETTE_ADDR = 0x082ADC8C
 CABLE_CAR_MAP_ID = 0x29
 CABLE_CAR_TILEMAP_ADDR = 0x0841D91C  # BG3 cable car window overlay
 
-GAMMA = 2.2
+GAMMA = 1.1
 
 
 def rom_offset(addr: int) -> int:
