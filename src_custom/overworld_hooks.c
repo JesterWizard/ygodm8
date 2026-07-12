@@ -211,6 +211,7 @@ static u8 ObjectHasDuelDialogue(s8 objId) {
 static u8 ObjectHasAvailableDuel(s8 objId) {
   const struct Script *script;
   const u8 *data;
+  u16 i;
 
   if (!ObjectHasDuelDialogue(objId))
     return FALSE;
@@ -223,9 +224,15 @@ static u8 ObjectHasAvailableDuel(s8 objId) {
   if (data[0] == 0x23 && data[1] == '7')
     return !CheckFlag(data[2]);
 
-  /* Repeatable duelists start directly with DUEL (0x40, '0', opponent). */
-  if (data[0] == 0x40 && data[1] == '0')
-    return TRUE;
+  /* Scan for DUEL (0x40, '0') in the top-level bytecode. Stop at END
+   * (0x5D) — do NOT stop at 0x00 (fallthrough) since text data can
+   * embed null bytes. 512 bytes is the max script length. */
+  for (i = 0; i < 511; i++) {
+    if (data[i] == 0x5D)
+      break;
+    if (data[i] == 0x40 && data[i + 1] == '0')
+      return TRUE;
+  }
 
   return FALSE;
 }
