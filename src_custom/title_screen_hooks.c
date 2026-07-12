@@ -24,7 +24,6 @@ extern struct {
 extern unsigned short g8E0CDB4[];
 
 #include "generated/title_screen_assets_generated.inc"
-#include "generated/title_screen_palette_reservations_generated.inc"
 
 static inline void CallThumbVoid(u32 addr) {
   ((VoidFunc)(addr | 1))();
@@ -69,17 +68,6 @@ static void TitleScreen_LoadCustomPalette(void) {
   CpuCopy16(sTitleScreenPalette, gPaletteBuffer, TITLE_SCREEN_PALETTE_BYTES);
 }
 
-static void TitleScreen_ApplyDialogPaletteReservations(void) {
-  u32 i;
-  const u16 *vanillaPalette = (const u16 *)g8E0CDA0;
-
-  for (i = 0; i < TITLE_SCREEN_RESERVED_PALETTE_COUNT; i++) {
-    u8 index = sTitleScreenReservedPaletteIndices[i];
-
-    gPaletteBuffer[index] = vanillaPalette[index];
-  }
-}
-
 static void VanillaCopyBgGfx(void) {
   u32 i;
   u8 *lang = &gLanguage;
@@ -119,30 +107,11 @@ static void CustomCopyBgGfx(void) {
   TitleScreen_LoadCustomPalette();
 }
 
-static void VanillaVBlankCbInitGfxRegs(void) {
-  DisableDisplay();
-  gBLDCNT = 0x8D8;
-  gBLDALPHA = 0x1000;
-  gBLDY = 0;
-  LoadBlendingRegs();
-  REG_WIN0H = 0x40B8;
-  REG_WIN0V = 0x2070;
-  REG_WININ = 0x3F;
-  REG_WINOUT = 0x1F;
-  REG_BG0CNT = BGCNT_PRIORITY(0) | BGCNT_CHARBASE(3) | BGCNT_256COLOR | BGCNT_SCREENBASE(30);
-  REG_BG3CNT = BGCNT_PRIORITY(3) | BGCNT_CHARBASE(0) | BGCNT_256COLOR | BGCNT_SCREENBASE(31);
-  gBG0VOFS = 0;
-  gBG0HOFS = 0;
-  gBG3VOFS = 0;
-  gBG3HOFS = 0;
-  LoadBgOffsets();
-}
-
 static void VanillaCopyGfxAndInitGfxRegs(void) {
   VanillaCopyBgGfx();
   CallThumbVoid(TITLE_SCREEN_CopySpriteTilesAndPalette);
   CallThumbVoid(TITLE_SCREEN_sub_80357C0);
-  VanillaVBlankCbInitGfxRegs();
+  SetVBlankCallback((void (*)(void))(TITLE_SCREEN_VBlankCbInitGfxRegs | 1));
   WaitForVBlank();
 }
 
@@ -150,7 +119,7 @@ static void CustomCopyGfxAndInitGfxRegs(void) {
   CustomCopyBgGfx();
   CallThumbVoid(TITLE_SCREEN_CopySpriteTilesAndPalette);
   CallThumbVoid(TITLE_SCREEN_sub_80357C0);
-  VanillaVBlankCbInitGfxRegs();
+  SetVBlankCallback((void (*)(void))(TITLE_SCREEN_VBlankCbInitGfxRegs | 1));
   WaitForVBlank();
 }
 
@@ -164,11 +133,6 @@ APPEND_TEXT void CopyGfxAndInitGfxRegs__Replacement(void) {
 
 /* LYN_REPLACE_CHECK(VBlankCbTryStartNewGame) */
 APPEND_TEXT void VBlankCbTryStartNewGame__Replacement(void) {
-  if (gRuntimeConfig.enable_custom_title_screen == TRUE) {
-    TitleScreen_ApplyDialogPaletteReservations();
-    LoadPalettes();
-  }
-
   REG_DISPCNT |= DISPCNT_BG0_ON | DISPCNT_WIN0_ON;
   gBLDY = 10;
   LoadBlendingRegs();
@@ -179,11 +143,6 @@ APPEND_TEXT void VBlankCbTryStartNewGameEnd__Replacement(void) {
   REG_DISPCNT &= ~(DISPCNT_BG0_ON | DISPCNT_WIN0_ON);
   gBLDY = 0;
   LoadBlendingRegs();
-
-  if (gRuntimeConfig.enable_custom_title_screen == TRUE) {
-    TitleScreen_LoadCustomPalette();
-    LoadPalettes();
-  }
 }
 
 static void VanillaSub80357F8(void) {
