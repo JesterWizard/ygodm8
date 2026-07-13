@@ -7,12 +7,20 @@
 #define PLAYER_DECK_INDEX_MIN 1
 #define PLAYER_DECK_INDEX_MAX 3
 #define PLAYER_DECK_CARD_BYTES 0x50
+#define EXTRA_DECK_CARD_BYTES 0x1E
 
 extern u16 gPlayerDeck1Cards[40];
 extern u16 gPlayerDeck2Cards[40];
 extern u16 gPlayerDeck3Cards[40];
 extern u8 gActiveDeckIndex;
 extern u8 gPlayerDeckSaveRestoreActiveDeck;
+
+extern u16 gPlayerDeck1ExtraDeckFlashPrimary[15];
+extern u16 gPlayerDeck1ExtraDeckFlashBackup[15];
+extern u16 gPlayerDeck2ExtraDeckFlashPrimary[15];
+extern u16 gPlayerDeck2ExtraDeckFlashBackup[15];
+extern u16 gPlayerDeck3ExtraDeckFlashPrimary[15];
+extern u16 gPlayerDeck3ExtraDeckFlashBackup[15];
 
 extern u16 gPlayerDeck2CardsFlashPrimary[40];
 extern u16 gPlayerDeck2CardsFlashBackup[40];

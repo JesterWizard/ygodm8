@@ -146,6 +146,11 @@ u8 ExtraDeck_TryRemoveCard(u16 cardId) {
   return FALSE;
 }
 
+LYN_REPLACE_CHECK(GetPlayerDeckSize);
+unsigned char GetPlayerDeckSize__Replacement(void) {
+  return gDeckMenu.cardCount + GetExtraDeckSize();
+}
+
 static bool8 IsFusionCard(u16 cardId) {
   if (cardId >= NUM_TOTAL_CARDS)
     return FALSE;
@@ -678,7 +683,8 @@ void RunTrunkTask__Replacement(unsigned char task) {
         gTrunkExtraDeckViewActive = FALSE;
         gTrunkMenu.currentPos = 0;
         TrunkMenuDefaultSort();
-        sub_800A3D8(3);
+        sub_8009364();
+        sub_800A3D8(2);
         sub_800ABD0();
         sub_800AA58(6);
       } else {
@@ -849,7 +855,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
     unsigned isCardRejected = 0;
     u8 limit = GetRuntimeDeckLimit();
 
-    if (GetAvailableTrunkQty(cardId) && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
+    if (GetAvailableTrunkQty(cardId) && gDeckMenu.cardCount < limit && sub_801F098(cardId) == 1) {
       if (CardExceedsCurrentDuelistLevel(cardId))
         isCardRejected = 1;
       if (IsFusionCard(cardId))
@@ -1090,7 +1096,7 @@ static void TrunkSubMenu_RefreshListPane(void) {
 
 /* ---- custom options: Extra Deck ---- */
 
-static const u8 kShowInEDeckLabel[] APPEND_TEXT = "Show in E. Deck      ";
+static const u8 kShowInEDeckLabel[] APPEND_TEXT = "Show E. Deck      ";
 static const u8 kMoveToEDeckLabel[] APPEND_TEXT = "Move to E. Deck      ";
 
 /* Opens a deck-browser for the extra deck contents with a two-option
@@ -1188,7 +1194,7 @@ static void TrunkSubMenu_RegisterOptions(void) {
     if (gTrunkExtraDeckViewActive)
         return;
 
-    /* Option 4: Show in E. Deck (only when extra deck has cards) */
+    /* Option 4: Show E. Deck (only when extra deck has cards) */
     if (GetExtraDeckSize() > 0) {
         gTrunkSubMenuCustomOptions[0].label  = kShowInEDeckLabel;
         gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_ShowExtraDeck;
@@ -1205,7 +1211,8 @@ static void TrunkSubMenu_RegisterOptions(void) {
 
 /* ---- main sub-menu replacement ---- */
 
-/* Trunk_A_Submenu is static in vanilla, so LYN_REPLACE_CHECK can't reference it. */
+/* LYN_REPLACEMENT(Trunk_A_Submenu) */
+/* Trunk_A_Submenu is static in vanilla, so LYN_REPLACEMENT is used instead of LYN_REPLACE_CHECK. */
 void Trunk_A_Submenu__Replacement(void) {
     unsigned keepProcessing;
     u8 totalCount;
@@ -1298,7 +1305,8 @@ void Trunk_A_Submenu__Replacement(void) {
 
     /* Refresh trunk display when a custom action changed view state. */
     if (actionExited) {
-        sub_800A3D8(3);
+        sub_8009364();
+        sub_800A3D8(2);
         sub_800ABD0();
         sub_800AA58(6);
     } else {

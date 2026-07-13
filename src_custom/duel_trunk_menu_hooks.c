@@ -26,7 +26,9 @@ unsigned short sub_800DA48__Replacement(unsigned short cardId) {
 
 LYN_REPLACE_CHECK(sub_800DA88);
 unsigned short sub_800DA88__Replacement(void) {
-  if (GetPlayerDeckSize() < GetRuntimeDeckLimit())
+  /* Use main-deck-only count for palette coloring (deck size), not the
+   * GetPlayerDeckSize override which also counts extra deck cards. */
+  if (gDeckMenu.cardCount < GetRuntimeDeckLimit())
     return 0x4000;
   return 0x5000;
 }

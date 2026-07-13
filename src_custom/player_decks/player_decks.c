@@ -104,6 +104,12 @@ static void SaveDecksToFlashPrimary(void) {
               PLAYER_DECK_CARD_BYTES);
   sub_80588C4((u8 *)gPlayerDeck3Cards, (int)gPlayerDeck3CardsFlashPrimary,
               PLAYER_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck1ExtraDeck, (int)gPlayerDeck1ExtraDeckFlashPrimary,
+              EXTRA_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck2ExtraDeck, (int)gPlayerDeck2ExtraDeckFlashPrimary,
+              EXTRA_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck3ExtraDeck, (int)gPlayerDeck3ExtraDeckFlashPrimary,
+              EXTRA_DECK_CARD_BYTES);
   sub_80588C4(&gActiveDeckIndex, (int)&gActiveDeckIndexFlashPrimary, 1);
   sub_80588C4(&magic, (int)&gPlayerDeckSaveMagicFlashPrimary, 1);
 }
@@ -115,6 +121,12 @@ static void SaveDecksToFlashBackup(void) {
               PLAYER_DECK_CARD_BYTES);
   sub_80588C4((u8 *)gPlayerDeck3Cards, (int)gPlayerDeck3CardsFlashBackup,
               PLAYER_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck1ExtraDeck, (int)gPlayerDeck1ExtraDeckFlashBackup,
+              EXTRA_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck2ExtraDeck, (int)gPlayerDeck2ExtraDeckFlashBackup,
+              EXTRA_DECK_CARD_BYTES);
+  sub_80588C4((u8 *)gPlayerDeck3ExtraDeck, (int)gPlayerDeck3ExtraDeckFlashBackup,
+              EXTRA_DECK_CARD_BYTES);
   sub_80588C4(&gActiveDeckIndex, (int)&gActiveDeckIndexFlashBackup, 1);
   sub_80588C4(&magic, (int)&gPlayerDeckSaveMagicFlashBackup, 1);
 }
@@ -133,6 +145,12 @@ static u8 LoadDecksFromFlashPrimary(void) {
            PLAYER_DECK_CARD_BYTES);
   g20245AC((int)gPlayerDeck3CardsFlashPrimary, (u8 *)gPlayerDeck3Cards,
            PLAYER_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck1ExtraDeckFlashPrimary, (u8 *)gPlayerDeck1ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck2ExtraDeckFlashPrimary, (u8 *)gPlayerDeck2ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck3ExtraDeckFlashPrimary, (u8 *)gPlayerDeck3ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
   g20245AC((int)&gActiveDeckIndexFlashPrimary, &gActiveDeckIndex, 1);
   return TRUE;
 }
@@ -151,13 +169,29 @@ static u8 LoadDecksFromFlashBackup(void) {
            PLAYER_DECK_CARD_BYTES);
   g20245AC((int)gPlayerDeck3CardsFlashBackup, (u8 *)gPlayerDeck3Cards,
            PLAYER_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck1ExtraDeckFlashBackup, (u8 *)gPlayerDeck1ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck2ExtraDeckFlashBackup, (u8 *)gPlayerDeck2ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
+  g20245AC((int)gPlayerDeck3ExtraDeckFlashBackup, (u8 *)gPlayerDeck3ExtraDeck,
+           EXTRA_DECK_CARD_BYTES);
   g20245AC((int)&gActiveDeckIndexFlashBackup, &gActiveDeckIndex, 1);
   return TRUE;
+}
+
+static void ClearExtraDeck(u16 *deck) {
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    deck[i] = CARD_NONE;
 }
 
 static void InitUnsavedExtraDecks(void) {
   ClearDeckCards(gPlayerDeck2Cards);
   ClearDeckCards(gPlayerDeck3Cards);
+  ClearExtraDeck(gPlayerDeck1ExtraDeck);
+  ClearExtraDeck(gPlayerDeck2ExtraDeck);
+  ClearExtraDeck(gPlayerDeck3ExtraDeck);
   gActiveDeckIndex = PLAYER_DECK_INDEX_MIN;
 }
 
@@ -232,6 +266,9 @@ void PlayerDecks_InitNewGame(void) {
   SaveDeckCardsToBacking(PLAYER_DECK_INDEX_MIN);
   ClearDeckCards(gPlayerDeck2Cards);
   ClearDeckCards(gPlayerDeck3Cards);
+  ClearExtraDeck(gPlayerDeck1ExtraDeck);
+  ClearExtraDeck(gPlayerDeck2ExtraDeck);
+  ClearExtraDeck(gPlayerDeck3ExtraDeck);
 }
 
 void PlayerDecks_OnSaveSlotWrite(void) {
