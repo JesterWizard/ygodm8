@@ -12,6 +12,7 @@ enum {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_FUSION_SUMMON,
   DECK_MENU_PICK_LABEL_SELECT_CARD,
+  DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK,
 };
 
 #define DECK_MENU_PICK_MAX_OPTIONS 3
@@ -24,5 +25,10 @@ bool8 DeckMenuMainPickConfirmWithLabels(const u8 *labels, u8 labelCount);
  * DECK_MENU_PICK_RESULT_CANCEL if the player backs out of the submenu. */
 u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount);
 bool8 DeckMenuMainPickConfirm(void);
+
+/* Opens a read-only card list viewer.  gDeckMenu.cards[] must be
+ * populated with card IDs before calling.  Handles save/restore of
+ * gDeckMenu internally. */
+void CardListViewerOpenLoaded(u8 cardCount);
 
 #endif // GUARD_DECK_MENU_H

@@ -125,6 +125,7 @@ enum {
 
 #define TRUNK_CARD_LIMIT 250
 #define DECK_SIZE 40
+#define EXTRA_DECK_SIZE 15
 //^TODO: change to MAX_DECK_SIZE, DECK_MAX_SIZE, or _COUNT? (or MIN? in vanilla it has to be exactly 40)
 
 struct TrunkMenu
@@ -168,6 +169,9 @@ extern unsigned char gCustomPlayerTempCardQty[];
 extern unsigned char gCustomTotalCardQty[];
 extern u16 gTrunkMenuCustomCards[];
 extern u16 gTrunkMenuSortCards[];
+extern u16 gPlayerDeck1ExtraDeck[EXTRA_DECK_SIZE];
+extern u16 gPlayerDeck2ExtraDeck[EXTRA_DECK_SIZE];
+extern u16 gPlayerDeck3ExtraDeck[EXTRA_DECK_SIZE];
 unsigned char GetTotalCardQtyForCard(unsigned short cardId);
 void SetTotalCardQtyForCard(unsigned short cardId, unsigned char qty);
 unsigned char GetShopCardQty(unsigned short cardId);

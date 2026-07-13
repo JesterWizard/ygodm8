@@ -140,12 +140,18 @@ _kernel_malloc_ewram_array gCustomShopTempCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
 _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 @ Cached trunk list size when hide_unowned_trunk_cards is enabled (avoids full scans per scroll).
+_kernel_malloc_ewram Pad_TrunkVisibleAlign, 0x1
 _kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
 _kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 
 @ Trunk sub-menu extension framework (up to 5 custom options).
 _kernel_malloc_ewram gTrunkSubMenuCustomCount, 0x1
 _kernel_malloc_ewram gTrunkSubMenuCustomOptions, 0x28
+@ Set by custom actions to request sub-menu loop exit (e.g. after switching to extra deck view).
+_kernel_malloc_ewram gTrunkSubMenuExitRequest, 0x1
+
+@ Extra deck view active flag (1 = trunk shows extra deck instead of trunk cards).
+_kernel_malloc_ewram gTrunkExtraDeckViewActive, 0x1
 
 @ -- Player decks --------------------------------------------------------------
 
@@ -155,6 +161,12 @@ _kernel_malloc_ewram gTrunkSubMenuCustomOptions, 0x28
 _kernel_malloc_ewram_array gPlayerDeck1Cards, PLAYER_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck2Cards, PLAYER_DECK_CARD_BYTES
 _kernel_malloc_ewram_array gPlayerDeck3Cards, PLAYER_DECK_CARD_BYTES
+@ Extra decks (15 u16 per deck = 30 bytes).
+.set EXTRA_DECK_CARD_BYTES, 0x1E
+_kernel_malloc_ewram_array gPlayerDeck1ExtraDeck, EXTRA_DECK_CARD_BYTES
+_kernel_malloc_ewram_array gPlayerDeck2ExtraDeck, EXTRA_DECK_CARD_BYTES
+_kernel_malloc_ewram_array gPlayerDeck3ExtraDeck, EXTRA_DECK_CARD_BYTES
+
 @ Legacy-reserved capacity slots. Runtime deck capacity is the single vanilla gDeckCapacity.
 _kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
 _kernel_malloc_ewram gPlayerDeck3Capacity, 0x4

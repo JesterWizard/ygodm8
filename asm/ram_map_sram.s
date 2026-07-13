@@ -48,6 +48,10 @@ _kernel_malloc_flash gCustomPlayerTempCardQty,  CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_flash gShinyZoneFlags,             0x10
 _kernel_malloc_flash gPlayerDeck2Cards,         PLAYER_DECK_CARD_BYTES
 _kernel_malloc_flash gPlayerDeck3Cards,         PLAYER_DECK_CARD_BYTES
+@ Extra decks (15 u16 per deck = 30 bytes) — persisted for all 3 decks.
+_kernel_malloc_flash gPlayerDeck1ExtraDeck,     EXTRA_DECK_CARD_BYTES
+_kernel_malloc_flash gPlayerDeck2ExtraDeck,     EXTRA_DECK_CARD_BYTES
+_kernel_malloc_flash gPlayerDeck3ExtraDeck,     EXTRA_DECK_CARD_BYTES
 @ Legacy-reserved capacity slots. Do not read/write; vanilla save owns gDeckCapacity.
 _kernel_malloc_flash gPlayerDeck2Capacity,      0x4
 _kernel_malloc_flash gPlayerDeck3Capacity,      0x4

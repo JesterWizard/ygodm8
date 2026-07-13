@@ -169,7 +169,7 @@ static void CardListViewerMain(void)
   }
 }
 
-static void CardListViewerOpenLoaded(u8 cardCount)
+void CardListViewerOpenLoaded(u8 cardCount)
 {
   u8 savedDeckMenu[sizeof(gDeckMenu)];
   u8 i;

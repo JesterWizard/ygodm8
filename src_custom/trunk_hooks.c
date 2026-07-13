@@ -6,6 +6,8 @@
 #include "gfx_reg_buffers.h"
 #include "text.h"
 #include "generated/card_trunk_generated.inc"
+#include "deck_menu.h"
+#include "duel_helpers.h"
 
 extern const unsigned char gStarterTrunk[];
 extern unsigned char gTrunkCardQty[];
@@ -60,12 +62,102 @@ extern unsigned short gPressedButtons;
 void WaitForVBlank(void);
 void sub_800A3D8(unsigned char);
 void sub_800ABB4(void);
+void sub_8009364(void);
+void sub_800ABD0(void);
+void sub_800AA58(unsigned char);
+extern u8 gTrunkSubMenuExitRequest;
+extern u8 gTrunkExtraDeckViewActive;
+u16 GetSelectedCardWithOffset(u8 offset);
+unsigned IsPlayerDeckNonempty(void);
+
+/* ========================================================================
+ * Extra Deck Helpers
+ *
+ * Each player deck (1-3) has a 15-card extra deck stored in EWRAM.
+ * Fusion cards go here; they are blocked from the main deck.
+ * ======================================================================== */
+
+static u16 *GetActiveExtraDeck(void) {
+  u8 active = PlayerDecks_IsEnabled() == TRUE
+                ? PlayerDecks_GetActiveIndex() : 1;
+
+  switch (active) {
+  case 1: return gPlayerDeck1ExtraDeck;
+  case 2: return gPlayerDeck2ExtraDeck;
+  case 3: return gPlayerDeck3ExtraDeck;
+  default: return gPlayerDeck1ExtraDeck;
+  }
+}
+
+u8 GetExtraDeckSize(void) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i, count = 0;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    if (extra[i] != CARD_NONE)
+      count++;
+  return count;
+}
+
+u8 ExtraDeck_GetCardQty(u16 cardId) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i, qty = 0;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    if (extra[i] == cardId)
+      qty++;
+  return qty;
+}
+
+static u16 ExtraDeck_GetNthCard(u16 index) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++) {
+    if (extra[i] == CARD_NONE)
+      continue;
+    if (index == 0)
+      return extra[i];
+    index--;
+  }
+  return CARD_NONE;
+}
+
+void ExtraDeck_AddCard(u16 cardId) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    if (extra[i] == CARD_NONE) {
+      extra[i] = cardId;
+      return;
+    }
+}
+
+u8 ExtraDeck_TryRemoveCard(u16 cardId) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    if (extra[i] == cardId) {
+      extra[i] = CARD_NONE;
+      return TRUE;
+    }
+  return FALSE;
+}
+
+static bool8 IsFusionCard(u16 cardId) {
+  if (cardId >= NUM_TOTAL_CARDS)
+    return FALSE;
+  return gCardData_NEW[cardId].color == COLOR_FUSION;
+}
 
 static bool8 TrunkHidesUnownedCards(void) {
   return gRuntimeConfig.hide_unowned_trunk_cards;
 }
 
 static u8 GetDeckQtyForOwnershipTotals(u16 cardId);
+static u8 GetExtraDeckQtyForOwnershipTotals(u16 cardId);
 static void WrapTrunkCursorToList(void);
 
 static bool8 IsCustomCardId(u16 cardId) {
@@ -132,8 +224,8 @@ static void SetTrunkQtyForCard(u16 cardId, u8 qty) {
 static bool8 CardIsVisibleInTrunkList(u16 cardId) {
   if (cardId == CARD_NONE)
     return FALSE;
-  /* Match on-screen trunk/deck counts (active deck only), not all-deck totals. */
-  return GetTrunkQtyForCard(cardId) + GetDeckCardQty(cardId) >= 1;
+  /* Match on-screen trunk/main/extra counts (active deck only), not all-deck totals. */
+  return GetTrunkQtyForCard(cardId) + GetDeckCardQty(cardId) + ExtraDeck_GetCardQty(cardId) >= 1;
 }
 
 static void SetTrunkVisibleCounts(u16 standardCount, u16 totalCount) {
@@ -195,6 +287,8 @@ static u16 GetFullTrunkCardCount(void) {
 }
 
 u16 GetTrunkCardCount(void) {
+  if (gTrunkExtraDeckViewActive)
+    return GetExtraDeckSize();
   if (TrunkHidesUnownedCards())
     return gTrunkVisibleCardCount;
   return GetFullTrunkCardCount();
@@ -214,6 +308,23 @@ static u8 GetDeckQtyForOwnershipTotals(u16 cardId) {
   if (PlayerDecks_IsEnabled() == TRUE)
     return PlayerDecks_GetTotalDeckCardQty(cardId);
   return GetDeckCardQty(cardId);
+}
+
+static u8 CountCardInExtraDeck(const u16 *extra, u16 cardId) {
+  u8 i, qty = 0;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++)
+    if (extra[i] == cardId)
+      qty++;
+  return qty;
+}
+
+static u8 GetExtraDeckQtyForOwnershipTotals(u16 cardId) {
+  if (PlayerDecks_IsEnabled() == TRUE)
+    return CountCardInExtraDeck(gPlayerDeck1ExtraDeck, cardId)
+      + CountCardInExtraDeck(gPlayerDeck2ExtraDeck, cardId)
+      + CountCardInExtraDeck(gPlayerDeck3ExtraDeck, cardId);
+  return ExtraDeck_GetCardQty(cardId);
 }
 
 static void IncrementTotalCardQty(u16 cardId) {
@@ -244,6 +355,28 @@ static void AccumulateAllDeckCardsIntoTotals(void) {
   }
 }
 
+static void AccumulateExtraDeckCardsIntoTotals(const u16 *cards) {
+  u8 i;
+
+  for (i = 0; i < EXTRA_DECK_SIZE; i++) {
+    u16 cardId = cards[i];
+
+    if (cardId != CARD_NONE)
+      IncrementTotalCardQty(cardId);
+  }
+}
+
+static void AccumulateAllExtraDeckCardsIntoTotals(void) {
+  if (PlayerDecks_IsEnabled() == TRUE) {
+    AccumulateExtraDeckCardsIntoTotals(gPlayerDeck1ExtraDeck);
+    AccumulateExtraDeckCardsIntoTotals(gPlayerDeck2ExtraDeck);
+    AccumulateExtraDeckCardsIntoTotals(gPlayerDeck3ExtraDeck);
+  }
+  else {
+    AccumulateExtraDeckCardsIntoTotals(gPlayerDeck1ExtraDeck);
+  }
+}
+
 static void RefreshTrunkOwnershipTotals(void) {
   u16 cardId;
 
@@ -254,6 +387,7 @@ static void RefreshTrunkOwnershipTotals(void) {
     SetTotalCardQtyForCard(cardId, GetTrunkQtyForCard(cardId));
 
   AccumulateAllDeckCardsIntoTotals();
+  AccumulateAllExtraDeckCardsIntoTotals();
 }
 
 static void AppendCustomTrunkCard(void) {
@@ -336,6 +470,9 @@ static void ApplyTrunkSortCardList(void) {
 }
 
 static u16 GetTrunkMenuCardAtIndex(u16 index) {
+  if (gTrunkExtraDeckViewActive)
+    return ExtraDeck_GetNthCard(index);
+
   if (TrunkHidesUnownedCards()) {
     u16 cardId;
 
@@ -412,7 +549,9 @@ void SetTotalCardQtyForCard(u16 cardId, u8 qty) {
 }
 
 void SyncCardOwnershipQty(u16 cardId) {
-  SetTotalCardQtyForCard(cardId, GetTrunkQtyForCard(cardId) + GetDeckQtyForOwnershipTotals(cardId));
+  SetTotalCardQtyForCard(cardId, GetTrunkQtyForCard(cardId)
+    + GetDeckQtyForOwnershipTotals(cardId)
+    + GetExtraDeckQtyForOwnershipTotals(cardId));
   SyncCustomTrunkCardQtyMirror(cardId);
 }
 
@@ -435,20 +574,34 @@ unsigned char GetTrunkCardQuantity__Replacement(unsigned short cardId) {
 }
 
 static void WrapTrunkCursorToList(void) {
-  if (gTrunkMenu.currentPos >= GetTrunkCardCount())
-    gTrunkMenu.currentPos -= GetTrunkCardCount();
+  u16 count = GetTrunkCardCount();
+
+  if (count == 0) {
+    gTrunkMenu.currentPos = 0;
+    return;
+  }
+
+  if (gTrunkMenu.currentPos >= count)
+    gTrunkMenu.currentPos -= count;
 }
 
 static void RemoveSelectedCardFromDeck(void) {
   u16 cardId = GetNthCardOnScreen(2);
 
-  if (GetDeckCardQty(cardId) == 0 || TryRemoveCardFromDeck(cardId) != TRUE) {
-    PlayMusic(SFX_FORBIDDEN);
-    while (gPressedButtons & DPAD_LEFT)
-      WaitForVBlank();
-    return;
-  }
+  /* Try main deck first */
+  if (GetDeckCardQty(cardId) > 0 && TryRemoveCardFromDeck(cardId) == TRUE)
+    goto return_to_trunk;
 
+  /* Fall back to extra deck */
+  if (ExtraDeck_TryRemoveCard(cardId) == TRUE)
+    goto return_to_trunk;
+
+  PlayMusic(SFX_FORBIDDEN);
+  while (gPressedButtons & DPAD_LEFT)
+    WaitForVBlank();
+  return;
+
+return_to_trunk:
   if (GetTrunkQtyForCard(cardId) < TRUNK_CARD_LIMIT)
     SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
   else
@@ -456,6 +609,26 @@ static void RemoveSelectedCardFromDeck(void) {
   SyncCardOwnershipQty(cardId);
   RebuildVisibleTrunkCardList();
   PlayMusic(SFX_SELECT);
+}
+
+static bool8 ExtraDeck_ReturnSelectedCardToTrunk(void) {
+  u16 cardId = GetNthCardOnScreen(2);
+
+  if (cardId == CARD_NONE || ExtraDeck_TryRemoveCard(cardId) != TRUE)
+    return FALSE;
+
+  if (GetTrunkQtyForCard(cardId) < TRUNK_CARD_LIMIT)
+    SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
+  else
+    SetTrunkQtyForCard(cardId, TRUNK_CARD_LIMIT);
+
+  SyncCardOwnershipQty(cardId);
+  RebuildVisibleTrunkCardList();
+
+  if (GetExtraDeckSize() == 0)
+    gTrunkExtraDeckViewActive = FALSE;
+  WrapTrunkCursorToList();
+  return TRUE;
 }
 
 void TryAddSelectedCardToDeck__Replacement(void);
@@ -488,13 +661,33 @@ void RunTrunkTask__Replacement(unsigned char task) {
       TryAddSelectedCardToDeck__Replacement();
       break;
     case 8:
-      RemoveSelectedCardFromDeck();
+      if (gTrunkExtraDeckViewActive) {
+        if (ExtraDeck_ReturnSelectedCardToTrunk() == TRUE) {
+          PlayMusic(SFX_SELECT);
+        } else {
+          PlayMusic(SFX_FORBIDDEN);
+          while (gPressedButtons & DPAD_LEFT)
+            WaitForVBlank();
+        }
+      } else {
+        RemoveSelectedCardFromDeck();
+      }
       break;
     case 9:
-      QuitTrunkMenu();
+      if (gTrunkExtraDeckViewActive) {
+        gTrunkExtraDeckViewActive = FALSE;
+        gTrunkMenu.currentPos = 0;
+        TrunkMenuDefaultSort();
+        sub_800A3D8(3);
+        sub_800ABD0();
+        sub_800AA58(6);
+      } else {
+        QuitTrunkMenu();
+      }
       break;
     case 10:
-      ToggleSortMode();
+      if (!gTrunkExtraDeckViewActive)
+        ToggleSortMode();
       break;
   }
 }
@@ -522,6 +715,7 @@ void InitTrunkData__Replacement(void) {
   gTrunkMenu.currentPos = 0;
   gTrunkMenu.displayMode = 1;
   gTrunkMenu.sortMode = CARD_SORT_NUMBER;
+  gTrunkExtraDeckViewActive = FALSE;
 
   RefreshTrunkOwnershipTotals();
   RebuildVisibleTrunkCardList();
@@ -576,6 +770,17 @@ unsigned short GetNthCardOnScreen__Replacement(u8 n) {
   if (count == 0)
     return CARD_NONE;
 
+  /* Extra deck view: don't wrap displayed positions past the list end.
+   * The trunk list renderer asks for rows past the list end; without this guard the
+   * wrapping logic would loop back and show the first extra deck card
+   * again in later slots.  Cursor navigation (GoUp/Down) still wraps
+   * because it uses GetTrunkCardCount separately. */
+  if (gTrunkExtraDeckViewActive) {
+    if (wrappedIndex < 0 || wrappedIndex >= count)
+      return CARD_NONE;
+    return GetTrunkMenuCardAtIndex(wrappedIndex);
+  }
+
   if (wrappedIndex >= count)
     wrappedIndex -= count;
   else if (wrappedIndex < 0)
@@ -624,27 +829,46 @@ void GoDownFiftyPositions__Replacement(void) {
 
 /* LYN_REPLACEMENT(TryAddSelectedCardToDeck) */
 void TryAddSelectedCardToDeck__Replacement(void) {
-  unsigned isCardRejected = 0;
   unsigned short cardId = GetNthCardOnScreen(2);
-  u8 limit = GetRuntimeDeckLimit();
 
-  if (GetAvailableTrunkQty(cardId) && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
-    if (CardExceedsCurrentDuelistLevel(cardId))
+  /* Extra deck view: A-button removes card from extra deck back to trunk */
+  if (gTrunkExtraDeckViewActive) {
+    if (ExtraDeck_ReturnSelectedCardToTrunk() == TRUE) {
+      PlayMusic(SFX_SELECT);
+    }
+    else {
+      PlayMusic(SFX_FORBIDDEN);
+      while (gPressedButtons & DPAD_RIGHT)
+        WaitForVBlank();
+    }
+    return;
+  }
+
+  /* Normal view: add to main deck (reject fusion cards) */
+  {
+    unsigned isCardRejected = 0;
+    u8 limit = GetRuntimeDeckLimit();
+
+    if (GetAvailableTrunkQty(cardId) && GetPlayerDeckSize() < limit && sub_801F098(cardId) == 1) {
+      if (CardExceedsCurrentDuelistLevel(cardId))
+        isCardRejected = 1;
+      if (IsFusionCard(cardId))
+        isCardRejected = 1;
+    }
+    else
       isCardRejected = 1;
-  }
-  else
-    isCardRejected = 1;
 
-  if (isCardRejected == 1) {
-    PlayMusic(SFX_FORBIDDEN);
-    while (gPressedButtons & DPAD_RIGHT)
-      WaitForVBlank();
-  }
-  else {
-    AddCardToDeck(cardId);
-    SyncCardOwnershipQty(cardId);
-    RebuildVisibleTrunkCardList();
-    PlayMusic(SFX_SELECT);
+    if (isCardRejected == 1) {
+      PlayMusic(SFX_FORBIDDEN);
+      while (gPressedButtons & DPAD_RIGHT)
+        WaitForVBlank();
+    }
+    else {
+      AddCardToDeck(cardId);
+      SyncCardOwnershipQty(cardId);
+      RebuildVisibleTrunkCardList();
+      PlayMusic(SFX_SELECT);
+    }
   }
 }
 
@@ -692,7 +916,7 @@ void TrunkMenu_IncrementTrunkQty(u16 cardId) {
  *
  * The vanilla trunk sub-menu has 3 hard-coded options (Details, Move to
  * Deck, Return to Trunk).  This framework lets you register additional
- * options — each with a 20-char label and an action callback — that
+ * options - each with a 20-char label and an action callback - that
  * appear as extra rows in the sub-menu, navigable via DPAD up/down with
  * cursor OAM tracking.
  *
@@ -781,11 +1005,11 @@ static void TrunkSubMenu_RenderCustomOptions(void) {
 
     /* Render tilemap entries for all custom option rows.  The vanilla
      * sub_8009364 only writes rows 11-14 (options 0 and 1) and the
-     * pre-baked tilemap at rows 15-16 is blank, so custom options
-     * start at rows 15-16 (was the unused 3rd option slot). */
+     * pre-baked tilemap at rows 15-18 is blank, so custom options
+     * start at rows 15-16 (unused 3rd option slot). */
     for (k = 0; k < gTrunkSubMenuCustomCount; k++) {
         u8 optIdx   = TRUNK_SUB_MENU_VANILLA_COUNT + k;
-        u8 topRow   = 11 + 2 * optIdx - 2;  /* -2 shifts up past blank slot */
+        u8 topRow   = 11 + 2 * optIdx - 2;  /* -2 shifts past blank 3rd vanilla slot */
         u8 botRow   = topRow + 1;
         u16 topOff  = 21 + 40 * optIdx;
         u16 botOff  = 23 + 40 * optIdx;
@@ -856,29 +1080,154 @@ static void TrunkSubMenu_SelectRemoveFromDeck(void) {
     sub_800AA58(6);
 }
 
-/* ---- custom option: Add to E. Deck (stub) ---- */
-
-static void TrunkSubMenu_AddToExtraDeck(void) {
-    /* ponytail: no logic wired yet */
+static void TrunkSubMenu_RefreshListPane(void) {
+    sub_800A3D8(3);
+    sub_800ABD0();
+    sub_800AA58(6);
+    TrunkSubMenu_RenderCustomOptions();
+    TrunkSubMenu_SetCursorOam();
 }
 
-static const u8 kTrunkExtraDeckLabel[] APPEND_TEXT = "Add to E. Deck      ";
+/* ---- custom options: Extra Deck ---- */
+
+static const u8 kShowInEDeckLabel[] APPEND_TEXT = "Show in E. Deck      ";
+static const u8 kMoveToEDeckLabel[] APPEND_TEXT = "Move to E. Deck      ";
+
+/* Opens a deck-browser for the extra deck contents with a two-option
+ * sub-menu on A press: "Details" (view card info) and "Return to Trunk"
+ * (remove card from extra deck, restore to trunk qty). */
+static void ExtraDeckViewer_Open(void) {
+    u16 *extra = GetActiveExtraDeck();
+    u8 savedDeckMenu[sizeof(gDeckMenu)];
+    u8 count;
+    u8 choice;
+
+    count = GetExtraDeckSize();
+    if (count == 0) {
+        PlayMusic(SFX_FORBIDDEN);
+        return;
+    }
+
+    DECKMENU_SAVE();
+
+    do {
+        u8 i;
+
+        for (i = 0; i < EXTRA_DECK_SIZE; i++)
+            gDeckMenu.cards[i] = extra[i];
+        gDeckMenu.cost = 0;
+        gDeckMenu.currentPos = 0;
+        gDeckMenu.sortMode = 0;
+        gDeckMenu.displayMode = 1;
+        gDeckMenu.cardCount = GetExtraDeckSize();
+
+        {
+            /* ponytail: explicit stack init to avoid agbcc placing the
+             * const array in .rodata (which the linker discards). */
+            u8 labels[2];
+            labels[0] = DECK_MENU_PICK_LABEL_DETAILS;
+            labels[1] = DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK;
+            choice = DeckMenuMainPickChosenLabel(labels, 2);
+        }
+
+        if (choice == DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK) {
+            u16 cardId = gDeckMenu.cards[gDeckMenu.currentPos];
+
+            if (ExtraDeck_TryRemoveCard(cardId) == TRUE) {
+                if (GetTrunkQtyForCard(cardId) < TRUNK_CARD_LIMIT)
+                    SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
+                SyncCardOwnershipQty(cardId);
+                RebuildVisibleTrunkCardList();
+                PlayMusic(SFX_SELECT);
+            }
+        }
+        /* DECK_MENU_PICK_LABEL_DETAILS stays in the picker loop.
+         * DECK_MENU_PICK_RESULT_CANCEL exits via the while condition. */
+    } while (choice == DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK
+             && GetExtraDeckSize() > 0);
+
+    DECKMENU_RESTORE();
+}
+
+static void TrunkSubMenu_ShowExtraDeck(void) {
+    gTrunkSubMenuExitRequest = TRUE;
+    ExtraDeckViewer_Open();
+}
+
+static void TrunkSubMenu_AddToExtraDeck(void) {
+    u16 cardId = GetNthCardOnScreen(2);
+
+    /* Safety check: registration should only show this for fusion cards */
+    if (!IsFusionCard(cardId)) {
+        PlayMusic(SFX_FORBIDDEN);
+        return;
+    }
+
+    if (GetAvailableTrunkQty(cardId) == 0) {
+        PlayMusic(SFX_FORBIDDEN);
+        return;
+    }
+
+    if (GetExtraDeckSize() >= EXTRA_DECK_SIZE) {
+        PlayMusic(SFX_FORBIDDEN);
+        return;
+    }
+
+    TrunkMenu_DecrementTrunkQty(cardId);
+    ExtraDeck_AddCard(cardId);
+    SyncCardOwnershipQty(cardId);
+    RebuildVisibleTrunkCardList();
+    gTrunkSubMenuExitRequest = TRUE;
+    PlayMusic(SFX_SELECT);
+}
 
 static void TrunkSubMenu_RegisterOptions(void) {
-    if (gTrunkSubMenuCustomCount > 0)
+    gTrunkSubMenuCustomCount = 0;
+
+    /* In extra deck view, no custom options needed */
+    if (gTrunkExtraDeckViewActive)
         return;
 
-    gTrunkSubMenuCustomOptions[0].label  = kTrunkExtraDeckLabel;
-    gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_AddToExtraDeck;
-    gTrunkSubMenuCustomCount = 1;
+    /* Option 4: Show in E. Deck (only when extra deck has cards) */
+    if (GetExtraDeckSize() > 0) {
+        gTrunkSubMenuCustomOptions[0].label  = kShowInEDeckLabel;
+        gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_ShowExtraDeck;
+        gTrunkSubMenuCustomCount = 1;
+    }
+
+    /* Option 5: Move to E. Deck (fusion cards only) */
+    if (IsFusionCard(GetNthCardOnScreen(2))) {
+        gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].label  = kMoveToEDeckLabel;
+        gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].action = TrunkSubMenu_AddToExtraDeck;
+        gTrunkSubMenuCustomCount++;
+    }
 }
 
 /* ---- main sub-menu replacement ---- */
 
-LYN_REPLACE_CHECK(Trunk_A_Submenu);
+/* Trunk_A_Submenu is static in vanilla, so LYN_REPLACE_CHECK can't reference it. */
 void Trunk_A_Submenu__Replacement(void) {
     unsigned keepProcessing;
     u8 totalCount;
+    u8 actionExited = FALSE;
+
+    /* Extra deck view: A directly removes card from extra deck and returns
+     * it to the trunk, skipping the sub-menu entirely.  This mirrors the
+     * graveyard trunk view where A has a single direct action. */
+    if (gTrunkExtraDeckViewActive) {
+        if (ExtraDeck_ReturnSelectedCardToTrunk() == TRUE) {
+            sub_800A3D8(3);
+            sub_800ABD0();
+            sub_800AA58(6);
+            PlayMusic(SFX_SELECT);
+        } else {
+            PlayMusic(SFX_FORBIDDEN);
+            while (gPressedButtons & DPAD_RIGHT)
+                WaitForVBlank();
+        }
+        /* ponytail: no sub-menu OAM to clear in this path */
+        return;
+    }
 
     TrunkSubMenu_RegisterOptions();
     totalCount = TrunkSubMenu_TotalOptionCount();
@@ -928,8 +1277,14 @@ void Trunk_A_Submenu__Replacement(void) {
             default: {
                 u8 idx = gTrunkMenu.cursorState - TRUNK_CURSOR_CUSTOM_START;
 
-                if (idx < gTrunkSubMenuCustomCount)
+                if (idx < gTrunkSubMenuCustomCount) {
                     gTrunkSubMenuCustomOptions[idx].action();
+                    if (gTrunkSubMenuExitRequest) {
+                        gTrunkSubMenuExitRequest = FALSE;
+                        actionExited = TRUE;
+                        keepProcessing = 0;
+                    }
+                }
                 break;
             }
             }
@@ -939,6 +1294,14 @@ void Trunk_A_Submenu__Replacement(void) {
             break;
         }
     }
-    PlayMusic(SFX_CANCEL);
     TrunkSubMenu_ClearCursorOam();
+
+    /* Refresh trunk display when a custom action changed view state. */
+    if (actionExited) {
+        sub_800A3D8(3);
+        sub_800ABD0();
+        sub_800AA58(6);
+    } else {
+        PlayMusic(SFX_CANCEL);
+    }
 }

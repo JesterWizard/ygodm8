@@ -155,6 +155,21 @@ static const unsigned char sDeckMenuPickLabelBlankShort[] APPEND_TEXT =
 static const unsigned char sDeckMenuPickLabelBlankLong[] APPEND_TEXT =
     "                    ";
 
+static const unsigned char sDeckMenuPickLabelReturnToTrunk[] APPEND_TEXT = _(
+  "{ENG}"
+    "Return to Trunk     "
+  "{FRE}"
+    "Retour au coffre    "
+  "{GER}"
+    "Zurück zum Koffer   "
+  "{ITA}"
+    "Ritorna al baule    "
+  "{SPA}"
+    "Volver al baúl      "
+  "{JAP}"
+    "トランクに戻す           "
+);
+
 static const u8 sDeckMenuPickDefaultLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
   DECK_MENU_PICK_LABEL_FUSION_SUMMON,
@@ -169,6 +184,8 @@ static const u8 *DeckMenu_GetPickLabelText(u8 label)
     return sDeckMenuPickLabelFusionSummon;
   case DECK_MENU_PICK_LABEL_SELECT_CARD:
     return sDeckMenuPickLabelSelectCard;
+  case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
+    return sDeckMenuPickLabelReturnToTrunk;
   case DECK_MENU_PICK_LABEL_DETAILS:
   default:
     return sDeckMenuPickLabelDetails;
@@ -214,6 +231,7 @@ enum {
   FUSION_PICK_SUBMENU_DETAILS,
   FUSION_PICK_SUBMENU_SELECT,
   FUSION_PICK_SUBMENU_SUMMON,
+  FUSION_PICK_SUBMENU_RETURN,
 };
 
 static void sub_801DE5C(void) {
@@ -648,6 +666,11 @@ static u8 DeckMenuPickSubmenu_Main(const u8 *labels, u8 labelCount) {
             keepProcessing = 0;
             PlayMusic(SFX_SELECT);
             break;
+          case DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK:
+            result = FUSION_PICK_SUBMENU_RETURN;
+            keepProcessing = 0;
+            PlayMusic(SFX_SELECT);
+            break;
         }
         break;
       case NEW_B_BUTTON:
@@ -816,6 +839,10 @@ u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount)
           case FUSION_PICK_SUBMENU_BACK:
             /* ponytail: submenu B cancels the whole pick (not just the submenu). */
             chosen = DECK_MENU_PICK_RESULT_CANCEL;
+            keepProcessing = 0;
+            break;
+          case FUSION_PICK_SUBMENU_RETURN:
+            chosen = DECK_MENU_PICK_LABEL_RETURN_TO_TRUNK;
             keepProcessing = 0;
             break;
           case FUSION_PICK_SUBMENU_DETAILS:
