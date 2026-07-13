@@ -146,6 +146,21 @@ u8 ExtraDeck_TryRemoveCard(u16 cardId) {
   return FALSE;
 }
 
+/* Shifts remaining cards down to fill gaps left by ExtraDeck_TryRemoveCard.
+ * Preserves insertion order of the remaining cards.  After this, all
+ * non-CARD_NONE entries are at indices 0..GetExtraDeckSize()-1. */
+static void CompactExtraDeck(void) {
+  u16 *extra = GetActiveExtraDeck();
+  u8 write = 0;
+  u8 read;
+
+  for (read = 0; read < EXTRA_DECK_SIZE; read++)
+    if (extra[read] != CARD_NONE)
+      extra[write++] = extra[read];
+  for (; write < EXTRA_DECK_SIZE; write++)
+    extra[write] = CARD_NONE;
+}
+
 LYN_REPLACE_CHECK(GetPlayerDeckSize);
 unsigned char GetPlayerDeckSize__Replacement(void) {
   return gDeckMenu.cardCount + GetExtraDeckSize();
@@ -1116,16 +1131,22 @@ static void ExtraDeckViewer_Open(void) {
 
     DECKMENU_SAVE();
 
+    /* Track position so the next card slides into cursor after removal. */
+    gDeckMenu.currentPos = 0;
+
     do {
         u8 i;
 
         for (i = 0; i < EXTRA_DECK_SIZE; i++)
             gDeckMenu.cards[i] = extra[i];
         gDeckMenu.cost = 0;
-        gDeckMenu.currentPos = 0;
         gDeckMenu.sortMode = 0;
         gDeckMenu.displayMode = 1;
         gDeckMenu.cardCount = GetExtraDeckSize();
+
+        /* Clip position in case the last card was removed. */
+        if (gDeckMenu.currentPos >= gDeckMenu.cardCount && gDeckMenu.cardCount > 0)
+            gDeckMenu.currentPos = gDeckMenu.cardCount - 1;
 
         {
             /* ponytail: explicit stack init to avoid agbcc placing the
@@ -1140,12 +1161,18 @@ static void ExtraDeckViewer_Open(void) {
             u16 cardId = gDeckMenu.cards[gDeckMenu.currentPos];
 
             if (ExtraDeck_TryRemoveCard(cardId) == TRUE) {
+                /* Compact the extra deck so the next card slides into the
+                 * current cursor slot instead of a CARD_NONE gap. */
+                CompactExtraDeck();
+
                 if (GetTrunkQtyForCard(cardId) < TRUNK_CARD_LIMIT)
                     SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
                 SyncCardOwnershipQty(cardId);
                 RebuildVisibleTrunkCardList();
                 PlayMusic(SFX_SELECT);
             }
+            /* Position stays the same — the card that was at currentPos+1
+             * (now currentPos after compaction) is the selection. */
         }
         /* DECK_MENU_PICK_LABEL_DETAILS stays in the picker loop.
          * DECK_MENU_PICK_RESULT_CANCEL exits via the while condition. */
@@ -1303,12 +1330,14 @@ void Trunk_A_Submenu__Replacement(void) {
     }
     TrunkSubMenu_ClearCursorOam();
 
-    /* Refresh trunk display when a custom action changed view state. */
+    /* Refresh trunk display when a custom action changed view state.
+     * Must fully flush VRAM and palettes so mini card arts render. */
     if (actionExited) {
         sub_8009364();
         sub_800A3D8(2);
-        sub_800ABD0();
-        sub_800AA58(6);
+        sub_800ABA8();
+        sub_800ABB4();
+        sub_800AA58(4);
     } else {
         PlayMusic(SFX_CANCEL);
     }

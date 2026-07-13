@@ -851,9 +851,10 @@ u8 DeckMenuMainPickChosenLabel(const u8 *labels, u8 labelCount)
             break;
         }
         break;
-      /* ponytail: B on the card list does not exit — cancel via submenu B only. */
       case NEW_B_BUTTON:
-        WaitForVBlank();
+        chosen = DECK_MENU_PICK_RESULT_CANCEL;
+        keepProcessing = 0;
+        PlayMusic(SFX_CANCEL);
         break;
       case NEW_START_BUTTON:
         sub_801F120();
