@@ -143,6 +143,10 @@ _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 _kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
 _kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 
+@ Trunk sub-menu extension framework (up to 5 custom options).
+_kernel_malloc_ewram gTrunkSubMenuCustomCount, 0x1
+_kernel_malloc_ewram gTrunkSubMenuCustomOptions, 0x28
+
 @ -- Player decks --------------------------------------------------------------
 
 .set PLAYER_DECK_CARD_BYTES, 0x50

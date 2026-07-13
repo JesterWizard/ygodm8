@@ -3,6 +3,8 @@
 #include "configs/runtime.h"
 #include "duel.h"
 #include "player_decks.h"
+#include "gfx_reg_buffers.h"
+#include "text.h"
 #include "generated/card_trunk_generated.inc"
 
 extern const unsigned char gStarterTrunk[];
@@ -683,4 +685,260 @@ void TrunkMenu_IncrementTrunkQty(u16 cardId) {
     SetTrunkQtyForCard(cardId, GetTrunkQtyForCard(cardId) + 1);
   else
     SetTrunkQtyForCard(cardId, TRUNK_CARD_LIMIT);
+}
+
+/* ========================================================================
+ * Trunk Sub-Menu Extension Framework
+ *
+ * The vanilla trunk sub-menu has 3 hard-coded options (Details, Move to
+ * Deck, Return to Trunk).  This framework lets you register additional
+ * options — each with a 20-char label and an action callback — that
+ * appear as extra rows in the sub-menu, navigable via DPAD up/down with
+ * cursor OAM tracking.
+ *
+ * How to register an option:
+ *   1. Write an action callback:  void MyAction(void) { ... }
+ *   2. Define a 20-char label (pad with spaces): "My Option           "
+ *   3. At init time, populate gTrunkSubMenuCustomOptions[] and set
+ *      gTrunkSubMenuCustomCount.
+ *
+ * ponytail: labels are English-only for now.  Localization can be added
+ *           later by extending the _() macro in the label definition.
+ * ======================================================================== */
+
+extern unsigned short gOamBuffer[];
+extern unsigned short gUnk_808C240[][30];
+extern unsigned char g8DF811C[];
+void Trunk_A_Submenu(void);
+unsigned short sub_08007FEC(unsigned char, unsigned char, unsigned short);
+void sub_800800C(unsigned char, unsigned char, unsigned short, unsigned short);
+void sub_800AA58(unsigned char);
+void sub_800ABD0(void);
+void sub_800ABA8(void);
+void sub_8009364(void);
+int TrunkSubmenuProcessInput(void);
+
+typedef void (*TrunkSubMenuCallback)(void);
+
+typedef struct {
+    const u8 *label;            /* 20-char padded label */
+    TrunkSubMenuCallback action;
+} TrunkSubMenuOption;
+
+#define TRUNK_SUB_MENU_MAX_CUSTOM   5
+#define TRUNK_SUB_MENU_VANILLA_COUNT 3
+
+extern TrunkSubMenuOption gTrunkSubMenuCustomOptions[];
+extern u8 gTrunkSubMenuCustomCount;
+
+static u8 TrunkSubMenu_TotalOptionCount(void) {
+    return TRUNK_SUB_MENU_VANILLA_COUNT + gTrunkSubMenuCustomCount;
+}
+
+/* ---- cursor OAM ---- */
+
+static void TrunkSubMenu_SetCursorOam(void) {
+    u32 *oam = (u32 *)&gOamBuffer[6 * 4];
+    u8 y = 72 + gTrunkMenu.cursorState * 16;
+
+    oam[0] = y | (56 << 16) | 0x40000000;
+    oam[1] = 0xC120;
+    oam[2] = y | (56 << 16) | 0x40000800;
+    oam[3] = 0x120;
+}
+
+static void TrunkSubMenu_ClearCursorOam(void) {
+    u32 *oam = (u32 *)&gOamBuffer[6 * 4];
+
+    oam[0] = 0;
+    oam[1] = 0;
+    oam[2] = 0;
+    oam[3] = 0;
+}
+
+/* ---- VBlank callback (same as vanilla sub_8008A5C) ---- */
+
+static void TrunkSubMenu_VBlank(void) {
+    LoadPalettes();
+    LoadOam();
+    REG_DISPCNT = DISPCNT_BG_ALL_ON | DISPCNT_OBJ_ON |
+                  DISPCNT_WIN0_ON | DISPCNT_OBJWIN_ON;
+    REG_BLDALPHA = 6;
+    REG_BLDY = 10;
+    REG_BLDCNT |= 8;
+}
+
+/* ---- extended render for custom option rows ---- */
+
+static void TrunkSubMenu_RenderCustomOptions(void) {
+    u8 i, k;
+    u16 r7;
+
+    if (gTrunkSubMenuCustomCount == 0)
+        return;
+
+    r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
+
+    /* Render tilemap entries for all custom option rows.  The vanilla
+     * sub_8009364 only writes rows 11-14 (options 0 and 1) and the
+     * pre-baked tilemap at rows 15-16 is blank, so custom options
+     * start at rows 15-16 (was the unused 3rd option slot). */
+    for (k = 0; k < gTrunkSubMenuCustomCount; k++) {
+        u8 optIdx   = TRUNK_SUB_MENU_VANILLA_COUNT + k;
+        u8 topRow   = 11 + 2 * optIdx - 2;  /* -2 shifts up past blank slot */
+        u8 botRow   = topRow + 1;
+        u16 topOff  = 21 + 40 * optIdx;
+        u16 botOff  = 23 + 40 * optIdx;
+
+        for (i = 0; i < 20; i++) {
+            sub_800800C(i + 9, topRow, 0x7800,
+                        (g8DF811C[i] + topOff) | r7);
+            sub_800800C(i + 9, botRow, 0x7800,
+                        (g8DF811C[i] + botOff) | r7);
+        }
+    }
+
+    /* Render custom option text into cbb1 at tile index 141 (= 21 + 3*40).
+     * Each option line is 20 chars × 4 tiles = 40 tiles. */
+    {
+        u8 buf[TRUNK_SUB_MENU_MAX_CUSTOM * 20 + 1];
+        u8 pos = 0;
+
+        for (k = 0; k < gTrunkSubMenuCustomCount; k++) {
+            const u8 *label = gTrunkSubMenuCustomOptions[k].label;
+            u8 j = 0;
+
+            while (j < 20 && label[j] != '\0')
+                buf[pos++] = label[j++];
+            while (j++ < 20)
+                buf[pos++] = ' ';
+        }
+        buf[pos] = '\0';
+        /* Tile index 141 = 21 + 3*40 = first tile of the 4th option line. */
+        CopyStringTilesToVRAMBuffer(
+            &gBgVram.cbb1[4512],
+            buf, 0x900);
+    }
+}
+
+/* ---- option handlers (vanilla equivalents) ---- */
+
+static void TrunkSubMenu_SelectDetails(void) {
+    gStatMod.card = GetNthCardOnScreen(2);
+    gStatMod.field = FIELD_ARENA;
+    gStatMod.stage = 0;
+    SetCardInfoWithWarning(&gStatMod.card);
+    PlayMusic(SFX_SELECT);
+    ShowCardDetailView();
+    sub_800A3D8(0);
+    sub_800A3D8(2);
+    sub_800AA58(1);
+    sub_800ABA8();
+    sub_8009364();
+    TrunkSubMenu_RenderCustomOptions();
+    TrunkSubMenu_SetCursorOam();
+    SetVBlankCallback(TrunkSubMenu_VBlank);
+    WaitForVBlank();
+    LoadCharblock1();
+}
+
+static void TrunkSubMenu_SelectAddToDeck(void) {
+    RunTrunkTask(7);
+    sub_800A3D8(3);
+    sub_800ABD0();
+    sub_800AA58(6);
+}
+
+static void TrunkSubMenu_SelectRemoveFromDeck(void) {
+    RunTrunkTask(8);
+    sub_800A3D8(3);
+    sub_800ABD0();
+    sub_800AA58(6);
+}
+
+/* ---- custom option: Add to E. Deck (stub) ---- */
+
+static void TrunkSubMenu_AddToExtraDeck(void) {
+    /* ponytail: no logic wired yet */
+}
+
+static const u8 kTrunkExtraDeckLabel[] APPEND_TEXT = "Add to E. Deck      ";
+
+static void TrunkSubMenu_RegisterOptions(void) {
+    if (gTrunkSubMenuCustomCount > 0)
+        return;
+
+    gTrunkSubMenuCustomOptions[0].label  = kTrunkExtraDeckLabel;
+    gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_AddToExtraDeck;
+    gTrunkSubMenuCustomCount = 1;
+}
+
+/* ---- main sub-menu replacement ---- */
+
+LYN_REPLACE_CHECK(Trunk_A_Submenu);
+void Trunk_A_Submenu__Replacement(void) {
+    unsigned keepProcessing;
+    u8 totalCount;
+
+    TrunkSubMenu_RegisterOptions();
+    totalCount = TrunkSubMenu_TotalOptionCount();
+
+    gTrunkMenu.cursorState = 0;
+    sub_8009364();
+    TrunkSubMenu_RenderCustomOptions();
+    TrunkSubMenu_SetCursorOam();
+    LoadCharblock1();
+    SetVBlankCallback(TrunkSubMenu_VBlank);
+    WaitForVBlank();
+    PlayMusic(SFX_SELECT);
+
+    keepProcessing = 1;
+    while (keepProcessing) {
+        switch (TrunkSubmenuProcessInput()) {
+        case NEW_B_BUTTON:
+            keepProcessing = 0;
+            break;
+        case REPEAT_DPAD_UP:
+            if (gTrunkMenu.cursorState > 0)
+                gTrunkMenu.cursorState--;
+            TrunkSubMenu_SetCursorOam();
+            PlayMusic(SFX_MOVE_CURSOR);
+            SetVBlankCallback(LoadOam);
+            WaitForVBlank();
+            break;
+        case REPEAT_DPAD_DOWN:
+            if (gTrunkMenu.cursorState < totalCount - 1)
+                gTrunkMenu.cursorState++;
+            TrunkSubMenu_SetCursorOam();
+            PlayMusic(SFX_MOVE_CURSOR);
+            SetVBlankCallback(LoadOam);
+            WaitForVBlank();
+            break;
+        case NEW_A_BUTTON:
+            switch (gTrunkMenu.cursorState) {
+            case TRUNK_CURSOR_DETAILS:
+                TrunkSubMenu_SelectDetails();
+                break;
+            case TRUNK_CURSOR_MOVE_TO_DECK:
+                TrunkSubMenu_SelectAddToDeck();
+                break;
+            case TRUNK_CURSOR_MOVE_TO_TRUNK:
+                TrunkSubMenu_SelectRemoveFromDeck();
+                break;
+            default: {
+                u8 idx = gTrunkMenu.cursorState - TRUNK_CURSOR_CUSTOM_START;
+
+                if (idx < gTrunkSubMenuCustomCount)
+                    gTrunkSubMenuCustomOptions[idx].action();
+                break;
+            }
+            }
+            break;
+        default:
+            WaitForVBlank();
+            break;
+        }
+    }
+    PlayMusic(SFX_CANCEL);
+    TrunkSubMenu_ClearCursorOam();
 }

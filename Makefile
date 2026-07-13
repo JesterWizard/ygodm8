@@ -625,7 +625,10 @@ clean-build clean-quick:
 clean-cache:
 	rm -rf $(CACHE_DIR)/
 
-clean: clean-build clean-tools clean-graphics
+clean-custom-maps:
+	rm -f $(CUSTOM_MAP_GENERATED) $(CUSTOM_MAP_GENERATED_STAMP)
+
+clean: clean-build clean-tools clean-graphics clean-custom-maps
 
 compare: all
 	sha1sum -c $(BUILD_NAME).sha1
@@ -692,4 +695,4 @@ endif
 update-goldens:
 	UPDATE_GOLDENS=1 PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests/host -v
 
-.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build add-card card-cost update-goldens
+.PHONY: all clean clean-build clean-quick clean-cache clean-tools clean-graphics clean-custom-maps graphics-rules tools-rules validate-lynjump memory-report compare event-extract event-catalog event-compile event-export-c event-test event-validate test test-host test-cards test-cards-build add-card card-cost update-goldens

@@ -1088,7 +1088,7 @@ def generate_manifest_spawn_overrides(manifest: list, out_dir: pathlib.Path) -> 
             if spawn:
                 slot_x[slot] = spawn.get("x", 0)
                 slot_y[slot] = spawn.get("y", 0)
-                dr = spawn.get("direction", "DIRECTION_DOWN")
+                dr = spawn.get("dir", "DIRECTION_DOWN")
                 slot_dir[slot] = DIRECTION_VALUES.get(dr, 0)
 
         spawn_x.append(slot_x)

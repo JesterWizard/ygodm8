@@ -92,7 +92,9 @@ enum CursorCorner {
 enum {
   TRUNK_CURSOR_DETAILS,
   TRUNK_CURSOR_MOVE_TO_DECK,
-  TRUNK_CURSOR_MOVE_TO_TRUNK
+  TRUNK_CURSOR_MOVE_TO_TRUNK,
+  TRUNK_CURSOR_CUSTOM_START,
+  TRUNK_CURSOR_MAX = 7  /* 3 vanilla + up to 5 custom */
 };
 
 enum {
