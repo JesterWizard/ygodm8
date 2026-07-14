@@ -1031,13 +1031,16 @@ static void TrunkSubMenu_RenderCustomOptions(void) {
 
     r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
 
-    /* Render tilemap entries for all custom option rows.  The vanilla
-     * sub_8009364 only writes rows 11-14 (options 0 and 1) and the
-     * pre-baked tilemap at rows 15-18 is blank, so custom options
-     * start at rows 15-16 (unused 3rd option slot). */
+    /* Render tilemap entries for all custom option rows.
+     * Non-shifted: custom options start at rows 15-16 (right after the
+     * vanilla 3rd option slot at rows 11-16).
+     * Shifted (total > 3): vanilla options move from rows 11-16 to
+     * rows 9-14.  Custom options move up by 2 rows as well so they
+     * stay inside the shifted menu box and don't leave a gap. */
     for (k = 0; k < gTrunkSubMenuCustomCount; k++) {
         u8 optIdx   = TRUNK_SUB_MENU_VANILLA_COUNT + k;
-        u8 topRow   = 11 + 2 * optIdx - 2;  /* -2 shifts past blank 3rd vanilla slot */
+        u8 shift    = TrunkSubMenu_TotalOptionCount() > 3 ? 2 : 0;
+        u8 topRow   = 11 + 2 * optIdx - 2 - shift;
         u8 botRow   = topRow + 1;
         u16 topOff  = 21 + 40 * optIdx;
         u16 botOff  = 23 + 40 * optIdx;
@@ -1075,8 +1078,6 @@ static void TrunkSubMenu_RenderCustomOptions(void) {
 
 /* ---- shifted render when >3 options are visible ---- */
 
-extern const u8 kReturnToTrunkLabel[];
-
 static void TrunkSubMenu_RenderVanillaShifted(void) {
     /* Shift all 3 vanilla option rows up by 2 (16 px).
      *
@@ -1089,39 +1090,49 @@ static void TrunkSubMenu_RenderVanillaShifted(void) {
      * menu-box tiles, so we first copy the menu-box background from
      * baked rows 11-16 into sbbF rows 9-14 (moves the entire menu box
      * up).  Then we re-write all three option text lines at rows 9-14,
-     * load the missing glyph data for option 2 (tiles 101-140), and
-     * restore option-1 text which the background copy overwrote. */
+     * and clear the stale baked entries at rows 15-18 so the duplicate
+     * "Return to Trunk" doesn't show through. */
     u8 i;
+    u16 r7;
 
-    /* Copy menu-box background from baked rows 11-16 → sbbF rows 9-14.
-     * This gives all 6 shifted rows the correct menu backdrop.  Read
-     * from the baked-data array because sub_8009364 already modifed
-     * sbbF rows 11-14 with text. */
-    for (i = 0; i < 6; i++)
-        CpuCopy32(gUnk_808C240[10 + i],  /* baked rows 11-16 (0-indexed) */
-                  &(((struct Sbb*)&gBgVram)->sbbF[8 + i]) /* sbbF rows 9-14 */,
+    /* Copy menu-box background from baked rows 9-16 → sbbF rows 7-14.
+     * The 2 extra rows (baked 9-10 → sbbF 7-8) replace the original
+     * overlay area so the transition from the overlay background to the
+     * menu box border at row 9 is seamless — without this, tile row 7
+     * (scanlines 56-63) shows stale baked overlay tiles that create a
+     * visual seam.  Read from the baked-data array because sub_8009364
+     * already modified sbbF rows 11-14 with text. */
+    for (i = 0; i < 8; i++)
+        CpuCopy32(gUnk_808C240[8 + i],  /* baked rows 9-16 (0-indexed) */
+                  &(((struct Sbb*)&gBgVram)->sbbF[6 + i]) /* sbbF rows 7-14 */,
                   60);
 
     /* Read palette from the freshly-copied baked background at (9, 9). */
-    {
-        u16 r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
+    r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
 
-        for (i = 0; i < 20; i++) {
-            sub_800800C(i + 9, 9,  0x7800, g8DF811C[i] + 21  | r7);
-            sub_800800C(i + 9, 10, 0x7800, g8DF811C[i] + 23  | r7);
-            sub_800800C(i + 9, 11, 0x7800, g8DF811C[i] + 61  | r7);
-            sub_800800C(i + 9, 12, 0x7800, g8DF811C[i] + 63  | r7);
-            sub_800800C(i + 9, 13, 0x7800, g8DF811C[i] + 101 | r7);
-            sub_800800C(i + 9, 14, 0x7800, g8DF811C[i] + 103 | r7);
-        }
+    /* Write shifted vanilla option text at rows 9-14. */
+    for (i = 0; i < 20; i++) {
+        sub_800800C(i + 9, 9,  0x7800, g8DF811C[i] + 21  | r7);
+        sub_800800C(i + 9, 10, 0x7800, g8DF811C[i] + 23  | r7);
+        sub_800800C(i + 9, 11, 0x7800, g8DF811C[i] + 61  | r7);
+        sub_800800C(i + 9, 12, 0x7800, g8DF811C[i] + 63  | r7);
+        sub_800800C(i + 9, 13, 0x7800, g8DF811C[i] + 101 | r7);
+        sub_800800C(i + 9, 14, 0x7800, g8DF811C[i] + 103 | r7);
     }
 
-    /* Load option-2 glyph data at tile 101 (cbb1 byte offset 3232).
-     * Vanilla loads 60 chars into tiles 1-120 via
-     * CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], ...).
-     * Option 2 references tiles 101-140; we load chars for the last
-     * 20 of those into tiles 121-140 (cbb1 offsets 3232-4479). */
-    CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[3232], kReturnToTrunkLabel, 0x900);
+    /* Clear stale baked text at rows 15-18.  The baked tilemap at
+     * rows 15-16 has pre-baked tile entries for the vanilla 3rd option
+     * ("Return to Trunk") referencing tiles 101-120.  Once the shifted
+     * option at rows 13-14 loads the correct glyphs, these stale baked
+     * entries reference valid-looking data and show through as a
+     * duplicate "Return to Trunk" label.  We erase them by writing
+     * blank tile entries (tile index 0) with the correct palette. */
+    for (i = 9; i < 29; i++) {
+        sub_800800C(i, 15, 0x7800, 0x0000 | r7);
+        sub_800800C(i, 16, 0x7800, 0x0000 | r7);
+        sub_800800C(i, 17, 0x7800, 0x0000 | r7);
+        sub_800800C(i, 18, 0x7800, 0x0000 | r7);
+    }
 }
 
 /* ---- option handlers (vanilla equivalents) ---- */
@@ -1168,9 +1179,6 @@ static void TrunkSubMenu_RefreshListPane(void) {
     TrunkSubMenu_RenderCustomOptions();
     TrunkSubMenu_SetCursorOam();
 }
-
-/* Shifted-render needs this label before the vanilla option labels. */
-const u8 kReturnToTrunkLabel[] APPEND_TEXT = "Return to Trunk      ";
 
 /* ---- custom options: Extra Deck ---- */
 
