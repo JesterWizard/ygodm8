@@ -241,14 +241,16 @@ static u8 TryReturnSelectedGraveyardSpell(u8 turnDuelist, u8 allowPlayerPicker)
   u8 i;
   u8 graveyardIndex;
 
+  DECKMENU_SAVE();
+
   menuCount = LoadGraveyardSpellMenu(fixedDuelist, graveyardSpellSourceIndex);
-  if (menuCount == 0)
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
     return FALSE;
+  }
 
   if (WhoseTurn() == DUEL_PLAYER && turnDuelist == ACTIVE_DUELIST && allowPlayerPicker) {
     s8 menuIndex;
-
-    DECKMENU_SAVE();
 
     menuIndex = PickGraveyardSpellMenuIndex();
     DECKMENU_RESTORE();
@@ -265,6 +267,7 @@ static u8 TryReturnSelectedGraveyardSpell(u8 turnDuelist, u8 allowPlayerPicker)
   }
 
   graveyardIndex = PickGraveyardSpellIndexForAi(fixedDuelist);
+  DECKMENU_RESTORE();
   if (graveyardIndex == 0xFF)
     return FALSE;
 

@@ -110,13 +110,15 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist)
   u8 j;
   s8 chosenGyIndex;
 
-  menuCount = LoadEligibleGyMenu(fixedDuelist, gyIndexMap);
-  if (menuCount == 0)
-    return -1;
-
-  /* Always open the picker, even for a single eligible Fusion. */
   DECKMENU_SAVE();
 
+  menuCount = LoadEligibleGyMenu(fixedDuelist, gyIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return -1;
+  }
+
+  /* Always open the picker, even for a single eligible Fusion. */
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
           sCoreGyPickLabels, ARRAY_COUNT(sCoreGyPickLabels))) {

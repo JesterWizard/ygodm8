@@ -797,6 +797,7 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_THEBAN_NIGHTMARE_POPUP_1] = gActivationDescription_ThebanNightmare_Popup1,
   [CARD_EFFECT_TEXT_BIG_BANG_SHOT_POPUP_1] = gActivationDescription_BigBangShot_Popup1,
   [CARD_EFFECT_TEXT_POLYMERIZATION_POPUP_1] = gActivationDescription_Polymerization_Popup1,
+  [CARD_EFFECT_TEXT_POLYMERIZATION_POPUP_2] = gActivationDescription_Polymerization_Popup2,
   [CARD_EFFECT_TEXT_CYBER_DRAGON_POPUP_1] = gActivationDescription_CyberDragon_Popup1,
   [CARD_EFFECT_TEXT_CAIUS_THE_SHADOW_MONARCH_POPUP_1] = gActivationDescription_CaiusTheShadowMonarch_Popup1,
   [CARD_EFFECT_TEXT_MOBIUS_THE_FROST_MONARCH_POPUP_1] = gActivationDescription_MobiusTheFrostMonarch_Popup1,

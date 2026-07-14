@@ -183,14 +183,19 @@ static s8 PlayerPickTargetableGyIndex(u8 fixedDuelist)
   u8 j;
   s8 chosenGyIndex;
 
-  menuCount = LoadTargetableGyMenu(fixedDuelist, gyIndexMap);
-  if (menuCount == 0)
-    return -1;
-
-  if (menuCount == 1)
-    return (s8)gyIndexMap[0];
-
   DECKMENU_SAVE();
+
+  menuCount = LoadTargetableGyMenu(fixedDuelist, gyIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return -1;
+  }
+
+  if (menuCount == 1) {
+    chosenGyIndex = (s8)gyIndexMap[0];
+    DECKMENU_RESTORE();
+    return chosenGyIndex;
+  }
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(

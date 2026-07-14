@@ -355,11 +355,16 @@ static void TryReviveOpponentGraveyardMonster(u8 allowPlayerPicker)
     return;
   }
 
+  DECKMENU_SAVE();
+
   menuCount = LoadOpponentGraveyardMonsterMenu(sourceIndices);
-  if (menuCount == 0)
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
     return;
+  }
 
   if (menuCount == 1) {
+    DECKMENU_RESTORE();
     SpecialSummonOpponentGraveyardMonsterAtIndex(sourceIndices[0]);
     return;
   }
@@ -371,8 +376,6 @@ static void TryReviveOpponentGraveyardMonster(u8 allowPlayerPicker)
     for (i = 0; i < EXPANDED_GRAVEYARD_CAPACITY; i++)
       sortedMenuCards[i] = CARD_NONE;
 
-    DECKMENU_SAVE();
-
     menuIndex = PickOpponentGyMonsterMenuIndex(sortedMenuCards);
 
     DECKMENU_RESTORE();
@@ -381,10 +384,15 @@ static void TryReviveOpponentGraveyardMonster(u8 allowPlayerPicker)
       return;
 
     gyIndex = FindGyIndexForSortedMenuPick(sortedMenuCards, menuIndex);
-    if (gyIndex == 0xFF)
+    if (gyIndex == 0xFF) {
+      DECKMENU_RESTORE();
       return;
+    }
   } else {
     gyIndex = PickOpponentGyMonsterIndexForAi(sourceIndices, menuCount);
+    DECKMENU_RESTORE();
+    if (gyIndex >= (s8)menuCount)
+      return;
   }
 
   SpecialSummonOpponentGraveyardMonsterAtIndex(gyIndex);

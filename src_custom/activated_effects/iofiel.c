@@ -125,14 +125,19 @@ static u8 PickLevel1FairyDeckIndex(u8 turnDuelist)
   u8 i;
   u8 deckIndex;
 
-  menuCount = LoadLevel1FairyDeckMenu(turnDuelist, deckIndexMap);
-  if (menuCount == 0)
-    return 0xFF;
-
-  if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER)
-    return PickAiLevel1FairyDeckIndex(turnDuelist);
-
   DECKMENU_SAVE();
+
+  menuCount = LoadLevel1FairyDeckMenu(turnDuelist, deckIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return 0xFF;
+  }
+
+  if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER) {
+    deckIndex = PickAiLevel1FairyDeckIndex(turnDuelist);
+    DECKMENU_RESTORE();
+    return deckIndex;
+  }
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(

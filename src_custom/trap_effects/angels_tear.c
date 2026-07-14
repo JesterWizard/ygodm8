@@ -161,14 +161,19 @@ static s8 PlayerPickFairyGyIndex(u8 fixedDuelist, const u8 *excluded, u8 exclude
   u8 j;
   s8 chosenGyIndex;
 
-  menuCount = LoadFairyGraveyardPickMenu(fixedDuelist, excluded, excludedCount, gyIndexMap);
-  if (menuCount == 0)
-    return -1;
-
-  if (menuCount == 1)
-    return (s8)gyIndexMap[0];
-
   DECKMENU_SAVE();
+
+  menuCount = LoadFairyGraveyardPickMenu(fixedDuelist, excluded, excludedCount, gyIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return -1;
+  }
+
+  if (menuCount == 1) {
+    chosenGyIndex = (s8)gyIndexMap[0];
+    DECKMENU_RESTORE();
+    return chosenGyIndex;
+  }
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(

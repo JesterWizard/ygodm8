@@ -242,14 +242,19 @@ static u8 PickHeroDeckIndex(u8 turnDuelist)
   u8 i;
   u8 deckIndex;
 
-  menuCount = LoadHeroDeckMenu(turnDuelist, deckIndexMap);
-  if (menuCount == 0)
-    return 0xFF;
-
-  if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER || gHideEffectText)
-    return deckIndexMap[0];
-
   DECKMENU_SAVE();
+
+  menuCount = LoadHeroDeckMenu(turnDuelist, deckIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return 0xFF;
+  }
+
+  if (menuCount == 1 || WhoseTurn() != DUEL_PLAYER || gHideEffectText) {
+    deckIndex = deckIndexMap[0];
+    DECKMENU_RESTORE();
+    return deckIndex;
+  }
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(

@@ -26807,7 +26807,8 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Fusion Summon 1 Fusion Monster, using monsters from your hand or field as materials."
+        "popup_1": "Fusion Summon 1 Fusion Monster, using monsters from your hand or field as materials.",
+        "popup_2": "You don't have any viable Fusion monsters in your Extra Deck."
       }
     },
     {

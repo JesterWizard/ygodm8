@@ -65,9 +65,9 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
     .ignore_tribute_requirements = TRUE,
-    .card_in_hand_1 = MAZERA_DEVILLE,
-    .card_in_hand_2 = METAMORPHOSIS,
-    .card_in_hand_3 = METEORAIN,
+    .card_in_hand_1 = ELEMENTAL_HERO_BLADEDGE,
+    .card_in_hand_2 = ELEMENTAL_HERO_WILDHEART,
+    .card_in_hand_3 = POLYMERIZATION,
     .card_in_hand_4 = MIRAGE_OF_NIGHTMARE,
     .card_in_hand_5 = MIRROR_FORCE_DRAGON,
     .opponent_deck_card_id = CARD_NONE,

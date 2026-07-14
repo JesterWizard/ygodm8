@@ -144,14 +144,19 @@ static s8 PlayerPickGyIndex(u8 fixedDuelist, enum FusionRecoveryPickKind kind, u
   u8 j;
   s8 chosenGyIndex;
 
-  menuCount = LoadGraveyardPickMenu(fixedDuelist, kind, excludeGyIndex, gyIndexMap);
-  if (menuCount == 0)
-    return -1;
-
-  if (menuCount == 1)
-    return (s8)gyIndexMap[0];
-
   DECKMENU_SAVE();
+
+  menuCount = LoadGraveyardPickMenu(fixedDuelist, kind, excludeGyIndex, gyIndexMap);
+  if (menuCount == 0) {
+    DECKMENU_RESTORE();
+    return -1;
+  }
+
+  if (menuCount == 1) {
+    chosenGyIndex = (s8)gyIndexMap[0];
+    DECKMENU_RESTORE();
+    return chosenGyIndex;
+  }
 
   DeckMenu_BeginDuelTrunkView();
   if (!DeckMenuMainPickConfirmWithLabels(
