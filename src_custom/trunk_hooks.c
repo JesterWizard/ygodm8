@@ -163,11 +163,7 @@ static void CompactExtraDeck(void) {
 
 LYN_REPLACE_CHECK(GetPlayerDeckSize);
 unsigned char GetPlayerDeckSize__Replacement(void) {
-  u8 base = gDeckMenu.cardCount;
-
-  if (gRuntimeConfig.enable_extra_deck)
-    base += GetExtraDeckSize();
-  return base;
+  return gDeckMenu.cardCount;
 }
 
 static bool8 IsFusionCard(u16 cardId) {
