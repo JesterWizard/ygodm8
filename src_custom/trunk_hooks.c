@@ -163,7 +163,11 @@ static void CompactExtraDeck(void) {
 
 LYN_REPLACE_CHECK(GetPlayerDeckSize);
 unsigned char GetPlayerDeckSize__Replacement(void) {
-  return gDeckMenu.cardCount + GetExtraDeckSize();
+  u8 base = gDeckMenu.cardCount;
+
+  if (gRuntimeConfig.enable_extra_deck)
+    base += GetExtraDeckSize();
+  return base;
 }
 
 static bool8 IsFusionCard(u16 cardId) {
@@ -613,7 +617,7 @@ static void RemoveSelectedCardFromDeck(void) {
     goto return_to_trunk;
 
   /* Fall back to extra deck */
-  if (ExtraDeck_TryRemoveCard(cardId) == TRUE)
+  if (gRuntimeConfig.enable_extra_deck && ExtraDeck_TryRemoveCard(cardId) == TRUE)
     goto return_to_trunk;
 
   PlayMusic(SFX_FORBIDDEN);
@@ -986,6 +990,9 @@ static void TrunkSubMenu_SetCursorOam(void) {
     u32 *oam = (u32 *)&gOamBuffer[6 * 4];
     u8 y = 72 + gTrunkMenu.cursorState * 16;
 
+    if (TrunkSubMenu_TotalOptionCount() > 3)
+        y -= 16;
+
     oam[0] = y | (56 << 16) | 0x40000000;
     oam[1] = 0xC120;
     oam[2] = y | (56 << 16) | 0x40000800;
@@ -1066,6 +1073,57 @@ static void TrunkSubMenu_RenderCustomOptions(void) {
     }
 }
 
+/* ---- shifted render when >3 options are visible ---- */
+
+extern const u8 kReturnToTrunkLabel[];
+
+static void TrunkSubMenu_RenderVanillaShifted(void) {
+    /* Shift all 3 vanilla option rows up by 2 (16 px).
+     *
+     * sub_8009364 just ran and:
+     *   1. Copied baked tilemap rows 0-19 into sbbF
+     *   2. Wrote option-0/1 text at rows 11-14
+     *   3. Loaded glyph tiles 1-120
+     *
+     * The baked tilemap at rows 9-10 contains card-list tiles, not
+     * menu-box tiles, so we first copy the menu-box background from
+     * baked rows 11-16 into sbbF rows 9-14 (moves the entire menu box
+     * up).  Then we re-write all three option text lines at rows 9-14,
+     * load the missing glyph data for option 2 (tiles 101-140), and
+     * restore option-1 text which the background copy overwrote. */
+    u8 i;
+
+    /* Copy menu-box background from baked rows 11-16 → sbbF rows 9-14.
+     * This gives all 6 shifted rows the correct menu backdrop.  Read
+     * from the baked-data array because sub_8009364 already modifed
+     * sbbF rows 11-14 with text. */
+    for (i = 0; i < 6; i++)
+        CpuCopy32(gUnk_808C240[10 + i],  /* baked rows 11-16 (0-indexed) */
+                  &(((struct Sbb*)&gBgVram)->sbbF[8 + i]) /* sbbF rows 9-14 */,
+                  60);
+
+    /* Read palette from the freshly-copied baked background at (9, 9). */
+    {
+        u16 r7 = sub_08007FEC(9, 9, 0x7800) & 0xFF00;
+
+        for (i = 0; i < 20; i++) {
+            sub_800800C(i + 9, 9,  0x7800, g8DF811C[i] + 21  | r7);
+            sub_800800C(i + 9, 10, 0x7800, g8DF811C[i] + 23  | r7);
+            sub_800800C(i + 9, 11, 0x7800, g8DF811C[i] + 61  | r7);
+            sub_800800C(i + 9, 12, 0x7800, g8DF811C[i] + 63  | r7);
+            sub_800800C(i + 9, 13, 0x7800, g8DF811C[i] + 101 | r7);
+            sub_800800C(i + 9, 14, 0x7800, g8DF811C[i] + 103 | r7);
+        }
+    }
+
+    /* Load option-2 glyph data at tile 101 (cbb1 byte offset 3232).
+     * Vanilla loads 60 chars into tiles 1-120 via
+     * CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[32], ...).
+     * Option 2 references tiles 101-140; we load chars for the last
+     * 20 of those into tiles 121-140 (cbb1 offsets 3232-4479). */
+    CopyStringTilesToVRAMBuffer(&gBgVram.cbb1[3232], kReturnToTrunkLabel, 0x900);
+}
+
 /* ---- option handlers (vanilla equivalents) ---- */
 
 static void TrunkSubMenu_SelectDetails(void) {
@@ -1080,6 +1138,8 @@ static void TrunkSubMenu_SelectDetails(void) {
     sub_800AA58(1);
     sub_800ABA8();
     sub_8009364();
+    if (TrunkSubMenu_TotalOptionCount() > 3)
+        TrunkSubMenu_RenderVanillaShifted();
     TrunkSubMenu_RenderCustomOptions();
     TrunkSubMenu_SetCursorOam();
     SetVBlankCallback(TrunkSubMenu_VBlank);
@@ -1108,6 +1168,9 @@ static void TrunkSubMenu_RefreshListPane(void) {
     TrunkSubMenu_RenderCustomOptions();
     TrunkSubMenu_SetCursorOam();
 }
+
+/* Shifted-render needs this label before the vanilla option labels. */
+const u8 kReturnToTrunkLabel[] APPEND_TEXT = "Return to Trunk      ";
 
 /* ---- custom options: Extra Deck ---- */
 
@@ -1221,18 +1284,20 @@ static void TrunkSubMenu_RegisterOptions(void) {
     if (gTrunkExtraDeckViewActive)
         return;
 
-    /* Option 4: Show E. Deck (only when extra deck has cards) */
-    if (GetExtraDeckSize() > 0) {
-        gTrunkSubMenuCustomOptions[0].label  = kShowInEDeckLabel;
-        gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_ShowExtraDeck;
-        gTrunkSubMenuCustomCount = 1;
-    }
+    if (gRuntimeConfig.enable_extra_deck) {
+        /* Option 4: Show E. Deck (only when extra deck has cards) */
+        if (GetExtraDeckSize() > 0) {
+            gTrunkSubMenuCustomOptions[0].label  = kShowInEDeckLabel;
+            gTrunkSubMenuCustomOptions[0].action = TrunkSubMenu_ShowExtraDeck;
+            gTrunkSubMenuCustomCount = 1;
+        }
 
-    /* Option 5: Move to E. Deck (fusion cards only) */
-    if (IsFusionCard(GetNthCardOnScreen(2))) {
-        gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].label  = kMoveToEDeckLabel;
-        gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].action = TrunkSubMenu_AddToExtraDeck;
-        gTrunkSubMenuCustomCount++;
+        /* Option 5: Move to E. Deck (fusion cards only) */
+        if (IsFusionCard(GetNthCardOnScreen(2))) {
+            gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].label  = kMoveToEDeckLabel;
+            gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].action = TrunkSubMenu_AddToExtraDeck;
+            gTrunkSubMenuCustomCount++;
+        }
     }
 }
 
@@ -1268,6 +1333,8 @@ void Trunk_A_Submenu__Replacement(void) {
 
     gTrunkMenu.cursorState = 0;
     sub_8009364();
+    if (totalCount > 3)
+        TrunkSubMenu_RenderVanillaShifted();
     TrunkSubMenu_RenderCustomOptions();
     TrunkSubMenu_SetCursorOam();
     LoadCharblock1();

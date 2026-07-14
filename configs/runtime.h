@@ -81,6 +81,7 @@ typedef struct {
     u8 enable_repeatable_duel_icon; // Show duel icon above duelable overworld NPCs.
     u8 enable_card_detail_navigation; // DPAD LEFT/RIGHT in card detail view switches between deck/trunk cards.
     u8 enable_manifest_map_overrides; // Override map graphics via custom_map_manifest.json redirects.
+    u8 enable_extra_deck; // Extra deck system: store/remove fusion monsters from a 15-card extra deck per player deck.
 } RuntimeConfig;
 
 /*

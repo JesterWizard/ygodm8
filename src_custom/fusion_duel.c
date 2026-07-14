@@ -15,6 +15,7 @@
 #include "expanded_graveyard.h"
 #include "cybernetic_fusion_support.h"
 #include "fusion_duel.h"
+#include "player_decks.h"
 #include "power_bond.h"
 
 void ClearZoneAndSendMonToGraveyard(struct DuelCard *zone, u8 graveyardDuelist);
@@ -723,9 +724,54 @@ const struct FusionRecipe *FusionDuel_PlayerConfirmFusionPick(const u8 *recipeIn
   u8 j;
   u16 chosenId;
   u8 chosenRecipeIdx = 0xFF;
+  u8 filteredRecipeIndices[50]; /* ponytail: enough for all recipes (~33 as of writing) */
 
   if (recipeIndices == NULL || count == 0)
     return NULL;
+
+  /* If the extra deck system is enabled, only show fusion monsters
+   * that are actually present in the player's extra deck. */
+  if (gRuntimeConfig.enable_extra_deck) {
+    u8 i;
+    u16 *extra;
+    u8 active;
+    u8 filteredCount;
+
+    active = gActiveDeckIndex;
+    if (active >= PLAYER_DECK_INDEX_MIN && active <= PLAYER_DECK_INDEX_MAX) {
+      switch (active) {
+      case 1: extra = gPlayerDeck1ExtraDeck; break;
+      case 2: extra = gPlayerDeck2ExtraDeck; break;
+      case 3: extra = gPlayerDeck3ExtraDeck; break;
+      default: extra = gPlayerDeck1ExtraDeck; break;
+      }
+    } else {
+      extra = gPlayerDeck1ExtraDeck;
+    }
+
+    filteredCount = 0;
+    for (i = 0; i < count; i++) {
+      u16 result = gFusionRecipes[recipeIndices[i]].result;
+      u8 found = FALSE;
+      u8 k;
+
+      for (k = 0; k < EXTRA_DECK_SIZE; k++) {
+        if (extra[k] == result) {
+          found = TRUE;
+          break;
+        }
+      }
+
+      if (found)
+        filteredRecipeIndices[filteredCount++] = recipeIndices[i];
+    }
+
+    if (filteredCount == 0)
+      return NULL;
+
+    count = filteredCount;
+    recipeIndices = filteredRecipeIndices;
+  }
 
   DECKMENU_SAVE();
 
