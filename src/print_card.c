@@ -2,7 +2,7 @@
 
 //TODO: rename file something similar to big card gfx copy
 
-static void sub_80267E0 (void);
+void sub_80267E0 (void);
 static void CopyStarIcons (void);
 
 
@@ -170,7 +170,7 @@ void PrintCard (void) {
   CopyCardName();
 }
 
-static void sub_80267E0 (void) {
+void sub_80267E0 (void) {
   u16 i;
   CpuCopy16(gUnk_8938384, gUnk_8E0136C, 532);
   for (i = 0; i < 266; i++)

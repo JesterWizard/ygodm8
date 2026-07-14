@@ -98,9 +98,9 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   sub_800E08C((void *)bigArt, gUnk_8E01364 + 32);
   CpuFill16(0, gUnk_8E01364, 64);
   CpuCopy32(bigPalette, gUnk_8E01368, paletteBytes);
-  // Match vanilla PrintCard: index 0 must be black for attack-screen BG tiles. Custom
-  // 80x80 PNGs should reserve index 0 via tools/normalize_big_card_png.py.
+  // Match vanilla: index 0 must be black for attack-screen BG tiles.
   *gUnk_8E01368 = 0;
+
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
 }

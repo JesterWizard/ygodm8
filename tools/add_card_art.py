@@ -1239,6 +1239,10 @@ def render_data_src(manifest: dict) -> str:
         "#define SPELL_CARD 3",
         "#define TRAP_CARD 4",
         "#define RITUAL_CARD 5",
+        "#define SYNCHRO_CARD 9",
+        "#define XYZ_CARD 10",
+        "#define PENDULUM_CARD 11",
+        "#define LINK_CARD 12",
         "",
         f"const u8 gCardLockAfterActivation_Hook[{len(manifest['cards'])}] APPEND_RODATA = {{",
     ]

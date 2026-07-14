@@ -27,6 +27,8 @@ extern const unsigned char g89A7BDE[];
 extern u8 gDigitBufferU16[];
 extern u16 g8E116BC[];
 
+const unsigned char *GetCustomCardColorBorder(u8 color);
+
 typedef void (*StampStageFn)(u8 *, s8);
 
 static StampStageFn const StampFieldCardStage = (StampStageFn)0x0805763D;
@@ -116,8 +118,21 @@ void sub_80573D0__Replacement(void* arg0, unsigned short cardId) {
   const unsigned char *miniArt = GetMiniArtForCard(cardId);
 
   SetCardInfo(cardId);
+
   LZ77UnCompWram(miniArt, gSharedMem);
-  composeMiniCard(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
+  {
+    /* ponytail: cast discards const — composeMiniCard signature is non-const */
+    const unsigned char *border = GetCustomCardColorBorder(gCardInfo.color);
+    if (!border) {
+      /* Vanilla gUnk_8E17F48 has 9 entries (0–8); guard against OOB for new colors */
+      unsigned char *vanillaBorder = (gCardInfo.color < COLOR_SYNCHRO)
+          ? gUnk_8E17F48[gCardInfo.color]
+          : gUnk_8E17F48[COLOR_NORMAL];
+      composeMiniCard(arg0, gSharedMem, vanillaBorder);
+    } else {
+      composeMiniCard(arg0, gSharedMem, (unsigned char *)border);
+    }
+  }
 }
 
 LYN_REPLACE_CHECK(sub_805742C);
@@ -129,7 +144,17 @@ void sub_805742C__Replacement(unsigned char* arg0, unsigned short cardId) {
   SetCardInfo(cardId);
 
   LZ77UnCompWram(miniArt, gSharedMem);
-  copyShopCardBorderTiles(arg0, gSharedMem, gUnk_8E17F48[gCardInfo.color]);
+  {
+    const unsigned char *border = GetCustomCardColorBorder(gCardInfo.color);
+    if (!border) {
+      unsigned char *vanillaBorder = (gCardInfo.color < COLOR_SYNCHRO)
+          ? gUnk_8E17F48[gCardInfo.color]
+          : gUnk_8E17F48[COLOR_NORMAL];
+      copyShopCardBorderTiles(arg0, gSharedMem, vanillaBorder);
+    } else {
+      copyShopCardBorderTiles(arg0, gSharedMem, (unsigned char *)border);
+    }
+  }
 }
 
 void sub_80572A8(unsigned char* arg0, struct DuelCard* arg1);

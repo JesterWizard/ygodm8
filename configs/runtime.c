@@ -53,6 +53,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_password_terminal_feedback = TRUE,
     .enable_shiny_zones = TRUE,
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
+    .enable_new_card_colors = FALSE, // This still needs more work, but we're off to a good start
     .show_player_screen_pixel_coords = FALSE,
     .show_duel_life_points_on_board = TRUE,
     .show_duel_turn_counter_on_board = TRUE,

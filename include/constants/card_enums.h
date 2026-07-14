@@ -6,6 +6,10 @@
 #define SPELL_CARD 3
 #define TRAP_CARD 4
 #define RITUAL_CARD 5
+#define SYNCHRO_CARD 9
+#define XYZ_CARD 10
+#define PENDULUM_CARD 11
+#define LINK_CARD 12
 
 /* Card attributes */
 #define ATTRIBUTE_SHADOW 1
