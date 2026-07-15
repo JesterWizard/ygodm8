@@ -24,6 +24,8 @@ extern u16 *gUnk_8E01368;
 extern u16 *gUnk_8E0136C;
 extern u16 gUnk_8936130[][10];
 extern unsigned char *gUnk_8E17F48[];
+/* card_color_hooks.c helpers */
+const unsigned short *GetCustomCardColorPalette(u8 color);
 
 #include "generated/card_art_generated.inc"
 
@@ -89,6 +91,7 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   const u32 paletteBytes = CardUsesExtendedBigCardPalette(gCardInfo.id)
                                ? BIG_CARD_ART_PALETTE_COLORS_EXTENDED * 2
                                : BIG_CARD_ART_PALETTE_COLORS_DEFAULT * 2;
+  const unsigned short *framePal;
 
   if (!bigArt)
     bigArt = gCardArts[gCardInfo.id];
@@ -103,4 +106,12 @@ void CopyCardArtDataToBuffers__Replacement(void) {
 
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
+
+  // Re-apply frame palette: CopyCardArtDataToBuffers runs AFTER sub_80267E0
+  // and the extended art palette (up to 224 bytes) may have overwritten the
+  // frame palette at gUnk_8E01368 + 0x40 (bank 4, entries 64+).
+  framePal = GetCustomCardColorPalette(gCardInfo.color);
+  if (!framePal)
+    framePal = (const unsigned short *)gUnk_8E137C4[gCardInfo.color];
+  CpuCopy32(framePal, gUnk_8E01368 + 0x40, 40);
 }

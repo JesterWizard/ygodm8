@@ -441,6 +441,8 @@ $(C_BUILDDIR)/duel/trap_effects.o: src/duel/trap_effects.c $(CARD_IDS_GENERATED)
 
 $(C_BUILDDIR)/card.o: $(CARD_RENDER_ASSETS)
 $(eval $(call custom_object_dep,card_asset_hooks,$(CARD_ART_GENERATED)))
+CARD_FRAME_PALETTES := $(wildcard src_custom/assets/cards/frames/*.gbapal)
+$(eval $(call custom_object_dep,card_color_hooks,$(CARD_FRAME_PALETTES)))
 $(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED) $(FIELD_SPELL_GFX_STAMP)))
 $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED)))
 $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))

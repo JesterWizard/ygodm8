@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-14).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-16).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
 | In game (manifest + art) | 593 |
-| Art ready, needs manifest | 0 |
+| Art ready, needs manifest | 207 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **595** |
+| **Total PNGs in `80x80/`** | **802** |
 
 ## In game
 
@@ -620,6 +620,213 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
+- [ ] `ALLURING_MIRROR_SPLIT` — `alluring_mirror_split.png`
+- [ ] `AMBUSH_FANGS` — `ambush_fangs.png`
+- [ ] `ARCANITE_MAGICIAN` — `arcanite_magician.png`
+- [ ] `ARMORY_ARM` — `armory_arm.png`
+- [ ] `AROMA_BLEND` — `aroma_blend.png`
+- [ ] `AROMA_GARDEN` — `aroma_garden.png`
+- [ ] `AROMA_GARDENING` — `aroma_gardening.png`
+- [ ] `AROMA_JAR` — `aroma_jar.png`
+- [ ] `AROMAGE_BERGAMOT` — `aromage_bergamot.png`
+- [ ] `AROMAGE_CANANGA` — `aromage_cananga.png`
+- [ ] `AROMAGE_JASMINE` — `aromage_jasmine.png`
+- [ ] `AROMAGE_LAUREL` — `aromage_laurel.png`
+- [ ] `AROMAGE_MARJORAM` — `aromage_marjoram.png`
+- [ ] `AROMAGE_ROSEMARY` — `aromage_rosemary.png`
+- [ ] `AROMALILITH_MAGNOLIA` — `aromalilith_magnolia.png`
+- [ ] `AROMALILITH_ROSALINA` — `aromalilith_rosalina.png`
+- [ ] `AROMALILITH_ROSEMARY` — `aromalilith_rosemary.png`
+- [ ] `AROMASERAPHY_JASMINE` — `aromaseraphy_jasmine.png`
+- [ ] `AROMASERAPHY_ROSEMARY` — `aromaseraphy_rosemary.png`
+- [ ] `AROMASERAPHY_SWEET_MARJORAM` — `aromaseraphy_sweet_marjoram.png`
+- [ ] `ATTACK_PHEROMONES` — `attack_pheromones.png`
+- [ ] `AZURE_EYES_SILVER_DRAGON` — `azure_eyes_silver_dragon.png`
+- [ ] `BLACK_ROSE_DRAGON` — `black_rose_dragon.png`
+- [ ] `BLESSED_WINDS` — `blessed_winds.png`
+- [ ] `BLUE_EYES_JET_DRAGON` — `blue_eyes_jet_dragon.png`
+- [ ] `BLUE_EYES_SILVER_DRAGON` — `blue_eyes_silver_dragon.png`
+- [ ] `BLUE_EYES_SOLID_DRAGON` — `blue_eyes_solid_dragon.png`
+- [ ] `BLUE_EYES_TYRANT_DRAGON` — `blue_eyes_tyrant_dragon.png`
+- [ ] `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` — `blue_eyes_ultimate_spirit_dragon.png`
+- [ ] `BOND_BETWEEN_TEACHER_AND_STUDENT` — `bond_between_teacher_and_student.png`
+- [ ] `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` — `brionac_dragon_of_the_ice_barrier.png`
+- [ ] `CHAIN_MATERIAL` — `chain_material.png`
+- [ ] `COLOSSAL_FIGHTER` — `colossal_fighter.png`
+- [ ] `CUP_OF_ACE` — `cup_of_ace.png`
+- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
+- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
+- [ ] `DARK_BURNING_ATTACK` — `dark_burning_attack.png`
+- [ ] `DARK_BURNING_MAGIC` — `dark_burning_magic.png`
+- [ ] `DARK_CALLING` — `dark_calling.png`
+- [ ] `DARK_CONTACT` — `dark_contact.png`
+- [ ] `DARK_FUSION` — `dark_fusion.png`
+- [ ] `DARK_MAGIC_ATTACK` — `dark_magic_attack.png`
+- [ ] `DARK_MAGIC_INHERITANCE` — `dark_magic_inheritance.png`
+- [ ] `DARK_MAGIC_VEIL` — `dark_magic_veil.png`
+- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
+- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
+- [ ] `DARK_MAGICIAN_OF_DESTRUCTION` — `dark_magician_of_destruction.png`
+- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
+- [ ] `DARK_RENEWAL` — `dark_renewal.png`
+- [ ] `DARK_STRIKE_FIGHTER` — `dark_strike_fighter.png`
+- [ ] `DARK_SUPREMACY` — `dark_supremacy.png`
+- [ ] `DEEP_EYES_WHITE_DRAGON` — `deep_eyes_white_dragon.png`
+- [ ] `DESTINED_RIVALS` — `destined_rivals.png`
+- [ ] `DRAGON_MASTER_MAGIA` — `dragon_master_magia.png`
+- [ ] `DRAGON_RAVINE` — `dragon_ravine.png`
+- [ ] `DRAGON_SHRINE` — `dragon_shrine.png`
+- [ ] `DRAGON_SPIRIT_OF_WHITE` — `dragon_spirit_of_white.png`
+- [ ] `DRIED_WINDS` — `dried_winds.png`
+- [ ] `EBON_ILLUSION_MAGICIAN` — `ebon_illusion_magician.png`
+- [ ] `EL_SHADDOLL_ANOYATYLLIS` — `el_shaddoll_anoyatyllis.png`
+- [ ] `EL_SHADDOLL_APKALLONE` — `el_shaddoll_apkallone.png`
+- [ ] `EL_SHADDOLL_CONSTRUCT` — `el_shaddoll_construct.png`
+- [ ] `EL_SHADDOLL_FUSION` — `el_shaddoll_fusion.png`
+- [ ] `EL_SHADDOLL_GRYSTA` — `el_shaddoll_grysta.png`
+- [ ] `EL_SHADDOLL_MESHAHRAIL` — `el_shaddoll_meshahrail.png`
+- [ ] `EL_SHADDOLL_SHEKHINAGA` — `el_shaddoll_shekhinaga.png`
+- [ ] `EL_SHADDOLL_WENDIGO` — `el_shaddoll_wendigo.png`
+- [ ] `EL_SHADDOLL_WINDA` — `el_shaddoll_winda.png`
+- [ ] `ETERNAL_SOUL` — `eternal_soul.png`
+- [ ] `EVIL_ASSAULT` — `evil_assault.png`
+- [ ] `EVIL_DRAGON_ANANTA` — `evil_dragon_ananta.png`
+- [ ] `EVIL_HERO_ADJUSTED_GOLD` — `evil_hero_adjusted_gold.png`
+- [ ] `EVIL_HERO_DARK_GAIA` — `evil_hero_dark_gaia.png`
+- [ ] `EVIL_HERO_DARKEST_KNIGHT` — `evil_hero_darkest_knight.png`
+- [ ] `EVIL_HERO_DEAD_END_PRISON` — `evil_hero_dead_end_prison.png`
+- [ ] `EVIL_HERO_INFERNAL_GAINER` — `evil_hero_infernal_gainer.png`
+- [ ] `EVIL_HERO_INFERNAL_PRODIGY` — `evil_hero_infernal_prodigy.png`
+- [ ] `EVIL_HERO_INFERNAL_RIDER` — `evil_hero_infernal_rider.png`
+- [ ] `EVIL_HERO_INFERNAL_SNIPER` — `evil_hero_infernal_sniper.png`
+- [ ] `EVIL_HERO_INFERNO_WING` — `evil_hero_inferno_wing.png`
+- [ ] `EVIL_HERO_INFERNO_WING_BACKFIRE` — `evil_hero_inferno_wing_backfire.png`
+- [ ] `EVIL_HERO_LIGHTNING_GOLEM` — `evil_hero_lightning_golem.png`
+- [ ] `EVIL_HERO_MALICIOUS_BANE` — `evil_hero_malicious_bane.png`
+- [ ] `EVIL_HERO_MALICIOUS_EDGE` — `evil_hero_malicious_edge.png`
+- [ ] `EVIL_HERO_MALICIOUS_FIEND` — `evil_hero_malicious_fiend.png`
+- [ ] `EVIL_HERO_NEOS_LORD` — `evil_hero_neos_lord.png`
+- [ ] `EVIL_HERO_SINISTER_NECROM` — `evil_hero_sinister_necrom.png`
+- [ ] `EVIL_HERO_TOXIC_BUBBLE` — `evil_hero_toxic_bubble.png`
+- [ ] `EVIL_HERO_VICIOUS_CLAWS` — `evil_hero_vicious_claws.png`
+- [ ] `EVIL_HERO_WILD_CYCLONE` — `evil_hero_wild_cyclone.png`
+- [ ] `EVIL_MIND` — `evil_mind.png`
+- [ ] `FUSION_DEPLOYMENT` — `fusion_deployment.png`
+- [ ] `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` — `gandora_g_the_dragon_of_destruction.png`
+- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
+- [ ] `GOYO_GUARDIAN` — `goyo_guardian.png`
+- [ ] `GRINDER_GOLEM` — `grinder_golem.png`
+- [ ] `HARPIE_CHANNELER` — `harpie_channeler.png`
+- [ ] `HARPIE_CONDUCTOR` — `harpie_conductor.png`
+- [ ] `HARPIE_DANCER` — `harpie_dancer.png`
+- [ ] `HARPIE_HARPIST` — `harpie_harpist.png`
+- [ ] `HARPIE_LADY_ELEGANCE` — `harpie_lady_elegance.png`
+- [ ] `HARPIE_ORACLE` — `harpie_oracle.png`
+- [ ] `HARPIE_PERFUMER` — `harpie_perfumer.png`
+- [ ] `HARPIE_QUEEN` — `harpie_queen.png`
+- [ ] `HARPIES_FEATHER_REST` — `harpies_feather_rest.png`
+- [ ] `HARPIES_FEATHER_STORM` — `harpies_feather_storm.png`
+- [ ] `HARPIES_HUNTING_GROUND` — `harpies_hunting_ground.png`
+- [ ] `HARPIES_PET_PHANTASMAL_DRAGON` — `harpies_pet_phantasmal_dragon.png`
+- [ ] `HELSHADDOLL_HOLLOW` — `helshaddoll_hollow.png`
+- [ ] `HERALD_OF_PERFECTION` — `herald_of_perfection.png`
+- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
+- [ ] `HERO_KID` — `hero_kid.png`
+- [ ] `HUMID_WINDS` — `humid_winds.png`
+- [ ] `HYSTERIC_PARTY` — `hysteric_party.png`
+- [ ] `HYSTERIC_SIGN` — `hysteric_sign.png`
+- [ ] `ILLUSION_MAGIC` — `illusion_magic.png`
+- [ ] `ILLUSION_OF_CHAOS` — `illusion_of_chaos.png`
+- [ ] `IPIRIA` — `ipiria.png`
+- [ ] `JUNK_WARRIOR` — `junk_warrior.png`
+- [ ] `KEEPER_OF_DRAGON_MAGIC` — `keeper_of_dragon_magic.png`
+- [ ] `LEGENDARY_MAJU_GARZETT` — `legendary_maju_garzett.png`
+- [ ] `LEV_SHADDOLL_FUSION` — `lev_shaddoll_fusion.png`
+- [ ] `LIGHT_SERPENT` — `light_serpent.png`
+- [ ] `LIGHTNING_WARRIOR` — `lightning_warrior.png`
+- [ ] `LONEFIRE_BLOSSOM` — `lonefire_blossom.png`
+- [ ] `MAGICIAN_NAVIGATION` — `magician_navigation.png`
+- [ ] `MAGICIAN_OF_DARK_ILLUSION` — `magician_of_dark_illusion.png`
+- [ ] `MAGICIANS_COMBINATION` — `magicians_combination.png`
+- [ ] `MAGICIANS_ROBE` — `magicians_robe.png`
+- [ ] `MAGICIANS_ROD` — `magicians_rod.png`
+- [ ] `MAGICIANS_SOULS` — `magicians_souls.png`
+- [ ] `MASTER_OF_CHAOS` — `master_of_chaos.png`
+- [ ] `METAVERSE` — `metaverse.png`
+- [ ] `MILLENNIUM_EYES_RESTRICT` — `millennium_eyes_restrict.png`
+- [ ] `MOLTING_ESCAPE` — `molting_escape.png`
+- [ ] `MYSTIC_MINE` — `mystic_mine.png`
+- [ ] `NAELSHADDOLL_ARIEL` — `naelshaddoll_ariel.png`
+- [ ] `NEHSHADDOLL_GENIUS` — `nehshaddoll_genius.png`
+- [ ] `NEPHE_SHADDOLL_FUSION` — `nephe_shaddoll_fusion.png`
+- [ ] `NEUTRON_BLAST` — `neutron_blast.png`
+- [ ] `OFFERING_TO_THE_SNAKE_DEITY` — `offering_to_the_snake_deity.png`
+- [ ] `OSHALEON` — `oshaleon.png`
+- [ ] `POWER_TOOL_DRAGON` — `power_tool_dragon.png`
+- [ ] `PREDAPLANT_VERTE_ANACONDA` — `predaplant_verte_anaconda.png`
+- [ ] `QADSHADDOLL_KEIOS` — `qadshaddoll_keios.png`
+- [ ] `RED_DRAGON_ARCHFIEND` — `red_dragon_archfiend.png`
+- [ ] `RED_REBOOT` — `red_reboot.png`
+- [ ] `REESHADDOLL_WENDI` — `reeshaddoll_wendi.png`
+- [ ] `REESHADDOLL_WENDIKURUHU` — `reeshaddoll_wendikuruhu.png`
+- [ ] `REPTILANNE_RAGE` — `reptilanne_rage.png`
+- [ ] `REPTILIANNE_ECHIDNA` — `reptilianne_echidna.png`
+- [ ] `REPTILIANNE_GARDNA` — `reptilianne_gardna.png`
+- [ ] `REPTILIANNE_GORGON` — `reptilianne_gorgon.png`
+- [ ] `REPTILIANNE_HYDRA` — `reptilianne_hydra.png`
+- [ ] `REPTILIANNE_LAMIA` — `reptilianne_lamia.png`
+- [ ] `REPTILIANNE_MEDUSA` — `reptilianne_medusa.png`
+- [ ] `REPTILIANNE_NAGA` — `reptilianne_naga.png`
+- [ ] `REPTILIANNE_POISON` — `reptilianne_poison.png`
+- [ ] `REPTILIANNE_SCYLLA` — `reptilianne_scylla.png`
+- [ ] `REPTILIANNE_SERVANT` — `reptilianne_servant.png`
+- [ ] `REPTILIANNE_SPAWN` — `reptilianne_spawn.png`
+- [ ] `REPTILIANNE_VASKII` — `reptilianne_vaskii.png`
+- [ ] `REPTILIANNE_VIPER` — `reptilianne_viper.png`
+- [ ] `RETURN_OF_THE_DRAGON_LORDS` — `return_of_the_dragon_lords.png`
+- [ ] `RISE_OF_THE_SNAKE_DEITY` — `rise_of_the_snake_deity.png`
+- [ ] `SECRETS_OF_DARK_MAGIC` — `secrets_of_dark_magic.png`
+- [ ] `SERPENT_SUPPRESSION` — `serpent_suppression.png`
+- [ ] `SHADDOLL_BEAST` — `shaddoll_beast.png`
+- [ ] `SHADDOLL_CORE` — `shaddoll_core.png`
+- [ ] `SHADDOLL_DRAGON` — `shaddoll_dragon.png`
+- [ ] `SHADDOLL_FALCO` — `shaddoll_falco.png`
+- [ ] `SHADDOLL_FUSION` — `shaddoll_fusion.png`
+- [ ] `SHADDOLL_HEDGEHOG` — `shaddoll_hedgehog.png`
+- [ ] `SHADDOLL_HOUND` — `shaddoll_hound.png`
+- [ ] `SHADDOLL_SCHISM` — `shaddoll_schism.png`
+- [ ] `SHADDOLL_SQUAMATA` — `shaddoll_squamata.png`
+- [ ] `SILVERS_CRY` — `silvers_cry.png`
+- [ ] `SNAKE_DEITYS_COMMAND` — `snake_deitys_command.png`
+- [ ] `SNAKE_RAIN` — `snake_rain.png`
+- [ ] `SNAKE_WHISTLE` — `snake_whistle.png`
+- [ ] `SOUL_SERVANT` — `soul_servant.png`
+- [ ] `STARDUST_DRAGON` — `stardust_dragon.png`
+- [ ] `SUPREME_KINGS_CASTLE` — `supreme_kings_castle.png`
+- [ ] `THAT_GRASS_LOOKS_GREENER` — `that_grass_looks_greener.png`
+- [ ] `THE_DARK_MAGICIANS` — `the_dark_magicians.png`
+- [ ] `THE_GAZE_OF_TIMAEUS` — `the_gaze_of_timaeus.png`
+- [ ] `THE_MELODY_OF_AWAKENING_DRAGON` — `the_melody_of_awakening_dragon.png`
+- [ ] `THE_WHITE_STONE_OF_ANCIENTS` — `the_white_stone_of_ancients.png`
+- [ ] `THE_WHITE_STONE_OF_LEGEND` — `the_white_stone_of_legend.png`
+- [ ] `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` — `timeaeus_the_united_magical_dragon.png`
+- [ ] `TIMEAUS_THE_UNITED_DRAGON` — `timeaus_the_united_dragon.png`
+- [ ] `TOHUSHADDOLL_GRYSTA` — `tohushaddoll_grysta.png`
+- [ ] `TRAP_TRICK` — `trap_trick.png`
+- [ ] `TRIANGLE_ECSTASY_SPARK` — `triangle_ecstasy_spark.png`
+- [ ] `ULTRA_POLYMERIZATION` — `ultra_polymerization.png`
+- [ ] `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` — `vennominaga_the_deity_of_poisonous_snakes.png`
+- [ ] `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` — `vennominon_the_king_of_poisonous_snakes.png`
+- [ ] `VENOM_BOA` — `venom_boa.png`
+- [ ] `VENOM_BURN` — `venom_burn.png`
+- [ ] `VENOM_COBRA` — `venom_cobra.png`
+- [ ] `VENOM_SERPENT` — `venom_serpent.png`
+- [ ] `VENOM_SHOT` — `venom_shot.png`
+- [ ] `VENOM_SNAKE` — `venom_snake.png`
+- [ ] `VENOM_SWAMP` — `venom_swamp.png`
+- [ ] `VIPERS_REBIRTH` — `vipers_rebirth.png`
+- [ ] `YAMORIMORI` — `yamorimori.png`
+- [ ] `YOWIE` — `yowie.png`
 
 ## Todo — in manifest, missing art
 
