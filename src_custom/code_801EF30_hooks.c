@@ -9,7 +9,6 @@
 #include "generated/card_trunk_generated.inc"
 #include "card_shop.h"
 #include "text.h"
-#include "card.h"
 
 void HandleWin(void);
 void HandleLoss(void);
