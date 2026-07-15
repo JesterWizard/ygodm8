@@ -1,6 +1,9 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "card.h"
+#include "text.h"
+#include "digit.h"
+#include "constants/card_ids.h"
 
 /*
  * Custom card color palette and border data for new extra deck monster types
@@ -99,4 +102,67 @@ void sub_80267E0__Replacement(void)
         colorPal = (const unsigned short *)gUnk_8E137C4[gCardInfo.color];
 
     CpuCopy32(colorPal, gUnk_8E01368 + 0x40, 40);
+}
+
+/* CopyCardName replacement — renders synchro card names with
+ * palette index 12 (black) instead of the normal indices 4/10
+ * (white). This avoids overwriting index 11 which the card
+ * border and stars share.
+ * ponytail: extend COLOR_SYNCHRO check to
+ * COLOR_XYZ / COLOR_PENDULUM / COLOR_LINK when those palettes
+ * also define index 12 as black. */
+extern void CopyCardName(void);
+LYN_REPLACE_CHECK(CopyCardName);
+void CopyCardName__Replacement(void)
+{
+    u8 pos;
+    bool32 abbreviate;
+    u32 buffer[16];
+    const unsigned char* name;
+
+    if (gLanguage == ENGLISH &&
+        (gCardInfo.id == BLACK_LUSTER_SOLDIER || gCardInfo.id == BLACK_LUSTER_RITUAL))
+        abbreviate = TRUE;
+    else
+        abbreviate = FALSE;
+
+    name = gCardInfo.name;
+    name = GetCurrentLanguageString(name);
+    pos = 0;
+
+    while (pos < 10 && *name && *name != 0x24) {
+        u16 r1;
+        u16 encoding = (gCardInfo.color == COLOR_SYNCHRO) ? 0x411 : 0x44A;
+
+        if (abbreviate && pos == 1) {
+            r1 = gUnk_8E00E30[14][1];
+            r1 <<= 8;
+            r1 |= gUnk_8E00E30[14][0];
+            name += 4;
+        }
+        else if (*name <= 127) {
+            r1 = gUnk_8E00E30[*name - 32][1];
+            r1 <<= 8;
+            r1 |= gUnk_8E00E30[*name - 32][0];
+            name++;
+        }
+        else {
+            r1 = name[1] << 8 | name[0];
+            name += 2;
+        }
+
+        sub_8020968(buffer, r1, encoding);
+        CpuFill32(0, g2021B50, 64);
+        CpuCopy32(buffer, g2021B50 + 40, 24);
+        CpuCopy32(gUnk_8E01364 + (pos * 2 + 133) * 32, g2021B10, 64);
+        sub_800DD4C();
+        CpuCopy32(g2021B90, gUnk_8E01364 + (pos * 2 + 133) * 32, 64);
+
+        CpuFill32(0, g2021B50, 64);
+        CpuCopy32(&buffer[6], g2021B50, 40);
+        CpuCopy32(gUnk_8E01364 + (pos * 2 + 134) * 32, g2021B10, 64);
+        sub_800DD4C();
+        CpuCopy32(g2021B90, gUnk_8E01364 + (pos * 2 + 134) * 32, 64);
+        pos++;
+    }
 }
