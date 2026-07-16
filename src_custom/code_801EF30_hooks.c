@@ -67,10 +67,45 @@ u16 GetTrunkCardCount(void);
 extern u8 gCardDetailNavActive;
 extern u8 gCardDetailNavIndex;
 
+/* Large font 0x901: 5 rows × 14 cols (70 glyphs, 2 tiles tall each).
+ * Small font 0x001: 10 rows × 14 cols (140 glyphs, 1 tile tall) in the same VRAM. */
+#define DESC_TILE_BASE 148
+#define DESC_TILEMAP_ATTR 0xF000
+#define DESC_COLS 14
+#define DESC_ROW0 10
+#define DESC_ROWS_LARGE 5
+#define DESC_ROWS_SMALL 10
+
+static u8 DescriptionUsesSmallFont(void) {
+  return gRuntimeConfig.use_small_card_description_font == TRUE;
+}
+
+static u16 DescriptionFontFlags(void) {
+  return DescriptionUsesSmallFont() ? 0x001 : 0x901;
+}
+
+static u8 DescriptionPageCharSlots(void) {
+  return DescriptionUsesSmallFont() ? (DESC_ROWS_SMALL * DESC_COLS)
+                                    : (DESC_ROWS_LARGE * DESC_COLS);
+}
+
+static void ApplySmallFontDescriptionTilemap(void) {
+  u8 row, col;
+  u16 tile = DESC_TILE_BASE;
+
+  for (row = 0; row < DESC_ROWS_SMALL; row++) {
+    for (col = 0; col < DESC_COLS; col++) {
+      gBgVram.sbb1E[DESC_ROW0 + row][15 + col] = (u16)(DESC_TILEMAP_ATTR | tile);
+      tile++;
+    }
+  }
+}
+
 static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
-  u8 buffer[144];
+  u8 buffer[288];
   u8 i = 0;
   u8 j = 0;
+  u8 slots = DescriptionPageCharSlots();
 
   CpuFastFill16(0, dest, 2240 * sizeof(u16));
 
@@ -97,13 +132,13 @@ static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u1
   }
 
   if (page >= pageCount - 1) {
-    while (j < 70) {
+    while (j < slots) {
       buffer[i] = ' ';
       i++;
       j++;
     }
   } else {
-    while (j < 69) {
+    while (j < slots - 1) {
       buffer[i] = ' ';
       i++;
       j++;
@@ -115,13 +150,15 @@ static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u1
   }
 
   buffer[i] = 0;
-  CopyStringTilesToVRAMBuffer(dest, buffer, 0x901);
+  CopyStringTilesToVRAMBuffer(dest, buffer, DescriptionFontFlags());
 }
 
 static void CardDetailViewRenderPage(u16 *pageBuffer, const u8 *pageStarts[], u8 pageCount) {
   g201CB58 = 0;
   sub_801FB2C();
   sub_800B618(pageBuffer);
+  if (DescriptionUsesSmallFont())
+    ApplySmallFontDescriptionTilemap();
   ApplyCardDetailPaletteExtension();
   sub_801FA84();
   SetVBlankCallback(sub_801FADC);
@@ -134,7 +171,7 @@ static void CardDetailViewRenderPage(u16 *pageBuffer, const u8 *pageStarts[], u8
 static u8 CardDetailViewBuildDescription(u16 *pageBuffer, const u8 *pageStarts[9]) {
   u8 i;
   u8 page;
-  u8 buffer[144];
+  u8 buffer[288];
   const u8 *text = gCardInfo.description + 2;
 
   CpuFastFill16(0, pageBuffer, 4480);
@@ -179,7 +216,7 @@ static u8 CardDetailViewBuildDescription(u16 *pageBuffer, const u8 *pageStarts[9
     }
   }
   buffer[i] = 0;
-  CopyStringTilesToVRAMBuffer(pageBuffer, buffer, 0x901);
+  CopyStringTilesToVRAMBuffer(pageBuffer, buffer, DescriptionFontFlags());
   g201CB59 = 0;
   return 0;
 }

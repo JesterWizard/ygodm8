@@ -80,4 +80,5 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_card_detail_navigation = TRUE,
     .enable_manifest_map_overrides = FALSE,
     .enable_extra_deck = TRUE,
+    .use_small_card_description_font = TRUE,
 };

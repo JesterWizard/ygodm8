@@ -76,6 +76,7 @@ static const struct {
     CONF("Repeat Duel",  enable_repeatable_duel_icon),
     CONF("Skip Duel",    skip_to_duel),
     CONF("Title Video",  enable_title_screen_video),
+    CONF("Small Desc",   use_small_card_description_font),
 };
 
 #undef CONF
