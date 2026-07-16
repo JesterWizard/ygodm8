@@ -74,7 +74,7 @@ unsigned IsPlayerDeckNonempty(void);
  * Extra Deck Helpers
  *
  * Each player deck (1-3) has a 15-card extra deck stored in EWRAM.
- * Fusion cards go here; they are blocked from the main deck.
+ * Fusion/Synchro/XYZ/Pendulum/Link cards go here; blocked from main deck.
  * ======================================================================== */
 
 static u16 *GetActiveExtraDeck(void) {
@@ -166,10 +166,17 @@ unsigned char GetPlayerDeckSize__Replacement(void) {
   return gDeckMenu.cardCount;
 }
 
-static bool8 IsFusionCard(u16 cardId) {
+static bool8 IsExtraDeckCard(u16 cardId) {
+  u8 color;
+
   if (cardId >= NUM_TOTAL_CARDS)
     return FALSE;
-  return gCardData_NEW[cardId].color == COLOR_FUSION;
+  color = gCardData_NEW[cardId].color;
+  return color == COLOR_FUSION
+      || color == COLOR_SYNCHRO
+      || color == COLOR_XYZ
+      || color == COLOR_PENDULUM
+      || color == COLOR_LINK;
 }
 
 static bool8 TrunkHidesUnownedCards(void) {
@@ -865,7 +872,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
     return;
   }
 
-  /* Normal view: add to main deck (reject fusion cards) */
+  /* Normal view: add to main deck (reject extra deck cards) */
   {
     unsigned isCardRejected = 0;
     u8 limit = GetRuntimeDeckLimit();
@@ -873,7 +880,7 @@ void TryAddSelectedCardToDeck__Replacement(void) {
     if (GetAvailableTrunkQty(cardId) && gDeckMenu.cardCount < limit && sub_801F098(cardId) == 1) {
       if (CardExceedsCurrentDuelistLevel(cardId))
         isCardRejected = 1;
-      if (IsFusionCard(cardId))
+      if (IsExtraDeckCard(cardId))
         isCardRejected = 1;
     }
     else
@@ -1257,8 +1264,8 @@ static void TrunkSubMenu_ShowExtraDeck(void) {
 static void TrunkSubMenu_AddToExtraDeck(void) {
     u16 cardId = GetNthCardOnScreen(2);
 
-    /* Safety check: registration should only show this for fusion cards */
-    if (!IsFusionCard(cardId)) {
+    /* Safety check: registration should only show this for extra deck cards */
+    if (!IsExtraDeckCard(cardId)) {
         PlayMusic(SFX_FORBIDDEN);
         return;
     }
@@ -1296,8 +1303,8 @@ static void TrunkSubMenu_RegisterOptions(void) {
             gTrunkSubMenuCustomCount = 1;
         }
 
-        /* Option 5: Move to E. Deck (fusion cards only) */
-        if (IsFusionCard(GetNthCardOnScreen(2))) {
+        /* Option 5: Move to E. Deck (Fusion/Synchro/XYZ/Pendulum/Link) */
+        if (IsExtraDeckCard(GetNthCardOnScreen(2))) {
             gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].label  = kMoveToEDeckLabel;
             gTrunkSubMenuCustomOptions[gTrunkSubMenuCustomCount].action = TrunkSubMenu_AddToExtraDeck;
             gTrunkSubMenuCustomCount++;

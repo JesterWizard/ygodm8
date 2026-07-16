@@ -1,10 +1,10 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Link frame lighter again (factor 0.72)
+**Last worked on:** 2026-07-16 — Extra deck for Synchro/XYZ/Pendulum/Link
 
 **Files touched:**
-- `tools/gen_link_frame.py`, `link.gbapal`, `link_mini.4bpp`
+- `src_custom/trunk_hooks.c` — `IsExtraDeckCard` replaces fusion-only check
 
-**Outcome:** Lighter navy Link chrome. `make` exits 0.
+**Outcome:** Synchro, XYZ, Pendulum, Link share Fusion extra-deck rules (blocked from main; "Move to E. Deck"). `make` exits 0.
 
 **Open / next:** Confirm in-game; Pendulum mini still NULL.
