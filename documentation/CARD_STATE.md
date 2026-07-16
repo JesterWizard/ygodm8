@@ -1,11 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Timed Duel 3 missing from menu (stale .o)
+**Last worked on:** 2026-07-16 — Duel voice portrait top-left + glitch fix
 
 **Files touched:**
-- `Makefile` — `timed_duel.o` depends on table `.inc` + layouts header
-- `documentation/timed-duels.md` — rebuild note
+- `src_custom/duel_voice_hooks.c` — top-left OAM; hide mini-card/cursor while portrait up
+- `documentation/custom-voices.md`
 
-**Outcome:** `make` exits 0. Root cause was stale `timed_duel.o` (table `.inc` not a make dep). Layout 03 now linked.
+**Outcome:** `make` exits 0. Left glitch was portrait tiles overwriting mini-card VRAM.
 
-**Open / next:** Reload ROM; confirm Timed Duel 3 in debug menu.
+**Open / next:** In-game confirm clean top-left portrait.

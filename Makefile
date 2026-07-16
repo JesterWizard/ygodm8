@@ -462,7 +462,7 @@ $(eval $(call custom_object_dep,permanent_effects/chimeratech_overdragon,$(CARD_
 $(eval $(call custom_object_dep,permanent_effects/elemental_hero_captain_gold,$(CARD_EFFECT_TEXTS_H)))
 $(eval $(call custom_object_dep,event_system_hooks,$(EVENT_REPLACEMENTS_GENERATED)))
 $(eval $(call custom_object_dep,generated/card_data_hooks,$(CARD_ART_GENERATED) $(CARD_DESCRIPTION_GENERATED)))
-$(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP)))
+$(eval $(call custom_object_dep,duel_voice_hooks,$(VOICE_STAMP) src_custom/duel_voice_portrait_table.inc))
 $(eval $(call custom_object_dep,voice_dpcm,$(VOICE_STAMP)))
 $(eval $(call custom_object_dep,custom_music,$(MUSIC_STAMP)))
 $(eval $(call custom_object_dep,debug/debug_menu_voice,$(VOICE_STAMP)))

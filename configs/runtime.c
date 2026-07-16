@@ -82,4 +82,5 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_extra_deck = TRUE,
     .use_small_card_description_font = TRUE,
     .enable_millennium_item_tracker = TRUE,
+    .show_duel_voice_portraits = TRUE,
 };

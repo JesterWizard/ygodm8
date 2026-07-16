@@ -78,6 +78,7 @@ static const struct {
     CONF("Title Video",  enable_title_screen_video),
     CONF("Small Desc",   use_small_card_description_font),
     CONF("Mill Track",   enable_millennium_item_tracker),
+    CONF("Voice Port",   show_duel_voice_portraits),
 };
 
 #undef CONF

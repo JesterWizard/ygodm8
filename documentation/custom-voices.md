@@ -164,6 +164,8 @@ Duel hook (turn / attack / LP)  →  lookup sCustomVoiceClips  →  PlayCustomVo
                                     (no match) → vanilla gTurnVoices / gB0AE8 table
 ```
 
+When `gRuntimeConfig.show_duel_voice_portraits` is TRUE (default) and a **turn-start** voice plays, the opponent's dialogue portrait is shown at the **top-left** for the duration of the turn textbox. Mini-card / cursor OAM is hidden while it is up (portrait tiles share OBJ VRAM with board cards). Attack voicing is audio-only and does not show a portrait yet. Toggle via debug menu → Runtime Config → **Voice Port**.
+
 ## Debug Menu
 
 The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus generated custom rows. Custom entries (song ID ≥ 601) use `PlayCustomVoiceClip()` instead of `PlayMusic()`.
@@ -176,7 +178,8 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 | Generator | `tools/generate_voices.py` | WAV → DPCM + codegen |
 | DPCM decode | `src_custom/voice_dpcm_itcm.s` | ITCM hook for m4a PCM read |
 | ROM assets | `src_custom/generated/voice_assets_generated.s` | Linked `.voice_pcm_rom` |
-| Trigger engine | `src_custom/duel_voice_hooks.c` | Turn, attack, LP hooks + playback |
+| Trigger engine | `src_custom/duel_voice_hooks.c` | Turn, attack, LP hooks + playback + optional voice portrait |
+| Opponent→portrait | `src_custom/duel_voice_portrait_table.inc` | `DUELIST_*` → `PORTRAIT_*` lookup |
 | Generated tables | `src_custom/generated/voice_triggers_generated.inc` | Clip metadata and song pointers |
 | Song IDs | `include/constants/custom_voices_generated.h` | Generated constants |
 | LynJump wiring | `src_custom/LynJump.event` | Patches vanilla duel functions |
@@ -188,6 +191,7 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 - [ ] Add Pegasus / other duelists once `AI_DUELIST_*` IDs are confirmed for them.
 - [ ] Optional build-time patch of unused m4a song table slots (currently uses direct `sub_8059D7C` playback).
 - [ ] `replace_vanilla` dual-play semantics if both custom and vanilla should overlap.
+- [ ] Portrait during attack voicing (needs timed hide; no textbox).
 
 ## Limitations & Bugs
 
@@ -196,3 +200,4 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 - **`OpponentTurnTextAndVoice` is static** in vanilla source; LynJump patches use computed ROM offsets rather than ELF symbols.
 - **`opponent_lp_below`** replaces the normal `turn_start` line for that duelist once opponent LP is below the threshold; it does not play mid-battle. If LP rises back above the threshold (heal), the normal `turn_start` clip is used again.
 - **Custom song IDs** (601+) cannot use `PlayMusic()` directly; always use `PlayCustomVoiceClip()` or the debug menu path.
+- **Voice portraits** only wrap turn-start textboxes; `UpdateDuelGfxExceptField` clears the OAM slot when the textbox closes.
