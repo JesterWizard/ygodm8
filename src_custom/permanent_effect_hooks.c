@@ -204,6 +204,14 @@ unsigned char ShouldActivateMAGICIAN_OF_DARK_ILLUSION(void);
 void ActivateMAGICIAN_OF_DARK_ILLUSION(void);
 unsigned char ShouldActivateMAGICIANS_ROD(void);
 void ActivateMAGICIANS_ROD(void);
+unsigned char ShouldActivateOSHALEON(void);
+void ActivateOSHALEON(void);
+unsigned char ShouldActivateREPTILIANNE_GARDNA(void);
+void ActivateREPTILIANNE_GARDNA(void);
+unsigned char ShouldActivateREPTILIANNE_HYDRA(void);
+void ActivateREPTILIANNE_HYDRA(void);
+unsigned char ShouldActivateREPTILIANNE_NAGA(void);
+void ActivateREPTILIANNE_NAGA(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -634,6 +642,26 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = MAGICIANS_ROD,
     .shouldActivate = ShouldActivateMAGICIANS_ROD,
     .activate = ActivateMAGICIANS_ROD,
+  },
+  {
+    .cardId = OSHALEON,
+    .shouldActivate = ShouldActivateOSHALEON,
+    .activate = ActivateOSHALEON,
+  },
+  {
+    .cardId = REPTILIANNE_GARDNA,
+    .shouldActivate = ShouldActivateREPTILIANNE_GARDNA,
+    .activate = ActivateREPTILIANNE_GARDNA,
+  },
+  {
+    .cardId = REPTILIANNE_HYDRA,
+    .shouldActivate = ShouldActivateREPTILIANNE_HYDRA,
+    .activate = ActivateREPTILIANNE_HYDRA,
+  },
+  {
+    .cardId = REPTILIANNE_NAGA,
+    .shouldActivate = ShouldActivateREPTILIANNE_NAGA,
+    .activate = ActivateREPTILIANNE_NAGA,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

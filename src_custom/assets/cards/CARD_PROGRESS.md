@@ -5,14 +5,14 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-16).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-17).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 671 |
-| Art ready, needs manifest | 129 |
+| In game (manifest + art) | 751 |
+| Art ready, needs manifest | 49 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -693,91 +693,91 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `EVIL_HERO_INFERNAL_GAINER` | Evil HERO Infernal Gainer | `evil_hero_infernal_gainer.png` |
 | `EVIL_HERO_INFERNAL_PRODIGY` | Evil HERO Infernal Prodigy | `evil_hero_infernal_prodigy.png` |
 | `EVIL_HERO_INFERNAL_RIDER` | Evil HERO Infernal Rider | `evil_hero_infernal_rider.png` |
+| `EVIL_HERO_INFERNAL_SNIPER` | Evil HERO Infernal Sniper | `evil_hero_infernal_sniper.png` |
+| `EVIL_HERO_INFERNO_WING` | Evil HERO Inferno Wing | `evil_hero_inferno_wing.png` |
+| `EVIL_HERO_INFERNO_WING_BACKFIRE` | Evil HERO Inferno Wing - Backfire | `evil_hero_inferno_wing_backfire.png` |
+| `EVIL_HERO_LIGHTNING_GOLEM` | Evil HERO Lightning Golem | `evil_hero_lightning_golem.png` |
+| `EVIL_HERO_MALICIOUS_BANE` | Evil HERO Malicious Bane | `evil_hero_malicious_bane.png` |
+| `EVIL_HERO_MALICIOUS_EDGE` | Evil HERO Malicious Edge | `evil_hero_malicious_edge.png` |
+| `EVIL_HERO_MALICIOUS_FIEND` | Evil HERO Malicious Fiend | `evil_hero_malicious_fiend.png` |
+| `EVIL_HERO_NEOS_LORD` | Evil HERO Neos Lord | `evil_hero_neos_lord.png` |
+| `EVIL_HERO_SINISTER_NECROM` | Evil HERO Sinister Necrom | `evil_hero_sinister_necrom.png` |
+| `EVIL_HERO_TOXIC_BUBBLE` | Evil HERO Toxic Bubble | `evil_hero_toxic_bubble.png` |
+| `EVIL_HERO_VICIOUS_CLAWS` | Evil HERO Vicious Claws | `evil_hero_vicious_claws.png` |
+| `EVIL_HERO_WILD_CYCLONE` | Evil HERO Wild Cyclone | `evil_hero_wild_cyclone.png` |
+| `EVIL_MIND` | Evil Mind | `evil_mind.png` |
+| `FUSION_DEPLOYMENT` | Fusion Deployment | `fusion_deployment.png` |
+| `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` | Gandora-G the Dragon of Destruction | `gandora_g_the_dragon_of_destruction.png` |
+| `GANDORA_X_THE_DRAGON_OF_DEMOLITION` | Gandora-X the Dragon of Demolition | `gandora_x_the_dragon_of_demolition.png` |
+| `GOYO_GUARDIAN` | Goyo Guardian | `goyo_guardian.png` |
+| `GRINDER_GOLEM` | Grinder Golem | `grinder_golem.png` |
+| `HARPIE_CHANNELER` | Harpie Channeler | `harpie_channeler.png` |
+| `HARPIE_CONDUCTOR` | Harpie Conductor | `harpie_conductor.png` |
+| `HARPIE_DANCER` | Harpie Dancer | `harpie_dancer.png` |
+| `HARPIE_HARPIST` | Harpie Harpist | `harpie_harpist.png` |
+| `HARPIE_LADY_ELEGANCE` | Harpie Lady Elegance | `harpie_lady_elegance.png` |
+| `HARPIE_ORACLE` | Harpie Oracle | `harpie_oracle.png` |
+| `HARPIE_PERFUMER` | Harpie Perfumer | `harpie_perfumer.png` |
+| `HARPIE_QUEEN` | Harpie Queen | `harpie_queen.png` |
+| `HARPIES_FEATHER_REST` | Harpie's Feather Rest | `harpies_feather_rest.png` |
+| `HARPIES_FEATHER_STORM` | Harpie's Feather Storm | `harpies_feather_storm.png` |
+| `HARPIES_HUNTING_GROUND` | Harpies' Hunting Ground | `harpies_hunting_ground.png` |
+| `HARPIES_PET_PHANTASMAL_DRAGON` | Harpie's Pet Phantasmal Dragon | `harpies_pet_phantasmal_dragon.png` |
+| `HELSHADDOLL_HOLLOW` | Helshaddoll Hollow | `helshaddoll_hollow.png` |
+| `HERALD_OF_PERFECTION` | Herald of Perfection | `herald_of_perfection.png` |
+| `HERALD_OF_ULTIMATENESS` | Herald of Ultimateness | `herald_of_ultimateness.png` |
+| `HERO_KID` | Hero Kid | `hero_kid.png` |
+| `HUMID_WINDS` | Humid Winds | `humid_winds.png` |
+| `HYSTERIC_PARTY` | Hysteric Party | `hysteric_party.png` |
+| `HYSTERIC_SIGN` | Hysteric Sign | `hysteric_sign.png` |
+| `ILLUSION_MAGIC` | Illusion Magic | `illusion_magic.png` |
+| `ILLUSION_OF_CHAOS` | Illusion of Chaos | `illusion_of_chaos.png` |
+| `IPIRIA` | Ipiria | `ipiria.png` |
+| `JUNK_WARRIOR` | Junk Warrior | `junk_warrior.png` |
+| `KEEPER_OF_DRAGON_MAGIC` | Keeper of Dragon Magic | `keeper_of_dragon_magic.png` |
+| `LEGENDARY_MAJU_GARZETT` | Legendary Maju Garzett | `legendary_maju_garzett.png` |
+| `LEV_SHADDOLL_FUSION` | Lev Shaddoll Fusion | `lev_shaddoll_fusion.png` |
+| `LIGHT_SERPENT` | Lightserpent | `light_serpent.png` |
+| `LIGHTNING_WARRIOR` | Lightning Warrior | `lightning_warrior.png` |
+| `LONEFIRE_BLOSSOM` | Lonefire Blossom | `lonefire_blossom.png` |
+| `MAGICIAN_NAVIGATION` | Magician Navigation | `magician_navigation.png` |
+| `MAGICIAN_OF_DARK_ILLUSION` | Magician of Dark Illusion | `magician_of_dark_illusion.png` |
+| `MAGICIANS_COMBINATION` | Magicians' Combination | `magicians_combination.png` |
+| `MAGICIANS_ROBE` | Magician's Robe | `magicians_robe.png` |
+| `MAGICIANS_ROD` | Magician's Rod | `magicians_rod.png` |
+| `MAGICIANS_SOULS` | Magicians' Souls | `magicians_souls.png` |
+| `MASTER_OF_CHAOS` | Master of Chaos | `master_of_chaos.png` |
+| `METAVERSE` | Metaverse | `metaverse.png` |
+| `MILLENNIUM_EYES_RESTRICT` | Millennium-Eyes Restrict | `millennium_eyes_restrict.png` |
+| `MOLTING_ESCAPE` | Molting Escape | `molting_escape.png` |
+| `MYSTIC_MINE` | Mystic Mine | `mystic_mine.png` |
+| `NAELSHADDOLL_ARIEL` | Naelshaddoll Ariel | `naelshaddoll_ariel.png` |
+| `NEHSHADDOLL_GENIUS` | Nehshaddoll Genius | `nehshaddoll_genius.png` |
+| `NEPHE_SHADDOLL_FUSION` | Nephe Shaddoll Fusion | `nephe_shaddoll_fusion.png` |
+| `NEUTRON_BLAST` | Neutron Blast | `neutron_blast.png` |
+| `OFFERING_TO_THE_SNAKE_DEITY` | Offering to the Snake Deity | `offering_to_the_snake_deity.png` |
+| `OSHALEON` | Oshaleon | `oshaleon.png` |
+| `POWER_TOOL_DRAGON` | Power Tool Dragon | `power_tool_dragon.png` |
+| `PREDAPLANT_VERTE_ANACONDA` | Predaplant Verte Anaconda | `predaplant_verte_anaconda.png` |
+| `QADSHADDOLL_KEIOS` | Qadshaddoll Keios | `qadshaddoll_keios.png` |
+| `RED_DRAGON_ARCHFIEND` | Red Dragon Archfiend | `red_dragon_archfiend.png` |
+| `RED_REBOOT` | Red Reboot | `red_reboot.png` |
+| `REESHADDOLL_WENDI` | Reeshaddoll Wendi | `reeshaddoll_wendi.png` |
+| `REESHADDOLL_WENDIKURUHU` | Reeshaddoll Wendikurhu | `reeshaddoll_wendikuruhu.png` |
+| `REPTILANNE_RAGE` | Reptilianne Rage | `reptilanne_rage.png` |
+| `REPTILIANNE_ECHIDNA` | Reptilianne Echidna | `reptilianne_echidna.png` |
+| `REPTILIANNE_GARDNA` | Reptilianne Gardna | `reptilianne_gardna.png` |
+| `REPTILIANNE_GORGON` | Reptilianne Gorgon | `reptilianne_gorgon.png` |
+| `REPTILIANNE_HYDRA` | Reptilianne Hydra | `reptilianne_hydra.png` |
+| `REPTILIANNE_LAMIA` | Reptilianne Lamia | `reptilianne_lamia.png` |
+| `REPTILIANNE_MEDUSA` | Reptilianne Medusa | `reptilianne_medusa.png` |
+| `REPTILIANNE_NAGA` | Reptilianne Naga | `reptilianne_naga.png` |
+| `REPTILIANNE_POISON` | Reptilianne Poison | `reptilianne_poison.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [x] `EVIL_HERO_INFERNAL_SNIPER` — `evil_hero_infernal_sniper.png`
-- [x] `EVIL_HERO_INFERNO_WING` — `evil_hero_inferno_wing.png`
-- [x] `EVIL_HERO_INFERNO_WING_BACKFIRE` — `evil_hero_inferno_wing_backfire.png`
-- [x] `EVIL_HERO_LIGHTNING_GOLEM` — `evil_hero_lightning_golem.png`
-- [x] `EVIL_HERO_MALICIOUS_BANE` — `evil_hero_malicious_bane.png`
-- [x] `EVIL_HERO_MALICIOUS_EDGE` — `evil_hero_malicious_edge.png`
-- [x] `EVIL_HERO_MALICIOUS_FIEND` — `evil_hero_malicious_fiend.png`
-- [x] `EVIL_HERO_NEOS_LORD` — `evil_hero_neos_lord.png`
-- [x] `EVIL_HERO_SINISTER_NECROM` — `evil_hero_sinister_necrom.png`
-- [x] `EVIL_HERO_TOXIC_BUBBLE` — `evil_hero_toxic_bubble.png`
-- [x] `EVIL_HERO_VICIOUS_CLAWS` — `evil_hero_vicious_claws.png`
-- [x] `EVIL_HERO_WILD_CYCLONE` — `evil_hero_wild_cyclone.png`
-- [x] `EVIL_MIND` — `evil_mind.png`
-- [x] `FUSION_DEPLOYMENT` — `fusion_deployment.png`
-- [x] `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` — `gandora_g_the_dragon_of_destruction.png`
-- [x] `GANDORA_X_THE_DRAGON_OF_DEMOLITION` — `gandora_x_the_dragon_of_demolition.png`
-- [x] `GOYO_GUARDIAN` — `goyo_guardian.png`
-- [x] `GRINDER_GOLEM` — `grinder_golem.png`
-- [x] `HARPIE_CHANNELER` — `harpie_channeler.png`
-- [x] `HARPIE_CONDUCTOR` — `harpie_conductor.png`
-- [x] `HARPIE_DANCER` — `harpie_dancer.png`
-- [x] `HARPIE_HARPIST` — `harpie_harpist.png`
-- [x] `HARPIE_LADY_ELEGANCE` — `harpie_lady_elegance.png`
-- [x] `HARPIE_ORACLE` — `harpie_oracle.png`
-- [x] `HARPIE_PERFUMER` — `harpie_perfumer.png`
-- [x] `HARPIE_QUEEN` — `harpie_queen.png`
-- [x] `HARPIES_FEATHER_REST` — `harpies_feather_rest.png`
-- [x] `HARPIES_FEATHER_STORM` — `harpies_feather_storm.png`
-- [x] `HARPIES_HUNTING_GROUND` — `harpies_hunting_ground.png`
-- [x] `HARPIES_PET_PHANTASMAL_DRAGON` — `harpies_pet_phantasmal_dragon.png`
-- [x] `HELSHADDOLL_HOLLOW` — `helshaddoll_hollow.png`
-- [x] `HERALD_OF_PERFECTION` — `herald_of_perfection.png`
-- [x] `HERALD_OF_ULTIMATENESS` — `herald_of_ultimateness.png`
-- [x] `HERO_KID` — `hero_kid.png`
-- [x] `HUMID_WINDS` — `humid_winds.png`
-- [x] `HYSTERIC_PARTY` — `hysteric_party.png`
-- [x] `HYSTERIC_SIGN` — `hysteric_sign.png`
-- [x] `ILLUSION_MAGIC` — `illusion_magic.png`
-- [x] `ILLUSION_OF_CHAOS` — `illusion_of_chaos.png`
-- [x] `IPIRIA` — `ipiria.png`
-- [x] `JUNK_WARRIOR` — `junk_warrior.png`
-- [x] `KEEPER_OF_DRAGON_MAGIC` — `keeper_of_dragon_magic.png`
-- [x] `LEGENDARY_MAJU_GARZETT` — `legendary_maju_garzett.png`
-- [x] `LEV_SHADDOLL_FUSION` — `lev_shaddoll_fusion.png`
-- [x] `LIGHT_SERPENT` — `light_serpent.png`
-- [x] `LIGHTNING_WARRIOR` — `lightning_warrior.png`
-- [x] `LONEFIRE_BLOSSOM` — `lonefire_blossom.png`
-- [x] `MAGICIAN_NAVIGATION` — `magician_navigation.png`
-- [x] `MAGICIAN_OF_DARK_ILLUSION` — `magician_of_dark_illusion.png`
-- [x] `MAGICIANS_COMBINATION` — `magicians_combination.png`
-- [x] `MAGICIANS_ROBE` — `magicians_robe.png`
-- [x] `MAGICIANS_ROD` — `magicians_rod.png`
-- [x] `MAGICIANS_SOULS` — `magicians_souls.png`
-- [x] `MASTER_OF_CHAOS` — `master_of_chaos.png`
-- [x] `METAVERSE` — `metaverse.png`
-- [x] `MILLENNIUM_EYES_RESTRICT` — `millennium_eyes_restrict.png`
-- [x] `MOLTING_ESCAPE` — `molting_escape.png`
-- [x] `MYSTIC_MINE` — `mystic_mine.png`
-- [x] `NAELSHADDOLL_ARIEL` — `naelshaddoll_ariel.png`
-- [x] `NEHSHADDOLL_GENIUS` — `nehshaddoll_genius.png`
-- [ ] `NEPHE_SHADDOLL_FUSION` — `nephe_shaddoll_fusion.png`
-- [ ] `NEUTRON_BLAST` — `neutron_blast.png`
-- [ ] `OFFERING_TO_THE_SNAKE_DEITY` — `offering_to_the_snake_deity.png`
-- [ ] `OSHALEON` — `oshaleon.png`
-- [ ] `POWER_TOOL_DRAGON` — `power_tool_dragon.png`
-- [ ] `PREDAPLANT_VERTE_ANACONDA` — `predaplant_verte_anaconda.png`
-- [ ] `QADSHADDOLL_KEIOS` — `qadshaddoll_keios.png`
-- [ ] `RED_DRAGON_ARCHFIEND` — `red_dragon_archfiend.png`
-- [ ] `RED_REBOOT` — `red_reboot.png`
-- [ ] `REESHADDOLL_WENDI` — `reeshaddoll_wendi.png`
-- [ ] `REESHADDOLL_WENDIKURUHU` — `reeshaddoll_wendikuruhu.png`
-- [ ] `REPTILANNE_RAGE` — `reptilanne_rage.png`
-- [ ] `REPTILIANNE_ECHIDNA` — `reptilianne_echidna.png`
-- [ ] `REPTILIANNE_GARDNA` — `reptilianne_gardna.png`
-- [ ] `REPTILIANNE_GORGON` — `reptilianne_gorgon.png`
-- [ ] `REPTILIANNE_HYDRA` — `reptilianne_hydra.png`
-- [ ] `REPTILIANNE_LAMIA` — `reptilianne_lamia.png`
-- [ ] `REPTILIANNE_MEDUSA` — `reptilianne_medusa.png`
-- [ ] `REPTILIANNE_NAGA` — `reptilianne_naga.png`
-- [ ] `REPTILIANNE_POISON` — `reptilianne_poison.png`
 - [ ] `REPTILIANNE_SCYLLA` — `reptilianne_scylla.png`
 - [ ] `REPTILIANNE_SERVANT` — `reptilianne_servant.png`
 - [ ] `REPTILIANNE_SPAWN` — `reptilianne_spawn.png`

@@ -463,3 +463,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire MAGICIANS_COMBINATION in trap dispatcher */
 /* METAVERSE trap effect */
   /* TODO: wire METAVERSE in trap dispatcher */
+/* OFFERING_TO_THE_SNAKE_DEITY trap effect */
+  /* TODO: wire OFFERING_TO_THE_SNAKE_DEITY in trap dispatcher */
+/* RED_REBOOT trap effect */
+  /* TODO: wire RED_REBOOT in trap dispatcher */

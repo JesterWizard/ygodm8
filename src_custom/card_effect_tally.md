@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `663` effects
+- `683` effects
 
 ## Tally
 
@@ -644,6 +644,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Mystic Mine` | `src_custom/spell_effects/mystic_mine.c` |
 | `activated_effects` | `Naelshaddoll Ariel` | `src_custom/activated_effects/naelshaddoll_ariel.c` |
 | `activated_effects` | `Nehshaddoll Genius` | `src_custom/activated_effects/nehshaddoll_genius.c` |
+| `spell_effects` | `Nephe Shaddoll Fusion` | `src_custom/spell_effects/nephe_shaddoll_fusion.c` |
+| `spell_effects` | `Neutron Blast` | `src_custom/spell_effects/neutron_blast.c` |
+| `trap_effects` | `Offering To The Snake Deity` | `src_custom/trap_effects/offering_to_the_snake_deity.c` |
+| `permanent_effects` | `Oshaleon` | `src_custom/permanent_effects/oshaleon.c` |
+| `activated_effects` | `Power Tool Dragon` | `src_custom/activated_effects/power_tool_dragon.c` |
+| `activated_effects` | `Predaplant Verte Anaconda` | `src_custom/activated_effects/predaplant_verte_anaconda.c` |
+| `activated_effects` | `Qadshaddoll Keios` | `src_custom/activated_effects/qadshaddoll_keios.c` |
+| `battle_effects` | `Red Dragon Archfiend` | `src_custom/battle_effects/red_dragon_archfiend.c` |
+| `trap_effects` | `Red Reboot` | `src_custom/trap_effects/red_reboot.c` |
+| `activated_effects` | `Reeshaddoll Wendi` | `src_custom/activated_effects/reeshaddoll_wendi.c` |
+| `activated_effects` | `Reeshaddoll Wendikuruhu` | `src_custom/activated_effects/reeshaddoll_wendikuruhu.c` |
+| `spell_effects` | `Reptilanne Rage` | `src_custom/spell_effects/reptilanne_rage.c` |
+| `activated_effects` | `Reptilianne Echidna` | `src_custom/activated_effects/reptilianne_echidna.c` |
+| `permanent_effects` | `Reptilianne Gardna` | `src_custom/permanent_effects/reptilianne_gardna.c` |
+| `battle_effects` | `Reptilianne Gorgon` | `src_custom/battle_effects/reptilianne_gorgon.c` |
+| `permanent_effects` | `Reptilianne Hydra` | `src_custom/permanent_effects/reptilianne_hydra.c` |
+| `activated_effects` | `Reptilianne Lamia` | `src_custom/activated_effects/reptilianne_lamia.c` |
+| `activated_effects` | `Reptilianne Medusa` | `src_custom/activated_effects/reptilianne_medusa.c` |
+| `permanent_effects` | `Reptilianne Naga` | `src_custom/permanent_effects/reptilianne_naga.c` |
+| `spell_effects` | `Reptilianne Poison` | `src_custom/spell_effects/reptilianne_poison.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

@@ -1,6 +1,6 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Added JUNK_WARRIOR–NEHSHADDOLL_GENIUS (trunk + stub effects)
+**Last worked on:** 2026-07-16 — Added NEPHE_SHADDOLL_FUSION–REPTILIANNE_POISON (trunk + stub effects)
 
 **Files touched:**
 - `tools/card_data_manifest.json`
@@ -9,7 +9,7 @@
 - stub `.c` under `activated_effects/` / `permanent_effects/` / `spell_effects/` / `trap_effects/` / `battle_effects/`
 - `src_custom/assets/cards/CARD_PROGRESS.md`
 
-**Outcome:** `make` exits 0. 20 cards in trunk with art; effects stubbed. total_cards=1532. Forced `LIGHT_SERPENT` (vs API Lightserpent→LIGHTSERPENT) and `MAGICIANS_ROBE`/`MAGICIANS_ROD` (vs MAGICIAN_S_*) to match art stems.
+**Outcome:** `make` exits 0. 20 cards in trunk with art; effects stubbed. total_cards=1552. Forced `REESHADDOLL_WENDIKURUHU` (API Wendikurhu→WENDIKURHU) and `REPTILANNE_RAGE` (API Reptilianne Rage→REPTILIANNE_RAGE) to match art stems.
 
 **Open / next:**
 - Implement real effect logic for these 20 cards (and prior stub batches)

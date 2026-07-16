@@ -31969,6 +31969,557 @@
       "effect_texts": {
         "popup_1": "FLIP: Shaddoll unaffected. Sent by effect: lock 1 Effect Monster."
       }
+    },
+    {
+      "card_const": "NEPHE_SHADDOLL_FUSION",
+      "card_name": "Nephe Shaddoll Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 0, 2, 2, 6, 5, 5, 8],
+      "description": {
+        "symbol": "gDescription_NepheShaddollFusion",
+        "pages": [
+          "Declare 1 Attribute; Equip only to",
+          "a Shaddoll; it becomes that Attribute.",
+          "Main Phase: Fusion Summon 1 Shaddoll",
+          "Fusion from Extra using monsters from",
+          "hand/field including equipped. OPT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Equip Shaddoll; set Attribute. Fusion Summon Shaddoll Fusion using equipped. OPT."
+      }
+    },
+    {
+      "card_const": "NEUTRON_BLAST",
+      "card_name": "Neutron Blast",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 3, 8, 4, 5, 8, 0, 1],
+      "description": {
+        "symbol": "gDescription_NeutronBlast",
+        "pages": [
+          "Target 1 Fusion Summoned Blue-Eyes",
+          "Ultimate Dragon you control; this turn",
+          "it can attack 2nd and 3rd times each",
+          "Battle Phase, also when it attacks,",
+          "opp cards/effects cannot activate."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "BEUD attacks 2nd/3rd; opp cannot activate cards/effects when it attacks."
+      }
+    },
+    {
+      "card_const": "OFFERING_TO_THE_SNAKE_DEITY",
+      "card_name": "Offering to the Snake Deity",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 3, 2, 1, 7, 2, 3, 1],
+      "description": {
+        "symbol": "gDescription_OfferingToTheSnakeDeity",
+        "pages": [
+          "Target 1 face-up Reptile you control",
+          "and 2 cards your opponent controls;",
+          "destroy all three targets."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Target 1 Reptile you control + 2 opp cards; destroy all three."
+      }
+    },
+    {
+      "card_const": "OSHALEON",
+      "card_name": "Oshaleon",
+      "atk": 1400,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 1, 5, 1, 9, 6, 0, 5],
+      "description": {
+        "symbol": "gDescription_Oshaleon",
+        "pages": [
+          "While face-up Attack Position, opp",
+          "must attack this if able. If destroyed",
+          "by battle and sent to GY: add 1 Reptile",
+          "with 500 or less ATK from Deck to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opp must attack this. If destroyed by battle: add Reptile ATK 500-."
+      }
+    },
+    {
+      "card_const": "POWER_TOOL_DRAGON",
+      "card_name": "Power Tool Dragon",
+      "atk": 2300,
+      "def": 2500,
+      "level": 7,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 2, 4, 0, 3, 7, 7, 1],
+      "description": {
+        "symbol": "gDescription_PowerToolDragon",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner.",
+          "OPT: reveal 3 Equip Spells from Deck;",
+          "opp randomly adds 1 to your hand,",
+          "shuffle the rest. If would be destroyed",
+          "while equipped: send 1 Equip instead."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "OPT: reveal 3 Equips; opp adds 1. Destroy protect via Equip."
+      }
+    },
+    {
+      "card_const": "PREDAPLANT_VERTE_ANACONDA",
+      "card_name": "Predaplant Verte Anaconda",
+      "atk": 500,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_PLANT",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [7, 0, 3, 6, 9, 1, 1, 6],
+      "description": {
+        "symbol": "gDescription_PredaplantVerteAnaconda",
+        "pages": [
+          "2 Effect Monsters.",
+          "Target 1 face-up monster; it becomes",
+          "DARK until EOT. Pay 2000 LP and send",
+          "1 Fusion/Poly Normal/Quick from Deck",
+          "to GY; copy its effect. Extra lock. OPT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Make monster DARK. Pay 2000; copy Fusion/Poly from Deck. OPT."
+      }
+    },
+    {
+      "card_const": "QADSHADDOLL_KEIOS",
+      "card_name": "Qadshaddoll Keios",
+      "atk": 900,
+      "def": 100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [2, 4, 6, 3, 5, 3, 2, 9],
+      "description": {
+        "symbol": "gDescription_QadshaddollKeios",
+        "pages": [
+          "FLIP: SS 1 Shaddoll from hand in",
+          "face-up or face-down Defense.",
+          "If sent to GY by effect: send 1",
+          "Shaddoll from hand to GY; Shaddolls",
+          "you control gain ATK = Lv x 100."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: SS Shaddoll from hand. Sent by effect: mill; gain ATK."
+      }
+    },
+    {
+      "card_const": "RED_DRAGON_ARCHFIEND",
+      "card_name": "Red Dragon Archfiend",
+      "atk": 3000,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 0, 9, 0, 2, 7, 4, 3],
+      "description": {
+        "symbol": "gDescription_RedDragonArchfiend",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner.",
+          "After damage calc, if this attacks a",
+          "Defense Position monster: destroy all",
+          "opp Defense Position monsters.",
+          "End Phase: destroy your other Attackers."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Attacks Defense: destroy all opp Defense. EP: destroy other Attackers."
+      }
+    },
+    {
+      "card_const": "RED_REBOOT",
+      "card_name": "Red Reboot",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 3, 0, 0, 2, 2, 9, 2],
+      "description": {
+        "symbol": "gDescription_RedReboot",
+        "pages": [
+          "When opp activates a Trap: negate,",
+          "Set that card, then they can Set 1",
+          "other Trap from Deck. Rest of turn,",
+          "they cannot activate Traps. Can activate",
+          "from hand by paying half your LP."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Negate Trap; Set it. Opp cannot activate Traps. Hand: pay half LP."
+      }
+    },
+    {
+      "card_const": "REESHADDOLL_WENDI",
+      "card_name": "Reeshaddoll Wendi",
+      "atk": 1500,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [5, 1, 0, 2, 3, 0, 2, 4],
+      "description": {
+        "symbol": "gDescription_ReeshaddollWendi",
+        "pages": [
+          "FLIP: SS 1 Shaddoll from Deck in",
+          "face-up or face-down Defense,",
+          "except Wendi. If sent to GY by",
+          "effect: SS 1 Shaddoll from Deck",
+          "face-down. Use only 1 effect per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: SS Shaddoll from Deck. Sent by effect: SS face-down."
+      }
+    },
+    {
+      "card_const": "REESHADDOLL_WENDIKURUHU",
+      "card_name": "Reeshaddoll Wendikurhu",
+      "atk": 200,
+      "def": 2800,
+      "level": 6,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 8, 8, 5, 2, 1, 5, 8],
+      "description": {
+        "symbol": "gDescription_ReeshaddollWendikuruhu",
+        "pages": [
+          "1 Shaddoll + 1 WIND. Must first be",
+          "Fusion Summoned. Quick: flip face-down",
+          "monsters face-up Defense; then flip",
+          "up to that many Flip monsters' count",
+          "face-down. Sent to GY: add 1 Shaddoll."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Quick: flip monsters. Sent to GY: add 1 Shaddoll from GY."
+      }
+    },
+    {
+      "card_const": "REPTILANNE_RAGE",
+      "card_name": "Reptilianne Rage",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 1, 5, 8, 0, 1, 0, 2],
+      "description": {
+        "symbol": "gDescription_ReptilanneRage",
+        "pages": [
+          "Equipped becomes Reptile and gains",
+          "800 ATK. If this is destroyed and sent",
+          "to GY: target 1 face-up opp monster;",
+          "it loses 800 ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Equip: Reptile +800 ATK. If destroyed: opp monster loses 800 ATK."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_ECHIDNA",
+      "card_name": "Reptilianne Echidna",
+      "atk": 200,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [0, 8, 6, 0, 2, 3, 5, 1],
+      "description": {
+        "symbol": "gDescription_ReptilianneEchidna",
+        "pages": [
+          "2 monsters including a Reptile.",
+          "If Link Summoned: target 1 face-up",
+          "opp monster; its ATK becomes 0.",
+          "Main Phase if you control a 0 ATK:",
+          "add Reptiles from Deck. Extra lock."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Link: set ATK to 0. If control 0 ATK: add Reptiles from Deck."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_GARDNA",
+      "card_name": "Reptilianne Gardna",
+      "atk": 0,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [4, 3, 0, 0, 2, 8, 6, 4],
+      "description": {
+        "symbol": "gDescription_ReptilianneGardna",
+        "pages": [
+          "When this card you control is",
+          "destroyed and sent to the GY,",
+          "add 1 Reptilianne monster from",
+          "your Deck to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If destroyed: add 1 Reptilianne from Deck to hand."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_GORGON",
+      "card_name": "Reptilianne Gorgon",
+      "atk": 1400,
+      "def": 1400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 130,
+      "password": [4, 3, 4, 2, 6, 9, 0, 3],
+      "description": {
+        "symbol": "gDescription_ReptilianneGorgon",
+        "pages": [
+          "If this card attacks a monster,",
+          "after damage calculation: that",
+          "monster's ATK becomes 0, also it",
+          "cannot change its battle position."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "After attack damage calc: that monster ATK becomes 0."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_HYDRA",
+      "card_name": "Reptilianne Hydra",
+      "atk": 2100,
+      "def": 1500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 0, 6, 3, 4, 5, 6, 5],
+      "description": {
+        "symbol": "gDescription_ReptilianneHydra",
+        "pages": [
+          "1 Reptilianne Tuner + 1+ non-Tuner.",
+          "When Synchro Summoned: destroy all",
+          "face-up opp monsters with 0 ATK,",
+          "and draw 1 for each destroyed."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On Synchro: destroy opp 0 ATK monsters; draw 1 each."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_LAMIA",
+      "card_name": "Reptilianne Lamia",
+      "atk": 0,
+      "def": 0,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [5, 7, 6, 4, 7, 5, 9, 7],
+      "description": {
+        "symbol": "gDescription_ReptilianneLamia",
+        "pages": [
+          "If in hand and all your monsters are",
+          "face-up Reptiles: target 1 face-up",
+          "opp; ATK to 0, SS this, take damage",
+          "equal to its original ATK. If Synchro",
+          "Material: target monsters; ATK to 0."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand: set ATK 0, SS this. Synchro Material: set ATK to 0."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_MEDUSA",
+      "card_name": "Reptilianne Medusa",
+      "atk": 2200,
+      "def": 800,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [8, 9, 8, 1, 0, 5, 1, 8],
+      "description": {
+        "symbol": "gDescription_ReptilianneMedusa",
+        "pages": [
+          "Send 1 card from your hand to the GY",
+          "and select 1 face-up monster your",
+          "opponent controls. Its ATK becomes 0,",
+          "and it cannot change battle position."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 1; select face-up opp monster; its ATK becomes 0."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_NAGA",
+      "card_name": "Reptilianne Naga",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [7, 9, 4, 9, 1, 9, 0, 3],
+      "description": {
+        "symbol": "gDescription_ReptilianneNaga",
+        "pages": [
+          "Cannot be destroyed by battle.",
+          "ATK of any monster that battles this",
+          "becomes 0 at end of that Battle Phase.",
+          "During your End Phase, change this",
+          "face-up Defense Position to Attack."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Battle immune. Battler ATK to 0. EP: Defense to Attack."
+      }
+    },
+    {
+      "card_const": "REPTILIANNE_POISON",
+      "card_name": "Reptilianne Poison",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 0, 5, 7, 6, 7, 8, 1],
+      "description": {
+        "symbol": "gDescription_ReptiliannePoison",
+        "pages": [
+          "If you control a face-up Reptilianne:",
+          "change 1 Defense Position opp monster",
+          "to face-up Attack Position and reduce",
+          "its ATK to 0."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If control Reptilianne: flip Defense to Attack; ATK to 0."
+      }
     }
   ]
 }

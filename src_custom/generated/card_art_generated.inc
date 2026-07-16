@@ -2932,6 +2932,86 @@ static const unsigned char sNehshaddollGeniusBigArt[] __attribute__((section(".a
 static const unsigned short sNehshaddollGeniusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nehshaddoll_genius.gbapal");
 static const unsigned char sNehshaddollGeniusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nehshaddoll_genius.lz");
 
+static const unsigned char sNepheShaddollFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/nephe_shaddoll_fusion.huff");
+static const unsigned short sNepheShaddollFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nephe_shaddoll_fusion.gbapal");
+static const unsigned char sNepheShaddollFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nephe_shaddoll_fusion.lz");
+
+static const unsigned char sNeutronBlastBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neutron_blast.huff");
+static const unsigned short sNeutronBlastBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neutron_blast.gbapal");
+static const unsigned char sNeutronBlastMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neutron_blast.lz");
+
+static const unsigned char sOfferingToTheSnakeDeityBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/offering_to_the_snake_deity.huff");
+static const unsigned short sOfferingToTheSnakeDeityBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/offering_to_the_snake_deity.gbapal");
+static const unsigned char sOfferingToTheSnakeDeityMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/offering_to_the_snake_deity.lz");
+
+static const unsigned char sOshaleonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/oshaleon.huff");
+static const unsigned short sOshaleonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/oshaleon.gbapal");
+static const unsigned char sOshaleonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/oshaleon.lz");
+
+static const unsigned char sPowerToolDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/power_tool_dragon.huff");
+static const unsigned short sPowerToolDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/power_tool_dragon.gbapal");
+static const unsigned char sPowerToolDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/power_tool_dragon.lz");
+
+static const unsigned char sPredaplantVerteAnacondaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/predaplant_verte_anaconda.huff");
+static const unsigned short sPredaplantVerteAnacondaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/predaplant_verte_anaconda.gbapal");
+static const unsigned char sPredaplantVerteAnacondaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/predaplant_verte_anaconda.lz");
+
+static const unsigned char sQadshaddollKeiosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/qadshaddoll_keios.huff");
+static const unsigned short sQadshaddollKeiosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/qadshaddoll_keios.gbapal");
+static const unsigned char sQadshaddollKeiosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/qadshaddoll_keios.lz");
+
+static const unsigned char sRedDragonArchfiendBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_dragon_archfiend.huff");
+static const unsigned short sRedDragonArchfiendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_dragon_archfiend.gbapal");
+static const unsigned char sRedDragonArchfiendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_dragon_archfiend.lz");
+
+static const unsigned char sRedRebootBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/red_reboot.huff");
+static const unsigned short sRedRebootBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/red_reboot.gbapal");
+static const unsigned char sRedRebootMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/red_reboot.lz");
+
+static const unsigned char sReeshaddollWendiBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reeshaddoll_wendi.huff");
+static const unsigned short sReeshaddollWendiBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reeshaddoll_wendi.gbapal");
+static const unsigned char sReeshaddollWendiMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reeshaddoll_wendi.lz");
+
+static const unsigned char sReeshaddollWendikuruhuBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reeshaddoll_wendikuruhu.huff");
+static const unsigned short sReeshaddollWendikuruhuBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reeshaddoll_wendikuruhu.gbapal");
+static const unsigned char sReeshaddollWendikuruhuMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reeshaddoll_wendikuruhu.lz");
+
+static const unsigned char sReptilanneRageBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilanne_rage.huff");
+static const unsigned short sReptilanneRageBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilanne_rage.gbapal");
+static const unsigned char sReptilanneRageMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilanne_rage.lz");
+
+static const unsigned char sReptilianneEchidnaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_echidna.huff");
+static const unsigned short sReptilianneEchidnaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_echidna.gbapal");
+static const unsigned char sReptilianneEchidnaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_echidna.lz");
+
+static const unsigned char sReptilianneGardnaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_gardna.huff");
+static const unsigned short sReptilianneGardnaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_gardna.gbapal");
+static const unsigned char sReptilianneGardnaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_gardna.lz");
+
+static const unsigned char sReptilianneGorgonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_gorgon.huff");
+static const unsigned short sReptilianneGorgonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_gorgon.gbapal");
+static const unsigned char sReptilianneGorgonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_gorgon.lz");
+
+static const unsigned char sReptilianneHydraBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_hydra.huff");
+static const unsigned short sReptilianneHydraBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_hydra.gbapal");
+static const unsigned char sReptilianneHydraMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_hydra.lz");
+
+static const unsigned char sReptilianneLamiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_lamia.huff");
+static const unsigned short sReptilianneLamiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_lamia.gbapal");
+static const unsigned char sReptilianneLamiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_lamia.lz");
+
+static const unsigned char sReptilianneMedusaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_medusa.huff");
+static const unsigned short sReptilianneMedusaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_medusa.gbapal");
+static const unsigned char sReptilianneMedusaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_medusa.lz");
+
+static const unsigned char sReptilianneNagaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_naga.huff");
+static const unsigned short sReptilianneNagaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_naga.gbapal");
+static const unsigned char sReptilianneNagaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_naga.lz");
+
+static const unsigned char sReptiliannePoisonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reptilianne_poison.huff");
+static const unsigned short sReptiliannePoisonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reptilianne_poison.gbapal");
+static const unsigned char sReptiliannePoisonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reptilianne_poison.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3666,6 +3746,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05F9] = sMysticMineBigArt,
   [0x05FA] = sNaelshaddollArielBigArt,
   [0x05FB] = sNehshaddollGeniusBigArt,
+  [0x05FC] = sNepheShaddollFusionBigArt,
+  [0x05FD] = sNeutronBlastBigArt,
+  [0x05FE] = sOfferingToTheSnakeDeityBigArt,
+  [0x05FF] = sOshaleonBigArt,
+  [0x0600] = sPowerToolDragonBigArt,
+  [0x0601] = sPredaplantVerteAnacondaBigArt,
+  [0x0602] = sQadshaddollKeiosBigArt,
+  [0x0603] = sRedDragonArchfiendBigArt,
+  [0x0604] = sRedRebootBigArt,
+  [0x0605] = sReeshaddollWendiBigArt,
+  [0x0606] = sReeshaddollWendikuruhuBigArt,
+  [0x0607] = sReptilanneRageBigArt,
+  [0x0608] = sReptilianneEchidnaBigArt,
+  [0x0609] = sReptilianneGardnaBigArt,
+  [0x060A] = sReptilianneGorgonBigArt,
+  [0x060B] = sReptilianneHydraBigArt,
+  [0x060C] = sReptilianneLamiaBigArt,
+  [0x060D] = sReptilianneMedusaBigArt,
+  [0x060E] = sReptilianneNagaBigArt,
+  [0x060F] = sReptiliannePoisonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4402,6 +4502,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05F9] = sMysticMineBigPalette,
   [0x05FA] = sNaelshaddollArielBigPalette,
   [0x05FB] = sNehshaddollGeniusBigPalette,
+  [0x05FC] = sNepheShaddollFusionBigPalette,
+  [0x05FD] = sNeutronBlastBigPalette,
+  [0x05FE] = sOfferingToTheSnakeDeityBigPalette,
+  [0x05FF] = sOshaleonBigPalette,
+  [0x0600] = sPowerToolDragonBigPalette,
+  [0x0601] = sPredaplantVerteAnacondaBigPalette,
+  [0x0602] = sQadshaddollKeiosBigPalette,
+  [0x0603] = sRedDragonArchfiendBigPalette,
+  [0x0604] = sRedRebootBigPalette,
+  [0x0605] = sReeshaddollWendiBigPalette,
+  [0x0606] = sReeshaddollWendikuruhuBigPalette,
+  [0x0607] = sReptilanneRageBigPalette,
+  [0x0608] = sReptilianneEchidnaBigPalette,
+  [0x0609] = sReptilianneGardnaBigPalette,
+  [0x060A] = sReptilianneGorgonBigPalette,
+  [0x060B] = sReptilianneHydraBigPalette,
+  [0x060C] = sReptilianneLamiaBigPalette,
+  [0x060D] = sReptilianneMedusaBigPalette,
+  [0x060E] = sReptilianneNagaBigPalette,
+  [0x060F] = sReptiliannePoisonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -5138,6 +5258,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05F9] = 0,
   [0x05FA] = 0,
   [0x05FB] = 0,
+  [0x05FC] = 0,
+  [0x05FD] = 0,
+  [0x05FE] = 0,
+  [0x05FF] = 0,
+  [0x0600] = 0,
+  [0x0601] = 0,
+  [0x0602] = 0,
+  [0x0603] = 0,
+  [0x0604] = 0,
+  [0x0605] = 0,
+  [0x0606] = 0,
+  [0x0607] = 0,
+  [0x0608] = 0,
+  [0x0609] = 0,
+  [0x060A] = 0,
+  [0x060B] = 0,
+  [0x060C] = 0,
+  [0x060D] = 0,
+  [0x060E] = 0,
+  [0x060F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5874,4 +6014,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05F9] = sMysticMineMiniArt,
   [0x05FA] = sNaelshaddollArielMiniArt,
   [0x05FB] = sNehshaddollGeniusMiniArt,
+  [0x05FC] = sNepheShaddollFusionMiniArt,
+  [0x05FD] = sNeutronBlastMiniArt,
+  [0x05FE] = sOfferingToTheSnakeDeityMiniArt,
+  [0x05FF] = sOshaleonMiniArt,
+  [0x0600] = sPowerToolDragonMiniArt,
+  [0x0601] = sPredaplantVerteAnacondaMiniArt,
+  [0x0602] = sQadshaddollKeiosMiniArt,
+  [0x0603] = sRedDragonArchfiendMiniArt,
+  [0x0604] = sRedRebootMiniArt,
+  [0x0605] = sReeshaddollWendiMiniArt,
+  [0x0606] = sReeshaddollWendikuruhuMiniArt,
+  [0x0607] = sReptilanneRageMiniArt,
+  [0x0608] = sReptilianneEchidnaMiniArt,
+  [0x0609] = sReptilianneGardnaMiniArt,
+  [0x060A] = sReptilianneGorgonMiniArt,
+  [0x060B] = sReptilianneHydraMiniArt,
+  [0x060C] = sReptilianneLamiaMiniArt,
+  [0x060D] = sReptilianneMedusaMiniArt,
+  [0x060E] = sReptilianneNagaMiniArt,
+  [0x060F] = sReptiliannePoisonMiniArt,
 };

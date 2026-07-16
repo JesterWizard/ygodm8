@@ -377,6 +377,12 @@
     case NEGATIVE_ENERGY:
       EffectNegativeEnergy();
       return;
+    case NEPHE_SHADDOLL_FUSION:
+      EffectNEPHE_SHADDOLL_FUSION();
+      return;
+    case NEUTRON_BLAST:
+      EffectNEUTRON_BLAST();
+      return;
     case NIGHTMARE_WHEEL:
       EffectNightmareWheel();
       return;
@@ -427,6 +433,12 @@
       return;
     case RELOAD:
       EffectReload();
+      return;
+    case REPTILANNE_RAGE:
+      EffectREPTILANNE_RAGE();
+      return;
+    case REPTILIANNE_POISON:
+      EffectREPTILIANNE_POISON();
       return;
     case RING_OF_DESTRUCTION:
       EffectRingOfDestruction();

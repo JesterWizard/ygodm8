@@ -732,6 +732,26 @@ static const u8 sMoltingEscapeName[] __attribute__((section(".append_assets"))) 
 static const u8 sMysticMineName[] __attribute__((section(".append_assets"))) = "Mystic Mine";
 static const u8 sNaelshaddollArielName[] __attribute__((section(".append_assets"))) = "Naelshaddoll Ariel";
 static const u8 sNehshaddollGeniusName[] __attribute__((section(".append_assets"))) = "Nehshaddoll Genius";
+static const u8 sNepheShaddollFusionName[] __attribute__((section(".append_assets"))) = "Nephe Shaddoll Fusion";
+static const u8 sNeutronBlastName[] __attribute__((section(".append_assets"))) = "Neutron Blast";
+static const u8 sOfferingToTheSnakeDeityName[] __attribute__((section(".append_assets"))) = "Offering to the Snake Deity";
+static const u8 sOshaleonName[] __attribute__((section(".append_assets"))) = "Oshaleon";
+static const u8 sPowerToolDragonName[] __attribute__((section(".append_assets"))) = "Power Tool Dragon";
+static const u8 sPredaplantVerteAnacondaName[] __attribute__((section(".append_assets"))) = "Predaplant Verte Anaconda";
+static const u8 sQadshaddollKeiosName[] __attribute__((section(".append_assets"))) = "Qadshaddoll Keios";
+static const u8 sRedDragonArchfiendName[] __attribute__((section(".append_assets"))) = "Red Dragon Archfiend";
+static const u8 sRedRebootName[] __attribute__((section(".append_assets"))) = "Red Reboot";
+static const u8 sReeshaddollWendiName[] __attribute__((section(".append_assets"))) = "Reeshaddoll Wendi";
+static const u8 sReeshaddollWendikuruhuName[] __attribute__((section(".append_assets"))) = "Reeshaddoll Wendikurhu";
+static const u8 sReptilanneRageName[] __attribute__((section(".append_assets"))) = "Reptilianne Rage";
+static const u8 sReptilianneEchidnaName[] __attribute__((section(".append_assets"))) = "Reptilianne Echidna";
+static const u8 sReptilianneGardnaName[] __attribute__((section(".append_assets"))) = "Reptilianne Gardna";
+static const u8 sReptilianneGorgonName[] __attribute__((section(".append_assets"))) = "Reptilianne Gorgon";
+static const u8 sReptilianneHydraName[] __attribute__((section(".append_assets"))) = "Reptilianne Hydra";
+static const u8 sReptilianneLamiaName[] __attribute__((section(".append_assets"))) = "Reptilianne Lamia";
+static const u8 sReptilianneMedusaName[] __attribute__((section(".append_assets"))) = "Reptilianne Medusa";
+static const u8 sReptilianneNagaName[] __attribute__((section(".append_assets"))) = "Reptilianne Naga";
+static const u8 sReptiliannePoisonName[] __attribute__((section(".append_assets"))) = "Reptilianne Poison";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2202,6 +2222,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sNaelshaddollArielName;
   if (cardId == 0x05FB)
     return (u8 *)sNehshaddollGeniusName;
+  if (cardId == 0x05FC)
+    return (u8 *)sNepheShaddollFusionName;
+  if (cardId == 0x05FD)
+    return (u8 *)sNeutronBlastName;
+  if (cardId == 0x05FE)
+    return (u8 *)sOfferingToTheSnakeDeityName;
+  if (cardId == 0x05FF)
+    return (u8 *)sOshaleonName;
+  if (cardId == 0x0600)
+    return (u8 *)sPowerToolDragonName;
+  if (cardId == 0x0601)
+    return (u8 *)sPredaplantVerteAnacondaName;
+  if (cardId == 0x0602)
+    return (u8 *)sQadshaddollKeiosName;
+  if (cardId == 0x0603)
+    return (u8 *)sRedDragonArchfiendName;
+  if (cardId == 0x0604)
+    return (u8 *)sRedRebootName;
+  if (cardId == 0x0605)
+    return (u8 *)sReeshaddollWendiName;
+  if (cardId == 0x0606)
+    return (u8 *)sReeshaddollWendikuruhuName;
+  if (cardId == 0x0607)
+    return (u8 *)sReptilanneRageName;
+  if (cardId == 0x0608)
+    return (u8 *)sReptilianneEchidnaName;
+  if (cardId == 0x0609)
+    return (u8 *)sReptilianneGardnaName;
+  if (cardId == 0x060A)
+    return (u8 *)sReptilianneGorgonName;
+  if (cardId == 0x060B)
+    return (u8 *)sReptilianneHydraName;
+  if (cardId == 0x060C)
+    return (u8 *)sReptilianneLamiaName;
+  if (cardId == 0x060D)
+    return (u8 *)sReptilianneMedusaName;
+  if (cardId == 0x060E)
+    return (u8 *)sReptilianneNagaName;
+  if (cardId == 0x060F)
+    return (u8 *)sReptiliannePoisonName;
 
   return gCardNames[cardId];
 }

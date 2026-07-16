@@ -384,6 +384,22 @@ unsigned char CanActivateNAELSHADDOLL_ARIEL(void);
 void ActivateNAELSHADDOLL_ARIELEffect(void);
 unsigned char CanActivateNEHSHADDOLL_GENIUS(void);
 void ActivateNEHSHADDOLL_GENIUSEffect(void);
+unsigned char CanActivatePOWER_TOOL_DRAGON(void);
+void ActivatePOWER_TOOL_DRAGONEffect(void);
+unsigned char CanActivatePREDAPLANT_VERTE_ANACONDA(void);
+void ActivatePREDAPLANT_VERTE_ANACONDAEffect(void);
+unsigned char CanActivateQADSHADDOLL_KEIOS(void);
+void ActivateQADSHADDOLL_KEIOSEffect(void);
+unsigned char CanActivateREESHADDOLL_WENDI(void);
+void ActivateREESHADDOLL_WENDIEffect(void);
+unsigned char CanActivateREESHADDOLL_WENDIKURUHU(void);
+void ActivateREESHADDOLL_WENDIKURUHUEffect(void);
+unsigned char CanActivateREPTILIANNE_ECHIDNA(void);
+void ActivateREPTILIANNE_ECHIDNAEffect(void);
+unsigned char CanActivateREPTILIANNE_LAMIA(void);
+void ActivateREPTILIANNE_LAMIAEffect(void);
+unsigned char CanActivateREPTILIANNE_MEDUSA(void);
+void ActivateREPTILIANNE_MEDUSAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1767,6 +1783,38 @@ FAILED:
   }
   if (gMonEffect.id == NEHSHADDOLL_GENIUS) {
     ActivateNEHSHADDOLL_GENIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == POWER_TOOL_DRAGON) {
+    ActivatePOWER_TOOL_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == PREDAPLANT_VERTE_ANACONDA) {
+    ActivatePREDAPLANT_VERTE_ANACONDAEffect();
+    return;
+  }
+  if (gMonEffect.id == QADSHADDOLL_KEIOS) {
+    ActivateQADSHADDOLL_KEIOSEffect();
+    return;
+  }
+  if (gMonEffect.id == REESHADDOLL_WENDI) {
+    ActivateREESHADDOLL_WENDIEffect();
+    return;
+  }
+  if (gMonEffect.id == REESHADDOLL_WENDIKURUHU) {
+    ActivateREESHADDOLL_WENDIKURUHUEffect();
+    return;
+  }
+  if (gMonEffect.id == REPTILIANNE_ECHIDNA) {
+    ActivateREPTILIANNE_ECHIDNAEffect();
+    return;
+  }
+  if (gMonEffect.id == REPTILIANNE_LAMIA) {
+    ActivateREPTILIANNE_LAMIAEffect();
+    return;
+  }
+  if (gMonEffect.id == REPTILIANNE_MEDUSA) {
+    ActivateREPTILIANNE_MEDUSAEffect();
     return;
   }
 }

@@ -1533,11 +1533,31 @@
 #define MYSTIC_MINE                              0x05F9
 #define NAELSHADDOLL_ARIEL                       0x05FA
 #define NEHSHADDOLL_GENIUS                       0x05FB
+#define NEPHE_SHADDOLL_FUSION                    0x05FC
+#define NEUTRON_BLAST                            0x05FD
+#define OFFERING_TO_THE_SNAKE_DEITY              0x05FE
+#define OSHALEON                                 0x05FF
+#define POWER_TOOL_DRAGON                        0x0600
+#define PREDAPLANT_VERTE_ANACONDA                0x0601
+#define QADSHADDOLL_KEIOS                        0x0602
+#define RED_DRAGON_ARCHFIEND                     0x0603
+#define RED_REBOOT                               0x0604
+#define REESHADDOLL_WENDI                        0x0605
+#define REESHADDOLL_WENDIKURUHU                  0x0606
+#define REPTILANNE_RAGE                          0x0607
+#define REPTILIANNE_ECHIDNA                      0x0608
+#define REPTILIANNE_GARDNA                       0x0609
+#define REPTILIANNE_GORGON                       0x060A
+#define REPTILIANNE_HYDRA                        0x060B
+#define REPTILIANNE_LAMIA                        0x060C
+#define REPTILIANNE_MEDUSA                       0x060D
+#define REPTILIANNE_NAGA                         0x060E
+#define REPTILIANNE_POISON                       0x060F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05FC
-#define NUM_CUSTOM_CARDS                        0x02DB
+#define NUM_TOTAL_CARDS                         0x0610
+#define NUM_CUSTOM_CARDS                        0x02EF
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
