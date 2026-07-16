@@ -31,6 +31,10 @@ static const unsigned short sPendulumPalette[] APPEND_ASSET =
 static const unsigned short sLinkPalette[] APPEND_ASSET =
     INCBIN_U16("src_custom/assets/cards/frames/link.gbapal");
 
+/* ---- Mini card border tile data ---- */
+static const unsigned char sSynchroMiniBorder[] APPEND_ASSET =
+    INCBIN_U8("src_custom/assets/cards/frames/synchro_mini.4bpp");
+
 const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
     [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = sSynchroPalette,
     [COLOR_XYZ - FIRST_NEW_COLOR]      = sXyzPalette,
@@ -43,7 +47,7 @@ const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
  * custom .4bpp border files are added. Until then, mini card hooks
  * fall back to gUnk_8E17F48[COLOR_NORMAL]. */
 const unsigned char *gCustomCardColorBorders[NUM_NEW_COLORS] APPEND_RODATA = {
-    [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = NULL,
+    [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = sSynchroMiniBorder,
     [COLOR_XYZ - FIRST_NEW_COLOR]      = NULL,
     [COLOR_PENDULUM - FIRST_NEW_COLOR] = NULL,
     [COLOR_LINK - FIRST_NEW_COLOR]     = NULL,
