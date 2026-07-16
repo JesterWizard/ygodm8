@@ -218,6 +218,9 @@
     case EVIL_ASSAULT:
       EffectEVIL_ASSAULT();
       return;
+    case EVIL_MIND:
+      EffectEVIL_MIND();
+      return;
     case EXCHANGE:
       EffectExchange();
       return;
@@ -226,6 +229,9 @@
       return;
     case FINAL_COUNTDOWN:
       EffectFinalCountdown();
+      return;
+    case FUSION_DEPLOYMENT:
+      EffectFUSION_DEPLOYMENT();
       return;
     case FUSION_DESTINY:
       EffectFUSION_DESTINY();

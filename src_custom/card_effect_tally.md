@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `603` effects
+- `623` effects
 
 ## Tally
 
@@ -584,6 +584,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Evil Hero Infernal Gainer` | `src_custom/activated_effects/evil_hero_infernal_gainer.c` |
 | `permanent_effects` | `Evil Hero Infernal Prodigy` | `src_custom/permanent_effects/evil_hero_infernal_prodigy.c` |
 | `activated_effects` | `Evil Hero Infernal Rider` | `src_custom/activated_effects/evil_hero_infernal_rider.c` |
+| `permanent_effects` | `Evil Hero Infernal Sniper` | `src_custom/permanent_effects/evil_hero_infernal_sniper.c` |
+| `permanent_effects` | `Evil Hero Inferno Wing` | `src_custom/permanent_effects/evil_hero_inferno_wing.c` |
+| `permanent_effects` | `Evil Hero Inferno Wing Backfire` | `src_custom/permanent_effects/evil_hero_inferno_wing_backfire.c` |
+| `activated_effects` | `Evil Hero Lightning Golem` | `src_custom/activated_effects/evil_hero_lightning_golem.c` |
+| `activated_effects` | `Evil Hero Malicious Bane` | `src_custom/activated_effects/evil_hero_malicious_bane.c` |
+| `permanent_effects` | `Evil Hero Malicious Edge` | `src_custom/permanent_effects/evil_hero_malicious_edge.c` |
+| `permanent_effects` | `Evil Hero Malicious Fiend` | `src_custom/permanent_effects/evil_hero_malicious_fiend.c` |
+| `activated_effects` | `Evil Hero Neos Lord` | `src_custom/activated_effects/evil_hero_neos_lord.c` |
+| `activated_effects` | `Evil Hero Sinister Necrom` | `src_custom/activated_effects/evil_hero_sinister_necrom.c` |
+| `activated_effects` | `Evil Hero Toxic Bubble` | `src_custom/activated_effects/evil_hero_toxic_bubble.c` |
+| `activated_effects` | `Evil Hero Vicious Claws` | `src_custom/activated_effects/evil_hero_vicious_claws.c` |
+| `permanent_effects` | `Evil Hero Wild Cyclone` | `src_custom/permanent_effects/evil_hero_wild_cyclone.c` |
+| `spell_effects` | `Evil Mind` | `src_custom/spell_effects/evil_mind.c` |
+| `spell_effects` | `Fusion Deployment` | `src_custom/spell_effects/fusion_deployment.c` |
+| `activated_effects` | `Gandora G The Dragon Of Destruction` | `src_custom/activated_effects/gandora_g_the_dragon_of_destruction.c` |
+| `permanent_effects` | `Gandora X The Dragon Of Demolition` | `src_custom/permanent_effects/gandora_x_the_dragon_of_demolition.c` |
+| `permanent_effects` | `Goyo Guardian` | `src_custom/permanent_effects/goyo_guardian.c` |
+| `permanent_effects` | `Grinder Golem` | `src_custom/permanent_effects/grinder_golem.c` |
+| `activated_effects` | `Harpie Channeler` | `src_custom/activated_effects/harpie_channeler.c` |
+| `activated_effects` | `Harpie Conductor` | `src_custom/activated_effects/harpie_conductor.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

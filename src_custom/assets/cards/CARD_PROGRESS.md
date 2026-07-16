@@ -698,26 +698,26 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `EVIL_HERO_INFERNAL_SNIPER` — `evil_hero_infernal_sniper.png`
-- [ ] `EVIL_HERO_INFERNO_WING` — `evil_hero_inferno_wing.png`
-- [ ] `EVIL_HERO_INFERNO_WING_BACKFIRE` — `evil_hero_inferno_wing_backfire.png`
-- [ ] `EVIL_HERO_LIGHTNING_GOLEM` — `evil_hero_lightning_golem.png`
-- [ ] `EVIL_HERO_MALICIOUS_BANE` — `evil_hero_malicious_bane.png`
-- [ ] `EVIL_HERO_MALICIOUS_EDGE` — `evil_hero_malicious_edge.png`
-- [ ] `EVIL_HERO_MALICIOUS_FIEND` — `evil_hero_malicious_fiend.png`
-- [ ] `EVIL_HERO_NEOS_LORD` — `evil_hero_neos_lord.png`
-- [ ] `EVIL_HERO_SINISTER_NECROM` — `evil_hero_sinister_necrom.png`
-- [ ] `EVIL_HERO_TOXIC_BUBBLE` — `evil_hero_toxic_bubble.png`
-- [ ] `EVIL_HERO_VICIOUS_CLAWS` — `evil_hero_vicious_claws.png`
-- [ ] `EVIL_HERO_WILD_CYCLONE` — `evil_hero_wild_cyclone.png`
-- [ ] `EVIL_MIND` — `evil_mind.png`
-- [ ] `FUSION_DEPLOYMENT` — `fusion_deployment.png`
-- [ ] `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` — `gandora_g_the_dragon_of_destruction.png`
-- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
-- [ ] `GOYO_GUARDIAN` — `goyo_guardian.png`
-- [ ] `GRINDER_GOLEM` — `grinder_golem.png`
-- [ ] `HARPIE_CHANNELER` — `harpie_channeler.png`
-- [ ] `HARPIE_CONDUCTOR` — `harpie_conductor.png`
+- [x] `EVIL_HERO_INFERNAL_SNIPER` — `evil_hero_infernal_sniper.png`
+- [x] `EVIL_HERO_INFERNO_WING` — `evil_hero_inferno_wing.png`
+- [x] `EVIL_HERO_INFERNO_WING_BACKFIRE` — `evil_hero_inferno_wing_backfire.png`
+- [x] `EVIL_HERO_LIGHTNING_GOLEM` — `evil_hero_lightning_golem.png`
+- [x] `EVIL_HERO_MALICIOUS_BANE` — `evil_hero_malicious_bane.png`
+- [x] `EVIL_HERO_MALICIOUS_EDGE` — `evil_hero_malicious_edge.png`
+- [x] `EVIL_HERO_MALICIOUS_FIEND` — `evil_hero_malicious_fiend.png`
+- [x] `EVIL_HERO_NEOS_LORD` — `evil_hero_neos_lord.png`
+- [x] `EVIL_HERO_SINISTER_NECROM` — `evil_hero_sinister_necrom.png`
+- [x] `EVIL_HERO_TOXIC_BUBBLE` — `evil_hero_toxic_bubble.png`
+- [x] `EVIL_HERO_VICIOUS_CLAWS` — `evil_hero_vicious_claws.png`
+- [x] `EVIL_HERO_WILD_CYCLONE` — `evil_hero_wild_cyclone.png`
+- [x] `EVIL_MIND` — `evil_mind.png`
+- [x] `FUSION_DEPLOYMENT` — `fusion_deployment.png`
+- [x] `GANDORA_G_THE_DRAGON_OF_DESTRUCTION` — `gandora_g_the_dragon_of_destruction.png`
+- [x] `GANDORA_X_THE_DRAGON_OF_DEMOLITION` — `gandora_x_the_dragon_of_demolition.png`
+- [x] `GOYO_GUARDIAN` — `goyo_guardian.png`
+- [x] `GRINDER_GOLEM` — `grinder_golem.png`
+- [x] `HARPIE_CHANNELER` — `harpie_channeler.png`
+- [x] `HARPIE_CONDUCTOR` — `harpie_conductor.png`
 - [ ] `HARPIE_DANCER` — `harpie_dancer.png`
 - [ ] `HARPIE_HARPIST` — `harpie_harpist.png`
 - [ ] `HARPIE_LADY_ELEGANCE` — `harpie_lady_elegance.png`

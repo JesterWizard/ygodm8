@@ -2692,6 +2692,86 @@ static const unsigned char sEvilHeroInfernalRiderBigArt[] __attribute__((section
 static const unsigned short sEvilHeroInfernalRiderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_infernal_rider.gbapal");
 static const unsigned char sEvilHeroInfernalRiderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_infernal_rider.lz");
 
+static const unsigned char sEvilHeroInfernalSniperBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_infernal_sniper.huff");
+static const unsigned short sEvilHeroInfernalSniperBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_infernal_sniper.gbapal");
+static const unsigned char sEvilHeroInfernalSniperMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_infernal_sniper.lz");
+
+static const unsigned char sEvilHeroInfernoWingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_inferno_wing.huff");
+static const unsigned short sEvilHeroInfernoWingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_inferno_wing.gbapal");
+static const unsigned char sEvilHeroInfernoWingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_inferno_wing.lz");
+
+static const unsigned char sEvilHeroInfernoWingBackfireBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_inferno_wing_backfire.huff");
+static const unsigned short sEvilHeroInfernoWingBackfireBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_inferno_wing_backfire.gbapal");
+static const unsigned char sEvilHeroInfernoWingBackfireMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_inferno_wing_backfire.lz");
+
+static const unsigned char sEvilHeroLightningGolemBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_lightning_golem.huff");
+static const unsigned short sEvilHeroLightningGolemBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_lightning_golem.gbapal");
+static const unsigned char sEvilHeroLightningGolemMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_lightning_golem.lz");
+
+static const unsigned char sEvilHeroMaliciousBaneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_malicious_bane.huff");
+static const unsigned short sEvilHeroMaliciousBaneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_malicious_bane.gbapal");
+static const unsigned char sEvilHeroMaliciousBaneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_malicious_bane.lz");
+
+static const unsigned char sEvilHeroMaliciousEdgeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_malicious_edge.huff");
+static const unsigned short sEvilHeroMaliciousEdgeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_malicious_edge.gbapal");
+static const unsigned char sEvilHeroMaliciousEdgeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_malicious_edge.lz");
+
+static const unsigned char sEvilHeroMaliciousFiendBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_malicious_fiend.huff");
+static const unsigned short sEvilHeroMaliciousFiendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_malicious_fiend.gbapal");
+static const unsigned char sEvilHeroMaliciousFiendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_malicious_fiend.lz");
+
+static const unsigned char sEvilHeroNeosLordBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_neos_lord.huff");
+static const unsigned short sEvilHeroNeosLordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_neos_lord.gbapal");
+static const unsigned char sEvilHeroNeosLordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_neos_lord.lz");
+
+static const unsigned char sEvilHeroSinisterNecromBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_sinister_necrom.huff");
+static const unsigned short sEvilHeroSinisterNecromBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_sinister_necrom.gbapal");
+static const unsigned char sEvilHeroSinisterNecromMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_sinister_necrom.lz");
+
+static const unsigned char sEvilHeroToxicBubbleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_toxic_bubble.huff");
+static const unsigned short sEvilHeroToxicBubbleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_toxic_bubble.gbapal");
+static const unsigned char sEvilHeroToxicBubbleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_toxic_bubble.lz");
+
+static const unsigned char sEvilHeroViciousClawsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_vicious_claws.huff");
+static const unsigned short sEvilHeroViciousClawsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_vicious_claws.gbapal");
+static const unsigned char sEvilHeroViciousClawsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_vicious_claws.lz");
+
+static const unsigned char sEvilHeroWildCycloneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_wild_cyclone.huff");
+static const unsigned short sEvilHeroWildCycloneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_wild_cyclone.gbapal");
+static const unsigned char sEvilHeroWildCycloneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_wild_cyclone.lz");
+
+static const unsigned char sEvilMindBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_mind.huff");
+static const unsigned short sEvilMindBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_mind.gbapal");
+static const unsigned char sEvilMindMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_mind.lz");
+
+static const unsigned char sFusionDeploymentBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/fusion_deployment.huff");
+static const unsigned short sFusionDeploymentBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/fusion_deployment.gbapal");
+static const unsigned char sFusionDeploymentMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/fusion_deployment.lz");
+
+static const unsigned char sGandoraGTheDragonOfDestructionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gandora_g_the_dragon_of_destruction.huff");
+static const unsigned short sGandoraGTheDragonOfDestructionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gandora_g_the_dragon_of_destruction.gbapal");
+static const unsigned char sGandoraGTheDragonOfDestructionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gandora_g_the_dragon_of_destruction.lz");
+
+static const unsigned char sGandoraXTheDragonOfDemolitionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gandora_x_the_dragon_of_demolition.huff");
+static const unsigned short sGandoraXTheDragonOfDemolitionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gandora_x_the_dragon_of_demolition.gbapal");
+static const unsigned char sGandoraXTheDragonOfDemolitionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gandora_x_the_dragon_of_demolition.lz");
+
+static const unsigned char sGoyoGuardianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/goyo_guardian.huff");
+static const unsigned short sGoyoGuardianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/goyo_guardian.gbapal");
+static const unsigned char sGoyoGuardianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/goyo_guardian.lz");
+
+static const unsigned char sGrinderGolemBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/grinder_golem.huff");
+static const unsigned short sGrinderGolemBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/grinder_golem.gbapal");
+static const unsigned char sGrinderGolemMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/grinder_golem.lz");
+
+static const unsigned char sHarpieChannelerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_channeler.huff");
+static const unsigned short sHarpieChannelerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_channeler.gbapal");
+static const unsigned char sHarpieChannelerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_channeler.lz");
+
+static const unsigned char sHarpieConductorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_conductor.huff");
+static const unsigned short sHarpieConductorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_conductor.gbapal");
+static const unsigned char sHarpieConductorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_conductor.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3366,6 +3446,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05BD] = sEvilHeroInfernalGainerBigArt,
   [0x05BE] = sEvilHeroInfernalProdigyBigArt,
   [0x05BF] = sEvilHeroInfernalRiderBigArt,
+  [0x05C0] = sEvilHeroInfernalSniperBigArt,
+  [0x05C1] = sEvilHeroInfernoWingBigArt,
+  [0x05C2] = sEvilHeroInfernoWingBackfireBigArt,
+  [0x05C3] = sEvilHeroLightningGolemBigArt,
+  [0x05C4] = sEvilHeroMaliciousBaneBigArt,
+  [0x05C5] = sEvilHeroMaliciousEdgeBigArt,
+  [0x05C6] = sEvilHeroMaliciousFiendBigArt,
+  [0x05C7] = sEvilHeroNeosLordBigArt,
+  [0x05C8] = sEvilHeroSinisterNecromBigArt,
+  [0x05C9] = sEvilHeroToxicBubbleBigArt,
+  [0x05CA] = sEvilHeroViciousClawsBigArt,
+  [0x05CB] = sEvilHeroWildCycloneBigArt,
+  [0x05CC] = sEvilMindBigArt,
+  [0x05CD] = sFusionDeploymentBigArt,
+  [0x05CE] = sGandoraGTheDragonOfDestructionBigArt,
+  [0x05CF] = sGandoraXTheDragonOfDemolitionBigArt,
+  [0x05D0] = sGoyoGuardianBigArt,
+  [0x05D1] = sGrinderGolemBigArt,
+  [0x05D2] = sHarpieChannelerBigArt,
+  [0x05D3] = sHarpieConductorBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4042,6 +4142,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05BD] = sEvilHeroInfernalGainerBigPalette,
   [0x05BE] = sEvilHeroInfernalProdigyBigPalette,
   [0x05BF] = sEvilHeroInfernalRiderBigPalette,
+  [0x05C0] = sEvilHeroInfernalSniperBigPalette,
+  [0x05C1] = sEvilHeroInfernoWingBigPalette,
+  [0x05C2] = sEvilHeroInfernoWingBackfireBigPalette,
+  [0x05C3] = sEvilHeroLightningGolemBigPalette,
+  [0x05C4] = sEvilHeroMaliciousBaneBigPalette,
+  [0x05C5] = sEvilHeroMaliciousEdgeBigPalette,
+  [0x05C6] = sEvilHeroMaliciousFiendBigPalette,
+  [0x05C7] = sEvilHeroNeosLordBigPalette,
+  [0x05C8] = sEvilHeroSinisterNecromBigPalette,
+  [0x05C9] = sEvilHeroToxicBubbleBigPalette,
+  [0x05CA] = sEvilHeroViciousClawsBigPalette,
+  [0x05CB] = sEvilHeroWildCycloneBigPalette,
+  [0x05CC] = sEvilMindBigPalette,
+  [0x05CD] = sFusionDeploymentBigPalette,
+  [0x05CE] = sGandoraGTheDragonOfDestructionBigPalette,
+  [0x05CF] = sGandoraXTheDragonOfDemolitionBigPalette,
+  [0x05D0] = sGoyoGuardianBigPalette,
+  [0x05D1] = sGrinderGolemBigPalette,
+  [0x05D2] = sHarpieChannelerBigPalette,
+  [0x05D3] = sHarpieConductorBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4718,6 +4838,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05BD] = 0,
   [0x05BE] = 0,
   [0x05BF] = 0,
+  [0x05C0] = 0,
+  [0x05C1] = 0,
+  [0x05C2] = 0,
+  [0x05C3] = 0,
+  [0x05C4] = 0,
+  [0x05C5] = 0,
+  [0x05C6] = 0,
+  [0x05C7] = 0,
+  [0x05C8] = 0,
+  [0x05C9] = 0,
+  [0x05CA] = 0,
+  [0x05CB] = 0,
+  [0x05CC] = 0,
+  [0x05CD] = 0,
+  [0x05CE] = 0,
+  [0x05CF] = 0,
+  [0x05D0] = 0,
+  [0x05D1] = 0,
+  [0x05D2] = 0,
+  [0x05D3] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5394,4 +5534,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05BD] = sEvilHeroInfernalGainerMiniArt,
   [0x05BE] = sEvilHeroInfernalProdigyMiniArt,
   [0x05BF] = sEvilHeroInfernalRiderMiniArt,
+  [0x05C0] = sEvilHeroInfernalSniperMiniArt,
+  [0x05C1] = sEvilHeroInfernoWingMiniArt,
+  [0x05C2] = sEvilHeroInfernoWingBackfireMiniArt,
+  [0x05C3] = sEvilHeroLightningGolemMiniArt,
+  [0x05C4] = sEvilHeroMaliciousBaneMiniArt,
+  [0x05C5] = sEvilHeroMaliciousEdgeMiniArt,
+  [0x05C6] = sEvilHeroMaliciousFiendMiniArt,
+  [0x05C7] = sEvilHeroNeosLordMiniArt,
+  [0x05C8] = sEvilHeroSinisterNecromMiniArt,
+  [0x05C9] = sEvilHeroToxicBubbleMiniArt,
+  [0x05CA] = sEvilHeroViciousClawsMiniArt,
+  [0x05CB] = sEvilHeroWildCycloneMiniArt,
+  [0x05CC] = sEvilMindMiniArt,
+  [0x05CD] = sFusionDeploymentMiniArt,
+  [0x05CE] = sGandoraGTheDragonOfDestructionMiniArt,
+  [0x05CF] = sGandoraXTheDragonOfDemolitionMiniArt,
+  [0x05D0] = sGoyoGuardianMiniArt,
+  [0x05D1] = sGrinderGolemMiniArt,
+  [0x05D2] = sHarpieChannelerMiniArt,
+  [0x05D3] = sHarpieConductorMiniArt,
 };

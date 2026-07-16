@@ -334,6 +334,24 @@ unsigned char CanActivateEVIL_HERO_INFERNAL_GAINER(void);
 void ActivateEVIL_HERO_INFERNAL_GAINEREffect(void);
 unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void);
 void ActivateEVIL_HERO_INFERNAL_RIDEREffect(void);
+unsigned char CanActivateEVIL_HERO_LIGHTNING_GOLEM(void);
+void ActivateEVIL_HERO_LIGHTNING_GOLEMEffect(void);
+unsigned char CanActivateEVIL_HERO_MALICIOUS_BANE(void);
+void ActivateEVIL_HERO_MALICIOUS_BANEEffect(void);
+unsigned char CanActivateEVIL_HERO_NEOS_LORD(void);
+void ActivateEVIL_HERO_NEOS_LORDEffect(void);
+unsigned char CanActivateEVIL_HERO_SINISTER_NECROM(void);
+void ActivateEVIL_HERO_SINISTER_NECROMEffect(void);
+unsigned char CanActivateEVIL_HERO_TOXIC_BUBBLE(void);
+void ActivateEVIL_HERO_TOXIC_BUBBLEEffect(void);
+unsigned char CanActivateEVIL_HERO_VICIOUS_CLAWS(void);
+void ActivateEVIL_HERO_VICIOUS_CLAWSEffect(void);
+unsigned char CanActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTION(void);
+void ActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTIONEffect(void);
+unsigned char CanActivateHARPIE_CHANNELER(void);
+void ActivateHARPIE_CHANNELEREffect(void);
+unsigned char CanActivateHARPIE_CONDUCTOR(void);
+void ActivateHARPIE_CONDUCTOREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1617,6 +1635,42 @@ FAILED:
   }
   if (gMonEffect.id == EVIL_HERO_INFERNAL_RIDER) {
     ActivateEVIL_HERO_INFERNAL_RIDEREffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_LIGHTNING_GOLEM) {
+    ActivateEVIL_HERO_LIGHTNING_GOLEMEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_MALICIOUS_BANE) {
+    ActivateEVIL_HERO_MALICIOUS_BANEEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_NEOS_LORD) {
+    ActivateEVIL_HERO_NEOS_LORDEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_SINISTER_NECROM) {
+    ActivateEVIL_HERO_SINISTER_NECROMEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_TOXIC_BUBBLE) {
+    ActivateEVIL_HERO_TOXIC_BUBBLEEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_VICIOUS_CLAWS) {
+    ActivateEVIL_HERO_VICIOUS_CLAWSEffect();
+    return;
+  }
+  if (gMonEffect.id == GANDORA_G_THE_DRAGON_OF_DESTRUCTION) {
+    ActivateGANDORA_G_THE_DRAGON_OF_DESTRUCTIONEffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_CHANNELER) {
+    ActivateHARPIE_CHANNELEREffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_CONDUCTOR) {
+    ActivateHARPIE_CONDUCTOREffect();
     return;
   }
 }

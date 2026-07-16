@@ -672,6 +672,26 @@ static const u8 sEvilHeroDeadEndPrisonName[] __attribute__((section(".append_ass
 static const u8 sEvilHeroInfernalGainerName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Gainer";
 static const u8 sEvilHeroInfernalProdigyName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Prodigy";
 static const u8 sEvilHeroInfernalRiderName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Rider";
+static const u8 sEvilHeroInfernalSniperName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Sniper";
+static const u8 sEvilHeroInfernoWingName[] __attribute__((section(".append_assets"))) = "Evil HERO Inferno Wing";
+static const u8 sEvilHeroInfernoWingBackfireName[] __attribute__((section(".append_assets"))) = "Evil HERO Inferno Wing - Backfire";
+static const u8 sEvilHeroLightningGolemName[] __attribute__((section(".append_assets"))) = "Evil HERO Lightning Golem";
+static const u8 sEvilHeroMaliciousBaneName[] __attribute__((section(".append_assets"))) = "Evil HERO Malicious Bane";
+static const u8 sEvilHeroMaliciousEdgeName[] __attribute__((section(".append_assets"))) = "Evil HERO Malicious Edge";
+static const u8 sEvilHeroMaliciousFiendName[] __attribute__((section(".append_assets"))) = "Evil HERO Malicious Fiend";
+static const u8 sEvilHeroNeosLordName[] __attribute__((section(".append_assets"))) = "Evil HERO Neos Lord";
+static const u8 sEvilHeroSinisterNecromName[] __attribute__((section(".append_assets"))) = "Evil HERO Sinister Necrom";
+static const u8 sEvilHeroToxicBubbleName[] __attribute__((section(".append_assets"))) = "Evil HERO Toxic Bubble";
+static const u8 sEvilHeroViciousClawsName[] __attribute__((section(".append_assets"))) = "Evil HERO Vicious Claws";
+static const u8 sEvilHeroWildCycloneName[] __attribute__((section(".append_assets"))) = "Evil HERO Wild Cyclone";
+static const u8 sEvilMindName[] __attribute__((section(".append_assets"))) = "Evil Mind";
+static const u8 sFusionDeploymentName[] __attribute__((section(".append_assets"))) = "Fusion Deployment";
+static const u8 sGandoraGTheDragonOfDestructionName[] __attribute__((section(".append_assets"))) = "Gandora-G the Dragon of Destruction";
+static const u8 sGandoraXTheDragonOfDemolitionName[] __attribute__((section(".append_assets"))) = "Gandora-X the Dragon of Demolition";
+static const u8 sGoyoGuardianName[] __attribute__((section(".append_assets"))) = "Goyo Guardian";
+static const u8 sGrinderGolemName[] __attribute__((section(".append_assets"))) = "Grinder Golem";
+static const u8 sHarpieChannelerName[] __attribute__((section(".append_assets"))) = "Harpie Channeler";
+static const u8 sHarpieConductorName[] __attribute__((section(".append_assets"))) = "Harpie Conductor";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2022,6 +2042,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sEvilHeroInfernalProdigyName;
   if (cardId == 0x05BF)
     return (u8 *)sEvilHeroInfernalRiderName;
+  if (cardId == 0x05C0)
+    return (u8 *)sEvilHeroInfernalSniperName;
+  if (cardId == 0x05C1)
+    return (u8 *)sEvilHeroInfernoWingName;
+  if (cardId == 0x05C2)
+    return (u8 *)sEvilHeroInfernoWingBackfireName;
+  if (cardId == 0x05C3)
+    return (u8 *)sEvilHeroLightningGolemName;
+  if (cardId == 0x05C4)
+    return (u8 *)sEvilHeroMaliciousBaneName;
+  if (cardId == 0x05C5)
+    return (u8 *)sEvilHeroMaliciousEdgeName;
+  if (cardId == 0x05C6)
+    return (u8 *)sEvilHeroMaliciousFiendName;
+  if (cardId == 0x05C7)
+    return (u8 *)sEvilHeroNeosLordName;
+  if (cardId == 0x05C8)
+    return (u8 *)sEvilHeroSinisterNecromName;
+  if (cardId == 0x05C9)
+    return (u8 *)sEvilHeroToxicBubbleName;
+  if (cardId == 0x05CA)
+    return (u8 *)sEvilHeroViciousClawsName;
+  if (cardId == 0x05CB)
+    return (u8 *)sEvilHeroWildCycloneName;
+  if (cardId == 0x05CC)
+    return (u8 *)sEvilMindName;
+  if (cardId == 0x05CD)
+    return (u8 *)sFusionDeploymentName;
+  if (cardId == 0x05CE)
+    return (u8 *)sGandoraGTheDragonOfDestructionName;
+  if (cardId == 0x05CF)
+    return (u8 *)sGandoraXTheDragonOfDemolitionName;
+  if (cardId == 0x05D0)
+    return (u8 *)sGoyoGuardianName;
+  if (cardId == 0x05D1)
+    return (u8 *)sGrinderGolemName;
+  if (cardId == 0x05D2)
+    return (u8 *)sHarpieChannelerName;
+  if (cardId == 0x05D3)
+    return (u8 *)sHarpieConductorName;
 
   return gCardNames[cardId];
 }

@@ -168,6 +168,24 @@ unsigned char ShouldActivateEVIL_HERO_DARK_GAIA(void);
 void ActivateEVIL_HERO_DARK_GAIA(void);
 unsigned char ShouldActivateEVIL_HERO_INFERNAL_PRODIGY(void);
 void ActivateEVIL_HERO_INFERNAL_PRODIGY(void);
+unsigned char ShouldActivateEVIL_HERO_INFERNAL_SNIPER(void);
+void ActivateEVIL_HERO_INFERNAL_SNIPER(void);
+unsigned char ShouldActivateEVIL_HERO_INFERNO_WING(void);
+void ActivateEVIL_HERO_INFERNO_WING(void);
+unsigned char ShouldActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void);
+void ActivateEVIL_HERO_INFERNO_WING_BACKFIRE(void);
+unsigned char ShouldActivateEVIL_HERO_MALICIOUS_EDGE(void);
+void ActivateEVIL_HERO_MALICIOUS_EDGE(void);
+unsigned char ShouldActivateEVIL_HERO_MALICIOUS_FIEND(void);
+void ActivateEVIL_HERO_MALICIOUS_FIEND(void);
+unsigned char ShouldActivateEVIL_HERO_WILD_CYCLONE(void);
+void ActivateEVIL_HERO_WILD_CYCLONE(void);
+unsigned char ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void);
+void ActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION(void);
+unsigned char ShouldActivateGOYO_GUARDIAN(void);
+void ActivateGOYO_GUARDIAN(void);
+unsigned char ShouldActivateGRINDER_GOLEM(void);
+void ActivateGRINDER_GOLEM(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -508,6 +526,51 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = EVIL_HERO_INFERNAL_PRODIGY,
     .shouldActivate = ShouldActivateEVIL_HERO_INFERNAL_PRODIGY,
     .activate = ActivateEVIL_HERO_INFERNAL_PRODIGY,
+  },
+  {
+    .cardId = EVIL_HERO_INFERNAL_SNIPER,
+    .shouldActivate = ShouldActivateEVIL_HERO_INFERNAL_SNIPER,
+    .activate = ActivateEVIL_HERO_INFERNAL_SNIPER,
+  },
+  {
+    .cardId = EVIL_HERO_INFERNO_WING,
+    .shouldActivate = ShouldActivateEVIL_HERO_INFERNO_WING,
+    .activate = ActivateEVIL_HERO_INFERNO_WING,
+  },
+  {
+    .cardId = EVIL_HERO_INFERNO_WING_BACKFIRE,
+    .shouldActivate = ShouldActivateEVIL_HERO_INFERNO_WING_BACKFIRE,
+    .activate = ActivateEVIL_HERO_INFERNO_WING_BACKFIRE,
+  },
+  {
+    .cardId = EVIL_HERO_MALICIOUS_EDGE,
+    .shouldActivate = ShouldActivateEVIL_HERO_MALICIOUS_EDGE,
+    .activate = ActivateEVIL_HERO_MALICIOUS_EDGE,
+  },
+  {
+    .cardId = EVIL_HERO_MALICIOUS_FIEND,
+    .shouldActivate = ShouldActivateEVIL_HERO_MALICIOUS_FIEND,
+    .activate = ActivateEVIL_HERO_MALICIOUS_FIEND,
+  },
+  {
+    .cardId = EVIL_HERO_WILD_CYCLONE,
+    .shouldActivate = ShouldActivateEVIL_HERO_WILD_CYCLONE,
+    .activate = ActivateEVIL_HERO_WILD_CYCLONE,
+  },
+  {
+    .cardId = GANDORA_X_THE_DRAGON_OF_DEMOLITION,
+    .shouldActivate = ShouldActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION,
+    .activate = ActivateGANDORA_X_THE_DRAGON_OF_DEMOLITION,
+  },
+  {
+    .cardId = GOYO_GUARDIAN,
+    .shouldActivate = ShouldActivateGOYO_GUARDIAN,
+    .activate = ActivateGOYO_GUARDIAN,
+  },
+  {
+    .cardId = GRINDER_GOLEM,
+    .shouldActivate = ShouldActivateGRINDER_GOLEM,
+    .activate = ActivateGRINDER_GOLEM,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

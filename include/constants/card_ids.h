@@ -1473,11 +1473,31 @@
 #define EVIL_HERO_INFERNAL_GAINER                0x05BD
 #define EVIL_HERO_INFERNAL_PRODIGY               0x05BE
 #define EVIL_HERO_INFERNAL_RIDER                 0x05BF
+#define EVIL_HERO_INFERNAL_SNIPER                0x05C0
+#define EVIL_HERO_INFERNO_WING                   0x05C1
+#define EVIL_HERO_INFERNO_WING_BACKFIRE          0x05C2
+#define EVIL_HERO_LIGHTNING_GOLEM                0x05C3
+#define EVIL_HERO_MALICIOUS_BANE                 0x05C4
+#define EVIL_HERO_MALICIOUS_EDGE                 0x05C5
+#define EVIL_HERO_MALICIOUS_FIEND                0x05C6
+#define EVIL_HERO_NEOS_LORD                      0x05C7
+#define EVIL_HERO_SINISTER_NECROM                0x05C8
+#define EVIL_HERO_TOXIC_BUBBLE                   0x05C9
+#define EVIL_HERO_VICIOUS_CLAWS                  0x05CA
+#define EVIL_HERO_WILD_CYCLONE                   0x05CB
+#define EVIL_MIND                                0x05CC
+#define FUSION_DEPLOYMENT                        0x05CD
+#define GANDORA_G_THE_DRAGON_OF_DESTRUCTION      0x05CE
+#define GANDORA_X_THE_DRAGON_OF_DEMOLITION       0x05CF
+#define GOYO_GUARDIAN                            0x05D0
+#define GRINDER_GOLEM                            0x05D1
+#define HARPIE_CHANNELER                         0x05D2
+#define HARPIE_CONDUCTOR                         0x05D3
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05C0
-#define NUM_CUSTOM_CARDS                        0x029F
+#define NUM_TOTAL_CARDS                         0x05D4
+#define NUM_CUSTOM_CARDS                        0x02B3
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
