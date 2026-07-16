@@ -1,12 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Small-font description reflow
+**Last worked on:** 2026-07-16 — Fix Status BG3 clobber from silhouette tiles
 
 **Files touched:**
-- `src_custom/code_801EF30_hooks.c` — recover + word-wrap into 10-row pages when small font on
-- `asm/ram_map_ewram.s` — `gDescProseBuf` / `gDescReflowBuf`
-- `tests/host/test_card_description_reflow.py`
+- `src_custom/status_menu_hooks.c` — silhouette tile base `0x120` → `0x110`
+- `documentation/status-menu-layout.md`
 
-**Outcome:** Manifest 70-char pages are concatenated and reflowed into denser 136-char small-font pages at runtime. `make` exits 0; reflow host test OK.
+**Outcome:** Silhouettes no longer overwrite `sbb1E`. Should clear BG3 garbage and stray top glyphs. `make` exits 0.
 
-**Open / next:** Confirm in-game (2-page cards should often become 1 page).
+**Open / next:** In-game Status confirm.

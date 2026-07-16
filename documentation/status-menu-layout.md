@@ -37,7 +37,7 @@ Player-facing goals:
 | 4 | `PlaceStatusMenuAccentTiles` | Decorative accent grids and left icons |
 | 5 | `PlaceStatusMenuMoneySuffix` | `"domino"` suffix tiles |
 | 6 | `PlaceStatusMenuLabelGfx` | Palettes + `CopyStringTilesToVRAMBuffer` for all label/digit gfx |
-| 7 | `PlaceStatusMenuMillenniumTracker` | Semi-transparent panel + seven item icons (silhouette or color) |
+| 7 | `PlaceStatusMenuMillenniumTracker` | Seven item icons in a horizontal row (silhouette or color) |
 | 8 | Stat draw helpers | Write tall digit glyphs for level, capacity, LP, money |
 | 9 | `LoadCharblock3` / `LoadPalettes` | Push VRAM and palette buffers to hardware |
 
@@ -95,12 +95,15 @@ LynJump also replaces the four vanilla stat writers (`sub_80079C4`, `sub_8007AB8
 
 ### Millennium item progress tracker
 
-Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
+Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the clear gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
 
-The middle band gets a **semi-transparent panel** (rows 9–14, cols 1–28) using palette bank 12. Seven icons sit on row 10, spaced four tiles apart:
+Icons sit on **row 10**, spaced four tiles apart (no extra middle dim panel — the hieroglyph gap stays visible). That gap is **outside** the status blend windows (`WINOUT` is normally BG3-only), so the VBlank hook re-enables **BG2** there or the icons would stay invisible despite being in the BG2 tilemap.
 
+- Icon tile bases: color `0xA0`, silhouette `0x110` (must stay below tile `0x180` — that offset is the BG3 tilemap `sbb1E` inside charblock 3).
 - **Uncollected:** black silhouette tiles (palette bank 14: transparent + black).
 - **Collected:** full-color tiles (palette bank 13).
+
+With `gRuntimeConfig.show_all_millennium_items` (debug label **All Millen**), every icon renders collected regardless of flags.
 
 Progress flags in `sMillenniumItems[]`:
 
@@ -163,7 +166,7 @@ make all
 | Label map patch | `PlaceStatusMenuLabels` / `StatusMenuPlaceSplitLabel` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Writes BG tilemap label entries |
 | Label gfx | `PlaceStatusMenuLabelGfx` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Palettes and small/tall font tile uploads |
 | Stat digits | `StatusMenuDrawU32Value`, `StatusMenuDrawMoneyValue` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Tall digit rendering via `g8DF811C` |
-| Millennium tracker | `PlaceStatusMenuMillenniumTracker`, `sMillenniumItems[]` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Panel fill + event-flag silhouettes / color icons |
+| Millennium tracker | `PlaceStatusMenuMillenniumTracker`, `sMillenniumItems[]` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Horizontal icon row + event-flag silhouettes / color icons |
 | Icon PNG sources | [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) | 32×32 indexed PNGs |
 | Icon build | [`tools/generate_millennium_item_assets.py`](../tools/generate_millennium_item_assets.py) | PNG → `millennium_item_assets_generated.inc` |
 | Icon export | [`tools/export_millennium_item_pngs.py`](../tools/export_millennium_item_pngs.py) | Overworld `.4bpp` → PNG (one-time / refresh) |

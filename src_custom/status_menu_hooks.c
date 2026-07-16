@@ -2,7 +2,10 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "gfx_reg_buffers.h"
+#include "overworld.h"
 #include "text.h"
+
+#include "generated/millennium_item_assets_generated.inc"
 
 /*
  * Status screen layout — edit constants and sSplitLabels[] below.
@@ -49,6 +52,21 @@
 #define STATUS_MONEY_SUFFIX_CHARS 8
 #define STATUS_ACCENT_LEFT_ICONS_COUNT 10
 
+/* Horizontal millennium-item row in the clear gap between stats and money panels.
+ * Tile gfx live in charblock 3 below sbb1E (BG3 map at tile index 0x180 / offset 0x3000).
+ * Color+silhouette need 224 tiles → 0xA0..0x17F fits; 0x120+ silhouettes used to clobber BG3. */
+#define STATUS_MILLENNIUM_ICON_ROW         10
+#define STATUS_MILLENNIUM_ICON_COL_FIRST    1
+#define STATUS_MILLENNIUM_ICON_COL_STEP     4
+#define STATUS_MILLENNIUM_ICON_TILE_W       4
+#define STATUS_MILLENNIUM_ICON_TILE_H       4
+#define STATUS_MILLENNIUM_ICON_TILE_BASE 0xA0
+#define STATUS_MILLENNIUM_SILHOUETTE_TILE_BASE 0x110
+#define STATUS_MILLENNIUM_PAL_COLLECTED  0xD000
+#define STATUS_MILLENNIUM_PAL_SILHOUETTE  0xE000
+#define STATUS_MILLENNIUM_PAL_SLOT         13
+#define STATUS_MILLENNIUM_PAL_SILHOUETTE_SLOT 14
+
 static const u8 sStatusDeckCapacityLabel[] APPEND_RODATA = "Deck Capacity";
 static const u8 sStatusDuelistLevelLabel[] APPEND_RODATA = "Duelist Level";
 static const u8 sStatusLifePointsLabel[] APPEND_RODATA = "Life Points";
@@ -69,6 +87,21 @@ static const StatusSplitLabel sSplitLabels[] APPEND_RODATA = {
   { 1, 13, 2, 13, 9, 4, 8, 5, 0x680 },
   { 6,  2, 6,  2, 9, 7, 5, 8, 0x400 },
   { 6, 13, 6, 13, 8, 4, 6, 5, 0x900 },
+};
+
+typedef struct {
+  u32 flag;
+} StatusMillenniumItem;
+
+/* Puzzle uses a special-case check; remaining flags map 1:1 to guardians / Mimic. */
+static const StatusMillenniumItem sMillenniumItems[] APPEND_RODATA = {
+  { 0 },
+  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN3 },
+  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN2 },
+  { EVENT_FLAG_DEFEATED_MIMIC_OF_DOOM },
+  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN5 },
+  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN4 },
+  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN1 },
 };
 
 extern u16 gUnk_8088778[][30];
@@ -97,6 +130,22 @@ void sub_8007BB0(void);
 void sub_8007CA0(void);
 void sub_8007DE4(void);
 void sub_8007EA8(void);
+
+/* Middle gap is outside the blend windows (WINOUT=BG3 only), which hides BG2.
+ * Keep BG2 enabled there so millennium icons (and transparent gap tiles) show. */
+static void StatusMenuEnableBg2OutsideWindows(void) {
+  *((vu8 *)REG_ADDR_WINOUT) = WININ_WIN0_BG2 | WININ_WIN0_BG3;
+}
+
+static void StatusMenuVBlankLoad(void) {
+  sub_8007EA8();
+  StatusMenuEnableBg2OutsideWindows();
+}
+
+static void StatusMenuVBlank(void) {
+  sub_8007DE4();
+  StatusMenuEnableBg2OutsideWindows();
+}
 
 #define STATUS_TILE(row, col) (gBgVram.sbb1F[(row)][(col)])
 #define STATUS_TILEMAP ((u16 *)&gBgVram)
@@ -268,6 +317,63 @@ static void PlaceStatusMenuMoneySuffix(u16 palette) {
     StatusMenuWriteMapIndex(0x7E40 + i + 0x16, palette | (i + 0x76));
 }
 
+static bool8 StatusMenuMillenniumItemCollected(u8 index) {
+  if (gRuntimeConfig.show_all_millennium_items == TRUE)
+    return TRUE;
+  if (index == 0)
+    return !CheckFlag(EVENT_FLAG_DEFEATED_BANDIT_KEITH) ||
+           CheckFlag(EVENT_FLAG_FINISHED_GAME);
+  return CheckFlag(sMillenniumItems[index].flag);
+}
+
+static void StatusMenuLoadMillenniumGfx(void) {
+  u8 i;
+  /* BG2 charblock 3 — same block LoadCharblock3 uploads. */
+  u8 *destBase = STATUS_MENU_CHARBUF;
+
+  CpuCopy16(sMillenniumItemPalette, &gPaletteBuffer[STATUS_MILLENNIUM_PAL_SLOT * 16], 32);
+  CpuCopy16(sMillenniumSilhouettePalette,
+            &gPaletteBuffer[STATUS_MILLENNIUM_PAL_SILHOUETTE_SLOT * 16], 32);
+  for (i = 0; i < STATUS_MILLENNIUM_ITEM_COUNT; i++) {
+    u16 colorBase = STATUS_MILLENNIUM_ICON_TILE_BASE + i * STATUS_MILLENNIUM_ICON_TILE_W *
+                                                            STATUS_MILLENNIUM_ICON_TILE_H;
+    u16 silBase = STATUS_MILLENNIUM_SILHOUETTE_TILE_BASE + i * STATUS_MILLENNIUM_ICON_TILE_W *
+                                                               STATUS_MILLENNIUM_ICON_TILE_H;
+
+    CpuCopy32(sMillenniumItemTileSets[i], destBase + colorBase * 32,
+              STATUS_MILLENNIUM_ITEM_TILE_BYTES);
+    CpuCopy32(sMillenniumItemSilhouetteTileSets[i], destBase + silBase * 32,
+              STATUS_MILLENNIUM_ITEM_TILE_BYTES);
+  }
+}
+
+static void StatusMenuPlaceMillenniumIcon(u8 index, bool8 collected) {
+  u8 col = STATUS_MILLENNIUM_ICON_COL_FIRST + index * STATUS_MILLENNIUM_ICON_COL_STEP;
+  u16 tileBase =
+      collected
+          ? STATUS_MILLENNIUM_ICON_TILE_BASE + index * STATUS_MILLENNIUM_ICON_TILE_W *
+                                                     STATUS_MILLENNIUM_ICON_TILE_H
+          : STATUS_MILLENNIUM_SILHOUETTE_TILE_BASE + index * STATUS_MILLENNIUM_ICON_TILE_W *
+                                                         STATUS_MILLENNIUM_ICON_TILE_H;
+  u16 palette =
+      collected ? STATUS_MILLENNIUM_PAL_COLLECTED : STATUS_MILLENNIUM_PAL_SILHOUETTE;
+  u8 dy, dx;
+
+  for (dy = 0; dy < STATUS_MILLENNIUM_ICON_TILE_H; dy++) {
+    for (dx = 0; dx < STATUS_MILLENNIUM_ICON_TILE_W; dx++)
+      STATUS_TILE(STATUS_MILLENNIUM_ICON_ROW + dy, col + dx) =
+          palette | (tileBase + dy * STATUS_MILLENNIUM_ICON_TILE_W + dx);
+  }
+}
+
+static void PlaceStatusMenuMillenniumTracker(void) {
+  u8 i;
+
+  StatusMenuLoadMillenniumGfx();
+  for (i = 0; i < STATUS_MILLENNIUM_ITEM_COUNT; i++)
+    StatusMenuPlaceMillenniumIcon(i, StatusMenuMillenniumItemCollected(i));
+}
+
 static void PlaceStatusMenuLabelGfx(void) {
   u8 i;
   u8 *charBuf = STATUS_MENU_CHARBUF;
@@ -300,8 +406,9 @@ void StatusMenu__Replacement(void) {
   PlaceStatusMenuAccentTiles(palette);
   PlaceStatusMenuMoneySuffix(palette);
   PlaceStatusMenuLabelGfx();
+  PlaceStatusMenuMillenniumTracker();
 
-  SetVBlankCallback(sub_8007EA8);
+  SetVBlankCallback(StatusMenuVBlankLoad);
   StatusMenuDrawU32Value(gDuelistLevel, STATUS_DUELIST_LEVEL_VALUE_DIGITS,
                          STATUS_DUELIST_LEVEL_VALUE_ROW, STATUS_DUELIST_LEVEL_VALUE_COL);
   StatusMenuDrawU32Value(gDeckCapacity, STATUS_DECK_CAPACITY_VALUE_DIGITS,
@@ -311,7 +418,7 @@ void StatusMenu__Replacement(void) {
   StatusMenuDrawMoneyValue(gMoney);
   LoadCharblock3();
   LoadPalettes();
-  SetVBlankCallback(sub_8007DE4);
+  SetVBlankCallback(StatusMenuVBlank);
 
   WaitForVBlank();
   while (!(gNewButtons & B_BUTTON))
