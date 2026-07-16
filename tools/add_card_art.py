@@ -334,8 +334,11 @@ def select_mini_palette(
 
 
 def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_png: pathlib.Path) -> None:
+    """Build a 24x24 mini matching vanilla ROM layout: 1px index-159 outline, art in 22x22."""
     image = Image.open(big_png).convert("RGBA")
-    image = image.resize((24, 24), Image.Resampling.LANCZOS).convert("RGBA")
+    # Vanilla minis: outer ring is palette 159; content lives in the inner 22x22.
+    # Resize into that interior — do not scale to 24 then overwrite edges (crops art).
+    image = image.resize((22, 22), Image.Resampling.LANCZOS).convert("RGBA")
 
     palette = load_jasc_palette(MINI_PAL)
     pal_img = Image.new("P", (1, 1))
@@ -356,10 +359,10 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
     # Trunk/shop force palette slot 0 to 0x0000 (transparent). Remap opaque art
     # pixels off index 0 using the pre-quantize RGB (ponytail: index 1 fallback).
     rgb_px = image.convert("RGB").load()
-    mini_px = quantized.load()
-    for y in range(24):
-        for x in range(24):
-            if mini_px[x, y] != 0:
+    art_px = quantized.load()
+    for y in range(22):
+        for x in range(22):
+            if art_px[x, y] != 0:
                 continue
             r, g, b = rgb_px[x, y]
             best_index = 1
@@ -370,10 +373,25 @@ def make_paletted_mini(big_png: pathlib.Path, big_palette: pathlib.Path, mini_pn
                 if distance < best_distance:
                     best_distance = distance
                     best_index = index
-            mini_px[x, y] = best_index
+            art_px[x, y] = best_index
+
+    # 24x24 canvas: fill with 159, paste 22x22 art at (1,1).
+    mini = Image.new("P", (24, 24))
+    mini.putpalette(palette_data)
+    mini_px = mini.load()
+    for y in range(24):
+        for x in range(24):
+            mini_px[x, y] = 159
+    for y in range(22):
+        for x in range(22):
+            mini_px[x + 1, y + 1] = art_px[x, y]
+
+    # ponytail: self-check against vanilla outer-ring convention
+    assert all(mini_px[x, 0] == 159 and mini_px[x, 23] == 159 for x in range(24))
+    assert all(mini_px[0, y] == 159 and mini_px[23, y] == 159 for y in range(24))
 
     mini_png.parent.mkdir(parents=True, exist_ok=True)
-    quantized.save(mini_png)
+    mini.save(mini_png)
 
 
 def build_mini_assets(big_png: pathlib.Path, big_palette: pathlib.Path, stem: str) -> pathlib.Path:

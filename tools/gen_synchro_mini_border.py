@@ -19,26 +19,11 @@ with open(ROM_PATH, "rb") as f:
     f.seek(start)
     border = bytearray(f.read(size))
 
-# Remap all colored pixels to white (0) or near-white (1).
-# Index 0 = 0x7FFF pure white, index 1 = 0x7BFF near-white.
-remap = {
-    0: 0,   # white (keep)
-    1: 1,   # near-white (keep)
-    2: 1,   # → near-white
-    3: 0,   # → white
-    4: 1,   # → near-white
-    5: 0,   # → white
-    6: 0,   # → white
-    7: 1,   # → near-white
-    8: 0,   # → white
-    9: 0,   # → white
-    10: 1,  # → near-white
-    11: 0,  # → white
-    12: 1,  # → near-white
-    13: 0,  # → white
-    14: 1,  # → near-white
-    15: 0,  # → white
-}
+# Remap to near-white (1). Index 0 is forced transparent at runtime, so a
+# visible synchro frame must not use 0 for the ring (ponytail: ceiling =
+# no true white ring until a non-transparent white is added to mini.pal).
+remap = {i: 1 for i in range(16)}
+remap[0] = 0  # keep existing transparent holes
 
 for i, b in enumerate(border):
     hi = remap.get(b >> 4, b >> 4)
