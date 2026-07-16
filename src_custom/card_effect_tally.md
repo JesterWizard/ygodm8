@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `535` effects
+- `545` effects
 
 ## Tally
 
@@ -516,6 +516,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Aroma Jar` | `src_custom/activated_effects/aroma_jar.c` |
 | `activated_effects` | `Aromage Bergamot` | `src_custom/activated_effects/aromage_bergamot.c` |
 | `activated_effects` | `Aromage Cananga` | `src_custom/activated_effects/aromage_cananga.c` |
+| `activated_effects` | `Aromage Jasmine` | `src_custom/activated_effects/aromage_jasmine.c` |
+| `activated_effects` | `Aromage Laurel` | `src_custom/activated_effects/aromage_laurel.c` |
+| `activated_effects` | `Aromage Marjoram` | `src_custom/activated_effects/aromage_marjoram.c` |
+| `activated_effects` | `Aromage Rosemary` | `src_custom/activated_effects/aromage_rosemary.c` |
+| `activated_effects` | `Aromalilith Magnolia` | `src_custom/activated_effects/aromalilith_magnolia.c` |
+| `activated_effects` | `Aromalilith Rosalina` | `src_custom/activated_effects/aromalilith_rosalina.c` |
+| `activated_effects` | `Aromalilith Rosemary` | `src_custom/activated_effects/aromalilith_rosemary.c` |
+| `activated_effects` | `Aromaseraphy Jasmine` | `src_custom/activated_effects/aromaseraphy_jasmine.c` |
+| `activated_effects` | `Aromaseraphy Rosemary` | `src_custom/activated_effects/aromaseraphy_rosemary.c` |
+| `activated_effects` | `Aromaseraphy Sweet Marjoram` | `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

@@ -272,6 +272,26 @@ unsigned char CanActivateAROMAGE_BERGAMOT(void);
 void ActivateAROMAGE_BERGAMOTEffect(void);
 unsigned char CanActivateAROMAGE_CANANGA(void);
 void ActivateAROMAGE_CANANGAEffect(void);
+unsigned char CanActivateAROMAGE_JASMINE(void);
+void ActivateAROMAGE_JASMINEEffect(void);
+unsigned char CanActivateAROMAGE_LAUREL(void);
+void ActivateAROMAGE_LAURELEffect(void);
+unsigned char CanActivateAROMAGE_MARJORAM(void);
+void ActivateAROMAGE_MARJORAMEffect(void);
+unsigned char CanActivateAROMAGE_ROSEMARY(void);
+void ActivateAROMAGE_ROSEMARYEffect(void);
+unsigned char CanActivateAROMALILITH_MAGNOLIA(void);
+void ActivateAROMALILITH_MAGNOLIAEffect(void);
+unsigned char CanActivateAROMALILITH_ROSALINA(void);
+void ActivateAROMALILITH_ROSALINAEffect(void);
+unsigned char CanActivateAROMALILITH_ROSEMARY(void);
+void ActivateAROMALILITH_ROSEMARYEffect(void);
+unsigned char CanActivateAROMASERAPHY_JASMINE(void);
+void ActivateAROMASERAPHY_JASMINEEffect(void);
+unsigned char CanActivateAROMASERAPHY_ROSEMARY(void);
+void ActivateAROMASERAPHY_ROSEMARYEffect(void);
+unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void);
+void ActivateAROMASERAPHY_SWEET_MARJORAMEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1431,6 +1451,46 @@ FAILED:
   }
   if (gMonEffect.id == AROMAGE_CANANGA) {
     ActivateAROMAGE_CANANGAEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_JASMINE) {
+    ActivateAROMAGE_JASMINEEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_LAUREL) {
+    ActivateAROMAGE_LAURELEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_MARJORAM) {
+    ActivateAROMAGE_MARJORAMEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_ROSEMARY) {
+    ActivateAROMAGE_ROSEMARYEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMALILITH_MAGNOLIA) {
+    ActivateAROMALILITH_MAGNOLIAEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMALILITH_ROSALINA) {
+    ActivateAROMALILITH_ROSALINAEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMALILITH_ROSEMARY) {
+    ActivateAROMALILITH_ROSEMARYEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMASERAPHY_JASMINE) {
+    ActivateAROMASERAPHY_JASMINEEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMASERAPHY_ROSEMARY) {
+    ActivateAROMASERAPHY_ROSEMARYEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMASERAPHY_SWEET_MARJORAM) {
+    ActivateAROMASERAPHY_SWEET_MARJORAMEffect();
     return;
   }
 }

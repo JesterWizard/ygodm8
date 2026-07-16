@@ -133,10 +133,13 @@ def fetch_card(*, name: str | None = None, passcode: int | None = None, fname: s
 
 def frame_kind(card_type: str) -> str:
     lowered = card_type.lower()
-    # Synchro, XYZ, Link, Pendulum etc. use effect frame
-    for key in ("normal", "effect", "fusion", "ritual", "spell", "trap", "synchro"):
+    # Extra-deck / modern frames without a DM8 color → EFFECT_CARD
+    for key in ("synchro", "xyz", "link", "pendulum", "tuner"):
         if key in lowered:
-            return "effect" if key == "synchro" else key
+            return "effect"
+    for key in ("normal", "effect", "fusion", "ritual", "spell", "trap"):
+        if key in lowered:
+            return key
     raise SystemExit(f"Unsupported card type from API: {card_type!r}")
 
 
@@ -216,7 +219,13 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
 
     atk = int(api_card["atk"]) if api_card["atk"] is not None else 0
     def_ = int(api_card["def"]) if api_card["def"] is not None else 0
-    level = int(api_card["level"])
+    # Link monsters expose linkval instead of level; DEF is None.
+    if api_card.get("level") is not None:
+        level = int(api_card["level"])
+    elif api_card.get("linkval") is not None:
+        level = int(api_card["linkval"])
+    else:
+        level = 0
 
     entry = order_card_entry({
         "card_const": card_const,
@@ -236,7 +245,7 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
             "pages": wrap_effect_text(api_card.get("desc", card_name)),
         },
     })
-    if color == "EFFECT_CARD":
+    if color in ("EFFECT_CARD", "FUSION_CARD") and api_card.get("desc"):
         entry["effect_texts"] = {
             "popup_1": api_card.get("desc", card_name)[:120],
         }

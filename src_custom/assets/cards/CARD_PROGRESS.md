@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 603 |
-| Art ready, needs manifest | 197 |
+| In game (manifest + art) | 613 |
+| Art ready, needs manifest | 187 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -625,21 +625,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AROMA_JAR` | Aroma Jar | `aroma_jar.png` |
 | `AROMAGE_BERGAMOT` | Aromage Bergamot | `aromage_bergamot.png` |
 | `AROMAGE_CANANGA` | Aromage Cananga | `aromage_cananga.png` |
+| `AROMAGE_JASMINE` | Aromage Jasmine | `aromage_jasmine.png` |
+| `AROMAGE_LAUREL` | Aromage Laurel | `aromage_laurel.png` |
+| `AROMAGE_MARJORAM` | Aromage Marjoram | `aromage_marjoram.png` |
+| `AROMAGE_ROSEMARY` | Aromage Rosemary | `aromage_rosemary.png` |
+| `AROMALILITH_MAGNOLIA` | Aromalilith Magnolia | `aromalilith_magnolia.png` |
+| `AROMALILITH_ROSALINA` | Aromalilith Rosalina | `aromalilith_rosalina.png` |
+| `AROMALILITH_ROSEMARY` | Aromalilith Rosemary | `aromalilith_rosemary.png` |
+| `AROMASERAPHY_JASMINE` | Aromaseraphy Jasmine | `aromaseraphy_jasmine.png` |
+| `AROMASERAPHY_ROSEMARY` | Aromaseraphy Rosemary | `aromaseraphy_rosemary.png` |
+| `AROMASERAPHY_SWEET_MARJORAM` | Aromaseraphy Sweet Marjoram | `aromaseraphy_sweet_marjoram.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `AROMAGE_JASMINE` — `aromage_jasmine.png`
-- [ ] `AROMAGE_LAUREL` — `aromage_laurel.png`
-- [ ] `AROMAGE_MARJORAM` — `aromage_marjoram.png`
-- [ ] `AROMAGE_ROSEMARY` — `aromage_rosemary.png`
-- [ ] `AROMALILITH_MAGNOLIA` — `aromalilith_magnolia.png`
-- [ ] `AROMALILITH_ROSALINA` — `aromalilith_rosalina.png`
-- [ ] `AROMALILITH_ROSEMARY` — `aromalilith_rosemary.png`
-- [ ] `AROMASERAPHY_JASMINE` — `aromaseraphy_jasmine.png`
-- [ ] `AROMASERAPHY_ROSEMARY` — `aromaseraphy_rosemary.png`
-- [ ] `AROMASERAPHY_SWEET_MARJORAM` — `aromaseraphy_sweet_marjoram.png`
 - [ ] `ATTACK_PHEROMONES` — `attack_pheromones.png`
 - [ ] `AZURE_EYES_SILVER_DRAGON` — `azure_eyes_silver_dragon.png`
 - [ ] `BLACK_ROSE_DRAGON` — `black_rose_dragon.png`

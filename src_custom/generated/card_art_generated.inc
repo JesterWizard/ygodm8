@@ -2420,6 +2420,46 @@ static const unsigned char sAromageCanangaBigArt[] __attribute__((section(".appe
 static const unsigned short sAromageCanangaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_cananga.gbapal");
 static const unsigned char sAromageCanangaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_cananga.lz");
 
+static const unsigned char sAromageJasmineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_jasmine.huff");
+static const unsigned short sAromageJasmineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_jasmine.gbapal");
+static const unsigned char sAromageJasmineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_jasmine.lz");
+
+static const unsigned char sAromageLaurelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_laurel.huff");
+static const unsigned short sAromageLaurelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_laurel.gbapal");
+static const unsigned char sAromageLaurelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_laurel.lz");
+
+static const unsigned char sAromageMarjoramBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_marjoram.huff");
+static const unsigned short sAromageMarjoramBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_marjoram.gbapal");
+static const unsigned char sAromageMarjoramMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_marjoram.lz");
+
+static const unsigned char sAromageRosemaryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_rosemary.huff");
+static const unsigned short sAromageRosemaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_rosemary.gbapal");
+static const unsigned char sAromageRosemaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_rosemary.lz");
+
+static const unsigned char sAromalilithMagnoliaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromalilith_magnolia.huff");
+static const unsigned short sAromalilithMagnoliaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromalilith_magnolia.gbapal");
+static const unsigned char sAromalilithMagnoliaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromalilith_magnolia.lz");
+
+static const unsigned char sAromalilithRosalinaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromalilith_rosalina.huff");
+static const unsigned short sAromalilithRosalinaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromalilith_rosalina.gbapal");
+static const unsigned char sAromalilithRosalinaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromalilith_rosalina.lz");
+
+static const unsigned char sAromalilithRosemaryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromalilith_rosemary.huff");
+static const unsigned short sAromalilithRosemaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromalilith_rosemary.gbapal");
+static const unsigned char sAromalilithRosemaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromalilith_rosemary.lz");
+
+static const unsigned char sAromaseraphyJasmineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromaseraphy_jasmine.huff");
+static const unsigned short sAromaseraphyJasmineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromaseraphy_jasmine.gbapal");
+static const unsigned char sAromaseraphyJasmineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromaseraphy_jasmine.lz");
+
+static const unsigned char sAromaseraphyRosemaryBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromaseraphy_rosemary.huff");
+static const unsigned short sAromaseraphyRosemaryBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromaseraphy_rosemary.gbapal");
+static const unsigned char sAromaseraphyRosemaryMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromaseraphy_rosemary.lz");
+
+static const unsigned char sAromaseraphySweetMarjoramBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromaseraphy_sweet_marjoram.huff");
+static const unsigned short sAromaseraphySweetMarjoramBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromaseraphy_sweet_marjoram.gbapal");
+static const unsigned char sAromaseraphySweetMarjoramMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromaseraphy_sweet_marjoram.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3026,6 +3066,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0579] = sAromaJarBigArt,
   [0x057A] = sAromageBergamotBigArt,
   [0x057B] = sAromageCanangaBigArt,
+  [0x057C] = sAromageJasmineBigArt,
+  [0x057D] = sAromageLaurelBigArt,
+  [0x057E] = sAromageMarjoramBigArt,
+  [0x057F] = sAromageRosemaryBigArt,
+  [0x0580] = sAromalilithMagnoliaBigArt,
+  [0x0581] = sAromalilithRosalinaBigArt,
+  [0x0582] = sAromalilithRosemaryBigArt,
+  [0x0583] = sAromaseraphyJasmineBigArt,
+  [0x0584] = sAromaseraphyRosemaryBigArt,
+  [0x0585] = sAromaseraphySweetMarjoramBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3634,6 +3684,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0579] = sAromaJarBigPalette,
   [0x057A] = sAromageBergamotBigPalette,
   [0x057B] = sAromageCanangaBigPalette,
+  [0x057C] = sAromageJasmineBigPalette,
+  [0x057D] = sAromageLaurelBigPalette,
+  [0x057E] = sAromageMarjoramBigPalette,
+  [0x057F] = sAromageRosemaryBigPalette,
+  [0x0580] = sAromalilithMagnoliaBigPalette,
+  [0x0581] = sAromalilithRosalinaBigPalette,
+  [0x0582] = sAromalilithRosemaryBigPalette,
+  [0x0583] = sAromaseraphyJasmineBigPalette,
+  [0x0584] = sAromaseraphyRosemaryBigPalette,
+  [0x0585] = sAromaseraphySweetMarjoramBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4242,6 +4302,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0579] = 0,
   [0x057A] = 0,
   [0x057B] = 0,
+  [0x057C] = 0,
+  [0x057D] = 0,
+  [0x057E] = 0,
+  [0x057F] = 0,
+  [0x0580] = 0,
+  [0x0581] = 0,
+  [0x0582] = 0,
+  [0x0583] = 0,
+  [0x0584] = 0,
+  [0x0585] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4850,4 +4920,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0579] = sAromaJarMiniArt,
   [0x057A] = sAromageBergamotMiniArt,
   [0x057B] = sAromageCanangaMiniArt,
+  [0x057C] = sAromageJasmineMiniArt,
+  [0x057D] = sAromageLaurelMiniArt,
+  [0x057E] = sAromageMarjoramMiniArt,
+  [0x057F] = sAromageRosemaryMiniArt,
+  [0x0580] = sAromalilithMagnoliaMiniArt,
+  [0x0581] = sAromalilithRosalinaMiniArt,
+  [0x0582] = sAromalilithRosemaryMiniArt,
+  [0x0583] = sAromaseraphyJasmineMiniArt,
+  [0x0584] = sAromaseraphyRosemaryMiniArt,
+  [0x0585] = sAromaseraphySweetMarjoramMiniArt,
 };

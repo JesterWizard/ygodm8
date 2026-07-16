@@ -578,6 +578,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [AROMA_JAR] = gActivationDescription_AromaJar_Popup1,
   [AROMAGE_BERGAMOT] = gActivationDescription_AromageBergamot_Popup1,
   [AROMAGE_CANANGA] = gActivationDescription_AromageCananga_Popup1,
+  [AROMAGE_JASMINE] = gActivationDescription_AromageJasmine_Popup1,
+  [AROMAGE_LAUREL] = gActivationDescription_AromageLaurel_Popup1,
+  [AROMAGE_MARJORAM] = gActivationDescription_AromageMarjoram_Popup1,
+  [AROMAGE_ROSEMARY] = gActivationDescription_AromageRosemary_Popup1,
+  [AROMALILITH_MAGNOLIA] = gActivationDescription_AromalilithMagnolia_Popup1,
+  [AROMALILITH_ROSALINA] = gActivationDescription_AromalilithRosalina_Popup1,
+  [AROMALILITH_ROSEMARY] = gActivationDescription_AromalilithRosemary_Popup1,
+  [AROMASERAPHY_JASMINE] = gActivationDescription_AromaseraphyJasmine_Popup1,
+  [AROMASERAPHY_ROSEMARY] = gActivationDescription_AromaseraphyRosemary_Popup1,
+  [AROMASERAPHY_SWEET_MARJORAM] = gActivationDescription_AromaseraphySweetMarjoram_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1187,6 +1197,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_AROMA_JAR_POPUP_1] = gActivationDescription_AromaJar_Popup1,
   [CARD_EFFECT_TEXT_AROMAGE_BERGAMOT_POPUP_1] = gActivationDescription_AromageBergamot_Popup1,
   [CARD_EFFECT_TEXT_AROMAGE_CANANGA_POPUP_1] = gActivationDescription_AromageCananga_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_JASMINE_POPUP_1] = gActivationDescription_AromageJasmine_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_LAUREL_POPUP_1] = gActivationDescription_AromageLaurel_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_MARJORAM_POPUP_1] = gActivationDescription_AromageMarjoram_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_ROSEMARY_POPUP_1] = gActivationDescription_AromageRosemary_Popup1,
+  [CARD_EFFECT_TEXT_AROMALILITH_MAGNOLIA_POPUP_1] = gActivationDescription_AromalilithMagnolia_Popup1,
+  [CARD_EFFECT_TEXT_AROMALILITH_ROSALINA_POPUP_1] = gActivationDescription_AromalilithRosalina_Popup1,
+  [CARD_EFFECT_TEXT_AROMALILITH_ROSEMARY_POPUP_1] = gActivationDescription_AromalilithRosemary_Popup1,
+  [CARD_EFFECT_TEXT_AROMASERAPHY_JASMINE_POPUP_1] = gActivationDescription_AromaseraphyJasmine_Popup1,
+  [CARD_EFFECT_TEXT_AROMASERAPHY_ROSEMARY_POPUP_1] = gActivationDescription_AromaseraphyRosemary_Popup1,
+  [CARD_EFFECT_TEXT_AROMASERAPHY_SWEET_MARJORAM_POPUP_1] = gActivationDescription_AromaseraphySweetMarjoram_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -157,8 +157,11 @@ void Activate{const}Effect(void)
 }}
 """,
         "dispatcher_decl": "unsigned char CanActivate{const}(void);\nvoid Activate{const}Effect(void);",
-        "dispatcher_entry": "    if (gMonEffect.id == {const}) {{\n      Activate{const}Effect();\n      return;\n    }}",
-        "dispatcher_anchor": "/* END MONSTER EFFECT DISPATCH */",
+        # Insert decls before CanActivateMonsterEffect; entries before ActivateMonsterEffectBody's closing brace.
+        "dispatcher_decl_anchor": "unsigned char CanActivateMonsterEffect(void)",
+        "dispatcher_entry": "  if (gMonEffect.id == {const}) {{\n    Activate{const}Effect();\n    return;\n  }}\n",
+        "dispatcher_entry_anchor": "}\n/* END MONSTER EFFECT DISPATCH */",
+        "dispatcher_anchor": None,
     },
     "permanent": {
         "dir": "src_custom/permanent_effects",
@@ -378,23 +381,20 @@ def patch_dispatcher(dispatcher_path: Path, card_const: str, config: dict) -> bo
     # Add extern declaration
     if config["dispatcher_decl"]:
         decl = config["dispatcher_decl"].format(const=card_const)
-        # Insert before the anchor or at end
-        anchor = config.get("dispatcher_anchor")
+        anchor = config.get("dispatcher_decl_anchor") or config.get("dispatcher_anchor")
         if anchor and anchor in content:
             insert_pos = content.rfind(anchor)
-            # Insert before the anchor
             content = content[:insert_pos] + decl + "\n" + content[insert_pos:]
         else:
-            # Append to end
             content += "\n" + decl
 
     # Add dispatch entry
     if config["dispatcher_entry"]:
         entry = config["dispatcher_entry"].format(const=card_const)
-        anchor = config.get("dispatcher_anchor")
+        anchor = config.get("dispatcher_entry_anchor") or config.get("dispatcher_anchor")
         if anchor and anchor in content:
             insert_pos = content.rfind(anchor)
-            content = content[:insert_pos] + entry + "\n" + content[insert_pos:]
+            content = content[:insert_pos] + entry + content[insert_pos:]
         else:
             content += "\n" + entry
 

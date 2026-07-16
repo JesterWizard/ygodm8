@@ -28490,6 +28490,281 @@
       "effect_texts": {
         "popup_1": "If LP higher: opp. monsters -500. Once/turn if gain LP: bounce 1 opp. Spell/Trap."
       }
+    },
+    {
+      "card_const": "AROMAGE_JASMINE",
+      "card_name": "Aromage Jasmine",
+      "atk": 100,
+      "def": 1900,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [9, 6, 7, 8, 9, 7, 5, 8],
+      "description": {
+        "symbol": "gDescription_AromageJasmine",
+        "pages": [
+          "While your LP are higher than your opponent, you can",
+          "Normal Summon 1 Plant except this card in addition to",
+          "your Normal Summon once per turn. Once per turn, if",
+          "you gain LP: Draw 1 card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: extra Plant Normal Summon. Once/turn if gain LP: draw 1."
+      }
+    },
+    {
+      "card_const": "AROMAGE_LAUREL",
+      "card_name": "Aromage Laurel",
+      "atk": 800,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [1, 4, 1, 6, 9, 8, 4, 3],
+      "description": {
+        "symbol": "gDescription_AromageLaurel",
+        "pages": [
+          "If your LP are higher than your opponent: Special",
+          "Summon this from your hand. If you gain LP: target 1",
+          "non-Tuner Plant; treat it as a Tuner this turn. If",
+          "this is sent to the GY: gain 500 LP. Each once/turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: SS from hand. If gain LP: Plant becomes Tuner. If to GY: +500 LP."
+      }
+    },
+    {
+      "card_const": "AROMAGE_MARJORAM",
+      "card_name": "Aromage Marjoram",
+      "atk": 2000,
+      "def": 1600,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [4, 0, 6, 6, 3, 5, 4, 8],
+      "description": {
+        "symbol": "gDescription_AromageMarjoram",
+        "pages": [
+          "While your LP are higher than your opponent, you take",
+          "no battle damage from your Plant attacks. Once/turn,",
+          "when a Plant you control is destroyed by battle: SS",
+          "this from hand, then gain 500 LP. Once/turn if gain",
+          "LP: banish opp. GY cards up to your Aroma count."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: no Plant battle dmg. SS if Plant destroyed; if gain LP: banish opp GY."
+      }
+    },
+    {
+      "card_const": "AROMAGE_ROSEMARY",
+      "card_name": "Aromage Rosemary",
+      "atk": 1800,
+      "def": 700,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [5, 8, 5, 6, 9, 5, 6, 1],
+      "description": {
+        "symbol": "gDescription_AromageRosemary",
+        "pages": [
+          "While your LP are higher than your opponent, if a",
+          "Plant you control attacks, opponent cannot use",
+          "monster effects until Damage Step ends. Once/turn:",
+          "if you gain LP, target 1 face-up monster; change its",
+          "battle position."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: Plant attacks lock monster effects. Once/turn if gain LP: change position."
+      }
+    },
+    {
+      "card_const": "AROMALILITH_MAGNOLIA",
+      "card_name": "Aromalilith Magnolia",
+      "atk": 2600,
+      "def": 1800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_PLANT",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 3, 1, 6, 7, 0, 9, 8],
+      "description": {
+        "symbol": "gDescription_AromalilithMagnolia",
+        "pages": [
+          "1 Aroma + 1 Plant. While your LP are higher than your",
+          "opponent, Plants you control cannot be destroyed by",
+          "opponent effects. Once/turn: pay 2000 LP; banish field",
+          "cards equal to Humid/Dried/Blessed Winds you control.",
+          "Once/turn if gain LP: Plants gain ATK equal to LP gained."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: Plants unkillable by effects. Pay 2000: banish. If gain LP: Plants +ATK."
+      }
+    },
+    {
+      "card_const": "AROMALILITH_ROSALINA",
+      "card_name": "Aromalilith Rosalina",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [2, 4, 6, 8, 9, 1, 9, 7],
+      "description": {
+        "symbol": "gDescription_AromalilithRosalina",
+        "pages": [
+          "Quick: discard this, target 1 Aroma you control; gain",
+          "LP equal to half its ATK. If Normal/Special Summoned:",
+          "SS 1 non-Tuner Aroma from Deck, also you can only SS",
+          "Plants for the rest of this turn. Each once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard: gain half ATK LP. If Summoned: SS non-Tuner Aroma from Deck (Plant SS only)."
+      }
+    },
+    {
+      "card_const": "AROMALILITH_ROSEMARY",
+      "card_name": "Aromalilith Rosemary",
+      "atk": 2200,
+      "def": 0,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 0, 9, 8, 9, 0, 8, 4],
+      "description": {
+        "symbol": "gDescription_AromalilithRosemary",
+        "pages": [
+          "2+ Plants. If Special Summoned: add 1 Aroma from Deck",
+          "to hand. If you gain LP: SS up to 3 Aroma from hand to",
+          "zones this points to. Tribute 1 this points to, target",
+          "1 field card; banish it and gain 1000 LP. Each once/turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If SS: add Aroma. If gain LP: SS Aromas to Link zones. Tribute: banish +1000 LP."
+      }
+    },
+    {
+      "card_const": "AROMASERAPHY_JASMINE",
+      "card_name": "Aromaseraphy Jasmine",
+      "atk": 1800,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [2, 1, 2, 0, 0, 9, 0, 5],
+      "description": {
+        "symbol": "gDescription_AromaseraphyJasmine",
+        "pages": [
+          "2 Plants. While your LP are higher than your opponent,",
+          "this and Plants it points to cannot be destroyed by",
+          "battle. Tribute 1 it points to: SS 1 Plant from Deck",
+          "in Defense (once/turn). Once/turn if gain LP: add 1",
+          "Plant from your Deck to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: battle immune. Tribute Link target: SS Plant. If gain LP: add Plant."
+      }
+    },
+    {
+      "card_const": "AROMASERAPHY_ROSEMARY",
+      "card_name": "Aromaseraphy Rosemary",
+      "atk": 2000,
+      "def": 900,
+      "level": 5,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [3, 8, 1, 4, 8, 1, 0, 0],
+      "description": {
+        "symbol": "gDescription_AromaseraphyRosemary",
+        "pages": [
+          "1 Tuner + 1+ non-Tuners. While your LP are higher than",
+          "your opponent, Plants you control gain 500 ATK/DEF.",
+          "Once per turn, if you gain LP: target 1 face-up card",
+          "opp. controls; negate its effects until end of turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: Plants +500. Once/turn if gain LP: negate 1 opp. face-up card."
+      }
+    },
+    {
+      "card_const": "AROMASERAPHY_SWEET_MARJORAM",
+      "card_name": "Aromaseraphy Sweet Marjoram",
+      "atk": 2200,
+      "def": 2000,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 9, 6, 5, 6, 2, 3, 9],
+      "description": {
+        "symbol": "gDescription_AromaseraphySweetMarjoram",
+        "pages": [
+          "1 Tuner + 1+ non-Tuners. While your LP are higher than",
+          "your opponent, opponent cannot target your Plants",
+          "with card effects. If Synchro Summoned: add 1 Humid,",
+          "Dried, or Blessed Winds from Deck to hand. Once/turn",
+          "if gain LP: destroy 1 card your opponent controls."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If LP higher: Plants untargetable. If Synchro: add Winds. If gain LP: destroy 1."
+      }
     }
   ]
 }

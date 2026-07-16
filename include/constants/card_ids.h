@@ -1405,11 +1405,21 @@
 #define AROMA_JAR                                0x0579
 #define AROMAGE_BERGAMOT                         0x057A
 #define AROMAGE_CANANGA                          0x057B
+#define AROMAGE_JASMINE                          0x057C
+#define AROMAGE_LAUREL                           0x057D
+#define AROMAGE_MARJORAM                         0x057E
+#define AROMAGE_ROSEMARY                         0x057F
+#define AROMALILITH_MAGNOLIA                     0x0580
+#define AROMALILITH_ROSALINA                     0x0581
+#define AROMALILITH_ROSEMARY                     0x0582
+#define AROMASERAPHY_JASMINE                     0x0583
+#define AROMASERAPHY_ROSEMARY                    0x0584
+#define AROMASERAPHY_SWEET_MARJORAM              0x0585
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x057C
-#define NUM_CUSTOM_CARDS                        0x025B
+#define NUM_TOTAL_CARDS                         0x0586
+#define NUM_CUSTOM_CARDS                        0x0265
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

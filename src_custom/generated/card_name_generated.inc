@@ -604,6 +604,16 @@ static const u8 sAromaGardeningName[] __attribute__((section(".append_assets")))
 static const u8 sAromaJarName[] __attribute__((section(".append_assets"))) = "Aroma Jar";
 static const u8 sAromageBergamotName[] __attribute__((section(".append_assets"))) = "Aromage Bergamot";
 static const u8 sAromageCanangaName[] __attribute__((section(".append_assets"))) = "Aromage Cananga";
+static const u8 sAromageJasmineName[] __attribute__((section(".append_assets"))) = "Aromage Jasmine";
+static const u8 sAromageLaurelName[] __attribute__((section(".append_assets"))) = "Aromage Laurel";
+static const u8 sAromageMarjoramName[] __attribute__((section(".append_assets"))) = "Aromage Marjoram";
+static const u8 sAromageRosemaryName[] __attribute__((section(".append_assets"))) = "Aromage Rosemary";
+static const u8 sAromalilithMagnoliaName[] __attribute__((section(".append_assets"))) = "Aromalilith Magnolia";
+static const u8 sAromalilithRosalinaName[] __attribute__((section(".append_assets"))) = "Aromalilith Rosalina";
+static const u8 sAromalilithRosemaryName[] __attribute__((section(".append_assets"))) = "Aromalilith Rosemary";
+static const u8 sAromaseraphyJasmineName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Jasmine";
+static const u8 sAromaseraphyRosemaryName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Rosemary";
+static const u8 sAromaseraphySweetMarjoramName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Sweet Marjoram";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1818,6 +1828,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAromageBergamotName;
   if (cardId == 0x057B)
     return (u8 *)sAromageCanangaName;
+  if (cardId == 0x057C)
+    return (u8 *)sAromageJasmineName;
+  if (cardId == 0x057D)
+    return (u8 *)sAromageLaurelName;
+  if (cardId == 0x057E)
+    return (u8 *)sAromageMarjoramName;
+  if (cardId == 0x057F)
+    return (u8 *)sAromageRosemaryName;
+  if (cardId == 0x0580)
+    return (u8 *)sAromalilithMagnoliaName;
+  if (cardId == 0x0581)
+    return (u8 *)sAromalilithRosalinaName;
+  if (cardId == 0x0582)
+    return (u8 *)sAromalilithRosemaryName;
+  if (cardId == 0x0583)
+    return (u8 *)sAromaseraphyJasmineName;
+  if (cardId == 0x0584)
+    return (u8 *)sAromaseraphyRosemaryName;
+  if (cardId == 0x0585)
+    return (u8 *)sAromaseraphySweetMarjoramName;
 
   return gCardNames[cardId];
 }
