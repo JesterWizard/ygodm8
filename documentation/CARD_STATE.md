@@ -1,9 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Synchro mini white/silver shade ramp
+**Last worked on:** 2026-07-16 — XYZ big frame invert + white text
 
 **Files touched:**
-- `tools/gen_synchro_mini_border.py` — accents 29/70/117 → 1/16/52
-- `src_custom/assets/cards/frames/synchro_mini.4bpp` — regenerated
+- `src_custom/assets/cards/frames/xyz.gbapal` — black face at [4]/[5]; light pattern at [1]/[9]; [10]=white text
+- `src_custom/card_asset_hooks.c` — stronger XYZ art-palette white force for name/ATK/DEF
 
-**Outcome:** Synchro mini chrome uses a 3-step white/silver ramp from existing mini.pal (plus black 159). `make` exits 0.
+**Outcome:** Big XYZ frame is inverted synchro (black base, light bevel). Name/ATK/DEF forced white. `make` exits 0.
+
+**Open / next:** Confirm in-game; Pendulum/Link mini borders still NULL.

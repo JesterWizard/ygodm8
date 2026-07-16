@@ -8319,7 +8319,7 @@
     .attribute = ATTRIBUTE_SHADOW,
     .level = 8,
     .type = TYPE_WARRIOR,
-    .color = SYNCHRO_CARD,
+    .color = XYZ_CARD,
     .monsterEffect = 0,
     .spellEffect = 2,
     .trapEffect = 0,

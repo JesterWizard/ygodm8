@@ -37,6 +37,9 @@ static const unsigned short sLinkPalette[] APPEND_ASSET =
 static const unsigned short sSynchroMiniBorderU16[] APPEND_ASSET =
     INCBIN_U16("src_custom/assets/cards/frames/synchro_mini.4bpp");
 
+static const unsigned short sXyzMiniBorderU16[] APPEND_ASSET =
+    INCBIN_U16("src_custom/assets/cards/frames/xyz_mini.4bpp");
+
 const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
     [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = sSynchroPalette,
     [COLOR_XYZ - FIRST_NEW_COLOR]      = sXyzPalette,
@@ -45,11 +48,10 @@ const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
 };
 
 /* ---- Mini card border tile pointers (NULL = use vanilla fallback) ---- */
-/* ponytail: XYZ/Pendulum/Link mini borders not yet authored; only
- * synchro has one. NULL entries fall back to gUnk_8E17F48[COLOR_NORMAL]. */
+/* ponytail: Pendulum/Link mini borders not yet authored; NULL → Normal. */
 const unsigned char *gCustomCardColorBorders[NUM_NEW_COLORS] APPEND_RODATA = {
     [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = (const unsigned char *)sSynchroMiniBorderU16,
-    [COLOR_XYZ - FIRST_NEW_COLOR]      = NULL,
+    [COLOR_XYZ - FIRST_NEW_COLOR]      = (const unsigned char *)sXyzMiniBorderU16,
     [COLOR_PENDULUM - FIRST_NEW_COLOR] = NULL,
     [COLOR_LINK - FIRST_NEW_COLOR]     = NULL,
 };
