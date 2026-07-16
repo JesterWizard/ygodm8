@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `545` effects
+- `555` effects
 
 ## Tally
 
@@ -526,6 +526,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Aromaseraphy Jasmine` | `src_custom/activated_effects/aromaseraphy_jasmine.c` |
 | `activated_effects` | `Aromaseraphy Rosemary` | `src_custom/activated_effects/aromaseraphy_rosemary.c` |
 | `activated_effects` | `Aromaseraphy Sweet Marjoram` | `src_custom/activated_effects/aromaseraphy_sweet_marjoram.c` |
+| `spell_effects` | `Attack Pheromones` | `src_custom/spell_effects/attack_pheromones.c` |
+| `activated_effects` | `Azure Eyes Silver Dragon` | `src_custom/activated_effects/azure_eyes_silver_dragon.c` |
+| `activated_effects` | `Black Rose Dragon` | `src_custom/activated_effects/black_rose_dragon.c` |
+| `trap_effects` | `Blessed Winds` | `src_custom/trap_effects/blessed_winds.c` |
+| `activated_effects` | `Blue Eyes Jet Dragon` | `src_custom/activated_effects/blue_eyes_jet_dragon.c` |
+| `activated_effects` | `Blue Eyes Solid Dragon` | `src_custom/activated_effects/blue_eyes_solid_dragon.c` |
+| `activated_effects` | `Blue Eyes Tyrant Dragon` | `src_custom/activated_effects/blue_eyes_tyrant_dragon.c` |
+| `activated_effects` | `Blue Eyes Ultimate Spirit Dragon` | `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c` |
+| `spell_effects` | `Bond Between Teacher And Student` | `src_custom/spell_effects/bond_between_teacher_and_student.c` |
+| `activated_effects` | `Blue Eyes Spirit Dragon` | `src_custom/activated_effects/blue_eyes_spirit_dragon.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

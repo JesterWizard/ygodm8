@@ -614,6 +614,16 @@ static const u8 sAromalilithRosemaryName[] __attribute__((section(".append_asset
 static const u8 sAromaseraphyJasmineName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Jasmine";
 static const u8 sAromaseraphyRosemaryName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Rosemary";
 static const u8 sAromaseraphySweetMarjoramName[] __attribute__((section(".append_assets"))) = "Aromaseraphy Sweet Marjoram";
+static const u8 sAttackPheromonesName[] __attribute__((section(".append_assets"))) = "Attack Pheromones";
+static const u8 sAzureEyesSilverDragonName[] __attribute__((section(".append_assets"))) = "Azure-Eyes Silver Dragon";
+static const u8 sBlackRoseDragonName[] __attribute__((section(".append_assets"))) = "Black Rose Dragon";
+static const u8 sBlessedWindsName[] __attribute__((section(".append_assets"))) = "Blessed Winds";
+static const u8 sBlueEyesJetDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Jet Dragon";
+static const u8 sBlueEyesSolidDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Solid Dragon";
+static const u8 sBlueEyesTyrantDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Tyrant Dragon";
+static const u8 sBlueEyesUltimateSpiritDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Ultimate Spirit Dragon";
+static const u8 sBondBetweenTeacherAndStudentName[] __attribute__((section(".append_assets"))) = "Bond Between Teacher and Student";
+static const u8 sBlueEyesSpiritDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Spirit Dragon";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1848,6 +1858,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sAromaseraphyRosemaryName;
   if (cardId == 0x0585)
     return (u8 *)sAromaseraphySweetMarjoramName;
+  if (cardId == 0x0586)
+    return (u8 *)sAttackPheromonesName;
+  if (cardId == 0x0587)
+    return (u8 *)sAzureEyesSilverDragonName;
+  if (cardId == 0x0588)
+    return (u8 *)sBlackRoseDragonName;
+  if (cardId == 0x0589)
+    return (u8 *)sBlessedWindsName;
+  if (cardId == 0x058A)
+    return (u8 *)sBlueEyesJetDragonName;
+  if (cardId == 0x058B)
+    return (u8 *)sBlueEyesSolidDragonName;
+  if (cardId == 0x058C)
+    return (u8 *)sBlueEyesTyrantDragonName;
+  if (cardId == 0x058D)
+    return (u8 *)sBlueEyesUltimateSpiritDragonName;
+  if (cardId == 0x058E)
+    return (u8 *)sBondBetweenTeacherAndStudentName;
+  if (cardId == 0x058F)
+    return (u8 *)sBlueEyesSpiritDragonName;
 
   return gCardNames[cardId];
 }

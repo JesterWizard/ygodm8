@@ -292,6 +292,20 @@ unsigned char CanActivateAROMASERAPHY_ROSEMARY(void);
 void ActivateAROMASERAPHY_ROSEMARYEffect(void);
 unsigned char CanActivateAROMASERAPHY_SWEET_MARJORAM(void);
 void ActivateAROMASERAPHY_SWEET_MARJORAMEffect(void);
+unsigned char CanActivateAZURE_EYES_SILVER_DRAGON(void);
+void ActivateAZURE_EYES_SILVER_DRAGONEffect(void);
+unsigned char CanActivateBLACK_ROSE_DRAGON(void);
+void ActivateBLACK_ROSE_DRAGONEffect(void);
+unsigned char CanActivateBLUE_EYES_JET_DRAGON(void);
+void ActivateBLUE_EYES_JET_DRAGONEffect(void);
+unsigned char CanActivateBLUE_EYES_SOLID_DRAGON(void);
+void ActivateBLUE_EYES_SOLID_DRAGONEffect(void);
+unsigned char CanActivateBLUE_EYES_TYRANT_DRAGON(void);
+void ActivateBLUE_EYES_TYRANT_DRAGONEffect(void);
+unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void);
+void ActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGONEffect(void);
+unsigned char CanActivateBLUE_EYES_SPIRIT_DRAGON(void);
+void ActivateBLUE_EYES_SPIRIT_DRAGONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1491,6 +1505,34 @@ FAILED:
   }
   if (gMonEffect.id == AROMASERAPHY_SWEET_MARJORAM) {
     ActivateAROMASERAPHY_SWEET_MARJORAMEffect();
+    return;
+  }
+  if (gMonEffect.id == AZURE_EYES_SILVER_DRAGON) {
+    ActivateAZURE_EYES_SILVER_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLACK_ROSE_DRAGON) {
+    ActivateBLACK_ROSE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_JET_DRAGON) {
+    ActivateBLUE_EYES_JET_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_SOLID_DRAGON) {
+    ActivateBLUE_EYES_SOLID_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_TYRANT_DRAGON) {
+    ActivateBLUE_EYES_TYRANT_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_ULTIMATE_SPIRIT_DRAGON) {
+    ActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BLUE_EYES_SPIRIT_DRAGON) {
+    ActivateBLUE_EYES_SPIRIT_DRAGONEffect();
     return;
   }
 }

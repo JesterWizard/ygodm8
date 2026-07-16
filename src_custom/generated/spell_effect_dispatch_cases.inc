@@ -17,6 +17,9 @@
     case AROMA_GARDENING:
       EffectAROMA_GARDENING();
       return;
+    case ATTACK_PHEROMONES:
+      EffectATTACK_PHEROMONES();
+      return;
     case AUTONOMOUS_ACTION_UNIT:
       EffectAutonomousActionUnit();
       return;
@@ -37,6 +40,9 @@
       return;
     case BLOCK_ATTACK:
       EffectBlockAttack();
+      return;
+    case BOND_BETWEEN_TEACHER_AND_STUDENT:
+      EffectBOND_BETWEEN_TEACHER_AND_STUDENT();
       return;
     case BOOK_OF_LIFE:
       EffectBookOfLife();

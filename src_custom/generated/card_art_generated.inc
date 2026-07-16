@@ -2460,6 +2460,46 @@ static const unsigned char sAromaseraphySweetMarjoramBigArt[] __attribute__((sec
 static const unsigned short sAromaseraphySweetMarjoramBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromaseraphy_sweet_marjoram.gbapal");
 static const unsigned char sAromaseraphySweetMarjoramMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromaseraphy_sweet_marjoram.lz");
 
+static const unsigned char sAttackPheromonesBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/attack_pheromones.huff");
+static const unsigned short sAttackPheromonesBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/attack_pheromones.gbapal");
+static const unsigned char sAttackPheromonesMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/attack_pheromones.lz");
+
+static const unsigned char sAzureEyesSilverDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/azure_eyes_silver_dragon.huff");
+static const unsigned short sAzureEyesSilverDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/azure_eyes_silver_dragon.gbapal");
+static const unsigned char sAzureEyesSilverDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/azure_eyes_silver_dragon.lz");
+
+static const unsigned char sBlackRoseDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/black_rose_dragon.huff");
+static const unsigned short sBlackRoseDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/black_rose_dragon.gbapal");
+static const unsigned char sBlackRoseDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/black_rose_dragon.lz");
+
+static const unsigned char sBlessedWindsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blessed_winds.huff");
+static const unsigned short sBlessedWindsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blessed_winds.gbapal");
+static const unsigned char sBlessedWindsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blessed_winds.lz");
+
+static const unsigned char sBlueEyesJetDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blue_eyes_jet_dragon.huff");
+static const unsigned short sBlueEyesJetDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blue_eyes_jet_dragon.gbapal");
+static const unsigned char sBlueEyesJetDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blue_eyes_jet_dragon.lz");
+
+static const unsigned char sBlueEyesSolidDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blue_eyes_solid_dragon.huff");
+static const unsigned short sBlueEyesSolidDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blue_eyes_solid_dragon.gbapal");
+static const unsigned char sBlueEyesSolidDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blue_eyes_solid_dragon.lz");
+
+static const unsigned char sBlueEyesTyrantDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blue_eyes_tyrant_dragon.huff");
+static const unsigned short sBlueEyesTyrantDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blue_eyes_tyrant_dragon.gbapal");
+static const unsigned char sBlueEyesTyrantDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blue_eyes_tyrant_dragon.lz");
+
+static const unsigned char sBlueEyesUltimateSpiritDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blue_eyes_ultimate_spirit_dragon.huff");
+static const unsigned short sBlueEyesUltimateSpiritDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blue_eyes_ultimate_spirit_dragon.gbapal");
+static const unsigned char sBlueEyesUltimateSpiritDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blue_eyes_ultimate_spirit_dragon.lz");
+
+static const unsigned char sBondBetweenTeacherAndStudentBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/bond_between_teacher_and_student.huff");
+static const unsigned short sBondBetweenTeacherAndStudentBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/bond_between_teacher_and_student.gbapal");
+static const unsigned char sBondBetweenTeacherAndStudentMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/bond_between_teacher_and_student.lz");
+
+static const unsigned char sBlueEyesSpiritDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/blue_eyes_spirit_dragon.huff");
+static const unsigned short sBlueEyesSpiritDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/blue_eyes_spirit_dragon.gbapal");
+static const unsigned char sBlueEyesSpiritDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/blue_eyes_spirit_dragon.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3076,6 +3116,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0583] = sAromaseraphyJasmineBigArt,
   [0x0584] = sAromaseraphyRosemaryBigArt,
   [0x0585] = sAromaseraphySweetMarjoramBigArt,
+  [0x0586] = sAttackPheromonesBigArt,
+  [0x0587] = sAzureEyesSilverDragonBigArt,
+  [0x0588] = sBlackRoseDragonBigArt,
+  [0x0589] = sBlessedWindsBigArt,
+  [0x058A] = sBlueEyesJetDragonBigArt,
+  [0x058B] = sBlueEyesSolidDragonBigArt,
+  [0x058C] = sBlueEyesTyrantDragonBigArt,
+  [0x058D] = sBlueEyesUltimateSpiritDragonBigArt,
+  [0x058E] = sBondBetweenTeacherAndStudentBigArt,
+  [0x058F] = sBlueEyesSpiritDragonBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3694,6 +3744,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0583] = sAromaseraphyJasmineBigPalette,
   [0x0584] = sAromaseraphyRosemaryBigPalette,
   [0x0585] = sAromaseraphySweetMarjoramBigPalette,
+  [0x0586] = sAttackPheromonesBigPalette,
+  [0x0587] = sAzureEyesSilverDragonBigPalette,
+  [0x0588] = sBlackRoseDragonBigPalette,
+  [0x0589] = sBlessedWindsBigPalette,
+  [0x058A] = sBlueEyesJetDragonBigPalette,
+  [0x058B] = sBlueEyesSolidDragonBigPalette,
+  [0x058C] = sBlueEyesTyrantDragonBigPalette,
+  [0x058D] = sBlueEyesUltimateSpiritDragonBigPalette,
+  [0x058E] = sBondBetweenTeacherAndStudentBigPalette,
+  [0x058F] = sBlueEyesSpiritDragonBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4312,6 +4372,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0583] = 0,
   [0x0584] = 0,
   [0x0585] = 0,
+  [0x0586] = 0,
+  [0x0587] = 0,
+  [0x0588] = 0,
+  [0x0589] = 0,
+  [0x058A] = 0,
+  [0x058B] = 0,
+  [0x058C] = 0,
+  [0x058D] = 0,
+  [0x058E] = 0,
+  [0x058F] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4930,4 +5000,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0583] = sAromaseraphyJasmineMiniArt,
   [0x0584] = sAromaseraphyRosemaryMiniArt,
   [0x0585] = sAromaseraphySweetMarjoramMiniArt,
+  [0x0586] = sAttackPheromonesMiniArt,
+  [0x0587] = sAzureEyesSilverDragonMiniArt,
+  [0x0588] = sBlackRoseDragonMiniArt,
+  [0x0589] = sBlessedWindsMiniArt,
+  [0x058A] = sBlueEyesJetDragonMiniArt,
+  [0x058B] = sBlueEyesSolidDragonMiniArt,
+  [0x058C] = sBlueEyesTyrantDragonMiniArt,
+  [0x058D] = sBlueEyesUltimateSpiritDragonMiniArt,
+  [0x058E] = sBondBetweenTeacherAndStudentMiniArt,
+  [0x058F] = sBlueEyesSpiritDragonMiniArt,
 };

@@ -1415,11 +1415,21 @@
 #define AROMASERAPHY_JASMINE                     0x0583
 #define AROMASERAPHY_ROSEMARY                    0x0584
 #define AROMASERAPHY_SWEET_MARJORAM              0x0585
+#define ATTACK_PHEROMONES                        0x0586
+#define AZURE_EYES_SILVER_DRAGON                 0x0587
+#define BLACK_ROSE_DRAGON                        0x0588
+#define BLESSED_WINDS                            0x0589
+#define BLUE_EYES_JET_DRAGON                     0x058A
+#define BLUE_EYES_SOLID_DRAGON                   0x058B
+#define BLUE_EYES_TYRANT_DRAGON                  0x058C
+#define BLUE_EYES_ULTIMATE_SPIRIT_DRAGON         0x058D
+#define BOND_BETWEEN_TEACHER_AND_STUDENT         0x058E
+#define BLUE_EYES_SPIRIT_DRAGON                  0x058F
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0586
-#define NUM_CUSTOM_CARDS                        0x0265
+#define NUM_TOTAL_CARDS                         0x0590
+#define NUM_CUSTOM_CARDS                        0x026F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

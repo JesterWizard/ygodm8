@@ -75,6 +75,10 @@ COLOR_BY_FRAME = {
     "ritual": "RITUAL_CARD",
     "spell": "SPELL_CARD",
     "trap": "TRAP_CARD",
+    "synchro": "SYNCHRO_CARD",
+    "xyz": "XYZ_CARD",
+    "pendulum": "PENDULUM_CARD",
+    "link": "LINK_CARD",
 }
 
 
@@ -133,10 +137,13 @@ def fetch_card(*, name: str | None = None, passcode: int | None = None, fname: s
 
 def frame_kind(card_type: str) -> str:
     lowered = card_type.lower()
-    # Extra-deck / modern frames without a DM8 color → EFFECT_CARD
-    for key in ("synchro", "xyz", "link", "pendulum", "tuner"):
+    # Extra-deck frames first (before "effect"/"tuner" substrings).
+    for key in ("synchro", "xyz", "link", "pendulum"):
         if key in lowered:
-            return "effect"
+            return key
+    # Non-Synchro Tuners keep the orange effect frame.
+    if "tuner" in lowered:
+        return "effect"
     for key in ("normal", "effect", "fusion", "ritual", "spell", "trap"):
         if key in lowered:
             return key
@@ -219,11 +226,11 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
 
     atk = int(api_card["atk"]) if api_card["atk"] is not None else 0
     def_ = int(api_card["def"]) if api_card["def"] is not None else 0
-    # Link monsters expose linkval instead of level; DEF is None.
-    if api_card.get("level") is not None:
+    # Link monsters have no Level (stars); keep level 0. DEF is None from API.
+    if color == "LINK_CARD":
+        level = 0
+    elif api_card.get("level") is not None:
         level = int(api_card["level"])
-    elif api_card.get("linkval") is not None:
-        level = int(api_card["linkval"])
     else:
         level = 0
 
@@ -245,7 +252,7 @@ def build_manifest_entry(api_card: dict, manifest: dict) -> dict:
             "pages": wrap_effect_text(api_card.get("desc", card_name)),
         },
     })
-    if color in ("EFFECT_CARD", "FUSION_CARD") and api_card.get("desc"):
+    if color in ("EFFECT_CARD", "FUSION_CARD", "SYNCHRO_CARD", "XYZ_CARD", "PENDULUM_CARD", "LINK_CARD") and api_card.get("desc"):
         entry["effect_texts"] = {
             "popup_1": api_card.get("desc", card_name)[:120],
         }

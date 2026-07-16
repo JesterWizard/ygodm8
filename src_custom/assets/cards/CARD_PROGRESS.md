@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 613 |
-| Art ready, needs manifest | 187 |
+| In game (manifest + art) | 623 |
+| Art ready, needs manifest | 177 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -635,21 +635,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `AROMASERAPHY_JASMINE` | Aromaseraphy Jasmine | `aromaseraphy_jasmine.png` |
 | `AROMASERAPHY_ROSEMARY` | Aromaseraphy Rosemary | `aromaseraphy_rosemary.png` |
 | `AROMASERAPHY_SWEET_MARJORAM` | Aromaseraphy Sweet Marjoram | `aromaseraphy_sweet_marjoram.png` |
+| `ATTACK_PHEROMONES` | Attack Pheromones | `attack_pheromones.png` |
+| `AZURE_EYES_SILVER_DRAGON` | Azure-Eyes Silver Dragon | `azure_eyes_silver_dragon.png` |
+| `BLACK_ROSE_DRAGON` | Black Rose Dragon | `black_rose_dragon.png` |
+| `BLESSED_WINDS` | Blessed Winds | `blessed_winds.png` |
+| `BLUE_EYES_JET_DRAGON` | Blue-Eyes Jet Dragon | `blue_eyes_jet_dragon.png` |
+| `BLUE_EYES_SOLID_DRAGON` | Blue-Eyes Solid Dragon | `blue_eyes_solid_dragon.png` |
+| `BLUE_EYES_TYRANT_DRAGON` | Blue-Eyes Tyrant Dragon | `blue_eyes_tyrant_dragon.png` |
+| `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` | Blue-Eyes Ultimate Spirit Dragon | `blue_eyes_ultimate_spirit_dragon.png` |
+| `BOND_BETWEEN_TEACHER_AND_STUDENT` | Bond Between Teacher and Student | `bond_between_teacher_and_student.png` |
+| `BLUE_EYES_SPIRIT_DRAGON` | Blue-Eyes Spirit Dragon | `blue_eyes_spirit_dragon.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ATTACK_PHEROMONES` — `attack_pheromones.png`
-- [ ] `AZURE_EYES_SILVER_DRAGON` — `azure_eyes_silver_dragon.png`
-- [ ] `BLACK_ROSE_DRAGON` — `black_rose_dragon.png`
-- [ ] `BLESSED_WINDS` — `blessed_winds.png`
-- [ ] `BLUE_EYES_JET_DRAGON` — `blue_eyes_jet_dragon.png`
-- [ ] `BLUE_EYES_SILVER_DRAGON` — `blue_eyes_silver_dragon.png`
-- [ ] `BLUE_EYES_SOLID_DRAGON` — `blue_eyes_solid_dragon.png`
-- [ ] `BLUE_EYES_TYRANT_DRAGON` — `blue_eyes_tyrant_dragon.png`
-- [ ] `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` — `blue_eyes_ultimate_spirit_dragon.png`
-- [ ] `BOND_BETWEEN_TEACHER_AND_STUDENT` — `bond_between_teacher_and_student.png`
 - [ ] `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` — `brionac_dragon_of_the_ice_barrier.png`
 - [ ] `CHAIN_MATERIAL` — `chain_material.png`
 - [ ] `COLOSSAL_FIGHTER` — `colossal_fighter.png`

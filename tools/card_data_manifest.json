@@ -28661,10 +28661,10 @@
       "card_name": "Aromalilith Rosemary",
       "atk": 2200,
       "def": 0,
-      "level": 3,
+      "level": 0,
       "attribute": "ATTRIBUTE_SHADOW",
       "type": "TYPE_PLANT",
-      "color": "EFFECT_CARD",
+      "color": "LINK_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -28691,7 +28691,7 @@
       "level": 0,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PLANT",
-      "color": "EFFECT_CARD",
+      "color": "LINK_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -28719,7 +28719,7 @@
       "level": 5,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PLANT",
-      "color": "EFFECT_CARD",
+      "color": "SYNCHRO_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -28746,7 +28746,7 @@
       "level": 6,
       "attribute": "ATTRIBUTE_LIGHT",
       "type": "TYPE_PLANT",
-      "color": "EFFECT_CARD",
+      "color": "SYNCHRO_CARD",
       "monsterEffect": 0,
       "spellEffect": 2,
       "trapEffect": 0,
@@ -28764,6 +28764,285 @@
       },
       "effect_texts": {
         "popup_1": "If LP higher: Plants untargetable. If Synchro: add Winds. If gain LP: destroy 1."
+      }
+    },
+    {
+      "card_const": "ATTACK_PHEROMONES",
+      "card_name": "Attack Pheromones",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 8, 7, 8, 6, 3, 3, 0],
+      "description": {
+        "symbol": "gDescription_AttackPheromones",
+        "pages": [
+          "If a monster you control attacks a Defense Position",
+          "monster, change that monster to face-up Attack Position at",
+          "the end of the Damage Step if your attacking monster is",
+          "Reptile-Type."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If a monster you control attacks a Defense Position monster, change that monster to face-up Attack"
+      }
+    },
+    {
+      "card_const": "AZURE_EYES_SILVER_DRAGON",
+      "card_name": "Azure-Eyes Silver Dragon",
+      "atk": 2500,
+      "def": 3000,
+      "level": 9,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 0, 9, 0, 8, 3, 7, 1],
+      "description": {
+        "symbol": "gDescription_AzureEyesSilverDragon",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner Normal Monsters. If Special",
+          "Summoned: until end of next turn, Dragon monsters you",
+          "control cannot be targeted or destroyed by card",
+          "effects. Once per turn, during your Standby Phase: target 1",
+          "Normal Monster in your GY; Special Summon it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner Normal Monsters. If Special Summoned: until end of next turn, Dragon monsters you"
+      }
+    },
+    {
+      "card_const": "BLACK_ROSE_DRAGON",
+      "card_name": "Black Rose Dragon",
+      "atk": 2400,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 3, 5, 8, 0, 4, 7, 1],
+      "description": {
+        "symbol": "gDescription_BlackRoseDragon",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner monsters. If Synchro Summoned:",
+          "destroy all cards on the field. You can banish 1 Plant from your",
+          "GY, then target 1 Defense Position monster;",
+          "change it to face-up Attack Position, and if you do, its ATK becomes",
+          "0 until end of this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner monsters. If Synchro Summoned: destroy all cards on the field. You can"
+      }
+    },
+    {
+      "card_const": "BLESSED_WINDS",
+      "card_name": "Blessed Winds",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 5, 1, 7, 7, 7, 5, 0],
+      "description": {
+        "symbol": "gDescription_BlessedWinds",
+        "pages": [
+          "You can activate 1 of these effects (but you can only use",
+          "each of this card once per turn): Target 1 Plant in your GY;",
+          "Special Summon it. Or target 1 Plant you control; return it to",
+          "the hand, and if you do, gain 500 LP. Or target 1 Plant in",
+          "your GY; shuffle it into the Deck, and if you do, gain 500 LP."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "You can activate 1 of these effects (but you can only use each of this card once per turn): Target 1 Plant"
+      }
+    },
+    {
+      "card_const": "BLUE_EYES_JET_DRAGON",
+      "card_name": "Blue-Eyes Jet Dragon",
+      "atk": 3000,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 229,
+      "password": [3, 0, 5, 7, 6, 0, 8, 9],
+      "description": {
+        "symbol": "gDescription_BlueEyesJetDragon",
+        "pages": [
+          "Other face-up Blue-Eyes you control cannot be destroyed",
+          "by card effects. Once each per turn: if a field card is",
+          "destroyed by battle or effect, Special Summon this from GY",
+          "or hand; and during opponent turn (Quick Effect),",
+          "target 1 field card; return it to the hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Other face-up Blue-Eyes you control cannot be destroyed by card effects. Once each per turn: if a field card"
+      }
+    },
+    {
+      "card_const": "BLUE_EYES_SOLID_DRAGON",
+      "card_name": "Blue-Eyes Solid Dragon",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 7, 0, 4, 3, 9, 8, 6],
+      "description": {
+        "symbol": "gDescription_BlueEyesSolidDragon",
+        "pages": [
+          "If Normal or Special Summoned: target 1 face-up",
+          "opponent monster; negate its effects. When opponent",
+          "activates a card/effect (Quick Effect): shuffle this",
+          "into Deck; Special Summon 1 Blue-Eyes White Dragon from Deck.",
+          "Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If Normal or Special Summoned: target 1 face-up opponent monster; negate its effects. When opponent"
+      }
+    },
+    {
+      "card_const": "BLUE_EYES_TYRANT_DRAGON",
+      "card_name": "Blue-Eyes Tyrant Dragon",
+      "atk": 3400,
+      "def": 2900,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [1, 1, 4, 4, 3, 6, 7, 7],
+      "description": {
+        "symbol": "gDescription_BlueEyesTyrantDragon",
+        "pages": [
+          "Blue-Eyes White Dragon + 1 Dragon. Must first be Fusion",
+          "Summoned, or Special Summoned from Extra Deck by Tributing 1",
+          "Blue-Eyes White Dragon and 1 Dragon. Unaffected by Traps. Can",
+          "attack monsters equal to Dragons used as material. If",
+          "it battled: Set 1 Trap from your GY at end of Damage Step."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Blue-Eyes White Dragon + 1 Dragon. Must first be Fusion Summoned, or Special Summoned from Extra Deck by"
+      }
+    },
+    {
+      "card_const": "BLUE_EYES_ULTIMATE_SPIRIT_DRAGON",
+      "card_name": "Blue-Eyes Ultimate Spirit Dragon",
+      "atk": 3500,
+      "def": 4000,
+      "level": 12,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [8, 9, 6, 0, 4, 8, 1, 3],
+      "description": {
+        "symbol": "gDescription_BlueEyesUltimateSpiritDragon",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner LIGHT Dragons. Opponent cannot",
+          "banish from your GY. Once each per turn: when a field card/effect",
+          "activates (Quick Effect), negate it and this gains",
+          "1000 ATK this turn; during opponent turn, Tribute this",
+          "to Special Summon 1 LIGHT Dragon Synchro from Extra Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner LIGHT Dragons. Opponent cannot banish from your GY. Once each per turn: when a"
+      }
+    },
+    {
+      "card_const": "BOND_BETWEEN_TEACHER_AND_STUDENT",
+      "card_name": "Bond Between Teacher and Student",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 0, 7, 0, 9, 2, 1, 8],
+      "description": {
+        "symbol": "gDescription_BondBetweenTeacherAndStudent",
+        "pages": [
+          "If you control Dark Magician Girl: Special Summon 1 Dark",
+          "Magician from your hand, Deck, or GY, then you can Set 1",
+          "Magic Cylinder, Dark Magic Attack, or Eternal Soul",
+          "directly from your Deck. You can only activate 1 Bond",
+          "Between Teacher and Student per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you control Dark Magician Girl: Special Summon 1 Dark Magician from your hand, Deck, or GY,"
+      }
+    },
+    {
+      "card_const": "BLUE_EYES_SPIRIT_DRAGON",
+      "card_name": "Blue-Eyes Spirit Dragon",
+      "atk": 2500,
+      "def": 3000,
+      "level": 9,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [5, 9, 8, 2, 2, 1, 3, 3],
+      "description": {
+        "symbol": "gDescription_BlueEyesSpiritDragon",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner LIGHT monsters (except Tokens).",
+          "Cannot be destroyed by battle. Once per turn, negate a",
+          "Special Summon effect and destroy that card. During",
+          "either turn: Tribute this Synchro Summoned card; Special",
+          "Summon 1 LIGHT Dragon Synchro from Extra Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + 1+ non-Tuner LIGHT monsters (except Tokens). Cannot be destroyed by battle. Once"
       }
     }
   ]

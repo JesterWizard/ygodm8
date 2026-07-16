@@ -588,6 +588,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [AROMASERAPHY_JASMINE] = gActivationDescription_AromaseraphyJasmine_Popup1,
   [AROMASERAPHY_ROSEMARY] = gActivationDescription_AromaseraphyRosemary_Popup1,
   [AROMASERAPHY_SWEET_MARJORAM] = gActivationDescription_AromaseraphySweetMarjoram_Popup1,
+  [ATTACK_PHEROMONES] = gActivationDescription_AttackPheromones_Popup1,
+  [AZURE_EYES_SILVER_DRAGON] = gActivationDescription_AzureEyesSilverDragon_Popup1,
+  [BLACK_ROSE_DRAGON] = gActivationDescription_BlackRoseDragon_Popup1,
+  [BLESSED_WINDS] = gActivationDescription_BlessedWinds_Popup1,
+  [BLUE_EYES_JET_DRAGON] = gActivationDescription_BlueEyesJetDragon_Popup1,
+  [BLUE_EYES_SOLID_DRAGON] = gActivationDescription_BlueEyesSolidDragon_Popup1,
+  [BLUE_EYES_TYRANT_DRAGON] = gActivationDescription_BlueEyesTyrantDragon_Popup1,
+  [BLUE_EYES_ULTIMATE_SPIRIT_DRAGON] = gActivationDescription_BlueEyesUltimateSpiritDragon_Popup1,
+  [BOND_BETWEEN_TEACHER_AND_STUDENT] = gActivationDescription_BondBetweenTeacherAndStudent_Popup1,
+  [BLUE_EYES_SPIRIT_DRAGON] = gActivationDescription_BlueEyesSpiritDragon_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1207,6 +1217,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_AROMASERAPHY_JASMINE_POPUP_1] = gActivationDescription_AromaseraphyJasmine_Popup1,
   [CARD_EFFECT_TEXT_AROMASERAPHY_ROSEMARY_POPUP_1] = gActivationDescription_AromaseraphyRosemary_Popup1,
   [CARD_EFFECT_TEXT_AROMASERAPHY_SWEET_MARJORAM_POPUP_1] = gActivationDescription_AromaseraphySweetMarjoram_Popup1,
+  [CARD_EFFECT_TEXT_ATTACK_PHEROMONES_POPUP_1] = gActivationDescription_AttackPheromones_Popup1,
+  [CARD_EFFECT_TEXT_AZURE_EYES_SILVER_DRAGON_POPUP_1] = gActivationDescription_AzureEyesSilverDragon_Popup1,
+  [CARD_EFFECT_TEXT_BLACK_ROSE_DRAGON_POPUP_1] = gActivationDescription_BlackRoseDragon_Popup1,
+  [CARD_EFFECT_TEXT_BLESSED_WINDS_POPUP_1] = gActivationDescription_BlessedWinds_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_JET_DRAGON_POPUP_1] = gActivationDescription_BlueEyesJetDragon_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_SOLID_DRAGON_POPUP_1] = gActivationDescription_BlueEyesSolidDragon_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_TYRANT_DRAGON_POPUP_1] = gActivationDescription_BlueEyesTyrantDragon_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_ULTIMATE_SPIRIT_DRAGON_POPUP_1] = gActivationDescription_BlueEyesUltimateSpiritDragon_Popup1,
+  [CARD_EFFECT_TEXT_BOND_BETWEEN_TEACHER_AND_STUDENT_POPUP_1] = gActivationDescription_BondBetweenTeacherAndStudent_Popup1,
+  [CARD_EFFECT_TEXT_BLUE_EYES_SPIRIT_DRAGON_POPUP_1] = gActivationDescription_BlueEyesSpiritDragon_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)
