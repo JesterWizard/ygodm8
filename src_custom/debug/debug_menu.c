@@ -471,9 +471,16 @@ static void DebugMenuClearCursorOam(void) {
 }
 
 /* Sub-viewers (portrait/sprite/reaction) leave OAM slots 1+ dirty.
- * Clear them before the root menu renders so no ghost sprites bleed in. */
+ * Hide them (Y=160) — zeroing leaves Y=0 / tile 0, which draws an 8×8
+ * slice of the cursor eye at (0,0). */
 static void DebugMenuClearAuxOam(void) {
-  CpuFill16(0, gOamBuffer + 4, 0x3F8);
+  u8 i;
+
+  for (i = 1; i < 128; i++) {
+    u32 *oam = (u32 *)&gOamBuffer[i * 4];
+    oam[0] = 160;
+    oam[1] = 0;
+  }
 }
 
 void DebugMenu_TeardownForDuel(void) {

@@ -115,7 +115,8 @@ static void RemapDialogFontPixels(void) {
 }
 
 static void CustomCopyBgGfx(void) {
-  LZ77UnCompWram(sTitleScreenTiles, gBgVram.cbb0);
+  /* Cast to u32*: BIOS LZ77 reads the stream as words (needs aligned(4) source). */
+  LZ77UnCompWram((const u32 *)sTitleScreenTiles, gBgVram.cbb0);
   TitleScreen_BuildTilemap();
   TitleScreen_SetupSaveDialogGfx();
   RemapDialogFontPixels();

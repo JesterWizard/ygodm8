@@ -1,11 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Fix ghost portrait glitch under duel portrait
+**Last worked on:** 2026-07-16 — Fix mGBA title-screen black screen (LZ asset alignment)
 
 **Files touched:**
-- `src_custom/duel_voice_hooks.c` — always clear OAM 0–3 (leftover overworld portrait at y=48); mini-cards only when `hideBoardSprites`
-- `include/duel_voice.h`
+- `configs/runtime.h` — `APPEND_ASSET` now `aligned(4)`
+- `src_custom/title_screen_hooks.c` — cast LZ source to `const u32 *`
+- `tools/build_custom_maps.py`, `documentation/title-screen.md`
 
-**Outcome:** `make` exits 0.
+**Outcome:** `sTitleScreenTiles` at `0x097505a0` (word-aligned). `make` exits 0.
 
-**Open / next:** In-game confirm no second square under Yugi; mini-cards still visible.
+**Open / next:** Confirm title screen boots on mGBA.

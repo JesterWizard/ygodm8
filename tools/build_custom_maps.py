@@ -30,7 +30,7 @@ APPEND_RODATA_ATTR = "__attribute__((section(\".append_rodata\"), aligned(4)))"
 # the attribute is spelled out in the generated C (they appear as
 # a bare identifier, NOT as the attribute).
 APPEND_RODATA = APPEND_RODATA_ATTR
-APPEND_ASSET = "__attribute__((section(\".append_assets\")))"
+APPEND_ASSET = "__attribute__((section(\".append_assets\"), aligned(4)))"
 
 TILE_W = 8
 TILE_H = 8

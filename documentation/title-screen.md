@@ -105,6 +105,7 @@ Rebuild with `make`. A placeholder PNG is generated automatically on first build
 
 - Custom art replaces **BG3 background only**; NEW GAME / CONTINUE labels remain vanilla 4bpp OBJ sprites.
 - Full-screen 8bpp tilesets use `0x9600` bytes (600 tiles). Decompression targets `gBgVram.cbb0` directly; do not use `gSharedMem` as a staging buffer.
+- LZ tile blobs must be **word-aligned** (`APPEND_ASSET` includes `aligned(4)`). BIOS `LZ77UnCompWram` reads ROM as 32-bit words; unaligned sources black-screen + audio static on mGBA/hardware while No$GBA often still boots.
 - Tilemaps are built at runtime as a 30×20 sequential grid in `gBgVram.sbb1F`, displayed on BG3 with the vanilla `REG_BG3CNT` setup from `VBlankCbInitGfxRegs`. `LoadVRAM()` must run after `CopyGfxAndInitGfxRegs` so char and screen blocks reach hardware VRAM.
 - Language-specific BG3 tilemap rows from `g8E0CDA4` are not applied in custom mode. This does not affect the localized save-overwrite dialog on BG0.
 - While the save-overwrite prompt is visible, dialog palette slots temporarily use vanilla colors; background art may tint slightly in overlapping indices during that prompt only.

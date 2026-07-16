@@ -110,7 +110,10 @@ extern RuntimeConfig gRuntimeConfigEwram;
 
 #define APPEND_TEXT __attribute__((section(".append_text")))
 #define APPEND_RODATA __attribute__((section(".append_rodata")))
-#define APPEND_ASSET __attribute__((section(".append_assets")))
+/* aligned(4): BIOS LZ77UnCompWram / CpuCopy32 read ROM as words; mGBA + hardware
+ * fault on unaligned sources (No$GBA often tolerates). Keep every .append_assets
+ * blob word-aligned. */
+#define APPEND_ASSET __attribute__((section(".append_assets"), aligned(4)))
 #define APPEND_DATA __attribute__((section(".append_data")))
 
 typedef struct {
