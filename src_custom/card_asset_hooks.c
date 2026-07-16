@@ -105,19 +105,6 @@ void CopyCardArtDataToBuffers__Replacement(void) {
   // Match vanilla: index 0 must be black for attack-screen BG tiles.
   *gUnk_8E01368 = 0;
 
-  // XYZ frames are black: force name (0x44A → indices 4/10) and ATK/DEF
-  // digit ink (6/7/11) white in art palette bank 0. Frame palette index 10
-  // is also white in xyz.gbapal for any tiles that resolve there.
-  if (gCardInfo.color == COLOR_XYZ) {
-    gUnk_8E01368[4] = 0x7FFF;
-    gUnk_8E01368[5] = 0x6B5B;
-    gUnk_8E01368[6] = 0x7FFF;
-    gUnk_8E01368[7] = 0x6B5B;
-    gUnk_8E01368[8] = 0x6B5B;
-    gUnk_8E01368[10] = 0x7FFF;
-    gUnk_8E01368[11] = 0x7FFF;
-  }
-
   for (i = 0; i < 10; i++)
     CpuCopy32(gUnk_8936130[i], gUnk_8E0136C + (10 * i + 0x48 + i * 4), 20);
 
