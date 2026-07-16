@@ -313,3 +313,5 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   /* TODO: wire D_D_WARRIOR in battle damage hooks */
 /* DON_ZALOOG battle effect */
   /* TODO: wire DON_ZALOOG in battle damage hooks */
+/* LIGHTNING_WARRIOR battle effect */
+  /* TODO: wire LIGHTNING_WARRIOR in battle damage hooks */

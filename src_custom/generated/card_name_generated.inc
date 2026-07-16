@@ -712,6 +712,26 @@ static const u8 sHystericSignName[] __attribute__((section(".append_assets"))) =
 static const u8 sIllusionMagicName[] __attribute__((section(".append_assets"))) = "Illusion Magic";
 static const u8 sIllusionOfChaosName[] __attribute__((section(".append_assets"))) = "Illusion of Chaos";
 static const u8 sIpiriaName[] __attribute__((section(".append_assets"))) = "Ipiria";
+static const u8 sJunkWarriorName[] __attribute__((section(".append_assets"))) = "Junk Warrior";
+static const u8 sKeeperOfDragonMagicName[] __attribute__((section(".append_assets"))) = "Keeper of Dragon Magic";
+static const u8 sLegendaryMajuGarzettName[] __attribute__((section(".append_assets"))) = "Legendary Maju Garzett";
+static const u8 sLevShaddollFusionName[] __attribute__((section(".append_assets"))) = "Lev Shaddoll Fusion";
+static const u8 sLightSerpentName[] __attribute__((section(".append_assets"))) = "Lightserpent";
+static const u8 sLightningWarriorName[] __attribute__((section(".append_assets"))) = "Lightning Warrior";
+static const u8 sLonefireBlossomName[] __attribute__((section(".append_assets"))) = "Lonefire Blossom";
+static const u8 sMagicianNavigationName[] __attribute__((section(".append_assets"))) = "Magician Navigation";
+static const u8 sMagicianOfDarkIllusionName[] __attribute__((section(".append_assets"))) = "Magician of Dark Illusion";
+static const u8 sMagiciansCombinationName[] __attribute__((section(".append_assets"))) = "Magicians' Combination";
+static const u8 sMagiciansRobeName[] __attribute__((section(".append_assets"))) = "Magician's Robe";
+static const u8 sMagiciansRodName[] __attribute__((section(".append_assets"))) = "Magician's Rod";
+static const u8 sMagiciansSoulsName[] __attribute__((section(".append_assets"))) = "Magicians' Souls";
+static const u8 sMasterOfChaosName[] __attribute__((section(".append_assets"))) = "Master of Chaos";
+static const u8 sMetaverseName[] __attribute__((section(".append_assets"))) = "Metaverse";
+static const u8 sMillenniumEyesRestrictName[] __attribute__((section(".append_assets"))) = "Millennium-Eyes Restrict";
+static const u8 sMoltingEscapeName[] __attribute__((section(".append_assets"))) = "Molting Escape";
+static const u8 sMysticMineName[] __attribute__((section(".append_assets"))) = "Mystic Mine";
+static const u8 sNaelshaddollArielName[] __attribute__((section(".append_assets"))) = "Naelshaddoll Ariel";
+static const u8 sNehshaddollGeniusName[] __attribute__((section(".append_assets"))) = "Nehshaddoll Genius";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2142,6 +2162,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sIllusionOfChaosName;
   if (cardId == 0x05E7)
     return (u8 *)sIpiriaName;
+  if (cardId == 0x05E8)
+    return (u8 *)sJunkWarriorName;
+  if (cardId == 0x05E9)
+    return (u8 *)sKeeperOfDragonMagicName;
+  if (cardId == 0x05EA)
+    return (u8 *)sLegendaryMajuGarzettName;
+  if (cardId == 0x05EB)
+    return (u8 *)sLevShaddollFusionName;
+  if (cardId == 0x05EC)
+    return (u8 *)sLightSerpentName;
+  if (cardId == 0x05ED)
+    return (u8 *)sLightningWarriorName;
+  if (cardId == 0x05EE)
+    return (u8 *)sLonefireBlossomName;
+  if (cardId == 0x05EF)
+    return (u8 *)sMagicianNavigationName;
+  if (cardId == 0x05F0)
+    return (u8 *)sMagicianOfDarkIllusionName;
+  if (cardId == 0x05F1)
+    return (u8 *)sMagiciansCombinationName;
+  if (cardId == 0x05F2)
+    return (u8 *)sMagiciansRobeName;
+  if (cardId == 0x05F3)
+    return (u8 *)sMagiciansRodName;
+  if (cardId == 0x05F4)
+    return (u8 *)sMagiciansSoulsName;
+  if (cardId == 0x05F5)
+    return (u8 *)sMasterOfChaosName;
+  if (cardId == 0x05F6)
+    return (u8 *)sMetaverseName;
+  if (cardId == 0x05F7)
+    return (u8 *)sMillenniumEyesRestrictName;
+  if (cardId == 0x05F8)
+    return (u8 *)sMoltingEscapeName;
+  if (cardId == 0x05F9)
+    return (u8 *)sMysticMineName;
+  if (cardId == 0x05FA)
+    return (u8 *)sNaelshaddollArielName;
+  if (cardId == 0x05FB)
+    return (u8 *)sNehshaddollGeniusName;
 
   return gCardNames[cardId];
 }

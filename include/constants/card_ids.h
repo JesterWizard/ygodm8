@@ -1513,11 +1513,31 @@
 #define ILLUSION_MAGIC                           0x05E5
 #define ILLUSION_OF_CHAOS                        0x05E6
 #define IPIRIA                                   0x05E7
+#define JUNK_WARRIOR                             0x05E8
+#define KEEPER_OF_DRAGON_MAGIC                   0x05E9
+#define LEGENDARY_MAJU_GARZETT                   0x05EA
+#define LEV_SHADDOLL_FUSION                      0x05EB
+#define LIGHT_SERPENT                            0x05EC
+#define LIGHTNING_WARRIOR                        0x05ED
+#define LONEFIRE_BLOSSOM                         0x05EE
+#define MAGICIAN_NAVIGATION                      0x05EF
+#define MAGICIAN_OF_DARK_ILLUSION                0x05F0
+#define MAGICIANS_COMBINATION                    0x05F1
+#define MAGICIANS_ROBE                           0x05F2
+#define MAGICIANS_ROD                            0x05F3
+#define MAGICIANS_SOULS                          0x05F4
+#define MASTER_OF_CHAOS                          0x05F5
+#define METAVERSE                                0x05F6
+#define MILLENNIUM_EYES_RESTRICT                 0x05F7
+#define MOLTING_ESCAPE                           0x05F8
+#define MYSTIC_MINE                              0x05F9
+#define NAELSHADDOLL_ARIEL                       0x05FA
+#define NEHSHADDOLL_GENIUS                       0x05FB
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05E8
-#define NUM_CUSTOM_CARDS                        0x02C7
+#define NUM_TOTAL_CARDS                         0x05FC
+#define NUM_CUSTOM_CARDS                        0x02DB
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

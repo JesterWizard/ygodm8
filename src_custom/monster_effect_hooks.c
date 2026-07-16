@@ -368,6 +368,22 @@ unsigned char CanActivateHERALD_OF_ULTIMATENESS(void);
 void ActivateHERALD_OF_ULTIMATENESSEffect(void);
 unsigned char CanActivateILLUSION_OF_CHAOS(void);
 void ActivateILLUSION_OF_CHAOSEffect(void);
+unsigned char CanActivateKEEPER_OF_DRAGON_MAGIC(void);
+void ActivateKEEPER_OF_DRAGON_MAGICEffect(void);
+unsigned char CanActivateLONEFIRE_BLOSSOM(void);
+void ActivateLONEFIRE_BLOSSOMEffect(void);
+unsigned char CanActivateMAGICIANS_ROBE(void);
+void ActivateMAGICIANS_ROBEEffect(void);
+unsigned char CanActivateMAGICIANS_SOULS(void);
+void ActivateMAGICIANS_SOULSEffect(void);
+unsigned char CanActivateMASTER_OF_CHAOS(void);
+void ActivateMASTER_OF_CHAOSEffect(void);
+unsigned char CanActivateMILLENNIUM_EYES_RESTRICT(void);
+void ActivateMILLENNIUM_EYES_RESTRICTEffect(void);
+unsigned char CanActivateNAELSHADDOLL_ARIEL(void);
+void ActivateNAELSHADDOLL_ARIELEffect(void);
+unsigned char CanActivateNEHSHADDOLL_GENIUS(void);
+void ActivateNEHSHADDOLL_GENIUSEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1719,6 +1735,38 @@ FAILED:
   }
   if (gMonEffect.id == ILLUSION_OF_CHAOS) {
     ActivateILLUSION_OF_CHAOSEffect();
+    return;
+  }
+  if (gMonEffect.id == KEEPER_OF_DRAGON_MAGIC) {
+    ActivateKEEPER_OF_DRAGON_MAGICEffect();
+    return;
+  }
+  if (gMonEffect.id == LONEFIRE_BLOSSOM) {
+    ActivateLONEFIRE_BLOSSOMEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGICIANS_ROBE) {
+    ActivateMAGICIANS_ROBEEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGICIANS_SOULS) {
+    ActivateMAGICIANS_SOULSEffect();
+    return;
+  }
+  if (gMonEffect.id == MASTER_OF_CHAOS) {
+    ActivateMASTER_OF_CHAOSEffect();
+    return;
+  }
+  if (gMonEffect.id == MILLENNIUM_EYES_RESTRICT) {
+    ActivateMILLENNIUM_EYES_RESTRICTEffect();
+    return;
+  }
+  if (gMonEffect.id == NAELSHADDOLL_ARIEL) {
+    ActivateNAELSHADDOLL_ARIELEffect();
+    return;
+  }
+  if (gMonEffect.id == NEHSHADDOLL_GENIUS) {
+    ActivateNEHSHADDOLL_GENIUSEffect();
     return;
   }
 }

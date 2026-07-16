@@ -457,3 +457,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire HUMID_WINDS in trap dispatcher */
 /* HYSTERIC_PARTY trap effect */
   /* TODO: wire HYSTERIC_PARTY in trap dispatcher */
+/* MAGICIAN_NAVIGATION trap effect */
+  /* TODO: wire MAGICIAN_NAVIGATION in trap dispatcher */
+/* MAGICIANS_COMBINATION trap effect */
+  /* TODO: wire MAGICIANS_COMBINATION in trap dispatcher */
+/* METAVERSE trap effect */
+  /* TODO: wire METAVERSE in trap dispatcher */

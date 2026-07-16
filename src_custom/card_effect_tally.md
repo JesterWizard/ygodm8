@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `643` effects
+- `663` effects
 
 ## Tally
 
@@ -624,6 +624,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Illusion Magic` | `src_custom/spell_effects/illusion_magic.c` |
 | `activated_effects` | `Illusion Of Chaos` | `src_custom/activated_effects/illusion_of_chaos.c` |
 | `permanent_effects` | `Ipiria` | `src_custom/permanent_effects/ipiria.c` |
+| `permanent_effects` | `Junk Warrior` | `src_custom/permanent_effects/junk_warrior.c` |
+| `activated_effects` | `Keeper Of Dragon Magic` | `src_custom/activated_effects/keeper_of_dragon_magic.c` |
+| `permanent_effects` | `Legendary Maju Garzett` | `src_custom/permanent_effects/legendary_maju_garzett.c` |
+| `spell_effects` | `Lev Shaddoll Fusion` | `src_custom/spell_effects/lev_shaddoll_fusion.c` |
+| `permanent_effects` | `Light Serpent` | `src_custom/permanent_effects/light_serpent.c` |
+| `battle_effects` | `Lightning Warrior` | `src_custom/battle_effects/lightning_warrior.c` |
+| `activated_effects` | `Lonefire Blossom` | `src_custom/activated_effects/lonefire_blossom.c` |
+| `trap_effects` | `Magician Navigation` | `src_custom/trap_effects/magician_navigation.c` |
+| `permanent_effects` | `Magician Of Dark Illusion` | `src_custom/permanent_effects/magician_of_dark_illusion.c` |
+| `trap_effects` | `Magicians Combination` | `src_custom/trap_effects/magicians_combination.c` |
+| `activated_effects` | `Magicians Robe` | `src_custom/activated_effects/magicians_robe.c` |
+| `permanent_effects` | `Magicians Rod` | `src_custom/permanent_effects/magicians_rod.c` |
+| `activated_effects` | `Magicians Souls` | `src_custom/activated_effects/magicians_souls.c` |
+| `activated_effects` | `Master Of Chaos` | `src_custom/activated_effects/master_of_chaos.c` |
+| `trap_effects` | `Metaverse` | `src_custom/trap_effects/metaverse.c` |
+| `activated_effects` | `Millennium Eyes Restrict` | `src_custom/activated_effects/millennium_eyes_restrict.c` |
+| `spell_effects` | `Molting Escape` | `src_custom/spell_effects/molting_escape.c` |
+| `spell_effects` | `Mystic Mine` | `src_custom/spell_effects/mystic_mine.c` |
+| `activated_effects` | `Naelshaddoll Ariel` | `src_custom/activated_effects/naelshaddoll_ariel.c` |
+| `activated_effects` | `Nehshaddoll Genius` | `src_custom/activated_effects/nehshaddoll_genius.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

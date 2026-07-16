@@ -31419,6 +31419,556 @@
       "effect_texts": {
         "popup_1": "If Summoned: draw 1. Once per turn."
       }
+    },
+    {
+      "card_const": "JUNK_WARRIOR",
+      "card_name": "Junk Warrior",
+      "atk": 2300,
+      "def": 1300,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [6, 0, 8, 0, 0, 3, 8, 1],
+      "description": {
+        "symbol": "gDescription_JunkWarrior",
+        "pages": [
+          "Junk Synchron + 1+ non-Tuner.",
+          "If Synchro Summoned: gains ATK",
+          "equal to total ATK of all Lv2-",
+          "monsters you currently control."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If Synchro Summoned: gains ATK equal to Lv2- monsters you control."
+      }
+    },
+    {
+      "card_const": "KEEPER_OF_DRAGON_MAGIC",
+      "card_name": "Keeper of Dragon Magic",
+      "atk": 1800,
+      "def": 1300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [4, 8, 0, 4, 8, 5, 9, 0],
+      "description": {
+        "symbol": "gDescription_KeeperOfDragonMagic",
+        "pages": [
+          "On NS/SS: discard 1; add 1 Poly",
+          "or Fusion Normal Spell from Deck.",
+          "Reveal 1 Fusion in Extra; SS 1",
+          "listed material from GY face-down.",
+          "Each OPT. Fusion Extra lock that turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On NS/SS: discard; add Poly/Fusion. Reveal Fusion; SS listed material. OPT."
+      }
+    },
+    {
+      "card_const": "LEGENDARY_MAJU_GARZETT",
+      "card_name": "Legendary Maju Garzett",
+      "atk": 0,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 2, 3, 3, 8, 0, 6, 8],
+      "description": {
+        "symbol": "gDescription_LegendaryMajuGarzett",
+        "pages": [
+          "Cannot be Normal Summoned/Set.",
+          "SS from hand by Tributing all",
+          "your monsters; ATK = their original",
+          "ATK combined. Piercing damage."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS by Tributing all; ATK = their original ATK. Piercing."
+      }
+    },
+    {
+      "card_const": "LEV_SHADDOLL_FUSION",
+      "card_name": "Lev Shaddoll Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 4, 9, 5, 0, 1, 9, 2],
+      "description": {
+        "symbol": "gDescription_LevShaddollFusion",
+        "pages": [
+          "On activate: send 1 Fusion from",
+          "Extra to GY. Tribute 1 Fusion;",
+          "Fusion Summon 1 Shaddoll Fusion",
+          "with different Attribute from Extra",
+          "(ATK 0). Each OPT. Shaddoll Extra lock."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send Fusion from Extra. Tribute Fusion; SS Shaddoll Fusion ATK 0. OPT."
+      }
+    },
+    {
+      "card_const": "LIGHT_SERPENT",
+      "card_name": "Lightserpent",
+      "atk": 1200,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [5, 5, 5, 0, 1, 4, 4, 6],
+      "description": {
+        "symbol": "gDescription_LightSerpent",
+        "pages": [
+          "If sent from hand to GY: you can",
+          "Special Summon it from the GY.",
+          "Cannot be used as Synchro Material."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If sent from hand to GY: SS it from GY. Not Synchro Material."
+      }
+    },
+    {
+      "card_const": "LIGHTNING_WARRIOR",
+      "card_name": "Lightning Warrior",
+      "atk": 2400,
+      "def": 1200,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [8, 7, 2, 5, 9, 0, 7, 7],
+      "description": {
+        "symbol": "gDescription_LightningWarrior",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner.",
+          "If destroys a monster by battle",
+          "and sends it to GY: inflict 300",
+          "damage per card in opp hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If destroys by battle: 300 damage per card in opp hand."
+      }
+    },
+    {
+      "card_const": "LONEFIRE_BLOSSOM",
+      "card_name": "Lonefire Blossom",
+      "atk": 500,
+      "def": 1400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 8, 6, 8, 6, 5, 0, 4],
+      "description": {
+        "symbol": "gDescription_LonefireBlossom",
+        "pages": [
+          "Once per turn: Tribute 1 face-up",
+          "Plant; Special Summon 1 Plant",
+          "monster from your Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "OPT: Tribute 1 Plant; SS 1 Plant from Deck."
+      }
+    },
+    {
+      "card_const": "MAGICIAN_NAVIGATION",
+      "card_name": "Magician Navigation",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 7, 9, 2, 2, 9, 1, 5],
+      "description": {
+        "symbol": "gDescription_MagicianNavigation",
+        "pages": [
+          "SS 1 Dark Magician from hand,",
+          "then SS 1 Lv7- DARK Spellcaster",
+          "from Deck. If you control DM,",
+          "banish this from GY; negate 1",
+          "face-up opp Spell/Trap until EOT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS Dark Magician from hand, then Lv7- DARK Spellcaster from Deck."
+      }
+    },
+    {
+      "card_const": "MAGICIAN_OF_DARK_ILLUSION",
+      "card_name": "Magician of Dark Illusion",
+      "atk": 2100,
+      "def": 2500,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [3, 5, 1, 9, 1, 4, 1, 5],
+      "description": {
+        "symbol": "gDescription_MagicianOfDarkIllusion",
+        "pages": [
+          "Name becomes Dark Magician on field.",
+          "Opp turn, if you activate S/T:",
+          "SS this from hand. OPT.",
+          "If you activate S/T while this",
+          "is face-up: SS 1 DM from GY. Once."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Name = Dark Magician. Opp turn S/T: SS from hand. Field S/T: SS DM from GY."
+      }
+    },
+    {
+      "card_const": "MAGICIANS_COMBINATION",
+      "card_name": "Magicians' Combination",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 6, 5, 0, 9, 7, 1, 1],
+      "description": {
+        "symbol": "gDescription_MagiciansCombination",
+        "pages": [
+          "OPT when a card/effect activates:",
+          "Tribute DM or DMG; SS the other",
+          "from hand/GY, and if you do,",
+          "negate that effect. If this leaves",
+          "S/T Zone to GY: destroy 1 card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute DM/DMG; SS the other and negate. Leaves S/T: destroy 1."
+      }
+    },
+    {
+      "card_const": "MAGICIANS_ROBE",
+      "card_name": "Magician's Robe",
+      "atk": 700,
+      "def": 2000,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 274,
+      "password": [7, 1, 6, 9, 6, 0, 1, 4],
+      "description": {
+        "symbol": "gDescription_MagiciansRobe",
+        "pages": [
+          "Opp turn (Quick): discard 1 S/T;",
+          "SS 1 Dark Magician from Deck.",
+          "Opp turn, if you activate S/T",
+          "while this is in GY: SS this,",
+          "but banish when it leaves. Each OPT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opp turn: discard S/T; SS DM from Deck. GY: SS self, banish later."
+      }
+    },
+    {
+      "card_const": "MAGICIANS_ROD",
+      "card_name": "Magician's Rod",
+      "atk": 1600,
+      "def": 100,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 7, 0, 8, 4, 1, 2, 9],
+      "description": {
+        "symbol": "gDescription_MagiciansRod",
+        "pages": [
+          "On NS: add 1 S/T that lists Dark",
+          "Magician from Deck to hand.",
+          "Opp turn, if you activate S/T",
+          "while this is in GY: Tribute 1",
+          "Spellcaster; add this to hand. OPT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On NS: add S/T listing DM. GY: Tribute Spellcaster; add this."
+      }
+    },
+    {
+      "card_const": "MAGICIANS_SOULS",
+      "card_name": "Magicians' Souls",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [9, 7, 6, 3, 1, 3, 0, 3],
+      "description": {
+        "symbol": "gDescription_MagiciansSouls",
+        "pages": [
+          "Send up to 2 S/T from hand/field",
+          "to GY; draw that many. From hand:",
+          "send 1 Lv6+ Spellcaster from Deck",
+          "to GY; SS this, or send this and",
+          "SS DM/DMG from GY. Each OPT."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send S/T; draw. Hand: mill Lv6+ Spellcaster; SS this or DM/DMG."
+      }
+    },
+    {
+      "card_const": "MASTER_OF_CHAOS",
+      "card_name": "Master of Chaos",
+      "atk": 3000,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [8, 5, 0, 5, 9, 9, 2, 2],
+      "description": {
+        "symbol": "gDescription_MasterOfChaos",
+        "pages": [
+          "Dark Magician + 1 Chaos/BLS Ritual.",
+          "If Fusion Summoned: SS 1 LIGHT",
+          "or DARK from GY. Tribute 1 LIGHT",
+          "+ 1 DARK; banish all opp monsters.",
+          "If destroyed: add 1 Spell from GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Fusion: SS LIGHT/DARK from GY. Tribute LIGHT+DARK; banish opp."
+      }
+    },
+    {
+      "card_const": "METAVERSE",
+      "card_name": "Metaverse",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 9, 2, 0, 8, 7, 2, 5],
+      "description": {
+        "symbol": "gDescription_Metaverse",
+        "pages": [
+          "Take 1 Field Spell from your Deck,",
+          "and either activate it or add it",
+          "to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Take 1 Field Spell from Deck; activate it or add to hand."
+      }
+    },
+    {
+      "card_const": "MILLENNIUM_EYES_RESTRICT",
+      "card_name": "Millennium-Eyes Restrict",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 500,
+      "password": [4, 1, 5, 7, 8, 4, 8, 3],
+      "description": {
+        "symbol": "gDescription_MillenniumEyesRestrict",
+        "pages": [
+          "Relinquished + 1 Effect Monster.",
+          "OPT when opp activates monster",
+          "effect: equip 1 Effect Monster",
+          "they control or in their GY to this.",
+          "Gains ATK/DEF; negate that name."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opp monster effect: equip their Effect Monster; gain ATK/DEF."
+      }
+    },
+    {
+      "card_const": "MOLTING_ESCAPE",
+      "card_name": "Molting Escape",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 5, 7, 8, 4, 4, 3, 4],
+      "description": {
+        "symbol": "gDescription_MoltingEscape",
+        "pages": [
+          "Equip only to a Reptile. OPT, if",
+          "equipped would be destroyed by",
+          "battle, it is not. Gains 300 ATK",
+          "each time this is applied."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Equip Reptile. OPT battle protect; gains 300 ATK when applied."
+      }
+    },
+    {
+      "card_const": "MYSTIC_MINE",
+      "card_name": "Mystic Mine",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 6, 3, 7, 5, 9, 7, 6],
+      "description": {
+        "symbol": "gDescription_MysticMine",
+        "pages": [
+          "If opp controls more monsters:",
+          "they cannot activate monster",
+          "effects or attack. If you control",
+          "more: you cannot. End Phase, if",
+          "same count: destroy this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Player with fewer monsters: no monster effects/attacks. Tie: destroy."
+      }
+    },
+    {
+      "card_const": "NAELSHADDOLL_ARIEL",
+      "card_name": "Naelshaddoll Ariel",
+      "atk": 1000,
+      "def": 1800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [9, 7, 5, 1, 8, 1, 3, 2],
+      "description": {
+        "symbol": "gDescription_NaelshaddollAriel",
+        "pages": [
+          "FLIP: SS 1 banished Shaddoll in",
+          "face-up or face-down Defense.",
+          "If sent to GY by effect: banish",
+          "up to 3 cards from the GYs.",
+          "Use only 1 effect per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: SS banished Shaddoll. Sent by effect: banish up to 3 from GYs."
+      }
+    },
+    {
+      "card_const": "NEHSHADDOLL_GENIUS",
+      "card_name": "Nehshaddoll Genius",
+      "atk": 1800,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [6, 6, 6, 7, 5, 9, 1, 1],
+      "description": {
+        "symbol": "gDescription_NehshaddollGenius",
+        "pages": [
+          "FLIP: target 1 Shaddoll you control;",
+          "unaffected by monster effects",
+          "this turn except its own. If sent",
+          "to GY by effect: target 1 Effect",
+          "Monster; neither can activate it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: Shaddoll unaffected. Sent by effect: lock 1 Effect Monster."
+      }
     }
   ]
 }

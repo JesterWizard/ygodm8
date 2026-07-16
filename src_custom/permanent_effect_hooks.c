@@ -194,6 +194,16 @@ unsigned char ShouldActivateHERO_KID(void);
 void ActivateHERO_KID(void);
 unsigned char ShouldActivateIPIRIA(void);
 void ActivateIPIRIA(void);
+unsigned char ShouldActivateJUNK_WARRIOR(void);
+void ActivateJUNK_WARRIOR(void);
+unsigned char ShouldActivateLEGENDARY_MAJU_GARZETT(void);
+void ActivateLEGENDARY_MAJU_GARZETT(void);
+unsigned char ShouldActivateLIGHT_SERPENT(void);
+void ActivateLIGHT_SERPENT(void);
+unsigned char ShouldActivateMAGICIAN_OF_DARK_ILLUSION(void);
+void ActivateMAGICIAN_OF_DARK_ILLUSION(void);
+unsigned char ShouldActivateMAGICIANS_ROD(void);
+void ActivateMAGICIANS_ROD(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -599,6 +609,31 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = IPIRIA,
     .shouldActivate = ShouldActivateIPIRIA,
     .activate = ActivateIPIRIA,
+  },
+  {
+    .cardId = JUNK_WARRIOR,
+    .shouldActivate = ShouldActivateJUNK_WARRIOR,
+    .activate = ActivateJUNK_WARRIOR,
+  },
+  {
+    .cardId = LEGENDARY_MAJU_GARZETT,
+    .shouldActivate = ShouldActivateLEGENDARY_MAJU_GARZETT,
+    .activate = ActivateLEGENDARY_MAJU_GARZETT,
+  },
+  {
+    .cardId = LIGHT_SERPENT,
+    .shouldActivate = ShouldActivateLIGHT_SERPENT,
+    .activate = ActivateLIGHT_SERPENT,
+  },
+  {
+    .cardId = MAGICIAN_OF_DARK_ILLUSION,
+    .shouldActivate = ShouldActivateMAGICIAN_OF_DARK_ILLUSION,
+    .activate = ActivateMAGICIAN_OF_DARK_ILLUSION,
+  },
+  {
+    .cardId = MAGICIANS_ROD,
+    .shouldActivate = ShouldActivateMAGICIANS_ROD,
+    .activate = ActivateMAGICIANS_ROD,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

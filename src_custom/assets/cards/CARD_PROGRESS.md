@@ -738,26 +738,26 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `ILLUSION_MAGIC` — `illusion_magic.png`
 - [x] `ILLUSION_OF_CHAOS` — `illusion_of_chaos.png`
 - [x] `IPIRIA` — `ipiria.png`
-- [ ] `JUNK_WARRIOR` — `junk_warrior.png`
-- [ ] `KEEPER_OF_DRAGON_MAGIC` — `keeper_of_dragon_magic.png`
-- [ ] `LEGENDARY_MAJU_GARZETT` — `legendary_maju_garzett.png`
-- [ ] `LEV_SHADDOLL_FUSION` — `lev_shaddoll_fusion.png`
-- [ ] `LIGHT_SERPENT` — `light_serpent.png`
-- [ ] `LIGHTNING_WARRIOR` — `lightning_warrior.png`
-- [ ] `LONEFIRE_BLOSSOM` — `lonefire_blossom.png`
-- [ ] `MAGICIAN_NAVIGATION` — `magician_navigation.png`
-- [ ] `MAGICIAN_OF_DARK_ILLUSION` — `magician_of_dark_illusion.png`
-- [ ] `MAGICIANS_COMBINATION` — `magicians_combination.png`
-- [ ] `MAGICIANS_ROBE` — `magicians_robe.png`
-- [ ] `MAGICIANS_ROD` — `magicians_rod.png`
-- [ ] `MAGICIANS_SOULS` — `magicians_souls.png`
-- [ ] `MASTER_OF_CHAOS` — `master_of_chaos.png`
-- [ ] `METAVERSE` — `metaverse.png`
-- [ ] `MILLENNIUM_EYES_RESTRICT` — `millennium_eyes_restrict.png`
-- [ ] `MOLTING_ESCAPE` — `molting_escape.png`
-- [ ] `MYSTIC_MINE` — `mystic_mine.png`
-- [ ] `NAELSHADDOLL_ARIEL` — `naelshaddoll_ariel.png`
-- [ ] `NEHSHADDOLL_GENIUS` — `nehshaddoll_genius.png`
+- [x] `JUNK_WARRIOR` — `junk_warrior.png`
+- [x] `KEEPER_OF_DRAGON_MAGIC` — `keeper_of_dragon_magic.png`
+- [x] `LEGENDARY_MAJU_GARZETT` — `legendary_maju_garzett.png`
+- [x] `LEV_SHADDOLL_FUSION` — `lev_shaddoll_fusion.png`
+- [x] `LIGHT_SERPENT` — `light_serpent.png`
+- [x] `LIGHTNING_WARRIOR` — `lightning_warrior.png`
+- [x] `LONEFIRE_BLOSSOM` — `lonefire_blossom.png`
+- [x] `MAGICIAN_NAVIGATION` — `magician_navigation.png`
+- [x] `MAGICIAN_OF_DARK_ILLUSION` — `magician_of_dark_illusion.png`
+- [x] `MAGICIANS_COMBINATION` — `magicians_combination.png`
+- [x] `MAGICIANS_ROBE` — `magicians_robe.png`
+- [x] `MAGICIANS_ROD` — `magicians_rod.png`
+- [x] `MAGICIANS_SOULS` — `magicians_souls.png`
+- [x] `MASTER_OF_CHAOS` — `master_of_chaos.png`
+- [x] `METAVERSE` — `metaverse.png`
+- [x] `MILLENNIUM_EYES_RESTRICT` — `millennium_eyes_restrict.png`
+- [x] `MOLTING_ESCAPE` — `molting_escape.png`
+- [x] `MYSTIC_MINE` — `mystic_mine.png`
+- [x] `NAELSHADDOLL_ARIEL` — `naelshaddoll_ariel.png`
+- [x] `NEHSHADDOLL_GENIUS` — `nehshaddoll_genius.png`
 - [ ] `NEPHE_SHADDOLL_FUSION` — `nephe_shaddoll_fusion.png`
 - [ ] `NEUTRON_BLAST` — `neutron_blast.png`
 - [ ] `OFFERING_TO_THE_SNAKE_DEITY` — `offering_to_the_snake_deity.png`

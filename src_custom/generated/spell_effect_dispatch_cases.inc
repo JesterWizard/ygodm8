@@ -311,6 +311,9 @@
     case LEVEL_LIMIT_AREA_B:
       EffectLevelLimitAreaB();
       return;
+    case LEV_SHADDOLL_FUSION:
+      EffectLEV_SHADDOLL_FUSION();
+      return;
     case LIMITER_REMOVAL:
       EffectLimiterRemoval();
       return;
@@ -344,6 +347,9 @@
     case MIRAGE_OF_NIGHTMARE:
       EffectMIRAGE_OF_NIGHTMARE();
       return;
+    case MOLTING_ESCAPE:
+      EffectMOLTING_ESCAPE();
+      return;
     case MONSTER_GATE:
       EffectMONSTER_GATE();
       return;
@@ -358,6 +364,9 @@
       return;
     case MYSTICAL_SPACE_TYPHOON:
       EffectMysticalSpaceTyphoon();
+      return;
+    case MYSTIC_MINE:
+      EffectMYSTIC_MINE();
       return;
     case MYSTIK_WOK:
       EffectMYSTIK_WOK();
