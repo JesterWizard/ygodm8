@@ -598,6 +598,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [BLUE_EYES_ULTIMATE_SPIRIT_DRAGON] = gActivationDescription_BlueEyesUltimateSpiritDragon_Popup1,
   [BOND_BETWEEN_TEACHER_AND_STUDENT] = gActivationDescription_BondBetweenTeacherAndStudent_Popup1,
   [BLUE_EYES_SPIRIT_DRAGON] = gActivationDescription_BlueEyesSpiritDragon_Popup1,
+  [BRIONAC_DRAGON_OF_THE_ICE_BARRIER] = gActivationDescription_BrionacDragonOfTheIceBarrier_Popup1,
+  [CHAIN_MATERIAL] = gActivationDescription_ChainMaterial_Popup1,
+  [COLOSSAL_FIGHTER] = gActivationDescription_ColossalFighter_Popup1,
+  [CUP_OF_ACE] = gActivationDescription_CupOfAce_Popup1,
+  [CYBER_SLASH_HARPIE_LADY] = gActivationDescription_CyberSlashHarpieLady_Popup1,
+  [DAMAGE_REPTILE] = gActivationDescription_DamageReptile_Popup1,
+  [DARK_BURNING_ATTACK] = gActivationDescription_DarkBurningAttack_Popup1,
+  [DARK_BURNING_MAGIC] = gActivationDescription_DarkBurningMagic_Popup1,
+  [DARK_CALLING] = gActivationDescription_DarkCalling_Popup1,
+  [DARK_CONTACT] = gActivationDescription_DarkContact_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1227,6 +1237,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_BLUE_EYES_ULTIMATE_SPIRIT_DRAGON_POPUP_1] = gActivationDescription_BlueEyesUltimateSpiritDragon_Popup1,
   [CARD_EFFECT_TEXT_BOND_BETWEEN_TEACHER_AND_STUDENT_POPUP_1] = gActivationDescription_BondBetweenTeacherAndStudent_Popup1,
   [CARD_EFFECT_TEXT_BLUE_EYES_SPIRIT_DRAGON_POPUP_1] = gActivationDescription_BlueEyesSpiritDragon_Popup1,
+  [CARD_EFFECT_TEXT_BRIONAC_DRAGON_OF_THE_ICE_BARRIER_POPUP_1] = gActivationDescription_BrionacDragonOfTheIceBarrier_Popup1,
+  [CARD_EFFECT_TEXT_CHAIN_MATERIAL_POPUP_1] = gActivationDescription_ChainMaterial_Popup1,
+  [CARD_EFFECT_TEXT_COLOSSAL_FIGHTER_POPUP_1] = gActivationDescription_ColossalFighter_Popup1,
+  [CARD_EFFECT_TEXT_CUP_OF_ACE_POPUP_1] = gActivationDescription_CupOfAce_Popup1,
+  [CARD_EFFECT_TEXT_CYBER_SLASH_HARPIE_LADY_POPUP_1] = gActivationDescription_CyberSlashHarpieLady_Popup1,
+  [CARD_EFFECT_TEXT_DAMAGE_REPTILE_POPUP_1] = gActivationDescription_DamageReptile_Popup1,
+  [CARD_EFFECT_TEXT_DARK_BURNING_ATTACK_POPUP_1] = gActivationDescription_DarkBurningAttack_Popup1,
+  [CARD_EFFECT_TEXT_DARK_BURNING_MAGIC_POPUP_1] = gActivationDescription_DarkBurningMagic_Popup1,
+  [CARD_EFFECT_TEXT_DARK_CALLING_POPUP_1] = gActivationDescription_DarkCalling_Popup1,
+  [CARD_EFFECT_TEXT_DARK_CONTACT_POPUP_1] = gActivationDescription_DarkContact_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

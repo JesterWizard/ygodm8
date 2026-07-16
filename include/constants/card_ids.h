@@ -1425,11 +1425,21 @@
 #define BLUE_EYES_ULTIMATE_SPIRIT_DRAGON         0x058D
 #define BOND_BETWEEN_TEACHER_AND_STUDENT         0x058E
 #define BLUE_EYES_SPIRIT_DRAGON                  0x058F
+#define BRIONAC_DRAGON_OF_THE_ICE_BARRIER        0x0590
+#define CHAIN_MATERIAL                           0x0591
+#define COLOSSAL_FIGHTER                         0x0592
+#define CUP_OF_ACE                               0x0593
+#define CYBER_SLASH_HARPIE_LADY                  0x0594
+#define DAMAGE_REPTILE                           0x0595
+#define DARK_BURNING_ATTACK                      0x0596
+#define DARK_BURNING_MAGIC                       0x0597
+#define DARK_CALLING                             0x0598
+#define DARK_CONTACT                             0x0599
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0590
-#define NUM_CUSTOM_CARDS                        0x026F
+#define NUM_TOTAL_CARDS                         0x059A
+#define NUM_CUSTOM_CARDS                        0x0279
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

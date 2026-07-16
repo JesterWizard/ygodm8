@@ -628,7 +628,7 @@ SECTIONS
     g80B92D8 = 0x80B92D8;
     g8E0CDF0 = 0x8E0CDF0;
     g8E0CE00 = 0x8E0CE00;
-    gSortableEntries = 0x8E0CC20;
+    /* gSortableEntries: writable pointer defined in card_sort_hooks.c → gExpandedSortableEntries */
     g80D0444 = 0x80D0444;
     g8E0CE18 = 0x8E0CE18;
     g80DD6FE = 0x80DD6FE;

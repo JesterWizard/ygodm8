@@ -126,14 +126,18 @@ def resolve_size(token: str, constants: dict[str, int]) -> int:
 
 def card_memory_sizes(total_cards: int, custom_start: int) -> dict[str, int]:
     custom_cards = max(0, total_cards - custom_start)
+    # Keep in sync with tools/add_card_art.py custom_card_qty_bytes_for().
+    qty = max(custom_cards, 0x200)
+    qty = (qty + 3) & ~3  # multiple of 4: trunk u16 + SortableEntry u64 alignment
     return {
-        "CUSTOM_CARD_QTY_BYTES": max(custom_cards, 0xC8),
+        "CUSTOM_CARD_QTY_BYTES": qty,
         "TRUNK_MENU_CUSTOM_CARD_BYTES": custom_cards * 2,
         "TRUNK_MENU_SORT_LIST_BYTES": (custom_start + custom_cards) * 2,
         "CUSTOM_SHOP_CARD_ROWS": (total_cards + 6) // 7,
         "CUSTOM_SHOP_CARD_LIST_ENTRIES": ((total_cards + 6) // 7) * 7 + 1,
         "CUSTOM_SHOP_CARD_LIST_BYTES": (((total_cards + 6) // 7) * 7 + 1) * 2,
         "CARD_COST_TABLE_BYTES": total_cards * 2,
+        "SORTABLE_ENTRIES_BYTES": total_cards * 12,
         "NUM_TOTAL_CARDS": total_cards,
         "NUM_CUSTOM_CARDS": custom_cards,
     }

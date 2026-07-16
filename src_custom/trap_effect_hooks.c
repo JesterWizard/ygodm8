@@ -435,3 +435,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire AMBUSH_FANGS in trap dispatcher */
 /* BLESSED_WINDS trap effect */
   /* TODO: wire BLESSED_WINDS in trap dispatcher */
+/* CHAIN_MATERIAL trap effect */
+  /* TODO: wire CHAIN_MATERIAL in trap dispatcher */
+/* DAMAGE_REPTILE trap effect */
+  /* TODO: wire DAMAGE_REPTILE in trap dispatcher */

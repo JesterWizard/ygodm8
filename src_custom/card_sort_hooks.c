@@ -7,7 +7,11 @@ struct SortableEntry {
   u64 sortKey;
 };
 
-extern struct SortableEntry *gSortableEntries;
+/* Vanilla ROM pointer at 0x8E0CC20 targeted a fixed 800-entry buffer at 0x2018800.
+ * Trunk/shop now sort NUM_TOTAL_CARDS entries — use the expanded EWRAM array. */
+extern struct SortableEntry gExpandedSortableEntries[];
+struct SortableEntry *gSortableEntries APPEND_DATA = gExpandedSortableEntries;
+
 extern struct CardSortContext gCardSortContext;
 
 void SortCardsAccordingToContext(void);

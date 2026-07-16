@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `555` effects
+- `565` effects
 
 ## Tally
 
@@ -536,6 +536,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Blue Eyes Ultimate Spirit Dragon` | `src_custom/activated_effects/blue_eyes_ultimate_spirit_dragon.c` |
 | `spell_effects` | `Bond Between Teacher And Student` | `src_custom/spell_effects/bond_between_teacher_and_student.c` |
 | `activated_effects` | `Blue Eyes Spirit Dragon` | `src_custom/activated_effects/blue_eyes_spirit_dragon.c` |
+| `activated_effects` | `Brionac Dragon Of The Ice Barrier` | `src_custom/activated_effects/brionac_dragon_of_the_ice_barrier.c` |
+| `trap_effects` | `Chain Material` | `src_custom/trap_effects/chain_material.c` |
+| `activated_effects` | `Colossal Fighter` | `src_custom/activated_effects/colossal_fighter.c` |
+| `spell_effects` | `Cup Of Ace` | `src_custom/spell_effects/cup_of_ace.c` |
+| `activated_effects` | `Cyber Slash Harpie Lady` | `src_custom/activated_effects/cyber_slash_harpie_lady.c` |
+| `trap_effects` | `Damage Reptile` | `src_custom/trap_effects/damage_reptile.c` |
+| `spell_effects` | `Dark Burning Attack` | `src_custom/spell_effects/dark_burning_attack.c` |
+| `spell_effects` | `Dark Burning Magic` | `src_custom/spell_effects/dark_burning_magic.c` |
+| `spell_effects` | `Dark Calling` | `src_custom/spell_effects/dark_calling.c` |
+| `spell_effects` | `Dark Contact` | `src_custom/spell_effects/dark_contact.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

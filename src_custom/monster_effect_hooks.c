@@ -306,6 +306,12 @@ unsigned char CanActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGON(void);
 void ActivateBLUE_EYES_ULTIMATE_SPIRIT_DRAGONEffect(void);
 unsigned char CanActivateBLUE_EYES_SPIRIT_DRAGON(void);
 void ActivateBLUE_EYES_SPIRIT_DRAGONEffect(void);
+unsigned char CanActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIER(void);
+void ActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIEREffect(void);
+unsigned char CanActivateCOLOSSAL_FIGHTER(void);
+void ActivateCOLOSSAL_FIGHTEREffect(void);
+unsigned char CanActivateCYBER_SLASH_HARPIE_LADY(void);
+void ActivateCYBER_SLASH_HARPIE_LADYEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1533,6 +1539,18 @@ FAILED:
   }
   if (gMonEffect.id == BLUE_EYES_SPIRIT_DRAGON) {
     ActivateBLUE_EYES_SPIRIT_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == BRIONAC_DRAGON_OF_THE_ICE_BARRIER) {
+    ActivateBRIONAC_DRAGON_OF_THE_ICE_BARRIEREffect();
+    return;
+  }
+  if (gMonEffect.id == COLOSSAL_FIGHTER) {
+    ActivateCOLOSSAL_FIGHTEREffect();
+    return;
+  }
+  if (gMonEffect.id == CYBER_SLASH_HARPIE_LADY) {
+    ActivateCYBER_SLASH_HARPIE_LADYEffect();
     return;
   }
 }

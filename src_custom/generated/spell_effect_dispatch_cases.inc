@@ -116,14 +116,29 @@
     case CREATURE_SWAP:
       EffectCreatureSwap();
       return;
+    case CUP_OF_ACE:
+      EffectCUP_OF_ACE();
+      return;
     case CYBERNETIC_FUSION_SUPPORT:
       EffectCyberneticFusionSupport();
       return;
     case CYBERNETIC_ZONE:
       EffectCYBERNETIC_ZONE();
       return;
+    case DARK_BURNING_ATTACK:
+      EffectDARK_BURNING_ATTACK();
+      return;
+    case DARK_BURNING_MAGIC:
+      EffectDARK_BURNING_MAGIC();
+      return;
+    case DARK_CALLING:
+      EffectDARK_CALLING();
+      return;
     case DARK_CITY_AT_MIDNIGHT:
       EffectDARK_CITY_AT_MIDNIGHT();
+      return;
+    case DARK_CONTACT:
+      EffectDARK_CONTACT();
       return;
     case DARK_MAGIC_CURTAIN:
       EffectDarkMagicCurtain();

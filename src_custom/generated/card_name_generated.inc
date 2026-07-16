@@ -624,6 +624,16 @@ static const u8 sBlueEyesTyrantDragonName[] __attribute__((section(".append_asse
 static const u8 sBlueEyesUltimateSpiritDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Ultimate Spirit Dragon";
 static const u8 sBondBetweenTeacherAndStudentName[] __attribute__((section(".append_assets"))) = "Bond Between Teacher and Student";
 static const u8 sBlueEyesSpiritDragonName[] __attribute__((section(".append_assets"))) = "Blue-Eyes Spirit Dragon";
+static const u8 sBrionacDragonOfTheIceBarrierName[] __attribute__((section(".append_assets"))) = "Brionac, Dragon of the Ice Barrier";
+static const u8 sChainMaterialName[] __attribute__((section(".append_assets"))) = "Chain Material";
+static const u8 sColossalFighterName[] __attribute__((section(".append_assets"))) = "Colossal Fighter";
+static const u8 sCupOfAceName[] __attribute__((section(".append_assets"))) = "Cup of Ace";
+static const u8 sCyberSlashHarpieLadyName[] __attribute__((section(".append_assets"))) = "Cyber Slash Harpie Lady";
+static const u8 sDamageReptileName[] __attribute__((section(".append_assets"))) = "Damage = Reptile";
+static const u8 sDarkBurningAttackName[] __attribute__((section(".append_assets"))) = "Dark Burning Attack";
+static const u8 sDarkBurningMagicName[] __attribute__((section(".append_assets"))) = "Dark Burning Magic";
+static const u8 sDarkCallingName[] __attribute__((section(".append_assets"))) = "Dark Calling";
+static const u8 sDarkContactName[] __attribute__((section(".append_assets"))) = "Dark Contact";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1878,6 +1888,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sBondBetweenTeacherAndStudentName;
   if (cardId == 0x058F)
     return (u8 *)sBlueEyesSpiritDragonName;
+  if (cardId == 0x0590)
+    return (u8 *)sBrionacDragonOfTheIceBarrierName;
+  if (cardId == 0x0591)
+    return (u8 *)sChainMaterialName;
+  if (cardId == 0x0592)
+    return (u8 *)sColossalFighterName;
+  if (cardId == 0x0593)
+    return (u8 *)sCupOfAceName;
+  if (cardId == 0x0594)
+    return (u8 *)sCyberSlashHarpieLadyName;
+  if (cardId == 0x0595)
+    return (u8 *)sDamageReptileName;
+  if (cardId == 0x0596)
+    return (u8 *)sDarkBurningAttackName;
+  if (cardId == 0x0597)
+    return (u8 *)sDarkBurningMagicName;
+  if (cardId == 0x0598)
+    return (u8 *)sDarkCallingName;
+  if (cardId == 0x0599)
+    return (u8 *)sDarkContactName;
 
   return gCardNames[cardId];
 }

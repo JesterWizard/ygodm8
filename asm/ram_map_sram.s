@@ -31,7 +31,7 @@ SET_ARRAY gSaveSlotPrimary, 0x0E000040, 0x747
 SET_ARRAY gSaveSlotBackup,  0x0E004020, 0x747
 
 @ -- Mirrored custom data (primary/backup cursors) ------------------------------
-@ CUSTOM_CARD_QTY_BYTES is padded to 200 (0xC8) in tools/add_card_art.py
+@ CUSTOM_CARD_QTY_BYTES is even-aligned (floor 0x200) in tools/add_card_art.py
 @ (render_card_memory_sizes_asm) so that adding new cards does not shift the flash
 @ save layout. Bump the minimum if custom cards exceed 200.
 

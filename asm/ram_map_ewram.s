@@ -116,7 +116,7 @@ _kernel_malloc_ewram gActiveFieldSpellZoneCol, 1
 _kernel_malloc_ewram gActiveFieldSpellController, 1
 
 @ -- Custom card inventory (EWRAM; flash mirrors in SRAM below) ----------------
-@ CUSTOM_CARD_QTY_BYTES is padded to 200 — bump if cards exceed 200.
+@ CUSTOM_CARD_QTY_BYTES is sized from CUSTOM_CARD_QTY_BYTES (even, floor 0x200).
 @ Keep this block contiguous; do not interleave other symbols between qty arrays.
 
 @ Expanded card-shop sorted list, padded to full 7-card rows for every generated card.
@@ -134,14 +134,19 @@ _kernel_malloc_ewram_array gCustomTotalCardQty, CUSTOM_CARD_QTY_BYTES
 @ Card-shop session stock for custom card IDs (mirrors gCustomShopCardQty while shopping).
 _kernel_malloc_ewram_array gCustomShopTempCardQty, CUSTOM_CARD_QTY_BYTES
 
+@ Card-sort working set (vanilla gSortableEntries @ 0x2018800 only fits 800 × 12-byte entries).
+@ ponytail: ceiling = NUM_TOTAL_CARDS; 12-byte SortableEntry layout must match card_sort_hooks.c.
+@ CUSTOM_CARD_QTY_BYTES is multiple of 4 so this lands 4-byte aligned for u64 sortKey.
+_kernel_malloc_ewram_array gExpandedSortableEntries, SORTABLE_ENTRIES_BYTES
+
 @ -- Trunk menu ----------------------------------------------------------------
 
 @ Custom trunk menu list tail (u16 card IDs) and sort scratch (vanilla + custom entries).
 _kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
 _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 @ Cached trunk list size when hide_unowned_trunk_cards is enabled (avoids full scans per scroll).
-@ ponytail: pad keeps gTrunkVisibleCardCount on an even EWRAM address.
-_kernel_malloc_ewram gTrunkVisibleCardCount_Align, 1
+@ ponytail: CUSTOM_CARD_QTY_BYTES is kept even (add_card_art.py) so these u16s stay aligned;
+@ a 1-byte pad here would *break* that when qty is even.
 _kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
 _kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 

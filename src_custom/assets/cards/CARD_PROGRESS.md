@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 623 |
-| Art ready, needs manifest | 177 |
+| In game (manifest + art) | 633 |
+| Art ready, needs manifest | 167 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -645,21 +645,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `BLUE_EYES_ULTIMATE_SPIRIT_DRAGON` | Blue-Eyes Ultimate Spirit Dragon | `blue_eyes_ultimate_spirit_dragon.png` |
 | `BOND_BETWEEN_TEACHER_AND_STUDENT` | Bond Between Teacher and Student | `bond_between_teacher_and_student.png` |
 | `BLUE_EYES_SPIRIT_DRAGON` | Blue-Eyes Spirit Dragon | `blue_eyes_spirit_dragon.png` |
+| `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` | Brionac, Dragon of the Ice Barrier | `brionac_dragon_of_the_ice_barrier.png` |
+| `CHAIN_MATERIAL` | Chain Material | `chain_material.png` |
+| `COLOSSAL_FIGHTER` | Colossal Fighter | `colossal_fighter.png` |
+| `CUP_OF_ACE` | Cup of Ace | `cup_of_ace.png` |
+| `CYBER_SLASH_HARPIE_LADY` | Cyber Slash Harpie Lady | `cyber_slash_harpie_lady.png` |
+| `DAMAGE_REPTILE` | Damage = Reptile | `damage_reptile.png` |
+| `DARK_BURNING_ATTACK` | Dark Burning Attack | `dark_burning_attack.png` |
+| `DARK_BURNING_MAGIC` | Dark Burning Magic | `dark_burning_magic.png` |
+| `DARK_CALLING` | Dark Calling | `dark_calling.png` |
+| `DARK_CONTACT` | Dark Contact | `dark_contact.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `BRIONAC_DRAGON_OF_THE_ICE_BARRIER` — `brionac_dragon_of_the_ice_barrier.png`
-- [ ] `CHAIN_MATERIAL` — `chain_material.png`
-- [ ] `COLOSSAL_FIGHTER` — `colossal_fighter.png`
-- [ ] `CUP_OF_ACE` — `cup_of_ace.png`
-- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
-- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
-- [ ] `DARK_BURNING_ATTACK` — `dark_burning_attack.png`
-- [ ] `DARK_BURNING_MAGIC` — `dark_burning_magic.png`
-- [ ] `DARK_CALLING` — `dark_calling.png`
-- [ ] `DARK_CONTACT` — `dark_contact.png`
 - [ ] `DARK_FUSION` — `dark_fusion.png`
 - [ ] `DARK_MAGIC_ATTACK` — `dark_magic_attack.png`
 - [ ] `DARK_MAGIC_INHERITANCE` — `dark_magic_inheritance.png`
