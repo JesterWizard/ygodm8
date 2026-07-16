@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `565` effects
+- `575` effects
 
 ## Tally
 
@@ -546,6 +546,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Dark Burning Magic` | `src_custom/spell_effects/dark_burning_magic.c` |
 | `spell_effects` | `Dark Calling` | `src_custom/spell_effects/dark_calling.c` |
 | `spell_effects` | `Dark Contact` | `src_custom/spell_effects/dark_contact.c` |
+| `spell_effects` | `Dark Fusion` | `src_custom/spell_effects/dark_fusion.c` |
+| `spell_effects` | `Dark Magic Attack` | `src_custom/spell_effects/dark_magic_attack.c` |
+| `spell_effects` | `Dark Magic Inheritance` | `src_custom/spell_effects/dark_magic_inheritance.c` |
+| `spell_effects` | `Dark Magic Veil` | `src_custom/spell_effects/dark_magic_veil.c` |
+| `spell_effects` | `Dark Magical Circle` | `src_custom/spell_effects/dark_magical_circle.c` |
+| `activated_effects` | `Dark Magician Girl The Magician S Apprentice` | `src_custom/activated_effects/dark_magician_girl_the_magician_s_apprentice.c` |
+| `permanent_effects` | `Dark Magician Of Destruction` | `src_custom/permanent_effects/dark_magician_of_destruction.c` |
+| `activated_effects` | `Dark Magician The Magician Of Black Magic` | `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c` |
+| `trap_effects` | `Dark Renewal` | `src_custom/trap_effects/dark_renewal.c` |
+| `activated_effects` | `Dark Strike Fighter` | `src_custom/activated_effects/dark_strike_fighter.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

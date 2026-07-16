@@ -634,6 +634,16 @@ static const u8 sDarkBurningAttackName[] __attribute__((section(".append_assets"
 static const u8 sDarkBurningMagicName[] __attribute__((section(".append_assets"))) = "Dark Burning Magic";
 static const u8 sDarkCallingName[] __attribute__((section(".append_assets"))) = "Dark Calling";
 static const u8 sDarkContactName[] __attribute__((section(".append_assets"))) = "Dark Contact";
+static const u8 sDarkFusionName[] __attribute__((section(".append_assets"))) = "Dark Fusion";
+static const u8 sDarkMagicAttackName[] __attribute__((section(".append_assets"))) = "Dark Magic Attack";
+static const u8 sDarkMagicInheritanceName[] __attribute__((section(".append_assets"))) = "Dark Magic Inheritance";
+static const u8 sDarkMagicVeilName[] __attribute__((section(".append_assets"))) = "Dark Magic Veil";
+static const u8 sDarkMagicalCircleName[] __attribute__((section(".append_assets"))) = "Dark Magical Circle";
+static const u8 sDarkMagicianGirlTheMagicianSApprenticeName[] __attribute__((section(".append_assets"))) = "Dark Magician Girl the Magician's Apprentice";
+static const u8 sDarkMagicianOfDestructionName[] __attribute__((section(".append_assets"))) = "Dark Magician of Destruction";
+static const u8 sDarkMagicianTheMagicianOfBlackMagicName[] __attribute__((section(".append_assets"))) = "Dark Magician the Magician of Black Magic";
+static const u8 sDarkRenewalName[] __attribute__((section(".append_assets"))) = "Dark Renewal";
+static const u8 sDarkStrikeFighterName[] __attribute__((section(".append_assets"))) = "Dark Strike Fighter";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1908,6 +1918,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkCallingName;
   if (cardId == 0x0599)
     return (u8 *)sDarkContactName;
+  if (cardId == 0x059A)
+    return (u8 *)sDarkFusionName;
+  if (cardId == 0x059B)
+    return (u8 *)sDarkMagicAttackName;
+  if (cardId == 0x059C)
+    return (u8 *)sDarkMagicInheritanceName;
+  if (cardId == 0x059D)
+    return (u8 *)sDarkMagicVeilName;
+  if (cardId == 0x059E)
+    return (u8 *)sDarkMagicalCircleName;
+  if (cardId == 0x059F)
+    return (u8 *)sDarkMagicianGirlTheMagicianSApprenticeName;
+  if (cardId == 0x05A0)
+    return (u8 *)sDarkMagicianOfDestructionName;
+  if (cardId == 0x05A1)
+    return (u8 *)sDarkMagicianTheMagicianOfBlackMagicName;
+  if (cardId == 0x05A2)
+    return (u8 *)sDarkRenewalName;
+  if (cardId == 0x05A3)
+    return (u8 *)sDarkStrikeFighterName;
 
   return gCardNames[cardId];
 }

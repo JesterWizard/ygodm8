@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 633 |
-| Art ready, needs manifest | 167 |
+| In game (manifest + art) | 643 |
+| Art ready, needs manifest | 159 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **802** |
+| **Total PNGs in `80x80/`** | **804** |
 
 ## In game
 
@@ -655,21 +655,23 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARK_BURNING_MAGIC` | Dark Burning Magic | `dark_burning_magic.png` |
 | `DARK_CALLING` | Dark Calling | `dark_calling.png` |
 | `DARK_CONTACT` | Dark Contact | `dark_contact.png` |
+| `DARK_FUSION` | Dark Fusion | `dark_fusion.png` |
+| `DARK_MAGIC_ATTACK` | Dark Magic Attack | `dark_magic_attack.png` |
+| `DARK_MAGIC_INHERITANCE` | Dark Magic Inheritance | `dark_magic_inheritance.png` |
+| `DARK_MAGIC_VEIL` | Dark Magic Veil | `dark_magic_veil.png` |
+| `DARK_MAGICAL_CIRCLE` | Dark Magical Circle | `dark_magical_circle.png` |
+| `DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE` | Dark Magician Girl the Magician's Apprentice | `dark_magician_girl_the_magician_s_apprentice.png` |
+| `DARK_MAGICIAN_OF_DESTRUCTION` | Dark Magician of Destruction | `dark_magician_of_destruction.png` |
+| `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC` | Dark Magician the Magician of Black Magic | `dark_magician_the_magician_of_black_magic.png` |
+| `DARK_RENEWAL` | Dark Renewal | `dark_renewal.png` |
+| `DARK_STRIKE_FIGHTER` | Dark Strike Fighter | `dark_strike_fighter.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `DARK_FUSION` — `dark_fusion.png`
-- [ ] `DARK_MAGIC_ATTACK` — `dark_magic_attack.png`
-- [ ] `DARK_MAGIC_INHERITANCE` — `dark_magic_inheritance.png`
-- [ ] `DARK_MAGIC_VEIL` — `dark_magic_veil.png`
-- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
-- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
-- [ ] `DARK_MAGICIAN_OF_DESTRUCTION` — `dark_magician_of_destruction.png`
-- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
-- [ ] `DARK_RENEWAL` — `dark_renewal.png`
-- [ ] `DARK_STRIKE_FIGHTER` — `dark_strike_fighter.png`
+- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
+- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
 - [ ] `DARK_SUPREMACY` — `dark_supremacy.png`
 - [ ] `DEEP_EYES_WHITE_DRAGON` — `deep_eyes_white_dragon.png`
 - [ ] `DESTINED_RIVALS` — `destined_rivals.png`

@@ -312,6 +312,12 @@ unsigned char CanActivateCOLOSSAL_FIGHTER(void);
 void ActivateCOLOSSAL_FIGHTEREffect(void);
 unsigned char CanActivateCYBER_SLASH_HARPIE_LADY(void);
 void ActivateCYBER_SLASH_HARPIE_LADYEffect(void);
+unsigned char CanActivateDARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE(void);
+void ActivateDARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICEEffect(void);
+unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC(void);
+void ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGICEffect(void);
+unsigned char CanActivateDARK_STRIKE_FIGHTER(void);
+void ActivateDARK_STRIKE_FIGHTEREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1551,6 +1557,18 @@ FAILED:
   }
   if (gMonEffect.id == CYBER_SLASH_HARPIE_LADY) {
     ActivateCYBER_SLASH_HARPIE_LADYEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE) {
+    ActivateDARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICEEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC) {
+    ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGICEffect();
+    return;
+  }
+  if (gMonEffect.id == DARK_STRIKE_FIGHTER) {
+    ActivateDARK_STRIKE_FIGHTEREffect();
     return;
   }
 }

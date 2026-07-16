@@ -1435,11 +1435,21 @@
 #define DARK_BURNING_MAGIC                       0x0597
 #define DARK_CALLING                             0x0598
 #define DARK_CONTACT                             0x0599
+#define DARK_FUSION                              0x059A
+#define DARK_MAGIC_ATTACK                        0x059B
+#define DARK_MAGIC_INHERITANCE                   0x059C
+#define DARK_MAGIC_VEIL                          0x059D
+#define DARK_MAGICAL_CIRCLE                      0x059E
+#define DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE 0x059F
+#define DARK_MAGICIAN_OF_DESTRUCTION             0x05A0
+#define DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC 0x05A1
+#define DARK_RENEWAL                             0x05A2
+#define DARK_STRIKE_FIGHTER                      0x05A3
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x059A
-#define NUM_CUSTOM_CARDS                        0x0279
+#define NUM_TOTAL_CARDS                         0x05A4
+#define NUM_CUSTOM_CARDS                        0x0283
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -29304,6 +29304,270 @@
       "effect_texts": {
         "popup_1": "OPT each: Dark Fusion FS by shuffle materials from field/GY/banish; or search Castle/Dark Fusion."
       }
+    },
+    {
+      "card_const": "DARK_FUSION",
+      "card_name": "Dark Fusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 4, 8, 2, 0, 4, 0, 6],
+      "description": {
+        "symbol": "gDescription_DarkFusion",
+        "pages": [
+          "Fusion Summon 1 Fiend Fusion from your Extra Deck",
+          "using monsters from your hand or field. Opponent",
+          "cannot target it with card effects this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Fusion Summon 1 Fiend Fusion using hand/field materials. Opponent cannot target it this turn."
+      }
+    },
+    {
+      "card_const": "DARK_MAGIC_ATTACK",
+      "card_name": "Dark Magic Attack",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 2, 3, 1, 4, 2, 3, 8],
+      "description": {
+        "symbol": "gDescription_DarkMagicAttack",
+        "pages": [
+          "If you control Dark Magician: Destroy all",
+          "Spells and Traps your opponent controls."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you control Dark Magician: destroy all Spells/Traps your opponent controls."
+      }
+    },
+    {
+      "card_const": "DARK_MAGIC_INHERITANCE",
+      "card_name": "Dark Magic Inheritance",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 1, 7, 3, 5, 1, 8, 4],
+      "description": {
+        "symbol": "gDescription_DarkMagicInheritance",
+        "pages": [
+          "Banish 2 Spells from your GY; add 1 Spell/Trap",
+          "from your Deck that mentions Dark Magician or",
+          "Dark Magician Girl, except this card. Once/turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish 2 Spells from GY; add 1 DM/DMG Spell/Trap from Deck. Once per turn."
+      }
+    },
+    {
+      "card_const": "DARK_MAGIC_VEIL",
+      "card_name": "Dark Magic Veil",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 2, 4, 0, 4, 8, 6, 8],
+      "description": {
+        "symbol": "gDescription_DarkMagicVeil",
+        "pages": [
+          "Pay 1000 LP; Special Summon 1 DARK Spellcaster",
+          "from your hand or GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay 1000 LP; Special Summon 1 DARK Spellcaster from hand or GY."
+      }
+    },
+    {
+      "card_const": "DARK_MAGICAL_CIRCLE",
+      "card_name": "Dark Magical Circle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 7, 2, 2, 2, 5, 3, 6],
+      "description": {
+        "symbol": "gDescription_DarkMagicalCircle",
+        "pages": [
+          "On activate: look at top 3 of Deck; add 1 that is",
+          "Dark Magician or a Spell/Trap mentioning it.",
+          "If Dark Magician is Summoned: target 1 opponent",
+          "card; banish it. Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Look at top 3; add DM or DM Spell/Trap. If DM Summoned: banish 1 opponent card."
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE",
+      "card_name": "Dark Magician Girl the Magician's Apprentice",
+      "atk": 2000,
+      "def": 1700,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [0, 2, 5, 0, 1, 6, 2, 4],
+      "description": {
+        "symbol": "gDescription_DarkMagicianGirlTheMagicianSApprentice",
+        "pages": [
+          "You can discard 1 to Special Summon this; its",
+          "name becomes Dark Magician Girl. If Summoned:",
+          "add 1 Shining Sarcophagus from Deck. Gains 300",
+          "ATK for each monster mentioning it in the GYs."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard 1 to SS; name becomes DMG. If Summoned: add Shining Sarcophagus. +300 ATK/mention in GY."
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_OF_DESTRUCTION",
+      "card_name": "Dark Magician of Destruction",
+      "atk": 2800,
+      "def": 2600,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 9, 4, 0, 0, 8, 9, 0],
+      "description": {
+        "symbol": "gDescription_DarkMagicianOfDestruction",
+        "pages": [
+          "Dark Magician + 1 LIGHT or DARK monster. Must",
+          "be Fusion Summoned, or SS by banishing a Lv6+",
+          "DARK Spellcaster you control after a Spell.",
+          "Name becomes Dark Magician on field/GY. If SS:",
+          "add 1 Dark Magician or card mentioning it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Fusion/alt SS after Spell. Name=Dark Magician. If SS: add DM or card mentioning it."
+      }
+    },
+    {
+      "card_const": "DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC",
+      "card_name": "Dark Magician the Magician of Black Magic",
+      "atk": 2500,
+      "def": 2100,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [0, 0, 3, 4, 2, 6, 7, 3],
+      "description": {
+        "symbol": "gDescription_DarkMagicianTheMagicianOfBlackMagic",
+        "pages": [
+          "Name becomes Dark Magician while on the field.",
+          "If Shining Sarcophagus is on field: SS from hand.",
+          "If destroyed by effect and a Lv5+ is on field:",
+          "SS this, then Set 1 Spell/Trap mentioning DM."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Name=DM on field. If Shining Sarcophagus: SS from hand. If destroyed: SS and Set DM Spell/Trap."
+      }
+    },
+    {
+      "card_const": "DARK_RENEWAL",
+      "card_name": "Dark Renewal",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 9, 2, 8, 7, 0, 7, 8],
+      "description": {
+        "symbol": "gDescription_DarkRenewal",
+        "pages": [
+          "When opponent Normal/Special Summons: target",
+          "1 of those and 1 Spellcaster you control; send",
+          "both to GY, then SS 1 DARK Spellcaster from",
+          "Deck or GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On opp Summon: send that monster and your Spellcaster to GY; SS 1 DARK Spellcaster."
+      }
+    },
+    {
+      "card_const": "DARK_STRIKE_FIGHTER",
+      "card_name": "Dark Strike Fighter",
+      "atk": 2600,
+      "def": 1800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_MACHINE",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [3, 2, 6, 4, 6, 4, 7, 7],
+      "description": {
+        "symbol": "gDescription_DarkStrikeFighter",
+        "pages": [
+          "1 Tuner + 1+ non-Tuner monsters. Main Phase 1:",
+          "Tribute 1 monster; burn equal to its Level x 200.",
+          "Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Main Phase 1: Tribute 1; burn equal to its Level x 200. Once per turn."
+      }
     }
   ]
 }

@@ -141,6 +141,8 @@ unsigned char ShouldActivateLIGHT_AND_DARKNESS_DRAGON(void);
 void ActivateLIGHT_AND_DARKNESS_DRAGON(void);
 unsigned char ShouldActivateTHUNDER_DRAGON_COLOSSUS(void);
 void ActivateTHUNDER_DRAGON_COLOSSUS(void);
+unsigned char ShouldActivateDARK_MAGICIAN_OF_DESTRUCTION(void);
+void ActivateDARK_MAGICIAN_OF_DESTRUCTION(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -418,6 +420,12 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .shouldActivate = ShouldActivateTHUNDER_DRAGON_COLOSSUS,
     .activate = ActivateTHUNDER_DRAGON_COLOSSUS,
   },
+  {
+    .cardId = DARK_MAGICIAN_OF_DESTRUCTION,
+    .shouldActivate = ShouldActivateDARK_MAGICIAN_OF_DESTRUCTION,
+    .activate = ActivateDARK_MAGICIAN_OF_DESTRUCTION,
+  },
+  /* END PERMANENT EFFECT OVERRIDES */
 };
 
 static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {

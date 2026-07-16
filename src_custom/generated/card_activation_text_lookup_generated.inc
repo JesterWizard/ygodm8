@@ -608,6 +608,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DARK_BURNING_MAGIC] = gActivationDescription_DarkBurningMagic_Popup1,
   [DARK_CALLING] = gActivationDescription_DarkCalling_Popup1,
   [DARK_CONTACT] = gActivationDescription_DarkContact_Popup1,
+  [DARK_FUSION] = gActivationDescription_DarkFusion_Popup1,
+  [DARK_MAGIC_ATTACK] = gActivationDescription_DarkMagicAttack_Popup1,
+  [DARK_MAGIC_INHERITANCE] = gActivationDescription_DarkMagicInheritance_Popup1,
+  [DARK_MAGIC_VEIL] = gActivationDescription_DarkMagicVeil_Popup1,
+  [DARK_MAGICAL_CIRCLE] = gActivationDescription_DarkMagicalCircle_Popup1,
+  [DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE] = gActivationDescription_DarkMagicianGirlTheMagicianSApprentice_Popup1,
+  [DARK_MAGICIAN_OF_DESTRUCTION] = gActivationDescription_DarkMagicianOfDestruction_Popup1,
+  [DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC] = gActivationDescription_DarkMagicianTheMagicianOfBlackMagic_Popup1,
+  [DARK_RENEWAL] = gActivationDescription_DarkRenewal_Popup1,
+  [DARK_STRIKE_FIGHTER] = gActivationDescription_DarkStrikeFighter_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1247,6 +1257,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DARK_BURNING_MAGIC_POPUP_1] = gActivationDescription_DarkBurningMagic_Popup1,
   [CARD_EFFECT_TEXT_DARK_CALLING_POPUP_1] = gActivationDescription_DarkCalling_Popup1,
   [CARD_EFFECT_TEXT_DARK_CONTACT_POPUP_1] = gActivationDescription_DarkContact_Popup1,
+  [CARD_EFFECT_TEXT_DARK_FUSION_POPUP_1] = gActivationDescription_DarkFusion_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGIC_ATTACK_POPUP_1] = gActivationDescription_DarkMagicAttack_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGIC_INHERITANCE_POPUP_1] = gActivationDescription_DarkMagicInheritance_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGIC_VEIL_POPUP_1] = gActivationDescription_DarkMagicVeil_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGICAL_CIRCLE_POPUP_1] = gActivationDescription_DarkMagicalCircle_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGICIAN_GIRL_THE_MAGICIAN_S_APPRENTICE_POPUP_1] = gActivationDescription_DarkMagicianGirlTheMagicianSApprentice_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGICIAN_OF_DESTRUCTION_POPUP_1] = gActivationDescription_DarkMagicianOfDestruction_Popup1,
+  [CARD_EFFECT_TEXT_DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC_POPUP_1] = gActivationDescription_DarkMagicianTheMagicianOfBlackMagic_Popup1,
+  [CARD_EFFECT_TEXT_DARK_RENEWAL_POPUP_1] = gActivationDescription_DarkRenewal_Popup1,
+  [CARD_EFFECT_TEXT_DARK_STRIKE_FIGHTER_POPUP_1] = gActivationDescription_DarkStrikeFighter_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

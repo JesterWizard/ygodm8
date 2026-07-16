@@ -140,8 +140,23 @@
     case DARK_CONTACT:
       EffectDARK_CONTACT();
       return;
+    case DARK_FUSION:
+      EffectDARK_FUSION();
+      return;
+    case DARK_MAGICAL_CIRCLE:
+      EffectDARK_MAGICAL_CIRCLE();
+      return;
+    case DARK_MAGIC_ATTACK:
+      EffectDARK_MAGIC_ATTACK();
+      return;
     case DARK_MAGIC_CURTAIN:
       EffectDarkMagicCurtain();
+      return;
+    case DARK_MAGIC_INHERITANCE:
+      EffectDARK_MAGIC_INHERITANCE();
+      return;
+    case DARK_MAGIC_VEIL:
+      EffectDARK_MAGIC_VEIL();
       return;
     case DARK_ROOM_OF_NIGHTMARE:
       EffectDarkRoomOfNightmare();

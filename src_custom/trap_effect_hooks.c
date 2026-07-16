@@ -439,3 +439,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire CHAIN_MATERIAL in trap dispatcher */
 /* DAMAGE_REPTILE trap effect */
   /* TODO: wire DAMAGE_REPTILE in trap dispatcher */
+/* DARK_RENEWAL trap effect */
+  /* TODO: wire DARK_RENEWAL in trap dispatcher */

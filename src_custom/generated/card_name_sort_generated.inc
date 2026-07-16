@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 633
+#define NUM_CUSTOM_NAME_SORT_CARDS 643
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -638,6 +638,16 @@ static const u8 sDarkBurningAttackSortName[] APPEND_RODATA = "Dark Burning Attac
 static const u8 sDarkBurningMagicSortName[] APPEND_RODATA = "Dark Burning Magic";
 static const u8 sDarkCallingSortName[] APPEND_RODATA = "Dark Calling";
 static const u8 sDarkContactSortName[] APPEND_RODATA = "Dark Contact";
+static const u8 sDarkFusionSortName[] APPEND_RODATA = "Dark Fusion";
+static const u8 sDarkMagicAttackSortName[] APPEND_RODATA = "Dark Magic Attack";
+static const u8 sDarkMagicInheritanceSortName[] APPEND_RODATA = "Dark Magic Inheritance";
+static const u8 sDarkMagicVeilSortName[] APPEND_RODATA = "Dark Magic Veil";
+static const u8 sDarkMagicalCircleSortName[] APPEND_RODATA = "Dark Magical Circle";
+static const u8 sDarkMagicianGirlTheMagicianSApprenticeSortName[] APPEND_RODATA = "Dark Magician Girl the Magician's Apprentice";
+static const u8 sDarkMagicianOfDestructionSortName[] APPEND_RODATA = "Dark Magician of Destruction";
+static const u8 sDarkMagicianTheMagicianOfBlackMagicSortName[] APPEND_RODATA = "Dark Magician the Magician of Black Magic";
+static const u8 sDarkRenewalSortName[] APPEND_RODATA = "Dark Renewal";
+static const u8 sDarkStrikeFighterSortName[] APPEND_RODATA = "Dark Strike Fighter";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -793,13 +803,23 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x038A, // Dark Driceratops
   0x03DE, // Dark Dust Spirit
   0x0467, // Dark End Dragon
+  0x059A, // Dark Fusion
   0x049D, // Dark Grepher
+  0x059B, // Dark Magic Attack
   0x0346, // Dark Magic Curtain
+  0x059C, // Dark Magic Inheritance
+  0x059D, // Dark Magic Veil
+  0x059E, // Dark Magical Circle
   0x049E, // Dark Magician Girl the Dragon Knight
+  0x059F, // Dark Magician Girl the Magician's Apprentice
   0x040C, // Dark Magician of Chaos
+  0x05A0, // Dark Magician of Destruction
   0x04A2, // Dark Magician the Dragon Knight
+  0x05A1, // Dark Magician the Magician of Black Magic
+  0x05A2, // Dark Renewal
   0x0389, // Dark Room Of Nightmare
   0x03C7, // Dark Snake Syndrome
+  0x05A3, // Dark Strike Fighter
   0x03B0, // Darklord Marie
   0x049F, // Darklord Nurse Reficule
   0x04A0, // Darkness Neosphere
@@ -1429,486 +1449,496 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   151, // Dark Driceratops
   152, // Dark Dust Spirit
   153, // Dark End Dragon
-  154, // Dark Grepher
-  155, // Dark Magic Curtain
-  156, // Dark Magician Girl the Dragon Knight
-  157, // Dark Magician of Chaos
-  158, // Dark Magician the Dragon Knight
-  159, // Dark Room Of Nightmare
-  160, // Dark Snake Syndrome
-  161, // Darklord Marie
-  162, // Darklord Nurse Reficule
-  163, // Darkness Neosphere
-  164, // De-Fusion
-  165, // Deck Destruction Virus
-  166, // Decoy Dragon
-  167, // Dedication through Light and Darkness
-  168, // Delinquent Duo
-  169, // Des Counterblow
-  170, // Des Kangaroo
-  171, // Des Koala
-  172, // Despair from the Dark
-  173, // Destiny Draw
-  174, // Destiny End Dragoon
-  175, // Destiny HERO - Blade Master
-  176, // Destiny HERO - Captain Tenacious
-  177, // Destiny HERO - Celestial
-  178, // Destiny HERO - Dangerous
-  179, // Destiny HERO - Dark Angel
-  180, // Destiny HERO - Dasher
-  181, // Destiny HERO - Decider
-  182, // Destiny HERO - Defender
-  183, // Destiny HERO - Denier
-  184, // Destiny HERO - Destro-Dogma
-  185, // Destiny HERO - Destroyer Phoenix Enforcer
-  186, // Destiny HERO - Diamond Dude
-  187, // Destiny HERO - Disk Commander
-  188, // Destiny HERO - Dogma
-  189, // Destiny HERO - Dominance
-  190, // Destiny HERO - Doom Lord
-  191, // Destiny HERO - Doom Overlord
-  192, // Destiny HERO - Double Dude
-  193, // Destiny HERO - Drawhand
-  194, // Destiny HERO - Dread Servant
-  195, // Destiny HERO - Dreadmaster
-  196, // Destiny HERO - Dreadnought Master
-  197, // Destiny HERO - Dreadnought Servant
-  198, // Destiny HERO - Dreamer
-  199, // Destiny HERO - Drilldark
-  200, // Destiny HERO - Dunker
-  201, // Destiny HERO - Dusktopia
-  202, // Destiny HERO - Dynatag
-  203, // Destiny HERO - Dystopia
-  204, // Destiny HERO - Fear Monger
-  205, // Destiny HERO - Malicious
-  206, // Destiny HERO - Plasma
-  207, // Dice Jar
-  208, // Different Dimension Capsule
-  209, // Diffusion Wave-Motion
-  210, // Dimension Fusion
-  211, // Divine Sanctuary
-  212, // Divine Serpent Geh
-  213, // Doctor D
-  214, // Don Zaloog
-  215, // Doom Virus Dragon
-  216, // Doppelganger
-  217, // Double Coston
-  218, // Double Spell
-  219, // Double Summon
-  220, // Dragon's Rage
-  221, // Drain Time
-  222, // Draining Shield
-  223, // Drillago
-  224, // Drop Off
-  225, // Dust Tornado
-  226, // E - Emergency Call
-  227, // Ebon Magician Curran
-  228, // Ectoplasmer
-  229, // Egyptian God Slime
-  230, // Elemental HERO Absolute Zero
-  231, // Elemental HERO Avian
-  232, // Elemental HERO Bladedge
-  233, // Elemental HERO Blazeman
-  234, // Elemental HERO Bubbleman
-  235, // Elemental HERO Burstinatrix
-  236, // Elemental HERO Captain Gold
-  237, // Elemental HERO Clayman
-  238, // Elemental HERO Core
-  239, // Elemental HERO Electrum
-  240, // Elemental HERO Escuridao
-  241, // Elemental HERO Flame Wingman
-  242, // Elemental HERO Flash
-  243, // Elemental HERO Gaia
-  244, // Elemental HERO Great Tornado
-  245, // Elemental HERO Heat
-  246, // Elemental HERO Ice Edge
-  247, // Elemental HERO Inferno
-  248, // Elemental HERO Knospe
-  249, // Elemental HERO Lady Heat
-  250, // Elemental HERO Mariner
-  251, // Elemental HERO Mudballman
-  252, // Elemental HERO Necroid Shaman
-  253, // Elemental HERO Necroshade
-  254, // Elemental HERO Neos
-  255, // Elemental HERO Neos Alius
-  256, // Elemental HERO Neos Kluger
-  257, // Elemental HERO Ocean
-  258, // Elemental HERO Phoenix Enforcer
-  259, // Elemental HERO Plasma Vice
-  260, // Elemental HERO Poison Rose
-  261, // Elemental HERO Rampart Blaster
-  262, // Elemental HERO Shining Flare Wingman
-  263, // Elemental HERO Shining Phoenix Enforcer
-  264, // Elemental HERO Sparkman
-  265, // Elemental HERO Steam Healer
-  266, // Elemental HERO Stratos
-  267, // Elemental HERO Sunrise
-  268, // Elemental HERO Tempest
-  269, // Elemental HERO Terra Firma
-  270, // Elemental HERO The Shining
-  271, // Elemental HERO Thunder Giant
-  272, // Elemental HERO Voltic
-  273, // Elemental HERO Wild Wingman
-  274, // Elemental HERO Wildedge
-  275, // Elemental HERO Wildheart
-  276, // Elemental HERO Woodsman
-  277, // Emergency Provisions
-  278, // Exchange
-  279, // Exodius the Ultimate Forbidden Lord
-  280, // Fairy Box
-  281, // Familiar Knight
-  282, // Fatal Abacus
-  283, // Felgrand Dragon
-  284, // Fenrir
-  285, // Fields Sanctuary
-  286, // Final Countdown
-  287, // Fire Princess
-  288, // Fires of Doomsday
-  289, // Forced Requisition
-  290, // Fusion Destiny
-  291, // Fusion Gate
-  292, // Fusion Recovery
-  293, // Fusion Sage
-  294, // Future Fusion
-  295, // Gate Guardians Combined
-  296, // Ghost Knight of Jackal
-  297, // Gift Card
-  298, // Gift Of The Mystical Elf
-  299, // Gilasaurus
-  300, // Goblin King
-  301, // Goblin Thief
-  302, // Goddess Bow
-  303, // Gorz the Emissary of Darkness
-  304, // Graceful Charity
-  305, // Graceful Dice
-  306, // Granadora
-  307, // Granmarg the Rock Monarch
-  308, // Gravekeeper's Servant
-  309, // Gravity Bind
-  310, // Great Maju Garzett
-  311, // Green Gadget
-  312, // Gren Maju Da Eiza
-  313, // Ground Collapse
-  314, // Guardian Angel Joan
-  315, // Guardian Dreadscythe
-  316, // Guardian Eatos
-  317, // Guardian Treasure
-  318, // Gyaku-Gire Panda
-  319, // H - Heated Heart
-  320, // Hamon, Lord of Striking Thunder
-  321, // Harpie Lady 1
-  322, // Harpie Lady 2
-  323, // Harpie Lady 3
-  324, // Harpie Lady Phoenix Formation
-  325, // Harpie's Pet Baby Dragon
-  326, // Hayabusa Knight
-  327, // Hecatrice
-  328, // Herald of Creation
-  329, // Hero Flash!!
-  330, // Holactie the Creator of Light
-  331, // Horus the Black Flame Dragon LV4
-  332, // Horus the Black Flame Dragon LV6
-  333, // Horus the Black Flame Dragon LV8
-  334, // Hyper Hammerhead
-  335, // Imperial Order
-  336, // Insect Imitation
-  337, // Instant Fusion
-  338, // Invader of the Throne
-  339, // Iofiel
-  340, // Jar of Greed
-  341, // Jar Robber
-  342, // Jowgen the Spiritualist
-  343, // Jowls of Dark Demise
-  344, // Judgment Dragon
-  345, // Just Deserts
-  346, // KA-2 Des Scissors
-  347, // Kaibaman
-  348, // Kaiser Colosseum
-  349, // Kaiser Glider
-  350, // King Dragun
-  351, // King of the Swamp
-  352, // King Tiger Wanghu
-  353, // Kishido Spirit
-  354, // Knight's Title
-  355, // Kuraz the Light Monarch
-  356, // Kuribandit
-  357, // Last Turn
-  358, // Legend of Heart
-  359, // Legendary Flame Lord
-  360, // Legendary Knight Critias
-  361, // Legendary Knight Hermos
-  362, // Legendary Knight Timaeus
-  363, // Lekunga
-  364, // Lesser Fiend
-  365, // Level Limit - Area A
-  366, // Level Limit Area B
-  367, // Levia Dragon Daedalus
-  368, // Light and Darkness Dragon
-  369, // Light End Dragon
-  370, // Limiter Removal
-  371, // Lord of the Red
-  372, // Luster Dragon
-  373, // Lyrilusc - Independent Nightingale
-  374, // Ma'at
-  375, // Mad Sword Beast
-  376, // Mage Power
-  377, // Magic Cylinder
-  378, // Magic Jammer
-  379, // Magical Dimension
-  380, // Magical Hats
-  381, // Magical Merchant
-  382, // Magical Plant Mandragola
-  383, // Magical Scientist
-  384, // Magical Stone Excavation
-  385, // Magician's Valkyria
-  386, // Majestic Mech - Goryu
-  387, // Maju Garzett
-  388, // Man-Thro-Thro
-  389, // Manju of the Ten Thousand Hands
-  390, // Marauding Captain
-  391, // Marshmallon
-  392, // Maryokutai
-  393, // Mask of Dispel
-  394, // Mask of Restrict
-  395, // Mask of the Accursed
-  396, // Master Peace, the True Dracoslaying King
-  397, // Mataza the Zapper
-  398, // Mausoleum of the Emperor
-  399, // Mazera DeVille
-  400, // Mefist The Infernal General
-  401, // Mermaid Knight
-  402, // Metamorphosis
-  403, // Meteor of Destruction
-  404, // Meteorain
-  405, // Mighty Angel Virch
-  406, // Miracle Fusion
-  407, // Mirage of Nightmare
-  408, // Mirror Force
-  409, // Mirror Force Dragon
-  410, // Mirror Wall
-  411, // Mobius the Frost Monarch
-  412, // Moister Creature
-  413, // Molten Zombie
-  414, // Monster Gate
-  415, // Monster Recovery
-  416, // Morale Boost
-  417, // Mucus Yolk
-  418, // Mystical Shine Ball
-  419, // Mystical Space Typhoon
-  420, // Mystik Wok
-  421, // Necrovalley
-  422, // Needle Burrower
-  423, // Needle Wall
-  424, // Negate Attack
-  425, // Negative Energy
-  426, // Neo Blue-Eyes Ultimate Dragon
-  427, // Neos Wiseman
-  428, // Nibiru, the Primal Being
-  429, // Nightmare Horse
-  430, // Nightmare Wheel
-  431, // Numinous Healer
-  432, // O - Oversoul
-  433, // Obnoxious Celtic Guardian
-  434, // Ojama King
-  435, // Ojama Trio
-  436, // Orichalcos Shunoros
-  437, // Over Destiny
-  438, // Overload Fusion
-  439, // Painful Choice
-  440, // Paladin Of White Dragon
-  441, // Pandemonium
-  442, // Parallel World Fusion
-  443, // Peten The Dark Clown
-  444, // Photon Generator Unit
-  445, // Piranha Army
-  446, // Poison of the Old Man
-  447, // Polymerization
-  448, // Possessed Dark Soul
-  449, // Power Bond
-  450, // Precious Cards From Beyond
-  451, // Premature Burial
-  452, // Prophecy
-  453, // Protector of the Sanctuary
-  454, // Proto-Cyber Dragon
-  455, // Pyramid of Light
-  456, // Quintet Magician
-  457, // R - Righteous Justice
-  458, // Raigeki Break
-  459, // Rain of Mercy
-  460, // Rare Metal Dragon
-  461, // Raregold Armor
-  462, // Raviel, Lord of Phantasms
-  463, // Reaper on the Nightmare
-  464, // Reaper Scythe - Dreadscythe
-  465, // Reckless Greed
-  466, // Red Gadget
-  467, // Red-Eyes Black Dragon Sword
-  468, // Red-Eyes Dark Dragoon
-  469, // Red-Eyes Darkness Metal Dragon
-  470, // Red-Eyes Transmigration
-  471, // Relay Soul
-  472, // Reload
-  473, // Reverse of Reverse
-  474, // Ring of Destruction
-  475, // Riryoku
-  476, // Rivalry of Warlords
-  477, // Robbin' Goblin
-  478, // Robbin' Zombie
-  479, // Rocket Hermos Cannon
-  480, // Rope of Life
-  481, // Royal Decree
-  482, // Royal Knight
-  483, // Royal Magical Library
-  484, // Ryu-Kishin Clown
-  485, // Sage's Stone
-  486, // Sasuke Samurai
-  487, // Sasuke Samurai #2
-  488, // Sasuke Samurai #3
-  489, // Scapegoat
-  490, // Seal of Orichalcos
-  491, // Second Coin Toss
-  492, // Secret Barrel
-  493, // Secret Village of the Spellcasters
-  494, // Self-Destruct Button
-  495, // Seraphim Blaster
-  496, // Servant of Catabolism
-  497, // Seven Tools of the Bandit
-  498, // Share the Pain
-  499, // Shatiel
-  500, // Shield And Sword
-  501, // Sixth Sense
-  502, // Skill Drain
-  503, // Skilled Dark Magician
-  504, // Skilled White Magician
-  505, // Skull Invitation
-  506, // Skyscraper
-  507, // Skyscraper 2 - Hero City
-  508, // Solar Flare Dragon
-  509, // Solar Ray
-  510, // Solemn Judgment
-  511, // Solemn Wishes
-  512, // Sorcerer of Dark Magic
-  513, // Soul Exchange
-  514, // Soul Taker
-  515, // Spark Blaster
-  516, // Spear Dragon
-  517, // Spell Absorption
-  518, // Spell Canceller
-  519, // Spell Economics
-  520, // Sphinx Teleia
-  521, // Spirit Caller
-  522, // Spirit of the Breeze
-  523, // Spirit of the Pot of Greed
-  524, // Spirit Reaper
-  525, // Spirit Ryu
-  526, // St Joan
-  527, // Statue of the Wicked
-  528, // Staunch Defender
-  529, // Stealth Bird
-  530, // Stray Lambs
-  531, // Stronghold the Moving Fortress
-  532, // Summoner Monk
-  533, // Summoner of Illusions
-  534, // Super Polymerization
-  535, // Swift Gaia The Fierce Knight
-  536, // Terraforming
-  537, // Terrorking Salmon
-  538, // Tethys, Goddess of Light
-  539, // The A. Forces
-  540, // The Agent Of Creation - Venus
-  541, // The Agent of Force - Mars
-  542, // The Agent of Judgment - Saturn
-  543, // The Agent of Wisdom - Mercury
-  544, // The Big Saturn
-  545, // The Blazing Mars
-  546, // The Claw of Hermos
-  547, // The Creator
-  548, // The Creator Incarnate
-  549, // The Dark Door
-  550, // The Despair Uranus
-  551, // The Eye of Timaeus
-  552, // The Fang of Critias
-  553, // The Flute of Summoning Dragon
-  554, // The Forceful Sentry
-  555, // The Grand Jupiter
-  556, // The Law of the Normal
-  557, // The Legendary Exodia Incarnate
-  558, // The Sanctuary in the Sky
-  559, // The Shallow Grave
-  560, // The Splendid Venus
-  561, // The Suppression Pluto
-  562, // The Supremacy Sun
-  563, // The Thing in the Crater
-  564, // The Tricky
-  565, // The Tripper Mercury
-  566, // The Tyrant Neptune
-  567, // The Unstoppable Exodia Incarnate
-  568, // The Wicked Avatar
-  569, // The Wicked Dreadroot
-  570, // The Wicked Eraser
-  571, // Theban Nightmare
-  572, // Theinen the Great Sphinx
-  573, // Thestalos the Firestorm Monarch
-  574, // Thousand Energy
-  575, // Thousand Knives
-  576, // Thunder Crash
-  577, // Thunder Dragon Colossus
-  578, // Thunder Dragon Titan
-  579, // Timaeus the Knight of Destiny
-  580, // Time Magic Hammer
-  581, // Time Seal
-  582, // Tiny Angel
-  583, // Toll
-  584, // Toon World
-  585, // Tornado Bird
-  586, // Tornado Wall
-  587, // Torpedo Fish
-  588, // Trade-In
-  589, // Trap Dustshoot
-  590, // Triangle Power
-  591, // Tribute Doll
-  592, // Twin Swords of Flashing Light - Tryce
-  593, // Tyrant Burst Dragon
-  594, // Tyrant Dragon
-  595, // Tyrant Wing
-  596, // Ultimate Conductor Tyranno
-  597, // Ultimate Obedient Fiend
-  598, // Ultimate Offering
-  599, // United We Stand
-  600, // Upstart Goblin
-  601, // Uria, Lord of Searing Flames
-  602, // Valhalla, Hall of the Fallen
-  603, // Vampire Baby
-  604, // Vengeful Bog Spirit
-  605, // Vision Fusion
-  606, // Vision HERO Adoration
-  607, // Vision HERO Faris
-  608, // Vision HERO Gravito
-  609, // Vision HERO Increase
-  610, // Vision HERO Minimum Ray
-  611, // Vision HERO Multiply Guy
-  612, // Vision HERO Poisoner
-  613, // Vision HERO Trinity
-  614, // Vision HERO Vyon
-  615, // Vision HERO Witch Raider
-  616, // Vision Release
-  617, // Wall of Revealing Light
-  618, // Warrior of Zera
-  619, // Watapon
-  620, // Wave Motion Cannon
-  621, // Weather Report
-  622, // White Dragon Ritual
-  623, // White Magician Pikeru
-  624, // Wild Nature's Release
-  625, // World Suppression
-  626, // Wroughtweiler
-  627, // Yata-Garasu
-  628, // Yellow Gadget
-  629, // Yubel
-  630, // Yubel - Terror Incarnate
-  631, // Yubel - The Ultimate Nightmare
-  632, // Zaborg the Thunder Monarch
-  633, // Zeriel
+  154, // Dark Fusion
+  155, // Dark Grepher
+  156, // Dark Magic Attack
+  157, // Dark Magic Curtain
+  158, // Dark Magic Inheritance
+  159, // Dark Magic Veil
+  160, // Dark Magical Circle
+  161, // Dark Magician Girl the Dragon Knight
+  162, // Dark Magician Girl the Magician's Apprentice
+  163, // Dark Magician of Chaos
+  164, // Dark Magician of Destruction
+  165, // Dark Magician the Dragon Knight
+  166, // Dark Magician the Magician of Black Magic
+  167, // Dark Renewal
+  168, // Dark Room Of Nightmare
+  169, // Dark Snake Syndrome
+  170, // Dark Strike Fighter
+  171, // Darklord Marie
+  172, // Darklord Nurse Reficule
+  173, // Darkness Neosphere
+  174, // De-Fusion
+  175, // Deck Destruction Virus
+  176, // Decoy Dragon
+  177, // Dedication through Light and Darkness
+  178, // Delinquent Duo
+  179, // Des Counterblow
+  180, // Des Kangaroo
+  181, // Des Koala
+  182, // Despair from the Dark
+  183, // Destiny Draw
+  184, // Destiny End Dragoon
+  185, // Destiny HERO - Blade Master
+  186, // Destiny HERO - Captain Tenacious
+  187, // Destiny HERO - Celestial
+  188, // Destiny HERO - Dangerous
+  189, // Destiny HERO - Dark Angel
+  190, // Destiny HERO - Dasher
+  191, // Destiny HERO - Decider
+  192, // Destiny HERO - Defender
+  193, // Destiny HERO - Denier
+  194, // Destiny HERO - Destro-Dogma
+  195, // Destiny HERO - Destroyer Phoenix Enforcer
+  196, // Destiny HERO - Diamond Dude
+  197, // Destiny HERO - Disk Commander
+  198, // Destiny HERO - Dogma
+  199, // Destiny HERO - Dominance
+  200, // Destiny HERO - Doom Lord
+  201, // Destiny HERO - Doom Overlord
+  202, // Destiny HERO - Double Dude
+  203, // Destiny HERO - Drawhand
+  204, // Destiny HERO - Dread Servant
+  205, // Destiny HERO - Dreadmaster
+  206, // Destiny HERO - Dreadnought Master
+  207, // Destiny HERO - Dreadnought Servant
+  208, // Destiny HERO - Dreamer
+  209, // Destiny HERO - Drilldark
+  210, // Destiny HERO - Dunker
+  211, // Destiny HERO - Dusktopia
+  212, // Destiny HERO - Dynatag
+  213, // Destiny HERO - Dystopia
+  214, // Destiny HERO - Fear Monger
+  215, // Destiny HERO - Malicious
+  216, // Destiny HERO - Plasma
+  217, // Dice Jar
+  218, // Different Dimension Capsule
+  219, // Diffusion Wave-Motion
+  220, // Dimension Fusion
+  221, // Divine Sanctuary
+  222, // Divine Serpent Geh
+  223, // Doctor D
+  224, // Don Zaloog
+  225, // Doom Virus Dragon
+  226, // Doppelganger
+  227, // Double Coston
+  228, // Double Spell
+  229, // Double Summon
+  230, // Dragon's Rage
+  231, // Drain Time
+  232, // Draining Shield
+  233, // Drillago
+  234, // Drop Off
+  235, // Dust Tornado
+  236, // E - Emergency Call
+  237, // Ebon Magician Curran
+  238, // Ectoplasmer
+  239, // Egyptian God Slime
+  240, // Elemental HERO Absolute Zero
+  241, // Elemental HERO Avian
+  242, // Elemental HERO Bladedge
+  243, // Elemental HERO Blazeman
+  244, // Elemental HERO Bubbleman
+  245, // Elemental HERO Burstinatrix
+  246, // Elemental HERO Captain Gold
+  247, // Elemental HERO Clayman
+  248, // Elemental HERO Core
+  249, // Elemental HERO Electrum
+  250, // Elemental HERO Escuridao
+  251, // Elemental HERO Flame Wingman
+  252, // Elemental HERO Flash
+  253, // Elemental HERO Gaia
+  254, // Elemental HERO Great Tornado
+  255, // Elemental HERO Heat
+  256, // Elemental HERO Ice Edge
+  257, // Elemental HERO Inferno
+  258, // Elemental HERO Knospe
+  259, // Elemental HERO Lady Heat
+  260, // Elemental HERO Mariner
+  261, // Elemental HERO Mudballman
+  262, // Elemental HERO Necroid Shaman
+  263, // Elemental HERO Necroshade
+  264, // Elemental HERO Neos
+  265, // Elemental HERO Neos Alius
+  266, // Elemental HERO Neos Kluger
+  267, // Elemental HERO Ocean
+  268, // Elemental HERO Phoenix Enforcer
+  269, // Elemental HERO Plasma Vice
+  270, // Elemental HERO Poison Rose
+  271, // Elemental HERO Rampart Blaster
+  272, // Elemental HERO Shining Flare Wingman
+  273, // Elemental HERO Shining Phoenix Enforcer
+  274, // Elemental HERO Sparkman
+  275, // Elemental HERO Steam Healer
+  276, // Elemental HERO Stratos
+  277, // Elemental HERO Sunrise
+  278, // Elemental HERO Tempest
+  279, // Elemental HERO Terra Firma
+  280, // Elemental HERO The Shining
+  281, // Elemental HERO Thunder Giant
+  282, // Elemental HERO Voltic
+  283, // Elemental HERO Wild Wingman
+  284, // Elemental HERO Wildedge
+  285, // Elemental HERO Wildheart
+  286, // Elemental HERO Woodsman
+  287, // Emergency Provisions
+  288, // Exchange
+  289, // Exodius the Ultimate Forbidden Lord
+  290, // Fairy Box
+  291, // Familiar Knight
+  292, // Fatal Abacus
+  293, // Felgrand Dragon
+  294, // Fenrir
+  295, // Fields Sanctuary
+  296, // Final Countdown
+  297, // Fire Princess
+  298, // Fires of Doomsday
+  299, // Forced Requisition
+  300, // Fusion Destiny
+  301, // Fusion Gate
+  302, // Fusion Recovery
+  303, // Fusion Sage
+  304, // Future Fusion
+  305, // Gate Guardians Combined
+  306, // Ghost Knight of Jackal
+  307, // Gift Card
+  308, // Gift Of The Mystical Elf
+  309, // Gilasaurus
+  310, // Goblin King
+  311, // Goblin Thief
+  312, // Goddess Bow
+  313, // Gorz the Emissary of Darkness
+  314, // Graceful Charity
+  315, // Graceful Dice
+  316, // Granadora
+  317, // Granmarg the Rock Monarch
+  318, // Gravekeeper's Servant
+  319, // Gravity Bind
+  320, // Great Maju Garzett
+  321, // Green Gadget
+  322, // Gren Maju Da Eiza
+  323, // Ground Collapse
+  324, // Guardian Angel Joan
+  325, // Guardian Dreadscythe
+  326, // Guardian Eatos
+  327, // Guardian Treasure
+  328, // Gyaku-Gire Panda
+  329, // H - Heated Heart
+  330, // Hamon, Lord of Striking Thunder
+  331, // Harpie Lady 1
+  332, // Harpie Lady 2
+  333, // Harpie Lady 3
+  334, // Harpie Lady Phoenix Formation
+  335, // Harpie's Pet Baby Dragon
+  336, // Hayabusa Knight
+  337, // Hecatrice
+  338, // Herald of Creation
+  339, // Hero Flash!!
+  340, // Holactie the Creator of Light
+  341, // Horus the Black Flame Dragon LV4
+  342, // Horus the Black Flame Dragon LV6
+  343, // Horus the Black Flame Dragon LV8
+  344, // Hyper Hammerhead
+  345, // Imperial Order
+  346, // Insect Imitation
+  347, // Instant Fusion
+  348, // Invader of the Throne
+  349, // Iofiel
+  350, // Jar of Greed
+  351, // Jar Robber
+  352, // Jowgen the Spiritualist
+  353, // Jowls of Dark Demise
+  354, // Judgment Dragon
+  355, // Just Deserts
+  356, // KA-2 Des Scissors
+  357, // Kaibaman
+  358, // Kaiser Colosseum
+  359, // Kaiser Glider
+  360, // King Dragun
+  361, // King of the Swamp
+  362, // King Tiger Wanghu
+  363, // Kishido Spirit
+  364, // Knight's Title
+  365, // Kuraz the Light Monarch
+  366, // Kuribandit
+  367, // Last Turn
+  368, // Legend of Heart
+  369, // Legendary Flame Lord
+  370, // Legendary Knight Critias
+  371, // Legendary Knight Hermos
+  372, // Legendary Knight Timaeus
+  373, // Lekunga
+  374, // Lesser Fiend
+  375, // Level Limit - Area A
+  376, // Level Limit Area B
+  377, // Levia Dragon Daedalus
+  378, // Light and Darkness Dragon
+  379, // Light End Dragon
+  380, // Limiter Removal
+  381, // Lord of the Red
+  382, // Luster Dragon
+  383, // Lyrilusc - Independent Nightingale
+  384, // Ma'at
+  385, // Mad Sword Beast
+  386, // Mage Power
+  387, // Magic Cylinder
+  388, // Magic Jammer
+  389, // Magical Dimension
+  390, // Magical Hats
+  391, // Magical Merchant
+  392, // Magical Plant Mandragola
+  393, // Magical Scientist
+  394, // Magical Stone Excavation
+  395, // Magician's Valkyria
+  396, // Majestic Mech - Goryu
+  397, // Maju Garzett
+  398, // Man-Thro-Thro
+  399, // Manju of the Ten Thousand Hands
+  400, // Marauding Captain
+  401, // Marshmallon
+  402, // Maryokutai
+  403, // Mask of Dispel
+  404, // Mask of Restrict
+  405, // Mask of the Accursed
+  406, // Master Peace, the True Dracoslaying King
+  407, // Mataza the Zapper
+  408, // Mausoleum of the Emperor
+  409, // Mazera DeVille
+  410, // Mefist The Infernal General
+  411, // Mermaid Knight
+  412, // Metamorphosis
+  413, // Meteor of Destruction
+  414, // Meteorain
+  415, // Mighty Angel Virch
+  416, // Miracle Fusion
+  417, // Mirage of Nightmare
+  418, // Mirror Force
+  419, // Mirror Force Dragon
+  420, // Mirror Wall
+  421, // Mobius the Frost Monarch
+  422, // Moister Creature
+  423, // Molten Zombie
+  424, // Monster Gate
+  425, // Monster Recovery
+  426, // Morale Boost
+  427, // Mucus Yolk
+  428, // Mystical Shine Ball
+  429, // Mystical Space Typhoon
+  430, // Mystik Wok
+  431, // Necrovalley
+  432, // Needle Burrower
+  433, // Needle Wall
+  434, // Negate Attack
+  435, // Negative Energy
+  436, // Neo Blue-Eyes Ultimate Dragon
+  437, // Neos Wiseman
+  438, // Nibiru, the Primal Being
+  439, // Nightmare Horse
+  440, // Nightmare Wheel
+  441, // Numinous Healer
+  442, // O - Oversoul
+  443, // Obnoxious Celtic Guardian
+  444, // Ojama King
+  445, // Ojama Trio
+  446, // Orichalcos Shunoros
+  447, // Over Destiny
+  448, // Overload Fusion
+  449, // Painful Choice
+  450, // Paladin Of White Dragon
+  451, // Pandemonium
+  452, // Parallel World Fusion
+  453, // Peten The Dark Clown
+  454, // Photon Generator Unit
+  455, // Piranha Army
+  456, // Poison of the Old Man
+  457, // Polymerization
+  458, // Possessed Dark Soul
+  459, // Power Bond
+  460, // Precious Cards From Beyond
+  461, // Premature Burial
+  462, // Prophecy
+  463, // Protector of the Sanctuary
+  464, // Proto-Cyber Dragon
+  465, // Pyramid of Light
+  466, // Quintet Magician
+  467, // R - Righteous Justice
+  468, // Raigeki Break
+  469, // Rain of Mercy
+  470, // Rare Metal Dragon
+  471, // Raregold Armor
+  472, // Raviel, Lord of Phantasms
+  473, // Reaper on the Nightmare
+  474, // Reaper Scythe - Dreadscythe
+  475, // Reckless Greed
+  476, // Red Gadget
+  477, // Red-Eyes Black Dragon Sword
+  478, // Red-Eyes Dark Dragoon
+  479, // Red-Eyes Darkness Metal Dragon
+  480, // Red-Eyes Transmigration
+  481, // Relay Soul
+  482, // Reload
+  483, // Reverse of Reverse
+  484, // Ring of Destruction
+  485, // Riryoku
+  486, // Rivalry of Warlords
+  487, // Robbin' Goblin
+  488, // Robbin' Zombie
+  489, // Rocket Hermos Cannon
+  490, // Rope of Life
+  491, // Royal Decree
+  492, // Royal Knight
+  493, // Royal Magical Library
+  494, // Ryu-Kishin Clown
+  495, // Sage's Stone
+  496, // Sasuke Samurai
+  497, // Sasuke Samurai #2
+  498, // Sasuke Samurai #3
+  499, // Scapegoat
+  500, // Seal of Orichalcos
+  501, // Second Coin Toss
+  502, // Secret Barrel
+  503, // Secret Village of the Spellcasters
+  504, // Self-Destruct Button
+  505, // Seraphim Blaster
+  506, // Servant of Catabolism
+  507, // Seven Tools of the Bandit
+  508, // Share the Pain
+  509, // Shatiel
+  510, // Shield And Sword
+  511, // Sixth Sense
+  512, // Skill Drain
+  513, // Skilled Dark Magician
+  514, // Skilled White Magician
+  515, // Skull Invitation
+  516, // Skyscraper
+  517, // Skyscraper 2 - Hero City
+  518, // Solar Flare Dragon
+  519, // Solar Ray
+  520, // Solemn Judgment
+  521, // Solemn Wishes
+  522, // Sorcerer of Dark Magic
+  523, // Soul Exchange
+  524, // Soul Taker
+  525, // Spark Blaster
+  526, // Spear Dragon
+  527, // Spell Absorption
+  528, // Spell Canceller
+  529, // Spell Economics
+  530, // Sphinx Teleia
+  531, // Spirit Caller
+  532, // Spirit of the Breeze
+  533, // Spirit of the Pot of Greed
+  534, // Spirit Reaper
+  535, // Spirit Ryu
+  536, // St Joan
+  537, // Statue of the Wicked
+  538, // Staunch Defender
+  539, // Stealth Bird
+  540, // Stray Lambs
+  541, // Stronghold the Moving Fortress
+  542, // Summoner Monk
+  543, // Summoner of Illusions
+  544, // Super Polymerization
+  545, // Swift Gaia The Fierce Knight
+  546, // Terraforming
+  547, // Terrorking Salmon
+  548, // Tethys, Goddess of Light
+  549, // The A. Forces
+  550, // The Agent Of Creation - Venus
+  551, // The Agent of Force - Mars
+  552, // The Agent of Judgment - Saturn
+  553, // The Agent of Wisdom - Mercury
+  554, // The Big Saturn
+  555, // The Blazing Mars
+  556, // The Claw of Hermos
+  557, // The Creator
+  558, // The Creator Incarnate
+  559, // The Dark Door
+  560, // The Despair Uranus
+  561, // The Eye of Timaeus
+  562, // The Fang of Critias
+  563, // The Flute of Summoning Dragon
+  564, // The Forceful Sentry
+  565, // The Grand Jupiter
+  566, // The Law of the Normal
+  567, // The Legendary Exodia Incarnate
+  568, // The Sanctuary in the Sky
+  569, // The Shallow Grave
+  570, // The Splendid Venus
+  571, // The Suppression Pluto
+  572, // The Supremacy Sun
+  573, // The Thing in the Crater
+  574, // The Tricky
+  575, // The Tripper Mercury
+  576, // The Tyrant Neptune
+  577, // The Unstoppable Exodia Incarnate
+  578, // The Wicked Avatar
+  579, // The Wicked Dreadroot
+  580, // The Wicked Eraser
+  581, // Theban Nightmare
+  582, // Theinen the Great Sphinx
+  583, // Thestalos the Firestorm Monarch
+  584, // Thousand Energy
+  585, // Thousand Knives
+  586, // Thunder Crash
+  587, // Thunder Dragon Colossus
+  588, // Thunder Dragon Titan
+  589, // Timaeus the Knight of Destiny
+  590, // Time Magic Hammer
+  591, // Time Seal
+  592, // Tiny Angel
+  593, // Toll
+  594, // Toon World
+  595, // Tornado Bird
+  596, // Tornado Wall
+  597, // Torpedo Fish
+  598, // Trade-In
+  599, // Trap Dustshoot
+  600, // Triangle Power
+  601, // Tribute Doll
+  602, // Twin Swords of Flashing Light - Tryce
+  603, // Tyrant Burst Dragon
+  604, // Tyrant Dragon
+  605, // Tyrant Wing
+  606, // Ultimate Conductor Tyranno
+  607, // Ultimate Obedient Fiend
+  608, // Ultimate Offering
+  609, // United We Stand
+  610, // Upstart Goblin
+  611, // Uria, Lord of Searing Flames
+  612, // Valhalla, Hall of the Fallen
+  613, // Vampire Baby
+  614, // Vengeful Bog Spirit
+  615, // Vision Fusion
+  616, // Vision HERO Adoration
+  617, // Vision HERO Faris
+  618, // Vision HERO Gravito
+  619, // Vision HERO Increase
+  620, // Vision HERO Minimum Ray
+  621, // Vision HERO Multiply Guy
+  622, // Vision HERO Poisoner
+  623, // Vision HERO Trinity
+  624, // Vision HERO Vyon
+  625, // Vision HERO Witch Raider
+  626, // Vision Release
+  627, // Wall of Revealing Light
+  628, // Warrior of Zera
+  629, // Watapon
+  630, // Wave Motion Cannon
+  631, // Weather Report
+  632, // White Dragon Ritual
+  633, // White Magician Pikeru
+  634, // Wild Nature's Release
+  635, // World Suppression
+  636, // Wroughtweiler
+  637, // Yata-Garasu
+  638, // Yellow Gadget
+  639, // Yubel
+  640, // Yubel - Terror Incarnate
+  641, // Yubel - The Ultimate Nightmare
+  642, // Zaborg the Thunder Monarch
+  643, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -3184,6 +3214,26 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sDarkCallingSortName;
   if (cardId == 0x0599)
     return (u8 *)sDarkContactSortName;
+  if (cardId == 0x059A)
+    return (u8 *)sDarkFusionSortName;
+  if (cardId == 0x059B)
+    return (u8 *)sDarkMagicAttackSortName;
+  if (cardId == 0x059C)
+    return (u8 *)sDarkMagicInheritanceSortName;
+  if (cardId == 0x059D)
+    return (u8 *)sDarkMagicVeilSortName;
+  if (cardId == 0x059E)
+    return (u8 *)sDarkMagicalCircleSortName;
+  if (cardId == 0x059F)
+    return (u8 *)sDarkMagicianGirlTheMagicianSApprenticeSortName;
+  if (cardId == 0x05A0)
+    return (u8 *)sDarkMagicianOfDestructionSortName;
+  if (cardId == 0x05A1)
+    return (u8 *)sDarkMagicianTheMagicianOfBlackMagicSortName;
+  if (cardId == 0x05A2)
+    return (u8 *)sDarkRenewalSortName;
+  if (cardId == 0x05A3)
+    return (u8 *)sDarkStrikeFighterSortName;
 
   return gCardNames[cardId];
 }
