@@ -2380,6 +2380,46 @@ static const unsigned char sVisionHeroWitchRaiderBigArt[] __attribute__((section
 static const unsigned short sVisionHeroWitchRaiderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vision_hero_witch_raider.gbapal");
 static const unsigned char sVisionHeroWitchRaiderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vision_hero_witch_raider.lz");
 
+static const unsigned char sAlluringMirrorSplitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/alluring_mirror_split.huff");
+static const unsigned short sAlluringMirrorSplitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/alluring_mirror_split.gbapal");
+static const unsigned char sAlluringMirrorSplitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/alluring_mirror_split.lz");
+
+static const unsigned char sAmbushFangsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ambush_fangs.huff");
+static const unsigned short sAmbushFangsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ambush_fangs.gbapal");
+static const unsigned char sAmbushFangsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ambush_fangs.lz");
+
+static const unsigned char sArcaniteMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcanite_magician.huff");
+static const unsigned short sArcaniteMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcanite_magician.gbapal");
+static const unsigned char sArcaniteMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcanite_magician.lz");
+
+static const unsigned char sArmoryArmBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armory_arm.huff");
+static const unsigned short sArmoryArmBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armory_arm.gbapal");
+static const unsigned char sArmoryArmMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armory_arm.lz");
+
+static const unsigned char sAromaBlendBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aroma_blend.huff");
+static const unsigned short sAromaBlendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aroma_blend.gbapal");
+static const unsigned char sAromaBlendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aroma_blend.lz");
+
+static const unsigned char sAromaGardenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aroma_garden.huff");
+static const unsigned short sAromaGardenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aroma_garden.gbapal");
+static const unsigned char sAromaGardenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aroma_garden.lz");
+
+static const unsigned char sAromaGardeningBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aroma_gardening.huff");
+static const unsigned short sAromaGardeningBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aroma_gardening.gbapal");
+static const unsigned char sAromaGardeningMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aroma_gardening.lz");
+
+static const unsigned char sAromaJarBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aroma_jar.huff");
+static const unsigned short sAromaJarBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aroma_jar.gbapal");
+static const unsigned char sAromaJarMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aroma_jar.lz");
+
+static const unsigned char sAromageBergamotBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_bergamot.huff");
+static const unsigned short sAromageBergamotBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_bergamot.gbapal");
+static const unsigned char sAromageBergamotMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_bergamot.lz");
+
+static const unsigned char sAromageCanangaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aromage_cananga.huff");
+static const unsigned short sAromageCanangaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aromage_cananga.gbapal");
+static const unsigned char sAromageCanangaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aromage_cananga.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -2976,6 +3016,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x056F] = sWoughtweilerBigArt,
   [0x0570] = sYellowGadgetBigArt,
   [0x0571] = sVisionHeroWitchRaiderBigArt,
+  [0x0572] = sAlluringMirrorSplitBigArt,
+  [0x0573] = sAmbushFangsBigArt,
+  [0x0574] = sArcaniteMagicianBigArt,
+  [0x0575] = sArmoryArmBigArt,
+  [0x0576] = sAromaBlendBigArt,
+  [0x0577] = sAromaGardenBigArt,
+  [0x0578] = sAromaGardeningBigArt,
+  [0x0579] = sAromaJarBigArt,
+  [0x057A] = sAromageBergamotBigArt,
+  [0x057B] = sAromageCanangaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3574,6 +3624,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x056F] = sWoughtweilerBigPalette,
   [0x0570] = sYellowGadgetBigPalette,
   [0x0571] = sVisionHeroWitchRaiderBigPalette,
+  [0x0572] = sAlluringMirrorSplitBigPalette,
+  [0x0573] = sAmbushFangsBigPalette,
+  [0x0574] = sArcaniteMagicianBigPalette,
+  [0x0575] = sArmoryArmBigPalette,
+  [0x0576] = sAromaBlendBigPalette,
+  [0x0577] = sAromaGardenBigPalette,
+  [0x0578] = sAromaGardeningBigPalette,
+  [0x0579] = sAromaJarBigPalette,
+  [0x057A] = sAromageBergamotBigPalette,
+  [0x057B] = sAromageCanangaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4172,6 +4232,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x056F] = 0,
   [0x0570] = 0,
   [0x0571] = 0,
+  [0x0572] = 0,
+  [0x0573] = 0,
+  [0x0574] = 0,
+  [0x0575] = 0,
+  [0x0576] = 0,
+  [0x0577] = 0,
+  [0x0578] = 0,
+  [0x0579] = 0,
+  [0x057A] = 0,
+  [0x057B] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -4770,4 +4840,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x056F] = sWoughtweilerMiniArt,
   [0x0570] = sYellowGadgetMiniArt,
   [0x0571] = sVisionHeroWitchRaiderMiniArt,
+  [0x0572] = sAlluringMirrorSplitMiniArt,
+  [0x0573] = sAmbushFangsMiniArt,
+  [0x0574] = sArcaniteMagicianMiniArt,
+  [0x0575] = sArmoryArmMiniArt,
+  [0x0576] = sAromaBlendMiniArt,
+  [0x0577] = sAromaGardenMiniArt,
+  [0x0578] = sAromaGardeningMiniArt,
+  [0x0579] = sAromaJarMiniArt,
+  [0x057A] = sAromageBergamotMiniArt,
+  [0x057B] = sAromageCanangaMiniArt,
 };

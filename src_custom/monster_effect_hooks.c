@@ -262,6 +262,16 @@ unsigned char CanActivateVISION_HERO_GRAVITO(void);
 void ActivateVISION_HERO_GRAVITOEffect(void);
 unsigned char CanActivateVISION_HERO_INCREASE(void);
 void ActivateVISION_HERO_INCREASEEffect(void);
+unsigned char CanActivateARCANITE_MAGICIAN(void);
+void ActivateARCANITE_MAGICIANEffect(void);
+unsigned char CanActivateARMORY_ARM(void);
+void ActivateARMORY_ARMEffect(void);
+unsigned char CanActivateAROMA_JAR(void);
+void ActivateAROMA_JAREffect(void);
+unsigned char CanActivateAROMAGE_BERGAMOT(void);
+void ActivateAROMAGE_BERGAMOTEffect(void);
+unsigned char CanActivateAROMAGE_CANANGA(void);
+void ActivateAROMAGE_CANANGAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1401,6 +1411,26 @@ FAILED:
   }
   if (gMonEffect.id == VISION_HERO_INCREASE) {
     ActivateVISION_HERO_INCREASEEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANITE_MAGICIAN) {
+    ActivateARCANITE_MAGICIANEffect();
+    return;
+  }
+  if (gMonEffect.id == ARMORY_ARM) {
+    ActivateARMORY_ARMEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMA_JAR) {
+    ActivateAROMA_JAREffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_BERGAMOT) {
+    ActivateAROMAGE_BERGAMOTEffect();
+    return;
+  }
+  if (gMonEffect.id == AROMAGE_CANANGA) {
+    ActivateAROMAGE_CANANGAEffect();
     return;
   }
 }

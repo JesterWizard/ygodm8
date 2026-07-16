@@ -594,6 +594,16 @@ static const u8 sWildNaturesReleaseName[] __attribute__((section(".append_assets
 static const u8 sWoughtweilerName[] __attribute__((section(".append_assets"))) = "Wroughtweiler";
 static const u8 sYellowGadgetName[] __attribute__((section(".append_assets"))) = "Yellow Gadget";
 static const u8 sVisionHeroWitchRaiderName[] __attribute__((section(".append_assets"))) = "Vision HERO Witch Raider";
+static const u8 sAlluringMirrorSplitName[] __attribute__((section(".append_assets"))) = "Alluring Mirror Split";
+static const u8 sAmbushFangsName[] __attribute__((section(".append_assets"))) = "Ambush Fangs";
+static const u8 sArcaniteMagicianName[] __attribute__((section(".append_assets"))) = "Arcanite Magician";
+static const u8 sArmoryArmName[] __attribute__((section(".append_assets"))) = "Armory Arm";
+static const u8 sAromaBlendName[] __attribute__((section(".append_assets"))) = "Aroma Blend";
+static const u8 sAromaGardenName[] __attribute__((section(".append_assets"))) = "Aroma Garden";
+static const u8 sAromaGardeningName[] __attribute__((section(".append_assets"))) = "Aroma Gardening";
+static const u8 sAromaJarName[] __attribute__((section(".append_assets"))) = "Aroma Jar";
+static const u8 sAromageBergamotName[] __attribute__((section(".append_assets"))) = "Aromage Bergamot";
+static const u8 sAromageCanangaName[] __attribute__((section(".append_assets"))) = "Aromage Cananga";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1788,6 +1798,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sYellowGadgetName;
   if (cardId == 0x0571)
     return (u8 *)sVisionHeroWitchRaiderName;
+  if (cardId == 0x0572)
+    return (u8 *)sAlluringMirrorSplitName;
+  if (cardId == 0x0573)
+    return (u8 *)sAmbushFangsName;
+  if (cardId == 0x0574)
+    return (u8 *)sArcaniteMagicianName;
+  if (cardId == 0x0575)
+    return (u8 *)sArmoryArmName;
+  if (cardId == 0x0576)
+    return (u8 *)sAromaBlendName;
+  if (cardId == 0x0577)
+    return (u8 *)sAromaGardenName;
+  if (cardId == 0x0578)
+    return (u8 *)sAromaGardeningName;
+  if (cardId == 0x0579)
+    return (u8 *)sAromaJarName;
+  if (cardId == 0x057A)
+    return (u8 *)sAromageBergamotName;
+  if (cardId == 0x057B)
+    return (u8 *)sAromageCanangaName;
 
   return gCardNames[cardId];
 }

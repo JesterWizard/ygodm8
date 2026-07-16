@@ -568,6 +568,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [WOUGHTWEILER] = gActivationDescription_Woughtweiler_Popup1,
   [YELLOW_GADGET] = gActivationDescription_YellowGadget_Popup1,
   [VISION_HERO_WITCH_RAIDER] = gActivationDescription_VisionHeroWitchRaider_Popup1,
+  [ALLURING_MIRROR_SPLIT] = gActivationDescription_AlluringMirrorSplit_Popup1,
+  [AMBUSH_FANGS] = gActivationDescription_AmbushFangs_Popup1,
+  [ARCANITE_MAGICIAN] = gActivationDescription_ArcaniteMagician_Popup1,
+  [ARMORY_ARM] = gActivationDescription_ArmoryArm_Popup1,
+  [AROMA_BLEND] = gActivationDescription_AromaBlend_Popup1,
+  [AROMA_GARDEN] = gActivationDescription_AromaGarden_Popup1,
+  [AROMA_GARDENING] = gActivationDescription_AromaGardening_Popup1,
+  [AROMA_JAR] = gActivationDescription_AromaJar_Popup1,
+  [AROMAGE_BERGAMOT] = gActivationDescription_AromageBergamot_Popup1,
+  [AROMAGE_CANANGA] = gActivationDescription_AromageCananga_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1167,6 +1177,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_WOUGHTWEILER_POPUP_1] = gActivationDescription_Woughtweiler_Popup1,
   [CARD_EFFECT_TEXT_YELLOW_GADGET_POPUP_1] = gActivationDescription_YellowGadget_Popup1,
   [CARD_EFFECT_TEXT_VISION_HERO_WITCH_RAIDER_POPUP_1] = gActivationDescription_VisionHeroWitchRaider_Popup1,
+  [CARD_EFFECT_TEXT_ALLURING_MIRROR_SPLIT_POPUP_1] = gActivationDescription_AlluringMirrorSplit_Popup1,
+  [CARD_EFFECT_TEXT_AMBUSH_FANGS_POPUP_1] = gActivationDescription_AmbushFangs_Popup1,
+  [CARD_EFFECT_TEXT_ARCANITE_MAGICIAN_POPUP_1] = gActivationDescription_ArcaniteMagician_Popup1,
+  [CARD_EFFECT_TEXT_ARMORY_ARM_POPUP_1] = gActivationDescription_ArmoryArm_Popup1,
+  [CARD_EFFECT_TEXT_AROMA_BLEND_POPUP_1] = gActivationDescription_AromaBlend_Popup1,
+  [CARD_EFFECT_TEXT_AROMA_GARDEN_POPUP_1] = gActivationDescription_AromaGarden_Popup1,
+  [CARD_EFFECT_TEXT_AROMA_GARDENING_POPUP_1] = gActivationDescription_AromaGardening_Popup1,
+  [CARD_EFFECT_TEXT_AROMA_JAR_POPUP_1] = gActivationDescription_AromaJar_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_BERGAMOT_POPUP_1] = gActivationDescription_AromageBergamot_Popup1,
+  [CARD_EFFECT_TEXT_AROMAGE_CANANGA_POPUP_1] = gActivationDescription_AromageCananga_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

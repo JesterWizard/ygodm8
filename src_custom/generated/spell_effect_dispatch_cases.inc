@@ -2,8 +2,20 @@
     case ALLURE_OF_DARKNESS:
       EffectALLURE_OF_DARKNESS();
       return;
+    case ALLURING_MIRROR_SPLIT:
+      EffectALLURING_MIRROR_SPLIT();
+      return;
     case ANCIENT_RULES:
       EffectAncientRules();
+      return;
+    case AROMA_BLEND:
+      EffectAROMA_BLEND();
+      return;
+    case AROMA_GARDEN:
+      EffectAROMA_GARDEN();
+      return;
+    case AROMA_GARDENING:
+      EffectAROMA_GARDENING();
       return;
     case AUTONOMOUS_ACTION_UNIT:
       EffectAutonomousActionUnit();

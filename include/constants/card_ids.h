@@ -1395,11 +1395,21 @@
 #define WOUGHTWEILER                             0x056F
 #define YELLOW_GADGET                            0x0570
 #define VISION_HERO_WITCH_RAIDER                 0x0571
+#define ALLURING_MIRROR_SPLIT                    0x0572
+#define AMBUSH_FANGS                             0x0573
+#define ARCANITE_MAGICIAN                        0x0574
+#define ARMORY_ARM                               0x0575
+#define AROMA_BLEND                              0x0576
+#define AROMA_GARDEN                             0x0577
+#define AROMA_GARDENING                          0x0578
+#define AROMA_JAR                                0x0579
+#define AROMAGE_BERGAMOT                         0x057A
+#define AROMAGE_CANANGA                          0x057B
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0572
-#define NUM_CUSTOM_CARDS                        0x0251
+#define NUM_TOTAL_CARDS                         0x057C
+#define NUM_CUSTOM_CARDS                        0x025B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

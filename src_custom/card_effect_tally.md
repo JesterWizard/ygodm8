@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `525` effects
+- `535` effects
 
 ## Tally
 
@@ -506,6 +506,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Vision Hero Faris` | `src_custom/activated_effects/vision_hero_faris.c` |
 | `activated_effects` | `Vision Hero Gravito` | `src_custom/activated_effects/vision_hero_gravito.c` |
 | `activated_effects` | `Vision Hero Increase` | `src_custom/activated_effects/vision_hero_increase.c` |
+| `spell_effects` | `Alluring Mirror Split` | `src_custom/spell_effects/alluring_mirror_split.c` |
+| `trap_effects` | `Ambush Fangs` | `src_custom/trap_effects/ambush_fangs.c` |
+| `activated_effects` | `Arcanite Magician` | `src_custom/activated_effects/arcanite_magician.c` |
+| `activated_effects` | `Armory Arm` | `src_custom/activated_effects/armory_arm.c` |
+| `spell_effects` | `Aroma Blend` | `src_custom/spell_effects/aroma_blend.c` |
+| `spell_effects` | `Aroma Garden` | `src_custom/spell_effects/aroma_garden.c` |
+| `spell_effects` | `Aroma Gardening` | `src_custom/spell_effects/aroma_gardening.c` |
+| `activated_effects` | `Aroma Jar` | `src_custom/activated_effects/aroma_jar.c` |
+| `activated_effects` | `Aromage Bergamot` | `src_custom/activated_effects/aromage_bergamot.c` |
+| `activated_effects` | `Aromage Cananga` | `src_custom/activated_effects/aromage_cananga.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

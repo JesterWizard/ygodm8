@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 593 |
-| Art ready, needs manifest | 207 |
+| In game (manifest + art) | 603 |
+| Art ready, needs manifest | 197 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -615,21 +615,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `WOUGHTWEILER` | Wroughtweiler | `woughtweiler.png` |
 | `YELLOW_GADGET` | Yellow Gadget | `yellow_gadget.png` |
 | `VISION_HERO_WITCH_RAIDER` | Vision HERO Witch Raider | `vision_hero_witch_raider.png` |
+| `ALLURING_MIRROR_SPLIT` | Alluring Mirror Split | `alluring_mirror_split.png` |
+| `AMBUSH_FANGS` | Ambush Fangs | `ambush_fangs.png` |
+| `ARCANITE_MAGICIAN` | Arcanite Magician | `arcanite_magician.png` |
+| `ARMORY_ARM` | Armory Arm | `armory_arm.png` |
+| `AROMA_BLEND` | Aroma Blend | `aroma_blend.png` |
+| `AROMA_GARDEN` | Aroma Garden | `aroma_garden.png` |
+| `AROMA_GARDENING` | Aroma Gardening | `aroma_gardening.png` |
+| `AROMA_JAR` | Aroma Jar | `aroma_jar.png` |
+| `AROMAGE_BERGAMOT` | Aromage Bergamot | `aromage_bergamot.png` |
+| `AROMAGE_CANANGA` | Aromage Cananga | `aromage_cananga.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ALLURING_MIRROR_SPLIT` — `alluring_mirror_split.png`
-- [ ] `AMBUSH_FANGS` — `ambush_fangs.png`
-- [ ] `ARCANITE_MAGICIAN` — `arcanite_magician.png`
-- [ ] `ARMORY_ARM` — `armory_arm.png`
-- [ ] `AROMA_BLEND` — `aroma_blend.png`
-- [ ] `AROMA_GARDEN` — `aroma_garden.png`
-- [ ] `AROMA_GARDENING` — `aroma_gardening.png`
-- [ ] `AROMA_JAR` — `aroma_jar.png`
-- [ ] `AROMAGE_BERGAMOT` — `aromage_bergamot.png`
-- [ ] `AROMAGE_CANANGA` — `aromage_cananga.png`
 - [ ] `AROMAGE_JASMINE` — `aromage_jasmine.png`
 - [ ] `AROMAGE_LAUREL` — `aromage_laurel.png`
 - [ ] `AROMAGE_MARJORAM` — `aromage_marjoram.png`

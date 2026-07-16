@@ -431,3 +431,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire TRAP_DUSTSHOOT in trap dispatcher */
 /* TYRANT_WING trap effect */
   /* TODO: wire TYRANT_WING in trap dispatcher */
+/* AMBUSH_FANGS trap effect */
+  /* TODO: wire AMBUSH_FANGS in trap dispatcher */
