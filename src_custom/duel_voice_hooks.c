@@ -5,6 +5,7 @@
 #include "constants/custom_voices_generated.h"
 #include "duel.h"
 #include "overworld.h"
+#include "duel_voice.h"
 
 struct TurnVoice {
   u16 duelistId;
@@ -142,28 +143,32 @@ static u8 PortraitForCurrentOpponent(void) {
 }
 
 /* Portrait tileNum 256 (cbb4+0x2000) overlaps mini-card OBJ tiles in 2D layout.
- * Hide those sprites for the textbox; UpdateDuelGfxExceptField rebuilds them after. */
-static void HideDuelSpritesUnderPortrait(void) {
+ * OAM 0 can also hold a leftover 64x64 portrait (overworld uses y=48) — clear it
+ * or a second glitch square appears under the duel portrait at y=0. */
+static void HideDuelCursorOam(void) {
   u8 i;
 
   for (i = 0; i < 4; i++)
     sub_80411EC(&gOamBuffer[i]);
+}
+
+static void HideDuelMiniCardOam(void) {
+  u8 i;
+
   for (i = 102; i < 127; i++)
     sub_80411EC(&gOamBuffer[i]);
 }
 
-static void ShowDuelVoicePortrait(void) {
-  u8 portraitId;
+void Duel_ShowPortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
   struct OamData *oam;
 
-  if (gRuntimeConfig.show_duel_voice_portraits != TRUE)
-    return;
-
-  portraitId = PortraitForCurrentOpponent();
   if (portraitId == PORTRAIT_NONE)
     return;
 
-  HideDuelSpritesUnderPortrait();
+  /* Always clear cursor/slot0 — prevents ghost portrait under the real one. */
+  HideDuelCursorOam();
+  if (hideBoardSprites != FALSE)
+    HideDuelMiniCardOam();
   LoadPortraitGfx(portraitId, EXPRESSION_NEUTRAL);
 
   oam = &gOamBuffer[DUEL_VOICE_PORTRAIT_OAM_SLOT];
@@ -185,6 +190,12 @@ static void ShowDuelVoicePortrait(void) {
   LoadObjVRAM();
   LoadPalettes();
   LoadOam();
+}
+
+static void ShowDuelVoicePortrait(void) {
+  if (gRuntimeConfig.show_duel_voice_portraits != TRUE)
+    return;
+  Duel_ShowPortraitForTextbox(PortraitForCurrentOpponent(), TRUE);
 }
 
 static bool8 TryCustomVoiceMatch(u8 triggerType, u16 cardId, u16 *clipIndexOut) {

@@ -3,12 +3,25 @@
 
 #include "gba/types.h"
 #include "timed_duel.h"
+#include "overworld.h"
+
+/* One textbox line. portraitId = PORTRAIT_* (or PORTRAIT_NONE). text NULL ends a list. */
+struct MechanicsTutorialLine {
+  u8 portraitId;
+  const u8 *text;
+};
 
 struct MechanicsTutorialEntry {
   u8 opponentId;
   const u8 *title;
   const struct TimedDuelLayout *layout;
+  const struct MechanicsTutorialLine *intro; /* MT_END-terminated; may be NULL */
+  const struct MechanicsTutorialLine *outro; /* MT_END-terminated; may be NULL */
+  u16 winOnSummonCardId; /* CARD_NONE = no auto-complete on summon anim */
 };
+
+#define MT_LINE(portrait, textPtr) { (portrait), (textPtr) }
+#define MT_END                     { PORTRAIT_NONE, NULL }
 
 extern u8 gMechanicsTutorialActiveId;
 extern u8 gMechanicsTutorialIntroDone;

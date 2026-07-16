@@ -7,25 +7,19 @@
 #include "duel.h"
 #include "duel_main.h"
 #include "duel_status.h"
+#include "duel_voice.h"
 #include "expanded_graveyard.h"
 #include "overworld.h"
 
-#define MECHANICS_TUTORIAL_ENTRY(layoutSym, opponent, titleSym) \
-  { (opponent), (titleSym), &(layoutSym) },
+#define MECHANICS_TUTORIAL_ENTRY(layoutSym, opponent, titleSym, introSym, outroSym, winCard) \
+  { (opponent), (titleSym), &(layoutSym), (introSym), (outroSym), (winCard) },
 
 extern void ClearZone(struct DuelCard *zone);
 extern void sub_8041C94(u8 *textPtr, u16, u16, u16, u16);
 extern void DeclareLoser(unsigned char);
 extern void UpdateDuelGfxExceptField(void);
 
-static const u8 sTitle_BossCutIns[] APPEND_RODATA = "Boss Cut-Ins";
-
-static const u8 sText_Intro1[] APPEND_RODATA =
-    "Yugi: Some boss monsters#0show a full-art cut-in#0when you summon them.#1";
-static const u8 sText_Intro2[] APPEND_RODATA =
-    "Joey: Tribute Summon#0Yubel from your hand#0and watch it play!#1";
-static const u8 sText_Outro[] APPEND_RODATA =
-    "Yugi: That was the cut-in.#0Any boss with one will#0do the same on summon.#1";
+#include "debug/debug_menu_mechanics_scripts.inc"
 
 static const struct MechanicsTutorialEntry sMechanicsTutorials[] APPEND_RODATA = {
 #include "debug/debug_menu_mechanics_table.inc"
@@ -78,6 +72,18 @@ void MechanicsTutorial_FormatMenuTitle(u8 index, u8 *out) {
 
 u8 MechanicsTutorial_IsActive(void) {
   return gMechanicsTutorialActiveId != 0;
+}
+
+static void MechanicsTutorial_PlayLines(const struct MechanicsTutorialLine *lines) {
+  u8 i;
+
+  if (lines == NULL)
+    return;
+  for (i = 0; lines[i].text != NULL; i++) {
+    /* Keep mini-cards on screen; VO path still hides them for VRAM clash. */
+    Duel_ShowPortraitForTextbox(lines[i].portraitId, FALSE);
+    sub_8041C94((u8 *)lines[i].text, 0, 0, 0, 0);
+  }
 }
 
 static void MechanicsTutorial_ApplyCardSlot(struct DuelCard *slot,
@@ -168,7 +174,7 @@ u8 MechanicsTutorial_ShouldSkipDrawPhase(u8 turnDuelist) {
 }
 
 void MechanicsTutorial_TryShowIntro(void) {
-  u8 index;
+  const struct MechanicsTutorialEntry *entry;
 
   if (!MechanicsTutorial_IsActive())
     return;
@@ -176,16 +182,10 @@ void MechanicsTutorial_TryShowIntro(void) {
     return;
 
   gMechanicsTutorialIntroDone = 1;
-  index = gMechanicsTutorialActiveId - 1;
-  /* ponytail: per-entry switch until a second tutorial needs a table. */
-  switch (index) {
-  case 0:
-    sub_8041C94((u8 *)sText_Intro1, 0, 0, 0, 0);
-    sub_8041C94((u8 *)sText_Intro2, 0, 0, 0, 0);
-    break;
-  default:
-    break;
-  }
+  entry = MechanicsTutorial_GetActiveEntry();
+  if (entry == NULL)
+    return;
+  MechanicsTutorial_PlayLines(entry->intro);
 }
 
 void MechanicsTutorial_NoteSummonAnim(u16 cardId) {
@@ -195,7 +195,7 @@ void MechanicsTutorial_NoteSummonAnim(u16 cardId) {
 }
 
 void MechanicsTutorial_OnSummonAnimFinished(void) {
-  u8 index;
+  const struct MechanicsTutorialEntry *entry;
   u16 cardId;
 
   if (!MechanicsTutorial_IsActive())
@@ -206,19 +206,16 @@ void MechanicsTutorial_OnSummonAnimFinished(void) {
   if (cardId == CARD_NONE)
     return;
 
-  index = gMechanicsTutorialActiveId - 1;
-  switch (index) {
-  case 0:
-    if (cardId != YUBEL)
-      return;
-    /* Cut-in clears OAM; rebuild mini-cards before the next textbox. */
-    UpdateDuelGfxExceptField();
-    sub_8041C94((u8 *)sText_Outro, 0, 0, 0, 0);
-    DeclareLoser(DUEL_OPPONENT);
-    break;
-  default:
-    break;
-  }
+  entry = MechanicsTutorial_GetActiveEntry();
+  if (entry == NULL || entry->winOnSummonCardId == CARD_NONE)
+    return;
+  if (cardId != entry->winOnSummonCardId)
+    return;
+
+  /* Cut-in clears OAM; rebuild mini-cards before the next textbox. */
+  UpdateDuelGfxExceptField();
+  MechanicsTutorial_PlayLines(entry->outro);
+  DeclareLoser(DUEL_OPPONENT);
 }
 
 void MechanicsTutorial_HandleWin(void) {
