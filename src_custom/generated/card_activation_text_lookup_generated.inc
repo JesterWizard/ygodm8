@@ -626,6 +626,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DEEP_EYES_WHITE_DRAGON] = gActivationDescription_DeepEyesWhiteDragon_Popup1,
   [DRAGON_MASTER_MAGIA] = gActivationDescription_DragonMasterMagia_Popup1,
   [DRAGON_SPIRIT_OF_WHITE] = gActivationDescription_DragonSpiritOfWhite_Popup1,
+  [EBON_ILLUSION_MAGICIAN] = gActivationDescription_EbonIllusionMagician_Popup1,
+  [EL_SHADDOLL_ANOYATYLLIS] = gActivationDescription_ElShaddollAnoyatyllis_Popup1,
+  [EL_SHADDOLL_APKALLONE] = gActivationDescription_ElShaddollApkallone_Popup1,
+  [EL_SHADDOLL_CONSTRUCT] = gActivationDescription_ElShaddollConstruct_Popup1,
+  [EL_SHADDOLL_FUSION] = gActivationDescription_ElShaddollFusion_Popup1,
+  [EL_SHADDOLL_GRYSTA] = gActivationDescription_ElShaddollGrysta_Popup1,
+  [EL_SHADDOLL_MESHAHRAIL] = gActivationDescription_ElShaddollMeshahrail_Popup1,
+  [EL_SHADDOLL_SHEKHINAGA] = gActivationDescription_ElShaddollShekhinaga_Popup1,
+  [EL_SHADDOLL_WENDIGO] = gActivationDescription_ElShaddollWendigo_Popup1,
+  [EL_SHADDOLL_WINDA] = gActivationDescription_ElShaddollWinda_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1283,6 +1293,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DEEP_EYES_WHITE_DRAGON_POPUP_1] = gActivationDescription_DeepEyesWhiteDragon_Popup1,
   [CARD_EFFECT_TEXT_DRAGON_MASTER_MAGIA_POPUP_1] = gActivationDescription_DragonMasterMagia_Popup1,
   [CARD_EFFECT_TEXT_DRAGON_SPIRIT_OF_WHITE_POPUP_1] = gActivationDescription_DragonSpiritOfWhite_Popup1,
+  [CARD_EFFECT_TEXT_EBON_ILLUSION_MAGICIAN_POPUP_1] = gActivationDescription_EbonIllusionMagician_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_ANOYATYLLIS_POPUP_1] = gActivationDescription_ElShaddollAnoyatyllis_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_APKALLONE_POPUP_1] = gActivationDescription_ElShaddollApkallone_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_CONSTRUCT_POPUP_1] = gActivationDescription_ElShaddollConstruct_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_FUSION_POPUP_1] = gActivationDescription_ElShaddollFusion_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_GRYSTA_POPUP_1] = gActivationDescription_ElShaddollGrysta_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_MESHAHRAIL_POPUP_1] = gActivationDescription_ElShaddollMeshahrail_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_SHEKHINAGA_POPUP_1] = gActivationDescription_ElShaddollShekhinaga_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_WENDIGO_POPUP_1] = gActivationDescription_ElShaddollWendigo_Popup1,
+  [CARD_EFFECT_TEXT_EL_SHADDOLL_WINDA_POPUP_1] = gActivationDescription_ElShaddollWinda_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

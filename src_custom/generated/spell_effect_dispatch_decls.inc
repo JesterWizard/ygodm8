@@ -70,6 +70,7 @@ extern void EffectDustTornado(void);
 extern void EffectD_BURST(void);
 extern void EffectD_FORCE(void);
 extern void EffectEctoplasmer(void);
+extern void EffectEL_SHADDOLL_FUSION(void);
 extern void EffectExchange(void);
 extern void EffectEEmergencyCall(void);
 extern void EffectFinalCountdown(void);

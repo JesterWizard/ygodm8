@@ -66,6 +66,8 @@ RACE_MAP = {
     "Plant": "TYPE_PLANT",
     "Creator God": "TYPE_FAIRY",
     "Wyrm": "TYPE_DRAGON",
+    # ponytail: DM8 has no Psychic type; Spellcaster is the closest classic race
+    "Psychic": "TYPE_SPELLCASTER",
 }
 
 COLOR_BY_FRAME = {

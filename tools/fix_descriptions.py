@@ -12,87 +12,85 @@ from add_card_art import wrap_activation_page, wrap_description_page
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
 
 FIXED_DESCRIPTIONS = {
-    "LEGENDARY_KNIGHT_CRITIAS": [
-        "Special Summon with Legend of",
-        "Heart. When SS: target 1 face-up",
-        "S/T; banish it. When attacked:",
-        "target 1 Trap in GY; Set it. It",
-        "can be activated this turn.",
+    "EBON_ILLUSION_MAGICIAN": [
+        "Rank 6 Spellcaster Xyz can become this;",
+        "materials transfer. OPT: detach 1; SS 1",
+        "Spellcaster Normal from hand or Deck.",
+        "When Spellcaster Normal attacks: OPT",
+        "banish 1 opp card.",
     ],
-    "LEGENDARY_KNIGHT_HERMOS": [
-        "Special Summon with Legend of",
-        "Heart. When SS: target 1 face-up",
-        "S/T; banish it. When attacked:",
-        "target 1 Effect Monster in GY;",
-        "copy its name and effects.",
+    "EL_SHADDOLL_ANOYATYLLIS": [
+        "Shaddoll + WATER. Must first be FS.",
+        "Neither player can SS from hand/GY",
+        "via Spell/Trap effects. If sent to GY:",
+        "add 1 Shaddoll S/T from GY to hand.",
     ],
-    "LEGENDARY_KNIGHT_TIMAEUS": [
-        "Special Summon with Legend of",
-        "Heart. When SS: target 1 face-up",
-        "S/T; banish it. When attacked:",
-        "target 1 Spell in GY; Set that",
-        "target.",
+    "EL_SHADDOLL_APKALLONE": [
+        "2 Shaddoll different Attr. Must FS.",
+        "Can't be destroyed by battle. OPT each:",
+        "On SS: negate 1 face-up card. If sent",
+        "to GY: add 1 Shaddoll from Deck/GY,",
+        "then discard 1.",
     ],
-    "LEKUNGA": [
-        "Banish 2 WATER from your GY;",
-        "Special Summon 1 Lekunga Token",
-        "(Plant/WATER/Lv2/700/700) in",
-        "Attack Position.",
+    "EL_SHADDOLL_CONSTRUCT": [
+        "Shaddoll + LIGHT. Must first be FS.",
+        "On SS: send 1 Shaddoll from Deck to GY.",
+        "Damage Step vs SS monster: destroy it.",
+        "GY: add 1 Shaddoll S/T from GY to hand.",
     ],
-    "LIGHT_AND_DARKNESS_DRAGON": [
-        "Can't be SS. DARK while face-up.",
-        "Once per Chain: -500 ATK/DEF",
-        "to negate anything. When",
-        "destroyed: destroy your field,",
-        "SS a GY monster.",
+    "EL_SHADDOLL_FUSION": [
+        "Fusion Summon 1 Shaddoll Fusion from",
+        "Extra Deck using monsters from hand",
+        "or field. Once per turn.",
     ],
-    "LORD_OF_THE_RED": [
-        "Ritual Summon with Red-Eyes",
-        "Transmigration. Once per turn,",
-        "when a card or effect activates:",
-        "target 1 monster; destroy it, or",
-        "target 1 S/T; destroy it.",
+    "EL_SHADDOLL_GRYSTA": [
+        "Shaddoll + FIRE. Must first be FS.",
+        "Quick: negate opp SS while you have",
+        "Shaddoll in hand; destroy it, then",
+        "send 1 Shaddoll from hand to GY. OPT.",
+        "GY: add 1 Shaddoll S/T from GY.",
     ],
-    "MA_AT": [
-        "Can't be Normal Summoned/Set.",
-        "SS: send 1 LIGHT Dragon + 1",
-        "LIGHT Fairy to GY. Once per",
-        "turn: declare 3 names, excavate",
-        "top 3 of Deck, add declared names to hand.",
+    "EL_SHADDOLL_MESHAHRAIL": [
+        "Shaddoll + DARK + EARTH. Must be FS.",
+        "Unaffected by opp activated S/T and",
+        "monsters with lower Level/Rank. OPT:",
+        "pay 800 LP; add 1 Shaddoll or Void",
+        "S/T from Deck. GY: SS 1 Shaddoll.",
     ],
-    "MAGICAL_DIMENSION": [
-        "If you control a Spellcaster:",
-        "Tribute 1 monster; Special Summon",
-        "1 Spellcaster from your hand,",
-        "then you can destroy 1 monster",
-        "on the field.",
+    "EL_SHADDOLL_SHEKHINAGA": [
+        "Shaddoll + EARTH. Must first be FS.",
+        "Quick: negate SS monster effect while",
+        "Shaddoll in hand; destroy it, then",
+        "send 1 Shaddoll from hand to GY. OPT.",
+        "GY: add 1 Shaddoll S/T from GY.",
     ],
-    "MAGICAL_HATS": [
-        "Opponent BP: pick 2 S/T from",
-        "Deck + 1 monster you control.",
-        "SS as Normal 0/0 face-down.",
-        "Set the chosen monster.",
-        "Shuffle. Destroy Deck S/T at end of BP.",
+    "EL_SHADDOLL_WENDIGO": [
+        "Shaddoll + WIND. Must first be FS.",
+        "Quick OPT: target 1 monster you control;",
+        "it can't be destroyed by battle with",
+        "opp SS monster this turn. GY: add 1",
+        "Shaddoll S/T from GY to hand.",
     ],
-    "MAGICAL_PLANT_MANDRAGOLA": [
-        "FLIP: Place 1 Spell Counter on",
-        "each face-up card on the field",
-        "that you can place a Spell",
-        "Counter on.",
+    "EL_SHADDOLL_WINDA": [
+        "Shaddoll + DARK. Must first be FS.",
+        "Can't be destroyed by opp effects.",
+        "Each player can only SS once per turn",
+        "while this is face-up. GY: add 1",
+        "Shaddoll S/T from GY to hand.",
     ],
 }
 
 FIXED_POPUPS = {
-    "LEGENDARY_KNIGHT_CRITIAS": "Must be SS by Legend of Heart. When SS: banish face-up S/T. When attacked: Set a Trap from GY.",
-    "LEGENDARY_KNIGHT_HERMOS": "Must be SS by Legend of Heart. When SS: banish face-up S/T. When attacked: copy a GY monster.",
-    "LEGENDARY_KNIGHT_TIMAEUS": "Must be SS by Legend of Heart. When SS: banish face-up S/T. When attacked: Set a Spell from GY.",
-    "LEKUNGA": "Banish 2 WATER from GY; SS a Lekunga Token (Plant/WATER/Lv2/700/700) in ATK position.",
-    "LIGHT_AND_DARKNESS_DRAGON": "Once/Chain: when activated, -500 ATK/DEF to negate. On destruction: clear field, SS GY monster.",
-    "LORD_OF_THE_RED": "Once per turn, when a card/effect activates: destroy 1 monster or 1 S/T on the field.",
-    "MA_AT": "SS: send 1 LIGHT Dragon + Fairy to GY. Once/turn: name 3, excavate 3, add matches.",
-    "MAGICAL_DIMENSION": "If you control a Spellcaster: Tribute 1 monster; SS 1 from hand, then destroy 1 monster.",
-    "MAGICAL_HATS": "Opponent BP: pick 2 S/T from Deck + 1 monster. SS as 0/0 face-down. Destroy Deck cards at end of BP.",
-    "MAGICAL_PLANT_MANDRAGOLA": "FLIP: Place 1 Spell Counter on each face-up card you can place a Spell Counter on.",
+    "EBON_ILLUSION_MAGICIAN": "OPT detach: SS Spellcaster Normal. When it attacks: banish 1 opp card.",
+    "EL_SHADDOLL_ANOYATYLLIS": "Lock SS from hand/GY via S/T. GY: add Shaddoll S/T from GY.",
+    "EL_SHADDOLL_APKALLONE": "On SS: negate face-up. GY: add Shaddoll, discard 1.",
+    "EL_SHADDOLL_CONSTRUCT": "On SS: mill Shaddoll. Battle vs SS: destroy. GY: add S/T.",
+    "EL_SHADDOLL_FUSION": "Fusion Summon 1 Shaddoll Fusion using hand/field materials. Once/turn.",
+    "EL_SHADDOLL_GRYSTA": "Negate opp SS; destroy, send Shaddoll from hand. GY: add S/T.",
+    "EL_SHADDOLL_MESHAHRAIL": "Pay 800: add Shaddoll or Void. Unaffected by lower Lv/R. GY: SS Shaddoll.",
+    "EL_SHADDOLL_SHEKHINAGA": "Negate SS monster effect; destroy, send Shaddoll. GY: add S/T.",
+    "EL_SHADDOLL_WENDIGO": "Protect monster from battle vs opp SS. GY: add Shaddoll S/T.",
+    "EL_SHADDOLL_WINDA": "Opp can't destroy this. SS lock once/turn each. GY: add S/T.",
 }
 
 

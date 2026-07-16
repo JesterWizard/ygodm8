@@ -318,6 +318,12 @@ unsigned char CanActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC(void);
 void ActivateDARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGICEffect(void);
 unsigned char CanActivateDARK_STRIKE_FIGHTER(void);
 void ActivateDARK_STRIKE_FIGHTEREffect(void);
+unsigned char CanActivateEBON_ILLUSION_MAGICIAN(void);
+void ActivateEBON_ILLUSION_MAGICIANEffect(void);
+unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void);
+void ActivateEL_SHADDOLL_MESHAHRAILEffect(void);
+unsigned char CanActivateEL_SHADDOLL_WENDIGO(void);
+void ActivateEL_SHADDOLL_WENDIGOEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1569,6 +1575,18 @@ FAILED:
   }
   if (gMonEffect.id == DARK_STRIKE_FIGHTER) {
     ActivateDARK_STRIKE_FIGHTEREffect();
+    return;
+  }
+  if (gMonEffect.id == EBON_ILLUSION_MAGICIAN) {
+    ActivateEBON_ILLUSION_MAGICIANEffect();
+    return;
+  }
+  if (gMonEffect.id == EL_SHADDOLL_MESHAHRAIL) {
+    ActivateEL_SHADDOLL_MESHAHRAILEffect();
+    return;
+  }
+  if (gMonEffect.id == EL_SHADDOLL_WENDIGO) {
+    ActivateEL_SHADDOLL_WENDIGOEffect();
     return;
   }
 }

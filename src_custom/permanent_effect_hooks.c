@@ -150,6 +150,18 @@ void ActivateDRAGON_MASTER_MAGIA(void);
 unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void);
 void ActivateDRAGON_SPIRIT_OF_WHITE(void);
 
+unsigned char ShouldActivateEL_SHADDOLL_ANOYATYLLIS(void);
+void ActivateEL_SHADDOLL_ANOYATYLLIS(void);
+unsigned char ShouldActivateEL_SHADDOLL_APKALLONE(void);
+void ActivateEL_SHADDOLL_APKALLONE(void);
+unsigned char ShouldActivateEL_SHADDOLL_CONSTRUCT(void);
+void ActivateEL_SHADDOLL_CONSTRUCT(void);
+unsigned char ShouldActivateEL_SHADDOLL_GRYSTA(void);
+void ActivateEL_SHADDOLL_GRYSTA(void);
+unsigned char ShouldActivateEL_SHADDOLL_SHEKHINAGA(void);
+void ActivateEL_SHADDOLL_SHEKHINAGA(void);
+unsigned char ShouldActivateEL_SHADDOLL_WINDA(void);
+void ActivateEL_SHADDOLL_WINDA(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -446,7 +458,37 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .shouldActivate = ShouldActivateDRAGON_SPIRIT_OF_WHITE,
     .activate = ActivateDRAGON_SPIRIT_OF_WHITE,
   },
-  /* END PERMANENT EFFECT OVERRIDES */
+    {
+    .cardId = EL_SHADDOLL_ANOYATYLLIS,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_ANOYATYLLIS,
+    .activate = ActivateEL_SHADDOLL_ANOYATYLLIS,
+  },
+  {
+    .cardId = EL_SHADDOLL_APKALLONE,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_APKALLONE,
+    .activate = ActivateEL_SHADDOLL_APKALLONE,
+  },
+  {
+    .cardId = EL_SHADDOLL_CONSTRUCT,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_CONSTRUCT,
+    .activate = ActivateEL_SHADDOLL_CONSTRUCT,
+  },
+  {
+    .cardId = EL_SHADDOLL_GRYSTA,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_GRYSTA,
+    .activate = ActivateEL_SHADDOLL_GRYSTA,
+  },
+  {
+    .cardId = EL_SHADDOLL_SHEKHINAGA,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_SHEKHINAGA,
+    .activate = ActivateEL_SHADDOLL_SHEKHINAGA,
+  },
+  {
+    .cardId = EL_SHADDOLL_WINDA,
+    .shouldActivate = ShouldActivateEL_SHADDOLL_WINDA,
+    .activate = ActivateEL_SHADDOLL_WINDA,
+  },
+/* END PERMANENT EFFECT OVERRIDES */
 };
 
 static const PermanentEffectOverride *GetPermanentEffectOverride(u16 cardId) {

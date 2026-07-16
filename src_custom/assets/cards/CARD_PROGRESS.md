@@ -673,21 +673,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DEEP_EYES_WHITE_DRAGON` | Deep-Eyes White Dragon | `deep_eyes_white_dragon.png` |
 | `DRAGON_MASTER_MAGIA` | Dragon Master Magia | `dragon_master_magia.png` |
 | `DRAGON_SPIRIT_OF_WHITE` | Dragon Spirit of White | `dragon_spirit_of_white.png` |
+| `EBON_ILLUSION_MAGICIAN` | Ebon Illusion Magician | `ebon_illusion_magician.png` |
+| `EL_SHADDOLL_ANOYATYLLIS` | El Shaddoll Anoyatyllis | `el_shaddoll_anoyatyllis.png` |
+| `EL_SHADDOLL_APKALLONE` | El Shaddoll Apkallone | `el_shaddoll_apkallone.png` |
+| `EL_SHADDOLL_CONSTRUCT` | El Shaddoll Construct | `el_shaddoll_construct.png` |
+| `EL_SHADDOLL_FUSION` | El Shaddoll Fusion | `el_shaddoll_fusion.png` |
+| `EL_SHADDOLL_GRYSTA` | El Shaddoll Grysta | `el_shaddoll_grysta.png` |
+| `EL_SHADDOLL_MESHAHRAIL` | El Shaddoll Meshahrail | `el_shaddoll_meshahrail.png` |
+| `EL_SHADDOLL_SHEKHINAGA` | El Shaddoll Shekhinaga | `el_shaddoll_shekhinaga.png` |
+| `EL_SHADDOLL_WENDIGO` | El Shaddoll Wendigo | `el_shaddoll_wendigo.png` |
+| `EL_SHADDOLL_WINDA` | El Shaddoll Winda | `el_shaddoll_winda.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `EBON_ILLUSION_MAGICIAN` — `ebon_illusion_magician.png`
-- [ ] `EL_SHADDOLL_ANOYATYLLIS` — `el_shaddoll_anoyatyllis.png`
-- [ ] `EL_SHADDOLL_APKALLONE` — `el_shaddoll_apkallone.png`
-- [ ] `EL_SHADDOLL_CONSTRUCT` — `el_shaddoll_construct.png`
-- [ ] `EL_SHADDOLL_FUSION` — `el_shaddoll_fusion.png`
-- [ ] `EL_SHADDOLL_GRYSTA` — `el_shaddoll_grysta.png`
-- [ ] `EL_SHADDOLL_MESHAHRAIL` — `el_shaddoll_meshahrail.png`
-- [ ] `EL_SHADDOLL_SHEKHINAGA` — `el_shaddoll_shekhinaga.png`
-- [ ] `EL_SHADDOLL_WENDIGO` — `el_shaddoll_wendigo.png`
-- [ ] `EL_SHADDOLL_WINDA` — `el_shaddoll_winda.png`
 - [ ] `ETERNAL_SOUL` — `eternal_soul.png`
 - [ ] `EVIL_ASSAULT` — `evil_assault.png`
 - [ ] `EVIL_DRAGON_ANANTA` — `evil_dragon_ananta.png`

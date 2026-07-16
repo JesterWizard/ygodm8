@@ -1,12 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Fix trunk not showing cards from ID 1444+
+**Last worked on:** 2026-07-16 — Added EBON_ILLUSION_MAGICIAN–EL_SHADDOLL_WINDA (trunk + stub effects)
 
 **Files touched:**
-- `Makefile` (deps: trunk/shop/code_801EF30_hooks → `card_trunk_generated.inc`)
+- `tools/card_data_manifest.json`
+- `tools/add_custom_card.py` (Psychic → TYPE_SPELLCASTER)
+- `tools/fix_descriptions.py`
+- `src_custom/monster_effect_hooks.c`, `src_custom/permanent_effect_hooks.c`
+- stub `.c` under `activated_effects/` / `permanent_effects/` / `spell_effects/`
+- `src_custom/assets/cards/CARD_PROGRESS.md`
 
-**Outcome:** Root cause was stale `gCustomTrunkCards` in ROM (ended at 0x5A3) while loops used NUM=651 — not EWRAM/SRAM sizing (those were already correct at 0x28C / 0x4410). Relinked; trunk list now ends 0x5A4–0x5AB.
+**Outcome:** `make` exits 0. 10 cards in trunk with art; effects stubbed. total_cards=1462.
 
 **Open / next:**
-- Reload ROM; new game if save qty looks wrong after CUSTOM_CARD_QTY growth past 0x200 floor
-- Implement real effect logic for the 8 stubbed cards
+- Implement real effect logic for these 10 cards (and prior stub batches)

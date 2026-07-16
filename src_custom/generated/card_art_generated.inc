@@ -2612,6 +2612,46 @@ static const unsigned char sDragonSpiritOfWhiteBigArt[] __attribute__((section("
 static const unsigned short sDragonSpiritOfWhiteBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_spirit_of_white.gbapal");
 static const unsigned char sDragonSpiritOfWhiteMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_spirit_of_white.lz");
 
+static const unsigned char sEbonIllusionMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ebon_illusion_magician.huff");
+static const unsigned short sEbonIllusionMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ebon_illusion_magician.gbapal");
+static const unsigned char sEbonIllusionMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ebon_illusion_magician.lz");
+
+static const unsigned char sElShaddollAnoyatyllisBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_anoyatyllis.huff");
+static const unsigned short sElShaddollAnoyatyllisBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_anoyatyllis.gbapal");
+static const unsigned char sElShaddollAnoyatyllisMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_anoyatyllis.lz");
+
+static const unsigned char sElShaddollApkalloneBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_apkallone.huff");
+static const unsigned short sElShaddollApkalloneBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_apkallone.gbapal");
+static const unsigned char sElShaddollApkalloneMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_apkallone.lz");
+
+static const unsigned char sElShaddollConstructBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_construct.huff");
+static const unsigned short sElShaddollConstructBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_construct.gbapal");
+static const unsigned char sElShaddollConstructMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_construct.lz");
+
+static const unsigned char sElShaddollFusionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_fusion.huff");
+static const unsigned short sElShaddollFusionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_fusion.gbapal");
+static const unsigned char sElShaddollFusionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_fusion.lz");
+
+static const unsigned char sElShaddollGrystaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_grysta.huff");
+static const unsigned short sElShaddollGrystaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_grysta.gbapal");
+static const unsigned char sElShaddollGrystaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_grysta.lz");
+
+static const unsigned char sElShaddollMeshahrailBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_meshahrail.huff");
+static const unsigned short sElShaddollMeshahrailBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_meshahrail.gbapal");
+static const unsigned char sElShaddollMeshahrailMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_meshahrail.lz");
+
+static const unsigned char sElShaddollShekhinagaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_shekhinaga.huff");
+static const unsigned short sElShaddollShekhinagaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_shekhinaga.gbapal");
+static const unsigned char sElShaddollShekhinagaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_shekhinaga.lz");
+
+static const unsigned char sElShaddollWendigoBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_wendigo.huff");
+static const unsigned short sElShaddollWendigoBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_wendigo.gbapal");
+static const unsigned char sElShaddollWendigoMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_wendigo.lz");
+
+static const unsigned char sElShaddollWindaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/el_shaddoll_winda.huff");
+static const unsigned short sElShaddollWindaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_winda.gbapal");
+static const unsigned char sElShaddollWindaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_winda.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3266,6 +3306,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05A9] = sDeepEyesWhiteDragonBigArt,
   [0x05AA] = sDragonMasterMagiaBigArt,
   [0x05AB] = sDragonSpiritOfWhiteBigArt,
+  [0x05AC] = sEbonIllusionMagicianBigArt,
+  [0x05AD] = sElShaddollAnoyatyllisBigArt,
+  [0x05AE] = sElShaddollApkalloneBigArt,
+  [0x05AF] = sElShaddollConstructBigArt,
+  [0x05B0] = sElShaddollFusionBigArt,
+  [0x05B1] = sElShaddollGrystaBigArt,
+  [0x05B2] = sElShaddollMeshahrailBigArt,
+  [0x05B3] = sElShaddollShekhinagaBigArt,
+  [0x05B4] = sElShaddollWendigoBigArt,
+  [0x05B5] = sElShaddollWindaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3922,6 +3972,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05A9] = sDeepEyesWhiteDragonBigPalette,
   [0x05AA] = sDragonMasterMagiaBigPalette,
   [0x05AB] = sDragonSpiritOfWhiteBigPalette,
+  [0x05AC] = sEbonIllusionMagicianBigPalette,
+  [0x05AD] = sElShaddollAnoyatyllisBigPalette,
+  [0x05AE] = sElShaddollApkalloneBigPalette,
+  [0x05AF] = sElShaddollConstructBigPalette,
+  [0x05B0] = sElShaddollFusionBigPalette,
+  [0x05B1] = sElShaddollGrystaBigPalette,
+  [0x05B2] = sElShaddollMeshahrailBigPalette,
+  [0x05B3] = sElShaddollShekhinagaBigPalette,
+  [0x05B4] = sElShaddollWendigoBigPalette,
+  [0x05B5] = sElShaddollWindaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4578,6 +4638,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05A9] = 0,
   [0x05AA] = 0,
   [0x05AB] = 0,
+  [0x05AC] = 0,
+  [0x05AD] = 0,
+  [0x05AE] = 0,
+  [0x05AF] = 0,
+  [0x05B0] = 0,
+  [0x05B1] = 0,
+  [0x05B2] = 0,
+  [0x05B3] = 0,
+  [0x05B4] = 0,
+  [0x05B5] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5234,4 +5304,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05A9] = sDeepEyesWhiteDragonMiniArt,
   [0x05AA] = sDragonMasterMagiaMiniArt,
   [0x05AB] = sDragonSpiritOfWhiteMiniArt,
+  [0x05AC] = sEbonIllusionMagicianMiniArt,
+  [0x05AD] = sElShaddollAnoyatyllisMiniArt,
+  [0x05AE] = sElShaddollApkalloneMiniArt,
+  [0x05AF] = sElShaddollConstructMiniArt,
+  [0x05B0] = sElShaddollFusionMiniArt,
+  [0x05B1] = sElShaddollGrystaMiniArt,
+  [0x05B2] = sElShaddollMeshahrailMiniArt,
+  [0x05B3] = sElShaddollShekhinagaMiniArt,
+  [0x05B4] = sElShaddollWendigoMiniArt,
+  [0x05B5] = sElShaddollWindaMiniArt,
 };

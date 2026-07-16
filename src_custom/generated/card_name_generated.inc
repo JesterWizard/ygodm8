@@ -652,6 +652,16 @@ static const u8 sDragonShrineName[] __attribute__((section(".append_assets"))) =
 static const u8 sDeepEyesWhiteDragonName[] __attribute__((section(".append_assets"))) = "Deep-Eyes White Dragon";
 static const u8 sDragonMasterMagiaName[] __attribute__((section(".append_assets"))) = "Dragon Master Magia";
 static const u8 sDragonSpiritOfWhiteName[] __attribute__((section(".append_assets"))) = "Dragon Spirit of White";
+static const u8 sEbonIllusionMagicianName[] __attribute__((section(".append_assets"))) = "Ebon Illusion Magician";
+static const u8 sElShaddollAnoyatyllisName[] __attribute__((section(".append_assets"))) = "El Shaddoll Anoyatyllis";
+static const u8 sElShaddollApkalloneName[] __attribute__((section(".append_assets"))) = "El Shaddoll Apkallone";
+static const u8 sElShaddollConstructName[] __attribute__((section(".append_assets"))) = "El Shaddoll Construct";
+static const u8 sElShaddollFusionName[] __attribute__((section(".append_assets"))) = "El Shaddoll Fusion";
+static const u8 sElShaddollGrystaName[] __attribute__((section(".append_assets"))) = "El Shaddoll Grysta";
+static const u8 sElShaddollMeshahrailName[] __attribute__((section(".append_assets"))) = "El Shaddoll Meshahrail";
+static const u8 sElShaddollShekhinagaName[] __attribute__((section(".append_assets"))) = "El Shaddoll Shekhinaga";
+static const u8 sElShaddollWendigoName[] __attribute__((section(".append_assets"))) = "El Shaddoll Wendigo";
+static const u8 sElShaddollWindaName[] __attribute__((section(".append_assets"))) = "El Shaddoll Winda";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1962,6 +1972,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDragonMasterMagiaName;
   if (cardId == 0x05AB)
     return (u8 *)sDragonSpiritOfWhiteName;
+  if (cardId == 0x05AC)
+    return (u8 *)sEbonIllusionMagicianName;
+  if (cardId == 0x05AD)
+    return (u8 *)sElShaddollAnoyatyllisName;
+  if (cardId == 0x05AE)
+    return (u8 *)sElShaddollApkalloneName;
+  if (cardId == 0x05AF)
+    return (u8 *)sElShaddollConstructName;
+  if (cardId == 0x05B0)
+    return (u8 *)sElShaddollFusionName;
+  if (cardId == 0x05B1)
+    return (u8 *)sElShaddollGrystaName;
+  if (cardId == 0x05B2)
+    return (u8 *)sElShaddollMeshahrailName;
+  if (cardId == 0x05B3)
+    return (u8 *)sElShaddollShekhinagaName;
+  if (cardId == 0x05B4)
+    return (u8 *)sElShaddollWendigoName;
+  if (cardId == 0x05B5)
+    return (u8 *)sElShaddollWindaName;
 
   return gCardNames[cardId];
 }

@@ -1453,11 +1453,21 @@
 #define DEEP_EYES_WHITE_DRAGON                   0x05A9
 #define DRAGON_MASTER_MAGIA                      0x05AA
 #define DRAGON_SPIRIT_OF_WHITE                   0x05AB
+#define EBON_ILLUSION_MAGICIAN                   0x05AC
+#define EL_SHADDOLL_ANOYATYLLIS                  0x05AD
+#define EL_SHADDOLL_APKALLONE                    0x05AE
+#define EL_SHADDOLL_CONSTRUCT                    0x05AF
+#define EL_SHADDOLL_FUSION                       0x05B0
+#define EL_SHADDOLL_GRYSTA                       0x05B1
+#define EL_SHADDOLL_MESHAHRAIL                   0x05B2
+#define EL_SHADDOLL_SHEKHINAGA                   0x05B3
+#define EL_SHADDOLL_WENDIGO                      0x05B4
+#define EL_SHADDOLL_WINDA                        0x05B5
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05AC
-#define NUM_CUSTOM_CARDS                        0x028B
+#define NUM_TOTAL_CARDS                         0x05B6
+#define NUM_CUSTOM_CARDS                        0x0295
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

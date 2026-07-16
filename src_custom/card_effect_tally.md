@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `583` effects
+- `593` effects
 
 ## Tally
 
@@ -564,6 +564,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Deep Eyes White Dragon` | `src_custom/permanent_effects/deep_eyes_white_dragon.c` |
 | `permanent_effects` | `Dragon Master Magia` | `src_custom/permanent_effects/dragon_master_magia.c` |
 | `permanent_effects` | `Dragon Spirit Of White` | `src_custom/permanent_effects/dragon_spirit_of_white.c` |
+| `activated_effects` | `Ebon Illusion Magician` | `src_custom/activated_effects/ebon_illusion_magician.c` |
+| `permanent_effects` | `El Shaddoll Anoyatyllis` | `src_custom/permanent_effects/el_shaddoll_anoyatyllis.c` |
+| `permanent_effects` | `El Shaddoll Apkallone` | `src_custom/permanent_effects/el_shaddoll_apkallone.c` |
+| `permanent_effects` | `El Shaddoll Construct` | `src_custom/permanent_effects/el_shaddoll_construct.c` |
+| `spell_effects` | `El Shaddoll Fusion` | `src_custom/spell_effects/el_shaddoll_fusion.c` |
+| `permanent_effects` | `El Shaddoll Grysta` | `src_custom/permanent_effects/el_shaddoll_grysta.c` |
+| `activated_effects` | `El Shaddoll Meshahrail` | `src_custom/activated_effects/el_shaddoll_meshahrail.c` |
+| `permanent_effects` | `El Shaddoll Shekhinaga` | `src_custom/permanent_effects/el_shaddoll_shekhinaga.c` |
+| `activated_effects` | `El Shaddoll Wendigo` | `src_custom/activated_effects/el_shaddoll_wendigo.c` |
+| `permanent_effects` | `El Shaddoll Winda` | `src_custom/permanent_effects/el_shaddoll_winda.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
