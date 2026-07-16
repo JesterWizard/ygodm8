@@ -27,7 +27,7 @@ const struct TimedDuelLayout sTimedDuelLayout_01 APPEND_RODATA = {
   3000,
   9000,
   FIELD_NONE,
-  0,
+  60,
   BLUE_EYES_SHINING_DRAGON,
 };
 
@@ -49,6 +49,29 @@ const struct TimedDuelLayout sTimedDuelLayout_02 APPEND_RODATA = {
   1000,
   1000,
   FIELD_NONE,
-  0,
+  90,
   THE_UNSTOPPABLE_EXODIA_INCARNATE,
+};
+
+/* Steal Summoned Skull with Change of Heart, attack for exact 2500. Wall is a decoy. */
+const struct TimedDuelLayout sTimedDuelLayout_03 APPEND_RODATA = {
+  {
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_ATK(SUMMONED_SKULL), TD_DEF(LABYRINTH_WALL), TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { TD_FACEUP(CHANGE_OF_HEART), TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { CARD_NONE },
+    { CARD_NONE },
+  },
+  2000,
+  2500,
+  FIELD_NONE,
+  45,
+  DARK_MAGICIAN_OF_CHAOS,
 };

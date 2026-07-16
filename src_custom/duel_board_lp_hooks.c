@@ -12,6 +12,7 @@
 extern unsigned short gDuelLifePoints[];
 extern u8 gDigitBufferU16[];
 extern u16 gDuelBoardTurnCount;
+extern u16 gTimedDuelTimerFrames;
 extern u16 g80F0F00[];
 
 void sub_80411D4(void);
@@ -21,8 +22,8 @@ void LoadBgOffsets(void);
 void LoadOam(void);
 void FlushDuelFieldLayerToHardware(void);
 
-// Small font (CopyStringTilesToVRAMBuffer flag 0x001). Tile map index must equal
-// charBufOffset / 32 so tile graphics and tilemap entries refer to the same slots.
+/* Small font (CopyStringTilesToVRAMBuffer flag 0x001). Tile map index must equal
+ * charBufOffset / 32 so tile graphics and tilemap entries refer to the same slots. */
 #define BOARD_LP_TILE_ATTR         0x3000
 #define BOARD_LP_MAP_BASE          0xD800
 #define BOARD_LP_MAX_DIGITS        5
@@ -40,9 +41,11 @@ void FlushDuelFieldLayerToHardware(void);
 
 #define BOARD_TURN_TILE_ATTR         0x7000
 #define BOARD_TURN_MAX_DIGITS        3
+#define BOARD_TIMER_MAX_CHARS        5 /* "MM:SS" */
 #define BOARD_TURN_BASE_TILE         (BOARD_LP_BASE_TILE_OPPONENT + BOARD_LP_MAX_DIGITS)
 #define BOARD_TURN_CHARBUF           (BOARD_TURN_BASE_TILE * BOARD_LP_CHARBUF_TILE_BYTES)
 #define BOARD_TURN_X                 14
+#define BOARD_TIMER_X                13
 #define BOARD_TURN_Y                 19
 
 static void RemapSmallFontTilesToColorIndex(u8 *tiles, u32 byteCount, u8 fromIndex, u8 toIndex) {
@@ -130,35 +133,50 @@ static void FormatTurnCountString(char *buf, u16 turnCount) {
   buf[BOARD_TURN_MAX_DIGITS] = '\0';
 }
 
-static void DrawTurnCountAt(u8 x, u8 y, u16 turnCount) {
-  char buf[BOARD_TURN_MAX_DIGITS + 1];
+static void FormatTimerString(char *buf, u16 totalSeconds) {
+  u16 mins;
+  u16 secs;
+
+  if (totalSeconds > 99 * 60 + 59)
+    totalSeconds = 99 * 60 + 59;
+
+  mins = totalSeconds / 60;
+  secs = totalSeconds % 60;
+  buf[0] = (char)('0' + (mins / 10));
+  buf[1] = (char)('0' + (mins % 10));
+  buf[2] = ':';
+  buf[3] = (char)('0' + (secs / 10));
+  buf[4] = (char)('0' + (secs % 10));
+  buf[5] = '\0';
+}
+
+static void DrawHudStringAt(u8 x, u8 y, const char *buf, u8 charCount) {
   u16 *tilemap = (u16 *)(gBgVram.cbb0 + BOARD_LP_MAP_BASE);
   u16 attrs = (tilemap[y * 32 + x] & 0xC000) | BOARD_TURN_TILE_ATTR;
   u8 i;
 
-  FormatTurnCountString(buf, turnCount);
   CopyStringTilesToVRAMBuffer(gBgVram.cbb0 + BOARD_TURN_CHARBUF, (const u8 *)buf, 0x001);
   gPaletteBuffer[0x70 + 8] = 0x0421;
   RemapSmallFontTilesToColorIndex(
       gBgVram.cbb0 + BOARD_TURN_CHARBUF,
-      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
+      charCount * BOARD_LP_CHARBUF_TILE_BYTES,
       0,
       8);
   RemapSmallFontTilesToColorIndex(
       gBgVram.cbb0 + BOARD_TURN_CHARBUF,
-      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES,
+      charCount * BOARD_LP_CHARBUF_TILE_BYTES,
       1,
       2);
 
-  for (i = 0; i < BOARD_TURN_MAX_DIGITS; i++)
+  for (i = 0; i < charCount; i++)
     tilemap[y * 32 + x + i] = (u16)(attrs | (BOARD_TURN_BASE_TILE + i));
 }
 
-static void UploadBoardTurnCharTiles(void) {
+static void UploadBoardTurnCharTiles(u8 charCount) {
   CpuCopy16(
       gBgVram.cbb0 + BOARD_TURN_CHARBUF,
       (void *)(BG_VRAM + BOARD_TURN_CHARBUF),
-      BOARD_TURN_MAX_DIGITS * BOARD_LP_CHARBUF_TILE_BYTES);
+      charCount * BOARD_LP_CHARBUF_TILE_BYTES);
 }
 
 static void DrawBoardLifePoints(void) {
@@ -181,9 +199,28 @@ static void DrawBoardLifePoints(void) {
 }
 
 static void DrawBoardTurnCounter(void) {
-  DrawTurnCountAt(BOARD_TURN_X, BOARD_TURN_Y, gDuelBoardTurnCount);
-  UploadBoardTurnCharTiles();
+  char buf[BOARD_TURN_MAX_DIGITS + 1];
+
+  FormatTurnCountString(buf, gDuelBoardTurnCount);
+  DrawHudStringAt(BOARD_TURN_X, BOARD_TURN_Y, buf, BOARD_TURN_MAX_DIGITS);
+  UploadBoardTurnCharTiles(BOARD_TURN_MAX_DIGITS);
   FlushBoardLpRow(BOARD_TURN_Y);
+}
+
+static void DrawBoardTimer(void) {
+  char buf[BOARD_TIMER_MAX_CHARS + 1];
+
+  FormatTimerString(buf, gDuelBoardTurnCount);
+  DrawHudStringAt(BOARD_TIMER_X, BOARD_TURN_Y, buf, BOARD_TIMER_MAX_CHARS);
+  UploadBoardTurnCharTiles(BOARD_TIMER_MAX_CHARS);
+  FlushBoardLpRow(BOARD_TURN_Y);
+}
+
+void RefreshDuelBoardTurnHud(void) {
+  if (TimedDuel_IsActive() == TRUE)
+    DrawBoardTimer();
+  else if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
+    DrawBoardTurnCounter();
 }
 
 LYN_REPLACE_CHECK(sub_80411D4);
@@ -195,7 +232,9 @@ void sub_80411D4__Replacement(void) {
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
 
-  if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
+  if (TimedDuel_IsActive() == TRUE)
+    DrawBoardTimer();
+  else if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
     DrawBoardTurnCounter();
 
   FlushDuelFieldLayerToHardware();
@@ -216,18 +255,19 @@ void InitDuelistStatus__Replacement(void) {
     const struct TimedDuelLayout *layout;
 
     layout = TimedDuel_GetActiveLayout();
-    if (layout != NULL && layout->turnCount != 0)
-      gDuelBoardTurnCount = layout->turnCount - 1;
-    else
-      gDuelBoardTurnCount = (u16)(RandRangeU8(2, 30) - 1);
+    gDuelBoardTurnCount = TimedDuel_ResolveTimerSeconds(layout);
+    gTimedDuelTimerFrames = 0;
     /* ponytail: timed-duel loop returns before EndFirstTurnAttackBan; allow attacks immediately. */
     gDuelistStatus[DUEL_PLAYER] = DUELIST_STATUS_CAN_ATTACK;
   } else {
     gDuelBoardTurnCount = 0;
+    gTimedDuelTimerFrames = 0;
   }
 }
 
 void BeginDuelBoardTurn(void) {
+  if (TimedDuel_IsActive() == TRUE)
+    return;
   if (gDuelBoardTurnCount < 999)
     gDuelBoardTurnCount++;
 }

@@ -1,13 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Millennium tracker: event-cmd docs + 8px content spacing
+**Last worked on:** 2026-07-16 — Timed Duel 3 missing from menu (stale .o)
 
 **Files touched:**
-- `documentation/status-menu-layout.md` — expanded `SET_MILLENNIUM_ITEM` / `CLEAR_MILLENNIUM_ITEM` docs
-- `tools/generate_millennium_item_assets.py` — pack by opaque bbox with 8px gaps; emit `sMillenniumItemMapCols`
-- `src_custom/status_menu_hooks.c` — place via map-col table
-- `src_custom/generated/millennium_item_assets_generated.inc`
+- `Makefile` — `timed_duel.o` depends on table `.inc` + layouts header
+- `documentation/timed-duels.md` — rebuild note
 
-**Outcome:** `make` exits 0; layout gaps verified at 8px between content.
+**Outcome:** `make` exits 0. Root cause was stale `timed_duel.o` (table `.inc` not a make dep). Layout 03 now linked.
 
-**Open / next:** In-game confirm tighter spacing.
+**Open / next:** Reload ROM; confirm Timed Duel 3 in debug menu.

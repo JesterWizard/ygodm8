@@ -13,6 +13,9 @@
 #define TIMED_DUEL_ENTRY(layoutSym, opponent) \
   { (opponent), &(layoutSym) },
 
+#define TIMED_DUEL_DEFAULT_SECONDS 60
+#define TIMED_DUEL_FRAMES_PER_SECOND 60
+
 static const struct TimedDuelEntry sTimedDuels[] APPEND_RODATA = {
 #include "debug/debug_menu_timed_duel_table.inc"
 };
@@ -27,6 +30,10 @@ extern void DisplayDuelText(struct DuelText *duelText);
 extern void ResetDuelTextData(struct DuelText *duelText);
 extern int sub_80588C4(u8 *, int, int);
 extern void (*g20245AC)(int, u8 *, int);
+extern void DeclareLoser(unsigned char);
+extern u16 gDuelBoardTurnCount;
+extern u16 gTimedDuelTimerFrames;
+extern void RefreshDuelBoardTurnHud(void);
 
 static const struct TimedDuelEntry *TimedDuel_EntryForIndex(u8 index) {
   if (index >= ARRAY_COUNT(sTimedDuels))
@@ -201,6 +208,26 @@ void TimedDuel_OnPlayerTurnEnded(void) {
   DeclareLoser(DUEL_PLAYER);
 }
 
+void TimedDuel_OnVBlank(void) {
+  if (!TimedDuel_IsActive())
+    return;
+  if (IsDuelOver() == TRUE)
+    return;
+
+  gTimedDuelTimerFrames++;
+  if (gTimedDuelTimerFrames < TIMED_DUEL_FRAMES_PER_SECOND)
+    return;
+
+  gTimedDuelTimerFrames = 0;
+  if (gDuelBoardTurnCount > 0)
+    gDuelBoardTurnCount--;
+
+  RefreshDuelBoardTurnHud();
+
+  if (gDuelBoardTurnCount == 0)
+    DeclareLoser(DUEL_PLAYER);
+}
+
 void TimedDuel_HandleWin(void) {
   const struct TimedDuelLayout *layout;
   struct DuelText duelText;
@@ -234,6 +261,7 @@ void TimedDuel_HandleWin(void) {
 
 void TimedDuel_OnDuelEnd(void) {
   gTimedDuelActiveId = 0;
+  gTimedDuelTimerFrames = 0;
 }
 
 void TimedDuel_RunAtIndex(u8 index) {
@@ -280,6 +308,7 @@ void TimedDuel_SaveToFlashBackup(void) {
 void TimedDuel_ResetRuntime(void) {
   gTimedDuelActiveId = 0;
   gDebugMenuPendingTimedDuelIndex = TIMED_DUEL_PENDING_NONE;
+  gTimedDuelTimerFrames = 0;
 }
 
 void TimedDuel_ResetOnNewGame(void) {
@@ -288,4 +317,10 @@ void TimedDuel_ResetOnNewGame(void) {
   for (i = 0; i < TIMED_DUEL_COMPLETION_BYTES; i++)
     gTimedDuelCompletionFlags[i] = 0;
   TimedDuel_ResetRuntime();
+}
+
+u16 TimedDuel_ResolveTimerSeconds(const struct TimedDuelLayout *layout) {
+  if (layout == NULL || layout->timerSeconds == 0)
+    return TIMED_DUEL_DEFAULT_SECONDS;
+  return layout->timerSeconds;
 }

@@ -24,7 +24,7 @@ struct TimedDuelLayout {
   u16 playerLp;
   u16 opponentLp;
   u8 field;
-  u16 turnCount;     /* 0 = random 2..30 on the board HUD */
+  u16 timerSeconds;  /* countdown budget; 0 = default 60s; HUD shows MM:SS */
   u16 rewardCardId;
 };
 
@@ -53,6 +53,8 @@ void TimedDuel_ApplySetupIfActive(void);
 void TimedDuel_ApplyLifePointsIfActive(void);
 u8 TimedDuel_ShouldSkipDrawPhase(u8 turnDuelist);
 void TimedDuel_OnPlayerTurnEnded(void);
+void TimedDuel_OnVBlank(void);
+u16 TimedDuel_ResolveTimerSeconds(const struct TimedDuelLayout *layout);
 
 void TimedDuel_HandleWin(void);
 void TimedDuel_OnDuelEnd(void);
