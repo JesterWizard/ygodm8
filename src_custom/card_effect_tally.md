@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `623` effects
+- `643` effects
 
 ## Tally
 
@@ -604,6 +604,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Grinder Golem` | `src_custom/permanent_effects/grinder_golem.c` |
 | `activated_effects` | `Harpie Channeler` | `src_custom/activated_effects/harpie_channeler.c` |
 | `activated_effects` | `Harpie Conductor` | `src_custom/activated_effects/harpie_conductor.c` |
+| `activated_effects` | `Harpie Dancer` | `src_custom/activated_effects/harpie_dancer.c` |
+| `activated_effects` | `Harpie Harpist` | `src_custom/activated_effects/harpie_harpist.c` |
+| `trap_effects` | `Harpie Lady Elegance` | `src_custom/trap_effects/harpie_lady_elegance.c` |
+| `activated_effects` | `Harpie Oracle` | `src_custom/activated_effects/harpie_oracle.c` |
+| `permanent_effects` | `Harpie Perfumer` | `src_custom/permanent_effects/harpie_perfumer.c` |
+| `activated_effects` | `Harpie Queen` | `src_custom/activated_effects/harpie_queen.c` |
+| `spell_effects` | `Harpies Feather Rest` | `src_custom/spell_effects/harpies_feather_rest.c` |
+| `trap_effects` | `Harpies Feather Storm` | `src_custom/trap_effects/harpies_feather_storm.c` |
+| `spell_effects` | `Harpies Hunting Ground` | `src_custom/spell_effects/harpies_hunting_ground.c` |
+| `permanent_effects` | `Harpies Pet Phantasmal Dragon` | `src_custom/permanent_effects/harpies_pet_phantasmal_dragon.c` |
+| `activated_effects` | `Helshaddoll Hollow` | `src_custom/activated_effects/helshaddoll_hollow.c` |
+| `activated_effects` | `Herald Of Perfection` | `src_custom/activated_effects/herald_of_perfection.c` |
+| `activated_effects` | `Herald Of Ultimateness` | `src_custom/activated_effects/herald_of_ultimateness.c` |
+| `permanent_effects` | `Hero Kid` | `src_custom/permanent_effects/hero_kid.c` |
+| `trap_effects` | `Humid Winds` | `src_custom/trap_effects/humid_winds.c` |
+| `trap_effects` | `Hysteric Party` | `src_custom/trap_effects/hysteric_party.c` |
+| `spell_effects` | `Hysteric Sign` | `src_custom/spell_effects/hysteric_sign.c` |
+| `spell_effects` | `Illusion Magic` | `src_custom/spell_effects/illusion_magic.c` |
+| `activated_effects` | `Illusion Of Chaos` | `src_custom/activated_effects/illusion_of_chaos.c` |
+| `permanent_effects` | `Ipiria` | `src_custom/permanent_effects/ipiria.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

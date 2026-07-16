@@ -449,3 +449,11 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DRIED_WINDS in trap dispatcher */
 /* ETERNAL_SOUL trap effect */
   /* TODO: wire ETERNAL_SOUL in trap dispatcher */
+/* HARPIE_LADY_ELEGANCE trap effect */
+  /* TODO: wire HARPIE_LADY_ELEGANCE in trap dispatcher */
+/* HARPIES_FEATHER_STORM trap effect */
+  /* TODO: wire HARPIES_FEATHER_STORM in trap dispatcher */
+/* HUMID_WINDS trap effect */
+  /* TODO: wire HUMID_WINDS in trap dispatcher */
+/* HYSTERIC_PARTY trap effect */
+  /* TODO: wire HYSTERIC_PARTY in trap dispatcher */

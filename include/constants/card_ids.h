@@ -1493,11 +1493,31 @@
 #define GRINDER_GOLEM                            0x05D1
 #define HARPIE_CHANNELER                         0x05D2
 #define HARPIE_CONDUCTOR                         0x05D3
+#define HARPIE_DANCER                            0x05D4
+#define HARPIE_HARPIST                           0x05D5
+#define HARPIE_LADY_ELEGANCE                     0x05D6
+#define HARPIE_ORACLE                            0x05D7
+#define HARPIE_PERFUMER                          0x05D8
+#define HARPIE_QUEEN                             0x05D9
+#define HARPIES_FEATHER_REST                     0x05DA
+#define HARPIES_FEATHER_STORM                    0x05DB
+#define HARPIES_HUNTING_GROUND                   0x05DC
+#define HARPIES_PET_PHANTASMAL_DRAGON            0x05DD
+#define HELSHADDOLL_HOLLOW                       0x05DE
+#define HERALD_OF_PERFECTION                     0x05DF
+#define HERALD_OF_ULTIMATENESS                   0x05E0
+#define HERO_KID                                 0x05E1
+#define HUMID_WINDS                              0x05E2
+#define HYSTERIC_PARTY                           0x05E3
+#define HYSTERIC_SIGN                            0x05E4
+#define ILLUSION_MAGIC                           0x05E5
+#define ILLUSION_OF_CHAOS                        0x05E6
+#define IPIRIA                                   0x05E7
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05D4
-#define NUM_CUSTOM_CARDS                        0x02B3
+#define NUM_TOTAL_CARDS                         0x05E8
+#define NUM_CUSTOM_CARDS                        0x02C7
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

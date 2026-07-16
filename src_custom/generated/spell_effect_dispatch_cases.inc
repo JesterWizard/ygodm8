@@ -266,14 +266,26 @@
     case GUARDIAN_TREASURE:
       EffectGuardianTreasure();
       return;
+    case HARPIES_FEATHER_REST:
+      EffectHARPIES_FEATHER_REST();
+      return;
+    case HARPIES_HUNTING_GROUND:
+      EffectHARPIES_HUNTING_GROUND();
+      return;
     case HARPIE_LADY_PHOENIX_FORMATION:
       EffectHARPIE_LADY_PHOENIX_FORMATION();
       return;
     case HERO_FLASH:
       EffectHERO_FLASH();
       return;
+    case HYSTERIC_SIGN:
+      EffectHYSTERIC_SIGN();
+      return;
     case H_HEATED_HEART:
       EffectHHeatedHeart();
+      return;
+    case ILLUSION_MAGIC:
+      EffectILLUSION_MAGIC();
       return;
     case INSECT_IMITATION:
       EffectINSECT_IMITATION();

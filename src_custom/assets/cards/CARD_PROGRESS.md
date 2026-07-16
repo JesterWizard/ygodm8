@@ -718,26 +718,26 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `GRINDER_GOLEM` — `grinder_golem.png`
 - [x] `HARPIE_CHANNELER` — `harpie_channeler.png`
 - [x] `HARPIE_CONDUCTOR` — `harpie_conductor.png`
-- [ ] `HARPIE_DANCER` — `harpie_dancer.png`
-- [ ] `HARPIE_HARPIST` — `harpie_harpist.png`
-- [ ] `HARPIE_LADY_ELEGANCE` — `harpie_lady_elegance.png`
-- [ ] `HARPIE_ORACLE` — `harpie_oracle.png`
-- [ ] `HARPIE_PERFUMER` — `harpie_perfumer.png`
-- [ ] `HARPIE_QUEEN` — `harpie_queen.png`
-- [ ] `HARPIES_FEATHER_REST` — `harpies_feather_rest.png`
-- [ ] `HARPIES_FEATHER_STORM` — `harpies_feather_storm.png`
-- [ ] `HARPIES_HUNTING_GROUND` — `harpies_hunting_ground.png`
-- [ ] `HARPIES_PET_PHANTASMAL_DRAGON` — `harpies_pet_phantasmal_dragon.png`
-- [ ] `HELSHADDOLL_HOLLOW` — `helshaddoll_hollow.png`
-- [ ] `HERALD_OF_PERFECTION` — `herald_of_perfection.png`
-- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
-- [ ] `HERO_KID` — `hero_kid.png`
-- [ ] `HUMID_WINDS` — `humid_winds.png`
-- [ ] `HYSTERIC_PARTY` — `hysteric_party.png`
-- [ ] `HYSTERIC_SIGN` — `hysteric_sign.png`
-- [ ] `ILLUSION_MAGIC` — `illusion_magic.png`
-- [ ] `ILLUSION_OF_CHAOS` — `illusion_of_chaos.png`
-- [ ] `IPIRIA` — `ipiria.png`
+- [x] `HARPIE_DANCER` — `harpie_dancer.png`
+- [x] `HARPIE_HARPIST` — `harpie_harpist.png`
+- [x] `HARPIE_LADY_ELEGANCE` — `harpie_lady_elegance.png`
+- [x] `HARPIE_ORACLE` — `harpie_oracle.png`
+- [x] `HARPIE_PERFUMER` — `harpie_perfumer.png`
+- [x] `HARPIE_QUEEN` — `harpie_queen.png`
+- [x] `HARPIES_FEATHER_REST` — `harpies_feather_rest.png`
+- [x] `HARPIES_FEATHER_STORM` — `harpies_feather_storm.png`
+- [x] `HARPIES_HUNTING_GROUND` — `harpies_hunting_ground.png`
+- [x] `HARPIES_PET_PHANTASMAL_DRAGON` — `harpies_pet_phantasmal_dragon.png`
+- [x] `HELSHADDOLL_HOLLOW` — `helshaddoll_hollow.png`
+- [x] `HERALD_OF_PERFECTION` — `herald_of_perfection.png`
+- [x] `HERALD_OF_ULTIMATENESS` — `herald_of_ultimateness.png`
+- [x] `HERO_KID` — `hero_kid.png`
+- [x] `HUMID_WINDS` — `humid_winds.png`
+- [x] `HYSTERIC_PARTY` — `hysteric_party.png`
+- [x] `HYSTERIC_SIGN` — `hysteric_sign.png`
+- [x] `ILLUSION_MAGIC` — `illusion_magic.png`
+- [x] `ILLUSION_OF_CHAOS` — `illusion_of_chaos.png`
+- [x] `IPIRIA` — `ipiria.png`
 - [ ] `JUNK_WARRIOR` — `junk_warrior.png`
 - [ ] `KEEPER_OF_DRAGON_MAGIC` — `keeper_of_dragon_magic.png`
 - [ ] `LEGENDARY_MAJU_GARZETT` — `legendary_maju_garzett.png`

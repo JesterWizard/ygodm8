@@ -186,6 +186,14 @@ unsigned char ShouldActivateGOYO_GUARDIAN(void);
 void ActivateGOYO_GUARDIAN(void);
 unsigned char ShouldActivateGRINDER_GOLEM(void);
 void ActivateGRINDER_GOLEM(void);
+unsigned char ShouldActivateHARPIE_PERFUMER(void);
+void ActivateHARPIE_PERFUMER(void);
+unsigned char ShouldActivateHARPIES_PET_PHANTASMAL_DRAGON(void);
+void ActivateHARPIES_PET_PHANTASMAL_DRAGON(void);
+unsigned char ShouldActivateHERO_KID(void);
+void ActivateHERO_KID(void);
+unsigned char ShouldActivateIPIRIA(void);
+void ActivateIPIRIA(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -571,6 +579,26 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GRINDER_GOLEM,
     .shouldActivate = ShouldActivateGRINDER_GOLEM,
     .activate = ActivateGRINDER_GOLEM,
+  },
+  {
+    .cardId = HARPIE_PERFUMER,
+    .shouldActivate = ShouldActivateHARPIE_PERFUMER,
+    .activate = ActivateHARPIE_PERFUMER,
+  },
+  {
+    .cardId = HARPIES_PET_PHANTASMAL_DRAGON,
+    .shouldActivate = ShouldActivateHARPIES_PET_PHANTASMAL_DRAGON,
+    .activate = ActivateHARPIES_PET_PHANTASMAL_DRAGON,
+  },
+  {
+    .cardId = HERO_KID,
+    .shouldActivate = ShouldActivateHERO_KID,
+    .activate = ActivateHERO_KID,
+  },
+  {
+    .cardId = IPIRIA,
+    .shouldActivate = ShouldActivateIPIRIA,
+    .activate = ActivateIPIRIA,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

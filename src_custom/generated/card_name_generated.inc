@@ -692,6 +692,26 @@ static const u8 sGoyoGuardianName[] __attribute__((section(".append_assets"))) =
 static const u8 sGrinderGolemName[] __attribute__((section(".append_assets"))) = "Grinder Golem";
 static const u8 sHarpieChannelerName[] __attribute__((section(".append_assets"))) = "Harpie Channeler";
 static const u8 sHarpieConductorName[] __attribute__((section(".append_assets"))) = "Harpie Conductor";
+static const u8 sHarpieDancerName[] __attribute__((section(".append_assets"))) = "Harpie Dancer";
+static const u8 sHarpieHarpistName[] __attribute__((section(".append_assets"))) = "Harpie Harpist";
+static const u8 sHarpieLadyEleganceName[] __attribute__((section(".append_assets"))) = "Harpie Lady Elegance";
+static const u8 sHarpieOracleName[] __attribute__((section(".append_assets"))) = "Harpie Oracle";
+static const u8 sHarpiePerfumerName[] __attribute__((section(".append_assets"))) = "Harpie Perfumer";
+static const u8 sHarpieQueenName[] __attribute__((section(".append_assets"))) = "Harpie Queen";
+static const u8 sHarpiesFeatherRestName[] __attribute__((section(".append_assets"))) = "Harpie's Feather Rest";
+static const u8 sHarpiesFeatherStormName[] __attribute__((section(".append_assets"))) = "Harpie's Feather Storm";
+static const u8 sHarpiesHuntingGroundName[] __attribute__((section(".append_assets"))) = "Harpies' Hunting Ground";
+static const u8 sHarpiesPetPhantasmalDragonName[] __attribute__((section(".append_assets"))) = "Harpie's Pet Phantasmal Dragon";
+static const u8 sHelshaddollHollowName[] __attribute__((section(".append_assets"))) = "Helshaddoll Hollow";
+static const u8 sHeraldOfPerfectionName[] __attribute__((section(".append_assets"))) = "Herald of Perfection";
+static const u8 sHeraldOfUltimatenessName[] __attribute__((section(".append_assets"))) = "Herald of Ultimateness";
+static const u8 sHeroKidName[] __attribute__((section(".append_assets"))) = "Hero Kid";
+static const u8 sHumidWindsName[] __attribute__((section(".append_assets"))) = "Humid Winds";
+static const u8 sHystericPartyName[] __attribute__((section(".append_assets"))) = "Hysteric Party";
+static const u8 sHystericSignName[] __attribute__((section(".append_assets"))) = "Hysteric Sign";
+static const u8 sIllusionMagicName[] __attribute__((section(".append_assets"))) = "Illusion Magic";
+static const u8 sIllusionOfChaosName[] __attribute__((section(".append_assets"))) = "Illusion of Chaos";
+static const u8 sIpiriaName[] __attribute__((section(".append_assets"))) = "Ipiria";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2082,6 +2102,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHarpieChannelerName;
   if (cardId == 0x05D3)
     return (u8 *)sHarpieConductorName;
+  if (cardId == 0x05D4)
+    return (u8 *)sHarpieDancerName;
+  if (cardId == 0x05D5)
+    return (u8 *)sHarpieHarpistName;
+  if (cardId == 0x05D6)
+    return (u8 *)sHarpieLadyEleganceName;
+  if (cardId == 0x05D7)
+    return (u8 *)sHarpieOracleName;
+  if (cardId == 0x05D8)
+    return (u8 *)sHarpiePerfumerName;
+  if (cardId == 0x05D9)
+    return (u8 *)sHarpieQueenName;
+  if (cardId == 0x05DA)
+    return (u8 *)sHarpiesFeatherRestName;
+  if (cardId == 0x05DB)
+    return (u8 *)sHarpiesFeatherStormName;
+  if (cardId == 0x05DC)
+    return (u8 *)sHarpiesHuntingGroundName;
+  if (cardId == 0x05DD)
+    return (u8 *)sHarpiesPetPhantasmalDragonName;
+  if (cardId == 0x05DE)
+    return (u8 *)sHelshaddollHollowName;
+  if (cardId == 0x05DF)
+    return (u8 *)sHeraldOfPerfectionName;
+  if (cardId == 0x05E0)
+    return (u8 *)sHeraldOfUltimatenessName;
+  if (cardId == 0x05E1)
+    return (u8 *)sHeroKidName;
+  if (cardId == 0x05E2)
+    return (u8 *)sHumidWindsName;
+  if (cardId == 0x05E3)
+    return (u8 *)sHystericPartyName;
+  if (cardId == 0x05E4)
+    return (u8 *)sHystericSignName;
+  if (cardId == 0x05E5)
+    return (u8 *)sIllusionMagicName;
+  if (cardId == 0x05E6)
+    return (u8 *)sIllusionOfChaosName;
+  if (cardId == 0x05E7)
+    return (u8 *)sIpiriaName;
 
   return gCardNames[cardId];
 }

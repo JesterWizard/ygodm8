@@ -2772,6 +2772,86 @@ static const unsigned char sHarpieConductorBigArt[] __attribute__((section(".app
 static const unsigned short sHarpieConductorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_conductor.gbapal");
 static const unsigned char sHarpieConductorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_conductor.lz");
 
+static const unsigned char sHarpieDancerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_dancer.huff");
+static const unsigned short sHarpieDancerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_dancer.gbapal");
+static const unsigned char sHarpieDancerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_dancer.lz");
+
+static const unsigned char sHarpieHarpistBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_harpist.huff");
+static const unsigned short sHarpieHarpistBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_harpist.gbapal");
+static const unsigned char sHarpieHarpistMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_harpist.lz");
+
+static const unsigned char sHarpieLadyEleganceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_lady_elegance.huff");
+static const unsigned short sHarpieLadyEleganceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_lady_elegance.gbapal");
+static const unsigned char sHarpieLadyEleganceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_lady_elegance.lz");
+
+static const unsigned char sHarpieOracleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_oracle.huff");
+static const unsigned short sHarpieOracleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_oracle.gbapal");
+static const unsigned char sHarpieOracleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_oracle.lz");
+
+static const unsigned char sHarpiePerfumerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_perfumer.huff");
+static const unsigned short sHarpiePerfumerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_perfumer.gbapal");
+static const unsigned char sHarpiePerfumerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_perfumer.lz");
+
+static const unsigned char sHarpieQueenBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpie_queen.huff");
+static const unsigned short sHarpieQueenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpie_queen.gbapal");
+static const unsigned char sHarpieQueenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpie_queen.lz");
+
+static const unsigned char sHarpiesFeatherRestBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpies_feather_rest.huff");
+static const unsigned short sHarpiesFeatherRestBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpies_feather_rest.gbapal");
+static const unsigned char sHarpiesFeatherRestMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpies_feather_rest.lz");
+
+static const unsigned char sHarpiesFeatherStormBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpies_feather_storm.huff");
+static const unsigned short sHarpiesFeatherStormBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpies_feather_storm.gbapal");
+static const unsigned char sHarpiesFeatherStormMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpies_feather_storm.lz");
+
+static const unsigned char sHarpiesHuntingGroundBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpies_hunting_ground.huff");
+static const unsigned short sHarpiesHuntingGroundBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpies_hunting_ground.gbapal");
+static const unsigned char sHarpiesHuntingGroundMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpies_hunting_ground.lz");
+
+static const unsigned char sHarpiesPetPhantasmalDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/harpies_pet_phantasmal_dragon.huff");
+static const unsigned short sHarpiesPetPhantasmalDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/harpies_pet_phantasmal_dragon.gbapal");
+static const unsigned char sHarpiesPetPhantasmalDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/harpies_pet_phantasmal_dragon.lz");
+
+static const unsigned char sHelshaddollHollowBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/helshaddoll_hollow.huff");
+static const unsigned short sHelshaddollHollowBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/helshaddoll_hollow.gbapal");
+static const unsigned char sHelshaddollHollowMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/helshaddoll_hollow.lz");
+
+static const unsigned char sHeraldOfPerfectionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/herald_of_perfection.huff");
+static const unsigned short sHeraldOfPerfectionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/herald_of_perfection.gbapal");
+static const unsigned char sHeraldOfPerfectionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/herald_of_perfection.lz");
+
+static const unsigned char sHeraldOfUltimatenessBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/herald_of_ultimateness.huff");
+static const unsigned short sHeraldOfUltimatenessBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/herald_of_ultimateness.gbapal");
+static const unsigned char sHeraldOfUltimatenessMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/herald_of_ultimateness.lz");
+
+static const unsigned char sHeroKidBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hero_kid.huff");
+static const unsigned short sHeroKidBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hero_kid.gbapal");
+static const unsigned char sHeroKidMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hero_kid.lz");
+
+static const unsigned char sHumidWindsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/humid_winds.huff");
+static const unsigned short sHumidWindsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/humid_winds.gbapal");
+static const unsigned char sHumidWindsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/humid_winds.lz");
+
+static const unsigned char sHystericPartyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hysteric_party.huff");
+static const unsigned short sHystericPartyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hysteric_party.gbapal");
+static const unsigned char sHystericPartyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hysteric_party.lz");
+
+static const unsigned char sHystericSignBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/hysteric_sign.huff");
+static const unsigned short sHystericSignBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/hysteric_sign.gbapal");
+static const unsigned char sHystericSignMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/hysteric_sign.lz");
+
+static const unsigned char sIllusionMagicBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/illusion_magic.huff");
+static const unsigned short sIllusionMagicBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/illusion_magic.gbapal");
+static const unsigned char sIllusionMagicMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/illusion_magic.lz");
+
+static const unsigned char sIllusionOfChaosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/illusion_of_chaos.huff");
+static const unsigned short sIllusionOfChaosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/illusion_of_chaos.gbapal");
+static const unsigned char sIllusionOfChaosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/illusion_of_chaos.lz");
+
+static const unsigned char sIpiriaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ipiria.huff");
+static const unsigned short sIpiriaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ipiria.gbapal");
+static const unsigned char sIpiriaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ipiria.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3466,6 +3546,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05D1] = sGrinderGolemBigArt,
   [0x05D2] = sHarpieChannelerBigArt,
   [0x05D3] = sHarpieConductorBigArt,
+  [0x05D4] = sHarpieDancerBigArt,
+  [0x05D5] = sHarpieHarpistBigArt,
+  [0x05D6] = sHarpieLadyEleganceBigArt,
+  [0x05D7] = sHarpieOracleBigArt,
+  [0x05D8] = sHarpiePerfumerBigArt,
+  [0x05D9] = sHarpieQueenBigArt,
+  [0x05DA] = sHarpiesFeatherRestBigArt,
+  [0x05DB] = sHarpiesFeatherStormBigArt,
+  [0x05DC] = sHarpiesHuntingGroundBigArt,
+  [0x05DD] = sHarpiesPetPhantasmalDragonBigArt,
+  [0x05DE] = sHelshaddollHollowBigArt,
+  [0x05DF] = sHeraldOfPerfectionBigArt,
+  [0x05E0] = sHeraldOfUltimatenessBigArt,
+  [0x05E1] = sHeroKidBigArt,
+  [0x05E2] = sHumidWindsBigArt,
+  [0x05E3] = sHystericPartyBigArt,
+  [0x05E4] = sHystericSignBigArt,
+  [0x05E5] = sIllusionMagicBigArt,
+  [0x05E6] = sIllusionOfChaosBigArt,
+  [0x05E7] = sIpiriaBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4162,6 +4262,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05D1] = sGrinderGolemBigPalette,
   [0x05D2] = sHarpieChannelerBigPalette,
   [0x05D3] = sHarpieConductorBigPalette,
+  [0x05D4] = sHarpieDancerBigPalette,
+  [0x05D5] = sHarpieHarpistBigPalette,
+  [0x05D6] = sHarpieLadyEleganceBigPalette,
+  [0x05D7] = sHarpieOracleBigPalette,
+  [0x05D8] = sHarpiePerfumerBigPalette,
+  [0x05D9] = sHarpieQueenBigPalette,
+  [0x05DA] = sHarpiesFeatherRestBigPalette,
+  [0x05DB] = sHarpiesFeatherStormBigPalette,
+  [0x05DC] = sHarpiesHuntingGroundBigPalette,
+  [0x05DD] = sHarpiesPetPhantasmalDragonBigPalette,
+  [0x05DE] = sHelshaddollHollowBigPalette,
+  [0x05DF] = sHeraldOfPerfectionBigPalette,
+  [0x05E0] = sHeraldOfUltimatenessBigPalette,
+  [0x05E1] = sHeroKidBigPalette,
+  [0x05E2] = sHumidWindsBigPalette,
+  [0x05E3] = sHystericPartyBigPalette,
+  [0x05E4] = sHystericSignBigPalette,
+  [0x05E5] = sIllusionMagicBigPalette,
+  [0x05E6] = sIllusionOfChaosBigPalette,
+  [0x05E7] = sIpiriaBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4858,6 +4978,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05D1] = 0,
   [0x05D2] = 0,
   [0x05D3] = 0,
+  [0x05D4] = 0,
+  [0x05D5] = 0,
+  [0x05D6] = 0,
+  [0x05D7] = 0,
+  [0x05D8] = 0,
+  [0x05D9] = 0,
+  [0x05DA] = 0,
+  [0x05DB] = 0,
+  [0x05DC] = 0,
+  [0x05DD] = 0,
+  [0x05DE] = 0,
+  [0x05DF] = 0,
+  [0x05E0] = 0,
+  [0x05E1] = 0,
+  [0x05E2] = 0,
+  [0x05E3] = 0,
+  [0x05E4] = 0,
+  [0x05E5] = 0,
+  [0x05E6] = 0,
+  [0x05E7] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5554,4 +5694,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05D1] = sGrinderGolemMiniArt,
   [0x05D2] = sHarpieChannelerMiniArt,
   [0x05D3] = sHarpieConductorMiniArt,
+  [0x05D4] = sHarpieDancerMiniArt,
+  [0x05D5] = sHarpieHarpistMiniArt,
+  [0x05D6] = sHarpieLadyEleganceMiniArt,
+  [0x05D7] = sHarpieOracleMiniArt,
+  [0x05D8] = sHarpiePerfumerMiniArt,
+  [0x05D9] = sHarpieQueenMiniArt,
+  [0x05DA] = sHarpiesFeatherRestMiniArt,
+  [0x05DB] = sHarpiesFeatherStormMiniArt,
+  [0x05DC] = sHarpiesHuntingGroundMiniArt,
+  [0x05DD] = sHarpiesPetPhantasmalDragonMiniArt,
+  [0x05DE] = sHelshaddollHollowMiniArt,
+  [0x05DF] = sHeraldOfPerfectionMiniArt,
+  [0x05E0] = sHeraldOfUltimatenessMiniArt,
+  [0x05E1] = sHeroKidMiniArt,
+  [0x05E2] = sHumidWindsMiniArt,
+  [0x05E3] = sHystericPartyMiniArt,
+  [0x05E4] = sHystericSignMiniArt,
+  [0x05E5] = sIllusionMagicMiniArt,
+  [0x05E6] = sIllusionOfChaosMiniArt,
+  [0x05E7] = sIpiriaMiniArt,
 };

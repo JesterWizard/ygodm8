@@ -352,6 +352,22 @@ unsigned char CanActivateHARPIE_CHANNELER(void);
 void ActivateHARPIE_CHANNELEREffect(void);
 unsigned char CanActivateHARPIE_CONDUCTOR(void);
 void ActivateHARPIE_CONDUCTOREffect(void);
+unsigned char CanActivateHARPIE_DANCER(void);
+void ActivateHARPIE_DANCEREffect(void);
+unsigned char CanActivateHARPIE_HARPIST(void);
+void ActivateHARPIE_HARPISTEffect(void);
+unsigned char CanActivateHARPIE_ORACLE(void);
+void ActivateHARPIE_ORACLEEffect(void);
+unsigned char CanActivateHARPIE_QUEEN(void);
+void ActivateHARPIE_QUEENEffect(void);
+unsigned char CanActivateHELSHADDOLL_HOLLOW(void);
+void ActivateHELSHADDOLL_HOLLOWEffect(void);
+unsigned char CanActivateHERALD_OF_PERFECTION(void);
+void ActivateHERALD_OF_PERFECTIONEffect(void);
+unsigned char CanActivateHERALD_OF_ULTIMATENESS(void);
+void ActivateHERALD_OF_ULTIMATENESSEffect(void);
+unsigned char CanActivateILLUSION_OF_CHAOS(void);
+void ActivateILLUSION_OF_CHAOSEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1671,6 +1687,38 @@ FAILED:
   }
   if (gMonEffect.id == HARPIE_CONDUCTOR) {
     ActivateHARPIE_CONDUCTOREffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_DANCER) {
+    ActivateHARPIE_DANCEREffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_HARPIST) {
+    ActivateHARPIE_HARPISTEffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_ORACLE) {
+    ActivateHARPIE_ORACLEEffect();
+    return;
+  }
+  if (gMonEffect.id == HARPIE_QUEEN) {
+    ActivateHARPIE_QUEENEffect();
+    return;
+  }
+  if (gMonEffect.id == HELSHADDOLL_HOLLOW) {
+    ActivateHELSHADDOLL_HOLLOWEffect();
+    return;
+  }
+  if (gMonEffect.id == HERALD_OF_PERFECTION) {
+    ActivateHERALD_OF_PERFECTIONEffect();
+    return;
+  }
+  if (gMonEffect.id == HERALD_OF_ULTIMATENESS) {
+    ActivateHERALD_OF_ULTIMATENESSEffect();
+    return;
+  }
+  if (gMonEffect.id == ILLUSION_OF_CHAOS) {
+    ActivateILLUSION_OF_CHAOSEffect();
     return;
   }
 }
