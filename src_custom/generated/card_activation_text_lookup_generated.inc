@@ -618,6 +618,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC] = gActivationDescription_DarkMagicianTheMagicianOfBlackMagic_Popup1,
   [DARK_RENEWAL] = gActivationDescription_DarkRenewal_Popup1,
   [DARK_STRIKE_FIGHTER] = gActivationDescription_DarkStrikeFighter_Popup1,
+  [DARK_SUPREMACY] = gActivationDescription_DarkSupremacy_Popup1,
+  [DESTINED_RIVALS] = gActivationDescription_DestinedRivals_Popup1,
+  [DRIED_WINDS] = gActivationDescription_DriedWinds_Popup1,
+  [DRAGON_RAVINE] = gActivationDescription_DragonRavine_Popup1,
+  [DRAGON_SHRINE] = gActivationDescription_DragonShrine_Popup1,
+  [DEEP_EYES_WHITE_DRAGON] = gActivationDescription_DeepEyesWhiteDragon_Popup1,
+  [DRAGON_MASTER_MAGIA] = gActivationDescription_DragonMasterMagia_Popup1,
+  [DRAGON_SPIRIT_OF_WHITE] = gActivationDescription_DragonSpiritOfWhite_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1267,6 +1275,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC_POPUP_1] = gActivationDescription_DarkMagicianTheMagicianOfBlackMagic_Popup1,
   [CARD_EFFECT_TEXT_DARK_RENEWAL_POPUP_1] = gActivationDescription_DarkRenewal_Popup1,
   [CARD_EFFECT_TEXT_DARK_STRIKE_FIGHTER_POPUP_1] = gActivationDescription_DarkStrikeFighter_Popup1,
+  [CARD_EFFECT_TEXT_DARK_SUPREMACY_POPUP_1] = gActivationDescription_DarkSupremacy_Popup1,
+  [CARD_EFFECT_TEXT_DESTINED_RIVALS_POPUP_1] = gActivationDescription_DestinedRivals_Popup1,
+  [CARD_EFFECT_TEXT_DRIED_WINDS_POPUP_1] = gActivationDescription_DriedWinds_Popup1,
+  [CARD_EFFECT_TEXT_DRAGON_RAVINE_POPUP_1] = gActivationDescription_DragonRavine_Popup1,
+  [CARD_EFFECT_TEXT_DRAGON_SHRINE_POPUP_1] = gActivationDescription_DragonShrine_Popup1,
+  [CARD_EFFECT_TEXT_DEEP_EYES_WHITE_DRAGON_POPUP_1] = gActivationDescription_DeepEyesWhiteDragon_Popup1,
+  [CARD_EFFECT_TEXT_DRAGON_MASTER_MAGIA_POPUP_1] = gActivationDescription_DragonMasterMagia_Popup1,
+  [CARD_EFFECT_TEXT_DRAGON_SPIRIT_OF_WHITE_POPUP_1] = gActivationDescription_DragonSpiritOfWhite_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

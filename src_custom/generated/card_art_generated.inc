@@ -2580,6 +2580,38 @@ static const unsigned char sDarkStrikeFighterBigArt[] __attribute__((section(".a
 static const unsigned short sDarkStrikeFighterBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_strike_fighter.gbapal");
 static const unsigned char sDarkStrikeFighterMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_strike_fighter.lz");
 
+static const unsigned char sDarkSupremacyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dark_supremacy.huff");
+static const unsigned short sDarkSupremacyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dark_supremacy.gbapal");
+static const unsigned char sDarkSupremacyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dark_supremacy.lz");
+
+static const unsigned char sDestinedRivalsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/destined_rivals.huff");
+static const unsigned short sDestinedRivalsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/destined_rivals.gbapal");
+static const unsigned char sDestinedRivalsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/destined_rivals.lz");
+
+static const unsigned char sDriedWindsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dried_winds.huff");
+static const unsigned short sDriedWindsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dried_winds.gbapal");
+static const unsigned char sDriedWindsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dried_winds.lz");
+
+static const unsigned char sDragonRavineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dragon_ravine.huff");
+static const unsigned short sDragonRavineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_ravine.gbapal");
+static const unsigned char sDragonRavineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_ravine.lz");
+
+static const unsigned char sDragonShrineBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dragon_shrine.huff");
+static const unsigned short sDragonShrineBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_shrine.gbapal");
+static const unsigned char sDragonShrineMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_shrine.lz");
+
+static const unsigned char sDeepEyesWhiteDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/deep_eyes_white_dragon.huff");
+static const unsigned short sDeepEyesWhiteDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/deep_eyes_white_dragon.gbapal");
+static const unsigned char sDeepEyesWhiteDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/deep_eyes_white_dragon.lz");
+
+static const unsigned char sDragonMasterMagiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dragon_master_magia.huff");
+static const unsigned short sDragonMasterMagiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_master_magia.gbapal");
+static const unsigned char sDragonMasterMagiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_master_magia.lz");
+
+static const unsigned char sDragonSpiritOfWhiteBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/dragon_spirit_of_white.huff");
+static const unsigned short sDragonSpiritOfWhiteBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/dragon_spirit_of_white.gbapal");
+static const unsigned char sDragonSpiritOfWhiteMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/dragon_spirit_of_white.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3226,6 +3258,14 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05A1] = sDarkMagicianTheMagicianOfBlackMagicBigArt,
   [0x05A2] = sDarkRenewalBigArt,
   [0x05A3] = sDarkStrikeFighterBigArt,
+  [0x05A4] = sDarkSupremacyBigArt,
+  [0x05A5] = sDestinedRivalsBigArt,
+  [0x05A6] = sDriedWindsBigArt,
+  [0x05A7] = sDragonRavineBigArt,
+  [0x05A8] = sDragonShrineBigArt,
+  [0x05A9] = sDeepEyesWhiteDragonBigArt,
+  [0x05AA] = sDragonMasterMagiaBigArt,
+  [0x05AB] = sDragonSpiritOfWhiteBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3874,6 +3914,14 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05A1] = sDarkMagicianTheMagicianOfBlackMagicBigPalette,
   [0x05A2] = sDarkRenewalBigPalette,
   [0x05A3] = sDarkStrikeFighterBigPalette,
+  [0x05A4] = sDarkSupremacyBigPalette,
+  [0x05A5] = sDestinedRivalsBigPalette,
+  [0x05A6] = sDriedWindsBigPalette,
+  [0x05A7] = sDragonRavineBigPalette,
+  [0x05A8] = sDragonShrineBigPalette,
+  [0x05A9] = sDeepEyesWhiteDragonBigPalette,
+  [0x05AA] = sDragonMasterMagiaBigPalette,
+  [0x05AB] = sDragonSpiritOfWhiteBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4522,6 +4570,14 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05A1] = 0,
   [0x05A2] = 0,
   [0x05A3] = 0,
+  [0x05A4] = 0,
+  [0x05A5] = 0,
+  [0x05A6] = 0,
+  [0x05A7] = 0,
+  [0x05A8] = 0,
+  [0x05A9] = 0,
+  [0x05AA] = 0,
+  [0x05AB] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5170,4 +5226,12 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05A1] = sDarkMagicianTheMagicianOfBlackMagicMiniArt,
   [0x05A2] = sDarkRenewalMiniArt,
   [0x05A3] = sDarkStrikeFighterMiniArt,
+  [0x05A4] = sDarkSupremacyMiniArt,
+  [0x05A5] = sDestinedRivalsMiniArt,
+  [0x05A6] = sDriedWindsMiniArt,
+  [0x05A7] = sDragonRavineMiniArt,
+  [0x05A8] = sDragonShrineMiniArt,
+  [0x05A9] = sDeepEyesWhiteDragonMiniArt,
+  [0x05AA] = sDragonMasterMagiaMiniArt,
+  [0x05AB] = sDragonSpiritOfWhiteMiniArt,
 };

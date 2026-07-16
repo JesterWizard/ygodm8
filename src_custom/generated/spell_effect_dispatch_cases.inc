@@ -194,6 +194,12 @@
     case DOUBLE_SUMMON:
       EffectDoubleSummon();
       return;
+    case DRAGON_RAVINE:
+      EffectDRAGON_RAVINE();
+      return;
+    case DRAGON_SHRINE:
+      EffectDRAGON_SHRINE();
+      return;
     case DUST_TORNADO:
       EffectDustTornado();
       return;

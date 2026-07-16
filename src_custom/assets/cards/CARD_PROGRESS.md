@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 643 |
-| Art ready, needs manifest | 159 |
+| In game (manifest + art) | 651 |
+| Art ready, needs manifest | 149 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **804** |
+| **Total PNGs in `80x80/`** | **802** |
 
 ## In game
 
@@ -665,21 +665,19 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC` | Dark Magician the Magician of Black Magic | `dark_magician_the_magician_of_black_magic.png` |
 | `DARK_RENEWAL` | Dark Renewal | `dark_renewal.png` |
 | `DARK_STRIKE_FIGHTER` | Dark Strike Fighter | `dark_strike_fighter.png` |
+| `DARK_SUPREMACY` | Dark Supremacy | `dark_supremacy.png` |
+| `DESTINED_RIVALS` | Destined Rivals | `destined_rivals.png` |
+| `DRIED_WINDS` | Dried Winds | `dried_winds.png` |
+| `DRAGON_RAVINE` | Dragon Ravine | `dragon_ravine.png` |
+| `DRAGON_SHRINE` | Dragon Shrine | `dragon_shrine.png` |
+| `DEEP_EYES_WHITE_DRAGON` | Deep-Eyes White Dragon | `deep_eyes_white_dragon.png` |
+| `DRAGON_MASTER_MAGIA` | Dragon Master Magia | `dragon_master_magia.png` |
+| `DRAGON_SPIRIT_OF_WHITE` | Dragon Spirit of White | `dragon_spirit_of_white.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
-- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
-- [ ] `DARK_SUPREMACY` — `dark_supremacy.png`
-- [ ] `DEEP_EYES_WHITE_DRAGON` — `deep_eyes_white_dragon.png`
-- [ ] `DESTINED_RIVALS` — `destined_rivals.png`
-- [ ] `DRAGON_MASTER_MAGIA` — `dragon_master_magia.png`
-- [ ] `DRAGON_RAVINE` — `dragon_ravine.png`
-- [ ] `DRAGON_SHRINE` — `dragon_shrine.png`
-- [ ] `DRAGON_SPIRIT_OF_WHITE` — `dragon_spirit_of_white.png`
-- [ ] `DRIED_WINDS` — `dried_winds.png`
 - [ ] `EBON_ILLUSION_MAGICIAN` — `ebon_illusion_magician.png`
 - [ ] `EL_SHADDOLL_ANOYATYLLIS` — `el_shaddoll_anoyatyllis.png`
 - [ ] `EL_SHADDOLL_APKALLONE` — `el_shaddoll_apkallone.png`

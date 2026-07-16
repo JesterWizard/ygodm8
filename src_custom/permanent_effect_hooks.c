@@ -143,6 +143,12 @@ unsigned char ShouldActivateTHUNDER_DRAGON_COLOSSUS(void);
 void ActivateTHUNDER_DRAGON_COLOSSUS(void);
 unsigned char ShouldActivateDARK_MAGICIAN_OF_DESTRUCTION(void);
 void ActivateDARK_MAGICIAN_OF_DESTRUCTION(void);
+unsigned char ShouldActivateDEEP_EYES_WHITE_DRAGON(void);
+void ActivateDEEP_EYES_WHITE_DRAGON(void);
+unsigned char ShouldActivateDRAGON_MASTER_MAGIA(void);
+void ActivateDRAGON_MASTER_MAGIA(void);
+unsigned char ShouldActivateDRAGON_SPIRIT_OF_WHITE(void);
+void ActivateDRAGON_SPIRIT_OF_WHITE(void);
 
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
@@ -424,6 +430,21 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = DARK_MAGICIAN_OF_DESTRUCTION,
     .shouldActivate = ShouldActivateDARK_MAGICIAN_OF_DESTRUCTION,
     .activate = ActivateDARK_MAGICIAN_OF_DESTRUCTION,
+  },
+  {
+    .cardId = DEEP_EYES_WHITE_DRAGON,
+    .shouldActivate = ShouldActivateDEEP_EYES_WHITE_DRAGON,
+    .activate = ActivateDEEP_EYES_WHITE_DRAGON,
+  },
+  {
+    .cardId = DRAGON_MASTER_MAGIA,
+    .shouldActivate = ShouldActivateDRAGON_MASTER_MAGIA,
+    .activate = ActivateDRAGON_MASTER_MAGIA,
+  },
+  {
+    .cardId = DRAGON_SPIRIT_OF_WHITE,
+    .shouldActivate = ShouldActivateDRAGON_SPIRIT_OF_WHITE,
+    .activate = ActivateDRAGON_SPIRIT_OF_WHITE,
   },
   /* END PERMANENT EFFECT OVERRIDES */
 };

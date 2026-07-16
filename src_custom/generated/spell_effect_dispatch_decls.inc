@@ -64,6 +64,8 @@ extern void EffectDIMENSION_FUSION(void);
 extern void EffectDOCTOR_D(void);
 extern void EffectDOUBLE_SPELL(void);
 extern void EffectDoubleSummon(void);
+extern void EffectDRAGON_RAVINE(void);
+extern void EffectDRAGON_SHRINE(void);
 extern void EffectDustTornado(void);
 extern void EffectD_BURST(void);
 extern void EffectD_FORCE(void);

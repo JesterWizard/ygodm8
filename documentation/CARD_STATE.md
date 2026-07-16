@@ -1,20 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Added 10 cards (DARK_FUSION–DARK_STRIKE_FIGHTER) with art + stub effects
+**Last worked on:** 2026-07-16 — Fix trunk not showing cards from ID 1444+
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/permanent_effect_hooks.c`
-- `src_custom/trap_effect_hooks.c`
-- `src_custom/spell_effects/`
-- `src_custom/activated_effects/`
-- `src_custom/permanent_effects/`
-- `src_custom/trap_effects/`
-- `src_custom/assets/cards/80x80/`
-- `src_custom/assets/cards/CARD_PROGRESS.md`
+- `Makefile` (deps: trunk/shop/code_801EF30_hooks → `card_trunk_generated.inc`)
 
-**Outcome:** make exits 0. Cards in trunk with art; effects stubbed. Renamed 3 mislabeled art stems to official consts (Magical Circle, Magician's Apprentice, Magician of Black Magic).
+**Outcome:** Root cause was stale `gCustomTrunkCards` in ROM (ended at 0x5A3) while loops used NUM=651 — not EWRAM/SRAM sizing (those were already correct at 0x28C / 0x4410). Relinked; trunk list now ends 0x5A4–0x5AB.
 
 **Open / next:**
-- Implement real effect logic for these 10 cards
+- Reload ROM; new game if save qty looks wrong after CUSTOM_CARD_QTY growth past 0x200 floor
+- Implement real effect logic for the 8 stubbed cards

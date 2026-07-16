@@ -29568,6 +29568,221 @@
       "effect_texts": {
         "popup_1": "Main Phase 1: Tribute 1; burn equal to its Level x 200. Once per turn."
       }
+    },
+    {
+      "card_const": "DARK_SUPREMACY",
+      "card_name": "Dark Supremacy",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 9, 6, 1, 3, 2, 8, 8],
+      "description": {
+        "symbol": "gDescription_DarkSupremacy",
+        "pages": [
+          "Target face-up cards your opponent controls, up to the",
+          "number of Dark Fusion and Spells that mention it in your",
+          "GY; negate their effects until end of turn. GY: banish this;",
+          "shuffle up to 5 HERO monsters from GY or banishment",
+          "into Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Negate opp face-up cards up to Dark Fusion count in GY. GY: shuffle up to 5 HERO."
+      }
+    },
+    {
+      "card_const": "DESTINED_RIVALS",
+      "card_name": "Destined Rivals",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 2, 6, 3, 4, 4, 7, 3],
+      "description": {
+        "symbol": "gDescription_DestinedRivals",
+        "pages": [
+          "If you control Blue-Eyes White Dragon or Dark",
+          "Magician: Negate effects of all face-up monsters your opponent",
+          "controls until end of turn. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If you control Blue-Eyes or Dark Magician: negate all opp face-up monster effects."
+      }
+    },
+    {
+      "card_const": "DRIED_WINDS",
+      "card_name": "Dried Winds",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 8, 2, 6, 5, 9, 8, 3],
+      "description": {
+        "symbol": "gDescription_DriedWinds",
+        "pages": [
+          "If you gain LP: destroy 1 face-up opp monster. If you control",
+          "an Aroma and LP is 3000 or more higher: pay the difference;",
+          "destroy face-up opp monsters whose ATK totals less than or",
+          "equal to the LP paid. Each effect once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On LP gain: destroy 1 opp monster. Aroma +3000 LP: pay diff; destroy opp up to ATK."
+      }
+    },
+    {
+      "card_const": "DRAGON_RAVINE",
+      "card_name": "Dragon Ravine",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 2, 2, 6, 5, 0, 4, 4],
+      "description": {
+        "symbol": "gDescription_DragonRavine",
+        "pages": [
+          "Once per turn: discard 1, then choose: Add 1 Level 4 or",
+          "lower Dragunity from Deck to hand, OR send 1 Dragon from",
+          "Deck to GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "OPT: discard 1; add Lv4- Dragunity from Deck, or send 1 Dragon from Deck to GY."
+      }
+    },
+    {
+      "card_const": "DRAGON_SHRINE",
+      "card_name": "Dragon Shrine",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 1, 6, 2, 0, 9, 5, 9],
+      "description": {
+        "symbol": "gDescription_DragonShrine",
+        "pages": [
+          "Send 1 Dragon from Deck to GY. If it was a Normal",
+          "Dragon, you can send 1 more Dragon from Deck to GY. Once per",
+          "turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send 1 Dragon from Deck to GY; if Normal, may send 1 more. Once per turn."
+      }
+    },
+    {
+      "card_const": "DEEP_EYES_WHITE_DRAGON",
+      "card_name": "Deep-Eyes White Dragon",
+      "atk": 0,
+      "def": 0,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 2, 8, 0, 4, 4, 1, 0],
+      "description": {
+        "symbol": "gDescription_DeepEyesWhiteDragon",
+        "pages": [
+          "When a face-up Blue-Eyes you control is destroyed",
+          "and you have a Dragon in GY: SS this from hand; burn 600 per",
+          "differently named Dragon in GY. On Summon: ATK becomes",
+          "equal to a Dragon in GY. If destroyed by effect: destroy all",
+          "opp monsters."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Blue-Eyes destroyed: SS from hand; burn 600 per Dragon in GY. On Summon set ATK."
+      }
+    },
+    {
+      "card_const": "DRAGON_MASTER_MAGIA",
+      "card_name": "Dragon Master Magia",
+      "atk": 5000,
+      "def": 4000,
+      "level": 12,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [1, 2, 3, 8, 1, 1, 0, 0],
+      "description": {
+        "symbol": "gDescription_DragonMasterMagia",
+        "pages": [
+          "Blue-Eyes Ultimate or 3 Blue-Eyes plus 1 Chaos or BLS Ritual. Must",
+          "be Fusion Summoned. Quick: negate opp card or effect and",
+          "destroy it once per card type per turn. If opp removes this: SS 1",
+          "Blue-Eyes or Chaos or BLS Ritual from Extra or GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Quick: negate and destroy opp card or effect once per type per turn."
+      }
+    },
+    {
+      "card_const": "DRAGON_SPIRIT_OF_WHITE",
+      "card_name": "Dragon Spirit of White",
+      "atk": 2500,
+      "def": 2000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [4, 5, 4, 6, 7, 4, 4, 6],
+      "description": {
+        "symbol": "gDescription_DragonSpiritOfWhite",
+        "pages": [
+          "Always treated as a Blue-Eyes card. Treated as Normal in",
+          "hand or GY. On NS or SS: banish 1 opp Spell or Trap. Quick: if",
+          "opp controls a monster, Tribute this; SS Blue-Eyes White Dragon",
+          "from hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Blue-Eyes name. On Summon: banish 1 opp S/T. Tribute: SS Blue-Eyes from hand."
+      }
     }
   ]
 }

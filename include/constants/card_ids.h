@@ -1445,11 +1445,19 @@
 #define DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_MAGIC 0x05A1
 #define DARK_RENEWAL                             0x05A2
 #define DARK_STRIKE_FIGHTER                      0x05A3
+#define DARK_SUPREMACY                           0x05A4
+#define DESTINED_RIVALS                          0x05A5
+#define DRIED_WINDS                              0x05A6
+#define DRAGON_RAVINE                            0x05A7
+#define DRAGON_SHRINE                            0x05A8
+#define DEEP_EYES_WHITE_DRAGON                   0x05A9
+#define DRAGON_MASTER_MAGIA                      0x05AA
+#define DRAGON_SPIRIT_OF_WHITE                   0x05AB
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05A4
-#define NUM_CUSTOM_CARDS                        0x0283
+#define NUM_TOTAL_CARDS                         0x05AC
+#define NUM_CUSTOM_CARDS                        0x028B
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

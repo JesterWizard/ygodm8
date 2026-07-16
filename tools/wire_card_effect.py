@@ -254,8 +254,11 @@ void Activate{const}(void)
 }}
 """,
         "dispatcher_decl": "unsigned char ShouldActivate{const}(void);\nvoid Activate{const}(void);",
-        "dispatcher_entry": "  {{\n    .cardId = {const},\n    .shouldActivate = ShouldActivate{const},\n    .activate = Activate{const},\n  }},",
-        "dispatcher_anchor": "/* END PERMANENT EFFECT OVERRIDES */",
+        # Decls before the override table; entries before the END marker.
+        "dispatcher_decl_anchor": "static const PermanentEffectOverride sPermanentEffectOverrides[]",
+        "dispatcher_entry": "  {{\n    .cardId = {const},\n    .shouldActivate = ShouldActivate{const},\n    .activate = Activate{const},\n  }},\n",
+        "dispatcher_entry_anchor": "/* END PERMANENT EFFECT OVERRIDES */",
+        "dispatcher_anchor": None,
     },
     "battle": {
         "dir": "src_custom/battle_effects",

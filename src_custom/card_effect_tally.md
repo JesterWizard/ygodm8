@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `575` effects
+- `583` effects
 
 ## Tally
 
@@ -556,6 +556,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Dark Magician The Magician Of Black Magic` | `src_custom/activated_effects/dark_magician_the_magician_of_black_magic.c` |
 | `trap_effects` | `Dark Renewal` | `src_custom/trap_effects/dark_renewal.c` |
 | `activated_effects` | `Dark Strike Fighter` | `src_custom/activated_effects/dark_strike_fighter.c` |
+| `trap_effects` | `Dark Supremacy` | `src_custom/trap_effects/dark_supremacy.c` |
+| `trap_effects` | `Destined Rivals` | `src_custom/trap_effects/destined_rivals.c` |
+| `trap_effects` | `Dried Winds` | `src_custom/trap_effects/dried_winds.c` |
+| `spell_effects` | `Dragon Ravine` | `src_custom/spell_effects/dragon_ravine.c` |
+| `spell_effects` | `Dragon Shrine` | `src_custom/spell_effects/dragon_shrine.c` |
+| `permanent_effects` | `Deep Eyes White Dragon` | `src_custom/permanent_effects/deep_eyes_white_dragon.c` |
+| `permanent_effects` | `Dragon Master Magia` | `src_custom/permanent_effects/dragon_master_magia.c` |
+| `permanent_effects` | `Dragon Spirit Of White` | `src_custom/permanent_effects/dragon_spirit_of_white.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

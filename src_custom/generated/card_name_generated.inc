@@ -644,6 +644,14 @@ static const u8 sDarkMagicianOfDestructionName[] __attribute__((section(".append
 static const u8 sDarkMagicianTheMagicianOfBlackMagicName[] __attribute__((section(".append_assets"))) = "Dark Magician the Magician of Black Magic";
 static const u8 sDarkRenewalName[] __attribute__((section(".append_assets"))) = "Dark Renewal";
 static const u8 sDarkStrikeFighterName[] __attribute__((section(".append_assets"))) = "Dark Strike Fighter";
+static const u8 sDarkSupremacyName[] __attribute__((section(".append_assets"))) = "Dark Supremacy";
+static const u8 sDestinedRivalsName[] __attribute__((section(".append_assets"))) = "Destined Rivals";
+static const u8 sDriedWindsName[] __attribute__((section(".append_assets"))) = "Dried Winds";
+static const u8 sDragonRavineName[] __attribute__((section(".append_assets"))) = "Dragon Ravine";
+static const u8 sDragonShrineName[] __attribute__((section(".append_assets"))) = "Dragon Shrine";
+static const u8 sDeepEyesWhiteDragonName[] __attribute__((section(".append_assets"))) = "Deep-Eyes White Dragon";
+static const u8 sDragonMasterMagiaName[] __attribute__((section(".append_assets"))) = "Dragon Master Magia";
+static const u8 sDragonSpiritOfWhiteName[] __attribute__((section(".append_assets"))) = "Dragon Spirit of White";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1938,6 +1946,22 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sDarkRenewalName;
   if (cardId == 0x05A3)
     return (u8 *)sDarkStrikeFighterName;
+  if (cardId == 0x05A4)
+    return (u8 *)sDarkSupremacyName;
+  if (cardId == 0x05A5)
+    return (u8 *)sDestinedRivalsName;
+  if (cardId == 0x05A6)
+    return (u8 *)sDriedWindsName;
+  if (cardId == 0x05A7)
+    return (u8 *)sDragonRavineName;
+  if (cardId == 0x05A8)
+    return (u8 *)sDragonShrineName;
+  if (cardId == 0x05A9)
+    return (u8 *)sDeepEyesWhiteDragonName;
+  if (cardId == 0x05AA)
+    return (u8 *)sDragonMasterMagiaName;
+  if (cardId == 0x05AB)
+    return (u8 *)sDragonSpiritOfWhiteName;
 
   return gCardNames[cardId];
 }

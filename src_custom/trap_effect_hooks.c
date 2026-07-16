@@ -441,3 +441,9 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DAMAGE_REPTILE in trap dispatcher */
 /* DARK_RENEWAL trap effect */
   /* TODO: wire DARK_RENEWAL in trap dispatcher */
+/* DARK_SUPREMACY trap effect */
+  /* TODO: wire DARK_SUPREMACY in trap dispatcher */
+/* DESTINED_RIVALS trap effect */
+  /* TODO: wire DESTINED_RIVALS in trap dispatcher */
+/* DRIED_WINDS trap effect */
+  /* TODO: wire DRIED_WINDS in trap dispatcher */
