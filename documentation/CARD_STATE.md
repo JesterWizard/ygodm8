@@ -1,11 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Status windows: 7th icon + row-15 blend gap
+**Last worked on:** 2026-07-16 — Millennium tracker: event-cmd docs + 8px content spacing
 
 **Files touched:**
-- `src_custom/status_menu_hooks.c` — WIN H `0xF0`; WIN0 y 8–120, WIN1 y 128–152 (gap at tile row 15)
-- `documentation/status-menu-layout.md`
+- `documentation/status-menu-layout.md` — expanded `SET_MILLENNIUM_ITEM` / `CLEAR_MILLENNIUM_ITEM` docs
+- `tools/generate_millennium_item_assets.py` — pack by opaque bbox with 8px gaps; emit `sMillenniumItemMapCols`
+- `src_custom/status_menu_hooks.c` — place via map-col table
+- `src_custom/generated/millennium_item_assets_generated.inc`
 
-**Outcome:** `make` exits 0.
+**Outcome:** `make` exits 0; layout gaps verified at 8px between content.
 
-**Open / next:** In-game confirm necklace visible and bright gap on row 15.
+**Open / next:** In-game confirm tighter spacing.

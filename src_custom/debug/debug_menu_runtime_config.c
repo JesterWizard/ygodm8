@@ -77,7 +77,7 @@ static const struct {
     CONF("Skip Duel",    skip_to_duel),
     CONF("Title Video",  enable_title_screen_video),
     CONF("Small Desc",   use_small_card_description_font),
-    CONF("All Millen",   show_all_millennium_items),
+    CONF("Mill Track",   enable_millennium_item_tracker),
 };
 
 #undef CONF

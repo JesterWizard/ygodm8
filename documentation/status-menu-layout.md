@@ -97,22 +97,32 @@ LynJump also replaces the four vanilla stat writers (`sub_80079C4`, `sub_8007AB8
 
 Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
 
-Icons sit on **row 11**, spaced four tiles apart (seven icons; window right edge `0xF0` so the necklace is not clipped). After vanilla Status VBlank setup, `StatusMenuApplyMillenniumWindows` pins **WIN0** to stats-through-icons (y 8–120) and **WIN1** to money (y 128–152). Tile **row 15** (y 120–127) sits outside both windows as a bright gap. WININ is BG2|BG3|CLR; WINOUT stays BG3-only.
+Icons sit on **row 11**. Horizontal positions are not a fixed 32px grid: `tools/generate_millennium_item_assets.py` measures each PNG’s opaque bbox, remasters the 32×32 art so content can sit on any pixel phase, and emits `sMillenniumItemMapCols[]` so adjacent icons are **8px apart by content** (centered in the blend window). After vanilla Status VBlank setup, `StatusMenuApplyMillenniumWindows` pins **WIN0** to stats-through-icons (y 8–120) and **WIN1** to money (y 128–152). Tile **row 15** (y 120–127) sits outside both windows as a bright gap. WININ is BG2|BG3|CLR; WINOUT stays BG3-only.
 
 - Icon tile bases: color `0xA0`, silhouette `0x110` (must stay below tile `0x180` — that offset is the BG3 tilemap `sbb1E` inside charblock 3).
 - **Unowned** (`gMillenniumItemsOwned[i] == 0`): black silhouette tiles (palette bank 14).
 - **Owned** (nonzero): full-color tiles (palette bank 13).
 
-With `gRuntimeConfig.show_all_millennium_items` (debug label **All Millen**), every icon renders owned regardless of save bytes.
+With `gRuntimeConfig.enable_millennium_item_tracker` (debug label **Mill Track**), the icon row and its blend window are shown; when FALSE the Status screen skips them (vanilla-style stats/money windows only).
 
-Ownership is seven EWRAM/Flash bytes (`gMillenniumItemsOwned`), saved with the slot like Timed Duel flags. Event scripts set them with:
+#### Collecting items (event command)
+
+Ownership is seven EWRAM/Flash bytes (`gMillenniumItemsOwned`), saved with the slot like Timed Duel flags. Scripts mark acquisition with macros from [`events/scripts/event_macros.h`](../events/scripts/event_macros.h):
+
+| Macro | Bytes | Effect |
+|-------|-------|--------|
+| `SET_MILLENNIUM_ITEM(id)` | `0x7C 'B' id 1` | Mark item owned |
+| `CLEAR_MILLENNIUM_ITEM(id)` | `0x7C 'B' id 0` | Clear owned |
+
+Consumed in `MillenniumItems_TryConsumeOpcode` (wired from `script_cg_hooks.c` before the vanilla `0x7C` handler). `'B'` is listed as CG-compatible in `cg_hooks.c` so a CG session does not end early.
+
+Example:
 
 ```
 SET_MILLENNIUM_ITEM(MILLENNIUM_ITEM_PUZZLE)
+SET_MILLENNIUM_ITEM(MILLENNIUM_ITEM_EYE)
 CLEAR_MILLENNIUM_ITEM(MILLENNIUM_ITEM_RING)
 ```
-
-(`0x7C 'B' id value` — see `events/scripts/event_macros.h`.)
 
 | Index | Macro | Item |
 |-------|-------|------|

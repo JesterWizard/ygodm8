@@ -84,7 +84,7 @@ typedef struct {
     u8 enable_manifest_map_overrides; // Override map graphics via custom_map_manifest.json redirects.
     u8 enable_extra_deck; // Extra deck system: store/remove fusion monsters from a 15-card extra deck per player deck.
     u8 use_small_card_description_font; // Card detail: 8x8 font (10 rows) instead of 8x16 (5 rows).
-    u8 show_all_millennium_items; // Status menu: treat all seven millennium items as collected.
+    u8 enable_millennium_item_tracker; // Status menu: show the seven-item progress row.
 } RuntimeConfig;
 
 /*

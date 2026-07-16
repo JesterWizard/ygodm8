@@ -57,8 +57,6 @@
  * Tile gfx live in charblock 3 below sbb1E (BG3 map at tile index 0x180 / offset 0x3000).
  * Color+silhouette need 224 tiles → 0xA0..0x17F fits; 0x120+ silhouettes used to clobber BG3. */
 #define STATUS_MILLENNIUM_ICON_ROW         11
-#define STATUS_MILLENNIUM_ICON_COL_FIRST    1
-#define STATUS_MILLENNIUM_ICON_COL_STEP     4
 #define STATUS_MILLENNIUM_ICON_TILE_W       4
 #define STATUS_MILLENNIUM_ICON_TILE_H       4
 #define STATUS_MILLENNIUM_ICON_TILE_BASE 0xA0
@@ -67,6 +65,7 @@
 #define STATUS_MILLENNIUM_PAL_SILHOUETTE  0xE000
 #define STATUS_MILLENNIUM_PAL_SLOT         13
 #define STATUS_MILLENNIUM_PAL_SILHOUETTE_SLOT 14
+/* Map X cols come from sMillenniumItemMapCols (generator packs by content + 8px). */
 
 static const u8 sStatusDeckCapacityLabel[] APPEND_RODATA = "Deck Capacity";
 static const u8 sStatusDuelistLevelLabel[] APPEND_RODATA = "Duelist Level";
@@ -135,12 +134,14 @@ static void StatusMenuApplyMillenniumWindows(void) {
 
 static void StatusMenuVBlankLoad(void) {
   sub_8007EA8();
-  StatusMenuApplyMillenniumWindows();
+  if (gRuntimeConfig.enable_millennium_item_tracker == TRUE)
+    StatusMenuApplyMillenniumWindows();
 }
 
 static void StatusMenuVBlank(void) {
   sub_8007DE4();
-  StatusMenuApplyMillenniumWindows();
+  if (gRuntimeConfig.enable_millennium_item_tracker == TRUE)
+    StatusMenuApplyMillenniumWindows();
 }
 
 #define STATUS_TILE(row, col) (gBgVram.sbb1F[(row)][(col)])
@@ -317,8 +318,6 @@ static void PlaceStatusMenuMoneySuffix(u16 palette) {
 }
 
 static bool8 StatusMenuMillenniumItemCollected(u8 index) {
-  if (gRuntimeConfig.show_all_millennium_items == TRUE)
-    return TRUE;
   return MillenniumItems_IsOwned(index);
 }
 
@@ -346,7 +345,7 @@ static void StatusMenuLoadMillenniumGfx(void) {
 }
 
 static void StatusMenuPlaceMillenniumIcon(u8 index, bool8 collected) {
-  u8 col = STATUS_MILLENNIUM_ICON_COL_FIRST + index * STATUS_MILLENNIUM_ICON_COL_STEP;
+  u8 col = sMillenniumItemMapCols[index];
   u16 tileBase =
       collected
           ? STATUS_MILLENNIUM_ICON_TILE_BASE + index * STATUS_MILLENNIUM_ICON_TILE_W *
@@ -404,7 +403,8 @@ void StatusMenu__Replacement(void) {
   PlaceStatusMenuAccentTiles(palette);
   PlaceStatusMenuMoneySuffix(palette);
   PlaceStatusMenuLabelGfx();
-  PlaceStatusMenuMillenniumTracker();
+  if (gRuntimeConfig.enable_millennium_item_tracker == TRUE)
+    PlaceStatusMenuMillenniumTracker();
 
   SetVBlankCallback(StatusMenuVBlankLoad);
   StatusMenuDrawU32Value(gDuelistLevel, STATUS_DUELIST_LEVEL_VALUE_DIGITS,
