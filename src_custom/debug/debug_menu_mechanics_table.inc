@@ -1,0 +1,1 @@
+  MECHANICS_TUTORIAL_ENTRY(sMechanicsLayout_01, DUELIST_TRISTAN_092, sTitle_BossCutIns)

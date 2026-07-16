@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "configs/runtime.h"
 #include "summon_animations.h"
+#include "mechanics_tutorial.h"
 #include "gba/defines.h"
 #include "gba/io_reg.h"
 #include "gba/types.h"
@@ -357,6 +358,7 @@ bool32 TryPlaySummonAnimation(u16 cardId)
         return FALSE;
 
     gSummonAnimPendingGraphicId = graphicId;
+    MechanicsTutorial_NoteSummonAnim(cardId);
     return TRUE;
 }
 
@@ -369,13 +371,13 @@ void FinishSummonAnimation(void)
 
     if (graphicId < CUSTOM_POPUP_ANIM_START) {
         PlayGfxEffectByGraphic(graphicId);
-        return;
+    } else {
+        switch (graphicId) {
+        case CUSTOM_POPUP_ANIM_START:
+            PlayCustomPopupBg8bpp(gPopupYubelTiles, gPopupYubelPalette,
+                                   POPUP_YUBEL_DURATION);
+            break;
+        }
     }
-
-    switch (graphicId) {
-    case CUSTOM_POPUP_ANIM_START:
-        PlayCustomPopupBg8bpp(gPopupYubelTiles, gPopupYubelPalette,
-                               POPUP_YUBEL_DURATION);
-        break;
-    }
+    MechanicsTutorial_OnSummonAnimFinished();
 }

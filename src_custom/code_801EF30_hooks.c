@@ -5,6 +5,7 @@
 #include "duel_status.h"
 #include "custom_decks/custom_decks.h"
 #include "timed_duel.h"
+#include "mechanics_tutorial.h"
 #include "generated/duelist_rewards_generated.inc"
 #include "generated/card_trunk_generated.inc"
 #include "card_shop.h"
@@ -953,6 +954,14 @@ void HandleWin__Replacement(void) {
     return;
   }
 
+  if (MechanicsTutorial_IsActive() == TRUE) {
+    MechanicsTutorial_HandleWin();
+    if (gDuelType == DUEL_TYPE_INGAME)
+      CapLifePointsAfterDuel();
+    CustomDecks_ClearPendingCardShopDuel();
+    return;
+  }
+
   rewardMultiplier = GetAlternateWinRewardMultiplier();
   entry = GetCustomDuelRewardEntry();
   duelistEntry = GetCustomDuelistRewardEntry();
@@ -1038,6 +1047,31 @@ void HandleLoss__Replacement(void) {
     if (gDuelType == DUEL_TYPE_INGAME)
       CapLifePointsAfterDuel();
     TimedDuel_OnDuelEnd();
+    CustomDecks_ClearPendingCardShopDuel();
+    return;
+  }
+
+  if (MechanicsTutorial_IsActive() == TRUE) {
+    if (!gDuelLifePoints[DUEL_PLAYER]) {
+      FadeOutMusic(4);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_PLAYER_OUT_OF_LP;
+      DisplayDuelText(&duelText);
+    } else if (NumCardsInDeck(0) < GetCardsDrawn(0)) {
+      FadeOutMusic(4);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_PLAYER_DECK_OUT;
+      DisplayDuelText(&duelText);
+    }
+    if (gDuelData.unk2d) {
+      PlayMusic(gDuelData.lossMusic);
+      ResetDuelTextData(&duelText);
+      duelText.textId = DUEL_TEXT_DUEL_LOSS;
+      DisplayDuelText(&duelText);
+    }
+    if (gDuelType == DUEL_TYPE_INGAME)
+      CapLifePointsAfterDuel();
+    MechanicsTutorial_OnDuelEnd();
     CustomDecks_ClearPendingCardShopDuel();
     return;
   }

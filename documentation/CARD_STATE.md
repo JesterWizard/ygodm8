@@ -1,11 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Duel voice portrait top-left + glitch fix
+**Last worked on:** 2026-07-16 — Boss Cut-Ins layout: 3 Mystical Elfs
 
 **Files touched:**
-- `src_custom/duel_voice_hooks.c` — top-left OAM; hide mini-card/cursor while portrait up
-- `documentation/custom-voices.md`
+- `src_custom/debug/debug_menu_mechanics_layouts.c`
+- `documentation/mechanics-tutorials.md`
 
-**Outcome:** `make` exits 0. Left glitch was portrait tiles overwriting mini-card VRAM.
+**Outcome:** `make` exits 0. Player field starts with Mystical Elf ×3.
 
-**Open / next:** In-game confirm clean top-left portrait.
+**Open / next:** In-game confirm third monster on field.

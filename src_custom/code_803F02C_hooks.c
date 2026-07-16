@@ -4,6 +4,7 @@
 #include "debug_ruleset.h"
 #include "yubel.h"
 #include "timed_duel.h"
+#include "mechanics_tutorial.h"
 #include "duel_helpers.h"
 #include "the_dark_door.h"
 #include "ring_of_destruction.h"
@@ -469,6 +470,7 @@ void InitBoard__Replacement(void) {
     UnblockSummoning(i);
   }
   TimedDuel_ApplySetupIfActive();
+  MechanicsTutorial_ApplySetupIfActive();
 }
 
 LYN_REPLACE_CHECK(PlayerTurnMain);
@@ -497,6 +499,7 @@ void PlayerTurnMain__Replacement(void) {
   if (IsDuelOver() == TRUE)
     return;
   InitButtonMaps();
+  MechanicsTutorial_TryShowIntro();
   while (IsDuelOver() != TRUE && gIsPlayerTurnOver != TRUE) {
     unsigned char y = gDuelCursor.currentY;
     switch (ProcessInput__Replacement()) {

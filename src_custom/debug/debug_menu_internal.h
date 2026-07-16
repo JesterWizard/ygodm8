@@ -7,7 +7,7 @@
 
 #define DEBUG_ROWS 15
 #define DEBUG_CHARS 16
-#define DEBUG_ROOT_ITEMS 15
+#define DEBUG_ROOT_ITEMS 16
 
 /* ========== OBJ sidebar overlay ========== */
 
@@ -79,6 +79,7 @@
 #define DEBUG_VIEW_RULESET 13
 #define DEBUG_VIEW_TIMED_DUEL     14
 #define DEBUG_VIEW_RUNTIME_CONFIG 15
+#define DEBUG_VIEW_MECHANICS      16
 
 /* ========== Data entry structs ========== */
 
@@ -219,5 +220,7 @@ void DebugMenuDrawTimedDuels(u8 scrollTop, u8 cursor);
 void DebugTimedDuelViewer(void);
 void DebugMenuDrawRuntimeConfig(u8 scrollTop, u8 cursor);
 void DebugRuntimeConfigViewer(void);
+void DebugMenuDrawMechanics(u8 scrollTop, u8 cursor);
+void DebugMechanicsViewer(void);
 
 #endif // GUARD_DEBUG_MENU_INTERNAL_H

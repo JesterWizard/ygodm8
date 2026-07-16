@@ -200,6 +200,11 @@ _kernel_malloc_ewram gTimedDuelActiveId, 1
 _kernel_malloc_ewram gDebugMenuPendingTimedDuelIndex, 1
 _kernel_malloc_ewram_array gTimedDuelCompletionFlags, 0x10
 
+@ Mechanics tutorials: active id (index + 1), intro-shown flag, pending summon card.
+_kernel_malloc_ewram gMechanicsTutorialActiveId, 1
+_kernel_malloc_ewram gMechanicsTutorialIntroDone, 1
+_kernel_malloc_ewram gMechanicsTutorialPendingCardId, 2
+
 @ Status menu: one byte per Millennium Item (nonzero = owned).
 _kernel_malloc_ewram_array gMillenniumItemsOwned, 7
 

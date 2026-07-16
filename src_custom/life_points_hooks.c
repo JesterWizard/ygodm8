@@ -3,6 +3,7 @@
 #include "configs/runtime.h"
 #include "debug_ruleset.h"
 #include "timed_duel.h"
+#include "mechanics_tutorial.h"
 #include "duel.h"
 
 extern u32 gLifePointsOutsideDuel;
@@ -15,6 +16,10 @@ LYN_REPLACE_CHECK(InitDuelLifePoints);
 void InitDuelLifePoints__Replacement(void) {
   if (TimedDuel_IsActive() == TRUE) {
     TimedDuel_ApplyLifePointsIfActive();
+    return;
+  }
+  if (MechanicsTutorial_IsActive() == TRUE) {
+    MechanicsTutorial_ApplyLifePointsIfActive();
     return;
   }
 

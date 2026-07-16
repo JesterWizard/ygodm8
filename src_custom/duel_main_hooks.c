@@ -37,6 +37,7 @@
 #include "vengeful_bog_spirit.h"
 #include "world_suppression.h"
 #include "timed_duel.h"
+#include "mechanics_tutorial.h"
 #include "the_wicked_avatar.h"
 
 void sub_8041B38(void);
@@ -222,6 +223,8 @@ static void ResetIngameDuelForRetry(void) {
     gWhoseTurn = DUEL_OPPONENT;
   if (TimedDuel_IsActive() == TRUE)
     gWhoseTurn = DUEL_PLAYER;
+  if (MechanicsTutorial_IsActive() == TRUE)
+    gWhoseTurn = DUEL_PLAYER;
   InitBoard();
   InitDuelLifePoints();
   InitDuelistStatus();
@@ -367,6 +370,8 @@ static bool8 RunDuelTurnLoop(void) {
     } else if (ShouldSkipDrawPhaseForRecklessGreed(turn)) {
       ConsumeRecklessGreedSkipDraw(turn);
     } else if (TimedDuel_ShouldSkipDrawPhase(turn)) {
+      /* ponytail: board and hand are pre-seeded; skip the draw phase. */
+    } else if (MechanicsTutorial_ShouldSkipDrawPhase(turn)) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
     } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);

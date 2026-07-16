@@ -65,7 +65,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .move_cursor_to_hand_on_draw = FALSE,
     .enable_smarter_ai = FALSE, // I have my doubts about how much "smarter" it actually is.
     .fast_ai = TRUE,
-    .ignore_tribute_requirements = TRUE,
+    .ignore_tribute_requirements = FALSE,
     .card_in_hand_1 = CARD_NONE,
     .card_in_hand_2 = CARD_NONE,
     .card_in_hand_3 = CARD_NONE,
