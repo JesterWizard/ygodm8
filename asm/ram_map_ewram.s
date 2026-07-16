@@ -140,7 +140,8 @@ _kernel_malloc_ewram_array gCustomShopTempCardQty, CUSTOM_CARD_QTY_BYTES
 _kernel_malloc_ewram_array gTrunkMenuCustomCards, TRUNK_MENU_CUSTOM_CARD_BYTES
 _kernel_malloc_ewram_array gTrunkMenuSortCards, TRUNK_MENU_SORT_LIST_BYTES
 @ Cached trunk list size when hide_unowned_trunk_cards is enabled (avoids full scans per scroll).
-_kernel_malloc_ewram Pad_TrunkVisibleAlign, 0x1
+@ ponytail: pad keeps gTrunkVisibleCardCount on an even EWRAM address.
+_kernel_malloc_ewram gTrunkVisibleCardCount_Align, 1
 _kernel_malloc_ewram gTrunkVisibleCardCount, 0x2
 _kernel_malloc_ewram gTrunkVisibleStandardCount, 0x2
 
@@ -251,16 +252,14 @@ _kernel_malloc_ewram gRecklessGreedSkipDrawDuelist, 1
 _kernel_malloc_ewram gRecklessGreedSkipDrawRemaining, 1
 @ Nonzero while PerformGuardianTreasureDrawPhaseDraws is drawing (Drop Off gate).
 _kernel_malloc_ewram gDrawPhaseNormalDrawActive, 1
-@ ponytail: pad keeps even EWRAM alignment for following u16 symbols.
-_kernel_malloc_ewram gDrawPhaseNormalDrawActivePad, 1
 @ DUEL_PLAYER/DUEL_OPPONENT whose next draw phase is skipped by Fenrir, else 0xFF.
 _kernel_malloc_ewram gFenrirSkipDrawDuelist, 1
-@ ponytail: pad keeps even EWRAM alignment after Fenrir skip-draw byte.
-_kernel_malloc_ewram gFenrirSkipDrawDuelistPad, 1
 
 @ -- Title screen & video player -----------------------------------------------
 
 @ Title screen idle frame counter (u16, counts frames with no button press).
+@ ponytail: pad keeps gTitleScreenIdleFrames on an even EWRAM address.
+_kernel_malloc_ewram gTitleScreenIdleFrames_Align, 1
 _kernel_malloc_ewram gTitleScreenIdleFrames, 2
 
 @ Set to 1 after the intro video finishes playing. Lives in IWRAM so it survives the
@@ -271,9 +270,9 @@ _kernel_malloc gIntroVideoPlayed, 1
 
 @ Video player state: 1 = playing, 0 = idle.
 _kernel_malloc_ewram gVideoPlayerState, 1
-@ ponytail: pad keeps gVideoPlayerFrameIndex on an even EWRAM address.
-_kernel_malloc_ewram gVideoPlayerStatePad, 1
 @ Current frame index being played.
+@ ponytail: pad keeps gVideoPlayerFrameIndex on an even EWRAM address.
+_kernel_malloc_ewram gVideoPlayerFrameIndex_Align, 1
 _kernel_malloc_ewram gVideoPlayerFrameIndex, 2
 
 @ -- End-of-turn field spell destruction ---------------------------------------
@@ -313,8 +312,6 @@ _kernel_malloc_ewram gGraveyardSendWasFromField, 1
 _kernel_malloc_ewram gSuppressSkullInvitationDamage, 1
 _kernel_malloc_ewram gFamiliarKnightBattleDestroyPending, 1
 _kernel_malloc_ewram gElementalHeroFlashBattleDestroyPending, 1
-@ ponytail: pad keeps gVampireBabyPendingCardId on an even EWRAM address.
-_kernel_malloc_ewram gElementalHeroFlashPendingPad, 1
 
 @ -- Battle destruction triggers (per-card pending state) ------------------------
 
@@ -325,6 +322,8 @@ _kernel_malloc_ewram gVampireBabyPendingController, 1
 @ Fixed duelist whose graveyard holds the destroyed monster for Vampire Baby.
 _kernel_malloc_ewram gVampireBabyPendingGraveyardDuelist, 1
 @ Card ID of the monster Vampire Baby destroyed in battle.
+@ ponytail: pad keeps gVampireBabyPendingCardId on an even EWRAM address.
+_kernel_malloc_ewram gVampireBabyPendingCardId_Align, 1
 _kernel_malloc_ewram gVampireBabyPendingCardId, 2
 @ TRUE when the next hand ClearZone is a graveyard send, not summon cleanup.
 _kernel_malloc_ewram gAbsoluteZeroHandGyClearPending, 1
@@ -332,8 +331,6 @@ _kernel_malloc_ewram gAbsoluteZeroHandGyClearPending, 1
 _kernel_malloc_ewram gAbsoluteZeroHandSummonCleanupPending, 1
 @ TRUE while fusion material payment / result summon runs.
 _kernel_malloc_ewram gAbsoluteZeroSuppressLeave, 1
-@ ponytail: pad keeps gGhostKnightOfJackalPendingController on an even EWRAM address.
-_kernel_malloc_ewram gAbsoluteZeroPendingPad, 1
 @ DUEL_PLAYER/DUEL_OPPONENT controller for a pending Ghost Knight of Jackal battle summon, else 0xFF.
 _kernel_malloc_ewram gGhostKnightOfJackalPendingController, 1
 @ Fixed duelist whose graveyard holds the monster Jackal destroyed in battle.
@@ -347,24 +344,26 @@ _kernel_malloc_ewram gPendingSpiritReaperDiscardDuelist, 1
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Guardian Angel Joan, else 0xFF.
 _kernel_malloc_ewram gPendingGuardianAngelJoanDuelist, 1
 @ Original ATK of the monster Joan destroyed in battle.
+@ ponytail: pad keeps gPendingGuardianAngelJoanDestroyedAtk on an even EWRAM address.
+_kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk_Align, 1
 _kernel_malloc_ewram gPendingGuardianAngelJoanDestroyedAtk, 2
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Royal Knight, else 0xFF.
 _kernel_malloc_ewram gPendingRoyalKnightDuelist, 1
-@ ponytail: pad keeps gPendingRoyalKnightDestroyedDef on an even EWRAM address.
-_kernel_malloc_ewram gPendingRoyalKnightDestroyedDefPad, 1
 @ Original DEF of the monster Royal Knight destroyed in battle.
+@ ponytail: pad keeps gPendingRoyalKnightDestroyedDef on an even EWRAM address.
+_kernel_malloc_ewram gPendingRoyalKnightDestroyedDef_Align, 1
 _kernel_malloc_ewram gPendingRoyalKnightDestroyedDef, 2
 @ DUEL_PLAYER/DUEL_OPPONENT LP gain pending for Elemental HERO Steam Healer, else 0xFF.
 _kernel_malloc_ewram gPendingElementalHeroSteamHealerDuelist, 1
-@ ponytail: pad keeps gPendingElementalHeroSteamHealerDestroyedAtk on an even EWRAM address.
-_kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtkPad, 1
 @ Original ATK of the monster Steam Healer destroyed in battle.
+@ ponytail: pad keeps gPendingElementalHeroSteamHealerDestroyedAtk on an even EWRAM address.
+_kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtk_Align, 1
 _kernel_malloc_ewram gPendingElementalHeroSteamHealerDestroyedAtk, 2
 @ DUEL_PLAYER/DUEL_OPPONENT burn pending for Elemental HERO Flame Wingman, else 0xFF.
 _kernel_malloc_ewram gPendingElementalHeroFlameWingmanDuelist, 1
-@ ponytail: pad keeps gPendingElementalHeroFlameWingmanDestroyedAtk on an even EWRAM address.
-_kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtkPad, 1
 @ Original ATK of the monster Flame Wingman destroyed in battle.
+@ ponytail: pad keeps gPendingElementalHeroFlameWingmanDestroyedAtk on an even EWRAM address.
+_kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtk_Align, 1
 _kernel_malloc_ewram gPendingElementalHeroFlameWingmanDestroyedAtk, 2
 @ Flame Wingman / Shining Flare Wingman card id for pending battle-burn text.
 _kernel_malloc_ewram gPendingElementalHeroFlameWingmanEffectCardId, 2
@@ -395,9 +394,9 @@ _kernel_malloc_ewram gElementalHeroBlazemanCopyRow, 1
 _kernel_malloc_ewram gElementalHeroBlazemanCopyCol, 1
 @ TRUE when Core was destroyed from field and revive may trigger.
 _kernel_malloc_ewram gElementalHeroCoreRevivePending, 1
-@ ponytail: pad restores 2-byte alignment after removing a duplicate Core block.
-_kernel_malloc_ewram gElementalHeroCorePad, 1
 @ The Supremacy Sun: armed + next-standby-ready flags per fixed duelist.
+@ ponytail: pad keeps gTheSupremacySunArmed on an even EWRAM address.
+_kernel_malloc_ewram gTheSupremacySunArmed_Align, 1
 _kernel_malloc_ewram_array gTheSupremacySunArmed, 2
 _kernel_malloc_ewram_array gTheSupremacySunStandbyReady, 2
 _kernel_malloc_ewram gTheSupremacySunOwnEffectSummon, 1
@@ -474,8 +473,8 @@ _kernel_malloc_ewram gSuppressFirePrincessDamage, 1
 _kernel_malloc_ewram gPendingFirePrincessTarget, 1
 @ Fire Princess: skip re-trigger until controller LP rises again (player, opponent).
 _kernel_malloc_ewram gFirePrincessLpGainHandled, 1
-@ ponytail: pad keeps gLastHandledLpGainLp 2-byte aligned in EWRAM.
-_kernel_malloc_ewram gLastHandledLpGainLpPad, 1
+@ ponytail: pad keeps gLastHandledLpGainLp on an even EWRAM address.
+_kernel_malloc_ewram gLastHandledLpGainLp_Align, 1
 _kernel_malloc_ewram_array gLastHandledLpGainLp, 2
 
 @ -- Maju Garzett tribute capture ------------------------------------------------
@@ -487,14 +486,14 @@ _kernel_malloc_ewram_array gGreatMajuGarzettBoardActive, 0xA
 _kernel_malloc_ewram_array gGreatMajuGarzettTributeTotals, 0x4
 _kernel_malloc_ewram gGreatMajuGarzettPendingSummon, 1
 @ Maju Garzett tribute capture + per-cell atk/active (10 cells, 0x1E total).
-_kernel_malloc_ewram gMajuGarzettPreArraysPad, 1
 _kernel_malloc_ewram_array gMajuGarzettBoardAtk, 0x14
 _kernel_malloc_ewram_array gMajuGarzettBoardActive, 0xA
+@ ponytail: pad keeps gMajuGarzettTributeAtk on an even EWRAM address.
+_kernel_malloc_ewram gMajuGarzettTributeAtk_Align, 1
 _kernel_malloc_ewram_array gMajuGarzettTributeAtk, 0x2
 _kernel_malloc_ewram gMajuGarzettPendingSummon, 1
 
 @ The Tyrant Neptune tribute capture + per-cell atk/def/active/copy (10 cells).
-_kernel_malloc_ewram gTheTyrantNeptunePreArraysPad, 1
 _kernel_malloc_ewram_array gTheTyrantNeptuneBoardAtk, 0x14
 _kernel_malloc_ewram_array gTheTyrantNeptuneBoardDef, 0x14
 _kernel_malloc_ewram_array gTheTyrantNeptuneBoardActive, 0xA
@@ -504,7 +503,6 @@ _kernel_malloc_ewram_array gTheTyrantNeptuneTributeIds, 0x6
 _kernel_malloc_ewram gTheTyrantNeptuneTributeCount, 1
 _kernel_malloc_ewram gTheTyrantNeptunePendingSummon, 1
 @ Keep following Ring-of-Destruction byte + u16 pair halfword-aligned.
-_kernel_malloc_ewram gTheTyrantNeptunePostPad, 1
 
 @ Chimeratech Overdragon: per-cell material count + attacks used this turn (10 cells each).
 _kernel_malloc_ewram_array gChimeratechOverdragonMaterialCount, 0xA
@@ -533,9 +531,9 @@ _kernel_malloc_ewram gHarpieLady3RestrictTurns, 0xA
 _kernel_malloc_ewram gHarpieLady3LastProcessedTurn, 1
 @ PickZone targeting callbacks for Duel_BeginPickZone (4 function pointers = 16 bytes).
 _kernel_malloc_ewram gPickZoneState, 0x10
-@ ponytail: pad keeps gTheBigSaturnGyDamagePending on an even EWRAM address.
-_kernel_malloc_ewram gTheBigSaturnGyDamagePendingPad, 1
 @ ATK snapshot for The Big Saturn graveyard damage when destroyed by opponent effect.
+@ ponytail: pad keeps gTheBigSaturnGyDamagePending on an even EWRAM address.
+_kernel_malloc_ewram gTheBigSaturnGyDamagePending_Align, 1
 _kernel_malloc_ewram gTheBigSaturnGyDamagePending, 2
 @ Permanent-effect GY scan row (6 or 7) for pending Big Saturn damage.
 _kernel_malloc_ewram gTheBigSaturnGyDamageTurnRow, 1

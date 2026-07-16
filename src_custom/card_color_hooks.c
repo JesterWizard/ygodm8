@@ -32,8 +32,10 @@ static const unsigned short sLinkPalette[] APPEND_ASSET =
     INCBIN_U16("src_custom/assets/cards/frames/link.gbapal");
 
 /* ---- Mini card border tile data ---- */
-static const unsigned char sSynchroMiniBorder[] APPEND_ASSET =
-    INCBIN_U8("src_custom/assets/cards/frames/synchro_mini.4bpp");
+/* ponytail: agbcc has INCBIN_U16 (16-bit) but no INCBIN (8-bit);
+ * store as u16 and cast to u8* — same byte layout. */
+static const unsigned short sSynchroMiniBorderU16[] APPEND_ASSET =
+    INCBIN_U16("src_custom/assets/cards/frames/synchro_mini.4bpp");
 
 const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
     [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = sSynchroPalette,
@@ -43,11 +45,10 @@ const unsigned short *gCustomCardColorPalettes[NUM_NEW_COLORS] APPEND_RODATA = {
 };
 
 /* ---- Mini card border tile pointers (NULL = use vanilla fallback) ---- */
-/* ponytail: border tile data is complex to author; set non-NULL when
- * custom .4bpp border files are added. Until then, mini card hooks
- * fall back to gUnk_8E17F48[COLOR_NORMAL]. */
+/* ponytail: XYZ/Pendulum/Link mini borders not yet authored; only
+ * synchro has one. NULL entries fall back to gUnk_8E17F48[COLOR_NORMAL]. */
 const unsigned char *gCustomCardColorBorders[NUM_NEW_COLORS] APPEND_RODATA = {
-    [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = sSynchroMiniBorder,
+    [COLOR_SYNCHRO - FIRST_NEW_COLOR]  = (const unsigned char *)sSynchroMiniBorderU16,
     [COLOR_XYZ - FIRST_NEW_COLOR]      = NULL,
     [COLOR_PENDULUM - FIRST_NEW_COLOR] = NULL,
     [COLOR_LINK - FIRST_NEW_COLOR]     = NULL,
