@@ -95,27 +95,34 @@ LynJump also replaces the four vanilla stat writers (`sub_80079C4`, `sub_8007AB8
 
 ### Millennium item progress tracker
 
-Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the clear gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
+Seven **32×32** indexed PNGs in [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) feed the gap between the stats panel and the money bar. Build embeds them via `tools/generate_millennium_item_assets.py` into [`src_custom/generated/millennium_item_assets_generated.inc`](../src_custom/generated/millennium_item_assets_generated.inc).
 
-Icons sit on **row 10**, spaced four tiles apart (no extra middle dim panel — the hieroglyph gap stays visible). That gap is **outside** the status blend windows (`WINOUT` is normally BG3-only), so the VBlank hook re-enables **BG2** there or the icons would stay invisible despite being in the BG2 tilemap.
+Icons sit on **row 11**, spaced four tiles apart (seven icons; window right edge `0xF0` so the necklace is not clipped). After vanilla Status VBlank setup, `StatusMenuApplyMillenniumWindows` pins **WIN0** to stats-through-icons (y 8–120) and **WIN1** to money (y 128–152). Tile **row 15** (y 120–127) sits outside both windows as a bright gap. WININ is BG2|BG3|CLR; WINOUT stays BG3-only.
 
 - Icon tile bases: color `0xA0`, silhouette `0x110` (must stay below tile `0x180` — that offset is the BG3 tilemap `sbb1E` inside charblock 3).
-- **Uncollected:** black silhouette tiles (palette bank 14: transparent + black).
-- **Collected:** full-color tiles (palette bank 13).
+- **Unowned** (`gMillenniumItemsOwned[i] == 0`): black silhouette tiles (palette bank 14).
+- **Owned** (nonzero): full-color tiles (palette bank 13).
 
-With `gRuntimeConfig.show_all_millennium_items` (debug label **All Millen**), every icon renders collected regardless of flags.
+With `gRuntimeConfig.show_all_millennium_items` (debug label **All Millen**), every icon renders owned regardless of save bytes.
 
-Progress flags in `sMillenniumItems[]`:
+Ownership is seven EWRAM/Flash bytes (`gMillenniumItemsOwned`), saved with the slot like Timed Duel flags. Event scripts set them with:
 
-| Index | Item | Collected when |
-|-------|------|----------------|
-| 0 | Puzzle | Not defeated Bandit Keith, or finished game |
-| 1 | Ring | Defeated Millennium Guardian 3 |
-| 2 | Key | Defeated Millennium Guardian 2 |
-| 3 | Scale | Defeated Mimic of Doom |
-| 4 | Rod | Defeated Millennium Guardian 5 |
-| 5 | Eye | Defeated Millennium Guardian 4 |
-| 6 | Necklace | Defeated Millennium Guardian 1 |
+```
+SET_MILLENNIUM_ITEM(MILLENNIUM_ITEM_PUZZLE)
+CLEAR_MILLENNIUM_ITEM(MILLENNIUM_ITEM_RING)
+```
+
+(`0x7C 'B' id value` — see `events/scripts/event_macros.h`.)
+
+| Index | Macro | Item |
+|-------|-------|------|
+| 0 | `MILLENNIUM_ITEM_PUZZLE` | Millennium Puzzle |
+| 1 | `MILLENNIUM_ITEM_RING` | Millennium Ring |
+| 2 | `MILLENNIUM_ITEM_KEY` | Millennium Key |
+| 3 | `MILLENNIUM_ITEM_SCALE` | Millennium Scale |
+| 4 | `MILLENNIUM_ITEM_ROD` | Millennium Rod |
+| 5 | `MILLENNIUM_ITEM_EYE` | Millennium Eye |
+| 6 | `MILLENNIUM_ITEM_NECKLACE` | Millennium Necklace |
 
 To re-export from overworld OBJ sprites:
 
@@ -166,7 +173,9 @@ make all
 | Label map patch | `PlaceStatusMenuLabels` / `StatusMenuPlaceSplitLabel` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Writes BG tilemap label entries |
 | Label gfx | `PlaceStatusMenuLabelGfx` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Palettes and small/tall font tile uploads |
 | Stat digits | `StatusMenuDrawU32Value`, `StatusMenuDrawMoneyValue` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Tall digit rendering via `g8DF811C` |
-| Millennium tracker | `PlaceStatusMenuMillenniumTracker`, `sMillenniumItems[]` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Horizontal icon row + event-flag silhouettes / color icons |
+| Millennium tracker | `PlaceStatusMenuMillenniumTracker` in [`src_custom/status_menu_hooks.c`](../src_custom/status_menu_hooks.c) | Horizontal icon row; owned bytes → color / silhouette |
+| Ownership API | [`include/millennium_items.h`](../include/millennium_items.h), [`src_custom/millennium_items.c`](../src_custom/millennium_items.c) | EWRAM/Flash bytes + `SET_MILLENNIUM_ITEM` opcode |
+| RAM / Flash | `gMillenniumItemsOwned` in [`asm/ram_map_ewram.s`](../asm/ram_map_ewram.s) / [`asm/ram_map_sram.s`](../asm/ram_map_sram.s) | 7 bytes, mirrored primary/backup |
 | Icon PNG sources | [`src_custom/assets/millenium_items/`](../src_custom/assets/millenium_items/) | 32×32 indexed PNGs |
 | Icon build | [`tools/generate_millennium_item_assets.py`](../tools/generate_millennium_item_assets.py) | PNG → `millennium_item_assets_generated.inc` |
 | Icon export | [`tools/export_millennium_item_pngs.py`](../tools/export_millennium_item_pngs.py) | Overworld `.4bpp` → PNG (one-time / refresh) |

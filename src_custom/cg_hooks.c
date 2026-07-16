@@ -325,6 +325,7 @@ static u8 EventCg_ClassifyOpcode(const u8 *script, u32 pointer) {
     case '7':
     case '9':
     case 'A':
+    case 'B':
       return CG_OP_COMPATIBLE;
     default:
       return CG_OP_ENDING;

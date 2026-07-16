@@ -2,6 +2,7 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "gfx_reg_buffers.h"
+#include "millennium_items.h"
 #include "overworld.h"
 #include "text.h"
 
@@ -55,7 +56,7 @@
 /* Horizontal millennium-item row in the clear gap between stats and money panels.
  * Tile gfx live in charblock 3 below sbb1E (BG3 map at tile index 0x180 / offset 0x3000).
  * Color+silhouette need 224 tiles → 0xA0..0x17F fits; 0x120+ silhouettes used to clobber BG3. */
-#define STATUS_MILLENNIUM_ICON_ROW         10
+#define STATUS_MILLENNIUM_ICON_ROW         11
 #define STATUS_MILLENNIUM_ICON_COL_FIRST    1
 #define STATUS_MILLENNIUM_ICON_COL_STEP     4
 #define STATUS_MILLENNIUM_ICON_TILE_W       4
@@ -89,21 +90,6 @@ static const StatusSplitLabel sSplitLabels[] APPEND_RODATA = {
   { 6, 13, 6, 13, 8, 4, 6, 5, 0x900 },
 };
 
-typedef struct {
-  u32 flag;
-} StatusMillenniumItem;
-
-/* Puzzle uses a special-case check; remaining flags map 1:1 to guardians / Mimic. */
-static const StatusMillenniumItem sMillenniumItems[] APPEND_RODATA = {
-  { 0 },
-  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN3 },
-  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN2 },
-  { EVENT_FLAG_DEFEATED_MIMIC_OF_DOOM },
-  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN5 },
-  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN4 },
-  { EVENT_FLAG_DEFEATED_MILLENNIUM_GUARDIAN1 },
-};
-
 extern u16 gUnk_8088778[][30];
 extern u8 gUnk_8088288[];
 extern u16 gUnk_8079424[];
@@ -131,20 +117,30 @@ void sub_8007CA0(void);
 void sub_8007DE4(void);
 void sub_8007EA8(void);
 
-/* Middle gap is outside the blend windows (WINOUT=BG3 only), which hides BG2.
- * Keep BG2 enabled there so millennium icons (and transparent gap tiles) show. */
-static void StatusMenuEnableBg2OutsideWindows(void) {
-  *((vu8 *)REG_ADDR_WINOUT) = WININ_WIN0_BG2 | WININ_WIN0_BG3;
+/* After vanilla VBlank setup — only two hardware windows, three dark bands:
+ *   WIN0 — stats through icons (y 8–120), stops before tile row 15
+ *   WIN1 — money (y 128–152), starts at tile row 16
+ * Tile row 15 (y 120–127) is outside both → bright gap.
+ * H right edge must clear icon 6 (cols 25–28 → x 200–231); vanilla 0xC7=199
+ * clipped the necklace. */
+static void StatusMenuApplyMillenniumWindows(void) {
+  REG_WIN0H = 0x08F0;
+  REG_WIN0V = 0x0878; /* y 8–120: stats + icons */
+  REG_WIN1H = 0x08F0;
+  REG_WIN1V = 0x8098; /* y 128–152: money */
+  REG_WININ = WININ_WIN0_BG2 | WININ_WIN0_BG3 | WININ_WIN0_CLR |
+              WININ_WIN1_BG2 | WININ_WIN1_BG3 | WININ_WIN1_CLR;
+  *((vu8 *)REG_ADDR_WINOUT) = WININ_WIN0_BG3;
 }
 
 static void StatusMenuVBlankLoad(void) {
   sub_8007EA8();
-  StatusMenuEnableBg2OutsideWindows();
+  StatusMenuApplyMillenniumWindows();
 }
 
 static void StatusMenuVBlank(void) {
   sub_8007DE4();
-  StatusMenuEnableBg2OutsideWindows();
+  StatusMenuApplyMillenniumWindows();
 }
 
 #define STATUS_TILE(row, col) (gBgVram.sbb1F[(row)][(col)])
@@ -308,6 +304,9 @@ static void PlaceStatusMenuAccentTiles(u16 palette) {
     StatusMenuWriteMapIndex(0x7C00 + (i / 10 + 6) / 2 + (i % 10) + 0xD, palette | (i + 0x48));
   for (i = 0; i < STATUS_ACCENT_LEFT_ICONS_COUNT; i++)
     StatusMenuWriteMapIndex(0x7E00 + i + 1, palette | (i + 0x6C));
+
+  /* Row 0 accents sit above WIN0 (y < 8); clear so leftover gfx never peeks. */
+  StatusMenuClearTiles(0, 0, 30);
 }
 
 static void PlaceStatusMenuMoneySuffix(u16 palette) {
@@ -320,10 +319,7 @@ static void PlaceStatusMenuMoneySuffix(u16 palette) {
 static bool8 StatusMenuMillenniumItemCollected(u8 index) {
   if (gRuntimeConfig.show_all_millennium_items == TRUE)
     return TRUE;
-  if (index == 0)
-    return !CheckFlag(EVENT_FLAG_DEFEATED_BANDIT_KEITH) ||
-           CheckFlag(EVENT_FLAG_FINISHED_GAME);
-  return CheckFlag(sMillenniumItems[index].flag);
+  return MillenniumItems_IsOwned(index);
 }
 
 static void StatusMenuLoadMillenniumGfx(void) {
@@ -334,6 +330,8 @@ static void StatusMenuLoadMillenniumGfx(void) {
   CpuCopy16(sMillenniumItemPalette, &gPaletteBuffer[STATUS_MILLENNIUM_PAL_SLOT * 16], 32);
   CpuCopy16(sMillenniumSilhouettePalette,
             &gPaletteBuffer[STATUS_MILLENNIUM_PAL_SILHOUETTE_SLOT * 16], 32);
+  /* Color 0 stays transparent; force index 1 to true black (generator used 0x001F). */
+  gPaletteBuffer[STATUS_MILLENNIUM_PAL_SILHOUETTE_SLOT * 16 + 1] = 0;
   for (i = 0; i < STATUS_MILLENNIUM_ITEM_COUNT; i++) {
     u16 colorBase = STATUS_MILLENNIUM_ICON_TILE_BASE + i * STATUS_MILLENNIUM_ICON_TILE_W *
                                                             STATUS_MILLENNIUM_ICON_TILE_H;

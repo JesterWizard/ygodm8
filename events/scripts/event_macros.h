@@ -61,4 +61,15 @@
 #define DISPLAY_CG(cg_id, fade_speed) RAW(0x7C, '9', cg_id, fade_speed)
 #define HIDE_CG(fade_speed) RAW(0x7C, 'A', fade_speed)
 
+/* Status tracker: Puzzle=0 Ring=1 Key=2 Scale=3 Rod=4 Eye=5 Necklace=6 */
+#define MILLENNIUM_ITEM_PUZZLE   0
+#define MILLENNIUM_ITEM_RING     1
+#define MILLENNIUM_ITEM_KEY      2
+#define MILLENNIUM_ITEM_SCALE    3
+#define MILLENNIUM_ITEM_ROD      4
+#define MILLENNIUM_ITEM_EYE      5
+#define MILLENNIUM_ITEM_NECKLACE 6
+#define SET_MILLENNIUM_ITEM(id) RAW(0x7C, 'B', (id), 1)
+#define CLEAR_MILLENNIUM_ITEM(id) RAW(0x7C, 'B', (id), 0)
+
 #endif

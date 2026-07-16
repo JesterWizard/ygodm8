@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "cg.h"
+#include "millennium_items.h"
 #include "overworld.h"
 
 typedef void (*ScriptCtxFunc)(struct ScriptCtx *);
@@ -43,6 +44,8 @@ void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx) {
       if (EventCg_TryConsumeDisplayOpcode(scriptCtx))
         break;
       if (EventCg_TryConsumeHideOpcode(scriptCtx))
+        break;
+      if (MillenniumItems_TryConsumeOpcode(scriptCtx))
         break;
       ThumbScriptCtxFunc(0x080527E8)(scriptCtx);
       EventCg_AfterExecuteOpcode(scriptCtx);

@@ -20,7 +20,7 @@ ICON_TILE_BYTES = 512
 PANEL_TILE_BYTES = 32
 # Matches baserom status palette bank 15 color 2 (panel fill).
 PANEL_FILL_COLOR = 0x00D6
-SILHOUETTE_BLACK = 0x001F
+SILHOUETTE_BLACK = 0x0000  # RGB555 black (palette index 0 stays transparent)
 
 ITEMS: tuple[str, ...] = (
     "puzzle",

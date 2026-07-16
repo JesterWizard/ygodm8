@@ -200,6 +200,9 @@ _kernel_malloc_ewram gTimedDuelActiveId, 1
 _kernel_malloc_ewram gDebugMenuPendingTimedDuelIndex, 1
 _kernel_malloc_ewram_array gTimedDuelCompletionFlags, 0x10
 
+@ Status menu: one byte per Millennium Item (nonzero = owned).
+_kernel_malloc_ewram_array gMillenniumItemsOwned, 7
+
 @ Duelist Kingdom: active duelist already attacked this turn.
 _kernel_malloc_ewram gDebugRulesetTurnAttackUsed, 1
 
