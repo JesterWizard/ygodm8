@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 651 |
-| Art ready, needs manifest | 149 |
+| In game (manifest + art) | 671 |
+| Art ready, needs manifest | 129 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -683,21 +683,21 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `EL_SHADDOLL_SHEKHINAGA` | El Shaddoll Shekhinaga | `el_shaddoll_shekhinaga.png` |
 | `EL_SHADDOLL_WENDIGO` | El Shaddoll Wendigo | `el_shaddoll_wendigo.png` |
 | `EL_SHADDOLL_WINDA` | El Shaddoll Winda | `el_shaddoll_winda.png` |
+| `ETERNAL_SOUL` | Eternal Soul | `eternal_soul.png` |
+| `EVIL_ASSAULT` | Evil Assault | `evil_assault.png` |
+| `EVIL_DRAGON_ANANTA` | Evil Dragon Ananta | `evil_dragon_ananta.png` |
+| `EVIL_HERO_ADUSTED_GOLD` | Evil HERO Adusted Gold | `evil_hero_adusted_gold.png` |
+| `EVIL_HERO_DARK_GAIA` | Evil HERO Dark Gaia | `evil_hero_dark_gaia.png` |
+| `EVIL_HERO_DARKEST_KNIGHT` | Evil HERO Darkest Knight | `evil_hero_darkest_knight.png` |
+| `EVIL_HERO_DEAD_END_PRISON` | Evil HERO Dead-End Prison | `evil_hero_dead_end_prison.png` |
+| `EVIL_HERO_INFERNAL_GAINER` | Evil HERO Infernal Gainer | `evil_hero_infernal_gainer.png` |
+| `EVIL_HERO_INFERNAL_PRODIGY` | Evil HERO Infernal Prodigy | `evil_hero_infernal_prodigy.png` |
+| `EVIL_HERO_INFERNAL_RIDER` | Evil HERO Infernal Rider | `evil_hero_infernal_rider.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ETERNAL_SOUL` — `eternal_soul.png`
-- [ ] `EVIL_ASSAULT` — `evil_assault.png`
-- [ ] `EVIL_DRAGON_ANANTA` — `evil_dragon_ananta.png`
-- [ ] `EVIL_HERO_ADJUSTED_GOLD` — `evil_hero_adjusted_gold.png`
-- [ ] `EVIL_HERO_DARK_GAIA` — `evil_hero_dark_gaia.png`
-- [ ] `EVIL_HERO_DARKEST_KNIGHT` — `evil_hero_darkest_knight.png`
-- [ ] `EVIL_HERO_DEAD_END_PRISON` — `evil_hero_dead_end_prison.png`
-- [ ] `EVIL_HERO_INFERNAL_GAINER` — `evil_hero_infernal_gainer.png`
-- [ ] `EVIL_HERO_INFERNAL_PRODIGY` — `evil_hero_infernal_prodigy.png`
-- [ ] `EVIL_HERO_INFERNAL_RIDER` — `evil_hero_infernal_rider.png`
 - [ ] `EVIL_HERO_INFERNAL_SNIPER` — `evil_hero_infernal_sniper.png`
 - [ ] `EVIL_HERO_INFERNO_WING` — `evil_hero_inferno_wing.png`
 - [ ] `EVIL_HERO_INFERNO_WING_BACKFIRE` — `evil_hero_inferno_wing_backfire.png`

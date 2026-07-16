@@ -447,3 +447,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire DESTINED_RIVALS in trap dispatcher */
 /* DRIED_WINDS trap effect */
   /* TODO: wire DRIED_WINDS in trap dispatcher */
+/* ETERNAL_SOUL trap effect */
+  /* TODO: wire ETERNAL_SOUL in trap dispatcher */

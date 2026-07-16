@@ -1463,11 +1463,21 @@
 #define EL_SHADDOLL_SHEKHINAGA                   0x05B3
 #define EL_SHADDOLL_WENDIGO                      0x05B4
 #define EL_SHADDOLL_WINDA                        0x05B5
+#define ETERNAL_SOUL                             0x05B6
+#define EVIL_ASSAULT                             0x05B7
+#define EVIL_DRAGON_ANANTA                       0x05B8
+#define EVIL_HERO_ADUSTED_GOLD                   0x05B9
+#define EVIL_HERO_DARK_GAIA                      0x05BA
+#define EVIL_HERO_DARKEST_KNIGHT                 0x05BB
+#define EVIL_HERO_DEAD_END_PRISON                0x05BC
+#define EVIL_HERO_INFERNAL_GAINER                0x05BD
+#define EVIL_HERO_INFERNAL_PRODIGY               0x05BE
+#define EVIL_HERO_INFERNAL_RIDER                 0x05BF
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x05B6
-#define NUM_CUSTOM_CARDS                        0x0295
+#define NUM_TOTAL_CARDS                         0x05C0
+#define NUM_CUSTOM_CARDS                        0x029F
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

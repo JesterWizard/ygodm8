@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `593` effects
+- `603` effects
 
 ## Tally
 
@@ -574,6 +574,16 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `El Shaddoll Shekhinaga` | `src_custom/permanent_effects/el_shaddoll_shekhinaga.c` |
 | `activated_effects` | `El Shaddoll Wendigo` | `src_custom/activated_effects/el_shaddoll_wendigo.c` |
 | `permanent_effects` | `El Shaddoll Winda` | `src_custom/permanent_effects/el_shaddoll_winda.c` |
+| `trap_effects` | `Eternal Soul` | `src_custom/trap_effects/eternal_soul.c` |
+| `spell_effects` | `Evil Assault` | `src_custom/spell_effects/evil_assault.c` |
+| `permanent_effects` | `Evil Dragon Ananta` | `src_custom/permanent_effects/evil_dragon_ananta.c` |
+| `activated_effects` | `Evil Hero Adusted Gold` | `src_custom/activated_effects/evil_hero_adusted_gold.c` |
+| `permanent_effects` | `Evil Hero Dark Gaia` | `src_custom/permanent_effects/evil_hero_dark_gaia.c` |
+| `activated_effects` | `Evil Hero Darkest Knight` | `src_custom/activated_effects/evil_hero_darkest_knight.c` |
+| `activated_effects` | `Evil Hero Dead End Prison` | `src_custom/activated_effects/evil_hero_dead_end_prison.c` |
+| `activated_effects` | `Evil Hero Infernal Gainer` | `src_custom/activated_effects/evil_hero_infernal_gainer.c` |
+| `permanent_effects` | `Evil Hero Infernal Prodigy` | `src_custom/permanent_effects/evil_hero_infernal_prodigy.c` |
+| `activated_effects` | `Evil Hero Infernal Rider` | `src_custom/activated_effects/evil_hero_infernal_rider.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

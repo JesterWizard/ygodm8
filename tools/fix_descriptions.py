@@ -12,85 +12,85 @@ from add_card_art import wrap_activation_page, wrap_description_page
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
 
 FIXED_DESCRIPTIONS = {
-    "EBON_ILLUSION_MAGICIAN": [
-        "Rank 6 Spellcaster Xyz can become this;",
-        "materials transfer. OPT: detach 1; SS 1",
-        "Spellcaster Normal from hand or Deck.",
-        "When Spellcaster Normal attacks: OPT",
-        "banish 1 opp card.",
+    "ETERNAL_SOUL": [
+        "Your Dark Magicians are unaffected by opp",
+        "effects. If this leaves the field: destroy",
+        "all your monsters. OPT: SS 1 Dark Magician",
+        "from hand/GY, OR add Dark Magic Attack or",
+        "Thousand Knives from Deck to hand.",
     ],
-    "EL_SHADDOLL_ANOYATYLLIS": [
-        "Shaddoll + WATER. Must first be FS.",
-        "Neither player can SS from hand/GY",
-        "via Spell/Trap effects. If sent to GY:",
-        "add 1 Shaddoll S/T from GY to hand.",
+    "EVIL_ASSAULT": [
+        "Discard 1; take 1 Lv4 or lower Evil HERO",
+        "from Deck; add to hand or SS it. Can't ED",
+        "SS except HERO this turn. GY (not turn",
+        "sent): banish this; add Dark Fusion from",
+        "GY to hand. Each OPT.",
     ],
-    "EL_SHADDOLL_APKALLONE": [
-        "2 Shaddoll different Attr. Must FS.",
-        "Can't be destroyed by battle. OPT each:",
-        "On SS: negate 1 face-up card. If sent",
-        "to GY: add 1 Shaddoll from Deck/GY,",
-        "then discard 1.",
+    "EVIL_DRAGON_ANANTA": [
+        "Can't NS/Set. SS only by banishing all",
+        "your Reptiles from field and GY. ATK/DEF",
+        "= number banished x 600. During each of",
+        "your End Phases, destroy 1 card on field.",
     ],
-    "EL_SHADDOLL_CONSTRUCT": [
-        "Shaddoll + LIGHT. Must first be FS.",
-        "On SS: send 1 Shaddoll from Deck to GY.",
-        "Damage Step vs SS monster: destroy it.",
-        "GY: add 1 Shaddoll S/T from GY to hand.",
+    "EVIL_HERO_ADUSTED_GOLD": [
+        "Discard this; add 1 Dark Fusion, or 1 card",
+        "that lists Dark Fusion, from Deck (except",
+        "this). OPT. Cannot attack unless you",
+        "control a Fusion Monster.",
     ],
-    "EL_SHADDOLL_FUSION": [
-        "Fusion Summon 1 Shaddoll Fusion from",
-        "Extra Deck using monsters from hand",
-        "or field. Once per turn.",
+    "EVIL_HERO_DARK_GAIA": [
+        "Fiend + Rock. Must SS with Dark Fusion.",
+        "Original ATK = sum of materials' original",
+        "ATK. When this attacks: change all opp",
+        "Defense monsters to face-up Attack (no",
+        "Flip Effects).",
     ],
-    "EL_SHADDOLL_GRYSTA": [
-        "Shaddoll + FIRE. Must first be FS.",
-        "Quick: negate opp SS while you have",
-        "Shaddoll in hand; destroy it, then",
-        "send 1 Shaddoll from hand to GY. OPT.",
-        "GY: add 1 Shaddoll S/T from GY.",
+    "EVIL_HERO_DARKEST_KNIGHT": [
+        "Fiend + Warrior. Must SS with Dark Fusion.",
+        "Opp monsters lose ATK equal to materials'",
+        "total original ATK. Can attack twice.",
+        "If this leaves by opp card: SS 1 Fiend or",
+        "Warrior from GY in Defense.",
     ],
-    "EL_SHADDOLL_MESHAHRAIL": [
-        "Shaddoll + DARK + EARTH. Must be FS.",
-        "Unaffected by opp activated S/T and",
-        "monsters with lower Level/Rank. OPT:",
-        "pay 800 LP; add 1 Shaddoll or Void",
-        "S/T from Deck. GY: SS 1 Shaddoll.",
+    "EVIL_HERO_DEAD_END_PRISON": [
+        "If you control a Dark Fusion Fusion: you",
+        "can SS this from hand (OPT this way).",
+        "Send 1 HERO from Deck to GY; this can",
+        "substitute for 1 named Fusion material",
+        "this turn. OPT.",
     ],
-    "EL_SHADDOLL_SHEKHINAGA": [
-        "Shaddoll + EARTH. Must first be FS.",
-        "Quick: negate SS monster effect while",
-        "Shaddoll in hand; destroy it, then",
-        "send 1 Shaddoll from hand to GY. OPT.",
-        "GY: add 1 Shaddoll S/T from GY.",
+    "EVIL_HERO_INFERNAL_GAINER": [
+        "Main Phase 1: banish this; target 1 Fiend",
+        "you control; it can attack twice while",
+        "face-up. During your 2nd Standby after",
+        "that: SS this in Attack Position.",
     ],
-    "EL_SHADDOLL_WENDIGO": [
-        "Shaddoll + WIND. Must first be FS.",
-        "Quick OPT: target 1 monster you control;",
-        "it can't be destroyed by battle with",
-        "opp SS monster this turn. GY: add 1",
-        "Shaddoll S/T from GY to hand.",
+    "EVIL_HERO_INFERNAL_PRODIGY": [
+        "If you control no monsters, you can SS",
+        "this from hand in Attack. End Phase: if",
+        "this was Tributed this turn to Tribute",
+        "Summon a HERO: draw 1.",
     ],
-    "EL_SHADDOLL_WINDA": [
-        "Shaddoll + DARK. Must first be FS.",
-        "Can't be destroyed by opp effects.",
-        "Each player can only SS once per turn",
-        "while this is face-up. GY: add 1",
-        "Shaddoll S/T from GY to hand.",
+    "EVIL_HERO_INFERNAL_RIDER": [
+        "On NS/SS: add Dark Fusion from Deck/GY.",
+        "Banish this + 4 other GY monsters; Set",
+        "Super Polymerization from Deck. Can't SS",
+        "except HERO, but can Dark Fusion via other",
+        "effects, until opp End Phase. Each OPT.",
     ],
 }
 
 FIXED_POPUPS = {
-    "EBON_ILLUSION_MAGICIAN": "OPT detach: SS Spellcaster Normal. When it attacks: banish 1 opp card.",
-    "EL_SHADDOLL_ANOYATYLLIS": "Lock SS from hand/GY via S/T. GY: add Shaddoll S/T from GY.",
-    "EL_SHADDOLL_APKALLONE": "On SS: negate face-up. GY: add Shaddoll, discard 1.",
-    "EL_SHADDOLL_CONSTRUCT": "On SS: mill Shaddoll. Battle vs SS: destroy. GY: add S/T.",
-    "EL_SHADDOLL_FUSION": "Fusion Summon 1 Shaddoll Fusion using hand/field materials. Once/turn.",
-    "EL_SHADDOLL_GRYSTA": "Negate opp SS; destroy, send Shaddoll from hand. GY: add S/T.",
-    "EL_SHADDOLL_MESHAHRAIL": "Pay 800: add Shaddoll or Void. Unaffected by lower Lv/R. GY: SS Shaddoll.",
-    "EL_SHADDOLL_SHEKHINAGA": "Negate SS monster effect; destroy, send Shaddoll. GY: add S/T.",
-    "EL_SHADDOLL_WENDIGO": "Protect monster from battle vs opp SS. GY: add Shaddoll S/T.",
-    "EL_SHADDOLL_WINDA": "Opp can't destroy this. SS lock once/turn each. GY: add S/T.",
+    "ETERNAL_SOUL": "Protect Dark Magician. OPT: SS it from hand/GY, or search Dark Magic Attack / Thousand Knives.",
+    "EVIL_ASSAULT": "Discard 1; add or SS Lv4- Evil HERO from Deck. GY: banish; add Dark Fusion.",
+    "EVIL_DRAGON_ANANTA": "SS by banishing Reptiles; ATK/DEF = count x 600. End Phase: destroy 1 card.",
+    "EVIL_HERO_ADUSTED_GOLD": "Discard: search Dark Fusion or related. Can't attack without a Fusion.",
+    "EVIL_HERO_DARK_GAIA": "Dark Fusion. ATK = materials. On attack: flip opp Defense to Attack.",
+    "EVIL_HERO_DARKEST_KNIGHT": "Opp lose ATK by materials. Attack twice. Leaves: SS Fiend/Warrior from GY.",
+    "EVIL_HERO_DEAD_END_PRISON": "SS if you have Dark Fusion Fusion. Mill HERO: substitute for named material.",
+    "EVIL_HERO_INFERNAL_GAINER": "Banish: Fiend you control can attack twice. Returns on 2nd Standby.",
+    "EVIL_HERO_INFERNAL_PRODIGY": "SS from hand if empty field. If Tributed for HERO: draw 1 at End Phase.",
+    "EVIL_HERO_INFERNAL_RIDER": "On summon: add Dark Fusion. Banish 5 GY: Set Super Poly; HERO lock.",
 }
 
 

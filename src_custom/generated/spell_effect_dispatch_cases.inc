@@ -215,6 +215,9 @@
     case EL_SHADDOLL_FUSION:
       EffectEL_SHADDOLL_FUSION();
       return;
+    case EVIL_ASSAULT:
+      EffectEVIL_ASSAULT();
+      return;
     case EXCHANGE:
       EffectExchange();
       return;

@@ -324,6 +324,16 @@ unsigned char CanActivateEL_SHADDOLL_MESHAHRAIL(void);
 void ActivateEL_SHADDOLL_MESHAHRAILEffect(void);
 unsigned char CanActivateEL_SHADDOLL_WENDIGO(void);
 void ActivateEL_SHADDOLL_WENDIGOEffect(void);
+unsigned char CanActivateEVIL_HERO_ADUSTED_GOLD(void);
+void ActivateEVIL_HERO_ADUSTED_GOLDEffect(void);
+unsigned char CanActivateEVIL_HERO_DARKEST_KNIGHT(void);
+void ActivateEVIL_HERO_DARKEST_KNIGHTEffect(void);
+unsigned char CanActivateEVIL_HERO_DEAD_END_PRISON(void);
+void ActivateEVIL_HERO_DEAD_END_PRISONEffect(void);
+unsigned char CanActivateEVIL_HERO_INFERNAL_GAINER(void);
+void ActivateEVIL_HERO_INFERNAL_GAINEREffect(void);
+unsigned char CanActivateEVIL_HERO_INFERNAL_RIDER(void);
+void ActivateEVIL_HERO_INFERNAL_RIDEREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1587,6 +1597,26 @@ FAILED:
   }
   if (gMonEffect.id == EL_SHADDOLL_WENDIGO) {
     ActivateEL_SHADDOLL_WENDIGOEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_ADUSTED_GOLD) {
+    ActivateEVIL_HERO_ADUSTED_GOLDEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_DARKEST_KNIGHT) {
+    ActivateEVIL_HERO_DARKEST_KNIGHTEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_DEAD_END_PRISON) {
+    ActivateEVIL_HERO_DEAD_END_PRISONEffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_INFERNAL_GAINER) {
+    ActivateEVIL_HERO_INFERNAL_GAINEREffect();
+    return;
+  }
+  if (gMonEffect.id == EVIL_HERO_INFERNAL_RIDER) {
+    ActivateEVIL_HERO_INFERNAL_RIDEREffect();
     return;
   }
 }

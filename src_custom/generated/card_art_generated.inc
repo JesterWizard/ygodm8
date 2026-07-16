@@ -2652,6 +2652,46 @@ static const unsigned char sElShaddollWindaBigArt[] __attribute__((section(".app
 static const unsigned short sElShaddollWindaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/el_shaddoll_winda.gbapal");
 static const unsigned char sElShaddollWindaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/el_shaddoll_winda.lz");
 
+static const unsigned char sEternalSoulBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/eternal_soul.huff");
+static const unsigned short sEternalSoulBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/eternal_soul.gbapal");
+static const unsigned char sEternalSoulMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/eternal_soul.lz");
+
+static const unsigned char sEvilAssaultBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_assault.huff");
+static const unsigned short sEvilAssaultBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_assault.gbapal");
+static const unsigned char sEvilAssaultMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_assault.lz");
+
+static const unsigned char sEvilDragonAnantaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_dragon_ananta.huff");
+static const unsigned short sEvilDragonAnantaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_dragon_ananta.gbapal");
+static const unsigned char sEvilDragonAnantaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_dragon_ananta.lz");
+
+static const unsigned char sEvilHeroAdustedGoldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_adusted_gold.huff");
+static const unsigned short sEvilHeroAdustedGoldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_adusted_gold.gbapal");
+static const unsigned char sEvilHeroAdustedGoldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_adusted_gold.lz");
+
+static const unsigned char sEvilHeroDarkGaiaBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_dark_gaia.huff");
+static const unsigned short sEvilHeroDarkGaiaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_dark_gaia.gbapal");
+static const unsigned char sEvilHeroDarkGaiaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_dark_gaia.lz");
+
+static const unsigned char sEvilHeroDarkestKnightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_darkest_knight.huff");
+static const unsigned short sEvilHeroDarkestKnightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_darkest_knight.gbapal");
+static const unsigned char sEvilHeroDarkestKnightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_darkest_knight.lz");
+
+static const unsigned char sEvilHeroDeadEndPrisonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_dead_end_prison.huff");
+static const unsigned short sEvilHeroDeadEndPrisonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_dead_end_prison.gbapal");
+static const unsigned char sEvilHeroDeadEndPrisonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_dead_end_prison.lz");
+
+static const unsigned char sEvilHeroInfernalGainerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_infernal_gainer.huff");
+static const unsigned short sEvilHeroInfernalGainerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_infernal_gainer.gbapal");
+static const unsigned char sEvilHeroInfernalGainerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_infernal_gainer.lz");
+
+static const unsigned char sEvilHeroInfernalProdigyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_infernal_prodigy.huff");
+static const unsigned short sEvilHeroInfernalProdigyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_infernal_prodigy.gbapal");
+static const unsigned char sEvilHeroInfernalProdigyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_infernal_prodigy.lz");
+
+static const unsigned char sEvilHeroInfernalRiderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/evil_hero_infernal_rider.huff");
+static const unsigned short sEvilHeroInfernalRiderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/evil_hero_infernal_rider.gbapal");
+static const unsigned char sEvilHeroInfernalRiderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/evil_hero_infernal_rider.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3316,6 +3356,16 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x05B3] = sElShaddollShekhinagaBigArt,
   [0x05B4] = sElShaddollWendigoBigArt,
   [0x05B5] = sElShaddollWindaBigArt,
+  [0x05B6] = sEternalSoulBigArt,
+  [0x05B7] = sEvilAssaultBigArt,
+  [0x05B8] = sEvilDragonAnantaBigArt,
+  [0x05B9] = sEvilHeroAdustedGoldBigArt,
+  [0x05BA] = sEvilHeroDarkGaiaBigArt,
+  [0x05BB] = sEvilHeroDarkestKnightBigArt,
+  [0x05BC] = sEvilHeroDeadEndPrisonBigArt,
+  [0x05BD] = sEvilHeroInfernalGainerBigArt,
+  [0x05BE] = sEvilHeroInfernalProdigyBigArt,
+  [0x05BF] = sEvilHeroInfernalRiderBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -3982,6 +4032,16 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x05B3] = sElShaddollShekhinagaBigPalette,
   [0x05B4] = sElShaddollWendigoBigPalette,
   [0x05B5] = sElShaddollWindaBigPalette,
+  [0x05B6] = sEternalSoulBigPalette,
+  [0x05B7] = sEvilAssaultBigPalette,
+  [0x05B8] = sEvilDragonAnantaBigPalette,
+  [0x05B9] = sEvilHeroAdustedGoldBigPalette,
+  [0x05BA] = sEvilHeroDarkGaiaBigPalette,
+  [0x05BB] = sEvilHeroDarkestKnightBigPalette,
+  [0x05BC] = sEvilHeroDeadEndPrisonBigPalette,
+  [0x05BD] = sEvilHeroInfernalGainerBigPalette,
+  [0x05BE] = sEvilHeroInfernalProdigyBigPalette,
+  [0x05BF] = sEvilHeroInfernalRiderBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -4648,6 +4708,16 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x05B3] = 0,
   [0x05B4] = 0,
   [0x05B5] = 0,
+  [0x05B6] = 0,
+  [0x05B7] = 0,
+  [0x05B8] = 0,
+  [0x05B9] = 0,
+  [0x05BA] = 0,
+  [0x05BB] = 0,
+  [0x05BC] = 0,
+  [0x05BD] = 0,
+  [0x05BE] = 0,
+  [0x05BF] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -5314,4 +5384,14 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x05B3] = sElShaddollShekhinagaMiniArt,
   [0x05B4] = sElShaddollWendigoMiniArt,
   [0x05B5] = sElShaddollWindaMiniArt,
+  [0x05B6] = sEternalSoulMiniArt,
+  [0x05B7] = sEvilAssaultMiniArt,
+  [0x05B8] = sEvilDragonAnantaMiniArt,
+  [0x05B9] = sEvilHeroAdustedGoldMiniArt,
+  [0x05BA] = sEvilHeroDarkGaiaMiniArt,
+  [0x05BB] = sEvilHeroDarkestKnightMiniArt,
+  [0x05BC] = sEvilHeroDeadEndPrisonMiniArt,
+  [0x05BD] = sEvilHeroInfernalGainerMiniArt,
+  [0x05BE] = sEvilHeroInfernalProdigyMiniArt,
+  [0x05BF] = sEvilHeroInfernalRiderMiniArt,
 };

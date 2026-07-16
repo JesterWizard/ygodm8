@@ -162,6 +162,12 @@ unsigned char ShouldActivateEL_SHADDOLL_SHEKHINAGA(void);
 void ActivateEL_SHADDOLL_SHEKHINAGA(void);
 unsigned char ShouldActivateEL_SHADDOLL_WINDA(void);
 void ActivateEL_SHADDOLL_WINDA(void);
+unsigned char ShouldActivateEVIL_DRAGON_ANANTA(void);
+void ActivateEVIL_DRAGON_ANANTA(void);
+unsigned char ShouldActivateEVIL_HERO_DARK_GAIA(void);
+void ActivateEVIL_HERO_DARK_GAIA(void);
+unsigned char ShouldActivateEVIL_HERO_INFERNAL_PRODIGY(void);
+void ActivateEVIL_HERO_INFERNAL_PRODIGY(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -487,6 +493,21 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = EL_SHADDOLL_WINDA,
     .shouldActivate = ShouldActivateEL_SHADDOLL_WINDA,
     .activate = ActivateEL_SHADDOLL_WINDA,
+  },
+  {
+    .cardId = EVIL_DRAGON_ANANTA,
+    .shouldActivate = ShouldActivateEVIL_DRAGON_ANANTA,
+    .activate = ActivateEVIL_DRAGON_ANANTA,
+  },
+  {
+    .cardId = EVIL_HERO_DARK_GAIA,
+    .shouldActivate = ShouldActivateEVIL_HERO_DARK_GAIA,
+    .activate = ActivateEVIL_HERO_DARK_GAIA,
+  },
+  {
+    .cardId = EVIL_HERO_INFERNAL_PRODIGY,
+    .shouldActivate = ShouldActivateEVIL_HERO_INFERNAL_PRODIGY,
+    .activate = ActivateEVIL_HERO_INFERNAL_PRODIGY,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

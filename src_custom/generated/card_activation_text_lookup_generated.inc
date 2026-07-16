@@ -636,6 +636,16 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [EL_SHADDOLL_SHEKHINAGA] = gActivationDescription_ElShaddollShekhinaga_Popup1,
   [EL_SHADDOLL_WENDIGO] = gActivationDescription_ElShaddollWendigo_Popup1,
   [EL_SHADDOLL_WINDA] = gActivationDescription_ElShaddollWinda_Popup1,
+  [ETERNAL_SOUL] = gActivationDescription_EternalSoul_Popup1,
+  [EVIL_ASSAULT] = gActivationDescription_EvilAssault_Popup1,
+  [EVIL_DRAGON_ANANTA] = gActivationDescription_EvilDragonAnanta_Popup1,
+  [EVIL_HERO_ADUSTED_GOLD] = gActivationDescription_EvilHeroAdustedGold_Popup1,
+  [EVIL_HERO_DARK_GAIA] = gActivationDescription_EvilHeroDarkGaia_Popup1,
+  [EVIL_HERO_DARKEST_KNIGHT] = gActivationDescription_EvilHeroDarkestKnight_Popup1,
+  [EVIL_HERO_DEAD_END_PRISON] = gActivationDescription_EvilHeroDeadEndPrison_Popup1,
+  [EVIL_HERO_INFERNAL_GAINER] = gActivationDescription_EvilHeroInfernalGainer_Popup1,
+  [EVIL_HERO_INFERNAL_PRODIGY] = gActivationDescription_EvilHeroInfernalProdigy_Popup1,
+  [EVIL_HERO_INFERNAL_RIDER] = gActivationDescription_EvilHeroInfernalRider_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1303,6 +1313,16 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_EL_SHADDOLL_SHEKHINAGA_POPUP_1] = gActivationDescription_ElShaddollShekhinaga_Popup1,
   [CARD_EFFECT_TEXT_EL_SHADDOLL_WENDIGO_POPUP_1] = gActivationDescription_ElShaddollWendigo_Popup1,
   [CARD_EFFECT_TEXT_EL_SHADDOLL_WINDA_POPUP_1] = gActivationDescription_ElShaddollWinda_Popup1,
+  [CARD_EFFECT_TEXT_ETERNAL_SOUL_POPUP_1] = gActivationDescription_EternalSoul_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_ASSAULT_POPUP_1] = gActivationDescription_EvilAssault_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_DRAGON_ANANTA_POPUP_1] = gActivationDescription_EvilDragonAnanta_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_ADUSTED_GOLD_POPUP_1] = gActivationDescription_EvilHeroAdustedGold_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_DARK_GAIA_POPUP_1] = gActivationDescription_EvilHeroDarkGaia_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_DARKEST_KNIGHT_POPUP_1] = gActivationDescription_EvilHeroDarkestKnight_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_DEAD_END_PRISON_POPUP_1] = gActivationDescription_EvilHeroDeadEndPrison_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_INFERNAL_GAINER_POPUP_1] = gActivationDescription_EvilHeroInfernalGainer_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_INFERNAL_PRODIGY_POPUP_1] = gActivationDescription_EvilHeroInfernalProdigy_Popup1,
+  [CARD_EFFECT_TEXT_EVIL_HERO_INFERNAL_RIDER_POPUP_1] = gActivationDescription_EvilHeroInfernalRider_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

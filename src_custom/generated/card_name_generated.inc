@@ -662,6 +662,16 @@ static const u8 sElShaddollMeshahrailName[] __attribute__((section(".append_asse
 static const u8 sElShaddollShekhinagaName[] __attribute__((section(".append_assets"))) = "El Shaddoll Shekhinaga";
 static const u8 sElShaddollWendigoName[] __attribute__((section(".append_assets"))) = "El Shaddoll Wendigo";
 static const u8 sElShaddollWindaName[] __attribute__((section(".append_assets"))) = "El Shaddoll Winda";
+static const u8 sEternalSoulName[] __attribute__((section(".append_assets"))) = "Eternal Soul";
+static const u8 sEvilAssaultName[] __attribute__((section(".append_assets"))) = "Evil Assault";
+static const u8 sEvilDragonAnantaName[] __attribute__((section(".append_assets"))) = "Evil Dragon Ananta";
+static const u8 sEvilHeroAdustedGoldName[] __attribute__((section(".append_assets"))) = "Evil HERO Adusted Gold";
+static const u8 sEvilHeroDarkGaiaName[] __attribute__((section(".append_assets"))) = "Evil HERO Dark Gaia";
+static const u8 sEvilHeroDarkestKnightName[] __attribute__((section(".append_assets"))) = "Evil HERO Darkest Knight";
+static const u8 sEvilHeroDeadEndPrisonName[] __attribute__((section(".append_assets"))) = "Evil HERO Dead-End Prison";
+static const u8 sEvilHeroInfernalGainerName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Gainer";
+static const u8 sEvilHeroInfernalProdigyName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Prodigy";
+static const u8 sEvilHeroInfernalRiderName[] __attribute__((section(".append_assets"))) = "Evil HERO Infernal Rider";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -1992,6 +2002,26 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sElShaddollWendigoName;
   if (cardId == 0x05B5)
     return (u8 *)sElShaddollWindaName;
+  if (cardId == 0x05B6)
+    return (u8 *)sEternalSoulName;
+  if (cardId == 0x05B7)
+    return (u8 *)sEvilAssaultName;
+  if (cardId == 0x05B8)
+    return (u8 *)sEvilDragonAnantaName;
+  if (cardId == 0x05B9)
+    return (u8 *)sEvilHeroAdustedGoldName;
+  if (cardId == 0x05BA)
+    return (u8 *)sEvilHeroDarkGaiaName;
+  if (cardId == 0x05BB)
+    return (u8 *)sEvilHeroDarkestKnightName;
+  if (cardId == 0x05BC)
+    return (u8 *)sEvilHeroDeadEndPrisonName;
+  if (cardId == 0x05BD)
+    return (u8 *)sEvilHeroInfernalGainerName;
+  if (cardId == 0x05BE)
+    return (u8 *)sEvilHeroInfernalProdigyName;
+  if (cardId == 0x05BF)
+    return (u8 *)sEvilHeroInfernalRiderName;
 
   return gCardNames[cardId];
 }
