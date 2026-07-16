@@ -212,6 +212,10 @@ unsigned char ShouldActivateREPTILIANNE_HYDRA(void);
 void ActivateREPTILIANNE_HYDRA(void);
 unsigned char ShouldActivateREPTILIANNE_NAGA(void);
 void ActivateREPTILIANNE_NAGA(void);
+unsigned char ShouldActivateREPTILIANNE_SERVANT(void);
+void ActivateREPTILIANNE_SERVANT(void);
+unsigned char ShouldActivateREPTILIANNE_VIPER(void);
+void ActivateREPTILIANNE_VIPER(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -662,6 +666,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = REPTILIANNE_NAGA,
     .shouldActivate = ShouldActivateREPTILIANNE_NAGA,
     .activate = ActivateREPTILIANNE_NAGA,
+  },
+  {
+    .cardId = REPTILIANNE_SERVANT,
+    .shouldActivate = ShouldActivateREPTILIANNE_SERVANT,
+    .activate = ActivateREPTILIANNE_SERVANT,
+  },
+  {
+    .cardId = REPTILIANNE_VIPER,
+    .shouldActivate = ShouldActivateREPTILIANNE_VIPER,
+    .activate = ActivateREPTILIANNE_VIPER,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

@@ -467,3 +467,13 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire OFFERING_TO_THE_SNAKE_DEITY in trap dispatcher */
 /* RED_REBOOT trap effect */
   /* TODO: wire RED_REBOOT in trap dispatcher */
+/* RISE_OF_THE_SNAKE_DEITY trap effect */
+  /* TODO: wire RISE_OF_THE_SNAKE_DEITY in trap dispatcher */
+/* SERPENT_SUPPRESSION trap effect */
+  /* TODO: wire SERPENT_SUPPRESSION in trap dispatcher */
+/* SHADDOLL_CORE trap effect */
+  /* TODO: wire SHADDOLL_CORE in trap dispatcher */
+/* SHADDOLL_SCHISM trap effect */
+  /* TODO: wire SHADDOLL_SCHISM in trap dispatcher */
+/* SNAKE_DEITYS_COMMAND trap effect */
+  /* TODO: wire SNAKE_DEITYS_COMMAND in trap dispatcher */

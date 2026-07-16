@@ -1553,11 +1553,31 @@
 #define REPTILIANNE_MEDUSA                       0x060D
 #define REPTILIANNE_NAGA                         0x060E
 #define REPTILIANNE_POISON                       0x060F
+#define REPTILIANNE_SCYLLA                       0x0610
+#define REPTILIANNE_SERVANT                      0x0611
+#define REPTILIANNE_SPAWN                        0x0612
+#define REPTILIANNE_VASKII                       0x0613
+#define REPTILIANNE_VIPER                        0x0614
+#define RETURN_OF_THE_DRAGON_LORDS               0x0615
+#define RISE_OF_THE_SNAKE_DEITY                  0x0616
+#define SECRETS_OF_DARK_MAGIC                    0x0617
+#define SERPENT_SUPPRESSION                      0x0618
+#define SHADDOLL_BEAST                           0x0619
+#define SHADDOLL_CORE                            0x061A
+#define SHADDOLL_DRAGON                          0x061B
+#define SHADDOLL_FALCO                           0x061C
+#define SHADDOLL_FUSION                          0x061D
+#define SHADDOLL_HEDGEHOG                        0x061E
+#define SHADDOLL_HOUND                           0x061F
+#define SHADDOLL_SCHISM                          0x0620
+#define SHADDOLL_SQUAMATA                        0x0621
+#define SILVERS_CRY                              0x0622
+#define SNAKE_DEITYS_COMMAND                     0x0623
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0610
-#define NUM_CUSTOM_CARDS                        0x02EF
+#define NUM_TOTAL_CARDS                         0x0624
+#define NUM_CUSTOM_CARDS                        0x0303
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -778,26 +778,26 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `REPTILIANNE_SCYLLA` — `reptilianne_scylla.png`
-- [ ] `REPTILIANNE_SERVANT` — `reptilianne_servant.png`
-- [ ] `REPTILIANNE_SPAWN` — `reptilianne_spawn.png`
-- [ ] `REPTILIANNE_VASKII` — `reptilianne_vaskii.png`
-- [ ] `REPTILIANNE_VIPER` — `reptilianne_viper.png`
-- [ ] `RETURN_OF_THE_DRAGON_LORDS` — `return_of_the_dragon_lords.png`
-- [ ] `RISE_OF_THE_SNAKE_DEITY` — `rise_of_the_snake_deity.png`
-- [ ] `SECRETS_OF_DARK_MAGIC` — `secrets_of_dark_magic.png`
-- [ ] `SERPENT_SUPPRESSION` — `serpent_suppression.png`
-- [ ] `SHADDOLL_BEAST` — `shaddoll_beast.png`
-- [ ] `SHADDOLL_CORE` — `shaddoll_core.png`
-- [ ] `SHADDOLL_DRAGON` — `shaddoll_dragon.png`
-- [ ] `SHADDOLL_FALCO` — `shaddoll_falco.png`
-- [ ] `SHADDOLL_FUSION` — `shaddoll_fusion.png`
-- [ ] `SHADDOLL_HEDGEHOG` — `shaddoll_hedgehog.png`
-- [ ] `SHADDOLL_HOUND` — `shaddoll_hound.png`
-- [ ] `SHADDOLL_SCHISM` — `shaddoll_schism.png`
-- [ ] `SHADDOLL_SQUAMATA` — `shaddoll_squamata.png`
-- [ ] `SILVERS_CRY` — `silvers_cry.png`
-- [ ] `SNAKE_DEITYS_COMMAND` — `snake_deitys_command.png`
+- [x] `REPTILIANNE_SCYLLA` — `reptilianne_scylla.png`
+- [x] `REPTILIANNE_SERVANT` — `reptilianne_servant.png`
+- [x] `REPTILIANNE_SPAWN` — `reptilianne_spawn.png`
+- [x] `REPTILIANNE_VASKII` — `reptilianne_vaskii.png`
+- [x] `REPTILIANNE_VIPER` — `reptilianne_viper.png`
+- [x] `RETURN_OF_THE_DRAGON_LORDS` — `return_of_the_dragon_lords.png`
+- [x] `RISE_OF_THE_SNAKE_DEITY` — `rise_of_the_snake_deity.png`
+- [x] `SECRETS_OF_DARK_MAGIC` — `secrets_of_dark_magic.png`
+- [x] `SERPENT_SUPPRESSION` — `serpent_suppression.png`
+- [x] `SHADDOLL_BEAST` — `shaddoll_beast.png`
+- [x] `SHADDOLL_CORE` — `shaddoll_core.png`
+- [x] `SHADDOLL_DRAGON` — `shaddoll_dragon.png`
+- [x] `SHADDOLL_FALCO` — `shaddoll_falco.png`
+- [x] `SHADDOLL_FUSION` — `shaddoll_fusion.png`
+- [x] `SHADDOLL_HEDGEHOG` — `shaddoll_hedgehog.png`
+- [x] `SHADDOLL_HOUND` — `shaddoll_hound.png`
+- [x] `SHADDOLL_SCHISM` — `shaddoll_schism.png`
+- [x] `SHADDOLL_SQUAMATA` — `shaddoll_squamata.png`
+- [x] `SILVERS_CRY` — `silvers_cry.png`
+- [x] `SNAKE_DEITYS_COMMAND` — `snake_deitys_command.png`
 - [ ] `SNAKE_RAIN` — `snake_rain.png`
 - [ ] `SNAKE_WHISTLE` — `snake_whistle.png`
 - [ ] `SOUL_SERVANT` — `soul_servant.png`

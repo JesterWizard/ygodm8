@@ -440,6 +440,12 @@
     case REPTILIANNE_POISON:
       EffectREPTILIANNE_POISON();
       return;
+    case REPTILIANNE_SPAWN:
+      EffectREPTILIANNE_SPAWN();
+      return;
+    case RETURN_OF_THE_DRAGON_LORDS:
+      EffectRETURN_OF_THE_DRAGON_LORDS();
+      return;
     case RING_OF_DESTRUCTION:
       EffectRingOfDestruction();
       return;
@@ -458,14 +464,23 @@
     case SECOND_COIN_TOSS:
       EffectSECOND_COIN_TOSS();
       return;
+    case SECRETS_OF_DARK_MAGIC:
+      EffectSECRETS_OF_DARK_MAGIC();
+      return;
     case SECRET_VILLAGE_OF_THE_SPELLCASTERS:
       EffectSECRET_VILLAGE_OF_THE_SPELLCASTERS();
+      return;
+    case SHADDOLL_FUSION:
+      EffectSHADDOLL_FUSION();
       return;
     case SHARE_THE_PAIN:
       EffectSHARE_THE_PAIN();
       return;
     case SHIELD_AND_SWORD:
       EffectShieldAndSword();
+      return;
+    case SILVERS_CRY:
+      EffectSILVERS_CRY();
       return;
     case SKULL_INVITATION:
       EffectSkullInvitation();

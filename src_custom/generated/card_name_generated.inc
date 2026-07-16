@@ -752,6 +752,26 @@ static const u8 sReptilianneLamiaName[] __attribute__((section(".append_assets")
 static const u8 sReptilianneMedusaName[] __attribute__((section(".append_assets"))) = "Reptilianne Medusa";
 static const u8 sReptilianneNagaName[] __attribute__((section(".append_assets"))) = "Reptilianne Naga";
 static const u8 sReptiliannePoisonName[] __attribute__((section(".append_assets"))) = "Reptilianne Poison";
+static const u8 sReptilianneScyllaName[] __attribute__((section(".append_assets"))) = "Reptilianne Scylla";
+static const u8 sReptilianneServantName[] __attribute__((section(".append_assets"))) = "Reptilianne Servant";
+static const u8 sReptilianneSpawnName[] __attribute__((section(".append_assets"))) = "Reptilianne Spawn";
+static const u8 sReptilianneVaskiiName[] __attribute__((section(".append_assets"))) = "Reptilianne Vaskii";
+static const u8 sReptilianneViperName[] __attribute__((section(".append_assets"))) = "Reptilianne Viper";
+static const u8 sReturnOfTheDragonLordsName[] __attribute__((section(".append_assets"))) = "Return of the Dragon Lords";
+static const u8 sRiseOfTheSnakeDeityName[] __attribute__((section(".append_assets"))) = "Rise of the Snake Deity";
+static const u8 sSecretsOfDarkMagicName[] __attribute__((section(".append_assets"))) = "Secrets of Dark Magic";
+static const u8 sSerpentSuppressionName[] __attribute__((section(".append_assets"))) = "Serpent Suppression";
+static const u8 sShaddollBeastName[] __attribute__((section(".append_assets"))) = "Shaddoll Beast";
+static const u8 sShaddollCoreName[] __attribute__((section(".append_assets"))) = "Shaddoll Core";
+static const u8 sShaddollDragonName[] __attribute__((section(".append_assets"))) = "Shaddoll Dragon";
+static const u8 sShaddollFalcoName[] __attribute__((section(".append_assets"))) = "Shaddoll Falco";
+static const u8 sShaddollFusionName[] __attribute__((section(".append_assets"))) = "Shaddoll Fusion";
+static const u8 sShaddollHedgehogName[] __attribute__((section(".append_assets"))) = "Shaddoll Hedgehog";
+static const u8 sShaddollHoundName[] __attribute__((section(".append_assets"))) = "Shaddoll Hound";
+static const u8 sShaddollSchismName[] __attribute__((section(".append_assets"))) = "Shaddoll Schism";
+static const u8 sShaddollSquamataName[] __attribute__((section(".append_assets"))) = "Shaddoll Squamata";
+static const u8 sSilversCryName[] __attribute__((section(".append_assets"))) = "Silver's Cry";
+static const u8 sSnakeDeitysCommandName[] __attribute__((section(".append_assets"))) = "Snake Deity's Command";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2262,6 +2282,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sReptilianneNagaName;
   if (cardId == 0x060F)
     return (u8 *)sReptiliannePoisonName;
+  if (cardId == 0x0610)
+    return (u8 *)sReptilianneScyllaName;
+  if (cardId == 0x0611)
+    return (u8 *)sReptilianneServantName;
+  if (cardId == 0x0612)
+    return (u8 *)sReptilianneSpawnName;
+  if (cardId == 0x0613)
+    return (u8 *)sReptilianneVaskiiName;
+  if (cardId == 0x0614)
+    return (u8 *)sReptilianneViperName;
+  if (cardId == 0x0615)
+    return (u8 *)sReturnOfTheDragonLordsName;
+  if (cardId == 0x0616)
+    return (u8 *)sRiseOfTheSnakeDeityName;
+  if (cardId == 0x0617)
+    return (u8 *)sSecretsOfDarkMagicName;
+  if (cardId == 0x0618)
+    return (u8 *)sSerpentSuppressionName;
+  if (cardId == 0x0619)
+    return (u8 *)sShaddollBeastName;
+  if (cardId == 0x061A)
+    return (u8 *)sShaddollCoreName;
+  if (cardId == 0x061B)
+    return (u8 *)sShaddollDragonName;
+  if (cardId == 0x061C)
+    return (u8 *)sShaddollFalcoName;
+  if (cardId == 0x061D)
+    return (u8 *)sShaddollFusionName;
+  if (cardId == 0x061E)
+    return (u8 *)sShaddollHedgehogName;
+  if (cardId == 0x061F)
+    return (u8 *)sShaddollHoundName;
+  if (cardId == 0x0620)
+    return (u8 *)sShaddollSchismName;
+  if (cardId == 0x0621)
+    return (u8 *)sShaddollSquamataName;
+  if (cardId == 0x0622)
+    return (u8 *)sSilversCryName;
+  if (cardId == 0x0623)
+    return (u8 *)sSnakeDeitysCommandName;
 
   return gCardNames[cardId];
 }

@@ -400,6 +400,20 @@ unsigned char CanActivateREPTILIANNE_LAMIA(void);
 void ActivateREPTILIANNE_LAMIAEffect(void);
 unsigned char CanActivateREPTILIANNE_MEDUSA(void);
 void ActivateREPTILIANNE_MEDUSAEffect(void);
+unsigned char CanActivateREPTILIANNE_VASKII(void);
+void ActivateREPTILIANNE_VASKIIEffect(void);
+unsigned char CanActivateSHADDOLL_BEAST(void);
+void ActivateSHADDOLL_BEASTEffect(void);
+unsigned char CanActivateSHADDOLL_DRAGON(void);
+void ActivateSHADDOLL_DRAGONEffect(void);
+unsigned char CanActivateSHADDOLL_FALCO(void);
+void ActivateSHADDOLL_FALCOEffect(void);
+unsigned char CanActivateSHADDOLL_HEDGEHOG(void);
+void ActivateSHADDOLL_HEDGEHOGEffect(void);
+unsigned char CanActivateSHADDOLL_HOUND(void);
+void ActivateSHADDOLL_HOUNDEffect(void);
+unsigned char CanActivateSHADDOLL_SQUAMATA(void);
+void ActivateSHADDOLL_SQUAMATAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1815,6 +1829,34 @@ FAILED:
   }
   if (gMonEffect.id == REPTILIANNE_MEDUSA) {
     ActivateREPTILIANNE_MEDUSAEffect();
+    return;
+  }
+  if (gMonEffect.id == REPTILIANNE_VASKII) {
+    ActivateREPTILIANNE_VASKIIEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_BEAST) {
+    ActivateSHADDOLL_BEASTEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_DRAGON) {
+    ActivateSHADDOLL_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_FALCO) {
+    ActivateSHADDOLL_FALCOEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_HEDGEHOG) {
+    ActivateSHADDOLL_HEDGEHOGEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_HOUND) {
+    ActivateSHADDOLL_HOUNDEffect();
+    return;
+  }
+  if (gMonEffect.id == SHADDOLL_SQUAMATA) {
+    ActivateSHADDOLL_SQUAMATAEffect();
     return;
   }
 }

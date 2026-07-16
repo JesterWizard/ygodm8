@@ -12,160 +12,160 @@ from add_card_art import wrap_activation_page, wrap_description_page
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
 
 FIXED_DESCRIPTIONS = {
-    "NEPHE_SHADDOLL_FUSION": [
-        "Declare 1 Attribute; Equip only to",
-        "a Shaddoll; it becomes that Attribute.",
+    "REPTILIANNE_SCYLLA": [
+        "If this destroys a monster with 0 ATK",
+        "by battle, you can Special Summon that",
+        "monster to your side of the field in",
+        "face-up Defense Position.",
+    ],
+    "REPTILIANNE_SERVANT": [
+        "Destroy this if there are face-up",
+        "monsters on the field other than this",
+        "card. Your opponent cannot select this",
+        "as an attack target.",
+    ],
+    "REPTILIANNE_SPAWN": [
+        "Banish 1 Reptilianne from your GY;",
+        "Special Summon 2 Reptilianne Tokens",
+        "(Reptile/EARTH/Lv1/ATK 0/DEF 0).",
+    ],
+    "REPTILIANNE_VASKII": [
+        "Cannot be Normal Summoned/Set. Must",
+        "first be Special Summoned by Tributing",
+        "2 face-up monsters with 0 ATK. OPT:",
+        "destroy 1 face-up monster your",
+        "opponent controls.",
+    ],
+    "REPTILIANNE_VIPER": [
+        "When this is Normal Summoned: you can",
+        "target 1 face-up monster with 0 ATK",
+        "your opponent controls; take control",
+        "of that target.",
+    ],
+    "RETURN_OF_THE_DRAGON_LORDS": [
+        "Target 1 Level 7 or 8 Dragon in your",
+        "GY; Special Summon it. If a Dragon you",
+        "control would be destroyed by battle",
+        "or card effect while this is in GY:",
+        "you can banish this instead.",
+    ],
+    "RISE_OF_THE_SNAKE_DEITY": [
+        "When a face-up Vennominon the King of",
+        "Poisonous Snakes you control is",
+        "destroyed, except by its own effect:",
+        "Special Summon 1 Vennominaga the Deity",
+        "of Poisonous Snakes from hand/Deck.",
+    ],
+    "SECRETS_OF_DARK_MAGIC": [
+        "Activate 1: Fusion Summon 1 Fusion",
+        "using monsters from hand/field,",
+        "including a DARK Spellcaster. Or",
+        "Ritual Summon 1 Ritual using monsters",
+        "from hand/field including a DARK Spellcaster.",
+    ],
+    "SERPENT_SUPPRESSION": [
+        "Face-up Attack Position monsters with",
+        "0 ATK your opponent controls cannot be",
+        "destroyed by battle.",
+    ],
+    "SHADDOLL_BEAST": [
+        "FLIP: You can draw 2 cards, then",
+        "discard 1. If this card is sent to the",
+        "GY by a card effect: you can draw 1",
+        "card. You can only use 1 Shaddoll",
+        "Beast effect per turn, and only once that turn.",
+    ],
+    "SHADDOLL_CORE": [
+        "Special Summon this as an Effect",
+        "Monster (Spellcaster/DARK/Lv9/ATK",
+        "1450/DEF 1950). (This card is also",
+        "still a Trap.) If Tributed: target 1",
+        "Shaddoll in GY; add it to your hand.",
+    ],
+    "SHADDOLL_DRAGON": [
+        "FLIP: Target 1 card your opponent",
+        "controls; return it to the hand. If",
+        "this is sent to GY by a card effect:",
+        "you can target 1 Spell/Trap your",
+        "opponent controls; destroy it. 1 effect/turn.",
+    ],
+    "SHADDOLL_FALCO": [
+        "FLIP: Target 1 Shaddoll in your GY,",
+        "except Falco; Special Summon it in",
+        "face-down Defense. If sent to GY by",
+        "a card effect: you can Special Summon",
+        "this in face-down Defense. 1 effect/turn.",
+    ],
+    "SHADDOLL_FUSION": [
+        "Fusion Summon 1 Shaddoll Fusion from",
+        "your Extra Deck, using monsters from",
+        "hand or field as Fusion Material. If",
+        "your opponent controls a monster from",
+        "Extra Deck, you can also use from Deck.",
+    ],
+    "SHADDOLL_HEDGEHOG": [
+        "FLIP: You can add 1 Shaddoll Spell/",
+        "Trap from your Deck to your hand. If",
+        "this is sent to GY by a card effect:",
+        "you can add 1 Shaddoll monster from",
+        "Deck to hand. 1 effect per turn.",
+    ],
+    "SHADDOLL_HOUND": [
+        "FLIP: Target 1 Shaddoll in your GY;",
+        "add it to your hand. If this is sent",
+        "to GY by a card effect: you can target",
+        "1 monster on the field; change it to",
+        "face-up Attack or face-down Defense.",
+    ],
+    "SHADDOLL_SCHISM": [
         "Main Phase: Fusion Summon 1 Shaddoll",
-        "Fusion from Extra using monsters from",
-        "hand/field including equipped. OPT.",
+        "Fusion from Extra, banishing Fusion",
+        "Materials from field and/or GY, but",
+        "it cannot attack this turn. Then you",
+        "can send 1 monster your opponent controls to GY.",
     ],
-    "NEUTRON_BLAST": [
-        "Target 1 Fusion Summoned Blue-Eyes",
-        "Ultimate Dragon you control; this turn",
-        "it can attack 2nd and 3rd times each",
-        "Battle Phase, also when it attacks,",
-        "opp cards/effects cannot activate.",
+    "SHADDOLL_SQUAMATA": [
+        "FLIP: Target 1 monster on the field;",
+        "destroy it. If this is sent to GY by",
+        "a card effect: you can send 1 Shaddoll",
+        "card from Deck to GY, except Squamata.",
+        "You can only use 1 effect per turn.",
     ],
-    "OFFERING_TO_THE_SNAKE_DEITY": [
-        "Target 1 face-up Reptile you control",
-        "and 2 cards your opponent controls;",
-        "destroy all three targets.",
+    "SILVERS_CRY": [
+        "Target 1 Dragon Normal Monster in",
+        "your GY; Special Summon that target.",
+        "You can only activate 1 Silver's Cry",
+        "per turn.",
     ],
-    "OSHALEON": [
-        "While face-up Attack Position, opp",
-        "must attack this if able. If destroyed",
-        "by battle and sent to GY: add 1 Reptile",
-        "with 500 or less ATK from Deck to hand.",
-    ],
-    "POWER_TOOL_DRAGON": [
-        "1 Tuner + 1+ non-Tuner.",
-        "OPT: reveal 3 Equip Spells from Deck;",
-        "opp randomly adds 1 to your hand,",
-        "shuffle the rest. If would be destroyed",
-        "while equipped: send 1 Equip instead.",
-    ],
-    "PREDAPLANT_VERTE_ANACONDA": [
-        "2 Effect Monsters.",
-        "Target 1 face-up monster; it becomes",
-        "DARK until EOT. Pay 2000 LP and send",
-        "1 Fusion/Poly Normal/Quick from Deck",
-        "to GY; copy its effect. Extra lock. OPT.",
-    ],
-    "QADSHADDOLL_KEIOS": [
-        "FLIP: SS 1 Shaddoll from hand in",
-        "face-up or face-down Defense.",
-        "If sent to GY by effect: send 1",
-        "Shaddoll from hand to GY; Shaddolls",
-        "you control gain ATK = Lv x 100.",
-    ],
-    "RED_DRAGON_ARCHFIEND": [
-        "1 Tuner + 1+ non-Tuner.",
-        "After damage calc, if this attacks a",
-        "Defense Position monster: destroy all",
-        "opp Defense Position monsters.",
-        "End Phase: destroy your other Attackers.",
-    ],
-    "RED_REBOOT": [
-        "When opp activates a Trap: negate,",
-        "Set that card, then they can Set 1",
-        "other Trap from Deck. Rest of turn,",
-        "they cannot activate Traps. Can activate",
-        "from hand by paying half your LP.",
-    ],
-    "REESHADDOLL_WENDI": [
-        "FLIP: SS 1 Shaddoll from Deck in",
-        "face-up or face-down Defense,",
-        "except Wendi. If sent to GY by",
-        "effect: SS 1 Shaddoll from Deck",
-        "face-down. Use only 1 effect per turn.",
-    ],
-    "REESHADDOLL_WENDIKURUHU": [
-        "1 Shaddoll + 1 WIND. Must first be",
-        "Fusion Summoned. Quick: flip face-down",
-        "monsters face-up Defense; then flip",
-        "up to that many Flip monsters' count",
-        "face-down. Sent to GY: add 1 Shaddoll.",
-    ],
-    "REPTILANNE_RAGE": [
-        "Equipped becomes Reptile and gains",
-        "800 ATK. If this is destroyed and sent",
-        "to GY: target 1 face-up opp monster;",
-        "it loses 800 ATK.",
-    ],
-    "REPTILIANNE_ECHIDNA": [
-        "2 monsters including a Reptile.",
-        "If Link Summoned: target 1 face-up",
-        "opp monster; its ATK becomes 0.",
-        "Main Phase if you control a 0 ATK:",
-        "add Reptiles from Deck. Extra lock.",
-    ],
-    "REPTILIANNE_GARDNA": [
-        "When this card you control is",
-        "destroyed and sent to the GY,",
-        "add 1 Reptilianne monster from",
-        "your Deck to your hand.",
-    ],
-    "REPTILIANNE_GORGON": [
-        "If this card attacks a monster,",
-        "after damage calculation: that",
-        "monster's ATK becomes 0, also it",
-        "cannot change its battle position.",
-    ],
-    "REPTILIANNE_HYDRA": [
-        "1 Reptilianne Tuner + 1+ non-Tuner.",
-        "When Synchro Summoned: destroy all",
-        "face-up opp monsters with 0 ATK,",
-        "and draw 1 for each destroyed.",
-    ],
-    "REPTILIANNE_LAMIA": [
-        "If in hand and all your monsters are",
-        "face-up Reptiles: target 1 face-up",
-        "opp; ATK to 0, SS this, take damage",
-        "equal to its original ATK. If Synchro",
-        "Material: target monsters; ATK to 0.",
-    ],
-    "REPTILIANNE_MEDUSA": [
-        "Send 1 card from your hand to the GY",
-        "and select 1 face-up monster your",
-        "opponent controls. Its ATK becomes 0,",
-        "and it cannot change battle position.",
-    ],
-    "REPTILIANNE_NAGA": [
-        "Cannot be destroyed by battle.",
-        "ATK of any monster that battles this",
-        "becomes 0 at end of that Battle Phase.",
-        "During your End Phase, change this",
-        "face-up Defense Position to Attack.",
-    ],
-    "REPTILIANNE_POISON": [
-        "If you control a face-up Reptilianne:",
-        "change 1 Defense Position opp monster",
-        "to face-up Attack Position and reduce",
-        "its ATK to 0.",
+    "SNAKE_DEITYS_COMMAND": [
+        "Activate by revealing 1 Venom monster",
+        "in your hand. Negate the activation",
+        "of an opponent's Spell Card and",
+        "destroy it.",
     ],
 }
 
 FIXED_POPUPS = {
-    "NEPHE_SHADDOLL_FUSION": "Equip Shaddoll; set Attribute. Fusion Summon Shaddoll Fusion using equipped. OPT.",
-    "NEUTRON_BLAST": "BEUD attacks 2nd/3rd; opp cannot activate cards/effects when it attacks.",
-    "OFFERING_TO_THE_SNAKE_DEITY": "Target 1 Reptile you control + 2 opp cards; destroy all three.",
-    "OSHALEON": "Opp must attack this. If destroyed by battle: add Reptile ATK 500-.",
-    "POWER_TOOL_DRAGON": "OPT: reveal 3 Equips; opp adds 1. Destroy protect via Equip.",
-    "PREDAPLANT_VERTE_ANACONDA": "Make monster DARK. Pay 2000; copy Fusion/Poly from Deck. OPT.",
-    "QADSHADDOLL_KEIOS": "FLIP: SS Shaddoll from hand. Sent by effect: mill; gain ATK.",
-    "RED_DRAGON_ARCHFIEND": "Attacks Defense: destroy all opp Defense. EP: destroy other Attackers.",
-    "RED_REBOOT": "Negate Trap; Set it. Opp cannot activate Traps. Hand: pay half LP.",
-    "REESHADDOLL_WENDI": "FLIP: SS Shaddoll from Deck. Sent by effect: SS face-down.",
-    "REESHADDOLL_WENDIKURUHU": "Quick: flip monsters. Sent to GY: add 1 Shaddoll from GY.",
-    "REPTILANNE_RAGE": "Equip: Reptile +800 ATK. If destroyed: opp monster loses 800 ATK.",
-    "REPTILIANNE_ECHIDNA": "Link: set ATK to 0. If control 0 ATK: add Reptiles from Deck.",
-    "REPTILIANNE_GARDNA": "If destroyed: add 1 Reptilianne from Deck to hand.",
-    "REPTILIANNE_GORGON": "After attack damage calc: that monster ATK becomes 0.",
-    "REPTILIANNE_HYDRA": "On Synchro: destroy opp 0 ATK monsters; draw 1 each.",
-    "REPTILIANNE_LAMIA": "Hand: set ATK 0, SS this. Synchro Material: set ATK to 0.",
-    "REPTILIANNE_MEDUSA": "Discard 1; select face-up opp monster; its ATK becomes 0.",
-    "REPTILIANNE_NAGA": "Battle immune. Battler ATK to 0. EP: Defense to Attack.",
-    "REPTILIANNE_POISON": "If control Reptilianne: flip Defense to Attack; ATK to 0.",
+    "REPTILIANNE_SCYLLA": "If destroys 0 ATK by battle: SS that monster in Defense.",
+    "REPTILIANNE_SERVANT": "Self-destroy if other face-up. Opp cannot attack this.",
+    "REPTILIANNE_SPAWN": "Banish 1 Reptilianne from GY; SS 2 Tokens (ATK/DEF 0).",
+    "REPTILIANNE_VASKII": "SS by Tributing 2 with 0 ATK. OPT: destroy 1 face-up opp.",
+    "REPTILIANNE_VIPER": "On NS: take control of 1 face-up opp monster with 0 ATK.",
+    "RETURN_OF_THE_DRAGON_LORDS": "SS Lv7/8 Dragon from GY. GY: banish instead of destroy Dragon.",
+    "RISE_OF_THE_SNAKE_DEITY": "When Vennominon destroyed: SS Vennominaga from hand/Deck.",
+    "SECRETS_OF_DARK_MAGIC": "Fusion or Ritual Summon using DARK Spellcaster materials.",
+    "SERPENT_SUPPRESSION": "Opp Attack Position 0 ATK monsters cannot be destroyed by battle.",
+    "SHADDOLL_BEAST": "FLIP: draw 2, discard 1. Sent by effect: draw 1. 1/turn.",
+    "SHADDOLL_CORE": "SS as monster. If Tributed: add 1 Shaddoll from GY to hand.",
+    "SHADDOLL_DRAGON": "FLIP: bounce 1 opp. Sent by effect: destroy 1 opp S/T.",
+    "SHADDOLL_FALCO": "FLIP: SS Shaddoll face-down. Sent by effect: SS this face-down.",
+    "SHADDOLL_FUSION": "Fusion Summon Shaddoll. If opp Extra: can use materials from Deck.",
+    "SHADDOLL_HEDGEHOG": "FLIP: add Shaddoll S/T. Sent by effect: add Shaddoll monster.",
+    "SHADDOLL_HOUND": "FLIP: add Shaddoll from GY. Sent by effect: change battle position.",
+    "SHADDOLL_SCHISM": "Fusion Summon banishing mats; then send 1 opp monster to GY.",
+    "SHADDOLL_SQUAMATA": "FLIP: destroy 1. Sent by effect: send 1 Shaddoll from Deck to GY.",
+    "SILVERS_CRY": "Target 1 Dragon Normal in GY; Special Summon it. 1/turn.",
+    "SNAKE_DEITYS_COMMAND": "Reveal Venom in hand; negate opp Spell activation and destroy it.",
 }
 
 
@@ -197,12 +197,11 @@ def main():
         if const in FIXED_POPUPS and "effect_texts" in item:
             popup = item["effect_texts"].get("popup_1")
             if isinstance(popup, dict):
-                item["effect_texts"]["popup_1"]["pages"] = [FIXED_POPUPS[const]]
-            elif isinstance(popup, str):
                 item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
-
+            else:
+                item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
     write_manifest(MANIFEST_PATH, manifest)
-    print(f"Fixed {len(FIXED_DESCRIPTIONS)} descriptions and popups")
+    print(f"Updated {len(FIXED_DESCRIPTIONS)} descriptions")
     return 0
 
 

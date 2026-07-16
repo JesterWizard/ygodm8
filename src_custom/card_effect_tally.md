@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `683` effects
+- `703` effects
 
 ## Tally
 
@@ -664,6 +664,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Reptilianne Medusa` | `src_custom/activated_effects/reptilianne_medusa.c` |
 | `permanent_effects` | `Reptilianne Naga` | `src_custom/permanent_effects/reptilianne_naga.c` |
 | `spell_effects` | `Reptilianne Poison` | `src_custom/spell_effects/reptilianne_poison.c` |
+| `battle_effects` | `Reptilianne Scylla` | `src_custom/battle_effects/reptilianne_scylla.c` |
+| `permanent_effects` | `Reptilianne Servant` | `src_custom/permanent_effects/reptilianne_servant.c` |
+| `spell_effects` | `Reptilianne Spawn` | `src_custom/spell_effects/reptilianne_spawn.c` |
+| `activated_effects` | `Reptilianne Vaskii` | `src_custom/activated_effects/reptilianne_vaskii.c` |
+| `permanent_effects` | `Reptilianne Viper` | `src_custom/permanent_effects/reptilianne_viper.c` |
+| `spell_effects` | `Return Of The Dragon Lords` | `src_custom/spell_effects/return_of_the_dragon_lords.c` |
+| `trap_effects` | `Rise Of The Snake Deity` | `src_custom/trap_effects/rise_of_the_snake_deity.c` |
+| `spell_effects` | `Secrets Of Dark Magic` | `src_custom/spell_effects/secrets_of_dark_magic.c` |
+| `trap_effects` | `Serpent Suppression` | `src_custom/trap_effects/serpent_suppression.c` |
+| `activated_effects` | `Shaddoll Beast` | `src_custom/activated_effects/shaddoll_beast.c` |
+| `trap_effects` | `Shaddoll Core` | `src_custom/trap_effects/shaddoll_core.c` |
+| `activated_effects` | `Shaddoll Dragon` | `src_custom/activated_effects/shaddoll_dragon.c` |
+| `activated_effects` | `Shaddoll Falco` | `src_custom/activated_effects/shaddoll_falco.c` |
+| `spell_effects` | `Shaddoll Fusion` | `src_custom/spell_effects/shaddoll_fusion.c` |
+| `activated_effects` | `Shaddoll Hedgehog` | `src_custom/activated_effects/shaddoll_hedgehog.c` |
+| `activated_effects` | `Shaddoll Hound` | `src_custom/activated_effects/shaddoll_hound.c` |
+| `trap_effects` | `Shaddoll Schism` | `src_custom/trap_effects/shaddoll_schism.c` |
+| `activated_effects` | `Shaddoll Squamata` | `src_custom/activated_effects/shaddoll_squamata.c` |
+| `spell_effects` | `Silvers Cry` | `src_custom/spell_effects/silvers_cry.c` |
+| `trap_effects` | `Snake Deitys Command` | `src_custom/trap_effects/snake_deitys_command.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

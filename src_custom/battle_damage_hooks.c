@@ -319,3 +319,5 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   /* TODO: wire RED_DRAGON_ARCHFIEND in battle damage hooks */
 /* REPTILIANNE_GORGON battle effect */
   /* TODO: wire REPTILIANNE_GORGON in battle damage hooks */
+/* REPTILIANNE_SCYLLA battle effect */
+  /* TODO: wire REPTILIANNE_SCYLLA in battle damage hooks */
