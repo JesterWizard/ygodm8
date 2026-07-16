@@ -68,13 +68,25 @@ extern u8 gCardDetailNavActive;
 extern u8 gCardDetailNavIndex;
 
 /* Large font 0x901: 5 rows × 14 cols (70 glyphs, 2 tiles tall each).
- * Small font 0x001: 10 rows × 14 cols (140 glyphs, 1 tile tall) in the same VRAM. */
+ * Small font 0x001: 10 rows × 14 cols (140 glyphs, 1 tile tall) in the same VRAM.
+ * Manifest pages are authored for the large layout; when small font is on we
+ * recover the prose and reflow into denser pages at runtime. */
 #define DESC_TILE_BASE 148
 #define DESC_TILEMAP_ATTR 0xF000
 #define DESC_COLS 14
 #define DESC_ROW0 10
 #define DESC_ROWS_LARGE 5
 #define DESC_ROWS_SMALL 10
+#define DESC_PROSE_BUF_SIZE 0x280
+#define DESC_REFLOW_BUF_SIZE 0x300
+#define DESC_MAX_PAGES 9
+
+extern u8 gDescProseBuf[];
+extern u8 gDescReflowBuf[];
+
+static const u8 sLargeRowWidths[DESC_ROWS_LARGE] APPEND_RODATA = {12, 14, 14, 14, 12};
+static const u8 sSmallRowWidths[DESC_ROWS_SMALL] APPEND_RODATA = {
+    12, 14, 14, 14, 14, 14, 14, 14, 14, 12};
 
 static u8 DescriptionUsesSmallFont(void) {
   return gRuntimeConfig.use_small_card_description_font == TRUE;
@@ -99,6 +111,147 @@ static void ApplySmallFontDescriptionTilemap(void) {
       tile++;
     }
   }
+}
+
+/* Strip large-layout row padding (12/14/14/14/12) from each page and join. */
+static void RecoverProseFromLargePages(const u8 *pages[], u8 pageCount, u8 *out, u16 outCap) {
+  u16 outLen = 0;
+  u8 p;
+
+  for (p = 0; p < pageCount; p++) {
+    const u8 *text = pages[p];
+    u16 pageLen = 0;
+    u16 pos = 0;
+    u8 r;
+
+    while (text[pageLen] != '\0' && text[pageLen] != '^')
+      pageLen++;
+
+    for (r = 0; r < DESC_ROWS_LARGE && pos < pageLen; r++) {
+      u8 width = sLargeRowWidths[r];
+      u16 take = (u16)(pageLen - pos);
+      u16 rowStart;
+      u16 trimEnd;
+
+      if (take > width)
+        take = width;
+      rowStart = pos;
+      pos = (u16)(pos + take);
+      trimEnd = pos;
+      while (trimEnd > rowStart && text[trimEnd - 1] == ' ')
+        trimEnd--;
+      if (trimEnd > rowStart) {
+        if (outLen > 0 && outLen < outCap - 1)
+          out[outLen++] = ' ';
+        while (rowStart < trimEnd && outLen < outCap - 1)
+          out[outLen++] = text[rowStart++];
+      }
+    }
+  }
+
+  out[outLen < outCap ? outLen : (u16)(outCap - 1)] = '\0';
+}
+
+/* Word-wrap prose into small-layout pages (12/14×8/12), '^'-terminated. */
+static u8 WrapProseToSmallPages(const u8 *prose, u8 *out, u16 outCap,
+                                const u8 *pageStarts[], u8 maxPages) {
+  u16 prosePos = 0;
+  u16 outPos = 0;
+  u8 pageCount = 0;
+
+  while (prose[prosePos] == ' ')
+    prosePos++;
+
+  if (prose[prosePos] == '\0') {
+    pageStarts[0] = out;
+    out[0] = '^';
+    out[1] = '\0';
+    return 1;
+  }
+
+  while (prose[prosePos] != '\0' && pageCount < maxPages) {
+    u8 row;
+
+    pageStarts[pageCount] = &out[outPos];
+
+    for (row = 0; row < DESC_ROWS_SMALL; row++) {
+      u8 width = sSmallRowWidths[row];
+      u8 col = 0;
+
+      while (prose[prosePos] == ' ')
+        prosePos++;
+      if (prose[prosePos] == '\0')
+        break;
+
+      while (prose[prosePos] != '\0' && prose[prosePos] != ' ') {
+        u16 wlen = 0;
+        u8 need;
+
+        while (prose[prosePos + wlen] != '\0' && prose[prosePos + wlen] != ' ')
+          wlen++;
+
+        need = (u8)(col == 0 ? wlen : wlen + 1);
+        if (need > (u8)(width - col)) {
+          if (col == 0) {
+            /* ponytail: hard-split overlong tokens; hyphenate like the generator if needed. */
+            u8 fit = width;
+            u8 i;
+
+            if (fit > wlen)
+              fit = (u8)wlen;
+            if (outPos + fit + 2 >= outCap)
+              goto done;
+            for (i = 0; i < fit; i++)
+              out[outPos++] = prose[prosePos++];
+            col = fit;
+          }
+          break;
+        }
+
+        if (outPos + need + 2 >= outCap)
+          goto done;
+        if (col > 0) {
+          out[outPos++] = ' ';
+          col++;
+        }
+        {
+          u16 i;
+          for (i = 0; i < wlen; i++)
+            out[outPos++] = prose[prosePos++];
+        }
+        col = (u8)(col + wlen);
+
+        while (prose[prosePos] == ' ')
+          prosePos++;
+      }
+
+      if (prose[prosePos] == '\0')
+        break;
+
+      /* Pad to row width so the glyph stream stays column-aligned. */
+      if (outPos + (u16)(width - col) + 2 >= outCap)
+        goto done;
+      while (col < width) {
+        out[outPos++] = ' ';
+        col++;
+      }
+    }
+
+    if (outPos + 2 >= outCap)
+      goto done;
+    out[outPos++] = '^';
+    pageCount++;
+  }
+
+done:
+  if (pageCount == 0) {
+    pageStarts[0] = out;
+    out[0] = '^';
+    out[1] = '\0';
+    return 1;
+  }
+  out[outPos] = '\0';
+  return pageCount;
 }
 
 static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
@@ -199,6 +352,13 @@ static u8 CardDetailViewBuildDescription(u16 *pageBuffer, const u8 *pageStarts[9
       }
       text++;
     }
+
+    if (DescriptionUsesSmallFont()) {
+      RecoverProseFromLargePages(pageStarts, pageCount, gDescProseBuf, DESC_PROSE_BUF_SIZE);
+      pageCount = WrapProseToSmallPages(gDescProseBuf, gDescReflowBuf, DESC_REFLOW_BUF_SIZE,
+                                        pageStarts, DESC_MAX_PAGES);
+    }
+
     g201CB59 = pageCount;
     BuildDescriptionPageBuffer(pageStarts[0], 0, pageCount, pageBuffer);
     return pageCount;

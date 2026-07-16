@@ -1,12 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-16 — Small font card descriptions
+**Last worked on:** 2026-07-16 — Small-font description reflow
 
 **Files touched:**
-- `configs/runtime.h` / `configs/runtime.c` — `use_small_card_description_font`
-- `src_custom/code_801EF30_hooks.c` — 8×8 font + sequential 10×14 tilemap
-- `src_custom/debug/debug_menu_runtime_config.c` — "Small Desc" toggle
+- `src_custom/code_801EF30_hooks.c` — recover + word-wrap into 10-row pages when small font on
+- `asm/ram_map_ewram.s` — `gDescProseBuf` / `gDescReflowBuf`
+- `tests/host/test_card_description_reflow.py`
 
-**Outcome:** Card detail descriptions can use the half-height font (10 rows / 140 chars vs 5 / 70). Default ON. `make` exits 0.
+**Outcome:** Manifest 70-char pages are concatenated and reflowed into denser 136-char small-font pages at runtime. `make` exits 0; reflow host test OK.
 
-**Open / next:** Confirm in-game; optionally extend generator to emit denser pages when small font is intended.
+**Open / next:** Confirm in-game (2-page cards should often become 1 page).

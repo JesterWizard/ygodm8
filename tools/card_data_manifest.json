@@ -32973,7 +32973,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "During the Standby Phase: You can have all \"HERO\" monsters you control gain 400 ATK (even if this card leaves the field)"
+        "popup_1": "During the Standby Phase: You can have all HERO monsters you control gain 400 ATK (even if this card leaves the field)"
       }
     },
     {
@@ -33009,7 +33009,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "When a face-up \"Elemental HERO\" monster you control leaves the field: Add 1 \"Destiny HERO\" monster from your Deck to you"
+        "popup_1": "When a face-up Elemental HERO monster you control leaves the field: Add 1 Destiny HERO monster from your Deck to you"
       }
     },
     {
@@ -33118,7 +33118,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "When this card is activated: You can add 1 \"Destiny HERO - Plasma\" from your Deck or GY to your hand. While you control "
+        "popup_1": "When this card is activated: You can add 1 Destiny HERO - Plasma from your Deck or GY to your hand. While you control "
       }
     },
     {
@@ -34161,7 +34161,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "If this card is Special Summoned by the effect of a \"HERO\" monster: You can make each player draw 1 card. During the nex"
+        "popup_1": "If this card is Special Summoned by the effect of a HERO monster: You can make each player draw 1 card. During the nex"
       }
     },
     {
@@ -34195,7 +34195,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "If this card is Normal Summoned: Place 1 Clock Counter on each \"Clock Tower Prison\". When this card is destroyed by batt"
+        "popup_1": "If this card is Normal Summoned: Place 1 Clock Counter on each Clock Tower Prison. When this card is destroyed by batt"
       }
     },
     {
@@ -34231,7 +34231,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "If this card is Special Summoned by \"Clock Tower Prison\": Destroy all monsters you control, except \"Destiny HERO\" monste"
+        "popup_1": "If this card is Special Summoned by Clock Tower Prison: Destroy all monsters you control, except Destiny HERO monste"
       }
     },
     {
@@ -34374,7 +34374,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "During damage calculation, if your \"Destiny HERO\" monster battles and this card is in your GY: You can Special Summon th"
+        "popup_1": "During damage calculation, if your Destiny HERO monster battles and this card is in your GY: You can Special Summon th"
       }
     },
     {
@@ -34411,7 +34411,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "If this card is Normal or Special Summoned: You can Special Summon 1 \"Destiny HERO\" monster from your hand with ATK less"
+        "popup_1": "If this card is Normal or Special Summoned: You can Special Summon 1 Destiny HERO monster from your hand with ATK less"
       }
     },
     {
@@ -34446,7 +34446,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "You can send 1 \"Destiny HERO\" card from your hand to the Graveyard; inflict 500 damage to your opponent."
+        "popup_1": "You can send 1 Destiny HERO card from your hand to the Graveyard; inflict 500 damage to your opponent."
       }
     },
     {
@@ -34586,7 +34586,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "You can banish this card from your GY; Special Summon 1 \"Destiny HERO - Malicious\" from your Deck."
+        "popup_1": "You can banish this card from your GY; Special Summon 1 Destiny HERO - Malicious from your Deck."
       }
     },
     {
@@ -35262,7 +35262,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Special Summon 2 \"Doomsday Tokens\" (Fiend/DARK/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be Tributed for a T"
+        "popup_1": "Special Summon 2 Doomsday Tokens (Fiend/DARK/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be Tributed for a T"
       }
     },
     {
@@ -37558,7 +37558,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "All \"Gravekeeper's\" monsters gain 500 ATK and DEF. Cards in the Graveyard cannot be banished. Negate any card effect tha"
+        "popup_1": "All Gravekeeper's monsters gain 500 ATK and DEF. Cards in the Graveyard cannot be banished. Negate any card effect tha"
       }
     },
     {
@@ -37666,7 +37666,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Cannot be Normal Summoned or Set. Must be Special Summoned (from your hand) by sending 1 face-up \"Elemental HERO Neos\" a"
+        "popup_1": "Cannot be Normal Summoned or Set. Must be Special Summoned (from your hand) by sending 1 face-up Elemental HERO Neos a"
       }
     },
     {
@@ -37767,7 +37767,7 @@
       "description": {
         "symbol": "gDescription_OjamaKing",
         "pages": [
-          "\"Ojama Green\" + \"Ojama Yellow\" + \"Ojama Black\"",
+          "Ojama Green + Ojama Yellow + Ojama Black",
           "Select up to 3 of your opponent's Monster Card",
           "Zones. The selected zones cannot be used."
         ]
@@ -38187,12 +38187,12 @@
       "description": {
         "symbol": "gDescription_ReaperScytheDreadscythe",
         "pages": [
-          "Equip only to \"Guardian Dreadscythe\". It gains 500",
+          "Equip only to Guardian Dreadscythe. It gains 500",
           "ATK for each monster in the Graveyards."
         ]
       },
       "effect_texts": {
-        "popup_1": "Equip only to \"Guardian Dreadscythe\". It gains 500 ATK for each monster in the Graveyards."
+        "popup_1": "Equip only to Guardian Dreadscythe. It gains 500 ATK for each monster in the Graveyards."
       }
     },
     {
@@ -38227,7 +38227,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Must be Special Summoned with \"The Claw of Hermos\", using a Dragon monster. If this card is Special Summoned: "
+        "popup_1": "Must be Special Summoned with The Claw of Hermos, using a Dragon monster. If this card is Special Summoned: "
       }
     },
     {
@@ -38263,7 +38263,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "\"Dark Magician\" + \"Red-Eyes Black Dragon\" or 1 Dragon Effect Monster\r\nCannot be destroyed by card effects. Nei"
+        "popup_1": "Dark Magician + Red-Eyes Black Dragon or 1 Dragon Effect Monster\r\nCannot be destroyed by card effects. Nei"
       }
     },
     {
@@ -38334,7 +38334,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "This card is used to Ritual Summon \"Lord of the Red\". You must also Tribute monsters from your hand or field, "
+        "popup_1": "This card is used to Ritual Summon Lord of the Red. You must also Tribute monsters from your hand or field, "
       }
     },
     {
@@ -38369,7 +38369,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "When this card is Normal or Special Summoned: You can add 1 \"Yellow Gadget\" from your Deck to your hand."
+        "popup_1": "When this card is Normal or Special Summoned: You can add 1 Yellow Gadget from your Deck to your hand."
       }
     },
     {
@@ -38477,7 +38477,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Must be Special Summoned with \"The Claw of Hermos\", using a Warrior monster. If this card is Special Summoned:"
+        "popup_1": "Must be Special Summoned with The Claw of Hermos, using a Warrior monster. If this card is Special Summoned:"
       }
     },
     {
@@ -38585,7 +38585,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Special Summon 4 \"Sheep Tokens\" (Beast/EARTH/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be Tributed for a Tri"
+        "popup_1": "Special Summon 4 Sheep Tokens (Beast/EARTH/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be Tributed for a Tri"
       }
     },
     {
@@ -38874,7 +38874,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Equip only to \"Elemental HERO Sparkman\". During your Main Phase: You can target 1 face-up monster; change the battle pos"
+        "popup_1": "Equip only to Elemental HERO Sparkman. During your Main Phase: You can target 1 face-up monster; change the battle pos"
       }
     },
     {
@@ -38910,7 +38910,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Once per turn, during your Main Phase, if you control this card: You can target 1 \"Elemental HERO\" monster in your Grave"
+        "popup_1": "Once per turn, during your Main Phase, if you control this card: You can target 1 Elemental HERO monster in your Grave"
       }
     },
     {
@@ -39414,7 +39414,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card is also always treated as \"Legendary Dragon Hermos\".)\r\nSend 1 monster from your hand or field to the GY, of t"
+        "popup_1": "(This card is also always treated as Legendary Dragon Hermos.)\r\nSend 1 monster from your hand or field to the GY, of t"
       }
     },
     {
@@ -39481,12 +39481,12 @@
         "symbol": "gDescription_TheCreatorIncarnate",
         "pages": [
           "You can Tribute this card;",
-          "Special Summon 1 \"The",
-          "Creator\" from your hand."
+          "Special Summon 1 The",
+          "Creator from your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "You can Tribute this card; Special Summon 1 \"The Creator\" from your hand."
+        "popup_1": "You can Tribute this card; Special Summon 1 The Creator from your hand."
       }
     },
     {
@@ -39523,7 +39523,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card is also always treated as \"Legendary Dragon Timaeus\".)\nTarget 1 \"Dark Magician\" monster you control; Fusion S"
+        "popup_1": "(This card is also always treated as Legendary Dragon Timaeus.)\nTarget 1 Dark Magician monster you control; Fusion S"
       }
     },
     {
@@ -39560,7 +39560,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "(This card is also always treated as \"Legendary Dragon Critias\".)\r\nSend 1 Trap from your hand or field to the GY, that i"
+        "popup_1": "(This card is also always treated as Legendary Dragon Critias.)\r\nSend 1 Trap from your hand or field to the GY, that i"
       }
     },
     {
@@ -39633,7 +39633,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 \"Forbidden One\" monster, and can"
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by Tributing 1 Forbidden One monster, and can"
       }
     },
     {
@@ -39912,7 +39912,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Activate only while \"Umi\" is on the field. While \"Umi\" is face-up on the field, you take no Battle Damage from attacking"
+        "popup_1": "Activate only while Umi is on the field. While Umi is face-up on the field, you take no Battle Damage from attacking"
       }
     },
     {
@@ -40045,8 +40045,8 @@
       "description": {
         "symbol": "gDescription_TyrantBurstDragon",
         "pages": [
-          "Must be   Special   Summoned with   \"The Fang of   Critias\",  ",
-          "using   \"Tyrant Wing\".   This card can   attack all   your  ",
+          "Must be   Special   Summoned with   The Fang of   Critias,  ",
+          "using   Tyrant Wing.   This card can   attack all   your  ",
           "opponent's   monsters, once   each. You can   target 1   face-up  ",
           "monster you   control; equip   this monster   to that   target. It  ",
           "gains 400   ATK/DEF, also   it can make 3   attacks during   each Battle  "
@@ -40189,7 +40189,7 @@
       "description": {
         "symbol": "gDescription_VisionFusion",
         "pages": [
-          "Fusion   Summon 1   \"HERO\" Fusion   Monster from   your Extra  ",
+          "Fusion   Summon 1   HERO Fusion   Monster from   your Extra  ",
           "Deck, using   monsters from   your hand or   field as   Fusion  ",
           "Material.   You can also   use up to 2   monsters in   your Spell &  ",
           "Trap Zone   that are being   treated as   Continuous   Traps as  ",
@@ -40197,7 +40197,7 @@
         ]
       },
       "effect_texts": {
-        "popup_1": "Fusion Summon 1 \"HERO\" Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. Y"
+        "popup_1": "Fusion Summon 1 HERO Fusion Monster from your Extra Deck, using monsters from your hand or field as Fusion Material. Y"
       }
     },
     {
@@ -40226,8 +40226,8 @@
       "description": {
         "symbol": "gDescription_VisionHeroAdoration",
         "pages": [
-          "2 \"HERO\"   monsters Once   per turn: You   can target 1   face-up  ",
-          "monster your   opponent   controls and 1   other \"HERO\"   monster you  ",
+          "2 HERO   monsters Once   per turn: You   can target 1   face-up  ",
+          "monster your   opponent   controls and 1   other HERO   monster you  ",
           "control; the   opponent's   targeted   monster loses   ATK and DEF  ",
           "equal to the   ATK of your   targeted   monster, until   the end of  ",
           "this turn.  "
@@ -40260,15 +40260,15 @@
       "description": {
         "symbol": "gDescription_VisionHeroFaris",
         "pages": [
-          "You can   discard 1   other \"HERO\"   monster;   Special  ",
+          "You can   discard 1   other HERO   monster;   Special  ",
           "Summon this   card from your   hand. If this   card is Normal   or Special  ",
-          "Summoned:   You can place   1 \"Vision   HERO\" monster   from your  ",
-          "Deck, except   \"Vision HERO   Faris\", in   your Spell &   Trap Zone as  ",
+          "Summoned:   You can place   1 Vision   HERO monster   from your  ",
+          "Deck, except   Vision HERO   Faris, in   your Spell &   Trap Zone as  ",
           "a face-up   Continuous   Trap, also you   cannot Special   Summon  "
         ]
       },
       "effect_texts": {
-        "popup_1": "You can discard 1 other \"HERO\" monster; Special Summon this card from your hand. If this card is Normal or Special Summo"
+        "popup_1": "You can discard 1 other HERO monster; Special Summon this card from your hand. If this card is Normal or Special Summo"
       }
     },
     {
@@ -40298,14 +40298,14 @@
         "symbol": "gDescription_VisionHeroGravito",
         "pages": [
           "If this card   is Normal or   Special   Summoned: You   can target 1  ",
-          "of your   banished   \"HERO\"   monsters; add   it to your  ",
-          "hand. You   can Tribute   this card,   then target 2   \"Vision  ",
-          "HERO\"   Monster Cards   in your Spell   & Trap Zone;   Special  ",
-          "Summon them.   You can only   use each   effect of   \"Vision HERO  "
+          "of your   banished   HERO   monsters; add   it to your  ",
+          "hand. You   can Tribute   this card,   then target 2   Vision  ",
+          "HERO   Monster Cards   in your Spell   & Trap Zone;   Special  ",
+          "Summon them.   You can only   use each   effect of   Vision HERO  "
         ]
       },
       "effect_texts": {
-        "popup_1": "If this card is Normal or Special Summoned: You can target 1 of your banished \"HERO\" monsters; add it to your hand. You "
+        "popup_1": "If this card is Normal or Special Summoned: You can target 1 of your banished HERO monsters; add it to your hand. You "
       }
     },
     {
@@ -40338,7 +40338,7 @@
           "your GY: You   can place this   card from your   GY in your   Spell & Trap  ",
           "Zone as a   face-up   Continuous   Trap. During   the Main  ",
           "Phase, if   this card is   treated as a   Continuous   Trap: You  ",
-          "can Tribute   1 \"HERO\"   monster;   Special Summon   this card.  "
+          "can Tribute   1 HERO   monster;   Special Summon   this card.  "
         ]
       },
       "effect_texts": {
@@ -40614,8 +40614,8 @@
       "description": {
         "symbol": "gDescription_WhiteDragonRitual",
         "pages": [
-          "This card is used to Ritual Summon \"Paladin of White",
-          "Dragon\". You must also Tribute monsters from your",
+          "This card is used to Ritual Summon Paladin of White",
+          "Dragon. You must also Tribute monsters from your",
           "hand or field whose total Levels equal 4 or more."
         ]
       },
@@ -40719,11 +40719,11 @@
         "symbol": "gDescription_YellowGadget",
         "pages": [
           "When this card is Normal or Special Summoned: You can",
-          "add 1 \"Green Gadget\" from your Deck to your hand."
+          "add 1 Green Gadget from your Deck to your hand."
         ]
       },
       "effect_texts": {
-        "popup_1": "When this card is Normal or Special Summoned: You can add 1 \"Green Gadget\" from your Deck to your hand."
+        "popup_1": "When this card is Normal or Special Summoned: You can add 1 Green Gadget from your Deck to your hand."
       }
     },
     {
