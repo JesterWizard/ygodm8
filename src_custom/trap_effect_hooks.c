@@ -477,3 +477,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire SHADDOLL_SCHISM in trap dispatcher */
 /* SNAKE_DEITYS_COMMAND trap effect */
   /* TODO: wire SNAKE_DEITYS_COMMAND in trap dispatcher */
+/* SNAKE_WHISTLE trap effect */
+  /* TODO: wire SNAKE_WHISTLE in trap dispatcher */
+/* TRAP_TRICK trap effect */
+  /* TODO: wire TRAP_TRICK in trap dispatcher */

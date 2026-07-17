@@ -350,3 +350,5 @@ void TryActivatingTurnEffects__Replacement(void) {
   /* TODO: wire ARMED_DRAGON_LV3 in turn effect hooks */
 /* DESTINY_HERO_FEAR_MONGER turn effect */
   /* TODO: wire DESTINY_HERO_FEAR_MONGER in turn effect hooks */
+/* THE_WHITE_STONE_OF_ANCIENTS turn effect */
+  /* TODO: wire THE_WHITE_STONE_OF_ANCIENTS in turn effect hooks */

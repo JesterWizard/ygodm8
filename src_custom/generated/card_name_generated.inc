@@ -772,6 +772,26 @@ static const u8 sShaddollSchismName[] __attribute__((section(".append_assets")))
 static const u8 sShaddollSquamataName[] __attribute__((section(".append_assets"))) = "Shaddoll Squamata";
 static const u8 sSilversCryName[] __attribute__((section(".append_assets"))) = "Silver's Cry";
 static const u8 sSnakeDeitysCommandName[] __attribute__((section(".append_assets"))) = "Snake Deity's Command";
+static const u8 sSnakeRainName[] __attribute__((section(".append_assets"))) = "Snake Rain";
+static const u8 sSnakeWhistleName[] __attribute__((section(".append_assets"))) = "Snake Whistle";
+static const u8 sSoulServantName[] __attribute__((section(".append_assets"))) = "Soul Servant";
+static const u8 sStardustDragonName[] __attribute__((section(".append_assets"))) = "Stardust Dragon";
+static const u8 sSupremeKingsCastleName[] __attribute__((section(".append_assets"))) = "Supreme King's Castle";
+static const u8 sThatGrassLooksGreenerName[] __attribute__((section(".append_assets"))) = "That Grass Looks Greener";
+static const u8 sTheDarkMagiciansName[] __attribute__((section(".append_assets"))) = "The Dark Magicians";
+static const u8 sTheGazeOfTimaeusName[] __attribute__((section(".append_assets"))) = "The Gaze of Timaeus";
+static const u8 sTheMelodyOfAwakeningDragonName[] __attribute__((section(".append_assets"))) = "The Melody of Awakening Dragon";
+static const u8 sTheWhiteStoneOfAncientsName[] __attribute__((section(".append_assets"))) = "The White Stone of Ancients";
+static const u8 sTheWhiteStoneOfLegendName[] __attribute__((section(".append_assets"))) = "The White Stone of Legend";
+static const u8 sTimeaeusTheUnitedMagicalDragonName[] __attribute__((section(".append_assets"))) = "Timaeus the United Magical Dragon";
+static const u8 sTimeausTheUnitedDragonName[] __attribute__((section(".append_assets"))) = "Timaeus the United Dragon";
+static const u8 sTohushaddollGrystaName[] __attribute__((section(".append_assets"))) = "Tohushaddoll Grysta";
+static const u8 sTrapTrickName[] __attribute__((section(".append_assets"))) = "Trap Trick";
+static const u8 sTriangleEcstasySparkName[] __attribute__((section(".append_assets"))) = "Triangle Ecstasy Spark";
+static const u8 sUltraPolymerizationName[] __attribute__((section(".append_assets"))) = "Ultra Polymerization";
+static const u8 sVennominagaTheDeityOfPoisonousSnakesName[] __attribute__((section(".append_assets"))) = "Vennominaga the Deity of Poisonous Snakes";
+static const u8 sVennominonTheKingOfPoisonousSnakesName[] __attribute__((section(".append_assets"))) = "Vennominon the King of Poisonous Snakes";
+static const u8 sVenomBoaName[] __attribute__((section(".append_assets"))) = "Venom Boa";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2322,6 +2342,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sSilversCryName;
   if (cardId == 0x0623)
     return (u8 *)sSnakeDeitysCommandName;
+  if (cardId == 0x0624)
+    return (u8 *)sSnakeRainName;
+  if (cardId == 0x0625)
+    return (u8 *)sSnakeWhistleName;
+  if (cardId == 0x0626)
+    return (u8 *)sSoulServantName;
+  if (cardId == 0x0627)
+    return (u8 *)sStardustDragonName;
+  if (cardId == 0x0628)
+    return (u8 *)sSupremeKingsCastleName;
+  if (cardId == 0x0629)
+    return (u8 *)sThatGrassLooksGreenerName;
+  if (cardId == 0x062A)
+    return (u8 *)sTheDarkMagiciansName;
+  if (cardId == 0x062B)
+    return (u8 *)sTheGazeOfTimaeusName;
+  if (cardId == 0x062C)
+    return (u8 *)sTheMelodyOfAwakeningDragonName;
+  if (cardId == 0x062D)
+    return (u8 *)sTheWhiteStoneOfAncientsName;
+  if (cardId == 0x062E)
+    return (u8 *)sTheWhiteStoneOfLegendName;
+  if (cardId == 0x062F)
+    return (u8 *)sTimeaeusTheUnitedMagicalDragonName;
+  if (cardId == 0x0630)
+    return (u8 *)sTimeausTheUnitedDragonName;
+  if (cardId == 0x0631)
+    return (u8 *)sTohushaddollGrystaName;
+  if (cardId == 0x0632)
+    return (u8 *)sTrapTrickName;
+  if (cardId == 0x0633)
+    return (u8 *)sTriangleEcstasySparkName;
+  if (cardId == 0x0634)
+    return (u8 *)sUltraPolymerizationName;
+  if (cardId == 0x0635)
+    return (u8 *)sVennominagaTheDeityOfPoisonousSnakesName;
+  if (cardId == 0x0636)
+    return (u8 *)sVennominonTheKingOfPoisonousSnakesName;
+  if (cardId == 0x0637)
+    return (u8 *)sVenomBoaName;
 
   return gCardNames[cardId];
 }

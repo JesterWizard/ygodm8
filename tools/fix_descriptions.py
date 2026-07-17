@@ -12,160 +12,164 @@ from add_card_art import wrap_activation_page, wrap_description_page
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
 
 FIXED_DESCRIPTIONS = {
-    "REPTILIANNE_SCYLLA": [
-        "If this destroys a monster with 0 ATK",
-        "by battle, you can Special Summon that",
-        "monster to your side of the field in",
-        "face-up Defense Position.",
+    "SNAKE_RAIN": [
+        "Discard 1 card. Select 4",
+        "Reptile monsters from your",
+        "Deck and send them to the",
+        "Graveyard.",
     ],
-    "REPTILIANNE_SERVANT": [
-        "Destroy this if there are face-up",
-        "monsters on the field other than this",
-        "card. Your opponent cannot select this",
-        "as an attack target.",
+    "SNAKE_WHISTLE": [
+        "When a Reptile you control",
+        "is destroyed: Special",
+        "Summon 1 Level 4 or lower",
+        "Reptile from your Deck.",
     ],
-    "REPTILIANNE_SPAWN": [
-        "Banish 1 Reptilianne from your GY;",
-        "Special Summon 2 Reptilianne Tokens",
-        "(Reptile/EARTH/Lv1/ATK 0/DEF 0).",
+    "SOUL_SERVANT": [
+        "Place 1 Dark Magician or",
+        "card mentioning DM/DMG from",
+        "hand, Deck, or GY on Deck.",
+        "GY: draw for each different",
+        "Palladium, DM, or DMG name",
     ],
-    "REPTILIANNE_VASKII": [
-        "Cannot be Normal Summoned/Set. Must",
-        "first be Special Summoned by Tributing",
-        "2 face-up monsters with 0 ATK. OPT:",
-        "destroy 1 face-up monster your",
-        "opponent controls.",
+    "STARDUST_DRAGON": [
+        "1 Tuner + 1+ non-Tuners.",
+        "Quick: Tribute this to",
+        "negate a destroy effect and",
+        "destroy that card. If used,",
+        "SS this from GY at End Phase.",
     ],
-    "REPTILIANNE_VIPER": [
-        "When this is Normal Summoned: you can",
-        "target 1 face-up monster with 0 ATK",
-        "your opponent controls; take control",
-        "of that target.",
+    "SUPREME_KINGS_CASTLE": [
+        "Fusion Summon Dark Fusion",
+        "monsters with other effects.",
+        "OPT if your Fiend battles:",
+        "send 1 Evil HERO from Deck",
+        "or ED to GY; gain Level x200.",
     ],
-    "RETURN_OF_THE_DRAGON_LORDS": [
-        "Target 1 Level 7 or 8 Dragon in your",
-        "GY; Special Summon it. If a Dragon you",
-        "control would be destroyed by battle",
-        "or card effect while this is in GY:",
-        "you can banish this instead.",
+    "THAT_GRASS_LOOKS_GREENER": [
+        "If you have more cards in",
+        "your Deck than opponent:",
+        "mill until both Decks have",
+        "the same number of cards.",
     ],
-    "RISE_OF_THE_SNAKE_DEITY": [
-        "When a face-up Vennominon the King of",
-        "Poisonous Snakes you control is",
-        "destroyed, except by its own effect:",
-        "Special Summon 1 Vennominaga the Deity",
-        "of Poisonous Snakes from hand/Deck.",
+    "THE_DARK_MAGICIANS": [
+        "Dark Magician or Dark",
+        "Magician Girl + Spellcaster.",
+        "OPT if S/T activated: draw",
+        "1, then you can Set it.",
+        "If destroyed: SS DM and DMG.",
     ],
-    "SECRETS_OF_DARK_MAGIC": [
-        "Activate 1: Fusion Summon 1 Fusion",
-        "using monsters from hand/field,",
-        "including a DARK Spellcaster. Or",
-        "Ritual Summon 1 Ritual using monsters",
-        "from hand/field including a DARK Spellcaster.",
+    "THE_GAZE_OF_TIMAEUS": [
+        "Target 1 Dark Magician or",
+        "Dark Magician Girl on field",
+        "or GY; Fusion Summon 1 that",
+        "mentions it by shuffling it",
+        "in (banish next End Phase).",
     ],
-    "SERPENT_SUPPRESSION": [
-        "Face-up Attack Position monsters with",
-        "0 ATK your opponent controls cannot be",
-        "destroyed by battle.",
+    "THE_MELODY_OF_AWAKENING_DRAGON": [
+        "Discard 1 card; add up to",
+        "2 Dragons with 3000+ ATK",
+        "and 2500 or less DEF from",
+        "your Deck to your hand.",
     ],
-    "SHADDOLL_BEAST": [
-        "FLIP: You can draw 2 cards, then",
-        "discard 1. If this card is sent to the",
-        "GY by a card effect: you can draw 1",
-        "card. You can only use 1 Shaddoll",
-        "Beast effect per turn, and only once that turn.",
+    "THE_WHITE_STONE_OF_ANCIENTS": [
+        "End Phase: if sent to GY",
+        "this turn, SS 1 Blue-Eyes",
+        "from your Deck.",
+        "Banish from GY: add 1",
+        "Blue-Eyes from GY to hand.",
     ],
-    "SHADDOLL_CORE": [
-        "Special Summon this as an Effect",
-        "Monster (Spellcaster/DARK/Lv9/ATK",
-        "1450/DEF 1950). (This card is also",
-        "still a Trap.) If Tributed: target 1",
-        "Shaddoll in GY; add it to your hand.",
+    "THE_WHITE_STONE_OF_LEGEND": [
+        "If this card is sent to",
+        "the GY: add 1 Blue-Eyes",
+        "White Dragon from your",
+        "Deck to your hand.",
     ],
-    "SHADDOLL_DRAGON": [
-        "FLIP: Target 1 card your opponent",
-        "controls; return it to the hand. If",
-        "this is sent to GY by a card effect:",
-        "you can target 1 Spell/Trap your",
-        "opponent controls; destroy it. 1 effect/turn.",
+    "TIMEAEUS_THE_UNITED_MAGICAL_DRAGON": [
+        "DM or DMG + Dragon/",
+        "Spellcaster. After SS,",
+        "unaffected until next turn.",
+        "Battle: +100 ATK per Spell",
+        "in GY/banish. Opp: destroy S/T.",
     ],
-    "SHADDOLL_FALCO": [
-        "FLIP: Target 1 Shaddoll in your GY,",
-        "except Falco; Special Summon it in",
-        "face-down Defense. If sent to GY by",
-        "a card effect: you can Special Summon",
-        "this in face-down Defense. 1 effect/turn.",
+    "TIMEAUS_THE_UNITED_DRAGON": [
+        "Send 1 Spellcaster or S/T",
+        "mentioning Dark Magician",
+        "from hand/field to GY; SS",
+        "this from hand. Main: Fusion",
+        "Summon including Spellcaster.",
     ],
-    "SHADDOLL_FUSION": [
-        "Fusion Summon 1 Shaddoll Fusion from",
-        "your Extra Deck, using monsters from",
-        "hand or field as Fusion Material. If",
-        "your opponent controls a monster from",
-        "Extra Deck, you can also use from Deck.",
+    "TOHUSHADDOLL_GRYSTA": [
+        "FLIP: target 1 non-Rock",
+        "Shaddoll in GY; apply its",
+        "FLIP effect.",
+        "If sent to GY by effect:",
+        "Fusion Summon Shaddoll Fusion.",
     ],
-    "SHADDOLL_HEDGEHOG": [
-        "FLIP: You can add 1 Shaddoll Spell/",
-        "Trap from your Deck to your hand. If",
-        "this is sent to GY by a card effect:",
-        "you can add 1 Shaddoll monster from",
-        "Deck to hand. 1 effect per turn.",
+    "TRAP_TRICK": [
+        "Banish 1 Normal Trap from",
+        "Deck; Set 1 with same name",
+        "from Deck, usable this turn.",
+        "Only activate 1 Trap for",
+        "the rest of this turn.",
     ],
-    "SHADDOLL_HOUND": [
-        "FLIP: Target 1 Shaddoll in your GY;",
-        "add it to your hand. If this is sent",
-        "to GY by a card effect: you can target",
-        "1 monster on the field; change it to",
-        "face-up Attack or face-down Defense.",
+    "TRIANGLE_ECSTASY_SPARK": [
+        "Until end of turn, all",
+        "Harpie Lady Sisters become",
+        "2700 ATK, opponent cannot",
+        "activate Traps, and negate",
+        "their Trap effects on field.",
     ],
-    "SHADDOLL_SCHISM": [
-        "Main Phase: Fusion Summon 1 Shaddoll",
-        "Fusion from Extra, banishing Fusion",
-        "Materials from field and/or GY, but",
-        "it cannot attack this turn. Then you",
-        "can send 1 monster your opponent controls to GY.",
+    "ULTRA_POLYMERIZATION": [
+        "Pay 2000 LP; Fusion Summon",
+        "using 2 monsters you",
+        "control. Cannot respond.",
+        "GY: SS materials of a",
+        "Fusion made by this (0 ATK).",
     ],
-    "SHADDOLL_SQUAMATA": [
-        "FLIP: Target 1 monster on the field;",
-        "destroy it. If this is sent to GY by",
-        "a card effect: you can send 1 Shaddoll",
-        "card from Deck to GY, except Squamata.",
-        "You can only use 1 effect per turn.",
+    "VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES": [
+        "Must first be SS with Rise",
+        "of the Snake Deity. +500",
+        "ATK per Reptile in GY.",
+        "Immune/untargetable. Battle",
+        "destroy: SS self. 3 Counters: win.",
     ],
-    "SILVERS_CRY": [
-        "Target 1 Dragon Normal Monster in",
-        "your GY; Special Summon that target.",
-        "You can only activate 1 Silver's Cry",
-        "per turn.",
+    "VENNOMINON_THE_KING_OF_POISONOUS_SNAKES": [
+        "Cannot be SS by another",
+        "Effect Monster. Unaffected",
+        "by Venom Swamp. +500 ATK",
+        "per Reptile in GY. If",
+        "destroyed by battle: SS self.",
     ],
-    "SNAKE_DEITYS_COMMAND": [
-        "Activate by revealing 1 Venom monster",
-        "in your hand. Negate the activation",
-        "of an opponent's Spell Card and",
-        "destroy it.",
+    "VENOM_BOA": [
+        "Once per turn: place 2",
+        "Venom Counters on 1",
+        "monster your opponent",
+        "controls. If you do, this",
+        "cannot attack this turn.",
     ],
 }
 
 FIXED_POPUPS = {
-    "REPTILIANNE_SCYLLA": "If destroys 0 ATK by battle: SS that monster in Defense.",
-    "REPTILIANNE_SERVANT": "Self-destroy if other face-up. Opp cannot attack this.",
-    "REPTILIANNE_SPAWN": "Banish 1 Reptilianne from GY; SS 2 Tokens (ATK/DEF 0).",
-    "REPTILIANNE_VASKII": "SS by Tributing 2 with 0 ATK. OPT: destroy 1 face-up opp.",
-    "REPTILIANNE_VIPER": "On NS: take control of 1 face-up opp monster with 0 ATK.",
-    "RETURN_OF_THE_DRAGON_LORDS": "SS Lv7/8 Dragon from GY. GY: banish instead of destroy Dragon.",
-    "RISE_OF_THE_SNAKE_DEITY": "When Vennominon destroyed: SS Vennominaga from hand/Deck.",
-    "SECRETS_OF_DARK_MAGIC": "Fusion or Ritual Summon using DARK Spellcaster materials.",
-    "SERPENT_SUPPRESSION": "Opp Attack Position 0 ATK monsters cannot be destroyed by battle.",
-    "SHADDOLL_BEAST": "FLIP: draw 2, discard 1. Sent by effect: draw 1. 1/turn.",
-    "SHADDOLL_CORE": "SS as monster. If Tributed: add 1 Shaddoll from GY to hand.",
-    "SHADDOLL_DRAGON": "FLIP: bounce 1 opp. Sent by effect: destroy 1 opp S/T.",
-    "SHADDOLL_FALCO": "FLIP: SS Shaddoll face-down. Sent by effect: SS this face-down.",
-    "SHADDOLL_FUSION": "Fusion Summon Shaddoll. If opp Extra: can use materials from Deck.",
-    "SHADDOLL_HEDGEHOG": "FLIP: add Shaddoll S/T. Sent by effect: add Shaddoll monster.",
-    "SHADDOLL_HOUND": "FLIP: add Shaddoll from GY. Sent by effect: change battle position.",
-    "SHADDOLL_SCHISM": "Fusion Summon banishing mats; then send 1 opp monster to GY.",
-    "SHADDOLL_SQUAMATA": "FLIP: destroy 1. Sent by effect: send 1 Shaddoll from Deck to GY.",
-    "SILVERS_CRY": "Target 1 Dragon Normal in GY; Special Summon it. 1/turn.",
-    "SNAKE_DEITYS_COMMAND": "Reveal Venom in hand; negate opp Spell activation and destroy it.",
+    "SNAKE_RAIN": "Discard 1; send 4 Reptiles from Deck to GY.",
+    "SNAKE_WHISTLE": "If Reptile destroyed: SS Lv4- Reptile from Deck.",
+    "SOUL_SERVANT": "Stack DM card on Deck. GY: draw for Palladium/DM.",
+    "STARDUST_DRAGON": "Tribute to negate destruction; SS from GY later.",
+    "SUPREME_KINGS_CASTLE": "Enable Dark Fusion. Fiend battle: send Evil HERO.",
+    "THAT_GRASS_LOOKS_GREENER": "If Deck larger: mill until Deck sizes match.",
+    "THE_DARK_MAGICIANS": "OPT draw on S/T. If destroyed: SS DM and DMG.",
+    "THE_GAZE_OF_TIMAEUS": "Shuffle DM/DMG; Fusion Summon mentioning it.",
+    "THE_MELODY_OF_AWAKENING_DRAGON": "Discard 1; add up to 2 high-ATK Dragons.",
+    "THE_WHITE_STONE_OF_ANCIENTS": "End Phase: SS Blue-Eyes. Banish: add Blue-Eyes.",
+    "THE_WHITE_STONE_OF_LEGEND": "If sent to GY: add Blue-Eyes White Dragon.",
+    "TIMEAEUS_THE_UNITED_MAGICAL_DRAGON": "Unaffected after SS. ATK boost. Destroy S/T.",
+    "TIMEAUS_THE_UNITED_DRAGON": "Send mat to SS. Main: Fusion with Spellcaster.",
+    "TOHUSHADDOLL_GRYSTA": "FLIP: copy Shaddoll FLIP. GY: Shaddoll Fusion.",
+    "TRAP_TRICK": "Banish Normal Trap; Set same name, usable now.",
+    "TRIANGLE_ECSTASY_SPARK": "Sisters 2700 ATK; negate opponent Trap effects.",
+    "ULTRA_POLYMERIZATION": "Pay 2000; Fusion 2. GY: SS used materials.",
+    "VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES": "ATK per Reptile. Immune. 3 Hyper-Venom: win.",
+    "VENNOMINON_THE_KING_OF_POISONOUS_SNAKES": "ATK per Reptile. If destroyed: banish; SS self.",
+    "VENOM_BOA": "OPT: place 2 Venom Counters; cannot attack.",
 }
 
 
@@ -195,11 +199,7 @@ def main():
         if const in FIXED_DESCRIPTIONS:
             item["description"]["pages"] = FIXED_DESCRIPTIONS[const]
         if const in FIXED_POPUPS and "effect_texts" in item:
-            popup = item["effect_texts"].get("popup_1")
-            if isinstance(popup, dict):
-                item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
-            else:
-                item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
+            item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
     write_manifest(MANIFEST_PATH, manifest)
     print(f"Updated {len(FIXED_DESCRIPTIONS)} descriptions")
     return 0

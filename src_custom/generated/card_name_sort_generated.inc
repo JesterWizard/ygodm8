@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 771
+#define NUM_CUSTOM_NAME_SORT_CARDS 791
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -776,6 +776,26 @@ static const u8 sShaddollSchismSortName[] APPEND_RODATA = "Shaddoll Schism";
 static const u8 sShaddollSquamataSortName[] APPEND_RODATA = "Shaddoll Squamata";
 static const u8 sSilversCrySortName[] APPEND_RODATA = "Silver's Cry";
 static const u8 sSnakeDeitysCommandSortName[] APPEND_RODATA = "Snake Deity's Command";
+static const u8 sSnakeRainSortName[] APPEND_RODATA = "Snake Rain";
+static const u8 sSnakeWhistleSortName[] APPEND_RODATA = "Snake Whistle";
+static const u8 sSoulServantSortName[] APPEND_RODATA = "Soul Servant";
+static const u8 sStardustDragonSortName[] APPEND_RODATA = "Stardust Dragon";
+static const u8 sSupremeKingsCastleSortName[] APPEND_RODATA = "Supreme King's Castle";
+static const u8 sThatGrassLooksGreenerSortName[] APPEND_RODATA = "That Grass Looks Greener";
+static const u8 sTheDarkMagiciansSortName[] APPEND_RODATA = "The Dark Magicians";
+static const u8 sTheGazeOfTimaeusSortName[] APPEND_RODATA = "The Gaze of Timaeus";
+static const u8 sTheMelodyOfAwakeningDragonSortName[] APPEND_RODATA = "The Melody of Awakening Dragon";
+static const u8 sTheWhiteStoneOfAncientsSortName[] APPEND_RODATA = "The White Stone of Ancients";
+static const u8 sTheWhiteStoneOfLegendSortName[] APPEND_RODATA = "The White Stone of Legend";
+static const u8 sTimeaeusTheUnitedMagicalDragonSortName[] APPEND_RODATA = "Timaeus the United Magical Dragon";
+static const u8 sTimeausTheUnitedDragonSortName[] APPEND_RODATA = "Timaeus the United Dragon";
+static const u8 sTohushaddollGrystaSortName[] APPEND_RODATA = "Tohushaddoll Grysta";
+static const u8 sTrapTrickSortName[] APPEND_RODATA = "Trap Trick";
+static const u8 sTriangleEcstasySparkSortName[] APPEND_RODATA = "Triangle Ecstasy Spark";
+static const u8 sUltraPolymerizationSortName[] APPEND_RODATA = "Ultra Polymerization";
+static const u8 sVennominagaTheDeityOfPoisonousSnakesSortName[] APPEND_RODATA = "Vennominaga the Deity of Poisonous Snakes";
+static const u8 sVennominonTheKingOfPoisonousSnakesSortName[] APPEND_RODATA = "Vennominon the King of Poisonous Snakes";
+static const u8 sVenomBoaSortName[] APPEND_RODATA = "Venom Boa";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1423,12 +1443,15 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0432, // Skyscraper
   0x053D, // Skyscraper 2 - Hero City
   0x0623, // Snake Deity's Command
+  0x0624, // Snake Rain
+  0x0625, // Snake Whistle
   0x035A, // Solar Flare Dragon
   0x0391, // Solar Ray
   0x053B, // Solemn Judgment
   0x0392, // Solemn Wishes
   0x0321, // Sorcerer of Dark Magic
   0x0335, // Soul Exchange
+  0x0626, // Soul Servant
   0x0390, // Soul Taker
   0x053C, // Spark Blaster
   0x0343, // Spear Dragon
@@ -1442,6 +1465,7 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03B4, // Spirit Reaper
   0x03BF, // Spirit Ryu
   0x0333, // St Joan
+  0x0627, // Stardust Dragon
   0x0540, // Statue of the Wicked
   0x0541, // Staunch Defender
   0x0393, // Stealth Bird
@@ -1450,10 +1474,12 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0544, // Summoner Monk
   0x0545, // Summoner of Illusions
   0x0546, // Super Polymerization
+  0x0628, // Supreme King's Castle
   0x036E, // Swift Gaia The Fierce Knight
   0x0547, // Terraforming
   0x0374, // Terrorking Salmon
   0x0454, // Tethys, Goddess of Light
+  0x0629, // That Grass Looks Greener
   0x0548, // The A. Forces
   0x0384, // The Agent Of Creation - Venus
   0x041A, // The Agent of Force - Mars
@@ -1465,14 +1491,17 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x054C, // The Creator
   0x054D, // The Creator Incarnate
   0x036D, // The Dark Door
+  0x062A, // The Dark Magicians
   0x0449, // The Despair Uranus
   0x054E, // The Eye of Timaeus
   0x054F, // The Fang of Critias
   0x03D8, // The Flute of Summoning Dragon
   0x0373, // The Forceful Sentry
+  0x062B, // The Gaze of Timaeus
   0x0448, // The Grand Jupiter
   0x0550, // The Law of the Normal
   0x0551, // The Legendary Exodia Incarnate
+  0x062C, // The Melody of Awakening Dragon
   0x03FE, // The Sanctuary in the Sky
   0x0552, // The Shallow Grave
   0x0445, // The Splendid Venus
@@ -1483,6 +1512,8 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0447, // The Tripper Mercury
   0x0444, // The Tyrant Neptune
   0x03FD, // The Unstoppable Exodia Incarnate
+  0x062D, // The White Stone of Ancients
+  0x062E, // The White Stone of Legend
   0x0462, // The Wicked Avatar
   0x0460, // The Wicked Dreadroot
   0x0461, // The Wicked Eraser
@@ -1495,9 +1526,12 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0555, // Thunder Dragon Colossus
   0x0556, // Thunder Dragon Titan
   0x0557, // Timaeus the Knight of Destiny
+  0x0630, // Timaeus the United Dragon
+  0x062F, // Timaeus the United Magical Dragon
   0x0558, // Time Magic Hammer
   0x036B, // Time Seal
   0x044E, // Tiny Angel
+  0x0631, // Tohushaddoll Grysta
   0x0358, // Toll
   0x055A, // Toon World
   0x055B, // Tornado Bird
@@ -1505,6 +1539,8 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x03B6, // Torpedo Fish
   0x0464, // Trade-In
   0x055C, // Trap Dustshoot
+  0x0632, // Trap Trick
+  0x0633, // Triangle Ecstasy Spark
   0x038D, // Triangle Power
   0x0463, // Tribute Doll
   0x038E, // Twin Swords of Flashing Light - Tryce
@@ -1514,12 +1550,16 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x055F, // Ultimate Conductor Tyranno
   0x0560, // Ultimate Obedient Fiend
   0x0330, // Ultimate Offering
+  0x0634, // Ultra Polymerization
   0x0331, // United We Stand
   0x035C, // Upstart Goblin
   0x047F, // Uria, Lord of Searing Flames
   0x0456, // Valhalla, Hall of the Fallen
   0x0372, // Vampire Baby
   0x03DA, // Vengeful Bog Spirit
+  0x0635, // Vennominaga the Deity of Poisonous Snakes
+  0x0636, // Vennominon the King of Poisonous Snakes
+  0x0637, // Venom Boa
   0x0561, // Vision Fusion
   0x0562, // Vision HERO Adoration
   0x0563, // Vision HERO Faris
@@ -2197,132 +2237,152 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   643, // Skyscraper
   644, // Skyscraper 2 - Hero City
   645, // Snake Deity's Command
-  646, // Solar Flare Dragon
-  647, // Solar Ray
-  648, // Solemn Judgment
-  649, // Solemn Wishes
-  650, // Sorcerer of Dark Magic
-  651, // Soul Exchange
-  652, // Soul Taker
-  653, // Spark Blaster
-  654, // Spear Dragon
-  655, // Spell Absorption
-  656, // Spell Canceller
-  657, // Spell Economics
-  658, // Sphinx Teleia
-  659, // Spirit Caller
-  660, // Spirit of the Breeze
-  661, // Spirit of the Pot of Greed
-  662, // Spirit Reaper
-  663, // Spirit Ryu
-  664, // St Joan
-  665, // Statue of the Wicked
-  666, // Staunch Defender
-  667, // Stealth Bird
-  668, // Stray Lambs
-  669, // Stronghold the Moving Fortress
-  670, // Summoner Monk
-  671, // Summoner of Illusions
-  672, // Super Polymerization
-  673, // Swift Gaia The Fierce Knight
-  674, // Terraforming
-  675, // Terrorking Salmon
-  676, // Tethys, Goddess of Light
-  677, // The A. Forces
-  678, // The Agent Of Creation - Venus
-  679, // The Agent of Force - Mars
-  680, // The Agent of Judgment - Saturn
-  681, // The Agent of Wisdom - Mercury
-  682, // The Big Saturn
-  683, // The Blazing Mars
-  684, // The Claw of Hermos
-  685, // The Creator
-  686, // The Creator Incarnate
-  687, // The Dark Door
-  688, // The Despair Uranus
-  689, // The Eye of Timaeus
-  690, // The Fang of Critias
-  691, // The Flute of Summoning Dragon
-  692, // The Forceful Sentry
-  693, // The Grand Jupiter
-  694, // The Law of the Normal
-  695, // The Legendary Exodia Incarnate
-  696, // The Sanctuary in the Sky
-  697, // The Shallow Grave
-  698, // The Splendid Venus
-  699, // The Suppression Pluto
-  700, // The Supremacy Sun
-  701, // The Thing in the Crater
-  702, // The Tricky
-  703, // The Tripper Mercury
-  704, // The Tyrant Neptune
-  705, // The Unstoppable Exodia Incarnate
-  706, // The Wicked Avatar
-  707, // The Wicked Dreadroot
-  708, // The Wicked Eraser
-  709, // Theban Nightmare
-  710, // Theinen the Great Sphinx
-  711, // Thestalos the Firestorm Monarch
-  712, // Thousand Energy
-  713, // Thousand Knives
-  714, // Thunder Crash
-  715, // Thunder Dragon Colossus
-  716, // Thunder Dragon Titan
-  717, // Timaeus the Knight of Destiny
-  718, // Time Magic Hammer
-  719, // Time Seal
-  720, // Tiny Angel
-  721, // Toll
-  722, // Toon World
-  723, // Tornado Bird
-  724, // Tornado Wall
-  725, // Torpedo Fish
-  726, // Trade-In
-  727, // Trap Dustshoot
-  728, // Triangle Power
-  729, // Tribute Doll
-  730, // Twin Swords of Flashing Light - Tryce
-  731, // Tyrant Burst Dragon
-  732, // Tyrant Dragon
-  733, // Tyrant Wing
-  734, // Ultimate Conductor Tyranno
-  735, // Ultimate Obedient Fiend
-  736, // Ultimate Offering
-  737, // United We Stand
-  738, // Upstart Goblin
-  739, // Uria, Lord of Searing Flames
-  740, // Valhalla, Hall of the Fallen
-  741, // Vampire Baby
-  742, // Vengeful Bog Spirit
-  743, // Vision Fusion
-  744, // Vision HERO Adoration
-  745, // Vision HERO Faris
-  746, // Vision HERO Gravito
-  747, // Vision HERO Increase
-  748, // Vision HERO Minimum Ray
-  749, // Vision HERO Multiply Guy
-  750, // Vision HERO Poisoner
-  751, // Vision HERO Trinity
-  752, // Vision HERO Vyon
-  753, // Vision HERO Witch Raider
-  754, // Vision Release
-  755, // Wall of Revealing Light
-  756, // Warrior of Zera
-  757, // Watapon
-  758, // Wave Motion Cannon
-  759, // Weather Report
-  760, // White Dragon Ritual
-  761, // White Magician Pikeru
-  762, // Wild Nature's Release
-  763, // World Suppression
-  764, // Wroughtweiler
-  765, // Yata-Garasu
-  766, // Yellow Gadget
-  767, // Yubel
-  768, // Yubel - Terror Incarnate
-  769, // Yubel - The Ultimate Nightmare
-  770, // Zaborg the Thunder Monarch
-  771, // Zeriel
+  646, // Snake Rain
+  647, // Snake Whistle
+  648, // Solar Flare Dragon
+  649, // Solar Ray
+  650, // Solemn Judgment
+  651, // Solemn Wishes
+  652, // Sorcerer of Dark Magic
+  653, // Soul Exchange
+  654, // Soul Servant
+  655, // Soul Taker
+  656, // Spark Blaster
+  657, // Spear Dragon
+  658, // Spell Absorption
+  659, // Spell Canceller
+  660, // Spell Economics
+  661, // Sphinx Teleia
+  662, // Spirit Caller
+  663, // Spirit of the Breeze
+  664, // Spirit of the Pot of Greed
+  665, // Spirit Reaper
+  666, // Spirit Ryu
+  667, // St Joan
+  668, // Stardust Dragon
+  669, // Statue of the Wicked
+  670, // Staunch Defender
+  671, // Stealth Bird
+  672, // Stray Lambs
+  673, // Stronghold the Moving Fortress
+  674, // Summoner Monk
+  675, // Summoner of Illusions
+  676, // Super Polymerization
+  677, // Supreme King's Castle
+  678, // Swift Gaia The Fierce Knight
+  679, // Terraforming
+  680, // Terrorking Salmon
+  681, // Tethys, Goddess of Light
+  682, // That Grass Looks Greener
+  683, // The A. Forces
+  684, // The Agent Of Creation - Venus
+  685, // The Agent of Force - Mars
+  686, // The Agent of Judgment - Saturn
+  687, // The Agent of Wisdom - Mercury
+  688, // The Big Saturn
+  689, // The Blazing Mars
+  690, // The Claw of Hermos
+  691, // The Creator
+  692, // The Creator Incarnate
+  693, // The Dark Door
+  694, // The Dark Magicians
+  695, // The Despair Uranus
+  696, // The Eye of Timaeus
+  697, // The Fang of Critias
+  698, // The Flute of Summoning Dragon
+  699, // The Forceful Sentry
+  700, // The Gaze of Timaeus
+  701, // The Grand Jupiter
+  702, // The Law of the Normal
+  703, // The Legendary Exodia Incarnate
+  704, // The Melody of Awakening Dragon
+  705, // The Sanctuary in the Sky
+  706, // The Shallow Grave
+  707, // The Splendid Venus
+  708, // The Suppression Pluto
+  709, // The Supremacy Sun
+  710, // The Thing in the Crater
+  711, // The Tricky
+  712, // The Tripper Mercury
+  713, // The Tyrant Neptune
+  714, // The Unstoppable Exodia Incarnate
+  715, // The White Stone of Ancients
+  716, // The White Stone of Legend
+  717, // The Wicked Avatar
+  718, // The Wicked Dreadroot
+  719, // The Wicked Eraser
+  720, // Theban Nightmare
+  721, // Theinen the Great Sphinx
+  722, // Thestalos the Firestorm Monarch
+  723, // Thousand Energy
+  724, // Thousand Knives
+  725, // Thunder Crash
+  726, // Thunder Dragon Colossus
+  727, // Thunder Dragon Titan
+  728, // Timaeus the Knight of Destiny
+  729, // Timaeus the United Dragon
+  730, // Timaeus the United Magical Dragon
+  731, // Time Magic Hammer
+  732, // Time Seal
+  733, // Tiny Angel
+  734, // Tohushaddoll Grysta
+  735, // Toll
+  736, // Toon World
+  737, // Tornado Bird
+  738, // Tornado Wall
+  739, // Torpedo Fish
+  740, // Trade-In
+  741, // Trap Dustshoot
+  742, // Trap Trick
+  743, // Triangle Ecstasy Spark
+  744, // Triangle Power
+  745, // Tribute Doll
+  746, // Twin Swords of Flashing Light - Tryce
+  747, // Tyrant Burst Dragon
+  748, // Tyrant Dragon
+  749, // Tyrant Wing
+  750, // Ultimate Conductor Tyranno
+  751, // Ultimate Obedient Fiend
+  752, // Ultimate Offering
+  753, // Ultra Polymerization
+  754, // United We Stand
+  755, // Upstart Goblin
+  756, // Uria, Lord of Searing Flames
+  757, // Valhalla, Hall of the Fallen
+  758, // Vampire Baby
+  759, // Vengeful Bog Spirit
+  760, // Vennominaga the Deity of Poisonous Snakes
+  761, // Vennominon the King of Poisonous Snakes
+  762, // Venom Boa
+  763, // Vision Fusion
+  764, // Vision HERO Adoration
+  765, // Vision HERO Faris
+  766, // Vision HERO Gravito
+  767, // Vision HERO Increase
+  768, // Vision HERO Minimum Ray
+  769, // Vision HERO Multiply Guy
+  770, // Vision HERO Poisoner
+  771, // Vision HERO Trinity
+  772, // Vision HERO Vyon
+  773, // Vision HERO Witch Raider
+  774, // Vision Release
+  775, // Wall of Revealing Light
+  776, // Warrior of Zera
+  777, // Watapon
+  778, // Wave Motion Cannon
+  779, // Weather Report
+  780, // White Dragon Ritual
+  781, // White Magician Pikeru
+  782, // Wild Nature's Release
+  783, // World Suppression
+  784, // Wroughtweiler
+  785, // Yata-Garasu
+  786, // Yellow Gadget
+  787, // Yubel
+  788, // Yubel - Terror Incarnate
+  789, // Yubel - The Ultimate Nightmare
+  790, // Zaborg the Thunder Monarch
+  791, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -3874,6 +3934,46 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sSilversCrySortName;
   if (cardId == 0x0623)
     return (u8 *)sSnakeDeitysCommandSortName;
+  if (cardId == 0x0624)
+    return (u8 *)sSnakeRainSortName;
+  if (cardId == 0x0625)
+    return (u8 *)sSnakeWhistleSortName;
+  if (cardId == 0x0626)
+    return (u8 *)sSoulServantSortName;
+  if (cardId == 0x0627)
+    return (u8 *)sStardustDragonSortName;
+  if (cardId == 0x0628)
+    return (u8 *)sSupremeKingsCastleSortName;
+  if (cardId == 0x0629)
+    return (u8 *)sThatGrassLooksGreenerSortName;
+  if (cardId == 0x062A)
+    return (u8 *)sTheDarkMagiciansSortName;
+  if (cardId == 0x062B)
+    return (u8 *)sTheGazeOfTimaeusSortName;
+  if (cardId == 0x062C)
+    return (u8 *)sTheMelodyOfAwakeningDragonSortName;
+  if (cardId == 0x062D)
+    return (u8 *)sTheWhiteStoneOfAncientsSortName;
+  if (cardId == 0x062E)
+    return (u8 *)sTheWhiteStoneOfLegendSortName;
+  if (cardId == 0x062F)
+    return (u8 *)sTimeaeusTheUnitedMagicalDragonSortName;
+  if (cardId == 0x0630)
+    return (u8 *)sTimeausTheUnitedDragonSortName;
+  if (cardId == 0x0631)
+    return (u8 *)sTohushaddollGrystaSortName;
+  if (cardId == 0x0632)
+    return (u8 *)sTrapTrickSortName;
+  if (cardId == 0x0633)
+    return (u8 *)sTriangleEcstasySparkSortName;
+  if (cardId == 0x0634)
+    return (u8 *)sUltraPolymerizationSortName;
+  if (cardId == 0x0635)
+    return (u8 *)sVennominagaTheDeityOfPoisonousSnakesSortName;
+  if (cardId == 0x0636)
+    return (u8 *)sVennominonTheKingOfPoisonousSnakesSortName;
+  if (cardId == 0x0637)
+    return (u8 *)sVenomBoaSortName;
 
   return gCardNames[cardId];
 }

@@ -798,26 +798,26 @@ PNG is in `80x80/`; append a manifest entry and run `make`.
 - [x] `SHADDOLL_SQUAMATA` — `shaddoll_squamata.png`
 - [x] `SILVERS_CRY` — `silvers_cry.png`
 - [x] `SNAKE_DEITYS_COMMAND` — `snake_deitys_command.png`
-- [ ] `SNAKE_RAIN` — `snake_rain.png`
-- [ ] `SNAKE_WHISTLE` — `snake_whistle.png`
-- [ ] `SOUL_SERVANT` — `soul_servant.png`
-- [ ] `STARDUST_DRAGON` — `stardust_dragon.png`
-- [ ] `SUPREME_KINGS_CASTLE` — `supreme_kings_castle.png`
-- [ ] `THAT_GRASS_LOOKS_GREENER` — `that_grass_looks_greener.png`
-- [ ] `THE_DARK_MAGICIANS` — `the_dark_magicians.png`
-- [ ] `THE_GAZE_OF_TIMAEUS` — `the_gaze_of_timaeus.png`
-- [ ] `THE_MELODY_OF_AWAKENING_DRAGON` — `the_melody_of_awakening_dragon.png`
-- [ ] `THE_WHITE_STONE_OF_ANCIENTS` — `the_white_stone_of_ancients.png`
-- [ ] `THE_WHITE_STONE_OF_LEGEND` — `the_white_stone_of_legend.png`
-- [ ] `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` — `timeaeus_the_united_magical_dragon.png`
-- [ ] `TIMEAUS_THE_UNITED_DRAGON` — `timeaus_the_united_dragon.png`
-- [ ] `TOHUSHADDOLL_GRYSTA` — `tohushaddoll_grysta.png`
-- [ ] `TRAP_TRICK` — `trap_trick.png`
-- [ ] `TRIANGLE_ECSTASY_SPARK` — `triangle_ecstasy_spark.png`
-- [ ] `ULTRA_POLYMERIZATION` — `ultra_polymerization.png`
-- [ ] `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` — `vennominaga_the_deity_of_poisonous_snakes.png`
-- [ ] `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` — `vennominon_the_king_of_poisonous_snakes.png`
-- [ ] `VENOM_BOA` — `venom_boa.png`
+- [x] `SNAKE_RAIN` — `snake_rain.png`
+- [x] `SNAKE_WHISTLE` — `snake_whistle.png`
+- [x] `SOUL_SERVANT` — `soul_servant.png`
+- [x] `STARDUST_DRAGON` — `stardust_dragon.png`
+- [x] `SUPREME_KINGS_CASTLE` — `supreme_kings_castle.png`
+- [x] `THAT_GRASS_LOOKS_GREENER` — `that_grass_looks_greener.png`
+- [x] `THE_DARK_MAGICIANS` — `the_dark_magicians.png`
+- [x] `THE_GAZE_OF_TIMAEUS` — `the_gaze_of_timaeus.png`
+- [x] `THE_MELODY_OF_AWAKENING_DRAGON` — `the_melody_of_awakening_dragon.png`
+- [x] `THE_WHITE_STONE_OF_ANCIENTS` — `the_white_stone_of_ancients.png`
+- [x] `THE_WHITE_STONE_OF_LEGEND` — `the_white_stone_of_legend.png`
+- [x] `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` — `timeaeus_the_united_magical_dragon.png`
+- [x] `TIMEAUS_THE_UNITED_DRAGON` — `timeaus_the_united_dragon.png`
+- [x] `TOHUSHADDOLL_GRYSTA` — `tohushaddoll_grysta.png`
+- [x] `TRAP_TRICK` — `trap_trick.png`
+- [x] `TRIANGLE_ECSTASY_SPARK` — `triangle_ecstasy_spark.png`
+- [x] `ULTRA_POLYMERIZATION` — `ultra_polymerization.png`
+- [x] `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` — `vennominaga_the_deity_of_poisonous_snakes.png`
+- [x] `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` — `vennominon_the_king_of_poisonous_snakes.png`
+- [x] `VENOM_BOA` — `venom_boa.png`
 - [ ] `VENOM_BURN` — `venom_burn.png`
 - [ ] `VENOM_COBRA` — `venom_cobra.png`
 - [ ] `VENOM_SERPENT` — `venom_serpent.png`

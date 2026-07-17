@@ -216,6 +216,16 @@ unsigned char ShouldActivateREPTILIANNE_SERVANT(void);
 void ActivateREPTILIANNE_SERVANT(void);
 unsigned char ShouldActivateREPTILIANNE_VIPER(void);
 void ActivateREPTILIANNE_VIPER(void);
+unsigned char ShouldActivateTHE_DARK_MAGICIANS(void);
+void ActivateTHE_DARK_MAGICIANS(void);
+unsigned char ShouldActivateTHE_WHITE_STONE_OF_LEGEND(void);
+void ActivateTHE_WHITE_STONE_OF_LEGEND(void);
+unsigned char ShouldActivateTIMEAEUS_THE_UNITED_MAGICAL_DRAGON(void);
+void ActivateTIMEAEUS_THE_UNITED_MAGICAL_DRAGON(void);
+unsigned char ShouldActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void);
+void ActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void);
+unsigned char ShouldActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
+void ActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -676,6 +686,31 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = REPTILIANNE_VIPER,
     .shouldActivate = ShouldActivateREPTILIANNE_VIPER,
     .activate = ActivateREPTILIANNE_VIPER,
+  },
+  {
+    .cardId = THE_DARK_MAGICIANS,
+    .shouldActivate = ShouldActivateTHE_DARK_MAGICIANS,
+    .activate = ActivateTHE_DARK_MAGICIANS,
+  },
+  {
+    .cardId = THE_WHITE_STONE_OF_LEGEND,
+    .shouldActivate = ShouldActivateTHE_WHITE_STONE_OF_LEGEND,
+    .activate = ActivateTHE_WHITE_STONE_OF_LEGEND,
+  },
+  {
+    .cardId = TIMEAEUS_THE_UNITED_MAGICAL_DRAGON,
+    .shouldActivate = ShouldActivateTIMEAEUS_THE_UNITED_MAGICAL_DRAGON,
+    .activate = ActivateTIMEAEUS_THE_UNITED_MAGICAL_DRAGON,
+  },
+  {
+    .cardId = VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES,
+    .shouldActivate = ShouldActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES,
+    .activate = ActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES,
+  },
+  {
+    .cardId = VENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
+    .shouldActivate = ShouldActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
+    .activate = ActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

@@ -488,8 +488,14 @@
     case SKYSCRAPER_2_HERO_CITY:
       EffectSKYSCRAPER_2_HERO_CITY();
       return;
+    case SNAKE_RAIN:
+      EffectSNAKE_RAIN();
+      return;
     case SOUL_EXCHANGE:
       EffectSoulExchange();
+      return;
+    case SOUL_SERVANT:
+      EffectSOUL_SERVANT();
       return;
     case SOUL_TAKER:
       EffectSoulTaker();
@@ -497,8 +503,14 @@
     case SPELL_ECONOMICS:
       EffectSpellEconomics();
       return;
+    case SUPREME_KINGS_CASTLE:
+      EffectSUPREME_KINGS_CASTLE();
+      return;
     case SWORDS_OF_REVEALING_LIGHT:
       EffectSwordsOfRevealingLight();
+      return;
+    case THAT_GRASS_LOOKS_GREENER:
+      EffectTHAT_GRASS_LOOKS_GREENER();
       return;
     case THE_A_FORCES:
       EffectTHE_A_FORCES();
@@ -521,8 +533,14 @@
     case THE_FORCEFUL_SENTRY:
       EffectTheForcefulSentry();
       return;
+    case THE_GAZE_OF_TIMAEUS:
+      EffectTHE_GAZE_OF_TIMAEUS();
+      return;
     case THE_LAW_OF_THE_NORMAL:
       EffectTHE_LAW_OF_THE_NORMAL();
+      return;
+    case THE_MELODY_OF_AWAKENING_DRAGON:
+      EffectTHE_MELODY_OF_AWAKENING_DRAGON();
       return;
     case THE_SHALLOW_GRAVE:
       EffectTHE_SHALLOW_GRAVE();
@@ -545,6 +563,9 @@
     case TRADE_IN:
       EffectTRADE_IN();
       return;
+    case TRIANGLE_ECSTASY_SPARK:
+      EffectTRIANGLE_ECSTASY_SPARK();
+      return;
     case TRIANGLE_POWER:
       EffectTrianglePower();
       return;
@@ -553,6 +574,9 @@
       return;
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
       EffectTwinSwordsOfFlashingLightTryce();
+      return;
+    case ULTRA_POLYMERIZATION:
+      EffectULTRA_POLYMERIZATION();
       return;
     case UNITED_WE_STAND:
       EffectUnitedWeStand();

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `703` effects
+- `723` effects
 
 ## Tally
 
@@ -684,6 +684,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Shaddoll Squamata` | `src_custom/activated_effects/shaddoll_squamata.c` |
 | `spell_effects` | `Silvers Cry` | `src_custom/spell_effects/silvers_cry.c` |
 | `trap_effects` | `Snake Deitys Command` | `src_custom/trap_effects/snake_deitys_command.c` |
+| `spell_effects` | `Snake Rain` | `src_custom/spell_effects/snake_rain.c` |
+| `trap_effects` | `Snake Whistle` | `src_custom/trap_effects/snake_whistle.c` |
+| `spell_effects` | `Soul Servant` | `src_custom/spell_effects/soul_servant.c` |
+| `activated_effects` | `Stardust Dragon` | `src_custom/activated_effects/stardust_dragon.c` |
+| `spell_effects` | `Supreme Kings Castle` | `src_custom/spell_effects/supreme_kings_castle.c` |
+| `spell_effects` | `That Grass Looks Greener` | `src_custom/spell_effects/that_grass_looks_greener.c` |
+| `permanent_effects` | `The Dark Magicians` | `src_custom/permanent_effects/the_dark_magicians.c` |
+| `spell_effects` | `The Gaze Of Timaeus` | `src_custom/spell_effects/the_gaze_of_timaeus.c` |
+| `spell_effects` | `The Melody Of Awakening Dragon` | `src_custom/spell_effects/the_melody_of_awakening_dragon.c` |
+| `turn_effects` | `The White Stone Of Ancients` | `src_custom/turn_effects/the_white_stone_of_ancients.c` |
+| `permanent_effects` | `The White Stone Of Legend` | `src_custom/permanent_effects/the_white_stone_of_legend.c` |
+| `permanent_effects` | `Timeaeus The United Magical Dragon` | `src_custom/permanent_effects/timeaeus_the_united_magical_dragon.c` |
+| `activated_effects` | `Timeaus The United Dragon` | `src_custom/activated_effects/timeaus_the_united_dragon.c` |
+| `activated_effects` | `Tohushaddoll Grysta` | `src_custom/activated_effects/tohushaddoll_grysta.c` |
+| `trap_effects` | `Trap Trick` | `src_custom/trap_effects/trap_trick.c` |
+| `spell_effects` | `Triangle Ecstasy Spark` | `src_custom/spell_effects/triangle_ecstasy_spark.c` |
+| `spell_effects` | `Ultra Polymerization` | `src_custom/spell_effects/ultra_polymerization.c` |
+| `permanent_effects` | `Vennominaga The Deity Of Poisonous Snakes` | `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c` |
+| `permanent_effects` | `Vennominon The King Of Poisonous Snakes` | `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c` |
+| `activated_effects` | `Venom Boa` | `src_custom/activated_effects/venom_boa.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

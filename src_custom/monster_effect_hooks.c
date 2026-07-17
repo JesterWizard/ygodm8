@@ -414,6 +414,14 @@ unsigned char CanActivateSHADDOLL_HOUND(void);
 void ActivateSHADDOLL_HOUNDEffect(void);
 unsigned char CanActivateSHADDOLL_SQUAMATA(void);
 void ActivateSHADDOLL_SQUAMATAEffect(void);
+unsigned char CanActivateSTARDUST_DRAGON(void);
+void ActivateSTARDUST_DRAGONEffect(void);
+unsigned char CanActivateTIMEAUS_THE_UNITED_DRAGON(void);
+void ActivateTIMEAUS_THE_UNITED_DRAGONEffect(void);
+unsigned char CanActivateTOHUSHADDOLL_GRYSTA(void);
+void ActivateTOHUSHADDOLL_GRYSTAEffect(void);
+unsigned char CanActivateVENOM_BOA(void);
+void ActivateVENOM_BOAEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1857,6 +1865,22 @@ FAILED:
   }
   if (gMonEffect.id == SHADDOLL_SQUAMATA) {
     ActivateSHADDOLL_SQUAMATAEffect();
+    return;
+  }
+  if (gMonEffect.id == STARDUST_DRAGON) {
+    ActivateSTARDUST_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == TIMEAUS_THE_UNITED_DRAGON) {
+    ActivateTIMEAUS_THE_UNITED_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == TOHUSHADDOLL_GRYSTA) {
+    ActivateTOHUSHADDOLL_GRYSTAEffect();
+    return;
+  }
+  if (gMonEffect.id == VENOM_BOA) {
+    ActivateVENOM_BOAEffect();
     return;
   }
 }

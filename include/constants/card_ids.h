@@ -1573,11 +1573,31 @@
 #define SHADDOLL_SQUAMATA                        0x0621
 #define SILVERS_CRY                              0x0622
 #define SNAKE_DEITYS_COMMAND                     0x0623
+#define SNAKE_RAIN                               0x0624
+#define SNAKE_WHISTLE                            0x0625
+#define SOUL_SERVANT                             0x0626
+#define STARDUST_DRAGON                          0x0627
+#define SUPREME_KINGS_CASTLE                     0x0628
+#define THAT_GRASS_LOOKS_GREENER                 0x0629
+#define THE_DARK_MAGICIANS                       0x062A
+#define THE_GAZE_OF_TIMAEUS                      0x062B
+#define THE_MELODY_OF_AWAKENING_DRAGON           0x062C
+#define THE_WHITE_STONE_OF_ANCIENTS              0x062D
+#define THE_WHITE_STONE_OF_LEGEND                0x062E
+#define TIMEAEUS_THE_UNITED_MAGICAL_DRAGON       0x062F
+#define TIMEAUS_THE_UNITED_DRAGON                0x0630
+#define TOHUSHADDOLL_GRYSTA                      0x0631
+#define TRAP_TRICK                               0x0632
+#define TRIANGLE_ECSTASY_SPARK                   0x0633
+#define ULTRA_POLYMERIZATION                     0x0634
+#define VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES 0x0635
+#define VENNOMINON_THE_KING_OF_POISONOUS_SNAKES  0x0636
+#define VENOM_BOA                                0x0637
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0624
-#define NUM_CUSTOM_CARDS                        0x0303
+#define NUM_TOTAL_CARDS                         0x0638
+#define NUM_CUSTOM_CARDS                        0x0317
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H
