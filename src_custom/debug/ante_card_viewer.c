@@ -5,6 +5,7 @@
 #include "debug_menu_internal.h"
 #include "duel.h"
 #include "event_system.h"
+#include "menu_cursor.h"
 #include "overworld.h"
 #include "../custom_decks/custom_decks.h"
 
@@ -37,7 +38,6 @@ static const signed short sVerticalDisplacements[] APPEND_RODATA = {
 extern u8 gInputRepeatTimer;
 extern u16 gPressedButtons;
 extern u16 gOamBuffer[];
-extern u16 gStartMenuCursorPalette[];
 extern u16 gUnk_8079424[];
 extern struct CardInfo gCardInfo;
 
@@ -222,7 +222,7 @@ static void LoadAnteMiniCard(u16 cardId) {
   ClearAnteMiniCard();
   sub_80573D0(gBgVram.cbb4 + ANTE_MINI_CARD_TILE_NUM * 32, cardId);
   CopyMiniCardPalette(gPaletteBuffer + 256);
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + ANTE_CURSOR_PAL_SLOT * 16, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256 + ANTE_CURSOR_PAL_SLOT * 16);
   LoadObjVRAM();
   LoadPalettes();
 }

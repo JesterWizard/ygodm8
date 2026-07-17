@@ -6,6 +6,7 @@
 #include "debug_deck_swap.h"
 #include "debug_ruleset.h"
 #include "debug_save_anywhere.h"
+#include "menu_cursor.h"
 #include "player_decks.h"
 #include "shiny_zones.h"
 
@@ -100,6 +101,7 @@ int sub_800AD84__Replacement(void) {
   PlayerDecks_OnSaveSlotWrite();
   DebugAiMode_SaveToFlashPrimary();
   DebugRuleset_SaveToFlashPrimary();
+  MenuCursor_SaveToFlashPrimary();
   DebugDeckSwap_SaveToFlashPrimary();
   DebugSaveAnywhere_SaveToFlashPrimary();
   TimedDuel_SaveToFlashPrimary();
@@ -120,6 +122,7 @@ int sub_800ADA4__Replacement(void) {
   PlayerDecks_OnSaveSlotWriteBackup();
   DebugAiMode_SaveToFlashBackup();
   DebugRuleset_SaveToFlashBackup();
+  MenuCursor_SaveToFlashBackup();
   DebugDeckSwap_SaveToFlashBackup();
   DebugSaveAnywhere_SaveToFlashBackup();
   TimedDuel_SaveToFlashBackup();
@@ -139,6 +142,7 @@ void sub_800ADC4__Replacement(void) {
   DebugDeckSwap_LoadFromFlashPrimary();
   DebugAiMode_LoadFromFlashPrimary();
   DebugRuleset_LoadFromFlashPrimary();
+  MenuCursor_LoadFromFlashPrimary();
   DebugSaveAnywhere_LoadFromFlashPrimary();
   TimedDuel_LoadFromFlashPrimary();
   MillenniumItems_LoadFromFlashPrimary();
@@ -155,6 +159,7 @@ void sub_800ADF0__Replacement(void) {
   DebugDeckSwap_LoadFromFlashBackup();
   DebugAiMode_LoadFromFlashBackup();
   DebugRuleset_LoadFromFlashBackup();
+  MenuCursor_LoadFromFlashBackup();
   DebugSaveAnywhere_LoadFromFlashBackup();
   TimedDuel_LoadFromFlashBackup();
   MillenniumItems_LoadFromFlashBackup();
@@ -226,6 +231,7 @@ void sub_800AED0__Replacement(void) {
   InitNewGame();
   DebugAiMode_Reset();
   DebugRuleset_Reset();
+  MenuCursor_Reset();
   TimedDuel_ResetOnNewGame();
   MillenniumItems_ResetOnNewGame();
   DebugDeckSwap_Reset();

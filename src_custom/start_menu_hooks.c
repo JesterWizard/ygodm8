@@ -2,11 +2,10 @@
 #include "configs/runtime.h"
 #include "player_decks.h"
 #include "start_menu.h"
+#include "menu_cursor.h"
 
 extern unsigned char gStartMenuBgTiles[];
-extern unsigned char gStartMenuCursorTiles[];
 extern unsigned short gStartMenuBgPalette[];
-extern unsigned short gStartMenuCursorPalette[];
 extern unsigned short gUnk_8079424[];
 extern unsigned short gUnk_8079444[][30];
 extern unsigned short gUnk_80798F4[][30];
@@ -111,7 +110,7 @@ void sub_8005C54(void);
 static void LoadStartMenuGraphicsVanilla(void) {
   u8 i;
 
-  LZ77UnCompWram((const u32 *)gStartMenuCursorTiles, gBgVram.cbb4);
+  MenuCursor_LoadTiles(gBgVram.cbb4);
   for (i = 0; i < 20; i++)
     DmaCopy16(3, gUnk_80798F4[i], gBgVram.sbb1F[i], 60);
   for (i = 0; i < 20; i++)
@@ -119,7 +118,7 @@ static void LoadStartMenuGraphicsVanilla(void) {
   for (i = 0; i < 20; i++)
     DmaCopy16(3, gUnk_807A164[i], gBgVram.sbb1C[i], 60);
   CpuCopy16(gStartMenuBgPalette, gPaletteBuffer, 32);
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256);
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb2[32], gText_DeckMustHave40Cards, 0x901);
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb2[0x1020], gText_CardCostTotal, 0x901);
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb2[0x5020], sText_Status, 0x901);
@@ -130,7 +129,7 @@ static void LoadStartMenuGraphicsVanilla(void) {
 static void LoadStartMenuGraphicsMultiDeck(void) {
   u8 i;
 
-  LZ77UnCompWram((const u32 *)gStartMenuCursorTiles, gBgVram.cbb4);
+  MenuCursor_LoadTiles(gBgVram.cbb4);
   for (i = 0; i < 20; i++)
     DmaCopy16(3, gUnk_80798F4[i], gBgVram.sbb1F[i], 60);
   for (i = 0; i < 20; i++)
@@ -138,7 +137,7 @@ static void LoadStartMenuGraphicsMultiDeck(void) {
   for (i = 0; i < 20; i++)
     DmaCopy16(3, gUnk_807A164[i], gBgVram.sbb1C[i], 60);
   CpuCopy16(gStartMenuBgPalette, gPaletteBuffer, 32);
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256);
   CpuCopy16(gUnk_8079424, &gPaletteBuffer[START_MENU_ACTIVE_BG_PALETTE], 32);
   gPaletteBuffer[START_MENU_ACTIVE_BG_PALETTE + 1] = START_MENU_ACTIVE_YELLOW_COLOR;
   CopyStringTilesToVRAMBuffer(&gBgVram.cbb2[32], gText_DeckMustHave40Cards, 0x901);

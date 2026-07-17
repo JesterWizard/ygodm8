@@ -1,14 +1,13 @@
 #include "global.h"
 #include "configs/runtime.h"
 #include "debug_menu_internal.h"
+#include "menu_cursor.h"
 #include "text.h"
 
 /* ponytail: start-menu BG path from dc805e25 (f687d912^), before debug black BG. */
 
 extern u8 gStartMenuBgTiles[];
-extern u8 gStartMenuCursorTiles[];
 extern u16 gStartMenuBgPalette[];
-extern u16 gStartMenuCursorPalette[];
 extern u16 gUnk_8079424[];
 extern u16 gUnk_8079444[][30];
 extern u16 gUnk_80798F4[][30];
@@ -66,7 +65,7 @@ static void DebugMenuSetupStartMenuTextRows(void) {
 static void DebugMenuLoadStartMenuTilemaps(void) {
   u8 i;
 
-  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
+  MenuCursor_LoadTiles(gBgVram.cbb4);
   for (i = 0; i < DEBUG_SM_BG1_ROWS; i++) {
     DmaCopy16(3, gUnk_80798F4[i], gBgVram.sbb1F[i], DEBUG_SM_ROW_BYTES);
     DmaCopy16(3, gUnk_8079CB4[i], gBgVram.sbb1D[i], DEBUG_SM_ROW_BYTES);
@@ -74,7 +73,7 @@ static void DebugMenuLoadStartMenuTilemaps(void) {
   }
   DebugMenuSetupStartMenuTextRows();
   CpuCopy16(gStartMenuBgPalette, gPaletteBuffer, 32);
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256);
 }
 
 static void DebugMenuUploadStartMenuBg(void) {

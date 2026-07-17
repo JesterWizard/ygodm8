@@ -2,23 +2,19 @@
 #include "configs/runtime.h"
 #include "constants/music_ids.h"
 #include "debug_menu.h"
-#include "debug_menu.h"
 #include "debug_menu_internal.h"
 #include "match_setter.h"
 #include "debug_save_anywhere.h"
 #include "timed_duel.h"
 #include "mechanics_tutorial.h"
+#include "menu_cursor.h"
 #include "text.h"
 
 extern const u16 gOverworldEntityPalettes[];
 
-/* ponytail: sidebar art replaces start-menu bg.  Cursor tiles still come from
- * the vanilla start menu (small OBJ sprite) — not worth a custom cursor.
- * ponytail: R button toggles BG0 (text) visibility in the root menu. */
+/* ponytail: R button toggles BG0 (text) visibility in the root menu. */
 extern u8 gStartMenuBgTiles[];
-extern u8 gStartMenuCursorTiles[];
 extern u16 gStartMenuBgPalette[];
-extern u16 gStartMenuCursorPalette[];
 extern u16 gUnk_8079444[][30];
 extern u16 gUnk_80798F4[][30];
 extern u16 gUnk_8079CB4[][30];
@@ -45,6 +41,7 @@ static const u8 sText_RootRuleset[] APPEND_RODATA      = "Ruleset";
 static const u8 sText_RootDeckPreset[] APPEND_RODATA   = "Decks";
 static const u8 sText_RootTimedDuels[] APPEND_RODATA     = "Timed Duels";
 static const u8 sText_RootMechanics[] APPEND_RODATA      = "Mechanics";
+static const u8 sText_RootCursor[] APPEND_RODATA         = "Cursor";
 static const u8 sText_RootRuntimeConfig[] APPEND_RODATA = "Runtime";
 static const u8 sText_RootSaveAnywhere[] APPEND_RODATA  = "Save";
 
@@ -63,6 +60,7 @@ static const u8 sText_SectionScene[] APPEND_RODATA    = " Scene Viewer   ";
 static const u8 sText_SectionDecks[] APPEND_RODATA       = "  Deck Presets  ";
 static const u8 sText_SectionTimedDuels[] APPEND_RODATA  = "  Timed Duels   ";
 static const u8 sText_SectionMechanics[] APPEND_RODATA   = "   Mechanics    ";
+static const u8 sText_SectionCursor[] APPEND_RODATA      = " Cursor Icon    ";
 static const u8 sText_SectionRuntimeConfig[] APPEND_RODATA = " Runtime Config ";
 
 static const u8 *const sRootLabels[] APPEND_RODATA = {
@@ -81,6 +79,7 @@ static const u8 *const sRootLabels[] APPEND_RODATA = {
     sText_RootRuntimeConfig,
     sText_RootTimedDuels,
     sText_RootMechanics,
+    sText_RootCursor,
     sText_RootSaveAnywhere,
 };
 const u8 gDebugMenuBlankLine[] APPEND_RODATA = "          ";
@@ -116,24 +115,12 @@ void DebugMenuLoadCursorObjTiles(void) {
   CpuFastCopy(DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_BUF, DEBUG_OBJ_SAVE_SIZE);
   CpuFill16(0, DEBUG_OBJ_SAVE_ADDR, DEBUG_OBJ_SAVE_SIZE);
   CpuFill16(0, gBgVram.cbb4, DEBUG_OBJ_SAVE_SIZE);
-  LZ77UnCompWram(gStartMenuCursorTiles, gBgVram.cbb4);
-  {
-    const u32 *src3 = (const u32 *)(gBgVram.cbb4 + 0x060);
-    const u32 *src4 = (const u32 *)(gBgVram.cbb4 + 0x080);
-    u32      *dst3 = (u32       *)(gBgVram.cbb4 + 0x2400);
-    u32      *dst4 = (u32       *)(gBgVram.cbb4 + 0x2420);
-    u8 i;
-
-    for (i = 0; i < 8; i++) {
-      dst3[i] = src3[i];
-      dst4[i] = src4[i];
-    }
-  }
+  MenuCursor_LoadTiles(gBgVram.cbb4);
 }
 
 static void DebugMenuSetupTextPalettes(void) {
   gPaletteBuffer[DEBUG_BG1_TEXT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = gUnk_8079424[1];
-  CpuCopy16(gStartMenuCursorPalette, gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16);
   gPaletteBuffer[DEBUG_MENU_HIGHLIGHT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX] = 0x03FF;
 }
 
@@ -158,8 +145,8 @@ static void DebugMenuVBlank(void) {
   /* ponytail: re-apply yellow highlight palette every frame so the
    * overworld VBlank (which doesn't touch this bank) can't stale it. */
   *((vu16 *)0x05000000 + DEBUG_MENU_HIGHLIGHT_PAL_BANK * 16 + DEBUG_BG1_TEXT_PAL_INDEX) = 0x03FF;
-  /* Re-apply cursor palette entry 1 (main eye color) — sub-viewers may clobber it. */
-  *((vu16 *)0x050003E2) = gStartMenuCursorPalette[1];
+  /* Re-apply cursor palette entry 1 — sub-viewers may clobber it. */
+  *((vu16 *)0x050003E2) = MenuCursor_GetColor(1);
 }
 
 void DebugMenuVBlankNoWin(void) {
@@ -329,14 +316,16 @@ void DebugMenuRedraw(u16 scrollTop, u16 marker, u8 view) {
   case DEBUG_VIEW_MECHANICS:
     DebugMenuDrawMechanics(scrollTop, (u8)marker);
     break;
+  case DEBUG_VIEW_CURSOR:
+    DebugMenuDrawCursor(scrollTop, (u8)marker);
+    break;
   default:
     DebugMenuDrawRoot(scrollTop, (u8)marker);
     break;
   }
   /* ponytail: restore cursor palette in buffer so LoadPalettes writes the
    * correct value to palette RAM (sub-viewers may have clobbered bank 15). */
-  CpuCopy16(gStartMenuCursorPalette,
-            gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16);
   DebugMenuUploadText();
   DebugMenuUploadObjTiles();
   LoadPalettes();
@@ -532,6 +521,7 @@ static const u8 *const sSectionTitles[] APPEND_RODATA = {
     [DEBUG_VIEW_TIMED_DUEL]    = sText_SectionTimedDuels,
     [DEBUG_VIEW_RUNTIME_CONFIG] = sText_SectionRuntimeConfig,
     [DEBUG_VIEW_MECHANICS]     = sText_SectionMechanics,
+    [DEBUG_VIEW_CURSOR]        = sText_SectionCursor,
 };
 
 static void DebugMenuDrawSectionTitle(u8 view) {
@@ -608,6 +598,7 @@ static void DebugMenuRoot(void) {
       else if (cursor == 12) DebugRuntimeConfigViewer();
       else if (cursor == 13) DebugTimedDuelViewer();
       else if (cursor == 14) DebugMechanicsViewer();
+      else if (cursor == 15) DebugCursorViewer();
       else { gDebugMenuPendingSaveAnywhere = TRUE; break; }
       DebugMenuLatchButtons();
       scrollTop = 0;
@@ -686,7 +677,6 @@ void DebugMenuMain(void) {
 
 void DebugMenuLoadReactionObjPalettes(void) {
   CpuCopy16(gOverworldEntityPalettes, gPaletteBuffer + 256, 0x180);
-  CpuCopy16(gStartMenuCursorPalette,
-            gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16, 32);
+  MenuCursor_LoadPalette(gPaletteBuffer + 256 + DEBUG_MENU_CURSOR_PAL_SLOT * 16);
   LoadPalettes();
 }

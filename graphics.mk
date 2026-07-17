@@ -46,6 +46,10 @@ DUEL_ICON_PNG := src_custom/assets/icons/duel.png
 DUEL_ICON_4BPP := src_custom/assets/icons/duel.4bpp
 DUEL_ICON_PAL := src_custom/assets/icons/duel.gbapal
 
+CURSOR_PNGS := $(wildcard src_custom/assets/cursors/*.png)
+CURSOR_4BPP := $(CURSOR_PNGS:.png=.4bpp)
+CURSOR_PAL := $(CURSOR_PNGS:.png=.gbapal)
+
 src_custom/assets/menus/debug_menu.lz: src_custom/assets/menus/debug_menu.4bpp | tools-rules
 	tools/gbagfx/gbagfx $< $@
 
@@ -59,7 +63,9 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(DEBUG_MENU_LZ) \
                 $(DEBUG_MENU_PAL) \
                 $(DUEL_ICON_4BPP) \
-                $(DUEL_ICON_PAL)
+                $(DUEL_ICON_PAL) \
+                $(CURSOR_4BPP) \
+                $(CURSOR_PAL)
 
 clean-graphics:
 	rm -f graphics/cards/artwork/*.8bpp
@@ -84,12 +90,18 @@ clean-graphics:
 	rm -f src/overworld/entities/*.gbapal
 	rm -f src_custom/assets/icons/*.4bpp
 	rm -f src_custom/assets/icons/*.gbapal
+	rm -f src_custom/assets/cursors/*.4bpp
+	rm -f src_custom/assets/cursors/*.gbapal
 	rm -rf src_custom/generated/maps/
 
 %.4bpp: %.png | tools-rules
 	tools/gbagfx/gbagfx $< $@
 %.8bpp: %.png | tools-rules
 	tools/gbagfx/gbagfx $< $@
+# Cursor pals padded to 16 colors so MenuCursor_LoadPalette can always copy 32 bytes.
+src_custom/assets/cursors/%.gbapal: src_custom/assets/cursors/%.png | tools-rules
+	tools/gbagfx/gbagfx $< $@
+	python3 -c "from pathlib import Path; p=Path('$@'); p.write_bytes(p.read_bytes().ljust(32, b'\0'))"
 %.gbapal: %.png | tools-rules
 	tools/gbagfx/gbagfx $< $@
 src_custom/assets/thought_bubbles/%.dmp: src_custom/assets/thought_bubbles/%.png tools/repack_128x64_obj.py | tools-rules

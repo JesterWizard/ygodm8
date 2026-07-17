@@ -194,6 +194,8 @@ _kernel_malloc_ewram_array gRuntimeConfigEwram, 0x60
 
 @ Debug menu: AI controls both duelists when enabled.
 _kernel_malloc_ewram gDebugAiBothSidesMode, 1
+@ Start/debug menu cursor icon (eye / kuriboh / puzzle).
+_kernel_malloc_ewram gMenuCursorId, 1
 _kernel_malloc_ewram gDebugSaveAnywhereData, 0xC
 _kernel_malloc_ewram gDebugMenuPendingSaveAnywhere, 0x1
 _kernel_malloc_ewram gDebugSaveAnywherePendingCapture, 0x1
