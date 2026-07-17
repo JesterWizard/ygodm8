@@ -43,7 +43,7 @@ Build-time default: set `.card_description_font = CARD_DESC_FONT_…` in `gRunti
 2. `NarrowFontWrapProse` word-wraps by glyph pixel widths into 5 lines × **112px**. Row 0 (continuation pages) and the last row reserve arrow width + 1px so words that would collide with ▲/▼ move to the next line instead.
 3. `NarrowFontRenderPage` blits 4bpp glyphs into tiles `148..287`; `NarrowFontApplyDescriptionTilemap` maps screen rows `10..19`.
 
-Glyph source: pret pokeemerald `latin_small_narrow.png`, converted by [`tools/build_narrow_font.py`](../tools/build_narrow_font.py) → [`src_custom/generated/narrow_font_data.inc`](../src_custom/generated/narrow_font_data.inc).
+Glyph source: pret pokeemerald `latin_small_narrow.png`, converted by [`tools/build_narrow_font.py`](../tools/build_narrow_font.py) → [`src_custom/generated/narrow_font_data.inc`](../src_custom/generated/narrow_font_data.inc). ASCII `%` uses the denser glyph from `latin_narrow.png` (small_narrow’s `%` is ~6 pixels and reads as a comma).
 
 ### Adding another font later
 

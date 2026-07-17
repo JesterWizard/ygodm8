@@ -1,14 +1,14 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-17 — Menu cursor icon picker
+**Last worked on:** 2026-07-17 — Emerald narrow `%` glyph
 
 **Files touched:**
-- `include/menu_cursor.h`, `src_custom/menu_cursor.c`
-- `src_custom/debug/debug_menu_cursor.c`, `debug_menu.c`, `debug_menu_internal.h`
-- `src_custom/start_menu_hooks.c`, `debug/debug_menu_startmenu.c`, `debug/ante_card_viewer.c`
-- `src_custom/code_800AC64_hooks.c`, `asm/ram_map_ewram.s`, `asm/ram_map_sram.s`
-- `graphics.mk`, `Makefile`, `src_custom/assets/cursors/*.png`
+- `tools/build_narrow_font.py`
+- `src_custom/assets/fonts/latin_narrow.png`
+- `src_custom/generated/narrow_font_data.inc`
+- `Makefile`
+- `documentation/card-description-fonts.md`
 
-**Outcome:** `make` exits 0. Debug → Cursor: Eye / Kuriboh / Puzzle; saved to EWRAM+Flash.
+**Outcome:** `make` exits 0. `%` uses denser `latin_narrow` glyph (no longer reads as comma).
 
-**Open / next:** Playtest picker + save/load persistence on start menu
+**Open / next:** Playtest card text containing `%`

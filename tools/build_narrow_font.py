@@ -3,6 +3,9 @@
 
 Source: pret/pokeemerald graphics/fonts/latin_small_narrow.png + width table.
 Only palette indices 1 (fg) and 2 (shadow) are kept; 0/3 are transparent.
+
+CHAR_PERCENT in small_narrow is ~6 ink pixels and reads as a comma at GBA scale;
+% is taken from latin_narrow.png instead (same CHAR index, width 6).
 """
 from __future__ import annotations
 
@@ -66,6 +69,9 @@ SMALL_NARROW_WIDTHS = [
     3, 5, 5, 5, 5, 5, 5,
 ]
 
+# gFontNarrowLatinGlyphWidths[CHAR_PERCENT] — denser % sheet uses this advance.
+NARROW_PERCENT_WIDTH = 6
+
 ARROW_UP = 0x79
 ARROW_DOWN = 0x7A
 
@@ -107,13 +113,22 @@ def pack_glyph_4bpp_tiles(pixels: list[int]) -> bytes:
     return bytes(tiles)
 
 
-def self_check(im: Image.Image) -> None:
+def ink_count(pixels: list[int]) -> int:
+    return sum(1 for p in pixels if p)
+
+
+def self_check(im: Image.Image, percent_pixels: list[int]) -> None:
     a = extract_glyph(im, ASCII_TO_CHAR["A"])
     assert any(p == 1 for p in a), "A glyph has no fg pixels"
     sp = extract_glyph(im, ASCII_TO_CHAR[" "])
     assert not any(p for p in sp), "space glyph should be empty"
     assert SMALL_NARROW_WIDTHS[ASCII_TO_CHAR["i"]] == 4
     assert SMALL_NARROW_WIDTHS[ASCII_TO_CHAR["W"]] == 5
+    comma = extract_glyph(im, ASCII_TO_CHAR[","])
+    assert ink_count(percent_pixels) > ink_count(comma) * 2, (
+        "percent glyph still too sparse (reads as comma)"
+    )
+    assert percent_pixels != comma, "percent must not match comma glyph"
     print("build_narrow_font self-check OK")
 
 
@@ -125,6 +140,12 @@ def main() -> None:
         default=Path("src_custom/assets/fonts/latin_small_narrow.png"),
     )
     ap.add_argument(
+        "--percent-png",
+        type=Path,
+        default=Path("src_custom/assets/fonts/latin_narrow.png"),
+        help="Sheet for CHAR_PERCENT (small_narrow %% is illegible)",
+    )
+    ap.add_argument(
         "--out",
         type=Path,
         default=Path("src_custom/generated/narrow_font_data.inc"),
@@ -132,7 +153,10 @@ def main() -> None:
     args = ap.parse_args()
 
     im = Image.open(args.png)
-    self_check(im)
+    percent_im = Image.open(args.percent_png)
+    percent_idx = ASCII_TO_CHAR["%"]
+    percent_pixels = extract_glyph(percent_im, percent_idx)
+    self_check(im, percent_pixels)
 
     widths = []
     glyphs = []
@@ -143,11 +167,16 @@ def main() -> None:
             widths.append(3)
             glyphs.append(bytes(128))
             continue
-        w = SMALL_NARROW_WIDTHS[idx] if idx < len(SMALL_NARROW_WIDTHS) else 5
-        if w == 0:
-            w = 5  # ponytail: empty Emerald slots → keep advance so layout never stalls
+        if ch == "%":
+            w = NARROW_PERCENT_WIDTH
+            pixels = percent_pixels
+        else:
+            w = SMALL_NARROW_WIDTHS[idx] if idx < len(SMALL_NARROW_WIDTHS) else 5
+            if w == 0:
+                w = 5  # ponytail: empty Emerald slots → keep advance so layout never stalls
+            pixels = extract_glyph(im, idx)
         widths.append(w)
-        glyphs.append(pack_glyph_4bpp_tiles(extract_glyph(im, idx)))
+        glyphs.append(pack_glyph_4bpp_tiles(pixels))
 
     up = pack_glyph_4bpp_tiles(extract_glyph(im, ARROW_UP))
     down = pack_glyph_4bpp_tiles(extract_glyph(im, ARROW_DOWN))

@@ -93,6 +93,7 @@ DATA_ASM_SRCS := $(wildcard $(DATA_ASM_SUBDIR)/*.s)
 DATA_ASM_OBJS := $(patsubst $(DATA_ASM_SUBDIR)/%.s,$(DATA_ASM_BUILDDIR)/%.o,$(DATA_ASM_SRCS))
 CARD_DESCRIPTION_GENERATED := src_custom/card_description_data_generated.inc
 NARROW_FONT_PNG := src_custom/assets/fonts/latin_small_narrow.png
+NARROW_FONT_PERCENT_PNG := src_custom/assets/fonts/latin_narrow.png
 NARROW_FONT_GENERATED := src_custom/generated/narrow_font_data.inc
 NARROW_FONT_GENERATOR := tools/build_narrow_font.py
 CARD_DATA_MANIFEST := tools/card_data_manifest.json
@@ -337,9 +338,9 @@ src_custom/generated/card_art_generated.inc: $(CARD_ART_STAMP)
 
 $(CARD_DESCRIPTION_GENERATED) src_custom/generated/card_name_generated.inc src_custom/generated/card_data_generated.inc $(CARD_DATA_GENERATED_SRC) $(CARD_TRUNK_GENERATED) $(CARD_ACTIVATION_TEXT_GENERATED) $(CARD_ACTIVATION_TEXT_LOOKUP_GENERATED) $(CARD_EFFECT_TEXTS_H): $(CARD_GENERATED_STAMP)
 
-$(NARROW_FONT_GENERATED): $(NARROW_FONT_PNG) $(NARROW_FONT_GENERATOR)
+$(NARROW_FONT_GENERATED): $(NARROW_FONT_PNG) $(NARROW_FONT_PERCENT_PNG) $(NARROW_FONT_GENERATOR)
 	@echo "FONT    narrow description"
-	python3 $(NARROW_FONT_GENERATOR) --png $(NARROW_FONT_PNG) --out $@
+	python3 $(NARROW_FONT_GENERATOR) --png $(NARROW_FONT_PNG) --percent-png $(NARROW_FONT_PERCENT_PNG) --out $@
 
 $(SPELL_EFFECT_DISPATCH_STAMP): $(SPELL_EFFECT_SOURCES) $(SPELL_EFFECT_DISPATCH_GENERATOR) | tools-rules
 	@echo "SPELL   effect dispatch tables"
