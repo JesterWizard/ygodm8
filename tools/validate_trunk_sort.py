@@ -210,12 +210,28 @@ def validate_trunk_hooks(source: str, path: Path) -> list[str]:
 def validate_card_sort_hooks(source: str, path: Path) -> list[str]:
     errors: list[str] = []
 
+    if "BridgeVanillaSortBufferIfNeeded" not in source:
+        errors.append(
+            f"{path}: missing BridgeVanillaSortBufferIfNeeded "
+            "(vanilla ASM sort buffer must be bridged into gSortableEntries)"
+        )
+    if "SORT_BUFFER_SENTINEL" not in source:
+        errors.append(f"{path}: missing SORT_BUFFER_SENTINEL for vanilla/C sort path detect")
+    if "0x02018800" not in source:
+        errors.append(f"{path}: missing vanilla sort buffer address 0x02018800")
+
     try:
         sort_context_body = _extract_function_body(
             source, "SortCardsAccordingToContext__Replacement"
         )
     except ValueError as exc:
-        return [f"{path}: {exc}"]
+        return errors + [f"{path}: {exc}"]
+
+    if "BridgeVanillaSortBufferIfNeeded" not in sort_context_body:
+        errors.append(
+            f"{path}: SortCardsAccordingToContext__Replacement must call "
+            "BridgeVanillaSortBufferIfNeeded on the vanilla helper path"
+        )
 
     if "dynamic_card_shop_and_trunk_sorting" not in sort_context_body:
         errors.append(

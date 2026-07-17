@@ -7,8 +7,9 @@ struct SortableEntry {
   u64 sortKey;
 };
 
-/* Vanilla ROM pointer at 0x8E0CC20 targeted a fixed 800-entry buffer at 0x2018800.
- * Trunk/shop now sort NUM_TOTAL_CARDS entries — use the expanded EWRAM array. */
+/* Vanilla ROM pointer at 0x8E0CC20 still targets the fixed 800-entry buffer at
+ * 0x2018800. C code uses gExpandedSortableEntries via gSortableEntries.
+ * SortCardsAccordingToContext__Replacement bridges the two on the vanilla path. */
 extern struct SortableEntry gExpandedSortableEntries[];
 struct SortableEntry *gSortableEntries APPEND_DATA = gExpandedSortableEntries;
 
@@ -17,6 +18,10 @@ extern struct CardSortContext gCardSortContext;
 void SortCardsAccordingToContext(void);
 void sub_8034DF8(void);
 void SortCardsDescending(void);
+
+/* Vanilla unreplacable ASM helpers write 12-byte entries at 0x2018800 (ROM word 0x8E0CC20). */
+/* Sentinel: not a valid card id (NUM_TOTAL_CARDS is well below this). */
+#define SORT_BUFFER_SENTINEL 0xFFFF
 
 void sub_8034AB8(void);
 void sub_8034AF0(void);
@@ -437,6 +442,31 @@ static void CopySortedCardsBack(void) {
     gCardSortContext.cards[i] = gSortableEntries[i].cardId;
 }
 
+static void BridgeVanillaSortBufferIfNeeded(void) {
+  u16 i;
+  const u8 *src;
+
+  /* LynJump-replaced helpers write gSortableEntries; unreplacable ASM still
+   * writes 12-byte entries at 0x2018800. Sentinel detects which path ran. */
+  if (gCardSortContext.cardCount == 0)
+    return;
+  if (gSortableEntries[0].cardId != SORT_BUFFER_SENTINEL)
+    return;
+
+  /* ponytail: vanilla stride is fixed 12; don't use C sizeof indexing on 0x2018800
+   * in case agbcc ever pads SortableEntry differently. Upgrade: patch ROM
+   * 0x8E0CC20 → gExpandedSortableEntries and drop this bridge. */
+  src = (const u8 *)0x02018800;
+  for (i = 0; i < gCardSortContext.cardCount; i++) {
+    const u8 *entry = src + i * 12;
+    u32 lo = *(const u32 *)(entry + 4);
+    u32 hi = *(const u32 *)(entry + 8);
+
+    gSortableEntries[i].cardId = *(const u16 *)entry;
+    gSortableEntries[i].sortKey = ((u64)hi << 32) | lo;
+  }
+}
+
 LYN_REPLACE_CHECK(SortCardsAccordingToContext);
 void SortCardsAccordingToContext__Replacement(void) {
   u8 sortMode = gCardSortContext.sortMode;
@@ -455,7 +485,11 @@ void SortCardsAccordingToContext__Replacement(void) {
     CopySortedCardsBack();
   }
   else {
+    if (gCardSortContext.cardCount > 0)
+      gSortableEntries[0].cardId = SORT_BUFFER_SENTINEL;
+
     sVanillaSortHelpers[sortMode]();
+    BridgeVanillaSortBufferIfNeeded();
     SortCardsDescending();
     CopySortedCardsBack();
   }
