@@ -93,6 +93,7 @@ ygodm8.gba  ← LynJump patches applied post-link
 | Card IDs and constants | `include/constants/card_ids.h` (generated from manifest) |
 | Custom portraits / thought bubbles | `documentation/custom-portraits.md`, `documentation/thought-bubbles.md` |
 | Status menu label/value layout | `documentation/status-menu-layout.md` → `src_custom/status_menu_hooks.c` |
+| Card description fonts | `documentation/card-description-fonts.md` → `CARD_DESC_FONT_*`, `src_custom/narrow_font.c` |
 | LynJump contract | `documentation/lynjump-replacements.md`, `tools/validate_lynjump.py` |
 | Tests and CI locally | `documentation/tdd-framework.md`, `make test-host` |
 | Recent agent context | **[SESSION_LOG.md](SESSION_LOG.md)** |

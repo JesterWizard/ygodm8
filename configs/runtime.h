@@ -8,6 +8,7 @@
 #define FALSE 0
 #endif
 
+#include "constants/card_description_font.h"
 typedef struct {
     u8 restore_life_points_after_duel;
     u8 cap_life_points_after_duel;
@@ -84,7 +85,7 @@ typedef struct {
     u8 enable_card_detail_navigation; // DPAD LEFT/RIGHT in card detail view switches between deck/trunk cards.
     u8 enable_manifest_map_overrides; // Override map graphics via custom_map_manifest.json redirects.
     u8 enable_extra_deck; // Extra deck system: store/remove fusion monsters from a 15-card extra deck per player deck.
-    u8 use_small_card_description_font; // Card detail: 8x8 font (10 rows) instead of 8x16 (5 rows).
+    u8 card_description_font; // CARD_DESC_FONT_* — card detail description typeface.
     u8 enable_millennium_item_tracker; // Status menu: show the seven-item progress row.
     u8 show_duel_voice_portraits; // Show opponent dialogue portrait during turn-start voiced lines.
 } RuntimeConfig;

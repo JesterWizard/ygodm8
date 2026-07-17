@@ -10,6 +10,7 @@
 #include "generated/card_trunk_generated.inc"
 #include "card_shop.h"
 #include "text.h"
+#include "narrow_font.h"
 
 void HandleWin(void);
 void HandleLoss(void);
@@ -68,10 +69,11 @@ u16 GetTrunkCardCount(void);
 extern u8 gCardDetailNavActive;
 extern u8 gCardDetailNavIndex;
 
-/* Large font 0x901: 5 rows × 14 cols (70 glyphs, 2 tiles tall each).
- * Small font 0x001: 10 rows × 14 cols (140 glyphs, 1 tile tall) in the same VRAM.
- * Manifest pages are authored for the large layout; when small font is on we
- * recover the prose and reflow into denser pages at runtime. */
+/* Card description fonts (RuntimeConfig.card_description_font):
+ * VANILLA: 0x901, 5×14 zigzag (70 glyphs, 2 tiles tall).
+ * SMALL:   0x001, 10×14 sequential (140 glyphs); prose recovered + char-wrap.
+ * EMERALD: VWF into same 140-tile slot (5×16px); prose recovered + pixel-wrap.
+ * Manifest pages stay large-layout authored. */
 #define DESC_TILE_BASE 148
 #define DESC_TILEMAP_ATTR 0xF000
 #define DESC_COLS 14
@@ -89,17 +91,21 @@ static const u8 sLargeRowWidths[DESC_ROWS_LARGE] APPEND_RODATA = {12, 14, 14, 14
 static const u8 sSmallRowWidths[DESC_ROWS_SMALL] APPEND_RODATA = {
     12, 14, 14, 14, 14, 14, 14, 14, 14, 12};
 
-static u8 DescriptionUsesSmallFont(void) {
-  return gRuntimeConfig.use_small_card_description_font == TRUE;
+static u8 DescriptionFontMode(void) {
+  u8 mode = gRuntimeConfig.card_description_font;
+  if (mode >= CARD_DESC_FONT_COUNT)
+    return CARD_DESC_FONT_VANILLA;
+  return mode;
 }
 
 static u16 DescriptionFontFlags(void) {
-  return DescriptionUsesSmallFont() ? 0x001 : 0x901;
+  return DescriptionFontMode() == CARD_DESC_FONT_SMALL ? 0x001 : 0x901;
 }
 
 static u8 DescriptionPageCharSlots(void) {
-  return DescriptionUsesSmallFont() ? (DESC_ROWS_SMALL * DESC_COLS)
-                                    : (DESC_ROWS_LARGE * DESC_COLS);
+  return DescriptionFontMode() == CARD_DESC_FONT_SMALL
+             ? (DESC_ROWS_SMALL * DESC_COLS)
+             : (DESC_ROWS_LARGE * DESC_COLS);
 }
 
 static void ApplySmallFontDescriptionTilemap(void) {
@@ -114,7 +120,8 @@ static void ApplySmallFontDescriptionTilemap(void) {
   }
 }
 
-/* Strip large-layout row padding (12/14/14/14/12) from each page and join. */
+/* Strip large-layout row padding (12/14/14/14/12) from each page and join.
+ * Leading spaces on inset rows are dropped so reflowed fonts stay flush-left. */
 static void RecoverProseFromLargePages(const u8 *pages[], u8 pageCount, u8 *out, u16 outCap) {
   u16 outLen = 0;
   u8 p;
@@ -138,6 +145,8 @@ static void RecoverProseFromLargePages(const u8 *pages[], u8 pageCount, u8 *out,
         take = width;
       rowStart = pos;
       pos = (u16)(pos + take);
+      while (rowStart < pos && text[rowStart] == ' ')
+        rowStart++;
       trimEnd = pos;
       while (trimEnd > rowStart && text[trimEnd - 1] == ' ')
         trimEnd--;
@@ -194,7 +203,6 @@ static u8 WrapProseToSmallPages(const u8 *prose, u8 *out, u16 outCap,
         need = (u8)(col == 0 ? wlen : wlen + 1);
         if (need > (u8)(width - col)) {
           if (col == 0) {
-            /* ponytail: hard-split overlong tokens; hyphenate like the generator if needed. */
             u8 fit = width;
             u8 i;
 
@@ -229,7 +237,6 @@ static u8 WrapProseToSmallPages(const u8 *prose, u8 *out, u16 outCap,
       if (prose[prosePos] == '\0')
         break;
 
-      /* Pad to row width so the glyph stream stays column-aligned. */
       if (outPos + (u16)(width - col) + 2 >= outCap)
         goto done;
       while (col < width) {
@@ -256,63 +263,74 @@ done:
 }
 
 static void BuildDescriptionPageBuffer(const u8 *text, u8 page, u8 pageCount, u16 *dest) {
-  u8 buffer[288];
-  u8 i = 0;
-  u8 j = 0;
-  u8 slots = DescriptionPageCharSlots();
+  if (DescriptionFontMode() == CARD_DESC_FONT_EMERALD_NARROW) {
+    NarrowFontRenderPage((u8 *)dest, text, page, pageCount);
+    return;
+  }
 
-  CpuFastFill16(0, dest, 2240 * sizeof(u16));
+  {
+    u8 buffer[288];
+    u8 i = 0;
+    u8 j = 0;
+    u8 slots = DescriptionPageCharSlots();
 
-  while (*text != '^') {
-    buffer[i] = *text;
-    if (*text > 127)
-      buffer[++i] = *++text;
-    i++;
-    text++;
-    j++;
-    if (j == 12) {
-      buffer[i] = ' ';
+    CpuFastFill16(0, dest, 2240 * sizeof(u16));
+
+    while (*text != '^') {
+      buffer[i] = *text;
+      if (*text > 127)
+        buffer[++i] = *++text;
       i++;
-      if (page) {
-        buffer[i] = g80B96B8[0];
-        i++;
-        buffer[i] = g80B96B8[1];
-      } else {
+      text++;
+      j++;
+      if (j == 12) {
         buffer[i] = ' ';
+        i++;
+        if (page) {
+          buffer[i] = g80B96B8[0];
+          i++;
+          buffer[i] = g80B96B8[1];
+        } else {
+          buffer[i] = ' ';
+        }
+        i++;
+        j += 2;
       }
-      i++;
-      j += 2;
     }
-  }
 
-  if (page >= pageCount - 1) {
-    while (j < slots) {
-      buffer[i] = ' ';
+    if (page >= pageCount - 1) {
+      while (j < slots) {
+        buffer[i] = ' ';
+        i++;
+        j++;
+      }
+    } else {
+      while (j < slots - 1) {
+        buffer[i] = ' ';
+        i++;
+        j++;
+      }
+      buffer[i] = g80B96BC[0];
       i++;
-      j++;
-    }
-  } else {
-    while (j < slots - 1) {
-      buffer[i] = ' ';
+      buffer[i] = g80B96BC[1];
       i++;
-      j++;
     }
-    buffer[i] = g80B96BC[0];
-    i++;
-    buffer[i] = g80B96BC[1];
-    i++;
-  }
 
-  buffer[i] = 0;
-  CopyStringTilesToVRAMBuffer(dest, buffer, DescriptionFontFlags());
+    buffer[i] = 0;
+    CopyStringTilesToVRAMBuffer(dest, buffer, DescriptionFontFlags());
+  }
 }
 
 static void CardDetailViewRenderPage(u16 *pageBuffer, const u8 *pageStarts[], u8 pageCount) {
+  u8 mode = DescriptionFontMode();
+
   g201CB58 = 0;
   sub_801FB2C();
   sub_800B618(pageBuffer);
-  if (DescriptionUsesSmallFont())
+  if (mode == CARD_DESC_FONT_SMALL)
     ApplySmallFontDescriptionTilemap();
+  else if (mode == CARD_DESC_FONT_EMERALD_NARROW)
+    NarrowFontApplyDescriptionTilemap();
   ApplyCardDetailPaletteExtension();
   sub_801FA84();
   SetVBlankCallback(sub_801FADC);
@@ -354,12 +372,44 @@ static u8 CardDetailViewBuildDescription(u16 *pageBuffer, const u8 *pageStarts[9
       text++;
     }
 
-    if (DescriptionUsesSmallFont()) {
+    if (DescriptionFontMode() == CARD_DESC_FONT_SMALL) {
       RecoverProseFromLargePages(pageStarts, pageCount, gDescProseBuf, DESC_PROSE_BUF_SIZE);
       pageCount = WrapProseToSmallPages(gDescProseBuf, gDescReflowBuf, DESC_REFLOW_BUF_SIZE,
                                         pageStarts, DESC_MAX_PAGES);
+    } else if (DescriptionFontMode() == CARD_DESC_FONT_EMERALD_NARROW) {
+      RecoverProseFromLargePages(pageStarts, pageCount, gDescProseBuf, DESC_PROSE_BUF_SIZE);
+      pageCount = NarrowFontWrapProse(gDescProseBuf, gDescReflowBuf, DESC_REFLOW_BUF_SIZE,
+                                      pageStarts, DESC_MAX_PAGES);
     }
 
+    g201CB59 = pageCount;
+    BuildDescriptionPageBuffer(pageStarts[0], 0, pageCount, pageBuffer);
+    return pageCount;
+  }
+
+  if (DescriptionFontMode() == CARD_DESC_FONT_EMERALD_NARROW ||
+      DescriptionFontMode() == CARD_DESC_FONT_SMALL) {
+    u8 prose[288];
+    u8 pi = 0;
+    u8 pageCount;
+    const u8 *src = text;
+
+    while (*src && *src != '$' && pi < 286) {
+      if (*src > 127) {
+        prose[pi++] = *src++;
+        if (*src)
+          prose[pi++] = *src++;
+      } else {
+        prose[pi++] = *src++;
+      }
+    }
+    prose[pi] = '\0';
+    if (DescriptionFontMode() == CARD_DESC_FONT_SMALL)
+      pageCount = WrapProseToSmallPages(prose, gDescReflowBuf, DESC_REFLOW_BUF_SIZE, pageStarts,
+                                        DESC_MAX_PAGES);
+    else
+      pageCount = NarrowFontWrapProse(prose, gDescReflowBuf, DESC_REFLOW_BUF_SIZE, pageStarts,
+                                      DESC_MAX_PAGES);
     g201CB59 = pageCount;
     BuildDescriptionPageBuffer(pageStarts[0], 0, pageCount, pageBuffer);
     return pageCount;

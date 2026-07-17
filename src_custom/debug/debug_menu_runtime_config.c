@@ -1,5 +1,6 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "constants/card_description_font.h"
 #include "constants/music_ids.h"
 #include "debug_menu.h"
 #include "debug_menu_internal.h"
@@ -7,22 +8,21 @@
 /* ------------------------------------------------------------------ */
 /*  Config entry table                                                 */
 /* ------------------------------------------------------------------ */
-/* ponytail: only toggleable (TRUE/FALSE) u8 fields are listed.      */
-/* Numeric/enum u8 and u16 fields are excluded.                       */
 
-/* Custom offsetof for GCC -- compile-time, never dereferences at runtime. */
 #ifndef offsetof
 #define offsetof(type, member) ((u32)(u32)&((type*)0)->member)
 #endif
 
-/* Embedded char array avoids dangling .rodata pointer references that
- * the linker discards when APPEND_RODATA is used. */
+/* enumMax 0 = bool ON/OFF; otherwise cycle 0 .. enumMax-1. */
 #define CONF(_name, _field) \
-    { _name, offsetof(RuntimeConfig, _field) }
+    { _name, offsetof(RuntimeConfig, _field), 0 }
+#define CONF_ENUM(_name, _field, _count) \
+    { _name, offsetof(RuntimeConfig, _field), (u8)(_count) }
 
 static const struct {
     char label[12];
     u16 offset;
+    u8 enumMax;
 } sRuntimeConfigEntries[] APPEND_RODATA = {
     CONF("Restore LP",   restore_life_points_after_duel),
     CONF("Cap LP",       cap_life_points_after_duel),
@@ -77,18 +77,51 @@ static const struct {
     CONF("Repeat Duel",  enable_repeatable_duel_icon),
     CONF("Skip Duel",    skip_to_duel),
     CONF("Title Video",  enable_title_screen_video),
-    CONF("Small Desc",   use_small_card_description_font),
+    CONF_ENUM("Desc Font", card_description_font, CARD_DESC_FONT_COUNT),
     CONF("Mill Track",   enable_millennium_item_tracker),
     CONF("Voice Port",   show_duel_voice_portraits),
 };
 
 #undef CONF
+#undef CONF_ENUM
 
 #define TOTAL_ENTRIES ((u16)ARRAY_COUNT(sRuntimeConfigEntries))
 
-/* ------------------------------------------------------------------ */
-/*  Draw — uses standard DebugMenuCopyLine (16-char rows).           */
-/* ------------------------------------------------------------------ */
+static const char sDescFontLabels[CARD_DESC_FONT_COUNT][4] APPEND_RODATA = {
+    "Van", /* CARD_DESC_FONT_VANILLA */
+    "Sml", /* CARD_DESC_FONT_SMALL */
+    "Emr", /* CARD_DESC_FONT_EMERALD_NARROW */
+};
+
+static void FormatConfigValue(u8 *dest3, u8 value, u8 enumMax, u16 offset) {
+    if (enumMax == 0) {
+        if (value) {
+            dest3[0] = 'O';
+            dest3[1] = 'N';
+            dest3[2] = ' ';
+        } else {
+            dest3[0] = 'O';
+            dest3[1] = 'F';
+            dest3[2] = 'F';
+        }
+        return;
+    }
+
+    if (offset == offsetof(RuntimeConfig, card_description_font)) {
+        u8 mode = value;
+        u8 i;
+        if (mode >= CARD_DESC_FONT_COUNT)
+            mode = CARD_DESC_FONT_VANILLA;
+        for (i = 0; i < 3; i++)
+            dest3[i] = sDescFontLabels[mode][i];
+        return;
+    }
+
+    /* Generic enum fallback: show 0-9. */
+    dest3[0] = ' ';
+    dest3[1] = (u8)('0' + (value % 10));
+    dest3[2] = ' ';
+}
 
 void DebugMenuDrawRuntimeConfig(u8 scrollTop, u8 cursor) {
     u8 row;
@@ -108,30 +141,18 @@ void DebugMenuDrawRuntimeConfig(u8 scrollTop, u8 cursor) {
 
         value = *(u8 *)((u8 *)&gRuntimeConfig + sRuntimeConfigEntries[index].offset);
 
-        /* label (up to 12 chars) padded to 12 + space + ON/OFF = 16 */
         t = 0;
         for (i = 0; i < 12; i++)
             buf[i] = sRuntimeConfigEntries[index].label[t] ? sRuntimeConfigEntries[index].label[t++] : ' ';
 
         buf[12] = ' ';
-        if (value) {
-            buf[13] = 'O';
-            buf[14] = 'N';
-            buf[15] = ' ';
-        } else {
-            buf[13] = 'O';
-            buf[14] = 'F';
-            buf[15] = 'F';
-        }
+        FormatConfigValue(&buf[13], value, sRuntimeConfigEntries[index].enumMax,
+                          sRuntimeConfigEntries[index].offset);
         buf[DEBUG_CHARS] = '\0';
 
         DebugMenuCopyLine(row, buf);
     }
 }
-
-/* ------------------------------------------------------------------ */
-/*  Viewer loop                                                       */
-/* ------------------------------------------------------------------ */
 
 void DebugRuntimeConfigViewer(void) {
     u8 cursor = 0, scrollTop = 0;
@@ -161,10 +182,15 @@ void DebugRuntimeConfigViewer(void) {
 
         if (buttons & A_BUTTON) {
             u8 *field;
+            u8 enumMax;
 
             PlayMusic(SFX_SELECT);
             field = (u8 *)&gRuntimeConfig + sRuntimeConfigEntries[cursor].offset;
-            *field = *field ? FALSE : TRUE;
+            enumMax = sRuntimeConfigEntries[cursor].enumMax;
+            if (enumMax == 0)
+                *field = *field ? FALSE : TRUE;
+            else
+                *field = (u8)((*field + 1) % enumMax);
             DebugMenuRedraw(scrollTop, cursor, DEBUG_VIEW_RUNTIME_CONFIG);
             DebugMenuWaitRelease(A_BUTTON);
         }

@@ -27,6 +27,8 @@ The goal is simple:
 
 The build now regenerates the runtime include automatically when the manifest changes.
 
+Description **typeface** (vanilla / small / Emerald VWF) is separate — see [card-description-fonts.md](card-description-fonts.md).
+
 ## Plan
 
 Use this workflow when adding or editing a custom card description:

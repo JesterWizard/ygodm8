@@ -1,0 +1,187 @@
+#!/usr/bin/env python3
+"""Build Emerald small_narrow glyphs for ASCII 32-126 into a C include.
+
+Source: pret/pokeemerald graphics/fonts/latin_small_narrow.png + width table.
+Only palette indices 1 (fg) and 2 (shadow) are kept; 0/3 are transparent.
+"""
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+
+from PIL import Image
+
+# Emerald CHAR_* for printable ASCII (see include/constants/characters.h).
+ASCII_TO_CHAR = {
+    " ": 0x00,
+    "!": 0xAB,
+    '"': 0xB2,
+    "%": 0x5B,
+    "&": 0x2D,
+    "'": 0xB4,
+    "(": 0x5C,
+    ")": 0x5D,
+    "+": 0x2E,
+    ",": 0xB8,
+    "-": 0xAE,
+    ".": 0xAD,
+    "/": 0xBA,
+    "0": 0xA1,
+    "1": 0xA2,
+    "2": 0xA3,
+    "3": 0xA4,
+    "4": 0xA5,
+    "5": 0xA6,
+    "6": 0xA7,
+    "7": 0xA8,
+    "8": 0xA9,
+    "9": 0xAA,
+    ":": 0xF0,
+    ";": 0x36,
+    "=": 0x35,
+    "?": 0xAC,
+}
+for i, c in enumerate("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+    ASCII_TO_CHAR[c] = 0xBB + i
+for i, c in enumerate("abcdefghijklmnopqrstuvwxyz"):
+    ASCII_TO_CHAR[c] = 0xD5 + i
+
+# gFontSmallNarrowLatinGlyphWidths from pret/pokeemerald src/fonts.c (first 0xF7 entries).
+SMALL_NARROW_WIDTHS = [
+    3, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 4, 4, 5, 5, 5,
+    5, 5, 5, 5, 5, 5, 5, 5, 3, 4, 5, 5, 5, 5, 4, 3,
+    4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 8, 5, 6, 3,
+    3, 3, 3, 3, 8, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    5, 5, 3, 8, 8, 8, 8, 8, 8, 8, 4, 5, 4, 4, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 4,
+    3, 3, 3, 3, 3, 3, 3, 5, 3, 8, 8, 8, 8, 1, 2, 3,
+    4, 5, 6, 7, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 3, 5, 5,
+    5, 5, 5, 3, 3, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 5,
+    5, 5, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 5,
+    5, 5, 5, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 5,
+    4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7,
+    3, 5, 5, 5, 5, 5, 5,
+]
+
+ARROW_UP = 0x79
+ARROW_DOWN = 0x7A
+
+
+def extract_glyph(im: Image.Image, char_idx: int) -> list[int]:
+    """Return 256 pixel values (0=empty, 1=fg, 2=shadow) for a 16x16 glyph."""
+    col, row = char_idx % 16, char_idx // 16
+    x0, y0 = col * 16, row * 16
+    out: list[int] = []
+    for y in range(16):
+        for x in range(16):
+            p = im.getpixel((x0 + x, y0 + y))
+            if p == 1:
+                out.append(1)
+            elif p == 2:
+                out.append(2)
+            else:
+                out.append(0)
+    return out
+
+
+def pack_glyph_4bpp_tiles(pixels: list[int]) -> bytes:
+    """Pack 16x16 2-bit pixels into 4 GBA 4bpp tiles (TL, TR, BL, BR), 128 bytes."""
+    tiles = bytearray(128)
+
+    def put(tile: int, px: int, py: int, val: int) -> None:
+        # 4bpp tile: 8 rows × 4 bytes; two pixels per byte (low nibble = left).
+        row_off = tile * 32 + py * 4 + (px // 2)
+        if px & 1:
+            tiles[row_off] = (tiles[row_off] & 0x0F) | ((val & 0xF) << 4)
+        else:
+            tiles[row_off] = (tiles[row_off] & 0xF0) | (val & 0xF)
+
+    for y in range(16):
+        for x in range(16):
+            val = pixels[y * 16 + x]
+            tile = (0 if y < 8 else 2) + (0 if x < 8 else 1)
+            put(tile, x & 7, y & 7, val)
+    return bytes(tiles)
+
+
+def self_check(im: Image.Image) -> None:
+    a = extract_glyph(im, ASCII_TO_CHAR["A"])
+    assert any(p == 1 for p in a), "A glyph has no fg pixels"
+    sp = extract_glyph(im, ASCII_TO_CHAR[" "])
+    assert not any(p for p in sp), "space glyph should be empty"
+    assert SMALL_NARROW_WIDTHS[ASCII_TO_CHAR["i"]] == 4
+    assert SMALL_NARROW_WIDTHS[ASCII_TO_CHAR["W"]] == 5
+    print("build_narrow_font self-check OK")
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        "--png",
+        type=Path,
+        default=Path("src_custom/assets/fonts/latin_small_narrow.png"),
+    )
+    ap.add_argument(
+        "--out",
+        type=Path,
+        default=Path("src_custom/generated/narrow_font_data.inc"),
+    )
+    args = ap.parse_args()
+
+    im = Image.open(args.png)
+    self_check(im)
+
+    widths = []
+    glyphs = []
+    for code in range(32, 127):
+        ch = chr(code)
+        idx = ASCII_TO_CHAR.get(ch)
+        if idx is None:
+            widths.append(3)
+            glyphs.append(bytes(128))
+            continue
+        w = SMALL_NARROW_WIDTHS[idx] if idx < len(SMALL_NARROW_WIDTHS) else 5
+        if w == 0:
+            w = 5  # ponytail: empty Emerald slots → keep advance so layout never stalls
+        widths.append(w)
+        glyphs.append(pack_glyph_4bpp_tiles(extract_glyph(im, idx)))
+
+    up = pack_glyph_4bpp_tiles(extract_glyph(im, ARROW_UP))
+    down = pack_glyph_4bpp_tiles(extract_glyph(im, ARROW_DOWN))
+    up_w = SMALL_NARROW_WIDTHS[ARROW_UP]
+    down_w = SMALL_NARROW_WIDTHS[ARROW_DOWN]
+
+    lines = [
+        "/* Generated by tools/build_narrow_font.py — do not edit. */",
+        "static const u8 sNarrowFontWidths[95] APPEND_RODATA = {",
+    ]
+    for i in range(0, 95, 16):
+        chunk = ", ".join(f"{w}" for w in widths[i : i + 16])
+        lines.append(f"    {chunk},")
+    lines.append("};")
+    lines.append("")
+    lines.append("/* 95 glyphs × 4 tiles × 32 bytes (ASCII 32..126). */")
+    lines.append("static const u8 sNarrowFontGlyphs[95][128] APPEND_RODATA = {")
+    for gi, g in enumerate(glyphs):
+        hexes = ", ".join(f"0x{b:02X}" for b in g)
+        lines.append(f"    {{{hexes}}}, /* {32 + gi} */")
+    lines.append("};")
+    lines.append("")
+    lines.append(f"static const u8 sNarrowArrowUpWidth APPEND_RODATA = {up_w};")
+    lines.append(f"static const u8 sNarrowArrowDownWidth APPEND_RODATA = {down_w};")
+    up_hex = ", ".join(f"0x{b:02X}" for b in up)
+    down_hex = ", ".join(f"0x{b:02X}" for b in down)
+    lines.append(f"static const u8 sNarrowArrowUp[128] APPEND_RODATA = {{{up_hex}}};")
+    lines.append(f"static const u8 sNarrowArrowDown[128] APPEND_RODATA = {{{down_hex}}};")
+    lines.append("")
+
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"wrote {args.out} ({args.out.stat().st_size} bytes)")
+
+
+if __name__ == "__main__":
+    main()

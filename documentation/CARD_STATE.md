@@ -1,12 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-17 — Six-card hand layout nudge + clear on play
+**Last worked on:** 2026-07-17 — Emerald desc arrow overlap
 
 **Files touched:**
-- `src_custom/six_card_hand.c`
-- `src_custom/code_8043EF4_hooks.c`
-- `src_custom/duel_helpers.c`
+- `src_custom/narrow_font.c`
+- `documentation/card-description-fonts.md`
 
-**Outcome:** `make` exits 0. 6-card row shifted 8px left; playing the 6th card clears the extra hand slot.
+**Outcome:** `make` exits 0. Words wrap before ▲/▼ reserved space.
 
-**Open / next:** Playtest play-from-6th + visual centering
+**Open / next:** Playtest last-line wrap vs down arrow

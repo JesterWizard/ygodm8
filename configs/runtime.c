@@ -81,7 +81,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_card_detail_navigation = TRUE,
     .enable_manifest_map_overrides = FALSE,
     .enable_extra_deck = TRUE,
-    .use_small_card_description_font = TRUE,
+    .card_description_font = CARD_DESC_FONT_EMERALD_NARROW,
     .enable_millennium_item_tracker = TRUE,
     .show_duel_voice_portraits = TRUE,
 };

@@ -604,6 +604,6 @@ _kernel_malloc_ewram gSummonAnimPendingGraphicId, 1
 _kernel_malloc_ewram gCardDetailNavActive, 1
 _kernel_malloc_ewram gCardDetailNavIndex, 1
 
-@ Scratch for small-font description reflow (RecoverProse / WrapProse).
+@ Scratch for narrow-font description reflow (RecoverProse / NarrowFontWrapProse).
 _kernel_malloc_ewram_array gDescProseBuf, 0x280
 _kernel_malloc_ewram_array gDescReflowBuf, 0x300
