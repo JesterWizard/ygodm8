@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `723` effects
+- `731` effects
 
 ## Tally
 
@@ -704,6 +704,14 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Vennominaga The Deity Of Poisonous Snakes` | `src_custom/permanent_effects/vennominaga_the_deity_of_poisonous_snakes.c` |
 | `permanent_effects` | `Vennominon The King Of Poisonous Snakes` | `src_custom/permanent_effects/vennominon_the_king_of_poisonous_snakes.c` |
 | `activated_effects` | `Venom Boa` | `src_custom/activated_effects/venom_boa.c` |
+| `trap_effects` | `Venom Burn` | `src_custom/trap_effects/venom_burn.c` |
+| `activated_effects` | `Venom Serpent` | `src_custom/activated_effects/venom_serpent.c` |
+| `spell_effects` | `Venom Shot` | `src_custom/spell_effects/venom_shot.c` |
+| `activated_effects` | `Venom Snake` | `src_custom/activated_effects/venom_snake.c` |
+| `spell_effects` | `Venom Swamp` | `src_custom/spell_effects/venom_swamp.c` |
+| `spell_effects` | `Vipers Rebirth` | `src_custom/spell_effects/vipers_rebirth.c` |
+| `activated_effects` | `Yamorimori` | `src_custom/activated_effects/yamorimori.c` |
+| `permanent_effects` | `Yowie` | `src_custom/permanent_effects/yowie.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

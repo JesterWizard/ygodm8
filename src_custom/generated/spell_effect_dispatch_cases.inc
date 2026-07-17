@@ -590,6 +590,15 @@
     case VENGEFUL_BOG_SPIRIT:
       EffectVengefulBogSpirit();
       return;
+    case VENOM_SHOT:
+      EffectVENOM_SHOT();
+      return;
+    case VENOM_SWAMP:
+      EffectVENOM_SWAMP();
+      return;
+    case VIPERS_REBIRTH:
+      EffectVIPERS_REBIRTH();
+      return;
     case VISION_FUSION:
       EffectVISION_FUSION();
       return;

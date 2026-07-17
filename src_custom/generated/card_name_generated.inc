@@ -792,6 +792,15 @@ static const u8 sUltraPolymerizationName[] __attribute__((section(".append_asset
 static const u8 sVennominagaTheDeityOfPoisonousSnakesName[] __attribute__((section(".append_assets"))) = "Vennominaga the Deity of Poisonous Snakes";
 static const u8 sVennominonTheKingOfPoisonousSnakesName[] __attribute__((section(".append_assets"))) = "Vennominon the King of Poisonous Snakes";
 static const u8 sVenomBoaName[] __attribute__((section(".append_assets"))) = "Venom Boa";
+static const u8 sVenomBurnName[] __attribute__((section(".append_assets"))) = "Venom Burn";
+static const u8 sVenomCobraName[] __attribute__((section(".append_assets"))) = "Venom Cobra";
+static const u8 sVenomSerpentName[] __attribute__((section(".append_assets"))) = "Venom Serpent";
+static const u8 sVenomShotName[] __attribute__((section(".append_assets"))) = "Venom Shot";
+static const u8 sVenomSnakeName[] __attribute__((section(".append_assets"))) = "Venom Snake";
+static const u8 sVenomSwampName[] __attribute__((section(".append_assets"))) = "Venom Swamp";
+static const u8 sVipersRebirthName[] __attribute__((section(".append_assets"))) = "Viper's Rebirth";
+static const u8 sYamorimoriName[] __attribute__((section(".append_assets"))) = "Yamorimori";
+static const u8 sYowieName[] __attribute__((section(".append_assets"))) = "Yowie";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2382,6 +2391,24 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sVennominonTheKingOfPoisonousSnakesName;
   if (cardId == 0x0637)
     return (u8 *)sVenomBoaName;
+  if (cardId == 0x0638)
+    return (u8 *)sVenomBurnName;
+  if (cardId == 0x0639)
+    return (u8 *)sVenomCobraName;
+  if (cardId == 0x063A)
+    return (u8 *)sVenomSerpentName;
+  if (cardId == 0x063B)
+    return (u8 *)sVenomShotName;
+  if (cardId == 0x063C)
+    return (u8 *)sVenomSnakeName;
+  if (cardId == 0x063D)
+    return (u8 *)sVenomSwampName;
+  if (cardId == 0x063E)
+    return (u8 *)sVipersRebirthName;
+  if (cardId == 0x063F)
+    return (u8 *)sYamorimoriName;
+  if (cardId == 0x0640)
+    return (u8 *)sYowieName;
 
   return gCardNames[cardId];
 }

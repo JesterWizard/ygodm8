@@ -766,6 +766,14 @@ static const u8 *const sCardActivationTextById[NUM_TOTAL_CARDS] APPEND_RODATA = 
   [VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES] = gActivationDescription_VennominagaTheDeityOfPoisonousSnakes_Popup1,
   [VENNOMINON_THE_KING_OF_POISONOUS_SNAKES] = gActivationDescription_VennominonTheKingOfPoisonousSnakes_Popup1,
   [VENOM_BOA] = gActivationDescription_VenomBoa_Popup1,
+  [VENOM_BURN] = gActivationDescription_VenomBurn_Popup1,
+  [VENOM_SERPENT] = gActivationDescription_VenomSerpent_Popup1,
+  [VENOM_SHOT] = gActivationDescription_VenomShot_Popup1,
+  [VENOM_SNAKE] = gActivationDescription_VenomSnake_Popup1,
+  [VENOM_SWAMP] = gActivationDescription_VenomSwamp_Popup1,
+  [VIPERS_REBIRTH] = gActivationDescription_VipersRebirth_Popup1,
+  [YAMORIMORI] = gActivationDescription_Yamorimori_Popup1,
+  [YOWIE] = gActivationDescription_Yowie_Popup1,
 };
 
 static const u8 *GetCardActivationText(u16 cardId) {
@@ -1563,6 +1571,14 @@ static const u8 *const sCardEffectTextById[NUM_CARD_EFFECT_TEXTS] APPEND_RODATA 
   [CARD_EFFECT_TEXT_VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES_POPUP_1] = gActivationDescription_VennominagaTheDeityOfPoisonousSnakes_Popup1,
   [CARD_EFFECT_TEXT_VENNOMINON_THE_KING_OF_POISONOUS_SNAKES_POPUP_1] = gActivationDescription_VennominonTheKingOfPoisonousSnakes_Popup1,
   [CARD_EFFECT_TEXT_VENOM_BOA_POPUP_1] = gActivationDescription_VenomBoa_Popup1,
+  [CARD_EFFECT_TEXT_VENOM_BURN_POPUP_1] = gActivationDescription_VenomBurn_Popup1,
+  [CARD_EFFECT_TEXT_VENOM_SERPENT_POPUP_1] = gActivationDescription_VenomSerpent_Popup1,
+  [CARD_EFFECT_TEXT_VENOM_SHOT_POPUP_1] = gActivationDescription_VenomShot_Popup1,
+  [CARD_EFFECT_TEXT_VENOM_SNAKE_POPUP_1] = gActivationDescription_VenomSnake_Popup1,
+  [CARD_EFFECT_TEXT_VENOM_SWAMP_POPUP_1] = gActivationDescription_VenomSwamp_Popup1,
+  [CARD_EFFECT_TEXT_VIPERS_REBIRTH_POPUP_1] = gActivationDescription_VipersRebirth_Popup1,
+  [CARD_EFFECT_TEXT_YAMORIMORI_POPUP_1] = gActivationDescription_Yamorimori_Popup1,
+  [CARD_EFFECT_TEXT_YOWIE_POPUP_1] = gActivationDescription_Yowie_Popup1,
 };
 
 const u8 *GetCardEffectText(u16 effectTextId)

@@ -33626,6 +33626,254 @@
       "effect_texts": {
         "popup_1": "OPT: place 2 Venom Counters; cannot attack."
       }
+    },
+    {
+      "card_const": "VENOM_BURN",
+      "card_name": "Venom Burn",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 4, 4, 6, 6, 0, 1, 5],
+      "description": {
+        "symbol": "gDescription_VenomBurn",
+        "pages": [
+          "Select 1 monster with a",
+          "Venom Counter(s). Remove",
+          "all Venom Counters from it;",
+          "inflict 700 damage to your",
+          "opponent for each removed."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Remove Venom Counters; 700 damage each."
+      }
+    },
+    {
+      "card_const": "VENOM_COBRA",
+      "card_name": "Venom Cobra",
+      "atk": 100,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_REPTILE",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [2, 2, 4, 9, 9, 4, 6, 3],
+      "description": {
+        "symbol": "gDescription_VenomCobra",
+        "pages": [
+          "Hard scales cover this",
+          "gigantic cobra. It hunts by",
+          "shooting venom, but its",
+          "large size makes its attack",
+          "pattern easy to predict."
+        ]
+      }
+    },
+    {
+      "card_const": "VENOM_SERPENT",
+      "card_name": "Venom Serpent",
+      "atk": 1000,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 591,
+      "password": [3, 6, 2, 7, 8, 8, 2, 8],
+      "description": {
+        "symbol": "gDescription_VenomSerpent",
+        "pages": [
+          "Once per turn: place 1",
+          "Venom Counter on 1 monster",
+          "your opponent controls.",
+          " "
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "OPT: place 1 Venom Counter on opp monster."
+      }
+    },
+    {
+      "card_const": "VENOM_SHOT",
+      "card_name": "Venom Shot",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 0, 7, 2, 8, 3, 9, 7],
+      "description": {
+        "symbol": "gDescription_VenomShot",
+        "pages": [
+          "If you control a Venom",
+          "monster, Vennominaga, or",
+          "Vennominon: send 1 Reptile",
+          "from Deck to GY; place 2",
+          "Venom Counters on 1 monster."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send Reptile; place 2 Venom Counters."
+      }
+    },
+    {
+      "card_const": "VENOM_SNAKE",
+      "card_name": "Venom Snake",
+      "atk": 1200,
+      "def": 600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [7, 3, 8, 9, 9, 0, 1, 5],
+      "description": {
+        "symbol": "gDescription_VenomSnake",
+        "pages": [
+          "Once per turn: place 1",
+          "Venom Counter on 1 monster",
+          "your opponent controls. If",
+          "you do, this cannot attack",
+          "this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "OPT: place 1 Venom Counter; cannot attack."
+      }
+    },
+    {
+      "card_const": "VENOM_SWAMP",
+      "card_name": "Venom Swamp",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 4, 3, 0, 6, 2, 2, 3],
+      "description": {
+        "symbol": "gDescription_VenomSwamp",
+        "pages": [
+          "Each End Phase: place 1",
+          "Venom Counter on each",
+          "face-up non-Venom monster.",
+          "Lose 500 ATK per Counter;",
+          "destroy if ATK becomes 0."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "End Phase: Venom Counters; -500 ATK each."
+      }
+    },
+    {
+      "card_const": "VIPERS_REBIRTH",
+      "card_name": "Viper's Rebirth",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 4, 9, 7, 3, 4, 5, 6],
+      "description": {
+        "symbol": "gDescription_VipersRebirth",
+        "pages": [
+          "If all monsters in your GY",
+          "are Reptile: Special Summon",
+          "1 non-Tuner from your GY.",
+          "Destroy it during the End",
+          "Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS non-Tuner Reptile from GY; destroy later."
+      }
+    },
+    {
+      "card_const": "YAMORIMORI",
+      "card_name": "Yamorimori",
+      "atk": 0,
+      "def": 0,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [5, 1, 4, 7, 4, 0, 3, 7],
+      "description": {
+        "symbol": "gDescription_Yamorimori",
+        "pages": [
+          "Banish from GY; target 1",
+          "Reptile you control and 1",
+          "face-up opponent monster:",
+          "set both face-down Def, or",
+          "destroy yours; opp ATK to 0."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish from GY: set both, or destroy + ATK 0."
+      }
+    },
+    {
+      "card_const": "YOWIE",
+      "card_name": "Yowie",
+      "atk": 500,
+      "def": 500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [3, 3, 3, 9, 3, 0, 9, 0],
+      "description": {
+        "symbol": "gDescription_Yowie",
+        "pages": [
+          "If Summoned alone: opponent",
+          "skips their next Draw Phase.",
+          "You can only SS once the",
+          "turn you activate this.",
+          "Once per Duel."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If Summoned alone: opp skips next Draw Phase."
+      }
     }
   ]
 }

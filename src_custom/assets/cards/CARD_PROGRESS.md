@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 751 |
-| Art ready, needs manifest | 49 |
+| In game (manifest + art) | 800 |
+| Art ready, needs manifest | 0 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **802** |
 
@@ -773,60 +773,60 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `REPTILIANNE_MEDUSA` | Reptilianne Medusa | `reptilianne_medusa.png` |
 | `REPTILIANNE_NAGA` | Reptilianne Naga | `reptilianne_naga.png` |
 | `REPTILIANNE_POISON` | Reptilianne Poison | `reptilianne_poison.png` |
+| `REPTILIANNE_SCYLLA` | Reptilianne Scylla | `reptilianne_scylla.png` |
+| `REPTILIANNE_SERVANT` | Reptilianne Servant | `reptilianne_servant.png` |
+| `REPTILIANNE_SPAWN` | Reptilianne Spawn | `reptilianne_spawn.png` |
+| `REPTILIANNE_VASKII` | Reptilianne Vaskii | `reptilianne_vaskii.png` |
+| `REPTILIANNE_VIPER` | Reptilianne Viper | `reptilianne_viper.png` |
+| `RETURN_OF_THE_DRAGON_LORDS` | Return of the Dragon Lords | `return_of_the_dragon_lords.png` |
+| `RISE_OF_THE_SNAKE_DEITY` | Rise of the Snake Deity | `rise_of_the_snake_deity.png` |
+| `SECRETS_OF_DARK_MAGIC` | Secrets of Dark Magic | `secrets_of_dark_magic.png` |
+| `SERPENT_SUPPRESSION` | Serpent Suppression | `serpent_suppression.png` |
+| `SHADDOLL_BEAST` | Shaddoll Beast | `shaddoll_beast.png` |
+| `SHADDOLL_CORE` | Shaddoll Core | `shaddoll_core.png` |
+| `SHADDOLL_DRAGON` | Shaddoll Dragon | `shaddoll_dragon.png` |
+| `SHADDOLL_FALCO` | Shaddoll Falco | `shaddoll_falco.png` |
+| `SHADDOLL_FUSION` | Shaddoll Fusion | `shaddoll_fusion.png` |
+| `SHADDOLL_HEDGEHOG` | Shaddoll Hedgehog | `shaddoll_hedgehog.png` |
+| `SHADDOLL_HOUND` | Shaddoll Hound | `shaddoll_hound.png` |
+| `SHADDOLL_SCHISM` | Shaddoll Schism | `shaddoll_schism.png` |
+| `SHADDOLL_SQUAMATA` | Shaddoll Squamata | `shaddoll_squamata.png` |
+| `SILVERS_CRY` | Silver's Cry | `silvers_cry.png` |
+| `SNAKE_DEITYS_COMMAND` | Snake Deity's Command | `snake_deitys_command.png` |
+| `SNAKE_RAIN` | Snake Rain | `snake_rain.png` |
+| `SNAKE_WHISTLE` | Snake Whistle | `snake_whistle.png` |
+| `SOUL_SERVANT` | Soul Servant | `soul_servant.png` |
+| `STARDUST_DRAGON` | Stardust Dragon | `stardust_dragon.png` |
+| `SUPREME_KINGS_CASTLE` | Supreme King's Castle | `supreme_kings_castle.png` |
+| `THAT_GRASS_LOOKS_GREENER` | That Grass Looks Greener | `that_grass_looks_greener.png` |
+| `THE_DARK_MAGICIANS` | The Dark Magicians | `the_dark_magicians.png` |
+| `THE_GAZE_OF_TIMAEUS` | The Gaze of Timaeus | `the_gaze_of_timaeus.png` |
+| `THE_MELODY_OF_AWAKENING_DRAGON` | The Melody of Awakening Dragon | `the_melody_of_awakening_dragon.png` |
+| `THE_WHITE_STONE_OF_ANCIENTS` | The White Stone of Ancients | `the_white_stone_of_ancients.png` |
+| `THE_WHITE_STONE_OF_LEGEND` | The White Stone of Legend | `the_white_stone_of_legend.png` |
+| `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` | Timaeus the United Magical Dragon | `timeaeus_the_united_magical_dragon.png` |
+| `TIMEAUS_THE_UNITED_DRAGON` | Timaeus the United Dragon | `timeaus_the_united_dragon.png` |
+| `TOHUSHADDOLL_GRYSTA` | Tohushaddoll Grysta | `tohushaddoll_grysta.png` |
+| `TRAP_TRICK` | Trap Trick | `trap_trick.png` |
+| `TRIANGLE_ECSTASY_SPARK` | Triangle Ecstasy Spark | `triangle_ecstasy_spark.png` |
+| `ULTRA_POLYMERIZATION` | Ultra Polymerization | `ultra_polymerization.png` |
+| `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` | Vennominaga the Deity of Poisonous Snakes | `vennominaga_the_deity_of_poisonous_snakes.png` |
+| `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` | Vennominon the King of Poisonous Snakes | `vennominon_the_king_of_poisonous_snakes.png` |
+| `VENOM_BOA` | Venom Boa | `venom_boa.png` |
+| `VENOM_BURN` | Venom Burn | `venom_burn.png` |
+| `VENOM_COBRA` | Venom Cobra | `venom_cobra.png` |
+| `VENOM_SERPENT` | Venom Serpent | `venom_serpent.png` |
+| `VENOM_SHOT` | Venom Shot | `venom_shot.png` |
+| `VENOM_SNAKE` | Venom Snake | `venom_snake.png` |
+| `VENOM_SWAMP` | Venom Swamp | `venom_swamp.png` |
+| `VIPERS_REBIRTH` | Viper's Rebirth | `vipers_rebirth.png` |
+| `YAMORIMORI` | Yamorimori | `yamorimori.png` |
+| `YOWIE` | Yowie | `yowie.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [x] `REPTILIANNE_SCYLLA` — `reptilianne_scylla.png`
-- [x] `REPTILIANNE_SERVANT` — `reptilianne_servant.png`
-- [x] `REPTILIANNE_SPAWN` — `reptilianne_spawn.png`
-- [x] `REPTILIANNE_VASKII` — `reptilianne_vaskii.png`
-- [x] `REPTILIANNE_VIPER` — `reptilianne_viper.png`
-- [x] `RETURN_OF_THE_DRAGON_LORDS` — `return_of_the_dragon_lords.png`
-- [x] `RISE_OF_THE_SNAKE_DEITY` — `rise_of_the_snake_deity.png`
-- [x] `SECRETS_OF_DARK_MAGIC` — `secrets_of_dark_magic.png`
-- [x] `SERPENT_SUPPRESSION` — `serpent_suppression.png`
-- [x] `SHADDOLL_BEAST` — `shaddoll_beast.png`
-- [x] `SHADDOLL_CORE` — `shaddoll_core.png`
-- [x] `SHADDOLL_DRAGON` — `shaddoll_dragon.png`
-- [x] `SHADDOLL_FALCO` — `shaddoll_falco.png`
-- [x] `SHADDOLL_FUSION` — `shaddoll_fusion.png`
-- [x] `SHADDOLL_HEDGEHOG` — `shaddoll_hedgehog.png`
-- [x] `SHADDOLL_HOUND` — `shaddoll_hound.png`
-- [x] `SHADDOLL_SCHISM` — `shaddoll_schism.png`
-- [x] `SHADDOLL_SQUAMATA` — `shaddoll_squamata.png`
-- [x] `SILVERS_CRY` — `silvers_cry.png`
-- [x] `SNAKE_DEITYS_COMMAND` — `snake_deitys_command.png`
-- [x] `SNAKE_RAIN` — `snake_rain.png`
-- [x] `SNAKE_WHISTLE` — `snake_whistle.png`
-- [x] `SOUL_SERVANT` — `soul_servant.png`
-- [x] `STARDUST_DRAGON` — `stardust_dragon.png`
-- [x] `SUPREME_KINGS_CASTLE` — `supreme_kings_castle.png`
-- [x] `THAT_GRASS_LOOKS_GREENER` — `that_grass_looks_greener.png`
-- [x] `THE_DARK_MAGICIANS` — `the_dark_magicians.png`
-- [x] `THE_GAZE_OF_TIMAEUS` — `the_gaze_of_timaeus.png`
-- [x] `THE_MELODY_OF_AWAKENING_DRAGON` — `the_melody_of_awakening_dragon.png`
-- [x] `THE_WHITE_STONE_OF_ANCIENTS` — `the_white_stone_of_ancients.png`
-- [x] `THE_WHITE_STONE_OF_LEGEND` — `the_white_stone_of_legend.png`
-- [x] `TIMEAEUS_THE_UNITED_MAGICAL_DRAGON` — `timeaeus_the_united_magical_dragon.png`
-- [x] `TIMEAUS_THE_UNITED_DRAGON` — `timeaus_the_united_dragon.png`
-- [x] `TOHUSHADDOLL_GRYSTA` — `tohushaddoll_grysta.png`
-- [x] `TRAP_TRICK` — `trap_trick.png`
-- [x] `TRIANGLE_ECSTASY_SPARK` — `triangle_ecstasy_spark.png`
-- [x] `ULTRA_POLYMERIZATION` — `ultra_polymerization.png`
-- [x] `VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES` — `vennominaga_the_deity_of_poisonous_snakes.png`
-- [x] `VENNOMINON_THE_KING_OF_POISONOUS_SNAKES` — `vennominon_the_king_of_poisonous_snakes.png`
-- [x] `VENOM_BOA` — `venom_boa.png`
-- [ ] `VENOM_BURN` — `venom_burn.png`
-- [ ] `VENOM_COBRA` — `venom_cobra.png`
-- [ ] `VENOM_SERPENT` — `venom_serpent.png`
-- [ ] `VENOM_SHOT` — `venom_shot.png`
-- [ ] `VENOM_SNAKE` — `venom_snake.png`
-- [ ] `VENOM_SWAMP` — `venom_swamp.png`
-- [ ] `VIPERS_REBIRTH` — `vipers_rebirth.png`
-- [ ] `YAMORIMORI` — `yamorimori.png`
-- [ ] `YOWIE` — `yowie.png`
 
 ## Todo — in manifest, missing art
 

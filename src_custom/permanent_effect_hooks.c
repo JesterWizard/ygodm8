@@ -226,6 +226,8 @@ unsigned char ShouldActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void);
 void ActivateVENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES(void);
 unsigned char ShouldActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
 void ActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
+unsigned char ShouldActivateYOWIE(void);
+void ActivateYOWIE(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -711,6 +713,11 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = VENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
     .shouldActivate = ShouldActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
     .activate = ActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES,
+  },
+  {
+    .cardId = YOWIE,
+    .shouldActivate = ShouldActivateYOWIE,
+    .activate = ActivateYOWIE,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

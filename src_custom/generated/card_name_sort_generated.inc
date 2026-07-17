@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define NUM_CUSTOM_NAME_SORT_CARDS 791
+#define NUM_CUSTOM_NAME_SORT_CARDS 800
 
 static const u8 sAmazonChainMasterSortName[] APPEND_RODATA = "Amazoness Chain Master";
 static const u8 sAmazonFighterSortName[] APPEND_RODATA = "Amazoness Fighter";
@@ -796,6 +796,15 @@ static const u8 sUltraPolymerizationSortName[] APPEND_RODATA = "Ultra Polymeriza
 static const u8 sVennominagaTheDeityOfPoisonousSnakesSortName[] APPEND_RODATA = "Vennominaga the Deity of Poisonous Snakes";
 static const u8 sVennominonTheKingOfPoisonousSnakesSortName[] APPEND_RODATA = "Vennominon the King of Poisonous Snakes";
 static const u8 sVenomBoaSortName[] APPEND_RODATA = "Venom Boa";
+static const u8 sVenomBurnSortName[] APPEND_RODATA = "Venom Burn";
+static const u8 sVenomCobraSortName[] APPEND_RODATA = "Venom Cobra";
+static const u8 sVenomSerpentSortName[] APPEND_RODATA = "Venom Serpent";
+static const u8 sVenomShotSortName[] APPEND_RODATA = "Venom Shot";
+static const u8 sVenomSnakeSortName[] APPEND_RODATA = "Venom Snake";
+static const u8 sVenomSwampSortName[] APPEND_RODATA = "Venom Swamp";
+static const u8 sVipersRebirthSortName[] APPEND_RODATA = "Viper's Rebirth";
+static const u8 sYamorimoriSortName[] APPEND_RODATA = "Yamorimori";
+static const u8 sYowieSortName[] APPEND_RODATA = "Yowie";
 
 static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = {
   0x046A, // A Hero Emerges
@@ -1560,6 +1569,13 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x0635, // Vennominaga the Deity of Poisonous Snakes
   0x0636, // Vennominon the King of Poisonous Snakes
   0x0637, // Venom Boa
+  0x0638, // Venom Burn
+  0x0639, // Venom Cobra
+  0x063A, // Venom Serpent
+  0x063B, // Venom Shot
+  0x063C, // Venom Snake
+  0x063D, // Venom Swamp
+  0x063E, // Viper's Rebirth
   0x0561, // Vision Fusion
   0x0562, // Vision HERO Adoration
   0x0563, // Vision HERO Faris
@@ -1582,8 +1598,10 @@ static const u16 sCustomCardsByName[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_RODATA = 
   0x056E, // Wild Nature's Release
   0x03DC, // World Suppression
   0x056F, // Wroughtweiler
+  0x063F, // Yamorimori
   0x035B, // Yata-Garasu
   0x0570, // Yellow Gadget
+  0x0640, // Yowie
   0x045C, // Yubel
   0x045D, // Yubel - Terror Incarnate
   0x045E, // Yubel - The Ultimate Nightmare
@@ -2354,35 +2372,44 @@ static const u16 sCustomCardNameSortOrder[NUM_CUSTOM_NAME_SORT_CARDS] APPEND_ROD
   760, // Vennominaga the Deity of Poisonous Snakes
   761, // Vennominon the King of Poisonous Snakes
   762, // Venom Boa
-  763, // Vision Fusion
-  764, // Vision HERO Adoration
-  765, // Vision HERO Faris
-  766, // Vision HERO Gravito
-  767, // Vision HERO Increase
-  768, // Vision HERO Minimum Ray
-  769, // Vision HERO Multiply Guy
-  770, // Vision HERO Poisoner
-  771, // Vision HERO Trinity
-  772, // Vision HERO Vyon
-  773, // Vision HERO Witch Raider
-  774, // Vision Release
-  775, // Wall of Revealing Light
-  776, // Warrior of Zera
-  777, // Watapon
-  778, // Wave Motion Cannon
-  779, // Weather Report
-  780, // White Dragon Ritual
-  781, // White Magician Pikeru
-  782, // Wild Nature's Release
-  783, // World Suppression
-  784, // Wroughtweiler
-  785, // Yata-Garasu
-  786, // Yellow Gadget
-  787, // Yubel
-  788, // Yubel - Terror Incarnate
-  789, // Yubel - The Ultimate Nightmare
-  790, // Zaborg the Thunder Monarch
-  791, // Zeriel
+  763, // Venom Burn
+  764, // Venom Cobra
+  765, // Venom Serpent
+  766, // Venom Shot
+  767, // Venom Snake
+  768, // Venom Swamp
+  769, // Viper's Rebirth
+  770, // Vision Fusion
+  771, // Vision HERO Adoration
+  772, // Vision HERO Faris
+  773, // Vision HERO Gravito
+  774, // Vision HERO Increase
+  775, // Vision HERO Minimum Ray
+  776, // Vision HERO Multiply Guy
+  777, // Vision HERO Poisoner
+  778, // Vision HERO Trinity
+  779, // Vision HERO Vyon
+  780, // Vision HERO Witch Raider
+  781, // Vision Release
+  782, // Wall of Revealing Light
+  783, // Warrior of Zera
+  784, // Watapon
+  785, // Wave Motion Cannon
+  786, // Weather Report
+  787, // White Dragon Ritual
+  788, // White Magician Pikeru
+  789, // Wild Nature's Release
+  790, // World Suppression
+  791, // Wroughtweiler
+  792, // Yamorimori
+  793, // Yata-Garasu
+  794, // Yellow Gadget
+  795, // Yowie
+  796, // Yubel
+  797, // Yubel - Terror Incarnate
+  798, // Yubel - The Ultimate Nightmare
+  799, // Zaborg the Thunder Monarch
+  800, // Zeriel
 };
 
 static u8 *GetSortCardName(u16 cardId) {
@@ -3974,6 +4001,24 @@ static u8 *GetSortCardName(u16 cardId) {
     return (u8 *)sVennominonTheKingOfPoisonousSnakesSortName;
   if (cardId == 0x0637)
     return (u8 *)sVenomBoaSortName;
+  if (cardId == 0x0638)
+    return (u8 *)sVenomBurnSortName;
+  if (cardId == 0x0639)
+    return (u8 *)sVenomCobraSortName;
+  if (cardId == 0x063A)
+    return (u8 *)sVenomSerpentSortName;
+  if (cardId == 0x063B)
+    return (u8 *)sVenomShotSortName;
+  if (cardId == 0x063C)
+    return (u8 *)sVenomSnakeSortName;
+  if (cardId == 0x063D)
+    return (u8 *)sVenomSwampSortName;
+  if (cardId == 0x063E)
+    return (u8 *)sVipersRebirthSortName;
+  if (cardId == 0x063F)
+    return (u8 *)sYamorimoriSortName;
+  if (cardId == 0x0640)
+    return (u8 *)sYowieSortName;
 
   return gCardNames[cardId];
 }

@@ -196,5 +196,8 @@ extern void EffectUnitedWeStand(void);
 extern void EffectUpstartGoblin(void);
 extern void EffectValhallaHallOfTheFallen(void);
 extern void EffectVengefulBogSpirit(void);
+extern void EffectVENOM_SHOT(void);
+extern void EffectVENOM_SWAMP(void);
+extern void EffectVIPERS_REBIRTH(void);
 extern void EffectVISION_FUSION(void);
 extern void EffectWaveMotionCannon(void);

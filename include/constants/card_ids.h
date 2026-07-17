@@ -1593,11 +1593,20 @@
 #define VENNOMINAGA_THE_DEITY_OF_POISONOUS_SNAKES 0x0635
 #define VENNOMINON_THE_KING_OF_POISONOUS_SNAKES  0x0636
 #define VENOM_BOA                                0x0637
+#define VENOM_BURN                               0x0638
+#define VENOM_COBRA                              0x0639
+#define VENOM_SERPENT                            0x063A
+#define VENOM_SHOT                               0x063B
+#define VENOM_SNAKE                              0x063C
+#define VENOM_SWAMP                              0x063D
+#define VIPERS_REBIRTH                           0x063E
+#define YAMORIMORI                               0x063F
+#define YOWIE                                    0x0640
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0638
-#define NUM_CUSTOM_CARDS                        0x0317
+#define NUM_TOTAL_CARDS                         0x0641
+#define NUM_CUSTOM_CARDS                        0x0320
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

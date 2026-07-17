@@ -481,3 +481,5 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire SNAKE_WHISTLE in trap dispatcher */
 /* TRAP_TRICK trap effect */
   /* TODO: wire TRAP_TRICK in trap dispatcher */
+/* VENOM_BURN trap effect */
+  /* TODO: wire VENOM_BURN in trap dispatcher */

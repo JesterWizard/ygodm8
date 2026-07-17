@@ -3172,6 +3172,42 @@ static const unsigned char sVenomBoaBigArt[] __attribute__((section(".append_ass
 static const unsigned short sVenomBoaBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_boa.gbapal");
 static const unsigned char sVenomBoaMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_boa.lz");
 
+static const unsigned char sVenomBurnBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_burn.huff");
+static const unsigned short sVenomBurnBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_burn.gbapal");
+static const unsigned char sVenomBurnMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_burn.lz");
+
+static const unsigned char sVenomCobraBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_cobra.huff");
+static const unsigned short sVenomCobraBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_cobra.gbapal");
+static const unsigned char sVenomCobraMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_cobra.lz");
+
+static const unsigned char sVenomSerpentBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_serpent.huff");
+static const unsigned short sVenomSerpentBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_serpent.gbapal");
+static const unsigned char sVenomSerpentMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_serpent.lz");
+
+static const unsigned char sVenomShotBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_shot.huff");
+static const unsigned short sVenomShotBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_shot.gbapal");
+static const unsigned char sVenomShotMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_shot.lz");
+
+static const unsigned char sVenomSnakeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_snake.huff");
+static const unsigned short sVenomSnakeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_snake.gbapal");
+static const unsigned char sVenomSnakeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_snake.lz");
+
+static const unsigned char sVenomSwampBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/venom_swamp.huff");
+static const unsigned short sVenomSwampBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/venom_swamp.gbapal");
+static const unsigned char sVenomSwampMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/venom_swamp.lz");
+
+static const unsigned char sVipersRebirthBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/vipers_rebirth.huff");
+static const unsigned short sVipersRebirthBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/vipers_rebirth.gbapal");
+static const unsigned char sVipersRebirthMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/vipers_rebirth.lz");
+
+static const unsigned char sYamorimoriBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yamorimori.huff");
+static const unsigned short sYamorimoriBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yamorimori.gbapal");
+static const unsigned char sYamorimoriMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yamorimori.lz");
+
+static const unsigned char sYowieBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/yowie.huff");
+static const unsigned short sYowieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yowie.gbapal");
+static const unsigned char sYowieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yowie.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -3966,6 +4002,15 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0635] = sVennominagaTheDeityOfPoisonousSnakesBigArt,
   [0x0636] = sVennominonTheKingOfPoisonousSnakesBigArt,
   [0x0637] = sVenomBoaBigArt,
+  [0x0638] = sVenomBurnBigArt,
+  [0x0639] = sVenomCobraBigArt,
+  [0x063A] = sVenomSerpentBigArt,
+  [0x063B] = sVenomShotBigArt,
+  [0x063C] = sVenomSnakeBigArt,
+  [0x063D] = sVenomSwampBigArt,
+  [0x063E] = sVipersRebirthBigArt,
+  [0x063F] = sYamorimoriBigArt,
+  [0x0640] = sYowieBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4762,6 +4807,15 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0635] = sVennominagaTheDeityOfPoisonousSnakesBigPalette,
   [0x0636] = sVennominonTheKingOfPoisonousSnakesBigPalette,
   [0x0637] = sVenomBoaBigPalette,
+  [0x0638] = sVenomBurnBigPalette,
+  [0x0639] = sVenomCobraBigPalette,
+  [0x063A] = sVenomSerpentBigPalette,
+  [0x063B] = sVenomShotBigPalette,
+  [0x063C] = sVenomSnakeBigPalette,
+  [0x063D] = sVenomSwampBigPalette,
+  [0x063E] = sVipersRebirthBigPalette,
+  [0x063F] = sYamorimoriBigPalette,
+  [0x0640] = sYowieBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -5558,6 +5612,15 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0635] = 0,
   [0x0636] = 0,
   [0x0637] = 0,
+  [0x0638] = 0,
+  [0x0639] = 0,
+  [0x063A] = 0,
+  [0x063B] = 0,
+  [0x063C] = 0,
+  [0x063D] = 0,
+  [0x063E] = 0,
+  [0x063F] = 0,
+  [0x0640] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -6354,4 +6417,13 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0635] = sVennominagaTheDeityOfPoisonousSnakesMiniArt,
   [0x0636] = sVennominonTheKingOfPoisonousSnakesMiniArt,
   [0x0637] = sVenomBoaMiniArt,
+  [0x0638] = sVenomBurnMiniArt,
+  [0x0639] = sVenomCobraMiniArt,
+  [0x063A] = sVenomSerpentMiniArt,
+  [0x063B] = sVenomShotMiniArt,
+  [0x063C] = sVenomSnakeMiniArt,
+  [0x063D] = sVenomSwampMiniArt,
+  [0x063E] = sVipersRebirthMiniArt,
+  [0x063F] = sYamorimoriMiniArt,
+  [0x0640] = sYowieMiniArt,
 };

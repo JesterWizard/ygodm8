@@ -422,6 +422,12 @@ unsigned char CanActivateTOHUSHADDOLL_GRYSTA(void);
 void ActivateTOHUSHADDOLL_GRYSTAEffect(void);
 unsigned char CanActivateVENOM_BOA(void);
 void ActivateVENOM_BOAEffect(void);
+unsigned char CanActivateVENOM_SERPENT(void);
+void ActivateVENOM_SERPENTEffect(void);
+unsigned char CanActivateVENOM_SNAKE(void);
+void ActivateVENOM_SNAKEEffect(void);
+unsigned char CanActivateYAMORIMORI(void);
+void ActivateYAMORIMORIEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1881,6 +1887,18 @@ FAILED:
   }
   if (gMonEffect.id == VENOM_BOA) {
     ActivateVENOM_BOAEffect();
+    return;
+  }
+  if (gMonEffect.id == VENOM_SERPENT) {
+    ActivateVENOM_SERPENTEffect();
+    return;
+  }
+  if (gMonEffect.id == VENOM_SNAKE) {
+    ActivateVENOM_SNAKEEffect();
+    return;
+  }
+  if (gMonEffect.id == YAMORIMORI) {
+    ActivateYAMORIMORIEffect();
     return;
   }
 }
