@@ -404,8 +404,15 @@ static bool8 RunDuelTurnLoop(void) {
       TimedDuel_OnPlayerTurnEnded();
     if (IsDuelOver() == TRUE)
       return TRUE;
-    if (TimedDuel_IsActive() == TRUE)
-      return TRUE;
+    if (TimedDuel_IsActive() == TRUE) {
+      const struct TimedDuelLayout *layout;
+
+      layout = TimedDuel_GetActiveLayout();
+      /* Timer mode: one player turn then exit. Turn-limit mode: keep going while turns remain. */
+      if (TimedDuel_UsesTurnLimit(layout) != TRUE || TimedDuel_HasTurnsRemaining() != TRUE)
+        return TRUE;
+      continue;
+    }
     TryReturnSphereModeAtTurnEnd();
     FlipAtkPosCardsFaceUp(2);
     EndFirstTurnAttackBan();

@@ -159,17 +159,12 @@ static void HideDuelMiniCardOam(void) {
     sub_80411EC(&gOamBuffer[i]);
 }
 
-void Duel_ShowPortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
+static void PlacePortraitOam(u8 hideBoardSprites) {
   struct OamData *oam;
 
-  if (portraitId == PORTRAIT_NONE)
-    return;
-
-  /* Always clear cursor/slot0 — prevents ghost portrait under the real one. */
   HideDuelCursorOam();
   if (hideBoardSprites != FALSE)
     HideDuelMiniCardOam();
-  LoadPortraitGfx(portraitId, EXPRESSION_NEUTRAL);
 
   oam = &gOamBuffer[DUEL_VOICE_PORTRAIT_OAM_SLOT];
   sub_80411EC(oam);
@@ -187,9 +182,25 @@ void Duel_ShowPortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
   oam->vflip = 0;
   oam->paletteNum = 12;
 
+  LoadOam();
+}
+
+void Duel_ShowPortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
+  if (portraitId == PORTRAIT_NONE)
+    return;
+
+  LoadPortraitGfx(portraitId, EXPRESSION_NEUTRAL);
+  PlacePortraitOam(hideBoardSprites);
   LoadObjVRAM();
   LoadPalettes();
   LoadOam();
+}
+
+/* Re-place OAM only — tiles/palettes must already be loaded for this portrait. */
+void Duel_PlacePortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
+  if (portraitId == PORTRAIT_NONE)
+    return;
+  PlacePortraitOam(hideBoardSprites);
 }
 
 static void ShowDuelVoicePortrait(void) {

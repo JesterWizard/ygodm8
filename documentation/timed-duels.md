@@ -14,7 +14,7 @@
 
 ## Introduction
 
-**Timed duels** are one-turn puzzle challenges launched from the debug menu. Each entry starts a duel with a fixed board, hands, graveyards, life points, field, and a **real-time countdown** (`timerSeconds`). The board HUD shows remaining time as **MM:SS** (one second every 60 frames). Win before the timer hits `00:00`; ending the turn without winning also counts as a loss.
+**Timed duels** are puzzle challenges launched from the debug menu. Each entry starts a duel with a fixed board, hands, graveyards, life points, field, and either a **real-time countdown** (`timerSeconds`) or a **turn limit** (`turnNumber`). When `turnNumber` is `0`, the timer is used; otherwise the turn counter takes priority. The board HUD shows remaining time as **MM:SS** (timer mode) or remaining turns as digits (turn mode). Win before the budget hits zero; in timer mode, ending the turn without winning also counts as a loss.
 
 Completing a puzzle grants **one copy of a rare card** to the trunk. There is **no money** and **no deck-capacity** reward. Each puzzle can be cleared **once per save**; cleared entries appear in **yellow** in the debug menu list.
 
@@ -29,9 +29,10 @@ Menu labels are auto-generated as **Timed Duel 1**, **Timed Duel 2**, … from l
 | Open debug menu | Overworld, **R** alone (`enable_debug_menu`) |
 | **Timed Duels** | Root row 12 — scrollable list |
 | **A** on puzzle | Runs duel; returns to this list when done |
-| Win before timer / this turn | Rare reward card added; completion saved to flash |
+| Win before timer / turns | Rare reward card added; completion saved to flash |
 | Timer hits `00:00` | Immediate loss; retry prompt offered |
-| End turn without win | Immediate loss; retry prompt offered |
+| Turn limit hits `0` | Immediate loss on end-turn; retry prompt offered |
+| End turn (timer mode) | Immediate loss; retry prompt offered |
 | Cleared puzzle | Row text drawn in yellow; **A** ignored |
 
 ## Adding a puzzle
@@ -58,7 +59,8 @@ Menu labels are auto-generated as **Timed Duel 1**, **Timed Duel 2**, … from l
 | `graveyard[2][40]` | Bottom-to-top card stacks per duelist (`CARD_NONE` padded) |
 | `playerLp` / `opponentLp` | Starting life points |
 | `field` | `FIELD_*` terrain |
-| `timerSeconds` | Countdown budget in seconds (`0` = default **60**); HUD shows `MM:SS` |
+| `timerSeconds` | Countdown budget in seconds (`0` = default **60**); used when `turnNumber == 0`; HUD shows `MM:SS` |
+| `turnNumber` | Turn budget (`0` = timer mode; else HUD shows remaining turns and timer is ignored) |
 | `rewardCardId` | Rare card granted on win |
 
 Each zone uses `TimedDuelCardSlot`:
@@ -115,5 +117,5 @@ Example graveyard (player has two cards, opponent empty):
 - Up to **128** puzzles (`TIMED_DUEL_COMPLETION_BYTES`).
 - Timer caps display at **99:59**.
 - Graveyard stacks need `expand_graveyard` enabled in `configs/runtime.c` for full multi-card GY; otherwise only the top card is applied.
-- Opponent does not take a turn.
+- Opponent does not take a turn (timer mode exits after the player turn; turn-limit mode keeps giving the player turns until the budget hits 0).
 - Timer runs on every `WaitForVBlank` while the duel is active (including text/animations).

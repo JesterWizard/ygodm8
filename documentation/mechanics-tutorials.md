@@ -9,6 +9,7 @@
 - [Adding a tutorial](#adding-a-tutorial)
 - [Script format](#script-format)
 - [First entry — Boss Cut-Ins](#first-entry--boss-cut-ins)
+- [Type Elements](#type-elements)
 - [Code locations](#code-locations)
 - [TODO](#todo)
 - [Limitations & bugs](#limitations--bugs)
@@ -33,7 +34,7 @@ Narration is a list of textbox lines, each with an optional **dialogue portrait*
 
 ## Adding a tutorial
 
-1. **Layout** — copy `sMechanicsLayout_01` in [`debug_menu_mechanics_layouts.c`](../src_custom/debug/debug_menu_mechanics_layouts.c); add extern in [`debug_menu_mechanics_layouts.h`](../include/debug_menu_mechanics_layouts.h). Use `TD_*` macros; leave `timerSeconds` / `rewardCardId` as `0` / `CARD_NONE`.
+1. **Layout** — copy `sMechanicsLayout_01` in [`debug_menu_mechanics_layouts.c`](../src_custom/debug/debug_menu_mechanics_layouts.c); add extern in [`debug_menu_mechanics_layouts.h`](../include/debug_menu_mechanics_layouts.h). Use `TD_*` macros; leave `timerSeconds` / `rewardCardId` as `0` / `CARD_NONE`. Set `turnNumber` to `0`/`1` for first-turn attack ban, or `≥2` to allow attacks.
 2. **Script** — in [`debug_menu_mechanics_scripts.inc`](../src_custom/debug/debug_menu_mechanics_scripts.inc) add title string, text strings (`#0` = newline, `#1` = wait for A), and `MT_LINE` / `MT_END` arrays for intro and outro.
 3. **Registry** — one line in [`debug_menu_mechanics_table.inc`](../src_custom/debug/debug_menu_mechanics_table.inc):
 
@@ -65,6 +66,19 @@ Portrait IDs live in [`overworld.h`](../include/overworld.h) (`PORTRAIT_YUGI`, `
 | Opponent | Kuriboh, 1000 LP |
 | Intro | Yugi portrait on both lines |
 | Goal | Tribute Summon Yubel → cut-in → Yugi outro → duel ends |
+
+## Type Elements
+
+| Setup | Value |
+|-------|--------|
+| Player monsters | Kuriboh (Shadow, 300 ATK) |
+| Opponent | Blue-Eyes White Dragon (Light, 3000 ATK), 300 LP |
+| Intro | Yugi — element RPS, Shadow > Light, attack then direct |
+| `turnNumber` | `2` (past first-turn attack ban so Kuriboh can attack) |
+| Goal | Attack Blue-Eyes (destroyed by matchup) → direct attack → LP win |
+| Complete | `winOnSummonCardId = CARD_NONE`; outro plays via `HandleWin` |
+
+Vanilla chart (also Fire>Forest>Wind>Earth>Thunder>Water>Fire; Light>Fiend>Dream>Shadow>Light; Divine neutral). Battle uses the full chart in `sAttributeAdvantages` / `sAttributeWeaknesses`.
 
 ## Code locations
 

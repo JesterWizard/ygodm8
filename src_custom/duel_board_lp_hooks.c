@@ -4,6 +4,7 @@
 #include "digit.h"
 #include "duel.h"
 #include "timed_duel.h"
+#include "mechanics_tutorial.h"
 #include "duel_bgm_tempo.h"
 #include "duel_status.h"
 #include "gba/defines.h"
@@ -217,10 +218,17 @@ static void DrawBoardTimer(void) {
 }
 
 void RefreshDuelBoardTurnHud(void) {
-  if (TimedDuel_IsActive() == TRUE)
-    DrawBoardTimer();
-  else if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
+  const struct TimedDuelLayout *layout;
+
+  if (TimedDuel_IsActive() == TRUE) {
+    layout = TimedDuel_GetActiveLayout();
+    if (TimedDuel_UsesTurnLimit(layout) == TRUE)
+      DrawBoardTurnCounter();
+    else
+      DrawBoardTimer();
+  } else if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE) {
     DrawBoardTurnCounter();
+  }
 }
 
 LYN_REPLACE_CHECK(sub_80411D4);
@@ -232,10 +240,7 @@ void sub_80411D4__Replacement(void) {
   if (gRuntimeConfig.show_duel_life_points_on_board == TRUE)
     DrawBoardLifePoints();
 
-  if (TimedDuel_IsActive() == TRUE)
-    DrawBoardTimer();
-  else if (gRuntimeConfig.show_duel_turn_counter_on_board == TRUE)
-    DrawBoardTurnCounter();
+  RefreshDuelBoardTurnHud();
 
   FlushDuelFieldLayerToHardware();
 
@@ -255,10 +260,26 @@ void InitDuelistStatus__Replacement(void) {
     const struct TimedDuelLayout *layout;
 
     layout = TimedDuel_GetActiveLayout();
-    gDuelBoardTurnCount = TimedDuel_ResolveTimerSeconds(layout);
+    if (TimedDuel_UsesTurnLimit(layout) == TRUE)
+      gDuelBoardTurnCount = TimedDuel_ResolveTurnNumber(layout);
+    else
+      gDuelBoardTurnCount = TimedDuel_ResolveTimerSeconds(layout);
     gTimedDuelTimerFrames = 0;
     /* ponytail: timed-duel loop returns before EndFirstTurnAttackBan; allow attacks immediately. */
     gDuelistStatus[DUEL_PLAYER] = DUELIST_STATUS_CAN_ATTACK;
+  } else if (MechanicsTutorial_IsActive() == TRUE) {
+    const struct TimedDuelLayout *layout;
+    u16 startTurn;
+
+    layout = MechanicsTutorial_GetActiveLayout();
+    /* turnNumber 0 → turn 1 (attack ban). >1 → already past first turn. */
+    startTurn = (layout != NULL && layout->turnNumber != 0) ? layout->turnNumber : 1;
+    gDuelBoardTurnCount = startTurn - 1; /* BeginDuelBoardTurn increments to startTurn */
+    gTimedDuelTimerFrames = 0;
+    if (startTurn > 1) {
+      gDuelistStatus[DUEL_PLAYER] = DUELIST_STATUS_CAN_ATTACK;
+      gDuelistStatus[DUEL_OPPONENT] = DUELIST_STATUS_CAN_ATTACK;
+    }
   } else {
     gDuelBoardTurnCount = 0;
     gTimedDuelTimerFrames = 0;

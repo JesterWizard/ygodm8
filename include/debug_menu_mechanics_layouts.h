@@ -4,5 +4,6 @@
 #include "timed_duel.h"
 
 extern const struct TimedDuelLayout sMechanicsLayout_01;
+extern const struct TimedDuelLayout sMechanicsLayout_02;
 
 #endif // GUARD_DEBUG_MENU_MECHANICS_LAYOUTS_H

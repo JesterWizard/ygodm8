@@ -28,6 +28,7 @@ const struct TimedDuelLayout sTimedDuelLayout_01 APPEND_RODATA = {
   9000,
   FIELD_NONE,
   60,
+  0,
   BLUE_EYES_SHINING_DRAGON,
 };
 
@@ -50,6 +51,7 @@ const struct TimedDuelLayout sTimedDuelLayout_02 APPEND_RODATA = {
   1000,
   FIELD_NONE,
   90,
+  0,
   THE_UNSTOPPABLE_EXODIA_INCARNATE,
 };
 
@@ -73,5 +75,6 @@ const struct TimedDuelLayout sTimedDuelLayout_03 APPEND_RODATA = {
   2500,
   FIELD_NONE,
   45,
+  0,
   DARK_MAGICIAN_OF_CHAOS,
 };

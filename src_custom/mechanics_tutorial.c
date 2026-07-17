@@ -76,13 +76,30 @@ u8 MechanicsTutorial_IsActive(void) {
 
 static void MechanicsTutorial_PlayLines(const struct MechanicsTutorialLine *lines) {
   u8 i;
+  u8 loadedPortrait = 0xFF;
 
   if (lines == NULL)
     return;
   for (i = 0; lines[i].text != NULL; i++) {
-    /* Keep mini-cards on screen; VO path still hides them for VRAM clash. */
-    Duel_ShowPortraitForTextbox(lines[i].portraitId, FALSE);
+    /* Keep mini-cards on screen; VO path still hides them for VRAM clash.
+     * Textbox end wipes OAM (and may clobber portrait VRAM) — full Show restores
+     * between same-speaker pages; Place only when tiles are still warm. */
+    if (lines[i].portraitId != PORTRAIT_NONE) {
+      if (lines[i].portraitId != loadedPortrait) {
+        Duel_ShowPortraitForTextbox(lines[i].portraitId, FALSE);
+        loadedPortrait = lines[i].portraitId;
+      } else {
+        Duel_PlacePortraitForTextbox(lines[i].portraitId, FALSE);
+      }
+    }
     sub_8041C94((u8 *)lines[i].text, 0, 0, 0, 0);
+    loadedPortrait = 0xFF; /* VRAM may be gone after UpdateDuelGfxExceptField */
+    if (lines[i + 1].text != NULL
+        && lines[i + 1].portraitId == lines[i].portraitId
+        && lines[i].portraitId != PORTRAIT_NONE) {
+      Duel_ShowPortraitForTextbox(lines[i].portraitId, FALSE);
+      loadedPortrait = lines[i].portraitId;
+    }
   }
 }
 
@@ -219,6 +236,12 @@ void MechanicsTutorial_OnSummonAnimFinished(void) {
 }
 
 void MechanicsTutorial_HandleWin(void) {
+  const struct MechanicsTutorialEntry *entry;
+
+  entry = MechanicsTutorial_GetActiveEntry();
+  /* Summon-complete path already played outro before DeclareLoser. */
+  if (entry != NULL && entry->winOnSummonCardId == CARD_NONE)
+    MechanicsTutorial_PlayLines(entry->outro);
   MechanicsTutorial_OnDuelEnd();
 }
 

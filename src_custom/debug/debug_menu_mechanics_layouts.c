@@ -26,5 +26,31 @@ const struct TimedDuelLayout sMechanicsLayout_01 APPEND_RODATA = {
   1000,
   FIELD_NONE,
   0,
+  0,
+  CARD_NONE,
+};
+
+/* Type Elements: Kuriboh (Shadow) vs Blue-Eyes (Light); LP so a direct attack finishes. */
+
+const struct TimedDuelLayout sMechanicsLayout_02 APPEND_RODATA = {
+  {
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_ATK(BLUE_EYES_WHITE_DRAGON), TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_ATK(KURIBOH), TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+    { TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY, TD_EMPTY },
+  },
+  {
+    { CARD_NONE },
+    { CARD_NONE },
+  },
+  8000,
+  300,
+  FIELD_NONE,
+  0,
+  2,
   CARD_NONE,
 };

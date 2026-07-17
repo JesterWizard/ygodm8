@@ -201,17 +201,36 @@ u8 TimedDuel_ShouldSkipDrawPhase(u8 turnDuelist) {
 }
 
 void TimedDuel_OnPlayerTurnEnded(void) {
+  const struct TimedDuelLayout *layout;
+
   if (!TimedDuel_IsActive())
     return;
   if (IsDuelOver() == TRUE)
     return;
+
+  layout = TimedDuel_GetActiveLayout();
+  if (TimedDuel_UsesTurnLimit(layout) == TRUE) {
+    if (gDuelBoardTurnCount > 0)
+      gDuelBoardTurnCount--;
+    RefreshDuelBoardTurnHud();
+    if (gDuelBoardTurnCount == 0)
+      DeclareLoser(DUEL_PLAYER);
+    return;
+  }
+
   DeclareLoser(DUEL_PLAYER);
 }
 
 void TimedDuel_OnVBlank(void) {
+  const struct TimedDuelLayout *layout;
+
   if (!TimedDuel_IsActive())
     return;
   if (IsDuelOver() == TRUE)
+    return;
+
+  layout = TimedDuel_GetActiveLayout();
+  if (TimedDuel_UsesTurnLimit(layout) == TRUE)
     return;
 
   gTimedDuelTimerFrames++;
@@ -319,8 +338,22 @@ void TimedDuel_ResetOnNewGame(void) {
   TimedDuel_ResetRuntime();
 }
 
+u8 TimedDuel_UsesTurnLimit(const struct TimedDuelLayout *layout) {
+  return layout != NULL && layout->turnNumber != 0;
+}
+
+u8 TimedDuel_HasTurnsRemaining(void) {
+  return gDuelBoardTurnCount != 0;
+}
+
 u16 TimedDuel_ResolveTimerSeconds(const struct TimedDuelLayout *layout) {
   if (layout == NULL || layout->timerSeconds == 0)
     return TIMED_DUEL_DEFAULT_SECONDS;
   return layout->timerSeconds;
+}
+
+u16 TimedDuel_ResolveTurnNumber(const struct TimedDuelLayout *layout) {
+  if (layout == NULL)
+    return 0;
+  return layout->turnNumber;
 }
