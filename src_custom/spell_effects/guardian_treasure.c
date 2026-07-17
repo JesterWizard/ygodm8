@@ -6,6 +6,7 @@
 #include "guardian_treasure.h"
 #include "drop_off.h"
 #include "imperial_order.h"
+#include "six_card_hand.h"
 #include "spell_effects.h"
 
 #define GUARDIAN_TREASURE_DISCARD_COST 4
@@ -28,22 +29,19 @@ static void DiscardFirstCardsInHand(struct DuelCard **hand, u8 count)
   }
 }
 
+static u8 HandHasDrawRoom(u8 turn)
+{
+  return SixCardHand_HasDrawRoom(turn);
+}
+
 static void DrawCardsForTurn(u8 turn, u8 count)
 {
   while (count > 0) {
-    u8 i;
-    u8 drew = FALSE;
+    if (!HandHasDrawRoom(turn))
+      return;
 
-    for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
-      if (gDuel.hands[turn][i].id != CARD_NONE)
-        continue;
-
-      TryDrawingCard(turn);
-      drew = TRUE;
-      break;
-    }
-
-    if (!drew || IsDuelOver() == TRUE)
+    TryDrawingCard(turn);
+    if (IsDuelOver() == TRUE)
       return;
 
     count--;

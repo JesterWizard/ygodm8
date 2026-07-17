@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 
 extern const u8 gActivationDescription_Gilasaurus_Popup1[];
 
@@ -43,10 +44,10 @@ u8 CanSpecialSummonGilasaurusFromHand(u8 handZone)
 {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != GILASAURUS)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != GILASAURUS)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

@@ -7,6 +7,7 @@
 #include "dynamic_equip.h"
 #include "elemental_hero_sunrise.h"
 #include "god_card.h"
+#include "six_card_hand.h"
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
@@ -186,7 +187,7 @@ static u8 AddMiracleFusionFromDeckToHand(void)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
-  InitHandSlotFromCard(gTurnHands[ACTIVE_DUELIST][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)(handZone)), cardId);
   return TRUE;
 }
 

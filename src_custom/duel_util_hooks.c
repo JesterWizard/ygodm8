@@ -9,6 +9,7 @@
 #include "solemn_wishes.h"
 #include "drop_off.h"
 #include "tethys_goddess_of_light.h"
+#include "six_card_hand.h"
 #include "generated/duelist_decks_generated.inc"
 
 extern int NumCardsInDeck(unsigned char);
@@ -331,6 +332,68 @@ void TryDrawingCard__Replacement(unsigned turn) {
         TryApplyDropOffOnDrawPhaseDraw(turn_u8, i);
     } else
       DeclareLoser(turn_u8); // deck out
-    break;
+    return;
   }
+
+  if (IsSixCardHandEnabled() && gHandExtraSlots[turn_u8].id == CARD_NONE) {
+    if ((unsigned char)NumCardsInDeck(turn_u8) < gDuelDecks[turn_u8].cardsDrawn)
+      cardDrawn = CARD_NONE;
+    else {
+      cardDrawn = gDuelDecks[turn_u8].cards[gDuelDecks[turn_u8].cardsDrawn];
+      gDuelDecks[turn_u8].cardsDrawn++;
+    }
+    if (cardDrawn != CARD_NONE) {
+      gHandExtraSlots[turn_u8].id = cardDrawn;
+      TryApplySolemnWishesOnDraw(turn_u8, cardDrawn, HAND_SLOT_EXTRA);
+      TryApplyTethysGoddessOfLightOnDraw(turn_u8, cardDrawn, HAND_SLOT_EXTRA);
+      if (gDrawPhaseNormalDrawActive)
+        TryApplyDropOffOnDrawPhaseDraw(turn_u8, HAND_SLOT_EXTRA);
+    } else
+      DeclareLoser(turn_u8);
+  }
+}
+
+LYN_REPLACE_CHECK(NumCardMatchesInRow);
+int NumCardMatchesInRow__Replacement(struct DuelCard **zonePtr, unsigned short cardId)
+{
+  signed char count = 0;
+  unsigned char i;
+  u8 fixedDuelist;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if ((*zonePtr++)->id == cardId)
+      count++;
+  }
+
+  if (!IsSixCardHandEnabled())
+    return count;
+
+  /* Rewind: zonePtr advanced past the row; recover via hand-row identity. */
+  zonePtr -= MAX_ZONES_IN_ROW;
+  fixedDuelist = SixCardHand_FixedDuelistForHandRow(zonePtr);
+  if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id == cardId)
+    count++;
+
+  return count;
+}
+
+LYN_REPLACE_CHECK(FirstEmptyZoneInRow);
+signed char FirstEmptyZoneInRow__Replacement(struct DuelCard **zonePtr)
+{
+  unsigned char i;
+  u8 fixedDuelist;
+
+  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+    if (zonePtr[i]->id == CARD_NONE)
+      return (signed char)i;
+  }
+
+  if (!IsSixCardHandEnabled())
+    return 0;
+
+  fixedDuelist = SixCardHand_FixedDuelistForHandRow(zonePtr);
+  if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id == CARD_NONE)
+    return HAND_SLOT_EXTRA;
+
+  return 0;
 }

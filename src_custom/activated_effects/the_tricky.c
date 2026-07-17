@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
@@ -37,7 +38,7 @@ static u8 HasTrickyDiscardCost(struct DuelCard **handRow, u8 summonZone)
 
 static u8 HandZoneIsTrickyDiscardCost(struct DuelCard **handRow, u8 handZone, u8 summonZone)
 {
-  return handZone != summonZone && handRow[handZone]->id != CARD_NONE;
+  return handZone != summonZone && SixCardHand_ZoneAtHandRow(handRow, handZone)->id != CARD_NONE;
 }
 
 static s8 FindFirstTrickyDiscardZone(struct DuelCard **handRow, u8 summonZone)
@@ -141,10 +142,10 @@ u8 CanSpecialSummonTheTrickyFromHand(u8 handZone)
 {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != THE_TRICKY)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != THE_TRICKY)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)
@@ -172,7 +173,7 @@ u8 TrySpecialSummonTheTrickyFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  if (handRow[handZone]->id != THE_TRICKY)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != THE_TRICKY)
     return FALSE;
 
   if (Duel_SpecialSummonFromHandZone(ACTIVE_DUELIST, handZone, opts) != DUEL_ACTION_OK)

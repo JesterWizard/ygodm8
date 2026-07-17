@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 
 static u8 DuelistForMonsterTurnRow(u8 turnRow)
 {
@@ -44,7 +45,7 @@ static u8 ReturnGraveyardMonsterToHand(u8 turnDuelist)
   if (handZone < 0 || cardId == CARD_NONE)
     return FALSE;
 
-  handSlot = gTurnHands[turnDuelist][handZone];
+  handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone));
   handSlot->id = cardId;
   handSlot->isFaceUp = FALSE;
   handSlot->isLocked = FALSE;

@@ -18,6 +18,7 @@
 #include "world_suppression.h"
 #include "berserk_gorilla.h"
 #include "duel_opponent_hand_scroll.h"
+#include "six_card_hand.h"
 #include "removed_from_play.h"
 #include "delayed_effects.h"
 #include "court_of_justice.h"
@@ -404,6 +405,7 @@ void InitBoard__Replacement(void) {
   InitDuelZonePtrs(2);
   GraveyardExpand_Init();
   RemovedFromPlay_Init();
+  SixCardHand_Init();
   ElementalHeroNecroshade_Reset();
   ElementalHeroNeosAlius_Reset();
   gAiSimInBatch = FALSE;
@@ -753,6 +755,7 @@ void ClearZone__Replacement(struct DuelCard *zone) {
   BlastHeldByATribute_ClearZoneMark(zone);
   VengefulBogSpirit_ClearZoneMark(zone);
   RecalculateAllDynamicEquips();
+  SixCardHand_OnZoneCleared(zone);
   if (gUnk2023EA0.unk18 == 0 && !gHideEffectText)
     ResolveCoffinSellerBattleEffect();
 }

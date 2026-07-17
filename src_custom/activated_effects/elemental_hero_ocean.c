@@ -6,6 +6,7 @@
 #include "elemental_hero_ocean.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 extern u16 gNewButtons;
 extern u16 gFilteredInput;
@@ -323,7 +324,7 @@ static u8 InitHandSlotFromCardId(u8 turnDuelist, u16 cardId)
   if (handZone < 0)
     return FALSE;
 
-  handSlot = gTurnHands[turnDuelist][handZone];
+  handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone));
   handSlot->id = cardId;
   handSlot->isFaceUp = FALSE;
   handSlot->isLocked = FALSE;

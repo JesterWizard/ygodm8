@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 
 static unsigned char CanStealFromOpponentHand(void)
 {
@@ -49,16 +50,16 @@ static void TransferRandomOpponentHandCard(void)
 
     if (taken == chosen)
     {
-      CopyCard(gTurnHands[ACTIVE_DUELIST][destZone], gTurnHands[INACTIVE_DUELIST][i]);
-      gTurnHands[ACTIVE_DUELIST][destZone]->isFaceUp = FALSE;
-      gTurnHands[ACTIVE_DUELIST][destZone]->isLocked = FALSE;
-      gTurnHands[ACTIVE_DUELIST][destZone]->isDefending = FALSE;
-      gTurnHands[ACTIVE_DUELIST][destZone]->unkTwo = 0;
-      gTurnHands[ACTIVE_DUELIST][destZone]->unkThree = 0;
-      gTurnHands[ACTIVE_DUELIST][destZone]->unk4 = 0;
-      gTurnHands[ACTIVE_DUELIST][destZone]->willChangeSides = FALSE;
-      ResetPermStage(gTurnHands[ACTIVE_DUELIST][destZone]);
-      ResetTempStage(gTurnHands[ACTIVE_DUELIST][destZone]);
+      CopyCard(SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)(destZone)), gTurnHands[INACTIVE_DUELIST][i]);
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->isFaceUp = FALSE;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->isLocked = FALSE;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->isDefending = FALSE;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->unkTwo = 0;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->unkThree = 0;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->unk4 = 0;
+      SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone)->willChangeSides = FALSE;
+      ResetPermStage(SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone));
+      ResetTempStage(SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], destZone));
       ClearZone(gTurnHands[INACTIVE_DUELIST][i]);
       return;
     }

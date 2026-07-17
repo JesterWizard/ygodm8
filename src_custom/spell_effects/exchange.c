@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "duel_helpers.h"
 #include "exchange_hand_selection.h"
+#include "six_card_hand.h"
 #include "spell_effects.h"
 
 void UpdateAllDuelGfx(void);
@@ -23,17 +24,25 @@ static u8 CanActivateExchange(void)
 static void RevealHandCards(u8 duelist)
 {
   u8 i;
+  u8 fixedDuelist;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (gTurnHands[duelist][i]->id != CARD_NONE)
       gTurnHands[duelist][i]->isFaceUp = TRUE;
   }
+
+  if (!IsSixCardHandEnabled())
+    return;
+
+  fixedDuelist = SixCardHand_FixedDuelistForHandRow(gTurnHands[duelist]);
+  if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id != CARD_NONE)
+    gHandExtraSlots[fixedDuelist].isFaceUp = TRUE;
 }
 
 static void TransferHandCard(u8 srcDuelist, u8 srcZone, u8 dstDuelist, u8 dstZone, u8 faceUp)
 {
-  struct DuelCard *dst = gTurnHands[dstDuelist][dstZone];
-  struct DuelCard *src = gTurnHands[srcDuelist][srcZone];
+  struct DuelCard *dst = SixCardHand_ZoneAtHandRow(gTurnHands[dstDuelist], dstZone);
+  struct DuelCard *src = SixCardHand_ZoneAtHandRow(gTurnHands[srcDuelist], srcZone);
 
   CopyCard(dst, src);
   dst->isFaceUp = faceUp;

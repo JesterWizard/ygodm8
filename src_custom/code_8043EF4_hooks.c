@@ -22,6 +22,7 @@
 #include "card_passives.h"
 #include "duel_helpers.h"
 #include "spell_activation_gates.h"
+#include "six_card_hand.h"
 #include "duel_attack_restrictions.h"
 #include "duel_activated_backrow.h"
 #include "sasuke_samurai_2.h"
@@ -359,13 +360,23 @@ void sub_80441D0__Replacement(void)
       }
       break;
     case PLAYER_HAND: {
-      u16 handCardId = gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id;
-      u8 courtIgnitionSlot = CourtOfJustice_HandSlotMayIgnition(gDuelCursor.currentX);
+      struct DuelCard *handZone = SixCardHand_GetPlayerHandZone(gDuelCursor.currentX);
+      u16 handCardId;
+      u8 courtIgnitionSlot;
+
+      if (handZone == NULL) {
+        PlayMusic(SFX_FORBIDDEN);
+        WaitForVBlank();
+        break;
+      }
+
+      handCardId = handZone->id;
+      courtIgnitionSlot = CourtOfJustice_HandSlotMayIgnition(gDuelCursor.currentX);
 
       if (handCardId == CARD_NONE) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
-      } else if (gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->isLocked
+      } else if (handZone->isLocked
           && !courtIgnitionSlot) {
         PlayMusic(SFX_FORBIDDEN);
         WaitForVBlank();
@@ -440,7 +451,7 @@ void sub_80441D0__Replacement(void)
       } else {
         unsigned char numTributes = GetMonsterNumRequiredTributesForHandSlot(
             gDuelCursor.currentX,
-            gFixedZones[PLAYER_HAND][gDuelCursor.currentX]->id);
+            handCardId);
         if (numTributes && !courtIgnitionSlot) {
           if (IsMaskOfRestrictActiveOnField()) {
             PlayMusic(SFX_FORBIDDEN);
@@ -868,14 +879,25 @@ static u8 PlayerPreferredPlacementCol(u8 fixedRow) {
 
 LYN_REPLACE_CHECK(sub_80442AC);
 void sub_80442AC__Replacement(void) {
-  u16 id = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]->id;
+  struct DuelCard *zone;
+  u16 id;
+
+  if (gDuelCursor.currentY == PLAYER_HAND)
+    zone = SixCardHand_GetPlayerHandZone(gDuelCursor.currentX);
+  else
+    zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
+
+  if (zone == NULL)
+    return;
+
+  id = zone->id;
 
   SetGreatMajuGarzettPendingSummon(id == GREAT_MAJU_GARZETT);
   SetMajuGarzettPendingSummon(id == MAJU_GARZETT);
   SetTheTyrantNeptunePendingSummon(id == THE_TYRANT_NEPTUNE);
   if (!PendingTributeSummonStillUnpaid())
     SetPendingTributeSummonCardId(id);
-  SelectZone(gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
+  SelectZone(zone);
   gDuelCursor.state = 1;
   ResetCursorDestToCurrentPos();
   switch (GetTypeGroup(id)) {
@@ -973,8 +995,16 @@ void sub_80449D8__Replacement(void)
   if (gSelectedCard.id == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
   {
+    struct DuelCard *sourceZone;
     bool32 _summonAnim = TryPlaySummonAnimation(gSelectedCard.id);
-    ClearZone(gFixedZones[gDuelCursor.destY][gDuelCursor.destX]);
+
+    if (gDuelCursor.destY == PLAYER_HAND)
+      sourceZone = SixCardHand_GetPlayerHandZone(gDuelCursor.destX);
+    else
+      sourceZone = gFixedZones[gDuelCursor.destY][gDuelCursor.destX];
+
+    if (sourceZone != NULL)
+      ClearZone(sourceZone);
     CopySelectedCardToZone(gFixedZones[placedRow][placedCol]);
     if (placedRow == PLAYER_MONSTER_ROW || placedRow == OPPONENT_MONSTER_ROW) {
       TryEnforceBerserkGorillaOnMonsterPlacement(gFixedZones[placedRow][placedCol]);

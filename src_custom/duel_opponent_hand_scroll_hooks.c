@@ -6,6 +6,7 @@
 #include "duel_b_menu.h"
 #include "duel_helpers.h"
 #include "duel_opponent_hand_scroll.h"
+#include "six_card_hand.h"
 #include "yubel.h"
 
 #define OPPONENT_BACKROW 0
@@ -30,6 +31,8 @@ void DisplayCardFacedownIndicatorInInfoBar(void);
 void SetFinalStat(struct StatMod *);
 void MoveCursorUp(void);
 void MoveCursorDown(void);
+void MoveCursorLeft(void);
+void MoveCursorRight(void);
 void sub_8041E70(u8, u8);
 u32 CanPlayerSeeCard(u8, u8);
 void DisplayCardInfoBar(void);
@@ -69,6 +72,7 @@ void MoveCursorUp__Replacement(void) {
     gDuelCursor.currentY = OPPONENT_HAND_ROW;
     gDuelCursor.destY = OPPONENT_HAND_ROW;
     gDuelCursor.destX = gDuelCursor.currentX;
+    SixCardHand_ClampCursorX();
     return;
   }
 
@@ -79,6 +83,7 @@ void MoveCursorUp__Replacement(void) {
     gDuelCursor.currentY++;
 
   gDuelCursor.currentY--;
+  SixCardHand_ClampCursorX();
 }
 
 LYN_REPLACE_CHECK(MoveCursorDown);
@@ -90,17 +95,46 @@ void MoveCursorDown__Replacement(void) {
     gDuelCursor.currentY = OPPONENT_BACKROW;
     gDuelCursor.destY = OPPONENT_BACKROW;
     gDuelCursor.destX = gDuelCursor.currentX;
+    SixCardHand_ClampCursorX();
     return;
   }
 
   if (++gDuelCursor.currentY > PLAYER_HAND)
     gDuelCursor.currentY--;
+  SixCardHand_ClampCursorX();
+}
+
+LYN_REPLACE_CHECK(MoveCursorRight);
+void MoveCursorRight__Replacement(void) {
+  u8 maxX;
+
+  PlayMusic(SFX_MOVE_CURSOR);
+  maxX = SixCardHand_CursorMaxX(gDuelCursor.currentY);
+  if (++gDuelCursor.currentX > maxX)
+    gDuelCursor.currentX = 0;
+}
+
+LYN_REPLACE_CHECK(MoveCursorLeft);
+void MoveCursorLeft__Replacement(void) {
+  u8 maxX;
+
+  PlayMusic(SFX_MOVE_CURSOR);
+  maxX = SixCardHand_CursorMaxX(gDuelCursor.currentY);
+  if (gDuelCursor.currentX == 0)
+    gDuelCursor.currentX = maxX + 1;
+  gDuelCursor.currentX--;
 }
 
 LYN_REPLACE_CHECK(sub_80575E0);
 int sub_80575E0__Replacement(unsigned char arg0, unsigned char arg1) {
-  if (IsOpponentHandFieldScrollEnabled() && arg1 == OPPONENT_HAND_ROW)
+  if (IsOpponentHandFieldScrollEnabled() && arg1 == OPPONENT_HAND_ROW) {
+    if (IsSixCardHandEnabled())
+      return SixCardHand_GetScreenX(arg0, DUEL_OPPONENT);
     return g8E116EE[PLAYER_HAND][arg0];
+  }
+
+  if (IsSixCardHandEnabled() && arg1 == PLAYER_HAND)
+    return SixCardHand_GetScreenX(arg0, DUEL_PLAYER);
 
   return g8E116EE[arg1][arg0];
 }
@@ -160,8 +194,15 @@ void sub_8041E70__Replacement(u8 arg0, u8 arg1) {
 LYN_REPLACE_CHECK(CanPlayerSeeCard);
 u32 CanPlayerSeeCard__Replacement(unsigned char y, unsigned char x) {
   if (IsOpponentHandFieldScrollEnabled() && y == OPPONENT_HAND_ROW) {
-    struct DuelCard *card = gTurnHands[INACTIVE_DUELIST][4 - x];
+    struct DuelCard *card;
+    u8 zone;
 
+    if (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
+      zone = HAND_SLOT_EXTRA - x;
+    else
+      zone = 4 - x;
+
+    card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
     if (card == NULL || card->id == CARD_NONE)
       return 0;
     return !!card->isFaceUp;
@@ -170,10 +211,17 @@ u32 CanPlayerSeeCard__Replacement(unsigned char y, unsigned char x) {
   switch (y) {
     case 0:
     case 1:
+      if (x >= MAX_ZONES_IN_ROW)
+        return 0;
       return !!gFixedZones[y][x]->isFaceUp;
     case 2:
     case 3:
+      if (x >= MAX_ZONES_IN_ROW)
+        return 0;
+      return 1;
     case 4:
+      if (x > SixCardHand_CursorMaxX(PLAYER_HAND))
+        return 0;
       return 1;
     default:
       return 0;
@@ -185,9 +233,15 @@ void DisplayCardInfoBar__Replacement(void) {
   if (IsOpponentHandFieldScrollEnabled()
       && gDuelCursor.currentY == OPPONENT_HAND_ROW
       && CanPlayerSeeCard__Replacement(OPPONENT_HAND_ROW, gDuelCursor.currentX) == 1) {
-    struct DuelCard *card = gTurnHands[INACTIVE_DUELIST][4 - gDuelCursor.currentX];
+    u8 zone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
+        ? (HAND_SLOT_EXTRA - gDuelCursor.currentX)
+        : (4 - gDuelCursor.currentX);
+    struct DuelCard *card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
 
     ApplyFieldZoneStatsToCardInfo(card);
+  } else if (gDuelCursor.currentY == PLAYER_HAND
+      && CanPlayerSeeCard__Replacement(PLAYER_HAND, gDuelCursor.currentX) == 1) {
+    ApplyFieldZoneStatsToCardInfo(SixCardHand_GetPlayerHandZone(gDuelCursor.currentX));
   } else if (CanPlayerSeeCard__Replacement(gDuelCursor.currentY, gDuelCursor.currentX) == 1) {
     ApplyFieldZoneStatsToCardInfo(
         gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);

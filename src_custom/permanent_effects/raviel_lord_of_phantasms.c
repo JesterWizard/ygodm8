@@ -4,6 +4,7 @@
 #include "constants/card_effect_texts.h"
 #include "duel_helpers.h"
 #include "raviel_lord_of_phantasms.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 void BlockTurnSummoning(u8);
@@ -53,10 +54,10 @@ u8 CanSpecialSummonRavielLordOfPhantasmsFromHand(u8 handZone)
   u8 fixedDuelist;
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != RAVIEL_LORD_OF_PHANTASMS)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != RAVIEL_LORD_OF_PHANTASMS)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

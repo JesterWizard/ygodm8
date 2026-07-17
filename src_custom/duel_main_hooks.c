@@ -11,6 +11,7 @@
 #include "duel_status.h"
 #include "guardian_treasure.h"
 #include "jar_of_greed.h"
+#include "six_card_hand.h"
 #include "royal_decree.h"
 #include "ojama_trio.h"
 #include "robbin_goblin.h"
@@ -373,7 +374,8 @@ static bool8 RunDuelTurnLoop(void) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
     } else if (MechanicsTutorial_ShouldSkipDrawPhase(turn)) {
       /* ponytail: board and hand are pre-seeded; skip the draw phase. */
-    } else if (NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
+    } else if (SixCardHand_HasDrawRoom(turn)
+               || NumEmptyZonesInRow(gTurnZones[ACTIVE_DUELIST_HAND]) > 0) {
       PerformGuardianTreasureDrawPhaseDraws(turn);
       if (IsDuelOver() == TRUE)
         return TRUE;

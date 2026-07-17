@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "six_card_hand.h"
 
 extern u16 gNewButtons;
 extern u16 gFilteredInput;
@@ -205,7 +206,7 @@ static u8 ReturnGraveyardSpellToHand(u8 turnDuelist, u8 graveyardIndex)
   if (handZone < 0)
     return FALSE;
 
-  handSlot = gTurnHands[turnDuelist][handZone];
+  handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone));
   handSlot->id = cardId;
   handSlot->isFaceUp = FALSE;
   handSlot->isLocked = FALSE;

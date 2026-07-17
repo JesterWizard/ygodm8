@@ -7,6 +7,7 @@
 #include "expanded_graveyard.h"
 #include "fusion_recipes.h"
 #include "spell_effects.h"
+#include "six_card_hand.h"
 
 static const u8 sFusionRecoveryPickLabels[] APPEND_RODATA = {
   DECK_MENU_PICK_LABEL_DETAILS,
@@ -188,7 +189,7 @@ static u8 AddGraveyardCardToHand(u8 turnDuelist, u8 gyIndex)
   if (cardId == CARD_NONE)
     return FALSE;
 
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
   return TRUE;
 }

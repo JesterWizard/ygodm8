@@ -24,6 +24,7 @@
 #include "ryu_kishin_clown.h"
 #include "dark_dust_spirit.h"
 #include "kaiser_colosseum.h"
+#include "six_card_hand.h"
 #include "elemental_hero_tempest.h"
 #include "elemental_hero_neos_alius.h"
 #include "elemental_hero_great_tornado.h"
@@ -457,9 +458,16 @@ u8 Duel_CountCardsInHand(struct DuelCard **handRow)
 {
   u8 i;
   u8 count = 0;
+  u8 fixedDuelist;
 
   for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
     if (handRow[i]->id != CARD_NONE)
+      count++;
+  }
+
+  if (IsSixCardHandEnabled()) {
+    fixedDuelist = SixCardHand_FixedDuelistForHandRow(handRow);
+    if (fixedDuelist != 0xFF && gHandExtraSlots[fixedDuelist].id != CARD_NONE)
       count++;
   }
 
@@ -489,8 +497,10 @@ enum DuelActionResult Duel_DrawCards(u8 duelist, u8 count, u8 updateGfx)
 
 enum DuelActionResult Duel_DrawCardsUntilHandSize(u8 turnDuelist, u8 targetHandSize, u8 updateGfx)
 {
+  u8 maxHand = IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW;
+
   while (Duel_CountCardsInHand(gTurnHands[turnDuelist]) < targetHandSize) {
-    if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) >= MAX_ZONES_IN_ROW)
+    if (Duel_CountCardsInHand(gTurnHands[turnDuelist]) >= maxHand)
       break;
     if (Duel_DrawCards(turnDuelist, 1, FALSE) == DUEL_ACTION_DUEL_OVER)
       return DUEL_ACTION_DUEL_OVER;
@@ -986,6 +996,12 @@ u8 Duel_FindFixedZone(struct DuelCard *zone, u8 *fixedRow, u8 *col)
         return TRUE;
       }
     }
+  }
+
+  if (IsSixCardHandEnabled() && zone == &gHandExtraSlots[DUEL_PLAYER]) {
+    *fixedRow = PLAYER_HAND;
+    *col = HAND_SLOT_EXTRA;
+    return TRUE;
   }
 
   return FALSE;
@@ -1700,6 +1716,9 @@ u8 Duel_ZoneIsHandSlot(const struct DuelCard *zone)
   if (zone == NULL)
     return FALSE;
 
+  if (SixCardHand_IsHandZone(zone))
+    return TRUE;
+
   for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
     if (gFixedZones[PLAYER_HAND][col] == zone)
       return TRUE;
@@ -1930,7 +1949,7 @@ enum DuelActionResult Duel_AddDeckCardToHand(u8 duelist, u16 cardId, u8 updateGf
 
   Duel_ShuffleDeckFromDrawn(duelist);
 
-  handSlot = gTurnHands[duelist][handZone];
+  handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[duelist], (u8)handZone);
   handSlot->id = foundId;
   handSlot->isFaceUp = FALSE;
   handSlot->isLocked = FALSE;
@@ -1974,10 +1993,10 @@ enum DuelActionResult Duel_SpecialSummonFromHand(u8 duelist, u16 cardId, HandCar
     return DUEL_ACTION_NO_TARGET;
   }
 
-  monsterId = handRow[handZone]->id;
+  monsterId = SixCardHand_ZoneAtHandRow(handRow, handZone)->id;
   if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
-  ClearZone(handRow[handZone]);
+  ClearZone(SixCardHand_ZoneAtHandRow(handRow, handZone));
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 
   if (relockHand)
@@ -1999,19 +2018,20 @@ enum DuelActionResult Duel_SpecialSummonFromHandZone(u8 duelist, s8 handZone,
   if (ArchlordKristya_IsSpecialSummonLocked())
     return DUEL_ACTION_BLOCKED;
 
-  if (handZone < 0 || handZone >= MAX_ZONES_IN_ROW)
+  if (handZone < 0
+      || handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return DUEL_ACTION_INVALID;
 
   if (FirstEmptyZoneInRow(gTurnZones[MonsterRowForDuelist(duelist)]) < 0)
     return DUEL_ACTION_NO_ZONE;
 
-  if (handRow[handZone]->id == CARD_NONE)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id == CARD_NONE)
     return DUEL_ACTION_NO_TARGET;
 
-  monsterId = handRow[handZone]->id;
+  monsterId = SixCardHand_ZoneAtHandRow(handRow, handZone)->id;
   if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
-  ClearZone(handRow[handZone]);
+  ClearZone(SixCardHand_ZoneAtHandRow(handRow, handZone));
   result = PlaceMonsterFromId(duelist, monsterId, opts);
 
   if (result == DUEL_ACTION_OK && IsDuelOver() == TRUE)
@@ -2112,7 +2132,7 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
   if (handZone < 0)
     return DUEL_ACTION_NO_TARGET;
 
-  monsterId = handRow[handZone]->id;
+  monsterId = SixCardHand_ZoneAtHandRow(handRow, handZone)->id;
   if (monsterId == RARE_METAL_DRAGON)
     return DUEL_ACTION_INVALID;
 
@@ -2138,7 +2158,7 @@ enum DuelActionResult Duel_NormalSummonFromHand(u8 duelist, u16 cardId, HandCard
 
   if (monsterId == ELEMENTAL_HERO_ABSOLUTE_ZERO)
     MarkAbsoluteZeroHandSummonCleanup();
-  ClearZone(handRow[handZone]);
+  ClearZone(SixCardHand_ZoneAtHandRow(handRow, handZone));
   tributeResult = PlaceMonsterFromId(duelist, monsterId, opts);
   if (tributeResult != DUEL_ACTION_OK)
     return tributeResult;
@@ -2171,16 +2191,20 @@ enum DuelActionResult Duel_ReturnMonsterZoneToOwnerHand(struct DuelCard *zone, u
   if (handZone < 0)
     return DUEL_ACTION_NO_ZONE;
 
-  CopyCard(gTurnHands[turnDuelist][handZone], zone);
-  gTurnHands[turnDuelist][handZone]->isFaceUp = FALSE;
-  gTurnHands[turnDuelist][handZone]->isLocked = FALSE;
-  gTurnHands[turnDuelist][handZone]->isDefending = FALSE;
-  gTurnHands[turnDuelist][handZone]->unkTwo = 0;
-  gTurnHands[turnDuelist][handZone]->unkThree = 0;
-  gTurnHands[turnDuelist][handZone]->unk4 = 0;
-  gTurnHands[turnDuelist][handZone]->willChangeSides = FALSE;
-  ResetPermStage(gTurnHands[turnDuelist][handZone]);
-  ResetTempStage(gTurnHands[turnDuelist][handZone]);
+  {
+    struct DuelCard *handSlot = SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)handZone);
+
+    CopyCard(handSlot, zone);
+    handSlot->isFaceUp = FALSE;
+    handSlot->isLocked = FALSE;
+    handSlot->isDefending = FALSE;
+    handSlot->unkTwo = 0;
+    handSlot->unkThree = 0;
+    handSlot->unk4 = 0;
+    handSlot->willChangeSides = FALSE;
+    ResetPermStage(handSlot);
+    ResetTempStage(handSlot);
+  }
   ClearZone(zone);
   MaybeUpdateGfx(updateGfx);
   return DUEL_ACTION_OK;

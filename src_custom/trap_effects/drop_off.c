@@ -4,6 +4,7 @@
 #include "drop_off.h"
 #include "duel_helpers.h"
 #include "royal_decree.h"
+#include "six_card_hand.h"
 
 void BeginDrawPhaseNormalDraws(void)
 {
@@ -44,8 +45,8 @@ void TryApplyDropOffOnDrawPhaseDraw(u8 duelist, u8 handSlot)
   if (trapZone == NULL)
     return;
 
-  drawnCard = &gDuel.hands[duelist][handSlot];
-  if (drawnCard->id == CARD_NONE)
+  drawnCard = SixCardHand_GetFixed(duelist, handSlot);
+  if (drawnCard == NULL || drawnCard->id == CARD_NONE)
     return;
 
   Duel_ActivateContinuousZone(trapZone);

@@ -70,6 +70,7 @@ static const struct {
     CONF("Scroll Hand",  enable_opponent_hand_field_scroll),
     CONF("Summon Anim",  enable_summon_animations),
     CONF("Cursor>Hand",  move_cursor_to_hand_on_draw),
+    CONF("6-Card Hand",  enable_six_card_hand),
     CONF("Smart AI",     enable_smarter_ai),
     CONF("Fast AI",      fast_ai),
     CONF("No Tribute",   ignore_tribute_requirements),

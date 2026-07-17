@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
 #include "fenrir.h"
+#include "six_card_hand.h"
 
 static u8 GraveyardTopIsWaterMonster(u8 turnDuelist)
 {
@@ -21,10 +22,10 @@ u8 CanSpecialSummonFenrirFromHand(u8 handZone)
 {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != FENRIR)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != FENRIR)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

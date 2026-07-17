@@ -5,6 +5,7 @@
 #include "deck_menu.h"
 #include "duel_helpers.h"
 #include "expanded_graveyard.h"
+#include "six_card_hand.h"
 
 extern unsigned char IsSkillDrainActiveOnField(void);
 extern unsigned char TryActivateSkillDrainAndNegateCardId(u16 negatedCardId);
@@ -249,7 +250,7 @@ static u8 AddGraveyardFairyToHand(u8 turnDuelist, u8 gyIndex)
     GraveyardExpand_RefreshDisplay();
   }
 
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   return TRUE;
 }
 
@@ -349,10 +350,10 @@ u8 CanSpecialSummonArchlordKristyaFromHand(u8 handZone)
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
   u8 fixedDuelist = FixedDuelistForTurnDuelist(ACTIVE_DUELIST);
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != ARCHLORD_KRISTYA)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != ARCHLORD_KRISTYA)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

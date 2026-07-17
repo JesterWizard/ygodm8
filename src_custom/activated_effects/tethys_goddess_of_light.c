@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "duel.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 #include "tethys_goddess_of_light.h"
 
 extern unsigned char IsSkillDrainActiveOnField(void);
@@ -16,6 +17,9 @@ static u8 HasEmptyHandSlot(u8 duelist)
     if (gDuel.hands[duelist][i].id == CARD_NONE)
       return TRUE;
   }
+
+  if (IsSixCardHandEnabled() && gHandExtraSlots[duelist].id == CARD_NONE)
+    return TRUE;
 
   return FALSE;
 }
@@ -56,8 +60,8 @@ void TryApplyTethysGoddessOfLightOnDraw(u8 duelist, u16 cardDrawn, u8 handSlot)
   if (IsSkillDrainActiveOnField() && TryActivateSkillDrainAndNegateCardId(TETHYS_GODDESS_OF_LIGHT))
     return;
 
-  drawnCard = &gDuel.hands[duelist][handSlot];
-  if (drawnCard->id != cardDrawn)
+  drawnCard = SixCardHand_GetFixed(duelist, handSlot);
+  if (drawnCard == NULL || drawnCard->id != cardDrawn)
     return;
 
   Duel_ShowEffectTextTyped(TETHYS_GODDESS_OF_LIGHT, 2);

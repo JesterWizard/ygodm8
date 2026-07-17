@@ -3,6 +3,7 @@
 #include "constants/card_ids.h"
 #include "cost_down.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 #include "spell_effects.h"
 
 static u8 IsMonsterCardId(u16 cardId)
@@ -15,23 +16,29 @@ static u8 IsMonsterCardId(u16 cardId)
 
 static u8 IsCardInCostDownHandSlot(u8 handSlot, u16 cardId)
 {
-  if (handSlot >= MAX_ZONES_IN_ROW || cardId == CARD_NONE)
+  struct DuelCard *zone;
+  u8 maxSlot = IsSixCardHandEnabled() ? HAND_SLOT_EXTRA : (MAX_ZONES_IN_ROW - 1);
+
+  if (handSlot > maxSlot || cardId == CARD_NONE)
     return FALSE;
 
   if (gCostDownTargetDuelist == DUEL_PLAYER)
-    return gFixedZones[PLAYER_HAND][handSlot]->id == cardId;
+    zone = SixCardHand_GetPlayerHandZone(handSlot);
+  else
+    zone = SixCardHand_GetFixed(gCostDownTargetDuelist, handSlot);
 
-  return gDuel.hands[gCostDownTargetDuelist][handSlot].id == cardId;
+  return zone != NULL && zone->id == cardId;
 }
 
 static u8 IsMonsterInCostDownHand(u16 cardId)
 {
   u8 i;
+  u8 maxSlot = IsSixCardHandEnabled() ? HAND_SLOT_EXTRA : (MAX_ZONES_IN_ROW - 1);
 
   if (!gCostDownActive || !IsMonsterCardId(cardId))
     return FALSE;
 
-  for (i = 0; i < MAX_ZONES_IN_ROW; i++) {
+  for (i = 0; i <= maxSlot; i++) {
     if (IsCardInCostDownHandSlot(i, cardId))
       return TRUE;
   }

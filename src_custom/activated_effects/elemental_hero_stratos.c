@@ -7,6 +7,7 @@
 #include "dynamic_equip.h"
 #include "elemental_hero_stratos.h"
 #include "expanded_graveyard.h"
+#include "six_card_hand.h"
 
 void DisplayCardInfoBar(void);
 void sub_8041E70(u8, u8);
@@ -230,7 +231,7 @@ static u8 AddDeckCardAtIndexToHand(u8 turnDuelist, u8 deckIndex)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(turnDuelist);
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   return TRUE;
 }
 

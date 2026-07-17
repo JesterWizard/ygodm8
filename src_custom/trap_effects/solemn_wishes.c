@@ -2,6 +2,7 @@
 #include "common-chax.h"
 #include "constants/card_ids.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 #include "solemn_wishes.h"
 
 #define SOLEMN_WISHES_LP 500
@@ -64,10 +65,10 @@ static u8 TryAutoPlaceDrawnSolemnWishes(u8 duelist, u8 handSlot)
 {
   s8 backrowCol;
   u8 backrow = BackrowForDuelist(duelist);
-  struct DuelCard *handCard = &gDuel.hands[duelist][handSlot];
+  struct DuelCard *handCard = SixCardHand_GetFixed(duelist, handSlot);
   struct DuelCard *fieldZone;
 
-  if (handCard->id != SOLEMN_WISHES)
+  if (handCard == NULL || handCard->id != SOLEMN_WISHES)
     return FALSE;
 
   backrowCol = FirstEmptyZoneInRow(gFixedZones[backrow]);

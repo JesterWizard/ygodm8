@@ -6,6 +6,7 @@
 #include "dynamic_equip.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void TryActivatingPermanentEffects(void);
 void CheckWinConditionExodia(unsigned char);
@@ -118,10 +119,10 @@ u8 CanSpecialSummonChaosEmperorDragonEnvoyOfTheEndFromHand(u8 handZone)
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
   u8 fixedDuelist = FixedDuelistYouControl();
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != CHAOS_EMPEROR_DRAGON_ENVOY_OF_THE_END)
     return FALSE;
 
   if (FirstEmptyZoneInRow(gTurnZones[ACTIVE_DUELIST_MONSTER_ROW]) < 0)

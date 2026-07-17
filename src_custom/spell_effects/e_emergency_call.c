@@ -6,6 +6,7 @@
 #include "e_emergency_call.h"
 #include "expanded_graveyard.h"
 #include "spell_effects.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -147,7 +148,7 @@ static u8 AddDeckCardAtIndexToHand(u8 turnDuelist, u8 deckIndex)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(turnDuelist);
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   return TRUE;
 }
 

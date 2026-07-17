@@ -178,11 +178,16 @@ _kernel_malloc_ewram gPlayerDeck2Capacity, 0x4
 _kernel_malloc_ewram gPlayerDeck3Capacity, 0x4
 _kernel_malloc_ewram gActiveDeckIndex, 0x1
 
+@ -- Six-card hand (overflow slot per duelist; DuelCard is 8 bytes) ------------
+@ ponytail: board stays MAX_ZONES_IN_ROW; only hands grow via these extras.
+_kernel_malloc_ewram_array gHandExtraSlots, 0x10
+
 @ -- Runtime config EWRAM mirror (debug-menu-toggleable) -----------------------
 
 @ Mirror of RuntimeConfig in EWRAM so the debug menu can toggle configs at runtime.
 @ Initialized from the const ROM copy (gRuntimeConfigRom) at boot.
 @ sizeof(RuntimeConfig) ≈ 0x48; allocate 0x60 for padding headroom.
+@ enable_six_card_hand added — keep padding above sizeof(RuntimeConfig).
 _kernel_malloc_ewram_array gRuntimeConfigEwram, 0x60
 
 @ -- Debug menu & duel rulesets ------------------------------------------------

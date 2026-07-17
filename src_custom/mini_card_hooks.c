@@ -7,6 +7,7 @@
 #include "elemental_hero_terra_firma.h"
 #include "riryoku.h"
 #include "duel_opponent_hand_scroll.h"
+#include "six_card_hand.h"
 #include "wave_motion_cannon.h"
 #include "cost_down.h"
 #include "tribute.h"
@@ -364,6 +365,7 @@ void sub_80577A4__Replacement(void) {
   u8 j;
 
   RefreshAllFieldCardTiles();
+  SixCardHand_RefreshExtraTiles();
   RefreshAllWaveMotionCannonFieldCounters();
   CpuCopy16(g89A781C, gPaletteBuffer + 256, 320);
 
@@ -384,6 +386,7 @@ void sub_80577A4__Replacement(void) {
     RestoreOpponentHandFieldWindow();
   }
 
+  SixCardHand_DrawHandOam();
   RefreshFieldMonsterStatOverlays();
 }
 
@@ -409,5 +412,6 @@ void sub_8057808__Replacement(void) {
     RestoreOpponentHandFieldWindow();
   }
 
+  SixCardHand_DrawHandOam();
   RefreshFieldMonsterStatOverlays();
 }

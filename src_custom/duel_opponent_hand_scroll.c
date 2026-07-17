@@ -5,6 +5,7 @@
 #include "duel_opponent_hand_scroll.h"
 #include "gfx_reg_buffers.h"
 #include "mini_card.h"
+#include "six_card_hand.h"
 
 extern u16 gOamBuffer[];
 extern u16 g8E116BC[];
@@ -79,8 +80,19 @@ static struct DuelCard *GetVisibleCardAtBoardPos(u8 y, u8 x) {
   struct DuelCard *card;
 
   if (IsOpponentHandFieldScrollEnabled() && y == OPPONENT_HAND_ROW) {
-    card = gTurnHands[INACTIVE_DUELIST][4 - x];
+    u8 zone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
+        ? (HAND_SLOT_EXTRA - x)
+        : (4 - x);
+
+    card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
     if (card == NULL || card->id == CARD_NONE || !card->isFaceUp)
+      return NULL;
+    return card;
+  }
+
+  if (y == PLAYER_HAND) {
+    card = SixCardHand_GetPlayerHandZone(x);
+    if (card == NULL || card->id == CARD_NONE)
       return NULL;
     return card;
   }
@@ -153,6 +165,8 @@ static s16 GetOpponentHandCardScreenY(void)
 
 static u8 OpponentHandZoneFromCol(u8 col)
 {
+  if (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
+    return HAND_SLOT_EXTRA - col;
   return 4 - col;
 }
 
@@ -238,8 +252,7 @@ static void HidePlayerHandFieldOam(void)
 static void PlaceOpponentHandOam(u8 col)
 {
   struct FieldOamEntry *oam = OpponentHandOamAt(col);
-  /* Row 4 fan coords match the vanilla R-hand peek layout at the top edge. */
-  s16 x = g8E116EE[PLAYER_HAND][col];
+  s16 x = SixCardHand_GetScreenX(col, DUEL_OPPONENT);
   s16 y = GetOpponentHandCardScreenY();
 
   /* Same affine matrix 3 as opponent backrow (sub_805754C row 0). */
@@ -253,14 +266,20 @@ void DrawOpponentHandZone(u8 col)
   struct DuelCard *card;
   u8 *tilePtr;
   u8 zone;
+  u8 maxCol = SixCardHand_CursorMaxX(OPPONENT_HAND_ROW);
 
-  if (col >= MAX_ZONES_IN_ROW)
+  if (col > maxCol)
     return;
 
   zone = OpponentHandZoneFromCol(col);
-  card = gTurnHands[INACTIVE_DUELIST][zone];
+  card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
   if (card == NULL || card->id == CARD_NONE) {
     HideOpponentHandZone(col);
+    return;
+  }
+
+  if (col >= MAX_ZONES_IN_ROW) {
+    SixCardHand_DrawHandOam();
     return;
   }
 
@@ -308,14 +327,16 @@ void DrawOpponentHandOnField(void) {
 
   HideOpponentHandFieldOam();
 
-  for (col = 0; col < MAX_ZONES_IN_ROW; col++) {
-    card = gTurnHands[INACTIVE_DUELIST][OpponentHandZoneFromCol(col)];
-    if (card == NULL || card->id == CARD_NONE)
-      HideOpponentHandZone(col);
-    else
+  for (col = 0; col <= SixCardHand_CursorMaxX(OPPONENT_HAND_ROW); col++) {
+    card = SixCardHand_GetFixed(DUEL_OPPONENT, OpponentHandZoneFromCol(col));
+    if (card == NULL || card->id == CARD_NONE) {
+      if (col < MAX_ZONES_IN_ROW)
+        HideOpponentHandZone(col);
+    } else
       DrawOpponentHandZone(col);
   }
 
+  SixCardHand_DrawHandOam();
   CopyMiniCardPalette(gPaletteBuffer + 256);
   ApplyOpponentHandFieldWindow();
   LoadCharblock4();

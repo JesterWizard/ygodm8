@@ -5,6 +5,7 @@
 #include "constants/custom_field_spells.h"
 #include "custom_field_spell.h"
 #include "duel_helpers.h"
+#include "six_card_hand.h"
 
 static u8 SkyscraperIsOnField(void)
 {
@@ -50,7 +51,7 @@ static u8 AddSkyscraperFromDeckToHand(void)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(ACTIVE_DUELIST);
-  InitHandSlotFromCard(gTurnHands[ACTIVE_DUELIST][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[ACTIVE_DUELIST], (u8)(handZone)), cardId);
   return TRUE;
 }
 
@@ -58,10 +59,10 @@ u8 CanActivateElementalHeroCaptainGoldFromHand(u8 handZone)
 {
   struct DuelCard **handRow = gTurnHands[ACTIVE_DUELIST];
 
-  if (handZone >= MAX_ZONES_IN_ROW)
+  if (handZone >= (IsSixCardHandEnabled() ? MAX_HAND_ZONES_SIX : MAX_ZONES_IN_ROW))
     return FALSE;
 
-  if (handRow[handZone]->id != ELEMENTAL_HERO_CAPTAIN_GOLD)
+  if (SixCardHand_ZoneAtHandRow(handRow, handZone)->id != ELEMENTAL_HERO_CAPTAIN_GOLD)
     return FALSE;
 
   /* ponytail: with Skyscraper active, prefer normal summon as a 2100 beater */
@@ -84,7 +85,7 @@ u8 TryActivateElementalHeroCaptainGoldFromHand(u8 handZone)
   if (IsDuelOver() == TRUE)
     return TRUE;
 
-  if (Duel_DestroyZone(handRow[handZone], ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
+  if (Duel_DestroyZone(SixCardHand_ZoneAtHandRow(handRow, handZone), ACTIVE_DUELIST, FALSE) == DUEL_ACTION_DUEL_OVER)
     return TRUE;
 
   AddSkyscraperFromDeckToHand();

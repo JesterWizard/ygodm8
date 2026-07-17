@@ -6,6 +6,7 @@
 #include "elemental_hero_blazeman.h"
 #include "exchange_hand_selection.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 void RefreshFieldMonsterStatOverlays(void);
@@ -160,7 +161,7 @@ static u8 AddPolymerizationFromDeck(u8 turnDuelist)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(turnDuelist);
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   return TRUE;
 }
 

@@ -5,6 +5,7 @@
 #include "elemental_hero_woodsman.h"
 #include "expanded_graveyard.h"
 #include "monster_effect_usage.h"
+#include "six_card_hand.h"
 
 void UpdateDuelGfxExceptField(void);
 
@@ -75,7 +76,7 @@ static u8 AddDeckPolymerizationToHand(u8 turnDuelist)
     return FALSE;
 
   Duel_ShuffleDeckFromDrawn(turnDuelist);
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   return TRUE;
 }
 
@@ -102,7 +103,7 @@ static u8 AddGraveyardPolymerizationToHand(u8 turnDuelist)
   if (cardId != POLYMERIZATION)
     return FALSE;
 
-  InitHandSlotFromCard(gTurnHands[turnDuelist][handZone], cardId);
+  InitHandSlotFromCard(SixCardHand_ZoneAtHandRow(gTurnHands[turnDuelist], (u8)(handZone)), cardId);
   GraveyardExpand_SyncLegacyTop(fixedDuelist);
   return TRUE;
 }
