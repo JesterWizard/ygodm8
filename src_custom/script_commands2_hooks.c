@@ -154,6 +154,7 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
         Casino_BlackjackMain();
         OverworldLoadGraphics();
         sub_80533BC();
+        Casino_PresentOverworldResult();
         break;
     case CASINO_SPECIAL_CONCENTRATION:
         /* Same mosaic dissolve as accepting a duel challenge. */
@@ -162,6 +163,7 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
         Casino_ConcentrationMain();
         OverworldLoadGraphics();
         sub_80533BC();
+        Casino_PresentOverworldResult();
         break;
     }
 }

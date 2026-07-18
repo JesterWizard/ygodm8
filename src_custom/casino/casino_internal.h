@@ -51,13 +51,18 @@ struct CasinoStake {
 #define CASINO_TEXT_PAL_GREY 13
 
 u8 Casino_PromptStake(struct CasinoStake *out);
-void Casino_ResolveStake(const struct CasinoStake *stake, enum CasinoOutcome outcome);
+/* Applies payout; returns prize card id on ante win, else CARD_NONE. */
+u16 Casino_ResolveStake(const struct CasinoStake *stake, enum CasinoOutcome outcome);
+void Casino_QueueOverworldResult(const struct CasinoStake *stake, enum CasinoOutcome outcome,
+                                 u16 prizeCardId);
+void Casino_PresentOverworldResult(void);
 
 u16 Casino_RandomMonsterId(void);
 u16 Casino_RandomMonsterOfLevel(u8 level);
 u8 Casino_CardLevel(u16 cardId);
 
 void Casino_BeginOverlay(void);      /* stake / result menus (narrow window) */
+void Casino_FadeOutOverlay(void);    /* BLDY → 16, keep display for seamless handoff */
 void Casino_BeginPlayField(void);    /* games: full-screen window for card grid */
 void Casino_FadeInPlayField(void);   /* BLDY 16→0 after stake → play */
 void Casino_EndOverlay(void);
@@ -67,6 +72,8 @@ void Casino_ClearOam(void);
 void Casino_BlankTextRows(void);
 void Casino_WriteTextRow(u8 row, const u8 *ascii);
 void Casino_WriteSideText(u8 rightSide, u8 row, const u8 *ascii, u8 paletteNum);
+/* Centered on play field (30 cols); glyph RAM reuses right-HUD row 1 (tiles 0x20). */
+void Casino_WriteCenteredText(u8 row, const u8 *ascii, u8 paletteNum);
 void Casino_UploadHudText(void);
 void Casino_SetHudGoldColor(void);
 void Casino_ReloadCursorPalette(void);

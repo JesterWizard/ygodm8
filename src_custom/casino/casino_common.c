@@ -1,5 +1,6 @@
 #include "casino_internal.h"
 #include "ante.h"
+#include "card.h"
 #include "configs/runtime.h"
 #include "constants/card_ids.h"
 #include "constants/music_ids.h"
@@ -61,17 +62,41 @@ void LoadBlendingRegs(void);
 void SetCardInfo(u16 id);
 void DisableDisplay(void);
 void SetVBlankCallback(void (*)(void));
+void ShowCardDetailView(void);
+void OverworldSetRegDispcnt(void);
+void sub_805339C(void);
+void sub_8053404(void);
 u16 RandRangeU16(u16 min, u16 max);
 unsigned char GetTrunkCardQty(unsigned short);
 void sub_80411EC(struct OamData *oam);
 
 extern u16 gBLDCNT;
 extern u16 gBLDY;
-
 extern const u16 gCasinoPrizePoolPrimary[];
 extern const u16 gCasinoPrizePoolSecondary[];
 extern const u16 gCasinoPrizePoolPrimaryCount;
 extern const u16 gCasinoPrizePoolSecondaryCount;
+
+struct CasinoOwResult {
+  u8 pending;
+  u8 kind;
+  u8 outcome;
+  u32 dominoAmount;
+  u16 cardId;
+};
+
+/* APPEND_DATA is ROM — mutable result state lives in EWRAM (ram_map_ewram.s). */
+extern struct CasinoOwResult gCasinoOwResult;
+extern u8 gCasinoOwResultText[];
+
+static u8 sOwResultEndBytes[] APPEND_TEXT = {0x5D};
+static const struct Script sOwResultEndScript APPEND_RODATA = {
+  (u8 *)sOwResultEndBytes, (struct Script *)&sOwResultEndScript,
+  (struct Script *)&sOwResultEndScript
+};
+static const u8 sOwWonPrefix[] APPEND_RODATA = "Won ";
+static const u8 sOwLostPrefix[] APPEND_RODATA = "Lost ";
+static const u8 sOwDominoSuffix[] APPEND_RODATA = " Domino";
 
 u8 Casino_BlackjackHandTotal(const u8 *levels, u8 count) {
   u8 i;
@@ -145,6 +170,8 @@ static void CasinoApplyStartMenuBg2(void) {
   LoadBgOffsets();
 }
 
+static u8 sPlayFieldKeepDark APPEND_DATA = 0;
+
 static void CasinoMenuVBlank(void) {
   ((void (*)(void))(DEBUG_SM_THUMB_VBLANK_WIN | 1))();
   CasinoApplyStartMenuBg2();
@@ -162,10 +189,11 @@ static void CasinoPlayVBlank(void) {
   LoadBgOffsets();
   REG_WIN0H = 0x00F0;
   REG_WIN0V = 0x00A0;
-  /* Keep start-menu BG3 darken (fade-in must not leave blend off). */
-  gBLDCNT = 0xE8;
-  gBLDY = 8;
-  LoadBlendingRegs();
+  if (sPlayFieldKeepDark) {
+    gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
+    gBLDY = 16;
+    LoadBlendingRegs();
+  }
 }
 
 void Casino_BeginOverlay(void) {
@@ -185,8 +213,28 @@ void Casino_BeginOverlay(void) {
   CasinoMenuVBlank();
 }
 
+/* Fade stake menu to black; leave BLDY=16 for play-field load. */
+void Casino_FadeOutOverlay(void) {
+  int i;
+
+  gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
+  for (i = 0; i <= 16; i++) {
+    gBLDY = i;
+    LoadBlendingRegs();
+    WaitForVBlank();
+  }
+  Casino_ClearOam();
+  LoadOam();
+  gInputRepeatTimer = 0;
+}
+
 void Casino_BeginPlayField(void) {
+  /* Stay fully darkened from FadeOutOverlay — no DisableDisplay flash. */
+  sPlayFieldKeepDark = TRUE;
   InitButtonMaps();
+  gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
+  gBLDY = 16;
+  LoadBlendingRegs();
   DebugMenuLoadStartMenuGraphics();
   SetVBlankCallback(CasinoPlayVBlank);
   CpuCopy16(gUnk_8079424, &gPaletteBuffer[0xE0], 32);
@@ -196,22 +244,23 @@ void Casino_BeginPlayField(void) {
   LoadOam();
   DebugMenuLatchButtons();
   Casino_BlankTextRows();
-  /* Start fully darkened; caller draws first frame then Casino_FadeInPlayField. */
   gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
   gBLDY = 16;
   LoadBlendingRegs();
-  CasinoPlayVBlank();
+  WaitForVBlank(); /* one black frame so WIN0/play-field regs settle */
 }
 
 void Casino_FadeInPlayField(void) {
   int i;
 
   for (i = 16; i >= 0; i--) {
-    WaitForVBlank(); /* PlayVBlank restores menu blend — override for fade step */
     gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
     gBLDY = i;
     LoadBlendingRegs();
+    WaitForVBlank();
   }
+  sPlayFieldKeepDark = FALSE;
+  /* Restore start-menu BG3 darken used by play field. */
   gBLDCNT = 0xE8;
   gBLDY = 8;
   LoadBlendingRegs();
@@ -220,6 +269,7 @@ void Casino_FadeInPlayField(void) {
 void Casino_EndOverlay(void) {
   Casino_ClearOam();
   LoadOam();
+  sPlayFieldKeepDark = FALSE;
   gBLDCNT = 0;
   gBLDY = 0;
   LoadBlendingRegs();
@@ -365,6 +415,90 @@ void Casino_WriteSideText(u8 rightSide, u8 row, const u8 *ascii, u8 paletteNum) 
   palMask = (paletteNum & 0xF) << 12;
   for (block = 0; block < CASINO_RIGHT_TEXT_BLOCKS; block++) {
     u8 col = CASINO_RIGHT_MAP_COL + block * 2;
+    u16 tile = base + block * 4;
+    if (col + 1 >= 30)
+      break;
+    gBgVram.sbb1F[mapRow][col] = palMask | ((tile + 0) & 0x3FF);
+    gBgVram.sbb1F[mapRow][col + 1] = palMask | ((tile + 1) & 0x3FF);
+    gBgVram.sbb1F[mapRow + 1][col] = palMask | ((tile + 2) & 0x3FF);
+    gBgVram.sbb1F[mapRow + 1][col + 1] = palMask | ((tile + 3) & 0x3FF);
+  }
+}
+
+/* Glyphs in right-HUD row 1 (0x20); map centered on 30 cols — avoids left-text overlap. */
+#define CASINO_CENTER_GLYPH_ROW 1
+#define CASINO_CENTER_MAP_COLS (CASINO_RIGHT_TEXT_BLOCKS * 2)
+
+static void Casino_UnmapRightHudRow(u8 row) {
+  u8 mapRow = row * 2;
+  u8 col;
+
+  for (col = CASINO_RIGHT_MAP_COL; col < 30; col++) {
+    gBgVram.sbb1F[mapRow][col] = gUnk_80798F4[mapRow][col];
+    gBgVram.sbb1F[mapRow + 1][col] = gUnk_80798F4[mapRow + 1][col];
+  }
+}
+
+void Casino_WriteCenteredText(u8 row, const u8 *ascii, u8 paletteNum) {
+  u8 buf[2 + CASINO_RIGHT_TEXT_CHARS + 1];
+  u8 padded[CASINO_RIGHT_TEXT_CHARS + 1];
+  u8 i;
+  u8 len = 0;
+  u8 pad;
+  const u8 *text;
+  u8 *dest;
+  u8 block;
+  u16 base;
+  u8 mapRow;
+  u8 mapCol0;
+  u16 palMask;
+
+  mapCol0 = (u8)((30 - CASINO_CENTER_MAP_COLS) / 2);
+  mapRow = row * 2;
+
+  if (ascii == NULL) {
+    for (block = 0; block < CASINO_RIGHT_TEXT_BLOCKS; block++) {
+      u8 col = mapCol0 + block * 2;
+      if (col + 1 >= 30)
+        break;
+      gBgVram.sbb1F[mapRow][col] = gUnk_80798F4[mapRow][col];
+      gBgVram.sbb1F[mapRow][col + 1] = gUnk_80798F4[mapRow][col + 1];
+      gBgVram.sbb1F[mapRow + 1][col] = gUnk_80798F4[mapRow + 1][col];
+      gBgVram.sbb1F[mapRow + 1][col + 1] = gUnk_80798F4[mapRow + 1][col + 1];
+    }
+    return;
+  }
+
+  while (ascii[len] != '\0' && len < CASINO_RIGHT_TEXT_CHARS)
+    len++;
+  pad = (u8)((CASINO_RIGHT_TEXT_CHARS - len) / 2);
+  for (i = 0; i < pad; i++)
+    padded[i] = ' ';
+  for (i = 0; i < len; i++)
+    padded[pad + i] = ascii[i];
+  for (i = pad + len; i < CASINO_RIGHT_TEXT_CHARS; i++)
+    padded[i] = ' ';
+  padded[CASINO_RIGHT_TEXT_CHARS] = '\0';
+
+  buf[0] = '$';
+  buf[1] = '0';
+  for (i = 0; i < CASINO_RIGHT_TEXT_CHARS; i++)
+    buf[2 + i] = padded[i];
+  buf[2 + CASINO_RIGHT_TEXT_CHARS] = '\0';
+
+  text = GetCurrentLanguageString(buf);
+  dest = (u8 *)gBgVram.sbb18 + CASINO_RIGHT_TEXT_OFFSET +
+         CASINO_CENTER_GLYPH_ROW * (CASINO_RIGHT_TEXT_BLOCKS * 4 * 32);
+  for (i = 0; i < CASINO_RIGHT_TEXT_CHARS; i++)
+    sub_8020968(dest + (i / 2 * 4 + (i & 1)) * 32, CasinoReadGlyphArg(&text), 0x901);
+
+  /* Glyph RAM is shared with right-HUD row 1 — unmap that so text only shows centered. */
+  Casino_UnmapRightHudRow(CASINO_CENTER_GLYPH_ROW);
+
+  base = CASINO_RIGHT_TEXT_TILE + CASINO_CENTER_GLYPH_ROW * (CASINO_RIGHT_TEXT_BLOCKS * 4);
+  palMask = (paletteNum & 0xF) << 12;
+  for (block = 0; block < CASINO_RIGHT_TEXT_BLOCKS; block++) {
+    u8 col = mapCol0 + block * 2;
     u16 tile = base + block * 4;
     if (col + 1 >= 30)
       break;
@@ -567,7 +701,7 @@ u8 Casino_PromptStake(struct CasinoStake *out) {
         RemoveMoney(amount);
         out->kind = CASINO_STAKE_DOMINO;
         out->dominoAmount = amount;
-        Casino_EndOverlay();
+        Casino_FadeOutOverlay();
         return TRUE;
       }
       /* Ante: open trunk; B/cancel returns to this menu. */
@@ -601,16 +735,18 @@ static u16 PickPrize(u16 anteCardId) {
   return pool[RandRangeU16(0, count - 1)];
 }
 
-void Casino_ResolveStake(const struct CasinoStake *stake, enum CasinoOutcome outcome) {
+u16 Casino_ResolveStake(const struct CasinoStake *stake, enum CasinoOutcome outcome) {
+  u16 prize = CARD_NONE;
+
   if (stake == NULL || stake->kind == CASINO_STAKE_NONE)
-    return;
+    return CARD_NONE;
 
   if (stake->kind == CASINO_STAKE_DOMINO) {
     if (outcome == CASINO_OUTCOME_WIN)
       AddMoney((unsigned long long)stake->dominoAmount * 2);
     else if (outcome == CASINO_OUTCOME_PUSH)
       AddMoney(stake->dominoAmount);
-    return;
+    return CARD_NONE;
   }
 
   if (stake->kind == CASINO_STAKE_ANTE) {
@@ -618,9 +754,127 @@ void Casino_ResolveStake(const struct CasinoStake *stake, enum CasinoOutcome out
       if (stake->anteCardId != CARD_NONE)
         RemoveCardQtyFromTrunk(stake->anteCardId, 1);
     } else if (outcome == CASINO_OUTCOME_WIN) {
-      u16 prize = PickPrize(stake->anteCardId);
+      prize = PickPrize(stake->anteCardId);
       if (prize != CARD_NONE)
         AddCardQtyToTrunk(prize, 1);
     }
+  }
+  return prize;
+}
+
+void Casino_QueueOverworldResult(const struct CasinoStake *stake, enum CasinoOutcome outcome,
+                                 u16 prizeCardId) {
+  gCasinoOwResult.pending = FALSE;
+  if (stake == NULL || stake->kind == CASINO_STAKE_NONE)
+    return;
+  if (outcome != CASINO_OUTCOME_WIN && outcome != CASINO_OUTCOME_LOSE)
+    return;
+
+  gCasinoOwResult.kind = (u8)stake->kind;
+  gCasinoOwResult.outcome = (u8)outcome;
+  gCasinoOwResult.dominoAmount = stake->dominoAmount;
+  if (stake->kind == CASINO_STAKE_ANTE) {
+    if (outcome == CASINO_OUTCOME_WIN)
+      gCasinoOwResult.cardId = prizeCardId;
+    else
+      gCasinoOwResult.cardId = stake->anteCardId;
+    if (gCasinoOwResult.cardId == CARD_NONE)
+      return;
+  } else {
+    gCasinoOwResult.cardId = CARD_NONE;
+  }
+  gCasinoOwResult.pending = TRUE;
+}
+
+/* Overworld script digits are Shift-JIS style pairs (charmap '0'=82 4F …). */
+static void Casino_AppendU32(u8 *buf, u8 *idx, u8 max, u32 n) {
+  u8 digits[12];
+  u8 t = 0;
+
+  if (*idx + 2 > max)
+    return;
+  if (n == 0) {
+    buf[(*idx)++] = 0x82;
+    buf[(*idx)++] = 0x4F;
+    return;
+  }
+  while (n > 0 && t < 12) {
+    digits[t++] = (u8)(n % 10);
+    n /= 10;
+  }
+  while (t > 0 && *idx + 2 <= max) {
+    u8 d = digits[--t];
+    buf[(*idx)++] = 0x82;
+    buf[(*idx)++] = (u8)(0x4F + d);
+  }
+}
+
+static void Casino_BuildOwResultText(void) {
+  u8 i = 0;
+  const u8 *prefix;
+  const u8 *name;
+
+  if (gCasinoOwResult.outcome == CASINO_OUTCOME_WIN)
+    prefix = sOwWonPrefix;
+  else
+    prefix = sOwLostPrefix;
+
+  while (*prefix != '\0' && i < 90)
+    gCasinoOwResultText[i++] = *prefix++;
+
+  if (gCasinoOwResult.kind == CASINO_STAKE_DOMINO) {
+    Casino_AppendU32(gCasinoOwResultText, &i, 90, gCasinoOwResult.dominoAmount);
+    prefix = sOwDominoSuffix;
+    while (*prefix != '\0' && i < 92)
+      gCasinoOwResultText[i++] = *prefix++;
+    /* #1 = wait for A/B/R before closing (required or text vanishes instantly). */
+    if (i + 2 < 95) {
+      gCasinoOwResultText[i++] = '#';
+      gCasinoOwResultText[i++] = '1';
+    }
+    gCasinoOwResultText[i] = '\0';
+    return;
+  }
+
+  /* Ante: Won#0Card Name#1 / Lost#0Card Name#1 (shiny-zone style). */
+  gCasinoOwResultText[i++] = '#';
+  gCasinoOwResultText[i++] = '0';
+  SetCardInfo(gCasinoOwResult.cardId);
+  name = GetCurrentLanguageString(gCardInfo.name);
+  while (name != NULL && *name != '\0' && *name != '#' && i < 92)
+    gCasinoOwResultText[i++] = *name++;
+  gCasinoOwResultText[i++] = '#';
+  gCasinoOwResultText[i++] = '1';
+  gCasinoOwResultText[i] = '\0';
+}
+
+void Casino_PresentOverworldResult(void) {
+  struct Script script;
+
+  if (gCasinoOwResult.pending != TRUE)
+    return;
+  gCasinoOwResult.pending = FALSE;
+
+  Casino_BuildOwResultText();
+  script.start = gCasinoOwResultText;
+  script.unk4 = (struct Script *)&sOwResultEndScript;
+  script.unk8 = (struct Script *)&sOwResultEndScript;
+
+  PlayMusic(SFX_DIALOGUE);
+  InitiateScript(&script);
+
+  if (gCasinoOwResult.kind == CASINO_STAKE_ANTE && gCasinoOwResult.outcome == CASINO_OUTCOME_WIN &&
+      gCasinoOwResult.cardId != CARD_NONE) {
+    LZ77UnCompWram(g82AD2D0, gVramBuffer + 0xD800);
+    sub_805339C();
+    REG_WINOUT = 0x3D3E;
+    OverworldSetRegDispcnt();
+    REG_BLDCNT = 0;
+    sub_8053404();
+    SetCardInfo(gCasinoOwResult.cardId);
+    ShowCardDetailView();
+    OverworldLoadGraphics();
+    LZ77UnCompWram(g82AD2D0, gVramBuffer + 0xD800);
+    sub_8053404();
   }
 }

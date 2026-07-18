@@ -14,10 +14,13 @@
 #define BJ_PLAYER_Y 100
 /* Hit/Stand: +32px from row 2 → row 4/5. Cursor: +4 then +32 on Y, +4 on X. */
 #define BJ_HIT_ROW 4
+/* Screen center-ish between hands; row 4 = y64 (16px above old row 5). */
+#define BJ_RESULT_ROW 4
 #define BJ_CURSOR_X 4
 #define BJ_CURSOR_Y_BASE 64 /* (row4*16 - 4) + 4 */
 #define BJ_RIGHT_CHARS 12
 #define BJ_DEALER_DRAW_DELAY 60
+#define BJ_RESULT_HOLD 60
 /* Fixed face slots: dealer 1..6, player 7..12 — no remap when dealer draws. */
 #define BJ_DEALER_FACE(i) ((u8)(CASINO_MINI_FACE0 + (i)))
 #define BJ_PLAYER_FACE(i) ((u8)(CASINO_MINI_FACE0 + BJ_VISIBLE + (i)))
@@ -27,6 +30,9 @@ static const u8 sLabelDealer[] APPEND_RODATA = "Dealer";
 /* Leading spaces: clear 16px cursor (at x=4) + extra nudge right. */
 static const u8 sHit[] APPEND_RODATA = "   Hit";
 static const u8 sStand[] APPEND_RODATA = "   Stand";
+static const u8 sResultPlayerWins[] APPEND_RODATA = "Player wins";
+static const u8 sResultDealerWins[] APPEND_RODATA = "Dealer wins";
+static const u8 sResultDraw[] APPEND_RODATA = "Draw";
 
 struct BjHand {
   u16 cardIds[BJ_MAX_CARDS];
@@ -159,7 +165,7 @@ static void DrawBjCards(struct BjFaceCache *cache, const struct BjHand *player,
 }
 
 static void DrawBjHud(const struct BjHand *player, const struct BjHand *dealer, u8 revealDealer,
-                      u8 cursor, u8 playerTurn) {
+                      u8 cursor, u8 playerTurn, const u8 *resultMsg) {
   u8 left[DEBUG_SM_CHARS + 1];
   u8 right[BJ_RIGHT_CHARS + 1];
   u8 pTotal = Casino_BlackjackHandTotal(player->levels, player->count);
@@ -182,29 +188,30 @@ static void DrawBjHud(const struct BjHand *player, const struct BjHand *dealer, 
   Casino_WriteSideText(TRUE, 0, right, rightPal);
   Casino_WriteSideText(FALSE, 1, NULL, CASINO_TEXT_PAL_WHITE);
   Casino_WriteSideText(TRUE, 1, NULL, CASINO_TEXT_PAL_WHITE);
-  /* Clear old Hit/Stand rows (2–3) after +32px shift to rows 4–5. */
   Casino_WriteSideText(FALSE, 2, NULL, CASINO_TEXT_PAL_WHITE);
-  Casino_WriteSideText(FALSE, 3, NULL, CASINO_TEXT_PAL_WHITE);
   Casino_WriteSideText(TRUE, 2, NULL, CASINO_TEXT_PAL_WHITE);
+  Casino_WriteSideText(FALSE, 3, NULL, CASINO_TEXT_PAL_WHITE);
   Casino_WriteSideText(TRUE, 3, NULL, CASINO_TEXT_PAL_WHITE);
 
-  if (playerTurn) {
+  if (playerTurn && resultMsg == NULL) {
     Casino_WriteSideText(FALSE, BJ_HIT_ROW, sHit, CASINO_TEXT_PAL_WHITE);
     Casino_WriteSideText(FALSE, BJ_HIT_ROW + 1, sStand, CASINO_TEXT_PAL_WHITE);
   } else {
     Casino_WriteSideText(FALSE, BJ_HIT_ROW, NULL, CASINO_TEXT_PAL_WHITE);
     Casino_WriteSideText(FALSE, BJ_HIT_ROW + 1, NULL, CASINO_TEXT_PAL_WHITE);
   }
-  /*
-   * Right-HUD tiles start at 0x08, 24 tiles/row. Row 5 would use 0x80..0x97 and
-   * wipe left text at 0x81 (You). Only blank right rows that stay below 0x81.
-   */
   Casino_WriteSideText(TRUE, BJ_HIT_ROW, NULL, CASINO_TEXT_PAL_WHITE);
+
+  if (resultMsg != NULL)
+    Casino_WriteCenteredText(BJ_RESULT_ROW, resultMsg, CASINO_TEXT_PAL_WHITE);
+  else
+    Casino_WriteCenteredText(BJ_RESULT_ROW, NULL, CASINO_TEXT_PAL_WHITE);
+
   Casino_UploadHudText();
   LoadPalettes();
 
   Casino_ReloadCursorPalette();
-  if (playerTurn)
+  if (playerTurn && resultMsg == NULL)
     Casino_SetCursorOam(BJ_CURSOR_X, (u8)(BJ_CURSOR_Y_BASE + cursor * 16), FALSE);
   else
     Casino_SetCursorOam(0, 0, TRUE);
@@ -213,9 +220,24 @@ static void DrawBjHud(const struct BjHand *player, const struct BjHand *dealer, 
 
 static void DrawBjUi(struct BjFaceCache *cache, const struct BjHand *player,
                      const struct BjHand *dealer, u8 revealDealer, u8 cursor, u8 playerTurn) {
-  /* Cards first (OBJ pal), then HUD so You/Dealer survive FlushMiniCards. */
   DrawBjCards(cache, player, dealer, revealDealer);
-  DrawBjHud(player, dealer, revealDealer, cursor, playerTurn);
+  DrawBjHud(player, dealer, revealDealer, cursor, playerTurn, NULL);
+}
+
+static void ShowBjResult(struct BjFaceCache *cache, const struct BjHand *player,
+                         const struct BjHand *dealer, enum CasinoOutcome outcome) {
+  const u8 *msg;
+
+  if (outcome == CASINO_OUTCOME_WIN)
+    msg = sResultPlayerWins;
+  else if (outcome == CASINO_OUTCOME_LOSE)
+    msg = sResultDealerWins;
+  else
+    msg = sResultDraw;
+
+  DrawBjCards(cache, player, dealer, TRUE);
+  DrawBjHud(player, dealer, TRUE, 0, FALSE, msg);
+  DelayFrames(BJ_RESULT_HOLD);
 }
 
 void Casino_BlackjackMain(void) {
@@ -306,6 +328,10 @@ void Casino_BlackjackMain(void) {
     WaitForVBlank();
   }
 
+  ShowBjResult(&faces, &player, &dealer, outcome);
   Casino_EndOverlay();
-  Casino_ResolveStake(&stake, outcome);
+  {
+    u16 prize = Casino_ResolveStake(&stake, outcome);
+    Casino_QueueOverworldResult(&stake, outcome, prize);
+  }
 }

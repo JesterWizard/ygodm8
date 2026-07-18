@@ -445,5 +445,8 @@ void Casino_ConcentrationMain(void) {
   else
     outcome = CASINO_OUTCOME_PUSH;
 
-  Casino_ResolveStake(&stake, outcome);
+  {
+    u16 prize = Casino_ResolveStake(&stake, outcome);
+    Casino_QueueOverworldResult(&stake, outcome, prize);
+  }
 }

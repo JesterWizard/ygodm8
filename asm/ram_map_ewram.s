@@ -614,3 +614,7 @@ _kernel_malloc_ewram gCardDetailNavIndex, 1
 @ 0x400 holds full TCG text (~700 chars) plus reflow newlines across ≤9 pages.
 _kernel_malloc_ewram_array gDescProseBuf, 0x400
 _kernel_malloc_ewram_array gDescReflowBuf, 0x400
+
+@ Domino casino: overworld win/lose banner (APPEND_DATA is ROM — writes must be EWRAM).
+_kernel_malloc_ewram gCasinoOwResult, 12
+_kernel_malloc_ewram_array gCasinoOwResultText, 96
