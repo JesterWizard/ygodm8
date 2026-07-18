@@ -1027,11 +1027,18 @@ def wrap_activation_page(text: str) -> str:
 
 
 DESC_ROW_WIDTHS = (12, 14, 14, 14, 12)
+DESC_PAGE_CHARS = sum(DESC_ROW_WIDTHS)  # 66; Recover treats longer pages as raw prose
 DESC_PAGES_MIN = 2
-DESC_PAGES_MAX = 5
+DESC_PAGES_MAX = 9  # runtime ^2..^9
+DESC_PROSE_MAX = 0x400 - 1  # gDescProseBuf
+DESC_DISPLAY_PAGES_MAX = 9  # runtime DESC_MAX_PAGES (Emerald/Small reflow)
 
 
 def wrap_description_page(text: str) -> list[str]:
+    # Raw prose page (longer than one large layout) — emit as-is for Recover.
+    if len(text) > DESC_PAGE_CHARS:
+        return [text]
+
     words = text.split()
     lines = []
     word_index = 0
@@ -1071,34 +1078,28 @@ def wrap_description_page(text: str) -> list[str]:
     return lines
 
 
-def paginate_description_text(text: str) -> list[str]:
-    """Split prose into 2–5 vanilla detail pages (row widths 12/14/14/14/12)."""
-    words = text.split()
-    if not words:
-        return ["", ""]
-
+def _paginate_vanilla_pages(words: list[str], max_pages: int) -> list[str] | None:
+    """Pack into large-layout pages; None if it needs more than max_pages."""
     pages: list[str] = []
     word_index = 0
-    while word_index < len(words):
-        if len(pages) >= DESC_PAGES_MAX:
-            raise SystemExit(
-                f"Description text needs more than {DESC_PAGES_MAX} pages: "
-                f"{' '.join(words[word_index:])}"
-            )
+    work = list(words)
+    while word_index < len(work):
+        if len(pages) >= max_pages:
+            return None
         page_words: list[str] = []
         for width in DESC_ROW_WIDTHS:
-            if word_index >= len(words):
+            if word_index >= len(work):
                 break
             line_words: list[str] = []
             line_len = 0
-            while word_index < len(words):
-                word = words[word_index]
+            while word_index < len(work):
+                word = work[word_index]
                 word_len = len(word)
                 if word_len > width:
                     if width <= 1:
-                        raise SystemExit(f"Description word does not fit in width {width}: {word}")
+                        return None
                     chunk = word[: width - 1] + "-"
-                    words[word_index] = word[width - 1 :]
+                    work[word_index] = word[width - 1 :]
                     word = chunk
                     word_len = len(word)
                 next_len = word_len if not line_words else line_len + 1 + word_len
@@ -1108,12 +1109,38 @@ def paginate_description_text(text: str) -> list[str]:
                 line_len = next_len
                 word_index += 1
             if not line_words:
-                raise SystemExit(f"Could not fit description text into width {width}.")
+                return None
             page_words.extend(line_words)
         pages.append(" ".join(page_words))
+    return pages
+
+
+def paginate_description_text(text: str) -> list[str]:
+    """Split prose into 2–9 detail pages for ROM storage.
+
+    Fits the vanilla 12/14 row model when possible. Longer TCG text becomes a
+    raw prose page (>66 chars) that RecoverProse joins for Emerald/Small reflow.
+    """
+    words = text.split()
+    if not words:
+        return ["", ""]
+
+    prose = " ".join(words)
+    if len(prose) > DESC_PROSE_MAX:
+        raise SystemExit(
+            f"Description text exceeds prose buffer ({DESC_PROSE_MAX} chars): "
+            f"{len(prose)} chars"
+        )
+
+    pages = _paginate_vanilla_pages(words, DESC_PAGES_MAX)
+    if pages is None:
+        # Raw prose: one long page (+ empty pad). Recover detects len > 66.
+        pages = [prose, ""]
 
     while len(pages) < DESC_PAGES_MIN:
         pages.append("")
+    if len(pages) > DESC_PAGES_MAX:
+        raise SystemExit(f"Description text needs more than {DESC_PAGES_MAX} pages")
     return pages
 
 

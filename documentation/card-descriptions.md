@@ -45,7 +45,7 @@ What happens automatically during build:
 
 - `make` runs `python3 tools/add_card_art.py`
 - the script reads the manifest description prose
-- it auto-paginates into the current in-game layout model (2–5 pages)
+- it auto-paginates into the current in-game layout model (2–9 storage pages; Emerald/Small reflow up to 9 display pages)
 - it writes the runtime byte data into `src_custom/card_description_data_generated.inc`
 - the generated include provides the correct symbol at link time
 
@@ -86,7 +86,7 @@ Each emitted page is 5 rows with these widths:
 | 4 | 14 |
 | 5 | 12 |
 
-Write the full effect text as one string. The generator fills pages up to the 5-page / ~330-character ceiling. Short text that fits on one screen still emits two pages (empty second page) because the runtime format requires at least `^2`.
+Write the full TCG/OCG effect text as one string. Prefer the real printed text — with `CARD_DESC_FONT_EMERALD_NARROW` / `SMALL` the runtime reflows into up to 9 display pages. Short text that fits on one screen still emits two storage pages (empty second page) because the runtime format requires at least `^2`. Texts that exceed the large-layout pack use a raw prose storage page (still recovered for Emerald/Small). Prose hard ceiling is the `gDescProseBuf` size (~1023 chars).
 
 ### Popup / activation text (in-duel popup box)
 
@@ -115,10 +115,13 @@ These tokens are interpreted by the duel textbox renderer:
 
 Important constraints:
 
-- Manifest `pages` is one prose string; the generator emits 2 to 5 runtime pages.
+- Manifest `pages` is one prose string; the generator emits 2 to 9 runtime storage pages.
 - Wrapping is word-based. The generator will not split a word across rows (except hyphenating words longer than a row).
 - If any word is longer than its row width (max 14 in middle rows) and cannot be hyphenated, generation fails.
-- If the prose needs more than 5 pages, generation fails — shorten the wording.
+- Emerald/Small reflow can show up to 9 display pages for full TCG text.
+- The generator supports 2-page through 9-page runtime storage descriptions (auto-paginated from one prose string).
+- If the prose exceeds the EWRAM prose buffer (~1023 chars), generation fails — shorten the wording.
+- Refresh from YGOProDeck: `python3 tools/refresh_card_descriptions.py` (lists overflows).
 - The generated include is runtime data. It is not meant to be edited manually.
 
 Practical advice for newcomers:
@@ -156,6 +159,6 @@ Build behavior:
 ## Limitations & Bugs
 
 - The current row widths are based on observed in-game behavior, not a fully reverse-engineered format spec.
-- Description fit is currently strict. Text that needs more than 5 vanilla pages must be shortened manually.
-- The generator supports 2-page through 5-page runtime descriptions (auto-paginated from one prose string).
+- Emerald/Small reflow can show up to 9 display pages for full TCG text.
+- The generator supports 2-page through 9-page runtime storage descriptions (auto-paginated from one prose string).
 - If the in-game renderer turns out to use different widths for some cards or languages, the generator will need to be updated.

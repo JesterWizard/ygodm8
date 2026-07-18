@@ -80,8 +80,8 @@ extern u8 gCardDetailNavIndex;
 #define DESC_ROW0 10
 #define DESC_ROWS_LARGE 5
 #define DESC_ROWS_SMALL 10
-#define DESC_PROSE_BUF_SIZE 0x280
-#define DESC_REFLOW_BUF_SIZE 0x300
+#define DESC_PROSE_BUF_SIZE 0x400
+#define DESC_REFLOW_BUF_SIZE 0x400
 #define DESC_MAX_PAGES 9
 
 extern u8 gDescProseBuf[];
@@ -120,20 +120,47 @@ static void ApplySmallFontDescriptionTilemap(void) {
   }
 }
 
+/* Append collapsing whitespace into out. */
+static void AppendProseChunk(const u8 *src, u16 srcLen, u8 *out, u16 outCap, u16 *outLen) {
+  u16 i;
+
+  for (i = 0; i < srcLen && *outLen < outCap - 1; i++) {
+    u8 c = src[i];
+    if (c == ' ' || c == '\n') {
+      if (*outLen == 0 || out[*outLen - 1] == ' ')
+        continue;
+      out[(*outLen)++] = ' ';
+    } else {
+      out[(*outLen)++] = c;
+    }
+  }
+}
+
 /* Strip large-layout row padding (12/14/14/14/12) from each page and join.
- * Leading spaces on inset rows are dropped so reflowed fonts stay flush-left. */
+ * Leading spaces on inset rows are dropped so reflowed fonts stay flush-left.
+ * Pages longer than one large layout (66 chars) are treated as raw prose so
+ * full TCG text can ride along for Emerald/Small reflow. */
 static void RecoverProseFromLargePages(const u8 *pages[], u8 pageCount, u8 *out, u16 outCap) {
   u16 outLen = 0;
   u8 p;
+  u16 largePageChars = 0;
+  u8 r;
+
+  for (r = 0; r < DESC_ROWS_LARGE; r++)
+    largePageChars = (u16)(largePageChars + sLargeRowWidths[r]);
 
   for (p = 0; p < pageCount; p++) {
     const u8 *text = pages[p];
     u16 pageLen = 0;
     u16 pos = 0;
-    u8 r;
 
     while (text[pageLen] != '\0' && text[pageLen] != '^')
       pageLen++;
+
+    if (pageLen > largePageChars) {
+      AppendProseChunk(text, pageLen, out, outCap, &outLen);
+      continue;
+    }
 
     for (r = 0; r < DESC_ROWS_LARGE && pos < pageLen; r++) {
       u8 width = sLargeRowWidths[r];
@@ -159,6 +186,8 @@ static void RecoverProseFromLargePages(const u8 *pages[], u8 pageCount, u8 *out,
     }
   }
 
+  if (outLen > 0 && out[outLen - 1] == ' ')
+    outLen--;
   out[outLen < outCap ? outLen : (u16)(outCap - 1)] = '\0';
 }
 

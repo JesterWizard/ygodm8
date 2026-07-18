@@ -606,6 +606,7 @@ _kernel_malloc_ewram gSummonAnimPendingGraphicId, 1
 _kernel_malloc_ewram gCardDetailNavActive, 1
 _kernel_malloc_ewram gCardDetailNavIndex, 1
 
-@ Scratch for narrow-font description reflow (RecoverProse / NarrowFontWrapProse).
-_kernel_malloc_ewram_array gDescProseBuf, 0x280
-_kernel_malloc_ewram_array gDescReflowBuf, 0x300
+@ Scratch for narrow/small description reflow (RecoverProse / NarrowFontWrapProse).
+@ 0x400 holds full TCG text (~700 chars) plus reflow newlines across ≤9 pages.
+_kernel_malloc_ewram_array gDescProseBuf, 0x400
+_kernel_malloc_ewram_array gDescReflowBuf, 0x400

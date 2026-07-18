@@ -1,17 +1,16 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Single-string card descriptions (auto-paginate)
+**Last worked on:** 2026-07-18 — Full TCG descriptions for remaining long cards
 
 **Files touched:**
 - `tools/card_data_manifest.json`
 - `tools/add_card_art.py`
-- `tools/card_manifest.py`
-- `tools/add_custom_card.py`
-- `tools/fix_descriptions.py`
+- `tools/refresh_card_descriptions.py`
+- `asm/ram_map_ewram.s`
+- `src_custom/code_801EF30_hooks.c`
 - `documentation/card-descriptions.md`
-- `tests/host/test_cards_manifest.py`
 
-**Outcome:** make exits 0. `description.pages` is one prose string; generator paginates to 2–5 pages. 1025 descriptions migrated.
+**Outcome:** make exits 0. Bumped `gDescProseBuf`/`gDescReflowBuf` to 0x400. Fit check allows 9 display pages. Former 33 “overflow” cards now have full TCG text.
 
 **Open / next:**
-- Implement stub effects across recent CARD_PROGRESS batches
+- Anime/custom cards with no API match still have hand-written text

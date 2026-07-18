@@ -144,7 +144,7 @@ class CardManifestTests(unittest.TestCase):
         )
         pages = card_art.paginate_description_text(validated["description"]["pages"])
         self.assertGreaterEqual(len(pages), 2)
-        self.assertLessEqual(len(pages), 5)
+        self.assertLessEqual(len(pages), 9)
 
     def test_manifest_dump_uses_canonical_key_order_and_inline_password(self):
         manifest = validate_manifest(json.loads(FIXTURE.read_text()))
