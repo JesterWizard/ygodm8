@@ -57,12 +57,16 @@ void LoadObjVRAM(void);
 void LoadPalettes(void);
 void LoadOam(void);
 void LoadBgOffsets(void);
+void LoadBlendingRegs(void);
 void SetCardInfo(u16 id);
 void DisableDisplay(void);
 void SetVBlankCallback(void (*)(void));
 u16 RandRangeU16(u16 min, u16 max);
 unsigned char GetTrunkCardQty(unsigned short);
 void sub_80411EC(struct OamData *oam);
+
+extern u16 gBLDCNT;
+extern u16 gBLDY;
 
 extern const u16 gCasinoPrizePoolPrimary[];
 extern const u16 gCasinoPrizePoolSecondary[];
@@ -158,6 +162,10 @@ static void CasinoPlayVBlank(void) {
   LoadBgOffsets();
   REG_WIN0H = 0x00F0;
   REG_WIN0V = 0x00A0;
+  /* Keep start-menu BG3 darken (fade-in must not leave blend off). */
+  gBLDCNT = 0xE8;
+  gBLDY = 8;
+  LoadBlendingRegs();
 }
 
 void Casino_BeginOverlay(void) {
@@ -188,12 +196,33 @@ void Casino_BeginPlayField(void) {
   LoadOam();
   DebugMenuLatchButtons();
   Casino_BlankTextRows();
+  /* Start fully darkened; caller draws first frame then Casino_FadeInPlayField. */
+  gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
+  gBLDY = 16;
+  LoadBlendingRegs();
   CasinoPlayVBlank();
+}
+
+void Casino_FadeInPlayField(void) {
+  int i;
+
+  for (i = 16; i >= 0; i--) {
+    WaitForVBlank(); /* PlayVBlank restores menu blend — override for fade step */
+    gBLDCNT = BLDCNT_TGT1_ALL | BLDCNT_EFFECT_DARKEN;
+    gBLDY = i;
+    LoadBlendingRegs();
+  }
+  gBLDCNT = 0xE8;
+  gBLDY = 8;
+  LoadBlendingRegs();
 }
 
 void Casino_EndOverlay(void) {
   Casino_ClearOam();
   LoadOam();
+  gBLDCNT = 0;
+  gBLDY = 0;
+  LoadBlendingRegs();
   gInputRepeatTimer = 0;
   DisableDisplay();
 }
@@ -250,7 +279,8 @@ static void Casino_RestoreBg3Map(void) {
 static void Casino_ClearRightHud(void) {
   u8 row, col;
 
-  /* Wipe right-side glyphs only (tiles 0x08.. — must not touch sbb1E at 0x180+). */
+  /* Wipe right-side glyphs only (tiles 0x08..; 5 rows end at 0x7F — must not
+   * reach left text at 0x81 or sbb1E at 0x180+). */
   CpuFill16(0, (u8 *)gBgVram.sbb18 + CASINO_RIGHT_TEXT_OFFSET,
             DEBUG_SM_ROWS * CASINO_RIGHT_TEXT_BLOCKS * 4 * 32);
   for (row = 0; row < DEBUG_SM_BG1_ROWS; row++) {
@@ -264,7 +294,7 @@ static void Casino_UpdateMenuCursor(u8 screenRow) {
   u32 *oam = (u32 *)&gOamBuffer[0];
 
   /* Pre-nudge start-menu cursor: vanilla X (0x4040), Y tracks DEBUG_SM_BG2VOFS. */
-  oam[0] = (screenRow << 4) + DEBUG_SM_CURSOR_Y | 0x40400000;
+  oam[0] = (screenRow << 4) + DEBUG_SM_CURSOR_Y + 4 | 0x40400000;
   oam[1] = 0x800;
   Casino_ReloadCursorPalette();
 }
@@ -421,22 +451,44 @@ static void Casino_DrawStakeMenu(u8 cursor) {
   LoadOam();
 }
 
-void Casino_LoadFaceDownMini(u16 tileNum) {
-  CpuFill16(0, gBgVram.cbb4 + tileNum * 32, CASINO_MINI_TILE_BYTES);
-  CopyFaceDownCardTiles(gBgVram.cbb4 + tileNum * 32);
+/* Clear only the 4×256 used rows — full 0x1000 fill wipes the interleaved sibling. */
+static void Casino_ClearMiniSlot(u8 *dest) {
+  u8 i;
+
+  for (i = 0; i < 4; i++)
+    CpuFill16(0, dest + i * 0x400, 0x100);
+}
+
+void Casino_ComposeFaceDownMini(u16 tileNum) {
+  u8 *dest = gBgVram.cbb4 + tileNum * 32;
+
+  Casino_ClearMiniSlot(dest);
+  CopyFaceDownCardTiles(dest);
+}
+
+void Casino_ComposeFaceUpMini(u16 tileNum, u16 cardId) {
+  u8 *dest = gBgVram.cbb4 + tileNum * 32;
+
+  Casino_ClearMiniSlot(dest);
+  sub_80573D0(dest, cardId);
+}
+
+void Casino_FlushMiniCards(void) {
   CopyMiniCardPalette(gPaletteBuffer + 256);
   Casino_ReloadCursorPalette();
+  Casino_SetHudGoldColor();
   LoadObjVRAM();
   LoadPalettes();
 }
 
+void Casino_LoadFaceDownMini(u16 tileNum) {
+  Casino_ComposeFaceDownMini(tileNum);
+  Casino_FlushMiniCards();
+}
+
 void Casino_LoadFaceUpMini(u16 tileNum, u16 cardId) {
-  CpuFill16(0, gBgVram.cbb4 + tileNum * 32, CASINO_MINI_TILE_BYTES);
-  sub_80573D0(gBgVram.cbb4 + tileNum * 32, cardId);
-  CopyMiniCardPalette(gPaletteBuffer + 256);
-  Casino_ReloadCursorPalette();
-  LoadObjVRAM();
-  LoadPalettes();
+  Casino_ComposeFaceUpMini(tileNum, cardId);
+  Casino_FlushMiniCards();
 }
 
 void Casino_SetMiniOam(u8 slot, u16 tileNum, u8 x, u8 y, u8 hide) {

@@ -1,12 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Blackjack layout polish
+**Last worked on:** 2026-07-18 — BJ cursor/blend/You overlap fix
 
 **Files touched:**
-- `src_custom/casino/casino_blackjack.c`
 - `src_custom/casino/casino_common.c`
+- `src_custom/casino/casino_blackjack.c`
 
-**Outcome:** make exits 0. Dealer flush-right; Hit/Stand clear of cursor; 6 cards/row.
+**Outcome:** Stake cursor +4Y; keep BG3 darken after fade; stop right-HUD row5 wiping You.
 
 **Open / next:**
-- Playtest Blackjack card row + HUD spacing
+- Playtest stake cursor, play-field blend, You counter

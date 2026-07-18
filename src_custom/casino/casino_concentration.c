@@ -246,6 +246,7 @@ static void WriteScoreHud(u8 playerScore, u8 npcScore, u8 playerTurn) {
   Casino_WriteTextRow(2, NULL);
   Casino_WriteTextRow(3, NULL);
   Casino_WriteTextRow(4, NULL);
+  Casino_SetHudGoldColor();
   Casino_UploadHudText();
 }
 
@@ -254,13 +255,11 @@ static void DrawConcBoard(struct ConcBoard *b, u8 playerTurn) {
   u8 x, y;
   u8 cursorX, cursorY;
 
-  WriteScoreHud(b->playerMatches, b->npcMatches, playerTurn);
-
-  Casino_LoadFaceDownMini(CASINO_MINI_TILE_BACK);
+  Casino_ComposeFaceDownMini(CASINO_MINI_TILE_BACK);
   if (b->revealA >= 0)
-    Casino_LoadFaceUpMini(CASINO_MINI_TILE_A, b->cardIds[b->revealA]);
+    Casino_ComposeFaceUpMini(CASINO_MINI_TILE_A, b->cardIds[b->revealA]);
   if (b->revealB >= 0)
-    Casino_LoadFaceUpMini(CASINO_MINI_TILE_B, b->cardIds[b->revealB]);
+    Casino_ComposeFaceUpMini(CASINO_MINI_TILE_B, b->cardIds[b->revealB]);
 
   for (i = 0; i < CONC_CELLS; i++) {
     CellPos(i, &x, &y);
@@ -274,6 +273,11 @@ static void DrawConcBoard(struct ConcBoard *b, u8 playerTurn) {
       Casino_SetMiniOam(CASINO_OAM_CARD0 + i, CASINO_MINI_TILE_BACK, x, y, FALSE);
     }
   }
+  Casino_FlushMiniCards();
+
+  /* HUD after minis so gold/white pals stick. */
+  WriteScoreHud(b->playerMatches, b->npcMatches, playerTurn);
+  LoadPalettes();
 
   if (playerTurn && b->cursor < CONC_CELLS && !b->matched[b->cursor]) {
     CellPos(b->cursor, &cursorX, &cursorY);
@@ -369,6 +373,8 @@ void Casino_ConcentrationMain(void) {
 
   InitBoard(&board);
   Casino_BeginPlayField();
+  DrawConcBoard(&board, TRUE);
+  Casino_FadeInPlayField();
 
   while (BoardCleared(&board) != TRUE) {
     if (!playerTurn) {

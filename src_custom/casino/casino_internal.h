@@ -27,11 +27,22 @@ struct CasinoStake {
 #define CASINO_BET_MEDIUM 1000
 #define CASINO_BET_LARGE 10000
 
-/* Ante viewer uses 0x1000 bytes per mini card — keep slots non-overlapping. */
-#define CASINO_MINI_TILE_BACK  0x100
-#define CASINO_MINI_TILE_A     0x180
-#define CASINO_MINI_TILE_B     0x200
-#define CASINO_MINI_TILE_BYTES 0x1000
+/*
+ * Mini cards use duel-style interleaved packing: two sprites share one 0x1000
+ * window via +0x08 into each other's 0x300 row padding (see g8E116BC).
+ * Base stays above cursor tiles 0..0x21.
+ */
+#define CASINO_MINI_BASE 0x28
+#define CASINO_MINI_PAIR_STRIDE 0x80
+#define CASINO_MINI_PAIR_OFF 0x08
+#define CASINO_MINI_TILE(slot) \
+  ((u16)(CASINO_MINI_BASE + ((slot) / 2) * CASINO_MINI_PAIR_STRIDE + \
+         ((slot) % 2) * CASINO_MINI_PAIR_OFF))
+#define CASINO_MINI_TILE_BACK CASINO_MINI_TILE(0)
+#define CASINO_MINI_TILE_A CASINO_MINI_TILE(1)
+#define CASINO_MINI_TILE_B CASINO_MINI_TILE(2)
+#define CASINO_MINI_FACE0 1 /* first face-up slot index (0 = shared back) */
+#define CASINO_MINI_FACE_SLOTS 12
 
 #define CASINO_OAM_CARD0 16 /* leave 0–1 for start-menu cursor */
 #define CASINO_CURSOR_PAL 15
@@ -48,6 +59,7 @@ u8 Casino_CardLevel(u16 cardId);
 
 void Casino_BeginOverlay(void);      /* stake / result menus (narrow window) */
 void Casino_BeginPlayField(void);    /* games: full-screen window for card grid */
+void Casino_FadeInPlayField(void);   /* BLDY 16→0 after stake → play */
 void Casino_EndOverlay(void);
 u16 Casino_Buttons(void);
 void Casino_DrawMenuLines(const u8 *const *lines, u8 count, u8 cursor);
@@ -61,6 +73,9 @@ void Casino_ReloadCursorPalette(void);
 void Casino_SetCursorOam(u8 x, u8 y, u8 hide);
 void Casino_LoadFaceDownMini(u16 tileNum);
 void Casino_LoadFaceUpMini(u16 tileNum, u16 cardId);
+void Casino_ComposeFaceDownMini(u16 tileNum);
+void Casino_ComposeFaceUpMini(u16 tileNum, u16 cardId);
+void Casino_FlushMiniCards(void);
 void Casino_SetMiniOam(u8 slot, u16 tileNum, u8 x, u8 y, u8 hide);
 
 #endif /* GUARD_CASINO_INTERNAL_H */

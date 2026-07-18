@@ -50,12 +50,11 @@ Blackjack is minimal: hit/stand, dealer stands on all 17s, infinite shoe of real
 ## TODO
 
 - Fill prize pools with balanced drops.
-- Richer Blackjack card display (more than two face-up VRAM slots).
 - Optional runtime toggle to disable casino SPECIALs.
 
 ## Limitations & Bugs
 
-- Blackjack only keeps two face-up mini-art slots in OBJ VRAM; other cards show as backs while totals remain correct.
 - Concentration cursor reuses the start-menu cursor OBJ over the selected cell.
 - State 02 no longer uses the scared-dealer flag gate on talk (Blackjack offer replaces it); flag scripts remain in the file for address coverage.
 - Play field forces a full-screen WIN0 so mini cards are not clipped by the stake-menu panel.
+- Blackjack mini cards use duel-style interleaved OBJ packing (two faces per `0x1000` window); max 12 face-ups + shared back.

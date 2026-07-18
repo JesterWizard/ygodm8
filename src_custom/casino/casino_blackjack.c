@@ -85,6 +85,7 @@ static void FormatTotal(u8 *buf, u8 bufLen, const u8 *label, u8 total, u8 rightA
 
 static void DrawBjCards(const struct BjHand *player, const struct BjHand *dealer, u8 revealDealer) {
   u8 i;
+  u8 faceSlot = CASINO_MINI_FACE0;
   u8 dShow = dealer->count;
   u8 pShow = player->count;
 
@@ -93,39 +94,43 @@ static void DrawBjCards(const struct BjHand *player, const struct BjHand *dealer
   if (pShow > BJ_VISIBLE)
     pShow = BJ_VISIBLE;
 
-  /* ponytail: 2 face-up VRAM slots — dealer upcard + (hole if revealed else player latest) */
-  Casino_LoadFaceDownMini(CASINO_MINI_TILE_BACK);
+  Casino_ComposeFaceDownMini(CASINO_MINI_TILE_BACK);
 
   for (i = 0; i < 8; i++) {
     Casino_SetMiniOam(CASINO_OAM_CARD0 + i, CASINO_MINI_TILE_BACK, 0, 0, TRUE);
     Casino_SetMiniOam(CASINO_OAM_CARD0 + 8 + i, CASINO_MINI_TILE_BACK, 0, 0, TRUE);
   }
 
-  for (i = 0; i < dShow; i++)
-    Casino_SetMiniOam(CASINO_OAM_CARD0 + i, CASINO_MINI_TILE_BACK,
-                       (u8)(BJ_CARD_X0 + i * BJ_CARD_PITCH), BJ_DEALER_Y, FALSE);
-  for (i = 0; i < pShow; i++)
-    Casino_SetMiniOam(CASINO_OAM_CARD0 + 8 + i, CASINO_MINI_TILE_BACK,
-                       (u8)(BJ_CARD_X0 + i * BJ_CARD_PITCH), BJ_PLAYER_Y, FALSE);
+  for (i = 0; i < dShow; i++) {
+    u8 x = (u8)(BJ_CARD_X0 + i * BJ_CARD_PITCH);
+    u8 faceUp = (i == 0) || revealDealer;
+    u16 tile = CASINO_MINI_TILE_BACK;
 
-  if (dealer->count > 0) {
-    Casino_LoadFaceUpMini(CASINO_MINI_TILE_A, dealer->cardIds[0]);
-    Casino_SetMiniOam(CASINO_OAM_CARD0, CASINO_MINI_TILE_A, BJ_CARD_X0, BJ_DEALER_Y, FALSE);
+    if (faceUp && faceSlot < CASINO_MINI_FACE0 + CASINO_MINI_FACE_SLOTS) {
+      tile = CASINO_MINI_TILE(faceSlot);
+      Casino_ComposeFaceUpMini(tile, dealer->cardIds[i]);
+      faceSlot++;
+    }
+    Casino_SetMiniOam(CASINO_OAM_CARD0 + i, tile, x, BJ_DEALER_Y, FALSE);
   }
-  if (revealDealer && dealer->count > 1 && 1 < BJ_VISIBLE) {
-    Casino_LoadFaceUpMini(CASINO_MINI_TILE_B, dealer->cardIds[1]);
-    Casino_SetMiniOam(CASINO_OAM_CARD0 + 1, CASINO_MINI_TILE_B,
-                      (u8)(BJ_CARD_X0 + BJ_CARD_PITCH), BJ_DEALER_Y, FALSE);
-  } else if (player->count > 0) {
-    u8 pi = (player->count > BJ_VISIBLE) ? (BJ_VISIBLE - 1) : (u8)(player->count - 1);
-    Casino_LoadFaceUpMini(CASINO_MINI_TILE_B, player->cardIds[pi]);
-    Casino_SetMiniOam(CASINO_OAM_CARD0 + 8 + pi, CASINO_MINI_TILE_B,
-                      (u8)(BJ_CARD_X0 + pi * BJ_CARD_PITCH), BJ_PLAYER_Y, FALSE);
+
+  for (i = 0; i < pShow; i++) {
+    u8 x = (u8)(BJ_CARD_X0 + i * BJ_CARD_PITCH);
+    u16 tile = CASINO_MINI_TILE_BACK;
+
+    if (faceSlot < CASINO_MINI_FACE0 + CASINO_MINI_FACE_SLOTS) {
+      tile = CASINO_MINI_TILE(faceSlot);
+      Casino_ComposeFaceUpMini(tile, player->cardIds[i]);
+      faceSlot++;
+    }
+    Casino_SetMiniOam(CASINO_OAM_CARD0 + 8 + i, tile, x, BJ_PLAYER_Y, FALSE);
   }
+
+  Casino_FlushMiniCards();
 }
 
-static void DrawBjUi(const struct BjHand *player, const struct BjHand *dealer, u8 revealDealer,
-                     u8 cursor, u8 playerTurn) {
+static void DrawBjHud(const struct BjHand *player, const struct BjHand *dealer, u8 revealDealer,
+                      u8 cursor, u8 playerTurn) {
   u8 left[DEBUG_SM_CHARS + 1];
   u8 right[BJ_RIGHT_CHARS + 1];
   u8 pTotal = Casino_BlackjackHandTotal(player->levels, player->count);
@@ -143,6 +148,7 @@ static void DrawBjUi(const struct BjHand *player, const struct BjHand *dealer, u
   FormatTotal(left, sizeof(left), sLabelYou, pTotal, FALSE);
   FormatTotal(right, sizeof(right), sLabelDealer, dTotal, TRUE);
 
+  Casino_SetHudGoldColor();
   Casino_WriteSideText(FALSE, 0, left, leftPal);
   Casino_WriteSideText(TRUE, 0, right, rightPal);
   Casino_WriteSideText(FALSE, 1, NULL, CASINO_TEXT_PAL_WHITE);
@@ -160,17 +166,27 @@ static void DrawBjUi(const struct BjHand *player, const struct BjHand *dealer, u
     Casino_WriteSideText(FALSE, BJ_HIT_ROW, NULL, CASINO_TEXT_PAL_WHITE);
     Casino_WriteSideText(FALSE, BJ_HIT_ROW + 1, NULL, CASINO_TEXT_PAL_WHITE);
   }
+  /*
+   * Right-HUD tiles start at 0x08, 24 tiles/row. Row 5 would use 0x80..0x97 and
+   * wipe left text at 0x81 (You). Only blank right rows that stay below 0x81.
+   */
   Casino_WriteSideText(TRUE, BJ_HIT_ROW, NULL, CASINO_TEXT_PAL_WHITE);
-  Casino_WriteSideText(TRUE, BJ_HIT_ROW + 1, NULL, CASINO_TEXT_PAL_WHITE);
   Casino_UploadHudText();
+  LoadPalettes();
 
-  DrawBjCards(player, dealer, revealDealer);
   Casino_ReloadCursorPalette();
   if (playerTurn)
     Casino_SetCursorOam(BJ_CURSOR_X, (u8)(BJ_CURSOR_Y_BASE + cursor * 16), FALSE);
   else
     Casino_SetCursorOam(0, 0, TRUE);
   LoadOam();
+}
+
+static void DrawBjUi(const struct BjHand *player, const struct BjHand *dealer, u8 revealDealer,
+                     u8 cursor, u8 playerTurn) {
+  /* Cards first (OBJ pal), then HUD so You/Dealer survive FlushMiniCards. */
+  DrawBjCards(player, dealer, revealDealer);
+  DrawBjHud(player, dealer, revealDealer, cursor, playerTurn);
 }
 
 void Casino_BlackjackMain(void) {
@@ -199,6 +215,7 @@ void Casino_BlackjackMain(void) {
     u8 dNat = (dealer.count == 2 && Casino_BlackjackHandTotal(dealer.levels, 2) == 21);
     if (pNat || dNat) {
       DrawBjUi(&player, &dealer, TRUE, 0, FALSE);
+      Casino_FadeInPlayField();
       WaitForVBlank();
       if (pNat && dNat)
         outcome = CASINO_OUTCOME_PUSH;
@@ -207,6 +224,9 @@ void Casino_BlackjackMain(void) {
       else
         outcome = CASINO_OUTCOME_LOSE;
       playing = FALSE;
+    } else {
+      DrawBjUi(&player, &dealer, FALSE, cursor, TRUE);
+      Casino_FadeInPlayField();
     }
   }
 
