@@ -86,11 +86,10 @@ class CardManifestTests(unittest.TestCase):
                     "trapEffect": 0,
                     "password": [5, 3, 5, 3, 0, 0, 6, 9],
                     "description": {
-                        "pages": [
-                            "As long as this card remains in face-up",
-                            "Attack Position, gain 1000 LP during",
-                            "each of your Standby Phases.",
-                        ]
+                        "pages": (
+                            "As long as this card remains in face-up Attack Position, "
+                            "gain 1000 LP during each of your Standby Phases."
+                        )
                     },
                     "effect_texts": {
                         "popup_1": "Gain 1000 LP during your Standby Phase.",
@@ -101,9 +100,51 @@ class CardManifestTests(unittest.TestCase):
         validated = validate_manifest(manifest)["cards"][0]
         self.assertEqual(validated["description"]["symbol"], "gDescription_SpiritOfTheBreeze")
         self.assertEqual(
+            validated["description"]["pages"],
+            "As long as this card remains in face-up Attack Position, "
+            "gain 1000 LP during each of your Standby Phases.",
+        )
+        self.assertEqual(
             validated["effect_texts"]["popup_1"]["symbol"],
             "gActivationDescription_SpiritOfTheBreeze_Popup1",
         )
+
+    def test_legacy_description_page_array_joins_to_prose(self):
+        manifest = {
+            "cards": [
+                {
+                    "card_const": "SPIRIT_OF_THE_BREEZE",
+                    "card_name": "Spirit of the Breeze",
+                    "atk": 0,
+                    "def": 1800,
+                    "cost": 150,
+                    "attribute": "ATTRIBUTE_WIND",
+                    "level": 3,
+                    "type": "TYPE_FAIRY",
+                    "color": "EFFECT_CARD",
+                    "monsterEffect": 0,
+                    "spellEffect": 2,
+                    "trapEffect": 0,
+                    "password": [5, 3, 5, 3, 0, 0, 6, 9],
+                    "description": {
+                        "pages": [
+                            "As long as this card remains in face-up",
+                            "Attack Position, gain 1000 LP during",
+                            "each of your Standby Phases.",
+                        ]
+                    },
+                }
+            ]
+        }
+        validated = validate_manifest(manifest)["cards"][0]
+        self.assertEqual(
+            validated["description"]["pages"],
+            "As long as this card remains in face-up Attack Position, "
+            "gain 1000 LP during each of your Standby Phases.",
+        )
+        pages = card_art.paginate_description_text(validated["description"]["pages"])
+        self.assertGreaterEqual(len(pages), 2)
+        self.assertLessEqual(len(pages), 5)
 
     def test_manifest_dump_uses_canonical_key_order_and_inline_password(self):
         manifest = validate_manifest(json.loads(FIXTURE.read_text()))

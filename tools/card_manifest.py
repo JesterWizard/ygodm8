@@ -108,12 +108,16 @@ def format_password_inline(password: list[int]) -> str:
 
 def _format_description_block(description: dict, indent: str) -> list[str]:
     lines = [f'{indent}"symbol": {json.dumps(description["symbol"])},']
-    lines.append(f'{indent}"pages": [')
     pages = description["pages"]
-    for index, page in enumerate(pages):
-        comma = "," if index < len(pages) - 1 else ""
-        lines.append(f"{indent}  {json.dumps(page)}{comma}")
-    lines.append(f"{indent}]")
+    # One prose string; generator auto-paginates for the vanilla detail layout.
+    if isinstance(pages, str):
+        lines.append(f'{indent}"pages": {json.dumps(pages)}')
+    else:
+        lines.append(f'{indent}"pages": [')
+        for index, page in enumerate(pages):
+            comma = "," if index < len(pages) - 1 else ""
+            lines.append(f"{indent}  {json.dumps(page)}{comma}")
+        lines.append(f"{indent}]")
     return lines
 
 
@@ -202,14 +206,24 @@ def normalize_description_block(card_const: str, description: dict, *, activatio
     if not isinstance(description, dict):
         raise TypeError("description must be a dict")
     pages = description.get("pages")
-    if not isinstance(pages, list) or not all(isinstance(page, str) and page for page in pages):
-        raise ValueError("description.pages must be a non-empty string array")
+    if isinstance(pages, str):
+        prose = " ".join(pages.split())
+        if not prose:
+            raise ValueError("description.pages must be a non-empty string")
+    elif isinstance(pages, list) and pages:
+        # Legacy multi-page arrays → one prose string (generator paginates).
+        parts = [" ".join(page.split()) for page in pages if isinstance(page, str) and page.strip()]
+        if not parts:
+            raise ValueError("description.pages must be a non-empty string (or legacy string array)")
+        prose = " ".join(parts)
+    else:
+        raise ValueError("description.pages must be a non-empty string (or legacy string array)")
     symbol = description.get("symbol")
     if symbol is None:
         symbol = activation_description_symbol(card_const) if activation else description_symbol(card_const)
     elif not isinstance(symbol, str) or not symbol:
         raise ValueError("description.symbol must be a non-empty string when present")
-    return {"symbol": symbol, "pages": pages}
+    return {"symbol": symbol, "pages": prose}
 
 
 def format_json_decode_error(path: Path | str, text: str, exc: json.JSONDecodeError) -> str:
@@ -328,13 +342,9 @@ def validate_manifest(manifest: object) -> dict:
                 )
             except ValueError as exc:
                 _fail(f"cards[{index}].{desc_key}: {exc}")
-            pages = description["pages"]
-            min_pages = 1 if desc_key == "activation_description" else 2
-            if len(pages) < min_pages or len(pages) > description_pages_max:
-                _fail(
-                    f"cards[{index}].{desc_key}.pages must contain between "
-                    f"{min_pages} and {description_pages_max} strings."
-                )
+            # pages is prose (string); vanilla page count is decided at emit time.
+            if not isinstance(description["pages"], str) or not description["pages"]:
+                _fail(f"cards[{index}].{desc_key}.pages must be a non-empty string.")
             stats[desc_key] = description
 
         if "effect_texts" in stats:

@@ -152,10 +152,7 @@ If already in manifest: skip to art check, then runtime hand.
   "password": [4, 8, 0, 9, 4, 9, 9, 7],
   "description": {
     "symbol": "gDescription_BattleFootballer",
-    "pages": [
-      "A cyborg with high defense power.",
-      "Originally it was invented for a football machine."
-    ]
+    "pages": "A cyborg with high defense power. Originally it was invented for a football machine."
   }
 }
 ```
@@ -179,7 +176,7 @@ If already in manifest: skip to art check, then runtime hand.
   "trapEffect": 0,
   "cost": 150,
   "password": [5, 1, 2, 6, 3, 4, 6, 3],
-  "description": { "symbol": "gDescription_BurningLand", "pages": ["...", "..."] },
+  "description": { "symbol": "gDescription_BurningLand", "pages": "..." },
   "effect_texts": { "popup_1": "..." }
 }
 ```

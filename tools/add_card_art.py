@@ -1026,13 +1026,17 @@ def wrap_activation_page(text: str) -> str:
     return "#0".join(lines)
 
 
+DESC_ROW_WIDTHS = (12, 14, 14, 14, 12)
+DESC_PAGES_MIN = 2
+DESC_PAGES_MAX = 5
+
+
 def wrap_description_page(text: str) -> list[str]:
-    row_widths = (12, 14, 14, 14, 12)
     words = text.split()
     lines = []
     word_index = 0
 
-    for width in row_widths:
+    for width in DESC_ROW_WIDTHS:
         if word_index >= len(words):
             lines.append("")
             continue
@@ -1067,6 +1071,61 @@ def wrap_description_page(text: str) -> list[str]:
     return lines
 
 
+def paginate_description_text(text: str) -> list[str]:
+    """Split prose into 2–5 vanilla detail pages (row widths 12/14/14/14/12)."""
+    words = text.split()
+    if not words:
+        return ["", ""]
+
+    pages: list[str] = []
+    word_index = 0
+    while word_index < len(words):
+        if len(pages) >= DESC_PAGES_MAX:
+            raise SystemExit(
+                f"Description text needs more than {DESC_PAGES_MAX} pages: "
+                f"{' '.join(words[word_index:])}"
+            )
+        page_words: list[str] = []
+        for width in DESC_ROW_WIDTHS:
+            if word_index >= len(words):
+                break
+            line_words: list[str] = []
+            line_len = 0
+            while word_index < len(words):
+                word = words[word_index]
+                word_len = len(word)
+                if word_len > width:
+                    if width <= 1:
+                        raise SystemExit(f"Description word does not fit in width {width}: {word}")
+                    chunk = word[: width - 1] + "-"
+                    words[word_index] = word[width - 1 :]
+                    word = chunk
+                    word_len = len(word)
+                next_len = word_len if not line_words else line_len + 1 + word_len
+                if next_len > width:
+                    break
+                line_words.append(word)
+                line_len = next_len
+                word_index += 1
+            if not line_words:
+                raise SystemExit(f"Could not fit description text into width {width}.")
+            page_words.extend(line_words)
+        pages.append(" ".join(page_words))
+
+    while len(pages) < DESC_PAGES_MIN:
+        pages.append("")
+    return pages
+
+
+def description_pages_for_emit(pages) -> list[str]:
+    """Manifest stores one prose string; legacy arrays are joined then paginated."""
+    if isinstance(pages, str):
+        prose = pages
+    else:
+        prose = " ".join(pages)
+    return paginate_description_text(prose)
+
+
 def render_description_inc(manifest: dict) -> str:
     lines = []
     for item in manifest["cards"]:
@@ -1074,7 +1133,7 @@ def render_description_inc(manifest: dict) -> str:
         if not description:
             continue
         symbol = description["symbol"]
-        pages = description["pages"]
+        pages = description_pages_for_emit(description["pages"])
         payload = ["  ", f"^{len(pages)}"]
         for page in pages:
             payload.extend(wrap_description_page(page))
@@ -1111,8 +1170,11 @@ def render_activation_description_inc(manifest: dict) -> str:
         activation_description = item.get("activation_description")
         effect_texts = item.get("effect_texts") or {}
         if activation_description and "popup_1" not in effect_texts:
+            act_pages = activation_description["pages"]
+            if isinstance(act_pages, str):
+                act_pages = [act_pages]
             _append_activation_text_symbol(
-                lines, activation_description["symbol"], activation_description["pages"]
+                lines, activation_description["symbol"], act_pages
             )
         for effect_id, effect in effect_texts.items():
             symbol = effect.get("symbol") or effect_text_symbol(item["card_const"], effect_id)

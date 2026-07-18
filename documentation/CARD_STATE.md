@@ -1,19 +1,17 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Added RYKO_LIGHTSWORN_HUNTER–WULF_LIGHTSWORN_BEAST (trunk + stub effects)
+**Last worked on:** 2026-07-18 — Single-string card descriptions (auto-paginate)
 
 **Files touched:**
 - `tools/card_data_manifest.json`
-- `src_custom/monster_effect_hooks.c`
-- `src_custom/permanent_effect_hooks.c`
-- `src_custom/trap_effect_hooks.c`
-- `src_custom/activated_effects/`
-- `src_custom/permanent_effects/`
-- `src_custom/spell_effects/`
-- `src_custom/trap_effects/`
-- `CARD_PROGRESS.md`
+- `tools/add_card_art.py`
+- `tools/card_manifest.py`
+- `tools/add_custom_card.py`
+- `tools/fix_descriptions.py`
+- `documentation/card-descriptions.md`
+- `tests/host/test_cards_manifest.py`
 
-**Outcome:** make exits 0. 17 cards in trunk with art; effects stubbed. Anime Suit of Sword X / Thumbs Down added manually; forced TWLIGHT art stem. total_cards=1774. In game 973; todo 0.
+**Outcome:** make exits 0. `description.pages` is one prose string; generator paginates to 2–5 pages. 1025 descriptions migrated.
 
 **Open / next:**
 - Implement stub effects across recent CARD_PROGRESS batches

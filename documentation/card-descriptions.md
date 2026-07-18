@@ -35,17 +35,17 @@ Use this workflow when adding or editing a custom card description:
 
 1. Open `tools/card_data_manifest.json`.
 2. Add or edit a card entry with a `description` object:
-   - `symbol`: the runtime symbol name
-   - `pages`: 2 to 5 strings, one per page
-4. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
-5. Run `make` as normal.
-6. Test the card in-game.
+   - `symbol`: optional; derived from `card_const` when omitted
+   - `pages`: one continuous prose string (not split by hand)
+3. Point the relevant `gCardData_NEW` entry at `<Symbol>Data`.
+4. Run `make` as normal.
+5. Test the card in-game.
 
 What happens automatically during build:
 
 - `make` runs `python3 tools/add_card_art.py`
-- the script reads the manifest description pages
-- it wraps them to the current in-game layout model
+- the script reads the manifest description prose
+- it auto-paginates into the current in-game layout model (2–5 pages)
 - it writes the runtime byte data into `src_custom/card_description_data_generated.inc`
 - the generated include provides the correct symbol at link time
 
@@ -66,16 +66,17 @@ Files you normally do not edit by hand:
 
 How conversion works:
 
-- The generator script reads every `description.pages` array in `tools/card_data_manifest.json`.
-- It wraps each page into the currently observed in-game row widths.
+- The generator script reads every `description.pages` string in `tools/card_data_manifest.json`.
+- It paginates the prose into vanilla detail pages (row widths below), then wraps each page.
 - It emits raw byte data for `<Symbol>Data` into `card_description_data_generated.inc`.
-- The page-count token is emitted automatically as `^2` through `^5` based on the number of pages.
+- The page-count token is emitted automatically as `^2` through `^5`.
+- Legacy `pages` arrays are still accepted and joined into one string on load.
 
 Current layout constraints:
 
 ### Main description (card detail screen)
 
-Each page is 5 rows with these widths:
+Each emitted page is 5 rows with these widths:
 
 | Row | Width (chars) |
 |-----|---------------|
@@ -85,7 +86,7 @@ Each page is 5 rows with these widths:
 | 4 | 14 |
 | 5 | 12 |
 
-Aim for ~55–65 characters per page (out of 66 max) so text fills the rows rather than leaving large gaps. The last page of a multi-page description can be shorter.
+Write the full effect text as one string. The generator fills pages up to the 5-page / ~330-character ceiling. Short text that fits on one screen still emits two pages (empty second page) because the runtime format requires at least `^2`.
 
 ### Popup / activation text (in-duel popup box)
 
@@ -114,16 +115,15 @@ These tokens are interpreted by the duel textbox renderer:
 
 Important constraints:
 
-- Each description must have at least 2 pages.
-- Descriptions can have up to 5 pages.
-- Wrapping is word-based. The generator will not split a word across rows.
-- If any word is longer than its row width (max 14 in middle rows), generation fails.
-- If the page text does not fit within the 5 available rows, generation fails.
+- Manifest `pages` is one prose string; the generator emits 2 to 5 runtime pages.
+- Wrapping is word-based. The generator will not split a word across rows (except hyphenating words longer than a row).
+- If any word is longer than its row width (max 14 in middle rows) and cannot be hyphenated, generation fails.
+- If the prose needs more than 5 pages, generation fails — shorten the wording.
 - The generated include is runtime data. It is not meant to be edited manually.
 
 Practical advice for newcomers:
 
-- Start by writing the text naturally.
+- Start by writing the text naturally as one string.
 - Run `make`.
 - If the generator fails, shorten the wording rather than forcing awkward punctuation.
 - If the text compiles but looks wrong in-game, adjust the wording until it fits the current row model cleanly.
@@ -150,13 +150,12 @@ Build behavior:
 
 ## TODO
 
-- Extend the generator if the project needs 3-page or longer descriptions.
 - Improve the generator error output so it reports the exact row where text overflow starts.
 - Add a helper mode that prints the wrapped rows for quick review without writing files.
 
 ## Limitations & Bugs
 
 - The current row widths are based on observed in-game behavior, not a fully reverse-engineered format spec.
-- Description fit is currently strict. Text that barely misses the row model must be shortened manually.
-- The generator now supports 2-page through 5-page descriptions.
+- Description fit is currently strict. Text that needs more than 5 vanilla pages must be shortened manually.
+- The generator supports 2-page through 5-page runtime descriptions (auto-paginated from one prose string).
 - If the in-game renderer turns out to use different widths for some cards or languages, the generator will need to be updated.

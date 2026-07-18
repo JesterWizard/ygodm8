@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 from card_manifest import load_manifest_json, write_manifest
-from add_card_art import wrap_activation_page, wrap_description_page
+from add_card_art import paginate_description_text, wrap_activation_page
 
 MANIFEST_PATH = ROOT / "tools" / "card_data_manifest.json"
 
@@ -90,16 +90,12 @@ FIXED_POPUPS = {
 
 def main():
     for const, pages in FIXED_DESCRIPTIONS.items():
-        if len(pages) < 2 or len(pages) > 5:
-            print(f"FAIL page count {const}: {len(pages)} (need 2-5)")
+        prose = " ".join(p for p in pages if p.strip())
+        try:
+            paginate_description_text(prose)
+        except SystemExit as e:
+            print(f"FAIL desc {const}: {e}")
             return 1
-        for i, p in enumerate(pages):
-            if p:
-                try:
-                    wrap_description_page(p)
-                except SystemExit as e:
-                    print(f"FAIL desc {const} page {i}: {e}")
-                    return 1
     for const, text in FIXED_POPUPS.items():
         if text:
             result = wrap_activation_page(text)
@@ -112,7 +108,9 @@ def main():
     for item in manifest["cards"]:
         const = item["card_const"]
         if const in FIXED_DESCRIPTIONS:
-            item["description"]["pages"] = FIXED_DESCRIPTIONS[const]
+            item["description"]["pages"] = " ".join(
+                p for p in FIXED_DESCRIPTIONS[const] if p.strip()
+            )
         if const in FIXED_POPUPS and "effect_texts" in item:
             item["effect_texts"]["popup_1"] = FIXED_POPUPS[const]
     write_manifest(MANIFEST_PATH, manifest)

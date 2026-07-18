@@ -8,7 +8,6 @@ import json
 import re
 import subprocess
 import sys
-import textwrap
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -152,21 +151,9 @@ def frame_kind(card_type: str) -> str:
     raise SystemExit(f"Unsupported card type from API: {card_type!r}")
 
 
-def wrap_effect_text(text: str, *, page_count: int = 3, width: int = 27) -> list[str]:
-    wrapped = textwrap.wrap(text.strip(), width=width)
-    if not wrapped:
-        return ["", ""]
-    if len(wrapped) <= 2:
-        return wrapped if len(wrapped) >= 2 else [wrapped[0], ""]
-    if page_count <= 2:
-        midpoint = max(1, len(wrapped) // 2)
-        return [" ".join(wrapped[:midpoint]), " ".join(wrapped[midpoint:])]
-
-    chunk = max(1, (len(wrapped) + 2) // 3)
-    pages = []
-    for start in range(0, len(wrapped), chunk):
-        pages.append(" ".join(wrapped[start : start + chunk]))
-    return pages[:3]
+def wrap_effect_text(text: str) -> str:
+    """Return cleaned prose; generator auto-paginates for the detail screen."""
+    return " ".join(text.split()) or "TODO"
 
 
 def suggest_cost(manifest: dict, entry: dict) -> int:
@@ -350,7 +337,7 @@ def main() -> int:
 
         if args.no_desc:
             stub = "Custom card."
-            entry["description"] = {"pages": [stub, ""]}
+            entry["description"] = {"pages": stub}
             if "effect_texts" in entry:
                 entry["effect_texts"] = {"popup_1": stub}
             entry = finalize_entry(entry)
@@ -385,7 +372,7 @@ def main() -> int:
 
     if args.no_desc:
         stub = "Custom card."
-        entry["description"] = {"pages": [stub, ""]}
+        entry["description"] = {"pages": stub}
         if "effect_texts" in entry:
             entry["effect_texts"] = {"popup_1": stub}
         entry = finalize_entry(entry)
