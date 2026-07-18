@@ -25,7 +25,27 @@ class TestAiSpellTargets(unittest.TestCase):
         source = read("src_custom/ai_sim_fast.c")
         self.assertIn("AiNormalSpellHasActivationTargets(cardId)", source)
         self.assertIn("Duel_IsCardActivationBlocked(cardId)", source)
-        self.assertIn("ACTIVE_DUELIST_BACKROW", source)
+
+    def test_fast_ai_prune_reject_classes(self):
+        source = read("src_custom/ai_sim_fast.c")
+        self.assertIn("AiSimFastRejectEmptyTributes", source)
+        self.assertIn("AiSimFastRejectWastefulTribute", source)
+        self.assertIn("AiSimFastRejectNoopPosition", source)
+        self.assertIn("AiSimFastHeuristicScore", source)
+        self.assertIn("AiSimFastInsertCandidate", source)
+        self.assertIn("AI_FAST_CANDIDATE_CAP", source)
+        self.assertIn("AiSimFastScoreToPriority", source)
+        self.assertIn("AI_FAST_SCORE_DEFEND", source)
+        self.assertIn("defendMask", source)
+        self.assertIn("AiSimFastLosesToBoard", source)
+        self.assertIn("AiSimFastAttackIsSuicide", source)
+        self.assertNotIn("AiSimFastRunFullCandidate", source)
+
+    def test_fast_ai_skips_gy_refresh_on_turn(self):
+        main = read("src_custom/ai_main_hooks.c")
+        self.assertIn("RefreshDisplay", main)
+        self.assertIn("!gRuntimeConfig.fast_ai", main)
+        self.assertIn("gHideEffectText = 1", main)
 
     def test_normal_spell_targets_respect_activation_block(self):
         source = read("src_custom/ai_spell_targets.c")

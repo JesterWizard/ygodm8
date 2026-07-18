@@ -362,16 +362,57 @@ void Duel_RunPickZoneInputLoop(void)
 
 LYN_REPLACE_CHECK(sub_803FBCC);
 unsigned char sub_803FBCC__Replacement(unsigned char a, unsigned char b) {
+  /* Mirror vanilla advantages/weaknesses (code_803F02C.c). No .rodata tables:
+   * static const arrays in LynJump objs get gc'd and break the link. */
   if (gRuntimeConfig.disable_element_system == TRUE)
     return 1;
-  if (a == ATTRIBUTE_DIVINE)
+  if (a == ATTRIBUTE_DIVINE || b == ATTRIBUTE_DIVINE)
     return 1;
-  if (b == ATTRIBUTE_DIVINE)
-    return 1;
-  if (a == ATTRIBUTE_SHADOW && b == ATTRIBUTE_LIGHT)
-    return 0;
-  if (a == ATTRIBUTE_LIGHT && b == ATTRIBUTE_SHADOW)
-    return 2;
+
+  switch (a) {
+  case ATTRIBUTE_SHADOW:
+    if (b == ATTRIBUTE_LIGHT) return 0;
+    if (b == ATTRIBUTE_DREAM) return 2;
+    break;
+  case ATTRIBUTE_LIGHT:
+    if (b == ATTRIBUTE_FIEND) return 0;
+    if (b == ATTRIBUTE_SHADOW) return 2;
+    break;
+  case ATTRIBUTE_FIEND:
+    if (b == ATTRIBUTE_DREAM) return 0;
+    if (b == ATTRIBUTE_LIGHT) return 2;
+    break;
+  case ATTRIBUTE_DREAM:
+    if (b == ATTRIBUTE_SHADOW) return 0;
+    if (b == ATTRIBUTE_FIEND) return 2;
+    break;
+  case ATTRIBUTE_PYRO:
+    if (b == ATTRIBUTE_FOREST) return 0;
+    if (b == ATTRIBUTE_AQUA) return 2;
+    break;
+  case ATTRIBUTE_FOREST:
+    if (b == ATTRIBUTE_WIND) return 0;
+    if (b == ATTRIBUTE_PYRO) return 2;
+    break;
+  case ATTRIBUTE_WIND:
+    if (b == ATTRIBUTE_EARTH) return 0;
+    if (b == ATTRIBUTE_FOREST) return 2;
+    break;
+  case ATTRIBUTE_EARTH:
+    if (b == ATTRIBUTE_THUNDER) return 0;
+    if (b == ATTRIBUTE_WIND) return 2;
+    break;
+  case ATTRIBUTE_THUNDER:
+    if (b == ATTRIBUTE_AQUA) return 0;
+    if (b == ATTRIBUTE_EARTH) return 2;
+    break;
+  case ATTRIBUTE_AQUA:
+    if (b == ATTRIBUTE_PYRO) return 0;
+    if (b == ATTRIBUTE_THUNDER) return 2;
+    break;
+  default:
+    break;
+  }
   return 1;
 }
 

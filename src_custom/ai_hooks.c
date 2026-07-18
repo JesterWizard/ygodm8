@@ -216,19 +216,19 @@ void AiSimulateAllCandidateActions(void)
 {
   u16 i;
 
-  AiSimBatchGraveyardSave();
-  gAiSimInBatch = TRUE;
-  gHideEffectText = 1;
-
+  /* ponytail: heuristic-only fast path never mutates duel/VRAM — skip GY batch + GFX. */
   if (gRuntimeConfig.fast_ai) {
+    gAiSimInBatch = TRUE;
+    gHideEffectText = 1;
     AiSimulateAllCandidateActionsFast();
     gAiSimInBatch = FALSE;
     gHideEffectText = 0;
-    /* ponytail: sim restores gDuel but not field VRAM — resync tiles after batch. */
-    UpdateDuelGfxExceptField();
-    AiSimBatchGraveyardRestore();
     return;
   }
+
+  AiSimBatchGraveyardSave();
+  gAiSimInBatch = TRUE;
+  gHideEffectText = 1;
 
   AiClearCommandData();
   CallThumbVoid(0x0800F108);

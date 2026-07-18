@@ -14,7 +14,9 @@
 
 Vanilla opponent AI simulates hundreds of candidate actions each turn, assigns each one a priority score, and always executes the single highest-scoring line. That makes duels predictable: the same board state tends to produce the same sequence of plays.
 
-Smarter AI keeps the vanilla simulation engine but adds a uniform tactical modifier pipeline before action selection. When `enable_smarter_ai` is on in [`configs/runtime.c`](configs/runtime.c), the AI varies among near-optimal lines with human-like board awareness instead of repeating one fixed script.
+Smarter AI keeps the vanilla simulation engine but adds a uniform tactical modifier pipeline before action selection. When `enable_smarter_ai` is on in [`configs/runtime.c`](../configs/runtime.c), the AI varies among near-optimal lines with human-like board awareness instead of repeating one fixed script.
+
+For the sim budget / prune → score → beam target architecture (orthogonal to this picker), see [`fast-ai-architecture.md`](fast-ai-architecture.md).
 
 ## Plan
 

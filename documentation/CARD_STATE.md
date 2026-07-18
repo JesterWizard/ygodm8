@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Duel BGM duck during opponent voice clips
+**Last worked on:** 2026-07-18 — Fast AI set-defense + attribute chart + summon develop
 
 **Files touched:**
-- `configs/runtime.h`, `configs/runtime.c`
-- `src_custom/duel_voice_hooks.c`
-- `include/duel_voice.h`
-- `src_custom/duel_board_lp_hooks.c`
-- `documentation/custom-voices.md`
+- `src_custom/ai_sim_fast.c`
+- `src_custom/code_803F02C_hooks.c`
+- `tests/host/test_ai_spell_targets.py`
+- `documentation/fast-ai-architecture.md`
+- `documentation/session_logs/2026-07-18.md`
 
-**Outcome:** Custom VO ducks duel BGM to 70% (configurable); restores when voice player idle.
+**Outcome:** Full attribute wheel restored. Weak matchups (incl. Forest vs Pyro) set face-down defense; noop DEFENSE no longer blocks later summons. `make` OK.
 
 **Open / next:**
-- Playtest turn-start + attack VO mix levels
+- Playtest Fire vs Forest set + multi-monster development turns

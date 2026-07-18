@@ -1,6 +1,7 @@
 #include "global.h"
 #include "common-chax.h"
 #include "ai_sim.h"
+#include "configs/runtime.h"
 #include "duel.h"
 #include "elemental_hero_core.h"
 #include "elemental_hero_ice_edge.h"
@@ -20,9 +21,10 @@ void PlayActionSoundEffect(void);
 void CheckWinConditionFINAL(void);
 void CheckWinConditionExodia(void);
 
+extern u8 gHideEffectText;
+
 u16 sub_800EF0C__Replacement(void);
 void sub_800E0D4__Replacement(void);
-void TryAttackVoicing(void);
 
 void AI_Main(void);
 
@@ -49,17 +51,21 @@ void AI_Main__Replacement(void)
     AiInitCommandData(temp);
     TryAttackVoicing();
     sub_800E0D4__Replacement();
+
     if (GraveyardExpand_IsEnabled()) {
       GraveyardExpand_SyncAllLegacyTops();
-      GraveyardExpand_RefreshDisplay();
+      /* ponytail: RefreshDisplay rebuilds GY tiles every action — skip on fast_ai. */
+      if (!gRuntimeConfig.fast_ai)
+        GraveyardExpand_RefreshDisplay();
     }
+
     if (gUnk2023EA0.unk18) {
       sub_801B66C();
       sub_8040EF0();
     } else {
       UpdateDuelGfxExceptField();
     }
-    /* After battle anim: deferred GY triggers, then Core/Sunrise destroy (PickZone last). */
+
     FinishGraveyardDrawBattleResolve();
     ResolveElementalHeroCoreBattledEffect();
     ResolveElementalHeroIceEdgeBattleEffect();
@@ -69,7 +75,15 @@ void AI_Main__Replacement(void)
     PlayActionSoundEffect();
     CheckWinConditionFINAL();
     CheckWinConditionExodia();
-    TryActivatingPermanentEffects();
+
+    if (gRuntimeConfig.fast_ai) {
+      /* Cheap permanent path: hide text => aiSim branch (no double GFX rebuild). */
+      gHideEffectText = 1;
+      TryActivatingPermanentEffects();
+      gHideEffectText = 0;
+    } else {
+      TryActivatingPermanentEffects();
+    }
   }
 
   ResolveYubelEndPhaseEffectsAtTurnEnd();
