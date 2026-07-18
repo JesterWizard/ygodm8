@@ -230,24 +230,28 @@ u32 CanPlayerSeeCard__Replacement(unsigned char y, unsigned char x) {
 
 LYN_REPLACE_CHECK(DisplayCardInfoBar);
 void DisplayCardInfoBar__Replacement(void) {
+  struct DuelCard *zone = NULL;
+
   if (IsOpponentHandFieldScrollEnabled()
       && gDuelCursor.currentY == OPPONENT_HAND_ROW
       && CanPlayerSeeCard__Replacement(OPPONENT_HAND_ROW, gDuelCursor.currentX) == 1) {
-    u8 zone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
+    u8 handZone = (IsSixCardHandEnabled() && SixCardHand_UsesCompressedLayout(DUEL_OPPONENT))
         ? (HAND_SLOT_EXTRA - gDuelCursor.currentX)
         : (4 - gDuelCursor.currentX);
-    struct DuelCard *card = SixCardHand_GetFixed(DUEL_OPPONENT, zone);
 
-    ApplyFieldZoneStatsToCardInfo(card);
+    zone = SixCardHand_GetFixed(DUEL_OPPONENT, handZone);
   } else if (gDuelCursor.currentY == PLAYER_HAND
       && CanPlayerSeeCard__Replacement(PLAYER_HAND, gDuelCursor.currentX) == 1) {
-    ApplyFieldZoneStatsToCardInfo(SixCardHand_GetPlayerHandZone(gDuelCursor.currentX));
+    zone = SixCardHand_GetPlayerHandZone(gDuelCursor.currentX);
   } else if (CanPlayerSeeCard__Replacement(gDuelCursor.currentY, gDuelCursor.currentX) == 1) {
-    ApplyFieldZoneStatsToCardInfo(
-        gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX]);
-  } else {
-    SetCardInfo(CARD_NONE);
+    zone = gFixedZones[gDuelCursor.currentY][gDuelCursor.currentX];
   }
+
+  /* Empty player zones are still "visible"; clear so the bar doesn't keep the last card. */
+  if (zone != NULL && zone->id != CARD_NONE)
+    ApplyFieldZoneStatsToCardInfo(zone);
+  else
+    SetCardInfo(CARD_NONE);
 
   if (gCardInfo.id != CARD_NONE)
     ApplyCardInfoBarLevelOverrides(gCardInfo.id);

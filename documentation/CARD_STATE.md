@@ -1,15 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Duel voice portrait keeps mini-cards
+**Last worked on:** 2026-07-18 — Info bar clears on empty cursor zone
 
 **Files touched:**
-- `src_custom/duel_voice_hooks.c`
-- `include/duel_voice.h`
-- `src_custom/mechanics_tutorial.c`
-- `documentation/custom-voices.md`
+- `src_custom/duel_opponent_hand_scroll_hooks.c`
 
-**Outcome:** Portrait only hides OAM 102 (VRAM clash); other mini-cards stay. `make` OK.
+**Outcome:** Empty field/hand cursor blanks bottom alpha-blend bar (`SetCardInfo(CARD_NONE)`). `make` OK.
 
 **Open / next:**
-- Playtest turn-start portrait with a full board
-- Optional: evacuate zone (0,0) tiles so that slot stays visible too
+- Playtest cursor on empty monster/backrow/hand — bar should have no name/ATK/DEF
