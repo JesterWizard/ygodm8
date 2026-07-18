@@ -2,17 +2,19 @@
 #include "overworld.h"
 #include "constants/music_ids.h"
 
-/* map_25_state_03: map 25 state 3 */
+/* map_25_state_03: map 25 state 3
+ * Dealer A/R share one script address — challenge Yes/No only. */
 
-EVENT_SCRIPT_REPLACEMENT(0x08E99600, map_25_state_03_08E99600, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT_REPLACEMENT(0x08E99600, map_25_state_03_08E99600, map_25_state_03_dealer_play, 0x08F04040)
   LOAD_SPRITE(1, SPRITE_SHIP_DEALER)
   LOAD_SPRITE(2, SPRITE_CASINO_PLAYER)
   TEXT
   (
       "I don't duel, but I deal.\n"
-      "Blackjack?\n\n"
+      "Care for Blackjack?\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
   )
-  SPECIAL(36)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
@@ -40,6 +42,11 @@ EVENT_SCRIPT_REPLACEMENT(0x08E99618, map_25_state_03_08E99618, map_25_state_03_p
       "{CARD_1}Yes\n"
       "No{CARD_2}\n\n"
   )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT(map_25_state_03_dealer_play, 0x08F04040, 0x08F04040)
+  SPECIAL(36)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 

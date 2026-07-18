@@ -149,6 +149,8 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
             RemoveMoney(1000);
         break;
     case CASINO_SPECIAL_BLACKJACK:
+        PlayMusic(SFX_TRANSITION_OVERWORLD_TO_ANTE);
+        MosaicEffect();
         Casino_BlackjackMain();
         OverworldLoadGraphics();
         sub_80533BC();

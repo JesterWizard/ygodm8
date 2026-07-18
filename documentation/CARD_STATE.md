@@ -1,13 +1,12 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Patron R Yes/No + mosaic fade
+**Last worked on:** 2026-07-18 — Blackjack layout polish
 
 **Files touched:**
-- `events/scripts/map_25_state_{01,02,03}.c`
-- `src_custom/script_commands2_hooks.c`
-- `documentation/domino-boat-casino.md`
+- `src_custom/casino/casino_blackjack.c`
+- `src_custom/casino/casino_common.c`
 
-**Outcome:** make exits 0. R Yes → mosaic + Concentration; No declines.
+**Outcome:** make exits 0. Dealer flush-right; Hit/Stand clear of cursor; 6 cards/row.
 
 **Open / next:**
-- Playtest patron R Yes/No + fade on Domino Pier
+- Playtest Blackjack card row + HUD spacing

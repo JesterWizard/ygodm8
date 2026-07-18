@@ -14,7 +14,8 @@
 #include "text.h"
 
 #define CASINO_RIGHT_TEXT_CHARS 12
-#define CASINO_RIGHT_MAP_COL 16
+/* Flush right on play field (30 cols); 12 chars → cols 18..29. */
+#define CASINO_RIGHT_MAP_COL 18
 /* Must stay below tile 0x81 (left text) and below 0x180 (sbb1E / BG3 map in cbb3).
  * Old base 0x121 overlapped sbb1E — ClearRightHud zeroed the Egyptian BG3 tilemap. */
 #define CASINO_RIGHT_TEXT_TILE 0x08

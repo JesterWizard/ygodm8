@@ -24,9 +24,8 @@ Stakes are Domino **100** / **1000**, or any trunk ante card. Money wins pay 1:1
 ## Plan
 
 1. Talk to the NPC:
-   - Dealer **A** → Blackjack offer → `SPECIAL(36)`.
-   - Patron **A** → Concentration rules yes/no; **Yes** explains the game.
-   - Patron **R** → not a duelist, challenge yes/no; **Yes** → mosaic fade → `SPECIAL(37)`.
+   - Dealer **A** → Blackjack rules yes/no; **R** → play yes/no → mosaic → `SPECIAL(36)`.
+   - Patron **A** → Concentration rules yes/no; **R** → play yes/no → mosaic → `SPECIAL(37)`.
 2. C stake menu (Domino amounts or trunk ante picker).
 3. Play the mini-game overlay (start-menu BG + mini-card OAM).
 4. Resolve payout → overworld restore.
@@ -43,7 +42,8 @@ Blackjack is minimal: hit/stand, dealer stands on all 17s, infinite shoe of real
 | Blackjack | `src_custom/casino/casino_blackjack.c` | Deal / hit / stand loop |
 | Concentration | `src_custom/casino/casino_concentration.c` | 4×5 board, memory AI |
 | SPECIAL dispatch | `sub_8054AB0__Replacement` in `src_custom/script_commands2_hooks.c` | Cases 36 / 37 |
-| Map scripts | `events/scripts/map_25_state_{01,02,03}.c` | Dealer A = Blackjack; patron A = rules, R = Concentration |
+| Map scripts | `events/scripts/map_25_state_{01,02,03}.c` | Dealer/patron A = rules, R = challenge (state 03 dealer A/R shared) |
+
 
 | SPECIAL names | `tools/vanilla_events.py` `SPECIAL_COMMANDS` | `casino_blackjack`, `casino_concentration` |
 
