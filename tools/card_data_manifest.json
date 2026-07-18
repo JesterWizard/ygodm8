@@ -33874,6 +33874,586 @@
       "effect_texts": {
         "popup_1": "If Summoned alone: opp skips next Draw Phase."
       }
+    },
+    {
+      "card_const": "ACE_OF_SWORD",
+      "card_name": "Ace of Sword",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_AceOfSword",
+        "pages": [
+          "Select 1 face-up monster; toss",
+          "a coin. Heads: inflict damage",
+          "equal to its ATK. Tails: you",
+          "take damage equal to its ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: burn or take selected ATK."
+      }
+    },
+    {
+      "card_const": "ACE_OF_WAND",
+      "card_name": "Ace of Wand",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 0, 2],
+      "description": {
+        "symbol": "gDescription_AceOfWand",
+        "pages": [
+          "When a monster is destroyed by",
+          "a card effect: toss a coin.",
+          "Heads: its controller gains LP",
+          "equal to total ATK. Tails: they",
+          "take that much damage."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: heal or burn destroyed ATK."
+      }
+    },
+    {
+      "card_const": "ARCANA_CALL",
+      "card_name": "Arcana Call",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 9, 1, 8, 9, 3, 2, 2],
+      "description": {
+        "symbol": "gDescription_ArcanaCall",
+        "pages": [
+          "When an Arcana Force monster is",
+          "destroyed: Special Summon it",
+          "from GY. Then toss a coin and",
+          "apply its Heads or Tails effect."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Revive Arcana Force; apply coin effect."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_0_THE_FOOL",
+      "card_name": "Arcana Force 0 - The Fool",
+      "atk": 0,
+      "def": 0,
+      "level": 1,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 2, 8, 9, 2, 3, 4, 7],
+      "description": {
+        "symbol": "gDescription_ArcanaForce0TheFool",
+        "pages": [
+          "Cannot be destroyed by battle.",
+          "When Summoned: toss a coin.",
+          "Heads: negate effects that",
+          "target this. Tails: negate this",
+          "cards effects."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Indestructible. Coin: immunity or self-negate."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_EX_THE_DARK_RULER",
+      "card_name": "Arcana Force EX - The Dark Ruler",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [6, 9, 8, 3, 1, 5, 6, 0],
+      "description": {
+        "symbol": "gDescription_ArcanaForceExTheDarkRuler",
+        "pages": [
+          "Cannot be Normal Summoned/Set.",
+          "Must Tribute 3 monsters. When",
+          "Summoned: toss a coin. Heads:",
+          "destroy all other cards. Tails:",
+          "destroy all cards you control."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 3. Coin: wipe field or your cards."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_EX_THE_LIGHT_RULER",
+      "card_name": "Arcana Force EX - The Light Ruler",
+      "atk": 4000,
+      "def": 4000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [0, 5, 8, 6, 1, 8, 9, 2],
+      "description": {
+        "symbol": "gDescription_ArcanaForceExTheLightRuler",
+        "pages": [
+          "Cannot be Normal Summoned/Set.",
+          "Must Tribute 3. When Summoned:",
+          "toss a coin. Heads: negate Spells/",
+          "Traps targeting this. Tails: send",
+          "1 card you control to GY to negate."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 3. Coin: protect or negate via send."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_I_THE_MAGICIAN",
+      "card_name": "Arcana Force I - The Magician",
+      "atk": 1100,
+      "def": 1100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 103,
+      "password": [0, 8, 3, 9, 6, 9, 5, 2],
+      "description": {
+        "symbol": "gDescription_ArcanaForceITheMagician",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: Spells targeting this",
+          "gain 500 ATK. Tails: Spells",
+          "targeting this lose 500 ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: Spells targeting this +/- 500 ATK."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_III_THE_EMPRESS",
+      "card_name": "Arcana Force III - The Empress",
+      "atk": 1300,
+      "def": 1300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 161,
+      "password": [3, 5, 7, 8, 1, 0, 5, 1],
+      "description": {
+        "symbol": "gDescription_ArcanaForceIiiTheEmpress",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: when you Normal Summon",
+          "an Arcana Force, draw 1. Tails:",
+          "when opp Normal Summons, they",
+          "draw 1."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: draw on your or opp Normal Summon."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_IV_THE_EMPEROR",
+      "card_name": "Arcana Force IV - The Emperor",
+      "atk": 1400,
+      "def": 1400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 172,
+      "password": [6, 1, 1, 7, 5, 7, 0, 6],
+      "description": {
+        "symbol": "gDescription_ArcanaForceIvTheEmperor",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: all your monsters gain",
+          "500 ATK. Tails: all opp monsters",
+          "gain 500 ATK."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: your or opp monsters gain 500 ATK."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_THE_CHAOS_RULER",
+      "card_name": "Arcana Force EX - The Chaos Ruler",
+      "atk": 3300,
+      "def": 3300,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [1, 2, 6, 8, 6, 2, 9, 6],
+      "description": {
+        "symbol": "gDescription_ArcanaForceExTheChaosRuler",
+        "pages": [
+          "3 Arcana Force (different names).",
+          "Contact Fusion from either field.",
+          "If SS: coin. Heads: SS L10 Arcana",
+          "Force. Tails: add a coin-toss card.",
+          "With Light Barrier: opp monster effects locked."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Contact Fusion. Coin: SS L10 or search."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_V_THE_HIEROPHANT",
+      "card_name": "Arcana Force V - The Hierophant",
+      "atk": 1500,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 172,
+      "password": [0, 3, 3, 7, 6, 7, 0, 3],
+      "description": {
+        "symbol": "gDescription_ArcanaForceVTheHierophant",
+        "pages": [
+          "Discard this; this turn opp cannot",
+          "respond to Arcana Force Summons.",
+          "If Summoned: coin. Heads: add L4",
+          "Arcana Force. Tails: SS L4 Arcana",
+          "Force from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard: protect Summons. Coin search/SS."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_VI_THE_LOVERS",
+      "card_name": "Arcana Force VI - The Lovers",
+      "atk": 1600,
+      "def": 1600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 233,
+      "password": [9, 7, 5, 7, 4, 4, 0, 4],
+      "description": {
+        "symbol": "gDescription_ArcanaForceViTheLovers",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: can Tribute as 2 for an",
+          "Arcana Force. Tails: cannot be",
+          "used as Tribute."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: double Tribute or cannot Tribute."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_VII_THE_CHARIOT",
+      "card_name": "Arcana Force VII - The Chariot",
+      "atk": 1700,
+      "def": 1700,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 233,
+      "password": [3, 4, 5, 6, 8, 4, 0, 3],
+      "description": {
+        "symbol": "gDescription_ArcanaForceViiTheChariot",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: when this destroys by",
+          "battle, Special Summon it. Tails:",
+          "give control of this to opponent."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: revive after battle or give to opp."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_VIII_THE_STRENGTH",
+      "card_name": "Arcana Force VIII - The Strength",
+      "atk": 1800,
+      "def": 1800,
+      "level": 5,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 0, 3],
+      "description": {
+        "symbol": "gDescription_ArcanaForceViiiTheStrength",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: take control of 1 opp",
+          "monster. Tails: opp takes control",
+          "of 1 of yours (except this)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: steal opp monster or lose yours."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XII_THE_HANGMAN",
+      "card_name": "Arcana Force XII - The Hangman",
+      "atk": 2200,
+      "def": 2200,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 0, 4],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXiiTheHangman",
+        "pages": [
+          "Quick: reveal this; SS 1 Arcana",
+          "Force from hand in Def. Once/turn.",
+          "If Summoned: coin. Heads: destroy",
+          "yours; take ATK damage. Tails:",
+          "destroy opp; inflict ATK damage."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Reveal; SS Arcana Force. Coin destroy+burn."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XIV_TEMPERANCE",
+      "card_name": "Arcana Force XIV - Temperance",
+      "atk": 2400,
+      "def": 2400,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 0, 9, 5, 3, 1, 1, 8],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXivTemperance",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: you take no battle damage.",
+          "Tails: your opp takes no battle",
+          "damage. Discard this to reduce",
+          "battle damage to 0."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: no battle damage. Discard: reduce to 0."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XIX_THE_SUN",
+      "card_name": "Arcana Force XIX - The Sun",
+      "atk": 2900,
+      "def": 2900,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 117,
+      "password": [3, 9, 7, 6, 1, 4, 1, 8],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXixTheSun",
+        "pages": [
+          "If a coin-toss card is on field:",
+          "SS this from hand. Once/turn. If",
+          "Summoned: coin. Heads: destroy all",
+          "other monsters. Tails: destroy all",
+          "Spells and Traps."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS if coin card on field. Coin wipe monsters/ST."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XV_THE_FIEND",
+      "card_name": "Arcana Force XV - The Fiend",
+      "atk": 2500,
+      "def": 2500,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [5, 9, 7, 1, 2, 4, 2, 6],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXvTheFiend",
+        "pages": [
+          "Discard this; add Light Barrier",
+          "from Deck or GY. If Summoned:",
+          "coin. Heads: destroy all other",
+          "monsters. Tails: destroy all",
+          "monsters you control."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard: search Light Barrier. Coin wipe."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XVIII_THE_MOON",
+      "card_name": "Arcana Force XVIII - The Moon",
+      "atk": 2800,
+      "def": 2800,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 117,
+      "password": [9, 7, 4, 5, 2, 8, 1, 7],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXviiiTheMoon",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: Special Summon 1 Moon",
+          "Token (Fairy/LIGHT/Lvl1/0/0).",
+          "Tails: change this to Defense."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: SS Moon Token or change to Def."
+      }
+    },
+    {
+      "card_const": "ARCANA_FORCE_XXI_THE_WORLD",
+      "card_name": "Arcana Force XXI - The World",
+      "atk": 3100,
+      "def": 3100,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 3, 8, 4, 6, 9, 2, 1],
+      "description": {
+        "symbol": "gDescription_ArcanaForceXxiTheWorld",
+        "pages": [
+          "When Summoned: toss a coin.",
+          "Heads: once/turn, send 2 monsters",
+          "you control to GY to skip opp",
+          "next turn. Tails: skip your next",
+          "turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: skip opp turn or your next turn."
+      }
+    },
+    {
+      "card_const": "ARCANA_READING",
+      "card_name": "Arcana Reading",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 1, 8, 1, 9, 4, 7, 3],
+      "description": {
+        "symbol": "gDescription_ArcanaReading",
+        "pages": [
+          "Toss a coin (choose if Light",
+          "Barrier is in Field Zone). Heads:",
+          "add 1 Arcana Force from Deck.",
+          "Tails: Special Summon 1 Arcana",
+          "Force from GY. Once per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: add Arcana Force or SS from GY."
+      }
     }
   ]
 }

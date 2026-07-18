@@ -483,3 +483,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire TRAP_TRICK in trap dispatcher */
 /* VENOM_BURN trap effect */
   /* TODO: wire VENOM_BURN in trap dispatcher */
+/* ACE_OF_WAND trap effect */
+  /* TODO: wire ACE_OF_WAND in trap dispatcher */
+/* ARCANA_CALL trap effect */
+  /* TODO: wire ARCANA_CALL in trap dispatcher */

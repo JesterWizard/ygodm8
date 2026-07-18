@@ -228,6 +228,32 @@ unsigned char ShouldActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
 void ActivateVENNOMINON_THE_KING_OF_POISONOUS_SNAKES(void);
 unsigned char ShouldActivateYOWIE(void);
 void ActivateYOWIE(void);
+unsigned char ShouldActivateARCANA_FORCE_0_THE_FOOL(void);
+void ActivateARCANA_FORCE_0_THE_FOOL(void);
+unsigned char ShouldActivateARCANA_FORCE_EX_THE_DARK_RULER(void);
+void ActivateARCANA_FORCE_EX_THE_DARK_RULER(void);
+unsigned char ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void);
+void ActivateARCANA_FORCE_EX_THE_LIGHT_RULER(void);
+unsigned char ShouldActivateARCANA_FORCE_I_THE_MAGICIAN(void);
+void ActivateARCANA_FORCE_I_THE_MAGICIAN(void);
+unsigned char ShouldActivateARCANA_FORCE_III_THE_EMPRESS(void);
+void ActivateARCANA_FORCE_III_THE_EMPRESS(void);
+unsigned char ShouldActivateARCANA_FORCE_IV_THE_EMPEROR(void);
+void ActivateARCANA_FORCE_IV_THE_EMPEROR(void);
+unsigned char ShouldActivateARCANA_FORCE_THE_CHAOS_RULER(void);
+void ActivateARCANA_FORCE_THE_CHAOS_RULER(void);
+unsigned char ShouldActivateARCANA_FORCE_VI_THE_LOVERS(void);
+void ActivateARCANA_FORCE_VI_THE_LOVERS(void);
+unsigned char ShouldActivateARCANA_FORCE_VII_THE_CHARIOT(void);
+void ActivateARCANA_FORCE_VII_THE_CHARIOT(void);
+unsigned char ShouldActivateARCANA_FORCE_VIII_THE_STRENGTH(void);
+void ActivateARCANA_FORCE_VIII_THE_STRENGTH(void);
+unsigned char ShouldActivateARCANA_FORCE_XIV_TEMPERANCE(void);
+void ActivateARCANA_FORCE_XIV_TEMPERANCE(void);
+unsigned char ShouldActivateARCANA_FORCE_XVIII_THE_MOON(void);
+void ActivateARCANA_FORCE_XVIII_THE_MOON(void);
+unsigned char ShouldActivateARCANA_FORCE_XXI_THE_WORLD(void);
+void ActivateARCANA_FORCE_XXI_THE_WORLD(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -718,6 +744,71 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = YOWIE,
     .shouldActivate = ShouldActivateYOWIE,
     .activate = ActivateYOWIE,
+  },
+  {
+    .cardId = ARCANA_FORCE_0_THE_FOOL,
+    .shouldActivate = ShouldActivateARCANA_FORCE_0_THE_FOOL,
+    .activate = ActivateARCANA_FORCE_0_THE_FOOL,
+  },
+  {
+    .cardId = ARCANA_FORCE_EX_THE_DARK_RULER,
+    .shouldActivate = ShouldActivateARCANA_FORCE_EX_THE_DARK_RULER,
+    .activate = ActivateARCANA_FORCE_EX_THE_DARK_RULER,
+  },
+  {
+    .cardId = ARCANA_FORCE_EX_THE_LIGHT_RULER,
+    .shouldActivate = ShouldActivateARCANA_FORCE_EX_THE_LIGHT_RULER,
+    .activate = ActivateARCANA_FORCE_EX_THE_LIGHT_RULER,
+  },
+  {
+    .cardId = ARCANA_FORCE_I_THE_MAGICIAN,
+    .shouldActivate = ShouldActivateARCANA_FORCE_I_THE_MAGICIAN,
+    .activate = ActivateARCANA_FORCE_I_THE_MAGICIAN,
+  },
+  {
+    .cardId = ARCANA_FORCE_III_THE_EMPRESS,
+    .shouldActivate = ShouldActivateARCANA_FORCE_III_THE_EMPRESS,
+    .activate = ActivateARCANA_FORCE_III_THE_EMPRESS,
+  },
+  {
+    .cardId = ARCANA_FORCE_IV_THE_EMPEROR,
+    .shouldActivate = ShouldActivateARCANA_FORCE_IV_THE_EMPEROR,
+    .activate = ActivateARCANA_FORCE_IV_THE_EMPEROR,
+  },
+  {
+    .cardId = ARCANA_FORCE_THE_CHAOS_RULER,
+    .shouldActivate = ShouldActivateARCANA_FORCE_THE_CHAOS_RULER,
+    .activate = ActivateARCANA_FORCE_THE_CHAOS_RULER,
+  },
+  {
+    .cardId = ARCANA_FORCE_VI_THE_LOVERS,
+    .shouldActivate = ShouldActivateARCANA_FORCE_VI_THE_LOVERS,
+    .activate = ActivateARCANA_FORCE_VI_THE_LOVERS,
+  },
+  {
+    .cardId = ARCANA_FORCE_VII_THE_CHARIOT,
+    .shouldActivate = ShouldActivateARCANA_FORCE_VII_THE_CHARIOT,
+    .activate = ActivateARCANA_FORCE_VII_THE_CHARIOT,
+  },
+  {
+    .cardId = ARCANA_FORCE_VIII_THE_STRENGTH,
+    .shouldActivate = ShouldActivateARCANA_FORCE_VIII_THE_STRENGTH,
+    .activate = ActivateARCANA_FORCE_VIII_THE_STRENGTH,
+  },
+  {
+    .cardId = ARCANA_FORCE_XIV_TEMPERANCE,
+    .shouldActivate = ShouldActivateARCANA_FORCE_XIV_TEMPERANCE,
+    .activate = ActivateARCANA_FORCE_XIV_TEMPERANCE,
+  },
+  {
+    .cardId = ARCANA_FORCE_XVIII_THE_MOON,
+    .shouldActivate = ShouldActivateARCANA_FORCE_XVIII_THE_MOON,
+    .activate = ActivateARCANA_FORCE_XVIII_THE_MOON,
+  },
+  {
+    .cardId = ARCANA_FORCE_XXI_THE_WORLD,
+    .shouldActivate = ShouldActivateARCANA_FORCE_XXI_THE_WORLD,
+    .activate = ActivateARCANA_FORCE_XXI_THE_WORLD,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

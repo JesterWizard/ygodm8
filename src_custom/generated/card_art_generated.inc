@@ -3208,6 +3208,90 @@ static const unsigned char sYowieBigArt[] __attribute__((section(".append_assets
 static const unsigned short sYowieBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/yowie.gbapal");
 static const unsigned char sYowieMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/yowie.lz");
 
+static const unsigned char sAceOfSwordBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ace_of_sword.huff");
+static const unsigned short sAceOfSwordBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ace_of_sword.gbapal");
+static const unsigned char sAceOfSwordMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ace_of_sword.lz");
+
+static const unsigned char sAceOfWandBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ace_of_wand.huff");
+static const unsigned short sAceOfWandBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ace_of_wand.gbapal");
+static const unsigned char sAceOfWandMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ace_of_wand.lz");
+
+static const unsigned char sArcanaCallBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_call.huff");
+static const unsigned short sArcanaCallBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_call.gbapal");
+static const unsigned char sArcanaCallMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_call.lz");
+
+static const unsigned char sArcanaForce0TheFoolBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_0_the_fool.huff");
+static const unsigned short sArcanaForce0TheFoolBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_0_the_fool.gbapal");
+static const unsigned char sArcanaForce0TheFoolMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_0_the_fool.lz");
+
+static const unsigned char sArcanaForceExTheDarkRulerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_ex_the_dark_ruler.huff");
+static const unsigned short sArcanaForceExTheDarkRulerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_ex_the_dark_ruler.gbapal");
+static const unsigned char sArcanaForceExTheDarkRulerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_ex_the_dark_ruler.lz");
+
+static const unsigned char sArcanaForceExTheLightRulerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_ex_the_light_ruler.huff");
+static const unsigned short sArcanaForceExTheLightRulerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_ex_the_light_ruler.gbapal");
+static const unsigned char sArcanaForceExTheLightRulerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_ex_the_light_ruler.lz");
+
+static const unsigned char sArcanaForceITheMagicianBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_i_the_magician.huff");
+static const unsigned short sArcanaForceITheMagicianBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_i_the_magician.gbapal");
+static const unsigned char sArcanaForceITheMagicianMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_i_the_magician.lz");
+
+static const unsigned char sArcanaForceIiiTheEmpressBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_iii_the_empress.huff");
+static const unsigned short sArcanaForceIiiTheEmpressBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_iii_the_empress.gbapal");
+static const unsigned char sArcanaForceIiiTheEmpressMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_iii_the_empress.lz");
+
+static const unsigned char sArcanaForceIvTheEmperorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_iv_the_emperor.huff");
+static const unsigned short sArcanaForceIvTheEmperorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_iv_the_emperor.gbapal");
+static const unsigned char sArcanaForceIvTheEmperorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_iv_the_emperor.lz");
+
+static const unsigned char sArcanaForceTheChaosRulerBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_the_chaos_ruler.huff");
+static const unsigned short sArcanaForceTheChaosRulerBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_the_chaos_ruler.gbapal");
+static const unsigned char sArcanaForceTheChaosRulerMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_the_chaos_ruler.lz");
+
+static const unsigned char sArcanaForceVTheHierophantBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_v_the_hierophant.huff");
+static const unsigned short sArcanaForceVTheHierophantBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_v_the_hierophant.gbapal");
+static const unsigned char sArcanaForceVTheHierophantMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_v_the_hierophant.lz");
+
+static const unsigned char sArcanaForceViTheLoversBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_vi_the_lovers.huff");
+static const unsigned short sArcanaForceViTheLoversBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_vi_the_lovers.gbapal");
+static const unsigned char sArcanaForceViTheLoversMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_vi_the_lovers.lz");
+
+static const unsigned char sArcanaForceViiTheChariotBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_vii_the_chariot.huff");
+static const unsigned short sArcanaForceViiTheChariotBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_vii_the_chariot.gbapal");
+static const unsigned char sArcanaForceViiTheChariotMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_vii_the_chariot.lz");
+
+static const unsigned char sArcanaForceViiiTheStrengthBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_viii_the_strength.huff");
+static const unsigned short sArcanaForceViiiTheStrengthBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_viii_the_strength.gbapal");
+static const unsigned char sArcanaForceViiiTheStrengthMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_viii_the_strength.lz");
+
+static const unsigned char sArcanaForceXiiTheHangmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xii_the_hangman.huff");
+static const unsigned short sArcanaForceXiiTheHangmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xii_the_hangman.gbapal");
+static const unsigned char sArcanaForceXiiTheHangmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xii_the_hangman.lz");
+
+static const unsigned char sArcanaForceXivTemperanceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xiv_temperance.huff");
+static const unsigned short sArcanaForceXivTemperanceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xiv_temperance.gbapal");
+static const unsigned char sArcanaForceXivTemperanceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xiv_temperance.lz");
+
+static const unsigned char sArcanaForceXixTheSunBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xix_the_sun.huff");
+static const unsigned short sArcanaForceXixTheSunBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xix_the_sun.gbapal");
+static const unsigned char sArcanaForceXixTheSunMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xix_the_sun.lz");
+
+static const unsigned char sArcanaForceXvTheFiendBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xv_the_fiend.huff");
+static const unsigned short sArcanaForceXvTheFiendBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xv_the_fiend.gbapal");
+static const unsigned char sArcanaForceXvTheFiendMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xv_the_fiend.lz");
+
+static const unsigned char sArcanaForceXviiiTheMoonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xviii_the_moon.huff");
+static const unsigned short sArcanaForceXviiiTheMoonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xviii_the_moon.gbapal");
+static const unsigned char sArcanaForceXviiiTheMoonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xviii_the_moon.lz");
+
+static const unsigned char sArcanaForceXxiTheWorldBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_force_xxi_the_world.huff");
+static const unsigned short sArcanaForceXxiTheWorldBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_force_xxi_the_world.gbapal");
+static const unsigned char sArcanaForceXxiTheWorldMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_force_xxi_the_world.lz");
+
+static const unsigned char sArcanaReadingBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_reading.huff");
+static const unsigned short sArcanaReadingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_reading.gbapal");
+static const unsigned char sArcanaReadingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_reading.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -4011,6 +4095,27 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x063E] = sVipersRebirthBigArt,
   [0x063F] = sYamorimoriBigArt,
   [0x0640] = sYowieBigArt,
+  [0x0641] = sAceOfSwordBigArt,
+  [0x0642] = sAceOfWandBigArt,
+  [0x0643] = sArcanaCallBigArt,
+  [0x0644] = sArcanaForce0TheFoolBigArt,
+  [0x0645] = sArcanaForceExTheDarkRulerBigArt,
+  [0x0646] = sArcanaForceExTheLightRulerBigArt,
+  [0x0647] = sArcanaForceITheMagicianBigArt,
+  [0x0648] = sArcanaForceIiiTheEmpressBigArt,
+  [0x0649] = sArcanaForceIvTheEmperorBigArt,
+  [0x064A] = sArcanaForceTheChaosRulerBigArt,
+  [0x064B] = sArcanaForceVTheHierophantBigArt,
+  [0x064C] = sArcanaForceViTheLoversBigArt,
+  [0x064D] = sArcanaForceViiTheChariotBigArt,
+  [0x064E] = sArcanaForceViiiTheStrengthBigArt,
+  [0x064F] = sArcanaForceXiiTheHangmanBigArt,
+  [0x0650] = sArcanaForceXivTemperanceBigArt,
+  [0x0651] = sArcanaForceXixTheSunBigArt,
+  [0x0652] = sArcanaForceXvTheFiendBigArt,
+  [0x0653] = sArcanaForceXviiiTheMoonBigArt,
+  [0x0654] = sArcanaForceXxiTheWorldBigArt,
+  [0x0655] = sArcanaReadingBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4816,6 +4921,27 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x063E] = sVipersRebirthBigPalette,
   [0x063F] = sYamorimoriBigPalette,
   [0x0640] = sYowieBigPalette,
+  [0x0641] = sAceOfSwordBigPalette,
+  [0x0642] = sAceOfWandBigPalette,
+  [0x0643] = sArcanaCallBigPalette,
+  [0x0644] = sArcanaForce0TheFoolBigPalette,
+  [0x0645] = sArcanaForceExTheDarkRulerBigPalette,
+  [0x0646] = sArcanaForceExTheLightRulerBigPalette,
+  [0x0647] = sArcanaForceITheMagicianBigPalette,
+  [0x0648] = sArcanaForceIiiTheEmpressBigPalette,
+  [0x0649] = sArcanaForceIvTheEmperorBigPalette,
+  [0x064A] = sArcanaForceTheChaosRulerBigPalette,
+  [0x064B] = sArcanaForceVTheHierophantBigPalette,
+  [0x064C] = sArcanaForceViTheLoversBigPalette,
+  [0x064D] = sArcanaForceViiTheChariotBigPalette,
+  [0x064E] = sArcanaForceViiiTheStrengthBigPalette,
+  [0x064F] = sArcanaForceXiiTheHangmanBigPalette,
+  [0x0650] = sArcanaForceXivTemperanceBigPalette,
+  [0x0651] = sArcanaForceXixTheSunBigPalette,
+  [0x0652] = sArcanaForceXvTheFiendBigPalette,
+  [0x0653] = sArcanaForceXviiiTheMoonBigPalette,
+  [0x0654] = sArcanaForceXxiTheWorldBigPalette,
+  [0x0655] = sArcanaReadingBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -5621,6 +5747,27 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x063E] = 0,
   [0x063F] = 0,
   [0x0640] = 0,
+  [0x0641] = 0,
+  [0x0642] = 0,
+  [0x0643] = 0,
+  [0x0644] = 0,
+  [0x0645] = 0,
+  [0x0646] = 0,
+  [0x0647] = 0,
+  [0x0648] = 0,
+  [0x0649] = 0,
+  [0x064A] = 0,
+  [0x064B] = 0,
+  [0x064C] = 0,
+  [0x064D] = 0,
+  [0x064E] = 0,
+  [0x064F] = 0,
+  [0x0650] = 0,
+  [0x0651] = 0,
+  [0x0652] = 0,
+  [0x0653] = 0,
+  [0x0654] = 0,
+  [0x0655] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -6426,4 +6573,25 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x063E] = sVipersRebirthMiniArt,
   [0x063F] = sYamorimoriMiniArt,
   [0x0640] = sYowieMiniArt,
+  [0x0641] = sAceOfSwordMiniArt,
+  [0x0642] = sAceOfWandMiniArt,
+  [0x0643] = sArcanaCallMiniArt,
+  [0x0644] = sArcanaForce0TheFoolMiniArt,
+  [0x0645] = sArcanaForceExTheDarkRulerMiniArt,
+  [0x0646] = sArcanaForceExTheLightRulerMiniArt,
+  [0x0647] = sArcanaForceITheMagicianMiniArt,
+  [0x0648] = sArcanaForceIiiTheEmpressMiniArt,
+  [0x0649] = sArcanaForceIvTheEmperorMiniArt,
+  [0x064A] = sArcanaForceTheChaosRulerMiniArt,
+  [0x064B] = sArcanaForceVTheHierophantMiniArt,
+  [0x064C] = sArcanaForceViTheLoversMiniArt,
+  [0x064D] = sArcanaForceViiTheChariotMiniArt,
+  [0x064E] = sArcanaForceViiiTheStrengthMiniArt,
+  [0x064F] = sArcanaForceXiiTheHangmanMiniArt,
+  [0x0650] = sArcanaForceXivTemperanceMiniArt,
+  [0x0651] = sArcanaForceXixTheSunMiniArt,
+  [0x0652] = sArcanaForceXvTheFiendMiniArt,
+  [0x0653] = sArcanaForceXviiiTheMoonMiniArt,
+  [0x0654] = sArcanaForceXxiTheWorldMiniArt,
+  [0x0655] = sArcanaReadingMiniArt,
 };

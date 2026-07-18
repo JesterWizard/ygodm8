@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `731` effects
+- `752` effects
 
 ## Tally
 
@@ -712,6 +712,27 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `spell_effects` | `Vipers Rebirth` | `src_custom/spell_effects/vipers_rebirth.c` |
 | `activated_effects` | `Yamorimori` | `src_custom/activated_effects/yamorimori.c` |
 | `permanent_effects` | `Yowie` | `src_custom/permanent_effects/yowie.c` |
+| `spell_effects` | `Ace Of Sword` | `src_custom/spell_effects/ace_of_sword.c` |
+| `trap_effects` | `Ace Of Wand` | `src_custom/trap_effects/ace_of_wand.c` |
+| `trap_effects` | `Arcana Call` | `src_custom/trap_effects/arcana_call.c` |
+| `permanent_effects` | `Arcana Force 0 The Fool` | `src_custom/permanent_effects/arcana_force_0_the_fool.c` |
+| `permanent_effects` | `Arcana Force Ex The Dark Ruler` | `src_custom/permanent_effects/arcana_force_ex_the_dark_ruler.c` |
+| `permanent_effects` | `Arcana Force Ex The Light Ruler` | `src_custom/permanent_effects/arcana_force_ex_the_light_ruler.c` |
+| `permanent_effects` | `Arcana Force I The Magician` | `src_custom/permanent_effects/arcana_force_i_the_magician.c` |
+| `permanent_effects` | `Arcana Force Iii The Empress` | `src_custom/permanent_effects/arcana_force_iii_the_empress.c` |
+| `permanent_effects` | `Arcana Force Iv The Emperor` | `src_custom/permanent_effects/arcana_force_iv_the_emperor.c` |
+| `permanent_effects` | `Arcana Force The Chaos Ruler` | `src_custom/permanent_effects/arcana_force_the_chaos_ruler.c` |
+| `activated_effects` | `Arcana Force V The Hierophant` | `src_custom/activated_effects/arcana_force_v_the_hierophant.c` |
+| `permanent_effects` | `Arcana Force Vi The Lovers` | `src_custom/permanent_effects/arcana_force_vi_the_lovers.c` |
+| `permanent_effects` | `Arcana Force Vii The Chariot` | `src_custom/permanent_effects/arcana_force_vii_the_chariot.c` |
+| `permanent_effects` | `Arcana Force Viii The Strength` | `src_custom/permanent_effects/arcana_force_viii_the_strength.c` |
+| `activated_effects` | `Arcana Force Xii The Hangman` | `src_custom/activated_effects/arcana_force_xii_the_hangman.c` |
+| `permanent_effects` | `Arcana Force Xiv Temperance` | `src_custom/permanent_effects/arcana_force_xiv_temperance.c` |
+| `activated_effects` | `Arcana Force Xix The Sun` | `src_custom/activated_effects/arcana_force_xix_the_sun.c` |
+| `activated_effects` | `Arcana Force Xv The Fiend` | `src_custom/activated_effects/arcana_force_xv_the_fiend.c` |
+| `permanent_effects` | `Arcana Force Xviii The Moon` | `src_custom/permanent_effects/arcana_force_xviii_the_moon.c` |
+| `permanent_effects` | `Arcana Force Xxi The World` | `src_custom/permanent_effects/arcana_force_xxi_the_world.c` |
+| `spell_effects` | `Arcana Reading` | `src_custom/spell_effects/arcana_reading.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

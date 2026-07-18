@@ -1,12 +1,20 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-17 — Fix empty starting deck (sort buffer bridge)
+**Last worked on:** 2026-07-18 — Added ACE_OF_SWORD–ARCANA_READING (trunk + stub effects)
 
 **Files touched:**
-- `src_custom/card_sort_hooks.c`
-- `tools/validate_trunk_sort.py`
-- `documentation/session_logs/2026-07-17.md`
+- `tools/card_data_manifest.json`
+- `src_custom/monster_effect_hooks.c`
+- `src_custom/permanent_effect_hooks.c`
+- `src_custom/trap_effect_hooks.c`
+- `src_custom/activated_effects/`
+- `src_custom/permanent_effects/`
+- `src_custom/spell_effects/`
+- `src_custom/trap_effects/`
+- `CARD_PROGRESS.md`
 
-**Outcome:** `make` exits 0. Opening the deck menu no longer wipes `gDeckMenu.cards` while leaving `cardCount` at 40.
+**Outcome:** make exits 0. 21 Arcana Force support cards in trunk with art; effects stubbed. total_cards=1622. In game 821; todo 159.
 
-**Open / next:** Playtest new game → Deck: cards list matches the 40-count; optional upgrade is patching ROM `0x8E0CC20` → `gExpandedSortableEntries` to drop the bridge.
+**Open / next:**
+- Implement real effect logic for these 21 cards (and prior stub batches)
+- Next batch from CARD_PROGRESS todo (ARCANA_SPREAD onward)

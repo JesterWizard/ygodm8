@@ -428,6 +428,14 @@ unsigned char CanActivateVENOM_SNAKE(void);
 void ActivateVENOM_SNAKEEffect(void);
 unsigned char CanActivateYAMORIMORI(void);
 void ActivateYAMORIMORIEffect(void);
+unsigned char CanActivateARCANA_FORCE_V_THE_HIEROPHANT(void);
+void ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect(void);
+unsigned char CanActivateARCANA_FORCE_XII_THE_HANGMAN(void);
+void ActivateARCANA_FORCE_XII_THE_HANGMANEffect(void);
+unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void);
+void ActivateARCANA_FORCE_XIX_THE_SUNEffect(void);
+unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void);
+void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1899,6 +1907,22 @@ FAILED:
   }
   if (gMonEffect.id == YAMORIMORI) {
     ActivateYAMORIMORIEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANA_FORCE_V_THE_HIEROPHANT) {
+    ActivateARCANA_FORCE_V_THE_HIEROPHANTEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANA_FORCE_XII_THE_HANGMAN) {
+    ActivateARCANA_FORCE_XII_THE_HANGMANEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANA_FORCE_XIX_THE_SUN) {
+    ActivateARCANA_FORCE_XIX_THE_SUNEffect();
+    return;
+  }
+  if (gMonEffect.id == ARCANA_FORCE_XV_THE_FIEND) {
+    ActivateARCANA_FORCE_XV_THE_FIENDEffect();
     return;
   }
 }

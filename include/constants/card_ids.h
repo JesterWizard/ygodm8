@@ -1602,11 +1602,32 @@
 #define VIPERS_REBIRTH                           0x063E
 #define YAMORIMORI                               0x063F
 #define YOWIE                                    0x0640
+#define ACE_OF_SWORD                             0x0641
+#define ACE_OF_WAND                              0x0642
+#define ARCANA_CALL                              0x0643
+#define ARCANA_FORCE_0_THE_FOOL                  0x0644
+#define ARCANA_FORCE_EX_THE_DARK_RULER           0x0645
+#define ARCANA_FORCE_EX_THE_LIGHT_RULER          0x0646
+#define ARCANA_FORCE_I_THE_MAGICIAN              0x0647
+#define ARCANA_FORCE_III_THE_EMPRESS             0x0648
+#define ARCANA_FORCE_IV_THE_EMPEROR              0x0649
+#define ARCANA_FORCE_THE_CHAOS_RULER             0x064A
+#define ARCANA_FORCE_V_THE_HIEROPHANT            0x064B
+#define ARCANA_FORCE_VI_THE_LOVERS               0x064C
+#define ARCANA_FORCE_VII_THE_CHARIOT             0x064D
+#define ARCANA_FORCE_VIII_THE_STRENGTH           0x064E
+#define ARCANA_FORCE_XII_THE_HANGMAN             0x064F
+#define ARCANA_FORCE_XIV_TEMPERANCE              0x0650
+#define ARCANA_FORCE_XIX_THE_SUN                 0x0651
+#define ARCANA_FORCE_XV_THE_FIEND                0x0652
+#define ARCANA_FORCE_XVIII_THE_MOON              0x0653
+#define ARCANA_FORCE_XXI_THE_WORLD               0x0654
+#define ARCANA_READING                           0x0655
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0641
-#define NUM_CUSTOM_CARDS                        0x0320
+#define NUM_TOTAL_CARDS                         0x0656
+#define NUM_CUSTOM_CARDS                        0x0335
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

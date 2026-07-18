@@ -801,6 +801,27 @@ static const u8 sVenomSwampName[] __attribute__((section(".append_assets"))) = "
 static const u8 sVipersRebirthName[] __attribute__((section(".append_assets"))) = "Viper's Rebirth";
 static const u8 sYamorimoriName[] __attribute__((section(".append_assets"))) = "Yamorimori";
 static const u8 sYowieName[] __attribute__((section(".append_assets"))) = "Yowie";
+static const u8 sAceOfSwordName[] __attribute__((section(".append_assets"))) = "Ace of Sword";
+static const u8 sAceOfWandName[] __attribute__((section(".append_assets"))) = "Ace of Wand";
+static const u8 sArcanaCallName[] __attribute__((section(".append_assets"))) = "Arcana Call";
+static const u8 sArcanaForce0TheFoolName[] __attribute__((section(".append_assets"))) = "Arcana Force 0 - The Fool";
+static const u8 sArcanaForceExTheDarkRulerName[] __attribute__((section(".append_assets"))) = "Arcana Force EX - The Dark Ruler";
+static const u8 sArcanaForceExTheLightRulerName[] __attribute__((section(".append_assets"))) = "Arcana Force EX - The Light Ruler";
+static const u8 sArcanaForceITheMagicianName[] __attribute__((section(".append_assets"))) = "Arcana Force I - The Magician";
+static const u8 sArcanaForceIiiTheEmpressName[] __attribute__((section(".append_assets"))) = "Arcana Force III - The Empress";
+static const u8 sArcanaForceIvTheEmperorName[] __attribute__((section(".append_assets"))) = "Arcana Force IV - The Emperor";
+static const u8 sArcanaForceTheChaosRulerName[] __attribute__((section(".append_assets"))) = "Arcana Force EX - The Chaos Ruler";
+static const u8 sArcanaForceVTheHierophantName[] __attribute__((section(".append_assets"))) = "Arcana Force V - The Hierophant";
+static const u8 sArcanaForceViTheLoversName[] __attribute__((section(".append_assets"))) = "Arcana Force VI - The Lovers";
+static const u8 sArcanaForceViiTheChariotName[] __attribute__((section(".append_assets"))) = "Arcana Force VII - The Chariot";
+static const u8 sArcanaForceViiiTheStrengthName[] __attribute__((section(".append_assets"))) = "Arcana Force VIII - The Strength";
+static const u8 sArcanaForceXiiTheHangmanName[] __attribute__((section(".append_assets"))) = "Arcana Force XII - The Hangman";
+static const u8 sArcanaForceXivTemperanceName[] __attribute__((section(".append_assets"))) = "Arcana Force XIV - Temperance";
+static const u8 sArcanaForceXixTheSunName[] __attribute__((section(".append_assets"))) = "Arcana Force XIX - The Sun";
+static const u8 sArcanaForceXvTheFiendName[] __attribute__((section(".append_assets"))) = "Arcana Force XV - The Fiend";
+static const u8 sArcanaForceXviiiTheMoonName[] __attribute__((section(".append_assets"))) = "Arcana Force XVIII - The Moon";
+static const u8 sArcanaForceXxiTheWorldName[] __attribute__((section(".append_assets"))) = "Arcana Force XXI - The World";
+static const u8 sArcanaReadingName[] __attribute__((section(".append_assets"))) = "Arcana Reading";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2409,6 +2430,48 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sYamorimoriName;
   if (cardId == 0x0640)
     return (u8 *)sYowieName;
+  if (cardId == 0x0641)
+    return (u8 *)sAceOfSwordName;
+  if (cardId == 0x0642)
+    return (u8 *)sAceOfWandName;
+  if (cardId == 0x0643)
+    return (u8 *)sArcanaCallName;
+  if (cardId == 0x0644)
+    return (u8 *)sArcanaForce0TheFoolName;
+  if (cardId == 0x0645)
+    return (u8 *)sArcanaForceExTheDarkRulerName;
+  if (cardId == 0x0646)
+    return (u8 *)sArcanaForceExTheLightRulerName;
+  if (cardId == 0x0647)
+    return (u8 *)sArcanaForceITheMagicianName;
+  if (cardId == 0x0648)
+    return (u8 *)sArcanaForceIiiTheEmpressName;
+  if (cardId == 0x0649)
+    return (u8 *)sArcanaForceIvTheEmperorName;
+  if (cardId == 0x064A)
+    return (u8 *)sArcanaForceTheChaosRulerName;
+  if (cardId == 0x064B)
+    return (u8 *)sArcanaForceVTheHierophantName;
+  if (cardId == 0x064C)
+    return (u8 *)sArcanaForceViTheLoversName;
+  if (cardId == 0x064D)
+    return (u8 *)sArcanaForceViiTheChariotName;
+  if (cardId == 0x064E)
+    return (u8 *)sArcanaForceViiiTheStrengthName;
+  if (cardId == 0x064F)
+    return (u8 *)sArcanaForceXiiTheHangmanName;
+  if (cardId == 0x0650)
+    return (u8 *)sArcanaForceXivTemperanceName;
+  if (cardId == 0x0651)
+    return (u8 *)sArcanaForceXixTheSunName;
+  if (cardId == 0x0652)
+    return (u8 *)sArcanaForceXvTheFiendName;
+  if (cardId == 0x0653)
+    return (u8 *)sArcanaForceXviiiTheMoonName;
+  if (cardId == 0x0654)
+    return (u8 *)sArcanaForceXxiTheWorldName;
+  if (cardId == 0x0655)
+    return (u8 *)sArcanaReadingName;
 
   return gCardNames[cardId];
 }

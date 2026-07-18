@@ -5,16 +5,16 @@ Tracks **80×80 big art** in `80x80/` against cards wired in `tools/card_data_ma
 
 Full workflow: [documentation/adding-custom-cards.md](../../../documentation/adding-custom-cards.md)
 
-Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-17).
+Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last run: 2026-07-18).
 
 ## Summary
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 800 |
-| Art ready, needs manifest | 0 |
+| In game (manifest + art) | 821 |
+| Art ready, needs manifest | 159 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **802** |
+| **Total PNGs in `80x80/`** | **982** |
 
 ## In game
 
@@ -822,11 +822,191 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `VIPERS_REBIRTH` | Viper's Rebirth | `vipers_rebirth.png` |
 | `YAMORIMORI` | Yamorimori | `yamorimori.png` |
 | `YOWIE` | Yowie | `yowie.png` |
+| `ACE_OF_SWORD` | Ace of Sword | `ace_of_sword.png` |
+| `ACE_OF_WAND` | Ace of Wand | `ace_of_wand.png` |
+| `ARCANA_CALL` | Arcana Call | `arcana_call.png` |
+| `ARCANA_FORCE_0_THE_FOOL` | Arcana Force 0 - The Fool | `arcana_force_0_the_fool.png` |
+| `ARCANA_FORCE_EX_THE_DARK_RULER` | Arcana Force EX - The Dark Ruler | `arcana_force_ex_the_dark_ruler.png` |
+| `ARCANA_FORCE_EX_THE_LIGHT_RULER` | Arcana Force EX - The Light Ruler | `arcana_force_ex_the_light_ruler.png` |
+| `ARCANA_FORCE_I_THE_MAGICIAN` | Arcana Force I - The Magician | `arcana_force_i_the_magician.png` |
+| `ARCANA_FORCE_III_THE_EMPRESS` | Arcana Force III - The Empress | `arcana_force_iii_the_empress.png` |
+| `ARCANA_FORCE_IV_THE_EMPEROR` | Arcana Force IV - The Emperor | `arcana_force_iv_the_emperor.png` |
+| `ARCANA_FORCE_THE_CHAOS_RULER` | Arcana Force EX - The Chaos Ruler | `arcana_force_the_chaos_ruler.png` |
+| `ARCANA_FORCE_V_THE_HIEROPHANT` | Arcana Force V - The Hierophant | `arcana_force_v_the_hierophant.png` |
+| `ARCANA_FORCE_VI_THE_LOVERS` | Arcana Force VI - The Lovers | `arcana_force_vi_the_lovers.png` |
+| `ARCANA_FORCE_VII_THE_CHARIOT` | Arcana Force VII - The Chariot | `arcana_force_vii_the_chariot.png` |
+| `ARCANA_FORCE_VIII_THE_STRENGTH` | Arcana Force VIII - The Strength | `arcana_force_viii_the_strength.png` |
+| `ARCANA_FORCE_XII_THE_HANGMAN` | Arcana Force XII - The Hangman | `arcana_force_xii_the_hangman.png` |
+| `ARCANA_FORCE_XIV_TEMPERANCE` | Arcana Force XIV - Temperance | `arcana_force_xiv_temperance.png` |
+| `ARCANA_FORCE_XIX_THE_SUN` | Arcana Force XIX - The Sun | `arcana_force_xix_the_sun.png` |
+| `ARCANA_FORCE_XV_THE_FIEND` | Arcana Force XV - The Fiend | `arcana_force_xv_the_fiend.png` |
+| `ARCANA_FORCE_XVIII_THE_MOON` | Arcana Force XVIII - The Moon | `arcana_force_xviii_the_moon.png` |
+| `ARCANA_FORCE_XXI_THE_WORLD` | Arcana Force XXI - The World | `arcana_force_xxi_the_world.png` |
+| `ARCANA_READING` | Arcana Reading | `arcana_reading.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
+- [ ] `ARCANA_SPREAD` — `arcana_spread.png`
+- [ ] `ARMED_NEOS` — `armed_neos.png`
+- [ ] `AURKUS_LIGHTSWORN_DRUID` — `aurkus_lightsworn_druid.png`
+- [ ] `CELESTIA_LIGHTSWORN_ANGEL` — `celestia_lightsworn_angel.png`
+- [ ] `CHARGE_OF_THE_LIGHT_BRIGADE` — `charge_of_the_light_brigade.png`
+- [ ] `CHRYSALIS_CHICKY` — `chrysalis_chicky.png`
+- [ ] `CHRYSALIS_DOLPHIN` — `chrysalis_dolphin.png`
+- [ ] `CHRYSALIS_MOLE` — `chrysalis_mole.png`
+- [ ] `CHRYSALIS_PANTAIL` — `chrysalis_pantail.png`
+- [ ] `CHRYSALIS_PINNY` — `chrysalis_pinny.png`
+- [ ] `COCOON_PARTY` — `cocoon_party.png`
+- [ ] `COCOON_REBIRTH` — `cocoon_rebirth.png`
+- [ ] `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` — `colosseum_cage_of_the_gladiator_beasts.png`
+- [ ] `CONTACT` — `contact.png`
+- [ ] `CONTACT_GATE` — `contact_gate.png`
+- [ ] `CONVERT_CONTACT` — `convert_contact.png`
+- [ ] `CROSS_KEEPER` — `cross_keeper.png`
+- [ ] `CURIOUS_THE_LIGHTSWORN_DOMINION` — `curious_the_lightsworn_dominion.png`
+- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
+- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
+- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
+- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
+- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
+- [ ] `EHREN_LIGHTSWORN_MONK` — `ehren_lightsworn_monk.png`
+- [ ] `ELEMENTAL_HERO_AIR_NEOS` — `elemental_hero_air_neos.png`
+- [ ] `ELEMENTAL_HERO_AQUA_NEOS` — `elemental_hero_aqua_neos.png`
+- [ ] `ELEMENTAL_HERO_BRAVE_NEOS` — `elemental_hero_brave_neos.png`
+- [ ] `ELEMENTAL_HERO_CHAOS_NEOS` — `elemental_hero_chaos_neos.png`
+- [ ] `ELEMENTAL_HERO_COSMO_NEOS` — `elemental_hero_cosmo_neos.png`
+- [ ] `ELEMENTAL_HERO_DARK_NEOS` — `elemental_hero_dark_neos.png`
+- [ ] `ELEMENTAL_HERO_FLARE_NEOS` — `elemental_hero_flare_neos.png`
+- [ ] `ELEMENTAL_HERO_GLOW_NEOS` — `elemental_hero_glow_neos.png`
+- [ ] `ELEMENTAL_HERO_GRAND_NEOS` — `elemental_hero_grand_neos.png`
+- [ ] `ELEMENTAL_HERO_MAGMA_NEOS` — `elemental_hero_magma_neos.png`
+- [ ] `ELEMENTAL_HERO_MARINE_NEOS` — `elemental_hero_marine_neos.png`
+- [ ] `ELEMENTAL_HERO_NEBULA_NEOS` — `elemental_hero_nebula_neos.png`
+- [ ] `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN` — `elemental_hero_shining_neos_wingman.png`
+- [ ] `ELEMENTAL_HERO_SPIRIT_OF_NEOS` — `elemental_hero_spirit_of_neos.png`
+- [ ] `ELEMENTAL_HERO_STORM_NEOS` — `elemental_hero_storm_neos.png`
+- [ ] `EN_ENGAGE_NEO_SPACE` — `en_engage_neo_space.png`
+- [ ] `EN_SHUFFLE` — `en_shuffle.png`
+- [ ] `EN_WAVE` — `en_wave.png`
+- [ ] `ENLIGHTENMENT_DRAGON` — `enlightenment_dragon.png`
+- [ ] `FAVOURITE_CONTACT` — `favourite_contact.png`
+- [ ] `FELIS_LIGHTSWORN_ARCHER` — `felis_lightsworn_archer.png`
+- [ ] `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` — `flavian_colosseum_of_the_gladiator_beasts.png`
+- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
+- [ ] `GARONITH_LIGHTSWORN_DRAGON` — `garonith_lightsworn_dragon.png`
+- [ ] `GAROTH_LIGHTSWORN_WARRIOR` — `garoth_lightsworn_warrior.png`
+- [ ] `GENERATION_NEXT` — `generation_next.png`
+- [ ] `GLADIATOR_BEAST_ALEXANDER` — `gladiator_beast_alexander.png`
+- [ ] `GLADIATOR_BEAST_ANDABATA` — `gladiator_beast_andabata.png`
+- [ ] `GLADIATOR_BEAST_ANDAL` — `gladiator_beast_andal.png`
+- [ ] `GLADIATOR_BEAST_ATTORIX` — `gladiator_beast_attorix.png`
+- [ ] `GLADIATOR_BEAST_AUGUSTUS` — `gladiator_beast_augustus.png`
+- [ ] `GLADIATOR_BEAST_BATTLE_HALBERD` — `gladiator_beast_battle_halberd.png`
+- [ ] `GLADIATOR_BEAST_BESTIARI` — `gladiator_beast_bestiari.png`
+- [ ] `GLADIATOR_BEAST_CLAUDIUS` — `gladiator_beast_claudius.png`
+- [ ] `GLADIATOR_BEAST_DAREIOS` — `gladiator_beast_dareios.png`
+- [ ] `GLADIATOR_BEAST_DARIUS` — `gladiator_beast_darius.png`
+- [ ] `GLADIATOR_BEAST_DIMACARI` — `gladiator_beast_dimacari.png`
+- [ ] `GLADIATOR_BEAST_DOMITIANUS` — `gladiator_beast_domitianus.png`
+- [ ] `GLADIATOR_BEAST_DRAGASES` — `gladiator_beast_dragases.png`
+- [ ] `GLADIATOR_BEAST_EQUESTE` — `gladiator_beast_equeste.png`
+- [ ] `GLADIATOR_BEAST_ESSEDARII` — `gladiator_beast_essedarii.png`
+- [ ] `GLADIATOR_BEAST_GAIODIAZ` — `gladiator_beast_gaiodiaz.png`
+- [ ] `GLADIATOR_BEAST_GISTEL` — `gladiator_beast_gistel.png`
+- [ ] `GLADIATOR_BEAST_GYZARUS` — `gladiator_beast_gyzarus.png`
+- [ ] `GLADIATOR_BEAST_HERAKLINOS` — `gladiator_beast_heraklinos.png`
+- [ ] `GLADIATOR_BEAST_HOPLOMUS` — `gladiator_beast_hoplomus.png`
+- [ ] `GLADIATOR_BEAST_LANISTA` — `gladiator_beast_lanista.png`
+- [ ] `GLADIATOR_BEAST_LAQUARI` — `gladiator_beast_laquari.png`
+- [ ] `GLADIATOR_BEAST_MURMILLO` — `gladiator_beast_murmillo.png`
+- [ ] `GLADIATOR_BEAST_NEROKIUS` — `gladiator_beast_nerokius.png`
+- [ ] `GLADIATOR_BEAST_NOXIOUS` — `gladiator_beast_noxious.png`
+- [ ] `GLADIATOR_BEAST_OCTAVIUS` — `gladiator_beast_octavius.png`
+- [ ] `GLADIATOR_BEAST_RETIARI` — `gladiator_beast_retiari.png`
+- [ ] `GLADIATOR_BEAST_SAGITTARII` — `gladiator_beast_sagittarii.png`
+- [ ] `GLADIATOR_BEAST_SAMNITE` — `gladiator_beast_samnite.png`
+- [ ] `GLADIATOR_BEAST_SECUTOR` — `gladiator_beast_secutor.png`
+- [ ] `GLADIATOR_BEAST_SPARTACUS` — `gladiator_beast_spartacus.png`
+- [ ] `GLADIATOR_BEAST_TAMER_EDITOR` — `gladiator_beast_tamer_editor.png`
+- [ ] `GLADIATOR_BEAST_TORAX` — `gladiator_beast_torax.png`
+- [ ] `GLADIATOR_BEAST_TYGERIUS` — `gladiator_beast_tygerius.png`
+- [ ] `GLADIATOR_BEAST_VESPASIUS` — `gladiator_beast_vespasius.png`
+- [ ] `GLADIATOR_BEAST_WAR_CHARIOT` — `gladiator_beast_war_chariot.png`
+- [ ] `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD` — `gladiator_beasts_battle_archfiend_shield.png`
+- [ ] `GLADIATOR_BEASTS_BATTLE_GLADIUS` — `gladiator_beasts_battle_gladius.png`
+- [ ] `GLADIATOR_BEASTS_BATTLE_MANICA` — `gladiator_beasts_battle_manica.png`
+- [ ] `GLADIATOR_BEASTS_MEDUSA_SHIELD` — `gladiator_beasts_medusa_shield.png`
+- [ ] `GLADIATOR_BEASTS_VALOR` — `gladiator_beasts_valor.png`
+- [ ] `GLADIATOR_NAUMACHIA` — `gladiator_naumachia.png`
+- [ ] `GLORIOUS_ILLUSION` — `glorious_illusion.png`
+- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
+- [ ] `INSTANT_CONTACT` — `instant_contact.png`
+- [ ] `INSTANT_NEO_SPACE` — `instant_neo_space.png`
+- [ ] `JAIN_LIGHTSWORN_PALADIN` — `jain_lightsworn_paladin.png`
+- [ ] `JAIN_TWILIGHTSWORN_GENERAL` — `jain_twilightsworn_general.png`
+- [ ] `JENIS_LIGHTSWORN_MENDER` — `jenis_lightsworn_mender.png`
+- [ ] `JUDGMENT_THE_DRAGON_OF_HEAVEN` — `judgment_the_dragon_of_heaven.png`
+- [ ] `KNIGHT_OF_PENTACLES` — `knight_of_pentacles.png`
+- [ ] `LIGHT_BARRIER` — `light_barrier.png`
+- [ ] `LIGHT_FORCE` — `light_force.png`
+- [ ] `LIGHT_OF_DESTRUCTION` — `light_of_destruction.png`
+- [ ] `LIGHT_SPIRAL` — `light_spiral.png`
+- [ ] `LIGHTSWORN_AEGIS` — `lightsworn_aegis.png`
+- [ ] `LIGHTSWORN_BARRIER` — `lightsworn_barrier.png`
+- [ ] `LIGHTSWORN_DRAGONLING` — `lightsworn_dragonling.png`
+- [ ] `LIGHTSWORN_JUDGEMENT` — `lightsworn_judgement.png`
+- [ ] `LIGHTSWORN_SABRE` — `lightsworn_sabre.png`
+- [ ] `LIGHTSWORN_SANCTUARY` — `lightsworn_sanctuary.png`
+- [ ] `LUMINA_LIGHTSWORN_SUMMONER` — `lumina_lightsworn_summoner.png`
+- [ ] `LUMINA_TWILIGHTSWORN_SHAMAN` — `lumina_twilightsworn_shaman.png`
+- [ ] `LYLA_LIGHTSWORN_SORCERESS` — `lyla_lightsworn_sorceress.png`
+- [ ] `LYLA_TWILIGHTSWORN_ENCHANTRESS` — `lyla_twilightsworn_enchantress.png`
+- [ ] `MARCH_OF_THE_DARK_BRIGADE` — `march_of_the_dark_brigade.png`
+- [ ] `MICHAEL_THE_ARCH_LIGHTSWORN` — `michael_the_arch_lightsworn.png`
+- [ ] `MINERVA_LIGHTSWORN_MAIDEN` — `minerva_lightsworn_maiden.png`
+- [ ] `MINERVA_THE_ATHENIAN_LIGHTSWORN` — `minerva_the_athenian_lightsworn.png`
+- [ ] `MINERVA_THE_EXHALTED_LIGHTSWORN` — `minerva_the_exhalted_lightsworn.png`
+- [ ] `MIRACLE_CONTACT` — `miracle_contact.png`
+- [ ] `MOON_TOKEN` — `moon_token.png`
+- [ ] `NEO_SPACE` — `neo_space.png`
+- [ ] `NEO_SPACE_CONNECTOR` — `neo_space_connector.png`
+- [ ] `NEO_SPACIAN_AIR_HUMMINGBIRD` — `neo_spacian_air_hummingbird.png`
+- [ ] `NEO_SPACIAN_AQUA_DOLPHIN` — `neo_spacian_aqua_dolphin.png`
+- [ ] `NEO_SPACIAN_DARK_PANTHER` — `neo_spacian_dark_panther.png`
+- [ ] `NEO_SPACIAN_FLARE_SCARAB` — `neo_spacian_flare_scarab.png`
+- [ ] `NEO_SPACIAN_GLOW_MOSS` — `neo_spacian_glow_moss.png`
+- [ ] `NEO_SPACIAN_GRAND_MOLE` — `neo_spacian_grand_mole.png`
+- [ ] `NEO_SPACIAN_MARINE_DOLPHIN` — `neo_spacian_marine_dolphin.png`
+- [ ] `NEO_SPACIAN_TWINKLE_MOSS` — `neo_spacian_twinkle_moss.png`
+- [ ] `NEX` — `nex.png`
+- [ ] `NEXT` — `next.png`
+- [ ] `PENTACLE_OF_ACE` — `pentacle_of_ace.png`
+- [ ] `PUNISHMENT_DRAGON` — `punishment_dragon.png`
+- [ ] `RAIDEN_HAND_OF_THE_LIGHTSWORN` — `raiden_hand_of_the_lightsworn.png`
+- [ ] `REALM_OF_LIGHT` — `realm_of_light.png`
+- [ ] `RESCUE_CAT` — `rescue_cat.png`
+- [ ] `RESCUE_RABBIT` — `rescue_rabbit.png`
+- [ ] `REVERSAL_OF_FATE` — `reversal_of_fate.png`
+- [ ] `RINYAN_LIGHTSWORN_ROGUE` — `rinyan_lightsworn_rogue.png`
+- [ ] `RYKO_LIGHTSWORN_HUNTER` — `ryko_lightsworn_hunter.png`
+- [ ] `RYKO_TWILIGHTSWORN_FIGHTER` — `ryko_twilightsworn_fighter.png`
+- [ ] `SHIRE_LIGHTSWORN_SPIRIT` — `shire_lightsworn_spirit.png`
+- [ ] `SOLAR_RECHARGE` — `solar_recharge.png`
+- [ ] `SUIT_OF_SWORD_X` — `suit_of_sword_x.png`
+- [ ] `TEST_BEAR` — `test_bear.png`
+- [ ] `TEST_PANTHER` — `test_panther.png`
+- [ ] `TEST_TIGER` — `test_tiger.png`
+- [ ] `THUMBS_DOWN` — `thumbs_down.png`
+- [ ] `TOUR_OF_DOOM` — `tour_of_doom.png`
+- [ ] `TROJAN_GLADIATOR_BEAST` — `trojan_gladiator_beast.png`
+- [ ] `TWILIGHT_CLOTH` — `twilight_cloth.png`
+- [ ] `TWILIGHT_ERASER` — `twilight_eraser.png`
+- [ ] `TWLIGHT_TWIN_DRAGONS` — `twlight_twin_dragons.png`
+- [ ] `VANQUISHING_LIGHT` — `vanquishing_light.png`
+- [ ] `WEISS_LIGHTSWORN_ARCHFIEND` — `weiss_lightsworn_archfiend.png`
+- [ ] `WULF_LIGHTSWORN_BEAST` — `wulf_lightsworn_beast.png`
 
 ## Todo — in manifest, missing art
 
