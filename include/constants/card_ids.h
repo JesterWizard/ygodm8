@@ -1623,11 +1623,29 @@
 #define ARCANA_FORCE_XVIII_THE_MOON              0x0653
 #define ARCANA_FORCE_XXI_THE_WORLD               0x0654
 #define ARCANA_READING                           0x0655
+#define ARCANA_SPREAD                            0x0656
+#define ARMED_NEOS                               0x0657
+#define AURKUS_LIGHTSWORN_DRUID                  0x0658
+#define CELESTIA_LIGHTSWORN_ANGEL                0x0659
+#define CHARGE_OF_THE_LIGHT_BRIGADE              0x065A
+#define CHRYSALIS_CHICKY                         0x065B
+#define CHRYSALIS_DOLPHIN                        0x065C
+#define CHRYSALIS_MOLE                           0x065D
+#define CHRYSALIS_PANTAIL                        0x065E
+#define CHRYSALIS_PINNY                          0x065F
+#define COCOON_PARTY                             0x0660
+#define COCOON_REBIRTH                           0x0661
+#define COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS   0x0662
+#define CONTACT                                  0x0663
+#define CONTACT_GATE                             0x0664
+#define CONVERT_CONTACT                          0x0665
+#define CROSS_KEEPER                             0x0666
+#define CURIOUS_THE_LIGHTSWORN_DOMINION          0x0667
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0656
-#define NUM_CUSTOM_CARDS                        0x0335
+#define NUM_TOTAL_CARDS                         0x0668
+#define NUM_CUSTOM_CARDS                        0x0347
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

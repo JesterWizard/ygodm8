@@ -822,6 +822,24 @@ static const u8 sArcanaForceXvTheFiendName[] __attribute__((section(".append_ass
 static const u8 sArcanaForceXviiiTheMoonName[] __attribute__((section(".append_assets"))) = "Arcana Force XVIII - The Moon";
 static const u8 sArcanaForceXxiTheWorldName[] __attribute__((section(".append_assets"))) = "Arcana Force XXI - The World";
 static const u8 sArcanaReadingName[] __attribute__((section(".append_assets"))) = "Arcana Reading";
+static const u8 sArcanaSpreadName[] __attribute__((section(".append_assets"))) = "Arcana Spread";
+static const u8 sArmedNeosName[] __attribute__((section(".append_assets"))) = "Armed Neos";
+static const u8 sAurkusLightswornDruidName[] __attribute__((section(".append_assets"))) = "Aurkus, Lightsworn Druid";
+static const u8 sCelestiaLightswornAngelName[] __attribute__((section(".append_assets"))) = "Celestia, Lightsworn Angel";
+static const u8 sChargeOfTheLightBrigadeName[] __attribute__((section(".append_assets"))) = "Charge of the Light Brigade";
+static const u8 sChrysalisChickyName[] __attribute__((section(".append_assets"))) = "Chrysalis Chicky";
+static const u8 sChrysalisDolphinName[] __attribute__((section(".append_assets"))) = "Chrysalis Dolphin";
+static const u8 sChrysalisMoleName[] __attribute__((section(".append_assets"))) = "Chrysalis Mole";
+static const u8 sChrysalisPantailName[] __attribute__((section(".append_assets"))) = "Chrysalis Pantail";
+static const u8 sChrysalisPinnyName[] __attribute__((section(".append_assets"))) = "Chrysalis Pinny";
+static const u8 sCocoonPartyName[] __attribute__((section(".append_assets"))) = "Cocoon Party";
+static const u8 sCocoonRebirthName[] __attribute__((section(".append_assets"))) = "Cocoon Rebirth";
+static const u8 sColosseumCageOfTheGladiatorBeastsName[] __attribute__((section(".append_assets"))) = "Colosseum - Cage of the Gladiator Beasts";
+static const u8 sContactName[] __attribute__((section(".append_assets"))) = "Contact";
+static const u8 sContactGateName[] __attribute__((section(".append_assets"))) = "Contact Gate";
+static const u8 sConvertContactName[] __attribute__((section(".append_assets"))) = "Convert Contact";
+static const u8 sCrossKeeperName[] __attribute__((section(".append_assets"))) = "Cross Keeper";
+static const u8 sCuriousTheLightswornDominionName[] __attribute__((section(".append_assets"))) = "Curious, the Lightsworn Dominion";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2472,6 +2490,42 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sArcanaForceXxiTheWorldName;
   if (cardId == 0x0655)
     return (u8 *)sArcanaReadingName;
+  if (cardId == 0x0656)
+    return (u8 *)sArcanaSpreadName;
+  if (cardId == 0x0657)
+    return (u8 *)sArmedNeosName;
+  if (cardId == 0x0658)
+    return (u8 *)sAurkusLightswornDruidName;
+  if (cardId == 0x0659)
+    return (u8 *)sCelestiaLightswornAngelName;
+  if (cardId == 0x065A)
+    return (u8 *)sChargeOfTheLightBrigadeName;
+  if (cardId == 0x065B)
+    return (u8 *)sChrysalisChickyName;
+  if (cardId == 0x065C)
+    return (u8 *)sChrysalisDolphinName;
+  if (cardId == 0x065D)
+    return (u8 *)sChrysalisMoleName;
+  if (cardId == 0x065E)
+    return (u8 *)sChrysalisPantailName;
+  if (cardId == 0x065F)
+    return (u8 *)sChrysalisPinnyName;
+  if (cardId == 0x0660)
+    return (u8 *)sCocoonPartyName;
+  if (cardId == 0x0661)
+    return (u8 *)sCocoonRebirthName;
+  if (cardId == 0x0662)
+    return (u8 *)sColosseumCageOfTheGladiatorBeastsName;
+  if (cardId == 0x0663)
+    return (u8 *)sContactName;
+  if (cardId == 0x0664)
+    return (u8 *)sContactGateName;
+  if (cardId == 0x0665)
+    return (u8 *)sConvertContactName;
+  if (cardId == 0x0666)
+    return (u8 *)sCrossKeeperName;
+  if (cardId == 0x0667)
+    return (u8 *)sCuriousTheLightswornDominionName;
 
   return gCardNames[cardId];
 }

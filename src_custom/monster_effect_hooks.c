@@ -436,6 +436,24 @@ unsigned char CanActivateARCANA_FORCE_XIX_THE_SUN(void);
 void ActivateARCANA_FORCE_XIX_THE_SUNEffect(void);
 unsigned char CanActivateARCANA_FORCE_XV_THE_FIEND(void);
 void ActivateARCANA_FORCE_XV_THE_FIENDEffect(void);
+unsigned char CanActivateARMED_NEOS(void);
+void ActivateARMED_NEOSEffect(void);
+unsigned char CanActivateCELESTIA_LIGHTSWORN_ANGEL(void);
+void ActivateCELESTIA_LIGHTSWORN_ANGELEffect(void);
+unsigned char CanActivateCHRYSALIS_CHICKY(void);
+void ActivateCHRYSALIS_CHICKYEffect(void);
+unsigned char CanActivateCHRYSALIS_DOLPHIN(void);
+void ActivateCHRYSALIS_DOLPHINEffect(void);
+unsigned char CanActivateCHRYSALIS_MOLE(void);
+void ActivateCHRYSALIS_MOLEEffect(void);
+unsigned char CanActivateCHRYSALIS_PANTAIL(void);
+void ActivateCHRYSALIS_PANTAILEffect(void);
+unsigned char CanActivateCHRYSALIS_PINNY(void);
+void ActivateCHRYSALIS_PINNYEffect(void);
+unsigned char CanActivateCROSS_KEEPER(void);
+void ActivateCROSS_KEEPEREffect(void);
+unsigned char CanActivateCURIOUS_THE_LIGHTSWORN_DOMINION(void);
+void ActivateCURIOUS_THE_LIGHTSWORN_DOMINIONEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1923,6 +1941,42 @@ FAILED:
   }
   if (gMonEffect.id == ARCANA_FORCE_XV_THE_FIEND) {
     ActivateARCANA_FORCE_XV_THE_FIENDEffect();
+    return;
+  }
+  if (gMonEffect.id == ARMED_NEOS) {
+    ActivateARMED_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == CELESTIA_LIGHTSWORN_ANGEL) {
+    ActivateCELESTIA_LIGHTSWORN_ANGELEffect();
+    return;
+  }
+  if (gMonEffect.id == CHRYSALIS_CHICKY) {
+    ActivateCHRYSALIS_CHICKYEffect();
+    return;
+  }
+  if (gMonEffect.id == CHRYSALIS_DOLPHIN) {
+    ActivateCHRYSALIS_DOLPHINEffect();
+    return;
+  }
+  if (gMonEffect.id == CHRYSALIS_MOLE) {
+    ActivateCHRYSALIS_MOLEEffect();
+    return;
+  }
+  if (gMonEffect.id == CHRYSALIS_PANTAIL) {
+    ActivateCHRYSALIS_PANTAILEffect();
+    return;
+  }
+  if (gMonEffect.id == CHRYSALIS_PINNY) {
+    ActivateCHRYSALIS_PINNYEffect();
+    return;
+  }
+  if (gMonEffect.id == CROSS_KEEPER) {
+    ActivateCROSS_KEEPEREffect();
+    return;
+  }
+  if (gMonEffect.id == CURIOUS_THE_LIGHTSWORN_DOMINION) {
+    ActivateCURIOUS_THE_LIGHTSWORN_DOMINIONEffect();
     return;
   }
 }

@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 821 |
-| Art ready, needs manifest | 159 |
+| In game (manifest + art) | 839 |
+| Art ready, needs manifest | 139 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **982** |
+| **Total PNGs in `80x80/`** | **980** |
 
 ## In game
 
@@ -843,31 +843,29 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ARCANA_FORCE_XVIII_THE_MOON` | Arcana Force XVIII - The Moon | `arcana_force_xviii_the_moon.png` |
 | `ARCANA_FORCE_XXI_THE_WORLD` | Arcana Force XXI - The World | `arcana_force_xxi_the_world.png` |
 | `ARCANA_READING` | Arcana Reading | `arcana_reading.png` |
+| `ARCANA_SPREAD` | Arcana Spread | `arcana_spread.png` |
+| `ARMED_NEOS` | Armed Neos | `armed_neos.png` |
+| `AURKUS_LIGHTSWORN_DRUID` | Aurkus, Lightsworn Druid | `aurkus_lightsworn_druid.png` |
+| `CELESTIA_LIGHTSWORN_ANGEL` | Celestia, Lightsworn Angel | `celestia_lightsworn_angel.png` |
+| `CHARGE_OF_THE_LIGHT_BRIGADE` | Charge of the Light Brigade | `charge_of_the_light_brigade.png` |
+| `CHRYSALIS_CHICKY` | Chrysalis Chicky | `chrysalis_chicky.png` |
+| `CHRYSALIS_DOLPHIN` | Chrysalis Dolphin | `chrysalis_dolphin.png` |
+| `CHRYSALIS_MOLE` | Chrysalis Mole | `chrysalis_mole.png` |
+| `CHRYSALIS_PANTAIL` | Chrysalis Pantail | `chrysalis_pantail.png` |
+| `CHRYSALIS_PINNY` | Chrysalis Pinny | `chrysalis_pinny.png` |
+| `COCOON_PARTY` | Cocoon Party | `cocoon_party.png` |
+| `COCOON_REBIRTH` | Cocoon Rebirth | `cocoon_rebirth.png` |
+| `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` | Colosseum - Cage of the Gladiator Beasts | `colosseum_cage_of_the_gladiator_beasts.png` |
+| `CONTACT` | Contact | `contact.png` |
+| `CONTACT_GATE` | Contact Gate | `contact_gate.png` |
+| `CONVERT_CONTACT` | Convert Contact | `convert_contact.png` |
+| `CROSS_KEEPER` | Cross Keeper | `cross_keeper.png` |
+| `CURIOUS_THE_LIGHTSWORN_DOMINION` | Curious, the Lightsworn Dominion | `curious_the_lightsworn_dominion.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `ARCANA_SPREAD` — `arcana_spread.png`
-- [ ] `ARMED_NEOS` — `armed_neos.png`
-- [ ] `AURKUS_LIGHTSWORN_DRUID` — `aurkus_lightsworn_druid.png`
-- [ ] `CELESTIA_LIGHTSWORN_ANGEL` — `celestia_lightsworn_angel.png`
-- [ ] `CHARGE_OF_THE_LIGHT_BRIGADE` — `charge_of_the_light_brigade.png`
-- [ ] `CHRYSALIS_CHICKY` — `chrysalis_chicky.png`
-- [ ] `CHRYSALIS_DOLPHIN` — `chrysalis_dolphin.png`
-- [ ] `CHRYSALIS_MOLE` — `chrysalis_mole.png`
-- [ ] `CHRYSALIS_PANTAIL` — `chrysalis_pantail.png`
-- [ ] `CHRYSALIS_PINNY` — `chrysalis_pinny.png`
-- [ ] `COCOON_PARTY` — `cocoon_party.png`
-- [ ] `COCOON_REBIRTH` — `cocoon_rebirth.png`
-- [ ] `COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS` — `colosseum_cage_of_the_gladiator_beasts.png`
-- [ ] `CONTACT` — `contact.png`
-- [ ] `CONTACT_GATE` — `contact_gate.png`
-- [ ] `CONVERT_CONTACT` — `convert_contact.png`
-- [ ] `CROSS_KEEPER` — `cross_keeper.png`
-- [ ] `CURIOUS_THE_LIGHTSWORN_DOMINION` — `curious_the_lightsworn_dominion.png`
-- [ ] `CYBER_SLASH_HARPY_LADY` — `cyber_slash_harpy_lady.png`
-- [ ] `DAMAGE_EQUALS_REPTILE` — `damage_equals_reptile.png`
 - [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
 - [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
 - [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`

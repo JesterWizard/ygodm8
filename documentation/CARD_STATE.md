@@ -1,6 +1,6 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Added ACE_OF_SWORD–ARCANA_READING (trunk + stub effects)
+**Last worked on:** 2026-07-18 — Added ARCANA_SPREAD–CURIOUS (trunk + stub effects)
 
 **Files touched:**
 - `tools/card_data_manifest.json`
@@ -10,11 +10,10 @@
 - `src_custom/activated_effects/`
 - `src_custom/permanent_effects/`
 - `src_custom/spell_effects/`
-- `src_custom/trap_effects/`
 - `CARD_PROGRESS.md`
 
-**Outcome:** make exits 0. 21 Arcana Force support cards in trunk with art; effects stubbed. total_cards=1622. In game 821; todo 159.
+**Outcome:** make exits 0. 18 new cards in trunk with art; effects stubbed. Skipped `CYBER_SLASH_HARPY_LADY` / `DAMAGE_EQUALS_REPTILE` (already `CYBER_SLASH_HARPIE_LADY` / `DAMAGE_REPTILE`); removed dup PNGs. total_cards=1640. In game 839; todo 139.
 
 **Open / next:**
-- Implement real effect logic for these 21 cards (and prior stub batches)
-- Next batch from CARD_PROGRESS todo (ARCANA_SPREAD onward)
+- Implement real effect logic for these stubs (and prior stub batches)
+- Next batch from CARD_PROGRESS todo (`DARK_MAGICIAN_CIRCLE` onward)

@@ -14,6 +14,9 @@
     case ARCANA_READING:
       EffectARCANA_READING();
       return;
+    case ARCANA_SPREAD:
+      EffectARCANA_SPREAD();
+      return;
     case AROMA_BLEND:
       EffectAROMA_BLEND();
       return;
@@ -95,11 +98,20 @@
     case CHAOS_GREED:
       EffectChaosGreed();
       return;
+    case CHARGE_OF_THE_LIGHT_BRIGADE:
+      EffectCHARGE_OF_THE_LIGHT_BRIGADE();
+      return;
     case CHICKEN_GAME:
       EffectCHICKEN_GAME();
       return;
     case CLOCK_TOWER_PRISON:
       EffectCLOCK_TOWER_PRISON();
+      return;
+    case COCOON_PARTY:
+      EffectCOCOON_PARTY();
+      return;
+    case COCOON_REBIRTH:
+      EffectCOCOON_REBIRTH();
       return;
     case COFFIN_SELLER:
       EffectCoffinSeller();
@@ -107,11 +119,23 @@
     case COLD_WAVE:
       EffectCOLD_WAVE();
       return;
+    case COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS:
+      EffectCOLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS();
+      return;
     case CONFISCATION:
       EffectConfiscation();
       return;
+    case CONTACT:
+      EffectCONTACT();
+      return;
+    case CONTACT_GATE:
+      EffectCONTACT_GATE();
+      return;
     case CONTINUOUS_DESTRUCTION_PUNCH:
       EffectCONTINUOUS_DESTRUCTION_PUNCH();
+      return;
+    case CONVERT_CONTACT:
+      EffectCONVERT_CONTACT();
       return;
     case COST_DOWN:
       EffectCostDown();

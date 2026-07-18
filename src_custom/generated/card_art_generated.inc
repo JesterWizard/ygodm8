@@ -3292,6 +3292,78 @@ static const unsigned char sArcanaReadingBigArt[] __attribute__((section(".appen
 static const unsigned short sArcanaReadingBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_reading.gbapal");
 static const unsigned char sArcanaReadingMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_reading.lz");
 
+static const unsigned char sArcanaSpreadBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/arcana_spread.huff");
+static const unsigned short sArcanaSpreadBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/arcana_spread.gbapal");
+static const unsigned char sArcanaSpreadMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/arcana_spread.lz");
+
+static const unsigned char sArmedNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/armed_neos.huff");
+static const unsigned short sArmedNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/armed_neos.gbapal");
+static const unsigned char sArmedNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/armed_neos.lz");
+
+static const unsigned char sAurkusLightswornDruidBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/aurkus_lightsworn_druid.huff");
+static const unsigned short sAurkusLightswornDruidBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/aurkus_lightsworn_druid.gbapal");
+static const unsigned char sAurkusLightswornDruidMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/aurkus_lightsworn_druid.lz");
+
+static const unsigned char sCelestiaLightswornAngelBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/celestia_lightsworn_angel.huff");
+static const unsigned short sCelestiaLightswornAngelBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/celestia_lightsworn_angel.gbapal");
+static const unsigned char sCelestiaLightswornAngelMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/celestia_lightsworn_angel.lz");
+
+static const unsigned char sChargeOfTheLightBrigadeBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/charge_of_the_light_brigade.huff");
+static const unsigned short sChargeOfTheLightBrigadeBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/charge_of_the_light_brigade.gbapal");
+static const unsigned char sChargeOfTheLightBrigadeMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/charge_of_the_light_brigade.lz");
+
+static const unsigned char sChrysalisChickyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chrysalis_chicky.huff");
+static const unsigned short sChrysalisChickyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chrysalis_chicky.gbapal");
+static const unsigned char sChrysalisChickyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chrysalis_chicky.lz");
+
+static const unsigned char sChrysalisDolphinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chrysalis_dolphin.huff");
+static const unsigned short sChrysalisDolphinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chrysalis_dolphin.gbapal");
+static const unsigned char sChrysalisDolphinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chrysalis_dolphin.lz");
+
+static const unsigned char sChrysalisMoleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chrysalis_mole.huff");
+static const unsigned short sChrysalisMoleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chrysalis_mole.gbapal");
+static const unsigned char sChrysalisMoleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chrysalis_mole.lz");
+
+static const unsigned char sChrysalisPantailBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chrysalis_pantail.huff");
+static const unsigned short sChrysalisPantailBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chrysalis_pantail.gbapal");
+static const unsigned char sChrysalisPantailMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chrysalis_pantail.lz");
+
+static const unsigned char sChrysalisPinnyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/chrysalis_pinny.huff");
+static const unsigned short sChrysalisPinnyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/chrysalis_pinny.gbapal");
+static const unsigned char sChrysalisPinnyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/chrysalis_pinny.lz");
+
+static const unsigned char sCocoonPartyBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cocoon_party.huff");
+static const unsigned short sCocoonPartyBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cocoon_party.gbapal");
+static const unsigned char sCocoonPartyMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cocoon_party.lz");
+
+static const unsigned char sCocoonRebirthBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cocoon_rebirth.huff");
+static const unsigned short sCocoonRebirthBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cocoon_rebirth.gbapal");
+static const unsigned char sCocoonRebirthMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cocoon_rebirth.lz");
+
+static const unsigned char sColosseumCageOfTheGladiatorBeastsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/colosseum_cage_of_the_gladiator_beasts.huff");
+static const unsigned short sColosseumCageOfTheGladiatorBeastsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/colosseum_cage_of_the_gladiator_beasts.gbapal");
+static const unsigned char sColosseumCageOfTheGladiatorBeastsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/colosseum_cage_of_the_gladiator_beasts.lz");
+
+static const unsigned char sContactBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/contact.huff");
+static const unsigned short sContactBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/contact.gbapal");
+static const unsigned char sContactMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/contact.lz");
+
+static const unsigned char sContactGateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/contact_gate.huff");
+static const unsigned short sContactGateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/contact_gate.gbapal");
+static const unsigned char sContactGateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/contact_gate.lz");
+
+static const unsigned char sConvertContactBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/convert_contact.huff");
+static const unsigned short sConvertContactBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/convert_contact.gbapal");
+static const unsigned char sConvertContactMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/convert_contact.lz");
+
+static const unsigned char sCrossKeeperBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/cross_keeper.huff");
+static const unsigned short sCrossKeeperBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/cross_keeper.gbapal");
+static const unsigned char sCrossKeeperMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/cross_keeper.lz");
+
+static const unsigned char sCuriousTheLightswornDominionBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/curious_the_lightsworn_dominion.huff");
+static const unsigned short sCuriousTheLightswornDominionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/curious_the_lightsworn_dominion.gbapal");
+static const unsigned char sCuriousTheLightswornDominionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/curious_the_lightsworn_dominion.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -4116,6 +4188,24 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0653] = sArcanaForceXviiiTheMoonBigArt,
   [0x0654] = sArcanaForceXxiTheWorldBigArt,
   [0x0655] = sArcanaReadingBigArt,
+  [0x0656] = sArcanaSpreadBigArt,
+  [0x0657] = sArmedNeosBigArt,
+  [0x0658] = sAurkusLightswornDruidBigArt,
+  [0x0659] = sCelestiaLightswornAngelBigArt,
+  [0x065A] = sChargeOfTheLightBrigadeBigArt,
+  [0x065B] = sChrysalisChickyBigArt,
+  [0x065C] = sChrysalisDolphinBigArt,
+  [0x065D] = sChrysalisMoleBigArt,
+  [0x065E] = sChrysalisPantailBigArt,
+  [0x065F] = sChrysalisPinnyBigArt,
+  [0x0660] = sCocoonPartyBigArt,
+  [0x0661] = sCocoonRebirthBigArt,
+  [0x0662] = sColosseumCageOfTheGladiatorBeastsBigArt,
+  [0x0663] = sContactBigArt,
+  [0x0664] = sContactGateBigArt,
+  [0x0665] = sConvertContactBigArt,
+  [0x0666] = sCrossKeeperBigArt,
+  [0x0667] = sCuriousTheLightswornDominionBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -4942,6 +5032,24 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0653] = sArcanaForceXviiiTheMoonBigPalette,
   [0x0654] = sArcanaForceXxiTheWorldBigPalette,
   [0x0655] = sArcanaReadingBigPalette,
+  [0x0656] = sArcanaSpreadBigPalette,
+  [0x0657] = sArmedNeosBigPalette,
+  [0x0658] = sAurkusLightswornDruidBigPalette,
+  [0x0659] = sCelestiaLightswornAngelBigPalette,
+  [0x065A] = sChargeOfTheLightBrigadeBigPalette,
+  [0x065B] = sChrysalisChickyBigPalette,
+  [0x065C] = sChrysalisDolphinBigPalette,
+  [0x065D] = sChrysalisMoleBigPalette,
+  [0x065E] = sChrysalisPantailBigPalette,
+  [0x065F] = sChrysalisPinnyBigPalette,
+  [0x0660] = sCocoonPartyBigPalette,
+  [0x0661] = sCocoonRebirthBigPalette,
+  [0x0662] = sColosseumCageOfTheGladiatorBeastsBigPalette,
+  [0x0663] = sContactBigPalette,
+  [0x0664] = sContactGateBigPalette,
+  [0x0665] = sConvertContactBigPalette,
+  [0x0666] = sCrossKeeperBigPalette,
+  [0x0667] = sCuriousTheLightswornDominionBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -5768,6 +5876,24 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0653] = 0,
   [0x0654] = 0,
   [0x0655] = 0,
+  [0x0656] = 0,
+  [0x0657] = 0,
+  [0x0658] = 0,
+  [0x0659] = 0,
+  [0x065A] = 0,
+  [0x065B] = 0,
+  [0x065C] = 0,
+  [0x065D] = 0,
+  [0x065E] = 0,
+  [0x065F] = 0,
+  [0x0660] = 0,
+  [0x0661] = 0,
+  [0x0662] = 0,
+  [0x0663] = 0,
+  [0x0664] = 0,
+  [0x0665] = 0,
+  [0x0666] = 0,
+  [0x0667] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -6594,4 +6720,22 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0653] = sArcanaForceXviiiTheMoonMiniArt,
   [0x0654] = sArcanaForceXxiTheWorldMiniArt,
   [0x0655] = sArcanaReadingMiniArt,
+  [0x0656] = sArcanaSpreadMiniArt,
+  [0x0657] = sArmedNeosMiniArt,
+  [0x0658] = sAurkusLightswornDruidMiniArt,
+  [0x0659] = sCelestiaLightswornAngelMiniArt,
+  [0x065A] = sChargeOfTheLightBrigadeMiniArt,
+  [0x065B] = sChrysalisChickyMiniArt,
+  [0x065C] = sChrysalisDolphinMiniArt,
+  [0x065D] = sChrysalisMoleMiniArt,
+  [0x065E] = sChrysalisPantailMiniArt,
+  [0x065F] = sChrysalisPinnyMiniArt,
+  [0x0660] = sCocoonPartyMiniArt,
+  [0x0661] = sCocoonRebirthMiniArt,
+  [0x0662] = sColosseumCageOfTheGladiatorBeastsMiniArt,
+  [0x0663] = sContactMiniArt,
+  [0x0664] = sContactGateMiniArt,
+  [0x0665] = sConvertContactMiniArt,
+  [0x0666] = sCrossKeeperMiniArt,
+  [0x0667] = sCuriousTheLightswornDominionMiniArt,
 };

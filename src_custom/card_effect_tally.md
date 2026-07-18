@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `752` effects
+- `772` effects
 
 ## Tally
 
@@ -733,6 +733,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Arcana Force Xviii The Moon` | `src_custom/permanent_effects/arcana_force_xviii_the_moon.c` |
 | `permanent_effects` | `Arcana Force Xxi The World` | `src_custom/permanent_effects/arcana_force_xxi_the_world.c` |
 | `spell_effects` | `Arcana Reading` | `src_custom/spell_effects/arcana_reading.c` |
+| `spell_effects` | `Arcana Spread` | `src_custom/spell_effects/arcana_spread.c` |
+| `activated_effects` | `Armed Neos` | `src_custom/activated_effects/armed_neos.c` |
+| `permanent_effects` | `Aurkus Lightsworn Druid` | `src_custom/permanent_effects/aurkus_lightsworn_druid.c` |
+| `activated_effects` | `Celestia Lightsworn Angel` | `src_custom/activated_effects/celestia_lightsworn_angel.c` |
+| `spell_effects` | `Charge Of The Light Brigade` | `src_custom/spell_effects/charge_of_the_light_brigade.c` |
+| `activated_effects` | `Chrysalis Chicky` | `src_custom/activated_effects/chrysalis_chicky.c` |
+| `activated_effects` | `Chrysalis Dolphin` | `src_custom/activated_effects/chrysalis_dolphin.c` |
+| `activated_effects` | `Chrysalis Mole` | `src_custom/activated_effects/chrysalis_mole.c` |
+| `activated_effects` | `Chrysalis Pantail` | `src_custom/activated_effects/chrysalis_pantail.c` |
+| `activated_effects` | `Chrysalis Pinny` | `src_custom/activated_effects/chrysalis_pinny.c` |
+| `spell_effects` | `Cocoon Party` | `src_custom/spell_effects/cocoon_party.c` |
+| `spell_effects` | `Cocoon Rebirth` | `src_custom/spell_effects/cocoon_rebirth.c` |
+| `spell_effects` | `Colosseum Cage Of The Gladiator Beasts` | `src_custom/spell_effects/colosseum_cage_of_the_gladiator_beasts.c` |
+| `spell_effects` | `Contact` | `src_custom/spell_effects/contact.c` |
+| `spell_effects` | `Contact Gate` | `src_custom/spell_effects/contact_gate.c` |
+| `spell_effects` | `Convert Contact` | `src_custom/spell_effects/convert_contact.c` |
+| `activated_effects` | `Cross Keeper` | `src_custom/activated_effects/cross_keeper.c` |
+| `activated_effects` | `Curious The Lightsworn Dominion` | `src_custom/activated_effects/curious_the_lightsworn_dominion.c` |
+| `activated_effects` | `Cyber Slash Harpy Lady` | `src_custom/activated_effects/cyber_slash_harpy_lady.c` |
+| `trap_effects` | `Damage Equals Reptile` | `src_custom/trap_effects/damage_equals_reptile.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

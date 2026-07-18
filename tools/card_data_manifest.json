@@ -34454,6 +34454,497 @@
       "effect_texts": {
         "popup_1": "Coin: add Arcana Force or SS from GY."
       }
+    },
+    {
+      "card_const": "ARCANA_SPREAD",
+      "card_name": "Arcana Spread",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 6, 3, 0, 2, 4, 4, 8],
+      "description": {
+        "symbol": "gDescription_ArcanaSpread",
+        "pages": [
+          "Toss a coin (or choose if Light",
+          "Barrier is up). Heads: SS 1 Level",
+          "4 or lower Arcana Force from Deck.",
+          "Tails: SS 1 coin-toss monster from",
+          "GY. Banish from GY: add 1 such card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: SS Arcana Force or coin monster."
+      }
+    },
+    {
+      "card_const": "ARMED_NEOS",
+      "card_name": "Armed Neos",
+      "atk": 3500,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [3, 1, 8, 1, 7, 4, 1, 5],
+      "description": {
+        "symbol": "gDescription_ArmedNeos",
+        "pages": [
+          "Neos + 1 Armed Dragon. Must be",
+          "Fusion Summoned. On SS: pick Dragon",
+          "in GY; destroy opp monsters of that",
+          "Level or lower. On battle destroy:",
+          "can Tribute to SS E-HERO Fusion."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On SS destroy by GY Dragon Level."
+      }
+    },
+    {
+      "card_const": "AURKUS_LIGHTSWORN_DRUID",
+      "card_name": "Aurkus, Lightsworn Druid",
+      "atk": 1200,
+      "def": 1800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 7, 1, 8, 3, 2, 7, 7],
+      "description": {
+        "symbol": "gDescription_AurkusLightswornDruid",
+        "pages": [
+          "Neither player can target",
+          "Lightsworn monsters (anywhere)",
+          "with card effects. During each of",
+          "your End Phases: send the top 2",
+          "cards of your Deck to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Protect Lightsworn; mill 2 at End."
+      }
+    },
+    {
+      "card_const": "CELESTIA_LIGHTSWORN_ANGEL",
+      "card_name": "Celestia, Lightsworn Angel",
+      "atk": 2300,
+      "def": 200,
+      "level": 5,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [9, 4, 3, 8, 1, 0, 3, 9],
+      "description": {
+        "symbol": "gDescription_CelestiaLightswornAngel",
+        "pages": [
+          "When Tribute Summoned using a",
+          "Lightsworn: mill top 4 of Deck,",
+          "then target up to 2 cards your",
+          "opponent controls; destroy them."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute Summon: mill 4; destroy 2."
+      }
+    },
+    {
+      "card_const": "CHARGE_OF_THE_LIGHT_BRIGADE",
+      "card_name": "Charge of the Light Brigade",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 4, 8, 8, 6, 2, 8, 2],
+      "description": {
+        "symbol": "gDescription_ChargeOfTheLightBrigade",
+        "pages": [
+          "Send the top 3 cards of your Deck",
+          "to the GY; add 1 Level 4 or lower",
+          "Lightsworn monster from your Deck",
+          "to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Mill 3; add Level 4- Lightsworn."
+      }
+    },
+    {
+      "card_const": "CHRYSALIS_CHICKY",
+      "card_name": "Chrysalis Chicky",
+      "atk": 600,
+      "def": 400,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [1, 7, 3, 6, 3, 0, 4, 1],
+      "description": {
+        "symbol": "gDescription_ChrysalisChicky",
+        "pages": [
+          "Tribute this while Neo Space is",
+          "on the field; Special Summon 1",
+          "Neo-Spacian Air Hummingbird from",
+          "your hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute; SS Air Hummingbird."
+      }
+    },
+    {
+      "card_const": "CHRYSALIS_DOLPHIN",
+      "card_name": "Chrysalis Dolphin",
+      "atk": 400,
+      "def": 600,
+      "level": 2,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_FISH",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 2, 6, 8, 2, 6, 0, 9],
+      "description": {
+        "symbol": "gDescription_ChrysalisDolphin",
+        "pages": [
+          "Tribute this while Neo Space is",
+          "on the field; Special Summon 1",
+          "Neo-Spacian Aqua Dolphin from",
+          "your hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute; SS Aqua Dolphin."
+      }
+    },
+    {
+      "card_const": "CHRYSALIS_MOLE",
+      "card_name": "Chrysalis Mole",
+      "atk": 700,
+      "def": 100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_ROCK",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 2, 2, 3, 9, 5, 4, 6],
+      "description": {
+        "symbol": "gDescription_ChrysalisMole",
+        "pages": [
+          "Tribute this while Neo Space is",
+          "on the field; Special Summon 1",
+          "Neo-Spacian Grand Mole from your",
+          "hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute; SS Grand Mole."
+      }
+    },
+    {
+      "card_const": "CHRYSALIS_PANTAIL",
+      "card_name": "Chrysalis Pantail",
+      "atk": 800,
+      "def": 300,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 3, 7, 5, 1, 7, 5, 5],
+      "description": {
+        "symbol": "gDescription_ChrysalisPantail",
+        "pages": [
+          "Tribute this while Neo Space is",
+          "on the field; Special Summon 1",
+          "Neo-Spacian Dark Panther from",
+          "your hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute; SS Dark Panther."
+      }
+    },
+    {
+      "card_const": "CHRYSALIS_PINNY",
+      "card_name": "Chrysalis Pinny",
+      "atk": 100,
+      "def": 700,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_PLANT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [2, 9, 2, 4, 6, 3, 5, 4],
+      "description": {
+        "symbol": "gDescription_ChrysalisPinny",
+        "pages": [
+          "Tribute this while Neo Space is",
+          "on the field; Special Summon 1",
+          "Neo-Spacian Glow Moss from your",
+          "hand or Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute; SS Glow Moss."
+      }
+    },
+    {
+      "card_const": "COCOON_PARTY",
+      "card_name": "Cocoon Party",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 0, 3, 6, 8, 9, 4, 2],
+      "description": {
+        "symbol": "gDescription_CocoonParty",
+        "pages": [
+          "Special Summon 1 Chrysalis from",
+          "your Deck for each Neo-Spacian",
+          "with a different name in your GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS Chrysalis per Neo-Spacian in GY."
+      }
+    },
+    {
+      "card_const": "COCOON_REBIRTH",
+      "card_name": "Cocoon Rebirth",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 3, 6, 4, 4, 0, 2, 5],
+      "description": {
+        "symbol": "gDescription_CocoonRebirth",
+        "pages": [
+          "Tribute 1 face-up Chrysalis you",
+          "control; Special Summon 1",
+          "Neo-Spacian named in its text",
+          "from either GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute Chrysalis; SS its Neo-Spacian."
+      }
+    },
+    {
+      "card_const": "COLOSSEUM_CAGE_OF_THE_GLADIATOR_BEASTS",
+      "card_name": "Colosseum - Cage of the Gladiator Beasts",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 2, 5, 1, 8, 7, 9, 3],
+      "description": {
+        "symbol": "gDescription_ColosseumCageOfTheGladiatorBeasts",
+        "pages": [
+          "Place 1 Counter each time a",
+          "monster is SS from either Deck.",
+          "Gladiator Beasts gain 100 ATK/DEF",
+          "per Counter. If destroyed by effect:",
+          "discard 1 Colosseum to protect it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Counters boost Gladiator Beasts."
+      }
+    },
+    {
+      "card_const": "CONTACT",
+      "card_name": "Contact",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 6, 6, 1, 6, 6, 2, 0],
+      "description": {
+        "symbol": "gDescription_Contact",
+        "pages": [
+          "Send all Chrysalis you control to",
+          "the GY; Special Summon 1 monster",
+          "from hand or Deck named in those",
+          "cards texts."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send Chrysalis; SS named monsters."
+      }
+    },
+    {
+      "card_const": "CONTACT_GATE",
+      "card_name": "Contact Gate",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 1, 9, 3, 3, 4, 2, 5],
+      "description": {
+        "symbol": "gDescription_ContactGate",
+        "pages": [
+          "Banish 2 different Neo-Spacians",
+          "from GY; SS 2 different ones from",
+          "hand/Deck/GY. No Extra Deck SS",
+          "except Fusions this turn. GY:",
+          "banish this; SS 1 banished Neo-Spacian."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish 2 Neo-Spacians; SS 2 more."
+      }
+    },
+    {
+      "card_const": "CONVERT_CONTACT",
+      "card_name": "Convert Contact",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 2, 6, 3, 9, 1, 0, 7],
+      "description": {
+        "symbol": "gDescription_ConvertContact",
+        "pages": [
+          "If you control no monsters: send",
+          "2 Neo-Spacians (1 hand, 1 Deck)",
+          "to the GY, then draw 2 cards."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send 2 Neo-Spacians; draw 2."
+      }
+    },
+    {
+      "card_const": "CROSS_KEEPER",
+      "card_name": "Cross Keeper",
+      "atk": 400,
+      "def": 400,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [4, 0, 7, 4, 0, 2, 2, 4],
+      "description": {
+        "symbol": "gDescription_CrossKeeper",
+        "pages": [
+          "Send this from hand/field to GY;",
+          "SS 1 E-HERO or Neo-Spacian from",
+          "hand or GY (negate if from GY).",
+          "If you SS E-HERO Fusion: banish",
+          "from GY; draw 2, then bottom 1."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Send; SS E-HERO/Neo-Spacian. Draw."
+      }
+    },
+    {
+      "card_const": "CURIOUS_THE_LIGHTSWORN_DOMINION",
+      "card_name": "Curious, the Lightsworn Dominion",
+      "atk": 2400,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 8, 0, 9, 5, 1, 6, 2],
+      "description": {
+        "symbol": "gDescription_CuriousTheLightswornDominion",
+        "pages": [
+          "3 same Attribute, different Types.",
+          "If destroyed/leaves by opp: add 1",
+          "from GY to hand. On Link Summon:",
+          "mill 1. If a card is milled from",
+          "Deck by effect: mill top 3."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Link mill; recover; mill cascade."
+      }
     }
   ]
 }
