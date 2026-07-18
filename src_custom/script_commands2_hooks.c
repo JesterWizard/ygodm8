@@ -149,6 +149,8 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
             RemoveMoney(1000);
         break;
     case CASINO_SPECIAL_BLACKJACK:
+        if (gRuntimeConfig.enable_casino_minigames != TRUE)
+            break;
         PlayMusic(SFX_TRANSITION_OVERWORLD_TO_ANTE);
         MosaicEffect();
         Casino_BlackjackMain();
@@ -157,6 +159,8 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
         Casino_PresentOverworldResult();
         break;
     case CASINO_SPECIAL_CONCENTRATION:
+        if (gRuntimeConfig.enable_casino_minigames != TRUE)
+            break;
         /* Same mosaic dissolve as accepting a duel challenge. */
         PlayMusic(SFX_TRANSITION_OVERWORLD_TO_ANTE);
         MosaicEffect();

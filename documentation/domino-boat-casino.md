@@ -41,7 +41,8 @@ Blackjack is minimal: hit/stand, dealer stands on all 17s, infinite shoe of real
 | Prize stubs | `src_custom/casino/casino_prizes.c` | Primary / secondary card ID tables |
 | Blackjack | `src_custom/casino/casino_blackjack.c` | Deal / hit / stand loop |
 | Concentration | `src_custom/casino/casino_concentration.c` | 4×5 board, memory AI |
-| SPECIAL dispatch | `sub_8054AB0__Replacement` in `src_custom/script_commands2_hooks.c` | Cases 36 / 37 |
+| SPECIAL dispatch | `sub_8054AB0__Replacement` in `src_custom/script_commands2_hooks.c` | Cases 36 / 37 (gated by `enable_casino_minigames`) |
+| Runtime toggle | `configs/runtime.h` / `runtime.c`, debug **Casino Mini** | `gRuntimeConfig.enable_casino_minigames` — OFF keeps vanilla dealer/patron dialogue and skips SPECIAL 36/37 |
 | Map scripts | `events/scripts/map_25_state_{01,02,03}.c` | Dealer/patron A = rules, R = challenge (state 03 dealer A/R shared) |
 
 

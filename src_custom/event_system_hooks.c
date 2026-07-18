@@ -25,15 +25,36 @@ static inline ScriptCtxFunc ThumbScriptCtxFunc(u32 addr) {
 void sub_804EEE0(void);
 void sub_80526D0__Replacement(struct ScriptCtx *scriptCtx);
 
+/* Map 25 dealer/patron A+R scripts replaced for Blackjack/Concentration. */
+static const u32 sCasinoMinigameScriptAddrs[] APPEND_RODATA = {
+  0x08E99588, 0x08E99594, 0x08E995A0, 0x08E995AC, /* state 01 */
+  0x08E995B8, 0x08E995DC, 0x08E995E8, 0x08E995F4, /* state 02 */
+  0x08E99600, 0x08E9960C, 0x08E99618,             /* state 03 */
+};
+
+static u8 CasinoMinigameScript_IsGated(const struct Script *script) {
+  unsigned i;
+
+  for (i = 0; i < ARRAY_COUNT(sCasinoMinigameScriptAddrs); i++)
+    if ((u32)script == sCasinoMinigameScriptAddrs[i])
+      return TRUE;
+  return FALSE;
+}
+
 const struct Script *EventSystem_ResolveScript(const struct Script *script) {
   unsigned i;
 
   if (gRuntimeConfig.enable_custom_events != TRUE)
     return script;
 
-  for (i = 0; i < gEventScriptReplacementCount; i++)
-    if (gEventScriptReplacements[i].vanilla == script)
-      return gEventScriptReplacements[i].replacement;
+  for (i = 0; i < gEventScriptReplacementCount; i++) {
+    if (gEventScriptReplacements[i].vanilla != script)
+      continue;
+    if (CasinoMinigameScript_IsGated(script) == TRUE &&
+        gRuntimeConfig.enable_casino_minigames != TRUE)
+      return script; /* keep vanilla dialogue */
+    return gEventScriptReplacements[i].replacement;
+  }
 
   return script;
 }

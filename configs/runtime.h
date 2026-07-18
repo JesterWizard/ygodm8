@@ -56,6 +56,7 @@ typedef struct {
     u8 enable_duelist_deck_viewer; // START facing a duelist opens a read-only deck list viewer.
     u8 enable_password_terminal_feedback; // Show password result popup and charge only on valid passwords.
     u8 enable_shiny_zones; // Interactable overworld card pickups from the shiny-zone manifest.
+    u8 enable_casino_minigames; // Domino Pier Blackjack / Concentration + custom NPC dialogue.
     u8 enable_big_card_art_palette_extension; // Card detail view: extend big art palettes to 7 BG banks (112 colors).
     u8 enable_new_card_colors; // Synchro/XYZ/Pendulum/Link card color palettes via src_custom hooks.
     u8 show_player_screen_pixel_coords; // Show player screen pixel X/Y on overworld BG0.

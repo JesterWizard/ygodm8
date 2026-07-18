@@ -52,6 +52,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_duelist_deck_viewer = TRUE,
     .enable_password_terminal_feedback = TRUE,
     .enable_shiny_zones = TRUE,
+    .enable_casino_minigames = FALSE,
     .enable_big_card_art_palette_extension = FALSE, // Needs more work, currently corrupts card art and border
     .enable_new_card_colors = TRUE,
     .show_player_screen_pixel_coords = FALSE,

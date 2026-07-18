@@ -1,12 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Fix casino OW result text (EWRAM)
+**Last worked on:** 2026-07-18 — Casino toggle gates dialogue too
 
 **Files touched:**
-- `asm/ram_map_ewram.s`
-- `src_custom/casino/casino_common.c`
+- `src_custom/event_system_hooks.c`
+- `configs/runtime.h`
+- `documentation/domino-boat-casino.md`
 
-**Outcome:** Result pending flag now in EWRAM; Domino digits + `#1` wait. `make` OK.
+**Outcome:** OFF → vanilla dealer/patron dialogue; SPECIAL still gated. `make` OK.
 
 **Open / next:**
-- Playtest "Lost 100 Domino" / win / ante popup
+- Playtest toggle on/off dialogue

@@ -62,6 +62,7 @@ static const struct {
     CONF("Deck Viewer",  enable_duelist_deck_viewer),
     CONF("Pwd Feedbk",   enable_password_terminal_feedback),
     CONF("Shiny Zone",   enable_shiny_zones),
+    CONF("Casino Mini",  enable_casino_minigames),
     CONF("Big Art Ext",  enable_big_card_art_palette_extension),
     CONF("Show Coord",   show_player_screen_pixel_coords),
     CONF("Show LP",      show_duel_life_points_on_board),
