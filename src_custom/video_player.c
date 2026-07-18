@@ -4,50 +4,71 @@
 #include "generated/meteo_video_assets_generated.inc"
 
 extern void CallMeteoPlayer(void);
-extern u8 gIntroVideoPlayed;    /* IWRAM flag — survives blob + cold boot */
+extern u8 gIntroVideoPlayed; /* IWRAM — survives RegisterRamReset(0xFD) */
 
-/* Disable all GBA interrupts (both IME and IE) and set forced blank. */
+extern u16 gUnk2021D00;
+extern u8 gUnk2021D04;
+extern u8 gLanguage;
+
+extern void sub_8057854(void);
+extern void InitButtonMaps(void);
+extern void sub_80595C4(void);
+extern void m4aSoundMode(u32);
+extern void sub_800AEC4(void);
+extern void sub_800AD24(void);
+extern void ResetLfsrStateBit(void);
+extern void sub_80327C8(void);
+extern void sub_803276C(void);
+extern void TitleScreenMain(void);
+extern void OverworldMain(void);
+
+/* Disable all GBA interrupts and set forced blank before entering COMET. */
 static void HardStopGba(void) {
-    /* Kill interrupt master enable */
     *(volatile u16 *)0x04000208 = 0;
-    /* Clear all interrupt enables */
     *(volatile u16 *)0x04000200 = 0;
-    /* Acknowledge any pending VBlank by reading the status */
     (void)*(volatile u16 *)0x04000202;
-    /* Override IntrMain vector — the COMET player writes its own */
     *(volatile u32 *)0x03007FFC = 0;
-    /* Display off (forced blank) */
     *(volatile u16 *)0x04000000 = 0x80;
-    /* Clear palette (sanity) */
     CpuFill16(0, (void *)0x05000000, 0x400);
+}
+
+/*
+ * Re-enter title after COMET without crt0 / copyright.
+ * Same AgbMain setup, then TitleScreenMain → OverworldMain.
+ */
+void MeteoReturnToTitle(void) {
+    gUnk2021D04 = 0;
+    gUnk2021D00 = 0;
+    gLanguage = 0;
+    sub_8057854();
+    InitButtonMaps();
+    REG_IME = 0;
+    REG_IE = INTR_FLAG_VBLANK | INTR_FLAG_GAMEPAK;
+    REG_DISPSTAT = DISPSTAT_VBLANK_INTR;
+    REG_IME = 1;
+    REG_DISPCNT = DISPCNT_FORCED_BLANK;
+    sub_80595C4();
+    m4aSoundMode(0x0097FC00);
+    sub_800AEC4();
+    sub_800AD24();
+    ResetLfsrStateBit();
+    sub_80327C8();
+    sub_803276C();
+    TitleScreenMain();
+    OverworldMain();
 }
 
 bool8 VideoPlayer_Play(void) {
     if (!METE0_VIDEO_AVAILABLE)
         return FALSE;
 
-    /* IWRAM survives the COMET blob and the cold boot.  If we've already
-     * played the intro this power cycle, skip re-playing. */
     if (gIntroVideoPlayed)
         return FALSE;
 
     gIntroVideoPlayed = 1;
 
-    /*
-     * Kill all interrupts and set the display to forced blank.
-     * The COMET player expects the GBA's boot-time hardware state
-     * — IE=0, IME=0, forced blank — not a running game's state.
-     */
     HardStopGba();
+    CallMeteoPlayer(); /* never returns — exit trampoline → MeteoReturnToTitle */
 
-    /*
-     * Call the COMET player.  This never returns — it plays the video
-     * then cold-boots the game via bx 0x08000000 (the blob's own exit).
-     * Our EWRAM flag gIntroVideoPlayed survives the cold boot so the
-     * next call to VideoPlayer_Play skips and the title screen lives.
-     */
-    CallMeteoPlayer();
-
-    /* Not reached */
     return FALSE;
 }

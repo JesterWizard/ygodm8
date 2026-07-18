@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Post-link: relocate Meteo blob pointers and stop video looping.
+"""Post-link: relocate Meteo blob pointers and exit to title (not SoftReset).
 
 The Meteo-generated video.gba is a standalone GBA ROM originally linked at
 0x08000000.  When embedded elsewhere in ROM, literal-pool ROM addresses in
 known code ranges must be shifted by the placement delta.
 
-Stock COMET loops: Play() end-of-stream does `bne restart` when the caller
-passes a non-zero loop flag, and the thumb main loop re-invokes Play forever.
-We rewrite EOF / skip exits to BIOS SoftReset so control returns to 0x08000000
-(the game title screen).
+Stock COMET loops the video and SoftResets to 0x08000000 (full reboot through
+copyright).  We:
+  1. Point EOF / skip exits at the blob SoftReset cleanup (+0xAF1C).
+  2. Rewrite that SoftReset tail to branch to MeteoExitTrampoline, which
+     RegisterRamResets and jumps to MeteoReturnToTitle (title screen, no
+     crt0 / copyright).
 """
 
 from __future__ import annotations
@@ -34,30 +36,39 @@ def arm_b(pc_off: int, dest_off: int) -> bytes:
     return struct.pack("<I", 0xEA000000 | imm24)
 
 
-# Wrong prior patch at +0xA15C (shared DMA clear) — restore if present.
+# Wrong prior patch at +0xA15C — restore if present.
 A15C_BAD = bytes.fromhex("0100a0e3080081e5040081e51eff2fe1")
 A15C_STOCK = bytes.fromhex(
     "0113a0e3011c81e20000a0e3b200c1e10113a0e3b60cc1e18c141fe5040081e5"
 )
 
-# End-of-stream: bne restart(+0xACCC) -> b SoftReset(+0xAF1C)
+# End-of-stream / skip → SoftReset cleanup entry (then rewritten to trampoline)
 AE3C_STOCK = bytes.fromhex("a2ffff1a")
 AE3C_EXIT = arm_b(0xAE3C, 0xAF1C)
 
-# B-button skip epilogue -> SoftReset
-AE08_STOCK = bytes.fromhex("0100a0e3")  # mov r0, #1
+AE08_STOCK = bytes.fromhex("0100a0e3")
 AE08_EXIT = arm_b(0xAE08, 0xAF1C)
 
-# Held-key exit spin -> SoftReset
-AD54_STOCK = bytes.fromhex("0100a0e3")  # mov r0, #1
+AD54_STOCK = bytes.fromhex("0100a0e3")
 AD54_EXIT = arm_b(0xAD54, 0xAF1C)
 
-# Thumb main: r1=0 (no Play internal loop); after Play returns, SoftReset
-# instead of `b 1fc`. SoftReset alone (swi 0) — 0x03007FFA is normally 0.
-# Primary exit is IWRAM SoftReset above; this is the return-path safety net.
+# Thumb: r1=0 so Play won't internally loop; SoftReset only if Play returns
+# (EOF/skip normally take the IWRAM cleanup → trampoline path and never return).
 THUMB_MAIN_OFF = 0x1FC
 THUMB_MAIN_STOCK = bytes.fromhex("0121381cfff7b2fffae7")  # r1=1; play; b 1fc
 THUMB_MAIN_EXIT = bytes.fromhex("0021381cfff7b2ff00df")  # r1=0; play; swi SoftReset
+
+# SoftReset tail at +0xAF3C → ldr/bx MeteoExitTrampoline
+AF3C_STOCK = bytes.fromhex(
+    "0314a0e3"  # mov r1, #0x03000000
+    "7f1c81e2"  # add r1, #0x7f00
+    "fa1081e2"  # add r1, #0xfa
+    "0000a0e3"  # mov r0, #0
+    "b000c1e1"  # strh r0, [r1]
+    "fd00a0e3"  # mov r0, #0xfd
+    "000001ef"  # svc RegisterRamReset
+    "000000ef"  # svc SoftReset
+)
 
 
 def in_patch_range(offset: int) -> bool:
@@ -102,22 +113,57 @@ def patch_at(
     print(f"  {label} +{off:#06x}: patched")
 
 
-def patch_no_loop(rom: bytearray, blob_start: int) -> None:
-    """Stop COMET looping; SoftReset back to the game ROM."""
+def patch_softreset_to_trampoline(
+    rom: bytearray, blob_start: int, trampoline: int
+) -> None:
+    """Replace BIOS SoftReset tail with bx MeteoExitTrampoline."""
+    off = 0xAF3C
+    addr = blob_start + off
+    exit_code = (
+        bytes.fromhex("00009fe5")  # ldr r0, [pc, #0] -> word at af44
+        + bytes.fromhex("10ff2fe1")  # bx r0
+        + struct.pack("<I", trampoline)
+    )
+
+    if bytes(rom[addr : addr + len(exit_code)]) == exit_code:
+        print(f"  SoftReset->trampoline already patched at +{off:#06x}")
+        return
+
+    got = bytes(rom[addr : addr + len(AF3C_STOCK)])
+    if got != AF3C_STOCK:
+        if bytes(rom[addr : addr + 8]) == bytes.fromhex("00009fe510ff2fe1"):
+            struct.pack_into("<I", rom, addr + 8, trampoline)
+            print(f"  SoftReset->trampoline +{off:#06x}: updated addr {trampoline:#010x}")
+            return
+        print(
+            f"  warning: SoftReset tail mismatch at +{off:#06x} "
+            f"(got {got.hex()}) — skip",
+            file=sys.stderr,
+        )
+        return
+
+    rom[addr : addr + len(exit_code)] = exit_code
+    print(f"  SoftReset->trampoline +{off:#06x}: {trampoline:#010x}")
+
+
+def patch_no_loop(rom: bytearray, blob_start: int, trampoline: int) -> None:
     a15c = blob_start + 0xA15C
     if bytes(rom[a15c : a15c + len(A15C_BAD)]) == A15C_BAD:
         rom[a15c : a15c + len(A15C_STOCK)] = A15C_STOCK
         print("  restored stock +0xA15C (prior bad patch)")
 
-    patch_at(rom, blob_start, 0xAE3C, AE3C_STOCK, AE3C_EXIT, "EOF->SoftReset")
-    patch_at(rom, blob_start, 0xAE08, AE08_STOCK, AE08_EXIT, "B-skip->SoftReset")
-    patch_at(rom, blob_start, 0xAD54, AD54_STOCK, AD54_EXIT, "key-exit->SoftReset")
+    patch_at(rom, blob_start, 0xAE3C, AE3C_STOCK, AE3C_EXIT, "EOF->cleanup")
+    patch_at(rom, blob_start, 0xAE08, AE08_STOCK, AE08_EXIT, "B-skip->cleanup")
+    patch_at(rom, blob_start, 0xAD54, AD54_STOCK, AD54_EXIT, "key-exit->cleanup")
     patch_at(
-        rom, blob_start, THUMB_MAIN_OFF, THUMB_MAIN_STOCK, THUMB_MAIN_EXIT, "thumb once->SoftReset"
+        rom, blob_start, THUMB_MAIN_OFF, THUMB_MAIN_STOCK, THUMB_MAIN_EXIT, "thumb once"
     )
+    patch_softreset_to_trampoline(rom, blob_start, trampoline)
 
 
-def patch_blob_in_rom(rom_path: Path, blob_addr: int, map_path: Path) -> None:
+def patch_blob_in_rom(
+    rom_path: Path, blob_addr: int, map_path: Path, trampoline: int
+) -> None:
     rom = bytearray(rom_path.read_bytes())
     file_base = blob_addr & 0x01FFFFFF
 
@@ -154,19 +200,21 @@ def patch_blob_in_rom(rom_path: Path, blob_addr: int, map_path: Path) -> None:
         patched += 1
 
     print(f"  patched {patched} address references in valid code ranges")
-    patch_no_loop(rom, blob_start)
+    patch_no_loop(rom, blob_start, trampoline)
 
     rom_path.write_bytes(rom)
     print(f"  patched {rom_path.name}")
 
 
 def _self_check() -> None:
-    """ponytail: SoftReset branch encodings must stay correct."""
+    """ponytail: branch encodings and SoftReset stock fingerprint."""
     assert AE3C_EXIT == bytes.fromhex("360000ea")
     assert AE08_EXIT == bytes.fromhex("430000ea")
     assert AD54_EXIT == bytes.fromhex("700000ea")
     assert len(THUMB_MAIN_EXIT) == len(THUMB_MAIN_STOCK) == 10
-    assert THUMB_MAIN_EXIT.endswith(bytes.fromhex("00df"))
+    assert AF3C_STOCK == bytes.fromhex(
+        "0314a0e37f1c81e2fa1081e20000a0e3b000c1e1fd00a0e3000001ef000000ef"
+    )
 
 
 def main() -> int:
@@ -185,8 +233,13 @@ def main() -> int:
         print("meteo_integrate: no Meteo blob in ROM, skipping")
         return 0
 
-    print(f"meteo_integrate: blob at 0x{blob_addr:08X}")
-    patch_blob_in_rom(args.rom, blob_addr, args.map)
+    trampoline = find_symbol(args.map, "MeteoExitTrampoline")
+    if trampoline is None:
+        print("meteo_integrate: MeteoExitTrampoline not in map — skip exit rewrite")
+        return 1
+
+    print(f"meteo_integrate: blob at 0x{blob_addr:08X}, exit {trampoline:#010x}")
+    patch_blob_in_rom(args.rom, blob_addr, args.map, trampoline)
     return 0
 
 
