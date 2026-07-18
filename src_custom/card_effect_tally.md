@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `867` effects
+- `887` effects
 
 ## Tally
 
@@ -848,6 +848,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Minerva The Athenian Lightsworn` | `src_custom/activated_effects/minerva_the_athenian_lightsworn.c` |
 | `activated_effects` | `Minerva The Exhalted Lightsworn` | `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c` |
 | `spell_effects` | `Miracle Contact` | `src_custom/spell_effects/miracle_contact.c` |
+| `spell_effects` | `Neo Space` | `src_custom/spell_effects/neo_space.c` |
+| `activated_effects` | `Neo Space Connector` | `src_custom/activated_effects/neo_space_connector.c` |
+| `activated_effects` | `Neo Spacian Air Hummingbird` | `src_custom/activated_effects/neo_spacian_air_hummingbird.c` |
+| `activated_effects` | `Neo Spacian Aqua Dolphin` | `src_custom/activated_effects/neo_spacian_aqua_dolphin.c` |
+| `activated_effects` | `Neo Spacian Dark Panther` | `src_custom/activated_effects/neo_spacian_dark_panther.c` |
+| `permanent_effects` | `Neo Spacian Flare Scarab` | `src_custom/permanent_effects/neo_spacian_flare_scarab.c` |
+| `battle_effects` | `Neo Spacian Glow Moss` | `src_custom/battle_effects/neo_spacian_glow_moss.c` |
+| `battle_effects` | `Neo Spacian Grand Mole` | `src_custom/battle_effects/neo_spacian_grand_mole.c` |
+| `activated_effects` | `Neo Spacian Marine Dolphin` | `src_custom/activated_effects/neo_spacian_marine_dolphin.c` |
+| `battle_effects` | `Neo Spacian Twinkle Moss` | `src_custom/battle_effects/neo_spacian_twinkle_moss.c` |
+| `spell_effects` | `Nex` | `src_custom/spell_effects/nex.c` |
+| `trap_effects` | `Next` | `src_custom/trap_effects/next.c` |
+| `spell_effects` | `Pentacle Of Ace` | `src_custom/spell_effects/pentacle_of_ace.c` |
+| `activated_effects` | `Punishment Dragon` | `src_custom/activated_effects/punishment_dragon.c` |
+| `activated_effects` | `Raiden Hand Of The Lightsworn` | `src_custom/activated_effects/raiden_hand_of_the_lightsworn.c` |
+| `spell_effects` | `Realm Of Light` | `src_custom/spell_effects/realm_of_light.c` |
+| `activated_effects` | `Rescue Cat` | `src_custom/activated_effects/rescue_cat.c` |
+| `activated_effects` | `Rescue Rabbit` | `src_custom/activated_effects/rescue_rabbit.c` |
+| `trap_effects` | `Reversal Of Fate` | `src_custom/trap_effects/reversal_of_fate.c` |
+| `activated_effects` | `Rinyan Lightsworn Rogue` | `src_custom/activated_effects/rinyan_lightsworn_rogue.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

@@ -1738,11 +1738,31 @@
 #define MINERVA_THE_EXHALTED_LIGHTSWORN          0x06C6
 #define MIRACLE_CONTACT                          0x06C7
 #define MOON_TOKEN                               0x06C8
+#define NEO_SPACE                                0x06C9
+#define NEO_SPACE_CONNECTOR                      0x06CA
+#define NEO_SPACIAN_AIR_HUMMINGBIRD              0x06CB
+#define NEO_SPACIAN_AQUA_DOLPHIN                 0x06CC
+#define NEO_SPACIAN_DARK_PANTHER                 0x06CD
+#define NEO_SPACIAN_FLARE_SCARAB                 0x06CE
+#define NEO_SPACIAN_GLOW_MOSS                    0x06CF
+#define NEO_SPACIAN_GRAND_MOLE                   0x06D0
+#define NEO_SPACIAN_MARINE_DOLPHIN               0x06D1
+#define NEO_SPACIAN_TWINKLE_MOSS                 0x06D2
+#define NEX                                      0x06D3
+#define NEXT                                     0x06D4
+#define PENTACLE_OF_ACE                          0x06D5
+#define PUNISHMENT_DRAGON                        0x06D6
+#define RAIDEN_HAND_OF_THE_LIGHTSWORN            0x06D7
+#define REALM_OF_LIGHT                           0x06D8
+#define RESCUE_CAT                               0x06D9
+#define RESCUE_RABBIT                            0x06DA
+#define REVERSAL_OF_FATE                         0x06DB
+#define RINYAN_LIGHTSWORN_ROGUE                  0x06DC
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x06C9
-#define NUM_CUSTOM_CARDS                        0x03A8
+#define NUM_TOTAL_CARDS                         0x06DD
+#define NUM_CUSTOM_CARDS                        0x03BC
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

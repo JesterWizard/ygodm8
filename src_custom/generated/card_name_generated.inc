@@ -937,6 +937,26 @@ static const u8 sMinervaTheAthenianLightswornName[] __attribute__((section(".app
 static const u8 sMinervaTheExhaltedLightswornName[] __attribute__((section(".append_assets"))) = "Minerva, the Exalted Lightsworn";
 static const u8 sMiracleContactName[] __attribute__((section(".append_assets"))) = "Miracle Contact";
 static const u8 sMoonTokenName[] __attribute__((section(".append_assets"))) = "Moon Token";
+static const u8 sNeoSpaceName[] __attribute__((section(".append_assets"))) = "Neo Space";
+static const u8 sNeoSpaceConnectorName[] __attribute__((section(".append_assets"))) = "Neo Space Connector";
+static const u8 sNeoSpacianAirHummingbirdName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Air Hummingbird";
+static const u8 sNeoSpacianAquaDolphinName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Aqua Dolphin";
+static const u8 sNeoSpacianDarkPantherName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Dark Panther";
+static const u8 sNeoSpacianFlareScarabName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Flare Scarab";
+static const u8 sNeoSpacianGlowMossName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Glow Moss";
+static const u8 sNeoSpacianGrandMoleName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Grand Mole";
+static const u8 sNeoSpacianMarineDolphinName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Marine Dolphin";
+static const u8 sNeoSpacianTwinkleMossName[] __attribute__((section(".append_assets"))) = "Neo-Spacian Twinkle Moss";
+static const u8 sNexName[] __attribute__((section(".append_assets"))) = "NEX";
+static const u8 sNextName[] __attribute__((section(".append_assets"))) = "NEXT";
+static const u8 sPentacleOfAceName[] __attribute__((section(".append_assets"))) = "Pentacle of Ace";
+static const u8 sPunishmentDragonName[] __attribute__((section(".append_assets"))) = "Punishment Dragon";
+static const u8 sRaidenHandOfTheLightswornName[] __attribute__((section(".append_assets"))) = "Raiden, Hand of the Lightsworn";
+static const u8 sRealmOfLightName[] __attribute__((section(".append_assets"))) = "Realm of Light";
+static const u8 sRescueCatName[] __attribute__((section(".append_assets"))) = "Rescue Cat";
+static const u8 sRescueRabbitName[] __attribute__((section(".append_assets"))) = "Rescue Rabbit";
+static const u8 sReversalOfFateName[] __attribute__((section(".append_assets"))) = "Reversal of Fate";
+static const u8 sRinyanLightswornRogueName[] __attribute__((section(".append_assets"))) = "Rinyan, Lightsworn Rogue";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2817,6 +2837,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sMiracleContactName;
   if (cardId == 0x06C8)
     return (u8 *)sMoonTokenName;
+  if (cardId == 0x06C9)
+    return (u8 *)sNeoSpaceName;
+  if (cardId == 0x06CA)
+    return (u8 *)sNeoSpaceConnectorName;
+  if (cardId == 0x06CB)
+    return (u8 *)sNeoSpacianAirHummingbirdName;
+  if (cardId == 0x06CC)
+    return (u8 *)sNeoSpacianAquaDolphinName;
+  if (cardId == 0x06CD)
+    return (u8 *)sNeoSpacianDarkPantherName;
+  if (cardId == 0x06CE)
+    return (u8 *)sNeoSpacianFlareScarabName;
+  if (cardId == 0x06CF)
+    return (u8 *)sNeoSpacianGlowMossName;
+  if (cardId == 0x06D0)
+    return (u8 *)sNeoSpacianGrandMoleName;
+  if (cardId == 0x06D1)
+    return (u8 *)sNeoSpacianMarineDolphinName;
+  if (cardId == 0x06D2)
+    return (u8 *)sNeoSpacianTwinkleMossName;
+  if (cardId == 0x06D3)
+    return (u8 *)sNexName;
+  if (cardId == 0x06D4)
+    return (u8 *)sNextName;
+  if (cardId == 0x06D5)
+    return (u8 *)sPentacleOfAceName;
+  if (cardId == 0x06D6)
+    return (u8 *)sPunishmentDragonName;
+  if (cardId == 0x06D7)
+    return (u8 *)sRaidenHandOfTheLightswornName;
+  if (cardId == 0x06D8)
+    return (u8 *)sRealmOfLightName;
+  if (cardId == 0x06D9)
+    return (u8 *)sRescueCatName;
+  if (cardId == 0x06DA)
+    return (u8 *)sRescueRabbitName;
+  if (cardId == 0x06DB)
+    return (u8 *)sReversalOfFateName;
+  if (cardId == 0x06DC)
+    return (u8 *)sRinyanLightswornRogueName;
 
   return gCardNames[cardId];
 }

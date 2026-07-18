@@ -510,3 +510,7 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire LIGHTSWORN_BARRIER in trap dispatcher */
 /* LIGHTSWORN_JUDGEMENT trap effect */
   /* TODO: wire LIGHTSWORN_JUDGEMENT in trap dispatcher */
+/* NEXT trap effect */
+  /* TODO: wire NEXT in trap dispatcher */
+/* REVERSAL_OF_FATE trap effect */
+  /* TODO: wire REVERSAL_OF_FATE in trap dispatcher */

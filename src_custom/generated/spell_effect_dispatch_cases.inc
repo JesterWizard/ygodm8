@@ -458,11 +458,17 @@
     case NEGATIVE_ENERGY:
       EffectNegativeEnergy();
       return;
+    case NEO_SPACE:
+      EffectNEO_SPACE();
+      return;
     case NEPHE_SHADDOLL_FUSION:
       EffectNEPHE_SHADDOLL_FUSION();
       return;
     case NEUTRON_BLAST:
       EffectNEUTRON_BLAST();
+      return;
+    case NEX:
+      EffectNEX();
       return;
     case NIGHTMARE_WHEEL:
       EffectNightmareWheel();
@@ -484,6 +490,9 @@
       return;
     case PARALLEL_WORLD_FUSION:
       EffectPARALLEL_WORLD_FUSION();
+      return;
+    case PENTACLE_OF_ACE:
+      EffectPENTACLE_OF_ACE();
       return;
     case PHOTON_GENERATOR_UNIT:
       EffectPHOTON_GENERATOR_UNIT();
@@ -511,6 +520,9 @@
       return;
     case RAREGOLD_ARMOR:
       EffectRaregoldArmor();
+      return;
+    case REALM_OF_LIGHT:
+      EffectREALM_OF_LIGHT();
       return;
     case RELOAD:
       EffectReload();

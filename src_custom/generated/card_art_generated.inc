@@ -3752,6 +3752,86 @@ static const unsigned char sMoonTokenBigArt[] __attribute__((section(".append_as
 static const unsigned short sMoonTokenBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/moon_token.gbapal");
 static const unsigned char sMoonTokenMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/moon_token.lz");
 
+static const unsigned char sNeoSpaceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_space.huff");
+static const unsigned short sNeoSpaceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_space.gbapal");
+static const unsigned char sNeoSpaceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_space.lz");
+
+static const unsigned char sNeoSpaceConnectorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_space_connector.huff");
+static const unsigned short sNeoSpaceConnectorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_space_connector.gbapal");
+static const unsigned char sNeoSpaceConnectorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_space_connector.lz");
+
+static const unsigned char sNeoSpacianAirHummingbirdBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_air_hummingbird.huff");
+static const unsigned short sNeoSpacianAirHummingbirdBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_air_hummingbird.gbapal");
+static const unsigned char sNeoSpacianAirHummingbirdMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_air_hummingbird.lz");
+
+static const unsigned char sNeoSpacianAquaDolphinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_aqua_dolphin.huff");
+static const unsigned short sNeoSpacianAquaDolphinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_aqua_dolphin.gbapal");
+static const unsigned char sNeoSpacianAquaDolphinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_aqua_dolphin.lz");
+
+static const unsigned char sNeoSpacianDarkPantherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_dark_panther.huff");
+static const unsigned short sNeoSpacianDarkPantherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_dark_panther.gbapal");
+static const unsigned char sNeoSpacianDarkPantherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_dark_panther.lz");
+
+static const unsigned char sNeoSpacianFlareScarabBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_flare_scarab.huff");
+static const unsigned short sNeoSpacianFlareScarabBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_flare_scarab.gbapal");
+static const unsigned char sNeoSpacianFlareScarabMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_flare_scarab.lz");
+
+static const unsigned char sNeoSpacianGlowMossBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_glow_moss.huff");
+static const unsigned short sNeoSpacianGlowMossBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_glow_moss.gbapal");
+static const unsigned char sNeoSpacianGlowMossMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_glow_moss.lz");
+
+static const unsigned char sNeoSpacianGrandMoleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_grand_mole.huff");
+static const unsigned short sNeoSpacianGrandMoleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_grand_mole.gbapal");
+static const unsigned char sNeoSpacianGrandMoleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_grand_mole.lz");
+
+static const unsigned char sNeoSpacianMarineDolphinBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_marine_dolphin.huff");
+static const unsigned short sNeoSpacianMarineDolphinBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_marine_dolphin.gbapal");
+static const unsigned char sNeoSpacianMarineDolphinMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_marine_dolphin.lz");
+
+static const unsigned char sNeoSpacianTwinkleMossBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/neo_spacian_twinkle_moss.huff");
+static const unsigned short sNeoSpacianTwinkleMossBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/neo_spacian_twinkle_moss.gbapal");
+static const unsigned char sNeoSpacianTwinkleMossMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/neo_spacian_twinkle_moss.lz");
+
+static const unsigned char sNexBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/nex.huff");
+static const unsigned short sNexBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/nex.gbapal");
+static const unsigned char sNexMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/nex.lz");
+
+static const unsigned char sNextBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/next.huff");
+static const unsigned short sNextBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/next.gbapal");
+static const unsigned char sNextMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/next.lz");
+
+static const unsigned char sPentacleOfAceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/pentacle_of_ace.huff");
+static const unsigned short sPentacleOfAceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/pentacle_of_ace.gbapal");
+static const unsigned char sPentacleOfAceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/pentacle_of_ace.lz");
+
+static const unsigned char sPunishmentDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/punishment_dragon.huff");
+static const unsigned short sPunishmentDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/punishment_dragon.gbapal");
+static const unsigned char sPunishmentDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/punishment_dragon.lz");
+
+static const unsigned char sRaidenHandOfTheLightswornBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/raiden_hand_of_the_lightsworn.huff");
+static const unsigned short sRaidenHandOfTheLightswornBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/raiden_hand_of_the_lightsworn.gbapal");
+static const unsigned char sRaidenHandOfTheLightswornMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/raiden_hand_of_the_lightsworn.lz");
+
+static const unsigned char sRealmOfLightBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/realm_of_light.huff");
+static const unsigned short sRealmOfLightBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/realm_of_light.gbapal");
+static const unsigned char sRealmOfLightMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/realm_of_light.lz");
+
+static const unsigned char sRescueCatBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rescue_cat.huff");
+static const unsigned short sRescueCatBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rescue_cat.gbapal");
+static const unsigned char sRescueCatMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rescue_cat.lz");
+
+static const unsigned char sRescueRabbitBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rescue_rabbit.huff");
+static const unsigned short sRescueRabbitBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rescue_rabbit.gbapal");
+static const unsigned char sRescueRabbitMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rescue_rabbit.lz");
+
+static const unsigned char sReversalOfFateBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/reversal_of_fate.huff");
+static const unsigned short sReversalOfFateBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/reversal_of_fate.gbapal");
+static const unsigned char sReversalOfFateMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/reversal_of_fate.lz");
+
+static const unsigned char sRinyanLightswornRogueBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/rinyan_lightsworn_rogue.huff");
+static const unsigned short sRinyanLightswornRogueBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/rinyan_lightsworn_rogue.gbapal");
+static const unsigned char sRinyanLightswornRogueMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/rinyan_lightsworn_rogue.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -4691,6 +4771,26 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x06C6] = sMinervaTheExhaltedLightswornBigArt,
   [0x06C7] = sMiracleContactBigArt,
   [0x06C8] = sMoonTokenBigArt,
+  [0x06C9] = sNeoSpaceBigArt,
+  [0x06CA] = sNeoSpaceConnectorBigArt,
+  [0x06CB] = sNeoSpacianAirHummingbirdBigArt,
+  [0x06CC] = sNeoSpacianAquaDolphinBigArt,
+  [0x06CD] = sNeoSpacianDarkPantherBigArt,
+  [0x06CE] = sNeoSpacianFlareScarabBigArt,
+  [0x06CF] = sNeoSpacianGlowMossBigArt,
+  [0x06D0] = sNeoSpacianGrandMoleBigArt,
+  [0x06D1] = sNeoSpacianMarineDolphinBigArt,
+  [0x06D2] = sNeoSpacianTwinkleMossBigArt,
+  [0x06D3] = sNexBigArt,
+  [0x06D4] = sNextBigArt,
+  [0x06D5] = sPentacleOfAceBigArt,
+  [0x06D6] = sPunishmentDragonBigArt,
+  [0x06D7] = sRaidenHandOfTheLightswornBigArt,
+  [0x06D8] = sRealmOfLightBigArt,
+  [0x06D9] = sRescueCatBigArt,
+  [0x06DA] = sRescueRabbitBigArt,
+  [0x06DB] = sReversalOfFateBigArt,
+  [0x06DC] = sRinyanLightswornRogueBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -5632,6 +5732,26 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x06C6] = sMinervaTheExhaltedLightswornBigPalette,
   [0x06C7] = sMiracleContactBigPalette,
   [0x06C8] = sMoonTokenBigPalette,
+  [0x06C9] = sNeoSpaceBigPalette,
+  [0x06CA] = sNeoSpaceConnectorBigPalette,
+  [0x06CB] = sNeoSpacianAirHummingbirdBigPalette,
+  [0x06CC] = sNeoSpacianAquaDolphinBigPalette,
+  [0x06CD] = sNeoSpacianDarkPantherBigPalette,
+  [0x06CE] = sNeoSpacianFlareScarabBigPalette,
+  [0x06CF] = sNeoSpacianGlowMossBigPalette,
+  [0x06D0] = sNeoSpacianGrandMoleBigPalette,
+  [0x06D1] = sNeoSpacianMarineDolphinBigPalette,
+  [0x06D2] = sNeoSpacianTwinkleMossBigPalette,
+  [0x06D3] = sNexBigPalette,
+  [0x06D4] = sNextBigPalette,
+  [0x06D5] = sPentacleOfAceBigPalette,
+  [0x06D6] = sPunishmentDragonBigPalette,
+  [0x06D7] = sRaidenHandOfTheLightswornBigPalette,
+  [0x06D8] = sRealmOfLightBigPalette,
+  [0x06D9] = sRescueCatBigPalette,
+  [0x06DA] = sRescueRabbitBigPalette,
+  [0x06DB] = sReversalOfFateBigPalette,
+  [0x06DC] = sRinyanLightswornRogueBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -6573,6 +6693,26 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x06C6] = 0,
   [0x06C7] = 0,
   [0x06C8] = 0,
+  [0x06C9] = 0,
+  [0x06CA] = 0,
+  [0x06CB] = 0,
+  [0x06CC] = 0,
+  [0x06CD] = 0,
+  [0x06CE] = 0,
+  [0x06CF] = 0,
+  [0x06D0] = 0,
+  [0x06D1] = 0,
+  [0x06D2] = 0,
+  [0x06D3] = 0,
+  [0x06D4] = 0,
+  [0x06D5] = 0,
+  [0x06D6] = 0,
+  [0x06D7] = 0,
+  [0x06D8] = 0,
+  [0x06D9] = 0,
+  [0x06DA] = 0,
+  [0x06DB] = 0,
+  [0x06DC] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -7514,4 +7654,24 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x06C6] = sMinervaTheExhaltedLightswornMiniArt,
   [0x06C7] = sMiracleContactMiniArt,
   [0x06C8] = sMoonTokenMiniArt,
+  [0x06C9] = sNeoSpaceMiniArt,
+  [0x06CA] = sNeoSpaceConnectorMiniArt,
+  [0x06CB] = sNeoSpacianAirHummingbirdMiniArt,
+  [0x06CC] = sNeoSpacianAquaDolphinMiniArt,
+  [0x06CD] = sNeoSpacianDarkPantherMiniArt,
+  [0x06CE] = sNeoSpacianFlareScarabMiniArt,
+  [0x06CF] = sNeoSpacianGlowMossMiniArt,
+  [0x06D0] = sNeoSpacianGrandMoleMiniArt,
+  [0x06D1] = sNeoSpacianMarineDolphinMiniArt,
+  [0x06D2] = sNeoSpacianTwinkleMossMiniArt,
+  [0x06D3] = sNexMiniArt,
+  [0x06D4] = sNextMiniArt,
+  [0x06D5] = sPentacleOfAceMiniArt,
+  [0x06D6] = sPunishmentDragonMiniArt,
+  [0x06D7] = sRaidenHandOfTheLightswornMiniArt,
+  [0x06D8] = sRealmOfLightMiniArt,
+  [0x06D9] = sRescueCatMiniArt,
+  [0x06DA] = sRescueRabbitMiniArt,
+  [0x06DB] = sReversalOfFateMiniArt,
+  [0x06DC] = sRinyanLightswornRogueMiniArt,
 };

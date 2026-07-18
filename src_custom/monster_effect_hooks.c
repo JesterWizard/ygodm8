@@ -554,6 +554,26 @@ unsigned char CanActivateMINERVA_THE_ATHENIAN_LIGHTSWORN(void);
 void ActivateMINERVA_THE_ATHENIAN_LIGHTSWORNEffect(void);
 unsigned char CanActivateMINERVA_THE_EXHALTED_LIGHTSWORN(void);
 void ActivateMINERVA_THE_EXHALTED_LIGHTSWORNEffect(void);
+unsigned char CanActivateNEO_SPACE_CONNECTOR(void);
+void ActivateNEO_SPACE_CONNECTOREffect(void);
+unsigned char CanActivateNEO_SPACIAN_AIR_HUMMINGBIRD(void);
+void ActivateNEO_SPACIAN_AIR_HUMMINGBIRDEffect(void);
+unsigned char CanActivateNEO_SPACIAN_AQUA_DOLPHIN(void);
+void ActivateNEO_SPACIAN_AQUA_DOLPHINEffect(void);
+unsigned char CanActivateNEO_SPACIAN_DARK_PANTHER(void);
+void ActivateNEO_SPACIAN_DARK_PANTHEREffect(void);
+unsigned char CanActivateNEO_SPACIAN_MARINE_DOLPHIN(void);
+void ActivateNEO_SPACIAN_MARINE_DOLPHINEffect(void);
+unsigned char CanActivatePUNISHMENT_DRAGON(void);
+void ActivatePUNISHMENT_DRAGONEffect(void);
+unsigned char CanActivateRAIDEN_HAND_OF_THE_LIGHTSWORN(void);
+void ActivateRAIDEN_HAND_OF_THE_LIGHTSWORNEffect(void);
+unsigned char CanActivateRESCUE_CAT(void);
+void ActivateRESCUE_CATEffect(void);
+unsigned char CanActivateRESCUE_RABBIT(void);
+void ActivateRESCUE_RABBITEffect(void);
+unsigned char CanActivateRINYAN_LIGHTSWORN_ROGUE(void);
+void ActivateRINYAN_LIGHTSWORN_ROGUEEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2277,6 +2297,46 @@ FAILED:
   }
   if (gMonEffect.id == MINERVA_THE_EXHALTED_LIGHTSWORN) {
     ActivateMINERVA_THE_EXHALTED_LIGHTSWORNEffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_SPACE_CONNECTOR) {
+    ActivateNEO_SPACE_CONNECTOREffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_SPACIAN_AIR_HUMMINGBIRD) {
+    ActivateNEO_SPACIAN_AIR_HUMMINGBIRDEffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_SPACIAN_AQUA_DOLPHIN) {
+    ActivateNEO_SPACIAN_AQUA_DOLPHINEffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_SPACIAN_DARK_PANTHER) {
+    ActivateNEO_SPACIAN_DARK_PANTHEREffect();
+    return;
+  }
+  if (gMonEffect.id == NEO_SPACIAN_MARINE_DOLPHIN) {
+    ActivateNEO_SPACIAN_MARINE_DOLPHINEffect();
+    return;
+  }
+  if (gMonEffect.id == PUNISHMENT_DRAGON) {
+    ActivatePUNISHMENT_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == RAIDEN_HAND_OF_THE_LIGHTSWORN) {
+    ActivateRAIDEN_HAND_OF_THE_LIGHTSWORNEffect();
+    return;
+  }
+  if (gMonEffect.id == RESCUE_CAT) {
+    ActivateRESCUE_CATEffect();
+    return;
+  }
+  if (gMonEffect.id == RESCUE_RABBIT) {
+    ActivateRESCUE_RABBITEffect();
+    return;
+  }
+  if (gMonEffect.id == RINYAN_LIGHTSWORN_ROGUE) {
+    ActivateRINYAN_LIGHTSWORN_ROGUEEffect();
     return;
   }
 }

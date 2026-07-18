@@ -321,3 +321,9 @@ void CheckGraveyardAndLoserFlags__Replacement(void) {
   /* TODO: wire REPTILIANNE_GORGON in battle damage hooks */
 /* REPTILIANNE_SCYLLA battle effect */
   /* TODO: wire REPTILIANNE_SCYLLA in battle damage hooks */
+/* NEO_SPACIAN_GLOW_MOSS battle effect */
+  /* TODO: wire NEO_SPACIAN_GLOW_MOSS in battle damage hooks */
+/* NEO_SPACIAN_GRAND_MOLE battle effect */
+  /* TODO: wire NEO_SPACIAN_GRAND_MOLE in battle damage hooks */
+/* NEO_SPACIAN_TWINKLE_MOSS battle effect */
+  /* TODO: wire NEO_SPACIAN_TWINKLE_MOSS in battle damage hooks */

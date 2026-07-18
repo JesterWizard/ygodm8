@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 936 |
-| Art ready, needs manifest | 37 |
+| In game (manifest + art) | 956 |
+| Art ready, needs manifest | 17 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **975** |
 
@@ -958,31 +958,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `MINERVA_THE_EXHALTED_LIGHTSWORN` | Minerva, the Exalted Lightsworn | `minerva_the_exhalted_lightsworn.png` |
 | `MIRACLE_CONTACT` | Miracle Contact | `miracle_contact.png` |
 | `MOON_TOKEN` | Moon Token | `moon_token.png` |
+| `NEO_SPACE` | Neo Space | `neo_space.png` |
+| `NEO_SPACE_CONNECTOR` | Neo Space Connector | `neo_space_connector.png` |
+| `NEO_SPACIAN_AIR_HUMMINGBIRD` | Neo-Spacian Air Hummingbird | `neo_spacian_air_hummingbird.png` |
+| `NEO_SPACIAN_AQUA_DOLPHIN` | Neo-Spacian Aqua Dolphin | `neo_spacian_aqua_dolphin.png` |
+| `NEO_SPACIAN_DARK_PANTHER` | Neo-Spacian Dark Panther | `neo_spacian_dark_panther.png` |
+| `NEO_SPACIAN_FLARE_SCARAB` | Neo-Spacian Flare Scarab | `neo_spacian_flare_scarab.png` |
+| `NEO_SPACIAN_GLOW_MOSS` | Neo-Spacian Glow Moss | `neo_spacian_glow_moss.png` |
+| `NEO_SPACIAN_GRAND_MOLE` | Neo-Spacian Grand Mole | `neo_spacian_grand_mole.png` |
+| `NEO_SPACIAN_MARINE_DOLPHIN` | Neo-Spacian Marine Dolphin | `neo_spacian_marine_dolphin.png` |
+| `NEO_SPACIAN_TWINKLE_MOSS` | Neo-Spacian Twinkle Moss | `neo_spacian_twinkle_moss.png` |
+| `NEX` | NEX | `nex.png` |
+| `NEXT` | NEXT | `next.png` |
+| `PENTACLE_OF_ACE` | Pentacle of Ace | `pentacle_of_ace.png` |
+| `PUNISHMENT_DRAGON` | Punishment Dragon | `punishment_dragon.png` |
+| `RAIDEN_HAND_OF_THE_LIGHTSWORN` | Raiden, Hand of the Lightsworn | `raiden_hand_of_the_lightsworn.png` |
+| `REALM_OF_LIGHT` | Realm of Light | `realm_of_light.png` |
+| `RESCUE_CAT` | Rescue Cat | `rescue_cat.png` |
+| `RESCUE_RABBIT` | Rescue Rabbit | `rescue_rabbit.png` |
+| `REVERSAL_OF_FATE` | Reversal of Fate | `reversal_of_fate.png` |
+| `RINYAN_LIGHTSWORN_ROGUE` | Rinyan, Lightsworn Rogue | `rinyan_lightsworn_rogue.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `NEO_SPACE` — `neo_space.png`
-- [ ] `NEO_SPACE_CONNECTOR` — `neo_space_connector.png`
-- [ ] `NEO_SPACIAN_AIR_HUMMINGBIRD` — `neo_spacian_air_hummingbird.png`
-- [ ] `NEO_SPACIAN_AQUA_DOLPHIN` — `neo_spacian_aqua_dolphin.png`
-- [ ] `NEO_SPACIAN_DARK_PANTHER` — `neo_spacian_dark_panther.png`
-- [ ] `NEO_SPACIAN_FLARE_SCARAB` — `neo_spacian_flare_scarab.png`
-- [ ] `NEO_SPACIAN_GLOW_MOSS` — `neo_spacian_glow_moss.png`
-- [ ] `NEO_SPACIAN_GRAND_MOLE` — `neo_spacian_grand_mole.png`
-- [ ] `NEO_SPACIAN_MARINE_DOLPHIN` — `neo_spacian_marine_dolphin.png`
-- [ ] `NEO_SPACIAN_TWINKLE_MOSS` — `neo_spacian_twinkle_moss.png`
-- [ ] `NEX` — `nex.png`
-- [ ] `NEXT` — `next.png`
-- [ ] `PENTACLE_OF_ACE` — `pentacle_of_ace.png`
-- [ ] `PUNISHMENT_DRAGON` — `punishment_dragon.png`
-- [ ] `RAIDEN_HAND_OF_THE_LIGHTSWORN` — `raiden_hand_of_the_lightsworn.png`
-- [ ] `REALM_OF_LIGHT` — `realm_of_light.png`
-- [ ] `RESCUE_CAT` — `rescue_cat.png`
-- [ ] `RESCUE_RABBIT` — `rescue_rabbit.png`
-- [ ] `REVERSAL_OF_FATE` — `reversal_of_fate.png`
-- [ ] `RINYAN_LIGHTSWORN_ROGUE` — `rinyan_lightsworn_rogue.png`
 - [ ] `RYKO_LIGHTSWORN_HUNTER` — `ryko_lightsworn_hunter.png`
 - [ ] `RYKO_TWILIGHTSWORN_FIGHTER` — `ryko_twilightsworn_fighter.png`
 - [ ] `SHIRE_LIGHTSWORN_SPIRIT` — `shire_lightsworn_spirit.png`
