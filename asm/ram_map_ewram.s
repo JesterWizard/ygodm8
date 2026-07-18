@@ -621,3 +621,6 @@ _kernel_malloc_ewram_array gDescReflowBuf, 0x400
 @ Domino casino: overworld win/lose banner (APPEND_DATA is ROM — writes must be EWRAM).
 _kernel_malloc_ewram gCasinoOwResult, 12
 _kernel_malloc_ewram_array gCasinoOwResultText, 96
+
+@ Buy shop: R toggles pack art vs mini cards (APPEND_DATA is ROM).
+_kernel_malloc_ewram gBuyShopPackView, 1

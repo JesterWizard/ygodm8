@@ -86,4 +86,5 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_millennium_item_tracker = TRUE,
     .show_duel_voice_portraits = TRUE,
     .duel_voice_bgm_volume_percent = 70,
+    .enable_shop_card_pack_view = TRUE,
 };

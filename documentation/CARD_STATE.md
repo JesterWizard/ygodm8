@@ -1,13 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Map 11 entrance + graveyard spawn
+**Last worked on:** 2026-07-19 — Pack container bars + tall cursor
 
 **Files touched:**
-- `tools/custom_map_manifest.json`
-  - map 11→graveyard rect `[45,0,5,1]` (alley top)
-  - graveyard slot 0 spawn `(56,67)` UP
+- `tools/build_card_packs.py` — top-align 30×60 art in 32×64 (bars at edges)
+- `src_custom/card_shop_hooks.c` — pack-mode cursor bottom corners at +58px
 
-**Outcome:** Entrance at alley mouth; start on red square. `make` OK.
+**Outcome:** `make` OK. Pack view cursor spans full pack height; top/bottom 2px bars sit at pack edges.
 
-**Open / next:**
-- Playtest both directions
+**Open / next:** Playtest R toggle (cursor height + container bars)

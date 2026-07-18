@@ -1,10 +1,13 @@
 #include "global.h"
 #include "configs/runtime.h"
+#include "constants/music_ids.h"
 #include "generated/card_trunk_generated.inc"
+#include "generated/card_pack_assets_generated.inc"
 
 #define SHOP_BOARD_NUM_ROWS 5
 #define SHOP_BOARD_NUM_COLS 7
 #define SHOP_MAX_CARD_QTY 250
+#define SHOP_DPAD (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT)
 
 struct CardShopState {
   unsigned short* unk0[5][7];
@@ -20,7 +23,9 @@ struct CardShopState {
 };
 
 extern struct CardShopState sCardShop;
+extern struct ShopSelectedCard gShopSelectedCard;
 extern u16 gNewButtons;
+extern u16 gPressedButtons;
 extern u64 gMoney;
 extern u8 gStartingShopCards[];
 extern u8 gShopCardQty[];
@@ -31,6 +36,7 @@ extern const unsigned char g89A7F1E[][64];
 extern const unsigned char g89A81DE[][64];
 extern const unsigned char g89A849E[][64];
 extern const unsigned char g89A875E[][64];
+extern u8 g80CC0F4[];
 extern u16 gCustomShopCardList[];
 extern u8 gCustomShopTempCardQty[];
 extern u8 gDigitBufferU16[];
@@ -48,6 +54,9 @@ void sub_802FD84 (u16);
 void sub_802FE84 (int);
 void sub_8030690 (void);
 void sub_803096C (int);
+void sub_805742C (unsigned char *, unsigned short);
+void sub_80576B4 (unsigned char *, unsigned short);
+void sub_80576EC (unsigned char *, unsigned short);
 void RemoveCardQtyFromPlayerInShop (u16, u8);
 unsigned PlayerInShopHasAtLeastCardQty (u16, u8);
 void AddCardQtyToShop (u16, u8);
@@ -63,6 +72,55 @@ void sub_802FF78(u8 *, u16);
 void sub_802FFF0(u8 *, u16);
 void SyncCustomTrunkCardQtyMirror(u16 cardId);
 void SanitizeCustomCardQtyBuffers(void);
+void PlayMusic(int);
+void LoadOam(void);
+
+typedef void (*ShopVoidFn)(void);
+typedef int (*ShopProcessInputFn)(void);
+
+/* Vanilla buy-shop helpers (static in card_shop.c). */
+static ShopVoidFn const FadeToBlackBuyShop = (ShopVoidFn)0x0802C1D5;
+static ShopVoidFn const GoOneRowUpInBuyShop = (ShopVoidFn)0x0802C2A1;
+static ShopVoidFn const GoOneRowDownInBuyShop = (ShopVoidFn)0x0802C319;
+static ShopVoidFn const GoOneColLeftInBuyShop = (ShopVoidFn)0x0802C391;
+static ShopVoidFn const GoOneColRightInBuyShop = (ShopVoidFn)0x0802C409;
+static ShopVoidFn const GoTenRowsUpInBuyShop = (ShopVoidFn)0x0802C481;
+static ShopVoidFn const GoTenRowsDownInBuyShop = (ShopVoidFn)0x0802C4F9;
+static ShopVoidFn const OpenConfirmBuyMenu = (ShopVoidFn)0x0802D5D5;
+static ShopVoidFn const OpenSortSelectMenuInBuyShop = (ShopVoidFn)0x0803030D;
+static ShopVoidFn const ToggleSortModeInBuyShop = (ShopVoidFn)0x0802C14D;
+static ShopVoidFn const sub_802E1D8 = (ShopVoidFn)0x0802E1D9;
+static ShopVoidFn const sub_802E868 = (ShopVoidFn)0x0802E869;
+static ShopVoidFn const sub_802F9E8 = (ShopVoidFn)0x0802F9E9;
+static ShopVoidFn const sub_802FB08 = (ShopVoidFn)0x0802FB09;
+static ShopVoidFn const sub_802FE00 = (ShopVoidFn)0x0802FE01;
+static ShopVoidFn const sub_802FE68 = (ShopVoidFn)0x0802FE69;
+static ShopVoidFn const sub_8030068 = (ShopVoidFn)0x08030069;
+static ShopVoidFn const sub_8030090 = (ShopVoidFn)0x08030091;
+static ShopVoidFn const sub_803060C = (ShopVoidFn)0x0803060D;
+static ShopVoidFn const sub_8030654 = (ShopVoidFn)0x08030655;
+static ShopVoidFn const sub_8030760 = (ShopVoidFn)0x08030761;
+static ShopVoidFn const SetBgDimEffectLow = (ShopVoidFn)0x0802FBF5;
+static ShopProcessInputFn const ProcessInputBuyShop = (ShopProcessInputFn)0x0802C0BD;
+
+typedef void (*ShopCardIdFn)(u16);
+static ShopCardIdFn const sub_802FD48 = (ShopCardIdFn)0x0802FD49;
+
+extern u16 gOamBuffer[];
+
+/* EWRAM — APPEND_DATA is ROM; a ROM flag never sticks and only the palette swap ran. */
+extern u8 gBuyShopPackView;
+
+static unsigned IsSelectedCardUnbuyable(void) {
+  typedef unsigned (*Fn)(void);
+  return ((Fn)0x0802C571)();
+}
+
+void sub_802FF78__Replacement(u8 *dest, u16 cardId);
+void sub_802FFF0__Replacement(u8 *dest, u16 cardId);
+void InitBuyShop__Replacement(void);
+void UpdatePlayerShopBuyResults__Replacement(void);
+static void UpdateBuyShopCursor(void);
 
 static u8 IsCustomShopCardId(u16 cardId) {
   return cardId >= CUSTOM_CARD_START && cardId - CUSTOM_CARD_START < NUM_CUSTOM_CARDS;
@@ -137,6 +195,87 @@ static s16 WrapShopRow(s16 row) {
   else if (row >= numRows)
     row -= numRows;
   return row;
+}
+
+static void FlushBuyShopCardTiles(void) {
+  CpuCopy16(gBgVram.cbb0 + 0x7040, (u8 *)BG_VRAM + 0x7040, 0x1C00);
+  CpuCopy16(gBgVram.cbb0 + 0x40, (u8 *)BG_VRAM + 0x40, 0x1C00);
+  CpuCopy16(gBgVram.cbb0 + 0x1C40, (u8 *)BG_VRAM + 0x1C40, 0x1C00);
+  CpuCopy16(gBgVram.cbb0 + 0x3840, (u8 *)BG_VRAM + 0x3840, 0x1C00);
+  CpuCopy16(gBgVram.cbb0 + 0x5440, (u8 *)BG_VRAM + 0x5440, 0x1C00);
+}
+
+static void RefreshBuyShopSelectionUi(void) {
+  u16 cardId = *sCardShop.unk0[sCardShop.cursorRow][sCardShop.cursorColumn];
+
+  gShopSelectedCard.cardId = cardId;
+  gShopSelectedCard.shopQty = GetShopTempCardQty(cardId);
+  ScalePriceToQty();
+  sub_802FD48(cardId);
+  UpdateBuyShopCursor();
+}
+
+/* Vanilla cursor is ~32px tall (+30 on bottom corners). Packs are 60px. */
+#define PACK_CURSOR_BOTTOM_OFF 58
+
+static void UpdateBuyShopCursor(void) {
+  u32 *oam;
+  u8 topY;
+  u8 botY;
+
+  sub_802FB08();
+  if (!gBuyShopPackView)
+    return;
+
+  oam = (u32 *)gOamBuffer;
+  topY = (u8)(oam[0] & 0xFF);
+  botY = (u8)(topY + PACK_CURSOR_BOTTOM_OFF);
+  /* OAM slots 2–3 = bottom-left / bottom-right corners. */
+  oam[4] = (oam[4] & ~0xFFu) | botY;
+  oam[6] = (oam[6] & ~0xFFu) | botY;
+  LoadOam();
+}
+
+/* Pack spans 2 list rows; cursor must sit on the even (top) half. */
+static void SnapCursorToPackTop(void) {
+  s16 listRow = WrapShopRow((s16)(sCardShop.firstVisibleRow + sCardShop.cursorRow));
+
+  if ((listRow & 1) == 0)
+    return;
+  if (sCardShop.cursorRow > 0)
+    sCardShop.cursorRow--;
+  else
+    sCardShop.firstVisibleRow = WrapShopRow((s16)(sCardShop.firstVisibleRow - 1));
+}
+
+static void ToggleBuyShopPackView(void) {
+  gBuyShopPackView ^= 1;
+  if (gBuyShopPackView)
+    SnapCursorToPackTop();
+  sub_802FE68();
+  RefreshBuyShopSelectionUi();
+  sub_8030068();
+  FlushBuyShopCardTiles();
+}
+
+/* Unique pack per PNG: packId = packRow*7+col; empty past NUM_CARD_PACKS. */
+static void DrawBuyShopPackRow(int displayRow) {
+  u8 i;
+  u8 bufRow = (u8)sub_802DE84((u8)displayRow);
+  u8 *dest = &gBgVram.cbb0[0x40 + bufRow * 0x1C00];
+  s16 listRow = WrapShopRow((s16)(sCardShop.firstVisibleRow + displayRow));
+  u8 bottomHalf = (u8)(listRow & 1);
+  u16 packRow = (u16)(listRow / 2);
+
+  for (i = 0; i < SHOP_BOARD_NUM_COLS; dest += CARD_PACK_HALF_BYTES, i++) {
+    u16 packId = (u16)(packRow * SHOP_BOARD_NUM_COLS + i);
+
+    if (packId >= NUM_CARD_PACKS)
+      CpuCopy16(g80CC0F4, dest, CARD_PACK_HALF_BYTES);
+    else
+      CpuCopy16(sCardPackGfx[packId] + bottomHalf * CARD_PACK_HALF_BYTES, dest,
+                CARD_PACK_HALF_BYTES);
+  }
 }
 
 static void CopyShopQtyToTemps(void) {
@@ -304,6 +443,7 @@ void SetNextSortModeInBuyShop__Replacement(void) {
 
 /* LYN_REPLACEMENT(InitBuyShop) */
 void InitBuyShop__Replacement(void) {
+  gBuyShopPackView = 0;
   CopyShopQtyToTemps();
   InitShopState();
   BuildShopCardList();
@@ -336,6 +476,150 @@ void sub_802FF78__Replacement(u8 *dest, u16 cardId) {
 
   CpuCopy16(g89A81DE[gDigitBufferU16[3]], dest, 0x40);
   CpuCopy16(g89A7F1E[gDigitBufferU16[4]], dest + 0x40, 0x40);
+}
+
+LYN_REPLACE_CHECK(sub_802FE84);
+void sub_802FE84__Replacement(int displayRow) {
+  u8 i;
+  u8 bufRow;
+  u8 *dest;
+
+  if (gBuyShopPackView) {
+    DrawBuyShopPackRow(displayRow);
+    return;
+  }
+
+  bufRow = (u8)sub_802DE84((u8)displayRow);
+  dest = &gBgVram.cbb0[0x40 + bufRow * 0x1C00];
+  for (i = 0; i < SHOP_BOARD_NUM_COLS; dest += 0x400, i++) {
+    u16 cardId = sCardShop.unk8C[bufRow][i];
+    if (cardId == CARD_NONE)
+      CpuCopy16(g80CC0F4, dest, 0x400);
+    else {
+      sub_805742C(dest, cardId);
+      sub_80576EC(dest, cardId);
+      sub_80576B4(dest, cardId);
+      sub_802FF78__Replacement(dest, cardId);
+      sub_802FFF0__Replacement(dest, cardId);
+    }
+  }
+}
+
+LYN_REPLACE_CHECK(CardShopBuyMain);
+void CardShopBuyMain__Replacement(void) {
+  unsigned short cardId;
+  unsigned keepProcessing;
+
+  FadeToBlackBuyShop();
+  InitBuyShop__Replacement();
+  cardId = *sCardShop.unk0[sCardShop.cursorRow][sCardShop.cursorColumn];
+  gShopSelectedCard.cardId = cardId;
+  gShopSelectedCard.shopQty = GetShopTempCardQty(cardId);
+  ScalePriceToQty();
+  sub_802E1D8();
+  sub_802E868();
+  sub_802FD48(cardId);
+  sub_802FE00();
+  sub_8030090();
+  sub_802F9E8();
+  sub_8030068();
+  SetVBlankCallback(sub_803060C);
+  WaitForVBlank();
+  SetBgDimEffectLow();
+  SetVBlankCallback(sub_8030654);
+  WaitForVBlank();
+  sub_8030760();
+  keepProcessing = 1;
+  while (keepProcessing) {
+    if (gRuntimeConfig.enable_shop_card_pack_view == TRUE
+        && (gNewButtons & R_BUTTON)
+        && !(gPressedButtons & SHOP_DPAD)) {
+      ToggleBuyShopPackView();
+      PlayMusic(SFX_SELECT);
+      WaitForVBlank();
+      continue;
+    }
+
+    switch ((unsigned short)ProcessInputBuyShop()) {
+      case REPEAT_DPAD_UP:
+        GoOneRowUpInBuyShop();
+        if (gBuyShopPackView) {
+          GoOneRowUpInBuyShop();
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case REPEAT_DPAD_DOWN:
+        GoOneRowDownInBuyShop();
+        if (gBuyShopPackView) {
+          GoOneRowDownInBuyShop();
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case REPEAT_DPAD_LEFT:
+        GoOneColLeftInBuyShop();
+        if (gBuyShopPackView) {
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case REPEAT_DPAD_RIGHT:
+        GoOneColRightInBuyShop();
+        if (gBuyShopPackView) {
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case REPEAT_DPAD_UP | REPEAT_R_BUTTON:
+        GoTenRowsUpInBuyShop();
+        if (gBuyShopPackView) {
+          GoTenRowsUpInBuyShop();
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case REPEAT_DPAD_DOWN | REPEAT_R_BUTTON:
+        GoTenRowsDownInBuyShop();
+        if (gBuyShopPackView) {
+          GoTenRowsDownInBuyShop();
+          SnapCursorToPackTop();
+          RefreshBuyShopSelectionUi();
+        }
+        PlayMusic(SFX_MOVE_CURSOR);
+        break;
+      case NEW_A_BUTTON:
+        if (!IsSelectedCardUnbuyable())
+          OpenConfirmBuyMenu();
+        else {
+          PlayMusic(0x39);
+          WaitForVBlank();
+        }
+        break;
+      case NEW_B_BUTTON:
+        keepProcessing = 0;
+        PlayMusic(SFX_CANCEL);
+        WaitForVBlank();
+        break;
+      case NEW_START_BUTTON:
+        OpenSortSelectMenuInBuyShop();
+        break;
+      case NEW_SELECT_BUTTON:
+        ToggleSortModeInBuyShop();
+        PlayMusic(SFX_SELECT);
+        break;
+      default:
+        WaitForVBlank();
+        break;
+    }
+  }
+  UpdatePlayerShopBuyResults__Replacement();
+  FadeToBlackBuyShop();
 }
 
 LYN_REPLACE_CHECK(sub_802FFF0);

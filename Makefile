@@ -184,6 +184,10 @@ MILLENNIUM_ITEM_GENERATOR := tools/generate_millennium_item_assets.py
 MILLENNIUM_ITEM_PNGS := $(wildcard src_custom/assets/millenium_items/*.png)
 MILLENNIUM_ITEM_GENERATED := src_custom/generated/millennium_item_assets_generated.inc
 MILLENNIUM_ITEM_STAMP := $(BUILD_DIR)/.millennium_items.stamp
+CARD_PACK_GENERATOR := tools/build_card_packs.py
+CARD_PACK_PNGS := $(wildcard src_custom/assets/card_packs/*.png)
+CARD_PACK_GENERATED := src_custom/generated/card_pack_assets_generated.inc
+CARD_PACK_STAMP := $(BUILD_DIR)/.card_packs.stamp
 CARD_IDS_STAMP := $(BUILD_DIR)/.card_ids.stamp
 CARD_GENERATED_STAMP := $(BUILD_DIR)/.card_generated.stamp
 CARD_ART_STAMP := $(BUILD_DIR)/.card_art.stamp
@@ -461,7 +465,7 @@ $(eval $(call custom_object_dep,card_hooks,$(CARD_ART_GENERATED) $(FIELD_SPELL_G
 $(eval $(call custom_object_dep,code_801EF30_hooks,$(DUELIST_REWARDS_GENERATED) $(CARD_TRUNK_GENERATED)))
 $(eval $(call custom_object_dep,narrow_font,$(NARROW_FONT_GENERATED)))
 $(eval $(call custom_object_dep,trunk_hooks,$(CARD_TRUNK_GENERATED)))
-$(eval $(call custom_object_dep,card_shop_hooks,$(CARD_TRUNK_GENERATED)))
+$(eval $(call custom_object_dep,card_shop_hooks,$(CARD_TRUNK_GENERATED) $(CARD_PACK_GENERATED)))
 $(eval $(call custom_object_dep,duel_util_hooks,$(DUELIST_DECKS_GENERATED)))
 $(eval $(call custom_object_dep,ai_hooks,$(AI_ACTION_TABLE_GENERATED)))
 $(eval $(call custom_object_dep,ai_decision/ai_action_decode,$(AI_ACTION_TABLE_GENERATED)))
@@ -593,6 +597,15 @@ $(MILLENNIUM_ITEM_GENERATED): $(MILLENNIUM_ITEM_STAMP)
 	@test -f $@
 
 $(eval $(call custom_object_dep,status_menu_hooks,$(MILLENNIUM_ITEM_GENERATED)))
+
+$(CARD_PACK_STAMP): $(CARD_PACK_PNGS) $(CARD_PACK_GENERATOR)
+	@echo "PACKGEN card pack shop art"
+	@mkdir -p $(dir $@) $(BUILD_DIR)/card_packs
+	python3 $(CARD_PACK_GENERATOR)
+	touch $@
+
+$(CARD_PACK_GENERATED): $(CARD_PACK_STAMP)
+	@test -f $@
 
 # Build rule for the Meteo ARM stub
 $(METE0_ASM_OBJ): $(METE0_ASM_SRC)

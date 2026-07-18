@@ -81,6 +81,7 @@ static const struct {
     CONF_ENUM("Desc Font", card_description_font, CARD_DESC_FONT_COUNT),
     CONF("Mill Track",   enable_millennium_item_tracker),
     CONF("Voice Port",   show_duel_voice_portraits),
+    CONF("Shop Packs",   enable_shop_card_pack_view),
 };
 
 #undef CONF

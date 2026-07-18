@@ -90,6 +90,7 @@ typedef struct {
     u8 enable_millennium_item_tracker; // Status menu: show the seven-item progress row.
     u8 show_duel_voice_portraits; // Show opponent dialogue portrait during turn-start voiced lines.
     u8 duel_voice_bgm_volume_percent; // BGM volume while custom opponent VO plays; 100 = no duck, 70 = slight.
+    u8 enable_shop_card_pack_view; // Buy shop: R toggles 30x60 pack art instead of mini cards.
 } RuntimeConfig;
 
 /*
