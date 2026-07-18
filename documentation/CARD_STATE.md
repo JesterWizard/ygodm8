@@ -1,12 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Sparkles behind characters without killing shadows
+**Last worked on:** 2026-07-18 — Duel BGM duck during opponent voice clips
 
 **Files touched:**
-- `src_custom/shiny_zones.c`
-- `documentation/shiny-zones.md`
+- `configs/runtime.h`, `configs/runtime.c`
+- `src_custom/duel_voice_hooks.c`
+- `include/duel_voice.h`
+- `src_custom/duel_board_lp_hooks.c`
+- `documentation/custom-voices.md`
 
-**Outcome:** Sparkles use free shadow OAM slots only; characters draw on top. `make` OK.
+**Outcome:** Custom VO ducks duel BGM to 70% (configurable); restores when voice player idle.
 
 **Open / next:**
-- Confirm player/NPC overlap sparkles; shadows still visible
+- Playtest turn-start + attack VO mix levels

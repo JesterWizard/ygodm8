@@ -6,6 +6,7 @@
 #include "duel.h"
 #include "overworld.h"
 #include "duel_voice.h"
+#include "gba/m4a_internal.h"
 
 struct TurnVoice {
   u16 duelistId;
@@ -58,10 +59,16 @@ void LoadObjVRAM(void);
 void LoadPalettes(void);
 void LoadOam(void);
 void sub_80411EC(struct OamData *oam);
+void sub_805A5F0(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u16 volume);
 
 extern u8 *gMyTurnStrings[];
 extern struct Unk2023E80 sActionData;
 extern struct OamData gOamBuffer[];
+extern struct MusicPlayerInfo g2025840;
+extern struct {
+  struct MusicPlayerInfo *unk0;
+  unsigned char filler4[8];
+} g8AFBD0C[];
 
 #include "generated/voice_turn_text_generated.inc"
 #include "generated/voice_triggers_generated.inc"
@@ -93,6 +100,70 @@ static bool8 CustomVoiceClipMatchesDuelist(const struct CustomVoiceClipMeta *cli
     return clip->opponentId == gDuelData.opponent;
 
   return clip->duelistId == gDuelData.duelist.id;
+}
+
+/* Lower duel BGM while custom VO plays on player 3; restore in UpdateDuelBgmVoiceDuck. */
+static bool8 CustomVoicePlayerIsBusy(void) {
+  struct MusicPlayerInfo *voice = g8AFBD0C[CUSTOM_VOICE_MPLAY_PLAYER].unk0;
+
+  if (voice == NULL)
+    return FALSE;
+  if (!(voice->status & MUSICPLAYER_STATUS_TRACK))
+    return FALSE;
+  if (voice->status & MUSICPLAYER_STATUS_PAUSE)
+    return FALSE;
+  return TRUE;
+}
+
+static u16 VoiceDuckVolumeParam(void) {
+  u16 percent = gRuntimeConfig.duel_voice_bgm_volume_percent;
+  u16 volume;
+
+  if (percent >= 100)
+    return 0x100;
+  volume = (0x100 * percent) / 100;
+  return volume & 0x3FC;
+}
+
+static void ApplyBgmVolume(u16 volume) {
+  if (g2025840.ident != ID_NUMBER)
+    return;
+  sub_805A5F0(&g2025840, TRACKS_ALL, volume);
+}
+
+static void DuckBgmForVoiceClip(void) {
+  if (gRuntimeConfig.duel_voice_bgm_volume_percent >= 100)
+    return;
+  ApplyBgmVolume(VoiceDuckVolumeParam());
+}
+
+void UpdateDuelBgmVoiceDuck(void) {
+  u16 percent = gRuntimeConfig.duel_voice_bgm_volume_percent;
+  u8 duckedVolX;
+  u8 curVolX;
+
+  if (percent >= 100)
+    return;
+  if (g2025840.ident != ID_NUMBER)
+    return;
+  if (g2025840.tracks == NULL || g2025840.trackCount == 0)
+    return;
+
+  if (CustomVoicePlayerIsBusy()) {
+    ApplyBgmVolume(VoiceDuckVolumeParam());
+    return;
+  }
+
+  /* Restore only if still at our ducked level — avoid fighting fades / new songs. */
+  duckedVolX = (u8)(VoiceDuckVolumeParam() >> 2);
+  curVolX = g2025840.tracks[0].volX;
+  if (curVolX == duckedVolX)
+    ApplyBgmVolume(0x100);
+}
+
+static void PlayDuelCustomVoiceClip(u8 songIndex) {
+  DuckBgmForVoiceClip();
+  PlayCustomVoiceClip(songIndex);
 }
 
 static bool8 DoesVanillaDuelistHaveTurnVoice(u16 duelistId, u16 *soundId) {
@@ -277,7 +348,7 @@ static bool8 TryCustomVoiceTurnStart(void) {
     return FALSE;
 
   clip = &sCustomVoiceClips[clipIndex];
-  PlayCustomVoiceClip(clip->songIndex);
+  PlayDuelCustomVoiceClip(clip->songIndex);
   return TRUE;
 }
 
@@ -338,7 +409,7 @@ void TryPlayCustomOpponentAttackVoice(void) {
   if (!TryCustomVoiceMatch(CUSTOM_VOICE_TRIGGER_ATTACK_CARD, sActionData.opponentCardId, &clipIndex))
     return;
 
-  PlayCustomVoiceClip(sCustomVoiceClips[clipIndex].songIndex);
+  PlayDuelCustomVoiceClip(sCustomVoiceClips[clipIndex].songIndex);
 }
 
 static bool8 TryCustomVoiceAttack(u16 cardId) {
@@ -349,7 +420,7 @@ static bool8 TryCustomVoiceAttack(u16 cardId) {
     return FALSE;
 
   clip = &sCustomVoiceClips[clipIndex];
-  PlayCustomVoiceClip(clip->songIndex);
+  PlayDuelCustomVoiceClip(clip->songIndex);
   return TRUE;
 }
 

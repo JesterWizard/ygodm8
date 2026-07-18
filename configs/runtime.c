@@ -85,4 +85,5 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .card_description_font = CARD_DESC_FONT_EMERALD_NARROW,
     .enable_millennium_item_tracker = TRUE,
     .show_duel_voice_portraits = TRUE,
+    .duel_voice_bgm_volume_percent = 70,
 };

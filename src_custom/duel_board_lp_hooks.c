@@ -6,6 +6,7 @@
 #include "timed_duel.h"
 #include "mechanics_tutorial.h"
 #include "duel_bgm_tempo.h"
+#include "duel_voice.h"
 #include "duel_status.h"
 #include "gba/defines.h"
 #include "text.h"
@@ -248,6 +249,7 @@ void sub_80411D4__Replacement(void) {
     EnsureBoardLpPalette();
 
   UpdateDuelBgmTempoForLifePoints();
+  UpdateDuelBgmVoiceDuck();
 }
 
 LYN_REPLACE_CHECK(InitDuelistStatus);

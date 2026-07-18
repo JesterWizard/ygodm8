@@ -89,6 +89,7 @@ typedef struct {
     u8 card_description_font; // CARD_DESC_FONT_* — card detail description typeface.
     u8 enable_millennium_item_tracker; // Status menu: show the seven-item progress row.
     u8 show_duel_voice_portraits; // Show opponent dialogue portrait during turn-start voiced lines.
+    u8 duel_voice_bgm_volume_percent; // BGM volume while custom opponent VO plays; 100 = no duck, 70 = slight.
 } RuntimeConfig;
 
 /*

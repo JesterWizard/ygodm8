@@ -166,6 +166,8 @@ Duel hook (turn / attack / LP)  →  lookup sCustomVoiceClips  →  PlayCustomVo
 
 When `gRuntimeConfig.show_duel_voice_portraits` is TRUE (default) and a **turn-start** voice plays, the opponent's dialogue portrait is shown at the **top-left** for the duration of the turn textbox. Mini-card / cursor OAM is hidden while it is up (portrait tiles share OBJ VRAM with board cards). Attack voicing is audio-only and does not show a portrait yet. Toggle via debug menu → Runtime Config → **Voice Port**.
 
+While a **custom** opponent voice clip plays, duel BGM is ducked to `duel_voice_bgm_volume_percent` (default **70**). Volume restores when the voice player goes idle (checked on each duel graphics refresh). Set the percent to **100** to disable. Vanilla turn/attack lines that take over the music player are unchanged.
+
 ## Debug Menu
 
 The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus generated custom rows. Custom entries (song ID ≥ 601) use `PlayCustomVoiceClip()` instead of `PlayMusic()`.
@@ -178,12 +180,14 @@ The **Voice Viewer** lists vanilla clips from `debug_menu_voice_table.inc` plus 
 | Generator | `tools/generate_voices.py` | WAV → DPCM + codegen |
 | DPCM decode | `src_custom/voice_dpcm_itcm.s` | ITCM hook for m4a PCM read |
 | ROM assets | `src_custom/generated/voice_assets_generated.s` | Linked `.voice_pcm_rom` |
-| Trigger engine | `src_custom/duel_voice_hooks.c` | Turn, attack, LP hooks + playback + optional voice portrait |
+| Trigger engine | `src_custom/duel_voice_hooks.c` | Turn, attack, LP hooks + playback + optional voice portrait + BGM duck |
 | Opponent→portrait | `src_custom/duel_voice_portrait_table.inc` | `DUELIST_*` → `PORTRAIT_*` lookup |
 | Generated tables | `src_custom/generated/voice_triggers_generated.inc` | Clip metadata and song pointers |
 | Song IDs | `include/constants/custom_voices_generated.h` | Generated constants |
 | LynJump wiring | `src_custom/LynJump.event` | Patches vanilla duel functions |
 | Debug preview | `src_custom/debug/debug_menu_voice.c` | Voice Viewer integration |
+| BGM duck config | `duel_voice_bgm_volume_percent` in `configs/runtime.c` | Percent of normal BGM volume during custom VO (100 = off) |
+| BGM duck restore | `UpdateDuelBgmVoiceDuck` via `sub_80411D4__Replacement` | Restores full volume when voice player 3 is idle |
 | Makefile rule | `Makefile` | `VOICE_*` generator + asset object |
 
 ## TODO

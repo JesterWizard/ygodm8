@@ -10,4 +10,7 @@ void Duel_ShowPortraitForTextbox(u8 portraitId, u8 hideBoardSprites);
 /* Re-place portrait OAM without reloading gfx (same speaker across textbox pages). */
 void Duel_PlacePortraitForTextbox(u8 portraitId, u8 hideBoardSprites);
 
+/* Restore duel BGM volume after a ducked custom voice clip ends. */
+void UpdateDuelBgmVoiceDuck(void);
+
 #endif // GUARD_DUEL_VOICE_H
