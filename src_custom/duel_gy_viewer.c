@@ -171,15 +171,12 @@ static void CardListViewerMain(void)
 
 void CardListViewerOpenLoaded(u8 cardCount)
 {
-  u8 savedDeckMenu[sizeof(gDeckMenu)];
-  u8 i;
-
+  /* Caller must DECKMENU_SAVE before mutating gDeckMenu.cards, then RESTORE after.
+   * This only tweaks menu metadata and runs the browse loop. */
   if (cardCount == 0) {
     PlayMusic(SFX_FORBIDDEN);
     return;
   }
-
-  DECKMENU_SAVE();
 
   gDeckMenu.cost = 0;
   gDeckMenu.currentPos = 0;
@@ -188,14 +185,21 @@ void CardListViewerOpenLoaded(u8 cardCount)
   gDeckMenu.cardCount = cardCount;
   PlayMusic(SFX_SELECT);
   CardListViewerMain();
-
-  DECKMENU_RESTORE();
 }
 
 static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,
                                     u16 (*getCardAt)(u8, u8))
 {
+  u8 savedDeckMenu[sizeof(gDeckMenu)];
   u8 i;
+
+  /* Empty GY/RFP: forbid without touching gDeckMenu (player deck lives there). */
+  if (count == 0) {
+    PlayMusic(SFX_FORBIDDEN);
+    return;
+  }
+
+  DECKMENU_SAVE();
 
   for (i = 0; i < capacity; i++)
     gDeckMenu.cards[i] = CARD_NONE;
@@ -204,6 +208,8 @@ static void CardListViewerLoadCards(u8 fixedDuelist, u8 count, u8 capacity,
     gDeckMenu.cards[i] = getCardAt(fixedDuelist, i);
 
   CardListViewerOpenLoaded(count);
+
+  DECKMENU_RESTORE();
 }
 
 void Duel_GraveyardViewer_Open(u8 fixedDuelist)

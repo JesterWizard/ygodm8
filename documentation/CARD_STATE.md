@@ -1,16 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Full TCG descriptions for remaining long cards
+**Last worked on:** 2026-07-18 — Fix deck wipe on GY viewer
 
 **Files touched:**
-- `tools/card_data_manifest.json`
-- `tools/add_card_art.py`
-- `tools/refresh_card_descriptions.py`
-- `asm/ram_map_ewram.s`
-- `src_custom/code_801EF30_hooks.c`
-- `documentation/card-descriptions.md`
+- `src_custom/duel_gy_viewer.c`
 
-**Outcome:** make exits 0. Bumped `gDescProseBuf`/`gDescReflowBuf` to 0x400. Fit check allows 9 display pages. Former 33 “overflow” cards now have full TCG text.
+**Outcome:** make exits 0. Empty GY/RFP no longer mutates `gDeckMenu` before save; load is wrapped in DECKMENU_SAVE/RESTORE.
 
 **Open / next:**
-- Anime/custom cards with no API match still have hand-written text
+- Playtest: open empty + non-empty GY during a duel; confirm deck still has cards after the duel
