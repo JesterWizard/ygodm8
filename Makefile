@@ -32,7 +32,13 @@ CUSTOM_CODE ?= $(TRUE)
 CUSTOM_EVENTS ?= $(CUSTOM_CODE)
 CUSTOM_CARD_MANIFEST ?= $(CUSTOM_CODE)
 
+# Auto-enable when intro.bin is present; override with METE0_VIDEO=0/1
+METE0_VIDEO_SRC := src_custom/assets/videos/intro.bin
+ifneq ($(wildcard $(METE0_VIDEO_SRC)),)
+METE0_VIDEO ?= $(TRUE)
+else
 METE0_VIDEO ?= $(FALSE)
+endif
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1_OLD  := tools/agbcc/bin/old_agbcc$(EXE)
@@ -131,7 +137,6 @@ AI_ACTION_TABLE_GENERATED := src_custom/generated/ai_action_table_generated.inc
 # Meteo COMET video blob (post-link pointer fix)
 METE0_INTEGRATE := tools/meteo_integrate.py
 METE0_GENERATED := src_custom/generated/meteo_video_assets_generated.inc
-METE0_VIDEO_SRC := src_custom/assets/videos/intro.bin
 METE0_ASM_SRC := src_custom/meteo_player_stub.s
 METE0_ASM_OBJ := $(C_BUILDDIR_CUSTOM)/meteo_player_stub.o
 FIELD_SPELL_GFX_GENERATOR := tools/build_field_spell_gfx.py

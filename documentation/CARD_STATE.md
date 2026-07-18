@@ -1,11 +1,11 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Info bar clears on empty cursor zone
+**Last worked on:** 2026-07-18 — Title screen video: fix real loop (SoftReset on EOF)
 
 **Files touched:**
-- `src_custom/duel_opponent_hand_scroll_hooks.c`
+- `tools/meteo_integrate.py`
 
-**Outcome:** Empty field/hand cursor blanks bottom alpha-blend bar (`SetCardInfo(CARD_NONE)`). `make` OK.
+**Outcome:** EOF/skip paths SoftReset to game; thumb no longer re-plays. `make` OK.
 
 **Open / next:**
-- Playtest cursor on empty monster/backrow/hand — bar should have no name/ATK/DEF
+- Playtest — intro should end on title, not restart

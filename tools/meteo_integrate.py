@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
-"""Post-link: scan Meteo blob for internal ROM addresses and shift them.
+"""Post-link: relocate Meteo blob pointers and stop video looping.
 
 The Meteo-generated video.gba is a standalone GBA ROM originally linked at
-0x08000000.  When embedded elsewhere in ROM, all 32-bit aligned literal pool
-entries that point within the blob's code section must have their upper
-halfword shifted by the placement delta.
+0x08000000.  When embedded elsewhere in ROM, literal-pool ROM addresses in
+known code ranges must be shifted by the placement delta.
 
-We only patch literal pools in known code regions:
-  - Boot code + literal pools: 0x0000 - 0x0310
-  - IWRAM player engine source: 0x9C2C - 0xB150
-Everything outside these ranges is compressed video/audio data and MUST
-not be touched.
-
-The blob's own exit handler does bx 0x08000000 to cold-boot, which in
-our ROM jumps to the game entry -- no separate trampoline patch needed.
+Stock COMET loops: Play() end-of-stream does `bne restart` when the caller
+passes a non-zero loop flag, and the thumb main loop re-invokes Play forever.
+We rewrite EOF / skip exits to BIOS SoftReset so control returns to 0x08000000
+(the game title screen).
 """
 
 from __future__ import annotations
@@ -25,15 +20,44 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Only patch literal pools in these known code regions.
-# Boot code (ARM) + literal pools span 0x0000-0x0310.
-# The IWRAM player engine is copied from ROM 0x9C2C to 0xB150.
 PATCH_RANGES = [
-    (0x0000, 0x0310),                          # boot code + literal pools
-    (0x9C2C, 0x9C2C + 0x1524),                 # IWRAM copy source
+    (0x0000, 0x0310),
+    (0x9C2C, 0x9C2C + 0x1524),
 ]
 
-CODE_SCAN_SIZE = 0x10000  # safe upper bound for sanity
+CODE_SCAN_SIZE = 0x10000
+
+
+def arm_b(pc_off: int, dest_off: int) -> bytes:
+    """ARM B (always); offsets are relative to the blob base."""
+    imm24 = ((dest_off - (pc_off + 8)) >> 2) & 0xFFFFFF
+    return struct.pack("<I", 0xEA000000 | imm24)
+
+
+# Wrong prior patch at +0xA15C (shared DMA clear) — restore if present.
+A15C_BAD = bytes.fromhex("0100a0e3080081e5040081e51eff2fe1")
+A15C_STOCK = bytes.fromhex(
+    "0113a0e3011c81e20000a0e3b200c1e10113a0e3b60cc1e18c141fe5040081e5"
+)
+
+# End-of-stream: bne restart(+0xACCC) -> b SoftReset(+0xAF1C)
+AE3C_STOCK = bytes.fromhex("a2ffff1a")
+AE3C_EXIT = arm_b(0xAE3C, 0xAF1C)
+
+# B-button skip epilogue -> SoftReset
+AE08_STOCK = bytes.fromhex("0100a0e3")  # mov r0, #1
+AE08_EXIT = arm_b(0xAE08, 0xAF1C)
+
+# Held-key exit spin -> SoftReset
+AD54_STOCK = bytes.fromhex("0100a0e3")  # mov r0, #1
+AD54_EXIT = arm_b(0xAD54, 0xAF1C)
+
+# Thumb main: r1=0 (no Play internal loop); after Play returns, SoftReset
+# instead of `b 1fc`. SoftReset alone (swi 0) — 0x03007FFA is normally 0.
+# Primary exit is IWRAM SoftReset above; this is the return-path safety net.
+THUMB_MAIN_OFF = 0x1FC
+THUMB_MAIN_STOCK = bytes.fromhex("0121381cfff7b2fffae7")  # r1=1; play; b 1fc
+THUMB_MAIN_EXIT = bytes.fromhex("0021381cfff7b2ff00df")  # r1=0; play; swi SoftReset
 
 
 def in_patch_range(offset: int) -> bool:
@@ -52,6 +76,45 @@ def find_symbol(map_path: Path, *names: str) -> int | None:
             except ValueError:
                 pass
     return None
+
+
+def patch_at(
+    rom: bytearray,
+    blob_start: int,
+    off: int,
+    stock: bytes,
+    new: bytes,
+    label: str,
+) -> None:
+    addr = blob_start + off
+    if bytes(rom[addr : addr + len(new)]) == new:
+        print(f"  {label} already patched at +{off:#06x}")
+        return
+    got = bytes(rom[addr : addr + len(stock)])
+    if got != stock:
+        print(
+            f"  warning: {label} mismatch at +{off:#06x} "
+            f"(got {got.hex()}, expected {stock.hex()}) — skip",
+            file=sys.stderr,
+        )
+        return
+    rom[addr : addr + len(new)] = new
+    print(f"  {label} +{off:#06x}: patched")
+
+
+def patch_no_loop(rom: bytearray, blob_start: int) -> None:
+    """Stop COMET looping; SoftReset back to the game ROM."""
+    a15c = blob_start + 0xA15C
+    if bytes(rom[a15c : a15c + len(A15C_BAD)]) == A15C_BAD:
+        rom[a15c : a15c + len(A15C_STOCK)] = A15C_STOCK
+        print("  restored stock +0xA15C (prior bad patch)")
+
+    patch_at(rom, blob_start, 0xAE3C, AE3C_STOCK, AE3C_EXIT, "EOF->SoftReset")
+    patch_at(rom, blob_start, 0xAE08, AE08_STOCK, AE08_EXIT, "B-skip->SoftReset")
+    patch_at(rom, blob_start, 0xAD54, AD54_STOCK, AD54_EXIT, "key-exit->SoftReset")
+    patch_at(
+        rom, blob_start, THUMB_MAIN_OFF, THUMB_MAIN_STOCK, THUMB_MAIN_EXIT, "thumb once->SoftReset"
+    )
 
 
 def patch_blob_in_rom(rom_path: Path, blob_addr: int, map_path: Path) -> None:
@@ -79,7 +142,6 @@ def patch_blob_in_rom(rom_path: Path, blob_addr: int, map_path: Path) -> None:
             continue
         if not (0x08000000 <= raw_u32 <= 0x09FFFFFF):
             continue
-        # ONLY patch if within known code ranges
         if not in_patch_range(i):
             if patched < 10:
                 print(f"  SKIP +{i:#06x}: {raw_u32:#010x} (outside code range)")
@@ -92,15 +154,23 @@ def patch_blob_in_rom(rom_path: Path, blob_addr: int, map_path: Path) -> None:
         patched += 1
 
     print(f"  patched {patched} address references in valid code ranges")
-
-    # No exit handler patch needed -- the blob's own exit does
-    # bx 0x08000000 which cold-boots the game ROM at 0x08000000.
+    patch_no_loop(rom, blob_start)
 
     rom_path.write_bytes(rom)
     print(f"  patched {rom_path.name}")
 
 
+def _self_check() -> None:
+    """ponytail: SoftReset branch encodings must stay correct."""
+    assert AE3C_EXIT == bytes.fromhex("360000ea")
+    assert AE08_EXIT == bytes.fromhex("430000ea")
+    assert AD54_EXIT == bytes.fromhex("700000ea")
+    assert len(THUMB_MAIN_EXIT) == len(THUMB_MAIN_STOCK) == 10
+    assert THUMB_MAIN_EXIT.endswith(bytes.fromhex("00df"))
+
+
 def main() -> int:
+    _self_check()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rom", type=Path, default=ROOT / "ygodm8.gba")
     parser.add_argument("--map", type=Path, default=ROOT / "ygodm8.map")
