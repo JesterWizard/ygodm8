@@ -14,6 +14,8 @@ Shiny zones are one-shot overworld card pickups.
 
 The player-facing goal is to let maps hide cards in specific places, similar to RPG item spots. When the player presses A on a configured zone, the game shows `Obtained [CARD_NAME]`, opens the same card detail popup used by ante rewards, adds the card to the trunk, then marks the pickup as collected.
 
+Uncollected zones show an 8×8 sparkle animation from `sheet_sparkle.png` (4 frames, 60-frame loop). The sparkle uses OBJ priority 3 so the player sprite draws on top. Collecting the card clears that zone's sparkle.
+
 The feature is controlled by `gRuntimeConfig.enable_shiny_zones`.
 
 ## Plan
@@ -26,6 +28,7 @@ The feature flow is:
 | Generation | `tools/generate_shiny_zones.py` | Resolves constants and emits `src_custom/generated/shiny_zones_generated.inc` |
 | Runtime lookup | `ShinyZones_TryInteract` | Checks the tile/object in front of the player before vanilla talk scripts run |
 | Reward display | `ShinyZones_TryInteract` | Shows obtained text, clears the textbox, opens card detail, adds card to trunk |
+| Sparkle marker | `ShinyZones_UpdateSparkles` | Places animated 8×8 OBJ markers on uncollected zones for the current map/state |
 | Persistence | `ShinyZones_SaveFlagsToFlash*` and `ShinyZones_LoadFlagsFromFlash*` | Mirrors the 16-byte flag bitfield between EWRAM and SRAM |
 
 Behavior summary:
@@ -61,7 +64,11 @@ This matches No$GBA tile `0x16,0x0D`, whose screen-pixel origin is `176,104`.
 | Manifest | `tools/shiny_zone_manifest.json` | Authoritative editable pickup list |
 | Generator | `tools/generate_shiny_zones.py` | Validates constants, tile coordinates, flags, and emits generated C data |
 | Generated table | `src_custom/generated/shiny_zones_generated.inc` | Build output consumed by the runtime hook |
-| Runtime implementation | `src_custom/shiny_zones.c` | Finds matching zones, shows reward UI, adds cards, and flips flags |
+| Runtime implementation | `src_custom/shiny_zones.c` | Finds matching zones, shows reward UI, adds cards, flips flags, and draws sparkles |
+| Sparkle art | `src_custom/assets/animations/sheet_sparkle.png` | 32×8 sheet (4× 8×8 frames), left→right |
+| Sparkle GFX load | `ShinyZones_LoadSparkleGfx` in `shiny_zones.c` | Copies 4 tiles + palette to upper OBJ VRAM (tile `0x3FB`, palette 10) |
+| Sparkle OAM | `ShinyZones_UpdateSparkles` in `shiny_zones.c` | Borrows free shadow OAM slots (112+i) so characters draw on top |
+| Frame hook | `OverworldRunEndFrame` in `src_custom/overworld_hooks.c` | Calls `ShinyZones_UpdateSparkles` each overworld frame |
 | Talk hook | `TryTalking__Replacement` in `src_custom/code_8051958_hooks.c` | Gives shiny zones first chance to handle A-button interactions |
 | EWRAM flags | `gShinyZoneFlags` in `asm/ram_map.s` | 16-byte live collection bitfield |
 | SRAM mirrors | `gShinyZoneFlagsFlashPrimary` and `gShinyZoneFlagsFlashBackup` in `asm/ram_map.s` | Persistent copies saved with primary and backup save slots |
@@ -70,7 +77,6 @@ This matches No$GBA tile `0x16,0x0D`, whose screen-pixel origin is `176,104`.
 
 ## TODO
 
-- Add a visual sparkle or object marker for configured zones.
 - Add a manifest validation report that warns when two active zones overlap on the same map/state.
 - Consider exposing a simple debug print for the current player-facing tile coordinate.
 
@@ -80,3 +86,6 @@ This matches No$GBA tile `0x16,0x0D`, whose screen-pixel origin is `176,104`.
 - Tile entries match a 3x3 area centered on `tile_x/tile_y`; overlapping zones resolve in manifest order.
 - The current collection bitfield supports 128 shiny zones.
 - The feature persists only when the player saves after collecting a card.
+- At most 8 sparkles are drawn per map (`SHINY_SPARKLE_MAX`); extras are skipped.
+- Sparkle OBJ uses hard-coded tile base `0x3FB` and palette slot 10 (slots 12–15 are reserved for dialogue portraits).
+- Sparkles borrow unused entity-shadow OAM slots (`112 + Y-sort index` when that entity has no shadow) so body sprites (97–111) draw on top without hiding live shadows.

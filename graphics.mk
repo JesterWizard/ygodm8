@@ -46,6 +46,10 @@ DUEL_ICON_PNG := src_custom/assets/icons/duel.png
 DUEL_ICON_4BPP := src_custom/assets/icons/duel.4bpp
 DUEL_ICON_PAL := src_custom/assets/icons/duel.gbapal
 
+SHINY_SPARKLE_PNG := src_custom/assets/animations/sheet_sparkle.png
+SHINY_SPARKLE_4BPP := src_custom/assets/animations/sheet_sparkle.4bpp
+SHINY_SPARKLE_PAL := src_custom/assets/animations/sheet_sparkle.gbapal
+
 CURSOR_PNGS := $(wildcard src_custom/assets/cursors/*.png)
 CURSOR_4BPP := $(CURSOR_PNGS:.png=.4bpp)
 CURSOR_PAL := $(CURSOR_PNGS:.png=.gbapal)
@@ -64,6 +68,8 @@ graphics-rules: $(CARD_TYPE_TILES) \
                 $(DEBUG_MENU_PAL) \
                 $(DUEL_ICON_4BPP) \
                 $(DUEL_ICON_PAL) \
+                $(SHINY_SPARKLE_4BPP) \
+                $(SHINY_SPARKLE_PAL) \
                 $(CURSOR_4BPP) \
                 $(CURSOR_PAL)
 
@@ -90,6 +96,8 @@ clean-graphics:
 	rm -f src/overworld/entities/*.gbapal
 	rm -f src_custom/assets/icons/*.4bpp
 	rm -f src_custom/assets/icons/*.gbapal
+	rm -f src_custom/assets/animations/*.4bpp
+	rm -f src_custom/assets/animations/*.gbapal
 	rm -f src_custom/assets/cursors/*.4bpp
 	rm -f src_custom/assets/cursors/*.gbapal
 	rm -rf src_custom/generated/maps/

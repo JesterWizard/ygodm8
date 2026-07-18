@@ -8,6 +8,7 @@
 #include "debug_save_anywhere.h"
 #include "match_setter.h"
 #include "overworld_debug_overlay.h"
+#include "shiny_zones.h"
 #include "thought_bubble.h"
 
 #include "src_custom/thought_bubble_table.inc"
@@ -501,6 +502,7 @@ void OverworldRunEndFrame(void) {
     LoadDuelIconGfx();
     SetDuelIconOam();
   }
+  ShinyZones_UpdateSparkles();
   SetVBlankCallback(sub_804F1E4);
   WaitForVBlank();
   CpuFastCopy(gBgVram.cbb4, (void *)0x06010000, 0x4000);

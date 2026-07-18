@@ -249,6 +249,9 @@ _kernel_malloc gSkipOverworldEndFrameAfterSubmenu, 1
 @ World-map thought bubble visibility (u8 avoids unaligned IWRAM access).
 _kernel_malloc gShowThoughtBubbles, 1
 
+@ Shiny-zone sparkle animation frame timer (0..59).
+_kernel_malloc gShinySparkleAnimTimer, 1
+
 @ -- Overworld duel icon cache -------------------------------------------------
 @ Per-NPC eligibility (15 x 8-byte entries). Must be RAM — APPEND_DATA is ROM.
 _kernel_malloc_ewram gDuelIconCache, 0x78

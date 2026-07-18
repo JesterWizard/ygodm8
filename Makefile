@@ -484,7 +484,7 @@ $(eval $(call custom_object_dep,debug/debug_menu_cursor,$(CURSOR_4BPP) $(CURSOR_
 $(eval $(call custom_object_dep,start_menu_hooks,$(CURSOR_4BPP) $(CURSOR_PAL)))
 $(eval $(call custom_object_dep,debug/debug_menu_startmenu,$(CURSOR_4BPP) $(CURSOR_PAL)))
 $(eval $(call custom_object_dep,debug/ante_card_viewer,$(CURSOR_4BPP) $(CURSOR_PAL)))
-$(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED)))
+$(eval $(call custom_object_dep,shiny_zones,$(SHINY_ZONES_GENERATED) $(SHINY_SPARKLE_4BPP) $(SHINY_SPARKLE_PAL)))
 $(eval $(call custom_object_dep,match_setter_hooks,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,debug/debug_menu_match_setter,$(MATCH_SETTER_GENERATED)))
 $(eval $(call custom_object_dep,debug/debug_menu_scene,$(DEBUG_MENU_SCENE_TABLE)))

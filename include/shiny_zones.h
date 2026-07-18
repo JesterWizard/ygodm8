@@ -26,6 +26,7 @@ typedef struct {
 extern u8 gShinyZoneFlags[SHINY_ZONE_FLAG_BYTES];
 extern u8 gShinyZoneFlagsFlashPrimary[SHINY_ZONE_FLAG_BYTES];
 extern u8 gShinyZoneFlagsFlashBackup[SHINY_ZONE_FLAG_BYTES];
+extern u8 gShinySparkleAnimTimer;
 extern const ShinyZoneEntry gShinyZoneEntries[];
 extern const unsigned gShinyZoneEntryCount;
 
@@ -35,5 +36,7 @@ void ShinyZones_LoadFlagsFromFlashBackup(void);
 void ShinyZones_SaveFlagsToFlashPrimary(void);
 void ShinyZones_SaveFlagsToFlashBackup(void);
 u8 ShinyZones_TryInteract(u8 x, u8 y, s8 objectId);
+void ShinyZones_LoadSparkleGfx(void);
+void ShinyZones_UpdateSparkles(void);
 
 #endif
