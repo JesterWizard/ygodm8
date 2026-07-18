@@ -9,30 +9,60 @@ EVENT_SCRIPT_REPLACEMENT(0x08E99600, map_25_state_03_08E99600, 0x08F04040, 0x08F
   LOAD_SPRITE(2, SPRITE_CASINO_PLAYER)
   TEXT
   (
-      "I bet you're duelists.\n\n"
-      "No, I'm not psychic. It's\n"
-      "obvious because you're\n\n"
-      "wearing Duel Disks.\n\n"
-      "Unfortunately, I don't duel.\n\n"
-      "You should go to the next\n"
-      "floor.\n\n"
+      "I don't duel, but I deal.\n"
+      "Blackjack?\n\n"
+  )
+  SPECIAL(36)
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+/* Patron A: offer rules. Yes → on_false (rules); No → on_true (nop). */
+EVENT_SCRIPT_REPLACEMENT(0x08E9960C, map_25_state_03_08E9960C, map_25_state_03_patron_rules, 0x08F04040)
+  TEXT
+  (
+      "I like to play\n"
+      "Concentration.\n\n"
+      "Want me to explain the\n"
+      "rules?\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E9960C, map_25_state_03_08E9960C, 0x08F04040, 0x08F04040)
+/* Patron R: not a duelist — challenge to Concentration. Yes → play. */
+EVENT_SCRIPT_REPLACEMENT(0x08E99618, map_25_state_03_08E99618, map_25_state_03_patron_play, 0x08F04040)
   TEXT
   (
-      "I hear that dealer dislikes\n"
-      "duelists.\n\n"
+      "I'm not a duelist...\n\n"
+      "But I can challenge you to\n"
+      "a game of Concentration!\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E99618, map_25_state_03_08E99618, 0x08F04040, 0x08F04040)
+EVENT_SCRIPT(map_25_state_03_patron_rules, 0x08F04040, 0x08F04040)
   TEXT
   (
-      "No thanks. I don't duel.\n\n"
+      "Twenty cards lay face down\n"
+      "on a board.\n\n"
+      "Each turn, the current\n"
+      "player flips two cards.\n\n"
+      "If they match, those cards\n"
+      "are removed and you score.\n\n"
+      "We alternate turns, trying\n"
+      "to match cards for points.\n\n"
+      "Whoever gets the most\n"
+      "points wins the game.\n\n"
+      "You can bet Domino money\n"
+      "or ante a card from trunk.\n\n"
   )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT(map_25_state_03_patron_play, 0x08F04040, 0x08F04040)
+  SPECIAL(37)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

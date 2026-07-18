@@ -1,7 +1,10 @@
 #include "global.h"
 #include "common-chax.h"
 #include "configs/runtime.h"
+#include "casino.h"
+#include "constants/music_ids.h"
 #include "debug_save_anywhere.h"
+#include "duel_main.h"
 #include "overworld.h"
 
 void OverworldSetRegDispcnt(void);
@@ -144,6 +147,19 @@ APPEND_TEXT void sub_8054AB0__Replacement(u8 arg0, struct ScriptCtx *script)
     case 35:
         if (gRuntimeConfig.enable_password_terminal_feedback != TRUE)
             RemoveMoney(1000);
+        break;
+    case CASINO_SPECIAL_BLACKJACK:
+        Casino_BlackjackMain();
+        OverworldLoadGraphics();
+        sub_80533BC();
+        break;
+    case CASINO_SPECIAL_CONCENTRATION:
+        /* Same mosaic dissolve as accepting a duel challenge. */
+        PlayMusic(SFX_TRANSITION_OVERWORLD_TO_ANTE);
+        MosaicEffect();
+        Casino_ConcentrationMain();
+        OverworldLoadGraphics();
+        sub_80533BC();
         break;
     }
 }

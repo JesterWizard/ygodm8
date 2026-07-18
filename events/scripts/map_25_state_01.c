@@ -2,50 +2,78 @@
 #include "overworld.h"
 #include "constants/music_ids.h"
 
-/* map_25_state_01: map 25 state 1 */
+/* map_25_state_01: Domino Pier casino left room */
 
 EVENT_SCRIPT_REPLACEMENT(0x08E99588, map_25_state_01_08E99588, 0x08F04040, 0x08F04040)
   LOAD_SPRITE(1, SPRITE_SHIP_DEALER)
   LOAD_SPRITE(2, SPRITE_CASINO_PLAYER)
   TEXT
   (
-      "Welcome! I hope you enjoy\n"
-      "yourselves!\n\n"
+      "Care for a hand of\n"
+      "Blackjack?\n\n"
+      "Monster levels are your\n"
+      "ranks. Elevens are Aces.\n\n"
   )
+  SPECIAL(36)
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
 EVENT_SCRIPT_REPLACEMENT(0x08E99594, map_25_state_01_08E99594, 0x08F04040, 0x08F04040)
   TEXT
   (
-      "We have a duel specialist on\n"
-      "board.\n\n"
-      "The specialist is on the\n"
-      "floor in the next section.\n\n"
-      "Please challenge her.\n\n"
+      "Hit or stand. I stand on\n"
+      "all seventeens.\n\n"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E995A0, map_25_state_01_08E995A0, 0x08F04040, 0x08F04040)
+/* Patron A: offer rules. Yes → on_false (rules); No → on_true (nop). */
+EVENT_SCRIPT_REPLACEMENT(0x08E995A0, map_25_state_01_08E995A0, map_25_state_01_patron_rules, 0x08F04040)
   TEXT
   (
-      "That dealer... I think he's\n"
-      "cheating.\n\n"
+      "I like to play\n"
+      "Concentration.\n\n"
+      "Want me to explain the\n"
+      "rules?\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
   )
   FALLTHROUGH()
 END_EVENT_SCRIPT()
 
-EVENT_SCRIPT_REPLACEMENT(0x08E995AC, map_25_state_01_08E995AC, 0x08F04040, 0x08F04040)
+/* Patron R: not a duelist — challenge to Concentration. Yes → play. */
+EVENT_SCRIPT_REPLACEMENT(0x08E995AC, map_25_state_01_08E995AC, map_25_state_01_patron_play, 0x08F04040)
   TEXT
   (
-      "A duel? What's that? Can I\n"
-      "win money?\n\n"
-      "There's no money involved?\n"
-      "Then what's the point?\n\n"
-      "How can you be into a game\n"
-      "when there's no cash at\n\n"
-      "stake?\n\n"
+      "I'm not a duelist...\n\n"
+      "But I can challenge you to\n"
+      "a game of Concentration!\n\n"
+      "{CARD_1}Yes\n"
+      "No{CARD_2}\n\n"
   )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT(map_25_state_01_patron_rules, 0x08F04040, 0x08F04040)
+  TEXT
+  (
+      "Twenty cards lay face down\n"
+      "on a board.\n\n"
+      "Each turn, the current\n"
+      "player flips two cards.\n\n"
+      "If they match, those cards\n"
+      "are removed and you score.\n\n"
+      "We alternate turns, trying\n"
+      "to match cards for points.\n\n"
+      "Whoever gets the most\n"
+      "points wins the game.\n\n"
+      "You can bet Domino money\n"
+      "or ante a card from trunk.\n\n"
+  )
+  FALLTHROUGH()
+END_EVENT_SCRIPT()
+
+EVENT_SCRIPT(map_25_state_01_patron_play, 0x08F04040, 0x08F04040)
+  SPECIAL(37)
   FALLTHROUGH()
 END_EVENT_SCRIPT()

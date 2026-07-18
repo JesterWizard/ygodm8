@@ -1,13 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Fix duel icon cache in ROM
+**Last worked on:** 2026-07-18 — Patron R Yes/No + mosaic fade
 
 **Files touched:**
-- `src_custom/overworld_hooks.c`
-- `asm/ram_map_ewram.s`
-- `documentation/repeatable-duel-icon.md`
+- `events/scripts/map_25_state_{01,02,03}.c`
+- `src_custom/script_commands2_hooks.c`
+- `documentation/domino-boat-casino.md`
 
-**Outcome:** make exits 0. Cache moved to EWRAM (`gDuelIconCache`); GFX load restored per-frame. Icons should show again.
+**Outcome:** make exits 0. R Yes → mosaic + Concentration; No declines.
 
 **Open / next:**
-- Confirm train station icons visible + still smooth
+- Playtest patron R Yes/No + fade on Domino Pier

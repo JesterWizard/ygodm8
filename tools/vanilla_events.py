@@ -139,6 +139,8 @@ SPECIAL_COMMANDS = {
     33: "cutscene_8",
     34: "cutscene_7",
     35: "remove_1000_domino",
+    36: "casino_blackjack",
+    37: "casino_concentration",
 }
 SPECIAL_COMMANDS_INV = {name: value for value, name in SPECIAL_COMMANDS.items()}
 
