@@ -251,6 +251,9 @@
     case EN_SHUFFLE:
       EffectEN_SHUFFLE();
       return;
+    case EN_WAVE:
+      EffectEN_WAVE();
+      return;
     case EVIL_ASSAULT:
       EffectEVIL_ASSAULT();
       return;
@@ -265,6 +268,9 @@
       return;
     case FINAL_COUNTDOWN:
       EffectFinalCountdown();
+      return;
+    case FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS:
+      EffectFLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS();
       return;
     case FUSION_DEPLOYMENT:
       EffectFUSION_DEPLOYMENT();
@@ -283,6 +289,12 @@
       return;
     case FUTURE_FUSION:
       EffectFutureFusion();
+      return;
+    case GENERATION_NEXT:
+      EffectGENERATION_NEXT();
+      return;
+    case GLADIATOR_BEAST_BATTLE_HALBERD:
+      EffectGLADIATOR_BEAST_BATTLE_HALBERD();
       return;
     case GOBLIN_THIEF:
       EffectGoblinThief();

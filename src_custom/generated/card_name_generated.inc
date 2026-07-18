@@ -858,6 +858,25 @@ static const u8 sElementalHeroSpiritOfNeosName[] __attribute__((section(".append
 static const u8 sElementalHeroStormNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Storm Neos";
 static const u8 sEnEngageNeoSpaceName[] __attribute__((section(".append_assets"))) = "EN - Engage Neo Space";
 static const u8 sEnShuffleName[] __attribute__((section(".append_assets"))) = "EN Shuffle";
+static const u8 sEnWaveName[] __attribute__((section(".append_assets"))) = "EN Wave";
+static const u8 sEnlightenmentDragonName[] __attribute__((section(".append_assets"))) = "Enlightenment Dragon";
+static const u8 sFavouriteContactName[] __attribute__((section(".append_assets"))) = "Favorite Contact";
+static const u8 sFelisLightswornArcherName[] __attribute__((section(".append_assets"))) = "Felis, Lightsworn Archer";
+static const u8 sFlavianColosseumOfTheGladiatorBeastsName[] __attribute__((section(".append_assets"))) = "Flavian - Colosseum of the Gladiator Beasts";
+static const u8 sGaronithLightswornDragonName[] __attribute__((section(".append_assets"))) = "Gragonith, Lightsworn Dragon";
+static const u8 sGarothLightswornWarriorName[] __attribute__((section(".append_assets"))) = "Garoth, Lightsworn Warrior";
+static const u8 sGenerationNextName[] __attribute__((section(".append_assets"))) = "Generation Next";
+static const u8 sGladiatorBeastAlexanderName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Alexander";
+static const u8 sGladiatorBeastAndabataName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Andabata";
+static const u8 sGladiatorBeastAndalName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Andal";
+static const u8 sGladiatorBeastAttorixName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Attorix";
+static const u8 sGladiatorBeastAugustusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Augustus";
+static const u8 sGladiatorBeastBattleHalberdName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Battle Halberd";
+static const u8 sGladiatorBeastBestiariName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Bestiari";
+static const u8 sGladiatorBeastClaudiusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Claudius";
+static const u8 sGladiatorBeastDareiosName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Dareios";
+static const u8 sGladiatorBeastDariusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Darius";
+static const u8 sGladiatorBeastDimacariName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Dimacari";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2580,6 +2599,44 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sEnEngageNeoSpaceName;
   if (cardId == 0x0679)
     return (u8 *)sEnShuffleName;
+  if (cardId == 0x067A)
+    return (u8 *)sEnWaveName;
+  if (cardId == 0x067B)
+    return (u8 *)sEnlightenmentDragonName;
+  if (cardId == 0x067C)
+    return (u8 *)sFavouriteContactName;
+  if (cardId == 0x067D)
+    return (u8 *)sFelisLightswornArcherName;
+  if (cardId == 0x067E)
+    return (u8 *)sFlavianColosseumOfTheGladiatorBeastsName;
+  if (cardId == 0x067F)
+    return (u8 *)sGaronithLightswornDragonName;
+  if (cardId == 0x0680)
+    return (u8 *)sGarothLightswornWarriorName;
+  if (cardId == 0x0681)
+    return (u8 *)sGenerationNextName;
+  if (cardId == 0x0682)
+    return (u8 *)sGladiatorBeastAlexanderName;
+  if (cardId == 0x0683)
+    return (u8 *)sGladiatorBeastAndabataName;
+  if (cardId == 0x0684)
+    return (u8 *)sGladiatorBeastAndalName;
+  if (cardId == 0x0685)
+    return (u8 *)sGladiatorBeastAttorixName;
+  if (cardId == 0x0686)
+    return (u8 *)sGladiatorBeastAugustusName;
+  if (cardId == 0x0687)
+    return (u8 *)sGladiatorBeastBattleHalberdName;
+  if (cardId == 0x0688)
+    return (u8 *)sGladiatorBeastBestiariName;
+  if (cardId == 0x0689)
+    return (u8 *)sGladiatorBeastClaudiusName;
+  if (cardId == 0x068A)
+    return (u8 *)sGladiatorBeastDareiosName;
+  if (cardId == 0x068B)
+    return (u8 *)sGladiatorBeastDariusName;
+  if (cardId == 0x068C)
+    return (u8 *)sGladiatorBeastDimacariName;
 
   return gCardNames[cardId];
 }

@@ -482,6 +482,24 @@ unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void);
 void ActivateELEMENTAL_HERO_SPIRIT_OF_NEOSEffect(void);
 unsigned char CanActivateELEMENTAL_HERO_STORM_NEOS(void);
 void ActivateELEMENTAL_HERO_STORM_NEOSEffect(void);
+unsigned char CanActivateENLIGHTENMENT_DRAGON(void);
+void ActivateENLIGHTENMENT_DRAGONEffect(void);
+unsigned char CanActivateFELIS_LIGHTSWORN_ARCHER(void);
+void ActivateFELIS_LIGHTSWORN_ARCHEREffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_ANDABATA(void);
+void ActivateGLADIATOR_BEAST_ANDABATAEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_ATTORIX(void);
+void ActivateGLADIATOR_BEAST_ATTORIXEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_AUGUSTUS(void);
+void ActivateGLADIATOR_BEAST_AUGUSTUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_BESTIARI(void);
+void ActivateGLADIATOR_BEAST_BESTIARIEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_CLAUDIUS(void);
+void ActivateGLADIATOR_BEAST_CLAUDIUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_DAREIOS(void);
+void ActivateGLADIATOR_BEAST_DAREIOSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void);
+void ActivateGLADIATOR_BEAST_DARIUSEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2061,6 +2079,42 @@ FAILED:
   }
   if (gMonEffect.id == ELEMENTAL_HERO_STORM_NEOS) {
     ActivateELEMENTAL_HERO_STORM_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ENLIGHTENMENT_DRAGON) {
+    ActivateENLIGHTENMENT_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == FELIS_LIGHTSWORN_ARCHER) {
+    ActivateFELIS_LIGHTSWORN_ARCHEREffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_ANDABATA) {
+    ActivateGLADIATOR_BEAST_ANDABATAEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_ATTORIX) {
+    ActivateGLADIATOR_BEAST_ATTORIXEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_AUGUSTUS) {
+    ActivateGLADIATOR_BEAST_AUGUSTUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_BESTIARI) {
+    ActivateGLADIATOR_BEAST_BESTIARIEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_CLAUDIUS) {
+    ActivateGLADIATOR_BEAST_CLAUDIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_DAREIOS) {
+    ActivateGLADIATOR_BEAST_DAREIOSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_DARIUS) {
+    ActivateGLADIATOR_BEAST_DARIUSEffect();
     return;
   }
 }

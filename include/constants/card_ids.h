@@ -1659,11 +1659,30 @@
 #define ELEMENTAL_HERO_STORM_NEOS                0x0677
 #define EN_ENGAGE_NEO_SPACE                      0x0678
 #define EN_SHUFFLE                               0x0679
+#define EN_WAVE                                  0x067A
+#define ENLIGHTENMENT_DRAGON                     0x067B
+#define FAVOURITE_CONTACT                        0x067C
+#define FELIS_LIGHTSWORN_ARCHER                  0x067D
+#define FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS 0x067E
+#define GARONITH_LIGHTSWORN_DRAGON               0x067F
+#define GAROTH_LIGHTSWORN_WARRIOR                0x0680
+#define GENERATION_NEXT                          0x0681
+#define GLADIATOR_BEAST_ALEXANDER                0x0682
+#define GLADIATOR_BEAST_ANDABATA                 0x0683
+#define GLADIATOR_BEAST_ANDAL                    0x0684
+#define GLADIATOR_BEAST_ATTORIX                  0x0685
+#define GLADIATOR_BEAST_AUGUSTUS                 0x0686
+#define GLADIATOR_BEAST_BATTLE_HALBERD           0x0687
+#define GLADIATOR_BEAST_BESTIARI                 0x0688
+#define GLADIATOR_BEAST_CLAUDIUS                 0x0689
+#define GLADIATOR_BEAST_DAREIOS                  0x068A
+#define GLADIATOR_BEAST_DARIUS                   0x068B
+#define GLADIATOR_BEAST_DIMACARI                 0x068C
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x067A
-#define NUM_CUSTOM_CARDS                        0x0359
+#define NUM_TOTAL_CARDS                         0x068D
+#define NUM_CUSTOM_CARDS                        0x036C
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `790` effects
+- `808` effects
 
 ## Tally
 
@@ -771,6 +771,24 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Elemental Hero Storm Neos` | `src_custom/activated_effects/elemental_hero_storm_neos.c` |
 | `spell_effects` | `En Engage Neo Space` | `src_custom/spell_effects/en_engage_neo_space.c` |
 | `spell_effects` | `En Shuffle` | `src_custom/spell_effects/en_shuffle.c` |
+| `spell_effects` | `En Wave` | `src_custom/spell_effects/en_wave.c` |
+| `activated_effects` | `Enlightenment Dragon` | `src_custom/activated_effects/enlightenment_dragon.c` |
+| `trap_effects` | `Favourite Contact` | `src_custom/trap_effects/favourite_contact.c` |
+| `activated_effects` | `Felis Lightsworn Archer` | `src_custom/activated_effects/felis_lightsworn_archer.c` |
+| `spell_effects` | `Flavian Colosseum Of The Gladiator Beasts` | `src_custom/spell_effects/flavian_colosseum_of_the_gladiator_beasts.c` |
+| `permanent_effects` | `Garonith Lightsworn Dragon` | `src_custom/permanent_effects/garonith_lightsworn_dragon.c` |
+| `permanent_effects` | `Garoth Lightsworn Warrior` | `src_custom/permanent_effects/garoth_lightsworn_warrior.c` |
+| `spell_effects` | `Generation Next` | `src_custom/spell_effects/generation_next.c` |
+| `permanent_effects` | `Gladiator Beast Alexander` | `src_custom/permanent_effects/gladiator_beast_alexander.c` |
+| `activated_effects` | `Gladiator Beast Andabata` | `src_custom/activated_effects/gladiator_beast_andabata.c` |
+| `activated_effects` | `Gladiator Beast Attorix` | `src_custom/activated_effects/gladiator_beast_attorix.c` |
+| `activated_effects` | `Gladiator Beast Augustus` | `src_custom/activated_effects/gladiator_beast_augustus.c` |
+| `spell_effects` | `Gladiator Beast Battle Halberd` | `src_custom/spell_effects/gladiator_beast_battle_halberd.c` |
+| `activated_effects` | `Gladiator Beast Bestiari` | `src_custom/activated_effects/gladiator_beast_bestiari.c` |
+| `activated_effects` | `Gladiator Beast Claudius` | `src_custom/activated_effects/gladiator_beast_claudius.c` |
+| `activated_effects` | `Gladiator Beast Dareios` | `src_custom/activated_effects/gladiator_beast_dareios.c` |
+| `activated_effects` | `Gladiator Beast Darius` | `src_custom/activated_effects/gladiator_beast_darius.c` |
+| `permanent_effects` | `Gladiator Beast Dimacari` | `src_custom/permanent_effects/gladiator_beast_dimacari.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

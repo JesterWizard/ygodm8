@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 857 |
-| Art ready, needs manifest | 118 |
+| In game (manifest + art) | 876 |
+| Art ready, needs manifest | 98 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **977** |
+| **Total PNGs in `80x80/`** | **976** |
 
 ## In game
 
@@ -879,31 +879,30 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `ELEMENTAL_HERO_STORM_NEOS` | Elemental HERO Storm Neos | `elemental_hero_storm_neos.png` |
 | `EN_ENGAGE_NEO_SPACE` | EN - Engage Neo Space | `en_engage_neo_space.png` |
 | `EN_SHUFFLE` | EN Shuffle | `en_shuffle.png` |
+| `EN_WAVE` | EN Wave | `en_wave.png` |
+| `ENLIGHTENMENT_DRAGON` | Enlightenment Dragon | `enlightenment_dragon.png` |
+| `FAVOURITE_CONTACT` | Favorite Contact | `favourite_contact.png` |
+| `FELIS_LIGHTSWORN_ARCHER` | Felis, Lightsworn Archer | `felis_lightsworn_archer.png` |
+| `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` | Flavian - Colosseum of the Gladiator Beasts | `flavian_colosseum_of_the_gladiator_beasts.png` |
+| `GARONITH_LIGHTSWORN_DRAGON` | Gragonith, Lightsworn Dragon | `garonith_lightsworn_dragon.png` |
+| `GAROTH_LIGHTSWORN_WARRIOR` | Garoth, Lightsworn Warrior | `garoth_lightsworn_warrior.png` |
+| `GENERATION_NEXT` | Generation Next | `generation_next.png` |
+| `GLADIATOR_BEAST_ALEXANDER` | Gladiator Beast Alexander | `gladiator_beast_alexander.png` |
+| `GLADIATOR_BEAST_ANDABATA` | Gladiator Beast Andabata | `gladiator_beast_andabata.png` |
+| `GLADIATOR_BEAST_ANDAL` | Gladiator Beast Andal | `gladiator_beast_andal.png` |
+| `GLADIATOR_BEAST_ATTORIX` | Gladiator Beast Attorix | `gladiator_beast_attorix.png` |
+| `GLADIATOR_BEAST_AUGUSTUS` | Gladiator Beast Augustus | `gladiator_beast_augustus.png` |
+| `GLADIATOR_BEAST_BATTLE_HALBERD` | Gladiator Beast's Battle Halberd | `gladiator_beast_battle_halberd.png` |
+| `GLADIATOR_BEAST_BESTIARI` | Gladiator Beast Bestiari | `gladiator_beast_bestiari.png` |
+| `GLADIATOR_BEAST_CLAUDIUS` | Gladiator Beast Claudius | `gladiator_beast_claudius.png` |
+| `GLADIATOR_BEAST_DAREIOS` | Gladiator Beast Dareios | `gladiator_beast_dareios.png` |
+| `GLADIATOR_BEAST_DARIUS` | Gladiator Beast Darius | `gladiator_beast_darius.png` |
+| `GLADIATOR_BEAST_DIMACARI` | Gladiator Beast Dimacari | `gladiator_beast_dimacari.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `EN_WAVE` — `en_wave.png`
-- [ ] `ENLIGHTENMENT_DRAGON` — `enlightenment_dragon.png`
-- [ ] `FAVOURITE_CONTACT` — `favourite_contact.png`
-- [ ] `FELIS_LIGHTSWORN_ARCHER` — `felis_lightsworn_archer.png`
-- [ ] `FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS` — `flavian_colosseum_of_the_gladiator_beasts.png`
-- [ ] `GANDORA_X_THE_DRAGON_OF_DESTRUCTION` — `gandora_x_the_dragon_of_destruction.png`
-- [ ] `GARONITH_LIGHTSWORN_DRAGON` — `garonith_lightsworn_dragon.png`
-- [ ] `GAROTH_LIGHTSWORN_WARRIOR` — `garoth_lightsworn_warrior.png`
-- [ ] `GENERATION_NEXT` — `generation_next.png`
-- [ ] `GLADIATOR_BEAST_ALEXANDER` — `gladiator_beast_alexander.png`
-- [ ] `GLADIATOR_BEAST_ANDABATA` — `gladiator_beast_andabata.png`
-- [ ] `GLADIATOR_BEAST_ANDAL` — `gladiator_beast_andal.png`
-- [ ] `GLADIATOR_BEAST_ATTORIX` — `gladiator_beast_attorix.png`
-- [ ] `GLADIATOR_BEAST_AUGUSTUS` — `gladiator_beast_augustus.png`
-- [ ] `GLADIATOR_BEAST_BATTLE_HALBERD` — `gladiator_beast_battle_halberd.png`
-- [ ] `GLADIATOR_BEAST_BESTIARI` — `gladiator_beast_bestiari.png`
-- [ ] `GLADIATOR_BEAST_CLAUDIUS` — `gladiator_beast_claudius.png`
-- [ ] `GLADIATOR_BEAST_DAREIOS` — `gladiator_beast_dareios.png`
-- [ ] `GLADIATOR_BEAST_DARIUS` — `gladiator_beast_darius.png`
-- [ ] `GLADIATOR_BEAST_DIMACARI` — `gladiator_beast_dimacari.png`
 - [ ] `GLADIATOR_BEAST_DOMITIANUS` — `gladiator_beast_domitianus.png`
 - [ ] `GLADIATOR_BEAST_DRAGASES` — `gladiator_beast_dragases.png`
 - [ ] `GLADIATOR_BEAST_EQUESTE` — `gladiator_beast_equeste.png`

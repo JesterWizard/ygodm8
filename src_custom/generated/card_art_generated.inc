@@ -3436,6 +3436,82 @@ static const unsigned char sEnShuffleBigArt[] __attribute__((section(".append_as
 static const unsigned short sEnShuffleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/en_shuffle.gbapal");
 static const unsigned char sEnShuffleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/en_shuffle.lz");
 
+static const unsigned char sEnWaveBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/en_wave.huff");
+static const unsigned short sEnWaveBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/en_wave.gbapal");
+static const unsigned char sEnWaveMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/en_wave.lz");
+
+static const unsigned char sEnlightenmentDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/enlightenment_dragon.huff");
+static const unsigned short sEnlightenmentDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/enlightenment_dragon.gbapal");
+static const unsigned char sEnlightenmentDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/enlightenment_dragon.lz");
+
+static const unsigned char sFavouriteContactBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/favourite_contact.huff");
+static const unsigned short sFavouriteContactBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/favourite_contact.gbapal");
+static const unsigned char sFavouriteContactMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/favourite_contact.lz");
+
+static const unsigned char sFelisLightswornArcherBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/felis_lightsworn_archer.huff");
+static const unsigned short sFelisLightswornArcherBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/felis_lightsworn_archer.gbapal");
+static const unsigned char sFelisLightswornArcherMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/felis_lightsworn_archer.lz");
+
+static const unsigned char sFlavianColosseumOfTheGladiatorBeastsBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/flavian_colosseum_of_the_gladiator_beasts.huff");
+static const unsigned short sFlavianColosseumOfTheGladiatorBeastsBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/flavian_colosseum_of_the_gladiator_beasts.gbapal");
+static const unsigned char sFlavianColosseumOfTheGladiatorBeastsMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/flavian_colosseum_of_the_gladiator_beasts.lz");
+
+static const unsigned char sGaronithLightswornDragonBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/garonith_lightsworn_dragon.huff");
+static const unsigned short sGaronithLightswornDragonBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/garonith_lightsworn_dragon.gbapal");
+static const unsigned char sGaronithLightswornDragonMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/garonith_lightsworn_dragon.lz");
+
+static const unsigned char sGarothLightswornWarriorBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/garoth_lightsworn_warrior.huff");
+static const unsigned short sGarothLightswornWarriorBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/garoth_lightsworn_warrior.gbapal");
+static const unsigned char sGarothLightswornWarriorMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/garoth_lightsworn_warrior.lz");
+
+static const unsigned char sGenerationNextBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/generation_next.huff");
+static const unsigned short sGenerationNextBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/generation_next.gbapal");
+static const unsigned char sGenerationNextMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/generation_next.lz");
+
+static const unsigned char sGladiatorBeastAlexanderBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_alexander.huff");
+static const unsigned short sGladiatorBeastAlexanderBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_alexander.gbapal");
+static const unsigned char sGladiatorBeastAlexanderMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_alexander.lz");
+
+static const unsigned char sGladiatorBeastAndabataBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_andabata.huff");
+static const unsigned short sGladiatorBeastAndabataBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_andabata.gbapal");
+static const unsigned char sGladiatorBeastAndabataMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_andabata.lz");
+
+static const unsigned char sGladiatorBeastAndalBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_andal.huff");
+static const unsigned short sGladiatorBeastAndalBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_andal.gbapal");
+static const unsigned char sGladiatorBeastAndalMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_andal.lz");
+
+static const unsigned char sGladiatorBeastAttorixBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_attorix.huff");
+static const unsigned short sGladiatorBeastAttorixBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_attorix.gbapal");
+static const unsigned char sGladiatorBeastAttorixMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_attorix.lz");
+
+static const unsigned char sGladiatorBeastAugustusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_augustus.huff");
+static const unsigned short sGladiatorBeastAugustusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_augustus.gbapal");
+static const unsigned char sGladiatorBeastAugustusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_augustus.lz");
+
+static const unsigned char sGladiatorBeastBattleHalberdBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_battle_halberd.huff");
+static const unsigned short sGladiatorBeastBattleHalberdBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_battle_halberd.gbapal");
+static const unsigned char sGladiatorBeastBattleHalberdMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_battle_halberd.lz");
+
+static const unsigned char sGladiatorBeastBestiariBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_bestiari.huff");
+static const unsigned short sGladiatorBeastBestiariBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_bestiari.gbapal");
+static const unsigned char sGladiatorBeastBestiariMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_bestiari.lz");
+
+static const unsigned char sGladiatorBeastClaudiusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_claudius.huff");
+static const unsigned short sGladiatorBeastClaudiusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_claudius.gbapal");
+static const unsigned char sGladiatorBeastClaudiusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_claudius.lz");
+
+static const unsigned char sGladiatorBeastDareiosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_dareios.huff");
+static const unsigned short sGladiatorBeastDareiosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_dareios.gbapal");
+static const unsigned char sGladiatorBeastDareiosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_dareios.lz");
+
+static const unsigned char sGladiatorBeastDariusBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_darius.huff");
+static const unsigned short sGladiatorBeastDariusBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_darius.gbapal");
+static const unsigned char sGladiatorBeastDariusMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_darius.lz");
+
+static const unsigned char sGladiatorBeastDimacariBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/gladiator_beast_dimacari.huff");
+static const unsigned short sGladiatorBeastDimacariBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/gladiator_beast_dimacari.gbapal");
+static const unsigned char sGladiatorBeastDimacariMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/gladiator_beast_dimacari.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -4296,6 +4372,25 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0677] = sElementalHeroStormNeosBigArt,
   [0x0678] = sEnEngageNeoSpaceBigArt,
   [0x0679] = sEnShuffleBigArt,
+  [0x067A] = sEnWaveBigArt,
+  [0x067B] = sEnlightenmentDragonBigArt,
+  [0x067C] = sFavouriteContactBigArt,
+  [0x067D] = sFelisLightswornArcherBigArt,
+  [0x067E] = sFlavianColosseumOfTheGladiatorBeastsBigArt,
+  [0x067F] = sGaronithLightswornDragonBigArt,
+  [0x0680] = sGarothLightswornWarriorBigArt,
+  [0x0681] = sGenerationNextBigArt,
+  [0x0682] = sGladiatorBeastAlexanderBigArt,
+  [0x0683] = sGladiatorBeastAndabataBigArt,
+  [0x0684] = sGladiatorBeastAndalBigArt,
+  [0x0685] = sGladiatorBeastAttorixBigArt,
+  [0x0686] = sGladiatorBeastAugustusBigArt,
+  [0x0687] = sGladiatorBeastBattleHalberdBigArt,
+  [0x0688] = sGladiatorBeastBestiariBigArt,
+  [0x0689] = sGladiatorBeastClaudiusBigArt,
+  [0x068A] = sGladiatorBeastDareiosBigArt,
+  [0x068B] = sGladiatorBeastDariusBigArt,
+  [0x068C] = sGladiatorBeastDimacariBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -5158,6 +5253,25 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0677] = sElementalHeroStormNeosBigPalette,
   [0x0678] = sEnEngageNeoSpaceBigPalette,
   [0x0679] = sEnShuffleBigPalette,
+  [0x067A] = sEnWaveBigPalette,
+  [0x067B] = sEnlightenmentDragonBigPalette,
+  [0x067C] = sFavouriteContactBigPalette,
+  [0x067D] = sFelisLightswornArcherBigPalette,
+  [0x067E] = sFlavianColosseumOfTheGladiatorBeastsBigPalette,
+  [0x067F] = sGaronithLightswornDragonBigPalette,
+  [0x0680] = sGarothLightswornWarriorBigPalette,
+  [0x0681] = sGenerationNextBigPalette,
+  [0x0682] = sGladiatorBeastAlexanderBigPalette,
+  [0x0683] = sGladiatorBeastAndabataBigPalette,
+  [0x0684] = sGladiatorBeastAndalBigPalette,
+  [0x0685] = sGladiatorBeastAttorixBigPalette,
+  [0x0686] = sGladiatorBeastAugustusBigPalette,
+  [0x0687] = sGladiatorBeastBattleHalberdBigPalette,
+  [0x0688] = sGladiatorBeastBestiariBigPalette,
+  [0x0689] = sGladiatorBeastClaudiusBigPalette,
+  [0x068A] = sGladiatorBeastDareiosBigPalette,
+  [0x068B] = sGladiatorBeastDariusBigPalette,
+  [0x068C] = sGladiatorBeastDimacariBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -6020,6 +6134,25 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0677] = 0,
   [0x0678] = 0,
   [0x0679] = 0,
+  [0x067A] = 0,
+  [0x067B] = 0,
+  [0x067C] = 0,
+  [0x067D] = 0,
+  [0x067E] = 0,
+  [0x067F] = 0,
+  [0x0680] = 0,
+  [0x0681] = 0,
+  [0x0682] = 0,
+  [0x0683] = 0,
+  [0x0684] = 0,
+  [0x0685] = 0,
+  [0x0686] = 0,
+  [0x0687] = 0,
+  [0x0688] = 0,
+  [0x0689] = 0,
+  [0x068A] = 0,
+  [0x068B] = 0,
+  [0x068C] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -6882,4 +7015,23 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0677] = sElementalHeroStormNeosMiniArt,
   [0x0678] = sEnEngageNeoSpaceMiniArt,
   [0x0679] = sEnShuffleMiniArt,
+  [0x067A] = sEnWaveMiniArt,
+  [0x067B] = sEnlightenmentDragonMiniArt,
+  [0x067C] = sFavouriteContactMiniArt,
+  [0x067D] = sFelisLightswornArcherMiniArt,
+  [0x067E] = sFlavianColosseumOfTheGladiatorBeastsMiniArt,
+  [0x067F] = sGaronithLightswornDragonMiniArt,
+  [0x0680] = sGarothLightswornWarriorMiniArt,
+  [0x0681] = sGenerationNextMiniArt,
+  [0x0682] = sGladiatorBeastAlexanderMiniArt,
+  [0x0683] = sGladiatorBeastAndabataMiniArt,
+  [0x0684] = sGladiatorBeastAndalMiniArt,
+  [0x0685] = sGladiatorBeastAttorixMiniArt,
+  [0x0686] = sGladiatorBeastAugustusMiniArt,
+  [0x0687] = sGladiatorBeastBattleHalberdMiniArt,
+  [0x0688] = sGladiatorBeastBestiariMiniArt,
+  [0x0689] = sGladiatorBeastClaudiusMiniArt,
+  [0x068A] = sGladiatorBeastDareiosMiniArt,
+  [0x068B] = sGladiatorBeastDariusMiniArt,
+  [0x068C] = sGladiatorBeastDimacariMiniArt,
 };

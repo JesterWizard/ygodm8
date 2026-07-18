@@ -35445,6 +35445,533 @@
       "effect_texts": {
         "popup_1": "Swap Neos/HERO; GY shuffle+draw."
       }
+    },
+    {
+      "card_const": "EN_WAVE",
+      "card_name": "EN Wave",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 9, 0, 5, 8, 0, 2, 6],
+      "description": {
+        "symbol": "gDescription_EnWave",
+        "pages": [
+          "If an E-HERO used as Fusion material",
+          "is sent to GY/banished: add 1",
+          "Neo-Spacian or Neos from Deck.",
+          "If Neo-Spacian/Neos leaves field by",
+          "opp: SS 1 E-HERO from GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Search Neo/Neos; GY revive E-HERO."
+      }
+    },
+    {
+      "card_const": "ENLIGHTENMENT_DRAGON",
+      "card_name": "Enlightenment Dragon",
+      "atk": 3000,
+      "def": 3000,
+      "level": 10,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [4, 6, 1, 8, 6, 1, 3, 5],
+      "description": {
+        "symbol": "gDescription_EnlightenmentDragon",
+        "pages": [
+          "Judgment Dragon + Punishment Dragon.",
+          "SS by banishing those from field/GY.",
+          "Pay 2000 LP: banish all other cards",
+          "on field and in GYs. End: mill 4.",
+          "If destroyed by opp: add both back."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay 2000; banish field+GYs; mill 4."
+      }
+    },
+    {
+      "card_const": "FAVOURITE_CONTACT",
+      "card_name": "Favorite Contact",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 5, 0, 4, 7, 1, 7, 3],
+      "description": {
+        "symbol": "gDescription_FavoriteContact",
+        "pages": [
+          "SS 1 Fusion that mentions a HERO",
+          "as material, ignoring conditions,",
+          "using materials from hand/field/GY/",
+          "banished (place on bottom of Deck).",
+          "That Fusion cannot return to Extra."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Contact Fusion from anywhere."
+      }
+    },
+    {
+      "card_const": "FELIS_LIGHTSWORN_ARCHER",
+      "card_name": "Felis, Lightsworn Archer",
+      "atk": 1100,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [7, 3, 1, 7, 6, 4, 6, 5],
+      "description": {
+        "symbol": "gDescription_FelisLightswornArcher",
+        "pages": [
+          "Cannot be Normal Summoned/Set.",
+          "If sent from Deck to GY by a monster",
+          "effect: Special Summon it. Tribute",
+          "this; destroy 1 opp monster, then",
+          "mill top 3 of your Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS from mill; Tribute destroy+mill."
+      }
+    },
+    {
+      "card_const": "FLAVIAN_COLOSSEUM_OF_THE_GLADIATOR_BEASTS",
+      "card_name": "Flavian - Colosseum of the Gladiator Beasts",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 5, 0, 6, 3, 3, 7, 9],
+      "description": {
+        "symbol": "gDescription_FlavianColosseumOfTheGladiatorBeasts",
+        "pages": [
+          "Discard 1; add 1 Gladiator Beast",
+          "from Deck. When opp monster declares",
+          "attack: SS 1 Gladiator Beast from",
+          "Deck (battle-immune). End Phase if",
+          "GB tagged out: set 1 Gladiator Trap."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Search/SS Gladiator Beast; set Trap."
+      }
+    },
+    {
+      "card_const": "GARONITH_LIGHTSWORN_DRAGON",
+      "card_name": "Gragonith, Lightsworn Dragon",
+      "atk": 2000,
+      "def": 1600,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [2, 1, 7, 8, 5, 1, 4, 4],
+      "description": {
+        "symbol": "gDescription_GragonithLightswornDragon",
+        "pages": [
+          "+300 ATK/DEF per differently named",
+          "Lightsworn in your GY. Inflicts",
+          "piercing battle damage. During each",
+          "of your End Phases: send the top 3",
+          "cards of your Deck to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK per Lightsworn; pierce; mill 3."
+      }
+    },
+    {
+      "card_const": "GAROTH_LIGHTSWORN_WARRIOR",
+      "card_name": "Garoth, Lightsworn Warrior",
+      "atk": 1850,
+      "def": 1300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [5, 9, 0, 1, 9, 0, 8, 2],
+      "description": {
+        "symbol": "gDescription_GarothLightswornWarrior",
+        "pages": [
+          "Each time a card is milled by a",
+          "Lightsworn you control (except this):",
+          "mill top 2, then draw 1 for each",
+          "Lightsworn sent to the GY by this",
+          "effect."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On Lightsworn mill: mill 2; draw."
+      }
+    },
+    {
+      "card_const": "GENERATION_NEXT",
+      "card_name": "Generation Next",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 5, 7, 8, 7, 1, 7, 3],
+      "description": {
+        "symbol": "gDescription_GenerationNext",
+        "pages": [
+          "If your LP are lower than opp: add",
+          "or SS 1 E-HERO / Neo-Spacian /",
+          "Neos from Deck or GY with ATK <=",
+          "the LP difference. Cannot SS same",
+          "name again this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Add/SS Neo-HERO by LP gap."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ALEXANDER",
+      "card_name": "Gladiator Beast Alexander",
+      "atk": 2400,
+      "def": 600,
+      "level": 6,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [4, 2, 5, 9, 2, 7, 1, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastAlexander",
+        "pages": [
+          "SS only by Gladiator Beast Dimacari.",
+          "Unaffected by Spell effects. At end",
+          "of Battle Phase if it battled: return",
+          "to Deck; SS 1 Gladiator Beast from",
+          "Deck (except Alexander)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Spell immune; tag out after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ANDABATA",
+      "card_name": "Gladiator Beast Andabata",
+      "atk": 1000,
+      "def": 2800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [0, 3, 7, 7, 9, 6, 6, 2],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastAndabata",
+        "pages": [
+          "Augustus + 2 Gladiator Beasts.",
+          "Contact Fusion. On Summon: SS 1",
+          "Level 7- Gladiator Beast from Extra,",
+          "ignoring conditions. After battle:",
+          "return to Extra; SS 2 Gladiator Beasts."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Contact; SS GB; tag for 2 more."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ANDAL",
+      "card_name": "Gladiator Beast Andal",
+      "atk": 1900,
+      "def": 1500,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "NORMAL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 0, 5, 8, 2, 7, 1, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastAndal",
+        "pages": [
+          "This one-eyed warrior bear is an",
+          "aggressive hunter that strikes down",
+          "its prey with powerful claw swipes."
+        ]
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ATTORIX",
+      "card_name": "Gladiator Beast Attorix",
+      "atk": 800,
+      "def": 2000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [5, 2, 5, 0, 2, 6, 7, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastAttorix",
+        "pages": [
+          "If SS by a Gladiator Beast: send 1",
+          "GB from Deck to GY; this card Level",
+          "and name become that monster until",
+          "End Phase. After battle: return to",
+          "Deck; SS 1 Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Copy GY GB name/Level; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_AUGUSTUS",
+      "card_name": "Gladiator Beast Augustus",
+      "atk": 2600,
+      "def": 1000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [0, 7, 5, 7, 3, 1, 3, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastAugustus",
+        "pages": [
+          "When SS by a Gladiator Beast: SS 1",
+          "Gladiator Beast from hand in Def",
+          "(shuffle it into Deck at End Phase).",
+          "After battle: return to Deck; SS 1",
+          "Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "SS GB from hand; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_BATTLE_HALBERD",
+      "card_name": "Gladiator Beast's Battle Halberd",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 9, 0, 1, 3, 3, 9, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSBattleHalberd",
+        "pages": [
+          "Equip only to a Gladiator Beast.",
+          "When it attacks: destroy 1 Spell/",
+          "Trap at end of Damage Step. When",
+          "equipped monster returns to Deck",
+          "and this is sent to GY: add to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "On attack pop S/T; recycle on tag."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_BESTIARI",
+      "card_name": "Gladiator Beast Bestiari",
+      "atk": 1500,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 1, 4, 7, 0, 1, 3, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastBestiari",
+        "pages": [
+          "If SS by a Gladiator Beast: destroy",
+          "1 Spell/Trap on the field. At end",
+          "of Battle Phase if it battled: return",
+          "to Deck; SS 1 Gladiator Beast from",
+          "Deck (except Bestiari)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy S/T; tag out after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_CLAUDIUS",
+      "card_name": "Gladiator Beast Claudius",
+      "atk": 3700,
+      "def": 2600,
+      "level": 12,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 255,
+      "password": [4, 8, 9, 5, 8, 7, 5, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastClaudius",
+        "pages": [
+          "5 Gladiator Beasts. Contact Fusion.",
+          "You can conduct Battle Phase twice.",
+          "If opp activates a monster effect:",
+          "SS 1 Gladiator Beast from Deck, or",
+          "Level 11- from Extra if opp effect."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Double Battle; SS GB on opp effect."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DAREIOS",
+      "card_name": "Gladiator Beast Dareios",
+      "atk": 1700,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [7, 2, 2, 4, 6, 6, 7, 4],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastDareios",
+        "pages": [
+          "2 monsters including a Gladiator",
+          "Beast. During opp Battle Phase, your",
+          "Gladiator Beasts cannot be destroyed",
+          "by battle. On Link Summon: SS Level",
+          "4- GB from hand/GY (or Deck if opp)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Battle protect; SS Gladiator Beast."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DARIUS",
+      "card_name": "Gladiator Beast Darius",
+      "atk": 1700,
+      "def": 300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [2, 5, 9, 2, 4, 6, 5, 3],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastDarius",
+        "pages": [
+          "When SS by a Gladiator Beast: target",
+          "1 Gladiator Beast in GY; SS it with",
+          "effects negated; shuffle it when this",
+          "leaves. After battle: return to Deck;",
+          "SS 1 Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Revive GB negated; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DIMACARI",
+      "card_name": "Gladiator Beast Dimacari",
+      "atk": 1600,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [3, 1, 2, 4, 7, 5, 8, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastDimacari",
+        "pages": [
+          "If SS by a Gladiator Beast: can",
+          "attack twice during each Battle",
+          "Phase. At end of Battle Phase if it",
+          "battled: return to Deck; SS 1",
+          "Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Double attack; tag out after battle."
+      }
     }
   ]
 }

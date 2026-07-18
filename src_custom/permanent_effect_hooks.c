@@ -260,6 +260,14 @@ unsigned char ShouldActivateELEMENTAL_HERO_AIR_NEOS(void);
 void ActivateELEMENTAL_HERO_AIR_NEOS(void);
 unsigned char ShouldActivateELEMENTAL_HERO_FLARE_NEOS(void);
 void ActivateELEMENTAL_HERO_FLARE_NEOS(void);
+unsigned char ShouldActivateGARONITH_LIGHTSWORN_DRAGON(void);
+void ActivateGARONITH_LIGHTSWORN_DRAGON(void);
+unsigned char ShouldActivateGAROTH_LIGHTSWORN_WARRIOR(void);
+void ActivateGAROTH_LIGHTSWORN_WARRIOR(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_ALEXANDER(void);
+void ActivateGLADIATOR_BEAST_ALEXANDER(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_DIMACARI(void);
+void ActivateGLADIATOR_BEAST_DIMACARI(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -830,6 +838,26 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = ELEMENTAL_HERO_FLARE_NEOS,
     .shouldActivate = ShouldActivateELEMENTAL_HERO_FLARE_NEOS,
     .activate = ActivateELEMENTAL_HERO_FLARE_NEOS,
+  },
+  {
+    .cardId = GARONITH_LIGHTSWORN_DRAGON,
+    .shouldActivate = ShouldActivateGARONITH_LIGHTSWORN_DRAGON,
+    .activate = ActivateGARONITH_LIGHTSWORN_DRAGON,
+  },
+  {
+    .cardId = GAROTH_LIGHTSWORN_WARRIOR,
+    .shouldActivate = ShouldActivateGAROTH_LIGHTSWORN_WARRIOR,
+    .activate = ActivateGAROTH_LIGHTSWORN_WARRIOR,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_ALEXANDER,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_ALEXANDER,
+    .activate = ActivateGLADIATOR_BEAST_ALEXANDER,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_DIMACARI,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_DIMACARI,
+    .activate = ActivateGLADIATOR_BEAST_DIMACARI,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

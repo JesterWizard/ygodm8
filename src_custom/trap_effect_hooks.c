@@ -487,3 +487,6 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire ACE_OF_WAND in trap dispatcher */
 /* ARCANA_CALL trap effect */
   /* TODO: wire ARCANA_CALL in trap dispatcher */
+
+/* FAVOURITE_CONTACT trap effect */
+  /* TODO: wire FAVOURITE_CONTACT in trap dispatcher */
