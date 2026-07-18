@@ -917,6 +917,26 @@ static const u8 sJenisLightswornMenderName[] __attribute__((section(".append_ass
 static const u8 sJudgmentTheDragonOfHeavenName[] __attribute__((section(".append_assets"))) = "Judgment, the Dragon of Heaven";
 static const u8 sKnightOfPentaclesName[] __attribute__((section(".append_assets"))) = "Knight of Pentacles";
 static const u8 sLightBarrierName[] __attribute__((section(".append_assets"))) = "Light Barrier";
+static const u8 sLightForceName[] __attribute__((section(".append_assets"))) = "Light Force";
+static const u8 sLightOfDestructionName[] __attribute__((section(".append_assets"))) = "Light of Destruction";
+static const u8 sLightSpiralName[] __attribute__((section(".append_assets"))) = "Light Spiral";
+static const u8 sLightswornAegisName[] __attribute__((section(".append_assets"))) = "Lightsworn Aegis";
+static const u8 sLightswornBarrierName[] __attribute__((section(".append_assets"))) = "Lightsworn Barrier";
+static const u8 sLightswornDragonlingName[] __attribute__((section(".append_assets"))) = "Lightsworn Dragonling";
+static const u8 sLightswornJudgementName[] __attribute__((section(".append_assets"))) = "Lightsworn Judgment";
+static const u8 sLightswornSabreName[] __attribute__((section(".append_assets"))) = "Lightsworn Sabre";
+static const u8 sLightswornSanctuaryName[] __attribute__((section(".append_assets"))) = "Lightsworn Sanctuary";
+static const u8 sLuminaLightswornSummonerName[] __attribute__((section(".append_assets"))) = "Lumina, Lightsworn Summoner";
+static const u8 sLuminaTwilightswornShamanName[] __attribute__((section(".append_assets"))) = "Lumina, Twilightsworn Shaman";
+static const u8 sLylaLightswornSorceressName[] __attribute__((section(".append_assets"))) = "Lyla, Lightsworn Sorceress";
+static const u8 sLylaTwilightswornEnchantressName[] __attribute__((section(".append_assets"))) = "Lyla, Twilightsworn Enchantress";
+static const u8 sMarchOfTheDarkBrigadeName[] __attribute__((section(".append_assets"))) = "March of the Dark Brigade";
+static const u8 sMichaelTheArchLightswornName[] __attribute__((section(".append_assets"))) = "Michael, the Arch-Lightsworn";
+static const u8 sMinervaLightswornMaidenName[] __attribute__((section(".append_assets"))) = "Minerva, Lightsworn Maiden";
+static const u8 sMinervaTheAthenianLightswornName[] __attribute__((section(".append_assets"))) = "Minerva, the Athenian Lightsworn";
+static const u8 sMinervaTheExhaltedLightswornName[] __attribute__((section(".append_assets"))) = "Minerva, the Exalted Lightsworn";
+static const u8 sMiracleContactName[] __attribute__((section(".append_assets"))) = "Miracle Contact";
+static const u8 sMoonTokenName[] __attribute__((section(".append_assets"))) = "Moon Token";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2757,6 +2777,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sKnightOfPentaclesName;
   if (cardId == 0x06B4)
     return (u8 *)sLightBarrierName;
+  if (cardId == 0x06B5)
+    return (u8 *)sLightForceName;
+  if (cardId == 0x06B6)
+    return (u8 *)sLightOfDestructionName;
+  if (cardId == 0x06B7)
+    return (u8 *)sLightSpiralName;
+  if (cardId == 0x06B8)
+    return (u8 *)sLightswornAegisName;
+  if (cardId == 0x06B9)
+    return (u8 *)sLightswornBarrierName;
+  if (cardId == 0x06BA)
+    return (u8 *)sLightswornDragonlingName;
+  if (cardId == 0x06BB)
+    return (u8 *)sLightswornJudgementName;
+  if (cardId == 0x06BC)
+    return (u8 *)sLightswornSabreName;
+  if (cardId == 0x06BD)
+    return (u8 *)sLightswornSanctuaryName;
+  if (cardId == 0x06BE)
+    return (u8 *)sLuminaLightswornSummonerName;
+  if (cardId == 0x06BF)
+    return (u8 *)sLuminaTwilightswornShamanName;
+  if (cardId == 0x06C0)
+    return (u8 *)sLylaLightswornSorceressName;
+  if (cardId == 0x06C1)
+    return (u8 *)sLylaTwilightswornEnchantressName;
+  if (cardId == 0x06C2)
+    return (u8 *)sMarchOfTheDarkBrigadeName;
+  if (cardId == 0x06C3)
+    return (u8 *)sMichaelTheArchLightswornName;
+  if (cardId == 0x06C4)
+    return (u8 *)sMinervaLightswornMaidenName;
+  if (cardId == 0x06C5)
+    return (u8 *)sMinervaTheAthenianLightswornName;
+  if (cardId == 0x06C6)
+    return (u8 *)sMinervaTheExhaltedLightswornName;
+  if (cardId == 0x06C7)
+    return (u8 *)sMiracleContactName;
+  if (cardId == 0x06C8)
+    return (u8 *)sMoonTokenName;
 
   return gCardNames[cardId];
 }

@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 916 |
-| Art ready, needs manifest | 57 |
+| In game (manifest + art) | 936 |
+| Art ready, needs manifest | 37 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **975** |
 
@@ -938,31 +938,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `JUDGMENT_THE_DRAGON_OF_HEAVEN` | Judgment, the Dragon of Heaven | `judgment_the_dragon_of_heaven.png` |
 | `KNIGHT_OF_PENTACLES` | Knight of Pentacles | `knight_of_pentacles.png` |
 | `LIGHT_BARRIER` | Light Barrier | `light_barrier.png` |
+| `LIGHT_FORCE` | Light Force | `light_force.png` |
+| `LIGHT_OF_DESTRUCTION` | Light of Destruction | `light_of_destruction.png` |
+| `LIGHT_SPIRAL` | Light Spiral | `light_spiral.png` |
+| `LIGHTSWORN_AEGIS` | Lightsworn Aegis | `lightsworn_aegis.png` |
+| `LIGHTSWORN_BARRIER` | Lightsworn Barrier | `lightsworn_barrier.png` |
+| `LIGHTSWORN_DRAGONLING` | Lightsworn Dragonling | `lightsworn_dragonling.png` |
+| `LIGHTSWORN_JUDGEMENT` | Lightsworn Judgment | `lightsworn_judgement.png` |
+| `LIGHTSWORN_SABRE` | Lightsworn Sabre | `lightsworn_sabre.png` |
+| `LIGHTSWORN_SANCTUARY` | Lightsworn Sanctuary | `lightsworn_sanctuary.png` |
+| `LUMINA_LIGHTSWORN_SUMMONER` | Lumina, Lightsworn Summoner | `lumina_lightsworn_summoner.png` |
+| `LUMINA_TWILIGHTSWORN_SHAMAN` | Lumina, Twilightsworn Shaman | `lumina_twilightsworn_shaman.png` |
+| `LYLA_LIGHTSWORN_SORCERESS` | Lyla, Lightsworn Sorceress | `lyla_lightsworn_sorceress.png` |
+| `LYLA_TWILIGHTSWORN_ENCHANTRESS` | Lyla, Twilightsworn Enchantress | `lyla_twilightsworn_enchantress.png` |
+| `MARCH_OF_THE_DARK_BRIGADE` | March of the Dark Brigade | `march_of_the_dark_brigade.png` |
+| `MICHAEL_THE_ARCH_LIGHTSWORN` | Michael, the Arch-Lightsworn | `michael_the_arch_lightsworn.png` |
+| `MINERVA_LIGHTSWORN_MAIDEN` | Minerva, Lightsworn Maiden | `minerva_lightsworn_maiden.png` |
+| `MINERVA_THE_ATHENIAN_LIGHTSWORN` | Minerva, the Athenian Lightsworn | `minerva_the_athenian_lightsworn.png` |
+| `MINERVA_THE_EXHALTED_LIGHTSWORN` | Minerva, the Exalted Lightsworn | `minerva_the_exhalted_lightsworn.png` |
+| `MIRACLE_CONTACT` | Miracle Contact | `miracle_contact.png` |
+| `MOON_TOKEN` | Moon Token | `moon_token.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `LIGHT_FORCE` — `light_force.png`
-- [ ] `LIGHT_OF_DESTRUCTION` — `light_of_destruction.png`
-- [ ] `LIGHT_SPIRAL` — `light_spiral.png`
-- [ ] `LIGHTSWORN_AEGIS` — `lightsworn_aegis.png`
-- [ ] `LIGHTSWORN_BARRIER` — `lightsworn_barrier.png`
-- [ ] `LIGHTSWORN_DRAGONLING` — `lightsworn_dragonling.png`
-- [ ] `LIGHTSWORN_JUDGEMENT` — `lightsworn_judgement.png`
-- [ ] `LIGHTSWORN_SABRE` — `lightsworn_sabre.png`
-- [ ] `LIGHTSWORN_SANCTUARY` — `lightsworn_sanctuary.png`
-- [ ] `LUMINA_LIGHTSWORN_SUMMONER` — `lumina_lightsworn_summoner.png`
-- [ ] `LUMINA_TWILIGHTSWORN_SHAMAN` — `lumina_twilightsworn_shaman.png`
-- [ ] `LYLA_LIGHTSWORN_SORCERESS` — `lyla_lightsworn_sorceress.png`
-- [ ] `LYLA_TWILIGHTSWORN_ENCHANTRESS` — `lyla_twilightsworn_enchantress.png`
-- [ ] `MARCH_OF_THE_DARK_BRIGADE` — `march_of_the_dark_brigade.png`
-- [ ] `MICHAEL_THE_ARCH_LIGHTSWORN` — `michael_the_arch_lightsworn.png`
-- [ ] `MINERVA_LIGHTSWORN_MAIDEN` — `minerva_lightsworn_maiden.png`
-- [ ] `MINERVA_THE_ATHENIAN_LIGHTSWORN` — `minerva_the_athenian_lightsworn.png`
-- [ ] `MINERVA_THE_EXHALTED_LIGHTSWORN` — `minerva_the_exhalted_lightsworn.png`
-- [ ] `MIRACLE_CONTACT` — `miracle_contact.png`
-- [ ] `MOON_TOKEN` — `moon_token.png`
 - [ ] `NEO_SPACE` — `neo_space.png`
 - [ ] `NEO_SPACE_CONNECTOR` — `neo_space_connector.png`
 - [ ] `NEO_SPACIAN_AIR_HUMMINGBIRD` — `neo_spacian_air_hummingbird.png`

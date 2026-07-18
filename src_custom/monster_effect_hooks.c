@@ -536,6 +536,24 @@ unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void);
 void ActivateJAIN_TWILIGHTSWORN_GENERALEffect(void);
 unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void);
 void ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect(void);
+unsigned char CanActivateLIGHTSWORN_DRAGONLING(void);
+void ActivateLIGHTSWORN_DRAGONLINGEffect(void);
+unsigned char CanActivateLUMINA_LIGHTSWORN_SUMMONER(void);
+void ActivateLUMINA_LIGHTSWORN_SUMMONEREffect(void);
+unsigned char CanActivateLUMINA_TWILIGHTSWORN_SHAMAN(void);
+void ActivateLUMINA_TWILIGHTSWORN_SHAMANEffect(void);
+unsigned char CanActivateLYLA_LIGHTSWORN_SORCERESS(void);
+void ActivateLYLA_LIGHTSWORN_SORCERESSEffect(void);
+unsigned char CanActivateLYLA_TWILIGHTSWORN_ENCHANTRESS(void);
+void ActivateLYLA_TWILIGHTSWORN_ENCHANTRESSEffect(void);
+unsigned char CanActivateMICHAEL_THE_ARCH_LIGHTSWORN(void);
+void ActivateMICHAEL_THE_ARCH_LIGHTSWORNEffect(void);
+unsigned char CanActivateMINERVA_LIGHTSWORN_MAIDEN(void);
+void ActivateMINERVA_LIGHTSWORN_MAIDENEffect(void);
+unsigned char CanActivateMINERVA_THE_ATHENIAN_LIGHTSWORN(void);
+void ActivateMINERVA_THE_ATHENIAN_LIGHTSWORNEffect(void);
+unsigned char CanActivateMINERVA_THE_EXHALTED_LIGHTSWORN(void);
+void ActivateMINERVA_THE_EXHALTED_LIGHTSWORNEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2223,6 +2241,42 @@ FAILED:
   }
   if (gMonEffect.id == JUDGMENT_THE_DRAGON_OF_HEAVEN) {
     ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect();
+    return;
+  }
+  if (gMonEffect.id == LIGHTSWORN_DRAGONLING) {
+    ActivateLIGHTSWORN_DRAGONLINGEffect();
+    return;
+  }
+  if (gMonEffect.id == LUMINA_LIGHTSWORN_SUMMONER) {
+    ActivateLUMINA_LIGHTSWORN_SUMMONEREffect();
+    return;
+  }
+  if (gMonEffect.id == LUMINA_TWILIGHTSWORN_SHAMAN) {
+    ActivateLUMINA_TWILIGHTSWORN_SHAMANEffect();
+    return;
+  }
+  if (gMonEffect.id == LYLA_LIGHTSWORN_SORCERESS) {
+    ActivateLYLA_LIGHTSWORN_SORCERESSEffect();
+    return;
+  }
+  if (gMonEffect.id == LYLA_TWILIGHTSWORN_ENCHANTRESS) {
+    ActivateLYLA_TWILIGHTSWORN_ENCHANTRESSEffect();
+    return;
+  }
+  if (gMonEffect.id == MICHAEL_THE_ARCH_LIGHTSWORN) {
+    ActivateMICHAEL_THE_ARCH_LIGHTSWORNEffect();
+    return;
+  }
+  if (gMonEffect.id == MINERVA_LIGHTSWORN_MAIDEN) {
+    ActivateMINERVA_LIGHTSWORN_MAIDENEffect();
+    return;
+  }
+  if (gMonEffect.id == MINERVA_THE_ATHENIAN_LIGHTSWORN) {
+    ActivateMINERVA_THE_ATHENIAN_LIGHTSWORNEffect();
+    return;
+  }
+  if (gMonEffect.id == MINERVA_THE_EXHALTED_LIGHTSWORN) {
+    ActivateMINERVA_THE_EXHALTED_LIGHTSWORNEffect();
     return;
   }
 }

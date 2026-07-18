@@ -377,8 +377,17 @@
     case LEV_SHADDOLL_FUSION:
       EffectLEV_SHADDOLL_FUSION();
       return;
+    case LIGHTSWORN_SABRE:
+      EffectLIGHTSWORN_SABRE();
+      return;
+    case LIGHTSWORN_SANCTUARY:
+      EffectLIGHTSWORN_SANCTUARY();
+      return;
     case LIGHT_BARRIER:
       EffectLIGHT_BARRIER();
+      return;
+    case LIGHT_FORCE:
+      EffectLIGHT_FORCE();
       return;
     case LIMITER_REMOVAL:
       EffectLimiterRemoval();
@@ -391,6 +400,9 @@
       return;
     case MAGICAL_STONE_EXCAVATION:
       EffectMAGICAL_STONE_EXCAVATION();
+      return;
+    case MARCH_OF_THE_DARK_BRIGADE:
+      EffectMARCH_OF_THE_DARK_BRIGADE();
       return;
     case MASK_OF_DISPEL:
       EffectMASK_OF_DISPEL();
@@ -406,6 +418,9 @@
       return;
     case METEOR_OF_DESTRUCTION:
       EffectMeteorOfDestruction();
+      return;
+    case MIRACLE_CONTACT:
+      EffectMIRACLE_CONTACT();
       return;
     case MIRACLE_FUSION:
       EffectMiracleFusion();

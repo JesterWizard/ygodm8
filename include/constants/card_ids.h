@@ -1718,11 +1718,31 @@
 #define JUDGMENT_THE_DRAGON_OF_HEAVEN            0x06B2
 #define KNIGHT_OF_PENTACLES                      0x06B3
 #define LIGHT_BARRIER                            0x06B4
+#define LIGHT_FORCE                              0x06B5
+#define LIGHT_OF_DESTRUCTION                     0x06B6
+#define LIGHT_SPIRAL                             0x06B7
+#define LIGHTSWORN_AEGIS                         0x06B8
+#define LIGHTSWORN_BARRIER                       0x06B9
+#define LIGHTSWORN_DRAGONLING                    0x06BA
+#define LIGHTSWORN_JUDGEMENT                     0x06BB
+#define LIGHTSWORN_SABRE                         0x06BC
+#define LIGHTSWORN_SANCTUARY                     0x06BD
+#define LUMINA_LIGHTSWORN_SUMMONER               0x06BE
+#define LUMINA_TWILIGHTSWORN_SHAMAN              0x06BF
+#define LYLA_LIGHTSWORN_SORCERESS                0x06C0
+#define LYLA_TWILIGHTSWORN_ENCHANTRESS           0x06C1
+#define MARCH_OF_THE_DARK_BRIGADE                0x06C2
+#define MICHAEL_THE_ARCH_LIGHTSWORN              0x06C3
+#define MINERVA_LIGHTSWORN_MAIDEN                0x06C4
+#define MINERVA_THE_ATHENIAN_LIGHTSWORN          0x06C5
+#define MINERVA_THE_EXHALTED_LIGHTSWORN          0x06C6
+#define MIRACLE_CONTACT                          0x06C7
+#define MOON_TOKEN                               0x06C8
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x06B5
-#define NUM_CUSTOM_CARDS                        0x0394
+#define NUM_TOTAL_CARDS                         0x06C9
+#define NUM_CUSTOM_CARDS                        0x03A8
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

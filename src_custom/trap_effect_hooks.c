@@ -500,3 +500,13 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire GLADIATOR_NAUMACHIA in trap dispatcher */
 /* GLORIOUS_ILLUSION trap effect */
   /* TODO: wire GLORIOUS_ILLUSION in trap dispatcher */
+/* LIGHT_OF_DESTRUCTION trap effect */
+  /* TODO: wire LIGHT_OF_DESTRUCTION in trap dispatcher */
+/* LIGHT_SPIRAL trap effect */
+  /* TODO: wire LIGHT_SPIRAL in trap dispatcher */
+/* LIGHTSWORN_AEGIS trap effect */
+  /* TODO: wire LIGHTSWORN_AEGIS in trap dispatcher */
+/* LIGHTSWORN_BARRIER trap effect */
+  /* TODO: wire LIGHTSWORN_BARRIER in trap dispatcher */
+/* LIGHTSWORN_JUDGEMENT trap effect */
+  /* TODO: wire LIGHTSWORN_JUDGEMENT in trap dispatcher */

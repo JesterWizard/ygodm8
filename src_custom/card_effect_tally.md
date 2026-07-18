@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `848` effects
+- `867` effects
 
 ## Tally
 
@@ -829,6 +829,25 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Judgment The Dragon Of Heaven` | `src_custom/activated_effects/judgment_the_dragon_of_heaven.c` |
 | `permanent_effects` | `Knight Of Pentacles` | `src_custom/permanent_effects/knight_of_pentacles.c` |
 | `spell_effects` | `Light Barrier` | `src_custom/spell_effects/light_barrier.c` |
+| `spell_effects` | `Light Force` | `src_custom/spell_effects/light_force.c` |
+| `trap_effects` | `Light Of Destruction` | `src_custom/trap_effects/light_of_destruction.c` |
+| `trap_effects` | `Light Spiral` | `src_custom/trap_effects/light_spiral.c` |
+| `trap_effects` | `Lightsworn Aegis` | `src_custom/trap_effects/lightsworn_aegis.c` |
+| `trap_effects` | `Lightsworn Barrier` | `src_custom/trap_effects/lightsworn_barrier.c` |
+| `activated_effects` | `Lightsworn Dragonling` | `src_custom/activated_effects/lightsworn_dragonling.c` |
+| `trap_effects` | `Lightsworn Judgement` | `src_custom/trap_effects/lightsworn_judgement.c` |
+| `spell_effects` | `Lightsworn Sabre` | `src_custom/spell_effects/lightsworn_sabre.c` |
+| `spell_effects` | `Lightsworn Sanctuary` | `src_custom/spell_effects/lightsworn_sanctuary.c` |
+| `activated_effects` | `Lumina Lightsworn Summoner` | `src_custom/activated_effects/lumina_lightsworn_summoner.c` |
+| `activated_effects` | `Lumina Twilightsworn Shaman` | `src_custom/activated_effects/lumina_twilightsworn_shaman.c` |
+| `activated_effects` | `Lyla Lightsworn Sorceress` | `src_custom/activated_effects/lyla_lightsworn_sorceress.c` |
+| `activated_effects` | `Lyla Twilightsworn Enchantress` | `src_custom/activated_effects/lyla_twilightsworn_enchantress.c` |
+| `spell_effects` | `March Of The Dark Brigade` | `src_custom/spell_effects/march_of_the_dark_brigade.c` |
+| `activated_effects` | `Michael The Arch Lightsworn` | `src_custom/activated_effects/michael_the_arch_lightsworn.c` |
+| `activated_effects` | `Minerva Lightsworn Maiden` | `src_custom/activated_effects/minerva_lightsworn_maiden.c` |
+| `activated_effects` | `Minerva The Athenian Lightsworn` | `src_custom/activated_effects/minerva_the_athenian_lightsworn.c` |
+| `activated_effects` | `Minerva The Exhalted Lightsworn` | `src_custom/activated_effects/minerva_the_exhalted_lightsworn.c` |
+| `spell_effects` | `Miracle Contact` | `src_custom/spell_effects/miracle_contact.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|
