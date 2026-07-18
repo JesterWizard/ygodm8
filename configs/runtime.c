@@ -80,7 +80,7 @@ const RuntimeConfig gRuntimeConfigRom __attribute__((section(".runtime_config"))
     .enable_title_screen_video = TRUE,
     .enable_repeatable_duel_icon = TRUE,
     .enable_card_detail_navigation = TRUE,
-    .enable_manifest_map_overrides = FALSE,
+    .enable_manifest_map_overrides = TRUE,
     .enable_extra_deck = TRUE,
     .card_description_font = CARD_DESC_FONT_EMERALD_NARROW,
     .enable_millennium_item_tracker = TRUE,

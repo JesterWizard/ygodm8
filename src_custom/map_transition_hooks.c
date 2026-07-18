@@ -59,6 +59,7 @@ void sub_804EF84__Replacement(u16 id, u16 state, u16 connection) {
     return;
   }
   gCustomMapOverridePending = FALSE;
+  gCustomMapOverrideId = 0;
   gOverworld.map.unk8 = id;
   gOverworld.map.unkA = state;
   gOverworld.map.unkC = connection;
@@ -70,11 +71,18 @@ void sub_80523EC__Replacement(u16 id, u16 state, u16 connection) {
   struct DebugSaveAnywhereData *data;
 
   /* Check manifest connection overrides before using the ROM-sourced target.
-   * This allows the manifest to redirect vanilla edge and script transitions. */
+   * This allows the manifest to redirect vanilla edge and script transitions.
+   * While a custom map is loaded, map.id is the safe dummy (0) — look up by
+   * gCustomMapOverrideId so exits like graveyard→11 still resolve. */
   if (gRuntimeConfig.enable_manifest_map_overrides) {
-    u8 override = gManifestConnectionOverrides[gOverworld.map.id][gOverworld.map.unk6];
-    if (override != 0xFF) {
-      id = override;
+    u16 srcMap = gOverworld.map.id;
+    u8 override;
+    if (gCustomMapOverrideId >= CUSTOM_MAP_BASE)
+      srcMap = gCustomMapOverrideId;
+    if (srcMap < 62 && gOverworld.map.unk6 < 5) {
+      override = gManifestConnectionOverrides[srcMap][gOverworld.map.unk6];
+      if (override != 0xFF)
+        id = override;
     }
   }
 

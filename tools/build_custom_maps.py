@@ -20,6 +20,14 @@ from PIL import Image
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASEROM = ROOT / "baserom.gba"
+ROM_BASE = 0x08000000
+# Vanilla gMapCollisions[] pointer table (u32[61]) in baserom.
+COLLISION_PTR_TABLE = 0x08E11DC4
+# Vanilla gMapData[] pointer table (u32[61]) — MapData* per map.
+MAPDATA_PTR_TABLE = 0x08E19274
+VANILLA_MAP_COUNT = 61
+CUSTOM_MAP_BASE = 61
+CONNECTION_SLOTS = 5
 
 # Python string constant used as literal text in generated C files
 # Must be referenced via {APPEND_RODATA} inside f-strings else it stays literal.
@@ -38,9 +46,11 @@ TILEMAP_W = 32
 TILEMAP_H = 32
 COLLISION_W = 120
 COLLISION_H = 80
+SPAWN_NO_OVERRIDE = 0xFF
 
-# 8bpp: each tile = 64 bytes (1 byte/pixel).  cbb0=256 tiles, cbb0+cbb1=512.
-MAX_UNIQUE_TILES = 512
+# 8bpp: 64 bytes/tile. Vanilla LoadVRAM uploads cbb0+cbb1+cbb2 = 768 tiles.
+# (Old 512 = cbb0+cbb1 only was a custom-pipeline underestimate.)
+MAX_UNIQUE_TILES = 768
 TILE_BYTES_8BPP = 64
 PALETTE_COUNT = 240  # 240 colors at palette offset 0x10 (slots 16-255)
 PALETTE_OFFSET = 16  # font occupies slots 0-15
@@ -66,25 +76,46 @@ def _music_value(name: str) -> int:
         return 1
 
 
+def _read_ptr_table(rom: bytes, addr: int, count: int) -> list[int]:
+    import struct
+    off = addr - ROM_BASE
+    return [struct.unpack_from("<I", rom, off + i * 4)[0] for i in range(count)]
+
+
 def _read_base_collision(mid: int) -> list[int] | None:
     """Read the original GBA collision grid for map `mid` from baserom.gba.
 
-    Tries V1/V2 offsets; returns None on failure.
+    Uses the vanilla gMapCollisions[] pointer table (same as regenerate_manifest.py).
     """
     import struct
-    # Map collision data offsets into baserom.gba
-    V1_OFFSET = 0x3BC7E8
-    V2_OFFSET = 0x398D10
-    for base in (V1_OFFSET, V2_OFFSET):
-        offset = base + mid * COLLISION_W * COLLISION_H * 2
-        try:
-            with open(BASEROM, "rb") as f:
-                f.seek(offset)
-                raw = f.read(COLLISION_W * COLLISION_H * 2)
-            return list(struct.unpack_from("<" + "H" * (len(raw) // 2), raw))
-        except Exception:
-            continue
-    return None
+    if mid < 0 or mid >= VANILLA_MAP_COUNT or not BASEROM.exists():
+        return None
+    try:
+        rom = BASEROM.read_bytes()
+        ptrs = _read_ptr_table(rom, COLLISION_PTR_TABLE, VANILLA_MAP_COUNT)
+        off = ptrs[mid] - ROM_BASE
+        return list(struct.unpack_from("<" + "H" * (COLLISION_W * COLLISION_H), rom, off))
+    except Exception:
+        return None
+
+
+def _read_rom_connection_targets(mid: int) -> list[int] | None:
+    """Return 5 target map IDs for vanilla connection slots, or None."""
+    import struct
+    if mid < 0 or mid >= VANILLA_MAP_COUNT or not BASEROM.exists():
+        return None
+    try:
+        rom = BASEROM.read_bytes()
+        mapdata_ptrs = _read_ptr_table(rom, MAPDATA_PTR_TABLE, VANILLA_MAP_COUNT)
+        state0_ptr = struct.unpack_from("<I", rom, mapdata_ptrs[mid] - ROM_BASE)[0]
+        base = state0_ptr - ROM_BASE
+        targets = []
+        for i in range(CONNECTION_SLOTS):
+            tgt_id, _tgt_conn = struct.unpack_from("<BB", rom, base + 0x168 + i * 8 + 4)
+            targets.append(tgt_id)
+        return targets
+    except Exception:
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -94,16 +125,19 @@ def _read_base_collision(mid: int) -> list[int] | None:
 def lz77_compress(data: bytes) -> bytes:
     """Simple LZ77 compression (GBA-compatible format).
 
-    ponytail: not optimal — fine for tilesets under 32 KB.
+    Header: 0x10, then 24-bit uncompressed size little-endian.
+    ponytail: not optimal — fine for tilesets under 48 KB.
     """
     if not data:
         return b'\x10\x00\x00\x00'
 
     result = bytearray()
     result.append(0x10)
-    result.append((len(data) >> 16) & 0xFF)
-    result.append((len(data) >> 8) & 0xFF)
+    # GBA LZ77 size is little-endian (was big-endian — crashed when
+    # size & 0xFF != 0, e.g. 745*64=0xBA40 → decompressor wrote 0x40BA00).
     result.append(len(data) & 0xFF)
+    result.append((len(data) >> 8) & 0xFF)
+    result.append((len(data) >> 16) & 0xFF)
 
     pos = 0
     n = len(data)
@@ -135,8 +169,10 @@ def lz77_compress(data: bytes) -> bytes:
             if best_len >= 3:
                 flags |= (0x80 >> bit)
                 enc = min(best_len - 3, 15)
-                result.append(((best_disp >> 8) & 0x0F) | (enc << 4))
-                result.append(best_disp & 0xFF)
+                # BIOS LZ77: Disp = stored + 1 (GBATEK). Store distance-1.
+                store = best_disp - 1
+                result.append(((store >> 8) & 0x0F) | (enc << 4))
+                result.append(store & 0xFF)
                 pos += best_len
             else:
                 result.append(data[pos])
@@ -172,23 +208,36 @@ def split_tilesheet(png: Image.Image) -> list[list[list[int]]]:
     return tiles
 
 
-def tile_to_bytes_8bpp(tile: list[list[int]]) -> bytes:
+def tile_to_bytes_8bpp(tile: list[list[int]],
+                       *,
+                       zero_is_transparent: bool = False) -> bytes:
     """Convert an 8x8 pixel matrix to 64 bytes of 8bpp tile data.
 
-    Pixel 0 stays 0 (transparent backdrop in GBA 8bpp BG maps).
-    Non-zero pixels get +16 to skip over the font palette (slots 0-15).
+    Map palette is loaded at gPaletteBuffer+0x10, so PNG indices are stored
+    as (index + 16). Index 0 in the PNG is often opaque black — only keep it
+    as GBA 0 (transparent) when zero_is_transparent (roof/high layer).
     """
     buf = bytearray(64)
     for row in range(TILE_H):
         for col in range(TILE_W):
             p = tile[row][col]
-            buf[row * 8 + col] = p + PALETTE_OFFSET if p != 0 else 0
+            if not isinstance(p, int):
+                raise TypeError(
+                    "indexed (palette) PNG required; got RGB/RGBA pixel "
+                    f"{type(p).__name__}. Convert the layer to mode P, 256x256.")
+            if p == 0 and zero_is_transparent:
+                buf[row * 8 + col] = 0
+            else:
+                buf[row * 8 + col] = p + PALETTE_OFFSET
     return bytes(buf)
 
 
-def encode_tiles_8bpp(tiles: list[list[list[int]]]) -> list[bytes]:
-    """Convert tiles to 8bpp byte arrays (64 bytes per tile, +16 pixel offset)."""
-    return [tile_to_bytes_8bpp(t) for t in tiles]
+def encode_tiles_8bpp(tiles: list[list[list[int]]],
+                      *,
+                      zero_is_transparent: bool = False) -> list[bytes]:
+    """Convert tiles to 8bpp byte arrays (+16 palette offset)."""
+    return [tile_to_bytes_8bpp(t, zero_is_transparent=zero_is_transparent)
+            for t in tiles]
 
 
 def tiles_to_tileset(tiles: list[bytes],
@@ -216,11 +265,11 @@ def tiles_to_tileset(tiles: list[bytes],
             seen[tile_bytes] = len(seen)  # placeholder
             unique_order.append(tile_bytes)
 
-    # Build final ordering: zero tile first, then rest
-    final: list[bytes] = []
+    # Always reserve index 0 as the all-zero (transparent) tile. Roof clear
+    # and empty sbb entries point at 0; without this, opaque tile 0 covers BG2.
+    final: list[bytes] = [zero_bytes]
     if zero_bytes in unique_order:
         unique_order.remove(zero_bytes)
-        final.append(zero_bytes)
     final.extend(unique_order)
 
     if len(final) > MAX_UNIQUE_TILES:
@@ -256,10 +305,13 @@ def _reduce_tiles(ground_bytes: list[bytes],
             seen_set.add(tb)
             uniq_order.append(tb)
 
-    need_reduction = len(uniq_order) > max_tiles
+    # Reserve one slot for the mandatory transparent tile at index 0.
+    has_zero = zero_bytes in seen_set
+    budget = max_tiles if has_zero else max_tiles - 1
+    need_reduction = len(uniq_order) > budget
     if need_reduction:
         seen = list(uniq_order)
-        while len(seen) > max_tiles:
+        while len(seen) > budget:
             rarest = min(seen, key=lambda tb: freq[tb])
             seen.remove(rarest)
             best_idx = 0
@@ -276,10 +328,10 @@ def _reduce_tiles(ground_bytes: list[bytes],
     else:
         final = list(uniq_order)
 
-    # Ensure zero tile at index 0
+    # Transparent tile always at index 0 (insert if ground never used it).
     if zero_bytes in final:
         final.remove(zero_bytes)
-        final.insert(0, zero_bytes)
+    final.insert(0, zero_bytes)
 
     order = {tb: i for i, tb in enumerate(final)}
     tileset_data = b"".join(final)
@@ -550,16 +602,14 @@ static const u8 sCustomTileTypes[]{APPEND_RODATA_ATTR} = {{
     conn_lines.append("};")
     connections_str = "\n".join(conn_lines)
 
-    # Generate map data table (music only)
-    mapdata_lines = [f"// Map data for {map_count} custom maps"]
-    mapdata_lines += [
-        f"static const u16 sCustomMapData[{map_count}] {APPEND_RODATA_ATTR} = {{"]
+    # Music IDs parallel to sCustomTilesets[] (index = mapId - CUSTOM_MAP_BASE)
+    mapdata_lines = [
+        f"// Music IDs for {map_count} custom maps",
+        f"static const u16 sCustomMapMusic[{map_count}] {APPEND_RODATA_ATTR} = {{",
+    ]
     for e in entries:
-        mid = e.get("id", 0)
         music = _music_value(e.get("music", "MUSIC_NONE"))
-        flag_index = e.get("flag_index", -1)
-        mapdata_lines.append(
-            f"  {{ {mid}, {music}, {flag_index} }},")
+        mapdata_lines.append(f"  {music}, /* {e.get('name', '?')} */")
     mapdata_lines.append("};")
     mapdata_str = "\n".join(mapdata_lines)
 
@@ -599,25 +649,115 @@ def main() -> int:
         map_dir = asset_base / name
         ground_png = asset_base / f"map_{name}_ground.png"
         roof_png = asset_base / f"map_{name}_roof.png"
+        map_dir_ground = map_dir / "ground.png"
+        map_dir_roof = map_dir / "roof.png"
         tiles_png = map_dir / "tiles.png"
         ground_csv = map_dir / "ground.csv"
         roof_csv = None
         tiles = None
 
-        # Determine roof presence from manifest (not from file existence)
-        has_roof_manifest = bool(entry.get("images", {}).get("roof"))
-        entry["_has_roof"] = has_roof_manifest and roof_png.exists()
+        def _usable_layer_png(path: pathlib.Path) -> bool:
+            if not path.exists():
+                return False
+            im = Image.open(path)
+            return im.mode == "P" and im.size == (256, 256)
 
-        # Try tiles.png + CSV mode first (exact ground tiles)
-        if tiles_png.exists() and ground_csv.exists():
+        # Manifest paths win when they are real indexed map sheets.
+        imgs = entry.get("images") or {}
+        for key in ("ground", "roof"):
+            raw = imgs.get(key)
+            if not raw:
+                continue
+            p = ROOT / raw
+            if _usable_layer_png(p):
+                if key == "ground":
+                    ground_png = p
+                else:
+                    roof_png = p
+            elif p.exists():
+                im = Image.open(p)
+                print(f"  warning: ignoring images.{key}={raw} "
+                      f"(need indexed 256x256 PNG, got {im.mode} {im.size})")
+
+        if _usable_layer_png(map_dir_ground):
+            ground_png = map_dir_ground
+        if _usable_layer_png(map_dir_roof):
+            roof_png = map_dir_roof
+        elif map_dir_roof.exists():
+            print(f"  warning: ignoring {map_dir_roof.relative_to(ROOT)} "
+                  f"(need indexed 256x256 PNG)")
+
+        # Roof only if we have a usable indexed sheet.
+        has_roof_manifest = bool(imgs.get("roof"))
+        entry["_has_roof"] = has_roof_manifest and _usable_layer_png(roof_png)
+
+        # Prefer ground.png hybrid when present: tiles.png+csv can drift.
+        if _usable_layer_png(ground_png) and (
+                ground_png == map_dir_ground
+                or not (tiles_png.exists() and ground_csv.exists())):
+            print(f"  Hybrid: using {ground_png.relative_to(ROOT)}")
+            ground_img = Image.open(ground_png)
+            ground_tiles_raw = split_tilesheet(ground_img)
+            palette = extract_palette(ground_img)
+
+            ground_bytes = encode_tiles_8bpp(ground_tiles_raw)
+            n_unique = len(set(ground_bytes))
+            if n_unique <= MAX_UNIQUE_TILES:
+                tileset_data, ground_indices = tiles_to_tileset(ground_bytes)
+                print(f"  Ground: {len(ground_tiles_raw)} tiles -> "
+                      f"{len(tileset_data) // TILE_BYTES_8BPP} unique "
+                      f"(exact, max {MAX_UNIQUE_TILES})")
+            else:
+                tileset_data, ground_indices, _ = _reduce_tiles(
+                    ground_bytes, MAX_UNIQUE_TILES)
+                print(f"  Ground: {len(ground_tiles_raw)} tiles -> "
+                      f"{len(tileset_data) // TILE_BYTES_8BPP} unique "
+                      f"(reduced from {n_unique}, max {MAX_UNIQUE_TILES})")
+
+            ground = [[ground_indices[y * 32 + x] for x in range(32)] for y in range(32)]
+
+            roof = None
+            if entry["_has_roof"]:
+                roof_img = Image.open(roof_png)
+                roof_tiles_raw = split_tilesheet(roof_img)
+                roof_bytes = encode_tiles_8bpp(
+                    roof_tiles_raw, zero_is_transparent=True)
+                # Shared CBB0 tileset (vanilla). If ground+roof exceed the
+                # budget, keep ground exact and drop roof — single-layer
+                # fidelity (Sacred Cards style) beats a lossy dual-layer bake.
+                combined = set(ground_bytes) | set(roof_bytes)
+                if len(combined) > MAX_UNIQUE_TILES:
+                    print(f"  warning: roof skipped — ground+roof need "
+                          f"{len(combined)} unique tiles "
+                          f"(max {MAX_UNIQUE_TILES}); keeping exact ground")
+                    entry["_has_roof"] = False
+                else:
+                    all_bytes = ground_bytes + roof_bytes
+                    tileset_data, remap = tiles_to_tileset(all_bytes)
+                    ground_indices = remap[:len(ground_bytes)]
+                    roof_indices = remap[len(ground_bytes):]
+                    ground = [[ground_indices[y * 32 + x] for x in range(32)]
+                              for y in range(32)]
+                    exact = sum(
+                        1 for tb, idx in zip(roof_bytes, roof_indices)
+                        if tb == tileset_data[idx * TILE_BYTES_8BPP:
+                                             (idx + 1) * TILE_BYTES_8BPP])
+                    print(f"  Roof: {len(roof_tiles_raw)} tiles ({exact} exact) "
+                          f"in shared tileset "
+                          f"({len(tileset_data) // TILE_BYTES_8BPP} unique)")
+                    roof = [roof_indices[i * 32 + j]
+                            for i in range(32) for j in range(32)]
+                    roof_grid = [roof[i * 32:(i + 1) * 32] for i in range(32)]
+
+        elif tiles_png.exists() and ground_csv.exists():
             ts_img = Image.open(tiles_png)
             ground_tiles = split_tilesheet(ts_img)
 
             # Dump palette from tiles.png
             palette = extract_palette(ts_img)
 
-            # Encode tiles as 8bpp + dedup
-            tile_bytes = encode_tiles_8bpp(ground_tiles)
+            # Encode tiles as 8bpp + dedup (tilesheet index 0 = transparent)
+            tile_bytes = encode_tiles_8bpp(ground_tiles, zero_is_transparent=True)
             tileset_data, remap = tiles_to_tileset(tile_bytes)
             unique_count = len(tileset_data) // TILE_BYTES_8BPP
             print(f"  Tiles: {len(ground_tiles)} original -> {unique_count} unique (max {MAX_UNIQUE_TILES})")
@@ -640,39 +780,16 @@ def main() -> int:
                 roof_img = Image.open(roof_png)
                 roof_tiles = split_tilesheet(roof_img)
                 # Match roof palette to same palette (roof uses same colors)
-                roof_bytes = encode_tiles_8bpp(roof_tiles)
+                roof_bytes = encode_tiles_8bpp(roof_tiles, zero_is_transparent=True)
                 roof_indices = _match_tiles_to_tileset(roof_bytes, tileset_data)
                 exact = sum(1 for tb, idx in zip(roof_bytes, roof_indices)
                             if tb == tileset_data[idx*TILE_BYTES_8BPP:(idx+1)*TILE_BYTES_8BPP])
                 print(f"  Roof: {len(roof_tiles)} tiles ({exact} exact) matched to tileset")
                 roof = [roof_indices[i * 32 + j] for i in range(32) for j in range(32)]
                 roof_grid = [roof[i * 32:(i + 1) * 32] for i in range(32)]
-
         else:
-            print(f"  Hybrid: using ground.png + roof.png")
-            # Fallback: ground.png -> full-map auto-build
-            ground_img = Image.open(ground_png)
-            ground_tiles_raw = split_tilesheet(ground_img)
-            palette = extract_palette(ground_img)
-
-            ground_bytes = encode_tiles_8bpp(ground_tiles_raw)
-            tileset_data, ground_indices, _ = _reduce_tiles(ground_bytes, MAX_UNIQUE_TILES)
-            unique_count = len(tileset_data) // TILE_BYTES_8BPP
-            print(f"  Ground: {len(ground_tiles_raw)} tiles -> {unique_count} unique (max {MAX_UNIQUE_TILES})")
-
-            ground = [[ground_indices[y * 32 + x] for x in range(32)] for y in range(32)]
-
-            roof = None
-            if entry["_has_roof"]:
-                roof_img = Image.open(roof_png)
-                roof_tiles_raw = split_tilesheet(roof_img)
-                roof_bytes = encode_tiles_8bpp(roof_tiles_raw)
-                roof_indices = _match_tiles_to_tileset(roof_bytes, tileset_data)
-                exact = sum(1 for tb, idx in zip(roof_bytes, roof_indices)
-                            if tb == tileset_data[idx*TILE_BYTES_8BPP:(idx+1)*TILE_BYTES_8BPP])
-                print(f"  Roof: {len(roof_tiles_raw)} tiles ({exact} exact) matched to tileset")
-                roof = [roof_indices[i * 32 + j] for i in range(32) for j in range(32)]
-                roof_grid = [roof[i * 32:(i + 1) * 32] for i in range(32)]
+            print(f"error: {name}: no usable ground.png or tiles.png+ground.csv")
+            return 1
 
         # Build collision from JSON if available, else base collision
         collision_json = map_dir / "collision.json"
@@ -690,8 +807,24 @@ def main() -> int:
                 collision_grid = [[0] * COLLISION_W for _ in range(COLLISION_H)]
                 print(f"  Collision: zero-filled (no base)")
 
+        # Stamp manifest connection exits onto the custom collision grid.
+        flat_coll = [v for row in collision_grid for v in row]
+        for conn in entry.get("connections", []) or []:
+            if "rect" in conn:
+                _stamp_connection_rect(
+                    flat_coll, conn.get("rect", []), conn.get("slot", 0))
+        collision_grid = [
+            flat_coll[i * COLLISION_W:(i + 1) * COLLISION_W]
+            for i in range(COLLISION_H)
+        ]
+
         # Compress tileset
         compressed = lz77_compress(tileset_data)
+        # Guard: LE size header must match (wrong endian → BIOS decompress OOB).
+        hdr_size = compressed[1] | (compressed[2] << 8) | (compressed[3] << 16)
+        if compressed[0] != 0x10 or hdr_size != len(tileset_data):
+            print(f"error: {name} LZ77 header size {hdr_size} != {len(tileset_data)}")
+            return 1
         print(f"  Tileset: {len(tileset_data)} uniq bytes -> {len(compressed)} lz77 bytes")
 
         # Write .inc files
@@ -734,60 +867,41 @@ def main() -> int:
 
 def _fixup_inc_symbols(out_dir: pathlib.Path) -> None:
     """Rename symbols in generated .inc files to match C hook expectations."""
-    fixes = {
-        "manifest_spawn_overrides.inc": [
-            ("sCustomSpawnX", "gManifestSpawnOverrideX"),
-            ("sCustomSpawnY", "gManifestSpawnOverrideY"),
-            ("sCustomSpawnDir", "gManifestSpawnOverrideDir"),
-        ],
-    }
-    for fname, subs in fixes.items():
-        path = out_dir / fname
-        if not path.exists():
-            continue
-        text = path.read_text()
-        for old, new in subs:
-            text = text.replace(old, new)
-        path.write_text(text)
+    # Spawn overrides are emitted with final symbol names already.
 
-    # Connection overrides: must be 62-element u8 array indexed by map ID
+    # Connection overrides: must be map-ID-indexed u8 array (0xFF = use ROM).
     conn_path = out_dir / "manifest_connection_overrides.inc"
+    max_maps = VANILLA_MAP_COUNT + 1
     if conn_path.exists():
         import re
         text = conn_path.read_text()
-        # Build 62x4 u8 array from sCustomConnectionOverrideData
-        # Format: { mid, slot, target, dir }, ...
         entries: list[tuple[int, int, int, int]] = []
         for m in re.finditer(r'\{(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*\d+\s*)\}', text):
             vals = [int(v) for v in re.findall(r'\d+', m.group(1))]
             if len(vals) == 4:
                 entries.append((vals[0], vals[1], vals[2], vals[3]))
-        if entries:
-            max_maps = max(e[0] for e in entries) + 1
-            max_maps = max(max_maps, 62)
-            # Build 62x4 u8 array
-            override_by_map: dict[int, list[list[int]]] = {}
-            for mid, slot, target, _ in entries:
-                if mid not in override_by_map:
-                    override_by_map[mid] = [[-1, -1, -1, -1], [-1, -1, -1, -1],
-                                            [-1, -1, -1, -1], [-1, -1, -1, -1]]
-                if slot < 4:
-                    override_by_map[mid][slot] = [mid, slot, target, 0]
-            lines = [
-                "// Auto-generated connection overrides (62-element map-ID-indexed array). Do not edit.",
-                f"#define CUSTOM_CONNECTION_OVERRIDE_COUNT {len(entries)}",
-                "",
-                "static const u8 gManifestConnectionOverrides[62][4] __attribute__((section(\".append_rodata\"), aligned(4))) = {",
-            ]
-            for mid in range(max_maps):
-                if mid in override_by_map:
-                    slot_data = override_by_map[mid]
-                    vals = ", ".join(str(s[2]) if s[2] != -1 else "0xFF" for s in slot_data)
-                    lines.append(f"  {{ {vals} }},")
-                else:
-                    lines.append("  { 0xFF, 0xFF, 0xFF, 0xFF },")
-            lines.append("};")
-            conn_path.write_text("\n".join(lines) + "\n")
+        # Always emit the runtime table (even when empty).
+        override_by_map: dict[int, list[int]] = {}
+        for mid, slot, target, _ in entries:
+            if mid not in override_by_map:
+                override_by_map[mid] = [0xFF] * CONNECTION_SLOTS
+            if 0 <= slot < CONNECTION_SLOTS:
+                override_by_map[mid][slot] = target
+        lines = [
+            "// Auto-generated connection overrides (map-ID-indexed). Do not edit.",
+            f"#define CUSTOM_CONNECTION_OVERRIDE_COUNT {len(entries)}",
+            "",
+            f"static const u8 gManifestConnectionOverrides[{max_maps}][{CONNECTION_SLOTS}] "
+            f"{APPEND_RODATA_ATTR} = {{",
+        ]
+        for mid in range(max_maps):
+            slots = override_by_map.get(mid, [0xFF] * CONNECTION_SLOTS)
+            vals = ", ".join(
+                "0xFF" if s == 0xFF else str(s) for s in slots
+            )
+            lines.append(f"  {{ {vals} }},")
+        lines.append("};")
+        conn_path.write_text("\n".join(lines) + "\n")
 
     # Collision overrides: generate sManifestCollisionOverrides pointer array
     coll_path = out_dir / "manifest_collision_overrides.inc"
@@ -799,16 +913,20 @@ def _fixup_inc_symbols(out_dir: pathlib.Path) -> None:
             for m in re.finditer(r'sCustomCollisionOverrideMaps\[\]\s*=\s*\{([^}]+)\}', text, re.DOTALL):
                 vals = re.findall(r'(\d+)', m.group(1))
                 map_ids = [int(v) for v in vals]
-            max_maps = max(map_ids) + 1 if map_ids else 62
-            max_maps = max(max_maps, 62)
+            max_coll_maps = max(map_ids) + 1 if map_ids else max_maps
+            max_coll_maps = max(max_coll_maps, max_maps)
             ptrs: list[str] = []
-            for mid in range(max_maps):
+            for mid in range(max_coll_maps):
                 if mid in map_ids:
                     idx = map_ids.index(mid)
                     ptrs.append(f"  (u16*)&sCustomCollisionData[{idx}],")
                 else:
                     ptrs.append("  NULL,")
-            ptr_block = f"\nstatic u16* const sManifestCollisionOverrides[{max_maps}] __attribute__((section(\".append_rodata\"), aligned(4))) = {{\n" + "\n".join(ptrs) + "\n};\n"
+            ptr_block = (
+                f"\nstatic u16* const sManifestCollisionOverrides[{max_coll_maps}] "
+                f"{APPEND_RODATA_ATTR} = {{\n"
+                + "\n".join(ptrs) + "\n};\n"
+            )
             text += ptr_block
             coll_path.write_text(text)
 
@@ -817,22 +935,80 @@ def _fixup_inc_symbols(out_dir: pathlib.Path) -> None:
 # Collision override generation
 # ---------------------------------------------------------------------------
 
+def _stamp_connection_rect(grid: list[int], rect: list[int], slot: int) -> None:
+    """Stamp a map-connection trigger onto a flat 120×80 collision grid.
+
+    Bits (from code_8051958.c):
+      0x2000 = connected map, 0x0700 = slot << 8.
+    Connection tiles must not keep COLLISION_IMPASSABLE (1) or IsImpassable
+    treats them as walls before the transition check runs.
+    """
+    if not rect or len(rect) < 4:
+        return
+    if slot < 0 or slot >= CONNECTION_SLOTS:
+        return
+    rx, ry, rw, rh = rect[0], rect[1], rect[2], rect[3]
+    if rw <= 0 or rh <= 0:
+        return
+    if rx < 0 or ry < 0 or rx + rw > COLLISION_W or ry + rh > COLLISION_H:
+        sys.exit(
+            f"error: connection rect ({rx},{ry},{rw}x{rh}) slot {slot} exceeds "
+            f"collision grid ({COLLISION_W}x{COLLISION_H})")
+    conn_val = 0x2000 | (slot << 8)
+    for cy in range(ry, ry + rh):
+        for cx in range(rx, rx + rw):
+            idx = cy * COLLISION_W + cx
+            # Keep elevation/passable high bits (0xF000 except conn/world), drop
+            # impassable low bit and old slot field.
+            prev = grid[idx]
+            grid[idx] = (prev & 0xF000 & ~0x6000) | conn_val
+
+
+def _connection_needs_collision_stamp(
+    mid: int, conn: dict, entries: list
+) -> bool:
+    """True when this connection rect must be written into collision data."""
+    if "rect" not in conn:
+        return False
+    target_spec = conn.get("target", -1)
+    if target_spec == "WORLD_MAP":
+        return False
+    target = _resolve_target_id(target_spec, entries)
+    if target < 0:
+        return False
+    if target >= CUSTOM_MAP_BASE:
+        return True
+    rom_targets = _read_rom_connection_targets(mid)
+    if rom_targets is None:
+        return True
+    slot = conn.get("slot", 0)
+    if slot < 0 or slot >= len(rom_targets):
+        return True
+    return target != rom_targets[slot]
+
+
 def generate_manifest_collision_overrides(manifest: list, out_dir: pathlib.Path) -> None:
     """Generate collision override include files for maps with custom collision.
 
-    Reads baserom collision, applies blocked rects, then stamps connection
-    rect bits.  Produces manifest_collision_overrides.inc with raw u16 grids.
+    Starts from baserom collision (via gMapCollisions[]), applies blocked rects,
+    then stamps connection rects that target custom maps (or otherwise differ
+    from ROM). Only emits maps whose final grid differs from ROM.
     """
     entries = manifest if isinstance(manifest, list) else manifest.get("entries", [])
     overrides = []
 
     for entry in entries:
         mid = entry.get("id", -1)
-        if mid < 0:
+        if mid < 0 or mid >= VANILLA_MAP_COUNT:
             continue
-        rects = entry.get("collision", {})
-        conn_list = entry.get("connections", [])
-        if not rects.get("blocked") and not conn_list:
+        rects = entry.get("collision", {}) or {}
+        blocked = rects.get("blocked") or []
+        conn_list = entry.get("connections", []) or []
+        stamp_conns = [
+            c for c in conn_list
+            if _connection_needs_collision_stamp(mid, c, entries)
+        ]
+        if not blocked and not rects.get("data") and not stamp_conns:
             continue
 
         base = _read_base_collision(mid)
@@ -840,8 +1016,21 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: pathlib.Path)
             base = [0] * (COLLISION_W * COLLISION_H)
         grid = list(base)
 
+        # Optional full hex rows (lossless). Prefer over blocked when present.
+        data_rows = rects.get("data")
+        if data_rows:
+            flat: list[int] = []
+            for row in data_rows:
+                for i in range(0, len(row), 4):
+                    flat.append(int(row[i:i + 4], 16))
+            if len(flat) == COLLISION_W * COLLISION_H:
+                grid = flat
+            else:
+                print(f"warning: map {mid} collision.data length {len(flat)}, "
+                      f"expected {COLLISION_W * COLLISION_H}; ignoring")
+
         # Stamp blocked rectangles — can be [{x,y,w,h},...] or [[x,y,w,h],...]
-        for br in rects.get("blocked", []):
+        for br in blocked:
             if isinstance(br, dict):
                 x, y, w, h = br["x"], br["y"], br["width"], br["height"]
             else:
@@ -853,34 +1042,23 @@ def generate_manifest_collision_overrides(manifest: list, out_dir: pathlib.Path)
                         if grid[idx] < 4096:
                             grid[idx] = 4096
 
-        # Stamp connection rect bits
-        for conn in conn_list:
-            slot = conn.get("slot", 0)
-            rect = conn.get("rect", [0, 0, 0, 0])
-            target_map = conn.get("target", -1)
-            if isinstance(target_map, str):
-                target_map = _resolve_target_id(target_map, entries)
-            direction = conn.get("direction", DIRECTION_VALUES.get("DIRECTION_DOWN", 0))
+        # Custom / redirected exits (e.g. map 11 → graveyard) after blocked.
+        for conn in stamp_conns:
+            _stamp_connection_rect(
+                grid, conn.get("rect", []), conn.get("slot", 0))
 
-            rx, ry, rw, rh = rect
-            if rx < 0 or rx + rw > COLLISION_W or ry < 0 or ry + rh > COLLISION_H:
-                sys.exit(
-                    f"error: connection rect ({rx},{ry},{rw}x{rh}) for map {mid}, "
-                    f"slot {slot} ({conn.get('name', '?')}) exceeds "
-                    f"collision grid ({COLLISION_W}x{COLLISION_H})")
-            for cy in range(ry, ry + rh):
-                for cx in range(rx, rx + rw):
-                    idx = cy * COLLISION_W + cx
-                    if 0 <= idx < len(grid):
-                        # Stamp: slot bits in upper nibble, connection trigger (0x2000)
-                        grid[idx] = (grid[idx] & 0xF800) | 0x2000 | slot
-
+        if grid == base:
+            continue
         overrides.append((mid, grid))
 
     if not overrides:
         (out_dir / "manifest_collision_overrides.inc").write_text(
             "// No collision overrides\n"
-            "#define CUSTOM_COLLISION_OVERRIDE_COUNT 0\n")
+            "#define CUSTOM_COLLISION_OVERRIDE_COUNT 0\n"
+            f"\nstatic u16* const sManifestCollisionOverrides[{VANILLA_MAP_COUNT + 1}] "
+            f"{APPEND_RODATA_ATTR} = {{\n"
+            + "".join("  NULL,\n" for _ in range(VANILLA_MAP_COUNT + 1))
+            + "};\n")
         return
 
     lines = [
@@ -949,11 +1127,9 @@ def generate_manifest_map_sources(manifest: list, out_dir: pathlib.Path) -> None
 
 
 def generate_manifest_connection_overrides(manifest: list, out_dir: pathlib.Path) -> None:
-    """Generate connection override include with target map & direction per slot.
+    """Generate connection override include with target map per slot.
 
-    For source maps that direct a given slot to a non-standard target, this
-    table provides the override so the game's map-transition code sends the
-    player to the custom target.
+    Only emits slots whose target differs from the ROM (custom redirects).
     """
     entries = manifest if isinstance(manifest, list) else manifest.get("entries", [])
     overrides = []
@@ -962,12 +1138,24 @@ def generate_manifest_connection_overrides(manifest: list, out_dir: pathlib.Path
         mid = entry.get("id", -1)
         if mid < 0:
             continue
+        rom_targets = _read_rom_connection_targets(mid)
         for conn in entry.get("connections", []):
             slot = conn.get("slot", 0)
+            if slot < 0 or slot >= CONNECTION_SLOTS:
+                continue
             target_spec = conn.get("target", -1)
+            # World-map exits are collision-flag driven (0x4000); MapData
+            # "target" holds a region id, not a map id. Never override those.
+            if target_spec == "WORLD_MAP":
+                continue
             target_map = _resolve_target_id(target_spec, entries)
+            if target_map < 0:
+                continue
+            # Skip when identical to ROM (vanilla maps only — custom maps have no ROM row).
+            if rom_targets is not None and slot < len(rom_targets):
+                if target_map == rom_targets[slot]:
+                    continue
             direction = conn.get("direction", DIRECTION_VALUES.get("DIRECTION_DOWN", 0))
-
             overrides.append((mid, slot, target_map, direction))
 
     if not overrides:
@@ -1033,90 +1221,82 @@ def _extract_location_int(name: str) -> int:
 # Spawn override generation
 # ---------------------------------------------------------------------------
 
-def _read_base_spawn(mid: int) -> list[tuple[int, int, int]]:
-    """Read the original GBA connection spawn data for map `mid`.
-
-    Returns list of (x, y, direction) for each slot 0-3 (empty slot → (0,0,0)).
-    """
-    import struct
-    V1_OFFSET = 0x3C2020
-    V2_OFFSET = 0x39DB60
-    for base in (V1_OFFSET, V2_OFFSET):
-        offset = base + mid * 4 * 4
-        try:
-            with open(BASEROM, "rb") as f:
-                f.seek(offset)
-                raw = f.read(4 * 4)
-            slots = []
-            for i in range(4):
-                d = raw[i*4:(i+1)*4]
-                x = d[0]
-                y = d[1]
-                direction = d[2]
-                slots.append((x, y, direction))
-            return slots
-        except Exception:
-            continue
-    return [(0, 0, 0)] * 4
-
-
 def generate_manifest_spawn_overrides(manifest: list, out_dir: pathlib.Path) -> None:
-    """Generate spawn override tables for custom map connections.
+    """Generate spawn override tables indexed by map ID.
 
-    Each connection can override the player spawn position and direction
-    when entering from a specific slot.  Matches the 4-slot overworld model.
+    0xFF = no override (leave InitOverworld's ROM spawn alone).
+    Only fills slots that have an explicit spawn in the manifest.
     """
     entries = manifest if isinstance(manifest, list) else manifest.get("entries", [])
-    spawn_x: list[list[int]] = []
-    spawn_y: list[list[int]] = []
-    spawn_dir: list[list[int]] = []
+    max_maps = max((e.get("id", 0) for e in entries), default=0) + 1
+    max_maps = max(max_maps, VANILLA_MAP_COUNT + 1)
+
+    spawn_x = [[SPAWN_NO_OVERRIDE] * CONNECTION_SLOTS for _ in range(max_maps)]
+    spawn_y = [[SPAWN_NO_OVERRIDE] * CONNECTION_SLOTS for _ in range(max_maps)]
+    spawn_dir = [[SPAWN_NO_OVERRIDE] * CONNECTION_SLOTS for _ in range(max_maps)]
+    any_override = False
 
     for entry in entries:
         mid = entry.get("id", -1)
-        if mid < 0:
+        if mid < 0 or mid >= max_maps:
             continue
-
-        slot_x = [0] * 4
-        slot_y = [0] * 4
-        slot_dir = [DIRECTION_VALUES.get("DIRECTION_DOWN", 0)] * 4
 
         for conn in entry.get("connections", []):
             slot = conn.get("slot", 0)
-            if slot < 0 or slot >= 4:
+            if slot < 0 or slot >= CONNECTION_SLOTS:
                 continue
-            spawn = conn.get("spawn", {})
-            if spawn:
-                slot_x[slot] = spawn.get("x", 0)
-                slot_y[slot] = spawn.get("y", 0)
-                dr = spawn.get("dir", "DIRECTION_DOWN")
-                slot_dir[slot] = DIRECTION_VALUES.get(dr, 0)
+            spawn = conn.get("spawn")
+            if not spawn:
+                continue
+            x = spawn.get("x", SPAWN_NO_OVERRIDE)
+            y = spawn.get("y", SPAWN_NO_OVERRIDE)
+            dr = spawn.get("dir", SPAWN_NO_OVERRIDE)
+            if isinstance(dr, str):
+                dr = DIRECTION_VALUES.get(dr, SPAWN_NO_OVERRIDE)
+            # ponytail: always record manifest spawn; runtime no-ops when equal to ROM.
+            spawn_x[mid][slot] = int(x)
+            spawn_y[mid][slot] = int(y)
+            spawn_dir[mid][slot] = int(dr)
+            any_override = True
 
-        spawn_x.append(slot_x)
-        spawn_y.append(slot_y)
-        spawn_dir.append(slot_dir)
-
-    if not spawn_x:
+    if not any_override:
         (out_dir / "manifest_spawn_overrides.inc").write_text(
-            "// No spawn overrides\n")
+            "// No spawn overrides\n"
+            f"static const u16 gManifestSpawnOverrideX[][{CONNECTION_SLOTS}] "
+            f"{APPEND_RODATA_ATTR} = {{ {{ 0xFF }} }};\n"
+            f"static const u16 gManifestSpawnOverrideY[][{CONNECTION_SLOTS}] "
+            f"{APPEND_RODATA_ATTR} = {{ {{ 0xFF }} }};\n"
+            f"static const u16 gManifestSpawnOverrideDir[][{CONNECTION_SLOTS}] "
+            f"{APPEND_RODATA_ATTR} = {{ {{ 0xFF }} }};\n")
         return
 
-    lines_x = [f"static const u16 sCustomSpawnX[][4] {APPEND_RODATA_ATTR} = {{"]
-    for sx in spawn_x:
-        lines_x.append(f"  {{ {sx[0]}, {sx[1]}, {sx[2]}, {sx[3]} }},")
-    lines_x.append("};")
-    lines_y = [f"static const u16 sCustomSpawnY[][4] {APPEND_RODATA_ATTR} = {{"]
-    for sy in spawn_y:
-        lines_y.append(f"  {{ {sy[0]}, {sy[1]}, {sy[2]}, {sy[3]} }},")
-    lines_y.append("};")
-    lines_d = [f"static const u16 sCustomSpawnDir[][4] {APPEND_RODATA_ATTR} = {{"]
-    for sd in spawn_dir:
-        lines_d.append(f"  {{ {sd[0]}, {sd[1]}, {sd[2]}, {sd[3]} }},")
-    lines_d.append("};")
+    def _rows(table: list[list[int]]) -> list[str]:
+        return [
+            "  { " + ", ".join(
+                f"0x{v:X}" if v == SPAWN_NO_OVERRIDE else str(v) for v in row
+            ) + " },"
+            for row in table
+        ]
 
     text = "\n".join([
         "// Auto-generated spawn overrides. Do not edit.",
-        "#define CUSTOM_SPAWN_OVERRIDE_COUNT " + str(len(spawn_x)),
-    ] + lines_x + [""] + lines_y + [""] + lines_d) + "\n"
+        "// 0xFF = no override (keep InitOverworld position/direction).",
+        f"#define CUSTOM_SPAWN_OVERRIDE_COUNT {max_maps}",
+        f"static const u16 gManifestSpawnOverrideX[][{CONNECTION_SLOTS}] "
+        f"{APPEND_RODATA_ATTR} = {{",
+        *_rows(spawn_x),
+        "};",
+        "",
+        f"static const u16 gManifestSpawnOverrideY[][{CONNECTION_SLOTS}] "
+        f"{APPEND_RODATA_ATTR} = {{",
+        *_rows(spawn_y),
+        "};",
+        "",
+        f"static const u16 gManifestSpawnOverrideDir[][{CONNECTION_SLOTS}] "
+        f"{APPEND_RODATA_ATTR} = {{",
+        *_rows(spawn_dir),
+        "};",
+    ]) + "\n"
 
     (out_dir / "manifest_spawn_overrides.inc").write_text(text)
 

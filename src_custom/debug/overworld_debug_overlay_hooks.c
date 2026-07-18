@@ -25,6 +25,7 @@ void LoadVRAM(void);
 void LoadDuelIconGfx(void);
 void OverworldSetRegDispcnt(void);
 void sub_8045284(u16 *, u16, u16);
+void sub_8052088(u8);
 
 extern const u32 g82AD2D0[];
 extern u16 g82AD48C[];
@@ -296,26 +297,47 @@ void OverworldLoadGraphics__Replacement(void) {
      * pointer that InitOverworld set from gMapCollisions[]. */
     if (gRuntimeConfig.enable_manifest_map_overrides) {
         u16 overrideMapId = gOverworld.map.id;
-        u8 slot;
-        u8 sx, sy, sd;
-
         if (sManifestCollisionOverrides[overrideMapId] != NULL)
             gOverworld.unk23C = (u16 *)sManifestCollisionOverrides[overrideMapId];
+    }
+  }
 
-        /* Spawn override: apply player position/direction from manifest
-         * if the active connection slot has an override. */
-        slot = gOverworld.map.unk4;
-        if (slot < 5) {
-            sx = gManifestSpawnOverrideX[overrideMapId][slot];
-            sy = gManifestSpawnOverrideY[overrideMapId][slot];
-            sd = gManifestSpawnOverrideDir[overrideMapId][slot];
-            if (sd != 0xFF)
-                gOverworld.objects[0].direction = sd;
-            if (sx != 0xFF)
-                gOverworld.objects[0].x = sx;
-            if (sy != 0xFF)
-                gOverworld.objects[0].y = sy;
+  /* Spawn override: InitOverworld used map 0's spawns when unk8 was the
+   * custom-map dummy, so look up by gCustomMapOverrideId in that case. */
+  if (gRuntimeConfig.enable_manifest_map_overrides
+      || gCustomMapOverrideId >= CUSTOM_MAP_BASE) {
+    u16 overrideMapId = gOverworld.map.id;
+    u8 slot = gOverworld.map.unk4;
+    u8 sx, sy, sd;
+    u8 i;
+
+    if (gCustomMapOverrideId >= CUSTOM_MAP_BASE)
+      overrideMapId = gCustomMapOverrideId;
+    if (slot < 5 && overrideMapId < CUSTOM_SPAWN_OVERRIDE_COUNT) {
+      sx = gManifestSpawnOverrideX[overrideMapId][slot];
+      sy = gManifestSpawnOverrideY[overrideMapId][slot];
+      sd = gManifestSpawnOverrideDir[overrideMapId][slot];
+      if (sd != 0xFF)
+        gOverworld.objects[0].direction = sd;
+      if (sx != 0xFF)
+        gOverworld.objects[0].x = sx;
+      if (sy != 0xFF)
+        gOverworld.objects[0].y = sy;
+      if (sx != 0xFF || sy != 0xFF || sd != 0xFF) {
+        sub_8052088(0);
+        /* Keep Yugi/Joey followers on the player after the spawn fix. */
+        for (i = 13; i <= 14; i++) {
+          if (!gOverworld.objects[i].unk1Dl)
+            continue;
+          if (sd != 0xFF)
+            gOverworld.objects[i].direction = sd;
+          if (sx != 0xFF)
+            gOverworld.objects[i].x = sx;
+          if (sy != 0xFF)
+            gOverworld.objects[i].y = sy;
+          sub_8052088(i);
         }
+      }
     }
   }
 

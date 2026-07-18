@@ -294,7 +294,7 @@ Create a folder at `src_custom/assets/maps/my_new_zone/` with:
 
 | File | Required | Format |
 |------|----------|--------|
-| `tiles.png` | Yes | **Indexed** (palette) PNG, 256×256 pixels max, ≤512 unique 8×8 tiles |
+| `tiles.png` | Yes | **Indexed** (palette) PNG, 256×256 pixels max, ≤768 unique 8×8 tiles (cbb0–cbb2, same as vanilla) |
 | `ground.csv` | Yes | 32×32 comma-separated tile indices (hex or decimal) |
 | `roof.csv` | No | Same format, for the roof layer |
 | `collision.json` | No | 120×80 grid, `[[x,y,w,h], ...]` rect format |
@@ -302,7 +302,7 @@ Create a folder at `src_custom/assets/maps/my_new_zone/` with:
 **`tiles.png` rules:**
 - Must be an indexed PNG with a palette (P mode in Pillow)
 - Each 8×8 block in the PNG is one tile
-- Max 512 unique tiles
+- Max 768 unique tiles (vanilla cbb0+cbb1+cbb2)
 - First palette entry (index 0) should be the transparent/background color
 
 **`ground.csv` / `roof.csv` example:**

@@ -4827,13 +4827,13 @@
     "label": "Graveyard",
     "name": "graveyard",
     "images": {
-      "ground": "src_custom/assets/maps/map_graveyard_ground.png"
+      "ground": "src_custom/assets/maps/graveyard/ground.png"
     },
     "tiles": {
       "tile_w": 32,
       "tile_h": 32
     },
-    "music": "MUSIC_DUNGEON",
+    "music": "MUSIC_BACK_ALLEY",
     "collision": {
       "blocked": []
     },
@@ -4843,9 +4843,9 @@
         "target": "LOCATION_MAIDEN_GARDEN",
         "slot": 0,
         "spawn": {
-          "x": 80,
-          "y": 10,
-          "dir": "DIRECTION_DOWN"
+          "x": 100,
+          "y": 76,
+          "dir": "DIRECTION_UP"
         }
       }
     ]

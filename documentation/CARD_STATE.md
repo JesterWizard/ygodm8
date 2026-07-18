@@ -1,13 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Game Shop flat pitch root cause
+**Last worked on:** 2026-07-18 — Graveyard black vertical lines (LZ77)
 
 **Files touched:**
-- `tools/generate_voices.py`, `tools/generate_music.py` (private voicegroups; no global tone patches)
-- `tests/host/test_music.py`
-- regenerated `src_custom/generated/{voice,music}_*`
+- `tools/build_custom_maps.py` (BIOS LZ77 store `disp-1`; always insert transparent tile 0)
+- `tests/host/test_custom_maps_collision.py` (BIOS roundtrip test)
+- regenerated graveyard tileset (746 tiles, tile 0 = transparent)
 
-**Outcome:** Flat pitch was corrupted Game Shop key-split tables (voice/music tone patches). Fixed; HQ mixer re-enabled. `make` OK.
+**Outcome:** Broken LZ displacement wrote OOB zeros → barcode stripes. Fixed + transparent tile 0. `make` OK.
 
 **Open / next:**
-- Playtest Game Shop BGM pitch vs baserom
+- Playtest graveyard — vertical lines should be gone
