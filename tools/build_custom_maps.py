@@ -353,6 +353,106 @@ def _reduce_tiles(ground_bytes: list[bytes],
     return tileset_data, remap_list, remap_list
 
 
+def _tileset_prefer_roof(ground_bytes: list[bytes],
+                         roof_bytes: list[bytes],
+                         max_tiles: int) -> tuple[bytes, list[int], list[int]]:
+    """Build a shared tileset that keeps every roof tile exact.
+
+    Roof overhangs must not nearest-match into opaque ground tiles (that
+    produces black/green garbage). Ground fills the remaining budget by
+    frequency; rare ground tiles nearest-match.
+    """
+    ts = TILE_BYTES_8BPP
+    zero = b'\x00' * ts
+
+    roof_uniq: list[bytes] = []
+    seen: set[bytes] = set()
+    for tb in roof_bytes:
+        if tb not in seen:
+            seen.add(tb)
+            roof_uniq.append(tb)
+
+    final: list[bytes] = [zero]
+    for tb in roof_uniq:
+        if tb != zero:
+            final.append(tb)
+
+    if len(final) > max_tiles:
+        raise ValueError(
+            f"Roof alone needs {len(final)} tiles (incl. transparent), "
+            f"max is {max_tiles}")
+
+    freq: dict[bytes, int] = {}
+    for tb in ground_bytes:
+        freq[tb] = freq.get(tb, 0) + 1
+    for tb, _ in sorted(freq.items(), key=lambda kv: -kv[1]):
+        if len(final) >= max_tiles:
+            break
+        if tb not in seen:
+            seen.add(tb)
+            final.append(tb)
+
+    order = {tb: i for i, tb in enumerate(final)}
+    tileset_data = b"".join(final)
+
+    def remap_one(tb: bytes) -> int:
+        if tb in order:
+            return order[tb]
+        best_idx = 0
+        best_dist = 0x7FFFFFFF
+        for i, candidate in enumerate(final):
+            dist = sum((a - b) * (a - b) for a, b in zip(tb, candidate))
+            if dist < best_dist:
+                best_dist = dist
+                best_idx = i
+                if best_dist == 0:
+                    break
+        return best_idx
+
+    ground_remap = [remap_one(tb) for tb in ground_bytes]
+    roof_remap = [order[tb] for tb in roof_bytes]  # exact by construction
+    return tileset_data, ground_remap, roof_remap
+
+
+def _stamp_roof_behind_sprites(flat_coll: list[int],
+                               roof_img: Image.Image) -> int:
+    """OR COLLISION_PASSABLE (0x1000) under opaque roof pixels.
+
+    Vanilla sub_804EEAC gives sprites priority 2 when this bit is set, so
+    BG1 (roof, priority 1) draws over the player — walk-behind overhangs.
+    map pixel = collision*2 + 8 (matches gBG*HOFS = 8).
+    """
+    rp = roof_img.load()
+    stamped = 0
+    for cy in range(COLLISION_H):
+        for cx in range(COLLISION_W):
+            px = cx * 2 + 8
+            py = cy * 2 + 8
+            opaque = False
+            for dy in range(2):
+                for dx in range(2):
+                    x = min(255, px + dx)
+                    y = min(255, py + dy)
+                    pix = rp[x, y]
+                    if isinstance(pix, int):
+                        if pix != 0:
+                            opaque = True
+                            break
+                    elif sum(pix[:3]) > 0:
+                        opaque = True
+                        break
+                if opaque:
+                    break
+            if not opaque:
+                continue
+            idx = cy * COLLISION_W + cx
+            if flat_coll[idx] & 0x1000:
+                continue
+            flat_coll[idx] |= 0x1000
+            stamped += 1
+    return stamped
+
+
 def _match_tiles_to_tileset(tiles: list[bytes], tileset: bytes) -> list[int]:
     """For each tile, find the closest match in tileset by SSE over pixel bytes.
 
@@ -655,6 +755,7 @@ def main() -> int:
         ground_csv = map_dir / "ground.csv"
         roof_csv = None
         tiles = None
+        roof_grid = None
 
         def _usable_layer_png(path: pathlib.Path) -> bool:
             if not path.exists():
@@ -717,37 +818,36 @@ def main() -> int:
             ground = [[ground_indices[y * 32 + x] for x in range(32)] for y in range(32)]
 
             roof = None
+            roof_grid = None
             if entry["_has_roof"]:
                 roof_img = Image.open(roof_png)
                 roof_tiles_raw = split_tilesheet(roof_img)
                 roof_bytes = encode_tiles_8bpp(
                     roof_tiles_raw, zero_is_transparent=True)
-                # Shared CBB0 tileset (vanilla). If ground+roof exceed the
-                # budget, keep ground exact and drop roof — single-layer
-                # fidelity (Sacred Cards style) beats a lossy dual-layer bake.
+                # Shared CBB0 tileset. Exact shared bake when it fits; otherwise
+                # keep every roof tile exact and trim rare ground tiles.
                 combined = set(ground_bytes) | set(roof_bytes)
-                if len(combined) > MAX_UNIQUE_TILES:
-                    print(f"  warning: roof skipped — ground+roof need "
-                          f"{len(combined)} unique tiles "
-                          f"(max {MAX_UNIQUE_TILES}); keeping exact ground")
-                    entry["_has_roof"] = False
-                else:
+                if len(combined) <= MAX_UNIQUE_TILES:
                     all_bytes = ground_bytes + roof_bytes
                     tileset_data, remap = tiles_to_tileset(all_bytes)
                     ground_indices = remap[:len(ground_bytes)]
                     roof_indices = remap[len(ground_bytes):]
-                    ground = [[ground_indices[y * 32 + x] for x in range(32)]
-                              for y in range(32)]
-                    exact = sum(
-                        1 for tb, idx in zip(roof_bytes, roof_indices)
-                        if tb == tileset_data[idx * TILE_BYTES_8BPP:
-                                             (idx + 1) * TILE_BYTES_8BPP])
-                    print(f"  Roof: {len(roof_tiles_raw)} tiles ({exact} exact) "
+                    print(f"  Roof: {len(roof_tiles_raw)} tiles "
                           f"in shared tileset "
                           f"({len(tileset_data) // TILE_BYTES_8BPP} unique)")
-                    roof = [roof_indices[i * 32 + j]
-                            for i in range(32) for j in range(32)]
-                    roof_grid = [roof[i * 32:(i + 1) * 32] for i in range(32)]
+                else:
+                    tileset_data, ground_indices, roof_indices = (
+                        _tileset_prefer_roof(
+                            ground_bytes, roof_bytes, MAX_UNIQUE_TILES))
+                    print(f"  Roof: {len(roof_tiles_raw)} tiles exact; "
+                          f"ground trimmed for shared budget "
+                          f"({len(tileset_data) // TILE_BYTES_8BPP} unique, "
+                          f"would need {len(combined)})")
+                ground = [[ground_indices[y * 32 + x] for x in range(32)]
+                          for y in range(32)]
+                roof = [roof_indices[i * 32 + j]
+                        for i in range(32) for j in range(32)]
+                roof_grid = [roof[i * 32:(i + 1) * 32] for i in range(32)]
 
         elif tiles_png.exists() and ground_csv.exists():
             ts_img = Image.open(tiles_png)
@@ -807,8 +907,25 @@ def main() -> int:
                 collision_grid = [[0] * COLLISION_W for _ in range(COLLISION_H)]
                 print(f"  Collision: zero-filled (no base)")
 
-        # Stamp manifest connection exits onto the custom collision grid.
+        # Manifest blocked rects (COLLISION_IMPASSABLE = 1) for custom maps.
         flat_coll = [v for row in collision_grid for v in row]
+        for br in (entry.get("collision") or {}).get("blocked") or []:
+            if isinstance(br, dict):
+                x, y, w, h = br["x"], br["y"], br["width"], br["height"]
+            else:
+                x, y, w, h = br[0], br[1], br[2], br[3]
+            for cy in range(y, y + h):
+                for cx in range(x, x + w):
+                    idx = cy * COLLISION_W + cx
+                    if 0 <= idx < len(flat_coll) and not (flat_coll[idx] & 0x2000):
+                        flat_coll[idx] = 1
+
+        # Walk-behind: opaque roof → 0x1000 so sprites draw under BG1.
+        if entry.get("_has_roof") and _usable_layer_png(roof_png):
+            n_behind = _stamp_roof_behind_sprites(flat_coll, Image.open(roof_png))
+            print(f"  Roof walk-behind: {n_behind} cells |= 0x1000")
+
+        # Stamp manifest connection exits onto the custom collision grid.
         for conn in entry.get("connections", []) or []:
             if "rect" in conn:
                 _stamp_connection_rect(
@@ -836,7 +953,7 @@ def main() -> int:
         (out_dir / f"collision_{name}.inc").write_text(
             gen_collision_inc(name, collision_grid))
 
-        if roof is not None:
+        if roof_grid is not None:
             (out_dir / f"roof_tilemap_{name}.inc").write_text(
                 gen_tilemap_inc(name, "roof", roof_grid))
 

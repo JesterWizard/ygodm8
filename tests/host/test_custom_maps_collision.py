@@ -46,6 +46,13 @@ class TestCustomMapsCollision(unittest.TestCase):
     def test_graveyard_collision_has_exit(self):
         text = (ROOT / "src_custom/generated/maps/collision_graveyard.inc").read_text()
         self.assertIn("0x2000", text)
+        # Bottom exit strip [20,79,100,1] — red-line width across the south edge.
+        vals = [int(x, 16) for x in __import__("re").findall(r"0x([0-9a-fA-F]+)", text)]
+        row79 = vals[79 * 120:80 * 120]
+        exits = [i for i, v in enumerate(row79) if v & 0x2000]
+        self.assertEqual(exits[0], 20)
+        self.assertEqual(exits[-1], 119)
+        self.assertEqual(len(exits), 100)
 
     def test_lz77_size_header_is_little_endian(self):
         # Size 0xBA40 (745 tiles) exposed the old big-endian header bug.
@@ -81,6 +88,32 @@ class TestCustomMapsCollision(unittest.TestCase):
                     dst.append(blob[pos])
                     pos += 1
         self.assertEqual(bytes(dst[:size]), data)
+
+    def test_tileset_prefer_roof_keeps_roof_exact(self):
+        zero = b"\x00" * 64
+        roof_a = b"\x14" * 64
+        roof_b = b"\x15" * 64
+        ground = [b"\x20" * 64] * 10 + [b"\x21" * 64] * 3
+        roof = [zero, roof_a, roof_b, zero]
+        ts, g_remap, r_remap = self.bcm._tileset_prefer_roof(ground, roof, 4)
+        self.assertEqual(len(ts) // 64, 4)
+        self.assertEqual(ts[:64], zero)
+        # Roof tiles resolve exactly
+        for tb, idx in zip(roof, r_remap):
+            self.assertEqual(ts[idx * 64:(idx + 1) * 64], tb)
+
+    def test_stamp_roof_behind_sprites_sets_passable_bit(self):
+        from PIL import Image
+        img = Image.new("P", (256, 256), 0)
+        img.putpalette([0] * 768)
+        # Opaque blob covering collision cell (10, 20) → pixels 28..29, 48..49
+        for y in range(48, 50):
+            for x in range(28, 30):
+                img.putpixel((x, y), 1)
+        flat = [0] * (120 * 80)
+        n = self.bcm._stamp_roof_behind_sprites(flat, img)
+        self.assertGreater(n, 0)
+        self.assertEqual(flat[20 * 120 + 10] & 0x1000, 0x1000)
 
 
 if __name__ == "__main__":

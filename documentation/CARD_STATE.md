@@ -1,13 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Graveyard black vertical lines (LZ77)
+**Last worked on:** 2026-07-18 — Map 11 entrance + graveyard spawn
 
 **Files touched:**
-- `tools/build_custom_maps.py` (BIOS LZ77 store `disp-1`; always insert transparent tile 0)
-- `tests/host/test_custom_maps_collision.py` (BIOS roundtrip test)
-- regenerated graveyard tileset (746 tiles, tile 0 = transparent)
+- `tools/custom_map_manifest.json`
+  - map 11→graveyard rect `[45,0,5,1]` (alley top)
+  - graveyard slot 0 spawn `(56,67)` UP
 
-**Outcome:** Broken LZ displacement wrote OOB zeros → barcode stripes. Fixed + transparent tile 0. `make` OK.
+**Outcome:** Entrance at alley mouth; start on red square. `make` OK.
 
 **Open / next:**
-- Playtest graveyard — vertical lines should be gone
+- Playtest both directions

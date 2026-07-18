@@ -1056,12 +1056,12 @@
         }
       },
       {
-        "rect": [0, 0, 45, 1],
+        "rect": [45, 0, 5, 1],
         "target": "LOCATION_GRAVEYARD",
         "slot": 1,
         "spawn": {
-          "x": 22,
-          "y": 1,
+          "x": 48,
+          "y": 15,
           "dir": "DIRECTION_DOWN"
         }
       }
@@ -4827,7 +4827,8 @@
     "label": "Graveyard",
     "name": "graveyard",
     "images": {
-      "ground": "src_custom/assets/maps/graveyard/ground.png"
+      "ground": "src_custom/assets/maps/graveyard/ground.png",
+      "roof": "src_custom/assets/maps/graveyard/roof.png"
     },
     "tiles": {
       "tile_w": 32,
@@ -4835,16 +4836,42 @@
     },
     "music": "MUSIC_BACK_ALLEY",
     "collision": {
-      "blocked": []
+      "blocked": [
+        [0, 0, 120, 6],
+        [0, 6, 14, 64],
+        [59, 6, 9, 2],
+        [108, 6, 12, 64],
+        [36, 7, 8, 3],
+        [80, 8, 14, 4],
+        [59, 12, 9, 4],
+        [14, 13, 1, 4],
+        [100, 19, 7, 3],
+        [14, 24, 9, 3],
+        [102, 24, 6, 3],
+        [79, 28, 7, 3],
+        [49, 30, 7, 3],
+        [25, 31, 10, 3],
+        [103, 34, 5, 4],
+        [25, 36, 10, 6],
+        [48, 36, 10, 4],
+        [76, 36, 10, 4],
+        [48, 42, 10, 3],
+        [27, 54, 6, 3],
+        [14, 56, 1, 4],
+        [26, 60, 11, 4],
+        [95, 60, 12, 4],
+        [27, 68, 10, 3],
+        [78, 73, 8, 3]
+      ]
     },
     "connections": [
       {
-        "rect": [80, 79, 40, 1],
+        "rect": [20, 79, 100, 1],
         "target": "LOCATION_MAIDEN_GARDEN",
         "slot": 0,
         "spawn": {
-          "x": 100,
-          "y": 76,
+          "x": 56,
+          "y": 67,
           "dir": "DIRECTION_UP"
         }
       }
