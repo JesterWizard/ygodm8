@@ -528,6 +528,14 @@ unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void);
 void ActivateGLADIATOR_BEAST_SAGITTARIIEffect(void);
 unsigned char CanActivateGLADIATOR_BEAST_TAMER_EDITOR(void);
 void ActivateGLADIATOR_BEAST_TAMER_EDITOREffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_VESPASIUS(void);
+void ActivateGLADIATOR_BEAST_VESPASIUSEffect(void);
+unsigned char CanActivateJAIN_LIGHTSWORN_PALADIN(void);
+void ActivateJAIN_LIGHTSWORN_PALADINEffect(void);
+unsigned char CanActivateJAIN_TWILIGHTSWORN_GENERAL(void);
+void ActivateJAIN_TWILIGHTSWORN_GENERALEffect(void);
+unsigned char CanActivateJUDGMENT_THE_DRAGON_OF_HEAVEN(void);
+void ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2199,6 +2207,22 @@ FAILED:
   }
   if (gMonEffect.id == GLADIATOR_BEAST_TAMER_EDITOR) {
     ActivateGLADIATOR_BEAST_TAMER_EDITOREffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_VESPASIUS) {
+    ActivateGLADIATOR_BEAST_VESPASIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == JAIN_LIGHTSWORN_PALADIN) {
+    ActivateJAIN_LIGHTSWORN_PALADINEffect();
+    return;
+  }
+  if (gMonEffect.id == JAIN_TWILIGHTSWORN_GENERAL) {
+    ActivateJAIN_TWILIGHTSWORN_GENERALEffect();
+    return;
+  }
+  if (gMonEffect.id == JUDGMENT_THE_DRAGON_OF_HEAVEN) {
+    ActivateJUDGMENT_THE_DRAGON_OF_HEAVENEffect();
     return;
   }
 }

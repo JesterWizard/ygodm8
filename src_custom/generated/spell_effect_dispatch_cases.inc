@@ -293,6 +293,15 @@
     case GENERATION_NEXT:
       EffectGENERATION_NEXT();
       return;
+    case GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD:
+      EffectGLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD();
+      return;
+    case GLADIATOR_BEASTS_BATTLE_GLADIUS:
+      EffectGLADIATOR_BEASTS_BATTLE_GLADIUS();
+      return;
+    case GLADIATOR_BEASTS_BATTLE_MANICA:
+      EffectGLADIATOR_BEASTS_BATTLE_MANICA();
+      return;
     case GLADIATOR_BEAST_BATTLE_HALBERD:
       EffectGLADIATOR_BEAST_BATTLE_HALBERD();
       return;
@@ -338,8 +347,14 @@
     case INSECT_IMITATION:
       EffectINSECT_IMITATION();
       return;
+    case INSTANT_CONTACT:
+      EffectINSTANT_CONTACT();
+      return;
     case INSTANT_FUSION:
       EffectINSTANT_FUSION();
+      return;
+    case INSTANT_NEO_SPACE:
+      EffectINSTANT_NEO_SPACE();
       return;
     case JAM_BREEDING_MACHINE:
       EffectJamBreedingMachine();
@@ -361,6 +376,9 @@
       return;
     case LEV_SHADDOLL_FUSION:
       EffectLEV_SHADDOLL_FUSION();
+      return;
+    case LIGHT_BARRIER:
+      EffectLIGHT_BARRIER();
       return;
     case LIMITER_REMOVAL:
       EffectLimiterRemoval();

@@ -282,6 +282,14 @@ unsigned char ShouldActivateGLADIATOR_BEAST_SECUTOR(void);
 void ActivateGLADIATOR_BEAST_SECUTOR(void);
 unsigned char ShouldActivateGLADIATOR_BEAST_SPARTACUS(void);
 void ActivateGLADIATOR_BEAST_SPARTACUS(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_TORAX(void);
+void ActivateGLADIATOR_BEAST_TORAX(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_TYGERIUS(void);
+void ActivateGLADIATOR_BEAST_TYGERIUS(void);
+unsigned char ShouldActivateJENIS_LIGHTSWORN_MENDER(void);
+void ActivateJENIS_LIGHTSWORN_MENDER(void);
+unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void);
+void ActivateKNIGHT_OF_PENTACLES(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -907,6 +915,26 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GLADIATOR_BEAST_SPARTACUS,
     .shouldActivate = ShouldActivateGLADIATOR_BEAST_SPARTACUS,
     .activate = ActivateGLADIATOR_BEAST_SPARTACUS,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_TORAX,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_TORAX,
+    .activate = ActivateGLADIATOR_BEAST_TORAX,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_TYGERIUS,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_TYGERIUS,
+    .activate = ActivateGLADIATOR_BEAST_TYGERIUS,
+  },
+  {
+    .cardId = JENIS_LIGHTSWORN_MENDER,
+    .shouldActivate = ShouldActivateJENIS_LIGHTSWORN_MENDER,
+    .activate = ActivateJENIS_LIGHTSWORN_MENDER,
+  },
+  {
+    .cardId = KNIGHT_OF_PENTACLES,
+    .shouldActivate = ShouldActivateKNIGHT_OF_PENTACLES,
+    .activate = ActivateKNIGHT_OF_PENTACLES,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

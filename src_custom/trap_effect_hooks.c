@@ -490,3 +490,13 @@ unsigned IsTrapTriggered__Replacement(void) {
 
 /* FAVOURITE_CONTACT trap effect */
   /* TODO: wire FAVOURITE_CONTACT in trap dispatcher */
+/* GLADIATOR_BEAST_WAR_CHARIOT trap effect */
+  /* TODO: wire GLADIATOR_BEAST_WAR_CHARIOT in trap dispatcher */
+/* GLADIATOR_BEASTS_MEDUSA_SHIELD trap effect */
+  /* TODO: wire GLADIATOR_BEASTS_MEDUSA_SHIELD in trap dispatcher */
+/* GLADIATOR_BEASTS_VALOR trap effect */
+  /* TODO: wire GLADIATOR_BEASTS_VALOR in trap dispatcher */
+/* GLADIATOR_NAUMACHIA trap effect */
+  /* TODO: wire GLADIATOR_NAUMACHIA in trap dispatcher */
+/* GLORIOUS_ILLUSION trap effect */
+  /* TODO: wire GLORIOUS_ILLUSION in trap dispatcher */

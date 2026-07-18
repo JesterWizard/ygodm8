@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `829` effects
+- `848` effects
 
 ## Tally
 
@@ -810,6 +810,25 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `permanent_effects` | `Gladiator Beast Secutor` | `src_custom/permanent_effects/gladiator_beast_secutor.c` |
 | `permanent_effects` | `Gladiator Beast Spartacus` | `src_custom/permanent_effects/gladiator_beast_spartacus.c` |
 | `activated_effects` | `Gladiator Beast Tamer Editor` | `src_custom/activated_effects/gladiator_beast_tamer_editor.c` |
+| `permanent_effects` | `Gladiator Beast Torax` | `src_custom/permanent_effects/gladiator_beast_torax.c` |
+| `permanent_effects` | `Gladiator Beast Tygerius` | `src_custom/permanent_effects/gladiator_beast_tygerius.c` |
+| `activated_effects` | `Gladiator Beast Vespasius` | `src_custom/activated_effects/gladiator_beast_vespasius.c` |
+| `trap_effects` | `Gladiator Beast War Chariot` | `src_custom/trap_effects/gladiator_beast_war_chariot.c` |
+| `spell_effects` | `Gladiator Beasts Battle Archfiend Shield` | `src_custom/spell_effects/gladiator_beasts_battle_archfiend_shield.c` |
+| `spell_effects` | `Gladiator Beasts Battle Gladius` | `src_custom/spell_effects/gladiator_beasts_battle_gladius.c` |
+| `spell_effects` | `Gladiator Beasts Battle Manica` | `src_custom/spell_effects/gladiator_beasts_battle_manica.c` |
+| `trap_effects` | `Gladiator Beasts Medusa Shield` | `src_custom/trap_effects/gladiator_beasts_medusa_shield.c` |
+| `trap_effects` | `Gladiator Beasts Valor` | `src_custom/trap_effects/gladiator_beasts_valor.c` |
+| `trap_effects` | `Gladiator Naumachia` | `src_custom/trap_effects/gladiator_naumachia.c` |
+| `trap_effects` | `Glorious Illusion` | `src_custom/trap_effects/glorious_illusion.c` |
+| `spell_effects` | `Instant Contact` | `src_custom/spell_effects/instant_contact.c` |
+| `spell_effects` | `Instant Neo Space` | `src_custom/spell_effects/instant_neo_space.c` |
+| `activated_effects` | `Jain Lightsworn Paladin` | `src_custom/activated_effects/jain_lightsworn_paladin.c` |
+| `activated_effects` | `Jain Twilightsworn General` | `src_custom/activated_effects/jain_twilightsworn_general.c` |
+| `permanent_effects` | `Jenis Lightsworn Mender` | `src_custom/permanent_effects/jenis_lightsworn_mender.c` |
+| `activated_effects` | `Judgment The Dragon Of Heaven` | `src_custom/activated_effects/judgment_the_dragon_of_heaven.c` |
+| `permanent_effects` | `Knight Of Pentacles` | `src_custom/permanent_effects/knight_of_pentacles.c` |
+| `spell_effects` | `Light Barrier` | `src_custom/spell_effects/light_barrier.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

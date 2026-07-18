@@ -1699,11 +1699,30 @@
 #define GLADIATOR_BEAST_SECUTOR                  0x069F
 #define GLADIATOR_BEAST_SPARTACUS                0x06A0
 #define GLADIATOR_BEAST_TAMER_EDITOR             0x06A1
+#define GLADIATOR_BEAST_TORAX                    0x06A2
+#define GLADIATOR_BEAST_TYGERIUS                 0x06A3
+#define GLADIATOR_BEAST_VESPASIUS                0x06A4
+#define GLADIATOR_BEAST_WAR_CHARIOT              0x06A5
+#define GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD 0x06A6
+#define GLADIATOR_BEASTS_BATTLE_GLADIUS          0x06A7
+#define GLADIATOR_BEASTS_BATTLE_MANICA           0x06A8
+#define GLADIATOR_BEASTS_MEDUSA_SHIELD           0x06A9
+#define GLADIATOR_BEASTS_VALOR                   0x06AA
+#define GLADIATOR_NAUMACHIA                      0x06AB
+#define GLORIOUS_ILLUSION                        0x06AC
+#define INSTANT_CONTACT                          0x06AD
+#define INSTANT_NEO_SPACE                        0x06AE
+#define JAIN_LIGHTSWORN_PALADIN                  0x06AF
+#define JAIN_TWILIGHTSWORN_GENERAL               0x06B0
+#define JENIS_LIGHTSWORN_MENDER                  0x06B1
+#define JUDGMENT_THE_DRAGON_OF_HEAVEN            0x06B2
+#define KNIGHT_OF_PENTACLES                      0x06B3
+#define LIGHT_BARRIER                            0x06B4
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x06A2
-#define NUM_CUSTOM_CARDS                        0x0381
+#define NUM_TOTAL_CARDS                         0x06B5
+#define NUM_CUSTOM_CARDS                        0x0394
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

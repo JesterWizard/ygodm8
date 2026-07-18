@@ -36559,6 +36559,532 @@
       "effect_texts": {
         "popup_1": "Immune; SS Level 5+ GB; tag Extra."
       }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_TORAX",
+      "card_name": "Gladiator Beast Torax",
+      "atk": 1400,
+      "def": 400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_FISH",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 9, 8, 4, 4, 5, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastTorax",
+        "pages": [
+          "If SS by a Gladiator Beast: draw 2",
+          "cards, then discard 1. At end of",
+          "Battle Phase if it battled: return",
+          "to Deck; SS 1 Gladiator Beast from",
+          "Deck (except Torax)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Draw 2 discard 1; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_TYGERIUS",
+      "card_name": "Gladiator Beast Tygerius",
+      "atk": 1800,
+      "def": 800,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [5, 0, 8, 9, 3, 9, 8, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastTygerius",
+        "pages": [
+          "If SS by a Gladiator Beast: discard",
+          "1; add 1 Gladiator Beast from Deck",
+          "to hand. After battle: return to",
+          "Deck; SS 1 Gladiator Beast from",
+          "Deck (except Tygerius)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard; search GB; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_VESPASIUS",
+      "card_name": "Gladiator Beast Vespasius",
+      "atk": 2300,
+      "def": 0,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [8, 8, 9, 9, 6, 3, 2, 2],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastVespasius",
+        "pages": [
+          "At start of Damage Step, if this",
+          "battles: all Gladiator Beasts you",
+          "control gain 500 ATK. If SS by a GB:",
+          "target 1 monster; change its battle",
+          "position. After battle: tag out."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "+500 ATK; change position; tag."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_WAR_CHARIOT",
+      "card_name": "Gladiator Beast War Chariot",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 6, 2, 1, 6, 2, 2, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastWarChariot",
+        "pages": [
+          "When a Spell/Trap is activated while",
+          "you control a Gladiator Beast: negate",
+          "and destroy that card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Negate S/T while you control a GB."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD",
+      "card_name": "Gladiator Beast's Battle Archfiend Shield",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 8, 7, 3, 0, 4, 3, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSBattleArchfiendShield",
+        "pages": [
+          "Equip only to a Gladiator Beast.",
+          "If equipped would be destroyed,",
+          "destroy this instead. When equipped",
+          "returns to Deck and this is sent to",
+          "GY: add this card to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destruction substitute; recycle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_BATTLE_GLADIUS",
+      "card_name": "Gladiator Beast's Battle Gladius",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [2, 5, 4, 0, 7, 4, 0, 6],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSBattleGladius",
+        "pages": [
+          "Equip only to a Gladiator Beast.",
+          "It gains 300 ATK. When equipped",
+          "returns to Deck and this is sent to",
+          "GY: add this card to your hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "+300 ATK equip; recycle on tag."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_BATTLE_MANICA",
+      "card_name": "Gladiator Beast's Battle Manica",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 2, 4, 9, 6, 1, 0, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSBattleManica",
+        "pages": [
+          "Equip only to a Gladiator Beast.",
+          "It cannot be destroyed by battle.",
+          "When equipped returns to Deck and",
+          "this is sent to GY: add this to hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Battle immune equip; recycle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_MEDUSA_SHIELD",
+      "card_name": "Gladiator Beast's Medusa Shield",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 1, 0],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastsMedusaShield",
+        "pages": [
+          "Target 1 Gladiator Beast you control;",
+          "it cannot be destroyed by card effects.",
+          "Once per turn: negate 1 opp monster",
+          "effect. If sent to GY this turn: Set 1",
+          "Gladiator Beast Trap from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Protect GB; negate; Set Trap from Deck."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEASTS_VALOR",
+      "card_name": "Gladiator Beast's Valor",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 1, 1],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastsValor",
+        "pages": [
+          "Activate only if you control a",
+          "Gladiator Beast monster. Opp monsters",
+          "cannot attack, except to attack",
+          "Gladiator Beast monsters."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Opp can only attack Gladiator Beasts."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_NAUMACHIA",
+      "card_name": "Gladiator Naumachia",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 2, 3, 9, 4, 0, 4, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorNaumachia",
+        "pages": [
+          "Target 1 Gladiator Beast you control;",
+          "it gains ATK equal to its DEF until",
+          "end of this turn. If a Gladiator Beast",
+          "you control would be destroyed by",
+          "battle: you can banish this from GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK = DEF boost; GY battle protect."
+      }
+    },
+    {
+      "card_const": "GLORIOUS_ILLUSION",
+      "card_name": "Glorious Illusion",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 1, 9, 6, 2, 1, 3, 5],
+      "description": {
+        "symbol": "gDescription_GloriousIllusion",
+        "pages": [
+          "Target 1 Lightsworn in your GY;",
+          "Special Summon it. During each of",
+          "your End Phases: send the top 2",
+          "cards of your Deck to the GY. When",
+          "this leaves the field: destroy that."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Revive Lightsworn; mill 2; leave kill."
+      }
+    },
+    {
+      "card_const": "INSTANT_CONTACT",
+      "card_name": "Instant Contact",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 6, 1, 6, 9, 7, 7, 2],
+      "description": {
+        "symbol": "gDescription_InstantContact",
+        "pages": [
+          "Pay 1000 LP; Special Summon 1 Level",
+          "7 or lower E-HERO or Neo-Spacian",
+          "from Extra Deck, ignoring conditions,",
+          "but it cannot attack and is destroyed",
+          "during the End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay 1000; SS Extra HERO/Neo-Spacian."
+      }
+    },
+    {
+      "card_const": "INSTANT_NEO_SPACE",
+      "card_name": "Instant Neo Space",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 1, 9, 1, 3, 7, 0, 0],
+      "description": {
+        "symbol": "gDescription_InstantNeoSpace",
+        "pages": [
+          "Equip to a Fusion that lists Neos",
+          "as material. It does not return to",
+          "Extra Deck during End Phase. When",
+          "equipped is destroyed: SS 1 Neos",
+          "from GY in Attack Position."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Keep Neos Fusion; revive Neos."
+      }
+    },
+    {
+      "card_const": "JAIN_LIGHTSWORN_PALADIN",
+      "card_name": "Jain, Lightsworn Paladin",
+      "atk": 1800,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 590,
+      "password": [9, 6, 2, 3, 5, 2, 7, 5],
+      "description": {
+        "symbol": "gDescription_JainLightswornPaladin",
+        "pages": [
+          "If this card attacks a Defense",
+          "Position monster, inflict piercing",
+          "battle damage. During each of your",
+          "End Phases: send the top 2 cards of",
+          "your Deck to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Piercing; mill 2 at End Phase."
+      }
+    },
+    {
+      "card_const": "JAIN_TWILIGHTSWORN_GENERAL",
+      "card_name": "Jain, Twilightsworn General",
+      "atk": 1800,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 590,
+      "password": [8, 4, 6, 7, 3, 4, 1, 7],
+      "description": {
+        "symbol": "gDescription_JainTwilightswornGeneral",
+        "pages": [
+          "Once per turn: banish 1 Lightsworn",
+          "from hand or GY; target 1 face-up",
+          "monster; it loses ATK/DEF equal to",
+          "that monster Level x 300. If milled",
+          "from Deck: you can banish 1 from GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish Lightsworn; weaken; mill trigger."
+      }
+    },
+    {
+      "card_const": "JENIS_LIGHTSWORN_MENDER",
+      "card_name": "Jenis, Lightsworn Mender",
+      "atk": 300,
+      "def": 2100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [8, 3, 7, 2, 5, 0, 0, 8],
+      "description": {
+        "symbol": "gDescription_JenisLightswornMender",
+        "pages": [
+          "During each of your End Phases: gain",
+          "500 LP for each of your Lightsworn",
+          "monsters that sent a card(s) from",
+          "your Deck to the GY this turn. During",
+          "your End Phase: mill top 2 of Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Heal per miller; mill 2 at End."
+      }
+    },
+    {
+      "card_const": "JUDGMENT_THE_DRAGON_OF_HEAVEN",
+      "card_name": "Judgment, the Dragon of Heaven",
+      "atk": 3000,
+      "def": 2600,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 1, 6, 5, 9, 0, 7, 2],
+      "description": {
+        "symbol": "gDescription_JudgmentTheDragonOfHeaven",
+        "pages": [
+          "1 Tuner + 1+ non-Tuners. Must be",
+          "Synchro Summoned. Once per turn:",
+          "pay half LP; banish all other cards",
+          "on field and in both GYs. If milled",
+          "from Deck: you can Special Summon it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pay half LP; banish field+GYs."
+      }
+    },
+    {
+      "card_const": "KNIGHT_OF_PENTACLES",
+      "card_name": "Knight of Pentacles",
+      "atk": 1000,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 5, 0, 0, 0, 0, 1, 2],
+      "description": {
+        "symbol": "gDescription_KnightOfPentacles",
+        "pages": [
+          "When Summoned, toss a coin.",
+          "Heads: cannot be destroyed by battle.",
+          "Tails: cannot attack; if attacked by",
+          "an opp monster, destroy this card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: battle immune or fragile."
+      }
+    },
+    {
+      "card_const": "LIGHT_BARRIER",
+      "card_name": "Light Barrier",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 3, 2, 0, 6, 8, 2, 7],
+      "description": {
+        "symbol": "gDescription_LightBarrier",
+        "pages": [
+          "During each of your Standby Phases:",
+          "toss a coin. Tails: destroy this.",
+          "When an Arcana Force is Summoned:",
+          "you choose its coin effect. If an",
+          "Arcana Force destroys by battle: gain LP."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Choose Arcana coin; heal on battle."
+      }
     }
   ]
 }

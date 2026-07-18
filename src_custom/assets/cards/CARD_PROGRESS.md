@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 897 |
-| Art ready, needs manifest | 77 |
+| In game (manifest + art) | 916 |
+| Art ready, needs manifest | 57 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **976** |
+| **Total PNGs in `80x80/`** | **975** |
 
 ## In game
 
@@ -919,31 +919,30 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GLADIATOR_BEAST_SECUTOR` | Gladiator Beast Secutor | `gladiator_beast_secutor.png` |
 | `GLADIATOR_BEAST_SPARTACUS` | Gladiator Beast Spartacus | `gladiator_beast_spartacus.png` |
 | `GLADIATOR_BEAST_TAMER_EDITOR` | Gladiator Beast Tamer Editor | `gladiator_beast_tamer_editor.png` |
+| `GLADIATOR_BEAST_TORAX` | Gladiator Beast Torax | `gladiator_beast_torax.png` |
+| `GLADIATOR_BEAST_TYGERIUS` | Gladiator Beast Tygerius | `gladiator_beast_tygerius.png` |
+| `GLADIATOR_BEAST_VESPASIUS` | Gladiator Beast Vespasius | `gladiator_beast_vespasius.png` |
+| `GLADIATOR_BEAST_WAR_CHARIOT` | Gladiator Beast War Chariot | `gladiator_beast_war_chariot.png` |
+| `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD` | Gladiator Beast's Battle Archfiend Shield | `gladiator_beasts_battle_archfiend_shield.png` |
+| `GLADIATOR_BEASTS_BATTLE_GLADIUS` | Gladiator Beast's Battle Gladius | `gladiator_beasts_battle_gladius.png` |
+| `GLADIATOR_BEASTS_BATTLE_MANICA` | Gladiator Beast's Battle Manica | `gladiator_beasts_battle_manica.png` |
+| `GLADIATOR_BEASTS_MEDUSA_SHIELD` | Gladiator Beast's Medusa Shield | `gladiator_beasts_medusa_shield.png` |
+| `GLADIATOR_BEASTS_VALOR` | Gladiator Beast's Valor | `gladiator_beasts_valor.png` |
+| `GLADIATOR_NAUMACHIA` | Gladiator Naumachia | `gladiator_naumachia.png` |
+| `GLORIOUS_ILLUSION` | Glorious Illusion | `glorious_illusion.png` |
+| `INSTANT_CONTACT` | Instant Contact | `instant_contact.png` |
+| `INSTANT_NEO_SPACE` | Instant Neo Space | `instant_neo_space.png` |
+| `JAIN_LIGHTSWORN_PALADIN` | Jain, Lightsworn Paladin | `jain_lightsworn_paladin.png` |
+| `JAIN_TWILIGHTSWORN_GENERAL` | Jain, Twilightsworn General | `jain_twilightsworn_general.png` |
+| `JENIS_LIGHTSWORN_MENDER` | Jenis, Lightsworn Mender | `jenis_lightsworn_mender.png` |
+| `JUDGMENT_THE_DRAGON_OF_HEAVEN` | Judgment, the Dragon of Heaven | `judgment_the_dragon_of_heaven.png` |
+| `KNIGHT_OF_PENTACLES` | Knight of Pentacles | `knight_of_pentacles.png` |
+| `LIGHT_BARRIER` | Light Barrier | `light_barrier.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `GLADIATOR_BEAST_TORAX` — `gladiator_beast_torax.png`
-- [ ] `GLADIATOR_BEAST_TYGERIUS` — `gladiator_beast_tygerius.png`
-- [ ] `GLADIATOR_BEAST_VESPASIUS` — `gladiator_beast_vespasius.png`
-- [ ] `GLADIATOR_BEAST_WAR_CHARIOT` — `gladiator_beast_war_chariot.png`
-- [ ] `GLADIATOR_BEASTS_BATTLE_ARCHFIEND_SHIELD` — `gladiator_beasts_battle_archfiend_shield.png`
-- [ ] `GLADIATOR_BEASTS_BATTLE_GLADIUS` — `gladiator_beasts_battle_gladius.png`
-- [ ] `GLADIATOR_BEASTS_BATTLE_MANICA` — `gladiator_beasts_battle_manica.png`
-- [ ] `GLADIATOR_BEASTS_MEDUSA_SHIELD` — `gladiator_beasts_medusa_shield.png`
-- [ ] `GLADIATOR_BEASTS_VALOR` — `gladiator_beasts_valor.png`
-- [ ] `GLADIATOR_NAUMACHIA` — `gladiator_naumachia.png`
-- [ ] `GLORIOUS_ILLUSION` — `glorious_illusion.png`
-- [ ] `HERALD_OF_ULIMATENESS` — `herald_of_ulimateness.png`
-- [ ] `INSTANT_CONTACT` — `instant_contact.png`
-- [ ] `INSTANT_NEO_SPACE` — `instant_neo_space.png`
-- [ ] `JAIN_LIGHTSWORN_PALADIN` — `jain_lightsworn_paladin.png`
-- [ ] `JAIN_TWILIGHTSWORN_GENERAL` — `jain_twilightsworn_general.png`
-- [ ] `JENIS_LIGHTSWORN_MENDER` — `jenis_lightsworn_mender.png`
-- [ ] `JUDGMENT_THE_DRAGON_OF_HEAVEN` — `judgment_the_dragon_of_heaven.png`
-- [ ] `KNIGHT_OF_PENTACLES` — `knight_of_pentacles.png`
-- [ ] `LIGHT_BARRIER` — `light_barrier.png`
 - [ ] `LIGHT_FORCE` — `light_force.png`
 - [ ] `LIGHT_OF_DESTRUCTION` — `light_of_destruction.png`
 - [ ] `LIGHT_SPIRAL` — `light_spiral.png`

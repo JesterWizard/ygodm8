@@ -898,6 +898,25 @@ static const u8 sGladiatorBeastSamniteName[] __attribute__((section(".append_ass
 static const u8 sGladiatorBeastSecutorName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Secutor";
 static const u8 sGladiatorBeastSpartacusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Spartacus";
 static const u8 sGladiatorBeastTamerEditorName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Tamer Editor";
+static const u8 sGladiatorBeastToraxName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Torax";
+static const u8 sGladiatorBeastTygeriusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Tygerius";
+static const u8 sGladiatorBeastVespasiusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Vespasius";
+static const u8 sGladiatorBeastWarChariotName[] __attribute__((section(".append_assets"))) = "Gladiator Beast War Chariot";
+static const u8 sGladiatorBeastsBattleArchfiendShieldName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Battle Archfiend Shield";
+static const u8 sGladiatorBeastsBattleGladiusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Battle Gladius";
+static const u8 sGladiatorBeastsBattleManicaName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Battle Manica";
+static const u8 sGladiatorBeastsMedusaShieldName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Medusa Shield";
+static const u8 sGladiatorBeastsValorName[] __attribute__((section(".append_assets"))) = "Gladiator Beast's Valor";
+static const u8 sGladiatorNaumachiaName[] __attribute__((section(".append_assets"))) = "Gladiator Naumachia";
+static const u8 sGloriousIllusionName[] __attribute__((section(".append_assets"))) = "Glorious Illusion";
+static const u8 sInstantContactName[] __attribute__((section(".append_assets"))) = "Instant Contact";
+static const u8 sInstantNeoSpaceName[] __attribute__((section(".append_assets"))) = "Instant Neo Space";
+static const u8 sJainLightswornPaladinName[] __attribute__((section(".append_assets"))) = "Jain, Lightsworn Paladin";
+static const u8 sJainTwilightswornGeneralName[] __attribute__((section(".append_assets"))) = "Jain, Twilightsworn General";
+static const u8 sJenisLightswornMenderName[] __attribute__((section(".append_assets"))) = "Jenis, Lightsworn Mender";
+static const u8 sJudgmentTheDragonOfHeavenName[] __attribute__((section(".append_assets"))) = "Judgment, the Dragon of Heaven";
+static const u8 sKnightOfPentaclesName[] __attribute__((section(".append_assets"))) = "Knight of Pentacles";
+static const u8 sLightBarrierName[] __attribute__((section(".append_assets"))) = "Light Barrier";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2700,6 +2719,44 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGladiatorBeastSpartacusName;
   if (cardId == 0x06A1)
     return (u8 *)sGladiatorBeastTamerEditorName;
+  if (cardId == 0x06A2)
+    return (u8 *)sGladiatorBeastToraxName;
+  if (cardId == 0x06A3)
+    return (u8 *)sGladiatorBeastTygeriusName;
+  if (cardId == 0x06A4)
+    return (u8 *)sGladiatorBeastVespasiusName;
+  if (cardId == 0x06A5)
+    return (u8 *)sGladiatorBeastWarChariotName;
+  if (cardId == 0x06A6)
+    return (u8 *)sGladiatorBeastsBattleArchfiendShieldName;
+  if (cardId == 0x06A7)
+    return (u8 *)sGladiatorBeastsBattleGladiusName;
+  if (cardId == 0x06A8)
+    return (u8 *)sGladiatorBeastsBattleManicaName;
+  if (cardId == 0x06A9)
+    return (u8 *)sGladiatorBeastsMedusaShieldName;
+  if (cardId == 0x06AA)
+    return (u8 *)sGladiatorBeastsValorName;
+  if (cardId == 0x06AB)
+    return (u8 *)sGladiatorNaumachiaName;
+  if (cardId == 0x06AC)
+    return (u8 *)sGloriousIllusionName;
+  if (cardId == 0x06AD)
+    return (u8 *)sInstantContactName;
+  if (cardId == 0x06AE)
+    return (u8 *)sInstantNeoSpaceName;
+  if (cardId == 0x06AF)
+    return (u8 *)sJainLightswornPaladinName;
+  if (cardId == 0x06B0)
+    return (u8 *)sJainTwilightswornGeneralName;
+  if (cardId == 0x06B1)
+    return (u8 *)sJenisLightswornMenderName;
+  if (cardId == 0x06B2)
+    return (u8 *)sJudgmentTheDragonOfHeavenName;
+  if (cardId == 0x06B3)
+    return (u8 *)sKnightOfPentaclesName;
+  if (cardId == 0x06B4)
+    return (u8 *)sLightBarrierName;
 
   return gCardNames[cardId];
 }
