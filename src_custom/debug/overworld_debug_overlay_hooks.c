@@ -203,6 +203,8 @@ extern const u16 gOverworldEntityPalettes[];
 
 #include "src_custom/generated/maps/manifest_spawn_overrides.inc"
 
+static void ClearBg1IfNoRoof(void);
+
 static void CopyCustomBgGraphics(u16 mapId) {
   const u8 *tileset = GetCustomMapTileset(mapId);
   const u16 *groundTm = GetCustomMapGroundTilemap(mapId);
@@ -329,18 +331,17 @@ void OverworldLoadGraphics__Replacement(void) {
     sub_8044EC8(gPaletteBuffer, 0x10, 0x1FF, 6);
   if (CheckFlag(0xEF))
     sub_8045284(gPaletteBuffer, 0x10, 0xFF);
-  REG_BLDY = 0;
+  /* Apply custom tiles while display is still off so map 0 never flashes. */
+  if (gCustomMapOverridePending)
+    ApplyCustomMapOverride();
+  REG_BLDY = 7; /* match vanilla OverworldLoadGraphics */
   WaitForVBlank();
   sub_804EC4C();
-  OverworldOverlay_RestoreDisplayRegs();
+  REG_WINOUT = 0x3D3F;
   OverworldSetRegDispcnt();
+  ClearBg1IfNoRoof();
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
     OverworldOverlay_Refresh();
-
-    /* Apply custom map override AFTER all graphics are loaded and VRAM
-     * is committed, but before the first ProcessInput runs. */
-    if (gCustomMapOverridePending)
-      ApplyCustomMapOverride();
 }
 
 /* OverworldSetRegDispcnt re-enables BG1 every frame, which would re-enable
@@ -366,11 +367,8 @@ void sub_8053E34__Replacement(u8 arg0) {
     while (--temp != -1)
       sub_804F218();
   }
-  OverworldOverlay_RestoreDisplayRegs();
-  OverworldSetRegDispcnt();
-  ClearBg1IfNoRoof();
-  if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE)
-    OverworldOverlay_OnWalkFrame();
+  /* Leave BLDY=15 / BLDCNT=0xFF — RestoreDisplayRegs here undid the fade
+   * and flashed the current map before the next load. */
 }
 
 /* LYN_REPLACEMENT(sub_80532A8) */

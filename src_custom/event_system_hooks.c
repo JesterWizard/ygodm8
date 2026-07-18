@@ -106,8 +106,12 @@ void InitiateScript__Replacement(struct Script *script) {
     sub_804EEE0();
   } else {
     EventCg_ForceClose();
-    OverworldOverlay_RestoreDisplayRegs();
-    OverworldSetRegDispcnt();
+    /* Exit scripts fade to black then set MAP_TRANSITION; clearing blend
+     * here would flash the old map before OverworldLoadGraphics. */
+    if (!(gOverworld.flags & OVERWORLD_FLAG_MAP_TRANSITION)) {
+      OverworldOverlay_RestoreDisplayRegs();
+      OverworldSetRegDispcnt();
+    }
   }
 
   if (gRuntimeConfig.show_player_screen_pixel_coords == TRUE && saveAnywhereDialog != TRUE)
