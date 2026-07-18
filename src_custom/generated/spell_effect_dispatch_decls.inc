@@ -81,6 +81,8 @@ extern void EffectD_BURST(void);
 extern void EffectD_FORCE(void);
 extern void EffectEctoplasmer(void);
 extern void EffectEL_SHADDOLL_FUSION(void);
+extern void EffectEN_ENGAGE_NEO_SPACE(void);
+extern void EffectEN_SHUFFLE(void);
 extern void EffectEVIL_ASSAULT(void);
 extern void EffectEVIL_MIND(void);
 extern void EffectExchange(void);

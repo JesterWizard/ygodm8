@@ -454,6 +454,34 @@ unsigned char CanActivateCROSS_KEEPER(void);
 void ActivateCROSS_KEEPEREffect(void);
 unsigned char CanActivateCURIOUS_THE_LIGHTSWORN_DOMINION(void);
 void ActivateCURIOUS_THE_LIGHTSWORN_DOMINIONEffect(void);
+unsigned char CanActivateEHREN_LIGHTSWORN_MONK(void);
+void ActivateEHREN_LIGHTSWORN_MONKEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_AQUA_NEOS(void);
+void ActivateELEMENTAL_HERO_AQUA_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_BRAVE_NEOS(void);
+void ActivateELEMENTAL_HERO_BRAVE_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_CHAOS_NEOS(void);
+void ActivateELEMENTAL_HERO_CHAOS_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_COSMO_NEOS(void);
+void ActivateELEMENTAL_HERO_COSMO_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_DARK_NEOS(void);
+void ActivateELEMENTAL_HERO_DARK_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_GLOW_NEOS(void);
+void ActivateELEMENTAL_HERO_GLOW_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_GRAND_NEOS(void);
+void ActivateELEMENTAL_HERO_GRAND_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_MAGMA_NEOS(void);
+void ActivateELEMENTAL_HERO_MAGMA_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_MARINE_NEOS(void);
+void ActivateELEMENTAL_HERO_MARINE_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_NEBULA_NEOS(void);
+void ActivateELEMENTAL_HERO_NEBULA_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_SHINING_NEOS_WINGMAN(void);
+void ActivateELEMENTAL_HERO_SHINING_NEOS_WINGMANEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_SPIRIT_OF_NEOS(void);
+void ActivateELEMENTAL_HERO_SPIRIT_OF_NEOSEffect(void);
+unsigned char CanActivateELEMENTAL_HERO_STORM_NEOS(void);
+void ActivateELEMENTAL_HERO_STORM_NEOSEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -1977,6 +2005,62 @@ FAILED:
   }
   if (gMonEffect.id == CURIOUS_THE_LIGHTSWORN_DOMINION) {
     ActivateCURIOUS_THE_LIGHTSWORN_DOMINIONEffect();
+    return;
+  }
+  if (gMonEffect.id == EHREN_LIGHTSWORN_MONK) {
+    ActivateEHREN_LIGHTSWORN_MONKEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_AQUA_NEOS) {
+    ActivateELEMENTAL_HERO_AQUA_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_BRAVE_NEOS) {
+    ActivateELEMENTAL_HERO_BRAVE_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_CHAOS_NEOS) {
+    ActivateELEMENTAL_HERO_CHAOS_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_COSMO_NEOS) {
+    ActivateELEMENTAL_HERO_COSMO_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_DARK_NEOS) {
+    ActivateELEMENTAL_HERO_DARK_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_GLOW_NEOS) {
+    ActivateELEMENTAL_HERO_GLOW_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_GRAND_NEOS) {
+    ActivateELEMENTAL_HERO_GRAND_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_MAGMA_NEOS) {
+    ActivateELEMENTAL_HERO_MAGMA_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_MARINE_NEOS) {
+    ActivateELEMENTAL_HERO_MARINE_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_NEBULA_NEOS) {
+    ActivateELEMENTAL_HERO_NEBULA_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_SHINING_NEOS_WINGMAN) {
+    ActivateELEMENTAL_HERO_SHINING_NEOS_WINGMANEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_SPIRIT_OF_NEOS) {
+    ActivateELEMENTAL_HERO_SPIRIT_OF_NEOSEffect();
+    return;
+  }
+  if (gMonEffect.id == ELEMENTAL_HERO_STORM_NEOS) {
+    ActivateELEMENTAL_HERO_STORM_NEOSEffect();
     return;
   }
 }

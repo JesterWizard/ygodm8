@@ -256,6 +256,10 @@ unsigned char ShouldActivateARCANA_FORCE_XXI_THE_WORLD(void);
 void ActivateARCANA_FORCE_XXI_THE_WORLD(void);
 unsigned char ShouldActivateAURKUS_LIGHTSWORN_DRUID(void);
 void ActivateAURKUS_LIGHTSWORN_DRUID(void);
+unsigned char ShouldActivateELEMENTAL_HERO_AIR_NEOS(void);
+void ActivateELEMENTAL_HERO_AIR_NEOS(void);
+unsigned char ShouldActivateELEMENTAL_HERO_FLARE_NEOS(void);
+void ActivateELEMENTAL_HERO_FLARE_NEOS(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -816,6 +820,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = AURKUS_LIGHTSWORN_DRUID,
     .shouldActivate = ShouldActivateAURKUS_LIGHTSWORN_DRUID,
     .activate = ActivateAURKUS_LIGHTSWORN_DRUID,
+  },
+  {
+    .cardId = ELEMENTAL_HERO_AIR_NEOS,
+    .shouldActivate = ShouldActivateELEMENTAL_HERO_AIR_NEOS,
+    .activate = ActivateELEMENTAL_HERO_AIR_NEOS,
+  },
+  {
+    .cardId = ELEMENTAL_HERO_FLARE_NEOS,
+    .shouldActivate = ShouldActivateELEMENTAL_HERO_FLARE_NEOS,
+    .activate = ActivateELEMENTAL_HERO_FLARE_NEOS,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

@@ -34945,6 +34945,506 @@
       "effect_texts": {
         "popup_1": "Link mill; recover; mill cascade."
       }
+    },
+    {
+      "card_const": "EHREN_LIGHTSWORN_MONK",
+      "card_name": "Ehren, Lightsworn Monk",
+      "atk": 1600,
+      "def": 1000,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [4, 4, 1, 7, 8, 8, 8, 6],
+      "description": {
+        "symbol": "gDescription_EhrenLightswornMonk",
+        "pages": [
+          "If this card attacks a Defense",
+          "Position monster: shuffle it into",
+          "the Deck before damage calc.",
+          "During your End Phase: send the",
+          "top 3 cards of your Deck to the GY."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Shuffle Def monster; mill 3 at End."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_AIR_NEOS",
+      "card_name": "Elemental HERO Air Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [1, 1, 5, 0, 2, 5, 5, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroAirNeos",
+        "pages": [
+          "Neos + Air Hummingbird. Contact",
+          "Fusion (return materials to Deck).",
+          "Gains ATK equal to LP difference",
+          "if you have less LP. Returns to",
+          "Extra Deck during the End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK = LP gap; return at End Phase."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_AQUA_NEOS",
+      "card_name": "Elemental HERO Aqua Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [5, 5, 1, 7, 1, 4, 1, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroAquaNeos",
+        "pages": [
+          "Neos + Aqua Dolphin. Contact",
+          "Fusion. Once/turn: discard 1;",
+          "destroy 1 random card in opp hand.",
+          "Shuffle into Extra Deck at End",
+          "Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard; destroy random hand card."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_BRAVE_NEOS",
+      "card_name": "Elemental HERO Brave Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [6, 4, 6, 5, 5, 4, 8, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroBraveNeos",
+        "pages": [
+          "Neos + 1 Level 4- Effect. Must be",
+          "Fusion Summoned. +100 ATK per",
+          "Neo-Spacian/HERO in your GY.",
+          "On battle destroy: add 1 Spell/Trap",
+          "that lists Elemental HERO Neos."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK boost; search Neos S/T on kill."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_CHAOS_NEOS",
+      "card_name": "Elemental HERO Chaos Neos",
+      "atk": 3000,
+      "def": 2500,
+      "level": 9,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [1, 7, 0, 3, 2, 7, 4, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroChaosNeos",
+        "pages": [
+          "Neos + Dark Panther + Glow Moss.",
+          "Contact Fusion. End: return; Set",
+          "all face-up monsters. Main 1: toss",
+          "3 coins. 3H destroy opp; 2H negate",
+          "opp; 1H return your monsters."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin 3x; End Phase Set all."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_COSMO_NEOS",
+      "card_name": "Elemental HERO Cosmo Neos",
+      "atk": 3500,
+      "def": 3000,
+      "level": 11,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [9, 0, 0, 5, 0, 4, 8, 0],
+      "description": {
+        "symbol": "gDescription_ElementalHeroCosmoNeos",
+        "pages": [
+          "Neos + 3 Neo-Spacians (diff Attr).",
+          "Contact Fusion. On SS: opp cannot",
+          "activate cards/effects this turn.",
+          "End Phase: shuffle to Extra Deck;",
+          "destroy all cards opp controls."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Lock opp; End destroy their field."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_DARK_NEOS",
+      "card_name": "Elemental HERO Dark Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [2, 8, 6, 7, 7, 3, 0, 4],
+      "description": {
+        "symbol": "gDescription_ElementalHeroDarkNeos",
+        "pages": [
+          "Neos + Dark Panther. Contact",
+          "Fusion. Target 1 face-up Effect",
+          "monster; negate its field effects",
+          "while you control this. Shuffle",
+          "into Extra Deck at End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Negate 1 Effect monster; End return."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_FLARE_NEOS",
+      "card_name": "Elemental HERO Flare Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [8, 1, 5, 6, 6, 1, 5, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroFlareNeos",
+        "pages": [
+          "Neos + Flare Scarab. Contact",
+          "Fusion. Gains 400 ATK for each",
+          "Spell/Trap on the field. Shuffle",
+          "into Extra Deck during End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "+400 ATK per S/T; return at End."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_GLOW_NEOS",
+      "card_name": "Elemental HERO Glow Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [8, 5, 5, 0, 7, 8, 1, 1],
+      "description": {
+        "symbol": "gDescription_ElementalHeroGlowNeos",
+        "pages": [
+          "Neos + Glow Moss. Contact Fusion.",
+          "Once/turn Main 1: destroy 1 face-up",
+          "opp card; apply by type. Monster:",
+          "cannot attack. Spell: direct attack.",
+          "Trap: to Defense. End: return."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy 1; type bonus; End return."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_GRAND_NEOS",
+      "card_name": "Elemental HERO Grand Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 12,
+      "password": [4, 8, 9, 9, 6, 5, 6, 9],
+      "description": {
+        "symbol": "gDescription_ElementalHeroGrandNeos",
+        "pages": [
+          "Neos + Grand Mole. Contact Fusion.",
+          "Once per turn: target 1 opp monster;",
+          "return it to the hand. Shuffle into",
+          "Extra Deck during the End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Bounce 1 opp monster; End return."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_MAGMA_NEOS",
+      "card_name": "Elemental HERO Magma Neos",
+      "atk": 3000,
+      "def": 2500,
+      "level": 9,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [7, 8, 5, 1, 2, 6, 6, 3],
+      "description": {
+        "symbol": "gDescription_ElementalHeroMagmaNeos",
+        "pages": [
+          "Neos + Flare Scarab + Grand Mole.",
+          "Contact Fusion. +400 ATK per card",
+          "on field. End Phase: shuffle to",
+          "Extra Deck; if so, return all cards",
+          "on the field to the hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK boost; End bounce whole field."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_MARINE_NEOS",
+      "card_name": "Elemental HERO Marine Neos",
+      "atk": 2800,
+      "def": 2300,
+      "level": 8,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [0, 5, 1, 2, 8, 8, 5, 9],
+      "description": {
+        "symbol": "gDescription_ElementalHeroMarineNeos",
+        "pages": [
+          "Neos + Marine Dolphin. Contact",
+          "Fusion. Once per turn: destroy 1",
+          "random card in your opponent hand."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy 1 random card in opp hand."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_NEBULA_NEOS",
+      "card_name": "Elemental HERO Nebula Neos",
+      "atk": 3000,
+      "def": 2500,
+      "level": 9,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [4, 0, 0, 8, 0, 3, 1, 2],
+      "description": {
+        "symbol": "gDescription_ElementalHeroNebulaNeos",
+        "pages": [
+          "Neos + Grand Mole + Dark Panther.",
+          "Contact Fusion. On SS: draw equal",
+          "to opp cards; negate 1 face-up.",
+          "End: shuffle to Extra; banish all",
+          "cards on the field face-down."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Draw/negate; End banish field."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SHINING_NEOS_WINGMAN",
+      "card_name": "Elemental HERO Shining Neos Wingman",
+      "atk": 3100,
+      "def": 2500,
+      "level": 8,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [5, 6, 7, 3, 3, 7, 4, 7],
+      "description": {
+        "symbol": "gDescription_ElementalHeroShiningNeosWingman",
+        "pages": [
+          "Neos + 1 Wingman Fusion. Must be",
+          "Fusion Summoned. +300 ATK per GY",
+          "monster; effect-destroy immune.",
+          "On SS: destroy opp cards up to",
+          "diff Attributes. Battle kill: burn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy by Attr; burn on battle."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_SPIRIT_OF_NEOS",
+      "card_name": "Elemental HERO Spirit of Neos",
+      "atk": 2500,
+      "def": 2000,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 3, 2, 5, 6, 2, 2, 6],
+      "description": {
+        "symbol": "gDescription_ElementalHeroSpiritOfNeos",
+        "pages": [
+          "On opp attack: SS from hand in Def;",
+          "cannot be destroyed by battle.",
+          "On SS: add Poly or E-HERO S/T.",
+          "Main: shuffle to Deck; SS 1",
+          "Elemental HERO Normal from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand SS on attack; search; swap."
+      }
+    },
+    {
+      "card_const": "ELEMENTAL_HERO_STORM_NEOS",
+      "card_name": "Elemental HERO Storm Neos",
+      "atk": 3000,
+      "def": 2500,
+      "level": 9,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [4, 9, 3, 5, 2, 9, 4, 5],
+      "description": {
+        "symbol": "gDescription_ElementalHeroStormNeos",
+        "pages": [
+          "Neos + Air Hummingbird + Aqua",
+          "Dolphin. Contact Fusion. Once/",
+          "turn: destroy all Spells/Traps.",
+          "End: shuffle to Extra; if so,",
+          "shuffle all field cards into Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pop all S/T; End shuffle field."
+      }
+    },
+    {
+      "card_const": "EN_ENGAGE_NEO_SPACE",
+      "card_name": "EN - Engage Neo Space",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 0, 1, 7, 0, 6, 7, 8],
+      "description": {
+        "symbol": "gDescription_EnEngageNeoSpace",
+        "pages": [
+          "Send 1 Neo-Spacian and 1 E-HERO",
+          "(hand+Deck) to GY; SS 1 Neo-Spacian",
+          "or Level 5+ E-HERO from Deck; add",
+          "Polymerization. If you SS Neos:",
+          "+1000 ATK. Only Fusion Extra this turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Mill; SS Neo/HERO; add Poly."
+      }
+    },
+    {
+      "card_const": "EN_SHUFFLE",
+      "card_name": "EN Shuffle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 0, 1, 8, 6, 6, 3, 3],
+      "description": {
+        "symbol": "gDescription_EnShuffle",
+        "pages": [
+          "Shuffle 1 E-HERO or Neo-Spacian",
+          "you control into Deck; SS 1 with",
+          "a different name from Deck. GY:",
+          "banish this; shuffle E-HERO+",
+          "Neo-Spacian OR Neos; draw 1."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Swap Neos/HERO; GY shuffle+draw."
+      }
     }
   ]
 }

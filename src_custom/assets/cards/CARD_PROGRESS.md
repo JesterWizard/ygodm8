@@ -11,10 +11,10 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 839 |
-| Art ready, needs manifest | 139 |
+| In game (manifest + art) | 857 |
+| Art ready, needs manifest | 118 |
 | In manifest, missing art | 0 |
-| **Total PNGs in `80x80/`** | **980** |
+| **Total PNGs in `80x80/`** | **977** |
 
 ## In game
 
@@ -861,32 +861,29 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `CONVERT_CONTACT` | Convert Contact | `convert_contact.png` |
 | `CROSS_KEEPER` | Cross Keeper | `cross_keeper.png` |
 | `CURIOUS_THE_LIGHTSWORN_DOMINION` | Curious, the Lightsworn Dominion | `curious_the_lightsworn_dominion.png` |
+| `EHREN_LIGHTSWORN_MONK` | Ehren, Lightsworn Monk | `ehren_lightsworn_monk.png` |
+| `ELEMENTAL_HERO_AIR_NEOS` | Elemental HERO Air Neos | `elemental_hero_air_neos.png` |
+| `ELEMENTAL_HERO_AQUA_NEOS` | Elemental HERO Aqua Neos | `elemental_hero_aqua_neos.png` |
+| `ELEMENTAL_HERO_BRAVE_NEOS` | Elemental HERO Brave Neos | `elemental_hero_brave_neos.png` |
+| `ELEMENTAL_HERO_CHAOS_NEOS` | Elemental HERO Chaos Neos | `elemental_hero_chaos_neos.png` |
+| `ELEMENTAL_HERO_COSMO_NEOS` | Elemental HERO Cosmo Neos | `elemental_hero_cosmo_neos.png` |
+| `ELEMENTAL_HERO_DARK_NEOS` | Elemental HERO Dark Neos | `elemental_hero_dark_neos.png` |
+| `ELEMENTAL_HERO_FLARE_NEOS` | Elemental HERO Flare Neos | `elemental_hero_flare_neos.png` |
+| `ELEMENTAL_HERO_GLOW_NEOS` | Elemental HERO Glow Neos | `elemental_hero_glow_neos.png` |
+| `ELEMENTAL_HERO_GRAND_NEOS` | Elemental HERO Grand Neos | `elemental_hero_grand_neos.png` |
+| `ELEMENTAL_HERO_MAGMA_NEOS` | Elemental HERO Magma Neos | `elemental_hero_magma_neos.png` |
+| `ELEMENTAL_HERO_MARINE_NEOS` | Elemental HERO Marine Neos | `elemental_hero_marine_neos.png` |
+| `ELEMENTAL_HERO_NEBULA_NEOS` | Elemental HERO Nebula Neos | `elemental_hero_nebula_neos.png` |
+| `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN` | Elemental HERO Shining Neos Wingman | `elemental_hero_shining_neos_wingman.png` |
+| `ELEMENTAL_HERO_SPIRIT_OF_NEOS` | Elemental HERO Spirit of Neos | `elemental_hero_spirit_of_neos.png` |
+| `ELEMENTAL_HERO_STORM_NEOS` | Elemental HERO Storm Neos | `elemental_hero_storm_neos.png` |
+| `EN_ENGAGE_NEO_SPACE` | EN - Engage Neo Space | `en_engage_neo_space.png` |
+| `EN_SHUFFLE` | EN Shuffle | `en_shuffle.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `DARK_MAGICIAN_CIRCLE` — `dark_magician_circle.png`
-- [ ] `DARK_MAGICIAN_GIRL_THE_MAGICIANS_APPRENTICE` — `dark_magician_girl_the_magicians_apprentice.png`
-- [ ] `DARK_MAGICIAN_THE_MAGICIAN_OF_BLACK_CHAOS` — `dark_magician_the_magician_of_black_chaos.png`
-- [ ] `EHREN_LIGHTSWORN_MONK` — `ehren_lightsworn_monk.png`
-- [ ] `ELEMENTAL_HERO_AIR_NEOS` — `elemental_hero_air_neos.png`
-- [ ] `ELEMENTAL_HERO_AQUA_NEOS` — `elemental_hero_aqua_neos.png`
-- [ ] `ELEMENTAL_HERO_BRAVE_NEOS` — `elemental_hero_brave_neos.png`
-- [ ] `ELEMENTAL_HERO_CHAOS_NEOS` — `elemental_hero_chaos_neos.png`
-- [ ] `ELEMENTAL_HERO_COSMO_NEOS` — `elemental_hero_cosmo_neos.png`
-- [ ] `ELEMENTAL_HERO_DARK_NEOS` — `elemental_hero_dark_neos.png`
-- [ ] `ELEMENTAL_HERO_FLARE_NEOS` — `elemental_hero_flare_neos.png`
-- [ ] `ELEMENTAL_HERO_GLOW_NEOS` — `elemental_hero_glow_neos.png`
-- [ ] `ELEMENTAL_HERO_GRAND_NEOS` — `elemental_hero_grand_neos.png`
-- [ ] `ELEMENTAL_HERO_MAGMA_NEOS` — `elemental_hero_magma_neos.png`
-- [ ] `ELEMENTAL_HERO_MARINE_NEOS` — `elemental_hero_marine_neos.png`
-- [ ] `ELEMENTAL_HERO_NEBULA_NEOS` — `elemental_hero_nebula_neos.png`
-- [ ] `ELEMENTAL_HERO_SHINING_NEOS_WINGMAN` — `elemental_hero_shining_neos_wingman.png`
-- [ ] `ELEMENTAL_HERO_SPIRIT_OF_NEOS` — `elemental_hero_spirit_of_neos.png`
-- [ ] `ELEMENTAL_HERO_STORM_NEOS` — `elemental_hero_storm_neos.png`
-- [ ] `EN_ENGAGE_NEO_SPACE` — `en_engage_neo_space.png`
-- [ ] `EN_SHUFFLE` — `en_shuffle.png`
 - [ ] `EN_WAVE` — `en_wave.png`
 - [ ] `ENLIGHTENMENT_DRAGON` — `enlightenment_dragon.png`
 - [ ] `FAVOURITE_CONTACT` — `favourite_contact.png`

@@ -1641,11 +1641,29 @@
 #define CONVERT_CONTACT                          0x0665
 #define CROSS_KEEPER                             0x0666
 #define CURIOUS_THE_LIGHTSWORN_DOMINION          0x0667
+#define EHREN_LIGHTSWORN_MONK                    0x0668
+#define ELEMENTAL_HERO_AIR_NEOS                  0x0669
+#define ELEMENTAL_HERO_AQUA_NEOS                 0x066A
+#define ELEMENTAL_HERO_BRAVE_NEOS                0x066B
+#define ELEMENTAL_HERO_CHAOS_NEOS                0x066C
+#define ELEMENTAL_HERO_COSMO_NEOS                0x066D
+#define ELEMENTAL_HERO_DARK_NEOS                 0x066E
+#define ELEMENTAL_HERO_FLARE_NEOS                0x066F
+#define ELEMENTAL_HERO_GLOW_NEOS                 0x0670
+#define ELEMENTAL_HERO_GRAND_NEOS                0x0671
+#define ELEMENTAL_HERO_MAGMA_NEOS                0x0672
+#define ELEMENTAL_HERO_MARINE_NEOS               0x0673
+#define ELEMENTAL_HERO_NEBULA_NEOS               0x0674
+#define ELEMENTAL_HERO_SHINING_NEOS_WINGMAN      0x0675
+#define ELEMENTAL_HERO_SPIRIT_OF_NEOS            0x0676
+#define ELEMENTAL_HERO_STORM_NEOS                0x0677
+#define EN_ENGAGE_NEO_SPACE                      0x0678
+#define EN_SHUFFLE                               0x0679
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x0668
-#define NUM_CUSTOM_CARDS                        0x0347
+#define NUM_TOTAL_CARDS                         0x067A
+#define NUM_CUSTOM_CARDS                        0x0359
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

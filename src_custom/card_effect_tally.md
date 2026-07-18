@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `772` effects
+- `790` effects
 
 ## Tally
 
@@ -753,6 +753,24 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Curious The Lightsworn Dominion` | `src_custom/activated_effects/curious_the_lightsworn_dominion.c` |
 | `activated_effects` | `Cyber Slash Harpy Lady` | `src_custom/activated_effects/cyber_slash_harpy_lady.c` |
 | `trap_effects` | `Damage Equals Reptile` | `src_custom/trap_effects/damage_equals_reptile.c` |
+| `activated_effects` | `Ehren Lightsworn Monk` | `src_custom/activated_effects/ehren_lightsworn_monk.c` |
+| `permanent_effects` | `Elemental Hero Air Neos` | `src_custom/permanent_effects/elemental_hero_air_neos.c` |
+| `activated_effects` | `Elemental Hero Aqua Neos` | `src_custom/activated_effects/elemental_hero_aqua_neos.c` |
+| `activated_effects` | `Elemental Hero Brave Neos` | `src_custom/activated_effects/elemental_hero_brave_neos.c` |
+| `activated_effects` | `Elemental Hero Chaos Neos` | `src_custom/activated_effects/elemental_hero_chaos_neos.c` |
+| `activated_effects` | `Elemental Hero Cosmo Neos` | `src_custom/activated_effects/elemental_hero_cosmo_neos.c` |
+| `activated_effects` | `Elemental Hero Dark Neos` | `src_custom/activated_effects/elemental_hero_dark_neos.c` |
+| `permanent_effects` | `Elemental Hero Flare Neos` | `src_custom/permanent_effects/elemental_hero_flare_neos.c` |
+| `activated_effects` | `Elemental Hero Glow Neos` | `src_custom/activated_effects/elemental_hero_glow_neos.c` |
+| `activated_effects` | `Elemental Hero Grand Neos` | `src_custom/activated_effects/elemental_hero_grand_neos.c` |
+| `activated_effects` | `Elemental Hero Magma Neos` | `src_custom/activated_effects/elemental_hero_magma_neos.c` |
+| `activated_effects` | `Elemental Hero Marine Neos` | `src_custom/activated_effects/elemental_hero_marine_neos.c` |
+| `activated_effects` | `Elemental Hero Nebula Neos` | `src_custom/activated_effects/elemental_hero_nebula_neos.c` |
+| `activated_effects` | `Elemental Hero Shining Neos Wingman` | `src_custom/activated_effects/elemental_hero_shining_neos_wingman.c` |
+| `activated_effects` | `Elemental Hero Spirit Of Neos` | `src_custom/activated_effects/elemental_hero_spirit_of_neos.c` |
+| `activated_effects` | `Elemental Hero Storm Neos` | `src_custom/activated_effects/elemental_hero_storm_neos.c` |
+| `spell_effects` | `En Engage Neo Space` | `src_custom/spell_effects/en_engage_neo_space.c` |
+| `spell_effects` | `En Shuffle` | `src_custom/spell_effects/en_shuffle.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

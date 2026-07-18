@@ -3364,6 +3364,78 @@ static const unsigned char sCuriousTheLightswornDominionBigArt[] __attribute__((
 static const unsigned short sCuriousTheLightswornDominionBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/curious_the_lightsworn_dominion.gbapal");
 static const unsigned char sCuriousTheLightswornDominionMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/curious_the_lightsworn_dominion.lz");
 
+static const unsigned char sEhrenLightswornMonkBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/ehren_lightsworn_monk.huff");
+static const unsigned short sEhrenLightswornMonkBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/ehren_lightsworn_monk.gbapal");
+static const unsigned char sEhrenLightswornMonkMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/ehren_lightsworn_monk.lz");
+
+static const unsigned char sElementalHeroAirNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_air_neos.huff");
+static const unsigned short sElementalHeroAirNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_air_neos.gbapal");
+static const unsigned char sElementalHeroAirNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_air_neos.lz");
+
+static const unsigned char sElementalHeroAquaNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_aqua_neos.huff");
+static const unsigned short sElementalHeroAquaNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_aqua_neos.gbapal");
+static const unsigned char sElementalHeroAquaNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_aqua_neos.lz");
+
+static const unsigned char sElementalHeroBraveNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_brave_neos.huff");
+static const unsigned short sElementalHeroBraveNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_brave_neos.gbapal");
+static const unsigned char sElementalHeroBraveNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_brave_neos.lz");
+
+static const unsigned char sElementalHeroChaosNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_chaos_neos.huff");
+static const unsigned short sElementalHeroChaosNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_chaos_neos.gbapal");
+static const unsigned char sElementalHeroChaosNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_chaos_neos.lz");
+
+static const unsigned char sElementalHeroCosmoNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_cosmo_neos.huff");
+static const unsigned short sElementalHeroCosmoNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_cosmo_neos.gbapal");
+static const unsigned char sElementalHeroCosmoNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_cosmo_neos.lz");
+
+static const unsigned char sElementalHeroDarkNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_dark_neos.huff");
+static const unsigned short sElementalHeroDarkNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_dark_neos.gbapal");
+static const unsigned char sElementalHeroDarkNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_dark_neos.lz");
+
+static const unsigned char sElementalHeroFlareNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_flare_neos.huff");
+static const unsigned short sElementalHeroFlareNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_flare_neos.gbapal");
+static const unsigned char sElementalHeroFlareNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_flare_neos.lz");
+
+static const unsigned char sElementalHeroGlowNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_glow_neos.huff");
+static const unsigned short sElementalHeroGlowNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_glow_neos.gbapal");
+static const unsigned char sElementalHeroGlowNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_glow_neos.lz");
+
+static const unsigned char sElementalHeroGrandNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_grand_neos.huff");
+static const unsigned short sElementalHeroGrandNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_grand_neos.gbapal");
+static const unsigned char sElementalHeroGrandNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_grand_neos.lz");
+
+static const unsigned char sElementalHeroMagmaNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_magma_neos.huff");
+static const unsigned short sElementalHeroMagmaNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_magma_neos.gbapal");
+static const unsigned char sElementalHeroMagmaNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_magma_neos.lz");
+
+static const unsigned char sElementalHeroMarineNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_marine_neos.huff");
+static const unsigned short sElementalHeroMarineNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_marine_neos.gbapal");
+static const unsigned char sElementalHeroMarineNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_marine_neos.lz");
+
+static const unsigned char sElementalHeroNebulaNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_nebula_neos.huff");
+static const unsigned short sElementalHeroNebulaNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_nebula_neos.gbapal");
+static const unsigned char sElementalHeroNebulaNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_nebula_neos.lz");
+
+static const unsigned char sElementalHeroShiningNeosWingmanBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_shining_neos_wingman.huff");
+static const unsigned short sElementalHeroShiningNeosWingmanBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_shining_neos_wingman.gbapal");
+static const unsigned char sElementalHeroShiningNeosWingmanMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_shining_neos_wingman.lz");
+
+static const unsigned char sElementalHeroSpiritOfNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_spirit_of_neos.huff");
+static const unsigned short sElementalHeroSpiritOfNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_spirit_of_neos.gbapal");
+static const unsigned char sElementalHeroSpiritOfNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_spirit_of_neos.lz");
+
+static const unsigned char sElementalHeroStormNeosBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/elemental_hero_storm_neos.huff");
+static const unsigned short sElementalHeroStormNeosBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/elemental_hero_storm_neos.gbapal");
+static const unsigned char sElementalHeroStormNeosMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/elemental_hero_storm_neos.lz");
+
+static const unsigned char sEnEngageNeoSpaceBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/en_engage_neo_space.huff");
+static const unsigned short sEnEngageNeoSpaceBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/en_engage_neo_space.gbapal");
+static const unsigned char sEnEngageNeoSpaceMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/en_engage_neo_space.lz");
+
+static const unsigned char sEnShuffleBigArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/80x80/en_shuffle.huff");
+static const unsigned short sEnShuffleBigPalette[] __attribute__((section(".append_assets"))) = INCBIN_U16("build/cards/80x80/en_shuffle.gbapal");
+static const unsigned char sEnShuffleMiniArt[] __attribute__((section(".append_assets"))) = INCBIN_U8("build/cards/24x24/en_shuffle.lz");
+
 const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x00AE] = sSenjuOfTheThousandHandsBigArt,
   [0x0137] = sBlackPendantBigArt,
@@ -4206,6 +4278,24 @@ const unsigned char *gCardArts_Hook[] APPEND_RODATA = {
   [0x0665] = sConvertContactBigArt,
   [0x0666] = sCrossKeeperBigArt,
   [0x0667] = sCuriousTheLightswornDominionBigArt,
+  [0x0668] = sEhrenLightswornMonkBigArt,
+  [0x0669] = sElementalHeroAirNeosBigArt,
+  [0x066A] = sElementalHeroAquaNeosBigArt,
+  [0x066B] = sElementalHeroBraveNeosBigArt,
+  [0x066C] = sElementalHeroChaosNeosBigArt,
+  [0x066D] = sElementalHeroCosmoNeosBigArt,
+  [0x066E] = sElementalHeroDarkNeosBigArt,
+  [0x066F] = sElementalHeroFlareNeosBigArt,
+  [0x0670] = sElementalHeroGlowNeosBigArt,
+  [0x0671] = sElementalHeroGrandNeosBigArt,
+  [0x0672] = sElementalHeroMagmaNeosBigArt,
+  [0x0673] = sElementalHeroMarineNeosBigArt,
+  [0x0674] = sElementalHeroNebulaNeosBigArt,
+  [0x0675] = sElementalHeroShiningNeosWingmanBigArt,
+  [0x0676] = sElementalHeroSpiritOfNeosBigArt,
+  [0x0677] = sElementalHeroStormNeosBigArt,
+  [0x0678] = sEnEngageNeoSpaceBigArt,
+  [0x0679] = sEnShuffleBigArt,
 };
 
 const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
@@ -5050,6 +5140,24 @@ const unsigned short *gCardArtPalettes_Hook[] APPEND_RODATA = {
   [0x0665] = sConvertContactBigPalette,
   [0x0666] = sCrossKeeperBigPalette,
   [0x0667] = sCuriousTheLightswornDominionBigPalette,
+  [0x0668] = sEhrenLightswornMonkBigPalette,
+  [0x0669] = sElementalHeroAirNeosBigPalette,
+  [0x066A] = sElementalHeroAquaNeosBigPalette,
+  [0x066B] = sElementalHeroBraveNeosBigPalette,
+  [0x066C] = sElementalHeroChaosNeosBigPalette,
+  [0x066D] = sElementalHeroCosmoNeosBigPalette,
+  [0x066E] = sElementalHeroDarkNeosBigPalette,
+  [0x066F] = sElementalHeroFlareNeosBigPalette,
+  [0x0670] = sElementalHeroGlowNeosBigPalette,
+  [0x0671] = sElementalHeroGrandNeosBigPalette,
+  [0x0672] = sElementalHeroMagmaNeosBigPalette,
+  [0x0673] = sElementalHeroMarineNeosBigPalette,
+  [0x0674] = sElementalHeroNebulaNeosBigPalette,
+  [0x0675] = sElementalHeroShiningNeosWingmanBigPalette,
+  [0x0676] = sElementalHeroSpiritOfNeosBigPalette,
+  [0x0677] = sElementalHeroStormNeosBigPalette,
+  [0x0678] = sEnEngageNeoSpaceBigPalette,
+  [0x0679] = sEnShuffleBigPalette,
 };
 
 const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
@@ -5894,6 +6002,24 @@ const u8 gCardArtUsesExtendedPalette_Hook[] APPEND_RODATA = {
   [0x0665] = 0,
   [0x0666] = 0,
   [0x0667] = 0,
+  [0x0668] = 0,
+  [0x0669] = 0,
+  [0x066A] = 0,
+  [0x066B] = 0,
+  [0x066C] = 0,
+  [0x066D] = 0,
+  [0x066E] = 0,
+  [0x066F] = 0,
+  [0x0670] = 0,
+  [0x0671] = 0,
+  [0x0672] = 0,
+  [0x0673] = 0,
+  [0x0674] = 0,
+  [0x0675] = 0,
+  [0x0676] = 0,
+  [0x0677] = 0,
+  [0x0678] = 0,
+  [0x0679] = 0,
 };
 
 const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
@@ -6738,4 +6864,22 @@ const unsigned char *gMiniCardArts_Hook[] APPEND_RODATA = {
   [0x0665] = sConvertContactMiniArt,
   [0x0666] = sCrossKeeperMiniArt,
   [0x0667] = sCuriousTheLightswornDominionMiniArt,
+  [0x0668] = sEhrenLightswornMonkMiniArt,
+  [0x0669] = sElementalHeroAirNeosMiniArt,
+  [0x066A] = sElementalHeroAquaNeosMiniArt,
+  [0x066B] = sElementalHeroBraveNeosMiniArt,
+  [0x066C] = sElementalHeroChaosNeosMiniArt,
+  [0x066D] = sElementalHeroCosmoNeosMiniArt,
+  [0x066E] = sElementalHeroDarkNeosMiniArt,
+  [0x066F] = sElementalHeroFlareNeosMiniArt,
+  [0x0670] = sElementalHeroGlowNeosMiniArt,
+  [0x0671] = sElementalHeroGrandNeosMiniArt,
+  [0x0672] = sElementalHeroMagmaNeosMiniArt,
+  [0x0673] = sElementalHeroMarineNeosMiniArt,
+  [0x0674] = sElementalHeroNebulaNeosMiniArt,
+  [0x0675] = sElementalHeroShiningNeosWingmanMiniArt,
+  [0x0676] = sElementalHeroSpiritOfNeosMiniArt,
+  [0x0677] = sElementalHeroStormNeosMiniArt,
+  [0x0678] = sEnEngageNeoSpaceMiniArt,
+  [0x0679] = sEnShuffleMiniArt,
 };

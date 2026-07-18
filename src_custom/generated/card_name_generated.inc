@@ -840,6 +840,24 @@ static const u8 sContactGateName[] __attribute__((section(".append_assets"))) = 
 static const u8 sConvertContactName[] __attribute__((section(".append_assets"))) = "Convert Contact";
 static const u8 sCrossKeeperName[] __attribute__((section(".append_assets"))) = "Cross Keeper";
 static const u8 sCuriousTheLightswornDominionName[] __attribute__((section(".append_assets"))) = "Curious, the Lightsworn Dominion";
+static const u8 sEhrenLightswornMonkName[] __attribute__((section(".append_assets"))) = "Ehren, Lightsworn Monk";
+static const u8 sElementalHeroAirNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Air Neos";
+static const u8 sElementalHeroAquaNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Aqua Neos";
+static const u8 sElementalHeroBraveNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Brave Neos";
+static const u8 sElementalHeroChaosNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Chaos Neos";
+static const u8 sElementalHeroCosmoNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Cosmo Neos";
+static const u8 sElementalHeroDarkNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Dark Neos";
+static const u8 sElementalHeroFlareNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Flare Neos";
+static const u8 sElementalHeroGlowNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Glow Neos";
+static const u8 sElementalHeroGrandNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Grand Neos";
+static const u8 sElementalHeroMagmaNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Magma Neos";
+static const u8 sElementalHeroMarineNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Marine Neos";
+static const u8 sElementalHeroNebulaNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Nebula Neos";
+static const u8 sElementalHeroShiningNeosWingmanName[] __attribute__((section(".append_assets"))) = "Elemental HERO Shining Neos Wingman";
+static const u8 sElementalHeroSpiritOfNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Spirit of Neos";
+static const u8 sElementalHeroStormNeosName[] __attribute__((section(".append_assets"))) = "Elemental HERO Storm Neos";
+static const u8 sEnEngageNeoSpaceName[] __attribute__((section(".append_assets"))) = "EN - Engage Neo Space";
+static const u8 sEnShuffleName[] __attribute__((section(".append_assets"))) = "EN Shuffle";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2526,6 +2544,42 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sCrossKeeperName;
   if (cardId == 0x0667)
     return (u8 *)sCuriousTheLightswornDominionName;
+  if (cardId == 0x0668)
+    return (u8 *)sEhrenLightswornMonkName;
+  if (cardId == 0x0669)
+    return (u8 *)sElementalHeroAirNeosName;
+  if (cardId == 0x066A)
+    return (u8 *)sElementalHeroAquaNeosName;
+  if (cardId == 0x066B)
+    return (u8 *)sElementalHeroBraveNeosName;
+  if (cardId == 0x066C)
+    return (u8 *)sElementalHeroChaosNeosName;
+  if (cardId == 0x066D)
+    return (u8 *)sElementalHeroCosmoNeosName;
+  if (cardId == 0x066E)
+    return (u8 *)sElementalHeroDarkNeosName;
+  if (cardId == 0x066F)
+    return (u8 *)sElementalHeroFlareNeosName;
+  if (cardId == 0x0670)
+    return (u8 *)sElementalHeroGlowNeosName;
+  if (cardId == 0x0671)
+    return (u8 *)sElementalHeroGrandNeosName;
+  if (cardId == 0x0672)
+    return (u8 *)sElementalHeroMagmaNeosName;
+  if (cardId == 0x0673)
+    return (u8 *)sElementalHeroMarineNeosName;
+  if (cardId == 0x0674)
+    return (u8 *)sElementalHeroNebulaNeosName;
+  if (cardId == 0x0675)
+    return (u8 *)sElementalHeroShiningNeosWingmanName;
+  if (cardId == 0x0676)
+    return (u8 *)sElementalHeroSpiritOfNeosName;
+  if (cardId == 0x0677)
+    return (u8 *)sElementalHeroStormNeosName;
+  if (cardId == 0x0678)
+    return (u8 *)sEnEngageNeoSpaceName;
+  if (cardId == 0x0679)
+    return (u8 *)sEnShuffleName;
 
   return gCardNames[cardId];
 }
