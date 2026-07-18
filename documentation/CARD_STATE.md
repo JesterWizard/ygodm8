@@ -1,21 +1,19 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Added NEO_SPACE–RINYAN_LIGHTSWORN_ROGUE (trunk + stub effects)
+**Last worked on:** 2026-07-18 — Added RYKO_LIGHTSWORN_HUNTER–WULF_LIGHTSWORN_BEAST (trunk + stub effects)
 
 **Files touched:**
 - `tools/card_data_manifest.json`
 - `src_custom/monster_effect_hooks.c`
 - `src_custom/permanent_effect_hooks.c`
-- `src_custom/battle_damage_hooks.c`
 - `src_custom/trap_effect_hooks.c`
 - `src_custom/activated_effects/`
 - `src_custom/permanent_effects/`
-- `src_custom/battle_effects/`
 - `src_custom/spell_effects/`
 - `src_custom/trap_effects/`
 - `CARD_PROGRESS.md`
 
-**Outcome:** make exits 0. 20 cards in trunk with art; effects stubbed. Anime-only PENTACLE_OF_ACE added manually. total_cards=1757. In game 956; todo 17.
+**Outcome:** make exits 0. 17 cards in trunk with art; effects stubbed. Anime Suit of Sword X / Thumbs Down added manually; forced TWLIGHT art stem. total_cards=1774. In game 973; todo 0.
 
 **Open / next:**
-- Implement stub effects; next todo batch from RYKO_LIGHTSWORN_HUNTER
+- Implement stub effects across recent CARD_PROGRESS batches

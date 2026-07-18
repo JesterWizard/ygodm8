@@ -957,6 +957,23 @@ static const u8 sRescueCatName[] __attribute__((section(".append_assets"))) = "R
 static const u8 sRescueRabbitName[] __attribute__((section(".append_assets"))) = "Rescue Rabbit";
 static const u8 sReversalOfFateName[] __attribute__((section(".append_assets"))) = "Reversal of Fate";
 static const u8 sRinyanLightswornRogueName[] __attribute__((section(".append_assets"))) = "Rinyan, Lightsworn Rogue";
+static const u8 sRykoLightswornHunterName[] __attribute__((section(".append_assets"))) = "Ryko, Lightsworn Hunter";
+static const u8 sRykoTwilightswornFighterName[] __attribute__((section(".append_assets"))) = "Ryko, Twilightsworn Fighter";
+static const u8 sShireLightswornSpiritName[] __attribute__((section(".append_assets"))) = "Shire, Lightsworn Spirit";
+static const u8 sSolarRechargeName[] __attribute__((section(".append_assets"))) = "Solar Recharge";
+static const u8 sSuitOfSwordXName[] __attribute__((section(".append_assets"))) = "Suit of Sword X";
+static const u8 sTestBearName[] __attribute__((section(".append_assets"))) = "Test Bear";
+static const u8 sTestPantherName[] __attribute__((section(".append_assets"))) = "Test Panther";
+static const u8 sTestTigerName[] __attribute__((section(".append_assets"))) = "Test Tiger";
+static const u8 sThumbsDownName[] __attribute__((section(".append_assets"))) = "Thumbs Down";
+static const u8 sTourOfDoomName[] __attribute__((section(".append_assets"))) = "Tour of Doom";
+static const u8 sTrojanGladiatorBeastName[] __attribute__((section(".append_assets"))) = "Trojan Gladiator Beast";
+static const u8 sTwilightClothName[] __attribute__((section(".append_assets"))) = "Twilight Cloth";
+static const u8 sTwilightEraserName[] __attribute__((section(".append_assets"))) = "Twilight Eraser";
+static const u8 sTwlightTwinDragonsName[] __attribute__((section(".append_assets"))) = "Twilight Twin Dragons";
+static const u8 sVanquishingLightName[] __attribute__((section(".append_assets"))) = "Vanquishing Light";
+static const u8 sWeissLightswornArchfiendName[] __attribute__((section(".append_assets"))) = "Weiss, Lightsworn Archfiend";
+static const u8 sWulfLightswornBeastName[] __attribute__((section(".append_assets"))) = "Wulf, Lightsworn Beast";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2877,6 +2894,40 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sReversalOfFateName;
   if (cardId == 0x06DC)
     return (u8 *)sRinyanLightswornRogueName;
+  if (cardId == 0x06DD)
+    return (u8 *)sRykoLightswornHunterName;
+  if (cardId == 0x06DE)
+    return (u8 *)sRykoTwilightswornFighterName;
+  if (cardId == 0x06DF)
+    return (u8 *)sShireLightswornSpiritName;
+  if (cardId == 0x06E0)
+    return (u8 *)sSolarRechargeName;
+  if (cardId == 0x06E1)
+    return (u8 *)sSuitOfSwordXName;
+  if (cardId == 0x06E2)
+    return (u8 *)sTestBearName;
+  if (cardId == 0x06E3)
+    return (u8 *)sTestPantherName;
+  if (cardId == 0x06E4)
+    return (u8 *)sTestTigerName;
+  if (cardId == 0x06E5)
+    return (u8 *)sThumbsDownName;
+  if (cardId == 0x06E6)
+    return (u8 *)sTourOfDoomName;
+  if (cardId == 0x06E7)
+    return (u8 *)sTrojanGladiatorBeastName;
+  if (cardId == 0x06E8)
+    return (u8 *)sTwilightClothName;
+  if (cardId == 0x06E9)
+    return (u8 *)sTwilightEraserName;
+  if (cardId == 0x06EA)
+    return (u8 *)sTwlightTwinDragonsName;
+  if (cardId == 0x06EB)
+    return (u8 *)sVanquishingLightName;
+  if (cardId == 0x06EC)
+    return (u8 *)sWeissLightswornArchfiendName;
+  if (cardId == 0x06ED)
+    return (u8 *)sWulfLightswornBeastName;
 
   return gCardNames[cardId];
 }

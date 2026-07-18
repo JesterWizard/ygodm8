@@ -584,6 +584,9 @@
     case SNAKE_RAIN:
       EffectSNAKE_RAIN();
       return;
+    case SOLAR_RECHARGE:
+      EffectSOLAR_RECHARGE();
+      return;
     case SOUL_EXCHANGE:
       EffectSoulExchange();
       return;
@@ -595,6 +598,9 @@
       return;
     case SPELL_ECONOMICS:
       EffectSpellEconomics();
+      return;
+    case SUIT_OF_SWORD_X:
+      EffectSUIT_OF_SWORD_X();
       return;
     case SUPREME_KINGS_CASTLE:
       EffectSUPREME_KINGS_CASTLE();
@@ -667,6 +673,9 @@
       return;
     case TWIN_SWORDS_OF_FLASHING_LIGHT_TRYCE:
       EffectTwinSwordsOfFlashingLightTryce();
+      return;
+    case TWLIGHT_TWIN_DRAGONS:
+      EffectTWLIGHT_TWIN_DRAGONS();
       return;
     case ULTRA_POLYMERIZATION:
       EffectULTRA_POLYMERIZATION();

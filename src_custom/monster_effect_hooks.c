@@ -574,6 +574,18 @@ unsigned char CanActivateRESCUE_RABBIT(void);
 void ActivateRESCUE_RABBITEffect(void);
 unsigned char CanActivateRINYAN_LIGHTSWORN_ROGUE(void);
 void ActivateRINYAN_LIGHTSWORN_ROGUEEffect(void);
+unsigned char CanActivateRYKO_LIGHTSWORN_HUNTER(void);
+void ActivateRYKO_LIGHTSWORN_HUNTEREffect(void);
+unsigned char CanActivateRYKO_TWILIGHTSWORN_FIGHTER(void);
+void ActivateRYKO_TWILIGHTSWORN_FIGHTEREffect(void);
+unsigned char CanActivateTEST_BEAR(void);
+void ActivateTEST_BEAREffect(void);
+unsigned char CanActivateTEST_PANTHER(void);
+void ActivateTEST_PANTHEREffect(void);
+unsigned char CanActivateTEST_TIGER(void);
+void ActivateTEST_TIGEREffect(void);
+unsigned char CanActivateWEISS_LIGHTSWORN_ARCHFIEND(void);
+void ActivateWEISS_LIGHTSWORN_ARCHFIENDEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2337,6 +2349,30 @@ FAILED:
   }
   if (gMonEffect.id == RINYAN_LIGHTSWORN_ROGUE) {
     ActivateRINYAN_LIGHTSWORN_ROGUEEffect();
+    return;
+  }
+  if (gMonEffect.id == RYKO_LIGHTSWORN_HUNTER) {
+    ActivateRYKO_LIGHTSWORN_HUNTEREffect();
+    return;
+  }
+  if (gMonEffect.id == RYKO_TWILIGHTSWORN_FIGHTER) {
+    ActivateRYKO_TWILIGHTSWORN_FIGHTEREffect();
+    return;
+  }
+  if (gMonEffect.id == TEST_BEAR) {
+    ActivateTEST_BEAREffect();
+    return;
+  }
+  if (gMonEffect.id == TEST_PANTHER) {
+    ActivateTEST_PANTHEREffect();
+    return;
+  }
+  if (gMonEffect.id == TEST_TIGER) {
+    ActivateTEST_TIGEREffect();
+    return;
+  }
+  if (gMonEffect.id == WEISS_LIGHTSWORN_ARCHFIEND) {
+    ActivateWEISS_LIGHTSWORN_ARCHFIENDEffect();
     return;
   }
 }

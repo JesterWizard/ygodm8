@@ -1758,11 +1758,28 @@
 #define RESCUE_RABBIT                            0x06DA
 #define REVERSAL_OF_FATE                         0x06DB
 #define RINYAN_LIGHTSWORN_ROGUE                  0x06DC
+#define RYKO_LIGHTSWORN_HUNTER                   0x06DD
+#define RYKO_TWILIGHTSWORN_FIGHTER               0x06DE
+#define SHIRE_LIGHTSWORN_SPIRIT                  0x06DF
+#define SOLAR_RECHARGE                           0x06E0
+#define SUIT_OF_SWORD_X                          0x06E1
+#define TEST_BEAR                                0x06E2
+#define TEST_PANTHER                             0x06E3
+#define TEST_TIGER                               0x06E4
+#define THUMBS_DOWN                              0x06E5
+#define TOUR_OF_DOOM                             0x06E6
+#define TROJAN_GLADIATOR_BEAST                   0x06E7
+#define TWILIGHT_CLOTH                           0x06E8
+#define TWILIGHT_ERASER                          0x06E9
+#define TWLIGHT_TWIN_DRAGONS                     0x06EA
+#define VANQUISHING_LIGHT                        0x06EB
+#define WEISS_LIGHTSWORN_ARCHFIEND               0x06EC
+#define WULF_LIGHTSWORN_BEAST                    0x06ED
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x06DD
-#define NUM_CUSTOM_CARDS                        0x03BC
+#define NUM_TOTAL_CARDS                         0x06EE
+#define NUM_CUSTOM_CARDS                        0x03CD
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

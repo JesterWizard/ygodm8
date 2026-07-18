@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 956 |
-| Art ready, needs manifest | 17 |
+| In game (manifest + art) | 973 |
+| Art ready, needs manifest | 0 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **975** |
 
@@ -978,28 +978,28 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `RESCUE_RABBIT` | Rescue Rabbit | `rescue_rabbit.png` |
 | `REVERSAL_OF_FATE` | Reversal of Fate | `reversal_of_fate.png` |
 | `RINYAN_LIGHTSWORN_ROGUE` | Rinyan, Lightsworn Rogue | `rinyan_lightsworn_rogue.png` |
+| `RYKO_LIGHTSWORN_HUNTER` | Ryko, Lightsworn Hunter | `ryko_lightsworn_hunter.png` |
+| `RYKO_TWILIGHTSWORN_FIGHTER` | Ryko, Twilightsworn Fighter | `ryko_twilightsworn_fighter.png` |
+| `SHIRE_LIGHTSWORN_SPIRIT` | Shire, Lightsworn Spirit | `shire_lightsworn_spirit.png` |
+| `SOLAR_RECHARGE` | Solar Recharge | `solar_recharge.png` |
+| `SUIT_OF_SWORD_X` | Suit of Sword X | `suit_of_sword_x.png` |
+| `TEST_BEAR` | Test Bear | `test_bear.png` |
+| `TEST_PANTHER` | Test Panther | `test_panther.png` |
+| `TEST_TIGER` | Test Tiger | `test_tiger.png` |
+| `THUMBS_DOWN` | Thumbs Down | `thumbs_down.png` |
+| `TOUR_OF_DOOM` | Tour of Doom | `tour_of_doom.png` |
+| `TROJAN_GLADIATOR_BEAST` | Trojan Gladiator Beast | `trojan_gladiator_beast.png` |
+| `TWILIGHT_CLOTH` | Twilight Cloth | `twilight_cloth.png` |
+| `TWILIGHT_ERASER` | Twilight Eraser | `twilight_eraser.png` |
+| `TWLIGHT_TWIN_DRAGONS` | Twilight Twin Dragons | `twlight_twin_dragons.png` |
+| `VANQUISHING_LIGHT` | Vanquishing Light | `vanquishing_light.png` |
+| `WEISS_LIGHTSWORN_ARCHFIEND` | Weiss, Lightsworn Archfiend | `weiss_lightsworn_archfiend.png` |
+| `WULF_LIGHTSWORN_BEAST` | Wulf, Lightsworn Beast | `wulf_lightsworn_beast.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `RYKO_LIGHTSWORN_HUNTER` — `ryko_lightsworn_hunter.png`
-- [ ] `RYKO_TWILIGHTSWORN_FIGHTER` — `ryko_twilightsworn_fighter.png`
-- [ ] `SHIRE_LIGHTSWORN_SPIRIT` — `shire_lightsworn_spirit.png`
-- [ ] `SOLAR_RECHARGE` — `solar_recharge.png`
-- [ ] `SUIT_OF_SWORD_X` — `suit_of_sword_x.png`
-- [ ] `TEST_BEAR` — `test_bear.png`
-- [ ] `TEST_PANTHER` — `test_panther.png`
-- [ ] `TEST_TIGER` — `test_tiger.png`
-- [ ] `THUMBS_DOWN` — `thumbs_down.png`
-- [ ] `TOUR_OF_DOOM` — `tour_of_doom.png`
-- [ ] `TROJAN_GLADIATOR_BEAST` — `trojan_gladiator_beast.png`
-- [ ] `TWILIGHT_CLOTH` — `twilight_cloth.png`
-- [ ] `TWILIGHT_ERASER` — `twilight_eraser.png`
-- [ ] `TWLIGHT_TWIN_DRAGONS` — `twlight_twin_dragons.png`
-- [ ] `VANQUISHING_LIGHT` — `vanquishing_light.png`
-- [ ] `WEISS_LIGHTSWORN_ARCHFIEND` — `weiss_lightsworn_archfiend.png`
-- [ ] `WULF_LIGHTSWORN_BEAST` — `wulf_lightsworn_beast.png`
 
 ## Todo — in manifest, missing art
 

@@ -292,6 +292,10 @@ unsigned char ShouldActivateKNIGHT_OF_PENTACLES(void);
 void ActivateKNIGHT_OF_PENTACLES(void);
 unsigned char ShouldActivateNEO_SPACIAN_FLARE_SCARAB(void);
 void ActivateNEO_SPACIAN_FLARE_SCARAB(void);
+unsigned char ShouldActivateSHIRE_LIGHTSWORN_SPIRIT(void);
+void ActivateSHIRE_LIGHTSWORN_SPIRIT(void);
+unsigned char ShouldActivateWULF_LIGHTSWORN_BEAST(void);
+void ActivateWULF_LIGHTSWORN_BEAST(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -942,6 +946,16 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = NEO_SPACIAN_FLARE_SCARAB,
     .shouldActivate = ShouldActivateNEO_SPACIAN_FLARE_SCARAB,
     .activate = ActivateNEO_SPACIAN_FLARE_SCARAB,
+  },
+  {
+    .cardId = SHIRE_LIGHTSWORN_SPIRIT,
+    .shouldActivate = ShouldActivateSHIRE_LIGHTSWORN_SPIRIT,
+    .activate = ActivateSHIRE_LIGHTSWORN_SPIRIT,
+  },
+  {
+    .cardId = WULF_LIGHTSWORN_BEAST,
+    .shouldActivate = ShouldActivateWULF_LIGHTSWORN_BEAST,
+    .activate = ActivateWULF_LIGHTSWORN_BEAST,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

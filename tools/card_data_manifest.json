@@ -38154,6 +38154,462 @@
       "effect_texts": {
         "popup_1": "FLIP: recycle Lightsworn; draw 1."
       }
+    },
+    {
+      "card_const": "RYKO_LIGHTSWORN_HUNTER",
+      "card_name": "Ryko, Lightsworn Hunter",
+      "atk": 200,
+      "def": 100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [2, 1, 5, 0, 2, 7, 9, 6],
+      "description": {
+        "symbol": "gDescription_RykoLightswornHunter",
+        "pages": [
+          "FLIP: you can destroy 1 card on",
+          "the field, and mill the top 3 of",
+          "your Deck (both apply together)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "FLIP: destroy 1; mill top 3."
+      }
+    },
+    {
+      "card_const": "RYKO_TWILIGHTSWORN_FIGHTER",
+      "card_name": "Ryko, Twilightsworn Fighter",
+      "atk": 200,
+      "def": 100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 29,
+      "password": [8, 3, 5, 5, 0, 8, 6, 9],
+      "description": {
+        "symbol": "gDescription_RykoTwilightswornFighter",
+        "pages": [
+          "On Normal Summon or flip face-up:",
+          "banish 1 Lightsworn from hand/GY;",
+          "banish 1 card on the field. If other",
+          "Lightsworn effect activates: mill",
+          "top 3. Once each per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish LS to banish field; mill 3."
+      }
+    },
+    {
+      "card_const": "SHIRE_LIGHTSWORN_SPIRIT",
+      "card_name": "Shire, Lightsworn Spirit",
+      "atk": 400,
+      "def": 1400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FAIRY",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [0, 2, 4, 2, 0, 9, 2, 1],
+      "description": {
+        "symbol": "gDescription_ShireLightswornSpirit",
+        "pages": [
+          "Gains 300 ATK per differently named",
+          "Lightsworn in your GY. End Phase:",
+          "mill the top 2 of your Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "+300 ATK per GY LS; End mill 2."
+      }
+    },
+    {
+      "card_const": "SOLAR_RECHARGE",
+      "card_name": "Solar Recharge",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 6, 9, 1, 9, 2, 5],
+      "description": {
+        "symbol": "gDescription_SolarRecharge",
+        "pages": [
+          "Discard 1 Lightsworn; draw 2, then",
+          "mill the top 2 of your Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard LS; draw 2; mill 2."
+      }
+    },
+    {
+      "card_const": "SUIT_OF_SWORD_X",
+      "card_name": "Suit of Sword X",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_SuitOfSwordX",
+        "pages": [
+          "Toss a coin. Heads: destroy all",
+          "opp monsters. Tails: destroy all",
+          "monsters you control."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: wipe opp or your monsters."
+      }
+    },
+    {
+      "card_const": "TEST_BEAR",
+      "card_name": "Test Bear",
+      "atk": 900,
+      "def": 600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [6, 2, 0, 7, 6, 2, 5, 2],
+      "description": {
+        "symbol": "gDescription_TestBear",
+        "pages": [
+          "If you control a Gladiator Beast",
+          "SS from Deck/Extra: SS this from",
+          "hand. Once: return this to hand;",
+          "SS 1 Gladiator Beast from Deck,",
+          "ignoring summoning conditions."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand SS with GB; bounce for Deck SS."
+      }
+    },
+    {
+      "card_const": "TEST_PANTHER",
+      "card_name": "Test Panther",
+      "atk": 800,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [6, 6, 8, 6, 3, 3, 7, 4],
+      "description": {
+        "symbol": "gDescription_TestPanther",
+        "pages": [
+          "Link 2 incl. a Gladiator Beast. On",
+          "Link Summon: add 1 Gladiator Beast",
+          "card from Deck. Once: return a GB",
+          "you control to Deck; Special Summon",
+          "1 GB from Deck with a different name."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Search GB; bounce GB for Deck SS."
+      }
+    },
+    {
+      "card_const": "TEST_TIGER",
+      "card_name": "Test Tiger",
+      "atk": 600,
+      "def": 300,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 19,
+      "password": [9, 2, 3, 7, 3, 0, 0, 6],
+      "description": {
+        "symbol": "gDescription_TestTiger",
+        "pages": [
+          "If you control a face-up Gladiator",
+          "Beast: SS this from hand. Tribute",
+          "this; return 1 Gladiator Beast you",
+          "control to Deck; SS 1 Gladiator",
+          "Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand SS with GB; Tribute for Deck SS."
+      }
+    },
+    {
+      "card_const": "THUMBS_DOWN",
+      "card_name": "Thumbs Down",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 0, 0, 0, 0, 0, 0, 0],
+      "description": {
+        "symbol": "gDescription_ThumbsDown",
+        "pages": [
+          "Activate only if you control a",
+          "Gladiator Beast. If a card(s) is",
+          "destroyed by battle or effect, its",
+          "controller takes 500 per card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "GB: burn 500 per destroyed card."
+      }
+    },
+    {
+      "card_const": "TOUR_OF_DOOM",
+      "card_name": "Tour of Doom",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 2, 7, 8, 4, 7, 1, 7],
+      "description": {
+        "symbol": "gDescription_TourOfDoom",
+        "pages": [
+          "Opp Standby: toss a coin. Heads:",
+          "opp cannot Normal/Flip Summon until",
+          "End Phase. Tails: you cannot."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Coin: lock opp or your NS/Flip."
+      }
+    },
+    {
+      "card_const": "TROJAN_GLADIATOR_BEAST",
+      "card_name": "Trojan Gladiator Beast",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 6, 3, 8, 4, 2, 8, 4],
+      "description": {
+        "symbol": "gDescription_TrojanGladiatorBeast",
+        "pages": [
+          "SS 1 Gladiator Beast from your hand",
+          "to your opponent's field, then draw",
+          "1 card."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Give opp a GB from hand; draw 1."
+      }
+    },
+    {
+      "card_const": "TWILIGHT_CLOTH",
+      "card_name": "Twilight Cloth",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 3, 7, 4, 7, 2, 5, 0],
+      "description": {
+        "symbol": "gDescription_TwilightCloth",
+        "pages": [
+          "Target 1 face-up monster you control;",
+          "banish any number of Lightsworn from",
+          "GY; that monster gains 200 ATK/DEF",
+          "per banished until End Phase."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish LS; target gains 200 each."
+      }
+    },
+    {
+      "card_const": "TWILIGHT_ERASER",
+      "card_name": "Twilight Eraser",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 7, 3, 4, 8, 1, 4, 1],
+      "description": {
+        "symbol": "gDescription_TwilightEraser",
+        "pages": [
+          "If you control 2+ Lightsworn with",
+          "same Type but different names:",
+          "banish 2 Lightsworn from GY; banish",
+          "2 cards on the field."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish 2 LS from GY; banish 2 field."
+      }
+    },
+    {
+      "card_const": "TWLIGHT_TWIN_DRAGONS",
+      "card_name": "Twilight Twin Dragons",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [6, 0, 4, 3, 1, 4, 1, 7],
+      "description": {
+        "symbol": "gDescription_TwlightTwinDragons",
+        "pages": [
+          "If you control Punishment Dragon:",
+          "add 1 Judgment Dragon from GY, then",
+          "mill top 4. If you control Judgment",
+          "Dragon: add 1 Punishment Dragon from",
+          "GY, then mill top 4."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Recycle JD/PD; mill top 4."
+      }
+    },
+    {
+      "card_const": "VANQUISHING_LIGHT",
+      "card_name": "Vanquishing Light",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 2, 2, 3, 3, 7, 4, 6],
+      "description": {
+        "symbol": "gDescription_VanquishingLight",
+        "pages": [
+          "When a monster(s) would be Summoned:",
+          "Tribute 1 Lightsworn; negate the",
+          "Summon and destroy that monster(s)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tribute LS; negate Summon and destroy."
+      }
+    },
+    {
+      "card_const": "WEISS_LIGHTSWORN_ARCHFIEND",
+      "card_name": "Weiss, Lightsworn Archfiend",
+      "atk": 0,
+      "def": 1700,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_FIEND",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [9, 6, 5, 7, 6, 1, 8, 7],
+      "description": {
+        "symbol": "gDescription_WeissLightswornArchfiend",
+        "pages": [
+          "Place 1 other Lightsworn from hand",
+          "on top of Deck; SS this from hand,",
+          "then mill top 2. If milled from Deck:",
+          "you can SS this. Once each per turn."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Topdeck LS to SS; mill 2; GY SS."
+      }
+    },
+    {
+      "card_const": "WULF_LIGHTSWORN_BEAST",
+      "card_name": "Wulf, Lightsworn Beast",
+      "atk": 2100,
+      "def": 300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 350,
+      "password": [5, 8, 9, 9, 6, 4, 3, 0],
+      "description": {
+        "symbol": "gDescription_WulfLightswornBeast",
+        "pages": [
+          "Cannot be Normal Summoned/Set. Must",
+          "be Special Summoned by a card effect.",
+          "If sent from your Deck to the GY:",
+          "Special Summon it."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "If milled from Deck: SS this."
+      }
     }
   ]
 }

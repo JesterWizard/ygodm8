@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `887` effects
+- `904` effects
 
 ## Tally
 
@@ -868,6 +868,23 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Rescue Rabbit` | `src_custom/activated_effects/rescue_rabbit.c` |
 | `trap_effects` | `Reversal Of Fate` | `src_custom/trap_effects/reversal_of_fate.c` |
 | `activated_effects` | `Rinyan Lightsworn Rogue` | `src_custom/activated_effects/rinyan_lightsworn_rogue.c` |
+| `activated_effects` | `Ryko Lightsworn Hunter` | `src_custom/activated_effects/ryko_lightsworn_hunter.c` |
+| `activated_effects` | `Ryko Twilightsworn Fighter` | `src_custom/activated_effects/ryko_twilightsworn_fighter.c` |
+| `permanent_effects` | `Shire Lightsworn Spirit` | `src_custom/permanent_effects/shire_lightsworn_spirit.c` |
+| `spell_effects` | `Solar Recharge` | `src_custom/spell_effects/solar_recharge.c` |
+| `spell_effects` | `Suit Of Sword X` | `src_custom/spell_effects/suit_of_sword_x.c` |
+| `activated_effects` | `Test Bear` | `src_custom/activated_effects/test_bear.c` |
+| `activated_effects` | `Test Panther` | `src_custom/activated_effects/test_panther.c` |
+| `activated_effects` | `Test Tiger` | `src_custom/activated_effects/test_tiger.c` |
+| `trap_effects` | `Thumbs Down` | `src_custom/trap_effects/thumbs_down.c` |
+| `trap_effects` | `Tour Of Doom` | `src_custom/trap_effects/tour_of_doom.c` |
+| `trap_effects` | `Trojan Gladiator Beast` | `src_custom/trap_effects/trojan_gladiator_beast.c` |
+| `trap_effects` | `Twilight Cloth` | `src_custom/trap_effects/twilight_cloth.c` |
+| `trap_effects` | `Twilight Eraser` | `src_custom/trap_effects/twilight_eraser.c` |
+| `spell_effects` | `Twlight Twin Dragons` | `src_custom/spell_effects/twlight_twin_dragons.c` |
+| `trap_effects` | `Vanquishing Light` | `src_custom/trap_effects/vanquishing_light.c` |
+| `activated_effects` | `Weiss Lightsworn Archfiend` | `src_custom/activated_effects/weiss_lightsworn_archfiend.c` |
+| `permanent_effects` | `Wulf Lightsworn Beast` | `src_custom/permanent_effects/wulf_lightsworn_beast.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

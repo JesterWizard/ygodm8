@@ -514,3 +514,15 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire NEXT in trap dispatcher */
 /* REVERSAL_OF_FATE trap effect */
   /* TODO: wire REVERSAL_OF_FATE in trap dispatcher */
+/* THUMBS_DOWN trap effect */
+  /* TODO: wire THUMBS_DOWN in trap dispatcher */
+/* TOUR_OF_DOOM trap effect */
+  /* TODO: wire TOUR_OF_DOOM in trap dispatcher */
+/* TROJAN_GLADIATOR_BEAST trap effect */
+  /* TODO: wire TROJAN_GLADIATOR_BEAST in trap dispatcher */
+/* TWILIGHT_CLOTH trap effect */
+  /* TODO: wire TWILIGHT_CLOTH in trap dispatcher */
+/* TWILIGHT_ERASER trap effect */
+  /* TODO: wire TWILIGHT_ERASER in trap dispatcher */
+/* VANQUISHING_LIGHT trap effect */
+  /* TODO: wire VANQUISHING_LIGHT in trap dispatcher */
