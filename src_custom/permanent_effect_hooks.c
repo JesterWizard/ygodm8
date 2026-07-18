@@ -268,6 +268,20 @@ unsigned char ShouldActivateGLADIATOR_BEAST_ALEXANDER(void);
 void ActivateGLADIATOR_BEAST_ALEXANDER(void);
 unsigned char ShouldActivateGLADIATOR_BEAST_DIMACARI(void);
 void ActivateGLADIATOR_BEAST_DIMACARI(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_ESSEDARII(void);
+void ActivateGLADIATOR_BEAST_ESSEDARII(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_GAIODIAZ(void);
+void ActivateGLADIATOR_BEAST_GAIODIAZ(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_OCTAVIUS(void);
+void ActivateGLADIATOR_BEAST_OCTAVIUS(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_RETIARI(void);
+void ActivateGLADIATOR_BEAST_RETIARI(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_SAMNITE(void);
+void ActivateGLADIATOR_BEAST_SAMNITE(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_SECUTOR(void);
+void ActivateGLADIATOR_BEAST_SECUTOR(void);
+unsigned char ShouldActivateGLADIATOR_BEAST_SPARTACUS(void);
+void ActivateGLADIATOR_BEAST_SPARTACUS(void);
 static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((section(".text"))) = {
   {
     .cardId = MILUS_RADIANT,
@@ -858,6 +872,41 @@ static const PermanentEffectOverride sPermanentEffectOverrides[] __attribute__((
     .cardId = GLADIATOR_BEAST_DIMACARI,
     .shouldActivate = ShouldActivateGLADIATOR_BEAST_DIMACARI,
     .activate = ActivateGLADIATOR_BEAST_DIMACARI,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_ESSEDARII,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_ESSEDARII,
+    .activate = ActivateGLADIATOR_BEAST_ESSEDARII,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_GAIODIAZ,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_GAIODIAZ,
+    .activate = ActivateGLADIATOR_BEAST_GAIODIAZ,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_OCTAVIUS,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_OCTAVIUS,
+    .activate = ActivateGLADIATOR_BEAST_OCTAVIUS,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_RETIARI,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_RETIARI,
+    .activate = ActivateGLADIATOR_BEAST_RETIARI,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_SAMNITE,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_SAMNITE,
+    .activate = ActivateGLADIATOR_BEAST_SAMNITE,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_SECUTOR,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_SECUTOR,
+    .activate = ActivateGLADIATOR_BEAST_SECUTOR,
+  },
+  {
+    .cardId = GLADIATOR_BEAST_SPARTACUS,
+    .shouldActivate = ShouldActivateGLADIATOR_BEAST_SPARTACUS,
+    .activate = ActivateGLADIATOR_BEAST_SPARTACUS,
   },
 /* END PERMANENT EFFECT OVERRIDES */
 };

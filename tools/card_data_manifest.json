@@ -35972,6 +35972,593 @@
       "effect_texts": {
         "popup_1": "Double attack; tag out after battle."
       }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DOMITIANUS",
+      "card_name": "Gladiator Beast Domitianus",
+      "atk": 3500,
+      "def": 1200,
+      "level": 10,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SEA_SERPENT",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 55,
+      "password": [3, 3, 6, 5, 2, 6, 3, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastDomitianus",
+        "pages": [
+          "Gladiator Beast + 2 Gladiator Beasts.",
+          "Contact Fusion. Gains ATK equal to",
+          "combined original ATK of materials.",
+          "Can attack all opp monsters once each.",
+          "After battle: tag; SS 1 Gladiator Beast."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Multi-attack Fusion; tag after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_DRAGASES",
+      "card_name": "Gladiator Beast Dragases",
+      "atk": 2000,
+      "def": 0,
+      "level": 0,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "LINK_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 16,
+      "password": [6, 2, 0, 0, 0, 4, 6, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastDragases",
+        "pages": [
+          "2 Gladiator Beast monsters. Your",
+          "Gladiator Beasts cannot be destroyed",
+          "by battle. If a Gladiator Beast tags",
+          "out: you can SS 1 Gladiator Beast",
+          "from Deck except Dragases."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Battle protect; SS on tag-out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_EQUESTE",
+      "card_name": "Gladiator Beast Equeste",
+      "atk": 1600,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 207,
+      "password": [5, 7, 7, 3, 1, 4, 6, 0],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastEqueste",
+        "pages": [
+          "If SS by a Gladiator Beast: add 1",
+          "Gladiator Beast from GY to hand.",
+          "At end of Battle Phase if it battled:",
+          "return to Deck; SS 1 Gladiator Beast",
+          "from Deck (except Equeste)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Add GB from GY; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_ESSEDARII",
+      "card_name": "Gladiator Beast Essedarii",
+      "atk": 2500,
+      "def": 1400,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 41,
+      "password": [7, 3, 2, 8, 5, 6, 6, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastEssedarii",
+        "pages": [
+          "2 Gladiator Beast monsters. Must",
+          "first be Contact Fusion Summoned.",
+          "At end of Battle Phase if it battled:",
+          "return to Extra Deck; SS 1 Gladiator",
+          "Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Contact Fusion; tag after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_GAIODIAZ",
+      "card_name": "Gladiator Beast Gaiodiaz",
+      "atk": 2600,
+      "def": 1500,
+      "level": 7,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_DINOSAUR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 30,
+      "password": [9, 0, 9, 5, 7, 5, 2, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastGaiodiaz",
+        "pages": [
+          "Spartacus + 1 Gladiator Beast.",
+          "Contact Fusion. When it destroys a",
+          "monster by battle: burn equal to",
+          "that monster DEF. After battle: tag",
+          "to Extra; SS 2 Level 4 or lower GB."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Battle burn; tag for 2 low-Level GB."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_GISTEL",
+      "card_name": "Gladiator Beast Gistel",
+      "atk": 1200,
+      "def": 2000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [2, 6, 5, 8, 2, 1, 4, 3],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastGistel",
+        "pages": [
+          "If you control a Gladiator Beast:",
+          "SS this from hand. If SS by a GB:",
+          "add 1 Gladiator from Deck to hand.",
+          "After battle: return to Deck; SS 1",
+          "Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand SS; search; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_GYZARUS",
+      "card_name": "Gladiator Beast Gyzarus",
+      "atk": 2400,
+      "def": 1500,
+      "level": 6,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [4, 8, 1, 5, 6, 3, 4, 8],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastGyzarus",
+        "pages": [
+          "Bestiari + 1 Gladiator Beast.",
+          "Contact Fusion. On Summon: destroy",
+          "up to 2 cards on the field. After",
+          "battle: return to Extra; SS 2",
+          "Gladiator Beasts from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy 2 on Summon; tag for 2 GB."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_HERAKLINOS",
+      "card_name": "Gladiator Beast Heraklinos",
+      "atk": 3000,
+      "def": 2800,
+      "level": 8,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [2, 7, 3, 4, 6, 6, 3, 6],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastHeraklinos",
+        "pages": [
+          "Laquari + 2 Gladiator Beasts.",
+          "Contact Fusion. Once per turn, when",
+          "a Spell/Trap is activated: discard 1",
+          "to negate and destroy. After battle:",
+          "return to Extra; SS 1 GB from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Negate S/T; tag out after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_HOPLOMUS",
+      "card_name": "Gladiator Beast Hoplomus",
+      "atk": 700,
+      "def": 2100,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_ROCK",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 319,
+      "password": [0, 4, 2, 5, 3, 4, 8, 4],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastHoplomus",
+        "pages": [
+          "If SS by a Gladiator Beast: DEF",
+          "becomes 2400. At end of Battle Phase",
+          "if it battled: return to Deck; SS 1",
+          "Gladiator Beast from Deck (except",
+          "Hoplomus)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "DEF 2400 on tag-SS; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_LANISTA",
+      "card_name": "Gladiator Beast Lanista",
+      "atk": 1800,
+      "def": 1200,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 590,
+      "password": [0, 2, 0, 6, 7, 9, 3, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastLanista",
+        "pages": [
+          "If SS by a Gladiator Beast: banish 1",
+          "GB from Deck; this card name becomes",
+          "that until End Phase. After battle:",
+          "return to Deck; SS 1 Gladiator Beast",
+          "from Deck (except Lanista)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Copy banished GB name; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_LAQUARI",
+      "card_name": "Gladiator Beast Laquari",
+      "atk": 1800,
+      "def": 400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 260,
+      "password": [7, 8, 8, 6, 8, 7, 7, 6],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastLaquari",
+        "pages": [
+          "If SS by a Gladiator Beast: ATK",
+          "becomes 2100. At end of Battle Phase",
+          "if it battled: return to Deck; SS 1",
+          "Gladiator Beast from Deck (except",
+          "Laquari)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "ATK 2100 on tag-SS; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_MURMILLO",
+      "card_name": "Gladiator Beast Murmillo",
+      "atk": 800,
+      "def": 400,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_FISH",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 87,
+      "password": [0, 5, 9, 7, 5, 0, 2, 2],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastMurmillo",
+        "pages": [
+          "If SS by a Gladiator Beast: destroy",
+          "1 face-up monster on the field. At",
+          "end of Battle Phase if it battled:",
+          "return to Deck; SS 1 Gladiator Beast",
+          "from Deck (except Murmillo)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Destroy monster; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_NEROKIUS",
+      "card_name": "Gladiator Beast Nerokius",
+      "atk": 2800,
+      "def": 1900,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [2, 9, 3, 5, 7, 9, 5, 6],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastNerokius",
+        "pages": [
+          "3 Gladiator Beast monsters. Contact",
+          "Fusion. Cannot be destroyed by battle",
+          "or card effects. Your opp cannot",
+          "target it. After battle: return to",
+          "Extra; SS 1 Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Protection Fusion; tag after battle."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_NOXIOUS",
+      "card_name": "Gladiator Beast Noxious",
+      "atk": 0,
+      "def": 1000,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 7, 3, 8, 5, 9, 6, 4],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastNoxious",
+        "pages": [
+          "When opp monster declares attack:",
+          "SS this from hand; change attack",
+          "target to this. If SS by a GB: send",
+          "1 GB from Deck to GY. After battle:",
+          "tag; SS 1 Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Hand SS on attack; mill GB; tag."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_OCTAVIUS",
+      "card_name": "Gladiator Beast Octavius",
+      "atk": 2500,
+      "def": 1200,
+      "level": 7,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 9, 5, 9, 0, 7, 5, 2],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastOctavius",
+        "pages": [
+          "If SS by a Gladiator Beast: destroy",
+          "1 face-down Spell/Trap; discard 1.",
+          "At end of Battle Phase if it battled:",
+          "return to Deck; SS 1 Gladiator Beast",
+          "from Deck (except Octavius)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Pop Set S/T; discard; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_RETIARI",
+      "card_name": "Gladiator Beast Retiari",
+      "atk": 1200,
+      "def": 800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WATER",
+      "type": "TYPE_AQUA",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 121,
+      "password": [0, 0, 6, 1, 2, 1, 1, 5],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastRetiari",
+        "pages": [
+          "If SS by a Gladiator Beast: banish 1",
+          "card from your opp GY. At end of",
+          "Battle Phase if it battled: return",
+          "to Deck; SS 1 Gladiator Beast from",
+          "Deck (except Retiari)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Banish from opp GY; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SAGITTARII",
+      "card_name": "Gladiator Beast Sagittarii",
+      "atk": 1400,
+      "def": 1000,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_WINGED_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [1, 6, 0, 0, 3, 9, 7, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSagittarii",
+        "pages": [
+          "If SS by a Gladiator Beast: discard",
+          "1; destroy 1 Spell/Trap. After",
+          "battle: return to Deck; SS 1",
+          "Gladiator Beast from Deck (except",
+          "Sagittarii)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Discard; destroy S/T; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SAMNITE",
+      "card_name": "Gladiator Beast Samnite",
+      "atk": 1600,
+      "def": 1200,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_BEAST",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [0, 2, 6, 1, 9, 1, 4, 9],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSamnite",
+        "pages": [
+          "If SS by a Gladiator Beast and it",
+          "destroys a monster by battle: add 1",
+          "Gladiator Beast from Deck to hand.",
+          "After battle: return to Deck; SS 1",
+          "Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Search on battle kill; tag out."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SECUTOR",
+      "card_name": "Gladiator Beast Secutor",
+      "atk": 400,
+      "def": 300,
+      "level": 4,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_REPTILE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [7, 7, 6, 4, 2, 2, 8, 8],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSecutor",
+        "pages": [
+          "If SS by a Gladiator Beast and it",
+          "battled: at end of Battle Phase,",
+          "return to Deck; SS 2 Gladiator Beasts",
+          "from Deck (except Secutor)."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Tag out into 2 Gladiator Beasts."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_SPARTACUS",
+      "card_name": "Gladiator Beast Spartacus",
+      "atk": 2200,
+      "def": 1600,
+      "level": 5,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DINOSAUR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 86,
+      "password": [7, 9, 5, 8, 0, 3, 2, 3],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastSpartacus",
+        "pages": [
+          "SS only by Gladiator Beast Hoplomus.",
+          "When SS: add 1 Gladiator Beast Equip",
+          "Spell from Deck to hand. After",
+          "battle: return to Deck; SS 1",
+          "Gladiator Beast from Deck."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Search GB Equip; tag out after."
+      }
+    },
+    {
+      "card_const": "GLADIATOR_BEAST_TAMER_EDITOR",
+      "card_name": "Gladiator Beast Tamer Editor",
+      "atk": 2400,
+      "def": 3000,
+      "level": 8,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_BEAST_WARRIOR",
+      "color": "FUSION_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 58,
+      "password": [3, 0, 8, 6, 4, 3, 7, 7],
+      "description": {
+        "symbol": "gDescription_GladiatorBeastTamerEditor",
+        "pages": [
+          "2 Level 5+ Gladiator Beasts.",
+          "Contact Fusion. Unaffected by other",
+          "cards effects. Once/turn: Special",
+          "Summon 1 Level 5+ GB from Deck.",
+          "After battle: tag; SS 1 from Extra."
+        ]
+      },
+      "effect_texts": {
+        "popup_1": "Immune; SS Level 5+ GB; tag Extra."
+      }
     }
   ]
 }

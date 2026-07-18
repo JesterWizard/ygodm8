@@ -500,6 +500,34 @@ unsigned char CanActivateGLADIATOR_BEAST_DAREIOS(void);
 void ActivateGLADIATOR_BEAST_DAREIOSEffect(void);
 unsigned char CanActivateGLADIATOR_BEAST_DARIUS(void);
 void ActivateGLADIATOR_BEAST_DARIUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_DOMITIANUS(void);
+void ActivateGLADIATOR_BEAST_DOMITIANUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_DRAGASES(void);
+void ActivateGLADIATOR_BEAST_DRAGASESEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_EQUESTE(void);
+void ActivateGLADIATOR_BEAST_EQUESTEEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_GISTEL(void);
+void ActivateGLADIATOR_BEAST_GISTELEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_GYZARUS(void);
+void ActivateGLADIATOR_BEAST_GYZARUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_HERAKLINOS(void);
+void ActivateGLADIATOR_BEAST_HERAKLINOSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_HOPLOMUS(void);
+void ActivateGLADIATOR_BEAST_HOPLOMUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_LANISTA(void);
+void ActivateGLADIATOR_BEAST_LANISTAEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_LAQUARI(void);
+void ActivateGLADIATOR_BEAST_LAQUARIEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_MURMILLO(void);
+void ActivateGLADIATOR_BEAST_MURMILLOEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_NEROKIUS(void);
+void ActivateGLADIATOR_BEAST_NEROKIUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_NOXIOUS(void);
+void ActivateGLADIATOR_BEAST_NOXIOUSEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_SAGITTARII(void);
+void ActivateGLADIATOR_BEAST_SAGITTARIIEffect(void);
+unsigned char CanActivateGLADIATOR_BEAST_TAMER_EDITOR(void);
+void ActivateGLADIATOR_BEAST_TAMER_EDITOREffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2115,6 +2143,62 @@ FAILED:
   }
   if (gMonEffect.id == GLADIATOR_BEAST_DARIUS) {
     ActivateGLADIATOR_BEAST_DARIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_DOMITIANUS) {
+    ActivateGLADIATOR_BEAST_DOMITIANUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_DRAGASES) {
+    ActivateGLADIATOR_BEAST_DRAGASESEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_EQUESTE) {
+    ActivateGLADIATOR_BEAST_EQUESTEEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_GISTEL) {
+    ActivateGLADIATOR_BEAST_GISTELEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_GYZARUS) {
+    ActivateGLADIATOR_BEAST_GYZARUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_HERAKLINOS) {
+    ActivateGLADIATOR_BEAST_HERAKLINOSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_HOPLOMUS) {
+    ActivateGLADIATOR_BEAST_HOPLOMUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_LANISTA) {
+    ActivateGLADIATOR_BEAST_LANISTAEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_LAQUARI) {
+    ActivateGLADIATOR_BEAST_LAQUARIEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_MURMILLO) {
+    ActivateGLADIATOR_BEAST_MURMILLOEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_NEROKIUS) {
+    ActivateGLADIATOR_BEAST_NEROKIUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_NOXIOUS) {
+    ActivateGLADIATOR_BEAST_NOXIOUSEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_SAGITTARII) {
+    ActivateGLADIATOR_BEAST_SAGITTARIIEffect();
+    return;
+  }
+  if (gMonEffect.id == GLADIATOR_BEAST_TAMER_EDITOR) {
+    ActivateGLADIATOR_BEAST_TAMER_EDITOREffect();
     return;
   }
 }

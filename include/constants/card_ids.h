@@ -1678,11 +1678,32 @@
 #define GLADIATOR_BEAST_DAREIOS                  0x068A
 #define GLADIATOR_BEAST_DARIUS                   0x068B
 #define GLADIATOR_BEAST_DIMACARI                 0x068C
+#define GLADIATOR_BEAST_DOMITIANUS               0x068D
+#define GLADIATOR_BEAST_DRAGASES                 0x068E
+#define GLADIATOR_BEAST_EQUESTE                  0x068F
+#define GLADIATOR_BEAST_ESSEDARII                0x0690
+#define GLADIATOR_BEAST_GAIODIAZ                 0x0691
+#define GLADIATOR_BEAST_GISTEL                   0x0692
+#define GLADIATOR_BEAST_GYZARUS                  0x0693
+#define GLADIATOR_BEAST_HERAKLINOS               0x0694
+#define GLADIATOR_BEAST_HOPLOMUS                 0x0695
+#define GLADIATOR_BEAST_LANISTA                  0x0696
+#define GLADIATOR_BEAST_LAQUARI                  0x0697
+#define GLADIATOR_BEAST_MURMILLO                 0x0698
+#define GLADIATOR_BEAST_NEROKIUS                 0x0699
+#define GLADIATOR_BEAST_NOXIOUS                  0x069A
+#define GLADIATOR_BEAST_OCTAVIUS                 0x069B
+#define GLADIATOR_BEAST_RETIARI                  0x069C
+#define GLADIATOR_BEAST_SAGITTARII               0x069D
+#define GLADIATOR_BEAST_SAMNITE                  0x069E
+#define GLADIATOR_BEAST_SECUTOR                  0x069F
+#define GLADIATOR_BEAST_SPARTACUS                0x06A0
+#define GLADIATOR_BEAST_TAMER_EDITOR             0x06A1
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x068D
-#define NUM_CUSTOM_CARDS                        0x036C
+#define NUM_TOTAL_CARDS                         0x06A2
+#define NUM_CUSTOM_CARDS                        0x0381
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

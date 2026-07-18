@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 876 |
-| Art ready, needs manifest | 98 |
+| In game (manifest + art) | 897 |
+| Art ready, needs manifest | 77 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **976** |
 
@@ -898,32 +898,32 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `GLADIATOR_BEAST_DAREIOS` | Gladiator Beast Dareios | `gladiator_beast_dareios.png` |
 | `GLADIATOR_BEAST_DARIUS` | Gladiator Beast Darius | `gladiator_beast_darius.png` |
 | `GLADIATOR_BEAST_DIMACARI` | Gladiator Beast Dimacari | `gladiator_beast_dimacari.png` |
+| `GLADIATOR_BEAST_DOMITIANUS` | Gladiator Beast Domitianus | `gladiator_beast_domitianus.png` |
+| `GLADIATOR_BEAST_DRAGASES` | Gladiator Beast Dragases | `gladiator_beast_dragases.png` |
+| `GLADIATOR_BEAST_EQUESTE` | Gladiator Beast Equeste | `gladiator_beast_equeste.png` |
+| `GLADIATOR_BEAST_ESSEDARII` | Gladiator Beast Essedarii | `gladiator_beast_essedarii.png` |
+| `GLADIATOR_BEAST_GAIODIAZ` | Gladiator Beast Gaiodiaz | `gladiator_beast_gaiodiaz.png` |
+| `GLADIATOR_BEAST_GISTEL` | Gladiator Beast Gistel | `gladiator_beast_gistel.png` |
+| `GLADIATOR_BEAST_GYZARUS` | Gladiator Beast Gyzarus | `gladiator_beast_gyzarus.png` |
+| `GLADIATOR_BEAST_HERAKLINOS` | Gladiator Beast Heraklinos | `gladiator_beast_heraklinos.png` |
+| `GLADIATOR_BEAST_HOPLOMUS` | Gladiator Beast Hoplomus | `gladiator_beast_hoplomus.png` |
+| `GLADIATOR_BEAST_LANISTA` | Gladiator Beast Lanista | `gladiator_beast_lanista.png` |
+| `GLADIATOR_BEAST_LAQUARI` | Gladiator Beast Laquari | `gladiator_beast_laquari.png` |
+| `GLADIATOR_BEAST_MURMILLO` | Gladiator Beast Murmillo | `gladiator_beast_murmillo.png` |
+| `GLADIATOR_BEAST_NEROKIUS` | Gladiator Beast Nerokius | `gladiator_beast_nerokius.png` |
+| `GLADIATOR_BEAST_NOXIOUS` | Gladiator Beast Noxious | `gladiator_beast_noxious.png` |
+| `GLADIATOR_BEAST_OCTAVIUS` | Gladiator Beast Octavius | `gladiator_beast_octavius.png` |
+| `GLADIATOR_BEAST_RETIARI` | Gladiator Beast Retiari | `gladiator_beast_retiari.png` |
+| `GLADIATOR_BEAST_SAGITTARII` | Gladiator Beast Sagittarii | `gladiator_beast_sagittarii.png` |
+| `GLADIATOR_BEAST_SAMNITE` | Gladiator Beast Samnite | `gladiator_beast_samnite.png` |
+| `GLADIATOR_BEAST_SECUTOR` | Gladiator Beast Secutor | `gladiator_beast_secutor.png` |
+| `GLADIATOR_BEAST_SPARTACUS` | Gladiator Beast Spartacus | `gladiator_beast_spartacus.png` |
+| `GLADIATOR_BEAST_TAMER_EDITOR` | Gladiator Beast Tamer Editor | `gladiator_beast_tamer_editor.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `GLADIATOR_BEAST_DOMITIANUS` — `gladiator_beast_domitianus.png`
-- [ ] `GLADIATOR_BEAST_DRAGASES` — `gladiator_beast_dragases.png`
-- [ ] `GLADIATOR_BEAST_EQUESTE` — `gladiator_beast_equeste.png`
-- [ ] `GLADIATOR_BEAST_ESSEDARII` — `gladiator_beast_essedarii.png`
-- [ ] `GLADIATOR_BEAST_GAIODIAZ` — `gladiator_beast_gaiodiaz.png`
-- [ ] `GLADIATOR_BEAST_GISTEL` — `gladiator_beast_gistel.png`
-- [ ] `GLADIATOR_BEAST_GYZARUS` — `gladiator_beast_gyzarus.png`
-- [ ] `GLADIATOR_BEAST_HERAKLINOS` — `gladiator_beast_heraklinos.png`
-- [ ] `GLADIATOR_BEAST_HOPLOMUS` — `gladiator_beast_hoplomus.png`
-- [ ] `GLADIATOR_BEAST_LANISTA` — `gladiator_beast_lanista.png`
-- [ ] `GLADIATOR_BEAST_LAQUARI` — `gladiator_beast_laquari.png`
-- [ ] `GLADIATOR_BEAST_MURMILLO` — `gladiator_beast_murmillo.png`
-- [ ] `GLADIATOR_BEAST_NEROKIUS` — `gladiator_beast_nerokius.png`
-- [ ] `GLADIATOR_BEAST_NOXIOUS` — `gladiator_beast_noxious.png`
-- [ ] `GLADIATOR_BEAST_OCTAVIUS` — `gladiator_beast_octavius.png`
-- [ ] `GLADIATOR_BEAST_RETIARI` — `gladiator_beast_retiari.png`
-- [ ] `GLADIATOR_BEAST_SAGITTARII` — `gladiator_beast_sagittarii.png`
-- [ ] `GLADIATOR_BEAST_SAMNITE` — `gladiator_beast_samnite.png`
-- [ ] `GLADIATOR_BEAST_SECUTOR` — `gladiator_beast_secutor.png`
-- [ ] `GLADIATOR_BEAST_SPARTACUS` — `gladiator_beast_spartacus.png`
-- [ ] `GLADIATOR_BEAST_TAMER_EDITOR` — `gladiator_beast_tamer_editor.png`
 - [ ] `GLADIATOR_BEAST_TORAX` — `gladiator_beast_torax.png`
 - [ ] `GLADIATOR_BEAST_TYGERIUS` — `gladiator_beast_tygerius.png`
 - [ ] `GLADIATOR_BEAST_VESPASIUS` — `gladiator_beast_vespasius.png`

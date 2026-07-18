@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `808` effects
+- `829` effects
 
 ## Tally
 
@@ -789,6 +789,27 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Gladiator Beast Dareios` | `src_custom/activated_effects/gladiator_beast_dareios.c` |
 | `activated_effects` | `Gladiator Beast Darius` | `src_custom/activated_effects/gladiator_beast_darius.c` |
 | `permanent_effects` | `Gladiator Beast Dimacari` | `src_custom/permanent_effects/gladiator_beast_dimacari.c` |
+| `activated_effects` | `Gladiator Beast Domitianus` | `src_custom/activated_effects/gladiator_beast_domitianus.c` |
+| `activated_effects` | `Gladiator Beast Dragases` | `src_custom/activated_effects/gladiator_beast_dragases.c` |
+| `activated_effects` | `Gladiator Beast Equeste` | `src_custom/activated_effects/gladiator_beast_equeste.c` |
+| `permanent_effects` | `Gladiator Beast Essedarii` | `src_custom/permanent_effects/gladiator_beast_essedarii.c` |
+| `permanent_effects` | `Gladiator Beast Gaiodiaz` | `src_custom/permanent_effects/gladiator_beast_gaiodiaz.c` |
+| `activated_effects` | `Gladiator Beast Gistel` | `src_custom/activated_effects/gladiator_beast_gistel.c` |
+| `activated_effects` | `Gladiator Beast Gyzarus` | `src_custom/activated_effects/gladiator_beast_gyzarus.c` |
+| `activated_effects` | `Gladiator Beast Heraklinos` | `src_custom/activated_effects/gladiator_beast_heraklinos.c` |
+| `activated_effects` | `Gladiator Beast Hoplomus` | `src_custom/activated_effects/gladiator_beast_hoplomus.c` |
+| `activated_effects` | `Gladiator Beast Lanista` | `src_custom/activated_effects/gladiator_beast_lanista.c` |
+| `activated_effects` | `Gladiator Beast Laquari` | `src_custom/activated_effects/gladiator_beast_laquari.c` |
+| `activated_effects` | `Gladiator Beast Murmillo` | `src_custom/activated_effects/gladiator_beast_murmillo.c` |
+| `activated_effects` | `Gladiator Beast Nerokius` | `src_custom/activated_effects/gladiator_beast_nerokius.c` |
+| `activated_effects` | `Gladiator Beast Noxious` | `src_custom/activated_effects/gladiator_beast_noxious.c` |
+| `permanent_effects` | `Gladiator Beast Octavius` | `src_custom/permanent_effects/gladiator_beast_octavius.c` |
+| `permanent_effects` | `Gladiator Beast Retiari` | `src_custom/permanent_effects/gladiator_beast_retiari.c` |
+| `activated_effects` | `Gladiator Beast Sagittarii` | `src_custom/activated_effects/gladiator_beast_sagittarii.c` |
+| `permanent_effects` | `Gladiator Beast Samnite` | `src_custom/permanent_effects/gladiator_beast_samnite.c` |
+| `permanent_effects` | `Gladiator Beast Secutor` | `src_custom/permanent_effects/gladiator_beast_secutor.c` |
+| `permanent_effects` | `Gladiator Beast Spartacus` | `src_custom/permanent_effects/gladiator_beast_spartacus.c` |
+| `activated_effects` | `Gladiator Beast Tamer Editor` | `src_custom/activated_effects/gladiator_beast_tamer_editor.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

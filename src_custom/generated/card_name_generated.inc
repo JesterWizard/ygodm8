@@ -877,6 +877,27 @@ static const u8 sGladiatorBeastClaudiusName[] __attribute__((section(".append_as
 static const u8 sGladiatorBeastDareiosName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Dareios";
 static const u8 sGladiatorBeastDariusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Darius";
 static const u8 sGladiatorBeastDimacariName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Dimacari";
+static const u8 sGladiatorBeastDomitianusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Domitianus";
+static const u8 sGladiatorBeastDragasesName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Dragases";
+static const u8 sGladiatorBeastEquesteName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Equeste";
+static const u8 sGladiatorBeastEssedariiName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Essedarii";
+static const u8 sGladiatorBeastGaiodiazName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Gaiodiaz";
+static const u8 sGladiatorBeastGistelName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Gistel";
+static const u8 sGladiatorBeastGyzarusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Gyzarus";
+static const u8 sGladiatorBeastHeraklinosName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Heraklinos";
+static const u8 sGladiatorBeastHoplomusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Hoplomus";
+static const u8 sGladiatorBeastLanistaName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Lanista";
+static const u8 sGladiatorBeastLaquariName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Laquari";
+static const u8 sGladiatorBeastMurmilloName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Murmillo";
+static const u8 sGladiatorBeastNerokiusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Nerokius";
+static const u8 sGladiatorBeastNoxiousName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Noxious";
+static const u8 sGladiatorBeastOctaviusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Octavius";
+static const u8 sGladiatorBeastRetiariName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Retiari";
+static const u8 sGladiatorBeastSagittariiName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Sagittarii";
+static const u8 sGladiatorBeastSamniteName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Samnite";
+static const u8 sGladiatorBeastSecutorName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Secutor";
+static const u8 sGladiatorBeastSpartacusName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Spartacus";
+static const u8 sGladiatorBeastTamerEditorName[] __attribute__((section(".append_assets"))) = "Gladiator Beast Tamer Editor";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -2637,6 +2658,48 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sGladiatorBeastDariusName;
   if (cardId == 0x068C)
     return (u8 *)sGladiatorBeastDimacariName;
+  if (cardId == 0x068D)
+    return (u8 *)sGladiatorBeastDomitianusName;
+  if (cardId == 0x068E)
+    return (u8 *)sGladiatorBeastDragasesName;
+  if (cardId == 0x068F)
+    return (u8 *)sGladiatorBeastEquesteName;
+  if (cardId == 0x0690)
+    return (u8 *)sGladiatorBeastEssedariiName;
+  if (cardId == 0x0691)
+    return (u8 *)sGladiatorBeastGaiodiazName;
+  if (cardId == 0x0692)
+    return (u8 *)sGladiatorBeastGistelName;
+  if (cardId == 0x0693)
+    return (u8 *)sGladiatorBeastGyzarusName;
+  if (cardId == 0x0694)
+    return (u8 *)sGladiatorBeastHeraklinosName;
+  if (cardId == 0x0695)
+    return (u8 *)sGladiatorBeastHoplomusName;
+  if (cardId == 0x0696)
+    return (u8 *)sGladiatorBeastLanistaName;
+  if (cardId == 0x0697)
+    return (u8 *)sGladiatorBeastLaquariName;
+  if (cardId == 0x0698)
+    return (u8 *)sGladiatorBeastMurmilloName;
+  if (cardId == 0x0699)
+    return (u8 *)sGladiatorBeastNerokiusName;
+  if (cardId == 0x069A)
+    return (u8 *)sGladiatorBeastNoxiousName;
+  if (cardId == 0x069B)
+    return (u8 *)sGladiatorBeastOctaviusName;
+  if (cardId == 0x069C)
+    return (u8 *)sGladiatorBeastRetiariName;
+  if (cardId == 0x069D)
+    return (u8 *)sGladiatorBeastSagittariiName;
+  if (cardId == 0x069E)
+    return (u8 *)sGladiatorBeastSamniteName;
+  if (cardId == 0x069F)
+    return (u8 *)sGladiatorBeastSecutorName;
+  if (cardId == 0x06A0)
+    return (u8 *)sGladiatorBeastSpartacusName;
+  if (cardId == 0x06A1)
+    return (u8 *)sGladiatorBeastTamerEditorName;
 
   return gCardNames[cardId];
 }
