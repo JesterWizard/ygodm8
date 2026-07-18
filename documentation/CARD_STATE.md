@@ -1,11 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Fix deck wipe on GY viewer
+**Last worked on:** 2026-07-18 — Fix duel icon cache in ROM
 
 **Files touched:**
-- `src_custom/duel_gy_viewer.c`
+- `src_custom/overworld_hooks.c`
+- `asm/ram_map_ewram.s`
+- `documentation/repeatable-duel-icon.md`
 
-**Outcome:** make exits 0. Empty GY/RFP no longer mutates `gDeckMenu` before save; load is wrapped in DECKMENU_SAVE/RESTORE.
+**Outcome:** make exits 0. Cache moved to EWRAM (`gDuelIconCache`); GFX load restored per-frame. Icons should show again.
 
 **Open / next:**
-- Playtest: open empty + non-empty GY during a duel; confirm deck still has cards after the duel
+- Confirm train station icons visible + still smooth

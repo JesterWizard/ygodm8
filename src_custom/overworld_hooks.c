@@ -223,34 +223,71 @@ static u8 ObjectHasDuelDialogue(s8 objId) {
   return TRUE;
 }
 
-static u8 ObjectHasAvailableDuel(s8 objId) {
-  const struct Script *script;
+/* ponytail: cache by scriptR pointer. Ceiling: stale if bytecode mutates in place
+ * without changing the pointer (map scripts don't). Resolve+scan only on miss —
+ * EventSystem_ResolveScript is O(n) over ~1500 replacements and was the train-station hitch. */
+enum {
+  DUEL_ICON_CACHE_NONE = 0,
+  DUEL_ICON_CACHE_YES = 1,
+  DUEL_ICON_CACHE_FLAG = 2, /* available while !CheckFlag(flag) */
+};
+
+struct DuelIconCacheEntry {
+  const struct Script *scriptR;
+  u8 kind;
+  u8 flag;
+};
+
+extern struct DuelIconCacheEntry gDuelIconCache[15];
+
+static void RebuildDuelIconCacheEntry(u8 objId) {
+  struct Script *scriptR = gOverworld.objects[objId].scriptR;
+  struct DuelIconCacheEntry *entry = &gDuelIconCache[objId];
   const u8 *data;
   u16 i;
 
-  if (!ObjectHasDuelDialogue(objId))
-    return FALSE;
+  entry->scriptR = scriptR;
+  entry->kind = DUEL_ICON_CACHE_NONE;
+  entry->flag = 0;
 
-  script = EventSystem_ResolveScript(gOverworld.objects[objId].scriptR);
-  data = script->start;
+  if (scriptR == NULL || scriptR == gOverworld.objects[objId].scriptA)
+    return;
 
-  /* Story duelists gate the DUEL behind CHECK_FLAG (0x23, '7', flagByte).
-   * If the flag is NOT set, the duel is still available. */
-  if (data[0] == 0x23 && data[1] == '7')
-    return !CheckFlag(data[2]);
+  data = EventSystem_ResolveScript(scriptR)->start;
+  if (data == NULL)
+    return;
 
-  /* Scan for DUEL (0x40, '0') in the top-level bytecode. Stop at END
-   * (0x5D) — do NOT stop at 0x00 (fallthrough) since text data can
-   * embed null bytes. 512 bytes is the max script length. */
+  /* Story duelists gate the DUEL behind CHECK_FLAG (0x23, '7', flagByte). */
+  if (data[0] == 0x23 && data[1] == '7') {
+    entry->kind = DUEL_ICON_CACHE_FLAG;
+    entry->flag = data[2];
+    return;
+  }
+
+  /* Scan for DUEL (0x40, '0'). Stop at END (0x5D), not at 0x00 (text nulls). */
   for (i = 0; i < 511; i++) {
     if (data[i] == 0x5D)
       break;
-    if (data[i] == 0x40 && data[i + 1] == '0')
-      return TRUE;
+    if (data[i] == 0x40 && data[i + 1] == '0') {
+      entry->kind = DUEL_ICON_CACHE_YES;
+      return;
+    }
   }
+}
 
+static u8 ObjectHasAvailableDuel(u8 objId) {
+  struct DuelIconCacheEntry *entry = &gDuelIconCache[objId];
+
+  if (entry->scriptR != gOverworld.objects[objId].scriptR)
+    RebuildDuelIconCacheEntry(objId);
+
+  if (entry->kind == DUEL_ICON_CACHE_YES)
+    return TRUE;
+  if (entry->kind == DUEL_ICON_CACHE_FLAG)
+    return !CheckFlag(entry->flag);
   return FALSE;
 }
+
 void LoadDuelIconGfx(void) {
   CpuFastCopy(sDuelIconTiles, (void *)(0x06010000 + DUEL_ICON_TILE_NUM * 32), 32);
   CpuCopy16(sDuelIconPalette, gPaletteBuffer + 0x100 + DUEL_ICON_PALETTE_NUM * 16, 0x20);
