@@ -1,15 +1,15 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Fast AI set-defense + attribute chart + summon develop
+**Last worked on:** 2026-07-18 — Duel voice portrait keeps mini-cards
 
 **Files touched:**
-- `src_custom/ai_sim_fast.c`
-- `src_custom/code_803F02C_hooks.c`
-- `tests/host/test_ai_spell_targets.py`
-- `documentation/fast-ai-architecture.md`
-- `documentation/session_logs/2026-07-18.md`
+- `src_custom/duel_voice_hooks.c`
+- `include/duel_voice.h`
+- `src_custom/mechanics_tutorial.c`
+- `documentation/custom-voices.md`
 
-**Outcome:** Full attribute wheel restored. Weak matchups (incl. Forest vs Pyro) set face-down defense; noop DEFENSE no longer blocks later summons. `make` OK.
+**Outcome:** Portrait only hides OAM 102 (VRAM clash); other mini-cards stay. `make` OK.
 
 **Open / next:**
-- Playtest Fire vs Forest set + multi-monster development turns
+- Playtest turn-start portrait with a full board
+- Optional: evacuate zone (0,0) tiles so that slot stays visible too

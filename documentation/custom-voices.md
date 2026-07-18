@@ -164,7 +164,7 @@ Duel hook (turn / attack / LP)  →  lookup sCustomVoiceClips  →  PlayCustomVo
                                     (no match) → vanilla gTurnVoices / gB0AE8 table
 ```
 
-When `gRuntimeConfig.show_duel_voice_portraits` is TRUE (default) and a **turn-start** voice plays, the opponent's dialogue portrait is shown at the **top-left** for the duration of the turn textbox. Mini-card / cursor OAM is hidden while it is up (portrait tiles share OBJ VRAM with board cards). Attack voicing is audio-only and does not show a portrait yet. Toggle via debug menu → Runtime Config → **Voice Port**.
+When `gRuntimeConfig.show_duel_voice_portraits` is TRUE (default) and a **turn-start** voice plays, the opponent's dialogue portrait is shown at the **top-left** for the duration of the turn textbox. Field/hand mini-cards stay visible; only the opponent backrow col-0 sprite (OAM 102) is hidden because it alone shares portrait OBJ VRAM at tile 256. Cursor OAM is cleared while the portrait is up. Attack voicing is audio-only and does not show a portrait yet. Toggle via debug menu → Runtime Config → **Voice Port**.
 
 While a **custom** opponent voice clip plays, duel BGM is ducked to `duel_voice_bgm_volume_percent` (default **70**). Volume restores when the voice player goes idle (checked on each duel graphics refresh). Set the percent to **100** to disable. Vanilla turn/attack lines that take over the music player are unchanged.
 

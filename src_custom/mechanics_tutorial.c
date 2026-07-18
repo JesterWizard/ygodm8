@@ -81,7 +81,7 @@ static void MechanicsTutorial_PlayLines(const struct MechanicsTutorialLine *line
   if (lines == NULL)
     return;
   for (i = 0; lines[i].text != NULL; i++) {
-    /* Keep mini-cards on screen; VO path still hides them for VRAM clash.
+    /* Mini-cards stay on screen (only OAM 102 hidden for portrait VRAM clash).
      * Textbox end wipes OAM (and may clobber portrait VRAM) — full Show restores
      * between same-speaker pages; Place only when tiles are still warm. */
     if (lines[i].portraitId != PORTRAIT_NONE) {

@@ -213,9 +213,12 @@ static u8 PortraitForCurrentOpponent(void) {
   }
 }
 
-/* Portrait tileNum 256 (cbb4+0x2000) overlaps mini-card OBJ tiles in 2D layout.
+/* Portrait tileNum 256 (cbb4+0x2000) stomps only g8E116BC[0] (opp ST col 0,
+ * OAM 102) in the 2D mini-card layout. All other field/hand mini-cards stay up.
  * OAM 0 can also hold a leftover 64x64 portrait (overworld uses y=48) — clear it
- * or a second glitch square appears under the duel portrait at y=0. */
+ * or a second glitch square appears under the duel portrait at y=0.
+ * ponytail: ceiling = that one backrow slot stays hidden; upgrade = evacuate its
+ * tiles to free OBJ bands (0x1400+) before LoadPortraitGfx. */
 static void HideDuelCursorOam(void) {
   u8 i;
 
@@ -223,19 +226,16 @@ static void HideDuelCursorOam(void) {
     sub_80411EC(&gOamBuffer[i]);
 }
 
-static void HideDuelMiniCardOam(void) {
-  u8 i;
-
-  for (i = 102; i < 127; i++)
-    sub_80411EC(&gOamBuffer[i]);
+static void HidePortraitVramClashMiniCard(void) {
+  sub_80411EC(&gOamBuffer[102]);
 }
 
 static void PlacePortraitOam(u8 hideBoardSprites) {
   struct OamData *oam;
 
+  (void)hideBoardSprites; /* was full mini-card hide; only OAM 102 clashes now */
   HideDuelCursorOam();
-  if (hideBoardSprites != FALSE)
-    HideDuelMiniCardOam();
+  HidePortraitVramClashMiniCard();
 
   oam = &gOamBuffer[DUEL_VOICE_PORTRAIT_OAM_SLOT];
   sub_80411EC(oam);
@@ -277,7 +277,7 @@ void Duel_PlacePortraitForTextbox(u8 portraitId, u8 hideBoardSprites) {
 static void ShowDuelVoicePortrait(void) {
   if (gRuntimeConfig.show_duel_voice_portraits != TRUE)
     return;
-  Duel_ShowPortraitForTextbox(PortraitForCurrentOpponent(), TRUE);
+  Duel_ShowPortraitForTextbox(PortraitForCurrentOpponent(), FALSE);
 }
 
 static bool8 TryCustomVoiceMatch(u8 triggerType, u16 cardId, u16 *clipIndexOut) {
