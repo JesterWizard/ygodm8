@@ -366,11 +366,12 @@ def render_music_rom_s(tracks_meta, payload_by_track):
         lines.append("")
 
         wait_bytes = ", ".join(f"0x{b:02X}" for b in meta["wait_commands"])
+        tone_type = 0x08 if meta["wave_type"] == gv.M4A_WAVE_TYPE_DPCM else 0x00
         lines.append(f".global CustomMusic_{sym}_Part")
         lines.append(f"CustomMusic_{sym}_Part:")
         lines.append(
             f"    .byte 0xBC, 0x00, 0xBB, {M4A_BGM_PART_TEMPO}, "
-            f"0xBD, {meta['tone_index']}, 0xBE, {M4A_BGM_PART_VOLUME}"
+            f"0xBD, 0, 0xBE, {M4A_BGM_PART_VOLUME}"
         )
         lines.append(f"CustomMusic_{sym}_LoopStart:")
         lines.append(f"    .byte 0xCF, {M4A_BGM_NOTE_KEY}, {M4A_BGM_NOTE_VEL}")
@@ -382,12 +383,21 @@ def render_music_rom_s(tracks_meta, payload_by_track):
         lines.append("    .byte 0xB1")
         lines.append(".align 4")
         lines.append("")
+        # Private 1-instrument voicegroup — avoids clobbering BGM key-split maps
+        # that share ROM with the global tone table.
+        lines.append(f".global CustomMusic_{sym}_Tone")
+        lines.append(f"CustomMusic_{sym}_Tone:")
+        lines.append(f"    .byte 0x{tone_type:02X}, 0x3C, 0, 0")
+        lines.append(f"    .word CustomMusic_{sym}_Wave")
+        lines.append("    .byte 0xFF, 0, 0xFF, 0")
+        lines.append(".align 4")
+        lines.append("")
         lines.append(f".global CustomMusic_{sym}_SongHeader")
         lines.append(f"CustomMusic_{sym}_SongHeader:")
         lines.append(
             f"    .byte 1, 0, {M4A_BGM_PRIORITY}, 0  @ trackCount, blockCount, priority, reverb"
         )
-        lines.append(f"    .word 0x{gv.M4A_TONE_GROUP_PTR:08X}  @ tone group")
+        lines.append(f"    .word CustomMusic_{sym}_Tone")
         lines.append(f"    .word CustomMusic_{sym}_Part")
         lines.append(".align 4")
         lines.append("")
@@ -426,19 +436,10 @@ def render_header(manifest, tracks_meta):
 
 
 def render_rom_patches_json(tracks_meta):
-    tone_patches = []
     song_patches = []
     mode_patches = []
     for meta in tracks_meta:
         sym = meta["symbol"]
-        org = gv.M4A_TONE_TABLE_ORG + meta["tone_index"] * 12
-        gv.assert_tone_patch_org_safe(org, f"music tone {meta['tone_index']} for {meta['track_id']}")
-        tone_patches.append(
-            {
-                "org": org,
-                "wave_symbol": f"CustomMusic_{sym}_Wave",
-            }
-        )
         song_patches.append(
             {
                 "org": gv.M4A_SONG_TABLE_ORG + meta["song_id"] * 8,
@@ -455,7 +456,7 @@ def render_rom_patches_json(tracks_meta):
     return (
         json.dumps(
             {
-                "tone_patches": tone_patches,
+                "tone_patches": [],
                 "song_patches": song_patches,
                 "mode_patches": mode_patches,
             },
@@ -626,7 +627,6 @@ def main():
             args.stamp.write_text(digest + "\n")
         return
 
-    reserved_tones = load_reserved_tone_indices()
     tracks_meta = []
     payload_by_track: dict[str, bytes] = {}
 
@@ -637,9 +637,7 @@ def main():
         pcm8, _ = prepare_music_pcm8(wav_path, sample_rate, manifest, entry)
         staged.append((entry, pcm8))
 
-    tone_indices = allocate_music_tone_indices(len(staged), reserved_tones)
-
-    for (entry, pcm8), tone_index in zip(staged, tone_indices):
+    for entry, pcm8 in staged:
         sym = symbol_for_track(entry["track_id"])
         codec = music_codec_for(manifest, entry)
         payload = music_wave_payload_for(codec, pcm8)
@@ -670,12 +668,12 @@ def main():
                 "note_count": 1,
                 "wait_ticks": wait_ticks,
                 "wait_commands": wait_commands,
-                "tone_index": tone_index,
+                "tone_index": 0,
                 "loop": loop,
                 "rom_bytes": (
                     music_wave_bytes_for(codec, sample_count, len(payload))
                     + build_bgm_tie_part_track_size(len(wait_commands), loop)
-                    + 12
+                    + 24  # private ToneData + SongHeader
                 ),
             }
         )

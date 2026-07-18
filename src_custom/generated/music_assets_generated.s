@@ -19922,7 +19922,7 @@ CustomMusic_hyperdrive_Wave:
 
 .global CustomMusic_hyperdrive_Part
 CustomMusic_hyperdrive_Part:
-    .byte 0xBC, 0x00, 0xBB, 20, 0xBD, 129, 0xBE, 127
+    .byte 0xBC, 0x00, 0xBB, 20, 0xBD, 0, 0xBE, 127
 CustomMusic_hyperdrive_LoopStart:
     .byte 0xCF, 60, 127
     .byte 0xB0, 0xB0, 0xB0, 0xB0, 0xA5
@@ -19932,10 +19932,17 @@ CustomMusic_hyperdrive_LoopStart:
     .byte 0xB1
 .align 4
 
+.global CustomMusic_hyperdrive_Tone
+CustomMusic_hyperdrive_Tone:
+    .byte 0x08, 0x3C, 0, 0
+    .word CustomMusic_hyperdrive_Wave
+    .byte 0xFF, 0, 0xFF, 0
+.align 4
+
 .global CustomMusic_hyperdrive_SongHeader
 CustomMusic_hyperdrive_SongHeader:
     .byte 1, 0, 20, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomMusic_hyperdrive_Tone
     .word CustomMusic_hyperdrive_Part
 .align 4
 

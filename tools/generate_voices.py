@@ -432,6 +432,61 @@ def assert_tone_patch_org_safe(org: int, label: str = "tone patch"):
             f"{label} at tone {tone} (org 0x{org:X}) overlaps m4a player table "
             f"(max safe tone index {M4A_TONE_INDEX_LAYOUT_MAX})"
         )
+    for start, stop in scan_baserom_keysplit_keytable_ranges():
+        if org < stop and end > start:
+            raise SystemExit(
+                f"{label} at 0x{org:X} overlaps BGM key-split table "
+                f"[0x{start:X}, 0x{stop:X}) — use a private SongHeader voicegroup instead"
+            )
+
+
+def scan_baserom_keysplit_keytable_ranges(rom_path=BASEROM, max_songs=M4A_SONG_SCAN_MAX):
+    """ROM byte ranges of KEYSPLIT key tables (often overlaid on the global tone table)."""
+    if not rom_path.is_file():
+        return []
+    rom = rom_path.read_bytes()
+    ranges = []
+    seen = set()
+
+    def walk(vg_off, depth=0, walked=None):
+        if walked is None:
+            walked = set()
+        if vg_off in walked or depth > 5:
+            return
+        walked.add(vg_off)
+        for i in range(256):
+            off = vg_off + i * 12
+            if off + 12 > len(rom):
+                break
+            t = rom[off]
+            wav = struct.unpack_from("<I", rom, off + 4)[0]
+            field8 = struct.unpack_from("<I", rom, off + 8)[0]
+            typ = t & 0xC0
+            if typ == 0x40:
+                if 0x08000000 <= field8 < 0x0A000000:
+                    ko = field8 - 0x08000000
+                    if ko not in seen:
+                        seen.add(ko)
+                        ranges.append((ko, ko + 128))
+                if 0x08000000 <= wav < 0x0A000000:
+                    walk(wav - 0x08000000, depth + 1, walked)
+            elif typ == 0x80 and 0x08000000 <= wav < 0x0A000000:
+                walk(wav - 0x08000000, depth + 1, walked)
+
+    for song in range(max_songs):
+        off = M4A_SONG_TABLE_ORG + song * 8
+        if off + 8 > len(rom):
+            break
+        header_ptr = struct.unpack_from("<I", rom, off)[0]
+        if not (0x08000000 <= header_ptr < 0x09000000):
+            continue
+        hoff = header_ptr - 0x08000000
+        if hoff + 8 > len(rom):
+            continue
+        tone_ptr = struct.unpack_from("<I", rom, hoff + 4)[0]
+        if 0x08000000 <= tone_ptr < 0x0A000000:
+            walk(tone_ptr - 0x08000000)
+    return ranges
 
 
 def allocate_voice_tone_indices(num_clips, used_tones):
@@ -439,6 +494,11 @@ def allocate_voice_tone_indices(num_clips, used_tones):
     forbidden = set(used_tones)
     forbidden.add(M4A_VANILLA_DUEL_VOICE_TONE)
     forbidden.update(layout_forbidden_tone_indices())
+    for start, stop in scan_baserom_keysplit_keytable_ranges():
+        lo = max(start, M4A_TONE_TABLE_ORG)
+        hi = min(stop, M4A_PLAYER_TABLE_ORG)
+        for org in range(lo, hi):
+            forbidden.add((org - M4A_TONE_TABLE_ORG) // 12)
 
     unused_high = sorted(
         i
@@ -805,10 +865,19 @@ def render_voice_rom_s(songs_meta, dpcm_blobs):
         lines.append(f"    .byte {part_bytes}")
         lines.append(".align 4")
         lines.append("")
+        # Private 1-instrument voicegroup — do not patch the global tone table
+        # (key-split maps for BGM like Game Shop live in that ROM range).
+        lines.append(f".global CustomVoice_{sym}_Tone")
+        lines.append(f"CustomVoice_{sym}_Tone:")
+        lines.append("    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4")
+        lines.append(f"    .word CustomVoice_{sym}_Wave")
+        lines.append("    .byte 0xFF, 0, 0xFF, 0")
+        lines.append(".align 4")
+        lines.append("")
         lines.append(f".global CustomVoice_{sym}_SongHeader")
         lines.append(f"CustomVoice_{sym}_SongHeader:")
         lines.append("    .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb")
-        lines.append(f"    .word 0x{M4A_TONE_GROUP_PTR:08X}  @ tone group")
+        lines.append(f"    .word CustomVoice_{sym}_Tone")
         lines.append(f"    .word CustomVoice_{sym}_Part")
         lines.append(".align 4")
         lines.append("")
@@ -909,19 +978,10 @@ def render_turn_text_inc(songs_meta):
 
 
 def render_rom_patches_json(songs_meta):
-    tone_patches = []
     song_patches = []
     mode_patches = []
     for meta in songs_meta:
         sym = meta["symbol"]
-        org = M4A_TONE_TABLE_ORG + meta["tone_index"] * 12
-        assert_tone_patch_org_safe(org, f"voice tone {meta['tone_index']} for {meta['clip_id']}")
-        tone_patches.append(
-            {
-                "org": org,
-                "wave_symbol": f"CustomVoice_{sym}_Wave",
-            }
-        )
         song_patches.append(
             {
                 "org": M4A_SONG_TABLE_ORG + meta["song_id"] * 8,
@@ -938,7 +998,7 @@ def render_rom_patches_json(songs_meta):
     return (
         json.dumps(
             {
-                "tone_patches": tone_patches,
+                "tone_patches": [],
                 "song_patches": song_patches,
                 "mode_patches": mode_patches,
             },
@@ -1319,9 +1379,6 @@ def main():
     if not clips:
         raise SystemExit("voice_manifest.json: clips array is empty")
 
-    used_tones = scan_baserom_used_tone_indices()
-    voice_tone_indices = allocate_voice_tone_indices(len(clips), used_tones)
-
     songs_meta = []
     clips_meta = []
     dpcm_blobs = []
@@ -1353,8 +1410,7 @@ def main():
         song_id = song_id_base + song_index
         song_const = song_const_for_clip(entry["clip_id"])
 
-        tone_index = voice_tone_indices[song_index]
-        part_track = build_part_track(tone_index, note)
+        part_track = build_part_track(CUSTOM_VOICE_PART_TONE_INDEX, note)
 
         song_entry = {
             "clip_id": entry["clip_id"],
@@ -1362,7 +1418,7 @@ def main():
             "song_const": song_const,
             "song_id": song_id,
             "song_index": song_index,
-            "tone_index": tone_index,
+            "tone_index": CUSTOM_VOICE_PART_TONE_INDEX,
             "part_track": part_track,
             "title": entry.get("title", entry["clip_id"])[:23],
             "sample_count": sample_count,

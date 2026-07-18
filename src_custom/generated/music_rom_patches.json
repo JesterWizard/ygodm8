@@ -1,10 +1,5 @@
 {
-  "tone_patches": [
-    {
-      "org": 11516120,
-      "wave_symbol": "CustomMusic_hyperdrive_Wave"
-    }
-  ],
+  "tone_patches": [],
   "song_patches": [
     {
       "org": 11522628,

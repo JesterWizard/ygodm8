@@ -87,11 +87,15 @@ class MusicTests(unittest.TestCase):
                 gv.M4A_PLAYER_TABLE_ORG,
                 f"tone patch at 0x{org:X} overlaps g8AFBD0C",
             )
-            tone = (org - gv.M4A_TONE_TABLE_ORG) // 12
-            self.assertGreaterEqual(
-                tone,
-                gv.M4A_VOICE_TONE_PREFER_MIN,
-                f"tone patch {tone} clobbers vanilla tone table",
+
+    def test_no_tone_table_patches(self):
+        """Private voicegroups replaced global tone patches (Game Shop key-split fix)."""
+        for name in ("music_rom_patches.json", "voice_rom_patches.json"):
+            patches = json.loads((ROOT / "src_custom/generated" / name).read_text())
+            self.assertEqual(
+                patches.get("tone_patches", []),
+                [],
+                f"{name} must not patch the global tone table",
             )
 
     def test_layout_max_tone_index(self):
@@ -140,15 +144,35 @@ class MusicTests(unittest.TestCase):
         self.assertEqual(gm.music_codec_for(manifest, entry), gm.MUSIC_CODEC_DPCM)
         self.assertEqual(gm.music_wave_type_for(gm.MUSIC_CODEC_DPCM), gv.M4A_WAVE_TYPE_DPCM)
 
-    def test_one_tone_patch_per_track(self):
-        patches = json.loads(
-            (ROOT / "src_custom/generated/music_rom_patches.json").read_text()
-        )
-        tone_patches = patches.get("tone_patches", [])
-        if not tone_patches:
-            self.skipTest("no music registered")
-        self.assertEqual(len(tone_patches), 1)
-        self.assertIn("CustomMusic_hyperdrive_Wave", tone_patches[0]["wave_symbol"])
+    def test_music_uses_private_voicegroup(self):
+        assets = ROOT / "src_custom/generated/music_assets_generated.s"
+        if not assets.is_file():
+            self.skipTest("music assets not generated")
+        text = assets.read_text()
+        self.assertIn("CustomMusic_hyperdrive_Tone:", text)
+        self.assertIn(".word CustomMusic_hyperdrive_Tone", text)
+        self.assertNotIn(f".word 0x{gv.M4A_TONE_GROUP_PTR:08X}", text)
+
+    def test_game_shop_keysplits_match_baserom(self):
+        """Regression: tone-table patches used to corrupt Game Shop key-split maps."""
+        baserom = ROOT / "baserom.gba"
+        built = ROOT / "ygodm8.gba"
+        if not built.is_file():
+            self.skipTest("ygodm8.gba not built")
+        base = baserom.read_bytes()
+        rom = built.read_bytes()
+        # Shop voicegroup keysplit keytable pointers (ToneData bytes 8-11).
+        for instr, ktab in (
+            (89, 0xAFB920),
+            (100, 0xAFB86C),
+            (101, 0xAFB8CC),
+            (102, 0xAFB920),
+        ):
+            self.assertEqual(
+                base[ktab : ktab + 128],
+                rom[ktab : ktab + 128],
+                f"Game Shop keysplit instr {instr} keytable corrupted",
+            )
 
     def test_default_song_id_base_after_voices(self):
         header = ROOT / "include" / "constants" / "custom_voices_generated.h"

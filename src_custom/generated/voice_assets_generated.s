@@ -383,13 +383,20 @@ CustomVoice_duke_1_Wave:
 
 .global CustomVoice_duke_1_Part
 CustomVoice_duke_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x80, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_duke_1_Tone
+CustomVoice_duke_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_duke_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_duke_1_SongHeader
 CustomVoice_duke_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_duke_1_Tone
     .word CustomVoice_duke_1_Part
 .align 4
 
@@ -1476,13 +1483,20 @@ CustomVoice_duke_2_Wave:
 
 .global CustomVoice_duke_2_Part
 CustomVoice_duke_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x88, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_duke_2_Tone
+CustomVoice_duke_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_duke_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_duke_2_SongHeader
 CustomVoice_duke_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_duke_2_Tone
     .word CustomVoice_duke_2_Part
 .align 4
 
@@ -2338,13 +2352,20 @@ CustomVoice_duke_3_Wave:
 
 .global CustomVoice_duke_3_Part
 CustomVoice_duke_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x89, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_duke_3_Tone
+CustomVoice_duke_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_duke_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_duke_3_SongHeader
 CustomVoice_duke_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_duke_3_Tone
     .word CustomVoice_duke_3_Part
 .align 4
 
@@ -3025,13 +3046,20 @@ CustomVoice_tristan_1_Wave:
 
 .global CustomVoice_tristan_1_Part
 CustomVoice_tristan_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x8B, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tristan_1_Tone
+CustomVoice_tristan_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tristan_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tristan_1_SongHeader
 CustomVoice_tristan_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tristan_1_Tone
     .word CustomVoice_tristan_1_Part
 .align 4
 
@@ -3842,13 +3870,20 @@ CustomVoice_tristan_2_Wave:
 
 .global CustomVoice_tristan_2_Part
 CustomVoice_tristan_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x8D, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tristan_2_Tone
+CustomVoice_tristan_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tristan_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tristan_2_SongHeader
 CustomVoice_tristan_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tristan_2_Tone
     .word CustomVoice_tristan_2_Part
 .align 4
 
@@ -5131,13 +5166,20 @@ CustomVoice_tristan_3_Wave:
 
 .global CustomVoice_tristan_3_Part
 CustomVoice_tristan_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x8E, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tristan_3_Tone
+CustomVoice_tristan_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tristan_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tristan_3_SongHeader
 CustomVoice_tristan_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tristan_3_Tone
     .word CustomVoice_tristan_3_Part
 .align 4
 
@@ -5514,13 +5556,20 @@ CustomVoice_mai_1_Wave:
 
 .global CustomVoice_mai_1_Part
 CustomVoice_mai_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x8F, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mai_1_Tone
+CustomVoice_mai_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mai_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mai_1_SongHeader
 CustomVoice_mai_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mai_1_Tone
     .word CustomVoice_mai_1_Part
 .align 4
 
@@ -6910,13 +6959,20 @@ CustomVoice_mai_2_Wave:
 
 .global CustomVoice_mai_2_Part
 CustomVoice_mai_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x90, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mai_2_Tone
+CustomVoice_mai_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mai_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mai_2_SongHeader
 CustomVoice_mai_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mai_2_Tone
     .word CustomVoice_mai_2_Part
 .align 4
 
@@ -7902,13 +7958,20 @@ CustomVoice_mai_3_Wave:
 
 .global CustomVoice_mai_3_Part
 CustomVoice_mai_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x91, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mai_3_Tone
+CustomVoice_mai_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mai_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mai_3_SongHeader
 CustomVoice_mai_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mai_3_Tone
     .word CustomVoice_mai_3_Part
 .align 4
 
@@ -8556,13 +8619,20 @@ CustomVoice_tea_1_Wave:
 
 .global CustomVoice_tea_1_Part
 CustomVoice_tea_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x92, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tea_1_Tone
+CustomVoice_tea_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tea_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tea_1_SongHeader
 CustomVoice_tea_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tea_1_Tone
     .word CustomVoice_tea_1_Part
 .align 4
 
@@ -9503,13 +9573,20 @@ CustomVoice_tea_2_Wave:
 
 .global CustomVoice_tea_2_Part
 CustomVoice_tea_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x93, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tea_2_Tone
+CustomVoice_tea_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tea_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tea_2_SongHeader
 CustomVoice_tea_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tea_2_Tone
     .word CustomVoice_tea_2_Part
 .align 4
 
@@ -10683,13 +10760,20 @@ CustomVoice_tea_3_Wave:
 
 .global CustomVoice_tea_3_Part
 CustomVoice_tea_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x94, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_tea_3_Tone
+CustomVoice_tea_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_tea_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_tea_3_SongHeader
 CustomVoice_tea_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_tea_3_Tone
     .word CustomVoice_tea_3_Part
 .align 4
 
@@ -11434,13 +11518,20 @@ CustomVoice_weevil_1_Wave:
 
 .global CustomVoice_weevil_1_Part
 CustomVoice_weevil_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x95, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_weevil_1_Tone
+CustomVoice_weevil_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_weevil_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_weevil_1_SongHeader
 CustomVoice_weevil_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_weevil_1_Tone
     .word CustomVoice_weevil_1_Part
 .align 4
 
@@ -12374,13 +12465,20 @@ CustomVoice_weevil_2_Wave:
 
 .global CustomVoice_weevil_2_Part
 CustomVoice_weevil_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x96, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_weevil_2_Tone
+CustomVoice_weevil_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_weevil_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_weevil_2_SongHeader
 CustomVoice_weevil_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_weevil_2_Tone
     .word CustomVoice_weevil_2_Part
 .align 4
 
@@ -13873,13 +13971,20 @@ CustomVoice_weevil_3_Wave:
 
 .global CustomVoice_weevil_3_Part
 CustomVoice_weevil_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x97, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_weevil_3_Tone
+CustomVoice_weevil_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_weevil_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_weevil_3_SongHeader
 CustomVoice_weevil_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_weevil_3_Tone
     .word CustomVoice_weevil_3_Part
 .align 4
 
@@ -14485,13 +14590,20 @@ CustomVoice_rex_1_Wave:
 
 .global CustomVoice_rex_1_Part
 CustomVoice_rex_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x98, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_rex_1_Tone
+CustomVoice_rex_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_rex_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_rex_1_SongHeader
 CustomVoice_rex_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_rex_1_Tone
     .word CustomVoice_rex_1_Part
 .align 4
 
@@ -15566,13 +15678,20 @@ CustomVoice_rex_2_Wave:
 
 .global CustomVoice_rex_2_Part
 CustomVoice_rex_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x9B, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_rex_2_Tone
+CustomVoice_rex_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_rex_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_rex_2_SongHeader
 CustomVoice_rex_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_rex_2_Tone
     .word CustomVoice_rex_2_Part
 .align 4
 
@@ -16937,13 +17056,20 @@ CustomVoice_rex_3_Wave:
 
 .global CustomVoice_rex_3_Part
 CustomVoice_rex_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x9C, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_rex_3_Tone
+CustomVoice_rex_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_rex_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_rex_3_SongHeader
 CustomVoice_rex_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_rex_3_Tone
     .word CustomVoice_rex_3_Part
 .align 4
 
@@ -17545,13 +17671,20 @@ CustomVoice_mako_1_Wave:
 
 .global CustomVoice_mako_1_Part
 CustomVoice_mako_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x9D, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mako_1_Tone
+CustomVoice_mako_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mako_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mako_1_SongHeader
 CustomVoice_mako_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mako_1_Tone
     .word CustomVoice_mako_1_Part
 .align 4
 
@@ -18830,13 +18963,20 @@ CustomVoice_mako_2_Wave:
 
 .global CustomVoice_mako_2_Part
 CustomVoice_mako_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x9F, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mako_2_Tone
+CustomVoice_mako_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mako_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mako_2_SongHeader
 CustomVoice_mako_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mako_2_Tone
     .word CustomVoice_mako_2_Part
 .align 4
 
@@ -20651,13 +20791,20 @@ CustomVoice_mako_3_Wave:
 
 .global CustomVoice_mako_3_Part
 CustomVoice_mako_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA0, 0xBE, 0x74, 0xDA, 0x3C, 0x7F, 0x4A, 0xB0, 0xB1, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xDA, 0x3C, 0x7F, 0x4A, 0xB0, 0xB1, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mako_3_Tone
+CustomVoice_mako_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mako_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mako_3_SongHeader
 CustomVoice_mako_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mako_3_Tone
     .word CustomVoice_mako_3_Part
 .align 4
 
@@ -21395,13 +21542,20 @@ CustomVoice_dark_marik_1_Wave:
 
 .global CustomVoice_dark_marik_1_Part
 CustomVoice_dark_marik_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA1, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_marik_1_Tone
+CustomVoice_dark_marik_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_marik_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_marik_1_SongHeader
 CustomVoice_dark_marik_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_marik_1_Tone
     .word CustomVoice_dark_marik_1_Part
 .align 4
 
@@ -22511,13 +22665,20 @@ CustomVoice_dark_marik_2_Wave:
 
 .global CustomVoice_dark_marik_2_Part
 CustomVoice_dark_marik_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA2, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_marik_2_Tone
+CustomVoice_dark_marik_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_marik_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_marik_2_SongHeader
 CustomVoice_dark_marik_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_marik_2_Tone
     .word CustomVoice_dark_marik_2_Part
 .align 4
 
@@ -23973,13 +24134,20 @@ CustomVoice_dark_marik_3_Wave:
 
 .global CustomVoice_dark_marik_3_Part
 CustomVoice_dark_marik_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA3, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_marik_3_Tone
+CustomVoice_dark_marik_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_marik_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_marik_3_SongHeader
 CustomVoice_dark_marik_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_marik_3_Tone
     .word CustomVoice_dark_marik_3_Part
 .align 4
 
@@ -25016,13 +25184,20 @@ CustomVoice_dark_bakura_1_Wave:
 
 .global CustomVoice_dark_bakura_1_Part
 CustomVoice_dark_bakura_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA5, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_bakura_1_Tone
+CustomVoice_dark_bakura_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_bakura_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_bakura_1_SongHeader
 CustomVoice_dark_bakura_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_bakura_1_Tone
     .word CustomVoice_dark_bakura_1_Part
 .align 4
 
@@ -26099,13 +26274,20 @@ CustomVoice_dark_bakura_2_Wave:
 
 .global CustomVoice_dark_bakura_2_Part
 CustomVoice_dark_bakura_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA6, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_bakura_2_Tone
+CustomVoice_dark_bakura_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_bakura_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_bakura_2_SongHeader
 CustomVoice_dark_bakura_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_bakura_2_Tone
     .word CustomVoice_dark_bakura_2_Part
 .align 4
 
@@ -27524,13 +27706,20 @@ CustomVoice_dark_bakura_3_Wave:
 
 .global CustomVoice_dark_bakura_3_Part
 CustomVoice_dark_bakura_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA7, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dark_bakura_3_Tone
+CustomVoice_dark_bakura_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dark_bakura_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dark_bakura_3_SongHeader
 CustomVoice_dark_bakura_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dark_bakura_3_Tone
     .word CustomVoice_dark_bakura_3_Part
 .align 4
 
@@ -28231,13 +28420,20 @@ CustomVoice_bandit_keith_1_Wave:
 
 .global CustomVoice_bandit_keith_1_Part
 CustomVoice_bandit_keith_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xA9, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_bandit_keith_1_Tone
+CustomVoice_bandit_keith_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_bandit_keith_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_bandit_keith_1_SongHeader
 CustomVoice_bandit_keith_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_bandit_keith_1_Tone
     .word CustomVoice_bandit_keith_1_Part
 .align 4
 
@@ -29056,13 +29252,20 @@ CustomVoice_bandit_keith_2_Wave:
 
 .global CustomVoice_bandit_keith_2_Part
 CustomVoice_bandit_keith_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xAB, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_bandit_keith_2_Tone
+CustomVoice_bandit_keith_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_bandit_keith_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_bandit_keith_2_SongHeader
 CustomVoice_bandit_keith_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_bandit_keith_2_Tone
     .word CustomVoice_bandit_keith_2_Part
 .align 4
 
@@ -30209,13 +30412,20 @@ CustomVoice_bandit_keith_3_Wave:
 
 .global CustomVoice_bandit_keith_3_Part
 CustomVoice_bandit_keith_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xAC, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_bandit_keith_3_Tone
+CustomVoice_bandit_keith_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_bandit_keith_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_bandit_keith_3_SongHeader
 CustomVoice_bandit_keith_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_bandit_keith_3_Tone
     .word CustomVoice_bandit_keith_3_Part
 .align 4
 
@@ -30960,13 +31170,20 @@ CustomVoice_ishizu_1_Wave:
 
 .global CustomVoice_ishizu_1_Part
 CustomVoice_ishizu_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB3, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_ishizu_1_Tone
+CustomVoice_ishizu_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_ishizu_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_ishizu_1_SongHeader
 CustomVoice_ishizu_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_ishizu_1_Tone
     .word CustomVoice_ishizu_1_Part
 .align 4
 
@@ -31855,13 +32072,20 @@ CustomVoice_ishizu_2_Wave:
 
 .global CustomVoice_ishizu_2_Part
 CustomVoice_ishizu_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB5, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_ishizu_2_Tone
+CustomVoice_ishizu_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_ishizu_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_ishizu_2_SongHeader
 CustomVoice_ishizu_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_ishizu_2_Tone
     .word CustomVoice_ishizu_2_Part
 .align 4
 
@@ -33047,13 +33271,20 @@ CustomVoice_ishizu_3_Wave:
 
 .global CustomVoice_ishizu_3_Part
 CustomVoice_ishizu_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB6, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_ishizu_3_Tone
+CustomVoice_ishizu_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_ishizu_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_ishizu_3_SongHeader
 CustomVoice_ishizu_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_ishizu_3_Tone
     .word CustomVoice_ishizu_3_Part
 .align 4
 
@@ -33878,13 +34109,20 @@ CustomVoice_odion_1_Wave:
 
 .global CustomVoice_odion_1_Part
 CustomVoice_odion_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB7, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_odion_1_Tone
+CustomVoice_odion_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_odion_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_odion_1_SongHeader
 CustomVoice_odion_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_odion_1_Tone
     .word CustomVoice_odion_1_Part
 .align 4
 
@@ -34884,13 +35122,20 @@ CustomVoice_odion_2_Wave:
 
 .global CustomVoice_odion_2_Part
 CustomVoice_odion_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB8, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_odion_2_Tone
+CustomVoice_odion_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_odion_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_odion_2_SongHeader
 CustomVoice_odion_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_odion_2_Tone
     .word CustomVoice_odion_2_Part
 .align 4
 
@@ -36043,13 +36288,20 @@ CustomVoice_odion_3_Wave:
 
 .global CustomVoice_odion_3_Part
 CustomVoice_odion_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xB9, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_odion_3_Tone
+CustomVoice_odion_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_odion_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_odion_3_SongHeader
 CustomVoice_odion_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_odion_3_Tone
     .word CustomVoice_odion_3_Part
 .align 4
 
@@ -36744,13 +36996,20 @@ CustomVoice_sol_chevalsky_1_Wave:
 
 .global CustomVoice_sol_chevalsky_1_Part
 CustomVoice_sol_chevalsky_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xBA, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_sol_chevalsky_1_Tone
+CustomVoice_sol_chevalsky_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_sol_chevalsky_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_sol_chevalsky_1_SongHeader
 CustomVoice_sol_chevalsky_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_sol_chevalsky_1_Tone
     .word CustomVoice_sol_chevalsky_1_Part
 .align 4
 
@@ -37559,13 +37818,20 @@ CustomVoice_sol_chevalsky_2_Wave:
 
 .global CustomVoice_sol_chevalsky_2_Part
 CustomVoice_sol_chevalsky_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xBC, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_sol_chevalsky_2_Tone
+CustomVoice_sol_chevalsky_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_sol_chevalsky_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_sol_chevalsky_2_SongHeader
 CustomVoice_sol_chevalsky_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_sol_chevalsky_2_Tone
     .word CustomVoice_sol_chevalsky_2_Part
 .align 4
 
@@ -39425,13 +39691,20 @@ CustomVoice_sol_chevalsky_3_Wave:
 
 .global CustomVoice_sol_chevalsky_3_Part
 CustomVoice_sol_chevalsky_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC2, 0xBE, 0x74, 0xF7, 0x3C, 0x7F, 0x2E, 0xB0, 0xB1, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xF7, 0x3C, 0x7F, 0x2E, 0xB0, 0xB1, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_sol_chevalsky_3_Tone
+CustomVoice_sol_chevalsky_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_sol_chevalsky_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_sol_chevalsky_3_SongHeader
 CustomVoice_sol_chevalsky_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_sol_chevalsky_3_Tone
     .word CustomVoice_sol_chevalsky_3_Part
 .align 4
 
@@ -40085,13 +40358,20 @@ CustomVoice_mokuba_1_Wave:
 
 .global CustomVoice_mokuba_1_Part
 CustomVoice_mokuba_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC3, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mokuba_1_Tone
+CustomVoice_mokuba_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mokuba_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mokuba_1_SongHeader
 CustomVoice_mokuba_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mokuba_1_Tone
     .word CustomVoice_mokuba_1_Part
 .align 4
 
@@ -40980,13 +41260,20 @@ CustomVoice_mokuba_2_Wave:
 
 .global CustomVoice_mokuba_2_Part
 CustomVoice_mokuba_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC4, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mokuba_2_Tone
+CustomVoice_mokuba_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mokuba_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mokuba_2_SongHeader
 CustomVoice_mokuba_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mokuba_2_Tone
     .word CustomVoice_mokuba_2_Part
 .align 4
 
@@ -42498,13 +42785,20 @@ CustomVoice_mokuba_3_Wave:
 
 .global CustomVoice_mokuba_3_Part
 CustomVoice_mokuba_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC5, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_mokuba_3_Tone
+CustomVoice_mokuba_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_mokuba_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_mokuba_3_SongHeader
 CustomVoice_mokuba_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_mokuba_3_Tone
     .word CustomVoice_mokuba_3_Part
 .align 4
 
@@ -43145,13 +43439,20 @@ CustomVoice_para_1_Wave:
 
 .global CustomVoice_para_1_Part
 CustomVoice_para_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC6, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_para_1_Tone
+CustomVoice_para_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_para_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_para_1_SongHeader
 CustomVoice_para_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_para_1_Tone
     .word CustomVoice_para_1_Part
 .align 4
 
@@ -44137,13 +44438,20 @@ CustomVoice_para_2_Wave:
 
 .global CustomVoice_para_2_Part
 CustomVoice_para_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC7, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_para_2_Tone
+CustomVoice_para_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_para_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_para_2_SongHeader
 CustomVoice_para_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_para_2_Tone
     .word CustomVoice_para_2_Part
 .align 4
 
@@ -45331,13 +45639,20 @@ CustomVoice_para_3_Wave:
 
 .global CustomVoice_para_3_Part
 CustomVoice_para_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC8, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_para_3_Tone
+CustomVoice_para_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_para_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_para_3_SongHeader
 CustomVoice_para_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_para_3_Tone
     .word CustomVoice_para_3_Part
 .align 4
 
@@ -46577,13 +46892,20 @@ CustomVoice_dox_1_Wave:
 
 .global CustomVoice_dox_1_Part
 CustomVoice_dox_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xC9, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dox_1_Tone
+CustomVoice_dox_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dox_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dox_1_SongHeader
 CustomVoice_dox_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dox_1_Tone
     .word CustomVoice_dox_1_Part
 .align 4
 
@@ -47730,13 +48052,20 @@ CustomVoice_dox_2_Wave:
 
 .global CustomVoice_dox_2_Part
 CustomVoice_dox_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xCA, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dox_2_Tone
+CustomVoice_dox_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dox_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dox_2_SongHeader
 CustomVoice_dox_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dox_2_Tone
     .word CustomVoice_dox_2_Part
 .align 4
 
@@ -49081,13 +49410,20 @@ CustomVoice_dox_3_Wave:
 
 .global CustomVoice_dox_3_Part
 CustomVoice_dox_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xCB, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_dox_3_Tone
+CustomVoice_dox_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_dox_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_dox_3_SongHeader
 CustomVoice_dox_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_dox_3_Tone
     .word CustomVoice_dox_3_Part
 .align 4
 
@@ -50553,13 +50889,20 @@ CustomVoice_arkana_1_Wave:
 
 .global CustomVoice_arkana_1_Part
 CustomVoice_arkana_1_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xCC, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_arkana_1_Tone
+CustomVoice_arkana_1_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_arkana_1_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_arkana_1_SongHeader
 CustomVoice_arkana_1_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_arkana_1_Tone
     .word CustomVoice_arkana_1_Part
 .align 4
 
@@ -52106,13 +52449,20 @@ CustomVoice_arkana_2_Wave:
 
 .global CustomVoice_arkana_2_Part
 CustomVoice_arkana_2_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xCD, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_arkana_2_Tone
+CustomVoice_arkana_2_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_arkana_2_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_arkana_2_SongHeader
 CustomVoice_arkana_2_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_arkana_2_Tone
     .word CustomVoice_arkana_2_Part
 .align 4
 
@@ -53100,13 +53450,20 @@ CustomVoice_arkana_3_Wave:
 
 .global CustomVoice_arkana_3_Part
 CustomVoice_arkana_3_Part:
-    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0xD0, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+    .byte 0xBC, 0x00, 0xBB, 0x14, 0xBD, 0x00, 0xBE, 0x74, 0xED, 0x3C, 0x7F, 0x9E, 0xB1, 0x00, 0x00, 0x00, 0x01, 0x00
+.align 4
+
+.global CustomVoice_arkana_3_Tone
+CustomVoice_arkana_3_Tone:
+    .byte 0x08, 0x3C, 0, 0  @ DPCM DirectSound, midi key C4
+    .word CustomVoice_arkana_3_Wave
+    .byte 0xFF, 0, 0xFF, 0
 .align 4
 
 .global CustomVoice_arkana_3_SongHeader
 CustomVoice_arkana_3_SongHeader:
     .byte 1, 0, 110, 0  @ trackCount, blockCount, priority, reverb
-    .word 0x08AFB2CC  @ tone group
+    .word CustomVoice_arkana_3_Tone
     .word CustomVoice_arkana_3_Part
 .align 4
 

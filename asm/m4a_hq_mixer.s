@@ -143,8 +143,8 @@ SoundMainRAM:
     .align  2
 
 C_clear_hq_mix_buffer_impl:
+    /* hq_buffer_literal holds the mix buffer address itself (same as LDR R5/R10 below). */
     LDR     R0, hq_buffer_literal
-    LDR     R0, [R0]
     MOV     R1, #M4A_HQ_MIX_BUFFER_BYTES
     BL      F_clear_mem
     ADR     R0, (C_channel_state_loop_init+1)
@@ -710,7 +710,6 @@ C_select_highspeed_codepath:
      */
     ADR     R0, high_speed_code_resource    @ loads the base pointer of the code
     SUBS    R4, R4, #0x800000
-    BEQ     C_select_highspeed_exact_rate
     MOVPL   R11, R11, LSL#1                 @  if >= 1.0*   0-127 --> 0-254 volume level
     ADDPL   R0, R0, #(ARM_OP_LEN*6)         @               6 instructions further
     SUBSPL  R4, R4, #0x800000               @  if >= 2.0*
@@ -723,18 +722,6 @@ C_select_highspeed_codepath:
     STR     R0, previous_fast_code
     LDMIA   R0, {R0-R2, R8-R10}             @ load 6 opcodes
     ADR     LR, fast_mixing_instructions+(ARM_OP_LEN*2) @ first NOP
-    B       C_fast_mixing_creation_loop
-
-C_select_highspeed_exact_rate:
-    ADR     R0, high_speed_code_resource_exact
-    MOV     R4, #0x800000
-    LDR     R2, previous_fast_code
-    CMP     R0, R2
-    BEQ     C_skip_fast_mixing_creation
-    STR     R0, previous_fast_code
-    LDMIA   R0, {R0-R2, R8-R10}
-    ADR     LR, fast_mixing_instructions+(ARM_OP_LEN*2)
-    B       C_fast_mixing_creation_loop
 
 C_fast_mixing_creation_loop:
     /* paste code to destination, see below for patterns */
@@ -790,15 +777,6 @@ previous_fast_code:
     .word   0x0 /* mark as invalid initially */
 
 /* Those instructions below are used by the high speed loop self modifying code */
-high_speed_code_resource_exact:
-    /* Block for Mix Freq == 1.0 * Output Frequency (no linear interpolation) */
-    ADDS    R9, R6, R6, LSL#1
-    ADDS    R7, R7, R4
-    MOVS    R0, R7, LSR#23
-    SUBHS   R7, R7, #0x800000
-    LDRSBHS R6, [R3, #1]!
-    MOV     R12, #0
-
 high_speed_code_resource:
     /* Block for Mix Freq < 1.0 * Output Frequency */
     MOV     R9, R9, ASR#22

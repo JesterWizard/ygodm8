@@ -1,12 +1,13 @@
 # CARD_STATE — latest session
 
-**Last worked on:** 2026-07-18 — Overworld map fade mid-transition flash
+**Last worked on:** 2026-07-18 — Game Shop flat pitch root cause
 
 **Files touched:**
-- `src_custom/debug/overworld_debug_overlay_hooks.c`
-- `src_custom/event_system_hooks.c`
+- `tools/generate_voices.py`, `tools/generate_music.py` (private voicegroups; no global tone patches)
+- `tests/host/test_music.py`
+- regenerated `src_custom/generated/{voice,music}_*`
 
-**Outcome:** Fade-out no longer undoes blend; custom map override runs while display is off. `make` OK.
+**Outcome:** Flat pitch was corrupted Game Shop key-split tables (voice/music tone patches). Fixed; HQ mixer re-enabled. `make` OK.
 
 **Open / next:**
-- Playtest door/edge fade — should stay black until next map
+- Playtest Game Shop BGM pitch vs baserom
