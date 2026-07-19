@@ -35602,6 +35602,446 @@
       "effect_texts": {
         "popup_1": "Fusion Summon 1 Dragon Fusion Monster from your Extra Deck, by banishing Fusion Materials listed on it from your field o"
       }
+    },
+    {
+      "card_const": "HUNTING_INSTINCT",
+      "card_name": "Hunting Instinct",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [1, 1, 9, 2, 5, 5, 6, 9],
+      "description": {
+        "symbol": "gDescription_HuntingInstinct",
+        "pages": "When a monster(s) is Special Summoned to your opponent's field (except during the Damage Step): Special Summon 1 Dinosaur monster from your hand."
+      },
+      "effect_texts": {
+        "popup_1": "When a monster(s) is Special Summoned to your opponent's field (except during the Damage Step): Special Summon 1 Dinosau"
+      }
+    },
+    {
+      "card_const": "ICARUS_ATTACK",
+      "card_name": "Icarus Attack",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [5, 3, 5, 6, 7, 0, 9, 5],
+      "description": {
+        "symbol": "gDescription_IcarusAttack",
+        "pages": "Tribute 1 Winged Beast-Type monster, then target 2 cards on the field; destroy them."
+      },
+      "effect_texts": {
+        "popup_1": "Tribute 1 Winged Beast-Type monster, then target 2 cards on the field; destroy them."
+      }
+    },
+    {
+      "card_const": "JUNK_SYNCHRON",
+      "card_name": "Junk Synchron",
+      "atk": 1300,
+      "def": 500,
+      "level": 3,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_WARRIOR",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [6, 3, 9, 7, 7, 0, 0, 8],
+      "description": {
+        "symbol": "gDescription_JunkSynchron",
+        "pages": "When this card is Normal Summoned: You can target 1 Level 2 or lower monster in your Graveyard; Special Summon that target in Defense Position, but it has its effects negated."
+      },
+      "effect_texts": {
+        "popup_1": "When this card is Normal Summoned: You can target 1 Level 2 or lower monster in your Graveyard; Special Summon that targ"
+      }
+    },
+    {
+      "card_const": "LEVEL_TUNING",
+      "card_name": "Level Tuning",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [7, 4, 7, 4, 1, 4, 9, 4],
+      "description": {
+        "symbol": "gDescription_LevelTuning",
+        "pages": "Reduce the Level of all face-up monsters you control by 1, until the End Phase."
+      },
+      "effect_texts": {
+        "popup_1": "Reduce the Level of all face-up monsters you control by 1, until the End Phase."
+      }
+    },
+    {
+      "card_const": "LEVIAIR_THE_SEA_DRAGON",
+      "card_name": "Leviair the Sea Dragon",
+      "atk": 1800,
+      "def": 1600,
+      "level": 3,
+      "attribute": "ATTRIBUTE_WIND",
+      "type": "TYPE_AQUA",
+      "color": "XYZ_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 20,
+      "password": [9, 5, 9, 9, 2, 0, 8, 1],
+      "description": {
+        "symbol": "gDescription_LeviairTheSeaDragon",
+        "pages": "2 Level 3 monsters Once per turn: You can detach 1 material from this card, then target 1 banished Level 4 or lower monster; Special Summon that target to your field."
+      },
+      "effect_texts": {
+        "popup_1": "2 Level 3 monsters\r\nOnce per turn: You can detach 1 material from this card, then target 1 banished Level 4 or lower mon"
+      }
+    },
+    {
+      "card_const": "LIFE_STREAM_DRAGON",
+      "card_name": "Life Stream Dragon",
+      "atk": 2900,
+      "def": 2400,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DRAGON",
+      "color": "SYNCHRO_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 5, 1, 6, 5, 0, 4, 7],
+      "description": {
+        "symbol": "gDescription_LifeStreamDragon",
+        "pages": "1 Tuner + Power Tool Dragon When this card is Synchro Summoned: You can make your LP become 4000. You take no effect damage. If this face-up card on the field would be destroyed, you can banish 1 Equip Spell Card from your Graveyard instead."
+      },
+      "effect_texts": {
+        "popup_1": "1 Tuner + Power Tool Dragon\nWhen this card is Synchro Summoned: You can make your LP become 4000. You take no effect d"
+      }
+    },
+    {
+      "card_const": "MACRO_COSMOS",
+      "card_name": "Macro Cosmos",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [3, 0, 2, 4, 1, 3, 1, 4],
+      "description": {
+        "symbol": "gDescription_MacroCosmos",
+        "pages": "When this card resolves: You can Special Summon 1 Helios - The Primordial Sun from your hand or Deck. While this card is face-up on the field, any card sent to the Graveyard is banished instead."
+      },
+      "effect_texts": {
+        "popup_1": "When this card resolves: You can Special Summon 1 Helios - The Primordial Sun from your hand or Deck. While this card "
+      }
+    },
+    {
+      "card_const": "MAGICAL_ARM_SHIELD",
+      "card_name": "Magical Arm Shield",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [9, 6, 0, 0, 8, 7, 1, 3],
+      "description": {
+        "symbol": "gDescription_MagicalArmShield",
+        "pages": "When your opponent declares an attack while you control a monster: Target 1 face-up monster your opponent controls, except the attacking monster; take control of that target until the end of the Battle Phase, and if you do, it is attacked instead, and you proceed to damage calculation."
+      },
+      "effect_texts": {
+        "popup_1": "When your opponent declares an attack while you control a monster: Target 1 face-up monster your opponent controls, exce"
+      }
+    },
+    {
+      "card_const": "MAGICAL_MARIONETTE",
+      "card_name": "Magical Marionette",
+      "atk": 2000,
+      "def": 1000,
+      "level": 5,
+      "attribute": "ATTRIBUTE_SHADOW",
+      "type": "TYPE_SPELLCASTER",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 400,
+      "password": [0, 8, 0, 3, 4, 6, 9, 7],
+      "description": {
+        "symbol": "gDescription_MagicalMarionette",
+        "pages": "Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves. This card gains 200 ATK for each Spell Counter on it. You can remove 2 Spell Counters from this card, then target 1 monster on the field; destroy that target."
+      },
+      "effect_texts": {
+        "popup_1": "Each time a Spell Card is activated, place 1 Spell Counter on this card when that Spell Card resolves. This card gains 2"
+      }
+    },
+    {
+      "card_const": "MAGICIANS_CIRCLE",
+      "card_name": "Magician's Circle",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [0, 0, 0, 5, 0, 7, 5, 5],
+      "description": {
+        "symbol": "gDescription_MagiciansCircle",
+        "pages": "When a Spellcaster monster declares an attack: Each player Special Summons 1 Spellcaster monster with 2000 or less ATK from their Deck in Attack Position."
+      },
+      "effect_texts": {
+        "popup_1": "When a Spellcaster monster declares an attack: Each player Special Summons 1 Spellcaster monster with 2000 or less ATK f"
+      }
+    },
+    {
+      "card_const": "MAGNA_DRAGO",
+      "card_name": "Magna Drago",
+      "atk": 1400,
+      "def": 600,
+      "level": 2,
+      "attribute": "ATTRIBUTE_FIRE",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 72,
+      "password": [3, 6, 7, 5, 0, 4, 1, 2],
+      "description": {
+        "symbol": "gDescription_MagnaDrago",
+        "pages": "If this card inflicts battle damage to your opponent: It gains 200 ATK."
+      },
+      "effect_texts": {
+        "popup_1": "If this card inflicts battle damage to your opponent: It gains 200 ATK."
+      }
+    },
+    {
+      "card_const": "MIRAGE_DRAGON",
+      "card_name": "Mirage Dragon",
+      "atk": 1600,
+      "def": 600,
+      "level": 4,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 289,
+      "password": [1, 5, 9, 6, 0, 6, 4, 1],
+      "description": {
+        "symbol": "gDescription_MirageDragon",
+        "pages": "Your opponent cannot activate Trap Cards during the Battle Phase."
+      },
+      "effect_texts": {
+        "popup_1": "Your opponent cannot activate Trap Cards during the Battle Phase."
+      }
+    },
+    {
+      "card_const": "MONTAGE_DRAGON",
+      "card_name": "Montage Dragon",
+      "atk": -1,
+      "def": 0,
+      "level": 8,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_DRAGON",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [2, 3, 3, 0, 3, 0, 7, 2],
+      "description": {
+        "symbol": "gDescription_MontageDragon",
+        "pages": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 other monsters from your hand to the Graveyard, and cannot be Special Summoned by other ways. This card's ATK becomes the combined original Levels of the sent monsters x 300."
+      },
+      "effect_texts": {
+        "popup_1": "Cannot be Normal Summoned/Set. Must be Special Summoned (from your hand) by sending 3 other monsters from your hand to t"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_ACCELERATOR",
+      "card_name": "Morphtronic Accelerator",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_SPELL",
+      "color": "SPELL_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [4, 4, 4, 2, 4, 0, 9, 5],
+      "description": {
+        "symbol": "gDescription_MorphtronicAccelerator",
+        "pages": "Return 1 Morphtronic monster from your hand to the Deck. Destroy 1 card on the field, and draw 1 card."
+      },
+      "effect_texts": {
+        "popup_1": "Return 1 Morphtronic monster from your hand to the Deck. Destroy 1 card on the field, and draw 1 card."
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_BIND",
+      "card_name": "Morphtronic Bind",
+      "atk": 65535,
+      "def": 65535,
+      "level": 0,
+      "attribute": 0,
+      "type": "TYPE_TRAP",
+      "color": "TRAP_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 15,
+      "password": [8, 5, 1, 0, 1, 2, 2, 8],
+      "description": {
+        "symbol": "gDescription_MorphtronicBind",
+        "pages": "While you control a face-up Morphtronic monster, all Level 4 or higher monsters your opponent controls cannot attack or change their battle positions."
+      },
+      "effect_texts": {
+        "popup_1": "While you control a face-up Morphtronic monster, all Level 4 or higher monsters your opponent controls cannot attack o"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_BOARDEN",
+      "card_name": "Morphtronic Boarden",
+      "atk": 500,
+      "def": 1800,
+      "level": 3,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 183,
+      "password": [4, 8, 3, 8, 1, 2, 6, 8],
+      "description": {
+        "symbol": "gDescription_MorphtronicBoarden",
+        "pages": "- While in Attack Position: Morphtronic monsters you control can attack your opponent directly. - While in Defense Position: Other Morphtronic monsters you control cannot be destroyed by battle."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: Morphtronic monsters you control can attack your opponent directly.\n- While in Defense Pos"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_BOOMBOXEN",
+      "card_name": "Morphtronic Boomboxen",
+      "atk": 1200,
+      "def": 400,
+      "level": 4,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 2, 7, 2, 0, 5, 6, 4],
+      "description": {
+        "symbol": "gDescription_MorphtronicBoomboxen",
+        "pages": "- While in Attack Position, this card can attack twice during each Battle Phase. - Once per turn, while in Defense Position, when a face-up Morphtronic monster you control is targeted for an attack: You can negate the attack."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position, this card can attack twice during each Battle Phase.\n- Once per turn, while in Defense Posit"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_CAMERAN",
+      "card_name": "Morphtronic Cameran",
+      "atk": 800,
+      "def": 600,
+      "level": 2,
+      "attribute": "ATTRIBUTE_LIGHT",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 53,
+      "password": [2, 8, 1, 2, 4, 2, 6, 3],
+      "description": {
+        "symbol": "gDescription_MorphtronicCameran",
+        "pages": "- While in Attack Position: When this card is destroyed by battle, you can Special Summon 1 Level 4 or lower Morphtronic monster from your hand or Graveyard, except Morphtronic Cameran. - While in Defense Position: Morphtronic monsters on the field cannot be targeted by effects."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: When this card is destroyed by battle, you can Special Summon 1 Level 4 or lower Morphtroni"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_CELFON",
+      "card_name": "Morphtronic Celfon",
+      "atk": 100,
+      "def": 100,
+      "level": 1,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 75,
+      "password": [9, 3, 5, 4, 2, 1, 0, 2],
+      "description": {
+        "symbol": "gDescription_MorphtronicCelfon",
+        "pages": "- While in Attack Position: Once per turn, you can roll a six-sided die. Reveal cards from top of your Deck equal to the roll and Special Summon 1 Level 4 or lower Morphtronic monster from among them, ignoring the Summoning conditions. Shuffle the rest into the Deck. - While in Defense Position: Once per turn, you can roll a six-sided die. Look at cards from top of your Deck equal to the roll, then return them in the same order."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: Once per turn, you can roll a six-sided die. Reveal cards from top of your Deck equal to the"
+      }
+    },
+    {
+      "card_const": "MORPHTRONIC_CLOCKEN",
+      "card_name": "Morphtronic Clocken",
+      "atk": 600,
+      "def": 1100,
+      "level": 2,
+      "attribute": "ATTRIBUTE_EARTH",
+      "type": "TYPE_MACHINE",
+      "color": "EFFECT_CARD",
+      "monsterEffect": 0,
+      "spellEffect": 2,
+      "trapEffect": 0,
+      "cost": 150,
+      "password": [9, 1, 6, 0, 7, 9, 7, 6],
+      "description": {
+        "symbol": "gDescription_MorphtronicClocken",
+        "pages": "- While in Attack Position: This card gains 500 ATK for each Morph Counter on it. - While in Defense Position: Once per turn, you can place 1 Morph Counter on this card. You can Tribute this card to inflict 1000 damage to your opponent for each Morph Counter on it."
+      },
+      "effect_texts": {
+        "popup_1": "- While in Attack Position: This card gains 500 ATK for each Morph Counter on it. - While in Defense Position: Once per "
+      }
     }
   ]
 }

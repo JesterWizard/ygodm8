@@ -11,8 +11,8 @@ Regenerate the summary and tables: `python3 tools/card_art_progress.py` (last ru
 
 | Status | Count |
 |--------|------:|
-| In game (manifest + art) | 1053 |
-| Art ready, needs manifest | 80 |
+| In game (manifest + art) | 1073 |
+| Art ready, needs manifest | 60 |
 | In manifest, missing art | 0 |
 | **Total PNGs in `80x80/`** | **1135** |
 
@@ -1075,31 +1075,31 @@ Manifest entry exists and `80x80/<stem>.png` is present.
 | `HERALD_OF_ULIMATENESS` | Herald of Ultimateness | `herald_of_ulimateness.png` |
 | `HONEST` | Honest | `honest.png` |
 | `DRAGONS_MIRROR` | Dragon's Mirror | `dragons_mirror.png` |
+| `HUNTING_INSTINCT` | Hunting Instinct | `hunting_instinct.png` |
+| `ICARUS_ATTACK` | Icarus Attack | `icarus_attack.png` |
+| `JUNK_SYNCHRON` | Junk Synchron | `junk_synchron.png` |
+| `LEVEL_TUNING` | Level Tuning | `level_tuning.png` |
+| `LEVIAIR_THE_SEA_DRAGON` | Leviair the Sea Dragon | `leviair_the_sea_dragon.png` |
+| `LIFE_STREAM_DRAGON` | Life Stream Dragon | `life_stream_dragon.png` |
+| `MACRO_COSMOS` | Macro Cosmos | `macro_cosmos.png` |
+| `MAGICAL_ARM_SHIELD` | Magical Arm Shield | `magical_arm_shield.png` |
+| `MAGICAL_MARIONETTE` | Magical Marionette | `magical_marionette.png` |
+| `MAGICIANS_CIRCLE` | Magician's Circle | `magicians_circle.png` |
+| `MAGNA_DRAGO` | Magna Drago | `magna_drago.png` |
+| `MIRAGE_DRAGON` | Mirage Dragon | `mirage_dragon.png` |
+| `MONTAGE_DRAGON` | Montage Dragon | `montage_dragon.png` |
+| `MORPHTRONIC_ACCELERATOR` | Morphtronic Accelerator | `morphtronic_accelerator.png` |
+| `MORPHTRONIC_BIND` | Morphtronic Bind | `morphtronic_bind.png` |
+| `MORPHTRONIC_BOARDEN` | Morphtronic Boarden | `morphtronic_boarden.png` |
+| `MORPHTRONIC_BOOMBOXEN` | Morphtronic Boomboxen | `morphtronic_boomboxen.png` |
+| `MORPHTRONIC_CAMERAN` | Morphtronic Cameran | `morphtronic_cameran.png` |
+| `MORPHTRONIC_CELFON` | Morphtronic Celfon | `morphtronic_celfon.png` |
+| `MORPHTRONIC_CLOCKEN` | Morphtronic Clocken | `morphtronic_clocken.png` |
 
 ## Todo — art ready, needs manifest
 
 PNG is in `80x80/`; append a manifest entry and run `make`.
 
-- [ ] `HUNTING_INSTINCT` — `hunting_instinct.png`
-- [ ] `ICARUS_ATTACK` — `icarus_attack.png`
-- [ ] `JUNK_SYNCHRON` — `junk_synchron.png`
-- [ ] `LEVEL_TUNING` — `level_tuning.png`
-- [ ] `LEVIAIR_THE_SEA_DRAGON` — `leviair_the_sea_dragon.png`
-- [ ] `LIFE_STREAM_DRAGON` — `life_stream_dragon.png`
-- [ ] `MACRO_COSMOS` — `macro_cosmos.png`
-- [ ] `MAGICAL_ARM_SHIELD` — `magical_arm_shield.png`
-- [ ] `MAGICAL_MARIONETTE` — `magical_marionette.png`
-- [ ] `MAGICIANS_CIRCLE` — `magicians_circle.png`
-- [ ] `MAGNA_DRAGO` — `magna_drago.png`
-- [ ] `MIRAGE_DRAGON` — `mirage_dragon.png`
-- [ ] `MONTAGE_DRAGON` — `montage_dragon.png`
-- [ ] `MORPHTRONIC_ACCELERATOR` — `morphtronic_accelerator.png`
-- [ ] `MORPHTRONIC_BIND` — `morphtronic_bind.png`
-- [ ] `MORPHTRONIC_BOARDEN` — `morphtronic_boarden.png`
-- [ ] `MORPHTRONIC_BOOMBOXEN` — `morphtronic_boomboxen.png`
-- [ ] `MORPHTRONIC_CAMERAN` — `morphtronic_cameran.png`
-- [ ] `MORPHTRONIC_CELFON` — `morphtronic_celfon.png`
-- [ ] `MORPHTRONIC_CLOCKEN` — `morphtronic_clocken.png`
 - [ ] `MORPHTRONIC_CONVERTER` — `morphtronic_converter.png`
 - [ ] `MORPHTRONIC_CORD` — `morphtronic_cord.png`
 - [ ] `MORPHTRONIC_DATATRON` — `morphtronic_datatron.png`

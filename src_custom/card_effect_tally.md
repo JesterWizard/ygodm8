@@ -4,7 +4,7 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 
 ## Total
 
-- `984` effects
+- `1004` effects
 
 ## Tally
 
@@ -965,6 +965,26 @@ Running count of card-specific effects added in `src_custom` for existing cards.
 | `activated_effects` | `Herald Of Ulimateness` | `src_custom/activated_effects/herald_of_ulimateness.c` |
 | `activated_effects` | `Honest` | `src_custom/activated_effects/honest.c` |
 | `spell_effects` | `Dragons Mirror` | `src_custom/spell_effects/dragons_mirror.c` |
+| `trap_effects` | `Hunting Instinct` | `src_custom/trap_effects/hunting_instinct.c` |
+| `trap_effects` | `Icarus Attack` | `src_custom/trap_effects/icarus_attack.c` |
+| `activated_effects` | `Junk Synchron` | `src_custom/activated_effects/junk_synchron.c` |
+| `spell_effects` | `Level Tuning` | `src_custom/spell_effects/level_tuning.c` |
+| `activated_effects` | `Leviair The Sea Dragon` | `src_custom/activated_effects/leviair_the_sea_dragon.c` |
+| `activated_effects` | `Life Stream Dragon` | `src_custom/activated_effects/life_stream_dragon.c` |
+| `trap_effects` | `Macro Cosmos` | `src_custom/trap_effects/macro_cosmos.c` |
+| `trap_effects` | `Magical Arm Shield` | `src_custom/trap_effects/magical_arm_shield.c` |
+| `activated_effects` | `Magical Marionette` | `src_custom/activated_effects/magical_marionette.c` |
+| `trap_effects` | `Magicians Circle` | `src_custom/trap_effects/magicians_circle.c` |
+| `activated_effects` | `Magna Drago` | `src_custom/activated_effects/magna_drago.c` |
+| `activated_effects` | `Mirage Dragon` | `src_custom/activated_effects/mirage_dragon.c` |
+| `activated_effects` | `Montage Dragon` | `src_custom/activated_effects/montage_dragon.c` |
+| `spell_effects` | `Morphtronic Accelerator` | `src_custom/spell_effects/morphtronic_accelerator.c` |
+| `trap_effects` | `Morphtronic Bind` | `src_custom/trap_effects/morphtronic_bind.c` |
+| `activated_effects` | `Morphtronic Boarden` | `src_custom/activated_effects/morphtronic_boarden.c` |
+| `activated_effects` | `Morphtronic Boomboxen` | `src_custom/activated_effects/morphtronic_boomboxen.c` |
+| `activated_effects` | `Morphtronic Cameran` | `src_custom/activated_effects/morphtronic_cameran.c` |
+| `activated_effects` | `Morphtronic Celfon` | `src_custom/activated_effects/morphtronic_celfon.c` |
+| `activated_effects` | `Morphtronic Clocken` | `src_custom/activated_effects/morphtronic_clocken.c` |
 |	`turn_effects`	|	`Bowganian`	|	`src_custom/turn_effects/bowganian.c`	|
 |	`turn_effects`	|	`Solar Flare Dragon`	|	`src_custom/turn_effects/solar_flare_dragon.c`	|
 |	`turn_effects`	|	`Ebon Magician Curran`	|	`src_custom/turn_effects/ebon_magician_curran.c`	|

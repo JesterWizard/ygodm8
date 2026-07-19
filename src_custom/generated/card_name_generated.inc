@@ -1054,6 +1054,26 @@ static const u8 sHeraldOfTheArcLightName[] __attribute__((section(".append_asset
 static const u8 sHeraldOfUlimatenessName[] __attribute__((section(".append_assets"))) = "Herald of Ultimateness";
 static const u8 sHonestName[] __attribute__((section(".append_assets"))) = "Honest";
 static const u8 sDragonsMirrorName[] __attribute__((section(".append_assets"))) = "Dragon's Mirror";
+static const u8 sHuntingInstinctName[] __attribute__((section(".append_assets"))) = "Hunting Instinct";
+static const u8 sIcarusAttackName[] __attribute__((section(".append_assets"))) = "Icarus Attack";
+static const u8 sJunkSynchronName[] __attribute__((section(".append_assets"))) = "Junk Synchron";
+static const u8 sLevelTuningName[] __attribute__((section(".append_assets"))) = "Level Tuning";
+static const u8 sLeviairTheSeaDragonName[] __attribute__((section(".append_assets"))) = "Leviair the Sea Dragon";
+static const u8 sLifeStreamDragonName[] __attribute__((section(".append_assets"))) = "Life Stream Dragon";
+static const u8 sMacroCosmosName[] __attribute__((section(".append_assets"))) = "Macro Cosmos";
+static const u8 sMagicalArmShieldName[] __attribute__((section(".append_assets"))) = "Magical Arm Shield";
+static const u8 sMagicalMarionetteName[] __attribute__((section(".append_assets"))) = "Magical Marionette";
+static const u8 sMagiciansCircleName[] __attribute__((section(".append_assets"))) = "Magician's Circle";
+static const u8 sMagnaDragoName[] __attribute__((section(".append_assets"))) = "Magna Drago";
+static const u8 sMirageDragonName[] __attribute__((section(".append_assets"))) = "Mirage Dragon";
+static const u8 sMontageDragonName[] __attribute__((section(".append_assets"))) = "Montage Dragon";
+static const u8 sMorphtronicAcceleratorName[] __attribute__((section(".append_assets"))) = "Morphtronic Accelerator";
+static const u8 sMorphtronicBindName[] __attribute__((section(".append_assets"))) = "Morphtronic Bind";
+static const u8 sMorphtronicBoardenName[] __attribute__((section(".append_assets"))) = "Morphtronic Boarden";
+static const u8 sMorphtronicBoomboxenName[] __attribute__((section(".append_assets"))) = "Morphtronic Boomboxen";
+static const u8 sMorphtronicCameranName[] __attribute__((section(".append_assets"))) = "Morphtronic Cameran";
+static const u8 sMorphtronicCelfonName[] __attribute__((section(".append_assets"))) = "Morphtronic Celfon";
+static const u8 sMorphtronicClockenName[] __attribute__((section(".append_assets"))) = "Morphtronic Clocken";
 
 static u8 *GetCardName_Hook(unsigned short cardId) {
   if (cardId == 0x021B)
@@ -3168,6 +3188,46 @@ static u8 *GetCardName_Hook(unsigned short cardId) {
     return (u8 *)sHonestName;
   if (cardId == 0x073D)
     return (u8 *)sDragonsMirrorName;
+  if (cardId == 0x073E)
+    return (u8 *)sHuntingInstinctName;
+  if (cardId == 0x073F)
+    return (u8 *)sIcarusAttackName;
+  if (cardId == 0x0740)
+    return (u8 *)sJunkSynchronName;
+  if (cardId == 0x0741)
+    return (u8 *)sLevelTuningName;
+  if (cardId == 0x0742)
+    return (u8 *)sLeviairTheSeaDragonName;
+  if (cardId == 0x0743)
+    return (u8 *)sLifeStreamDragonName;
+  if (cardId == 0x0744)
+    return (u8 *)sMacroCosmosName;
+  if (cardId == 0x0745)
+    return (u8 *)sMagicalArmShieldName;
+  if (cardId == 0x0746)
+    return (u8 *)sMagicalMarionetteName;
+  if (cardId == 0x0747)
+    return (u8 *)sMagiciansCircleName;
+  if (cardId == 0x0748)
+    return (u8 *)sMagnaDragoName;
+  if (cardId == 0x0749)
+    return (u8 *)sMirageDragonName;
+  if (cardId == 0x074A)
+    return (u8 *)sMontageDragonName;
+  if (cardId == 0x074B)
+    return (u8 *)sMorphtronicAcceleratorName;
+  if (cardId == 0x074C)
+    return (u8 *)sMorphtronicBindName;
+  if (cardId == 0x074D)
+    return (u8 *)sMorphtronicBoardenName;
+  if (cardId == 0x074E)
+    return (u8 *)sMorphtronicBoomboxenName;
+  if (cardId == 0x074F)
+    return (u8 *)sMorphtronicCameranName;
+  if (cardId == 0x0750)
+    return (u8 *)sMorphtronicCelfonName;
+  if (cardId == 0x0751)
+    return (u8 *)sMorphtronicClockenName;
 
   return gCardNames[cardId];
 }

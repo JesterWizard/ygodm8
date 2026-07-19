@@ -682,6 +682,30 @@ unsigned char CanActivateHERALD_OF_ULIMATENESS(void);
 void ActivateHERALD_OF_ULIMATENESSEffect(void);
 unsigned char CanActivateHONEST(void);
 void ActivateHONESTEffect(void);
+unsigned char CanActivateJUNK_SYNCHRON(void);
+void ActivateJUNK_SYNCHRONEffect(void);
+unsigned char CanActivateLEVIAIR_THE_SEA_DRAGON(void);
+void ActivateLEVIAIR_THE_SEA_DRAGONEffect(void);
+unsigned char CanActivateLIFE_STREAM_DRAGON(void);
+void ActivateLIFE_STREAM_DRAGONEffect(void);
+unsigned char CanActivateMAGICAL_MARIONETTE(void);
+void ActivateMAGICAL_MARIONETTEEffect(void);
+unsigned char CanActivateMAGNA_DRAGO(void);
+void ActivateMAGNA_DRAGOEffect(void);
+unsigned char CanActivateMIRAGE_DRAGON(void);
+void ActivateMIRAGE_DRAGONEffect(void);
+unsigned char CanActivateMONTAGE_DRAGON(void);
+void ActivateMONTAGE_DRAGONEffect(void);
+unsigned char CanActivateMORPHTRONIC_BOARDEN(void);
+void ActivateMORPHTRONIC_BOARDENEffect(void);
+unsigned char CanActivateMORPHTRONIC_BOOMBOXEN(void);
+void ActivateMORPHTRONIC_BOOMBOXENEffect(void);
+unsigned char CanActivateMORPHTRONIC_CAMERAN(void);
+void ActivateMORPHTRONIC_CAMERANEffect(void);
+unsigned char CanActivateMORPHTRONIC_CELFON(void);
+void ActivateMORPHTRONIC_CELFONEffect(void);
+unsigned char CanActivateMORPHTRONIC_CLOCKEN(void);
+void ActivateMORPHTRONIC_CLOCKENEffect(void);
 unsigned char CanActivateMonsterEffect(void) {
   struct DuelCard *zone = gFixedZones[gMonEffect.row][gMonEffect.zone];
   u16 neptuneSavedId;
@@ -2661,6 +2685,54 @@ FAILED:
   }
   if (gMonEffect.id == HONEST) {
     ActivateHONESTEffect();
+    return;
+  }
+  if (gMonEffect.id == JUNK_SYNCHRON) {
+    ActivateJUNK_SYNCHRONEffect();
+    return;
+  }
+  if (gMonEffect.id == LEVIAIR_THE_SEA_DRAGON) {
+    ActivateLEVIAIR_THE_SEA_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == LIFE_STREAM_DRAGON) {
+    ActivateLIFE_STREAM_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGICAL_MARIONETTE) {
+    ActivateMAGICAL_MARIONETTEEffect();
+    return;
+  }
+  if (gMonEffect.id == MAGNA_DRAGO) {
+    ActivateMAGNA_DRAGOEffect();
+    return;
+  }
+  if (gMonEffect.id == MIRAGE_DRAGON) {
+    ActivateMIRAGE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == MONTAGE_DRAGON) {
+    ActivateMONTAGE_DRAGONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_BOARDEN) {
+    ActivateMORPHTRONIC_BOARDENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_BOOMBOXEN) {
+    ActivateMORPHTRONIC_BOOMBOXENEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_CAMERAN) {
+    ActivateMORPHTRONIC_CAMERANEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_CELFON) {
+    ActivateMORPHTRONIC_CELFONEffect();
+    return;
+  }
+  if (gMonEffect.id == MORPHTRONIC_CLOCKEN) {
+    ActivateMORPHTRONIC_CLOCKENEffect();
     return;
   }
 }

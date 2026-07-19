@@ -449,6 +449,9 @@
     case LEVEL_LIMIT_AREA_B:
       EffectLevelLimitAreaB();
       return;
+    case LEVEL_TUNING:
+      EffectLEVEL_TUNING();
+      return;
     case LEV_SHADDOLL_FUSION:
       EffectLEV_SHADDOLL_FUSION();
       return;
@@ -517,6 +520,9 @@
       return;
     case MORALE_BOOST:
       EffectMORALE_BOOST();
+      return;
+    case MORPHTRONIC_ACCELERATOR:
+      EffectMORPHTRONIC_ACCELERATOR();
       return;
     case MYSTICAL_SPACE_TYPHOON:
       EffectMysticalSpaceTyphoon();

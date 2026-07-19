@@ -1855,11 +1855,31 @@
 #define HERALD_OF_ULIMATENESS                    0x073B
 #define HONEST                                   0x073C
 #define DRAGONS_MIRROR                           0x073D
+#define HUNTING_INSTINCT                         0x073E
+#define ICARUS_ATTACK                            0x073F
+#define JUNK_SYNCHRON                            0x0740
+#define LEVEL_TUNING                             0x0741
+#define LEVIAIR_THE_SEA_DRAGON                   0x0742
+#define LIFE_STREAM_DRAGON                       0x0743
+#define MACRO_COSMOS                             0x0744
+#define MAGICAL_ARM_SHIELD                       0x0745
+#define MAGICAL_MARIONETTE                       0x0746
+#define MAGICIANS_CIRCLE                         0x0747
+#define MAGNA_DRAGO                              0x0748
+#define MIRAGE_DRAGON                            0x0749
+#define MONTAGE_DRAGON                           0x074A
+#define MORPHTRONIC_ACCELERATOR                  0x074B
+#define MORPHTRONIC_BIND                         0x074C
+#define MORPHTRONIC_BOARDEN                      0x074D
+#define MORPHTRONIC_BOOMBOXEN                    0x074E
+#define MORPHTRONIC_CAMERAN                      0x074F
+#define MORPHTRONIC_CELFON                       0x0750
+#define MORPHTRONIC_CLOCKEN                      0x0751
 
 #define NUM_CARDS                               0x0321
 #define NUM_TRUE_CARDS                          (NUM_CARDS - 1)
 #define CUSTOM_CARD_START                       SORCERER_OF_DARK_MAGIC
-#define NUM_TOTAL_CARDS                         0x073E
-#define NUM_CUSTOM_CARDS                        0x041D
+#define NUM_TOTAL_CARDS                         0x0752
+#define NUM_CUSTOM_CARDS                        0x0431
 
 #endif // GUARD_CONSTANTS_CARD_IDS_H

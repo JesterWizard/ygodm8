@@ -540,3 +540,15 @@ unsigned IsTrapTriggered__Replacement(void) {
   /* TODO: wire EXCHANGE_OF_THE_SPIRIT in trap dispatcher */
 /* FOSSIL_EXCAVATION trap effect */
   /* TODO: wire FOSSIL_EXCAVATION in trap dispatcher */
+/* HUNTING_INSTINCT trap effect */
+  /* TODO: wire HUNTING_INSTINCT in trap dispatcher */
+/* ICARUS_ATTACK trap effect */
+  /* TODO: wire ICARUS_ATTACK in trap dispatcher */
+/* MACRO_COSMOS trap effect */
+  /* TODO: wire MACRO_COSMOS in trap dispatcher */
+/* MAGICAL_ARM_SHIELD trap effect */
+  /* TODO: wire MAGICAL_ARM_SHIELD in trap dispatcher */
+/* MAGICIANS_CIRCLE trap effect */
+  /* TODO: wire MAGICIANS_CIRCLE in trap dispatcher */
+/* MORPHTRONIC_BIND trap effect */
+  /* TODO: wire MORPHTRONIC_BIND in trap dispatcher */
